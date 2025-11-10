@@ -115,9 +115,8 @@
 	if(.)
 		SStgui.update_uis(src)
 
-/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
-	add_fingerprint(usr)
+/obj/machinery/librarypubliccomp/attack_hand(mob/user as mob)
+	add_fingerprint(user)
 	tgui_interact(user)
 
 /*
@@ -250,7 +249,7 @@
 	return data
 
 // shared with public pc
-/proc/tgui_add_library_book(var/obj/item/book/B)
+/proc/tgui_add_library_book(obj/item/book/B)
 	var/list/book = list()
 	book["id"] = B.type
 	book["title"] = B.name
@@ -266,7 +265,7 @@
 	book["type"] = "[B.type]"
 	return book
 
-/proc/tgui_add_library_token(var/list/token)
+/proc/tgui_add_library_token(list/token)
 	var/list/book = list()
 	book["id"] = token["uid"]
 	book["title"] = token["title"]
@@ -282,7 +281,7 @@
 	book["type"] = "[/obj/item/book]"
 	return book
 
-/obj/machinery/librarycomp/tgui_act(action, params)
+/obj/machinery/librarycomp/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	switch(action)
@@ -294,7 +293,7 @@
 			else
 				// don't change screens if printing a bible
 				if(!bibledelay)
-					new /obj/item/storage/bible(src.loc)
+					new /obj/item/storage/bible(get_turf(src))
 					bibledelay = 1
 					spawn(60)
 						bibledelay = 0
@@ -302,7 +301,7 @@
 					visible_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\""))
 			// Prevent access to forbidden lore vault if emag is fixed somehow
 			if(params["switchscreen"] == "arcane")
-				if(!src.emagged)
+				if(!emagged)
 					screenstate = "inventory"
 			. = TRUE
 
@@ -320,12 +319,12 @@
 
 		if("editbook")
 			playsound(src, "keyboard", 40)
-			buffer_book = tgui_input_text(usr, "Enter the book's title:")
+			buffer_book = tgui_input_text(ui.user, "Enter the book's title:")
 			. = TRUE
 
 		if("editmob")
 			playsound(src, "keyboard", 40)
-			buffer_mob = tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
+			buffer_mob = tgui_input_text(ui.user, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
 			. = TRUE
 
 		if("checkout")
@@ -386,14 +385,14 @@
 
 		if("setauthor")
 			playsound(src, "keyboard", 40)
-			var/newauthor = tgui_input_text(usr, "Enter the author's name: ")
+			var/newauthor = tgui_input_text(ui.user, "Enter the author's name: ")
 			if(newauthor)
 				scanner.cache.author = newauthor
 			. = TRUE
 
 		if("setcategory")
 			playsound(src, "keyboard", 40)
-			var/newcategory = tgui_input_list(usr, "Choose a category: ", "Category", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
+			var/newcategory = tgui_input_list(ui.user, "Choose a category: ", "Category", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 			if(newcategory)
 				scanner.cache.libcategory = newcategory
 			. = TRUE
@@ -407,18 +406,18 @@
 							to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
 						else
 							var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
-							var/status = SSBooks.add_new_book(scanner.cache,usr.client)
+							var/status = SSBooks.add_new_book(scanner.cache,ui.user.client)
 							switch(status)
 								if(0)
-									tgui_alert_async(usr, "Uploaded book \"[scanner.cache.name]\" by \"[scanner.cache.author]\" already exists, and is protected .")
+									tgui_alert_async(ui.user, "Uploaded book \"[scanner.cache.name]\" by \"[scanner.cache.author]\" already exists, and is protected .")
 								if(1)
-									tgui_alert_async(usr, "\"[scanner.cache.name]\" by \"[scanner.cache.author]\", Upload Complete!")
+									tgui_alert_async(ui.user, "\"[scanner.cache.name]\" by \"[scanner.cache.author]\", Upload Complete!")
 								if(2)
-									tgui_alert_async(usr, "Replaced book \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
+									tgui_alert_async(ui.user, "Replaced book \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
 								if(3)
-									tgui_alert_async(usr, "Upload failed to parse \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
+									tgui_alert_async(ui.user, "Upload failed to parse \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
 								if(4)
-									tgui_alert_async(usr, "Please wait, still processing.")
+									tgui_alert_async(ui.user, "Please wait, still processing.")
 			. = TRUE
 
 		if("hardprint")
@@ -437,7 +436,7 @@
 			else
 				var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
 				if(isnull(SSBooks.get_stored_book(get_id,get_turf(src))))
-					tgui_alert_async(usr, "This book's data is invalid, please try another from the catalogue.")
+					tgui_alert_async(ui.user, "This book's data is invalid, please try another from the catalogue.")
 			. = TRUE
 
 		if("delete_external")
@@ -461,7 +460,7 @@
 			. = TRUE
 
 		if("protect_external")
-			if(check_rights_for(usr.client, (R_ADMIN|R_MOD)))
+			if(check_rights_for(ui.user.client, (R_ADMIN|R_MOD)))
 				playsound(src, "keyboard", 40)
 				if(CONFIG_GET(flag/sql_enabled))
 					to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
@@ -473,26 +472,25 @@
 
 		if("arcane_checkout")
 			playsound(src, "keyboard", 40)
-			new /obj/item/book/tome(src.loc)
-			to_chat(usr, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
-			usr.visible_message(span_infoplain(span_bold("\The [usr]") + " stares at the blank screen for a few moments, [usr.p_their()] expression frozen in fear. When [usr.p_they()] finally awaken from it, [usr.p_they()] look a lot older."), 2)
+			new /obj/item/book/tome(get_turf(src))
+			to_chat(ui.user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
+			ui.user.visible_message(span_infoplain(span_bold("\The [ui.user]") + " stares at the blank screen for a few moments, [ui.user.p_their()] expression frozen in fear. When [ui.user.p_they()] finally awaken from it, [ui.user.p_they()] look a lot older."), 2)
 			screenstate = "home"
 			emagged = FALSE // used up
 			. = TRUE
 	if(.)
 		SStgui.update_uis(src)
 
-/obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
-	add_fingerprint(usr)
+/obj/machinery/librarycomp/attack_hand(mob/user)
+	add_fingerprint(user)
 	tgui_interact(user)
 
-/obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
-	if (src.density && !src.emagged)
-		src.emagged = 1
+/obj/machinery/librarycomp/emag_act(remaining_charges, mob/user)
+	if (density && !emagged)
+		emagged = 1
 		return 1
 
-/obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/librarycomp/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/barcodescanner))
 		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src
@@ -514,21 +512,21 @@
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/libraryscanner/attackby(obj/O, mob/user)
 	if(cache) // Prevent stacking books in here, unlike the original code.
 		to_chat(user,span_warning("\The [src] already has a book inside it!"))
 		return
 	if(istype(O, /obj/item/book))
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		cache = O
 		visible_message(span_notice("\The [O] was inserted into \the [src]."))
 
-/obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
+/obj/machinery/libraryscanner/attack_hand(mob/user)
 	if(cache) // Prevent stacking books in here
 		cache = null
 		for(var/obj/item/book/B in contents) // The old code allowed stacking, if multiple things end up in here somehow we may as well drop them all out too.
-			B.loc = src.loc
+			B.forceMove(get_turf(src))
 		visible_message(span_notice("\The [src] ejects a book."))
 		return
 	to_chat(user,span_warning("There is nothing to eject from \the [src]!"))
@@ -549,28 +547,28 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/bookbinder/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/paper_bundle))
 		if(istype(O, /obj/item/paper))
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
-			src.visible_message("[src] begins to hum as it warms up its printing drums.")
+			visible_message("[src] begins to hum as it warms up its printing drums.")
 			sleep(rand(200,400))
-			src.visible_message("[src] whirs as it prints and binds a new book.")
-			var/obj/item/book/b = new(src.loc)
+			visible_message("[src] whirs as it prints and binds a new book.")
+			var/obj/item/book/b = new(get_turf(src))
 			b.dat = O:info
 			b.name = "Print Job #" + "[rand(100, 999)]"
 			b.icon_state = "book[rand(1,7)]"
 			qdel(O)
 		else
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
-			src.visible_message("[src] begins to hum as it warms up its printing drums.")
+			visible_message("[src] begins to hum as it warms up its printing drums.")
 			sleep(rand(300,500))
-			src.visible_message("[src] whirs as it prints and binds a new book.")
-			var/obj/item/book/bundle/b = new(src.loc)
+			visible_message("[src] whirs as it prints and binds a new book.")
+			var/obj/item/book/bundle/b = new(get_turf(src))
 			b.pages = O:pages
 			for(var/obj/item/paper/P in O.contents)
 				P.forceMove(b)
