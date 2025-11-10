@@ -136,11 +136,7 @@
 
 	//update the state of modules and components here
 	if (stat != 0)
-		var/need_update = (module_state_1 || module_state_2 || module_state_3)
 		uneq_all()
-		if(hud_used && need_update && shown_robot_modules) // If we were holding anything, fix our inventory after dropping
-			hud_used.update_robot_modules_display(TRUE)
-			hud_used.toggle_show_robot_modules()
 
 	if(radio)
 		if(!is_component_functioning("radio"))
