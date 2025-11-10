@@ -466,7 +466,10 @@
 /obj/item/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
-	starts_with = list(/obj/item/light/tube = 24)
+	starts_with = list(
+		/obj/item/light/tube = 20,
+		/obj/item/light/tube/large = 4
+	)
 
 /obj/item/storage/box/lights/mixed
 	name = "box of replacement lights"
