@@ -11,33 +11,6 @@
 #define INVPAGESIZE 6
 #define INVPAGESIZEPUBLIC 7
 
-// Moved to a hook instead of in initilize. The whole pre-packaged book inventory is fully static and isn't meant to be changed anyway
-/hook/roundstart/proc/assemble_library_inventory()
-	var/list/base_genre_books = list(
-		/obj/item/book/custom_library/fiction,
-		/obj/item/book/custom_library/nonfiction,
-		/obj/item/book/custom_library/reference,
-		/obj/item/book/custom_library/religious,
-		/obj/item/book/bundle/custom_library/fiction,
-		/obj/item/book/bundle/custom_library/nonfiction,
-		/obj/item/book/bundle/custom_library/reference,
-		/obj/item/book/bundle/custom_library/religious
-		)
-
-	for(var/path in subtypesof(/obj/item/book/codex/lore))
-		var/obj/item/book/C = new path(null)
-		GLOB.all_books[C.name] = C
-
-	for(var/path in subtypesof(/obj/item/book/custom_library) - base_genre_books)
-		var/obj/item/book/B = new path(null)
-		GLOB.all_books[B.title] = B
-
-	for(var/path in subtypesof(/obj/item/book/bundle/custom_library) - base_genre_books)
-		var/obj/item/book/M = new path(null)
-		GLOB.all_books[M.title] = M
-
-	return TRUE
-
 /*
  * Borrowbook datum
  */
