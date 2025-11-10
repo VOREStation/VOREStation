@@ -58,6 +58,14 @@
 	else
 		if (has_power)
 			to_chat(src, span_red("You are now running on emergency backup power."))
+			// Disable all items so that they don't vanish from your inventory and require you to reopen it.
+			var/current_selection_index = get_selected_module() // Will be 0 if nothing is selected.
+			for(var/i = 1, i <= 3, i++)
+				select_module(i)
+				uneq_active()
+			// Select the slot that the player had before if possible.
+			if(current_selection_index)
+				select_module(current_selection_index)
 		has_power = 0
 		if(lights_on) // Light is on but there is no power!
 			lights_on = 0
