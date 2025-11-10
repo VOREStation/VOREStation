@@ -58,14 +58,6 @@
 	else
 		if (has_power)
 			to_chat(src, span_red("You are now running on emergency backup power."))
-			// Disable all items so that they don't vanish from your inventory and require you to reopen it.
-			var/current_selection_index = get_selected_module() // Will be 0 if nothing is selected.
-			for(var/i = 1, i <= 3, i++)
-				select_module(i)
-				uneq_active()
-			// Select the slot that the player had before if possible.
-			if(current_selection_index)
-				select_module(current_selection_index)
 		has_power = 0
 		if(lights_on) // Light is on but there is no power!
 			lights_on = 0
@@ -144,7 +136,11 @@
 
 	//update the state of modules and components here
 	if (stat != 0)
+		var/need_update = (module_state_1 || module_state_2 || module_state_3)
 		uneq_all()
+		if(hud_used && need_update && shown_robot_modules) // If we were holding anything, fix our inventory after dropping
+			hud_used.update_robot_modules_display(TRUE)
+			hud_used.toggle_show_robot_modules()
 
 	if(radio)
 		if(!is_component_functioning("radio"))
