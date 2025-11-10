@@ -7,6 +7,10 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 ))
 
 /proc/do_teleport(atom/movable/teleatom, atom/destination, precision = null, datum/effect/effect/effectin = null, datum/effect/effect/effectout = null, asoundin = null, asoundout = null, no_effects=FALSE, channel=TELEPORT_CHANNEL_BLUESPACE, forced = FALSE)
+	if(istype(teleatom, /obj/effect) && !istype(teleatom, /obj/effect/dummy/chameleon)) // Earliest check because otherwise sparks will fuck you up
+		qdel(teleatom)
+		return FALSE
+
 	if(isnull(precision))
 		precision = 0
 
