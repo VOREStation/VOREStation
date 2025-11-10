@@ -10,11 +10,9 @@
 
 #define INVPAGESIZE 6
 #define INVPAGESIZEPUBLIC 7
-var/global/list/all_books // moved to global list so it can be shared by public comps
 
 // Moved to a hook instead of in initilize. The whole pre-packaged book inventory is fully static and isn't meant to be changed anyway
 /hook/roundstart/proc/assemble_library_inventory()
-	global.all_books = list()
 	var/list/base_genre_books = list(
 		/obj/item/book/custom_library/fiction,
 		/obj/item/book/custom_library/nonfiction,
@@ -28,15 +26,15 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 
 	for(var/path in subtypesof(/obj/item/book/codex/lore))
 		var/obj/item/book/C = new path(null)
-		global.all_books[C.name] = C
+		GLOB.all_books[C.name] = C
 
 	for(var/path in subtypesof(/obj/item/book/custom_library) - base_genre_books)
 		var/obj/item/book/B = new path(null)
-		global.all_books[B.title] = B
+		GLOB.all_books[B.title] = B
 
 	for(var/path in subtypesof(/obj/item/book/bundle/custom_library) - base_genre_books)
 		var/obj/item/book/M = new path(null)
-		global.all_books[M.title] = M
+		GLOB.all_books[M.title] = M
 
 	return TRUE
 
@@ -79,27 +77,30 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 	var/inv_right = TRUE
 	switch(screenstate)
 		if("publicarchive") // external archive (SSpersistance database)
-			if(inventory_page + 1 >= SSpersistence.all_books.len / INVPAGESIZEPUBLIC)
-				inv_right = FALSE
-			for(var/token_id in SSpersistence.all_books)
-				entry_count++
-				if(entry_count < start_entry)
-					continue
-				if(entry_count >= start_entry + INVPAGESIZEPUBLIC)
-					break
-				var/list/token = SSpersistence.all_books[token_id]
-				if(token)
-					inv += list(tgui_add_library_token(token))
+			if(CONFIG_GET(flag/sql_enabled))
+				to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+			else
+				if(inventory_page + 1 >= SSpersistence.all_books.len / INVPAGESIZEPUBLIC)
+					inv_right = FALSE
+				for(var/token_id in SSpersistence.all_books)
+					entry_count++
+					if(entry_count < start_entry)
+						continue
+					if(entry_count >= start_entry + INVPAGESIZEPUBLIC)
+						break
+					var/list/token = SSpersistence.all_books[token_id]
+					if(token)
+						inv += list(tgui_add_library_token(token))
 		if("publiconline") // internal archive (hardcoded books)
-			if(inventory_page + 1 >= global.all_books.len / INVPAGESIZEPUBLIC)
+			if(inventory_page + 1 >= GLOB.all_books.len / INVPAGESIZEPUBLIC)
 				inv_right = FALSE
-			for(var/BP in global.all_books)
+			for(var/BP in GLOB.all_books)
 				entry_count++
 				if(entry_count < start_entry)
 					continue
 				if(entry_count >= start_entry + INVPAGESIZEPUBLIC)
 					break
-				var/obj/item/book/B = global.all_books[BP]
+				var/obj/item/book/B = GLOB.all_books[BP]
 				if(B)
 					inv += list(tgui_add_library_book(B))
 	data["inventory"] = inv
@@ -129,9 +130,13 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 			var/siz = 0
 			switch(screenstate)
 				if("publicarchive") // external archive (SSpersistance database)
-					siz = SSpersistence.all_books.len / INVPAGESIZEPUBLIC
+					if(CONFIG_GET(flag/sql_enabled))
+						to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+						siz = 0
+					else
+						siz = SSpersistence.all_books.len / INVPAGESIZEPUBLIC
 				if("publiconline") // internal archive (hardcoded books)
-					siz = global.all_books.len / INVPAGESIZEPUBLIC
+					siz = GLOB.all_books.len / INVPAGESIZEPUBLIC
 			if(inventory_page + 1 >= siz)
 				inventory_page-- // go back
 	if(.)
@@ -198,29 +203,32 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 				if(B)
 					inv += list(tgui_add_library_book(B))
 		if("online") // internal archive (hardcoded books)
-			if(inventory_page + 1 >= global.all_books.len / INVPAGESIZE)
+			if(inventory_page + 1 >= GLOB.all_books.len / INVPAGESIZE)
 				inv_right = FALSE
-			for(var/BP in global.all_books)
+			for(var/BP in GLOB.all_books)
 				entry_count++
 				if(entry_count < start_entry)
 					continue
 				if(entry_count >= start_entry + INVPAGESIZE)
 					break
-				var/obj/item/book/B = global.all_books[BP]
+				var/obj/item/book/B = GLOB.all_books[BP]
 				if(B)
 					inv += list(tgui_add_library_book(B))
 		if("archive") // external archive (SSpersistance database)
-			if(inventory_page + 1 >= SSpersistence.all_books.len / INVPAGESIZE)
-				inv_right = FALSE
-			for(var/token_id in SSpersistence.all_books)
-				entry_count++
-				if(entry_count < start_entry)
-					continue
-				if(entry_count >= start_entry + INVPAGESIZE)
-					break
-				var/list/token = SSpersistence.all_books[token_id]
-				if(token)
-					inv += list(tgui_add_library_token(token))
+			if(CONFIG_GET(flag/sql_enabled))
+				to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+			else
+				if(inventory_page + 1 >= SSpersistence.all_books.len / INVPAGESIZE)
+					inv_right = FALSE
+				for(var/token_id in SSpersistence.all_books)
+					entry_count++
+					if(entry_count < start_entry)
+						continue
+					if(entry_count >= start_entry + INVPAGESIZE)
+						break
+					var/list/token = SSpersistence.all_books[token_id]
+					if(token)
+						inv += list(tgui_add_library_token(token))
 		if("checkedout") // books checked out of the library
 			if(inventory_page + 1 >= checkouts.len / INVPAGESIZE)
 				inv_right = FALSE
@@ -391,9 +399,13 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 				if("inventory") // barcode scanned books for checkout
 					siz = inventory.len / INVPAGESIZE
 				if("online") // internal archive (hardcoded books)
-					siz = global.all_books.len / INVPAGESIZE
+					siz = GLOB.all_books.len / INVPAGESIZE
 				if("archive") // external archive (SSpersistance database)
-					siz = SSpersistence.all_books.len / INVPAGESIZE
+					if(CONFIG_GET(flag/sql_enabled))
+						to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+						siz = 0
+					else
+						siz = SSpersistence.all_books.len / INVPAGESIZE
 				if("checkedout") // books checked out of the library
 					siz = checkouts.len / INVPAGESIZE
 			if(inventory_page + 1 >= siz)
@@ -418,7 +430,9 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 				if(scanner.cache)
 					if(!scanner.cache.unique)
 						playsound(src, "keyboard", 40)
-						spawn(0)
+						if(CONFIG_GET(flag/sql_enabled))
+							to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+						else
 							var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
 							var/status = SSBooks.add_new_book(scanner.cache,usr.client)
 							switch(status)
@@ -445,31 +459,43 @@ var/global/list/all_books // moved to global list so it can be shared by public 
 		if("import_external")
 			playsound(src, "sound/machines/printer.ogg", 50, 1)
 			var/get_id = params["import_external"]
-			var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
-			if(isnull(SSBooks.get_stored_book(get_id,get_turf(src))))
-				tgui_alert_async(usr, "This book's data is invalid, please try another from the catalogue.")
+			if(CONFIG_GET(flag/sql_enabled))
+				to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+			else
+				var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+				if(isnull(SSBooks.get_stored_book(get_id,get_turf(src))))
+					tgui_alert_async(usr, "This book's data is invalid, please try another from the catalogue.")
 			. = TRUE
 
 		if("delete_external")
 			playsound(src, "keyboard", 40)
-			var/get_id = params["delete_external"]
-			var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
-			SSBooks.delete_stored_book(get_id)
+			if(CONFIG_GET(flag/sql_enabled))
+				to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+			else
+				var/get_id = params["delete_external"]
+				var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+				SSBooks.delete_stored_book(get_id)
 			. = TRUE
 
 		if("restore_external")
 			playsound(src, "keyboard", 40)
-			var/get_id = params["restore_external"]
-			var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
-			SSBooks.restore_stored_book(get_id)
+			if(CONFIG_GET(flag/sql_enabled))
+				to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+			else
+				var/get_id = params["restore_external"]
+				var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+				SSBooks.restore_stored_book(get_id)
 			. = TRUE
 
 		if("protect_external")
 			if(check_rights_for(usr.client, (R_ADMIN|R_MOD)))
 				playsound(src, "keyboard", 40)
-				var/get_id = params["protect_external"]
-				var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
-				SSBooks.protect_stored_book(get_id)
+				if(CONFIG_GET(flag/sql_enabled))
+					to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+				else
+					var/get_id = params["protect_external"]
+					var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+					SSBooks.protect_stored_book(get_id)
 			. = TRUE
 
 		if("arcane_checkout")
