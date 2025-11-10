@@ -128,8 +128,6 @@
 
 	spraying.start(custom_arg)
 	if(duration > 0)
-		duration -= 1
-		addtimer(CALLBACK(src, PROC_REF(effect_spraying), spraying, duration), 1 SECOND, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(effect_spraying), spraying, --duration), 1 SECOND, TIMER_DELETE_ME)
 		return
-
 	qdel(src)
