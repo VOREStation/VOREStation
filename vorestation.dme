@@ -112,6 +112,7 @@
 #include "code\__defines\job_controller.dm"
 #include "code\__defines\jobs.dm"
 #include "code\__defines\jukebox.dm"
+#include "code\__defines\library.dm"
 #include "code\__defines\life.dm"
 #include "code\__defines\lighting.dm"
 #include "code\__defines\logging.dm"

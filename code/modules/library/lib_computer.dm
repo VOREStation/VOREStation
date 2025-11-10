@@ -213,15 +213,15 @@
 							var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
 							var/status = SSBooks.add_new_book(scanner.cache,ui.user.client)
 							switch(status)
-								if(0)
+								if(LIBRARY_UPLOAD_STATUS_ISPROTECTED)
 									tgui_alert_async(ui.user, "Uploaded book \"[scanner.cache.name]\" by \"[scanner.cache.author]\" already exists, and is protected .")
-								if(1)
+								if(LIBRARY_UPLOAD_STATUS_SUCCESSFUL)
 									tgui_alert_async(ui.user, "\"[scanner.cache.name]\" by \"[scanner.cache.author]\", Upload Complete!")
-								if(2)
+								if(LIBRARY_UPLOAD_STATUS_REPLACED)
 									tgui_alert_async(ui.user, "Replaced book \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
-								if(3)
+								if(LIBRARY_UPLOAD_STATUS_FAILPARSE)
 									tgui_alert_async(ui.user, "Upload failed to parse \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
-								if(4)
+								if(LIBRARY_UPLOAD_STATUS_TIMEOUT)
 									tgui_alert_async(ui.user, "Please wait, still processing.")
 			. = TRUE
 

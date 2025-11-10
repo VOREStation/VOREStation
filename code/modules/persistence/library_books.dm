@@ -83,14 +83,12 @@
 	var/list/entry = SSpersistence.all_books[hash_key]
 
 	if(!ready_to_write)
-		return 4 // Timeout
+		return LIBRARY_UPLOAD_STATUS_TIMEOUT
 
 	if(entry)
 		replacing = entry // store the data entry from the list for editing later
-		if(replacing["uid"] != search_id)
-			return 0 // IF SOMEHOW
-		if(replacing["protected"])
-			return 0
+		if(replacing["uid"] != search_id || replacing["protected"])
+			return LIBRARY_UPLOAD_STATUS_ISPROTECTED
 
 	var/list/data = list(
 		"uid" = search_id,
@@ -105,20 +103,25 @@
 		var/was_deleted = FALSE
 		if(replacing["deleted"])
 			was_deleted = TRUE
+
 		for(var/key in data)
 			replacing["[key]"] = data["[key]"] // bulk replace all keys
+
 		if(!save_book_to_file(B))
 			replacing["deleted"] = TRUE
-			return 3 // Error
+			return LIBRARY_UPLOAD_STATUS_FAILPARSE
+
 		if(was_deleted)
-			return 1 // pretend it's newly saved
-		return 2 // replaced old one
-	else
-		SSpersistence.all_books[hash_key] = data
-		if(!save_book_to_file(B))
-			data["deleted"] = TRUE
-			return 3 // Error
-		return 1 // new saved
+			return LIBRARY_UPLOAD_STATUS_SUCCESSFUL
+
+		return LIBRARY_UPLOAD_STATUS_REPLACED
+
+	SSpersistence.all_books[hash_key] = data
+	if(!save_book_to_file(B))
+		SSpersistence.all_books -= hash_key
+		return LIBRARY_UPLOAD_STATUS_FAILPARSE
+
+	return LIBRARY_UPLOAD_STATUS_SUCCESSFUL
 
 /datum/persistent/library_books/proc/get_stored_book(var/uid,var/location,var/unique = TRUE)
 	if(!uid) // somehow null ui, possibly bad data used
@@ -224,8 +227,7 @@
 	to_file(file(filecheck), json_encode(data))
 	// Prevent file writing abuse
 	ready_to_write = FALSE
-	spawn(40)
-		ready_to_write = TRUE
+	VARSET_IN(src, ready_to_write, TRUE, 4 SECONDS)
 	return fexists(filecheck) // Check if write failed due to bad encode
 
 /datum/persistent/library_books/proc/load_book_from_file(var/token)
