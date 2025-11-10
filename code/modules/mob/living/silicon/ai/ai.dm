@@ -447,7 +447,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/restrained()
 	return 0
 
-/mob/living/silicon/ai/emp_act(severity)
+/mob/living/silicon/ai/emp_act(severity, recursive)
 	disconnect_shell("Disconnected from remote shell due to ionic interfe%*@$^___")
 	if (prob(30))
 		view_core()

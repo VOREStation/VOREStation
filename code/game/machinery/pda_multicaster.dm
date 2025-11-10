@@ -86,7 +86,7 @@
 /obj/machinery/pda_multicaster/process()
 	update_power()
 
-/obj/machinery/pda_multicaster/emp_act(severity)
+/obj/machinery/pda_multicaster/emp_act(severity, recursive)
 	if(!(stat & EMPED))
 		stat |= EMPED
 		var/duration = (300 * 10)/severity
