@@ -297,9 +297,9 @@
 /mob/proc/restore_remote_views()
 	if(!loc) // Nullspace during respawn
 		return FALSE
-	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
+	if(QDELETED(loc) || QDELETED(src)) // location or ourselves is qdeleted, don't restart remote viewing during destroy
 		return FALSE
-	if(QDELETED(loc))
+	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
 		return FALSE
 	// Check if we actually need to drop our current remote view component, as this is expensive to do, and leads to more difficult to understand error prone logic
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
