@@ -475,7 +475,8 @@
 	name = "box of replacement lights"
 	icon_state = "lightmixed"
 	starts_with = list(
-		/obj/item/light/tube = 14,
+		/obj/item/light/tube = 12,
+		/obj/item/light/tube/large = 2,
 		/obj/item/light/bulb = 8,
 		/obj/item/light/bulb/large = 2
 	)
