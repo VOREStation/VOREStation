@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Divider, Section } from 'tgui-core/components';
 
-import { MenuPageChanger } from './MenuParts';
 import type { Data } from './types';
 
 export const MenuArchiveStation = (props) => {
@@ -69,7 +68,16 @@ export const MenuArchiveStation = (props) => {
         </Box>
       )}
       <Divider />
-      <MenuPageChanger />
+      <Box>
+        <center>
+          <Button icon="eye" onClick={() => act('inv_page')}>
+            Prev
+          </Button>
+          <Button icon="eye" onClick={() => act('inv_page')}>
+            Next
+          </Button>
+        </center>
+      </Box>
     </Section>
   );
 };
