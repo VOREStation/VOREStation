@@ -22,7 +22,7 @@
 	return ..()
 
 /obj/item/grenade/smokebomb/detonate()
-	start_effect_sprayer(smoke, smoke_strength, 'sound/effects/smoke.ogg')
+	start_effect_sprayer(smoke, smoke_strength, 'sound/effects/smoke.ogg', smoke_color)
 
 /obj/item/grenade/smokebomb/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/multitool))

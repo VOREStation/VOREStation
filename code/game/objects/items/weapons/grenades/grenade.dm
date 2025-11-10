@@ -117,19 +117,19 @@
 /obj/item/grenade/vendor_action(var/obj/machinery/vending/V)
 	activate(V)
 
-/obj/item/grenade/proc/start_effect_sprayer(var/datum/effect/effect/spraying, duration, sound_play)
+/obj/item/grenade/proc/start_effect_sprayer(var/datum/effect/effect/system/spraying, duration, sound_play, custom_arg = null)
 	playsound(loc, sound_play, 50, 1, -3)
 	spraying.set_up(10, 0, loc)
-	effect_spraying(spraying, duration)
+	effect_spraying(spraying, duration, custom_arg)
 
-/obj/item/grenade/proc/effect_spraying(var/datum/effect/effect/spraying, duration)
+/obj/item/grenade/proc/effect_spraying(var/datum/effect/effect/system/spraying, duration, custom_arg)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
-	spraying.start(smoke_color)
+	spraying.start(custom_arg)
 	if(duration > 0)
 		duration -= 1
-		addtimer(CALLBACK(src, PROC_REF(check_to_close_desc), spraying, duration), 1 SECOND, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(effect_spraying), spraying, duration), 1 SECOND, TIMER_DELETE_ME)
 		return
 
 	qdel(src)
