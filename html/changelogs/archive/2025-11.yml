@@ -200,3 +200,8 @@
   - bugfix: View becoming stuck on bodyscanner if you sleep or get stunned inside
       it, and other similar situations inside of machines or items.
   - bugfix: ghosting will clear remote views
+2025-11-10:
+  Cameron-The-Raven:
+  - bugfix: Makes volume pumps and vent scrubbers work with the proper do_after
+  - bugfix: Fireaxe no longer can be used as a pair of bleeders to stop bleeding.
+  - bugfix: Fireaxe can now properly be used to amputate limbs.
