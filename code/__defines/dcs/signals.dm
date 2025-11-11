@@ -45,9 +45,6 @@
 #define COMSIG_GLOB_BORGIFY "!borgify_mob"
 /// brain removed from body, called by /obj/item/organ/internal/brain/proc/transfer_identity() : (mob/living/carbon/brain/brainmob)
 #define COMSIG_GLOB_BRAIN_REMOVED "!brain_removed_from_mob"
-/// item eaten by a mob, called by /obj/proc/after_trash_eaten(var/mob/living/user) : (obj/item/thing, mob/eater)
-#define COMSIG_GLOB_ITEM_TRASH_EATEN "!trash_eaten_by_mob"
-
 
 /// signals from globally accessible objects
 
