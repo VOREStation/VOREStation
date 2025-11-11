@@ -45,6 +45,9 @@
 #define COMSIG_GLOB_BORGIFY "!borgify_mob"
 /// brain removed from body, called by /obj/item/organ/internal/brain/proc/transfer_identity() : (mob/living/carbon/brain/brainmob)
 #define COMSIG_GLOB_BRAIN_REMOVED "!brain_removed_from_mob"
+/// item eaten by a mob, called by /obj/proc/after_trash_eaten(var/mob/living/user) : (obj/item/thing, mob/eater)
+#define COMSIG_GLOB_ITEM_TRASH_EATEN "!trash_eaten_by_mob"
+
 
 /// signals from globally accessible objects
 
@@ -648,6 +651,20 @@
 #define COMSIG_ITEM_SPLIT_PROFIT "item_split_profits"
 ///called when getting the item's exact ratio for cargo's profit, without selling the item.
 #define COMSIG_ITEM_SPLIT_PROFIT_DRY "item_split_profits_dry"
+
+// /obj/item signals for trasheater
+
+///called when an item is attempted to be eaten by a mob: (mob/living/user)
+#define COMSIG_ITEM_TRASH_EATEN "item_trash_eaten"
+	#define COMSIG_ITEM_TRASH_EAT_DENY  (1<<0)
+	#define COMSIG_ITEM_TRASH_EAT_FORCED  (1<<1)
+///called when a mob attempts to eat an item: (obj/item/thing)
+#define COMSIG_MOB_TRASH_EATING "mob_trash_eating"
+///called after the item is eaten: (mob/living/user)
+#define COMSIG_ITEM_AFTER_TRASH_EAT "item_after_trash_eaten"
+	#define COMSIG_ITEM_AFTER_TRASH_EAT_HIDE_MESSAGE  (1<<0)
+///called after mob eats item: (obj/item/thing)
+#define COMSIG_MOB_AFTER_TRASH_EATING "mob_after_trash_eating"
 
 // /obj/item/clothing signals
 
