@@ -67,4 +67,4 @@
 
 /obj/item/bikehorn/turfcross_testing/Crossed(atom/movable/AM)
 	. = ..()
-	to_world("[src] crossed by [AM], was inside [loc]")
+	to_chat(world, "[src] crossed by [AM], was inside [loc]")
