@@ -8,14 +8,8 @@
 	return TRUE
 
 /obj/can_be_injected_by(var/atom/injector)
-	// Check basic injection requirements first
-	if(!Adjacent(get_turf(injector)))
+	if(!..())
 		return FALSE
-	if(!reagents)
-		return FALSE
-	if(!reagents.get_free_space())
-		return FALSE
-
 	// Then check if this is a type of container that can be injected
 	return is_injectable_container()
 
