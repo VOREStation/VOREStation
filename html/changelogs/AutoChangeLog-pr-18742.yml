@@ -1,0 +1,4 @@
+author: "Tenryumi"
+delete-after: True
+changes:
+  - bugfix: "Fixed shelter capsules being affected by gravity surge events on maps that don't have gravity generators."

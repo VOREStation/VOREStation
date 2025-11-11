@@ -119,6 +119,7 @@
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
 #define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
+#define AREA_ALWAYS_HAS_GRAVITY		0x8000	// If an area should always have gravity, even during events that would otherwise remove it.
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 #define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
@@ -566,6 +567,12 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
 #define SHELTER_DEPLOY_SHIP_SPACE "ship not in space"
+
+// Borg hypo injection checks
+#define BORGHYPO_STATUS_CONTAINERFULL "container full"
+#define BORGHYPO_STATUS_NOCHARGE "not enough charge"
+#define BORGHYPO_STATUS_NORECIPE "recipe not found"
+#define BORGHYPO_STATUS_SUCCESS "success"
 
 #define PTO_SECURITY		"Security"
 #define PTO_MEDICAL			"Medical"

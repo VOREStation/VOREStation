@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "Air canisters can be marked green for methane"

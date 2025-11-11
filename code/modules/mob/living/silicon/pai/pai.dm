@@ -135,7 +135,7 @@
 		return 0
 	..()
 
-/mob/living/silicon/pai/emp_act(severity)
+/mob/living/silicon/pai/emp_act(severity, recursive)
 	// Silence for 2 minutes
 	// 20% chance to damage critical components
 	// 50% chance to damage a non critical component

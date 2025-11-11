@@ -1212,7 +1212,7 @@
 	if(cell.charge - (amount + lower_limit) <= 0)
 		return FALSE
 
-	cell.charge -= amount
+	cell.use(amount)
 	return TRUE
 
 /mob/living/silicon/robot/binarycheck()

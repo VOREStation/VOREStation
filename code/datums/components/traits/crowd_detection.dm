@@ -22,10 +22,14 @@
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	human_parent = parent
-	RegisterSignal(human_parent, COMSIG_LIVING_LIFE, PROC_REF(handle_life))
+
+/datum/component/crowd_detection/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(handle_life))
+
+/datum/component/crowd_detection/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE))
 
 /datum/component/crowd_detection/Destroy(force = FALSE)
-	UnregisterSignal(human_parent, COMSIG_LIVING_LIFE)
 	human_parent = null
 	. = ..()
 

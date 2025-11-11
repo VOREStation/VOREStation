@@ -276,7 +276,7 @@
 
 	return
 
-/obj/item/flash/emp_act(severity)
+/obj/item/flash/emp_act(severity, recursive)
 	if(broken)	return
 	flash_recharge()
 	if(!check_capacitor())

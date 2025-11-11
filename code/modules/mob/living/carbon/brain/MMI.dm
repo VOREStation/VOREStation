@@ -164,7 +164,7 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio. Wait, don't they all?"
 	origin_tech = list(TECH_BIO = 4)
 
-/obj/item/mmi/emp_act(severity)
+/obj/item/mmi/emp_act(severity, recursive)
 	if(!brainmob)
 		return
 	else
@@ -217,21 +217,6 @@
 				. += span_deadsay("It appears to be completely inactive.")
 	else
 		. += span_deadsay("It appears to be completely inactive.")
-
-/obj/item/mmi/digital/emp_act(severity)
-	if(!src.brainmob)
-		return
-	else
-		switch(severity)
-			if(1)
-				src.brainmob.emp_damage += rand(20,30)
-			if(2)
-				src.brainmob.emp_damage += rand(10,20)
-			if(3)
-				src.brainmob.emp_damage += rand(5,10)
-			if(4)
-				src.brainmob.emp_damage += rand(0,5)
-	..()
 
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
 	QDEL_SWAP(brainmob.dna, H.dna.Clone())
