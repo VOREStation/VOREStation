@@ -26,7 +26,7 @@
 	update_turf_signals(new_loc)
 
 /// Updates the topmost turf we are registered to when we are moved.
-/datum/component/topturfcrossed/proc/update_turf_signals(/atom/new_loc)
+/datum/component/topturfcrossed/proc/update_turf_signals(atom/new_loc)
 	// Our turf is the exact same, don't change anything!
 	if(new_loc && our_old_turf)
 		var/turf/check_valid = get_turf(new_loc)
