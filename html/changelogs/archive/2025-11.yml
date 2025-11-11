@@ -200,3 +200,18 @@
   - bugfix: View becoming stuck on bodyscanner if you sleep or get stunned inside
       it, and other similar situations inside of machines or items.
   - bugfix: ghosting will clear remote views
+2025-11-10:
+  Cameron-The-Raven:
+  - bugfix: Makes volume pumps and vent scrubbers work with the proper do_after
+  - bugfix: Fireaxe no longer can be used as a pair of bleeders to stop bleeding.
+  - bugfix: Fireaxe can now properly be used to amputate limbs.
+2025-11-11:
+  Guti:
+  - bugfix: Fixes sparks recursively teleporting through shadekin portals
+  Kashargul:
+  - bugfix: runtimes due to multiple signal registers on opacity changes
+  - bugfix: digest pain runtimes when stepping into digestive tiles
+  Will:
+  - bugfix: Fix runtime in machine var shim, removed balloon alert when using old
+      byond uis handled by it.
+  - bugfix: Remoteview crashing during mob qdel
