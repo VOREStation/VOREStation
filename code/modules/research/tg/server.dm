@@ -51,7 +51,7 @@
 	// update_current_power_usage()
 	update_icon()
 
-/obj/machinery/rnd/server/emp_act(severity)
+/obj/machinery/rnd/server/emp_act(severity, recursive)
 	. = ..()
 	stat |= EMPED
 	addtimer(CALLBACK(src, PROC_REF(fix_emp)), 60 SECONDS)

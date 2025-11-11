@@ -108,7 +108,7 @@
 	// Get our AI to stay still.
 	set_AI_busy(TRUE)
 
-	if(!do_mob(src, AM, 5 SECONDS))
+	if(!do_after(src,5 SECONDS, AM))
 		set_AI_busy(FALSE)
 		to_chat(src, span_warning("You need to stay still to spin a web around \the [AM]."))
 		return FALSE
@@ -174,7 +174,7 @@
 	// Get our AI to stay still.
 	set_AI_busy(TRUE)
 
-	if(!do_mob(src, T, 5 SECONDS))
+	if(!do_after(src, 5 SECONDS, T))
 		set_AI_busy(FALSE)
 		to_chat(src, span_warning("You need to stay still to spin a web on \the [T]."))
 		return FALSE
@@ -208,7 +208,7 @@
 	// Stop players from spamming eggs.
 	laying_eggs = TRUE
 
-	if(!do_mob(src, T, 5 SECONDS))
+	if(!do_after(src, 5 SECONDS, T))
 		set_AI_busy(FALSE)
 		to_chat(src, span_warning("You need to stay still to lay eggs on \the [T]."))
 		return FALSE

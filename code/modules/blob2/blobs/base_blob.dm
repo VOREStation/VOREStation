@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 		return overmind.blob_type.effect_desc
 	return ..()
 
-/obj/structure/blob/emp_act(severity)
+/obj/structure/blob/emp_act(severity, recursive)
 	if(overmind)
 		overmind.blob_type.on_emp(src, severity)
 

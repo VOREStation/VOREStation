@@ -32,7 +32,7 @@
 	canremove = FALSE //Since this is essentially flesh impersonating clothes, tearing someone's skin off as if it were clothing isn't possible.
 	has_sensor = FALSE // Reveals ling, and doesn't make sense anyway!
 
-/obj/item/clothing/under/chameleon/changeling/emp_act(severity) //As these are purely organic, EMP does nothing to them.
+/obj/item/clothing/under/chameleon/changeling/emp_act(severity, recursive) //As these are purely organic, EMP does nothing to them.
 	return
 
 /obj/item/clothing/under/chameleon/changeling/verb/shred() //Remove individual pieces if needed.
@@ -53,7 +53,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/clothing/head/chameleon/changeling/emp_act(severity)
+/obj/item/clothing/head/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/clothing/head/chameleon/changeling/verb/shred() //The copypasta is real.
@@ -78,7 +78,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/clothing/suit/chameleon/changeling/emp_act(severity)
+/obj/item/clothing/suit/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/clothing/suit/chameleon/changeling/verb/shred()
@@ -103,7 +103,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/clothing/shoes/chameleon/changeling/emp_act()
+/obj/item/clothing/shoes/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/clothing/shoes/chameleon/changeling/verb/shred()
@@ -128,7 +128,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/storage/backpack/chameleon/changeling/emp_act()
+/obj/item/storage/backpack/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/storage/backpack/chameleon/changeling/verb/shred()
@@ -156,7 +156,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/clothing/gloves/chameleon/changeling/emp_act()
+/obj/item/clothing/gloves/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/clothing/gloves/chameleon/changeling/verb/shred()
@@ -182,7 +182,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/clothing/mask/chameleon/changeling/emp_act()
+/obj/item/clothing/mask/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/clothing/mask/chameleon/changeling/verb/shred()
@@ -203,7 +203,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/clothing/glasses/chameleon/changeling/emp_act()
+/obj/item/clothing/glasses/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/clothing/glasses/chameleon/changeling/verb/shred()
@@ -228,7 +228,7 @@
 	origin_tech = list()
 	canremove = FALSE
 
-/obj/item/storage/belt/chameleon/changeling/emp_act()
+/obj/item/storage/belt/chameleon/changeling/emp_act(severity, recursive)
 	return
 
 /obj/item/storage/belt/chameleon/changeling/verb/shred()
