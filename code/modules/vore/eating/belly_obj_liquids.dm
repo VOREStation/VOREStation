@@ -24,7 +24,7 @@
 				affecting_amt = 5
 			if(affecting_amt >= 1)
 				for(var/mob/living/L in touchable_atoms)
-					if(!L.apply_reagents)
+					if(!L.apply_reagents || L.absorbed)
 						continue
 					if((L.digestable && digest_mode == DM_DIGEST))
 						if(!L.permit_healbelly && is_beneficial) // Healing reagents turned off in preferences!

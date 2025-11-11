@@ -539,7 +539,7 @@
 		else if (P.name != initial(P.name))
 			B.name = P.name
 		user.drop_from_inventory(P)
-		if (ishuman(user))
+		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 			if (h_user.r_hand == src)
 				h_user.drop_from_inventory(src)

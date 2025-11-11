@@ -696,12 +696,6 @@
 		total_storage_space += I.get_storage_cost()
 	max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
-/obj/item/storage/emp_act(severity)
-	if(!isliving(src.loc))
-		for(var/obj/O in contents)
-			O.emp_act(severity)
-	..()
-
 /obj/item/storage/attack_self(mob/user as mob)
 	if((user.get_active_hand() == src) || (isrobot(user)) && allow_quick_empty)
 		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))

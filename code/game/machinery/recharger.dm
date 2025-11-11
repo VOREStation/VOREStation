@@ -283,18 +283,6 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 	return
 
 
-/obj/machinery/recharger/emp_act(severity)
-	if(stat & (NOPOWER|BROKEN) || !anchored)
-		..(severity)
-		return
-
-	if(charging)
-		var/obj/item/cell/C = charging.get_cell()
-		if(istype(C))
-			C.emp_act(severity)
-
-	..(severity)
-
 /obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(charging)
 		icon_state = icon_state_charging

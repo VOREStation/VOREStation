@@ -43,7 +43,7 @@
 			var/time = 20 //2/3rds the time of a syringe
 			user.visible_message(span_warning("[user] is trying to squirt something into [target]'s eyes!"))
 
-			if(!do_mob(user, target, time))
+			if(!do_after(user, time, target))
 				return
 
 			if(ishuman(target))

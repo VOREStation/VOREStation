@@ -219,7 +219,7 @@
 "cIt" = (
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -286,7 +286,7 @@
 "dbA" = (
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -443,7 +443,7 @@
 /obj/effect/floor_decal/corner/red/full,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -618,7 +618,7 @@
 "ghx" = (
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -882,7 +882,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /turf/simulated/floor/tiled/milspec,
@@ -928,7 +928,7 @@
 /obj/effect/floor_decal/corner/red/full,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -1005,7 +1005,7 @@
 "jPA" = (
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -1034,7 +1034,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -1192,7 +1192,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -1587,7 +1587,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -2019,7 +2019,7 @@
 "sRZ" = (
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
-/obj/item/clothing/suit/redtag,
+/obj/item/clothing/suit/lasertag/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -2136,7 +2136,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -2277,7 +2277,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
@@ -2297,7 +2297,7 @@
 "uTh" = (
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
-/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/suit/lasertag/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
 /mob/living/carbon/human/dummy/mannequin/autoequip{
