@@ -41,6 +41,7 @@
 		recursion++
 		parents += cur_parent
 		RegisterSignal(cur_parent, COMSIG_ATOM_EXITED, PROC_REF(heirarchy_changed))
+		RegisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED, PROC_REF(heirarchy_changed)) // picking up items off the floor does not rebuild the heirarchy despite Exited being called?
 		RegisterSignal(cur_parent, COMSIG_QDELETING, PROC_REF(on_qdel))
 
 		cur_parent = cur_parent.loc
@@ -73,6 +74,7 @@
 	for(var/atom/movable/cur_parent in parents)
 		UnregisterSignal(cur_parent, COMSIG_QDELETING)
 		UnregisterSignal(cur_parent, COMSIG_ATOM_EXITED)
+		UnregisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED)
 
 	UnregisterSignal(parents[parents.len], COMSIG_ATOM_ENTERING)
 
