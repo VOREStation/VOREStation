@@ -55,10 +55,10 @@
 #define GLOBAL_ALIST_EMPTY(X) GLOBAL_ALIST_INIT(X, alist())
 
 /// Create a typed alist global with an initializer expression
-//#define GLOBAL_ALIST_INIT_TYPED(X, Typepath, InitValue) GLOBAL_RAW(/alist##Typepath/X); GLOBAL_MANAGED(X, InitValue) // Byond doesn't currently allow this?
+//#define GLOBAL_ALIST_INIT_TYPED(X, Typepath, InitValue) GLOBAL_RAW(/alist##Typepath/X); GLOBAL_MANAGED(X, InitValue) // Missing in spacemandmm
 
 /// Create a typed alist global that is initialized as an empty list
-//#define GLOBAL_ALIST_EMPTY_TYPED(X, Typepath) GLOBAL_ALIST_INIT_TYPED(X, Typepath, alist()) // Byond doesn't currently allow this?
+//#define GLOBAL_ALIST_EMPTY_TYPED(X, Typepath) GLOBAL_ALIST_INIT_TYPED(X, Typepath, alist()) // Missing in spacemandmm
 
 /// Create a typed global with an initializer expression
 #define GLOBAL_DATUM_INIT(X, Typepath, InitValue) GLOBAL_RAW(Typepath/##X); GLOBAL_MANAGED(X, InitValue)
