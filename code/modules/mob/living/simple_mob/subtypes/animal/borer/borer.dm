@@ -36,7 +36,6 @@
 	var/antag = TRUE							// If false, will avoid setting up objectives and events
 
 	var/chemicals = 10							// A resource used for reproduction and powers.
-	var/max_chemicals = 250						// Max of said resource.
 	var/true_name = null						// String used when speaking among other worms.
 	var/controlling = FALSE						// Used in human death ceck.
 	var/docile = FALSE							// Sugar can stop borers from acting.
@@ -76,42 +75,69 @@
 	request_player()
 
 /mob/living/simple_mob/animal/borer/handle_special()
+	handle_chemicals()
+	handle_docile()
+	handle_braindamage()
+
+/mob/living/simple_mob/animal/borer/proc/handle_chemicals()
+	if(stat == DEAD || !host || host.stat == DEAD)
+		return
+	if(chemicals >= BORER_MAX_CHEMS || docile)
+		return
+
+	var/chem_before = chemicals
+	if(controlling)
+		chemicals += 1
+	else
+		chemicals += 0.1
+	if(FLOOR(chemicals/10,1) > FLOOR(chem_before/10,1))
+		to_chat(host, span_alien("Your chemicals have increased to [FLOOR(chemicals/10,1) * 10]"))
+
+/mob/living/simple_mob/animal/borer/proc/handle_docile()
+	if(stat == DEAD || host.stat == DEAD)
+		docile_counter = 0
+		return
+
+	// Start docile
+	if(host.reagents.has_reagent(REAGENT_ID_SUGAR) || host.ingested.has_reagent(REAGENT_ID_SUGAR))
+		docile_counter = 5 SECONDS
+		if(!docile)
+			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+			var/target = controlling ? host : src
+			to_chat(target, span_danger( message))
+			docile = TRUE
+
+	// Drop control if docile
+	if(controlling && docile)
+		to_chat(host, span_vdanger("You are feeling far too docile to continue controlling your host..."))
+		host.release_control()
+		return
+
+	// wear it off
 	docile_counter--
-	if(host && !stat && !host.stat)
-		// Handle docility.
-		if(host.reagents.has_reagent(REAGENT_ID_SUGAR) || host.ingested.has_reagent(REAGENT_ID_SUGAR))
-			docile_counter = 5 SECONDS
-			if(docile_counter < 0)
-				docile_counter = 0
+	if(docile_counter > 0)
+		return
 
-			if(docile_counter > 0)
-				if(!docile)
-					var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
-					var/target = controlling ? host : src
-					to_chat(target, span_danger( message))
-					docile = TRUE
-			else if(docile)
-				var/message = "You shake off your lethargy as the sugar leaves your host's blood."
-				var/target = controlling ? host : src
-				to_chat(target, span_notice( message))
-				docile = FALSE
+	// End docile
+	if(docile)
+		to_chat(controlling ? host : src, span_notice("You shake off your lethargy as the sugar leaves your host's blood."))
+		docile = FALSE
+		docile_counter = 0
 
-		// Chem regen.
-		if(chemicals < max_chemicals)
-			chemicals++
+/mob/living/simple_mob/animal/borer/proc/handle_braindamage()
+	if(stat == DEAD || host.stat == DEAD)
+		return
+	if(!host || !controlling)
+		return
+	if(prob(2))
+		host.adjustBrainLoss(0.1)
+	if(prob(host.brainloss/20))
+		host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
 
-		// Control stuff.
-		if(controlling)
-			if(docile)
-				to_chat(host, span_vdanger("You are feeling far too docile to continue controlling your host..."))
-				host.release_control()
-				return
-
-			if(prob(5))
-				host.adjustBrainLoss(0.1)
-
-			if(prob(host.brainloss/20))
-				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
+/mob/living/simple_mob/animal/borer/handle_regular_hud_updates()
+	. = ..()
+	if(!.)
+		return
 
 	if(borer_chem_display)
 		borer_chem_display.invisibility = INVISIBILITY_NONE
@@ -134,10 +160,6 @@
 				borer_chem_display.icon_state = "ling_chems70e"
 			if(80 to INFINITY)
 				borer_chem_display.icon_state = "ling_chems80e"
-
-/mob/living/simple_mob/animal/borer/get_status_tab_items()
-	. = ..()
-	. += "Chemicals: [chemicals]"
 
 /mob/living/simple_mob/animal/borer/proc/detatch()
 	if(!host || !controlling)
@@ -269,7 +291,7 @@
 
 	if(stat >= DEAD)
 		return say_dead(message)
-	else if(stat)
+	if(stat)
 		return
 
 	if(client && client.prefs.muted & MUTE_IC)
@@ -286,10 +308,10 @@
 			return
 
 	if(!host)
-		if(chemicals >= 30)
+		if(chemicals >= BORER_PSYCHIC_SAY_MINIMUM_CHEMS)
 			to_chat(src, span_alien("..You emit a psionic pulse with an encoded message.."))
 			var/list/nearby_mobs = list()
-			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / max_chemicals))))
+			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / BORER_MAX_CHEMS))))
 				if(LM == src)
 					continue
 				if(!LM.stat)

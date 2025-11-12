@@ -59,6 +59,7 @@
 #include "code\__defines\belly_messages.dm"
 #include "code\__defines\belly_modes_vr.dm"
 #include "code\__defines\blueprints.dm"
+#include "code\__defines\borer.dm"
 #include "code\__defines\borg_overlays.dm"
 #include "code\__defines\callbacks.dm"
 #include "code\__defines\changeling.dm"
