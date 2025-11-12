@@ -98,7 +98,7 @@
 		to_chat(host, span_alien("Your chemicals have increased to [FLOOR(chemicals/10,1) * 10]"))
 
 /mob/living/simple_mob/animal/borer/proc/handle_docile()
-	if(stat == DEAD || host.stat == DEAD)
+	if(stat == DEAD)
 		docile_counter = 0
 		return
 
@@ -129,7 +129,7 @@
 		docile_counter = 0
 
 /mob/living/simple_mob/animal/borer/proc/handle_braindamage()
-	if(!can_use_power_controlling_host())
+	if(QDELETED(src) || !host || QDELETED(host) || !controlling)
 		return
 	if(prob(2))
 		host.adjustBrainLoss(0.1)
@@ -153,7 +153,7 @@
 	if(!controlling)
 		to_chat(src, span_warning("You need to be in complete control to do this."))
 		return FALSE
-	if(!host.stat)
+	if(host.stat)
 		to_chat(src, span_warning("Your host is in no condition to do that."))
 		return FALSE
 	return TRUE
