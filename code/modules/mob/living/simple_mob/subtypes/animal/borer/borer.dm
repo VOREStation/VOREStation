@@ -79,6 +79,10 @@
 	handle_docile()
 	handle_braindamage()
 
+/mob/living/simple_mob/animal/borer/get_status_tab_items()
+	. = ..()
+	. += "Chemicals: [FLOOR(chemicals,1)]"
+
 /mob/living/simple_mob/animal/borer/proc/handle_chemicals()
 	if(stat == DEAD || !host || host.stat == DEAD)
 		return
@@ -125,20 +129,51 @@
 		docile_counter = 0
 
 /mob/living/simple_mob/animal/borer/proc/handle_braindamage()
-	if(stat == DEAD || host.stat == DEAD)
-		return
-	if(!host || !controlling)
+	if(!can_use_power_controlling_host())
 		return
 	if(prob(2))
 		host.adjustBrainLoss(0.1)
 	if(prob(host.brainloss/20))
 		host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
 
+/mob/living/simple_mob/animal/borer/proc/can_use_power_in_host()
+	if(QDELETED(src))
+		return FALSE
+	if(!host || QDELETED(host))
+		to_chat(src, span_warning("You are not inside a host body."))
+		return FALSE
+	if(stat)
+		to_chat(src, span_warning("You cannot that that in your current state."))
+		return FALSE
+	return TRUE
+
+/mob/living/simple_mob/animal/borer/proc/can_use_power_controlling_host()
+	if(!can_use_power_in_host())
+		return FALSE
+	if(!controlling)
+		to_chat(src, span_warning("You need to be in complete control to do this."))
+		return FALSE
+	if(!host.stat)
+		to_chat(src, span_warning("Your host is in no condition to do that."))
+		return FALSE
+	return TRUE
+
+/mob/living/simple_mob/animal/borer/proc/can_use_power_docile()
+	if(docile)
+		to_chat(src, span_info("You are feeling far too docile to do that."))
+	return !docile
+
+/mob/living/simple_mob/animal/borer/proc/use_chems(amount)
+	if(chemicals < amount)
+		to_chat(src, span_warning("You don't have enough chemicals, requires [amount]! Currently you have [FLOOR(chemicals,1)]."))
+		return FALSE
+	chemicals -= amount
+	return TRUE
+
 /mob/living/simple_mob/animal/borer/handle_regular_hud_updates()
 	. = ..()
 	if(!.)
 		return
-
 	if(borer_chem_display)
 		borer_chem_display.invisibility = INVISIBILITY_NONE
 		switch(chemicals)

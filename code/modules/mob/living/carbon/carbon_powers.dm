@@ -28,13 +28,10 @@
 		return
 	if(!B.host_brain)
 		return
-	if(B.docile)
+	if(!B.can_use_power_docile())
 		return
-
-	if(B.chemicals < BORER_POWER_COST_TORTURE)
-		to_chat(src, span_warning("You don't have enough chemicals!"))
+	if(!B.use_chems(BORER_POWER_COST_TORTURE))
 		return
-	B.chemicals -= BORER_POWER_COST_TORTURE
 
 	to_chat(src, span_alien("You send a punishing spike of psychic agony lancing into your host's brain."))
 	if(!B.host_brain.client || !can_feel_pain())
@@ -49,22 +46,19 @@
 	set desc = "Spawn several young."
 
 	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
-
-	if(!B)
+	if(!B || !B.can_use_power_controlling_host())
+		return
+	if(!B.can_use_power_docile())
+		return
+	if(!B.use_chems(BORER_POWER_COST_REPRODUCE))
 		return
 
-	if(B.chemicals >= BORER_POWER_COST_REPRODUCE)
-		to_chat(src, span_alien("Your host twitches and quivers as you rapidly excrete a larva from your sluglike body."))
-		visible_message(span_danger("\The [src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!"))
-		B.chemicals -= BORER_POWER_COST_REPRODUCE
-		B.has_reproduced = TRUE
+	to_chat(src, span_alien("Your host twitches and quivers as you rapidly excrete a larva from your sluglike body."))
+	visible_message(span_danger("\The [src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!"))
 
-		vomit(1)
-		new /mob/living/simple_mob/animal/borer(get_turf(src))
-
-	else
-		to_chat(src, span_warning("You do not have enough chemicals stored to reproduce."))
-		return
+	do_vomit(lost_nutrition = 1) // Needs to be instant
+	new /mob/living/simple_mob/animal/borer(get_turf(src))
+	B.has_reproduced = TRUE
 
 /mob/living/proc/toggle_active_cloaking() // Borrowed from Rogue Star, thanks guys!
 	set category = "Abilities.General"

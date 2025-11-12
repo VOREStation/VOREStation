@@ -9,8 +9,7 @@
 	if(stat)
 		to_chat(src, span_warning("You cannot leave your host in your current state."))
 		return
-	if(docile)
-		to_chat(src, span_info("You are feeling far too docile to do that."))
+	if(!can_use_power_docile())
 		return
 
 	to_chat(src, span_alien("You begin disconnecting from [host]'s synapses and prodding at their internal ear canal."))
@@ -138,21 +137,15 @@
 	set name = "Devour Brain"
 	set desc = "Take permanent control of a dead host."
 
-	if(!host)
-		to_chat(src, span_warning("You are not inside a host body."))
+	if(!can_use_power_in_host())
+		return
+
+	if(!B.can_use_power_docile())
 		return
 
 	if(host.stat != 2)
 		to_chat(src, span_warning("Your host is still alive."))
 		return
-
-	if(stat)
-		to_chat(src, span_warning("You cannot do that in your current state."))
-
-	if(docile)
-		to_chat(src, span_info("You are feeling far too docile to do that."))
-		return
-
 
 	to_chat(src, span_alien("It only takes a few moments to render the dead host brain down into a nutrient-rich slurry..."))
 	replace_brain()
@@ -213,20 +206,16 @@
 	set name = "Secrete Chemicals"
 	set desc = "Drain some chemicals into your host's bloodstream."
 
-	if(!host)
-		to_chat(src, span_warning("You are not inside a host body."))
+	if(!can_use_power_in_host())
 		return
-	if(stat)
-		to_chat(src, span_warning("You cannot secrete chemicals in your current state."))
-	if(docile)
-		to_chat(src, span_info("You are feeling far too docile to do that."))
+	if(!can_use_power_docile())
 		return
-	if(chemicals < BORER_POWER_COST_SECRETE)
-		to_chat(src, span_warning("You don't have enough chemicals!"))
+	if(controlling)
+		to_chat(src, span_warning("You cannot do that while in full control of a host."))
 		return
 
 	var/injectsize = 10
-	var/chem = tgui_input_list(src	,"Select a chemical to secrete."
+	var/injecting_chem = tgui_input_list(src	,"Select a chemical to secrete."
 									,"Chemicals", list(
 									"Repair Brain Tissue (alkysine)",
 									"Repair Body (bicaridine)",
@@ -239,47 +228,54 @@
 									"Cure Infection (spaceacillin)",
 									"Revive Dead Host"
 								))
-	switch(chem) // scan for simplified name
+	switch(injecting_chem) // scan for simplified name
 		if("Repair Brain Tissue (alkysine)")
-			chem = REAGENT_ID_ALKYSINE
+			injecting_chem = REAGENT_ID_ALKYSINE
 
 		if("Repair Body (bicaridine)")
-			chem = REAGENT_ID_BICARIDINE
+			injecting_chem = REAGENT_ID_BICARIDINE
 
 		if("Make Drunk (ethanol)")
-			chem = REAGENT_ID_ETHANOL
+			injecting_chem = REAGENT_ID_ETHANOL
 			injectsize = 5
 
 		if("Cure Drunk (ethylredoxrazine)")
-			chem = REAGENT_ID_ETHYLREDOXRAZINE
+			injecting_chem = REAGENT_ID_ETHYLREDOXRAZINE
 
 		if("Enhance Speed (hyperzine)")
-			chem = REAGENT_ID_HYPERZINE
+			injecting_chem = REAGENT_ID_HYPERZINE
 
 		if("Pain Killer (tramadol)")
-			chem = REAGENT_ID_TRAMADOL
+			injecting_chem = REAGENT_ID_TRAMADOL
 
 		if("Euphoric High (bliss)")
-			chem = REAGENT_ID_BLISS
+			injecting_chem = REAGENT_ID_BLISS
 			injectsize = 5
 
 		if("Stablize Mind (citalopram)")
-			chem = REAGENT_ID_CITALOPRAM
+			injecting_chem = REAGENT_ID_CITALOPRAM
 
 		if("Cure Infection (spaceacillin)")
-			chem = REAGENT_ID_SPACEACILLIN
+			injecting_chem = REAGENT_ID_SPACEACILLIN
 
 		if("Revive Dead Host")
-			if(chemicals < BORER_POWER_COST_SECRETE || !host || controlling || QDELETED(src) || stat) //Sanity check.
+			if(!can_use_power_in_host())
 				return
-			if(!host)
-				to_chat(src, span_warning("You are not inside a host body."))
+			if(controlling)
+				to_chat(src, span_warning("You cannot do that while in full control of a host."))
+				return
+			if(!can_use_power_docile())
 				return
 			if(host.stat != DEAD)
 				to_chat(src, span_danger("Your host must be dead!"))
 				return
-			if(docile)
-				to_chat(src, span_info("You are feeling far too docile to do that."))
+			if(HUSK in mutations)
+				to_chat(src, span_danger("Your host is too destroyed to revive."))
+				return
+			if(!host.can_defib)
+				to_chat(src, span_vdanger("Your host's brain is not connected to its body!"))
+				return
+			if(!use_chems(BORER_POWER_COST_SECRETE))
 				return
 			to_chat(src, span_alien("You squirt an intense mix of chemicals from your reservoirs into [host]'s bloodstream."))
 			// This is meant to be a bit silly, cause borers don't have much options otherwise
@@ -293,33 +289,29 @@
 			host.reagents.add_reagent(REAGENT_KELOTANE, 5)
 			host.reagents.add_reagent(REAGENT_ID_TRAMADOL, 5)
 			host.reagents.add_reagent(REAGENT_ID_ALKYSINE, 5)
-			chemicals -= BORER_POWER_COST_SECRETE
 			return
 
 		else
-			if(chem)
-				CRASH("Invalid chem option [chem], in borer chemical list.")
+			if(injecting_chem)
+				CRASH("Invalid chem option [injecting_chem], in borer chemical list.")
 
-	if(!chem || controlling || QDELETED(src)) //Sanity check.
+	if(!injecting_chem) //Sanity check.
 		return
-	if(!host)
-		to_chat(src, span_warning("You are not inside a host body."))
+	if(!can_use_power_in_host())
 		return
-	if(stat)
-		to_chat(src, span_warning("You cannot secrete chemicals in your current state."))
-	if(docile)
-		to_chat(src, span_info("You are feeling far too docile to do that."))
+	if(!can_use_power_docile())
 		return
-	if(chemicals < BORER_POWER_COST_SECRETE)
-		to_chat(src, span_warning("You don't have enough chemicals!"))
+	if(controlling)
+		to_chat(src, span_warning("You cannot do that while in full control of a host."))
+		return
+	if(!use_chems(BORER_POWER_COST_SECRETE))
 		return
 
-	var/datum/reagent/inject_reagent = SSchemistry.chemical_reagents[chem]
+	var/datum/reagent/inject_reagent = SSchemistry.chemical_reagents[injecting_chem]
 	if(!inject_reagent)
-		CRASH("Invalid chem reagent [chem], in borer chemical injection.")
+		CRASH("Invalid chem reagent [injecting_chem], in borer chemical injection.")
 	to_chat(src, span_alien("You squirt a measure of [inject_reagent] from your reservoirs into [host]'s bloodstream."))
-	host.reagents.add_reagent(chem, injectsize)
-	chemicals -= BORER_POWER_COST_SECRETE
+	host.reagents.add_reagent(injecting_chem, injectsize)
 
 /mob/living/simple_mob/animal/borer/verb/dominate_victim()
 	set category = "Abilities.Borer"
@@ -374,14 +366,9 @@
 	set name = "Assume Control"
 	set desc = "Fully connect to the brain of your host."
 
-	if(!host)
-		to_chat(src, span_warning("You are not inside a host body."))
+	if(!can_use_power_in_host())
 		return
-	if(stat)
-		to_chat(src, span_warning("You cannot do that in your current state."))
-		return
-	if(docile)
-		to_chat(src, span_info("You are feeling far too docile to do that."))
+	if(!can_use_power_docile())
 		return
 
 	to_chat(src, span_alien("You begin delicately adjusting your connection to the host brain..."))
@@ -441,13 +428,6 @@
 	set category = "Abilities.Borer"
 	set name = "Revive Host"
 	set desc = "Send a jolt of electricity through your host, reviving them."
-
-	if(stat != DEAD)
-		to_chat(src, span_warning("Your host is already alive."))
-		return
-	if(HUSK in mutations)
-		to_chat(src, span_danger("Your host is too destroyed to revive."))
-		return
 
 	remove_verb(src, /mob/living/carbon/human/proc/jumpstart)
 	visible_message(span_danger("With a hideous, rattling moan, [src] shudders back to life!"))
