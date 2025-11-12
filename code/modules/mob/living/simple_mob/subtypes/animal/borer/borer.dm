@@ -61,12 +61,12 @@
 
 /mob/living/simple_mob/animal/borer/Initialize(mapload)
 	add_language("Cortical Link")
-
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
-	..()
+
+	. = ..()
 
 	if(!roundstart && antag)
 		return INITIALIZE_HINT_LATELOAD
@@ -91,9 +91,9 @@
 
 	var/chem_before = chemicals
 	if(controlling)
-		chemicals += 1
+		chemicals += 0.25
 	else
-		chemicals += 0.1
+		chemicals += 0.05
 	if(FLOOR(chemicals/10,1) > FLOOR(chem_before/10,1))
 		to_chat(host, span_alien("Your chemicals have increased to [FLOOR(chemicals/10,1) * 10]"))
 
@@ -103,7 +103,7 @@
 		return
 
 	// Start docile
-	if(host.reagents.has_reagent(REAGENT_ID_SUGAR) || host.ingested.has_reagent(REAGENT_ID_SUGAR))
+	if(host && (host.reagents.has_reagent(REAGENT_ID_SUGAR) || host.ingested.has_reagent(REAGENT_ID_SUGAR)))
 		docile_counter = 5 SECONDS
 		if(!docile)
 			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
@@ -143,7 +143,7 @@
 		to_chat(src, span_warning("You are not inside a host body."))
 		return FALSE
 	if(stat)
-		to_chat(src, span_warning("You cannot that that in your current state."))
+		to_chat(controlling ? host : src, span_warning("You cannot that that in your current state."))
 		return FALSE
 	return TRUE
 
@@ -151,21 +151,21 @@
 	if(!can_use_power_in_host())
 		return FALSE
 	if(!controlling)
-		to_chat(src, span_warning("You need to be in complete control to do this."))
+		to_chat(controlling ? host : src, span_warning("You need to be in complete control to do this."))
 		return FALSE
 	if(host.stat)
-		to_chat(src, span_warning("Your host is in no condition to do that."))
+		to_chat(controlling ? host : src, span_warning("Your host is in no condition to do that."))
 		return FALSE
 	return TRUE
 
 /mob/living/simple_mob/animal/borer/proc/can_use_power_docile()
 	if(docile)
-		to_chat(src, span_info("You are feeling far too docile to do that."))
+		to_chat(controlling ? host : src, span_info("You are feeling far too docile to do that."))
 	return !docile
 
 /mob/living/simple_mob/animal/borer/proc/use_chems(amount)
 	if(chemicals < amount)
-		to_chat(src, span_warning("You don't have enough chemicals, requires [amount]! Currently you have [FLOOR(chemicals,1)]."))
+		to_chat(controlling ? host : src, span_warning("You don't have enough chemicals, requires [amount]! Currently you have [FLOOR(chemicals,1)]."))
 		return FALSE
 	chemicals -= amount
 	return TRUE
