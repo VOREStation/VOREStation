@@ -1,10 +1,10 @@
 /**
  * Paralyze a nearby target to allow for infestation.
  */
-/mob/living/simple_mob/animal/borer/verb/paralyze_victim()
+/mob/living/simple_mob/animal/borer/verb/knockout_victim()
 	set category = "Abilities.Borer"
-	set name = "Paralyze Victim"
-	set desc = "Freeze the limbs of a potential host with supernatural fear."
+	set name = "Knockout Victim"
+	set desc = "Use your psychic influence to put a target into a temporary catatonic state."
 
 	if(world.time - used_dominate < 150)
 		to_chat(src, span_warning("You cannot use that ability again so soon."))
@@ -38,12 +38,12 @@
 		to_chat(src, span_warning("\The [attack_target] escaped your influence..."))
 		return
 	if(attack_target.has_brain_worms())
-		to_chat(src, span_warning("You cannot infest someone who is already infested!"))
+		to_chat(src, span_warning("You cannot influence someone who is already infested!"))
 		return
 
 	to_chat(src, span_alien("You focus your psychic lance on [attack_target] and freeze their limbs with a wave of terrible dread."))
 	to_chat(attack_target, span_vdanger("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
-	attack_target.Paralyse(10)
+	attack_target.Sleep(10)
 	used_dominate = world.time
 
 /**
@@ -62,9 +62,9 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(1,src))
-		if(Adjacent(C))
-			choices += C
+	for(var/mob/living/carbon/human/check_target in view(1,src))
+		if(Adjacent(check_target) && !check_target.has_brain_worms())
+			choices += check_target
 	if(!choices.len)
 		to_chat(src, span_warning("There are no viable hosts within range..."))
 		return
@@ -106,7 +106,7 @@
 		to_chat(infest_target, span_vdanger("Something slimy begins probing at the opening of your ear canal..."))
 	else
 		to_chat(infest_target, span_vdanger("Something slimy begins trying to find a way past your helmet..."))
-	to_chat(src, span_alien("You slither up [infest_target] and begin probing at their ear canal..."))
+	to_chat(src, span_alien("You slither up to \the [infest_target] and begin probing at their ear canal..."))
 
 	if(!do_after(src, entering_timer, target = infest_target))
 		to_chat(src, span_danger("As [infest_target] moves away, you are dislodged and fall to the ground."))
@@ -114,10 +114,13 @@
 	if(!infest_target || QDELETED(src))
 		return
 	if(stat)
-		to_chat(src, span_warning("You cannot infest a target in your current state."))
+		to_chat(src, span_warning("You cannot infest \the [infest_target] in your current state."))
 		return
 	if(!(Adjacent(infest_target)))
 		to_chat(src, span_warning("They are no longer in range!"))
+		return
+	if(!infest_target.internal_organs_by_name[O_BRAIN]) // See section below about replace_brain() being disabled
+		to_chat(src, span_danger("\The [infest_target] has no brain to bond to!"))
 		return
 
 	to_chat(src, span_alien("You wiggle into [infest_target]'s ear."))
@@ -130,10 +133,12 @@
 	if(host.mind)
 		borers.add_antagonist_mind(host.mind, 1, borers.faction_role_text, borers.faction_welcome)
 
+	/* This is likely not desired, and has some major issues with ghost behavior. Disabling for now
 	// No brain organ, so the borer moves in and replaces it permanently.
 	if(!host.internal_organs_by_name[O_BRAIN])
 		replace_brain()
 		return
+	*/
 
 	// If they're in normally, implant removal can get them out.
 	var/obj/item/organ/external/head = host.get_organ(BP_HEAD)

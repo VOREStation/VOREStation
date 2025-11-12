@@ -10,6 +10,9 @@
 		return
 	if(!can_use_power_docile())
 		return
+	if(host.stat == DEAD)
+		to_chat(src, span_warning("Your host is in no condition to do that."))
+		return
 
 	to_chat(src, span_alien("You begin delicately adjusting your connection to the host brain..."))
 	addtimer(CALLBACK(src, PROC_REF(finish_bond_brain)), 100 + (host.brainloss * 5), TIMER_DELETE_ME)
@@ -20,6 +23,9 @@
 	RETURN_TYPE(null)
 
 	if(!host || QDELETED(src) || controlling)
+		return
+	if(host.stat == DEAD)
+		to_chat(src, span_warning("Your host is in no condition to do that."))
 		return
 
 	to_chat(src, span_alien("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))

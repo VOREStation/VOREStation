@@ -48,15 +48,23 @@
 	vent_crawl_time = 30 						// faster vent crawler
 
 	var/static/borer_chem_list = list(
-			"Repair Brain Tissue" 	= list(REAGENT_ID_ALKYSINE, 10),
-			"Repair Body" 			= list(REAGENT_ID_BICARIDINE, 15),
+			// Antag utlity
+			"Repair Brain Tissue" 	= list(REAGENT_ID_ALKYSINE, 5),
+			"Repair Brute" 			= list(REAGENT_ID_BICARIDINE, 10),
+			"Repair Burn" 			= list(REAGENT_ID_KELOTANE, 10),
+			"Enhance Speed" 		= list(REAGENT_ID_HYPERZINE, 10),
+			// Stablization
+			"Stablize Mind" 		= list(REAGENT_ID_CITALOPRAM, 10),
+			"Stablize Nerves" 		= list(REAGENT_ID_ADRANOL, 10),
+			"Stablize Bleeding" 	= list(REAGENT_ID_INAPROVALINE, 5),
+			"Stablize Infection" 	= list(REAGENT_ID_SPACEACILLIN, 15),
+			"Stablize Pain"			= list(REAGENT_ID_TRAMADOL, 5),
+			// Scene tools
 			"Make Drunk" 			= list(REAGENT_ID_ETHANOL, 5),
 			"Cure Drunk" 			= list(REAGENT_ID_ETHYLREDOXRAZINE, 10),
-			"Enhance Speed" 		= list(REAGENT_ID_HYPERZINE, 5),
-			"Pain Killer" 			= list(REAGENT_ID_TRAMADOL, 5),
 			"Euphoric High" 		= list(REAGENT_ID_BLISS, 5),
-			"Stablize Mind" 		= list(REAGENT_ID_CITALOPRAM, 10),
-			"Cure Infection" 		= list(REAGENT_ID_SPACEACILLIN, 15),
+			"Mood Stimulant" 		= list(REAGENT_ID_APHRODISIAC, 5),
+			// Borer last resport
 			"Revive Dead Host" 		= null
 		)
 

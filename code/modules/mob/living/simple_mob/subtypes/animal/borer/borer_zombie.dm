@@ -1,5 +1,8 @@
 /**
  * Consumes the brain of a dead host, turning it into a husk zombie.
+ *
+ * Disabled currently due to ghosting behavior, allows you to enter a dead body ghost around for meta knowledge, then return and jumpstart the host.
+ * Ideally a borer is about cooperating with your host in some way, and not just killing and eating their brain to go full single player antag anyway...
  */
 /mob/living/simple_mob/animal/borer/verb/devour_brain()
 	set category = "Abilities.Borer"
