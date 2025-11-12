@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Fixing flashes no longer cause compile errors, meaning they can be fixed again."
+  - bugfix: "Flashes no longer do 2x the amount of halloss when affecting species that are weak to flashes. Instead multiplies the halloss by the appropriate amount."
+  - code_imp: "Makes the flash code a little higher quality."
