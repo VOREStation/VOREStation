@@ -13,9 +13,6 @@
 
 	to_chat(src, span_alien("You withdraw your probosci, releasing control of [B.host_brain]"))
 	B.detatch()
-	remove_verb(src, /mob/living/carbon/proc/release_control)
-	remove_verb(src, /mob/living/carbon/proc/punish_host)
-	remove_verb(src, /mob/living/carbon/proc/spawn_larvae)
 
 //Brain slug proc for tormenting the host.
 /mob/living/carbon/proc/punish_host()
