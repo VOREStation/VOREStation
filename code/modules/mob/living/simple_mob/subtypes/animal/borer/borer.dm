@@ -43,10 +43,22 @@
 
 	var/has_reproduced = FALSE
 	var/used_dominate							// world.time when the dominate power was last used.
-	var/datum/ghost_query/Q						// Used to unregister our signal
 
 	can_be_drop_prey = FALSE
 	vent_crawl_time = 30 						// faster vent crawler
+
+	var/static/borer_chem_list = list(
+			"Repair Brain Tissue" 	= list(REAGENT_ID_ALKYSINE, 10),
+			"Repair Body" 			= list(REAGENT_ID_BICARIDINE, 15),
+			"Make Drunk" 			= list(REAGENT_ID_ETHANOL, 5),
+			"Cure Drunk" 			= list(REAGENT_ID_ETHYLREDOXRAZINE, 10),
+			"Enhance Speed" 		= list(REAGENT_ID_HYPERZINE, 5),
+			"Pain Killer" 			= list(REAGENT_ID_TRAMADOL, 5),
+			"Euphoric High" 		= list(REAGENT_ID_BLISS, 5),
+			"Stablize Mind" 		= list(REAGENT_ID_CITALOPRAM, 10),
+			"Cure Infection" 		= list(REAGENT_ID_SPACEACILLIN, 15),
+			"Revive Dead Host" 		= null
+		)
 
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
@@ -73,6 +85,12 @@
 
 /mob/living/simple_mob/animal/borer/LateInitialize()
 	request_player()
+
+/mob/living/simple_mob/animal/borer/Destroy()
+	. = ..()
+	if(host)
+		detatch()
+		leave_host()
 
 /mob/living/simple_mob/animal/borer/handle_special()
 	handle_chemicals()
@@ -201,12 +219,9 @@
 	if(!host || !controlling)
 		return
 
-	if(ishuman(host))
-		var/mob/living/carbon/human/H = host
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		if(head)
-			head.implants -= src
-
+	var/obj/item/organ/external/head = host.get_organ(BP_HEAD)
+	if(head)
+		head.implants -= src
 	controlling = FALSE
 
 	host.remove_language("Cortical Link")
@@ -259,30 +274,15 @@
 	if(host.mind)
 		borers.remove_antagonist(host.mind)
 
-	forceMove(get_turf(host.loc))
+	if(!QDELETED(src))
+		forceMove(get_turf(host.loc))
 	unset_machine()
 
-	if(ishuman(host))
-		var/mob/living/carbon/human/H = host
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		if(head)
-			head.implants -= src
-
+	var/obj/item/organ/external/head = host.get_organ(BP_HEAD)
+	if(head)
+		head.implants -= src
 	host.unset_machine()
 	host = null
-
-/mob/living/simple_mob/animal/borer/proc/request_player()
-	Q = new /datum/ghost_query/borer()
-	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
-	Q.query() // This will sleep the proc for awhile.
-
-/mob/living/simple_mob/animal/borer/proc/get_winner()
-	SIGNAL_HANDLER
-	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
-		var/mob/observer/dead/D = Q.candidates[1]
-		transfer_personality(D)
-	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	QDEL_NULL(Q) //get rid of the query
 
 /mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
 	if(!candidate)

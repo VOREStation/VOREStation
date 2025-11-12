@@ -50,6 +50,9 @@
 		return
 	if(!B.can_use_power_docile())
 		return
+	if(!B.antag)
+		to_chat(src, span_warning("You cannot reproduce, you are infertile!"))
+		return
 	if(!B.use_chems(BORER_POWER_COST_REPRODUCE))
 		return
 
