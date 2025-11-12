@@ -93,7 +93,7 @@
 	if(controlling)
 		chemicals += 0.25
 	else
-		chemicals += 0.05
+		chemicals += 0.1
 	if(FLOOR(chemicals/10,1) > FLOOR(chem_before/10,1))
 		to_chat(host, span_alien("Your chemicals have increased to [FLOOR(chemicals/10,1) * 10]"))
 
@@ -168,6 +168,7 @@
 		to_chat(controlling ? host : src, span_warning("You don't have enough chemicals, requires [amount]! Currently you have [FLOOR(chemicals,1)]."))
 		return FALSE
 	chemicals -= amount
+	to_chat(controlling ? host : src, span_info("You use [amount] chemicals, [FLOOR(chemicals,1)] remain."))
 	return TRUE
 
 /mob/living/simple_mob/animal/borer/handle_regular_hud_updates()
