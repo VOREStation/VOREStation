@@ -88,6 +88,7 @@
 
 /mob/living/simple_mob/animal/borer/Destroy()
 	. = ..()
+	QDEL_NULL(ghost_check)
 	if(host)
 		detatch()
 		leave_host()
