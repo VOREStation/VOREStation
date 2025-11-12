@@ -201,7 +201,6 @@
 /mob/living/bot/cleanbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	ui.user.set_machine(src)
 	add_fingerprint(ui.user)
 	switch(action)
 		if("start")

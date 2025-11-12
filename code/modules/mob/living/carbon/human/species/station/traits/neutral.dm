@@ -5,25 +5,36 @@
 	name = "Metabolism, Fast"
 	desc = "You process ingested and injected reagents faster, but get hungry faster (Teshari speed)."
 	cost = 0
+	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.06) // +20% rate and 4x hunger (Teshari level)
-	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
+	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_down
 	name = "Metabolism, Slow"
 	desc = "You process ingested and injected reagents slower, but get hungry slower."
 	cost = 0
+	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.0012) // -20% of default.
-	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex)
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_apex
 	name = "Metabolism, Apex"
 	desc = "Finally a proper excuse for your predatory actions. Essentially doubles the fast trait rates. Good for characters with big appetites."
 	cost = 0
+	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
-	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down)
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
+
+/datum/trait/neutral/singularity_metabolism
+	name = "Metabolism, Singularity"
+	desc = "You are insanely hungry. You can seemingly never get enough to eat. Perhaps you had a singularity as an ancestor, or maybe one is currently living inside of your gut."
+	cost = 0
+	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 1.6, "metabolism" = 0.012)	//2x metabolism speed, 32x hunger speed
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
 
 /datum/trait/neutral/coldadapt
 	name = "Temp. Adapted, Cold"
@@ -350,6 +361,13 @@
 /datum/trait/neutral/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/shred_limb)
+
+/datum/trait/neutral/hardfeet
+	name = "Hard Feet"	// Free protection 4 ur pawbs
+	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
 
 /datum/trait/neutral/trashcan
 	name = "Trash Can"
@@ -1795,3 +1813,72 @@
 /datum/trait/neutral/strongimmunesystem/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
 	ADD_TRAIT(H, STRONG_IMMUNITY_TRAIT, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/hide
+	name = "Hide"
+	desc = "You can hide beneath objects!"
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/hide/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	add_verb(H,/mob/living/proc/hide)
+
+/datum/trait/neutral/small_mouth_extreme
+	name = "Slow Eater"
+	desc = "It takes four times as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 0.25)
+	custom_only = FALSE
+
+/datum/trait/neutral/small_mouth
+	name = "Slow Eater, Minor"
+	desc = "It takes twice as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 0.5)
+	custom_only = FALSE
+
+/datum/trait/neutral/big_mouth
+	name = "Fast Eater, Minor"
+	desc = "It takes half as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 2)
+	custom_only = FALSE
+
+/datum/trait/neutral/big_mouth_extreme
+	name = "Fast Eater"
+	desc = "It takes a quarter as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 4)
+	custom_only = FALSE
+
+// Doing this BC I can't rename the datum without fucking over savefiles, so meh. Hyper > Extreme, right?
+/datum/trait/neutral/big_mouth_hyper
+	name = "Fast Eater, Major"
+	desc = "You will eat anything instantly, in one bite."
+	cost = 0
+	var_changes = list("bite_mod" = 16) // Setting this intentionally ridiculously high, so anything will overflow and be eaten in one go.
+	custom_only = FALSE
+
+/datum/trait/neutral/slip_reflex
+	name ="Slippery Reflexes"
+	desc = "Your reflexes are quick enough to react to slippery surfaces. You are not immune though."
+	cost = 0
+
+/datum/trait/neutral/slip_reflex/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, SLIP_REFLEX_TRAIT, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/glowing_radiation
+	name = "Radioactive Glow"
+	desc = "You emit a glow when exposed to radiation! This does not prevent you from being harmed by radiation."
+	cost = 0
+	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_NO_VAREDIT_TARGET, "#c3f314"))
+	added_component_path = /datum/component/radiation_effects
+	excludes = list(/datum/trait/positive/radioactive_heal)
+
+/datum/trait/neutral/glowing_radiation/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(trait_prefs)
+		G.radiation_color = trait_prefs["glow_color"]

@@ -391,8 +391,7 @@
 			return
 
 	var/armor_block = run_armor_check(T, "melee")
-	var/armor_soak = get_armor_soak(T, "melee")
-	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
+	T.apply_damage(20, HALLOSS, null, armor_block)
 	if(prob(75)) //75% chance to stun for 5 seconds, really only going to be 4 bcus click cooldown+animation.
 		T.apply_effect(5, WEAKEN, armor_block)
 

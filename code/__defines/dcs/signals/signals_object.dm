@@ -4,3 +4,5 @@
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
 ///from /obj/machinery/computer/telescience/proc/doteleport(mob/user): (list/atom/movable/teleported_things, turf/target_turf, sending )
 #define COMSIG_TELESCI_TELEPORT "telesci_teleport"
+///from /obj/structure/closet/close()
+#define COMSIG_CLOSET_CLOSED "closet_closed"

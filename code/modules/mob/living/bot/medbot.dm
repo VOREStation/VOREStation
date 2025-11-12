@@ -149,7 +149,7 @@
 		GLOB.global_announcer.autosay("[src] is treating <b>[H]</b> in <b>[location]</b>", "[src]", "Medical")
 	busy = 1
 	update_icons()
-	if(do_mob(src, H, 30))
+	if(do_after(src, 3 SECONDS, H))
 		if(t == 1)
 			reagent_glass.reagents.trans_to_mob(H, injection_amount, CHEM_BLOOD)
 		else
@@ -269,7 +269,6 @@
 	if(..())
 		return TRUE
 
-	ui.user.set_machine(src)
 	add_fingerprint(ui.user)
 
 	. = TRUE

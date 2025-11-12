@@ -195,7 +195,7 @@
 						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 						H.flash_eyes()
 						H.adjustHalLoss(halloss_per_flash * (flash_strength / 5)) // Should take four flashes to stun.
-						H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0, 0)
+						H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0)
 
 			else
 				flashfail = 1
@@ -276,7 +276,7 @@
 
 	return
 
-/obj/item/flash/emp_act(severity)
+/obj/item/flash/emp_act(severity, recursive)
 	if(broken)	return
 	flash_recharge()
 	if(!check_capacitor())

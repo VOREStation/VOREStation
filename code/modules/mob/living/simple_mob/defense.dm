@@ -231,7 +231,7 @@
 
 
 // Electromagnetism
-/mob/living/simple_mob/emp_act(severity)
+/mob/living/simple_mob/emp_act(severity, recursive)
 	..() // To emp_act() its contents.
 	if(!isSynthetic())
 		return
@@ -265,18 +265,6 @@
 
 	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_percent, attack_flag)
-		if(modifier_armor)
-			armorval += modifier_armor
-
-	return armorval
-
-/mob/living/simple_mob/getsoak(def_zone, attack_flag)
-	var/armorval = armor_soak[attack_flag]
-	if(isnull(armorval))
-		armorval = 0
-
-	for(var/datum/modifier/M as anything in modifiers)
-		var/modifier_armor = LAZYACCESS(M.armor_flat, attack_flag)
 		if(modifier_armor)
 			armorval += modifier_armor
 

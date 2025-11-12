@@ -90,6 +90,7 @@
 /mob/living/silicon/robot/proc/uneq_all()
 	module_active = null
 
+	var/removed_any_module = FALSE
 	if(module_state_1)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
@@ -102,6 +103,8 @@
 		module_state_1:loc = module
 		module_state_1 = null
 		inv1.icon_state = "inv1"
+		removed_any_module = TRUE
+
 	if(module_state_2)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
@@ -114,6 +117,8 @@
 		module_state_2:loc = module
 		module_state_2 = null
 		inv2.icon_state = "inv2"
+		removed_any_module = TRUE
+
 	if(module_state_3)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
@@ -126,8 +131,15 @@
 		module_state_3:loc = module
 		module_state_3 = null
 		inv3.icon_state = "inv3"
+		removed_any_module = TRUE
+
 	after_equip()
 	update_icon()
+
+	// Refresh inventory if needed
+	if(hud_used && removed_any_module && shown_robot_modules)
+		hud_used.update_robot_modules_display(TRUE)
+		hud_used.toggle_show_robot_modules()
 
 // Just used for pretty display in TGUI
 /mob/living/silicon/robot/proc/get_slot_from_module(obj/item/I)

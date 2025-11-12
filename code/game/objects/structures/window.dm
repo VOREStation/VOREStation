@@ -106,6 +106,9 @@
 	qdel(src)
 	return
 
+/obj/structure/window/proc/can_glasspassers_pass()
+	PROTECTED_PROC(TRUE)
+	return TRUE
 
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
@@ -135,7 +138,7 @@
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return TRUE
+		return can_glasspassers_pass()
 	if(is_fulltile())
 		return FALSE	//full tile window, you can't move into it!
 	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
@@ -162,9 +165,12 @@
 	var/tforce = 0
 	if(ismob(source))
 		tforce = 40
-	else if(isobj(source))
+	else if(isitem(source))
 		var/obj/item/I = source
 		tforce = I.throwforce
+	else if(isobj(source))
+		var/obj/hitting_object = source
+		tforce = hitting_object.w_class * 5
 	if(reinf) tforce *= 0.25
 	if(health - tforce <= 7 && !reinf)
 		anchored = FALSE
@@ -187,7 +193,7 @@
 
 	else if (user.a_intent == I_HURT)
 
-		if (ishuman(user))
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(H))
 				attack_generic(H,25)
@@ -582,6 +588,11 @@
 	maxhealth = 80
 	fulltile = TRUE
 	flags = NONE
+
+/obj/structure/window/reinforced/polarized/can_glasspassers_pass()
+	// If the windows are currently tinted, they're blocking light from passing.
+	// So, they should block stuff like lasers at that time.
+	return opacity
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && !anchored) // Only allow programming if unanchored!

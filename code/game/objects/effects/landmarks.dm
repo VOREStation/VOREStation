@@ -278,3 +278,11 @@
 /// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
 /obj/effect/landmark/unit_test_top_right
 	name = "unit test zone top right"
+
+/obj/effect/landmark/bslocker
+	name = "bslocker spawn"
+
+/obj/effect/landmark/bslocker/Initialize(mapload)
+	. = ..()
+	var/obj/structure/closet/closet = new /obj/structure/closet/bluespace(loc)
+	GLOB.bslockers.Add(closet)

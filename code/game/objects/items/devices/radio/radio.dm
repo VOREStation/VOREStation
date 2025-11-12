@@ -116,7 +116,6 @@
 	return
 
 /obj/item/radio/attack_self(mob/user as mob)
-	user.set_machine(src)
 	interact(user)
 
 /obj/item/radio/interact(mob/user)
@@ -588,7 +587,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 /obj/item/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	user.set_machine(src)
 	if (!W.has_tool_quality(TOOL_SCREWDRIVER))
 		return
 	b_stat = !( b_stat )
@@ -603,9 +601,9 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		return
 	else return
 
-/obj/item/radio/emp_act(severity)
-	broadcasting = 0
-	listening = 0
+/obj/item/radio/emp_act(severity, recursive)
+	broadcasting = FALSE
+	listening = FALSE
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	..()
@@ -643,7 +641,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 /obj/item/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
-	user.set_machine(src)
 	if (!(W.has_tool_quality(TOOL_SCREWDRIVER) || istype(W, /obj/item/encryptionkey)))
 		return
 

@@ -42,6 +42,7 @@
 	var/list/glass_special = null // null equivalent to list()
 
 	var/from_belly = FALSE
+	var/dialysis_returnable = TRUE
 	var/wiki_flag = 0 // Bitflags for secret/food/drink reagent sorting
 	var/supply_conversion_value = null
 	var/industrial_use = null // unique description for export off station
@@ -171,6 +172,9 @@
 			if(CHEM_BLOOD)
 				affect_blood(M, alien, removed)
 			if(CHEM_INGEST)
+				if(istype(src, /datum/reagent/toxin) && HAS_TRAIT(M, INGESTED_TOXIN_IMMUNE))
+					remove_self(removed)
+					return
 				affect_ingest(M, alien, removed * ingest_abs_mult)
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, removed)
