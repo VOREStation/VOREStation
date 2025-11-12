@@ -18,6 +18,7 @@
 		return
 
 	to_chat(src, span_alien("It only takes a few moments to render the dead host brain down into a nutrient-rich slurry..."))
+	add_attack_logs(src, host, "devour host brain (borer)")
 	replace_brain()
 
 /// BRAIN WORM ZOMBIES AAAAH. Husks mob and turns them into a borer zombie.

@@ -1,5 +1,5 @@
 /**
- * Paralyze a nearby target to allow for infestation.
+ * Put a nearby target to sleep to allow for infestation.
  */
 /mob/living/simple_mob/animal/borer/verb/knockout_victim()
 	set category = "Abilities.Borer"
@@ -43,8 +43,9 @@
 
 	to_chat(src, span_alien("You focus your psychic lance on [attack_target] and freeze their limbs with a wave of terrible dread."))
 	to_chat(attack_target, span_vdanger("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
-	attack_target.Sleep(10)
+	attack_target.Sleeping(10) // This was paralyze, but it resulted in players instantly screaming over radio. So get slept nerds.
 	used_dominate = world.time
+	add_attack_logs(src, attack_target, "psychic knockout (borer)")
 
 /**
  * Crawls inside of a target mob, and adds the borer as an implant to the mob's brain. If no brain exists the body will become a borer husk zombie.
@@ -136,6 +137,7 @@
 	/* This is likely not desired, and has some major issues with ghost behavior. Disabling for now
 	// No brain organ, so the borer moves in and replaces it permanently.
 	if(!host.internal_organs_by_name[O_BRAIN])
+		add_attack_logs(src, host, "merged with brainless body (borer)")
 		replace_brain()
 		return
 	*/
@@ -143,6 +145,7 @@
 	// If they're in normally, implant removal can get them out.
 	var/obj/item/organ/external/head = host.get_organ(BP_HEAD)
 	head.implants += src
+	add_attack_logs(src, host, "infested target (borer)")
 
 /**
  * Releases chemicals from the borer into their host. Can be used as a standalone chemist in your head for an antag cooperating with their borer.
@@ -181,6 +184,7 @@
 		if(!use_chems(BORER_POWER_COST_SECRETE))
 			return
 		to_chat(src, span_alien("You squirt an intense mix of chemicals from your reservoirs into [host]'s bloodstream."))
+		add_attack_logs(src, host, "jumpstart host (borer)")
 		host.jumpstart()
 		return
 
@@ -208,6 +212,8 @@
 	var/datum/reagent/inject_reagent = SSchemistry.chemical_reagents[injecting_chem]
 	if(!inject_reagent)
 		CRASH("Invalid chem reagent [injecting_chem], in borer chemical injection.")
+
+	add_attack_logs(src, host, "chemical injection [inject_reagent] (borer)")
 	to_chat(src, span_alien("You squirt a measure of [inject_reagent] from your reservoirs into [host]'s bloodstream."))
 	host.bloodstr.add_reagent(injecting_chem, injectsize)
 
