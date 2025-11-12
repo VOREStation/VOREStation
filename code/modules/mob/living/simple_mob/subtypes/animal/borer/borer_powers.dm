@@ -193,7 +193,7 @@
 	if(!injection_data) //Sanity check.
 		return
 	var/injecting_chem = injection_data[1]
-	var/injectsize = injection_data[1]
+	var/injectsize = injection_data[2]
 	if(!injecting_chem || !injectsize)
 		return
 
@@ -204,7 +204,7 @@
 	if(!inject_reagent)
 		CRASH("Invalid chem reagent [injecting_chem], in borer chemical injection.")
 	to_chat(src, span_alien("You squirt a measure of [inject_reagent] from your reservoirs into [host]'s bloodstream."))
-	host.reagents.add_reagent(injecting_chem, injectsize)
+	host.bloodstr.add_reagent(injecting_chem, injectsize)
 
 /// Does some basic regeneration on a host
 /mob/living/carbon/human/proc/jumpstart()
@@ -230,7 +230,7 @@
 	update_canmove()
 
 	// Get some healing in us
-	reagents.add_reagent(REAGENT_BICARIDINE, 5)
-	reagents.add_reagent(REAGENT_KELOTANE, 5)
-	reagents.add_reagent(REAGENT_ID_TRAMADOL, 5)
-	reagents.add_reagent(REAGENT_ID_ALKYSINE, 5)
+	bloodstr.add_reagent(REAGENT_BICARIDINE, 5)
+	bloodstr.add_reagent(REAGENT_KELOTANE, 5)
+	bloodstr.add_reagent(REAGENT_ID_TRAMADOL, 5)
+	bloodstr.add_reagent(REAGENT_ID_ALKYSINE, 5)
