@@ -198,8 +198,6 @@
 				for (var/mob/O in src.loc)
 					if (O != occupant)
 						Bump(O)
-			else
-				unbuckle_mob()
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()

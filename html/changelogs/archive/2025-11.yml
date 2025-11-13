@@ -205,3 +205,36 @@
   - bugfix: Makes volume pumps and vent scrubbers work with the proper do_after
   - bugfix: Fireaxe no longer can be used as a pair of bleeders to stop bleeding.
   - bugfix: Fireaxe can now properly be used to amputate limbs.
+2025-11-11:
+  Guti:
+  - bugfix: Fixes sparks recursively teleporting through shadekin portals
+  Kashargul:
+  - bugfix: runtimes due to multiple signal registers on opacity changes
+  - bugfix: digest pain runtimes when stepping into digestive tiles
+  Will:
+  - bugfix: Fix runtime in machine var shim, removed balloon alert when using old
+      byond uis handled by it.
+  - bugfix: Remoteview crashing during mob qdel
+2025-11-12:
+  Cameron-The-Raven:
+  - bugfix: Fixes some chemical duplication exploits.
+  Guti:
+  - qol: Teleporting while buckled will place you closer to the destination point
+  - bugfix: Fixes teleporting while in chairs or taurs to lose your comfy seat
+  Meek:
+  - rscadd: Adds several new butts to the photocopier. Teshari, nevrean, sergal, and
+      altevian
+  Tenryumi:
+  - bugfix: Fixed shelter capsules being affected by gravity surge events on maps
+      that don't have gravity generators.
+  Will:
+  - bugfix: Welded vents hibernate when they attempt to process air now
+  - rscadd: Large lightbulb types now have unique icons
+  - qol: Lightbulb boxes have some large lightbulbs and tubes for floor lamps and
+      floodlight replacements.
+  - bugfix: forbids synths from taking ambulant blood
+  - bugfix: Air canisters can be marked green for methane
+  - bugfix: Stunned borgs no longer have their items vanish temporarily from their
+      inventory list. They are still unequipped however.
+  - bugfix: Modify robot's remove module updates the inventory instantly like add
+      module does.

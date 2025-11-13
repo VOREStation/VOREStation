@@ -7,6 +7,10 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 ))
 
 /proc/do_teleport(atom/movable/teleatom, atom/destination, precision = null, datum/effect/effect/effectin = null, datum/effect/effect/effectout = null, asoundin = null, asoundout = null, no_effects=FALSE, channel=TELEPORT_CHANNEL_BLUESPACE, forced = FALSE)
+	if(istype(teleatom, /obj/effect) && !istype(teleatom, /obj/effect/dummy/chameleon)) // Earliest check because otherwise sparks will fuck you up
+		qdel(teleatom)
+		return FALSE
+
 	if(isnull(precision))
 		precision = 0
 
@@ -56,7 +60,6 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 	if(isliving(teleatom))
 		var/mob/living/telemob = teleatom
 		var/mob/living/mob = locate() in destturf
-		// Needs the vore helpers later. Ough.
 		if(can_spontaneous_vore(mob, telemob))
 			destturf = mob.vore_selected
 		else if(can_spontaneous_vore(telemob, mob))
@@ -82,7 +85,13 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 
 	tele_play_specials(teleatom, curturf, effectin, asoundin)
 
+	if(teleatom.buckle_movable) // Specifically office chairs. Fuck you.
+		teleatom.buckle_movable = FALSE
+
 	var/success = teleatom.forceMove(destturf)
+
+	teleatom.buckle_movable = initial(teleatom.buckle_movable) // Double fuck you, office chairs
+
 	if(!success)
 		return FALSE
 
@@ -94,7 +103,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 		for(var/mob/living/rider in teleatom.buckled_mobs)
 			teleatom.unbuckle_mob(rider, TRUE)
 
-			var/rider_success = do_teleport(rider, destturf, precision, channel = channel, no_effects = TRUE)
+			var/rider_success = do_teleport(rider, destination, precision, channel = channel, no_effects = TRUE)
 			if(!rider_success)
 				continue
 

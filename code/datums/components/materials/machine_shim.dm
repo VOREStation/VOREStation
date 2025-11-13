@@ -26,11 +26,9 @@
 	// Lets complain if an object uses TGUI but is still setting the machine.
 	if(length(linked_machine.tgui_data()))
 		log_world("## ERROR [machine.type] implements tgui_data(), and has likely been ported to tgui already. It should no longer use set_machine().")
-	linked_machine.balloon_alert(host_mob,"you start using \the [linked_machine]")
 
 /datum/component/using_machine_shim/Destroy(force)
 	. = ..()
-	linked_machine.balloon_alert(host_mob,"you stop using \the [linked_machine]")
 	// Machine
 	UnregisterSignal(linked_machine, COMSIG_QDELETING)
 	linked_machine.in_use = FALSE
