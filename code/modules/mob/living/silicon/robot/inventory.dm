@@ -138,7 +138,7 @@
 	update_icon()
 
 	// Refresh inventory if needed
-	if(removed_any_module && shown_robot_modules)
+	if(hud_used && removed_any_module && shown_robot_modules)
 		hud_used.update_robot_modules_display()
 
 // Just used for pretty display in TGUI
