@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - qol: "Grippers show item icon held when in use, and make sounds when changing items"
