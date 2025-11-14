@@ -213,6 +213,9 @@
 
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6) // Need to go through all of the mobs to give them proper footsteps...
 
+	if(!ckey)
+		digest_leave_remains = TRUE //Ckeyless mobs (e.g. animals) leave remains by default, Lots of animals are not under /animal/
+
 	return ..()
 
 /mob/living/simple_mob/Destroy()
