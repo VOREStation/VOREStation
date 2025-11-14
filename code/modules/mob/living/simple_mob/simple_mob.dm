@@ -17,6 +17,8 @@
 
 	has_huds = TRUE // We do show AI status huds for buildmode players
 
+	digest_leave_remains = TRUE //Ckeyless mobs (e.g. animals) leave remains by default, Lots of animals are not under /animal/. This pref updates on Login()
+
 	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
@@ -212,9 +214,6 @@
 		add_verb(src, /mob/living/simple_mob/proc/ColorMate)
 
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6) // Need to go through all of the mobs to give them proper footsteps...
-
-	if(!ckey)
-		digest_leave_remains = TRUE //Ckeyless mobs (e.g. animals) leave remains by default, Lots of animals are not under /animal/
 
 	return ..()
 
