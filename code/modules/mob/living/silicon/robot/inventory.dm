@@ -5,7 +5,7 @@
 /mob/living/silicon/robot/get_active_hand(atom/A)
 	if(module_active == A) //If we are interacting with the item itself (I.E swapping multibelt items)
 		return module_active
-	else if(istype(module_active, /obj/item/robotic_multibelt)) //If we are hitting something with a multibelt
+	else if(isrobotmultibelt(module_active)) //If we are hitting something with a multibelt
 		var/obj/item/robotic_multibelt/belt = module_active
 		if(belt.selected_item)
 			return belt.selected_item
@@ -29,7 +29,7 @@
 		return
 
 	if(module_state_1 == I)
-		if(istype(module_state_1,/obj/item/robotic_multibelt))
+		if(isrobotmultibelt(module_state_1))
 			var/obj/item/robotic_multibelt/toolbelt = module_state_1
 			toolbelt.original_state()
 		if(istype(module_state_1,/obj/item/borg/sight))
@@ -42,7 +42,7 @@
 		module_state_1 = null
 		inv1.icon_state = "inv1"
 	else if(module_state_2 == I)
-		if(istype(module_state_2,/obj/item/robotic_multibelt))
+		if(isrobotmultibelt(module_state_2))
 			var/obj/item/robotic_multibelt/toolbelt = module_state_2
 			toolbelt.original_state()
 		if(istype(module_state_2,/obj/item/borg/sight))
@@ -55,7 +55,7 @@
 		module_state_2 = null
 		inv2.icon_state = "inv2"
 	else if(module_state_3 == I)
-		if(istype(module_state_3,/obj/item/robotic_multibelt))
+		if(isrobotmultibelt(module_state_3))
 			var/obj/item/robotic_multibelt/toolbelt = module_state_3
 			toolbelt.original_state()
 		if(istype(module_state_3,/obj/item/borg/sight))
