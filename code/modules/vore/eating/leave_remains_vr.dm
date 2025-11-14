@@ -60,6 +60,8 @@
 			new new_bone(src,owner)
 		return //Dont need to do carbon stuff after this
 
+	if(ismouse(M)) //Mice dont have massive bones to leave behind
+		return
 	if(isanimal(M)) //If they are a simplemob
 		var/list/organic_bones = list( //Generic bone variation system
 			/obj/item/digestion_remains,
