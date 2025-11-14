@@ -189,13 +189,13 @@
 	if(!pred.can_be_afk_pred && (!pred.client || pred.away_from_keyboard))
 		if(user == pred)
 			to_chat(user, span_vwarning("You aren't set as being able to pred while AFK"))
-		else
-			to_chat(user, span_vnotice("The predator prefers not to be fed while AFK"))
+			return FALSE
+		to_chat(user, span_vnotice("The predator prefers not to be fed while AFK"))
 		return FALSE
 	if(!prey.can_be_afk_prey && (!prey.client || prey.away_from_keyboard))
 		if(user == prey)
 			to_chat(user, span_vwarning("You aren't set as being able to prey while AFK"))
-		else
-			to_chat(user, span_vnotice("The prey prefers not to be eaten while AFK"))
+			return FALSE
+		to_chat(user, span_vnotice("The prey prefers not to be eaten while AFK"))
 		return FALSE
 	return TRUE
