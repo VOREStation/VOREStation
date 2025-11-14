@@ -75,7 +75,8 @@
 
 	after_equip()
 	update_icon()
-	hud_used.update_robot_modules_display()
+	if(shown_robot_modules)
+		hud_used.update_robot_modules_display()
 
 /mob/living/silicon/robot/proc/uneq_active()
 	if(isnull(module_active))
@@ -138,8 +139,7 @@
 
 	// Refresh inventory if needed
 	if(hud_used && removed_any_module && shown_robot_modules)
-		hud_used.update_robot_modules_display(TRUE)
-		hud_used.toggle_show_robot_modules()
+		hud_used.update_robot_modules_display()
 
 // Just used for pretty display in TGUI
 /mob/living/silicon/robot/proc/get_slot_from_module(obj/item/I)
