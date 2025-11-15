@@ -1060,3 +1060,19 @@ GLOBAL_LIST_EMPTY(json_cache)
 			else if(value_1 != value_2)
 				return FALSE
 	return TRUE
+
+/proc/pick_weight(list/list_to_pick)
+	var/total = 0
+	var/item
+	for(item in list_to_pick)
+		if(!list_to_pick[item])
+			list_to_pick[item] = 0
+		total += list_to_pick[item]
+
+	total = rand(1, total)
+	for(item in list_to_pick)
+		total -= list_to_pick[item]
+		if(total <= 0 && list_to_pick[item])
+			return item
+
+	return null

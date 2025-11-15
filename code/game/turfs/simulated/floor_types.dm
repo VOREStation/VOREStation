@@ -291,3 +291,21 @@
 /turf/simulated/shuttle/floor/voidcraft/external/dark
 
 /turf/simulated/shuttle/floor/voidcraft/external/light
+
+/turf/simulated/floor/tiled/material
+	icon = 'icons/turf/floors.dmi'
+
+/turf/simulated/floor/tiled/material/uranium
+	icon_state = "uranium"
+
+/turf/simulated/floor/tiled/material/phoron
+	icon_state = "phoron"
+
+/turf/simulated/floor/tiled/material/gold
+	icon_state = "gold"
+
+/turf/simulated/floor/tiled/material/silver
+	icon_state = "silver"
+
+/turf/simulated/floor/tiled/material/diamond
+	icon_state = "diamond"
