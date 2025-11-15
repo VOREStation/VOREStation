@@ -42,7 +42,7 @@
 
 /obj/item/reagent_containers/food/drinks/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	return ..()
+	. = ..()
 
 //DRINKS
 
