@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "tgui usage for robot multibelt items like the plant analyzer"
