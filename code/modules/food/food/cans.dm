@@ -33,7 +33,6 @@
 			else
 				explosion(get_turf(src), -1, -1, -1, 1)
 			qdel(src)
-		STOP_PROCESSING(SSobj, src)
 
 /obj/item/reagent_containers/food/drinks/cans/process()
 	if(shaken <= 0)
