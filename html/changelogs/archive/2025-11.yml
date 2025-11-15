@@ -248,3 +248,12 @@
   - bugfix: External wounds will no longer show up as internal
   Will:
   - qol: Grippers show item icon held when in use, and make sounds when changing items
+2025-11-15:
+  Guti:
+  - rscadd: Added can shaking
+  Kashargul:
+  - bugfix: robot grippers cell self installs
+  - bugfix: tgui usage for robot multibelt items like the plant analyzer
+  Will:
+  - bugfix: noticeboards properly save the title of their pinned pages
+  - code_imp: Cleaned up effect grenades
