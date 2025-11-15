@@ -14,7 +14,7 @@
 	var/death_time
 
 	var/countdown_colour
-	//var/obj/effect/countdown/anomaly/countdown
+	var/obj/effect/countdown/anomaly/countdown
 
 	var/immortal = FALSE
 	var/move_chance = ANOMALY_MOVECHANCE
@@ -41,14 +41,14 @@
 	if(new_lifespan)
 		lifespan = new_lifespan
 	death_time = world.time + lifespan
-	/*
+
 	countdown = new(src)
 	if(countdown_colour)
 		countdown_colour = countdown_colour
-	*/
+
 	if(immortal)
 		return
-	// countdown.start()
+	countdown.start()
 
 /obj/effect/anomaly/process(seconds_per_tick)
 	anomalyEffect(seconds_per_tick)
@@ -59,7 +59,7 @@
 
 /obj/effect/anomaly/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	// QDEL_NULL(countdown)
+	QDEL_NULL(countdown)
 	QDEL_NULL(anomaly_core)
 	return ..()
 

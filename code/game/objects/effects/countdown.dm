@@ -78,3 +78,16 @@
 
 /obj/effect/countdown/singularity_act()
 	return
+
+/obj/effect/countdown/anomaly
+	name = "anomaly countdown"
+
+/obj/effect/countdown/anomaly/get_value()
+	var/obj/effect/anomaly/A = attached_to
+	if(!istype(A))
+		return
+	else if(A.immortal)
+		stop()
+	else
+		var/time_left = max(0, (A.death_time - world.time)/10)
+		return round(time_left)
