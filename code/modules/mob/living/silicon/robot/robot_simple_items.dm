@@ -166,7 +166,7 @@
 
 /obj/item/weldingtool/electric/mounted/cyborg/update_icon()
 	. = ..()
-	if(istype(loc, /obj/item/robotic_multibelt))
+	if(isrobotmultibelt(loc))
 		var/obj/item/robotic_multibelt/our_belt = loc
 		if(welding)
 			our_belt.add_overlay("indwelder_cyborg-on")
@@ -226,7 +226,7 @@
 
 	var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
 	set_cable_color(selected_type, user)
-	if(istype(loc, /obj/item/robotic_multibelt))
+	if(isrobotmultibelt(loc))
 		var/obj/item/robotic_multibelt/our_belt = loc
 		var/image/cable_image = our_belt.integrated_tool_images[name]
 		cable_image.color = color
