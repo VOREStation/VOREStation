@@ -257,3 +257,6 @@
   Will:
   - bugfix: noticeboards properly save the title of their pinned pages
   - code_imp: Cleaned up effect grenades
+2025-11-16:
+  Guti:
+  - bugfix: Fixed mechas not teleporting in quantum pads
