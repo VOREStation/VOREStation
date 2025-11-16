@@ -61,4 +61,4 @@ Bonus
 				to_chat(L, span_warning(pick("Your head hurts", "Your mind blanks for a moment.")))
 		else
 			to_chat(L, span_userdanger("You can't think straight!"))
-			L.confused = min(50 * power, L.confused+8)
+			L.SetConfused(min(50 * power, L.confused+8))

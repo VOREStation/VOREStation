@@ -166,7 +166,7 @@ About the new airlock wires panel:
 			to_chat(user, span_danger("You feel a powerful shock course through your body!"))
 			user.playsound_local(get_turf(user), get_sfx("sparks"), vol = 75)
 			user.halloss += 10
-			user.stunned += 10
+			user.AdjustStunned(10)
 			return
 	..(user)
 
@@ -498,7 +498,6 @@ About the new airlock wires panel:
 			return
 
 	if(p_open)
-		user.set_machine(src)
 		wires.Interact(user)
 		return
 
@@ -911,13 +910,13 @@ About the new airlock wires panel:
 	adjustBruteLoss(crush_damage)
 	return FALSE
 
-/obj/machinery/door/airlock/close(var/forced=0)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	if(!can_close(forced))
 		return FALSE
 
 	hold_open = null //if it passes the can close check, always make sure to clear hold open
 
-	if(safe)
+	if(safe && !ignore_safties)
 		for(var/turf/turf in locs)
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
@@ -929,8 +928,8 @@ About the new airlock wires panel:
 
 	for(var/turf/turf in locs)
 		for(var/atom/movable/AM in turf)
-			if(AM.airlock_crush(DOOR_CRUSH_DAMAGE))
-				take_damage(DOOR_CRUSH_DAMAGE)
+			if(AM.airlock_crush(crush_damage))
+				take_damage(crush_damage)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
@@ -1080,7 +1079,7 @@ About the new airlock wires panel:
 		electronics.conf_access = req_one_access
 		electronics.one_access = 1
 
-/obj/machinery/door/airlock/emp_act(var/severity)
+/obj/machinery/door/airlock/emp_act(severity, recursive)
 	if(prob(40/severity))
 		var/duration = world.time + ((30 / severity) SECONDS)
 		if(duration > electrified_until)

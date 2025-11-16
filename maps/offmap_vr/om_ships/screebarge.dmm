@@ -162,9 +162,7 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
 "av" = (
-/obj/machinery/power/smes/buildable{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /obj/structure/cable/cyan,
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)

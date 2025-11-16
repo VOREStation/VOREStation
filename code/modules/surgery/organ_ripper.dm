@@ -171,8 +171,6 @@
 
 	priority = 3
 
-	blood_level = 3
-
 	min_duration = 60
 	max_duration = 80
 	excludes_steps = list(/datum/surgery_step/generic/cut_open)

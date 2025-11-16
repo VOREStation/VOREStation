@@ -33,7 +33,6 @@
 		spawn(0)
 		qdel(src)
 /*	else
-		user.set_machine(radio)
 		radio.interact(user)
 */
 /obj/item/camerabug/verb/reset()
@@ -159,7 +158,6 @@
 	w_class  = ITEMSIZE_SMALL
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 
-	var/operating = 0
 //	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
@@ -172,17 +170,14 @@
 	radio = new(src)
 */
 /obj/item/bug_monitor/attack_self(mob/user)
-	if(operating)
-		return
-
 //	radio.attack_self(user)
 	view_cameras(user)
 
 /obj/item/bug_monitor/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/camerabug))
 		W.attackby(src, user)
-	else
-		return ..()
+		return
+	. = ..()
 
 /obj/item/bug_monitor/proc/unpair(var/obj/item/camerabug/SB)
 	if(SB.camera in cameras)
@@ -192,46 +187,40 @@
 	cameras += SB.camera
 
 /obj/item/bug_monitor/proc/view_cameras(mob/user)
+	if(in_use)
+		return
+
+	if(cameras.len == 1 && user.is_remote_viewing())
+		user.reset_perspective()
+		return
 	if(!can_use_cam(user))
 		return
 
-	selected_camera = cameras[1]
-	user.reset_view(selected_camera)
+	if(cameras.len == 1)
+		selected_camera = cameras[1]
+	else
+		in_use = TRUE // Don't allow spamming tgui menus
+		selected_camera = tgui_input_list(user, "Select camera to view.", "Camera Choice", cameras)
+		in_use = FALSE
 	view_camera(user)
 
-	operating = 1
-	while(selected_camera && Adjacent(user))
-		selected_camera = tgui_input_list(user, "Select camera to view.", "Camera Choice", cameras)
-	selected_camera = null
-	operating = 0
-
 /obj/item/bug_monitor/proc/view_camera(mob/user)
-	spawn(0)
-		while(selected_camera && Adjacent(user))
-			var/turf/T = get_turf(selected_camera)
-			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !selected_camera.can_use())
-				user.unset_machine()
-				user.reset_view(null)
-				to_chat(user, span_notice("Link to [selected_camera] has been lost."))
-				src.unpair(selected_camera.loc)
-				sleep(90)
-			else
-				user.set_machine(selected_camera)
-				user.reset_view(selected_camera)
-			sleep(10)
-		user.unset_machine()
-		user.reset_view(null)
+	if(loc != user) // Nice try smartass, must be in your hand and not in a box in your inventory
+		return
+	var/turf/T = get_turf(selected_camera)
+	if(!T || !is_on_same_plane_or_station(T.z, user.z) || !selected_camera.can_use())
+		to_chat(user, span_notice("Link to [selected_camera] has been lost."))
+		unpair(selected_camera)
+		selected_camera = null
+		return
+	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = selected_camera, vconfig_path = /datum/remote_view_config/camera_standard, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = TRUE)
 
 /obj/item/bug_monitor/proc/can_use_cam(mob/user)
-	if(operating)
-		return
-
 	if(!cameras.len)
 		to_chat(user, span_warning("No paired cameras detected!"))
 		to_chat(user, span_warning("Bring a camera in contact with this device to pair the camera."))
-		return
-
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/item/bug_monitor/spy
 	name = "\improper PDA"
@@ -245,9 +234,6 @@
 	. = ..()
 	if(Adjacent(user))
 		. += "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
-
-/obj/machinery/camera/bug/check_eye(var/mob/user as mob)
-	return 0
 
 /obj/machinery/camera/bug
 	network = list(NETWORK_SECURITY)

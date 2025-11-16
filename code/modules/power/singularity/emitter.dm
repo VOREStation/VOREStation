@@ -79,13 +79,8 @@
 		return 1
 
 
-/obj/machinery/power/emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
-//	add_load(1000)
-/*	if((severity == 1)&&prob(1)&&prob(1))
-		if(src.active)
-			src.active = 0
-			src.use_power = 1	*/
-	return 1
+/obj/machinery/power/emitter/emp_act(severity, recursive)
+	return TRUE
 
 /obj/machinery/power/emitter/process()
 	if(stat & (BROKEN))

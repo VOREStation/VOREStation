@@ -1,5 +1,6 @@
 /obj/machinery/button/attack_hand(obj/item/W, mob/user as mob)
 	if(..()) return 1
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BUTTON_PRESSED, src, user)
 	playsound(src, 'sound/machines/button.ogg', 100, 1)
 
 /obj/machinery/button/windowtint/multitint

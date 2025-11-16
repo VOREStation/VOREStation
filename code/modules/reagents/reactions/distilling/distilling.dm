@@ -274,12 +274,13 @@
 	result = REAGENT_ID_HYDROGEN
 	inhibitors = list(REAGENT_ID_CARBON = 1)
 	required_reagents = list(REAGENT_ID_WATER = 1)
+	catalysts = list(REAGENT_ID_PLATINUM = 1)
 	result_amount = 2
 
 	temp_range = list(T20C + 110, T20C + 290)
-	temp_shift = 3 // It's burning off phoron
+	temp_shift = 1
 
-	require_xgm_gas = GAS_PHORON
+	require_xgm_gas = GAS_N2
 	rejects_xgm_gas = GAS_O2
 
 /decl/chemical_reaction/distilling/oxygen
@@ -288,13 +289,13 @@
 	result = REAGENT_ID_OXYGEN
 	inhibitors = list(REAGENT_ID_CARBON = 1)
 	required_reagents = list(REAGENT_ID_WATER = 1)
-	catalysts = list(REAGENT_ID_PHORON = 1)
+	catalysts = list(REAGENT_ID_PLATINUM = 1)
 	result_amount = 1
 
 	temp_range = list(T20C + 150, T20C + 320)
 	temp_shift = 3 // It's burning off phoron
 
-	require_xgm_gas = GAS_N2
+	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_O2
 
 /decl/chemical_reaction/distilling/mineralized_sodium

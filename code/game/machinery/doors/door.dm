@@ -409,7 +409,7 @@
 	return
 
 
-/obj/machinery/door/emp_act(severity)
+/obj/machinery/door/emp_act(severity, recursive)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
 		open()
 	..()
@@ -527,7 +527,7 @@
 		open_speed = 15
 	return (normalspeed ? open_speed : 5)
 
-/obj/machinery/door/proc/close(var/forced = 0)
+/obj/machinery/door/proc/close(var/forced = 0, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	if(!can_close(forced))
 		return
 	operating = 1

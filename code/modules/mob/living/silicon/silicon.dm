@@ -52,6 +52,7 @@
 		QDEL_NULL(idcard)
 	if(laws)
 		QDEL_NULL(laws)
+	clear_subsystems()
 	return ..()
 
 /mob/living/silicon/proc/init_id()
@@ -67,10 +68,10 @@
 /mob/living/silicon/proc/show_laws()
 	return
 
-/mob/living/silicon/drop_item()
+/mob/living/silicon/drop_item(var/atom/Target)
 	return
 
-/mob/living/silicon/emp_act(severity)
+/mob/living/silicon/emp_act(severity, recursive)
 	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
 		return
 	switch(severity)
@@ -91,7 +92,7 @@
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
-/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
+/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	return	//immune
 
 /mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 0.0, var/def_zone = null, var/stun = 1)
@@ -394,10 +395,9 @@
 /mob/living/silicon/setEarDamage()
 	return
 
-/mob/living/silicon/reset_view()
+/mob/living/silicon/reset_perspective(atom/new_eye)
 	. = ..()
-	if(cameraFollow)
-		cameraFollow = null
+	cameraFollow = null
 
 /mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(affect_silicon)

@@ -63,3 +63,5 @@ GLOBAL_LIST_EMPTY(verminstart)
 GLOBAL_LIST_EMPTY(awayabductors) // List of scatter landmarks for Abductors in Gateways
 GLOBAL_LIST_EMPTY(eventdestinations) // List of scatter landmarks for VOREStation event portals
 GLOBAL_LIST_EMPTY(eventabductors) // List of scatter landmarks for VOREStation abductor portals
+
+GLOBAL_LIST_EMPTY(bslockers) // List of (roundstart) bluespace lockers

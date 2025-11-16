@@ -104,9 +104,9 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 /obj/machinery/computer/ship/helm/tgui_close(mob/user)
 	. = ..()
-
 	// Unregister map objects
 	user.client?.clear_map(linked?.map_name)
+	user.reset_perspective()
 
 /obj/machinery/computer/ship/helm/tgui_data(mob/user)
 	var/list/data = ..()
@@ -268,7 +268,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("manual")
-			viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+			if(!get_dist(ui.user, src) > 1 || ui.user.blinded || !linked)
+				return FALSE
+			else if(!viewing_overmap(ui.user) && linked)
+				if(!viewers) viewers = list() // List must exist for pass by reference to work
+				start_coordinated_remoteview(ui.user, linked, viewers, /datum/remote_view_config/overmap_ship_control)
+			else
+				ui.user.reset_perspective()
 			. = TRUE
 
 	add_fingerprint(ui.user)

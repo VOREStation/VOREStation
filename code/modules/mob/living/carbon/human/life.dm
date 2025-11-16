@@ -206,6 +206,37 @@
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
 
+/mob/living/carbon/human/handle_mutations()
+	. = ..()
+	if(.)
+		return
+	if(inStasisNow())
+		return
+
+	if(getFireLoss())
+		if((COLD_RESISTANCE in mutations) || (prob(1)))
+			heal_organ_damage(0,1)
+	if(getBruteLoss()) //Fireloss gets this RNG change so may as well give bruteloss it as well.
+		if(prob(1))
+			heal_organ_damage(1,0)
+
+	if((mRegen in mutations))
+		var/heal = rand(0.2,1.3)
+		if(prob(50))
+			for(var/obj/item/organ/external/O in organs) //HAS to be organs and NOT bad_external_organs as a fully healed limb w/ internal damage will NOT be in bad_external_organs
+				for(var/datum/wound/W in O.wounds)
+					if(W.bleeding())
+						W.damage = max(W.damage - heal, 0)
+						if(W.damage <= 0)
+							O.wounds -= W
+					if(W.internal)
+						W.damage = max(W.damage - heal, 0)
+						if(W.damage <= 0)
+							O.wounds -= W
+		else
+			heal_organ_damage(heal,heal)
+
+
 // RADIATION! Everyone's favorite thing in the world! So let's get some numbers down off the bat.
 // 50 rads = 1Bq. This means 1 rad = 0.02Bq.
 // However, unless I am a smoothbrained dumbo, absorbed rads are in Gy. Not Bq.
@@ -227,65 +258,20 @@
 
 // Additionally, RADIATION_SPEED_COEFFICIENT = 0.1
 
-/mob/living/carbon/human/handle_mutations_and_radiation() //Radiation rework! Now with 'accumulated_rads'
+/mob/living/carbon/human/handle_radiation() //Radiation rework! Now with 'accumulated_rads'
+	. = ..()
+	if(.)
+		return
 	if(inStasisNow())
 		return
 
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
-
-	if(stat != DEAD)
-		if((mRegen in mutations))
-			var/heal = rand(0.2,1.3)
-			if(prob(50))
-				for(var/obj/item/organ/external/O in bad_external_organs)
-					for(var/datum/wound/W in O.wounds)
-						if(W.bleeding())
-							W.damage = max(W.damage - heal, 0)
-							if(W.damage <= 0)
-								O.wounds -= W
-						if(W.internal)
-							W.damage = max(W.damage - heal, 0)
-							if(W.damage <= 0)
-								O.wounds -= W
-			else
-				heal_organ_damage(heal,heal)
-
-	radiation = CLAMP(radiation,0,5000) //Max of 100Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
-	accumulated_rads = CLAMP(accumulated_rads,0,5000) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
+	radiation = CLAMP(radiation,0,RADIATION_CAP) //Max of 100Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
+	accumulated_rads = CLAMP(accumulated_rads,0,RADIATION_CAP) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
 	var/obj/item/organ/internal/I = null //Used for further down below when an organ is picked.
 	if(!radiation)
-		if(species.appearance_flags & RADIATION_GLOWS)
-			glow_override = FALSE
-			set_light(0)
 		if(accumulated_rads)
 			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
 	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
-		if(species.appearance_flags & RADIATION_GLOWS)
-			glow_override = TRUE
-			set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
-		// END DOGSHIT SNOWFLAKE
-
-		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
-			var/rads = radiation/25
-			radiation -= (rads * species.rad_removal_mod)
-			adjust_nutrition(rads * species.rad_removal_mod)
-			adjustBruteLoss(-(rads * species.rad_removal_mod))
-			adjustFireLoss(-(rads * species.rad_removal_mod))
-			adjustOxyLoss(-(rads * species.rad_removal_mod))
-			adjustToxLoss(-(rads * species.rad_removal_mod))
-			updatehealth()
-			return
-
-		var/obj/item/organ/internal/brain/slime/core = locate() in internal_organs
-		if(core)
-			return
-
-		var/obj/item/organ/internal/brain/shadekin/s_brain = locate() in internal_organs
-		if(s_brain)
-			return
 
 		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
 			return
@@ -856,11 +842,12 @@
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
+
+	if(is_incorporeal()) //Not in this plane of existance right now, tbh.
+		return
+
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
-
-	if(is_incorporeal())
-		return
 
 	//Moved pressure calculations here for use in skip-processing check.
 	var/pressure = environment.return_pressure()
@@ -889,7 +876,10 @@
 			loc_temp = cc.air_contents.temperature
 		else if(isbelly(loc))
 			var/obj/belly/b = loc
-			loc_temp = b.bellytemperature
+			if(allowtemp)
+				loc_temp = b.bellytemperature
+			else
+				loc_temp = species.body_temperature //Should be safe for just about anyone
 		else
 			loc_temp = environment.temperature
 
@@ -1261,7 +1251,7 @@
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= (get_crit_point() * species.crit_mod)))
+		if((getOxyLoss() > (getMaxHealth()/2)) || (health <= (get_crit_point() * species.crit_mod)))
 			Paralyse(3)
 
 		if(hallucination)
@@ -1283,11 +1273,11 @@
 			if(oxyloss >= (getMaxHealth() * 0.3) && prob(5)) // If oxyloss exceeds 30% of your max health, you can take brain damage.
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
-		if(halloss >= species.total_health)
+		if(halloss >= getMaxHealth())
 			to_chat(src, span_notice("You're in too much pain to keep going..."))
 			src.visible_message(span_infoplain(span_bold("[src]") + " slumps to the ground, too weak to continue fighting."))
 			Paralyse(10)
-			setHalLoss(species.total_health - 1)
+			setHalLoss(getMaxHealth() - 1)
 
 		if(tiredness) //tiredness for vore drain
 			tiredness = (tiredness - 1)
@@ -1445,11 +1435,9 @@
 		handle_hud_list()
 
 	// now handle what we see on our screen
-
-	if(!client)
-		return 0
-
-	..()
+	. = ..()
+	if(!.)
+		return
 
 	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
@@ -1460,7 +1448,6 @@
 
 	if(stat == DEAD) //Dead
 		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
 
 	else if(stat == UNCONSCIOUS && health <= 0) //Crit
 		//Critical damage passage overlay
@@ -1551,7 +1538,7 @@
 				var/no_damage = 1
 				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
 				if(!(species.flags & NO_PAIN))
-					trauma_val = max(traumatic_shock,halloss)/species.total_health
+					trauma_val = max(traumatic_shock,halloss)/getMaxHealth()
 				var/limb_trauma_val = trauma_val*0.3
 				// Collect and apply the images all at once to avoid appearance churn.
 				var/list/health_images = list()
@@ -1663,22 +1650,63 @@
 			if(found_welder)
 				client.screen |= GLOB.global_hud.darkMask
 
-/mob/living/carbon/human/reset_view(atom/A)
-	..()
-	if(machine_visual && machine_visual != A)
-		machine_visual.remove_visual(src)
+/mob/living/carbon/human/handle_hud_icons_health()
+	. = ..()
+	if(!. || !healths)
+		return
+
+	if(stat == DEAD) //Dead
+		healths.icon_state = "health7"	//DEAD healthmeter
+		return
+
+	if(stat == UNCONSCIOUS && health <= 0) //Crit
+		return
+
+	if(chem_effects[CE_PAINKILLER] > 100)
+		healths.icon_state = "health_numb"
+		return
+
+	// Generate a by-limb health display.
+	var/mutable_appearance/healths_ma = new(healths)
+	healths_ma.icon_state = "blank"
+	healths_ma.overlays = null
+	healths_ma.plane = PLANE_PLAYER_HUD
+
+	var/no_damage = 1
+	var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
+	if(!(species.flags & NO_PAIN))
+		trauma_val = max(traumatic_shock,halloss)/species.total_health
+	var/limb_trauma_val = trauma_val*0.3
+	// Collect and apply the images all at once to avoid appearance churn.
+	var/list/health_images = list()
+	for(var/obj/item/organ/external/E in organs)
+		if(no_damage && (E.brute_dam || E.burn_dam))
+			no_damage = 0
+		health_images += E.get_damage_hud_image(limb_trauma_val)
+
+	// Apply a fire overlay if we're burning.
+	if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
+		health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
+
+	// Show a general pain/crit indicator if needed.
+	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
+		trauma_val = 2
+	if(trauma_val)
+		if(!(species.flags & NO_PAIN))
+			if(trauma_val > 0.7)
+				health_images += image('icons/mob/screen1_health.dmi',"softcrit")
+			if(trauma_val >= 1)
+				health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
+	else if(no_damage)
+		health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
+
+	healths_ma.add_overlay(health_images)
+	healths.appearance = healths_ma
 
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 		see_in_dark = 8
-		if(client)
-			if(client.view != world.view) // If mob dies while zoomed in with device, unzoom them.
-				for(var/obj/item/item in contents)
-					if(item.zoom)
-						item.zoom()
-						break
-
 	else //We aren't dead
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 
@@ -1720,12 +1748,12 @@
 
 		var/glasses_processed = 0
 		var/obj/item/rig/rig = get_rig()
-		if(istype(rig) && rig.visor && !looking_elsewhere)
+		if(istype(rig) && rig.visor && !is_remote_viewing())
 			if(!rig.helmet || (head && rig.helmet == head))
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
 					glasses_processed = process_glasses(rig.visor.vision.glasses)
 
-		if(glasses && !glasses_processed && !looking_elsewhere)
+		if(glasses && !glasses_processed && !is_remote_viewing())
 			glasses_processed = process_glasses(glasses)
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -1751,27 +1779,11 @@
 		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = see_invisible_default
 
-		if(machine)
-			var/viewflags = machine.check_eye(src)
-			if(viewflags < 0)
-				reset_view(null, 0)
-			else if(viewflags && !looking_elsewhere)
-				sight |= viewflags
-			else
-				machine.apply_visual(src)
-		else if(eyeobj)
-			if(eyeobj.owner != src)
+		if(eyeobj && eyeobj.owner != src)
+			reset_perspective()
 
-				reset_view(null)
-		else
-			var/isRemoteObserve = 0
-			if((mRemote in mutations) && remoteview_target)
-				if(remoteview_target.stat==CONSCIOUS)
-					isRemoteObserve = 1
-			if(!isRemoteObserve && client && !client.adminobs)
-				remoteview_target = null
-				reset_view(null, 0)
-	return 1
+	// Call parent to handle signals
+	..()
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	. = FALSE
@@ -2003,30 +2015,47 @@
 	temp = max(0, temp + modifier_shift)	// No negative pulses.
 
 	if(Pump)
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id in bradycardics)
-				if(temp <= Pump.standard_pulse_level + 3 && temp >= Pump.standard_pulse_level)
-					temp--
-			if(R.id in tachycardics)
-				if(temp <= Pump.standard_pulse_level + 1 && temp >= PULSE_NONE)
+		///Prevents duplicating a reagent if it's in our gut and blood
+		var/list/current_medications = list()
+		//Stuff in our stomach, such as coffee, nicotine, 13loko, etc.
+		for(var/datum/reagent/R in ingested.reagent_list)
+			if((R.id in GLOB.tachycardics) && !(R.id in current_medications))
+				if(temp < PULSE_THREADY && temp != PULSE_NONE) //If we really push it, we can get our pulse to thready.
 					temp++
-			if(R.id in heartstopper) //To avoid using fakedeath
+					current_medications += R.id
+			if((R.id in GLOB.bradycardics) && !(R.id in current_medications))
+				if(temp >= PULSE_NORM)
+					temp--
+					current_medications += R.id
+		//Stuff in our bloodstream. This is checked AFTER stomach so the heartstoppers can have their fun.
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if((R.id in GLOB.tachycardics) && !(R.id in current_medications))
+				if(temp < PULSE_THREADY && temp != PULSE_NONE) //We can reach a thready pulse, but only if we actually have a pulse.
+					temp++
+					current_medications += R.id
+			if((R.id in GLOB.bradycardics) && !(R.id in current_medications))
+				if(temp >= PULSE_NORM) //Can get to PULSE_SLOW but never PULSE_NONE
+					temp--
+					current_medications += R.id
+			if(R.id in GLOB.heartstopper) //To avoid using fakedeath
 				temp = PULSE_NONE
-			if(R.id in cheartstopper) //Conditional heart-stoppage
+				break //No amount of medications is getting you out of this.
+			if(R.id in GLOB.cheartstopper) //Conditional heart-stoppage
 				if(R.volume >= R.overdose)
 					temp = PULSE_NONE
+					break //No amount of medications is getting you out of this.
 		return temp * brain_modifier
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.id in bradycardics)
+		if(R.id in GLOB.bradycardics)
 			if(temp <= PULSE_THREADY && temp >= PULSE_NORM)
 				temp--
-		if(R.id in tachycardics)
+		if(R.id in GLOB.tachycardics)
 			if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 				temp++
-		if(R.id in heartstopper) //To avoid using fakedeath
+		if(R.id in GLOB.heartstopper) //To avoid using fakedeath
 			temp = PULSE_NONE
-		if(R.id in cheartstopper) //Conditional heart-stoppage
+		if(R.id in GLOB.cheartstopper) //Conditional heart-stoppage
 			if(R.volume >= R.overdose)
 				temp = PULSE_NONE
 

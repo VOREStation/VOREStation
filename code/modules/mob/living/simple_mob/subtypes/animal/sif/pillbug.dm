@@ -41,15 +41,5 @@
 		"rad" = 100
 		)
 
-	armor_soak = list(
-		"melee" = 10,
-		"bullet" = 0,
-		"laser" = 10,
-		"energy" = 10,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
-		)
-
 /decl/mob_organ_names/pillbug
 	hit_zones = list("cephalon", "pereon", "pleon", "left forelegs", "right forelegs", "left hind legs", "right hind legs")

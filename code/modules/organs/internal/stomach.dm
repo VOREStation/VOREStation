@@ -9,8 +9,6 @@
 	var/acidtype = REAGENT_ID_STOMACID	// Incase you want some stomach organ with, say, polyacid instead, or sulphuric.
 	var/max_acid_volume = 30
 
-	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.
-
 /obj/item/organ/internal/stomach/Initialize(mapload)
 	. = ..()
 	if(reagents)

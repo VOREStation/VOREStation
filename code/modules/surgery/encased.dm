@@ -9,7 +9,7 @@
 	blood_level = 1
 
 /datum/surgery_step/open_encased/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -28,17 +28,19 @@
 		/obj/item/material/knife/machete/hatchet = 75
 	)
 
+	allowed_procs = list(IS_CROWBAR = 50)
+
 	min_duration = 50
 	max_duration = 70
 
 /datum/surgery_step/open_encased/saw/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 2
 
 /datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -49,7 +51,7 @@
 	..()
 
 /datum/surgery_step/open_encased/saw/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -59,7 +61,7 @@
 	affected.open = 2.5
 
 /datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -86,13 +88,13 @@
 	max_duration = 40
 
 /datum/surgery_step/open_encased/retract/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 2.5
 
 /datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -104,7 +106,7 @@
 	..()
 
 /datum/surgery_step/open_encased/retract/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/msg = span_notice("[user] forces open [target]'s [affected.encased] with \the [tool].")
@@ -115,7 +117,7 @@
 	affected.open = 3
 
 /datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -143,13 +145,13 @@
 	max_duration = 40
 
 /datum/surgery_step/open_encased/close/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return (..() && affected && affected.open == 3)
 
 /datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -161,7 +163,7 @@
 	..()
 
 /datum/surgery_step/open_encased/close/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -173,7 +175,7 @@
 	affected.open = 2.5
 
 /datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -205,13 +207,13 @@
 	max_duration = 40
 
 /datum/surgery_step/open_encased/mend/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open == 2.5
 
 /datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -223,7 +225,7 @@
 	..()
 
 /datum/surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -250,13 +252,13 @@
 	excludes_steps = list(/datum/surgery_step/open_encased/saw)
 
 /datum/surgery_step/open_encased/advancedsaw_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected && affected.open >= 2 && affected.open < 3
 
 /datum/surgery_step/open_encased/advancedsaw_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -267,7 +269,7 @@
 	..()
 
 /datum/surgery_step/open_encased/advancedsaw_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -277,7 +279,7 @@
 	affected.open = 3
 
 /datum/surgery_step/open_encased/advancedsaw_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -303,13 +305,13 @@
 	max_duration = 60
 
 /datum/surgery_step/open_encased/advancedsaw_mend/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	return (..() && affected && affected.open == 3)
 
 /datum/surgery_step/open_encased/advancedsaw_mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -321,7 +323,7 @@
 	..()
 
 /datum/surgery_step/open_encased/advancedsaw_mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 

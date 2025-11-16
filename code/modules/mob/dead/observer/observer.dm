@@ -183,6 +183,7 @@ Works together with spawning an observer, noted above.
 //RS Port #658 End
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1, var/aghost = FALSE)
+	reset_perspective(src) // End any remoteview we're in
 	if(key)
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
@@ -554,6 +555,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	GLOB.observer_mob_list -= src
 	for(var/datum/chunk/ghost/ghost_chunks in visibleChunks)
 		ghost_chunks.remove(src)
+	if(key)
+		key = null
 	return ..()
 
 /mob/Moved(atom/old_loc, direction, forced = FALSE)
@@ -762,9 +765,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		)
 		toggle_ghost_visibility(TRUE)
 	else
-		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
-			span_warning("\The [user] just tried to smash [T.his] book into that ghost!  It's not very effective."), \
+			span_warning("\The [user] just tried to smash [user.p_their()] book into that ghost!  It's not very effective."), \
 			span_warning("You get the feeling that the ghost can't become any more visible.") \
 		)
 

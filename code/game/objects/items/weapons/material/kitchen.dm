@@ -101,7 +101,7 @@
 		if(food_inserted_micros && food_inserted_micros.len)
 			for(var/mob/living/F in food_inserted_micros)
 				food_inserted_micros -= F
-				if(!F.can_be_drop_prey || !F.food_vore)
+				if(!can_food_vore(M, F))
 					F.forceMove(get_turf(src))
 				else
 					F.forceMove(M.vore_selected)
@@ -111,7 +111,7 @@
 			M.visible_message(span_bold("\The [user]") + " eats some of [loaded] with \the [src].")
 		else
 			user.visible_message(span_warning("\The [user] begins to feed \the [M]!"))
-			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
+			if(!(M.can_force_feed(user, loaded) && do_after(user, 5 SECONDS, M)))
 				return
 			M.visible_message(span_bold("\The [user]") + " feeds some of [loaded] to \the [M] with \the [src].")
 		playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
@@ -132,7 +132,10 @@
 /obj/item/material/kitchen/utensil/container_resist(mob/living/M)
 	if(food_inserted_micros)
 		food_inserted_micros -= M
-	M.forceMove(get_turf(src))
+	if(isdisposalpacket(loc))
+		M.forceMove(loc)
+	else
+		M.forceMove(get_turf(src))
 	to_chat(M, span_warning("You climb off of \the [src]."))
 
 /obj/item/material/kitchen/utensil/fork

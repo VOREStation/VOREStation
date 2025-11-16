@@ -125,7 +125,7 @@
 	if(new_color && (new_color != color))
 		color = new_color
 
-/obj/item/storage/wallet/poly/emp_act()
+/obj/item/storage/wallet/poly/emp_act(severity, recursive)
 	var/original_state = icon_state
 	icon_state = "wallet-emp"
 	update_icon()
@@ -134,6 +134,7 @@
 		if(src)
 			icon_state = original_state
 			update_icon()
+	..()
 
 /obj/item/storage/wallet/womens
 	name = "women's wallet"

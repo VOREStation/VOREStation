@@ -30,6 +30,7 @@
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = TRUE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/clonepod
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
@@ -131,11 +132,7 @@
 	H.ckey = BR.ckey
 	to_chat(H, span_warning(span_bold("Consciousness slowly creeps over you as your body regenerates.") + "<br>" + span_bold(span_large("Your recent memories are fuzzy, and it's hard to remember anything from today...")) + \
 		"<br>" + span_notice(span_italics("So this is what cloning feels like?"))))
-
-	// -- Mode/mind specific stuff goes here
-	callHook("clone", list(H))
-	update_antag_icons(H.mind)
-	// -- End mode specific stuff
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, H, clonemind)
 
 	// A modifier is added which makes the new clone be unrobust.
 	// Upgraded cloners can reduce the time of the modifier, up to 80%
@@ -319,9 +316,6 @@
 	if(!(occupant))
 		return
 
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(get_turf(src))
 	eject_wait = 0 //If it's still set somehow.
 	if(ishuman(occupant)) //Need to be safe.
@@ -405,7 +399,7 @@
 		return
 	go_out()
 
-/obj/machinery/clonepod/emp_act(severity)
+/obj/machinery/clonepod/emp_act(severity, recursive)
 	if(prob(100/severity))
 		malfunction()
 	..()

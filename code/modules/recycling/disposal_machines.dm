@@ -29,6 +29,7 @@
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
 	var/stat_tracking = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
@@ -120,9 +121,6 @@
 			for (var/mob/V in viewers(user))
 				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
 			if(do_after(user, 2 SECONDS, target = src))
-				if (GM.client)
-					GM.client.perspective = EYE_PERSPECTIVE
-					GM.client.eye = src
 				GM.forceMove(src)
 				for (var/mob/C in viewers(src))
 					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
@@ -187,9 +185,6 @@
 		add_attack_logs(user,target,"Disposals dunked")
 	else
 		return
-	if (target.client)
-		target.client.perspective = EYE_PERSPECTIVE
-		target.client.eye = src
 
 	target.forceMove(src)
 
@@ -211,9 +206,6 @@
 
 // leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
-	if (user.client)
-		user.client.eye = user.client.mob
-		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(get_turf(src))
 	update()
 	return
@@ -387,6 +379,11 @@
 /obj/machinery/disposal/proc/flush()
 	if(flushing)
 		return
+
+	// We don't ever want digestion remains going through disposals, but people understandably thing they're doing right by trashing them
+	// So let's just delete them instead!
+	for(var/obj/item/digestion_remains/flushed_item in src)
+		qdel(flushed_item)
 
 	flushing = TRUE
 	flick("[icon_state]-flush", src)

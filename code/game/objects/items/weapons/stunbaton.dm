@@ -205,18 +205,13 @@
 
 	//stun effects
 	if(status)
-		target.stun_effect_act(stun, agony, hit_zone, src)
+		target.stun_effect_act(stun, agony, hit_zone, src, electric = TRUE)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.forcesay(GLOB.hit_appends)
 	powercheck()
-
-/obj/item/melee/baton/emp_act(severity)
-	if(bcell)
-		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
-	..()
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod

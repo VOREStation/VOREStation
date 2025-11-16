@@ -81,6 +81,7 @@
 	var/cavity = 0
 	var/burn_stage = 0		//Surgical repair stage for burn.
 	var/brute_stage = 0		//Surgical repair stage for brute.
+	var/remove_necrosis = 0 //Surgical stage for necrosis removal.
 
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
@@ -126,9 +127,9 @@
 
 	return ..()
 
-/obj/item/organ/external/emp_act(severity)
+/obj/item/organ/external/emp_act(severity, recursive)
 	for(var/obj/O as anything in src.contents)
-		O.emp_act(severity)
+		O.emp_act(severity, recursive)
 
 	if(!(robotic >= ORGAN_ROBOT))
 		return
@@ -529,7 +530,7 @@
 			return 0
 
 	user.setClickCooldown(user.get_attack_speed(tool))
-	if(!do_mob(user, owner, 10))
+	if(!do_after(user, 1 SECOND, src))
 		to_chat(user, span_warning("You must stand still to do that."))
 		return 0
 
@@ -541,8 +542,7 @@
 	if(damage_desc)
 		var/fix_verb = (damage_amount > repair_amount) ? "patches" : "finishes patching"
 		if(user == src.owner)
-			var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
-			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [T.his] [src.name] with [tool]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [user.p_their()] [src.name] with [tool]."))
 		else
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [owner]'s [src.name] with [tool]."))
 
@@ -973,7 +973,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/use_blood_colour = data.get_species_blood_colour(owner)
 
 	removed(null, ignore_children)
-	victim?.traumatic_shock += 60
+	victim?.shock_stage += 60
 
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
@@ -1035,9 +1035,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 
 			for(var/obj/item/I in src)
-				if(I.w_class <= ITEMSIZE_SMALL)
-					qdel(I)
-					continue
 				I.forceMove(droploc)
 				I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 

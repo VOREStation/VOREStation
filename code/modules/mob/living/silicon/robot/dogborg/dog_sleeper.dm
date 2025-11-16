@@ -16,7 +16,6 @@
 	var/list/injection_chems = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_BICARIDINE, REAGENT_ID_KELOTANE, REAGENT_ID_ANTITOXIN, REAGENT_ID_DEXALIN, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_TRAMADOL) //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
-	var/UI_open = FALSE
 	var/stabilizer = TRUE
 	var/compactor = FALSE
 	var/analyzer = FALSE
@@ -105,7 +104,6 @@
 			user.visible_message(span_warning("[hound.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target = trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
-				trashmouse.reset_view(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
@@ -125,7 +123,6 @@
 			user.visible_message(span_warning("[hound.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target = trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
-				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
 				log_attack("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -155,7 +152,6 @@
 				return //If you try to eat two people at once, you can only eat one.
 			else //If you don't have someone in you, proceed.
 				H.forceMove(src)
-				H.reset_view(src)
 				update_patient()
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
@@ -202,14 +198,8 @@
 		dlist.Cut()
 	if(length(contents) > 0)
 		hound.visible_message(span_warning("[hound.name] empties out their contents via their [eject_port] port."), span_notice("You empty your contents via your [eject_port] port."))
-		for(var/C in contents)
-			if(ishuman(C))
-				var/mob/living/carbon/human/person = C
-				person.forceMove(get_turf(src))
-				person.reset_view()
-			else
-				var/obj/T = C
-				T.loc = hound.loc
+		for(var/atom/movable/content in contents)
+			content.forceMove(get_turf(src))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 	update_patient()
 
@@ -235,207 +225,141 @@
 /obj/item/dogborg/sleeper/attack_self(mob/user)
 	if(..())
 		return
-	sleeperUI(user)
+	tgui_interact(user)
 
-/obj/item/dogborg/sleeper/proc/sleeperUI(mob/user)
-	var/dat = "<TITLE>[name] Console</TITLE><BR>"
+/obj/item/dogborg/sleeper/tgui_state(mob/user)
+	return GLOB.tgui_conscious_state
 
-	if(islist(injection_chems)) //Only display this if we're a drug-dispensing doggo.
-		dat += "<h3>Injector</h3>"
-		if(patient)// && patient.health > min_health) //Not necessary, leave the buttons on, but the feedback during injection will give more information.
-			for(var/re in injection_chems)
-				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
-				if(C)
-					dat += "<A href='byond://?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
-		else
-			for(var/re in injection_chems)
-				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
-				if(C)
-					dat += span_linkOff("Inject [C.name]") + "<BR>"
+/obj/item/dogborg/sleeper/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RobotSleeper", "[name] Console")
+		ui.open()
 
-	dat += "<h3>[name] Status</h3>"
-	dat += "<div style='display: flex; flex-wrap: wrap; flex-direction: row;'>"
-	dat += "<A id='refbutton' href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<A href='byond://?src=\ref[src];eject=1'>Eject All</A>"
-	dat += "<A href='byond://?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
-	dat += "<A href='byond://?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
-	if(!cleaning)
-		dat += "<A href='byond://?src=\ref[src];clean=1'>Self-Clean</A>"
-	else
-		dat += span_linkOff("Self-Clean")
-	if(medsensor)
-		dat += "<A href='byond://?src=\ref[src];analyze=1'>Analyze Patient</A>"
-	if(delivery)
-		dat += "<BR><h3>Cargo Compartment</h3><BR>"
-		dat += "<A href='byond://?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
-		if(islist(deliverylists[delivery_tag]))
-			dat += "<A href='byond://?src=\ref[src];slot_eject=1'>Eject Slot</A>"
-	dat += "</div>"
-	dat += "<div class='statusDisplay'>"
+/obj/item/dogborg/sleeper/tgui_static_data(mob/user)
+	var/list/data = ..()
 
-	if(!delivery && compactor && length(contents))//garbage counter for trashpup
-		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
-		dat += span_gray("([contents.Join(", ")])") + "<BR><BR>"
+	if(!isrobot(user))
+		return data
 
-	if(ore_storage)
-		dat += "<font color='red'><B>Current ore capacity:</B> [current_capacity] / [max_ore_storage].</font><BR>"
+	var/mob/living/silicon/robot/robot_user = user
+	var/list/robot_chems = list()
+	for(var/re in injection_chems)
+		var/datum/reagent/possible_reagent = SSchemistry.chemical_reagents[re]
+		UNTYPED_LIST_ADD(robot_chems, list("id" = possible_reagent.id, "name" = possible_reagent.name))
 
-	if(delivery && length(contents))
-		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
-		dat += span_gray("Cargo compartment slot: Cargo 1.") + "<BR>"
-		if(length(deliveryslot_1))
-			dat += span_gray("([deliveryslot_1.Join(", ")])") + "<BR>"
-		dat += span_gray("Cargo compartment slot: Cargo 2.") + "<BR>"
-		if(length(deliveryslot_2))
-			dat += span_gray("([deliveryslot_2.Join(", ")])") + "<BR>"
-		dat += span_gray("Cargo compartment slot: Cargo 3.") + "<BR>"
-		if(length(deliveryslot_3))
-			dat += span_gray("([deliveryslot_3.Join(", ")])") + "<BR>"
-		dat += span_red("Cargo compartment slot: Fuel.") + "<BR>"
-		dat += span_red("([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])") + "<BR><BR>"
+	data["name"] = name
+	data["theme"] = robot_user.get_ui_theme()
+	data["chems"] = robot_chems
+	return data
 
-	//Cleaning and there are still un-preserved items
-	if(cleaning && length(contents - items_preserved))
-		dat += span_red(span_bold("Self-cleaning mode.") + " [length(contents - items_preserved)] object(s) remaining.") + "<BR>"
+/obj/item/dogborg/sleeper/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/patient_data
 
-	//There are no items to be processed other than un-preserved items
-	else if(cleaning && length(items_preserved))
-		dat += span_red(span_bold("Self-cleaning done. Eject remaining objects now.")) + "<BR>"
-
-	//Preserved items count when the list is populated
-	if(length(items_preserved))
-		dat += span_red("[length(items_preserved)] uncleanable object(s).") + "<BR>"
-
-	if(!patient)
-		dat += "[src.name] Unoccupied"
-	else
-		dat += "[patient.name] => "
-
-		switch(patient.stat)
-			if(0)
-				dat += span_green("Conscious")
-			if(1)
-				dat += span_orange("Unconscious")
-			else
-				dat += span_red("DEAD")
-
-		var/pulse = "\t-Pulse, bpm: [patient.get_pulse(GETPULSE_TOOL)]"
-		dat += (patient.pulse == PULSE_NONE || patient.pulse == PULSE_THREADY ? span_red(pulse) : span_white(pulse))
-		dat += "<BR>"
-		var/health = "\t-Overall Health %: [round(100 * (patient.health / patient.getMaxHealth()))]"
-		dat += (patient.health > 0 ? span_white(health) : span_red(health))
-		dat += "<BR>"
-		var/brute = "\t-Brute Damage %: [patient.getBruteLoss()]"
-		dat += (patient.getBruteLoss() < 60 ? span_gray(brute) : span_red(brute))
-		dat += "<BR>"
-		var/oxygen = "\t-Respiratory Damage %: [patient.getOxyLoss()]"
-		dat += (patient.getOxyLoss() < 60 ? span_gray(oxygen) : span_red(oxygen))
-		dat += "<BR>"
-		var/toxic = "\t-Toxin Content %: [patient.getToxLoss()]"
-		dat += (patient.getToxLoss() < 60 ? span_gray(toxic) : span_red(toxic))
-		dat += "<BR>"
-		var/burn = "\t-Burn Severity %: [patient.getFireLoss()]"
-		dat += (patient.getFireLoss() < 60 ? span_gray(burn) : span_red(burn))
-		dat += "<BR>"
-
-		if(round(patient.paralysis / 4) >= 1)
-			dat += text("<HR>Patient paralyzed for: []<BR>", round(patient.paralysis / 4) >= 1 ? "[round(patient.paralysis / 4)] seconds" : "None")
-		if(patient.getBrainLoss())
-			dat += "<div class='line'>" + span_orange("Significant brain damage detected.") + "</div><br>"
-		if(patient.getCloneLoss())
-			dat += "<div class='line'>" + span_orange("Patient may be improperly cloned.") + "</div><br>"
+	if(patient)
+		var/list/ingested_reagents = list()
 		if(patient.reagents.reagent_list.len)
-			for(var/datum/reagent/R in patient.reagents.reagent_list)
-				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"
-	dat += "</div>"
+			for(var/datum/reagent/ingested in patient.reagents.reagent_list)
+				UNTYPED_LIST_ADD(ingested_reagents, list("name" = ingested.name, "volume" = ingested.volume))
 
-	var/datum/browser/popup = new(user, "sleeper_b", "[name] Console", 450, 500, src)
-	popup.set_content(dat)
-	popup.open()
-	UI_open = TRUE
-	return
+		patient_data = list(
+			"name" = patient.name,
+			"stat" = patient.stat,
+			"pulse" = patient.get_pulse(GETPULSE_TOOL),
+			"crit_pulse" = (patient.pulse == PULSE_NONE || patient.pulse == PULSE_THREADY),
+			"health" = patient.health,
+			"max_health" = patient.getMaxHealth(),
+			"brute" = patient.getBruteLoss(),
+			"oxy" = patient.getOxyLoss(),
+			"tox" = patient.getToxLoss(),
+			"burn" = patient.getFireLoss(),
+			"paralysis" = patient.paralysis,
+			"braindamage" = !!patient.getBrainLoss(),
+			"clonedamage" = !!patient.getCloneLoss(),
+			"ingested_reagents" = ingested_reagents
+			)
 
-/obj/item/dogborg/sleeper/Topic(href, href_list)
-	if(..() || usr == patient)
-		return
-	usr.set_machine(src)
-	if(href_list["refresh"])
-		update_patient()
-		src.updateUsrDialog(usr)
-		sleeperUI(usr)
-		return
-	if(href_list["eject"])
-		go_out()
-		sleeperUI(usr)
-		return
-	if(href_list["close"])
-		UI_open = FALSE
-		return
-	if(href_list["clean"])
-		if(!cleaning)
-			var/confirm = tgui_alert(usr, "You are about to engage self-cleaning mode. This will fill your [src] with caustic enzymes to remove any objects or biomatter, and convert them into energy. Are you sure?", "Confirmation", list("Self-Clean", "Cancel"))
-			if(confirm == "Self-Clean")
-				if(cleaning)
-					return
-				else
-					cleaning = 1
-					drain(startdrain)
-					START_PROCESSING(SSobj, src)
-					update_patient()
-					if(patient)
-						to_chat(patient, span_danger("[hound.name]'s [src.name] fills with caustic enzymes around you!"))
-					return
-		if(cleaning)
-			sleeperUI(usr)
-			return
-	if(href_list["analyze"]) //DO HEALTH ANALYZER STUFF HERE.
-		med_analyzer.scan_mob(patient,hound)
-	if(href_list["port"])
-		switch(eject_port)
-			if("ingestion")
-				eject_port = "disposal"
-			if("disposal")
-				eject_port = "ingestion"
-		sleeperUI(usr)
-		return
-	if (href_list["ingest"])
-		vore_ingest_all()
-		sleeperUI(usr)
-		return
-	if(href_list["deliveryslot"])
-		var/tag = tgui_input_list(usr, "Select active delivery slot:", "Slot Choice", deliverylists)
-		if(!tag)
-			return 0
-		delivery_tag = tag
-		sleeperUI(usr)
-		return
-	if(href_list["slot_eject"])
-		if(length(deliverylists[delivery_tag]) > 0)
+	var/list/data = list(
+		"our_patient" = patient_data,
+		"eject_port" = eject_port,
+		"cleaning" = cleaning,
+		"medsensor" = medsensor,
+		"delivery" = delivery,
+		"delivery_tag" = delivery_tag,
+		"delivery_lists" = deliverylists,
+		"compactor" = compactor,
+		"max_item_count" = max_item_count,
+		"ore_storage" = ore_storage,
+		"current_capacity" = current_capacity,
+		"max_ore_storage" = max_ore_storage,
+		"contents" = contents,
+		"deliveryslot_1" = deliveryslot_1,
+		"deliveryslot_2" = deliveryslot_2,
+		"deliveryslot_3" = deliveryslot_3,
+		"items_preserved" = items_preserved,
+	)
+	return data
+/obj/item/dogborg/sleeper/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	if(ui.user == patient)
+		return FALSE
+
+	switch(action)
+		if("eject")
+			go_out()
+			return TRUE
+		if("clean")
+			if(cleaning)
+				return FALSE
+			cleaning = TRUE
+			drain(startdrain)
+			START_PROCESSING(SSobj, src)
+			update_patient()
+			if(patient)
+				to_chat(patient, span_danger("[hound.name]'s [src.name] fills with caustic enzymes around you!"))
+			return TRUE
+		if("analyze")
+			med_analyzer.scan_mob(patient,hound)
+			return TRUE
+		if("port")
+			var/new_port = params["value"]
+			if(!(new_port in list("disposal", "ingestion")))
+				return FALSE
+			eject_port = new_port
+			return TRUE
+		if("ingest")
+			vore_ingest_all()
+			return TRUE
+		if("deliveryslot")
+			var/new_tag = params["value"]
+			if(!(new_tag in deliverylists))
+				return FALSE
+			delivery_tag = new_tag
+			return TRUE
+		if("slot_eject")
+			if(!length(deliverylists[delivery_tag]))
+				return FALSE
 			hound.visible_message(span_warning("[hound.name] empties out their cargo compartment via their [eject_port] port."), span_notice("You empty your cargo compartment via your [eject_port] port."))
-			for(var/C in deliverylists[delivery_tag])
-				if(ishuman(C))
-					var/mob/living/carbon/human/person = C
-					person.forceMove(get_turf(src))
-					person.reset_view()
-				else
-					var/obj/T = C
-					T.loc = hound.loc
+			for(var/atom/movable/content in deliverylists[delivery_tag])
+				content.forceMove(get_turf(src))
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			update_patient()
 			deliverylists[delivery_tag].Cut()
-		sleeperUI(usr)
-		return
-	if(patient && !(patient.stat & DEAD)) //What is bitwise NOT? ... Thought it was tilde.
-		if(href_list["inject"] == REAGENT_ID_INAPROVALINE || patient.health > min_health)
-			inject_chem(usr, href_list["inject"])
-		else
-			to_chat(usr, span_notice("ERROR: Subject is not in stable condition for injections."))
-	else
-		to_chat(usr, span_notice("ERROR: Subject cannot metabolise chemicals."))
-
-	updateUsrDialog(usr)
-	sleeperUI(usr) //Needs a callback to boop the page to refresh.
-	return
+			return TRUE
+		if("inject")
+			if(!patient || (patient.stat & DEAD))
+				to_chat(ui.user, span_notice("ERROR: Subject cannot metabolise chemicals."))
+				return FALSE
+			var/selected_reagent = params["value"]
+			if(!(selected_reagent in injection_chems))
+				return FALSE
+			if(selected_reagent == REAGENT_ID_INAPROVALINE || patient.health > min_health)
+				inject_chem(ui.user, selected_reagent)
+			else
+				to_chat(ui.user, span_notice("ERROR: Subject is not in stable condition for injections."))
+			return TRUE
 
 /obj/item/dogborg/sleeper/proc/inject_chem(mob/user, chem)
 	if(patient && patient.reagents)
@@ -456,8 +380,6 @@
 	hound = src.loc
 	if(!istype(hound,/mob/living/silicon/robot))
 		return
-	if(UI_open == TRUE)
-		sleeperUI(hound)
 
 	//Cleaning looks better with red on, even with nobody in it
 	if(cleaning || (length(contents) > 10) || (decompiler && (length(contents) > 5)) || (analyzer && (length(contents) > 1)))

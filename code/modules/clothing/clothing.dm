@@ -338,13 +338,6 @@
 		var/mob/M = src.loc
 		M.update_inv_gloves()
 
-/obj/item/clothing/gloves/emp_act(severity)
-	if(cell)
-		cell.emp_act(severity)
-	if(ring)
-		ring.emp_act(severity)
-	..()
-
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
@@ -1252,12 +1245,22 @@
 		to_chat(user, "This suit does not have any sensors.")
 		return 0
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes)
+	var/list/modes = list(
+		"Off" = SUIT_SENSOR_OFF,
+		"Binary sensors" = SUIT_SENSOR_BINARY,
+		"Vitals tracker" = SUIT_SENSOR_VITAL,
+		"Tracking beacon" = SUIT_SENSOR_TRACKING
+		)
+	var/default_choice
+	for(var/key, value in modes)
+		if(value == sensor_mode)
+			default_choice = key
+			break
+	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes, default_choice)
 	if(get_dist(user, src) > 1)
 		to_chat(user, "You have moved too far away.")
 		return
-	sensor_mode = modes.Find(switchMode) - 1
+	sensor_mode = modes[switchMode]
 
 	if (src.loc == user)
 		switch(sensor_mode)
