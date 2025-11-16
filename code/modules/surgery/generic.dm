@@ -11,7 +11,7 @@
 		return 0
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
 		return 0
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)
@@ -82,7 +82,7 @@
 		/obj/item/surgical/scalpel/laser3 = 100, \
 		/obj/item/surgical/scalpel/laser2 = 100, \
 		/obj/item/surgical/scalpel/laser1 = 100, \
-		/obj/item/melee/energy/sword = 5
+		/obj/item/melee/energy/sword = 75
 	)
 	priority = 2
 	req_open = 0
@@ -131,7 +131,7 @@
 	span_danger("Your hand slips as the blade sputters, searing a long gash in [target]'s [affected.name] with \the [tool]!"))
 	user.balloon_alert_visible("slips, searing a long gash on \the [affected.name]", "your hand slips, searing a long gash on [affected.name].")
 	affected.createwound(CUT, 7.5)
-	affected.createwound(BURN, 12.5)
+	affected.createwound(BURN, 7.5)
 
 ///////////////////////////////////////////////////////////////
 // Incision Management Surgery
@@ -193,7 +193,7 @@
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
-		/obj/item/assembly/mousetrap = 20
+		/obj/item/assembly/mousetrap = 25
 	)
 
 	min_duration = 40
@@ -361,6 +361,7 @@
 	surgery_name = "Amputate Limb"
 	allowed_tools = list(
 		/obj/item/surgical/circular_saw = 100, \
+		/obj/item/material/twohanded/fireaxe = 99, \
 		/obj/item/material/knife/machete/hatchet = 75
 	)
 	req_open = 0
@@ -371,7 +372,7 @@
 /datum/surgery_step/generic/amputate/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
 		return 0
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)

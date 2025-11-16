@@ -295,9 +295,9 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/emp_act(severity)
+/mob/living/simple_mob/protean_blob/emp_act(severity, recursive)
 	if(humanform)
-		return humanform.emp_act(severity)
+		return humanform.emp_act(severity, recursive)
 	else
 		return ..()
 
@@ -383,7 +383,7 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(CanSpontaneousVore(src, target))
+				if(can_spontaneous_vore(src, target))
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)

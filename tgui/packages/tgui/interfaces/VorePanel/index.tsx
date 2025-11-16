@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Button, Icon, NoticeBox, Stack, Tabs } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Icon,
+  NoticeBox,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 
 import type { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VorePanelMainTabs/VoreBellySelectionAndCustomization';
@@ -9,6 +17,7 @@ import { VoreInsidePanel } from './VorePanelMainTabs/VoreInsidePanel';
 import { VoreSoulcatcher } from './VorePanelMainTabs/VoreSoulcatcher';
 import { VoreUserGeneral } from './VorePanelMainTabs/VoreUserGeneral';
 import { VoreUserPreferences } from './VorePanelMainTabs/VoreUserPreferences';
+import { VoreContentsPanel } from './VoreSelectedBellyTabs/VoreContentsPanel';
 
 /**
  * There are three main sections to this UI.
@@ -43,6 +52,12 @@ export const VorePanel = () => {
 
   const [editMode, setEditMode] = useState(!!persist_edit_mode);
 
+  useEffect(() => {
+    if (active_tab === 1 && !inside?.ref) {
+      act('change_tab', { tab: 0 });
+    }
+  }, [inside?.ref]);
+
   const tabs: (React.JSX.Element | null | undefined)[] = [];
 
   tabs[0] = our_bellies && selected && host_mobtype && (
@@ -61,7 +76,19 @@ export const VorePanel = () => {
       maxBellyName={max_belly_name}
     />
   );
-  tabs[1] = our_bellies && soulcatcher && abilities && (
+  tabs[1] = inside.contents?.length ? (
+    <VoreContentsPanel
+      contents={inside.contents}
+      belly={inside.ref}
+      show_pictures={show_pictures}
+      icon_overflow={icon_overflow}
+    />
+  ) : (
+    <Section fill>
+      <Box>There is nothing else around you.</Box>
+    </Section>
+  );
+  tabs[2] = our_bellies && soulcatcher && abilities && (
     <VoreSoulcatcher
       our_bellies={our_bellies}
       soulcatcher={soulcatcher}
@@ -71,7 +98,7 @@ export const VorePanel = () => {
       persist_edit_mode={persist_edit_mode}
     />
   );
-  tabs[2] = general_pref_data && our_bellies && (
+  tabs[3] = general_pref_data && our_bellies && (
     <VoreUserGeneral
       general_pref_data={general_pref_data}
       our_bellies={our_bellies}
@@ -80,13 +107,7 @@ export const VorePanel = () => {
       persist_edit_mode={persist_edit_mode}
     />
   );
-  tabs[3] = prefs && (
-    <VoreUserPreferences
-      prefs={prefs}
-      show_pictures={show_pictures}
-      icon_overflow={icon_overflow}
-    />
-  );
+  tabs[4] = prefs && <VoreUserPreferences prefs={prefs} />;
 
   return (
     <Window width={1030} height={760} theme="abstract">
@@ -119,11 +140,7 @@ export const VorePanel = () => {
               ''}
           </Stack.Item>
           <Stack.Item basis={inside?.desc?.length || 0 > 500 ? '30%' : '20%'}>
-            <VoreInsidePanel
-              inside={inside}
-              show_pictures={show_pictures}
-              icon_overflow={icon_overflow}
-            />
+            <VoreInsidePanel inside={inside} />
           </Stack.Item>
           <Stack.Item>
             <Tabs>
@@ -134,23 +151,32 @@ export const VorePanel = () => {
                 Bellies
                 <Icon name="list" ml={0.5} />
               </Tabs.Tab>
+              {!!inside.ref && (
+                <Tabs.Tab
+                  selected={active_tab === 1}
+                  onClick={() => act('change_tab', { tab: 1 })}
+                >
+                  Inside
+                  <Icon name="person-shelter" ml={0.5} />
+                </Tabs.Tab>
+              )}
               <Tabs.Tab
-                selected={active_tab === 1}
-                onClick={() => act('change_tab', { tab: 1 })}
+                selected={active_tab === 2}
+                onClick={() => act('change_tab', { tab: 2 })}
               >
                 Soulcatcher
                 <Icon name="ghost" ml={0.5} />
               </Tabs.Tab>
               <Tabs.Tab
-                selected={active_tab === 2}
-                onClick={() => act('change_tab', { tab: 2 })}
+                selected={active_tab === 3}
+                onClick={() => act('change_tab', { tab: 3 })}
               >
                 General
                 <Icon name="user-circle" ml={0.5} />
               </Tabs.Tab>
               <Tabs.Tab
-                selected={active_tab === 3}
-                onClick={() => act('change_tab', { tab: 3 })}
+                selected={active_tab === 4}
+                onClick={() => act('change_tab', { tab: 4 })}
               >
                 Preferences
                 <Icon name="user-cog" ml={0.5} />

@@ -359,7 +359,7 @@ emp_act
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
-		if(CanThrowVore(src, thrown_mob))
+		if(can_throw_vore(src, thrown_mob))
 			vore_selected.nom_mob(thrown_mob) //Eat them!!!
 			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
 			if(thrown_mob.loc != vore_selected)
@@ -369,7 +369,7 @@ emp_act
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if(CanThrowVore(thrown_mob, src)) //Pred thrown into prey.
+		else if(can_throw_vore(thrown_mob, src)) //Pred thrown into prey.
 			visible_message(span_vwarning("[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
 			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
 			if(src.loc != thrown_mob.vore_selected)

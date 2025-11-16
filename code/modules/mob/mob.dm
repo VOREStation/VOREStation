@@ -297,19 +297,19 @@
 /mob/proc/restore_remote_views()
 	if(!loc) // Nullspace during respawn
 		return FALSE
-	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
+	if(QDELETED(loc) || QDELETED(src)) // location or ourselves is qdeleted, don't restart remote viewing during destroy
 		return FALSE
-	if(QDELETED(loc))
+	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
 		return FALSE
 	// Check if we actually need to drop our current remote view component, as this is expensive to do, and leads to more difficult to understand error prone logic
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
 	if(remote_comp?.looking_at_target_already(loc))
 		return FALSE
 	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
-		AddComponent(/datum/component/remote_view/mob_holding_item, loc)
+		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
-		AddComponent(/datum/component/remote_view, loc)
+		AddComponent(/datum/component/remote_view, focused_on = loc, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	return FALSE
 
@@ -564,7 +564,7 @@
 	var/mob/mob_eye = targets[eye_name]
 
 	if(client && mob_eye)
-		AddComponent(/datum/component/remote_view, focused_on = mob_eye)
+		AddComponent(/datum/component/remote_view, focused_on = mob_eye, vconfig_path = null)
 		if(is_admin)
 			client.adminobs = TRUE
 			if(mob_eye == client.mob || !is_remote_viewing())
@@ -573,7 +573,6 @@
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC.Game"
-	unset_machine()
 	reset_perspective()
 
 /mob/Topic(href, href_list)

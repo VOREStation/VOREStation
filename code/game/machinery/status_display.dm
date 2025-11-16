@@ -77,12 +77,12 @@
 		return
 	update()
 
-/obj/machinery/status_display/emp_act(severity)
+/obj/machinery/status_display/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	set_picture("ai_bsod")
-	..(severity)
+	..(severity, recursive)
 
 // set what is displayed
 /obj/machinery/status_display/proc/update()

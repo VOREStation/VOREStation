@@ -52,10 +52,7 @@
 					modules |= module_name
 	data["possible_modules"] = modules
 	data["mind_name"] = R.mind.name
-	if(R.emagged)
-		data["theme"] = "syndicate"
-	else if (R.ui_theme)
-		data["theme"] = R.ui_theme
+	data["theme"] = R.get_ui_theme()
 
 	return data
 

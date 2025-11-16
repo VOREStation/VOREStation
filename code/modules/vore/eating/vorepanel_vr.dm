@@ -4,9 +4,10 @@
 
 #define STATION_PREF_NAME "Virgo"
 #define VORE_BELLY_TAB 0
-#define SOULCATCHER_TAB 1
-#define GENERAL_TAB 2
-#define PREFERENCE_TAB 3
+#define VORE_INSIDE_TAB 1
+#define SOULCATCHER_TAB 2
+#define GENERAL_TAB 3
+#define PREFERENCE_TAB 4
 
 /mob
 	var/datum/vore_look/vorePanel
@@ -144,36 +145,42 @@
 	data["prefs"] = null
 	data["general_pref_data"] = null
 
-	if(active_tab == VORE_BELLY_TAB)
-		data["active_vore_tab"] = active_vore_tab
-		data["host_mobtype"] = get_host_mobtype(host)
+	switch(active_tab)
+		if(VORE_BELLY_TAB)
+			data["active_vore_tab"] = active_vore_tab
+			data["host_mobtype"] = get_host_mobtype(host)
 
-		// Content Data
-		data["show_pictures"] = show_pictures
-		data["icon_overflow"] = icon_overflow
+			// Content Data
+			data["show_pictures"] = show_pictures
+			data["icon_overflow"] = icon_overflow
 
-		// List of all our bellies
-		data["our_bellies"] = get_vorebellies(host)
+			// List of all our bellies
+			data["our_bellies"] = get_vorebellies(host)
 
-		// Selected belly data. TODO, split this into sub data per tab, we don't need all of this at once, ever!
-		data["selected"] = get_selected_data(host)
+			// Selected belly data. TODO, split this into sub data per tab, we don't need all of this at once, ever!
+			data["selected"] = get_selected_data(host)
 
-	if(active_tab == SOULCATCHER_TAB)
-		// Soulcatcher and abilities
-		data["our_bellies"] = get_vorebellies(host, FALSE)
-		data["soulcatcher"] = get_soulcatcher_data(host)
-		data["abilities"] = get_ability_data(host)
+		if(VORE_INSIDE_TAB)
+			// Content Data
+			data["show_pictures"] = show_pictures
+			data["icon_overflow"] = icon_overflow
 
-	if(active_tab == PREFERENCE_TAB)
-		// Preference data, we only ever need that when we go to the pref page!
-		data["prefs"] = get_preference_data(host)
-		// Content Data
-		data["show_pictures"] = show_pictures
-		data["icon_overflow"] = icon_overflow
+		if(SOULCATCHER_TAB)
+			// Soulcatcher and abilities
+			data["our_bellies"] = get_vorebellies(host, FALSE)
+			data["soulcatcher"] = get_soulcatcher_data(host)
+			data["abilities"] = get_ability_data(host)
 
-	if(active_tab == GENERAL_TAB)
-		data["general_pref_data"] = get_general_data(host)
-		data["our_bellies"] = get_vorebellies(host, FALSE)
+		if(PREFERENCE_TAB)
+			// Preference data, we only ever need that when we go to the pref page!
+			data["prefs"] = get_preference_data(host)
+			// Content Data
+			data["show_pictures"] = show_pictures
+			data["icon_overflow"] = icon_overflow
+
+		if(GENERAL_TAB)
+			data["general_pref_data"] = get_general_data(host)
+			data["our_bellies"] = get_vorebellies(host, FALSE)
 
 	return data
 
@@ -867,10 +874,16 @@
 	// Only allow indirect belly viewers to examine
 	if(user in OB)
 		if(isliving(target))
-			intent = tgui_alert(user, "What do you want to do to them?","Query",list("Examine","Help Out","Devour"))
+			if(params["option"] in list("Examine","Help Out","Devour"))
+				intent = params["option"]
+			else
+				intent = tgui_alert(user, "What do you want to do to them?","Query",list("Examine","Help Out","Devour"))
 
-		else if(istype(target, /obj/item))
-			intent = tgui_alert(user, "What do you want to do to that?","Query",list("Examine","Use Hand"))
+		else if(isitem(target))
+			if(params["option"] in list("Examine","Use Hand"))
+				intent = params["option"]
+			else
+				intent = tgui_alert(user, "What do you want to do to that?","Query",list("Examine","Use Hand"))
 	//End of indirect vorefx changes
 
 	switch(intent)
@@ -989,7 +1002,10 @@
 		if(datarget.client)
 			available_options += "Process"
 		available_options += "Health"
-	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options)
+	if((params["option"] in available_options))
+		intent = params["option"]
+	else
+		intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -1023,7 +1039,9 @@
 			if(host.stat)
 				to_chat(user,span_warning("You can't do that in your state!"))
 				return TRUE
-			var/obj/belly/choice = tgui_input_list(user, "Move [target] where?","Select Belly", host.vore_organs)
+			var/obj/belly/choice = locate(params["targetBelly"])
+			if(!(choice in host.vore_organs))
+				choice = tgui_input_list(user, "Move [target] where?","Select Belly", host.vore_organs)
 			if(!choice || !(target in host.vore_selected))
 				return TRUE
 			to_chat(target,span_vwarning("You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!"))
@@ -1082,6 +1100,7 @@
 				return FALSE
 
 			if(!H.allow_spontaneous_tf)
+				to_chat(user,span_warning("Your target can't be transformed!"))
 				return FALSE
 
 			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
@@ -1327,6 +1346,7 @@
 
 #undef STATION_PREF_NAME
 #undef VORE_BELLY_TAB
+#undef VORE_INSIDE_TAB
 #undef SOULCATCHER_TAB
 #undef PREFERENCE_TAB
 #undef GENERAL_TAB
