@@ -8,6 +8,7 @@
 	var/banglet = 0
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
+	var/flash = TRUE //Will the grenade flash on detonation?
 
 // Detonate now just handles the two loops that query for people in lockers and people who can see it.
 /obj/item/grenade/spawnergrenade/detonate()
@@ -16,9 +17,10 @@
 		// Make a quick flash
 		var/turf/T = get_turf(src)
 		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
-		for(var/mob/living/carbon/human/M in viewers(T, null))
-			if(M:eyecheck() <= 0)
-				M.flash_eyes()
+		if(flash == TRUE)
+			for(var/mob/living/carbon/human/M in viewers(T, null))
+				if(M.eyecheck() <= 0)
+					M.flash_eyes()
 
 		// Spawn some hostile syndicate critters
 		for(var/i=1, i<=deliveryamt, i++)
