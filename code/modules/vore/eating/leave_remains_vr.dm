@@ -69,10 +69,10 @@
 			/obj/item/digestion_remains/variant2,
 			/obj/item/digestion_remains/variant3
 		)
-		for(var/i = 1, i <= bones_amount, i++)	//Fill with generic bones,
+		for(var/i = 1, i <= bones_amount, i++)
 			var/new_bone = pick(organic_bones)
 			new new_bone(src,owner)
-		return //Again, dont need carbon stuff after this
+		return
 
 
 	var/mob/living/carbon/human/H = M

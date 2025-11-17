@@ -17,7 +17,7 @@
 
 	has_huds = TRUE // We do show AI status huds for buildmode players
 
-	digest_leave_remains = TRUE //Ckeyless mobs (e.g. animals) leave remains by default, Lots of animals are not under /animal/. This pref updates on Login()
+	digest_leave_remains = TRUE
 
 	var/tt_desc = null //Tooltip description
 
