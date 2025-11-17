@@ -55,6 +55,9 @@
 	. = ..()
 
 /obj/item/mop_deploy/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	user.drop_from_inventory(src)
 	spawn(1) if(!QDELETED(src)) qdel(src)
 

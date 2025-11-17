@@ -139,6 +139,9 @@ var/list/tape_roll_applications = list()
 	return ..()
 
 /obj/item/taperoll/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!start)
 		start = get_turf(src)
 		to_chat(user, span_notice("You place the first end of \the [src]."))

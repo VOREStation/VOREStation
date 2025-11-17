@@ -23,6 +23,8 @@
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
+	///Var for attack_self handling
+	var/special_handling = FALSE
 
 /obj/item/melee/energy/sword/green
 	colorable = FALSE
@@ -97,6 +99,11 @@
 			. += span_warning("The blade does not have a power source installed.")
 
 /obj/item/melee/energy/attack_self(mob/living/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(use_cell)
 		if((!bcell || bcell.charge < hitcost) && !active)
 			to_chat(user, span_notice("\The [src] does not seem to have power."))
@@ -437,6 +444,7 @@
 	var/datum/effect/effect/system/spark_spread/spark_system
 	projectile_parry_chance = 60
 	lcolor = "#00FF00"
+	special_handling = TRUE
 
 /obj/item/melee/energy/blade/Initialize(mapload)
 	. = ..()
@@ -452,6 +460,9 @@
 	. = ..()
 
 /obj/item/melee/energy/blade/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	user.drop_from_inventory(src)
 	QDEL_IN(src, 1)
 

@@ -64,6 +64,9 @@
 		. += "[src] has [src.reagents.total_volume] units of foam left!"
 
 /obj/item/extinguisher/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	safety = !safety
 	icon_state = "[sprite_name][!safety]"
 	desc = "The safety is [safety ? "on" : "off"]."

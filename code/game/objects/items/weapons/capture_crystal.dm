@@ -228,6 +228,9 @@
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(bound_mob && !owner)
 		if(bound_mob == user)
 			to_chat(user, span_notice("\The [src] emits an unpleasant tone... It does not activate for you."))

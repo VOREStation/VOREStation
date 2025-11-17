@@ -105,6 +105,9 @@
 	return data
 
 /obj/item/card/id/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	user.visible_message("\The [user] shows you: [icon2html(src,viewers(src))] [src.name]. The assignment on the card: [src.assignment]",\
 		"You flash your ID card: [icon2html(src, user.client)] [src.name]. The assignment on the card: [src.assignment]")
 

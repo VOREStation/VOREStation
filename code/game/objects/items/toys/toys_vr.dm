@@ -685,6 +685,9 @@
 	var/cooldown = 0
 
 /obj/item/toy/toy_xeno/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(cooldown <= world.time)
 		cooldown = (world.time + 50) //5 second cooldown
 		user.visible_message(span_notice("[user] pulls back the string on [src]."))

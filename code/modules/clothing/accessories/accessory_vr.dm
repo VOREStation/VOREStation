@@ -45,6 +45,9 @@
 	icon_state = "collar_blk"
 	var/writtenon = 0
 	var/icon_previous_override
+	special_handling = TRUE
+	///Var for attack_self chain
+	var/shock = FALSE
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/Initialize(mapload)
@@ -111,7 +114,7 @@
 	return
 
 /obj/item/clothing/accessory/collar/bell/proc/jingledreset()
-		jingled = 0
+	jingled = 0
 
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
@@ -123,6 +126,7 @@
 	var/frequency = AMAG_ELE_FREQ
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
+	shock = TRUE
 
 /obj/item/clothing/accessory/collar/shock/Initialize(mapload)
 	. = ..()
@@ -139,6 +143,9 @@
 	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!ishuman(user))
 		return
 	tgui_interact(user)
@@ -260,6 +267,11 @@
 	return FALSE
 
 /obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
+	if(shock)
+		return FALSE
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		to_chat(user,span_notice("[name]'s interface is projected onto your hand."))
 	else
@@ -693,6 +705,7 @@
 	icon_state = "roughcloak"
 	item_state = "roughcloak"
 	actions_types = list(/datum/action/item_action/adjust_cloak)
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
 	. = ..()
@@ -701,6 +714,9 @@
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]_open"
 		src.item_state = "[item_state]_open"
@@ -964,6 +980,7 @@
 	icon_state = "neo_ranger"
 	item_state = "neo_ranger"
 	actions_types = list(/datum/action/item_action/adjust_poncho)
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
 	. = ..()
@@ -972,6 +989,9 @@
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]_open"
 		src.item_state = "[item_state]_open"

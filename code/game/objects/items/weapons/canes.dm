@@ -93,6 +93,9 @@
 	var/on = 0
 
 /obj/item/cane/white/collapsible/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	on = !on
 	if(on)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " extends the white cane."),\

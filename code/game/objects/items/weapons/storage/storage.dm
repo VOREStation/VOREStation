@@ -51,6 +51,8 @@
 	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
 	/// If you can use this storage while in a pocket
 	var/pocketable = FALSE
+	/// Used for attack_self chain
+	var/special_handling = FALSE
 
 /obj/item/storage/Initialize(mapload)
 	. = ..()
@@ -697,6 +699,11 @@
 	max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
 /obj/item/storage/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if((user.get_active_hand() == src) || (isrobot(user)) && allow_quick_empty)
 		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))
 			src.quick_empty()

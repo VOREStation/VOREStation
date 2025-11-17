@@ -153,6 +153,9 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(bcell && bcell.charge >= hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))

@@ -156,6 +156,9 @@
 	..()
 
 /obj/item/flamethrower/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(user.stat || user.restrained() || user.lying)
 		return
 	tgui_interact(user)

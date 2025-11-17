@@ -42,6 +42,9 @@
 	update_icon()
 
 /obj/item/melee/umbrella/attack_self()
+	. = ..()
+	if(.)
+		return TRUE
 	src.toggle_umbrella()
 
 /obj/item/melee/umbrella/proc/toggle_umbrella()

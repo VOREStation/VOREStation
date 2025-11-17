@@ -164,19 +164,22 @@
 	attack_verb = list("attacked", "struck", "hit")
 
 /obj/item/toy/sword/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
+	. = ..()
+	if(.)
+		return TRUE
+	active = !active
+	if(active)
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
-		src.item_state = "[icon_state]_blade"
-		src.w_class = ITEMSIZE_LARGE
+		item_state = "[icon_state]_blade"
+		w_class = ITEMSIZE_LARGE
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
-		src.item_state = "[icon_state]"
-		src.w_class = ITEMSIZE_SMALL
+		item_state = "[icon_state]"
+		w_class = ITEMSIZE_SMALL
 	update_icon()
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/item/toy/sword/update_icon()
@@ -283,6 +286,9 @@
 	slot_flags = SLOT_EARS | SLOT_HOLSTER
 
 /obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(cooldown < world.time - 35)
 		to_chat(user, span_notice("You blow on [src], creating an ear-splitting noise!"))
 		playsound(src, 'sound/misc/boatswain.ogg', 20, 1)
@@ -306,8 +312,11 @@
 	desc = "A \"Space Life\" brand [name]"
 
 /obj/item/toy/figure/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(cooldown < world.time)
-		cooldown = (world.time + 30) //3 second cooldown
+		cooldown = (world.time + 3 SECONDS)
 		user.visible_message(span_notice("The [src] says \"[toysay]\"."))
 		playsound(src, 'sound/machines/click.ogg', 20, 1)
 
@@ -1265,12 +1274,14 @@
 	var/list/possible_answers = list("Definitely.", "All signs point to yes.", "Most likely.", "Yes.", "Ask again later.", "Better not tell you now.", "Future unclear.", "Maybe.", "Doubtful.", "No.", "Don't count on it.", "Never.")
 
 /obj/item/toy/eight_ball/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!cooldown)
 		var/answer = pick(possible_answers)
 		user.visible_message(span_notice("[user] focuses on their question and [use_action]..."))
 		user.visible_message(span_notice("The [src] says \"[answer]\""))
-		spawn(30)
-			cooldown = 0
+		VARSET_IN(src, cooldown, FALSE, 3 SECONDS)
 		return
 
 /obj/item/toy/eight_ball/conch

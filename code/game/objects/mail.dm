@@ -191,6 +191,9 @@
 		return
 
 /obj/item/mail/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!unwrap(user))
 		return FALSE
 	return after_unwrap(user)

@@ -26,6 +26,9 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/locator/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	user.set_machine(src)
 	var/dat
 	if (src.temp)
@@ -133,6 +136,9 @@ Frequency:
 	preserve_item = 1
 
 /obj/item/hand_tele/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location || (current_location.z in using_map.admin_levels) || current_location.block_tele)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, span_notice("\The [src] is malfunctioning."))

@@ -63,6 +63,8 @@
 	. = ..()
 	if(.)
 		return TRUE
+	if(special_handling)
+		return FALSE
 	if(IC)
 		if(IC.opened)
 			IC.attack_self(user)

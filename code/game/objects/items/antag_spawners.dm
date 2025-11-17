@@ -105,6 +105,9 @@
 	var/drone_type = null
 
 /obj/item/antag_spawner/syndicate_drone/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("Teleporter attempting to lock on to an available unit."))
 	request_player()
 

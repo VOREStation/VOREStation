@@ -66,6 +66,9 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 		glasstype_name = glass_choice
 
 /obj/item/rsf/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	var/options = list(
 		"card deck" = image(icon = 'icons/obj/playing_cards.dmi', icon_state = "deck"),
 		"card deck (big)" = image(icon = 'icons/obj/playing_cards.dmi', icon_state = "deck"),
