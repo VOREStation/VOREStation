@@ -254,14 +254,19 @@
 
 	data["designs"] = designs
 	data["fabName"] = name
-	data += materials.mat_container.tgui_static_data()
+
+	var/list/material_data = materials.mat_container?.tgui_static_data(user)
+	if(material_data)
+		data += material_data
 
 	return data
 
 /obj/machinery/rnd/production/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["materials"] = materials.mat_container.tgui_data()
+	var/list/material_data = materials.mat_container?.tgui_data(user)
+	if(material_data)
+		data["materials"] = material_data
 	data["onHold"] = FALSE //materials.on_hold()
 	data["busy"] = busy
 	data["materialMaximum"] = materials.local_size
