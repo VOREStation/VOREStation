@@ -138,7 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
-	excludes = list(/datum/trait/negative/boneless)
+	excludes = list(/datum/trait/negative/boneless, /datum/trait/positive/densebones)
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -159,6 +159,7 @@
 
 	activation_message="You feel off balance..."
 	primitive_expression_messages=list("staggers")
+	excludes = list(/datum/trait/negative/lightweight_light)
 
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
@@ -193,6 +194,11 @@
 	name = "Methane Breather"
 	desc = "You breathe methane instead of oxygen (which is poisonous to you)."
 	var_changes = list("breath_type" = GAS_CH4, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/methane_breather)
+
+/datum/trait/negative/breathes/carbon_dioxide
+	name = "Carbon Dioxide Breather"
+	desc = "You breathe carbon dioxide instead of oxygen, much like a plant. Oxygen is not poisonous to you."
+	var_changes = list("breath_type" = GAS_CO2, "exhale_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/carbon_dioxide_breather)
 
 /datum/trait/negative/monolingual
 	name = "Monolingual"
@@ -275,34 +281,14 @@
 	name = "Low Blood Sugar"
 	desc = "If you let your nutrition get too low, you will start to experience adverse affects including hallucinations, unconsciousness, and weakness"
 	cost = -1
-	special_env = TRUE
 
 	// Traitgenes Made into a gene trait
 	is_genetrait = TRUE
 	hidden = FALSE
+	added_component_path = /datum/component/diabetic
 
 	activation_message="You feel drowsy..."
 	primitive_expression_messages=list("looks drowsy")
-
-/datum/trait/negative/low_blood_sugar/handle_environment_special(var/mob/living/carbon/human/H)
-	if(H.nutrition > 200 || isbelly(H.loc))
-		return
-	if((H.nutrition < 200) && prob(5))
-		if(H.nutrition > 100)
-			to_chat(H,span_warning("You start to feel noticeably weak as your stomach rumbles, begging for more food. Maybe you should eat something to keep your blood sugar up"))
-		else if(H.nutrition > 50)
-			to_chat(H,span_warning("You begin to feel rather weak, and your stomach rumbles loudly. You feel lightheaded and it's getting harder to think. You really need to eat something."))
-		else if(H.nutrition > 25)
-			to_chat(H,span_danger("You're feeling very weak and lightheaded, and your stomach continously rumbles at you. You really need to eat something!"))
-		else
-			to_chat(H,span_critical("You're feeling extremely weak and lightheaded. You feel as though you might pass out any moment and your stomach is screaming for food by now! You should really find something to eat!"))
-	if((H.nutrition < 100) && prob(10))
-		H.Confuse(10)
-	if((H.nutrition < 50) && prob(25))
-		H.hallucination = max(30,H.hallucination+8)
-	if((H.nutrition < 25) && prob(5))
-		H.drowsyness = max(100,H.drowsyness+30)
-
 
 /datum/trait/negative/blindness
 	name = "Permanently blind"
@@ -420,17 +406,10 @@
 	desc = "Some say that when it rains, it pours.  Unfortunately, this is also true for yourself if you get cut. You bleed much faster than average, at 3x the normal rate."
 	cost = -3
 	can_take = ORGANICS
+	var_changes = list("bloodloss_rate" = 3)
 
-	activation_message="You feel "
+	activation_message="You feel like your skin is made of paper!"
 	primitive_expression_messages=list("bumps their toe, screaming in pain")
-
-/datum/trait/negative/haemophilia_plus/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..()
-	H.add_modifier(/datum/modifier/trait/haemophilia)
-
-/datum/trait/negative/haemophilia_plus/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..()
-	H.remove_modifiers_of_type(/datum/modifier/trait/haemophilia)
 
 /datum/trait/negative/pain_intolerance_basic
 	name = "Pain Intolerance"
@@ -487,6 +466,7 @@
 	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
 	cost = -5
 	var_changes = list("dirtslip" = TRUE)
+	excludes = list(/datum/trait/positive/absorbent)
 
 /datum/trait/negative/thick_digits
 	name = "Thick Digits"
@@ -677,6 +657,108 @@
 
 		else if(istype(ex_organ, /obj/item/organ/external/chest))
 			ex_organ.encased = FALSE
+
+/datum/trait/negative/deep_sleeper
+	name = "Deep Sleeper"
+	desc = "When you fall asleep, it takes you four times as long to wake up."
+	cost = -1
+	var_changes = list("waking_speed" = 0.25)
+	custom_only = FALSE
+
+/datum/trait/negative/deep_breather
+	name ="Deep Breather"
+	desc = "You need more air for your lungs to properly work.."
+	cost = -1
+
+	custom_only = FALSE
+	can_take = ORGANICS
+
+	var_changes = list("minimum_breath_pressure" = 18)
+	excludes = list(/datum/trait/positive/light_breather)
+
+
+/*EMP traits. Noting this down because I was like 'what is the difference between emp_dmg_mod and the modifier?'
+ * emp_dmg_mod: If the species has emp_sensitivity bitflag of EMP_BRUTE_DMG, EMP_BURN_DMG, EMP_TOX_DMG, or EMP_OXY_DMG, damage is multiplied by that.
+ * As of the time of writing this, the ONLY species with those bitflags are proteans...Meaning this has been a free trait FOREVER for synths.
+ * The modifier, however, makes everything inside of you (organs, limbs, items) get EMP'd as if it was 1 severity more severe (or 2 if using the major trait)
+*/
+/datum/trait/negative/faultwires
+	name = "Faulty Wires"
+	desc = "Due to poor construction, you have an unfortante weakness to EMPs."
+	cost = -3
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("emp_dmg_mod" = 1.3, "emp_stun_mod" = 1.3, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE))
+	excludes = list(/datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
+
+/datum/trait/negative/faultwires/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.add_modifier(/datum/modifier/trait/empweakness)
+
+/datum/trait/negative/poorconstruction
+	name = "Poor Construction"
+	desc = "Due to poor construction, you have an hefty weakness to EMPs."
+	cost = -5
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("emp_dmg_mod" = 1.6, "emp_stun_mod" = 1.6, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE | EMP_WEAKEN))
+	excludes = list(/datum/trait/negative/faultwires, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
+
+/datum/trait/negative/poorconstruction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.add_modifier(/datum/modifier/trait/majorempweakness)
+
+/datum/trait/negative/meltable
+	name = "Water Weakness"
+	desc = "Due to your biology, water is harmful to you."
+	cost = -1
+	custom_only = TRUE
+	var_changes = list("water_resistance" = 0, "water_damage_mod" = 0.3)
+	excludes = list(/datum/trait/negative/meltable_major)
+
+/datum/trait/negative/meltable_major
+	name = "Extreme Water Weakness"
+	desc = "Due to your biology, water is very harmful to you."
+	cost = -3
+	custom_only = TRUE
+	var_changes = list("water_resistance" = 0, "water_damage_mod" = 0.8)
+	excludes = list(/datum/trait/negative/meltable)
+
+/datum/trait/negative/lightweight_light
+	name = "Lesser Lightweight"
+	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping if you are unprepared)"
+	cost = -1
+	var_changes = list("lightweight_light" = 1)
+	excludes = list(/datum/trait/negative/lightweight)
+	custom_only = FALSE
+
+/datum/trait/negative/scrawny
+	name = "Scrawny"
+	desc = "You have a much harder time breaking free of grabs as well as creating and holding onto grabs on other people."
+	cost = -2
+	var_changes = list("grab_resist_divisor_victims" = 0.5, "grab_resist_divisor_self" = 3, "grab_power_victims" = 1, "grab_power_self" = -1)
+
+/datum/trait/negative/schizophrenia
+	name = "Episodic hallucinations."
+	desc = "You have a condition which causes you to spontaneously have hallucinations! Luckily for you, in the modern space age, our doctors have solutions for you, just make sure you don't forget to take your pills."
+	cost = -3
+	custom_only = FALSE
+	special_env = TRUE
+	can_take = ORGANICS
+	added_component_path = /datum/component/schizophrenia
+	hidden = TRUE //Disabled on Vorestation
+
+/datum/trait/negative/synth_pain
+	name = "Obligate Pain Simulation"
+	desc = "Due to a structural flaw, hard-coding, or other inherent weakness, your body can feel pain, and you can't turn it off."
+	cost = -4
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	excludes = list(/datum/trait/neutral/synth_cosmetic_pain)
+
+/datum/trait/negative/synth_pain/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	H.synth_cosmetic_pain = TRUE
+	. = ..()
 
 /datum/trait/negative/rad_weakness
 	name = "Radiation Weakness"

@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/static_environ = 0
 
 	var/music = null
-	var/has_gravity = 1 // Don't check this var directly; use get_gravity() instead
+	var/has_gravity = TRUE // Don't check this var directly; use get_gravity() instead
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area

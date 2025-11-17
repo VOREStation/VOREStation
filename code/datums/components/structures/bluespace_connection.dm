@@ -33,7 +33,7 @@
 /datum/component/bluespace_connection/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_CLOSET_CLOSED, PROC_REF(on_close))
 	RegisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(on_hit))
-	
+
 /datum/component/bluespace_connection/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_CLOSET_CLOSED, COMSIG_ATOM_HITBY))
 
@@ -76,7 +76,7 @@
 		var/obj/structure/closet/exit_closet = exit_point
 		if(!exit_closet.can_open()) // Bwomp. You're locked now. :)
 			for(var/atom/movable/AM in contents)
-				do_noeffect_teleport(AM, exit_closet, 0, 1)
+				do_teleport(AM, exit_closet, channel = TELEPORT_CHANNEL_BLUESPACE, no_effects = TRUE)
 			return
 		exit_closet.open()
 
@@ -86,7 +86,7 @@
 		for(var/atom/movable/AM in contents)
 			if(QDELETED(AM))
 				continue
-			do_noeffect_teleport(AM, get_turf(exit_point), 0, 1)
+			do_teleport(AM, get_turf(exit_point), channel = TELEPORT_CHANNEL_BLUESPACE, no_effects = TRUE)
 			if(!isbelly(exit_point))
 				AM.throw_at(target, throw_range, 1)
 		contents.Cut()

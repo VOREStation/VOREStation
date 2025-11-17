@@ -10,7 +10,7 @@
 	if(anchored)
 		to_chat(user, span_notice("\The [src] won't budge, you can't pick it up!"))
 		return
-	if (hasorgans(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)

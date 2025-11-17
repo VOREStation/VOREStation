@@ -157,3 +157,8 @@ this file deals with suits/overwear. */
 	name = "armsco heavy coat"
 	desc = "A rich red longcoat trimmed in black with a warm brown synthetic fur ruff around the neck, lined with layers of para-aramid fibers for increased durability without compromising comfort. It bears a tag that says 'Product of Total Gear & Co.'"
 	icon_state = "neo_armsco_trench"
+
+/obj/item/clothing/suit/storage/vest/hoscoat/neo_hos_parade_jacket
+	name = "\improper Head of Security's parade jacket"
+	desc = "For when an armoured vest isn't fashionable enough. It bears a tag that says 'Product of Total Gear & Co.'"
+	icon_state = "neo_hos_parade_black"

@@ -55,7 +55,7 @@
 
 // Damage code.
 
-/obj/item/mecha_parts/component/emp_act(var/severity = 4)
+/obj/item/mecha_parts/component/emp_act(severity = 4, recursive)
 	if(severity + emp_resistance > 4)
 		return
 

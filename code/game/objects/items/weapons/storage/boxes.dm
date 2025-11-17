@@ -458,19 +458,27 @@
 	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /obj/item/storage/box/lights/bulbs
-	starts_with = list(/obj/item/light/bulb = 24)
+	starts_with = list(
+		/obj/item/light/bulb = 20,
+		/obj/item/light/bulb/large = 4
+	)
 
 /obj/item/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
-	starts_with = list(/obj/item/light/tube = 24)
+	starts_with = list(
+		/obj/item/light/tube = 20,
+		/obj/item/light/tube/large = 4
+	)
 
 /obj/item/storage/box/lights/mixed
 	name = "box of replacement lights"
 	icon_state = "lightmixed"
 	starts_with = list(
-		/obj/item/light/tube = 16,
-		/obj/item/light/bulb = 8
+		/obj/item/light/tube = 12,
+		/obj/item/light/tube/large = 2,
+		/obj/item/light/bulb = 8,
+		/obj/item/light/bulb/large = 2
 	)
 
 /obj/item/storage/box/freezer

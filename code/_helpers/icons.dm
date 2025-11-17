@@ -796,7 +796,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 
 	if (!bicon_cache[key]) // Doesn't exist, make it.
 		var/icon/target_icon = icon(target_atom.icon, target_atom.icon_state, SOUTH, 1)
-		if (ishuman(target)) // Shitty workaround for a BYOND issue.
+		if(ishuman(target)) // Shitty workaround for a BYOND issue.
 			var/icon/temp = target_icon
 			target_icon = icon()
 			target_icon.Insert(temp, dir = SOUTH)

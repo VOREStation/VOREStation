@@ -20,15 +20,7 @@
 	return ..()
 
 /obj/item/grenade/confetti/detonate() //Find a good confetti firework or pop sound effect later
-	playsound(src.loc, 'sound/effects/snap.ogg', 50, 1, -3)
-	src.confetti_spread.set_up(10, 0, usr.loc)
-	spawn(0)
-		for(var/i = 1 to confetti_strength)
-			src.confetti_spread.start()
-			sleep(10)
-		qdel(src)
-
-	return
+	start_effect_sprayer(confetti_spread, confetti_strength, 'sound/effects/snap.ogg')
 
 /obj/item/grenade/confetti/party_ball //Intended to be used only with the confetti cannon.
 	name = "party ball"
@@ -40,12 +32,4 @@
 	throwforce = 0 //Confetti cannon is only fun to shoot at people if it deals no damage.
 
 /obj/item/grenade/confetti/party_ball/detonate() //Could condense this by making the sound a variable in the parent but I'm lazy.
-	playsound(src.loc, 'sound/effects/confetti_ball.ogg', 50, 1, -3)
-	src.confetti_spread.set_up(10, 0, usr.loc)
-	spawn(0)
-		for(var/i = 1 to confetti_strength)
-			src.confetti_spread.start()
-			sleep(10)
-		qdel(src)
-
-	return
+	start_effect_sprayer(confetti_spread, confetti_strength, 'sound/effects/confetti_ball.ogg')
