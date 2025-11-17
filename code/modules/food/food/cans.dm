@@ -39,6 +39,10 @@
 		return PROCESS_KILL
 	shaken--
 
+/obj/item/reagent_containers/food/drinks/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
 //DRINKS
 
 /obj/item/reagent_containers/food/drinks/cans/cola
