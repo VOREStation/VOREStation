@@ -1180,3 +1180,8 @@ Talon winter coat
 	display_name = "cloak of eyes"
 	description = "A basic looking purple robe that has a hood and can be toggled to have eyes form and stare at moving creatures!"
 	path = /obj/item/clothing/suit/storage/hooded/purple_robes
+
+/datum/gear/suit/neo_pcloak_color
+	display_name = "flowing cloak, colorable"
+	description = "A heavy cloak, suitable for recoloring."
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom/neo_pcloak_color

@@ -707,11 +707,10 @@
 					I.brute = C.brute_damage
 					I.burn = C.electronics_damage
 
-				I.loc = src.loc
+				I.forceMove(loc)
 
 				if(C.installed == 1)
 					C.uninstall()
-				C.installed = 0
 
 		else
 			if(locked)
@@ -731,7 +730,7 @@
 			to_chat(user, span_filter_notice("\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here."))
 		else
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			cell = W
 			to_chat(user, span_filter_notice("You insert the power cell."))
 
@@ -894,8 +893,7 @@
 				user.put_in_active_hand(cell)
 				to_chat(user, span_filter_notice("You remove \the [cell]."))
 				cell = null
-				cell_component.wrapped = null
-				cell_component.installed = 0
+				cell_component.uninstall()
 				update_icon()
 			else if(cell_component.installed == -1)
 				cell_component.installed = 0
@@ -1212,7 +1210,7 @@
 	if(cell.charge - (amount + lower_limit) <= 0)
 		return FALSE
 
-	cell.charge -= amount
+	cell.use(amount)
 	return TRUE
 
 /mob/living/silicon/robot/binarycheck()
@@ -1347,7 +1345,7 @@
 	return braintype != BORG_BRAINTYPE_DRONE
 
 
-/mob/living/silicon/robot/drop_item()
+/mob/living/silicon/robot/drop_item(var/atom/Target)
 	if(module_active && istype(module_active,/obj/item/gripper))
 		var/obj/item/gripper/G = module_active
 		G.drop_item_nm()

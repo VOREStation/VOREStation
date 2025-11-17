@@ -323,6 +323,8 @@
 ///from base of /obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0). Has the arguments of 'src, silent, result'
 #define COMSIG_MOB_ROLLED_DICE "mob_rolled_dice" //can give a return value if we want it to make the dice roll a specific number!
 
+///from base of /client/Move(n, direct) : (direction) returns bool, if component handled movement
+#define COMSIG_MOB_RELAY_MOVEMENT "mob_relay_movement"
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
 ///from base of mob/anti_magic_check(): (mob/user, magic, holy, tinfoil, chargecost, self, protection_sources)
@@ -415,6 +417,12 @@
 #define COMSIG_LIVING_HANDLE_VISION "living_handle_vision"
 ///From /mob/handle_regular_hud_updates().
 #define COMSIG_LIVING_HANDLE_HUD "living_handle_hud"
+	#define COMSIG_COMPONENT_HANDLED_HUD (1<<0)
+///From /mob/living/proc/handle_hud_icons_health().
+#define COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON "living_handle_hud_health_icon"
+	#define COMSIG_COMPONENT_HANDLED_HEALTH_ICON (1<<0)
+///From /mob/living/proc/handle_darksight().
+#define COMSIG_LIVING_HANDLE_HUD_DARKSIGHT "living_handle_hud_darksight"
 
 
 // Damage specific signals for /mob/living
@@ -513,12 +521,12 @@
 #define COMSIG_ON_CARBON_SLIP "carbon_slip"
 
 // /mob/living/silicon signals
-///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
+///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity, recursive)
 #define COMSIG_SILICON_EMP_ACT "silicon_emp_act"
 	#define COMPONENT_BLOCK_EMP (1<<0) //If this is set, the EMP will not go through. Used by other EMP acts as well.
 
 // /mob/living/silicon/robot signals
-///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity)
+///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity, recursive)
 #define COMSIG_ROBOT_EMP_ACT "robot_emp_act"
 
 ///from base of obj/deconstruct(): (disassembled)
@@ -797,6 +805,9 @@
 ///from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)
 #define COMSIG_FOOD_EATEN "food_eaten"
 
+//Drink
+#define COMSIG_CONTAINER_DRANK "container_drank"
+
 //Gibs
 
 ///from base of /obj/effect/decal/cleanable/blood/gibs/streak(): (list/directions, list/diseases)
@@ -810,6 +821,24 @@
 #define COMSIG_ADD_MOOD_EVENT_RND "RND_add_mood"
 ///called when you clear a mood event from anywhere in the code.
 #define COMSIG_CLEAR_MOOD_EVENT "clear_mood"
+
+//Ventcrawling
+
+///called when a ventcrawling mob checks if it can begin ventcrawling : (obj/machinery/atmospherics/unary/vent_entered)
+#define COMSIG_MOB_VENTCRAWL_CHECK "ventcrawl_check"
+///called when a ventcrawling mob checks if it can enter a vent : (mob/entering_mob)
+#define COMSIG_VENT_CRAWLER_CHECK "ventcrawl_check"
+	#define VENT_CRAWL_BLOCK_ENTRY (1<<0)
+
+///called when a ventcrawling mob enters a vent : (obj/machinery/atmospherics/unary/vent_entered)
+#define COMSIG_MOB_VENTCRAWL_START "ventcrawl_start"
+///called when a ventcrawling mob leaves a vent : (obj/machinery/atmospherics/unary/vent_exited)
+#define COMSIG_MOB_VENTCRAWL_END "ventcrawl_end"
+
+///called when a ventcrawling mob enters a vent : (mob/entering_mob)
+#define COMSIG_VENT_CRAWLER_ENTERED "ventcrawl_entered_vent"
+///called when a ventcrawling mob leaves a vent : (mob/exiting_mob)
+#define COMSIG_VENT_CRAWLER_EXITED "ventcrawl_exit_vent"
 
 //NTnet
 

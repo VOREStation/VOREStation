@@ -23,3 +23,248 @@
 2025-11-05:
   Kashargul:
   - qol: moves inside contents to its own tab
+2025-11-06:
+  Diana:
+  - qol: You can now drag-drop items onto chargers
+  - code_imp: Recharger code is a bit better
+  - code_imp: Got rid of some loc = X
+  - bugfix: Equipping boxing gloves will make your unarmed blows nonlethal
+  Guti:
+  - code_imp: Makes food/drink code easier to read
+  - code_imp: Implements signals for food eaten/can drank
+  NickBelmont:
+  - bugfix: 'Corrected a mistake in #18494. Circuit leading and trailing whitespace
+      is now actually no longer deleted.'
+  Tenryumi:
+  - bugfix: Fixed being able to conjure leather by crafting steel-based furniture.
+  Will:
+  - bugfix: remote views with decorations and sight changing flags apply instantly
+  - bugfix: weird view behavior when cancelling remote view while using the spy-kit
+      pda with only a single camera linked
+  - bugfix: MMIs removed from borgs and fbps no longer have their view desync
+  - bugfix: remote view runtime from interrupted views in the machine var shim
+  - bugfix: prey views becoming locked to several medical machines if their pred left
+      them
+  - refactor: Moved relaymove() from machine var to remote_view component
+  - code_imp: Implements COMSIG_MOB_RELAY_MOVEMENT
+  - code_imp: COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON
+  - code_imp: COMSIG_LIVING_HANDLE_HUD_DARKSIGHT
+2025-11-07:
+  Guti:
+  - bugfix: Fixed slip vore not working
+  ItsSelis:
+  - bugfix: It is now possible to add players to whitelists that have entries deliminated
+      by a space character.
+  Kashargul:
+  - bugfix: vorespawn should work again
+  - bugfix: soulcatcher spawn should work again
+  Ryumi:
+  - balance: Gamma Replicants can now take the Aquatic traits.
+2025-11-08:
+  Diana:
+  - bugfix: Objects that collide with windows will no longer runtime
+  - bugfix: Protean rigs no longer runtime in Nullspace
+  - bugfix: Mecha paintkits no longer runtime when used on non-mechas
+  - bugfix: Inserting and removing borg (and apc) cells with a robot gripper now works
+      properly.
+  - bugfix: Absorbed prey will no longer slurp up stomach reagents
+  - qol: Darkvision positive no longer gives you flash weakness negative
+  - qol: Metabolism perks can be taken  by synths AND humans. Synths can now metabolize
+      beer faster!
+  - qol: Hard feet is now a neutral instead of a positive trait. It cost 0 points
+      and is so unimpactful that it made little sense to have it take a positive slot
+      when it's mostly just a fluff trait.
+  - bugfix: Brute resistance positives block you from taking other brute resistance
+      positives instead of fire resistance. The opposite is true.
+  - spellcheck: Darkvision note adjustments.
+  - rscadd: A LOT of new traits have been added from downstream.
+  - rscadd: Hide added as a neutral trait. AR huds make this irrelevant so eh. Could
+      lead to stealthy pred stuff.
+  - bugfix: Food no longer deletes weirdly
+  - code_imp: do_mob axed and replaced with the nicer, saner do_after
+  - bugfix: Halloss and Succubus Drain now take your CURRENT max health into account
+      instead of SPECIES max health
+  - bugfix: You can no longer shove a micro holding your guns into the microwave to
+      prevent your guns from being EMP'd while in a firefight.
+  - bugfix: Robotic eyes now get EMP'd.
+  - bugfix: Organic eyes no longer get EMP'd
+  - bugfix: MMIs will properly apply drain bamage to the brain within when EMP'd
+  - bugfix: Polychrome wallets no longer act as faraday cages for anything within
+  - bugfix: Chameleon equipment no longer makes anything attached to it EMP proof
+      (holster exploit)
+  - bugfix: You can no longer stick your gun into a disposal unit mid fight to protect
+      it against EMPs
+  - code_imp: EMP code is less scuffed now
+  - bugfix: Fixes a flaw in clothing logic allowing Teshari to use default icons instead
+      of falling back to their species specific icon.
+  Guti:
+  - refactor: Refactored do_teleport code
+  - bugfix: Fixes teleportation not causing spont vore
+  Kashargul:
+  - bugfix: borg hypos can no longer drain borg power cells below 800 charge
+  - code_imp: dependency update
+  Ryumi:
+  - rscadd: Cyborg hypos now use a fancy TGUI interface that makes them work kinda
+      like chem dispensers, even utilizing macros!
+  - code_imp: Further modularized chem dispenser UI code so that its UI can be used
+      by other chemical dispensing devices.
+  - code_imp: Improved borg hypo code to be less janky.
+  - qol: Chem dispensers now sort their chemicals by the name of the chemical, instead
+      of its ID - so now dispensers will be sorted in a way that's more visually intuitive
+      to players!
+  SatinIsle:
+  - qol: Disposal chutes now delete any digestion remains when they flush, making
+      them a safe place to throw them away.
+  Will:
+  - refactor: traitgenes and traits share conflict checking code
+  - bugfix: simplemobs no longer ignore pipe atmos while ventcrawling
+  - bugfix: ventcrawling mobs will no longer be affected by turf atmos while ventcrawling
+  - bugfix: scrubbers can now be welded shut
+  - balance: extreme pressure will prevent a mob from ventcrawling
+  - code_imp: Mobs can now have a unique ventcrawl entry speed
+  - code_imp: Implements COMSIG_MOB_VENTCRAWL_CHECK
+  - code_imp: Implements COMSIG_MOB_VENTCRAWL_START
+  - code_imp: Implements COMSIG_MOB_VENTCRAWL_END
+  - code_imp: Implements COMSIG_VENT_CRAWLER_CHECK
+  - code_imp: Implements COMSIG_VENT_CRAWLER_ENTERED
+  - code_imp: Implements COMSIG_VENT_CRAWLER_EXITED
+  - bugfix: Adds missing data to chemalyzer
+2025-11-09:
+  Diana:
+  - bugfix: fixes a 10 year old bug where your lungs were assigned to your heart
+  - qol: Surgery can be done ANYWHERE now. However, 'dirty'/non-sterile surfaces (floors
+      and tables) risk infection and make you MUCH slower. OPtables are still the
+      fastest.
+  - qol: Infection is less aggressive short term, more lethal long term. This means
+      no more 'sudden death from infection'
+  - qol: Infection can be seen when examining yourself/others (Others can detect infection
+      on you MUCH sooner than yourself)
+  - qol: Internal bleeding can be seen when examining yourself/others via a grab-examine
+  - qol: Sterilizine is cleans 10x more effectively now.
+  - qol: Stethoscopes can now be used to examine for internal injury or missing internal
+      organs.
+  - qol: Fixovein now has a 100% chance of success during dehusking surgery instead
+      of a 30%
+  - qol: Surgery RNG % chance of failure depending on surface removed. Instead replaced
+      with a RNG % chance of increasing the germ level if you use an unsanitary surface
+      to do surgery on.
+  - qol: Syringe stabbing now takes higher armors into account. No longer a pure 50/50%
+      chance
+  - qol: Some ghetto surgery tools have been increased in chance.
+  - spellcheck: Some typos in surgery have been fixed.
+  - bugfix: Grab-examining boneless crew will no longer tell you they have bones
+  - bugfix: Tachycardics and bradycardics now affect heartrate (Drink coffee while
+      smoking after having downed some Nuka Cola and ask medical to take your pulse.
+      It'll be funny.)
+  - bugfix: Stethoscope now properly detects your heartrate.
+  - bugfix: Defib no longer does massive oxyloss and brain damage to those it revives.
+  - bugfix: Medical kiosks no longer infinitely give you blood pills
+  - bugfix: Examining someone that is not breathing will inform you that they are
+      - in fact - not breathing
+  - bugfix: Brain surgery now works properly if the user is ghosted when the brain
+      is removed
+  - bugfix: You no longer lose your languages after brain surgery
+  - qol: Detoxify surgery no longer requires you to raise your patient's toxins or
+      oxyloss above 25 to use it.
+  - rscadd: Necrosis surgery now has a separate pathtree similar to dehusking surgery.
+  - rscadd: You can now palpate the neck, chest, and abdomen to examine for internal
+      injuries.
+  - code_imp: Converts a few lists into managed global lists.
+  - refactor: Lasertag code has been completely revamped.
+  - rscadd: A lot of lasertag additions from Outpost21. Laser Knives, Laser Mines,
+      Omni Vests! Get them all from cargo!
+  - qol: Lasertag 'instagib' and 'multkill' modes have been moved to the vests theirselves
+      via a HP toggle instead of on the gun.
+  - qol: Lasertag vests can set their HP to be between 1-10
+  - qol: Lasertag vests can now have a passive heal, set to not heal at all (0) all
+      the way up to heal once every 60 seconds
+  - qol: EMP strength actually matters when it comes to EMPing turrets.
+  - bugfix: Turrets will properly have a lethal projectile if set by the code.
+  - bugfix: Lasertag turrets properly target at players.
+  - rscadd: Lasertag turrets now have an emag effect
+  - rscadd: Lasertag vests now have an emag effect
+  - rscadd: Lasertag turrets can be purchased from Cargo
+  - bugfix: You can no longer shoot lasertag guns while downed
+  - bugfix: You can no longer crawl while downed in lasertag
+  - bugfix: Landmines will no longer 100% miss the person that steps on them
+  - bugfix: Training mines drop any attached assemblies upon 'explosion'
+  - bugfix: Mines drop any attached assemblies upon disarming.
+  - code_imp: removes deprecated organ check
+  KillianKirilenko:
+  - rscadd: Added fusion coils, special single-use cells which can be used to kickstart
+      depleted SMES units
+  ReoDaProtovali:
+  - bugfix: Fixed smelting prey who'd prefer to not be smelted
+  - bugfix: Running special atmos checks while phased or otherwise incorporeal
+  Will:
+  - bugfix: View becoming stuck on bodyscanner if you sleep or get stunned inside
+      it, and other similar situations inside of machines or items.
+  - bugfix: ghosting will clear remote views
+2025-11-10:
+  Cameron-The-Raven:
+  - bugfix: Makes volume pumps and vent scrubbers work with the proper do_after
+  - bugfix: Fireaxe no longer can be used as a pair of bleeders to stop bleeding.
+  - bugfix: Fireaxe can now properly be used to amputate limbs.
+2025-11-11:
+  Guti:
+  - bugfix: Fixes sparks recursively teleporting through shadekin portals
+  Kashargul:
+  - bugfix: runtimes due to multiple signal registers on opacity changes
+  - bugfix: digest pain runtimes when stepping into digestive tiles
+  Will:
+  - bugfix: Fix runtime in machine var shim, removed balloon alert when using old
+      byond uis handled by it.
+  - bugfix: Remoteview crashing during mob qdel
+2025-11-12:
+  Cameron-The-Raven:
+  - bugfix: Fixes some chemical duplication exploits.
+  Guti:
+  - qol: Teleporting while buckled will place you closer to the destination point
+  - bugfix: Fixes teleporting while in chairs or taurs to lose your comfy seat
+  Meek:
+  - rscadd: Adds several new butts to the photocopier. Teshari, nevrean, sergal, and
+      altevian
+  Tenryumi:
+  - bugfix: Fixed shelter capsules being affected by gravity surge events on maps
+      that don't have gravity generators.
+  Will:
+  - bugfix: Welded vents hibernate when they attempt to process air now
+  - rscadd: Large lightbulb types now have unique icons
+  - qol: Lightbulb boxes have some large lightbulbs and tubes for floor lamps and
+      floodlight replacements.
+  - bugfix: forbids synths from taking ambulant blood
+  - bugfix: Air canisters can be marked green for methane
+  - bugfix: Stunned borgs no longer have their items vanish temporarily from their
+      inventory list. They are still unequipped however.
+  - bugfix: Modify robot's remove module updates the inventory instantly like add
+      module does.
+2025-11-13:
+  Diana:
+  - bugfix: Fixing flashes no longer cause compile errors, meaning they can be fixed
+      again.
+  - bugfix: Flashes no longer do 2x the amount of halloss when affecting species that
+      are weak to flashes. Instead multiplies the halloss by the appropriate amount.
+  - code_imp: Makes the flash code a little higher quality.
+  - bugfix: External wounds will no longer show up as internal
+  Will:
+  - qol: Grippers show item icon held when in use, and make sounds when changing items
+2025-11-15:
+  Guti:
+  - rscadd: Added can shaking
+  Kashargul:
+  - bugfix: robot grippers cell self installs
+  - bugfix: tgui usage for robot multibelt items like the plant analyzer
+  Will:
+  - bugfix: noticeboards properly save the title of their pinned pages
+  - code_imp: Cleaned up effect grenades
+2025-11-16:
+  Guti:
+  - bugfix: Fixed mechas not teleporting in quantum pads
+2025-11-17:
+  Diana:
+  - bugfix: Items now use the proper species fallback
+  - bugfix: Lick wounds works again
+  TheCaramelion:
+  - bugfix: Fixed cans not stopping processing when destroyed
+  Zizzi:
+  - bugfix: Circuitry injector can now inject common injectables.

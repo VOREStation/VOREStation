@@ -183,6 +183,7 @@ Works together with spawning an observer, noted above.
 //RS Port #658 End
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1, var/aghost = FALSE)
+	reset_perspective(src) // End any remoteview we're in
 	if(key)
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src

@@ -61,7 +61,7 @@
 		user.visible_message(span_warning("[user] attempts to place \the [src] onto [H]`s [affecting]."))
 
 		user.setClickCooldown(user.get_attack_speed(src))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return
 
 		user.drop_from_inventory(src) //icon update
