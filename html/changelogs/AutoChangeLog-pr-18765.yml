@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Stunned borgs no longer have their items vanish temporarily from their inventory list. They are still unequipped however."
-  - bugfix: "Modify robot's remove module updates the inventory instantly like add module does."

@@ -1317,7 +1317,8 @@
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5,
 					/obj/item/clothing/suit/storage/puffyred = 5,
 					/obj/item/clothing/suit/storage/puffypurple = 5,
-					/obj/item/clothing/suit/storage/puffyblue = 5)
+					/obj/item/clothing/suit/storage/puffyblue = 5,
+					/obj/item/clothing/accessory/poncho/roles/cloak/neo_pcloak = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
 					/obj/item/clothing/suit/storage/toggle/bomber = 100,
@@ -1420,7 +1421,8 @@
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100,
 					/obj/item/clothing/suit/storage/puffyred = 100,
 					/obj/item/clothing/suit/storage/puffypurple = 100,
-					/obj/item/clothing/suit/storage/puffyblue = 100)
+					/obj/item/clothing/suit/storage/puffyblue = 100,
+					/obj/item/clothing/accessory/poncho/roles/cloak/neo_pcloak = 100)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
