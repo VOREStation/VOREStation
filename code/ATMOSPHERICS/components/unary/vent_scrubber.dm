@@ -145,6 +145,9 @@
 	//broadcast_status()
 	if(!use_power || (stat & (NOPOWER|BROKEN)))
 		return 0
+	if(welded) // Don't do anything if welded
+		SSmachines.hibernate_vent(src)
+		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
 

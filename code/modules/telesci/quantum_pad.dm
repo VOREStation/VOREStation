@@ -256,7 +256,9 @@
 
 /obj/machinery/power/quantumpad/proc/transport_objects(turf/destination)
 	for(var/atom/movable/ROI in get_turf(src))
-		if(ROI.anchored || (ismecha(ROI) && !boosted))
+		if(ismecha(ROI) && !boosted)
+			continue
+		if(ROI.anchored && !ismecha(ROI))
 			continue
 		else if(isobserver(ROI) && isEye(ROI))
 			continue
