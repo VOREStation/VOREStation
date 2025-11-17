@@ -10,7 +10,7 @@
 	can_infect = 0
 
 /datum/surgery_step/face/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (!affected || (affected.robotic >= ORGAN_ROBOT))
@@ -54,7 +54,7 @@
 	user.visible_message(span_danger("[user]'s hand slips, slicing [target]'s throat with \the [tool]!") , \
 	span_danger("Your hand slips, slicing [target]'s throat wth \the [tool]!") )
 	user.balloon_alert_visible("slips, slicing [target]'s throat.", "your hand slips, slicing [target]'s throat.")
-	affected.createwound(CUT, 60)
+	affected.createwound(CUT, 10)
 	target.AdjustLosebreath(10)
 
 ///////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 	allowed_tools = list(
 	/obj/item/surgical/hemostat = 100, 	\
 	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/assembly/mousetrap = 10	//I don't know. Don't ask me. But I'm leaving it because hilarity.
+	/obj/item/assembly/mousetrap = 25	//I don't know. Don't ask me. But I'm leaving it because hilarity.
 	)
 
 	min_duration = 70
@@ -129,7 +129,7 @@
 	user.visible_message(span_danger("[user]'s hand slips, tearing skin on [target]'s face with \the [tool]!"), \
 	span_danger("Your hand slips, tearing skin on [target]'s face with \the [tool]!"))
 	user.balloon_alert_visible("slips, tearing skin on [target]'s face.", "your hand slips, tearing skin on the face.")
-	target.apply_damage(10, BRUTE, affected, sharp = TRUE, sharp = TRUE)
+	target.apply_damage(10, BRUTE, affected, sharp = TRUE)
 
 ///////////////////////////////////////////////////////////////
 // Face Cauterizing Surgery
@@ -139,6 +139,7 @@
 	surgery_name = "Cauterize Face"
 	allowed_tools = list(
 	/obj/item/surgical/cautery = 100,			\
+	/obj/item/clothing/mask/smokable/cigarette/cigar = 90,	\
 	/obj/item/clothing/mask/smokable/cigarette = 75,	\
 	/obj/item/flame/lighter = 50,			\
 	/obj/item/weldingtool = 25

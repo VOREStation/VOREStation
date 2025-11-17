@@ -256,22 +256,13 @@
 
 /obj/machinery/power/quantumpad/proc/transport_objects(turf/destination)
 	for(var/atom/movable/ROI in get_turf(src))
-		// if is anchored, don't let through
+		if(ismecha(ROI) && !boosted)
+			continue
 		if(ROI.anchored && !ismecha(ROI))
-			if(ismecha(ROI))
-				if(boosted)
-					continue
-			if(isliving(ROI))
-				var/mob/living/L = ROI
-				if(L.buckled)
-					// TP people on office chairs
-					if(L.buckled.anchored)
-						continue
-				else
-					continue
-			else if(!isobserver(ROI) && !isEye(ROI))
-				continue
-		do_teleport(ROI, destination, local = FALSE)
+			continue
+		else if(isobserver(ROI) && isEye(ROI))
+			continue
+		do_teleport(ROI, destination)
 
 /obj/machinery/power/quantumpad/proc/can_traverse_gateway()
 	// Well, if there's no gateway map we're definitely not on it

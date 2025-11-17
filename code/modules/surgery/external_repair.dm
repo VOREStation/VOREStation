@@ -2,7 +2,7 @@
 //////////////////////////////////////////////////////////////////
 //						LIMB REPAIR SURGERY						//
 //////////////////////////////////////////////////////////////////
-/datum/surgery_step/repairflesh/
+/datum/surgery_step/repairflesh
 	surgery_name = "Repair Flesh"
 	priority = 1
 	can_infect = 1
@@ -10,15 +10,11 @@
 	req_open = 1
 
 /datum/surgery_step/repairflesh/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-/* VOREStation Removal for Mlem Reasons(TM)
-	if (target.stat == DEAD) // Sorry defibs, your subjects need to have pumping fluids for these to work.
-		return 0
-*/
 	if (isslime(target))
 		return 0
 	if (target_zone == O_EYES || target_zone == O_MOUTH)
 		return 0
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)
@@ -40,7 +36,7 @@
 	surgery_name = "Scan Injury"
 	allowed_tools = list(
 	/obj/item/autopsy_scanner = 100,
-	/obj/item/analyzer = 10
+	/obj/item/analyzer = 25
 	)
 
 	priority = 2
@@ -84,7 +80,6 @@
 	user.visible_message(span_warning("[user]'s hand slips, dropping \the [tool] onto [target]'s [affected]!") , \
 	span_warning("Your hand slips, dropping \the [tool] onto [target]'s [affected]!") )
 	user.balloon_alert_visible("slips, dropping \the [tool].", "your hand slips, dropping \the [tool] onto \the [affected].")
-	affected.createwound(BRUISE, 10)
 
 //////////////////////////////////////////////////////////////////
 //						BURN STEP								//
@@ -149,8 +144,7 @@
 	user.visible_message(span_danger("[user]'s hand slips, tearing up [target]'s [affected] with \the [tool]."), \
 	span_danger("Your hand slips, tearing up [target]'s [affected] with \the [tool]."))
 	user.balloon_alert_visible("slips, tearing up \the [affected]", "you slip, tearing up \the [affected]")
-	affected.createwound(BRUISE, 10)
-	affected.createwound(CUT, 5)
+	affected.createwound(BRUISE, 5)
 	if(istype(tool, /obj/item/stack) && prob(30))
 		var/obj/item/stack/T = tool
 		T.use(1)
@@ -219,8 +213,7 @@
 	user.visible_message(span_danger("[user]'s hand slips, tearing up [target]'s [affected] with \the [tool]."), \
 	span_danger("Your hand slips, tearing up [target]'s [affected] with \the [tool]."))
 	user.balloon_alert_visible("slips, tearing up \the [affected]", "your hand slips, tearing up \the [affected]")
-	affected.createwound(BRUISE, 10)
-	affected.createwound(CUT, 5)
+	affected.createwound(BRUISE, 5)
 	if(istype(tool, /obj/item/stack) && prob(30))
 		var/obj/item/stack/T = tool
 		T.use(1)

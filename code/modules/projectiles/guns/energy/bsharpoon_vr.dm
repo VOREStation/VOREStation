@@ -141,7 +141,7 @@
 						belly_dest = pick(living_user.vore_organs)
 					if(belly_dest)
 						for(var/mob/living/prey in ToTurf)
-							if(CanDropVore(user, prey))
+							if(can_drop_vore(user, prey))
 								prey.forceMove(belly_dest)
 								vore_happened = TRUE
 								to_chat(prey, span_vdanger("[living_user] materializes around you, as you end up in their [belly_dest]!"))

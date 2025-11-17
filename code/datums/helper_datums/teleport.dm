@@ -6,223 +6,189 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 	/obj/item/storage/belt/medical/holding
 ))
 
-//wrapper
-/proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE)
-	new /datum/teleport/instant/science(arglist(args))
-	return
+/proc/do_teleport(atom/movable/teleatom, atom/destination, precision = null, datum/effect/effect/effectin = null, datum/effect/effect/effectout = null, asoundin = null, asoundout = null, no_effects=FALSE, channel=TELEPORT_CHANNEL_BLUESPACE, forced = FALSE)
+	if(istype(teleatom, /obj/effect) && !istype(teleatom, /obj/effect/dummy/chameleon)) // Earliest check because otherwise sparks will fuck you up
+		qdel(teleatom)
+		return FALSE
 
-/datum/teleport
-	var/atom/movable/teleatom //atom to teleport
-	var/atom/destination //destination to teleport to
-	var/precision = 0 //teleport precision
-	var/datum/effect/effect/system/effectin //effect to show right before teleportation
-	var/datum/effect/effect/system/effectout //effect to show right after teleportation
-	var/soundin //soundfile to play before teleportation
-	var/soundout //soundfile to play after teleportation
-	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
-	var/local = TRUE //If false, can teleport from/to any z-level
-	var/bohsafe = FALSE //If true, can teleport safely with a BoH
+	if(isnull(precision))
+		precision = 0
 
+	switch(channel)
+		if(TELEPORT_CHANNEL_BLUESPACE)
+			var/list/bluespace_things = newlist()
+			for(var/item in GLOB.bluespace_item_types)
+				bluespace_things |= teleatom.search_contents_for(item)
+			if(bluespace_things.len)
+				precision = max(rand(1, 100)*bluespace_things.len, 100)
+				if(isliving(teleatom))
+					var/mob/living/mob = teleatom
+					to_chat(mob, span_warning("The bluespace interface on your equipment interferes with the teleport!"))
+			if((!effectin || !effectout) && !no_effects)
+				var/datum/effect/effect/system/spark_spread/sparks = new
+				sparks.set_up(5, 1, teleatom)
+				if(!effectin)
+					effectin = sparks
+				if(!effectout)
+					effectout = sparks
 
-/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE)
-	..()
-	if(!initTeleport(arglist(args)))
-		return 0
-	return 1
+		if(TELEPORT_CHANNEL_QUANTUM)
+			if((!effectin || !effectout) && !no_effects)
+				var/datum/effect/effect/system/spark_spread/sparks = new
+				sparks.set_up(5, 1, teleatom)
+				if(!effectin)
+					effectin = sparks
+				if(!effectout)
+					effectout = sparks
 
-/datum/teleport/proc/initTeleport(ateleatom,adestination,aprecision,afteleport,aeffectin,aeffectout,asoundin,asoundout,local,bohsafe)
-	if(!setTeleatom(ateleatom))
-		return 0
-	if(!setDestination(adestination))
-		return 0
-	src.bohsafe = bohsafe
-	if(!setPrecision(aprecision))
-		return 0
-	setEffects(aeffectin,aeffectout)
-	setForceTeleport(afteleport)
-	setSounds(asoundin,asoundout)
-	src.local = local
-	return 1
-
-//must succeed
-/datum/teleport/proc/setPrecision(aprecision)
-	if(isnum(aprecision))
-		precision = aprecision
-		return 1
-	return 0
-
-//must succeed
-/datum/teleport/proc/setDestination(atom/adestination)
-	if(istype(adestination))
-		destination = adestination
-		return 1
-	return 0
-
-//must succeed in most cases
-/datum/teleport/proc/setTeleatom(atom/movable/ateleatom)
-	if(istype(ateleatom, /obj/effect) && !istype(ateleatom, /obj/effect/dummy/chameleon))
-		qdel(ateleatom)
-		return 0
-	if(istype(ateleatom))
-		teleatom = ateleatom
-		return 1
-	return 0
-
-//custom effects must be properly set up first for instant-type teleports
-//optional
-/datum/teleport/proc/setEffects(datum/effect/effect/system/aeffectin=null,datum/effect/effect/system/aeffectout=null)
-	effectin = istype(aeffectin) ? aeffectin : null
-	effectout = istype(aeffectout) ? aeffectout : null
-	return 1
-
-//optional
-/datum/teleport/proc/setForceTeleport(afteleport)
-		force_teleport = afteleport
-		return 1
-
-//optional
-/datum/teleport/proc/setSounds(asoundin=null,asoundout=null)
-		soundin = isfile(asoundin) ? asoundin : null
-		soundout = isfile(asoundout) ? asoundout : null
-		return 1
-
-//placeholder
-/datum/teleport/proc/teleportChecks()
-		return 1
-
-/datum/teleport/proc/playSpecials(atom/location,datum/effect/effect/system/effect,sound)
-	if(location)
-		if(effect)
-			spawn(-1)
-				src = null
-				effect.attach(location)
-				effect.start()
-		if(sound)
-			spawn(-1)
-				src = null
-				playsound(location,sound,60,1)
-	return
-
-//do the monkey dance
-/datum/teleport/proc/doTeleport()
-
-	var/turf/destturf
 	var/turf/curturf = get_turf(teleatom)
-	if(precision)
-		var/list/posturfs = circlerangeturfs(destination,precision)
-		destturf = safepick(posturfs)
-	else
-		destturf = get_turf(destination)
+	var/turf/destturf
+
+	destturf = get_teleport_turf(get_turf(destination), precision)
+
+	if(istype(destination, /obj/structure/closet)) // First check if it's a closet, for the bluespace locker funsies...
+		destturf = destination
+
+	if(isbelly(destination)) // And if it goes STRAIGHT to a belly? Toss them there. (If pref matches, of course)
+		var/obj/belly/belly = destination
+		if(can_spontaneous_vore(belly.owner, teleatom) && belly.owner != teleatom)
+			destturf = destination
+
+	// HOLD IT! destturf? Hell nah, televore finally works again.
+	// Now CHECK if someone capable of televoring is in the same turf...
+
+	if(isliving(teleatom))
+		var/mob/living/telemob = teleatom
+		var/mob/living/mob = locate() in destturf
+		if(can_spontaneous_vore(mob, telemob))
+			destturf = mob.vore_selected
+		else if(can_spontaneous_vore(telemob, mob))
+			mob.forceMove(telemob.vore_selected)
 
 	if(!destturf || !curturf)
-		return 0
+		return FALSE
 
-	playSpecials(curturf,effectin,soundin)
+	if(!forced)
+		if(!check_teleport_valid(teleatom, destturf, channel, original_destination = destination))
+			if(ismob(teleatom))
+				teleatom.balloon_alert(teleatom, "something holds you back!")
+			return FALSE
 
-	var/obj/structure/bed/chair/C = null
-	if(isliving(teleatom))
-		var/mob/living/L = teleatom
-		if(L.buckled)
-			C = L.buckled
-	if(try_televore())
-		return
-	if(force_teleport)
+	if(SEND_SIGNAL(teleatom, COMSIG_MOVABLE_TELEPORTING, destination, channel))
+		return FALSE
+	if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf))
+		return FALSE
+
+	if(isobserver(teleatom))
 		teleatom.forceMove(destturf)
-		playSpecials(destturf,effectout,soundout)
-	else
-		if(teleatom.Move(destturf))
-			playSpecials(destturf,effectout,soundout)
-	if(C)
-		C.forceMove(destturf)
+		return TRUE
 
-	return 1
+	tele_play_specials(teleatom, curturf, effectin, asoundin)
 
-/datum/teleport/proc/teleport()
-	if(teleportChecks())
-		return doTeleport()
-	return 0
+	if(teleatom.buckle_movable) // Specifically office chairs. Fuck you.
+		teleatom.buckle_movable = FALSE
 
-/datum/teleport/instant //teleports when datum is created
+	var/success = teleatom.forceMove(destturf)
 
-/datum/teleport/instant/New(ateleatom, adestination, aprecision=0, afteleport=1, bohsafe=0, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
-	if(..())
-		teleport()
-	return
+	teleatom.buckle_movable = initial(teleatom.buckle_movable) // Double fuck you, office chairs
 
+	if(!success)
+		return FALSE
 
-/datum/teleport/instant/science/setEffects(datum/effect/effect/system/aeffectin,datum/effect/effect/system/aeffectout)
-	if(!aeffectin || !aeffectout)
-		var/datum/effect/effect/system/spark_spread/aeffect = new
-		aeffect.set_up(5, 1, teleatom)
-		var/datum/effect/effect/system/spark_spread/aeffect2 = new
-		aeffect2.set_up(5, 1, teleatom)
-		effectin = effectin || aeffect
-		effectout = effectout || aeffect2
-		return 1
-	else
-		return ..()
+	. = TRUE
 
-/datum/teleport/instant/science/setPrecision(aprecision)
-	..()
-	if(bohsafe)
-		return 1
+	SEND_SIGNAL(teleatom, COMSIG_MOVABLE_POST_TELEPORT, destination, channel)
 
-	var/list/bluespace_things = newlist()
+	if(teleatom.has_buckled_mobs())
+		for(var/mob/living/rider in teleatom.buckled_mobs)
+			teleatom.unbuckle_mob(rider, TRUE)
 
-	for (var/item in GLOB.bluespace_item_types)
-		if (istype(teleatom, item))
-			precision = rand(1, 100)
-		bluespace_things |= teleatom.search_contents_for(item)
+			var/rider_success = do_teleport(rider, destination, precision, channel = channel, no_effects = TRUE)
+			if(!rider_success)
+				continue
 
-	if(isliving(teleatom))
-		var/mob/living/L = teleatom
-		if(LAZYLEN(L.buckled_mobs))
-			for(var/mob/rider in L.buckled_mobs)
-				for (var/item in GLOB.bluespace_item_types)
-					bluespace_things |= rider.search_contents_for(item)
+			if(get_turf(rider) != destturf)
+				to_chat(rider, span_warning("As you come to your senses, you realize you aren't riding [teleatom] anymore!"))
+				continue
 
-	if(bluespace_things.len)
-		precision = max(rand(1,100)*bluespace_things.len,100)
-		if(isliving(teleatom))
-			var/mob/living/MM = teleatom
-			to_chat(MM, span_danger("The Bluespace interface on your [teleatom] interferes with the teleport!"))
-	return 1
+			teleatom.buckle_mob(rider, TRUE)
 
-/datum/teleport/instant/science/teleportChecks()
-	if(istype(teleatom, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
-		teleatom.visible_message(span_danger("\The [teleatom] bounces off of the portal!"))
-		return 0
+/proc/tele_play_specials(atom/movable/teleatom, atom/location, var/datum/effect/effect/system/effect, sound)
+	if(!location)
+		return
 
-	if(!isemptylist(teleatom.search_contents_for(/obj/item/disk/nuclear)))
-		if(isliving(teleatom))
-			var/mob/living/MM = teleatom
-			MM.visible_message(span_danger("\The [MM] bounces off of the portal!"),span_warning("Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through."))
+	if(sound)
+		playsound(location, sound, 60, TRUE)
+	if(effect)
+		effect.attach()
+		effect.start()
+
+/proc/find_safe_turf(zlevel, list/zlevels, dense_atoms = FALSE)
+	if(!zlevels)
+		if(zlevel)
+			zlevels = list(zlevel)
 		else
-			teleatom.visible_message(span_danger("\The [teleatom] bounces off of the portal!"))
-		return 0
-	var/obstructed = 0
-	var/turf/dest_turf = get_turf(destination)
-	if(local && !(dest_turf.z in using_map.player_levels))
-		if(isliving(teleatom))
-			to_chat(teleatom, span_warning("The portal refuses to carry you that far away!"))
-		return 0
-	else if(istype(destination.loc, /obj/belly))
-		var/obj/belly/destination_belly = destination.loc
-		var/mob/living/telenommer = destination_belly.owner
-		if(istype(telenommer))
-			if(istype(teleatom, /obj/machinery) || istype(teleatom, /obj/structure))
-				return 0
-			else if(!isliving(teleatom))
-				return 1
-			else
-				var/mob/living/telemob = teleatom
-				if(telemob.can_be_drop_prey && telenommer.can_be_drop_pred)
-					return 1
-		obstructed = 1
-	else if(!((isturf(destination) && !destination.density) || (isturf(destination.loc) && !destination.loc.density)) || !destination.x || !destination.y || !destination.z)	//If we're inside something or outside universe
-		obstructed = 1
-		to_chat(teleatom, span_warning("Something is blocking way on the other side!"))
-	if(obstructed)
-		return 0
-	else
-		return 1
+			zlevels = using_map.station_levels
+
+	var/cycles = 1000
+
+	for(var/cycle in 1 to cycles)
+		var/x = rand(1, world.maxx)
+		var/y = rand(1, world.maxy)
+		var/z = pick(zlevels)
+		var/random_location = locate(x, y, z)
+
+		if(is_safe_turf(random_location, dense_atoms, cycle < 300))
+			return random_location
+
+/proc/is_safe_turf(turf/random_location, dense_atoms = FALSE, no_teleport = FALSE)
+	. = FALSE
+	if(!isfloorturf(random_location))
+		return
+	var/turf/floor_turf = random_location
+	var/area/destination_area = floor_turf.loc
+
+	if(no_teleport && destination_area.flag_check(AREA_BLOCK_PHASE_SHIFT))
+		return
+
+	if(!dense_atoms)
+		var/density_found = FALSE
+		for(var/atom/movable/found_movable in floor_turf)
+			if(found_movable.density)
+				density_found = TRUE
+				break
+		if(density_found)
+			return
+
+/proc/get_teleport_turfs(turf/center, precision = 0)
+	if(!precision)
+		return list(center)
+	var/list/posturfs = list()
+	for(var/turf/T in RANGE_TURFS(precision, center))
+		var/area/A = T.loc
+		if(!A.flag_check(AREA_BLOCK_PHASE_SHIFT))
+			posturfs.Add(T)
+	return posturfs
+
+/proc/get_teleport_turf(turf/center, precision = 0)
+	var/list/turfs = get_teleport_turfs(center, precision)
+	if(length(turfs))
+		return pick(turfs)
+
+/proc/check_teleport_valid(atom/teleported_atom, atom/destination, channel, atom/original_destination = null)
+	SHOULD_BE_PURE(TRUE)
+
+	if(isnull(destination))
+		return FALSE
+
+	var/area/origin_area = get_area(teleported_atom)
+
+	var/area/destination_area = get_area(destination)
+
+	if(HAS_TRAIT(teleported_atom, TRAIT_NO_TELEPORT))
+		return FALSE
+
+	if(origin_area.flag_check(AREA_BLOCK_PHASE_SHIFT) || destination_area.flag_check(AREA_BLOCK_PHASE_SHIFT))
+		return FALSE
+
+	return TRUE

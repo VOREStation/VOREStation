@@ -97,7 +97,7 @@ Deployable items
 			CheckHealth()
 			return
 
-/obj/machinery/deployable/barrier/emp_act(severity)
+/obj/machinery/deployable/barrier/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(prob(50/severity))

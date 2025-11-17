@@ -22,7 +22,7 @@
 	max_duration = 60
 
 /datum/surgery_step/glue_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -67,7 +67,7 @@
 	max_duration = 70
 
 /datum/surgery_step/set_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -118,7 +118,7 @@
 	max_duration = 70
 
 /datum/surgery_step/mend_skull/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -157,7 +157,7 @@
 		/obj/item/surgical/bonegel = 100
 	)
 
-	allowed_procs = list(IS_SCREWDRIVER = 75)
+	allowed_procs = list(IS_SCREWDRIVER = 90) //this is what we actually use irl!
 
 	can_infect = 1
 	blood_level = 1
@@ -166,7 +166,7 @@
 	max_duration = 60
 
 /datum/surgery_step/finish_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -211,12 +211,12 @@
 	max_duration = 90
 
 /datum/surgery_step/clamp_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
 		return 0
-	return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 0
+	return affected &&  (affected.status & ORGAN_BROKEN) && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 0
 
 /datum/surgery_step/clamp_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
