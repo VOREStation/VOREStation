@@ -260,3 +260,11 @@
 2025-11-16:
   Guti:
   - bugfix: Fixed mechas not teleporting in quantum pads
+2025-11-17:
+  Diana:
+  - bugfix: Items now use the proper species fallback
+  - bugfix: Lick wounds works again
+  TheCaramelion:
+  - bugfix: Fixed cans not stopping processing when destroyed
+  Zizzi:
+  - bugfix: Circuitry injector can now inject common injectables.
