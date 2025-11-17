@@ -14,7 +14,10 @@
 	pixel_y = rand(-5,5)
 
 /obj/item/disk/botany/attack_self(var/mob/user as mob)
-	if(genes.len)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(LAZYLEN(genes))
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
 			to_chat(user, span_filter_notice("You wipe the disk data."))

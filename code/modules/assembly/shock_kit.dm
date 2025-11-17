@@ -34,8 +34,8 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/assembly/shock_kit/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/assembly/shock_kit/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	part1.attack_self(user, status)

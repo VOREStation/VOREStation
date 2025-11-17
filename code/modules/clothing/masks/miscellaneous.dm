@@ -356,7 +356,7 @@
 		)
 
 /obj/item/clothing/mask/paper/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(!istype(user) || user.incapacitated())
 		return
 
@@ -399,7 +399,7 @@
 		)
 
 /obj/item/clothing/mask/emotions/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(!istype(user) || user.incapacitated())
 		return
 

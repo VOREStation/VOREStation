@@ -62,8 +62,8 @@
 	loop.last_radiation = radiation_count
 	loop.start()
 
-/obj/item/geiger/attack_self(var/mob/user)
-	. = ..()
+/obj/item/geiger/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(mounted)
@@ -127,8 +127,8 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
-/obj/item/geiger/wall/attack_self(var/mob/user)
-	. = ..()
+/obj/item/geiger/wall/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	scanning = !scanning

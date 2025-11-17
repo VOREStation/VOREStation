@@ -24,7 +24,7 @@
 	gps_tag = "EMERGENCY BEACON"
 
 /obj/item/emergency_beacon/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/T = user.loc

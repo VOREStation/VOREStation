@@ -328,6 +328,9 @@
 	return FALSE
 
 /obj/item/holo/esword/attack_self(mob/living/user as mob)
+	. = ..(user)
+	if(.)
+		return TRUE
 	active = !active
 	if (active)
 		force = 30

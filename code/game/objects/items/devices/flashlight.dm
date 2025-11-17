@@ -37,6 +37,9 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/flashlight/Initialize(mapload)
 	. = ..()
 
@@ -89,9 +92,11 @@
 			. += "It appears to have a high amount of power remaining."
 
 /obj/item/flashlight/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
+	if(special_handling)
+		return FALSE
 	if(flickering)
 		to_chat(user, "The light is currently malfunctioning and you're unable to adjust it!") //To prevent some lighting anomalities.
 		return

@@ -92,8 +92,8 @@
 		else
 			. += "\The [src] can be attached!"
 
-/obj/item/assembly/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/assembly/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!user)

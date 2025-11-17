@@ -63,8 +63,8 @@
 	if(get_dist(user, src) == 0)
 		. += "[src] has [src.reagents.total_volume] units of foam left!"
 
-/obj/item/extinguisher/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/extinguisher/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	safety = !safety

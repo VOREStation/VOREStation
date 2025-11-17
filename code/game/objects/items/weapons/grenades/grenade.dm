@@ -58,8 +58,8 @@
 			. += "\The [src] is set for instant detonation."
 
 
-/obj/item/grenade/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/grenade/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)

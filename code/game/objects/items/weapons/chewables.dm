@@ -13,7 +13,7 @@
 	var/wrapped = FALSE
 
 /obj/item/clothing/mask/chewable/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(wrapped)

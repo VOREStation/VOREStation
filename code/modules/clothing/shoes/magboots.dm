@@ -24,7 +24,7 @@
 		slowdown += 3
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return
 	if(magpulse)
@@ -97,9 +97,13 @@
 	flags = PHORONGUARD
 	species_restricted = list(SPECIES_VOX)
 	actions_types = list(/datum/action/item_action/toggle_magclaws)
+	special_handling = TRUE
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
-	if(src.magpulse)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(magpulse)
 		item_flags &= ~NOSLIP
 		magpulse = 0
 		canremove = TRUE

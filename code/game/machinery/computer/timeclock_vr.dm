@@ -245,6 +245,9 @@
 /obj/item/card/id
 	var/last_job_switch
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
 	last_job_switch = world.time

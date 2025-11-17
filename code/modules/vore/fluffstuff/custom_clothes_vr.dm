@@ -671,6 +671,7 @@
 	light_system = MOVABLE_LIGHT
 
 	actions_types = list(/datum/action/item_action/toggle_pom_pom)
+	special_handling = TRUE
 
 /obj/item/clothing/head/fluff/pompom/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -679,6 +680,9 @@
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	//if(!isturf(user.loc)) -- doesn't seem to cause problems to allow this and it's silly not to
 	//	to_chat(user, "You cannot turn the light on while in this [user.loc]")
 	//	return

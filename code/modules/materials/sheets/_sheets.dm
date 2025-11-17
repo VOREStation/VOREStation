@@ -90,7 +90,7 @@
 		M.update_strings()
 	return transfer
 
-/obj/item/stack/material/attack_self(var/mob/user)
+/obj/item/stack/material/attack_self(mob/user)
 	if(!material.build_windows(user, src))
 		..()
 

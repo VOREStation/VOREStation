@@ -88,11 +88,11 @@
 		. += get_examine_string()
 
 /obj/item/stack/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(custom_handling)
-		return
+		return FALSE
 	tgui_interact(user)
 
 /obj/item/stack/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)

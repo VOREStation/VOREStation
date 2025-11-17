@@ -253,7 +253,7 @@
 
 
 /obj/item/areaeditor/blueprints/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	var/area/A = get_area(user)
 	if(!legend)
 		if(get_area_type() == AREA_STATION)

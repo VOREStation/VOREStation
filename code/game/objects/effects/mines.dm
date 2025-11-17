@@ -319,7 +319,7 @@
 
 	var/list/allowed_gadgets = null
 
-/obj/item/mine/attack_self(mob/user as mob)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
+/obj/item/mine/attack_self(mob/user)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
 	. = ..()
 	if(.)
 		return TRUE

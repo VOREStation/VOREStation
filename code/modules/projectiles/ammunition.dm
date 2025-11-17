@@ -173,6 +173,9 @@
 
 // This dumps all the bullets right on the floor
 /obj/item/ammo_magazine/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(can_remove_ammo)
 		if(!stored_ammo.len)
 			to_chat(user, span_notice("[src] is already empty!"))

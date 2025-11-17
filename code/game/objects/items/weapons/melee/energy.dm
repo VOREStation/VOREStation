@@ -459,8 +459,8 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/melee/energy/blade/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/melee/energy/blade/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.drop_from_inventory(src)

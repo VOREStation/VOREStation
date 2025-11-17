@@ -253,7 +253,7 @@
 		icon_state = "roulette_ball_glass"
 
 /obj/item/roulette_ball/hollow/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!trapped)

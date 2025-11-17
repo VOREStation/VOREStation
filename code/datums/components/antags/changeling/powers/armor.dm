@@ -74,7 +74,7 @@
 		slowdown += 1		//It's already tied to a slowdown suit, 6 slowdown is huge.
 
 /obj/item/clothing/shoes/magboots/changeling/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(magpulse)

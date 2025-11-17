@@ -36,8 +36,8 @@ GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/radio/beacon)
 	origin_tech = list(TECH_BLUESPACE = 1, TECH_ILLEGAL = 7)
 	beacon = TRUE
 
-/obj/item/radio/beacon/syndicate/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/radio/beacon/syndicate/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(user)

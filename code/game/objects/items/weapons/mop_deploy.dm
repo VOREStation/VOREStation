@@ -54,8 +54,8 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/mop_deploy/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/mop_deploy/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.drop_from_inventory(src)

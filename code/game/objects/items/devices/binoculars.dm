@@ -14,7 +14,7 @@
 	//matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/binoculars/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	zoom()

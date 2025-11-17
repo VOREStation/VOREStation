@@ -25,8 +25,8 @@
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
 
-/obj/item/gift/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/gift/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.drop_item()

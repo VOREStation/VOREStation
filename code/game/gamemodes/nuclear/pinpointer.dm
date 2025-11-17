@@ -194,8 +194,8 @@
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
 	var/obj/machinery/computer/shuttle_control/multi/syndicate/home = null
 
-/obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/pinpointer/nukeop/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!active)
@@ -283,8 +283,8 @@
 	var/shuttle_comp_id = null
 	var/obj/machinery/computer/shuttle_control/our_shuttle = null
 
-/obj/item/pinpointer/shuttle/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/pinpointer/shuttle/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!active)

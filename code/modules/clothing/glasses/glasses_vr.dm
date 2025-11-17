@@ -91,7 +91,7 @@
 		)
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(!istype(user) || user.incapacitated())
 		return
 

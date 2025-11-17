@@ -31,7 +31,7 @@
 	user.visible_message("\The [src] spits out a piece of paper.")
 	return
 
-/obj/item/analyzer/xeno_analyzer/attack_self(mob/user as mob)
+/obj/item/analyzer/xeno_analyzer/attack_self(mob/user)
 	print_report(user)
 	return 0
 

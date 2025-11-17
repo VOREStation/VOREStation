@@ -327,7 +327,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/red/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(honk_count >= 3)
@@ -354,7 +354,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/blue/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -377,7 +377,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/pink/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -410,7 +410,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/grey/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -455,7 +455,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/green/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -479,7 +479,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/white/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -511,7 +511,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/gold/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -538,7 +538,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/viking/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -561,7 +561,7 @@
 	special_handling = TRUE
 
 /obj/item/bikehorn/rubberducky/galaxy/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)

@@ -36,7 +36,7 @@
 	for(var/type in spawn_tools)
 		tools |= new type(src)
 
-/obj/item/combitool/attack_self(mob/user as mob)
+/obj/item/combitool/attack_self(mob/user)
 	if(++current_tool > tools.len) current_tool = 1
 	var/obj/item/tool = tools[current_tool]
 	if(!tool)

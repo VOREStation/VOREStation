@@ -12,8 +12,8 @@
 	///Var for attack_self chain
 	var/special_handling = FALSE
 
-/obj/item/implanter/attack_self(var/mob/user)
-	. = ..()
+/obj/item/implanter/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)

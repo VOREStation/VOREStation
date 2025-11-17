@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 		return ..()
 
 /obj/item/radio_jammer/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(on)

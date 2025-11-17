@@ -1047,7 +1047,7 @@
 			. += span_notice("There's a little switch on the bottom. It's flipped up.")
 
 /obj/item/orion_ship/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(active)

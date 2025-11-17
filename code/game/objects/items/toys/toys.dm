@@ -163,8 +163,8 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
-/obj/item/toy/sword/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/sword/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	active = !active
@@ -285,8 +285,8 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_HOLSTER
 
-/obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/bosunwhistle/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown < world.time - 35)
@@ -311,8 +311,8 @@
 	. = ..()
 	desc = "A \"Space Life\" brand [name]"
 
-/obj/item/toy/figure/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/figure/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown < world.time)
@@ -646,7 +646,7 @@
 	return ..()
 
 // Attack self
-/obj/item/toy/plushie/carp/attack_self(mob/user as mob)
+/obj/item/toy/plushie/carp/attack_self(mob/user)
 	playsound(src, bitesound, 20, 1)
 	return ..()
 
@@ -832,8 +832,8 @@
 		if(in_range(user, src) && stored_item)
 			. += span_italics("You can see something in there...")
 
-/obj/item/toy/plushie/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/plushie/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)
@@ -1204,7 +1204,7 @@
 	pokephrase = "Peep peep!"
 	var/cooldown = 0
 
-/obj/item/toy/plushie/tinytin/attack_self(mob/user as mob)
+/obj/item/toy/plushie/tinytin/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/voice/peep.ogg', 20, 0)
 		cooldown = TRUE
@@ -1220,7 +1220,7 @@
 	pokephrase = "That means you fucked up!"
 	var/cooldown = 0
 
-/obj/item/toy/plushie/tinytin_sec/attack_self(mob/user as mob)
+/obj/item/toy/plushie/tinytin_sec/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/voice/tinytin_fuckedup.ogg', 25, 0)
 		cooldown = TRUE
@@ -1273,8 +1273,8 @@
 	var/cooldown = 0
 	var/list/possible_answers = list("Definitely.", "All signs point to yes.", "Most likely.", "Yes.", "Ask again later.", "Better not tell you now.", "Future unclear.", "Maybe.", "Doubtful.", "No.", "Don't count on it.", "Never.")
 
-/obj/item/toy/eight_ball/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/eight_ball/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!cooldown)

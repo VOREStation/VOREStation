@@ -84,7 +84,7 @@
 
 	return
 
-/obj/item/blobcore_chunk/attack_self(var/mob/user)
+/obj/item/blobcore_chunk/attack_self(mob/user)
 	if(blob_type && world.time > active_ability_cooldown + last_active_use)
 		last_active_use = world.time
 		to_chat(user, span_alien("[icon2html(src, user.client)] \The [src] gesticulates."))

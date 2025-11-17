@@ -33,7 +33,7 @@ MRE Stuff
 	. = ..()
 
 /obj/item/storage/mre/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	open(user)
@@ -237,7 +237,7 @@ MRE Stuff
 	. = ..()
 
 /obj/item/storage/mrebag/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	open(user)

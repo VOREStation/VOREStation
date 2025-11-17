@@ -159,7 +159,7 @@ Due to the small chemical capacity of the implant, the life of the implant is re
 	update()
 
 /obj/item/implanter/compliance/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(istype(imp,/obj/item/implant/compliance))

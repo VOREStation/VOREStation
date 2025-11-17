@@ -26,7 +26,7 @@
 	camera = new camtype(src)
 
 /obj/item/camerabug/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(user.a_intent == I_HURT)
@@ -172,7 +172,7 @@
 	radio = new(src)
 */
 /obj/item/bug_monitor/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	view_cameras(user)

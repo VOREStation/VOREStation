@@ -125,8 +125,8 @@
 	else
 		..()
 
-/obj/item/assembly_holder/attack_self(var/mob/user)
-	. = ..()
+/obj/item/assembly_holder/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	add_fingerprint(user)

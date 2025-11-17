@@ -69,7 +69,7 @@
 	return
 
 /*
-/obj/item/reagent_containers/spray/attack_self(var/mob/user) //Now done via alt-click instead
+/obj/item/reagent_containers/spray/attack_self(mob/user) //Now done via alt-click instead
 	if(!max_transfer_amount)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
@@ -137,7 +137,10 @@
 	if(Adjacent(user))
 		. += "The safety is [safety ? "on" : "off"]."
 
-/obj/item/reagent_containers/spray/pepper/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	safety = !safety
 	balloon_alert(user, "safety [safety ? "on" : "off"].")
 

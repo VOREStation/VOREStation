@@ -10,7 +10,7 @@
 	var/special_handling = FALSE
 
 /obj/item/inflatable/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)
@@ -256,7 +256,7 @@
 	special_handling = TRUE
 
 /obj/item/inflatable/torn/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	to_chat(user, span_notice("The inflatable wall is too torn to be inflated!"))
@@ -270,7 +270,7 @@
 	special_handling = TRUE
 
 /obj/item/inflatable/door/torn/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	to_chat(user, span_notice("The inflatable door is too torn to be inflated!"))

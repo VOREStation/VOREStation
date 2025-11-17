@@ -51,7 +51,7 @@ var/list/marker_beacon_colors = list(
 	icon_state = "[icon_base][lowertext(picked_color)]"
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!isturf(user.loc))

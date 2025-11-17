@@ -65,7 +65,7 @@
 	return ..()
 
 /obj/item/pipe_dispenser/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	tgui_interact(user)

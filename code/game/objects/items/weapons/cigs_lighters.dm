@@ -318,7 +318,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				to_chat(user, span_notice("[src] is full."))
 
-/obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user as mob)
+/obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user)
 	if(lit == 1)
 		if(user.a_intent == I_HURT)
 			user.visible_message(span_notice("[user] drops and treads on the lit [src], putting it out instantly."))
@@ -428,8 +428,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	name = "empty [initial(name)]"
 
-/obj/item/clothing/mask/smokable/pipe/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/clothing/mask/smokable/pipe/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(lit == 1)

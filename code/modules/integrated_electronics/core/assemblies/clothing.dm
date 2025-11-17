@@ -60,10 +60,12 @@
 	return IC.attackby(I, user)
 
 /obj/item/clothing/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)
+		return FALSE
+	if(helmet_handling)
 		return FALSE
 	if(IC)
 		if(IC.opened)

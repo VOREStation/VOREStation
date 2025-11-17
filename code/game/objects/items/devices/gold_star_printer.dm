@@ -12,7 +12,7 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/gold_star_printer/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(last_print + print_cooldown <= world.time)
 		make_star(user)
 	else

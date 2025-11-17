@@ -6,8 +6,8 @@
 	item_state = "table_parts"
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/stolenpackage/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/stolenpackage/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	// Another way of doing this. Commented out because the other method is better for this application.

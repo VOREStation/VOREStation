@@ -10,8 +10,8 @@
 	throw_range = 7
 	special_handling = TRUE
 
-/obj/item/bedsheet/pillow/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/bedsheet/pillow/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.drop_item()

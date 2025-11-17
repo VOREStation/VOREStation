@@ -84,7 +84,7 @@
 			grid[x][y] = canvas_color
 
 /obj/item/canvas/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	tgui_interact(user)
 
 /obj/item/canvas/dropped(mob/user)

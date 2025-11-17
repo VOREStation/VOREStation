@@ -443,8 +443,8 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 	w_class = ITEMSIZE_SMALL
 	occult_tier = 2
 	var/cultistsonly = 1
-/obj/item/book/tome/imbued/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/book/tome/imbued/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(src.cultistsonly && !iscultist(user))

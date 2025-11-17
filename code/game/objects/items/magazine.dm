@@ -85,7 +85,7 @@
 		to_chat(user, "The headline screams, \"[headline]\"")
 
 /obj/item/tabloid/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.visible_message(span_notice("\The [user] leafs idly through \the [src]."))

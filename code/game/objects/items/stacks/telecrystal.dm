@@ -19,8 +19,8 @@
 	else
 		to_chat(user, span_warning("There are not enough telecrystals to do that."))
 
-/obj/item/stack/telecrystal/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/stack/telecrystal/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(user.mind.accept_tcrystals) //Checks to see if antag type allows for tcrystals

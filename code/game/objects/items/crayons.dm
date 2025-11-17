@@ -247,8 +247,8 @@
 	else
 		..()
 
-/obj/item/pen/crayon/attack_self(var/mob/user)
-	. = ..()
+/obj/item/pen/crayon/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	return

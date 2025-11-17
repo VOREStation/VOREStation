@@ -15,7 +15,7 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/universal_translator/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!listening) //Turning ON

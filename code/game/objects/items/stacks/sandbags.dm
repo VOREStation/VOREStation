@@ -139,8 +139,8 @@
 		return INITIALIZE_HINT_QDEL
 	color = M.icon_colour
 
-/obj/item/stack/emptysandbag/attack_self(var/mob/user)
-	. = ..()
+/obj/item/stack/emptysandbag/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	while(do_after(user, 1 SECOND, target = src) && can_use(1) && istype(get_turf(src), /turf/simulated/floor/outdoors))

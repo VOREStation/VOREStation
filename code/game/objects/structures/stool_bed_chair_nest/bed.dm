@@ -264,7 +264,7 @@
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
 /obj/item/roller/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/obj/structure/bed/roller/R = new bedtype(user.loc)
@@ -302,8 +302,8 @@
 	. = ..()
 	held = new /obj/item/roller(src)
 
-/obj/item/roller_holder/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/roller_holder/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!held)

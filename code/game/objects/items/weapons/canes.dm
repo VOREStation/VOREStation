@@ -28,7 +28,7 @@
 	concealed_blade = temp_blade
 	temp_blade.attack_self()
 
-/obj/item/cane/concealed/attack_self(var/mob/user)
+/obj/item/cane/concealed/attack_self(mob/user)
 	if(concealed_blade)
 		user.visible_message(span_warning("[user] has unsheathed \a [concealed_blade] from [user.p_their()] [src]!"), "You unsheathe \the [concealed_blade] from \the [src].")
 		// Calling drop/put in hands to properly call item drop/pickup procs
@@ -92,8 +92,8 @@
 	force = 3
 	var/on = 0
 
-/obj/item/cane/white/collapsible/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/cane/white/collapsible/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	on = !on

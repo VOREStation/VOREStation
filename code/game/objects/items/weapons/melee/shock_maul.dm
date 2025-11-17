@@ -195,7 +195,7 @@
 		return ..()
 
 /obj/item/melee/shock_maul/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!user.IsAdvancedToolUser())

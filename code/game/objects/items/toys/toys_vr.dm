@@ -182,7 +182,7 @@
 	pokephrase = "Skreee!"
 	var/cooldown = FALSE
 
-/obj/item/toy/plushie/vox/attack_self(mob/user as mob)
+/obj/item/toy/plushie/vox/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
 		cooldown = TRUE
@@ -233,7 +233,7 @@
 	else
 		return ..()
 
-/obj/item/toy/plushie/ipc/attack_self(mob/user as mob)
+/obj/item/toy/plushie/ipc/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ping.ogg', 10, 0)
 		cooldown = TRUE
@@ -248,7 +248,7 @@
 	pokephrase = "Ding!"
 	bubble_icon = "machine"
 
-/obj/item/toy/plushie/ipc/toaster/attack_self(mob/user as mob)
+/obj/item/toy/plushie/ipc/toaster/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ding.ogg', 10, 0)
 		cooldown = TRUE
@@ -289,7 +289,7 @@
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 		return ..()
 
-/obj/item/toy/plushie/marketable_pip/attack_self(mob/user as mob)
+/obj/item/toy/plushie/marketable_pip/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
 		cooldown = TRUE
@@ -304,7 +304,7 @@
 	pokephrase = "Aaaaaaa."
 	var/cooldown = FALSE
 
-/obj/item/toy/plushie/moth/attack_self(mob/user as mob)
+/obj/item/toy/plushie/moth/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
 		cooldown = TRUE
@@ -351,7 +351,7 @@
 	attack_verb = list("stabbed", "slashed")
 	var/cooldown = FALSE
 
-/obj/item/toy/plushie/sus/attack_self(mob/user as mob)
+/obj/item/toy/plushie/sus/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/weapons/slice.ogg', 10, 0)
 		cooldown = TRUE
@@ -443,7 +443,7 @@
 	icon_state = "chewtoy_poly"
 
 /obj/item/toy/chewtoy/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
@@ -511,7 +511,7 @@
 	var/cooldown = 0
 
 /obj/item/toy/redbutton/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown < world.time)
@@ -545,7 +545,7 @@
 	var/cooldown = 0
 	var/list/possible_answers = null
 
-/obj/item/toy/AI/attack_self(mob/user as mob)
+/obj/item/toy/AI/attack_self(mob/user)
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
@@ -608,7 +608,7 @@
 	var/cooldown = 0
 
 /obj/item/toy/nuke/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown < world.time)
@@ -644,7 +644,7 @@
 	. = ..()
 
 /obj/item/toy/minigibber/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(stored_minature)
@@ -685,7 +685,7 @@
 	var/cooldown = 0
 
 /obj/item/toy/toy_xeno/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(cooldown <= world.time)
@@ -730,7 +730,7 @@
 	spin_cylinder()
 
 /obj/item/toy/russian_revolver/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!bullets_left)
@@ -823,7 +823,7 @@
 	attack_verb = list("sawed", "cut", "hacked", "carved", "cleaved", "butchered", "felled", "timbered")
 	var/cooldown = 0
 
-/obj/item/toy/chainsaw/attack_self(mob/user as mob)
+/obj/item/toy/chainsaw/attack_self(mob/user)
 	if(!cooldown)
 		playsound(user, 'sound/weapons/chainsaw_startup.ogg', 10, 0)
 		cooldown = 1
@@ -862,8 +862,8 @@
 	if(prob(0.1))
 		real = 1
 
-/obj/item/toy/snake_popper/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/snake_popper/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!popped)
@@ -1046,7 +1046,7 @@
 	return 1
 
 /obj/item/toy/desk/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	activate(user)
@@ -1117,8 +1117,8 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/toy/partypopper/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/toy/partypopper/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(icon_state == "partypopper")
@@ -1195,7 +1195,7 @@
 	var/registered_mob //On request, only one person is able to use it at a time.
 
 /obj/item/toy/acorn_branch/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(user.stat || !ishuman(user))
@@ -1233,7 +1233,7 @@
 		pokephrase = pick("ROAR!", "RAWR!", "GAWR!", "GRR!", "GROAR!", "GRAH!", "Weh!", "Merp!")
 
 /obj/item/toy/plushie/dragon/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!cooldown)

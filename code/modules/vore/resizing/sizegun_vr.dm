@@ -29,7 +29,7 @@
 	verbs += /obj/item/gun/energy/sizegun/proc/spin_dial
 
 /obj/item/gun/energy/sizegun/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	select_size(user)
 
 /obj/item/gun/energy/sizegun/proc/spin_dial()

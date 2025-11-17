@@ -93,8 +93,8 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/storage/secure/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/storage/secure/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	tgui_interact(user)

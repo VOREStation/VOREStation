@@ -75,6 +75,7 @@
 	plane_slots = list(slot_glasses)
 	var/ar_toggled = TRUE //Used for toggle_ar_planes() verb
 	var/can_shade = TRUE
+	specialty_goggles = TRUE
 
 /obj/item/clothing/glasses/omnihud/Initialize(mapload)
 	. = ..()
@@ -130,6 +131,9 @@
 		icon_state = "[initial(icon_state)]"
 
 /obj/item/clothing/glasses/omnihud/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!ishuman(user))
 		return
 

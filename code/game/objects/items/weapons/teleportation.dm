@@ -25,8 +25,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/locator/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/locator/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.set_machine(src)
@@ -135,8 +135,8 @@ Frequency:
 	matter = list(MAT_STEEL = 10000)
 	preserve_item = 1
 
-/obj/item/hand_tele/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/hand_tele/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/turf/current_location = get_turf(user)//What turf is the user on?

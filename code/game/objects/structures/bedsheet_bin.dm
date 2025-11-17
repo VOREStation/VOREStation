@@ -25,8 +25,8 @@ LINEN BINS
 	. = ..()
 	AddElement(/datum/element/rotatable/onlyflip)
 
-/obj/item/bedsheet/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/bedsheet/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)

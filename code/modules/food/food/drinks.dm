@@ -127,7 +127,10 @@
 /obj/item/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	wash(CLEAN_SCRUB)
 
-/obj/item/reagent_containers/food/drinks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/drinks/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!is_open_container())
 		open(user)
 

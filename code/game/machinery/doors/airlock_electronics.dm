@@ -22,7 +22,7 @@
 		to_chat(user, span_notice("You remove the access restrictions on [src]!"))
 		return 1
 
-/obj/item/airlock_electronics/attack_self(mob/user as mob)
+/obj/item/airlock_electronics/attack_self(mob/user)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 

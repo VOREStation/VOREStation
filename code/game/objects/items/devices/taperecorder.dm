@@ -342,7 +342,7 @@
 
 
 /obj/item/taperecorder/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(recording || playing)
@@ -390,7 +390,7 @@
 	ruin()
 
 /obj/item/rectape/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!ruined)

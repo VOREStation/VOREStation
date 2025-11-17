@@ -47,8 +47,8 @@
 		update_icon()
 		return
 
-/obj/item/glass_jar/attack_self(var/mob/user)
-	. = ..()
+/obj/item/glass_jar/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	switch(contains)
@@ -197,7 +197,7 @@
 
 	return ..()
 
-/obj/item/glass_jar/fish/attack_self(var/mob/user)
+/obj/item/glass_jar/fish/attack_self(mob/user)
 	if(filled)
 		if(contains == JAR_ANIMAL)
 			if(user.a_intent == I_HELP)

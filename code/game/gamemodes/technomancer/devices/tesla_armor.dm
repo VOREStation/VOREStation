@@ -53,7 +53,7 @@
 	return 0
 
 /obj/item/clothing/suit/armor/tesla/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	active = !active

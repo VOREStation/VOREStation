@@ -8,7 +8,7 @@
 	var/unfolded_type = /obj/structure/bed/chair/wheelchair
 
 /obj/item/wheelchair/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/obj/structure/bed/chair/wheelchair/R = new unfolded_type(user.loc)

@@ -47,7 +47,7 @@
 	var/icon_previous_override
 	special_handling = TRUE
 	///Var for attack_self chain
-	var/shock = FALSE
+	var/special_collar = FALSE
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/Initialize(mapload)
@@ -126,7 +126,7 @@
 	var/frequency = AMAG_ELE_FREQ
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
-	shock = TRUE
+	special_collar = TRUE
 
 /obj/item/clothing/accessory/collar/shock/Initialize(mapload)
 	. = ..()
@@ -266,11 +266,11 @@
 /obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/clothing/accessory/collar/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
-	if(shock)
+	if(special_collar)
 		return FALSE
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		to_chat(user,span_notice("[name]'s interface is projected onto your hand."))
@@ -641,8 +641,11 @@
 	var/sentientprizeflavor = null	//Description to show on the SPASM
 	var/sentientprizeooc = null		//OOC text to show on the SPASM
 	var/sentientprizeitemtf = FALSE	//Whether the person opted in to allowing themselves to be item TF'd as a prize
+	special_handling = TRUE
 
-/obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user)
+	. = ..(user)
+	return TRUE
 	//keeping it blank so people don't tag and reset collar status
 
 /obj/item/clothing/accessory/collar/casinosentientprize_fake
@@ -713,8 +716,8 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(src.icon_state == initial(icon_state))
@@ -988,8 +991,8 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(src.icon_state == initial(icon_state))

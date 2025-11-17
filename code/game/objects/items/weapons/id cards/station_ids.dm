@@ -104,10 +104,12 @@
 
 	return data
 
-/obj/item/card/id/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/card/id/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
+	if(special_handling)
+		return FALSE
 	user.visible_message("\The [user] shows you: [icon2html(src,viewers(src))] [src.name]. The assignment on the card: [src.assignment]",\
 		"You flash your ID card: [icon2html(src, user.client)] [src.name]. The assignment on the card: [src.assignment]")
 
@@ -347,7 +349,7 @@
 	var/list/title_strings = list()
 	var/preset_rank = FALSE
 
-/obj/item/card/id/event/attack_self(var/mob/user)
+/obj/item/card/id/event/attack_self(mob/user)
 	if(configured == 1)
 		return ..()
 
@@ -522,7 +524,7 @@
 	icon = gimmeicon
 	icon_state = base_icon_state + "_digested"
 
-/obj/item/card/id/event/polymorphic/altcard/attack_self(var/mob/user)
+/obj/item/card/id/event/polymorphic/altcard/attack_self(mob/user)
 	if(configured == 1)
 		return ..()
 	else
@@ -537,7 +539,7 @@
 	name = "contractor identification card"
 	desc = "An ID card typically used by contractors."
 
-/obj/item/card/id/event/polymorphic/itg/attack_self(var/mob/user)
+/obj/item/card/id/event/polymorphic/itg/attack_self(mob/user)
 	if(!configured)
 		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
 		JOB_PILOT = "itg",

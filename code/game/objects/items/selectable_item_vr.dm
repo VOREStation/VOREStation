@@ -10,8 +10,8 @@
 	var/list/item_options = list("Gift" = /obj/item/a_gift,
 									"Health Analyzer" = /obj/item/healthanalyzer)
 
-/obj/item/selectable_item/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/selectable_item/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	tgui_alert(user, {"[preface_string]"}, preface_title)

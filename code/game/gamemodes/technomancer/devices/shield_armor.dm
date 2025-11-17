@@ -74,7 +74,7 @@
 	return 0 // This shield does not block all damage, so returning 0 is needed to tell the game to apply the new damage.
 
 /obj/item/clothing/suit/armor/shield/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	active = !active

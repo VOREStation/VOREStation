@@ -698,8 +698,8 @@
 		total_storage_space += I.get_storage_cost()
 	max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
-/obj/item/storage/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/storage/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)

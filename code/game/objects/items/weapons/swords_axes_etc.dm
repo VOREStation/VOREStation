@@ -55,8 +55,8 @@
 	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 	var/on = 0
 
-/obj/item/melee/telebaton/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/melee/telebaton/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	on = !on

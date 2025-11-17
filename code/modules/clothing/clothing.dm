@@ -470,16 +470,20 @@
 		)
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
+	helmet_handling = TRUE
 
 /obj/item/clothing/head/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(light_range)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot toggle the light while in this [user.loc]")
 			return
 		update_flashlight(user)
 		to_chat(user, "You [light_on ? "enable" : "disable"] the helmet light.")
-	else
-		return ..(user)
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	set_light_on(!light_on)
@@ -847,10 +851,10 @@
 		var/mob/M = src.loc
 		M.update_inv_shoes()
 
-/obj/item/clothing/shoes/attack_self(var/mob/user)
-	. = ..()
+/obj/item/clothing/shoes/attack_self(mob/user)
+	. = ..(user)
 	if(.)
-		return
+		return TRUE
 	for(var/mob/M in src)
 		if(isvoice(M)) //Don't knock voices out!
 			continue

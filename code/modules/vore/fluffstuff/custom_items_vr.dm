@@ -220,9 +220,13 @@
 	icon_state = "joanbadge"
 	registered_name = "Joan Risu"
 	assignment = "Centcom Officer"
+	special_handling = TRUE
 
 
-/obj/item/card/id/centcom/station/fluff/joanbadge/attack_self(mob/user as mob)
+/obj/item/card/id/centcom/station/fluff/joanbadge/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(isliving(user))
 		user.visible_message(span_warning("[user] flashes their golden security badge.\nIt reads:NT Security."),span_warning("You display the faded badge.\nIt reads: NT Security."))
 
@@ -290,7 +294,10 @@
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "Flag_Nanotrasen_mob"
 
-/obj/item/flag/attack_self(mob/user as mob)
+/obj/item/flag/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(isliving(user))
 		user.visible_message(span_warning("[user] waves their Banner around!"),span_warning("You wave your Banner around."))
 
@@ -413,7 +420,7 @@
 	assignment = "CC Medical"
 	var/configured = 0
 
-/obj/item/card/id/centcom/station/fluff/aronai/attack_self(mob/user as mob)
+/obj/item/card/id/centcom/station/fluff/aronai/attack_self(mob/user)
 	if(configured)
 		return ..()
 
@@ -543,6 +550,7 @@
 	var/mob/owner = null
 	var/client/owner_c = null //They'll be dead when we message them probably.
 	var/state = 0 //0 - New, 1 - Paired, 2 - Breaking, 3 - Broken (same as iconstates)
+	special_collar = TRUE
 
 /obj/item/clothing/accessory/collar/khcrystal/Initialize(mapload)
 	. = ..()
@@ -558,7 +566,10 @@
 	if((state > 1) || !owner)
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/clothing/accessory/collar/khcrystal/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/collar/khcrystal/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(state > 0) //Can't re-pair, one time only, for security reasons.
 		to_chat(user, span_notice("The [name] doesn't do anything."))
 		return 0
@@ -771,7 +782,10 @@
 	icon_state = "dragor_dot"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/fluff/dragor_dot/attack_self(mob/user as mob)
+/obj/item/fluff/dragor_dot/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.ckey == "pontifexminimus")
 		add_verb(user, /mob/living/carbon/human/proc/shapeshifter_select_gender)
 	else
@@ -851,6 +865,7 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "hisstective_badge"
 	//slot_flags = SLOT_TIE | SLOT_BELT
+	fluff_badge = TRUE
 
 /obj/item/clothing/accessory/badge/holo/detective/ruda/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
@@ -858,8 +873,10 @@
 		user.do_attack_animation(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
-/obj/item/clothing/accessory/badge/holo/detective/ruda/attack_self(mob/user as mob)
-
+/obj/item/clothing/accessory/badge/holo/detective/ruda/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!stored_name)
 		to_chat(user, "You huff along the front of your badge, then rub your sleeve on it to polish it up.")
 		set_name(user.real_name)
@@ -949,6 +966,7 @@
 	//Two Handed
 	var/wielded = 0
 	var/base_name = "stunstaff"
+	special_handling = TRUE
 
 /obj/item/melee/baton/fluff/stunstaff/Initialize(mapload)
 	. = ..()
@@ -992,6 +1010,9 @@
 			update_held_icon()
 
 /obj/item/melee/baton/fluff/stunstaff/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(bcell && bcell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -1060,7 +1081,10 @@
 	edge = initial(edge)
 	w_class = initial(w_class)
 
-/obj/item/melee/fluffstuff/attack_self(mob/living/user as mob)
+/obj/item/melee/fluffstuff/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
 			user.visible_message(span_danger("\The [user] accidentally cuts \himself with \the [src]."),\
@@ -1311,6 +1335,9 @@
 	var/owner = "vitoras"
 
 /obj/item/fluff/verie/attack_self(mob/living/carbon/human/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (istype(user))
 		// It's only made for Verie's chassis silly!
 		if (user.ckey != owner)
@@ -1531,8 +1558,12 @@
 	icon_state = "pandorba"
 	pokephrase = "Gecker!"
 	attack_verb = list("fluffed", "fwomped", "fuwa'd", "squirmshed")
+	special_handling = TRUE
 
-/obj/item/toy/plushie/fluff/seona_mofuorb/attack_self(mob/user as mob)
+/obj/item/toy/plushie/fluff/seona_mofuorb/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(stored_item && opened && !searching)
 		searching = TRUE
 		if(do_after(user, 1 SECOND, target = src))

@@ -28,8 +28,8 @@
 	QDEL_LIST_NULL(beakers)
 	return ..()
 
-/obj/item/grenade/chem_grenade/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/grenade/chem_grenade/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!stage || stage==1)

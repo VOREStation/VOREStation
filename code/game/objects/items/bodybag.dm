@@ -13,7 +13,7 @@
 	var/robotic = FALSE
 
 /obj/item/bodybag/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 

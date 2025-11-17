@@ -45,8 +45,8 @@
 	///Var for attack_self chain
 	var/special_handling = FALSE
 
-/obj/item/bikehorn/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/bikehorn/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_handling)
@@ -238,8 +238,8 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/camera_bug/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/camera_bug/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(in_use)

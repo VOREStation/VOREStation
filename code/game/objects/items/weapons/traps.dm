@@ -34,7 +34,7 @@
 /obj/item/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
-/obj/item/beartrap/attack_self(mob/user as mob)
+/obj/item/beartrap/attack_self(mob/user)
 	..()
 	if(!deployed && can_use(user))
 		user.visible_message(
@@ -218,7 +218,7 @@
 	else
 		..()
 
-/obj/item/material/barbedwire/attack_self(mob/user as mob)
+/obj/item/material/barbedwire/attack_self(mob/user)
 	..()
 	if(!anchored && can_use(user))
 		user.visible_message(

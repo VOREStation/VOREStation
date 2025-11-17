@@ -120,8 +120,8 @@
 /obj/item/radio/proc/recalculateChannels()
 	return
 
-/obj/item/radio/attack_self(mob/user as mob)
-	. = ..()
+/obj/item/radio/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(beacon || electric_pack || uplink)

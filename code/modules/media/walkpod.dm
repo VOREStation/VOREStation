@@ -76,6 +76,9 @@
 		to_chat(L, span_warning("Turn on the [src] first."))
 
 /obj/item/walkpod/attack_self(mob/living/L)
+	. = ..(L)
+	if(.)
+		return TRUE
 	if(!istype(L) || loc != L)
 		return
 	if(!listener)

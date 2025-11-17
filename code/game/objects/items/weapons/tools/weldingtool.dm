@@ -170,7 +170,7 @@
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
 /obj/item/weldingtool/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	setWelding(!welding, user)
