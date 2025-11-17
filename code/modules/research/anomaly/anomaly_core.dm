@@ -45,3 +45,9 @@
 	desc = "The neutralized core of a dimensional anomaly. Objects reflected on its surface don't look quite right. It'd probably be valuable for research."
 	icon_state = "dimensional_core"
 	anomaly_type = /obj/effect/anomaly/dimensional
+
+/obj/item/assembly/signaler/anomaly/bioscrambler
+	name = "\improper bioscrambler anomaly core"
+	desc = "The neutralized core of a bioscrambler anomaly. It's squirming, as if moving. It'd probably be valuable for research."
+	icon_state = "bioscrambler_core"
+	anomaly_type = /obj/effect/anomaly/bioscrambler

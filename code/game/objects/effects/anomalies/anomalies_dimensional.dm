@@ -45,7 +45,7 @@
 			detonate()
 			return
 		teleports_left--
-		//relocate()
+		relocate()
 		return
 
 	var/turf/affected_turf = target_turfs[1]
@@ -62,7 +62,7 @@
 
 	target_turfs = list()
 	for(var/turf/turf in spiral_range_turfs(range, src))
-		if(theme.can_covert(turf))
+		if(theme.can_convert(turf))
 			target_turfs += turf
 
 /obj/effect/anomaly/dimensional/proc/apply_theme_icon()
@@ -70,17 +70,17 @@
 	theme_icon = mutable_appearance(theme.icon, theme.icon_state, FLOAT_LAYER -1, appearance_flags = appearance_flags | RESET_TRANSFORM)
 	theme_icon.blend_mode = BLEND_INSET_OVERLAY
 	overlays += theme_icon
-/*
+
 /obj/effect/anomaly/dimensional/proc/relocate()
 	var/datum/anomaly_placer/placer = new()
-	var/area/new_area = placer.findValidArea()
-	var/turf/new_turf = placer.findValidTurf(new_area)
+	var/area/new_area = placer.find_valid_area()
+	var/turf/new_turf = placer.find_valid_turf(new_area)
 
 	var/datum/announcement/priority/announcement = new/datum/announcement/priority()
 	announcement.Announce("Dimensional instability relocated. Expected location: [new_area.name].", "Anomaly Alert")
 	src.forceMove(new_turf)
 	prepare_area()
-*/
+
 /obj/effect/anomaly/dimensional/detonate()
 	qdel(src)
 
@@ -88,7 +88,3 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldsparkles"
 	duration = 3
-
-/obj/effect/anomaly/dimensional/gold/Initialize(mapload, new_lifespan, drops_core)
-	. = ..()
-	theme = /datum/dimension_theme/gold

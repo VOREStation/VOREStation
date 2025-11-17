@@ -35,7 +35,8 @@
 
 /datum/dimension_theme/New()
 	if(material)
-		window_colour = material.icon_colour
+		var/datum/material/using_mat = GET_MATERIAL_REF(material)
+		window_colour = using_mat.icon_colour
 
 
 /**
@@ -59,13 +60,13 @@
 		var/random_spawn_picked = pick(random_spawns)
 		new random_spawn_picked(affected_turf)
 
-/datum/dimension_theme/proc/can_covert(var/turf/affected_turf)
+/datum/dimension_theme/proc/can_convert(var/turf/affected_turf)
 	if(isspace(affected_turf))
 		return FALSE
 	if(isfloorturf(affected_turf))
 		if(istype(get_area(affected_turf), /area/holodeck))
 			return FALSE
-		return TRUE
+		return replace_floors.len > 0
 	if(iswall(affected_turf))
 		return TRUE
 	return FALSE
@@ -93,12 +94,9 @@
 /datum/dimension_theme/proc/transform_floor(turf/affected_floor)
 	PROTECTED_PROC(TRUE)
 
-	if(isemptylist(replace_floors))
-		var/image/floor_overlay = image('icons/turf/flooring/tiles.dmi', icon_state = "steel")
-		floor_overlay.color = material.icon_colour
-		affected_floor.add_overlay(floor_overlay)
-	else
-		affected_floor.ChangeTurf(pick_weight(replace_floors))
+	if(replace_floors.len == 0)
+		return FALSE
+	affected_floor.ChangeTurf(pick_weight(replace_floors))
 
 	return TRUE
 
@@ -111,11 +109,11 @@
 /datum/dimension_theme/proc/replace_object(obj/object)
 	PROTECTED_PROC(TRUE)
 
-	if(istype(object, /obj/structure/window))
+	if(istype(object, /obj/structure/window) && material)
 		object.color = material.icon_colour
 		return
 
-	if(istype(object, /obj/structure/table))
+	if(istype(object, /obj/structure/table) && material)
 		var/obj/structure/table/table = object
 		table.material = material
 		table.update_connections(TRUE)
@@ -123,6 +121,13 @@
 		table.update_desc()
 		table.update_material()
 		return
+
+	if(istype(object, /obj/machinery/light))
+		var/obj/machinery/light/light = object
+		light.brightness_color = window_colour
+		light.brightness_color_ns = window_colour
+		light.set_light(0)
+		light.update()
 
 	var/replace_path = get_replacement_object_typepath(object)
 	if(!replace_path)
@@ -184,6 +189,22 @@
 		/obj/structure/table = list(/obj/structure/table/woodentable = 1)
 	)
 	replace_walls = /turf/simulated/wall/wood
+/*
+/datum/dimension_theme/flesh
+	name = "Flesh"
+	icon_state = 'icons/obj/food.dmi'
+	icon = "meat"
+	material = /datum/material/flesh
+	replace_floors = list(/turf/simulated/floor/flesh)
+
 
 /datum/dimension_theme/alien
 	name = "Alien"
+	icon_state = 'icons/obj/abductor.dmi'
+	icon = "circuit"
+	replace_floors = list(/turf/simulated/floor/redgrid = 1, /turf/simulated/floor/greengrid = 1, /turf/simulated/floor/bluegrid = 1)
+	replace_objs = list(
+		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/alien = 1),
+		/obj/structure/table = list(/obj/structure/table/alien = 1, /obj/structure/table/alien/blue = 1)
+	)
+*/

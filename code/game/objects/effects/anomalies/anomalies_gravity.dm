@@ -45,7 +45,7 @@
 
 /obj/effect/anomaly/grav/proc/gravShock(mob/living/living_debris)
 	if(boing && isliving(living_debris) && !living_debris.stat && !living_debris.can_overcome_gravity())
-		living_debris.SetStunned(15)
+		living_debris.SetStunned(5)
 		var/atom/target = get_edge_target_turf(living_debris, get_dir(src, get_step_away(living_debris, src)))
 		living_debris.throw_at(target, 5, 1)
 		boing = FALSE
