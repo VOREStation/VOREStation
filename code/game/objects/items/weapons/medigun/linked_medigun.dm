@@ -148,7 +148,7 @@
 	if(should_stop(H, user, user.get_active_hand()))
 		return
 
-	if(do_after(user, 10, timed_action_flags = IGNORE_USER_LOC_CHANGE, hidden = TRUE))
+	if(do_after(user, 1 SECOND, user, timed_action_flags = IGNORE_USER_LOC_CHANGE, hidden = TRUE))
 		var/washealing = ishealing // Did we heal last cycle
 		ishealing = FALSE // The default is 'we didn't heal this cycle'
 		if(!checked_use(5))
