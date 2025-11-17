@@ -90,7 +90,7 @@
 	if(health <= 0)
 		puncture()
 
-/obj/structure/inflatable/CtrlClick()
+/obj/structure/inflatable/click_ctrl()
 	hand_deflate()
 
 /obj/item/inflatable/proc/inflate(var/mob/user,var/location)

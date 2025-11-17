@@ -35,7 +35,7 @@
 	if(!reskin_ran)
 		. += span_notice("[src]'s external casing can be modified via alt-click.")
 
-/obj/item/storage/part_replacer/AltClick(mob/user)
+/obj/item/storage/part_replacer/click_alt(mob/user)
 	. = ..()
 	if(!reskin_ran)
 		reskin_radial(user)

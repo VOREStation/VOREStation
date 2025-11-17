@@ -43,17 +43,17 @@
 	// Handle relayed movement
 	if(settings.relay_movement)
 		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
-	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(handle_mob_vision_update))
+	RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, PROC_REF(handle_mob_vision_update))
 	// Hud overrides
 	if(settings.override_entire_hud)
-		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD, PROC_REF(handle_hud_override))
+		RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD, PROC_REF(handle_hud_override))
 	if(settings.override_health_hud)
-		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
+		RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
 	if(settings.override_darkvision_hud)
-		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
+		RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
-		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
+		RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_recursive_moved))
 	// Focus on remote view
 	remote_view_target = focused_on
 	if(host_mob != remote_view_target) // Some items just offset our view, so we set ourselves as the view target, don't double dip if so!
@@ -88,20 +88,20 @@
 	if(settings.will_blind)
 		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(isturf(remote_view_target))
-		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	if(settings.will_death)
 		UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	// Handle relayed movement
 	if(settings.relay_movement)
 		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
-	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
+	UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION)
 	// Hud overrides
 	if(settings.override_entire_hud)
-		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD)
+		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD)
 	if(settings.override_health_hud)
-		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON)
+		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON)
 	if(settings.override_darkvision_hud)
-		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_DARKSIGHT)
+		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
 	// Cleanup remote view
 	if(host_mob != remote_view_target) // If target is not ourselves
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
@@ -419,13 +419,13 @@
 	. = ..()
 	// Items can be nested deeply, so we need to update on any parent reorganization or actual move.
 	host_mob.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
+	RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
 	// Check our inmob state
 	if(ismob(find_topmost_atom()))
 		needs_to_decouple = TRUE
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
-	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	. = ..()
 
 /datum/component/remote_view/mob_holding_item/handle_status_effects(datum/source, amount, ignore_canstun)

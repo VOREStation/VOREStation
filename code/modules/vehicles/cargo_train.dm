@@ -205,7 +205,7 @@
 		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 
 
-/obj/vehicle/train/engine/CtrlClick(var/mob/user)
+/obj/vehicle/train/engine/click_ctrl(mob/user)
 	if(Adjacent(user))
 		if(on)
 			stop_engine()
@@ -214,7 +214,7 @@
 	else
 		return ..()
 
-/obj/vehicle/train/engine/AltClick(var/mob/user)
+/obj/vehicle/train/engine/click_alt(var/mob/user)
 	if(Adjacent(user))
 		remove_key()
 	else

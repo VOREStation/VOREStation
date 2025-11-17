@@ -88,11 +88,11 @@ SUBSYSTEM_DEF(supply)
 
 				// For each thing in the crate, get the value and quantity
 				for(var/atom/A in CR)
-					sold_successfully = SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
+					sold_successfully = SEND_SIGNAL(A,COMSIG_ITEM_EXPORTED,EC,TRUE)
 			else
 				// Selling things that are not in crates.
 				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
-				sold_successfully = SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
+				sold_successfully = SEND_SIGNAL(MA,COMSIG_ITEM_EXPORTED,EC,FALSE)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM, MA, sold_successfully, EC, subarea)
 
 			exported_crates += EC

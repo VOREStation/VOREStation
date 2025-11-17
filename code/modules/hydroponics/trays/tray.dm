@@ -140,7 +140,7 @@
 	REAGENT_ID_PITCHERNECTAR =  1
 	)
 
-/obj/machinery/portable_atmospherics/hydroponics/AltClick(var/mob/living/user)
+/obj/machinery/portable_atmospherics/hydroponics/click_alt(var/mob/living/user)
 	if(!istype(user))
 		return
 	if(mechanical && !user.incapacitated() && Adjacent(user))

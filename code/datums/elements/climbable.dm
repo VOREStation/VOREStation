@@ -18,7 +18,7 @@
 	RegisterSignal(target, COMSIG_CLIMBABLE_START_CLIMB, PROC_REF(start_climb))
 	RegisterSignal(target, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, PROC_REF(shaken))
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_shaken))
-	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	target.verbs += /obj/proc/climb_on
 
 	ADD_TRAIT(target, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
@@ -27,7 +27,7 @@
 	UnregisterSignal(source, COMSIG_CLIMBABLE_START_CLIMB)
 	UnregisterSignal(source, COMSIG_CLIMBABLE_SHAKE_CLIMBERS)
 	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(source, COMSIG_PARENT_EXAMINE)
+	UnregisterSignal(source, COMSIG_ATOM_EXAMINE)
 	source.verbs -= /obj/proc/climb_on
 
 	REMOVE_TRAIT(source, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))

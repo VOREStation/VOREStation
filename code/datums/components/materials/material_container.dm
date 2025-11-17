@@ -76,11 +76,11 @@
 
 	// can we insert into this container
 	if(!(mat_container_flags & MATCONTAINER_NO_INSERT))
-		RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 
 	//to see available materials
 	if(mat_container_flags & MATCONTAINER_EXAMINE)
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+		RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 	//drop sheets when object is deconstructed but not deleted
 	RegisterSignal(parent, COMSIG_OBJ_DECONSTRUCT, PROC_REF(drop_sheets))
@@ -89,9 +89,9 @@
 	var/list/signals = list()
 
 	if(!(mat_container_flags & MATCONTAINER_NO_INSERT))
-		signals += COMSIG_PARENT_ATTACKBY
+		signals += COMSIG_ATOM_ATTACKBY
 	if(mat_container_flags & MATCONTAINER_EXAMINE)
-		signals += COMSIG_PARENT_EXAMINE
+		signals += COMSIG_ATOM_EXAMINE
 	signals += COMSIG_OBJ_DECONSTRUCT
 
 	UnregisterSignal(parent, signals)
@@ -114,14 +114,14 @@
 	. = ..()
 	if(var_name == NAMEOF(src, mat_container_flags) && parent)
 		if(!(old_flags & MATCONTAINER_EXAMINE) && mat_container_flags & MATCONTAINER_EXAMINE)
-			RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+			RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 		else if(old_flags & MATCONTAINER_EXAMINE && !(mat_container_flags & MATCONTAINER_EXAMINE))
-			UnregisterSignal(parent, COMSIG_PARENT_EXAMINE)
+			UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
 
 		if(old_flags & MATCONTAINER_NO_INSERT && !(mat_container_flags & MATCONTAINER_NO_INSERT))
-			RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+			RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 		else if(!(old_flags & MATCONTAINER_NO_INSERT) && mat_container_flags & MATCONTAINER_NO_INSERT)
-			UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
+			UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
 
 /**
  * 3 Types of Procs
@@ -654,7 +654,7 @@
  * sheet_amt: number of sheets to extract
  * [material][datum/material]: type of sheets present in this container to extract
  * [target][atom]: drop location
- * [atom][context]: context - the atom performing the operation, this is the last argument sent in COMSIG_MATCONTAINER_SHEETS_RETRIEVED and is used mostly for silo logging
+ * [atom][context]: context - the atom performing the operation, this is the last argument sent in COMSIG_MATCONTAINER_STACK_RETRIEVED and is used mostly for silo logging
  */
 /datum/component/material_container/proc/retrieve_sheets(sheet_amt, datum/material/material, atom/target = null, atom/context = parent)
 	//do we support sheets of this material
@@ -684,7 +684,7 @@
 		use_amount_mat(new_sheets.amount * SHEET_MATERIAL_AMOUNT, material)
 		sheet_amt -= new_sheets.amount
 		//send signal
-		SEND_SIGNAL(src, COMSIG_MATCONTAINER_SHEETS_RETRIEVED, new_sheets, context)
+		SEND_SIGNAL(src, COMSIG_MATCONTAINER_STACK_RETRIEVED, new_sheets, context)
 		//no point merging anything into an already full stack
 		if(new_sheets.amount == new_sheets.max_amount)
 			continue

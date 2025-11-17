@@ -70,7 +70,7 @@
 /obj/structure/reagent_dispensers/blob_act()
 	qdel(src)
 
-/obj/structure/reagent_dispensers/AltClick(mob/user)
+/obj/structure/reagent_dispensers/click_alt(mob/user)
 	if(!Adjacent(user))
 		return
 

@@ -97,7 +97,7 @@
 	sample = null
 	update_icon()
 
-/obj/machinery/microscope/AltClick()
+/obj/machinery/microscope/click_alt()
 	remove_sample(usr)
 
 /obj/machinery/microscope/MouseDrop(var/atom/other)

@@ -69,7 +69,7 @@
 /obj/item/walkpod/proc/update_music()
 	listener?.force_music(media_url, media_start_time, volume) // Calling this with "" url (when we aren't playing) helpfully disables forced music
 
-/obj/item/walkpod/AltClick(mob/living/L)
+/obj/item/walkpod/click_alt(mob/living/L)
 	if(L == listener && check_listener())
 		tgui_interact(L)
 	else if(loc == L) // at least they're holding it

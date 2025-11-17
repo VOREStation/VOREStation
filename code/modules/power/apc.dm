@@ -702,7 +702,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		else
 			to_chat(user, span_warning("Access denied."))
 
-/obj/machinery/power/apc/AltClick(mob/user)
+/obj/machinery/power/apc/click_alt(mob/user)
 	..()
 	togglelock(user)
 

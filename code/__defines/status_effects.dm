@@ -37,17 +37,17 @@
 
 //Incapacitated status effect flags
 /// If the mob is normal incapacitated. Should never need this, just avoids issues if we ever overexpand this
-// #define TRADITIONAL_INCAPACITATED (1<<0)
+#define TRADITIONAL_INCAPACITATED (1<<0)
 /// If the incapacitated status effect is being caused by restraints (handcuffs)
-// #define INCAPABLE_RESTRAINTS (1<<1)
+#define INCAPABLE_RESTRAINTS (1<<1)
 /// If the incapacitated status effect is being caused by stasis (stasis beds)
-// #define INCAPABLE_STASIS (1<<2)
+#define INCAPABLE_STASIS (1<<2)
 /// If the incapacitated status effect is being caused by being agressively grabbed
-// #define INCAPABLE_GRAB (1<<3)
+#define INCAPABLE_GRAB (1<<3)
 
 /// Checks to see if a mob would be incapacitated even while ignoring some types
 /// Does this by inverting the passed in flags and seeing if we're still incapacitated
-// #define INCAPACITATED_IGNORING(mob, flags) (mob.incapacitated & ~(flags))
+#define INCAPACITATED_IGNORING(mob, flags) (mob.incapacitated & ~(flags))
 
 /// Max amounts of fire stacks a mob can get
 #define MAX_FIRE_STACKS 20

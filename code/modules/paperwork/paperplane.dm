@@ -93,7 +93,7 @@
 			E.damage += 2.5
 		H.emote("scream")
 
-/obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
+/obj/item/paper/click_alt(mob/living/carbon/user, obj/item/I)
 	if ( istype(user) )
 		if( (!in_range(src, user)) || user.stat || user.restrained() )
 			return

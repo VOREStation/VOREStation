@@ -110,7 +110,7 @@
 
 			watching_mob = user
 			watching_mob.AddComponent(/datum/component/recursive_move)
-			RegisterSignal(watching_mob, COMSIG_OBSERVER_MOVED, /obj/machinery/station_map/proc/checkPosition)
+			RegisterSignal(watching_mob, COMSIG_MOVABLE_MOVED, /obj/machinery/station_map/proc/checkPosition)
 			//GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			RegisterSignal(watching_mob, COMSIG_OBSERVER_DESTROYED, /obj/machinery/station_map/proc/stopWatching)
 			update_use_power(USE_POWER_ACTIVE)
@@ -141,7 +141,7 @@
 			var/mob/M = watching_mob
 			spawn(5) //we give it time to fade out
 				M.client.images -= holomap_datum.station_map
-		UnregisterSignal(watching_mob, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(watching_mob, COMSIG_MOVABLE_MOVED)
 		//GLOB.dir_set_event.unregister(watching_mob, src)
 		UnregisterSignal(watching_mob, COMSIG_OBSERVER_DESTROYED)
 	watching_mob = null
