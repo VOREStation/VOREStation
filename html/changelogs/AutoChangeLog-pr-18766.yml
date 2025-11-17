@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Large lightbulb types now have unique icons"
-  - qol: "Lightbulb boxes have some large lightbulbs and tubes for floor lamps and floodlight replacements."

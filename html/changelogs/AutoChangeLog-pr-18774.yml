@@ -1,5 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - qol: "Teleporting while buckled will place you closer to the destination point"
-  - bugfix: "Fixes teleporting while in chairs or taurs to lose your comfy seat"
