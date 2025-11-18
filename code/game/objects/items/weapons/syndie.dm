@@ -78,7 +78,6 @@
 /*Click it when closed to open, when open to bring up a prompt asking you if you want to close it or press the button.*/
 
 /obj/item/flame/lighter/zippo/c4detonator
-	var/detonator_mode = 0
 	var/obj/item/syndie/c4explosive/bomb
 
 /obj/item/flame/lighter/zippo/c4detonator/attack_self(mob/user)
