@@ -497,15 +497,16 @@
 	update_brightness()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!fuel)
 		to_chat(user, span_notice("The glowstick has already been turned on."))
 		return
 	if(on)
 		return
 
-	. = ..()
-	if(.)
+	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] cracks and shakes \the [name]."), span_notice("You crack and shake \the [src], turning it on!"))
 		START_PROCESSING(SSobj, src)
 

@@ -23,8 +23,8 @@
 		. += span_notice("You have to go closer if you want to read it.")
 
 //hit yourself with it
-/obj/item/holowarrant/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/holowarrant/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	active = null

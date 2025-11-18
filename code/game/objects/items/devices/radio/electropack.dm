@@ -105,8 +105,8 @@
 		master.receive_signal()
 	return
 
-/obj/item/radio/electropack/attack_self(mob/user as mob, flag1)
-	. = ..()
+/obj/item/radio/electropack/attack_self(mob/user, flag1)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!ishuman(user))

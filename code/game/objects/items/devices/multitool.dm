@@ -35,7 +35,7 @@
 	var/uplink = FALSE
 
 /obj/item/multitool/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(uplink)
@@ -66,8 +66,6 @@
 			return
 
 	update_icon()
-
-	return ..()
 
 /obj/item/multitool/proc/mode_switch(mob/living/user)
 	if(mode_index + 1 > modes.len) mode_index = 1
