@@ -820,7 +820,7 @@
 		closed_state = "[initial(icon_state)]"
 	. = ..()
 
-/obj/item/storage/trinketbox/attack_self()
+/obj/item/storage/trinketbox/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

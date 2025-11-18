@@ -643,7 +643,7 @@
 
 // Attack mob
 /obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
-	playsound(src, bitesound, 20, 1)	// Play bite sound in local area
+	playsound(src, squeeze_sound, 20, 1)	// Play bite sound in local area
 	return ..()
 
 

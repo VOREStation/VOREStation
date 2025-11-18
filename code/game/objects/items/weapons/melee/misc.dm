@@ -41,7 +41,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/melee/umbrella/attack_self()
+/obj/item/melee/umbrella/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

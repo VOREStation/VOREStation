@@ -619,7 +619,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	/// If we are a special variant (see: override attack_self)
 	var/special_variant = FALSE
 	/// Var used for detonator zippos
-	var/denator_mode = 0
+	var/detonator_mode = 0
 
 // TODO: Remove this path from POIs and loose maps (it's no longer needed)
 /obj/item/flame/lighter/random

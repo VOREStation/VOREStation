@@ -351,6 +351,7 @@
 	var/preset_rank = FALSE
 	///What type of polymorphic card we have. 0 = none. 1 = take our job state 2 = allow us to select an icon.
 	var/polymorphic_type = 0
+	var/base_icon_state
 
 /obj/item/card/id/event/attack_self(mob/user)
 	. = ..(user)
@@ -578,7 +579,6 @@
 	icon_state = "pinkGold"
 
 /obj/item/card/id/event/polymorphic
-	var/base_icon_state
 	polymorphic_type = 1
 
 /obj/item/card/id/event/polymorphic/digest_act(atom/movable/item_storage = null)

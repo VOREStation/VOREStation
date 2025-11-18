@@ -182,8 +182,6 @@
 	pokephrase = "Skreee!"
 	squeeze_sound = 'sound/voice/shriek1.ogg'
 
-/obj/item/toy/plushie/vox/proc/cooldownreset()
-	cooldown = 0
 
 /obj/item/toy/plushie/ipc
 	name = "IPC plushie"
@@ -259,14 +257,13 @@
 
 /obj/item/toy/plushie/marketable_pip/attackby(obj/item/I, mob/user)
 	var/obj/item/card/id/id = I.GetID()
-	if(istype(id) && !cooldown)
+	if(istype(id) && cooldown_timer < world.time)
 		var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
 		pokephrase = pick(responses)
 		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
 		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
 		say_phrase()
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
+		cooldown_timer = world.time + cooldown_length
 		return ..()
 
 /obj/item/toy/plushie/moth
@@ -276,9 +273,6 @@
 	icon_state = "moth"
 	pokephrase = "Aaaaaaa."
 	squeeze_sound = 'sound/voice/moth/scream_moth.ogg'
-
-/obj/item/toy/plushie/moth/proc/cooldownreset()
-	cooldown = 0
 
 /obj/item/toy/plushie/crab
 	name = "crab plushie"
@@ -315,7 +309,6 @@
 	pokephrase = "Stab!"
 	bubble_icon = "security"
 	attack_verb = list("stabbed", "slashed")
-	var/cooldown = FALSE
 	squeeze_sound = 'sound/weapons/slice.ogg'
 
 /obj/item/toy/plushie/sus/blue
