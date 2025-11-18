@@ -37,7 +37,7 @@
 	desc = "A secure box containing a non-lethal sidearm."
 	variant_gunbox = TRUE
 /obj/item/gunbox/stun/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/list/options = list()
