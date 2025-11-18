@@ -30,6 +30,8 @@
 	name = "reactive armor"
 	desc = "Doesn't seem to do much for some reason."
 	icon_state = "reactiveoff"
+	blood_overlay_type = "armor"
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	var/hit_reaction_chance = 50
 	///Whether the armor will try to react to hits (is it on)
 	var/active = FALSE
@@ -83,8 +85,6 @@
 	visible_message(emp_message)
 	bad_effect = TRUE
 	addtimer(VARSET_CALLBACK(src, bad_effect, FALSE), 30 SECONDS)
-
-
 
 /obj/item/clothing/suit/armor/reactive/teleport
 	name = "reactive teleport armor"
