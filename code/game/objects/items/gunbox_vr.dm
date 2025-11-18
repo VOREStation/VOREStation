@@ -34,7 +34,7 @@
 	icon_state = "gunbox"
 	variant_gunbox = TRUE
 /obj/item/gunbox/captain/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/list/options = list()
