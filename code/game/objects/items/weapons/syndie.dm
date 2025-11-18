@@ -99,10 +99,12 @@
 			if("Press the button.")
 				to_chat(user, span_warning("You press the button."))
 				icon_state = "[base_state]click"
-				if(src.bomb)
-					src.bomb.detonate()
-					log_admin("[key_name(user)] has triggered [src.bomb] with [src].")
-					message_admins(span_danger("[key_name_admin(user)] has triggered [src.bomb] with [src]."))
+				if(bomb)
+					var/obj/item/syndie/c4explosive/bomb_to_explode = bomb
+					bomb = null //clear up our ref
+					bomb_to_explode.detonate()
+					log_admin("[key_name(user)] has triggered [bomb_to_explode] with [src].")
+					message_admins(span_danger("[key_name_admin(user)] has triggered [bomb_to_explode] with [src]."))
 
 			if("Close the lighter.")
 				lit = FALSE
