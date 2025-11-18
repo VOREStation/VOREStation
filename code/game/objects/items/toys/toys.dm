@@ -638,16 +638,12 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "basecarp"
 	attack_verb = list("bitten", "eaten", "fin slapped")
-	var/bitesound = 'sound/weapons/bite.ogg'
+	squeeze_sound = 'sound/weapons/bite.ogg'
+	cooldown_length = 1 SECOND
 
 // Attack mob
 /obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
 	playsound(src, bitesound, 20, 1)	// Play bite sound in local area
-	return ..()
-
-// Attack self
-/obj/item/toy/plushie/carp/attack_self(mob/user)
-	playsound(src, bitesound, 20, 1)
 	return ..()
 
 
@@ -821,6 +817,14 @@
 
 	var/special_handling = TRUE
 
+	///The sound we make when squeezed
+	var/squeeze_sound = 'sound/items/drop/plushie.ogg'
+
+	///Timer to track how long until we can play a sound again
+	var/cooldown_timer
+	///How long our cooldown timer is. Default 15 seconds
+	var/cooldown_length = 15 SECONDS
+
 /obj/item/toy/plushie/Initialize(mapload)
 	. = ..()
 	adjusted_name = name
@@ -859,7 +863,9 @@
 		user.visible_message(span_warning(span_bold("\The [user]") + " attempts to strangle [src]!"),span_warning("You attempt to strangle [src]!"))
 	else
 		user.visible_message(span_notice(span_bold("\The [user]") + " pokes [src]."),span_notice("You poke [src]."))
-		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
+		if(cooldown_timer < world.time)
+			playsound(src, squeeze_sound, 25, 0)
+			cooldown_timer = world.time + cooldown_length
 	if(pokephrase) //There was no indiciation you had to use disarm intent to make it speak...So now it speaks if you touch it at all!
 		say_phrase()
 	last_message = world.time
@@ -1202,14 +1208,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_tin"
 	pokephrase = "Peep peep!"
-	var/cooldown = 0
-
-/obj/item/toy/plushie/tinytin/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/voice/peep.ogg', 20, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/voice/peep.ogg'
 
 /obj/item/toy/plushie/tinytin_sec
 	name = "officer tiny tin plushie"
@@ -1218,14 +1217,7 @@
 	icon_state = "plushie_tinsec"
 	bubble_icon = "security"
 	pokephrase = "That means you fucked up!"
-	var/cooldown = 0
-
-/obj/item/toy/plushie/tinytin_sec/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/voice/tinytin_fuckedup.ogg', 25, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/voice/tinytin_fuckedup.ogg'
 
 //Toy cult sword
 /obj/item/toy/cultsword
@@ -1338,26 +1330,7 @@
 	/obj/item/toy/character/voidone,
 	/obj/item/toy/character/lich
 	)
-/* VOREStation edit. Moved to toys_vr.dm
-/obj/item/toy/AI
-	name = "toy AI"
-	desc = "A little toy model AI core!"// with real law announcing action!" //Alas, requires a rewrite of how ion laws work.
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "AI"
-	w_class = ITEMSIZE_SMALL
-	var/cooldown = 0
 
-/obj/item/toy/AI/attack_self(mob/user)
-	if(!cooldown) //for the sanity of everyone
-		var/message = generate_ion_law()
-		to_chat(user, span_notice("You press the button on [src]."))
-		playsound(src, 'sound/machines/click.ogg', 20, 1)
-		visible_message(span_danger("[message]"))
-		cooldown = 1
-		spawn(30) cooldown = 0
-		return
-	..()
-*/
 /obj/item/toy/owl
 	name = "owl action figure"
 	desc = "An action figure modeled after 'The Owl', defender of justice."
@@ -1367,15 +1340,16 @@
 	var/cooldown = 0
 
 /obj/item/toy/owl/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown) //for the sanity of everyone
 		var/message = pick("You won't get away this time, Griffin!", "Stop right there, criminal!", "Hoot! Hoot!", "I am the night!")
 		to_chat(user, span_notice("You pull the string on the [src]."))
 		//playsound(src, 'sound/misc/hoot.ogg', 25, 1)
 		visible_message(span_danger("[message]"))
 		cooldown = 1
-		spawn(30) cooldown = 0
-		return
-	..()
+		VARSET_IN(src, cooldown, FALSE, 3 SECONDS)
 
 /obj/item/toy/griffin
 	name = "griffin action figure"
@@ -1386,15 +1360,16 @@
 	var/cooldown = 0
 
 /obj/item/toy/griffin/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown) //for the sanity of everyone
 		var/message = pick("You can't stop me, Owl!", "My plan is flawless! The vault is mine!", "Caaaawwww!", "You will never catch me!")
 		to_chat(user, span_notice("You pull the string on the [src]."))
 		//playsound(src, 'sound/misc/caw.ogg', 25, 1)
 		visible_message(span_danger("[message]"))
 		cooldown = 1
-		spawn(30) cooldown = 0
-		return
-	..()
+		VARSET_IN(src, cooldown, FALSE, 3 SECONDS)
 
 /* NYET.
 /obj/item/toddler

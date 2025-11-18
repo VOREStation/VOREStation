@@ -180,14 +180,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_vox"
 	pokephrase = "Skreee!"
-	var/cooldown = FALSE
-
-/obj/item/toy/plushie/vox/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/voice/shriek1.ogg'
 
 /obj/item/toy/plushie/vox/proc/cooldownreset()
 	cooldown = 0
@@ -199,7 +192,7 @@
 	icon_state = "plushie_ipc"
 	bubble_icon = "synthetic"
 	pokephrase = "Ping!"
-	var/cooldown = 0
+	squeeze_sound = 'sound/machines/ping.ogg'
 
 /obj/item/reagent_containers/food/snacks/slice/bread
 	var/toasted = FALSE
@@ -233,13 +226,6 @@
 	else
 		return ..()
 
-/obj/item/toy/plushie/ipc/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/machines/ping.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
-
 /obj/item/toy/plushie/ipc/toaster
 	name = "toaster plushie"
 	desc = "A stuffed toy of a pleasant art-deco toaster. It has a small tag on it reading 'Bricker Home Appliances! All rights reserved, copyright 2298.' It's a tad heavy on account of containing a heating coil. Want to make toast?"
@@ -247,13 +233,7 @@
 	attack_verb = list("toasted", "burnt")
 	pokephrase = "Ding!"
 	bubble_icon = "machine"
-
-/obj/item/toy/plushie/ipc/toaster/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/machines/ding.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/machines/ding.ogg'
 
 /obj/item/toy/plushie/snakeplushie
 	name = "snake plushie"
@@ -275,7 +255,7 @@
 	desc = "An adorable plushie of NanoTrasen's Best Girl(TM) mascot. It smells faintly of paperwork."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "marketable_pip"
-	var/cooldown = FALSE
+	squeeze_sound = 'sound/effects/whistle.ogg'
 
 /obj/item/toy/plushie/marketable_pip/attackby(obj/item/I, mob/user)
 	var/obj/item/card/id/id = I.GetID()
@@ -289,27 +269,13 @@
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 		return ..()
 
-/obj/item/toy/plushie/marketable_pip/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
-
 /obj/item/toy/plushie/moth
 	name = "moth plushie"
 	desc = "A cute plushie of cartoony moth. It's ultra fluffy but leaves dust everywhere."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "moth"
 	pokephrase = "Aaaaaaa."
-	var/cooldown = FALSE
-
-/obj/item/toy/plushie/moth/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/voice/moth/scream_moth.ogg'
 
 /obj/item/toy/plushie/moth/proc/cooldownreset()
 	cooldown = 0
@@ -350,13 +316,7 @@
 	bubble_icon = "security"
 	attack_verb = list("stabbed", "slashed")
 	var/cooldown = FALSE
-
-/obj/item/toy/plushie/sus/attack_self(mob/user)
-	if(!cooldown)
-		playsound(user, 'sound/weapons/slice.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/weapons/slice.ogg'
 
 /obj/item/toy/plushie/sus/blue
 	name = "blue spaceman plushie"
@@ -546,6 +506,11 @@
 	var/list/possible_answers = null
 
 /obj/item/toy/AI/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(cooldown > world.time) //No, I'm not allowing you to spamclick this to do a search over GLOB.player_list
+		return
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
@@ -563,12 +528,6 @@
 			var/answer = pick(possible_answers)
 			user.visible_message(span_notice("[user] asks the AI core to state laws."))
 			user.visible_message(span_notice("[src] says \"[answer]\""))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
-		return ..()
-
-/obj/item/toy/AI/proc/cooldownreset()
-	cooldown = 0
 
 /*
  * Toy cuffs
@@ -824,11 +783,13 @@
 	var/cooldown = 0
 
 /obj/item/toy/chainsaw/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown)
 		playsound(user, 'sound/weapons/chainsaw_startup.ogg', 10, 0)
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
-	return ..()
 
 /obj/item/toy/chainsaw/proc/cooldownreset()
 	cooldown = 0
