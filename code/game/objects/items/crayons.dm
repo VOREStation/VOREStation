@@ -64,7 +64,7 @@
 	uses = 0
 
 /obj/item/pen/crayon/rainbow/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Crayon colour", colour)
