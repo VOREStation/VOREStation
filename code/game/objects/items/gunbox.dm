@@ -10,7 +10,7 @@
 	///If the gunbox has custom attack_self code
 	var/variant_gunbox = FALSE
 /obj/item/gunbox/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(variant_gunbox)
