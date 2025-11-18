@@ -61,7 +61,7 @@
 	w_class = ITEMSIZE_HUGE
 	variant_gunbox = TRUE
 /obj/item/gunbox/centcom/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/list/options = list()
