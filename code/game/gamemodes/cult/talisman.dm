@@ -4,8 +4,8 @@
 	var/uses = 0
 	info = "<center><img src='talisman.png'></center><br/><br/>"
 
-/obj/item/paper/talisman/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/paper/talisman/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(iscultist(user))

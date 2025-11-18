@@ -24,18 +24,18 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/pinpointer/attack_self()
-	. = ..()
+/obj/item/pinpointer/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(nuclear || shuttle)
 		return
 	if(!active)
-		active = 1
+		active = TRUE
 		START_PROCESSING(SSobj, src)
 		to_chat(usr, span_notice("You activate the pinpointer"))
 	else
-		active = 0
+		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "pinoff"
 		to_chat(usr, span_notice("You deactivate the pinpointer"))
