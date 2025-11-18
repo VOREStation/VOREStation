@@ -79,7 +79,7 @@
 	icon_state = "purplecomb"
 
 /obj/item/haircomb/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/text = "person"
@@ -110,8 +110,8 @@
 	. = ..()
 	M = new(src, null)
 
-/obj/item/makeover/attack_self(mob/living/carbon/user as mob)
-	. = ..()
+/obj/item/makeover/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(ishuman(user))

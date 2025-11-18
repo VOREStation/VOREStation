@@ -153,8 +153,8 @@
 			return (base_block_chance - round(damage / 3)) //block bullets and beams using the old block chance
 	return base_block_chance
 
-/obj/item/shield/energy/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/shield/energy/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -241,7 +241,7 @@
 		return 0
 */
 /obj/item/shield/riot/tele/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	active = !active

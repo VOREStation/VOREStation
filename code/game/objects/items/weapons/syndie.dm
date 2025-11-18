@@ -82,12 +82,15 @@
 	var/obj/item/syndie/c4explosive/bomb
 
 /obj/item/flame/lighter/zippo/c4detonator/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!detonator_mode)
-		..()
+		return FALSE
 
-	else if(!lit)
+	if(!lit)
 		base_state = icon_state
-		lit = 1
+		lit = TRUE
 		icon_state = "[base_state]1"
 		//item_state = "[base_state]on"
 		user.visible_message(span_rose("Without even breaking stride, \the [user] flips open \the [src] in one smooth movement."))
@@ -103,7 +106,7 @@
 					message_admins(span_danger("[key_name_admin(user)] has triggered [src.bomb] with [src]."))
 
 			if("Close the lighter.")
-				lit = 0
+				lit = FALSE
 				icon_state = "[base_state]"
 				//item_state = "[base_state]"
 				user.visible_message(span_rose("You hear a quiet click, as \the [user] shuts off \the [src] without even looking at what they're doing."))

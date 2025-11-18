@@ -21,8 +21,8 @@
 		if(slot_belt)
 			sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/belt/mob_teshari.dmi')
 
-/obj/item/towel/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/towel/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	user.visible_message(span_notice("[user] uses [src] to towel themselves off."))

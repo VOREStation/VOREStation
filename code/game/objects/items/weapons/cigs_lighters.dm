@@ -288,6 +288,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	zippomes = span_rose("With a flick of their wrist, USER lights their NAME with their FLAME.")
 	weldermes = span_notice("USER casually lights the NAME with FLAME.")
 	ignitermes = span_notice("USER fiddles with FLAME, and manages to light their NAME.")
+	special_handling = TRUE
 
 /obj/item/clothing/mask/smokable/cigarette/Initialize(mapload)
 	. = ..()
@@ -319,6 +320,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				to_chat(user, span_notice("[src] is full."))
 
 /obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(lit == 1)
 		if(user.a_intent == I_HURT)
 			user.visible_message(span_notice("[user] drops and treads on the lit [src], putting it out instantly."))
@@ -327,7 +331,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			user.visible_message(span_notice("[user] puts out \the [src]."))
 			quench()
-	return ..()
 
 ////////////
 // CIGARS //
@@ -558,7 +561,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		qdel(G)
 
 /obj/item/reagent_containers/rollingpaper/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!reagents)                                                                                        //don't roll an empty joint
@@ -613,8 +616,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 								COLOR_ASSEMBLY_BLUE,
 								COLOR_ASSEMBLY_PURPLE,
 								COLOR_ASSEMBLY_HOT_PINK)
-	/// If we are a sepcial variant (see: override attack_self)
+	/// If we are a special variant (see: override attack_self)
 	var/special_variant = FALSE
+	/// Var used for detonator zippos
+	var/denator_mode = 0
 
 // TODO: Remove this path from POIs and loose maps (it's no longer needed)
 /obj/item/flame/lighter/random
@@ -627,10 +632,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	add_overlay(I)
 
 /obj/item/flame/lighter/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_variant)
+		return FALSE
+	if(detonator_mode)
 		return FALSE
 	if(!lit)
 		lit = TRUE
@@ -696,9 +703,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	cut_overlays() //Prevents the Cheap Lighter overlay from appearing on this
 
 /obj/item/flame/lighter/zippo/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
+	if(detonator_mode)
+		return FALSE
 	if(!base_state)
 		base_state = icon_state
 	if(!lit)
@@ -818,7 +827,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 // safe smzippo
 /obj/item/flame/lighter/supermatter/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(special_supermatter)
@@ -894,7 +903,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 // syndicate smzippo
 /obj/item/flame/lighter/supermatter/syndismzippo/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!base_state)
@@ -968,7 +977,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 // Experimental smzippo
 /obj/item/flame/lighter/supermatter/expsmzippo/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if (!base_state)

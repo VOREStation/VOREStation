@@ -104,17 +104,18 @@
 
 	return data
 
-/obj/item/card/id/attack_self(mob/user)
+/obj/item/card/id/attack_self(mob/user, show_id = FALSE)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(special_handling)
+	if(special_handling && !show_id)
+		return FALSE
+	if(can_configure && !configured)
 		return FALSE
 	user.visible_message("\The [user] shows you: [icon2html(src,viewers(src))] [src.name]. The assignment on the card: [src.assignment]",\
 		"You flash your ID card: [icon2html(src, user.client)] [src.name]. The assignment on the card: [src.assignment]")
 
 	src.add_fingerprint(user)
-	return
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -343,15 +344,74 @@
 
 //Event IDs
 /obj/item/card/id/event
-	var/configured = 0
+	can_configure = TRUE
 	var/accessset = 0
 	initial_sprite_stack = list()
 	var/list/title_strings = list()
 	var/preset_rank = FALSE
+	///What type of polymorphic card we have. 0 = none. 1 = take our job state 2 = allow us to select an icon.
+	var/polymorphic_type = 0
 
 /obj/item/card/id/event/attack_self(mob/user)
-	if(configured == 1)
-		return ..()
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(configured)
+		return FALSE
+	if(polymorphic_type == 1)
+		icon_state = user.job
+		base_icon_state = user.job
+	else if(polymorphic_type == 2)
+		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
+		JOB_PILOT = "itg",
+		JOB_ALT_VISITOR = "itg",
+		JOB_QUARTERMASTER = "itg",
+		JOB_CARGO_TECHNICIAN = "itg",
+		JOB_SHAFT_MINER = "itg",
+		JOB_INTERN = "itg",
+		JOB_TALON_PILOT = "itg",
+		JOB_TALON_MINER = "itg",
+		JOB_BARTENDER = "itg_green",
+		JOB_BOTANIST = "itg_green",
+		JOB_CHEF = "itg_green",
+		JOB_JANITOR = "itg_green",
+		JOB_CHAPLAIN = "itg_green",
+		JOB_ENTERTAINER = "itg_green",
+		JOB_LIBRARIAN = "itg_green",
+		JOB_WARDEN = "itg_red",
+		JOB_DETECTIVE = "itg_red",
+		JOB_SECURITY_OFFICER = "itg_red",
+		JOB_TALON_GUARD = "itg_red",
+		JOB_ROBOTICIST = "itg_purple",
+		JOB_SCIENTIST = "itg_purple",
+		JOB_XENOBIOLOGIST = "itg_purple",
+		JOB_XENOBOTANIST = "itg_purple",
+		JOB_PATHFINDER = "itg_purple",
+		JOB_EXPLORER = "itg_purple",
+		JOB_CHEMIST = "itg_white",
+		JOB_MEDICAL_DOCTOR = "itg_white",
+		JOB_PARAMEDIC = "itg_white",
+		JOB_PSYCHIATRIST = "itg_white",
+		JOB_FIELD_MEDIC = "itg_white",
+		JOB_TALON_DOCTOR = "itg_white",
+		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
+		JOB_ENGINEER = "itg_orange",
+		JOB_OFFDUTY_OFFICER = "itg_red",
+		JOB_OFFDUTY_ENGINEER = "itg_orange",
+		JOB_OFFDUTY_MEDIC = "itg_white",
+		JOB_OFFDUTY_SCIENTIST = "itg_purple",
+		JOB_OFFDUTY_CARGO = "itg",
+		JOB_OFFDUTY_EXPLORER = "itg_purple",
+		JOB_OFFDUTY_WORKER = "itg_green"
+		)
+		var/guess = jobs_to_icon[user.job]
+
+		if(!guess)
+			to_chat(user, span_notice("ITG Cards do not seem to be able to accept the access codes for your ID."))
+			return
+		else
+			icon_state = guess
+			base_icon_state = guess
 
 	if(!preset_rank)
 		var/title
@@ -366,10 +426,12 @@
 	if(title_strings.len)
 		var/tempname = pick(title_strings)
 		name = tempname + " ([assignment])"
+	else if(polymorphic_type == 2)
+		name = user.name + "'s ITG ID card" + " ([assignment])"
 	else
 		name = user.name + "'s ID card" + " ([assignment])"
 
-	configured = 1
+	configured = TRUE
 	to_chat(user, span_notice("Card settings set."))
 
 /obj/item/card/id/event/attackby(obj/item/I, var/mob/user)
@@ -517,6 +579,7 @@
 
 /obj/item/card/id/event/polymorphic
 	var/base_icon_state
+	polymorphic_type = 1
 
 /obj/item/card/id/event/polymorphic/digest_act(atom/movable/item_storage = null)
 	var/gimmeicon = icon
@@ -524,76 +587,13 @@
 	icon = gimmeicon
 	icon_state = base_icon_state + "_digested"
 
-/obj/item/card/id/event/polymorphic/altcard/attack_self(mob/user)
-	if(configured == 1)
-		return ..()
-	else
-		icon_state = user.job
-		base_icon_state = user.job
-		return ..()
-
 /obj/item/card/id/event/polymorphic/altcard
 	icon = 'icons/obj/card_alt.dmi'
 	base_icon = 'icons/obj/card_alt.dmi'
 	icon_state = "blank"
 	name = "contractor identification card"
 	desc = "An ID card typically used by contractors."
-
-/obj/item/card/id/event/polymorphic/itg/attack_self(mob/user)
-	if(!configured)
-		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
-		JOB_PILOT = "itg",
-		JOB_ALT_VISITOR = "itg",
-		JOB_QUARTERMASTER = "itg",
-		JOB_CARGO_TECHNICIAN = "itg",
-		JOB_SHAFT_MINER = "itg",
-		JOB_INTERN = "itg",
-		JOB_TALON_PILOT = "itg",
-		JOB_TALON_MINER = "itg",
-		JOB_BARTENDER = "itg_green",
-		JOB_BOTANIST = "itg_green",
-		JOB_CHEF = "itg_green",
-		JOB_JANITOR = "itg_green",
-		JOB_CHAPLAIN = "itg_green",
-		JOB_ENTERTAINER = "itg_green",
-		JOB_LIBRARIAN = "itg_green",
-		JOB_WARDEN = "itg_red",
-		JOB_DETECTIVE = "itg_red",
-		JOB_SECURITY_OFFICER = "itg_red",
-		JOB_TALON_GUARD = "itg_red",
-		JOB_ROBOTICIST = "itg_purple",
-		JOB_SCIENTIST = "itg_purple",
-		JOB_XENOBIOLOGIST = "itg_purple",
-		JOB_XENOBOTANIST = "itg_purple",
-		JOB_PATHFINDER = "itg_purple",
-		JOB_EXPLORER = "itg_purple",
-		JOB_CHEMIST = "itg_white",
-		JOB_MEDICAL_DOCTOR = "itg_white",
-		JOB_PARAMEDIC = "itg_white",
-		JOB_PSYCHIATRIST = "itg_white",
-		JOB_FIELD_MEDIC = "itg_white",
-		JOB_TALON_DOCTOR = "itg_white",
-		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
-		JOB_ENGINEER = "itg_orange",
-		JOB_OFFDUTY_OFFICER = "itg_red",
-		JOB_OFFDUTY_ENGINEER = "itg_orange",
-		JOB_OFFDUTY_MEDIC = "itg_white",
-		JOB_OFFDUTY_SCIENTIST = "itg_purple",
-		JOB_OFFDUTY_CARGO = "itg",
-		JOB_OFFDUTY_EXPLORER = "itg_purple",
-		JOB_OFFDUTY_WORKER = "itg_green"
-		)
-		var/guess = jobs_to_icon[user.job]
-
-		if(!guess)
-			to_chat(user, span_notice("ITG Cards do not seem to be able to accept the access codes for your ID."))
-			return
-		else
-			icon_state = guess
-			base_icon_state = guess
-	. = ..()
-	name = user.name + "'s ITG ID card" + " ([assignment])"
-
+	polymorphic_type = 2
 
 /obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
