@@ -1417,6 +1417,7 @@
 #include "code\game\objects\effects\bump_teleporter.dm"
 #include "code\game\objects\effects\client_only_image.dm"
 #include "code\game\objects\effects\confetti_vr.dm"
+#include "code\game\objects\effects\countdown.dm"
 #include "code\game\objects\effects\effect_system.dm"
 #include "code\game\objects\effects\explosion_particles.dm"
 #include "code\game\objects\effects\gibs.dm"
