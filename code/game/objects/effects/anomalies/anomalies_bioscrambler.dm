@@ -22,8 +22,11 @@
 /obj/effect/anomaly/bioscrambler/anomalyEffect(seconds_per_tick)
 	. = ..()
 	if(!COOLDOWN_START(src, pulse_cooldown, pulse_delay))
-		for(var/mob/living/carbon/nearby in viewers(range, src))
-			//nearby.bioscramble()
+		for(var/mob/living/carbon/human/nearby in viewers(range, src))
+			nearby.getarmor(type = BIOACID)
+			randmutb(nearby)
+			domutcheck(nearby, null)
+			balloon_alert(src, "something has changed about you")
 			return
 
 /obj/effect/anomaly/bioscrambler/move_anomaly()

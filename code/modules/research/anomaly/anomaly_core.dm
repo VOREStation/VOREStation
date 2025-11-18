@@ -18,8 +18,28 @@
 	return
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/analyzer))
+	if(istype(W, /obj/item/analyzer/anomaly))
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
+
+	if(istype(W, /obj/item/anomaly_releaser))
+		var/obj/item/anomaly_releaser/releaser = W
+		if(releaser.used)
+			return FALSE
+		if(!do_after(user, 3 SECONDS, src))
+			return FALSE
+
+		var/obj/item/assembly/signaler/anomaly/core = src
+		if(!core.anomaly_type)
+			return FALSE
+
+		var/obj/effect/anomaly/anomaly = new core.anomaly_type(get_turf(core))
+		anomaly.stabilize()
+
+		if(!releaser.infinite)
+			releaser.icon_state = releaser.used_icon_state
+			releaser.used = TRUE
+			releaser.name = "used " + name
+			qdel(src)
 	return ..()
 
 /obj/item/assembly/signaler/anomaly/flux
@@ -51,3 +71,9 @@
 	desc = "The neutralized core of a bioscrambler anomaly. It's squirming, as if moving. It'd probably be valuable for research."
 	icon_state = "bioscrambler_core"
 	anomaly_type = /obj/effect/anomaly/bioscrambler
+
+/obj/item/assembly/signaler/anomaly/hallucination
+	name = "\improper hallucination anomaly core"
+	desc = "The neutralized core of a hallucination anomaly. It seems to be moving, but it's probably your imagination. It'd probably be valuable for research."
+	icon_state = "hallucination_core"
+	anomaly_type = /obj/effect/anomaly/hallucination

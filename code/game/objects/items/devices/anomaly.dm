@@ -24,3 +24,26 @@
 	sparks.set_up(3, 1, src)
 	sparks.start()
 	qdel(src)
+
+/obj/item/analyzer/anomaly
+	icon = 'icons/obj/devices/tool.dmi'
+	icon_state = "multitool_circuit"
+	name = "anomaly scanner"
+	desc = "A device capable of scanning anomalies and it's cores."
+
+/obj/item/anomaly_releaser
+	icon = 'icons/obj/devices/syndie_gadget.dmi'
+	icon_state = "anomaly_releaser"
+	name = "anomaly releaser"
+	desc = "Single-use injector that releases and stabilizes anomalies by injecting an unknown substance."
+	throwforce = 0
+	w_class = ITEMSIZE_SMALL
+	throw_speed = 3
+	throw_range = 5
+
+	///icon state after being used up
+	var/used_icon_state = "anomaly_releaser_used"
+	///are we used? if used we can't be used again
+	var/used = FALSE
+	///Can we be used infinitely?
+	var/infinite = FALSE

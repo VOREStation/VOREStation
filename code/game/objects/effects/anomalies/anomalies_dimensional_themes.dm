@@ -109,7 +109,7 @@
 /datum/dimension_theme/proc/replace_object(obj/object)
 	PROTECTED_PROC(TRUE)
 
-	if(istype(object, /obj/structure/window) && material)
+	if(istype(object, /obj/structure/window) && window_colour)
 		object.color = material.icon_colour
 		return
 
@@ -139,6 +139,14 @@
 			var/obj/machinery/door/airlock/new_airlock = new_object
 			new_airlock.req_access = airlock.req_one_access?.Copy()
 			new_airlock.locked = airlock.locked
+			if(istype(object, /obj/machinery/door/airlock/multi_tile))
+				for(var/turf/location in object.locs)
+					if(location == object.loc)
+						continue
+					var/obj/machinery/door/airlock/long_airlock = new replace_path(location)
+					long_airlock.req_access = airlock.req_one_access?.Copy()
+					long_airlock.locked = airlock.locked
+					long_airlock.name = airlock.name
 		new_object.name = object.name
 	qdel(object)
 
@@ -168,8 +176,8 @@
 	)
 	replace_walls = /turf/simulated/wall/gold
 
-/datum/dimension_theme/uranium
-	name = "Uranium"
+/datum/dimension_theme/radioactive
+	name = "Radioactive"
 	icon_state = "sheet-uranium_2"
 	material = /datum/material/uranium
 	replace_floors = list(/turf/simulated/floor/tiled/material/uranium = 1)
@@ -177,6 +185,7 @@
 		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/uranium = 1),
 	)
 	replace_walls = /turf/simulated/wall/uranium
+	sound = 'sound/items/Welder.ogg'
 
 /datum/dimension_theme/wood
 	name = "Wood"
@@ -190,21 +199,36 @@
 	)
 	replace_walls = /turf/simulated/wall/wood
 /*
-/datum/dimension_theme/flesh
-	name = "Flesh"
-	icon_state = 'icons/obj/food.dmi'
-	icon = "meat"
+/datum/dimension_theme/meat
+	name = "Meat"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "meat"
 	material = /datum/material/flesh
-	replace_floors = list(/turf/simulated/floor/flesh)
-
 
 /datum/dimension_theme/alien
 	name = "Alien"
-	icon_state = 'icons/obj/abductor.dmi'
-	icon = "circuit"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "circuit"
 	replace_floors = list(/turf/simulated/floor/redgrid = 1, /turf/simulated/floor/greengrid = 1, /turf/simulated/floor/bluegrid = 1)
 	replace_objs = list(
 		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/alien = 1),
 		/obj/structure/table = list(/obj/structure/table/alien = 1, /obj/structure/table/alien/blue = 1)
 	)
 */
+/datum/dimension_theme/natural
+	name = "Natural"
+	icon = 'icons/obj/plants.dmi'
+	icon_state = "plant-24"
+	window_colour = "#0b8011ff"
+	replace_floors = list(/turf/simulated/floor/grass = 1)
+	replace_walls = /turf/simulated/wall/wood
+	replace_objs = list(
+		/obj/structure/bed/chair = list(/obj/structure/bed/chair/wood = 3, /obj/structure/bed/chair/wood/wings = 1),
+		/obj/machinery/door/airlock = list(/obj/structure/simple_door/wood = 1),
+	)
+	random_spawns = list(
+		/obj/structure/flora/grass/green = 3,
+		/obj/structure/flora/bush = 3,
+		/mob/living/simple_mob/vore/bee = 1,
+		)
+	random_spawn_chance = 10

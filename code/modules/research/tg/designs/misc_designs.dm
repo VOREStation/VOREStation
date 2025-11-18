@@ -276,3 +276,14 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/anomaly_neutralizer
+	name = "Anomaly Neutralizer"
+	desc = "An advanced tool capable of instantly neutralizing anomalies, designed to capture the fleeting aberrations created by the engine."
+	id = "anomaly_neutralizer"
+	materials = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT, MAT_GOLD = SHEET_MATERIAL_AMOUNT, MAT_PHORON = SHEET_MATERIAL_AMOUNT * 2.5, MAT_URANIUM = SHEET_MATERIAL_AMOUNT)
+	build_type = /obj/item/anomaly_neutralizer
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

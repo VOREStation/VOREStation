@@ -1,6 +1,6 @@
 /datum/anomaly_placer
 	var/static/list/allowed_areas
-	var/list/disallowed_areas = list(
+	var/list/excluded = list(
 		/area/crew_quarters,
 		/area/shuttle,
 		/area/space,
@@ -12,7 +12,7 @@
 	)
 
 /datum/anomaly_placer/proc/find_valid_area()
-	var/list/possible_areas = get_station_areas(disallowed_areas)
+	var/list/possible_areas = get_station_areas(excluded)
 	if(!length(possible_areas))
 		CRASH("No valid areas for anomaly found.")
 
