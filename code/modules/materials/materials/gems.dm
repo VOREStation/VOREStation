@@ -246,7 +246,6 @@
 	explosion_resistance = 13
 	negation = 12
 	spatial_instability = 18
-	luminescence
 	radiation_resistance = 18
 	supply_conversion_value = 12
 	can_sharpen = TRUE
