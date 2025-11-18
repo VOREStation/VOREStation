@@ -301,7 +301,7 @@
 		MAT_SILVER = SHEET_MATERIAL_AMOUNT*2.5,
 		MAT_GOLD = SHEET_MATERIAL_AMOUNT*2.5
 	)
-	build_path = /obj/item/reactive_armor_shell
+	build_path = /obj/item/clothing/suit/armor/reactive_armor_shell
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
