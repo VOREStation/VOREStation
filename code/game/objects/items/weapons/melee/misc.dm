@@ -42,10 +42,10 @@
 	update_icon()
 
 /obj/item/melee/umbrella/attack_self()
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
-	src.toggle_umbrella()
+	toggle_umbrella()
 
 /obj/item/melee/umbrella/proc/toggle_umbrella()
 	open = !open

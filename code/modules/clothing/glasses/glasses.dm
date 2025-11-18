@@ -397,8 +397,8 @@ BLIND     // can't see anything
 	tint = TINT_HEAVY
 	specialty_goggles = TRUE
 
-/obj/item/clothing/glasses/welding/attack_self()
-	. = ..()
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	toggle()
@@ -627,8 +627,8 @@ BLIND     // can't see anything
 	species_restricted = list(SPECIES_TESHARI)
 	specialty_goggles = TRUE
 
-/obj/item/clothing/glasses/aerogelgoggles/attack_self()
-	. = ..()
+/obj/item/clothing/glasses/aerogelgoggles/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	toggle()

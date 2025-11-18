@@ -33,8 +33,8 @@
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 	special_handling = TRUE
 
-/obj/item/clothing/head/welding/attack_self()
-	. = ..()
+/obj/item/clothing/head/welding/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	toggle()

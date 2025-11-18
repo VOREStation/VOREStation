@@ -16,6 +16,8 @@
 	var/cant_open = 0
 	var/cant_chance = 0
 
+	var/is_can = FALSE
+
 	/// Yims
 	food_can_insert_micro = TRUE
 
@@ -131,7 +133,7 @@
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(!is_open_container())
+	if(!is_open_container() && !(is_can && user.a_intent == I_HURT))
 		open(user)
 
 /obj/item/reagent_containers/food/drinks/proc/open(mob/user)

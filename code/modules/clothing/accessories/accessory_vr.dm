@@ -142,8 +142,8 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
-	. = ..()
+/obj/item/clothing/accessory/collar/shock/attack_self(mob/user, flag1)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!ishuman(user))
@@ -642,9 +642,12 @@
 	var/sentientprizeooc = null		//OOC text to show on the SPASM
 	var/sentientprizeitemtf = FALSE	//Whether the person opted in to allowing themselves to be item TF'd as a prize
 	special_handling = TRUE
+	special_collar = TRUE
 
 /obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user)
 	. = ..(user)
+	if(.)
+		return TRUE
 	return TRUE
 	//keeping it blank so people don't tag and reset collar status
 

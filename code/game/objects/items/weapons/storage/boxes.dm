@@ -37,7 +37,9 @@
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/storage/box/attack_self(mob/user)
-	if(..()) return
+	. = ..(user)
+	if(.)
+		return TRUE
 
 	//try to fold it
 	if(ispath(foldable))

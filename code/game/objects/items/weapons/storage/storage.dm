@@ -707,7 +707,7 @@
 	if((user.get_active_hand() == src) || (isrobot(user)) && allow_quick_empty)
 		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))
 			src.quick_empty()
-			return 1
+			return TRUE
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
@@ -793,6 +793,7 @@
 		)
 	var/open_state
 	var/closed_state
+	special_handling = TRUE
 
 /obj/item/storage/trinketbox/update_icon()
 	cut_overlays()
@@ -820,9 +821,11 @@
 	. = ..()
 
 /obj/item/storage/trinketbox/attack_self()
+	. = ..(user)
+	if(.)
+		return TRUE
 	open = !open
 	update_icon()
-	..()
 
 /obj/item/storage/trinketbox/examine(mob/user)
 	. = ..()

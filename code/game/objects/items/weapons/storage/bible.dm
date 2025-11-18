@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	special_handling = TRUE
 
 /obj/item/storage/bible/attack_self(mob/living/carbon/human/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 

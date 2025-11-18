@@ -50,8 +50,8 @@
 	update_icon()
 	pulse(0)
 
-/obj/item/assembly/mousetrap/attack_self(var/mob/living/user)
-	. = ..()
+/obj/item/assembly/mousetrap/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!armed)

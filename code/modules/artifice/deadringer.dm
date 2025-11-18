@@ -30,8 +30,8 @@
 		watchowner = null
 	return
 
-/obj/item/deadringer/attack_self(var/mob/living/user as mob)
-	. = ..()
+/obj/item/deadringer/attack_self(mob/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/mob/living/H = src.loc

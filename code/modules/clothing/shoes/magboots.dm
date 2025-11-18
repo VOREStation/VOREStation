@@ -26,7 +26,7 @@
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
 	. = ..(user)
 	if(.)
-		return
+		return TRUE
 	if(magpulse)
 		item_flags &= ~NOSLIP
 		magpulse = 0
