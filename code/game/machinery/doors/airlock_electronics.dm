@@ -23,8 +23,11 @@
 		return 1
 
 /obj/item/airlock_electronics/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
-		return ..(user)
+		return FALSE
 
 	var/t1 = span_bold("Access control") + "<br>\n"
 

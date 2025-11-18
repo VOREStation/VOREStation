@@ -358,6 +358,7 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	can_click = FALSE
+	special_handling = TRUE
 
 /obj/item/pen/crayon/Initialize(mapload)
 	. = ..()
