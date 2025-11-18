@@ -1,6 +1,0 @@
-author: "Aroliacue"
-delete-after: True
-changes:
-  - rscadd: "Added new HOS gear, available from clothing locker: New red cap, new suit jacket, new cloak (attachable to suit and uniform)"
-  - rscadd: "Added a new colorable cloak, selectable from the loadout (\"flowing cloak\") and purchasable from Big D's Best. The greyscaling is simple at best, apologies."
-  - image: "Added icons for new clothing options, including mob, inhands and obj icons."
