@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "bad typing and runtimes if RnD devices were used before round start"

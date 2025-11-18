@@ -22,12 +22,19 @@ import type {
 
 export const Fabricator = (props) => {
   const { act, data } = useBackend<FabricatorData>();
-  const { fabName, onHold, designs, busy, SHEET_MATERIAL_AMOUNT } = data;
+  const {
+    fabName,
+    onHold,
+    designs,
+    busy,
+    SHEET_MATERIAL_AMOUNT = 0,
+    materials = [],
+  } = data;
 
   // Reduce the material count array to a map of actually available materials.
   const availableMaterials: MaterialMap = {};
 
-  for (const material of data.materials) {
+  for (const material of materials) {
     availableMaterials[material.name] = material.amount;
   }
 
@@ -52,7 +59,7 @@ export const Fabricator = (props) => {
           <Stack.Item>
             <Section>
               <MaterialAccessBar
-                availableMaterials={data.materials}
+                availableMaterials={materials}
                 SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
                 onEjectRequested={(mat: Material, qty: number) =>
                   act('remove_mat', {
