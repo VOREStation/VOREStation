@@ -1940,7 +1940,10 @@ Departamental Swimsuits, for general use
 		translocator_unequip(translocator, user)
 
 /obj/item/clothing/head/fluff/nikki/attack_self(mob/user)
-	..()
+	. = ..(user)
+	if(.)
+		return TRUE
+	..(user, TRUE)
 	if (translocator)
 		translocator.attack_self(user, user)
 		return

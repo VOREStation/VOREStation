@@ -387,7 +387,7 @@
 	else
 		my_tool.set_ready_state(TRUE)
 
-/obj/item/shield_projector/line/exosuit/attack_self(var/mob/living/user)
+/obj/item/shield_projector/line/exosuit/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
 		return TRUE

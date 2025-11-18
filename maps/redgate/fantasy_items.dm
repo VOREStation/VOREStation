@@ -483,6 +483,9 @@
 	. = ..(user, radial_menu_anchor)
 	if(.)
 		return TRUE
+	. = ..(user, radial_menu_anchor)
+	if(.)
+		return TRUE
 	if(loc_network)
 		for(var/obj/item/perfect_tele_beacon/stationary/nb in GLOB.premade_tele_beacons)
 			if(nb.tele_network == loc_network)

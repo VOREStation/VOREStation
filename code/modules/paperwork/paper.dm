@@ -178,8 +178,8 @@
 		add_fingerprint(usr)
 	return
 
-/obj/item/paper/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/paper/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(occult)

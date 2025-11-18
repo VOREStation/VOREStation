@@ -418,16 +418,19 @@
 /obj/item/card/id/centcom/station/fluff/aronai
 	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
-	var/configured = 0
+	can_configure = TRUE
 
 /obj/item/card/id/centcom/station/fluff/aronai/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(configured)
-		return ..()
+		return
 
 	user.set_id_info(src)
 	if(user.mind && user.mind.initial_account)
 		associated_account_number = user.mind.initial_account.account_number
-	configured = 1
+	configured = TRUE
 	to_chat(user, span_notice("Card settings set."))
 
 //Swat43:Fortune Bloise

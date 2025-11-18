@@ -136,7 +136,7 @@
 	QDEL_NULL(bolt)
 	update_icon()
 
-/obj/item/gun/launcher/crossbow/bow/hardlight/attack_self(mob/living/user)
+/obj/item/gun/launcher/crossbow/bow/hardlight/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

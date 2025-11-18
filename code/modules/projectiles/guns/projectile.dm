@@ -232,11 +232,11 @@
 	..()
 	load_ammo(A, user)
 
-/obj/item/gun/projectile/attack_self(mob/user)
+/obj/item/gun/projectile/attack_self(mob/user, callback)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(special_weapon_handling)
+	if(special_weapon_handling && !callback)
 		return FALSE
 	if(firemodes.len > 1)
 		switch_firemodes(user)

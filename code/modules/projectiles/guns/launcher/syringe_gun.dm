@@ -97,7 +97,7 @@
 	darts -= next
 	next = null
 
-/obj/item/gun/launcher/syringe/attack_self(mob/living/user as mob)
+/obj/item/gun/launcher/syringe/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

@@ -30,6 +30,8 @@
 
 /obj/item/gun/energy/sizegun/attack_self(mob/user)
 	. = ..(user)
+	if(.)
+		return TRUE
 	select_size(user)
 
 /obj/item/gun/energy/sizegun/proc/spin_dial()

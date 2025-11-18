@@ -472,11 +472,11 @@
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 	helmet_handling = TRUE
 
-/obj/item/clothing/head/attack_self(mob/user)
+/obj/item/clothing/head/attack_self(mob/user, callback)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(special_handling)
+	if(special_handling && !callback)
 		return FALSE
 	if(light_range)
 		if(!isturf(user.loc))

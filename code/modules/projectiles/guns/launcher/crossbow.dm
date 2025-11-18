@@ -86,7 +86,7 @@
 	update_icon()
 	..()
 
-/obj/item/gun/launcher/crossbow/attack_self(mob/living/user as mob)
+/obj/item/gun/launcher/crossbow/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
 		return TRUE
