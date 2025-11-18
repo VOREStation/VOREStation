@@ -315,8 +315,8 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 	to_chat(M, span_danger("You feel searing heat inside!"))
 
 
-/obj/item/book/tome/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/book/tome/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(!user.canmove || user.stat || user.restrained())
