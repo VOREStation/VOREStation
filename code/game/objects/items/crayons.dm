@@ -198,7 +198,7 @@
 	uses = 0
 
 /obj/item/pen/crayon/marker/mime/attack_self(mob/living/user) //inversion
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
