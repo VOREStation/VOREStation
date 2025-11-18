@@ -304,6 +304,7 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/drone_brain
+	is_digital_robot = TRUE
 
 /obj/item/mmi/digital/robot/Initialize(mapload)
 	. = ..()

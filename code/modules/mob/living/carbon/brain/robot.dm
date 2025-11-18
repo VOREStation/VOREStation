@@ -19,8 +19,3 @@
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
 	to_chat(brainmob, span_notify("You feel slightly disoriented. That's normal when you're little more than a complex circuit."))
 	return
-
-/obj/item/mmi/digital/robot/attack_self(mob/user)
-	. = ..(user)
-	if(.)
-		return TRUE

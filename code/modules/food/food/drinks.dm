@@ -21,6 +21,9 @@
 	/// Yims
 	food_can_insert_micro = TRUE
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/reagent_containers/food/drinks/Initialize(mapload)
 	. = ..()
 	if (prob(cant_chance))
@@ -129,10 +132,12 @@
 /obj/item/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	wash(CLEAN_SCRUB)
 
-/obj/item/reagent_containers/food/drinks/attack_self(mob/user)
+/obj/item/reagent_containers/food/drinks/attack_self(mob/user, special_pass)
 	. = ..(user)
 	if(.)
 		return TRUE
+	if(special_handling && !special_pass)
+		return FALSE
 	if(!is_open_container() && !(is_can && user.a_intent == I_HURT))
 		open(user)
 

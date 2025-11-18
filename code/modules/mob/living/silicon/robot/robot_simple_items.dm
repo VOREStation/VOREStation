@@ -87,6 +87,9 @@
 
 
 /obj/item/robotic_multibelt/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cyborg_integrated_tools || !LAZYLEN(cyborg_integrated_tools))
 		to_chat(user, "Your multibelt is empty!")
 		return
@@ -106,8 +109,6 @@
 		return
 	cut_overlays()
 	assume_selected_item(integrated_tools_by_name[choice])
-
-	..()
 
 /obj/item/robotic_multibelt/proc/assume_selected_item(obj/item/chosen_item)
 	if(!chosen_item)

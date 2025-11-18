@@ -163,7 +163,7 @@
 	name = "handmade blindfold"
 	desc = "A handmade blindfold that covers the eyes, preventing sight."
 
-/obj/item/clothing/accessory/collar/craftable/attack_self(mob/living/user)
+/obj/item/clothing/accessory/collar/craftable/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

@@ -13,7 +13,7 @@
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/disk/botany/attack_self(var/mob/user as mob)
+/obj/item/disk/botany/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

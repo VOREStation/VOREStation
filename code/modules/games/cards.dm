@@ -391,7 +391,7 @@
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 
-/obj/item/pack/attack_self(var/mob/user as mob)
+/obj/item/pack/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
@@ -457,7 +457,7 @@
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/hand/attack_self(var/mob/user as mob)
+/obj/item/hand/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
