@@ -25,7 +25,7 @@
 	dispense_reagents = list(
 		REAGENT_ID_NUTRIMENT, REAGENT_ID_PROTEIN, REAGENT_ID_MILK
 		)
-	import_job = NULL
+	import_job = null
 
 /obj/machinery/chemical_dispenser/biochemistry/full
 	spawn_cartridges = list(
@@ -35,7 +35,7 @@
 		)
 
 /obj/machinery/chemical_dispenser/ert/specialops
-	import_job = NULL
+	import_job = null
 
 /obj/machinery/chemical_dispenser/ert/specialops
 	spawn_cartridges = list(
@@ -75,4 +75,4 @@
 	name = "chemical dispenser"
 	icon_state = "dispenser_2way"
 	desc = "A mysterious machine which can fabricate many chemicals."
-	import_job = NULL
+	import_job = null
