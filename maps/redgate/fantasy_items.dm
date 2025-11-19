@@ -438,6 +438,7 @@
 	icon_state = "kettle"
 	ui_title = "kettle"
 	accept_drinking = 1
+	import_job = NULL
 
 /obj/machinery/chemical_dispenser/kettle/full
 	spawn_cartridges = list(
