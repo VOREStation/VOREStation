@@ -711,7 +711,6 @@
 
 				if(C.installed == 1)
 					C.uninstall()
-				C.installed = 0
 
 		else
 			if(locked)
@@ -894,8 +893,7 @@
 				user.put_in_active_hand(cell)
 				to_chat(user, span_filter_notice("You remove \the [cell]."))
 				cell = null
-				cell_component.wrapped = null
-				cell_component.installed = 0
+				cell_component.uninstall()
 				update_icon()
 			else if(cell_component.installed == -1)
 				cell_component.installed = 0

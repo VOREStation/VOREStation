@@ -66,8 +66,6 @@
 /obj/machinery/autolathe/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	data += rmat.mat_container.tgui_static_data(user)
-
 	var/list/categories = list()
 	var/list/recipes = list()
 	for(var/datum/category_group/autolathe/A in autolathe_recipes.categories)
@@ -89,7 +87,9 @@
 	data["recipes"] = recipes
 	data["categories"] = categories
 
-	data += rmat.mat_container.tgui_static_data(user)
+	var/list/material_data = rmat.mat_container?.tgui_static_data(user)
+	if(material_data)
+		data += material_data
 
 	return data
 
@@ -101,7 +101,10 @@
 /obj/machinery/autolathe/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	data["busy"] = busy
-	data["materials"] = rmat.mat_container.tgui_data(user, TRUE)
+
+	var/list/material_data = rmat.mat_container?.tgui_data(user, TRUE)
+	if(material_data)
+		data["materials"] = material_data
 	data["mat_efficiency"] = mat_efficiency
 	return data
 
