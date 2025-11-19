@@ -77,3 +77,9 @@
 	desc = "The neutralized core of a hallucination anomaly. It seems to be moving, but it's probably your imagination. It'd probably be valuable for research."
 	icon_state = "hallucination_core"
 	anomaly_type = /obj/effect/anomaly/hallucination
+
+/obj/item/assembly/signaler/anomaly/pyro
+	name = "\improper pyroclastic anomaly core"
+	desc = "The neutralized core of a pyroclastic anomaly. It feels warm to the touch. It'd probably be valuable for research."
+	icon_state = "pyro_core"
+	anomaly_type = /obj/effect/anomaly/pyro

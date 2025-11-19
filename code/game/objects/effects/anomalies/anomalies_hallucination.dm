@@ -33,6 +33,9 @@
 	for(var/mob/living/carbon/human/hallucinator in viewers(5, src))
 		to_chat(hallucinator, pick(messages))
 		hallucinator.hallucination += 10
+		if(prob(10))
+			to_chat(hallucinator, span_danger("Your nose bleeds!"))
+			hallucinator.drip(1)
 
 /obj/effect/anomaly/hallucination/detonate()
 	if(isturf(loc))
@@ -41,6 +44,8 @@
 	for(var/mob/living/carbon/human/hallucinator in viewers(10, src))
 		to_chat(hallucinator, pick(messages))
 		hallucinator.hallucination += 25
+		to_chat(hallucinator, span_danger("Your nose bleeds!"))
+		hallucinator.drip(1)
 
 /obj/effect/anomaly/hallucination/proc/generate_decoys()
 	if(!spawn_decoys)

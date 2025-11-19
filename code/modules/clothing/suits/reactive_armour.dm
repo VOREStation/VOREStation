@@ -183,7 +183,40 @@
 
 /obj/item/clothing/suit/armor/reactive/bioscrambling
 
+// Hallucinating
+
 /obj/item/clothing/suit/armor/reactive/hallucinating
+	name = "reactive hallucinating armor"
+	desc = "An experimental suit of armor with sensitive detectors hooked up to the mind of the wearer, sending mind pulses that causes hallucinations around you."
+	cooldown_message = span_danger("The connection is currently out of sync... Recalibrating.")
+	emp_message = span_warning("You feel the backsurge of a mind pulse.")
+	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
+
+/obj/item/clothing/suit/armor/reactive/hallucinating/cooldown_activation(mob/living/carbon/human/owner)
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(1, 1, src)
+	sparks.start()
+	..()
+
+/obj/item/clothing/suit/armor/reactive/hallucinating/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
+	owner.visible_message(span_danger("[src] blocks [attack_text], sending out mental pulses!"))
+	for(var/mob/living/carbon/human/hallucinator in viewers(5, src))
+		if(hallucinator == owner)
+			continue
+		hallucinator.hallucination += 50
+		if(prob(10))
+			to_chat(hallucinator, span_danger("Your nose bleeds!"))
+			hallucinator.drip(1)
+	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
+	return TRUE
+
+/obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
+	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of mental energy into [owner] from the surrounding environment!"))
+	owner.hallucination += 75
+	to_chat(owner, span_danger("Your nose bleeds!"))
+	owner.drip(1)
+	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
+	return TRUE
 
 // When the wearer gets hit, this armor will push people nearby and spawn some blocking objects.
 /obj/item/clothing/suit/armor/reactive/barricade
@@ -268,12 +301,21 @@
 	in_stealth = TRUE
 	owner.visible_message(span_danger("[owner] is hit by [attack_text] in the chest!"))
 	addtimer(CALLBACK(src, PROC_REF(end_stealth), owner), stealth_time)
+	decoy.say("*sidestep")
+	addtimer(CALLBACK(src, PROC_REF(destroy_illusion), decoy), stealth_time)
+	QDEL_IN(decoy, stealth_time)
 	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 	return TRUE
 
 /obj/item/clothing/suit/armor/reactive/stealth/proc/end_stealth(mob/living/carbon/human/owner)
 	in_stealth = FALSE
 	animate(owner, alpha = initial(owner.alpha), time = animation_time)
+
+/obj/item/clothing/suit/armor/reactive/stealth/proc/destroy_illusion(mob/illusion)
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(3, 3, illusion)
+	sparks.start()
+	QDEL_IN(illusion, animation_time)
 
 /obj/item/clothing/suit/armor/reactive/stealth/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
 	if(!isliving(hitby))

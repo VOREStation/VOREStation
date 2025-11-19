@@ -110,7 +110,7 @@
 	PROTECTED_PROC(TRUE)
 
 	if(istype(object, /obj/structure/window) && window_colour)
-		object.color = material.icon_colour
+		object.color = window_colour
 		return
 
 	if(istype(object, /obj/structure/table) && material)
@@ -232,3 +232,24 @@
 		/mob/living/simple_mob/vore/bee = 1,
 		)
 	random_spawn_chance = 10
+
+/datum/dimension_theme/phoron
+	name = "Phoron"
+	icon_state = "sheet-phoron_2"
+	material = /datum/material/phoron
+	replace_floors = list(/turf/simulated/floor/tiled/material/phoron = 1)
+	replace_objs = list(
+		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/phoron = 1),
+	)
+	replace_walls = /turf/simulated/wall/phoron
+
+/datum/dimension_theme/glass
+	name = "Glass"
+	icon_state = "sheet-glass_2"
+	material = /datum/material/glass
+	replace_floors = list(/turf/simulated/floor/glass = 1)
+	replace_objs = list(
+		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/glass = 1),
+		/obj/structure/table = list(/obj/structure/table/glass = 1)
+	)
+	replace_walls = /obj/structure/window/basic/full
