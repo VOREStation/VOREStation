@@ -180,6 +180,7 @@
 	if(ability_master)
 		ability_master.toggle_open(2) //Force it to open on login.
 		//client.screen -= ability_master
+	AddComponent(/datum/component/seethrough_mob)
 
 /mob/Initialize(mapload)
 	. = ..()

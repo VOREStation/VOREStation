@@ -16,16 +16,19 @@
 	/// This is who currently owns the action, and most often, this is who is using the action if it is triggered
 	/// This can be the same as "target" but is not ALWAYS the same - this is set and unset with Grant() and Remove()
 	var/mob/owner
+	/// If False, the owner of this action does not get a hud and cannot activate it on their own
+	var/owner_has_control = TRUE
 	/// Flags that will determine of the owner / user of the action can... use the action
 	var/check_flags = NONE
-	/// Whether the button becomes transparent when it can't be used or just reddened
+	/// Whether the button becomes transparent when it can't be used, or just reddened
 	var/transparent_when_unavailable = TRUE
-	/// List of all mobs that are viewing our action button -> A unique movable for them to view.
+	///List of all mobs that are viewing our action button -> A unique movable for them to view.
 	var/list/viewers = list()
 	/// If TRUE, this action button will be shown to observers / other mobs who view from this action's owner's eyes.
 	/// Used in [/mob/proc/show_other_mob_action_buttons]
-	/// (Not really, this behavior is unimplemented)
 	var/show_to_observers = TRUE
+	/// If observers can click this action at any time, regardless of the owner
+	var/allow_observer_click = FALSE
 
 	/// The style the button's tooltips appear to be
 	var/buttontooltipstyle = ""
@@ -46,6 +49,14 @@
 	/// This is the icon state for any FOREGROUND overlay icons on the button (such as borders)
 	var/overlay_icon_state
 
+	/// full key we are bound to
+	var/full_key
+
+	/// Toggles whether this action is usable or not
+	var/action_disabled = FALSE
+	/// Can this action be shared with our rider?
+	var/can_be_shared = TRUE
+
 /datum/action/New(Target)
 	link_to(Target)
 
@@ -57,16 +68,15 @@
 	if(isatom(target))
 		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
 
-	// if(istype(target, /datum/mind))
-	// 	RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_target_mind_swapped))
+	//if(istype(target, /datum/mind))
+	//	RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_target_mind_swapped))
 
 /datum/action/Destroy()
 	if(owner)
 		Remove(owner)
 	target = null
-	QDEL_LIST_ASSOC_VAL(viewers)
+	QDEL_LIST_ASSOC_VAL(viewers) // Qdel the buttons in the viewers list **NOT THE HUDS**
 	return ..()
-
 
 /// Signal proc that clears any references based on the owner or target deleting
 /// If the owner's deleted, we will simply remove from them, but if the target's deleted, we will self-delete
@@ -79,20 +89,24 @@
 
 /// Grants the action to the passed mob, making it the owner
 /datum/action/proc/Grant(mob/grant_to)
-	if(!grant_to)
+	if(isnull(grant_to))
 		Remove(owner)
 		return
-	if(owner)
-		if(owner == grant_to)
-			return
-		Remove(owner)
-
-	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, grant_to)
-	SEND_SIGNAL(grant_to, COMSIG_MOB_GRANTED_ACTION, src)
+	if(grant_to == owner)
+		return // We already have it
+	var/mob/previous_owner = owner
 	owner = grant_to
+	if(!isnull(previous_owner))
+		Remove(previous_owner)
+	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, owner)
+	SEND_SIGNAL(owner, COMSIG_MOB_GRANTED_ACTION, src)
 	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
-	GiveAction(grant_to)
+	// Register some signals based on our check_flags
+	// so that our button icon updates when relevant
+	if(owner_has_control)
+		RegisterSignal(grant_to, COMSIG_MOB_KEYDOWN, PROC_REF(keydown), override = TRUE)
+		GiveAction(grant_to)
 
 /// Remove the passed mob from being owner of our action
 /datum/action/proc/Remove(mob/remove_from)
@@ -102,30 +116,35 @@
 		if(!hud.mymob)
 			continue
 		HideFrom(hud.mymob)
-	LAZYREMOVE(remove_from.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared
+	LAZYREMOVE(remove_from?.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared
 	viewers = list()
+	UnregisterSignal(remove_from, COMSIG_MOB_KEYDOWN)
 
-	if(owner)
-		SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
-		SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
+	if(isnull(owner))
+		return
+	SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
+	SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
+	UnregisterSignal(owner, COMSIG_QDELETING)
 
-		UnregisterSignal(owner, COMSIG_QDELETING)
-		if(target == owner)
-			RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref))
-
+	if(target == owner)
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref))
+	if (owner == remove_from)
 		owner = null
 
 /// Actually triggers the effects of the action.
 /// Called when the on-screen button is clicked, for example.
-/datum/action/proc/Trigger(trigger_flags)
-	if(!IsAvailable())
+/datum/action/proc/Trigger(mob/clicker, trigger_flags)
+	if(!(trigger_flags & TRIGGER_FORCE_AVAILABLE) && !IsAvailable(feedback = TRUE))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
 	return TRUE
 
-/// Whether our action is currently available to use or not
-/datum/action/proc/IsAvailable()
+/**
+ * Whether our action is currently available to use or not
+ * * feedback - If true this is being called to check if we have any messages to show to the owner
+ */
+/datum/action/proc/IsAvailable(feedback = FALSE)
 	if(!owner)
 		return FALSE
 	if(check_flags & AB_CHECK_RESTRAINED)
@@ -162,6 +181,8 @@
 /datum/action/proc/build_button_icon(atom/movable/screen/movable/action_button/button, update_flags = ALL, force = FALSE)
 	if(!button)
 		return
+
+	button.actiontooltipstyle = buttontooltipstyle
 
 	if(update_flags & UPDATE_BUTTON_NAME)
 		update_button_name(button, force)
@@ -259,6 +280,7 @@
  * force - whether an update is forced regardless of existing status
  */
 /datum/action/proc/update_button_status(atom/movable/screen/movable/action_button/current_button, force = FALSE)
+	current_button.update_keybind_maptext(full_key)
 	if(IsAvailable())
 		current_button.color = rgb(255,255,255,255)
 	else
@@ -303,6 +325,7 @@
 /datum/action/proc/create_button()
 	var/atom/movable/screen/movable/action_button/button = new()
 	button.linked_action = src
+	button.allow_observer_click = allow_observer_click
 	build_button_icon(button, ALL, TRUE)
 	return button
 
@@ -324,7 +347,6 @@
 			return
 
 /// Updates our buttons if our target's icon was updated
-/// Still never triggered lmao
 /datum/action/proc/on_target_icon_update(datum/source, updates, updated)
 	SIGNAL_HANDLER
 
@@ -343,6 +365,40 @@
 	// Force the update if an icon state or overlay change was done
 	build_all_button_icons(update_flag, forced)
 
+/// A general use signal proc that reacts to an event and updates JUST our button's status
+/datum/action/proc/update_status_on_signal(datum/source, new_stat, old_stat)
+	SIGNAL_HANDLER
+
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
+
+/// Signal proc for COMSIG_MIND_TRANSFERRED - for minds, transfers our action to our new mob on mind transfer
+/datum/action/proc/on_target_mind_swapped(datum/mind/source, mob/old_current)
+	SIGNAL_HANDLER
+
+	// Grant() calls Remove() from the existing owner so we're covered on that
+	Grant(source.current)
+
 /// Checks if our action is actively selected. Used for selecting icons primarily.
 /datum/action/proc/is_action_active(atom/movable/screen/movable/action_button/current_button)
 	return FALSE
+
+/datum/action/proc/begin_creating_bind(atom/movable/screen/movable/action_button/current_button, mob/user)
+	if(!current_button || user != owner)
+		return
+	if(!isnull(full_key))
+		full_key = null
+		update_button_status(current_button)
+		return
+	full_key = tgui_input_keycombo(user, "Please bind a key for this action.")
+	update_button_status(current_button)
+
+/datum/action/proc/keydown(mob/source, key, client/client, full_key)
+	SIGNAL_HANDLER
+	if(isnull(full_key) || full_key != src.full_key)
+		return
+	if(istype(source))
+		if(!usr.checkClickCooldown())
+			return
+		else
+			usr.setClickCooldown(1)
+	INVOKE_ASYNC(src, PROC_REF(Trigger))
