@@ -90,7 +90,6 @@
 	var/hand_blood_color
 
 	var/list/flavor_texts = list()
-	var/pulling_punches    // Are you trying not to hurt your opponent?
 	var/robolimb_count = 0 // Total number of external robot parts.
 	var/robobody_count = 0 // Counts torso, groin, and head, if they're robotic
 
@@ -168,9 +167,6 @@
 	var/block_hud
 
 	var/phobias		//For holding a list of phobias
-
-	var/loneliness_stage = 0
-	var/next_loneliness_time = 0
 
 	var/redgate_restricted = FALSE
 	var/hide_headset = FALSE

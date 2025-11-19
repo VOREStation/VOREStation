@@ -166,7 +166,7 @@ About the new airlock wires panel:
 			to_chat(user, span_danger("You feel a powerful shock course through your body!"))
 			user.playsound_local(get_turf(user), get_sfx("sparks"), vol = 75)
 			user.halloss += 10
-			user.stunned += 10
+			user.AdjustStunned(10)
 			return
 	..(user)
 
@@ -498,7 +498,6 @@ About the new airlock wires panel:
 			return
 
 	if(p_open)
-		user.set_machine(src)
 		wires.Interact(user)
 		return
 
@@ -1080,7 +1079,7 @@ About the new airlock wires panel:
 		electronics.conf_access = req_one_access
 		electronics.one_access = 1
 
-/obj/machinery/door/airlock/emp_act(var/severity)
+/obj/machinery/door/airlock/emp_act(severity, recursive)
 	if(prob(40/severity))
 		var/duration = world.time + ((30 / severity) SECONDS)
 		if(duration > electrified_until)

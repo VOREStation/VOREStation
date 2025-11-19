@@ -76,7 +76,7 @@
 
 	C.visible_message(span_danger("\The [user] is attempting to put the leash on \the [C]!"), span_danger("\The [user] tries to put a leash on you"))
 	add_attack_logs(user,C,"Leashed (attempt)")
-	if(!do_mob(user, C, leashtime)) //do_mob adds a progress bar, but then we also check to see if they have a collar
+	if(!do_after(user, leashtime, C)) //do_mob adds a progress bar, but then we also check to see if they have a collar
 		return
 	if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
 		return
@@ -190,7 +190,7 @@
 	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook [leash_pet.p_their()] leash!"), span_danger("You attempt to unhook your leash"))
 	add_attack_logs(leash_master,leash_pet,"Self-unleash (attempt)")
 
-	if(!do_mob(leash_pet, leash_pet, 35))
+	if(!do_after(leash_pet, 3.5 SECONDS, leash_pet))
 		return
 
 	to_chat(leash_pet, span_userdanger("You have been released!"))
@@ -200,7 +200,7 @@
 	leash_pet.visible_message(span_danger("\The [leash_master] is attempting to remove the leash on \the [leash_pet]!"), span_danger("\The [leash_master] tries to remove leash from you"))
 	add_attack_logs(leash_master,leash_pet,"Unleashed (attempt)")
 
-	if(!do_mob(leash_master, leash_pet, 5))
+	if(!do_after(leash_master, 0.5 SECONDS, leash_pet))
 		return
 
 	to_chat(leash_pet, span_userdanger("You have been released!"))

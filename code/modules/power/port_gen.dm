@@ -71,7 +71,7 @@
 		else
 			. += span_notice("The generator is off.")
 
-/obj/machinery/power/port_gen/emp_act(severity)
+/obj/machinery/power/port_gen/emp_act(severity, recursive)
 	var/duration = 6000 //ten minutes
 	switch(severity)
 		if(1)

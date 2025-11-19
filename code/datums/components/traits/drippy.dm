@@ -3,12 +3,15 @@
 	var/blood_color = "#A10808"
 
 /datum/component/drippy/Initialize()
-
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
+/datum/component/drippy/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_component))
 	RegisterSignal(parent, COMSIG_HUMAN_DNA_FINALIZED, PROC_REF(create_color))
+
+/datum/component/drippy/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE, COMSIG_HUMAN_DNA_FINALIZED))
 
 /datum/component/drippy/proc/process_component()
 	SIGNAL_HANDLER
@@ -65,7 +68,3 @@
 	if(ishuman(parent))
 		var/mob/living/carbon/human/temp_human = parent
 		blood_color = rgb(temp_human.r_skin,temp_human.g_skin,temp_human.b_skin)
-
-/datum/component/drippy/Destroy(force = FALSE)
-	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE, COMSIG_HUMAN_DNA_FINALIZED))
-	. = ..()

@@ -96,22 +96,22 @@
 			if(prob(5))
 				owner.AdjustWeakened(5)
 		if("permanent weakness")
-			owner.weakened = max(owner.weakened,10)
+			owner.SetWeakened(max(owner.weakened,10))
 		if("temporary sleeping")
 			if(prob(5))
 				owner.AdjustSleeping(5)
 		if("permanent sleeping")
-			owner.sleeping = max(owner.sleeping+10,10)
+			owner.SetSleeping(max(owner.sleeping+10,10))
 		if("jittery")
 			if(owner.get_jittery() < 100)
 				owner.make_jittery(100)
 		if("paralysed")
-			owner.paralysis = max(owner.paralysis,10)
+			owner.SetParalysis(max(owner.paralysis,10))
 		if("cough")
 			if(prob(3))
 				owner.emote("cough")
 		if("confusion")
-			owner.confused = max(owner.confused,10)
+			owner.SetConfused(max(owner.confused,10))
 
 // Proc for setting all this up for GMs
 
@@ -277,7 +277,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/strengthen_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -318,7 +318,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/remove_growth/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -359,7 +359,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/redirect_vessels/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -400,7 +400,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/extract_object/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -441,7 +441,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/flesh_graft/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -484,7 +484,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/remove_growth_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -527,7 +527,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/redirect_vessels_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -570,7 +570,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/close_holes/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -613,7 +613,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/ultrasound/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
@@ -656,7 +656,7 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/reoxygenate_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))

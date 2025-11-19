@@ -77,19 +77,8 @@
 	return 0
 */
 
-//Certain pieces of armor actually absorb flat amounts of damage from income attacks
-/mob/living/proc/get_armor_soak(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0)
-	var/soaked = getsoak(def_zone, attack_flag)
-	//5 points of armor pen negate one point of soak
-	if(armour_pen)
-		soaked = max(soaked - (armour_pen/5), 0)
-	return soaked
-
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
-	return 0
-
-/mob/living/proc/getsoak(var/def_zone, var/type)
 	return 0
 
 // Clicking with an empty hand
@@ -111,14 +100,9 @@
 		ai_holder.react_to_attack(P.firer)
 
 	//Armor
-	var/soaked = get_armor_soak(def_zone, P.check_armour, P.armor_penetration)
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
 	var/proj_edge = has_edge(P)
-
-	if ((proj_sharp || proj_edge) && (soaked >= round(P.damage*0.8)))
-		proj_sharp = 0
-		proj_edge = 0
 
 	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
 		proj_sharp = 0
@@ -128,13 +112,13 @@
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P, electric = TRUE)
 		if(!P.nodamage)
-			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, sharp=proj_sharp, edge=proj_edge, used_weapon=P, projectile=TRUE)
+			apply_damage(P.damage, P.damage_type, def_zone, absorb, proj_sharp, proj_edge, P, TRUE)
 		qdel(P)
 		return
 
 	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, sharp=proj_sharp, edge=proj_edge, used_weapon=P, projectile=TRUE)
-	P.on_hit(src, absorb, soaked, def_zone)
+		apply_damage(P.damage, P.damage_type, def_zone, absorb, proj_sharp, proj_edge, P, TRUE)
+	P.on_hit(src, absorb, def_zone)
 
 	if(absorb == 100)
 		return 2
@@ -164,8 +148,7 @@
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	  return 0 //only carbon liveforms have this proc
 
-/mob/living/emp_act(severity)
-	var/list/L = src.get_contents()
+/mob/living/emp_act(severity, recursive)
 
 	if(LAZYLEN(modifiers))
 		for(var/datum/modifier/M in modifiers)
@@ -174,9 +157,6 @@
 
 	if(severity == 5)	// Effectively nullified.
 		return
-
-	for(var/obj/O in L)
-		O.emp_act(severity)
 	..()
 
 /mob/living/blob_act(var/obj/structure/blob/B)
@@ -211,13 +191,12 @@
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	//Armor
-	var/soaked = get_armor_soak(def_zone, armor_check, armor_pen)
 	var/absorb = run_armor_check(def_zone, armor_check, armor_pen)
 
 	if(ai_holder)
 		ai_holder.react_to_attack(B)
 
-	apply_damage(damage, damage_type, def_zone, absorb, soaked)
+	apply_damage(damage, damage_type, def_zone, absorb)
 
 /mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	return target_zone
@@ -229,10 +208,9 @@
 	if(ai_holder)
 		ai_holder.react_to_attack(user)
 
-	var/soaked = get_armor_soak(hit_zone, "melee")
 	var/blocked = run_armor_check(hit_zone, "melee")
 
-	standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
+	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
 
 	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
 		var/turf/simulated/location = get_turf(src)
@@ -241,22 +219,18 @@
 	return blocked
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
+/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
 
-	if(getsoak(hit_zone, "melee",) - (I.armor_penetration/5) > round(effective_force*0.8)) //soaking a hit turns sharp attacks into blunt ones
-		weapon_sharp = 0
-		weapon_edge = 0
-
 	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	apply_damage(effective_force, I.damtype, hit_zone, blocked, soaked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
+	apply_damage(effective_force, I.damtype, hit_zone, blocked, weapon_sharp, weapon_edge, I)
 
 	return 1
 
@@ -282,10 +256,9 @@
 
 		src.visible_message(span_filter_warning("[span_red("[src] has been hit by [O].")]"))
 		var/armor = run_armor_check(null, "melee")
-		var/soaked = get_armor_soak(null, "melee")
 
 
-		apply_damage(throw_damage, dtype, null, armor, soaked, is_sharp(O), has_edge(O), O)
+		apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
 		O.throwing = 0		//it hit, so stop moving
 
@@ -310,8 +283,6 @@
 			if(!O || !src) return
 
 			if(O.sharp) //Projectile is suitable for pinning.
-				if(soaked >= round(throw_damage*0.8))
-					return
 
 				//Handles embedding for non-humans and simple_animals.
 				embed(O)

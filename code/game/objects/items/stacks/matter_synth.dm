@@ -22,7 +22,7 @@
 /datum/matter_synth/proc/add_charge(var/amount)
 	energy = min(energy + amount, max_energy)
 
-/datum/matter_synth/proc/emp_act(var/severity)
+/datum/matter_synth/proc/emp_act(severity, recursive)
 	use_charge(max_energy * 0.1 / severity)
 
 /datum/matter_synth/medicine

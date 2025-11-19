@@ -260,3 +260,22 @@ Pipelines + Other Objects -> Pipe network
 	if(user.buckled)
 		user.buckled.unbuckle_mob(user, TRUE)
 	user.throw_at(get_edge_target_turf(user, get_dir(src, user) || pick(GLOB.cardinal)), pressures / 250, pressures / 1250)
+
+/// Blows out a pipe, deconstructing it, breaking the floor and releasing all mobs crawling inside it
+/obj/machinery/atmospherics/proc/blowout(mob/user)
+	// Deconstruct turf
+	var/turf/our_turf = loc
+	if(!our_turf.is_plating() && istype(our_turf,/turf/simulated/floor)) //intact floor, pop the tile
+		var/turf/simulated/floor/our_floor = our_turf
+		our_floor.make_plating(TRUE)
+	// Deconstruct pipe
+	var/datum/gas_mixture/int_air = return_air()
+	var/datum/gas_mixture/env_air = our_turf.return_air()
+	var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
+	deconstruct()
+	// Release pressure
+	playsound(our_turf, 'sound/effects/bang.ogg', 70, 0, 0)
+	playsound(our_turf, 'sound/effects/clang2.ogg', 70, 0, 0)
+	if(internal_pressure > 2*ONE_ATMOSPHERE)
+		unsafe_pressure_release(user, internal_pressure)
+		playsound(our_turf, 'sound/machines/hiss.ogg', 50, 0, 0)

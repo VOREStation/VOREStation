@@ -109,11 +109,6 @@
 	user.update_mob_action_buttons()
 	return 1
 
-/obj/item/flashlight/emp_act(severity)
-	for(var/obj/O in contents)
-		O.emp_act(severity)
-	..()
-
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)

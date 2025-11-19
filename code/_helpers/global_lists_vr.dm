@@ -1183,8 +1183,11 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/circuitboard, \
 	/obj/item/smes_coil, \
 	/obj/item/fuel_assembly, \
-	/obj/item/stack/tile/floor, \
-	/obj/item/stack/hose
+	/obj/item/stack/tile, \
+	/obj/item/stack/hose, \
+	/obj/item/stack/animalhide, \
+	/obj/item/stack/hairlesshide, \
+	/obj/item/stack/wetleather
 
 #define OMNI_GRIPPER \
 	/obj/item
@@ -1304,7 +1307,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/mecha_parts/component
 
 #define SHEET_GRIPPER \
-	/obj/item/stack/material
+	/obj/item/stack/material, \
+	/obj/item/stack/rods
 
 GLOBAL_LIST_INIT(all_borg_multitool_options, list(
 	/obj/item/tool/screwdriver/cyborg,
@@ -1344,3 +1348,34 @@ GLOBAL_LIST_INIT(material_synth_list, list(
 							))
 
 GLOBAL_LIST_EMPTY(virusDB) // Stores discovered viruses
+
+///Medications that speed up your heartrate
+GLOBAL_LIST_INIT(tachycardics, list(
+									REAGENT_ID_COFFEE,
+									REAGENT_ID_INAPROVALINE,
+									REAGENT_ID_HYPERZINE,
+									REAGENT_ID_NITROGLYCERIN,
+									REAGENT_ID_THIRTEENLOKO,
+									REAGENT_ID_NICOTINE
+									))
+
+///Medications that slow down your heartrate
+GLOBAL_LIST_INIT(bradycardics, list(
+									REAGENT_ID_NEUROTOXIN,
+									REAGENT_ID_CRYOXADONE,
+									REAGENT_ID_CLONEXADONE,
+									REAGENT_ID_BLISS,
+									REAGENT_ID_STOXIN,
+									REAGENT_ID_AMBROSIAEXTRACT
+									))
+
+///Medications that stop your heart
+GLOBAL_LIST_INIT(heartstopper, list(
+									REAGENT_ID_POTASSIUMCHLOROPHORIDE,
+									REAGENT_ID_ZOMBIEPOWDER
+									))
+
+///Medications that stop your heart under certain conditions.
+GLOBAL_LIST_INIT(cheartstopper, list(
+									REAGENT_ID_POTASSIUMCHLORIDE
+									))

@@ -6,6 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
@@ -154,14 +155,6 @@
 		return
 	go_out()
 	return
-
-/obj/machinery/recharge_station/emp_act(severity)
-	if(occupant)
-		occupant.emp_act(severity)
-		go_out()
-	if(cell)
-		cell.emp_act(severity)
-	..(severity)
 
 /obj/machinery/recharge_station/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(!occupant)

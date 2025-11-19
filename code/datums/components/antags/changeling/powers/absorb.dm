@@ -61,7 +61,7 @@
 					T.UpdateDamageIcon()
 
 		feedback_add_details("changeling_powers","A[stage]")
-		if(!do_mob(src, T, 150) || G.state != GRAB_KILL)
+		if(!do_after(src, 15 SECONDS, T) || G.state != GRAB_KILL)
 			to_chat(src, span_warning("Our absorption of [T] has been interrupted!"))
 			changeling.isabsorbing = FALSE
 			return

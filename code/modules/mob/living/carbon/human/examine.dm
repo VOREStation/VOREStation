@@ -286,7 +286,8 @@
 
 	if (src.stat)
 		msg += span_warning("[p_Theyre()] not responding to anything around [p_they()] and seems to be asleep.")
-		if((stat == 2 || src.losebreath) && get_dist(user, src) <= 3)
+		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+		if(((stat == 2 || src.losebreath) || !L) && get_dist(user, src) <= 3)
 			msg += span_warning("[p_They()] [user.p_do()] not appear to be breathing.")
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message(span_infoplain(span_bold("[user]") + " checks [src]'s pulse."), span_infoplain("You check [src]'s pulse."))

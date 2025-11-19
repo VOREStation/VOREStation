@@ -489,50 +489,6 @@
 	handle_light()
 	update_icon()
 
-/mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
-	set category = "Abilities.Settings"
-	set name = "Toggle Extra Decals"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_decals))
-		to_chat(src, span_warning("This module does not support decals."))
-		return
-
-	var/extra_message = "Enabled decals:\n"
-	for(var/decal in robotdecal_on)
-		extra_message += decal + "\n"
-
-	var/decal_to_toggle = tgui_input_list(src, "Please select which decal you want to toggle\n[extra_message]", "Decal Toggle", sprite_datum.sprite_decals)
-	if(!decal_to_toggle)
-		return
-
-	decal_to_toggle = lowertext(decal_to_toggle)
-
-	if(robotdecal_on.Find(decal_to_toggle))
-		robotdecal_on -= decal_to_toggle
-		to_chat(src, span_filter_notice("You disable your \"[decal_to_toggle]\" extra apperances."))
-	else
-		robotdecal_on += decal_to_toggle
-		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
-	update_icon()
-
-/mob/living/silicon/robot/verb/flick_robot_animation()
-	set category = "Abilities.Settings"
-	set name = "Flick Animation"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_animations))
-		to_chat(src, span_warning("This module does not support animations."))
-		return
-
-	var/animation_to_play = tgui_input_list(src, "Please select which decal you want to flick", "Flick Decal", sprite_datum.sprite_animations)
-	if(!animation_to_play)
-		return
-
-	flick("[sprite_datum.sprite_icon_state]-[animation_to_play]", src)
-
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
 	set name = "Toggle Glowing Stomach & Accents"
@@ -751,11 +707,10 @@
 					I.brute = C.brute_damage
 					I.burn = C.electronics_damage
 
-				I.loc = src.loc
+				I.forceMove(loc)
 
 				if(C.installed == 1)
 					C.uninstall()
-				C.installed = 0
 
 		else
 			if(locked)
@@ -775,7 +730,7 @@
 			to_chat(user, span_filter_notice("\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here."))
 		else
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			cell = W
 			to_chat(user, span_filter_notice("You insert the power cell."))
 
@@ -938,8 +893,7 @@
 				user.put_in_active_hand(cell)
 				to_chat(user, span_filter_notice("You remove \the [cell]."))
 				cell = null
-				cell_component.wrapped = null
-				cell_component.installed = 0
+				cell_component.uninstall()
 				update_icon()
 			else if(cell_component.installed == -1)
 				cell_component.installed = 0
@@ -1256,7 +1210,7 @@
 	if(cell.charge - (amount + lower_limit) <= 0)
 		return FALSE
 
-	cell.charge -= amount
+	cell.use(amount)
 	return TRUE
 
 /mob/living/silicon/robot/binarycheck()
@@ -1391,7 +1345,7 @@
 	return braintype != BORG_BRAINTYPE_DRONE
 
 
-/mob/living/silicon/robot/drop_item()
+/mob/living/silicon/robot/drop_item(var/atom/Target)
 	if(module_active && istype(module_active,/obj/item/gripper))
 		var/obj/item/gripper/G = module_active
 		G.drop_item_nm()
@@ -1674,3 +1628,8 @@
 	nutrition = 1000
 	to_chat(src, span_warning("You have purged most of the nutrition lingering in your systems."))
 	return TRUE
+
+/mob/living/silicon/robot/proc/get_ui_theme()
+	if(emagged)
+		return "syndicate"
+	return ui_theme

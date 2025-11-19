@@ -17,9 +17,6 @@
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/rotatable)
 
-/obj/structure/closet/crate/can_open()
-	return 1
-
 /obj/structure/closet/crate/can_close()
 	return 1
 
@@ -42,6 +39,8 @@
 	playsound(src, open_sound, 50, 1, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
+	for(var/mob/M in src)
+		M.forceMove(get_turf(src))
 	src.opened = 1
 
 	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, null)
@@ -74,6 +73,8 @@
 
 /obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH) && istype(src,/obj/structure/closet/crate/bin))
+		return ..()
+	else if(W.has_tool_quality(TOOL_WELDER))
 		return ..()
 	else if(opened)
 		if(isrobot(user))
@@ -129,12 +130,22 @@
 			return
 	return
 
+/obj/structure/closet/req_breakout()
+	if(opened || !sealed)
+		return FALSE
+	return TRUE
+
 /obj/structure/closet/crate/secure
 	desc = "A secure crate."
 	name = "Secure crate"
 	closet_appearance = /decl/closet_appearance/crate/secure
 	var/broken = 0
 	var/locked = 1
+
+/obj/structure/closet/crate/secure/req_breakout()
+	if(opened || !locked || !sealed)
+		return FALSE
+	return TRUE
 
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
@@ -212,15 +223,13 @@
 		update_icon()
 		return 1
 
-/obj/structure/closet/crate/secure/emp_act(severity)
-	for(var/obj/O in src)
-		O.emp_act(severity)
+/obj/structure/closet/crate/secure/emp_act(severity, recursive)
 	if(!broken && !opened  && prob(50/severity))
 		if(!locked)
-			locked = 1
+			locked = TRUE
 		else
 			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-			locked = 0
+			locked = FALSE
 	if(!opened && prob(20/severity))
 		if(!locked)
 			open()

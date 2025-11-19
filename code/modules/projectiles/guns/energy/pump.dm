@@ -107,8 +107,8 @@
 		return
 	..()
 
-/obj/item/gun/energy/locked/frontier/emp_act(severity)
-	return ..(severity+2)
+/obj/item/gun/energy/locked/frontier/emp_act(severity, recursive)
+	return ..(severity+2, recursive)
 
 /obj/item/gun/energy/locked/frontier/ex_act() //|rugged|
 	return

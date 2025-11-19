@@ -6,11 +6,12 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	dynamic_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = TRUE
+	flags = AREA_ALWAYS_HAS_GRAVITY
 
 /area/survivalpod/dorms
 	name = "\improper Emergency Shelter Dorm"
 	icon_state = "away1"
-	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_ALWAYS_HAS_GRAVITY
 
 /area/survivalpod/dorms/bathroom
 	name = "\improper Emergency Shelter Bathroom"
@@ -64,6 +65,48 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	else
 		ret += "This capsule has an unknown template stored."
 	return ret
+
+/// Creates and shows to the user a preview of the pod's shape, like the admin load template verb does. However, this one shows valid deploy turfs in blue, and invalid turfs in red.
+/obj/item/survivalcapsule/proc/preview_template(var/mob/user, var/turf/deploy_turf, var/show_doors = FALSE)
+	if(!deploy_turf)
+		return
+	var/preview_render = list()
+	template.preload_size(template.mappath)
+	// Get origin (bottom-left) of shelter template relative to where we are on the map
+	var/turf/origin = locate(user.x - round((template.width)/2) , user.y - round((template.height)/2) , user.z)
+	var/turf/topright = locate(user.x + round((template.width)/2) , user.y + round((template.height)/2) , user.z)
+	if(!origin || !topright)
+		return
+	for(var/turf/S in template.get_affected_turfs(deploy_turf, centered = TRUE))
+		if(template.get_turf_deployability(S, is_ship) != SHELTER_DEPLOY_ALLOWED)
+			preview_render += image('icons/misc/debug_group.dmi',S ,"red")
+		else if(show_doors)
+			var/is_door_here = FALSE
+			for(var/list/door_coord in template.door_locations)
+				// If we're at a spot where a door is going to appear, display a green spot!
+				var/dX = origin.x + door_coord[1] - 1
+				var/dY = origin.y + door_coord[2] - 1
+				if(S.x == dX && S.y == dY)
+					preview_render += image('icons/misc/debug_group.dmi',S ,"green")
+					is_door_here = TRUE
+					break
+			if(!is_door_here)
+				preview_render += image('icons/misc/debug_group.dmi',S ,"blue")
+		else
+			preview_render += image('icons/misc/debug_group.dmi',S ,"blue")
+	user.client.images += preview_render
+	return preview_render
+
+/obj/item/survivalcapsule/proc/remove_preview(var/mob/user, var/list/preview_render, var/fade_time = 1 SECOND)
+	if(fade_time > 0)
+		for(var/image/I in preview_render)
+			animate(I, alpha = 0, fade_time)
+		addtimer(CALLBACK(src, PROC_REF(delete_preview_render), user, preview_render), fade_time, TIMER_DELETE_ME)
+	else
+		delete_preview_render(user, preview_render)
+
+/obj/item/survivalcapsule/proc/delete_preview_render(var/mob/user, var/list/preview_render)
+	user.client.images -= preview_render
 
 /obj/item/survivalcapsule/proc/can_deploy(var/turf/deploy_location, var/turf/above_location)
 	var/status = template.check_deploy(deploy_location, is_ship)
@@ -144,18 +187,49 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 			return
 		var/turf/deploy_location = get_turf(src)
 		// Warn the user in advance if the capsule can't work from where they're standing.
-		if(!can_deploy(get_turf(src), GetAbove(deploy_location)))
+		var/preview_render = preview_template(user, deploy_location)
+		// If there's no preview render, that means it couldn't get the bottom-left or top-right corner of the shelter template area
+		// So this is prooooobably somewhere outside the map bounds!
+		if(!preview_render)
+			loc.visible_message(span_warning("\The [src] is too close to the edge of this map to deploy!"))
 			return
-		loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
-		user.drop_from_inventory(src)
-		used = TRUE
+		if(!can_deploy(get_turf(src), GetAbove(deploy_location)))
+			addtimer(CALLBACK(src, PROC_REF(remove_preview), user, preview_render), 1 SECONDS, TIMER_DELETE_ME)
+			return
+		// We only show where the doors will be on a successful deploy check to avoid player confusion.
+		remove_preview(user, preview_render, 0)
+		preview_render = preview_template(user, deploy_location, show_doors = TRUE)
+		if(tgui_alert(usr,"Confirm location. (The shelter's exterior doors are highlighted in green!)", "Shelter Deploy Confirm",list("No","Yes")) == "Yes")
+			// We might have moved since the last check, so we check again!
+			if(!can_deploy(deploy_location, GetAbove(deploy_location)))
+				used = FALSE
+				return
+			loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
+			user.drop_from_inventory(src)
+			used = TRUE
 
-		addtimer(CALLBACK(src, PROC_REF(deploy_step_one), user), 5 SECONDS, TIMER_DELETE_ME)
+			addtimer(CALLBACK(src, PROC_REF(deploy_step_one), user), 5 SECONDS, TIMER_DELETE_ME)
+		remove_preview(user, preview_render, 0)
 
 /obj/item/survivalcapsule/luxury
 	name = "luxury surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
+
+/obj/item/survivalcapsule/luxuryalt
+	name = "luxury alt surfluid shelter capsule"
+	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
+	template_id = "shelter_luxury_alt"
+
+/obj/item/survivalcapsule/pocketdorm
+	name = "pocket dorm surfluid shelter capsule"
+	desc = "A little dorm programmed into construction nanomachines. There's a license for use printed on the bottom."
+	template_id = "shelter_pocket_dorm"
+
+/obj/item/survivalcapsule/kitchen
+	name = "pocket dorm surfluid shelter capsule"
+	desc = "A kitchen programmed into construction nanomachines. There's a license for use printed on the bottom."
+	template_id = "shelter_kitchen"
 
 /obj/item/survivalcapsule/luxurybar
 	name = "luxury surfluid bar capsule"
@@ -171,6 +245,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "luxury surfluid cafe capsule"
 	desc = "A luxury cafe in a capsule. There's a license for use printed on the bottom."
 	template_id = "shelter_cafe"
+
+/obj/item/survivalcapsule/luxuryrecroom
+	name = "luxury rec room cafe capsule"
+	desc = "A luxury rec room in a capsule. There's a license for use printed on the bottom."
+	template_id = "shelter_luxury_recroom"
 
 /obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
@@ -471,7 +550,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	icon_state = "bed"
 
 /obj/structure/bed/pod/Initialize(mapload)
-	. = ..(mapload, MAT_STEEL, MAT_COTTON)
+	. = ..(mapload, MAT_STEEL, MAT_CLOTH)
 
 //Survival Storage Unit
 /obj/machinery/smartfridge/survival_pod

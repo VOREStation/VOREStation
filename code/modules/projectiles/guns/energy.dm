@@ -110,7 +110,7 @@
 	if(..())
 		update_icon()
 
-/obj/item/gun/energy/emp_act(severity)
+/obj/item/gun/energy/emp_act(severity, recursive)
 	..()
 	update_icon()
 

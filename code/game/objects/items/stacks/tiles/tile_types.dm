@@ -295,6 +295,12 @@
 	icon_state = "tile_white"
 	no_variants = FALSE
 
+/obj/item/stack/tile/floor/purple
+	name = "purple floor tile"
+	singular_name = "purple floor tile"
+	color = COLOR_PURPLE_GRAY
+	no_variants = FALSE
+
 /obj/item/stack/tile/floor/dark
 	name = "dark floor tile"
 	singular_name = "dark floor tile"

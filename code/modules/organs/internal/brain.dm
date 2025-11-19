@@ -120,12 +120,12 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 				brainmob.add_modifier(M.type)
 
 	if(H.mind)
-		H.mind.transfer_to(brainmob)
+		H.mind.transfer_to(brainmob) //mAYBE MAKE THIS FORCE....
 
 	brainmob.languages = H.languages
 
 	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just \a [initial(src.name)]."))
-	callHook("debrain", list(brainmob))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BRAIN_REMOVED, brainmob)
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
 	. = ..()
@@ -146,7 +146,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	var/obj/item/organ/internal/brain/B = src
 	if(istype(B) && owner)
-		if(istype(owner, /mob/living/carbon) && owner.ckey)
+		if(istype(owner, /mob/living/carbon) && (owner.ckey || owner.original_player))
 			B.transfer_identity(owner)
 
 	..()
@@ -159,8 +159,10 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(brainmob)
 		if(brainmob.mind)
 			brainmob.mind.transfer_to(target)
+			target.languages = brainmob.languages
 		else
 			target.key = brainmob.key
+			target.languages = brainmob.languages
 	..()
 
 /obj/item/organ/internal/brain/proc/get_control_efficiency()

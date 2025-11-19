@@ -130,17 +130,12 @@
 	. += ""
 	. += show_silenced()
 
-/mob/living/silicon/pai/check_eye(var/mob/user as mob)
-	if (!src.current)
-		return -1
-	return 0
-
 /mob/living/silicon/pai/restrained()
 	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
-/mob/living/silicon/pai/emp_act(severity)
+/mob/living/silicon/pai/emp_act(severity, recursive)
 	// Silence for 2 minutes
 	// 20% chance to damage critical components
 	// 50% chance to damage a non critical component
@@ -176,16 +171,13 @@
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
-		src.unset_machine()
 		src.reset_perspective()
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
 	// ok, we're alive, camera is good and in our network...
-
-	src.set_machine(src)
 	src.current = C
-	src.AddComponent(/datum/component/remote_view, C)
+	src.AddComponent(/datum/component/remote_view, focused_on = C, vconfig_path = /datum/remote_view_config/camera_standard)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
@@ -204,9 +196,11 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_perspective()
-	src.unset_machine()
-	src.cameraFollow = null
+	reset_perspective()
+
+/mob/living/silicon/pai/reset_perspective(atom/new_eye)
+	. = ..()
+	current = null
 
 // Procs/code after this point is used to convert the stationary pai item into a
 // mobile pai mob. This also includes handling some of the general shit that can occur
