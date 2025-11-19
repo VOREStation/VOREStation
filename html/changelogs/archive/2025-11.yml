@@ -277,3 +277,6 @@
   - image: Added icons for new clothing options, including mob, inhands and obj icons.
   Kashargul:
   - bugfix: bad typing and runtimes if RnD devices were used before round start
+2025-11-19:
+  Will:
+  - bugfix: Fixes an entertainment monitor runtime
