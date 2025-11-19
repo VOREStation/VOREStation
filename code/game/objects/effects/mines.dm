@@ -320,7 +320,7 @@
 	var/list/allowed_gadgets = null
 
 /obj/item/mine/attack_self(mob/user)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	add_fingerprint(user)

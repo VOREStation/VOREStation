@@ -12,7 +12,7 @@
 	var/obj/item/disk/nuclear/the_disk = null
 	var/active = 0
 
-	///TODO: Clear up click code entirely. This is used exclusively for do_after
+	///TODO: Clear up click code entirely. This is used exclusively for attack_self
 	var/nuclear = FALSE
 	var/shuttle = FALSE
 

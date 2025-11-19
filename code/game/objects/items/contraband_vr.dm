@@ -109,8 +109,8 @@
 	icon = 'icons/obj/contraband_vr.dmi'
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/miscdisc/attack_self(mob/living/user as mob)
-	. = ..()
+/obj/item/miscdisc/attack_self(mob/living/user)
+	. = ..(user)
 	if(.)
 		return TRUE
 	to_chat(user, "As you hold the large disc in your open palm, fingers cusped around the edge, the crystal embedded in the item begins to vibrate. It lifts itself from the disc a few cenimetres, before beginning to glow with a bright red light. The glow lasts for a few seconds, before the crystal embeds itself back into the disc with a quick snap.")

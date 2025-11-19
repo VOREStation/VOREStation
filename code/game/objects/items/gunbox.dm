@@ -10,7 +10,7 @@
 	///If the gunbox has custom attack_self code
 	var/variant_gunbox = FALSE
 /obj/item/gunbox/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	if(variant_gunbox)
@@ -37,7 +37,7 @@
 	desc = "A secure box containing a non-lethal sidearm."
 	variant_gunbox = TRUE
 /obj/item/gunbox/stun/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/list/options = list()
@@ -61,7 +61,7 @@
 	w_class = ITEMSIZE_HUGE
 	variant_gunbox = TRUE
 /obj/item/gunbox/centcom/attack_self(mob/living/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	var/list/options = list()

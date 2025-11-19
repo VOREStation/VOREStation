@@ -62,8 +62,8 @@
 
 	qdel(src)
 
-/obj/item/a_gift/attack_self(mob/M as mob)
-	. = ..()
+/obj/item/a_gift/attack_self(mob/M)
+	. = ..(M)
 	if(.)
 		return TRUE
 	var/gift_type = pick(

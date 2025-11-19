@@ -116,7 +116,7 @@
 		..()
 
 /obj/item/areaeditor/attack_self(mob/user) //Convert this to TGUI some time.
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	add_fingerprint(user)
@@ -180,7 +180,7 @@
 	var/legend = 1
 
 /obj/item/wire_reader/attack_self(mob/user) //Convert this to TGUI some time.
-	. = ..()
+	. = ..(user)
 	if(.)
 		return TRUE
 	add_fingerprint(user)
