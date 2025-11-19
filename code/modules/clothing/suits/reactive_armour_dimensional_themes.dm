@@ -5,7 +5,7 @@
 	var/datum/material/material
 	var/turf/replace_floor = /turf/simulated/floor/tiled
 	var/turf/replace_wall = /turf/simulated/wall
-	var/obj/barricade = /obj/structure/table/steel
+	var/obj/barricade = /obj/structure/barricade
 	var/barricade_anchored = TRUE
 
 /datum/armour_dimensional_theme/proc/apply_random(turf/source, dangerous = FALSE)
@@ -46,26 +46,26 @@
 
 /datum/armour_dimensional_theme/proc/place_barriers(turf/source, list/target_area)
 	target_area -= source
-	for (var/turf/check_turf as anything in target_area)
+	for(var/turf/check_turf as anything in target_area)
 		if (!check_turf.density)
 			continue
 		target_area -= check_turf
 
 	var/to_place = rand(MIN_BARRIERS, MAX_BARRIERS)
 	var/list/custom_materials = list()
-	if (material)
+	if(material)
 		custom_materials = list(GET_MATERIAL_REF(material) = SHEET_MATERIAL_AMOUNT)
 
-	while (target_area.len > 0 && to_place > 0)
+	while(target_area.len > 0 && to_place > 0)
 		var/turf/place_turf = pick(target_area)
 		place_barrier(place_turf, custom_materials)
 		target_area -= place_turf
 		to_place--
 
-/datum/armour_dimensional_theme/proc/place_barrier(turf/source, list/materials)
-	var/obj/structure/barricade/placed_barricade = new barricade(source, material)
-	if (barricade_anchored)
-		placed_barricade.anchored = TRUE
+/datum/armour_dimensional_theme/proc/place_barrier(turf/source)
+	var/obj/structure/barricade/placed_barricade = new barricade(source, material.name)
+	if(!barricade_anchored)
+		placed_barricade.anchored = FALSE
 
 /datum/armour_dimensional_theme/safe
 
@@ -75,13 +75,22 @@
 	barricade = /obj/structure/barricade
 	material = /datum/material/wood
 
+/datum/armour_dimensional_theme/safe/snow
+	replace_wall = /turf/simulated/wall/snowbrick
+	replace_floor = /turf/simulated/floor/snow
+	material = /datum/material/snow
+
 /datum/armour_dimensional_theme/dangerous
 
 /datum/armour_dimensional_theme/dangerous/radioactive
 	replace_wall = /turf/simulated/wall/uranium
 	replace_floor = /turf/simulated/floor/tiled/material/uranium
-	barricade = /obj/structure/barricade
 	material = /datum/material/uranium
+
+/datum/armour_dimensional_theme/dangerous/phoron
+	replace_wall = /turf/simulated/wall/phoron
+	replace_floor = /turf/simulated/floor/tiled/material/phoron
+	material = /datum/material/phoron
 
 #undef MAX_BARRIERS
 #undef MIN_BARRIERS

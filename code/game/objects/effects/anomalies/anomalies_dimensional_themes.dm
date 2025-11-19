@@ -253,3 +253,12 @@
 		/obj/structure/table = list(/obj/structure/table/glass = 1)
 	)
 	replace_walls = /obj/structure/window/basic/full
+
+/datum/dimension_theme/snow
+	name = "Snow"
+	icon_state = "sheet-snow_2"
+	material = /datum/material/snow
+	replace_floors = list(/turf/simulated/floor/snow = 10, /turf/simulated/floor/outdoors/ice = 1)
+	replace_objs = list(
+		/obj/machinery/door/airlock = list(/obj/structure/simple_door/)
+	)

@@ -10,7 +10,7 @@
 		/obj/effect/anomaly/grav = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux = /obj/item/clothing/suit/armor/reactive/tesla,
 		/obj/effect/anomaly/bluespace = /obj/item/clothing/suit/armor/reactive/teleport,
-		/obj/effect/anomaly/bioscrambler = /obj/item/clothing/suit/armor/reactive/bioscrambling,
+		//obj/effect/anomaly/bioscrambler = /obj/item/clothing/suit/armor/reactive/bioscrambling,
 		/obj/effect/anomaly/hallucination = /obj/item/clothing/suit/armor/reactive/hallucinating,
 		/obj/effect/anomaly/dimensional = /obj/item/clothing/suit/armor/reactive/barricade
 	)
@@ -31,7 +31,7 @@
 	desc = "Doesn't seem to do much for some reason."
 	icon_state = "reactiveoff"
 	blood_overlay_type = "armor"
-	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 35, laser = 35, energy = 10, bomb = 10, bio = 0, rad = 0)
 	var/hit_reaction_chance = 50
 	///Whether the armor will try to react to hits (is it on)
 	var/active = FALSE
@@ -181,6 +181,7 @@
 	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 	return TRUE
 
+// Sure we could, but- Not really THAT useful. Give them the stealth one.
 /obj/item/clothing/suit/armor/reactive/bioscrambling
 
 // Hallucinating
@@ -200,7 +201,7 @@
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
 	owner.visible_message(span_danger("[src] blocks [attack_text], sending out mental pulses!"))
-	for(var/mob/living/carbon/human/hallucinator in viewers(5, src))
+	for(var/mob/living/carbon/human/hallucinator in viewers(5, get_turf(src)))
 		if(hallucinator == owner)
 			continue
 		hallucinator.hallucination += 50
