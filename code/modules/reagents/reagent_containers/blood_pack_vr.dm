@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/blood/attack_self(mob/living/user as mob)
+/obj/item/reagent_containers/blood/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
 		return TRUE

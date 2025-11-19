@@ -98,7 +98,7 @@
 		else
 			. += span_warning("The blade does not have a power source installed.")
 
-/obj/item/melee/energy/attack_self(mob/living/user as mob)
+/obj/item/melee/energy/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
 		return TRUE

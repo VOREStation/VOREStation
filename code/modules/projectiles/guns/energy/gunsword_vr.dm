@@ -95,7 +95,7 @@
 	attack_verb = null
 
 
-/obj/item/cell/device/weapon/gunsword/attack_self(mob/living/user as mob)
+/obj/item/cell/device/weapon/gunsword/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
 		return TRUE
