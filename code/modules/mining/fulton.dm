@@ -143,7 +143,7 @@
 
 /obj/item/fulton_core/attack_self(mob/user)
 	var/turf/T = get_turf(user)
-	if(do_after(user, 15, target = user) && !QDELETED(src))
+	if(do_after(user, 1.5 SECONDS, target = user) && !QDELETED(src))
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
 
