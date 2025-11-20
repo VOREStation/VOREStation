@@ -54,6 +54,11 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
+	// Transform to next bin type
+	if(Adjacent(user) && anchored && panel_open && I.has_tool_quality(TOOL_MULTITOOL))
+		alter_bin_type(user)
+		return
+
 	add_fingerprint(user)
 	if(mode <= DISPOSALMODE_OFF) // It's off
 		if(I.has_tool_quality(TOOL_SCREWDRIVER))
@@ -147,6 +152,51 @@
 
 	user.visible_message("[user] places \the [I] into the [src].",  "You place \the [I] into the [src].","Ca-Clunk")
 	update()
+
+// Transform into next machine type
+/obj/machinery/disposal/proc/alter_bin_type(mob/user)
+	if(contents.len > 0)
+		to_chat(user, "Eject the items first!")
+		return
+	// Get what we want to turn into
+	var/nametag
+	var/new_disposal_path
+	var/result = tgui_input_list(user, "What do you want to reconfigure the disposal bin to?", "Multitool-Disposal interface", list("Standard", "Wall", "Wall Cleaner", "Mail Destination", "Danger", "Turn-In"))
+	switch(result)
+		if("Standard")
+			new_disposal_path = /obj/machinery/disposal
+		if("Wall")
+			new_disposal_path = /obj/machinery/disposal/wall
+		if("Wall Cleaner")
+			new_disposal_path = /obj/machinery/disposal/wall/cleaner
+		if("Mail Destination")
+			new_disposal_path = /obj/machinery/disposal/mail_reciever
+			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convience.", "Mail Destination")
+		if("Danger")
+			new_disposal_path = /obj/machinery/disposal/burn_pit
+		if("Turn-In")
+			new_disposal_path = /obj/machinery/disposal/turn_in
+	if(!new_disposal_path || new_disposal_path == type)
+		return
+	if(!Adjacent(user) || !anchored || !panel_open || contents.len > 0)
+		return
+	// Make new bin
+	var/obj/machinery/disposal/new_bin = new new_disposal_path(loc)
+	if(nametag) // mailer only
+		new_bin.name = "[initial(new_bin.name)]([nametag])"
+	new_bin.stat = stat
+	new_bin.panel_open = TRUE
+	new_bin.anchored = TRUE
+	new_bin.update_icon()
+	// Effects
+	playsound(new_bin, 'sound/items/jaws_cut.ogg', 50, 1)
+	playsound(new_bin, 'sound/machines/machine_die_short.ogg', 50, 1)
+	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system.set_up(5, 0, new_bin)
+	spark_system.attach(new_bin)
+	spark_system.start()
+	// Cleanup
+	qdel(src)
 
 // mouse drop another mob or self
 //
@@ -479,6 +529,25 @@
 			flushed_item.wash(CLEAN_WASH)
 
 	. = ..()
+
+
+// Gets mail
+/obj/machinery/disposal/mail_reciever
+	name = "disposal mail destination"
+	desc = "A pneumatic waste disposal unit. This unit is marked for receiving mail."
+	icon = 'icons/obj/pipes/disposal_mail.dmi'
+
+// Incin/space
+/obj/machinery/disposal/burn_pit
+	name = "disposal(danger)"
+	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped directly into space."
+	icon = 'icons/obj/pipes/disposal_burn.dmi'
+
+// Amnesty box
+/obj/machinery/disposal/turn_in
+	name = "amnesty bin"
+	desc = "A pneumatic waste disposal unit. A place to legally turn in contraban to security."
+	icon = 'icons/obj/pipes/disposal_amnesty.dmi'
 
 #undef DISPOSALMODE_EJECTONLY
 #undef DISPOSALMODE_OFF

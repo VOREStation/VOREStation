@@ -145,7 +145,7 @@
 		sort_scan = TRUE
 
 /obj/structure/disposalpipe/sortjunction/transfer(obj/structure/disposalholder/H)
-	var/nextdir = nextdir(H.dir, H.destinationTag)
+	var/nextdir = nextdir(H.dir, check_corpse_sorter(H))
 	H.set_dir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
@@ -195,3 +195,53 @@
 
 /obj/structure/disposalpipe/sortjunction/untagged/flipped
 	icon_state = "pipe-j2s"
+
+//junction that filters bodies and IDs
+/obj/structure/disposalpipe/sortjunction/bodies
+	name = "body recovery junction"
+	desc = "An underfloor disposal pipe which filters out detectable bodies, living or soon to be dead. Also diverts anything containing an ID."
+	subtype = DISPOSAL_SORT_BODIES
+
+/obj/structure/disposalpipe/sortjunction/bodies/divert_check(var/checkTag)
+	return checkTag == "corpse"
+
+/obj/structure/disposalpipe/sortjunction/bodies/flipped
+	icon_state = "pipe-j2s"
+
+/obj/structure/disposalpipe/sortjunction/proc/check_corpse_sorter(var/obj/structure/disposalholder/H)
+	var/detectedtag = H.destinationTag
+	if(istype(src,/obj/structure/disposalpipe/sortjunction/bodies) && detectedtag == "")
+		for(var/mob/living/L in H)
+			if(istype(L,/mob/living/carbon)) // only living carbons count not silicons
+				detectedtag = "corpse"
+				break
+		// Check for microholders, you can't skip the system this way either!
+		var/obj/item/holder/hold = null
+		for(var/obj/item/holder/hl in H)
+			if(!isnull(hl.held_mob) && istype(hl.held_mob,/mob/living/carbon))
+				hold = hl
+				break
+		if(!isnull(hold))
+			detectedtag = "corpse"
+		else
+			// check ID validity
+			var/obj/item/card/foundid = null
+			for(var/obj/item/card/id in H) // send these to medical body disposal as well
+				foundid = id
+				break
+			for(var/obj/item/pda/P in H)
+				if(!isnull(P.id)) // send these to medical body disposal as well
+					foundid = P.id
+					break
+			for(var/obj/item/storage in H)
+				for(var/obj/item/pda/P in storage.contents)
+					if(!isnull(P.id)) // send these to medical body disposal as well
+						foundid = P.id
+						break
+				for(var/obj/item/card/id in storage.contents)
+					foundid = id // check simple storages for idcards! one level deep only!
+					break
+			// check ID validity
+			if(!isnull(foundid) && !istype(foundid,/obj/item/card/id/guest))
+				detectedtag = "corpse"
+	return detectedtag
