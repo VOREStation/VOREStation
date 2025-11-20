@@ -8,7 +8,7 @@
 /obj/item/assembly/signaler/anomaly/receive_signal(datum/signal/signal)
 	if(!signal)
 		return FALSE
-	if(signal.data["code"] != code)
+	if(signal.encryption != code)
 		return FALSE
 	for(var/obj/effect/anomaly/anomaly in get_turf(src))
 		anomaly.anomalyNeutralize()
@@ -20,6 +20,7 @@
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/analyzer/anomaly))
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
+		return TRUE
 
 	if(istype(W, /obj/item/anomaly_releaser))
 		var/obj/item/anomaly_releaser/releaser = W

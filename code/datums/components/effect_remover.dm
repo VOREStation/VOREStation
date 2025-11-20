@@ -32,22 +32,20 @@
 	return ..()
 
 /datum/component/effect_remover/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK, PROC_REF(try_remove_effect))
+	RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK, PROC_REF(remove_effect))
 
 /datum/component/effect_remover/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_PRE_ATTACK)
 
-/datum/component/effect_remover/proc/try_remove_effect(datum/source, atom/target, mob/living/user, params)
+/datum/component/effect_remover/proc/remove_effect(datum/source, atom/target, mob/living/user, params)
 	SIGNAL_HANDLER
 
 	if(!isliving(user))
 		return NONE
 
-	if(is_type_in_typecache(target, effects_we_clear))
-		INVOKE_ASYNC(src, PROC_REF(do_remove_effects), target, user)
+	if(!is_type_in_list(target, effects_we_clear))
 		return
 
-/datum/component/effect_remover/proc/do_remove_effects(obj/effect/target, mob/living/user)
 	if(time_to_remove && !do_after(user, time_to_remove, target))
 		return
 

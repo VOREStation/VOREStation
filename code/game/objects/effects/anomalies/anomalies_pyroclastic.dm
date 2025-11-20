@@ -19,7 +19,7 @@
 		ticks -= releasedelay
 	var/turf/simulated/floor/tile = get_turf(src)
 	if(istype(tile))
-		tile.assume_gas(GAS_VOLATILE_FUEL, 10, T20C)
+		tile.assume_gas(GAS_PHORON, 10, T20C)
 		tile.hotspot_expose(700, 400)
 	return TRUE
 
@@ -29,7 +29,7 @@
 /obj/effect/anomaly/pyro/proc/makepyroslime()
 	var/turf/simulated/floor/tile = get_turf(src)
 	if(istype(tile))
-		tile.assume_gas(GAS_VOLATILE_FUEL, 10, T20C)
+		tile.assume_gas(GAS_PHORON, 10, T20C)
 		tile.hotspot_expose(700, 400)
 
 	var/new_colour = pick(/mob/living/simple_mob/slime/xenobio/red, /mob/living/simple_mob/slime/xenobio/orange)

@@ -122,7 +122,7 @@
 	owner.visible_message(span_danger("[src] blocks [attack_text], converting the attack into a wave of force!"))
 	var/turf/owner_turf = get_turf(owner)
 	var/list/thrown_items = list()
-	for(var/atom/movable/repulsed in range(owner_turf, 7))
+	for(var/atom/movable/repulsed in range(owner_turf, 5))
 		if(repulsed == owner || repulsed.anchored || thrown_items[repulsed])
 			continue
 		var/throwtarget = get_edge_target_turf(owner_turf, get_dir(owner_turf, get_step_away(repulsed, owner_turf)))
@@ -137,7 +137,7 @@
 	owner.visible_message(span_danger("[src] does not block [attack_text], and instead generates an attracting force!"))
 	var/turf/owner_turf = get_turf(owner)
 	var/list/thrown_items = list()
-	for(var/atom/movable/repulsed in range(owner_turf, 7))
+	for(var/atom/movable/repulsed in range(owner_turf, 5))
 		if(repulsed == owner || repulsed.anchored || thrown_items[repulsed])
 			continue
 		repulsed.throw_at(owner, 10, 1)
