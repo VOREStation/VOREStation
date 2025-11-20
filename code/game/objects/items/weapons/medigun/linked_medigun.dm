@@ -42,7 +42,10 @@
 		to_chat(user, span_warning("Please keep your hands free!"))
 		return TRUE
 
-	if(user.incapacitated(INCAPACITATION_ALL))
+	if(user.is_incorporeal())
+		return TRUE
+
+	if(user.incapacitated(INCAPACITATION_DEFAULT | INCAPACITATION_KNOCKDOWN | INCAPACITATION_DISABLED | INCAPACITATION_KNOCKOUT | INCAPACITATION_STUNNED | INCAPACITATION_RESTRAINED))
 		return TRUE
 
 	if(user.stat)
@@ -158,8 +161,16 @@
 			process_medigun(H, user, filter)
 			return
 		var/lastier = medigun_base_unit.slaser.get_rating()
-		//if(lastier >= 5)
-		H.add_modifier(/datum/modifier/medbeameffect, 2 SECONDS)
+		if(lastier >= 2)
+			if(checked_use(5))
+				H.add_modifier(/datum/modifier/medbeameffect, 2 SECONDS)
+			if(H.getHalLoss() && checked_use(5))
+				H.adjustHalLoss(-20)
+			if(H.weakened && checked_use(5))
+				H.AdjustWeakened(-1)
+			if(lastier >= 3)
+				if(H.paralysis && (checked_use(15)))
+					H.AdjustParalysis(-1)
 
 		var/healmod = lastier
 		/*if(H.getBruteLoss())
