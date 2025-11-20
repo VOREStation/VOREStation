@@ -16,7 +16,8 @@ GLOBAL_LIST_INIT(allowed_recharger_devices, list(
 	/obj/item/paicard,
 	/obj/item/personal_shield_generator,
 	/obj/item/gun/projectile/cell_loaded,
-	/obj/item/ammo_magazine/cell_mag
+	/obj/item/ammo_magazine/cell_mag,
+	/obj/item/medigun_backpack
 	))
 
 GLOBAL_LIST_INIT(allowed_wallcharger_devices, list(
