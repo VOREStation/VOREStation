@@ -95,7 +95,7 @@
 		move_chance = 0
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/analyzer/anomaly))
+	if(istype(I, /obj/item/analyzer))
 		if(anomaly_core)
 			to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(anomaly_core.frequency)], code [anomaly_core.code]."))
 			return TRUE

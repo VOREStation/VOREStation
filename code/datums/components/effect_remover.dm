@@ -21,8 +21,8 @@
 		stack_trace("[type] was instantiated without any valid removable effects!")
 		return COMPONENT_INCOMPATIBLE
 
-	src.success_feedback = success_feedback
-	src.success_forcesay = success_forcesay
+	//src.success_feedback = success_feedback
+	//src.success_forcesay = success_forcesay
 	src.on_clear_callback = on_clear_callback
 	src.effects_we_clear = typecacheof(effects_we_clear)
 	src.time_to_remove = time_to_remove
@@ -48,16 +48,18 @@
 		return
 
 /datum/component/effect_remover/proc/do_remove_effects(obj/effect/target, mob/living/user)
+/* Grah- Might have to get this revised, later on.
 	if(time_to_remove && !do_after(user, time_to_remove, target))
 		return
-
 	var/obj/item/item_parent = parent
 	if(success_forcesay)
 		user.say(success_forcesay)
 	if(success_feedback)
 		var/real_feedback = replacetext(success_feedback, "%THEEFFECT", "\the [target]")
 		real_feedback = replacetext(real_feedback, "%THEWEAPON", "\the [item_parent]")
+		user.balloon_alert()
 		to_chat(user, span_notice(real_feedback))
+*/
 	on_clear_callback?.Invoke(target, user)
 
 	if(!QDELETED(target))

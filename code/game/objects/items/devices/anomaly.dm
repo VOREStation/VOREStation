@@ -25,12 +25,6 @@
 	sparks.start()
 	qdel(src)
 
-/obj/item/analyzer/anomaly
-	icon = 'icons/obj/devices/tool.dmi'
-	icon_state = "multitool_circuit"
-	name = "anomaly scanner"
-	desc = "A device capable of scanning anomalies and it's cores."
-
 /obj/item/anomaly_releaser
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "anomaly_releaser"

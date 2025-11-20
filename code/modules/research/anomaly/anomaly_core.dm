@@ -4,6 +4,12 @@
 	icon_state = "anomaly_core"
 
 	var/anomaly_type = /obj/effect/anomaly
+	var/worth = 200 // Pricey... Should be hard-ish to obtain.
+
+/obj/item/assembly/signaler/anomaly/Initialize(mapload)
+	. = ..()
+	if(worth)
+		AddElement(/datum/element/sellable)
 
 /obj/item/assembly/signaler/anomaly/receive_signal(datum/signal/signal)
 	if(!signal)

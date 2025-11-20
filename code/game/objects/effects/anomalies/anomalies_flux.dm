@@ -32,6 +32,14 @@
 /obj/effect/anomaly/flux/Bumped(atom/movable/AM)
 	mobShock(AM)
 
+/obj/effect/anomaly/flux/attack_hand(mob/living/user)
+	mobShock(user)
+	. = ..()
+
+/obj/effect/anomaly/flux/attackby(obj/item/I, mob/user)
+	mobShock(user)
+	. = ..()
+
 /obj/effect/anomaly/flux/proc/mobShock(mob/living/M)
 	if(canshock && istype(M))
 		canshock = FALSE
