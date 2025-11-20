@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Button,
@@ -37,8 +37,6 @@ const SizeChange = (props: {
   const roundedSize = Math.round(current_size * 10000) / 100;
 
   const [targetSize, setTargetSize] = useState(roundedSize);
-
-  useEffect;
 
   return (
     <LabeledList.Item label="Resize">
