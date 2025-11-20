@@ -4,7 +4,7 @@
 	icon_state = "anomaly_core"
 
 	var/anomaly_type = /obj/effect/anomaly
-	var/worth = 200 // Pricey... Should be hard-ish to obtain.
+	var/worth = 250 // Pricey... Should be hard-ish to obtain.
 
 /obj/item/assembly/signaler/anomaly/Initialize(mapload)
 	. = ..()
@@ -24,7 +24,7 @@
 	return
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/analyzer/anomaly))
+	if(istype(W, /obj/item/analyzer))
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
 		return TRUE
 

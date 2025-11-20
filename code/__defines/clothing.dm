@@ -163,8 +163,7 @@ NOTICE: Do not leave trailing commas!!!!
 	/obj/item/xenoarch_multi_tool, \
 	/obj/item/tool/crowbar, \
 	/obj/item/storage/bag/fossils, \
-	/obj/item/core_sampler, \
-	/obj/item/analyzer/anomaly
+	/obj/item/core_sampler
 
 #define POCKET_BAYSUIT \
 	/obj/item/storage/backpack, \

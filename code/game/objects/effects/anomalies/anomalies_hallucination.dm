@@ -88,7 +88,7 @@
 		move_anomaly()
 
 /obj/effect/anomaly/hallucination/decoy/attackby(obj/item/tool, mob/user, params)
-	if(istype(tool, /obj/item/analyzer/anomaly))
+	if(istype(tool, /obj/item/analyzer))
 		to_chat(user, span_notice("You activate [tool]. [replacetext(report_text, "%TOOL%", "[tool]")]"))
 	return ..()
 
