@@ -21,6 +21,9 @@
 	var/genesource = "unknown"
 
 /obj/item/disk/xenobio/attack_self(var/mob/user as mob)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(genes.len)
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))

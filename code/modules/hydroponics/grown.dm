@@ -13,6 +13,7 @@
 	var/plantname
 	var/datum/seed/seed
 	var/potency = -1
+	special_handling = TRUE
 
 
 /obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, var/planttype)
@@ -273,8 +274,10 @@
 				user.drop_from_inventory(src)
 			qdel(src)
 
-/obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user as mob)
-
+/obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!seed)
 		return
 

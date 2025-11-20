@@ -12,11 +12,14 @@
 	movement_cooldown = 5
 	universal_understand = 1
 
-/obj/item/holder/mouse/attack_self(var/mob/U)
+/obj/item/holder/mouse/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	for(var/mob/living/simple_mob/M in contents)
-		if((I_HELP) && U.checkClickCooldown()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
-			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
-			U.visible_message(span_notice("[U] [M.response_help] \the [M]."))
+		if((I_HELP) && user.checkClickCooldown()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
+			user.setClickCooldown(user.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
+			user.visible_message(span_notice("[user] [M.response_help] \the [M]."))
 
 //Jank grabber that uses the 'attack_hand' insead of 'MouseDrop'
 /mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/user)
@@ -60,6 +63,9 @@
 	. = ..(mapload, TRUE)
 
 /obj/item/holder/mouse/attack_self(mob/living/carbon/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.setClickCooldown(user.get_attack_speed())
 	for(var/L in contents)
 		if(isanimal(L))

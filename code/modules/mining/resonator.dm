@@ -85,6 +85,9 @@
 			fieldsactive--
 
 /obj/item/resonator/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	switch(tgui_alert(user, "Change Detonation Time or toggle Cascading?","Setting", list("Toggle Cascade", "Resonance Time")))
 		if("Resonance Time")
 			if(burst_time == 50)

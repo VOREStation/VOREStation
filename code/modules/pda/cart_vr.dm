@@ -45,6 +45,9 @@
 		..(over_object)
 
 /obj/item/cartridge/storage/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("You empty [src]."))
 	var/turf/T = get_turf(src)
 	hold.hide_from(user)

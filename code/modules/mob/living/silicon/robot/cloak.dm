@@ -17,6 +17,9 @@
 	. = ..()
 
 /obj/item/borg/cloak/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	set_cloak_level(user)
 
 /obj/item/borg/cloak/CtrlClick(mob/user)
