@@ -1,5 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - maptweak: "deleted mapped-in resleeving sickness pill packages from CMO lockers"
-  - spellcheck: "\"Kitsuhanan Cure\" reagent name genericized to the more immediately-understandable \"Resleeving Sickness Cure\""
