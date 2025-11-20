@@ -1,0 +1,9 @@
+author: "Will"
+delete-after: True
+changes:
+  - code_imp: "Implements COMSIG_ITEM_TRASH_EATEN"
+  - code_imp: "Implements COMSIG_MOB_TRASH_EATING"
+  - code_imp: "Implements COMSIG_ITEM_AFTER_TRASH_EAT"
+  - code_imp: "Implements COMSIG_MOB_AFTER_TRASH_EATING"
+  - code_imp: "Implements COMSIG_GLOB_ITEM_TRASH_EATEN"
+  - bugfix: "default trash eating message being sent to the item's chat and not the mob's"
