@@ -77,12 +77,12 @@ export type FabricatorData = {
   /**
    * The materials available to the fabricator, via ore silo or local storage.
    */
-  materials: Material[];
+  materials?: Material[];
 
   /**
    * Definition of how much units 1 sheet has.
    */
-  SHEET_MATERIAL_AMOUNT: number;
+  SHEET_MATERIAL_AMOUNT?: number;
 
   /**
    * The name of the fabricator, as displayed on the title bar.

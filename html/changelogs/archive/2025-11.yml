@@ -238,3 +238,73 @@
       inventory list. They are still unequipped however.
   - bugfix: Modify robot's remove module updates the inventory instantly like add
       module does.
+2025-11-13:
+  Diana:
+  - bugfix: Fixing flashes no longer cause compile errors, meaning they can be fixed
+      again.
+  - bugfix: Flashes no longer do 2x the amount of halloss when affecting species that
+      are weak to flashes. Instead multiplies the halloss by the appropriate amount.
+  - code_imp: Makes the flash code a little higher quality.
+  - bugfix: External wounds will no longer show up as internal
+  Will:
+  - qol: Grippers show item icon held when in use, and make sounds when changing items
+2025-11-15:
+  Guti:
+  - rscadd: Added can shaking
+  Kashargul:
+  - bugfix: robot grippers cell self installs
+  - bugfix: tgui usage for robot multibelt items like the plant analyzer
+  Will:
+  - bugfix: noticeboards properly save the title of their pinned pages
+  - code_imp: Cleaned up effect grenades
+2025-11-16:
+  Guti:
+  - bugfix: Fixed mechas not teleporting in quantum pads
+2025-11-17:
+  Diana:
+  - bugfix: Items now use the proper species fallback
+  - bugfix: Lick wounds works again
+  TheCaramelion:
+  - bugfix: Fixed cans not stopping processing when destroyed
+  Zizzi:
+  - bugfix: Circuitry injector can now inject common injectables.
+2025-11-18:
+  Aroliacue:
+  - rscadd: 'Added new HOS gear, available from clothing locker: New red cap, new
+      suit jacket, new cloak (attachable to suit and uniform)'
+  - rscadd: Added a new colorable cloak, selectable from the loadout ("flowing cloak")
+      and purchasable from Big D's Best. The greyscaling is simple at best, apologies.
+  - image: Added icons for new clothing options, including mob, inhands and obj icons.
+  Kashargul:
+  - bugfix: bad typing and runtimes if RnD devices were used before round start
+2025-11-19:
+  Will:
+  - bugfix: Fixes an entertainment monitor runtime
+2025-11-20:
+  KillianKirilenko:
+  - maptweak: deleted mapped-in resleeving sickness pill packages from CMO lockers
+  - spellcheck: '"Kitsuhanan Cure" reagent name genericized to the more immediately-understandable
+      "Resleeving Sickness Cure"'
+2025-11-21:
+  Diana:
+  - bugfix: You can no longer accidentally go to step 1 of necrosis surgery and undo
+      all your work.
+  FluffMedic:
+  - rscadd: Energized Agate stuff from downstream with some edits and sprites
+  Kashargul:
+  - code_imp: update dependencies
+  - qol: the resize ability is a bit easier to use and less likely to be used by accident
+  SatinIsle:
+  - bugfix: Fixes zeras labcloak
+  Will:
+  - code_imp: topturfcrossed component for when you need to check for Crossed() actions
+      from within nested items
+  - bugfix: recursive move component properly rebuild it's hierarchy when picked up
+      by a mob from a turf
+  - code_imp: Implements COMSIG_ITEM_TRASH_EATEN
+  - code_imp: Implements COMSIG_MOB_TRASH_EATING
+  - code_imp: Implements COMSIG_ITEM_AFTER_TRASH_EAT
+  - code_imp: Implements COMSIG_MOB_AFTER_TRASH_EATING
+  - code_imp: Implements COMSIG_GLOB_ITEM_TRASH_EATEN
+  - bugfix: default trash eating message being sent to the item's chat and not the
+      mob's

@@ -16,7 +16,7 @@
 		return
 	var/obj/item/paper/paper = new paper_type(creating)
 	paper.info = token["message"]
-	paper.name = token["title"]
+	paper.name = token["name"]
 	if(!paper.name)
 		paper.name = "No Title"
 	paper.last_modified_ckey = token["author"]
