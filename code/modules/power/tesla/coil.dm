@@ -116,12 +116,10 @@
 	var/relay_efficiency = 0.9
 
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
-	..()
 	var/relay_multiplier
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		relay_multiplier += C.rating
 	relay_efficiency = 0.85 + (0.05 * relay_multiplier)
-	input_power_multiplier = 0 // Locked to
 
 /obj/machinery/power/tesla_coil/relay/coil_act(var/power)
 	var/power_relayed = power * relay_efficiency
