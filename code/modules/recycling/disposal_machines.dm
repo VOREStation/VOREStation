@@ -18,6 +18,7 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
+	var/controls_iconstate = "disposal"
 	anchored = TRUE
 	density = TRUE
 	var/datum/gas_mixture/air_contents	// internal reservoir
@@ -160,24 +161,55 @@
 	var/nametag
 	var/new_dir = SOUTH
 	var/new_disposal_path
-	var/result = tgui_input_list(user, "What do you want to reconfigure the disposal bin to?", "Multitool-Disposal interface", list("Standard", "Wall", "Wall Cleaner", "Mail Destination", "Danger", "Turn-In"))
+	var/result = tgui_input_list(user,
+								"What do you want to reconfigure the disposal bin to?",
+								"Multitool-Disposal interface",
+								list(
+									"Standard",
+									"Wall",
+									"Resleeving Deposit",
+									"Wall Resleeving Deposit",
+									"Hazard Bin",
+									"Wall Hazard Bin",
+									"Turn-In Bin",
+									"Wall Turn-In Bin",
+									"Mail Destination",
+									"Wall Mail Destination"
+									))
 	switch(result)
+		// Yellow
 		if("Standard")
 			new_disposal_path = /obj/machinery/disposal
 		if("Wall")
 			new_disposal_path = /obj/machinery/disposal/wall
 			new_dir = reverse_direction(user.dir)
-		if("Wall Cleaner")
+		// Blue
+		if("Resleeving Deposit")
+			new_disposal_path = /obj/machinery/disposal/cleaner
+			new_dir = reverse_direction(user.dir)
+		if("Wall Resleeving Deposit")
 			new_disposal_path = /obj/machinery/disposal/wall/cleaner
 			new_dir = reverse_direction(user.dir)
+		// Red
+		if("Hazard Bin")
+			new_disposal_path = /obj/machinery/disposal/burn_pit
+		if("Wall Hazard Bin")
+			new_disposal_path = /obj/machinery/disposal/wall/burn_pit
+			new_dir = reverse_direction(user.dir)
+		// Green
+		if("Turn-In Bin")
+			new_disposal_path = /obj/machinery/disposal/turn_in
+		if("Wall Turn-In Bin")
+			new_disposal_path = /obj/machinery/disposal/wall/turn_in
+			new_dir = reverse_direction(user.dir)
+		// White
 		if("Mail Destination")
 			new_disposal_path = /obj/machinery/disposal/mail_reciever
 			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convience.", "Mail Destination")
-		if("Danger")
-			new_disposal_path = /obj/machinery/disposal/burn_pit
-		if("Turn-In")
-			new_disposal_path = /obj/machinery/disposal/wall/turn_in
+		if("Wall Mail Destination")
+			new_disposal_path = /obj/machinery/disposal/wall/mail_reciever
 			new_dir = reverse_direction(user.dir)
+			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convience.", "Mail Destination")
 
 	if(!new_disposal_path || (new_disposal_path == type && dir == new_dir))
 		return
@@ -373,7 +405,7 @@
 
 	// flush handle
 	if(flush)
-		add_overlay("[initial(icon_state)]-handle")
+		add_overlay("[controls_iconstate]-handle")
 
 	// only handle is shown if no power
 	if(stat & NOPOWER || mode == DISPOSALMODE_EJECTONLY)
@@ -381,13 +413,13 @@
 
 	// 	check for items in disposal - occupied light
 	if(contents.len > 0)
-		add_overlay("[initial(icon_state)]-full")
+		add_overlay("[controls_iconstate]-full")
 
 	// charging and ready light
 	if(mode == DISPOSALMODE_CHARGING)
-		add_overlay("[initial(icon_state)]-charge")
+		add_overlay("[controls_iconstate]-charge")
 	else if(mode == DISPOSALMODE_CHARGED)
-		add_overlay("[initial(icon_state)]-ready")
+		add_overlay("[controls_iconstate]-ready")
 
 // timed process
 // charge the gas reservoir and perform flush if ready
@@ -490,15 +522,27 @@
 			source.forceMove(src)
 			visible_message("\The [source] lands in \the [src].")
 
+/obj/machinery/disposal/proc/clean_items()
+	// Clean items before sending them
+	for(var/obj/item/flushed_item in src)
+		if(istype(flushed_item, /obj/item/storage))
+			var/obj/item/storage/storage_flushed = flushed_item
+			var/list/storage_items = storage_flushed.return_inv()
+			for(var/obj/item/item in storage_items)
+				item.wash(CLEAN_WASH)
+			continue
+		if(istype(flushed_item, /obj/item))
+			flushed_item.wash(CLEAN_WASH)
+
 /obj/machinery/disposal/wall
 	name = "inset disposal unit"
 	icon_state = "wall"
+	controls_iconstate = "wall"
 
 	density = FALSE
 
 /obj/machinery/disposal/wall/update()
-	..()
-
+	. = ..()
 	switch(dir)
 		if(NORTH)
 			pixel_x = 0
@@ -515,6 +559,18 @@
 
 
 // Cleaner subtype
+/obj/machinery/disposal/cleaner
+	name = "resleeving equipment deposit"
+	desc = "Automatically cleans and transports items to the local resleeving facilities."
+	icon_state = "blue"
+
+/obj/machinery/disposal/cleaner/flush()
+	if(flushing)
+		return
+	clean_items()
+	. = ..()
+
+// Cleaner(wall) subtype
 /obj/machinery/disposal/wall/cleaner
 	name = "resleeving equipment deposit"
 	desc = "Automatically cleans and transports items to the local resleeving facilities."
@@ -523,38 +579,41 @@
 /obj/machinery/disposal/wall/cleaner/flush()
 	if(flushing)
 		return
-
-	// Clean items before sending them
-	for(var/obj/item/flushed_item in src)
-		if(istype(flushed_item, /obj/item/storage))
-			var/obj/item/storage/storage_flushed = flushed_item
-			var/list/storage_items = storage_flushed.return_inv()
-			for(var/obj/item/item in storage_items)
-				item.wash(CLEAN_WASH)
-			continue
-		if(istype(flushed_item, /obj/item))
-			flushed_item.wash(CLEAN_WASH)
-
+	clean_items()
 	. = ..()
-
 
 // Gets mail
 /obj/machinery/disposal/mail_reciever
 	name = "disposal mail destination"
 	desc = "A pneumatic waste disposal unit. This unit is marked for receiving mail."
-	icon_state = "mail"
+	icon_state = "white"
+
+/obj/machinery/disposal/wall/mail_reciever
+	name = "disposal mail destination"
+	desc = "A pneumatic waste disposal unit. This unit is marked for receiving mail."
+	icon_state = "whitewall"
 
 // Incin/space
 /obj/machinery/disposal/burn_pit
 	name = "disposal(danger)"
 	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped directly into space."
-	icon_state = "burn"
+	icon_state = "red"
+
+/obj/machinery/disposal/wall/burn_pit
+	name = "disposal(danger)"
+	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped directly into space."
+	icon_state = "redwall"
 
 // Amnesty box
+/obj/machinery/disposal/turn_in
+	name = "amnesty bin"
+	desc = "A pneumatic waste disposal unit. A place to legally turn in contraban to security."
+	icon_state = "green"
+
 /obj/machinery/disposal/wall/turn_in
 	name = "amnesty bin"
 	desc = "A pneumatic waste disposal unit. A place to legally turn in contraban to security."
-	icon_state = "turnin"
+	icon_state = "greenwall"
 
 #undef DISPOSALMODE_EJECTONLY
 #undef DISPOSALMODE_OFF
