@@ -14,7 +14,7 @@
 	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/power_loss = 2
-	var/input_power_multiplier = 3
+	var/input_power_multiplier = 1
 	var/zap_cooldown = 100
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
@@ -123,6 +123,7 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		relay_multiplier += C.rating
 	relay_efficiency = 0.85 + (0.05 * relay_multiplier)
+	input_power_multiplier = 0 // Locked to
 
 /obj/machinery/power/tesla_coil/relay/coil_act(var/power)
 	var/power_relayed = power * relay_efficiency
