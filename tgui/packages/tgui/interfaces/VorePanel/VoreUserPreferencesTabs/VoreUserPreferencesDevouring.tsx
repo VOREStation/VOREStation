@@ -77,28 +77,40 @@ export const VoreUserPreferencesDevouring = (props: {
           </Stack.Item>
           <Stack.Item basis="32%" grow>
             <VoreUserPreferenceItem
-              spec={preferences.liquid_apply}
+              spec={preferences.contaminatepref}
               tooltipPosition="top"
             />
           </Stack.Item>
           <Stack.Item basis="32%">
             <VoreUserPreferenceItem
-              spec={preferences.remains}
+              spec={preferences.liquid_apply}
               tooltipPosition="left"
             />
           </Stack.Item>
           <Stack.Item basis="32%">
             <VoreUserPreferenceItem
-              spec={preferences.toggle_digest_pain}
+              spec={preferences.remains}
               tooltipPosition="right"
+            />
+          </Stack.Item>
+          <Stack.Item basis="32%" grow>
+            <VoreUserPreferenceItem
+              spec={preferences.toggle_digest_pain}
+              tooltipPosition="top"
             />
           </Stack.Item>
           <Stack.Item basis="32%">
             <VoreUserPreferenceItem
               spec={preferences.temperature}
-              tooltipPosition="top"
+              tooltipPosition="left"
             />
           </Stack.Item>
+          <Stack.Item basis="35%">
+          <VoreUserPreferenceItem
+            spec={preferences.afk_prey}
+            tooltipPosition="right"
+          />
+        </Stack.Item>
         </Stack>
       ) : (
         ''

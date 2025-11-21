@@ -12,6 +12,8 @@
 		"show_vore_fx" = owner.show_vore_fx,
 		"can_be_drop_prey" = owner.can_be_drop_prey,
 		"can_be_drop_pred" = owner.can_be_drop_pred,
+		"can_be_afk_prey" = owner.can_be_afk_prey,
+		"can_be_afk_pred" = owner.can_be_afk_pred,
 		"latejoin_vore" = owner.latejoin_vore,
 		"latejoin_prey" = owner.latejoin_prey,
 		"no_spawnpred_warning" = owner.no_latejoin_vore_warning,
@@ -24,6 +26,7 @@
 		"step_mechanics_active" = owner.step_mechanics_pref,
 		"pickup_mechanics_active" = owner.pickup_pref,
 		"strip_mechanics_active" = owner.strip_pref,
+		"contaminate_worn_items" = owner.contaminate_pref,
 		"noisy" = owner.noisy,
 		//liquid belly prefs
 		"liq_rec" = owner.receive_reagents,

@@ -23,6 +23,8 @@
 	var/digest_pain = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
+	var/can_be_afk_prey = TRUE
+	var/can_be_afk_pred = TRUE
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
@@ -80,6 +82,7 @@
 	var/noisy_full = FALSE					//Enables belching when a mob has overeaten
 	var/phase_vore = TRUE					//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/strip_pref = TRUE					//Enables the ability for worn items to be stripped
+	var/contaminate_pref = TRUE				//Enables the ability for worn items to be digested/contaminated.
 	var/no_latejoin_vore_warning = FALSE	//Auto accepts pred spwan notifications (roundbased / saveable)
 	var/no_latejoin_prey_warning = FALSE	//Auto accepts prey spawn notifications (roundbased / saveable)
 	var/no_latejoin_vore_warning_time = 15	//Time until accepting prey

@@ -32,6 +32,8 @@
 	feeding = client.prefs_vr.feeding
 	can_be_drop_prey = client.prefs_vr.can_be_drop_prey
 	can_be_drop_pred = client.prefs_vr.can_be_drop_pred
+	can_be_afk_prey = client.prefs_vr.can_be_afk_prey
+	can_be_afk_pred = client.prefs_vr.can_be_afk_pred
 	throw_vore = client.prefs_vr.throw_vore
 	food_vore = client.prefs_vr.food_vore
 	consume_liquid_belly = client.prefs_vr.consume_liquid_belly
@@ -65,6 +67,7 @@
 	autotransferable = client.prefs_vr.autotransferable
 	noisy_full = client.prefs_vr.noisy_full
 	strip_pref = client.prefs_vr.strip_pref
+	contaminate_pref = client.prefs_vr.contaminate_pref
 	vore_sprite_color = client.prefs_vr.vore_sprite_color
 	vore_sprite_multiply = client.prefs_vr.vore_sprite_multiply
 	no_latejoin_vore_warning = client.prefs_vr.no_latejoin_vore_warning

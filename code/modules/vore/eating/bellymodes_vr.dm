@@ -210,7 +210,7 @@
 					H.forced_psay = FALSE
 
 				//Worn items flag
-				if(mode_flags & DM_FLAG_AFFECTWORN)
+				if((mode_flags & DM_FLAG_AFFECTWORN) && H.contaminate_pref)
 					for(var/slot in slots)
 						var/obj/item/I = H.get_equipped_item(slot = slot)
 						if(I && I.canremove)

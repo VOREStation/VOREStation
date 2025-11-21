@@ -392,6 +392,18 @@
 				host.client.prefs_vr.can_be_drop_prey = host.can_be_drop_prey
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_afk_pred")
+			host.can_be_afk_pred = !host.can_be_afk_pred
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.can_be_afk_pred = host.can_be_afk_pred
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_afk_prey")
+			host.can_be_afk_prey = !host.can_be_afk_prey
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.can_be_afk_prey = host.can_be_afk_prey
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_latejoin_vore")
 			host.latejoin_vore = !host.latejoin_vore
 			if(host.client.prefs_vr)
@@ -492,6 +504,12 @@
 			host.strip_pref = !host.strip_pref
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.strip_pref = host.strip_pref
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_contaminate_pref")
+			host.contaminate_pref = !host.contaminate_pref
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.contaminate_pref = host.contaminate_pref
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_allow_mind_transfer")

@@ -21,6 +21,8 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
     permit_healbelly,
     can_be_drop_prey,
     can_be_drop_pred,
+    can_be_afk_prey,
+    can_be_afk_pred,
     drop_vore,
     slip_vore,
     stumble_vore,
@@ -43,6 +45,7 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
     vore_death_privacy,
     allow_mimicry,
     strip_mechanics_active,
+    contaminate_worn_items,
     autotransferable,
     liq_rec,
     liq_giv,
@@ -185,6 +188,36 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
       content: {
         enabled: 'Spontaneous Pred Enabled',
         disabled: 'Spontaneous Pred Disabled',
+      },
+    },
+    afk_prey: {
+      action: 'toggle_afk_prey',
+      test: can_be_afk_prey,
+      tooltip: {
+        main:
+          'This toggle is for vore interactions as prey while you' +
+          ' are disconnected or inactive for a period of time.',
+        enable: 'Click here to allow being AFK prey.',
+        disable: 'Click here to prevent being AFK prey.',
+      },
+      content: {
+        enabled: 'AFK Prey Enabled',
+        disabled: 'AFK Prey Disabled',
+      },
+    },
+    afk_pred: {
+      action: 'toggle_afk_pred',
+      test: can_be_afk_pred,
+      tooltip: {
+        main:
+          'This toggle is for vore interactions as pred while you' +
+          ' are disconnected or inactive for a period of time.',
+        enable: 'Click here to allow being AFK pred.',
+        disable: 'Click here to prevent being AFK pred.',
+      },
+      content: {
+        enabled: 'AFK Pred Enabled',
+        disabled: 'AFK Pred Disabled',
       },
     },
     toggle_drop_vore: {
@@ -485,6 +518,23 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
       content: {
         enabled: 'Allow Worn Item Stripping',
         disabled: 'Do Not Allow Worn Item Stripping',
+      },
+    },
+    contaminatepref: {
+      action: 'toggle_contaminate_pref',
+      test: contaminate_worn_items,
+      tooltip: {
+        main: '',
+        enable:
+          'Regardless of Predator Setting, items worn by you will not be digested/contaminated inside their bellies.' +
+          ' Click this to allow worn item digestion/contamination.',
+        disable:
+          'Your Predator must have this setting enabled in their belly modes to allow contaminating/digesting your worn gear,' +
+          ' if they do not, they will not contaminate/digest your gear, even with this on. Click to disable contamination/digestion.',
+      },
+      content: {
+        enabled: 'Allow Worn Item Digestion/Contamination',
+        disabled: 'Do Not Allow Worn Item Digestion/Contamination',
       },
     },
     eating_privacy_global: {

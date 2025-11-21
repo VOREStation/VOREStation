@@ -20,6 +20,8 @@
 																						\
 	target.can_be_drop_prey = source.can_be_drop_prey;									\
 	target.can_be_drop_pred = source.can_be_drop_pred;									\
+	target.can_be_afk_prey = source.can_be_afk_prey;									\
+	target.can_be_afk_pred = source.can_be_afk_pred;									\
 	target.throw_vore = source.throw_vore;												\
 	target.food_vore = source.food_vore;												\
 	target.drop_vore = source.drop_vore;												\
@@ -56,6 +58,7 @@
 																						\
 	target.autotransferable = source.autotransferable;									\
 	target.strip_pref = source.strip_pref;												\
+	target.contaminate_pref = source.contaminate_pref;									\
 	target.vore_sprite_multiply = source.vore_sprite_multiply;							\
 	target.vore_sprite_color = source.vore_sprite_color;								\
 	target.belly_rub_target = source.belly_rub_target;									\
