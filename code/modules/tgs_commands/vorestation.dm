@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			real_target.dust()
 	return "Smite [smite_name] sent!"
 
-#define VALID_ACTIONS list("add", "remove", "list")
+#define VALID_ACTIONS list("add", "remove", "list", "help")
 #define VALID_KINDS list("job", "species")
 #define VALID_USAGE "whitelist \[[list2text(VALID_ACTIONS, ", ")]\] \[[list2text(VALID_KINDS, ", ")]\] <ckey> (role)"
 /datum/tgs_chat_command/whitelist
@@ -438,6 +438,13 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Resolve the action
 	switch(action)
+		if("help")
+			var/list/whitelist_jobs = list()
+			for(var/datum/job/our_job in job_master.occupations)
+				if(our_job.whitelist_only)
+					whitelist_jobs += our_job.name
+			message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
+			return message
 		if("add")
 			if(kind == "job")
 				var/datum/job/job = job_master.GetJob(role)
