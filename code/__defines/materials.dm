@@ -80,6 +80,7 @@
 #define MAT_FLOKIUM			"flockium"
 #define MAT_SMOLEBRICKS		"smolebricks"
 #define MAT_WAX				"wax"
+#define MAT_EAGATE			"energized agate"
 
 #define MAT_CULT			"cult"
 #define MAT_CULT2			"cult2"

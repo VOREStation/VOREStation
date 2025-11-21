@@ -73,3 +73,9 @@
 	default_type = MAT_GLAMOUR
 	no_variants = FALSE
 	apply_colour = TRUE
+
+/obj/item/stack/material/weathered_agate
+	name = MAT_EAGATE
+	icon_state = "sheet-agate"
+	singular_name = "weathered agate"
+	default_type = MAT_EAGATE
