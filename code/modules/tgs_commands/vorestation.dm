@@ -442,7 +442,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			var/list/whitelist_jobs = list()
 			for(var/datum/job/our_job in job_master.occupations)
 				if(our_job.whitelist_only)
-					whitelist_jobs += our_job.name
+					whitelist_jobs += our_job.title
 			message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
 			return message
 		if("add")
