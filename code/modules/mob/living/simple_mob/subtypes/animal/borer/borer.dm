@@ -123,8 +123,9 @@
 		chemicals += 0.25
 	else
 		chemicals += 0.1
-	if(FLOOR(chemicals/10,1) > FLOOR(chem_before/10,1))
-		to_chat(host, span_alien("Your chemicals have increased to [FLOOR(chemicals/10,1) * 10]"))
+	var/new_chem = FLOOR(chemicals/10,1)
+	if(new_chem > FLOOR(chem_before/10,1))
+		to_chat(host, span_alien("Your chemicals have increased to [new_chem * 10]"))
 
 /mob/living/simple_mob/animal/borer/proc/handle_docile()
 	if(stat == DEAD)
