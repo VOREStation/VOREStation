@@ -8,7 +8,7 @@
 	maxhealth = 350
 	glasstype = /obj/item/stack/tile/maintenance_panel // Yes these are technically windows, drops into their panel on deconstruct and shatter
 	maximal_heat = /datum/material/steel::melting_point
-	force_threshold = 7
+	force_threshold = 5
 	shardtype = null
 	opacity = 1 // Difficult to see past
 
