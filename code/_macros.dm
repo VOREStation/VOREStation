@@ -28,5 +28,6 @@
 #define JOINTEXT(X) jointext(X, null)
 
 #define isbelly(A)				istype(A, /obj/belly)
+#define isrobotmultibelt(A)		istype(A, /obj/item/robotic_multibelt)
 #define isgripperpocket(A)		istype(A, /obj/item/storage/internal/gripper)
 #define iscapturecrystal(A)		istype(A, /obj/item/capture_crystal)

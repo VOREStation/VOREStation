@@ -6,11 +6,12 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	dynamic_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = TRUE
+	flags = AREA_ALWAYS_HAS_GRAVITY
 
 /area/survivalpod/dorms
 	name = "\improper Emergency Shelter Dorm"
 	icon_state = "away1"
-	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_ALWAYS_HAS_GRAVITY
 
 /area/survivalpod/dorms/bathroom
 	name = "\improper Emergency Shelter Bathroom"
