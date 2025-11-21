@@ -450,6 +450,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			if(kind == "species")
 				if(role in GLOB.playable_species)
 					message.text = "Error, species \"[role]\" is not a whitelist species."
+					return message
 				if(!(role in GLOB.whitelisted_species))
 					message.text = "Error, invalid species entered. Check spelling and capitalization."
 					return message
