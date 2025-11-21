@@ -164,17 +164,14 @@
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
-	var/amp_eff = 2
-
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
-	..()
-	amp_eff = 1
+	input_power_multiplier = 1
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		amp_eff += C.rating
+		input_power_multiplier += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
 	var/power_produced = power / power_loss
-	add_avail(power_produced*amp_eff)
+	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_produced)
