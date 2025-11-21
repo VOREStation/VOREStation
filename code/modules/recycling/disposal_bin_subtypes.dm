@@ -23,13 +23,13 @@
 
 // Incin/space
 /obj/machinery/disposal/burn_pit
-	name = "disposal(danger)"
-	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped directly into space."
+	name = "disposal(hazardous)"
+	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped into space."
 	icon_state = "red"
 
 /obj/machinery/disposal/wall/burn_pit
-	name = "disposal(danger)"
-	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped directly into space."
+	name = "disposal(hazardous)"
+	desc = "A pneumatic waste disposal unit. This unit is either connected directly to the station's waste processor or dumped into space."
 	icon_state = "redwall"
 
 // Amnesty box
