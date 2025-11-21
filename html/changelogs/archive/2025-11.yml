@@ -285,3 +285,26 @@
   - maptweak: deleted mapped-in resleeving sickness pill packages from CMO lockers
   - spellcheck: '"Kitsuhanan Cure" reagent name genericized to the more immediately-understandable
       "Resleeving Sickness Cure"'
+2025-11-21:
+  Diana:
+  - bugfix: You can no longer accidentally go to step 1 of necrosis surgery and undo
+      all your work.
+  FluffMedic:
+  - rscadd: Energized Agate stuff from downstream with some edits and sprites
+  Kashargul:
+  - code_imp: update dependencies
+  - qol: the resize ability is a bit easier to use and less likely to be used by accident
+  SatinIsle:
+  - bugfix: Fixes zeras labcloak
+  Will:
+  - code_imp: topturfcrossed component for when you need to check for Crossed() actions
+      from within nested items
+  - bugfix: recursive move component properly rebuild it's hierarchy when picked up
+      by a mob from a turf
+  - code_imp: Implements COMSIG_ITEM_TRASH_EATEN
+  - code_imp: Implements COMSIG_MOB_TRASH_EATING
+  - code_imp: Implements COMSIG_ITEM_AFTER_TRASH_EAT
+  - code_imp: Implements COMSIG_MOB_AFTER_TRASH_EATING
+  - code_imp: Implements COMSIG_GLOB_ITEM_TRASH_EATEN
+  - bugfix: default trash eating message being sent to the item's chat and not the
+      mob's
