@@ -132,8 +132,10 @@
 
 /turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
-	icon_state = "sifwood"
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood/sif
+	color = "#293c50"
 
 /turf/simulated/floor/wood/sif/broken
 	icon_state = "sifwood-broken0" // This gets changed when spawned.
@@ -143,8 +145,9 @@
 	break_tile()
 
 /turf/simulated/floor/wood/alt
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	initial_flooring = /decl/flooring/wood/alt
+	color = "#593c1c"
 
 /turf/simulated/floor/wood/alt/broken
 	icon_state = "wood-broken0" // This gets changed when spawned.

@@ -107,27 +107,37 @@
 	name = "alien wood tile"
 	singular_name = "alien wood tile"
 	desc = "An easy to fit wooden floor tile. It's blue!"
-	icon_state = "tile-sifwood"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#293c50"
 
 /obj/item/stack/tile/wood/alt
 	name = "wood floor tile"
 	singular_name = "wood floor tile"
-	icon_state = "tile-wood_tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#593c1c"
 
 /obj/item/stack/tile/wood/parquet
 	name = "parquet wood floor tile"
 	singular_name = "parquet wood floor tile"
-	icon_state = "tile-wood_parquet"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs_parquet"
+	color = "#593c1c"
 
 /obj/item/stack/tile/wood/panel
 	name = "large wood floor tile"
 	singular_name = "large wood floor tile"
-	icon_state = "tile-wood_large"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs_large"
+	color = "#593c1c"
 
 /obj/item/stack/tile/wood/tile
 	name = "tiled wood floor tile"
 	singular_name = "tiled wood floor tile"
-	icon_state = "tile-wood_tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs_tile"
+	color = "#593c1c"
 
 /obj/item/stack/tile/wood/acacia
 	name = "acacia wood floor tile"
