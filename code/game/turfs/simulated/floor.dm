@@ -71,6 +71,7 @@
 	desc = base_desc
 	icon = base_icon
 	icon_state = base_icon_state
+	color = null
 
 	if(!is_plating()) // Flooring -> Plating
 		swap_decals()
