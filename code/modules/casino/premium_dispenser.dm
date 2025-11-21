@@ -10,6 +10,7 @@
 	ui_title = "Premium Drink Dispensary"
 	accept_drinking = 1
 	var/max_cartridges = 90
+	import_job = null
 
 /obj/machinery/chemical_dispenser/premium/full
 	spawn_cartridges = list(
