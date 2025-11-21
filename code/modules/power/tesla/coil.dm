@@ -161,6 +161,7 @@
 	icontype = "amp"
 
 	circuit = /obj/item/circuitboard/tesla_coil
+
 	var/amp_eff = 2
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
