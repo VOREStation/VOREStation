@@ -14,7 +14,7 @@
 	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/power_loss = 2
-	var/input_power_multiplier = 1
+	var/input_power_multiplier = 3
 	var/zap_cooldown = 100
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
@@ -167,13 +167,13 @@
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
-	var/amp_eff = 1
+	amp_eff = 1
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
 	var/power_produced = power / power_loss
-	add_avail(power_produced*input_power_multiplier)
+	add_avail(power_produced*amp_eff)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_produced)
@@ -190,7 +190,7 @@
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
 	..()
-	var/zap_range = 5
+	zap_range = 5
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		zap_range += C.rating
 
