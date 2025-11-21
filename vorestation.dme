@@ -3044,7 +3044,6 @@
 #include "code\modules\maps\tg\map_template_vr.dm"
 #include "code\modules\materials\fifty_spawner.dm"
 #include "code\modules\materials\fifty_spawner_mats.dm"
-#include "code\modules\materials\fifty_spawner_mats_vr.dm"
 #include "code\modules\materials\material_synth.dm"
 #include "code\modules\materials\materials\_materials.dm"
 #include "code\modules\materials\materials\_materials_vr.dm"

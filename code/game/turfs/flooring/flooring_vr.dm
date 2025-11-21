@@ -110,3 +110,190 @@
 
 /obj/item/stack/tile/floor/milspec/raised
 	name = "raised milspec floor tile"
+
+//New Wood
+/decl/flooring/wood/acacia
+	name = "wooden floor"
+	desc = "Polished acacia planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/acacia
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/acacia/panel
+	desc = "Polished acacia panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/acacia/panel
+
+/decl/flooring/wood/acacia/parquet
+	desc = "Polished acacia tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/acacia/parquet
+
+/decl/flooring/wood/acacia/tile
+	desc = "Polished acacia tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/acacia/tile
+
+/decl/flooring/wood/birch
+	name = "wooden floor"
+	desc = "Polished birch planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/birch
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/birch/panel
+	desc = "Polished birch panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/birch/panel
+
+/decl/flooring/wood/birch/parquet
+	desc = "Polished birch tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/birch/parquet
+
+/decl/flooring/wood/birch/tile
+	desc = "Polished birch tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/birch/tile
+
+/decl/flooring/wood/hardwood
+	name = "wooden floor"
+	desc = "Polished hardwood planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/hardwood
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/hardwood/panel
+	desc = "Polished hardwood panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/hardwood/panel
+
+/decl/flooring/wood/hardwood/parquet
+	desc = "Polished hardwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/hardwood/parquet
+
+/decl/flooring/wood/hardwood/tile
+	desc = "Polished hardwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/hardwood/tile
+
+/decl/flooring/wood/oak
+	name = "wooden floor"
+	desc = "Polished oak planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/oak
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/oak/panel
+	desc = "Polished oak panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/oak/panel
+
+/decl/flooring/wood/oak/parquet
+	desc = "Polished oak tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/oak/parquet
+
+/decl/flooring/wood/oak/tile
+	desc = "Polished oak tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/oak/tile
+
+/decl/flooring/wood/pine
+	name = "wooden floor"
+	desc = "Polished pine planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/pine
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/pine/panel
+	desc = "Polished pine panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/pine/panel
+
+/decl/flooring/wood/pine/parquet
+	desc = "Polished pine tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/pine/parquet
+
+/decl/flooring/wood/pine/tile
+	desc = "Polished pine tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/pine/tile
+
+/decl/flooring/wood/redwood
+	name = "wooden floor"
+	desc = "Polished redwood planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/redwood
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/redwood/panel
+	desc = "Polished redwood panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/redwood/panel
+
+/decl/flooring/wood/redwood/parquet
+	desc = "Polished redwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/redwood/parquet
+
+/decl/flooring/wood/redwood/tile
+	desc = "Polished redwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/redwood/tile

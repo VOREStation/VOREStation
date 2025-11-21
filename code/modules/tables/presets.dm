@@ -255,3 +255,44 @@
 /obj/structure/table/bench/glamour/Initialize(mapload)
 	material = get_material_by_name(MAT_GLAMOUR)
 	. = ..()
+
+//new wood types
+/obj/structure/table/birch
+	icon_state = "stone_preview"
+	color = "#42291a"
+
+/obj/structure/table/birch/Initialize(mapload)
+	material = get_material_by_name(MAT_BIRCHWOOD)
+	. = ..()
+
+/obj/structure/table/pine
+	icon_state = "stone_preview"
+	color = "#42291a"
+
+/obj/structure/table/pine/Initialize(mapload)
+	material = get_material_by_name(MAT_PINEWOOD)
+	. = ..()
+
+/obj/structure/table/oak
+	icon_state = "stone_preview"
+	color = "#42291a"
+
+/obj/structure/table/oak/Initialize(mapload)
+	material = get_material_by_name(MAT_OAKWOOD)
+	. = ..()
+
+/obj/structure/table/acacia
+	icon_state = "stone_preview"
+	color = "#42291a"
+
+/obj/structure/table/acacia/Initialize(mapload)
+	material = get_material_by_name(MAT_ACACIAWOOD)
+	. = ..()
+
+/obj/structure/table/redwood
+	icon_state = "stone_preview"
+	color = "#42291a"
+
+/obj/structure/table/redwood/Initialize(mapload)
+	material = get_material_by_name(MAT_REDWOOD)
+	. = ..()

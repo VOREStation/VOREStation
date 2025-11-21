@@ -129,6 +129,138 @@
 	singular_name = "tiled wood floor tile"
 	icon_state = "tile-wood_tile"
 
+/obj/item/stack/tile/wood/acacia
+	name = "acacia wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#b75e12"
+
+/obj/item/stack/tile/wood/acacia/parquet
+	name = "acacia parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/acacia/panel
+	name = "large acacia floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/acacia/tile
+	name = "tiled acacia floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/birch
+	name = "birch wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#f6dec0"
+
+/obj/item/stack/tile/wood/birch/parquet
+	name = "birch parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/birch/panel
+	name = "large birch floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/birch/tile
+	name = "tiled birch floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/hardwood
+	name = "hardwood wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#42291a"
+
+/obj/item/stack/tile/wood/hardwood/parquet
+	name = "hardwood parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/hardwood/panel
+	name = "large hardwood floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/hardwood/tile
+	name = "tiled hardwood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/pine
+	name = "pine wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#cd9d6f"
+
+/obj/item/stack/tile/wood/pine/parquet
+	name = "pine parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/pine/panel
+	name = "large pine floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/pine/tile
+	name = "tiled pine floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/oak
+	name = "oak wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#674928"
+
+/obj/item/stack/tile/wood/oak/parquet
+	name = "oak parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/oak/panel
+	name = "large oak floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/oak/tile
+	name = "tiled oak floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/redwood
+	name = "redwood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#a45a52"
+
+/obj/item/stack/tile/wood/redwood/parquet
+	name = "redwood parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/redwood/panel
+	name = "large redwood floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/redwood/tile
+	name = "tiled redwood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
 	desc = "A device that makes wood floor tiles."
