@@ -156,6 +156,14 @@
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/sif/parquet
 
+/turf/simulated/floor/wood/sif/vert
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/sif/vert
+
+/turf/simulated/floor/wood/sif/vert_panel
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/sif/vert_panel
+
 /turf/simulated/floor/wood/alt
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	initial_flooring = /decl/flooring/wood/alt
@@ -200,6 +208,14 @@
 /turf/simulated/floor/wood/alt/parquet/broken/LateInitialize()
 	. = ..()
 	break_tile()
+
+/turf/simulated/floor/wood/alt/vert
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/alt/vert
+
+/turf/simulated/floor/wood/alt/vert_panel
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/alt/vert_panel
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -600,6 +616,16 @@
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/acacia/parquet
 
+/turf/simulated/floor/wood/acacia/vert
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/acacia/vert
+
+/turf/simulated/floor/wood/acacia/vert_panel
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/acacia/vert_panel
+
 /turf/simulated/floor/wood/birch
 	name = "birch wood floor"
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -621,6 +647,16 @@
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/birch/parquet
+
+/turf/simulated/floor/wood/birch/vert
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/birch/vert
+
+/turf/simulated/floor/wood/birch/vert_panel
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/birch/vert_panel
 
 /turf/simulated/floor/wood/hardwood
 	name = "hardwood wood floor"
@@ -644,6 +680,16 @@
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/hardwood/parquet
 
+/turf/simulated/floor/wood/hardwood/vert
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/hardwood/vert
+
+/turf/simulated/floor/wood/hardwood/vert_panel
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/hardwood/vert_panel
+
 /turf/simulated/floor/wood/oak
 	name = "oak wood floor"
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -665,6 +711,16 @@
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/oak/parquet
+
+/turf/simulated/floor/wood/oak/vert
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/oak/vert
+
+/turf/simulated/floor/wood/oak/vert_panel
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/oak/vert_panel
 
 /turf/simulated/floor/wood/pine
 	name = "pine wood floor"
@@ -688,6 +744,16 @@
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/pine/parquet
 
+/turf/simulated/floor/wood/pine/vert
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/pine/vert
+
+/turf/simulated/floor/wood/pine/vert_panel
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/pine/vert_panel
+
 /turf/simulated/floor/wood/redwood
 	name = "redwood wood floor"
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -709,3 +775,13 @@
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_state = "wood_parquet"
 	initial_flooring = /decl/flooring/wood/redwood/parquet
+
+/turf/simulated/floor/wood/redwood/vert
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert"
+	initial_flooring = /decl/flooring/wood/redwood/vert
+
+/turf/simulated/floor/wood/redwood/vert_panel
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_state = "wood_vert_panel"
+	initial_flooring = /decl/flooring/wood/redwood/vert_panel

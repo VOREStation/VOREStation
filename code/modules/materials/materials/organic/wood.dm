@@ -34,6 +34,8 @@
 		new /datum/stack_recipe("large wood floor tile", /obj/item/stack/tile/wood/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]"),
 		new /datum/stack_recipe("parquet wood floor tile", /obj/item/stack/tile/wood/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]"),
 		new /datum/stack_recipe("tiled wood floor tile", /obj/item/stack/tile/wood/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("vertical wood floor tile", /obj/item/stack/tile/wood/vert, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("vertical large wood floor tile", /obj/item/stack/tile/wood/vert_panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]"),
 		new /datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood, 3, time = 10, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("crossbow frame", /obj/item/crossbowframe, 5, time = 25, one_per_turf = 0, on_floor = 0, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("coffin", /obj/structure/closet/coffin, 5, time = 15, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE, recycle_material = "[name]"),
@@ -65,6 +67,8 @@
 	recipes += new /datum/stack_recipe("large alien wood floor tile", /obj/item/stack/tile/wood/sif/panel, 1, 4, 20, pass_stack_color = FALSE)
 	recipes += new /datum/stack_recipe("alien wood parquet tile", /obj/item/stack/tile/wood/sif/parquet, 1, 4, 20, pass_stack_color = FALSE)
 	recipes += new /datum/stack_recipe("tiled alien wood floor tile", /obj/item/stack/tile/wood/sif/tile, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical alien wood floor tile", /obj/item/stack/tile/wood/sif/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large alien wood floor tile", /obj/item/stack/tile/wood/sif/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -76,6 +80,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
@@ -99,6 +109,8 @@
 	recipes += new /datum/stack_recipe("large hardwood floor tile", /obj/item/stack/tile/wood/hardwood/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("parquet hardwood floor tile", /obj/item/stack/tile/wood/hardwood/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("tiled hardwood floor tile", /obj/item/stack/tile/wood/hardwood/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
+	recipes += new /datum/stack_recipe("vertical hardwood floor tile", /obj/item/stack/tile/wood/hardwood/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large hardwood floor tile", /obj/item/stack/tile/wood/hardwood/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -110,6 +122,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
@@ -179,6 +197,8 @@
 	recipes += new /datum/stack_recipe("large birch floor tile", /obj/item/stack/tile/wood/birch/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("parquet birch floor tile", /obj/item/stack/tile/wood/birch/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("tiled birch floor tile", /obj/item/stack/tile/wood/birch/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
+	recipes += new /datum/stack_recipe("vertical birch floor tile", /obj/item/stack/tile/wood/birch/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large birch floor tile", /obj/item/stack/tile/wood/birch/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -190,6 +210,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
@@ -215,6 +241,8 @@
 	recipes += new /datum/stack_recipe("large pine floor tile", /obj/item/stack/tile/wood/pine/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("parquet pine floor tile", /obj/item/stack/tile/wood/pine/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("tiled pine floor tile", /obj/item/stack/tile/wood/pine/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
+	recipes += new /datum/stack_recipe("vertical pine floor tile", /obj/item/stack/tile/wood/pine/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large pine floor tile", /obj/item/stack/tile/wood/pine/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -226,6 +254,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
@@ -251,6 +285,8 @@
 	recipes += new /datum/stack_recipe("large oak floor tile", /obj/item/stack/tile/wood/oak/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("parquet oak floor tile", /obj/item/stack/tile/wood/oak/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("tiled oak floor tile", /obj/item/stack/tile/wood/oak/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
+	recipes += new /datum/stack_recipe("vertical oak floor tile", /obj/item/stack/tile/wood/oak/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large oak floor tile", /obj/item/stack/tile/wood/oak/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -262,6 +298,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
@@ -287,6 +329,8 @@
 	recipes += new /datum/stack_recipe("large acacia floor tile", /obj/item/stack/tile/wood/acacia/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("parquet acacia floor tile", /obj/item/stack/tile/wood/acacia/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("tiled acacia floor tile", /obj/item/stack/tile/wood/acacia/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
+	recipes += new /datum/stack_recipe("vertical acacia floor tile", /obj/item/stack/tile/wood/acacia/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large acacia floor tile", /obj/item/stack/tile/wood/acacia/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -298,6 +342,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
@@ -324,6 +374,8 @@
 	recipes += new /datum/stack_recipe("large redwood floor tile", /obj/item/stack/tile/wood/redwood/panel, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("parquet redwood floor tile", /obj/item/stack/tile/wood/redwood/parquet, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
 	recipes += new /datum/stack_recipe("tiled redwood floor tile", /obj/item/stack/tile/wood/redwood/tile, 1, 4, 20, pass_stack_color = FALSE, recycle_material = "[name]")
+	recipes += new /datum/stack_recipe("vertical redwood floor tile", /obj/item/stack/tile/wood/redwood/vert, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("vertical large redwood floor tile", /obj/item/stack/tile/wood/redwood/vert_panel, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe
@@ -335,6 +387,12 @@
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "tiled wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "vertical large wood floor tile")
 			recipes -= r_recipe
 			continue
 		if(r_recipe.title == "wooden chair")
