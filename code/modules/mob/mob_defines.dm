@@ -42,6 +42,7 @@
 	var/atom/movable/screen/gun/run/gun_run_icon = null
 	var/atom/movable/screen/gun/mode/gun_setting_icon = null
 	var/atom/movable/screen/ling/chems/ling_chem_display = null
+	var/atom/movable/screen/borer/chems/borer_chem_display = null
 	var/atom/movable/screen/wizard/energy/wiz_energy_display = null
 	var/atom/movable/screen/wizard/instability/wiz_instability_display = null
 	var/atom/movable/screen/autowhisper_display = null

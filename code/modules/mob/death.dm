@@ -71,6 +71,11 @@
 
 	if(stat == DEAD)
 		return 0
+
+	var/mob/living/simple_mob/animal/borer/has_worm = has_brain_worms()
+	if(has_worm) // This is our host's problem to deal with
+		has_worm.detatch()
+
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src, gibbed)
 
