@@ -62,6 +62,9 @@
 /datum/material/wood/sif/generate_recipes()
 	..()
 	recipes += new /datum/stack_recipe("alien wood floor tile", /obj/item/stack/tile/wood/sif, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("large alien wood floor tile", /obj/item/stack/tile/wood/sif/panel, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("alien wood parquet tile", /obj/item/stack/tile/wood/sif/parquet, 1, 4, 20, pass_stack_color = FALSE)
+	recipes += new /datum/stack_recipe("tiled alien wood floor tile", /obj/item/stack/tile/wood/sif/tile, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe

@@ -144,6 +144,18 @@
 	. = ..()
 	break_tile()
 
+/turf/simulated/floor/wood/sif/tile
+	icon_state = "wood_tile"
+	initial_flooring = /decl/flooring/wood/sif/tile
+
+/turf/simulated/floor/wood/sif/panel
+	icon_state = "wood_panel"
+	initial_flooring = /decl/flooring/wood/sif/panel
+
+/turf/simulated/floor/wood/sif/parquet
+	icon_state = "wood_parquet"
+	initial_flooring = /decl/flooring/wood/sif/parquet
+
 /turf/simulated/floor/wood/alt
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	initial_flooring = /decl/flooring/wood/alt

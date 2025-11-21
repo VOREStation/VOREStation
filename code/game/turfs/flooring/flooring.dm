@@ -489,9 +489,21 @@ var/list/flooring_types
 
 /decl/flooring/wood/sif
 	desc = "Polished wood planks made from sivian wood."
-	icon = 'icons/turf/flooring/wood.dmi'
-	icon_base = "sifwood"
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
 	build_type = /obj/item/stack/tile/wood/sif
+
+/decl/flooring/wood/sif/panel
+	icon_base = "sif_panel"
+	build_type = /obj/item/stack/tile/wood/sif/panel
+
+/decl/flooring/wood/sif/parquet
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/sif/parquet
+
+/decl/flooring/wood/sif/tile
+	icon_base = "wood_tile"
+	build_type = /obj/item/stack/tile/wood/sif/tile
 
 /decl/flooring/wood/alt
 	icon = 'icons/turf/flooring/wood.dmi'
@@ -500,20 +512,20 @@ var/list/flooring_types
 
 /decl/flooring/wood/alt/panel
 	desc = "Polished wooden panels."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/panel
 
 /decl/flooring/wood/alt/parquet
 	desc = "Polished wooden tiles."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/parquet
 
 /decl/flooring/wood/alt/tile
 	desc = "Polished wooden tiles."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/tile

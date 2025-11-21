@@ -111,6 +111,21 @@
 	icon_state = "tile-wood-gs"
 	color = "#293c50"
 
+/obj/item/stack/tile/wood/sif/parquet
+	name = "alien wood parquet tile"
+	singular_name = "alien wood parquet tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/sif/panel
+	name = "large alien wood tile"
+	singular_name = "large alien wood tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/sif/tile
+	name = "tiled alien wood tile"
+	singular_name = "tiled alien wood tile"
+	icon_state = "tile-wood-gs_tile"
+
 /obj/item/stack/tile/wood/alt
 	name = "wood floor tile"
 	singular_name = "wood floor tile"
