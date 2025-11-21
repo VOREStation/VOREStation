@@ -1,5 +1,6 @@
 /datum/component/turfslip
 	var/mob/living/owner
+	var/slipping_dir = null
 	var/slip_dist = TURFSLIP_WET
 	var/dirtslip = FALSE
 
@@ -7,6 +8,7 @@
 	if (!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
+	slipping_dir = owner.dir
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 
 /datum/component/turfslip/proc/start_slip(var/turf/simulated/start, var/is_dirt)
@@ -33,8 +35,14 @@
 		if(TURFSLIP_ICE)
 			floor_type = "icy"
 			slip_stun = 4
-			slip_dist = rand(1,3)
+			slip_dist = 1
 			dirtslip = FALSE
+
+	// Unlucky behavior
+	if(HAS_TRAIT(owner, TRAIT_UNLUCKY) && start.wet)
+		slip_dist = rand(5,9)
+		slip_stun = 10
+		dirtslip = FALSE
 
 	// Only start the slip timer if we are not already sliding
 	if(!already_slipping)
@@ -60,8 +68,8 @@
 			qdel(src)
 			return
 		// reduce absurd slip distances to something reasonable if we are no longer standing on lube
-		if(slip_dist > 5)
-			slip_dist = rand(2,4)
+		if(slip_dist > 4)
+			slip_dist = 4
 
 	else if(ground.wet == TURFSLIP_LUBE)
 		// Lube slips forever, if we re-enter the lube then restore our slip
@@ -72,7 +80,7 @@
 /datum/component/turfslip/proc/next_slip()
 	// check tile for next slip
 	owner.is_slipping = TRUE
-	if(!step(owner, owner.dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
+	if(!step(owner, slipping_dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
 		slip_dist = 0
 		qdel(src)
 		return
@@ -102,9 +110,14 @@
 	if(M.is_incorporeal()) // Mar!
 		return FALSE
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.shoes && (H.shoes.item_flags & NOSLIP)) // Includes activated magboots too
+		var/mob/living/carbon/human/humie = M
+		if(humie.shoes && (humie.shoes.item_flags & NOSLIP)) // Includes activated magboots too
 			return FALSE
+		if(humie.species && (humie.species.flags & NO_SLIP))
+			return FALSE
+	if(isanimal(M)) // Simplemobs have their own slip logic
+		var/mob/living/simple_mob/simple = M
+		return simple.animal_slip(wet)
 	if(!wet && !(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES)))
 		return FALSE
 	if(wet == TURFSLIP_WET && M.m_intent == I_WALK)
