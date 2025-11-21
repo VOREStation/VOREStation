@@ -282,6 +282,8 @@
 			continue
 		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
+			continue
 		if((!S.ckeys_allowed) || (user.ckey in S.ckeys_allowed))
 			valid_hairstyles[S.name] = hairstyle
 
@@ -299,6 +301,8 @@
 		if(biological_gender == FEMALE && S.gender == MALE)
 			continue
 		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
+			continue
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue
 
 		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]

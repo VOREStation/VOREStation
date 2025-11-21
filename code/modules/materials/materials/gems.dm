@@ -230,3 +230,32 @@
 		new /datum/stack_recipe("glamour bow", /obj/item/gun/launcher/crossbow/bow/glamour, 15, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
 		new /datum/stack_recipe("glamour arrow", /obj/item/arrow/standard/glamour, 1, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]")
 	)
+
+//downstream material, upported to keep cohesion between sprites. Not intended to naturally spawn and require mapping for accessing it
+/datum/material/weathered_agate
+	name = MAT_EAGATE
+	display_name = "energized agate"
+	use_name = "energized agate"
+	icon_colour = "#FF3300"
+	stack_type = /obj/item/stack/material/weathered_agate
+	ignition_point = 2400
+	melting_point = 2200
+	protectiveness = 70
+	opacity = 0.3
+	reflectivity = 0.5
+	explosion_resistance = 13
+	negation = 12
+	spatial_instability = 18
+	radiation_resistance = 18
+	supply_conversion_value = 12
+	can_sharpen = TRUE
+
+	hardness = 70
+	weight = 5
+
+	shard_type = SHARD_SHARD
+	tableslam_noise = 'sound/effects/Glasshit.ogg'
+	sheet_singular_name = "gem"
+	sheet_plural_name = "gems"
+	icon_base = "resin"
+	table_icon_base = "resin"

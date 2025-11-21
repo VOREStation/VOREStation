@@ -63,6 +63,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			continue
 		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights_for(client, R_ADMIN | R_EVENT | R_FUN)) && (!custom_base || !(custom_base in instance.species_allowed)))
 			continue
+		if(!instance.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
+			continue
 		.[instance.name] = instance
 
 /datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000")
