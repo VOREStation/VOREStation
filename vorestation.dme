@@ -3037,6 +3037,8 @@
 #include "code\modules\maint_recycler\code\vendor_goodies\remote_scene_tools\displacement_map_generation.dm"
 #include "code\modules\maint_recycler\code\vendor_goodies\remote_scene_tools\remote_scene_tools.dm"
 #include "code\modules\maint_recycler\code\vendor_goodies\remote_scene_tools\voodoo.dm"
+#include "code\modules\maintenance_panels\maintenance_panel.dm"
+#include "code\modules\maintenance_panels\maintpanel_stack.dm"
 #include "code\modules\makeup\nailpolish.dm"
 #include "code\modules\maps\merge_conflicts.dm"
 #include "code\modules\maps\bapi-dmm\bapi_bindings.dm"
