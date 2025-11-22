@@ -668,7 +668,7 @@
 	if(last_adrenaline_rush && last_adrenaline_rush + (30 MINUTES) > world.time)
 		return
 	last_adrenaline_rush = world.time
-	log_and_message_admins("[H]'s adrenaline rush trait just activated!")
+	log_and_message_admins("[H]'s adrenaline rush trait just activated!", H)
 	H.add_modifier(/datum/modifier/adrenaline, 30 SECONDS)
 
 /datum/modifier/adrenaline

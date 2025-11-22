@@ -5,12 +5,12 @@ SUBSYSTEM_DEF(nightshift)
 	)
 	priority = FIRE_PRIORITY_NIGHTSHIFT
 	wait = 60 SECONDS
-	flags = SS_NO_TICK_CHECK
 
 	var/nightshift_active = FALSE
 	var/nightshift_first_check = 30 SECONDS
 
 	var/high_security_mode = FALSE
+	var/list/currentrun
 
 /datum/controller/subsystem/nightshift/Initialize()
 	if(!CONFIG_GET(flag/enable_night_shifts))
@@ -18,7 +18,10 @@ SUBSYSTEM_DEF(nightshift)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/nightshift/fire(resumed = FALSE)
-	if(round_duration_in_ds < nightshift_first_check)
+	if(resumed)
+		update_nightshift(resumed = TRUE)
+		return
+	if(world.time - SSticker.round_start_time < nightshift_first_check)
 		return
 	check_nightshift()
 
@@ -26,7 +29,6 @@ SUBSYSTEM_DEF(nightshift)
 	var/announce_z
 	if(using_map.station_levels.len)
 		announce_z = pick(using_map.station_levels)
-	//VOREStation Edit - TTS
 	var/pickedsound
 	if(!high_security_mode)
 		if(nightshift_active)
@@ -34,11 +36,8 @@ SUBSYSTEM_DEF(nightshift)
 		else
 			pickedsound = 'sound/AI/bright_lights.ogg'
 	priority_announcement.Announce(message, new_title = "Automated Lighting System Announcement", new_sound = pickedsound, zlevel = announce_z)
-	//VOREStation Edit End
 
-/datum/controller/subsystem/nightshift/proc/check_nightshift(check_canfire=FALSE) //This is called from elsewhere, like setting the alert levels
-	if(check_canfire && !can_fire)
-		return
+/datum/controller/subsystem/nightshift/proc/check_nightshift(forced) //This is called from elsewhere, like setting the alert levels, sadly
 	var/emergency = GLOB.security_level > SEC_LEVEL_GREEN
 	var/announcing = TRUE
 	var/night_time = using_map.get_nightshift()
@@ -53,16 +52,20 @@ SUBSYSTEM_DEF(nightshift)
 	if(emergency)
 		night_time = FALSE
 	if(nightshift_active != night_time)
-		update_nightshift(night_time, announcing)
+		update_nightshift(night_time, announcing, forced = forced)
 
 /datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE, resumed = FALSE, forced = FALSE)
-	nightshift_active = active
-	if(announce)
-		if(active)
-			announce("Good evening, crew. To reduce power consumption and stimulate the circadian rhythms of some species, all of the lights aboard the station have been dimmed for the night.")
-		else
-			announce("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
-	for(var/obj/machinery/power/apc/apc in GLOB.apcs)
+	if(!resumed)
+		currentrun = GLOB.apcs
+		nightshift_active = active
+		if(announce)
+			if (active)
+				announce("Good evening, crew. To reduce power consumption and stimulate the circadian rhythms of some species, all of the lights aboard the station have been dimmed for the night.")
+			else
+				announce("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
+	for(var/obj/machinery/power/apc/apc as anything in currentrun)
+		currentrun -= apc
 		if(apc.z in using_map.station_levels)
 			apc.set_nightshift(active, TRUE)
-			CHECK_TICK
+		if(MC_TICK_CHECK && !forced) // subsystem will be in state SS_IDLE if forced by an admin
+			return
