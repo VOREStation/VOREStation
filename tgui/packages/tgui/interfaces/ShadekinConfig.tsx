@@ -46,8 +46,8 @@ export const ShadekinConfig = (props) => {
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
   const windowHeight =
-    (isSubtle ? 220 : 190) +
-    (extended_kin ? 110 : 0) +
+    (isSubtle ? 285 : 255) +
+    (extended_kin ? 95 : 0) +
     (savefile_selected ? 0 : 90);
 
   return (
