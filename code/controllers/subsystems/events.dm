@@ -11,13 +11,13 @@ SUBSYSTEM_DEF(events)
 	var/list/datum/event/finished_events = list()
 
 	var/list/datum/event/allEvents
-	var/list/datum/event_container/event_containers
+	var/alist/event_containers
 
 	var/datum/event_meta/new_event = new
 
 /datum/controller/subsystem/events/Initialize()
 	allEvents = subtypesof(/datum/event)
-	event_containers = list(
+	event_containers = alist(
 			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
 			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
 			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major

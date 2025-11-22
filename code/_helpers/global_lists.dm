@@ -1214,7 +1214,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 
 GLOBAL_LIST_EMPTY(gun_choices)
 
-GLOBAL_LIST_INIT(severity_to_string, list(
+GLOBAL_ALIST_INIT(severity_to_string, alist(
 	EVENT_LEVEL_MUNDANE = "Mundane",
 	EVENT_LEVEL_MODERATE = "Moderate",
 	EVENT_LEVEL_MAJOR = "Major"
