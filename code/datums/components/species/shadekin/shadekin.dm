@@ -26,6 +26,8 @@
 	var/doing_phase = FALSE
 	///Are we currently phased?
 	var/in_phase = FALSE
+	///If TRUE, voice is hidden when phased (shows as "Something")
+	var/hide_voice_in_phase = TRUE
 	///Chance to break lights on phase-in
 	var/flicker_break_chance = 0
 	///Color that lights will flicker to on phase-in. Off by default.
@@ -229,6 +231,7 @@
 		"flicker_distance" = flicker_distance,
 		"no_retreat" = no_retreat,
 		"nutrition_energy_conversion" = nutrition_energy_conversion,
+		"hide_voice_in_phase" = hide_voice_in_phase,
 		"extended_kin" = extended_kin,
 		"savefile_selected" = correct_savefile_selected()
 	)
@@ -283,6 +286,10 @@
 			var/new_retreat = !nutrition_energy_conversion
 			nutrition_energy_conversion = !nutrition_energy_conversion
 			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
+		if("toggle_voice")
+			var/new_voice_hide = !hide_voice_in_phase
+			hide_voice_in_phase = !hide_voice_in_phase
+			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_hide_voice_in_phase, new_voice_hide, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 
 /mob/living/proc/shadekin_control_panel()
 	set name = "Shadekin Control Panel"
