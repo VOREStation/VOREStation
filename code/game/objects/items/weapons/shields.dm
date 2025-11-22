@@ -202,7 +202,7 @@
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-/obj/item/shield/energy/AltClick(mob/living/user)
+/obj/item/shield/energy/click_alt(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
 	if(user.incapacitated() || !istype(user))

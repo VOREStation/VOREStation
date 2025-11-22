@@ -44,7 +44,7 @@
 		if(0)
 			to_chat(usr, "[src] now opens as a container.")
 
-/obj/item/storage/quickdraw/AltClick(mob/user)
+/obj/item/storage/quickdraw/click_alt(mob/user)
 	..()
 	if(src.loc == user) //Are they carrying us?
 		toggle_quickdraw()

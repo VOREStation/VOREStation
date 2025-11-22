@@ -153,7 +153,7 @@
 	var/digspeed = 40
 	var/grave_mode = FALSE
 
-/obj/item/shovel/AltClick(mob/user)
+/obj/item/shovel/click_alt(mob/user)
 	grave_mode = !grave_mode
 	to_chat(user, span_notice("You'll now dig [grave_mode ? "out graves" : "for loot"]."))
 	. = ..()

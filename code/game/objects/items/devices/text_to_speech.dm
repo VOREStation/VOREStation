@@ -30,5 +30,5 @@
 		if(ismob(loc))
 			loc.runechat_message("\[TTS Voice\] [message]")
 
-/obj/item/text_to_speech/AltClick(mob/user) // QOL Change
+/obj/item/text_to_speech/click_alt(mob/user) // QOL Change
 	attack_self(user)

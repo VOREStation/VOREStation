@@ -2037,7 +2037,7 @@
 			else//Everyone else gets the normal noise
 				who << sound('sound/mecha/nominal.ogg',volume=50)
 
-/obj/mecha/AltClick(mob/living/user)
+/obj/mecha/click_alt(mob/living/user)
 	if(user == occupant)
 		strafing()
 

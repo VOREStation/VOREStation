@@ -42,7 +42,7 @@
 	. = ..()
 
 
-/obj/machinery/washing_machine/AltClick()
+/obj/machinery/washing_machine/click_alt()
 	start()
 
 /obj/machinery/washing_machine/verb/start_washing()

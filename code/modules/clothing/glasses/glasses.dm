@@ -365,7 +365,7 @@ BLIND     // can't see anything
 	. = ..()
 	. += to_chat(user, span_notice("Alt-click to toggle modes."))
 
-/obj/item/clothing/glasses/sunglasses/bigshot/AltClick(mob/user)
+/obj/item/clothing/glasses/sunglasses/bigshot/click_alt(mob/user)
 	set src in usr
 	if(user.canmove && !user.stat && !user.restrained())
 		if(src.ar)

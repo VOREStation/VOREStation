@@ -327,7 +327,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/robotic/blade/AltClick(mob/living/user)
+/obj/item/melee/robotic/blade/click_alt(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
 	if(user.incapacitated() || !istype(user))

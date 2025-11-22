@@ -106,7 +106,7 @@
 			return 1//Contains only a single object which can be extracted alone
 	return 2//Contains multiple objects and/or reagents
 
-/obj/item/reagent_containers/cooking_container/AltClick(var/mob/user)
+/obj/item/reagent_containers/cooking_container/click_alt(var/mob/user)
 	do_empty(user)
 
 //Deletes contents of container.

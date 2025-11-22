@@ -21,3 +21,17 @@
 
 ///from /datum/species/handle_fire. Called when the human is set on fire and burning clothes and stuff
 #define COMSIG_HUMAN_BURNING "human_burning"
+
+///from base of mob/clickon(): (atom/A, list/modifiers)
+#define COMSIG_MOB_CLICKON "mob_clickon"
+///from base of mob/MiddleClickOn(): (atom/A)
+#define COMSIG_MOB_MIDDLECLICKON "mob_middleclickon"
+///from base of mob/AltClickOn(): (atom/A)
+#define COMSIG_MOB_ALTCLICKON "mob_altclickon"
+	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
+///From base of /mob/base_click_ctrl: (atom/A)
+#define COMSIG_MOB_CTRL_CLICKED "mob_ctrl_clicked"
+///From base of /mob/base_click_ctrl_shift: (atom/A)
+#define COMSIG_MOB_CTRL_SHIFT_CLICKED "mob_ctrl_shift_clicked"
+///from base of mob/alt_click_on_secodary(): (atom/A)
+#define COMSIG_MOB_ALTCLICKON_SECONDARY "mob_altclickon_secondary"

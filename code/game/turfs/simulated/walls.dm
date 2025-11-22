@@ -345,7 +345,7 @@
 	ChangeTurf(/turf/simulated/wall/cult, preserve_outdoors = TRUE)
 	return TRUE
 
-/turf/simulated/wall/AltClick(mob/user)
+/turf/simulated/wall/click_alt(mob/user)
 	if(isliving(user))
 		var/mob/living/livingUser = user
 		if(try_graffiti(livingUser, livingUser.get_active_hand()))

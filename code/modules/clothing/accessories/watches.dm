@@ -65,7 +65,7 @@
 /obj/item/gps/watch
 	gps_tag = "SRV-WTCH"
 
-/obj/item/clothing/accessory/watch/survival/AltClick(mob/user)
+/obj/item/clothing/accessory/watch/survival/click_alt(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
