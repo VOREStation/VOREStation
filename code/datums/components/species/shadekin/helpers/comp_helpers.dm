@@ -268,3 +268,4 @@
 		flicker_distance = owner.read_preference(/datum/preference/numeric/living/flicker_distance)
 		no_retreat = owner.read_preference(/datum/preference/toggle/living/dark_retreat_toggle)
 		nutrition_energy_conversion = owner.read_preference(/datum/preference/toggle/living/shadekin_nutrition_conversion)
+		hide_voice_in_phase = owner.read_preference(/datum/preference/toggle/living/shadekin_hide_voice_in_phase)
