@@ -47,7 +47,7 @@ export const ShadekinConfig = (props) => {
 
   const windowHeight =
     (isSubtle ? 220 : 190) +
-    (extended_kin ? 105 : 55) +
+    (extended_kin ? 110 : 0) +
     (savefile_selected ? 0 : 90);
 
   return (
