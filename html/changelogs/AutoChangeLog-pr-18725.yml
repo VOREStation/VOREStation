@@ -1,8 +1,0 @@
-author: "AnymousUnknow & Diana"
-delete-after: True
-changes:
-  - rscadd: "Adds protogen visor markings"
-  - rscadd: "Adds Oak Tree markings"
-  - rscadd: "Adds Admin-only Skeleton markings"
-  - rscadd: "Adds a thin and thinner body marking"
-  - code_imp: "Adds backend code to allow markings to be admin-selectable only"
