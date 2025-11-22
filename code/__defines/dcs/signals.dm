@@ -163,7 +163,7 @@
 #define COMSIG_ATOM_WIRECUTTER_ACT "atom_wirecutter_act"
 ///from base of atom/crowbar_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_CROWBAR_ACT "atom_crowbar_act"
-///from base of atom/analyser_act(): (mob/living/user, obj/item/I)
+///from base of /atom/proc/atmosanalyze(var/mob/user)
 #define COMSIG_ATOM_ANALYSER_ACT "atom_analyser_act"
 	#define COMPONENT_BLOCK_TOOL_ATTACK (1<<0)
 ///called when teleporting into a protected turf: (channel, turf/origin)
@@ -270,9 +270,9 @@
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"
 ///from the base of mob/living/carbon/human/hitby(): (atom/movable/source, speed)
 #define COMSIG_HUMAN_ON_CATCH_THROW "human_on_catch_throw"
-///from base of atom/movable/buckle_mob(): (mob, force)
+///from base of atom/movable/buckle_mob(): (mob/living/M, forced = FALSE, check_loc = TRUE)
 #define COMSIG_MOVABLE_BUCKLE "buckle"
-///from base of atom/movable/unbuckle_mob(): (mob, force)
+///from base of atom/movable/unbuckle_mob(): (mob/living/buckled_mob, force = FALSE)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"
 ///from base of atom/movable/throw_at(): (list/args)
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"

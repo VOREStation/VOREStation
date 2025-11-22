@@ -33,6 +33,9 @@
 	return atmosanalyzer_scan(src, src.air, user)
 
 /atom/proc/atmosanalyze(var/mob/user)
+	var/datum/component/gas_holder/gas_component = GetComponent(/datum/component/gas_holder)
+	if(gas_component)
+		return gas_component.return_atmos()
 	return
 
 /obj/item/tank/atmosanalyze(var/mob/user)

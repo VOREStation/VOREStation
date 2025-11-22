@@ -49,6 +49,7 @@
 
 
 /atom/movable/proc/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, M, forced, check_loc)
 	if(check_loc && M.loc != loc)
 		return FALSE
 
@@ -79,6 +80,8 @@
 	return TRUE
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
+	SEND_SIGNAL(buckled_mob, COMSIG_MOVABLE_UNBUCKLE, force)
 	if(!buckled_mob) // If we didn't get told which mob needs to get unbuckled, just assume its the first one on the list.
 		if(has_buckled_mobs())
 			buckled_mob = buckled_mobs[1]
