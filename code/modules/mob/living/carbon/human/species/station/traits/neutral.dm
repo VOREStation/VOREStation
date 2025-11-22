@@ -232,7 +232,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("organic_food_coeff" = 0, "bloodsucker" = TRUE) //The verb is given in human.dm
-	excludes = list(/datum/trait/neutral/bloodsucker_freeform)
+	excludes = list(/datum/trait/neutral/bloodsucker_freeform, /datum/trait/positive/bloodsucker_plus)
 
 /datum/trait/neutral/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -253,7 +253,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("bloodsucker" = TRUE)
-	excludes = list(/datum/trait/neutral/bloodsucker)
+	excludes = list(/datum/trait/neutral/bloodsucker, /datum/trait/positive/bloodsucker_plus)
 
 /datum/trait/neutral/bloodsucker_freeform/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()

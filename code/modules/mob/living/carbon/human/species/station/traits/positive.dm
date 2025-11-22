@@ -542,12 +542,20 @@
 	can_take = ORGANICS
 	var_changes = list("virus_immune" = TRUE)
 
+/datum/trait/positive/linguist/expert
+	name = "Expert Linguist"
+	desc = "You are a expert of languages! For whatever reason you might have, you are able to learn many more languages than others. Your language cap is 5 slots."
+	cost = 3
+	var_changes = list("num_alternate_languages" = 8)
+	var_changes_pref = list("extra_languages" = 5)
+
 /datum/trait/positive/linguist/master
 	name = "Master Linguist"
 	desc = "You are a master of languages! For whatever reason you might have, you are able to learn many more languages than others. Your language cap is 12 slots."
 	cost = 2
 	var_changes = list("num_alternate_languages" = 15)
 	var_changes_pref = list("extra_languages" = 12)
+	hidden = TRUE
 
 /datum/trait/positive/densebones
 	name = "Dense Bones"
@@ -821,6 +829,7 @@
 	var_changes = list("item_slowdown_mod" = 0.0)
 	excludes = list(/datum/trait/positive/speed_fast,/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
+/// ## MIGRATE THIS TO /datum/trait/neutral/bloodsucker_freeform
 /datum/trait/positive/bloodsucker_plus
 	name = "Evolved Bloodsucker"
 	desc = "Makes you able to gain nutrition by draining blood as well as eating food. To compensate, you get fangs that can be used to drain blood from prey."
