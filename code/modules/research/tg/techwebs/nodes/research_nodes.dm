@@ -108,9 +108,9 @@
 		"xenoarch_multitool",
 		"excavationdrill",
 		"ano_scanner",
-		// "anomaly_refinery",
-		// "anomaly_neutralizer",
-		// "reactive_armour",
+		//"anomaly_refinery",
+		"anomaly_neutralizer",
+		"reactive_armour",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)

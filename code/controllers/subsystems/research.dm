@@ -44,7 +44,14 @@ SUBSYSTEM_DEF(research)
 		/obj/item/research_sample/common = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.5),
 		/obj/item/research_sample/uncommon = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS*0.5),
 		/obj/item/research_sample/rare = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS*0.5),
-		/obj/item/research_sample/bluespace = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS*0.5)
+		/obj/item/research_sample/bluespace = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS*0.5),
+		/obj/item/assembly/signaler/anomaly/bioscrambler = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/bluespace = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/dimensional = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/flux = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/grav = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/hallucination = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/pyro = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	)
 	///Allows repeated deconstruction of these items for points. These items MUST be in techweb_point_items as well.
 	var/list/techweb_repeatable_items = list(

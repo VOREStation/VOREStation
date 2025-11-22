@@ -276,3 +276,32 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/anomaly_neutralizer
+	name = "Anomaly Neutralizer"
+	desc = "An advanced tool capable of instantly neutralizing anomalies, designed to capture the fleeting aberrations created by the engine."
+	id = "anomaly_neutralizer"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT, MAT_GOLD = SHEET_MATERIAL_AMOUNT, MAT_PHORON = SHEET_MATERIAL_AMOUNT * 2.5, MAT_URANIUM = SHEET_MATERIAL_AMOUNT)
+	build_path = /obj/item/anomaly_neutralizer
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/reactive_armour
+	name = "Reactive Armor Shell"
+	desc = "An experimental suit of armour capable of utilizing an implanted anomaly core to protect the user."
+	id = "reactive_armour"
+	build_type = PROTOLATHE
+	materials = list(
+		MAT_STEEL = SHEET_MATERIAL_AMOUNT*5,
+		MAT_URANIUM = SHEET_MATERIAL_AMOUNT*4,
+		MAT_DIAMOND = SHEET_MATERIAL_AMOUNT*2.5,
+		MAT_SILVER = SHEET_MATERIAL_AMOUNT*2.5,
+		MAT_GOLD = SHEET_MATERIAL_AMOUNT*2.5
+	)
+	build_path = /obj/item/clothing/suit/armor/reactive_armor_shell
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
