@@ -11,3 +11,7 @@
 /datum/config_entry/flag/smart_cache_assets
 
 /datum/config_entry/flag/save_spritesheets
+
+/datum/config_entry/string/storage_cdn_iframe
+	protection = CONFIG_ENTRY_LOCKED
+	default = "https://vorestation.github.io/byond-client-storage/iframe.html"
