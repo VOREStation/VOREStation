@@ -151,6 +151,28 @@ $BunExe = "$BunTargetDir\bun.exe"
 $BunZip = "$BunTargetDir\bun.zip"
 $CoreInfoExe = "$Cache\coreinfo\Coreinfo.exe"
 
+function Test-SymlinkSupport {
+    Write-Output "Checking filesystem support"
+
+    $fullBaseDir = Resolve-Path $BaseDir
+
+    $driveLetter = Split-Path -Qualifier $fullBaseDir
+    $driveLetter = $driveLetter.TrimEnd(":\")
+
+    $volume = Get-Volume -DriveLetter $driveLetter
+    $fsType = $volume.FileSystem
+
+    if ($fsType -in @("FAT", "FAT32", "exFAT")) {
+        Write-Error "Compilation of code won't be possible. File system $fsType doesn't support symlinks"
+        exit 1
+    }
+
+    Write-Output "File system $fsType not in unsupported filesystems"
+}
+
+## Check symlink support
+Test-SymlinkSupport
+
 ## Just print the path and exit
 if ($Args.length -eq 1 -and $Args[0] -eq "Get-Path") {
     Write-Output "$BunTargetDir"
