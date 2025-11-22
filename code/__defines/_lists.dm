@@ -42,7 +42,7 @@
 // Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 
-#define reverseList(L) reverseRange(L.Copy())
+#define reverseList(L) reverse_range(L.Copy())
 
 #define islist(L) istype(L, /list)
 
