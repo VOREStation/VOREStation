@@ -1,0 +1,7 @@
+author: "Will, Reo"
+delete-after: True
+changes:
+  - bugfix: "Fixed several distance issues with slipcode"
+  - bugfix: "You cannot change direction while slipping"
+  - bugfix: "Simple mobs no longer slip by default"
+  - bugfix: "Species flag NO_SLIP is respected by slipcode again"
