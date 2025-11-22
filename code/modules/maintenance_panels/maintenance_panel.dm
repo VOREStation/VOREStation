@@ -31,12 +31,12 @@
 		return // Cannot be electrochromed
 	if(W.has_tool_quality(TOOL_WELDER) && (user.a_intent != I_HELP || health == maxhealth)) // If at max health or not on help
 		var/obj/item/weldingtool/WT = W.get_welder()
-		if(WT.remove_fuel(1 ,user))
+		if(WT.remove_fuel(1, user))
 			to_chat(user, span_warning("You begin to [!anchored ? "weld" : "cut"] the [src] [!anchored ? "to" : "off"] the wall."))
 			playsound(src, W.usesound, 75, 1)
 			if(do_after(user, 2 SECONDS, target = src))
 				anchored = !anchored
-				update_nearby_tiles(need_rebuild=1)
+				update_nearby_tiles(need_rebuild = 1)
 				update_nearby_icons()
 				update_verbs()
 				to_chat(user, span_info("You [anchored ? "weld" : "cut"] the [src] [anchored ? "to" : "off"] the wall."))
@@ -57,13 +57,13 @@
 		else
 			playsound(src, 'sound/effects/grillehit.ogg', 75, 1)
 	if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
-		visible_message("\the [src] is about to break free!" )
+		visible_message("\the [src] is about to break free!")
 		update_icon()
 	else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
-		visible_message("\the [src] looks seriously damaged!" )
+		visible_message("\the [src] looks seriously damaged!")
 		update_icon()
 	else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
-		visible_message("\the [src] looks like it's taking damage!" )
+		visible_message("\the [src] looks like it's taking damage!")
 		update_icon()
 
 /obj/structure/window/maintenance_panel/shatter(var/display_message = 1)
