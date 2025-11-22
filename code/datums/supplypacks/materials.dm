@@ -29,6 +29,27 @@
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Wooden planks crate"
 
+/datum/supply_pack/materials/birch50
+	name = "50 birch planks"
+	contains = list(/obj/fiftyspawner/birchwood)
+	cost = 10
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Birch planks crate"
+
+/datum/supply_pack/materials/oak50
+	name = "50 oak planks"
+	contains = list(/obj/fiftyspawner/oakwood)
+	cost = 10
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Oak planks crate"
+
+/datum/supply_pack/materials/pine50
+	name = "50 pine planks"
+	contains = list(/obj/fiftyspawner/pinewood)
+	cost = 10
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Pine planks crate"
+
 /datum/supply_pack/materials/alienwood50
 	name = "50 alien wood planks"
 	contains = list(/obj/fiftyspawner/sifwood)
@@ -36,12 +57,26 @@
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Alien wood planks crate"
 
+/datum/supply_pack/materials/acacia50
+	name = "50 acacia planks"
+	contains = list(/obj/fiftyspawner/acaciawood)
+	cost = 35
+	containertype = /obj/structure/closet/crate/gilthari
+	containername = "Acacia planks crate"
+
 /datum/supply_pack/materials/hardwood50
 	name = "50 hardwood planks"
 	contains = list(/obj/fiftyspawner/hardwood)
 	cost = 50
 	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Hardwood planks crate"
+
+/datum/supply_pack/materials/redwood50
+	name = "50 redwood planks"
+	contains = list(/obj/fiftyspawner/redwood)
+	cost = 50
+	containertype = /obj/structure/closet/crate/gilthari
+	containername = "Redwood planks crate"
 
 /datum/supply_pack/materials/plastic50
 	name = "50 plastic sheets"

@@ -9,6 +9,17 @@
 	per_round_cap = 3 //limited supply!
 	vendor_category = MAINTVENDOR_CONSTRUCTION
 
+/datum/maint_recycler_vendor_entry/DIY_SifWood
+	name = "SIF WOOD???"
+	desc = "Seeing this stuff for the first time BLUE our minds, but not your wallets!!"
+	object_type_to_spawn = /obj/item/stack/material/wood/sif{amount = 20}
+	item_cost = 15 //not too pricy
+	tagline = "the trees are speaking 👽"
+	ad_message = "SIF! WOOD! WIF! WOOD!"
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+
 /datum/maint_recycler_vendor_entry/DIY_HardWood //this one writes itself
 	name = "Hard... Knotty Wood... "
 	desc = "Seriously! this tree sucked! unsuitable for professional construction due to how hard the knots are, the savings (and various aches and pains) are passed onto YOU!!!"
@@ -20,6 +31,55 @@
 	per_round_cap = 3 //limited supply!
 	object_type_to_spawn = /obj/item/stack/material/wood/hard{amount = 20}
 
+/datum/maint_recycler_vendor_entry/DIY_AcaciaWood //this one writes itself
+	name = "Acacia? I 'ardly Know 'er!"
+	desc = "Seriously! this tree sucked! unsuitable for professional construction due to how hard the knots are, the savings (and various aches and pains) are passed onto YOU!!!"
+	tagline = "Tree for the price of one!!!"
+	ad_message = "owo"
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+	object_type_to_spawn = /obj/item/stack/material/wood/acacia{amount = 20}
+
+/datum/maint_recycler_vendor_entry/DIY_BirchWood //this one writes itself
+	name = "Hot Birches In Your Area!!"
+	desc = "99 Problems But A Birch Ain't One!"
+	tagline = "BIRCHES! IN! HEAT!"
+	ad_message = "🤤"
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+	object_type_to_spawn = /obj/item/stack/material/wood/birch{amount = 20}
+
+/datum/maint_recycler_vendor_entry/DIY_OakWood
+	name = "Oak-y, Pal"
+	desc = "No ACORN-y jokes here, just gen-u-ine oak wood! That's it. Promise."
+	tagline = "Sure thing bud"
+	ad_message = "🤤"
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+	object_type_to_spawn = /obj/item/stack/material/wood/oak{amount = 20}
+
+/datum/maint_recycler_vendor_entry/DIY_PineWood
+	name = "Pine For The Fjords..."
+	desc = "Smells like home. And also those little air freshener thingies you put in your car. Do people still have cars?"
+	tagline = "Enjoy the needles"
+	ad_message = "🌲"
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+	object_type_to_spawn = /obj/item/stack/material/wood/pine{amount = 20}
+
+/datum/maint_recycler_vendor_entry/DIY_RedWood //this one writes itself
+	name = "REDWOOD? I SURE HAVE!"
+	desc = "This stuff is way too expensive to be in here, but we won't tell anyone if you don't!"
+	tagline = "REDRUM! Wait, no, don't."
+	ad_message = "waow"
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+	object_type_to_spawn = /obj/item/stack/material/wood/redwood{amount = 20}
 
 /datum/maint_recycler_vendor_entry/cardboard
 	vendor_category = MAINTVENDOR_CONSTRUCTION

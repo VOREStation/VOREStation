@@ -1,5 +1,5 @@
 /obj/item/stack/material/wood
-	name = "wooden plank"
+	name = MAT_WOOD + " plank"
 	icon_state = "sheet-wood"
 	default_type = MAT_WOOD
 	strict_color_stacking = TRUE
@@ -9,15 +9,45 @@
 	no_variants = FALSE
 
 /obj/item/stack/material/wood/sif
-	name = "alien wooden plank"
+	name = MAT_SIFWOOD + " plank"
 	color = "#0099cc"
 	default_type = MAT_SIFWOOD
 
 /obj/item/stack/material/wood/hard
-	name = "hardwood plank"
+	name = MAT_HARDWOOD + " plank"
 	color = "#42291a"
 	default_type = MAT_HARDWOOD
 	description_info = "Rich, lustrous hardwood, imported from offworld at moderate expense. Mostly used for luxurious furniture, and not very good for weapons or other structures."
+
+/obj/item/stack/material/wood/birch
+	name = MAT_BIRCHWOOD + " plank"
+	color = "#f6dec0"
+	default_type = MAT_BIRCHWOOD
+	description_info = "Sturdy hardwood, birch makes for beautiful furniture but also has many secondary applications. It's also an exceptionally good choice for firewood."
+
+/obj/item/stack/material/wood/pine
+	name = MAT_PINEWOOD + " plank"
+	color = "#cd9d6f"
+	default_type = MAT_PINEWOOD
+	description_info = "Planks from tall, fast-growing coniferous pine trees, dense and mostly used for construction or furnishings."
+
+/obj/item/stack/material/wood/oak
+	name = MAT_OAKWOOD + " plank"
+	color = "#674928"
+	default_type = MAT_OAKWOOD
+	description_info = "A sturdy, fairly common hardwood. A good choice for furnishings and structures. Oak barrels can be used to age alcohol, whilst oakwood chips are often used for smoking meats and cheeses."
+
+/obj/item/stack/material/wood/acacia
+	name = MAT_ACACIAWOOD + " plank"
+	color = "#b75e12"
+	default_type = MAT_ACACIAWOOD
+	description_info = "Vibrant reddish-orange acacia makes a striking statement wherever it's used, and the bark of some acacia species is useful for tanning leather."
+
+/obj/item/stack/material/wood/redwood
+	name = MAT_REDWOOD + " plank"
+	color = "#a45a52"
+	default_type = MAT_REDWOOD
+	description_info = "Blazing orange-red redwood planks. The trees used to make this can grow for centuries, and are often protected. This wood has been sustainably harvested from special tree nurseries, rather than chopping down ancient giants."
 
 /obj/item/stack/material/log
 	name = MAT_LOG
