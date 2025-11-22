@@ -169,6 +169,8 @@
 					return /obj/structure/disposalpipe/sortjunction/wildcard
 				if(DISPOSAL_SORT_UNTAGGED)
 					return /obj/structure/disposalpipe/sortjunction/untagged
+				if(DISPOSAL_SORT_BODIES)
+					return /obj/structure/disposalpipe/sortjunction/bodies
 		if(DISPOSAL_PIPE_SORTER_FLIPPED)
 			switch(subtype)
 				if(DISPOSAL_SORT_NORMAL)
@@ -177,6 +179,8 @@
 					return /obj/structure/disposalpipe/sortjunction/wildcard/flipped
 				if(DISPOSAL_SORT_UNTAGGED)
 					return /obj/structure/disposalpipe/sortjunction/untagged/flipped
+				if(DISPOSAL_SORT_BODIES)
+					return /obj/structure/disposalpipe/sortjunction/bodies/flipped
 		if(DISPOSAL_PIPE_UPWARD)
 			return /obj/structure/disposalpipe/up
 		if(DISPOSAL_PIPE_DOWNWARD)
@@ -211,6 +215,8 @@
 					nicetype = "wildcard sorting pipe"
 				if(DISPOSAL_SORT_UNTAGGED)
 					nicetype = "untagged sorting pipe"
+				if(DISPOSAL_SORT_BODIES)
+					nicetype = "body recovery sorting pipe"
 			ispipe = 1
 		if(DISPOSAL_PIPE_TAGGER)
 			nicetype = "tagging pipe"
