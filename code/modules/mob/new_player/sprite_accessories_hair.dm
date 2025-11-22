@@ -1380,6 +1380,19 @@
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "serg_fairytail"
 
+/datum/sprite_accessory/hair/deceitful
+	name = "Deceitful"
+	icon_state = "deceitful"
+
+/datum/sprite_accessory/hair/deceitful_eyeless
+	name = "deceitful, eyeless"
+	icon_state = "deceitful_eyeless"
+
+/datum/sprite_accessory/hair/muscov
+	name = "Muscov"
+	icon_state = "muscov"
+
+
 // Vulpa stuffs
 
 /datum/sprite_accessory/hair/vulp_hair_kajam
