@@ -1,7 +1,7 @@
 /datum/component/turfslip
 	var/mob/living/owner
 	var/slipping_dir = null
-	var/slip_dist = TURFSLIP_WET
+	var/slip_dist = 1
 	var/dirtslip = FALSE
 
 /datum/component/turfslip/Initialize()
@@ -25,24 +25,32 @@
 		else if(start.is_outdoors())
 			floor_type = "uneven"
 
-	// Proper sliding behavior
-	switch(start.wet)
-		if(TURFSLIP_LUBE)
-			floor_type = "slippery"
-			slip_dist = 99 //Skill issue.
-			slip_stun = 10
-			dirtslip = FALSE
-		if(TURFSLIP_ICE)
-			floor_type = "icy"
-			slip_stun = 4
-			slip_dist = 1
-			dirtslip = FALSE
-
 	// Unlucky behavior
 	if(HAS_TRAIT(owner, TRAIT_UNLUCKY) && start.wet)
-		slip_dist = rand(5,9)
+		slip_dist = rand(5,9) // Random longer distances on slip
 		slip_stun = 10
 		dirtslip = FALSE
+
+	else
+		// Proper sliding behavior
+		switch(start.wet)
+			if(TURFSLIP_WET)
+				// Slipping on wet turf doesn't push you a turf
+				owner.slip("the [floor_type] floor", slip_stun)
+				qdel(src)
+				return
+
+			if(TURFSLIP_LUBE)
+				floor_type = "slippery"
+				slip_dist = 99 //Skill issue.
+				slip_stun = 10
+				dirtslip = FALSE
+
+			if(TURFSLIP_ICE)
+				floor_type = "icy"
+				slip_dist = 1
+				slip_stun = 4
+				dirtslip = FALSE
 
 	// Only start the slip timer if we are not already sliding
 	if(!already_slipping)
@@ -101,10 +109,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 // Helper proc
 ////////////////////////////////////////////////////////////////////////////////////////
-/turf/proc/check_slipping(var/mob/living/M)
+/turf/proc/check_slipping(mob/living/M,dirtslip)
 	return FALSE
 
-/turf/simulated/check_slipping(var/mob/living/M,var/dirtslip)
+/turf/simulated/check_slipping(mob/living/M,dirtslip)
 	if(M.buckled)
 		return FALSE
 	if(M.is_incorporeal()) // Mar!
@@ -117,7 +125,7 @@
 			return FALSE
 	if(isanimal(M)) // Simplemobs have their own slip logic
 		var/mob/living/simple_mob/simple = M
-		return simple.animal_slip(wet)
+		return simple.animal_slip(wet, dirtslip)
 	if(!wet && !(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES)))
 		return FALSE
 	if(wet == TURFSLIP_WET && M.m_intent == I_WALK)

@@ -473,5 +473,5 @@
 	update_icon()
 
 /// Simple mob slip logic, should be overriden if you want the simple mob to slip under certain conditions
-/mob/living/simple_mob/proc/animal_slip(wet_level)
+/mob/living/simple_mob/proc/animal_slip(wet_level, dirtslip)
 	return FALSE
