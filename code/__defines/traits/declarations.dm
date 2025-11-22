@@ -41,3 +41,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define INGESTED_TOXIN_IMMUNE "ingested_toxin_immune"
 /// If using melee, attacks will use the 'get_sparring_variant' if possible
 #define TRAIT_NONLETHAL_BLOWS "trait_nonlethal_blows"
+/// Are we immune to specifically tesla?
+#define TRAIT_TESLA_SHOCKIMMUNE "tesla_shock_immunity"

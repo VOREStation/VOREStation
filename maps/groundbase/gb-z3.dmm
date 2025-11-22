@@ -118,7 +118,6 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/groundbase/level3/escapepad;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab;
-	docking_controller = null;
 	landmark_tag = "escape_station";
 	name = "Ship Arrivals"
 	},
@@ -673,8 +672,7 @@
 "lD" = (
 /obj/machinery/door/window/southleft{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -831,7 +829,6 @@
 /obj/item/defib_kit/compact/combat/loaded,
 /obj/item/cmo_disk_holder,
 /obj/item/storage/secure/briefcase/ml3m_pack_cmo,
-/obj/item/storage/mrebag/pill/sleevingcure,
 /obj/structure/sign/painting/library_secure{
 	pixel_x = 30
 	},
@@ -879,7 +876,6 @@
 /obj/machinery/atmospheric_field_generator/perma/underdoors,
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/science{
-	frequency = null;
 	name = "Shuttle";
 	req_one_access = null
 	},
@@ -2334,7 +2330,6 @@
 /area/groundbase/level3/se)
 "JU" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -2816,8 +2811,6 @@
 /area/groundbase/civilian/kitchen)
 "QC" = (
 /obj/machinery/door/airlock/multi_tile/glass/polarized{
-	id_tag = null;
-	id_tint = null;
 	name = "Medbay Airlock";
 	req_one_access = list(5)
 	},
