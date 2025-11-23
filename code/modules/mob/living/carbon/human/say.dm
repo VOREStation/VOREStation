@@ -1,6 +1,6 @@
 /mob/living/carbon/human/GetAltName()
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(SK && SK.in_phase)
+	var/datum/component/shadekin/shadekin_component = get_shadekin_component()
+	if(shadekin_component && shadekin_component.in_phase)
 		return ""
 	if(absorbed && isbelly(loc))
 		var/obj/belly/B = loc
@@ -89,10 +89,10 @@
 
 /mob/living/carbon/human/GetVoice()
 	// Check if shadekin is phased and has voice hiding enabled
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(SK && SK.in_phase && SK.hide_voice_in_phase)
+	var/datum/component/shadekin/shadekin_component = get_shadekin_component()
+	if(shadekin_component && shadekin_component.in_phase && shadekin_component.hide_voice_in_phase)
 		return "Something"
-	
+
 	var/voice_sub
 	if(istype(get_rig(),/obj/item/rig))
 		var/obj/item/rig/rig = get_rig()
