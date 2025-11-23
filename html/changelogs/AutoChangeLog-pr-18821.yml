@@ -1,6 +1,0 @@
-author: "Nova"
-delete-after: True
-changes:
-  - bugfix: "Fixed body writing being silent in chat, and instant"
-  - bugfix: "Fixed body writing having no message notifications."
-  - rscadd: "Added ability to resist / move away from being body written."
