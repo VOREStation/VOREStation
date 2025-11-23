@@ -54,9 +54,12 @@
 	var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
 	smoke_system.set_up(reagents, 10, 0, get_turf(src))
 	for(var/i = 1 to 8)
-		smoke_system.start()
-	reagents.clear_reagents()
+		addtimer(CALLBACK(smoke_system, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread, start)), i)
+	addtimer(CALLBACK(src, PROC_REF(clear_smoke_reagents)), 9)
 	activate_pin(2)
+
+/obj/item/integrated_circuit/reagent/smoke/proc/clear_smoke_reagents()
+	reagents.clear_reagents()
 
 /obj/item/integrated_circuit/reagent/injector
 	name = "integrated hypo-injector"
