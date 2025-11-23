@@ -319,3 +319,16 @@
   - code_imp: Added clothing traits
   Kashargul:
   - code_imp: dependency update
+2025-11-23:
+  Diana:
+  - bugfix: PAI parts now give the proper parts when screwdrivered and having them
+      removed
+  Nova:
+  - bugfix: Fixed body writing being silent in chat, and instant
+  - bugfix: Fixed body writing having no message notifications.
+  - rscadd: Added ability to resist / move away from being body written.
+  Will, Reo:
+  - bugfix: Fixed several distance issues with slipcode
+  - bugfix: You cannot change direction while slipping
+  - bugfix: Simple mobs no longer slip by default
+  - bugfix: Species flag NO_SLIP is respected by slipcode again
