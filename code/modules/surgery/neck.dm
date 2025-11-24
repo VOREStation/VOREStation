@@ -187,7 +187,6 @@
 	user.balloon_alert_visible("fused [target]'s spinal cord", "fused the spinal cord")
 	target.op_stage.brainstem = 4
 	target.AdjustParalysis(5)
-	target.add_modifier(/datum/modifier/franken_sickness, 20 MINUTES)
 
 /datum/surgery_step/brainstem/mend_cord/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
