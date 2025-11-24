@@ -129,3 +129,206 @@
   - code_imp: Implements COMSIG_VENT_CRAWLER_ENTERED
   - code_imp: Implements COMSIG_VENT_CRAWLER_EXITED
   - bugfix: Adds missing data to chemalyzer
+2025-11-09:
+  Diana:
+  - bugfix: fixes a 10 year old bug where your lungs were assigned to your heart
+  - qol: Surgery can be done ANYWHERE now. However, 'dirty'/non-sterile surfaces (floors
+      and tables) risk infection and make you MUCH slower. OPtables are still the
+      fastest.
+  - qol: Infection is less aggressive short term, more lethal long term. This means
+      no more 'sudden death from infection'
+  - qol: Infection can be seen when examining yourself/others (Others can detect infection
+      on you MUCH sooner than yourself)
+  - qol: Internal bleeding can be seen when examining yourself/others via a grab-examine
+  - qol: Sterilizine is cleans 10x more effectively now.
+  - qol: Stethoscopes can now be used to examine for internal injury or missing internal
+      organs.
+  - qol: Fixovein now has a 100% chance of success during dehusking surgery instead
+      of a 30%
+  - qol: Surgery RNG % chance of failure depending on surface removed. Instead replaced
+      with a RNG % chance of increasing the germ level if you use an unsanitary surface
+      to do surgery on.
+  - qol: Syringe stabbing now takes higher armors into account. No longer a pure 50/50%
+      chance
+  - qol: Some ghetto surgery tools have been increased in chance.
+  - spellcheck: Some typos in surgery have been fixed.
+  - bugfix: Grab-examining boneless crew will no longer tell you they have bones
+  - bugfix: Tachycardics and bradycardics now affect heartrate (Drink coffee while
+      smoking after having downed some Nuka Cola and ask medical to take your pulse.
+      It'll be funny.)
+  - bugfix: Stethoscope now properly detects your heartrate.
+  - bugfix: Defib no longer does massive oxyloss and brain damage to those it revives.
+  - bugfix: Medical kiosks no longer infinitely give you blood pills
+  - bugfix: Examining someone that is not breathing will inform you that they are
+      - in fact - not breathing
+  - bugfix: Brain surgery now works properly if the user is ghosted when the brain
+      is removed
+  - bugfix: You no longer lose your languages after brain surgery
+  - qol: Detoxify surgery no longer requires you to raise your patient's toxins or
+      oxyloss above 25 to use it.
+  - rscadd: Necrosis surgery now has a separate pathtree similar to dehusking surgery.
+  - rscadd: You can now palpate the neck, chest, and abdomen to examine for internal
+      injuries.
+  - code_imp: Converts a few lists into managed global lists.
+  - refactor: Lasertag code has been completely revamped.
+  - rscadd: A lot of lasertag additions from Outpost21. Laser Knives, Laser Mines,
+      Omni Vests! Get them all from cargo!
+  - qol: Lasertag 'instagib' and 'multkill' modes have been moved to the vests theirselves
+      via a HP toggle instead of on the gun.
+  - qol: Lasertag vests can set their HP to be between 1-10
+  - qol: Lasertag vests can now have a passive heal, set to not heal at all (0) all
+      the way up to heal once every 60 seconds
+  - qol: EMP strength actually matters when it comes to EMPing turrets.
+  - bugfix: Turrets will properly have a lethal projectile if set by the code.
+  - bugfix: Lasertag turrets properly target at players.
+  - rscadd: Lasertag turrets now have an emag effect
+  - rscadd: Lasertag vests now have an emag effect
+  - rscadd: Lasertag turrets can be purchased from Cargo
+  - bugfix: You can no longer shoot lasertag guns while downed
+  - bugfix: You can no longer crawl while downed in lasertag
+  - bugfix: Landmines will no longer 100% miss the person that steps on them
+  - bugfix: Training mines drop any attached assemblies upon 'explosion'
+  - bugfix: Mines drop any attached assemblies upon disarming.
+  - code_imp: removes deprecated organ check
+  KillianKirilenko:
+  - rscadd: Added fusion coils, special single-use cells which can be used to kickstart
+      depleted SMES units
+  ReoDaProtovali:
+  - bugfix: Fixed smelting prey who'd prefer to not be smelted
+  - bugfix: Running special atmos checks while phased or otherwise incorporeal
+  Will:
+  - bugfix: View becoming stuck on bodyscanner if you sleep or get stunned inside
+      it, and other similar situations inside of machines or items.
+  - bugfix: ghosting will clear remote views
+2025-11-10:
+  Cameron-The-Raven:
+  - bugfix: Makes volume pumps and vent scrubbers work with the proper do_after
+  - bugfix: Fireaxe no longer can be used as a pair of bleeders to stop bleeding.
+  - bugfix: Fireaxe can now properly be used to amputate limbs.
+2025-11-11:
+  Guti:
+  - bugfix: Fixes sparks recursively teleporting through shadekin portals
+  Kashargul:
+  - bugfix: runtimes due to multiple signal registers on opacity changes
+  - bugfix: digest pain runtimes when stepping into digestive tiles
+  Will:
+  - bugfix: Fix runtime in machine var shim, removed balloon alert when using old
+      byond uis handled by it.
+  - bugfix: Remoteview crashing during mob qdel
+2025-11-12:
+  Cameron-The-Raven:
+  - bugfix: Fixes some chemical duplication exploits.
+  Guti:
+  - qol: Teleporting while buckled will place you closer to the destination point
+  - bugfix: Fixes teleporting while in chairs or taurs to lose your comfy seat
+  Meek:
+  - rscadd: Adds several new butts to the photocopier. Teshari, nevrean, sergal, and
+      altevian
+  Tenryumi:
+  - bugfix: Fixed shelter capsules being affected by gravity surge events on maps
+      that don't have gravity generators.
+  Will:
+  - bugfix: Welded vents hibernate when they attempt to process air now
+  - rscadd: Large lightbulb types now have unique icons
+  - qol: Lightbulb boxes have some large lightbulbs and tubes for floor lamps and
+      floodlight replacements.
+  - bugfix: forbids synths from taking ambulant blood
+  - bugfix: Air canisters can be marked green for methane
+  - bugfix: Stunned borgs no longer have their items vanish temporarily from their
+      inventory list. They are still unequipped however.
+  - bugfix: Modify robot's remove module updates the inventory instantly like add
+      module does.
+2025-11-13:
+  Diana:
+  - bugfix: Fixing flashes no longer cause compile errors, meaning they can be fixed
+      again.
+  - bugfix: Flashes no longer do 2x the amount of halloss when affecting species that
+      are weak to flashes. Instead multiplies the halloss by the appropriate amount.
+  - code_imp: Makes the flash code a little higher quality.
+  - bugfix: External wounds will no longer show up as internal
+  Will:
+  - qol: Grippers show item icon held when in use, and make sounds when changing items
+2025-11-15:
+  Guti:
+  - rscadd: Added can shaking
+  Kashargul:
+  - bugfix: robot grippers cell self installs
+  - bugfix: tgui usage for robot multibelt items like the plant analyzer
+  Will:
+  - bugfix: noticeboards properly save the title of their pinned pages
+  - code_imp: Cleaned up effect grenades
+2025-11-16:
+  Guti:
+  - bugfix: Fixed mechas not teleporting in quantum pads
+2025-11-17:
+  Diana:
+  - bugfix: Items now use the proper species fallback
+  - bugfix: Lick wounds works again
+  TheCaramelion:
+  - bugfix: Fixed cans not stopping processing when destroyed
+  Zizzi:
+  - bugfix: Circuitry injector can now inject common injectables.
+2025-11-18:
+  Aroliacue:
+  - rscadd: 'Added new HOS gear, available from clothing locker: New red cap, new
+      suit jacket, new cloak (attachable to suit and uniform)'
+  - rscadd: Added a new colorable cloak, selectable from the loadout ("flowing cloak")
+      and purchasable from Big D's Best. The greyscaling is simple at best, apologies.
+  - image: Added icons for new clothing options, including mob, inhands and obj icons.
+  Kashargul:
+  - bugfix: bad typing and runtimes if RnD devices were used before round start
+2025-11-19:
+  Will:
+  - bugfix: Fixes an entertainment monitor runtime
+2025-11-20:
+  KillianKirilenko:
+  - maptweak: deleted mapped-in resleeving sickness pill packages from CMO lockers
+  - spellcheck: '"Kitsuhanan Cure" reagent name genericized to the more immediately-understandable
+      "Resleeving Sickness Cure"'
+2025-11-21:
+  Diana:
+  - bugfix: You can no longer accidentally go to step 1 of necrosis surgery and undo
+      all your work.
+  FluffMedic:
+  - rscadd: Energized Agate stuff from downstream with some edits and sprites
+  Kashargul:
+  - code_imp: update dependencies
+  - qol: the resize ability is a bit easier to use and less likely to be used by accident
+  SatinIsle:
+  - bugfix: Fixes zeras labcloak
+  Will:
+  - code_imp: topturfcrossed component for when you need to check for Crossed() actions
+      from within nested items
+  - bugfix: recursive move component properly rebuild it's hierarchy when picked up
+      by a mob from a turf
+  - code_imp: Implements COMSIG_ITEM_TRASH_EATEN
+  - code_imp: Implements COMSIG_MOB_TRASH_EATING
+  - code_imp: Implements COMSIG_ITEM_AFTER_TRASH_EAT
+  - code_imp: Implements COMSIG_MOB_AFTER_TRASH_EATING
+  - code_imp: Implements COMSIG_GLOB_ITEM_TRASH_EATEN
+  - bugfix: default trash eating message being sent to the item's chat and not the
+      mob's
+2025-11-22:
+  AnymousUnknow & Diana:
+  - rscadd: Adds protogen visor markings
+  - rscadd: Adds Oak Tree markings
+  - rscadd: Adds Admin-only Skeleton markings
+  - rscadd: Adds a thin and thinner body marking
+  - code_imp: Adds backend code to allow markings to be admin-selectable only
+  Guti:
+  - code_imp: Added clothing traits
+  Kashargul:
+  - code_imp: dependency update
+2025-11-23:
+  Diana:
+  - bugfix: PAI parts now give the proper parts when screwdrivered and having them
+      removed
+  Nova:
+  - bugfix: Fixed body writing being silent in chat, and instant
+  - bugfix: Fixed body writing having no message notifications.
+  - rscadd: Added ability to resist / move away from being body written.
+  Will, Reo:
+  - bugfix: Fixed several distance issues with slipcode
+  - bugfix: You cannot change direction while slipping
+  - bugfix: Simple mobs no longer slip by default
+  - bugfix: Species flag NO_SLIP is respected by slipcode again

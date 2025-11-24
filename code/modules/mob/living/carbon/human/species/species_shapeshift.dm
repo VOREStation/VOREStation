@@ -94,6 +94,8 @@ var/list/wrapped_species_by_ref = list()
 			continue
 		if(!(species.get_bodytype(src) in S.species_allowed))
 			continue
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
+			continue
 		valid_hairstyles += hairstyle
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
@@ -104,6 +106,8 @@ var/list/wrapped_species_by_ref = list()
 		if(gender == FEMALE && S.gender == MALE)
 			continue
 		if(!(species.get_bodytype(src) in S.species_allowed))
+			continue
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue
 		valid_facialhairstyles += facialhairstyle
 

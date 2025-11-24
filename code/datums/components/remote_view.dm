@@ -107,11 +107,12 @@
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
-	// Update the mob's vision right away
-	settings.detatch_from_mob(src, host_mob)
-	settings.handle_remove_visuals(src, host_mob)
-	host_mob.handle_vision()
-	host_mob.handle_regular_hud_updates()
+	// Update the mob's vision right away if it still exists
+	if(!QDELETED(host_mob))
+		settings.detatch_from_mob(src, host_mob)
+		settings.handle_remove_visuals(src, host_mob)
+		host_mob.handle_vision()
+		host_mob.handle_regular_hud_updates()
 	host_mob = null
 	remote_view_target = null
 	// Clear settings
@@ -218,18 +219,24 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return FALSE
 	return settings.handle_relay_movement(src, host_mob, direction)
 
 /datum/component/remote_view/proc/handle_hud_override(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return
 	return settings.handle_hud_override(src, host_mob)
 
 /datum/component/remote_view/proc/handle_hud_health(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return
 	return settings.handle_hud_health(src, host_mob)
 
 /datum/component/remote_view/proc/handle_hud_darkvision(datum/source)
@@ -237,12 +244,16 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	RETURN_TYPE(null)
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return
 	settings.handle_hud_darkvision(src, host_mob)
 
 /datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return
 	return settings.handle_apply_visuals(src, host_mob)
 
 // Accessors

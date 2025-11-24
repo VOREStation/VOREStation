@@ -1,5 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - bugfix: "Fixed smelting prey who'd prefer to not be smelted"
-  - bugfix: "Running special atmos checks while phased or otherwise incorporeal"

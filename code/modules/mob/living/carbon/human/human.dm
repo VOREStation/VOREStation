@@ -1671,10 +1671,13 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
-	if(!digest_pain && (isbelly(src.loc) || istype(src.loc, /turf/simulated/floor/water/digestive_enzymes)))
-		var/obj/belly/b = src.loc
-		if(b.digest_mode == DM_DIGEST || b.digest_mode == DM_SELECT)
+	if(!digest_pain)
+		if(istype(loc, /turf/simulated/floor/water/digestive_enzymes))
 			return FALSE
+		if(isbelly(loc))
+			var/obj/belly/b = loc
+			if(b.digest_mode == DM_DIGEST || b.digest_mode == DM_SELECT)
+				return FALSE
 	for(var/datum/modifier/M in modifiers)
 		if(M.pain_immunity == TRUE)
 			return 0

@@ -280,6 +280,7 @@
 			target.module.emag.Remove(rem_item)
 			target.module.modules.Remove(rem_item)
 			target.module.contents.Remove(rem_item)
+			target.hud_used?.update_robot_modules_display()
 			qdel(rem_item)
 			return TRUE
 		if("swap_module")
