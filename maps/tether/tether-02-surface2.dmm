@@ -3208,7 +3208,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/item/storage/mrebag/pill/sleevingcure,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/cmo)
 "afd" = (
