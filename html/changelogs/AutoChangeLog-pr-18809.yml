@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Changes the cost of sizeoxadone from (1 clonexadone, 3 tramadol and 1 phoron) to (1 sodium and 1 tramadol). It still uses phoron as a catalyst but that is not used up in the reaction."
