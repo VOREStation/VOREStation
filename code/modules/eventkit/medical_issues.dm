@@ -284,7 +284,7 @@
 		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "bone reinforcement")
-			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/strengthen_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -325,7 +325,7 @@
 		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "remove growths")
-			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/remove_growth/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -366,7 +366,7 @@
 		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "redirect blood vessels")
-			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/redirect_vessels/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -407,7 +407,7 @@
 		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "extract object")
-			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/extract_object/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -448,7 +448,7 @@
 		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "flesh graft")
-			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/flesh_graft/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -492,7 +492,7 @@
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "remove growths")
-				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/remove_growth_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -535,7 +535,7 @@
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "redirect blood vessels")
-				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/redirect_vessels_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -578,7 +578,7 @@
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "close holes")
-				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/close_holes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -621,7 +621,7 @@
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "ultrasound")
-				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/ultrasound/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -664,7 +664,7 @@
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "reoxygenate tissue")
-				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
 	return 0
 
 /datum/surgery_step/medical_issue/reoxygenate_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
