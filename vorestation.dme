@@ -185,6 +185,7 @@
 #include "code\__defines\status_effects.dm"
 #include "code\__defines\subsystems.dm"
 #include "code\__defines\supply.dm"
+#include "code\__defines\surgery.dm"
 #include "code\__defines\talksounds.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\text.dm"
