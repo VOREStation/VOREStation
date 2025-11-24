@@ -195,7 +195,7 @@ BLOOD_VOLUME_SURVIVE = 40
 					W.open_wound(0.1)
 				if(prob(1))
 					custom_pain("You feel a stabbing pain in your [temp.name]!", 50)
-				if(CE_STABLE in chem_effects || myeldose)
+				if((CE_STABLE in chem_effects) || myeldose)
 					blood_loss_divisor = max(blood_loss_divisor + 30, 1) //Inaprovaline is great on internal wounds.
 				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
 					blood_loss_divisor += 30
