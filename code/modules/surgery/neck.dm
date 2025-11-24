@@ -183,7 +183,7 @@
 
 /datum/surgery_step/brainstem/mend_cord/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] has fused [target]'s spinal cord with \the [tool].") , \
-	span_notice(" You have fused [target]'s spinal cord with \the [tool]."),)
+	span_notice("You have fused [target]'s spinal cord with \the [tool]."),)
 	user.balloon_alert_visible("fused [target]'s spinal cord", "fused the spinal cord")
 	target.op_stage.brainstem = 4
 	target.AdjustParalysis(5)
