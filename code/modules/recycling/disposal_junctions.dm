@@ -243,6 +243,6 @@
 			if(!istype(id,/obj/item/card/id/guest))
 				return CORPSE_SORT_TAG
 
-	 return H.destinationTag
+	return H.destinationTag
 
 #undef CORPSE_SORT_TAG
