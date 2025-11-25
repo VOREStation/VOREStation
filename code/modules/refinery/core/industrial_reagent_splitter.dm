@@ -19,7 +19,6 @@
 	update_neighbours()
 	update_icon()
 	AddElement(/datum/element/climbable)
-	amount_per_transfer_from_this = default_max_vol / 2 // Half and half
 
 /obj/machinery/reagent_refinery/splitter/process()
 	if(!anchored)
@@ -36,11 +35,10 @@
 
 	var/list/target_list = list()
 	var/list/dir_list = list()
-	var/list/dir_list =  list(turn(dir, 90), turn(dir, -90))
+	var/list/possible_dirs =  list(turn(dir, 90), turn(dir, -90))
 	if(prob(50)) // So neither side has priority
-		dir_list =  list(turn(dir, -90), turn(dir, 90))
-
-	for(var/dir_check in dir_list)
+		possible_dirs =  list(turn(dir, -90), turn(dir, 90))
+	for(var/dir_check in possible_dirs)
 		var/obj/machinery/reagent_refinery/target = locate() in get_step(get_turf(src),dir_check)
 		if(!target)
 			continue
@@ -49,8 +47,9 @@
 	if(!target_list.len)
 		return 0
 
-	var/transfer_rate = min(reagents.total_volume,amount_per_transfer_from_this) / target_list.len
-	if(transfer_rate < 1)
+	// Dynamically set by reagent amount, we always want half
+	amount_per_transfer_from_this = reagents.total_volume / target_list.len
+	if(amount_per_transfer_from_this < 0.5)
 		return 0
 
 	var/total_transfered = 0
