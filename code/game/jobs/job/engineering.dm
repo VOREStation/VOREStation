@@ -35,7 +35,7 @@
 							ACCESS_TELEPORTER, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ATMOSPHERICS, ACCESS_EMERGENCY_STORAGE, ACCESS_EVA,
 							ACCESS_HEADS, ACCESS_CONSTRUCTION,
 							ACCESS_CE, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_AI_UPLOAD, ACCESS_GATEWAY)
-	alt_titles = list(JOB_ALT_HEAD_ENGINEER = /datum/alt_title/head_engineer, JOB_ALT_FOREMAN = /datum/alt_title/foreman, JOB_ALT_MAINTENANCE_MANAGER = /datum/alt_title/maintenance_manager)
+	alt_titles = list(JOB_ALT_HEAD_ENGINEER = /datum/alt_title/head_engineer, JOB_ALT_FOREMAN = /datum/alt_title/foreman, JOB_ALT_MAINTENANCE_MANAGER = /datum/alt_title/maintenance_manager, JOB_ALT_CHEMENGINEER = /datum/alt_title/chem_tech)
 	minimal_player_age = 7
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
@@ -60,6 +60,11 @@
 
 /datum/alt_title/maintenance_manager
 	title = JOB_ALT_MAINTENANCE_MANAGER
+
+/datum/alt_title/chem_tech
+	title = JOB_ALT_CHEMENGINEER
+	title_blurb = "A " + JOB_ALT_CHEMENGINEER + " specializes in industrial scale chemical production."
+	title_outfit = /decl/hierarchy/outfit/job/engineering/chems
 
 //////////////////////////////////
 //			Engineer
