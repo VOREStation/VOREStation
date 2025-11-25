@@ -99,7 +99,7 @@
 		return 0
 	if(active_power_usage > 0 && !can_use_power_oneoff(active_power_usage))
 		return 0
-	if(!istype(target,/obj/machinery/reagent_refinery)) // cannot transfer into grinders anyway, so it's fine to do it this way.
+	if(!istype(target,/obj/machinery/reagent_refinery) || istype(target,/obj/machinery/reagent_refinery/grinder)) // Grinders don't allow input
 		return 0
 	var/transfered = target.handle_transfer(src,RT,source_forward_dir, amount_per_transfer_from_this, filter_id)
 	if(transfered > 0 && active_power_usage > 0)
