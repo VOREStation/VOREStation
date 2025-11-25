@@ -222,31 +222,26 @@
 			return CORPSE_SORT_TAG
 
 	// Check for microholders, you can't skip the system this way either!
-	var/obj/item/holder/hold = null
 	for(var/obj/item/holder/hl in H)
 		if(isliving(hl.held_mob))
 			return CORPSE_SORT_TAG
 
 	// find an ID in items
-	var/obj/item/card/foundid = null
 	for(var/obj/item/card/id in H)
-		foundid = id
-		break
+		if(!istype(id,/obj/item/card/id/guest))
+			return CORPSE_SORT_TAG
 	for(var/obj/item/pda/P in H)
-		if(P.id)
-			foundid = P.id
-			break
+		if(!istype(P.id,/obj/item/card/id/guest))
+			return CORPSE_SORT_TAG
+
+	// Check in bags, only one level deep. Need to check for pda again too
 	for(var/obj/item/storage in H)
 		for(var/obj/item/pda/P in storage.contents)
-			if(P.id)
-				foundid = P.id
-				break
+			if(!istype(P.id,/obj/item/card/id/guest))
+				return CORPSE_SORT_TAG
 		for(var/obj/item/card/id in storage.contents)
-			foundid = id // check simple storages for idcards! one level deep only!
-			break
-	// check ID validity
-	if(foundid && !istype(foundid,/obj/item/card/id/guest))
-		return CORPSE_SORT_TAG
+			if(!istype(id,/obj/item/card/id/guest))
+				return CORPSE_SORT_TAG
 
 	 return H.destinationTag
 
