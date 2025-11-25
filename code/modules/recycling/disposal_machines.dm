@@ -176,6 +176,8 @@
 									"Mail Destination",
 									"Wall Mail Destination"
 									))
+	if(!result)
+		return
 	switch(result)
 		// Yellow
 		if("Standard")
