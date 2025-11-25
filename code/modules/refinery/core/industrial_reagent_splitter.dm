@@ -35,15 +35,10 @@
 
 	var/list/target_list = list()
 	var/list/dir_list = list()
-	for(var/dir_check in GLOB.cardinal)
-		if(dir_check == GLOB.reverse_dir[dir])
-			continue
+	for(var/dir_check in list(turn(dir,90),turn(dir,-90)))
 		var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(get_turf(src),dir_check)
 		if(!target)
 			continue
-		if(reagents.total_volume < minimum_reagents_for_transfer(target))
-			continue
-
 		target_list += target
 		dir_list += dir_check
 	if(!target_list.len)
@@ -57,21 +52,10 @@
 	for(var/i = 1 to target_list.len)
 		var/scan_dir = dir_list[i]
 		var/scan_targ = target_list[i]
-		output_transfer += transfer_tank( reagents, scan_targ, scan_dir, transfer_rate)
+		if(reagents.total_volume < minimum_reagents_for_transfer(scan_targ))
+			output_transfer += transfer_tank( reagents, scan_targ, scan_dir, transfer_rate)
 
 	return output_transfer
-
-/obj/machinery/reagent_refinery/splitter/update_icon()
-	cut_overlays()
-	for(var/dir_check in GLOB.cardinal)
-		if(dir_check == GLOB.reverse_dir[dir])
-			continue
-		var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(get_turf(src),dir_check)
-		if(!target)
-			continue
-
-
-
 
 /obj/machinery/reagent_refinery/splitter/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	// Must face INTO it's input machine, all other directions split it out!

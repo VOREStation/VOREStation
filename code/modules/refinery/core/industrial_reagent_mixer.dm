@@ -72,28 +72,7 @@
 		if(!(stat & (NOPOWER|BROKEN)))
 			var/image/dot = image(icon, icon_state = "mixer_dot_[ got_input ? "on" : "off" ]")
 			add_overlay(dot)
-		for(var/direction in GLOB.cardinal)
-			var/turf/T = get_step(get_turf(src),direction)
-			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-			if(other && other.anchored)
-				// Waste processors do not connect to anything as outgoing
-				if(istype(other,/obj/machinery/reagent_refinery/waste_processor))
-					continue
-				// weird handling for side connections... Otherwise, anything pointing into use gets connected back!
-				if(istype(other,/obj/machinery/reagent_refinery/filter))
-					var/obj/machinery/reagent_refinery/filter/filt = other
-					var/check_dir = 0
-					if(filt.get_filter_side() == 1)
-						check_dir = turn(filt.dir, 270)
-					else
-						check_dir = turn(filt.dir, 90)
-					if(check_dir == GLOB.reverse_dir[direction] && dir != direction)
-						var/image/intake = image(icon, icon_state = "mixer_intakes", dir = direction)
-						add_overlay(intake)
-						continue
-				if(other.dir == GLOB.reverse_dir[direction] && dir != direction)
-					var/image/intake = image(icon, icon_state = "mixer_intakes", dir = direction)
-					add_overlay(intake)
+		update_input_connection_overlays("mixer_intakes")
 	// Get mixer overlay
 	var/image/arm = image(icon, icon_state = "mixer_arm", dir = angle2dir(mixer_angle))
 	add_overlay(arm)

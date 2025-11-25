@@ -153,3 +153,40 @@
 	// No power needed
 	if(flags & REFINERY_TUTORIAL_NOPOWER)
 		examine_list += "Does not require power. "
+
+/// Checks neighbouring machines for if we should connect visually to them
+/obj/machinery/reagent_refinery/proc/update_input_connection_overlays(overlay_state)
+	for(var/direction in GLOB.cardinal)
+		var/turf/T = get_step(get_turf(src),direction)
+		var/obj/machinery/reagent_refinery/other = locate() in T
+		if(!other?.anchored)
+			continue
+
+		// Waste processors do not connect to anything as outgoing
+		if(istype(other,/obj/machinery/reagent_refinery/waste_processor))
+			continue
+
+		// Filter allows side connection
+		if(istype(other,/obj/machinery/reagent_refinery/filter))
+			var/obj/machinery/reagent_refinery/filter/filt = other
+			var/check_dir = 0
+			if(filt.get_filter_side() == 1)
+				check_dir = turn(filt.dir, 270)
+			else
+				check_dir = turn(filt.dir, 90)
+			if(check_dir == GLOB.reverse_dir[direction])
+				var/image/intake = image(icon, icon_state = overlay_state, dir = direction)
+				add_overlay(intake)
+				continue
+
+		// Splitter only allows side connections
+		if(istype(other,/obj/machinery/reagent_refinery/splitter))
+			if(GLOB.reverse_dir[direction] in list(turn(other.dir,90),turn(other.dir,-90)))
+				var/image/intake = image(icon, icon_state = overlay_state, dir = direction)
+				add_overlay(intake)
+			continue
+
+		// Standard connection
+		if(other.dir == GLOB.reverse_dir[direction] && (dir != direction || istype(src,/obj/machinery/reagent_refinery/waste_processor)))
+			var/image/intake = image(icon, icon_state = overlay_state, dir = direction)
+			add_overlay(intake)
