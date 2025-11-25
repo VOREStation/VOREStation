@@ -4302,6 +4302,7 @@
 #include "code\modules\refinery\core\industrial_reagent_pipe.dm"
 #include "code\modules\refinery\core\industrial_reagent_pump.dm"
 #include "code\modules\refinery\core\industrial_reagent_reactor.dm"
+#include "code\modules\refinery\core\industrial_reagent_splitter.dm"
 #include "code\modules\refinery\core\industrial_reagent_vat.dm"
 #include "code\modules\refinery\core\industrial_reagent_waste.dm"
 #include "code\modules\refinery\equipment\chemcontainer.dm"
