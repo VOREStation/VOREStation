@@ -1,6 +1,6 @@
 /obj/machinery/reagent_refinery/pipe
 	name = "Industrial Chemical Pipe"
-	desc = "A large pipe made for transporting industrial chemicals. It has a low-power passive pump. The red marks show where the flow is coming from. Does not require power."
+	desc = "A large pipe made for transporting industrial chemicals."
 	icon_state = "pipe"
 	density = TRUE
 	anchored = TRUE

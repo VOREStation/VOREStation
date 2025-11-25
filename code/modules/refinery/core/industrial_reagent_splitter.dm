@@ -1,10 +1,9 @@
 /obj/machinery/reagent_refinery/splitter
 	name = "Industrial Chemical Splitter"
-	desc = "A large pipe made for transfering industrial chemicals to multiple machines. It has a low-power passive pump. The red marks show where the flow is coming from. Does not require power."
+	desc = "A large machine made for transfering industrial chemicals to multiple machines equally."
 	icon_state = "splitter"
 	density = TRUE
 	anchored = TRUE
-	use_power = USE_POWER_OFF // Does not require power for pipes
 	idle_power_usage = 0
 	active_power_usage = 0
 	circuit = /obj/item/circuitboard/industrial_reagent_splitter
@@ -69,4 +68,4 @@
 /obj/machinery/reagent_refinery/splitter/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u."
-	tutorial(REFINERY_TUTORIAL_SPLITTEROUTPUT|REFINERY_TUTORIAL_INPUT|REFINERY_TUTORIAL_NOPOWER, .)
+	tutorial(REFINERY_TUTORIAL_SPLITTEROUTPUT|REFINERY_TUTORIAL_INPUT, .)
