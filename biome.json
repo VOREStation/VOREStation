@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.5/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
 	"assist": {
 		"actions": {
 			"source": {
@@ -20,6 +20,7 @@
 			"!**/node_modules",
 			"!tgui/public",
 			"tgui/public/tgui.html",
+			"!tgui/packages/tgfont/dist",
 			"!tgui/packages/tgui-setup/helpers.js"
 		]
 	},

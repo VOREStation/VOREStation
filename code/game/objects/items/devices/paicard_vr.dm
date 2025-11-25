@@ -246,14 +246,14 @@ GLOBAL_LIST_EMPTY(paikeys)
 	switch(choice)
 		if("cell")
 			if(cell == PP_FUNCTIONAL)
-				new /obj/item/paiparts/capacitor(get_turf(user))
+				new /obj/item/paiparts/cell(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
 			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			cell = PP_MISSING
 		if("processor")
 			if(processor == PP_FUNCTIONAL)
-				new /obj/item/paiparts/capacitor(get_turf(user))
+				new /obj/item/paiparts/processor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
 			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(paikeys)
 		if("board")
 			board = PP_MISSING
 			if(board == PP_FUNCTIONAL)
-				new /obj/item/paiparts/capacitor(get_turf(user))
+				new /obj/item/paiparts/board(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
 			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
@@ -275,21 +275,21 @@ GLOBAL_LIST_EMPTY(paikeys)
 			capacitor = PP_MISSING
 		if("projector")
 			if(projector == PP_FUNCTIONAL)
-				new /obj/item/paiparts/capacitor(get_turf(user))
+				new /obj/item/paiparts/projector(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
 			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			projector = PP_MISSING
 		if("emitter")
 			if(emitter == PP_FUNCTIONAL)
-				new /obj/item/paiparts/capacitor(get_turf(user))
+				new /obj/item/paiparts/emitter(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
 			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			emitter = PP_MISSING
 		if("speech synthesizer")
 			if(speech_synthesizer == PP_FUNCTIONAL)
-				new /obj/item/paiparts/capacitor(get_turf(user))
+				new /obj/item/paiparts/speech_synthesizer(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
 			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))

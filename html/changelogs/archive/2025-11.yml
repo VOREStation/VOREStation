@@ -308,3 +308,38 @@
   - code_imp: Implements COMSIG_GLOB_ITEM_TRASH_EATEN
   - bugfix: default trash eating message being sent to the item's chat and not the
       mob's
+2025-11-22:
+  AnymousUnknow & Diana:
+  - rscadd: Adds protogen visor markings
+  - rscadd: Adds Oak Tree markings
+  - rscadd: Adds Admin-only Skeleton markings
+  - rscadd: Adds a thin and thinner body marking
+  - code_imp: Adds backend code to allow markings to be admin-selectable only
+  Guti:
+  - code_imp: Added clothing traits
+  Kashargul:
+  - code_imp: dependency update
+2025-11-23:
+  Diana:
+  - bugfix: PAI parts now give the proper parts when screwdrivered and having them
+      removed
+  Nova:
+  - bugfix: Fixed body writing being silent in chat, and instant
+  - bugfix: Fixed body writing having no message notifications.
+  - rscadd: Added ability to resist / move away from being body written.
+  Will, Reo:
+  - bugfix: Fixed several distance issues with slipcode
+  - bugfix: You cannot change direction while slipping
+  - bugfix: Simple mobs no longer slip by default
+  - bugfix: Species flag NO_SLIP is respected by slipcode again
+2025-11-25:
+  FluffMedic:
+  - rscadd: Some new hair sprites
+  Nova:
+  - code_imp: Optimized some of the older circuitry code.
+  SatinIsle:
+  - qol: Changes the cost of sizeoxadone from (1 clonexadone, 3 tramadol and 1 phoron)
+      to (1 sodium and 1 tramadol). It still uses phoron as a catalyst but that is
+      not used up in the reaction.
+  Will:
+  - rscadd: Maintenance panels
