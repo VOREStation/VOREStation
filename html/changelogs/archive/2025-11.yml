@@ -332,3 +332,14 @@
   - bugfix: You cannot change direction while slipping
   - bugfix: Simple mobs no longer slip by default
   - bugfix: Species flag NO_SLIP is respected by slipcode again
+2025-11-25:
+  FluffMedic:
+  - rscadd: Some new hair sprites
+  Nova:
+  - code_imp: Optimized some of the older circuitry code.
+  SatinIsle:
+  - qol: Changes the cost of sizeoxadone from (1 clonexadone, 3 tramadol and 1 phoron)
+      to (1 sodium and 1 tramadol). It still uses phoron as a catalyst but that is
+      not used up in the reaction.
+  Will:
+  - rscadd: Maintenance panels
