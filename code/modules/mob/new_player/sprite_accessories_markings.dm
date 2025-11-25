@@ -2906,6 +2906,17 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO,BP_GROIN)
 
+/datum/sprite_accessory/marking/fluffruff
+	name = "Fluffy Neck Ruff"
+	icon_state = "fluffruff"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/gauntlets
+	name = "Clawed Gauntlets"
+	icon_state = "gauntlets"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
 
 /datum/sprite_accessory/marking/boneplates
 	name = "Bony Leg Plates"
