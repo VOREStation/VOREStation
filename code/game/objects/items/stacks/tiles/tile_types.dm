@@ -625,3 +625,43 @@
 	stacktype = /obj/item/stack/tile/roofing
 	build_type = /obj/item/stack/tile/roofing
 	can_weld = FALSE
+
+/obj/item/stack/tile/floor/gold
+	name = "gold floor tile"
+	singular_name = "gold floor tile"
+	icon_state = "tile-gold"
+	matter = list(MAT_GOLD = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/gold
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/silver
+	name = "silver floor tile"
+	singular_name = "silver floor tile"
+	icon_state = "tile-silver"
+	matter = list(MAT_SILVER = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/silver
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/phoron
+	name = "phoron floor tile"
+	singular_name = "phoron floor tile"
+	icon_state = "tile-phoron"
+	matter = list(MAT_PHORON = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/phoron
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/diamond
+	name = "diamond floor tile"
+	singular_name = "diamond floor tile"
+	icon_state = "tile-diamond"
+	matter = list(MAT_DIAMOND = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/diamond
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/uranium
+	name = "uranium floor tile"
+	singular_name = "uranium floor tile"
+	icon_state = "tile-uranium"
+	matter = list(MAT_URANIUM = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/uranium
+	no_variants = FALSE

@@ -57,6 +57,7 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 		new /datum/pipe_recipe/disposal("Sort Junction",			DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_NORMAL),
 		new /datum/pipe_recipe/disposal("Sort Junction (Wildcard)",	DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_WILDCARD),
 		new /datum/pipe_recipe/disposal("Sort Junction (Untagged)",	DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_UNTAGGED),
+		new /datum/pipe_recipe/disposal("Sort Junction (Body Recovery)", DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_BODIES),
 		new /datum/pipe_recipe/disposal("Tagger",					DISPOSAL_PIPE_TAGGER, "pipe-tagger", PIPE_STRAIGHT),
 		new /datum/pipe_recipe/disposal("Tagger (Partial)",			DISPOSAL_PIPE_TAGGER_PARTIAL, "pipe-tagger-partial", PIPE_STRAIGHT),
 		new /datum/pipe_recipe/disposal("Trunk",					DISPOSAL_PIPE_TRUNK, "conpipe-t"),

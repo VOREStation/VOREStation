@@ -1,4 +1,0 @@
-author: "Nova"
-delete-after: True
-changes:
-  - code_imp: "Optimized some of the older circuitry code."
