@@ -410,6 +410,13 @@
 	name = "chemical storage"
 	icon_state = "power_display"
 
+/atom/movable/screen/borer
+	invisibility = INVISIBILITY_ABSTRACT
+
+/atom/movable/screen/borer/chems
+	name = "chemical storage"
+	icon_state = "power_display"
+
 /atom/movable/screen/wizard
 	invisibility = INVISIBILITY_ABSTRACT
 
