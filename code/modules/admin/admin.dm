@@ -1016,7 +1016,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Delay the game start/end"
 	set name="Delay"
 
-	if(!check_rights(R_SERVER|R_EVENT))	return
+	if(!check_rights(R_SERVER|R_EVENT|R_ADMIN|R_MOD))	return
 	if (SSticker.current_state >= GAME_STATE_PLAYING)
 		// Tell the ticker to delay/resume
 		SSticker.toggle_delay()
