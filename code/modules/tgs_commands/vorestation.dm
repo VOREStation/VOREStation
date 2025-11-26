@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					message.text = "Error, invalid species entered. Check spelling and capitalization."
 					return message
 				if(!(role in GLOB.whitelisted_species))
-				    message.text = "Error, species \"[role]\" is not a whitelist species."
+					message.text = "Error, species \"[role]\" is not a whitelist species."
 					return message
 
 			var/datum/db_query/command_add = SSdbcore.NewQuery(
