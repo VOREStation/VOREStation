@@ -207,11 +207,11 @@
 		// White
 		if("Mail Destination")
 			new_disposal_path = /obj/machinery/disposal/mail_reciever
-			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convience.", "Mail Destination")
+			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convenience.", "Mail Destination")
 		if("Wall Mail Destination")
 			new_disposal_path = /obj/machinery/disposal/wall/mail_reciever
 			new_dir = reverse_direction(user.dir)
-			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convience.", "Mail Destination")
+			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convenience.", "Mail Destination")
 
 	if(!new_disposal_path || (new_disposal_path == type && dir == new_dir))
 		return
