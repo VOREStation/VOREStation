@@ -1,5 +1,0 @@
-author: "tacoguy7765093"
-delete-after: True
-changes:
-  - rscadd: "Generic mob spawner grenades"
-  - code_imp: "Repathed casino grenades to be a subtype of spawner grenades instead."

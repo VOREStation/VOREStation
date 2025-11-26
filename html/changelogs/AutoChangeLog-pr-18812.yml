@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Several new disposal bin types"
-  - rscadd: "Body sorting disposal junction"
-  - rscadd: "Changing disposal bin into different types by E-stopping and using a multitool on the bin"
-  - bugfix: "resleeving cleaner bin not showing it's lever or full animations"
