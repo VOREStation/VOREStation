@@ -341,8 +341,9 @@
 	if(world.time < cooldown)
 		to_chat(user, span_warning("\The [src] isn't ready yet."))
 		return
-	var/choice = pick(tf_possible_types)
-	tf_type = tf_possible_types[choice]
+	if(!tf_allow_select) //Keep a repaired gun from re-randomizing
+		var/choice = pick(tf_possible_types)
+		tf_type = tf_possible_types[choice]
 	. = ..()
 
 /obj/item/gun/energy/mouseray/woof
