@@ -617,11 +617,9 @@
 	if(opacity)
 		animate(src, color="#FFFFFF", time=5)
 		set_opacity(0)
-		AddElement(/datum/element/light_blocking)
 	else
 		animate(src, color="#222222", time=5)
 		set_opacity(1)
-		RemoveElement(/datum/element/light_blocking)
 	var/turf/T = get_turf(src)
 	T.recalculate_directional_opacity()
 

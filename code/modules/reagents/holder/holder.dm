@@ -107,7 +107,7 @@
 
 /* Holder-to-chemical */
 
-/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0, var/was_from_belly)
+/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0, var/was_from_belly, var/can_dialysis = TRUE)
 	if(!isnum(amount) || amount <= 0)
 		return 0
 
@@ -122,6 +122,7 @@
 
 			if(was_from_belly)
 				current.from_belly = was_from_belly
+			current.dialysis_returnable = can_dialysis
 			current.volume += amount
 			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
 				current.mix_data(data, amount)
@@ -249,7 +250,7 @@
 	handle_reactions()
 	return amount
 
-/datum/reagents/proc/trans_to_holder(var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]).
+/datum/reagents/proc/trans_to_holder(var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/can_dialysis = TRUE) // Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]).
 	if(!target || !istype(target))
 		return
 
@@ -264,7 +265,8 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, was_from_belly = (current.from_belly || target_is_belly)) // We don't react until everything is in place
+		if(current.dialysis_returnable || (!current.dialysis_returnable && ismob(target))) //Prevents duplication of reagents.
+			target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, was_from_belly = (current.from_belly || target_is_belly), can_dialysis = can_dialysis) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.id, amount_to_transfer, 1)
 
@@ -400,23 +402,23 @@
 		perm = L.reagent_permeability()
 	return trans_to_mob(target, amount, CHEM_TOUCH, perm, copy)
 
-/datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
+/datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0, var/can_dialysis = TRUE) // Transfer after checking into which holder...
 	if(!target || !istype(target))
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(type == CHEM_BLOOD)
 			var/datum/reagents/R = C.reagents
-			return trans_to_holder(R, amount, multiplier, copy)
+			return trans_to_holder(R, amount, multiplier, copy, can_dialysis)
 		if(type == CHEM_INGEST)
 			var/datum/reagents/R = C.ingested
-			return C.ingest(src, R, amount, multiplier, copy)
+			return C.ingest(src, R, amount, multiplier, copy, can_dialysis)
 		if(type == CHEM_TOUCH)
 			var/datum/reagents/R = C.touching
-			return trans_to_holder(R, amount, multiplier, copy)
+			return trans_to_holder(R, amount, multiplier, copy, can_dialysis)
 	else
 		var/datum/reagents/R = new /datum/reagents(amount)
-		. = trans_to_holder(R, amount, multiplier, copy)
+		. = trans_to_holder(R, amount, multiplier, copy, can_dialysis)
 		R.touch_mob(target)
 
 /datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.

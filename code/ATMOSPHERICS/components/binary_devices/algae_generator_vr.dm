@@ -172,10 +172,10 @@
 		ui.open()
 
 /obj/machinery/atmospherics/binary/algae_farm/tgui_data(mob/user)
-	var/data[0]
+	var/list/data = list()
 	data["panelOpen"] = panel_open
 
-	var/materials_ui[0]
+	var/list/materials_ui = list()
 	for(var/M in stored_material)
 		materials_ui[++materials_ui.len] = list(
 				"name" = M,

@@ -2248,6 +2248,7 @@ Departamental Swimsuits, for general use
 
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "zera_labcloak"
+	item_state = "zera_labcloak"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 

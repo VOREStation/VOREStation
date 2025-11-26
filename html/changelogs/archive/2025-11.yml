@@ -200,3 +200,185 @@
   - bugfix: View becoming stuck on bodyscanner if you sleep or get stunned inside
       it, and other similar situations inside of machines or items.
   - bugfix: ghosting will clear remote views
+2025-11-10:
+  Cameron-The-Raven:
+  - bugfix: Makes volume pumps and vent scrubbers work with the proper do_after
+  - bugfix: Fireaxe no longer can be used as a pair of bleeders to stop bleeding.
+  - bugfix: Fireaxe can now properly be used to amputate limbs.
+2025-11-11:
+  Guti:
+  - bugfix: Fixes sparks recursively teleporting through shadekin portals
+  Kashargul:
+  - bugfix: runtimes due to multiple signal registers on opacity changes
+  - bugfix: digest pain runtimes when stepping into digestive tiles
+  Will:
+  - bugfix: Fix runtime in machine var shim, removed balloon alert when using old
+      byond uis handled by it.
+  - bugfix: Remoteview crashing during mob qdel
+2025-11-12:
+  Cameron-The-Raven:
+  - bugfix: Fixes some chemical duplication exploits.
+  Guti:
+  - qol: Teleporting while buckled will place you closer to the destination point
+  - bugfix: Fixes teleporting while in chairs or taurs to lose your comfy seat
+  Meek:
+  - rscadd: Adds several new butts to the photocopier. Teshari, nevrean, sergal, and
+      altevian
+  Tenryumi:
+  - bugfix: Fixed shelter capsules being affected by gravity surge events on maps
+      that don't have gravity generators.
+  Will:
+  - bugfix: Welded vents hibernate when they attempt to process air now
+  - rscadd: Large lightbulb types now have unique icons
+  - qol: Lightbulb boxes have some large lightbulbs and tubes for floor lamps and
+      floodlight replacements.
+  - bugfix: forbids synths from taking ambulant blood
+  - bugfix: Air canisters can be marked green for methane
+  - bugfix: Stunned borgs no longer have their items vanish temporarily from their
+      inventory list. They are still unequipped however.
+  - bugfix: Modify robot's remove module updates the inventory instantly like add
+      module does.
+2025-11-13:
+  Diana:
+  - bugfix: Fixing flashes no longer cause compile errors, meaning they can be fixed
+      again.
+  - bugfix: Flashes no longer do 2x the amount of halloss when affecting species that
+      are weak to flashes. Instead multiplies the halloss by the appropriate amount.
+  - code_imp: Makes the flash code a little higher quality.
+  - bugfix: External wounds will no longer show up as internal
+  Will:
+  - qol: Grippers show item icon held when in use, and make sounds when changing items
+2025-11-15:
+  Guti:
+  - rscadd: Added can shaking
+  Kashargul:
+  - bugfix: robot grippers cell self installs
+  - bugfix: tgui usage for robot multibelt items like the plant analyzer
+  Will:
+  - bugfix: noticeboards properly save the title of their pinned pages
+  - code_imp: Cleaned up effect grenades
+2025-11-16:
+  Guti:
+  - bugfix: Fixed mechas not teleporting in quantum pads
+2025-11-17:
+  Diana:
+  - bugfix: Items now use the proper species fallback
+  - bugfix: Lick wounds works again
+  TheCaramelion:
+  - bugfix: Fixed cans not stopping processing when destroyed
+  Zizzi:
+  - bugfix: Circuitry injector can now inject common injectables.
+2025-11-18:
+  Aroliacue:
+  - rscadd: 'Added new HOS gear, available from clothing locker: New red cap, new
+      suit jacket, new cloak (attachable to suit and uniform)'
+  - rscadd: Added a new colorable cloak, selectable from the loadout ("flowing cloak")
+      and purchasable from Big D's Best. The greyscaling is simple at best, apologies.
+  - image: Added icons for new clothing options, including mob, inhands and obj icons.
+  Kashargul:
+  - bugfix: bad typing and runtimes if RnD devices were used before round start
+2025-11-19:
+  Will:
+  - bugfix: Fixes an entertainment monitor runtime
+2025-11-20:
+  KillianKirilenko:
+  - maptweak: deleted mapped-in resleeving sickness pill packages from CMO lockers
+  - spellcheck: '"Kitsuhanan Cure" reagent name genericized to the more immediately-understandable
+      "Resleeving Sickness Cure"'
+2025-11-21:
+  Diana:
+  - bugfix: You can no longer accidentally go to step 1 of necrosis surgery and undo
+      all your work.
+  FluffMedic:
+  - rscadd: Energized Agate stuff from downstream with some edits and sprites
+  Kashargul:
+  - code_imp: update dependencies
+  - qol: the resize ability is a bit easier to use and less likely to be used by accident
+  SatinIsle:
+  - bugfix: Fixes zeras labcloak
+  Will:
+  - code_imp: topturfcrossed component for when you need to check for Crossed() actions
+      from within nested items
+  - bugfix: recursive move component properly rebuild it's hierarchy when picked up
+      by a mob from a turf
+  - code_imp: Implements COMSIG_ITEM_TRASH_EATEN
+  - code_imp: Implements COMSIG_MOB_TRASH_EATING
+  - code_imp: Implements COMSIG_ITEM_AFTER_TRASH_EAT
+  - code_imp: Implements COMSIG_MOB_AFTER_TRASH_EATING
+  - code_imp: Implements COMSIG_GLOB_ITEM_TRASH_EATEN
+  - bugfix: default trash eating message being sent to the item's chat and not the
+      mob's
+2025-11-22:
+  AnymousUnknow & Diana:
+  - rscadd: Adds protogen visor markings
+  - rscadd: Adds Oak Tree markings
+  - rscadd: Adds Admin-only Skeleton markings
+  - rscadd: Adds a thin and thinner body marking
+  - code_imp: Adds backend code to allow markings to be admin-selectable only
+  Guti:
+  - code_imp: Added clothing traits
+  Kashargul:
+  - code_imp: dependency update
+2025-11-23:
+  Diana:
+  - bugfix: PAI parts now give the proper parts when screwdrivered and having them
+      removed
+  Nova:
+  - bugfix: Fixed body writing being silent in chat, and instant
+  - bugfix: Fixed body writing having no message notifications.
+  - rscadd: Added ability to resist / move away from being body written.
+  Will, Reo:
+  - bugfix: Fixed several distance issues with slipcode
+  - bugfix: You cannot change direction while slipping
+  - bugfix: Simple mobs no longer slip by default
+  - bugfix: Species flag NO_SLIP is respected by slipcode again
+2025-11-25:
+  FluffMedic:
+  - rscadd: Some new hair sprites
+  Nova:
+  - code_imp: Optimized some of the older circuitry code.
+  SatinIsle:
+  - qol: Changes the cost of sizeoxadone from (1 clonexadone, 3 tramadol and 1 phoron)
+      to (1 sodium and 1 tramadol). It still uses phoron as a catalyst but that is
+      not used up in the reaction.
+  Will:
+  - rscadd: Maintenance panels
+2025-11-26:
+  Guti:
+  - rscadd: Added various material tiles
+  - image: Added material floors and tiles icons
+  Will:
+  - qol: Cortical borer target selection will instantly select single targets instead
+      of always showing the target list
+  - qol: Cortical borers use changeling chemical hud
+  - balance: Cortical borer psychic attack range raised from 3 to 5
+  - balance: Cortical borer chemicals updated,and made more clear to the player selecting
+      them
+  - balance: Cortical borers will only show on upgraded health analyzers, does not
+      apply to bodyscanner
+  - balance: Cortical borers are faster at entering vents
+  - balance: Headwear no longer prevents borer infestation entirely, and instead significantly
+      delays their entry
+  - balance: Cortical borers can now spend a large sum of chemicals to jumpstart their
+      host's heart like a defib, and slowly heal them.
+  - balance: Cortical borers have 80 chems max, lowered ability costs to compensate
+  - balance: Cortical borers require 5 chems to torture a captured host
+  - balance: Cortical borer brain damage chance lowered from 5 to 2 while the borer
+      is in control
+  - balance: Cortical borers have motion tracking like teshari
+  - balance: Cortical borer paralyze replaced with knockout
+  - bugfix: Cortical borers assigned by admins in the traitor panel no longer attempt
+      to ghost invite when changing a player into a borer
+  - bugfix: Cortical borer weakness mechanics respect modern reagent code
+  - bugfix: Motion tracker properly unsubs the mob that holds it if qdeleted in hand
+  - bugfix: Admin logging added to borer attacks and abilities
+  - refactor: Many logic and delay code issues in cortical borers, moved spawn() to
+      timers.
+  - rscadd: Several new disposal bin types
+  - rscadd: Body sorting disposal junction
+  - rscadd: Changing disposal bin into different types by E-stopping and using a multitool
+      on the bin
+  - bugfix: resleeving cleaner bin not showing it's lever or full animations
+  tacoguy7765093:
+  - rscadd: Generic mob spawner grenades
+  - code_imp: Repathed casino grenades to be a subtype of spawner grenades instead.

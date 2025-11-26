@@ -1000,6 +1000,8 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 /obj/item/light/tube/large
 	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
+	icon_state = "ltube_large"
+	base_state = "ltube_large"
 	brightness_range = 15
 	brightness_power = 4
 
@@ -1033,6 +1035,8 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 // For 'floor lamps' in outdoor use and such
 /obj/item/light/bulb/large
 	name = "large light bulb"
+	icon_state = "lbulb_large"
+	base_state = "lbulb_large"
 	brightness_range = 7
 	brightness_power = 1.5
 
