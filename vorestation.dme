@@ -4292,6 +4292,7 @@
 #include "code\modules\recycling\destination_tagger.dm"
 #include "code\modules\recycling\disposal-construction.dm"
 #include "code\modules\recycling\disposal.dm"
+#include "code\modules\recycling\disposal_bin_subtypes.dm"
 #include "code\modules\recycling\disposal_holder.dm"
 #include "code\modules\recycling\disposal_junctions.dm"
 #include "code\modules\recycling\disposal_machines.dm"
