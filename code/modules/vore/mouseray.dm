@@ -321,6 +321,18 @@
 		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
 		)
 
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/attackby(var/obj/item/A as obj, mob/user as mob)
+	if(A.has_tool_quality(TOOL_MULTITOOL))
+		if(tf_allow_select)
+			to_chat(user, span_warning("You scramble the stored data on \the [src], making it less reliable."))
+			tf_allow_select = FALSE
+			name = "unstable metamorphosis ray"
+		else
+			to_chat(user, span_warning("You repair the damage to the \the [src]."))
+			tf_allow_select = TRUE
+			name = "advanced metamorphosis ray"
+	..()
+
 /obj/item/gun/energy/mouseray/metamorphosis/advanced/random
 	name = "unstable metamorphosis ray"
 	tf_allow_select = FALSE
