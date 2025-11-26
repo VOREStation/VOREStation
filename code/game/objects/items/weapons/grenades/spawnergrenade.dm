@@ -17,7 +17,7 @@
 		// Make a quick flash
 		var/turf/T = get_turf(src)
 		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
-		if(flash == TRUE)
+		if(flash)
 			for(var/mob/living/carbon/human/M in viewers(T, null))
 				if(M.eyecheck() <= 0)
 					M.flash_eyes()
