@@ -50,7 +50,7 @@
 // base /proc/say_dead_direct() : (message)
 #define COMSIG_GLOB_DEAD_SAY "!dead_say"
 // base /turf/wash() : ()
-#define COMSIG_GLOB_MOPFLOOR "!mopped_floor"
+#define COMSIG_GLOB_WASHED_FLOOR "!washed_floor"
 // base /obj/machinery/artifact_harvester/proc/harvest() : (obj/item/anobattery/inserted_battery, mob/user)
 #define COMSIG_GLOB_HARVEST_ARTIFACT "!harvest_artifact"
 // upon harvesting a slime's extract : (obj/item/slime_extract/newly_made_core)
