@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			real_target.dust()
 	return "Smite [smite_name] sent!"
 
-#define VALID_ACTIONS list("add", "remove", "list")
+#define VALID_ACTIONS list("add", "remove", "list", "help")
 #define VALID_KINDS list("job", "species")
 #define VALID_USAGE "whitelist \[[list2text(VALID_ACTIONS, ", ")]\] \[[list2text(VALID_KINDS, ", ")]\] <ckey> (role)"
 /datum/tgs_chat_command/whitelist
@@ -438,7 +438,30 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Resolve the action
 	switch(action)
+		if("help")
+			var/list/whitelist_jobs = list()
+			for(var/datum/job/our_job in job_master.occupations)
+				if(our_job.whitelist_only)
+					whitelist_jobs += our_job.title
+			message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
+			return message
 		if("add")
+			if(kind == "job")
+				var/datum/job/job = job_master.GetJob(role)
+				if(!job)
+					message.text = "Error, invalid job entered. Check spelling and capitalization."
+					return message
+				if(!job.whitelist_only)
+					message.text = "Error, job \"[role]\" is not a whitelist job."
+					return message
+			if(kind == "species")
+				if(role in GLOB.playable_species)
+					message.text = "Error, invalid species entered. Check spelling and capitalization."
+					return message
+				if(!(role in GLOB.whitelisted_species))
+					message.text = "Error, species \"[role]\" is not a whitelist species."
+					return message
+
 			var/datum/db_query/command_add = SSdbcore.NewQuery(
 				"INSERT INTO [format_table_name("whitelist")] (ckey, kind, entry) VALUES (:ckey, :kind, :entry)",
 				list("ckey" = ckey, "kind" = kind, "entry" = role)

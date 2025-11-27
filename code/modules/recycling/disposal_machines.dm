@@ -18,6 +18,7 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
+	var/controls_iconstate = "disposal"
 	anchored = TRUE
 	density = TRUE
 	var/datum/gas_mixture/air_contents	// internal reservoir
@@ -56,7 +57,10 @@
 
 	add_fingerprint(user)
 	if(mode <= DISPOSALMODE_OFF) // It's off
-		if(I.has_tool_quality(TOOL_SCREWDRIVER))
+		if(I.has_tool_quality(TOOL_MULTITOOL))
+			alter_bin_type(user)
+			return
+		else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -147,6 +151,93 @@
 
 	user.visible_message("[user] places \the [I] into the [src].",  "You place \the [I] into the [src].","Ca-Clunk")
 	update()
+
+// Transform into next machine type
+/obj/machinery/disposal/proc/alter_bin_type(mob/user)
+	if(contents.len > 0)
+		to_chat(user, "Eject the items first!")
+		return
+	// Get what we want to turn into
+	var/nametag
+	var/new_dir = SOUTH
+	var/new_disposal_path
+	var/result = tgui_input_list(user,
+								"What do you want to reconfigure the disposal bin to?",
+								"Multitool-Disposal interface",
+								list(
+									"Standard",
+									"Wall",
+									"Resleeving Deposit",
+									"Wall Resleeving Deposit",
+									"Hazard Bin",
+									"Wall Hazard Bin",
+									"Turn-In Bin",
+									"Wall Turn-In Bin",
+									"Mail Destination",
+									"Wall Mail Destination"
+									))
+	if(!result)
+		return
+	switch(result)
+		// Yellow
+		if("Standard")
+			new_disposal_path = /obj/machinery/disposal
+		if("Wall")
+			new_disposal_path = /obj/machinery/disposal/wall
+			new_dir = reverse_direction(user.dir)
+		// Blue
+		if("Resleeving Deposit")
+			new_disposal_path = /obj/machinery/disposal/cleaner
+			new_dir = reverse_direction(user.dir)
+		if("Wall Resleeving Deposit")
+			new_disposal_path = /obj/machinery/disposal/wall/cleaner
+			new_dir = reverse_direction(user.dir)
+		// Red
+		if("Hazard Bin")
+			new_disposal_path = /obj/machinery/disposal/burn_pit
+		if("Wall Hazard Bin")
+			new_disposal_path = /obj/machinery/disposal/wall/burn_pit
+			new_dir = reverse_direction(user.dir)
+		// Green
+		if("Turn-In Bin")
+			new_disposal_path = /obj/machinery/disposal/turn_in
+		if("Wall Turn-In Bin")
+			new_disposal_path = /obj/machinery/disposal/wall/turn_in
+			new_dir = reverse_direction(user.dir)
+		// White
+		if("Mail Destination")
+			new_disposal_path = /obj/machinery/disposal/mail_reciever
+			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convenience.", "Mail Destination")
+		if("Wall Mail Destination")
+			new_disposal_path = /obj/machinery/disposal/wall/mail_reciever
+			new_dir = reverse_direction(user.dir)
+			nametag = tgui_input_text(user,"Name this mail destination. This name has no effect on the disposal sorting junction, and is only for crew convenience.", "Mail Destination")
+
+	if(!new_disposal_path || (new_disposal_path == type && dir == new_dir))
+		return
+	if(!Adjacent(user) || contents.len > 0)
+		return
+	if(mode > DISPOSALMODE_OFF)
+		return
+	// Make new bin
+	var/obj/machinery/disposal/new_bin = new new_disposal_path(loc)
+	if(nametag) // mailer only
+		new_bin.name = "[initial(new_bin.name)]([nametag])"
+	new_bin.stat = stat
+	new_bin.dir = new_dir
+	new_bin.mode = mode
+	new_bin.update() // sets up wall outlets
+	new_bin.update_icon()
+	new_bin.visible_message("\The [src] reconfigures into \a [new_bin]!")
+	// Effects
+	playsound(new_bin, 'sound/items/jaws_cut.ogg', 50, 1)
+	playsound(new_bin, 'sound/machines/machine_die_short.ogg', 50, 1)
+	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system.set_up(5, 0, new_bin)
+	spark_system.attach(new_bin)
+	spark_system.start()
+	// Cleanup
+	qdel(src)
 
 // mouse drop another mob or self
 //
@@ -316,7 +407,7 @@
 
 	// flush handle
 	if(flush)
-		add_overlay("[initial(icon_state)]-handle")
+		add_overlay("[controls_iconstate]-handle")
 
 	// only handle is shown if no power
 	if(stat & NOPOWER || mode == DISPOSALMODE_EJECTONLY)
@@ -324,13 +415,13 @@
 
 	// 	check for items in disposal - occupied light
 	if(contents.len > 0)
-		add_overlay("[initial(icon_state)]-full")
+		add_overlay("[controls_iconstate]-full")
 
 	// charging and ready light
 	if(mode == DISPOSALMODE_CHARGING)
-		add_overlay("[initial(icon_state)]-charge")
+		add_overlay("[controls_iconstate]-charge")
 	else if(mode == DISPOSALMODE_CHARGED)
-		add_overlay("[initial(icon_state)]-ready")
+		add_overlay("[controls_iconstate]-ready")
 
 // timed process
 // charge the gas reservoir and perform flush if ready
@@ -433,40 +524,7 @@
 			source.forceMove(src)
 			visible_message("\The [source] lands in \the [src].")
 
-/obj/machinery/disposal/wall
-	name = "inset disposal unit"
-	icon_state = "wall"
-
-	density = FALSE
-
-/obj/machinery/disposal/wall/update()
-	..()
-
-	switch(dir)
-		if(1)
-			pixel_x = 0
-			pixel_y = -32
-		if(2)
-			pixel_x = 0
-			pixel_y = 32
-		if(4)
-			pixel_x = -32
-			pixel_y = 0
-		if(8)
-			pixel_x = 32
-			pixel_y = 0
-
-
-// Cleaner subtype
-/obj/machinery/disposal/wall/cleaner
-	name = "resleeving equipment deposit"
-	desc = "Automatically cleans and transports items to the local resleeving facilities."
-	icon_state = "bluewall"
-
-/obj/machinery/disposal/wall/cleaner/flush()
-	if(flushing)
-		return
-
+/obj/machinery/disposal/proc/clean_items()
 	// Clean items before sending them
 	for(var/obj/item/flushed_item in src)
 		if(istype(flushed_item, /obj/item/storage))
@@ -478,7 +536,29 @@
 		if(istype(flushed_item, /obj/item))
 			flushed_item.wash(CLEAN_WASH)
 
+// Wall mounted base type
+/obj/machinery/disposal/wall
+	name = "inset disposal unit"
+	icon_state = "wall"
+	controls_iconstate = "wall"
+
+	density = FALSE
+
+/obj/machinery/disposal/wall/update()
 	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_x = 0
+			pixel_y = -32
+		if(SOUTH)
+			pixel_x = 0
+			pixel_y = 32
+		if(EAST)
+			pixel_x = -32
+			pixel_y = 0
+		if(WEST)
+			pixel_x = 32
+			pixel_y = 0
 
 #undef DISPOSALMODE_EJECTONLY
 #undef DISPOSALMODE_OFF
