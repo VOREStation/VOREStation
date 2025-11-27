@@ -192,11 +192,12 @@
 
 		update_icon()
 
-		if(!M.has_brain_worms())
-			update_use_power(USE_POWER_ACTIVE)
-			enter_vr()
-		else
+		if(M.has_brain_worms())
 			to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
+			return
+
+		update_use_power(USE_POWER_ACTIVE)
+		enter_vr()
 	return
 
 /obj/machinery/vr_sleeper/proc/go_out()
