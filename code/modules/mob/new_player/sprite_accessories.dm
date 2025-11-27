@@ -33,23 +33,27 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 
 	var/name = DEVELOPER_WARNING_NAME // the preview name of the accessory
 
-	// Determines if the accessory will be skipped or included in random hair generations
+	/// Determines if the accessory will be skipped or included in random hair generations
 	var/gender = NEUTER
 
-	// Restrict some styles to specific species. Default to all species to avoid runtimes in character creator.
+	/// Restrict some styles to specific species. Default to all species to avoid runtimes in character creator.
 	var/list/species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER, SPECIES_ZADDAT, SPECIES_SPARKLE, SPECIES_PROMETHEAN, SPECIES_ZORREN_DARK)
 
-	// Whether or not the accessory can be affected by colouration
+	/// If the accessory can be selected normally. If FALSE, only staff can select it.
+	var/can_be_selected = TRUE
+
+	/// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
 
 	var/color_blend_mode = ICON_MULTIPLY	// If checked.
 
-	// Ckey of person allowed to use this, if defined.
+	/// Ckey of person allowed to use this, if defined.
 	var/list/ckeys_allowed = null
 
 	/// Should this sprite block emissives?
 	var/em_block = FALSE
 
+	/// What body parts we hide when this accessory is worn. Only blocks the body part if the accompanying organ in body_parts is also enabled.
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 
 /**

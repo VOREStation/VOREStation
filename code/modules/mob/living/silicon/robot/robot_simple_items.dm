@@ -166,7 +166,7 @@
 
 /obj/item/weldingtool/electric/mounted/cyborg/update_icon()
 	. = ..()
-	if(istype(loc, /obj/item/robotic_multibelt))
+	if(isrobotmultibelt(loc))
 		var/obj/item/robotic_multibelt/our_belt = loc
 		if(welding)
 			our_belt.add_overlay("indwelder_cyborg-on")
@@ -226,7 +226,7 @@
 
 	var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
 	set_cable_color(selected_type, user)
-	if(istype(loc, /obj/item/robotic_multibelt))
+	if(isrobotmultibelt(loc))
 		var/obj/item/robotic_multibelt/our_belt = loc
 		var/image/cable_image = our_belt.integrated_tool_images[name]
 		cable_image.color = color
@@ -632,7 +632,7 @@
 	//Is our wrapped object currently in our borg still?
 	//AND Is it not a gripper pocket? If not, reset WR.
 	if(wrapped.loc != loc && !isgripperpocket(wrapped.loc))
-		WR = null
+		update_ref(null)
 
 //This is the code that updates our pockets and decides if they should have icons or not.
 //This should be called every time we use the gripper and our wrapped item is used up.
@@ -658,7 +658,7 @@
 					pocket_image.overlays += overlay
 			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_image
 
-/obj/item/gripper/attack_self(mob/user as mob)
+/obj/item/gripper/attack_self(mob/user)
 	var/busy = is_in_use()
 	if(busy)
 		to_chat(user, span_danger("[busy]"))
@@ -678,13 +678,13 @@
 	var/obj/item/wrapped = get_current_pocket()
 	if(choice)
 		current_pocket = pockets_by_name[choice]
-		if(!istype(current_pocket,/obj/item/storage/internal/gripper)) //The pocket we're selecting is NOT a gripper storage
-			if(!istype(current_pocket.loc, /obj/item/storage/internal/gripper)) //We kept the radial menu opened, used the item, then selected it again.
+		if(!isgripperpocket(current_pocket)) //The pocket we're selecting is NOT a gripper storage
+			if(!isgripperpocket(current_pocket.loc)) //We kept the radial menu opened, used the item, then selected it again.
 				get_open_pocket(set_pocket = TRUE, clear_wrapped = TRUE) //Pick the next open pocket.
 			else
-				WR = WEAKREF(current_pocket)
+				update_ref(WEAKREF(current_pocket))
 		else
-			WR = null
+			update_ref(null)
 	else if(wrapped)
 		return wrapped.attack_self(user)
 	return ..()
@@ -705,7 +705,7 @@
 			get_open_pocket(set_pocket = TRUE, clear_wrapped = TRUE)
 
 		//Object is not in our contents AND is not in the gripper storage still. AKA, it was moved into something or somewhere. Either way, it's not ours anymore.
-		else if((wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper)))
+		else if((wrapped.loc != src.loc && !isgripperpocket(wrapped.loc)))
 			get_open_pocket(set_pocket = TRUE, clear_wrapped = TRUE)
 
 		//We were not given a resolved, the object still exists, AND we hit something. Attack that thing with our wrapped item.
@@ -713,7 +713,7 @@
 			O.afterattack(wrapped,user,1)
 			wrapped = get_current_pocket()
 			//The object still exists, but is not in our contents OR back in the gripper storage.
-			if((wrapped && wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper)))
+			if((wrapped && wrapped.loc != src.loc && !isgripperpocket(wrapped.loc)))
 				get_open_pocket(set_pocket = TRUE, clear_wrapped = TRUE)
 		else //Nothing happened to it. Just put it back into our pocket.
 			wrapped.loc = current_pocket
@@ -733,12 +733,12 @@
 		pocket_to_select = our_pocket
 		break
 	if(clear_wrapped)
-		WR = null
+		update_ref(null)
 	if(set_pocket)
 		if(!pocket_to_select)
 			pocket_to_select = pick(pockets) //If we don't have an open pocket, pick a random one.
-		if(!istype(pocket_to_select, /obj/item/storage/internal/gripper)) //If we picked an item instead of a gripper storage, we need to reset WR.
-			WR = WEAKREF(pocket_to_select) //We set WR to the pocket we selected.
+		if(!isgripperpocket(pocket_to_select)) //If we picked an item instead of a gripper storage, we need to reset WR.
+			update_ref(WEAKREF(pocket_to_select)) //We set WR to the pocket we selected.
 		current_pocket = pocket_to_select
 	return pocket_to_select
 
@@ -759,7 +759,7 @@
 	if(busy)
 		to_chat(src, span_danger("[busy]"))
 		return
-	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
+	if((wrapped == current_pocket && !isgripperpocket(wrapped.loc))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
 		get_open_pocket(set_pocket = TRUE, clear_wrapped = TRUE)
 		generate_icons()
 		return
@@ -768,43 +768,40 @@
 	wrapped.loc = get_turf(src)
 	get_open_pocket(set_pocket = TRUE, clear_wrapped = TRUE)
 	generate_icons()
-	//update_icon()
 
 //FORCES the item onto the ground and resets.
 /obj/item/gripper/proc/drop_item_nm()
 	var/obj/item/wrapped = get_current_pocket()
 	if(!wrapped)
 		return
-	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
-		WR = null
+	if((wrapped == current_pocket && !isgripperpocket(wrapped.loc))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
+		update_ref(null)
 		current_pocket = pick(pockets)
 		return
 
 	wrapped.forceMove(get_turf(src))
-	WR = null
+	update_ref(null)
+
 	//Reselect our pocket.
 	current_pocket = pick(pockets)
 
-/obj/item/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/gripper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	var/busy = is_in_use()
 	if(busy)
 		to_chat(user, span_danger("[busy]"))
 		return FALSE
 	var/obj/item/wrapped = get_current_pocket()
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-		if((wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
-			WR = null //we become null
-		else
-			wrapped.attack(M,user)
-			M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
-			if((wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
-				WR = null
-				wrapped = null
-				return 1
-			if(wrapped) //In the event nothing happened to wrapped, go back into the gripper.
-				wrapped.loc = current_pocket
-			return 1
-	return 0
+		if((wrapped.loc != src.loc && !isgripperpocket(wrapped.loc))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
+			update_ref(null)
+			return 0
+
+		var/old_loc = wrapped.loc
+		wrapped.attack(M,user)
+		M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
+		if((wrapped.loc != old_loc && !isgripperpocket(wrapped.loc))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
+			update_ref(null)
+		return 1
 
 /obj/item/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
 	if(!proximity)
@@ -823,10 +820,10 @@
 			current_pocket_full = TRUE
 
 	if(current_pocket && !LAZYLEN(current_pocket.contents)) //We have a pocket selected and it has no contents! This means we're an item OR we need to null our wrapper!
-		if(istype(current_pocket.loc,/obj/item/storage/internal/gripper) && !LAZYLEN(current_pocket.loc.contents)) //If our pocket is a gripper, AND we have no contents, WR = null
-			WR = null
-		else if(!istype(current_pocket.loc,/obj/item/storage/internal/gripper)) //If our pocket is an item and we are not in the gripper, WR = null
-			WR = null
+		if(isgripperpocket(current_pocket.loc) && !LAZYLEN(current_pocket.loc.contents)) //If our pocket is a gripper, AND we have no contents, WR = null
+			update_ref(null)
+		else if(!isgripperpocket(current_pocket.loc)) //If our pocket is an item and we are not in the gripper, WR = null
+			update_ref(null)
 
 	if(!LAZYLEN(pockets)) //Shouldn't happen, but safety first.
 		to_chat(user, span_danger("Your gripper has nowhere to hold \the [target]."))
@@ -842,7 +839,7 @@
 	if(wrapped) //Already have an item.
 		//Temporary put wrapped into user so target's attackby() checks pass.
 		var/obj/previous_pocket
-		if(istype(wrapped.loc, /obj/item/storage/internal/gripper))
+		if(isgripperpocket(wrapped.loc))
 			previous_pocket = wrapped.loc
 		wrapped.loc = user
 
@@ -864,7 +861,7 @@
 		to_chat(user, "Your gripper is currently full! You can't pick anything else up!")
 		return
 
-	else if(istype(target,/obj/item)) //Check that we're not pocketing a mob.
+	else if(isitem(target)) //Check that we're not pocketing a mob.
 
 		//...and that the item is not in a container.
 		if(!isturf(target.loc))
@@ -888,7 +885,7 @@
 			to_chat(user, "You collect \the [I].")
 			I.loc = selected_pocket
 			if(selected_pocket == current_pocket) //If we put the item into our current pocket, we need to set WR to the item.
-				WR = WEAKREF(I)
+				update_ref(WEAKREF(I))
 				current_pocket = I
 			return
 		else
@@ -914,20 +911,46 @@
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
 
-	else if(istype(target,/mob/living/silicon/robot))
+	else if(isrobot(target))
 		var/mob/living/silicon/robot/A = target
 		if(A.opened)
 			if(A.cell && is_type_in_list(A.cell, can_hold))
-
-				A.cell.add_fingerprint(user)
+				var/datum/robot_component/cell_component = A.components["power cell"]
 				A.cell.update_icon()
-				A.update_icon()
+				A.cell.add_fingerprint(user)
 				A.cell.forceMove(current_pocket)
 				current_pocket = A.cell
 				WR = WEAKREF(current_pocket)
 				A.cell = null
+				cell_component.uninstall()
+				A.update_icon()
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
+
+/obj/item/gripper/proc/update_ref(var/datum/weakref/new_ref)
+	var/had_item = get_current_pocket()
+	WR = new_ref
+	var/holding_item = get_current_pocket()
+	// Feedback
+	update_icon()
+	if(had_item && !holding_item) // Dropped
+		our_robot.playsound_local(get_turf(our_robot), 'sound/machines/click.ogg', 50)
+	else if(holding_item && !had_item || (holding_item != had_item)) // Pickup or change item
+		our_robot.playsound_local(get_turf(our_robot), 'sound/machines/click2.ogg', 50)
+
+/obj/item/gripper/update_icon()
+	cut_overlays()
+	var/obj/item/wrapped = get_current_pocket()
+	if(!wrapped)
+		return
+	// Draw the held item as a mini-image in the gripper itself
+	var/mutable_appearance/item_display = new(wrapped)
+	item_display.SetTransform(0.75, offset_y = -8)
+	item_display.pixel_x = 0
+	item_display.pixel_y = 0
+	item_display.plane = plane
+	item_display.layer = layer + 0.01
+	add_overlay(item_display)
 
 //HELPER PROCS
 ///Use this to get what the current pocket is. Returns NULL if no

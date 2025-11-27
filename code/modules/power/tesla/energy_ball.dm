@@ -226,7 +226,7 @@
 			var/mob/living/L = A
 			if(SEND_SIGNAL(L, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 				continue
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD)
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !HAS_TRAIT(L, TRAIT_TESLA_SHOCKIMMUNE))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist

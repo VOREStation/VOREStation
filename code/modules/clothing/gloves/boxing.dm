@@ -3,27 +3,7 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
-
-/obj/item/clothing/gloves/boxing/equipped(mob/user, slot)
-	. = ..()
-	if(user)
-		if(slot && slot == slot_gloves)
-			ADD_TRAIT(user, TRAIT_NONLETHAL_BLOWS, CLOTHING_TRAIT)
-			return
-		if(HAS_TRAIT_FROM(user, TRAIT_NONLETHAL_BLOWS, CLOTHING_TRAIT))
-			REMOVE_TRAIT(user, TRAIT_NONLETHAL_BLOWS, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/boxing/dropped(mob/user)
-	. = ..()
-	if(HAS_TRAIT_FROM(user, TRAIT_NONLETHAL_BLOWS, CLOTHING_TRAIT))
-		REMOVE_TRAIT(user, TRAIT_NONLETHAL_BLOWS, CLOTHING_TRAIT)
-/*
-/obj/item/clothing/gloves/boxing/attackby(obj/item/W, mob/user)
-	if(W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/surgical/scalpel))
-		to_chat(user, span_notice("That won't work."))	//Nope
-		return
-	..()
-*/
+	clothing_traits = list(TRAIT_NONLETHAL_BLOWS)
 
 /obj/item/clothing/gloves/boxing/green
 	icon_state = "boxinggreen"
