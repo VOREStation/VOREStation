@@ -382,3 +382,12 @@
   tacoguy7765093:
   - rscadd: Generic mob spawner grenades
   - code_imp: Repathed casino grenades to be a subtype of spawner grenades instead.
+2025-11-27:
+  Kashargul:
+  - code_imp: adds alist macros
+  - bugfix: errors during newer byond version compiles
+  - bugfix: some remaining hitching issues
+  - qol: adds input validation for whitelist changes
+  - code_imp: cancels compilations if symlink support is missing
+  - bugfix: sun subsystem overruns
+  - bugfix: nightshift subsystem overruns
