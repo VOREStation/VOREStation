@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - bugfix: "species whitelist commands for the bot now properly work and do not throw an invalid species error"
