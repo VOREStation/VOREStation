@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "adds alist macros"
-  - bugfix: "errors during newer byond version compiles"
