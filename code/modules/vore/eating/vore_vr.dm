@@ -41,6 +41,8 @@
 	var/feeding = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
+	var/can_be_afk_prey = FALSE
+	var/can_be_afk_pred = FALSE
 	var/allow_spontaneous_tf = FALSE
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
@@ -78,6 +80,7 @@
 	var/latejoin_prey = FALSE
 	var/autotransferable = TRUE
 	var/strip_pref = FALSE
+	var/contaminate_pref = TRUE
 	var/no_latejoin_vore_warning = FALSE // Only load, when... no_latejoin_vore_warning_persists
 	var/no_latejoin_prey_warning = FALSE // Only load, when... no_latejoin_vore_warning_persists
 	var/no_latejoin_vore_warning_time = 15 // Only load, when... no_latejoin_vore_warning_persists
@@ -203,6 +206,8 @@
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
+	can_be_afk_prey = json_from_file["can_be_afk_prey"]
+	can_be_afk_pred = json_from_file["can_be_afk_pred"]
 	allow_spontaneous_tf = json_from_file["allow_spontaneous_tf"]
 	step_mechanics_pref = json_from_file["step_mechanics_pref"]
 	pickup_pref = json_from_file["pickup_pref"]
@@ -234,6 +239,7 @@
 	autotransferable = json_from_file["autotransferable"]
 	vore_sprite_multiply = json_from_file["vore_sprite_multiply"]
 	strip_pref = json_from_file["strip_pref"]
+	contaminate_pref = json_from_file["contaminate_pref"]
 
 	no_latejoin_vore_warning_persists = json_from_file["no_latejoin_vore_warning_persists"]
 	if(no_latejoin_vore_warning_persists)
@@ -278,6 +284,10 @@
 		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
 		can_be_drop_pred = FALSE
+	if(isnull(can_be_afk_prey))
+		can_be_afk_prey = FALSE
+	if(isnull(can_be_afk_pred))
+		can_be_afk_pred = FALSE
 	if(isnull(allow_spontaneous_tf))
 		allow_spontaneous_tf = FALSE
 	if(isnull(step_mechanics_pref))
@@ -363,6 +373,8 @@
 		vore_sprite_multiply = list("stomach" = FALSE, "taur belly" = FALSE)
 	if(isnull(strip_pref))
 		strip_pref = TRUE
+	if(isnull(contaminate_pref))
+		contaminate_pref = TRUE
 	if(isnull(no_latejoin_vore_warning))
 		no_latejoin_vore_warning = FALSE
 	if(isnull(no_latejoin_prey_warning))
@@ -410,6 +422,8 @@
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
+			"can_be_afk_prey"		= can_be_afk_prey,
+			"can_be_afk_pred"		= can_be_afk_pred,
 			"latejoin_vore"			= latejoin_vore,
 			"latejoin_prey"			= latejoin_prey,
 			"allow_spontaneous_tf"	= allow_spontaneous_tf,
@@ -437,6 +451,7 @@
 			"allow_mimicry"				= allow_mimicry,
 			"vore_sprite_multiply"		= vore_sprite_multiply,
 			"strip_pref" 			= strip_pref,
+			"contaminate_pref"		= contaminate_pref,
 			"no_latejoin_vore_warning"		= no_latejoin_vore_warning,
 			"no_latejoin_prey_warning"		= no_latejoin_prey_warning,
 			"no_latejoin_vore_warning_time"		= no_latejoin_vore_warning_time,

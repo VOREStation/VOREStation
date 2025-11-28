@@ -389,7 +389,7 @@ var/list/flooring_types
 
 /decl/flooring/linoleum
 	name = "linoleum"
-	desc = "It's like the 2090's all over again."		// VOREStation Lore Edit - we're not past 2390's yet
+	desc = "It's like the 2090's all over again."
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
 	can_paint = 1
@@ -489,9 +489,29 @@ var/list/flooring_types
 
 /decl/flooring/wood/sif
 	desc = "Polished wood planks made from sivian wood."
-	icon = 'icons/turf/flooring/wood.dmi'
-	icon_base = "sifwood"
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
 	build_type = /obj/item/stack/tile/wood/sif
+
+/decl/flooring/wood/sif/panel
+	icon_base = "sif_panel"
+	build_type = /obj/item/stack/tile/wood/sif/panel
+
+/decl/flooring/wood/sif/parquet
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/sif/parquet
+
+/decl/flooring/wood/sif/tile
+	icon_base = "wood_tile"
+	build_type = /obj/item/stack/tile/wood/sif/tile
+
+/decl/flooring/wood/sif/vert
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/sif/vert
+
+/decl/flooring/wood/sif/vert_panel
+	icon_base = "wood_vert_panel"
+	build_type = /obj/item/stack/tile/wood/sif/vert_panel
 
 /decl/flooring/wood/alt
 	icon = 'icons/turf/flooring/wood.dmi'
@@ -500,23 +520,302 @@ var/list/flooring_types
 
 /decl/flooring/wood/alt/panel
 	desc = "Polished wooden panels."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/panel
 
 /decl/flooring/wood/alt/parquet
 	desc = "Polished wooden tiles."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/parquet
 
+/decl/flooring/wood/alt/vert
+	desc = "Polished wooden planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/vert
+
+/decl/flooring/wood/alt/vert_panel
+	desc = "Polished wooden panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	build_type = /obj/item/stack/tile/wood/vert_panel
+
 /decl/flooring/wood/alt/tile
 	desc = "Polished wooden tiles."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/tile
+
+//New Wood
+/decl/flooring/wood/acacia
+	name = "wooden floor"
+	desc = "Polished acacia planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/acacia
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/acacia/panel
+	desc = "Polished acacia panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/acacia/panel
+
+/decl/flooring/wood/acacia/parquet
+	desc = "Polished acacia parquet."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/acacia/parquet
+
+/decl/flooring/wood/acacia/tile
+	desc = "Polished acacia tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/acacia/tile
+
+/decl/flooring/wood/acacia/vert
+	desc = "Polished acacia planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/acacia/vert
+
+/decl/flooring/wood/acacia/vert_panel
+	desc = "Polished acacia panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/acacia/vert_panel
+
+/decl/flooring/wood/birch
+	name = "wooden floor"
+	desc = "Polished birch planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/birch
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/birch/panel
+	desc = "Polished birch panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/birch/panel
+
+/decl/flooring/wood/birch/parquet
+	desc = "Polished birch tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/birch/parquet
+
+/decl/flooring/wood/birch/tile
+	desc = "Polished birch tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/birch/tile
+
+/decl/flooring/wood/birch/vert
+	desc = "Polished birch planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/birch/vert
+
+/decl/flooring/wood/birch/vert_panel
+	desc = "Polished birch panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/birch/vert_panel
+
+/decl/flooring/wood/hardwood
+	name = "wooden floor"
+	desc = "Polished hardwood planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/hardwood
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/hardwood/panel
+	desc = "Polished hardwood panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/hardwood/panel
+
+/decl/flooring/wood/hardwood/parquet
+	desc = "Polished hardwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/hardwood/parquet
+
+/decl/flooring/wood/hardwood/tile
+	desc = "Polished hardwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/hardwood/tile
+
+/decl/flooring/wood/hardwood/vert
+	desc = "Polished hardwood planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/hardwood/vert
+
+/decl/flooring/wood/hardwood/vert_panel
+	desc = "Polished hardwood panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/hardwood/vert_panel
+
+/decl/flooring/wood/oak
+	name = "wooden floor"
+	desc = "Polished oak planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/oak
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/oak/panel
+	desc = "Polished oak panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/oak/panel
+
+/decl/flooring/wood/oak/parquet
+	desc = "Polished oak tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/oak/parquet
+
+/decl/flooring/wood/oak/tile
+	desc = "Polished oak tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/oak/tile
+
+/decl/flooring/wood/oak/vert
+	desc = "Polished oak planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/oak/vert
+
+/decl/flooring/wood/oak/vert_panel
+	desc = "Polished oak panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/oak/vert_panel
+
+/decl/flooring/wood/pine
+	name = "wooden floor"
+	desc = "Polished pine planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/pine
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/pine/panel
+	desc = "Polished pine panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/pine/panel
+
+/decl/flooring/wood/pine/parquet
+	desc = "Polished pine tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/pine/parquet
+
+/decl/flooring/wood/pine/tile
+	desc = "Polished pine tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/pine/tile
+
+/decl/flooring/wood/pine/vert
+	desc = "Polished pine planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/pine/vert
+
+/decl/flooring/wood/pine/vert_panel
+	desc = "Polished pine panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/pine/vert_panel
+
+/decl/flooring/wood/redwood
+	name = "wooden floor"
+	desc = "Polished redwood planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/wood/redwood
+	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
+
+/decl/flooring/wood/redwood/panel
+	desc = "Polished redwood panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/redwood/panel
+
+/decl/flooring/wood/redwood/parquet
+	desc = "Polished redwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/redwood/parquet
+
+/decl/flooring/wood/redwood/tile
+	desc = "Polished redwood tiles."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/redwood/tile
+
+/decl/flooring/wood/redwood/vert
+	desc = "Polished redwood planks."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert"
+	build_type = /obj/item/stack/tile/wood/redwood/vert
+
+/decl/flooring/wood/redwood/vert_panel
+	desc = "Polished redwood panels."
+	icon = 'icons/turf/flooring/wood_greyscale.dmi'
+	icon_base = "wood_vert_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/redwood/vert_panel
+
+// no more wood
 
 /decl/flooring/reinforced
 	name = "reinforced floor"
