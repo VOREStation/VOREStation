@@ -1434,3 +1434,7 @@
 	name = "Tree Roots (Oak)"
 	icon_state = "tree_oak_roots"
 	can_ride = 0
+
+/datum/sprite_accessory/tail/longtail/scug // Wawa
+	name = "Catslug Tail"
+	icon_state = "scug"
