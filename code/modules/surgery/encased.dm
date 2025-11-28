@@ -255,7 +255,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected && affected.open >= FLESH_RETRACTED && affected.open < 3
+	return ..() && affected && affected.open >= FLESH_RETRACTED && affected.open < BONE_RETRACTED
 
 /datum/surgery_step/open_encased/advancedsaw_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))

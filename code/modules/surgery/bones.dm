@@ -9,9 +9,11 @@
 	if(!ishuman(target))
 		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!(affected.status & ORGAN_BROKEN))
+		return FALSE
 	if(coverage_check(user, target, affected, tool))
 		return FALSE
-	if(!affected.cannot_break && !affected.encased)
+	if(affected.cannot_break && !affected.encased)
 		return FALSE
 	if(affected.robotic >= ORGAN_ROBOT)
 		return FALSE
@@ -90,16 +92,10 @@
 
 /datum/surgery_step/bones/set_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if (affected.status & ORGAN_BROKEN)
-		user.visible_message(span_notice("[user] sets the bone in [target]'s [affected.name] in place with \the [tool]."), \
-			span_notice("You set the bone in [target]'s [affected.name] in place with \the [tool]."))
-		user.balloon_alert_visible("sets the bone in place.", "bone set in place.")
-		affected.stage = 2
-	else
-		user.visible_message("[user] sets the bone in [target]'s [affected.name] " + span_danger("in the WRONG place with \the [tool]."), \
-			"You set the bone in [target]'s [affected.name] " + span_danger("in the WRONG place with \the [tool]."))
-		user.balloon_alert_visible("sets the bone in the WRONG place.", "bone set in the WRONG place.")
-		affected.fracture()
+	user.visible_message(span_notice("[user] sets the bone in [target]'s [affected.name] in place with \the [tool]."), \
+		span_notice("You set the bone in [target]'s [affected.name] in place with \the [tool]."))
+	user.balloon_alert_visible("sets the bone in place.", "bone set in place.")
+	affected.stage = 2
 
 /datum/surgery_step/bones/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -210,7 +206,7 @@
 
 /datum/surgery_step/bones/clamp_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && (affected.status & ORGAN_BROKEN) && affected.open >= FLESH_RETRACTED && affected.stage == 0
+	return ..() && affected.open >= FLESH_RETRACTED && affected.stage == 0
 
 /datum/surgery_step/bones/clamp_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

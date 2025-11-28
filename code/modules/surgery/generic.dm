@@ -171,10 +171,7 @@
 
 	affected.createwound(CUT, 1)
 	affected.organ_clamp()
-	if(affected.encased)
-		affected.open = FLESH_RETRACTED
-	else
-		affected.open = BONE_RETRACTED
+	affected.open = FLESH_RETRACTED
 
 /datum/surgery_step/generic/incision_manager/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

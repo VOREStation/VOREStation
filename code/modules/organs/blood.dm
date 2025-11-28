@@ -200,7 +200,7 @@ BLOOD_VOLUME_SURVIVE = 40
 				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
 					blood_loss_divisor += 30
 				if(W.clamped)
-					blood_loss_divisor * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
+					blood_loss_divisor = blood_loss_divisor * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
 				remove_blood(W.damage/blood_loss_divisor) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place. //Hi. 2025 here. Just did that. ~Diana
 
 			///Thirdly, we check to see if the limb is bleeding EXTERNALLY

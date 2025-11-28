@@ -15,8 +15,8 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected || (affected.robotic >= ORGAN_ROBOT))
 		return FALSE
-	//If the limb is not encased (i.e. our head is boneless) we can only ever get a max of open 2.
-	if(!(affected.open >= BONE_RETRACTED) && !(affected.encased && affected.open >= FLESH_RETRACTED))
+	//If our organ is encased (has a bone) the bone must be cut. If the organ is NOT encased (boneless) we can only get to encased == 2
+	if(affected.open != (affected.encased ? 3 : 2))
 		return FALSE
 	if(coverage_check(user, target, affected, tool))
 		return FALSE
