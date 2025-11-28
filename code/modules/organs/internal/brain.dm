@@ -6,7 +6,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	desc = "A piece of juicy meat found in a person's head."
 	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
-	vital = 1
+	vital = TRUE
 	icon_state = "brain2"
 	force = 1.0
 	w_class = ITEMSIZE_SMALL
@@ -177,7 +177,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	parent_organ = BP_HEAD
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
-	vital = 1
 	can_assist = FALSE
 
 /obj/item/organ/internal/brain/xeno

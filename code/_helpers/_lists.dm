@@ -849,20 +849,20 @@ Checks if a list has the same entries and values as an element of big.
 			L.Cut(fromIndex, fromIndex+1)
 
 //replaces reverseList ~Carnie
-/proc/reverseRange(list/L, start=1, end=0)
-	if(L.len)
-		start = start % L.len
-		end = end % (L.len+1)
+/proc/reverse_range(list/inserted_list, start = 1, end = 0)
+	if(inserted_list.len)
+		start = start % inserted_list.len
+		end = end % (inserted_list.len + 1)
 		if(start <= 0)
-			start += L.len
+			start += inserted_list.len
 		if(end <= 0)
-			end += L.len + 1
+			end += inserted_list.len + 1
 
 		--end
 		while(start < end)
-			L.Swap(start++,end--)
+			inserted_list.Swap(start++, end--)
 
-	return L
+	return inserted_list
 
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type

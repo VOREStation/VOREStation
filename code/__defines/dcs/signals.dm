@@ -29,7 +29,7 @@
 #define COMSIG_GLOB_BUTTON_PRESSED "!button_pressed"
 /// Supply shuttle selling, before all items are sold, called by /datum/controller/subsystem/supply/proc/sell() : (/list/area/supply_shuttle_areas)
 #define COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART "!sell_supply_shuttle"
-/// Supply shuttle selling, for each item sold, called by /datum/controller/subsystem/supply/proc/sell() : (atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
+/// Supply shuttle selling, for each item sold, called by /datum/controller/subsystem/supply/proc/sell() : (atom/movable/sold_item, list/things_sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
 #define COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM "!supply_shuttle_sell_item"
 /// Mind inserted into body: (mob/new_owner, /datum/mind/assigned_mind)
 #define COMSIG_GLOB_RESLEEVED_MIND "!resleeved_mind_into_body"
@@ -45,6 +45,26 @@
 #define COMSIG_GLOB_BORGIFY "!borgify_mob"
 /// brain removed from body, called by /obj/item/organ/internal/brain/proc/transfer_identity() : (mob/living/carbon/brain/brainmob)
 #define COMSIG_GLOB_BRAIN_REMOVED "!brain_removed_from_mob"
+// base /decl/emote/proc/do_emote() : (mob/user, extra_params)
+#define COMSIG_GLOB_EMOTE_PERFORMED "!emote_performed"
+// base /proc/say_dead_direct() : (message)
+#define COMSIG_GLOB_DEAD_SAY "!dead_say"
+// base /turf/wash() : ()
+#define COMSIG_GLOB_WASHED_FLOOR "!washed_floor"
+// base /obj/machinery/artifact_harvester/proc/harvest() : (obj/item/anobattery/inserted_battery, mob/user)
+#define COMSIG_GLOB_HARVEST_ARTIFACT "!harvest_artifact"
+// upon harvesting a slime's extract : (obj/item/slime_extract/newly_made_core)
+#define COMSIG_GLOB_HARVEST_SLIME_CORE "!harvest_slime_core"
+// base /datum/recipe/proc/make_food() : (obj/container, list/results)
+#define COMSIG_GLOB_FOOD_PREPARED "!recipe_food_completed"
+// base /datum/construction/proc/spawn_result() : (/obj/mecha/result_mech)
+#define COMSIG_GLOB_MECH_CONSTRUCTED "!mecha_constructed"
+// when trashpiles are successfully searched : (mob/living/user, list/searched_by)
+#define COMSIG_GLOB_TRASHPILE_SEARCHED "!trash_pile_searched"
+// base /obj/item/autopsy_scanner/do_surgery() : (mob/user, mob/target)
+#define COMSIG_GLOB_AUTOPSY_PERFORMED "!performed_autopsy"
+// upon forensics swap or sample kit forensics collection : (atom/target, mob/user)
+#define COMSIG_GLOB_FORENSICS_COLLECTED "!performed_forensics_collection"
 
 /// signals from globally accessible objects
 
@@ -812,6 +832,11 @@
 
 ///from base of /obj/effect/decal/cleanable/blood/gibs/streak(): (list/directions, list/diseases)
 #define COMSIG_GIBS_STREAK "gibs_streak"
+
+//Autopsy
+
+//from base of /obj/item/autopsy_scanner/do_surgery() : (mob/user, mob/target)
+#define COMSIG_AUTOPSY_PERFORMED "performed_autopsy"
 
 //Mood
 

@@ -455,7 +455,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					message.text = "Error, job \"[role]\" is not a whitelist job."
 					return message
 			if(kind == "species")
-				if(role in GLOB.playable_species)
+				if(!(role in GLOB.playable_species))
 					message.text = "Error, invalid species entered. Check spelling and capitalization."
 					return message
 				if(!(role in GLOB.whitelisted_species))

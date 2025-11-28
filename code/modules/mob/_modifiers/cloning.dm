@@ -79,7 +79,6 @@
 	outgoing_melee_damage_percent = 0.9		// 10% less melee damage.
 	disable_duration_percent = 1.25			// Stuns last 25% longer.
 	incoming_healing_percent = 0.9			// -10% to all healing
-	slowdown = 0.5							// Slower, by a smidge.
 	evasion = -5							// 5% easier to hit.
 	accuracy_dispersion = 1					// Inaccurate trait level of tile dispersion.
 
@@ -92,16 +91,6 @@
 		return FALSE
 
 	return ..()
-
-/datum/modifier/franken_sickness/tick()
-	if(holder.stat != DEAD)
-		if(ishuman(holder))
-			var/mob/living/carbon/human/F = holder
-			if(F.can_defib)
-				F.can_defib = 0
-
-/datum/modifier/franken_sickness/on_expire() //Not permanent, but its child is.
-	holder.add_modifier(/datum/modifier/franken_recovery, 0)
 
 /datum/modifier/franken_recovery //When Franken_Sickness expires, this will be permanently applied in its place.
 	name = "neural recovery"
