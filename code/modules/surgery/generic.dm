@@ -223,6 +223,8 @@
 	span_notice("You clamp bleeders in [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("clamps bleeders", "clamped bleeders")
 	affected.organ_clamp()
+	for(var/datum/wound/internal_bleeding/W in affected.wounds) //Normal organ clamp does NOT clamp internal bleeds. Using hemostats directly does.
+		W.clamped = TRUE
 
 /datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
