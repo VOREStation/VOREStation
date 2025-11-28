@@ -290,10 +290,7 @@
 		self_msgBall = "keeping the incision open on the lower abdomen."
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible(msgBall, self_msgBall)
-	if(affected.encased)
-		affected.open = FLESH_RETRACTED
-	else
-		affected.open = BONE_RETRACTED
+	affected.open = FLESH_RETRACTED
 
 /datum/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
