@@ -391,3 +391,18 @@
   - code_imp: cancels compilations if symlink support is missing
   - bugfix: sun subsystem overruns
   - bugfix: nightshift subsystem overruns
+2025-11-28:
+  Cameron-The-Raven:
+  - bugfix: Vox now have a proper voice box with coloration that normal vox organs
+      have. This prevents them from being forced to know galcommon if they opt to
+      not take it.
+  Cerami:
+  - rscadd: Preference for whether you can be eaten or fed prey while AFK
+  - rscadd: Preference for whether items worn/carried by you can be digested or contaminated.
+  ItsSelis:
+  - bugfix: species whitelist commands for the bot now properly work and do not throw
+      an invalid species error
+  Will:
+  - rscadd: Reagent refinery splitter machine
+  - refactor: Consolidated some copypaste code in reagent refinery and did some general
+      cleaning too

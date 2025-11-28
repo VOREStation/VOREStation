@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Reagent refinery splitter machine"
-  - refactor: "Consolidated some copypaste code in reagent refinery and did some general cleaning too"

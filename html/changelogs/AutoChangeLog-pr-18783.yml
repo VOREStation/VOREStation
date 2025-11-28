@@ -1,5 +1,0 @@
-author: "Cerami"
-delete-after: True
-changes:
-  - rscadd: "Preference for whether you can be eaten or fed prey while AFK"
-  - rscadd: "Preference for whether items worn/carried by you can be digested or contaminated."
