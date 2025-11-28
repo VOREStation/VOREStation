@@ -71,6 +71,12 @@
 
 	return closest_target
 
+/// A bioscrambler anomaly subtype which does not pursue people, for purposes of a space ruin
+/obj/effect/anomaly/bioscrambler/docile
+
+/obj/effect/anomaly/bioscrambler/docile/update_target()
+	return
+
 /obj/effect/anomaly/bioscrambler/detonate()
 	COOLDOWN_RESET(src, pulse_cooldown)
 	anomalyEffect()

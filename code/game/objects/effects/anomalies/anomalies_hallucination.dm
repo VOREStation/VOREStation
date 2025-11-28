@@ -100,3 +100,7 @@
 
 /obj/effect/anomaly/hallucination/decoy/generate_decoys()
 	return
+
+///Subtype for the SM that doesn't spawn decoys, because otherwise the whole area gets flooded with dummies.
+/obj/effect/anomaly/hallucination/supermatter
+	spawn_decoys = FALSE

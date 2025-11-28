@@ -4,7 +4,7 @@
  */
 
 ///Time in ticks before the anomaly goes poof/explodes depending on type.
-#define ANOMALY_COUNTDOWN_TIMER (120 SECONDS)
+#define ANOMALY_COUNTDOWN_TIMER (150 SECONDS)
 
 /**
  * Nuisance/funny anomalies
@@ -38,3 +38,10 @@
 #define ANOMALY_ANNOUNCE_DANGEROUS_TIME (30 EVENT_SECONDS)
 ///Let them know how far away the anomaly is
 #define ANOMALY_ANNOUNCE_DANGEROUS_TEXT "localized scanners. Detected location:"
+
+#define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
+#define FLUX_ANOMALY "flux_anomaly"
+#define PYRO_ANOMALY "pyro_anomaly"
+#define BIOSCRAMBLER_ANOMALY "bioscrambler_anomaly"
+#define HALLUCINATION_ANOMALY "hallucination_anomaly"
+#define DIMENSIONAL_ANOMALY "dimensional_anomaly"
