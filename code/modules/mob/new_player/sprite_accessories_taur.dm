@@ -1438,3 +1438,7 @@
 /datum/sprite_accessory/tail/longtail/scug // Wawa
 	name = "Catslug Tail"
 	icon_state = "scug"
+
+/datum/sprite_accessory/tail/longtail/scug/dots
+	name = "Catslug Tail Dotted"
+	extra_overlay =  "scug_markings"
