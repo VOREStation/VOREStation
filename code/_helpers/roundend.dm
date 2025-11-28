@@ -5,7 +5,7 @@
 		roundend_callbacks.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
-	to_chat(world, span_infoplain(span_big(span_bold("<BR><BR><BR><H1>The round has ended.</H1>"))))
+	to_chat(world, span_filter_system("<BR><BR><BR><H1>The round has ended.</H1>"))
 	log_game("The round has ended.")
 	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
 		send2chat(new /datum/tgs_message_content("[GLOB.round_id ? "Round [GLOB.round_id]" : "The round has"] just ended."), channel_tag)
