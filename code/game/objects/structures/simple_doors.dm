@@ -269,9 +269,31 @@
 
 /obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_HARDWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_SIFWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/birchwood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_BIRCHWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/pinewood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_PINEWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/oakwood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_OAKWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/acaciawood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_ACACIAWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/redwood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_REDWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_RESIN)
