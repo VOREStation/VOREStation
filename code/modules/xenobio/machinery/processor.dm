@@ -82,7 +82,7 @@
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
-			new S.coretype(get_turf(src))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HARVEST_SLIME_CORE, new S.coretype(get_turf(src)))
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			S.cores--
 			sleep(1 SECOND)

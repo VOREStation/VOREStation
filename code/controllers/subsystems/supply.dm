@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(supply)
 			var/base_value = 0
 
 			// Most items must be in a crate!
-			var/sold_successfully = FALSE
+			var/list/things_sold_successfully = list()
 			if(istype(MA,/obj/structure/closet/crate))
 				var/obj/structure/closet/crate/CR = MA
 
@@ -88,12 +88,14 @@ SUBSYSTEM_DEF(supply)
 
 				// For each thing in the crate, get the value and quantity
 				for(var/atom/A in CR)
-					sold_successfully = SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
+					if(SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE))
+						things_sold_successfully += A
 			else
 				// Selling things that are not in crates.
 				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
-				sold_successfully = SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM, MA, sold_successfully, EC, subarea)
+				if(SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE))
+					things_sold_successfully += MA
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM, MA, things_sold_successfully, EC, subarea)
 
 			exported_crates += EC
 			points += EC.value
