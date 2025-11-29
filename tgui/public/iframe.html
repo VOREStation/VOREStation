@@ -14,9 +14,12 @@
 
       const MAX_MESSAGES = 1000;
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const storeValue = `${urlParams.get('store')}-${INDEXED_DB_NAME}`;
+
       const dbPromise = new Promise((resolve, reject) => {
         const indexedDB = window.indexedDB;
-        const req = indexedDB.open(INDEXED_DB_NAME, INDEXED_DB_VERSION);
+        const req = indexedDB.open(storeValue, INDEXED_DB_VERSION);
         req.onupgradeneeded = (event) => {
           try {
             if (event.oldVersion < 1) {
