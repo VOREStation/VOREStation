@@ -1,4 +1,0 @@
-author: "/tg/"
-delete-after: True
-changes:
-  - bugfix: "Round start timer runs properly now."

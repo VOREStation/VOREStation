@@ -1,6 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - code_imp: "Implements many new global signals"
-  - code_imp: "Implements COMSIG_AUTOPSY_PERFORMED"
-  - code_imp: "COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM improved"

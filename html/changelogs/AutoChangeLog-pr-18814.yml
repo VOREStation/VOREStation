@@ -1,9 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - rscadd: "Added five new wood types! Acquire them from cargo or the funny maintenance vendor. Includes floor tiles for these new types *and* hardwood! Sifwood is now available from the maintvendor too."
-  - refactor: "partially reorganized material name defines by material type"
-  - code_imp: "floor tiles can now transfer their colour to placed flooring, and this colour will be cleared when the floor is pulled up"
-  - rscadd: "added greyscale versions of wood floors and tile stacks, to make it easier to add more wood types."
-  - bugfix: "sifwood tables now have the correct colour in SDMM"
-  - qol: "you can now make large panel, parquet, and tiled (crosshatch parquet) tiles from alien wood too"

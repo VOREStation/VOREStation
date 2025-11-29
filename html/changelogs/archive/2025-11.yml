@@ -406,3 +406,52 @@
   - rscadd: Reagent refinery splitter machine
   - refactor: Consolidated some copypaste code in reagent refinery and did some general
       cleaning too
+2025-11-29:
+  /tg/:
+  - bugfix: Round start timer runs properly now.
+  Diana:
+  - balance: Ambulant blood no longer is a gene trait.
+  - bugfix: Absorbed species will no longer be appreciated
+  - bugfix: Hemostats properly clamp internal bleeds now
+  - bugfix: Prey will no longer immediately be hit with a stomach's entire reagent
+      volume when being reagent digested.
+  - qol: Hemostats now clamp internal bleeding, causing 10x slower bloodloss during
+      surgery.
+  - bugfix: Brain surgery can be done on boneless creatures.
+  - code_imp: Cleaned up surgery code and made it more easily readable.
+  - spellcheck: Removed a few unneeded spaces in text.
+  - qol: Brain surgery no longer permanently debuffs the person it's performed on.
+  - qol: Made a few surgery steps have the same min and max time duration.
+  - bugfix: Reform vore now will always bring the person at least to alive status.
+  - bugfix: Tourettes will no longer trigger 50x more likely if your pulse is slowed
+      or stopped.
+  - bugfix: You can no longer accidentally do bone repair surgery when the bone is
+      already fixed
+  KillianKirilenko:
+  - rscadd: Added five new wood types! Acquire them from cargo or the funny maintenance
+      vendor. Includes floor tiles for these new types *and* hardwood! Sifwood is
+      now available from the maintvendor too.
+  - refactor: partially reorganized material name defines by material type
+  - code_imp: floor tiles can now transfer their colour to placed flooring, and this
+      colour will be cleared when the floor is pulled up
+  - rscadd: added greyscale versions of wood floors and tile stacks, to make it easier
+      to add more wood types.
+  - bugfix: sifwood tables now have the correct colour in SDMM
+  - qol: you can now make large panel, parquet, and tiled (crosshatch parquet) tiles
+      from alien wood too
+  Will:
+  - code_imp: Implements many new global signals
+  - code_imp: Implements COMSIG_AUTOPSY_PERFORMED
+  - code_imp: COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM improved
+  - rscadd: Chemical engineer alttitle for engineer
+  - rscadd: chemical analyzer can be put in toolbelt
+  - rscadd: lightpainter can be put in toolbelt
+  - rscadd: Catslug tail cosmetic. Wawa
+  - rscadd: Catslug tail dotted cosmetic.
+  zeskorion:
+  - rscadd: Sharp snout, sharp snout under, top of snout, snout ring, clawed gauntlets,
+      neck ruff, big soft belly markings
+  - rscadd: '"cyber tendrils" wings'
+  - rscadd: Several snake tail variants- with feathery tips, mechanical claws, and
+      scute variants of each
+  - rscadd: ' four-eared/frill and tricorn horn ear sprites'
