@@ -29,7 +29,6 @@
 
   // Expose inlined metadata
   Byond.windowId = parseMetaTag('tgui:windowId');
-  Byond.storageCdn = parseMetaTag('tgui:storagecdn');
 
   // Backwards compatibility
   window.__windowId__ = Byond.windowId;
@@ -398,17 +397,32 @@
         ],
       };
 
-      window
-        .showSaveFilePicker(opts)
-        .then(function (file) {
-          return file.createWritable();
-        })
-        .then(function (file) {
-          return file.write(blob).then(function () {
-            return file.close();
+      try {
+        window
+          .showSaveFilePicker(opts)
+          .then((fileHandle) => {
+            fileHandle
+              .createWritable()
+              .then((writeableFileHandle) => {
+                writeableFileHandle
+                  .write(blob)
+                  .then(() => {
+                    writeableFileHandle.close();
+                  })
+                  .catch((e) => {
+                    console.error(e);
+                  });
+              })
+              .catch((e) => {
+                console.error(e);
+              });
+          })
+          .catch((e) => {
+            console.error(e);
           });
-        })
-        .catch(function () {});
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
