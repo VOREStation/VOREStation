@@ -80,7 +80,7 @@
 	access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS)
 	minimal_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION)
 	alt_titles = list(JOB_ALT_MAINTENANCE_TECHNICIAN = /datum/alt_title/maint_tech, JOB_ALT_ENGINE_TECHNICIAN = /datum/alt_title/engine_tech,
-						JOB_ALT_ELECTRICIAN = /datum/alt_title/electrician, JOB_ALT_CONSTRUCTION_ENGINEER = /datum/alt_title/construction_engi, JOB_ALT_ENGINEERING_CONTRACTOR = /datum/alt_title/engineering_contractor,  JOB_ALT_COMPUTER_TECHNICIAN = /datum/alt_title/computer_tech, JOB_ALT_SALVAGE_TECHNICIAN = /datum/alt_title/salvage_tech, JOB_ALT_DAMAGE_CONTROL_SPECIALIST = /datum/alt_title/damage_control_specialist)
+						JOB_ALT_ELECTRICIAN = /datum/alt_title/electrician, JOB_ALT_CONSTRUCTION_ENGINEER = /datum/alt_title/construction_engi, JOB_ALT_ENGINEERING_CONTRACTOR = /datum/alt_title/engineering_contractor,  JOB_ALT_COMPUTER_TECHNICIAN = /datum/alt_title/computer_tech, JOB_ALT_SALVAGE_TECHNICIAN = /datum/alt_title/salvage_tech, JOB_ALT_DAMAGE_CONTROL_SPECIALIST = /datum/alt_title/damage_control_specialist, JOB_ALT_CHEMENGINEER = /datum/alt_title/chem_tech)
 
 	minimal_player_age = 3
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
@@ -134,6 +134,11 @@
 /datum/alt_title/damage_control_specialist
 	title = JOB_ALT_DAMAGE_CONTROL_SPECIALIST
 	title_blurb = "A " + JOB_ALT_DAMAGE_CONTROL_SPECIALIST + " is the Engineering Department's answer to first responders like the " + JOB_PARAMEDIC + ", being responsible for stabilizing situations and evacuating personnel, then conducting repairs."
+
+/datum/alt_title/chem_tech
+	title = JOB_ALT_CHEMENGINEER
+	title_blurb = "A " + JOB_ALT_CHEMENGINEER + " specializes in industrial scale chemical production. They are responsible for planning the construction of and operating chemical refinery machines."
+	title_outfit = /decl/hierarchy/outfit/job/engineering/chems
 
 //////////////////////////////////
 //			Atmos Tech

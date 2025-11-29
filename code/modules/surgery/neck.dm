@@ -11,13 +11,24 @@
 
 /datum/surgery_step/brainstem/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if (!affected || (affected.robotic >= ORGAN_ROBOT) || !(affected.open >= 3))
-		return 0
+	if(!affected || (affected.robotic >= ORGAN_ROBOT))
+		return FALSE
+	//If our organ is encased (has a bone) the bone must be cut. If the organ is NOT encased (boneless) we can only get to encased == 2
+	if(affected.open != (affected.encased ? 3 : 2))
+		return FALSE
 	if(coverage_check(user, target, affected, tool))
-		return 0
-	return target_zone == BP_HEAD
+		return FALSE
+	//Gets where our brain is located and allows us to do frankensurgery in the right location.
+	var/obj/item/organ/internal/brain/sponge = locate(/obj/item/organ/internal/brain) in affected.internal_organs
+	if(!sponge)
+		return FALSE
+	if(target_zone != sponge.parent_organ)
+		return FALSE
+	if((target.can_defib && !(sponge.status & ORGAN_DEAD)) && !target.op_stage.brainstem == 5) //Final step can be done after our can_defib step is set.
+		return FALSE
+	return target_zone == sponge.parent_organ
 
 /////////////////////////////
 // Blood Vessel Mending
@@ -35,7 +46,7 @@
 	max_duration = 100
 
 /datum/surgery_step/brainstem/mend_vessels/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 0
+	return ..() && target.op_stage.brainstem == 0
 
 /datum/surgery_step/brainstem/mend_vessels/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_filter_notice("[user] starts to mend the blood vessels on [target]'s brainstem with \the [tool]."), \
@@ -73,10 +84,10 @@
 	allowed_procs = list(IS_SCREWDRIVER = 75)
 
 	min_duration = 200 //Very. Very. Carefully.
-	max_duration = 300
+	max_duration = 200
 
 /datum/surgery_step/brainstem/drill_vertebrae/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 1
+	return ..() && target.op_stage.brainstem == 1
 
 /datum/surgery_step/brainstem/drill_vertebrae/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_filter_notice("[user] starts to drill around [target]'s brainstem with \the [tool]."), \
@@ -100,9 +111,8 @@
 	user.balloon_alert_visible("slips, shredding [target]'s brainstem", "your hand slips, shredding the brainstem.")
 	affected.createwound(PIERCE, 10)
 	target.AdjustParalysis(15)
-	spawn()
-		for(var/obj/item/organ/internal/brain/O in affected.internal_organs)
-			O.take_damage(rand(5,10))
+	for(var/obj/item/organ/internal/brain/O in affected.internal_organs)
+		O.take_damage(rand(5,10))
 
 /////////////////////////////
 // Bone Cleaning
@@ -117,11 +127,11 @@
 
 	allowed_procs = list(IS_WIRECUTTER = 60)
 
-	min_duration = 90
-	max_duration = 120
+	min_duration = 100
+	max_duration = 100
 
 /datum/surgery_step/brainstem/clean_chips/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 2
+	return ..() && target.op_stage.brainstem == 2
 
 /datum/surgery_step/brainstem/clean_chips/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_filter_notice("[user] starts to pick around [target]'s brainstem for bone chips with \the [tool]."), \
@@ -143,9 +153,8 @@
 	user.balloon_alert_visible("slips, gouging [target]'s brainstem", "your hand slips, gouging the brainstem")
 	affected.createwound(CUT, 5)
 	target.AdjustParalysis(10)
-	spawn()
-		for(var/obj/item/organ/internal/brain/O in affected.internal_organs) //If there's more than one...
-			O.take_damage(rand(1,10))
+	for(var/obj/item/organ/internal/brain/O in affected.internal_organs) //If there's more than one...
+		O.take_damage(rand(1,10))
 
 /////////////////////////////
 // Spinal Cord Repair
@@ -161,10 +170,10 @@
 		/obj/item/assembly/mousetrap = 25)
 
 	min_duration = 100
-	max_duration = 200
+	max_duration = 100
 
 /datum/surgery_step/brainstem/mend_cord/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 3
+	return ..() && target.op_stage.brainstem == 3
 
 /datum/surgery_step/brainstem/mend_cord/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_filter_notice("[user] starts to fuse [target]'s spinal cord with \the [tool]."), \
@@ -174,11 +183,10 @@
 
 /datum/surgery_step/brainstem/mend_cord/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] has fused [target]'s spinal cord with \the [tool].") , \
-	span_notice(" You have fused [target]'s spinal cord with \the [tool]."),)
+	span_notice("You have fused [target]'s spinal cord with \the [tool]."),)
 	user.balloon_alert_visible("fused [target]'s spinal cord", "fused the spinal cord")
 	target.op_stage.brainstem = 4
 	target.AdjustParalysis(5)
-	target.add_modifier(/datum/modifier/franken_sickness, 20 MINUTES)
 
 /datum/surgery_step/brainstem/mend_cord/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -187,9 +195,8 @@
 	user.balloon_alert_visible("slips, tearing [target]'s spinal cord", "your hand slips, tearing at the spinal cord")
 	affected.createwound(PIERCE, 5)
 	target.AdjustParalysis(20)
-	spawn()
-		for(var/obj/item/organ/internal/brain/O in affected.internal_organs)
-			O.take_damage(rand(5,15)) //Down to the wire. Or rather, the cord.
+	for(var/obj/item/organ/internal/brain/O in affected.internal_organs)
+		O.take_damage(rand(5,15)) //Down to the wire. Or rather, the cord.
 
 /////////////////////////////
 // Vertebrae repair
@@ -204,10 +211,10 @@
 		/obj/item/tape_roll = 50)
 
 	min_duration = 100
-	max_duration = 160
+	max_duration = 100
 
 /datum/surgery_step/brainstem/mend_vertebrae/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 4
+	return ..() && target.op_stage.brainstem == 4
 
 /datum/surgery_step/brainstem/mend_vertebrae/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_filter_notice("[user] starts to mend [target]'s opened vertebrae with \the [tool]."), \
@@ -237,6 +244,7 @@
 // Realign tissues
 /////////////////////////////
 
+///This step isn't essential BUT does heal brain loss and heals a dead brain.
 /datum/surgery_step/brainstem/realign_tissue
 	surgery_name = "Realign Tissue"
 	priority = 3 //Do this instead of searching for objects in the skull.
@@ -246,11 +254,11 @@
 
 	allowed_procs = list(IS_WIRECUTTER = 60)
 
-	min_duration = 90
-	max_duration = 120
+	min_duration = 100
+	max_duration = 100
 
 /datum/surgery_step/brainstem/realign_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 5
+	return ..() && target.op_stage.brainstem == 5
 
 /datum/surgery_step/brainstem/realign_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_filter_notice("[user] starts to realign the tissues in [target]'s skull with \the [tool]."), \
@@ -260,10 +268,13 @@
 
 /datum/surgery_step/brainstem/realign_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] has realigned the tissues in [target]'s skull back into place with \the [tool].") , \
-	span_notice(" You have realigned the tissues in [target]'s skull back into place with \the [tool]."),)
+	span_notice("You have realigned the tissues in [target]'s skull back into place with \the [tool]."),)
 	user.balloon_alert_visible("realigned the tissues in [target]'s skull back in place", "realigned the tissues in the skull back into place")
 	target.AdjustParalysis(5) //I n v a s i v e
-	target.op_stage.brainstem = 0 //The cycle begins anew.
+	target.brainloss = 0 //The cycle begins anew.
+	for(var/obj/item/organ/internal/brain/sponge in target.internal_organs) //in case they have multiple brains. weirdo.
+		sponge.status = 0
+
 
 /datum/surgery_step/brainstem/realign_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -272,6 +283,5 @@
 	user.balloon_alert_visible("slips, gounging at [target]'s brainstem", "your hand slips, gouging at the brainstem")
 	affected.createwound(CUT, 5)
 	target.AdjustParalysis(30)
-	spawn()
-		for(var/obj/item/organ/internal/brain/O in affected.internal_organs)
-			O.take_damage(rand(1,10))
+	for(var/obj/item/organ/internal/brain/O in affected.internal_organs)
+		O.take_damage(rand(1,10))

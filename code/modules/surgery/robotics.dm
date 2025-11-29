@@ -46,7 +46,7 @@
 /datum/surgery_step/robotics/unscrew_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 0 && target_zone != O_MOUTH
+		return affected && !affected.open && target_zone != O_MOUTH
 
 /datum/surgery_step/robotics/unscrew_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -60,7 +60,7 @@
 	user.visible_message(span_notice("[user] has opened the maintenance hatch on [target]'s [affected.name] with \the [tool]."), \
 	span_notice("You have opened the maintenance hatch on [target]'s [affected.name] with \the [tool]."),)
 	user.balloon_alert_visible("opens the maintenance hatch on [target]'s [affected.name]", "maintenance hatch opened on \the [affected.name]")
-	affected.open = 1
+	affected.open = INCISION_MADE
 
 /datum/surgery_step/robotics/unscrew_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -209,7 +209,7 @@
 			var/obj/item/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
-		return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
+		return affected && affected.open == BONE_RETRACTED && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
 
 /datum/surgery_step/robotics/repair_brute/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -263,7 +263,7 @@
 				else
 					C.use(5)
 
-		return affected && affected.open == 3 && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH
+		return affected && affected.open == BONE_RETRACTED && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH
 
 /datum/surgery_step/robotics/repair_burn/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -315,7 +315,7 @@
 		if(I.damage > 0 && (I.robotic >= ORGAN_ROBOT))
 			is_organ_damaged = 1
 			break
-	return affected.open == 3 && is_organ_damaged
+	return affected.open == BONE_RETRACTED && is_organ_damaged
 
 /datum/surgery_step/robotics/fix_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -514,7 +514,7 @@
 
 	var/obj/item/mmi/M = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(!(affected && affected.open == 3))
+	if(!(affected && affected.open == BONE_RETRACTED))
 		return 0
 
 	if(!istype(M))
@@ -617,7 +617,7 @@
 	var/obj/item/holder/diona/N = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	if(!(affected && affected.open == 3))
+	if(!(affected && affected.open == BONE_RETRACTED))
 		return 0
 
 	if(!istype(N))

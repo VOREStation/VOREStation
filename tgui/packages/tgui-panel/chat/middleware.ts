@@ -334,6 +334,7 @@ export const chatMiddleware = (store) => {
       next(action);
       const page = selectCurrentChatPage(store.getState());
       chatRenderer.changePage(page);
+      needsUpdate = true;
       return;
     }
     if (type === rebuildChat.type) {

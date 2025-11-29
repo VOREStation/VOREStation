@@ -266,6 +266,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (CONFIG_GET(flag/chatlog_database_backend))
 		chatlog_token = vchatlog_generate_token(ckey, GLOB.round_id)
 
+	winset(src, null, list("browser-options" = "find,refresh"))
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
 	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))
