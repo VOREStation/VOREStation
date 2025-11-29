@@ -337,7 +337,6 @@
 		user.visible_message(span_notice("[user] has removed [target]'s [O.name] with \the [tool]."), \
 		span_notice("You have removed [target]'s [O.name] with \the [tool]."))
 		user.balloon_alert_visible("removes [target]'s [O.name]", "removed \the [O.name]")
-		var/obj/item/organ/O = target.internal_organs_by_name[O.name]
 		if(O && istype(O))
 			O.removed(user)
 	target.op_stage.current_organ = null
