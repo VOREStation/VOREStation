@@ -1185,3 +1185,9 @@ Talon winter coat
 	display_name = "flowing cloak, colorable"
 	description = "A heavy cloak, suitable for recoloring."
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom/neo_pcloak_color
+
+/datum/gear/suit/neo_medical_coat
+	display_name = "medical coat"
+	path = /obj/item/clothing/suit/neo_medical_coat
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
+
