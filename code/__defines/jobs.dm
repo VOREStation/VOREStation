@@ -204,6 +204,7 @@
 	#define JOB_ALT_ELECTRICIAN "Electrician"
 	#define JOB_ALT_CONSTRUCTION_ENGINEER "Construction Engineer"
 	#define JOB_ALT_ENGINEERING_CONTRACTOR "Engineering Contractor"
+	#define JOB_ALT_CHEMENGINEER "Chemical Engineer"
 	#define JOB_ALT_COMPUTER_TECHNICIAN "Computer Technician"
 	#define JOB_ALT_SALVAGE_TECHNICIAN "Salvage Technician"
 	#define JOB_ALT_DAMAGE_CONTROL_SPECIALIST "Damage Control Specialist"

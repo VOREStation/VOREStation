@@ -41,7 +41,10 @@
 	var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
 	var/intake = FALSE
 	if(other && other.anchored)// Waste processors do not connect to anything as outgoing
-		if(!istype(other,/obj/machinery/reagent_refinery/waste_processor))
+		if(istype(other,/obj/machinery/reagent_refinery/splitter))
+			if(GLOB.reverse_dir[dir] in list(turn(other.dir,90),turn(other.dir,-90)))
+				intake = TRUE
+		else if(!istype(other,/obj/machinery/reagent_refinery/waste_processor))
 			// weird handling for side connections... Otherwise, anything pointing into use gets connected back!
 			if(istype(other,/obj/machinery/reagent_refinery/filter))
 				var/obj/machinery/reagent_refinery/filter/filt = other
