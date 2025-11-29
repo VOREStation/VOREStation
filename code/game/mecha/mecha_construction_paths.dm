@@ -99,7 +99,7 @@
 
 
 /datum/construction/reversible/mecha/ripley
-	result = "/obj/mecha/working/ripley"
+	result = /obj/mecha/working/ripley
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -307,7 +307,7 @@
 
 
 /datum/construction/reversible/mecha/gygax
-	result = "/obj/mecha/combat/gygax"
+	result = /obj/mecha/combat/gygax
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -589,7 +589,7 @@
 
 
 /datum/construction/reversible/mecha/serenity
-	result = "/obj/mecha/combat/gygax/serenity"
+	result = /obj/mecha/combat/gygax/serenity
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -872,7 +872,7 @@
 
 
 /datum/construction/reversible/mecha/firefighter
-	result = "/obj/mecha/working/ripley/firefighter"
+	result = /obj/mecha/working/ripley/firefighter
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -1092,7 +1092,7 @@
 
 
 /datum/construction/reversible/mecha/durand
-	result = "/obj/mecha/combat/durand"
+	result = /obj/mecha/combat/durand
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -1374,7 +1374,7 @@
 
 
 /datum/construction/reversible/mecha/odysseus
-	result = "/obj/mecha/medical/odysseus"
+	result = /obj/mecha/medical/odysseus
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -1554,7 +1554,7 @@
 //		Phazon
 //////////////////////
 /datum/construction/mecha/phazon_chassis
-	result = "/obj/mecha/combat/phazon"
+	result = /obj/mecha/combat/phazon
 	steps = list(list("key"=/obj/item/mecha_parts/part/phazon_torso),//1
 						list("key"=/obj/item/mecha_parts/part/phazon_left_arm),//2
 						list("key"=/obj/item/mecha_parts/part/phazon_right_arm),//3
@@ -1583,7 +1583,7 @@
 	return
 
 /datum/construction/reversible/mecha/phazon
-	result = "/obj/mecha/combat/phazon"
+	result = /obj/mecha/combat/phazon
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -1833,7 +1833,7 @@
 //		Janus
 //////////////////////
 /datum/construction/mecha/janus_chassis
-	result = "/obj/mecha/combat/phazon/janus"
+	result = /obj/mecha/combat/phazon/janus
 	steps = list(list("key"=/obj/item/mecha_parts/part/janus_torso),//1
 						list("key"=/obj/item/mecha_parts/part/janus_left_arm),//2
 						list("key"=/obj/item/mecha_parts/part/janus_right_arm),//3
@@ -1862,7 +1862,7 @@
 	return
 
 /datum/construction/reversible/mecha/janus
-	result = "/obj/mecha/combat/phazon/janus"
+	result = /obj/mecha/combat/phazon/janus
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -2138,7 +2138,7 @@
 //		Pinnace
 //////////////////////
 /datum/construction/mecha/fighter/pinnace_chassis
-	result = "/obj/mecha/combat/fighter/pinnace"
+	result = /obj/mecha/combat/fighter/pinnace
 	steps = list(list("key"=/obj/item/mecha_parts/fighter/part/pinnace_core),//1
 						list("key"=/obj/item/mecha_parts/fighter/part/pinnace_cockpit),//2
 						list("key"=/obj/item/mecha_parts/fighter/part/pinnace_main_engine),//3
@@ -2168,7 +2168,7 @@
 	return
 
 /datum/construction/reversible/mecha/fighter/pinnace
-	result = "/obj/mecha/combat/fighter/pinnace"
+	result = /obj/mecha/combat/fighter/pinnace
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
@@ -2421,7 +2421,7 @@
 //		Baron
 //////////////////////
 /datum/construction/mecha/fighter/baron_chassis
-	result = "/obj/mecha/combat/fighter/baron"
+	result = /obj/mecha/combat/fighter/baron
 	steps = list(list("key"=/obj/item/mecha_parts/fighter/part/baron_core),//1
 						list("key"=/obj/item/mecha_parts/fighter/part/baron_cockpit),//2
 						list("key"=/obj/item/mecha_parts/fighter/part/baron_main_engine),//3
@@ -2451,7 +2451,7 @@
 	return
 
 /datum/construction/reversible/mecha/fighter/baron
-	result = "/obj/mecha/combat/fighter/baron"
+	result = /obj/mecha/combat/fighter/baron
 	steps = list(
 					//1
 					list("key"=IS_WELDER,
