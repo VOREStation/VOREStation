@@ -74,7 +74,8 @@
 
 /datum/construction/proc/spawn_result()
 	if(result)
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MECH_CONSTRUCTED, new result(get_turf(holder)))
+		var/new_construct = new result(get_turf(holder))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MECH_CONSTRUCTED, new_construct)
 		spawn()
 			qdel(holder)
 	return
