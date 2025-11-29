@@ -146,7 +146,8 @@
 	"Pink labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/pink,
 	"Red labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/red,
 	"Yellow labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/yellow,
-	"Modern labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/modern
+	"Modern labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/modern,
+	"Long labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_labcoat
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
@@ -166,9 +167,19 @@
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
 /datum/gear/suit/labcoat_emt
-	display_name = "labcoat, EMT"
+	display_name = "labcoat selection, EMT"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
+
+/datum/gear/suit/labcoat_emt/New()
+	..()
+	var/list/labcoats_emt = list(
+	"EMT labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/emt,
+	"Neo Highvis" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_highvis,
+	"Neo Red" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_redemt,
+	"Neo Blue" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_blueemt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(labcoats_emt)
 
 /datum/gear/suit/labcoat_rd
 	display_name = "labcoat, research director"
