@@ -15,6 +15,14 @@
 	containertype = /obj/structure/closet/crate/galaksi
 	containername = "Replacement lights"
 
+/datum/supply_pack/eng/fusion_coils
+	name = "Fusion Coils (SMES Recharge)"
+	desc = "A pair of single-use heavy-duty fusion coils, for recharging depleted SMES units."
+	contains = list(/obj/item/fusion_coil, /obj/item/fusion_coil)
+	cost = 150
+	containertype = /obj/structure/closet/crate/einstein
+	containername = "Fusion Coil crate"
+
 /datum/supply_pack/eng/smescoil
 	name = "Superconducting Magnetic Coil"
 	desc = "A single standard superconducting magnetic coil."
@@ -167,7 +175,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/einstein
 	containername = "Emitter crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/engine/field_gen
 	name = "Field Generator crate"
@@ -175,7 +183,7 @@
 	contains = list(/obj/machinery/field_generator = 2)
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Field Generator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/engine/sing_gen
 	name = "Singularity Generator crate"
@@ -183,7 +191,7 @@
 	contains = list(/obj/machinery/the_singularitygen)
 	containertype = /obj/structure/closet/crate/secure/einstein
 	containername = "Singularity Generator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/engine/tesla_gen
 	name = "Tesla Generator crate"
@@ -191,7 +199,7 @@
 	contains = list(/obj/machinery/the_singularitygen/tesla)
 	containertype = /obj/structure/closet/crate/secure/einstein
 	containername = "Tesla Generator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/engine/collector
 	name = "Collector crate"
@@ -215,7 +223,7 @@
 			)
 	containertype = /obj/structure/closet/crate/secure/einstein
 	containername = "Particle Accelerator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/shield_gen
 	contains = list(/obj/item/circuitboard/shield_gen)
@@ -224,7 +232,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/focalpoint
 	containername = "bubble shield generator circuitry crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/shield_gen_ex
 	contains = list(/obj/item/circuitboard/shield_gen_ex)
@@ -233,7 +241,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/focalpoint
 	containername = "hull shield generator circuitry crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/shield_cap
 	contains = list(/obj/item/circuitboard/shield_cap)
@@ -242,7 +250,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/focalpoint
 	containername = "shield capacitor circuitry crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/smbig
 	name = "Supermatter Core"
@@ -251,7 +259,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/phoron
 	containername = "Supermatter crate (CAUTION)"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/eng/teg
 	contains = list(/obj/machinery/power/generator)
@@ -260,7 +268,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/large/einstein
 	containername = "Mk1 TEG crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 /datum/supply_pack/eng/circulator
 	contains = list(/obj/machinery/atmospherics/binary/circulator)
@@ -269,7 +277,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/large/einstein
 	containername = "Atmospheric circulator crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 /datum/supply_pack/eng/radsuit
 	contains = list(
@@ -299,7 +307,7 @@
 	cost = 25
 	containername = "P.A.C.M.A.N. Portable Generator Construction Kit"
 	containertype = /obj/structure/closet/crate/secure/focalpoint
-	access = access_tech_storage
+	access = ACCESS_TECH_STORAGE
 	contains = list(
 			/obj/item/stock_parts/micro_laser,
 			/obj/item/stock_parts/capacitor,
@@ -313,7 +321,7 @@
 	cost = 35
 	containername = "Super P.A.C.M.A.N. portable generator construction kit"
 	containertype = /obj/structure/closet/crate/secure/focalpoint
-	access = access_tech_storage
+	access = ACCESS_TECH_STORAGE
 	contains = list(
 			/obj/item/stock_parts/micro_laser,
 			/obj/item/stock_parts/capacitor,
@@ -327,7 +335,7 @@
 	cost = 50
 	containername = "R-UST Mk. 8 Tokamak Fusion Core crate"
 	containertype = /obj/structure/closet/crate/secure/einstein
-	access = access_engine
+	access = ACCESS_ENGINE
 	contains = list(
 			/obj/item/book/manual/rust_engine,
 			/obj/machinery/power/fusion_core,
@@ -340,7 +348,7 @@
 	cost = 30
 	containername = "R-UST Mk. 8 fuel injector crate"
 	containertype = /obj/structure/closet/crate/secure/einstein
-	access = access_engine
+	access = ACCESS_ENGINE
 	contains = list(
 			/obj/machinery/fusion_fuel_injector,
 			/obj/machinery/fusion_fuel_injector,
@@ -353,7 +361,7 @@
 	cost = 15
 	containername = "Gyrotron Crate"
 	containertype = /obj/structure/closet/crate/secure/einstein
-	access = access_engine
+	access = ACCESS_ENGINE
 	contains = list(
 			/obj/machinery/power/emitter/gyrotron,
 			/obj/item/circuitboard/gyrotron
@@ -405,7 +413,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/large
 	containername = "thermal regulator crate"
-	access = access_atmospherics
+	access = ACCESS_ATMOSPHERICS
 
 /datum/supply_pack/eng/dosimeter
 	contains = list(/obj/item/storage/box/dosimeter = 6)
@@ -430,4 +438,4 @@
 	cost = 90	//Relatively expensive
 	containertype = /obj/structure/closet/crate/xion
 	containername = "Inducers crate"
-	access = access_engine
+	access = ACCESS_ENGINE

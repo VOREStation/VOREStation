@@ -33,6 +33,8 @@
 	var/list/mutagenic_reagents    // Reagents considered uniquely 'mutagenic' by a plant.
 	var/list/toxic_reagents        // Reagents considered uniquely 'toxic' by a plant.
 
+	var/ai_mob_product = 0 //This variable determines whether or not a mob product is meant to be ai-controlled. If set to 0, mob products die without a player to control them.
+
 /datum/seed/New()
 
 	set_trait(TRAIT_IMMUTABLE,            0)            // If set, plant will never mutate. If -1, plant is highly mutable.
@@ -127,7 +129,6 @@
 
 	if(!target_limb) target_limb = pick(BP_ALL)
 	var/blocked = target.run_armor_check(target_limb, "melee")
-	var/soaked = target.get_armor_soak(target_limb, "melee")
 
 	if(blocked >= 100)
 		return
@@ -141,7 +142,7 @@
 
 		if(affecting)
 			to_chat(target, span_danger("\The [fruit]'s thorns pierce your [affecting.name] greedily!"))
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, TRUE, has_edge)
 		else
 			to_chat(target, span_danger("\The [fruit]'s thorns pierce your flesh greedily!"))
 			target.adjustBruteLoss(damage)
@@ -150,7 +151,7 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
 			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your [affecting.name]!"))
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, TRUE, has_edge)
 		else
 			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your flesh!"))
 			target.adjustBruteLoss(damage)
@@ -446,12 +447,12 @@
 
 	if(prob(5))
 		consume_gasses = list()
-		var/gas = pick(GAS_O2,GAS_N2,GAS_PHORON,GAS_CO2)
+		var/gas = pick(GAS_O2,GAS_N2,GAS_PHORON,GAS_CO2,GAS_CH4)
 		consume_gasses[gas] = rand(3,9)
 
 	if(prob(5))
 		exude_gasses = list()
-		var/gas = pick(GAS_O2,GAS_N2,GAS_PHORON,GAS_CO2)
+		var/gas = pick(GAS_O2,GAS_N2,GAS_PHORON,GAS_CO2,GAS_CH4)
 		exude_gasses[gas] = rand(3,9)
 
 	chems = list()

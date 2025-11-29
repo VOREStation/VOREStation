@@ -76,7 +76,7 @@
 	var/datum/wires/vending/wires = null
 
 	var/list/log = list()
-	var/req_log_access = access_cargo //default access for checking logs is cargo
+	var/req_log_access = ACCESS_CARGO //default access for checking logs is cargo
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
@@ -97,6 +97,9 @@
 
 	build_inventory()
 	power_change()
+
+	if(can_rotate) // If we can't change directions, don't bother.
+		AddElement(/datum/element/rotatable)
 
 GLOBAL_LIST_EMPTY(vending_products)
 /**
@@ -249,7 +252,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		else
 			user.visible_message(span_filter_notice("[user] begins securing \the [src] to the floor."), span_filter_notice("You start securing \the [src] to the floor."))
 
-		if(do_after(user, 20 * W.toolspeed))
+		if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored
@@ -544,6 +547,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 		flick("[icon_state]-deny",src)
 		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return FALSE
+	if(R.amount < 1)
+		return FALSE
 	return TRUE
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
@@ -585,6 +590,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	addtimer(CALLBACK(src, PROC_REF(delayed_vend), R, user), vend_delay)
 
 /obj/machinery/vending/proc/delayed_vend(datum/stored_item/vending_product/R, mob/user)
+	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10))
+		visible_message(span_infoplain(span_bold("\The [src]") + " clunks and fails to dispense any item."))
+		playsound(src, "sound/[vending_sound]", 100, TRUE, 1)
+		vend_ready = 1
+		currently_vending = null
+		SStgui.update_uis(src)
+		return
 	R.get_product(get_turf(src))
 	if(has_logs)
 		do_logging(R, user, 1)
@@ -630,39 +642,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 			popup.open()
 	else
 		to_chat(user,span_warning("You do not have the required access to view the vending logs for this machine."))
-
-
-/obj/machinery/vending/verb/rotate_clockwise()
-	set name = "Rotate Vending Machine Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.can_rotate == 0)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return 0
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, span_filter_notice("It is bolted down!"))
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-//VOREstation edit: counter-clockwise rotation
-/obj/machinery/vending/verb/rotate_counterclockwise()
-	set name = "Rotate Vending Machine Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.can_rotate == 0)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return 0
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, span_filter_notice("It is bolted down!"))
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-//VOREstation edit end
 
 /obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
@@ -743,9 +722,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+/obj/machinery/vending/proc/throw_item(forced_target)
 	var/obj/item/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
+	if(forced_target && isliving(forced_target))
+		target = forced_target
 	if(!target)
 		return 0
 

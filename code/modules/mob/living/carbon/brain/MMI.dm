@@ -9,7 +9,7 @@
 	can_speak = 1
 	origin_tech = list(TECH_BIO = 3)
 
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.
 
@@ -155,6 +155,8 @@
 		borg.mmi = null
 	QDEL_NULL(radio)
 	QDEL_NULL(brainmob)
+	if(brainobj)
+		QDEL_NULL(brainobj)
 	return ..()
 
 /obj/item/mmi/radio_enabled
@@ -162,7 +164,7 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio. Wait, don't they all?"
 	origin_tech = list(TECH_BIO = 4)
 
-/obj/item/mmi/emp_act(severity)
+/obj/item/mmi/emp_act(severity, recursive)
 	if(!brainmob)
 		return
 	else
@@ -180,7 +182,7 @@
 /obj/item/mmi/digital
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/ghost_query_type = null
@@ -215,21 +217,6 @@
 				. += span_deadsay("It appears to be completely inactive.")
 	else
 		. += span_deadsay("It appears to be completely inactive.")
-
-/obj/item/mmi/digital/emp_act(severity)
-	if(!src.brainmob)
-		return
-	else
-		switch(severity)
-			if(1)
-				src.brainmob.emp_damage += rand(20,30)
-			if(2)
-				src.brainmob.emp_damage += rand(10,20)
-			if(3)
-				src.brainmob.emp_damage += rand(5,10)
-			if(4)
-				src.brainmob.emp_damage += rand(0,5)
-	..()
 
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
 	QDEL_SWAP(brainmob.dna, H.dna.Clone())

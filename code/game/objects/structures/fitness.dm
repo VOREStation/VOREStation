@@ -58,7 +58,7 @@
 		playsound(src, 'sound/effects/weightlifter.ogg', 50, 1)
 		user.set_dir(SOUTH)
 		flick("[icon_state]_[weight]", src)
-		if(do_after(user, 20 + (weight * 10)))
+		if(do_after(user, 2 SECONDS + (weight * 1 SECOND), target = src))
 			playsound(src, 'sound/effects/weightdrop.ogg', 25, 1)
 			user.adjust_nutrition(weight * -10)
 			var/weightloss_enhanced = weightloss_power * (weight * 0.5)

@@ -16,6 +16,7 @@
 	lightning_strike(get_turf(src), cosmetic = TRUE)
 	density = FALSE
 	var/mob/living/simple_mob/animal/passive/dog/corgi/R = new(get_turf(src))
+	// R.has_hands = TRUE // Downstream
 	if(M.mind)
 		M.mind.transfer_to(R)
 	to_chat(M, span_notice("You are a <b>Corgi</b>! Woof!"))

@@ -39,6 +39,7 @@ export const VoreSelectedBelly = (props: {
   } = props;
   const {
     belly_name,
+    display_name,
     belly_mode_data,
     belly_description_data,
     belly_option_data,
@@ -59,6 +60,7 @@ export const VoreSelectedBelly = (props: {
       editMode={editMode}
       bellyDropdownNames={bellyDropdownNames}
       belly_name={belly_name}
+      display_name={display_name}
       bellyModeData={belly_mode_data}
     />
   );
@@ -130,7 +132,7 @@ export const VoreSelectedBelly = (props: {
         </Tabs>
       </Stack.Item>
       <Stack.Item grow>
-        <Section noTopPadding fill scrollable>
+        <Section noTopPadding fill scrollable={activeVoreTab !== 6}>
           {tabs[activeVoreTab] || 'Error'}
         </Section>
       </Stack.Item>

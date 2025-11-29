@@ -27,7 +27,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		//No more than 1 controller please.
 		for(var/obj/machinery/pointdefense_control/PC as anything in GLOB.pointdefense_controllers)
 			if(PC != src && PC.id_tag == id_tag)
-				warning("Two [src] with the same id_tag of [id_tag]")
+				WARNING("Two [src] with the same id_tag of [id_tag]")
 				id_tag = null
 	default_apply_parts()
 
@@ -133,7 +133,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	var/rotation_speed = 4.5 SECONDS  //How quickly we turn to face threats
 	var/datum/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
-	var/fire_sounds = list('sound/weapons/frigate_turret/frigate_turret_fire1.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire2.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire3.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire4.ogg') // CHOMPEdit: Pew
+	var/fire_sounds = list('sound/weapons/frigate_turret/frigate_turret_fire1.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire2.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire3.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire4.ogg')
 
 /obj/machinery/pointdefense/Initialize(mapload)
 	. = ..()

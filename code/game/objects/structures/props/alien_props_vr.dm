@@ -1,17 +1,14 @@
 /obj/structure/prop/alien/computer/hybrid
 	name = "hybrid console"
 	desc = "The console flashes what appear to be symbols you've never seen before, intermixed with human writing moving too fast to comprehend."
-	icon = 'icons/obj/abductor_vr.dmi'
-	icon_state = "console-c"
+	icon_state = "console-c_alt"
 	interaction_message = span_warning("The screen flashes an 'access denied' message at you. Perhaps for the best.")
 
 /obj/structure/prop/alien/pod/hybrid
 	name = "hybrid pod"
 	desc = "This seems to be a container for something."
-	icon = 'icons/obj/abductor_vr.dmi'
-	icon_state = "experiment"
+	icon_state = "experiment_alt"
 	interaction_message = span_warning("You don't see any mechanism to open this thing. Probably for the best.")
 
 /obj/structure/prop/alien/dispenser/twoway
-	icon = 'icons/obj/abductor_vr.dmi'
 	icon_state = "dispenser_2way"

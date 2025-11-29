@@ -86,6 +86,10 @@
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
 
+/obj/item/integrated_circuit/memory/constant/emp_act(severity, recursive)
+	// Prevents default EMP behavior for single-slot constants memory.
+	return
+
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	var/datum/integrated_io/O = outputs[1]
 	var/type_to_use = tgui_input_list(user, "Please choose a type to use.","[src] type setting", list("string","number","ref", "null"))
@@ -96,7 +100,7 @@
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing","", MAX_NAME_LEN)
+			new_data = sanitizeSafe(tgui_input_text(user, "Now type in a string.","[src] string writing","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN, 0, 0)
 			if(istext(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				O.data = new_data
 				to_chat(user, span_notice("You set \the [src]'s memory to [O.display_data(O.data)]."))

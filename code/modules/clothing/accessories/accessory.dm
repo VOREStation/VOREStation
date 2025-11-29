@@ -30,7 +30,7 @@
 	if(!inv_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)
-			if("[tmp_icon_state]_tie" in cached_icon_states(icon_override))
+			if(icon_exists(icon_override, "[tmp_icon_state]_tie"))
 				tmp_icon_state = "[tmp_icon_state]_tie"
 			inv_overlay = image(icon = icon_override, icon_state = tmp_icon_state, dir = SOUTH)
 		else
@@ -61,7 +61,7 @@
 			tmp_icon_state = on_rolled["rolled"]
 
 	if(icon_override)
-		if("[tmp_icon_state]_mob" in cached_icon_states(icon_override))
+		if(icon_exists(icon_override, "[tmp_icon_state]_mob"))
 			tmp_icon_state = "[tmp_icon_state]_mob"
 		mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
 	else if(H && LAZYACCESS(sprite_sheets, H.species.get_bodytype(H))) //Teshari can finally into webbing, too!
@@ -233,38 +233,87 @@
 
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
-				var/heartbeat = 0
-				var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
-				if(heart && !(heart.robotic >= ORGAN_ROBOT))
-					heartbeat = 1
-				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
+				if(M.stat == DEAD || (M.status_flags & FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else
 					switch(body_part)
+						//TORSO:
+						//ORGANS INVENTORY: Heart, Lungs, Spleen, Voicebox,
 						if(BP_TORSO)
+							var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
 							sound_strength = "hear"
 							sound = "no heartbeat"
-							if(heartbeat)
-								if(heart.is_bruised() || M.getOxyLoss() > 50)
-									sound = "[pick("odd noises in","weak")] heartbeat"
+							if(heart)
+								if(heart.is_bruised())
+									sound = span_warning("muffled heart sounds, as if fluid is around the heart") //yes this shows over the heart beinng robotic.
+								else if(heart.robotic) //They have JUST a heart but no heartbeat
+									if(heart.robotic == ORGAN_ASSISTED) //LVAD
+										sound = "a loud, continual, electronic hum"
+									else if(heart.robotic == ORGAN_ROBOT || heart.robotic == ORGAN_LIFELIKE)
+										sound = "a light, rhythmic, mechanical clicking"
+									else
+										sound = span_warning("no heartbeat")
 								else
-									sound = "healthy heartbeat"
+									switch(M.pulse)
+										if(PULSE_NONE)
+											sound = "no heartbeat"
+										if(PULSE_SLOW)
+											sound = "a slow heartbeat"
+										if(PULSE_NORM)
+											sound = "a normal, healthy heartbeat"
+										if(PULSE_FAST)
+											sound = "a rapid heartbeat"
+										if(PULSE_2FAST)
+											sound = span_info("a very rapid heartbeat")
+										if(PULSE_THREADY)
+											sound = span_warning("an extremely rapid, thready, irregular heartbeat")
 
-							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
+							var/obj/item/organ/internal/lungs/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
-								sound += " and no respiration"
+								sound += span_warning(" and no respiration")
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
-								sound += " and [pick("wheezing","gurgling")] sounds"
+								sound += span_warning(" and [pick("wheezing","gurgling")] sounds")
 							else
 								sound += " and healthy respiration"
-						if(O_EYES,O_MOUTH)
+						//GROIN
+						//ORGANS INVENTORY: Appendix, Intestines, Kidneys, Liver, Spleen, Stomach.
+						//Of these, the Intestines, Stomach, Liver, and Kidneys make noise.
+						if(BP_GROIN)
+							var/obj/item/organ/internal/intestine/intestine = M.internal_organs_by_name[O_INTESTINE]
+							var/obj/item/organ/internal/stomach/stomach = M.internal_organs_by_name[O_STOMACH]
+							var/obj/item/organ/internal/kidneys/kidneys = M.internal_organs_by_name[O_KIDNEYS]
+							var/obj/item/organ/internal/liver/liver = M.internal_organs_by_name[O_LIVER]
+							sound_strength = "hear"
+							sound = span_warning("no gastric sounds,")
+							if(intestine)
+								if(intestine.is_bruised())
+									sound = span_warning("slowed intestinal sounds")
+								else
+									sound = "normal intestinal sounds,"
+
+
+							if(stomach)
+								if(stomach.is_bruised())
+									sound += span_warning(" slowed digestive sounds,")
+								else
+									sound += " with normal digestive sounds,"
+							else
+								sound += span_warning(" no digestive sounds,")
+
+							if(kidneys && kidneys.is_bruised())
+								sound += span_warning(" renal bruits,") //I don't really know how to convey this without using medical terminology.
+							else
+								sound += " no renal sounds,"
+
+							if(liver) //yeah, I didn't know your liver could make sounds either.
+								if(liver.is_bruised())
+									sound += span_warning(" and abnormal liver sounds.")
+								else
+									sound += " and normal liver sounds."
+						else
 							sound_strength = "cannot hear"
 							sound = "anything"
-						else
-							if(heartbeat)
-								sound_strength = "hear a weak"
-								sound = "pulse"
 
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
 				return

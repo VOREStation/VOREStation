@@ -12,7 +12,7 @@
 	min_broken_damage = 35
 	w_class = ITEMSIZE_HUGE
 	body_part = UPPER_TORSO
-	vital = 1
+	vital = TRUE
 	amputation_point = "spine"
 	joint = "neck"
 	dislocated = -1
@@ -36,7 +36,7 @@
 
 		var/datum/robolimb/R = GLOB.all_robolimbs[model] // company should be set in parent by now
 		if(!R)
-			log_error("A torso was robotize() but has no model that can be found: [model]. May affect FBPs.")
+			log_runtime("A torso was robotize() but has no model that can be found: [model]. May affect FBPs.")
 		owner.synthetic = R
 	return FALSE
 
@@ -62,7 +62,7 @@
 	min_broken_damage = 35
 	w_class = ITEMSIZE_LARGE
 	body_part = LOWER_TORSO
-	vital = 1
+	vital = TRUE
 	parent_organ = BP_TORSO
 	amputation_point = "lumbar"
 	joint = "hip"
@@ -275,7 +275,7 @@
 	min_broken_damage = 35
 	w_class = ITEMSIZE_NORMAL
 	body_part = HEAD
-	vital = 1
+	vital = TRUE
 	parent_organ = BP_TORSO
 	joint = "jaw"
 	amputation_point = "neck"

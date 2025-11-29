@@ -16,6 +16,7 @@
 	seal_delay = 0
 	var/mob/living/myprotean
 	initial_modules = list(/obj/item/rig_module/protean/syphon, /obj/item/rig_module/protean/armor, /obj/item/rig_module/protean/healing)
+	flags = PHORONGUARD
 	item_flags = NOSTRIP
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/protean //These are important for sprite pointers
@@ -250,13 +251,13 @@
 			if(1)
 				if(W.has_tool_quality(TOOL_SCREWDRIVER))
 					playsound(src, W.usesound, 50, 1)
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 5 SECONDS, target = src))
 						to_chat(user, span_notice("You unscrew the maintenace panel on the [src]."))
 						dead +=1
 				return
 			if(2)
 				if(istype(W, /obj/item/protean_reboot))//placeholder
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 5 SECONDS, target = src))
 						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, span_notice("You carefully slot [W] in the [src]."))
 						dead +=1
@@ -264,7 +265,7 @@
 				return
 			if(3)
 				if(istype(W, /obj/item/stack/nanopaste))
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 5 SECONDS, target = src))
 						playsound(src, 'sound/effects/ointment.ogg', 50, 1)
 						to_chat(user, span_notice("You slather the interior confines of the [src] with the [W]."))
 						dead +=1
@@ -274,9 +275,9 @@
 				if(istype(W, /obj/item/shockpaddles))
 					if(W?:can_use(user))
 						to_chat(user, span_notice("You hook up the [W] to the contact points in the maintenance assembly"))
-						if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+						if(do_after(user, 5 SECONDS, target = src))
 							playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-							if(do_after(user,10,src))
+							if(do_after(user, 1 SECOND, target = src))
 								playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
 								playsound(src, 'sound/machines/defib_success.ogg', 50, 0)
 								new /obj/effect/gibspawner/robot(src.loc)
@@ -311,7 +312,7 @@
 
 		var/obj/item/rig_module/mod = W
 		to_chat(user, "You begin installing \the [mod] into \the [src].")
-		if(!do_after(user,40))
+		if(!do_after(user, 4 SECONDS, target = src))
 			return
 		if(!user || !W)
 			return
@@ -418,7 +419,7 @@
 /obj/item/rig/protean/take_hit(damage, source, is_emp=0)
 	return	//We don't do that here
 
-/obj/item/rig/protean/emp_act(severity_class)
+/obj/item/rig/protean/emp_act(severity, recursive)
 	return	//Same here
 
 /obj/item/rig/protean/cut_suit()
@@ -609,7 +610,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
@@ -618,7 +619,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)

@@ -188,7 +188,7 @@
 	if(!M)
 		D.forceMove(get_step(src, dir))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-		warning("Dust in [src] had material_name [D.material_name], which can't be made into stacks")
+		WARNING("Dust in [src] had material_name [D.material_name], which can't be made into stacks")
 		return
 
 	var/stacktype = M.stack_type
@@ -197,7 +197,7 @@
 	if(S && S.get_amount() < S.max_amount)
 		S.add(1)
 	else
-		new stacktype(T)
+		new stacktype(T, 1)
 
 /obj/item/debris_pack
 	name = "debris"

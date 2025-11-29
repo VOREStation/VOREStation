@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 	var/glass_type = /obj/item/stack/material/glass
-	var/SOLAR_MAX_DIST = 40		//VOREStation Addition
+	var/SOLAR_MAX_DIST = 40
 
 /obj/machinery/power/solar/drain_power()
 	return -1
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(span_notice("[user] begins to take the glass off the solar panel."))
-		if(do_after(user, 50))
+		if(do_after(user, 5 SECONDS, target = src))
 			var/obj/item/solar_assembly/S = new(loc)
 			S.anchored = TRUE
 			new glass_type(loc, 2)
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		src.set_dir(angle2dir(adir))
 	return
 
-//calculates the fraction of the SSsun.sunlight that the panel recieves
+//calculates the fraction of the sun that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
 	if(!SSsun.sun)
 		return
@@ -107,10 +107,10 @@ GLOBAL_LIST_EMPTY(solars_list)
 		sunfrac = 0
 		return
 
-	//find the smaller angle between the direction the panel is facing and the direction of the SSsun.sun (the sign is not important here)
+	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
 	var/p_angle = min(abs(adir - SSsun.sun.angle), 360 - abs(adir - SSsun.sun.angle))
 
-	if(p_angle > 90)			// if facing more than 90deg from SSsun.sun, zero output
+	if(p_angle > 90) // if facing more than 90deg from sun, zero output
 		sunfrac = 0
 		return
 
@@ -121,11 +121,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if(stat & BROKEN)
 		return 0
 	if(!SSsun.sun || !control)
-		return 0  //if there's no SSsun.sun or the panel is not linked to a solar control computer, no need to proceed
+		return 0  //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
 	if(!powernet || powernet != control.powernet)
 		return 0 // We aren't connected to the controller
 	if(obscured)
-		return 0 //get no light from the SSsun.sun, so don't generate power
+		return 0 //get no light from the sun, so don't generate power
 	return GLOB.solar_gen_rate * sunfrac
 
 /obj/machinery/power/solar/proc/broken()
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				broken()
 	return
 
-//trace towards SSsun.sun to see if we're in shadow
+//trace towards sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
 
 	var/ax = x		// start at the solar panel
@@ -308,12 +308,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 			connected_tracker.set_angle(SSsun.sun.angle)
 		set_panels(cdir)
 
-// This would use LateInitialize(), however the powernet does not appear to exist during that time.
-/hook/roundstart/proc/auto_start_solars()
-	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
-		SC.auto_start()
-	return TRUE
-
 /obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
 	var/sgen = P.get_power_supplied()
 	connected_power -= connected_panels[P] // Just in case it was already in there
@@ -354,7 +348,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 						connected_tracker = T
 						T.set_control(src)
 
-//called by the SSsun.sun controller, update the facing angle (either manually or via tracking) and rotates the panels accordingly
+//called by the sun controller, update the facing angle (either manually or via tracking) and rotates the panels accordingly
 /obj/machinery/power/solar_control/proc/update()
 	if(stat & (NOPOWER | BROKEN))
 		return
@@ -416,7 +410,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/attackby(obj/item/I, user as mob)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if (src.stat & BROKEN)
 				to_chat(user, span_blue("The broken glass falls out."))
 				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
@@ -553,7 +547,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 /obj/item/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
-	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the SSsun.sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the SSsun.sun's movements and to send commands to the solar panels to change direction with the SSsun.sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
+	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
 
 #undef SOLAR_AUTO_START_NO
 #undef SOLAR_AUTO_START_YES

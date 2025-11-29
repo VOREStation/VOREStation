@@ -109,11 +109,6 @@
 	user.update_mob_action_buttons()
 	return 1
 
-/obj/item/flashlight/emp_act(severity)
-	for(var/obj/O in contents)
-		O.emp_act(severity)
-	..()
-
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
@@ -191,7 +186,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
@@ -202,7 +197,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -448,14 +443,14 @@
 	if(.)
 		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
 		src.force = on_damage
-		src.damtype = "fire"
+		src.damtype = BURN
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_brightness()
 	force = on_damage
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 	return 1
 

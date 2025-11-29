@@ -7,7 +7,7 @@
 
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "gbuster"
-	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob_vr.dmi')
+	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob.dmi')
 
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 4)
@@ -96,10 +96,9 @@
 
 
 /obj/item/cell/device/weapon/gunsword/attack_self(mob/living/user as mob)
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message(span_danger("\The [user] accidentally cuts [TU.himself] with \the [src]."),\
+			user.visible_message(span_danger("\The [user] accidentally cuts [user.p_themselves()] with \the [src]."),\
 			span_danger("You accidentally cut yourself with \the [src]."))
 			user.take_organ_damage(5,5)
 		deactivate(user)

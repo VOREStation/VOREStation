@@ -68,6 +68,5 @@
 
 /obj/machinery/chemical_dispenser/ert/specialops/abductor
 	name = "chemical dispenser"
-	icon = 'icons/obj/abductor_vr.dmi'
 	icon_state = "dispenser_2way"
 	desc = "A mysterious machine which can fabricate many chemicals."

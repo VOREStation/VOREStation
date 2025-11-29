@@ -6979,10 +6979,10 @@
 /area/library)
 "akN" = (
 /obj/structure/closet,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -12160,9 +12160,8 @@
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surface Civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Surface Civilian"
 	},
 /obj/machinery/camera/network/engineering{
 	dir = 4
@@ -29804,7 +29803,7 @@
 "baf" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -33808,7 +33807,7 @@
 	dir = 4
 	},
 /obj/random/maintenance/clean,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/topairlock)
@@ -34327,7 +34326,7 @@
 /area/tether/surfacebase/topairlock)
 "biB" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/machinery/light{
@@ -39514,9 +39513,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "gLg" = (

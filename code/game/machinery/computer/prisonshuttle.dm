@@ -16,7 +16,7 @@ GLOBAL_VAR_INIT(prison_shuttle_timeleft, 0)
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
 	light_color = "#00ffff"
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	circuit = /obj/item/circuitboard/prison_shuttle
 	var/temp = null
 	var/hacked = 0

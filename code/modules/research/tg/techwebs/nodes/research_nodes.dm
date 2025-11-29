@@ -12,7 +12,7 @@
 		// "rdservercontrol",
 		// "doppler_array",
 		// "experimentor",
-		// "destructive_analyzer",
+		"destructive_analyzer",
 		// "destructive_scanner",
 		// "laptop",
 		// "portadrive_basic",
@@ -52,6 +52,17 @@
 		"beacon",
 		"beacon_locator",
 		"chameleon",
+		"shelter_capsule",
+		"shelter_capsule_luxury",
+		"shelter_capsule_recroom",
+		"shelter_capsule_sauna",
+		"shelter_capsule_luxurybar",
+		"shelter_capsule_luxurycabin",
+		"shelter_capsule_cafe",
+		"shelter_capsule_luxuryalt",
+		"shelter_capsule_kitchen",
+		"shelter_capsule_pocketdorm",
+		"shelter_capsule_luxuryrecroom",
 		// "ore_silo",
 		// "plumbing_receiver",
 		// "adv_watering_can",
@@ -103,3 +114,16 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
+
+/* Decided that we were not keen on this being able to be printed freely as we immediately saw undesirable behaviour
+/datum/techweb_node/telekinetics
+	id = TECHWEB_NODE_TELEKINETIC_RESEARCH
+	display_name = "Applied Telekinetics Research"
+	description = "Altering the physical behavior of objects to allow remote interaction and movement."
+	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE,TECHWEB_NODE_CYBER_IMPLANTS)
+	design_ids = list(
+		"tk_gloves",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
+*/

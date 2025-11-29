@@ -77,13 +77,16 @@ GLOBAL_LIST_EMPTY(smeses)
 	if(!powernet)
 		connect_to_network()
 	if(!should_be_mapped)
-		warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
+		WARNING("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
+	if(mapload)
+		return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/smes/buildable/Initialize(mapload)
-	. = ..()
-	return INITIALIZE_HINT_LATELOAD
+/obj/machinery/power/smes/LateInitialize()
+	apply_mapped_upgrades()
+	apply_mapped_settings()
 
-/obj/machinery/power/smes/buildable/LateInitialize()
+// Only the buildable smes type checks for mapped updates
+/obj/machinery/power/smes/buildable/apply_mapped_upgrades()
 	// Detect new coils placed by mappers
 	var/list/parts_found = list()
 	for(var/i = 1, i <= loc.contents.len, i++)
@@ -98,7 +101,6 @@ GLOBAL_LIST_EMPTY(smeses)
 		if(isnull(C))
 			break
 		component_parts.Remove(C)
-		C.forceMove(src.loc)
 		qdel(C)
 		cur_coils--
 	// Rebuild from mapper's coils
@@ -109,6 +111,10 @@ GLOBAL_LIST_EMPTY(smeses)
 			component_parts.Add(W)
 			W.forceMove(src)
 	RefreshParts()
+
+// Allows subtypes to configue the smes for different input/output rates, and level of starting charge
+/obj/machinery/power/smes/proc/apply_mapped_settings()
+	return
 
 /obj/machinery/power/smes/Destroy()
 	for(var/obj/machinery/power/terminal/T in terminals)
@@ -272,7 +278,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	if(check_terminal_exists(tempLoc, user, tempDir))
 		return 1
 	to_chat(user, span_filter_notice(span_notice("You start adding cable to the [src].")))
-	if(do_after(user, 50))
+	if(do_after(user, 5 SECONDS, target = src))
 		if(check_terminal_exists(tempLoc, user, tempDir))
 			return 1
 		var/obj/machinery/power/terminal/term = new/obj/machinery/power/terminal(tempLoc)
@@ -318,7 +324,26 @@ GLOBAL_LIST_EMPTY(smeses)
 		to_chat(user, span_filter_notice(span_warning("You need to open access hatch on [src] first!")))
 		return FALSE
 
-	if(W.has_tool_quality(TOOL_WELDER))
+	if(istype(W, /obj/item/fusion_coil))
+		var/obj/item/fusion_coil/FC = W
+		if(FC.spent || FC.coil_charge == 0)
+			to_chat(user, span_filter_notice("\The [FC] has no charge remaining."))
+			return FALSE
+		else if(charge + FC.coil_charge > capacity)
+			to_chat(user, span_filter_notice("\The [FC] has too much charge stored to recharge \the [src]."))
+			return FALSE
+		else
+			playsound(src, 'sound/effects/lightning_chargeup.ogg', 75, 0, 1)
+			if(do_after(user, 10 SECONDS, target = src))
+				to_chat(user, span_filter_notice("You successfully recharge \the [src] with \the [FC]. It is now depleted."))
+				charge += FC.coil_charge
+				FC.coil_charge = 0
+				FC.spent = TRUE
+				FC.name = "depleted [FC.name]"
+				FC.icon_state = FC.spent_icon
+				return FALSE
+
+	else if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.isOn())
 			to_chat(user, span_filter_notice("Turn on \the [WT] first!"))
@@ -326,10 +351,11 @@ GLOBAL_LIST_EMPTY(smeses)
 		if(!damage)
 			to_chat(user, span_filter_notice("\The [src] is already fully repaired."))
 			return FALSE
-		if(WT.remove_fuel(0,user) && do_after(user, damage, src))
+		if(WT.remove_fuel(0,user) && do_after(user, damage, target = src))
 			to_chat(user, span_filter_notice("You repair all structural damage to \the [src]"))
 			damage = 0
 		return FALSE
+
 	else if(istype(W, /obj/item/stack/cable_coil) && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = W
@@ -368,7 +394,7 @@ GLOBAL_LIST_EMPTY(smeses)
 			else
 				to_chat(user, span_filter_notice(span_notice("You begin to cut the cables...")))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 50 * W.toolspeed))
+				if(do_after(user, 5 SECONDS * W.toolspeed, target = src))
 					if (prob(50) && electrocute_mob(user, term.powernet, term))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
@@ -492,7 +518,7 @@ GLOBAL_LIST_EMPTY(smeses)
 				explosion(get_turf(src), 0, 1, 2)
 		qdel(src) // Either way we want to ensure the SMES is deleted.
 
-/obj/machinery/power/smes/emp_act(severity)
+/obj/machinery/power/smes/emp_act(severity, recursive)
 	inputting(rand(0,1))
 	outputting(rand(0,1))
 	output_level = rand(0, output_level_max)
@@ -555,3 +581,38 @@ GLOBAL_LIST_EMPTY(smeses)
 /obj/machinery/power/smes/proc/set_output(var/new_output = 0)
 	output_level = between(0, new_output, output_level_max)
 	update_icon()
+
+/obj/machinery/power/smes/buildable/hybrid
+	name = "hybrid power storage unit"
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, modified with alien technology to generate small amounts of power from seemingly nowhere."
+	icon = 'icons/obj/power_vr.dmi'
+	var/recharge_rate = 10000
+	var/overlay_icon = 'icons/obj/power_vr.dmi'
+
+/obj/machinery/power/smes/buildable/hybrid/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_WIRECUTTER))
+		to_chat(user,span_warning("\The [src] full of weird alien technology that's best not messed with."))
+		return 0
+
+/obj/machinery/power/smes/buildable/hybrid/update_icon()
+	cut_overlays()
+	if(stat & BROKEN)	return
+
+	add_overlay("smes-op[outputting]")
+
+	if(inputting == 2)
+		add_overlay("smes-oc2")
+	else if (inputting == 1)
+		add_overlay("smes-oc1")
+	else
+		if(input_attempt)
+			add_overlay("smes-oc0")
+
+	var/clevel = chargedisplay()
+	if(clevel>0)
+		add_overlay("smes-og[clevel]")
+	return
+
+/obj/machinery/power/smes/buildable/hybrid/process()
+	charge += min(recharge_rate, capacity - charge)
+	..()

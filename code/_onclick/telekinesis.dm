@@ -1,11 +1,4 @@
 /*
-	Telekinesis
-
-	This needs more thinking out, but I might as well.
-*/
-var/const/tk_maxrange = 15
-
-/*
 	Telekinetic attack:
 
 	By default, emulate the user's unarmed attack
@@ -39,13 +32,13 @@ var/const/tk_maxrange = 15
 
 /obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc)) return
-	if((TK in user.mutations) && !user.get_active_hand()) // both should already be true to get here
+	if(user.has_telegrip() && !user.get_active_hand()) // both should already be true to get here
 		var/obj/item/tk_grab/O = new(src)
 		user.put_in_active_hand(O)
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
+		WARNING("Strange attack_tk(): TK([user.has_telegrip()]) empty hand([!user.get_active_hand()])")
 	return
 
 
@@ -73,16 +66,13 @@ var/const/tk_maxrange = 15
 	var/last_throw = 0
 	var/atom/movable/focus = null
 	var/mob/living/host = null
+	item_flags = DROPDEL | NOSTRIP
 
 /obj/item/tk_grab/dropped(mob/user)
 	..()
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
 			focus.loc = loc
-	loc = null
-	spawn(1)
-		qdel(src)
-	return
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(var/mob/user, var/slot)
@@ -101,17 +91,21 @@ var/const/tk_maxrange = 15
 	if(!host || host != user)
 		qdel(src)
 		return
-	if(!(TK in host.mutations))
+	if(!host.has_telegrip())
 		qdel(src)
 		return
 	if(isobj(target) && !isturf(target.loc))
 		return
 
+	if(user.is_remote_viewing()) // Extremely bad exploits if allowed to TK while remote viewing
+		to_chat(user, TK_DENIED_MESSAGE)
+		return
+
 	var/d = get_dist(user, target)
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
-	if(d > tk_maxrange)
-		to_chat(user, span_notice("Your mind won't reach that far."))
+	if(d > TK_MAXRANGE)
+		to_chat(user, TK_OUTRANGED_MESSAGE)
 		return
 
 	if(!focus)
@@ -132,6 +126,13 @@ var/const/tk_maxrange = 15
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1, user)
 		last_throw = world.time
+		if(ishuman(user))
+			var/mob/living/carbon/human/H_user = user
+			if(istype(H_user.gloves,/obj/item/clothing/gloves/telekinetic))
+				var/obj/item/clothing/gloves/telekinetic/TKG = H_user.gloves
+				TKG.use_grip_power(user,TRUE)
+				if(!TKG.has_grip_power())
+					qdel(src) // Drop TK
 	return
 
 /obj/item/tk_grab/attack(mob/living/M as mob, mob/living/user as mob, def_zone)

@@ -4,6 +4,7 @@
 	density = TRUE
 	anchored = TRUE
 	can_atmos_pass = ATMOS_PASS_DENSITY
+	breakable = TRUE
 
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
@@ -171,7 +172,7 @@
 	if(istype(W,/obj/item/pickaxe) && breakable)
 		var/obj/item/pickaxe/digTool = W
 		visible_message(span_danger("[user] starts digging [src]!"))
-		if(do_after(user,digTool.digspeed*hardness) && src)
+		if(do_after(user,digTool.digspeed*hardness, target = src) && src)
 			visible_message(span_danger("[user] finished digging [src]!"))
 			Dismantle()
 	else if(istype(W,/obj/item) && breakable) //not sure, can't not just weapons get passed to this proc?
@@ -268,9 +269,31 @@
 
 /obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_HARDWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_SIFWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/birchwood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_BIRCHWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/pinewood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_PINEWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/oakwood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_OAKWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/acaciawood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_ACACIAWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/redwood/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_REDWOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_RESIN)

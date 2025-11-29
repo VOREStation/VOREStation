@@ -34,7 +34,7 @@
 	var/index2
 	var/picture = null
 
-	var/frequency = 1435		// radio frequency
+	var/frequency = DISPLAY_FREQ		// radio frequency
 
 	var/friendc = 0      // track if Friend Computer mode
 	var/ignore_friendc = 0
@@ -77,12 +77,12 @@
 		return
 	update()
 
-/obj/machinery/status_display/emp_act(severity)
+/obj/machinery/status_display/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	set_picture("ai_bsod")
-	..(severity)
+	..(severity, recursive)
 
 // set what is displayed
 /obj/machinery/status_display/proc/update()

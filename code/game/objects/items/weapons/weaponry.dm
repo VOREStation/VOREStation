@@ -121,7 +121,7 @@
 /obj/effect/energy_net/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	user.setClickCooldown(user.get_attack_speed())
 	visible_message(span_danger("[user] begins to tear at \the [src]!"))
-	if(do_after(user, escape_time, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+	if(do_after(user, escape_time, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 		if(!has_buckled_mobs())
 			return
 		visible_message(span_danger("[user] manages to tear \the [src] apart!"))
@@ -135,3 +135,23 @@
 	else //Just unbuckled someone
 		M.can_pull_size = initial(M.can_pull_size)
 		qdel(src)
+
+/obj/item/energy_net/shrink
+	name = "compactor energy net"
+	desc = "It's a net made of cyan energy."
+	icon_state = "shrinkenergynet"
+	net_type = /obj/effect/energy_net/shrink
+
+/obj/effect/energy_net/shrink
+	name = "compactor energy net"
+	desc = "It's a net made of cyan energy."
+	icon_state = "shrinkenergynet"
+
+	var/size_increment = 0.01
+
+/obj/effect/energy_net/shrink/process()
+	..()
+	for(var/A in buckled_mobs)
+		if(istype(A, /mob/living))
+			var/mob/living/L = A
+			L.resize((L.size_multiplier - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)

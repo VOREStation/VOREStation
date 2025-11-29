@@ -65,3 +65,34 @@
 		if(isanimal(L))
 			var/mob/living/simple_mob/S = L
 			user.visible_message(span_notice("[user] [S.response_help] \the [S]."))
+
+/mob/living/simple_mob/animal/passive/mouse/mining
+	body_color = "brown"
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "mouse_miner"
+	item_state = "mouse_miner"
+	icon_living = "mouse_miner"
+	name = "Cooper"
+	desc = "A lonely miner's best friend."
+
+/mob/living/simple_mob/animal/passive/mouse/mining/Initialize(mapload)
+	. = ..()
+
+	add_verb(src,/mob/living/proc/ventcrawl)
+	add_verb(src,/mob/living/proc/hide)
+	icon_state = "mouse_miner"
+	item_state = "mouse_miner"
+	icon_living = "mouse_miner"
+	icon_dead = "mouse_miner_dead"
+	icon_rest = "mouse_miner_sleep"
+	desc = "A lonely miner's best friend."
+
+
+/mob/living/simple_mob/animal/passive/mouse/mining/splat()
+	src.health = 0
+	src.set_stat(DEAD)
+	src.icon_dead = "mouse_miner_splat"
+	src.icon_state = "mouse_miner_splat"
+	layer = MOB_LAYER
+	if(client)
+		client.time_died_as_mouse = world.time

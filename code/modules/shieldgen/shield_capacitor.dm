@@ -23,6 +23,7 @@
 /obj/machinery/shield_capacitor/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"
@@ -44,7 +45,7 @@
 
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/C = W
-		if((access_captain in C.GetAccess()) || (access_security in C.GetAccess()) || (access_engine in C.GetAccess()))
+		if((ACCESS_CAPTAIN in C.GetAccess()) || (ACCESS_SECURITY in C.GetAccess()) || (ACCESS_ENGINE in C.GetAccess()))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
@@ -138,28 +139,3 @@
 		icon_state = "broke"
 	else
 		..()
-
-/obj/machinery/shield_capacitor/verb/rotate_clockwise()
-	set name = "Rotate Capacitor Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored)
-		to_chat(usr, "It is fastened to the floor!")
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	return
-
-//VOREstation edit: counter-clockwise rotation
-/obj/machinery/shield_capacitor/verb/rotate_counterclockwise()
-	set name = "Rotate Capacitor Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored)
-		to_chat(usr, "It is fastened to the floor!")
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	return

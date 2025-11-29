@@ -22,10 +22,13 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 
-/obj/structure/casino_table/attackby(obj/item/W, mob/user)
-	if(item_place)
-		user.drop_item(src.loc)
-	return
+/obj/structure/casino_table/attackby(obj/item/W, mob/user, hit_modifier, click_parameters)
+	if(!item_place)
+		return
+	if(user.unEquip(W, 0, loc) && user.client?.prefs?.read_preference(/datum/preference/toggle/precision_placement))
+		auto_align(W, click_parameters) // Precisely place item like this is a normal table
+		return
+	user.drop_item(loc)
 
 /obj/structure/casino_table/roulette_table
 	name = "roulette"
@@ -578,6 +581,7 @@
 				to_chat(user, span_notice("Name: [selected_collar.sentientprizename]"))
 				to_chat(user, span_notice("Description: [selected_collar.sentientprizeflavor]"))
 				to_chat(user, span_notice("OOC: [selected_collar.sentientprizeooc]"))
+				to_chat(user, span_notice("Allows item prize TF: [selected_collar.sentientprizeitemtf ? "Yes (you may choose to turn your prize into an item when claiming!)" : "No"]"))
 				if(selected_collar.ownername != null)
 					to_chat(user, span_warning("This prize is already owned by [selected_collar.ownername]"))
 
@@ -598,16 +602,21 @@
 				var/confirm = tgui_alert(user, "Are you sure you want to become a sentient prize?", "Confirm Sentient Prize", list("Yes", "No"))
 				if(confirm != "Yes")
 					return
-				to_chat(user, span_warning("You are now a prize!"))
+				var/confirmitemtf = tgui_alert(user, "Would you like to allow others to turn you into an item upon claiming you if they choose to?", "Confirm Item TF Preference", list("Yes", "No"))
+				var/allowitemtf = FALSE
+				if(confirmitemtf == "Yes")
+					allowitemtf = TRUE
 				if(safety_ckey in sentientprizes_ckeys_list)
 					to_chat(user, span_warning("The SPASM beeps in an upset manner, you already have a collar!"))
 					return
+				to_chat(user, span_warning("You are now a prize!"))
 				sentientprizes_ckeys_list += user.ckey
 				var/obj/item/clothing/accessory/collar/casinosentientprize/C = new(src.loc)
 				C.sentientprizename = "[user.name]"
 				C.sentientprizeckey = "[user.ckey]"
 				C.sentientprizeflavor = user.flavor_text
 				C.sentientprizeooc = user.ooc_notes
+				C.sentientprizeitemtf = allowitemtf
 				C.name = "Sentient Prize Collar: Available! [user.name] purchaseable at the SPASM!"
 				C.desc = "SPASM collar. The tags shows in flashy colorful text the wearer is [user.name] and is currently available to buy at the Sentient Prize Automated Sales Machinery!"
 				C.icon_state = "casinoslave_available"
@@ -716,6 +725,35 @@
 					if("Change Prize Value")
 						setprice(user)
 
+/obj/machinery/casinosentientprize_handler/proc/do_item_tf(mob/living/sentient_prize, var/target_item_name)
+	var/item_type = GLOB.item_tf_options[target_item_name]
+	var/obj/item/newitem = new item_type(null) // Starts off in nullspace while we customize!
+	var/item_color = newitem.color
+
+	var/item_name = tgui_input_text(sentient_prize, "Choose your item name for \the [newitem] (Leave blank or cancel to use its default name)", "TF Item Name")
+
+	var/item_desc = tgui_input_text(sentient_prize, "Choose your item description for \the [newitem] (Leave blank or cancel to use its default description)", "TF Item Description")
+
+	var/choice_color = tgui_alert(sentient_prize, "Do you want to customize your item's color?", "Item TF Color", list("Yes", "No"))
+	if(choice_color == "Yes")
+		item_color = tgui_color_picker(sentient_prize, "Choose the color for \the [newitem].", "Item TF Color", newitem.color)
+
+	// Sanity check in case the item got garbage collected or something while customizing
+	if(!newitem)
+		newitem = new item_type(get_turf(sentient_prize))
+
+	// We apply the customization options afterward for the same reason as the sanity check.
+	if(LAZYLEN(item_name))
+		newitem.name = item_name
+	if(LAZYLEN(item_desc))
+		newitem.desc = item_desc
+	newitem.color = item_color
+
+	// Once that's all done, TF the prize up!
+	newitem.forceMove(get_turf(sentient_prize)) // This might be a bad idea, but if the prize is in something/someone it would be potentially diastrous to use loc. Better to move 'em out than move it in!
+	sentient_prize.tf_into(newitem, TRUE, item_name)
+	return newitem
+
 /obj/machinery/casinosentientprize_handler/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user, var/buystate)
 	if(cashmoney.worth < casinosentientprize_price)
 		to_chat(user,span_notice("You dont have enough chips to pay for the sentient prize!"))
@@ -742,6 +780,23 @@
 
 	if(buystate == "buy")
 		to_chat(user,span_notice("You put [casinosentientprize_price] credits worth of chips into the SPASM and it pings to inform you bought [selected_collar.sentientprizename]!"))
+		// If the sentient prize opted in to be TF'd into an item....
+		if(selected_collar.sentientprizeitemtf)
+			// ... prompt the buyer asking if they want to do that!
+			var/confirm_item_tf_claim = tgui_alert(user, "This prize has opted in to being transformed into an item! Would you like to claim your prize as an item?", "Confirm Prize Item Transformation", list("Yes", "No"))
+			if(confirm_item_tf_claim == "Yes")
+				// Show the claimer a list of options to turn their prize into.
+				var/item_choice = tgui_input_list(user, "Choose the item to claim your prize as. (Cancelling will default you to claiming your prize without transformation!)", "Choose Sentient Prize Item", GLOB.item_tf_options)
+				if(LAZYLEN(item_choice))
+					var/mob/living/sentient_prize = selected_collar.wearer.resolve()
+					if(sentient_prize)
+						do_item_tf(selected_collar.wearer, item_choice)
+					else
+						log_runtime(EXCEPTION("Casino sentient prize collar \"[selected_collar]\" didn't have a living mob as its wearer and couldn't item TF!"))
+						to_chat(user,span_warning("\The [src] couldn't transform your prize due to the prize's collar not being able to resolve its wearer as a living mob. Contact a coder."))
+						to_chat(user,span_infoplain("Falling back to claiming your prize as normal. An admin can help transform your prize!"))
+				else
+					to_chat(user,span_notice("You decided to claim your prize without transformation."))
 		selected_collar.icon_state = "casinoslave_owned"
 		selected_collar.update_icon()
 		selected_collar.ownername = user.name

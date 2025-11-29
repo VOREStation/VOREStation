@@ -33,7 +33,7 @@
 
 	default_pixel_x = -16
 	pixel_x = -16
-
+	minbodytemp = 175
 	maxHealth = 200
 	health = 200
 
@@ -58,16 +58,6 @@
 		"bomb" = 10,
 		"bio" = 100,
 		"rad" = 100
-		)
-
-	armor_soak = list(
-		"melee" = 5,
-		"bullet" = 5,
-		"laser" = 5,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
 		)
 
 	say_list_type = /datum/say_list/kururak
@@ -213,7 +203,7 @@
 							to_chat(H, span_alien("You are disoriented by \the [src]!"))
 							H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 							H.flash_eyes()
-							H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0, 0)
+							H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0)
 
 		else if(issilicon(L))
 			if(isrobot(L))
@@ -291,7 +281,7 @@
 		var/mob/living/L = A
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.apply_damage(damage_to_apply, BRUTE, BP_TORSO, 0, 0)
+			H.apply_damage(damage_to_apply, BRUTE, BP_TORSO, 0)
 
 		else
 			L.adjustBruteLoss(damage_to_apply)
@@ -304,7 +294,7 @@
 		M.take_damage(damage_to_apply)
 		if(prob(3))
 			visible_message(span_critical("\The [src] begins digging its claws into \the [M]'s hatch!"))
-			if(do_after(src, 1 SECOND))
+			if(do_after(src, 1 SECOND, target = M))
 				visible_message(span_critical("\The [src] rips \the [M]'s access hatch open, dragging [M.occupant] out!"))
 				M.go_out()
 

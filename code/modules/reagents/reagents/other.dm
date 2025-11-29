@@ -212,7 +212,7 @@
 	M.SetConfused(0)
 	M.SetSleeping(0)
 	M.radiation = 0
-	M.ExtinguishMob()
+	M.extinguish_mob()
 	M.fire_stacks = 0
 	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
 	M.add_chemical_effect(CE_STABLE, 15)
@@ -837,3 +837,12 @@
 	color = "#e8e2b0"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+
+/datum/reagent/nutriment/pitcher_nectar //Pitcher plant reagent, doubles plant growth speed.
+	name = REAGENT_ID_PITCHERNECTAR
+	id = REAGENT_ID_PITCHERNECTAR
+	description = "An odd, sticky slurry which promotes rapid plant growth."
+	taste_description = "pineapple"
+	reagent_state = LIQUID
+	nutriment_factor = 60
+	color = "#a839a2"

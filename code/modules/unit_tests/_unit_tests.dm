@@ -88,6 +88,7 @@
 
 // BEGIN_INCLUDE
 #include "asset_smart_cache.dm"
+#include "autowiki.dm"
 //#include "clothing_tests.dm" // FIXME
 #include "component_tests.dm"
 #include "cosmetic_tests.dm"
@@ -101,6 +102,7 @@
 #include "language_tests.dm"
 #include "loadout_tests.dm"
 #include "map_tests.dm"
+#include "mapping.dm"
 #include "material_tests.dm"
 // #include "nuke_cinematic.dm" // TODO: This is probably fixed later on
 #include "poster_tests.dm"
@@ -112,6 +114,7 @@
 #include "spritesheets.dm"
 #include "sqlite_tests.dm"
 #include "subsystem_init.dm"
+#include "techwebs.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
 #include "trait_tests.dm"

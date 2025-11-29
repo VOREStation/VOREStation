@@ -102,7 +102,7 @@
  */
 /datum/proc/Destroy(force=FALSE)
 	SHOULD_CALL_PARENT(TRUE)
-	//SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
 	tag = null
 	weak_reference = null //ensure prompt GCing of weakref.
 
@@ -167,6 +167,16 @@
 
 	for(var/target in _signal_procs)
 		UnregisterSignal(target, _signal_procs[target])
+
+/// Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list
+/datum/proc/serialize_list(list/options, list/semvers)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = list()
+	.["tag"] = tag
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
 
 /**
  * Callback called by a timer to end an associative-list-indexed cooldown.
@@ -362,3 +372,16 @@
 		return
 	harddel_deets_dumped = TRUE
 	return "Image icon: [icon] - icon_state: [icon_state] [loc ? "loc: [loc] ([loc.x],[loc.y],[loc.z])" : ""]"
+
+/// Begin coordinated remote viewing, this will call look() when the view begins, and unlook() when it ends.
+/datum/proc/start_coordinated_remoteview(mob/user, atom/target, list/viewer_managed_list, remote_view_config_path = null)
+	ASSERT(islist(viewer_managed_list))
+	user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = target, vconfig_path = remote_view_config_path, coordinator = src, viewer_list = viewer_managed_list)
+
+/// Called from /datum/component/remote_view/viewer_managed during Initilize().
+/datum/proc/look(mob/user)
+	return
+
+/// Called from /datum/component/remote_view/viewer_managed during Destroy()
+/datum/proc/unlook(mob/user)
+	return

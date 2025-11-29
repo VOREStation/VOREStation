@@ -190,4 +190,11 @@
 	random_icon_states = null
 	amount = 0
 
+//Used for the otieshelter and drgnplateu
+/obj/effect/decal/cleanable/blood/tracks/suspicious
+	color = "red"
+	desc = "Your instincts say you shouldn't be following these."
+	icon = 'icons/effects/blood.dmi'
+	icon_state = "tracks"
+
 #undef TRACKS_CRUSTIFY_TIME

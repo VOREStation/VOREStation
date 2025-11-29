@@ -42,7 +42,7 @@ var/global/narsie_cometh = 0
 /obj/singularity/narsie/large/Initialize(mapload)
 	. = ..()
 	if(announce)
-		to_world(span_world(span_narsie(span_red("[uppertext(name)] HAS RISEN"))))
+		to_chat(world, span_world(span_narsie(span_red("[uppertext(name)] HAS RISEN"))))
 		world << sound('sound/effects/weather/wind/wind_5_1.ogg')
 
 	narsie_spawn_animation()
@@ -315,7 +315,7 @@ var/global/narsie_cometh = 0
 	to_chat(target, span_boldnotice("[capname] HAS LOST INTEREST IN YOU."))
 	target = food
 
-	if (ishuman(target))
+	if(ishuman(target))
 		to_chat(target, span_danger("[capname] HUNGERS FOR YOUR SOUL."))
 	else
 		to_chat(target, span_danger("[capname] HAS CHOSEN YOU TO LEAD HIM TO HIS NEXT MEAL."))

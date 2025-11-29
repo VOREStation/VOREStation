@@ -313,7 +313,9 @@ export const TgFontTarget = new Juke.Target({
     'tgui/packages/tgfont/dist/tgfont.woff2',
   ],
   executes: async () => {
-    await bun('tgfont:build');
+    await Juke.exec('bun', ['run', 'tgfont:build'], {
+      cwd: 'tgui/packages/tgfont',
+    });
     fs.mkdirSync('tgui/packages/tgfont/static', { recursive: true });
     fs.copyFileSync(
       'tgui/packages/tgfont/dist/tgfont.css',
@@ -372,6 +374,11 @@ export const TguiDevTarget = new Juke.Target({
 export const TguiAnalyzeTarget = new Juke.Target({
   dependsOn: [BunTarget],
   executes: () => bun('tgui:analyze'),
+});
+
+export const TguiFix = new Juke.Target({
+  dependsOn: [BunTarget],
+  executes: () => bunRoot('tgui:fix'),
 });
 
 export const TestTarget = new Juke.Target({

@@ -13,7 +13,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "medcomp"
 	light_color = "#315ab4"
-	req_one_access = list(access_medical, access_forensics_lockers, access_robotics)
+	req_one_access = list(ACCESS_MEDICAL, ACCESS_FORENSICS_LOCKERS, ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/med_data
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
@@ -478,9 +478,9 @@
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/med_data/emp_act(severity)
+/obj/machinery/computer/med_data/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.medical)
@@ -506,7 +506,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	..(severity, recursive)
 
 
 /obj/machinery/computer/med_data/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers

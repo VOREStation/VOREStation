@@ -18,12 +18,12 @@
 	. = ..()
 	add_overlay("working")
 
-/obj/item/gps/advanced/emp_act(severity)
-	emped = 1
+/obj/item/gps/advanced/emp_act(severity, recursive)
+	emped = TRUE
 	cut_overlay("working")
 	add_overlay("emp")
 	spawn(300)
-		emped = 0
+		emped = FALSE
 		cut_overlay("emp")
 		add_overlay("working")
 
@@ -43,7 +43,7 @@
 			if(G.emped == 1)
 				t += "<BR>[tracked_gpstag]: ERROR"
 			else
-				t += "<BR>[tracked_gpstag]: [format_text(gps_area.name)] ([pos.x], [pos.y], [pos.z])"
+				t += "<BR>[tracked_gpstag]: [strip_improper(gps_area.name)] ([pos.x], [pos.y], [pos.z])"
 
 	var/datum/browser/popup = new(user, "GPS", name, 600, 450)
 	popup.set_content(t)

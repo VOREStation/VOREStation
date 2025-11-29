@@ -1,15 +1,5 @@
 GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 
-/hook/roundstart/proc/spawn_empty_ai()
-	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
-		if(S.name != JOB_AI)
-			continue
-		if(locate(/mob/living) in S.loc)
-			continue
-		GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
-
-	return 1
-
 /mob/living/silicon/ai/verb/store_core()
 	set name = "Store Core"
 	set category = "OOC.Game"

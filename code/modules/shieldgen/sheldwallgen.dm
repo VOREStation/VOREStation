@@ -6,7 +6,7 @@
 		icon_state = "Shield_Gen"
 		anchored = FALSE
 		density = TRUE
-		req_access = list(access_engine_equip)
+		req_access = list(ACCESS_ENGINE_EQUIP)
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -50,7 +50,7 @@
 		for(var/dir in list(1,2,4,8)) src.cleanup(dir)
 	else
 		src.active = 1
-		icon_state = "Shield_Gen +a"
+		icon_state = "Shield_Gen_on"
 		user.visible_message("[user] turned the shield generator on.", \
 			"You turn on the shield generator.", \
 			"You hear heavy droning.")

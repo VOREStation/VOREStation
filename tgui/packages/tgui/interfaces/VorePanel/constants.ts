@@ -98,7 +98,8 @@ export const spriteToTooltip = {
 };
 
 export const liquidToTooltip = {
-  'Produce Liquids': 'Enables automatic belly liquid porduction.',
+  'Produce Liquids':
+    'Enables automatic belly liquid porduction, using nutrition or power.',
   'Digestion Liquids':
     'Enables belly liquid production while prey is being diegested.',
   'Absorption Liquids':

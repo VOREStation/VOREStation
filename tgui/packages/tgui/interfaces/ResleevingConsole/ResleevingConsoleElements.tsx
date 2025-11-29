@@ -1,6 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Stack } from 'tgui-core/components';
-import { Box, Button, NoticeBox, Section, Tabs } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  NoticeBox,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 
 import { MENU_BODY, MENU_MAIN, MENU_MIND } from './constants';
 import { ResleevingConsolePodGrowers } from './ResleevingConsolePodGrowers';

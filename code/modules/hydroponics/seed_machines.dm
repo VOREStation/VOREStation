@@ -33,7 +33,7 @@
 		new /obj/item/disk/botany(src)
 
 /obj/machinery/botany
-	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE
@@ -175,7 +175,6 @@
 	if(..())
 		return TRUE
 
-	ui.user.set_machine(src)
 	add_fingerprint(ui.user)
 
 	switch(action)

@@ -55,7 +55,7 @@
 
 // Removes the spell buttons from the HUD.
 /obj/item/technomancer_core/dropped(mob/user)
-	for(var/obj/screen/ability/obj_based/technomancer/A in wearer.ability_master.ability_objects)
+	for(var/atom/movable/screen/ability/obj_based/technomancer/A in wearer.ability_master.ability_objects)
 		wearer.ability_master.remove_ability(A)
 	wearer = null
 	..()
@@ -123,8 +123,7 @@
 				spawn(1)
 					L.visible_message(span_infoplain(span_bold("\The [L]") + " begins to fade away..."))
 					animate(L, alpha = 255, alpha = 0, time = 30) // Makes them fade into nothingness.
-					sleep(30)
-					qdel(L)
+					QDEL_IN(L, 30)
 
 // Deletes all the summons and wards from the core, so that Destroy() won't have issues.
 /obj/item/technomancer_core/proc/dismiss_all_summons()
@@ -193,7 +192,7 @@
 	if(spell_to_remove in spells)
 		spells.Remove(spell_to_remove)
 		if(wearer)
-			var/obj/screen/ability/obj_based/technomancer/A = wearer.ability_master.get_ability_by_instance(spell_to_remove)
+			var/atom/movable/screen/ability/obj_based/technomancer/A = wearer.ability_master.get_ability_by_instance(spell_to_remove)
 			if(A)
 				wearer.ability_master.remove_ability(A)
 		qdel(spell_to_remove)

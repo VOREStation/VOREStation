@@ -216,7 +216,7 @@
 	var/has_fine_manipulation = 1							// Can use small items.
 	var/siemens_coefficient = 1								// The lower, the thicker the skin and better the insulation.
 	var/darksight = 2										// Native darksight distance.
-	var/flags = 0											// Various specific features.
+	var/flags = NONE											// Various specific features.
 	var/appearance_flags = 0								// Appearance/display related features.
 	var/spawn_flags = 0										// Flags that specify who can spawn as this species
 
@@ -246,7 +246,7 @@
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
 	var/pixel_offset_y = 0									// Used for offsetting 64x64 and up icons.
-	var/rad_levels = NORMAL_RADIATION_RESISTANCE		//For handle_mutations_and_radiation
+	var/rad_levels = NORMAL_RADIATION_RESISTANCE			//For handle_radiation
 	var/rad_removal_mod = 1
 
 	var/ambulant_blood = FALSE								// Force changeling blood effects
@@ -359,20 +359,20 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
-	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
+	var/list/species_component = list() // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 	var/component_requires_late_recalc = FALSE // If TRUE, the component will do special recalculation stuff at the end of update_icons_body()
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200
 
-	var/bite_mod = 1 //NYI - Used Downstream
-	var/grab_resist_divisor_victims = 1 //NYI - Used Downstream
-	var/grab_resist_divisor_self = 1 //NYI - Used Downstream
-	var/grab_power_victims = 0 //NYI - Used Downstream
-	var/grab_power_self = 0 //NYI - Used Downstream
+	var/bite_mod = 1
+	var/grab_resist_divisor_victims = 1
+	var/grab_resist_divisor_self = 1
+	var/grab_power_victims = 0
+	var/grab_power_self = 0
 	var/waking_speed = 1 //NYI - Used Downstream
-	var/lightweight_light = 0 //NYI - Used Downstream
+	var/lightweight_light = 0
 	var/unarmed_bonus = 0 //do you have stronger unarmed attacks?
 	var/shredding = FALSE //do you shred when attacking? Affects escaping restraints, and punching normally unpunchable things
 
@@ -490,7 +490,7 @@
 		var/organ_type = has_organ[organ_tag]
 		var/obj/item/organ/O = new organ_type(H,1)
 		if(organ_tag != O.organ_tag)
-			warning("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
+			WARNING("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
 
@@ -526,8 +526,20 @@
 			span_notice("[target] moves to avoid being touched by you!"), )
 		return
 
+	var/covered_mouth = FALSE
+	if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && ishuman(target)) // No need to test this for now if they don't have the trait
+		var/mob/living/carbon/human/M = target
+		if(M.head)
+			if((M.head.body_parts_covered & FACE) || (M.head.flags_inv & HIDEFACE)) // Need to check both because a lot of items set one or the other, rather than both as you'd expect
+				covered_mouth = TRUE
+		if(M.wear_mask)
+			if((M.wear_mask.body_parts_covered & FACE) || (M.wear_mask.flags_inv & HIDEFACE))
+				covered_mouth = TRUE
+	if(target.is_muzzled())
+		covered_mouth = TRUE
+
 	if(H.zone_sel.selecting == BP_HEAD)
-		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+		if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && !covered_mouth)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent head patting!"), \
 				span_warning("[target] reflexively bites your hand!"), )
@@ -544,7 +556,7 @@
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )
 	else if(H.zone_sel.selecting == "mouth")
-		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+		if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && !covered_mouth)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent nose booping!"), \
 				span_warning("[target] reflexively bites your hand!"), )
@@ -692,18 +704,51 @@
 		H.adjustToxLoss(amount)
 
 /datum/species/proc/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
-	if(soft_landing)
-		if(planetary || !istype(H))
-			return FALSE
+	var/turf/landing = get_turf(hit_atom)
+	if(!istype(landing))
+		return FALSE
+	if(planetary || !istype(H))
+		return FALSE
+	//commented out, as this turf doesn't exist upstream
+	/*if(istype(landing, /turf/simulated/floor/boxing))
+		if(!silent)
+			to_chat(H, span_notice("\The [landing] cushions your fall."))
+			landing.visible_message(span_infoplain(span_bold("\The [H]") + " 's fall is cushioned by \The [landing]."))
+			playsound(H, "rustle", 25, 1)
+		if(!soft_landing)
+			H.Weaken(10)
+		return TRUE*/
+	//end edit
+	if(istype(landing, /turf/simulated/floor/water))
+		var/turf/simulated/floor/water/W = landing
+		if(W.depth)
+			if(!silent)
+				to_chat(H, span_notice("You splash down into \the [landing]."))
+				landing.visible_message(span_infoplain(span_bold("\The [H]") + " splashes down into \The [landing]."))
+				playsound(H, "'sound/effects/slosh.ogg'", 25, 5)
+			return TRUE
 
-		var/turf/landing = get_turf(hit_atom)
-		if(!istype(landing))
-			return FALSE
+	if(soft_landing)
 
 		if(!silent)
 			to_chat(H, span_notice("You manage to lower impact of the fall and land safely."))
 			landing.visible_message(span_infoplain(span_bold("\The [H]") + " lowers down from above, landing safely."))
 			playsound(H, "rustle", 25, 1)
+		return TRUE
+
+	if(HAS_TRAIT(src, TRAIT_HEAVY_LANDING))
+
+		if(!silent)
+			to_chat(H, span_danger("You land with a heavy crash!"))
+			landing.visible_message(span_danger(span_bold("\The [H]") + " crashes down from above!"))
+			playsound(H, 'sound/effects/meteorimpact.ogg', 75, TRUE, 3)
+			for(var/i = 1 to 10)
+				H.adjustBruteLoss(rand((0), (10)))
+			H.Weaken(20)
+			H.updatehealth()
+			if(istype(landing, /turf/simulated/floor) && prob(50))
+				var/turf/simulated/floor/our_crash = landing
+				our_crash.break_tile()
 		return TRUE
 
 	return FALSE
@@ -759,8 +804,9 @@
 		..()
 
 /datum/species/proc/apply_components(var/mob/living/carbon/human/H)
-	if(species_component)
-		H.LoadComponent(species_component)
+	if(LAZYLEN(species_component))
+		for(var/component in species_component)
+			H.LoadComponent(component)
 
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)

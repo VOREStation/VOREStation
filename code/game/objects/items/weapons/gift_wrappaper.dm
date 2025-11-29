@@ -169,10 +169,10 @@
 		. += "There is about [src.amount] square units of paper left!"
 
 /obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
-	if (!ishuman(target)) return
+	if(!ishuman(target)) return
 	var/mob/living/carbon/human/H = target
 
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)
+	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || istype(H.wear_suit, /obj/item/clothing/suit/shibari) || H.stat)
 		if (src.amount > 2)
 			var/obj/effect/spresent/present = new /obj/effect/spresent (H.loc)
 			src.amount -= 2

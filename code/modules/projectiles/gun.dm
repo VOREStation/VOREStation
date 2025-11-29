@@ -72,7 +72,7 @@
 
 	var/wielded_item_state
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
-	var/obj/screen/auto_target/auto_target
+	var/atom/movable/screen/auto_target/auto_target
 	var/shooting = 0
 	var/next_fire_time = 0
 
@@ -219,9 +219,8 @@
 		if(P)
 			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
-				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 				user.visible_message(
-					span_danger("\The [user] shoots [TU.himself] in the foot with \the [src]!"),
+					span_danger("\The [user] shoots [user.p_themselves()] in the foot with \the [src]!"),
 					span_danger("You shoot yourself in the foot with \the [src]!")
 					)
 				M.drop_item()
@@ -233,10 +232,6 @@
 /obj/item/gun/proc/lock_explosion()
 	explosion(src, 0, 0, 3, 4)
 	QDEL_IN(src, 1)
-
-/obj/item/gun/emp_act(severity)
-	for(var/obj/O in contents)
-		O.emp_act(severity)
 
 /obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
@@ -266,7 +261,7 @@
 			auto_target.delay_del = 1//And reset the del so its like they got a new one and doesnt instantly vanish
 			to_chat(user, span_notice("You ready \the [src]!  Click and drag the target around to shoot."))
 		else//Otherwise just make a new one
-			auto_target = new/obj/screen/auto_target(get_turf(A), src)
+			auto_target = new/atom/movable/screen/auto_target(get_turf(A), src)
 			visible_message(span_danger("\The [user] readies the [src]!"))
 			playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
 			to_chat(user, span_notice("You ready \the [src]!  Click and drag the target around to shoot."))
@@ -305,7 +300,7 @@
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, span_notice("You begin removing \the [attached_lock] from \the [src]."))
 			playsound(src, A.usesound, 50, 1)
-			if(do_after(user, 25 * A.toolspeed))
+			if(do_after(user, 25 * A.toolspeed, target = src))
 				to_chat(user, span_notice("You remove \the [attached_lock] from \the [src]."))
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
@@ -334,7 +329,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
@@ -345,7 +340,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -531,13 +526,7 @@
 			if(ticker < burst)
 				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs("Unmanned",target_for_log,"Fired [src.name]")
+	add_attack_logs(src,target,"Fired [src.name] (Unmanned)")
 
 
 //obtains the next projectile to fire
@@ -581,13 +570,7 @@
 			"You hear a [fire_sound_text]!"
 			)
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs(user, target_for_log, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
+	add_attack_logs(user, target, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
 
 //called after successfully firing
 /obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -644,6 +627,7 @@
 				damage_mult = 2.5
 			else if(grabstate >= GRAB_AGGRESSIVE)
 				damage_mult = 1.5
+	P.agony *= damage_mult
 	P.damage *= damage_mult
 
 /obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
@@ -731,7 +715,7 @@
 
 	mouthshoot = 1
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
-	if(!do_after(user, 40))
+	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return

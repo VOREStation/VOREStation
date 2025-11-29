@@ -17,7 +17,10 @@
 	//Status updates, death etc.
 	update_icons()
 
-/mob/living/carbon/alien/handle_mutations_and_radiation()
+/mob/living/carbon/alien/handle_radiation()
+	. = ..()
+	if(.)
+		return
 
 	// Currently both Dionaea and larvae like to eat radiation, so I'm defining the
 	// rad absorbtion here. This will need to be changed if other baby aliens are added.
@@ -86,8 +89,7 @@
 
 	return 1
 
-/mob/living/carbon/alien/handle_regular_hud_updates()
-
+/mob/living/carbon/alien/handle_vision()
 	if (stat == 2 || (XRAY in src.mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
@@ -101,45 +103,49 @@
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
-	if (healths)
-		if (stat != 2)
-			switch(health)
-				if(100 to INFINITY)
-					healths.icon_state = "health0"
-				if(80 to 100)
-					healths.icon_state = "health1"
-				if(60 to 80)
-					healths.icon_state = "health2"
-				if(40 to 60)
-					healths.icon_state = "health3"
-				if(20 to 40)
-					healths.icon_state = "health4"
-				if(0 to 20)
-					healths.icon_state = "health5"
-				else
-					healths.icon_state = "health6"
-		else
-			healths.icon_state = "health7"
+	// Call parent to handle signals
+	..()
 
-	if (client)
-		client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
+/mob/living/carbon/alien/handle_regular_hud_updates()
+	. = ..()
+	if(!.)
+		return
+
+	client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
 
 	if ( stat != 2)
 		if ((blinded))
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-			set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
-		if(machine)
-			if(machine.check_eye(src) < 0)
-				reset_view(null)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
+			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
+			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
+			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
-	return 1
+/mob/living/carbon/alien/handle_hud_icons_health()
+	. = ..()
+	if(!. || !healths)
+		return
+
+	if (stat == DEAD)
+		healths.icon_state = "health7"
+		return
+
+	switch(health)
+		if(100 to INFINITY)
+			healths.icon_state = "health0"
+		if(80 to 100)
+			healths.icon_state = "health1"
+		if(60 to 80)
+			healths.icon_state = "health2"
+		if(40 to 60)
+			healths.icon_state = "health3"
+		if(20 to 40)
+			healths.icon_state = "health4"
+		if(0 to 20)
+			healths.icon_state = "health5"
+		else
+			healths.icon_state = "health6"
 
 /mob/living/carbon/alien/handle_environment(var/datum/gas_mixture/environment)
 	// Both alien subtypes survive in vaccum and suffer in high temperatures,
@@ -148,14 +154,11 @@
 
 	if(environment.temperature > (T0C+66))
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-		throw_alert("alien_fire", /obj/screen/alert/alien_fire)
+		throw_alert("alien_fire", /atom/movable/screen/alert/alien_fire)
 		if(prob(20))
 			to_chat(src, span_red("You feel a searing heat!"))
 	else
 		clear_alert("alien_fire")
 
-/mob/living/carbon/alien/handle_fire()
-	if(..())
-		return
-	bodytemperature += BODYTEMP_HEATING_MAX //If you're on fire, you heat up!
-	return
+/mob/living/carbon/alien/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	bodytemperature += BODYTEMP_HEATING_MAX

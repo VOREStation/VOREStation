@@ -31,34 +31,11 @@
 	if(spawn_cartridges)
 		for(var/type in spawn_cartridges)
 			add_cartridge(new type(src))
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	. = ..()
 	. += "It has [cartridges.len] cartridges installed, and has space for [max_catriges - cartridges.len] more."
-
-/obj/machinery/chemical_dispenser/verb/rotate_clockwise()
-	set name = "Rotate Dispenser Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened down!")
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-//VOREstation edit: counter-clockwise rotation
-/obj/machinery/chemical_dispenser/verb/rotate_counterclockwise()
-	set name = "Rotate Dispenser Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened down!")
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-//VOREstation edit end
 
 /obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
@@ -99,7 +76,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, span_notice("You begin to [anchored ? "un" : ""]fasten \the [src]."))
-		if (do_after(user, 20 * W.toolspeed))
+		if (do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			user.visible_message(
 				span_notice("\The [user] [anchored ? "un" : ""]fastens \the [src]."),
 				span_notice("You have [anchored ? "un" : ""]fastened \the [src]."),
@@ -225,6 +202,20 @@
 				container = null
 			. = TRUE
 
+		if("import_config")
+			var/list/our_data = params["config"]
+			if(!islist(our_data))
+				return FALSE
+			var/list/new_recipes = list()
+			for(var/key, value in our_data)
+				if(istext(key) && islist(value))
+					for(var/list/steps in value)
+						if(istext(steps["id"]) && isnum(steps["amount"]))
+							new_recipes[key] += list(list("id" = steps["id"], "amount" = steps["amount"]))
+			if(length(new_recipes))
+				saved_recipes = new_recipes
+			. = TRUE
+
 		if("record_recipe")
 			recording_recipe = list()
 			. = TRUE
@@ -283,7 +274,7 @@
 					var/amount_actually_dispensed = C.reagents.trans_to(container, dispense_amount)
 					if(dispense_amount != amount_actually_dispensed)
 						visible_message(span_warning("[src] buzzes."), span_warning("You hear a faint buzz."))
-						to_chat(ui.user, span_warning("[src] was only able to dispense [amount_actually_dispensed]u out of [dispense_amount]u requested of <b>[label]</b>!"))
+						to_chat(ui.user, span_warning("[src] was only able to dispense [amount_actually_dispensed ? amount_actually_dispensed : 0]u out of [dispense_amount]u requested of <b>[label]</b>!"))
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						break
 			else

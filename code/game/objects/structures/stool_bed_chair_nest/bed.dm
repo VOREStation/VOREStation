@@ -30,10 +30,17 @@
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
 	if(!istype(material))
+		stack_trace("Material of type: [new_material] does not exist.")
 		return INITIALIZE_HINT_QDEL
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
 	update_icon()
+	if(flippable) // If we can't change directions, don't bother.
+		// Ugly check for chairs, beds can only be flipped north and south...
+		if(istype(src,/obj/structure/bed/chair))
+			AddElement(/datum/element/rotatable)
+		else
+			AddElement(/datum/element/rotatable/onlyflip)
 	return INITIALIZE_HINT_NORMAL
 
 /obj/structure/bed/get_material()
@@ -142,7 +149,7 @@
 			to_chat(user, span_notice("\The [src] already has someone buckled to it."))
 			return
 		user.visible_message(span_notice("[user] attempts to buckle [affecting] into \the [src]!"))
-		if(do_after(user, 20, G.affecting))
+		if(do_after(user, 2 SECONDS, G.affecting, target = src))
 			affecting.loc = loc
 			spawn(0)
 				if(buckle_mob(affecting))
@@ -169,29 +176,11 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src), 1)
 
-/obj/structure/bed/verb/turn_around()
-	set name = "Turn Around"
-	set category = "Object"
-	set src in oview(1)
+/obj/structure/bed/ghosts_can_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
-	if(!flippable)
-		to_chat(usr,span_notice("\The [src] can't face the other direction."))
-		return
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-	if(dir == 2)
-		src.set_dir(1)
-	else if(dir == 1)
-		src.set_dir(2)
-	else if(dir == 4)
-		src.set_dir(8)
-	else if(dir == 8)
-		src.set_dir(4)
+/obj/structure/bed/can_use_rotate_verbs_while_anchored()
+	return TRUE
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"
@@ -200,10 +189,10 @@
 	base_icon = "psychbed"
 
 /obj/structure/bed/psych/Initialize(mapload)
-	. = ..(mapload,MAT_WOOD,MAT_LEATHER)
+	. = ..(mapload, MAT_WOOD, MAT_LEATHER)
 
 /obj/structure/bed/padded/Initialize(mapload)
-	. = ..(mapload,MAT_PLASTIC,MAT_COTTON)
+	. = ..(mapload, MAT_PLASTIC, MAT_CLOTH)
 
 /obj/structure/bed/double
 	name = "double bed"
@@ -211,7 +200,7 @@
 	base_icon = "doublebed"
 
 /obj/structure/bed/double/padded/Initialize(mapload)
-	. = ..(mapload,MAT_WOOD,MAT_COTTON)
+	. = ..(mapload, MAT_WOOD, MAT_CLOTH)
 
 /obj/structure/bed/double/post_buckle_mob(mob/living/M as mob)
 	if(M.buckled == src)
@@ -230,7 +219,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "rollerbed"
 	anchored = FALSE
-	surgery_odds = 50 //VOREStation Edit
+	surgery_cleanliness = 60
 	var/bedtype = /obj/structure/bed/roller
 	var/rollertype = /obj/item/roller
 	flippable = FALSE
@@ -238,6 +227,7 @@
 /obj/structure/bed/roller/adv
 	name = "advanced roller bed"
 	icon_state = "rollerbedadv"
+	surgery_cleanliness = 75
 	bedtype = /obj/structure/bed/roller/adv
 	rollertype = /obj/item/roller/adv
 
@@ -373,7 +363,7 @@
 	desc = "Whatever species designed this must've enjoyed relaxation as well. Looks vaguely comfy."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_bed)
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "bed"
+	icon_state = "bed_red"
 	flippable = FALSE
 
 /obj/structure/bed/alien/update_icon()
@@ -404,7 +394,7 @@
 		else
 			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
 
-		if(do_after(user, 20 * W.toolspeed))
+		if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored

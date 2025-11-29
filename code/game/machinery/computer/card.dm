@@ -6,7 +6,7 @@
 	icon_keyboard = "id_key"
 	icon_screen = "id"
 	light_color = "#0099ff"
-	req_access = list(access_change_ids)
+	req_access = list(ACCESS_CHANGE_IDS)
 	circuit = /obj/item/circuitboard/card
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
@@ -59,7 +59,7 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && (access_change_ids in id_card.GetAccess()) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
+	if(!scan && (ACCESS_CHANGE_IDS in id_card.GetAccess()) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
 		user.drop_item()
 		id_card.forceMove(src)
 		scan = id_card
@@ -224,7 +224,7 @@
 					modify.assignment = t1
 					modify.rank = t1
 
-				callHook("reassign_employee", list(modify))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, modify)
 			. = TRUE
 
 		if("reg")
@@ -280,8 +280,7 @@
 			if(is_authenticated())
 				modify.assignment = "Dismissed"	//VOREStation Edit: setting adjustment
 				modify.access = list()
-
-				callHook("terminate_employee", list(modify))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD, modify)
 
 			. = TRUE
 
@@ -291,7 +290,7 @@
 /obj/machinery/computer/card/centcom
 	name = "\improper CentCom ID card modification console"
 	circuit = /obj/item/circuitboard/card/centcom
-	req_access = list(access_cent_captain)
+	req_access = list(ACCESS_CENT_CAPTAIN)
 
 
 /obj/machinery/computer/card/centcom/is_centcom()

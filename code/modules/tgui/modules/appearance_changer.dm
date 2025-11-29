@@ -32,10 +32,10 @@
 
 	// Stuff needed to render the map
 	var/map_name
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
-	var/obj/screen/skybox/local_skybox
+	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/skybox/local_skybox
 	// Stuff for moving cameras
 	var/turf/last_camera_turf
 
@@ -65,7 +65,7 @@
 
 	cam_plane_masters = get_tgui_plane_masters()
 
-	for(var/obj/screen/instance as anything in cam_plane_masters)
+	for(var/atom/movable/screen/instance as anything in cam_plane_masters)
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -453,7 +453,7 @@
 			return TRUE
 		if("rename")
 			if(owner)
-				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name")
+				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name", encode = FALSE)
 				if(!isnull(raw_name) && can_change(owner, APPEARANCE_RACE))
 					var/new_name = sanitize_name(raw_name, owner.species, FALSE) // can't edit synths
 					if(new_name)
@@ -991,6 +991,8 @@
 		return FALSE
 	if(!isnull(X.species_allowed) && !(target.species.name in X.species_allowed) && (!istype(target.species, /datum/species/custom))) // Letting custom species access wings/ears/tails.
 		return FALSE
+	if(!X.can_be_selected && (!user || !check_rights_for(user.client, R_HOLDER))) //So staff can quickly change people's appearance for events.
+		return FALSE
 
 	if(LAZYLEN(X.ckeys_allowed) && !(user?.ckey in X.ckeys_allowed) && !(target.ckey in X.ckeys_allowed))
 		return FALSE
@@ -1023,6 +1025,10 @@
 	if(!isbelly(owner.loc))
 		return STATUS_CLOSE
 	return ..()
+
+/datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
 	cam_screen.vis_contents = list(owner)
@@ -1066,6 +1072,10 @@
 	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
 
+/datum/tgui_module/appearance_changer/cocoon/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
+
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	if(!istype(owner.loc, /obj/item/holder/micro))
 		return STATUS_CLOSE
@@ -1078,6 +1088,10 @@
 	name ="Appearance Editor (Superpower)"
 	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/superpower/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
 	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
@@ -1092,6 +1106,10 @@
 	name ="Appearance Editor (Innate)"
 	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/innate/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
 
 /datum/tgui_module/appearance_changer/innate/tgui_status(mob/user, datum/tgui_state/state)
 	if(owner.stat != CONSCIOUS)
@@ -1148,3 +1166,8 @@
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+
+/datum/tgui_module/appearance_changer/self_deleting
+/datum/tgui_module/appearance_changer/self_deleting/tgui_close(mob/user)
+	. = ..()
+	qdel(src)

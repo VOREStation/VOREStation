@@ -166,7 +166,7 @@
 		var/turf/location = get_turf(user)
 		if(isliving(O))
 			var/mob/living/L = O
-			L.IgniteMob()
+			L.ignite_mob()
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
 /obj/item/weldingtool/attack_self(mob/user)
@@ -238,7 +238,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
@@ -249,7 +249,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -276,7 +276,7 @@
 				T.visible_message(span_danger("\The [src] turns on."))
 			playsound(src, acti_sound, 50, 1)
 			src.force = 15
-			src.damtype = "fire"
+			src.damtype = BURN
 			src.w_class = ITEMSIZE_LARGE
 			src.hitsound = 'sound/items/welder.ogg'
 			welding = 1
@@ -298,7 +298,7 @@
 			T.visible_message(span_warning("\The [src] turns off."))
 		playsound(src, deac_sound, 50, 1)
 		src.force = 3
-		src.damtype = "brute"
+		src.damtype = BRUTE
 		src.w_class = initial(src.w_class)
 		src.welding = 0
 		src.hitsound = initial(src.hitsound)
@@ -636,7 +636,7 @@
 		..()
 
 /obj/item/weldingtool/electric/proc/get_external_power_supply()
-	if(istype(src.loc, /obj/item/robotic_multibelt)) //We are in a multibelt
+	if(isrobotmultibelt(src.loc)) //We are in a multibelt
 		if(istype(src.loc.loc, /mob/living/silicon/robot))  //We are in a multibelt that is in a robot! This is sanity in case someone spawns a multibelt in via admin commands.
 			var/mob/living/silicon/robot/R = src.loc.loc
 			return R.cell

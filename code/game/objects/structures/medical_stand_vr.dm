@@ -1,6 +1,6 @@
 /obj/structure/medical_stand
 	name = "medical stand"
-	icon = 'icons/obj/medical_stand_vr.dmi'
+	icon = 'icons/obj/medical_stand.dmi'
 	desc = "Medical stand used to hang reagents for transfusion and to hold anesthetic tank."
 	icon_state = "medical_stand_empty"
 
@@ -58,7 +58,7 @@
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/medical_stand_vr.dmi', src, "reagent")
+			var/image/filling = image('icons/obj/medical_stand.dmi', src, "reagent")
 
 			switch(percent)
 				if(10 to 24) 	filling.icon_state = "reagent10"
@@ -118,7 +118,7 @@
 					return
 				if (breather)
 					src.add_fingerprint(usr)
-					if(!do_mob(usr, target, 30) || !can_apply_to_target(target, usr))
+					if(!do_after(usr, 3 SECONDS, target) || !can_apply_to_target(target, usr))
 						return
 					if(tank)
 						tank.forceMove(src)
@@ -134,7 +134,7 @@
 					return
 				usr.visible_message(span_infoplain(span_bold("\The [usr]") + " begins carefully placing the mask onto [target]."),
 							span_notice("You begin carefully placing the mask onto [target]."))
-				if(!do_mob(usr, target, 100) || !can_apply_to_target(target, usr))
+				if(!do_after(usr, 10 SECONDS, target) || !can_apply_to_target(target, usr))
 					return
 				// place mask and add fingerprints
 				usr.visible_message(span_notice("\The [usr] has placed \the mask on [target]'s mouth."),
@@ -146,14 +146,14 @@
 				return
 			if("Drip needle")
 				if(attached)
-					if(!do_mob(usr, target, 20))
+					if(!do_after(usr, 2 SECONDS, target))
 						return
 					visible_message("\The [attached] is taken off \the [src]")
 					attached = null
 				else if(ishuman(target))
 					usr.visible_message(span_infoplain(span_bold("\The [usr]") + " begins inserting needle into [target]'s vein."),
 									span_notice("You begin inserting needle into [target]'s vein."))
-					if(!do_mob(usr, target, 50))
+					if(!do_after(usr, 5 SECONDS, target))
 						usr.visible_message(span_notice("\The [usr]'s hand slips and pricks \the [target]."),
 									span_notice("Your hand slips and pricks \the [target]."))
 						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))

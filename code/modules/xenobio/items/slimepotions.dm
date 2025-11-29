@@ -208,6 +208,9 @@
 	to_chat(M, span_notice("\The [user] feeds you \the [src], and feel that the others will regard you as an outsider now."))
 	M.faction = user.faction
 	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
+	if(istype(M, /mob/living/simple_mob/slime))
+		var/mob/living/simple_mob/slime/slime = M
+		slime.update_mood() //Makes them drop-nomable.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 

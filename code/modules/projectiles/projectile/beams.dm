@@ -224,8 +224,16 @@
 	damage_type = BURN
 	check_armour = "laser"
 	hud_state = "monkey"
+	///What suits this beam can hit.
+	var/list/allowed_suits = list(/obj/item/clothing/suit/lasertag/omni, /obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/redtag)
+
+	///How much damage we do to the tag vest.
+	var/tag_damage = 1
 
 	combustion = FALSE
+
+/obj/item/projectile/beam/lasertag/on_hit(var/atom/target, var/blocked = 0)
+	return handle_lasertag_attack(target, firer, tag_damage, TRUE, allowed_suits = allowed_suits) //We can't shoot this in the first place without having the proper vest / vest_override, so we feed it vest_override = TRUE
 
 /obj/item/projectile/beam/lasertag/blue
 	icon_state = "bluelaser"
@@ -234,75 +242,24 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
+	allowed_suits = list(/obj/item/clothing/suit/lasertag/redtag, /obj/item/clothing/suit/lasertag/omni)
 
-/obj/item/projectile/beam/lasertag/blue/on_hit(var/atom/target, var/blocked = 0)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
-			M.Weaken(5)
-	return 1
-
-/obj/item/projectile/beam/lasertag/blue/multhit
-	name = "blue multi-hit lasertag beam"
-
-/obj/item/projectile/beam/lasertag/blue/multihit/on_hit(var/atom/target, var/blocked = 0)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
-			var/obj/item/clothing/suit/redtag/S = M.wear_suit
-			if (S.lasertag_health <= 1)
-				M.Weaken(5)
-				to_chat(M,span_warning("You have been defeated!"))
-				S.lasertag_health = initial(S.lasertag_health)
-			else
-				S.lasertag_health--
-				to_chat(M,span_warning("Danger! You have [num2text(S.lasertag_health)] hits remaining!"))
-	return 1
 
 /obj/item/projectile/beam/lasertag/red
 	icon_state = "laser"
 	light_color = "#FF0D00"
 	hud_state = "monkey"
-
-/obj/item/projectile/beam/lasertag/red/on_hit(var/atom/target, var/blocked = 0)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
-			M.Weaken(5)
-	return 1
-
-/obj/item/projectile/beam/lasertag/red/multhit
-	name = "red multi-hit lasertag beam"
-
-/obj/item/projectile/beam/lasertag/red/multihit/on_hit(var/atom/target, var/blocked = 0)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
-			var/obj/item/clothing/suit/bluetag/S = M.wear_suit
-			if(S.lasertag_health <= 1)
-				M.Weaken(5)
-				to_chat(M,span_warning("You have been defeated!"))
-				S.lasertag_health = initial(S.lasertag_health)
-			else
-				S.lasertag_health--
-				to_chat(M,span_warning("Danger! You have [num2text(S.lasertag_health)] hits remaining!"))
-	return 1
+	allowed_suits = list(/obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/omni)
 
 /obj/item/projectile/beam/lasertag/omni//A laser tag bolt that stuns EVERYONE
 	icon_state = "omnilaser"
-	light_color = "#00C6FF"
+	light_color = "#AA24AF"
 	hud_state = "monkey"
+	allowed_suits = list(/obj/item/clothing/suit/lasertag)
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
 	impact_type = /obj/effect/projectile/impact/laser_omni
-
-/obj/item/projectile/beam/lasertag/omni/on_hit(var/atom/target, var/blocked = 0)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
-			M.Weaken(5)
-	return 1
 
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
@@ -444,6 +401,11 @@
 	hud_state = "laser"
 	damage = 20
 
+/obj/item/projectile/beam/rainbow/non_lethal
+	damage = 0
+	agony = 50
+	damage_type = HALLOSS
+
 /obj/item/projectile/beam/sparkledog
 	name = "rainbow"
 	fire_sound = 'sound/weapons/sparkle.ogg'
@@ -510,6 +472,8 @@
 	hud_state = "flame_green"
 	hud_state_empty = "flame_empty"
 
+	var/net_type = /obj/item/energy_net
+
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
 	impact_type = /obj/effect/projectile/impact/xray
@@ -519,8 +483,24 @@
 	..()
 
 /obj/item/projectile/beam/energy_net/proc/do_net(var/mob/M)
-	var/obj/item/energy_net/net = new (get_turf(M))
+	var/obj/item/energy_net/net = new net_type(get_turf(M))
 	net.throw_impact(M)
+
+//
+// Shrinking Energy Net
+//
+/obj/item/projectile/beam/energy_net/shrink
+	name = "compactor energy net projection"
+	icon_state = "omnilaser"
+	light_color = "#00CC33"
+	hud_state = "flame_blue"
+	hud_state_empty = "flame_empty"
+
+	net_type = /obj/item/energy_net/shrink
+
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 //
 // Healing Beam

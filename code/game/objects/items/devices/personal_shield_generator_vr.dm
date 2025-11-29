@@ -16,7 +16,7 @@
 /obj/item/personal_shield_generator
 	name = "personal shield generator"
 	desc = "A personal shield generator."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "shieldpack_basic"
 	item_state = "defibunit" //Placeholder
 	slot_flags = SLOT_BACK
@@ -112,12 +112,12 @@
 		add_overlay("[initial(icon_state)]-nocell")
 */
 
-/obj/item/personal_shield_generator/emp_act(severity)
+/obj/item/personal_shield_generator/emp_act(severity, recursive)
 	if(bcell && shield_active)
 		switch(severity)
 			if(1) //Point blank EMP shots have a good chance of burning the cell charge.
 				if(prob(50))
-					bcell.emp_act(severity)
+					bcell.emp_act(severity, recursive)
 					if(prob(5)) //1 in 20% chance to fry the battery completly, which has a 1/10 chance of making the battery explode on next use.
 						bcell.corrupt() //Not too bad if you slotted a battery in. Disasterous if it has a self-charging battery.
 					if(bcell.rigged) //Did the above just rig the cell? Turn it off. Don't immediately have it go boom. Instead have the cell blow soon-ish.
@@ -135,8 +135,8 @@
 						update_icon()
 			else
 				if(prob(25))
-					bcell.emp_act(severity)
-	..()
+					bcell.emp_act(severity, recursive)
+	//Intentionally not calling ..() here, as we have special cell handling.
 
 /obj/item/personal_shield_generator/ui_action_click(mob/user, actiontype)
 	toggle_shield()
@@ -430,14 +430,6 @@
 		to_chat(user, span_warning("\The [src] are re-energizing!"))
 		return 0
 	return 1
-
-// TODO: EMP ACT
-// The cell already gets hit and can have some nasty effects when EMP'd, so this isn't too much of a concern.
-
-/*
-/obj/item/gun/energy/gun/generator/emp_act(severity)
-	..()
-*/
 
 /obj/item/gun/energy/gun/generator/dropped(mob/user)
 	..() //update twohanding

@@ -44,7 +44,7 @@
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
-	req_one_access = list(access_security, access_heads)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_HEADS)
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/raised = FALSE			//if the turret cover is "open" and the turret is raised
@@ -97,7 +97,7 @@
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
 
 /obj/machinery/porta_turret/crescent
-	req_one_access = list(access_cent_specops)
+	req_one_access = list(ACCESS_CENT_SPECOPS)
 	enabled = FALSE
 	ailock = TRUE
 	check_synth = FALSE
@@ -121,7 +121,7 @@
 	installation = /obj/item/gun/energy/laser
 
 /obj/machinery/porta_turret/stationary/syndie // Generic turrets for POIs that need to not shoot their buddies.
-	req_one_access = list(access_syndicate)
+	req_one_access = list(ACCESS_SYNDICATE)
 	enabled = TRUE
 	check_all = TRUE
 	faction = FACTION_SYNDICATE // Make sure this equals the faction that the mobs in the POI have or they will fight each other.
@@ -129,7 +129,7 @@
 /obj/machinery/porta_turret/ai_defense
 	name = "defense turret"
 	desc = "This variant appears to be much more durable."
-	req_one_access = list(access_synth) // Just in case.
+	req_one_access = list(ACCESS_SYNTH) // Just in case.
 	installation = /obj/item/gun/energy/xray // For the armor pen.
 	health = 250 // Since lasers do 40 each.
 	maxhealth = 250
@@ -151,7 +151,7 @@
 	desc = "A very tough looking turret made by alien hands."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_turret)
 	icon_state = "turret_cover_alien"
-	req_one_access = list(access_alien)
+	req_one_access = list(ACCESS_ALIEN)
 	installation = /obj/item/gun/energy/alien
 	enabled = TRUE
 	lethal = TRUE
@@ -171,7 +171,7 @@
 /obj/machinery/porta_turret/industrial
 	name = "industrial turret"
 	desc = "This variant appears to be much more rugged."
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	icon_state = "turret_cover_industrial"
 	installation = /obj/item/gun/energy/phasegun
 	health = 200
@@ -187,9 +187,7 @@
 	if(enabled)
 		if(!attacked && !emagged)
 			attacked = TRUE
-			spawn()
-				sleep(60)
-				attacked = FALSE
+			VARSET_IN(src, attacked, FALSE, 6 SECONDS)
 
 	take_damage(damage)
 
@@ -199,7 +197,7 @@
 /obj/machinery/porta_turret/industrial/teleport_defense
 	name = "defense turret"
 	desc = "This variant appears to be much more durable, with a rugged outer coating."
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	installation = /obj/item/gun/energy/gun/burst
 	health = 250
 	maxhealth = 250
@@ -216,6 +214,8 @@
 	turret_type = "normal"
 	req_one_access = list()
 	installation = /obj/item/gun/energy/lasertag/omni
+	projectile = /obj/item/projectile/beam/lasertag/omni
+	lethal_projectile = /obj/item/projectile/beam/rainbow/non_lethal //Did you know that lasertag vests have 3x weakness to shock?
 
 	targetting_is_configurable = FALSE
 	lethal_is_configurable = FALSE
@@ -223,9 +223,12 @@
 	locked = FALSE
 	enabled = FALSE
 	anchored = FALSE
-	//These two are used for lasertag
-	check_synth	 = FALSE
-	check_weapons = FALSE
+	///What vests we will target.
+	var/list/vests_to_target = list(
+		/obj/item/clothing/suit/lasertag/redtag,
+		/obj/item/clothing/suit/lasertag/bluetag,
+		/obj/item/clothing/suit/lasertag/omni
+	)
 	//These vars aren't used
 	check_access = FALSE
 	check_arrest = FALSE
@@ -234,17 +237,32 @@
 	check_all = FALSE
 	check_down = FALSE
 
+
 /obj/machinery/porta_turret/lasertag/red
 	turret_type = "red"
 	installation = /obj/item/gun/energy/lasertag/red
-	check_weapons = TRUE // Used to target blue players
+	projectile = /obj/item/projectile/beam/lasertag/red
+	vests_to_target = list(
+		/obj/item/clothing/suit/lasertag/bluetag,
+		/obj/item/clothing/suit/lasertag/omni
+	)
 
 /obj/machinery/porta_turret/lasertag/blue
 	turret_type = "blue"
 	installation = /obj/item/gun/energy/lasertag/blue
-	check_synth = TRUE // Used to target red players
+	projectile = /obj/item/projectile/beam/lasertag/blue
+	vests_to_target = list(
+		/obj/item/clothing/suit/lasertag/redtag,
+		/obj/item/clothing/suit/lasertag/omni
+	)
+
+/obj/machinery/porta_turret/lasertag/omni
+	turret_type = "industrial"
 
 /obj/machinery/porta_turret/lasertag/assess_living(var/mob/living/L)
+	if(emagged)	// FUCK YOU, PERISH
+		return L.stat ? TURRET_NOT_TARGET : TURRET_PRIORITY_TARGET //we won't be uber evil though. If you're KO'd, let's let you get back up.
+
 	if(!ishuman(L))
 		return TURRET_NOT_TARGET
 
@@ -254,16 +272,13 @@
 	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(L.lying)		//Don't need to stun-lock the players
-		return TURRET_NOT_TARGET
-
 	if(ishuman(L))
 		var/mob/living/carbon/human/M = L
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag) && check_synth) // Checks if they are a red player
-			return TURRET_PRIORITY_TARGET
-
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) && check_weapons) // Checks if they are a blue player
-			return TURRET_PRIORITY_TARGET
+		if(is_type_in_list(M.wear_suit, vests_to_target)) // Checks if they are a red player
+			var/obj/item/clothing/suit/lasertag/tag_suit = M.wear_suit
+			if(tag_suit.lasertag_health > 0)
+				return TURRET_PRIORITY_TARGET
+		return TURRET_NOT_TARGET
 
 /obj/machinery/porta_turret/lasertag/tgui_data(mob/user)
 	var/list/data = list(
@@ -320,9 +335,11 @@
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
 
 	projectile = P
-	lethal_projectile = projectile
+	if(!lethal_projectile)
+		lethal_projectile = projectile
 	shot_sound = initial(P.fire_sound)
-	lethal_shot_sound = shot_sound
+	if(!lethal_shot_sound)
+		lethal_shot_sound = shot_sound
 
 	if(istype(P, /obj/item/projectile/energy))
 		icon_color = "orange"
@@ -487,7 +504,7 @@
 			//If the turret is destroyed, you can remove it with a crowbar to
 			//try and salvage its components
 			to_chat(user, span_notice("You begin prying the metal coverings off."))
-			if(do_after(user, 20))
+			if(do_after(user, 2 SECONDS, target = src))
 				if(can_salvage && prob(70))
 					to_chat(user, span_notice("You remove the turret and salvage some components."))
 					if(installation)
@@ -519,7 +536,7 @@
 			)
 
 		wrenching = TRUE
-		if(do_after(user, 50 * I.toolspeed))
+		if(do_after(user, 5 SECONDS * I.toolspeed, target = src))
 			//This code handles moving the turret around. After all, it's a portable turret!
 			if(!anchored)
 				playsound(src, I.usesound, 100, 1)
@@ -538,7 +555,6 @@
 		if(allowed(user))
 			locked = !locked
 			to_chat(user, span_notice("Controls are now [locked ? "locked" : "unlocked"]."))
-			updateUsrDialog(user)
 		else
 			to_chat(user, span_notice("Access denied."))
 
@@ -608,7 +624,7 @@
 
 	take_damage(damage)
 
-/obj/machinery/porta_turret/emp_act(severity)
+/obj/machinery/porta_turret/emp_act(severity, recursive)
 	if(enabled)
 		//if the turret is on, the EMP no matter how severe disables the turret for a while
 		//and scrambles its settings, with a slight chance of having an emag effect
@@ -617,7 +633,7 @@
 		check_weapons = prob(50)
 		check_access = prob(20)	// check_access is a pretty big deal, so it's least likely to get turned on
 		check_anomalies = prob(50)
-		if(prob(5))
+		if(prob(20 * (1/severity))) //sev 1  = 20% chance sev 2 = 10% sev 3 = ~6 sev 4 = 5%
 			emagged = TRUE
 
 		enabled=0
@@ -627,12 +643,12 @@
 
 	..()
 
-/obj/machinery/porta_turret/ai_defense/emp_act(severity)
+/obj/machinery/porta_turret/ai_defense/emp_act(severity, recursive)
 	if(prob(33)) // One in three chance to resist an EMP.  This is significant if an AoE EMP is involved against multiple turrets.
 		return
 	..()
 
-/obj/machinery/porta_turret/alien/emp_act(severity) // This is overrided to give an EMP resistance as well as avoid scambling the turret settings.
+/obj/machinery/porta_turret/alien/emp_act(severity, recursive) // This is overrided to give an EMP resistance as well as avoid scambling the turret settings.
 	if(prob(75)) // Superior alien technology, I guess.
 		return
 	enabled = FALSE
@@ -978,7 +994,7 @@
 					return
 
 				playsound(src, I.usesound, 50, 1)
-				if(do_after(user, 20 * I.toolspeed))
+				if(do_after(user, 2 SECONDS * I.toolspeed, target = src))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
 					to_chat(user, "You remove the turret's interior metal armor.")
@@ -1054,7 +1070,7 @@
 					to_chat(user, span_notice("You need more fuel to complete this task."))
 
 				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 30 * WT.toolspeed))
+				if(do_after(user, 3 SECONDS * WT.toolspeed, target = src))
 					if(!src || !WT.remove_fuel(5, user))
 						return
 					build_step = 8

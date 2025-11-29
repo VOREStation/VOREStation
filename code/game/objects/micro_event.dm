@@ -1,7 +1,7 @@
 /obj/structure/portal_event/resize
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-d-portal"
 	var/shrinking = TRUE
 	var/size_limit = 0.5

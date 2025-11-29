@@ -129,7 +129,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	var/subtraction_icon_state = "[icon_state]-subtract"
 	var/cache_string = "[icon_state]_[T.icon]_[T.icon_state]"
-	if(T && (subtraction_icon_state in cached_icon_states(icon)))
+	if(T && icon_exists(icon, subtraction_icon_state))
 		cut_overlays()
 		// If we've made the same icon before, just recycle it.
 		if(cache_string in GLOB.cliff_icon_cache)
@@ -240,9 +240,8 @@ two tiles on initialization, and which way a cliff is facing may change during m
 		var/damage = between(20, L.getMaxHealth() * 0.4, 100)
 		var/target_zone = ran_zone()
 		var/blocked = L.run_armor_check(target_zone, "melee") * harm
-		var/soaked = L.get_armor_soak(target_zone, "melee") * harm
 
-		L.apply_damage(damage * harm, BRUTE, target_zone, blocked, soaked, used_weapon=src)
+		L.apply_damage(damage * harm, BRUTE, target_zone, blocked, used_weapon=src)
 
 		// Now fall off more cliffs below this one if they exist.
 		var/obj/structure/cliff/bottom_cliff = locate() in T

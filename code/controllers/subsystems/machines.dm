@@ -192,19 +192,19 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Recover()
 	for(var/datum/D as anything in SSmachines.networks)
 		if(!istype(D, /datum/pipe_network))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.networks, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.networks, item=[D], type=[D?.type]")
 			SSmachines.networks -= D
 	for(var/datum/D as anything in SSmachines.processing_machines)
 		if(!istype(D, /obj/machinery))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.machines, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.machines, item=[D], type=[D?.type]")
 			SSmachines.processing_machines -= D
 	for(var/datum/D as anything in SSmachines.powernets)
 		if(!istype(D, /datum/powernet))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.powernets, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.powernets, item=[D], type=[D?.type]")
 			SSmachines.powernets -= D
 	for(var/datum/D as anything in SSmachines.powerobjs)
 		if(!istype(D, /obj/item))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.powerobjs, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.powerobjs, item=[D], type=[D?.type]")
 			SSmachines.powerobjs -= D
 
 	all_machines = SSmachines.all_machines

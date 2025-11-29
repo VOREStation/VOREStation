@@ -2732,9 +2732,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/ship/aro/midshipshangars)
 "gt" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /obj/mecha/combat/fighter/pinnace,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
@@ -2831,9 +2829,7 @@
 /turf/simulated/shuttle/floor/alienplating/blue,
 /area/ship/aro/engineering)
 "gG" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	output_level = 250000
-	},
+/obj/machinery/power/smes/buildable/hybrid/max_charge,
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
@@ -3046,9 +3042,7 @@
 /area/ship/aro/centralarea)
 "wC" = (
 /obj/effect/floor_decal/industrial/outline,
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /obj/mecha/combat/fighter/pinnace,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)

@@ -47,7 +47,9 @@
 			continue
 		if(S.name == DEVELOPER_WARNING_NAME)
 			continue
-		if( !(species in S.species_allowed))
+		if(!(species in S.species_allowed))
+			continue
+		if(!S.can_be_selected)
 			continue
 		valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
@@ -68,7 +70,9 @@
 			continue
 		if(S.name == DEVELOPER_WARNING_NAME)
 			continue
-		if( !(species in S.species_allowed))
+		if(!(species in S.species_allowed))
+			continue
+		if(!S.can_be_selected)
 			continue
 
 		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
@@ -165,7 +169,7 @@ Proc for attack log creation, because really why not
 		user.attack_log += text("\[[time_stamp()]\] [span_red("Attacked [target_str]: [what_done]")]")
 	if(ismob(target))
 		target.attack_log += text("\[[time_stamp()]\] [span_orange("Attacked by [user_str]: [what_done]")]")
-	log_attack(user_str,target_str,what_done)
+	log_combat(user, target, what_done)
 	if(admin_notify)
 		msg_admin_attack("[key_name_admin(user)] vs [target_str]: [what_done]")
 
@@ -183,156 +187,124 @@ Proc for attack log creation, because really why not
 	else
 		return pick(BP_TORSO, BP_GROIN)
 
-/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
-	if(!user || !target)
-		return FALSE
-	if(!time)
-		return TRUE //Done!
-	if(user.status_flags & DOING_TASK)
-		to_chat(user, span_warning("You're in the middle of doing something else already."))
-		return FALSE //Performing an exclusive do_after or do_mob already
-	if(target?.flags & IS_BUSY)
-		to_chat(user, span_warning("Someone is already doing something with \the [target]."))
-		return FALSE
-	var/user_loc = user.loc
-	var/target_loc = target.loc
-
-	var/holding = user.get_active_hand()
-	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, time, target)
-
-	var/endtime = world.time+time
-	var/starttime = world.time
-
-	if(exclusive & TASK_USER_EXCLUSIVE)
-		user.status_flags |= DOING_TASK
-	if(target && exclusive & TASK_TARGET_EXCLUSIVE)
-		target.flags |= IS_BUSY
-
-	. = TRUE
-	while (world.time < endtime)
-		stoplag(1)
-		if (progress)
-			progbar.update(world.time - starttime)
-		if(!user || !target)
-			. = FALSE
-			break
-		if(uninterruptible)
-			continue
-
-		if(!user || user.incapacitated())
-			. = FALSE
-			break
-
-		if(user.loc != user_loc && !ignore_movement)
-			. = FALSE
-			break
-
-		if(target.loc != target_loc && !ignore_movement)
-			. = FALSE
-			break
-
-		if(user.get_active_hand() != holding)
-			. = FALSE
-			break
-
-		if(target_zone && user.zone_sel?.selecting != target_zone)
-			. = FALSE
-			break
-
-	if(exclusive & TASK_USER_EXCLUSIVE)
-		user.status_flags &= ~DOING_TASK
-	if(exclusive & TASK_TARGET_EXCLUSIVE)
-		target?.status_flags &= ~IS_BUSY
-
-	if (progbar)
-		qdel(progbar)
-
-/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null, exclusive = FALSE)
+/**
+ * Timed action involving one mob user. Target is optional.
+ *
+ * Checks that `user` does not move, change hands, get stunned, etc. for the
+ * given `delay`. Returns `TRUE` on success or `FALSE` on failure.
+ *
+ * @param {mob} user - The mob performing the action.
+ *
+ * @param {number} delay - The time in deciseconds. Use the SECONDS define for readability. `1 SECONDS` is 10 deciseconds.
+ *
+ * @param {atom} target - The target of the action. This is where the progressbar will display.
+ *
+ * @param {flag} timed_action_flags - Flags to control the behavior of the timed action.
+ *
+ * @param {boolean} progress - Whether to display a progress bar / cogbar.
+ *
+ * @param {datum/callback} extra_checks - Additional checks to perform before the action is executed.
+ *
+ * @param {string} interaction_key - The assoc key under which the do_after is capped, with max_interact_count being the cap. Interaction key will default to target if not set.
+ *
+ * @param {number} max_interact_count - The maximum amount of interactions allowed.
+ *
+ * @param {boolean} hidden - By default, any action 1 second or longer shows a cog over the user while it is in progress. If hidden is set to TRUE, the cog will not be shown.
+ *
+ * @param {icon} icon - The icon file of the cog. Default: 'icons/effects/progressbar.dmi'
+ *
+ * @param {iconstate} iconstate - The icon state of the cog. Default: "Cog"
+ *
+ * @param {string} target_zone - The target zone of the user. See _defines/mobs.dm. If the user swaps from this zone, we break the do_after
+ *
+ * @param {number} max_distance - The maximum distance we can be away from the target before the do_after breaks. Default to 1.
+ */
+/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, hidden = FALSE, icon = 'icons/effects/progressbar.dmi', iconstate = "cog", target_zone, max_distance = null)
 	if(!user)
 		return FALSE
-	if(!delay)
-		return TRUE //Okay. Done.
-	if(user.status_flags & DOING_TASK)
-		to_chat(user, span_warning("You're in the middle of doing something else already."))
-		return FALSE //Performing an exclusive do_after or do_mob already
-	if(target?.flags & IS_BUSY)
-		to_chat(user, span_warning("Someone is already doing something with \the [target]."))
-		return FALSE
+	if(!isnum(delay))
+		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
-	var/atom/target_loc = null
-	if(target)
-		target_loc = target.loc
+	if(!isatom(target))
+		CRASH("do_after was given a non-atom target! [target]")
 
-	var/atom/original_loc = user.loc
+	if(!interaction_key && target)
+		interaction_key = target //Use the direct ref to the target
+	if(interaction_key) //Do we have a interaction_key now?
+		var/current_interaction_count = LAZYACCESS(user.do_afters, interaction_key) || 0
+		if(current_interaction_count >= max_interact_count) //We are at our peak
+			return
+		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
-	var/obj/mecha/M = null
+	var/atom/user_loc = user.loc
+	var/atom/target_loc = target?.loc
 
-	if(istype(user.loc, /obj/mecha))
-		original_loc = get_turf(original_loc)
-		M = user.loc
+	var/drifting = FALSE
+	/* //We don't have a drift handler yet, sadly.
+	if(!isnull(user.drift_handler))
+		drifting = TRUE*/
 
 	var/holding = user.get_active_hand()
-
+/* //Disabling for now. Meant to be used for modifier slowdowns.
+	if(!(timed_action_flags & IGNORE_SLOWDOWNS))
+		var/slowdown = user.calculate_item_encumbrance()
+		if(slowdown)
+			//Let's not be TOO evil. You can be up to 4x faster, but never more than 3x slower.
+			delay *= CLAMP(slowdown, 0.25, 3)
+*/
 	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, delay, target)
+	var/datum/cogbar/cog
+
+	if(progress)
+		if(user.client)
+			progbar = new(user, delay, target || user)
+
+		if(!hidden && delay >= 1 SECONDS)
+			cog = new(user, icon, iconstate)
 
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
-
-	if(exclusive & TASK_USER_EXCLUSIVE)
-		user.status_flags |= DOING_TASK
-
-	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
-		target.flags |= IS_BUSY
-
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		if(progress)
+
+		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags))
+		/*if(drifting && isnull(user.drift_handler)) //We don't have a drift handler yet, sadly.
+			drifting = FALSE
+			user_loc = user.loc*/
+
+		if(QDELETED(user) \
+			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
+			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_hand() != holding) \
+			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
+			|| (max_distance && target && get_dist(user, target) > max_distance) \
+			|| (target_zone && user.zone_sel?.selecting != target_zone) \
+			|| (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
-		if(M)
-			if(user.loc != M || (M.loc != original_loc && !ignore_movement)) // Mech coooooode.
-				. = FALSE
-				break
-
-		else if(user.loc != original_loc && !ignore_movement)
+		if(target && (user != target) && \
+			(QDELETED(target) \
+			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc)))
 			. = FALSE
 			break
 
-		if(target_loc && (QDELETED(target)))
-			. = FALSE
-			break
+	if(!QDELETED(progbar))
+		progbar.end_progress()
 
-		if(target && target_loc != target.loc && !ignore_movement)
-			. = FALSE
-			break
+	cog?.remove()
 
-		if(needhand)
-			if(user.get_active_hand() != holding)
-				. = FALSE
-				break
-
-		if(max_distance && target && get_dist(user, target) > max_distance)
-			. = FALSE
-			break
-
-	if(exclusive & TASK_USER_EXCLUSIVE)
-		user.status_flags &= ~DOING_TASK
-	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
-		target.flags &= ~IS_BUSY
-
-	if(progbar)
-		qdel(progbar)
+	if(interaction_key)
+		var/reduced_interaction_count = (LAZYACCESS(user.do_afters, interaction_key) || 0) - 1
+		if(reduced_interaction_count > 0) // Not done yet!
+			LAZYSET(user.do_afters, interaction_key, reduced_interaction_count)
+			return
+		// all out, let's clear er out fully
+		LAZYREMOVE(user.do_afters, interaction_key)
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_ENDED)
 
 /atom/proc/living_mobs(var/range = world.view)

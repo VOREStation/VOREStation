@@ -43,15 +43,15 @@
 		return ..()
 
 	if(CanMouseDrop(target, user))
-		if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
+		if(!can_apply_to_target(target, user)) // There is no point in attempting to apply a mask if it's impossible.
 			return
-		usr.visible_message("\The [usr] begins placing \the [contained] onto [target].")
-		if(!do_mob(usr, target, 25) || !can_apply_to_target(target, usr))
+		user.visible_message("\The [user] begins placing \the [contained] onto [target].")
+		if(!do_after(user, 2.5 SECONDS, target) || !can_apply_to_target(target, user))
 			return
 		// place mask and add fingerprints
-		usr.visible_message("\The [usr] has placed \the [contained] on [target]'s mouth.")
+		user.visible_message("\The [user] has placed \the [contained] on [target]'s mouth.")
 		attach_mask(target)
-		src.add_fingerprint(usr)
+		src.add_fingerprint(user)
 
 /obj/machinery/oxygen_pump/attack_hand(mob/user as mob)
 	if((stat & MAINT) && tank)

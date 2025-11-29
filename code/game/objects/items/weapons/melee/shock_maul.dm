@@ -87,7 +87,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
@@ -98,7 +98,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -198,7 +198,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 	if(!status && bcell && bcell.charge >= hitcost)
-		if(do_after(user, charge_time))
+		if(do_after(user, charge_time, target = src))
 			status = 1
 			user.visible_message(span_warning("[user] charges \the [src]!"),span_warning("You charge \the [src]. <b>It's hammer time!</b>"))
 			playsound(src, "sparks", 75, 1, -1)
@@ -256,11 +256,9 @@
 		update_held_icon()
 	powercheck(hitcost)
 
-/obj/item/melee/shock_maul/emp_act(severity)
-	if(bcell)
-		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
+/obj/item/melee/shock_maul/emp_act(severity, recursive)
 	if(status)
-		status = 0
+		status = FALSE
 		visible_message(span_warning("\The [src]'s power field hisses and sputters out."))
 		update_held_icon()
 	..()

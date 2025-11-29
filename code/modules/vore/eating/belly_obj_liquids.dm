@@ -24,16 +24,16 @@
 				affecting_amt = 5
 			if(affecting_amt >= 1)
 				for(var/mob/living/L in touchable_atoms)
-					if(!L.apply_reagents)
+					if(!L.apply_reagents || L.absorbed)
 						continue
 					if((L.digestable && digest_mode == DM_DIGEST))
 						if(!L.permit_healbelly && is_beneficial) // Healing reagents turned off in preferences!
 							continue
 						if(reagents.total_volume)
-							reagents.trans_to(L, affecting_amt, 1, FALSE)
+							reagents.splash_mob(L, affecting_amt, FALSE)
 					if(L.permit_healbelly && digest_mode == DM_HEAL)
 						if(is_beneficial && reagents.total_volume)
-							reagents.trans_to(L, affecting_amt, 1, FALSE)
+							reagents.splash_mob(L, affecting_amt, FALSE)
 				for(var/obj/item/I in touchable_atoms)
 					if(is_type_in_list(I, GLOB.item_digestion_blacklist))
 						continue
@@ -227,8 +227,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness1_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -238,8 +238,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness2_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -249,8 +249,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness3_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -260,8 +260,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness4_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -271,8 +271,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness5_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -292,7 +292,7 @@
 
 	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
 	if(!DM)
-		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
+		log_runtime("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
 		return FALSE
 	if(DM.handle_atoms(src, touchable_atoms))
 		updateVRPanels()

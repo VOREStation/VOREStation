@@ -5,12 +5,11 @@
 //Blood levels. These are percentages based on the species blood_volume var.
 //Retained for archival/reference purposes - KK
 /*
-var/const/BLOOD_VOLUME_SAFE =    85
-var/const/BLOOD_VOLUME_OKAY =    75
-var/const/BLOOD_VOLUME_BAD =     60
-var/const/BLOOD_VOLUME_SURVIVE = 40
+BLOOD_VOLUME_SAFE =    85
+BLOOD_VOLUME_OKAY =    75
+BLOOD_VOLUME_BAD =     60
+BLOOD_VOLUME_SURVIVE = 40
 */
-var/const/CE_STABLE_THRESHOLD = 0.5
 
 /mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
 /mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
@@ -109,9 +108,6 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(CE_STABLE in chem_effects)
 			dmg_coef = 0.5
 			threshold_coef = 0.75
-//	These are Bay bits, do some sort of calculation.
-//			dmg_coef = min(1, 10/chem_effects[CE_STABLE]) //TODO: add effect for increased damage
-//			threshold_coef = min(dmg_coef / CE_STABLE_THRESHOLD, 1)
 
 		if(blood_volume_raw >= species.blood_volume*species.blood_level_safe)
 			if(pale)
@@ -188,20 +184,23 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			///Second, we process internal bleeding.
 			for(var/datum/wound/internal_bleeding/W in temp.wounds)
 				blood_loss_divisor = blood_loss_divisor+10 //IB is slower bloodloss than normal.
-				var/bicardose = reagents.get_reagent_amount(REAGENT_ID_BICARIDINE)
-				var/inaprovaline = reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE)
+				var/bicardose
+				if(reagents.get_reagent_amount(REAGENT_ID_BICARIDINE) || reagents.get_reagent_amount(REAGENT_ID_BICARIDAZE))
+					bicardose = TRUE
+				var/inaprovaline
+				if(reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) || reagents.get_reagent_amount(REAGENT_ID_INAPROVALAZE))
+					inaprovaline = TRUE
 				var/myeldose = reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
 				if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 					W.open_wound(0.1)
 				if(prob(1))
-					custom_pain("You feel a stabbing pain in your [name]!", 50)
-				if(CE_STABLE in chem_effects)
+					custom_pain("You feel a stabbing pain in your [temp.name]!", 50)
+				if((CE_STABLE in chem_effects) || myeldose)
 					blood_loss_divisor = max(blood_loss_divisor + 30, 1) //Inaprovaline is great on internal wounds.
 				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
-					if(ishuman(temp.applied_pressure))
-						var/mob/living/carbon/human/H = temp.applied_pressure
-						H.bloody_hands(src, 0)
-						blood_loss_divisor += 30 //If you're putting pressure on that limb due to there being an external bleed there, you apply some pressure to the internal bleed as well.
+					blood_loss_divisor += 30
+				if(W.clamped)
+					blood_loss_divisor = blood_loss_divisor * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
 				remove_blood(W.damage/blood_loss_divisor) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place. //Hi. 2025 here. Just did that. ~Diana
 
 			///Thirdly, we check to see if the limb is bleeding EXTERNALLY
@@ -349,13 +348,13 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if (!injected)
 		return
 	if(!our)
-		log_debug("[src] has no blood reagent, proceeding with fallback reinitialization.")
+		log_runtime("[src] has no blood reagent, proceeding with fallback reinitialization.")
 		var/vessel_old = vessel
 		vessel = null
 		qdel(vessel_old)
 		make_blood(amount)
 		if(!vessel)
-			log_debug("Failed to re-initialize blood datums on [src]!")
+			log_runtime("Failed to re-initialize blood datums on [src]!")
 			return
 		if(vessel.total_volume < species.blood_volume)
 			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
@@ -364,7 +363,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		fixblood()
 		our = get_blood(vessel)
 		if(!our)
-			log_debug("Failed to re-initialize blood datums on [src]!")
+			log_runtime("Failed to re-initialize blood datums on [src]!")
 			return
 	if(is_changeling(src)) //Changelings don't reject blood!
 		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
@@ -430,7 +429,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 	//Someone fed us a weird source. Let's log it.
 	if(source && !istype(source, /datum/reagent/blood))
-		log_debug("A blood splatter was made using non-blood datum [source]!")
+		log_runtime("A blood splatter was made using non-blood datum [source]!")
 		source = null //Clear the source since it's invalid. Fallback to non-source behavior.
 
 	// Are we dripping or splattering?

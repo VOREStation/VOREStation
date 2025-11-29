@@ -1,13 +1,13 @@
 /obj/machinery/bodyscanner
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_open"
 
 /obj/machinery/body_scanconsole
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_terminal_off"
 	density = TRUE
 
-/obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming, mob/living/carbon/human/H)
+/obj/machinery/bodyscanner/proc/get_vored_occupant_data(list/incoming, mob/living/carbon/human/H)
 	var/humanprey = 0
 	var/livingprey = 0
 	var/objectprey = 0
@@ -34,6 +34,8 @@
 	if(!occupant)
 		icon_state = "scanner_open"
 		set_light(0)
+		if(console)
+			console.update_icon(0)
 		return
 
 	// base image

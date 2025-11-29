@@ -22,6 +22,8 @@
 		qdel(src) // Decayed to nothing
 	else
 		rad_power = new_power
+		if(rad_power > 1e15) // Arbitrary cap to prevent going to infinity
+			rad_power = 1e15
 		if(!flat)
 			range = min(round(sqrt(rad_power / CONFIG_GET(number/radiation_lower_limit))), 31)  // R = rad_power / dist**2 - Solve for dist
 	return
@@ -58,9 +60,6 @@
 	SSradiation.resistance_cache[src] = (length(contents) + 1)
 	cached_rad_resistance = 60 //Three times that of a steel wall. Rock is less dense than steel, but this is assuming that a normal wall isn't just solid steel all the way through like rock turfs are.
 	return
-
-/obj
-	var/rad_resistance = 0  // Allow overriding rad resistance
 
 // If people expand the system, this may be useful. Here as a placeholder until then
 /atom/proc/rad_act(var/severity)

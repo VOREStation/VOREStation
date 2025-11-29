@@ -53,10 +53,9 @@
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
 	smoke_system.set_up(reagents, 10, 0, get_turf(src))
-	spawn(0)
-		for(var/i = 1 to 8)
-			smoke_system.start()
-		reagents.clear_reagents()
+	for(var/i = 1 to 8)
+		smoke_system.start()
+	reagents.clear_reagents()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/reagent/injector
@@ -134,22 +133,31 @@
 		if(!reagents.total_volume) // Empty
 			activate_pin(3)
 			return
-		if(AM.can_be_injected_by(src))
-			if(isliving(AM))
-				var/mob/living/L = AM
-				var/turf/T = get_turf(AM)
-				T.visible_message(span_warning("[src] is trying to inject [L]!"))
-				sleep(3 SECONDS)
-				if(!L.can_be_injected_by(src))
-					activate_pin(3)
-					return
-				var/contained = reagents.get_reagents()
-				var/trans = reagents.trans_to_mob(L, transfer_amount, CHEM_BLOOD)
-				message_admins("[src] injected \the [L] with [trans]u of [contained].")
-				to_chat(AM, span_notice("You feel a tiny prick!"))
-				visible_message(span_warning("[src] injects [L]!"))
-			else
-				reagents.trans_to(AM, transfer_amount)
+
+		// Handle injections using the helper, same as the syringe.
+		if(isliving(AM))
+			var/mob/living/L = AM
+			if(!L.can_inject(null, 1)) // error_msg = 1 to show errors
+				activate_pin(3)
+				return
+			var/turf/T = get_turf(AM)
+			T.visible_message(span_warning("[src] is trying to inject [L]!"))
+			sleep(3 SECONDS)
+			if(!L.can_inject(null, 0)) // No error message on second check
+				activate_pin(3)
+				return
+			var/contained = reagents.get_reagents()
+			var/trans = reagents.trans_to_mob(L, transfer_amount, CHEM_BLOOD)
+			message_admins("[src] injected \the [L] with [trans]u of [contained].")
+			to_chat(AM, span_notice("You feel a tiny prick!"))
+			visible_message(span_warning("[src] injects [L]!"))
+		else
+			// Use standardized injection compatibility for objects
+			if(!AM.can_be_injected_by(src))
+				activate_pin(3)
+				return
+
+			reagents.trans_to(AM, transfer_amount)
 	else
 
 		if(reagents.total_volume >= volume) // Full

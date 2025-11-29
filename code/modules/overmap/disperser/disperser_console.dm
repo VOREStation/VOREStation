@@ -199,7 +199,7 @@
 				middle.update_idle_power_usage(strength * range * 100)
 			. = TRUE
 
-		if("fire")
+		if(BURN)
 			fire(ui.user)
 			. = TRUE
 

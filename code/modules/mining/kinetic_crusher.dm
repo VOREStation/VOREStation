@@ -5,7 +5,7 @@
 
 /*********************Mining Hammer****************/
 /obj/item/kinetic_crusher
-	icon = 'icons/obj/mining_vr.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "crusher"
 	item_state = "crusher0"
 	item_icons = list(

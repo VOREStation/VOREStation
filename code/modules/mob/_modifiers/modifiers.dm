@@ -13,7 +13,7 @@
 	var/on_expired_text = null			// Text to show to holder when it expires.
 	var/hidden = FALSE					// If true, it will not show up on the HUD in the Future(tm)
 	var/stacks = MODIFIER_STACK_FORBID	// If true, attempts to add a second instance of this type will refresh expire_at instead.
-	var/flags = 0						// Flags for the modifier, see mobs.dm defines for more details.
+	var/flags = NONE						// Flags for the modifier, see mobs.dm defines for more details.
 
 	var/light_color = null				// If set, the mob possessing the modifier will glow in this color.  Not implemented yet.
 	var/light_range = null				// How far the light for the above var goes. Not implemented yet.
@@ -57,7 +57,6 @@
 
 	// Note that these are combined with the mob's real armor values additatively. You can also omit specific armor types.
 	var/list/armor_percent = null		// List of armor values to add to the holder when doing armor calculations. This is for percentage based armor. E.g. 50 = half damage.
-	var/list/armor_flat = null			// Same as above but only for flat armor calculations. E.g. 5 = 5 less damage (this comes after percentage).
 	// Unlike armor, this is multiplicative. Two 50% protection modifiers will be combined into 75% protection (assuming no base protection on the mob).
 	var/heat_protection = null			// Modifies how 'heat' protection is calculated, like wearing a firesuit. 1 = full protection.
 	var/cold_protection = null			// Ditto, but for cold, like wearing a winter coat.

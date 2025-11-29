@@ -4,7 +4,7 @@
  * Previously there was a system where COMSIG_OBSERVER_MOVE was always recursively propogated, but that was unnecessary bloat.
  */
 /datum/component/recursive_move
-	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS //This makes it so pretty much nothing happens when a duplicate component is created since we don't actually override InheritComponent
+	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS //This makes it so pretty much nothing happens when a duplicate component is created since we only use it to regenerate our parent list
 	var/atom/movable/holder
 	var/list/parents = list()
 	var/noparents = FALSE
@@ -12,10 +12,16 @@
 /datum/component/recursive_move/RegisterWithParent()
 	. = ..()
 	holder = parent
-	RegisterSignal(holder, COMSIG_PARENT_QDELETING, PROC_REF(on_holder_qdel))
+	RegisterSignal(holder, COMSIG_QDELETING, PROC_REF(on_holder_qdel))
 	spawn(0) // Delayed action if our holder is spawned in nullspace and then loc = target, hopefully this catches it. VV Add item does this, for example.
 		if(!QDELETED(src))
 			setup_parents()
+
+/datum/component/recursive_move/InheritComponent(datum/component/recursive_move/C, i_am_original)
+	if(!i_am_original)
+		return
+	reset_parents()
+	setup_parents()
 
 /datum/component/recursive_move/proc/setup_parents()
 	SIGNAL_HANDLER
@@ -25,22 +31,25 @@
 	var/recursion = 0 // safety check - max iterations
 	while(istype(cur_parent) && (recursion < 64))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
-			log_debug("RECURSIVE_MOVE: Parent is inside itself. ([holder]) ([holder.type])")
+			log_runtime("RECURSIVE_MOVE: Parent is inside itself. ([holder]) ([holder.type])")
 			reset_parents()
 			break
 		if(cur_parent in parents) //safety check incase of circular contents. (A inside B, B inside C, C inside A), cancel
-			log_debug("RECURSIVE_MOVE: Parent is inside a circular inventory. ([holder]) ([holder.type])")
+			log_runtime("RECURSIVE_MOVE: Parent is inside a circular inventory. ([holder]) ([holder.type])")
 			reset_parents()
 			break
 		recursion++
 		parents += cur_parent
 		RegisterSignal(cur_parent, COMSIG_ATOM_EXITED, PROC_REF(heirarchy_changed))
-		RegisterSignal(cur_parent, COMSIG_PARENT_QDELETING, PROC_REF(on_qdel))
-
+		RegisterSignal(cur_parent, COMSIG_QDELETING, PROC_REF(on_qdel))
+		// Because the turf is not considered to be in the heirarchy by the component, picking
+		// up a bag with an recursive item inside it will not rebuild the heirarchy when it
+		// enters the mob unless we fire this. Can't use pickup signal as it happens too early...
+		RegisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED, PROC_REF(heirarchy_changed))
 		cur_parent = cur_parent.loc
 
 	if(recursion >= 64) // If we escaped due to iteration limit, cancel
-		log_debug("RECURSIVE_MOVE: Parent hit recursion limit. ([holder]) ([holder.type])")
+		log_runtime("RECURSIVE_MOVE: Parent hit recursion limit. ([holder]) ([holder.type])")
 		reset_parents()
 		parents.Cut()
 
@@ -65,8 +74,9 @@
 	if(!length(parents))
 		return
 	for(var/atom/movable/cur_parent in parents)
-		UnregisterSignal(cur_parent, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(cur_parent, COMSIG_QDELETING)
 		UnregisterSignal(cur_parent, COMSIG_ATOM_EXITED)
+		UnregisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED)
 
 	UnregisterSignal(parents[parents.len], COMSIG_ATOM_ENTERING)
 
@@ -93,7 +103,7 @@
 
 /datum/component/recursive_move/proc/on_holder_qdel()
 	SIGNAL_HANDLER
-	UnregisterSignal(holder, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(holder, COMSIG_QDELETING)
 	reset_parents()
 	holder = null
 	qdel(src)
@@ -101,7 +111,7 @@
 /datum/component/recursive_move/Destroy()
 	. = ..()
 	reset_parents()
-	if(holder) UnregisterSignal(holder, COMSIG_PARENT_QDELETING)
+	if(holder) UnregisterSignal(holder, COMSIG_QDELETING)
 	holder = null
 
 /datum/component/recursive_move/proc/reset_parents()
@@ -109,15 +119,15 @@
 	parents.Cut()
 
 //the banana peel of testing stays
-/obj/item/bananapeel/testing
+/obj/item/bananapeel/test
 	name = "banana peel of testing"
 	desc = "spams world log with debugging information"
 
-/obj/item/bananapeel/testing/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
+/obj/item/bananapeel/test/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
 	SIGNAL_HANDLER
 	world.log << "the [source] moved from [old_loc]([old_loc.x],[old_loc.y],[old_loc.z]) to [new_loc]([new_loc.x],[new_loc.y],[new_loc.z])"
 
-/obj/item/bananapeel/testing/Initialize(mapload)
+/obj/item/bananapeel/test/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(shmove))

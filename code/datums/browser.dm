@@ -20,10 +20,10 @@
 		var/client/client_user = user
 		user = client_user.mob
 	src.user = user
-	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
+	RegisterSignal(user, COMSIG_QDELETING, PROC_REF(user_deleted))
 	src.window_id = window_id
 	if (title)
-		src.title = format_text(title)
+		src.title = strip_improper(title)
 	if (width)
 		src.width = width
 	if (height)
@@ -508,8 +508,8 @@
 	if(!user)
 		return
 	if(!values)
-		values = list(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-	if(values.len < 12)
+		values = DEFAULT_COLORMATRIX
+	if(length(values) < 12)
 		values.len = 12
 	var/list/output = list()
 	output += "<form><input type='hidden' name='src' value='[REF(src)]'>"
@@ -580,8 +580,13 @@
 			var/client/C = user
 			user = C.mob
 		else
-			return
+			return null
+
 	var/datum/browser/modal/color_matrix_picker/B = new(user, message, title, button1, button2, button3, stealfocus, timeout, values)
 	B.open()
 	B.wait()
-	return list("button" = B.selected_button, "matrix" = B.color_matrix)
+	if(B.selected_button == 3 || !B.selected_button)
+		return values
+	if((B.selected_button == 2) || !islist(B.color_matrix) || !ISINRANGE(length(B.color_matrix), 9, 20))
+		return list()
+	return B.color_matrix

@@ -50,6 +50,19 @@
 	icon_state = "grass0"
 	initial_flooring = /decl/flooring/grass
 
+/turf/simulated/floor/holofloor/grass/jungle
+	icon = 'icons/jungle.dmi'
+	icon_state = "grass2"
+
+/turf/simulated/floor/holofloor/grass/hive
+	icon = 'icons/turf/flooring/misc_vr.dmi'
+	icon_state = "hive"
+	name = "giant honeycomb"
+
+/turf/simulated/floor/holofloor/wood/diona
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "diona"
+
 /turf/simulated/floor/holofloor/snow
 	name = "snow"
 	base_name = "snow"
@@ -128,7 +141,7 @@
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/furniture_vr.dmi'
+	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_padded_preview"
 	anchored = TRUE
 	unacidable = TRUE
@@ -159,7 +172,6 @@
 		return TRUE
 	var/obj/item/organ/external/affecting = target.get_organ(ran_zone(user.zone_sel.selecting))
 	var/armor_block = target.run_armor_check(affecting, "melee")
-	var/armor_soak = target.get_armor_soak(affecting, "melee")
 
 	if(HULK in user.mutations)
 		damage += 5
@@ -168,10 +180,7 @@
 
 	target.visible_message(span_bolddanger("[user] has punched [target]!"))
 
-	if(armor_soak >= damage)
-		return TRUE
-
-	target.apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
+	target.apply_damage(damage, HALLOSS, affecting, armor_block)
 	if(damage >= 9)
 		target.visible_message(span_bolddanger("[user] has weakened [target]!"))
 		target.apply_effect(4, WEAKEN, armor_block)

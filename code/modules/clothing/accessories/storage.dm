@@ -37,10 +37,6 @@
 /obj/item/clothing/accessory/storage/attackby(obj/item/W, mob/user)
 	return hold.attackby(W, user)
 
-/obj/item/clothing/accessory/storage/emp_act(severity)
-	hold.emp_act(severity)
-	..()
-
 /obj/item/clothing/accessory/storage/attack_self(mob/user)
 	to_chat(user, span_notice("You empty [src]."))
 	var/turf/T = get_turf(src)

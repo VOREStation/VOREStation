@@ -3,7 +3,7 @@ ADMIN_VERB(cmd_admin_say, R_ADMIN, "ASay", "Send a message to other admins", "Ad
 	if(!msg)
 		return
 
-	log_adminsay(msg, user)
+	user.mob.log_talk(message, LOG_ASAY)
 
 	for(var/client/C in GLOB.admins)
 		if(check_rights_for(C, R_ADMIN))
@@ -13,7 +13,7 @@ ADMIN_VERB(cmd_admin_say, R_ADMIN, "ASay", "Send a message to other admins", "Ad
 
 ADMIN_VERB(cmd_mod_say, (R_ADMIN|R_MOD|R_SERVER), "Msay", "Send a message to other mod", "Admin.Chat", message as text)
 	var/msg = sanitize(message)
-	log_modsay(msg, user)
+	log_modsay(msg, list("speaker" = user))
 
 	if (!msg)
 		return
@@ -22,14 +22,14 @@ ADMIN_VERB(cmd_mod_say, (R_ADMIN|R_MOD|R_SERVER), "Msay", "Send a message to oth
 	if(check_rights(R_ADMIN, 0))
 		sender_name = span_admin("[sender_name]")
 	for(var/client/C in GLOB.admins)
-		if(check_rights(R_ADMIN|R_MOD|R_SERVER)) //VOREStation Edit
+		if(check_rights_for(C, R_ADMIN|R_MOD|R_SERVER)) //VOREStation Edit
 			to_chat(C, span_mod_channel(create_text_tag("mod", "MOD:", C) + " " + span_name("[sender_name]") + "([admin_jump_link(user.mob, C.holder)]): " + span_name("[msg]") ))
 
 	feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(cmd_event_say, (R_ADMIN|R_MOD|R_EVENT|R_SERVER), "Esay", "Send a message to other event manager", "Admin.Chat", message as text)
 	var/msg = sanitize(message)
-	log_eventsay(msg, user)
+	log_eventsay(msg, list("speaker" = user))
 
 	if (!msg)
 		return

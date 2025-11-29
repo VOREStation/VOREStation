@@ -74,7 +74,7 @@
 			return
 		user.visible_message("[user] starts to disassemble \the [src].", "You start to disassemble \the [src].")
 		playsound(src, WT.usesound, 50, 1)
-		if(do_after(user,15 * W.toolspeed))
+		if(do_after(user,15 * W.toolspeed, target = src))
 			if(!src || !user || !WT.remove_fuel(5, user)) return
 			to_chat(user, span_notice("You fully disassemble \the [src]. There were no salvageable parts."))
 			qdel(src)
@@ -109,7 +109,7 @@
 		disable_field()
 		update_icon()
 
-/obj/machinery/atmospheric_field_generator/emp_act()
+/obj/machinery/atmospheric_field_generator/emp_act(severity, recursive)
 	if(!(stat & EMPED))
 		stat |= EMPED
 		disable_field() //shutting dowwwwwwn
@@ -164,7 +164,7 @@
 	//Delete ourselves if we find extra mapped in arfgs
 	for(var/obj/machinery/atmospheric_field_generator/F in loc)
 		if(F != src)
-			log_debug("Duplicate ARFGS at [x],[y],[z]")
+			log_mapping("Duplicate ARFGS at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
 
 	var/area/A = get_area(src)

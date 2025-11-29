@@ -60,3 +60,6 @@
 		if(L.incapacitated(INCAPACITATION_DISABLED) || L.stat == UNCONSCIOUS) // If our target is stunned, go in for the kill.
 			return 1
 	return ..() // Do ranged if possible otherwise.
+
+/mob/living/simple_mob/animal/giant_spider/electric/event
+	ai_holder_type = /datum/ai_holder/simple_mob/event

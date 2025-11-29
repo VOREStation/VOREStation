@@ -55,7 +55,7 @@
 
 /datum/category_item/autolathe/general/floor_light
 	name = "floor light"
-	path =/obj/machinery/floor_light
+	path =/obj/item/floor_light
 
 /datum/category_item/autolathe/general/extinguisher
 	name = "extinguisher"

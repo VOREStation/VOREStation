@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	icon = 'icons/obj/suit_cycler.dmi'
 	icon_state = "suit_cycler"
 
-	req_access = list(access_captain,access_heads)
+	req_access = list(ACCESS_CAPTAIN,ACCESS_HEADS)
 
 	var/active = 0          // PLEASE HOLD.
 	var/safeties = 1        // The cycler won't start with a living thing inside it unless safeties are off.
@@ -162,19 +162,14 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		visible_message(span_notice("[user] starts putting [G.affecting.name] into the suit cycler."), 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
-			if(M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
+			M.forceMove(src)
 			occupant = M
 
 			add_fingerprint(user)
 			qdel(G)
-
-			updateUsrDialog(user)
 
 			return
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
@@ -182,7 +177,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [panel_open ?  "open" : "close"] the maintenance panel.")
-		updateUsrDialog(user)
 		return
 
 	else if(istype(I,/obj/item/clothing/head/helmet/space/void) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
@@ -216,11 +210,10 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		helmet = I
 
 		update_icon()
-		updateUsrDialog(user)
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/void))
@@ -256,11 +249,10 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		suit = I
 
 		update_icon()
-		updateUsrDialog(user)
 		return
 
 	..()
@@ -276,7 +268,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	emagged = 1
 	safeties = 0
 	req_access = list()
-	updateUsrDialog(user)
 	return 1
 
 /obj/machinery/suit_cycler/attack_hand(mob/user as mob)
@@ -479,7 +470,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
-	updateUsrDialog(user)
 
 /obj/machinery/suit_cycler/proc/repair_suit()
 	if(!suit || !suit.damage || !suit.can_breach)
@@ -509,15 +499,10 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(!occupant)
 		return
 
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-
-	occupant.loc = get_turf(occupant)
+	occupant.forceMove(get_turf(src))
 	occupant = null
 
 	add_fingerprint(user)
-	updateUsrDialog(user)
 	update_icon()
 
 	return

@@ -55,6 +55,8 @@
 		host.ckey = user.ckey
 		host.add_ventcrawl(vent_found)
 		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
+		SEND_SIGNAL(host,COMSIG_MOB_VENTCRAWL_START,vent_found)
+		SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_ENTERED,host)
 
 /datum/tgui_module/ghost_spawn_menu/proc/become_drone(mob/observer/dead/user, fabricator)
 	if(SSticker.current_state < GAME_STATE_PLAYING)
@@ -143,29 +145,7 @@
 
 	var/req_time = world.time
 	nif.notify("Transient mindstate detected, analyzing...")
-	addtimer(CALLBACK(src, PROC_REF(finish_soulcatcher_spawn), user, H, SC, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
-
-/datum/tgui_module/ghost_spawn_menu/proc/finish_soulcatcher_spawn(mob/observer/dead/user, mob/living/carbon/human/H, datum/nifsoft/soulcatcher/SC, req_time)
-	var/response = tgui_alert(H,"[user] ([user.key]) wants to join into your Soulcatcher.","Soulcatcher Request", list("Deny", "Allow"), timeout = 1 MINUTE)
-
-	if(!response || response == "Deny")
-		to_chat(user, span_warning("[H] denied your request."))
-		return
-
-	if((world.time - req_time) > 1 MINUTE)
-		to_chat(H, span_warning("The request had already expired. (1 minute waiting max)"))
-		return
-
-	//Final check since we waited for input a couple times.
-	if(H && user && user.key && !H.stat && H.nif && SC)
-		if(!user.mind) //No mind yet, aka haven't played in this round.
-			user.mind = new(user.key)
-
-		user.mind.name = user.name
-		user.mind.current = user
-		user.mind.active = TRUE
-
-		SC.catch_mob(user) //This will result in us being deleted so...
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, nif_soulcatcher_spawn_prompt), user, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
 
 /datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_vore_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list
@@ -187,28 +167,7 @@
 
 	var/req_time = world.time
 	gem.notify_holder("Transient mindstate detected, analyzing...")
-	addtimer(CALLBACK(src, PROC_REF(finish_soulcatcher_vore_spawn), user, M, gem, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
-
-/datum/tgui_module/ghost_spawn_menu/proc/finish_soulcatcher_vore_spawn(mob/observer/dead/user, mob/M, obj/soulgem/gem, req_time)
-	if(tgui_alert(M, "[user.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
-		to_chat(user, span_warning("[M] has denied your request."))
-		return
-
-	if((world.time - req_time) > 1 MINUTES)
-		to_chat(M, span_warning("The request had already expired. (1 minute waiting max)"))
-		return
-
-	//Final check since we waited for input a couple times.
-	if(M && user && user.key && !M.stat && gem?.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_GHOSTS, TRUE))
-		if(!user.mind) //No mind yet, aka haven't played in this round.
-			user.mind = new(user.key)
-
-		user.mind.name = user.name
-		user.mind.current = user
-		user.mind.active = TRUE
-
-		gem.catch_mob(user) //This will result in us being deleted so...
-
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, soulcatcher_spawn_prompt), user, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
 
 /datum/tgui_module/ghost_spawn_menu/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list
@@ -219,10 +178,7 @@
 
 	to_chat(user, span_notice("Inbelly spawn request sent to predator."))
 	to_chat(target, span_notice("Incoming belly spawn request."))
-	addtimer(CALLBACK(src, PROC_REF(finish_vore_belly_spawn), user, target), 1.5 SECONDS, TIMER_DELETE_ME)
-
-/datum/tgui_module/ghost_spawn_menu/proc/finish_vore_belly_spawn(mob/observer/dead/user,  mob/living/L)
-	L.inbelly_spawn_prompt(user.client)			// Hand reins over to them
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, inbelly_spawn_prompt), user.client), 1.5 SECONDS, TIMER_DELETE_ME) // Hand reins over to them
 
 /datum/tgui_module/ghost_spawn_menu/proc/join_corgi(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
@@ -262,9 +218,9 @@
 	var/obj/structure/ghost_pod/manual/lost_drone/dogborg/lost = new(get_turf(spawnspot))
 	lost.create_occupant(user)
 
-/datum/tgui_module/ghost_spawn_menu/proc/join_maintpred(mob/observer/dead/user)
+/datum/tgui_module/ghost_spawn_menu/proc/join_maintrcritter(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a maint pred."))
+		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a maint critter."))
 		return
 
 	if(GLOB.allowed_ghost_spawns <= 0)
@@ -277,9 +233,9 @@
 		return
 
 	GLOB.allowed_ghost_spawns--
-	announce_ghost_joinleave(user, 0, "They are now a maint pred.")
-	var/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce/mpred = new(get_turf(spawnspot))
-	mpred.create_occupant(user)
+	announce_ghost_joinleave(user, 0, "They are now a maint critter.")
+	var/obj/structure/ghost_pod/ghost_activated/unified_hole/maint_critter = new(get_turf(spawnspot))
+	maint_critter.create_occupant(user)
 
 /datum/tgui_module/ghost_spawn_menu/proc/join_grave(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_CYBORG))
@@ -299,25 +255,6 @@
 	announce_ghost_joinleave(user, 0, "They are now a gravekeeper drone.")
 	var/obj/structure/ghost_pod/automatic/gravekeeper_drone/grave = new(get_turf(spawnspot))
 	grave.create_occupant(user)
-
-/datum/tgui_module/ghost_spawn_menu/proc/join_morpth(mob/observer/dead/user)
-	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a morph."))
-		return
-
-	if(GLOB.allowed_ghost_spawns <= 0)
-		to_chat(user, span_warning("There're no free ghost join slots."))
-		return
-
-	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
-	if(!spawnspot)
-		to_chat(user, span_warning("No spawnpoint available."))
-		return
-
-	GLOB.allowed_ghost_spawns--
-	announce_ghost_joinleave(user, 0, "They are now a morph.")
-	var/obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce/morph = new(get_turf(spawnspot))
-	morph.create_occupant(user)
 
 /datum/tgui_module/ghost_spawn_menu/proc/get_ghost_role_spawn()
 	var/list/possibleSpawnspots = list()

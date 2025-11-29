@@ -35,6 +35,13 @@
 	max_damage = initial(max_damage)
 	idle_usage = initial(idle_usage)
 	active_usage = initial(active_usage)
+	installed = 0
+	wrapped = null
+
+/datum/robot_component/Destroy(force)
+	if(wrapped)
+		QDEL_NULL(wrapped)
+	. = ..()
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon

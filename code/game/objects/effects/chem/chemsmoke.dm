@@ -99,11 +99,11 @@
 			var/more = ""
 			if(M)
 				more = "(<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</a>)"
-			message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [print_name][more].", 0, 1)
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [print_name].")
+			message_admins("A chemical smoke reaction has taken place in ([whereLink]) [contained]. Last associated key is [print_name][more].", 0, 1)
+			log_game("A chemical smoke reaction has taken place in ([where]) [contained]. Last associated key is [print_name].")
 		else
 			message_admins("A chemical smoke reaction has taken place in ([whereLink]). No associated key.", 0, 1)
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
+			log_game("A chemical smoke reaction has taken place in ([where]) [contained]. No associated key.")
 
 //Runs the chem smoke effect
 // Spawns damage over time loop for each reagent held in the cloud.
@@ -138,8 +138,7 @@
 	for(var/i = 0, i < range, i++) //calculate positions for smoke coverage - then spawn smoke
 		var/radius = i * 1.5
 		if(!radius)
-			spawn(0)
-				spawnSmoke(location, I, 1)
+			spawnSmoke(location, I, 1)
 			continue
 
 		var/offset = 0
@@ -157,8 +156,7 @@
 			if(!T)
 				continue
 			if(T in targetTurfs)
-				spawn(0)
-					spawnSmoke(T, I, range)
+				spawnSmoke(T, I, range)
 
 //------------------------------------------
 // Randomizes and spawns the smoke effect.

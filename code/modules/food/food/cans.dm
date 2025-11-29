@@ -1,10 +1,47 @@
 /obj/item/reagent_containers/food/drinks/cans
 	volume = 40 //just over one and a half cups
 	amount_per_transfer_from_this = 5
-	flags = 0 //starts closed
+	flags = NONE //starts closed
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 	cant_chance = 1 //arbitrarily high for april fools; if it's not reverted in its entirety I suggest rolling it down to 2% or something
+	var/shaken = 0 // How many times this can has been shaken.
+
+/obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user)
+	if(user.a_intent == I_HURT && !is_open_container())
+		to_chat(user, span_warning("You shake [src]."))
+		if(!shaken)
+			START_PROCESSING(SSobj, src)
+		shaken += 3
+		return
+	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10)) // Because it's always funny
+		shaken += 10
+	. = ..()
+
+/obj/item/reagent_containers/food/drinks/cans/open(mob/user)
+	. = ..()
+	if(!cant_open && shaken)
+		to_chat(user, span_warning("[src] [(shaken > 50) ? "explodes" : "foams"] when you open it!"))
+		var/obj/effect/effect/foam/foam = new /obj/effect/effect/foam(src.loc)
+		foam.amount = (shaken > 50) ? 2 : 1
+		reagents.splash(user, shaken/2)
+		reagents.trans_to(foam, shaken/2)
+		if(shaken > 50)
+			if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(0.1))
+				explosion(get_turf(src), -1, -1, -1, 7)
+				user.gib()
+			else
+				explosion(get_turf(src), -1, -1, -1, 1)
+			qdel(src)
+
+/obj/item/reagent_containers/food/drinks/cans/process()
+	if(shaken <= 0)
+		return PROCESS_KILL
+	shaken--
+
+/obj/item/reagent_containers/food/drinks/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 //DRINKS
 
@@ -390,7 +427,7 @@
 	description_fluff = "Puts the 'B' in Best Soda! Bepis is the number one competitor to \
 	Space Cola and has vendors scattered across the frontier. While the drink is not as \
 	popular as Space Cola, many people across known space enjoy the sweet beverage."
-	icon = 'icons/obj/drinks_vr.dmi'
+	icon = 'icons/obj/drinks.dmi'
 	icon_state = "bepis"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
@@ -402,7 +439,7 @@
 /obj/item/reagent_containers/food/drinks/cans/astrodew
 	name = "\improper Astro Dew Spring Water"
 	desc = "A can of refreshing 'spring' water! Or so the can claims."
-	icon = 'icons/obj/drinks_vr.dmi'
+	icon = 'icons/obj/drinks.dmi'
 	icon_state = "watercan"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
@@ -419,7 +456,7 @@
 	and retaining its original recipe. They've been producing and selling their product across \
 	the galaxy for decades without fail. NanoTrasen has attempted to by out the small company for \
 	years now, however all attempts they've made have failed."
-	icon = 'icons/obj/drinks_vr.dmi'
+	icon = 'icons/obj/drinks.dmi'
 	icon_state = "coffeecan"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
@@ -431,7 +468,7 @@
 /obj/item/reagent_containers/food/drinks/cans/buzz
 	name = "\improper Buzz Fuzz"
 	desc = "Uses real honey, making it a sweet tooth's dream drink."
-	icon = 'icons/obj/drinks_vr.dmi'
+	icon = 'icons/obj/drinks.dmi'
 	icon_state = "buzzfuzz"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
@@ -443,7 +480,7 @@
 /obj/item/reagent_containers/food/drinks/cans/shambler
 	name = "\improper Shambler's Juice"
 	desc = "~Shake me up some of that Shambler's Juice!~"
-	icon = 'icons/obj/drinks_vr.dmi'
+	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shambler"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
@@ -455,7 +492,7 @@
 /obj/item/reagent_containers/food/drinks/cans/cranberry
 	name = "\improper Sprited Cranberry"
 	desc = "A delicious blend of fresh cranberry juice and various spices, the perfect drink."
-	icon = 'icons/obj/drinks_vr.dmi'
+	icon = 'icons/obj/drinks.dmi'
 	icon_state = "cranberry"
 	center_of_mass_x = 16
 	center_of_mass_y = 10

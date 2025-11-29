@@ -30,7 +30,7 @@
 			animation.plane = MOB_PLANE
 			animation.layer = ABOVE_MOB_LAYER
 			animation.master = holder
-			target.ExtinguishMob()
+			target.extinguish_mob()
 			if(target.buckled)
 				target.buckled.unbuckle_mob( target, TRUE)
 			jaunt_disappear(animation, target)
@@ -53,7 +53,7 @@
 						if(target.forceMove(T))
 							break
 			target.canmove = 1
-			target.client.eye = target
+			target.reset_perspective() // Fixes a blackscreen
 			qdel(animation)
 			qdel(holder)
 

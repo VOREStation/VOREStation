@@ -336,8 +336,8 @@
 	desc = "This poster dictates 'NO ERP'. Of course, everyone knows that ERP stands for 'Excessive Rude Postures' and after the events of 2135 it should be clear to everyone as to why this is an important lesson to convey."
 /decl/poster/vore_90
 	icon_state = "tgposter59"
-	name = "Cannister"
-	desc = "This poster seems to be advertising a kind of cannister. The can itself looks sort of ancient, so maybe this isn't the most modern of posters. There's no writing on the poster though, so it's not clear what brand of cannister this is or how to acquire one. There's not even any benefits listed or anything. It's just a picture of an old air cannister."
+	name = "Canister"
+	desc = "This poster seems to be advertising a kind of Canister. The can itself looks sort of ancient, so maybe this isn't the most modern of posters. There's no writing on the poster though, so it's not clear what brand of canister this is or how to acquire one. There's not even any benefits listed or anything. It's just a picture of an old air canister."
 /decl/poster/vore_91
 	icon_state = "tgposter60"
 	name = "DICK GUM"

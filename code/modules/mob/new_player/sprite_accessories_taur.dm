@@ -412,7 +412,7 @@
 	loaf_offset = 7
 	vore_tail_sprite_variant = "Deer"
 	belly_variant_when_loaf = TRUE
-	fullness_icons = 1
+	fullness_icons = 3
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -574,7 +574,7 @@
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline (Taur)"
 	icon_state = "feline_s"
-	suit_sprites = 'icons/mob/taursuits_feline.dmi'
+	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -617,9 +617,9 @@
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c_wag
 	name = "Feline 3-color (Taur, Fat vwag)"
-	icon_state = "feline2_s"
-	extra_overlay = "feline2_markings"
-	extra_overlay2 = "feline2_markings_2"
+	icon_state = "fatfeline2_s"
+	extra_overlay = "fatfeline2_markings"
+	extra_overlay2 = "fatfeline2_markings_2"
 	ani_state = "fatfeline_s"
 	extra_overlay_w = "fatfeline_markings_vwag"
 	extra_overlay2_w = "fatfeline_markings_vwag2"
@@ -656,7 +656,7 @@
 /datum/sprite_accessory/tail/taur/tiger
 	name = "Tiger (Taur)"
 	icon_state = "tiger_s"
-	suit_sprites = 'icons/mob/taursuits_feline.dmi'
+	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
 	extra_overlay = "tiger_markings"
 	extra_overlay2 = "tiger_markings_2"
@@ -708,7 +708,7 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
 	icon_state = "slug_s"
-	suit_sprites = 'icons/mob/taursuits_slug.dmi'
+	suit_sprites = 'icons/mob/taursuits_deer.dmi' //Yes it sounds odd, but they share the same sprites.
 	icon_sprite_tag = "slug"
 	vore_tail_sprite_variant = "Slug"
 	fullness_icons = 1
@@ -892,14 +892,6 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their paw, forcing you down to the ground!"
-
-/datum/sprite_accessory/tail/taur/noodle
-	name = "Eastern Dragon (Taur)"
-	icon_state = "noodle_s"
-	extra_overlay = "noodle_markings"
-	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
-	clip_mask_state = "taur_clip_mask_noodle"
-	icon_sprite_tag = "noodle"
 
 /datum/sprite_accessory/tail/taur/zorgoia
 	name = "Zorgoia (Taur)"
@@ -1437,3 +1429,16 @@
 /datum/sprite_accessory/tail/taur/long_lizard/scaled
 	name = "Large Dragon Tail/W scales"
 	extra_overlay = "big_liz_mark"
+
+/datum/sprite_accessory/tail/taur/treeoak_roots
+	name = "Tree Roots (Oak)"
+	icon_state = "tree_oak_roots"
+	can_ride = 0
+
+/datum/sprite_accessory/tail/longtail/scug // Wawa
+	name = "Catslug Tail"
+	icon_state = "scug"
+
+/datum/sprite_accessory/tail/longtail/scug/dots
+	name = "Catslug Tail Dotted"
+	extra_overlay =  "scug_markings"

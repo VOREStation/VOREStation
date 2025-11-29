@@ -10,6 +10,8 @@
 		"ear_translator",
 		"walkpod",
 		"juke_remote",
+		"mail_scanner",
+		"floor_painter",
 		// "fax",
 		// "sec_pen",
 		// "handlabel",
@@ -174,6 +176,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
 
 /datum/techweb_node/fireworks
 	id = TECHWEB_NODE_FIREWORKS
@@ -197,7 +200,7 @@
 		"fireworkfallout",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	announce_channels = list(CHANNEL_COMMON)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 
 // Kitchen root node
@@ -242,6 +245,8 @@
 		"fryer_board",
 		"cerealmaker_board",
 		"candymachine_board",
+		// "food_replicator",
+		"borgos1",
 		// "range",
 		// "souppot",
 		// "processor",
@@ -257,4 +262,15 @@
 		// "roastingstick",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
+
+/datum/techweb_node/confetti_cannon
+	id = TECHWEB_NODE_CONFETTI
+	display_name = "Confetti Cannon"
+	description = "Less explosive than fireworks yet more messy!"
+	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
+	design_ids = list(
+		"confetti_cannon",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)

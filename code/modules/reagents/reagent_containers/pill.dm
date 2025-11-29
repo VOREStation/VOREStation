@@ -12,7 +12,7 @@
 
 	var/base_state = "pill"
 
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
@@ -59,7 +59,7 @@
 		user.balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
 
 		user.setClickCooldown(user.get_attack_speed(src))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return
 
 		user.drop_from_inventory(src) //icon update
@@ -85,7 +85,7 @@
 			return
 		user.balloon_alert_visible("[user] puts something in \the [target]", "[target] dissolves in \the [src]", 2)
 
-		add_attack_logs(user,null,"Spiked [target.name] with a pill containing [reagentlist()]")
+		add_attack_logs(user,target,"Spiked [target.name] with a pill containing [reagentlist()]")
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))

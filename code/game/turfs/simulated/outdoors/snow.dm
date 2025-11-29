@@ -27,7 +27,7 @@
 /turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/shovel))
 		to_chat(user, span_notice("You begin to remove \the [src] with your [W]."))
-		if(do_after(user, 4 SECONDS * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 			to_chat(user, span_notice("\The [src] has been dug up, and now lies in a pile nearby."))
 			new /obj/item/stack/material/snow(src, 10)
 			demote()
@@ -40,7 +40,7 @@
 	if(!Adjacent(user))
 		return
 	visible_message("[user] starts scooping up some snow.", "You start scooping up some snow.")
-	if(do_after(user, 1 SECOND))
+	if(do_after(user, 1 SECOND, target = src))
 		var/obj/S = new /obj/item/stack/material/snow(user.loc)
 		user.put_in_hands(S)
 		visible_message("[user] scoops up a pile of snow.", "You scoop up a pile of snow.")
@@ -52,6 +52,7 @@
 	desc = "Looks slippery."
 	edge_blending_priority = 0
 	can_be_plated = FALSE
+	wet = TURFSLIP_ICE
 
 /turf/simulated/floor/outdoors/ice/dark
 	name = "black ice"
@@ -62,17 +63,6 @@
 	name = "smooth black ice"
 	icon_state = "ice_dark_smooth"
 	desc = "Dark rock that has been smoothened to be perfectly even. It's coated in a layer of slippey ice"
-
-/turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
-	if(isliving(M))
-		if((M.weakened && prob(10)) || (M.m_intent == "walk" && prob(95)))
-			return ..()
-		addtimer(CALLBACK(src,TYPE_PROC_REF(/turf/simulated/floor/outdoors/ice,cause_slip),M), 1 * world.tick_lag, TIMER_DELETE_ME)
-/turf/simulated/floor/outdoors/ice/cause_slip(var/mob/living/M)
-	if(M.weakened == 0)
-		to_chat(M, span_warning("You slide across the ice!"))
-	M.SetWeakened(3)
-	step(M,M.dir)
 
 // Ice that is used for, say, areas floating on water or similar.
 /turf/simulated/floor/outdoors/shelfice

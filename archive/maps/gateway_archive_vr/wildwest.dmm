@@ -30,11 +30,7 @@
 /turf/simulated/wall/cult,
 /area/awaymission/wwvault)
 "ai" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/wall/cult,
 /area/awaymission/wwvault)
 "aj" = (
@@ -54,26 +50,22 @@
 "am" = (
 /mob/living/simple_mob/faithless,
 /turf/simulated/shuttle/plating{
-	 icon_state = "bcircuitoff"
+	icon_state = "bcircuitoff"
 	},
 /area/awaymission/wwvault)
 "an" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/shuttle/wall,
 /area/awaymission/wwvault)
 "ao" = (
 /turf/simulated/shuttle/plating{
-	 icon_state = "gcircuitoff"
+	icon_state = "gcircuitoff"
 	},
 /area/awaymission/wwvault)
 "ap" = (
 /obj/machinery/wish_granter_dark,
 /turf/simulated/shuttle/plating{
-	 icon_state = "gcircuitoff"
+	icon_state = "gcircuitoff"
 	},
 /area/awaymission/wwvault)
 "aq" = (
@@ -186,19 +178,11 @@
 /turf/simulated/mineral,
 /area)
 "aH" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/space,
 /area)
 "aI" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area)
 "aJ" = (
@@ -212,11 +196,7 @@
 /turf/simulated/floor/engine/cult,
 /area/awaymission/wwvault)
 "aL" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "aM" = (
@@ -226,27 +206,15 @@
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "aO" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral/diamond,
 /area/awaymission/wwmines)
 "aP" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral/silver,
 /area/awaymission/wwmines)
 "aQ" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral/gold,
 /area/awaymission/wwmines)
 "aR" = (
@@ -277,11 +245,7 @@
 /turf/simulated/wall/mineral/sandstone,
 /area/awaymission/wwrefine)
 "aX" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/wall/mineral/sandstone,
 /area/awaymission/wwmines)
 "aY" = (
@@ -2148,11 +2112,7 @@
 /area/awaymission/wwgov)
 "gp" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "gq" = (
@@ -2291,11 +2251,7 @@
 /area/awaymission/wwrefine)
 "gH" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "gI" = (

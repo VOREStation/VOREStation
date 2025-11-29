@@ -52,7 +52,7 @@
 /// Links the passed target to our action, registering any relevant signals
 /datum/action/proc/link_to(Target)
 	target = Target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
 	if(isatom(target))
 		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
@@ -90,7 +90,7 @@
 	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, grant_to)
 	SEND_SIGNAL(grant_to, COMSIG_MOB_GRANTED_ACTION, src)
 	owner = grant_to
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
 	GiveAction(grant_to)
 
@@ -109,9 +109,9 @@
 		SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
 		SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
 
-		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(owner, COMSIG_QDELETING)
 		if(target == owner)
-			RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref))
+			RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref))
 
 		owner = null
 
@@ -159,7 +159,7 @@
  * button - which button we are modifying the icon of
  * force - whether we're forcing a full update
  */
-/datum/action/proc/build_button_icon(obj/screen/movable/action_button/button, update_flags = ALL, force = FALSE)
+/datum/action/proc/build_button_icon(atom/movable/screen/movable/action_button/button, update_flags = ALL, force = FALSE)
 	if(!button)
 		return
 
@@ -184,7 +184,7 @@
  * current_button - what button are we editing?
  * force - whether an update is forced regardless of existing status
  */
-/datum/action/proc/update_button_name(obj/screen/movable/action_button/button, force = FALSE)
+/datum/action/proc/update_button_name(atom/movable/screen/movable/action_button/button, force = FALSE)
 	button.name = name
 	if(desc)
 		button.desc = desc
@@ -195,7 +195,7 @@
  * current_button - what button are we editing?
  * force - whether an update is forced regardless of existing status
  */
-/datum/action/proc/apply_button_background(obj/screen/movable/action_button/current_button, force = FALSE)
+/datum/action/proc/apply_button_background(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	if(!background_icon || !background_icon_state || (current_button.active_underlay_icon_state == background_icon_state && !force))
 		return
 
@@ -227,7 +227,7 @@
  * current_button - what button are we editing?
  * force - whether an update is forced regardless of existing status
  */
-/datum/action/proc/apply_button_icon(obj/screen/movable/action_button/current_button, force = FALSE)
+/datum/action/proc/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	if(!button_icon || !button_icon_state || (current_button.icon_state == button_icon_state && !force))
 		return
 
@@ -240,7 +240,7 @@
  * current_button - what button are we editing?
  * force - whether an update is forced regardless of existing status
  */
-/datum/action/proc/apply_button_overlay(obj/screen/movable/action_button/current_button, force = FALSE)
+/datum/action/proc/apply_button_overlay(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	SEND_SIGNAL(src, COMSIG_ACTION_OVERLAY_APPLY, current_button, force)
 
 	if(!overlay_icon || !overlay_icon_state || (current_button.active_overlay_icon_state == overlay_icon_state && !force))
@@ -258,7 +258,7 @@
  * current_button - what button are we editing?
  * force - whether an update is forced regardless of existing status
  */
-/datum/action/proc/update_button_status(obj/screen/movable/action_button/current_button, force = FALSE)
+/datum/action/proc/update_button_status(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	if(IsAvailable())
 		current_button.color = rgb(255,255,255,255)
 	else
@@ -280,7 +280,7 @@
 	if(!our_hud || viewers[our_hud]) // There's no point in this if you have no hud in the first place
 		return
 
-	var/obj/screen/movable/action_button/button = create_button()
+	var/atom/movable/screen/movable/action_button/button = create_button()
 	SetId(button, viewer)
 
 	button.our_hud = our_hud
@@ -294,25 +294,25 @@
 /// Removes our action from the passed viewer.
 /datum/action/proc/HideFrom(mob/viewer)
 	var/datum/hud/our_hud = viewer.hud_used
-	var/obj/screen/movable/action_button/button = viewers[our_hud]
+	var/atom/movable/screen/movable/action_button/button = viewers[our_hud]
 	LAZYREMOVE(viewer.actions, src)
 	if(button)
 		qdel(button)
 
 /// Creates an action button movable for the passed mob, and returns it.
 /datum/action/proc/create_button()
-	var/obj/screen/movable/action_button/button = new()
+	var/atom/movable/screen/movable/action_button/button = new()
 	button.linked_action = src
 	build_button_icon(button, ALL, TRUE)
 	return button
 
-/datum/action/proc/SetId(obj/screen/movable/action_button/our_button, mob/owner)
+/datum/action/proc/SetId(atom/movable/screen/movable/action_button/our_button, mob/owner)
 	//button id generation
 	var/bitfield = 0
 	for(var/datum/action/action in owner.actions)
 		if(action == src) // This could be us, which is dumb
 			continue
-		var/obj/screen/movable/action_button/button = action.viewers[owner.hud_used]
+		var/atom/movable/screen/movable/action_button/button = action.viewers[owner.hud_used]
 		if(action.name == name && button.id)
 			bitfield |= button.id
 
@@ -344,5 +344,5 @@
 	build_all_button_icons(update_flag, forced)
 
 /// Checks if our action is actively selected. Used for selecting icons primarily.
-/datum/action/proc/is_action_active(obj/screen/movable/action_button/current_button)
+/datum/action/proc/is_action_active(atom/movable/screen/movable/action_button/current_button)
 	return FALSE

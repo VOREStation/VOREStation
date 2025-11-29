@@ -165,12 +165,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
 "aas" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Engine - Core";
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	output_level = 250000
+/obj/machinery/power/smes/buildable/engine_default{
+	RCon_tag = "Engine - Core"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
@@ -307,17 +303,16 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
 "aaG" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Power - Main";
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	output_level = 1e+006
+/obj/machinery/power/smes/buildable/engine_default{
+	RCon_tag = "Power - Main"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor,
 /area/engineering/engine_smes)
 "aaH" = (
@@ -1437,9 +1432,8 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "acO" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Engineering";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Engineering"
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
@@ -8797,6 +8791,13 @@
 	dir = 8;
 	pixel_x = 30
 	},
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
+	},
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "awC" = (
@@ -10943,9 +10944,8 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/engi_wash)
 "aES" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Cargo";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Cargo"
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
@@ -14222,9 +14222,8 @@
 /turf/simulated/floor/tiled,
 /area/engineering/gravity_lobby)
 "bJG" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Asteroid civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Asteroid civilian"
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -17449,9 +17448,8 @@
 	},
 /area/shuttle/excursion/cargo)
 "fca" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Exploration";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Exploration"
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -23365,10 +23363,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "kRF" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Telecomms";
-	charge = 100000;
-	output_level = 1000
+/obj/machinery/power/smes/buildable/max_charge_max_output{
+	RCon_tag = "Substation - Telecomms"
 	},
 /obj/structure/cable/green{
 	icon_state = "0-2"

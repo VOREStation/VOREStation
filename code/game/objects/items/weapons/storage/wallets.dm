@@ -71,7 +71,7 @@
 	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"
-		if("id-[front_id.icon_state]" in cached_icon_states(icon))
+		if(icon_exists(icon, "id-[front_id.icon_state]"))
 			tiny_state = "id-"+front_id.icon_state
 		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
 		tiny_image.appearance_flags = RESET_COLOR
@@ -125,7 +125,7 @@
 	if(new_color && (new_color != color))
 		color = new_color
 
-/obj/item/storage/wallet/poly/emp_act()
+/obj/item/storage/wallet/poly/emp_act(severity, recursive)
 	var/original_state = icon_state
 	icon_state = "wallet-emp"
 	update_icon()
@@ -134,6 +134,7 @@
 		if(src)
 			icon_state = original_state
 			update_icon()
+	..()
 
 /obj/item/storage/wallet/womens
 	name = "women's wallet"

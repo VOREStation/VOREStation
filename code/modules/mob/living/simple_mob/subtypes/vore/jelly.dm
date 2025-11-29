@@ -28,6 +28,8 @@
 	say_list_type = /datum/say_list/jelly
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/jelly
 
+	can_be_drop_prey = FALSE
+
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -62,6 +64,9 @@
 	B.digest_brute = 0.3
 	B.digest_burn = 0.3
 	B.escapechance = 10 // You were dumb enough to walk into it or stand still, now good luck escaping.
+	B.contaminates = TRUE
+	B.contamination_flavor = "Slimy"
+	B.contamination_color = "green"
 	B.item_digest_mode = IM_HOLD
 	B.belly_fullscreen = "VBOanim_belly1"
 	B.belly_fullscreen_color = "#823232"

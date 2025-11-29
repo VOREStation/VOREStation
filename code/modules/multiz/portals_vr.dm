@@ -1,7 +1,7 @@
 /obj/structure/portal_event
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-d-portal"
 	density = TRUE
 	unacidable = TRUE//Can't destroy energy portals.
@@ -135,9 +135,9 @@
 			to_chat(M, span_notice("Something blocks your way."))
 			return
 		temptarg = pick(possible_turfs)
-		do_safe_teleport(M, temptarg, 0)
+		do_teleport(M, temptarg)
 	else if (istype(M, /atom/movable))
-		do_safe_teleport(M, target, 0)
+		do_teleport(M, target)
 
 /obj/structure/portal_event/Destroy()
 	if(target)
@@ -153,7 +153,7 @@
 /obj/structure/portal_target
 	name = "portal destination"
 	desc = "you shouldn't see this unless you're a ghost"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-b-portal"
 	density = 0
 	alpha = 100
@@ -170,7 +170,7 @@
 /obj/structure/portal_gateway
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portalgateway"
 	density = TRUE
 	unacidable = TRUE//Can't destroy energy portals.

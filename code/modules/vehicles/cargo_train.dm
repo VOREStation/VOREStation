@@ -1,7 +1,7 @@
 /obj/vehicle/train/engine
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
-	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
+	icon = 'icons/obj/vehicles.dmi'
 	description_info = "Use ctrl-click to quickly toggle the engine if you're adjacent (only when vehicle is stationary). Alt-click will grab the keys, if present."
 	icon_state = "cargo_engine"
 	on = 0
@@ -28,7 +28,7 @@
 /obj/vehicle/train/trolley
 	name = "cargo train trolley"
 	desc = "A large, flat platform made for putting things on. Or people."
-	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
 	anchored = FALSE
 	passenger_allowed = 0
@@ -36,7 +36,7 @@
 
 	load_item_visible = 1
 	load_offset_x = 0
-	load_offset_y = 7		//VOREStation Edit
+	load_offset_y = 7
 	mob_offset_y = 8
 
 //-------------------------------------------
@@ -46,12 +46,12 @@
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 	key = new key_type(src)
-	var/image/I = new(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs		//VOREStation edit
+	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
 	add_overlay(I)
 	update_icon()
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/engine/Move(var/turf/destination)
+/obj/vehicle/train/engine/Move(atom/newloc, direct = 0, movetime)
 	if(on && cell.charge < charge_use)
 		turn_off()
 		update_stats()
@@ -59,11 +59,11 @@
 			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
 
 	if(is_train_head() && !on)
-		return 0
+		return FALSE
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
-		return 0
+	if(on && is_vehicle_inpassable(newloc))
+		return FALSE
 
 	return ..()
 
@@ -156,7 +156,7 @@
 		verbs += /obj/vehicle/train/engine/verb/stop_engine
 
 /obj/vehicle/train/RunOver(var/mob/living/M)
-	if(pulledby == M) // VOREstation edit: Don't destroy people pulling vehicles up stairs
+	if(pulledby == M) // Don't destroy people pulling vehicles up stairs
 		return
 
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
@@ -397,11 +397,10 @@
 	else
 		anchored = TRUE
 
-// VOREStation Edit Start - Overlay stuff for the chair-like effect
 /obj/vehicle/train/engine/update_icon()
 	..()
 	cut_overlays()
-	var/image/O = image(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", dir = src.dir)
+	var/image/O = image(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", dir = src.dir)
 	O.layer = FLY_LAYER
 	O.plane = MOB_PLANE
 	add_overlay(O)
@@ -409,7 +408,6 @@
 /obj/vehicle/train/engine/set_dir()
 	..()
 	update_icon()
-// VOREStation Edit End - Overlay stuff for the chair-like effect
 
 //-------------------------------------------------------
 // Cargo tugs for reagent transport from chemical refinery
@@ -417,7 +415,7 @@
 /obj/vehicle/train/trolley_tank
 	name = "cargo train tanker"
 	desc = "A large, tank made for transporting liquids."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_tank"
 	anchored = FALSE
 	flags = OPENCONTAINER

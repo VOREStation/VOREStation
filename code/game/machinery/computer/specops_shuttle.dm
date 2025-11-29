@@ -16,7 +16,7 @@ var/specops_shuttle_timeleft = 0
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
 	light_color = "#00ffff"
-	req_access = list(access_cent_specops)
+	req_access = list(ACCESS_CENT_SPECOPS)
 //	req_access = list(ACCESS_CENT_SPECOPS)
 	var/temp = null
 	var/hacked = 0
@@ -260,7 +260,7 @@ var/specops_shuttle_timeleft = 0
 	if(..())
 		return
 
-	user.machine = src
+	user.set_machine(src)
 	var/dat
 	if (temp)
 		dat = temp
@@ -279,7 +279,7 @@ var/specops_shuttle_timeleft = 0
 		return 1
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.machine = src
+		usr.set_machine(src)
 
 	if (href_list["sendtodock"])
 		if(!specops_shuttle_at_station|| specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return

@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { LabeledList, Section, Slider, Stack } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-
+import {
+  Button,
+  LabeledList,
+  Section,
+  Slider,
+  Stack,
+} from 'tgui-core/components';
 import { abilitiy_usable } from '../functions';
 import type { abilities, abilitySizeChange } from '../types';
 
@@ -11,7 +16,7 @@ export const VoreAbilities = (props: { abilities: abilities }) => {
   const { nutrition, size_change } = abilities;
 
   return (
-    <Section title="Abilities" buttons={`Nutrition: ${toFixed(nutrition, 1)}`}>
+    <Section title="Abilities" buttons={`Nutrition: ${nutrition.toFixed(1)}`}>
       <LabeledList>
         <SizeChange nutrition={nutrition} sizeChange={size_change} />
       </LabeledList>
@@ -28,6 +33,10 @@ const SizeChange = (props: {
   const { nutrition, sizeChange } = props;
 
   const { resize_cost, current_size, minimum_size, maximum_size } = sizeChange;
+
+  const roundedSize = Math.round(current_size * 10000) / 100;
+
+  const [targetSize, setTargetSize] = useState(roundedSize);
 
   return (
     <LabeledList.Item label="Resize">
@@ -47,18 +56,29 @@ const SizeChange = (props: {
                   }
                 : { black: [0, 600] }
             }
-            format={(value: number) => `${toFixed(value, 2)}%`}
-            value={Math.round(current_size * 10000) / 100}
+            format={(value: number) => `${value.toFixed(2)}%`}
+            value={targetSize}
             minValue={minimum_size * 100}
             maxValue={maximum_size * 100}
-            onChange={(e, value: number) =>
-              act('adjust_own_size', {
-                new_mob_size: value / 100,
-              })
-            }
+            onChange={(e, value: number) => setTargetSize(value)}
           />
         </Stack.Item>
-        <Stack.Item color="label">&nbsp;&nbsp;Cost:&nbsp;</Stack.Item>
+        <Stack.Item>
+          <Button
+            disabled={
+              !abilitiy_usable(nutrition, resize_cost) ||
+              targetSize === roundedSize
+            }
+            onClick={() =>
+              act('adjust_own_size', {
+                new_mob_size: targetSize / 100,
+              })
+            }
+          >
+            Apply
+          </Button>
+        </Stack.Item>
+        <Stack.Item color="label">Cost:</Stack.Item>
         <Stack.Item>{resize_cost}</Stack.Item>
       </Stack>
     </LabeledList.Item>

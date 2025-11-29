@@ -74,7 +74,7 @@
 	var/list/crew = list()
 	for(var/mob/living/carbon/human/H in world) if(H.client)
 		// heads should not be infected
-		if(H.mind.assigned_role in command_positions) continue
+		if(H.mind.assigned_role in GLOB.command_positions) continue
 		crew += H
 
 	if(crew.len < 2)
@@ -194,5 +194,5 @@
 	else if(finished == 2)
 		feedback_set_details("round_end_result","loss - rev heads killed")
 		to_world(span_boldannounce(span_large("The crew succumbed to the epidemic!")))
-	..()
-	return 1
+
+	return ..()

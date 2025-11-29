@@ -158,6 +158,7 @@ export const VendingProductsGrid = (props: { products: product[] }) => {
         <ImageButton
           key={product.key}
           asset={product.isatom ? ['vending32x32', product.path] : undefined}
+          disabled={!product.amount}
           tooltip={`${capitalizeAll(product.name)}${product.desc ? ` - ${product.desc}` : ''}`}
           tooltipPosition="bottom-end"
           buttonsAlt={

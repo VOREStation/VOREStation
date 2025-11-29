@@ -10,13 +10,13 @@
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = FACTION_STATION
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
-	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_bar)
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN)
+	minimal_access = list(ACCESS_BAR)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
 	job_description = "A " + JOB_BARTENDER + " mixes drinks for the crew. They generally have permission to charge for drinks or deny service to unruly patrons."
@@ -53,8 +53,8 @@
 	pto_type = PTO_CIVILIAN
 	supervisors = "the "+ JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
-	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_kitchen)
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN)
+	minimal_access = list(ACCESS_KITCHEN)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 	job_description = "A " + JOB_CHEF + " cooks food for the crew. They generally have permission to charge for food or deny service to unruly diners."
@@ -87,8 +87,8 @@
 	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
-	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_hydroponics)
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN)
+	minimal_access = list(ACCESS_HYDROPONICS)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
 	job_description = "A " + JOB_BOTANIST+ " grows plants for the " + JOB_CHEF + " and " + JOB_BARTENDER + "."
@@ -132,8 +132,8 @@
 	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
-	access = list(access_janitor, access_maint_tunnels)
-	minimal_access = list(access_janitor, access_maint_tunnels)
+	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 	job_description = "A " + JOB_JANITOR + " keeps the station clean, as long as it doesn't interfere with active crime scenes."
@@ -169,8 +169,8 @@
 	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
-	access = list(access_library, access_maint_tunnels)
-	minimal_access = list(access_library)
+	access = list(ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_LIBRARY)
 
 	outfit_type = /decl/hierarchy/outfit/job/librarian
 	job_description = "The " + JOB_LIBRARIAN + " curates the book selection in the Library, so the crew might enjoy it."
@@ -234,8 +234,8 @@
 	supervisors = "company officials and Corporate Regulations"
 	selection_color = "#515151"
 	economic_modifier = 7
-	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
-	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
+	access = list(ACCESS_LAWYER, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_HEADS)
+	minimal_access = list(ACCESS_LAWYER, ACCESS_SEC_DOORS, ACCESS_HEADS)
 	minimal_player_age = 7
 	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_ZADDAT, FBP_DIGITAL)
 
@@ -272,8 +272,8 @@
 	economic_modifier = 5
 	minimal_player_age = 3
 	pto_type = PTO_CIVILIAN
-	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
-	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
+	access = list(ACCESS_EVA, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PILOT)
+	minimal_access = list(ACCESS_EVA, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PILOT)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A " + JOB_PILOT + " flies the various shuttles in the Virgo-Erigone System."
 	alt_titles = list(JOB_ALT_COPILOT = /datum/alt_title/co_pilot, JOB_ALT_NAVIGATOR = /datum/alt_title/navigator, JOB_ALT_HELMSMAN = /datum/alt_title/helmsman)
@@ -305,8 +305,8 @@
 	spawn_positions = 4
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
-	access = list(access_entertainment)
-	minimal_access = list(access_entertainment)
+	access = list(ACCESS_ENTERTAINMENT)
+	minimal_access = list(ACCESS_ENTERTAINMENT)
 	pto_type = PTO_CIVILIAN
 
 	outfit_type = /decl/hierarchy/outfit/job/assistant/entertainer
@@ -387,7 +387,8 @@
 						JOB_ALT_YOGA_TEACHER = /datum/alt_title/yoga_teacher, JOB_ALT_MASSEUSE = /datum/alt_title/masseuse, JOB_ALT_TRADESPERSON = /datum/alt_title/tradesperson,
 						JOB_ALT_STREAMER = /datum/alt_title/streamer, JOB_ALT_INFLUENCER = /datum/alt_title/influencer, JOB_ALT_PARANORMAL_INVESTIGATOR = /datum/alt_title/paranormal_investigator,
 						JOB_ALT_PERSONAL_SECRETARY = /datum/alt_title/personal_secretary, JOB_ALT_STYLIST = /datum/alt_title/stylist, JOB_ALT_FISHER = /datum/alt_title/fisher,
-						JOB_ALT_FORTUNE_TELLER = /datum/alt_title/fortune_teller, JOB_ALT_SPIRIT_HEALER = /datum/alt_title/spirit_healer)
+						JOB_ALT_FORTUNE_TELLER = /datum/alt_title/fortune_teller, JOB_ALT_SPIRIT_HEALER = /datum/alt_title/spirit_healer, JOB_ALT_EDUCATOR = /datum/alt_title/educator,
+						JOB_ALT_INSTRUCTOR = /datum/alt_title/instructor)
 
 /datum/alt_title/lawyer
 	title = JOB_ALT_LAWYER
@@ -473,3 +474,13 @@
 	title = JOB_ALT_SPIRIT_HEALER
 	title_blurb = "A " + JOB_ALT_SPIRIT_HEALER + " offers alternative forms of medicine. Rituals, magic rocks, seances... It totally works. What's that about placebo?"
 	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/spirit_healer
+
+/datum/alt_title/educator
+	title = JOB_ALT_EDUCATOR
+	title_blurb = "A " + JOB_ALT_EDUCATOR + " provides an education of some sort to the crew. Perhaps somebody coming in to teach a health and safety course, or teach about cultures?"
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator
+
+/datum/alt_title/instructor
+	title = JOB_ALT_INSTRUCTOR
+	title_blurb = "A " + JOB_ALT_INSTRUCTOR + " provides instructions on how to perform certain tasks, providing training for crew members in new skills."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator

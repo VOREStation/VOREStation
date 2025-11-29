@@ -1,7 +1,7 @@
 /turf/simulated/floor
 	name = "plating"
 	desc = "Unfinished flooring."
-	icon = 'icons/turf/flooring/plating_vr.dmi'
+	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 
 	// Damage to flooring.
@@ -11,7 +11,7 @@
 	// Plating data.
 	var/base_name = "plating"
 	var/base_desc = "The naked hull."
-	var/base_icon = 'icons/turf/flooring/plating_vr.dmi'
+	var/base_icon = 'icons/turf/flooring/plating.dmi'
 	var/base_icon_state = "plating"
 
 	var/list/old_decals = null
@@ -71,6 +71,7 @@
 	desc = base_desc
 	icon = base_icon
 	icon_state = base_icon_state
+	color = null
 
 	if(!is_plating()) // Flooring -> Plating
 		swap_decals()

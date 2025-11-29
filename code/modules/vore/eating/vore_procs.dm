@@ -57,7 +57,7 @@
 	//Timer and progress bar
 	if(!user.client && prey.weakened > 0) // stop crwaling instantly break swallow attempt for mobvore
 		prey.Stun(min(prey.weakened, 2)) // stop crawling instantly break swallow attempt for mobvore
-	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(user, swallow_time, target = prey, hidden = TRUE))
 		return FALSE // Prey escaped (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it and move the prey!
@@ -162,7 +162,7 @@
 /proc/vore_sanity_checks(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
+		log_vore("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
 		return FALSE
 	if(pred == prey)
 		return FALSE
@@ -185,5 +185,17 @@
 		return FALSE
 	if(prey.absorbed || pred.absorbed)
 		to_chat(user, span_vwarning("They aren't aren't in a state to be devoured."))
+		return FALSE
+	if(!pred.can_be_afk_pred && (!pred.client || pred.away_from_keyboard))
+		if(user == pred)
+			to_chat(user, span_vwarning("You aren't set as being able to pred while AFK"))
+			return FALSE
+		to_chat(user, span_vnotice("The predator prefers not to be fed while AFK"))
+		return FALSE
+	if(!prey.can_be_afk_prey && (!prey.client || prey.away_from_keyboard))
+		if(user == prey)
+			to_chat(user, span_vwarning("You aren't set as being able to prey while AFK"))
+			return FALSE
+		to_chat(user, span_vnotice("The prey prefers not to be eaten while AFK"))
 		return FALSE
 	return TRUE

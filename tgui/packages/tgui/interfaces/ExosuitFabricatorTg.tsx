@@ -1,3 +1,5 @@
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -8,9 +10,6 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
@@ -41,7 +40,7 @@ type ExosuitFabricatorData = FabricatorData &
 
 export const ExosuitFabricatorTg = (props) => {
   const { act, data } = useBackend<ExosuitFabricatorData>();
-  const { materials, SHEET_MATERIAL_AMOUNT } = data;
+  const { materials = [], SHEET_MATERIAL_AMOUNT = 0, designs } = data;
 
   const availableMaterials: MaterialMap = {};
 
@@ -57,7 +56,7 @@ export const ExosuitFabricatorTg = (props) => {
             <Stack fill vertical>
               <Stack.Item grow>
                 <DesignBrowser
-                  designs={Object.values(data.designs)}
+                  designs={Object.values(designs)}
                   availableMaterials={availableMaterials}
                   buildRecipeElement={(design, availableMaterials) => (
                     <Recipe
@@ -83,7 +82,7 @@ export const ExosuitFabricatorTg = (props) => {
               <Stack.Item>
                 <Section>
                   <MaterialAccessBar
-                    availableMaterials={data.materials}
+                    availableMaterials={materials}
                     SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
                     onEjectRequested={(mat: Material, qty: number) =>
                       act('remove_mat', {

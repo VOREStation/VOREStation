@@ -12,7 +12,7 @@ BLIND     // can't see anything
 ///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/glasses
-	name = "glasses"
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/inventory/eyes/item.dmi'
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_EYES
@@ -25,14 +25,24 @@ BLIND     // can't see anything
 	var/off_state = "degoggles"
 	var/active = 1
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
-	var/obj/screen/overlay = null
+	var/atom/movable/screen/overlay = null
 	var/list/away_planes //Holder for disabled planes
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/eyes/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi'
+		SPECIES_TESHARI 	= 'icons/inventory/eyes/mob_teshari.dmi',
+		SPECIES_VOX 		= 'icons/inventory/eyes/mob_vox.dmi',
+		SPECIES_WEREBEAST 	= 'icons/inventory/eyes/mob_werebeast.dmi',
+		SPECIES_TAJARAN 	= 'icons/inventory/eyes/mob_tajaran.dmi',
+		SPECIES_UNATHI 		= 'icons/inventory/eyes/mob_unathi.dmi',
+		SPECIES_SERGAL 		= 'icons/inventory/eyes/mob_sergal.dmi',
+		SPECIES_NEVREAN 	= 'icons/inventory/eyes/mob_nevrean.dmi',
+		SPECIES_ZORREN_HIGH	= 'icons/inventory/eyes/mob_fox.dmi',
+		SPECIES_ZORREN_FLAT	= 'icons/inventory/eyes/mob_fennec.dmi',
+		SPECIES_AKULA 		= 'icons/inventory/eyes/mob_akula.dmi',
+		SPECIES_VULPKANIN 	= 'icons/inventory/eyes/mob_vulpkanin.dmi',
+		SPECIES_XENOCHIMERA	= 'icons/inventory/eyes/mob_tajaran.dmi'
 		)
 	var/glasses_layer_above = FALSE
 
@@ -535,7 +545,7 @@ BLIND     // can't see anything
 	enables_planes = list(VIS_FULLBRIGHT, VIS_CLOAKED)
 	flash_protection = FLASH_PROTECTION_REDUCED
 
-/obj/item/clothing/glasses/thermal/emp_act(severity)
+/obj/item/clothing/glasses/thermal/emp_act(severity, recursive)
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, span_red("The Optical Thermal Scanner overloads and blinds you!"))
@@ -572,7 +582,7 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_monocle)
-	flags = null //doesn't protect eyes because it's a monocle, duh
+	flags = NONE //doesn't protect eyes because it's a monocle, duh
 
 	body_parts_covered = 0
 

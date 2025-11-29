@@ -7,7 +7,7 @@
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
-	var/flags = 0
+	var/flags = NONE
 	var/was_bloodied
 	var/blood_color
 	var/pass_flags = 0
@@ -67,6 +67,17 @@
 		QDEL_NULL(light)
 	if(forensic_data)
 		QDEL_NULL(forensic_data)
+	// Checking length(overlays) before cutting has significant speed benefits
+	if (length(overlays))
+		overlays.Cut()
+	if (length(our_overlays))
+		our_overlays.Cut()
+	if (length(priority_overlays))
+		priority_overlays.Cut()
+	if (length(managed_vis_overlays))
+		managed_vis_overlays.Cut()
+	if (length(original_atom))
+		original_atom.Cut()
 	return ..()
 
 /atom/proc/reveal_blood()
@@ -83,13 +94,6 @@
 		return loc.return_air()
 	else
 		return null
-
-//return flags that should be added to the viewer's sight var.
-//Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
-	if (isAI(user)) // WHYYYY
-		return 0
-	return -1
 
 /atom/proc/Bumped(AM as mob|obj)
 	set waitfor = FALSE
@@ -134,7 +138,14 @@
 		UnregisterSignal(T, COMSIG_OBSERVER_TURF_ENTERED)
 
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity, recursive)
+	recursive++
+	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
+		return
+	for(var/atom/A in contents)
+		if(isbelly(A)) //Prey are protected
+			continue
+		A.emp_act(severity, recursive)
 	return
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
@@ -249,9 +260,23 @@
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return -1
 
-/atom/proc/fire_act()
-	return
+/**
+ * Respond to fire being used on our atom
+ *
+ * Default behaviour is to send [COMSIG_ATOM_FIRE_ACT] and return
+ */
+/atom/proc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	SEND_SIGNAL(src, COMSIG_ATOM_FIRE_ACT, air, exposed_temperature, exposed_volume)
+	return FALSE
 
+/**
+ * Sends [COMSIG_ATOM_EXTINGUISH] signal, which properly removes burning component if it is present.
+ *
+ * Default behaviour is to send [COMSIG_ATOM_ACID_ACT] and return
+ */
+/atom/proc/extinguish()
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_ATOM_EXTINGUISH)
 
 // Returns an assoc list of RCD information.
 // Example would be: list(RCD_VALUE_MODE = RCD_DECONSTRUCT, RCD_VALUE_DELAY = 50, RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4)
@@ -273,9 +298,10 @@
 	return
 
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(atom/movable/source)
+	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	if (density)
-		AM.throwing = 0
+		source.throwing = 0
 	return
 
 //returns 1 if made bloody, returns 0 otherwise
@@ -458,9 +484,6 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
 
-/atom/proc/get_visible_gender(mob/user, force)
-	return gender
-
 /atom/proc/interact(mob/user)
 	return
 
@@ -562,19 +585,6 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		"x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
 		"y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
 	)
-
-/// Returns a list containing the width and height of an icon file
-/proc/get_icon_dimensions(icon_path)
-	// Icons can be a real file(), a rsc backed file(), a dynamic rsc (dyn.rsc) reference (known as a cache reference in byond docs), or an /icon which is pointing to one of those.
-	// Runtime generated dynamic icons are an unbounded concept cache identity wise, the same icon can exist millions of ways and holding them in a list as a key can lead to unbounded memory usage if called often by consumers.
-	// Check distinctly that this is something that has this unspecified concept, and thus that we should not cache.
-	if (!isfile(icon_path) || !length("[icon_path]"))
-		var/icon/my_icon = icon(icon_path)
-		return list("width" = my_icon.Width(), "height" = my_icon.Height())
-	if (isnull(GLOB.icon_dimensions[icon_path]))
-		var/icon/my_icon = icon(icon_path)
-		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
-	return GLOB.icon_dimensions[icon_path]
 
 /// Returns the src and all recursive contents as a list.
 /atom/proc/get_all_contents(ignore_flag_1)

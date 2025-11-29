@@ -83,6 +83,8 @@
 					S.use(1)
 					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+					if(S.color)
+						color = S.color
 					return
 		else if(istype(C, /obj/item))
 			try_deconstruct_tile(C, user)
@@ -119,12 +121,14 @@
 				to_chat(user, span_warning("You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor]."))
 				return
 			// Stay still and focus...
-			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
+			if(use_flooring.build_time && !do_after(user, use_flooring.build_time, target = src))
 				return
 			if(!is_plating() || !S || !user || !use_flooring)
 				return
 			if(S.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
+				if(S.color)
+					color = S.color
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Plating repairs and removal
@@ -153,7 +157,7 @@
 					user.visible_message(span_warning("[user] begins cutting through [src]."), span_warning("You begin cutting through [src]."))
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
-					if(do_after(user, 10 SECONDS, src, TRUE, exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 10 SECONDS, target = src))
 						if(!can_remove_plating(user))
 							return // Someone slapped down some flooring or cables or something
 						do_remove_plating(C, user, base_type)

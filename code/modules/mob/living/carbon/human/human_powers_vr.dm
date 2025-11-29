@@ -176,7 +176,7 @@
 		var/score2 = (scale2 * strength2)
 
 		var/competition = pick(score1;player1, score2;player2)
-		if(!do_after(player1, 50, player2, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(player1, 5 SECONDS, target = player2))
 			player2.visible_message(span_notice("The players cancelled their competition!"))
 			return 0
 		if(!hand_games_check(player1,player2))
@@ -223,7 +223,7 @@
 		var/score2 = (scale2 * strength2)
 
 		var/competition = pick(score1;player1, score2;player2)
-		if(!do_after(player1, 10, player2, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(player1, 1 SECOND, target = player2))
 			player2.visible_message(span_notice("The players cancelled their competition!"))
 			return 0
 		if(!hand_games_check(player1,player2))
@@ -248,7 +248,7 @@
 		if(!hand_games_check(player1,player2))
 			return
 		player1.visible_message(span_notice("[player1] challenges [player2] to a thumb war!"))
-		if(!do_after(player1, 50, player2, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(player1, 5 SECONDS, target = player2))
 			player2.visible_message(span_notice("The players cancelled their thumb war!"))
 			return 0
 		if(!hand_games_check(player1,player2))

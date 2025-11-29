@@ -19,6 +19,10 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(ntos)
 		tgui_id = "Ntos" + tgui_id
 
+/datum/tgui_module/Destroy(force)
+	host = null
+	. = ..()
+
 /datum/tgui_module/tgui_host()
 	return host ? host.tgui_host() : src
 
@@ -32,9 +36,6 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 /datum/tgui_module/tgui_close(mob/user)
 	if(host)
 		host.tgui_close(user)
-
-/datum/tgui_module/proc/check_eye(mob/user)
-	return -1
 
 /datum/tgui_module/proc/can_still_topic(mob/user, datum/tgui_state/state)
 	return (tgui_status(user, state) == STATUS_INTERACTIVE)

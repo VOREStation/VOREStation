@@ -172,10 +172,10 @@
 		ui.open()
 
 /obj/machinery/atmospherics/binary/algae_farm/tgui_data(mob/user)
-	var/data[0]
+	var/list/data = list()
 	data["panelOpen"] = panel_open
 
-	var/materials_ui[0]
+	var/list/materials_ui = list()
 	for(var/M in stored_material)
 		materials_ui[++materials_ui.len] = list(
 				"name" = M,
@@ -234,9 +234,7 @@
 	var/recursive = amount == -1 ? 1 : 0
 	var/datum/material/matdata = get_material_by_name(material_name)
 	var/stack_type = matdata.stack_type
-	var/obj/item/stack/material/S = new stack_type(loc)
-	if(amount <= 0)
-		amount = S.max_amount
+	var/obj/item/stack/material/S = new stack_type(loc, -1)
 	var/ejected = min(round(stored_material[material_name] / S.perunit), amount)
 	if(!S.set_amount(min(ejected, amount)))
 		return
@@ -259,7 +257,6 @@
 			S.use(1)
 			count++
 		user.visible_message("\The [user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
-		updateUsrDialog(user)
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1

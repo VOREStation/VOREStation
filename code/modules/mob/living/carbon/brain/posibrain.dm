@@ -8,7 +8,7 @@
 
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
@@ -85,7 +85,7 @@
 		M.show_message(span_blue("The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?"))
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
-/obj/item/mmi/digital/posibrain/emp_act(severity)
+/obj/item/mmi/digital/posibrain/emp_act(severity, recursive)
 	if(!src.brainmob)
 		return
 	else

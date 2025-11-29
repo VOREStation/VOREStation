@@ -41,7 +41,7 @@
 
 			to_chat(D, span_danger("You begin decompiling [M]."))
 
-			if(!do_after(D,50))
+			if(!do_after(D, 5 SECONDS, target = src))
 				to_chat(D, span_danger("You need to remain still while decompiling such a large object."))
 				return
 
@@ -123,7 +123,7 @@
 	pulses_remaining = 5
 	pulse_delay = 2 SECONDS
 
-/obj/effect/temporary_effect/pulse/disintegrate/emp_act()
+/obj/effect/temporary_effect/pulse/disintegrate/emp_act(severity, recursive)
 	visible_message(span_warning("\The [src] flickers, before dispersing energetically."))
 	qdel(src)
 

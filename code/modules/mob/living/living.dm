@@ -18,6 +18,8 @@
 
 	selected_image = image(icon = GLOB.buildmode_hud, loc = src, icon_state = "ai_sel")
 
+	AddElement(/datum/element/spontaneous_vore)
+
 /mob/living/proc/get_visible_name()
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(SK && SK.in_phase)
@@ -95,12 +97,13 @@
 			organs -= OR
 			qdel(OR)
 
-	if(LAZYLEN(internal_organs) && !istype(src, /mob/living/simple_mob/animal))
+	if(LAZYLEN(internal_organs))
 		internal_organs_by_name.Cut()
 		while(internal_organs.len)
 			var/obj/item/OR = internal_organs[1]
 			internal_organs -= OR
-			qdel(OR)
+			if(isobj(OR))
+				qdel(OR)
 
 	cultnet.updateVisibility(src, 0)
 
@@ -467,6 +470,7 @@
 	return result
 
 ///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+///Will return a NEGATIVE value. Ex: MaxHealth of 100 returns -50
 /mob/living/proc/get_crit_point()
 	return -(getMaxHealth()*0.5)
 
@@ -490,7 +494,7 @@
 		cloneloss = round(cloneloss / h_mult)
 	maxHealth = newMaxHealth
 
-/mob/living/Stun(amount)
+/mob/living/Stun(amount, ignore_canstun = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
@@ -498,14 +502,14 @@
 	if(stunned > 0)
 		add_status_indicator("stunned")
 
-/mob/living/SetStunned(amount)
+/mob/living/SetStunned(amount, ignore_canstun = FALSE)
 	..()
 	if(stunned <= 0)
 		remove_status_indicator("stunned")
 	else
 		add_status_indicator("stunned")
 
-/mob/living/AdjustStunned(amount)
+/mob/living/AdjustStunned(amount, ignore_canstun = FALSE)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -516,7 +520,7 @@
 	else
 		add_status_indicator("stunned")
 
-/mob/living/Weaken(amount)
+/mob/living/Weaken(amount, ignore_canstun = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
@@ -524,14 +528,14 @@
 	if(weakened > 0)
 		add_status_indicator("weakened")
 
-/mob/living/SetWeakened(amount)
+/mob/living/SetWeakened(amount, ignore_canstun = FALSE)
 	..()
 	if(weakened <= 0)
 		remove_status_indicator("weakened")
 	else
 		add_status_indicator("weakened")
 
-/mob/living/AdjustWeakened(amount)
+/mob/living/AdjustWeakened(amount, ignore_canstun = FALSE)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -542,7 +546,7 @@
 	else
 		add_status_indicator("weakened")
 
-/mob/living/Paralyse(amount)
+/mob/living/Paralyse(amount, ignore_canstun = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
@@ -550,14 +554,14 @@
 	if(paralysis > 0)
 		add_status_indicator("paralysis")
 
-/mob/living/SetParalysis(amount)
+/mob/living/SetParalysis(amount, ignore_canstun = FALSE)
 	..()
 	if(paralysis <= 0)
 		remove_status_indicator("paralysis")
 	else
 		add_status_indicator("paralysis")
 
-/mob/living/AdjustParalysis(amount)
+/mob/living/AdjustParalysis(amount, ignore_canstun = FALSE)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -568,7 +572,7 @@
 	else
 		add_status_indicator("paralysis")
 
-/mob/living/Sleeping(amount)
+/mob/living/Sleeping(amount, ignore_canstun = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
@@ -576,14 +580,14 @@
 	if(sleeping > 0)
 		add_status_indicator("sleeping")
 
-/mob/living/SetSleeping(amount)
+/mob/living/SetSleeping(amount, ignore_canstun = FALSE)
 	..()
 	if(sleeping <= 0)
 		remove_status_indicator("sleeping")
 	else
 		add_status_indicator("sleeping")
 
-/mob/living/AdjustSleeping(amount)
+/mob/living/AdjustSleeping(amount, ignore_canstun = FALSE)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -594,7 +598,7 @@
 	else
 		add_status_indicator("sleeping")
 
-/mob/living/Confuse(amount)
+/mob/living/Confuse(amount, ignore_canstun = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
@@ -602,14 +606,14 @@
 	if(confused > 0)
 		add_status_indicator("confused")
 
-/mob/living/SetConfused(amount)
+/mob/living/SetConfused(amount, ignore_canstun = FALSE)
 	..()
 	if(confused <= 0)
 		remove_status_indicator("confused")
 	else
 		add_status_indicator("confused")
 
-/mob/living/AdjustConfused(amount)
+/mob/living/AdjustConfused(amount, ignore_canstun = FALSE)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -620,7 +624,7 @@
 	else
 		add_status_indicator("confused")
 
-/mob/living/Blind(amount)
+/mob/living/Blind(amount, ignore_canstun = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
@@ -628,14 +632,14 @@
 	if(eye_blind > 0)
 		add_status_indicator("blinded")
 
-/mob/living/SetBlinded(amount)
+/mob/living/SetBlinded(amount, ignore_canstun = FALSE)
 	..()
 	if(eye_blind <= 0)
 		remove_status_indicator("blinded")
 	else
 		add_status_indicator("blinded")
 
-/mob/living/AdjustBlinded(amount)
+/mob/living/AdjustBlinded(amount, ignore_canstun = FALSE)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -725,12 +729,11 @@
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-	ExtinguishMob()
-	fire_stacks = 0
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
+	SEND_SIGNAL(src, COMSIG_LIVING_AHEAL)
 
 /mob/living/proc/rejuvenate()
 	if(reagents)
@@ -855,8 +858,6 @@
 		else
 			resist_restraints()
 
-	if(attempt_vr(src,"vore_process_resist",args)) return TRUE
-
 /mob/living/proc/resist_buckle()
 	if(buckled)
 		if(istype(buckled, /obj/vehicle))
@@ -888,7 +889,7 @@
 	update_canmove()
 
 //called when the mob receives a bright flash
-/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(override_blindness_check || !(disabilities & BLIND))
 		overlay_fullscreen("flash", type)
 		spawn(25)
@@ -1015,6 +1016,11 @@
 				puke_bucket.reagents.add_reagent(REAGENT_BLOOD, rand(3, 6))
 			else
 				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
+		distance = 0
+	else if(isbelly(loc))
+		var/obj/belly/belly = loc
+		if(message)
+			to_chat(src, span_bolddanger("You throw up inside [belly.owner]'s [belly]!"))
 		distance = 0
 	else
 		if(message)
@@ -1173,10 +1179,6 @@
 		return FALSE
 	return TRUE
 
-// Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
-/mob/living/proc/get_fire_icon_state()
-	return "generic"
-
 // Called by job_controller.
 /mob/living/proc/equip_post_job()
 	return
@@ -1269,8 +1271,6 @@
 	// We just swapped hands, so the thing in our inactive hand will notice it's not the focus
 	var/obj/item/I = get_inactive_hand()
 	if(I)
-		if(I.zoom)
-			I.zoom()
 		I.in_inactive_hand(src)	//This'll do specific things, determined by the item
 	return
 
@@ -1288,7 +1288,7 @@
 		swap_hand()
 
 /mob/living/throw_item(atom/target)
-	if(incapacitated() || !target || istype(target, /obj/screen) || is_incorporeal())
+	if(incapacitated() || !target || istype(target, /atom/movable/screen) || is_incorporeal())
 		return FALSE
 
 	var/atom/movable/item = src.get_active_hand()
@@ -1434,7 +1434,7 @@
 	if(has_gravity)
 		clear_alert("weightless")
 	else
-		throw_alert("weightless", /obj/screen/alert/weightless)
+		throw_alert("weightless", /atom/movable/screen/alert/weightless)
 
 // Tries to turn off things that let you see through walls, like mesons.
 // Each mob does vision a bit differently so this is just for inheritence and also so overrided procs can make the vision apply instantly if they call `..()`.
@@ -1445,7 +1445,7 @@
  * Small helper component to manage the character setup HUD icon
  */
 /datum/component/character_setup
-	var/obj/screen/character_setup/screen_icon
+	var/atom/movable/screen/character_setup/screen_icon
 
 /datum/component/character_setup/Initialize()
 	if(!ismob(parent))
@@ -1481,6 +1481,8 @@
 		screen_icon.icon = HUD.ui_style
 		screen_icon.color = HUD.ui_color
 		screen_icon.alpha = HUD.ui_alpha
+	if(isAI(user))
+		screen_icon.screen_loc = ui_ai_pda_send
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 
@@ -1493,7 +1495,7 @@
 /**
  * Screen object for vore panel
  */
-/obj/screen/character_setup
+/atom/movable/screen/character_setup
 	name = "character setup"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"

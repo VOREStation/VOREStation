@@ -107,7 +107,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + message))
 
-	log_nsay(message,nif.human.real_name,sender)
+	sender.log_talk("NSAY (NIF:[nif.human.real_name]): [message]", LOG_SAY)
 
 /datum/nifsoft/soulcatcher/proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
@@ -135,7 +135,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon,CS.client)]NIF\]") + message))
 
-	log_nme(message,nif.human.real_name,sender)
+	sender.log_message("NME (NIF:[nif.human.real_name]): [message]", LOG_EMOTE)
 
 /datum/nifsoft/soulcatcher/proc/show_settings(var/mob/living/carbon/human/H)
 	set waitfor = FALSE
@@ -346,7 +346,7 @@
 		if(ext_blind)
 			eye_blind = 5
 			client.screen.Remove(GLOB.global_hud.whitense)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			eye_blind = 0
 			clear_fullscreens()
@@ -491,39 +491,41 @@
 
 ///////////////////
 //The catching hook
-/hook/death/proc/nif_soulcatcher(var/mob/living/L)
-	if(!istype(L) || !L.mind) return TRUE //Hooks must return TRUE
+/mob/living/proc/soulcatcher_on_mob_death()
+	if(!mind)
+		return
 
-	if(isbelly(L.loc)) //Died in someone
-		var/obj/belly/B = L.loc
+	if(isbelly(loc)) //Died in someone
+		var/obj/belly/B = loc
 		var/mob/living/owner = B.owner
 		var/obj/soulgem/gem = owner.soulgem
 		if(gem && gem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_OTHERS, TRUE))
 			var/to_use_custom_name = null
-			if(isanimal(L))
-				to_use_custom_name = L.name
-			gem.catch_mob(L, to_use_custom_name)
-			return TRUE
+			if(isanimal(src))
+				to_use_custom_name = name
+			gem.catch_mob(src, to_use_custom_name)
+			return
 		var/mob/living/carbon/human/HP = B.owner
-		var/mob/living/carbon/human/H = L
-		if(!istype(H)) return TRUE
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			return
 		if(istype(HP) && HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
 	else
-		var/obj/soulgem/gem = L.soulgem
+		var/obj/soulgem/gem = soulgem
 		if(gem && gem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_ME, TRUE))
 			var/to_use_custom_name = null
-			if(isanimal(L))
-				to_use_custom_name = L.name
-			gem.catch_mob(L, to_use_custom_name)
-			return TRUE
-		var/mob/living/carbon/human/H = L
-		if(!istype(H)) return TRUE
+			if(isanimal(src))
+				to_use_custom_name = name
+			gem.catch_mob(src, to_use_custom_name)
+			return
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			return
 		if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
 			var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
-	return TRUE
 
 ///////////////////
 //Verbs for humans
