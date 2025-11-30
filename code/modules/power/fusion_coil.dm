@@ -54,17 +54,16 @@
 		return
 
 	if(coil_charged)
-		switch(coil_damaged)
-			if(0)
-				visible_message(span_danger("\The [src] sparks and sputters!"))
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-				spark_system.set_up(5, 0, src.loc)
-				spark_system.start()
-				playsound(src, "sparks", 50, 1)
-				coil_damaged = 1
-				coil_charge = (coil_charge / 2)
-				update_icon()
-			if(1)
-				visible_message(span_danger("\The [src] explodes in a blinding flash!"))
-				explosion(src.loc, 0, 1, 3)
-				qdel(src)
+		if(coil_damaged)
+			visible_message(span_danger("\The [src] explodes in a blinding flash!"))
+			explosion(src.loc, 0, 1, 3)
+			qdel(src)
+		else
+			visible_message(span_danger("\The [src] sparks and sputters!"))
+			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			spark_system.set_up(5, 0, src.loc)
+			spark_system.start()
+			playsound(src, "sparks", 50, 1)
+			coil_damaged = TRUE
+			coil_charge = (coil_charge / 2)
+			update_icon()
