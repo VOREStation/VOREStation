@@ -112,7 +112,8 @@
 		while(S.cores)
 			playsound(src, 'sound/machines/juicer.ogg', 25, 1)
 			if(do_after(user, 15, target = src))
-				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HARVEST_SLIME_CORE, new S.coretype(get_turf(AM)))
+				var/atom/new_core = new S.coretype(get_turf(AM))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HARVEST_SLIME_CORE, new_core)
 				playsound(src, 'sound/effects/splat.ogg', 50, 1)
 				S.cores--
 		qdel(S)
