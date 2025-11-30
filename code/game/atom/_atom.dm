@@ -95,13 +95,6 @@
 	else
 		return null
 
-//return flags that should be added to the viewer's sight var.
-//Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
-	if (isAI(user)) // WHYYYY
-		return 0
-	return -1
-
 /atom/proc/Bumped(AM as mob|obj)
 	set waitfor = FALSE
 
@@ -145,7 +138,14 @@
 		UnregisterSignal(T, COMSIG_OBSERVER_TURF_ENTERED)
 
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity, recursive)
+	recursive++
+	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
+		return
+	for(var/atom/A in contents)
+		if(isbelly(A)) //Prey are protected
+			continue
+		A.emp_act(severity, recursive)
 	return
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
@@ -299,6 +299,7 @@
 
 
 /atom/proc/hitby(atom/movable/source)
+	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	if (density)
 		source.throwing = 0
 	return
@@ -482,9 +483,6 @@
 /atom/Exited(atom/movable/AM, atom/new_loc)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
-
-/atom/proc/get_visible_gender(mob/user, force)
-	return gender
 
 /atom/proc/interact(mob/user)
 	return

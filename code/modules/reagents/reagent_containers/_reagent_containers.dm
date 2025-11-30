@@ -118,6 +118,7 @@
 			return FALSE
 
 	user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
+	SEND_SIGNAL(src, COMSIG_CONTAINER_DRANK, target, user)
 	if(user == target)
 		self_feed_message(user)
 		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
@@ -126,7 +127,7 @@
 
 	else
 		other_feed_message_start(user, target)
-		if(!do_mob(user, target))
+		if(!do_after(user, 3 SECONDS, target))
 			return FALSE
 		other_feed_message_finish(user, target)
 

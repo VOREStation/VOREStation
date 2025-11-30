@@ -10,6 +10,9 @@
 	var/list/restricted_accessory_slots
 	var/list/starting_accessories
 
+	/// Trait modification, lazylist of traits to add/take away, on equipment/drop in the correct slot
+	var/list/clothing_traits
+
 	var/flash_protection = FLASH_PROTECTION_NONE
 	var/tint = TINT_NONE
 	var/list/enables_planes		//Enables these planes in the wearing mob's plane_holder
@@ -54,11 +57,16 @@
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
+	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
+		for(var/trait in clothing_traits)
+			ADD_CLOTHING_TRAIT(user, trait)
 
 /obj/item/clothing/dropped(mob/user)
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
+	for(var/trait in clothing_traits)
+		REMOVE_CLOTHING_TRAIT(user, trait)
 
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(M as mob, slot, disable_warning = FALSE)
@@ -337,13 +345,6 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_gloves()
-
-/obj/item/clothing/gloves/emp_act(severity)
-	if(cell)
-		cell.emp_act(severity)
-	if(ring)
-		ring.emp_act(severity)
-	..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
@@ -1252,12 +1253,22 @@
 		to_chat(user, "This suit does not have any sensors.")
 		return 0
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes)
+	var/list/modes = list(
+		"Off" = SUIT_SENSOR_OFF,
+		"Binary sensors" = SUIT_SENSOR_BINARY,
+		"Vitals tracker" = SUIT_SENSOR_VITAL,
+		"Tracking beacon" = SUIT_SENSOR_TRACKING
+		)
+	var/default_choice
+	for(var/key, value in modes)
+		if(value == sensor_mode)
+			default_choice = key
+			break
+	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes, default_choice)
 	if(get_dist(user, src) > 1)
 		to_chat(user, "You have moved too far away.")
 		return
-	sensor_mode = modes.Find(switchMode) - 1
+	sensor_mode = modes[switchMode]
 
 	if (src.loc == user)
 		switch(sensor_mode)
@@ -1412,3 +1423,23 @@
 /obj/item/clothing/under/equipped(var/mob/user, var/slot)
 	. = ..()
 	handle_digitigrade(user)
+
+/obj/item/clothing/proc/attach_clothing_traits(trait_or_traits)
+	if(!islist(trait_or_traits))
+		trait_or_traits = list(trait_or_traits)
+
+	LAZYOR(clothing_traits, trait_or_traits)
+	var/mob/wearer = loc
+	if(istype(wearer) && (wearer.get_inventory_slot(src) & slot_flags))
+		for(var/new_trait in trait_or_traits)
+			ADD_CLOTHING_TRAIT(wearer, new_trait)
+
+/obj/item/clothing/proc/detach_clothing_traits(trait_or_traits)
+	if(!islist(trait_or_traits))
+		trait_or_traits = list(trait_or_traits)
+
+	LAZYREMOVE(clothing_traits, trait_or_traits)
+	var/mob/wearer = loc
+	if(istype(wearer))
+		for(var/new_trait in trait_or_traits)
+			REMOVE_CLOTHING_TRAIT(wearer, new_trait)

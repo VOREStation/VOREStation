@@ -4,7 +4,7 @@
  * Previously there was a system where COMSIG_OBSERVER_MOVE was always recursively propogated, but that was unnecessary bloat.
  */
 /datum/component/recursive_move
-	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS //This makes it so pretty much nothing happens when a duplicate component is created since we don't actually override InheritComponent
+	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS //This makes it so pretty much nothing happens when a duplicate component is created since we only use it to regenerate our parent list
 	var/atom/movable/holder
 	var/list/parents = list()
 	var/noparents = FALSE
@@ -16,6 +16,12 @@
 	spawn(0) // Delayed action if our holder is spawned in nullspace and then loc = target, hopefully this catches it. VV Add item does this, for example.
 		if(!QDELETED(src))
 			setup_parents()
+
+/datum/component/recursive_move/InheritComponent(datum/component/recursive_move/C, i_am_original)
+	if(!i_am_original)
+		return
+	reset_parents()
+	setup_parents()
 
 /datum/component/recursive_move/proc/setup_parents()
 	SIGNAL_HANDLER
@@ -36,7 +42,10 @@
 		parents += cur_parent
 		RegisterSignal(cur_parent, COMSIG_ATOM_EXITED, PROC_REF(heirarchy_changed))
 		RegisterSignal(cur_parent, COMSIG_QDELETING, PROC_REF(on_qdel))
-
+		// Because the turf is not considered to be in the heirarchy by the component, picking
+		// up a bag with an recursive item inside it will not rebuild the heirarchy when it
+		// enters the mob unless we fire this. Can't use pickup signal as it happens too early...
+		RegisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED, PROC_REF(heirarchy_changed))
 		cur_parent = cur_parent.loc
 
 	if(recursion >= 64) // If we escaped due to iteration limit, cancel
@@ -67,6 +76,7 @@
 	for(var/atom/movable/cur_parent in parents)
 		UnregisterSignal(cur_parent, COMSIG_QDELETING)
 		UnregisterSignal(cur_parent, COMSIG_ATOM_EXITED)
+		UnregisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED)
 
 	UnregisterSignal(parents[parents.len], COMSIG_ATOM_ENTERING)
 

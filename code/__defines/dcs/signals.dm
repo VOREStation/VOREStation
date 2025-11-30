@@ -6,23 +6,65 @@
 // These are signals which can be listened to by any component on any parent
 // start global signals with "!", this used to be necessary but now it's just a formatting choice
 
+/// /datum/controller/subsystem/ticker/proc/setup() : ()
+#define COMSIG_GLOB_ROUND_START "!round_start"
+/// /datum/controller/subsystem/ticker/proc/post_game_tick() : ()
+#define COMSIG_GLOB_ROUND_END "!round_end"
 ///from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
 #define COMSIG_GLOB_NEW_Z "!new_z"
 /// called after a successful var edit somewhere in the world: (list/args)
 #define COMSIG_GLOB_VAR_EDIT "!var_edit"
-/// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
+/// called after an explosion happened, called by /datum/controller/subsystem/explosions/proc/end_resolve() : (epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
-/// mob was created somewhere : (mob)
+/// mob was created somewhere, called by /mob/Initialize() : (mob)
 #define COMSIG_GLOB_MOB_CREATED "!mob_created"
-/// mob died somewhere : (mob , gibbed)
+/// mob died somewhere, called by /mob/proc/death(gibbed,deathmessage) : (mob , gibbed)
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 /// global living say plug - use sparingly: (mob/speaker , message)
 #define COMSIG_GLOB_LIVING_SAY_SPECIAL "!say_special"
 /// called by datum/cinematic/play() : (datum/cinematic/new_cinematic)
 #define COMSIG_GLOB_PLAY_CINEMATIC "!play_cinematic"
 	#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)
-/// ingame button pressed (/obj/machinery/button/button)
+/// ingame button pressed, called by /obj/machinery/button/attack_hand() : (obj/machinery/button/button, mob/user)
 #define COMSIG_GLOB_BUTTON_PRESSED "!button_pressed"
+/// Supply shuttle selling, before all items are sold, called by /datum/controller/subsystem/supply/proc/sell() : (/list/area/supply_shuttle_areas)
+#define COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART "!sell_supply_shuttle"
+/// Supply shuttle selling, for each item sold, called by /datum/controller/subsystem/supply/proc/sell() : (atom/movable/sold_item, list/things_sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
+#define COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM "!supply_shuttle_sell_item"
+/// Mind inserted into body: (mob/new_owner, /datum/mind/assigned_mind)
+#define COMSIG_GLOB_RESLEEVED_MIND "!resleeved_mind_into_body"
+/// ID card modified: (obj/item/card/id/modified_card)
+#define COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD "!modified_employee_idcard"
+/// ID card terminated: (obj/item/card/id/terminated_card)
+#define COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD "!modified_terminated_idcard"
+/// payment account status changed /obj/machinery/account_database/tgui_act() : (datum/money_account/account)
+#define COMSIG_GLOB_PAYMENT_ACCOUNT_STATUS "!payment_account_change_status"
+/// payment account status changed /obj/machinery/account_database/tgui_act() : (datum/money_account/account)
+#define COMSIG_GLOB_PAYMENT_ACCOUNT_REVOKE "!payment_account_revoke_payroll"
+/// borg created: (mob/living/silicon/robot/new_robot)
+#define COMSIG_GLOB_BORGIFY "!borgify_mob"
+/// brain removed from body, called by /obj/item/organ/internal/brain/proc/transfer_identity() : (mob/living/carbon/brain/brainmob)
+#define COMSIG_GLOB_BRAIN_REMOVED "!brain_removed_from_mob"
+// base /decl/emote/proc/do_emote() : (mob/user, extra_params)
+#define COMSIG_GLOB_EMOTE_PERFORMED "!emote_performed"
+// base /proc/say_dead_direct() : (message)
+#define COMSIG_GLOB_DEAD_SAY "!dead_say"
+// base /turf/wash() : ()
+#define COMSIG_GLOB_WASHED_FLOOR "!washed_floor"
+// base /obj/machinery/artifact_harvester/proc/harvest() : (obj/item/anobattery/inserted_battery, mob/user)
+#define COMSIG_GLOB_HARVEST_ARTIFACT "!harvest_artifact"
+// upon harvesting a slime's extract : (obj/item/slime_extract/newly_made_core)
+#define COMSIG_GLOB_HARVEST_SLIME_CORE "!harvest_slime_core"
+// base /datum/recipe/proc/make_food() : (obj/container, list/results)
+#define COMSIG_GLOB_FOOD_PREPARED "!recipe_food_completed"
+// base /datum/construction/proc/spawn_result() : (/obj/mecha/result_mech)
+#define COMSIG_GLOB_MECH_CONSTRUCTED "!mecha_constructed"
+// when trashpiles are successfully searched : (mob/living/user, list/searched_by)
+#define COMSIG_GLOB_TRASHPILE_SEARCHED "!trash_pile_searched"
+// base /obj/item/autopsy_scanner/do_surgery() : (mob/user, mob/target)
+#define COMSIG_GLOB_AUTOPSY_PERFORMED "!performed_autopsy"
+// upon forensics swap or sample kit forensics collection : (atom/target, mob/user)
+#define COMSIG_GLOB_FORENSICS_COLLECTED "!performed_forensics_collection"
 
 /// signals from globally accessible objects
 
@@ -194,6 +236,7 @@
 #define COMSIG_CLICK_CTRL "ctrl_click"
 ///from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_ALT "alt_click"
+	#define COMPONENT_CANCEL_CLICK_ALT (1<<0)
 ///from base of atom/CtrlShiftClick(/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"
 ///from base of atom/MouseDrop(): (/atom/over, /mob/user)
@@ -300,6 +343,8 @@
 ///from base of /obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0). Has the arguments of 'src, silent, result'
 #define COMSIG_MOB_ROLLED_DICE "mob_rolled_dice" //can give a return value if we want it to make the dice roll a specific number!
 
+///from base of /client/Move(n, direct) : (direction) returns bool, if component handled movement
+#define COMSIG_MOB_RELAY_MOVEMENT "mob_relay_movement"
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
 ///from base of mob/anti_magic_check(): (mob/user, magic, holy, tinfoil, chargecost, self, protection_sources)
@@ -322,6 +367,8 @@
 #define COMSIG_MOB_ITEM_ATTACK_QDELETED "mob_item_attack_qdeleted"
 ///from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"
+///from base of obj/item/dropped(): (obj/item)
+#define COMSIG_MOB_DROPPED_ITEM "mob_dropped_item"
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /mob/verb/examinate(): (atom/target)
@@ -348,6 +395,10 @@
 ///from base of mob/swap_hand(): (obj/item)
 #define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
 	#define COMPONENT_BLOCK_SWAP (1<<0)
+/// From base of /mob/proc/reset_perspective() : ()
+#define COMSIG_MOB_RESET_PERSPECTIVE "mob_reset_perspective"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+#define COMSIG_CLIENT_SET_EYE "client_set_eye"
 
 // /mob/living signals
 
@@ -382,6 +433,17 @@
 ///From /mob/living/proc/updatehealth().
 #define COMSIG_UPDATE_HEALTH "update_health"
 	#define COMSIG_UPDATE_HEALTH_GOD_MODE (1<<0) //If this will set health to 100 and stat to conscious.
+///From /mob/handle_vision().
+#define COMSIG_LIVING_HANDLE_VISION "living_handle_vision"
+///From /mob/handle_regular_hud_updates().
+#define COMSIG_LIVING_HANDLE_HUD "living_handle_hud"
+	#define COMSIG_COMPONENT_HANDLED_HUD (1<<0)
+///From /mob/living/proc/handle_hud_icons_health().
+#define COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON "living_handle_hud_health_icon"
+	#define COMSIG_COMPONENT_HANDLED_HEALTH_ICON (1<<0)
+///From /mob/living/proc/handle_darksight().
+#define COMSIG_LIVING_HANDLE_HUD_DARKSIGHT "living_handle_hud_darksight"
+
 
 // Damage specific signals for /mob/living
 ///from /mob/living/proc/adjustBrainLoss(amount) and /mob/living/proc/setBrainLoss(amount)
@@ -426,22 +488,35 @@
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 
-///from base of mob/living/Stun() (amount, update, ignore)
+///from base of mob/Stun() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_STUN "living_stun"
-///from base of mob/living/Knockdown() (amount, update, ignore)
+///from base of mob/Knockdown() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"
-///from base of mob/living/Paralyze() (amount, update, ignore)
+///from base of mob/Weaken() (amount, ignore_canstun)
+#define COMSIG_LIVING_STATUS_WEAKEN "living_weaken"
+///from base of mob/Paralyze() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze"
-///from base of mob/living/Immobilize() (amount, update, ignore)
+///from base of mob/Immobilize() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize"
-///from base of mob/living/Unconscious() (amount, update, ignore)
+///from base of mob/Unconscious() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_UNCONSCIOUS "living_unconscious"
-///from base of mob/living/Sleeping() (amount, update, ignore)
+///from base of mob/Sleeping() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"
-	#define COMPONENT_NO_STUN (1<<0)									//For all of them
+///from base of mob/Confuse() (amount, ignore_canstun)
+#define COMSIG_LIVING_STATUS_CONFUSE "living_confuse"
+///from base of mob/Blind() (amount, ignore_canstun)
+#define COMSIG_LIVING_STATUS_BLIND "living_blind"
+/// from mob/living/check_stun_immunity(): (check_flags)
+#define COMSIG_LIVING_GENERIC_STUN_CHECK "living_check_stun"
+	#define COMPONENT_NO_STUN (1<<0) //For all of them
 ///from base of /mob/living/can_track(): (mob/user)
 #define COMSIG_LIVING_CAN_TRACK "mob_cantrack"
 	#define COMPONENT_CANT_TRACK (1<<0)
+
+///from base of /mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1, rad_protection)
+#define COMSIG_LIVING_IRRADIATE_EFFECT "living_irradiate_effect"
+	///Return this if you want to block the effect.
+	#define COMPONENT_BLOCK_IRRADIATION (1<<0)
 
 // /mob/living/carbon signals
 
@@ -466,12 +541,12 @@
 #define COMSIG_ON_CARBON_SLIP "carbon_slip"
 
 // /mob/living/silicon signals
-///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
+///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity, recursive)
 #define COMSIG_SILICON_EMP_ACT "silicon_emp_act"
 	#define COMPONENT_BLOCK_EMP (1<<0) //If this is set, the EMP will not go through. Used by other EMP acts as well.
 
 // /mob/living/silicon/robot signals
-///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity)
+///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity, recursive)
 #define COMSIG_ROBOT_EMP_ACT "robot_emp_act"
 
 ///from base of obj/deconstruct(): (disassembled)
@@ -685,6 +760,14 @@
 #define COMSIG_JOB_RECEIVED "job_received"
 ///When the mob's dna and species have been fully applied
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
+///from /proc/domutcheck(): ()
+#define COMSIG_MOB_DNA_MUTATION "mob_dna_mutation"
+///from /mob/living/proc/handle_radiation()
+#define COMSIG_HANDLE_RADIATION "handle_radiation"
+	#define COMPONENT_BLOCK_LIVING_RADIATION (1<<0)
+///from /mob/living/proc/handle_mutations()
+#define COMSIG_HANDLE_MUTATIONS "handle_mutations"
+	#define COMPONENT_BLOCK_LIVING_MUTATIONS (1<<0)
 
 // Organ specific signals
 
@@ -742,10 +825,18 @@
 ///from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)
 #define COMSIG_FOOD_EATEN "food_eaten"
 
+//Drink
+#define COMSIG_CONTAINER_DRANK "container_drank"
+
 //Gibs
 
 ///from base of /obj/effect/decal/cleanable/blood/gibs/streak(): (list/directions, list/diseases)
 #define COMSIG_GIBS_STREAK "gibs_streak"
+
+//Autopsy
+
+//from base of /obj/item/autopsy_scanner/do_surgery() : (mob/user, mob/target)
+#define COMSIG_AUTOPSY_PERFORMED "performed_autopsy"
 
 //Mood
 
@@ -755,6 +846,24 @@
 #define COMSIG_ADD_MOOD_EVENT_RND "RND_add_mood"
 ///called when you clear a mood event from anywhere in the code.
 #define COMSIG_CLEAR_MOOD_EVENT "clear_mood"
+
+//Ventcrawling
+
+///called when a ventcrawling mob checks if it can begin ventcrawling : (obj/machinery/atmospherics/unary/vent_entered)
+#define COMSIG_MOB_VENTCRAWL_CHECK "ventcrawl_check"
+///called when a ventcrawling mob checks if it can enter a vent : (mob/entering_mob)
+#define COMSIG_VENT_CRAWLER_CHECK "ventcrawl_check"
+	#define VENT_CRAWL_BLOCK_ENTRY (1<<0)
+
+///called when a ventcrawling mob enters a vent : (obj/machinery/atmospherics/unary/vent_entered)
+#define COMSIG_MOB_VENTCRAWL_START "ventcrawl_start"
+///called when a ventcrawling mob leaves a vent : (obj/machinery/atmospherics/unary/vent_exited)
+#define COMSIG_MOB_VENTCRAWL_END "ventcrawl_end"
+
+///called when a ventcrawling mob enters a vent : (mob/entering_mob)
+#define COMSIG_VENT_CRAWLER_ENTERED "ventcrawl_entered_vent"
+///called when a ventcrawling mob leaves a vent : (mob/exiting_mob)
+#define COMSIG_VENT_CRAWLER_EXITED "ventcrawl_exit_vent"
 
 //NTnet
 
@@ -840,6 +949,10 @@
 	#define COMPONENT_TWOHANDED_BLOCK_WIELD (1<<0)
 ///from base of datum/component/two_handed/proc/unwield(mob/living/carbon/user): (/mob/user)
 #define COMSIG_TWOHANDED_UNWIELD "twohanded_unwield"
+
+// /datum/component/remote_view signals
+/// Signal that can be sent from the mob remote viewing, the viewed mob, or object being used to view to forcibly end all related remote viewing components
+#define COMSIG_REMOTE_VIEW_CLEAR "remote_view_clear_viewers"
 
 // /datum/action signals
 
@@ -967,6 +1080,21 @@
 
 // Hose Connector Component
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
+
+
+// Spontaneous vore stuff.
+///from /mob/living/stumble_into(mob/living/M)
+#define COMSIG_LIVING_STUMBLED_INTO "living_stumbled_into"
+		///Something has special handling. Don't continue.
+	#define CANCEL_STUMBLED_INTO	(1<<0)
+///from /mob/living/handle_fall(var/turf/landing) args: landing, drop_mob)
+#define COMSIG_LIVING_FALLING_DOWN "living_falling_down"
+		//Special handling. Cancel the fall chain.
+	#define COMSIG_CANCEL_FALL	(1<<0)
+///from /mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
+#define COMSIG_LIVING_HIT_BY_THROWN_ENTITY "hit_by_thrown_entity"
+		//Special handling. Cancel the hitby proc.
+	#define COMSIG_CANCEL_HITBY	(1<<0)
 
 //Unittest data update
 #ifdef UNIT_TESTS

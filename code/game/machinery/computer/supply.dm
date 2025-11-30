@@ -36,7 +36,6 @@
 	if(!allowed(user))
 		to_chat(user, span_warning("You don't have the required access to use this console."))
 		return
-	user.set_machine(src)
 	tgui_interact(user)
 	return
 

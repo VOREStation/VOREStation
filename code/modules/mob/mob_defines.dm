@@ -42,6 +42,7 @@
 	var/atom/movable/screen/gun/run/gun_run_icon = null
 	var/atom/movable/screen/gun/mode/gun_setting_icon = null
 	var/atom/movable/screen/ling/chems/ling_chem_display = null
+	var/atom/movable/screen/borer/chems/borer_chem_display = null
 	var/atom/movable/screen/wizard/energy/wiz_energy_display = null
 	var/atom/movable/screen/wizard/instability/wiz_instability_display = null
 	var/atom/movable/screen/autowhisper_display = null
@@ -69,7 +70,6 @@
 	var/list/logging = list()
 
 	var/already_placed = 0.0
-	var/obj/machinery/machine = null
 	var/other_mobs = null
 	var/memory = ""
 	var/poll_answer = 0.0
@@ -263,5 +263,6 @@
 	VAR_PROTECTED/list/resistances
 
 	var/custom_footstep = FOOTSTEP_MOB_SHOE
+	var/vent_crawl_time = 4.5 SECONDS // Time to animate entering a vent
 	VAR_PRIVATE/is_motion_tracking = FALSE // Prevent multiple unsubs and resubs, also used to check if the vis layer is enabled, use has_motiontracking() to get externally.
 	VAR_PRIVATE/wants_to_see_motion_echos = TRUE

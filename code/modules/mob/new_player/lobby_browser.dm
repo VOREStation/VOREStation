@@ -51,7 +51,7 @@
 	data["can_submit_feedback"] = SSsqlite.can_submit_feedback(client)
 	data["show_station_news"] = GLOB.news_data.station_newspaper
 	data["new_station_news"] = client.prefs.lastlorenews != GLOB.news_data.newsindex
-	data["new_changelog"] = read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash
+	data["new_changelog"] = read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash
 	data["can_start_now"] = client.is_localhost() && check_rights_for(client, R_SERVER)
 	data["immediate_start"] = SSticker.start_immediately || (!isnull(SSticker.timeLeft) && SSticker.timeLeft < 0)
 

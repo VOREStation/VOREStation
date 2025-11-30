@@ -16,6 +16,26 @@ cd "$OldPWD"
 BunVersion="$BUN_VERSION"
 BunFullVersion="bun-v$BunVersion"
 
+# Check if symlinks are supported in this directory
+test_symlink_support() {
+    echo "Testing symlink support."
+    TMPDIR=$(mktemp -d)
+    TARGET="$TMPDIR/target.txt"
+    LINK="$TMPDIR/link.txt"
+    echo "test" > "$TARGET"
+    if ln -s "$TARGET" "$LINK" 2>/dev/null; then
+        rm -rf "$TMPDIR"
+        echo "Symlinks are supported."
+        return 0
+    else
+        rm -rf "$TMPDIR"
+        echo "File system does not support symlinks. Compilation won't be possible."
+        exit 1
+    fi
+}
+
+test_symlink_support
+
 # If Bun is not present, install using the official installer.
 if ! command -v bun >/dev/null 2>&1; then
     echo "Bun not found, installing with official installer..."

@@ -16,6 +16,7 @@
 	seal_delay = 0
 	var/mob/living/myprotean
 	initial_modules = list(/obj/item/rig_module/protean/syphon, /obj/item/rig_module/protean/armor, /obj/item/rig_module/protean/healing)
+	flags = PHORONGUARD
 	item_flags = NOSTRIP
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/protean //These are important for sprite pointers
@@ -418,7 +419,7 @@
 /obj/item/rig/protean/take_hit(damage, source, is_emp=0)
 	return	//We don't do that here
 
-/obj/item/rig/protean/emp_act(severity_class)
+/obj/item/rig/protean/emp_act(severity, recursive)
 	return	//Same here
 
 /obj/item/rig/protean/cut_suit()

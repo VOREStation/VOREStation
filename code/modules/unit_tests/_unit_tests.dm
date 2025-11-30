@@ -91,6 +91,7 @@
 #include "autowiki.dm"
 //#include "clothing_tests.dm" // FIXME
 #include "component_tests.dm"
+#include "construction_tests.dm"
 #include "cosmetic_tests.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dcs_get_id_from_elements.dm"
@@ -114,6 +115,7 @@
 #include "spritesheets.dm"
 #include "sqlite_tests.dm"
 #include "subsystem_init.dm"
+#include "techwebs.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
 #include "trait_tests.dm"

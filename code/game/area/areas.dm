@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/static_environ = 0
 
 	var/music = null
-	var/has_gravity = 1 // Don't check this var directly; use get_gravity() instead
+	var/has_gravity = TRUE // Don't check this var directly; use get_gravity() instead
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
@@ -461,8 +461,7 @@ var/list/mob/living/forced_ambiance_list = list()
 			H.AdjustWeakened(3)
 		to_chat(mob, span_notice("The sudden appearance of gravity makes you fall to the floor!"))
 		if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(50) && H.get_bodypart_name(BP_HEAD))
-			var/datum/gender/gender = GLOB.gender_datums[H.get_visible_gender()]
-			H.visible_message(span_warning("[H] falls to the ground from the sudden appearance of gravity, smashing [gender.his] head against the ground!"),span_warning("You smash your head into the ground as gravity appears!"))
+			H.visible_message(span_warning("[H] falls to the ground from the sudden appearance of gravity, smashing [H.p_their()] head against the ground!"),span_warning("You smash your head into the ground as gravity appears!"))
 			H.apply_damage(14, BRUTE, BP_HEAD, used_weapon = "blunt force")
 			playsound(H, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		playsound(mob, "bodyfall", 50, 1)

@@ -2852,6 +2852,18 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/sharpsnout
+	name = "Sharp Snout"
+	icon_state = "sharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/sharpsnoutlower
+	name = "Sharp Snout(lower)"
+	icon_state = "lowersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/longsnout
 	name = "Long, Sharp Snout"
 	icon_state = "longsharpsnout"
@@ -2876,6 +2888,36 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/snouttop
+	name = "Top of Snout"
+	icon_state = "topofsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/nosering
+	name = "Snout Ring (Use with Sharp Snout)"
+	icon_state = "nosering"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/bigsoftbelly
+	name = "Big Soft Belly"
+	icon_state = "bigsoftbelly"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/fluffruff
+	name = "Fluffy Neck Ruff"
+	icon_state = "fluffruff"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/gauntlets
+	name = "Clawed Gauntlets"
+	icon_state = "gauntlets"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
 /datum/sprite_accessory/marking/boneplates
 	name = "Bony Leg Plates"
 	icon_state = "bonyplatesplantigrade"
@@ -2896,3 +2938,100 @@ includes scars and tattoos
 	icon = 'icons/mob/human_races/markings.dmi'
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_ARM,BP_R_ARM)
+
+// OAK TREE TRUNK //
+
+/datum/sprite_accessory/marking/treeoak
+	name = "Tree Trunk (Oak)"
+	icon_state = "tree_oak_trunk"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO, BP_GROIN, BP_HEAD, BP_R_ARM, BP_R_HAND, BP_L_ARM, BP_L_HAND)
+	hide_body_parts = list(BP_TORSO, BP_GROIN, BP_HEAD, BP_R_ARM, BP_R_HAND, BP_L_ARM, BP_L_HAND)
+
+// THIN BODY SHAPE //
+
+/datum/sprite_accessory/marking/thin1
+	name = "Thin Bodytype"
+	icon_state = "thin1"
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO,BP_L_HAND,BP_R_HAND,BP_L_FOOT,BP_R_FOOT)
+	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO,BP_L_HAND,BP_R_HAND,BP_L_FOOT,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/thin2
+	name = "Thinner Bodytype"
+	icon_state = "thin2"
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+
+/datum/sprite_accessory/marking/skeleton_full
+	name = "Skeleton (Neck Down)"
+	icon_state = "skeleton"
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+	can_be_selected = FALSE
+
+//HEAD PIECES
+
+/datum/sprite_accessory/marking/protovisor
+	name = "Protogen Visor"
+	icon_state = "proto_visor"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_gloss
+	name = "Protogen Visor (Gloss)"
+	icon_state = "proto_visor_gloss"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_mouth
+	name = "Protogen Visor (Mouth)"
+	icon_state = "proto_visor_mouth"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_eyes
+	name = "Protogen Visor (Eyes)"
+	icon_state = "proto_visor_eyes"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_eyes_left
+	name = "Protogen Visor (Eye, Left)"
+	icon_state = "proto_visor_eyes_l"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_eyes_right
+	name = "Protogen Visor (Eye, Right)"
+	icon_state = "proto_visor_eyes_r"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_head
+	name = "Protogen Visor (Headpiece)"
+	icon_state = "proto_visor_band"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/protovisor_cheek
+	name = "Protogen Visor (Cheekpiece)"
+	icon_state = "proto_visor_cheek"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/skeleton_head_human
+	name = "Skeleton Head (Humanoid)"
+	icon_state = "skull_human"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts	= list(BP_HEAD)
+
+/datum/sprite_accessory/marking/skeleton_head_snout
+	name = "Skeleton Head (Snouted)"
+	icon_state = "skull_snout"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts	= list(BP_HEAD)

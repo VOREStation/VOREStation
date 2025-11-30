@@ -68,7 +68,9 @@
 	if(!istype(T))
 		return
 
-	if(!powered())
+	if(welded)
+		scrubber_icon += "weld"
+	else if(!powered())
 		scrubber_icon += "off"
 	else
 		scrubber_icon += "[use_power ? "[scrubbing ? "on" : "in"]" : "off"]"
@@ -142,6 +144,9 @@
 		update_use_power(USE_POWER_OFF)
 	//broadcast_status()
 	if(!use_power || (stat & (NOPOWER|BROKEN)))
+		return 0
+	if(welded) // Don't do anything if welded
+		SSmachines.hibernate_vent(src)
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -269,6 +274,27 @@
 		update_icon()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weldingtool/WT = W
+		if (WT.remove_fuel(0,user))
+			to_chat(user, span_notice("Now welding the vent."))
+
+			if(do_after(user, 20 * WT.toolspeed, src))
+				if(!src || !WT.isOn()) return
+				playsound(src, WT.usesound, 50, 1)
+				if(!welded)
+					user.visible_message(span_notice("<b>\The [user]</b> welds the vent shut."), span_notice("You weld the vent shut."), "You hear welding.")
+					welded = TRUE
+					update_icon()
+				else
+					user.visible_message(span_notice("[user] unwelds the vent."), span_notice("You unweld the vent."), "You hear welding.")
+					welded = FALSE
+					update_icon()
+			else
+				to_chat(user, span_notice("The welding tool needs to be on to start this task."))
+		else
+			to_chat(user, span_warning("You need more welding fuel to complete this task."))
+			return 1
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
@@ -277,6 +303,9 @@
 	var/turf/T = src.loc
 	if (node && node.level==1 && isturf(T) && !T.is_plating())
 		to_chat(user, span_warning("You must remove the plating first."))
+		return 1
+	if(welded)
+		to_chat(user, span_warning("You cannot unwrench \the [src], it is welded down firmly."))
 		return 1
 	if(!can_unwrench())
 		to_chat(user, span_warning("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
@@ -297,3 +326,5 @@
 		. += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 	else
 		. += "You are too far away to read the gauge."
+	if(welded)
+		. += "It is welded shut."

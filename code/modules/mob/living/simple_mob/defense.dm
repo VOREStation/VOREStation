@@ -90,8 +90,7 @@
 					adjustBruteLoss(-MED.heal_brute)
 					visible_message(span_infoplain(span_bold("\The [user]") + " applies the [MED] on [src]."))
 		else
-			var/datum/gender/T = GLOB.gender_datums[src.get_visible_gender()]
-			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [T.him] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
+			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [p_them()] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
 		harvest(user, O)
 		return
@@ -232,7 +231,7 @@
 
 
 // Electromagnetism
-/mob/living/simple_mob/emp_act(severity)
+/mob/living/simple_mob/emp_act(severity, recursive)
 	..() // To emp_act() its contents.
 	if(!isSynthetic())
 		return
@@ -266,18 +265,6 @@
 
 	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_percent, attack_flag)
-		if(modifier_armor)
-			armorval += modifier_armor
-
-	return armorval
-
-/mob/living/simple_mob/getsoak(def_zone, attack_flag)
-	var/armorval = armor_soak[attack_flag]
-	if(isnull(armorval))
-		armorval = 0
-
-	for(var/datum/modifier/M as anything in modifiers)
-		var/modifier_armor = LAZYACCESS(M.armor_flat, attack_flag)
 		if(modifier_armor)
 			armorval += modifier_armor
 

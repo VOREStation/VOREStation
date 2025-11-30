@@ -1,5 +1,5 @@
-import { Box, LabeledList, Stack } from 'tgui-core/components';
 import { T0C } from 'tgui/constants';
+import { Box, LabeledList, Stack } from 'tgui-core/components';
 import { YesNoBox } from '../../../../PublicLibraryWiki/WikiCommon/WikiQuickElements';
 import type { SpeciesStats } from '../data';
 import {
@@ -33,9 +33,12 @@ export const SpeciesBaseStats = (props: {
           </LabeledList.Item>
           <LabeledList.Item label="Breathes Gas">
             <Box
-              color={breathetypeToColor(speciesStats.breath_type, baseStats.breath_type)}
+              color={breathetypeToColor(
+                speciesStats.breath_type,
+                baseStats.breath_type,
+              )}
             >
-              {speciesStats.breath_type || "N/A"}
+              {speciesStats.breath_type || 'N/A'}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Body Temperature">
@@ -76,7 +79,10 @@ export const SpeciesBaseStats = (props: {
                 baseStats.hazard_low_pressure,
               )}
             >
-              {formatStat(Math.max(0, speciesStats.hazard_low_pressure), ' kPa')}
+              {formatStat(
+                Math.max(0, speciesStats.hazard_low_pressure),
+                ' kPa',
+              )}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Max Pressure Limit">
@@ -86,7 +92,10 @@ export const SpeciesBaseStats = (props: {
                 speciesStats.hazard_high_pressure,
               )}
             >
-              {formatStat(Math.max(0, speciesStats.hazard_high_pressure), ' kPa')}
+              {formatStat(
+                Math.max(0, speciesStats.hazard_high_pressure),
+                ' kPa',
+              )}
             </Box>
           </LabeledList.Item>
         </LabeledList>

@@ -5,7 +5,7 @@
 	icon = 'icons/mob/pai_hud.dmi'
 	var/base_state
 
-/atom/movable/pai/Click(location, control, params)
+/atom/movable/screen/pai/Click(location, control, params)
 	. = ..()
 	if(!ispAI(usr))
 		return
@@ -390,32 +390,40 @@
 
 /mob/living/silicon/pai/handle_regular_hud_updates()
 	. = ..()
-	if(healths)
-		if(stat != DEAD)
-			var/heal_per = (health / getMaxHealth()) * 100
-			switch(heal_per)
-				if(100 to INFINITY)
-					healths.icon_state = "health0"
-				if(80 to 100)
-					healths.icon_state = "health1"
-				if(60 to 80)
-					healths.icon_state = "health2"
-				if(40 to 60)
-					healths.icon_state = "health3"
-				if(20 to 40)
-					healths.icon_state = "health4"
-				if(0 to 20)
-					healths.icon_state = "health5"
-				else
-					healths.icon_state = "health6"
-		else
-			healths.icon_state = "health7"
+	if(!.)
+		return
 
 	if(pai_fold_display)
 		if(loc == card)
 			pai_fold_display.icon_state = "folded"
 		else
 			pai_fold_display.icon_state = "unfolded"
+
+/mob/living/silicon/pai/handle_hud_icons_health()
+	. = ..()
+	if(!. || !healths)
+		return
+
+	if(stat == DEAD)
+		healths.icon_state = "health7"
+		return
+
+	var/heal_per = (health / getMaxHealth()) * 100
+	switch(heal_per)
+		if(100 to INFINITY)
+			healths.icon_state = "health0"
+		if(80 to 100)
+			healths.icon_state = "health1"
+		if(60 to 80)
+			healths.icon_state = "health2"
+		if(40 to 60)
+			healths.icon_state = "health3"
+		if(20 to 40)
+			healths.icon_state = "health4"
+		if(0 to 20)
+			healths.icon_state = "health5"
+		else
+			healths.icon_state = "health6"
 
 /mob/living/silicon/pai/toggle_hud_vis(full)
 	if(!client)

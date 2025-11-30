@@ -89,7 +89,13 @@
 	switch(action)
 		if("viewing")
 			if(ui.user && !isAI(ui.user))
-				viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+				if(!get_dist(ui.user, src) > 1 || ui.user.blinded || !linked)
+					. = FALSE
+				else if(!viewing_overmap(ui.user) && linked)
+					if(!viewers) viewers = list() // List must exist for pass by reference to work
+					start_coordinated_remoteview(ui.user, linked, viewers)
+				else
+					ui.user.reset_perspective()
 			. = TRUE
 
 		if("link")
@@ -228,7 +234,7 @@
 	range = nrange
 	change_power_consumption(1500 * (range**2), USE_POWER_IDLE) //Exponential increase, also affects speed of overheating
 
-/obj/machinery/shipsensors/emp_act(severity)
+/obj/machinery/shipsensors/emp_act(severity, recursive)
 	if(!use_power)
 		return
 	take_damage(20/severity)

@@ -572,10 +572,10 @@
 		var/obj/item/I = thing
 		startfx.Add(get_belly_surrounding(I.contents))
 
-	for(var/mob/living/M in startfx) // End of indirect vorefx changes
-		M.updateVRPanel()
+	for(var/mob/living/living_mob in startfx) // End of indirect vorefx changes
+		living_mob.updateVRPanel()
 		var/raw_desc //Let's use this to avoid needing to write the reformat code twice
-		if(absorbed_desc && M.absorbed)
+		if(absorbed_desc && living_mob.absorbed)
 			raw_desc = absorbed_desc
 		else if(desc)
 			raw_desc = desc
@@ -583,21 +583,21 @@
 		//Was there a description text? If so, it's time to format it!
 		if(raw_desc)
 			//Replace placeholder vars
-			to_chat(M, span_vnotice(span_bold("[belly_format_string(raw_desc, M)]")))
+			to_chat(living_mob, span_vnotice(span_bold("[belly_format_string(raw_desc, living_mob)]")))
 
 		var/taste
-		if(can_taste && M.loc == src && (taste = M.get_taste_message(FALSE))) // Prevent indirect tasting
-			to_chat(owner, span_vnotice("[M] tastes of [taste]."))
-		vore_fx(M, TRUE)
+		if(can_taste && living_mob.loc == src && (taste = living_mob.get_taste_message(FALSE))) // Prevent indirect tasting
+			to_chat(owner, span_vnotice("[living_mob] tastes of [taste]."))
+		vore_fx(living_mob, TRUE)
 		if(owner.previewing_belly == src)
 			vore_fx(owner, TRUE)
 		//Stop AI processing in bellies
-		if(M.ai_holder)
-			M.ai_holder.go_sleep()
+		if(living_mob.ai_holder)
+			living_mob.ai_holder.go_sleep()
 		if(reagents.total_volume >= 5)
-			if(digest_mode == DM_DIGEST && M.digestable)
-				reagents.trans_to(M, reagents.total_volume * 0.1, 1 / max(LAZYLEN(contents), 1), FALSE)
-			to_chat(M, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
+			if(digest_mode == DM_DIGEST && living_mob.digestable)
+				reagents.splash_mob(living_mob, reagents.total_volume * 0.1, FALSE)
+			to_chat(living_mob, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
 	if(!isliving(thing) && count_items_for_sprite) // If this is enabled also update fullness for non-living things
 		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 
@@ -883,6 +883,11 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
+	// Ventcrawlings will explode their vent to avoid exploits
+	if(istype(owner.loc,/obj/machinery/atmospherics))
+		var/obj/machinery/atmospherics/our_pipe = owner.loc
+		our_pipe.blowout(owner)
+
 	if(istype(M, /mob/living/simple_mob/vore/morph/dominated_prey))
 		var/mob/living/simple_mob/vore/morph/dominated_prey/p = M
 		p.undo_prey_takeover(FALSE)
@@ -900,9 +905,6 @@
 		slip.slip_protect = world.time + 25 // This is to prevent slipping back into your pred if they stand on soap or something.
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_view(null)
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
@@ -961,10 +963,6 @@
 			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
-	//Should fix your view not following you out of mobs sometimes!
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_view(null)
 
 	if(!owner.ckey && escape_stun)
 		owner.Weaken(escape_stun)
@@ -981,9 +979,6 @@
 		prey.buckled.unbuckle_mob()
 
 	prey.forceMove(src)
-	if(ismob(prey))
-		var/mob/ourmob = prey
-		ourmob.reset_view(owner)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
@@ -1174,10 +1169,6 @@
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)
 		M.forceMove(src)
-
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_view(owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
@@ -1522,9 +1513,6 @@
 		return
 	content.belly_cycles = 0
 	content.forceMove(target)
-	if(ismob(content) && !isobserver(content))
-		var/mob/ourmob = content
-		ourmob.reset_view(owner)
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))

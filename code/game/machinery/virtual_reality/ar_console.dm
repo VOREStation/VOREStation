@@ -65,9 +65,6 @@
 	avatar.exit_vr() //We don't poof! We're a actual, living entity that isn't restrained by VR zones!
 	if(!occupant) //This whole thing needs cleaned up later, but this works for now.
 		return
-	if(occupant && occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(get_turf(src))
 	occupant.vr_link = null //The machine remembers the avatar. 1 avatar per machine. So the vr_link isn't needed anymore.
 	occupant = null

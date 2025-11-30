@@ -31,7 +31,7 @@ export type Data = {
   max_health: number;
 
   light_color: string;
-  theme?: string;
+  theme: string | null;
 
   // Modules
   modules_static: Module[];

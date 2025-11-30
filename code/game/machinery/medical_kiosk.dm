@@ -181,7 +181,7 @@
 			problems |= ALCOHOL_POISONING
 		if(our_user.chem_effects[CE_ALCOHOL])
 			is_drunk = TRUE
-		if(our_user.vessel.total_volume < our_user.vessel.maximum_volume) //Bloodloss
+		if(our_user.vessel.total_volume < (our_user.vessel.maximum_volume*0.95)) //Bloodloss. Only happens at below 95% blood.
 			problems |= BLOODLOSS
 
 	if(!problems) //Minor stuff that we really don't care much about, but can be annoying! So let's tell people how to fix it. But only if they don't  have a health crisis going on!

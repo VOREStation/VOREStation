@@ -13,6 +13,7 @@
 	opacity = 1							//Opaque. Menacing.
 	anchored = TRUE						//No pulling around.
 	unacidable = TRUE						//And no deleting hoomans inside
+	flags = REMOTEVIEW_ON_ENTER
 	layer = MOB_LAYER					//Icon draw layer
 	infra_luminosity = 15				//Byond implementation is bugged.
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
@@ -1324,7 +1325,7 @@
 	return
 */
 
-/obj/mecha/emp_act(severity)
+/obj/mecha/emp_act(severity, recursive)
 	if(get_charge())
 		use_power((cell.charge/2)/severity)
 		take_damage(50 / severity,"energy")
@@ -1672,11 +1673,6 @@
 			return 0
 		user.drop_from_inventory(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
-		brainmob.reset_view(src)
-	/*
-		brainmob.client.eye = src
-		brainmob.client.perspective = EYE_PERSPECTIVE
-	*/
 		occupant = brainmob
 		brainmob.loc = src //should allow relaymove
 		brainmob.canmove = 1
@@ -1981,23 +1977,15 @@
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
-		H.reset_view(src)
-		/*
-		H.client.perspective = EYE_PERSPECTIVE
-		H.client.eye = src
-		*/
 		H.stop_pulling()
 		H.forceMove(src)
 		src.occupant = H
 		src.add_fingerprint(H)
-		src.forceMove(src.loc)
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		update_icon()
-		//VOREStation Edit Add
 		if(occupant.hud_used)
 			minihud = new (occupant.hud_used, src)
-		//VOREStation Edit Add End
 
 //This part removes all the verbs if you don't have them the _possible on your mech. This is a little clunky, but it lets you just add that to any mech.
 //And it's not like this 10yo code wasn't clunky before.
@@ -2099,14 +2087,13 @@
 		return
 	if(mob_container.forceMove(src.loc))//ejecting mob container
 		src.mecha_log_message("[mob_container] moved out.")
-		occupant.reset_view()
 		occupant << browse(null, "window=exosuit")
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images -= cloaked_selfimage
 		if(istype(mob_container, /obj/item/mmi))
 			var/obj/item/mmi/mmi = mob_container
 			if(mmi.brainmob)
-				occupant.loc = mmi
+				occupant.forceMove(mmi)
 			mmi.mecha = null
 			occupant.canmove = 0
 		occupant.clear_alert("charge")

@@ -140,15 +140,6 @@
 				"bio" = 100,
 				"rad" = 100
 				)
-	var/list/armor_soak = list(		// Values for getsoak() checks.
-				"melee" = 0,
-				"bullet" = 0,
-				"laser" = 0,
-				"energy" = 0,
-				"bomb" = 0,
-				"bio" = 0,
-				"rad" = 0
-				)
 	// Protection against heat/cold/electric/water effects.
 	// 0 is no protection, 1 is total protection. Negative numbers increase vulnerability.
 	var/heat_resist = 0.0
@@ -480,3 +471,7 @@
 		to_chat(src,span_warning("Vore sprite enabled."))
 
 	update_icon()
+
+/// Simple mob slip logic, should be overriden if you want the simple mob to slip under certain conditions
+/mob/living/simple_mob/proc/animal_slip(wet_level, dirtslip)
+	return FALSE

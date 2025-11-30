@@ -174,7 +174,7 @@
 #define REAGENT_ID_NUMBENZYME "numbenzyme"
 #define REAGENT_VERMICETOL "Vermicetol"
 #define REAGENT_ID_VERMICETOL "vermicetol"
-#define REAGENT_SLEEVINGCURE "Kitsuhanan Cure"
+#define REAGENT_SLEEVINGCURE "Resleeving Sickness Cure"
 #define REAGENT_ID_SLEEVINGCURE "sleevingcure"
 #define REAGENT_PRUSSIANBLUE "Prussian Blue"
 #define REAGENT_ID_PRUSSIANBLUE "prussian_blue"
@@ -288,7 +288,8 @@
 #define REAGENT_ID_EARTHSBLOOD "earthsblood"
 #define REAGENT_ASUSTENANCE	"Artificial Sustenance"
 #define REAGENT_ID_ASUSTENANCE "a_sustenance"
-
+#define REAGENT_TERCOZOLAM	"Tercozolam"
+#define REAGENT_ID_TERCOZOLAM "tercozolam"
 
 // Virology
 #define REAGENT_VACCINE "Vaccine"

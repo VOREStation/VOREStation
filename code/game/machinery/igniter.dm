@@ -107,12 +107,12 @@
 		location.hotspot_expose(1000,500,1)
 	return 1
 
-/obj/machinery/sparker/emp_act(severity)
+/obj/machinery/sparker/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	ignite()
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/button/ignition
 	name = "ignition switch"

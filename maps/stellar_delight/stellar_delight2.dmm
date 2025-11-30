@@ -1053,13 +1053,9 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/stellardelight/deck2/briefingroom)
 "cc" = (
-/obj/machinery/power/smes/buildable{
+/obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Engine - Core";
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	name = "Engine";
-	output_level = 250000
+	name = "Engine"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -4112,15 +4108,14 @@
 /area/crew_quarters/kitchen)
 "iG" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable{
+/obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Power - Main";
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	name = "Main";
-	output_level = 1e+006
+	name = "Main"
 	},
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor/plating,
 /area/engineering/storage)
 "iH" = (
@@ -4137,7 +4132,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/reagent_containers/spray/cleaner,
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
 "iJ" = (
@@ -21111,9 +21111,8 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/starboard)
 "UB" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Engineering";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Engineering"
 	},
 /obj/structure/cable/orange{
 	icon_state = "0-2"

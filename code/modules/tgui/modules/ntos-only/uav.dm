@@ -70,22 +70,23 @@
 			if(!current_uav)
 				return FALSE
 
-			if(current_uav.check_eye(ui.user) < 0)
+			if(!current_uav.state)
 				to_chat(ui.user,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
 			else
-				viewing_uav(ui.user) ? unlook(ui.user) : look(ui.user)
+				if(get_dist(ui.user, tgui_host()) > 1 || ui.user.blinded)
+					return FALSE
+				else if(!viewing_uav(ui.user))
+					if(!viewers) viewers = list() // List must exist for pass by reference to work
+					start_coordinated_remoteview(ui.user, current_uav, viewers, /datum/remote_view_config/uav_control)
+				else
+					ui.user.reset_perspective()
 			return TRUE
 
 		if("power_uav")
 			if(!current_uav)
 				return FALSE
 			else if(current_uav.toggle_power())
-				//Clean up viewers faster
-				if(LAZYLEN(viewers))
-					for(var/datum/weakref/W in viewers)
-						var/M = W.resolve()
-						if(M)
-							unlook(M)
+				SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 				return TRUE
 
 /datum/tgui_module/uav/proc/set_current(var/obj/item/uav/U)
@@ -95,12 +96,7 @@
 	signal_strength = 0
 	current_uav = U
 	RegisterSignal(U, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(current_uav_changed_z))
-
-	if(LAZYLEN(viewers))
-		for(var/datum/weakref/W in viewers)
-			var/M = W.resolve()
-			if(M)
-				look(M)
+	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /datum/tgui_module/uav/proc/clear_current()
 	if(!current_uav)
@@ -109,13 +105,7 @@
 	UnregisterSignal(current_uav, COMSIG_MOVABLE_Z_CHANGED)
 	signal_strength = 0
 	current_uav = null
-
-	if(LAZYLEN(viewers))
-		for(var/datum/weakref/W in viewers)
-			var/M = W.resolve()
-			if(M)
-				to_chat(M, span_warning("You're disconnected from the UAV's camera!"))
-				unlook(M)
+	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /datum/tgui_module/uav/proc/current_uav_changed_z(old_z, new_z)
 	SIGNAL_HANDLER
@@ -170,90 +160,104 @@
 	else
 		return max(our_signal, their_signal)
 
-/* All handling viewers */
-/datum/tgui_module/uav/Destroy()
-	if(LAZYLEN(viewers))
-		for(var/datum/weakref/W in viewers)
-			var/M = W.resolve()
-			if(M)
-				unlook(M)
-	. = ..()
-
 /datum/tgui_module/uav/tgui_status(mob/user)
 	. = ..()
 	if(. > STATUS_DISABLED)
-		if(viewing_uav(user))
-			look(user)
 		return
-	unlook(user)
-
-/datum/tgui_module/uav/tgui_close(mob/user)
-	. = ..()
-	unlook(user)
+	user.reset_perspective()
 
 /datum/tgui_module/uav/proc/viewing_uav(mob/user)
 	return (WEAKREF(user) in viewers)
 
-/datum/tgui_module/uav/proc/look(mob/user)
+/datum/tgui_module/uav/look(mob/user)
 	if(issilicon(user)) //Too complicated for me to want to mess with at the moment
 		to_chat(user, span_warning("Regulations prevent you from controlling several corporeal forms at the same time!"))
 		return
-
 	if(!current_uav)
 		return
-
-	if(user.machine != tgui_host())
-		user.set_machine(tgui_host())
-	user.reset_view(current_uav)
 	current_uav.add_master(user)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
-/datum/tgui_module/uav/proc/unlook(mob/user)
-	user.unset_machine()
-	user.reset_view()
+/datum/tgui_module/uav/unlook(mob/user)
 	if(current_uav)
 		current_uav.remove_master(user)
 	LAZYREMOVE(viewers, WEAKREF(user))
 
-/datum/tgui_module/uav/check_eye(mob/user)
-	if(get_dist(user, tgui_host()) > 1 || user.blinded || !current_uav)
-		unlook(user)
-		return -1
-
-	var/viewflag = current_uav.check_eye(user)
-	if(viewflag < 0) //camera doesn't work
-		unlook(user)
-		return -1
-
-	return viewflag
+/datum/tgui_module/uav/tgui_close(mob/user)
+	. = ..()
+	user.reset_perspective()
 
 ////
-//// Relaying movements to the UAV
+////  Settings for remote view
 ////
-/datum/tgui_module/uav/relaymove(var/mob/user, direction)
-	if(current_uav)
-		return current_uav.relaymove(user, direction, signal_strength)
+/datum/remote_view_config/uav_control
+	relay_movement = TRUE
+	override_health_hud = TRUE
+	var/original_health_hud_icon
 
-////
-////  The effects when looking through a UAV
-////
-/datum/tgui_module/uav/apply_visual(mob/M)
-	if(!M.client)
+/datum/remote_view_config/uav_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+	if(tgui_owner?.current_uav)
+		return tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
+	return FALSE
+
+/datum/remote_view_config/uav_control/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+	if(!tgui_owner)
 		return
-	if(WEAKREF(M) in viewers)
-		M.overlay_fullscreen("fishbed",/atom/movable/screen/fullscreen/fishbed)
-		M.overlay_fullscreen("scanlines",/atom/movable/screen/fullscreen/scanline)
-
-		if(signal_strength <= 1)
-			M.overlay_fullscreen("whitenoise",/atom/movable/screen/fullscreen/noise)
-		else
-			M.clear_fullscreen("whitenoise", 0)
+	if(get_dist(host_mob, tgui_owner.tgui_host()) > 1 || !tgui_owner.current_uav)
+		host_mob.reset_perspective()
+		return
+	// Apply hud
+	host_mob.overlay_fullscreen("fishbed",/atom/movable/screen/fullscreen/fishbed)
+	host_mob.overlay_fullscreen("scanlines",/atom/movable/screen/fullscreen/scanline)
+	if(tgui_owner.signal_strength <= 1)
+		host_mob.overlay_fullscreen("whitenoise",/atom/movable/screen/fullscreen/noise)
 	else
-		remove_visual(M)
+		host_mob.clear_fullscreen("whitenoise", 0)
 
-/datum/tgui_module/uav/remove_visual(mob/M)
-	if(!M.client)
-		return
-	M.clear_fullscreen("fishbed",0)
-	M.clear_fullscreen("scanlines",0)
-	M.clear_fullscreen("whitenoise",0)
+/datum/remote_view_config/uav_control/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+	// Clear hud
+	host_mob.clear_fullscreen("fishbed",0)
+	host_mob.clear_fullscreen("scanlines",0)
+	host_mob.clear_fullscreen("whitenoise",0)
+
+// We are responsible for restoring the health UI's icons on removal
+/datum/remote_view_config/uav_control/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	original_health_hud_icon = host_mob.healths?.icon
+
+/datum/remote_view_config/uav_control/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	if(host_mob.healths && original_health_hud_icon)
+		host_mob.healths.icon = original_health_hud_icon
+		host_mob.healths.appearance = null
+
+// Show the uav health instead of the mob's while it is viewing
+/datum/remote_view_config/uav_control/handle_hud_health( datum/component/remote_view/owner_component, mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+
+	var/mutable_appearance/MA = new (host_mob.healths)
+	MA.icon = 'icons/mob/screen1_robot_minimalist.dmi'
+	MA.cut_overlays()
+
+	if(!tgui_owner?.current_uav)
+		MA.icon_state = "health7"
+	else
+		switch(tgui_owner.current_uav.health)
+			if(100 to INFINITY)
+				MA.icon_state = "health0"
+			if(80 to 100)
+				MA.icon_state = "health1"
+			if(60 to 80)
+				MA.icon_state = "health2"
+			if(40 to 60)
+				MA.icon_state = "health3"
+			if(20 to 40)
+				MA.icon_state = "health4"
+			if(0 to 20)
+				MA.icon_state = "health5"
+			else
+				MA.icon_state = "health6"
+
+	host_mob.healths.icon_state = "blank"
+	host_mob.healths.appearance = MA
+	return COMSIG_COMPONENT_HANDLED_HEALTH_ICON

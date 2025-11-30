@@ -204,6 +204,7 @@ export type contentData = {
   ref: string;
   outside: BooleanLike;
   icon: string;
+  our_type: string;
 };
 
 export type bellyLiquidData = {
@@ -309,6 +310,8 @@ export type prefData = {
   show_vore_fx: BooleanLike;
   can_be_drop_prey: BooleanLike;
   can_be_drop_pred: BooleanLike;
+  can_be_afk_prey: BooleanLike;
+  can_be_afk_pred: BooleanLike;
   latejoin_vore: BooleanLike;
   latejoin_prey: BooleanLike;
   no_spawnpred_warning: BooleanLike;
@@ -321,6 +324,7 @@ export type prefData = {
   step_mechanics_active: BooleanLike;
   pickup_mechanics_active: BooleanLike;
   strip_mechanics_active: BooleanLike;
+  contaminate_worn_items: BooleanLike;
   noisy: BooleanLike;
   liq_rec: BooleanLike;
   liq_giv: BooleanLike;
@@ -424,6 +428,8 @@ export type localPrefs = {
   healbelly: preferenceData;
   dropnom_prey: preferenceData;
   dropnom_pred: preferenceData;
+  afk_prey: preferenceData;
+  afk_pred: preferenceData;
   toggle_drop_vore: preferenceData;
   toggle_slip_vore: preferenceData;
   toggle_stumble_vore: preferenceData;
@@ -443,6 +449,7 @@ export type localPrefs = {
   spontaneous_tf: preferenceData;
   mind_transfer: preferenceData;
   strippref: preferenceData;
+  contaminatepref: preferenceData;
   eating_privacy_global: preferenceData;
   vore_death_privacy: preferenceData;
   allow_mimicry: preferenceData;
@@ -466,4 +473,12 @@ export type preferenceData = {
   content: { enabled: string; disabled: string };
   fluid?: boolean;
   back_color?: { enabled: string; disabled: string };
+};
+
+export type ActionButtonData = {
+  name: string;
+  tooltip: string;
+  disabled?: boolean;
+  color?: string;
+  needsConfirm?: boolean;
 };

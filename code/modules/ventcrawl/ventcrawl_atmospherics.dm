@@ -4,6 +4,8 @@
 	for(var/mob/living/M in src) //ventcrawling is serious business
 		M.remove_ventcrawl()
 		M.forceMove(get_turf(src))
+		SEND_SIGNAL(M,COMSIG_MOB_VENTCRAWL_END,src)
+		SEND_SIGNAL(src,COMSIG_VENT_CRAWLER_EXITED,M)
 	if(pipe_image)
 		for(var/mob/living/M in GLOB.player_list)
 			if(M.client)
@@ -39,10 +41,11 @@
 				user.remove_ventcrawl()
 				user.add_ventcrawl(target_move)
 			user.forceMove(target_move)
-			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
+			user.reset_perspective(target_move) //if we don't do this, Byond only updates the eye every tick - required for smooth movement
 			if(world.time > user.next_play_vent)
 				user.next_play_vent = world.time+30
 				var/turf/T = get_turf(src)
+				SSmotiontracker.ping(T,40) // Teshari rattler
 				playsound(T, 'sound/machines/ventcrawl.ogg', 50, 1, -3)
 				var/message = pick(
 					prob(90);"* clunk *",
@@ -56,6 +59,8 @@
 		if((direction & initialize_directions) || is_type_in_list(src, ventcrawl_machinery) && src.can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 			user.remove_ventcrawl()
 			user.forceMove(src.loc)
+			SEND_SIGNAL(user,COMSIG_MOB_VENTCRAWL_END,src)
+			SEND_SIGNAL(src,COMSIG_VENT_CRAWLER_EXITED,user)
 			user.visible_message("You hear something squeezing through the pipes.", "You climb out the ventilation system.")
 	user.canmove = 0
 	spawn(1)

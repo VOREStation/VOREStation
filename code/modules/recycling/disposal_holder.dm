@@ -11,6 +11,7 @@
 	var/destinationTag = "" // changes if contains a delivery container
 	var/hasmob = FALSE //If it contains a mob
 	var/partialTag = "" //set by a partial tagger the first time round, then put in destinationTag if it goes through again.
+	flags = REMOTEVIEW_ON_ENTER
 	dir = 0
 
 	// initialize a holder from the contents of a disposal unit
@@ -22,9 +23,6 @@
 	for(var/mob/living/M in flush_list)
 		if(M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 			hasmob = TRUE
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
 	//...but it should require a second person to open the package. (i.e. person inside a wrapped locker)
@@ -102,10 +100,6 @@
 /obj/structure/disposalholder/proc/merge(obj/structure/disposalholder/other)
 	for(var/atom/movable/AM in other)
 		AM.forceMove(src)		// move everything in other holder to this one
-		if(ismob(AM))
-			var/mob/M = AM
-			if(M.client)	// if a client mob, update eye to follow this holder
-				M.client.eye = src
 	qdel(other)
 
 /obj/structure/disposalholder/proc/settag(new_tag)

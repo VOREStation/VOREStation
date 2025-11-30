@@ -34,7 +34,7 @@ var/list/ai_verbs_default = list(
 	var/is_in_use = 0
 	if (subject!=null)
 		for(var/mob/living/silicon/ai/M as anything in GLOB.ai_list)
-			if ((M.client && M.machine == subject))
+			if ((M.client && M.check_current_machine(subject)))
 				is_in_use = 1
 				subject.attack_ai(M)
 	return is_in_use
@@ -443,15 +443,11 @@ var/list/ai_verbs_default = list(
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
-	if (!camera)
-		return -1
-	return 0
 
 /mob/living/silicon/ai/restrained()
 	return 0
 
-/mob/living/silicon/ai/emp_act(severity)
+/mob/living/silicon/ai/emp_act(severity, recursive)
 	disconnect_shell("Disconnected from remote shell due to ionic interfe%*@$^___")
 	if (prob(30))
 		view_core()
@@ -515,22 +511,23 @@ var/list/ai_verbs_default = list(
 	if(.)
 		end_multicam()
 
-/mob/living/silicon/ai/reset_view(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye)
 	if(camera)
 		camera.set_light(0)
-	if(istype(A,/obj/machinery/camera))
-		camera = A
-	if(A != GLOB.ai_camera_room_landmark)
+	if(istype(new_eye,/obj/machinery/camera))
+		camera = new_eye
+	if(new_eye != GLOB.ai_camera_room_landmark)
 		end_multicam()
 	. = ..()
 	if(.)
-		if(!A && isturf(loc) && eyeobj)
+		if(!new_eye && isturf(loc) && eyeobj)
 			end_multicam()
-			client.eye = eyeobj
-			client.perspective = MOB_PERSPECTIVE
-	if(istype(A,/obj/machinery/camera))
-		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.set_light(0)
+			reset_perspective(eyeobj)
+	if(istype(new_eye,/obj/machinery/camera))
+		if(camera_light_on)
+			new_eye.set_light(AI_CAMERA_LUMINOSITY)
+		else
+			new_eye.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)

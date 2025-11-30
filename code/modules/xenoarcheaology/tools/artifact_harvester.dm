@@ -253,6 +253,8 @@
 				inserted_battery.battery_effect = E
 				inserted_battery.stored_charge = 0
 
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HARVEST_ARTIFACT, inserted_battery, user)
+
 /obj/machinery/artifact_harvester/process()
 	if(harvesting == 0)
 		return
@@ -285,7 +287,7 @@
 			if(inserted_battery.battery_effect.effect == EFFECT_TOUCH)
 				var/list/nearby = viewers(1, src)
 				for(var/mob/M in nearby)
-					if(M.machine == src)
+					if(M.check_current_machine(src))
 						inserted_battery.battery_effect.DoEffectTouch(M)
 
 		//if there's no charge left, finish

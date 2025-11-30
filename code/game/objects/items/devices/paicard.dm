@@ -417,9 +417,9 @@
 		audible_message(span_notice("\The [src] flashes a message across its screen, \"Additional personalities available for download.\""), hearing_distance = world.view, runemessage = "bleeps!")
 		last_notify = world.time
 
-/obj/item/paicard/emp_act(severity)
+/obj/item/paicard/emp_act(severity, recursive)
 	for(var/mob/M in src)
-		M.emp_act(severity)
+		M.emp_act(severity, recursive)
 
 /obj/item/paicard/ex_act(severity)
 	if(pai)
@@ -460,16 +460,16 @@
 	paicard = card
 	user.unEquip(card)
 	card.forceMove(src)
-	AI.client.eye = src
+	AI.reset_perspective(src) // focus this machine
 	to_chat(AI, span_notice("Your location is [card.loc].")) // DEBUG. TODO: Make unfolding the chassis trigger an eject.
 	name = AI.name
 	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
 
 /obj/machinery/proc/ejectpai(mob/user)
 	if(paicard)
+		paicard.forceMove(get_turf(src))
 		var/mob/living/silicon/pai/AI = paicard.pai
-		paicard.forceMove(src.loc)
-		AI.client.eye = AI
+		AI.reset_perspective() // return to the card
 		paicard = null
 		name = initial(src.name)
 		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
