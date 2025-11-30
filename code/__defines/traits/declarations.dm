@@ -43,3 +43,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NONLETHAL_BLOWS "trait_nonlethal_blows"
 /// Are we immune to specifically tesla?
 #define TRAIT_TESLA_SHOCKIMMUNE "tesla_shock_immunity"
+/// Do we show up as a changeling / the wrong body-mind pair to sleevmates
+#define UNIQUE_MINDSTRUCTURE "unique_mindstructure"
