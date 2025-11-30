@@ -235,6 +235,7 @@
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible("applies \the [tool] to [affected.encased]", "applied \the [tool] to [affected.encased]")
 
+	affected.status &= ~ORGAN_BROKEN
 	affected.open = 2
 
 ///////////////////////////////////////////////////////////////
@@ -334,4 +335,5 @@
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible("seals \the [affected.encased]", "sealed \the [affected.encased]")
 
+	affected.status &= ~ORGAN_BROKEN
 	affected.open = 2
