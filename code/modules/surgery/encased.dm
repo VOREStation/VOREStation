@@ -37,7 +37,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected && affected.open == 2
+	return ..() && affected && affected.open == FLESH_RETRACTED
 
 /datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -58,7 +58,7 @@
 	user.visible_message(span_notice("[user] has cut [target]'s [affected.encased] open with \the [tool]."), \
 	span_notice("You have cut [target]'s [affected.encased] open with \the [tool]."))
 	user.balloon_alert_visible("cuts [target]'s [affected.encased] open.", "[affected.encased] cut open.")
-	affected.open = 2.5
+	affected.open = BONE_CUT
 	affected.status |= ORGAN_BROKEN
 
 /datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -92,7 +92,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected && affected.open == 2.5
+	return ..() && affected && affected.open == BONE_CUT
 
 /datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -115,7 +115,7 @@
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible("forces open the [affected.encased]", "forced open the [affected.encased]")
 
-	affected.open = 3
+	affected.open = BONE_RETRACTED
 
 /datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -173,7 +173,7 @@
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible("bends [affected.encased] into place", "[affected.encased] bend into place.")
 
-	affected.open = 2.5
+	affected.open = BONE_CUT
 
 /datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -211,7 +211,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected && affected.open == 2.5
+	return ..() && affected && affected.open == BONE_CUT
 
 /datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -236,7 +236,7 @@
 	user.balloon_alert_visible("applies \the [tool] to [affected.encased]", "applied \the [tool] to [affected.encased]")
 
 	affected.status &= ~ORGAN_BROKEN
-	affected.open = 2
+	affected.open = FLESH_RETRACTED
 
 ///////////////////////////////////////////////////////////////
 // Saw/Retractor/Gel Combi-open and close.
@@ -278,7 +278,7 @@
 	user.visible_message(span_notice("[user] has cut [target]'s [affected.encased] wide open with \the [tool]."), \
 	span_notice("You have cut [target]'s [affected.encased] wide open with \the [tool]."))
 	user.balloon_alert_visible("cuts \the [affected.encased] wide open.", "cut \the [affected.encased] wide open.")
-	affected.open = 3
+	affected.open = BONE_RETRACTED
 	affected.status |= ORGAN_BROKEN
 
 /datum/surgery_step/open_encased/advancedsaw_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -336,4 +336,4 @@
 	user.balloon_alert_visible("seals \the [affected.encased]", "sealed \the [affected.encased]")
 
 	affected.status &= ~ORGAN_BROKEN
-	affected.open = 2
+	affected.open = FLESH_RETRACTED
