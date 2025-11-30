@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(smeses)
 
 	if(istype(W, /obj/item/fusion_coil))
 		var/obj/item/fusion_coil/FC = W
-		if(FC.coil_charged == FALSE || FC.coil_charge == 0)
+		if(!(FC.coil_charged || FC.coil_charge))
 			to_chat(user, span_filter_notice("\The [FC] has no charge remaining."))
 			return FALSE
 		else if(charge + FC.coil_charge > capacity)
