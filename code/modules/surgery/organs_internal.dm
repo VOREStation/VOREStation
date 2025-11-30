@@ -85,6 +85,7 @@
 				if(I.organ_tag == O_BRAIN && I.status == ORGAN_DEAD && target.can_defib == 0) //Let people know they still got more work to get the brain back into working order.
 					to_chat(user, span_warning("You fix their [I] but the neurological structure is still heavily damaged and in need of repair."))
 					user.balloon_alert(user, "fixed \the [I], neurological structure still in neeed of repair.")
+				I.germ_level = 0
 				I.damage = 0
 				I.status = 0
 				if(I.organ_tag == O_EYES)
