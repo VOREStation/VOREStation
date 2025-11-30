@@ -56,7 +56,11 @@
 	if(coil_charged)
 		switch(coil_damaged)
 			if(0)
-				visible_message(span_danger("\The [src] sparks and sputters, leaking smoke!"))
+				visible_message(span_danger("\The [src] sparks and sputters!"))
+				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				spark_system.set_up(5, 0, src.loc)
+				spark_system.start()
+				playsound(src, "sparks", 50, 1)
 				coil_damaged = 1
 				coil_charge = (coil_charge / 2)
 				update_icon()
