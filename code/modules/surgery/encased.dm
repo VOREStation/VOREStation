@@ -59,6 +59,7 @@
 	span_notice("You have cut [target]'s [affected.encased] open with \the [tool]."))
 	user.balloon_alert_visible("cuts [target]'s [affected.encased] open.", "[affected.encased] cut open.")
 	affected.open = 2.5
+	affected.status |= ORGAN_BROKEN
 
 /datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -277,6 +278,7 @@
 	span_notice("You have cut [target]'s [affected.encased] wide open with \the [tool]."))
 	user.balloon_alert_visible("cuts \the [affected.encased] wide open.", "cut \the [affected.encased] wide open.")
 	affected.open = 3
+	affected.status |= ORGAN_BROKEN
 
 /datum/surgery_step/open_encased/advancedsaw_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
