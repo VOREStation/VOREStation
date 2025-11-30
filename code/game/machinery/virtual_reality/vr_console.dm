@@ -118,9 +118,9 @@
 
 
 
-/obj/machinery/vr_sleeper/emp_act(var/severity)
+/obj/machinery/vr_sleeper/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(occupant)
@@ -134,7 +134,7 @@
 			smoke.start("#202020")
 		perform_exit()
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/vr_sleeper/verb/eject()
 	set src in view(1)
@@ -192,11 +192,12 @@
 
 		update_icon()
 
-		if(!M.has_brain_worms())
-			update_use_power(USE_POWER_ACTIVE)
-			enter_vr()
-		else
+		if(M.has_brain_worms())
 			to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
+			return
+
+		update_use_power(USE_POWER_ACTIVE)
+		enter_vr()
 	return
 
 /obj/machinery/vr_sleeper/proc/go_out()

@@ -849,20 +849,20 @@ Checks if a list has the same entries and values as an element of big.
 			L.Cut(fromIndex, fromIndex+1)
 
 //replaces reverseList ~Carnie
-/proc/reverseRange(list/L, start=1, end=0)
-	if(L.len)
-		start = start % L.len
-		end = end % (L.len+1)
+/proc/reverse_range(list/inserted_list, start = 1, end = 0)
+	if(inserted_list.len)
+		start = start % inserted_list.len
+		end = end % (inserted_list.len + 1)
 		if(start <= 0)
-			start += L.len
+			start += inserted_list.len
 		if(end <= 0)
-			end += L.len + 1
+			end += inserted_list.len + 1
 
 		--end
 		while(start < end)
-			L.Swap(start++,end--)
+			inserted_list.Swap(start++, end--)
 
-	return L
+	return inserted_list
 
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type
@@ -1060,3 +1060,26 @@ GLOBAL_LIST_EMPTY(json_cache)
 			else if(value_1 != value_2)
 				return FALSE
 	return TRUE
+
+/**
+ * Attempts to convert a numeric keyed alist of (2=second, 1=first) to a list of (first, second).
+ *
+ * If you instead want to discard values and keep only keys, just do list + alist.
+ *
+ * Arguments:
+ * * to_flatten - The alist with sequential numeric keys to extract values from into a normal list.
+ * * assert - Whether to assert every key is numeric and in bounds.
+ */
+/proc/flatten_numeric_alist(alist/to_flatten, assert=TRUE)
+	RETURN_TYPE(/list)
+
+	var/count = length(to_flatten)
+	if(assert)
+		for(var/key in to_flatten)
+			if(!isnum(key) || key < 1 || key > count)
+				CRASH("flatten_numeric_alist not possible for alist: [json_encode(to_flatten)]")
+
+	var/list/retval = list()
+	for(var/i in 1 to count)
+		retval += to_flatten[i]
+	return retval

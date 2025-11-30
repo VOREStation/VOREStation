@@ -42,7 +42,10 @@
 		parents += cur_parent
 		RegisterSignal(cur_parent, COMSIG_ATOM_EXITED, PROC_REF(heirarchy_changed))
 		RegisterSignal(cur_parent, COMSIG_QDELETING, PROC_REF(on_qdel))
-
+		// Because the turf is not considered to be in the heirarchy by the component, picking
+		// up a bag with an recursive item inside it will not rebuild the heirarchy when it
+		// enters the mob unless we fire this. Can't use pickup signal as it happens too early...
+		RegisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED, PROC_REF(heirarchy_changed))
 		cur_parent = cur_parent.loc
 
 	if(recursion >= 64) // If we escaped due to iteration limit, cancel
@@ -73,6 +76,7 @@
 	for(var/atom/movable/cur_parent in parents)
 		UnregisterSignal(cur_parent, COMSIG_QDELETING)
 		UnregisterSignal(cur_parent, COMSIG_ATOM_EXITED)
+		UnregisterSignal(cur_parent, COMSIG_ITEM_EQUIPPED)
 
 	UnregisterSignal(parents[parents.len], COMSIG_ATOM_ENTERING)
 

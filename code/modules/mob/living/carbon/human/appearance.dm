@@ -215,6 +215,9 @@
 		if(!(use_species in S.species_allowed))
 			continue
 
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
+			continue
+
 		if(S.ckeys_allowed && !(ckey in S.ckeys_allowed)) //VOREStation add - ckey whitelist check
 			continue //VOREStation add - ckey whitelist check
 
@@ -242,6 +245,9 @@
 				continue
 
 		if(!(use_species in S.species_allowed))
+			continue
+
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue
 
 		if(S.ckeys_allowed && !(ckey in S.ckeys_allowed)) //VOREStation add - ckey whitelist check

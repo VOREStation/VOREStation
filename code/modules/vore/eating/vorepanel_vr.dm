@@ -392,6 +392,18 @@
 				host.client.prefs_vr.can_be_drop_prey = host.can_be_drop_prey
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_afk_pred")
+			host.can_be_afk_pred = !host.can_be_afk_pred
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.can_be_afk_pred = host.can_be_afk_pred
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_afk_prey")
+			host.can_be_afk_prey = !host.can_be_afk_prey
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.can_be_afk_prey = host.can_be_afk_prey
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_latejoin_vore")
 			host.latejoin_vore = !host.latejoin_vore
 			if(host.client.prefs_vr)
@@ -492,6 +504,12 @@
 			host.strip_pref = !host.strip_pref
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.strip_pref = host.strip_pref
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_contaminate_pref")
+			host.contaminate_pref = !host.contaminate_pref
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.contaminate_pref = host.contaminate_pref
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_allow_mind_transfer")
@@ -737,10 +755,12 @@
 			var/new_size = text2num(params["new_mob_size"])
 			new_size = clamp(new_size, RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 			if(istype(host, /mob/living))
-				var/mob/living/H = host
-				if(H.nutrition >= VORE_RESIZE_COST)
-					H.adjust_nutrition(-VORE_RESIZE_COST)
-					H.resize(new_size, uncapped = host.has_large_resize_bounds(), ignore_prefs = TRUE)
+				var/mob/living/living_host = host
+				if(new_size == living_host.size_multiplier)
+					return FALSE
+				if(living_host.nutrition >= VORE_RESIZE_COST)
+					living_host.adjust_nutrition(-VORE_RESIZE_COST)
+					living_host.resize(new_size, uncapped = living_host.has_large_resize_bounds(), ignore_prefs = TRUE)
 			return TRUE
 		//Soulcatcher functions
 		if("soulcatcher_release_all")
@@ -1132,14 +1152,33 @@
 					var/mob/living/body_backup = T.body_backup
 					if(ishuman(body_backup))
 						var/mob/living/carbon/human/H = body_backup
-						body_backup.adjustBruteLoss(-6)
-						body_backup.adjustFireLoss(-6)
-						body_backup.setOxyLoss(0)
+						H.setOxyLoss(0)
 						if(H.isSynthetic())
 							H.adjustToxLoss(-H.getToxLoss())
 						else
-							H.adjustToxLoss(-6)
-						body_backup.adjustCloneLoss(-6)
+							H.adjustToxLoss(-25)
+						if(H.health <= -H.getMaxHealth())
+							H.adjustBruteLoss(-25)
+							H.adjustFireLoss(-25)
+							H.adjustCloneLoss(-25)
+
+							//This looks how much health we need to get to 'barely in crit'
+							//We heal up to that point here, starting with toxins and moving up to the harder to heal types.
+							//Once we heal one type, we check again to see if we're still dead. If so, we heal the next type in the list.
+							if(H.health <= -H.getMaxHealth())
+								var/barely_in_crit = -(H.get_crit_point() - 1)
+								var/adjust_health = barely_in_crit - H.health
+								if(adjust_health < 0)
+									adjust_health *= -1
+
+								H.adjustToxLoss(adjust_health)
+								if(H.health <= -H.getMaxHealth())
+									H.adjustFireLoss(adjust_health)
+								if(H.health <= -H.getMaxHealth())
+									H.adjustBruteLoss(adjust_health)
+								if(H.health <= -H.getMaxHealth())
+									H.adjustCloneLoss(adjust_health)
+
 						body_backup.updatehealth()
 						// Now we do the check to see if we should revive...
 						var/should_proceed_with_revive = TRUE

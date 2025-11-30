@@ -218,7 +218,7 @@
 	if(Adjacent(user))
 		. += "Its shield matrix is at [round( (shield_health / max_shield_health) * 100, 0.01)]% strength."
 
-/obj/item/shield_projector/emp_act(var/severity)
+/obj/item/shield_projector/emp_act(severity, recursive)
 	adjust_health(-max_shield_health / severity) // A strong EMP will kill the shield instantly, but weaker ones won't on the first hit.
 
 // Subtypes

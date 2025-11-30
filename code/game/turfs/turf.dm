@@ -506,6 +506,8 @@
 
 	if(istype(src, /turf/simulated))
 		var/turf/simulated/T = src
+		if(T.dirt > 0)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WASHED_FLOOR)
 		T.dirt = 0
 
 	for(var/am in src)

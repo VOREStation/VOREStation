@@ -162,7 +162,7 @@ Class Procs:
 /obj/machinery/process() // Steady power usage is handled separately. If you dont use process why are you here?
 	return PROCESS_KILL
 
-/obj/machinery/emp_act(severity)
+/obj/machinery/emp_act(severity, recursive)
 	if(use_power && stat == 0)
 		use_power(7500/severity)
 
@@ -172,9 +172,7 @@ Class Procs:
 		pulse2.name = "emp sparks"
 		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(GLOB.cardinal))
-
-		spawn(10)
-			qdel(pulse2)
+		QDEL_IN(pulse2, 1 SECOND)
 	..()
 
 /obj/machinery/ex_act(severity)

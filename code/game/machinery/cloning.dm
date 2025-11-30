@@ -399,7 +399,7 @@
 		return
 	go_out()
 
-/obj/machinery/clonepod/emp_act(severity)
+/obj/machinery/clonepod/emp_act(severity, recursive)
 	if(prob(100/severity))
 		malfunction()
 	..()

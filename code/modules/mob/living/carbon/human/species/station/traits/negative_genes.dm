@@ -203,8 +203,9 @@
 	desc = "Your blood reacts to hostile stimulation such as burning when seperated from your body, as if it was its own creature. You WILL be mistaken for a changeling, you may want to document this in your medical records."
 	var_changes = list("ambulant_blood" = TRUE)
 	cost = 0
+	can_take = ORGANICS
 
-	is_genetrait = TRUE
+	is_genetrait = FALSE
 	hidden = FALSE
 	activity_bounds = DNA_HARDER_BOUNDS // Shouldn't be easy for genetics to find this
 

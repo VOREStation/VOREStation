@@ -57,9 +57,6 @@
 /mob/proc/is_cloaked()
 	return FALSE
 
-/proc/hasorgans(A) // Fucking really??
-	return ishuman(A)
-
 /proc/iscuffed(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
@@ -391,7 +388,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 0
 
 //converts intent-strings into numbers and back
-var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
@@ -474,6 +470,8 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 	if(subject && subject.forbid_seeing_deadchat && !check_rights_for(subject.client, R_HOLDER))
 		return // Can't talk in deadchat if you can't see it.
+	if(ismob(subject))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DEAD_SAY, subject, message)
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (check_rights_for(M.client, R_HOLDER) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))

@@ -489,9 +489,9 @@
 		if (selection)
 			return selection.img
 
-/obj/machinery/computer/secure_data/emp_act(severity)
+/obj/machinery/computer/secure_data/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
@@ -517,7 +517,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/computer/secure_data/detective_computer
 	icon_state = "forensic"
