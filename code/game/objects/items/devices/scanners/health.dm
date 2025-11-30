@@ -80,6 +80,7 @@
 	var/analyzed_results = ""
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	span_bold("[fake_oxy]") 			: fake_oxy
+		TX = 0 //This is a dead giveaway if they're using zombiepowder.
 		dat += span_notice("Analyzing Results for [M]:")
 		dat += "<br>"
 		dat += span_notice("Overall Status: dead")
@@ -134,6 +135,7 @@
 	BR = M.getBruteLoss() > 50 ? "[span_red(span_bold("Severe anatomical damage detected"))]"		 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		span_warning("Severe oxygen deprivation detected") 	: 	"Subject bloodstream oxygen level normal"
+		TX = 0 //This is a dead giveaway if they're using zombiepowder.
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
 	if(M.radiation)
 		if(advscan >= 2 && showadvscan == 1)
