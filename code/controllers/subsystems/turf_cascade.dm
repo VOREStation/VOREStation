@@ -42,8 +42,7 @@ SUBSYSTEM_DEF(turf_cascade)
 		// Convert turf if we are not the replacement type already
 		if(changing.type != turf_replace_type)
 			changing.ChangeTurf(turf_replace_type)
-			var/list/expanding_options = changing.conversion_cascade_act()
-			for(var/expand_dir in expanding_options)
+			for(var/expand_dir in list(NORTH,SOUTH,EAST,WEST,UP,DOWN))
 				var/turf/next_turf = get_step(changing, expand_dir)
 				if(next_turf && next_turf.type != turf_replace_type && !(next_turf in remaining_turf)) // Yes in currentrun is expensive, but less expensive than 6 dupes per turf potentially in the loop
 					remaining_turf.Add(next_turf)
