@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(turf_cascade)
 		if(MC_TICK_CHECK)
 			return
 
-/// Starts the turf cascade and boots up the subsystem. If a cascade is already in process, it will not start another till the first finishes.
+/// Starts the turf cascade and boots up the subsystem. If a cascade is already in process, it will not allow anothe another to start.
 /datum/controller/subsystem/turf_cascade/proc/start_cascade(turf/start_turf, turf_path, max_per_fire = DEFAULT_CONVERSION_RATE, time_delay = DEFAULT_CONVERSION_DELAY)
 	if(turf_replace_type)
 		return
