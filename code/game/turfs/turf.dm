@@ -517,3 +517,14 @@
 		if(!ismopable(movable_content))
 			continue
 		movable_content.wash(clean_types)
+
+/// Used during turf_cascade subsystem to determine additional effects when spreading, and directions it may spread
+/turf/proc/conversion_cascade_act(list/already_marked_turfs)
+	var/list/expanding_turfs = list()
+
+	for(var/expand_dir in GLOB.cardinalz)
+		var/turf/next_turf = get_step(src, expand_dir)
+		if(next_turf && next_turf.type != type && !(next_turf in already_marked_turfs)) // Yes in already_marked_turfs is expensive, but less expensive than 6 dupes per turf potentially in the loop
+			expanding_turfs += next_turf
+
+	return expanding_turfs

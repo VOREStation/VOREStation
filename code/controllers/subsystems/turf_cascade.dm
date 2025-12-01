@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(turf_cascade)
 
 /datum/controller/subsystem/turf_cascade/fire()
 	if(!turf_replace_type || (!remaining_turf.len && !currentrun.len))
-		can_fire = FALSE // We have nothing to do until told.
+		stop_cascade()
 		return
 
 	// Create a random list of tiles to expand with instead of doing it in order
@@ -39,10 +39,7 @@ SUBSYSTEM_DEF(turf_cascade)
 		// Convert turf if we are not the replacement type already
 		if(changing.type != turf_replace_type)
 			changing.ChangeTurf(turf_replace_type)
-			for(var/expand_dir in list(NORTH,SOUTH,EAST,WEST,UP,DOWN))
-				var/turf/next_turf = get_step(changing, expand_dir)
-				if(next_turf && next_turf.type != turf_replace_type && !(next_turf in remaining_turf)) // Yes in currentrun is expensive, but less expensive than 6 dupes per turf potentially in the loop
-					remaining_turf.Add(next_turf)
+			remaining_turf += changing.conversion_cascade_act(remaining_turf)
 
 		if(MC_TICK_CHECK)
 			return
@@ -62,6 +59,15 @@ SUBSYSTEM_DEF(turf_cascade)
 	if(wait <= 0) // Don't be a smartass
 		wait = DEFAULT_CONVERSION_DELAY
 	// ... We shall never come to rest.
+
+/// Called when we have no more turfs to convert, or an admin wants to emergency stop
+/datum/controller/subsystem/turf_cascade/proc/stop_cascade()
+	turf_replace_type = null
+	remaining_turf.Cut()
+	currentrun.Cut()
+	conversion_rate = DEFAULT_CONVERSION_RATE
+	wait = DEFAULT_CONVERSION_DELAY
+	can_fire = FALSE
 
 #undef DEFAULT_CONVERSION_RATE
 #undef DEFAULT_CONVERSION_DELAY

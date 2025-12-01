@@ -10,6 +10,20 @@
 	//l_color="#0066FF"
 	plane = PLANE_LIGHTING_ABOVE
 
+/turf/unsimulated/wall/supermatter/conversion_cascade_act()
+	// Do pretty fadeout animation for the new turf
+	. = ..()
+	for(var/turf/valid_turf in .)
+		new /obj/effect/overlay/bluespacify(valid_turf)
+	// Consume everything in our turf
+	for(var/atom/movable/A in src)
+		if(isliving(A))
+			qdel(A)
+			continue
+		if(istype(A,/mob)) // Observers, AI cameras.
+			continue
+		qdel(A)
+
 /turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
 	return attack_hand(user)
 
