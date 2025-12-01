@@ -67,3 +67,4 @@ SUBSYSTEM_DEF(turf_cascade)
 	// ... We shall never come to rest.
 
 #undef DEFAULT_CONVERSION_RATE
+#undef DEFAULT_CONVERSION_DELAY
