@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(turf_cascade)
 				return
 
 	while(currentrun.len)
-		var/turf/changing = pick(currentrun)
+		var/turf/changing = currentrun[1]
 		currentrun -= changing
 
 		// Convert turf if we are not the replacement type already
