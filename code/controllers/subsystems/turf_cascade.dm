@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(turf_cascade)
 	VAR_PRIVATE/list/currentrun = list()
 	VAR_PRIVATE/list/remaining_turf = list()
 
-	VAR_PRIVATE/turf_replace_type = null // Once set, cannot be unset
+	VAR_PRIVATE/turf_replace_type = null // Turf path that turfs will be replaced with
 	VAR_PRIVATE/conversion_rate = DEFAULT_CONVERSION_RATE // Number of turfs converted in each batch
 
 /datum/controller/subsystem/turf_cascade/stat_entry(msg)
@@ -44,8 +44,8 @@ SUBSYSTEM_DEF(turf_cascade)
 		if(MC_TICK_CHECK)
 			return
 
+/// Starts the turf cascade and boots up the subsystem. If a cascade is already in process, it will not start another till the first finishes.
 /datum/controller/subsystem/turf_cascade/proc/start_cascade(turf/start_turf, turf_path, max_per_fire = DEFAULT_CONVERSION_RATE, time_delay = DEFAULT_CONVERSION_DELAY)
-	// Once set in motion...
 	if(turf_replace_type)
 		return
 	if(!isturf(start_turf) || !max_per_fire)
@@ -58,7 +58,6 @@ SUBSYSTEM_DEF(turf_cascade)
 	wait = time_delay
 	if(wait <= 0) // Don't be a smartass
 		wait = DEFAULT_CONVERSION_DELAY
-	// ... We shall never come to rest.
 
 /// Called when we have no more turfs to convert, or an admin wants to emergency stop
 /datum/controller/subsystem/turf_cascade/proc/stop_cascade()
