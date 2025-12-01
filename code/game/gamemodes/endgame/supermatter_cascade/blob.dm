@@ -10,7 +10,7 @@
 	//l_color="#0066FF"
 	plane = PLANE_LIGHTING_ABOVE
 
-/turf/unsimulated/wall/supermatter/conversion_cascade_act()
+/turf/unsimulated/wall/supermatter/conversion_cascade_act(list/already_marked_turfs)
 	// Do pretty fadeout animation for the new turf
 	. = ..()
 	for(var/turf/valid_turf in .)
