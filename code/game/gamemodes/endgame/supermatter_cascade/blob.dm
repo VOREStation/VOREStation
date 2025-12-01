@@ -117,3 +117,7 @@
 		return
 
 	qdel(user)
+
+
+/turf/unsimulated/wall/supermatter/ex_act(severity)
+	return

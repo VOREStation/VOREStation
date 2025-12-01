@@ -517,3 +517,12 @@
 		if(!ismopable(movable_content))
 			continue
 		movable_content.wash(clean_types)
+
+
+/**
+ * 	Called during SSturf_cascade's conversion of turfs. Allows a turf to control it's expansion direction and rules.
+ *
+ * 	Returns the direction bitflags it will expand in.
+ */
+/turf/conversion_cascade_act()
+	return list(NORTH,SOUTH,EAST,WEST,UP,DOWN) // By default, attempt all.
