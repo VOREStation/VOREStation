@@ -5,11 +5,8 @@ SUBSYSTEM_DEF(turf_cascade)
 	name = "Turf Cascade"
 	wait = DEFAULT_CONVERSION_DELAY
 	flags = SS_NO_INIT
-
-	dependencies = list(
-		/datum/controller/subsystem/mobs
-	)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+
 	VAR_PRIVATE/list/currentrun = list()
 	VAR_PRIVATE/list/remaining_turf = list()
 
