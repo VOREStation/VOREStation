@@ -524,5 +524,5 @@
  *
  * 	Returns the direction bitflags it will expand in.
  */
-/turf/conversion_cascade_act()
+/turf/proc/conversion_cascade_act()
 	return list(NORTH,SOUTH,EAST,WEST,UP,DOWN) // By default, attempt all.
