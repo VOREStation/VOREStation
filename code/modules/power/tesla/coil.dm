@@ -42,13 +42,11 @@
 	return ..()
 
 /obj/machinery/power/tesla_coil/RefreshParts()
-	var/power_multiplier = 0
+	input_power_multiplier = 0
 	zap_cooldown = 100
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		power_multiplier += C.rating
+		input_power_multiplier += C.rating
 		zap_cooldown -= (C.rating * 20)
-	input_power_multiplier = power_multiplier
-
 
 /obj/machinery/power/tesla_coil/update_icon()
 	if(panel_open)
@@ -118,7 +116,6 @@
 	var/relay_efficiency = 0.9
 
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
-	..()
 	var/relay_multiplier
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		relay_multiplier += C.rating
@@ -166,14 +163,13 @@
 	var/amp_eff = 2
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
-	..()
-	var/amp_eff = 1
+	amp_eff = 1
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
 	var/power_produced = power / power_loss
-	add_avail(power_produced*input_power_multiplier)
+	add_avail(power_produced*amp_eff)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_produced)
@@ -190,7 +186,7 @@
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
 	..()
-	var/zap_range = 5
+	zap_range = 5
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		zap_range += C.rating
 
