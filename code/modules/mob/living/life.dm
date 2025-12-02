@@ -135,10 +135,7 @@
 /mob/living/proc/handle_regular_status_updates()
 	updatehealth()
 	if(stat != DEAD)
-		if(paralysis || (status_flags & FAKEDEATH))
-			set_stat(UNCONSCIOUS)
-		else
-			set_stat(CONSCIOUS)
+		set_stat(CONSCIOUS)
 		return TRUE
 
 /mob/living/proc/handle_statuses()

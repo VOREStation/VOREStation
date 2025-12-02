@@ -377,6 +377,7 @@
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
+	M.paralysis = max(M.paralysis, 10)
 	M.tod = stationtime2text()
 
 /datum/reagent/toxin/zombiepowder/Destroy()
@@ -404,6 +405,7 @@
 		M.emote("deathgasp")
 	M.status_flags |= FAKEDEATH
 	M.silent = max(M.silent, 10)
+	M.paralysis = max(M.paralysis, 10)
 	M.tod = stationtime2text()
 
 	if(prob(0.1))
