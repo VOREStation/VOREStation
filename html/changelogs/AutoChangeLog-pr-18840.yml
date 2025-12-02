@@ -1,0 +1,4 @@
+author: "Guti"
+delete-after: True
+changes:
+  - refactor: "Improved filling cabinet UI and makes use of span_bold"
