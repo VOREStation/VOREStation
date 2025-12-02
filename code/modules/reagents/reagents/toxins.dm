@@ -396,7 +396,6 @@
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/lichpowder/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(alien == IS_DIONA)
 		return
 	M.status_flags |= FAKEDEATH
