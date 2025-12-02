@@ -2,7 +2,7 @@
 	name = "NULL ENTRY Board"
 	desc = "I promise this doesn't give you syndicate goodies!"
 	build_type = IMPRINTER
-	materials = list(MAT_GLASS = 2000)
+	materials = DEFAULT_CIRCUIT_MATERIALS
 	category = list(
 		RND_CATEGORY_MACHINE
 	)
