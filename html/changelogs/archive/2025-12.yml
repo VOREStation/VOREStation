@@ -1,0 +1,5 @@
+2025-12-01:
+  Will:
+  - bugfix: mechs no longer vanish when attempting to construct them
+  - bugfix: slimecores not being produced during grinding
+  - code_imp: Unittest for mech construction datums
