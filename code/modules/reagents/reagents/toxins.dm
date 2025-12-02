@@ -372,6 +372,8 @@
 	..()
 	if(alien == IS_DIONA)
 		return
+	if(!(M.status_flags & FAKEDEATH))
+		M.emote("deathgasp")
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
@@ -398,6 +400,8 @@
 /datum/reagent/lichpowder/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
+	if(!(M.status_flags & FAKEDEATH))
+		M.emote("deathgasp")
 	M.status_flags |= FAKEDEATH
 	M.silent = max(M.silent, 10)
 	M.tod = stationtime2text()

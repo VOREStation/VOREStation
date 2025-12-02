@@ -74,7 +74,7 @@
 		M.drop_from_inventory(src) //icon update
 
 		if(reagents.total_volume)
-			reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD)	//CHEM_TOUCH
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)	//CHEM_TOUCH
 		qdel(src)
 
 		return 1

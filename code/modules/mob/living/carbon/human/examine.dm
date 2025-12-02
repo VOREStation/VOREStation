@@ -304,7 +304,7 @@
 		msg += span_warning("[p_Theyre()] on fire!.")
 
 	var/ssd_msg = species.get_ssd(src)
-	if(ssd_msg && (!should_have_organ(O_BRAIN) || has_brain()) && stat != DEAD)
+	if(ssd_msg && (!should_have_organ(O_BRAIN) || has_brain()) && stat != DEAD && !(status_flags & FAKEDEATH))
 		if(!key)
 			msg += span_deadsay("[p_Theyre()] [ssd_msg]. It doesn't look like [p_theyre()] waking up anytime soon.")
 		else if(!client)
