@@ -353,15 +353,12 @@
 
 // Same as if you boop it wrong. It touches you, you die
 /datum/reagent/supermatter/affect_touch(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 /datum/reagent/supermatter/affect_ingest(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 /datum/reagent/supermatter/affect_blood(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 

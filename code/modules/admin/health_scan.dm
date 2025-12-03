@@ -100,8 +100,7 @@
 	analyzed_results += "\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
 	analyzed_results += "\tDamage Specifics: [span_cyan("[OX]")] - [span_green("[TX]")] - [span_orange("[BU]")] - [span_red("[BR]")]<br>"
 	analyzed_results +=	"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)<br>"
-	if(!(M.status_flags & FAKEDEATH))
-		analyzed_results = span_notice(analyzed_results)
+	analyzed_results = span_notice(analyzed_results)
 	dat += analyzed_results
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
 		dat += 	span_notice("Time of Death: [worldtime2stationtime(M.timeofdeath)]")

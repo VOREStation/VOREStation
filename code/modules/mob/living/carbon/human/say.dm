@@ -134,7 +134,7 @@
 	return special_voice
 
 /mob/living/carbon/human/handle_speech_problems(var/list/message_data)
-	if(silent || (sdisabilities & MUTE))
+	if(silent || (sdisabilities & MUTE) || is_paralyzed())
 		message_data[1] = ""
 		. = 1
 

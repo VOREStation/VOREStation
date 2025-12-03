@@ -2,7 +2,7 @@
 /// This is the custom_emote that you'll want to use if you want the mob to be able to input their emote.
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view, var/check_stat = TRUE)
 
-	if((check_stat && (src && stat)) || (!use_me && usr == src))
+	if((check_stat && (src && stat)) || is_paralyzed() || (!use_me && usr == src))
 		to_chat(src, "You are unable to emote.")
 		return
 
@@ -16,7 +16,7 @@
 /// This is the custom_emote that you'll want to use if you're forcing something to custom emote with no input from the mob.
 /// By default, we have a visible message, our range is world.view, and we do NOT check the stat.
 /mob/proc/automatic_custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view, var/check_stat = FALSE)
-	if(check_stat && (src && stat))
+	if(check_stat && (src && stat) || is_paralyzed())
 		return
 	var/input = message
 	process_automatic_emote(m_type, message, input, range)
@@ -37,10 +37,6 @@
 		return
 
 	log_the_emote(m_type, message, input, range, runemessage)
-
-/mob/proc/format_the_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/input, var/range = world.view)
-
-
 
 /mob/proc/process_automatic_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/input, var/range = world.view)
 	var/list/formatted

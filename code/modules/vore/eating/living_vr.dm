@@ -446,7 +446,7 @@
 	if(!istype(tasted))
 		return
 
-	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT) || is_paralyzed())
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -493,7 +493,7 @@
 
 	if(!istype(smelled))
 		return
-	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT) || is_paralyzed())
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -780,7 +780,7 @@
 	set category = "Abilities.General"
 	set desc = "Toggle your glowing on/off!"
 
-	if(stat || paralysis || weakened || stunned || world.time < last_special)
+	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
@@ -812,7 +812,7 @@
 	set category = "Abilities.Vore"
 	set desc = "Consume held garbage."
 
-	if(stat || paralysis || weakened || stunned || world.time < last_special)
+	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
@@ -1373,7 +1373,7 @@
 	set desc = "Transfer liquid from an organ to another or stomach, or into another person or container."
 	set popup_menu = FALSE
 
-	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT) || is_paralyzed())
 		return FALSE
 
 	var/mob/living/user = src

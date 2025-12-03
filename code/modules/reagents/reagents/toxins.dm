@@ -364,6 +364,7 @@
 	metabolism = REM
 	strength = 3
 	mrate_static = TRUE
+	scannable = FALSE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
@@ -371,10 +372,12 @@
 	..()
 	if(alien == IS_DIONA)
 		return
+	if(!(M.status_flags & FAKEDEATH))
+		M.emote("deathgasp")
 	M.status_flags |= FAKEDEATH
-	M.adjustOxyLoss(3 * removed)
-	M.Weaken(10)
+	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
+	M.paralysis = max(M.paralysis, 10)
 	M.tod = stationtime2text()
 
 /datum/reagent/toxin/zombiepowder/Destroy()
@@ -383,32 +386,33 @@
 		M.status_flags &= ~FAKEDEATH
 	return ..()
 
-/datum/reagent/toxin/lichpowder
+/datum/reagent/lichpowder
 	name = REAGENT_LICHPOWDER
 	id = REAGENT_ID_LICHPOWDER
 	description = "A stablized nerve agent that puts the subject into a strange state of un-death."
 	reagent_state = SOLID
 	color = "#666666"
 	metabolism = REM * 0.75
-	strength = 2
 	mrate_static = TRUE
+	scannable = FALSE
 	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
-/datum/reagent/toxin/lichpowder/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
+/datum/reagent/lichpowder/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
+	if(!(M.status_flags & FAKEDEATH))
+		M.emote("deathgasp")
 	M.status_flags |= FAKEDEATH
-	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
+	M.paralysis = max(M.paralysis, 10)
 	M.tod = stationtime2text()
 
-	if(prob(1))
+	if(prob(0.1))
 		M.visible_message("[M] wheezes.", "You wheeze sharply... it's cold.")
 		M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, T0C - 10)
 
-/datum/reagent/toxin/lichpowder/Destroy()
+/datum/reagent/lichpowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
