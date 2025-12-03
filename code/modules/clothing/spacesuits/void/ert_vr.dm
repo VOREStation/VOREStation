@@ -7,7 +7,6 @@
 	slowdown = 0.5
 	siemens_coefficient = 0.5
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI,SPECIES_ALTEVIAN)	//this thing can autoadapt
-	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	w_class = ITEMSIZE_NORMAL //the mark vii packs itself down when not in use, thanks future-materials
 	breach_threshold = 16 //Extra Thicc

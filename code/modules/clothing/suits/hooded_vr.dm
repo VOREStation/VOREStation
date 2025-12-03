@@ -5,8 +5,6 @@
 /obj/item/clothing/suit/storage/hooded/techpriest
 	name = "tech priest robe"
 	desc = "Praise be to the Omnissiah."
-	icon = 'icons/inventory/suit/item.dmi'
-	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "techpriest"
 	hoodtype = /obj/item/clothing/head/hood/techpriest
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 10, bomb = 25, bio = 50, rad = 25)
@@ -91,8 +89,6 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/talon
 	name = "Talon winter coat"
 	desc = "A cozy winter coat, covered in thick fur and baring the colors of ITV Talon."
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "taloncoat"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	hoodtype = /obj/item/clothing/head/hood/winter/talon
@@ -108,8 +104,6 @@
 /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog	//Belly filler uniform :^).
 	name = "hotdog costume"
 	desc = "A giant hotdog costume, comes with authentic artificial hotdog scent."
-	icon = 'icons/inventory/suit/item.dmi'
-	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "hotdog"
 	item_state_slots = list(slot_r_hand_str = "hotdog", slot_l_hand_str = "hotdog")
 	hoodtype = /obj/item/clothing/head/hood_vr/hotdog_hood
@@ -117,8 +111,6 @@
 /obj/item/clothing/suit/storage/hooded/foodcostume/turnip	//Honey wake up, new vorny jail uniform just dropped.
 	name = "turnip costume"
 	desc = "A giant turnip costume, extra padding helps the wearer stand in the same spot for hours."
-	icon = 'icons/inventory/suit/item.dmi'
-	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "turnip"
 	item_state_slots = list(slot_r_hand_str = "turnip", slot_l_hand_str = "turnip")
 	hoodtype = /obj/item/clothing/head/hood_vr/turnip_hood
@@ -128,8 +120,6 @@
 /obj/item/clothing/suit/storage/hooded/hoodie
 	name = "hoodie"
 	desc = "A warm jacket, now featuring a hood!"
-	icon = 'icons/inventory/suit/item.dmi'
-	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "hoodie_plain"
 	item_state_slots = list(slot_r_hand_str = "grey_hoodie", slot_l_hand_str = "grey_hoodie")
 	body_parts_covered = CHEST|ARMS|LEGS
@@ -168,8 +158,6 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/centcom
 	name = "centcom winter coat"
 	desc = "A cozy winter coat, covered in green fur and the colors of CentCom. Armored for extra protection."
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "coatcentcom"
 	armor = list(melee = 40, bullet = 45, laser = 45, energy = 35, bomb = 40, bio = 25, rad = 25, fire = 35, acid = 50) //there is no cc armor here to base it off so, here's the values from the original cc coat
 	hoodtype = /obj/item/clothing/head/hood/winter/centcom
@@ -182,8 +170,6 @@
 /obj/item/clothing/suit/storage/hooded/toggle/colorable
 	name = "hoodie"
 	desc = "A rather plain hoodie. If you can't find it in your closet, chances are your significant other is borrowing it."
-	icon = 'icons/inventory/suit/item.dmi'
-	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "choodie"
 	hoodtype = /obj/item/clothing/head/hood/toggleable/colorable
 	open = FALSE
