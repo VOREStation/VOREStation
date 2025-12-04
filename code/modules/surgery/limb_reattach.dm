@@ -117,6 +117,9 @@
 	span_notice("You have connected tendons and muscles in [target]'s [E.amputation_point] with [tool]."))
 	user.balloon_alert_visible("connected tendons and muscles in [target]'s [E.amputation_point]", "connected tendons and muscles in \the [E.amputation_point]")
 	E.status &= ~ORGAN_CUT_AWAY
+	for(var/obj/item/organ/external/child in E.children)
+		child.status &= ~ORGAN_CUT_AWAY
+		to_chat(user, "You attach [target]'s [child.name] as well.")
 	target.update_icons_body()
 	target.updatehealth()
 	target.UpdateDamageIcon()
@@ -124,7 +127,7 @@
 /datum/surgery_step/limb/connect/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = tool
 	user.visible_message(span_warning(" [user]'s hand slips, damaging [target]'s [E.amputation_point]!"), \
-	span_warning(" Your hand slips, damaging [target]'s [E.amputation_point]!"))
+	span_warning("Your hand slips, damaging [target]'s [E.amputation_point]!"))
 	user.balloon_alert_visible("slips, damaging [target]'s [E.amputation_point]", "your hand slips, damaging \the [E.amputation_point]")
 	target.apply_damage(10, BRUTE, null, sharp = TRUE)
 

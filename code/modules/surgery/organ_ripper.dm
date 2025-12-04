@@ -34,16 +34,17 @@
 	)
 
 /datum/surgery_step/generic/ripper/tear_vessel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts ripping into [target] with \the [tool].", \
 	"You start ripping into [target] with \the [tool].")
 	user.balloon_alert_visible("starts ripping into [target]", "ripping into [target]")
-	target.custom_pain("[user] is  ripping into your [target.op_stage.current_organ]!", 100)
+	target.custom_pain("[user] is ripping into your [affected.name]!", 100)
 	..()
 
 /datum/surgery_step/generic/ripper/tear_vessel/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] has ripped [target]'s [affected] \the [tool], blood and viscera spraying everywhere!"), \
-	span_notice("You have ripped [target]'s [target.op_stage.current_organ] out with \the [tool], spraying blood all through the room!"))
+	span_notice("You have ripped a blood vessel in [target]'s [affected.name] out with \the [tool], spraying blood all through the room!"))
 	user.balloon_alert_visible("rips into [target]'s [affected], blood and viscera everywhere!", "ripped into [target]'s [affected], blood and viscera everywhere!")
 	var/datum/wound/internal_bleeding/I = new (30) //splurt. New severed artery.
 	affected.wounds += I
@@ -72,7 +73,7 @@
 	user.visible_message("[user] starts violently shifting \the [tool] in [target]'s [affected.name]!", \
 	"You start violently moving the [tool] in [target]'s [affected.name]!")
 	user.balloon_alert_visible("starts violently shifting \the [tool] in [target]'s [affected.name]!", "violently moving \the [tool] in \the [affected.name]")
-	target.custom_pain("[user] is ripping into your [target.op_stage.current_organ]!", 100)
+	target.custom_pain("[user] is ripping into your [affected.name]!", 100)
 	..()
 
 /datum/surgery_step/generic/ripper/break_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -129,9 +130,10 @@
 		target.custom_pain("Someone's moving something around in your [affected.name]!", 100)
 	else if(organ_to_destroy)
 		target.op_stage.current_organ = organ_to_destroy
-		user.visible_message("[user] starts ripping into [target]'s [target.op_stage.current_organ] with \the [tool].", \
-		"You start ripping [target]'s [target.op_stage.current_organ] with \the [tool].")
-		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
+		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
+		user.visible_message("[user] starts ripping into [target]'s [O.name] with \the [tool].", \
+		"You start ripping [target]'s [O.name] with \the [tool].")
+		target.custom_pain("Someone's ripping out your [O.name]!", 100)
 	..()
 
 
@@ -143,9 +145,9 @@
 
 	// Damage the organ!
 	if(target.op_stage.current_organ)
-		user.visible_message(span_notice("[user] has ripped [target]'s [target.op_stage.current_organ] out with \the [tool]."), \
-		span_notice("You have ripped [target]'s [target.op_stage.current_organ] out with \the [tool]."))
 		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
+		user.visible_message(span_notice("[user] has ripped [target]'s [O.name] out with \the [tool]."), \
+		span_notice("You have ripped [target]'s [O.name] out with \the [tool]."))
 		if(O && istype(O))
 			O.take_damage(10)
 		target.op_stage.current_organ = null
@@ -206,9 +208,10 @@
 		target.custom_pain("Someone's moving something around in your [affected]!", 100)
 	else if(organ_to_remove)
 		target.op_stage.current_organ = removable_organs[organ_to_remove]
-		user.visible_message("[user] starts ripping [target]'s [target.op_stage.current_organ] out with \the [tool].", \
-		"You start ripping [target]'s [target.op_stage.current_organ] out with \the [tool].")
-		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
+		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
+		user.visible_message("[user] starts ripping [target]'s [O.name] out with \the [tool].", \
+		"You start ripping [target]'s [O.name] out with \the [tool].")
+		target.custom_pain("Someone's ripping out your [O.name]!", 100)
 	..()
 
 /datum/surgery_step/generic/ripper/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -218,11 +221,10 @@
 		span_notice("You have pulled your [tool] out from [target]'s [affected]."))
 
 	if(target.op_stage.current_organ)
-		user.visible_message(span_notice("[user] has ripped [target]'s [target.op_stage.current_organ] out with \the [tool]."), \
-		span_notice("You have ripped [target]'s [target.op_stage.current_organ] out with \the [tool]."))
 		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
-		if(O && istype(O))
-			O.removed(user)
+		user.visible_message(span_notice("[user] has ripped [target]'s [O.name] out with \the [tool]."), \
+		span_notice("You have ripped [target]'s [O.name] out with \the [tool]."))
+		O.removed(user)
 		target.op_stage.current_organ = null
 		new /obj/effect/gibspawner/human(target.loc,target.dna,target.species.flesh_color,target.species.blood_color)
 		target.emote("scream")

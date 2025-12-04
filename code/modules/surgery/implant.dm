@@ -14,7 +14,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
 		return 0
-	return affected && affected.open == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
+	return affected && affected.open == (affected.encased ? 3 : 2)
 
 /datum/surgery_step/cavity/proc/get_max_wclass(var/obj/item/organ/external/affected)
 	switch (affected.organ_tag)
@@ -199,12 +199,7 @@
 	max_duration = 100
 
 /datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(affected.organ_tag == BP_HEAD)
-		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[O_BRAIN]
-		return ..() && (!sponge || !sponge.damage)
-	else
-		return ..()
+	return ..()
 
 /datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
