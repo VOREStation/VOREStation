@@ -21,13 +21,18 @@
 
 /obj/effect/anomaly/bioscrambler/anomalyEffect(seconds_per_tick)
 	. = ..()
-	if(!COOLDOWN_START(src, pulse_cooldown, pulse_delay))
-		for(var/mob/living/carbon/human/nearby in viewers(range, src))
-			nearby.getarmor(type = BIOACID)
-			randmutb(nearby)
-			domutcheck(nearby, null)
-			balloon_alert(src, "something has changed about you")
-			return
+	if(!COOLDOWN_FINISHED(src, pulse_cooldown))
+		return
+
+	new /obj/effect/temp_visual/circle_wave/bioscrambler(get_turf(src))
+	playsound(src, 'sound/effects/cosmic_energy.ogg', vol = 50, vary = TRUE)
+	COOLDOWN_START(src, pulse_cooldown, pulse_delay)
+	for(var/mob/living/carbon/human/nearby in viewers(range, src))
+		nearby.getarmor(type = BIOACID)
+		randmutb(nearby)
+		domutcheck(nearby, null)
+		balloon_alert(nearby, "something has changed about you")
+		return
 
 /obj/effect/anomaly/bioscrambler/move_anomaly()
 	update_target()
@@ -59,9 +64,11 @@
 	for(var/mob/living/carbon/target in GLOB.player_list)
 		if(target.z != z)
 			continue
-		if(HAS_TRAIT(target, GODMODE))
+		if(SEND_SIGNAL(target, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 			continue
 		if(target.stat >= UNCONSCIOUS)
+			continue
+		if(istype(get_area(target), /area/crew_quarters))
 			continue
 		var/distance_from_target = get_dist(src, target)
 		if(distance_from_target >= closest_distance)

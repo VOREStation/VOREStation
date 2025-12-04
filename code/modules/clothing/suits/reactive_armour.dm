@@ -12,7 +12,8 @@
 		/obj/effect/anomaly/bluespace = /obj/item/clothing/suit/armor/reactive/teleport,
 		//obj/effect/anomaly/bioscrambler = /obj/item/clothing/suit/armor/reactive/bioscrambling,
 		/obj/effect/anomaly/hallucination = /obj/item/clothing/suit/armor/reactive/hallucinating,
-		/obj/effect/anomaly/dimensional = /obj/item/clothing/suit/armor/reactive/barricade
+		/obj/effect/anomaly/dimensional = /obj/item/clothing/suit/armor/reactive/barricade,
+		/obj/effect/anomaly/pyro = /obj/item/clothing/suit/armor/reactive/fire
 	)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
@@ -266,6 +267,32 @@
 	var/datum/armour_dimensional_theme/theme = new()
 	theme.apply_random(get_turf(owner), dangerous = TRUE)
 	qdel(theme)
+	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
+	return FALSE
+
+// FIRE
+/obj/item/clothing/suit/armor/reactive/fire
+	name = "reactive incendiary armor"
+	desc = "An experimental suit of armor with a reactive sensor array rigged to a flame emitter. For the stylish pyromaniac."
+	cooldown_message = span_danger("The reactive incendiary armor activates, but fails to send out flames as it is still recharging its flame jets!")
+	emp_message = span_warning("The reactive incendiary armor's targeting system begins rebooting...")
+
+/obj/item/clothing/suit/armor/reactive/fire/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
+	owner.visible_message(span_danger("[src] blocks [attack_text], sending out jets of flame!"))
+	playsound(get_turf(owner), 'sound/magic/Fireball.ogg', 100, TRUE)
+	for(var/mob/living/carbon_victim in range(6, get_turf(src)))
+		if(carbon_victim != owner)
+			carbon_victim.adjust_fire_stacks(8)
+			carbon_victim.ignite_mob()
+	owner.set_wet_stacks(20)
+	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
+	return TRUE
+
+/obj/item/clothing/suit/armor/reactive/fire/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
+	owner.visible_message(span_danger("[src] just makes [attack_text] worse by spewing molten death on [owner]!"))
+	playsound(get_turf(owner), 'sound/magic/Fireball.ogg', 100, TRUE)
+	owner.adjust_fire_stacks(12)
+	owner.ignite_mob()
 	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 	return FALSE
 
