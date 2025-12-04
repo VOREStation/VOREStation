@@ -224,6 +224,30 @@ var/list/flesh_overlay_cache = list()
 	icon_state = "wood"
 	icon = 'icons/turf/wall_masks_vr.dmi'
 
+/turf/simulated/wall/acaciawood
+	icon_state = "acaciawood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/birchwood
+	icon_state = "birchwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/hardwood
+	icon_state = "hardwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/oakwood
+	icon_state = "oakwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/pinewood
+	icon_state = "pinewood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/redwood
+	icon_state = "redwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
 /turf/simulated/wall/stonebricks
 	icon_state = "stonebrick"
 	icon = 'icons/turf/wall_masks_vr.dmi'

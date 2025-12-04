@@ -184,20 +184,23 @@ BLOOD_VOLUME_SURVIVE = 40
 			///Second, we process internal bleeding.
 			for(var/datum/wound/internal_bleeding/W in temp.wounds)
 				blood_loss_divisor = blood_loss_divisor+10 //IB is slower bloodloss than normal.
-				var/bicardose = reagents.get_reagent_amount(REAGENT_ID_BICARIDINE)
-				var/inaprovaline = reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE)
+				var/bicardose
+				if(reagents.get_reagent_amount(REAGENT_ID_BICARIDINE) || reagents.get_reagent_amount(REAGENT_ID_BICARIDAZE))
+					bicardose = TRUE
+				var/inaprovaline
+				if(reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) || reagents.get_reagent_amount(REAGENT_ID_INAPROVALAZE))
+					inaprovaline = TRUE
 				var/myeldose = reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
 				if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 					W.open_wound(0.1)
 				if(prob(1))
 					custom_pain("You feel a stabbing pain in your [temp.name]!", 50)
-				if(CE_STABLE in chem_effects)
+				if((CE_STABLE in chem_effects) || myeldose)
 					blood_loss_divisor = max(blood_loss_divisor + 30, 1) //Inaprovaline is great on internal wounds.
 				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
-					if(ishuman(temp.applied_pressure))
-						var/mob/living/carbon/human/H = temp.applied_pressure
-						H.bloody_hands(src, 0)
-						blood_loss_divisor += 30 //If you're putting pressure on that limb due to there being an external bleed there, you apply some pressure to the internal bleed as well.
+					blood_loss_divisor += 30
+				if(W.clamped)
+					blood_loss_divisor = blood_loss_divisor * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
 				remove_blood(W.damage/blood_loss_divisor) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place. //Hi. 2025 here. Just did that. ~Diana
 
 			///Thirdly, we check to see if the limb is bleeding EXTERNALLY
