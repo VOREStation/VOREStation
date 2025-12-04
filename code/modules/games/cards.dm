@@ -253,7 +253,7 @@
 
 	user.visible_message(span_notice("\The [user] searches for specific cards in \the [src], and draws [cards_to_draw.len]."))
 
-/obj/item/deck/click_ctrl(mob/user)
+/obj/item/deck/item_ctrl_click(mob/user)
 	deal_card()
 
 /obj/item/deck/click_ctrl_shift(mob/user)
@@ -569,7 +569,7 @@
 	..()
 	src.update_icon()
 
-/obj/item/hand/click_ctrl(mob/user)
+/obj/item/hand/item_ctrl_click(mob/user)
 	if(user.stat || !Adjacent(user))
 		return
 	discard()

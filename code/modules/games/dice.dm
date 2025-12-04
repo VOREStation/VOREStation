@@ -141,7 +141,7 @@
 	icon_state = "[name][result]"
 	user.visible_message(span_notice("\The [user] turned \the [src] to the face reading [result] manually."))
 
-/obj/item/dice/click_ctrl(mob/user)
+/obj/item/dice/item_ctrl_click(mob/user)
 	set_dice(user)
 
 
