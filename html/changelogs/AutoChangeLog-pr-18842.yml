@@ -1,0 +1,5 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - bugfix: "windows should no longer be just white from an invalid iframe"
+  - admin: "re-added the 'reload configuration' verb to reload config from disk"
