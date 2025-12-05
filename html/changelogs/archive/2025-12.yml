@@ -14,3 +14,12 @@
   - qol: fusion coils glow in the dark to make them easier to find
   - balance: fusion coils are heavier and incur more slowdown
   - image: fusion coil sprite tweaks
+2025-12-05:
+  FluffMedic:
+  - bugfix: fixed the hairs I tried to add a bit ago
+  ItsSelis:
+  - bugfix: windows should no longer be just white from an invalid iframe
+  - admin: re-added the 'reload configuration' verb to reload config from disk
+  Will:
+  - bugfix: Phased shadekin are no longer knocked down or thrown when a shuttle they
+      are inside of moves.
