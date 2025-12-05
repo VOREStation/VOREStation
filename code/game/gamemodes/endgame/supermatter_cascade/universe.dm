@@ -58,7 +58,9 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 
 	PlayerSet()
 
-	new /obj/singularity/narsie/large/exit(pick(GLOB.endgame_exits))
+	if(GLOB.endgame_exits?.len)
+		new /obj/singularity/narsie/large/exit(pick(GLOB.endgame_exits))
+
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
 					There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
