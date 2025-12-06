@@ -40,7 +40,7 @@
 				L[tmpname] = R
 
 			for(var/obj/item/implant/tracking/I in GLOB.all_tracking_implants)
-				if(!I.implanted || !ismob(I.loc))
+				if(!I.implanted || !ismob(I.loc) || is_vore_jammed(I))
 					continue
 				else
 					var/mob/M = I.loc

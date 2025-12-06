@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	. = ..()
 
 /obj/item/gps/proc/can_track(var/obj/item/gps/other, var/reachable_z_levels)
-	if(!other.tracking || other.emped || other.hide_signal)
+	if(!other.tracking || other.emped || other.hide_signal || is_vore_jammed(other))
 		return FALSE
 	var/turf/origin = get_turf(src)
 	var/turf/target = get_turf(other)

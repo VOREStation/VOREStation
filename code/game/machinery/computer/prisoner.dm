@@ -56,6 +56,8 @@
 				loc_display = T.loc
 			if(track.malfunction)
 				loc_display = pick(GLOB.teleportlocs)
+			if(is_vore_jammed(track))
+				loc_display = "E4R@4"
 			trackImplants.Add(list(list(
 				"host" = L,
 				"ref" = "\ref[track]",
