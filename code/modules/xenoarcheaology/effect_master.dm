@@ -96,7 +96,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 /datum/component/artifact_master/proc/DoRegistry()
 //Melee Hit
-	RegisterSignal(holder, COMSIG_PARENT_ATTACKBY, /datum/component/artifact_master/proc/on_attackby, override = FALSE)
+	RegisterSignal(holder, COMSIG_ATOM_ATTACKBY, /datum/component/artifact_master/proc/on_attackby, override = FALSE)
 //Explosions
 	RegisterSignal(holder, COMSIG_ATOM_EX_ACT, /datum/component/artifact_master/proc/on_exact, override = FALSE)
 //Bullets
@@ -113,21 +113,21 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	RegisterSignal(holder, COMSIG_MOVABLE_MOVED, /datum/component/artifact_master/proc/on_moved, override = FALSE)
 
 //Splashed with a reagent.
-	RegisterSignal(holder, COMSIG_REAGENTS_TOUCH, /datum/component/artifact_master/proc/on_reagent, override = FALSE)
+	RegisterSignal(holder, COMSIG_REAGENT_EXPOSE_OBJ, /datum/component/artifact_master/proc/on_reagent, override = FALSE)
 
 /*
  *
  */
 
 /datum/component/artifact_master/proc/do_unregister()
-	UnregisterSignal(holder, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(holder, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(holder, COMSIG_ATOM_EX_ACT)
 	UnregisterSignal(holder, COMSIG_ATOM_BULLET_ACT)
 	UnregisterSignal(holder, COMSIG_ATOM_ATTACK_HAND)
 	UnregisterSignal(holder, COMSIG_MOVABLE_BUMP)
 	UnregisterSignal(holder, COMSIG_ATOM_BUMPED)
 	UnregisterSignal(holder, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(holder, COMSIG_REAGENTS_TOUCH)
+	UnregisterSignal(holder, COMSIG_REAGENT_EXPOSE_OBJ)
 
 /datum/component/artifact_master/proc/get_active_effects()
 	var/list/active_effects = list()

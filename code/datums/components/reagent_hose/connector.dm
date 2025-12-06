@@ -23,7 +23,7 @@
 	// Setup signaling
 	var/list/CL = carrier.GetComponents(type)
 	connector_number = CL.len + 1
-	RegisterSignal(carrier, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(carrier, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(carrier, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	RegisterSignal(carrier, COMSIG_HOSE_FORCEPUMP, PROC_REF(force_pump))
 	carrier.verbs |= /atom/proc/disconnect_hose
@@ -32,7 +32,7 @@
 
 /datum/component/hose_connector/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(carrier, COMSIG_PARENT_EXAMINE)
+	UnregisterSignal(carrier, COMSIG_ATOM_EXAMINE)
 	UnregisterSignal(carrier, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(carrier, COMSIG_HOSE_FORCEPUMP)
 	carrier.verbs -= /atom/proc/disconnect_hose

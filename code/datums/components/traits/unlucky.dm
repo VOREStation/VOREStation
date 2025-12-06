@@ -88,10 +88,10 @@
 	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
 	RegisterSignal(parent, COMSIG_MOB_ROLLED_DICE, PROC_REF(check_roll))
 	RegisterSignal(parent, COMSIG_HUMAN_ON_CATCH_THROW, PROC_REF(check_throw))
-	RegisterSignal(parent, COMSIG_PICKED_UP_ITEM, PROC_REF(check_pickup))
+	RegisterSignal(parent, COMSIG_ITEM_PICKUP, PROC_REF(check_pickup))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_PICKED_UP_ITEM))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_ITEM_PICKUP))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--

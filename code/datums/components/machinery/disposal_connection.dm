@@ -6,12 +6,12 @@
 	disposal_owner = parent
 	RegisterSignal(disposal_owner, COMSIG_DISPOSAL_FLUSH, PROC_REF(on_flush))
 	RegisterSignal(disposal_owner, COMSIG_DISPOSAL_RECEIVING, PROC_REF(on_recieve))
-	RegisterSignal(disposal_owner, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(disposal_owner, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/disposal_system_connection/Destroy()
 	UnregisterSignal(disposal_owner, COMSIG_DISPOSAL_FLUSH)
 	UnregisterSignal(disposal_owner, COMSIG_DISPOSAL_RECEIVING)
-	UnregisterSignal(disposal_owner, COMSIG_PARENT_EXAMINE)
+	UnregisterSignal(disposal_owner, COMSIG_ATOM_EXAMINE)
 	disposal_owner = null
 	. = ..()
 

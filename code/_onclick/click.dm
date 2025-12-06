@@ -84,6 +84,11 @@
 		CtrlClickOn(A)
 		return
 
+	//Replaces thee old 'stat||paralysis||stunned' check
+	//Not fully implemented yet.
+	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS))
+		return
+
 	if(stat || paralysis || stunned)
 		return
 

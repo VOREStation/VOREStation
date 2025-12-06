@@ -2,7 +2,7 @@
 /mob/living/carbon/human/updatehealth()
 	var/huskmodifier = 2.5 // With 1.5, you need 250 burn instead of 200 to husk a human.
 
-	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE) & COMSIG_LIVING_HEALTH_UPDATE_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 		return
