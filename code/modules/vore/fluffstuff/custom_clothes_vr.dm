@@ -1935,7 +1935,7 @@ Departamental Swimsuits, for general use
 		return
 	..()
 
-/obj/item/clothing/head/fluff/nikki/AltClick(mob/user)
+/obj/item/clothing/head/fluff/nikki/click_alt(mob/user)
 	if (translocator && (user.get_inactive_hand() == src))
 		translocator_unequip(translocator, user)
 
@@ -2255,6 +2255,7 @@ Departamental Swimsuits, for general use
 
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "zera_labcloak"
+	item_state = "zera_labcloak"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 

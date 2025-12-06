@@ -190,7 +190,7 @@
 			to_chat(H, span_info("You deploy your suit helmet, sealing you off from the world."))
 			playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 
-/obj/item/clothing/suit/space/void/AltClick(mob/living/user)
+/obj/item/clothing/suit/space/void/click_alt(mob/living/user)
 	eject_tank()
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()

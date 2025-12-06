@@ -60,7 +60,7 @@
 
 /obj/structure/table/sifwoodentable
 	icon_state = "plain_preview"
-	color = "#824B28"
+	color = "#0099cc"
 
 /obj/structure/table/sifwoodentable/Initialize(mapload)
 	material = get_material_by_name(MAT_SIFWOOD)
@@ -204,7 +204,7 @@
 
 /obj/structure/table/bench/sifwooden
 	icon_state = "plain_preview"
-	color = "#824B28"
+	color = "#0099cc"
 
 /obj/structure/table/bench/sifwooden/Initialize(mapload)
 	material = get_material_by_name(MAT_SIFWOOD)
@@ -254,4 +254,45 @@
 
 /obj/structure/table/bench/glamour/Initialize(mapload)
 	material = get_material_by_name(MAT_GLAMOUR)
+	. = ..()
+
+//new wood types
+/obj/structure/table/birch
+	icon_state = "plain_preview"
+	color = "#f6dec0"
+
+/obj/structure/table/birch/Initialize(mapload)
+	material = get_material_by_name(MAT_BIRCHWOOD)
+	. = ..()
+
+/obj/structure/table/pine
+	icon_state = "plain_preview"
+	color = "#cd9d6f"
+
+/obj/structure/table/pine/Initialize(mapload)
+	material = get_material_by_name(MAT_PINEWOOD)
+	. = ..()
+
+/obj/structure/table/oak
+	icon_state = "plain_preview"
+	color = "#674928"
+
+/obj/structure/table/oak/Initialize(mapload)
+	material = get_material_by_name(MAT_OAKWOOD)
+	. = ..()
+
+/obj/structure/table/acacia
+	icon_state = "plain_preview"
+	color = "#b75e12"
+
+/obj/structure/table/acacia/Initialize(mapload)
+	material = get_material_by_name(MAT_ACACIAWOOD)
+	. = ..()
+
+/obj/structure/table/redwood
+	icon_state = "stone_preview"
+	color = "#a45a52"
+
+/obj/structure/table/redwood/Initialize(mapload)
+	material = get_material_by_name(MAT_REDWOOD)
 	. = ..()

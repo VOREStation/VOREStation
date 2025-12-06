@@ -1067,7 +1067,7 @@
 		return TRUE
 	toggle(user)
 
-/obj/item/clothing/suit/caution/AltClick(mob/user)
+/obj/item/clothing/suit/caution/click_alt(mob/user)
 	toggle(user)
 
 /obj/item/clothing/suit/caution/proc/toggle(mob/user)

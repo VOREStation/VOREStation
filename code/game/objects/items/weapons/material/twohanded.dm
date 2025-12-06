@@ -121,7 +121,10 @@
 	if(!proximity) return
 	..()
 	if(A && wielded)
-		if(istype(A,/obj/structure/window))
+		if(istype(A,/obj/structure/window/maintenance_panel))
+			var/obj/structure/window/maintenance_panel/P = A
+			P.take_damage(75,TRUE) // Not instant break, but still useful
+		else if(istype(A,/obj/structure/window))
 			var/obj/structure/window/W = A
 			W.shatter()
 		else if(istype(A,/obj/structure/grille))

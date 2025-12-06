@@ -66,7 +66,7 @@ var/list/marker_beacon_colors = list(
 		var/obj/structure/marker_beacon/M = new(user.loc, picked_color)
 		transfer_fingerprints_to(M)
 
-/obj/item/stack/marker_beacon/AltClick(mob/living/user)
+/obj/item/stack/marker_beacon/click_alt(mob/living/user)
 	if(user.incapacitated() || !istype(user))
 		to_chat(user, span_warning("You can't do that right now!"))
 		return
@@ -142,7 +142,7 @@ var/list/marker_beacon_colors = list(
 	else
 		return ..()
 
-/obj/structure/marker_beacon/AltClick(mob/living/user)
+/obj/structure/marker_beacon/click_alt(mob/living/user)
 	..()
 	if(perma)
 		return
