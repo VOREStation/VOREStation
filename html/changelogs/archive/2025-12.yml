@@ -23,3 +23,6 @@
   Will:
   - bugfix: Phased shadekin are no longer knocked down or thrown when a shuttle they
       are inside of moves.
+2025-12-06:
+  Kashargul:
+  - code_imp: update dependencies
