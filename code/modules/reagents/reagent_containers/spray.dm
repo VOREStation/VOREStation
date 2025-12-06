@@ -255,17 +255,15 @@
 			add_overlay(hose_overlay)
 			break
 
-/obj/item/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/carbon/user)
+/obj/item/reagent_containers/spray/chemsprayer/hosed/click_alt(mob/living/carbon/user)
 	if(++spray_particles > 3) spray_particles = 1
 
 	balloon_alert(user, "dial turned to [spray_particles].")
 	return
 
-/obj/item/reagent_containers/spray/chemsprayer/hosed/CtrlClick(var/mob/user)
+/obj/item/reagent_containers/spray/chemsprayer/hosed/item_ctrl_click(mob/user)
 	if(loc != get_turf(src))
 		heavy_spray = !heavy_spray
-	else
-		. = ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Spray_at(atom/A as mob|obj, mob/user)
 	update_icon()

@@ -19,7 +19,7 @@
 /obj/item/borg/cloak/attack_self(mob/user)
 	set_cloak_level(user)
 
-/obj/item/borg/cloak/CtrlClick(mob/user)
+/obj/item/borg/cloak/item_ctrl_click(mob/user)
 	toggle_cloak(user)
 	return
 
