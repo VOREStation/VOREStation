@@ -272,7 +272,6 @@
 #include "code\__defines\dcs\signals\signals_medical.dm"
 #include "code\__defines\dcs\signals\signals_mind.dm"
 #include "code\__defines\dcs\signals\signals_mining.dm"
-#include "code\__defines\dcs\signals\signals_misc.dm"
 #include "code\__defines\dcs\signals\signals_mod.dm"
 #include "code\__defines\dcs\signals\signals_modular_computer.dm"
 #include "code\__defines\dcs\signals\signals_motiontracker.dm"
