@@ -160,7 +160,7 @@
 		if(istype(target,/obj/item/trash))
 			user.visible_message(span_filter_notice("[user] nibbles away at \the [target.name]."), span_notice("You begin to nibble away at \the [target.name]..."))
 			busy = 1
-			if(do_after (user, 50))
+			if(do_after (user, 5 SECONDS, target))
 				user.visible_message(span_filter_notice("[user] finishes eating \the [target.name]."), span_notice("You finish eating \the [target.name]."))
 				to_chat(user, span_notice("You finish off \the [target.name]."))
 				qdel(target)
@@ -171,7 +171,7 @@
 		if(istype(target,/obj/item/cell))
 			user.visible_message(span_filter_notice("[user] begins cramming \the [target.name] down its throat."), span_notice("You begin cramming \the [target.name] down your throat..."))
 			busy = 1
-			if(do_after (user, 50))
+			if(do_after (user, 5 SECONDS, target))
 				user.visible_message(span_filter_notice("[user] finishes gulping down \the [target.name]."), span_notice("You finish swallowing \the [target.name]."))
 				to_chat(user, span_notice("You finish off \the [target.name], and gain some charge!"))
 				var/mob/living/silicon/robot/R = user

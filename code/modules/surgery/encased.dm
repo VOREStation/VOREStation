@@ -15,7 +15,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
 		return 0
-	return affected && !(affected.robotic >= ORGAN_ROBOT) && affected.encased && affected.open >= 2
+	return affected && !(affected.robotic >= ORGAN_ROBOT) && affected.encased && affected.open >= FLESH_RETRACTED
 
 ///////////////////////////////////////////////////////////////
 // Rib Sawing Surgery
@@ -148,7 +148,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return (..() && affected && affected.open == 3)
+	return (..() && affected && affected.open == BONE_RETRACTED)
 
 /datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -255,7 +255,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected && affected.open >= 2 && affected.open < 3
+	return ..() && affected && affected.open >= FLESH_RETRACTED && affected.open < BONE_RETRACTED
 
 /datum/surgery_step/open_encased/advancedsaw_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
@@ -308,7 +308,7 @@
 	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return (..() && affected && affected.open == 3)
+	return (..() && affected && affected.open == BONE_RETRACTED)
 
 /datum/surgery_step/open_encased/advancedsaw_mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))

@@ -2852,6 +2852,18 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/sharpsnout
+	name = "Sharp Snout"
+	icon_state = "sharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/sharpsnoutlower
+	name = "Sharp Snout(lower)"
+	icon_state = "lowersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/longsnout
 	name = "Long, Sharp Snout"
 	icon_state = "longsharpsnout"
@@ -2875,6 +2887,36 @@ includes scars and tattoos
 	icon_state = "lowerlongersharpsnout"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/snouttop
+	name = "Top of Snout"
+	icon_state = "topofsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/nosering
+	name = "Snout Ring (Use with Sharp Snout)"
+	icon_state = "nosering"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/bigsoftbelly
+	name = "Big Soft Belly"
+	icon_state = "bigsoftbelly"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/fluffruff
+	name = "Fluffy Neck Ruff"
+	icon_state = "fluffruff"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/gauntlets
+	name = "Clawed Gauntlets"
+	icon_state = "gauntlets"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
 
 /datum/sprite_accessory/marking/boneplates
 	name = "Bony Leg Plates"

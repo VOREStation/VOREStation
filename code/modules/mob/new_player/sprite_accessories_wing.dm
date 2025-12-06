@@ -470,6 +470,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "cloakmoth_eyes"
 
+/datum/sprite_accessory/wing/cybertendrils
+	name = "Cyber Tendrils"
+	desc = ""
+	icon_state = "cybertendrils"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "cybertendrils_plugs"
+
 /datum/sprite_accessory/wing/jet_wing
 	name = "Aeromorph Jet Wings (Colorable)"
 	desc = ""
