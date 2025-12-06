@@ -94,3 +94,15 @@
 
 /datum/gear/mask/wrestling/New()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/mask/masquerade
+	display_name = "masquerade mask selection"
+	path = /obj/item/clothing/mask/masquerade
+
+/datum/gear/mask/masquerade/New()
+	..()
+	var/list/masks = list()
+	for(var/mask in typesof(/obj/item/clothing/mask/masquerade))
+		var/obj/item/clothing/mask/mask_type = mask
+		masks[initial(mask_type.name)] = mask_type
+	gear_tweaks += new/datum/gear_tweak/path(sortTim(masks, GLOBAL_PROC_REF(cmp_text_asc)))
