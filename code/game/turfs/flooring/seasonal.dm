@@ -37,7 +37,10 @@ GLOBAL_VAR(world_time_day)
 	var/snow_chance = 10
 
 /turf/simulated/floor/outdoors/grass/seasonal/Initialize(mapload)
+	season_pick()
+	. = ..()
 
+/turf/simulated/floor/outdoors/grass/seasonal/proc/season_pick()
 	switch(GLOB.world_time_season)
 		if("spring")
 			tree_types = list(
@@ -176,8 +179,7 @@ GLOBAL_VAR(world_time_day)
 		var/animal_type = pickweight(animal_types)
 		new animal_type(src)
 
-
-	. = ..()
+	return
 
 /turf/simulated/floor/outdoors/grass/seasonal/proc/update_desc()
 
@@ -265,14 +267,22 @@ GLOBAL_VAR(world_time_day)
 
 /turf/simulated/floor/water/seasonal/Initialize(mapload)
 	. = ..()
+	season_pick()
+
+/turf/simulated/floor/water/deep/seasonal/Initialize(mapload)
+	. = ..()
+	season_pick()
+
+/turf/simulated/floor/water/seasonal/proc/season_pick()
 	switch(GLOB.world_time_season)
 		if("winter")
 			if(prob(99))
 				ChangeTurf(/turf/simulated/floor/outdoors/ice)
+	return
 
-/turf/simulated/floor/water/deep/seasonal/Initialize(mapload)
-	. = ..()
+/turf/simulated/floor/water/deep/seasonal/proc/season_pick()
 	switch(GLOB.world_time_season)
 		if("winter")
 			if(prob(75))
 				ChangeTurf(/turf/simulated/floor/outdoors/ice)
+	return
