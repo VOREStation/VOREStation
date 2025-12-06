@@ -226,7 +226,7 @@
 	sleep(5)
 	target.filters -= filter(type="blur", size = 0)
 
-/obj/item/telecube/click_ctrl(mob/user)
+/obj/item/telecube/item_ctrl_click(mob/user)
 	if(Adjacent(user) && teleport_to_mate(user))
 		cooldown(mate_too = FALSE)
 

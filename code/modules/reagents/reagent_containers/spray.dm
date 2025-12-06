@@ -261,11 +261,9 @@
 	balloon_alert(user, "dial turned to [spray_particles].")
 	return
 
-/obj/item/reagent_containers/spray/chemsprayer/hosed/click_ctrl(mob/user)
+/obj/item/reagent_containers/spray/chemsprayer/hosed/item_ctrl_click(mob/user)
 	if(loc != get_turf(src))
 		heavy_spray = !heavy_spray
-	else
-		. = ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Spray_at(atom/A as mob|obj, mob/user)
 	update_icon()

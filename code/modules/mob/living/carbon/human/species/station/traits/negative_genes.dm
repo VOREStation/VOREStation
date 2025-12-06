@@ -205,7 +205,7 @@
 	cost = 0
 	can_take = ORGANICS
 
-	is_genetrait = TRUE
+	is_genetrait = FALSE
 	hidden = FALSE
 	activity_bounds = DNA_HARDER_BOUNDS // Shouldn't be easy for genetics to find this
 

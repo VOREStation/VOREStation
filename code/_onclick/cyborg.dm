@@ -120,20 +120,20 @@
 
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
-/mob/living/silicon/robot/CtrlShiftClickOn(var/atom/A)
-	A.Borgclick_ctrl_shift(src)
+/mob/living/silicon/robot/CtrlShiftClickOn(atom/target)
+	target.BorgCtrlShiftClick(src)
 
-/mob/living/silicon/robot/ShiftClickOn(var/atom/A)
-	A.BorgShiftClick(src)
+/mob/living/silicon/robot/ShiftClickOn(atom/target)
+	target.BorgShiftClick(src)
 
-/mob/living/silicon/robot/CtrlClickOn(var/atom/A)
-	A.BorgCtrlClick(src)
+/mob/living/silicon/robot/CtrlClickOn(atom/target)
+	target.BorgCtrlClick(src)
 
-/mob/living/silicon/robot/AltClickOn(var/atom/A)
-	A.BorgAltClick(src)
+/mob/living/silicon/robot/AltClickOn(atom/target)
+	target.BorgAltClick(src)
 
-/atom/proc/Borgclick_ctrl_shift(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	click_ctrl_shift(user)
+/atom/proc/BorgCtrlShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
+	user.click_ctrl_shift(user)
 
 /obj/machinery/door/airlock/Borgclick_ctrl_shift(var/mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
@@ -151,7 +151,7 @@
 	AIShiftClick(user)
 
 /atom/proc/BorgCtrlClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	click_ctrl(user)
+	user.base_click_ctrl(src)
 
 /obj/machinery/door/airlock/BorgCtrlClick(var/mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
