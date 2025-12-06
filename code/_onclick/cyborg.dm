@@ -135,7 +135,7 @@
 /atom/proc/BorgCtrlShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	user.click_ctrl_shift(user)
 
-/obj/machinery/door/airlock/Borgclick_ctrl_shift(var/mob/living/silicon/robot/user)
+/obj/machinery/door/airlock/BorgCtrlShiftClick(var/mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
