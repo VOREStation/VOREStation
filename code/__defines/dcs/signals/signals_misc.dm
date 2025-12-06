@@ -1,3 +1,5 @@
+//MISC SIGNALS THAT NEED TO BE ASSIGNED TO PROPER FILES STILL
+
 // base /decl/emote/proc/do_emote() : (mob/user, extra_params)
 #define COMSIG_GLOB_EMOTE_PERFORMED "!emote_performed"
 // base /proc/say_dead_direct() : (message)
@@ -14,7 +16,5 @@
 #define COMSIG_GLOB_MECH_CONSTRUCTED "!mecha_constructed"
 // when trashpiles are successfully searched : (mob/living/user, list/searched_by)
 #define COMSIG_GLOB_TRASHPILE_SEARCHED "!trash_pile_searched"
-// base /obj/item/autopsy_scanner/do_surgery() : (mob/user, mob/target)
-#define COMSIG_GLOB_AUTOPSY_PERFORMED "!performed_autopsy"
 // upon forensics swap or sample kit forensics collection : (atom/target, mob/user)
 #define COMSIG_GLOB_FORENSICS_COLLECTED "!performed_forensics_collection"

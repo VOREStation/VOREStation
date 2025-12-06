@@ -313,26 +313,3 @@
 #define COMSIG_OBSERVER_MOB_EQUIPPED "observer_mob_equipped"
 ///from end of revival_healing_action(): ()
 #define COMSIG_LIVING_AHEAL "living_post_aheal"
-
-/// From /datum/status_effect/proc/on_creation() : (datum/status_effect/effect)
-#define COMSIG_LIVING_STATUS_APPLIED "living_status_applied"
-
-/// From /datum/status_effect/proc/Destroy() : (datum/status_effect/effect)
-#define COMSIG_LIVING_STATUS_REMOVED "living_status_removed"
-
-///from /datum/species/handle_fire. Called when the human is set on fire and burning clothes and stuff
-#define COMSIG_HUMAN_BURNING "human_burning"
-
-///from base of mob/clickon(): (atom/A, list/modifiers)
-#define COMSIG_MOB_CLICKON "mob_clickon"
-///from base of mob/MiddleClickOn(): (atom/A)
-#define COMSIG_MOB_MIDDLECLICKON "mob_middleclickon"
-///from base of mob/AltClickOn(): (atom/A)
-#define COMSIG_MOB_ALTCLICKON "mob_altclickon"
-	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
-///From base of /mob/base_click_ctrl: (atom/A)
-#define COMSIG_MOB_CTRL_CLICKED "mob_ctrl_clicked"
-///From base of /mob/base_click_ctrl_shift: (atom/A)
-#define COMSIG_MOB_CTRL_SHIFT_CLICKED "mob_ctrl_shift_clicked"
-///from base of mob/alt_click_on_secodary(): (atom/A)
-#define COMSIG_MOB_ALTCLICKON_SECONDARY "mob_altclickon_secondary"
