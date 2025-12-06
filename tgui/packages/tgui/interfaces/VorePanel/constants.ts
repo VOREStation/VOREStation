@@ -82,13 +82,12 @@ export const modeToTooltip = {
   'Leave Remains': 'Prey might leave remains like bones.',
   Muffles: 'Causes all prey messages to become subtles.',
   'Affect Worn Items': 'Allows vorgan to coat and digest equipped items.',
-  'Jams Sensors': 'Blocks medical sensors, but not GPS.',
+  'Jams Sensors': 'Blocks trackers, such as GPS, sensors, and tracking implants.',
   'Complete Absorb': 'Limits conversation to direct pred / prey.',
   'Spare Prosthetics': 'Applies no damage to synthetic limbs. ',
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
-  'Blocks Tracking': 'Blocks all forms of tracking. GPS, sensors, implants, etc.',
 };
 
 export const spriteToTooltip = {
