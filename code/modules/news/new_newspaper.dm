@@ -19,7 +19,10 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
-obj/item/newspaper/attack_self(mob/user)
+/obj/item/newspaper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat

@@ -28,6 +28,9 @@
 		update_icon()
 
 /obj/item/syringe_cartridge/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(syringe)
 		to_chat(user, span_notice("You remove [syringe] from [src]."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
@@ -81,6 +84,8 @@
 	var/max_darts = 1
 	var/obj/item/syringe_cartridge/next
 
+	special_handling = TRUE
+
 /obj/item/gun/launcher/syringe/consume_next_projectile()
 	if(next)
 		next.prime()
@@ -92,7 +97,10 @@
 	darts -= next
 	next = null
 
-/obj/item/gun/launcher/syringe/attack_self(mob/living/user as mob)
+/obj/item/gun/launcher/syringe/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(next)
 		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", span_warning("You unlatch and carefully relax the bolt on [src], unloading the spring."))
 		next = null

@@ -46,7 +46,7 @@
 			to_chat(user, span_notice("[src] is projecting at max capacity!"))
 
 /obj/item/holosign_creator/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	if(.)
 		return
 	if(signs.len)

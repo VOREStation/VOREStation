@@ -8,14 +8,14 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	// Destination tagging for the mail sorter.
+	/// Destination tagging for the mail sorter.
 	var/sortTag = 0
-	// Who this mail is for and who can open it.
+	/// Who this mail is for and who can open it.
 	var/datum/weakref/recipient_ref
-	// How many goodies this mail contains.
+	/// How many goodies this mail contains.
 	var/goodie_count = 1
 	// Goodies which can be given to anyone.
-	// Weight sum will be 1000
+	/// Weight sum will be 1000
 	var/list/generic_goodies = list(
 		/obj/item/spacecash/c50 = 75,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 75,
@@ -30,24 +30,27 @@
 		/obj/item/reagent_containers/food/drinks/bluespace_coffee = 5
 	)
 	// Overlays (pure fluff)
-	// Does the letter have the postmark overlay?
+	/// Does the letter have the postmark overlay?
 	var/postmarked = TRUE
-	// Does the letter have a stamp overlay?
+	/// Does the letter have a stamp overlay?
 	var/stamped = TRUE
-	// List of all stamp overlays on the letter.
+	/// List of all stamp overlays on the letter.
 	var/list/stamps = list()
-	// Maximum number of stamps on the letter.
+	/// Maximum number of stamps on the letter.
 	var/stamp_max = 1
-	// Physical offset of stamps on the object. X direction.
+	/// Physical offset of stamps on the object. X direction.
 	var/stamp_offset_x = 0
-	// Physical offset of stamps on the object. Y direction.
+	/// Physical offset of stamps on the object. Y direction.
 	var/stamp_offset_y = 2
-	// If the mail is actively being opened right now
+	/// If the mail is actively being opened right now
 	var/opening = FALSE
-	// If the mail has been scanned with a mail scanner
+	/// If the mail has been scanned with a mail scanner
 	var/scanned
-	// Does it have a colored envelope?
+	/// Does it have a colored envelope?
 	var/colored_envelope
+
+	///Var for attack_self chainn
+	var/special_handling = FALSE
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return
@@ -84,6 +87,7 @@
 	var/set_content = FALSE
 	var/sealed = FALSE
 	var/list/mail_recipients
+	special_handling = TRUE
 
 /obj/item/mail/blank/attackby(obj/item/W, mob/user)
 	..()
@@ -137,13 +141,18 @@
 			desc = "A signed envelope, from [sender]."
 
 /obj/item/mail/blank/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!sealed)
 		if(!do_after(user, 1.5 SECONDS, target = user))
 			sealed = FALSE
 		sealed = TRUE
 		description_info = "Shift Click to add the sender's name to the envelope, or attack with a pen to set a receiver."
 		return
-	. = ..()
+	if(!unwrap(user))
+		return FALSE
+	return after_unwrap(user)
 
 /obj/item/mail/update_icon()
 	. = ..()
@@ -191,7 +200,12 @@
 		return
 
 /obj/item/mail/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!unwrap(user))
+		return FALSE
+	if(special_handling)
 		return FALSE
 	return after_unwrap(user)
 

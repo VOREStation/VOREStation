@@ -31,9 +31,20 @@
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	var/can_click = TRUE
 
-/obj/item/pen/attack_self(var/mob/user)
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
+/obj/item/pen/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(!user.checkClickCooldown())
+		return
+	if(!can_click)
 		return
 	user.setClickCooldown(1 SECOND)
 	to_chat(user, span_notice("Click."))
@@ -99,6 +110,7 @@
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1
 	var/colors = list("black","blue","red")
+	special_handling = TRUE
 
 /obj/item/pen/click_alt(mob/user)
 	if(!Adjacent(user))
@@ -107,6 +119,9 @@
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 
 /obj/item/pen/multi/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(++selectedColor > 3)
 		selectedColor = 1
 
@@ -270,8 +285,12 @@
  */
 /obj/item/pen/chameleon
 	var/signature = ""
+	special_handling = TRUE
 
 /obj/item/pen/chameleon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	/*
 	// Limit signatures to official crew members
 	var/personnel_list[] = list()
@@ -338,6 +357,8 @@
 	var/colourName = "red" //for updateIcon purposes
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
+	can_click = FALSE
+	special_handling = TRUE
 
 /obj/item/pen/crayon/Initialize(mapload)
 	. = ..()

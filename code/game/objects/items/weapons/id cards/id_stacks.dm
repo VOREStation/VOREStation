@@ -370,6 +370,7 @@
 	name = "Syndicate ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
 	rank = JOB_SYNDICATE
+	special_handling = TRUE
 
 /obj/item/card/id/syndicate/officer
 	name = "Syndicate Officer ID"

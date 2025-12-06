@@ -24,8 +24,10 @@
 		return
 	..()
 
-/obj/item/frame/attack_self(mob/user as mob)
-	..()
+/obj/item/frame/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	update_type_list()
 	var/datum/frame/frame_types/frame_type
 	if(!build_machine_type && !build_wall_only)

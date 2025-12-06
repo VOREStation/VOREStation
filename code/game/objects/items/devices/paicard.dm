@@ -19,6 +19,9 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return

@@ -14,6 +14,7 @@
 	matter = list(MAT_STEEL = 10000,MAT_GLASS = 2500)
 
 	var/code = 2
+	electric_pack = TRUE
 
 /obj/item/radio/electropack/attack_hand(mob/living/user as mob)
 	if(src == user.back)
@@ -104,8 +105,10 @@
 		master.receive_signal()
 	return
 
-/obj/item/radio/electropack/attack_self(mob/user as mob, flag1)
-
+/obj/item/radio/electropack/attack_self(mob/user, flag1)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!ishuman(user))
 		return
 	user.set_machine(src)

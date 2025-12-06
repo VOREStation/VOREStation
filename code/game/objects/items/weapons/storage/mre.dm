@@ -21,6 +21,7 @@ MRE Stuff
 	/obj/random/mre/sauce,
 	/obj/item/material/kitchen/utensil/spoon/plastic
 	)
+	special_handling = TRUE
 
 /obj/item/storage/mre/examine(mob/user)
 	. = ..()
@@ -32,6 +33,9 @@ MRE Stuff
 	. = ..()
 
 /obj/item/storage/mre/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	open(user)
 
 /obj/item/storage/mre/open(mob/user)
@@ -222,6 +226,7 @@ MRE Stuff
 	max_w_class = ITEMSIZE_SMALL
 	var/opened = FALSE
 	starts_with = list(/obj/item/reagent_containers/food/snacks/slice/meatpizza/filled)
+	special_handling = TRUE
 
 /obj/item/storage/mrebag/Initialize(mapload)
 	. = ..()
@@ -232,6 +237,9 @@ MRE Stuff
 	. = ..()
 
 /obj/item/storage/mrebag/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	open(user)
 
 /obj/item/storage/mrebag/open(mob/user)
