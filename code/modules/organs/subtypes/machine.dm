@@ -111,7 +111,8 @@
 	qdel(src)
 
 /obj/item/organ/internal/mmi_holder/emp_act(severity, recursive)
-	stored_mmi.emp_act(severity, recursive)
+	if(stored_mmi)
+		stored_mmi.emp_act(severity, recursive)
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
