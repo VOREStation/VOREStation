@@ -225,25 +225,6 @@
 #define COMSIG_ENTER_AREA "enter_area"
 ///from base of area/Exited(): (/area)
 #define COMSIG_EXIT_AREA "exit_area"
-///from base of client/Click(): (atom/target, atom/location, control, params, mob/user)
-#define COMSIG_CLIENT_CLICK "atom_client_click"
-///from base of atom/Click(): (location, control, params, mob/user)
-#define COMSIG_CLICK "atom_click"
-///from base of atom/ShiftClick(): (/mob)
-#define COMSIG_CLICK_SHIFT "shift_click"
-	#define COMPONENT_ALLOW_EXAMINATE (1<<0) 							//Allows the user to examinate regardless of client.eye.
-///from base of atom/CtrlClickOn(): (/mob)
-#define COMSIG_CLICK_CTRL "ctrl_click"
-///from base of atom/AltClick(): (/mob)
-#define COMSIG_CLICK_ALT "alt_click"
-	#define COMPONENT_CANCEL_CLICK_ALT (1<<0)
-///from base of atom/CtrlShiftClick(/mob)
-#define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"
-///from base of atom/MouseDrop(): (/atom/over, /mob/user)
-#define COMSIG_MOUSEDROP_ONTO "mousedrop_onto"
-	#define COMPONENT_NO_MOUSEDROP (1<<0)
-///from base of atom/MouseDrop_T: (/atom/from, /mob/user)
-#define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"
 
 ///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
 #define COMSIG_DO_AFTER_BEGAN "do_after_began"
@@ -332,13 +313,6 @@
 #define COMSIG_MOB_DEATH "mob_death"
 ///from base of mob/set_stat(): (new_stat)
 #define COMSIG_MOB_STATCHANGE "mob_statchange"
-///from base of mob/clickon(): (atom/A, params)
-#define COMSIG_MOB_CLICKON "mob_clickon"
-///from base of mob/MiddleClickOn(): (atom/A)
-#define COMSIG_MOB_MIDDLECLICKON "mob_middleclickon"
-///from base of mob/AltClickOn(): (atom/A)
-#define COMSIG_MOB_ALTCLICKON "mob_altclickon"
-	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
 
 ///from base of /obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0). Has the arguments of 'src, silent, result'
 #define COMSIG_MOB_ROLLED_DICE "mob_rolled_dice" //can give a return value if we want it to make the dice roll a specific number!

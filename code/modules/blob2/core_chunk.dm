@@ -98,7 +98,7 @@
 		last_passive_use = world.time
 		blob_type.on_chunk_tick(src)
 
-/obj/item/blobcore_chunk/AltClick(mob/living/carbon/user)
+/obj/item/blobcore_chunk/click_alt(mob/living/carbon/user)
 	if(blob_type && blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
 		should_tick = !should_tick
 
