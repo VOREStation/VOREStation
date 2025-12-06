@@ -125,12 +125,24 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 	jam_range = 255
 	tick_cost = 0
 
-/proc/is_vore_jammed(var/obj/radio)
-	var/atom/current = radio
+///For suit sensors. Checks to see if the clothing is in a belly that jams sensors or blocks tracking.
+/proc/is_vore_jammed(obj/item/clothing/under/current)
 	while(current.loc)
 		if(isbelly(current.loc))
 			var/obj/belly/B = current.loc
 			if(B.mode_flags & DM_FLAG_JAMSENSORS)
+				return TRUE
+			if(B.mode_flags & DM_BLOCKS_TRACKING)
+				return TRUE
+		current = current.loc
+	return FALSE
+
+///For GPS, tracking implant, or anything else that could locate someone!
+/proc/is_fully_vore_jammed(atom/current)
+	while(current.loc)
+		if(isbelly(current.loc))
+			var/obj/belly/B = current.loc
+			if(B.mode_flags & DM_BLOCKS_TRACKING)
 				return TRUE
 		current = current.loc
 	return FALSE

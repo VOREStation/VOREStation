@@ -88,6 +88,7 @@ export const modeToTooltip = {
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
+  'Blocks Tracking': 'Blocks all forms of tracking. GPS, sensors, implants, etc.',
 };
 
 export const spriteToTooltip = {
