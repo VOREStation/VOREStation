@@ -824,6 +824,16 @@
 /datum/config_entry/flag/discord_ahelps_all
 	default = FALSE
 
+/datum/config_entry/str_list/channel_announce_new_game
+
+/datum/config_entry/str_list/channel_announce_end_game
+
+/datum/config_entry/str_list/chat_new_game_notifications
+
+/// validate ownership of admin flags for chat commands
+/datum/config_entry/flag/secure_chat_commands
+	default = FALSE
+
 /datum/config_entry/number/mc_tick_rate/base_mc_tick_rate
 	integer = FALSE
 	default = 1
