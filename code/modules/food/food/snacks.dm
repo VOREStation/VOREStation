@@ -1985,7 +1985,7 @@
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	to_chat(user, "You unwrap the cube.")
-	wrapped = 0
+	wrapped = FALSE
 	flags |= OPENCONTAINER
 	return
 
