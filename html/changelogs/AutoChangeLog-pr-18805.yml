@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - balance: "Restricts the importing of recipes to specific job roles."
