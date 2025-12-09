@@ -65,9 +65,10 @@ var/list/grass_types = list(
 	. = ..()
 
 /turf/simulated/floor/outdoors/grass/Initialize(mapload)
-	if(grass_chance && prob(grass_chance) && !check_density())
+	if(grass_chance && prob(grass_chance) && !check_density() && length(grass_types))
 		var/grass_type = pickweight(grass_types)
-		new grass_type(src)
+		if(grass_type)
+			new grass_type(src)
 /*
 	if(animal_chance && prob(animal_chance) && !check_density())
 		var/animal_type = pickweight(animal_types)
