@@ -209,11 +209,11 @@
 /obj/item/storage/bag/ore/equipped(mob/user)
 	..()
 	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/item/storage/bag/ore/proc/autoload, user)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, /obj/item/storage/bag/ore/proc/autoload, user)
 
 /obj/item/storage/bag/ore/dropped(mob/user)
 	..()
-	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 
 /obj/item/storage/bag/ore/proc/autoload(mob/user)
 	SIGNAL_HANDLER

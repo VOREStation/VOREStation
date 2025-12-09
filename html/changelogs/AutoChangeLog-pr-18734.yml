@@ -1,9 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "You can now alt-shift click someone to open the inventory menu (as if you drag-dropped them onto yourself)"
-  - qol: "Admins can now tag datums via ctrl-middle click"
-  - refactor: "Honey I refactored click code!"
-  - code_imp: "Cleans up click code."
-  - code_imp: "Adds framework for allowing objects to ignore ctrl click and not allowed to be dragged"
-  - bugfix: "Fixes a bug where joining in the game would cause 180 topic calls to be made (still happens) causing you to be rate limited."

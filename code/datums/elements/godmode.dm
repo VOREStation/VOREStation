@@ -39,7 +39,7 @@
 	RegisterSignal(target, COMSIG_TAKING_HALO_DAMAGE, PROC_REF(on_halo_damage))
 
 	//Things such as update health.
-	RegisterSignal(target, COMSIG_UPDATE_HEALTH, PROC_REF(on_update_health))
+	RegisterSignal(target, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_update_health))
 	RegisterSignal(target, COMSIG_TAKING_APPLY_EFFECT, PROC_REF(on_apply_effect))
 
 	//For things that don't fall into a single bucket
@@ -62,7 +62,7 @@
 	//All the general comsigs.
 	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
 	COMSIG_TAKING_BRUTE_DAMAGE, COMSIG_TAKING_BRAIN_DAMAGE, COMSIG_TAKING_CLONE_DAMAGE, COMSIG_TAKING_HALO_DAMAGE, \
-	COMSIG_UPDATE_HEALTH, COMSIG_TAKING_APPLY_EFFECT, COMSIG_CHECK_FOR_GODMODE, COMSIG_BEING_ELECTROCUTED, COMSIG_EMBED_OBJECT))
+	COMSIG_LIVING_HEALTH_UPDATE, COMSIG_TAKING_APPLY_EFFECT, COMSIG_CHECK_FOR_GODMODE, COMSIG_BEING_ELECTROCUTED, COMSIG_EMBED_OBJECT))
 	var/mob/our_target = target
 
 	//And finally, remove the fact we're in godmode.
@@ -108,7 +108,7 @@
 
 /datum/element/godmode/proc/on_update_health()
 	SIGNAL_HANDLER
-	return COMSIG_UPDATE_HEALTH_GOD_MODE
+	return COMSIG_LIVING_HEALTH_UPDATE_GOD_MODE
 
 /datum/element/godmode/proc/on_apply_effect()
 	SIGNAL_HANDLER
@@ -145,7 +145,7 @@
 	our_target.status_flags &= ~CANWEAKEN
 	our_target.status_flags &= ~CANPARALYSE
 	RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
-	RegisterSignal(target, COMSIG_UPDATE_HEALTH, PROC_REF(on_update_health))
+	RegisterSignal(target, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_update_health))
 	RegisterSignal(target, COMSIG_TAKING_APPLY_EFFECT, PROC_REF(on_apply_effect))
 
 	if(ishuman(target))
@@ -159,7 +159,7 @@
 /datum/element/lite_godmode/Detach(atom/movable/target)
 	var/mob/our_target = target
 	UnregisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION)
-	UnregisterSignal(target, COMSIG_UPDATE_HEALTH)
+	UnregisterSignal(target, COMSIG_LIVING_HEALTH_UPDATE)
 	UnregisterSignal(target, COMSIG_TAKING_APPLY_EFFECT)
 	our_target.status_flags |= CANSTUN|CANWEAKEN|CANPARALYSE
 	if(ishuman(target))
@@ -173,7 +173,7 @@
 
 /datum/element/lite_godmode/proc/on_update_health()
 	SIGNAL_HANDLER
-	return COMSIG_UPDATE_HEALTH_GOD_MODE
+	return COMSIG_LIVING_HEALTH_UPDATE_GOD_MODE
 
 /datum/element/lite_godmode/proc/on_apply_effect()
 	SIGNAL_HANDLER
