@@ -37,8 +37,8 @@ GLOBAL_VAR(world_time_day)
 	var/snow_chance = 10
 
 /turf/simulated/floor/outdoors/grass/seasonal/Initialize(mapload)
-	season_pick()
 	. = ..()
+	season_pick()
 
 /turf/simulated/floor/outdoors/grass/seasonal/proc/season_pick()
 	switch(GLOB.world_time_season)
