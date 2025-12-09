@@ -29,7 +29,7 @@
 
 	var/list/integrated_tool_images
 
-/obj/item/robotic_multibelt/CtrlClick(mob/user)
+/obj/item/robotic_multibelt/item_ctrl_click(mob/user)
 	if(selected_item)
 		selected_item.attack_self(user)
 	return
@@ -597,13 +597,13 @@
 		. += span_notice("\The [src] is holding \the [wrapped].")
 		. += wrapped.examine(user)
 
-/obj/item/gripper/CtrlClick(mob/user)
+/obj/item/gripper/item_ctrl_click(mob/user)
 	var/obj/item/wrapped = get_current_pocket()
 	if(wrapped && !is_in_use())
 		wrapped.attack_self(user)
 	return
 
-/obj/item/gripper/AltClick(mob/user)
+/obj/item/gripper/click_alt(mob/user)
 	if(!is_in_use())
 		drop_item()
 	return
@@ -1123,7 +1123,7 @@
 /obj/item/reagent_containers/glass/bucket/cyborg/Initialize(mapload)
 	. = ..()
 	R = loc.loc
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
 
 /obj/item/reagent_containers/glass/bucket/cyborg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	if(old_loc == R || old_loc == R.module)
@@ -1138,7 +1138,7 @@
 			hud_layerise()
 
 /obj/item/reagent_containers/glass/bucket/cyborg/Destroy()
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	R = null
 	last_robot_loc = null
 	..()

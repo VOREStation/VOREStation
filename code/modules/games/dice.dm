@@ -31,7 +31,7 @@
 				desc = "[initial(desc)] It looks a little misshapen, somehow..."
 				loaded = to_weight
 
-/obj/item/dice/AltClick(mob/user)
+/obj/item/dice/click_alt(mob/user)
 	..()
 	if(cheater)
 		if(!loaded)
@@ -141,7 +141,7 @@
 	icon_state = "[name][result]"
 	user.visible_message(span_notice("\The [user] turned \the [src] to the face reading [result] manually."))
 
-/obj/item/dice/CtrlClick(mob/user)
+/obj/item/dice/item_ctrl_click(mob/user)
 	set_dice(user)
 
 

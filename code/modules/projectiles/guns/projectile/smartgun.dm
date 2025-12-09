@@ -61,7 +61,7 @@
 		return
 	return ..()
 
-/obj/item/gun/projectile/smartgun/AltClick(mob/user)
+/obj/item/gun/projectile/smartgun/click_alt(mob/user)
 	if(ishuman(user) && !user.incapacitated() && Adjacent(user))
 		if(cycling)
 			to_chat(user, span_warning("[src] is still cycling!"))
