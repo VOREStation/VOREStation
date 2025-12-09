@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 		balloon_alert(user,"the fabricator now holds [stored_matter]/30 fabrication-units.")
 		return
 
-/obj/item/rsf/CtrlClick(mob/living/user)
+/obj/item/rsf/item_ctrl_click(mob/living/user)
 	if(!Adjacent(user) || !istype(user))
 		balloon_alert(user,"you are too far away.")
 		return

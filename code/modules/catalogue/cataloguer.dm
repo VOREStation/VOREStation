@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 
-/obj/item/cataloguer/AltClick(mob/user)
+/obj/item/cataloguer/click_alt(mob/user)
 	pulse_scan(user)
 
 // Gives everything capable of being scanned an outline for a brief moment.
