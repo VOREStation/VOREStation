@@ -181,7 +181,7 @@
 	adjusted_name = sane_name
 	return TRUE
 
-/obj/item/toy/plushie/customizable/AltClick(mob/user)
+/obj/item/toy/plushie/customizable/click_alt(mob/user)
 	tgui_interact(user)
 
 /obj/item/toy/plushie/customizable/dragon

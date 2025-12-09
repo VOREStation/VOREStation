@@ -87,7 +87,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/proc/On_Consume(var/mob/living/eater, var/mob/feeder, var/changed = FALSE)
-	SEND_SIGNAL(src, COMSIG_CONTAINER_DRANK, eater, feeder)
+	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, eater, feeder)
 	if(!feeder)
 		feeder = eater
 
