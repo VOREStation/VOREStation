@@ -37,3 +37,10 @@
       to be dragged
   - bugfix: Fixes a bug where joining in the game would cause 180 topic calls to be
       made (still happens) causing you to be rate limited.
+2025-12-09:
+  Diana:
+  - code_imp: Fixes a runtime pertaining to MMI holders.
+  SatinIsle:
+  - balance: Restricts the importing of recipes to specific job roles.
+  Will:
+  - rscadd: Catslug belly markings for shelter gate and door

@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Fixes a runtime pertaining to MMI holders."
