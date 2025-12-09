@@ -36,28 +36,7 @@
 /obj/machinery/reagent_refinery/waste_processor/update_icon()
 	cut_overlays()
 	if(anchored)
-		for(var/direction in GLOB.cardinal)
-			var/turf/T = get_step(get_turf(src),direction)
-			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-			if(other && other.anchored)
-				// Waste processors do not connect to anything as outgoing
-				if(istype(other,/obj/machinery/reagent_refinery/waste_processor))
-					continue
-				// weird handling for side connections... Otherwise, anything pointing into use gets connected back!
-				if(istype(other,/obj/machinery/reagent_refinery/filter))
-					var/obj/machinery/reagent_refinery/filter/filt = other
-					var/check_dir = 0
-					if(filt.get_filter_side() == 1)
-						check_dir = turn(filt.dir, 270)
-					else
-						check_dir = turn(filt.dir, 90)
-					if(check_dir == GLOB.reverse_dir[direction])
-						var/image/intake = image(icon, icon_state = "waste_intakes", dir = direction)
-						add_overlay(intake)
-						continue
-				if(other.dir == GLOB.reverse_dir[direction])
-					var/image/intake = image(icon, icon_state = "waste_intakes", dir = direction)
-					add_overlay(intake)
+		update_input_connection_overlays("waste_intakes")
 
 /obj/machinery/reagent_refinery/waste_processor/examine(mob/user, infix, suffix)
 	. = ..()

@@ -1216,7 +1216,7 @@
 	if(src.pulse)
 		to_chat(usr, span_notice("[self ? "You have a" : "[src] has a"] pulse! Counting..."))
 	else
-		to_chat(usr, span_danger("[src] has no pulse!"))	//it is REALLY UNLIKELY that a dead person would check his own pulse
+		to_chat(usr, span_danger("[src] has no pulse!"))
 		return
 
 	to_chat(usr, span_filter_notice("You must[self ? "" : " both"] remain still until counting is finished."))

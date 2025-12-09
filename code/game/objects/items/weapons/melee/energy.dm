@@ -177,7 +177,7 @@
 
 
 
-/obj/item/melee/energy/AltClick(mob/living/user)
+/obj/item/melee/energy/click_alt(mob/living/user)
 	if(!colorable) //checks if is not colorable
 		return
 	if(!in_range(src, user))	//Basic checks to prevent abuse

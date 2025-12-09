@@ -191,7 +191,7 @@
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-/obj/item/toy/sword/AltClick(mob/living/user)
+/obj/item/toy/sword/click_alt(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
 	if(user.incapacitated() || !istype(user))
