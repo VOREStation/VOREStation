@@ -89,7 +89,7 @@
 
 /obj/effect/anomaly/hallucination/decoy/attackby(obj/item/tool, mob/user, params)
 	if(istype(tool, /obj/item/analyzer))
-		to_chat(user, span_notice("You activate [tool]. [replacetext(report_text, "%TOOL%", "[tool]")]"))
+		to_chat(user, span_notice("You activate \the [tool]. [replacetext(report_text, "%TOOL%", "[tool]")]"))
 	return ..()
 
 /obj/effect/anomaly/hallucination/decoy/detonate()

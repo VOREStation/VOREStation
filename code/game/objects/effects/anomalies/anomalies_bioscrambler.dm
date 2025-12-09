@@ -31,7 +31,7 @@
 		nearby.getarmor(type = BIOACID)
 		randmutb(nearby)
 		domutcheck(nearby, null)
-		balloon_alert(nearby, "something has changed about you")
+		nearby.balloon_alert(nearby, "something has changed about you")
 		return
 
 /obj/effect/anomaly/bioscrambler/move_anomaly()
