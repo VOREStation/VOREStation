@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 			compass.show_waypoint("\ref[gps]")
 	compass.rebuild_overlay_lists(update_compass_icon)
 
-/obj/item/gps/AltClick(mob/user)
+/obj/item/gps/click_alt(mob/user)
 	toggletracking(user)
 
 /obj/item/gps/proc/toggletracking(mob/living/user)

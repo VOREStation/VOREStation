@@ -47,7 +47,7 @@
 
 		add_overlay(corptag_icon_state)
 
-/obj/structure/closet/body_bag/cryobag/robobag/AltClick(mob/user)
+/obj/structure/closet/body_bag/cryobag/robobag/click_alt(mob/user)
 	if(!Adjacent(user))
 		..()
 	if(corptag)

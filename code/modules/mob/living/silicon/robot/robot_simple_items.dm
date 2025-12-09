@@ -29,7 +29,7 @@
 
 	var/list/integrated_tool_images
 
-/obj/item/robotic_multibelt/CtrlClick(mob/user)
+/obj/item/robotic_multibelt/item_ctrl_click(mob/user)
 	if(selected_item)
 		selected_item.attack_self(user)
 	return
@@ -597,13 +597,13 @@
 		. += span_notice("\The [src] is holding \the [wrapped].")
 		. += wrapped.examine(user)
 
-/obj/item/gripper/CtrlClick(mob/user)
+/obj/item/gripper/item_ctrl_click(mob/user)
 	var/obj/item/wrapped = get_current_pocket()
 	if(wrapped && !is_in_use())
 		wrapped.attack_self(user)
 	return
 
-/obj/item/gripper/AltClick(mob/user)
+/obj/item/gripper/click_alt(mob/user)
 	if(!is_in_use())
 		drop_item()
 	return

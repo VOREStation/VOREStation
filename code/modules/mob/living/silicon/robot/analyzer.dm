@@ -22,7 +22,7 @@
 /obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	do_scan(M, user)
 
-/obj/item/robotanalyzer/AltClick(mob/user)
+/obj/item/robotanalyzer/click_alt(mob/user)
 	mode = !mode
 	user.show_message(span_blue("[mode ? "Toggled to cyborg analyzing mode." : "Toggled to cyborg upgrade scan mode."]"), 1)
 
