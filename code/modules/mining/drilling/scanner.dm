@@ -101,7 +101,7 @@
 	scan_time = 0.5 SECONDS
 	exact = TRUE
 
-/obj/item/mining_scanner/advanced/AltClick(mob/user)
+/obj/item/mining_scanner/advanced/click_alt(mob/user)
 	change_size()
 
 /obj/item/mining_scanner/advanced/verb/change_size()

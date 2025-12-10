@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Jams Sensors now blocks all forms of tracking, such as GPS an tracking implants!"
+  - spellcheck: "Fixes a typo in the prisoner implant where tracking implants would show up as chemical implants."
