@@ -154,7 +154,7 @@
 
 /obj/item/tvcamera/proc/update_feed()
 	if(camera.status)
-		SEND_SIGNAL(camera, COMSIG_OBSERVER_MOVED) // Forward the movement signal
+		SEND_SIGNAL(camera, COMSIG_MOVABLE_ATTEMPTED_MOVE) // Forward the movement signal
 
 //Assembly by roboticist
 
