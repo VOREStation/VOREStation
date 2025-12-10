@@ -15,7 +15,7 @@
 	// Mob
 	host_mob = parent
 	RegisterSignal(host_mob, COMSIG_LIVING_LIFE, PROC_REF(on_mob_action))
-	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(on_mob_action))
+	RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(on_mob_action))
 	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(on_mob_logout))
 
 	// Machine
@@ -34,7 +34,7 @@
 	linked_machine.in_use = FALSE
 	linked_machine = null
 	// Mob
-	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	UnregisterSignal(host_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	host_mob.reset_perspective() // Required, because our machine may have been operating a remote view

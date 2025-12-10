@@ -20,13 +20,13 @@
 	if(SEND_SIGNAL(target, COMSIG_CLICK_CTRL, src) & CLICK_ACTION_ANY)
 		return TRUE
 
-	target.click_ctrl(src)
-	/* //NYI
 	// If it has a custom click_alt that returns success/block, done.
+	return target.click_ctrl(src) & CLICK_ACTION_ANY
+	/* //NYI
 	if(can_perform_action(target, target.interaction_flags_click | SILENT_ADJACENCY))
 		return target.click_ctrl(src) & CLICK_ACTION_ANY
-	*/
 	return
+	*/ //NYI END
 
 /**
  * Ctrl click

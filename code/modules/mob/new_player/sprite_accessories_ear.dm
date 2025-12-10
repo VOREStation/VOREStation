@@ -1211,6 +1211,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/unicorn
+	name = "Horn, unicorn"
+	desc = ""
+	icon_state = "unihorn"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/fourlowears
 	name = "Four Horizontal Ears with Frills"
 	desc = ""
