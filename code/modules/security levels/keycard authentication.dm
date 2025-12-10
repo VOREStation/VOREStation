@@ -23,13 +23,39 @@
 	power_channel = ENVIRON
 
 /obj/machinery/keycard_auth/attack_ai(mob/user)
-	to_chat (user, span_warning("A firewall prevents you from interfacing with this device!"))
+	to_chat(user, span_warning("A firewall prevents you from interfacing with this device!"))
 	return
 
 /obj/machinery/keycard_auth/attackby(obj/item/W, mob/user)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		to_chat(user, "You begin removing the faceplate from the [src]")
+		playsound(src, W.usesound, 50, 1)
+		if(do_after(user, 1 SECOND * W.toolspeed, target = src))
+			to_chat(user, "You remove the faceplate from the [src]")
+			var/obj/structure/frame/A = new /obj/structure/frame(loc)
+			A.circuit = circuit
+			A.frame_type = circuit.board_type
+			circuit = null
+			A.need_circuit = FALSE
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.set_dir(dir)
+			A.anchored = TRUE
+			for(var/obj/C in src)
+				if(istype(C, /obj/item/circuitboard))
+					C.forceMove(A)
+					continue
+				C.forceMove(loc)
+			A.forensic_data = forensic_data //carry crime data over.
+			A.state = FRAME_WIRED
+			A.update_icon()
+			qdel(src)
+			return
+
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
+
 	if(istype(W,/obj/item/card/id))
 		var/obj/item/card/id/ID = W
 		if(ACCESS_KEYCARD_AUTH in ID.GetAccess())
@@ -41,28 +67,6 @@
 			else if(screen == 2)
 				event_triggered_by = user
 				broadcast_request(user) //This is the device making the initial event request. It needs to broadcast to other devices
-
-	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		to_chat(user, "You begin removing the faceplate from the [src]")
-		playsound(src, W.usesound, 50, 1)
-		if(do_after(user, 1 SECOND * W.toolspeed, target = src))
-			to_chat(user, "You remove the faceplate from the [src]")
-			var/obj/structure/frame/A = new /obj/structure/frame(loc)
-			var/obj/item/circuitboard/M = new circuit(A)
-			A.frame_type = M.board_type
-			A.need_circuit = 0
-			A.pixel_x = pixel_x
-			A.pixel_y = pixel_y
-			A.set_dir(dir)
-			A.circuit = M
-			A.anchored = TRUE
-			for (var/obj/C in src)
-				C.forceMove(loc)
-			A.state = 3
-			A.update_icon()
-			M.deconstruct(src)
-			qdel(src)
-			return
 
 /obj/machinery/keycard_auth/power_change()
 	..()

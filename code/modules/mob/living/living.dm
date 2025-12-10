@@ -173,7 +173,7 @@
 		manual_afk = TRUE
 
 /mob/living/proc/updatehealth()
-	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE) & COMSIG_LIVING_HEALTH_UPDATE_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 	else
@@ -826,7 +826,7 @@
 	set name = "Resist"
 	set category = "IC.Game"
 
-	if(!incapacitated(INCAPACITATION_KNOCKOUT) && (last_resist_time + RESIST_COOLDOWN < world.time))
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && !is_paralyzed() && (last_resist_time + RESIST_COOLDOWN < world.time))
 		last_resist_time = world.time
 		resist_grab()
 		if(!weakened)
@@ -1086,40 +1086,44 @@
 
 /mob/living/update_canmove()
 	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = 0
-		canmove = 1
+		lying = FALSE
+		canmove = TRUE
 	else
 		if(istype(buckled, /obj/vehicle))
 			var/obj/vehicle/V = buckled
 			if(is_physically_disabled())
-				lying = 0
-				canmove = 1
+				lying = FALSE
+				canmove = TRUE
 				if(!V.riding_datum) // If it has a riding datum, the datum handles moving the pixel_ vars.
 					pixel_y = V.mob_offset_y - 5
 			else
 				if(buckled.buckle_lying != -1)
 					lying = buckled.buckle_lying
-				canmove = 1
+				canmove = TRUE
 				if(!V.riding_datum) // If it has a riding datum, the datum handles moving the pixel_ vars.
 					pixel_y = V.mob_offset_y
 		else if(buckled)
 			anchored = TRUE
-			canmove = 1 //The line above already makes the chair not swooce away if the sitter presses a button. No need to incapacitate them as a criminally large amount of mechanics read this var as a type of stun.
+			canmove = TRUE //The line above already makes the chair not swooce away if the sitter presses a button. No need to incapacitate them as a criminally large amount of mechanics read this var as a type of stun.
 			if(istype(buckled))
 				if(buckled.buckle_lying != -1)
 					lying = buckled.buckle_lying
 					canmove = buckled.buckle_movable
 				if(buckled.buckle_movable)
 					anchored = FALSE
-					canmove = 1
+					canmove = TRUE
 		else
 			lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			canmove = !incapacitated(INCAPACITATION_DISABLED)
 
 	if(incapacitated(INCAPACITATION_KNOCKOUT) || incapacitated(INCAPACITATION_STUNNED)) // Making sure we're in good condition to crawl
-		canmove = 0
+		canmove = FALSE
 	else
-		canmove = 1
+		canmove = TRUE
+
+	if(is_paralyzed())
+		lying = TRUE
+		canmove = FALSE
 
 	if(lying)
 		density = FALSE

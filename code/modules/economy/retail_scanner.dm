@@ -56,7 +56,7 @@
 	interact(user)
 
 
-/obj/item/retail_scanner/AltClick(var/mob/user)
+/obj/item/retail_scanner/click_alt(var/mob/user)
 	if(Adjacent(user))
 		user.set_machine(src)
 		interact(user)

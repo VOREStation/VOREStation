@@ -74,11 +74,13 @@ class IFrameIndexedDbBackend implements StorageBackend {
 
   async ready(): Promise<boolean | null> {
     const iframe = document.createElement('iframe');
+    const iframeStore = `${Byond.storageCdn}?store=${KEY_NAME}`;
     iframe.style.display = 'none';
-    iframe.src = Byond.storageCdn;
+    this.documentElement = document.body.appendChild(iframe);
+    iframe.src = iframeStore;
 
     const completePromise: Promise<boolean> = new Promise((resolve) => {
-      fetch(Byond.storageCdn, { method: 'HEAD' })
+      fetch(iframeStore, { method: 'HEAD' })
         .then((response) => {
           if (response.status !== 200) {
             resolve(false);
@@ -95,7 +97,6 @@ class IFrameIndexedDbBackend implements StorageBackend {
       });
     });
 
-    this.documentElement = document.body.appendChild(iframe);
     if (!this.documentElement.contentWindow) {
       return new Promise((res) => res(false));
     }
@@ -114,25 +115,16 @@ class IFrameIndexedDbBackend implements StorageBackend {
       });
     });
 
-    this.iframeWindow.postMessage(
-      { type: 'get', key: `${KEY_NAME}-${key}` },
-      '*',
-    );
+    this.iframeWindow.postMessage({ type: 'get', key: key }, '*');
     return promise;
   }
 
   async set(key: string, value: any): Promise<void> {
-    this.iframeWindow.postMessage(
-      { type: 'set', key: `${KEY_NAME}-${key}`, value: value },
-      '*',
-    );
+    this.iframeWindow.postMessage({ type: 'set', key: key, value: value }, '*');
   }
 
   async remove(key: string): Promise<void> {
-    this.iframeWindow.postMessage(
-      { type: 'remove', key: `${KEY_NAME}-${key}` },
-      '*',
-    );
+    this.iframeWindow.postMessage({ type: 'remove', key: key }, '*');
   }
 
   async clear(): Promise<void> {
@@ -156,9 +148,11 @@ class StorageProxy implements StorageBackend {
     this.backendPromise = (async () => {
       // If we have not enabled byondstorage yet, we need to check
       // if we can use the IFrame, or if we need to enable byondstorage
+      console.log(`testHubStorage ${testHubStorage()}`);
       if (!testHubStorage()) {
         // If we have an IFrame URL we can use, and we haven't already enabled
         // byondstorage, we should use the IFrame backend
+        console.log(`storageCdn: ${Byond.storageCdn}`);
         if (Byond.storageCdn) {
           const iframe = new IFrameIndexedDbBackend();
 

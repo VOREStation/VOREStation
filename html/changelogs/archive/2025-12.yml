@@ -3,3 +3,63 @@
   - bugfix: mechs no longer vanish when attempting to construct them
   - bugfix: slimecores not being produced during grinding
   - code_imp: Unittest for mech construction datums
+2025-12-03:
+  Guti:
+  - refactor: Improved filling cabinet UI and makes use of span_bold
+  KillianKirilenko:
+  - rscadd: fusion coils can explode if shot by damaging guns; one hit is fine, two
+      will make them detonate. damaged coils have their charge cap halved. unstable
+      coils can still be safely discharged, which will also mean they won't explode
+      if hit again.
+  - qol: fusion coils glow in the dark to make them easier to find
+  - balance: fusion coils are heavier and incur more slowdown
+  - image: fusion coil sprite tweaks
+2025-12-05:
+  FluffMedic:
+  - bugfix: fixed the hairs I tried to add a bit ago
+  ItsSelis:
+  - bugfix: windows should no longer be just white from an invalid iframe
+  - admin: re-added the 'reload configuration' verb to reload config from disk
+  Will:
+  - bugfix: Phased shadekin are no longer knocked down or thrown when a shuttle they
+      are inside of moves.
+2025-12-06:
+  Kashargul:
+  - code_imp: update dependencies
+2025-12-07:
+  Diana:
+  - qol: You can now alt-shift click someone to open the inventory menu (as if you
+      drag-dropped them onto yourself)
+  - qol: Admins can now tag datums via ctrl-middle click
+  - refactor: Honey I refactored click code!
+  - code_imp: Cleans up click code.
+  - code_imp: Adds framework for allowing objects to ignore ctrl click and not allowed
+      to be dragged
+  - bugfix: Fixes a bug where joining in the game would cause 180 topic calls to be
+      made (still happens) causing you to be rate limited.
+2025-12-09:
+  Diana:
+  - code_imp: Fixes a runtime pertaining to MMI holders.
+  SatinIsle:
+  - balance: Restricts the importing of recipes to specific job roles.
+  Will:
+  - rscadd: Catslug belly markings for shelter gate and door
+2025-12-10:
+  Cameron-The-Raven:
+  - rscadd: Adds a new neutral trait 'unique mind-structure' which causes sleevemates
+      to be unable to tell if you are in the proper sleeve or not!
+  - bugfix: Fakedeath tag now makes you show up as DEAD to sleevemates.
+  DIana:
+  - code_imp: Enables distillery files.
+  Diana:
+  - bugfix: Protean rigs can be worn by individuals with the shadekin species base
+      sprite.
+  - bugfix: Nar'Sie will no longer convert some otherwise indestructable turf types
+      into cult turf.
+  - code_imp: Signals. Everywhere.
+  - bugfix: Disabling fire alarms will no longer make it go off passively
+  - bugfix: Keycard auth frames will no longer give duplicate parts.
+  - bugfix: Some clothing items now use their proper in_hand sprite.
+  Ryumi:
+  - rscadd: Added a unicorn horn to character customization, (Sprite by opheliathedeadful
+      on Discord.)
