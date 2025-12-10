@@ -28,11 +28,11 @@
 	playsound(src, 'sound/effects/cosmic_energy.ogg', vol = 50, vary = TRUE)
 	COOLDOWN_START(src, pulse_cooldown, pulse_delay)
 	for(var/mob/living/carbon/human/nearby in viewers(range, src))
-		nearby.getarmor(type = BIOACID)
-		randmutb(nearby)
-		domutcheck(nearby, null)
-		nearby.balloon_alert(nearby, "something has changed about you")
-		return
+		var/susceptibility = GetAnomalySusceptibility(nearby)
+		if(prob(susceptibility * 100))
+			randmutb(nearby)
+			domutcheck(nearby, null)
+			nearby.balloon_alert(nearby, "something has changed about you")
 
 /obj/effect/anomaly/bioscrambler/move_anomaly()
 	update_target()

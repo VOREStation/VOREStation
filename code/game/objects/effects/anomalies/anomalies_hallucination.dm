@@ -31,12 +31,14 @@
 		return
 
 	for(var/mob/living/carbon/human/hallucinator in viewers(5, src))
-		hallucinator.hallucination += 10
-		if(prob(20))
-			to_chat(hallucinator, pick(messages))
-		if(prob(10))
-			to_chat(hallucinator, span_danger("Your nose bleeds!"))
-			hallucinator.drip(1)
+		var/susceptibility = GetAnomalySusceptibility(hallucinator)
+		if(prob(susceptibility * 100))
+			hallucinator.hallucination += 10
+			if(prob(20))
+				to_chat(hallucinator, pick(messages))
+			if(prob(10))
+				to_chat(hallucinator, span_danger("Your nose bleeds!"))
+				hallucinator.drip(1)
 
 /obj/effect/anomaly/hallucination/detonate()
 	if(isturf(loc))

@@ -15,10 +15,12 @@
 /obj/effect/anomaly/bluespace/anomalyEffect()
 	..()
 	for(var/mob/living/M in range(teleport_range, src))
-		do_teleport(M, locate(M.x, M.y, M.z), teleport_distance, channel = TELEPORT_CHANNEL_BLUESPACE)
+		var/susceptibility = GetAnomalySusceptibility(M)
+		if(prob(100 * susceptibility))
+			do_teleport(M, locate(M.x, M.y, M.z), teleport_distance, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/anomaly/bluespace/Bumped(atom/movable/AM)
-	if(isliving(AM))
+	if(isliving(AM) && prob(100 * GetAnomalySusceptibility(AM)))
 		do_teleport(AM, locate(AM.x, AM.y, AM.z), 8, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/anomaly/bluespace/detonate()

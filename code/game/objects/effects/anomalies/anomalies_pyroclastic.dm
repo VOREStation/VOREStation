@@ -24,9 +24,6 @@
 	return TRUE
 
 /obj/effect/anomaly/pyro/detonate()
-	INVOKE_ASYNC(src, PROC_REF(makepyroslime))
-
-/obj/effect/anomaly/pyro/proc/makepyroslime()
 	var/turf/simulated/floor/tile = get_turf(src)
 	if(istype(tile))
 		tile.assume_gas(GAS_PHORON, 10, T20C)
