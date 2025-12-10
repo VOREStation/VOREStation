@@ -261,7 +261,7 @@
 
 /obj/item/medigun_backpack/attack_hand(mob/living/user)
 	// See important note in tethered_item.dm
-	if(SEND_SIGNAL(src,COMSIG_ITEM_ATTACK_SELF,user) & COMPONENT_NO_INTERACT)
+	if(SEND_SIGNAL(src,COMSIG_ITEM_ATTACK_SELF,user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
 	. = ..()
 
