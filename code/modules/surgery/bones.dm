@@ -180,6 +180,7 @@
 		span_notice("You have mended the damaged bones in [target]'s [affected.name] with \the [tool].") )
 	user.balloon_alert_visible("mends damaged bones.", "mended damaged bones.")
 	affected.status &= ~ORGAN_BROKEN
+	affected.open = FLESH_RETRACTED
 	affected.stage = 0
 
 /datum/surgery_step/bones/finish_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -223,6 +224,7 @@
 		span_notice("You sets [target]'s bone in [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("sets the bone back in.", "bone set in.")
 	affected.status &= ~ORGAN_BROKEN
+	affected.open = FLESH_RETRACTED
 
 /datum/surgery_step/bones/clamp_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

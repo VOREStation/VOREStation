@@ -151,6 +151,11 @@
 
 /datum/surgery_step/necrotic/treat_necrosis/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	var/obj/item/reagent_containers/container = tool
+	if(!istype(container))
+		return FALSE
+	if(!container.reagents.has_reagent(REAGENT_ID_PERIDAXON))
+		return FALSE
 	return ..() && affected.open >= BONE_RETRACTED && affected.remove_necrosis >= 1
 
 /datum/surgery_step/necrotic/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
