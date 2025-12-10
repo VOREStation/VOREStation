@@ -44,3 +44,22 @@
   - balance: Restricts the importing of recipes to specific job roles.
   Will:
   - rscadd: Catslug belly markings for shelter gate and door
+2025-12-10:
+  Cameron-The-Raven:
+  - rscadd: Adds a new neutral trait 'unique mind-structure' which causes sleevemates
+      to be unable to tell if you are in the proper sleeve or not!
+  - bugfix: Fakedeath tag now makes you show up as DEAD to sleevemates.
+  DIana:
+  - code_imp: Enables distillery files.
+  Diana:
+  - bugfix: Protean rigs can be worn by individuals with the shadekin species base
+      sprite.
+  - bugfix: Nar'Sie will no longer convert some otherwise indestructable turf types
+      into cult turf.
+  - code_imp: Signals. Everywhere.
+  - bugfix: Disabling fire alarms will no longer make it go off passively
+  - bugfix: Keycard auth frames will no longer give duplicate parts.
+  - bugfix: Some clothing items now use their proper in_hand sprite.
+  Ryumi:
+  - rscadd: Added a unicorn horn to character customization, (Sprite by opheliathedeadful
+      on Discord.)

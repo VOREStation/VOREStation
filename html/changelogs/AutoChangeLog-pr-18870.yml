@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Nar'Sie will no longer convert some otherwise indestructable turf types into cult turf."
