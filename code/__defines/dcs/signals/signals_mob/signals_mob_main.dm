@@ -323,6 +323,3 @@
 ///from /mob/living/carbon/human/GetAltName(): (list/name_data) - name_data[1] contains the alt name
 #define COMSIG_HUMAN_GET_ALT_NAME "human_get_alt_name"
 	#define COMPONENT_ALT_NAME_CHANGED (1<<0)
-///from /mob/living/carbon/human/get_visible_name(): (list/name_data) - name_data[1] contains the visible name
-#define COMSIG_HUMAN_GET_VISIBLE_NAME "human_get_visible_name"
-	#define COMPONENT_VISIBLE_NAME_CHANGED (1<<0)
