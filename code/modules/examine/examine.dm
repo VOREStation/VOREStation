@@ -72,8 +72,8 @@
 	//Could be gone by the time they finally pick something
 	if(!A)
 		return 1
-
-	face_atom(A)
+	if(!is_paralyzed())
+		face_atom(A)
 	var/list/results = A.examine(src)
 	if(!results || !results.len)
 		results = list("You were unable to examine that. Tell a developer!")
@@ -211,7 +211,7 @@
 	if(!B)
 		return
 	if(!isbelly(loc) && !istype(loc, /obj/item/holder) && !isAI(src))
-		if(B.z == src.z)
+		if(B.z == src.z && !is_paralyzed())
 			face_atom(B)
 	var/list/results = B.examine(src)
 	if(!results || !results.len)

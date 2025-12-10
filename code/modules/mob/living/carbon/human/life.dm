@@ -1305,8 +1305,8 @@
 					var/fear_other = pick(fear_message_other)
 					visible_message(span_notice("\The [src][fear_other]"),span_warning("[fear_self]"))
 
-		if(paralysis || sleeping)
-			blinded = 1
+		if(sleeping)
+			blinded = TRUE
 			set_stat(UNCONSCIOUS)
 			animate_tail_reset()
 			adjustHalLoss(-3)

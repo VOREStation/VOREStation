@@ -1,0 +1,12 @@
+author: "Diana"
+delete-after: True
+changes:
+  - spellcheck: "Removes an unneeded space when you fail limb connection surgery"
+  - bugfix: "Fixes a bug where removing organs would use their op_name instead of their actual name"
+  - bugfix: "Attaching a limb to someone when that limb has an attached child will now attach its child as well."
+  - bugfix: "When you cut a bone with a bonesaw, it now breaks"
+  - bugfix: "When you use the bonegel steps after cutting a bone with the bonesaw, it now heals the bone."
+  - bugfix: "Fixing an internal organ will no longer lead to it instantly dying of germs"
+  - bugfix: "Water will no longer fix necrosis"
+  - qol: "You can now remove implants from the head if brain damage isn't fixed."
+  - qol: "You no longer have to stop the bleeding to remove implants."
