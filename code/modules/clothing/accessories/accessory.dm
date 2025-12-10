@@ -493,7 +493,7 @@
 		item_flags &= ~FLEXIBLEMATERIAL
 	. = ..()
 
-/obj/item/clothing/accessory/gaiter/AltClick(mob/user)
+/obj/item/clothing/accessory/gaiter/click_alt(mob/user)
 	. = ..()
 	if(breath_masked && breathmask)
 		to_chat(user, span_notice("You pull [breathmask] out from behind [src], and it drops to your feet."))

@@ -190,7 +190,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 //New Altclick functionality!
 //Altclick the cart with a mop to stow the mop away
 //Altclick the cart with a reagent container to pour things into the bucket without putting the bottle in trash
-/obj/structure/janitorialcart/AltClick(mob/living/user)
+/obj/structure/janitorialcart/click_alt(mob/living/user)
 	if(user.incapacitated() || !Adjacent(user))	return
 	var/obj/I = user.get_active_hand()
 	if(istype(I, /obj/item/mop))

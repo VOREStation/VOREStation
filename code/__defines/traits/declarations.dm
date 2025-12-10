@@ -13,7 +13,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Climbable trait, given and taken by the climbable element when added or removed. Exists to be easily checked via HAS_TRAIT().
 #define TRAIT_CLIMBABLE "trait_climbable"
 
-/// Prevents the affected object from opening a loot window via alt click. See atom/AltClick()
+/// Prevents the affected object from opening a loot window via alt click. See atom/click_alt()
 #define TRAIT_ALT_CLICK_BLOCKER "no_alt_click"
 
 /// Unlucky trait. Given by the 'unlucky' trait in character select. Checked by various things to cause unlucky interactions.
@@ -41,3 +41,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define INGESTED_TOXIN_IMMUNE "ingested_toxin_immune"
 /// If using melee, attacks will use the 'get_sparring_variant' if possible
 #define TRAIT_NONLETHAL_BLOWS "trait_nonlethal_blows"
+/// Are we immune to specifically tesla?
+#define TRAIT_TESLA_SHOCKIMMUNE "tesla_shock_immunity"
+/// Do we show up as a changeling / the wrong body-mind pair to sleevmates
+#define UNIQUE_MINDSTRUCTURE "unique_mindstructure"

@@ -21,8 +21,22 @@
 
 	var/datum/mind/mind
 
-	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
+	var/stat = CONSCIOUS //Whether a mob is alive or dead.
 	var/next_move = null // world.time when mob is next allowed to self-move.
+
+	/**
+	 * Whether and how a mob is incapacitated
+	 *
+	 * Normally being restrained, agressively grabbed, or in stasis counts as incapacitated
+	 * unless there is a flag being used to check if it's ignored
+	 *
+	 * * bitflags: (see code/__DEFINES/status_effects.dm)
+	 * * INCAPABLE_RESTRAINTS - if our mob is in a restraint (handcuffs)
+	 * * INCAPABLE_STASIS - if our mob is in stasis (stasis bed, etc.)
+	 * * INCAPABLE_GRAB - if our mob is being agressively grabbed
+	 *
+	**/
+	VAR_FINAL/incapacitated = NONE
 
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
@@ -42,6 +56,7 @@
 	var/atom/movable/screen/gun/run/gun_run_icon = null
 	var/atom/movable/screen/gun/mode/gun_setting_icon = null
 	var/atom/movable/screen/ling/chems/ling_chem_display = null
+	var/atom/movable/screen/borer/chems/borer_chem_display = null
 	var/atom/movable/screen/wizard/energy/wiz_energy_display = null
 	var/atom/movable/screen/wizard/instability/wiz_instability_display = null
 	var/atom/movable/screen/autowhisper_display = null

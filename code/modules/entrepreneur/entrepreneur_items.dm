@@ -371,7 +371,7 @@
 	src.visible_message(span_notice("[user] slides the [W] over to [result]!"))
 	next_result = 0
 
-/obj/item/entrepreneur/spirit_board/AltClick(mob/living/carbon/user)
+/obj/item/entrepreneur/spirit_board/click_alt(mob/living/carbon/user)
 	if(!istype(user)) //admins can be cheeky
 		return 0
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
@@ -427,7 +427,7 @@
 	rollertype = /obj/item/roller/massage
 	bedtype = /obj/structure/bed/roller/massage
 
-/obj/structure/bed/roller/massage/AltClick(mob/living/carbon/user)
+/obj/structure/bed/roller/massage/click_alt(mob/living/carbon/user)
 	if(anchored)
 		anchored = 0
 		src.visible_message(span_notice("[user] turns the breaks off on the [src]!"))

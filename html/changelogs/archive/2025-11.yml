@@ -260,3 +260,198 @@
 2025-11-16:
   Guti:
   - bugfix: Fixed mechas not teleporting in quantum pads
+2025-11-17:
+  Diana:
+  - bugfix: Items now use the proper species fallback
+  - bugfix: Lick wounds works again
+  TheCaramelion:
+  - bugfix: Fixed cans not stopping processing when destroyed
+  Zizzi:
+  - bugfix: Circuitry injector can now inject common injectables.
+2025-11-18:
+  Aroliacue:
+  - rscadd: 'Added new HOS gear, available from clothing locker: New red cap, new
+      suit jacket, new cloak (attachable to suit and uniform)'
+  - rscadd: Added a new colorable cloak, selectable from the loadout ("flowing cloak")
+      and purchasable from Big D's Best. The greyscaling is simple at best, apologies.
+  - image: Added icons for new clothing options, including mob, inhands and obj icons.
+  Kashargul:
+  - bugfix: bad typing and runtimes if RnD devices were used before round start
+2025-11-19:
+  Will:
+  - bugfix: Fixes an entertainment monitor runtime
+2025-11-20:
+  KillianKirilenko:
+  - maptweak: deleted mapped-in resleeving sickness pill packages from CMO lockers
+  - spellcheck: '"Kitsuhanan Cure" reagent name genericized to the more immediately-understandable
+      "Resleeving Sickness Cure"'
+2025-11-21:
+  Diana:
+  - bugfix: You can no longer accidentally go to step 1 of necrosis surgery and undo
+      all your work.
+  FluffMedic:
+  - rscadd: Energized Agate stuff from downstream with some edits and sprites
+  Kashargul:
+  - code_imp: update dependencies
+  - qol: the resize ability is a bit easier to use and less likely to be used by accident
+  SatinIsle:
+  - bugfix: Fixes zeras labcloak
+  Will:
+  - code_imp: topturfcrossed component for when you need to check for Crossed() actions
+      from within nested items
+  - bugfix: recursive move component properly rebuild it's hierarchy when picked up
+      by a mob from a turf
+  - code_imp: Implements COMSIG_ITEM_TRASH_EATEN
+  - code_imp: Implements COMSIG_MOB_TRASH_EATING
+  - code_imp: Implements COMSIG_ITEM_AFTER_TRASH_EAT
+  - code_imp: Implements COMSIG_MOB_AFTER_TRASH_EATING
+  - code_imp: Implements COMSIG_GLOB_ITEM_TRASH_EATEN
+  - bugfix: default trash eating message being sent to the item's chat and not the
+      mob's
+2025-11-22:
+  AnymousUnknow & Diana:
+  - rscadd: Adds protogen visor markings
+  - rscadd: Adds Oak Tree markings
+  - rscadd: Adds Admin-only Skeleton markings
+  - rscadd: Adds a thin and thinner body marking
+  - code_imp: Adds backend code to allow markings to be admin-selectable only
+  Guti:
+  - code_imp: Added clothing traits
+  Kashargul:
+  - code_imp: dependency update
+2025-11-23:
+  Diana:
+  - bugfix: PAI parts now give the proper parts when screwdrivered and having them
+      removed
+  Nova:
+  - bugfix: Fixed body writing being silent in chat, and instant
+  - bugfix: Fixed body writing having no message notifications.
+  - rscadd: Added ability to resist / move away from being body written.
+  Will, Reo:
+  - bugfix: Fixed several distance issues with slipcode
+  - bugfix: You cannot change direction while slipping
+  - bugfix: Simple mobs no longer slip by default
+  - bugfix: Species flag NO_SLIP is respected by slipcode again
+2025-11-25:
+  FluffMedic:
+  - rscadd: Some new hair sprites
+  Nova:
+  - code_imp: Optimized some of the older circuitry code.
+  SatinIsle:
+  - qol: Changes the cost of sizeoxadone from (1 clonexadone, 3 tramadol and 1 phoron)
+      to (1 sodium and 1 tramadol). It still uses phoron as a catalyst but that is
+      not used up in the reaction.
+  Will:
+  - rscadd: Maintenance panels
+2025-11-26:
+  Guti:
+  - rscadd: Added various material tiles
+  - image: Added material floors and tiles icons
+  Will:
+  - qol: Cortical borer target selection will instantly select single targets instead
+      of always showing the target list
+  - qol: Cortical borers use changeling chemical hud
+  - balance: Cortical borer psychic attack range raised from 3 to 5
+  - balance: Cortical borer chemicals updated,and made more clear to the player selecting
+      them
+  - balance: Cortical borers will only show on upgraded health analyzers, does not
+      apply to bodyscanner
+  - balance: Cortical borers are faster at entering vents
+  - balance: Headwear no longer prevents borer infestation entirely, and instead significantly
+      delays their entry
+  - balance: Cortical borers can now spend a large sum of chemicals to jumpstart their
+      host's heart like a defib, and slowly heal them.
+  - balance: Cortical borers have 80 chems max, lowered ability costs to compensate
+  - balance: Cortical borers require 5 chems to torture a captured host
+  - balance: Cortical borer brain damage chance lowered from 5 to 2 while the borer
+      is in control
+  - balance: Cortical borers have motion tracking like teshari
+  - balance: Cortical borer paralyze replaced with knockout
+  - bugfix: Cortical borers assigned by admins in the traitor panel no longer attempt
+      to ghost invite when changing a player into a borer
+  - bugfix: Cortical borer weakness mechanics respect modern reagent code
+  - bugfix: Motion tracker properly unsubs the mob that holds it if qdeleted in hand
+  - bugfix: Admin logging added to borer attacks and abilities
+  - refactor: Many logic and delay code issues in cortical borers, moved spawn() to
+      timers.
+  - rscadd: Several new disposal bin types
+  - rscadd: Body sorting disposal junction
+  - rscadd: Changing disposal bin into different types by E-stopping and using a multitool
+      on the bin
+  - bugfix: resleeving cleaner bin not showing it's lever or full animations
+  tacoguy7765093:
+  - rscadd: Generic mob spawner grenades
+  - code_imp: Repathed casino grenades to be a subtype of spawner grenades instead.
+2025-11-27:
+  Kashargul:
+  - code_imp: adds alist macros
+  - bugfix: errors during newer byond version compiles
+  - bugfix: some remaining hitching issues
+  - qol: adds input validation for whitelist changes
+  - code_imp: cancels compilations if symlink support is missing
+  - bugfix: sun subsystem overruns
+  - bugfix: nightshift subsystem overruns
+2025-11-28:
+  Cameron-The-Raven:
+  - bugfix: Vox now have a proper voice box with coloration that normal vox organs
+      have. This prevents them from being forced to know galcommon if they opt to
+      not take it.
+  Cerami:
+  - rscadd: Preference for whether you can be eaten or fed prey while AFK
+  - rscadd: Preference for whether items worn/carried by you can be digested or contaminated.
+  ItsSelis:
+  - bugfix: species whitelist commands for the bot now properly work and do not throw
+      an invalid species error
+  Will:
+  - rscadd: Reagent refinery splitter machine
+  - refactor: Consolidated some copypaste code in reagent refinery and did some general
+      cleaning too
+2025-11-29:
+  /tg/:
+  - bugfix: Round start timer runs properly now.
+  Diana:
+  - balance: Ambulant blood no longer is a gene trait.
+  - bugfix: Absorbed species will no longer be appreciated
+  - bugfix: Hemostats properly clamp internal bleeds now
+  - bugfix: Prey will no longer immediately be hit with a stomach's entire reagent
+      volume when being reagent digested.
+  - qol: Hemostats now clamp internal bleeding, causing 10x slower bloodloss during
+      surgery.
+  - bugfix: Brain surgery can be done on boneless creatures.
+  - code_imp: Cleaned up surgery code and made it more easily readable.
+  - spellcheck: Removed a few unneeded spaces in text.
+  - qol: Brain surgery no longer permanently debuffs the person it's performed on.
+  - qol: Made a few surgery steps have the same min and max time duration.
+  - bugfix: Reform vore now will always bring the person at least to alive status.
+  - bugfix: Tourettes will no longer trigger 50x more likely if your pulse is slowed
+      or stopped.
+  - bugfix: You can no longer accidentally do bone repair surgery when the bone is
+      already fixed
+  KillianKirilenko:
+  - rscadd: Added five new wood types! Acquire them from cargo or the funny maintenance
+      vendor. Includes floor tiles for these new types *and* hardwood! Sifwood is
+      now available from the maintvendor too.
+  - refactor: partially reorganized material name defines by material type
+  - code_imp: floor tiles can now transfer their colour to placed flooring, and this
+      colour will be cleared when the floor is pulled up
+  - rscadd: added greyscale versions of wood floors and tile stacks, to make it easier
+      to add more wood types.
+  - bugfix: sifwood tables now have the correct colour in SDMM
+  - qol: you can now make large panel, parquet, and tiled (crosshatch parquet) tiles
+      from alien wood too
+  Will:
+  - code_imp: Implements many new global signals
+  - code_imp: Implements COMSIG_AUTOPSY_PERFORMED
+  - code_imp: COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM improved
+  - rscadd: Chemical engineer alttitle for engineer
+  - rscadd: chemical analyzer can be put in toolbelt
+  - rscadd: lightpainter can be put in toolbelt
+  - rscadd: Catslug tail cosmetic. Wawa
+  - rscadd: Catslug tail dotted cosmetic.
+  zeskorion:
+  - rscadd: Sharp snout, sharp snout under, top of snout, snout ring, clawed gauntlets,
+      neck ruff, big soft belly markings
+  - rscadd: '"cyber tendrils" wings'
+  - rscadd: Several snake tail variants- with feathery tips, mechanical claws, and
+      scute variants of each
+  - rscadd: ' four-eared/frill and tricorn horn ear sprites'

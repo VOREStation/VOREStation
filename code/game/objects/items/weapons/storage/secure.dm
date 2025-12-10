@@ -80,7 +80,7 @@
 		return
 	..()
 
-/obj/item/storage/secure/AltClick(mob/user as mob)
+/obj/item/storage/secure/click_alt(mob/user as mob)
 	if (isliving(user) && Adjacent(user) && (src.locked == 1))
 		to_chat(user, span_warning("[src] is locked and cannot be opened!"))
 	else if (isliving(user) && Adjacent(user) && (!src.locked))

@@ -172,7 +172,7 @@
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/AICtrlClick(mob/user)
+/obj/machinery/appliance/ctrl_click_ai(mob/user)
 	attempt_toggle_power(user)
 
 /obj/machinery/appliance/proc/choose_output()
@@ -655,9 +655,11 @@
 	smoke.start()
 
 	// Set off fire alarms!
-	var/obj/machinery/firealarm/FA = locate() in get_area(src)
-	if(FA)
-		FA.alarm()
+	var/area/area_to_check = get_area(src)
+	for(var/obj/machinery/firealarm/FA in area_to_check.get_contents())
+		if(FA && FA.detecting)
+			FA.alarm()
+			break
 
 /obj/machinery/appliance/attack_hand(var/mob/user)
 	if(..())

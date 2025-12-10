@@ -24,7 +24,7 @@
 	remembered = null
 	. = ..()
 
-/obj/item/stack/hose/CtrlClick(mob/user)
+/obj/item/stack/hose/item_ctrl_click(mob/user)
 	if(remembered)
 		to_chat(user, span_notice("You wind \the [src] back up."))
 		remembered = null

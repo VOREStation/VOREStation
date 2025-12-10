@@ -1,4 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - bugfix: "Fixed cans not stopping processing when destroyed"

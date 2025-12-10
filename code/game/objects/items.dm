@@ -187,6 +187,19 @@
 	return ..()
 
 
+/obj/item/click_ctrl(mob/user)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	//If the item is on the ground & not anchored we allow the player to drag it
+	. = item_ctrl_click(user)
+	if(. & CLICK_ACTION_ANY)
+		return (isturf(loc) && !anchored) ? NONE : . //allow the object to get dragged on the floor
+
+/// Subtypes only override this proc for ctrl click purposes. obeys same principles as ctrl_click()
+/obj/item/proc/item_ctrl_click(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
+	return NONE
+
 /// Called when an action associated with our item is deleted
 /obj/item/proc/on_action_deleted(datum/source)
 	SIGNAL_HANDLER
@@ -437,7 +450,7 @@
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
-	SEND_SIGNAL(user, COMSIG_PICKED_UP_ITEM, src)
+	SEND_SIGNAL(user, COMSIG_ITEM_PICKUP, src)
 	pixel_x = 0
 	pixel_y = 0
 	return
@@ -967,7 +980,10 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		return default_worn_icon
 
 	//5: Use our species_sheet as a fallback if we have one. A 'default' sprite is better than nothing at all (or a misaligned sprite)
-	if(species_sheet)
+	//We ONLY do this if our species is 'abnormally shaped' i.e. tesh/vox/werebeast.
+	//It should be noted that if this is true, we FAILED to confirm the icon exists in our file. I.E: We're going to use the 'no name' item_state in the .dmi
+	//Otherwise, the human sprite (default_icon) looks fine on MOST species.
+	if(species_sheet && (body_type == SPECIES_TESHARI || body_type == SPECIES_VOX || body_type == SPECIES_WEREBEAST))
 		return species_sheet
 
 	//6: provided default_icon
