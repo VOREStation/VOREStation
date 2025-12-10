@@ -31,8 +31,9 @@
 		return
 
 	for(var/mob/living/carbon/human/hallucinator in viewers(5, src))
-		to_chat(hallucinator, pick(messages))
 		hallucinator.hallucination += 10
+		if(prob(20))
+			to_chat(hallucinator, pick(messages))
 		if(prob(10))
 			to_chat(hallucinator, span_danger("Your nose bleeds!"))
 			hallucinator.drip(1)
