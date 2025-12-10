@@ -28,7 +28,7 @@
 	qdel(dna)
 	return ..()
 
-/mob/living/carbon/brain/emp_act(severity) //Brains can't be EMP'd...
+/mob/living/carbon/brain/emp_act(severity, recursive) //Brains can't be EMP'd...
 	return
 
 /mob/living/carbon/brain/say_understands(var/other)//Goddamn is this hackish, but this say code is so odd

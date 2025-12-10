@@ -2430,7 +2430,6 @@
 /obj/machinery/door/airlock/angled_bay/hatch{
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
@@ -3774,7 +3773,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -3986,7 +3984,6 @@
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -4004,8 +4001,7 @@
 "ou" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	dir = 8;
@@ -4013,16 +4009,11 @@
 	id_tag = "sd_escape_center_right";
 	master_tag = "escape_dock";
 	pixel_x = 24;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	pixel_x = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -4559,7 +4550,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -4649,7 +4639,6 @@
 	dir = 4;
 	door_color = "#323d80";
 	id_tag = "AICore";
-	id_tint = null;
 	locked = 1;
 	name = "AI Core";
 	req_one_access = list(16);
@@ -4912,7 +4901,6 @@
 	master_tag = "portmaint_airlock";
 	name = "interior access button";
 	pixel_x = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
@@ -4932,23 +4920,17 @@
 "rr" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	frequency = 1381;
 	id_tag = "sd_escape_starboard";
 	master_tag = "escape_dock";
 	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -4981,7 +4963,6 @@
 	dir = 4;
 	door_color = "#323d80";
 	id_tag = "AICore";
-	id_tint = null;
 	locked = 1;
 	name = "AI Core";
 	req_one_access = list(16);
@@ -5151,7 +5132,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -5202,7 +5182,6 @@
 	dir = 4;
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
@@ -5522,7 +5501,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -6137,8 +6115,7 @@
 "wm" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1381;
@@ -6149,7 +6126,6 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled,
@@ -6437,7 +6413,6 @@
 	master_tag = "starmaint_airlock";
 	name = "exterior access button";
 	pixel_y = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -6852,7 +6827,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -7016,7 +6990,6 @@
 	dir = 8;
 	id_tag = "portmaint_airlock";
 	pixel_x = 24;
-	req_access = null;
 	req_one_access = list(13);
 	tag_airpump = "portmaint_airpump";
 	tag_chamber_sensor = "portmaint_sensor";
@@ -7388,7 +7361,6 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	frequency = 1381;
-	id_tag = null;
 	pixel_x = 25;
 	pixel_y = 2
 	},
@@ -7586,8 +7558,7 @@
 /area/ai_upload)
 "Bl" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	id_tag = null
+	dir = 8
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	frequency = 1381;
@@ -7686,7 +7657,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -7811,8 +7781,7 @@
 "BR" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	dir = 4;
@@ -7820,16 +7789,11 @@
 	id_tag = "sd_escape_center_left";
 	master_tag = "escape_dock";
 	pixel_x = -24;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	frequency = 1381;
-	id_tag = null;
 	pixel_x = 25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -8043,23 +8007,17 @@
 "CD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	frequency = 1381;
 	id_tag = "sd_escape_port";
 	master_tag = "escape_dock";
 	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -8556,8 +8514,6 @@
 /area/crew_quarters/heads/cmo)
 "EL" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
-	frequency = null;
-	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61);
@@ -9364,7 +9320,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#9c9c9c";
 	fill_color = "#5c5c5c";
-	id_tag = null;
 	name = "Reading Rooms";
 	stripe_color = "#89bd66"
 	},
@@ -9711,7 +9666,6 @@
 	master_tag = "starmaint_airlock";
 	name = "interior access button";
 	pixel_x = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -9870,7 +9824,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -10616,14 +10569,12 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
@@ -11128,7 +11079,6 @@
 	master_tag = "portmaint_airlock";
 	name = "exterior access button";
 	pixel_y = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
@@ -11196,7 +11146,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -11389,8 +11338,6 @@
 "OC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/angled_bay/hatch{
-	frequency = null;
-	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61);
@@ -11972,7 +11919,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -12036,7 +11982,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#323d80";
 	name = "Command Offices";
-	req_access = null;
 	req_one_access = list(19,38);
 	stripe_color = "#f7d35c"
 	},
@@ -12293,7 +12238,6 @@
 	dir = 4;
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
@@ -12721,7 +12665,6 @@
 	dir = 4;
 	door_color = "#9fccc7";
 	fill_color = "#333333";
-	id_tag = null;
 	name = "Internal Affairs";
 	req_access = list(38);
 	stripe_color = "#ffffff"
@@ -13211,7 +13154,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -13688,7 +13630,6 @@
 /obj/item/defib_kit/compact/combat/loaded,
 /obj/item/cmo_disk_holder,
 /obj/item/storage/secure/briefcase/ml3m_pack_cmo,
-/obj/item/storage/mrebag/pill/sleevingcure,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
@@ -13933,7 +13874,6 @@
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -14052,7 +13992,6 @@
 	dir = 4;
 	id_tag = "starmaint_airlock";
 	pixel_x = -24;
-	req_access = null;
 	req_one_access = list(13);
 	tag_airpump = "starmaint_airpump";
 	tag_chamber_sensor = "starmaint_sensor";

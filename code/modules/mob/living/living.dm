@@ -173,7 +173,7 @@
 		manual_afk = TRUE
 
 /mob/living/proc/updatehealth()
-	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE) & COMSIG_LIVING_HEALTH_UPDATE_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 	else
@@ -470,6 +470,7 @@
 	return result
 
 ///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+///Will return a NEGATIVE value. Ex: MaxHealth of 100 returns -50
 /mob/living/proc/get_crit_point()
 	return -(getMaxHealth()*0.5)
 

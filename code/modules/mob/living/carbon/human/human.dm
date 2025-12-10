@@ -1006,7 +1006,7 @@
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
 	if(target)
-		AddComponent(/datum/component/remote_view/mremote_mutation, target)
+		AddComponent(/datum/component/remote_view/mremote_mutation, focused_on = target, vconfig_path = null)
 		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)
@@ -1216,11 +1216,11 @@
 	if(src.pulse)
 		to_chat(usr, span_notice("[self ? "You have a" : "[src] has a"] pulse! Counting..."))
 	else
-		to_chat(usr, span_danger("[src] has no pulse!"))	//it is REALLY UNLIKELY that a dead person would check his own pulse
+		to_chat(usr, span_danger("[src] has no pulse!"))
 		return
 
 	to_chat(usr, span_filter_notice("You must[self ? "" : " both"] remain still until counting is finished."))
-	if(do_mob(usr, src, 60))
+	if(do_after(usr, 6 SECONDS, src))
 		var/message = span_notice("[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].")
 		to_chat(usr,message)
 	else
@@ -1548,11 +1548,6 @@
 		return remove_from_mob(W, src.loc)
 	return ..()
 
-/mob/living/carbon/human/reset_perspective(atom/A, update_hud = 1)
-	..()
-	if(update_hud)
-		handle_regular_hud_updates()
-
 /mob/living/carbon/human/Check_Shoegrip()
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
@@ -1635,8 +1630,13 @@
 	set category = "IC.Game"
 
 	if(stat) return
-	pulling_punches = !pulling_punches
-	to_chat(src, span_notice("You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"]."))
+	var/pulling = FALSE
+	if(HAS_TRAIT_FROM(src, TRAIT_NONLETHAL_BLOWS, ACTION_TRAIT))
+		REMOVE_TRAIT(src, TRAIT_NONLETHAL_BLOWS, ACTION_TRAIT)
+	else
+		ADD_TRAIT(src, TRAIT_NONLETHAL_BLOWS, ACTION_TRAIT)
+		pulling = TRUE
+	to_chat(src, span_notice("You are now [pulling ? "pulling your punches" : "not pulling your punches"]."))
 	return
 
 /mob/living/carbon/human/should_have_organ(var/organ_check)
@@ -1671,10 +1671,13 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
-	if(!digest_pain && (isbelly(src.loc) || istype(src.loc, /turf/simulated/floor/water/digestive_enzymes)))
-		var/obj/belly/b = src.loc
-		if(b.digest_mode == DM_DIGEST || b.digest_mode == DM_SELECT)
+	if(!digest_pain)
+		if(istype(loc, /turf/simulated/floor/water/digestive_enzymes))
 			return FALSE
+		if(isbelly(loc))
+			var/obj/belly/b = loc
+			if(b.digest_mode == DM_DIGEST || b.digest_mode == DM_SELECT)
+				return FALSE
 	for(var/datum/modifier/M in modifiers)
 		if(M.pain_immunity == TRUE)
 			return 0

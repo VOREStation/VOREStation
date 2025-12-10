@@ -43,7 +43,7 @@ handles linking back and forth.
 	if(force_connect || (mapload && (T.z in using_map.station_levels)))
 		connect_to_silo = TRUE
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_item_insert))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_item_insert))
 
 	if(mapload) // wait for silo to initialize during mapload
 		SSticker.OnRoundstart(CALLBACK(src, PROC_REF(_PrepareStorage), connect_to_silo))

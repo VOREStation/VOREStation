@@ -1325,7 +1325,7 @@
 	return
 */
 
-/obj/mecha/emp_act(severity)
+/obj/mecha/emp_act(severity, recursive)
 	if(get_charge())
 		use_power((cell.charge/2)/severity)
 		take_damage(50 / severity,"energy")
@@ -2037,7 +2037,7 @@
 			else//Everyone else gets the normal noise
 				who << sound('sound/mecha/nominal.ogg',volume=50)
 
-/obj/mecha/AltClick(mob/living/user)
+/obj/mecha/click_alt(mob/living/user)
 	if(user == occupant)
 		strafing()
 

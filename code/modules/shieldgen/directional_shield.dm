@@ -101,7 +101,7 @@
 /obj/item/shield_projector/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(moved_event))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(moved_event))
 	if(always_on)
 		spawn(0)
 			if(!QDELETED(src))
@@ -111,7 +111,7 @@
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	return ..()
 
 /obj/item/shield_projector/proc/moved_event()
@@ -218,7 +218,7 @@
 	if(Adjacent(user))
 		. += "Its shield matrix is at [round( (shield_health / max_shield_health) * 100, 0.01)]% strength."
 
-/obj/item/shield_projector/emp_act(var/severity)
+/obj/item/shield_projector/emp_act(severity, recursive)
 	adjust_health(-max_shield_health / severity) // A strong EMP will kill the shield instantly, but weaker ones won't on the first hit.
 
 // Subtypes

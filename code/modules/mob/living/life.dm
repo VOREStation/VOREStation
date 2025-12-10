@@ -236,7 +236,7 @@
 	if(!.)
 		return
 	handle_darksight()
-	handle_hud_icons()
+	handle_hud_icons_health()
 
 /mob/living/proc/update_sight()
 	if(!seedarkness)
@@ -252,12 +252,11 @@
 
 	return
 
-/mob/living/proc/handle_hud_icons()
-	handle_hud_icons_health()
-	return
-
 /mob/living/proc/handle_hud_icons_health()
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD_HEALTH_ICON) & COMSIG_COMPONENT_HANDLED_HEALTH_ICON)
+		return FALSE
+	return TRUE
 
 /mob/living/proc/handle_light()
 	if(glow_override)
@@ -277,6 +276,7 @@
 		return FALSE
 
 /mob/living/proc/handle_darksight()
+	SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
 	if(!seedarkness) //Cheap 'always darksight' var
 		dsoverlay.alpha = 255
 		return
@@ -309,7 +309,11 @@
 	if(stat != DEAD && toggled_sleeping)
 		Sleeping(2)
 	if(sleeping)
-		AdjustSleeping(-1)
+		if(iscarbon(src))
+			var/mob/living/carbon/C = src
+			AdjustSleeping(-1 * C.species.waking_speed)
+		else
+			AdjustSleeping(-1)
 		throw_alert("asleep", /atom/movable/screen/alert/asleep)
 	else
 		clear_alert("asleep")

@@ -1,5 +1,4 @@
 import { Section } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from '../constants';
 import type { localPrefs, prefData } from '../types';
@@ -10,12 +9,8 @@ import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreU
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
 import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
-export const VoreUserPreferences = (props: {
-  prefs: prefData;
-  show_pictures: BooleanLike;
-  icon_overflow: BooleanLike;
-}) => {
-  const { prefs, show_pictures, icon_overflow } = props;
+export const VoreUserPreferences = (props: { prefs: prefData }) => {
+  const { prefs } = props;
   const {
     digestable,
     absorbable,
@@ -26,6 +21,8 @@ export const VoreUserPreferences = (props: {
     permit_healbelly,
     can_be_drop_prey,
     can_be_drop_pred,
+    can_be_afk_prey,
+    can_be_afk_pred,
     drop_vore,
     slip_vore,
     stumble_vore,
@@ -48,6 +45,7 @@ export const VoreUserPreferences = (props: {
     vore_death_privacy,
     allow_mimicry,
     strip_mechanics_active,
+    contaminate_worn_items,
     autotransferable,
     liq_rec,
     liq_giv,
@@ -190,6 +188,36 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Spontaneous Pred Enabled',
         disabled: 'Spontaneous Pred Disabled',
+      },
+    },
+    afk_prey: {
+      action: 'toggle_afk_prey',
+      test: can_be_afk_prey,
+      tooltip: {
+        main:
+          'This toggle is for vore interactions as prey while you' +
+          ' are disconnected or inactive for a period of time.',
+        enable: 'Click here to allow being AFK prey.',
+        disable: 'Click here to prevent being AFK prey.',
+      },
+      content: {
+        enabled: 'AFK Prey Enabled',
+        disabled: 'AFK Prey Disabled',
+      },
+    },
+    afk_pred: {
+      action: 'toggle_afk_pred',
+      test: can_be_afk_pred,
+      tooltip: {
+        main:
+          'This toggle is for vore interactions as pred while you' +
+          ' are disconnected or inactive for a period of time.',
+        enable: 'Click here to allow being AFK pred.',
+        disable: 'Click here to prevent being AFK pred.',
+      },
+      content: {
+        enabled: 'AFK Pred Enabled',
+        disabled: 'AFK Pred Disabled',
       },
     },
     toggle_drop_vore: {
@@ -492,6 +520,23 @@ export const VoreUserPreferences = (props: {
         disabled: 'Do Not Allow Worn Item Stripping',
       },
     },
+    contaminatepref: {
+      action: 'toggle_contaminate_pref',
+      test: contaminate_worn_items,
+      tooltip: {
+        main: '',
+        enable:
+          'Regardless of Predator Setting, items worn by you will not be digested/contaminated inside their bellies.' +
+          ' Click this to allow worn item digestion/contamination.',
+        disable:
+          'Your Predator must have this setting enabled in their belly modes to allow contaminating/digesting your worn gear,' +
+          ' if they do not, they will not contaminate/digest your gear, even with this on. Click to disable contamination/digestion.',
+      },
+      content: {
+        enabled: 'Allow Worn Item Digestion/Contamination',
+        disabled: 'Do Not Allow Worn Item Digestion/Contamination',
+      },
+    },
     eating_privacy_global: {
       action: 'toggle_global_privacy',
       test: eating_privacy_global,
@@ -715,11 +760,7 @@ export const VoreUserPreferences = (props: {
 
   return (
     <Section scrollable fill>
-      <VoreUserPreferencesMechanical
-        show_pictures={show_pictures}
-        icon_overflow={icon_overflow}
-        preferences={preferences}
-      />
+      <VoreUserPreferencesMechanical preferences={preferences} />
       <VoreUserPreferencesDevouring
         devourable={devourable}
         digestModeToColor={digestModeToColor}

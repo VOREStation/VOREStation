@@ -365,7 +365,7 @@ BLIND     // can't see anything
 	. = ..()
 	. += to_chat(user, span_notice("Alt-click to toggle modes."))
 
-/obj/item/clothing/glasses/sunglasses/bigshot/AltClick(mob/user)
+/obj/item/clothing/glasses/sunglasses/bigshot/click_alt(mob/user)
 	set src in usr
 	if(user.canmove && !user.stat && !user.restrained())
 		if(src.ar)
@@ -545,7 +545,7 @@ BLIND     // can't see anything
 	enables_planes = list(VIS_FULLBRIGHT, VIS_CLOAKED)
 	flash_protection = FLASH_PROTECTION_REDUCED
 
-/obj/item/clothing/glasses/thermal/emp_act(severity)
+/obj/item/clothing/glasses/thermal/emp_act(severity, recursive)
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, span_red("The Optical Thermal Scanner overloads and blinds you!"))

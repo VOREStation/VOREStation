@@ -21,6 +21,7 @@
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
 	movement_cooldown = 1.5
+	mob_size = MOB_TINY // no landmines for you
 
 	universal_understand = TRUE
 	can_be_antagged = TRUE
@@ -35,16 +36,37 @@
 	var/antag = TRUE							// If false, will avoid setting up objectives and events
 
 	var/chemicals = 10							// A resource used for reproduction and powers.
-	var/max_chemicals = 250						// Max of said resource.
 	var/true_name = null						// String used when speaking among other worms.
 	var/controlling = FALSE						// Used in human death ceck.
 	var/docile = FALSE							// Sugar can stop borers from acting.
+	var/docile_counter = 0						// How long we are docile for
 
 	var/has_reproduced = FALSE
 	var/used_dominate							// world.time when the dominate power was last used.
-	var/datum/ghost_query/Q						// Used to unregister our signal
 
 	can_be_drop_prey = FALSE
+	vent_crawl_time = 30 						// faster vent crawler
+
+	var/static/borer_chem_list = list(
+			// Antag utlity
+			"Repair Brain Tissue" 	= list(REAGENT_ID_ALKYSINE, 5),
+			"Repair Brute" 			= list(REAGENT_ID_BICARIDINE, 10),
+			"Repair Burn" 			= list(REAGENT_ID_KELOTANE, 10),
+			"Enhance Speed" 		= list(REAGENT_ID_HYPERZINE, 10),
+			// Stablization
+			"Stablize Mind" 		= list(REAGENT_ID_CITALOPRAM, 10),
+			"Stablize Nerves" 		= list(REAGENT_ID_ADRANOL, 10),
+			"Stablize Bleeding" 	= list(REAGENT_ID_INAPROVALINE, 5),
+			"Stablize Infection" 	= list(REAGENT_ID_SPACEACILLIN, 15),
+			"Stablize Pain"			= list(REAGENT_ID_TRAMADOL, 5),
+			// Scene tools
+			"Make Drunk" 			= list(REAGENT_ID_ETHANOL, 5),
+			"Cure Drunk" 			= list(REAGENT_ID_ETHYLREDOXRAZINE, 10),
+			"Euphoric High" 		= list(REAGENT_ID_BLISS, 5),
+			"Mood Stimulant" 		= list(REAGENT_ID_APHRODISIAC, 5),
+			// Borer last resport
+			"Revive Dead Host" 		= null
+		)
 
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
@@ -53,18 +75,19 @@
 	antag = FALSE
 
 /mob/living/simple_mob/animal/borer/Login()
-	..()
+	. = ..()
 	if(antag && mind)
 		borers.add_antagonist(mind)
 
 /mob/living/simple_mob/animal/borer/Initialize(mapload)
 	add_language("Cortical Link")
-
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
+	motiontracker_subscribe()
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
-	..()
+
+	. = ..()
 
 	if(!roundstart && antag)
 		return INITIALIZE_HINT_LATELOAD
@@ -72,52 +95,145 @@
 /mob/living/simple_mob/animal/borer/LateInitialize()
 	request_player()
 
+/mob/living/simple_mob/animal/borer/Destroy()
+	. = ..()
+	motiontracker_unsubscribe()
+	QDEL_NULL(ghost_check)
+	if(host)
+		detatch()
+		leave_host()
+
 /mob/living/simple_mob/animal/borer/handle_special()
-	if(host && !stat && !host.stat)
-		// Handle docility.
-		if(host.reagents.has_reagent(REAGENT_ID_SUGAR) && !docile)
-			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
-			var/target = controlling ? host : src
-			to_chat(target, span_warning(message))
-			docile = TRUE
-
-		else if(docile)
-			var/message = "You shake off your lethargy as the sugar leaves your host's blood."
-			var/target = controlling ? host : src
-			to_chat(target, span_notice(message))
-			docile = FALSE
-
-		// Chem regen.
-		if(chemicals < max_chemicals)
-			chemicals++
-
-		// Control stuff.
-		if(controlling)
-			if(docile)
-				to_chat(host, span_warning("You are feeling far too docile to continue controlling your host..."))
-				host.release_control()
-				return
-
-			if(prob(5))
-				host.adjustBrainLoss(0.1)
-
-			if(prob(host.brainloss/20))
-				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
+	handle_chemicals()
+	handle_docile()
+	handle_braindamage()
 
 /mob/living/simple_mob/animal/borer/get_status_tab_items()
 	. = ..()
-	. += "Chemicals: [chemicals]"
+	. += "Chemicals: [FLOOR(chemicals,1)]"
+
+/mob/living/simple_mob/animal/borer/proc/handle_chemicals()
+	if(stat == DEAD || !host || host.stat == DEAD)
+		return
+	if(chemicals >= BORER_MAX_CHEMS || docile)
+		return
+
+	var/chem_before = chemicals
+	if(controlling)
+		chemicals += 0.25
+	else
+		chemicals += 0.1
+	var/new_chem = FLOOR(chemicals/10,1)
+	if(new_chem > FLOOR(chem_before/10,1))
+		to_chat(host, span_alien("Your chemicals have increased to [new_chem * 10]"))
+
+/mob/living/simple_mob/animal/borer/proc/handle_docile()
+	if(stat == DEAD)
+		docile_counter = 0
+		return
+
+	// Start docile
+	if(host && (host.reagents.has_reagent(REAGENT_ID_SUGAR) || host.ingested.has_reagent(REAGENT_ID_SUGAR)))
+		docile_counter = 5 SECONDS
+		if(!docile)
+			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+			var/target = controlling ? host : src
+			to_chat(target, span_danger( message))
+			docile = TRUE
+
+	// Drop control if docile
+	if(controlling && docile)
+		to_chat(host, span_vdanger("You are feeling far too docile to continue controlling your host..."))
+		host.release_control()
+		return
+
+	// wear it off
+	docile_counter--
+	if(docile_counter > 0)
+		return
+
+	// End docile
+	if(docile)
+		to_chat(controlling ? host : src, span_notice("You shake off your lethargy as the sugar leaves your host's blood."))
+		docile = FALSE
+		docile_counter = 0
+
+/mob/living/simple_mob/animal/borer/proc/handle_braindamage()
+	if(QDELETED(src) || !host || QDELETED(host) || !controlling)
+		return
+	if(prob(2))
+		host.adjustBrainLoss(0.1)
+	if(prob(host.brainloss/20))
+		host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
+
+/mob/living/simple_mob/animal/borer/proc/can_use_power_in_host()
+	if(QDELETED(src))
+		return FALSE
+	if(!host || QDELETED(host))
+		to_chat(src, span_warning("You are not inside a host body."))
+		return FALSE
+	if(stat)
+		to_chat(controlling ? host : src, span_warning("You cannot that that in your current state."))
+		return FALSE
+	return TRUE
+
+/mob/living/simple_mob/animal/borer/proc/can_use_power_controlling_host()
+	if(!can_use_power_in_host())
+		return FALSE
+	if(!controlling)
+		to_chat(controlling ? host : src, span_warning("You need to be in complete control to do this."))
+		return FALSE
+	if(host.stat)
+		to_chat(controlling ? host : src, span_warning("Your host is in no condition to do that."))
+		return FALSE
+	return TRUE
+
+/mob/living/simple_mob/animal/borer/proc/can_use_power_docile()
+	if(docile)
+		to_chat(controlling ? host : src, span_info("You are feeling far too docile to do that."))
+	return !docile
+
+/mob/living/simple_mob/animal/borer/proc/use_chems(amount)
+	if(chemicals < amount)
+		to_chat(controlling ? host : src, span_warning("You don't have enough chemicals, requires [amount]! Currently you have [FLOOR(chemicals,1)]."))
+		return FALSE
+	chemicals -= amount
+	to_chat(controlling ? host : src, span_info("You use [amount] chemicals, [FLOOR(chemicals,1)] remain."))
+	return TRUE
+
+/mob/living/simple_mob/animal/borer/handle_regular_hud_updates()
+	. = ..()
+	if(!.)
+		return
+	if(borer_chem_display)
+		borer_chem_display.invisibility = INVISIBILITY_NONE
+		switch(chemicals)
+			if(0 to 9)
+				borer_chem_display.icon_state = "ling_chems0e"
+			if(10 to 19)
+				borer_chem_display.icon_state = "ling_chems10e"
+			if(20 to 29)
+				borer_chem_display.icon_state = "ling_chems20e"
+			if(30 to 39)
+				borer_chem_display.icon_state = "ling_chems30e"
+			if(40 to 49)
+				borer_chem_display.icon_state = "ling_chems40e"
+			if(50 to 59)
+				borer_chem_display.icon_state = "ling_chems50e"
+			if(60 to 69)
+				borer_chem_display.icon_state = "ling_chems60e"
+			if(70 to 79)
+				borer_chem_display.icon_state = "ling_chems70e"
+			if(80 to INFINITY)
+				borer_chem_display.icon_state = "ling_chems80e"
 
 /mob/living/simple_mob/animal/borer/proc/detatch()
 	if(!host || !controlling)
 		return
 
-	if(ishuman(host))
-		var/mob/living/carbon/human/H = host
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		if(head)
-			head.implants -= src
-
+	var/obj/item/organ/external/head = host.get_organ(BP_HEAD)
+	if(head)
+		head.implants -= src
 	controlling = FALSE
 
 	host.remove_language("Cortical Link")
@@ -125,6 +241,7 @@
 	remove_verb(host, /mob/living/carbon/proc/punish_host)
 	remove_verb(host, /mob/living/carbon/proc/spawn_larvae)
 
+	// This entire section is awful and a relic of ancient times. It needs to be replaced
 	if(host_brain)
 		// these are here so bans and multikey warnings are not triggered on the wrong people when ckey is changed.
 		// computer_id and IP are not updated magically on their own in offline mobs -walter0o
@@ -160,7 +277,7 @@
 			host.lastKnownIP = b2h_ip
 
 	qdel(host_brain)
-
+	// End horrible ip swapping code for bans
 
 /mob/living/simple_mob/animal/borer/proc/leave_host()
 	if(!host)
@@ -169,31 +286,15 @@
 	if(host.mind)
 		borers.remove_antagonist(host.mind)
 
-	forceMove(get_turf(host))
-
+	if(!QDELETED(src))
+		forceMove(get_turf(host.loc))
 	unset_machine()
 
-	if(ishuman(host))
-		var/mob/living/carbon/human/H = host
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		if(head)
-			head.implants -= src
-
+	var/obj/item/organ/external/head = host.get_organ(BP_HEAD)
+	if(head)
+		head.implants -= src
 	host.unset_machine()
 	host = null
-
-/mob/living/simple_mob/animal/borer/proc/request_player()
-	Q = new /datum/ghost_query/borer()
-	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
-	Q.query() // This will sleep the proc for awhile.
-
-/mob/living/simple_mob/animal/borer/proc/get_winner()
-	SIGNAL_HANDLER
-	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
-		var/mob/observer/dead/D = Q.candidates[1]
-		transfer_personality(D)
-	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	QDEL_NULL(Q) //get rid of the query
 
 /mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
 	if(!candidate)
@@ -206,17 +307,25 @@
 		mind.assigned_role = JOB_CORTICAL_BORER
 		mind.special_role = JOB_CORTICAL_BORER
 
+	// TODO - This needs to be made into something more pref friendly if it's ever going to be used on virgo.
 	to_chat(src, span_notice("You are a cortical borer! You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm."))
 	to_chat(src, "You can speak to your victim with <b>say</b>, to other borers with <b>say :x</b>, and use your Abilities tab to access powers.")
 
 /mob/living/simple_mob/animal/borer/cannot_use_vents()
-	return
+	return host || stat
+
+/mob/living/simple_mob/animal/borer/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+	// Chem hud
+	borer_chem_display = new /atom/movable/screen/borer/chems()
+	borer_chem_display.screen_loc = ui_ling_chemical_display
+	borer_chem_display.icon_state = "ling_chems"
+	hud_elements |= borer_chem_display
 
 /mob/living/simple_mob/animal/borer/UnarmedAttack(var/atom/A, var/proximity)
 	if(ismob(loc))
-		to_chat(src, span_warning("You cannot interact with that from inside a host!"))
+		to_chat(src, span_notice("You cannot interact with that from inside a host!"))
 		return
 	. = ..()
 
@@ -230,7 +339,7 @@
 
 	if(stat >= DEAD)
 		return say_dead(message)
-	else if(stat)
+	if(stat)
 		return
 
 	if(client && client.prefs.muted & MUTE_IC)
@@ -247,10 +356,10 @@
 			return
 
 	if(!host)
-		if(chemicals >= 30)
+		if(chemicals >= BORER_PSYCHIC_SAY_MINIMUM_CHEMS)
 			to_chat(src, span_alien("..You emit a psionic pulse with an encoded message.."))
 			var/list/nearby_mobs = list()
-			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / max_chemicals))))
+			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / BORER_MAX_CHEMS))))
 				if(LM == src)
 					continue
 				if(!LM.stat)

@@ -138,7 +138,14 @@
 		UnregisterSignal(T, COMSIG_OBSERVER_TURF_ENTERED)
 
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity, recursive)
+	recursive++
+	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
+		return
+	for(var/atom/A in contents)
+		if(isbelly(A)) //Prey are protected
+			continue
+		A.emp_act(severity, recursive)
 	return
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
@@ -215,7 +222,7 @@
 
 	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix] [borg]", get_examine_desc())
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, output)
 	return output
 
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
@@ -464,7 +471,7 @@
 
 /atom/Entered(atom/movable/AM, atom/old_loc)
 	. = ..()
-	SEND_SIGNAL(AM, COMSIG_OBSERVER_MOVED, old_loc, AM.loc)
+	SEND_SIGNAL(AM, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, AM.loc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
 	SEND_SIGNAL(AM, COMSIG_ATOM_ENTERING, src, old_loc)
 

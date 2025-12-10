@@ -109,7 +109,7 @@
 	var/flight_x_offset = 0
 	var/flight_y_offset = 0
 
-/obj/item/gun/CtrlClick(mob/user)
+/obj/item/gun/item_ctrl_click(mob/user)
 	if(can_flashlight && ishuman(user) && loc == user && !user.incapacitated(INCAPACITATION_ALL))
 		toggle_flashlight()
 	else
@@ -232,10 +232,6 @@
 /obj/item/gun/proc/lock_explosion()
 	explosion(src, 0, 0, 3, 4)
 	QDEL_IN(src, 1)
-
-/obj/item/gun/emp_act(severity)
-	for(var/obj/O in contents)
-		O.emp_act(severity)
 
 /obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
@@ -631,6 +627,7 @@
 				damage_mult = 2.5
 			else if(grabstate >= GRAB_AGGRESSIVE)
 				damage_mult = 1.5
+	P.agony *= damage_mult
 	P.damage *= damage_mult
 
 /obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)

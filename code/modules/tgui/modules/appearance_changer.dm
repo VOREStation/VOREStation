@@ -95,7 +95,7 @@
 	. = ..()
 	if(owner == user || !customize_usr)
 		close_ui()
-		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		SEND_SIGNAL(owner, COMSIG_HUMAN_DNA_FINALIZED) // Update any components using our saved appearance
 		owner = null
 		last_camera_turf = null
@@ -672,7 +672,7 @@
 		return
 	if(!ui)
 		owner.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen), TRUE)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
 		for(var/plane in cam_plane_masters)
@@ -991,6 +991,8 @@
 		return FALSE
 	if(!isnull(X.species_allowed) && !(target.species.name in X.species_allowed) && (!istype(target.species, /datum/species/custom))) // Letting custom species access wings/ears/tails.
 		return FALSE
+	if(!X.can_be_selected && (!user || !check_rights_for(user.client, R_HOLDER))) //So staff can quickly change people's appearance for events.
+		return FALSE
 
 	if(LAZYLEN(X.ckeys_allowed) && !(user?.ckey in X.ckeys_allowed) && !(target.ckey in X.ckeys_allowed))
 		return FALSE
@@ -1137,7 +1139,7 @@
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()
 	// checks for monkey to tell if on the menu
 	if(owner)
-		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		QDEL_NULL(owner)
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
@@ -1145,11 +1147,11 @@
 	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen), TRUE)
 
 /datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
 	if(owner)
-		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		QDEL_NULL(owner)
 	owner = current_project.produce_human_mob(src,FALSE,FALSE,"Designer [rand(999)]")
 	// Update some specifics from the current record
@@ -1163,7 +1165,7 @@
 		owner.custom_species = current_project.speciesname
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen), TRUE)
 
 /datum/tgui_module/appearance_changer/self_deleting
 /datum/tgui_module/appearance_changer/self_deleting/tgui_close(mob/user)

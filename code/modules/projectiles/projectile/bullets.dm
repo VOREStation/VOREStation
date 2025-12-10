@@ -446,6 +446,10 @@
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
 
+///Doesn't give a damn about what faction you're on, hits you anyway.
+/obj/item/projectile/bullet/foam_dart/on_hit(var/atom/target, var/blocked = 0)
+	handle_lasertag_attack(target, firer, tag_damage = 1, vest_override = TRUE)
+
 /obj/item/projectile/bullet/foam_dart/on_range(var/atom/A)
 	. = ..()
 	var/turf/T = get_turf(loc)
@@ -480,3 +484,6 @@
 	var/turf/T = get_turf(loc)
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart_riot/on_hit(var/atom/target, var/blocked = 0)
+	handle_lasertag_attack(target, firer, 5, vest_override = TRUE) //Insult to injury.

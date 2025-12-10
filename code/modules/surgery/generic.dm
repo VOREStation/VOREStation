@@ -3,7 +3,7 @@
 //						COMMON STEPS							//
 //////////////////////////////////////////////////////////////////
 
-/datum/surgery_step/generic/
+/datum/surgery_step/generic
 	can_infect = 1
 
 /datum/surgery_step/generic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -11,7 +11,7 @@
 		return 0
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
 		return 0
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)
@@ -38,12 +38,12 @@
 	req_open = 0
 
 	min_duration = 90
-	max_duration = 110
+	max_duration = 90
 
 /datum/surgery_step/generic/cut_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 0 && target_zone != O_MOUTH
+		return affected && !affected.open && target_zone != O_MOUTH
 
 /datum/surgery_step/generic/cut_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -58,7 +58,7 @@
 	user.visible_message(span_notice("[user] has made an incision on [target]'s [affected.name] with \the [tool]."), \
 	span_notice("You have made an incision on [target]'s [affected.name] with \the [tool]."),)
 	user.balloon_alert_visible("opens an incision on [target]'s [affected.name]", "incision open on \the [affected.name]")
-	affected.open = 1
+	affected.open = INCISION_MADE
 
 	if(istype(target) && target.should_have_organ(O_HEART))
 		affected.status |= ORGAN_BLEEDING
@@ -82,18 +82,18 @@
 		/obj/item/surgical/scalpel/laser3 = 100, \
 		/obj/item/surgical/scalpel/laser2 = 100, \
 		/obj/item/surgical/scalpel/laser1 = 100, \
-		/obj/item/melee/energy/sword = 5
+		/obj/item/melee/energy/sword = 75
 	)
 	priority = 2
 	req_open = 0
 	min_duration = 90
-	max_duration = 110
+	max_duration = 90
 	excludes_steps = list(/datum/surgery_step/generic/cut_open)
 
 /datum/surgery_step/generic/cut_with_laser/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 0 && target_zone != O_MOUTH
+		return affected && !affected.open && target_zone != O_MOUTH
 
 /datum/surgery_step/generic/cut_with_laser/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -105,7 +105,7 @@
 
 /datum/surgery_step/generic/cut_with_laser/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	affected.open = 1
+	affected.open = INCISION_MADE
 
 	affected.createwound(CUT, 1)
 	var/clamp_chance = 0
@@ -121,9 +121,6 @@
 		user.visible_message(span_notice("[user] has made an incision on [target]'s [affected.name] with \the [tool], but blood is still escaping from the wound."), \
 		span_notice("You have made an incision on [target]'s [affected.name] with \the [tool], but blood is still coming from the wound.."),)
 		user.balloon_alert_visible("opens an incision on [target]'s [affected.name], blood still flowing", "incision open on \the [affected.name], but blood still flows")
-		//Could be cleaner ...
-
-	spread_germs_to_organ(affected, user)
 
 /datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -131,7 +128,7 @@
 	span_danger("Your hand slips as the blade sputters, searing a long gash in [target]'s [affected.name] with \the [tool]!"))
 	user.balloon_alert_visible("slips, searing a long gash on \the [affected.name]", "your hand slips, searing a long gash on [affected.name].")
 	affected.createwound(CUT, 7.5)
-	affected.createwound(BURN, 12.5)
+	affected.createwound(BURN, 7.5)
 
 ///////////////////////////////////////////////////////////////
 // Incision Management Surgery
@@ -146,13 +143,13 @@
 	priority = 2
 	req_open = 0
 	min_duration = 80
-	max_duration = 120
+	max_duration = 80
 	excludes_steps = list(/datum/surgery_step/generic/cut_open)
 
 /datum/surgery_step/generic/incision_manager/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 0 && target_zone != O_MOUTH
+		return affected && !affected.open && target_zone != O_MOUTH
 
 /datum/surgery_step/generic/incision_manager/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -167,14 +164,14 @@
 	user.visible_message(span_notice("[user] has constructed a prepared incision on and within [target]'s [affected.name] with \the [tool]."), \
 	span_notice("You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool]."),)
 	user.balloon_alert_visible("constructs a prepared incision", "constructed prepared incision")
-	affected.open = 1
+	affected.open = INCISION_MADE
 
 	if(istype(target) && target.should_have_organ(O_HEART))
 		affected.status |= ORGAN_BLEEDING
 
 	affected.createwound(CUT, 1)
 	affected.organ_clamp()
-	affected.open = 2
+	affected.open = FLESH_RETRACTED
 
 /datum/surgery_step/generic/incision_manager/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -193,16 +190,24 @@
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
-		/obj/item/assembly/mousetrap = 20
+		/obj/item/assembly/mousetrap = 25
 	)
 
 	min_duration = 40
-	max_duration = 60
+	max_duration = 40
 
 /datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open && (affected.status & ORGAN_BLEEDING)
+		if(!affected)
+			return FALSE
+		var/internally_bleeding = FALSE
+		for(var/datum/wound/internal_bleeding/W in affected.wounds)
+			if(W.clamped)
+				continue
+			internally_bleeding = TRUE
+			break
+		return affected && affected.open && ((affected.status & ORGAN_BLEEDING) || internally_bleeding)
 
 /datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -218,7 +223,8 @@
 	span_notice("You clamp bleeders in [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("clamps bleeders", "clamped bleeders")
 	affected.organ_clamp()
-	spread_germs_to_organ(affected, user)
+	for(var/datum/wound/internal_bleeding/W in affected.wounds) //Normal organ clamp does NOT clamp internal bleeds. Using hemostats directly does.
+		W.clamped = TRUE
 
 /datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -241,12 +247,12 @@
 	allowed_procs = list(IS_CROWBAR = 75)
 
 	min_duration = 30
-	max_duration = 40
+	max_duration = 30
 
 /datum/surgery_step/generic/retract_skin/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 1 //&& !(affected.status & ORGAN_BLEEDING)
+		return affected && affected.open == INCISION_MADE
 
 /datum/surgery_step/generic/retract_skin/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -286,7 +292,7 @@
 		self_msgBall = "keeping the incision open on the lower abdomen."
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible(msgBall, self_msgBall)
-	affected.open = 2
+	affected.open = FLESH_RETRACTED
 
 /datum/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -322,7 +328,7 @@
 	)
 
 	min_duration = 70
-	max_duration = 100
+	max_duration = 70
 
 /datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
@@ -361,17 +367,18 @@
 	surgery_name = "Amputate Limb"
 	allowed_tools = list(
 		/obj/item/surgical/circular_saw = 100, \
+		/obj/item/material/twohanded/fireaxe = 99, \
 		/obj/item/material/knife/machete/hatchet = 75
 	)
 	req_open = 0
 
 	min_duration = 110
-	max_duration = 160
+	max_duration = 110
 
 /datum/surgery_step/generic/amputate/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
 		return 0
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)

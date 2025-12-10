@@ -38,17 +38,12 @@
 	var/obj/item/electronic_assembly/clothing/IC = null
 	var/obj/item/integrated_circuit/built_in/action_button/action_circuit = null // This gets pulsed when someone clicks the button on the hud.
 
-/obj/item/clothing/emp_act(severity)
-	if(IC)
-		IC.emp_act(severity)
-	..()
-
 /obj/item/clothing/examine(mob/user)
 	. = ..()
 	if(IC)
 		. += IC.examine(user)
 
-/obj/item/clothing/CtrlShiftClick(mob/user)
+/obj/item/clothing/click_ctrl_shift(mob/user)
 	var/turf/T = get_turf(src)
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
 		return FALSE

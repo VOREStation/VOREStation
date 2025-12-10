@@ -146,7 +146,8 @@
 	"Pink labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/pink,
 	"Red labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/red,
 	"Yellow labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/yellow,
-	"Modern labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/modern
+	"Modern labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/modern,
+	"Long labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_labcoat
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
@@ -166,9 +167,19 @@
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
 /datum/gear/suit/labcoat_emt
-	display_name = "labcoat, EMT"
+	display_name = "labcoat selection, EMT"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
+
+/datum/gear/suit/labcoat_emt/New()
+	..()
+	var/list/labcoats_emt = list(
+	"EMT labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/emt,
+	"Neo Highvis" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_highvis,
+	"Neo Red" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_redemt,
+	"Neo Blue" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_blueemt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(labcoats_emt)
 
 /datum/gear/suit/labcoat_rd
 	display_name = "labcoat, research director"
@@ -1180,3 +1191,14 @@ Talon winter coat
 	display_name = "cloak of eyes"
 	description = "A basic looking purple robe that has a hood and can be toggled to have eyes form and stare at moving creatures!"
 	path = /obj/item/clothing/suit/storage/hooded/purple_robes
+
+/datum/gear/suit/neo_pcloak_color
+	display_name = "flowing cloak, colorable"
+	description = "A heavy cloak, suitable for recoloring."
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom/neo_pcloak_color
+
+/datum/gear/suit/neo_medical_coat
+	display_name = "medical coat"
+	path = /obj/item/clothing/suit/neo_medical_coat
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
+

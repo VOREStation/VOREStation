@@ -48,7 +48,7 @@
 	icon_state = "greetingcard"
 	slot_flags = null //no fun allowed!!!!
 
-/obj/item/paper/card/AltClick() //No fun allowed
+/obj/item/paper/card/click_alt() //No fun allowed
 	return
 
 /obj/item/paper/card/update_icon()
@@ -89,7 +89,7 @@
 /obj/item/paper/alien/burnpaper()
 	return
 
-/obj/item/paper/alien/AltClick() // No airplanes for me.
+/obj/item/paper/alien/click_alt() // No airplanes for me.
 	return
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
@@ -539,7 +539,7 @@
 		else if (P.name != initial(P.name))
 			B.name = P.name
 		user.drop_from_inventory(P)
-		if (ishuman(user))
+		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 			if (h_user.r_hand == src)
 				h_user.drop_from_inventory(src)

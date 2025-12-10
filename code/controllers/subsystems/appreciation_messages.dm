@@ -75,7 +75,12 @@ SUBSYSTEM_DEF(appreciation)
 		return
 
 	var/mob/living/carbon/human/H = pick(human_list)
+
 	if(!istype(H))
+		appreciated = pick(loremaster.appreciation_targets)
+		return
+
+	if(H.absorbed)
 		appreciated = pick(loremaster.appreciation_targets)
 		return
 

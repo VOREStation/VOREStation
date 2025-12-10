@@ -126,7 +126,7 @@
 	. = ..(mapload, new_material, MAT_CARPET)
 
 /obj/structure/bed/chair/bay/chair/padded/brown/Initialize(mapload, var/new_material, var/new_padding_material)
-	. = ..(mapload, new_material, MAT_LEATHER)
+	. = ..(mapload, new_material, MAT_CLOTH_BROWN)
 
 /obj/structure/bed/chair/bay/chair/padded/teal/Initialize(mapload, var/new_material, var/new_padding_material)
 	. = ..(mapload, new_material, MAT_CLOTH_TEAL)
@@ -162,7 +162,7 @@
 	. = ..(mapload, new_material, MAT_CARPET)
 
 /obj/structure/bed/chair/bay/comfy/brown/Initialize(mapload, var/new_material, var/new_padding_material)
-	. = ..(mapload, new_material, MAT_LEATHER)
+	. = ..(mapload, new_material, MAT_CLOTH_BROWN)
 
 /obj/structure/bed/chair/bay/comfy/teal/Initialize(mapload, var/new_material, var/new_padding_material)
 	. = ..(mapload, new_material, MAT_CLOTH_TEAL)

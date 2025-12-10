@@ -82,7 +82,7 @@ export const modeToTooltip = {
   'Leave Remains': 'Prey might leave remains like bones.',
   Muffles: 'Causes all prey messages to become subtles.',
   'Affect Worn Items': 'Allows vorgan to coat and digest equipped items.',
-  'Jams Sensors': 'Blocks medical sensors, but not GPS.',
+  'Jams Sensors': 'Blocks trackers, such as GPS, sensors, and tracking implants.',
   'Complete Absorb': 'Limits conversation to direct pred / prey.',
   'Spare Prosthetics': 'Applies no damage to synthetic limbs. ',
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
@@ -98,7 +98,8 @@ export const spriteToTooltip = {
 };
 
 export const liquidToTooltip = {
-  'Produce Liquids': 'Enables automatic belly liquid porduction.',
+  'Produce Liquids':
+    'Enables automatic belly liquid porduction, using nutrition or power.',
   'Digestion Liquids':
     'Enables belly liquid production while prey is being diegested.',
   'Absorption Liquids':

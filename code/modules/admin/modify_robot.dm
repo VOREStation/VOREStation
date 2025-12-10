@@ -228,7 +228,7 @@
 			target.module.modules.Add(add_item)
 			target.module.contents.Add(add_item)
 			spawn(0)
-				SEND_SIGNAL(add_item, COMSIG_OBSERVER_MOVED)
+				SEND_SIGNAL(add_item, COMSIG_MOVABLE_MOVED)
 			target.hud_used?.update_robot_modules_display()
 			if(istype(add_item, /obj/item/stack/))
 				var/obj/item/stack/item_with_synth = add_item
@@ -280,6 +280,7 @@
 			target.module.emag.Remove(rem_item)
 			target.module.modules.Remove(rem_item)
 			target.module.contents.Remove(rem_item)
+			target.hud_used?.update_robot_modules_display()
 			qdel(rem_item)
 			return TRUE
 		if("swap_module")
