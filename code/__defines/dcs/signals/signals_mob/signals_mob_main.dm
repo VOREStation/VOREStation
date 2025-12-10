@@ -314,9 +314,6 @@
 ///from end of revival_healing_action(): ()
 #define COMSIG_LIVING_AHEAL "living_post_aheal"
 
-///from /datum/species/handle_fire. Called when the human is set on fire and burning clothes and stuff
-#define COMSIG_HUMAN_BURNING "human_burning"
-
 ///from /mob/living/carbon/human/GetVoice(): (list/voice_data) - voice_data[1] contains the voice name
 #define COMSIG_HUMAN_GET_VOICE "human_get_voice"
 	#define COMPONENT_VOICE_CHANGED (1<<0)
