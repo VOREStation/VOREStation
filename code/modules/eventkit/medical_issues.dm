@@ -291,6 +291,7 @@
 /datum/surgery_step/medical_issue/strengthen_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "bone reinforcement")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
@@ -328,6 +329,7 @@
 /datum/surgery_step/medical_issue/remove_growth/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "remove growths")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
@@ -366,6 +368,7 @@
 /datum/surgery_step/medical_issue/redirect_vessels/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "redirect blood vessels")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
@@ -404,6 +407,7 @@
 /datum/surgery_step/medical_issue/extract_object/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "extract object")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
@@ -442,6 +446,7 @@
 /datum/surgery_step/medical_issue/flesh_graft/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "flesh graft")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
@@ -482,6 +487,7 @@
 /datum/surgery_step/medical_issue/remove_growth_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "remove growths")
@@ -522,6 +528,7 @@
 /datum/surgery_step/medical_issue/redirect_vessels_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "redirect blood vessels")
@@ -562,6 +569,7 @@
 /datum/surgery_step/medical_issue/close_holes/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "close holes")
@@ -602,6 +610,7 @@
 /datum/surgery_step/medical_issue/ultrasound/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "ultrasound")
@@ -642,6 +651,7 @@
 /datum/surgery_step/medical_issue/reoxygenate_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!..(user, target, target_zone, tool))
 		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "reoxygenate tissue")
