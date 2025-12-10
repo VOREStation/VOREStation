@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - balance: "Ice slips you repeatedly instead of a set distance"
