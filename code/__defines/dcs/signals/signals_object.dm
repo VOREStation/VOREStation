@@ -36,8 +36,6 @@
 #define COMSIG_ARCADE_VICTORY "arcade_victory"
 ///from /obj/machinery/computer/telescience/proc/doteleport(mob/user): (list/atom/movable/teleported_things, turf/target_turf, sending )
 #define COMSIG_TELESCI_TELEPORT "telesci_teleport"
-///from /obj/structure/closet/close()
-#define COMSIG_CLOSET_CLOSED "closet_closed"
 ///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
 #define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
 ///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()
