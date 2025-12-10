@@ -160,7 +160,7 @@
 	var/dark_gains = 0
 
 	var/suit = owner.get_equipped_item(slot_wear_suit)
-	if(istype(suit, /obj/item/clothing/suit/space))
+	if(istype(suit, /obj/item/clothing/suit/space/rig))
 		if(dark_energy)
 			to_chat(owner, span_warning("You feel your energy waning and your powers being blocked from the heavy equipment you're wearing!"))
 		dark_energy = 0
