@@ -2537,6 +2537,7 @@
 #include "code\modules\clothing\masks\gasmask.dm"
 #include "code\modules\clothing\masks\gasmask_vr.dm"
 #include "code\modules\clothing\masks\hailer.dm"
+#include "code\modules\clothing\masks\masquerade_mask.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\masks\miscellaneous_vr.dm"
 #include "code\modules\clothing\masks\shiny_vr.dm"
