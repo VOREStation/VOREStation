@@ -346,6 +346,14 @@
 	board_type = new /datum/frame/frame_types/industrial_reagent_pipe
 	req_components = list( /obj/item/stack/material/glass/reinforced = 1)
 
+/obj/item/circuitboard/industrial_reagent_splitter
+	name = T_BOARD("industrial chemical splitter")
+	build_path = /obj/machinery/reagent_refinery/splitter
+	board_type = new /datum/frame/frame_types/industrial_reagent_splitter
+	req_components = list(
+							/obj/item/stack/material/glass/reinforced = 1,
+							/obj/item/stock_parts/motor = 1)
+
 /obj/item/circuitboard/industrial_reagent_waste_processor
 	name = T_BOARD("industrial chemical waste processor")
 	build_path = /obj/machinery/reagent_refinery/waste_processor

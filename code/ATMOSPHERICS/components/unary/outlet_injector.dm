@@ -200,7 +200,7 @@
 			"You hear a ratchet.")
 		deconstruct()
 
-/obj/machinery/atmospherics/unary/outlet_injector/CtrlClick(mob/user)
+/obj/machinery/atmospherics/unary/outlet_injector/click_ctrl(mob/user)
 	if (volume_rate == ATMOS_DEFAULT_VOLUME_PUMP + 500 || use_power == USE_POWER_OFF)
 		return ..()
 

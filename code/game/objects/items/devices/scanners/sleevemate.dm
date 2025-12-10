@@ -135,24 +135,30 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Body status
 	output += span_bold("Sleeve Status:") + " "
-	switch(H.stat)
-		if(CONSCIOUS)
-			output += "Alive<br>"
-		if(UNCONSCIOUS)
-			output += "Unconscious<br>"
-		if(DEAD)
-			output += span_warning("Deceased") + "<br>"
-		else
-			output += span_warning("Unknown") + "<br>"
+	if(H.status_flags |= FAKEDEATH)
+		output += span_warning("Deceased") + "<br>"
+	else
+		switch(H.stat)
+			if(CONSCIOUS)
+				output += "Alive<br>"
+			if(UNCONSCIOUS)
+				output += "Unconscious<br>"
+			if(DEAD)
+				output += span_warning("Deceased") + "<br>"
+			else
+				output += span_warning("Unknown") + "<br>"
 
 	//Mind/body comparison
 	output += span_bold("Sleeve Pair:")
 	if(!H.ckey)
 		output += span_warning("No mind in that body") + " [stored_mind != null ? "\[<a href='byond://?src=\ref[src];target=\ref[H];mindupload=1'>Upload</a>\]" : null]<br>"
-	else if(H.mind && ckey(H.mind.key) != H.ckey)
-		output += span_warning("May not be correct body") + "<br>"
+
+	else if(H.mind && (is_changeling(H) || (HAS_TRAIT(H, UNIQUE_MINDSTRUCTURE) || (ckey(H.mind.key) != H.ckey))))
+		output += span_boldwarning("Incorrect mind-sleeve match or hiveminded neurological structure") + "<br>"
+
 	else if(H.mind && ckey(H.mind.key) == H.ckey)
 		output += "Appears to be correct mind in body<br>"
+
 	else
 		output += "Unable to perform comparison<br>"
 

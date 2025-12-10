@@ -19,11 +19,14 @@
 /obj/item/motiontracker/Initialize(mapload)
 	RegisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER, PROC_REF(handle_motion_tracking))
 	. = ..()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.motiontracker_subscribe()
 
 /obj/item/motiontracker/Destroy(force, ...)
 	if(ismob(loc))
 		var/mob/M = loc
-		M.motiontracker_subscribe()
+		M.motiontracker_unsubscribe()
 	UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
 	. = ..()
 

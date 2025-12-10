@@ -127,7 +127,7 @@
 	holdingitems += O
 	return 0
 
-/obj/machinery/reagentgrinder/AltClick(mob/user)
+/obj/machinery/reagentgrinder/click_alt(mob/user)
 	. = ..()
 	if(user.incapacitated() || !Adjacent(user))
 		return

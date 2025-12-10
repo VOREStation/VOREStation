@@ -140,7 +140,7 @@ var/list/organ_cache = list()
 	STOP_PROCESSING(SSobj, src)
 	handle_organ_mod_special(TRUE)
 	if(owner && vital)
-		owner.can_defib = 0
+		owner.can_defib = FALSE
 		owner.death()
 
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead

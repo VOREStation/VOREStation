@@ -80,17 +80,14 @@
 	var/analyzed_results = ""
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	span_bold("[fake_oxy]") 			: fake_oxy
-		dat += span_notice("Analyzing Results for [M]:")
-		dat += "<br>"
-		dat += span_notice("Overall Status: dead")
-		dat += "<br>"
+		TX = 0 //This is a dead giveaway if they're using zombiepowder.
+		analyzed_results += "Analyzing Results for [M]:\n\t Overall Status: dead<br>"
 	else
 		analyzed_results += "Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round((M.health/M.getMaxHealth())*100) ]% healthy"]<br>"
 	analyzed_results += "\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
 	analyzed_results += "\tDamage Specifics: [span_cyan("[OX]")] - [span_green("[TX]")] - [span_orange("[BU]")] - [span_red("[BR]")]<br>"
 	analyzed_results +=	"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)<br>"
-	if(!(M.status_flags & FAKEDEATH))
-		analyzed_results = span_notice(analyzed_results)
+	analyzed_results = span_notice(analyzed_results)
 	dat += analyzed_results
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
 		dat += 	span_notice("Time of Death: [worldtime2stationtime(M.timeofdeath)]")
@@ -134,6 +131,7 @@
 	BR = M.getBruteLoss() > 50 ? "[span_red(span_bold("Severe anatomical damage detected"))]"		 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		span_warning("Severe oxygen deprivation detected") 	: 	"Subject bloodstream oxygen level normal"
+		TX = 0 //This is a dead giveaway if they're using zombiepowder.
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
 	if(M.radiation)
 		if(advscan >= 2 && showadvscan == 1)
@@ -268,7 +266,7 @@
 		dat += "<br>"
 //	if (M.reagents && M.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE))
 //		user.show_message(span_notice("Bloodstream Analysis located [M.reagents:get_reagent_amount(REAGENT_ID_INAPROVALINE)] units of rejuvenation chemicals."))
-	if (M.has_brain_worms())
+	if (advscan >= 2 && M.has_brain_worms()) // Borers need to hide
 		dat += span_warning("Subject suffering from aberrant brain activity. Recommend further scanning.")
 		dat += "<br>"
 	else if (M.getBrainLoss() >= 60 || !M.has_brain())
