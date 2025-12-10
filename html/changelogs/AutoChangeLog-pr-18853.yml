@@ -1,0 +1,16 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Paralysis no longer KOs you. Instead, you are able to see and hear everything going on around you, just not interact, move, or anything of that manner! Additionally, you can not use 'me' while paralyzed, but can however use 'subtle!'"
+  - bugfix: "Medical patches no longer apply to the blood and result in topical medications killing you."
+  - qol: "Medications now apply at an efficiency of 25% into the bloodstream if a patch is not a topical medication."
+  - qol: "Fakedeath doesn't immediately out you via raising toxins damage under scanners."
+  - qol: "Lichpowder no longer suffocates you to death."
+  - qol: "Zombiepowder now does a much lower suffocation damage."
+  - rscadd: "Adds a new way to make zombiepowder which uses 5u potassiumchlorophoride, 5u sleep toxin, 5u chloral, and 5u mercury for 2u of zombie powder."
+  - bugfix: "Fakedeath now applies to PDA scanners as well"
+  - bugfix: "Medications that are dermal can now be used via patches again."
+  - bugfix: "Status flags will no longer show above individuals that are mimicking death."
+  - qol: "Medications that are not dermal now are absorbed into the blood at 25% efficiency."
+  - code_imp: "Gets rid of a unneeded proc in custom_emote"
+  - bugfix: "Fakdeath will no longer break medical scanners"

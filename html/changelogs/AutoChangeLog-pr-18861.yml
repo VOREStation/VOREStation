@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - balance: "Gun circuits will no longer allow fire while obscured inside of items such as crates, lockers, or bags."
+  - balance: "Gun circuits will now have their complexity increased based on how large the gun you place inside it is."
+  - code_imp: "Cleans up the gun circuit code a little to use early returns."

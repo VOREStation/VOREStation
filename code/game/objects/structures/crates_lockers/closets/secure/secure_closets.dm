@@ -115,7 +115,7 @@
 	else
 		toggle(user)
 
-/obj/structure/closet/secure_closet/AltClick()
+/obj/structure/closet/secure_closet/click_alt()
 	..()
 	verb_togglelock()
 

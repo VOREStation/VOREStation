@@ -79,7 +79,7 @@
 /obj/structure/simple_door/attack_hand(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/simple_door/AltClick(mob/user as mob)
+/obj/structure/simple_door/click_alt(mob/user as mob)
 	. = ..()
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))

@@ -1,0 +1,6 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Added countdown effect for ghosts to look at different counting down objects"
+  - code_imp: "Added connect_containers and effect_remover component"
+  - code_imp: "Added connect_loc element"

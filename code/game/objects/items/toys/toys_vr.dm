@@ -101,7 +101,7 @@
 	icon = 'icons/obj/drakietoy.dmi'
 	var/lights_glowing = FALSE
 
-/obj/item/toy/plushie/borgplushie/drake/AltClick(mob/living/user)
+/obj/item/toy/plushie/borgplushie/drake/click_alt(mob/living/user)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
@@ -1024,7 +1024,7 @@
 /obj/item/toy/desk/attack_self(mob/user)
 	activate(user)
 
-/obj/item/toy/desk/AltClick(mob/user)
+/obj/item/toy/desk/click_alt(mob/user)
 	activate(user)
 
 /obj/item/toy/desk/MouseDrop(mob/user as mob) // Code from Paper bin, so you can still pick up the deck

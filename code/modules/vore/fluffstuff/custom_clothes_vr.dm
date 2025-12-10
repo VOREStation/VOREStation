@@ -158,8 +158,6 @@
 /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
 	name = "long fur coat"
 	desc = "A sophisticated long coat made of fur."
-
-	icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "russofurcoat"
 
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
@@ -1105,7 +1103,6 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/trek/ds9
 	name = "Padded Overcoat"
 	desc = "The overcoat worn by all officers of the 2380s."
-	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "trek_ds9_coat"
 	body_parts_covered = CHEST|ARMS
@@ -1931,7 +1928,7 @@ Departamental Swimsuits, for general use
 		return
 	..()
 
-/obj/item/clothing/head/fluff/nikki/AltClick(mob/user)
+/obj/item/clothing/head/fluff/nikki/click_alt(mob/user)
 	if (translocator && (user.get_inactive_hand() == src))
 		translocator_unequip(translocator, user)
 

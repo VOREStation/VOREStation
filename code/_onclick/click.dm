@@ -25,6 +25,10 @@
 	if(src)
 		usr.DblClickOn(src, params)
 
+/atom/MouseWheel(delta_x,delta_y,location,control,params)
+	if(src)
+		usr.MouseWheelOn(src, delta_x, delta_y, params)
+
 /*
 	Standard mob ClickOn()
 	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
@@ -38,37 +42,54 @@
 	* item/afterattack(atom,user,adjacent,params) - used both ranged and adjacent
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
-/mob/proc/ClickOn(var/atom/A, var/params)
-	if(!checkClickCooldown()) // Hard check, before anything else, to avoid crashing
+/mob/proc/ClickOn(atom/A, params)
+	if(world.time <= next_click)
 		return
-
-	setClickCooldown(1)
+	next_click = world.time + 1
 
 	if(client && client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
-		return 1
-	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
-		return 1
-	if(modifiers["middle"])
-		MiddleClickOn(A)
-		return 1
-	if(modifiers["shift"])
-		ShiftClickOn(A)
-		return 0
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return 1
-	if(modifiers["ctrl"])
-		CtrlClickOn(A)
-		return 1
 
-	if(stat || paralysis || stunned || weakened)
+	if(LAZYACCESS(modifiers, BUTTON4) || LAZYACCESS(modifiers, BUTTON5))
+		return
+
+	if(LAZYACCESS(modifiers, SHIFT_CLICK))
+		if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+			ShiftMiddleClickOn(A)
+			return
+		if(LAZYACCESS(modifiers, CTRL_CLICK))
+			CtrlShiftClickOn(A)
+			return
+		if (LAZYACCESS(modifiers, ALT_CLICK))
+			alt_shift_click_on(A)
+			return
+		ShiftClickOn(A)
+		return
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+		if(LAZYACCESS(modifiers, CTRL_CLICK))
+			CtrlMiddleClickOn(A)
+		else
+			MiddleClickOn(A, params)
+		return
+	if(LAZYACCESS(modifiers, ALT_CLICK)) // alt and alt-gr (rightalt)
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+			AltClickSecondaryOn(A)
+		else
+			AltClickOn(A)
+		return
+	if(LAZYACCESS(modifiers, CTRL_CLICK))
+		CtrlClickOn(A)
+		return
+
+	//Replaces thee old 'stat||paralysis||stunned' check
+	//Not fully implemented yet.
+	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS))
+		return
+
+	if(stat || paralysis || stunned)
 		return
 
 	face_atom(A) // change direction to face what you clicked on
@@ -173,7 +194,7 @@
 	return TRUE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
-/mob/proc/DblClickOn(var/atom/A, var/params)
+/mob/proc/DblClickOn(atom/A, var/params)
 	return
 
 /*
@@ -237,23 +258,8 @@
 	Middle click
 	Only used for swapping hands
 */
-/mob/proc/MiddleClickOn(var/atom/A)
+/mob/proc/MiddleClickOn(atom/A)
 	swap_hand()
-	return
-
-// In case of use break glass
-/*
-/atom/proc/MiddleClick(var/mob/M as mob)
-	return
-*/
-
-/*
-	Shift middle click
-	Used for pointing.
-*/
-
-/mob/proc/ShiftMiddleClickOn(atom/A)
-	pointed(A)
 	return
 
 /*
@@ -261,83 +267,24 @@
 	For most mobs, examine.
 	This is overridden in ai.dm
 */
-/mob/proc/ShiftClickOn(var/atom/A)
+/mob/proc/ShiftClickOn(atom/A)
 	A.ShiftClick(src)
 	return
-/atom/proc/ShiftClick(var/mob/user)
+
+/atom/proc/ShiftClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_SHIFT_CLICKED_ON, user)
+	var/shiftclick_flags = SEND_SIGNAL(user, COMSIG_CLICK_SHIFT, src)
+	if(shiftclick_flags & COMSIG_MOB_CANCEL_CLICKON)
+		return
 	if(user.client && !user.is_remote_viewing())
 		user.examinate(src)
 	return
 
-/*
-	Ctrl click
-	For most objects, pull
-*/
-/mob/proc/CtrlClickOn(var/atom/A)
-	A.CtrlClick(src)
-	return
-/atom/proc/CtrlClick(var/mob/user)
-	return
+/mob/proc/TurfAdjacent(turf/tile)
+	return tile.Adjacent(src)
 
-/atom/movable/CtrlClick(var/mob/user)
-	if(Adjacent(user))
-		user.start_pulling(src)
-
-/turf/CtrlClick(var/mob/user)
-	user.stop_pulling()
-
-/*
-	Alt click
-	Unused except for AI
-*/
-/mob/proc/AltClickOn(var/atom/A)
-	A.AltClick(src)
-	return
-
-/**
- * Alt click on an atom.
- * Performs alt-click actions before attempting to open a loot window.
- * Returns TRUE if successful, FALSE if not.
- */
-/atom/proc/AltClick(var/mob/user)
-	// if(!user.can_interact_with(src))
-	// 	return FALSE
-
-	if(SEND_SIGNAL(src, COMSIG_CLICK_ALT, user) & COMPONENT_CANCEL_CLICK_ALT)
-		return TRUE
-
-	if(HAS_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER) && !isobserver(user))
-		return TRUE
-
-	var/turf/tile = get_turf(src)
-	if(isnull(tile))
-		return FALSE
-
-	if(!isturf(loc) && !isturf(src))
-		return FALSE
-
-	if(!user.TurfAdjacent(tile))
-		return FALSE
-
-	var/datum/lootpanel/panel = user.client?.loot_panel
-	if(isnull(panel))
-		return FALSE
-
-	panel.open(tile)
-	return TRUE
-
-/mob/proc/TurfAdjacent(var/turf/T)
-	return T.AdjacentQuick(src)
-
-/*
-	Control+Shift click
-	Unused except for AI
-*/
-/mob/proc/CtrlShiftClickOn(var/atom/A)
-	A.CtrlShiftClick(src)
-	return
-
-/atom/proc/CtrlShiftClick(var/mob/user)
+/mob/proc/ShiftMiddleClickOn(atom/A)
+	src.pointed(A)
 	return
 
 /*
@@ -401,15 +348,19 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && istype(usr, /mob/living/carbon))
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
 		var/list/P = params2list(params)
 		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
 		if(T)
-			if(modifiers["shift"])
+			if(LAZYACCESS(modifiers, SHIFT_CLICK))
 				usr.face_atom(T)
 				return 1
 			T.Click(location, control, params)
 	return 1
+
+/// MouseWheelOn
+/mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
+	SEND_SIGNAL(src, COMSIG_MOUSE_SCROLL_ON, A, delta_x, delta_y, params)

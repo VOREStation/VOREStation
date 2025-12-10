@@ -253,10 +253,10 @@
 
 	user.visible_message(span_notice("\The [user] searches for specific cards in \the [src], and draws [cards_to_draw.len]."))
 
-/obj/item/deck/CtrlClick(mob/user)
+/obj/item/deck/item_ctrl_click(mob/user)
 	deal_card()
 
-/obj/item/deck/CtrlShiftClick(mob/user)
+/obj/item/deck/click_ctrl_shift(mob/user)
 	deal_card_multi()
 
 /obj/item/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
@@ -329,7 +329,7 @@
 	else
 		return
 
-/obj/item/deck/AltClick(mob/user)
+/obj/item/deck/click_alt(mob/user)
 	if(user.stat || !Adjacent(user))
 		return
 	shuffle(user)
@@ -569,10 +569,10 @@
 	..()
 	src.update_icon()
 
-/obj/item/hand/CtrlClick(mob/user)
+/obj/item/hand/item_ctrl_click(mob/user)
 	if(user.stat || !Adjacent(user))
 		return
 	discard()
 
-/obj/item/hand/AltClick(mob/user)
+/obj/item/hand/click_alt(mob/user)
 	Removecard()

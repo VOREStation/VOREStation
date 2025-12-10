@@ -147,7 +147,7 @@
 	else
 		..()
 
-/obj/item/personal_shield_generator/AltClick(mob/living/user)
+/obj/item/personal_shield_generator/click_alt(mob/living/user)
 	weapon_toggle()
 
 /obj/item/personal_shield_generator/MouseDrop()
