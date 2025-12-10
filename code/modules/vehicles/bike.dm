@@ -55,7 +55,7 @@
 			return
 	..()
 
-/obj/vehicle/bike/CtrlClick(var/mob/user)
+/obj/vehicle/bike/click_ctrl(mob/user)
 	if(Adjacent(user) && anchored)
 		toggle()
 	else
@@ -78,7 +78,7 @@
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
 
-/obj/vehicle/bike/AltClick(var/mob/user)
+/obj/vehicle/bike/click_alt(var/mob/user)
 	if(Adjacent(user))
 		kickstand(user)
 	else

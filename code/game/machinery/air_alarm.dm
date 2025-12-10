@@ -854,7 +854,7 @@
 			to_chat(user, span_warning("Access denied."))
 		return
 
-/obj/machinery/alarm/AltClick(mob/user)
+/obj/machinery/alarm/click_alt(mob/user)
 	..()
 	togglelock(user)
 

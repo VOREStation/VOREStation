@@ -112,7 +112,7 @@
 				update_icon()
 
 
-/obj/machinery/injector_maker/AltClick(mob/user)
+/obj/machinery/injector_maker/click_alt(mob/user)
 	. = ..()
 	if(beaker)
 		if(!user.incapacitated() && Adjacent(user))

@@ -1778,7 +1778,6 @@
 /datum/trait/neutral/nutritiongrow
 	name = "Growing"
 	desc = "After you consume enough nutrition, you start to slowly grow while metabolizing nutrition faster."
-	excludes = list(/datum/trait/neutral/nutritionshrink)
 	cost = 0
 	hidden = TRUE //Disabled on Virgo
 	added_component_path = /datum/component/nutrition_size_change/growing
@@ -1786,7 +1785,6 @@
 /datum/trait/neutral/nutritionshrink
 	name = "Shrinking"
 	desc = "If you don't eat enough, your body starts shrinking to make up the difference!"
-	excludes = list(/datum/trait/neutral/nutritiongrow)
 	cost = 0
 	hidden = TRUE //Disabled on Virgo
 	added_component_path = /datum/component/nutrition_size_change/shrinking
@@ -1882,3 +1880,19 @@
 	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
 	if(trait_prefs)
 		G.radiation_color = trait_prefs["glow_color"]
+
+/* Used twofold:
+ * One, for scenes where someone is using dominate-pred and they don't want to easily be detected who is in control at what time.
+ * Two, for characters that aren't exactly 'normal' in the sense of a singular mind and their body structure would accompany this. (Think Diona)
+ * Additionally, changelings will appear as though they have this trait.
+*/
+/datum/trait/neutral/abnormal_mind
+	name = "Unique Mind-structure"
+	desc = "Your body's neurological structure is unusual, causing sleevemates to have difficulty in identifying any minds within your body as a proper match!"
+	cost = 0
+
+	can_take = ORGANICS
+
+/datum/trait/neutral/abnormal_mind/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H.mind, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)

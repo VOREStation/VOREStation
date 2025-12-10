@@ -572,10 +572,10 @@
 		var/obj/item/I = thing
 		startfx.Add(get_belly_surrounding(I.contents))
 
-	for(var/mob/living/M in startfx) // End of indirect vorefx changes
-		M.updateVRPanel()
+	for(var/mob/living/living_mob in startfx) // End of indirect vorefx changes
+		living_mob.updateVRPanel()
 		var/raw_desc //Let's use this to avoid needing to write the reformat code twice
-		if(absorbed_desc && M.absorbed)
+		if(absorbed_desc && living_mob.absorbed)
 			raw_desc = absorbed_desc
 		else if(desc)
 			raw_desc = desc
@@ -583,21 +583,21 @@
 		//Was there a description text? If so, it's time to format it!
 		if(raw_desc)
 			//Replace placeholder vars
-			to_chat(M, span_vnotice(span_bold("[belly_format_string(raw_desc, M)]")))
+			to_chat(living_mob, span_vnotice(span_bold("[belly_format_string(raw_desc, living_mob)]")))
 
 		var/taste
-		if(can_taste && M.loc == src && (taste = M.get_taste_message(FALSE))) // Prevent indirect tasting
-			to_chat(owner, span_vnotice("[M] tastes of [taste]."))
-		vore_fx(M, TRUE)
+		if(can_taste && living_mob.loc == src && (taste = living_mob.get_taste_message(FALSE))) // Prevent indirect tasting
+			to_chat(owner, span_vnotice("[living_mob] tastes of [taste]."))
+		vore_fx(living_mob, TRUE)
 		if(owner.previewing_belly == src)
 			vore_fx(owner, TRUE)
 		//Stop AI processing in bellies
-		if(M.ai_holder)
-			M.ai_holder.go_sleep()
+		if(living_mob.ai_holder)
+			living_mob.ai_holder.go_sleep()
 		if(reagents.total_volume >= 5)
-			if(digest_mode == DM_DIGEST && M.digestable)
-				reagents.trans_to(M, reagents.total_volume * 0.1, 1 / max(LAZYLEN(contents), 1), FALSE)
-			to_chat(M, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
+			if(digest_mode == DM_DIGEST && living_mob.digestable)
+				reagents.splash_mob(living_mob, reagents.total_volume * 0.1, FALSE)
+			to_chat(living_mob, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
 	if(!isliving(thing) && count_items_for_sprite) // If this is enabled also update fullness for non-living things
 		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 

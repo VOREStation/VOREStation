@@ -7,7 +7,9 @@
 	extended_desc = "The firing mechanism can slot in most ranged weapons, ballistic and energy.  \
 	The first and second inputs need to be numbers.  They are coordinates for the gun to fire at, relative to the machine itself.  \
 	The 'fire' activator will cause the mechanism to attempt to fire the weapon at the coordinates, if possible.  Note that the \
-	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
+	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism. \
+	Additionally, the complexity of the circuit increases based on the weapon's size. A tiny gun will have 30 complexity, a small 60, medium 90, large 120, and bulky 150. \
+	It can likewise not shoot while obscured (inside a container, such as a closet or backpack) or if there is a closet or container on the same tile as it."
 	complexity = 30 // Increased due to clear balance necessity.
 	w_class = ITEMSIZE_NORMAL
 	size = 3
@@ -37,6 +39,7 @@
 		user.drop_from_inventory(gun)
 		installed_gun = gun
 		size += gun.w_class
+		complexity = complexity * gun.w_class //Max complexity that a case can reach is 240. This means a small gun = 60 complexity, normal = 90, large = 120. This means you could fit 3 small guns, 2 normal guns, or 1 large gun in the circuit.
 		gun.forceMove(src)
 		to_chat(user, span_notice("You slide \the [gun] into the firing mechanism."))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
@@ -48,6 +51,7 @@
 		installed_gun.forceMove(get_turf(src))
 		to_chat(user, span_notice("You slide \the [installed_gun] out of the firing mechanism."))
 		size = initial(size)
+		complexity = initial(complexity)
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
@@ -56,49 +60,68 @@
 /obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
 	if(!installed_gun)
 		return
+	if(!assembly)
+		return
+	if(!istype(loc, /obj/item/electronic_assembly))
+		return
+
+	//Check to see if we are in a banned position (inside a closet, backpack, etc)
+	//LOC is The circuit we are in. loc.loc is 'what that circuit is in'.
+	//Generally, this should be a mob, the floor, or a circuitry clothing item.
+	var/our_position = loc.loc
+	if(!ismob(our_position) && !isturf(our_position)) //If we're being held by a mob or we're on the ground, that's fine, continue.
+		var/list/banned_positions = list(
+			/obj/item/storage,
+			/obj/structure/closet,
+			/obj/mecha
+		)
+		if(is_type_in_list(our_position, banned_positions))
+			return
+	//Prevents shoving 40 of these into a closet, opening it, and having it annihilate some poor sap.
+	else if(isturf(our_position) && (/obj/structure/closet in range(0, our_position)))
+		return
 
 	var/datum/integrated_io/target_x = inputs[1]
 	var/datum/integrated_io/target_y = inputs[2]
 
-	if(src.assembly)
-		if(isnum(target_x.data))
-			target_x.data = round(target_x.data)
-		if(isnum(target_y.data))
-			target_y.data = round(target_y.data)
+	if(isnum(target_x.data))
+		target_x.data = round(target_x.data)
+	if(isnum(target_y.data))
+		target_y.data = round(target_y.data)
 
-		var/turf/T = get_turf(src.assembly)
+	var/turf/T = get_turf(src.assembly)
 
-		if(target_x.data == 0 && target_y.data == 0) // Don't shoot ourselves.
-			return
+	if(target_x.data == 0 && target_y.data == 0) // Don't shoot ourselves.
+		return
 
-		// We need to do this in order to enable relative coordinates, as locate() only works for absolute coordinates.
-		var/i
-		if(target_x.data > 0)
-			i = abs(target_x.data)
-			while(i > 0)
-				T = get_step(T, EAST)
-				i--
-		else
-			i = abs(target_x.data)
-			while(i > 0)
-				T = get_step(T, WEST)
-				i--
+	// We need to do this in order to enable relative coordinates, as locate() only works for absolute coordinates.
+	var/i
+	if(target_x.data > 0)
+		i = abs(target_x.data)
+		while(i > 0)
+			T = get_step(T, EAST)
+			i--
+	else
+		i = abs(target_x.data)
+		while(i > 0)
+			T = get_step(T, WEST)
+			i--
 
-		i = 0
-		if(target_y.data > 0)
-			i = abs(target_y.data)
-			while(i > 0)
-				T = get_step(T, NORTH)
-				i--
-		else if(target_y.data < 0)
-			i = abs(target_y.data)
-			while(i > 0)
-				T = get_step(T, SOUTH)
-				i--
+	i = 0
+	if(target_y.data > 0)
+		i = abs(target_y.data)
+		while(i > 0)
+			T = get_step(T, NORTH)
+			i--
+	else if(target_y.data < 0)
+		i = abs(target_y.data)
+		while(i > 0)
+			T = get_step(T, SOUTH)
+			i--
 
-		if(!T)
-			return
-		installed_gun.Fire_userless(T)
+	if(!T)
+		return
+	installed_gun.Fire_userless(T)
 
 /obj/item/integrated_circuit/manipulation/locomotion
 	name = "locomotion circuit"
