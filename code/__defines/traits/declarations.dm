@@ -45,3 +45,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_TESLA_SHOCKIMMUNE "tesla_shock_immunity"
 /// Do we show up as a changeling / the wrong body-mind pair to sleevmates
 #define UNIQUE_MINDSTRUCTURE "unique_mindstructure"
+// Owner is immune to hallucinations
+#define TRAIT_MADNESS_IMMUNE "supermatter_madness_immune"

@@ -1255,7 +1255,7 @@
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
+			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
 				handle_hallucinations()
 				/* Stop spinning the view, it breaks too much.
 				if(client && prob(5))
