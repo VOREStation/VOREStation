@@ -4,8 +4,18 @@
  * @license MIT
  */
 
+import { colorList } from 'common/colorpicker';
+import React, {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
-  colorList,
   type HsvaColor,
   hexToHsva,
   hsvaToHex,
@@ -13,24 +23,16 @@ import {
   hsvaToRgba,
   rgbaToHsva,
   validHex,
-} from 'common/colorpicker';
-import React, {
-  useCallback,
-  useEffect,
-  useEffectEvent,
-  useMemo,
-  useState,
-} from 'react';
-import { useBackend } from 'tgui/backend';
-import { Pointer } from 'tgui/components';
-import { type Interaction, Interactive } from 'tgui/components/Interactive';
-import { Window } from 'tgui/layouts';
+} from 'tgui-core/color';
 import {
   Autofocus,
   Box,
   Button,
   Input,
+  type Interaction,
+  Interactive,
   NumberInput,
+  Pointer,
   Section,
   Stack,
   Tooltip,
@@ -668,6 +670,7 @@ const SaturationValue: React.FC<SaturationValueProps> = React.memo(
       }),
       [hsva.h],
     );
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className="react-colorful__saturation_value" style={containerStyle}>
@@ -678,6 +681,7 @@ const SaturationValue: React.FC<SaturationValueProps> = React.memo(
           aria-valuetext={`Saturation ${Math.round(
             hsva.s,
           )}%, Brightness ${Math.round(hsva.v)}%`}
+          containerRef={containerRef}
         >
           <Pointer
             className="react-colorful__saturation_value-pointer"
@@ -705,12 +709,14 @@ const Hue: React.FC<HueProps> = React.memo(({ className, hue, onChange }) => {
   const handleKey = (offset: Interaction) => {
     onChange({ h: clamp(hue + offset.left * 360, 0, 360) });
   };
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const nodeClassName = classes(['react-colorful__hue', className]);
 
   return (
     <div className={nodeClassName}>
       <Interactive
+        containerRef={containerRef}
         onMove={handleMove}
         onKey={handleKey}
         aria-label="Hue"
@@ -756,10 +762,12 @@ const Saturation: React.FC<SaturationProps> = React.memo(
         })}, ${hsvaToHslString({ h: color.h, s: 100, v: color.v, a: 1 })})`,
       [color],
     );
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className={nodeClassName}>
         <Interactive
+          containerRef={containerRef}
           style={{ background }}
           onMove={handleMove}
           onKey={handleKey}
@@ -814,10 +822,12 @@ const Value: React.FC<ValueProps> = React.memo(
         })}, ${hsvaToHslString({ h: color.h, s: color.s, v: 100, a: 1 })})`,
       [color],
     );
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className={nodeClassName}>
         <Interactive
+          containerRef={containerRef}
           style={{
             background,
           }}
@@ -872,10 +882,12 @@ const RGBSlider: React.FC<RGBSliderProps> = React.memo(
     };
 
     const selected = channels[target];
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className={nodeClassName}>
         <Interactive
+          containerRef={containerRef}
           onMove={handleMove}
           onKey={handleKey}
           aria-valuenow={rgb[target]}
