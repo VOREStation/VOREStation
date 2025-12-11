@@ -82,14 +82,15 @@
 // change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
 	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE	// hide if floor is intact
-	if(flags & ATOM_INITIALIZED) // Do not call update_icon before init. hide might be called before
-		update_icon()
+	update_icon()
 
 // update actual icon_state depending on visibility
 // if invisible, append "f" to icon_state to show faded version
 // this will be revealed if a T-scanner is used
 // if visible, use regular icon_state
 /obj/structure/disposalpipe/update_icon()
+	if(!(flags & ATOM_INITIALIZED)) // Do not call update_icon before init. E.g. hide might be called before
+		return
 /*	if(invisibility)	//we hide things with alpha now, no need for transparent icons
 		icon_state = "[base_icon_state]f"
 	else
