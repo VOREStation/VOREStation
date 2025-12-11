@@ -30,8 +30,9 @@
 			health_percent = 0 //Crit already has its own negative effects, so
 		var/amount_damaged = 100 - health_percent //Get the percent
 		if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
-			amount_damaged = max(0, amount_damaged - src.chem_effects[CE_PAINKILLER])
-		if(amount_damaged >= 40) //Still in enough pain for it to be significant?
+			var/painkiller_strength = CLAMP(chem_effects[CE_PAINKILLER], -500, 50) //Only reduce up to 50% of the maximum pain you can take. Painkillers are only so effective.
+			amount_damaged = max(0, amount_damaged - painkiller_strength)
+		if(amount_damaged >= 25) //Still in enough pain for it to be significant?
 			. += CLAMP((amount_damaged / 25), 0, 4) //Max of 4 slowdown from pain.
 
 	var/hungry = (500 - nutrition) / 5 //Fixed 500 here instead of our huge MAX_NUTRITION
