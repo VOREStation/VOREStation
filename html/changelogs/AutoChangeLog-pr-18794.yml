@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Added TG-like anomalies"
+  - rscadd: "Added anomaly cores"
