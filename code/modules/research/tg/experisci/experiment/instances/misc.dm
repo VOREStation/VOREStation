@@ -1,17 +1,4 @@
 
-///Example of a destructive experiment.
-/datum/experiment/scanning/random/artifact_destruction
-	name = "Artifact Analysis"
-	description = "Destroy some artifacts"
-	possible_types = list(/obj/item/research_sample/common)
-	total_requirement = 3
-	traits = EXPERIMENT_TRAIT_DESTRUCTIVE
-	exp_tag = "Physical Experiment"
-
-/datum/experiment/scanning/random/artifact_destruction/serialize_progress_stage(atom/target, list/seen_instances)
-	return EXPERIMENT_PROG_INT("Destroy artifacts.", \
-		traits & EXPERIMENT_TRAIT_DESTRUCTIVE ? scanned[target] : seen_instances.len, required_atoms[target])
-
 /datum/experiment/scanning/random/janitor_trash
 	name = "Station Hygiene Inspection"
 	description = "To learn how to clean, we must first learn what it is to have filth. We need you to scan some filth around the station."
