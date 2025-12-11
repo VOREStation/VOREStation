@@ -82,7 +82,7 @@
 // change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
 	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE	// hide if floor is intact
-	if(flags & ATOM_INITIALIZED) // Do not call update_icon before init. hide mide be called before
+	if(flags & ATOM_INITIALIZED) // Do not call update_icon before init. hide might be called before
 		update_icon()
 
 // update actual icon_state depending on visibility
