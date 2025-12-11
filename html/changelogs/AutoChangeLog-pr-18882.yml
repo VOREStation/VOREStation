@@ -1,0 +1,4 @@
+author: "Asher-42"
+delete-after: True
+changes:
+  - rscadd: "Fixes the insivible head issue for dullahans\nChange/fix: removed neck light cover from frame option 2 to show the neck light"
