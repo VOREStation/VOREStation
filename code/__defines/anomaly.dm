@@ -11,9 +11,9 @@
  */
 
 ///Time in seconds before anomaly spawns
-#define ANOMALY_START_MEDIUM_TIME (6 EVENT_SECONDS)
+#define ANOMALY_START_MEDIUM_TIME (6 SECONDS)
 ///Time in seconds before anomaly is announced
-#define ANOMALY_ANNOUNCE_MEDIUM_TIME (2 EVENT_SECONDS)
+#define ANOMALY_ANNOUNCE_MEDIUM_TIME (2 SECONDS)
 ///Let them know how far away the anomaly is
 #define ANOMALY_ANNOUNCE_MEDIUM_TEXT "long range scanners. Expected location:"
 
@@ -22,9 +22,9 @@
  */
 
 ///Time in seconds before anomaly spawns
-#define ANOMALY_START_HARMFUL_TIME (2 EVENT_SECONDS)
+#define ANOMALY_START_HARMFUL_TIME (2 SECONDS)
 ///Time in seconds before anomaly is announced
-#define ANOMALY_ANNOUNCE_HARMFUL_TIME (30 EVENT_SECONDS)
+#define ANOMALY_ANNOUNCE_HARMFUL_TIME (30 SECONDS)
 ///Let them know how far away the anomaly is
 #define ANOMALY_ANNOUNCE_HARMFUL_TEXT "localized scanners. Detected location:"
 
@@ -33,9 +33,9 @@
  */
 
 ///Time in seconds before anomaly spawns
-#define ANOMALY_START_DANGEROUS_TIME (2 EVENT_SECONDS)
+#define ANOMALY_START_DANGEROUS_TIME (2 SECONDS)
 ///Time in seconds before anomaly is announced
-#define ANOMALY_ANNOUNCE_DANGEROUS_TIME (30 EVENT_SECONDS)
+#define ANOMALY_ANNOUNCE_DANGEROUS_TIME (30 SECONDS)
 ///Let them know how far away the anomaly is
 #define ANOMALY_ANNOUNCE_DANGEROUS_TEXT "localized scanners. Detected location:"
 
