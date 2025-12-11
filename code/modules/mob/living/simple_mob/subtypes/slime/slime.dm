@@ -80,8 +80,6 @@ var/list/_slime_default_emotes = list(
 	var/injection_amount = 5 // This determines how much.
 	var/mood = ":3" // Icon to use to display 'mood', as an overlay.
 
-	can_enter_vent_with = list(/obj/item/clothing/head, /obj/soulgem)
-
 	can_be_drop_prey = FALSE
 
 	species_sounds = "Slime"
@@ -108,6 +106,14 @@ var/list/_slime_default_emotes = list(
 	if(hat)
 		drop_hat()
 	return ..()
+
+/mob/living/silicon/robot/drone/ventcrawl_get_item_whitelist()
+	return list(
+		VENTCRAWL_BASE_WHITELIST,
+		VENTCRAWL_VORE_WHITELIST,
+		// Slime unique items
+		/obj/item/clothing/head,
+		)
 
 /mob/living/simple_mob/slime/death()
 	// Make dead slimes stop glowing.
