@@ -87,7 +87,6 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
-				spawn(10)
 				QDEL_IN(spark_system, 1 SECOND)
 		else if (E.is_broken())
 			stance_damage += 1
