@@ -195,6 +195,7 @@
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	M.bloodstr.add_reagent(id, removed * 0.25) //Medications that are dermal compatible use affect_touch. Those that aren't apply the reagent to the bloodstream at 25% efficiency.
 	return
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.

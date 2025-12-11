@@ -173,6 +173,18 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_MEDICAL)
 
+/datum/techweb_node/medigun_constant
+	id = TECHWEB_NODE_MEDIGUN_CONSTANT
+	display_name = "Medigun Backpack"
+	description = "A revised version of the ML3M series. This one features a cell-powered constant beam, and ability to charge it with chemicals."
+	prereq_ids = list(TECHWEB_NODE_MEDIGUN)
+	design_ids = list(
+		"medigun_constant"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_MEDICAL)
+	discount_experiments = list(/datum/experiment/scanning/people/hurt_medigun = TECHWEB_TIER_3_POINTS)
+
 /datum/techweb_node/nif
 	id = TECHWEB_NODE_NIF
 	display_name = "Nanite-Implant Frameworks"

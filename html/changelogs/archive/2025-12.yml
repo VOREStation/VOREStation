@@ -63,3 +63,85 @@
   Ryumi:
   - rscadd: Added a unicorn horn to character customization, (Sprite by opheliathedeadful
       on Discord.)
+2025-12-11:
+  Diana:
+  - qol: Jams Sensors now blocks all forms of tracking, such as GPS an tracking implants!
+  - spellcheck: Fixes a typo in the prisoner implant where tracking implants would
+      show up as chemical implants.
+  - bugfix: Non-rig suits (softsuits, voidsuits) no longer drain phasers energy
+  - spellcheck: Removes an unneeded space when you fail limb connection surgery
+  - bugfix: Fixes a bug where removing organs would use their op_name instead of their
+      actual name
+  - bugfix: Attaching a limb to someone when that limb has an attached child will
+      now attach its child as well.
+  - bugfix: When you cut a bone with a bonesaw, it now breaks
+  - bugfix: When you use the bonegel steps after cutting a bone with the bonesaw,
+      it now heals the bone.
+  - bugfix: Fixing an internal organ will no longer lead to it instantly dying of
+      germs
+  - bugfix: Water will no longer fix necrosis
+  - qol: You can now remove implants from the head if brain damage isn't fixed.
+  - qol: You no longer have to stop the bleeding to remove implants.
+  - balance: Gun circuits will no longer allow fire while obscured inside of items
+      such as crates, lockers, or bags.
+  - balance: Gun circuits will now have their complexity increased based on how large
+      the gun you place inside it is.
+  - code_imp: Cleans up the gun circuit code a little to use early returns.
+  - bugfix: Laser pointers can no longer be too strong and fail to flash someone's
+      eyes/EMP camera because of it
+  - bugfix: Laser pointering someone without eyes will no longer break the laser pointer
+      forever
+  - bugfix: You can no flash blind people with the laser pointer
+  - bugfix: Laser pointers now respect welding masks, welding goggles, and anything
+      else with normal flash immunity.
+  - bugfix: Laser pointers now take flash sensitivity into effect
+  - qol: Laser pointers now do their job better, dealing increasing damage and effects
+      based on severity.
+  - code_imp: Cleans up the laser pointer code to make it more easily readable.
+  - bugfix: You can take both growing & shrinking once more
+  - qol: Paralysis no longer KOs you. Instead, you are able to see and hear everything
+      going on around you, just not interact, move, or anything of that manner! Additionally,
+      you can not use 'me' while paralyzed, but can however use 'subtle!'
+  - bugfix: Medical patches no longer apply to the blood and result in topical medications
+      killing you.
+  - qol: Medications now apply at an efficiency of 25% into the bloodstream if a patch
+      is not a topical medication.
+  - qol: Fakedeath doesn't immediately out you via raising toxins damage under scanners.
+  - qol: Lichpowder no longer suffocates you to death.
+  - qol: Zombiepowder now does a much lower suffocation damage.
+  - rscadd: Adds a new way to make zombiepowder which uses 5u potassiumchlorophoride,
+      5u sleep toxin, 5u chloral, and 5u mercury for 2u of zombie powder.
+  - bugfix: Fakedeath now applies to PDA scanners as well
+  - bugfix: Medications that are dermal can now be used via patches again.
+  - bugfix: Status flags will no longer show above individuals that are mimicking
+      death.
+  - qol: Medications that are not dermal now are absorbed into the blood at 25% efficiency.
+  - code_imp: Gets rid of a unneeded proc in custom_emote
+  - bugfix: Fakdeath will no longer break medical scanners
+  Guti:
+  - rscadd: Added countdown effect for ghosts to look at different counting down objects
+  - code_imp: Added connect_containers and effect_remover component
+  - code_imp: Added connect_loc element
+  Kashargul:
+  - code_imp: tgui-core 5.5.10
+  - rscadd: continuous medigun
+  KillianKirilenko:
+  - qol: added missing medical coats and labcoat to loadouts
+  NickBelmont:
+  - rscadd: 'Four types of masquerade mask, ported over from Nova sector.
+
+      [/:cl:]
+
+      <img width="41" height="311" alt="M1" src="https://github.com/user-attachments/assets/6eaa6a54-b29f-4344-8c3a-cbd44d3b3d02"
+      />
+
+      <img width="47" height="304" alt="M2" src="https://github.com/user-attachments/assets/6e5aa4fd-0ee0-4b3b-b647-9a8fe4b06895"
+      />
+
+      <img width="37" height="310" alt="M3" src="https://github.com/user-attachments/assets/a903a215-ae12-450c-8f0e-d4837dd8d48a"
+      />
+
+      <img width="35" height="302" alt="M4" src="https://github.com/user-attachments/assets/d970974a-b52b-48b6-b7d4-73c5da84e8e7"
+      />'
+  Will:
+  - balance: Ice slips you repeatedly instead of a set distance

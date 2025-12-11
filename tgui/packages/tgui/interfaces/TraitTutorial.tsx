@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Section, Stack, Tabs } from 'tgui-core/components';
