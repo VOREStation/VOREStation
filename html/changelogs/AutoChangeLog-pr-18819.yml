@@ -1,0 +1,5 @@
+author: "Nova"
+delete-after: True
+changes:
+  - bugfix: "Fix shadekin voices always being known in phase."
+  - qol: "Add ability to reveal/hide voice in shadekin control panel."
