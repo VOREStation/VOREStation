@@ -18,6 +18,18 @@
 /turf/simulated/wall/cultify()
 	cultify_wall()
 
+/turf/simulated/shuttle/wall/alien/cultify()
+	return
+
+/turf/simulated/flesh/cultify()
+	return
+
+/turf/simulated/gore/cultify() //The flesh is too strong for your occult magic.
+	return
+
+/turf/simulated/goreeyes/cultify()
+	return
+
 /turf/simulated/wall/cult/cultify()
 	return
 

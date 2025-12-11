@@ -193,7 +193,7 @@
 	update_icon()
 
 /obj/machinery/reagent_refinery/furnace/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
-	// pumps, furnaces and filters can only be FED in a straight line
+	// pumps, furnaces, splitters and filters can only be FED in a straight line
 	if(source_forward_dir != dir)
 		return 0
 	. = ..(origin_machine, RT, source_forward_dir, transfer_rate, filter_id)

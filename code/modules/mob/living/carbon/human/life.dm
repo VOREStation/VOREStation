@@ -1255,7 +1255,7 @@
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
+			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
 				handle_hallucinations()
 				/* Stop spinning the view, it breaks too much.
 				if(client && prob(5))
@@ -1305,8 +1305,8 @@
 					var/fear_other = pick(fear_message_other)
 					visible_message(span_notice("\The [src][fear_other]"),span_warning("[fear_self]"))
 
-		if(paralysis || sleeping)
-			blinded = 1
+		if(sleeping)
+			blinded = TRUE
 			set_stat(UNCONSCIOUS)
 			animate_tail_reset()
 			adjustHalLoss(-3)

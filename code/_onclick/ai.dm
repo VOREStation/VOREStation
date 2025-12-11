@@ -100,8 +100,8 @@
 		return
 	..()
 
-/mob/living/silicon/ai/CtrlClickOn(var/atom/A)
-	if(!control_disabled && A.AICtrlClick(src))
+/mob/living/silicon/ai/CtrlClickOn(atom/A)
+	if(!control_disabled && A.ctrl_click_ai(src))
 		return
 	..()
 
@@ -120,7 +120,7 @@
 	I have no idea why it was in atoms.dm instead of respective files.
 */
 
-/atom/proc/AICtrlShiftClick()
+/atom/proc/AIclick_ctrl_shift()
 	return
 
 /atom/proc/AIShiftClick()
@@ -131,26 +131,26 @@
 	user_toggle_open(user)
 	return 1
 
-/atom/proc/AICtrlClick(mob/user)
+/atom/proc/ctrl_click_ai(mob/user)
 	return
 
-/obj/machinery/door/airlock/AICtrlClick(mob/user) // Bolts doors
+/obj/machinery/door/airlock/ctrl_click_ai(mob/user) // Bolts doors
 	add_fingerprint(user)
 	toggle_bolt(user)
 	return 1
 
-/obj/machinery/power/apc/AICtrlClick(mob/user) // turns off/on APCs.
+/obj/machinery/power/apc/ctrl_click_ai(mob/user) // turns off/on APCs.
 	add_fingerprint(user)
 	toggle_breaker()
 	return 1
 
-/obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
+/obj/machinery/turretid/ctrl_click_ai() //turns off/on Turrets
 	enabled = !enabled
 	updateTurrets()
 	return TRUE
 
 /atom/proc/AIAltClick(var/atom/A)
-	return AltClick(A)
+	return click_alt(A)
 
 /obj/machinery/door/airlock/AIAltClick(mob/user) // Electrifies doors.
 	add_fingerprint(user)

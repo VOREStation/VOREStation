@@ -446,7 +446,7 @@
 	if(!istype(tasted))
 		return
 
-	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT) || is_paralyzed())
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -493,7 +493,7 @@
 
 	if(!istype(smelled))
 		return
-	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT) || is_paralyzed())
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -780,7 +780,7 @@
 	set category = "Abilities.General"
 	set desc = "Toggle your glowing on/off!"
 
-	if(stat || paralysis || weakened || stunned || world.time < last_special)
+	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
@@ -812,7 +812,7 @@
 	set category = "Abilities.Vore"
 	set desc = "Consume held garbage."
 
-	if(stat || paralysis || weakened || stunned || world.time < last_special)
+	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
@@ -1059,10 +1059,13 @@
 		dat += span_bold("Affected by temperature:") + " [allowtemp ? span_green("Enabled") : span_red("Disabled")]<br>"
 		dat += span_bold("Autotransferable:") + " [autotransferable ? span_green("Enabled") : span_red("Disabled")]<br>"
 		dat += span_bold("Can be stripped:") + " [strip_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
+		dat += span_bold("Worn items can be contaminated:") + " [contaminate_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
 		dat += span_bold("Applying reagents:") + " [apply_reagents ? span_green("Allowed") : span_red("Disallowed")]<br>"
 		dat += span_bold("Leaves Remains:") + " [digest_leave_remains ? span_green("Enabled") : span_red("Disabled")]<br>"
-	dat += span_bold("Spontaneous vore prey:") + " [can_be_drop_prey ? span_green("Enabled") : span_red("Disabled")]<br>"
+		dat += span_bold("Spontaneous vore prey:") + " [can_be_drop_prey ? span_green("Enabled") : span_red("Disabled")]<br>"
+		dat += span_bold("AFK/Disconnected vore prey:") + " [can_be_afk_prey ? span_green("Enabled") : span_red("Disabled")]<br>"
 	dat += span_bold("Spontaneous vore pred:") + " [can_be_drop_pred ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("AFK/Disconnected vore pred:") + " [can_be_afk_pred ? span_green("Enabled") : span_red("Disabled")]<br>"
 	if(can_be_drop_prey || can_be_drop_pred)
 		dat += span_bold("Drop Vore:") + " [drop_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
 		dat += span_bold("Slip Vore:") + " [slip_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
@@ -1370,7 +1373,7 @@
 	set desc = "Transfer liquid from an organ to another or stomach, or into another person or container."
 	set popup_menu = FALSE
 
-	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_KNOCKOUT) || is_paralyzed())
 		return FALSE
 
 	var/mob/living/user = src

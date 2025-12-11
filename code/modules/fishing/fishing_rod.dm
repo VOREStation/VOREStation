@@ -38,7 +38,7 @@
 		. += span_notice("It has [Bait] hanging on its hook: ")
 		. += Bait.examine(user)
 
-/obj/item/material/fishing_rod/CtrlClick(mob/user)
+/obj/item/material/fishing_rod/item_ctrl_click(mob/user)
 	if((src.loc == user || Adjacent(user)) && Bait)
 		Bait.forceMove(get_turf(user))
 		to_chat(user, span_notice("You remove the bait from \the [src]."))

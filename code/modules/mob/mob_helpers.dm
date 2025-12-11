@@ -470,6 +470,8 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 	if(subject && subject.forbid_seeing_deadchat && !check_rights_for(subject.client, R_HOLDER))
 		return // Can't talk in deadchat if you can't see it.
+	if(ismob(subject))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DEAD_SAY, subject, message)
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (check_rights_for(M.client, R_HOLDER) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
@@ -712,14 +714,14 @@ var/list/global/organ_rel_size = list(
 	SHOULD_CALL_PARENT(TRUE)
 	if(!client)
 		return FALSE
-	if(SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_HUD) & COMSIG_COMPONENT_HANDLED_HUD)
+	if(SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD) & COMSIG_COMPONENT_HANDLED_HUD)
 		return FALSE
 	return TRUE
 
 /// Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
 /mob/proc/handle_vision()
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_VISION)
+	SEND_SIGNAL(src,COMSIG_MOB_HANDLE_VISION)
 
 //Icon is used to occlude things like huds from the faulty byond context menu.
 //   http://www.byond.com/forum/?post=2336679

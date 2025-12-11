@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - refactor: "Ventcrawl item whitelist is now a proc instead of a list instantiated on every single mob in the world"
+  - bugfix: "promies and proteans properly reequip their radio when they return to human form from blob"

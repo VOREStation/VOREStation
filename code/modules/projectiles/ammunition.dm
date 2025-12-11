@@ -265,7 +265,7 @@ GLOBAL_LIST_EMPTY(magazine_icondata_states)
 	drop_sound = 'sound/items/drop/matchbox.ogg'
 	pickup_sound = 'sound/items/pickup/matchbox.ogg'
 
-/obj/item/ammo_magazine/ammo_box/AltClick(mob/user)
+/obj/item/ammo_magazine/ammo_box/click_alt(mob/user)
 	if(can_remove_ammo)
 		if(isliving(user) && Adjacent(user))
 			if(stored_ammo.len)

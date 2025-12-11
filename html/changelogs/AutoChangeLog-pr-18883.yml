@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "some bad flag compares"
+  - bugfix: "disposal template loading being broken"

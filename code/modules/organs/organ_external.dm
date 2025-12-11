@@ -737,13 +737,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		handle_germ_effects()
 
 /obj/item/organ/external/proc/handle_germ_sync()
+	if(owner && isbelly(owner.loc)) //If we're in a belly, just skip infection spreading. This leads to extended vore scenes killing via infection.
+		return
 	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
-		if (owner.germ_level > W.germ_level && W.infection_check())
+		if(owner.germ_level > W.germ_level && W.infection_check())
 			W.germ_level++
 
-	if (antibiotics < ANTIBIO_NORM)
+	if(!antibiotics)
 		for(var/datum/wound/W in wounds)
 			//Infected wounds raise the organ's germ level
 			if (W.germ_level > germ_level)

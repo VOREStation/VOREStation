@@ -1685,6 +1685,28 @@
 	name = "Anteater tail"
 	icon_state = "anteater_tail"
 
+/datum/sprite_accessory/tail/longtail/brush
+	name = "Snake Tail with Brush"
+	icon_state = "bigsnaketailbrush"
+	extra_overlay = "bigsnaketailbrush_brush"
+
+/datum/sprite_accessory/tail/longtail/brushscutes
+	name = "Snake Tail with Brush and Scutes"
+	icon_state = "bigsnaketailbrushunder"
+	extra_overlay = "bigsnaketailbrushunder_scutes"
+	extra_overlay2 = "bigsnaketailbrush_brush"
+
+/datum/sprite_accessory/tail/longtail/clawscutes
+	name = "Snake Tail with Claw and Scutes"
+	icon_state = "bigsnaketailbrushunder"
+	extra_overlay = "bigsnaketailbrushunder_scutes"
+	extra_overlay2 = "bigsnaketailclaw_claw"
+
+/datum/sprite_accessory/tail/longtail/claw
+	name = "Snake Tail with Claw"
+	icon_state = "bigsnaketailbrush"
+	extra_overlay = "bigsnaketailclaw_claw"
+
 
 /datum/sprite_accessory/tail/small_bugbum
 	name = "Bug Abdomen, Alt, Small (Dual-Color)"
