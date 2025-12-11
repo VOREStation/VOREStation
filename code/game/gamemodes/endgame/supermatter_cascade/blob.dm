@@ -10,55 +10,19 @@
 	//l_color="#0066FF"
 	plane = PLANE_LIGHTING_ABOVE
 
-	var/spawned=0 // DIR mask
-	var/next_check=0
-	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
-
-/turf/unsimulated/wall/supermatter/Initialize(mapload)
+/turf/unsimulated/wall/supermatter/conversion_cascade_act(list/already_marked_turfs)
+	// Do pretty fadeout animation for the new turf
 	. = ..()
-	START_PROCESSING(SSturfs, src)
-	next_check = world.time+5 SECONDS
-
-/turf/unsimulated/wall/supermatter/Destroy()
-	STOP_PROCESSING(SSturfs, src)
-	return ..()
-
-/turf/unsimulated/wall/supermatter/process()
-	// Only check infrequently.
-	if(next_check>world.time) return
-
-	// No more available directions? Shut down process().
-	if(avail_dirs.len==0)
-		STOP_PROCESSING(SSobj, src)
-		return 1
-
-	// We're checking, reset the timer.
-	next_check = world.time+5 SECONDS
-
-	// Choose a direction.
-	var/pdir = pick(avail_dirs)
-	avail_dirs -= pdir
-	var/turf/T=get_step(src,pdir)
-
-	// EXPAND
-	if(!istype(T,type))
-		// Do pretty fadeout animation for 1s.
-		new /obj/effect/overlay/bluespacify(T)
-		spawn(10)
-			// Nom.
-			for(var/atom/movable/A in T)
-				if(A)
-					if(isliving(A))
-						qdel(A)
-					else if(istype(A,/mob)) // Observers, AI cameras.
-						continue
-					else
-						qdel(A)
-			T.ChangeTurf(type)
-
-	if((spawned & (NORTH|SOUTH|EAST|WEST)) == (NORTH|SOUTH|EAST|WEST))
-		STOP_PROCESSING(SSturfs, src)
-		return
+	for(var/turf/valid_turf in .)
+		new /obj/effect/overlay/bluespacify(valid_turf)
+	// Consume everything in our turf
+	for(var/atom/movable/A in src)
+		if(isliving(A))
+			qdel(A)
+			continue
+		if(istype(A,/mob)) // Observers, AI cameras.
+			continue
+		qdel(A)
 
 /turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
 	return attack_hand(user)
@@ -117,3 +81,7 @@
 		return
 
 	qdel(user)
+
+
+/turf/unsimulated/wall/supermatter/ex_act(severity)
+	return
