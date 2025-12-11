@@ -59,7 +59,10 @@ var/list/ventcrawl_machinery = list(
 			return TRUE
 	//Try to find it in our allowed list (istype includes subtypes)
 	var/listed = FALSE
-	for(var/test_type in ventcrawl_get_item_whitelist())
+	var/list/vent_allow = ventcrawl_get_item_whitelist()
+	if(islist(ventcraw_item_admin_allow)) // If mob has a list varedited onto it, we allow anything in this list as well
+		vent_allow += ventcraw_item_admin_allow
+	for(var/test_type in vent_allow)
 		if(istype(carried_item,test_type))
 			listed = TRUE
 			break
