@@ -593,7 +593,7 @@
 						S.dullahan_overlays[S.dullahan_overlays[6]] = tempcolor
 					else
 						S.dullahan_overlays[6] = extraoff
-						s.dullahan_overlays[S.dullahan_overlays[6]] = "#FFFFFF"
+						S.dullahan_overlays[S.dullahan_overlays[6]] = "#FFFFFF"
 				if("Eyes")
 					options = dullahaneyes_styles
 					for(var/option in options)
