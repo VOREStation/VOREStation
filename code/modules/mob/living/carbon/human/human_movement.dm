@@ -28,7 +28,7 @@
 	if(health_percent <= 60) //Fell below 40% health
 		if(health_percent < 0)
 			health_percent = 0 //Crit already has its own negative effects, so
-		var/amount_damaged = 100 - health_deficiency //Get the percent
+		var/amount_damaged = 100 - health_percent //Get the percent
 		if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
 			amount_damaged = max(0, amount_damaged - src.chem_effects[CE_PAINKILLER])
 		if(amount_damaged >= 40) //Still in enough pain for it to be significant?
