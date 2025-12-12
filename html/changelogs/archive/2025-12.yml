@@ -145,3 +145,31 @@
       />'
   Will:
   - balance: Ice slips you repeatedly instead of a set distance
+2025-12-12:
+  Asher-42:
+  - rscadd: 'Fixes the insivible head issue for dullahans
+
+      Change/fix: removed neck light cover from frame option 2 to show the neck light'
+  Cameron-The-Raven:
+  - qol: You can now eat monkeys via eating the cube directly instead of having to
+      wet it then eat it to avoid being chestbusted
+  Guti:
+  - rscadd: Added TG-like anomalies
+  - rscadd: Added anomaly cores
+  Kashargul:
+  - bugfix: some bad flag compares
+  - bugfix: disposal template loading being broken
+  Nova:
+  - bugfix: Fix shadekin voices always being known in phase.
+  - qol: Add ability to reveal/hide voice in shadekin control panel.
+  Will:
+  - refactor: Ventcrawl item whitelist is now a proc instead of a list instantiated
+      on every single mob in the world
+  - bugfix: promies and proteans properly reequip their radio when they return to
+      human form from blob
+  zeskorion:
+  - balance: Pulled punches are now affected by species brutemod, and don't have an
+      inherent damage bonus
+  - balance: Pulled punches no longer use species unarmed bonus. You're holding back,
+      not hitting with full strength
+  - bugfix: xenochimerae cannot pull their special unarmed attack when feral
