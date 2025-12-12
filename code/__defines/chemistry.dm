@@ -37,7 +37,7 @@
 #define CE_ALCOHOL_TOXIC "alcotoxic" // Liver damage
 #define CE_SPEEDBOOST "gofast" // Hyperzine
 #define CE_SLOWDOWN "goslow" // Slowdown
-#define CE_NARCOTICS "narcotics" // Narcotics. These slow you down but allow you to ignore pain.
+#define CE_NARCOTICS "narcotics" // Narcotics. Ignore pain slowdown entirely.
 #define CE_ANTACID "nopuke" // Don't puke.
 #define CE_ALLERGEN "allergyreaction" // Self explanatory
 #define CE_DARKSIGHT "darksight" // Gives perfect vision in dark
