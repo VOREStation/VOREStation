@@ -34,11 +34,13 @@
 		if(health_percent < 0)
 			health_percent = 0 //Crit already has its own negative effects, so
 
-		var/amount_damaged = 100 - health_percent + hal_pain //Get the percent and then add our halloss ontop of it.
+		var/amount_damaged = 100 - health_percent //Get the percent.
 
 		if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
-			var/painkiller_strength = CLAMP(chem_effects[CE_PAINKILLER], -500, 50) //Only reduce up to 50% of the maximum pain you can take. Painkillers are only so effective.
-			amount_damaged = max(0, amount_damaged - painkiller_strength)
+			var/painkiller_strength = chem_effects[CE_PAINKILLER]
+
+			hal_pain = max(0, hal_pain - (painkiller_strength * 0.33)) //Painkillers are only 33% effective against halloss pain.
+			amount_damaged = max(0, amount_damaged - painkiller_strength) + hal_pain
 
 		else if(amount_damaged >= 25) //Still in enough pain for it to be significant?
 			. += CLAMP((amount_damaged / 25), 0, 4) //Max of 4 slowdown from pain.
