@@ -589,6 +589,7 @@
 		M.stuttering = min(50, max(0, M.stuttering + 5)) //If you can't feel yourself, and your main mode of speech is resonation, there's a problem.
 	M.add_chemical_effect(CE_PAINKILLER, 200 * chem_effective)
 	M.add_chemical_effect(CE_SLOWDOWN, 1)
+	M.add_chemical_effect(CE_NARCOTICS, 1)
 	M.eye_blurry = min(M.eye_blurry + 10, 250 * chem_effective)
 
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
