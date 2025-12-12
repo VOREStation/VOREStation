@@ -144,7 +144,7 @@
 		if(!(loc == user) || (loc && loc.loc == user))
 			return
 
-		if(user.restrained() || user.stat || user.is_paralyzed() || !user.incapacitated(INCAPACITATION_KNOCKOUT))
+		if(user.restrained() || user.stat || user.is_paralyzed() || user.incapacitated(INCAPACITATION_KNOCKOUT))
 			return
 
 		if((loc == user) && !(istype(over_object, /atom/movable/screen)) && !user.unEquip(src))
