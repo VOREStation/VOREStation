@@ -47,7 +47,8 @@
 		/obj/item/seeds/whitebeetseed = 3,
 		/obj/item/seeds/wurmwoad = 3,
 		/obj/item/seeds/shrinkshroom = 3,
-		/obj/item/seeds/megashroom = 3)
+		/obj/item/seeds/megashroom = 3,
+		/obj/item/seeds/smoles = 3)
 
 /obj/machinery/seed_storage/xenobotany
 	name = "Xenobotany seed storage"
@@ -106,4 +107,5 @@
 		/obj/item/seeds/whitebeetseed = 3,
 		/obj/item/seeds/wurmwoad = 3,
 		/obj/item/seeds/shrinkshroom = 3,
-		/obj/item/seeds/megashroom = 3)
+		/obj/item/seeds/megashroom = 3,
+		/obj/item/seeds/smoles = 3)
