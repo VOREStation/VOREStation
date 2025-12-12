@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - code_imp: "Made anomalies defines use SECONDS instead of EVENT_SECONDS"
