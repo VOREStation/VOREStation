@@ -17,10 +17,16 @@
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
+	var/scan_level = 3 //One scan level for every scanning_module
 
 /obj/machinery/bodyscanner/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+
+/obj/machinery/bodyscanner/RefreshParts()
+	scan_level = 0
+	for(var/obj/item/stock_parts/scanning_module/P in component_parts)
+		scan_level += P.rating
 
 /obj/machinery/bodyscanner/Destroy()
 	if(console)
@@ -250,6 +256,8 @@
 		var/reagentData[0]
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
+				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+					continue
 				reagentData[++reagentData.len] = list(
 					"name" = R.name,
 					"amount" = R.volume,
@@ -508,10 +516,14 @@
 
 		if(occupant.reagents)
 			for(var/datum/reagent/R in occupant.reagents.reagent_list)
+				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+					continue
 				dat += "Reagent: [R.name], Amount: [R.volume]<br>"
 
 		if(occupant.ingested)
 			for(var/datum/reagent/R in occupant.ingested.reagent_list)
+				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+					continue
 				dat += "Stomach: [R.name], Amount: [R.volume]<br>"
 
 		dat += "<hr><table border='1'>"
