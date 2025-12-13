@@ -46,7 +46,10 @@
 	else
 		..()
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(var/mob/user)
+/obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(installed_gun)
 		installed_gun.forceMove(get_turf(src))
 		to_chat(user, span_notice("You slide \the [installed_gun] out of the firing mechanism."))
@@ -191,7 +194,10 @@
 	else
 		..()
 
-/obj/item/integrated_circuit/manipulation/grenade/attack_self(var/mob/user)
+/obj/item/integrated_circuit/manipulation/grenade/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(attached_grenade)
 		user.visible_message(span_warning("\The [user] removes \an [attached_grenade] from \the [src]!"), span_notice("You remove \the [attached_grenade] from \the [src]."))
 		user.put_in_any_hand_if_possible(attached_grenade) || attached_grenade.dropInto(loc)

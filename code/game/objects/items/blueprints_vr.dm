@@ -116,6 +116,9 @@
 		..()
 
 /obj/item/areaeditor/attack_self(mob/user) //Convert this to TGUI some time.
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 	. = "<BODY><HTML><head><title>[src]</title></head> \
 				<h2>[station_name()] [src.name]</h2>"
@@ -177,6 +180,9 @@
 	var/legend = 1
 
 /obj/item/wire_reader/attack_self(mob/user) //Convert this to TGUI some time.
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 	. = "<BODY><HTML><head><title>[src]</title></head> \
 				<h2>[station_name()] [src.name]</h2>"
@@ -247,7 +253,9 @@
 
 
 /obj/item/areaeditor/blueprints/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
+	if(. == 1) //I hate this so much.
+		return TRUE
 	var/area/A = get_area(user)
 	if(!legend)
 		if(get_area_type() == AREA_STATION)

@@ -11,7 +11,15 @@
 	var/max_uses = 5
 	var/op = 1
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/spellbook/attack_self(mob/user = usr)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(!user)
 		return
 	if((user.mind && !wizards.is_antagonist(user.mind)))
@@ -250,12 +258,16 @@
 	uses = 1
 	max_uses = 1
 	desc = "This template spellbook was never meant for the eyes of man..."
+	special_handling = TRUE
 
 /obj/item/spellbook/oneuse/Initialize(mapload)
 	. = ..()
 	name += spellname
 
-/obj/item/spellbook/oneuse/attack_self(mob/user as mob)
+/obj/item/spellbook/oneuse/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/spell/S = new spell(user)
 	for(var/spell/knownspell in user.spell_list)
 		if(knownspell.type == S.type)

@@ -13,6 +13,12 @@
 
 	var/stored_name
 	var/badge_string = "Corporate Security"
+	special_handling = TRUE
+	///var for attack_self chain
+	var/sheriff_badge = FALSE
+	///Another var for attack_self chain
+	var/fluff_badge = FALSE
+	var/holo = FALSE
 
 /obj/item/clothing/accessory/badge/proc/set_name(var/new_name)
 	stored_name = new_name
@@ -20,9 +26,20 @@
 
 /obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/carbon/human/H)
 
-/obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/badge/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(sheriff_badge)
+		return FALSE
+	if(fluff_badge)
+		return FALSE
 	if(!stored_name)
-		to_chat(user, "You polish your old badge fondly, shining up the surface.")
+		if(holo)
+			to_chat(user, "Waving around a holobadge before swiping an ID would be pretty pointless.")
+			return
+		else
+			to_chat(user, "You polish your old badge fondly, shining up the surface.")
 		set_name(user.real_name)
 		return
 
@@ -81,16 +98,11 @@
 	icon_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
 	var/valid_access = list(ACCESS_SECURITY) //Default access is security, to be overriden or expanded as desired
+	holo = TRUE
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
 	slot_flags = SLOT_MASK | SLOT_TIE | SLOT_BELT
-
-/obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
-	if(!stored_name)
-		to_chat(user, "Waving around a holobadge before swiping an ID would be pretty pointless.")
-		return
-	return ..()
 
 /obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
@@ -188,8 +200,13 @@
 	desc = "This town ain't big enough for the two of us, pardner."
 	icon_state = "sheriff_toy"
 	item_state = "sheriff_toy"
+	special_handling = TRUE
+	sheriff_badge = TRUE
 
-/obj/item/clothing/accessory/badge/sheriff/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/badge/sheriff/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.visible_message("[user] shows their sheriff badge. There's a new sheriff in town!",\
 		"You flash the sheriff badge to everyone around you!")
 

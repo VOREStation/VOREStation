@@ -31,6 +31,10 @@
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 	var/is_building = FALSE
 
+	var/custom_handling = FALSE
+	var/beacons = FALSE
+	var/sandbags = FALSE
+
 /obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
 	if(!stacktype)
@@ -84,6 +88,11 @@
 		. += get_examine_string()
 
 /obj/item/stack/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(custom_handling)
+		return FALSE
 	tgui_interact(user)
 
 /obj/item/stack/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)

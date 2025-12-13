@@ -1059,24 +1059,29 @@
 	body_parts_covered = CHEST
 	attack_verb = list("warned", "cautioned", "smashed")
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	special_handling = TRUE
 
-/obj/item/clothing/suit/caution/attack_self()
-	toggle()
+/obj/item/clothing/suit/caution/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	toggle(user)
 
-/obj/item/clothing/suit/caution/click_alt()
-	toggle()
+/obj/item/clothing/suit/caution/click_alt(mob/user)
+	toggle(user)
 
-/obj/item/clothing/suit/caution/proc/toggle()
-	if(!usr || usr.stat || usr.lying || usr.restrained() || !Adjacent(usr))	return
-	else if(src.icon_state == "caution")
-		src.icon_state = "caution_blinking"
-		src.item_state = "caution_blinking"
-		usr.show_message("You turn the wet floor sign on.")
+/obj/item/clothing/suit/caution/proc/toggle(mob/user)
+	if(!user || user.stat || user.lying || user.restrained() || !Adjacent(user))
+		return
+	else if(icon_state == "caution")
+		icon_state = "caution_blinking"
+		item_state = "caution_blinking"
+		user.show_message("You turn the wet floor sign on.")
 		playsound(src.loc, 'sound/machines/button.ogg', 30, 1)
 	else
-		src.icon_state = "caution"
-		src.item_state = "caution"
-		usr.show_message("You turn the wet floor sign off.")
+		icon_state = "caution"
+		item_state = "caution"
+		user.show_message("You turn the wet floor sign off.")
 	update_clothing_icon()
 
 //Ruin Marine (Doom Marine)

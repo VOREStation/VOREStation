@@ -180,17 +180,8 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_vox"
 	pokephrase = "Skreee!"
-	var/cooldown = FALSE
+	squeeze_sound = 'sound/voice/shriek1.ogg'
 
-/obj/item/toy/plushie/vox/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
-
-/obj/item/toy/plushie/vox/proc/cooldownreset()
-	cooldown = 0
 
 /obj/item/toy/plushie/ipc
 	name = "IPC plushie"
@@ -199,7 +190,7 @@
 	icon_state = "plushie_ipc"
 	bubble_icon = "synthetic"
 	pokephrase = "Ping!"
-	var/cooldown = 0
+	squeeze_sound = 'sound/machines/ping.ogg'
 
 /obj/item/reagent_containers/food/snacks/slice/bread
 	var/toasted = FALSE
@@ -233,13 +224,6 @@
 	else
 		return ..()
 
-/obj/item/toy/plushie/ipc/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/machines/ping.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
-
 /obj/item/toy/plushie/ipc/toaster
 	name = "toaster plushie"
 	desc = "A stuffed toy of a pleasant art-deco toaster. It has a small tag on it reading 'Bricker Home Appliances! All rights reserved, copyright 2298.' It's a tad heavy on account of containing a heating coil. Want to make toast?"
@@ -247,13 +231,7 @@
 	attack_verb = list("toasted", "burnt")
 	pokephrase = "Ding!"
 	bubble_icon = "machine"
-
-/obj/item/toy/plushie/ipc/toaster/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/machines/ding.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/machines/ding.ogg'
 
 /obj/item/toy/plushie/snakeplushie
 	name = "snake plushie"
@@ -275,26 +253,18 @@
 	desc = "An adorable plushie of NanoTrasen's Best Girl(TM) mascot. It smells faintly of paperwork."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "marketable_pip"
-	var/cooldown = FALSE
+	squeeze_sound = 'sound/effects/whistle.ogg'
 
 /obj/item/toy/plushie/marketable_pip/attackby(obj/item/I, mob/user)
 	var/obj/item/card/id/id = I.GetID()
-	if(istype(id) && !cooldown)
+	if(istype(id) && cooldown_timer < world.time)
 		var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
 		pokephrase = pick(responses)
 		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
 		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
 		say_phrase()
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
+		cooldown_timer = world.time + cooldown_length
 		return ..()
-
-/obj/item/toy/plushie/marketable_pip/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
 
 /obj/item/toy/plushie/moth
 	name = "moth plushie"
@@ -302,17 +272,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "moth"
 	pokephrase = "Aaaaaaa."
-	var/cooldown = FALSE
-
-/obj/item/toy/plushie/moth/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
-
-/obj/item/toy/plushie/moth/proc/cooldownreset()
-	cooldown = 0
+	squeeze_sound = 'sound/voice/moth/scream_moth.ogg'
 
 /obj/item/toy/plushie/crab
 	name = "crab plushie"
@@ -349,14 +309,7 @@
 	pokephrase = "Stab!"
 	bubble_icon = "security"
 	attack_verb = list("stabbed", "slashed")
-	var/cooldown = FALSE
-
-/obj/item/toy/plushie/sus/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/weapons/slice.ogg', 10, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/weapons/slice.ogg'
 
 /obj/item/toy/plushie/sus/blue
 	name = "blue spaceman plushie"
@@ -443,6 +396,9 @@
 	icon_state = "chewtoy_poly"
 
 /obj/item/toy/chewtoy/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
 	user.visible_message(span_notice(span_bold("\The [user]") + " gnaws on [src]!"),span_notice("You gnaw on [src]!"))
 
@@ -508,6 +464,9 @@
 	var/cooldown = 0
 
 /obj/item/toy/redbutton/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(cooldown < world.time)
 		cooldown = (world.time + 300) // Sets cooldown at 30 seconds
 		user.visible_message(span_warning("[user] presses the big red button."), span_notice("You press the button, it plays a loud noise!"), span_notice("The button clicks loudly."))
@@ -539,7 +498,12 @@
 	var/cooldown = 0
 	var/list/possible_answers = null
 
-/obj/item/toy/AI/attack_self(mob/user as mob)
+/obj/item/toy/AI/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(cooldown > world.time) //No, I'm not allowing you to spamclick this to do a search over GLOB.player_list
+		return
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
@@ -557,12 +521,6 @@
 			var/answer = pick(possible_answers)
 			user.visible_message(span_notice("[user] asks the AI core to state laws."))
 			user.visible_message(span_notice("[src] says \"[answer]\""))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
-		return ..()
-
-/obj/item/toy/AI/proc/cooldownreset()
-	cooldown = 0
 
 /*
  * Toy cuffs
@@ -602,6 +560,9 @@
 	var/cooldown = 0
 
 /obj/item/toy/nuke/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(cooldown < world.time)
 		cooldown = world.time + 1800 //3 minutes
 		user.visible_message(span_warning("[user] presses a button on [src]"), span_notice("You activate [src], it plays a loud noise!"), span_notice("You hear the click of a button."))
@@ -630,8 +591,14 @@
 	var/cooldown = 0
 	var/obj/stored_minature = null
 
-/obj/item/toy/minigibber/attack_self(mob/user)
+/obj/item/toy/minigibber/Destroy()
+	QDEL_NULL(stored_minature)
+	. = ..()
 
+/obj/item/toy/minigibber/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(stored_minature)
 		to_chat(user, span_danger("\The [src] makes a violent grinding noise as it tears apart the miniature figure inside!"))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
@@ -670,6 +637,9 @@
 	var/cooldown = 0
 
 /obj/item/toy/toy_xeno/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(cooldown <= world.time)
 		cooldown = (world.time + 50) //5 second cooldown
 		user.visible_message(span_notice("[user] pulls back the string on [src]."))
@@ -712,6 +682,9 @@
 	spin_cylinder()
 
 /obj/item/toy/russian_revolver/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!bullets_left)
 		user.visible_message(span_warning("[user] loads a bullet into [src]'s cylinder before spinning it."))
 		spin_cylinder()
@@ -802,12 +775,14 @@
 	attack_verb = list("sawed", "cut", "hacked", "carved", "cleaved", "butchered", "felled", "timbered")
 	var/cooldown = 0
 
-/obj/item/toy/chainsaw/attack_self(mob/user as mob)
+/obj/item/toy/chainsaw/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown)
 		playsound(user, 'sound/weapons/chainsaw_startup.ogg', 10, 0)
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
-	return ..()
 
 /obj/item/toy/chainsaw/proc/cooldownreset()
 	cooldown = 0
@@ -841,7 +816,10 @@
 	if(prob(0.1))
 		real = 1
 
-/obj/item/toy/snake_popper/attack_self(mob/user as mob)
+/obj/item/toy/snake_popper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!popped)
 		to_chat(user, span_warning("A snake popped out of [src]!"))
 		if(real == 0)
@@ -1022,6 +1000,9 @@
 	return 1
 
 /obj/item/toy/desk/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	activate(user)
 
 /obj/item/toy/desk/click_alt(mob/user)
@@ -1090,7 +1071,10 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/toy/partypopper/attack_self(mob/user as mob)
+/obj/item/toy/partypopper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(icon_state == "partypopper")
 		user.visible_message(span_notice("[user] pulls on the string, releasing a burst of confetti!"), span_notice("You pull on the string, releasing a burst of confetti!"))
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
@@ -1165,6 +1149,9 @@
 	var/registered_mob //On request, only one person is able to use it at a time.
 
 /obj/item/toy/acorn_branch/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.stat || !ishuman(user))
 		return
 	if(world.time < next_use)
@@ -1192,6 +1179,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "reddragon"
 	var/cooldown = FALSE
+	special_handling = TRUE
 
 /obj/item/toy/plushie/dragon/Initialize(mapload)
 	. = ..()
@@ -1199,6 +1187,9 @@
 		pokephrase = pick("ROAR!", "RAWR!", "GAWR!", "GRR!", "GROAR!", "GRAH!", "Weh!", "Merp!")
 
 /obj/item/toy/plushie/dragon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown)
 		switch(pokephrase)
 			if("Weh!")

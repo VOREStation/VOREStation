@@ -45,6 +45,9 @@
 	thrown_force_divisor = 0.2 // 4 when thrown with weight 20 (steel)
 
 /obj/item/material/butterfly/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	active = !active
 	update_force()
 

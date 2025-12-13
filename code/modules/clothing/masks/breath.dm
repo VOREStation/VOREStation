@@ -12,6 +12,7 @@
 	actions_types = list(/datum/action/item_action/adjust_breath_mask)
 	pickup_sound = 'sound/items/pickup/component.ogg'
 	drop_sound = 'sound/items/drop/component.ogg'
+	special_handling = TRUE
 
 
 /obj/item/clothing/mask/breath/proc/adjust_mask(mob/user)
@@ -32,6 +33,9 @@
 		update_clothing_icon()
 
 /obj/item/clothing/mask/breath/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	adjust_mask(user)
 
 /obj/item/clothing/mask/breath/verb/toggle()

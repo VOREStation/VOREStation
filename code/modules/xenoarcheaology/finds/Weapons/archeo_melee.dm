@@ -160,8 +160,11 @@
 		last_touched = user
 		START_PROCESSING(SSobj, src)
 
-/obj/item/melee/artifact_blade/attack_self(mob/user as mob)
-	if(last_special > world.time - 120)
+/obj/item/melee/artifact_blade/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(last_special > world.time - 12 SECONDS)
 		to_chat(user, span_cult("The blade does not respond to your attempts, having recently performed an action!"))
 		return
 	last_special = world.time

@@ -53,6 +53,9 @@
 	return 0
 
 /obj/item/clothing/suit/armor/tesla/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	active = !active
 	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update_icon()
