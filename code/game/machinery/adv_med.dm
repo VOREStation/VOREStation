@@ -197,14 +197,27 @@
 				has_withdrawl = TRUE
 				break
 
-		occupantData["stat"] = H.stat
-		occupantData["health"] = H.health
+		//Vars used if we have FAKEDEATH status.
+		var/occupant_stat
+		var/occupant_health
+		var/oxygen_damage
+		if(H.status_flags & FAKEDEATH)
+			occupant_stat = DEAD
+			occupant_health = -200
+			oxygen_damage = max(H.getOxyLoss(), (300 - (H.getToxLoss() + H.getFireLoss() + H.getBruteLoss())))
+		else
+			occupant_stat = H.stat
+			occupant_health = H.health
+			oxygen_damage = H.getOxyLoss()
+
+		occupantData["stat"] = occupant_stat
+		occupantData["health"] = occupant_health
 		occupantData["maxHealth"] = H.getMaxHealth()
 
 		occupantData["hasVirus"] = H.isInfective()
 
 		occupantData["bruteLoss"] = H.getBruteLoss()
-		occupantData["oxyLoss"] = H.getOxyLoss()
+		occupantData["oxyLoss"] = oxygen_damage
 		occupantData["toxLoss"] = H.getToxLoss()
 		occupantData["fireLoss"] = H.getFireLoss()
 
@@ -409,7 +422,7 @@
 			var/mob/living/carbon/human/H = occupant
 			var/speciestext = H.species.name
 			if(H.custom_species)
-				if(H.species.name == SPECIES_CUSTOM )
+				if(H.species.name == SPECIES_CUSTOM)
 					// Fully custom species
 					speciestext = "[H.custom_species]"
 					dat += span_blue("Sapient Species: [speciestext]") + "<BR>"
@@ -430,8 +443,17 @@
 			else
 				t1 = "*dead*"
 		var/health_text = "\tHealth %: [(occupant.health / occupant.getMaxHealth())*100], ([t1])"
-		dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
-		dat += "<br>"
+		var/fake_oxy = max(occupant.getOxyLoss(), (300 - (occupant.getFireLoss() + occupant.getBruteLoss())))
+		var/fake_death = FALSE
+		if(occupant.status_flags & FAKEDEATH)
+			t1 = "*dead*"
+			health_text = "\tHealth %: -100, ([t1])"
+			fake_death = TRUE
+			dat += (span_red(health_text))
+			dat += "<br>"
+		else
+			dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
+			dat += "<br>"
 
 		if(occupant.IsInfected())
 			for(var/datum/disease/D in occupant.GetViruses())
@@ -444,9 +466,15 @@
 		damage_string = "\t-Brute Damage %: [occupant.getBruteLoss()]"
 		dat += (occupant.getBruteLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 		damage_string = "\t-Respiratory Damage %: [occupant.getOxyLoss()]"
-		dat += (occupant.getOxyLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
+		if(fake_death)
+			damage_string = "\t-Respiratory Damage %: [fake_oxy]"
+			dat += (span_red(damage_string)) + "<br>"
+		else
+			dat += (occupant.getOxyLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		damage_string = "\t-Toxin Content %: [occupant.getToxLoss()]"
+		if(fake_death)
+			damage_string = "\t-Toxin Content %: 0"
 		dat += (occupant.getToxLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		damage_string = "\t-Burn Severity %: [occupant.getFireLoss()]"
@@ -666,18 +694,7 @@
 		return attack_hand(user)
 
 /obj/machinery/body_scanconsole/power_change()
-	/* VOREStation Removal
-	if(stat & BROKEN)
-		icon_state = "body_scannerconsole-p"
-	else if(powered() && !panel_open)
-		icon_state = initial(icon_state)
-		stat &= ~NOPOWER
-	else
-		spawn(rand(0, 15))
-			icon_state = "body_scannerconsole-p"
-			stat |= NOPOWER
-	*/
-	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+	update_icon()
 
 /obj/machinery/body_scanconsole/ex_act(severity)
 	switch(severity)

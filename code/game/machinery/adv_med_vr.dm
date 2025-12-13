@@ -45,6 +45,8 @@
 	var/state
 	var/scan = TRUE
 	var/h_ratio = occupant.health / occupant.getMaxHealth()
+	if(occupant.status_flags & FAKEDEATH)
+		h_ratio = -1 //shows up dead
 	if(console)
 		console.update_icon(h_ratio)
 
