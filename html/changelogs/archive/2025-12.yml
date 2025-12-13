@@ -174,3 +174,6 @@
   - balance: Pulled punches no longer use species unarmed bonus. You're holding back,
       not hitting with full strength
   - bugfix: xenochimerae cannot pull their special unarmed attack when feral
+2025-12-13:
+  Diana:
+  - bugfix: Fixes a bug that prevented moving/unremoving storage items
