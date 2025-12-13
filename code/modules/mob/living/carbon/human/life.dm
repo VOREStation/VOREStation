@@ -1655,7 +1655,7 @@
 	if(!. || !healths)
 		return
 
-	if(stat == DEAD) //Dead
+	if(stat == DEAD || (status_effects & FAKEDEATH)) //Dead
 		healths.icon_state = "health7"	//DEAD healthmeter
 		return
 
@@ -2091,7 +2091,7 @@
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = grab_hud(HEALTH_HUD)
 		var/image/health_us = grab_hud(HEALTH_VR_HUD)
-		if(stat == DEAD)
+		if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "-100" 	// X_X
 		else
 			holder.icon_state = RoundHealth((health-get_crit_point())/(getMaxHealth()-get_crit_point())*100)
@@ -2105,7 +2105,7 @@
 		var/image/holder = grab_hud(LIFE_HUD)
 		if(isSynthetic())
 			holder.icon_state = "hudrobo"
-		else if(stat == DEAD)
+		else if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
@@ -2120,7 +2120,7 @@
 		var/image/status_r = grab_hud(STATUS_R_HUD)
 		if (isSynthetic())
 			holder.icon_state = "hudrobo"
-		else if(stat == DEAD)
+		else if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(has_virus())
