@@ -243,7 +243,7 @@
 		var/reagentData[0]
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
-				if(!R.scannable && !(scan_level > 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
 					continue
 				reagentData[++reagentData.len] = list(
 					"name" = R.name,
@@ -488,13 +488,13 @@
 
 		if(occupant.reagents)
 			for(var/datum/reagent/R in occupant.reagents.reagent_list)
-				if(!R.scannable && !(scan_level > 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
 					continue
 				dat += "Reagent: [R.name], Amount: [R.volume]<br>"
 
 		if(occupant.ingested)
 			for(var/datum/reagent/R in occupant.ingested.reagent_list)
-				if(!R.scannable && !(scan_level > 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
 					continue
 				dat += "Stomach: [R.name], Amount: [R.volume]<br>"
 
