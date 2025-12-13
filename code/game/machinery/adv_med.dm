@@ -204,7 +204,7 @@
 		if(H.status_flags & FAKEDEATH)
 			occupant_stat = DEAD
 			occupant_health = -200
-			oxygen_damage = max(rand(1,40), H.getOxyLoss(), (300 - (H.getToxLoss() + H.getFireLoss() + H.getBruteLoss())))
+			oxygen_damage = max(H.getOxyLoss(), (300 - (H.getToxLoss() + H.getFireLoss() + H.getBruteLoss())))
 		else
 			occupant_stat = H.stat
 			occupant_health = H.health
@@ -443,7 +443,7 @@
 			else
 				t1 = "*dead*"
 		var/health_text = "\tHealth %: [(occupant.health / occupant.getMaxHealth())*100], ([t1])"
-		var/fake_oxy = max(rand(1,40), occupant.getOxyLoss(), (300 - (occupant.getFireLoss() + occupant.getBruteLoss())))
+		var/fake_oxy = max(occupant.getOxyLoss(), (300 - (occupant.getFireLoss() + occupant.getBruteLoss())))
 		var/fake_death = FALSE
 		if(occupant.status_flags & FAKEDEATH)
 			t1 = "*dead*"

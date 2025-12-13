@@ -356,17 +356,17 @@
 			else
 				wound_flavor_text["[temp.name]"] = ""
 			if(temp.dislocated == 1)
-				wound_flavor_text["[temp.name]"] += span_warning("[user.p_Their()] [temp.joint] is dislocated!")
+				wound_flavor_text["[temp.name]"] += span_warning("[p_Their()] [temp.joint] is dislocated!")
 			if(temp.brute_dam > temp.min_broken_damage || (temp.status & (ORGAN_BROKEN | ORGAN_MUTATED)))
-				wound_flavor_text["[temp.name]"] += span_warning("[user.p_Their()] [temp.name] is dented and swollen!")
+				wound_flavor_text["[temp.name]"] += span_warning("[p_Their()] [temp.name] is dented and swollen!")
 
 			if(temp.germ_level > INFECTION_LEVEL_TWO && !(temp.status & ORGAN_DEAD))
-				wound_flavor_text["[temp.name]"] += span_warning("[user.p_Their()] [temp.name] looks very infected!")
+				wound_flavor_text["[temp.name]"] += span_warning("[p_Their()] [temp.name] looks very infected!")
 			else if(temp.status & ORGAN_DEAD)
-				wound_flavor_text["[temp.name]"] += span_warning("[user.p_Their()] [temp.name] looks rotten!")
+				wound_flavor_text["[temp.name]"] += span_warning("[p_Their()] [temp.name] looks rotten!")
 
 			if(temp.status & ORGAN_BLEEDING)
-				is_bleeding["[temp.name]"] += span_danger("[user.p_Their()] [temp.name] is bleeding!")
+				is_bleeding["[temp.name]"] += span_danger("[p_Their()] [temp.name] is bleeding!")
 
 			if(temp.applied_pressure == src)
 				applying_pressure = span_info("[p_They()] is applying pressure to [p_their()] [temp.name].")

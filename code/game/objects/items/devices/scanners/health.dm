@@ -72,7 +72,7 @@
 		user.show_message(dat, 1)
 		return
 
-	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
+	var/fake_oxy = max(M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
 	var/OX = M.getOxyLoss() > 50 	? 	span_bold("[M.getOxyLoss()]") 		: M.getOxyLoss()
 	var/TX = M.getToxLoss() > 50 	? 	span_bold("[M.getToxLoss()]")  		: M.getToxLoss()
 	var/BU = M.getFireLoss() > 50 	? 	span_bold("[M.getFireLoss()]") 		: M.getFireLoss()
