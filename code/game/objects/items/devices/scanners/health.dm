@@ -178,7 +178,7 @@
 			var/reagentdata[0]
 			var/unknownreagents[0]
 			for(var/datum/reagent/R in C.reagents.reagent_list)
-				if(R.scannable && advscan >= R.scannable)
+				if(advscan >= R.scannable)
 					reagentdata["[R.id]"] = span_notice("\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					reagentdata["[R.id]"] += "<br>"
 				else
@@ -198,7 +198,7 @@
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
 			for(var/datum/reagent/R in C.ingested.reagent_list)
-				if(R.scannable && advscan >= R.scannable)
+				if(advscan >= R.scannable)
 					stomachreagentdata["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					stomachreagentdata["[R.id]"] += "<br>"
 					if(!advscan || !showadvscan)
@@ -221,7 +221,7 @@
 			var/touchreagentdata[0]
 			var/touchunknownreagents[0]
 			for(var/datum/reagent/R in C.touching.reagent_list)
-				if(R.scannable && advscan >= R.scannable)
+				if(advscan >= R.scannable)
 					touchreagentdata["[R.id]"] = span_notice("\t[round(C.touching.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					touchreagentdata["[R.id]"] += "<br>"
 					if(!advscan || !showadvscan)
