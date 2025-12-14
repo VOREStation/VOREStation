@@ -14,6 +14,7 @@
 	affects_robots = 1	//VOREStation Edit
 	wiki_flag = WIKI_FOOD
 	coolant_modifier = -1
+	scannable = SCANNABLE_BENEFICIAL
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_FOOD

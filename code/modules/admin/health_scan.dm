@@ -214,12 +214,11 @@
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
 			for(var/datum/reagent/R as anything in C.ingested.reagent_list)
-				if(R.scannable)
+				if(R.scannable <= advscan)
 					stomachreagentdata["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					stomachreagentdata["[R.id]"] += "<br>"
-					if (advscan == 0 || showadvscan == 0)
-						dat += span_notice("[R.name] found in subject's stomach.")
-						dat += "<br>"
+					dat += span_notice("[R.name] found in subject's stomach.")
+					dat += "<br>"
 				else
 					++unknown
 					stomachunknownreagents["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")

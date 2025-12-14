@@ -10,6 +10,7 @@
 	color = "#CF3600"
 	metabolism = REM * 0.25 // 0.05 by default. Hopefully enough to get some help, or die horribly, whatever floats your boat
 	filtered_organs = list(O_LIVER, O_KIDNEYS)
+	scannable = SCANNABLE_DIFFICULT
 	var/strength = 4 // How much damage it deals per unit
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
@@ -364,7 +365,7 @@
 	metabolism = REM
 	strength = 3
 	mrate_static = TRUE
-	scannable = FALSE
+	scannable = SCANNABLE_SECRETIVE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
@@ -394,7 +395,7 @@
 	color = "#666666"
 	metabolism = REM * 0.75
 	mrate_static = TRUE
-	scannable = FALSE
+	scannable = SCANNABLE_SECRETIVE
 	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 

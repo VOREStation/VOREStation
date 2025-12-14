@@ -14,7 +14,7 @@
 	matter = list(MAT_STEEL = 200)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	var/mode = 1;
-	var/advscan = 0
+	var/advscan = SCANNABLE_BENEFICIAL
 	var/showadvscan = 1
 	var/guide = FALSE
 
@@ -23,7 +23,7 @@
 
 /obj/item/healthanalyzer/Initialize(mapload)
 	. = ..()
-	if(advscan >= 1)
+	if(advscan >= SCANNABLE_ADVANCED)
 		verbs += /obj/item/healthanalyzer/proc/toggle_adv
 
 /obj/item/healthanalyzer/examine(mob/user)
@@ -134,7 +134,7 @@
 		TX = 0 //This is a dead giveaway if they're using zombiepowder.
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
 	if(M.radiation)
-		if(advscan >= 2 && showadvscan == 1)
+		if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
 			var/severity = ""
 			if(M.radiation >= 1500)
 				severity = "Lethal"
@@ -152,7 +152,7 @@
 			dat += span_warning("Acute radiation sickness detected.")
 			dat += "<br>"
 	if(M.accumulated_rads)
-		if(advscan >= 2 && showadvscan == 1)
+		if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
 			var/severity = ""
 			if(M.accumulated_rads >= 1500)
 				severity = "Critical"
@@ -470,21 +470,21 @@
 /obj/item/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
 	name = "improved health analyzer"
 	desc = "A miracle of medical technology, this handheld scanner can produce an accurate and specific report of a patient's biosigns."
-	advscan = 1
+	advscan = SCANNABLE_BENEFICIAL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	icon_state = "health1"
 
 /obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
-	advscan = 2
+	advscan = SCANNABLE_ADVANCED
 	origin_tech = list(TECH_MAGNET = 6, TECH_BIO = 7)
 	icon_state = "health2"
 
 /obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "phasic health analyzer"
 	desc = "Possibly the most advanced health analyzer to ever have existed, utilising bluespace technology to determine almost everything worth knowing about a patient."
-	advscan = 3
+	advscan = SCANNABLE_DIFFICULT
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 
