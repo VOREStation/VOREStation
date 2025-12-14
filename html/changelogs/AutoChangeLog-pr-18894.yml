@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "TGUI window drag and resize should be smoother on low end systems."
