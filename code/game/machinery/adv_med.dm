@@ -17,16 +17,16 @@
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
-	var/scan_level = 3 //One scan level for every scanning_module
+	var/scan_level = SCANNABLE_DIFFICULT //By default, we start with level 2 scanning level.
 
 /obj/machinery/bodyscanner/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
 /obj/machinery/bodyscanner/RefreshParts()
-	scan_level = 0
+	scan_level = SCANNABLE_DIFFICULT
 	for(var/obj/item/stock_parts/scanning_module/P in component_parts)
-		scan_level += P.rating
+		scan_level += max(0, (P.rating - 2)) //We require T3 parts or higher to actually increase our scan level.
 
 /obj/machinery/bodyscanner/Destroy()
 	if(console)
@@ -256,7 +256,12 @@
 		var/reagentData[0]
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
-				if(!R.scannable && !(scan_level >= 8)) //Requires minimum of 2 T3 and 1 T2 scanning module, or 2 T4 scanning modules.
+				if(R.scannable >= scan_level) //By default, we can scan everything but secret chems (zombie/lich powder)
+					reagentData[++reagentData.len] = list(
+						"name" = "UNKNOWN REAGENT",
+						"amount" = "UNKNOWN",
+						"overdose" = FALSE,
+					)
 					continue
 				reagentData[++reagentData.len] = list(
 					"name" = R.name,
