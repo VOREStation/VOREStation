@@ -1,4 +1,0 @@
-author: "Willbird"
-delete-after: True
-changes:
-  - bugfix: "control clicking turf no longer runtimes attempting to pull it"
