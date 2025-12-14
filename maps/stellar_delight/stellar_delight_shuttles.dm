@@ -29,7 +29,7 @@
 	name = "Exploration Shuttle"
 	current_location = "sd_explo"
 	docking_controller_tag = "explodocker"
-	shuttle_area = /area/stellardelight/deck1/exploshuttle
+	shuttle_area = /area/shuttle/exploration
 	fuel_consumption = 0
 	defer_initialisation = TRUE
 	range = 1
@@ -42,7 +42,7 @@
 	name = "Mining Shuttle"
 	current_location = "sd_mining"
 	docking_controller_tag = "miningdocker"
-	shuttle_area = /area/stellardelight/deck1/miningshuttle
+	shuttle_area = /area/shuttle/mining
 	fuel_consumption = 0
 	defer_initialisation = TRUE
 	range = 1
