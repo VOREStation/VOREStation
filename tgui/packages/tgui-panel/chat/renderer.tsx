@@ -5,13 +5,11 @@
  */
 
 import { createRoot } from 'react-dom/client';
-import { useSelector } from 'tgui/backend';
 import { createLogger } from 'tgui/logging';
 import { Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
 import { classes } from 'tgui-core/react';
 
-import { selectSettings } from '../settings/selectors';
 import { exportToDisk } from './chatExport';
 import {
   IMAGE_RETRY_DELAY,
@@ -180,7 +178,7 @@ class ChatRenderer {
   logLimit: number;
   logEnable: boolean;
   roundId: null | number;
-  storedTypes: Record<string, string>;
+  storedTypes: Record<string, boolean>;
   interleave: boolean;
   interleaveEnabled: boolean;
   interleaveColor: string;
@@ -465,7 +463,7 @@ class ChatRenderer {
     combineIntervalLimit: number,
     logEnable: boolean,
     logLimit: number,
-    storedTypes: Record<string, string>,
+    storedTypes: Record<string, boolean>,
     roundId: number | null,
     prependTimestamps: boolean,
     hideImportantInAdminTab: boolean,
@@ -576,7 +574,6 @@ class ChatRenderer {
       doArchive?: boolean;
     } = {},
   ) {
-    const settings = useSelector(selectSettings);
     const { prepend, notifyListeners = true, doArchive = false } = options;
     const now = Date.now();
     // Queue up messages until chat is ready

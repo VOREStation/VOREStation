@@ -42,7 +42,7 @@ export const adminPageOnly = (page: Page): boolean => {
 };
 
 export const canStoreType = (
-  storedTypes: Record<string, string>,
+  storedTypes: Record<string, boolean>,
   type: string,
 ) => storedTypes[type];
 

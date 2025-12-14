@@ -7,19 +7,10 @@
 import type { Action, Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
-
+import { store as jotaiStore } from '../events/store';
 import { selectGame } from '../game/selectors';
-import {
-  addHighlightSetting,
-  importSettings,
-  loadSettings,
-  removeHighlightSetting,
-  updateHighlightSetting,
-  updateSettings,
-  updateToggle,
-} from '../settings/actions';
+import { settingsAtom } from '../settings/atoms';
 import { blacklisted_tags } from '../settings/constants';
-import { selectSettings } from '../settings/selectors';
 import {
   addChatPage,
   changeChatPage,
@@ -48,7 +39,7 @@ let storedLines: number[] = [];
 const saveChatToStorage = async (store: Store<number, Action<string>>) => {
   const game = selectGame(store.getState());
   const state = selectChat(store.getState());
-  const settings = selectSettings(store.getState());
+  const settings = jotaiStore.get(settingsAtom);
   storage.set('chat-state', state);
   if (!game.databaseBackendEnabled) {
     const fromIndex = Math.max(
@@ -103,7 +94,7 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
         });
       }
     }
-    const settings = selectSettings(store.getState());
+    const settings = jotaiStore.get(settingsAtom);
 
     // Checks if the setting is actually set or set to -1 (infinite)
     // Otherwise make it grow infinitely
@@ -148,7 +139,7 @@ const loadChatFromDBStorage = async (
   user_payload: { ckey: string; token: string },
 ) => {
   const game = selectGame(store.getState());
-  const settings = selectSettings(store.getState());
+  const settings = jotaiStore.get(settingsAtom);
   const [state] = await Promise.all([storage.get('chat-state')]);
   // Discard incompatible versions
   if (state && state.version <= 4) {
@@ -239,7 +230,7 @@ export const chatMiddleware = (store) => {
   });
   return (next) => (action) => {
     const { type, payload } = action;
-    const settings = selectSettings(store.getState());
+    const settings = jotaiStore.get(settingsAtom);
     const game = selectGame(store.getState());
     settings.totalStoredMessages = chatRenderer.getStoredMessages();
     settings.storedRounds = storedRounds.length;
@@ -340,26 +331,6 @@ export const chatMiddleware = (store) => {
     if (type === rebuildChat.type) {
       chatRenderer.rebuildChat(settings.visibleMessages);
       return next(action);
-    }
-
-    if (
-      type === updateSettings.type ||
-      type === updateToggle.type ||
-      type === loadSettings.type ||
-      type === addHighlightSetting.type ||
-      type === removeHighlightSetting.type ||
-      type === updateHighlightSetting.type ||
-      type === importSettings.type
-    ) {
-      next(action);
-      const nextSettings = selectSettings(store.getState());
-      chatRenderer.setHighlight(
-        nextSettings.highlightSettings,
-        nextSettings.highlightSettingById,
-      );
-      needsUpdate = true;
-
-      return;
     }
     if (type === 'roundrestart') {
       // Save chat as soon as possible

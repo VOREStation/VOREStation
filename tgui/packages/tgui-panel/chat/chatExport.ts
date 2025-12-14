@@ -1,6 +1,6 @@
 import { useGame } from '../game';
 import type { gameState } from '../game/types';
-import { useSettings } from '../settings';
+import { useSettings } from '../settings/use-settings';
 import { MESSAGE_TYPE_UNKNOWN, MESSAGE_TYPES } from './constants';
 import { canPageAcceptType } from './model';
 import { createMessageNode } from './renderer';
@@ -46,7 +46,7 @@ async function getRound(
   startRound?: number,
   endRound?: number,
 ) {
-  const settings = useSettings();
+  const { settings } = useSettings();
   const { ckey, token } = game.userData;
   const messages: message[] = [];
 

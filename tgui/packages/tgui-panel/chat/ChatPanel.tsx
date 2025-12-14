@@ -11,8 +11,8 @@ import { shallowDiffers } from 'tgui-core/react';
 import { chatRenderer } from './renderer';
 
 type ChatPanelTypes = {
-  lineHeight?: number;
   fontSize?: number;
+  lineHeight: string | number;
 };
 
 export class ChatPanel extends Component<ChatPanelTypes> {

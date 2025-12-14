@@ -4,8 +4,6 @@
  * @license MIT
  */
 
-export const THEMES = ['light', 'dark', 'vchatlight', 'vchatdark'];
-
 const COLOR_DARK_BG = '#202020';
 const COLOR_DARK_BG_DARKER = '#171717';
 const COLOR_DARK_TEXT = '#a4bad6';
@@ -22,7 +20,7 @@ let setClientThemeTimer: NodeJS.Timeout;
  * There's no way round it. We're essentially changing the skin by hand.
  * It's painful but it works, and is the way Lummox suggested.
  */
-export const setClientTheme = (name) => {
+export function setClientTheme(name) {
   // Transmit once for fast updates and again in a little while in case we won
   // the race against statbrowser init.
   clearInterval(setClientThemeTimer);
@@ -185,4 +183,4 @@ export const setClientTheme = (name) => {
       'input.text-color': COLOR_DARK_TEXT,
     });
   }
-};
+}
