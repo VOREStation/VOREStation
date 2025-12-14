@@ -207,14 +207,17 @@
 		var/occupant_stat
 		var/occupant_health
 		var/oxygen_damage
+		var/brain_damage
 		if(H.status_flags & FAKEDEATH)
 			occupant_stat = DEAD
 			occupant_health = -200
 			oxygen_damage = max(H.getOxyLoss(), (300 - (H.getToxLoss() + H.getFireLoss() + H.getBruteLoss())))
+			brain_damage = 200
 		else
 			occupant_stat = H.stat
 			occupant_health = H.health
 			oxygen_damage = H.getOxyLoss()
+			brain_damage = H.getBrainLoss()
 
 		occupantData["stat"] = occupant_stat
 		occupantData["health"] = occupant_health
@@ -229,7 +232,7 @@
 
 		occupantData["radLoss"] = H.radiation
 		occupantData["cloneLoss"] = H.getCloneLoss()
-		occupantData["brainLoss"] = H.getBrainLoss()
+		occupantData["brainLoss"] = brain_damage
 		occupantData["paralysis"] = H.paralysis
 		occupantData["paralysisSeconds"] = round(H.paralysis / 4)
 		occupantData["bodyTempC"] = H.bodytemperature-T0C
@@ -257,11 +260,6 @@
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
 				if(R.scannable >= scan_level) //By default, we can scan everything but secret chems (zombie/lich powder)
-					reagentData[++reagentData.len] = list(
-						"name" = "UNKNOWN REAGENT",
-						"amount" = "UNKNOWN",
-						"overdose" = FALSE,
-					)
 					continue
 				reagentData[++reagentData.len] = list(
 					"name" = R.name,
@@ -456,7 +454,7 @@
 			else
 				t1 = "*dead*"
 		var/health_text = "\tHealth %: [(occupant.health / occupant.getMaxHealth())*100], ([t1])"
-		var/fake_oxy = max(occupant.getOxyLoss(), (300 - (occupant.getFireLoss() + occupant.getBruteLoss())))
+		//var/fake_oxy = max(occupant.getOxyLoss(), (300 - (occupant.getFireLoss() + occupant.getBruteLoss())))
 		var/fake_death = FALSE
 		if(occupant.status_flags & FAKEDEATH)
 			t1 = "*dead*"
@@ -479,16 +477,19 @@
 		damage_string = "\t-Brute Damage %: [occupant.getBruteLoss()]"
 		dat += (occupant.getBruteLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 		damage_string = "\t-Respiratory Damage %: [occupant.getOxyLoss()]"
+		/* //Alternative oxygen based fakedeath
 		if(fake_death)
 			damage_string = "\t-Respiratory Damage %: [fake_oxy]"
 			dat += (span_red(damage_string)) + "<br>"
-		else
-			dat += (occupant.getOxyLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
+		else*/
+		dat += (occupant.getOxyLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		damage_string = "\t-Toxin Content %: [occupant.getToxLoss()]"
 		if(fake_death)
 			damage_string = "\t-Toxin Content %: 0"
-		dat += (occupant.getToxLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
+			dat += span_blue(damage_string) + "<br>"
+		else
+			damage_string = "\t-Toxin Content %: [occupant.getToxLoss()]"
+			dat += (occupant.getToxLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		damage_string = "\t-Burn Severity %: [occupant.getFireLoss()]"
 		dat += (occupant.getFireLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
@@ -499,8 +500,12 @@
 		damage_string = "\tGenetic Tissue Damage %: [occupant.getCloneLoss()]"
 		dat += (occupant.getCloneLoss() < 1 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		damage_string = "\tApprox. Brain Damage %: [occupant.getBrainLoss()]"
-		dat += (occupant.getBrainLoss() < 1 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
+		if(fake_death)
+			damage_string = "\tApprox. Brain Damage %: 100"
+			dat += (span_red(damage_string)) + "<br>"
+		else
+			damage_string = "\tApprox. Brain Damage %: [occupant.getBrainLoss()]"
+			dat += (occupant.getBrainLoss() < 1 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<br>"
 		dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"

@@ -129,9 +129,11 @@
 	TX = M.getToxLoss() > 50 ? 	 "[span_green(span_bold("Dangerous amount of toxins detected"))]" 	: 	"Subject bloodstream toxin level minimal"
 	BU = M.getFireLoss() > 50 ?  "[span_orange(span_bold("Severe burn damage detected"))]" 			:	"Subject burn injury status O.K"
 	BR = M.getBruteLoss() > 50 ? "[span_red(span_bold("Severe anatomical damage detected"))]"		 		: 	"Subject brute-force injury status O.K"
+	/* //Old variant of fakedeath.
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		span_warning("Severe oxygen deprivation detected") 	: 	"Subject bloodstream oxygen level normal"
 		TX = 0 //This is a dead giveaway if they're using zombiepowder.
+	*/
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
 	if(M.radiation)
 		if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
@@ -175,7 +177,7 @@
 			var/unknown = 0
 			var/reagentdata[0]
 			var/unknownreagents[0]
-			for(var/datum/reagent/R as anything in C.reagents.reagent_list)
+			for(var/datum/reagent/R in C.reagents.reagent_list)
 				if(R.scannable && advscan >= R.scannable)
 					reagentdata["[R.id]"] = span_notice("\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					reagentdata["[R.id]"] += "<br>"
@@ -195,7 +197,7 @@
 			var/unknown = 0
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
-			for(var/datum/reagent/R as anything in C.ingested.reagent_list)
+			for(var/datum/reagent/R in C.ingested.reagent_list)
 				if(R.scannable && advscan >= R.scannable)
 					stomachreagentdata["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					stomachreagentdata["[R.id]"] += "<br>"
@@ -218,7 +220,7 @@
 			var/unknown = 0
 			var/touchreagentdata[0]
 			var/touchunknownreagents[0]
-			for(var/datum/reagent/R as anything in C.touching.reagent_list)
+			for(var/datum/reagent/R in C.touching.reagent_list)
 				if(R.scannable && advscan >= R.scannable)
 					touchreagentdata["[R.id]"] = span_notice("\t[round(C.touching.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					touchreagentdata["[R.id]"] += "<br>"
@@ -251,7 +253,7 @@
 	if (advscan >= SCANNABLE_DIFFICULT && M.has_brain_worms()) // Borers need to hide
 		dat += span_warning("Subject suffering from aberrant brain activity. Recommend further scanning.")
 		dat += "<br>"
-	else if (M.getBrainLoss() >= 60 || !M.has_brain())
+	else if (M.getBrainLoss() >= 60 || !M.has_brain() ||(M.status_flags & FAKEDEATH))
 		dat += span_warning("Subject is brain dead.")
 		dat += "<br>"
 	else if (M.getBrainLoss() >= 25)
@@ -452,21 +454,21 @@
 /obj/item/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
 	name = "improved health analyzer"
 	desc = "A miracle of medical technology, this handheld scanner can produce an accurate and specific report of a patient's biosigns."
-	advscan = SCANNABLE_BENEFICIAL
+	advscan = SCANNABLE_ADVANCED
 	origin_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	icon_state = "health1"
 
 /obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
-	advscan = SCANNABLE_ADVANCED
+	advscan = SCANNABLE_DIFFICULT
 	origin_tech = list(TECH_MAGNET = 6, TECH_BIO = 7)
 	icon_state = "health2"
 
 /obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "phasic health analyzer"
 	desc = "Possibly the most advanced health analyzer to ever have existed, utilising bluespace technology to determine almost everything worth knowing about a patient."
-	advscan = SCANNABLE_DIFFICULT
+	advscan = SCANNABLE_SECRETIVE
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 

@@ -606,6 +606,7 @@
 	reagent_state = LIQUID
 	color = "#99CCFF"
 	metabolism = REM * 0.05
+	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED

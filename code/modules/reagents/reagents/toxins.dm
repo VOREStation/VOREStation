@@ -55,8 +55,9 @@
 
 /datum/reagent/toxin/amatoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	// Trojan horse. Waits until most of the toxin has gone through the body before dealing the bulk of it in one big strike.
-	if(volume < max_dose * 0.2)
-		M.adjustToxLoss(max_dose * strength * removed / (max_dose * 0.2))
+	if(volume < max_dose * 0.1)
+		M.adjustToxLoss(max_dose * strength) //Get hit all at once.
+		M.reagents.del_reagent(REAGENT_ID_AMATOXIN) //Remove the rest of ourselves.
 
 /datum/reagent/toxin/carpotoxin
 	name = REAGENT_CARPOTOXIN
@@ -375,11 +376,12 @@
 		return
 	if(!(M.status_flags & FAKEDEATH))
 		M.emote("deathgasp")
+		M.tod = stationtime2text()
+		M.timeofdeath = stationtime2text()
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
 	M.paralysis = max(M.paralysis, 10)
-	M.tod = stationtime2text()
 
 /datum/reagent/toxin/zombiepowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
@@ -404,10 +406,11 @@
 		return
 	if(!(M.status_flags & FAKEDEATH))
 		M.emote("deathgasp")
+		M.tod = stationtime2text()
+		M.timeofdeath = stationtime2text()
 	M.status_flags |= FAKEDEATH
 	M.silent = max(M.silent, 10)
 	M.paralysis = max(M.paralysis, 10)
-	M.tod = stationtime2text()
 
 	if(prob(0.1))
 		M.visible_message("[M] wheezes.", "You wheeze sharply... it's cold.")
