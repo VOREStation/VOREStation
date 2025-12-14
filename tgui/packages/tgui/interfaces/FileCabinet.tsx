@@ -1,34 +1,47 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Button, Section } from 'tgui-core/components';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 
-type Data = { contents: content[] };
-
-type content = { name: string; ref: string };
+type Data = {
+  cabinet_name: string;
+  contents: string[];
+  contents_ref: string[];
+};
 
 export const FileCabinet = (props) => {
   const { act, data } = useBackend<Data>();
-
-  const { contents } = data;
-
-  // Wow, the filing cabinets sort themselves in 2320.
-  contents.sort((a, b) => a.name.localeCompare(b.name));
-
+  const { cabinet_name, contents, contents_ref } = data;
   return (
-    <Window width={350} height={300}>
-      <Window.Content scrollable>
-        <Section>
-          {contents.map((item) => (
-            <Button
-              key={item.ref}
-              fluid
-              icon="file"
-              onClick={() => act('retrieve', { ref: item.ref })}
-            >
-              {item.name}
-            </Button>
-          ))}
-        </Section>
+    <Window title={cabinet_name || 'Filing Cabinet'} width={350} height={300}>
+      <Window.Content backgroundColor="#B88F3D" scrollable>
+        {contents.map((object, index) => (
+          <Stack
+            key={contents_ref[index]}
+            color="black"
+            backgroundColor="white"
+            style={{ padding: '2px' }}
+            mb={0.5}
+          >
+            <Stack.Item align="center" grow>
+              <Box align="center">{object}</Box>
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="eject"
+                onClick={() =>
+                  act('remove_object', { ref: contents_ref[index] })
+                }
+              />
+            </Stack.Item>
+          </Stack>
+        ))}
+        {contents.length === 0 && (
+          <Section>
+            <Box color="white" align="center">
+              The {cabinet_name} is empty!
+            </Box>
+          </Section>
+        )}
       </Window.Content>
     </Window>
   );

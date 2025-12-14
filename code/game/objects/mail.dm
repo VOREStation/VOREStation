@@ -117,7 +117,7 @@
 		initialize_for_recipient(recipient_mob.mind, preset_goodies = TRUE)
 		return TRUE
 
-/obj/item/mail/blank/AltClick(mob/user)
+/obj/item/mail/blank/click_alt(mob/user)
 	if(sealed)
 		return
 

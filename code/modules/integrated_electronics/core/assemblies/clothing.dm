@@ -43,7 +43,7 @@
 	if(IC)
 		. += IC.examine(user)
 
-/obj/item/clothing/CtrlShiftClick(mob/user)
+/obj/item/clothing/click_ctrl_shift(mob/user)
 	var/turf/T = get_turf(src)
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
 		return FALSE

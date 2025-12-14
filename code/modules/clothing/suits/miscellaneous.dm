@@ -1063,7 +1063,7 @@
 /obj/item/clothing/suit/caution/attack_self()
 	toggle()
 
-/obj/item/clothing/suit/caution/AltClick()
+/obj/item/clothing/suit/caution/click_alt()
 	toggle()
 
 /obj/item/clothing/suit/caution/proc/toggle()

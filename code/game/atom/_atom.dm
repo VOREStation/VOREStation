@@ -222,7 +222,7 @@
 
 	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix] [borg]", get_examine_desc())
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, output)
 	return output
 
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
@@ -471,7 +471,7 @@
 
 /atom/Entered(atom/movable/AM, atom/old_loc)
 	. = ..()
-	SEND_SIGNAL(AM, COMSIG_OBSERVER_MOVED, old_loc, AM.loc)
+	SEND_SIGNAL(AM, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, AM.loc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
 	SEND_SIGNAL(AM, COMSIG_ATOM_ENTERING, src, old_loc)
 

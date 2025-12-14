@@ -26,6 +26,8 @@
 	var/doing_phase = FALSE
 	///Are we currently phased?
 	var/in_phase = FALSE
+	///If TRUE, voice is hidden when phased (shows as "Something")
+	var/hide_voice_in_phase = TRUE
 	///Chance to break lights on phase-in
 	var/flicker_break_chance = 0
 	///Color that lights will flicker to on phase-in. Off by default.
@@ -108,6 +110,11 @@
 	else
 		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(handle_comp)) //Happens every life tick (mobs)
 
+	// Register voice/name signal handlers
+	RegisterSignal(owner, COMSIG_HUMAN_GET_VOICE, PROC_REF(on_get_voice))
+	RegisterSignal(owner, COMSIG_HUMAN_GET_ALT_NAME, PROC_REF(on_get_alt_name))
+	RegisterSignal(owner, COMSIG_HUMAN_GET_VISIBLE_NAME, PROC_REF(on_get_visible_name))
+
 	//generates powers and then adds them
 	build_and_add_abilities()
 
@@ -125,6 +132,7 @@
 		UnregisterSignal(owner, COMSIG_SHADEKIN_COMPONENT)
 	else
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
+	UnregisterSignal(owner, list(COMSIG_HUMAN_GET_VOICE, COMSIG_HUMAN_GET_ALT_NAME, COMSIG_HUMAN_GET_VISIBLE_NAME))
 	remove_verb(owner, /mob/living/proc/shadekin_control_panel)
 	for(var/datum/power in shadekin_ability_datums)
 		qdel(power)
@@ -160,7 +168,7 @@
 	var/dark_gains = 0
 
 	var/suit = owner.get_equipped_item(slot_wear_suit)
-	if(istype(suit, /obj/item/clothing/suit/space))
+	if(istype(suit, /obj/item/clothing/suit/space/rig))
 		if(dark_energy)
 			to_chat(owner, span_warning("You feel your energy waning and your powers being blocked from the heavy equipment you're wearing!"))
 		dark_energy = 0
@@ -229,6 +237,7 @@
 		"flicker_distance" = flicker_distance,
 		"no_retreat" = no_retreat,
 		"nutrition_energy_conversion" = nutrition_energy_conversion,
+		"hide_voice_in_phase" = hide_voice_in_phase,
 		"extended_kin" = extended_kin,
 		"savefile_selected" = correct_savefile_selected()
 	)
@@ -283,6 +292,34 @@
 			var/new_retreat = !nutrition_energy_conversion
 			nutrition_energy_conversion = !nutrition_energy_conversion
 			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
+		if("toggle_voice")
+			var/new_voice_hide = !hide_voice_in_phase
+			hide_voice_in_phase = !hide_voice_in_phase
+			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_hide_voice_in_phase, new_voice_hide, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
+
+/// Signal handler for GetVoice()
+/datum/component/shadekin/proc/on_get_voice(mob/living/carbon/human/source, list/voice_data)
+	SIGNAL_HANDLER
+
+	if(in_phase && hide_voice_in_phase)
+		voice_data[1] = "Something"
+		return COMPONENT_VOICE_CHANGED
+
+/// Signal handler for GetAltName()
+/datum/component/shadekin/proc/on_get_alt_name(mob/living/carbon/human/source, list/name_data)
+	SIGNAL_HANDLER
+
+	if(in_phase && hide_voice_in_phase)
+		name_data[1] = ""
+		return COMPONENT_ALT_NAME_CHANGED
+
+/// Signal handler for get_visible_name()
+/datum/component/shadekin/proc/on_get_visible_name(mob/living/source, list/name_data)
+	SIGNAL_HANDLER
+
+	if(in_phase && hide_voice_in_phase)
+		name_data[1] = "Something"
+		return COMPONENT_VISIBLE_NAME_CHANGED
 
 /mob/living/proc/shadekin_control_panel()
 	set name = "Shadekin Control Panel"
