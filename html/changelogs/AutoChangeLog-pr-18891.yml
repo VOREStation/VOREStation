@@ -1,9 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Sleevemates will no longer apply fakedeath status instead of checking for it"
-  - bugfix: "Health hud will now properly show someone with FAKEDEATH as DEAD"
-  - bugfix: "Bodyscanners will treat someone with FAKEDEATH as if they were dead."
-  - bugfix: "Hacktool now works again."
-  - bugfix: "Fixes a runtime with abnormal mind trait."
-  - bugfix: "Wounds now use the proper gender"
