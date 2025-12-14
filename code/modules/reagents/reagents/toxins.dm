@@ -377,7 +377,7 @@
 	if(!(M.status_flags & FAKEDEATH))
 		M.emote("deathgasp")
 		M.tod = stationtime2text()
-		M.timeofdeath = stationtime2text()
+		M.timeofdeath = world.time
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
@@ -407,7 +407,7 @@
 	if(!(M.status_flags & FAKEDEATH))
 		M.emote("deathgasp")
 		M.tod = stationtime2text()
-		M.timeofdeath = stationtime2text()
+		M.timeofdeath = world.time
 	M.status_flags |= FAKEDEATH
 	M.silent = max(M.silent, 10)
 	M.paralysis = max(M.paralysis, 10)

@@ -204,20 +204,21 @@
 				break
 
 		//Vars used if we have FAKEDEATH status.
-		var/occupant_stat
-		var/occupant_health
-		var/oxygen_damage
-		var/brain_damage
+		var/occupant_stat = H.stat
+		var/occupant_health = H.health
+		var/oxygen_damage = H.getOxyLoss()
+		var/brain_damage = H.getBrainLoss()
+		var/occupant_paralysis = H.paralysis
+		var/paralysis_duration = round(H.paralysis / 4)
+		var/fakedeath = FALSE
 		if(H.status_flags & FAKEDEATH)
 			occupant_stat = DEAD
 			occupant_health = -200
-			oxygen_damage = max(H.getOxyLoss(), (300 - (H.getToxLoss() + H.getFireLoss() + H.getBruteLoss())))
+			//oxygen_damage = max(H.getOxyLoss(), (300 - (H.getToxLoss() + H.getFireLoss() + H.getBruteLoss()))) //Alternative oxygen based fakedeath.
 			brain_damage = 200
-		else
-			occupant_stat = H.stat
-			occupant_health = H.health
-			oxygen_damage = H.getOxyLoss()
-			brain_damage = H.getBrainLoss()
+			occupant_paralysis = 0
+			paralysis_duration = 0
+			fakedeath = TRUE
 
 		occupantData["stat"] = occupant_stat
 		occupantData["health"] = occupant_health
@@ -233,8 +234,8 @@
 		occupantData["radLoss"] = H.radiation
 		occupantData["cloneLoss"] = H.getCloneLoss()
 		occupantData["brainLoss"] = brain_damage
-		occupantData["paralysis"] = H.paralysis
-		occupantData["paralysisSeconds"] = round(H.paralysis / 4)
+		occupantData["paralysis"] = occupant_paralysis
+		occupantData["paralysisSeconds"] = paralysis_duration
 		occupantData["bodyTempC"] = H.bodytemperature-T0C
 		occupantData["bodyTempF"] = (((H.bodytemperature-T0C) * 1.8) + 32)
 
@@ -371,6 +372,11 @@
 				organData["desc"] = null
 			organData["germ_level"] = I.germ_level
 			organData["damage"] = I.damage
+			if(fakedeath)
+				if(istype(I, /obj/item/organ/internal/brain))
+					organData["damage"] = 200
+				else if(istype(I, /obj/item/organ/internal/lungs))
+					organData["damage"] = 25
 			organData["maxHealth"] = I.max_damage
 			organData["bruised"] = I.min_bruised_damage
 			organData["broken"] = I.min_broken_damage
@@ -507,7 +513,13 @@
 			damage_string = "\tApprox. Brain Damage %: [occupant.getBrainLoss()]"
 			dat += (occupant.getBrainLoss() < 1 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<br>"
+		var/occupant_paralysis = occupant.paralysis
+		var/paralysis_duration = round(occupant.paralysis * 0.25)
+		if(fake_death)
+			occupant_paralysis = 0
+			paralysis_duration = 0
+
+		dat += "Paralysis Summary %: [occupant_paralysis] ([paralysis_duration] seconds left!)<br>"
 		dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"
 
 		dat += "<hr>"
@@ -647,7 +659,12 @@
 				mi += "[MI.name] detected:"
 
 			dat += "<tr>"
-			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mi][mech][i_dead]</td><td></td>"
+			if(fake_death && istype(i, /obj/item/organ/internal/brain))
+				dat += "<td>[i.name]</td><td>N/A</td><td>200</td><td>[infection]:[mi][mech][i_dead]</td><td></td>"
+			else if(fake_death && istype(i, /obj/item/organ/internal/lungs))
+				dat += "<td>[i.name]</td><td>N/A</td><td>25</td><td>[infection]:[mi][mech][i_dead]</td><td></td>"
+			else
+				dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mi][mech][i_dead]</td><td></td>"
 			dat += "</tr>"
 		for(var/organ_tag in occupant.species.has_organ) //Check to see if we are missing any organs
 			var/organData[0]

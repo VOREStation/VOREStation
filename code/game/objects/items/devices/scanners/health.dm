@@ -185,8 +185,8 @@
 					unknown++
 					unknownreagents["[R.id]"] = span_notice("\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					unknownreagents["[R.id]"] += "<br>"
-			if(reagentdata.len)
-				dat += span_notice("Beneficial reagents detected in subject's blood:")
+			if(LAZYLEN(reagentdata) && showadvscan == 1)
+				dat += span_notice("Reagents detected in subject's blood:")
 				dat += "<br>"
 				for(var/d in reagentdata)
 					dat += reagentdata[d]
@@ -208,8 +208,8 @@
 					++unknown
 					stomachunknownreagents["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					stomachunknownreagents["[R.id]"] += "<br>"
-			if(showadvscan == 1)
-				dat += span_notice("Beneficial reagents detected in subject's stomach:")
+			if(LAZYLEN(stomachreagentdata) && showadvscan == 1)
+				dat += span_notice("Reagents detected in subject's stomach:")
 				dat += "<br>"
 				for(var/d in stomachreagentdata)
 					dat += stomachreagentdata[d]
@@ -231,8 +231,8 @@
 					++unknown
 					touchunknownreagents["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					touchunknownreagents["[R.id]"] += "<br>"
-			if(showadvscan == 1)
-				dat += span_notice("Beneficial reagents detected in subject's dermis:")
+			if(LAZYLEN(touchreagentdata) && showadvscan == 1)
+				dat += span_notice("Reagents detected in subject's dermis:")
 				dat += "<br>"
 				for(var/d in touchreagentdata)
 					dat += touchreagentdata[d]
@@ -330,6 +330,16 @@
 					else
 						dat += span_warning("Damage detected to subject's [i.name].")
 						dat += "<br>"
+			else if((H.status_flags & FAKEDEATH) && istype(i, /obj/item/organ/internal/lungs))
+				int_damage_acc += 25
+				if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
+					if(advscan >= SCANNABLE_SECRETIVE)
+						dat += span_warning("Severe damage detected to subject's [i.name].")
+						dat += "<br>"
+					else
+						dat += span_warning("Damage detected to subject's [i.name].")
+						dat += "<br>"
+
 		if(int_damage_acc >= 1 && (advscan < SCANNABLE_DIFFICULT || !showadvscan))
 			dat += span_warning("Damage detected to subject's internal organs.")
 			dat += "<br>"
