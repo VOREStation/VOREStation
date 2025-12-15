@@ -1,7 +1,47 @@
-type View = {
-  activeTab: string;
-  visible: boolean;
-};
+import * as z from 'zod';
+import type { ChatPages } from '../chat/types';
+
+const viewSchema = z.object({
+  activeTab: z.string(),
+  visible: z.boolean(),
+});
+
+export const settingsSchema = z.object({
+  adminMusicVolume: z.number(),
+  combineMessageLimit: z.number(),
+  combineIntervalLimit: z.number(),
+  exportStart: z.number(),
+  exportEnd: z.number(),
+  fontFamily: z.string(),
+  fontSize: z.number(),
+  hideImportantInAdminTab: z.boolean(),
+  initialized: z.boolean(),
+  interleave: z.boolean(),
+  interleaveColor: z.string(),
+  lastId: z.number().nullable(),
+  lineHeight: z.number(),
+  logEnable: z.boolean(),
+  logLimit: z.number(),
+  logLineCount: z.number(),
+  logRetainRounds: z.number(),
+  persistentMessageLimit: z.number(),
+  prependTimestamps: z.boolean(),
+  saveInterval: z.number(),
+  showReconnectWarning: z.boolean(),
+  statFontSize: z.number(),
+  statLinked: z.boolean(),
+  statTabsStyle: z.string(),
+  storedRounds: z.number(),
+  storedTypes: z.record(z.string(), z.boolean()),
+  theme: z.enum(['light', 'dark', 'vchatlight', 'vchatdark']),
+  totalStoredMessages: z.number(),
+  ttsCategories: z.record(z.string(), z.boolean()),
+  ttsVoice: z.string(),
+  version: z.number(),
+  view: viewSchema,
+  visibleMessages: z.number(),
+  visibleMessageLimit: z.number(),
+});
 
 export type HighlightSetting = {
   blacklistText: string;
@@ -14,48 +54,19 @@ export type HighlightSetting = {
   matchWord: boolean;
 };
 
-export type SettingsState = {
-  adminMusicVolume: number;
-  combineMessageLimit: number;
-  combineIntervalLimit: number;
-  exportStart: number;
-  exportEnd: number;
-  fontFamily: string;
-  fontSize: number;
-  hideImportantInAdminTab: boolean;
-  initialized: boolean;
-  interleave: boolean;
-  interleaveColor: string;
-  lastId: number | null;
-  lineHeight: number;
-  logEnable: boolean;
-  logLimit: number;
-  logLineCount: number;
-  logRetainRounds: number;
-  persistentMessageLimit: number;
-  prependTimestamps: boolean;
-  saveInterval: number;
-  showReconnectWarning: boolean;
-  statFontSize: number;
-  statLinked: boolean;
-  statTabsStyle: string;
-  storedRounds: number;
-  storedTypes: Record<string, boolean>;
-  theme: 'light' | 'dark' | 'vchatlight' | 'vchatdark';
-  totalStoredMessages: number;
-  ttsCategories: Record<string, boolean>;
-  ttsVoice: string;
-  version: number;
-  view: View;
-  visibleMessages: number;
-  visibleMessageLimit: number;
-};
-
 export type HighlightState = {
   /** Keep this for compatibility with other servers */
-  highlightColor?: string;
+  highlightColor: string;
   highlightSettings: string[];
   highlightSettingById: Record<string, HighlightSetting>;
   /** Keep this for compatibility with other servers */
-  highlightText?: string;
+  highlightText: string;
 };
+
+export type SettingsState = z.infer<typeof settingsSchema>;
+
+// Imported and loaded settings without chatpages
+export interface MergedSettings extends SettingsState, HighlightState {}
+
+// Full exported settings with chatpages
+export interface ExportedSettings extends MergedSettings, ChatPages {}

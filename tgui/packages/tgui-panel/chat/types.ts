@@ -1,3 +1,7 @@
+export type ChatPages = {
+  chatPages: Record<string, Page>;
+};
+
 export type message = {
   node?: HTMLElement | string;
   type: string;
