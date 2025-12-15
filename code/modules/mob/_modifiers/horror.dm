@@ -394,8 +394,7 @@ var/static/list/redspace_areas = list (
 /datum/modifier/redspace_corruption/can_apply(mob/living/L, suppress_output = TRUE)
 	if(ishuman(L) && !L.isSynthetic())
 		if(L.mind?.assigned_role == JOB_CHAPLAIN)
-			if(prob(90))
-				return FALSE
+			return FALSE
 		return TRUE
 	return FALSE
 
@@ -417,11 +416,11 @@ var/static/list/redspace_areas = list (
 	for(var/obj/item/organ/external/head/ex_organ in unfortunate_soul.organs)
 		ex_organ.cannot_break = TRUE
 		ex_organ.dislocated = -1
-		ex_organ.nonsolid = TRUE //ESSENTIAL for boneless. Otherwise it acts like a normal limb.
+		ex_organ.nonsolid = TRUE
 		ex_organ.spread_dam = TRUE
 		ex_organ.max_damage = 5 //VERY fragile, now.
 		ex_organ.vital = FALSE
-		ex_organ.encased = FALSE //you can just reach in and grab it
+		ex_organ.encased = FALSE
 		ex_organ.cannot_gib = FALSE
 		if(brain)
 			ex_organ.internal_organs -= brain //Remove the brain from the head.
@@ -590,7 +589,10 @@ var/static/list/redspace_areas = list (
 	return
 
 /datum/modifier/redspace_corruption/proc/revive()
+	//Force us back into the body.
 	unfortunate_soul.grab_ghost(TRUE)
+
+	//Defib stuff here.
 	GLOB.dead_mob_list.Remove(unfortunate_soul)
 	if((unfortunate_soul in GLOB.living_mob_list) || (unfortunate_soul in GLOB.dead_mob_list))
 		WARNING("Mob [unfortunate_soul] was revived but already in the living or dead list still!")
@@ -599,6 +601,8 @@ var/static/list/redspace_areas = list (
 	unfortunate_soul.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
 	unfortunate_soul.failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	unfortunate_soul.reload_fullscreen()
+
+	//Awaken!
 	unfortunate_soul.emote("gasp")
 	unfortunate_soul.Weaken(rand(10,25))
 	unfortunate_soul.updatehealth()

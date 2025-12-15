@@ -54,12 +54,19 @@
 				drain_modifier.choose_organs(1)
 		if(5)
 			//You waited WAY too long to get this cured. You're permanently infected now. Technically, this means you're now 'infectious'
+			if(infected.mind?.assigned_role == JOB_CHAPLAIN)
+				to_chat(infected, span_cult("An alien presence attempts to prod at your mind, but your faith shields you from its full effects, purging the corruption."))
+				cure()
+				return
+			if(infected.species.flags & (NO_SLEEVE))
+				cure()
+				return
 			if(!infected.has_modifier_of_type(/datum/modifier/redspace_corruption))
 				infected.add_modifier(/datum/modifier/redspace_corruption)
-			to_chat(infected, span_cult("You feel something latch into your mind, something melding with every fiber of your being."))
-			to_chat(infected, span_cult("Every one of your cells scream out in agony as they're individually overtaken by a foreign entity."))
-			to_chat(infected, span_cult("Your body feels foreign, like you're an invader in another's body."))
-			to_chat(infected, span_cult("In the back of your mind, you can hear a voice reaching out to you, pleading for you to come back. To come and never leave."))
+				to_chat(infected, span_cult("You feel something latch into your mind, something melding with every fiber of your being."))
+				to_chat(infected, span_cult("Every one of your cells scream out in agony as they're individually overtaken by a foreign entity."))
+				to_chat(infected, span_cult("Your body feels foreign, like you're an invader in another's body."))
+				to_chat(infected, span_cult("In the back of your mind, you can hear a voice reaching out to you, pleading for you to come back. To come and never leave."))
 			cure()
 
 		else
