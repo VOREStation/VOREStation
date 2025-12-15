@@ -7,7 +7,7 @@
 /obj/item/organ/internal/voicebox
 	name = "larynx"
 	icon_state = "larynx"
-	parent_organ = BP_TORSO		// We don't have a neck area
+	parent_organ = BP_HEAD		// We don't have a neck area, so head we go.
 	organ_tag = O_VOICE
 	will_assist_languages = list(LANGUAGE_GALCOM)
 	var/mute = FALSE
