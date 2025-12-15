@@ -47,10 +47,10 @@
 				infected.AdjustConfused(10)
 				infected.silent = max(10, infected.silent)
 		if(4)
-			if(!infected.has_modifier_of_type(/datum/modifier/redspace_drain/lesser))
+			if(!infected.has_modifier_of_type(/datum/modifier/redspace_drain))
 				infected.add_modifier(/datum/modifier/redspace_drain/lesser)
 			var/datum/modifier/redspace_drain/drain_modifier = infected.get_modifier_of_type(/datum/modifier/redspace_drain/lesser)
-			if(prob(5))
+			if(drain_modifier && prob(5))
 				drain_modifier.choose_organs(1)
 		if(5)
 			//You waited WAY too long to get this cured. You're permanently infected now. Technically, this means you're now 'infectious'
