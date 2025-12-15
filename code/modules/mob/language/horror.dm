@@ -37,5 +37,9 @@
 					speaker.visible_message(span_danger("[speaker] opens [speaker.p_their()] mouth to speak and a writing mass of tendrils crawls out."))
 				else
 					speaker.visible_message(span_danger("[speaker] acts as if [speaker.p_theyre()] attempting to speak, only for a writing mass of tendrils to crawl out of [speaker.p_their()] neck hole."))
-	speaker_mask = pick("Lost Soul", "Rescued One", "The Embraced", "The Chosen", "Flesh Puppet", "Fleshy Mass",)
+	var/datum/modifier/redspace_corruption/corruption = speaker.get_modifier_of_type(/datum/modifier/redspace_corruption)
+	if(corruption)
+		speaker_mask = corruption.speech_name
+	else
+		speaker_mask = speaker.real_name
 	..(speaker, message, speaker_mask)

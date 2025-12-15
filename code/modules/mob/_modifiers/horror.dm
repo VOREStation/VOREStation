@@ -388,6 +388,9 @@ var/static/list/redspace_areas = list (
 	///How long can we upkeep our armor?
 	var/armor_duration = 5 MINUTES
 
+	///What is our hivemind name?
+	var/speech_name = "The Unseen Horror"
+
 
 	var/mob/living/carbon/human/unfortunate_soul //The human target of our modifier.
 
@@ -402,6 +405,7 @@ var/static/list/redspace_areas = list (
 	unfortunate_soul = holder
 	ADD_TRAIT(unfortunate_soul, TRAIT_REDSPACE_CORRUPTED, UNHOLY_TRAIT)
 	ADD_TRAIT(unfortunate_soul, UNIQUE_MINDSTRUCTURE, UNHOLY_TRAIT)
+	speech_name = pick("Lost Soul", "Rescued One", "The Embraced", "The Chosen", "The Unseen Horror", "Obedient Servant", "Willing Follower")
 
 	//SHUNT ALL THE IMPORTANT ORGANS TO THE CHEST!
 	var/obj/item/organ/internal/brain/brain = unfortunate_soul.internal_organs_by_name[O_BRAIN]
