@@ -67,7 +67,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
-/datum/recipe/donkpocket/warm/make_food(var/obj/container as obj)
+/datum/recipe/donkpocket/warm/make_food(var/obj/container)
 	var/list/results = list()
 	var/obj/item/reagent_containers/food/snacks/donkpocket/D = locate(/obj/item/reagent_containers/food/snacks/donkpocket) in container
 	if(!D)
