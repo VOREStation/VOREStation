@@ -245,4 +245,4 @@
 		damage -= 1
 	if(owner.life_tick % 10 == 0 && prob(speak_chance))
 		if(prob(5)) //1/20 on a 1/4 chance. 1/80 chance every 10 ticks.
-			owner.say(pick("Accept our gift.", "Become one with us.", "Join our embrace.", "Come to us.", "We welcome all that can hear.", "You can be just like us."))
+			owner.say(pick("; Accept our gift.", "; Become one with us.", "; Join our embrace.", "; Come to us.", "; We welcome all that can hear.", "; You can be just like us."))
