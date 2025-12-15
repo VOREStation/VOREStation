@@ -588,18 +588,15 @@ var/static/list/redspace_areas = list (
 	return
 
 /datum/modifier/redspace_corruption/proc/revive()
+	unfortunate_soul.grab_ghost(TRUE)
 	GLOB.dead_mob_list.Remove(unfortunate_soul)
 	if((unfortunate_soul in GLOB.living_mob_list) || (unfortunate_soul in GLOB.dead_mob_list))
 		WARNING("Mob [unfortunate_soul] was revived but already in the living or dead list still!")
 	GLOB.living_mob_list += unfortunate_soul
-	unfortunate_soul.ajourn = FALSE
-	unfortunate_soul.ckey = unfortunate_soul.original_player
-	unfortunate_soul.teleop = null
 	unfortunate_soul.timeofdeath = 0
 	unfortunate_soul.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
 	unfortunate_soul.failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	unfortunate_soul.reload_fullscreen()
-
 	unfortunate_soul.emote("gasp")
 	unfortunate_soul.Weaken(rand(10,25))
 	unfortunate_soul.updatehealth()
