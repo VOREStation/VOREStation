@@ -59,6 +59,7 @@
 				cure()
 				return
 			if(infected.species.flags & NO_SLEEVE)
+				to_chat(infected, span_cult("An alien presence attempts to prod at your mind, but at the final hour the effects of the corruption subsides."))
 				cure()
 				return
 			if(!infected.has_modifier_of_type(/datum/modifier/redspace_corruption))
