@@ -408,7 +408,6 @@ var/static/list/redspace_areas = list (
 	var/obj/item/organ/internal/brain/brain = unfortunate_soul.internal_organs_by_name[O_BRAIN]
 	var/obj/item/organ/internal/eyes/eyes = unfortunate_soul.internal_organs_by_name[O_EYES]
 	var/obj/item/organ/external/chest/torso = unfortunate_soul.get_organ(BP_TORSO)
-	if(unfortunate_soul)
 	if(unfortunate_soul.should_have_organ(O_BRAIN))
 		brain.parent_organ = BP_TORSO //Move the brain to the torso.
 		torso.internal_organs |= brain
