@@ -36,7 +36,9 @@ var/static/list/redspace_areas = list (
 /datum/modifier/redspace_drain/on_applied()
 	unfortunate_soul = holder
 	to_chat(unfortunate_soul, span_cult("You feel as if your lifeforce is slowly being rended from your body."))
-	unfortunate_soul.add_modifier(/datum/modifier/redspace_corruption) //Permanent corruption.
+	if(!unfortunate_soul.HasDisease(/datum/disease/fleshy_spread))
+		var/datum/disease/fleshy_spread/flesh_disease = new /datum/disease/fleshy_spread()
+		unfortunate_soul.ForceContractDisease(flesh_disease, BP_TORSO)
 	return
 
 /datum/modifier/redspace_drain/on_expire()
@@ -406,6 +408,7 @@ var/static/list/redspace_areas = list (
 	var/obj/item/organ/internal/brain/brain = unfortunate_soul.internal_organs_by_name[O_BRAIN]
 	var/obj/item/organ/internal/eyes/eyes = unfortunate_soul.internal_organs_by_name[O_EYES]
 	var/obj/item/organ/external/chest/torso = unfortunate_soul.get_organ(BP_TORSO)
+	if(unfortunate_soul)
 	if(unfortunate_soul.should_have_organ(O_BRAIN))
 		brain.parent_organ = BP_TORSO //Move the brain to the torso.
 		torso.internal_organs |= brain
@@ -439,7 +442,7 @@ var/static/list/redspace_areas = list (
 		var/mob/living/carbon/human/predator = unfortunate_soul.loc.loc
 		if(istype(predator) && !predator.HasDisease(/datum/disease/fleshy_spread))
 			var/datum/disease/fleshy_spread/flesh_disease = new /datum/disease/fleshy_spread()
-			predator.ContractDisease(flesh_disease, BP_TORSO)
+			predator.ForceContractDisease(flesh_disease, BP_TORSO)
 
 	if(unfortunate_soul.stat == DEAD)
 		handle_death()
