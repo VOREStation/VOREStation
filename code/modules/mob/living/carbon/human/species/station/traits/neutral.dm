@@ -1895,4 +1895,4 @@
 
 /datum/trait/neutral/abnormal_mind/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
-	ADD_TRAIT(H.mind, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(H, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)
