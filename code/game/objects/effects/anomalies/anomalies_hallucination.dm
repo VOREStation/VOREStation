@@ -36,6 +36,7 @@
 			hallucinator.hallucination += 10
 			if(prob(20))
 				to_chat(hallucinator, pick(messages))
+				hallucinator.Confuse(10)
 			if(prob(10))
 				to_chat(hallucinator, span_danger("Your nose bleeds!"))
 				hallucinator.drip(1)
@@ -49,6 +50,7 @@
 		hallucinator.hallucination += 25
 		to_chat(hallucinator, span_danger("Your nose bleeds!"))
 		hallucinator.drip(1)
+		hallucinator.Confuse(15)
 
 /obj/effect/anomaly/hallucination/proc/generate_decoys()
 	if(!spawn_decoys)
