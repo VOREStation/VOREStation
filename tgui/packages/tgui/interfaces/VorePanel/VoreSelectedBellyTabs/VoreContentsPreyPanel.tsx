@@ -25,7 +25,7 @@ export const VoreContentsPreyPanel = (props: {
                 {prey_abilities.map((ability) => (
                   <Stack.Item key={ability.name}>
                     <Button
-                      disabled={ability.available}
+                      disabled={!ability.available}
                       color={preyAbilityToData[ability.name].color}
                       tooltip={preyAbilityToData[ability.name].desc}
                       onClick={() =>
