@@ -951,7 +951,7 @@
 			return TRUE
 
 		if("Devour") //Eat the inside mob
-			if(host.absorbed || host.stat)
+			if((host.absorbed && !(OB.mode_flags & DM_FLAG_ABSORBEDVORE)) || host.stat)
 				to_chat(user,span_warning("You can't do that in your state!"))
 				return TRUE
 

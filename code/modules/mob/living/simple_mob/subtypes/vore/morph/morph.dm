@@ -321,9 +321,6 @@
 	prey_body = prey
 	prey_body.forceMove(get_turf(parent_morph))
 	prey_body.muffled = FALSE
-	if(HAS_TRAIT(prey_body, ABSORBED_DEVOUR_TRAIT))
-		REMOVE_TRAIT(prey_body, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
-		remove_verb(prey_body, /mob/living/proc/absorbdevour)
 	prey_body.absorbed = FALSE
 	absorbed = TRUE
 	ckey = prey_ckey

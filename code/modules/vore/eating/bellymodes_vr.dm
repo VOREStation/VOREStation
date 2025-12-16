@@ -186,14 +186,6 @@
 			if(L.absorbed && !issilicon(L))
 				L.Weaken(5)
 
-			//absorbed devour flag
-			if((mode_flags & DM_FLAG_ABSORBDEVOUR) && !HAS_TRAIT(L, ABSORBED_DEVOUR_TRAIT) && L.absorbed)
-				add_verb(L, /mob/living/proc/absorbdevour)
-				ADD_TRAIT(L, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
-			else if(!(mode_flags & DM_FLAG_ABSORBDEVOUR) && HAS_TRAIT(L, ABSORBED_DEVOUR_TRAIT))
-				REMOVE_TRAIT(L, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
-				remove_verb(L, /mob/living/proc/absorbdevour)
-
 			//Thickbelly flag
 			if((mode_flags & DM_FLAG_THICKBELLY) && !L.muffled)
 				L.muffled = TRUE
