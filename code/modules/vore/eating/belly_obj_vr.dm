@@ -895,9 +895,6 @@
 	for(var/mob/living/L in M.contents)
 		L.muffled = FALSE
 		L.forced_psay = FALSE
-		if(HAS_TRAIT(L, ABSORBED_DEVOUR_TRAIT))
-			REMOVE_TRAIT(L, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
-			remove_verb(L, /mob/living/proc/absorbdevour)
 
 	for(var/obj/item/holder/H in M.contents)
 		H.held_mob.muffled = FALSE
@@ -920,9 +917,6 @@
 			ML.muffled = FALSE
 		if(ML.forced_psay)
 			ML.forced_psay = FALSE
-		if(HAS_TRAIT(ML, ABSORBED_DEVOUR_TRAIT))
-			REMOVE_TRAIT(ML, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
-			remove_verb(ML, /mob/living/proc/absorbdevour)
 		if(ML.absorbed)
 			ML.absorbed = FALSE
 			handle_absorb_langs(ML, owner)

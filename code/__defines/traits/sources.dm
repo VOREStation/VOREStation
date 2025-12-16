@@ -7,5 +7,3 @@
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Trait given by performing an action (proc, verb, etc. Something that the USER can control)
 #define ACTION_TRAIT "action"
-// Trait used to track something else attached to the mob, always should be associated with that thing.
-#define TRACKER_TRAIT "tracker"
