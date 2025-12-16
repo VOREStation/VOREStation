@@ -127,7 +127,7 @@
 	//Actual full digest modes
 	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_SELECT,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB, "Slow Body Digestion" = DM_FLAG_SLOWBODY, "Muffle Items" = DM_FLAG_MUFFLEITEMS, "TURBO MODE" = DM_FLAG_TURBOMODE)
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB, "Slow Body Digestion" = DM_FLAG_SLOWBODY, "Muffle Items" = DM_FLAG_MUFFLEITEMS, "TURBO MODE" = DM_FLAG_TURBOMODE, "Absorbed prey can devour others" = DM_FLAG_ABSORBDEVOUR)
 	//Item related modes
 	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST,IM_DIGEST_PARALLEL)
 	//drain modes
@@ -895,6 +895,9 @@
 	for(var/mob/living/L in M.contents)
 		L.muffled = FALSE
 		L.forced_psay = FALSE
+		if(HAS_TRAIT(L, ABSORBED_DEVOUR_TRAIT))
+			REMOVE_TRAIT(L, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
+			remove_verb(L, /mob/living/proc/absorbdevour)
 
 	for(var/obj/item/holder/H in M.contents)
 		H.held_mob.muffled = FALSE
@@ -917,6 +920,9 @@
 			ML.muffled = FALSE
 		if(ML.forced_psay)
 			ML.forced_psay = FALSE
+		if(HAS_TRAIT(ML, ABSORBED_DEVOUR_TRAIT))
+			REMOVE_TRAIT(ML, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
+			remove_verb(ML, /mob/living/proc/absorbdevour)
 		if(ML.absorbed)
 			ML.absorbed = FALSE
 			handle_absorb_langs(ML, owner)

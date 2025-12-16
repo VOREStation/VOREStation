@@ -548,6 +548,9 @@
 		//Actual escaping
 		absorbed = FALSE	//Make sure we're not absorbed
 		muffled = FALSE		//Removes Muffling
+		if(HAS_TRAIT(src, ABSORBED_DEVOUR_TRAIT))
+			REMOVE_TRAIT(src, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
+			remove_verb(src, /mob/living/proc/absorbdevour)
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		SetSleeping(0) //Wake up instantly if asleep
 		for(var/mob/living/simple_mob/SA in range(10))
@@ -1601,6 +1604,9 @@
 
 		absorbed = FALSE
 		muffled = FALSE
+		if(HAS_TRAIT(src, ABSORBED_DEVOUR_TRAIT))
+			REMOVE_TRAIT(src, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
+			remove_verb(src, /mob/living/proc/absorbdevour)
 		clear_fullscreen("belly")
 		clear_fullscreen(ATOM_BELLY_FULLSCREEN)
 		stop_sound_channel(CHANNEL_PREYLOOP)

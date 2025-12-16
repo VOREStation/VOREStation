@@ -180,7 +180,9 @@
 			H.add_modifier(/datum/modifier/dark_respite, 10 MINUTES)
 			H.muffled = FALSE
 			H.forced_psay = FALSE
-
+			if(HAS_TRAIT(H, ABSORBED_DEVOUR_TRAIT))
+				REMOVE_TRAIT(H, ABSORBED_DEVOUR_TRAIT, TRACKER_TRAIT)
+				remove_verb(H, /mob/living/proc/absorbdevour)
 
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, can_leave_dark)), 5 MINUTES, TIMER_DELETE_ME)
 		else

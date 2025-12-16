@@ -215,5 +215,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STRONG_IMMUNITY_TRAIT "strongimmunity"
 
 #define SLIP_REFLEX_TRAIT "slip_reflex"
+#define ABSORBED_DEVOUR_TRAIT "devourabsorb"
+
 #define ORGANICS	1
 #define SYNTHETICS	2
