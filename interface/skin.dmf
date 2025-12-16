@@ -290,6 +290,15 @@ window "infowindow"
 		left = "statwindow"
 		right = "outputwindow"
 		is-vert = false
+	elem "mediapanel"
+		type = BROWSER
+		pos = 392,25
+		size = 1x1
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
+		is-visible = false
+		saved-params = ""
 
 window "outputwindow"
 	elem "outputwindow"
