@@ -349,7 +349,7 @@
 				attack_message = "[H] attempted to strike [src], but missed!"
 			else
 				attack_message = "[H] attempted to strike [src], but [M.p_they()] rolled out of the way!"
-				src.set_dir(pick(GLOB.cardinal))
+				src.setDir(pick(GLOB.cardinal))
 			miss_type = 1
 
 	if(!miss_type && block)
@@ -609,9 +609,9 @@
 
 		// REVIVE TIME, basically stolen from defib.dm
 		GLOB.dead_mob_list.Remove(src)
-		if((src in GLOB.living_mob_list) || (src in GLOB.dead_mob_list))
+		if((src in GLOB.alive_mob_list) || (src in GLOB.dead_mob_list))
 			WARNING("Mob [src] was cpr revived by [reviver], but already in the living or dead list still!")
-		GLOB.living_mob_list += src
+		GLOB.alive_mob_list += src
 
 		timeofdeath = 0
 		set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

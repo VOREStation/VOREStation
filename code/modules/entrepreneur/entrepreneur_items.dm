@@ -437,7 +437,7 @@
 
 /obj/structure/bed/roller/massage/buckle_mob(mob/living/M)
 	..()
-	M.set_dir(1)
+	M.setDir(1)
 
 //Magnifying glass
 

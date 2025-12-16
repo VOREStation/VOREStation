@@ -286,7 +286,7 @@ var/global/narsie_cometh = 0
 		acquire(pick(cultists))
 		return
 		//If there was living cultists, it picks one to follow.
-	for(var/mob/living/carbon/human/food in GLOB.living_mob_list)
+	for(var/mob/living/carbon/human/food in GLOB.alive_mob_list)
 		if(food.stat)
 			continue
 		var/turf/pos = get_turf(food)

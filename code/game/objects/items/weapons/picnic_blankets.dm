@@ -86,7 +86,7 @@
 			side.blanket_type = SIDE
 			side.name = name //Making sure side blankets inherit our vars if they got edited at runtime
 			side.desc = desc
-			side.set_dir(dir)
+			side.setDir(dir)
 			if(isTableTop)
 				side.layer = TABLE_LAYER + 0.01 //We should be just above tables.
 			side.update_icon()

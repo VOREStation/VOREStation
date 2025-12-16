@@ -1223,6 +1223,29 @@
 		sleep(2)
 		C.jumptocoord(x,y,z)
 
+	else if(href_list["change_lag_switch"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		switch(href_list["change_lag_switch"])
+			if("ALL_ON")
+				SSlag_switch.set_all_measures(TRUE)
+				log_admin("[key_name(usr)] turned all Lag Switch measures ON.")
+				message_admins("[key_name_admin(usr)] turned all Lag Switch measures ON.")
+			if("ALL_OFF")
+				SSlag_switch.set_all_measures(FALSE)
+				log_admin("[key_name(usr)] turned all Lag Switch measures OFF.")
+				message_admins("[key_name_admin(usr)] turned all Lag Switch measures OFF.")
+			else
+				var/switch_index = text2num(href_list["change_lag_switch"])
+				if(!SSlag_switch.set_measure(switch_index, !LAZYACCESS(SSlag_switch.measures, switch_index)))
+					to_chat(src, span_danger("Something went wrong when trying to toggle that Lag Switch. Check runtimes for more info."), confidential = TRUE)
+				else
+					log_admin("[key_name(usr)] turned a Lag Switch measure at index ([switch_index]) [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
+					message_admins("[key_name_admin(usr)] turned a Lag Switch measure [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
+
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/lag_switch_panel)
+
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
 		if(!istype(error_viewer))
@@ -1641,7 +1664,7 @@
 					else
 						var/atom/O = new path(target)
 						if(O)
-							O.set_dir(obj_dir)
+							O.setDir(obj_dir)
 							if(obj_name)
 								O.name = obj_name
 								if(istype(O,/mob))

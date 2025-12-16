@@ -39,7 +39,7 @@
 		icon_state = initial(icon_state) + "_active"
 		playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 		addtimer(CALLBACK(src, PROC_REF(detonate)), det_time, TIMER_DELETE_ME)
-		user.set_dir(get_dir(user, target))
+		user.setDir(get_dir(user, target))
 		user.drop_item()
 		var/t = (isturf(target) ? target : target.loc)
 		walk_towards(src, t, 3)

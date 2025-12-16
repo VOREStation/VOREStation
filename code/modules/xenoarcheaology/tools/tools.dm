@@ -240,7 +240,7 @@
 
 /obj/item/beacon_locator/process()
 	if(target_radio)
-		set_dir(get_dir(src,target_radio))
+		setDir(get_dir(src,target_radio))
 		switch(get_dist(src,target_radio))
 			if(0 to 3)
 				icon_state = "pinondirect"

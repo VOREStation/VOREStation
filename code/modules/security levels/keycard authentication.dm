@@ -39,7 +39,7 @@
 			A.need_circuit = FALSE
 			A.pixel_x = pixel_x
 			A.pixel_y = pixel_y
-			A.set_dir(dir)
+			A.setDir(dir)
 			A.anchored = TRUE
 			for(var/obj/C in src)
 				if(istype(C, /obj/item/circuitboard))

@@ -278,7 +278,7 @@
 	else
 		return ..()
 
-/obj/structure/gargoyle/set_dir(var/new_dir)
+/obj/structure/gargoyle/setDir(var/new_dir)
 	. = ..()
 	if(. && tail_image)
 		cut_overlay(tail_image)

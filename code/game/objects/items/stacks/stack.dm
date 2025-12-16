@@ -224,7 +224,7 @@
 
 					Ob.matter[recipe.matter_material] = mattermult / produced * required
 
-		O.set_dir(user.dir)
+		O.setDir(user.dir)
 		O.add_fingerprint(user)
 		if (istype(O, /obj/item/stack))
 			var/obj/item/stack/S = O

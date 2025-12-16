@@ -1,3 +1,12 @@
+//////////////////////////
+/////Initial Building/////
+//////////////////////////
+
+/// Legacy procs that really should be replaced with proper _INIT macros
+/proc/make_datum_reference_lists()
+	// I tried to eliminate this proc but I couldn't untangle their init-order interdependencies -Dominion/Cyberboss
+	init_keybindings()
+
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
@@ -6,7 +15,7 @@ GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
 GLOBAL_LIST_EMPTY(human_mob_list)					//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)					//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
-GLOBAL_LIST_EMPTY(living_mob_list)					//List of all alive mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(alive_mob_list)					//List of all alive mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(dead_mob_list)					//List of all dead mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(observer_mob_list)				//List of all /mob/observer/dead, including clientless.
 GLOBAL_LIST_EMPTY(listening_objects)				//List of all objects which care about receiving messages (communicators, radios, etc)
@@ -19,6 +28,13 @@ GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
+
+/// All alive mobs with clients.
+GLOBAL_LIST_EMPTY(alive_player_list)
+
+/// All dead mobs with clients. Does not include observers.
+GLOBAL_LIST_EMPTY(dead_player_list)
+
 var/global/list/obj/item/pda/PDAs = list()
 var/global/list/obj/item/communicator/all_communicators = list()
 
@@ -1255,21 +1271,6 @@ GLOBAL_LIST_INIT(description_icons, list(
 
 	"hatchet" = image(icon='icons/obj/weapons.dmi',icon_state="hatchet"),
 	))
-
-// TODO - Optimize this into numerics if this ends up working out
-GLOBAL_LIST_INIT(MOVE_KEY_MAPPINGS, list(
-	"North" = NORTH_KEY,
-	"South" = SOUTH_KEY,
-	"East" = EAST_KEY,
-	"West" = WEST_KEY,
-	"W" = W_KEY,
-	"A" = A_KEY,
-	"S" = S_KEY,
-	"D" = D_KEY,
-	"Shift" = SHIFT_KEY,
-	"Ctrl" = CTRL_KEY,
-	"Alt" = ALT_KEY,
-))
 
 GLOBAL_LIST_EMPTY(total_extraction_beacons)
 

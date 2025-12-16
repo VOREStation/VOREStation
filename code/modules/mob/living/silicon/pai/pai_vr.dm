@@ -627,7 +627,7 @@
 	var/icon/new_holo = getCompoundIcon(dummy)
 
 	dummy.tail_layering = TRUE
-	dummy.set_dir(NORTH)
+	dummy.setDir(NORTH)
 	var/icon/new_holo_north = getCompoundIcon(dummy)
 
 	qdel(holo_icon)
@@ -637,7 +637,7 @@
 	holo_icon_north = new_holo_north
 	return TRUE
 
-/mob/living/silicon/pai/set_dir(var/new_dir)
+/mob/living/silicon/pai/setDir(var/new_dir)
 	. = ..()
 	if(. && (chassis == "13"))
 		switch(dir)

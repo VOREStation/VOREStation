@@ -5,9 +5,6 @@
 
 	show_laws(0)
 
-	// Override the DreamSeeker macro with the borg version!
-	client.set_hotkeys_macro("borgmacro", "borghotkeymode")
-
 	repick_laws()
 
 	// Forces synths to select an icon relevant to their module

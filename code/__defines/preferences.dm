@@ -36,6 +36,9 @@
 /// Open the game preferences window
 #define PREFERENCE_TAB_GAME_PREFERENCES 1
 
+/// Open the keybindings window
+#define PREFERENCE_TAB_KEYBINDINGS 2
+
 /// These will be shown in the character sidebar, but at the bottom.
 #define PREFERENCE_CATEGORY_FEATURES "features"
 

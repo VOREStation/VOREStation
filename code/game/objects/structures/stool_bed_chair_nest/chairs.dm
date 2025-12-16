@@ -23,7 +23,7 @@
 		user.drop_item()
 		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-		E.set_dir(dir)
+		E.setDir(dir)
 		E.part = SK
 		SK.loc = E
 		SK.master = E
@@ -59,12 +59,12 @@
 	else
 		reset_plane_and_layer()
 
-/obj/structure/bed/chair/set_dir()
+/obj/structure/bed/chair/setDir()
 	..()
 	update_layer()
 	if(has_buckled_mobs())
 		for(var/mob/living/L as anything in buckled_mobs)
-			L.set_dir(dir)
+			L.setDir(dir)
 
 /obj/structure/bed/chair/shuttle
 	name = "chair"

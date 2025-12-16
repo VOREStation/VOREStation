@@ -43,7 +43,7 @@ Buildable meters
 		make_from_existing(make_from)
 	else
 		pipe_type = _pipe_type
-		set_dir(_dir)
+		setDir(_dir)
 
 	update()
 	pixel_x += rand(-5, 5)
@@ -52,7 +52,7 @@ Buildable meters
 	. = ..()
 
 /obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
-	set_dir(make_from.dir)
+	setDir(make_from.dir)
 	pipename = make_from.name
 	if(make_from.req_access)
 		src.req_access = make_from.req_access
@@ -111,7 +111,7 @@ Buildable meters
 	do_a_flip()
 
 /obj/item/pipe/proc/do_a_flip()
-	set_dir(turn(dir, -180))
+	setDir(turn(dir, -180))
 	fixdir()
 
 /obj/item/pipe/trinary/flippable/do_a_flip()
@@ -132,7 +132,7 @@ Buildable meters
 	var/old_bent = !IS_CARDINAL(dir)
 	. = ..()
 	if(old_bent && IS_CARDINAL(dir))
-		set_dir(turn(src.dir, -45))
+		setDir(turn(src.dir, -45))
 
 //Helper to clean up dir
 /obj/item/pipe/proc/fixdir()
@@ -140,16 +140,16 @@ Buildable meters
 
 /obj/item/pipe/binary/fixdir()
 	if(dir == SOUTH)
-		set_dir(NORTH)
+		setDir(NORTH)
 	else if(dir == WEST)
-		set_dir(EAST)
+		setDir(EAST)
 
 /obj/item/pipe/trinary/flippable/fixdir()
 	if(dir in GLOB.cornerdirs)
-		set_dir(turn(dir, 45))
+		setDir(turn(dir, 45))
 
 /obj/item/pipe/attack_self(mob/user)
-	set_dir(turn(dir,-90))
+	setDir(turn(dir,-90))
 	fixdir()
 
 //called when a turf is attacked with a pipe item
@@ -203,7 +203,7 @@ Buildable meters
 	qdel(src)
 
 /obj/item/pipe/proc/build_pipe(obj/machinery/atmospherics/A)
-	A.set_dir(dir)
+	A.setDir(dir)
 	A.init_dir()
 	if(pipename)
 		A.name = pipename

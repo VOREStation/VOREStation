@@ -187,7 +187,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		qdel(src)
 		return
 
-	set_dir(pick(GLOB.cardinal))
+	setDir(pick(GLOB.cardinal))
 
 	var/datum/gas_mixture/air_contents = loc.return_air()
 	color = fire_color(air_contents.temperature)

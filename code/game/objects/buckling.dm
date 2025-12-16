@@ -61,7 +61,7 @@
 
 	M.buckled = src
 	M.facing_dir = null
-	M.set_dir(buckle_dir ? buckle_dir : dir)
+	M.setDir(buckle_dir ? buckle_dir : dir)
 	M.update_canmove()
 	M.update_floating( M.Check_Dense_Object() )
 //	buckled_mob = M
@@ -198,9 +198,9 @@
 			L.inertia_dir = last_move
 
 		if(!buckle_dir)
-			L.set_dir(dir)
+			L.setDir(dir)
 		else
-			L.set_dir(buckle_dir)
+			L.setDir(buckle_dir)
 
 /atom/movable/proc/can_buckle_check(mob/living/M, forced = FALSE, can_do_spont_vore = FALSE)
 	if(!buckled_mobs)

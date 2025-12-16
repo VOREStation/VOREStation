@@ -116,9 +116,9 @@
 	starting_destination = /datum/shuttle_destination/webdemo/inside_bridge
 
 //
-//   inside_bridge--\
+//   inside_bridge--v
 //                   |---nearby_bridge---faraway
-//   docked_bridge--/
+//   docked_bridge--^
 //
 
 /datum/shuttle_destination/webdemo/inside_bridge

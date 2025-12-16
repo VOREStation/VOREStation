@@ -25,7 +25,7 @@
 
 /*	// One horrific bastardization of glorious inheritence dead. A billion to go. ~Mech
 /obj/mecha/medical/mechturn(direction)
-	set_dir(direction)
+	setDir(direction)
 	playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return 1
 

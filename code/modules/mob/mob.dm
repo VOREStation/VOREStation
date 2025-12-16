@@ -5,10 +5,10 @@
 	persistent_client?.set_mob(null)
 
 	SSmobs.currentrun -= src
-	GLOB.mob_list -= src
-	GLOB.dead_mob_list -= src
-	GLOB.living_mob_list -= src
-	GLOB.player_list -= src
+	remove_from_mob_list()
+	remove_from_dead_mob_list()
+	remove_from_alive_mob_list()
+	focus = null
 	unset_machine()
 	clear_fullscreen()
 	if(client)
@@ -42,7 +42,6 @@
 	following_mobs = null
 	previewing_belly = null // from code/modules/vore/eating/mob_ch.dm
 	vore_selected = null // from code/modules/vore/eating/mob_vr
-	focus = null
 
 	motiontracker_unsubscribe(TRUE) // Force unsubscribe
 
@@ -76,17 +75,16 @@
 
 /mob/Initialize(mapload)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CREATED, src)
-	GLOB.mob_list += src
+	add_to_mob_list()
 	if(stat == DEAD)
-		GLOB.dead_mob_list += src
+		add_to_dead_mob_list()
 	else
-		GLOB.living_mob_list += src
+		add_to_alive_mob_list()
 	lastarea = get_area(src)
-	set_focus(src) // VOREStation Add - Key Handling
+	set_focus(src)
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	log_mob_tag("TAG: [tag] CREATED: [key_name(src)] \[[type]\]")
-	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
 /mob/show_message(msg, type, alt, alt_type)
 
@@ -802,12 +800,12 @@
 
 
 /mob/proc/facedir(var/ndir)
-	if(!canface() || (client && (client.moving || !checkMoveCooldown())))
-		DEBUG_INPUT("Denying Facedir for [src] (moving=[client?.moving])")
+	if(!canface() || (client && !checkMoveCooldown()))
+		//DEBUG_INPUT("Denying Facedir for [src] (moving=[client?.moving])")
 		return 0
-	set_dir(ndir)
+	setDir(ndir)
 	if(buckled && buckled.buckle_movable)
-		buckled.set_dir(ndir)
+		buckled.setDir(ndir)
 	setMoveCooldown(movement_delay())
 	return 1
 
@@ -1125,15 +1123,15 @@
 	if(newdir == facing_dir)
 		facing_dir = null
 	else if(newdir)
-		set_dir(newdir)
+		setDir(newdir)
 		facing_dir = newdir
 	else if(facing_dir)
 		facing_dir = null
 	else
-		set_dir(dir)
+		setDir(dir)
 		facing_dir = dir
 
-/mob/set_dir()
+/mob/setDir()
 	if(facing_dir)
 		if(!canface() || lying || buckled || restrained())
 			facing_dir = null
@@ -1283,51 +1281,6 @@
 		exploited?.exploit_addons -= src
 		exploit_for = null
 	. = ..()
-
-
-/client/proc/check_has_body_select()
-	return mob && mob.hud_used && istype(mob.zone_sel, /atom/movable/screen/zone_sel)
-
-/client/verb/body_toggle_head()
-	set name = "body-toggle-head"
-	set hidden = 1
-	toggle_zone_sel(list(BP_HEAD, O_EYES, O_MOUTH))
-
-/client/verb/body_r_arm()
-	set name = "body-r-arm"
-	set hidden = 1
-	toggle_zone_sel(list(BP_R_ARM,BP_R_HAND))
-
-/client/verb/body_l_arm()
-	set name = "body-l-arm"
-	set hidden = 1
-	toggle_zone_sel(list(BP_L_ARM,BP_L_HAND))
-
-/client/verb/body_chest()
-	set name = "body-chest"
-	set hidden = 1
-	toggle_zone_sel(list(BP_TORSO))
-
-/client/verb/body_groin()
-	set name = "body-groin"
-	set hidden = 1
-	toggle_zone_sel(list(BP_GROIN))
-
-/client/verb/body_r_leg()
-	set name = "body-r-leg"
-	set hidden = 1
-	toggle_zone_sel(list(BP_R_LEG,BP_R_FOOT))
-
-/client/verb/body_l_leg()
-	set name = "body-l-leg"
-	set hidden = 1
-	toggle_zone_sel(list(BP_L_LEG,BP_L_FOOT))
-
-/client/proc/toggle_zone_sel(list/zones)
-	if(!check_has_body_select())
-		return
-	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
-	selector.set_selected_zone(next_in_list(mob.zone_sel.selecting,zones))
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
@@ -1730,3 +1683,34 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	//	if(NAMEOF(src, logging))
 	//		return debug_variable(var_name, logging, 0, src, FALSE)
 	. = ..()
+
+/mob/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, focus))
+			set_focus(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	. = ..()
+
+///Update the mouse pointer of the attached client in this mob
+/mob/proc/update_mouse_pointer()
+	if(!client)
+		return
+	if(client.mouse_pointer_icon != initial(client.mouse_pointer_icon))//only send changes to the client if theyre needed
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+	if(examine_cursor_icon && client.keys_held["Shift"]) //mouse shit is hardcoded, make this non hard-coded once we make mouse modifiers bindable
+		client.mouse_pointer_icon = examine_cursor_icon
+	//if(istype(loc, /obj/vehicle/sealed))
+	//	var/obj/vehicle/sealed/E = loc
+	//	if(E.mouse_pointer)
+	//		client.mouse_pointer_icon = E.mouse_pointer
+	if(client.mouse_override_icon)
+		client.mouse_pointer_icon = client.mouse_override_icon
+
+/mob/key_down(key, client/client, full_key)
+	..()
+	SEND_SIGNAL(src, COMSIG_MOB_KEYDOWN, key, client, full_key)

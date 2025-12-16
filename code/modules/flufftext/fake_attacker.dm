@@ -17,7 +17,7 @@
 	if(!clients.len)
 		qdel(src)
 
-/obj/effect/fake_attacker/set_dir(newdir)
+/obj/effect/fake_attacker/setDir(newdir)
 	if(!(newdir in GLOB.cardinal))
 		newdir &= ~(EAST|WEST) // Don't allow diagonals, prefer north/south
 		if(!newdir)
@@ -112,7 +112,7 @@
 	if(!clone)
 		// Get a randomized clone from the living mob's list, must be standing
 		var/list/possible_clones = new/list()
-		for(var/mob/living/carbon/human/H in GLOB.living_mob_list)
+		for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 			if(H.stat || H.lying)
 				continue
 			possible_clones += H
@@ -156,7 +156,7 @@
 	append_client(targeting_mob.client)
 	name = clone_appearance_from.name
 	// Usually we want to face our target for maximum spooky effect
-	set_dir(get_dir(src,targeting_mob))
+	setDir(get_dir(src,targeting_mob))
 
 /obj/effect/fake_attacker/human/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -209,7 +209,7 @@
 
 /obj/effect/fake_attacker/human/fleeing/process()
 	var/mob/living/M = ..()
-	set_dir(get_dir(src,M))
+	setDir(get_dir(src,M))
 
 	if(get_dist(src,M) < 6 || flee)
 		flee = TRUE

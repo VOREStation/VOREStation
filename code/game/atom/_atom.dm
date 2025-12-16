@@ -234,11 +234,20 @@
 /atom/proc/relaymove()
 	return
 
-//called to set the atom's dir and used to add behaviour to dir-changes
-/atom/proc/set_dir(new_dir)
-	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
-	. = new_dir != dir
-	dir = new_dir
+/**
+ * Hook for running code when a dir change occurs
+ *
+ * Not recommended to use, listen for the [COMSIG_ATOM_DIR_CHANGE] signal instead (sent by this proc)
+ */
+/atom/proc/setDir(newdir)
+	SHOULD_CALL_PARENT(TRUE)
+	if (SEND_SIGNAL(src, COMSIG_ATOM_PRE_DIR_CHANGE, dir, newdir) & COMPONENT_ATOM_BLOCK_DIR_CHANGE)
+		newdir = dir
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
+	var/oldDir = dir
+	dir = newdir
+	SEND_SIGNAL(src, COMSIG_ATOM_POST_DIR_CHANGE, oldDir, newdir)
 
 // Called to set the atom's density and used to add behavior to density changes.
 /atom/proc/set_density(var/new_density)

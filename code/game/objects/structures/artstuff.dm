@@ -396,7 +396,7 @@
 	if(persistence_id)
 		SSpersistence.painting_frames += src
 	if(dir)
-		set_dir(dir)
+		setDir(dir)
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30 : 30)
 		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0

@@ -93,144 +93,68 @@
 		to_chat(src, span_danger("The Patreon URL is not set in the server configuration."))
 	return
 
+/client/verb/reportissue()
+	set name = "report-issue"
+	set desc = "Report an issue"
+
+	var/githuburl = CONFIG_GET(string/githuburl)
+	if(!githuburl)
+		to_chat(src, span_danger("The Github URL is not set in the server configuration."))
+		return
+
+	var/testmerge_data = GLOB.revdata.testmerge
+	var/has_testmerge_data = (length(testmerge_data) != 0)
+
+	var/message = "This will open the Github issue reporter in your browser. Are you sure?"
+	if(has_testmerge_data)
+		message += "<br>The following experimental changes are active and are probably the cause of any new or sudden issues you may experience. If possible, please try to find a specific thread for your issue instead of posting to the general issue tracker:<br>"
+		message += GLOB.revdata.GetTestMergeInfo(FALSE)
+
+	// We still use tg_alert here because some people were concerned that if someone wanted to report that tgui wasn't working
+	// then the report issue button being tgui-based would be problematic.
+	if(tg_alert(src, message, "Report Issue", "Yes", "No") != "Yes")
+		return
+
+	var/base_link = githuburl + "/issues/new?template=bug_report_form.yml"
+	var/list/concatable = list(base_link)
+
+	var/client_version = "[byond_version].[byond_build]"
+	concatable += ("&reporting-version=" + client_version)
+
+	// the way it works is that we use the ID's that are baked into the template YML and replace them with values that we can collect in game.
+	if(GLOB.round_id)
+		concatable += ("&round-id=" + GLOB.round_id)
+
+	// Insert testmerges
+	if(has_testmerge_data)
+		var/list/all_tms = list()
+		for(var/entry in testmerge_data)
+			var/datum/tgs_revision_information/test_merge/tm = entry
+			all_tms += "- \[[tm.title]\]([githuburl]/pull/[tm.number])"
+		var/all_tms_joined = jointext(all_tms, "\n")
+
+		concatable += ("&test-merges=" + url_encode(all_tms_joined))
+
+	DIRECT_OUTPUT(src, link(jointext(concatable, "")))
+
+/client/verb/changelog()
+	set name = "Changelog"
+	set category = "OOC"
+
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+
+	GLOB.changelog_tgui.tgui_interact(mob)
+	//if(prefs.lastchangelog != GLOB.changelog_hash)
+	//	prefs.lastchangelog = GLOB.changelog_hash
+	//	prefs.save_preferences()
+	//	winset(src, "infobuttons.changelog", "font-style=;")
+
 /client/verb/hotkeys_help()
-	set name = "hotkeys-help"
-	set category = "OOC.Resources"
+	set name = "Hotkeys Help"
+	set category = "OOC"
 
-	var/admin = {"
-Admin:
-\tF5 = Aghost (admin-ghost)
-\tF6 = player-panel-new
-\tF7 = admin-pm
-\tF8 = Invisimin
-"}
-	admin = span_purple(admin)
+	if(!GLOB.hotkeys_tgui)
+		GLOB.hotkeys_tgui = new /datum/hotkeys_help()
 
-	var/hotkey_mode = {"
-Hotkey-Mode: (hotkey-mode must be on)
-\tTAB = toggle hotkey-mode
-\ta = left
-\ts = down
-\td = right
-\tw = up
-\tq = drop
-\te = equip
-\tr = throw
-\tt = say
-\t5 = emote
-\tx = swap-hand
-\tz = activate held object (or y)
-\tu = Rest
-\tb = Resist
-\tj = toggle-aiming-mode
-\tf = cycle-intents-left
-\tg = cycle-intents-right
-\t1 = help-intent
-\t2 = disarm-intent
-\t3 = grab-intent
-\t4 = harm-intent
-\tCtrl+Click = pull
-\tShift+Click = examine
-"}
-	hotkey_mode = span_purple(hotkey_mode)
-
-	var/other = {"
-Any-Mode: (hotkey doesn't need to be on)
-\tCtrl+a = left
-\tCtrl+s = down
-\tCtrl+d = right
-\tCtrl+w = up
-\tCtrl+q = drop
-\tCtrl+e = equip
-\tCtrl+r = throw
-\tCtrl+u = Rest
-\tCtrl+b = Resist
-\tCtrl+x = swap-hand
-\tCtrl+z = activate held object (or Ctrl+y)
-\tCtrl+f = cycle-intents-left
-\tCtrl+g = cycle-intents-right
-\tCtrl+1 = help-intent
-\tCtrl+2 = disarm-intent
-\tCtrl+3 = grab-intent
-\tCtrl+4 = harm-intent
-\tF1 = adminhelp
-\tF2 = ooc
-\tF3 = say
-\tF4 = emote
-\tDEL = stop pulling
-\tINS = cycle-intents-right
-\tHOME = drop
-\tPGUP = swap-hand
-\tPGDN = activate held object
-\tEND = throw
-"}
-	other = span_purple(other)
-
-	var/robot_hotkey_mode = {"
-Hotkey-Mode: (hotkey-mode must be on)
-\tTAB = toggle hotkey-mode
-\ta = left
-\ts = down
-\td = right
-\tw = up
-\tq = unequip active module
-\tt = say
-\tx = cycle active modules
-\tz = activate held object (or y)
-\tf = cycle-intents-left
-\tg = cycle-intents-right
-\t1 = activate module 1
-\t2 = activate module 2
-\t3 = activate module 3
-\t4 = toggle intents
-\t5 = emote
-\tCtrl+Click = pull
-\tShift+Click = examine
-"}
-	robot_hotkey_mode = span_purple(robot_hotkey_mode)
-
-	var/robot_other = {"
-Any-Mode: (hotkey doesn't need to be on)
-\tCtrl+a = left
-\tCtrl+s = down
-\tCtrl+d = right
-\tCtrl+w = up
-\tCtrl+q = unequip active module
-\tCtrl+x = cycle active modules
-\tCtrl+z = activate held object (or Ctrl+y)
-\tCtrl+f = cycle-intents-left
-\tCtrl+g = cycle-intents-right
-\tCtrl+1 = activate module 1
-\tCtrl+2 = activate module 2
-\tCtrl+3 = activate module 3
-\tCtrl+4 = toggle intents
-\tF1 = adminhelp
-\tF2 = ooc
-\tF3 = say
-\tF4 = emote
-\tDEL = stop pulling
-\tINS = toggle intents
-\tPGUP = cycle active modules
-\tPGDN = activate held object
-"}
-	robot_other = span_purple(robot_other)
-
-	if(isrobot(src.mob))
-		to_chat(src,robot_hotkey_mode)
-		to_chat(src,robot_other)
-	else
-		to_chat(src,hotkey_mode)
-		to_chat(src,other)
-	if(check_rights_for(src, R_HOLDER))
-		to_chat(src,admin)
-
-// Set the DreamSeeker input macro to the type appropriate for its mob
-/client/proc/set_hotkeys_macro(macro_name = "macro", hotkey_macro_name = "hotkeymode", hotkeys_enabled = null)
-	// If hotkeys mode was not specified, fall back to choice of default in client preferences.
-	if(isnull(hotkeys_enabled))
-		hotkeys_enabled = prefs?.read_preference(/datum/preference/toggle/hotkeys_default)
-
-	if(hotkeys_enabled)
-		winset(src, null, "mainwindow.macro=[hotkey_macro_name] hotkey_toggle.is-checked=true mapwindow.map.focus=true")
-	else
-		winset(src, null, "mainwindow.macro=[macro_name] hotkey_toggle.is-checked=false input.focus=true")
+	GLOB.hotkeys_tgui.tgui_interact(mob)

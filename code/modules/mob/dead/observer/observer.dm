@@ -510,7 +510,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	orbit(target, orbitsize, FALSE, 20, rot_seg)
 
 /mob/observer/dead/orbit()
-	set_dir(2) //reset dir so the right directional sprites show up
+	setDir(2) //reset dir so the right directional sprites show up
 	return ..()
 
 /mob/observer/dead/stop_orbit()

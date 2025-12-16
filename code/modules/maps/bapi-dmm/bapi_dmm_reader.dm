@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 	for(var/attribute in attributes)
 		var/value = attributes[attribute]
 		if(islist(value))
-			value = deepCopyList(value)
+			value = deep_copy_list(value)
 		#ifdef TESTING
 		if(what.vars[attribute] == value)
 			var/message = span_green("[what.type]") + " at [AREACOORD(what)] - " + span_bold("VAR:") + " " + span_red("[attribute] = [isnull(value) ? "null" : (isnum(value) ? value : "\"[value]\"")]")

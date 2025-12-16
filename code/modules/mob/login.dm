@@ -27,7 +27,7 @@
 
 	client.persistent_client.set_mob(src)
 
-	GLOB.player_list |= src
+	add_to_player_list()
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
 	log_access("Mob Login: [key_name(src)] was assigned to a [type] ([tag])")
@@ -69,9 +69,6 @@
 	// Status indicators
 	var/status_enabled = client.prefs?.read_preference(/datum/preference/toggle/status_indicators)
 	plane_holder.set_vis(VIS_STATUS, status_enabled)
-
-	//set macro to normal incase it was overriden (like cyborg currently does)
-	client.set_hotkeys_macro("macro", "hotkeymode")
 
 	if(!client.tooltips)
 		client.tooltips = new(client)

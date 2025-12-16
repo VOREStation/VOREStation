@@ -205,6 +205,9 @@ What is the naming convention for planes or layers?
 #define RADIAL_CONTENT_LAYER 1000
 
 #define PLANE_ADMIN3			99 //Purely for shenanigans (above HUD)
+/// Plane related to the menu when pressing Escape.
+/// Needed so that we can apply a blur effect to EVERYTHING, and guarantee we are above all UI.
+#define ESCAPE_MENU_PLANE 99
 
 ///Plane of the "splash" icon used that shows on the lobby screen
 #define SPLASHSCREEN_PLANE 100

@@ -109,7 +109,7 @@
 // Commented out because the AI can't handle it sadly.
 /mob/living/simple_mob/mechanical/mecha/SelfMove(turf/n, direct)
 	if(direct != dir)
-		set_dir(direct)
+		setDir(direct)
 		return FALSE // We didn't actually move, and returning FALSE means the mob can try to actually move almost immediately and not have to wait the full movement cooldown.
 	return ..()
 */

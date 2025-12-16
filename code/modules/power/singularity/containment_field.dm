@@ -23,7 +23,7 @@
 	shockdirs = list(turn(dir,90),turn(dir,-90))
 	sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
-/obj/machinery/containment_field/set_dir(new_dir)
+/obj/machinery/containment_field/setDir(new_dir)
 	. = ..()
 	if(.)
 		shockdirs = list(turn(dir,90),turn(dir,-90))

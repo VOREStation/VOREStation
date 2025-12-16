@@ -133,21 +133,25 @@
 
 // NB: This is called for 'self movement', not for being pulled or things like that, which COULD be the case for /mob/Move
 // But to be honest, A LOT OF THIS CODE should be in /mob/Move
-/client/Move(n, direct)
+/client/Move(new_loc, direct)
 	// Prevents a double-datum lookup each time this is referenced
 	// May seem dumb, but it's faster to look up a var on my_mob than dereferencing mob on client, then dereferencing the var on that mob
 	// Having it in a var here means it's more available to look up things on. It won't speed up that second dereference, though.
 	var/mob/my_mob = mob
 
-	// Nothing to do in nullspace
-	if(!my_mob.loc)
-		return
+	next_move_dir_add = NONE
+	next_move_dir_sub = NONE
+	var/old_move_delay = move_delay
+	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
+	if(!direct || !new_loc)
+		return FALSE
+	if(!mob?.loc)
+		return FALSE
+	if(HAS_TRAIT(my_mob, TRAIT_NO_TRANSFORM))
+		return FALSE //This is sorta the goto stop mobs from moving trait
 
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
-
-	if(HAS_TRAIT(my_mob, TRAIT_NO_TRANSFORM))
-		return FALSE //This is sorta the goto stop mobs from moving trait
 
 	// We're controlling an object which is when admins possess an object.
 	if(my_mob.control_object)
@@ -157,7 +161,7 @@
 	if(my_mob.is_incorporeal())
 		if(isobserver(my_mob)) //We're an observer! Don't worry about any more checks. Be free!
 			Process_Incorpmove(direct)
-			DEBUG_INPUT("--------")
+			//DEBUG_INPUT("--------")
 			next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
 			next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 			return
@@ -166,35 +170,25 @@
 				return
 			else //Proceed like normal.
 				Process_Incorpmove(direct)
-				DEBUG_INPUT("--------")
+				//DEBUG_INPUT("--------")
 				next_move_dir_add = 0
 				next_move_dir_sub = 0
 				return
 
-	// We're in the middle of another move we've already decided to do
-	if(moving)
-		// to_chat(world, "Client [src] attempted to move while moving=[moving]")
-		return 0
-
 	// We're still cooling down from the last move
 	if(!my_mob.checkMoveCooldown())
-		DEBUG_INPUT("--------")
-		return
-	next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
-	next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
-
-	if(!n || !direct)
+		//DEBUG_INPUT("--------")
 		return
 
 	// If dead and we try to move in our mob, it leaves our body
 	if(my_mob.stat == DEAD && isliving(my_mob) && !my_mob.forbid_seeing_deadchat)
-		my_mob.setMoveCooldown(my_mob.movement_delay(n, direct))
+		my_mob.setMoveCooldown(my_mob.movement_delay(new_loc, direct))
 		my_mob.ghostize()
 		return
 
 	// If we have an eyeobj, it moves instead
 	if(my_mob.eyeobj)
-		return my_mob.EyeMove(n,direct)
+		return my_mob.EyeMove(new_loc, direct)
 
 	// This is sota the goto stop mobs from moving var (for some reason)
 	if(my_mob.transforming)
@@ -259,7 +253,7 @@
 				return
 		return my_mob.buckled.relaymove(my_mob,direct)
 
-	var/total_delay = my_mob.movement_delay(n, direct)
+	var/total_delay = my_mob.movement_delay(new_loc, direct)
 
 	if(my_mob.pulledby || my_mob.buckled) // Wheelchair driving!
 		if(isspace(loc))
@@ -285,7 +279,6 @@
 			total_delay += 3
 
 	// We are now going to move
-	moving = 1
 	var/pre_move_loc = loc
 
 	// Confused direction randomization
@@ -294,22 +287,25 @@
 			if(I_RUN)
 				if(prob(75))
 					direct = turn(direct, pick(90, -90))
-					n = get_step(my_mob, direct)
+					new_loc = get_step(my_mob, direct)
 			if(I_WALK)
 				if(prob(25))
 					direct = turn(direct, pick(90, -90))
-					n = get_step(my_mob, direct)
+					new_loc = get_step(my_mob, direct)
 
-
+	/*
 	if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
 		. = my_mob.pulledby.relaymove(my_mob, direct)
 	else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 		. = my_mob.buckled.relaymove(my_mob,direct)
 	else
-		. = my_mob.SelfMove(n, direct, total_delay)
+		. = my_mob.SelfMove(new_loc, direct, total_delay)
+	*/
+
+	. = ..()
 
 	// If we ended up moving diagonally, increase delay.
-	if((direct & (direct - 1)) && mob.loc == n)
+	if((direct & (direct - 1)) && mob.loc == new_loc)
 		total_delay *= SQRT_2
 
 	//total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
@@ -319,7 +315,6 @@
 		mob.next_move = DS2NEARESTTICK(world.time + total_delay)
 
 	if(!isliving(my_mob))
-		moving = 0
 		return
 
 	// If we have a grab
@@ -350,13 +345,12 @@
 	// Update all the grabs!
 	for (var/obj/item/grab/G in my_mob)
 		if (G.state == GRAB_NECK)
-			mob.set_dir(GLOB.reverse_dir[direct])
+			mob.setDir(GLOB.reverse_dir[direct])
 		G.adjust_position()
 	for (var/obj/item/grab/G in my_mob.grabbed_by)
 		G.adjust_position()
 
 	// We're not in the middle of a move anymore
-	moving = 0
 	mob.last_move_time = world.time
 
 /mob/proc/SelfMove(turf/n, direct, movetime)
@@ -539,26 +533,137 @@
 /mob/proc/update_gravity()
 	return
 
-#define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);
+//bodypart selection verbs - Cyberboss
+//8: repeated presses toggles through head - eyes - mouth
+//7: mouth 8: head  9: eyes
+//4: r-arm 5: chest 6: l-arm
+//1: r-leg 2: groin 3: l-leg
 
-/client/verb/moveup()
-	set name = ".moveup"
-	set instant = 1
-	DO_MOVE(NORTH)
+///Validate the client's mob has a valid zone selected
+/client/proc/check_has_body_select()
+	return mob && mob.hud_used && istype(mob.zone_sel, /atom/movable/screen/zone_sel)
 
-/client/verb/movedown()
-	set name = ".movedown"
-	set instant = 1
-	DO_MOVE(SOUTH)
+/**
+ * Hidden verbs to set desired body target zone
+ *
+ * Uses numpad keys 1-9
+ */
 
-/client/verb/moveright()
-	set name = ".moveright"
-	set instant = 1
-	DO_MOVE(EAST)
+///Hidden verb to cycle through head zone with repeated presses, head - eyes - mouth. Bound to 8
+/client/verb/body_toggle_head()
+	set name = "body-toggle-head"
+	set hidden = TRUE
 
-/client/verb/moveleft()
-	set name = ".moveleft"
-	set instant = 1
-	DO_MOVE(WEST)
+	if(!check_has_body_select())
+		return
 
-#undef DO_MOVE
+	var/next_in_line
+	switch(mob.zone_sel)
+		if(BP_HEAD)
+			next_in_line = O_EYES
+		if(O_EYES)
+			next_in_line = O_MOUTH
+		else
+			next_in_line = BP_HEAD
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+///Hidden verb to target the head, unbound by default.
+/client/verb/body_head()
+	set name = "body-head"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_HEAD, mob)
+
+///Hidden verb to target the eyes, bound to 7
+/client/verb/body_eyes()
+	set name = "body-eyes"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(O_EYES, mob)
+
+///Hidden verb to target the mouth, bound to 9
+/client/verb/body_mouth()
+	set name = "body-mouth"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(O_MOUTH, mob)
+
+///Hidden verb to target the right arm, bound to 4
+/client/verb/body_r_arm()
+	set name = "body-r-arm"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_R_ARM, mob)
+
+///Hidden verb to target the chest, bound to 5
+/client/verb/body_chest()
+	set name = "body-chest"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_TORSO, mob)
+
+///Hidden verb to target the left arm, bound to 6
+/client/verb/body_l_arm()
+	set name = "body-l-arm"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_L_ARM, mob)
+
+///Hidden verb to target the right leg, bound to 1
+/client/verb/body_r_leg()
+	set name = "body-r-leg"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_R_LEG, mob)
+
+///Hidden verb to target the groin, bound to 2
+/client/verb/body_groin()
+	set name = "body-groin"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_GROIN, mob)
+
+///Hidden verb to target the left leg, bound to 3
+/client/verb/body_l_leg()
+	set name = "body-l-leg"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(BP_L_LEG, mob)

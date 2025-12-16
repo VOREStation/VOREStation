@@ -128,7 +128,7 @@
 // override move/turn procs so they play more appropriate sounds. Placeholder sounds for now, but mechmove04 at least sounds like tracks for the poleat.
 
 /obj/mecha/micro/mechturn(direction)
-	set_dir(direction)
+	setDir(direction)
 	playsound(src,'sound/mecha/mechmove03.ogg',40,1)
 	return 1
 

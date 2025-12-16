@@ -70,7 +70,7 @@
 		var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(current_spot)
 		I.master = src
 		I.density = TRUE
-		I.set_dir(dir)
+		I.setDir(dir)
 		if(!step(I, I.dir)) //Try to take a step in that direction
 			return //Couldn't, oh well, we hit a wall or something. Beam should qdel itself in it's Bump().
 		I.density = FALSE
@@ -84,7 +84,7 @@
 /obj/item/assembly/infra/Move()
 	var/t = dir
 	. = ..()
-	set_dir(t)
+	setDir(t)
 
 /obj/item/assembly/infra/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()

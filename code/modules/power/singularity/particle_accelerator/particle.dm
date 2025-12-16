@@ -36,7 +36,7 @@
 
 /obj/effect/accelerated_particle/Initialize(mapload, dir = 2)
 	. = ..()
-	set_dir(dir)
+	setDir(dir)
 	move(0.1 SECONDS)
 
 /obj/effect/accelerated_particle/Bump(atom/A)

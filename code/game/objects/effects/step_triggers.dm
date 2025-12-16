@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 			var/predir = AM.dir
 			step(AM, direction)
 			if(!facedir)
-				AM.set_dir(predir)
+				AM.setDir(predir)
 
 
 

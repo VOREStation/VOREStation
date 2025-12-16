@@ -172,7 +172,7 @@
 	pulse2.icon_state = "empdisable"
 	pulse2.name = "emp sparks"
 	pulse2.anchored = TRUE
-	pulse2.set_dir(pick(GLOB.cardinal))
+	pulse2.setDir(pick(GLOB.cardinal))
 
 	spawn(10)
 		qdel(pulse2)
@@ -326,7 +326,7 @@
 		crate.close()
 
 	C.forceMove(loc)
-	C.set_dir(dir)
+	C.setDir(dir)
 	C.anchored = TRUE
 
 	load = C
@@ -376,7 +376,7 @@
 		return 0
 
 	load.forceMove(dest)
-	load.set_dir(get_dir(loc, dest))
+	load.setDir(get_dir(loc, dest))
 	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
 	if(ismob(load))
 		var/mob/L = load

@@ -8,7 +8,7 @@
 		forceMove(T)
 
 /atom/proc/recursive_dir_set(var/atom/a, var/old_dir, var/new_dir)
-	set_dir(new_dir)
+	setDir(new_dir)
 
 /datum/proc/qdel_self()
 	SIGNAL_HANDLER

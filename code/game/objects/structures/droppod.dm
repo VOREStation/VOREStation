@@ -104,7 +104,7 @@
 	playsound(src, 'sound/effects/magnetclamp.ogg', 100, 1)
 	for(var/atom/movable/AM in src)
 		AM.forceMove(loc)
-		AM.set_dir(SOUTH) // cus
+		AM.setDir(SOUTH) // cus
 	QDEL_NULL(air)
 	finished = TRUE
 

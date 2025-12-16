@@ -1108,7 +1108,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			return
 		var/moving_to = 0 // Apparently this is required or it always picks 4, according to the previous developer for simplemob AI.
 		moving_to = pick(GLOB.cardinal)
-		holder.set_dir(moving_to)
+		holder.setDir(moving_to)
 		T = get_step(holder,moving_to)
 	// Finally do move if we actually found somewhere we'd like to go
 	if(T)

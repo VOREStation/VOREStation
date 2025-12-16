@@ -9,9 +9,19 @@
 #define MUTE_DEADCHAT  0x20
 #define MUTE_ALL       0xFFFF
 
-// Number of identical messages required to get the spam-prevention auto-mute thing to trigger warnings and automutes.
-#define SPAM_TRIGGER_WARNING  5
+/// Number of identical messages required before the spam-prevention will warn you to stfu
+#define SPAM_TRIGGER_WARNING 5
+/// Number of identical messages required before the spam-prevention will automute you
 #define SPAM_TRIGGER_AUTOMUTE 10
+
+///Max length of a keypress command before it's considered to be a forged packet/bogus command
+#define MAX_KEYPRESS_COMMANDLENGTH 16
+///Maximum keys that can be bound to one button
+#define MAX_COMMANDS_PER_KEY 5
+///Max amount of keypress messages per second over two seconds before client is autokicked
+#define MAX_KEYPRESS_AUTOKICK 50
+///Length of held key buffer
+#define HELD_KEY_BUFFER_LENGTH 15
 
 // Some constants for DB_Ban
 #define BANTYPE_PERMA       1

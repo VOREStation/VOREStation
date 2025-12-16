@@ -1,6 +1,7 @@
-var/list/preferences_datums = list()
+GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences
+	var/client/parent
 	/// The path to the general savefile for this datum
 	var/path
 	/// Whether or not we allow saving/loading. Used for guests, if they're enabled
@@ -127,6 +128,14 @@ var/list/preferences_datums = list()
 	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
 	var/selecting_slots = FALSE
 
+	/// Custom keybindings. Map of keybind names to keyboard inputs.
+	/// For example, by default would have "swap_hands" -> list("X")
+	var/list/key_bindings = list()
+
+	/// Cached list of keybindings, mapping keys to actions.
+	/// For example, by default would have "X" -> list("swap_hands")
+	var/list/key_bindings_by_key = list()
+
 	/// The json savefile for this datum
 	var/datum/json_savefile/savefile
 
@@ -146,12 +155,20 @@ var/list/preferences_datums = list()
 		CRASH("attempted to create a preferences datum without a client or mock!")
 	load_savefile()
 
+	// give them default keybinds and update their movement keys
+	key_bindings = deep_copy_list(GLOB.default_hotkeys)
+	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
+
 	// Legacy code
 	gear_list = list()
 	gear_slot = 1
 	// End legacy code
 
 	player_setup = new(src)
+
+	// give them default keybinds and update their movement keys
+	key_bindings = deep_copy_list(GLOB.default_hotkeys)
+	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
 
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
@@ -165,6 +182,7 @@ var/list/preferences_datums = list()
 
 	if(client)
 		apply_all_client_preferences()
+		client.set_macros()
 
 	if(!loaded_preferences_successfully)
 		save_preferences()
@@ -220,7 +238,7 @@ var/list/preferences_datums = list()
 			O.pref = src
 			LAZYSET(char_render_holders, "[D]", O)
 			client.screen |= O
-		mannequin.set_dir(D)
+		mannequin.setDir(D)
 		mannequin.update_tail_showing()
 		mannequin.ImmediateOverlayUpdate()
 		var/mutable_appearance/MA = new(mannequin)
@@ -258,7 +276,12 @@ var/list/preferences_datums = list()
 	if(..())
 		return 1
 
-	if(href_list["save"])
+	if (href_list["open_keybindings"])
+		current_window = PREFERENCE_TAB_KEYBINDINGS
+		update_tgui_static_data(usr)
+		tgui_interact(usr)
+		return TRUE
+	else if(href_list["save"])
 		if(save_character())
 			to_chat(usr,span_notice("Character [player_setup?.preferences?.real_name] saved!"))
 		save_preferences()
@@ -641,3 +664,13 @@ var/list/preferences_datums = list()
 	character.dna.ResetUIFrom(character)
 	character.force_update_limbs()
 	character.regenerate_icons()
+
+/// Inverts the key_bindings list such that it can be used for key_bindings_by_key
+/datum/preferences/proc/get_key_bindings_by_key(list/key_bindings)
+	var/list/output = list()
+
+	for (var/action in key_bindings)
+		for (var/key in key_bindings[action])
+			LAZYADD(output[key], action)
+
+	return output

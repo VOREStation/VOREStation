@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 
 	return ..()
 
-/obj/structure/micro_tunnel/set_dir(new_dir)
+/obj/structure/micro_tunnel/setDir(new_dir)
 	. = ..()
 	offset_tunnel()
 
@@ -457,6 +457,6 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 
 	if(prob(chance_to_spawn))
 		var/obj/structure/micro_tunnel/tunnel = new (get_turf(src.loc))
-		tunnel.set_dir(dir)
+		tunnel.setDir(dir)
 
 	qdel(src)

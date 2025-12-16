@@ -712,7 +712,7 @@ About the new airlock wires panel:
 
 				var/obj/structure/door_assembly/da = new assembly_type(get_turf(src))
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
-					da.set_dir(dir)
+					da.setDir(dir)
 				da.anchored = TRUE
 				if(mineral)
 					da.glass = mineral
@@ -1034,7 +1034,7 @@ About the new airlock wires panel:
 			name = "[istext(assembly.glass) ? "[assembly.glass] airlock" : assembly.base_name]"
 
 		//get the dir from the assembly
-		set_dir(assembly.dir)
+		setDir(assembly.dir)
 
 	//wires
 	var/turf/T = get_turf(src)

@@ -452,9 +452,9 @@
 
 /obj/item/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
 	GLOB.dead_mob_list.Remove(M)
-	if((M in GLOB.living_mob_list) || (M in GLOB.dead_mob_list))
+	if((M in GLOB.alive_mob_list) || (M in GLOB.dead_mob_list))
 		WARNING("Mob [M] was defibbed but already in the living or dead list still!")
-	GLOB.living_mob_list += M
+	GLOB.alive_mob_list += M
 
 	M.timeofdeath = 0
 	M.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

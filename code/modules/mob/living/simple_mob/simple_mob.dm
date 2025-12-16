@@ -290,7 +290,7 @@
 	else if(movement_sound && old_turf != get_turf(src)) // Playing both sounds at the same time generally sounds bad.
 		playsound(src, movement_sound, 50, 1)
 /*
-/mob/living/simple_mob/set_dir(new_dir)
+/mob/living/simple_mob/setDir(new_dir)
 	if(dir != new_dir)
 		playsound(src, turn_sound, 50, 1)
 	return ..()

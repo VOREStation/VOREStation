@@ -23,7 +23,7 @@
 	reagent_flush()
 	. = ..()
 
-/obj/machinery/reagent_refinery/set_dir(newdir)
+/obj/machinery/reagent_refinery/setDir(newdir)
 	. = ..()
 	update_icon()
 

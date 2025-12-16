@@ -44,7 +44,7 @@
 			var/mob/living/buckled_mob = m
 			var/list/offsets = get_offsets(passindex)
 			var/rider_dir = get_rider_dir(passindex)
-			buckled_mob.set_dir(rider_dir)
+			buckled_mob.setDir(rider_dir)
 			dir_loop:
 				for(var/offsetdir in offsets)
 					if(offsetdir == ridden_dir)

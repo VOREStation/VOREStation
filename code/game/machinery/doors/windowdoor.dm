@@ -231,7 +231,7 @@
 					wa.secure = "secure_"
 				if (src.base_state == "right" || src.base_state == "rightsecure")
 					wa.facing = "r"
-				wa.set_dir(src.dir)
+				wa.setDir(src.dir)
 				wa.anchored = TRUE
 				wa.created_name = name
 				wa.state = "02"

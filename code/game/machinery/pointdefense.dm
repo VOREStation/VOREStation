@@ -200,7 +200,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	addtimer(CALLBACK(src, PROC_REF(finish_shot), target), rotation_speed)
 	animate(src, transform = rot_matrix, rotation_speed, easing = SINE_EASING)
 
-	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
+	setDir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
 /obj/machinery/pointdefense/proc/finish_shot(var/datum/weakref/target)
 
@@ -228,7 +228,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		return
 	var/desiredir = ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH
 	if(dir != desiredir)
-		set_dir(desiredir)
+		setDir(desiredir)
 
 	if(LAZYLEN(GLOB.meteor_list) > 0)
 		find_and_shoot()

@@ -36,10 +36,10 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	if(fixture)
 		fixture_type = fixture.type
 		fixture.transfer_fingerprints_to(src)
-		set_dir(fixture.dir)
+		setDir(fixture.dir)
 		stage = 2
 	else if(newdir)
-		set_dir(newdir)
+		setDir(newdir)
 	update_icon()
 
 /obj/machinery/light_construct/update_icon()
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 			playsound(src, W.usesound, 75, 1)
 
 			var/obj/machinery/light/newlight = new fixture_type(src.loc, src)
-			newlight.set_dir(src.dir)
+			newlight.setDir(src.dir)
 			src.transfer_fingerprints_to(newlight)
 			if(cell)
 				newlight.cell = cell
@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		status = LIGHT_EMPTY
 		construct_type = construct.type
 		construct.transfer_fingerprints_to(src)
-		set_dir(construct.dir)
+		setDir(construct.dir)
 	else
 		installed_light = new light_type(src)
 		if(start_with_cell && !no_emergency)

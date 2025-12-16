@@ -74,7 +74,7 @@
 /obj/effect/overmap/visitable/simplemob/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
 	SIGNAL_HANDLER
 	forceMove(parent.loc)
-	set_dir(parent.dir)
+	setDir(parent.dir)
 
 /////OM MOB///// DO NOT SPAWN THESE ANYWHERE IN THE WORLD, THAT'S SCARY /////
 /mob/living/simple_mob/vore/overmap
@@ -199,4 +199,4 @@
 
 /obj/effect/overmap/visitable/ship/simplemob/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
 	forceMove(parent.loc)
-	set_dir(parent.dir)
+	setDir(parent.dir)

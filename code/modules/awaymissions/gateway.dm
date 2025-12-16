@@ -150,7 +150,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 	playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 	if(awaygate.calibrated)
 		M.forceMove(get_step(awaygate.loc, SOUTH))
-		M.set_dir(SOUTH)
+		M.setDir(SOUTH)
 		return
 	else
 		//VOREStation Addition Start: Prevent abuse
@@ -167,7 +167,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 		var/obj/effect/landmark/dest = pick(GLOB.awaydestinations)
 		if(dest)
 			M.forceMove(dest.loc)
-			M.set_dir(SOUTH)
+			M.setDir(SOUTH)
 			//VOREStation Addition Start: Mcguffin time!
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -343,7 +343,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 				to_chat(M, span_black("The station gate has detected your exile implant and is blocking your entry."))
 				return
 	M.forceMove(get_step(stationgate.loc, SOUTH))
-	M.set_dir(SOUTH)
+	M.setDir(SOUTH)
 	M << 'sound/effects/phasein.ogg'
 	playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 

@@ -104,7 +104,7 @@
 				span_danger("You step on \the [src]!"),
 				span_infoplain(span_bold("You hear a squishy noise!"))
 				)
-			set_dir(L.dir)
+			setDir(L.dir)
 			buckle_mob(L)
 			L.Stun(1)
 			to_chat(L, span_danger("The sticky fibers of \the [src] ensnare, trapping you in place!"))

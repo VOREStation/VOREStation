@@ -32,7 +32,7 @@
 	if(istype(A))
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
-		A.set_dir(dir)
+		A.setDir(dir)
 
 /obj/random/drop_location()
 	return drop_get_turf ? get_turf(src) : ..()

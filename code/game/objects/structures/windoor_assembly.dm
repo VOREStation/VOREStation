@@ -39,9 +39,9 @@
 		anchored = FALSE
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
-			set_dir(start_dir)
+			setDir(start_dir)
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
-			set_dir(NORTH)
+			setDir(NORTH)
 	update_state()
 
 	update_nearby_tiles(need_rebuild=1)
@@ -212,7 +212,7 @@
 						else
 							windoor.icon_state = "rightsecureopen"
 							windoor.base_state = "rightsecure"
-						windoor.set_dir(src.dir)
+						windoor.setDir(src.dir)
 						windoor.density = FALSE
 						if(created_name)
 							windoor.name = created_name
@@ -234,7 +234,7 @@
 						else
 							windoor.icon_state = "rightopen"
 							windoor.base_state = "right"
-						windoor.set_dir(src.dir)
+						windoor.setDir(src.dir)
 						windoor.density = FALSE
 						if(created_name)
 							windoor.name = created_name

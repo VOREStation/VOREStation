@@ -499,7 +499,7 @@
 /datum/component/overlay_lighting/proc/set_cone_direction(dir, angle)
 	cone.reset_transform()
 	if(dir)
-		cone.set_dir(dir)
+		cone.setDir(dir)
 	if(angle)
 		cone.transform = turn(cone.transform, angle)
 	cone.apply_standard_transform()

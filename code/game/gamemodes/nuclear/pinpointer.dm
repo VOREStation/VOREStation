@@ -41,7 +41,7 @@
 			icon_state = "pinonnull"
 			return
 
-	set_dir(get_dir(src,the_disk))
+	setDir(get_dir(src,the_disk))
 
 	switch(get_dist(src,the_disk))
 		if(0)
@@ -84,7 +84,7 @@
 		icon_state = "pinonnull"
 		return
 
-	set_dir(get_dir(src,location))
+	setDir(get_dir(src,location))
 
 	switch(get_dist(src,location))
 		if(0)
@@ -101,7 +101,7 @@
 		icon_state = "pinonnull"
 		return
 
-	set_dir(get_dir(src,target))
+	setDir(get_dir(src,target))
 
 	switch(get_dist(src,target))
 		if(0)
@@ -224,7 +224,7 @@
 			icon_state = "pinonnull"
 			return
 
-	set_dir(get_dir(src, the_disk))
+	setDir(get_dir(src, the_disk))
 
 	switch(get_dist(src, the_disk))
 		if(0)
@@ -253,7 +253,7 @@
 		icon_state = "pinonnull"
 
 	else
-		set_dir(get_dir(src, home))
+		setDir(get_dir(src, home))
 
 		switch(get_dist(src, home))
 			if(0)
@@ -300,7 +300,7 @@
 		icon_state = "pinonnull"
 
 	else
-		set_dir(get_dir(src, our_shuttle))
+		setDir(get_dir(src, our_shuttle))
 
 		switch(get_dist(src, our_shuttle))
 			if(0)

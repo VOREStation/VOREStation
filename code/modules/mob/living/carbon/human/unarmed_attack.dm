@@ -73,7 +73,7 @@
 					else
 						target.visible_message(span_danger("[target] slams into [T]!"))
 					if(prob(50))
-						target.set_dir(GLOB.reverse_dir[target.dir])
+						target.setDir(GLOB.reverse_dir[target.dir])
 					target.apply_effect(attack_damage * 0.4, WEAKEN, armour)
 			if(BP_GROIN)
 				target.visible_message(span_warning("[target] looks like [target.p_theyre()] in pain!"), span_warning("Oh god that hurt!"))

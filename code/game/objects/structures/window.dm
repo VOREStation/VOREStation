@@ -361,7 +361,7 @@
 	. = ..()
 
 	if (start_dir)
-		set_dir(start_dir)
+		setDir(start_dir)
 
 	//player-constructed windows
 	if (constructed)
@@ -399,7 +399,7 @@
 	var/turf/location = loc
 	update_nearby_tiles(need_rebuild=1)
 	. = ..()
-	set_dir(ini_dir)
+	setDir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
 	if(loc != location)
 		for(var/obj/structure/table/T in view(location, 1) | view(loc, 1))

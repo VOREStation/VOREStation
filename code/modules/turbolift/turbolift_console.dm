@@ -8,7 +8,7 @@
 
 	var/datum/turbolift/lift
 
-/obj/structure/lift/set_dir(var/newdir)
+/obj/structure/lift/setDir(var/newdir)
 	. = ..()
 	pixel_x = 0
 	pixel_y = 0

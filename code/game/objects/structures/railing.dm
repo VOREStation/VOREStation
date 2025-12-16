@@ -161,7 +161,7 @@
 		return 0
 
 	src.loc = get_step(src, src.dir)
-	set_dir(turn(dir, 180))
+	setDir(turn(dir, 180))
 	update_icon()
 	return
 

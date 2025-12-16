@@ -779,7 +779,7 @@
 	// remove the character from the list of the dead
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
-		GLOB.living_mob_list += src
+		GLOB.alive_mob_list += src
 		tod = null
 		timeofdeath = 0
 
@@ -1506,7 +1506,7 @@
 	icon_state = "character"
 	screen_loc = ui_smallquad
 
-/mob/living/set_dir(var/new_dir)
+/mob/living/setDir(new_dir)
 	. = ..()
 	if(size_multiplier != 1 || icon_scale_x != DEFAULT_ICON_SCALE_X && center_offset > 0)
 		update_transform(TRUE)

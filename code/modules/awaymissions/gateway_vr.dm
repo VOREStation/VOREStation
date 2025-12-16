@@ -65,7 +65,7 @@
 	if(!ready)	return
 	if(!active)	return
 	M.forceMove(get_step(stationgate.loc, SOUTH))
-	M.set_dir(SOUTH)
+	M.setDir(SOUTH)
 	M << 'sound/effects/swooshygate.ogg'
 	playsound(src, 'sound/effects/swooshygate.ogg', 100, 1)
 

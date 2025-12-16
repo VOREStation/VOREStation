@@ -1016,7 +1016,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/announcer/Initialize(mapload)
 	. = ..()
 	GLOB.mob_list -= src
-	GLOB.living_mob_list -= src
+	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.ai_list -= src
 	GLOB.silicon_mob_list -= src
@@ -1024,7 +1024,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/announcer/Life()
 	GLOB.mob_list -= src
-	GLOB.living_mob_list -= src
+	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.ai_list -= src
 	GLOB.silicon_mob_list -= src

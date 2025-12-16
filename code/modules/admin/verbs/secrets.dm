@@ -244,7 +244,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 		if("ghost_mode")
 			var/list/affected_mobs = list()
 			var/list/affected_areas = list()
-			for(var/mob/M in GLOB.living_mob_list)
+			for(var/mob/M in GLOB.alive_mob_list)
 				if(M.stat == CONSCIOUS && !(M in affected_mobs))
 					affected_mobs |= M
 					switch(rand(1,4))

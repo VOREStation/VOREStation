@@ -116,7 +116,7 @@
 			return
 
 	//trap the victim in place
-	set_dir(L.dir)
+	setDir(L.dir)
 	can_buckle = TRUE
 	buckle_mob(L)
 	L.Stun(stun_length)

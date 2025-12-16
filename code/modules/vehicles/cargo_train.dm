@@ -405,7 +405,7 @@
 	O.plane = MOB_PLANE
 	add_overlay(O)
 
-/obj/vehicle/train/engine/set_dir()
+/obj/vehicle/train/engine/setDir()
 	..()
 	update_icon()
 

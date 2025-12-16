@@ -376,9 +376,9 @@
 	else
 		return ..(A)
 
-/mob/living/carbon/brain/caught_soul/set_dir(var/direction)
+/mob/living/carbon/brain/caught_soul/setDir(var/direction)
 	if(eyeobj)
-		return eyeobj.set_dir(direction)
+		return eyeobj.setDir(direction)
 	else
 		return ..(direction)
 
@@ -473,7 +473,7 @@
 	for(var/i = 0; i < max(sprint, initial); i += 20)
 		var/turf/stepn = get_turf(get_step(src, direct))
 		if(stepn)
-			set_dir(direct)
+			setDir(direct)
 			if(can_see(parent_human, stepn))
 				forceMove(stepn)
 

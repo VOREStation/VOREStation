@@ -730,7 +730,7 @@
 			if(bodyscannernew)
 				scanner = bodyscannernew
 				bodyscannernew.console = src
-				set_dir(get_dir(src, bodyscannernew))
+				setDir(get_dir(src, bodyscannernew))
 				return
 		return
 

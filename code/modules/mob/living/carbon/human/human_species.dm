@@ -9,13 +9,13 @@
 	. = ..()
 	AddElement(/datum/element/godmode)
 	GLOB.mob_list -= src
-	GLOB.living_mob_list -= src
+	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.human_mob_list -= src
 
 /mob/living/carbon/human/dummy/Life()
 	GLOB.mob_list -= src
-	GLOB.living_mob_list -= src
+	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.human_mob_list -= src
 	return
@@ -55,13 +55,13 @@
 	set waitfor = FALSE
 
 	while(TRUE)
-		set_dir(SOUTH)
+		setDir(SOUTH)
 		sleep(2 SECONDS)
-		set_dir(EAST)
+		setDir(EAST)
 		sleep(2 SECONDS)
-		set_dir(NORTH)
+		setDir(NORTH)
 		sleep(2 SECONDS)
-		set_dir(WEST)
+		setDir(WEST)
 		sleep(2 SECONDS)
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/tajaran

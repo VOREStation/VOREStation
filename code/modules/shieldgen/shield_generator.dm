@@ -159,18 +159,18 @@
 				switch(adjacent)
 					if(NORTH|SOUTH) //Middle vertical section
 						if(SE.x < src.x) //Left of generator goes north
-							SE.set_dir(NORTH)
+							SE.setDir(NORTH)
 						else
-							SE.set_dir(SOUTH)
+							SE.setDir(SOUTH)
 					if(EAST|WEST) //Middle horizontal section
 						if(SE.y < src.y) //South of generator goes left
-							SE.set_dir(WEST)
+							SE.setDir(WEST)
 						else
-							SE.set_dir(EAST)
+							SE.setDir(EAST)
 			else if(isspace(L))
-				SE.set_dir(turn(~adjacent & (SOUTH|WEST), -90))
+				SE.setDir(turn(~adjacent & (SOUTH|WEST), -90))
 			else
-				SE.set_dir(turn(~adjacent & (NORTH|EAST), -90))
+				SE.setDir(turn(~adjacent & (NORTH|EAST), -90))
 
 			midsections -= SE
 
@@ -188,7 +188,7 @@
 				var/nonshield = adjacent ^ (NORTH|SOUTH|EAST|WEST)
 				if((nonshield & (nonshield - 1)) == 0)
 					if(!isspace(get_step(S, nonshield)))
-						S.set_dir(turn(nonshield, 90)) // We're basically a normal midsection just with another touching. Ignore it.
+						S.setDir(turn(nonshield, 90)) // We're basically a normal midsection just with another touching. Ignore it.
 						//What's this mysterious 3rd shield touching us?
 						var/dir_to_them = turn(nonshield, 180)
 						var/turf/T = get_step(S, dir_to_them)
@@ -220,7 +220,7 @@
 			// to_chat(world, "Processing startend [S] at [S?.x],[S?.y] adjacent=[adjacent]")
 			var/turf/T = get_step(S, adjacent)
 			var/obj/effect/shield/SO = locate() in T
-			S.set_dir(SO.dir)
+			S.setDir(SO.dir)
 			if(S.dir == adjacent) //Flowing into them
 				S.enabled_icon_state = "shield_start"
 			else
@@ -238,7 +238,7 @@
 			else if(SE.y == gen_turf.y - field_radius)
 				new_dir |= WEST
 			if((new_dir & (new_dir - 1)) == 0)
-				SE.set_dir(new_dir) // Only one bit set means we are an edge not corner.
+				SE.setDir(new_dir) // Only one bit set means we are an edge not corner.
 			else
 				do_corner_shield(SE, turn(new_dir, -90), TRUE) // All our corners are outside, don't check turf type.
 
@@ -250,7 +250,7 @@
 
 /obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir, var/force_outside)
 	S.enabled_icon_state = "blank"
-	S.set_dir(new_dir)
+	S.setDir(new_dir)
 	var/inside = force_outside ? FALSE : isspace(get_step(S, new_dir))
 	// TODO - Obviously this can be more elegant
 	if(inside)

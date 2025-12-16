@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		add_overlay("solar_panel-b")
 	else
 		add_overlay("solar_panel")
-		src.set_dir(angle2dir(adir))
+		src.setDir(angle2dir(adir))
 	return
 
 //calculates the fraction of the sun that the panel recieves

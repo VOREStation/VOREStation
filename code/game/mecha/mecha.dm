@@ -884,7 +884,7 @@
 	return
 
 /obj/mecha/proc/mechturn(direction)
-	set_dir(direction)
+	setDir(direction)
 	if(swivel_sound)
 		playsound(src,swivel_sound,40,1)
 	return 1
@@ -897,7 +897,7 @@
 			playsound(src,stomp_sound,40,1)
 		handle_equipment_movement()
 	if(strafing)	//Also for strafing
-		set_dir(current_dir)
+		setDir(current_dir)
 	return result
 
 
@@ -1682,7 +1682,7 @@
 		src.Entered(mmi_as_oc)
 		src.Move(src.loc)
 		update_icon()
-		set_dir(dir_in)
+		setDir(dir_in)
 		src.mecha_log_message("[mmi_as_oc] moved in as pilot.")
 		if(!hasInternalDamage())
 			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
@@ -2010,7 +2010,7 @@
 		occupant.in_enclosed_vehicle = 1	//Useful for when you need to know if someone is in a mecho.
 		update_cell_alerts()
 		update_damage_alerts()
-		set_dir(dir_in)
+		setDir(dir_in)
 		playsound(src, 'sound/machines/door/windowdoor.ogg', 50, 1)
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images += cloaked_selfimage
@@ -2101,7 +2101,7 @@
 		occupant.in_enclosed_vehicle = 0
 		occupant = null
 		update_icon()
-		set_dir(dir_in)
+		setDir(dir_in)
 		verbs -= /obj/mecha/verb/eject
 
 		//src.zoom = 0

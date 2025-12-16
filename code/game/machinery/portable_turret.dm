@@ -841,7 +841,7 @@
 		if(target in check_trajectory(target, src))	//Finally, check if we can actually hit the target
 			last_target = target
 			popUp()				//pop the turret up if it's not already up.
-			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
+			setDir(get_dir(src, target))	//even if you can't shoot, follow the target
 			playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
 			spawn()
 				shootAt(target)

@@ -332,7 +332,7 @@ GLOBAL_LIST(construction_frame_floor)
 		state = FRAME_PLACED
 
 		if(dir)
-			set_dir(dir)
+			setDir(dir)
 
 		if(frame_type.x_offset)
 			pixel_x = (dir & 3)? 0 : (dir == EAST ? -frame_type.x_offset : frame_type.x_offset)
@@ -470,7 +470,7 @@ GLOBAL_LIST(construction_frame_floor)
 				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
 				B.pixel_y = pixel_y
-				B.set_dir(dir)
+				B.setDir(dir)
 				circuit.construct(B)
 				circuit.loc = null
 				B.circuit = circuit
@@ -484,7 +484,7 @@ GLOBAL_LIST(construction_frame_floor)
 				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
 				B.pixel_y = pixel_y
-				B.set_dir(dir)
+				B.setDir(dir)
 				circuit.construct(B)
 				circuit.loc = null
 				B.circuit = circuit
@@ -503,7 +503,7 @@ GLOBAL_LIST(construction_frame_floor)
 				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
 				B.pixel_y = pixel_y
-				B.set_dir(dir)
+				B.setDir(dir)
 				circuit.construct(B)
 				circuit.loc = null
 				B.circuit = circuit

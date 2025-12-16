@@ -449,7 +449,7 @@
 							if (owner.change_marking_color(mark_datum, marking_color))
 								return TRUE
 		if("rotate_view")
-			owner.set_dir(turn(owner.dir, 90))
+			owner.setDir(turn(owner.dir, 90))
 			return TRUE
 		if("rename")
 			if(owner)
@@ -525,7 +525,7 @@
 				owner.size_multiplier = new_size / 100
 				owner.update_transform(TRUE)
 				owner.regenerate_icons()
-				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
+				owner.setDir(owner.dir) // Causes a visual update for fuzzy/offset
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
 		if("scale_appearance")
@@ -533,14 +533,14 @@
 				owner.dna.scale_appearance = !owner.dna.scale_appearance
 				owner.fuzzy = owner.dna.scale_appearance
 				owner.regenerate_icons()
-				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
+				owner.setDir(owner.dir) // Causes a visual update for fuzzy/offset
 				return TRUE
 		if("offset_override")
 			if(can_change(owner, APPEARANCE_MISC))
 				owner.dna.offset_override = !owner.dna.offset_override
 				owner.offset_override = owner.dna.offset_override
 				owner.regenerate_icons()
-				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
+				owner.setDir(owner.dir) // Causes a visual update for fuzzy/offset
 				return TRUE
 		if("digitigrade")
 			if(can_change(owner, APPEARANCE_MISC))

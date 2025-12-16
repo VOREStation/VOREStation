@@ -246,7 +246,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	var/datum/preferences/D
 	var/client/C = GLOB.directory[warned_ckey]
 	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
+	else	D = GLOB.preferences_datums[warned_ckey]
 
 	if(!D)
 		to_chat(src, span_warning("Error: warn(): No such ckey found."))

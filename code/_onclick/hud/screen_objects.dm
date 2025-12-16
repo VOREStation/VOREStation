@@ -12,8 +12,26 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud = null // A reference to the owner HUD, if any.
+	/// A reference to the object in the slot. Grabs or items, generally, but any datum will do.
+	var/obj/master = null
+	/// A reference to the owner HUD, if any.
+	var/datum/hud/hud = null
+	/**
+	 * Map name assigned to this object.
+	 * Automatically set by /client/proc/register_map_obj.
+	 */
+	var/assigned_map
+	/**
+	 * Mark this object as garbage-collectible after you clean the map
+	 * it was registered on.
+	 *
+	 * This could probably be changed to be a proc, for conditional removal.
+	 * But for now, this works.
+	 */
+	var/del_on_map_removal = TRUE
+
+	/// If FALSE, this will not be cleared when calling /client/clear_screen()
+	var/clear_with_screen = TRUE
 
 /atom/movable/screen/Destroy()
 	master = null

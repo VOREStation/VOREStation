@@ -115,7 +115,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	bottom.density = density
 	bottom.update_icon()
 
-/obj/structure/cliff/set_dir(new_dir)
+/obj/structure/cliff/setDir(new_dir)
 	..()
 	update_icon()
 

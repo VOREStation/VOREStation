@@ -20,7 +20,7 @@ var/atom/movable/screen/robot_inventory
 //Radio
 	using = new /atom/movable/screen()
 	using.name = "radio"
-	using.set_dir(SOUTHWEST)
+	using.setDir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
 	using.alpha = HUD.ui_alpha
@@ -33,7 +33,7 @@ var/atom/movable/screen/robot_inventory
 
 	using = new /atom/movable/screen()
 	using.name = "module1"
-	using.set_dir(SOUTHWEST)
+	using.setDir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
 	using.alpha = HUD.ui_alpha
@@ -45,7 +45,7 @@ var/atom/movable/screen/robot_inventory
 
 	using = new /atom/movable/screen()
 	using.name = "module2"
-	using.set_dir(SOUTHWEST)
+	using.setDir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
 	using.alpha = HUD.ui_alpha
@@ -57,7 +57,7 @@ var/atom/movable/screen/robot_inventory
 
 	using = new /atom/movable/screen()
 	using.name = "module3"
-	using.set_dir(SOUTHWEST)
+	using.setDir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
 	using.alpha = HUD.ui_alpha
@@ -72,7 +72,7 @@ var/atom/movable/screen/robot_inventory
 //Intent
 	using = new /atom/movable/screen()
 	using.name = "act_intent"
-	using.set_dir(SOUTHWEST)
+	using.setDir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.alpha = HUD.ui_alpha
 	using.icon_state = a_intent

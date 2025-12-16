@@ -84,7 +84,7 @@
 /*	// One horrific bastardization of glorious inheritence dead. A billion to go. ~Mech
 //these three procs overriden to play different sounds
 /obj/mecha/working/hoverpod/mechturn(direction)
-	set_dir(direction)
+	setDir(direction)
 	//playsound(src,'sound/machines/hiss.ogg',40,1)
 	return 1
 

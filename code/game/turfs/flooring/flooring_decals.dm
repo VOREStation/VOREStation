@@ -21,7 +21,7 @@ var/list/floor_decals = list()
 // This is a separate proc from initialize() to facilitiate its caching and other stuff.  Look into it someday.
 /obj/effect/floor_decal/proc/add_to_turf_decals()
 	if(supplied_dir)
-		set_dir(supplied_dir) // TODO - Why can't this line be done in initialize/New()?
+		setDir(supplied_dir) // TODO - Why can't this line be done in initialize/New()?
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
 		var/cache_key = get_cache_key(T)

@@ -15,7 +15,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
 		playsound(src, W.usesound, 50, 1)
-		C.set_dir(dir)
+		C.setDir(dir)
 		part.loc = loc
 		part.master = null
 		part = null
@@ -37,7 +37,7 @@
 	to_chat(usr, span_notice("You switch [on ? "on" : "off"] [src]."))
 	return
 
-/obj/structure/bed/chair/e_chair/set_dir()
+/obj/structure/bed/chair/e_chair/setDir()
 	. = ..()
 	if(.)
 		cut_overlays()

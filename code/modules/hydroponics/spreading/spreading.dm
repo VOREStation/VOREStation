@@ -127,7 +127,7 @@
 
 // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
 /obj/effect/plant/proc/finish_spreading()
-	set_dir(calc_dir())
+	setDir(calc_dir())
 	update_icon()
 	SSplants.add_plant(src)
 	//Some plants eat through plating.

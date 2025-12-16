@@ -7,7 +7,7 @@
 		target = location
 	var/atom/movable/overlay/animation = new /atom/movable/overlay(location)
 	if(direction)
-		animation.set_dir(direction)
+		animation.setDir(direction)
 	animation.icon = a_icon
 	animation.layer = target:layer+1
 	if(a_icon_state)

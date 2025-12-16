@@ -9,8 +9,8 @@
 	var/model_info
 	dir = SOUTH
 
-/obj/item/robot_parts/set_dir()
-	return
+/obj/item/robot_parts/setDir()
+	return ..()
 
 /obj/item/robot_parts/l_arm
 	name = "cyborg left arm"

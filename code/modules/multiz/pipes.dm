@@ -87,9 +87,9 @@
 
 /obj/machinery/atmospherics/pipe/zpipe/proc/normalize_dir()
 	if(dir == (NORTH|SOUTH))
-		set_dir(NORTH)
+		setDir(NORTH)
 	else if(dir == (EAST|WEST))
-		set_dir(EAST)
+		setDir(EAST)
 
 /obj/machinery/atmospherics/pipe/zpipe/Destroy()
 	if(node1)

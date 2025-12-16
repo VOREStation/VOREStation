@@ -119,7 +119,7 @@
 	// Also spawn doors and loot.
 	if(value == SD_DOOR_TILE)
 		var/obj/structure/S = new door_type(T, auto_open_doors)
-		S.set_dir(spawn_dir)
+		S.setDir(spawn_dir)
 
 	else if(value == SD_SUPPLY_TILE)
 		get_spawned_drop(T)

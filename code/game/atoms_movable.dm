@@ -115,7 +115,7 @@
 			. = TRUE
 
 			// Face the direction of movement
-			set_dir(direct)
+			setDir(direct)
 
 			// Check to make sure we can leave
 			if(!loc.Exit(src, newloc))
@@ -219,7 +219,7 @@
 						. = step(src, SOUTH)
 			// If we failed, turn to face the direction of the first step at least
 			if(!. && moving_diagonally == SECOND_DIAG_STEP)
-				set_dir(first_step_dir)
+				setDir(first_step_dir)
 			// Done, regardless!
 			moving_diagonally = 0
 			// We return because step above will call Move() and we don't want to do shenanigans back in here again
@@ -258,7 +258,7 @@
 	if(client)
 		restore_remote_views()
 
-/atom/movable/set_dir(newdir)
+/atom/movable/setDir(newdir)
 	. = ..(newdir)
 	if(riding_datum)
 		riding_datum.handle_vehicle_offsets()
@@ -775,3 +775,11 @@
 	//	to_chat(usr, span_notice("Deadchat now control [src]."))
 	//	log_admin("[key_name(usr)] has added deadchat control to [src]")
 	//	message_admins(span_notice("[key_name(usr)] has added deadchat control to [src]"))
+
+/**
+* A wrapper for setDir that should only be able to fail by living mobs.
+*
+* Called from [/atom/movable/proc/keyLoop], this exists to be overwritten by living mobs with a check to see if we're actually alive enough to change directions
+*/
+/atom/movable/proc/keybind_face_direction(direction)
+	setDir(direction)

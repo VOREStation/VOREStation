@@ -101,7 +101,7 @@
 		. = 1 //already friends, but show success anyways
 
 	if(.)
-		set_dir(get_dir(src, friend))
+		setDir(get_dir(src, friend))
 		visible_emote(pick("nuzzles [friend].",
 							"brushes against [friend].",
 							"rubs against [friend].",

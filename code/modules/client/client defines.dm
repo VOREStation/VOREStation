@@ -55,7 +55,10 @@
 		/////////
 	///Player preferences datum for the client
 	var/datum/preferences/prefs = null
-	var/moving			= null
+	///Move delay of controlled mob, any keypresses inside this period will persist until the next proper move
+	var/move_delay = 0
+	///The visual delay to use for the current client.Move(), mostly used for making a client based move look like it came from some other slower source
+	var/visual_delay = 0
 	var/adminobs		= null
 	var/area			= null
 	var/time_died_as_mouse = null //when the client last died as a mouse
@@ -89,6 +92,17 @@
 	///these persist between logins/logouts during the same round.
 	var/datum/persistent_client/persistent_client
 
+	///Amount of keydowns in the last keysend checking interval
+	var/client_keysend_amount = 0
+	///World tick time where client_keysend_amount will reset
+	var/next_keysend_reset = 0
+	///World tick time where keysend_tripped will reset back to false
+	var/next_keysend_trip_reset = 0
+	///When set to true, user will be autokicked if they trip the keysends in a second limit again
+	var/keysend_tripped = FALSE
+	///custom movement keys for this client
+	var/list/movement_keys = list()
+
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
@@ -103,6 +117,9 @@
 	preload_rsc = PRELOAD_RSC
 
 	var/global/atom/movable/screen/click_catcher/void
+
+	///used to override the mouse cursor so it doesnt get reset
+	var/mouse_override_icon = null
 
 	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
 	var/list/sent_assets = list()
@@ -153,23 +170,24 @@
 		// INPUT //
 		///////////
 
-	/// Bitfield of modifier keys (Shift, Ctrl, Alt) held currently.
-	var/mod_keys_held = 0
-	/// Bitfield of movement keys (WASD/Cursor Keys) held currently.
-	var/move_keys_held = 0
-
-	/// These next two vars are to apply movement for keypresses and releases made while move delayed.
-	/// Because discarding that input makes the game less responsive.
-
-	/// Bitfield of movement dirs that were pressed down *this* cycle (even if not currently held).
-	/// Note that only dirs that actually are first pressed down during this cycle are included, if it was still held from last cycle it won't be in here.
+	/// A buffer of currently held keys.
+	var/list/keys_held = list()
+	/// A buffer for combinations such of modifiers + keys (ex: CtrlD, AltE, ShiftT). Format: `"key"` -> `"combo"` (ex: `"D"` -> `"CtrlD"`)
+	var/list/key_combos_held = list()
+	/// The direction we WANT to move, based off our keybinds
+	/// Will be udpated to be the actual direction later on
+	var/intended_direction = NONE
+	/*
+	** These next two vars are to apply movement for keypresses and releases made while move delayed.
+	** Because discarding that input makes the game less responsive.
+	*/
 	/// On next move, add this dir to the move that would otherwise be done
 	var/next_move_dir_add
-
-	/// Bitfield of movement dirs that were released *this* cycle (even if currently held).
-	/// Note that only dirs that were already held at the start of this cycle are included, if it pressed then released it won't be in here.
 	/// On next move, subtract this dir from the move that would otherwise be done
 	var/next_move_dir_sub
+
+	/// Whether or not this client has standard hotkeys enabled
+	var/hotkeys = TRUE
 
 	#ifdef CARDINAL_INPUT_ONLY
 
@@ -189,3 +207,6 @@
 
 	/// Loot panel for the client
 	var/datum/lootpanel/loot_panel
+
+	///Are we locking our movement input?
+	var/movement_locked = FALSE

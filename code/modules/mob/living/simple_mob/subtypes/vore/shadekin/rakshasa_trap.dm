@@ -40,7 +40,7 @@
 
 /obj/structure/gootrap/proc/attack_mob(mob/living/L)
 	//trap the victim in place
-	set_dir(L.dir)
+	setDir(L.dir)
 	can_buckle = 1
 	buckle_mob(L)
 	var/goo_sounds = list (

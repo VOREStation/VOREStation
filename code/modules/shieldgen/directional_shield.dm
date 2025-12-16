@@ -193,7 +193,7 @@
 			return
 		set_on(FALSE)
 	else
-		set_dir(user.dir) // Needed for linear shields.
+		setDir(user.dir) // Needed for linear shields.
 		set_on(TRUE)
 	visible_message(span_notice("\The [user] [!active ? "de":""]activates \the [src]."))
 
@@ -387,9 +387,9 @@
 		destroy_shields()
 	else
 		if(istype(user.loc, /obj/mecha))
-			set_dir(user.loc.dir)
+			setDir(user.loc.dir)
 		else
-			set_dir(user.dir)
+			setDir(user.dir)
 		create_shields()
 	visible_message(span_notice("\The [user] [!active ? "de":""]activates \the [src]."))
 

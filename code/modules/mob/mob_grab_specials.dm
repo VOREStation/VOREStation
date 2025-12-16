@@ -216,5 +216,5 @@
 	target.Weaken(3)
 	target.lying = 1
 	step_to(attacker, target)
-	attacker.set_dir(EAST) //face the victim
-	target.set_dir(SOUTH) //face up
+	attacker.setDir(EAST) //face the victim
+	target.setDir(SOUTH) //face up

@@ -197,7 +197,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if(building)
-		set_dir(ndir)
+		setDir(ndir)
 
 	if(!pixel_x && !pixel_y)
 		offset_apc()
@@ -245,12 +245,12 @@ GLOBAL_LIST_EMPTY(apcs)
 	pixel_y = (dir & 3) ? (dir == 1 ? 26 : -26) : 0
 
 // APCs are pixel-shifted, so they need to be updated.
-/obj/machinery/power/apc/set_dir(new_dir)
+/obj/machinery/power/apc/setDir(new_dir)
 	..()
 	offset_apc()
 	if(terminal)
 		terminal.disconnect_from_network()
-		terminal.set_dir(dir) // Terminal has same dir as master
+		terminal.setDir(dir) // Terminal has same dir as master
 		terminal.connect_to_network() // Refresh the network the terminal is connected to.
 	return
 
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	// create a terminal object at the same position as original turf loc
 	// wires will attach to this
 	terminal = new/obj/machinery/power/terminal(loc)
-	terminal.set_dir(dir)
+	terminal.setDir(dir)
 	terminal.master = src
 
 /obj/machinery/power/apc/proc/init()

@@ -129,7 +129,7 @@
 
 /obj/machinery/particle_accelerator/control_box/proc/part_scan()
 	for(var/obj/structure/particle_accelerator/fuel_chamber/F in orange(1,src))
-		src.set_dir(F.dir)
+		src.setDir(F.dir)
 		break
 
 	connected_parts = list()

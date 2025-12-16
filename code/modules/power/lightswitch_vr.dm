@@ -61,7 +61,7 @@
 /obj/structure/construction/Initialize(mapload, var/ndir, var/building = FALSE)
 	. = ..()
 	if(ndir)
-		set_dir(ndir)
+		setDir(ndir)
 	if(x_offset)
 		pixel_x = (dir & 3) ? 0 : (dir == EAST ? -x_offset : x_offset)
 	if(y_offset)

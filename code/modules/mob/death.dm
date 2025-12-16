@@ -115,7 +115,7 @@
 
 	timeofdeath = world.time
 	if(mind) mind.store_memory("Time of death: [stationtime2text()]", 0)
-	GLOB.living_mob_list -= src
+	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list |= src
 
 	set_respawn_timer()

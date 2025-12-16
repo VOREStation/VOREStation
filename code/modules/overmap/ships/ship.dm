@@ -79,7 +79,7 @@
 
 	var/life = 0
 
-	for(var/mob/living/L in GLOB.living_mob_list)
+	for(var/mob/living/L in GLOB.alive_mob_list)
 		if(L.z in map_z) //Things inside things we'll consider shielded, otherwise we'd want to use get_z(L)
 			life++
 
@@ -242,7 +242,7 @@
 		vector.dir = SOUTH
 	..()
 
-/obj/effect/overmap/visitable/ship/set_dir(new_dir)
+/obj/effect/overmap/visitable/ship/setDir(new_dir)
 	return ..(NORTH) // NO! We always face north.
 
 /obj/effect/overmap/visitable/ship/proc/burn()

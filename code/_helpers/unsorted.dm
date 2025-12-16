@@ -374,7 +374,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in GLOB.living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -734,7 +734,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						var/old_decals = T.decals ? T.decals.Copy() : null
 
 						X = B.ChangeTurf(T.type)
-						X.set_dir(old_dir1)
+						X.setDir(old_dir1)
 						X.icon_state = old_icon_state1
 						X.icon = old_icon1
 						X.copy_overlays(T, TRUE)
@@ -871,7 +871,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 					var/turf/X = B
 					X.ChangeTurf(T.type)
-					X.set_dir(old_dir1)
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 					X.overlays = old_overlays
@@ -1209,12 +1209,12 @@ var/mob/dview/dview_mob
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
 	else
-		GLOB.living_mob_list -= src
+		GLOB.alive_mob_list -= src
 
 /mob/dview/Life()
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
-	GLOB.living_mob_list -= src
+	GLOB.alive_mob_list -= src
 
 /mob/dview/Destroy(var/force)
 	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")

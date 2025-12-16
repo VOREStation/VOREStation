@@ -55,7 +55,7 @@
 // overriden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.set_dir(nextdir)
+	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
 
@@ -163,7 +163,7 @@
 		for(var/D in GLOB.cardinal)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(get_turf(src))
-				P.set_dir(D)
+				P.setDir(D)
 
 	invisibility = INVISIBILITY_ABSTRACT	// make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
@@ -272,7 +272,7 @@
 			C.ptype = 14
 	C.subtype = subtype
 	transfer_fingerprints_to(C)
-	C.set_dir(dir)
+	C.setDir(dir)
 	C.density = FALSE
 	C.anchored = TRUE
 	C.update()
@@ -345,7 +345,7 @@
 
 /obj/structure/disposalpipe/up/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.set_dir(nextdir)
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P

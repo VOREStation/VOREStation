@@ -117,7 +117,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		. += span_warning("[powernet?.avail > 0 ? "[DisplayPower(powernet.avail)] in power network." : "The cable is not powered."]")
 
 // Rotating cables requires d1 and d2 to be rotated
-/obj/structure/cable/set_dir(new_dir)
+/obj/structure/cable/setDir(new_dir)
+	..()
 	if(powernet)
 		cut_cable_from_powernet() // Remove this cable from the powernet so the connections update
 

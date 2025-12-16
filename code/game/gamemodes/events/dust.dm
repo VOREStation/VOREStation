@@ -58,7 +58,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		var/turf/startloc = locate(startx, starty, randomz)
 		var/turf/endloc = locate(endx, endy, randomz)
 		var/obj/effect/space_dust/D = new dust_type(startloc)
-		D.set_dir(GLOB.reverse_dir[startside])
+		D.setDir(GLOB.reverse_dir[startside])
 		walk_towards(D, endloc, 1)
 
 /obj/effect/space_dust

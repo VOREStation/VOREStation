@@ -291,7 +291,7 @@
 						var/obj/structure/disposalpipe/P = new pipetype(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.base_icon_state = base_state
-						P.set_dir(dir)
+						P.setDir(dir)
 						P.dpdir = dpdir
 						P.update_icon()
 
@@ -311,12 +311,12 @@
 					else if(ptype==DISPOSAL_PIPE_OUTLET)
 						var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
 						src.transfer_fingerprints_to(P)
-						P.set_dir(dir)
+						P.setDir(dir)
 
 					else if(ptype==DISPOSAL_PIPE_CHUTE)
 						var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
 						src.transfer_fingerprints_to(P)
-						P.set_dir(dir)
+						P.setDir(dir)
 
 					qdel(src)
 					return

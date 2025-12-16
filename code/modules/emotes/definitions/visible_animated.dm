@@ -67,7 +67,7 @@
 /decl/emote/visible/floorspin/proc/spin_dir(var/mob/user)
 	set waitfor = FALSE
 	for(var/i in spin_dirs)
-		user.set_dir(i)
+		user.setDir(i)
 		sleep(1)
 		if(QDELETED(user))
 			return

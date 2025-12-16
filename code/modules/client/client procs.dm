@@ -282,14 +282,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.tickets.ClientLogin(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = preferences_datums[ckey]
+	prefs = GLOB.preferences_datums[ckey]
 	if(prefs)
 		prefs.client = src
 		prefs.load_savefile() // just to make sure we have the latest data
 		prefs.apply_all_client_preferences()
 	else
 		prefs = new /datum/preferences(src)
-		preferences_datums[ckey] = prefs
+		GLOB.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
@@ -332,6 +332,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	prefs.sanitize_preferences()
 	if(prefs)
 		prefs.selecting_slots = FALSE
+
+	if(SSinput.initialized)
+		set_macros()
 
 	// Initialize stat panel
 	stat_panel.initialize(
@@ -858,7 +861,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (clicklimiter[SECOND_COUNT] > scl)
 			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
 			return
+
+	if (hotkeys)
+		// If hotkey mode is enabled, then clicking the map will automatically
+		// unfocus the text bar.
+		winset(src, null, "input.focus=false")
+	else
+		winset(src, null, "input.focus=true")
+
 	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
+
 	. = ..()
 
 /// This grabs the DPI of the user per their skin
@@ -891,6 +903,44 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(ismecha(client.mob.loc) && client.eye == client.mob.loc)
 		return FALSE
 	return (client.eye != client.mob)
+
+//Hook, override it to run code when dir changes
+//Like for /atoms, but clients are their own snowflake FUCK
+/client/proc/setDir(newdir)
+	dir = newdir
+
+/**
+ * Updates the keybinds for special keys
+ *
+ * Handles adding macros for the keys that need it
+ * And adding movement keys to the clients movement_keys list
+ * At the time of writing this, communication(OOC, Say, IC, ASAY) require macros
+ * Arguments:
+ * * direct_prefs - the preference we're going to get keybinds from
+ */
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
+		return
+	movement_keys = list()
+	for(var/kb_name in D.key_bindings)
+		for(var/key in D.key_bindings[kb_name])
+			switch(kb_name)
+				if("North")
+					movement_keys[key] = NORTH
+				if("East")
+					movement_keys[key] = EAST
+				if("West")
+					movement_keys[key] = WEST
+				if("South")
+					movement_keys[key] = SOUTH
+				if(ADMIN_CHANNEL)
+					if(holder)
+						var/asay = tgui_say_create_open_command(ADMIN_CHANNEL)
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[asay]")
+					else
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
+	calculate_move_dir()
 
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE

@@ -115,7 +115,7 @@
 	if(!choice)
 		var/backwards = turn(what_edge, 180)
 		forceMove(get_step(src,backwards)) //Move them back a step, then.
-		set_dir(backwards)
+		setDir(backwards)
 		return
 	else
 		var/obj/effect/overmap/visitable/V = choices[choice]

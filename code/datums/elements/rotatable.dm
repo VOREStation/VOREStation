@@ -38,7 +38,7 @@
 		to_chat(usr, span_notice("It is fastened to the floor!"))
 		return FALSE
 
-	set_dir(turn(dir, angle))
+	setDir(turn(dir, angle))
 	to_chat(usr, span_notice("You rotate \the [src] to face [dir2text(dir)]!"))
 	return TRUE
 

@@ -61,7 +61,7 @@
 	// start the holder processing movement
 	packet.forceMove(trunk)
 	packet.active = TRUE
-	packet.set_dir(DOWN)
+	packet.setDir(DOWN)
 	packet.move()
 
 // Expel handling, can be override by subtypes but excepts parent proc to handle core logic

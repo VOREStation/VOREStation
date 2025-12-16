@@ -593,7 +593,7 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 		if("Mobs")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
 		if("Living Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.alive_mob_list,",")))
 		if("Dead Mobs")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
 		if("Clients")

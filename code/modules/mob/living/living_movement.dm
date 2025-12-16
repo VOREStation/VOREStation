@@ -334,3 +334,8 @@ default behaviour is:
 
 /mob/living/proc/handle_footstep(turf/T)
 	return FALSE
+
+/mob/living/keybind_face_direction(direction)
+	if(stat > CONSCIOUS)
+		return
+	return ..()

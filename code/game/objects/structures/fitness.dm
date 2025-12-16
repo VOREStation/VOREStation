@@ -56,7 +56,7 @@
 	else
 		fitness_being_used = 1
 		playsound(src, 'sound/effects/weightlifter.ogg', 50, 1)
-		user.set_dir(SOUTH)
+		user.setDir(SOUTH)
 		flick("[icon_state]_[weight]", src)
 		if(do_after(user, 2 SECONDS + (weight * 1 SECOND), target = src))
 			playsound(src, 'sound/effects/weightdrop.ogg', 25, 1)

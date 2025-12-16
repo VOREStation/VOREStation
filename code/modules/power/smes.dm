@@ -282,7 +282,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		if(check_terminal_exists(tempLoc, user, tempDir))
 			return 1
 		var/obj/machinery/power/terminal/term = new/obj/machinery/power/terminal(tempLoc)
-		term.set_dir(tempDir)
+		term.setDir(tempDir)
 		term.master = src
 		term.connect_to_network()
 		terminals |= term

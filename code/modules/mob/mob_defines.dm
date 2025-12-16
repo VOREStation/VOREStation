@@ -270,10 +270,13 @@
 	var/list/do_afters
 
 	var/datum/focus //What receives our keyboard inputs. src by default
+
 	/// dict of custom stat tabs with data
 	var/list/list/misc_tabs = list()
 
 	var/list/datum/action/actions
+	///Cursor icon used when holding shift over things
+	var/examine_cursor_icon = 'icons/effects/mouse_pointers/examine_pointer.dmi'
 
 	VAR_PROTECTED/list/viruses
 	VAR_PROTECTED/list/resistances

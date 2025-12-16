@@ -124,7 +124,7 @@ Class Procs:
 /obj/machinery/Initialize(mapload, d=0)
 	. = ..()
 	if(isnum(d))
-		set_dir(d)
+		setDir(d)
 	SSmachines.all_machines += src
 	if(ispath(circuit))
 		circuit = new circuit(src)
@@ -171,7 +171,7 @@ Class Procs:
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
 		pulse2.anchored = TRUE
-		pulse2.set_dir(pick(GLOB.cardinal))
+		pulse2.setDir(pick(GLOB.cardinal))
 		QDEL_IN(pulse2, 1 SECOND)
 	..()
 
@@ -465,7 +465,7 @@ Class Procs:
 	else
 		A.state = FRAME_WIRED
 
-	A.set_dir(dir)
+	A.setDir(dir)
 	A.pixel_x = pixel_x
 	A.pixel_y = pixel_y
 	A.update_desc()

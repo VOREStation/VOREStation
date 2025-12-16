@@ -50,7 +50,7 @@
 						qdel(W)
 			if(!found_connection)
 				var/obj/structure/window/new_win = new win_path(src.loc)
-				new_win.set_dir(dir)
+				new_win.setDir(dir)
 				handle_window_spawn(new_win)
 		else
 			neighbours |= other

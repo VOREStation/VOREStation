@@ -225,10 +225,10 @@
 					D = SOUTH
 				if(WEST)
 					D = NORTH
-			set_dir(D)
+			setDir(D)
 			if(istype(buckled,/obj/structure/bed/chair/office))
 				var/obj/structure/bed/chair/office/O = buckled
 				O.dir = D
-				O.set_dir(D)
+				O.setDir(D)
 			spintime -= speed
 	return

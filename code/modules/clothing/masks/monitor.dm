@@ -13,7 +13,7 @@
 	var/monitor_state_index = "blank"
 
 
-/obj/item/clothing/mask/monitor/set_dir()
+/obj/item/clothing/mask/monitor/setDir()
 	dir = SOUTH
 	return
 

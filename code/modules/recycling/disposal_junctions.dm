@@ -146,7 +146,7 @@
 
 /obj/structure/disposalpipe/sortjunction/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir, H.destinationTag)
-	H.set_dir(nextdir)
+	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
 

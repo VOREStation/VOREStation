@@ -113,7 +113,7 @@
 		for(var/atom/movable/A as mob|obj in src)
 			A.forceMove(src.connected.loc)
 		src.connected.icon_state = "morguet"
-		src.connected.set_dir(src.dir)
+		src.connected.setDir(src.dir)
 	else
 		qdel(src.connected)
 		src.connected = null

@@ -174,7 +174,7 @@
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
 	smoke.icon = I
 	smoke.plane = ABOVE_PLANE
-	smoke.set_dir(pick(GLOB.cardinal))
+	smoke.setDir(pick(GLOB.cardinal))
 	smoke.pixel_x = -32 + rand(-8, 8)
 	smoke.pixel_y = -32 + rand(-8, 8)
 	walk_to(smoke, T)

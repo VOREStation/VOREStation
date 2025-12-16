@@ -184,7 +184,7 @@
 				spawn(10)
 					C.lay_down()
 			else
-				C.set_dir(get_dir(C,targloc))
+				C.setDir(get_dir(C,targloc))
 				C.visible_message(span_notice("[C] watches the light."), span_notice("Your attention is drawn to the mysterious glowing dot."))
 
 

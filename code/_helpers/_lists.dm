@@ -872,15 +872,25 @@ Checks if a list has the same entries and values as an element of big.
 
 	return inserted_list
 
-//Copies a list, and all lists inside it recusively
-//Does not copy any other reference type
-/proc/deepCopyList(list/l)
-	if(!islist(l))
-		return l
-	. = l.Copy()
-	for(var/i = 1 to l.len)
-		if(islist(.[i]))
-			.[i] = .(.[i])
+///Copies a list, and all lists inside it recusively
+///Does not copy any other reference type
+/proc/deep_copy_list(list/inserted_list)
+	if(!islist(inserted_list))
+		return inserted_list
+	. = inserted_list.Copy()
+	for(var/i in 1 to inserted_list.len)
+		var/key = .[i]
+		if(isnum(key))
+			// numbers cannot ever be associative keys
+			continue
+		var/value = .[key]
+		if(islist(value))
+			value = deep_copy_list(value)
+			.[key] = value
+		if(islist(key))
+			key = deep_copy_list(key)
+			.[i] = key
+			.[key] = value
 
 //Return a list with no duplicate entries
 /proc/uniqueList(list/L)
