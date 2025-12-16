@@ -188,3 +188,12 @@
   - bugfix: Wounds now use the proper gender
   Willbird:
   - bugfix: control clicking turf no longer runtimes attempting to pull it
+2025-12-15:
+  Diana:
+  - rscadd: Bodyscanner is now upgradable and will show hidden (unscannable) chemicals.
+  - bugfix: Unscannable (hidden) chemicals no longer show up on bodyscanner by default,
+      instead requiring upgrading it.
+  Kashargul:
+  - rscdel: Removed the TGUI kitchensink component view
+  - rscadd: Added a new data explorer for TGUI dev mode
+  - bugfix: TGUI window drag and resize should be smoother on low end systems.

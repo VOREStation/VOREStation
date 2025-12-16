@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Bodyscanner is now upgradable and will show hidden (unscannable) chemicals."
-  - bugfix: "Unscannable (hidden) chemicals no longer show up on bodyscanner by default, instead requiring upgrading it."
