@@ -44,6 +44,8 @@
 	var/icon_tinted
 	var/id_tint
 
+	var/update_adjacent_tiles = TRUE
+
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
@@ -602,7 +604,8 @@
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
 
-	update_nearby_tiles()
+	if(update_adjacent_tiles)
+		update_nearby_tiles()
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
