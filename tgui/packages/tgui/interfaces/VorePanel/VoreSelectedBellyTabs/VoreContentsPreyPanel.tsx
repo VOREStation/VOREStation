@@ -43,7 +43,7 @@ export const VoreContentsPreyPanel = (props: {
             </Section>
           </Stack.Item>
         )}
-        <Stack.Item>
+        <Stack.Item grow>
           <VoreContentsPanel
             contents={inside.contents}
             belly={inside.ref}
