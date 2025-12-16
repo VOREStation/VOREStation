@@ -18,7 +18,7 @@ export const VoreContentsPreyPanel = (props: {
   return (
     <Section fill>
       <Stack vertical fill>
-        {!!prey_abilities && (
+        {!!prey_abilities?.length && (
           <Stack.Item>
             <Section title="Abilities">
               <Stack>
