@@ -6,7 +6,7 @@ export type Data = {
   inside: InsideData;
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
-  prey_abilities: PreyAbilityData | null;
+  prey_abilities: PreyAbilityData[] | null;
   active_tab: number;
   persist_edit_mode: BooleanLike;
   host_mobtype: HostMob | null;
@@ -49,10 +49,6 @@ export type InsideData = {
   liq_reagent_type?: string;
   liuq_name?: string;
   contents?: ContentData[];
-};
-
-export type PreyAbilityData = {
-  absorbed_devour_others: BooleanLike;
 };
 
 export type BellyData = {
@@ -486,4 +482,9 @@ export type ActionButtonData = {
   disabled?: boolean;
   color?: string;
   needsConfirm?: boolean;
+};
+
+export type PreyAbilityData = {
+  name: string;
+  available: BooleanLike;
 };

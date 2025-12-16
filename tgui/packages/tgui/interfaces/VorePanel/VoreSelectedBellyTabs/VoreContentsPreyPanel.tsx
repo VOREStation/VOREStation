@@ -1,12 +1,13 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { preyAbilityToData } from '../constants';
 import type { InsideData, PreyAbilityData } from '../types';
 import { VoreContentsPanel } from './VoreContentsPanel';
 
 export const VoreContentsPreyPanel = (props: {
   inside: InsideData;
-  prey_abilities: PreyAbilityData | null;
+  prey_abilities: PreyAbilityData[] | null;
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
 }) => {
@@ -16,40 +17,39 @@ export const VoreContentsPreyPanel = (props: {
 
   return (
     <Section fill>
-      <Stack fill>
-        {prey_abilities && (
+      <Stack vertical fill>
+        {!!prey_abilities && (
           <Stack.Item>
             <Section title="Abilities">
               <Stack>
-                {prey_abilities.absorbed_devour_others && (
-                  <Stack.Item>
+                {prey_abilities.map((ability) => (
+                  <Stack.Item key={ability.name}>
                     <Button
+                      disabled={ability.available}
+                      color={preyAbilityToData[ability.name].color}
+                      tooltip={preyAbilityToData[ability.name].desc}
                       onClick={() =>
                         act('prey_ability', {
-                          ability: 'devour_absorbed',
+                          ability: ability.name,
                           belly: inside.ref,
                         })
                       }
                     >
-                      Devour nearby
+                      {preyAbilityToData[ability.name].displayName}
                     </Button>
                   </Stack.Item>
-                )}
+                ))}
               </Stack>
             </Section>
           </Stack.Item>
         )}
         <Stack.Item>
-          {inside.contents?.length ? (
-            <VoreContentsPanel
-              contents={inside.contents}
-              belly={inside.ref}
-              show_pictures={show_pictures}
-              icon_overflow={icon_overflow}
-            />
-          ) : (
-            <Box>There is nothing else around you.</Box>
-          )}
+          <VoreContentsPanel
+            contents={inside.contents}
+            belly={inside.ref}
+            show_pictures={show_pictures}
+            icon_overflow={icon_overflow}
+          />
         </Stack.Item>
       </Stack>
     </Section>

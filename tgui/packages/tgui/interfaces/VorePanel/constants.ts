@@ -150,3 +150,11 @@ export const aestehticTabsToIcons = {
   'Set Nutrition Examine': 'flask',
   'Set Weight Examine': 'weight-hanging',
 };
+
+export const preyAbilityToData = {
+  devour_as_absorbed: {
+    displayName: 'Devour Nearby',
+    desc: 'Allows you to devour nearby prey while being absorbed.',
+    color: 'red',
+  },
+};

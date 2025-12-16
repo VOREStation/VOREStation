@@ -1380,11 +1380,11 @@
 		return TRUE // Aren't here anymore, need to update menu
 
 	var/ability = params["ability"]
-	if(!(ability in list("devour_absorbed")))
+	if(!(ability in list("devour_as_absorbed")))
 		return FALSE
 
 	switch(ability)
-		if("devour_absorbed")
+		if("devour_as_absorbed")
 			user.absorb_devour()
 
 	return TRUE

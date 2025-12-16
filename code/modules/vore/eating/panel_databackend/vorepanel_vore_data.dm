@@ -103,10 +103,9 @@
 		return list()
 
 	var/obj/belly/inside_belly = hostloc
-	var/list/abilities = list(
-		"absorbed_devour_others" = (inside_belly.mode_flags & DM_FLAG_ABSORBEDVORE)
-	)
-
+	var/list/abilities = list()
+	if(inside_belly.mode_flags & DM_FLAG_ABSORBEDVORE)
+		UNTYPED_LIST_ADD(abilities, list("name" = "devour_as_absorbed", "available" = owner.absorbed))
 	return abilities
 
 /datum/vore_look/proc/get_host_mobtype(mob/owner)
