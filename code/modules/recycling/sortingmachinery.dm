@@ -12,6 +12,9 @@
 /obj/machinery/disposal/deliveryChute/update_icon()
 	return
 
+/obj/machinery/disposal/deliveryChute/click_alt(mob/user) //No flushing the chute
+	return
+
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
 	if(QDELETED(AM) || istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
 	switch(dir)
