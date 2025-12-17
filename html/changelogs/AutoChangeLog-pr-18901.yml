@@ -1,0 +1,4 @@
+author: "Lilly-Lira"
+delete-after: True
+changes:
+  - bugfix: "Flavored donk pockets retain flavor after microwaving"

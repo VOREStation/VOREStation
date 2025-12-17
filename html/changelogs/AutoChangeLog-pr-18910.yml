@@ -1,0 +1,4 @@
+author: "FluffMedic"
+delete-after: True
+changes:
+  - bugfix: "Mouse army uses defines now"
