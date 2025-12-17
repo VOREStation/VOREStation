@@ -336,11 +336,13 @@
 		update_icon()
 	return
 
-/obj/machinery/disposal/AltClick(mob/user)
+/obj/machinery/disposal/click_alt(mob/user)
 	/*
 	if(user.canUseTopic) //Later...
 		return
 	*/
+	if(get_dist(user, src) > 1 || user.stat) //Until the above exists...
+		return
 	flush = !flush
 	update_icon()
 
@@ -514,15 +516,15 @@
 	for(var/obj/item/digestion_remains/bone in src)
 		qdel(bone)
 
-	var/list/flushed_items
+	var/list/flushed_items = list()
 	for(var/atom/movable/AM in src)
 		flushed_items += AM
 
 	if(stat_tracking)
 		GLOB.disposals_flush_shift_roundstat++
 
-	if(!SEND_SIGNAL(src, COMSIG_DISPOSAL_FLUSH, flushed_items))
-		if(length(contents)) //We still have stuff inside, somehow. Component exploded?
+	if(!SEND_SIGNAL(src, COMSIG_DISPOSAL_FLUSH, flushed_items, air_contents)) //If the signal isnt recieved, we'll just expel immediately.
+		if(length(contents))
 			expel(flushed_items)
 
 	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv. Disposal packet takes ownership of the original one!

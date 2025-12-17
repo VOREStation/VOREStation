@@ -18,11 +18,17 @@
 /obj/structure/disposaloutlet/Initialize(mapload)
 	. = ..()
 
+	target = get_ranged_target_turf(src, dir, 10)
+
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in get_turf(src)
 	AddComponent(/datum/component/disposal_system_connection)
 	RegisterSignal(src, COMSIG_DISPOSAL_RECEIVE, PROC_REF(expel))
 	if(trunk)
 		SEND_SIGNAL(src, COMSIG_DISPOSAL_LINK, trunk)
+
+/obj/structure/disposaloutlet/Destroy()
+	target = null
+	. = ..()
 
 /obj/structure/disposaloutlet/attackby(obj/item/I, mob/user)
 	if(!I || !user)
@@ -54,6 +60,7 @@
 				SEND_SIGNAL(src, COMSIG_DISPOSAL_UNLINK)
 				var/obj/structure/disposalconstruct/C = new (src.loc/*, null, SOUTH, FALSE, src*/)
 				src.transfer_fingerprints_to(C)
+				C.set_dir(dir)
 				C.ptype = 7 // 7 =  outlet
 				C.update()
 				C.anchored = TRUE
@@ -64,18 +71,20 @@
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return
 	else if(I.has_tool_quality(TOOL_MULTITOOL))
-		if(tgui_input_number(user, "Input a new ejection distance", "Set ejection strength", 3 , 5, 1, round_value = TRUE))
+		var/new_range = tgui_input_number(user, "Input a new ejection distance", "Set ejection strength", 3 , 5, 1, round_value = TRUE)
+		eject_range = new_range
+		to_chat(user, span_notice("You set the range on the [src] to [new_range] tiles."))
 
-/obj/structure/disposaloutlet/proc/expel(datum/source, list/recieved_items, datum/gas_mixture/gas)
+/obj/structure/disposaloutlet/proc/expel(datum/source, list/received_items, datum/gas_mixture/gas)
 	SIGNAL_HANDLER
 
 	flick("outlet-open", src)
 	if((start_eject + 30) < world.time)
 		start_eject = world.time
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 50, 0, 0)
-		addtimer(CALLBACK(src, PROC_REF(expel_contents), recieved_items, gas, TRUE), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(expel_contents), received_items, gas, TRUE), 2 SECONDS)
 	else
-		addtimer(CALLBACK(src, PROC_REF(expel_contents), recieved_items, gas), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(expel_contents), received_items, gas), 2 SECONDS)
 
 /obj/structure/disposaloutlet/proc/expel_contents(list/ejected_items, datum/gas_mixture/gas, playsound = FALSE)
 	if(playsound)

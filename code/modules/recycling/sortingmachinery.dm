@@ -9,7 +9,7 @@
 /obj/machinery/disposal/deliveryChute/interact()
 	return
 
-/obj/machinery/disposal/deliveryChute/update()
+/obj/machinery/disposal/deliveryChute/update_icon()
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute

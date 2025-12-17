@@ -52,6 +52,7 @@
 	if(trunk.linked) //Already linked to something
 		return FALSE
 	connected_trunk = trunk
+	trunk.linked = disposal_owner
 	RegisterSignal(trunk, COMSIG_DISPOSAL_SEND, PROC_REF(on_recieve))
 
 /datum/component/disposal_system_connection/proc/unlink_from_trunk(datum/source)
@@ -68,7 +69,6 @@
 
 /datum/component/disposal_system_connection/proc/on_examine(datum/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
-	var/has_connection = FALSE
 	if(!visible_connection)
 		return
 	examine_texts += span_notice("It [connected_trunk ? "is connected" : "can be connected"] to a disposal pipe network.")
@@ -111,3 +111,5 @@
 	var/datum/gas_mixture/gas = new()
 	gas.copy_from(packet.gas)
 	qdel(packet)
+	SEND_SIGNAL(disposal_owner, COMSIG_DISPOSAL_RECEIVE, expelled_items, gas)
+	return TRUE

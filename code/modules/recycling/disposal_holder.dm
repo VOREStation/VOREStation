@@ -137,7 +137,7 @@
 	if(active)
 		return
 	to_chat(escapee, span_warning("You push against the thin pipe walls..."))
-	playsound(loc, 'sound/machines/airlock_alien_prying.ogg', 30, FALSE, 3) //yeah I know but at least it sounds like metal being bent.
+	playsound(loc, 'sound/machines/door/airlock_creaking.ogg', 30, FALSE, 3) //yeah I know but at least it sounds like metal being bent.
 
 	if(!do_after(escapee, 20 SECONDS, get_turf(loc)))
 		return
