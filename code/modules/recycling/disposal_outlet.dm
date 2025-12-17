@@ -99,4 +99,5 @@
 
 	T.assume_air(gas)
 
+#undef OUTLET_SCREWED
 #undef OUTLET_UNSCREWED

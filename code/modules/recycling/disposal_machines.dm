@@ -495,7 +495,6 @@
 	flush_animation()
 	//Bit of a nasty way to do this. But sleep()s are nastier.
 	addtimer(CALLBACK(src, PROC_REF(flush_startup)), 1 SECOND)
-	addtimer(CALLBACK(src, PROC_REF(flush_complete)), 1.5 SECONDS) // wait for animation to finish
 
 /obj/machinery/disposal/proc/flush_animation()
 	PROTECTED_PROC(TRUE)
@@ -506,6 +505,7 @@
 	if(last_sound < world.time + 1)
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 		last_sound = world.time
+	addtimer(CALLBACK(src, PROC_REF(flush_complete)), 0.5 SECONDS) // wait for animation to finish
 
 /obj/machinery/disposal/proc/flush_complete()
 	PROTECTED_PROC(TRUE)

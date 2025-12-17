@@ -22,7 +22,7 @@
 			for(var/atom/movable/AM in contents)
 				AM.forceMove(qdelloc)
 		else
-			log_and_message_admins("A disposal holder was deleted with contents in nullspace") //ideally, this should never happen
+			log_runtime("A disposal holder was deleted with contents in nullspace") //ideally, this should never happen
 
 	active = FALSE
 	return ..()
@@ -139,7 +139,7 @@
 	to_chat(escapee, span_warning("You push against the thin pipe walls..."))
 	playsound(loc, 'sound/machines/door/airlock_creaking.ogg', 30, FALSE, 3) //yeah I know but at least it sounds like metal being bent.
 
-	if(!do_after(escapee, 20 SECONDS, get_turf(loc)))
+	if(!do_after(escapee, 20 SECONDS, transport_cylinder))
 		return
 	for(var/mob/living/jailbird in contents)
 		jailbird.apply_damage(rand(5,15), BRUTE)
