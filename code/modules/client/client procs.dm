@@ -750,7 +750,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	to_chat(src, "Your verbs are now [show_verb_panel ? "on" : "off. To turn them back on, type 'toggle-verbs' into the command bar."].")
 
-/*
 /client/verb/toggle_status_bar()
 	set name = "Toggle Status Bar"
 	set category = "OOC.Client Settings"
@@ -761,7 +760,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		winset(usr, "input", "is-visible=true")
 	else
 		winset(usr, "input", "is-visible=false")
-*/
 
 /client/verb/show_active_playtime()
 	set name = "Active Playtime"

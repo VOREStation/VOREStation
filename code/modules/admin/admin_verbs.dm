@@ -112,25 +112,20 @@
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/invisimin()
-	set name = "Invisimin"
-	set category = "Admin.Game"
-	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
+ADMIN_VERB(invisimin, R_HOLDER, "Invisimin", "Toggles ghost-like invisibility.", ADMIN_CATEGORY_GAME)
+	if(user.mob.invisibility > INVISIBILITY_OBSERVER)
+		to_chat(user.mob, span_warning("You can't use this, your current invisibility level ([user.mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
+		return
 
-	if(check_rights(R_HOLDER) && mob)
-		if(mob.invisibility > INVISIBILITY_OBSERVER)
-			to_chat(mob, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
-			return
+	if(user.mob.invisibility == INVISIBILITY_OBSERVER)
+		user.mob.invisibility = initial(user.mob.invisibility)
+		to_chat(user.mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
+		user.mob.alpha = max(user.mob.alpha + 100, 255)
+		return
 
-		if(mob.invisibility == INVISIBILITY_OBSERVER)
-			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
-			mob.alpha = max(mob.alpha + 100, 255)
-			return
-
-		mob.invisibility = INVISIBILITY_OBSERVER
-		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
-		mob.alpha = max(mob.alpha - 100, 0)
+	user.mob.invisibility = INVISIBILITY_OBSERVER
+	to_chat(user.mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
+	user.mob.alpha = max(user.mob.alpha - 100, 0)
 
 ADMIN_VERB(list_bombers, R_ADMIN, "List Bombers", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
 	user.holder.list_bombers()
