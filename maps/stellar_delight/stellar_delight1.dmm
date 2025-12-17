@@ -1143,7 +1143,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "cj" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -1234,7 +1234,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "cq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/button/remote/blast_door{
@@ -2008,7 +2008,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "dI" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -2425,7 +2425,7 @@
 	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "ew" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -2998,7 +2998,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
@@ -3032,7 +3032,7 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "fM" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/item/radio/intercom{
@@ -3435,7 +3435,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "gE" = (
 /obj/structure/closet/wardrobe/chaplain_black,
 /obj/item/storage/fancy/crayons,
@@ -3855,7 +3855,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "ht" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3882,7 +3882,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "hw" = (
 /obj/machinery/pointdefense{
 	id_tag = "sd_pd"
@@ -4391,7 +4391,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "iq" = (
 /turf/simulated/floor/wood,
 /area/library)
@@ -4404,7 +4404,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "is" = (
 /obj/structure/cable/pink{
 	icon_state = "1-2"
@@ -5287,9 +5287,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/fpmaint/deck_one)
-"ki" = (
-/turf/simulated/wall/bay/white,
-/area/groundbase/medical/resleeving)
 "kj" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -7177,7 +7174,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "oi" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -7479,7 +7476,7 @@
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "oO" = (
 /obj/structure/cable/pink{
 	icon_state = "0-2"
@@ -7572,7 +7569,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "oX" = (
 /turf/simulated/wall/bay/r_wall/purple,
 /area/rnd/storage)
@@ -7582,7 +7579,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "oZ" = (
 /obj/structure/table/woodentable,
 /obj/item/pen,
@@ -7856,7 +7853,7 @@
 	pixel_y = -27
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "pC" = (
 /turf/simulated/wall/bay/r_wall/purple,
 /area/exploration/equipment)
@@ -8452,7 +8449,7 @@
 	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "qS" = (
 /obj/machinery/button/remote/blast_door{
 	id = "brigwindowlockdown";
@@ -8504,7 +8501,7 @@
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "qX" = (
 /turf/space/internal_edge/right,
 /area/maintenance/starboard)
@@ -10370,7 +10367,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "vc" = (
 /obj/machinery/vending/security,
 /obj/machinery/camera/network/security,
@@ -11300,7 +11297,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "xh" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin{
@@ -13882,7 +13879,7 @@
 /area/security/warden)
 "CG" = (
 /turf/simulated/wall/bay/white,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "CI" = (
 /obj/machinery/computer/secure_data,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -13979,7 +13976,7 @@
 /obj/machinery/alarm/angled,
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "CV" = (
 /obj/structure/sign/directions/dorms{
 	dir = 1;
@@ -14286,7 +14283,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "DC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -15784,7 +15781,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "Ha" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -15998,7 +15995,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "Hz" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/gun/projectile/shotgun/pump{
@@ -17225,7 +17222,7 @@
 	pressure_checks_default = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "Kd" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -18438,7 +18435,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "ML" = (
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 1
@@ -18583,7 +18580,7 @@
 	anchored = 1
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "MZ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 5
@@ -19904,7 +19901,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "PW" = (
 /obj/structure/cable/pink{
 	icon_state = "4-8"
@@ -20546,7 +20543,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/groundbase/medical/autoresleeving)
+/area/medical/resleeving)
 "Ro" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -20881,7 +20878,7 @@
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "RU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -21800,7 +21797,7 @@
 "TK" = (
 /obj/machinery/clonepod/transhuman,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "TL" = (
 /obj/machinery/alarm/angled,
 /turf/simulated/floor/carpet/purcarpet,
@@ -22678,7 +22675,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "Vt" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -22795,7 +22792,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/groundbase/medical/resleeving)
+/area/medical/resleeving)
 "VD" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -33826,8 +33823,8 @@ Mf
 qn
 FG
 FG
-ki
-ki
+CG
+CG
 CG
 GZ
 ci
@@ -34112,11 +34109,11 @@ nw
 FG
 VC
 gD
-ki
-ki
+CG
+CG
 RT
-ki
-ki
+CG
+CG
 yO
 ij
 dl
@@ -34258,7 +34255,7 @@ oW
 vb
 pA
 hv
-ki
+CG
 ZB
 ij
 dl
@@ -34400,7 +34397,7 @@ fH
 hs
 ir
 ip
-ki
+CG
 cA
 ij
 dl
@@ -34542,7 +34539,7 @@ oM
 ev
 DA
 hv
-ki
+CG
 ck
 os
 dl
@@ -34677,14 +34674,14 @@ hJ
 Eu
 bG
 ep
-ki
-ki
-ki
-ki
-ki
+CG
+CG
+CG
+CG
+CG
 qW
-ki
-ki
+CG
+CG
 mr
 Uk
 pH

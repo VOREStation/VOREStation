@@ -877,6 +877,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/substation/explo
 	name = "Exploration Substation"
 
+/area/maintenance/substation/civai
+	name = "Civilian/AI Substation"
+
+/area/maintenance/substation/medcargo
+	name = "Medical/Cargo Substation"
+
 //Hallway
 
 /area/hallway/primary/
