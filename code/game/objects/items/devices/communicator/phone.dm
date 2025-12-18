@@ -349,7 +349,7 @@
 	video_source = comm.camera
 	comm.visible_message(span_danger("[icon2html(src,viewers(src))] New video connection from [comm]."))
 	update_active_camera_screen()
-	RegisterSignal(video_source, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen))
+	RegisterSignal(video_source, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen))
 	video_source.AddComponent(/datum/component/recursive_move)
 	update_icon()
 
@@ -357,7 +357,7 @@
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
 /obj/item/communicator/proc/end_video(var/reason)
-	UnregisterSignal(video_source, COMSIG_MOVABLE_ATTEMPTED_MOVE)
+	UnregisterSignal(video_source, COMSIG_MOVABLE_MOVED)
 	show_static()
 	video_source = null
 
