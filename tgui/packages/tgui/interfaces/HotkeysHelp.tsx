@@ -94,8 +94,8 @@ export const HotkeysHelp = (props) => {
 
   return (
     <Window title="Hotkeys Help" width={500} height={800}>
-      <Window.Content scrollable>
-        <Section title="Sorted by Key">
+      <Window.Content>
+        <Section fill scrollable title="Sorted by Key">
           <Table>
             <Table.Row header>
               <Table.Cell textAlign="center" m={1}>
