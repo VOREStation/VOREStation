@@ -1834,6 +1834,10 @@
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
 
+/mob/living/carbon/human/lay_down()
+	rest_dir = prob(50) //50/50?
+	. = ..()
+
 /mob/living/carbon/human/verb/flip_lying()
 	set name = "Flip Resting Direction"
 	set category = "Abilities.General"
