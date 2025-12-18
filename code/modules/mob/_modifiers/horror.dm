@@ -598,9 +598,9 @@ var/static/list/redspace_areas = list (
 
 	//Defib stuff here.
 	GLOB.dead_mob_list.Remove(unfortunate_soul)
-	if((unfortunate_soul in GLOB.living_mob_list) || (unfortunate_soul in GLOB.dead_mob_list))
+	if((unfortunate_soul in GLOB.alive_mob_list) || (unfortunate_soul in GLOB.dead_mob_list))
 		WARNING("Mob [unfortunate_soul] was revived but already in the living or dead list still!")
-	GLOB.living_mob_list += unfortunate_soul
+	GLOB.alive_mob_list += unfortunate_soul
 	unfortunate_soul.timeofdeath = 0
 	unfortunate_soul.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
 	unfortunate_soul.failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
