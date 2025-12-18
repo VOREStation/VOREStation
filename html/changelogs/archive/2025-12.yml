@@ -197,3 +197,12 @@
   - rscdel: Removed the TGUI kitchensink component view
   - rscadd: Added a new data explorer for TGUI dev mode
   - bugfix: TGUI window drag and resize should be smoother on low end systems.
+2025-12-18:
+  Diana:
+  - code_imp: Fixes signal usage in a few places
+  FluffMedic:
+  - bugfix: Mouse army uses defines now
+  Guti:
+  - bugfix: Fixed Dark Maw not respecting prefs
+  Lilly-Lira:
+  - bugfix: Flavored donk pockets retain flavor after microwaving
