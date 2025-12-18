@@ -32,6 +32,7 @@
 		max_damage = cell.robot_durability
 
 /datum/robot_component/proc/uninstall(clear)
+	SHOULD_CALL_PARENT(TRUE)
 	max_damage = initial(max_damage)
 	idle_usage = initial(idle_usage)
 	active_usage = initial(active_usage)
@@ -45,6 +46,7 @@
 	. = ..()
 
 /datum/robot_component/proc/destroy()
+	SHOULD_CALL_PARENT(TRUE)
 	var/brokenstate = "broken" // Generic icon
 	if (istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
