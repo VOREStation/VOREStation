@@ -922,7 +922,7 @@
 				current_pocket = A.cell
 				WR = WEAKREF(current_pocket)
 				A.cell = null
-				cell_component.uninstall()
+				cell_component.uninstall(TRUE)
 				A.update_icon()
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")

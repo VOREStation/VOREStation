@@ -31,12 +31,13 @@
 		var/obj/item/cell/cell = wrapped
 		max_damage = cell.robot_durability
 
-/datum/robot_component/proc/uninstall()
+/datum/robot_component/proc/uninstall(clear)
 	max_damage = initial(max_damage)
 	idle_usage = initial(idle_usage)
 	active_usage = initial(active_usage)
-	installed = 0
-	wrapped = null
+	if(clear)
+		installed = 0
+		wrapped = null
 
 /datum/robot_component/Destroy(force)
 	if(wrapped)
@@ -176,10 +177,12 @@
 		camera.status = 1
 
 /datum/robot_component/camera/uninstall()
+	..()
 	if (camera)
 		camera.status = 0
 
 /datum/robot_component/camera/destroy()
+	..()
 	if (camera)
 		camera.status = 0
 
