@@ -1989,24 +1989,31 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.unEquip(src)
+	if(possessed_voice && LAZYLEN(possessed_voice))
+		var/mob/living/voice/V = possessed_voice[1]
+		V.mind.transfer_to(H)
+		H.tf_mob_holder = V.tf_mob_holder
+		qdel(V)
 	qdel(src)
-	return 1
+	return H
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	to_chat(user, "You unwrap the cube.")
-	wrapped = 0
+	wrapped = FALSE
 	flags |= OPENCONTAINER
 	return
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.visible_message(span_warning("A screeching creature bursts out of [M]'s chest!"))
-		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
-		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
-	Expand()
+	var/mob/living/Prey = Expand()
+
+	if(!isliving(M))
+		return
+
+	var/mob/living/Pred = M
+	if(Pred.can_be_drop_pred && Pred.food_vore && Pred.vore_selected)
+		Prey.forceMove(Pred.vore_selected)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent(REAGENT_ID_WATER))

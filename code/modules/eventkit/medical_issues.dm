@@ -254,6 +254,18 @@
 
 /datum/surgery_step/medical_issue
 
+/datum/surgery_step/medical_issue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(!ishuman(target))
+		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected) //happens if we try to target an organ that was amputated.
+		return FALSE
+	if(coverage_check(user, target, affected, tool))
+		return FALSE
+	if(!affected.medical_issues)
+		return FALSE
+	return TRUE
+
 /datum/surgery_step/medical_issue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!") , \
@@ -277,15 +289,12 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/strengthen_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "bone reinforcement")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
 
 /datum/surgery_step/medical_issue/strengthen_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -318,15 +327,13 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/remove_growth/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "remove growths")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/remove_growth/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -359,15 +366,13 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/redirect_vessels/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "redirect blood vessels")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/redirect_vessels/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -400,15 +405,13 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/extract_object/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "extract object")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/extract_object/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -441,15 +444,13 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/flesh_graft/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/datum/medical_issue/MI in affected.medical_issues)
 		if(MI.cure_surgery == "flesh graft")
 			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/flesh_graft/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -484,16 +485,14 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/remove_growth_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "remove growths")
 				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/remove_growth_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -527,16 +526,14 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/redirect_vessels_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "redirect blood vessels")
 				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/redirect_vessels_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -570,16 +567,14 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/close_holes/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "close holes")
 				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/close_holes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -613,16 +608,14 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/ultrasound/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "ultrasound")
 				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/ultrasound/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -656,16 +649,14 @@
 	max_duration = 60
 
 /datum/surgery_step/medical_issue/reoxygenate_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!ishuman(target))
-		return 0
+	if(!..(user, target, target_zone, tool))
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(coverage_check(user, target, affected, tool))
-		return 0
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
 			if(MI.cure_surgery == "reoxygenate tissue")
 				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= FLESH_RETRACTED
-	return 0
+	return FALSE
 
 /datum/surgery_step/medical_issue/reoxygenate_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

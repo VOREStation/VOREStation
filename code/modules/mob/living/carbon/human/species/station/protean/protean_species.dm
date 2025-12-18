@@ -129,9 +129,9 @@
 
 	var/list/dullahan_overlays = list(
 		"dullahanbody" = "#FFFFFF", // body 1
-		"dullahanhead" = "#FFFFFF", // head 4
-		"dullahanmetal" = "#FFFFFF", // metal 3
 		"dullahaneyes" = "#FFFFFF", // eyes 2
+		"dullahanmetal" = "#FFFFFF", // metal 3
+		"dullahanhead" = "#FFFFFF", // head 4
 		"dullahanlightsempty" = "#FFFFFF", // lights 5
 		"dullahanextended" = "#FFFFFF", // breastplate part only on 6, do not use for anything else
 		"dullahanclothesempty" = "#FFFFFF" // clothes 7

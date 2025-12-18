@@ -125,6 +125,7 @@
 
 ///from /mob/living/carbon/human/get_visible_name(), not sent if the mob has TRAIT_UNKNOWN: (identity)
 #define COMSIG_HUMAN_GET_VISIBLE_NAME "human_get_visible_name"
+	#define COMPONENT_VISIBLE_NAME_CHANGED (1<<0)
 	//Index for the name of the face
 	#define VISIBLE_NAME_FACE 1
 	//Index for the name of the id

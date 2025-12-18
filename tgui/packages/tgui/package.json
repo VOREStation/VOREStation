@@ -4,7 +4,7 @@
 	"dependencies": {
 		"common": "workspace:*",
 		"dateformat": "^5.0.3",
-		"dompurify": "^3.3.0",
+		"dompurify": "^3.3.1",
 		"es-toolkit": "^1.42.0",
 		"highlight.js": "^11.11.1",
 		"js-yaml": "^4.1.1",
@@ -13,7 +13,8 @@
 		"marked-smartypants": "^1.1.11",
 		"react": "^19.2.1",
 		"react-dom": "^19.2.1",
-		"tgui-core": "^5.4.1",
+		"react-json-tree": "^0.20.0",
+		"tgui-core": "^5.5.10",
 		"tgui-dev-server": "workspace:*"
 	},
 	"private": true

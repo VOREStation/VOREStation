@@ -1255,7 +1255,7 @@
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
+			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
 				handle_hallucinations()
 				/* Stop spinning the view, it breaks too much.
 				if(client && prob(5))
@@ -1305,8 +1305,8 @@
 					var/fear_other = pick(fear_message_other)
 					visible_message(span_notice("\The [src][fear_other]"),span_warning("[fear_self]"))
 
-		if(paralysis || sleeping)
-			blinded = 1
+		if(sleeping)
+			blinded = TRUE
 			set_stat(UNCONSCIOUS)
 			animate_tail_reset()
 			adjustHalLoss(-3)
@@ -1655,7 +1655,7 @@
 	if(!. || !healths)
 		return
 
-	if(stat == DEAD) //Dead
+	if(stat == DEAD || (status_effects & FAKEDEATH)) //Dead
 		healths.icon_state = "health7"	//DEAD healthmeter
 		return
 
@@ -2091,7 +2091,7 @@
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = grab_hud(HEALTH_HUD)
 		var/image/health_us = grab_hud(HEALTH_VR_HUD)
-		if(stat == DEAD)
+		if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "-100" 	// X_X
 		else
 			holder.icon_state = RoundHealth((health-get_crit_point())/(getMaxHealth()-get_crit_point())*100)
@@ -2105,7 +2105,7 @@
 		var/image/holder = grab_hud(LIFE_HUD)
 		if(isSynthetic())
 			holder.icon_state = "hudrobo"
-		else if(stat == DEAD)
+		else if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
@@ -2120,7 +2120,7 @@
 		var/image/status_r = grab_hud(STATUS_R_HUD)
 		if (isSynthetic())
 			holder.icon_state = "hudrobo"
-		else if(stat == DEAD)
+		else if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(has_virus())

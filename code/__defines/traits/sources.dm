@@ -7,3 +7,5 @@
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Trait given by performing an action (proc, verb, etc. Something that the USER can control)
 #define ACTION_TRAIT "action"
+/// Trait that is given by unholy effects or corruption. Can be dispelled by a chaplain with a nullrod.
+#define UNHOLY_TRAIT "unholy"
