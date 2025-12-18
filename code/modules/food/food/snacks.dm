@@ -52,7 +52,7 @@
 	food_can_insert_micro = TRUE
 
 	///Var for attack_self chain
-	var/special_handling = TRUE
+	var/special_handling = FALSE
 
 /obj/item/reagent_containers/food/snacks/Initialize(mapload)
 	. = ..()
