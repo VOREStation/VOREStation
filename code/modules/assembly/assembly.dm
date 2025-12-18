@@ -96,6 +96,8 @@
 	. = ..(user)
 	if(.)
 		return TRUE
+	if(special_handling)
+		return FALSE
 	if(!user)
 		return FALSE
 	tgui_interact(user)
