@@ -2,7 +2,6 @@
 	// OLD ADMIN VERB SYSTEM
 	var/rights = holder.rank_flags()
 	if(rights & R_HOLDER)
-		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)		add_verb(src, admin_verbs_admin)
 		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
 		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
@@ -18,7 +17,6 @@
 /client/proc/remove_admin_verbs()
 	// OLD ADMIN VERB SYSTEM
 	remove_verb(src, list(
-		/client/proc/togglebuildmodeself,
 		admin_verbs_admin,
 		admin_verbs_fun,
 		admin_verbs_server,
@@ -339,11 +337,9 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/togglebuildmodeself()
-	set name = "Toggle Build Mode Self"
-	set category = "Debug.Events"
-	if(src.mob)
-		togglebuildmode(src.mob)
+ADMIN_VERB(build_mode_self, R_BUILDMODE, "Toggle Build Mode Self", "Toggle build mode for yourself.", ADMIN_CATEGORY_EVENTS)
+	togglebuildmode(user.mob) // why is this a global proc???
+	//BLACKBOX_LOG_ADMIN_VERB("Toggle Build Mode")
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE

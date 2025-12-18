@@ -5,6 +5,20 @@
 /datum/keybinding/admin/can_use(client/user)
 	return user.holder ? TRUE : FALSE
 
+/datum/keybinding/admin/toggle_buildmode_self
+	hotkey_keys = list("F7")
+	name = "toggle_buildmode_self"
+	full_name = "Toggle Buildmode Self"
+	description = "Toggles buildmode"
+	keybind_signal = COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN
+
+/datum/keybinding/admin/toggle_buildmode_self/down(client/user, turf/target, mousepos_x, mousepos_y)
+	. = ..()
+	if(.)
+		return
+	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/build_mode_self)
+	return TRUE
+
 /datum/keybinding/admin/invisimin
 	hotkey_keys = list("F8")
 	name = "invisimin"
