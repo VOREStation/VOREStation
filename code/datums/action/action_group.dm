@@ -49,6 +49,7 @@
 		refresh_actions()
 
 /datum/action_group/proc/refresh_actions()
+
 	// We don't use size() here because landings are not canon
 	var/total_rows = ROUND_UP(length(actions) / column_max)
 	total_rows -= max_rows // Lets get the amount of rows we're off from our max
@@ -92,7 +93,7 @@
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:-[pixel_north_offset]"
 
 /datum/action_group/proc/check_against_view()
-	var/owner_view = owner?.mymob?.client?.view
+	var/owner_view = owner?.mymob?.canon_client?.view
 	if(!owner_view)
 		return
 	// Unlikey as it is, we may have been changed. Want to start from our target position and fail down
@@ -103,14 +104,14 @@
 	// We're primarially concerned about width here, if someone makes us 1x2000 I wish them a swift and watery death
 	var/furthest_screen_loc = ButtonNumberToScreenCoords(column_max - 1)
 	var/list/offsets = screen_loc_to_offset(furthest_screen_loc, owner_view)
-	if(offsets[1] > world.icon_size && offsets[1] < view_size[1] && offsets[2] > world.icon_size && offsets[2] < view_size[2]) // We're all good
+	if(offsets[1] > ICON_SIZE_X && offsets[1] < view_size[1] && offsets[2] > ICON_SIZE_Y && offsets[2] < view_size[2]) // We're all good
 		return
 
 	for(column_max in column_max - 1 to 1 step -1) // Yes I could do this by unwrapping ButtonNumberToScreenCoords, but I don't feel like it
 		var/tested_screen_loc = ButtonNumberToScreenCoords(column_max)
 		offsets = screen_loc_to_offset(tested_screen_loc, owner_view)
 		// We've found a valid max length, pack it in
-		if(offsets[1] > world.icon_size && offsets[1] < view_size[1] && offsets[2] > world.icon_size && offsets[2] < view_size[2])
+		if(offsets[1] > ICON_SIZE_X && offsets[1] < view_size[1] && offsets[2] > ICON_SIZE_Y && offsets[2] < view_size[2])
 			break
 	// Use our newly resized column max
 	refresh_actions()
@@ -168,8 +169,6 @@
 	var/atom/movable/screen/button_palette/palette = owner.toggle_palette
 	var/atom/movable/screen/palette_scroll/scroll_down = owner.palette_down
 	var/atom/movable/screen/palette_scroll/scroll_up = owner.palette_up
-	if(!palette || !scroll_down || !scroll_up)
-		return
 
 	var/actions_above = round((owner.listed_actions.size() - 1) / owner.listed_actions.column_max)
 	north_offset = initial(north_offset) + actions_above

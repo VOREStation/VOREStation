@@ -308,13 +308,13 @@
 	if(viewer.client)
 		viewer.client.screen |= src
 
-	var/list/settings = our_hud.get_action_buttons_icons()
-	var/ui_icon = "[settings["bg_icon"]]"
-	var/list/ui_segments = splittext(ui_icon, ".")
-	var/list/ui_paths = splittext(ui_segments[1], "/")
-	var/ui_name = ui_paths[length(ui_paths)]
+	//var/list/settings = our_hud.get_action_buttons_icons()
+	//var/ui_icon = "[settings["bg_icon"]]"
+	//var/list/ui_segments = splittext(ui_icon, ".")
+	//var/list/ui_paths = splittext(ui_segments[1], "/")
+	//var/ui_name = ui_paths[length(ui_paths)]
 
-	icon_state = "[ui_name]_palette"
+	//icon_state = "[ui_name]_palette"
 
 /atom/movable/screen/button_palette/proc/activate_landing()
 	// Reveal ourselves to the user
@@ -438,8 +438,8 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 	if(viewer.client)
 		viewer.client.screen |= src
 
-	var/list/settings = our_hud.get_action_buttons_icons()
-	icon = settings["bg_icon"]
+	//var/list/settings = our_hud.get_action_buttons_icons()
+	//icon = settings["bg_icon"]
 
 /atom/movable/screen/palette_scroll/Click(location, control, params)
 	if(!can_use(usr))
@@ -510,8 +510,8 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 	if(viewer.client)
 		viewer.client.screen |= src
 
-	var/list/settings = our_hud.get_action_buttons_icons()
-	icon = settings["bg_icon"]
+	//var/list/settings = our_hud.get_action_buttons_icons()
+	//icon = settings["bg_icon"]
 
 /// Reacts to having a button dropped on it
 /atom/movable/screen/action_landing/proc/hit_by(atom/movable/screen/movable/action_button/button)

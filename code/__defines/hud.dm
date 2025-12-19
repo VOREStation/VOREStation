@@ -212,3 +212,14 @@
 #define ui_shadekin_display "EAST-1:28,CENTER-3:15"
 #define ui_lleill_display "EAST-1:28,CENTER-3:15"
 #define ui_xenochimera_danger_display "EAST-1:28,CENTER-3:15"
+
+/// Whatever the base action datum thinks is best
+#define SCRN_OBJ_DEFAULT "default"
+/// Floating somewhere on the hud, not in any predefined place
+#define SCRN_OBJ_FLOATING "floating"
+/// In the list of buttons stored at the top of the screen
+#define SCRN_OBJ_IN_LIST "list"
+/// In the collapseable palette
+#define SCRN_OBJ_IN_PALETTE "palette"
+///Inserted first in the list
+#define SCRN_OBJ_INSERT_FIRST "first"

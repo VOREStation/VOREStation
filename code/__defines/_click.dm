@@ -45,14 +45,3 @@
 #define MOUSE_OPACITY_ICON 1
 /// Objects will be always be clicked on regardless of pixel transparency or other objects at that location (used in space vines, storage containers)
 #define MOUSE_OPACITY_OPAQUE 2
-
-/// Whatever the base action datum thinks is best
-#define SCRN_OBJ_DEFAULT "default"
-/// Floating somewhere on the hud, not in any predefined place
-#define SCRN_OBJ_FLOATING "floating"
-/// In the list of buttons stored at the top of the screen
-#define SCRN_OBJ_IN_LIST "list"
-/// In the collapseable palette
-#define SCRN_OBJ_IN_PALETTE "palette"
-/// In cult spell list
-#define SCRN_OBJ_CULT_LIST "cult_list"

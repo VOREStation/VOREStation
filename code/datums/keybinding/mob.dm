@@ -7,7 +7,7 @@
 	if(.)
 		return .
 
-	var/original = user.mob.zone_sel
+	//var/original = user.mob.zone_sel
 	switch(keybind_signal)
 		if(COMSIG_KB_MOB_TARGETCYCLEHEAD_DOWN)
 			user.body_toggle_head()
