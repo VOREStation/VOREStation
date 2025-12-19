@@ -593,7 +593,7 @@
 	icon_state = "blank"
 	name = "contractor identification card"
 	desc = "An ID card typically used by contractors."
-	polymorphic_type = 2
+	polymorphic_type = 1
 
 /obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
@@ -612,3 +612,4 @@
 	icon_state = "itg"
 	name = "\improper ITG identification card"
 	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."
+	polymorphic_type = 2
