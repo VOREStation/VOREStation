@@ -206,3 +206,11 @@
   - bugfix: Fixed Dark Maw not respecting prefs
   Lilly-Lira:
   - bugfix: Flavored donk pockets retain flavor after microwaving
+2025-12-19:
+  Diana:
+  - bugfix: Null rod's special powers can only be used by chaplain.
+  - bugfix: Typing indicator no longer shows up when under FAKEDEATH
+  - qol: Null rod no longer has a 10% chance when used to harm-intent someone's head
+  Willbird:
+  - bugfix: Fixes shadekin getting set on fire while in phase, and being able to spread
+      fire while phased
