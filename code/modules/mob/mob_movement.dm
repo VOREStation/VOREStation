@@ -293,16 +293,14 @@
 					direct = turn(direct, pick(90, -90))
 					new_loc = get_step(my_mob, direct)
 
-	/*
 	if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
 		. = my_mob.pulledby.relaymove(my_mob, direct)
 	else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 		. = my_mob.buckled.relaymove(my_mob,direct)
 	else
 		. = my_mob.SelfMove(new_loc, direct, total_delay)
-	*/
 
-	. = ..()
+	// . = ..() // We can't currently do this, gliding needs a refactor
 
 	// If we ended up moving diagonally, increase delay.
 	if((direct & (direct - 1)) && mob.loc == new_loc)

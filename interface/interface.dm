@@ -139,7 +139,7 @@
 
 /client/verb/changelog()
 	set name = "Changelog"
-	set category = "OOC"
+	set category = "OOC.Resources"
 
 	if(!GLOB.changelog_tgui)
 		GLOB.changelog_tgui = new /datum/changelog()
@@ -152,7 +152,7 @@
 
 /client/verb/hotkeys_help()
 	set name = "Hotkeys Help"
-	set category = "OOC"
+	set category = "OOC.Resources"
 
 	if(!GLOB.hotkeys_tgui)
 		GLOB.hotkeys_tgui = new /datum/hotkeys_help()
