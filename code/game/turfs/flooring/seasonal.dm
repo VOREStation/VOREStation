@@ -179,7 +179,8 @@ GLOBAL_VAR(world_time_day)
 
 	. = ..()
 
-/turf/simulated/floor/outdoors/grass/seasonal/proc/update_desc()
+/turf/simulated/floor/outdoors/grass/seasonal/update_desc()
+	. = ..()
 
 	switch(GLOB.world_time_season)
 		if("spring")

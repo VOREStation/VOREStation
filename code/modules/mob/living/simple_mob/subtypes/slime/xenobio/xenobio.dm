@@ -124,7 +124,9 @@
 	update_icon()
 	update_name()
 
-/mob/living/simple_mob/slime/xenobio/proc/update_name()
+/mob/living/simple_mob/slime/xenobio/update_name()
+	. = ..()
+
 	if(harmless) // Docile slimes are generally named, so we shouldn't mess with it.
 		return
 	name = "[slime_color] [is_adult ? "adult" : "baby"] [initial(name)] ([number])"

@@ -16,6 +16,12 @@
 	vis_flags = VIS_INHERIT_PLANE
 	unacidable = FALSE
 
+	/// The current client inhabiting this mob. Managed by login/logout
+	/// This exists so we can do cleanup in logout for occasions where a client was transfere rather then destroyed
+	/// We need to do this because the mob on logout never actually has a reference to client
+	/// We also need to clear this var/do other cleanup in client/Destroy, since that happens before logout
+	/// HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+	var/client/canon_client
 	/// It's like a client, but persists! Persistent clients will stick to a mob until the client in question is logged into a different mob.
 	var/datum/persistent_client/persistent_client
 
@@ -268,6 +274,9 @@
 
 	///For storing what do_after's someone has, key = string, value = amount of interactions of that type happening.
 	var/list/do_afters
+
+	///Allows a datum to intercept all click calls this mob is the source of
+	var/datum/click_intercept
 
 	var/datum/focus //What receives our keyboard inputs. src by default
 

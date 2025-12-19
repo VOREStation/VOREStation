@@ -58,7 +58,9 @@
 	. = ..()
 	update_name()
 
-/obj/item/reagent_containers/glass/rag/proc/update_name()
+/obj/item/reagent_containers/glass/rag/update_name()
+	. = ..()
+
 	if(on_fire)
 		name = "burning [initial(name)]"
 	else if(reagents.total_volume)

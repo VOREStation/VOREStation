@@ -172,7 +172,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	destructible = 1
 	health = 50
 	anchored = TRUE
-	icon = 'icons/mob/actions.dmi'
+	icon = 'icons/hud/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
 	/mob/living/simple_mob/animal/space/alien/drone = 20,
@@ -191,7 +191,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	destructible = 1
 	health = 50
 	anchored = TRUE
-	icon = 'icons/mob/actions.dmi'
+	icon = 'icons/hud/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
 	/mob/living/simple_mob/animal/space/alien/queen = 5,
@@ -265,4 +265,3 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	simultaneous_spawns = 6
 	spawn_delay = 300
 	spawn_types = list(/mob/living/simple_mob/mechanical/hivebot/swarm = 200, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 10)
-

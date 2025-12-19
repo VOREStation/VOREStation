@@ -10,7 +10,10 @@
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
 
-/mob/observer/dead/DblClickOn(var/atom/A, var/params)
+/mob/observer/dead/DblClickOn(atom/A, params)
+	if(check_click_intercept(params, A))
+		return
+
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
@@ -28,7 +31,10 @@
 			stop_following()
 		forceMove(get_turf(A))
 
-/mob/observer/dead/ClickOn(var/atom/A, var/params)
+/mob/observer/dead/ClickOn(atom/A, params)
+	if(check_click_intercept(params,A))
+		return
+
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return

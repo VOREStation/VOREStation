@@ -14,4 +14,6 @@
 	set_listening(NON_LISTENING_ATOM) //maybe remove this, even if it will cause a teensy bit more lag
 	..()
 
+	become_uncliented()
+
 	return TRUE

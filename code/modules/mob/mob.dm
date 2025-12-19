@@ -1696,6 +1696,22 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 
 	. = ..()
 
+/// Cleanup proc that's called when a mob loses a client, either through client destroy or logout
+/// Logout happens post client del, so we can't just copypaste this there. This keeps things clean and consistent
+/mob/proc/become_uncliented()
+	if(!canon_client)
+		return
+
+	for(var/datum/callback/CB as anything in persistent_client.post_logout_callbacks)
+		CB.Invoke()
+
+	if(canon_client?.movingmob)
+		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
+		canon_client.movingmob = null
+
+	clear_important_client_contents()
+	canon_client = null
+
 ///Update the mouse pointer of the attached client in this mob
 /mob/proc/update_mouse_pointer()
 	if(!client)

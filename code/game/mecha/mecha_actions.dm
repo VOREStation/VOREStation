@@ -62,7 +62,7 @@
 //
 
 /datum/action/innate/mecha
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUNNED | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	background_icon = 'icons/effects/actions_mecha.dmi'
 	button_icon = 'icons/effects/actions_mecha.dmi'
 	overlay_icon = 'icons/effects/actions_mecha.dmi'

@@ -426,6 +426,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	return ..()
 
 /client/Destroy()
+	if(mob)
+		mob.become_uncliented()
+
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	persistent_client.set_client(null)
@@ -821,6 +824,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 // Mouse stuff
 /client/Click(atom/object, atom/location, control, params)
+	if(click_intercept_time)
+		if(click_intercept_time >= world.time)
+			click_intercept_time = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercept_time = 0 //Just reset. Let's not keep re-checking forever.
+
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if (!check_rights_for(src, R_HOLDER) && mcl)
 		var/minute = round(world.time, 600)

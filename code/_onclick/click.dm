@@ -47,6 +47,9 @@
 		return
 	next_click = world.time + 1
 
+	if(check_click_intercept(params,A) || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
+		return
+
 	if(client && client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
@@ -364,3 +367,16 @@
 /// MouseWheelOn
 /mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	SEND_SIGNAL(src, COMSIG_MOUSE_SCROLL_ON, A, delta_x, delta_y, params)
+
+/mob/proc/check_click_intercept(params,A)
+	//Client level intercept
+	if(client?.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	//Mob level intercept
+	if(click_intercept)
+		if(call(click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	return FALSE

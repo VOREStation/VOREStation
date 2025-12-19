@@ -300,7 +300,9 @@ GLOBAL_LIST(construction_frame_floor)
 	if(circuit)
 		. += "It has \a [circuit] installed."
 
-/obj/structure/frame/proc/update_desc()
+/obj/structure/frame/update_desc()
+	. = ..()
+
 	var/D
 	if(req_components)
 		var/list/component_list = list()

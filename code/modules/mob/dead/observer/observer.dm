@@ -50,6 +50,8 @@
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 
+	var/mob/observetarget = null //The target mob that the ghost is observing. Used as a reference in logout()
+
 /mob/observer/dead/Initialize(mapload, aghost = FALSE)
 
 	appearance = loc
@@ -1008,3 +1010,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Respawn"
 	set category = "Ghost.Join"
 	src.abandon_mob()
+
+/mob/observer/dead/proc/cleanup_observe()
+	if(isnull(observetarget))
+		return
+	var/mob/target = observetarget
+	observetarget = null
+	client?.perspective = initial(client.perspective)

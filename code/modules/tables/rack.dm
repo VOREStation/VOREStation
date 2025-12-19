@@ -15,9 +15,6 @@
 /obj/structure/table/rack/update_connections()
 	return
 
-/obj/structure/table/rack/update_desc()
-	return
-
 /obj/structure/table/rack/update_icon()
 	if(material) //VOREStation Add for rack colors based on materials
 		color = material.icon_colour

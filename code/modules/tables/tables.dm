@@ -74,6 +74,7 @@ var/list/table_icon_cache = list()
 	alpha = 255
 	update_connections(SSticker && SSticker.current_state == GAME_STATE_PLAYING)
 	update_icon()
+	update_name()
 	update_desc()
 	update_material()
 
@@ -103,6 +104,7 @@ var/list/table_icon_cache = list()
 	if(reinforced && W.has_tool_quality(TOOL_SCREWDRIVER))
 		remove_reinforced(W, user)
 		if(!reinforced)
+			update_name()
 			update_desc()
 			update_icon()
 			update_material()
@@ -135,6 +137,7 @@ var/list/table_icon_cache = list()
 			update_icon()
 			for(var/obj/structure/table/T in oview(src, 1))
 				T.update_icon()
+			update_name()
 			update_desc()
 			update_material()
 		return 1
@@ -160,6 +163,7 @@ var/list/table_icon_cache = list()
 		if(material)
 			update_connections(1)
 			update_icon()
+			update_name()
 			update_desc()
 			update_material()
 		return 1
@@ -212,11 +216,14 @@ var/list/table_icon_cache = list()
 
 	reinforced = common_material_add(S, user, "reinforc")
 	if(reinforced)
+		update_name()
 		update_desc()
 		update_icon()
 		update_material()
 
-/obj/structure/table/proc/update_desc()
+/obj/structure/table/update_name()
+	. = ..()
+
 	if(material)
 		name = "[material.display_name] table"
 	else
@@ -224,6 +231,12 @@ var/list/table_icon_cache = list()
 
 	if(reinforced)
 		name = "reinforced [name]"
+
+/obj/structure/table/update_desc()
+	. = ..()
+
+	if(reinforced)
+
 		desc = "[initial(desc)] This one seems to be reinforced with [reinforced.display_name]."
 	else
 		desc = initial(desc)

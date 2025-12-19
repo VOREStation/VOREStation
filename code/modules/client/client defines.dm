@@ -40,6 +40,12 @@
 	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
+	///Needs to implement InterceptClickOn(user,params,atom) proc
+	var/datum/click_intercept = null
+	///Time when the click was intercepted
+	var/click_intercept_time = 0
+
+
 	var/buildmode		= 0
 
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.
@@ -103,6 +109,9 @@
 	///custom movement keys for this client
 	var/list/movement_keys = list()
 
+	///Autoclick list of two elements, first being the clicked thing, second being the parameters.
+	var/list/atom/selected_target[2]
+
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
@@ -118,6 +127,10 @@
 
 	var/global/atom/movable/screen/click_catcher/void
 
+	///used to make a special mouse cursor, this one for mouse up icon
+	var/mouse_up_icon = null
+	///used to make a special mouse cursor, this one for mouse up icon
+	var/mouse_down_icon = null
 	///used to override the mouse cursor so it doesnt get reset
 	var/mouse_override_icon = null
 
@@ -145,6 +158,9 @@
 	var/list/seen_messages
 	/// our current tab
 	var/stat_tab
+
+	///this is the last recorded client eye by SSparallax/fire()
+	var/atom/movable/movingmob
 
 	/// list of all tabs
 	var/list/panel_tabs = list()

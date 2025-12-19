@@ -62,7 +62,9 @@
 		if(seed.get_trait(TRAIT_STINGS))
 			force = 1
 
-/obj/item/reagent_containers/food/snacks/grown/proc/update_desc()
+/obj/item/reagent_containers/food/snacks/grown/update_desc()
+	. = ..()
+
 	if(!seed)
 		return
 

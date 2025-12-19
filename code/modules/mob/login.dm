@@ -25,6 +25,7 @@
 	if(!client)
 		return FALSE
 
+	canon_client = client
 	client.persistent_client.set_mob(src)
 
 	add_to_player_list()
@@ -44,6 +45,9 @@
 	disconnect_time = null				//VOREStation Addition: clear the disconnect time
 	sight |= SEE_SELF
 	..()
+
+	enable_client_mobs_in_contents(client)
+
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
 	client.perspective = MOB_PERSPECTIVE

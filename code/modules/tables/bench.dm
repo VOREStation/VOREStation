@@ -7,7 +7,9 @@
 	flipped = -1
 	density = FALSE
 
-/obj/structure/table/bench/update_desc()
+/obj/structure/table/bench/update_name()
+	. = ..()
+
 	if(material)
 		name = "[material.display_name] bench"
 	else

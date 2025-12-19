@@ -36,6 +36,10 @@
 	var/listening_recursive = NON_LISTENING_ATOM
 	var/unacidable = TRUE
 
+	///contains every client mob corresponding to every client eye in this container. lazily updated by SSparallax and is sparse:
+	///only the last container of a client eye has this list assuming no movement since SSparallax's last fire
+	var/list/client_mobs_in_contents
+
 /atom/movable/Initialize(mapload)
 	. = ..()
 	switch(blocks_emissive)
@@ -70,6 +74,9 @@
 		cut_overlay(em_block)
 		UnregisterSignal(em_block, COMSIG_QDELETING)
 		QDEL_NULL(em_block)
+
+	LAZYNULL(client_mobs_in_contents)
+
 	. = ..()
 
 	unbuckle_all_mobs()
@@ -724,6 +731,42 @@
 		return
 	for (var/atom/movable/location as anything in get_nested_locs(src)|src)
 		LAZYOR(location.recursive_listeners, arrived.recursive_listeners)
+
+///propogates ourselves through our nested contents, similar to other important_recursive_contents procs
+///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye
+/mob/proc/enable_client_mobs_in_contents()
+	return // We do not have SSspatial yet.
+	/*
+	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
+		LAZYINITLIST(movable_loc.important_recursive_contents)
+		var/list/recursive_contents = movable_loc.important_recursive_contents // blue hedgehog velocity
+		if(!length(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS]))
+			SSspatial_grid.add_grid_awareness(movable_loc, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
+		LAZYINITLIST(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS])
+		recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] |= src
+
+	var/turf/our_turf = get_turf(src)
+	/// We got our awareness updated by the important recursive contents stuff, now we add our membership
+	SSspatial_grid.add_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
+	*/
+
+///Clears the clients channel of this mob
+/mob/proc/clear_important_client_contents()
+	return // We do not have SSspatial yet.
+/*
+	var/turf/our_turf = get_turf(src)
+	SSspatial_grid.remove_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
+
+	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
+		LAZYINITLIST(movable_loc.important_recursive_contents)
+		var/list/recursive_contents = movable_loc.important_recursive_contents // blue hedgehog velocity
+		LAZYINITLIST(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS])
+		recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] -= src
+		if(!length(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS]))
+			SSspatial_grid.remove_grid_awareness(movable_loc, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
+		ASSOC_UNSETEMPTY(recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		UNSETEMPTY(movable_loc.important_recursive_contents)
+*/
 
 /atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return
