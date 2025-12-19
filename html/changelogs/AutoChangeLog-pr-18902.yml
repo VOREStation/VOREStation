@@ -1,0 +1,8 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Telesci can now fuck around and find out what happens if you try to teleport things from outside the universe"
+  - rscadd: "Hallucination anomaly confuses players"
+  - bugfix: "Wearing magboots keeps you grounded with gravity anomalies"
+  - bugfix: "Fixed phased kin being zapped by the flux anomaly"
+  - code_imp: "Improved the anomaly placer datum"
