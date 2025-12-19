@@ -1,0 +1,4 @@
+author: "FluffMedic"
+delete-after: True
+changes:
+  - code_imp: "Adds early returns to gunboxes if no choice is made"
