@@ -510,7 +510,7 @@
 		if("omni")  damage_amount = max(brute_dam,burn_dam)
 		else return 0
 
-	if(!damage_amount)
+	if(!damage_amount && !disfigured)
 		to_chat(user, span_notice("Nothing to fix!"))
 		return 0
 
