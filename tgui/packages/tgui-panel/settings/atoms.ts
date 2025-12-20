@@ -30,7 +30,6 @@ export const defaultSettings: SettingsState = {
   storedRounds: 0,
   storedTypes: {},
   theme: 'light',
-  totalStoredMessages: 0,
   ttsCategories: {},
   ttsVoice: '',
   version: 1,

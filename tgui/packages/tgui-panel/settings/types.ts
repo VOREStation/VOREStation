@@ -34,7 +34,6 @@ export const settingsSchema = z.object({
   storedRounds: z.number(),
   storedTypes: z.record(z.string(), z.boolean()),
   theme: z.enum(['light', 'dark', 'vchatlight', 'vchatdark']),
-  totalStoredMessages: z.number(),
   ttsCategories: z.record(z.string(), z.boolean()),
   ttsVoice: z.string(),
   version: z.number(),
