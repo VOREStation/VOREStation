@@ -1,7 +1,7 @@
 import { storage } from 'common/storage';
 import { store } from '../events/store';
 import type { GameAtom } from '../game/types';
-import type { SettingsState, UpdateSettingsFn } from '../settings/types';
+import type { SettingsState } from '../settings/types';
 import {
   allChatAtom,
   chatLoadedAtom,
@@ -9,9 +9,12 @@ import {
   chatPagesRecordAtom,
   currentPageAtom,
   currentPageIdAtom,
+  exportEndAtom,
+  exportStartAtom,
   lastRoundIDAtom,
   mainPage,
   scrollTrackingAtom,
+  storedRoundsAtom,
 } from './atoms';
 import { canPageAcceptType, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
@@ -137,12 +140,10 @@ export function rebuildRoundTracking(archived: SerializedMessage[]) {
   return { storedRounds, storedLines, lastId };
 }
 
-export function purgeMessageArchive(updateSettings: UpdateSettingsFn) {
+export function purgeMessageArchive() {
   chatRenderer.purgeMessageArchive();
   store.set(lastRoundIDAtom, null);
-  updateSettings({
-    storedRounds: 0,
-    exportStart: 0,
-    exportEnd: 0,
-  });
+  store.set(storedRoundsAtom, 0);
+  store.set(exportStartAtom, 0);
+  store.set(exportEndAtom, 0);
 }

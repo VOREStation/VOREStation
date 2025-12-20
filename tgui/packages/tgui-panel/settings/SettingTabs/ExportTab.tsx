@@ -1,4 +1,4 @@
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import {
   Box,
@@ -11,7 +11,12 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { storedLinesAtom } from '../../chat/atoms';
+import {
+  exportEndAtom,
+  exportStartAtom,
+  storedLinesAtom,
+  storedRoundsAtom,
+} from '../../chat/atoms';
 import { MESSAGE_TYPES } from '../../chat/constants';
 import { purgeMessageArchive } from '../../chat/helpers';
 import { chatRenderer } from '../../chat/renderer';
@@ -26,6 +31,11 @@ export const ExportTab = (props) => {
     'Purge message archive',
   );
   const storedLines = useAtomValue(storedLinesAtom);
+  const storedRounds = useAtomValue(storedRoundsAtom);
+  const exportStart = useAtomValue(exportStartAtom);
+  const exportEnd = useAtomValue(exportEndAtom);
+  const setExportStart = useSetAtom(exportStartAtom);
+  const setExportEnd = useSetAtom(exportEndAtom);
   return (
     <Section>
       <Stack align="baseline">
@@ -155,24 +165,16 @@ export const ExportTab = (props) => {
               <>
                 <Stack.Item>
                   <Dropdown
-                    onSelected={(value) =>
-                      updateSettings({
-                        exportStart: value,
-                      })
-                    }
+                    onSelected={(value) => setExportStart(value)}
                     options={game.databaseStoredRounds}
-                    selected={settings.exportStart.toString()}
+                    selected={exportStart.toString()}
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <Dropdown
-                    onSelected={(value) =>
-                      updateSettings({
-                        exportEnd: value,
-                      })
-                    }
+                    onSelected={(value) => setExportEnd(value)}
                     options={game.databaseStoredRounds}
-                    selected={settings.exportEnd.toString()}
+                    selected={exportEnd.toString()}
                   />
                 </Stack.Item>
               </>
@@ -185,16 +187,10 @@ export const ExportTab = (props) => {
                     step={1}
                     stepPixelSize={10}
                     minValue={0}
-                    maxValue={
-                      settings.exportEnd === 0 ? 0 : settings.exportEnd - 1
-                    }
-                    value={settings.exportStart}
+                    maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
+                    value={exportStart}
                     format={(value) => value.toFixed()}
-                    onChange={(value) =>
-                      updateSettings({
-                        exportStart: value,
-                      })
-                    }
+                    onChange={(value) => setExportStart(value)}
                   />
                 </Stack.Item>
                 <Stack.Item>
@@ -203,17 +199,11 @@ export const ExportTab = (props) => {
                     width="5em"
                     step={1}
                     stepPixelSize={10}
-                    minValue={
-                      settings.exportStart === 0 ? 0 : settings.exportStart + 1
-                    }
-                    maxValue={settings.storedRounds}
-                    value={settings.exportEnd}
+                    minValue={exportStart === 0 ? 0 : exportStart + 1}
+                    maxValue={storedRounds}
+                    value={exportEnd}
                     format={(value) => value.toFixed()}
-                    onChange={(value) =>
-                      updateSettings({
-                        exportEnd: value,
-                      })
-                    }
+                    onChange={(value) => setExportEnd(value)}
                   />
                 </Stack.Item>
               </>
@@ -227,7 +217,7 @@ export const ExportTab = (props) => {
               <Box>
                 {game.databaseBackendEnabled
                   ? game.databaseStoredRounds.length - 1
-                  : settings.storedRounds}
+                  : storedRounds}
               </Box>
             </Stack.Item>
           </Stack>
@@ -283,10 +273,10 @@ export const ExportTab = (props) => {
             onClick={() =>
               chatRenderer.saveToDisk(
                 settings.logLineCount,
-                storedLines[storedLines.length - settings.exportEnd],
-                storedLines[storedLines.length - settings.exportStart],
-                settings.exportEnd,
-                settings.exportStart,
+                storedLines[storedLines.length - exportEnd],
+                storedLines[storedLines.length - exportStart],
+                exportEnd,
+                exportStart,
               )
             }
           >
@@ -313,7 +303,7 @@ export const ExportTab = (props) => {
               confirmColor="red"
               confirmContent="Are you sure?"
               onClick={() => {
-                purgeMessageArchive(updateSettings);
+                purgeMessageArchive();
                 setPurgeButtonText('Purged!');
                 setTimeout(() => {
                   setPurgeButtonText('Purge message archive');

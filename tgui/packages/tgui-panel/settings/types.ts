@@ -10,8 +10,6 @@ export const settingsSchema = z.object({
   adminMusicVolume: z.number(),
   combineMessageLimit: z.number(),
   combineIntervalLimit: z.number(),
-  exportStart: z.number(),
-  exportEnd: z.number(),
   fontFamily: z.string(),
   fontSize: z.number(),
   hideImportantInAdminTab: z.boolean(),
@@ -30,7 +28,6 @@ export const settingsSchema = z.object({
   statFontSize: z.number(),
   statLinked: z.boolean(),
   statTabsStyle: z.string(),
-  storedRounds: z.number(),
   storedTypes: z.record(z.string(), z.boolean()),
   theme: z.enum(['light', 'dark', 'vchatlight', 'vchatdark']),
   ttsCategories: z.record(z.string(), z.boolean()),
@@ -66,7 +63,3 @@ export interface MergedSettings extends SettingsState, HighlightState {}
 
 // Full exported settings with chatpages
 export interface ExportedSettings extends MergedSettings, ChatPages {}
-
-export type UpdateSettingsFn = <TKey extends keyof SettingsState>(
-  update: Record<TKey, SettingsState[TKey]>,
-) => void;

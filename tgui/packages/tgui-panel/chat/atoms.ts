@@ -12,6 +12,9 @@ export const chatPagesRecordAtom = atom({
 });
 export const storedLinesAtom = atom<number[]>([]);
 export const lastRoundIDAtom = atom<number | null>(null);
+export const storedRoundsAtom = atom(0);
+export const exportStartAtom = atom(0);
+export const exportEndAtom = atom(0);
 
 /** Chat has been initialized from storage */
 export const chatLoadedAtom = atom(false);
