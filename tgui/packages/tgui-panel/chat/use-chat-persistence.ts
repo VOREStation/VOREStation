@@ -2,6 +2,7 @@ import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
+import { store } from '../events/store';
 import { gameAtom } from '../game/atoms';
 import { settingsLoadedAtom } from '../settings/atoms';
 import { useSettings } from '../settings/use-settings';
@@ -11,6 +12,7 @@ import {
   chatPagesAtom,
   chatPagesRecordAtom,
   currentPageIdAtom,
+  storedLinesAtom,
   versionAtom,
 } from './atoms';
 import { rebuildRoundTracking, saveChatToStorage } from './helpers';
@@ -185,6 +187,7 @@ export function useChatPersistence() {
         rebuildRoundTracking(archived);
 
       updateSettings({ lastId: lastId });
+      store.set(storedLinesAtom, storedLines);
 
       if (
         settings.logRetainRounds > 0 &&

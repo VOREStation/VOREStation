@@ -11,6 +11,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { storedLinesAtom } from '../../chat/atoms';
 import { MESSAGE_TYPES } from '../../chat/constants';
 import { purgeMessageArchive } from '../../chat/helpers';
 import { chatRenderer } from '../../chat/renderer';
@@ -24,6 +25,7 @@ export const ExportTab = (props) => {
   const [purgeButtonText, setPurgeButtonText] = useState(
     'Purge message archive',
   );
+  const storedLines = useAtomValue(storedLinesAtom);
   return (
     <Section>
       <Stack align="baseline">
@@ -281,8 +283,8 @@ export const ExportTab = (props) => {
             onClick={() =>
               chatRenderer.saveToDisk(
                 settings.logLineCount,
-                chatRenderer.archivedMessages.length - settings.exportEnd,
-                chatRenderer.archivedMessages.length - settings.exportStart,
+                storedLines[storedLines.length - settings.exportEnd],
+                storedLines[storedLines.length - settings.exportStart],
                 settings.exportEnd,
                 settings.exportStart,
               )
