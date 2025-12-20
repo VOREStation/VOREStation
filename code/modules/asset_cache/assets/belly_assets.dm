@@ -183,8 +183,10 @@
 /datum/belly_overlays/vbo_synth1
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_synth1.dmi'
 
+/*
 /datum/belly_overlays/vbo_synth2
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_synth2.dmi'
+*/
 
 /*
 /datum/belly_overlays/vbo_trash
