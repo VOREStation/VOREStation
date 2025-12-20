@@ -51,7 +51,7 @@ export function Panel(props) {
                   tooltip="Music player"
                   tooltipPosition="bottom-start"
                   onClick={() => {
-                    setAudioVisible(false);
+                    setAudioVisible(!audioVisible);
                   }}
                 />
               </Stack.Item>
