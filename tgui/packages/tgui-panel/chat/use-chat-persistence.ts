@@ -195,6 +195,7 @@ export function useChatPersistence() {
       }
     }
     loadChatState(state);
+    chatRenderer.onStateLoaded();
   }
 
   async function loadChatFromDBStorage(): Promise<void> {
@@ -238,22 +239,7 @@ export function useChatPersistence() {
           );
 
           if (messages) {
-            for (const message of messages) {
-              if (message.html) {
-                message.html = DOMPurify.sanitize(message.html, {
-                  FORBID_TAGS,
-                });
-              }
-            }
-            const batch = [
-              ...messages,
-              createMessage({
-                type: 'internal/reconnected',
-              }),
-            ];
-            chatRenderer.processBatch(batch, {
-              prepend: true,
-            });
+            handleMessages(messages);
           }
 
           chatRenderer.onStateLoaded();
