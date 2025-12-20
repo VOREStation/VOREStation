@@ -26,7 +26,7 @@
 
 /datum/component/action_item_overlay/Destroy(force)
 	item_ref = null
-	item_callback = null
+	QDEL_NULL(item_callback)
 	item_appearance = null
 	return ..()
 
