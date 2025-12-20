@@ -1123,7 +1123,7 @@
 /obj/item/reagent_containers/glass/bucket/cyborg/Initialize(mapload)
 	. = ..()
 	R = loc.loc
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/reagent_containers/glass/bucket/cyborg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	if(old_loc == R || old_loc == R.module)
@@ -1138,7 +1138,7 @@
 			hud_layerise()
 
 /obj/item/reagent_containers/glass/bucket/cyborg/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	R = null
 	last_robot_loc = null
 	..()
