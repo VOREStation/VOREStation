@@ -87,7 +87,6 @@ export function createMessage(
   return {
     createdAt: Date.now(),
     ...payload,
-    roundId: null,
   } as SerializedMessage;
 }
 
