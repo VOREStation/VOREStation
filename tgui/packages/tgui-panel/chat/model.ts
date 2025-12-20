@@ -84,7 +84,11 @@ export function createMainPage(): Page {
 export function createMessage(
   payload: Record<string, unknown>,
 ): SerializedMessage {
-  return { createdAt: Date.now(), ...payload } as SerializedMessage;
+  return {
+    createdAt: Date.now(),
+    ...payload,
+    roundId: null,
+  } as SerializedMessage;
 }
 
 export function serializeMessage(
