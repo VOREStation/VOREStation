@@ -13,7 +13,9 @@ type ChatMessage = z.infer<typeof messageSchema>;
 
 function pushMessage(message: ChatMessage): void {
   sequences.push(message.sequence);
-  chatRenderer.processBatch([message.content]);
+  chatRenderer.processBatch([message.content], {
+    doArchive: true,
+  });
 }
 
 export function chatMessage(payload: string): void {
