@@ -1,5 +1,8 @@
+import { useAtomValue } from 'jotai';
+import { purgeMessageArchive } from 'packages/tgui-panel/chat/helpers';
+import { chatRenderer } from 'packages/tgui-panel/chat/renderer';
+import { gameAtom } from 'packages/tgui-panel/game/atoms';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -11,25 +14,16 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import {
-  clearChat,
-  purgeChatMessageArchive,
-  saveChatToDisk,
-} from '../../chat/actions';
 import { MESSAGE_TYPES } from '../../chat/constants';
-import { selectChatPages } from '../../chat/selectors';
-import { useGame } from '../../game';
 import { exportChatSettings, importChatSettings } from '../settingsImExport';
 import { useSettings } from '../use-settings';
 
 export const ExportTab = (props) => {
-  const dispatch = useDispatch();
-  const game = useGame();
+  const game = useAtomValue(gameAtom);
   const { settings, updateSettings, toggleInObject } = useSettings();
   const [purgeButtonText, setPurgeButtonText] = useState(
     'Purge message archive',
   );
-  const chat = useSelector(selectChatPages);
   return (
     <Section>
       <Stack align="baseline">
@@ -265,7 +259,7 @@ export const ExportTab = (props) => {
           <Button
             icon="compact-disc"
             tooltip="Export chat settings"
-            onClick={() => exportChatSettings(chat)}
+            onClick={() => exportChatSettings()}
           >
             Export settings
           </Button>
@@ -284,7 +278,15 @@ export const ExportTab = (props) => {
           <Button
             icon="save"
             tooltip="Export current tab history into HTML file"
-            onClick={() => dispatch(saveChatToDisk())}
+            onClick={() =>
+              chatRenderer.saveToDisk(
+                settings.logLineCount,
+                chatRenderer.archivedMessages.length - settings.exportEnd,
+                chatRenderer.archivedMessages.length - settings.exportStart,
+                settings.exportEnd,
+                settings.exportStart,
+              )
+            }
           >
             Save chat log
           </Button>
@@ -293,7 +295,7 @@ export const ExportTab = (props) => {
           <Button.Confirm
             icon="trash"
             tooltip="Erase current tab history"
-            onClick={() => dispatch(clearChat())}
+            onClick={() => chatRenderer.clearChat()}
           >
             Clear chat
           </Button.Confirm>
@@ -309,7 +311,7 @@ export const ExportTab = (props) => {
               confirmColor="red"
               confirmContent="Are you sure?"
               onClick={() => {
-                dispatch(purgeChatMessageArchive());
+                purgeMessageArchive(updateSettings);
                 setPurgeButtonText('Purged!');
                 setTimeout(() => {
                   setPurgeButtonText('Purge message archive');

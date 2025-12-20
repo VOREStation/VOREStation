@@ -1,4 +1,4 @@
-import { useDispatch } from 'tgui/backend';
+import { useAtomValue } from 'jotai';
 import {
   Box,
   Button,
@@ -9,8 +9,8 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
-
-import { rebuildChat } from '../../chat/actions';
+import { chatRenderer } from '../../chat/renderer';
+import { settingsAtom } from '../atoms';
 import { MAX_HIGHLIGHT_SETTINGS } from '../constants';
 import { useHighlights } from '../use-highlights';
 
@@ -19,7 +19,8 @@ export const TextHighlightSettings = (props) => {
     highlights: { highlightSettings },
     addHighlight,
   } = useHighlights();
-  const dispatch = useDispatch();
+  const settings = useAtomValue(settingsAtom);
+
   return (
     <Section fill scrollable height="235px">
       <Section p={0}>
@@ -46,7 +47,10 @@ export const TextHighlightSettings = (props) => {
       </Section>
       <Divider />
       <Box>
-        <Button icon="check" onClick={() => dispatch(rebuildChat())}>
+        <Button
+          icon="check"
+          onClick={() => chatRenderer.rebuildChat(settings.visibleMessageLimit)}
+        >
           Apply now
         </Button>
         <Box inline fontSize="0.9em" ml={1} color="label">

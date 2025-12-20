@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -12,7 +11,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
-import { rebuildChat } from '../../chat/actions';
+import { chatRenderer } from '../../chat/renderer';
 import { FONTS, THEMES } from '../constants';
 import { resetPaneSplitters, setEditPaneSplitters } from '../scaling';
 import { useSettings } from '../use-settings';
@@ -20,7 +19,6 @@ import { useSettings } from '../use-settings';
 export function SettingsGeneral(props) {
   const { settings, updateSettings } = useSettings();
   const [freeFont, setFreeFont] = useState(false);
-  const dispatch = useDispatch();
 
   const [editingPanes, setEditingPanes] = useState(false);
 
@@ -208,7 +206,12 @@ export function SettingsGeneral(props) {
             }
           />
           <Box inline>
-            <Button icon="check" onClick={() => dispatch(rebuildChat())}>
+            <Button
+              icon="check"
+              onClick={() =>
+                chatRenderer.rebuildChat(settings.visibleMessageLimit)
+              }
+            >
               Apply now
             </Button>
             <Box inline fontSize="0.9em" ml={1} color="label">

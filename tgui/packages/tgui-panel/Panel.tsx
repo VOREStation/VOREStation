@@ -4,27 +4,35 @@
  * @license MIT
  */
 
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
+import { useState } from 'react';
 import { Pane } from 'tgui/layouts';
 import { Button, Section, Stack } from 'tgui-core/components';
-import { NowPlayingWidget, useAudio } from './audio';
-import { ChatPanel, ChatTabs } from './chat';
-import { useGame } from './game';
+import { visibleAtom } from './audio/atoms';
+import { NowPlayingWidget } from './audio/NowPlayingWidget';
+import { ChatPanel } from './chat/ChatPanel';
+import { ChatTabs } from './chat/ChatTabs';
+import { useChatPersistence } from './chat/use-chat-persistence';
+import { gameAtom } from './game/atoms';
+import { useKeepAlive } from './game/use-keep-alive';
 import { Notifications } from './Notifications';
-import { PingIndicator } from './ping';
+import { PingIndicator } from './ping/PingIndicator';
 import { ReconnectButton } from './reconnect';
 import { settingsVisibleAtom } from './settings/atoms';
 import { SettingsPanel } from './settings/SettingsPanel';
 import { useSettings } from './settings/use-settings';
 
-export const Panel = (props) => {
-  const audio = useAudio();
+export function Panel(props) {
+  const [audioVisible, setAudioVisible] = useAtom(visibleAtom);
+  const game = useAtomValue(gameAtom);
   const { settings } = useSettings();
-  const game = useGame();
   const [settingsVisible, setSettingsVisible] = useAtom(settingsVisibleAtom);
+  const [dismissedWarning, setDismissedWarning] = useState(false);
+  useChatPersistence();
+  useKeepAlive(setDismissedWarning);
 
   return (
-    <Pane theme={settings.theme}>
+    <Pane theme={settings.theme} canSuspend={false}>
       <Stack fill vertical>
         <Stack.Item>
           <Section fitted>
@@ -38,11 +46,13 @@ export const Panel = (props) => {
               <Stack.Item>
                 <Button
                   color="grey"
-                  selected={audio.visible}
+                  selected={audioVisible}
                   icon="music"
                   tooltip="Music player"
                   tooltipPosition="bottom-start"
-                  onClick={() => audio.toggle()}
+                  onClick={() => {
+                    setAudioVisible(false);
+                  }}
                 />
               </Stack.Item>
               <Stack.Item>
@@ -51,13 +61,13 @@ export const Panel = (props) => {
                   selected={settingsVisible}
                   tooltip={settingsVisible ? 'Close settings' : 'Open settings'}
                   tooltipPosition="bottom-start"
-                  onClick={() => setSettingsVisible(!settingsVisible)}
+                  onClick={() => setSettingsVisible((v) => !v)}
                 />
               </Stack.Item>
             </Stack>
           </Section>
         </Stack.Item>
-        {audio.visible && (
+        {audioVisible && (
           <Stack.Item>
             <Section>
               <NowPlayingWidget />
@@ -71,14 +81,20 @@ export const Panel = (props) => {
         )}
         <Stack.Item grow>
           <Section fill fitted position="relative">
-            <Pane.Content scrollable>
+            <Pane.Content scrollable id="chat-pane">
               <ChatPanel lineHeight={settings.lineHeight} />
             </Pane.Content>
             <Notifications>
               {settings.showReconnectWarning &&
                 game.connectionLostAt &&
-                !game.dismissedConnectionWarning && (
-                  <Notifications.Item rightSlot={<ReconnectButton />}>
+                !dismissedWarning && (
+                  <Notifications.Item
+                    rightSlot={
+                      <ReconnectButton
+                        onDismissedWarning={setDismissedWarning}
+                      />
+                    }
+                  >
                     You are either AFK, experiencing lag or the connection has
                     closed.
                   </Notifications.Item>
@@ -95,4 +111,4 @@ export const Panel = (props) => {
       </Stack>
     </Pane>
   );
-};
+}

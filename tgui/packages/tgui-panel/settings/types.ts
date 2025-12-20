@@ -55,12 +55,10 @@ export type HighlightSetting = {
 };
 
 export type HighlightState = {
-  /** Keep this for compatibility with other servers */
-  highlightColor: string;
   highlightSettings: string[];
   highlightSettingById: Record<string, HighlightSetting>;
-  /** Keep this for compatibility with other servers */
   highlightText: string;
+  highlightColor: string;
 };
 
 export type SettingsState = z.infer<typeof settingsSchema>;
@@ -70,3 +68,7 @@ export interface MergedSettings extends SettingsState, HighlightState {}
 
 // Full exported settings with chatpages
 export interface ExportedSettings extends MergedSettings, ChatPages {}
+
+export type UpdateSettingsFn = <TKey extends keyof SettingsState>(
+  update: Record<TKey, SettingsState[TKey]>,
+) => void;
