@@ -49,12 +49,12 @@ export const SettingsPanel = (props) => {
       </Stack.Item>
       <Stack.Item grow basis={0}>
         {activeTab === 'general' && <SettingsGeneral />}
+        {activeTab === 'adminSettings' && <AdminSettings />}
         {activeTab === 'limits' && <MessageLimits />}
         {activeTab === 'export' && <ExportTab />}
-        {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'textHighlight' && <TextHighlightSettings />}
+        {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'statPanel' && <SettingsStatPanel />}
-        {activeTab === 'adminSettings' && <AdminSettings />}
         {activeTab === 'ttsSettings' && <TTSSettings />}
       </Stack.Item>
     </Stack>
