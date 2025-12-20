@@ -106,11 +106,11 @@ export const VoreUserPreferencesDevouring = (props: {
             />
           </Stack.Item>
           <Stack.Item basis="35%">
-          <VoreUserPreferenceItem
-            spec={preferences.afk_prey}
-            tooltipPosition="right"
-          />
-        </Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.afk_prey}
+              tooltipPosition="right"
+            />
+          </Stack.Item>
         </Stack>
       ) : (
         ''
