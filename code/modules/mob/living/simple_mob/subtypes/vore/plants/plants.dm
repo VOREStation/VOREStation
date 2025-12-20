@@ -133,7 +133,7 @@
 	B.name = "stomach"
 	B.desc = "Walking a little too close to the pitcher plant, you trigger its trap mechanism and a tendril shoots out towards you. Wrapping around your body, you are rapidly dragged into the open mouth of the plant, stuffing your entire body into a fleshy, green stomach filled with a pool of some sort of tingling liquid. The lid of the plant slams down over the mouth, making it far more difficult to escape, all whilst that pool steadily seems to be filling up."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "VBO_belly1"
+	B.belly_fullscreen = "VBOanim_belly3"
 	B.belly_fullscreen_color = "#02a802"
 	B.digest_brute = 1
 	B.digest_burn = 1
