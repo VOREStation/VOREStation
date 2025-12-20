@@ -8,7 +8,7 @@
 	w_class = ITEMSIZE_HUGE
 	var/obj/item/target/pinned_target // the current pinned target
 
-/obj/structure/target_stake/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/structure/target_stake/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	// Move the pinned target along with the stake
 	if(pinned_target in view(3, src))

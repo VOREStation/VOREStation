@@ -4,154 +4,91 @@
 /mob/observer/dead/on_mob_jump()
 	following = null
 
-/client/proc/Jump(areaname as null|anything in return_sorted_areas())
-	set name = "Jump to Area"
-	set desc = "Area to jump to"
-	set category = "Admin.Game"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+ADMIN_VERB(jump_to_area, (R_ADMIN|R_MOD|R_DEBUG|R_EVENT), "Jump To Area", "Jumps to the specified area.", ADMIN_CATEGORY_GAME, area/target in return_sorted_areas())
+	var/turf/drop_location
+	top_level:
+		for(var/list/zlevel_turfs as anything in target.get_zlevel_turf_lists())
+			for(var/turf/area_turf as anything in zlevel_turfs)
+				if(area_turf.density)
+					continue
+				drop_location = area_turf
+				break top_level
+
+	if(isnull(drop_location))
+		to_chat(user, span_warning("No valid drop location found in the area!"))
 		return
 
-	if(!CONFIG_GET(flag/allow_admin_jump))
-		tgui_alert_async(usr, "Admin jumping disabled")
-		return
-
-	var/area/A
-
-	if(areaname)
-		A = return_sorted_areas()[areaname]
-	else
-		A = return_sorted_areas()[tgui_input_list(usr, "Pick an area:", "Jump to Area", return_sorted_areas())]
-
-	if(!A)
-		return
-
-	usr.on_mob_jump()
-	usr.reset_perspective(usr)
-	usr.forceMove(pick(get_area_turfs(A)))
-	log_admin("[key_name(usr)] jumped to [A]")
-	message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+	user.mob.abstract_move(drop_location)
+	log_admin("[key_name(user)] jumped to [AREACOORD(drop_location)]")
+	message_admins("[key_name_admin(user)] jumped to [AREACOORD(drop_location)]")
+	//BLACKBOX_LOG_ADMIN_VERB("Jump To Area")
 	feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/jumptoturf(var/turf/T in world)
-	set name = "Jump to Turf"
-	set category = "Admin.Game"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+ADMIN_VERB_AND_CONTEXT_MENU(jump_to_turf, (R_ADMIN|R_MOD|R_DEBUG|R_EVENT), "Jump To Turf", "Jump to any turf in the game. This will lag your client.", ADMIN_CATEGORY_GAME, turf/locale in world)
+	log_admin("[key_name(user)] jumped to [AREACOORD(locale)]")
+	message_admins("[key_name_admin(user)] jumped to [AREACOORD(locale)]")
+	user.mob.abstract_move(locale)
+	//BLACKBOX_LOG_ADMIN_VERB("Jump To Turf")
+	feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+ADMIN_VERB_AND_CONTEXT_MENU(jump_to_mob, (R_ADMIN|R_MOD|R_DEBUG|R_EVENT), "Jump To Mob", "Jump to any mob in the game.", ADMIN_CATEGORY_GAME, mob/target in world)
+	user.mob.abstract_move(target.loc)
+	log_admin("[key_name(user)] jumped to [key_name(target)]")
+	message_admins("[key_name_admin(user)] jumped to [ADMIN_LOOKUPFLW(target)] at [AREACOORD(target)]")
+	//BLACKBOX_LOG_ADMIN_VERB("Jump To Mob")
+	feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+ADMIN_VERB(jump_to_coord, (R_ADMIN|R_MOD|R_DEBUG|R_EVENT), "Jump To Coordinate", "Jump to a specific coordinate in the game world.", ADMIN_CATEGORY_GAME, cx as num, cy as num, cz as num)
+	var/turf/where_we_droppin = locate(cx, cy, cz)
+	if(isnull(where_we_droppin))
+		to_chat(user, span_warning("Invalid coordinates."))
 		return
-	if(CONFIG_GET(flag/allow_admin_jump))
-		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
-		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
-		usr.on_mob_jump()
-		usr.reset_perspective(usr)
-		usr.forceMove(T)
-		feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	user.mob.abstract_move(where_we_droppin)
+	message_admins("[key_name_admin(user)] jumped to coordinates [cx], [cy], [cz]")
+	//BLACKBOX_LOG_ADMIN_VERB("Jump To Coordiate")
+	feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+ADMIN_VERB(jump_to_key, (R_ADMIN|R_MOD|R_DEBUG|R_EVENT), "Jump To Key", "Jump to a specific player.", ADMIN_CATEGORY_GAME)
+	if(!isobserver(user.mob))
+		SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/admin_ghost)
+
+	var/list/keys = list()
+	for(var/mob/M in GLOB.player_list)
+		keys += M.client
+	var/client/selection = input(user, "Please, select a player!", "Admin Jumping") as null|anything in sortKey(keys)
+	if(!selection)
+		to_chat(user, "No keys found.", confidential = TRUE)
+		return
+	var/mob/M = selection.mob
+	log_admin("[key_name(user)] jumped to [key_name(M)]")
+	message_admins("[key_name_admin(user)] jumped to [ADMIN_LOOKUPFLW(M)]")
+	user.mob.abstract_move(M.loc)
+	//BLACKBOX_LOG_ADMIN_VERB("Jump To Key")
+	feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+ADMIN_VERB_AND_CONTEXT_MENU(get_mob, (R_ADMIN|R_MOD|R_DEBUG|R_EVENT), "Get Mob", "Teleport a mob to your location.", ADMIN_CATEGORY_GAME, mob/target in world)
+	var/atom/loc = get_turf(user.mob)
+	target.admin_teleport(loc)
+	//BLACKBOX_LOG_ADMIN_VERB("Get Mob")
+	feedback_add_details("admin_verb","GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/// Proc to hook user-enacted teleporting behavior and keep logging of the event.
+/atom/movable/proc/admin_teleport(atom/new_location)
+	if(isnull(new_location))
+		log_admin("[key_name(usr)] teleported [key_name(src)] to nullspace")
+		moveToNullspace()
 	else
-		tgui_alert_async(usr, "Admin jumping disabled")
-	return
+		var/turf/location = get_turf(new_location)
+		log_admin("[key_name(usr)] teleported [key_name(src)] to [AREACOORD(location)]")
+		forceMove(new_location)
 
-/// Verb wrapper around do_jumptomob()
-/client/proc/jumptomob(mob as null|anything in GLOB.mob_list)
-	set category = "Admin.Game"
-	set name = "Jump to Mob"
-	set popup_menu = FALSE
-
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
-		return
-
-	do_jumptomob(mob)
-
-/// Performs the jumps, also called from admin Topic() for JMP links
-/client/proc/do_jumptomob(var/mob/M)
-	if(!CONFIG_GET(flag/allow_admin_jump))
-		tgui_alert_async(usr, "Admin jumping disabled")
-		return
-
-	if(!M)
-		M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", GLOB.mob_list)
-	if(!M)
-		return
-
-	var/mob/A = src.mob // Impossible to be unset, enforced by byond
-	var/turf/T = get_turf(M)
-	if(isturf(T))
-		A.on_mob_jump()
-		A.reset_perspective(A)
-		A.forceMove(T)
-		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
-		feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
-
-/client/proc/jumptocoord(tx as num, ty as num, tz as num)
-	set category = "Admin.Game"
-	set name = "Jump to Coordinate"
-
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
-		return
-
-	if (CONFIG_GET(flag/allow_admin_jump))
-		if(src.mob)
-			var/mob/A = src.mob
-			A.on_mob_jump()
-			var/turf/T = locate(tx, ty, tz)
-			if(!T)
-				to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
-				return
-			A.reset_perspective(A)
-			A.forceMove(T)
-			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
-
-	else
-		tgui_alert_async(usr, "Admin jumping disabled")
-
-/client/proc/jumptokey()
-	set category = "Admin.Game"
-	set name = "Jump to Key"
-
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
-		return
-
-	if(CONFIG_GET(flag/allow_admin_jump))
-		var/list/keys = list()
-		for(var/mob/M in GLOB.player_list)
-			keys += M.client
-		var/selection = tgui_input_list(usr, "Select a key:", "Jump to Key", sortKey(keys))
-		if(!selection)
-			return
-		var/mob/M = selection:mob
-		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
-		usr.on_mob_jump()
-		usr.reset_perspective(usr)
-		usr.forceMove(get_turf(M))
-		feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		tgui_alert_async(usr, "Admin jumping disabled")
-
-/client/proc/Getmob(mob/living/M as null|anything in GLOB.mob_list)
-	set category = "Admin.Game"
-	set name = "Get Mob"
-	set desc = "Mob to teleport"
-	set popup_menu = TRUE
-
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
-		return
-	if(CONFIG_GET(flag/allow_admin_jump))
-		if(!M)
-			M = tgui_input_list(usr, "Pick a mob:", "Get Mob", GLOB.mob_list)
-		if(!M)
-			return
-		log_admin("[key_name(usr)] jumped [key_name(M)] to them")
-		var/msg = "[key_name_admin(usr)] jumped [key_name_admin(M)] to them"
-		message_admins(msg)
-		admin_ticket_log(M, msg)
-		M.on_mob_jump()
-		M.reset_perspective(M)
-		M.forceMove(get_turf(usr))
-		feedback_add_details("admin_verb","GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		tgui_alert_async(usr, "Admin jumping disabled")
+/mob/admin_teleport(atom/new_location)
+	var/turf/location = get_turf(new_location)
+	var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(src)] to [isnull(new_location) ? "nullspace" : ADMIN_VERBOSEJMP(location)]"
+	message_admins(msg)
+	admin_ticket_log(src, msg)
+	return ..()
 
 /client/proc/Getkey()
 	set category = "Admin.Game"

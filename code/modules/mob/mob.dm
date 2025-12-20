@@ -1353,7 +1353,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		if(registered_z)
 			GLOB.living_players_by_zlevel[registered_z] += src
 
-/mob/onTransitZ(old_z, new_z)
+/mob/on_changed_z_level(old_z, new_z)
 	..()
 	update_client_z(new_z)
 

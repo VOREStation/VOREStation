@@ -45,6 +45,9 @@
 #define LAZYINITLIST(L) if (!L) { L = list(); }
 ///Returns the key of the submitted item in the list
 #define LAZYFIND(L, V) (L ? L.Find(V) : 0)
+//These methods don't null the list
+///Use LAZYLISTDUPLICATE instead if you want it to null with no entries
+#define LAZYCOPY(L) (L ? L.Copy() : list() )
 
 /// Returns the top (last) element from the list, does not remove it from the list. Stack functionality.
 /proc/peek(list/target_list)
@@ -987,6 +990,45 @@ GLOBAL_LIST_EMPTY(json_cache)
 			};\
 			__BIN_ITEM = COMPTYPE;\
 			__BIN_MID = __BIN_ITEM.##COMPARISON > COMPARE.##COMPARISON ? __BIN_MID : __BIN_MID + 1;\
+			__BIN_LIST.Insert(__BIN_MID, INPUT);\
+		};\
+	} while(FALSE)
+
+#define SORT_FIRST_INDEX(list) (list[1])
+#define SORT_PRIORITY_INDEX(list) (list["priority"])
+#define SORT_COMPARE_DIRECTLY(thing) (thing)
+#define SORT_VAR_NO_TYPE(varname) var/varname
+/****
+	* Even more custom binary search sorted insert, using defines instead of vars
+	* INPUT: Item to be inserted
+	* LIST: List to insert INPUT into
+	* TYPECONT: A define setting the var to the typepath of the contents of the list
+	* COMPARE: The item to compare against, usualy the same as INPUT
+	* COMPARISON: A define that takes an item to compare as input, and returns their comparable value
+	* COMPTYPE: How should the list be compared? Either COMPARE_KEY or COMPARE_VALUE.
+	*/
+#define BINARY_INSERT_DEFINE(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE) \
+	do {\
+		var/list/__BIN_LIST = LIST;\
+		var/__BIN_CTTL = length(__BIN_LIST);\
+		if(!__BIN_CTTL) {\
+			__BIN_LIST += INPUT;\
+		} else {\
+			var/__BIN_LEFT = 1;\
+			var/__BIN_RIGHT = __BIN_CTTL;\
+			var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			##TYPECONT(__BIN_ITEM);\
+			while(__BIN_LEFT < __BIN_RIGHT) {\
+				__BIN_ITEM = COMPTYPE;\
+				if(##COMPARISON(__BIN_ITEM) <= ##COMPARISON(COMPARE)) {\
+					__BIN_LEFT = __BIN_MID + 1;\
+				} else {\
+					__BIN_RIGHT = __BIN_MID;\
+				};\
+				__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			};\
+			__BIN_ITEM = COMPTYPE;\
+			__BIN_MID = ##COMPARISON(__BIN_ITEM) > ##COMPARISON(COMPARE) ? __BIN_MID : __BIN_MID + 1;\
 			__BIN_LIST.Insert(__BIN_MID, INPUT);\
 		};\
 	} while(FALSE)

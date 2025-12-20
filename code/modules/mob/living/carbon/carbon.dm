@@ -30,7 +30,7 @@
 	touching.clear_reagents()
 	..()
 /* VOREStation Edit - Duplicated in our code
-/mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/carbon/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(src.nutrition && src.stat != 2)
 		adjust_nutrition(-DEFAULT_HUNGER_FACTOR / 10)

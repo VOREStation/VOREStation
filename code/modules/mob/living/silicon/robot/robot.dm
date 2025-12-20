@@ -1496,7 +1496,7 @@
 	return H
 
 
-/mob/living/silicon/robot/onTransitZ(old_z, new_z)
+/mob/living/silicon/robot/on_changed_z_level(old_z, new_z)
 	if(shell)
 		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
 			to_chat(src, span_warning("Your connection with the shell is suddenly interrupted!"))

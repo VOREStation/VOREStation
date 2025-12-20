@@ -64,7 +64,7 @@
 		log_runtime("DEBUG: HasProximity called without reference on [src].")
 	attached_device?.HasProximity(T, WF, old_loc)
 
-/obj/item/transfer_valve/Moved(old_loc, direction, forced)
+/obj/item/transfer_valve/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isturf(old_loc))
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)

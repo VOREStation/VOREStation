@@ -91,7 +91,7 @@
 
 // Registering moved_event observers for all machines is too expensive.  Instead we do it ourselves.
 // 99% of machines are always on a turf anyway, very few need recursive move handling.
-/obj/machinery/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/machinery/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	update_power_on_move(src, old_loc, loc)
 	/* No

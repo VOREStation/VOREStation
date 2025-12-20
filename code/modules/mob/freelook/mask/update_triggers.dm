@@ -4,7 +4,7 @@
 
 /mob/living/var/updating_cult_vision = 0
 
-/mob/living/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(!cultnet.provides_vision(src))
 		return

@@ -86,7 +86,7 @@
 	. = ..()
 	setDir(t)
 
-/obj/item/assembly/infra/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/assembly/infra/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	QDEL_LIST_NULL(i_beams)
 

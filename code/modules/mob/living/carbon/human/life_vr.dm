@@ -14,7 +14,7 @@
 	nif.life()
 
 //Overriding carbon move proc that forces default hunger factor
-/mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/carbon/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 
 	// Technically this does mean being dragged takes nutrition

@@ -99,3 +99,5 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isfloorturf(A) (istype(A, /turf/simulated/floor))
 
 #define iseffect(O) (istype(O, /obj/effect))
+
+#define is_multi_tile_object(atom) (atom.bound_width > ICON_SIZE_X || atom.bound_height > ICON_SIZE_Y)

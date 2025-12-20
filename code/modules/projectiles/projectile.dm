@@ -364,7 +364,7 @@
 	START_PROCESSING(SSprojectiles, src)
 	pixel_move(1, FALSE)	//move it now!
 
-/obj/item/projectile/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/projectile/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(temporary_unstoppable_movement)
 		temporary_unstoppable_movement = FALSE

@@ -146,7 +146,7 @@
 		bound_height = width * world.icon_size
 	. = ..()
 
-/obj/structure/door_assembly/multi_tile/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/structure/door_assembly/multi_tile/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size

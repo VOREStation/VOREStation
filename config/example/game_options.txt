@@ -33,16 +33,29 @@ REVIVAL_BRAIN_LIFE -1
 
 
 
-### MOB MOVEMENT ###
+## MOB MOVEMENT ###
 
-## We suggest editing these variabled in-game to find a good speed for your server. To do this you must be a high level admin. Open the 'debug' tab ingame. Select "Debug Controller" and then, in the popup, select "Configuration". These variables should have the same name.
+## We suggest editing these variables ingame to find a good speed for your server.
+## To do this you must be a high level admin. Open the 'debug' tab ingame.
+## Select "Debug Controller" and then, in the popup, select "Configuration". These variables should have the same name.
 
-## These values get directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.
-
+## These values get directly added to values and totals ingame.
+## To speed things up make the number negative, to slow things down, make the number positive.
 
 ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
-RUN_SPEED 3
-WALK_SPEED 9
+RUN_DELAY 1.5
+WALK_DELAY 4
+
+## The variables below affect the movement of specific mob types. THIS AFFECTS ALL SUBTYPES OF THE TYPE YOU CHOOSE!
+## Entries completely override all subtypes. Later entries have precedence over earlier entries.
+## This means if you put /mob 0 on the last entry, it will null out all changes, while if you put /mob as the first entry and
+## /mob/living/carbon/human on the last entry, the last entry will override the first.
+##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 0
+##MULTIPLICATIVE_MOVESPEED /mob/living/silicon/robot 0
+##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/alien 0
+##MULTIPLICATIVE_MOVESPEED /mob/living/basic/slime 0
+MULTIPLICATIVE_MOVESPEED /mob/living/simple_mob 0
+MULTIPLICATIVE_MOVESPEED /mob/living/basic 0
 
 ## Force Random Names.
 ## I think this also randomizes bodies for some reason.

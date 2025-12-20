@@ -208,7 +208,9 @@
 			. += "It's equipped with [english_list(installed_modules)]."
 
 // We only care about processing when we're on a mob
-/obj/item/rig/Moved(old_loc, direction, forced)
+/obj/item/rig/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	. = ..()
+
 	if(ismob(loc))
 		START_PROCESSING(SSobj, src)
 	else

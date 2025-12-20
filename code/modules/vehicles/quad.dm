@@ -54,7 +54,7 @@
 	icon_state = "quad_keys"
 	w_class = ITEMSIZE_TINY
 
-/obj/vehicle/train/engine/quadbike/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/vehicle/train/engine/quadbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..() //Move it move it, so we can test it test it.
 	get_turf_speeds(old_loc)
 	handle_vehicle_icon()
@@ -220,7 +220,7 @@
 	. = ..()
 	update_icon()
 
-/obj/vehicle/train/trolley/trailer/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/vehicle/train/trolley/trailer/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(lead)
 		switch(dir) //Due to being a Big Boy sprite, it has to have special pixel shifting to look 'normal'.

@@ -112,7 +112,7 @@
 		O.plane = MOB_PLANE
 		add_overlay(O)
 
-/obj/vehicle/train/engine/janicart/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/vehicle/train/engine/janicart/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	var/turf/tile = get_turf(src)
 	if(scrubbing)

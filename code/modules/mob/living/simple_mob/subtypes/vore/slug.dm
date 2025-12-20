@@ -108,7 +108,7 @@
 		G.my_slug = null
 		my_slime -= G //No point in keeping these loaded in the list when the slug dies if somehow the list sticks around after death.
 
-/mob/living/simple_mob/vore/slug/Moved()
+/mob/living/simple_mob/vore/slug/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	spread_slime()
 

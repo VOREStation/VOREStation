@@ -666,7 +666,9 @@ var/list/global/tank_gauge_cache = list()
 		return
 	assembly?.HasProximity(T, WF, old_loc)
 
-/obj/item/tankassemblyproxy/Moved(old_loc, direction, forced)
+/obj/item/tankassemblyproxy/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	. = ..()
+
 	if(isturf(old_loc))
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)
 	if(isturf(loc))

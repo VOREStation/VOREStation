@@ -508,7 +508,7 @@
 		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
 	return ..()
 
-/obj/belly/Moved(atom/old_loc)
+/obj/belly/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 
 	for(var/mob/living/L in src)

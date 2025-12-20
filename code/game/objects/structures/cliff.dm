@@ -53,10 +53,10 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	unregister_dangerous_to_step()
 	. = ..()
 
-/obj/structure/cliff/Moved(atom/oldloc)
+/obj/structure/cliff/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(.)
-		var/turf/old_turf = get_turf(oldloc)
+		var/turf/old_turf = get_turf(old_loc)
 		var/turf/new_turf = get_turf(src)
 		if(old_turf != new_turf)
 			old_turf.unregister_dangerous_object(src)

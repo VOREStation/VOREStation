@@ -51,7 +51,7 @@
 	unpair_juke(usr)
 
 // Deploying
-/obj/item/juke_remote/Moved(atom/old_loc, direction, forced)
+/obj/item/juke_remote/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(paired_juke && !anchored && isturf(loc))
 		anchor()

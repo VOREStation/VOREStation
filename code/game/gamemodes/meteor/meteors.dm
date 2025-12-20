@@ -138,7 +138,7 @@ GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths o
 
 	. = ..() //process movement...
 
-/obj/effect/meteor/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/meteor/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	var/turf/T = get_turf(loc)
 	ram_turf(T)

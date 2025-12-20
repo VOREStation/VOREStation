@@ -63,7 +63,7 @@
 		else
 			. += "\The [src] can be attached!"
 
-/obj/item/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/assembly_holder/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isturf(old_loc))
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)
@@ -96,7 +96,7 @@
 	if(a_right)
 		a_right.on_found(finder)
 
-/obj/item/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/assembly_holder/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(a_left && a_right)
 		a_left.holder_movement()

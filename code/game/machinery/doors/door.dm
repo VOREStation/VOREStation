@@ -594,7 +594,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/machinery/door/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))

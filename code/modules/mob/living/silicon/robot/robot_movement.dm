@@ -40,7 +40,7 @@
 	if (cell_use_power(A.active_usage))
 		return ..()
 
-/mob/living/silicon/robot/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/silicon/robot/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 
 	if(!module)

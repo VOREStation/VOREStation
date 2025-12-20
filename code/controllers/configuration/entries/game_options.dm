@@ -109,3 +109,50 @@
 // Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 /datum/config_entry/number/mouse_respawn_time
 	default = 2.5
+
+/datum/config_entry/keyed_list/multiplicative_movespeed
+	key_mode = KEY_MODE_TYPE
+	value_mode = VALUE_MODE_NUM
+	default = list( //DEFAULTS
+	/mob/living/simple_animal = 1,
+	/mob/living/silicon/pai = 1,
+	)
+
+/datum/config_entry/keyed_list/multiplicative_movespeed/ValidateAndSet()
+	. = ..()
+	if(.)
+		update_config_movespeed_type_lookup(TRUE)
+
+/datum/config_entry/keyed_list/multiplicative_movespeed/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(. && (var_name == NAMEOF(src, config_entry_value)))
+		update_config_movespeed_type_lookup(TRUE)
+
+/datum/config_entry/number/movedelay //Used for modifying movement speed for mobs.
+	abstract_type = /datum/config_entry/number/movedelay
+
+/datum/config_entry/number/movedelay/ValidateAndSet()
+	. = ..()
+	if(.)
+		update_mob_config_movespeeds()
+
+/datum/config_entry/number/movedelay/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(. && (var_name == NAMEOF(src, config_entry_value)))
+		update_mob_config_movespeeds()
+
+/datum/config_entry/number/movedelay/run_delay
+	integer = FALSE
+
+/datum/config_entry/number/movedelay/run_delay/ValidateAndSet()
+	. = ..()
+	var/datum/movespeed_modifier/config_walk_run/M = get_cached_movespeed_modifier(/datum/movespeed_modifier/config_walk_run/run)
+	M.sync()
+
+/datum/config_entry/number/movedelay/walk_delay
+	integer = FALSE
+
+/datum/config_entry/number/movedelay/walk_delay/ValidateAndSet()
+	. = ..()
+	var/datum/movespeed_modifier/config_walk_run/M = get_cached_movespeed_modifier(/datum/movespeed_modifier/config_walk_run/walk)
+	M.sync()

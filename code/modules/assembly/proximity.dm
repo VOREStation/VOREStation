@@ -91,7 +91,7 @@
 		var/obj/item/grenade/chem_grenade/grenade = holder.loc
 		grenade.primed(scanning)
 
-/obj/item/assembly/prox_sensor/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/assembly/prox_sensor/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isturf(old_loc))
 		unsense_proximity(range = range, callback = /atom/proc/HasProximity, center = old_loc)

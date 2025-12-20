@@ -6,7 +6,7 @@
 // This might be laggy, comment it out if there are problems.
 /mob/living/silicon/var/updating = 0
 
-/mob/living/silicon/robot/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/silicon/robot/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(!provides_camera_vision())
 		return
@@ -17,7 +17,7 @@
 				cameranet.updatePortableCamera(src.camera)
 			updating = 0
 
-/mob/living/silicon/ai/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/silicon/ai/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(!provides_camera_vision())
 		return

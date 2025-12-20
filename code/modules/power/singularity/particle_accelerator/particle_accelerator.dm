@@ -115,7 +115,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 
-/obj/structure/particle_accelerator/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/structure/particle_accelerator/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(master?.active)
 		master.toggle_power()

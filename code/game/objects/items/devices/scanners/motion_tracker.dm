@@ -42,7 +42,7 @@
 		return
 	flick("pinondirect",src)
 
-/obj/item/motiontracker/Moved(atom/old_loc, direction, forced, movetime)
+/obj/item/motiontracker/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(ismob(old_loc))
 		var/mob/M = old_loc

@@ -15,7 +15,7 @@
 	)
 
 // make a screeching noise to drive people mad
-/obj/structure/ship_munition/disperser_charge/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/structure/ship_munition/disperser_charge/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(prob(50))
 		var/turf/T = get_turf(src)

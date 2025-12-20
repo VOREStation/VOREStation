@@ -77,7 +77,7 @@
 	detonate()
 
 //Has a chance to play one of the listed sounds when it moves.
-/mob/living/simple_mob/humanoid/possessed/Moved()
+/mob/living/simple_mob/humanoid/possessed/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(prob(5) && silenced == 0)
 		playsound(src, pick('sound/h_sounds/headcrab.ogg', 'sound/h_sounds/holla.ogg', 'sound/h_sounds/lynx.ogg', 'sound/h_sounds/mumble.ogg', 'sound/h_sounds/yell.ogg'), 50, 1)

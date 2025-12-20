@@ -22,7 +22,7 @@
 		spawn(1)
 			entangle(M)
 
-/obj/effect/plant/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/plant/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(seed.get_trait(TRAIT_SPREAD)==2)
 		if(isturf(old_loc))

@@ -116,7 +116,7 @@ steam.start() -- spawns the effect
 		T.hotspot_expose(1000,100)
 	return ..()
 
-/obj/effect/effect/sparks/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/effect/sparks/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isturf(loc))
 		var/turf/T = loc
@@ -225,7 +225,7 @@ steam.start() -- spawns the effect
 	time_to_live = 600
 	//var/list/projectiles
 
-/obj/effect/effect/smoke/bad/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/effect/smoke/bad/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	for(var/mob/living/L in get_turf(src))
 		affect(L)
@@ -296,7 +296,7 @@ steam.start() -- spawns the effect
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/effect/smoke/elemental/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/effect/smoke/elemental/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	for(var/mob/living/L in range(1, src))
 		affect(L)

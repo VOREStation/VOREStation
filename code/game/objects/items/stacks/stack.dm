@@ -454,7 +454,7 @@
 	if(isturf(loc))
 		combine_in_loc()
 
-/obj/item/stack/Moved(atom/old_loc, direction, forced)
+/obj/item/stack/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(pulledby && isturf(loc))
 		combine_in_loc()

@@ -109,7 +109,7 @@
 /mob/observer/dead/proc/checkStatic()
 	return !(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT|R_SERVER) || (client && client.buildmode) || isbelly(loc))
 
-/mob/observer/dead/Moved(atom/old_loc, direction, forced)
+/mob/observer/dead/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isbelly(loc) && !isbelly(old_loc))
 		visualnet.addVisibility()
@@ -561,7 +561,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		key = null
 	return ..()
 
-/mob/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	update_following()
 

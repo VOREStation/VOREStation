@@ -12,9 +12,9 @@
 	cable = new(src, max_cable)
 	. = ..()
 
-/obj/machinery/cablelayer/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/machinery/cablelayer/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
-	layCable(loc,direction)
+	layCable(loc, movement_dir)
 
 /obj/machinery/cablelayer/attack_hand(mob/user as mob)
 	if(!cable&&!on)

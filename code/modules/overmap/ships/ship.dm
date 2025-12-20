@@ -219,7 +219,7 @@
 	update_screen()
 
 // If we get moved, update our internal tracking to account for it
-/obj/effect/overmap/visitable/ship/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/overmap/visitable/ship/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	// If moving out of another sector start off centered in the turf.
 	if(!isturf(old_loc))

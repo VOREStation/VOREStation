@@ -19,7 +19,7 @@
 	icon_state = pick(event_icon_states)
 	GLOB.overmap_event_handler.update_hazards(loc)
 
-/obj/effect/overmap/event/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/effect/overmap/event/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	GLOB.overmap_event_handler.update_hazards(old_loc)
 	GLOB.overmap_event_handler.update_hazards(loc)

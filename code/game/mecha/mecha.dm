@@ -692,7 +692,7 @@
 ////////  Movement procs  ////////
 //////////////////////////////////
 
-/obj/mecha/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	MoveAction()
 

@@ -763,7 +763,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 							var/datum/component/overlay_lighting/OL = O.GetComponent(/datum/component/overlay_lighting)
 							OL?.on_parent_moved(O, T, O.dir, TRUE)
 						if(z_level_change) // The objects still need to know if their z-level changed.
-							O.onTransitZ(T.z, X.z)
+							O.on_changed_z_level(T.z, X.z)
 
 					//Move the mobs unless it's an AI eye or other eye type.
 					for(var/mob/M in T)
@@ -771,7 +771,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						M.loc = X
 
 						if(z_level_change) // Same goes for mobs.
-							M.onTransitZ(T.z, X.z)
+							M.on_changed_z_level(T.z, X.z)
 
 					if(shuttlework)
 						var/turf/simulated/shuttle/SS = T

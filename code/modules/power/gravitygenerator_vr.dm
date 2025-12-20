@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/machinery/gravity_generator/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	qdel(src)
 

@@ -446,7 +446,7 @@
 	. = ..()
 	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/airlock/angled_bay/double/Moved()
+/obj/machinery/door/airlock/angled_bay/double/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	SetBounds()
 

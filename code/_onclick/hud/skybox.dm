@@ -48,12 +48,12 @@
 	. = ..()
 	client.update_skybox(TRUE)
 
-/mob/onTransitZ(old_z, new_z)
+/mob/on_changed_z_level(old_z, new_z)
 	..()
 	if(old_z != new_z)
 		client?.update_skybox(TRUE)
 
-/mob/Moved()
+/mob/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	client?.update_skybox()
 

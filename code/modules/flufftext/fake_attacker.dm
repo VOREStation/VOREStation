@@ -30,7 +30,7 @@
 			clear_images_from_client(CW)
 			assign_image_to_client(CW)
 
-/obj/effect/fake_attacker/Moved(atom/old_loc, direction, forced, movetime)
+/obj/effect/fake_attacker/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	var/turf_move = isturf(loc) && isturf(old_loc)
 	for(var/img in dir_images)

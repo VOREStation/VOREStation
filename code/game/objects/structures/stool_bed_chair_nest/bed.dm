@@ -312,7 +312,7 @@
 	held = null
 
 
-/obj/structure/bed/roller/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/structure/bed/roller/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)

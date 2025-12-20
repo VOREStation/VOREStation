@@ -18,7 +18,7 @@
 			break
 	. = ..() // delete target
 
-/obj/item/target/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/target/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	// After target moves, check for nearby stakes. If associated, move to target
 	for(var/obj/structure/target_stake/M in view(3,src))

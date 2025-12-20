@@ -259,7 +259,7 @@ default behaviour is:
 		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"), runemessage = "is dragged, wounds worsening!")
 		return TRUE
 
-/mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
+/mob/living/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	handle_footstep(loc)
 	if(!forced && movetime && !is_incorporeal())
@@ -279,16 +279,16 @@ default behaviour is:
 
 		else if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir))) // puller and pullee more than one tile away or in diagonal position
 			// If it is too far away or across z-levels from old location, stop pulling.
-			if(get_dist(pulling.loc, oldloc) > 1 || pulling.loc.z != oldloc?.z)
+			if(get_dist(pulling.loc, old_loc) > 1 || pulling.loc.z != old_loc?.z)
 				stop_pulling()
 
 			// living might take damage from drags
 			else if(isliving(pulling))
 				var/mob/living/M = pulling
-				M.dragged(src, oldloc)
+				M.dragged(src, old_loc)
 
 			if(pulling)								// Check it AGAIN after previous steps just in case
-				pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
+				pulling.Move(old_loc, 0, movetime) // the pullee tries to reach our previous position
 				if(get_dist(src, pulling) > 1) // the pullee couldn't keep up
 					stop_pulling()
 
@@ -307,8 +307,8 @@ default behaviour is:
 		plane = OBJ_PLANE
 
 	// Update client color if we're moving from an indoor turf to an outdoor one or vice versa. Needed to make weather blending update in mixed indoor/outdoor turfed areas
-	var/turf/old_turf = oldloc
-	var/turf/new_turf = loc
+	var/turf/old_turf = get_turf(old_loc)
+	var/turf/new_turf = get_turf(src)
 	if(istype(old_turf) && old_turf.is_outdoors() != new_turf.is_outdoors())
 		update_client_color()
 

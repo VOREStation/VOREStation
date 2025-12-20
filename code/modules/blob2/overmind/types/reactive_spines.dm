@@ -60,6 +60,6 @@
 
 //I'm putting this here so everybody knows that it's this shitty code that is why that comsig exists.
 //I'm just reimplementing the way it worked before but with comsigs. I don't have the patience to refactor this.
-/mob/living/Moved()
+/mob/living/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	SEND_SIGNAL(SSmobs, COMSIG_OBSERVER_GLOBALMOVED)

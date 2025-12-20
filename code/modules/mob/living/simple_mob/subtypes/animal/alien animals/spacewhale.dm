@@ -66,7 +66,7 @@
 	. = ..()
 	handle_restless()
 
-/mob/living/simple_mob/vore/overmap/spacewhale/Moved()
+/mob/living/simple_mob/vore/overmap/spacewhale/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(restless && prob(5))
 		handle_restless()

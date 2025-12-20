@@ -200,7 +200,7 @@
 		next = null
 	. = ..()
 
-/mob/living/simple_mob/animal/space/space_worm/Moved(atom/old_loc, direction, forced = FALSE)
+/mob/living/simple_mob/animal/space/space_worm/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(previous)
 		if(previous.z != z)

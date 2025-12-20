@@ -113,7 +113,7 @@
 	showing = null
 	showing_name = null
 
-/obj/item/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+/obj/item/tvcamera/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(camera.status && loc != old_loc)
 		show_tvs(loc)

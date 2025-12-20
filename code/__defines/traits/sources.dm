@@ -3,9 +3,14 @@
 
 /// cannot be removed without admin intervention
 #define ROUNDSTART_TRAIT "roundstart"
+
+/// Trait given by an Action datum
+#define ACTION_TRAIT "action"
+/// trait associated to being held in a chokehold
+#define CHOKEHOLD_TRAIT "chokehold"
+
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
-/// Trait given by performing an action (proc, verb, etc. Something that the USER can control)
-#define ACTION_TRAIT "action"
+
 /// Trait that is given by unholy effects or corruption. Can be dispelled by a chaplain with a nullrod.
 #define UNHOLY_TRAIT "unholy"

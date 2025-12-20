@@ -42,15 +42,15 @@
 	..()
 
 // Whenever we move, if enabled try and lay pipe
-/obj/machinery/pipelayer/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/machinery/pipelayer/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 
 	if(on && a_dis)
 		dismantleFloor(old_turf)
-	layPipe(old_turf, direction, old_dir)
+	layPipe(old_turf, movement_dir, old_dir)
 
 	old_turf = loc
-	old_dir = turn(direction, 180)
+	old_dir = turn(movement_dir, 180)
 
 /obj/machinery/pipelayer/attack_hand(mob/user as mob)
 	if(..())

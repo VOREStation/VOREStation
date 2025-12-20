@@ -730,7 +730,7 @@
 			if(where == "Cancel")
 				return
 			if(where == "To Me")
-				user.client.Getmob(target)
+				SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/get_mob, target)
 			if(where == "To Mob")
 				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", GLOB.mob_list)
 				target.on_mob_jump()
