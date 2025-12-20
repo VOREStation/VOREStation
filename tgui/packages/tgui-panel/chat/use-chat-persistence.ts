@@ -85,7 +85,7 @@ export function useChatPersistence() {
       settings.ttsVoice,
       settings.ttsCategories,
     );
-  }, [loaded, settings]);
+  }, [settings]);
 
   /** Periodically saves chat + chat settings */
   useEffect(() => {
