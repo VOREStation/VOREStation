@@ -180,7 +180,6 @@ export function useChatPersistence() {
           msg.html = DOMPurify.sanitize(msg.html, { FORBID_TAGS });
         }
       }
-      chatRenderer.archivedMessages = archived;
       const { storedRounds, storedLines, lastId } =
         rebuildRoundTracking(archived);
 
