@@ -1,4 +1,4 @@
-import { omit, pick } from 'es-toolkit';
+import { omit } from 'es-toolkit';
 import { chatPagesRecordAtom } from '../chat/atoms';
 import { importChatState } from '../chat/helpers';
 import { store } from '../events/store';
@@ -50,11 +50,10 @@ export function importChatSettings(settings: string | string[]): void {
     return;
   }
 
-  const chatPart = pick(ourImport, ['chatPages']);
-  const settingsPart = omit(ourImport, ['chatPages']);
-
-  if (chatPart) {
-    importChatState(chatPart as any);
+  if (ourImport.chatPages) {
+    importChatState(ourImport.chatPages);
   }
+
+  const settingsPart = omit(ourImport, ['chatPages']);
   startSettingsMigration(settingsPart as any);
 }
