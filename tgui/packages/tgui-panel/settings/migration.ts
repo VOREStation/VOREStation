@@ -102,6 +102,7 @@ export function startSettingsMigration(next: MergedSettings): void {
   // Split the merged object as we save in two different atoms
   const settingsPart = omit(next, highlightKeys);
   const highlightPart = pick(next, highlightKeys);
+
   const draftSettings = smoothMerge({
     source: settingsPart,
     target: defaultSettings,
