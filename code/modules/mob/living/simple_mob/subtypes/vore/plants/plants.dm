@@ -44,7 +44,7 @@
 	B.name = "trap"
 	B.desc = "As you step onto the large leaves of the mantrap, they suddenly shoot up and snap shut around you, encasing you in a fleshy-feeling gut. The saw-toothed spikes around the edge of the leaves interlock with one another and exerts a tremendous pressure on your body. Copious volumes of fluids begin to seep in from the walls themselves, rapidly coating your body and pooling around you, all of your movements only seem to speed up this process.."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "VBO_maw12"
+	B.belly_fullscreen = "VBO_maw26"
 	B.belly_fullscreen_color = "#02a802"
 	B.digest_brute = 2
 	B.digest_burn = 2

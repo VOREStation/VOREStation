@@ -115,7 +115,7 @@
 	B.belly_fullscreen_color2 = "#1C1C1C"
 	B.belly_fullscreen_color3 = "#292929"
 	B.belly_fullscreen_color4 = "#CCFFFF"
-	B.belly_fullscreen = "VBO_maw8" //Swoopies have beaks!!
+	B.belly_fullscreen = "VBO_maw25" //Swoopies have beaks!!
 
 	vore_selected = B
 
