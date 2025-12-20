@@ -18,7 +18,6 @@ export const settingsSchema = z.object({
   initialized: z.boolean(),
   interleave: z.boolean(),
   interleaveColor: z.string(),
-  lastId: z.number().nullable(),
   lineHeight: z.number(),
   logEnable: z.boolean(),
   logLimit: z.number(),

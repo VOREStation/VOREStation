@@ -14,7 +14,6 @@ export const defaultSettings: SettingsState = {
   initialized: false,
   interleave: false,
   interleaveColor: '#909090',
-  lastId: null,
   lineHeight: 1.2,
   logEnable: true,
   logLimit: 10000,

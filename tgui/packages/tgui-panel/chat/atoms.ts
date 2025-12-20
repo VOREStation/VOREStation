@@ -11,6 +11,7 @@ export const chatPagesRecordAtom = atom({
   [mainPage.id]: mainPage,
 });
 export const storedLinesAtom = atom<number[]>([]);
+export const lastRoundIDAtom = atom<number | null>(null);
 
 /** Chat has been initialized from storage */
 export const chatLoadedAtom = atom(false);

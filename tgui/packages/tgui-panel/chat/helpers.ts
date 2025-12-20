@@ -9,6 +9,7 @@ import {
   chatPagesRecordAtom,
   currentPageAtom,
   currentPageIdAtom,
+  lastRoundIDAtom,
   mainPage,
   scrollTrackingAtom,
 } from './atoms';
@@ -138,8 +139,8 @@ export function rebuildRoundTracking(archived: SerializedMessage[]) {
 
 export function purgeMessageArchive(updateSettings: UpdateSettingsFn) {
   chatRenderer.purgeMessageArchive();
+  store.set(lastRoundIDAtom, null);
   updateSettings({
-    lastId: null,
     storedRounds: 0,
     exportStart: 0,
     exportEnd: 0,

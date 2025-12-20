@@ -12,6 +12,7 @@ import {
   chatPagesAtom,
   chatPagesRecordAtom,
   currentPageIdAtom,
+  lastRoundIDAtom,
   storedLinesAtom,
   versionAtom,
 } from './atoms';
@@ -147,8 +148,9 @@ export function useChatPersistence() {
       chatRenderer.messages.at(-1) || chatRenderer.archivedMessages.at(-1);
     if (!lastMessage?.roundId) return;
 
-    if (settings.lastId !== lastMessage.roundId) {
-      updateSettings({ lastId: lastMessage.roundId });
+    const lastId = store.get(lastRoundIDAtom);
+    if (lastId !== lastMessage.roundId) {
+      store.set(lastRoundIDAtom, lastMessage.roundId);
     }
   }, [loaded, chatRenderer.messages.length]);
 
@@ -186,7 +188,7 @@ export function useChatPersistence() {
       const { storedRounds, storedLines, lastId } =
         rebuildRoundTracking(archived);
 
-      updateSettings({ lastId: lastId });
+      store.set(lastRoundIDAtom, lastId);
       store.set(storedLinesAtom, storedLines);
 
       if (
