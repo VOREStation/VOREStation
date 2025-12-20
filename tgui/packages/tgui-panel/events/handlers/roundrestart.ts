@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
-import { settingsAtom } from 'packages/tgui-panel/settings/atoms';
 import { saveChatToStorage } from '../../chat/helpers';
 import { gameAtom, roundRestartedAtAtom } from '../../game/atoms';
+import { settingsAtom } from '../..//settings/atoms';
 import { store } from '../store';
 
 export function roundrestart() {

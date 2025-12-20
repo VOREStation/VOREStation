@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
-import { gameAtom } from 'packages/tgui-panel/game/atoms';
 import { Box, LabeledList, NumberInput, Section } from 'tgui-core/components';
+import { gameAtom } from '../../game/atoms';
 import { useSettings } from '../use-settings';
 
 export const MessageLimits = (props) => {

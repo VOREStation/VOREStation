@@ -1,7 +1,4 @@
 import { useAtomValue } from 'jotai';
-import { purgeMessageArchive } from 'packages/tgui-panel/chat/helpers';
-import { chatRenderer } from 'packages/tgui-panel/chat/renderer';
-import { gameAtom } from 'packages/tgui-panel/game/atoms';
 import { useState } from 'react';
 import {
   Box,
@@ -15,6 +12,9 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { MESSAGE_TYPES } from '../../chat/constants';
+import { purgeMessageArchive } from '../../chat/helpers';
+import { chatRenderer } from '../../chat/renderer';
+import { gameAtom } from '../../game/atoms';
 import { exportChatSettings, importChatSettings } from '../settingsImExport';
 import { useSettings } from '../use-settings';
 
