@@ -1,4 +1,4 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
 import {
   Box,
@@ -32,10 +32,8 @@ export const ExportTab = (props) => {
   );
   const storedLines = useAtomValue(storedLinesAtom);
   const storedRounds = useAtomValue(storedRoundsAtom);
-  const exportStart = useAtomValue(exportStartAtom);
-  const exportEnd = useAtomValue(exportEndAtom);
-  const setExportStart = useSetAtom(exportStartAtom);
-  const setExportEnd = useSetAtom(exportEndAtom);
+  const [exportStart, setExportStart] = useAtom(exportStartAtom);
+  const [exportEnd, setExportEnd] = useAtom(exportEndAtom);
   return (
     <Section>
       <Stack align="baseline">
