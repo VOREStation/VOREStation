@@ -47,7 +47,7 @@ export function useChatPersistence() {
   /** De we need to store an update */
   useEffect(() => {
     if (loaded) needsSave.current = true;
-  }, [allChat]);
+  }, [allChat, settings]);
 
   /** Loads chat + chat settings */
   useEffect(() => {
@@ -100,9 +100,10 @@ export function useChatPersistence() {
 
     if (loaded && settings.saveInterval) {
       saveInterval = setInterval(() => {
-        if (!needsSave.current) return;
-        saveChatToStorage(settings, game);
-        needsSave.current = false;
+        if (!game.databaseBackendEnabled || needsSave.current) {
+          saveChatToStorage(settings, game);
+          needsSave.current = false;
+        }
       }, settings.saveInterval * 1000);
     }
 
