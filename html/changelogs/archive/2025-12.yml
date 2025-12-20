@@ -214,3 +214,20 @@
   Willbird:
   - bugfix: Fixes shadekin getting set on fire while in phase, and being able to spread
       fire while phased
+2025-12-20:
+  FluffMedic:
+  - code_imp: Adds early returns to gunboxes if no choice is made
+  Guti:
+  - rscadd: Telesci can now fuck around and find out what happens if you try to teleport
+      things from outside the universe
+  - rscadd: Hallucination anomaly confuses players
+  - bugfix: Wearing magboots keeps you grounded with gravity anomalies
+  - bugfix: Fixed phased kin being zapped by the flux anomaly
+  - code_imp: Improved the anomaly placer datum
+  Kashargul:
+  - bugfix: emote spamming no longer allows for rapidly spammed muffled messages
+  - bugfix: robot camera replacement
+  NickBelmont:
+  - qol: Unstable metamorphosis ray can be repaired into an advanced one with a multitool.
+  Willbird:
+  - rscadd: no sleeving trait prevents characters from having a round start body record
