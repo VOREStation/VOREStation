@@ -249,7 +249,7 @@ export const ExportTab = (props) => {
         </LabeledList.Item>
         {!game.databaseBackendEnabled && (
           <LabeledList.Item label="Totally stored messages">
-            <Box>{settings.totalStoredMessages}</Box>
+            <Box>{chatRenderer.getStoredMessages()}</Box>
           </LabeledList.Item>
         )}
       </LabeledList>
