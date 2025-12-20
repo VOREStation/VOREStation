@@ -4,8 +4,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
 import { store } from '../events/store';
 import { gameAtom } from '../game/atoms';
-import { settingsLoadedAtom } from '../settings/atoms';
-import { useSettings } from '../settings/use-settings';
+import { settingsAtom, settingsLoadedAtom } from '../settings/atoms';
 import {
   allChatAtom,
   chatLoadedAtom,
@@ -29,7 +28,7 @@ const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
  */
 export function useChatPersistence() {
   const version = useAtomValue(versionAtom);
-  const { settings, updateSettings } = useSettings();
+  const settings = useAtomValue(settingsAtom);
   const needsSave = useRef(false);
 
   const allChat = useAtomValue(allChatAtom);
@@ -95,7 +94,9 @@ export function useChatPersistence() {
     if (loaded && settings.saveInterval) {
       saveInterval = setInterval(() => {
         if (!game.databaseBackendEnabled || needsSave.current) {
-          saveChatToStorage(settings, game);
+          const intervalSettings = store.get(settingsAtom);
+          const intervalGame = store.get(gameAtom);
+          saveChatToStorage(intervalSettings, intervalGame);
           needsSave.current = false;
         }
       }, settings.saveInterval * 1000);
