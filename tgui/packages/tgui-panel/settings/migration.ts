@@ -2,6 +2,7 @@ import { storage } from 'common/storage';
 import { smoothMerge } from 'common/type-safety';
 import { omit, pick } from 'es-toolkit';
 import { setMusicVolume } from '../audio/handlers';
+import { MESSAGE_TYPES } from '../chat/constants';
 import { chatRenderer } from '../chat/renderer';
 import { store } from '../events/store';
 import {
@@ -62,6 +63,19 @@ function migrateHighlights(next: HighlightState): HighlightState {
   return draft;
 }
 
+function normalizeStoredTypes(
+  storedTypes: Record<string, boolean> | undefined,
+): Record<string, boolean> {
+  const result: Record<string, boolean> = {};
+
+  for (const typeDef of MESSAGE_TYPES) {
+    const value = storedTypes?.[typeDef.type];
+    result[typeDef.type] = value === null || value === undefined ? true : value;
+  }
+
+  return result;
+}
+
 const highlightKeys: (keyof typeof defaultHighlights)[] = [
   'highlightSettings',
   'highlightSettingById',
@@ -76,6 +90,7 @@ export function startSettingsMigration(next: MergedSettings): void {
   if (!next) {
     const initialized: SettingsState = {
       ...defaultSettings,
+      storedTypes: normalizeStoredTypes(defaultSettings.storedTypes),
       initialized: true,
     };
     storage.set('panel-settings', initialized);
@@ -87,7 +102,6 @@ export function startSettingsMigration(next: MergedSettings): void {
   // Split the merged object as we save in two different atoms
   const settingsPart = omit(next, highlightKeys);
   const highlightPart = pick(next, highlightKeys);
-
   const draftSettings = smoothMerge({
     source: settingsPart,
     target: defaultSettings,
