@@ -845,6 +845,9 @@
 		if(become_anomalous)
 			new_item.become_anomalous()
 
+		new_item.techweb_points = rand(20, 60) //20 to 60 seconds worth of points.
+		new_item.techweb_generic = TRUE
+
 		var/turf/simulated/mineral/T = get_turf(new_item)
 		if(istype(T))
 			T.last_find = new_item
