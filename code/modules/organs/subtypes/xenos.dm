@@ -119,6 +119,7 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
+		H.add_language(LANGUAGE_HIVEMIND) //You need this to speak the language, so...
 
 /obj/item/organ/internal/xenos/resinspinner
 	name = "resin spinner"
