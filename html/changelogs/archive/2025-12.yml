@@ -231,3 +231,6 @@
   - qol: Unstable metamorphosis ray can be repaired into an advanced one with a multitool.
   Willbird:
   - rscadd: no sleeving trait prevents characters from having a round start body record
+2025-12-21:
+  Diana:
+  - code_imp: Properly has some signals apply.
