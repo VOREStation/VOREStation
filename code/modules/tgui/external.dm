@@ -216,7 +216,7 @@
 	SStgui.force_close_window(user, window_id)
 
 /**
- * A few edge cases that need to bypass topic limits currently, commend why!
+ * A few edge cases that need to bypass topic limits currently, comment why!
  *
  * returns TRUE for bypass
  */
