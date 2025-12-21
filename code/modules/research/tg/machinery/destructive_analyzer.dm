@@ -234,7 +234,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	return TRUE
 
 /**
- * Destroys an item by going through all its contents (including itself) and calling destroy_item_individual
+ * Destroys an item by dropping all its contents and calling handle_destroyed_item
  * Args:
  * gain_research_points - Whether deconstructing each individual item should check for research points to boost.
  */
@@ -250,8 +250,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	for(var/atom/movable/AM in current_item.contents)
 		AM.forceMove(get_turf(src))
 	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, current_item)
-	destroy_item_individual(current_item, gain_research_points)
+	handle_destroyed_item(current_item, gain_research_points)
 	loaded_item = null
 	update_icon()
 	return TRUE
@@ -262,7 +261,7 @@ It is used to destroy hand-held objects and advance technological research. Used
  * thing - The thing being destroyed. Generally an object, but it can be a mob too, such as intellicards and pAIs.
  * gain_research_points - Whether deconstructing this should give research points to the stored techweb, if applicable.
  */
-/obj/machinery/rnd/destructive_analyzer/proc/destroy_item_individual(obj/item/thing, gain_research_points = FALSE)
+/obj/machinery/rnd/destructive_analyzer/proc/handle_destroyed_item(obj/item/thing, gain_research_points = FALSE)
 	if(isliving(thing))
 		var/mob/living/mob_thing = thing
 		var/turf/turf_to_dump_to = get_turf(src)
@@ -282,6 +281,9 @@ It is used to destroy hand-held objects and advance technological research. Used
 	if(point_value && (!stored_research.deconstructed_items[thing.type] || (stored_research.deconstructed_items[thing.type] && (thing.type in SSresearch.techweb_repeatable_items))))
 		stored_research.deconstructed_items[thing.type] = TRUE
 		stored_research.add_point_list(point_value)
+
+	//Perform experiment
+	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, thing)
 
 	//Finally, let's add it to the material silo, if applicable.
 	var/datum/component/material_container/materials = get_silo_material_container_datum(FALSE)
