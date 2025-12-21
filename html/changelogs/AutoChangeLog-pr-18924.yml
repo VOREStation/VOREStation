@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - rscdel: "VBOs with unknown licensing"
-  - code_imp: "unit test simple mob belly_fullscreens"
