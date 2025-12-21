@@ -47,3 +47,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define UNIQUE_MINDSTRUCTURE "unique_mindstructure"
 // Owner is immune to hallucinations
 #define TRAIT_MADNESS_IMMUNE "supermatter_madness_immune"
+/// Owner is corrupted via redspace. Used downstream. SHOULD NOT BE USED LIGHTLY. HORROR THEMES.
+#define TRAIT_REDSPACE_CORRUPTED "redspace_corrupted"

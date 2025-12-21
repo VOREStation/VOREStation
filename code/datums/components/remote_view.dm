@@ -425,7 +425,7 @@
 		needs_to_decouple = TRUE
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
-	UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	. = ..()
 
 /datum/component/remote_view/mob_holding_item/handle_status_effects(datum/source, amount, ignore_canstun)

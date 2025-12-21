@@ -67,6 +67,17 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
+/datum/recipe/donkpocket/warm/make_food(var/obj/container)
+	var/list/results = list()
+	var/obj/item/reagent_containers/food/snacks/donkpocket/D = locate(/obj/item/reagent_containers/food/snacks/donkpocket) in container
+	if(!D)
+		return results
+	if(!D.warm)
+		warm_up(D)
+	results.Add(D)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FOOD_PREPARED, container, results)
+	return results
+
 /datum/recipe/muffin
 	reagents = list(REAGENT_ID_MILK = 5, REAGENT_ID_SUGAR = 5)
 	reagent_mix = RECIPE_REAGENT_REPLACE
