@@ -525,18 +525,18 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		return
 
 	// Respect admin spawn record choice. There's really not a nice way to do this without butchering copy_to() code for an admin proc
-	var/old_mind_scan = picked_client.prefs.resleeve_scan
-	var/old_body_scan = picked_client.prefs.mind_scan
+	var/old_mind_scan = picked_client.prefs.mind_scan
+	var/old_body_scan = picked_client.prefs.resleeve_scan
 	if(!records) // Make em false for the copy_to()
-		picked_client.prefs.resleeve_scan = FALSE
 		picked_client.prefs.mind_scan = FALSE
+		picked_client.prefs.resleeve_scan = FALSE
 
 	//Write the appearance and whatnot out to the character
 	picked_client.prefs.copy_to(new_character)
 
 	// Restore pref state
-	picked_client.prefs.resleeve_scan = old_mind_scan
-	picked_client.prefs.mind_scan = old_body_scan
+	picked_client.prefs.mind_scan = old_mind_scan
+	picked_client.prefs.resleeve_scan = old_body_scan
 
 	//Write the appearance and whatnot out to the character
 	if(new_character.dna)

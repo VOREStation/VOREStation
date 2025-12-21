@@ -151,9 +151,17 @@
 	return 0
 
 //Checks for specific paths in a list
-/proc/is_path_in_list(var/atom/A, var/list/L)
+/**
+ * Arguments:
+ * A : Typepath to check
+ * L : A list of typepath to check A against
+ * zebra: Wether to use the value of the path in the list instead of just returning TRUE when a match is found
+ */
+/proc/is_path_in_list(var/atom/A, var/list/L, zebra = FALSE)
 	for(var/path in L)
 		if(ispath(A, path))
+			if(ispath(A, path))
+				return !zebra || L[path]
 			return 1
 	return 0
 
@@ -1083,3 +1091,19 @@ GLOBAL_LIST_EMPTY(json_cache)
 	for(var/i in 1 to count)
 		retval += to_flatten[i]
 	return retval
+
+/proc/pick_weight(list/list_to_pick)
+	var/total = 0
+	var/item
+	for(item in list_to_pick)
+		if(!list_to_pick[item])
+			list_to_pick[item] = 0
+		total += list_to_pick[item]
+
+	total = rand(1, total)
+	for(item in list_to_pick)
+		total -= list_to_pick[item]
+		if(total <= 0 && list_to_pick[item])
+			return item
+
+	return null

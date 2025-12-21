@@ -80,7 +80,7 @@ var/list/outfits_decls_by_type_
 		if(1) l_ear = headset
 		if(2) l_ear = headset_alt
 		if(3) l_ear = headset_earbud
-	if(flags && OUTFIT_HAS_BACKPACK)
+	if(flags & OUTFIT_HAS_BACKPACK)
 		switch(H.backbag)
 			if(2) back = backpack
 			if(3) back = satchel_one
