@@ -21,7 +21,8 @@
 			"!tgui/public",
 			"tgui/public/tgui.html",
 			"!tgui/packages/tgfont/dist",
-			"!tgui/packages/tgui-setup/helpers.js"
+			"!tgui/packages/tgui-setup/helpers.js",
+			"!**/bun.lock"
 		]
 	},
 	"formatter": {
