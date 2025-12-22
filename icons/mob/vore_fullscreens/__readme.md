@@ -15,6 +15,8 @@ This is a short guide and ruleset for contributing new overlays.
 To contribute new overlays, you need to be either the artist or the owner of the images, with written permission from the artist in the latter case.
 The artist needs to clearly state that they allow the usage of those assets under a CC license.
 
+This policy applies to all assets added from December 2025 onward.
+
 ## Assets
 
 For assets to be included, the following will be required:
