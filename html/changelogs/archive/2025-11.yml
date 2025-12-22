@@ -280,3 +280,8 @@
 2025-11-19:
   Will:
   - bugfix: Fixes an entertainment monitor runtime
+2025-11-20:
+  KillianKirilenko:
+  - maptweak: deleted mapped-in resleeving sickness pill packages from CMO lockers
+  - spellcheck: '"Kitsuhanan Cure" reagent name genericized to the more immediately-understandable
+      "Resleeving Sickness Cure"'

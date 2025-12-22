@@ -104,7 +104,7 @@
 
 /datum/surgery_step/necrotic/fix_dead_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return affected && affected.open >= 1 && (affected.status & ORGAN_DEAD)
+	return affected && affected.open >= 1 && (affected.status & ORGAN_DEAD) && !affected.remove_necrosis
 
 /datum/surgery_step/necrotic/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -256,7 +256,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts rearranging rejuvinated tissue in [target]'s [affected.name] with \the [tool].") , \
 	span_filter_notice("You start rearranging rejuvinated tissue in [target]'s [affected.name] with \the [tool]."))
-	user.balloon_alert_visible("starts rearranging rejuvinated tissue in [target]'s [affected.name]", "rejuvinated tissue in \the [affected.name]")
+	user.balloon_alert_visible("starts rearranging rejuvinated tissue in [target]'s [affected.name]", "rearranging rejuvinated tissue in \the [affected.name]")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
