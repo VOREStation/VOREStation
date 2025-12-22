@@ -824,7 +824,7 @@
 	qdel(flick_holder)
 	set_raised_raising(1, 0)
 	update_icon()
-	timeout = 10
+	timeout = 15 // slightly longer
 	last_process_time = TURRET_INSTANT_UPDATE
 
 /obj/machinery/porta_turret/proc/popDown()	//pops the turret down
