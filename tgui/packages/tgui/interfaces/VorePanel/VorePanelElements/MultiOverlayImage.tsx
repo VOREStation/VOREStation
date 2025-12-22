@@ -124,7 +124,7 @@ export const MultiOverlayImage = (props: {
       src={src}
       width={targetSize}
       height={targetSize}
-      style={{ transform: 'translate(0%, 4%)', imageRendering: 'pixelated' }}
+      style={{ transform: 'translate(1%, 3%)', imageRendering: 'pixelated' }}
     />
   ) : null;
 };

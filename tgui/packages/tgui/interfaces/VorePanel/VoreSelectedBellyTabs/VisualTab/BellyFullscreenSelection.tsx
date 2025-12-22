@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { getOverlays } from '../../functions';
-import { MultiOverlayImage } from '../../VorePanelElements/VorePanelCanvas';
+import { MultiOverlayImage } from '../../VorePanelElements/MultiOverlayImage';
 
 export const BellyFullscreenSelection = (props: {
   colors: string[];
