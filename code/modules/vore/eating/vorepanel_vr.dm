@@ -525,7 +525,7 @@
 				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
 			if (isbelly(host.loc))
 				var/obj/belly/B = host.loc
-				B.vore_fx(host, TRUE)
+				B.vore_fx(host)
 			else
 				host.clear_fullscreen("belly")
 			if(!host.hud_used.hud_shown)
@@ -543,7 +543,7 @@
 				host.client.prefs_vr.max_voreoverlay_alpha = host.max_voreoverlay_alpha
 			if (isbelly(host.loc))
 				var/obj/belly/B = host.loc
-				B.vore_fx(host, TRUE)
+				B.vore_fx(host)
 			unsaved_changes = TRUE
 			return TRUE
 		// liquid belly code
