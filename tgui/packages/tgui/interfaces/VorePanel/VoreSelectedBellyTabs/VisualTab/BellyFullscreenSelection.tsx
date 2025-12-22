@@ -35,18 +35,25 @@ export const BellyFullscreenSelection = (props: {
             Disabled
           </Button>
         </Stack.Item>
-        {Object.keys(possible_fullscreens).map((key) => (
-          <Stack.Item key={key} basis="32%">
+        {possible_fullscreens.map((fullscreen) => (
+          <Stack.Item key={fullscreen} basis="32%">
             <Button
               width="256px"
               height="256px"
-              selected={key === belly_fullscreen}
+              selected={fullscreen === belly_fullscreen}
               onClick={() =>
-                act('set_attribute', { attribute: 'b_fullscreen', val: key })
+                act('set_attribute', {
+                  attribute: 'b_fullscreen',
+                  val: fullscreen,
+                })
               }
             >
               <MultiOverlayImage
-                overlays={getOverlays(key, colors, !!colorization_enabled)}
+                overlays={getOverlays(
+                  fullscreen,
+                  colors,
+                  !!colorization_enabled,
+                )}
                 size={colorization_enabled ? 120 : 480}
                 targetSize={240}
               />
