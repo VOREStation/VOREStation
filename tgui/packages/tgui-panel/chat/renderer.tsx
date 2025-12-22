@@ -21,6 +21,7 @@ import {
   MESSAGE_TYPE_UNKNOWN,
   MESSAGE_TYPES,
 } from './constants';
+import { createMessageNode } from './messageNode';
 import {
   adminPageOnly,
   canPageAcceptType,
@@ -56,12 +57,6 @@ function createHighlightNode(text: string, color: string): HTMLElement {
   node.className = 'Chat__highlight';
   node.setAttribute('style', `background-color:${color}`);
   node.textContent = text;
-  return node;
-}
-
-export function createMessageNode(): HTMLElement {
-  const node = document.createElement('div');
-  node.className = 'ChatMessage';
   return node;
 }
 

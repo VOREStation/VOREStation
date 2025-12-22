@@ -4,8 +4,8 @@ import { gameAtom } from '../game/atoms';
 import type { GameAtom } from '../game/types';
 import { storedSettingsAtom } from '../settings/atoms';
 import { MESSAGE_TYPE_UNKNOWN, MESSAGE_TYPES } from './constants';
+import { createMessageNode } from './messageNode';
 import { canPageAcceptType } from './model';
-import { createMessageNode } from './renderer';
 import type { Page, SerializedMessage } from './types';
 
 export function exportToDisk(
