@@ -42,7 +42,7 @@ For assets to be loaded into the game, the following steps need to be followed:
   `screen_full_vore_list_layer1.dmi`,
   `screen_full_vore_list_layer2.dmi`,
   `screen_full_vore_list_layer3.dmi`.
-  Across all files, the name needs to match the `VBO_xxxxxxx.dmi` name exactly.
+  Across all files, the name needs to match the `VBO_xxxxxxx` name exactly.
 
 - Inside the `code/modules/asset_cache/assets/belly_assets.dm` file, a new asset datum needs to be created.
   The name must match the `vbo_xxxxxxx` name exactly, but entirely lowercase.
