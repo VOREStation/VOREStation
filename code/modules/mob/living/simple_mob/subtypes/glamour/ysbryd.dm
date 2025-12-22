@@ -88,7 +88,7 @@
 	B.absorbchance = 1
 	B.escapechance = 3
 	B.escape_stun = 5
-	B.belly_fullscreen = "VBO_belly7"
+	B.belly_fullscreen = "VBO_belly8"
 
 	B.emote_lists[DM_HOLD] = list(
 		"The creature idly runs what feels like bony hands over your form.",

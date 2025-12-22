@@ -81,7 +81,7 @@
 		to_chat(user, span_warning("The alembic is already boiling!"))
 		return
 
-/obj/machinery/alembic/AltClick(mob/user)
+/obj/machinery/alembic/click_alt(mob/user)
 	if(potion_reagent == 0)
 		to_chat(user, span_warning("There is nothing in the alembic!"))
 		return

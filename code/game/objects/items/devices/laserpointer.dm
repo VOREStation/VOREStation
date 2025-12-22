@@ -43,6 +43,9 @@
 /obj/item/laser_pointer/upgraded/Initialize(mapload)
 	. = ..(mapload, /obj/item/stock_parts/micro_laser/ultra)
 
+/obj/item/laser_pointer/ultimate/Initialize(mapload)
+	. = ..(mapload, /obj/item/stock_parts/micro_laser/omni)
+
 /obj/item/laser_pointer/attack(mob/living/M, mob/user)
 	laser_act(M, user)
 
@@ -95,55 +98,56 @@
 	var/turf/targloc = get_turf(target)
 
 	//human/alien mobs
-	if(iscarbon(target))
+	if(ishuman(target))
 		if(user.zone_sel.selecting == "eyes")
-			var/mob/living/carbon/C = target
+			var/mob/living/carbon/human/H = target
 
 			//20% chance to actually hit the eyes
 
 			if(prob(effectchance * diode.rating))
-				add_attack_logs(user,C,"Tried blinding using [src]")
+				add_attack_logs(user, H, "Tried blinding using [src]")
 
-				//eye target check, will return -1 to 2
-				var/eye_prot = C.eyecheck()
-				if(C.blinded)
-					eye_prot = 4
-				var/severity = (rand(0, 1) + diode.rating - eye_prot)
-				var/mob/living/carbon/human/H = C
+				//eye target check, will return -2 to 2
+				var/eye_prot = H.eyecheck()
+				if(!H.has_vision() || eye_prot >= FLASH_PROTECTION_MAJOR)
+					eye_prot = 100 //Immune
 				var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
-				if(!E)
-					outmsg = span_notice("You shine [src] at [C], but they don't seem to have eyes.")
-					return
+				if(!E || eye_prot == 100)
+					outmsg = span_notice("You shine [src] at [H] with no response.")
+				else
+					outmsg = span_notice("You shine [src] into [H]'s eyes.")
+					//Comment to explain the below math because reading it makes my eyes glaze over:
+					// Rand 0-1 + diode.rating(1 to 5) minus eye protection. (This can be anywhere between 0 and 8, depending on protection and thermals)
+					// We then multiply by flash_mod (usually 1, 1.5, or 2) and then clamp it. Min 0, max 16 now.
+					// We then round it (whole numbers, let's not deal 5.281 damage to someone's eyes) and clamp it in case of any weirdness so we don't get negatives.
+					var/severity = CLAMP(round((rand(0, 1) + diode.rating - eye_prot) * H.species.flash_mod), 0, 100) //If you get a severity above 100 I'm impressed.
+					//Handle the visual flash effect first
+					if(severity >= 4)
+						flick("e_flash", H.flash_eyes())
+					else if(severity >= 2)
+						flick("flash", H.flash_eyes())
 
-				outmsg = span_notice("You shine [src] into [C]'s eyes.")
-				switch(severity)
-					if(0)
-						//rank 1 diode with basic eye protection (like sunglasses), or rank 2 with industrial protection (like welding goggles)
-						to_chat(C, span_info("A small, bright dot appears in your vision."))
-					if(1)
-						//rank 1 with no protection, rank 2 with basic protection, or rank 3 with industrial protection
-						to_chat(C, span_notice("Something bright flashes in the corner of your vision."))
-					if(2)
-						//rank 1 or 2 with no protection, rank 2 or 3 with basic protection, or rank 3 with industrial protection
-						//alternatively, rank 1 with minor vulnerability (like night vision goggles)
-						flick("flash", C.flash_eyes())
-						to_chat(C, span_danger("A bright light shines across your eyes!"))
-					if(3)
-						//rank 1 with minor vulnerability, rank 2 or 3 with no protection, or rank 3 with basic protection
-						if(prob(3 * diode.rating))
-							C.Weaken(1)
-						flick("flash", C.flash_eyes())
-						E.damage += 1
-						to_chat(C, span_danger("A bright light briefly blinds you!"))
-					if(4)
-						//rank 3 with no protection, or rank 2 with minor vulnerability
-						if(prob(5 * diode.rating))
-							C.Weaken(1)
-						flick("e_flash", C.flash_eyes())
-						E.damage += 2
-						to_chat(C, span_danger("A blinding light burns your eyes!"))
+					//Handle the weakness effect afterwards
+					if(severity >= 3)
+						if(prob(severity * diode.rating))
+							H.Weaken(max(H.weakened, severity - 2))
+						E.damage += severity - 2
+
+					var/eye_message = span_info("A small, bright dot appears in your vision.")
+					switch(severity)
+						if(1)
+							eye_message = span_notice("Something bright flashes in the corner of your vision.")
+						if(2)
+							eye_message = span_danger("A bright light shines across your eyes!")
+						if(3)
+							eye_message = span_danger("A bright light briefly blinds you!")
+						if(4)
+							eye_message = span_danger("A blinding light burns your eyes!")
+					if(severity > 4)
+						eye_message = span_bolddanger("It feels like the sun is being beamed directly into your eyes!") //Bolddanger because you are taking MASSIVE eye damage.
+					to_chat(H, eye_message)
 			else
-				outmsg = span_notice("You shine the [src] at [C], but miss their eyes.")
+				outmsg = span_notice("You shine the [src] at [H], but miss their eyes.")
 
 	//robots and AI
 	else if(issilicon(target))
@@ -163,11 +167,12 @@
 	else if(istype(target, /obj/machinery/camera))
 		var/obj/machinery/camera/C = target
 		if(prob(effectchance * diode.rating))
-			C.emp_act(4 - diode.rating)
+			C.emp_act(CLAMP(4 - diode.rating, 1, 4), forced = TRUE)
 			outmsg = span_notice("You shine the [src] into the lens of [C].")
-			add_attack_logs(user,C,"Tried disabling using [src]")
+			add_attack_logs(user,C,"Disabled using [src]")
 		else
 			outmsg = span_info("You missed the lens of [C] with [src].")
+			add_attack_logs(user,C,"Tried disabling using [src]")
 
 	//cats!
 	for(var/mob/living/simple_mob/animal/passive/cat/C in viewers(1,targloc))
@@ -203,11 +208,11 @@
 	energy -= 1
 	if(energy <= max_energy)
 		if(!recharging)
-			recharging = 1
+			recharging = TRUE
 			START_PROCESSING(SSobj, src)
 		if(energy <= 0)
 			to_chat(user, span_warning("You've overused the battery of [src], now it needs time to recharge!"))
-			recharge_locked = 1
+			recharge_locked = TRUE
 
 	flick_overlay(I, showto, cooldown)
 	spawn(cooldown)
@@ -215,9 +220,9 @@
 
 /obj/item/laser_pointer/process()
 	if(prob(20 - recharge_locked*5))
-		energy += 1
+		energy++
 		if(energy >= max_energy)
 			energy = max_energy
-			recharging = 0
-			recharge_locked = 0
+			recharging = FALSE
+			recharge_locked = FALSE
 			..()

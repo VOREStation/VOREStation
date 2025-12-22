@@ -23,6 +23,7 @@ type Data = {
   extended_kin: BooleanLike;
   savefile_selected: BooleanLike;
   nutrition_energy_conversion: number;
+  hide_voice_in_phase: BooleanLike;
 };
 
 export const ShadekinConfig = (props) => {
@@ -38,13 +39,14 @@ export const ShadekinConfig = (props) => {
     savefile_selected,
     extended_kin,
     nutrition_energy_conversion,
+    hide_voice_in_phase,
   } = data;
 
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
   const windowHeight =
-    (isSubtle ? 220 : 190) +
+    (isSubtle ? 285 : 255) +
     (extended_kin ? 95 : 0) +
     (savefile_selected ? 0 : 90);
 
@@ -146,6 +148,17 @@ export const ShadekinConfig = (props) => {
                   </Stack>
                 </LabeledList.Item>
               </LabeledList>
+            </Section>
+          </Stack.Item>
+          <Stack.Item>
+            <Section fill title="Phase Settings">
+              <LabeledList.Item label="Hide Voice in Phase">
+                <Button.Checkbox
+                  tooltip="Toggle if your voice should be hidden (showing as 'Something') when phased!"
+                  checked={hide_voice_in_phase}
+                  onClick={() => act('toggle_voice')}
+                />
+              </LabeledList.Item>
             </Section>
           </Stack.Item>
           {!!extended_kin && (

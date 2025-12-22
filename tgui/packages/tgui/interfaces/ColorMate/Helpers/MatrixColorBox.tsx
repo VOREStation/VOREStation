@@ -1,5 +1,5 @@
-import { type HsvaColor, hexToHsva, hsvaToHex } from 'common/colorpicker';
 import { useEffect, useState } from 'react';
+import { type HsvaColor, hexToHsva, hsvaToHex } from 'tgui-core/color';
 import { Box, Floating } from 'tgui-core/components';
 import { ColorSelector } from '../../ColorPickerModal';
 

@@ -12,7 +12,7 @@
 	min_broken_damage = 35
 	w_class = ITEMSIZE_HUGE
 	body_part = UPPER_TORSO
-	vital = 1
+	vital = TRUE
 	amputation_point = "spine"
 	joint = "neck"
 	dislocated = -1
@@ -62,7 +62,7 @@
 	min_broken_damage = 35
 	w_class = ITEMSIZE_LARGE
 	body_part = LOWER_TORSO
-	vital = 1
+	vital = TRUE
 	parent_organ = BP_TORSO
 	amputation_point = "lumbar"
 	joint = "hip"
@@ -275,7 +275,7 @@
 	min_broken_damage = 35
 	w_class = ITEMSIZE_NORMAL
 	body_part = HEAD
-	vital = 1
+	vital = TRUE
 	parent_organ = BP_TORSO
 	joint = "jaw"
 	amputation_point = "neck"

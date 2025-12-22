@@ -85,6 +85,7 @@
 #define TECHWEB_NODE_MEDBAY_EQUIP_ADV "medbay_equip_adv"
 #define TECHWEB_NODE_MEDBAY_EQUIP_HIGH_TECH "medbay_equip_high_tech"
 #define TECHWEB_NODE_MEDIGUN "medbay_medigun"
+#define TECHWEB_NODE_MEDIGUN_CONSTANT "medbay_medigun_constant"
 #define TECHWEB_NODE_MINING "mining"
 #define TECHWEB_NODE_MINING_ADV "mining_adv"
 #define TECHWEB_NODE_MOD_ANOMALY "mod_anomaly"
