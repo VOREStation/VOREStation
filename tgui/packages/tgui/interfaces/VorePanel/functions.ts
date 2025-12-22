@@ -201,7 +201,12 @@ export function getOverlays(
   colorize: boolean,
 ): Overlay[] {
   if (!colorize)
-    return [{ icon: 'icons/mob/screen_full_vore.dmi', iconState: state }];
+    return [
+      {
+        icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi',
+        iconState: state,
+      },
+    ];
 
   const base =
     'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi';
