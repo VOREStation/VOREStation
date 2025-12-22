@@ -558,7 +558,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/generic_icon_names = FALSE //generate icon filenames using generate_asset_name() instead the above format
 
 /datum/asset/simple/icon_states/register(_icon = icon)
-	for(var/icon_state_name in icon_states(_icon))
+	for(var/icon_state_name in icon_states_fast(_icon))
 		for(var/direction in directions)
 			var/asset = icon(_icon, icon_state_name, direction, frame, movement_states)
 			if(!asset)

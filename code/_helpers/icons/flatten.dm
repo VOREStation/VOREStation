@@ -89,11 +89,11 @@
 		dir = A.dir
 	var/ourdir = dir
 	if(!none && ourdir != SOUTH)
-		if(length(icon_states(icon(icon, state, NORTH))))
+		if(length(icon_states_fast(icon(icon, state, NORTH))))
 			pass()
-		else if(length(icon_states(icon(icon, state, EAST))))
+		else if(length(icon_states_fast(icon(icon, state, EAST))))
 			pass()
-		else if(length(icon_states(icon(icon, state, WEST))))
+		else if(length(icon_states_fast(icon(icon, state, WEST))))
 			pass()
 		else
 			ourdir = SOUTH
