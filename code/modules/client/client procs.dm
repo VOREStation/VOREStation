@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
-	if(href_list["window_id"] != "statbrowser") //Deviation from TG. Our statbrowser has so many commands that logging in as a borg can cause it to rate limit you. This needs fixing eventually.
+	if(!bypass_topic_limit(href_list))
 		if (!check_rights_for(src, R_HOLDER) && mtl)
 			var/minute = round(world.time, 600)
 			if (!topiclimiter)
@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				return
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if(findtext(href,"<script",1,0) )
 		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		return
