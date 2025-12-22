@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getImage } from '../../PublicLibraryWiki/WikiCommon/WikiColorIcon';
-
-type Overlay = {
-  icon: string;
-  iconState: string;
-  color?: string;
-};
+import type { Overlay } from '../types';
 
 const imageCache = new Map<string, Promise<HTMLImageElement | null>>();
 

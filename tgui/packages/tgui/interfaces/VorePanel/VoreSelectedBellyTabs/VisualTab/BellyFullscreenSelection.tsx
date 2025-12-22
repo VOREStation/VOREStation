@@ -1,6 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { getOverlays } from '../../functions';
 import { MultiOverlayImage } from '../../VorePanelElements/VorePanelCanvas';
 
 export const BellyFullscreenSelection = (props: {
@@ -45,37 +46,7 @@ export const BellyFullscreenSelection = (props: {
               }
             >
               <MultiOverlayImage
-                overlays={
-                  colorization_enabled
-                    ? [
-                        {
-                          icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi',
-                          iconState: key,
-                          color: colors[0],
-                        },
-                        {
-                          icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer1.dmi',
-                          iconState: key,
-                          color: colors[1],
-                        },
-                        {
-                          icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer2.dmi',
-                          iconState: key,
-                          color: colors[2],
-                        },
-                        {
-                          icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer3.dmi',
-                          iconState: key,
-                          color: colors[3],
-                        },
-                      ]
-                    : [
-                        {
-                          icon: 'icons/mob/screen_full_vore.dmi',
-                          iconState: key,
-                        },
-                      ]
-                }
+                overlays={getOverlays(key, colors, !!colorization_enabled)}
                 size={colorization_enabled ? 120 : 480}
                 targetSize={240}
               />
@@ -91,37 +62,11 @@ export const BellyFullscreenSelection = (props: {
         <Stack.Item>
           {belly_fullscreen ? (
             <MultiOverlayImage
-              overlays={
-                colorization_enabled
-                  ? [
-                      {
-                        icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi',
-                        iconState: belly_fullscreen,
-                        color: colors[0],
-                      },
-                      {
-                        icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer1.dmi',
-                        iconState: belly_fullscreen,
-                        color: colors[1],
-                      },
-                      {
-                        icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer2.dmi',
-                        iconState: belly_fullscreen,
-                        color: colors[2],
-                      },
-                      {
-                        icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer3.dmi',
-                        iconState: belly_fullscreen,
-                        color: colors[3],
-                      },
-                    ]
-                  : [
-                      {
-                        icon: 'icons/mob/screen_full_vore.dmi',
-                        iconState: belly_fullscreen,
-                      },
-                    ]
-              }
+              overlays={getOverlays(
+                belly_fullscreen,
+                colors,
+                !!colorization_enabled,
+              )}
               size={120}
               targetSize={240}
             />
