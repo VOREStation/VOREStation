@@ -13,7 +13,6 @@ import {
   useState,
 } from 'react';
 import { UI_DISABLED, UI_INTERACTIVE } from 'tgui/constants';
-import type { Box } from 'tgui-core/components';
 import { type Box, KeyListener } from 'tgui-core/components';
 import type { KeyEvent } from 'tgui-core/events';
 import { KEY_ALT } from 'tgui-core/keycodes';
