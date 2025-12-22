@@ -74,7 +74,7 @@ export const BellyFullscreenSelection = (props: {
                 colors,
                 !!colorization_enabled,
               )}
-              size={120}
+              size={colorization_enabled ? 120 : 480}
               targetSize={240}
             />
           ) : (
