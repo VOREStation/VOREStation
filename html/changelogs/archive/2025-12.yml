@@ -237,3 +237,8 @@
   Kashargul:
   - rscdel: VBOs with unknown licensing
   - code_imp: unit test simple mob belly_fullscreens
+2025-12-22:
+  Cameron-The-Raven:
+  - admin: Global narrate and Admin Subtle PM can now use HTML
+  Kashargul:
+  - bugfix: large, chunked payloads hitting rate limits
