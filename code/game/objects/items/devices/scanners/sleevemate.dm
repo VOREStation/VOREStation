@@ -135,7 +135,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Body status
 	output += span_bold("Sleeve Status:") + " "
-	if(H.status_flags |= FAKEDEATH)
+	if(H.status_flags & FAKEDEATH)
 		output += span_warning("Deceased") + "<br>"
 	else
 		switch(H.stat)

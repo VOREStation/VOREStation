@@ -1,18 +1,11 @@
 /datum/anomaly_placer
 	var/static/list/allowed_areas
-	var/list/excluded = list(
-		/area/crew_quarters,
-		/area/shuttle,
-		/area/space,
-		/area/solar,
-		/area/engineering/engine_room,
-		/area/maintenance,
-		/area/holodeck,
-		/area/ai
-	)
 
 /datum/anomaly_placer/proc/find_valid_area()
-	var/list/possible_areas = get_station_areas(excluded)
+	if(!allowed_areas)
+		generate_allowed_areas()
+
+	var/list/possible_areas = typecache_filter_list(GLOB.areas_by_type, allowed_areas)
 	if(!length(possible_areas))
 		CRASH("No valid areas for anomaly found.")
 
@@ -43,3 +36,19 @@
 	if(isopenspace(tested))
 		return FALSE
 	return TRUE
+
+/datum/anomaly_placer/proc/generate_allowed_areas()
+	var/static/list/safe_area_types = typecacheof(list(
+		/area/crew_quarters,
+		/area/shuttle,
+		/area/space,
+		/area/solar,
+		/area/engineering,
+		/area/maintenance,
+		/area/holodeck,
+		/area/ai
+	))
+
+	var/static/list/unsafe_area_subtypes = typecacheof(list(/area/engineering/break_room))
+
+	allowed_areas = GLOB.areas_by_type - safe_area_types + unsafe_area_subtypes

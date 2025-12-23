@@ -13,6 +13,7 @@
 		"marked-smartypants": "^1.1.11",
 		"react": "^19.2.1",
 		"react-dom": "^19.2.1",
+		"react-json-tree": "^0.20.0",
 		"tgui-core": "^5.5.10",
 		"tgui-dev-server": "workspace:*"
 	},
