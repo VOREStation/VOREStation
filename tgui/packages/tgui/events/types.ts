@@ -1,5 +1,5 @@
 import type { ExtractAtomValue } from 'jotai';
-import type { sendAct } from './act';
+import type { sendAct } from 'tgui/events/act';
 import type { backendStateAtom } from './store';
 
 type BinaryIO = 0 | 1;
