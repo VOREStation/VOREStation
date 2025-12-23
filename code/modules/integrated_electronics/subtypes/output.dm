@@ -449,11 +449,11 @@
 /obj/item/integrated_circuit/output/holographic_projector/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(on_moved))
 
 /obj/item/integrated_circuit/output/holographic_projector/Destroy()
 	destroy_hologram()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	return ..()
 
 /obj/item/integrated_circuit/output/holographic_projector/do_work()

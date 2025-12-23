@@ -1,6 +1,0 @@
-author: "zeskorion"
-delete-after: True
-changes:
-  - balance: "Pulled punches are now affected by species brutemod, and don't have an inherent damage bonus"
-  - balance: "Pulled punches no longer use species unarmed bonus. You're holding back, not hitting with full strength"
-  - bugfix: "xenochimerae cannot pull their special unarmed attack when feral"

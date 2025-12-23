@@ -145,3 +145,100 @@
       />'
   Will:
   - balance: Ice slips you repeatedly instead of a set distance
+2025-12-12:
+  Asher-42:
+  - rscadd: 'Fixes the insivible head issue for dullahans
+
+      Change/fix: removed neck light cover from frame option 2 to show the neck light'
+  Cameron-The-Raven:
+  - qol: You can now eat monkeys via eating the cube directly instead of having to
+      wet it then eat it to avoid being chestbusted
+  Guti:
+  - code_imp: Made anomalies defines use SECONDS instead of EVENT_SECONDS
+  - rscadd: Added TG-like anomalies
+  - rscadd: Added anomaly cores
+  Kashargul:
+  - bugfix: some bad flag compares
+  - bugfix: disposal template loading being broken
+  Nova:
+  - bugfix: Fix shadekin voices always being known in phase.
+  - qol: Add ability to reveal/hide voice in shadekin control panel.
+  Will:
+  - refactor: Ventcrawl item whitelist is now a proc instead of a list instantiated
+      on every single mob in the world
+  - bugfix: promies and proteans properly reequip their radio when they return to
+      human form from blob
+  zeskorion:
+  - balance: Pulled punches are now affected by species brutemod, and don't have an
+      inherent damage bonus
+  - balance: Pulled punches no longer use species unarmed bonus. You're holding back,
+      not hitting with full strength
+  - bugfix: xenochimerae cannot pull their special unarmed attack when feral
+2025-12-13:
+  Diana:
+  - bugfix: Fixes a bug that prevented moving/unremoving storage items
+2025-12-14:
+  Diana:
+  - bugfix: Sleevemates will no longer apply fakedeath status instead of checking
+      for it
+  - bugfix: Health hud will now properly show someone with FAKEDEATH as DEAD
+  - bugfix: Bodyscanners will treat someone with FAKEDEATH as if they were dead.
+  - bugfix: Hacktool now works again.
+  - bugfix: Fixes a runtime with abnormal mind trait.
+  - bugfix: Wounds now use the proper gender
+  Willbird:
+  - bugfix: control clicking turf no longer runtimes attempting to pull it
+2025-12-15:
+  Diana:
+  - rscadd: Bodyscanner is now upgradable and will show hidden (unscannable) chemicals.
+  - bugfix: Unscannable (hidden) chemicals no longer show up on bodyscanner by default,
+      instead requiring upgrading it.
+  Kashargul:
+  - rscdel: Removed the TGUI kitchensink component view
+  - rscadd: Added a new data explorer for TGUI dev mode
+  - bugfix: TGUI window drag and resize should be smoother on low end systems.
+2025-12-18:
+  Diana:
+  - code_imp: Fixes signal usage in a few places
+  FluffMedic:
+  - bugfix: Mouse army uses defines now
+  Guti:
+  - bugfix: Fixed Dark Maw not respecting prefs
+  Lilly-Lira:
+  - bugfix: Flavored donk pockets retain flavor after microwaving
+2025-12-19:
+  Diana:
+  - bugfix: Null rod's special powers can only be used by chaplain.
+  - bugfix: Typing indicator no longer shows up when under FAKEDEATH
+  - qol: Null rod no longer has a 10% chance when used to harm-intent someone's head
+  Willbird:
+  - bugfix: Fixes shadekin getting set on fire while in phase, and being able to spread
+      fire while phased
+2025-12-20:
+  FluffMedic:
+  - code_imp: Adds early returns to gunboxes if no choice is made
+  Guti:
+  - rscadd: Telesci can now fuck around and find out what happens if you try to teleport
+      things from outside the universe
+  - rscadd: Hallucination anomaly confuses players
+  - bugfix: Wearing magboots keeps you grounded with gravity anomalies
+  - bugfix: Fixed phased kin being zapped by the flux anomaly
+  - code_imp: Improved the anomaly placer datum
+  Kashargul:
+  - bugfix: emote spamming no longer allows for rapidly spammed muffled messages
+  - bugfix: robot camera replacement
+  NickBelmont:
+  - qol: Unstable metamorphosis ray can be repaired into an advanced one with a multitool.
+  Willbird:
+  - rscadd: no sleeving trait prevents characters from having a round start body record
+2025-12-21:
+  Diana:
+  - code_imp: Properly has some signals apply.
+  Kashargul:
+  - rscdel: VBOs with unknown licensing
+  - code_imp: unit test simple mob belly_fullscreens
+2025-12-22:
+  Cameron-The-Raven:
+  - admin: Global narrate and Admin Subtle PM can now use HTML
+  Kashargul:
+  - bugfix: large, chunked payloads hitting rate limits
