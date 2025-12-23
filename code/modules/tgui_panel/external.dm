@@ -24,7 +24,7 @@
 
 /client/proc/nuke_chat()
 	// Catch all solution (kick the whole thing in the pants)
-	winset(src, "outputwindow,legacy_output_selector", "left=output_legacy")
+	winset(src, "outputwindow.legacy_output_selector", "left=output_legacy")
 	if(!tgui_panel || !istype(tgui_panel))
 		log_tgui(src, "tgui_panel datum is missing",
 			context = "verb/fix_tgui_panel")
