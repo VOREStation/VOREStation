@@ -523,7 +523,7 @@
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "bm" = (
 /obj/machinery/door/airlock{
 	id_tag = "z1stall3";
@@ -2167,7 +2167,7 @@
 	dir = 8
 	},
 /turf/simulated/wall,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "eJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/alarm{
@@ -3477,7 +3477,7 @@
 	pixel_y = -30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "hN" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
@@ -4792,7 +4792,7 @@
 "kG" = (
 /obj/machinery/turretid/lethal{
 	ailock = 1;
-	control_area = /area/ai_upload;
+	control_area = /area/tcommsat/chamber;
 	name = "Telecoms turret control";
 	pixel_y = 32;
 	req_access = list(61)
@@ -5171,7 +5171,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/turretid/stun{
-	control_area = /area/tcommsat/chamber;
+	control_area = /area/ai_upload;
 	name = "AI Upload turret control";
 	pixel_x = -30;
 	pixel_y = -24
@@ -6300,7 +6300,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "nN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -7138,7 +7138,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "pL" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -7931,7 +7931,7 @@
 	},
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "rG" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled,
@@ -8620,7 +8620,7 @@
 	id = "AutoResleeving"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "tp" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -9652,6 +9652,9 @@
 "vL" = (
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
+"vM" = (
+/turf/simulated/wall,
+/area/medical/autoresleeving)
 "vN" = (
 /turf/simulated/floor/outdoors/sidewalk/side{
 	outdoors = 0
@@ -10864,7 +10867,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "yv" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide{
 	dir = 1
@@ -13020,7 +13023,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "DA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -13631,7 +13634,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "EW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -15099,7 +15102,7 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "It" = (
 /obj/machinery/mineral/processing_unit,
 /turf/simulated/floor/tiled,
@@ -15927,7 +15930,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "Kh" = (
 /turf/simulated/floor/carpet/sblucarpet,
 /area/crew_quarters/heads/hos)
@@ -16001,7 +16004,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "Kq" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/highsecurity{
@@ -16100,7 +16103,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "KB" = (
 /obj/structure/table/reinforced,
 /obj/random/tech_supply,
@@ -16906,7 +16909,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "Mv" = (
 /obj/structure/toilet{
 	dir = 8
@@ -19599,7 +19602,7 @@
 	},
 /obj/machinery/turretid/stun{
 	check_synth = 1;
-	control_area = /area/ai;
+	control_area = /area/groundbase/command/ai;
 	name = "AI Chamber turret control";
 	pixel_x = -30;
 	pixel_y = -24
@@ -19678,7 +19681,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "Td" = (
 /obj/structure/filingcabinet{
 	pixel_x = -10
@@ -19693,7 +19696,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "Tf" = (
 /turf/simulated/wall/r_wall,
 /area/security/iaa)
@@ -21638,7 +21641,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "XC" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -22148,7 +22151,7 @@
 "YQ" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "YR" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -22470,7 +22473,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled/dark,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "ZH" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -22553,7 +22556,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/medical/resleeving)
+/area/medical/autoresleeving)
 "ZP" = (
 /turf/simulated/floor/reinforced{
 	name = "Holodeck Projector Floor"
@@ -33893,7 +33896,7 @@ ZO
 Kg
 XB
 bl
-nb
+vM
 ce
 ce
 ce
@@ -34031,11 +34034,11 @@ nb
 ff
 So
 ff
-nb
+vM
 to
 EV
 KA
-nb
+vM
 ce
 ce
 ce
@@ -34173,11 +34176,11 @@ nb
 gG
 nu
 BO
-nb
+vM
 rF
 Tc
 Te
-nb
+vM
 ce
 ce
 ce

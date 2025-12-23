@@ -800,6 +800,10 @@
 	name = "Resleeving Lab"
 	icon_state = "genetics"
 
+/area/medical/autoresleeving
+	name = "Autoresleeving"
+	icon_state = "genetics"
+
 /area/bigship
 	name = "Bigship"
 	requires_power = 0
