@@ -342,16 +342,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/planet/tether
 	name = "\improper Outside - Surface"
 
-/area/planet/virgo3c
-	name = "\improper Virgo 3C"
-
-/area/planet/virgo3c/unexplored
-	name = "\improper Rascal's Pass"
-	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
-
-/area/planet/virgo3c/tunnel
-	name = "\improper Ra"
-
 /area/planet/virgo3c/landingpad
 	name = "Escape Shuttle Landing Pad"
 
