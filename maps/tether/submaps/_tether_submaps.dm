@@ -48,7 +48,7 @@
 
 /datum/map_template/tether_lateload/tether_underdark/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(z), 100, /area/mine/unexplored/underdark, /datum/map_template/underdark)
+	seed_submaps(list(z), 100, /area/mine/unexplored, /datum/map_template/underdark)
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	new /datum/random_map/noise/ore/underdark(null, 1, 1, z, 64, 64)         // Create the mining ore distribution map.
 
@@ -69,7 +69,7 @@
 
 /datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(z), 120, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
+	seed_submaps(list(z), 120, /area/planet/tether, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
 //Antag/Event/ERT Areas

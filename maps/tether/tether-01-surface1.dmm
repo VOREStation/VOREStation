@@ -11395,7 +11395,7 @@
 /area/shuttle/tram)
 "aua" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/tether/surfacebase/tram;
+	base_area = /area/shuttle/tram;
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
 	landmark_tag = "escape_station";
 	name = "Tether Surface Base"

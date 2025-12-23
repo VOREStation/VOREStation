@@ -4792,7 +4792,7 @@
 "kG" = (
 /obj/machinery/turretid/lethal{
 	ailock = 1;
-	control_area = /area/groundbase/command/tcomms/chamber;
+	control_area = /area/ai_upload;
 	name = "Telecoms turret control";
 	pixel_y = 32;
 	req_access = list(61)
@@ -5171,7 +5171,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/turretid/stun{
-	control_area = /area/groundbase/command/ai/upload;
+	control_area = /area/tcommsat/chamber;
 	name = "AI Upload turret control";
 	pixel_x = -30;
 	pixel_y = -24
@@ -19599,7 +19599,7 @@
 	},
 /obj/machinery/turretid/stun{
 	check_synth = 1;
-	control_area = /area/groundbase/command/ai;
+	control_area = /area/ai;
 	name = "AI Chamber turret control";
 	pixel_x = -30;
 	pixel_y = -24

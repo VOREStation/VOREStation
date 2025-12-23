@@ -67,7 +67,7 @@
 /area/quartermaster/miningdock)
 "ao" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/outpost/mining_main/hangar;
+	base_area = /area/exploration/shuttle_bay;
 	base_turf = /turf/simulated/floor/tiled;
 	landmark_tag = "mining_outpost";
 	name = "Mining Outpost Shuttle - Outpost"

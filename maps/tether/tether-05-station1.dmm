@@ -3513,7 +3513,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "agE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -6471,7 +6471,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "apf" = (
 /obj/machinery/camera/network/command,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -7752,7 +7752,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "asJ" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8;
@@ -7778,7 +7778,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "asN" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -7833,7 +7833,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "atb" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Engineering Substation Bypass"
@@ -8276,7 +8276,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "auI" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
@@ -8351,7 +8351,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "avd" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -8567,7 +8567,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "avD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10909,7 +10909,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "aEK" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -10961,7 +10961,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "aFe" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -14520,7 +14520,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "bVP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17649,9 +17649,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/exploration/pilot_equipment)
-"fpk" = (
-/turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
 "fpK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -18159,7 +18156,7 @@
 	dir = 8
 	},
 /obj/effect/shuttle_landmark{
-	base_area = /area/tether/exploration;
+	base_area = /area/exploration/shuttle_bay;
 	base_turf = /turf/simulated/floor/reinforced;
 	docking_controller = "expshuttle_dock";
 	landmark_tag = "tether_excursion_hangar";
@@ -18426,9 +18423,6 @@
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled,
 /area/exploration/equipment)
-"gfX" = (
-/turf/simulated/wall/r_wall,
-/area/tether/outpost/solars_outside)
 "ghP" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -18469,7 +18463,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "gjt" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -19027,7 +19021,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "gPG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -19100,7 +19094,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "gVG" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -19509,7 +19503,7 @@
 	},
 /obj/machinery/power/solar,
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "hps" = (
 /obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/ext_door,
@@ -19553,7 +19547,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "hrw" = (
 /obj/structure/catwalk,
 /turf/simulated/floor,
@@ -19662,7 +19656,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "huL" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -19980,7 +19974,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "hFK" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "explo"
@@ -20063,7 +20057,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "hIK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -20186,13 +20180,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "hOw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "hPi" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -21087,13 +21081,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "iKq" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "iKY" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -21978,7 +21972,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "jOl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
@@ -22966,7 +22960,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "kIc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/wall/fancy_shuttle{
@@ -25927,7 +25921,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "nFZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
@@ -27370,7 +27364,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "qcz" = (
 /obj/structure/bed/chair/shuttle,
 /obj/effect/floor_decal/fancy_shuttle{
@@ -28244,7 +28238,7 @@
 "rhn" = (
 /obj/machinery/camera/network/telecom,
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "riB" = (
 /obj/structure/window/fancy_shuttle{
 	fancy_shuttle_tag = "medbus"
@@ -30253,7 +30247,7 @@
 	},
 /obj/machinery/camera/network/telecom,
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "tyi" = (
 /obj/structure/railing{
 	dir = 8
@@ -32547,7 +32541,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/airless,
-/area/tether/outpost/solars_outside)
+/area/space)
 "wub" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -47883,9 +47877,9 @@ aaa
 aaa
 wsT
 kHo
-fpk
-fpk
-fpk
+asG
+asG
+asG
 aaa
 ahW
 aaa
@@ -48023,21 +48017,21 @@ aaa
 aaa
 xTB
 xTB
-gfX
-gfX
-gfX
-gfX
-fpk
+otm
+otm
+otm
+otm
+asG
 wsT
-fpk
-fpk
+asG
+asG
 kHo
-fpk
-fpk
-fpk
-fpk
-fpk
-fpk
+asG
+asG
+asG
+asG
+asG
+asG
 aaa
 ahW
 aaa
@@ -48169,16 +48163,16 @@ otm
 otm
 otm
 otm
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
+otm
+otm
+otm
+otm
+cEE
+cEE
+cEE
+cEE
+cEE
+cEE
 rhn
 aaa
 ahW
@@ -48320,8 +48314,8 @@ cEE
 cEE
 cEE
 cEE
-gfX
-fpk
+cEE
+asG
 aaa
 ahW
 aaa
@@ -48462,8 +48456,8 @@ jlx
 jYB
 mVE
 cEE
-gfX
-fpk
+cEE
+asG
 aaa
 ahW
 aaa
@@ -48604,8 +48598,8 @@ aBs
 aBu
 glt
 cEE
-gfX
-fpk
+cEE
+asG
 aaa
 ahW
 aaa
@@ -48747,10 +48741,10 @@ kff
 kff
 kff
 kff
-fpk
-fpk
-fpk
-fpk
+asG
+asG
+asG
+asG
 aaa
 aaa
 aaa
@@ -49036,7 +49030,7 @@ jXI
 kff
 nFG
 hqW
-fpk
+asG
 aaa
 aaa
 aaa
@@ -49320,7 +49314,7 @@ hln
 hps
 hFB
 hqW
-fpk
+asG
 ahW
 ahW
 ahW
@@ -49599,7 +49593,7 @@ kff
 kff
 kff
 kff
-gfX
+kff
 asM
 gPx
 hOw
@@ -49740,7 +49734,7 @@ jtT
 dwj
 nkw
 dTU
-gfX
+dTU
 asM
 hOw
 ahW
@@ -49882,7 +49876,7 @@ aBt
 dLP
 gDA
 dTU
-gfX
+dTU
 gjd
 ahW
 ahW
@@ -50024,7 +50018,7 @@ dTU
 dTU
 dTU
 dTU
-gfX
+dTU
 gjd
 aaa
 ahW
@@ -50157,16 +50151,16 @@ bgd
 bgd
 bgd
 bgd
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
-gfX
+cpK
+cpK
+cpK
+cpK
+dTU
+dTU
+dTU
+dTU
+dTU
+dTU
 qcg
 aaa
 ahW
@@ -50295,10 +50289,10 @@ aaa
 aaa
 bgd
 bgd
-gfX
-gfX
-gfX
-gfX
+bgd
+bgd
+bgd
+bgd
 asM
 jOc
 gPx
@@ -50863,7 +50857,7 @@ aaa
 asH
 ape
 ape
-fpk
+asG
 auH
 auH
 avC
@@ -51431,7 +51425,7 @@ ape
 ape
 ape
 ape
-fpk
+asG
 auH
 auH
 auH
@@ -51573,7 +51567,7 @@ agC
 agC
 agC
 agC
-fpk
+asG
 agC
 agC
 agC
@@ -51715,7 +51709,7 @@ aaa
 aaa
 aaa
 aaa
-fpk
+asG
 asW
 aaa
 aaa
@@ -51857,7 +51851,7 @@ aEI
 aEI
 aEI
 aEI
-fpk
+asG
 aEI
 aEI
 aEI
@@ -51999,7 +51993,7 @@ ape
 ape
 ape
 ape
-fpk
+asG
 auH
 auH
 auH
@@ -52566,9 +52560,9 @@ aaa
 aaa
 aaa
 aaa
-fpk
+asG
 asX
-fpk
+asG
 aaa
 aaa
 aaa
@@ -52709,7 +52703,7 @@ aaa
 aaa
 aaa
 aaa
-fpk
+asG
 aaa
 aaa
 aaa

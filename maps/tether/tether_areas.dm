@@ -887,3 +887,6 @@
 	name = "\improper docked with Tether"
 	icon_state = "shuttle"
 	dynamic_lighting = 0
+
+/area/crew_quarters/middle_point
+	name = "\improper Tether - Middle Area"

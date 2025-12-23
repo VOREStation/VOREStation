@@ -97,24 +97,19 @@
 	spawnpoint_left = /datum/spawnpoint/tram
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
-	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+	meteor_strike_areas = list(/area/planet/tether)
 
 	default_skybox = /datum/skybox_settings/tether
 
 	unit_test_exempt_areas = list(
-		/area/tether/surfacebase/outside/outside1,
+		/area/planet/tether,
 		/area/tether/elevator,
-		/area/vacant/vacant_site,
-		/area/vacant/vacant_site/east,
 		/area/crew_quarters/sleep/Dorm_1/holo,
 		/area/crew_quarters/sleep/Dorm_3/holo,
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/looking_glass/lg_1,
-		/area/rnd/miscellaneous_lab,
-		/area/tether/transit, // Tether Debug Transit
-		/area/tether/surfacebase/outside/outside2, // Very Outside
-		/area/tether/surfacebase/outside/outside3 // Very Outside
+		/area/rnd/miscellaneous_lab
 		)
 
 	unit_test_exempt_from_atmos = list(
@@ -122,16 +117,7 @@
 		/area/engineering/engine_gas,
 		/area/rnd/external, //  Outside,
 		/area/rnd/outpost/xenobiology/outpost_stairs,
-		/area/tether/surfacebase/entertainment/stage, // Connected to entertainment area
-		/area/tether/surfacebase/emergency_storage/atmos,
-		/area/tether/surfacebase/emergency_storage/rnd,
-		/area/tether/surfacebase/emergency_storage/atrium,
-		/area/tether/surfacebase/lowernortheva, // it airlock
-		/area/tether/surfacebase/lowernortheva/external, //it outside
-		/area/tether/surfacebase/security/gasstorage, // Maint
 		/area/tcommsat/chamber,
-		/area/tether/outpost/solars_outside, // Outside
-		/area/vacant/vacant_bar_upper // Maint
 		)
 
 	unit_test_z_levels = list(

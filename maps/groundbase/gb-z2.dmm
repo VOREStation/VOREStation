@@ -12755,7 +12755,7 @@
 /area/quartermaster/office)
 "Km" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/cargo/bay;
+	base_area = /area/quartermaster/storage;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab;
 	docking_controller = "cargo_bay";
 	landmark_tag = "supply_station";

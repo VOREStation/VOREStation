@@ -38834,7 +38834,7 @@
 	name = "tourbus"
 	},
 /obj/effect/shuttle_landmark{
-	base_area = /area/tether/surfacebase/shuttle_pad;
+	base_area = /area/exploration/shuttle_bay;
 	base_turf = /turf/simulated/floor/reinforced;
 	docking_controller = "tourbus_pad";
 	landmark_tag = "tourbus_dock";
@@ -44686,7 +44686,7 @@
 /area/medical/storage)
 "uSA" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/tether/surfacebase/shuttle_pad;
+	base_area = /area/exploration/shuttle_bay;
 	base_turf = /turf/simulated/floor/reinforced;
 	docking_controller = "tether_pad_airlock";
 	landmark_tag = "tether_backup_low";

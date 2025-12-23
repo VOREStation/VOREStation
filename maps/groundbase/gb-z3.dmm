@@ -113,7 +113,7 @@
 /area/planet/virgo3c/unexplored)
 "cB" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/level3/escapepad;
+	base_area = /area/planet/virgo3c/landingpad;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab;
 	landmark_tag = "escape_station";
 	name = "Ship Arrivals"
@@ -2431,7 +2431,7 @@
 /area/exploration/pilot_equipment)
 "Nb" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/exploration/shuttlepad;
+	base_area = /area/exploration/shuttle_bay;
 	base_turf = /turf/simulated/floor/reinforced;
 	docking_controller = "expshuttle_dock";
 	landmark_tag = "gb_excursion_pad";
