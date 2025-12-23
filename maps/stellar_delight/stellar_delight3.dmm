@@ -5832,7 +5832,7 @@
 /area/maintenance/apmaint/deck_three)
 "vE" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/stellardelight/deck3/exterior;
+	base_area = /area/space;
 	base_turf = /turf/simulated/floor/reinforced/airless;
 	docking_controller = "sd_starboard_landing";
 	landmark_tag = "starboard_shuttlepad";
@@ -7830,7 +7830,7 @@
 /area/hallway/primary/fore/deck_three)
 "Cx" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/stellardelight/deck3/exterior;
+	base_area = /area/space;
 	base_turf = /turf/simulated/floor/reinforced/airless;
 	docking_controller = "escape_dock";
 	landmark_tag = "escape_station";

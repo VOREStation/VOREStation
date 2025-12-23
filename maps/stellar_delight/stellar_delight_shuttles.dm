@@ -3,7 +3,7 @@
 /datum/shuttle/autodock/ferry/escape_pod/portescape
 	name = "Port Escape Pod"
 	location = FERRY_LOCATION_STATION
-	shuttle_area = /area/stellardelight/deck2/portescape
+	shuttle_area = /area/shuttle/escape_pod2/station
 	warmup_time = 0
 	landmark_station = "port_ship_berth"
 	landmark_offsite = "port_escape_cc"
@@ -15,7 +15,7 @@
 /datum/shuttle/autodock/ferry/escape_pod/starboardescape
 	name = "Starboard Escape Pod"
 	location = FERRY_LOCATION_STATION
-	shuttle_area = /area/stellardelight/deck2/starboardescape
+	shuttle_area = /area/shuttle/escape_pod1/station
 	warmup_time = 0
 	landmark_station = "starboard_ship_berth"
 	landmark_offsite = "starboard_escape_cc"
@@ -29,7 +29,7 @@
 	name = "Exploration Shuttle"
 	current_location = "sd_explo"
 	docking_controller_tag = "explodocker"
-	shuttle_area = /area/shuttle/exploration
+	shuttle_area = /area/shuttle/explo
 	fuel_consumption = 0
 	defer_initialisation = TRUE
 	range = 1

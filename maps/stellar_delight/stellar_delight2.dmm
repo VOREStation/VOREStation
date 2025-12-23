@@ -4163,7 +4163,7 @@
 /obj/structure/grille,
 /obj/structure/shuttle/window,
 /obj/effect/shuttle_landmark{
-	base_area = /area/stellardelight/deck2/exterior;
+	base_area = /area/space;
 	base_turf = /turf/simulated/floor/airless;
 	docking_controller = "starboard_escape_berth";
 	landmark_tag = "starboard_ship_berth";
@@ -12423,7 +12423,7 @@
 /obj/structure/shuttle/window,
 /obj/structure/grille,
 /obj/effect/shuttle_landmark{
-	base_area = /area/stellardelight/deck2/exterior;
+	base_area = /area/space;
 	base_turf = /turf/simulated/floor/airless;
 	docking_controller = "port_escape_berth";
 	landmark_tag = "port_ship_berth";
