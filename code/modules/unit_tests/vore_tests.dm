@@ -28,9 +28,9 @@
 	TEST_ASSERT(prey.loc == pred.vore_selected, "Prey not inside predator belly")
 
 	var/start_oxy = prey.getOxyLoss()
-	var/start_tick = pred.life_tick
+	var/end_tick = pred.life_tick + 10
 
-	while(pred.life_tick < start_tick + 10)
+	while(pred.life_tick < end_tick)
 		sleep(1)
 
 	var/end_oxy = prey.getOxyLoss()
@@ -66,9 +66,9 @@
 	pred.forceMove(space_turf)
 
 	var/start_oxy = prey.getOxyLoss()
-	var/start_tick = pred.life_tick
+	var/end_tick = pred.life_tick + 10
 
-	while(pred.life_tick < start_tick + 10)
+	while(pred.life_tick < end_tick)
 		sleep(1)
 
 	var/end_oxy = prey.getOxyLoss()
@@ -93,9 +93,9 @@
 	pred.vore_selected.digest_mode = DM_DIGEST
 
 	var/start_damage = prey.getBruteLoss() + prey.getFireLoss()
-	var/start_tick = pred.life_tick
+	var/end_tick = pred.life_tick + 10
 
-	while(pred.life_tick < start_tick + 10)
+	while(pred.life_tick < end_tick)
 		sleep(1)
 
 	var/end_damage = prey.getBruteLoss() + prey.getFireLoss()
