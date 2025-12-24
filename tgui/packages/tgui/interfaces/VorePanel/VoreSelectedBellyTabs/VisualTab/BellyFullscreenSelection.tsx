@@ -1,8 +1,9 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { getOverlays } from '../../functions';
 import { MultiOverlayImage } from '../../VorePanelElements/MultiOverlayImage';
+import { BellyFullscreenPreview } from './BellyFullscreenPreview';
 
 export const BellyFullscreenSelection = (props: {
   colors: string[];
@@ -67,19 +68,12 @@ export const BellyFullscreenSelection = (props: {
       <Stack align="center">
         <Stack.Item grow />
         <Stack.Item>
-          {belly_fullscreen ? (
-            <MultiOverlayImage
-              overlays={getOverlays(
-                belly_fullscreen,
-                colors,
-                !!colorization_enabled,
-              )}
-              size={colorization_enabled ? 120 : 480}
-              targetSize={240}
-            />
-          ) : (
-            <Box>No overlay selected.</Box>
-          )}
+          <BellyFullscreenPreview
+            colors={colors}
+            belly_fullscreen={belly_fullscreen}
+            colorization_enabled={colorization_enabled}
+            possible_fullscreens={possible_fullscreens}
+          />
         </Stack.Item>
         <Stack.Item grow />
       </Stack>
