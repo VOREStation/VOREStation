@@ -488,3 +488,9 @@ export type PreyAbilityData = {
   name: string;
   available: BooleanLike;
 };
+
+export type Overlay = {
+  icon: string;
+  iconState: string;
+  color?: string;
+};

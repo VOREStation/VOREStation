@@ -75,7 +75,7 @@
 	pixel_x = 5-rand(10)
 	pixel_x = 5-rand(10)
 
-	icon_state = pick(cached_icon_states('icons/obj/magazine.dmi'))
+	icon_state = pick(icon_states_fast('icons/obj/magazine.dmi'))
 	headline =   pick(tabloid_headlines)
 	name =       pick(tabloid_publishers)
 
