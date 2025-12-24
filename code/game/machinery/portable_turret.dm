@@ -693,7 +693,7 @@
 /obj/machinery/porta_turret/process()
 	//the main machinery process
 	// Use the timing that the machines subsystem would have normally. Things later in this process can force us to process instantly next tick!
-	var/can_heal = (last_process_time > 0) // Only heal on standard delays, not instant ticks
+	var/can_heal = (last_process_time > TURRET_INSTANT_UPDATE) // Only heal on standard delays, not instant ticks
 	if(world.time < last_process_time + (SSmachines.wait))
 		return
 	last_process_time = world.time
