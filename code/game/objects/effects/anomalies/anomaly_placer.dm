@@ -46,9 +46,16 @@
 		/area/engineering,
 		/area/maintenance,
 		/area/holodeck,
-		/area/ai
+		/area/ai,
+		/area/tcommsat
 	))
 
 	var/static/list/unsafe_area_subtypes = typecacheof(list(/area/engineering/break_room))
 
 	allowed_areas = GLOB.areas_by_type - safe_area_types + unsafe_area_subtypes
+
+	for(var/check_area in allowed_areas)
+		var/area/station_area = allowed_areas[check_area]
+		if(station_area.z in using_map.station_levels || !station_area.flag_check(AREA_FORBID_EVENTS))
+			continue
+		allowed_areas.Remove(check_area)
