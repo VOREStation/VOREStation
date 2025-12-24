@@ -1,4 +1,4 @@
-import { Box, Icon, Stack } from 'tgui-core/components';
+import { Blink, Box, Icon, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { getOverlays } from '../../functions';
 import { MultiOverlayImage } from '../../VorePanelElements/MultiOverlayImage';
@@ -24,7 +24,9 @@ export function BellyFullscreenPreview(props: {
     return (
       <Stack vertical textAlign="center">
         <Stack.Item>
-          <Icon color="red" name="triangle-exclamation" size={10} />
+          <Blink>
+            <Icon color="red" name="triangle-exclamation" size={10} />
+          </Blink>
         </Stack.Item>
         <Stack.Item>
           <Box color="red">
