@@ -242,3 +242,6 @@
   - admin: Global narrate and Admin Subtle PM can now use HTML
   Kashargul:
   - bugfix: large, chunked payloads hitting rate limits
+2025-12-24:
+  Kashargul:
+  - bugfix: fixes an oversight from landmarks lasting forever
