@@ -8,7 +8,7 @@
 	var/cult = 0
 
 /obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)
-	. = cached_icon_states(icon)
+	. = icon_states_fast(icon)
 	. -= "On"
 	. -= "Nar-sie Bistro"
 	. -= "Empty"

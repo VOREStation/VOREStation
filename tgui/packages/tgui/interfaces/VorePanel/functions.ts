@@ -1,4 +1,4 @@
-import type { ActionButtonData } from './types';
+import type { ActionButtonData, Overlay } from './types';
 
 export function abilitiy_usable(nutri: number, cost: number): boolean {
   return nutri >= cost;
@@ -193,4 +193,32 @@ export function ourTypeToOptions(
     ];
   }
   return [];
+}
+
+export function getOverlays(
+  state: string,
+  colors: string[],
+  colorize: boolean,
+): Overlay[] {
+  if (!colorize)
+    return [
+      {
+        icon: 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi',
+        iconState: state,
+      },
+    ];
+
+  const base =
+    'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi';
+  const layers = [
+    'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer1.dmi',
+    'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer2.dmi',
+    'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer3.dmi',
+  ];
+
+  return [base, ...layers].map((icon, i) => ({
+    icon,
+    iconState: state,
+    color: colors[i],
+  }));
 }
