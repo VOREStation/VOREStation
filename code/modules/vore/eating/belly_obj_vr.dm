@@ -675,7 +675,7 @@
 				var/used_fullscreen = belly_fullscreen
 				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
 				belly_fullscreen = null
-				CRASH("Icon datum was not defined for [used_fullscreen]")
+				log_runtime("Icon datum was not defined for [used_fullscreen]")
 
 			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
