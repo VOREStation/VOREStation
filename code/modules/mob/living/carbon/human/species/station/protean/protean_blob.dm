@@ -57,7 +57,7 @@
 	holder_type = /obj/item/holder/protoblob
 	var/hiding = FALSE
 	vore_icons = TRUE
-	vore_active = TRUE
+	vore_active = FALSE
 
 	plane = ABOVE_MOB_PLANE	//Necessary for overlay based icons
 

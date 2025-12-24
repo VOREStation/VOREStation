@@ -8,6 +8,7 @@
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/opened = 0
 	var/sealed = 0

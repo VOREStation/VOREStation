@@ -308,7 +308,7 @@
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
 	if(remote_comp?.looking_at_target_already(loc))
 		return FALSE
-	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
+	if(isitem(loc) || isbelly(loc) || ismecha(loc)) // Requires more careful handling than structures because they are held by mobs
 		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.

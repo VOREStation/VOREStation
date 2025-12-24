@@ -216,6 +216,20 @@
 	SStgui.force_close_window(user, window_id)
 
 /**
+ * A few edge cases that need to bypass topic limits currently, comment why!
+ *
+ * returns TRUE for bypass
+ */
+/proc/bypass_topic_limit(href_list)
+	// Deviation from TG. Our statbrowser has so many commands that logging in as a borg can cause it to rate limit you. This needs fixing eventually.
+	if(href_list["window_id"] == "statbrowser")
+		return TRUE
+	// Chunked messages will exceed the limit
+	if(href_list["tgui"] && href_list["totalPackets"])
+		return TRUE
+	return FALSE
+
+/**
  * Middleware for /client/Topic.
  *
  * return bool Whether the topic is passed (TRUE), or cancelled (FALSE).

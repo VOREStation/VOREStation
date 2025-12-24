@@ -206,3 +206,39 @@
   - bugfix: Fixed Dark Maw not respecting prefs
   Lilly-Lira:
   - bugfix: Flavored donk pockets retain flavor after microwaving
+2025-12-19:
+  Diana:
+  - bugfix: Null rod's special powers can only be used by chaplain.
+  - bugfix: Typing indicator no longer shows up when under FAKEDEATH
+  - qol: Null rod no longer has a 10% chance when used to harm-intent someone's head
+  Willbird:
+  - bugfix: Fixes shadekin getting set on fire while in phase, and being able to spread
+      fire while phased
+2025-12-20:
+  FluffMedic:
+  - code_imp: Adds early returns to gunboxes if no choice is made
+  Guti:
+  - rscadd: Telesci can now fuck around and find out what happens if you try to teleport
+      things from outside the universe
+  - rscadd: Hallucination anomaly confuses players
+  - bugfix: Wearing magboots keeps you grounded with gravity anomalies
+  - bugfix: Fixed phased kin being zapped by the flux anomaly
+  - code_imp: Improved the anomaly placer datum
+  Kashargul:
+  - bugfix: emote spamming no longer allows for rapidly spammed muffled messages
+  - bugfix: robot camera replacement
+  NickBelmont:
+  - qol: Unstable metamorphosis ray can be repaired into an advanced one with a multitool.
+  Willbird:
+  - rscadd: no sleeving trait prevents characters from having a round start body record
+2025-12-21:
+  Diana:
+  - code_imp: Properly has some signals apply.
+  Kashargul:
+  - rscdel: VBOs with unknown licensing
+  - code_imp: unit test simple mob belly_fullscreens
+2025-12-22:
+  Cameron-The-Raven:
+  - admin: Global narrate and Admin Subtle PM can now use HTML
+  Kashargul:
+  - bugfix: large, chunked payloads hitting rate limits
