@@ -105,6 +105,7 @@
 #include "map_tests.dm"
 #include "mapping.dm"
 #include "material_tests.dm"
+#include "mob_vbo_test.dm"
 // #include "nuke_cinematic.dm" // TODO: This is probably fixed later on
 #include "poster_tests.dm"
 // #include "preferences.dm" // This unit test is missing some other stuff
