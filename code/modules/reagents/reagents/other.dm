@@ -353,15 +353,12 @@
 
 // Same as if you boop it wrong. It touches you, you die
 /datum/reagent/supermatter/affect_touch(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 /datum/reagent/supermatter/affect_ingest(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 /datum/reagent/supermatter/affect_blood(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 
@@ -398,12 +395,28 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_NO
 	industrial_use = REFINERYEXPORT_REASON_RAW
 	coolant_modifier = 1 // It's water
+	var/failed_message = FALSE
 
 /datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(ishuman(M)) // Any location
 		if(M.mind && cult.is_antagonist(M.mind) && prob(10))
 			cult.remove_antagonist(M.mind)
+		if(prob(2)) //Get an ACTUAL chaplain for your stuff
+			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
+				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
+				to_chat(M, "You feel calmer.")
+
+			if(M.HasDisease(/datum/disease/fleshy_spread))
+				for(var/datum/disease/fleshy_spread/disease in M.GetViruses())
+					disease.cure()
+					break
+				to_chat(M, "Your fever subsides..")
+		if(volume < max_dose * 0.1 && !failed_message)
+			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption) || M.HasDisease(/datum/disease/fleshy_spread))
+				to_chat(M, span_notice("The power of the holy water courses through you, but seems to have failed to cure your ailments. Perhaps a larger dose is needed?"))
+				failed_message = TRUE
+
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	..()

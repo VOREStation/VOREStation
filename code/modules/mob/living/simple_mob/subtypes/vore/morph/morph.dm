@@ -310,6 +310,7 @@
 	var/mob/living/simple_mob/vore/morph/parent_morph
 	var/mob/living/carbon/human/prey_body
 	var/prey_ckey
+	vore_active = FALSE
 
 
 /mob/living/simple_mob/vore/morph/dominated_prey/Initialize(mapload, pckey, parent, prey)

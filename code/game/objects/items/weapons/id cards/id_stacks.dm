@@ -157,6 +157,11 @@
 	initial_sprite_stack = list("base-stamp-silver", "top-orange", "stamp-n", "pips-gold")
 	rank = JOB_CHIEF_ENGINEER
 
+/obj/item/card/id/engineering/chemical
+	name = JOB_ALT_CHEMENGINEER + "'s ID"
+	initial_sprite_stack = list("base-stamp", "top-orange", "stamp-n", "pips-medblu", "stripe-white")
+	rank = JOB_ENGINEER
+
 //Science
 
 /obj/item/card/id/science
@@ -301,7 +306,7 @@
 	if(isrobot(loc?.loc))
 		R = loc.loc
 		registered_name = R.braintype
-		RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
+		RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/card/id/exploration/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -318,7 +323,7 @@
 
 /obj/item/card/id/exploration/borg/Destroy()
 	if(R)
-		UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		R = null
 		last_robot_loc = null
 	. = ..()

@@ -125,8 +125,8 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 	jam_range = 255
 	tick_cost = 0
 
-/proc/is_vore_jammed(var/obj/radio)
-	var/atom/current = radio
+///Checks to see if the clothing is in a belly that jams sensors or blocks tracking.
+/proc/is_vore_jammed(atom/current)
 	while(current.loc)
 		if(isbelly(current.loc))
 			var/obj/belly/B = current.loc

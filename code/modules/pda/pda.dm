@@ -59,13 +59,13 @@
 	if(Adjacent(user))
 		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
-/obj/item/pda/CtrlClick(mob/user)
+/obj/item/pda/item_ctrl_click(mob/user)
 	if(can_use(user) && !issilicon(user))
 		remove_pen()
 		return
 	..()
 
-/obj/item/pda/AltClick(mob/user)
+/obj/item/pda/click_alt(mob/user)
 	if(issilicon(user))
 		return
 

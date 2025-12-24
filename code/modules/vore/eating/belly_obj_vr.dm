@@ -572,10 +572,10 @@
 		var/obj/item/I = thing
 		startfx.Add(get_belly_surrounding(I.contents))
 
-	for(var/mob/living/M in startfx) // End of indirect vorefx changes
-		M.updateVRPanel()
+	for(var/mob/living/living_mob in startfx) // End of indirect vorefx changes
+		living_mob.updateVRPanel()
 		var/raw_desc //Let's use this to avoid needing to write the reformat code twice
-		if(absorbed_desc && M.absorbed)
+		if(absorbed_desc && living_mob.absorbed)
 			raw_desc = absorbed_desc
 		else if(desc)
 			raw_desc = desc
@@ -583,21 +583,21 @@
 		//Was there a description text? If so, it's time to format it!
 		if(raw_desc)
 			//Replace placeholder vars
-			to_chat(M, span_vnotice(span_bold("[belly_format_string(raw_desc, M)]")))
+			to_chat(living_mob, span_vnotice(span_bold("[belly_format_string(raw_desc, living_mob)]")))
 
 		var/taste
-		if(can_taste && M.loc == src && (taste = M.get_taste_message(FALSE))) // Prevent indirect tasting
-			to_chat(owner, span_vnotice("[M] tastes of [taste]."))
-		vore_fx(M, TRUE)
+		if(can_taste && living_mob.loc == src && (taste = living_mob.get_taste_message(FALSE))) // Prevent indirect tasting
+			to_chat(owner, span_vnotice("[living_mob] tastes of [taste]."))
+		vore_fx(living_mob)
 		if(owner.previewing_belly == src)
-			vore_fx(owner, TRUE)
+			vore_fx(owner)
 		//Stop AI processing in bellies
-		if(M.ai_holder)
-			M.ai_holder.go_sleep()
+		if(living_mob.ai_holder)
+			living_mob.ai_holder.go_sleep()
 		if(reagents.total_volume >= 5)
-			if(digest_mode == DM_DIGEST && M.digestable)
-				reagents.trans_to(M, reagents.total_volume * 0.1, 1 / max(LAZYLEN(contents), 1), FALSE)
-			to_chat(M, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
+			if(digest_mode == DM_DIGEST && living_mob.digestable)
+				reagents.splash_mob(living_mob, reagents.total_volume * 0.1, FALSE)
+			to_chat(living_mob, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
 	if(!isliving(thing) && count_items_for_sprite) // If this is enabled also update fullness for non-living things
 		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 
@@ -653,7 +653,7 @@
 // SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
 // to certain non-belly atoms. Not called here as vore_fx() is usually only called if a mob is in the belly.
 // Don't forget it if you need to rework vore_fx().
-/obj/belly/proc/vore_fx(mob/living/L, var/update, var/severity = 0)
+/obj/belly/proc/vore_fx(mob/living/L, var/severity = 0)
 	if(!istype(L))
 		return
 	if(!L.client)
@@ -667,8 +667,6 @@
 		L.clear_fullscreen("belly")
 		L.previewing_belly = null
 		return
-	if(update)
-		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
 			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly, severity) // preserving save data
@@ -677,7 +675,7 @@
 				var/used_fullscreen = belly_fullscreen
 				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
 				belly_fullscreen = null
-				CRASH("Icon datum was not defined for [used_fullscreen]")
+				log_runtime("Icon datum was not defined for [used_fullscreen]")
 
 			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
@@ -750,7 +748,7 @@
 			F.update_for_view(L.client.view)
 		else
 			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly/fixed, severity) //preserving save data
-			F.icon = 'icons/mob/screen_full_vore.dmi'
+			F.icon = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi'
 			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))

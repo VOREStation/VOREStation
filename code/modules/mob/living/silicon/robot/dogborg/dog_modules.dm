@@ -160,7 +160,7 @@
 		if(istype(target,/obj/item/trash))
 			user.visible_message(span_filter_notice("[user] nibbles away at \the [target.name]."), span_notice("You begin to nibble away at \the [target.name]..."))
 			busy = 1
-			if(do_after (user, 50))
+			if(do_after (user, 5 SECONDS, target))
 				user.visible_message(span_filter_notice("[user] finishes eating \the [target.name]."), span_notice("You finish eating \the [target.name]."))
 				to_chat(user, span_notice("You finish off \the [target.name]."))
 				qdel(target)
@@ -171,7 +171,7 @@
 		if(istype(target,/obj/item/cell))
 			user.visible_message(span_filter_notice("[user] begins cramming \the [target.name] down its throat."), span_notice("You begin cramming \the [target.name] down your throat..."))
 			busy = 1
-			if(do_after (user, 50))
+			if(do_after (user, 5 SECONDS, target))
 				user.visible_message(span_filter_notice("[user] finishes gulping down \the [target.name]."), span_notice("You finish swallowing \the [target.name]."))
 				to_chat(user, span_notice("You finish off \the [target.name], and gain some charge!"))
 				var/mob/living/silicon/robot/R = user
@@ -402,7 +402,7 @@
 /obj/item/reagent_containers/glass/beaker/large/borg/Initialize(mapload)
 	. = ..()
 	R = loc.loc
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/reagent_containers/glass/beaker/large/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -418,7 +418,7 @@
 			hud_layerise()
 
 /obj/item/reagent_containers/glass/beaker/large/borg/Destroy()
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	R = null
 	last_robot_loc = null
 	. = ..()
@@ -447,7 +447,7 @@
 	exact = TRUE
 	to_chat(user, span_notice("You've upgraded the mining scanner for [upgrade_cost] points."))
 
-/obj/item/mining_scanner/robot/AltClick(mob/user)
+/obj/item/mining_scanner/robot/click_alt(mob/user)
 	change_size(user)
 
 /obj/item/mining_scanner/robot/proc/change_size(mob/user)

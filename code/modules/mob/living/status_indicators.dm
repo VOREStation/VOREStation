@@ -47,7 +47,7 @@
 	if(!LAZYLEN(status_indicators))
 		return
 
-	if(stat == DEAD)
+	if(stat == DEAD || (status_flags & FAKEDEATH))
 		return
 
 	// Now put them back on in the right spot.

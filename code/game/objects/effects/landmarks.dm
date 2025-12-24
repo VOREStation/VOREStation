@@ -75,7 +75,7 @@
 		GLOB.landmarks_list += src
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
-	if(force)
+	if(delete_me || force)
 		GLOB.landmarks_list -= src
 		return ..()
 	return QDEL_HINT_LETMELIVE

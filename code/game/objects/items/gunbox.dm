@@ -14,6 +14,8 @@
 	options["MarsTech R1 (.45)"] = list(/obj/item/gun/projectile/revolver/detective45, /obj/item/ammo_magazine/s45/rubber, /obj/item/ammo_magazine/s45/rubber)
 	options["MarsTech P92X (9mm)"] = list(/obj/item/gun/projectile/p92x/rubber, /obj/item/ammo_magazine/m9mm/rubber, /obj/item/ammo_magazine/m9mm/rubber)
 	var/choice = tgui_input_list(user,"Would you prefer a pistol or a revolver?", "Gun!", options)
+	if(!choice)
+		return
 	if(src && choice)
 		var/list/things_to_spawn = options[choice]
 		for(var/new_type in things_to_spawn) // Spawn all the things, the gun and the ammo.
@@ -33,6 +35,8 @@
 	options["Stun Revolver"] = list(/obj/item/gun/energy/stunrevolver/detective, /obj/item/cell/device/weapon, /obj/item/cell/device/weapon)
 	options["Taser"] = list(/obj/item/gun/energy/taser, /obj/item/cell/device/weapon, /obj/item/cell/device/weapon)
 	var/choice = tgui_input_list(user,"Please, select an option.", "Stun Gun!", options)
+	if(!choice)
+		return
 	if(src && choice)
 		var/list/things_to_spawn = options[choice]
 		for(var/new_type in things_to_spawn) // Spawn all the things, the gun and the ammo.
@@ -54,6 +58,8 @@
 	options["Écureuil Olive (10mm)"] = list(/obj/item/gun/projectile/ecureuil/tac, /obj/item/ammo_magazine/m10mm/pistol, /obj/item/ammo_magazine/m10mm/pistol)
 	options["Écureuil Tan (10mm)"] = list(/obj/item/gun/projectile/ecureuil/tac2, /obj/item/ammo_magazine/m10mm/pistol, /obj/item/ammo_magazine/m10mm/pistol)
 	var/choice = tgui_input_list(user,"Please, select an option.", "Gun!", options)
+	if(!choice)
+		return
 	if(src && choice)
 		var/list/things_to_spawn = options[choice]
 		for(var/new_type in things_to_spawn) // Spawn all the things, the gun and the ammo.

@@ -1289,7 +1289,6 @@
 	affect_blood(M, alien, removed * 0.8)
 
 /datum/reagent/spacomycaze/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(alien == IS_SLIME)
 		if(volume <= 0.1 && data != -1)
 			data = -1
