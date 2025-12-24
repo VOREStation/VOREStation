@@ -568,19 +568,27 @@
 	else
 		//if the turret was attacked with the intention of harming it:
 		user.setClickCooldown(user.get_attack_speed(I))
-		take_damage(I.force * 0.5)
-		if(I.force * 0.5 > 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
-			if(!attacked && !emagged && !(stat & (NOPOWER|BROKEN)))
-				attacked = TRUE
-				playsound(src, 'sound/machines/terminal_alert.ogg', 150)
-				addtimer(CALLBACK(src, PROC_REF(retaliate_end)), TURRET_RETALIATION_TIME, TIMER_DELETE_ME)
+		var/dam = I.force * 0.5
+		take_damage(dam)
+		attempt_retaliate(dam)
 		..()
+
+/obj/machinery/porta_turret/proc/attempt_retaliate(incoming_damage)
+	if(attacked || !enabled || emagged || incoming_damage <= 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
+		return
+	if(stat & (NOPOWER|BROKEN))
+		return
+	attacked = TRUE
+	addtimer(CALLBACK(src, PROC_REF(retaliate_end)), TURRET_RETALIATION_TIME, TIMER_DELETE_ME)
+	playsound(src, 'sound/machines/terminal_alert.ogg', 150)
 
 /obj/machinery/porta_turret/proc/retaliate_end()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
 	attacked = FALSE
+	if(stat & (NOPOWER|BROKEN))
+		return
 	playsound(src, 'sound/machines/buzzbeep.ogg', 150)
 
 /obj/machinery/porta_turret/attack_generic(mob/living/L, damage)
@@ -591,6 +599,7 @@
 			visible_message(span_danger("\The [S] [pick(S.attacktext)] \the [src]!"))
 			take_damage(incoming_damage)
 			S.do_attack_animation(src)
+			attempt_retaliate(incoming_damage)
 			return 1
 		visible_message(span_infoplain(span_bold("\The [L]") + " bonks \the [src]'s casing!"))
 	return ..()
@@ -626,14 +635,10 @@
 	if(!damage)
 		return
 
-	if(enabled && !(stat & (NOPOWER|BROKEN)))
-		if(!attacked && !emagged)
-			attacked = 1
-			playsound(src, 'sound/machines/terminal_alert.ogg', 150)
-			addtimer(CALLBACK(src, PROC_REF(retaliate_end)), TURRET_RETALIATION_TIME, TIMER_DELETE_ME)
 	..()
 
 	take_damage(damage)
+	attempt_retaliate(damage)
 
 /obj/machinery/porta_turret/emp_act(severity, recursive)
 	if(enabled)
