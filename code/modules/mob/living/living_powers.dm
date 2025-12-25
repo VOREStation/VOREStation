@@ -62,10 +62,10 @@
 
 	if(touch_reaction_flags & SPECIES_TRAIT_PICKUP_DODGE)
 		touch_reaction_flags &= ~(SPECIES_TRAIT_PICKUP_DODGE)
-		to_chat(src,span_notice("You will no longer dodge pickup attempts."))
+		to_chat(src, span_notice("You will no longer dodge pickup attempts."))
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PICKUP_DODGE
-		to_chat(src,span_notice("You will now dodge pickup attempts."))
+		to_chat(src, span_notice("You will now dodge pickup attempts."))
 
 /mob/living/proc/toggle_thorns()
 	set name = "Toggle Thorns"
