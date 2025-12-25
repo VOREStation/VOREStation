@@ -360,14 +360,23 @@
 			if(e.has_infected_wound())
 				dat += span_warning("Infected wound detected in subject [e.name]. Disinfection recommended.")
 				dat += "<br>"
+			if(e.status & ORGAN_DEAD)
+				dat += span_danger("Full-depth necrosis detected in [e.name]. Urgent surgical removal/intervention required.")
+				dat += "<br>"
+			else if(e.germ_level > INFECTION_LEVEL_ONE)
+				if(e.germ_level >= INFECTION_LEVEL_TWO)
+					dat += span_danger("Necrosis detected in [e.name]. [showadvscan ? "Quantity: [e.germ_level]. " : ""] Antibiotics / surgical intervention urgently required.")
+				else
+					dat += span_warning("Cellulitis detected in [e.name]. [showadvscan ? "Quantity: [e.germ_level]. " : ""] Antibiotics / surgical intervention required.")
+				dat += "<br>"
 			// IB
 			for(var/datum/wound/W in e.wounds)
 				if(W.internal)
 					if(advscan >= SCANNABLE_ADVANCED && showadvscan == 1)
-						ib_dat += span_warning("Internal bleeding detected in subject [e.name].")
+						ib_dat += span_warning("Internal bleeding detected in subject [e.name]. Severity: [H.calculate_internal_bloodloss(W) * 0.5] units of blood lost per second")
 						ib_dat += "<br>"
 					else
-						basic_ib = 1
+						basic_ib = TRUE
 		if(basic_fracture)
 			fracture_dat += span_warning("Bone fractures detected. Advanced scanner required for location.")
 			fracture_dat += "<br>"
@@ -379,7 +388,7 @@
 		dat += ib_dat
 
 		// Blood level
-		if(M:vessel)
+		if(H.vessel)
 			var/blood_volume = H.vessel.get_reagent_amount(REAGENT_ID_BLOOD)
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
