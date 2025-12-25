@@ -56,6 +56,6 @@
 
 	for(var/check_area in allowed_areas)
 		var/area/station_area = allowed_areas[check_area]
-		if(station_area.z in using_map.station_levels || !station_area.flag_check(AREA_FORBID_EVENTS))
+		if((station_area.z in using_map.station_levels) || !station_area.flag_check(AREA_FORBID_EVENTS))
 			continue
 		allowed_areas.Remove(check_area)
