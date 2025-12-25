@@ -18,8 +18,11 @@
 /proc/techweb_item_point_check(obj/item/I)
 	if(SSresearch.techweb_point_items[I.type])
 		return SSresearch.techweb_point_items[I.type]
-	if(I.techweb_points)
-		return list(I.techweb_point_type = I.techweb_points)
+
+	//I had originally attempted to make it use signals, but it wouldn't work due to the techweb point type being a string instead of a number.
+	var/datum/component/deconstructable_research/research_component = I.GetComponent(/datum/component/deconstructable_research)
+	if(research_component)
+		return list(research_component.techweb_point_type = research_component.techweb_points)
 	return FALSE
 
 /proc/techweb_point_display_generic(pointlist)

@@ -845,8 +845,12 @@
 		if(become_anomalous)
 			new_item.become_anomalous()
 
-		new_item.techweb_points = rand(20, 60) //20 to 60 seconds worth of points.
-		new_item.techweb_generic = TRUE
+		//Add the component that allows for deconstruction for points.
+		new_item.AddComponent(
+			/datum/component/deconstructable_research, \
+			techweb_points = rand(20,60), \
+			techweb_point_type = TECHWEB_POINT_TYPE_GENERIC \
+			)
 
 		var/turf/simulated/mineral/T = get_turf(new_item)
 		if(istype(T))

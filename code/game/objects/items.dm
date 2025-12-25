@@ -148,13 +148,6 @@
 	var/cleandesc
 	var/gurgled_color
 
-	///Used by R&D to determine how many points the item gives.
-	var/techweb_points = 0
-	///Used by R&D to determine if the item is generic (i.e. an artifact)
-	var/techweb_generic = 0
-	///Used by R&D to determine what point type the item gives, if any
-	var/techweb_point_type = TECHWEB_POINT_TYPE_GENERIC
-
 /obj/item/Initialize(mapload)
 	. = ..()
 
