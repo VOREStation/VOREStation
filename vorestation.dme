@@ -2320,7 +2320,6 @@
 #include "code\modules\asset_cache\assets\spritesheets\robot_icons.dm"
 #include "code\modules\asset_cache\assets\spritesheets\stacks.dm"
 #include "code\modules\asset_cache\assets\spritesheets\vending.dm"
-#include "code\modules\asset_cache\assets\spritesheets\vore.dm"
 #include "code\modules\asset_cache\iconforge\batched_spritesheet.dm"
 #include "code\modules\asset_cache\iconforge\universal_icon.dm"
 #include "code\modules\asset_cache\transports\asset_transport.dm"
