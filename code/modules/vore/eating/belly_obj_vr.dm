@@ -588,9 +588,9 @@
 		var/taste
 		if(can_taste && living_mob.loc == src && (taste = living_mob.get_taste_message(FALSE))) // Prevent indirect tasting
 			to_chat(owner, span_vnotice("[living_mob] tastes of [taste]."))
-		vore_fx(living_mob, TRUE)
+		vore_fx(living_mob)
 		if(owner.previewing_belly == src)
-			vore_fx(owner, TRUE)
+			vore_fx(owner)
 		//Stop AI processing in bellies
 		if(living_mob.ai_holder)
 			living_mob.ai_holder.go_sleep()
@@ -653,7 +653,7 @@
 // SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
 // to certain non-belly atoms. Not called here as vore_fx() is usually only called if a mob is in the belly.
 // Don't forget it if you need to rework vore_fx().
-/obj/belly/proc/vore_fx(mob/living/L, var/update, var/severity = 0)
+/obj/belly/proc/vore_fx(mob/living/L, var/severity = 0)
 	if(!istype(L))
 		return
 	if(!L.client)
@@ -667,8 +667,6 @@
 		L.clear_fullscreen("belly")
 		L.previewing_belly = null
 		return
-	if(update)
-		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
 			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly, severity) // preserving save data
@@ -677,7 +675,7 @@
 				var/used_fullscreen = belly_fullscreen
 				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
 				belly_fullscreen = null
-				CRASH("Icon datum was not defined for [used_fullscreen]")
+				log_runtime("Icon datum was not defined for [used_fullscreen]")
 
 			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
@@ -750,7 +748,7 @@
 			F.update_for_view(L.client.view)
 		else
 			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly/fixed, severity) //preserving save data
-			F.icon = 'icons/mob/screen_full_vore.dmi'
+			F.icon = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi'
 			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))
