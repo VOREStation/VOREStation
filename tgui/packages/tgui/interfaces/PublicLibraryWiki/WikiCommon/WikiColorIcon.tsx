@@ -63,7 +63,10 @@ export const CanvasBackedImage = (props: {
       width={dimension}
       height={dimension}
       onError={() => setLoadFailed(true)}
-      style={{ visibility: bitmap && !loadFailed ? 'visible' : 'hidden' }}
+      style={{
+        visibility: bitmap && !loadFailed ? 'visible' : 'hidden',
+        imageRendering: 'pixelated',
+      }}
     />
   );
 };

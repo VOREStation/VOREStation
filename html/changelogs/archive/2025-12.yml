@@ -245,3 +245,9 @@
 2025-12-24:
   Kashargul:
   - bugfix: fixes an oversight from landmarks lasting forever
+2025-12-25:
+  Kashargul:
+  - qol: the belly preview is now realtime color rendered
+  - code_imp: move icon_states usage fully to rust g based icon_states_fast
+  - bugfix: preview breaking on fast image swapping
+  - bugfix: bad layer order on some vore overlays
