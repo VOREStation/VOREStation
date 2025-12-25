@@ -22,7 +22,7 @@
 	//cursed pointer usage lay here
 	var/list/type_pointer = list() //yes this is a pointer.
 	var/point_value = SEND_SIGNAL(I, COMSIG_TECHWEB_POINT_CHECK)
-	var/point_type = SEND_SIGNAL(I, COMSIG_TECHWEB_TYPE_CHECK, type_pointer)
+	SEND_SIGNAL(I, COMSIG_TECHWEB_TYPE_CHECK, type_pointer)
 	if(point_value && LAZYLEN(type_pointer))
 		return list(type_pointer["type"] = point_value)
 	return FALSE
