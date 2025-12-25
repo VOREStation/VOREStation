@@ -231,10 +231,10 @@
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	AddComponent(/datum/component/hose_connector/input)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	. = ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)

@@ -164,6 +164,12 @@ export const VoreSelectedBellyVisuals = (props: {
       </Stack.Item>
       <Stack.Item grow>
         <BellyFullscreenSelection
+          colors={[
+            belly_fullscreen_color,
+            belly_fullscreen_color2,
+            belly_fullscreen_color3,
+            belly_fullscreen_color4,
+          ]}
           editMode={editMode}
           belly_fullscreen={belly_fullscreen}
           colorization_enabled={colorization_enabled}

@@ -13,7 +13,6 @@
 	opacity = 1							//Opaque. Menacing.
 	anchored = TRUE						//No pulling around.
 	unacidable = TRUE						//And no deleting hoomans inside
-	flags = REMOTEVIEW_ON_ENTER
 	layer = MOB_LAYER					//Icon draw layer
 	infra_luminosity = 15				//Byond implementation is bugged.
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
