@@ -108,18 +108,22 @@
 	icon_state = "xenode"
 	organ_tag = O_HIVE
 
+/obj/item/organ/internal/xenos/hivenode/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+	..()
+	target.add_language(LANGUAGE_HIVEMIND) //You need this to speak the language, so...
+
+/obj/item/organ/internal/xenos/hivenode/removed(var/mob/living/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/human = user
+		human.remove_language(LANGUAGE_HIVEMIND)
+	..()
+
 /obj/item/organ/internal/xenos/hivenode/grey
 	icon_state = "xenode_grey"
 
 /obj/item/organ/internal/xenos/hivenode/grey/colormatch/Initialize(mapload, internal)
 	..()
 	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/organ/internal/xenos/hivenode/grey/colormatch/LateInitialize()
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		color = H.species.blood_color
-		H.add_language(LANGUAGE_HIVEMIND) //You need this to speak the language, so...
 
 /obj/item/organ/internal/xenos/resinspinner
 	name = "resin spinner"
