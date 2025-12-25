@@ -417,7 +417,7 @@
 /obj/item/reagent_containers/glass/beaker/large/borg/Initialize(mapload)
 	. = ..()
 	R = loc.loc
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/reagent_containers/glass/beaker/large/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -433,7 +433,7 @@
 			hud_layerise()
 
 /obj/item/reagent_containers/glass/beaker/large/borg/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	R = null
 	last_robot_loc = null
 	. = ..()

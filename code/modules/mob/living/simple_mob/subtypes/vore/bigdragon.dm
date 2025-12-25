@@ -660,7 +660,7 @@ I think I covered everything.
 	mode_flags = DM_FLAG_NUMBING
 	struggle_messages_inside = list(
 		"Deciding that you've stayed long enough, you wriggle and writhe, stretching yourself out in the chamber, trying to thrust your hands and face up the way you entered. The beast stirs, and this churny pocket of flesh providing you safety clenches hard, aiding your entry back up into the lowermost depths of it's gullet. rhythmic clenches continue to invite you back down, however, should you reconsider.")
-	belly_fullscreen = "anim_belly"
+	belly_fullscreen = "VBOanim_belly1"
 
 ///
 ///		AI handling stuff

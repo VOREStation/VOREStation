@@ -1,4 +1,0 @@
-author: "Willbird"
-delete-after: True
-changes:
-  - bugfix: "Fixes shadekin getting set on fire while in phase, and being able to spread fire while phased"

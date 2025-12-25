@@ -828,9 +828,9 @@
 			if(new_disable_hud == 1)
 				new_belly.disable_hud = TRUE
 
-		var/possible_fullscreens = cached_icon_states('icons/mob/screen_full_vore_list.dmi')
+		var/possible_fullscreens = icon_states_fast('icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi')
 		if(!new_belly.colorization_enabled)
-			possible_fullscreens = cached_icon_states('icons/mob/screen_full_vore.dmi')
+			possible_fullscreens = icon_states_fast('icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi')
 		if(!(new_belly.belly_fullscreen in possible_fullscreens))
 			new_belly.belly_fullscreen = ""
 

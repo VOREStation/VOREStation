@@ -164,9 +164,9 @@
 	//Determines if there's directionals.
 	if(render_icon && curdir != SOUTH)
 		if (
-			!length(icon_states(icon(curicon, curstate, NORTH))) \
-			&& !length(icon_states(icon(curicon, curstate, EAST))) \
-			&& !length(icon_states(icon(curicon, curstate, WEST))) \
+			!length(icon_states_fast(icon(curicon, curstate, NORTH))) \
+			&& !length(icon_states_fast(icon(curicon, curstate, EAST))) \
+			&& !length(icon_states_fast(icon(curicon, curstate, WEST))) \
 		)
 			base_icon_dir = SOUTH
 
