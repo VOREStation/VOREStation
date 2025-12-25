@@ -125,6 +125,11 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
+/obj/item/organ/internal/xenos/hivenode/grey/colormatch/LateInitialize()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
+
 /obj/item/organ/internal/xenos/resinspinner
 	name = "resin spinner"
 	parent_organ = BP_HEAD
