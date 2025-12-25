@@ -14,7 +14,6 @@
 		src.techweb_point_type = techweb_point_type
 
 //Below was the (failed) attempt to make it use signals...Sadly, it did not work out as the techweb type is a string, and signals don't support returning strings.
-/*
 /datum/component/deconstructable_research/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_TECHWEB_POINT_CHECK, PROC_REF(point_check))
 	RegisterSignal(parent, COMSIG_TECHWEB_TYPE_CHECK, PROC_REF(type_check))
@@ -26,6 +25,10 @@
 /datum/component/deconstructable_research/proc/point_check(atom/movable/source)
 	return techweb_points
 
+/*
 /datum/component/deconstructable_research/proc/type_check(atom/movable/source)
 	return techweb_point_type
 */
+
+/datum/component/deconstructable_research/proc/type_check(atom/movable/source, list/modify_me)
+	modify_me["type"] = techweb_point_type

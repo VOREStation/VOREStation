@@ -641,9 +641,7 @@
 
 
 //Non TG signals:
-/* //This was more or less a proof of concept
 ///from /proc/techweb_item_point_check(obj/item/I): Runs when assessing an item's techweb point value.
 #define COMSIG_TECHWEB_POINT_CHECK "techweb_point_check"
 ///from /proc/techweb_item_point_check(obj/item/I): Runs when assessing an item's techweb point type.
 #define COMSIG_TECHWEB_TYPE_CHECK "techweb_type_check"
-*/

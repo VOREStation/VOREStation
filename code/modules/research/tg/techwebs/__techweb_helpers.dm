@@ -19,10 +19,12 @@
 	if(SSresearch.techweb_point_items[I.type])
 		return SSresearch.techweb_point_items[I.type]
 
-	//I had originally attempted to make it use signals, but it wouldn't work due to the techweb point type being a string instead of a number.
-	var/datum/component/deconstructable_research/research_component = I.GetComponent(/datum/component/deconstructable_research)
-	if(research_component)
-		return list(research_component.techweb_point_type = research_component.techweb_points)
+	//cursed pointer usage lay here
+	var/list/type_pointer = list() //yes this is a pointer.
+	var/point_value = SEND_SIGNAL(I, COMSIG_TECHWEB_POINT_CHECK)
+	var/point_type = SEND_SIGNAL(I, COMSIG_TECHWEB_TYPE_CHECK, type_pointer)
+	if(point_value && LAZYLEN(type_pointer))
+		return list(type_pointer["type"] = point_value)
 	return FALSE
 
 /proc/techweb_point_display_generic(pointlist)
