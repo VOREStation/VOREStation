@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Null rod's special powers can only be used by chaplain."
-  - bugfix: "Typing indicator no longer shows up when under FAKEDEATH"
-  - qol: "Null rod no longer has a 10% chance when used to harm-intent someone's head"

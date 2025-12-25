@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "runtime during vore unit tests on some downstream maps"

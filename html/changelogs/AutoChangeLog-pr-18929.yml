@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Alien hive node also adds the alien language to the newfound owner."
