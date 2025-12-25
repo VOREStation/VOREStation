@@ -25,10 +25,5 @@
 /datum/component/deconstructable_research/proc/point_check(atom/movable/source)
 	return techweb_points
 
-/*
-/datum/component/deconstructable_research/proc/type_check(atom/movable/source)
-	return techweb_point_type
-*/
-
 /datum/component/deconstructable_research/proc/type_check(atom/movable/source, list/modify_me)
 	modify_me["type"] = techweb_point_type
