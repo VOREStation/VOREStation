@@ -245,9 +245,10 @@ BLOOD_VOLUME_SURVIVE = 40
 		if(temp.open)
 			blood_max += 2 //Yer stomach is cut open
 	if(bleed)
+		blood_max = round(blood_max, 0.1)
 		drip(blood_max)
 		total_blood_loss += blood_max
-	return total_blood_loss
+	return round(total_blood_loss, 0.1)
 
 ///Calculates how much blood we should lose from an internal wound.
 /mob/living/carbon/human/proc/calculate_internal_bloodloss(datum/wound/internal_bleeding/wound_to_check, applied_pressure = FALSE)
@@ -270,7 +271,7 @@ BLOOD_VOLUME_SURVIVE = 40
 		temp_bld += 30
 	if(wound_to_check.clamped)
 		temp_bld = temp_bld * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
-	return (wound_to_check.damage/temp_bld)
+	return round((wound_to_check.damage/temp_bld), 0.1)
 
 
 //Makes a blood drop, leaking amt units of blood from the mob
