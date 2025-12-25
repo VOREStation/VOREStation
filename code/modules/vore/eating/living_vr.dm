@@ -1098,11 +1098,8 @@
 
 // Full screen belly overlays!
 /atom/movable/screen/fullscreen/belly
-	icon = 'icons/mob/vore_fullscreens/screen_full_vore_list.dmi'
 
 /atom/movable/screen/fullscreen/belly/fixed
-	icon = 'icons/mob/screen_full_vore.dmi'
-	icon_state = ""
 
 /mob/living/proc/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting.
 	set name = "X-Print Vorebelly Settings"
