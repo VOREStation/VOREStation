@@ -613,6 +613,26 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 #Turn this on if you want all admin-PMs to go to be sent to discord, and not only the first message of a ticket.
 #DISCORD_AHELPS_ALL
 
+## Game Chat Message Options
+## Various messages to be sent to connected chat channels.
+## Uncommenting these will enable them, by default they will be broadcast to Game chat channels on TGS3 or non-admin channels on TGS>=4.
+## If using TGS>=4, the string option can be set as one of more chat channel tags (separated by ','s) to limit the message to channels with that tag name (case-sensitive). This will have no effect on TGS3.
+## You can also specify multiple channel tags by using the config option multiple times,
+## i.e. CHANNEL_ANNOUNCE_NEW_GAME chat_channel_tag_1
+## i.e. CHANNEL_ANNOUNCE_NEW_GAME chat_channel_tag_2
+
+## Which channels will have a message about a new game starting, message includes the station name.
+#CHANNEL_ANNOUNCE_NEW_GAME
+
+## Which channels will have a message about a new game starting, message includes the round ID of the game that has just ended.
+#CHANNEL_ANNOUNCE_END_GAME
+
+## Ping users who use the `notify` command when a new game starts.
+#CHAT_NEW_GAME_NOTIFICATIONS
+
+## Uncomment this flag to validate admin commands from discord by requiring they come from linked discord accounts and that those discord accounts link to a ckey with the right admin permissions.
+# SECURE_CHAT_COMMANDS
+
 ###Master Controller High Pop Mode###
 
 ##The Master Controller(MC) is the primary system controlling timed tasks and events in SS13 (lobby timer, game checks, lighting updates, atmos, etc)
