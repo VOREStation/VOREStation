@@ -189,9 +189,16 @@
 
 /obj/machinery/computer/telescience/proc/telefail()
 	switch(rand(99))
-		if(0 to 85)
+		if(0 to 80)
 			sparks()
 			visible_message(span_warning("The telepad weakly fizzles."))
+			return
+		if(81 to 85)
+			sparks()
+			var/anomaly = pick(FLUX_ANOMALY, GRAVITATIONAL_ANOMALY, PYRO_ANOMALY, HALLUCINATION_ANOMALY, BIOSCRAMBLER_ANOMALY, DIMENSIONAL_ANOMALY)
+			generate_anomaly(get_turf(telepad), anomaly, 1, FALSE)
+			for(var/mob/living/carbon/human/human in viewers(telepad, null))
+				to_chat(human, span_warning("The telepad crackles with energy, as a tear in reality is created!"))
 			return
 		if(86 to 90)
 			// Irradiate everyone in telescience!

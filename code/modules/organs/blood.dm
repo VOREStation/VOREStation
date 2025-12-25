@@ -49,7 +49,7 @@ BLOOD_VOLUME_SURVIVE = 40
 			if(isSynthetic())
 				B.data["species"] = "synthetic"
 
-			B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
+			B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood || HAS_TRAIT(src, TRAIT_REDSPACE_CORRUPTED)
 			B.color = B.data["blood_colour"]
 			B.name = B.data["blood_name"]
 
@@ -325,7 +325,7 @@ BLOOD_VOLUME_SURVIVE = 40
 		B.data["resistances"] |= GetResistances()
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
-	B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
+	B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood || HAS_TRAIT(src, TRAIT_REDSPACE_CORRUPTED)
 
 	// Putting this here due to return shenanigans.
 	if(ishuman(src))
@@ -402,7 +402,7 @@ BLOOD_VOLUME_SURVIVE = 40
 		if(!our)
 			log_runtime("Failed to re-initialize blood datums on [src]!")
 			return
-	if(is_changeling(src)) //Changelings don't reject blood!
+	if((is_changeling(src) || HAS_TRAIT(src, TRAIT_REDSPACE_CORRUPTED))) //Changelings don't reject blood!
 		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
 		vessel.update_total()
 	else if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
