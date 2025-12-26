@@ -191,6 +191,9 @@
 	attack_verb = list("beaten", "smashed", "struck", "whacked")
 
 /obj/item/scepter/attack_self(mob/living/carbon/human/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/obj/item/item_to_test = user.get_other_hand(src)
 	if(istype(item_to_test, /obj/item/spell))
 		var/obj/item/spell/S = item_to_test

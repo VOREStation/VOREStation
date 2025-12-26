@@ -25,7 +25,10 @@
 	else
 		icon_state = "gift[pick(1, 2, 3)]" + "_[pick("g","r","b","y","p")]"
 
-/obj/item/gift/attack_self(mob/user as mob)
+/obj/item/gift/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.drop_item()
 	playsound(src, 'sound/items/package_unwrap.ogg', 50,1)
 	if(gift)
@@ -59,7 +62,10 @@
 
 	qdel(src)
 
-/obj/item/a_gift/attack_self(mob/M as mob)
+/obj/item/a_gift/attack_self(mob/M)
+	. = ..(M)
+	if(.)
+		return TRUE
 	var/gift_type = pick(
 		/obj/item/storage/wallet,
 		/obj/item/storage/photo_album,

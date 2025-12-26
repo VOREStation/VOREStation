@@ -41,7 +41,10 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	. = ..()
 	id = GLOB.photo_count++
 
-/obj/item/photo/attack_self(mob/user as mob)
+/obj/item/photo/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.examinate(src)
 
 /obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
@@ -148,7 +151,10 @@ GLOBAL_VAR_INIT(photo_count, 0)
 /obj/item/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/camera/attack_self(mob/user as mob)
+/obj/item/camera/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	on = !on
 	if(on)
 		src.icon_state = icon_on

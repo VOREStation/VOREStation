@@ -5,6 +5,7 @@
 	origin_tech = list(TECH_COMBAT = 1)
 	matter = list(MAT_STEEL = 100)
 	var/armed = 0
+	special_handling = TRUE
 
 
 /obj/item/assembly/mousetrap/examine(var/mob/user)
@@ -49,7 +50,10 @@
 	update_icon()
 	pulse(0)
 
-/obj/item/assembly/mousetrap/attack_self(var/mob/living/user)
+/obj/item/assembly/mousetrap/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!armed)
 		to_chat(user, span_notice("You arm [src]."))
 	else

@@ -149,7 +149,10 @@
 			icon_scale_y = prey.size_multiplier
 			update_transform()
 
-/obj/item/digestion_remains/attack_self(var/mob/user)
+/obj/item/digestion_remains/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.a_intent == I_HURT)
 		to_chat(user,span_warning("As you squeeze the [name], it crumbles into dust and falls apart into nothing!"))
 		qdel(src)

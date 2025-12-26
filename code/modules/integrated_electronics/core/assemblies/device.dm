@@ -6,6 +6,8 @@
 
 	var/obj/item/electronic_assembly/device/EA
 
+	special_handling = TRUE
+
 /obj/item/assembly/electronic_assembly/Initialize(mapload)
 	. = ..()
 	EA = new(src)
@@ -35,7 +37,10 @@
 	if(opened)
 		icon_state = icon_state + "-open"
 
-/obj/item/assembly/electronic_assembly/attack_self(mob/user as mob)
+/obj/item/assembly/electronic_assembly/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(EA)
 		EA.attack_self(user)
 

@@ -1,4 +1,7 @@
-/obj/item/reagent_containers/blood/attack_self(mob/living/user as mob)
+/obj/item/reagent_containers/blood/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.a_intent == I_HURT)
 		if(reagents.total_volume && volume)
 			var/remove_volume = volume* 0.1 //10% of what the bloodpack can hold.

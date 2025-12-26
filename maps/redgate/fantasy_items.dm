@@ -472,6 +472,7 @@
 	beacons_left = 3
 	cell_type = /obj/item/cell/device
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
+	special_handling = TRUE
 
 /obj/item/perfect_tele_beacon/magic
 	name = "teleportation page"
@@ -480,6 +481,9 @@
 	icon_state = "page"
 
 /obj/item/perfect_tele/magic/attack_self(mob/user, var/radial_menu_anchor = src)
+	. = ..(user, radial_menu_anchor)
+	if(.)
+		return TRUE
 	if(loc_network)
 		for(var/obj/item/perfect_tele_beacon/stationary/nb in GLOB.premade_tele_beacons)
 			if(nb.tele_network == loc_network)

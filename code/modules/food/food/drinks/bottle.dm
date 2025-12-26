@@ -13,6 +13,7 @@
 	var/obj/item/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
 	var/violent_throw = FALSE
+	special_handling = TRUE
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change() return // To suppress price updating. Bottles have their own price tags.
 
@@ -120,11 +121,14 @@
 		return
 	..()
 
-/obj/item/reagent_containers/food/drinks/bottle/attack_self(mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/attack_self(mob/user, special_pass)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(rag)
 		remove_rag(user)
 	else
-		..()
+		..(user, TRUE)
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/reagent_containers/glass/rag/R, mob/user)
 	if(!isGlass || rag) return

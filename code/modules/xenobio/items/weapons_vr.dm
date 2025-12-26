@@ -36,7 +36,10 @@
 		return 1
 	..()
 
-/obj/item/xenobio/attack_self(mob/living/user as mob)
+/obj/item/xenobio/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
 		user.visible_message(span_notice("[user] removes [loaded_item] from [src]."), span_notice("You remove [loaded_item] from [src]."))

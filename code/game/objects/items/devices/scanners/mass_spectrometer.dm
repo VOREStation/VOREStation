@@ -31,7 +31,10 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/mass_spectrometer/attack_self(mob/user as mob)
+/obj/item/mass_spectrometer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (user.stat)
 		return
 	if (!user.IsAdvancedToolUser())

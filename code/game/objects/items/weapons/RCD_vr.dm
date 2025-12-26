@@ -107,7 +107,9 @@
 	return TRUE
 
 /obj/item/rcd/attack_self(mob/living/user)
-	..()
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/list/choices = list(
 		"Airlock" = radial_image_airlock,
 		"Deconstruct" = radial_image_decon,

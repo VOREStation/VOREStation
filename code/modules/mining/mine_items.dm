@@ -210,6 +210,7 @@
 	icon = 'icons/obj/mining.dmi'
 	var/upright = 0
 	var/base_state
+	custom_handling = TRUE
 
 /obj/item/stack/flag/Initialize(mapload)
 	. = ..()
@@ -251,7 +252,10 @@
 	else
 		..()
 
-/obj/item/stack/flag/attack_self(mob/user as mob)
+/obj/item/stack/flag/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 
