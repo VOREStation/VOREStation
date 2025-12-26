@@ -40,7 +40,10 @@
 			for(var/atom/movable/M in autotransferables)
 				if(check_autotransfer(M))
 					tally++
-				if(autotransfer_max_amount > 0 && tally >= autotransfer_max_amount) break
+				if(autotransfer_max_amount > 0 && tally >= autotransfer_max_amount)
+					break
+				if(tally > BELLY_CONTENT_LIMIT)
+					break
 
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
 	var/to_update = FALSE //Did anything update worthy happen?

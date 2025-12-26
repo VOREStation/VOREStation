@@ -522,14 +522,10 @@
 	if(!owner)
 		thing.forceMove(get_turf(src))
 		return
-	if(length(contents) > BELLY_CONTENT_LIMIT - 20)
-		to_chat(owner, span_userdanger("Your belly [src] contains more than 180 items, keep the count below the limit of 200 or get removed from the round."))
+	if(length(contents) > BELLY_CONTENT_LIMIT * 0.9)
+        to_chat(owner, span_userdanger("Your belly [src] contains more than [BELLY_CONTENT_LIMIT * 0.9] items, keep the count below the limit of [BELLY_CONTENT_LIMIT]. Violations of the limit mights result in round removal or a ban."))
 	else if(length(contents) > BELLY_CONTENT_LIMIT)
-		to_chat(owner, span_userdanger("You've ingested over 200 items into your belly [src] and got kicked for trying to lag the server."))
-		log_and_message_admins("tried to ingest more than than the sane limit of 200 items.", owner)
-		qdel(owner.client)
-		qdel(owner)
-		return
+		log_and_message_admins("Ingested more than the sane limit of [BELLY_CONTENT_LIMIT] items.", owner)
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
 		var/S = pick(GLOB.slosh)
@@ -1543,7 +1539,8 @@
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/atom/movable/prey)
-	if(!(prey in contents) || !prey.autotransferable) return
+	if(!(prey in contents) || !prey.autotransferable)
+		return FALSE
 	var/dest_belly_name
 	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
@@ -1557,13 +1554,16 @@
 			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
 	if(!dest_belly_name) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
-		return
+		return FALSE
 	var/obj/belly/dest_belly
 	for(var/obj/belly/B in owner.vore_organs)
 		if(B.name == dest_belly_name)
 			dest_belly = B
 			break
-	if(!dest_belly) return
+	if(!dest_belly)
+		return FALSE
+	if(length(dest_belly.contents) >= BELLY_CONTENT_LIMIT)
+		return FALSE
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
