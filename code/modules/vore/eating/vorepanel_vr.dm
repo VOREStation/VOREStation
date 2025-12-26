@@ -59,11 +59,6 @@
 	host = null
 	. = ..()
 
-/datum/vore_look/ui_assets(mob/user)
-	. = ..()
-	. += get_asset_datum(/datum/asset/spritesheet/vore)
-	. += get_asset_datum(/datum/asset/spritesheet/vore_fixed) //Either this isn't working or my cache is corrupted and won't show them.
-
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -530,7 +525,7 @@
 				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
 			if (isbelly(host.loc))
 				var/obj/belly/B = host.loc
-				B.vore_fx(host, TRUE)
+				B.vore_fx(host)
 			else
 				host.clear_fullscreen("belly")
 			if(!host.hud_used.hud_shown)
@@ -548,7 +543,7 @@
 				host.client.prefs_vr.max_voreoverlay_alpha = host.max_voreoverlay_alpha
 			if (isbelly(host.loc))
 				var/obj/belly/B = host.loc
-				B.vore_fx(host, TRUE)
+				B.vore_fx(host)
 			unsaved_changes = TRUE
 			return TRUE
 		// liquid belly code

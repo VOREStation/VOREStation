@@ -49,7 +49,7 @@
 	user.show_message(span_notice("Analyzing Results for [C]:"))
 	if(C.status_flags & FAKEDEATH)
 		user.show_message(span_notice("    Overall Status: dead"))
-		var/fake_oxy = max(rand(1,40), C.getOxyLoss(), (300 - (C.getToxLoss() + C.getFireLoss() + C.getBruteLoss())))
+		var/fake_oxy = max(C.getOxyLoss(), (300 - (C.getToxLoss() + C.getFireLoss() + C.getBruteLoss())))
 		var/OX = fake_oxy > 50 			? 	span_bold("[fake_oxy]") 			: fake_oxy //Easier to do this. All this needs consolidation, eventually.
 		user.show_message(span_notice("    Damage Specifics:") + " [OX]-0-\
 										[(C.getFireLoss() > 50) ? span_warning("[C.getFireLoss()]") : C.getFireLoss()]-\

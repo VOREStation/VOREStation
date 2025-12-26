@@ -389,8 +389,12 @@
 			var/obj/item/clothing/accessory/G = H.gloves
 			real_damage += G.punch_force
 			hit_dam_type = G.punch_damtype
-		if(HAS_TRAIT(H, TRAIT_NONLETHAL_BLOWS) && !attack.sharp && !attack.edge)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN, BUT YOU CAN'T "PULL" A KNIFE
+		if(HAS_TRAIT(H, TRAIT_NONLETHAL_BLOWS) && !attack.sharp && !attack.edge && !H.get_feralness())	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN, BUT YOU CAN'T "PULL" A KNIFE
 			hit_dam_type = HALLOSS
+			if(species)// if you're more resistant to physical blows, pulling punches won't make them more likely to down you. This makes species with both brute and pain modifiers double-dip, but I think that's fine
+				real_damage *= species.brute_mod
+				rand_damage *= species.brute_mod
+
 	real_damage *= damage_multiplier
 	rand_damage *= damage_multiplier
 	if(HULK in H.mutations)
