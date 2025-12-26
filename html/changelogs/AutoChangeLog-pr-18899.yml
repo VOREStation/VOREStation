@@ -1,0 +1,11 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Health scanners now tell you how much bloodloss an internal bleed is causing."
+  - refactor: "Chemicals now have scannable 'tiers', starting at tier 0 (medications) and scaling up to tier 3 (Secret chems). The tiers of health analyzers can scan these."
+  - qol: "Upgrading the bodyscanner now properly does something - it allows you to identify secret chemicals in someone's system."
+  - bugfix: "A lot of chemicals that were previously marked as 'unscannable' are now properly scannable."
+  - bugfix: "Amatoxin will properly nuke you when it finishes processing in your system"
+  - bugfix: "FAKEDEATH is now more believable."
+  - bugfix: "Synap now properly works when eaten"
+  - refactor: "Bloodloss is refactored to operate a bit better."
