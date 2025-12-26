@@ -10,6 +10,7 @@
 	reagent_state = LIQUID
 	color = "#ff5555"
 	metabolism = REM
+	scannable = SCANNABLE_SECRETIVE
 
 	var/modifier_to_add = /datum/modifier/berserk
 	var/modifier_duration = 3 SECONDS	// How long, per unit dose, will this last?
