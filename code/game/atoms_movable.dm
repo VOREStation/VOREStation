@@ -44,10 +44,12 @@
 			gen_emissive_blocker.color = GLOB.em_block_color
 			gen_emissive_blocker.dir = dir
 			gen_emissive_blocker.appearance_flags |= appearance_flags
+			// Note, this should be refactored to drop priority overlays
 			add_overlay(list(gen_emissive_blocker), TRUE)
 		if(EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
 			em_block = new(src, render_target)
+			// Note, this should be refactored to drop priority overlays
 			add_overlay(list(em_block), TRUE)
 			RegisterSignal(em_block, COMSIG_QDELETING, PROC_REF(emblocker_gc))
 	if(opacity)
