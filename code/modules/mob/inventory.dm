@@ -161,9 +161,6 @@ var/list/slot_equipment_priority = list( \
 		if(length(loc.contents) > BELLY_CONTENT_LIMIT)
 			to_chat(src, span_vwarning("There's no space to drop [W]."))
 			return
-		if(is_type_in_list(W, GLOB.item_vore_blacklist))
-			to_chat(src, span_vwarning("There's no space to drop [W]."))
-			return
 	if(isnull(target) && isdisposalpacket(src.loc))
 		return remove_from_mob(W, src.loc)
 	return remove_from_mob(W, target)

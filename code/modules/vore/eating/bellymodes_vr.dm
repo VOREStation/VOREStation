@@ -222,8 +222,6 @@
 						var/obj/item/I = H.get_equipped_item(slot = slot)
 						if(!I || I.flags & NOSTRIP)
 							continue
-						if(is_type_in_list(I, GLOB.item_vore_blacklist))
-							continue
 						if(H.unEquip(I, force = FALSE))
 							if(length(contents) > BELLY_CONTENT_LIMIT)
 								I.forceMove(drop_location())
