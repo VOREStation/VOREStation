@@ -17,13 +17,15 @@
 		//High toxins levels are dangerous
 		if(owner.getToxLoss() >= 30 && !owner.reagents.has_reagent(REAGENT_ID_ANTITOXIN))
 			//Healthy liver suffers on its own
-			if (src.damage < min_broken_damage)
+			if(src.damage < min_broken_damage)
 				src.damage += 0.2 * spleen_tick
+				owner.adjustToxLoss(-0.2) //The spleen takes damage but reduces toxins, up until it's broken.
 			//Damaged one shares the fun
 			else
 				var/obj/item/organ/internal/O = pick(owner.internal_organs)
 				if(O)
 					O.damage += 0.2 * spleen_tick
+					owner.adjustToxLoss(-0.1) //Only half as effective.
 
 		else if(!src.is_broken()) // If the spleen isn't severely damaged, it can help fight infections. Key word, can.
 			var/obj/item/organ/external/OEx = pick(owner.organs)
@@ -66,10 +68,12 @@
 	..()
 	if(owner)
 		owner.add_modifier(/datum/modifier/trait/haemophilia, round(15 MINUTES * spleen_efficiency))
-		var/obj/item/organ/external/Target = owner.get_organ(parent_organ)
+		var/obj/item/organ/external/target = owner.get_organ(parent_organ)
 		var/datum/wound/W = new /datum/wound/internal_bleeding(round(20 * spleen_efficiency))
 		owner.adjustToxLoss(15 * spleen_efficiency)
-		Target.wounds += W
+		target.wounds += W
+		target.update_damages()
+		owner.handle_organs(TRUE) //Force an update so we start processing the internal bleeding.
 
 /obj/item/organ/internal/spleen/minor
 	name = "vestigial spleen"
