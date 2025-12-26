@@ -42,7 +42,7 @@
 					tally++
 				if(autotransfer_max_amount > 0 && tally >= autotransfer_max_amount)
 					break
-				if(tally > BELLY_CONTENT_LIMIT)
+				if(tally >= BELLY_CONTENT_LIMIT)
 					break
 
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
