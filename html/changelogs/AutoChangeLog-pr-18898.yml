@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - image: "Giftboxes can now be multiple different colors."
+  - bugfix: "Borgs can grab giftboxes in their cold, robotic hands."

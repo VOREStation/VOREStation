@@ -102,7 +102,7 @@
 	B.vore_sound = "Tauric Swallow"
 	B.release_sound = "Pred Escape"
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "a_anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 	B.fancy_vore = 1
 	B.selective_preference = DM_SELECT
 	B.vore_verb = "devour"
