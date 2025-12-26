@@ -242,3 +242,22 @@
   - admin: Global narrate and Admin Subtle PM can now use HTML
   Kashargul:
   - bugfix: large, chunked payloads hitting rate limits
+2025-12-24:
+  Kashargul:
+  - bugfix: fixes an oversight from landmarks lasting forever
+2025-12-25:
+  Kashargul:
+  - qol: the belly preview is now realtime color rendered
+  - code_imp: move icon_states usage fully to rust g based icon_states_fast
+  - bugfix: preview breaking on fast image swapping
+  - bugfix: bad layer order on some vore overlays
+2025-12-26:
+  Asher-42:
+  - rscadd: edited dullahan sprites
+  Diana:
+  - rscadd: Alien hive node also adds the alien language to the newfound owner.
+  - bugfix: Critical condition now works like it did before.
+  - qol: Archeological finds can now be deconstructed for points instead of having
+      to destroy the artifact before you know what it is.
+  Willburd:
+  - bugfix: runtime during vore unit tests on some downstream maps

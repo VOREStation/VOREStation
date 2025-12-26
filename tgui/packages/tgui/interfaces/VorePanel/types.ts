@@ -482,3 +482,9 @@ export type ActionButtonData = {
   color?: string;
   needsConfirm?: boolean;
 };
+
+export type Overlay = {
+  icon: string;
+  iconState: string;
+  color?: string;
+};
