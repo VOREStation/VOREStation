@@ -44,7 +44,7 @@
 /obj/belly/proc/handle_remains_leaving(var/mob/living/M)
 	if(!isliving(M))	//Are we even a living thing? (Sorry ghosts)
 		return
-	if(length(loc.contents) > BELLY_CONTENT_LIMIT)
+	if(length(loc.contents) >= BELLY_CONTENT_LIMIT)
 		return
 	//Moving some vars here for both borgs and carbons to use
 	var/bones_amount = rand(2,4) //some random variety in amount of bones left

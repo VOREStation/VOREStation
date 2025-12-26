@@ -522,9 +522,9 @@
 	if(!owner)
 		thing.forceMove(get_turf(src))
 		return
-	if(length(contents) > 180)
+	if(length(contents) > BELLY_CONTENT_LIMIT - 20)
 		to_chat(owner, span_userdanger("Your belly [src] contains more than 180 items, keep the count below the limit of 200 or get removed from the round."))
-	else if(length(contents) > 200)
+	else if(length(contents) > BELLY_CONTENT_LIMIT)
 		to_chat(owner, span_userdanger("You've ingested over 200 items into your belly [src] and got kicked for trying to lag the server."))
 		log_and_message_admins("tried to ingest more than than the sane limit of 200 items.", owner)
 		qdel(owner.client)
@@ -978,7 +978,7 @@
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
 /obj/belly/proc/nom_atom(atom/movable/prey, mob/user)
-	if(length(contents) > BELLY_CONTENT_LIMIT)
+	if(length(contents) >= BELLY_CONTENT_LIMIT)
 		to_chat(owner, span_vwarning("Your belly [src] is full."))
 		return
 	if(ismob(prey))
@@ -1061,7 +1061,7 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
-					if(length(contents) > BELLY_CONTENT_LIMIT)
+					if(length(contents) >= BELLY_CONTENT_LIMIT)
 						I.forceMove(drop_location())
 						return
 					if(contaminates)
@@ -1523,7 +1523,7 @@
 /obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
 		return
-	if(length(contents) > BELLY_CONTENT_LIMIT)
+	if(length(contents) >= BELLY_CONTENT_LIMIT)
 		to_chat(owner, span_vwarning("Your belly [target] is full."))
 		return
 	content.belly_cycles = 0

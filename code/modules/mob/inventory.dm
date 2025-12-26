@@ -158,7 +158,7 @@ var/list/slot_equipment_priority = list( \
 	if(!W)
 		return FALSE
 	if(isbelly(loc))
-		if(length(loc.contents) > BELLY_CONTENT_LIMIT)
+		if(length(loc.contents) >= BELLY_CONTENT_LIMIT)
 			to_chat(src, span_vwarning("There's no space to drop [W]."))
 			return
 	if(isnull(target) && isdisposalpacket(src.loc))
