@@ -1061,6 +1061,9 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
+					if(length(contents) > BELLY_CONTENT_LIMIT)
+						I.forceMove(drop_location())
+						return
 					if(contaminates)
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)

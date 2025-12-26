@@ -223,6 +223,9 @@
 						if(!I || I.flags & NOSTRIP)
 							continue
 						if(H.unEquip(I, force = FALSE))
+							if(length(contents) > BELLY_CONTENT_LIMIT)
+								I.forceMove(drop_location())
+								return
 							handle_digesting_item(I)
 							digestion_noise_chance = 25
 							to_update = TRUE
