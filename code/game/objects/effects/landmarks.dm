@@ -65,11 +65,9 @@
 		if("bluespacerift")
 			GLOB.endgame_exits += loc
 			delete_me = TRUE
-		//VOREStation Add Start
 		if("vinestart")
 			GLOB.vinestart += loc
 			delete_me = TRUE
-		//VORE Station Add End
 
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
