@@ -523,7 +523,7 @@
 		thing.forceMove(get_turf(src))
 		return
 	if(length(contents) > BELLY_CONTENT_LIMIT * 0.9)
-        to_chat(owner, span_userdanger("Your belly [src] contains more than [BELLY_CONTENT_LIMIT * 0.9] items, keep the count below the limit of [BELLY_CONTENT_LIMIT]. Violations of the limit mights result in round removal or a ban."))
+		to_chat(owner, span_userdanger("Your belly [src] contains more than [BELLY_CONTENT_LIMIT * 0.9] items, keep the count below the limit of [BELLY_CONTENT_LIMIT]. Violations of the limit mights result in round removal or a ban."))
 	else if(length(contents) > BELLY_CONTENT_LIMIT)
 		log_and_message_admins("Ingested more than the sane limit of [BELLY_CONTENT_LIMIT] items.", owner)
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
