@@ -516,12 +516,19 @@
 			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
 			break
 
-
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
 	if(!owner)
 		thing.forceMove(get_turf(src))
+		return
+	if(length(contents) > 180)
+		to_chat(owner, span_userdanger("Your belly [src] contains more than 180 items, keep the count below the limit of 200 or get removed from the round."))
+	else if(length(contents) > 200)
+		to_chat(owner, span_userdanger("You've ingested over 200 items into your belly [src] and got kicked for trying to lag the server."))
+		log_and_message_admins("tried to ingest more than than the sane limit of 200 items.", owner)
+		qdel(owner.client)
+		qdel(owner)
 		return
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
@@ -972,22 +979,26 @@
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-/obj/belly/proc/nom_mob(mob/prey, mob/user)
-	if(owner.stat == DEAD)
+/obj/belly/proc/nom_atom(atom/movable/prey, mob/user)
+	if(length(contents) > BELLY_CONTENT_LIMIT)
+		to_chat(owner, span_vwarning("Your belly [src] is full."))
 		return
-	if(prey.buckled)
-		prey.buckled.unbuckle_mob()
+	if(ismob(prey))
+		var/mob/mob_prey = prey
+		if(owner.stat == DEAD)
+			return
+		if(mob_prey.buckled)
+			mob_prey.buckled.unbuckle_mob()
+		if(mob_prey.ckey)
+			GLOB.prey_eaten_roundstat++
+			if(owner.mind)
+				owner.mind.vore_prey_eaten++
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
-
-	if(prey.ckey)
-		GLOB.prey_eaten_roundstat++
-		if(owner.mind)
-			owner.mind.vore_prey_eaten++
 
 // new procs for handling digestion damage as a total rather than per-type
 // Returns the current total digestion damage per tick of a belly.
@@ -1510,6 +1521,9 @@
 //Transfers contents from one belly to another
 /obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
+		return
+	if(length(contents) > BELLY_CONTENT_LIMIT)
+		to_chat(owner, span_vwarning("Your belly [target] is full."))
 		return
 	content.belly_cycles = 0
 	content.forceMove(target)

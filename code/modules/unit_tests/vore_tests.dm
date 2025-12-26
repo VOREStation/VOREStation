@@ -57,10 +57,10 @@
 
 	// Attempt to eat the prey
 	if(prey.loc != pred.vore_selected)
-		pred.vore_selected.nom_mob(prey)
+		pred.vore_selected.nom_atom(prey)
 
 		if(prey.loc != pred.vore_selected)
-			fail("[pred.vore_selected].nom_mob([prey]) did not put prey inside [pred]")
+			fail("[pred.vore_selected].nom_atom([prey]) did not put prey inside [pred]")
 			return 1
 
 		// Okay, we succeeded in eating them, now lets wait a bit
@@ -113,10 +113,10 @@
 
 	// Attempt to eat the prey
 	if(prey.loc != pred.vore_selected)
-		pred.vore_selected.nom_mob(prey)
+		pred.vore_selected.nom_atom(prey)
 
 		if(prey.loc != pred.vore_selected)
-			fail("[pred.vore_selected].nom_mob([prey]) did not put prey inside [pred]")
+			fail("[pred.vore_selected].nom_atom([prey]) did not put prey inside [pred]")
 			return 1
 		else
 			// Get an empty space level instead of just picking a random space turf
@@ -187,10 +187,10 @@
 
 	// Attempt to eat the prey
 	if(prey.loc != pred.vore_selected)
-		pred.vore_selected.nom_mob(prey)
+		pred.vore_selected.nom_atom(prey)
 
 		if(prey.loc != pred.vore_selected)
-			fail("[pred.vore_selected].nom_mob([prey]) did not put prey inside [pred]")
+			fail("[pred.vore_selected].nom_atom([prey]) did not put prey inside [pred]")
 			return 1
 
 		// Okay, we succeeded in eating them, now lets wait a bit

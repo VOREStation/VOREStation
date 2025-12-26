@@ -972,7 +972,7 @@
 				if(M.absorbed)
 					M.absorbed = FALSE
 					OB.handle_absorb_langs(M, OB.owner)
-				TB.nom_mob(M)
+				TB.nom_atom(M)
 
 /datum/vore_look/proc/pick_from_outside(mob/user, params)
 	var/intent
