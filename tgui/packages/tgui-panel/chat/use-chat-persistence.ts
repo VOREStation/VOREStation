@@ -1,7 +1,7 @@
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 import { useAtom, useAtomValue } from 'jotai';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import type { UserData } from 'tgui-panel/game/types';
 import { store } from '../events/store';
 import { gameAtom } from '../game/atoms';
@@ -30,7 +30,6 @@ const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
 export function useChatPersistence() {
   const version = useAtomValue(versionAtom);
   const settings = useAtomValue(settingsAtom);
-  const needsSave = useRef(false);
 
   const allChat = useAtomValue(allChatAtom);
   const game = useAtomValue(gameAtom);
@@ -38,15 +37,9 @@ export function useChatPersistence() {
   const [loaded, setLoaded] = useAtom(chatLoadedAtom);
   const settingsLoaded = useAtomValue(settingsLoadedAtom);
 
-  /** De we need to store an update */
-  useEffect(() => {
-    if (loaded) needsSave.current = true;
-  }, [allChat, settings]);
-
   /** Loads chat + chat settings */
   useEffect(() => {
     if (!loaded && settingsLoaded) {
-      setLoaded(true);
       chatRenderer.setVisualChatLimits(
         settings.visibleMessageLimit,
         settings.combineMessageLimit,
@@ -94,11 +87,10 @@ export function useChatPersistence() {
 
     if (loaded && settings.saveInterval) {
       saveInterval = setInterval(() => {
-        if (!game.databaseBackendEnabled || needsSave.current) {
+        if (!game.databaseBackendEnabled) {
           const intervalSettings = store.get(settingsAtom);
           const intervalGame = store.get(gameAtom);
           saveChatToStorage(intervalSettings, intervalGame);
-          needsSave.current = false;
         }
       }, settings.saveInterval * 1000);
     }
@@ -156,13 +148,15 @@ export function useChatPersistence() {
 
   useEffect(() => {
     async function fetchChat() {
-      if (!game.userData) return;
+      if (!game.userData || loaded) return;
 
       if (game.userData.token) {
         await loadChatFromDBStorage(game.userData);
       } else {
         await loadChatFromStorage();
       }
+      setLoaded(true);
+      chatRenderer.onStateLoaded();
     }
 
     fetchChat();
@@ -203,7 +197,6 @@ export function useChatPersistence() {
       }
     }
     loadChatState(state);
-    chatRenderer.onStateLoaded();
   }
 
   async function loadChatFromDBStorage(userData: UserData): Promise<void> {
@@ -250,11 +243,9 @@ export function useChatPersistence() {
             handleMessages(messages);
           }
 
-          chatRenderer.onStateLoaded();
           resolve();
         })
         .catch(() => {
-          chatRenderer.onStateLoaded();
           resolve();
         });
     });
