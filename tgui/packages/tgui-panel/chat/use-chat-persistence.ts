@@ -123,7 +123,14 @@ export function useChatPersistence() {
     }
 
     return () => clearTimeout(timeout);
-  }, [loaded, allChat.pages, allChat.currentPageId]);
+  }, [
+    loaded,
+    allChat.pages,
+    allChat.currentPageId,
+    allChat.pageById[allChat.currentPageId]?.name,
+    allChat.pageById[allChat.currentPageId]?.acceptedTypes,
+    allChat.pageById[allChat.currentPageId]?.hideUnreadCount,
+  ]);
 
   /** Update our round ID information */
   useEffect(() => {
