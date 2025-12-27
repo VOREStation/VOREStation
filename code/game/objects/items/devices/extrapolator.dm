@@ -3,6 +3,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "extrapolator_scan"
 	desc = "A bulky scanning device, used to extract genetic material of potential pathogens."
+	description_info = "Use on hand to change between SCAN and EXTRACT mode."
 	item_flags = NOBLUDGEON
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
