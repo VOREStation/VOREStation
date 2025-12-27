@@ -2,6 +2,7 @@ import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
+import type { UserData } from 'tgui-panel/game/types';
 import { store } from '../events/store';
 import { gameAtom } from '../game/atoms';
 import { settingsAtom, settingsLoadedAtom } from '../settings/atoms';
@@ -158,7 +159,7 @@ export function useChatPersistence() {
       if (!game.userData) return;
 
       if (game.userData.token) {
-        await loadChatFromDBStorage();
+        await loadChatFromDBStorage(game.userData);
       } else {
         await loadChatFromStorage();
       }
@@ -205,7 +206,7 @@ export function useChatPersistence() {
     chatRenderer.onStateLoaded();
   }
 
-  async function loadChatFromDBStorage(): Promise<void> {
+  async function loadChatFromDBStorage(userData: UserData): Promise<void> {
     const [state] = await Promise.all([storage.get('chat-state')]);
 
     const messages: SerializedMessage[] = []; // FIX ME, load from DB, first load has errors => check console
@@ -215,12 +216,12 @@ export function useChatPersistence() {
     // Thanks for inventing async/await
     await new Promise<void>((resolve) => {
       fetch(
-        `${game.chatlogApiEndpoint}/api/logs/${game.userData.ckey}/${settings.persistentMessageLimit}`,
+        `${game.chatlogApiEndpoint}/api/logs/${userData.ckey}/${settings.persistentMessageLimit}`,
         {
           method: 'GET',
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${game.userData.token}`,
+            Authorization: `Bearer ${userData.token}`,
             'Content-Type': 'application/json',
           },
         },

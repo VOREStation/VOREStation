@@ -48,7 +48,7 @@ async function getRound(
   endRound?: number,
 ) {
   const settings = store.get(storedSettingsAtom);
-  const { ckey, token } = game.userData;
+  const { ckey, token } = game.userData!;
   const messages: SerializedMessage[] = [];
 
   const d = new Date();

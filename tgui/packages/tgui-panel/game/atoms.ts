@@ -8,7 +8,7 @@ export const roundRestartedAtAtom = atom<number | null>(null);
 export const databaseBackendEnabledAtom = atom(false);
 export const chatlogApiEndpointAtom = atom('');
 export const databaseStoredRoundsAtom = atom<string[]>([]);
-export const userDataAtom = atom({ ckey: '', token: '' });
+export const userDataAtom = atom<{ ckey: string; token: string } | null>(null);
 
 /**
  * Ticking clock atom. Only runs while something is subscribed to it.

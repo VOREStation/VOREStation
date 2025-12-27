@@ -28,5 +28,7 @@ export type GameAtom = {
   databaseBackendEnabled: boolean;
   chatlogApiEndpoint: string;
   databaseStoredRounds: string[];
-  userData: { ckey: string; token: string };
+  userData: UserData | null;
 };
+
+export type UserData = { ckey: string; token: string };
