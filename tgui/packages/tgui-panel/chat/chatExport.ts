@@ -1,10 +1,11 @@
-import { useGame } from '../game';
-import type { gameState } from '../game/types';
-import { useSettings } from '../settings';
+import { store } from '../events/store';
+import { gameAtom } from '../game/atoms';
+import type { GameAtom } from '../game/types';
+import { storedSettingsAtom } from '../settings/atoms';
 import { MESSAGE_TYPE_UNKNOWN, MESSAGE_TYPES } from './constants';
+import { createMessageNode } from './messageNode';
 import { canPageAcceptType } from './model';
-import { createMessageNode } from './renderer';
-import type { message, Page } from './types';
+import type { Page, SerializedMessage } from './types';
 
 export function exportToDisk(
   cssText: string,
@@ -13,7 +14,7 @@ export function exportToDisk(
   hasTimestamps: boolean,
   page: Page | null,
 ) {
-  const game: gameState = useGame();
+  const game = store.get(gameAtom);
 
   // Fetch from server database
   const opts: SaveFilePickerOptions = {
@@ -39,16 +40,16 @@ export function exportToDisk(
 
 async function getRound(
   cssText: string,
-  game: gameState,
+  game: GameAtom,
   page: Page | null,
   opts: SaveFilePickerOptions,
   hasTimestamps: boolean,
   startRound?: number,
   endRound?: number,
 ) {
-  const settings = useSettings();
-  const { ckey, token } = game.userData;
-  const messages: message[] = [];
+  const settings = store.get(storedSettingsAtom);
+  const { ckey, token } = game.userData!;
+  const messages: SerializedMessage[] = [];
 
   const d = new Date();
   const utcOffset = d.getTimezoneOffset() / -60;
@@ -85,7 +86,7 @@ async function getRound(
                 created_at: number;
                 round_id: number;
               }) => {
-                const msg: message = {
+                const msg: SerializedMessage = {
                   type: obj.msg_type ? obj.msg_type : '',
                   html: obj.text_raw,
                   createdAt: obj.created_at,

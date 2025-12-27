@@ -6,12 +6,12 @@
 
 import { Stack } from 'tgui-core/components';
 
-export const Notifications = (props) => {
+export function Notifications(props) {
   const { children } = props;
   return <div className="Notifications">{children}</div>;
-};
+}
 
-const NotificationsItem = (props) => {
+function NotificationsItem(props) {
   const { rightSlot, children } = props;
   return (
     <Stack align="center" className="Notification">
@@ -23,6 +23,6 @@ const NotificationsItem = (props) => {
       )}
     </Stack>
   );
-};
+}
 
 Notifications.Item = NotificationsItem;

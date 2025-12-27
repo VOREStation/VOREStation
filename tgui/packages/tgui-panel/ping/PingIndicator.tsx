@@ -4,24 +4,25 @@
  * @license MIT
  */
 
-import { useSelector } from 'tgui/backend';
+import { useAtomValue } from 'jotai';
 import { Color } from 'tgui-core/color';
 import { Box } from 'tgui-core/components';
+import { pingAtom } from './atoms';
 
-import { selectPing } from './selectors';
-
-export const PingIndicator = (props) => {
-  const ping = useSelector(selectPing);
+export function PingIndicator(props) {
+  const ping = useAtomValue(pingAtom);
   const color = Color.lookup(ping.networkQuality, [
     new Color(220, 40, 40),
     new Color(220, 200, 40),
     new Color(60, 220, 40),
   ]).toString();
+
   const roundtrip = ping.roundtrip ? ping.roundtrip.toFixed() : '--';
+
   return (
     <div className="Ping">
       <Box className="Ping__indicator" backgroundColor={color} />
       {roundtrip}
     </div>
   );
-};
+}

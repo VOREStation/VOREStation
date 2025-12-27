@@ -21,10 +21,7 @@ export const ChemDispenserSettings = (props: {
   const { selectedAmount, availableAmounts, minAmount, maxAmount, amountAct } =
     props;
   return (
-    <Section
-      title="Settings"
-      fill
-    >
+    <Section title="Settings" fill>
       <LabeledList>
         <LabeledList.Item label="Dispense" verticalAlign="middle">
           <Stack g={0.1}>

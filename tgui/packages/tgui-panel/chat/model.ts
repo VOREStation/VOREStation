@@ -7,12 +7,13 @@
 import { createUuid } from 'tgui-core/uuid';
 
 import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
-import type { message, NewPageData, Page } from './types';
+import type { Page, SerializedMessage } from './types';
 
-export const canPageAcceptType = (page: Page, type: string): string | boolean =>
-  type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
+export function canPageAcceptType(page: Page, type: string): boolean {
+  return type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
+}
 
-export const typeIsImportant = (type: string): boolean => {
+export function typeIsImportant(type: string): boolean {
   let isImportant = false;
   for (const typeDef of MESSAGE_TYPES) {
     if (typeDef.type === type && !!typeDef.important) {
@@ -21,9 +22,9 @@ export const typeIsImportant = (type: string): boolean => {
     }
   }
   return isImportant;
-};
+}
 
-export const adminPageOnly = (page: Page): boolean => {
+export function adminPageOnly(page: Page): boolean {
   let adminTab = true;
   let checked = 0;
   for (const typeDef of MESSAGE_TYPES) {
@@ -39,14 +40,16 @@ export const adminPageOnly = (page: Page): boolean => {
     }
   }
   return checked > 0 && adminTab;
-};
+}
 
-export const canStoreType = (
-  storedTypes: Record<string, string>,
+export function canStoreType(
+  storedTypes: Record<string, boolean>,
   type: string,
-) => storedTypes[type];
+) {
+  return storedTypes[type];
+}
 
-export const createPage = (obj?: NewPageData): Page => {
+export function createPage(obj: Record<string, unknown> = {}): Page {
   const acceptedTypes = {};
 
   for (const typeDef of MESSAGE_TYPES) {
@@ -57,36 +60,40 @@ export const createPage = (obj?: NewPageData): Page => {
     isMain: false,
     id: createUuid(),
     name: 'New Tab',
-    acceptedTypes: acceptedTypes,
+    acceptedTypes,
     unreadCount: 0,
     hideUnreadCount: false,
     createdAt: Date.now(),
     ...obj,
   };
-};
+}
 
-export const createMainPage = (): Page => {
-  const acceptedTypes: Record<string, boolean> = {};
+export function createMainPage(): Page {
+  const acceptedTypes = {};
   for (const typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = true;
   }
   return createPage({
+    id: 'main',
     isMain: true,
     name: 'Main',
     acceptedTypes,
   });
-};
+}
 
-export const createMessage = (payload: { type: string }): message => ({
-  ...payload,
-  createdAt: Date.now(),
-  roundId: null,
-});
+export function createMessage(
+  payload: Record<string, unknown>,
+): SerializedMessage {
+  return {
+    createdAt: Date.now(),
+    ...payload,
+  } as SerializedMessage;
+}
 
-export const serializeMessage = (
-  message: message,
+export function serializeMessage(
+  message: SerializedMessage,
   archive = false,
-): message => {
+): SerializedMessage {
   let archiveM = '';
   if (archive && message.node && typeof message.node !== 'string') {
     archiveM = message.node.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>');
@@ -99,8 +106,14 @@ export const serializeMessage = (
     createdAt: message.createdAt,
     roundId: message.roundId,
   };
-};
+}
 
-export const isSameMessage = (a: message, b: message): boolean =>
-  (typeof a.text === 'string' && a.text === b.text) ||
-  (typeof a.html === 'string' && a.html === b.html);
+export function isSameMessage(
+  a: SerializedMessage,
+  b: SerializedMessage,
+): boolean {
+  return (
+    (typeof a.text === 'string' && a.text === b.text) ||
+    (typeof a.html === 'string' && a.html === b.html)
+  );
+}
