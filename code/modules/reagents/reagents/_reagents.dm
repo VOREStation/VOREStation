@@ -18,7 +18,7 @@
 	var/overdose = 0		//Amount at which overdose starts
 	var/overdose_mod = 1	//Modifier to overdose damage
 	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
-	var/scannable = 0 // Shows up on health analyzers.
+	var/scannable = SCANNABLE_SECRETIVE // Shows up on health analyzers.
 
 	var/affects_dead = 0	// Does this chem process inside a corpse without outside intervention required?
 	var/affects_robots = 0	// Does this chem process inside a Synth?
@@ -49,21 +49,26 @@
 
 	var/coolant_modifier = -0.5 // this is multiplied by the volume of the reagent. Most things are not good coolant. EX: Water is 1, coolant is 2. -1 would be a bad reagent for cooling.
 
+	var/glass_icon_file = null
+	var/glass_icon_state = null
+	var/glass_center_of_mass_x = 0
+	var/glass_center_of_mass_y = 0
+
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
 /datum/reagent/proc/touch_mob(var/mob/M, var/amount)
-	SEND_SIGNAL(M, COMSIG_REAGENTS_TOUCH, src, amount)
+	SEND_SIGNAL(M, COMSIG_REAGENT_EXPOSE_MOB, src, amount)
 	return
 
 /datum/reagent/proc/touch_obj(var/obj/O, var/amount) // Acid melting, cleaner cleaning, etc
-	SEND_SIGNAL(O, COMSIG_REAGENTS_TOUCH, src, amount)
+	SEND_SIGNAL(O, COMSIG_REAGENT_EXPOSE_OBJ, src, amount)
 	return
 
 /datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
-	SEND_SIGNAL(T, COMSIG_REAGENTS_TOUCH, src, amount)
+	SEND_SIGNAL(T, COMSIG_REAGENT_EXPOSE_TURF, src, amount)
 	return
 
 /datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
@@ -195,6 +200,7 @@
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	M.bloodstr.add_reagent(id, removed * 0.25) //Medications that are dermal compatible use affect_touch. Those that aren't apply the reagent to the bloodstream at 25% efficiency.
 	return
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.

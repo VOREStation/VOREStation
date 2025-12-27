@@ -1204,6 +1204,29 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/swepthornstricorn
+	name = "Horns, swept back, Tricorn"
+	desc = ""
+	icon_state = "swept_horns_tricorn"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/unicorn
+	name = "Horn, unicorn"
+	desc = ""
+	icon_state = "unihorn"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/fourlowears
+	name = "Four Horizontal Ears with Frills"
+	desc = ""
+	icon_state = "fourlowears"
+	extra_overlay = "fourlowears_inner"
+	extra_overlay2 = "fourlowears_frills"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"

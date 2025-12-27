@@ -5,9 +5,9 @@
 	name = REAGENT_SIZEOXADONE
 	id = REAGENT_ID_SIZEOXADONE
 	result = REAGENT_ID_SIZEOXADONE
-	required_reagents = list(REAGENT_ID_CLONEXADONE = 1, REAGENT_ID_TRAMADOL = 3, REAGENT_ID_PHORON = 1)
+	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_TRAMADOL = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
-	result_amount = 5
+	result_amount = 2
 
 /decl/chemical_reaction/instant/macrocillin
 	name = REAGENT_MACROCILLIN

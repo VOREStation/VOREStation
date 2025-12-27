@@ -326,11 +326,11 @@ GLOBAL_LIST_EMPTY(smeses)
 
 	if(istype(W, /obj/item/fusion_coil))
 		var/obj/item/fusion_coil/FC = W
-		if(FC.spent || FC.coil_charge == 0)
+		if(!(FC.coil_charged || FC.coil_charge))
 			to_chat(user, span_filter_notice("\The [FC] has no charge remaining."))
 			return FALSE
 		else if(charge + FC.coil_charge > capacity)
-			to_chat(user, span_filter_notice("\The [FC] has too much charge stored to recharge \the [src]."))
+			to_chat(user, span_filter_notice("\The [FC] has too much charge stored to safely recharge \the [src]."))
 			return FALSE
 		else
 			playsound(src, 'sound/effects/lightning_chargeup.ogg', 75, 0, 1)
@@ -338,9 +338,9 @@ GLOBAL_LIST_EMPTY(smeses)
 				to_chat(user, span_filter_notice("You successfully recharge \the [src] with \the [FC]. It is now depleted."))
 				charge += FC.coil_charge
 				FC.coil_charge = 0
-				FC.spent = TRUE
+				FC.coil_charged = FALSE
 				FC.name = "depleted [FC.name]"
-				FC.icon_state = FC.spent_icon
+				FC.update_icon()
 				return FALSE
 
 	else if(W.has_tool_quality(TOOL_WELDER))

@@ -17,6 +17,8 @@
 
 	has_huds = TRUE // We do show AI status huds for buildmode players
 
+	digest_leave_remains = TRUE
+
 	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
@@ -471,3 +473,7 @@
 		to_chat(src,span_warning("Vore sprite enabled."))
 
 	update_icon()
+
+/// Simple mob slip logic, should be overriden if you want the simple mob to slip under certain conditions
+/mob/living/simple_mob/proc/animal_slip(wet_level, dirtslip)
+	return FALSE

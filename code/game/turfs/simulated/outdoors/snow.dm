@@ -52,6 +52,7 @@
 	desc = "Looks slippery."
 	edge_blending_priority = 0
 	can_be_plated = FALSE
+	wet = TURFSLIP_ICE
 
 /turf/simulated/floor/outdoors/ice/dark
 	name = "black ice"
@@ -62,17 +63,6 @@
 	name = "smooth black ice"
 	icon_state = "ice_dark_smooth"
 	desc = "Dark rock that has been smoothened to be perfectly even. It's coated in a layer of slippey ice"
-
-/turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
-	if(isliving(M))
-		if((M.weakened && prob(10)) || (M.m_intent == "walk" && prob(95)))
-			return ..()
-		addtimer(CALLBACK(src,TYPE_PROC_REF(/turf/simulated/floor/outdoors/ice,cause_slip),M), 1 * world.tick_lag, TIMER_DELETE_ME)
-/turf/simulated/floor/outdoors/ice/cause_slip(var/mob/living/M)
-	if(M.weakened == 0)
-		to_chat(M, span_warning("You slide across the ice!"))
-	M.SetWeakened(3)
-	step(M,M.dir)
 
 // Ice that is used for, say, areas floating on water or similar.
 /turf/simulated/floor/outdoors/shelfice

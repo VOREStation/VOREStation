@@ -60,42 +60,6 @@
 
 	allow_mind_transfer = TRUE
 
-
-	can_enter_vent_with = list(
-		/obj/item/implant,
-		/obj/item/radio/borg,
-		/obj/item/holder,
-		/obj/machinery/camera,
-		/obj/belly,
-		/obj/soulgem,
-		/atom/movable/screen,
-		/atom/movable/emissive_blocker,
-		/obj/item/material,
-		/obj/item/melee,
-		/obj/item/stack/,
-		/obj/item/tool,
-		/obj/item/reagent_containers/food,
-		/obj/item/coin,
-		/obj/item/aliencoin,
-		/obj/item/ore,
-		/obj/item/disk/nuclear,
-		/obj/item/toy,
-		/obj/item/card,
-		/obj/item/radio,
-		/obj/item/perfect_tele_beacon,
-		/obj/item/clipboard,
-		/obj/item/paper,
-		/obj/item/pen,
-		/obj/item/canvas,
-		/obj/item/paint_palette,
-		/obj/item/paint_brush,
-		/obj/item/camera,
-		/obj/item/photo,
-		/obj/item/camera_film,
-		/obj/item/taperecorder,
-		/obj/item/rectape
-		)
-
 	vore_active = 1
 	vore_capacity = 1
 	vore_bump_chance = 1
@@ -125,6 +89,24 @@
 	B.digestchance = 10
 	B.absorbchance = 1
 	B.escapechance = 15
+
+/mob/living/simple_mob/vore/alienanimals/catslug/ventcrawl_get_item_whitelist()
+	return list(
+		VENTCRAWL_BASE_WHITELIST,
+		VENTCRAWL_VORE_WHITELIST,
+		VENTCRAWL_SMALLITEM_WHITELIST,
+		// Catslug unique items.
+		/obj/item/material,
+		/obj/item/melee,
+		/obj/item/stack/,
+		/obj/item/tool,
+		/obj/item/reagent_containers/food,
+		/obj/item/ore,
+		/obj/item/disk/nuclear,
+		/obj/item/card,
+		/obj/item/radio,
+		/obj/item/perfect_tele_beacon,
+		)
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug
 	hostile = FALSE

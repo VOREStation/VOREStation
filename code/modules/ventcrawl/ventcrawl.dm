@@ -3,22 +3,6 @@ var/list/ventcrawl_machinery = list(
 	/obj/machinery/atmospherics/unary/vent_scrubber
 	)
 
-// Vent crawling whitelisted items, whoo
-/mob/living/var/list/can_enter_vent_with = list(
-	/obj/item/implant,
-	/obj/item/radio/borg,
-	/obj/item/radio/headset/mob_headset,
-	/obj/item/holder,
-	/obj/machinery/camera,
-	/obj/belly,
-	/obj/soulgem,
-	/atom/movable/screen,
-	/atom/movable/emissive_blocker,
-	/obj/item/rig/protean
-	)
-	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check. Added mob_headset for those with radios so there's no weirdness.
-	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
-
 /mob/living/var/list/icon/pipes_shown = list()
 /mob/living/var/last_played_vent
 /mob/living/var/is_ventcrawling = FALSE
@@ -75,7 +59,10 @@ var/list/ventcrawl_machinery = list(
 			return TRUE
 	//Try to find it in our allowed list (istype includes subtypes)
 	var/listed = FALSE
-	for(var/test_type in can_enter_vent_with)
+	var/list/vent_allow = ventcrawl_get_item_whitelist()
+	if(islist(ventcraw_item_admin_allow)) // If mob has a list varedited onto it, we allow anything in this list as well
+		vent_allow += ventcraw_item_admin_allow
+	for(var/test_type in vent_allow)
 		if(istype(carried_item,test_type))
 			listed = TRUE
 			break
@@ -107,6 +94,13 @@ var/list/ventcrawl_machinery = list(
 			to_chat(src, span_warning("You can't carry \the [A] while ventcrawling!"))
 			return FALSE
 	return TRUE
+
+/mob/living/proc/ventcrawl_get_item_whitelist()
+	return list(
+		VENTCRAWL_BASE_WHITELIST,
+		VENTCRAWL_VORE_WHITELIST,
+		VENTCRAWL_SMALLITEM_WHITELIST
+		)
 
 /mob/living/simple_mob/protean_blob/ventcrawl_carry()
 	for(var/atom/A in contents)

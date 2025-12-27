@@ -101,7 +101,7 @@
 /obj/item/shield_projector/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(moved_event))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(moved_event))
 	if(always_on)
 		spawn(0)
 			if(!QDELETED(src))
@@ -111,7 +111,7 @@
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	return ..()
 
 /obj/item/shield_projector/proc/moved_event()

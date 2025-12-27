@@ -99,7 +99,7 @@
 	B.digest_burn = 3
 	B.fancy_vore = 1
 	B.vore_sound = "Stomach Move"
-	B.belly_fullscreen = "VBO_trash"
+	B.belly_fullscreen = "VBO_belly9"
 	B.belly_fullscreen_color = "#555B34"
 	B.sound_volume = 25
 	B.count_items_for_sprite = TRUE
@@ -115,7 +115,7 @@
 	B.belly_fullscreen_color2 = "#1C1C1C"
 	B.belly_fullscreen_color3 = "#292929"
 	B.belly_fullscreen_color4 = "#CCFFFF"
-	B.belly_fullscreen = "VBO_maw8" //Swoopies have beaks!!
+	B.belly_fullscreen = "VBO_maw25" //Swoopies have beaks!!
 
 	vore_selected = B
 

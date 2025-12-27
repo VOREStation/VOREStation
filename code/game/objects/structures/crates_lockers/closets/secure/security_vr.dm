@@ -39,7 +39,10 @@
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security/hos,
-		/obj/item/clothing/mask/gas/half)
+		/obj/item/clothing/mask/gas/half,
+		/obj/item/clothing/head/helmet/HoS/hat/red,
+		/obj/item/clothing/suit/storage/vest/hoscoat/neo_hos_parade_jacket,
+		/obj/item/clothing/accessory/poncho/roles/cloak/neo_pcloak)
 
 /obj/structure/closet/secure_closet/hos2
 	name = "head of security's gear"

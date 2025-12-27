@@ -180,5 +180,7 @@
 	M.visible_message(span_infoplain(span_bold("\The [user]") + " scans the wounds on [M]'s [S.name] with [src]"))
 
 	src.add_data(S)
+	SEND_SIGNAL(src,COMSIG_AUTOPSY_PERFORMED, user, M)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AUTOPSY_PERFORMED, user, M)
 
 	return 1

@@ -649,6 +649,7 @@
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
 	H.gender = NEUTER
+	ADD_TRAIT(H, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)
 	return ..()
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
@@ -1039,6 +1040,7 @@
 
 /datum/species/human/vatgrown
 	spawn_flags = SPECIES_IS_RESTRICTED
+
 /datum/species/harpy
 	name = SPECIES_RAPALA
 	name_plural = "Rapala"
