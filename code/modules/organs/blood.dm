@@ -319,7 +319,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	var/list/sniffles = injected.data["viruses"]
 	for(var/ID in sniffles)
 		var/datum/disease/D = ID
-		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
+		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS)) // Special/Non-Contagious stay in the blood, but they won't spread
 			continue
 		ContractDisease(D)
 	if (injected.data["resistances"] && prob(5))
