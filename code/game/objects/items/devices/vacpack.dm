@@ -76,6 +76,8 @@
 		return
 	if(!output_dest)
 		return
+	if(isbelly(output_dest) && length(output_dest.contents) >= BELLY_CONTENT_LIMIT)
+		return
 	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
 		target = get_turf(target) // Windows can be clicked to clean their turf
 	if(istype(output_dest,/obj/item/storage/bag/trash))
