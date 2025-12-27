@@ -47,7 +47,7 @@ type Props = Partial<{
 }> &
   PropsWithChildren;
 
-export const Window = (props: Props) => {
+export function Window(props: Props) {
   const {
     canClose = true,
     theme,
@@ -162,7 +162,7 @@ export const Window = (props: Props) => {
       )}
     </Layout>
   );
-};
+}
 
 type ContentProps = Partial<{
   className: string;
@@ -173,11 +173,11 @@ type ContentProps = Partial<{
   ComponentProps<typeof Box> &
   PropsWithChildren;
 
-const WindowContent = (props: ContentProps) => {
+function WindowContent(props: ContentProps) {
   const { className, fitted, children, ...rest } = props;
   const [altDown, setAltDown] = useState(false);
 
-  var dragStartIfAltHeld = (event) => {
+  const dragStartIfAltHeld = (event) => {
     if (altDown) {
       dragStartHandler(event);
     }
@@ -213,6 +213,6 @@ const WindowContent = (props: ContentProps) => {
       )}
     </Layout.Content>
   );
-};
+}
 
 Window.Content = WindowContent;

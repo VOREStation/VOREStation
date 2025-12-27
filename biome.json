@@ -41,6 +41,9 @@
 		"rules": {
 			"recommended": true,
 			"a11y": "off",
+			"complexity": {
+				"useArrowFunction": "error"
+			},
 			"correctness": {
 				"noUnusedImports": "error",
 				"noUnusedVariables": "off",
@@ -58,7 +61,8 @@
 			"suspicious": {
 				"noArrayIndexKey": "off",
 				"noExplicitAny": "off",
-				"noImplicitAnyLet": "off"
+				"noImplicitAnyLet": "off",
+				"noVar": "error"
 			}
 		}
 	},
