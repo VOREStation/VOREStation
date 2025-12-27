@@ -1,4 +1,3 @@
-import { useAtomValue } from 'jotai';
 import { store } from '../events/store';
 import { gameAtom } from '../game/atoms';
 import type { GameAtom } from '../game/types';
@@ -15,7 +14,7 @@ export function exportToDisk(
   hasTimestamps: boolean,
   page: Page | null,
 ) {
-  const game = useAtomValue(gameAtom);
+  const game = store.get(gameAtom);
 
   // Fetch from server database
   const opts: SaveFilePickerOptions = {
