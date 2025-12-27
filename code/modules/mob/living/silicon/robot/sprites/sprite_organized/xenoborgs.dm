@@ -78,7 +78,7 @@
 	name = "Xenoborg"
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
-	sprite_icon = 'icons/mob/robot/xenoborgs/misc/xenoborg_syndi.dmi'
+	sprite_icon = 'icons/mob/robot/xenoborgs/misc/xenoborg_ninja.dmi'
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	module_type = "Ninja"
