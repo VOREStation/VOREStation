@@ -10,6 +10,7 @@
 	taste_description = "a bad investment"
 	taste_mult = 1.2 /// The overwhelming flavor of a good(?) time!
 	color = "#f2f2f2"
+	scannable = SCANNABLE_ADVANCED
 	var/high_messages = TRUE
 	var/list/high_message_list = list("You feel great! For now...", "You feel a wave of happiness!")
 	var/list/sober_message_list = list("You feel like garbage...", "Your head aches.")
@@ -48,6 +49,7 @@
 	description = "Known for providing a euphoric high, this psychoactive drug is often used recreationally."
 	taste_description = "unpleasant bitterness"
 	taste_mult = 0.4
+	scannable = SCANNABLE_ADVANCED
 	high_message_list = list("You don't quite know what up or down is anymore...",
 	"Colors just seem much more amazing.",
 	"You feel incredibly confident. No one can stop you.",
@@ -268,6 +270,7 @@
 	high_message_list = list("You feel focused.", "Your attention is undivided.")
 	sober_message_list = list("It becomes harder to focus...", "You feel distractible.")
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	scannable = SCANNABLE_BENEFICIAL
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/drugs/citalopram
@@ -276,6 +279,7 @@
 	description = "Stabilizes the mind a little."
 	taste_description = "mild peppermint"
 	color = "#FF80FF"
+	scannable = SCANNABLE_BENEFICIAL
 	high_message_list = list("Everything feels a bit more steady.", "Your mind feels stable.")
 	sober_message_list = list("You feel a little tired.", "You feel a little more listless...")
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
@@ -292,6 +296,7 @@
 	description = "Stabilizes the mind greatly, but has a chance of adverse effects."
 	taste_description = "mild oranges"
 	color = "#FF80BF"
+	scannable = SCANNABLE_BENEFICIAL
 	high_message_list = list("Everything feels good, stable.", "You feel grounded.")
 	sober_message_list = list("The stability is gone...", "Everything is much less stable.")
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
@@ -312,6 +317,7 @@
 	description = "A potent sedative and anti-anxiety medication, made for the Qerr-Katish."
 	taste_description = "mint"
 	color = "#e6efe3"
+	scannable = SCANNABLE_BENEFICIAL
 	high_message_list = list("You feel sluggish...", "You feel calm and collected.")
 	sober_message_list = list("You feel so much more antsy...", "Your concentration wavers.")
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED

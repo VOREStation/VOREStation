@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(magazine_icondata_states)
 /proc/magazine_icondata_cache_add(var/obj/item/ammo_magazine/M)
 	var/list/icon_keys = list()
 	var/list/ammo_states = list()
-	var/list/states = cached_icon_states(M.icon)
+	var/list/states = icon_states_fast(M.icon)
 	for(var/i = 0, i <= M.max_ammo, i++)
 		var/ammo_state = "[M.icon_state]-[i]"
 		if(ammo_state in states)

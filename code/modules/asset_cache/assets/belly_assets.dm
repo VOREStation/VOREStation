@@ -1,3 +1,10 @@
+/datum/overlay_previews
+	var/old_precolored = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi'
+	var/base = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi'
+	var/layer1 = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer1.dmi'
+	var/layer2 = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer2.dmi'
+	var/layer3 = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_layer3.dmi'
+
 /datum/belly_overlays
 	var/belly_icon
 /*
@@ -273,13 +280,3 @@
 
 /datum/belly_overlays/synth_flesh_mono_hole
 	belly_icon = 'icons/mob/vore_fullscreens/synth_flesh_mono_hole.dmi'
-
-/datum/belly_overlays/yet_another_tumby
-	belly_icon = 'icons/mob/vore_fullscreens/yet_another_tumby.dmi'
-
-//Compatibility assets due to renames...
-/datum/belly_overlays/anim_belly
-	belly_icon = 'icons/mob/vore_fullscreens/VBOanim_belly1.dmi'
-
-/datum/belly_overlays/a_anim_belly
-	belly_icon = 'icons/mob/vore_fullscreens/VBOanim_belly1.dmi'

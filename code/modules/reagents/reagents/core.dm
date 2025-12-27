@@ -247,6 +247,7 @@
 	taste_description = REAGENT_ID_WATER
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
+	scannable = SCANNABLE_BENEFICIAL
 	color = "#0064C877"
 	metabolism = REM * 10
 
@@ -347,6 +348,7 @@
 	description = "Required for welders. Flamable."
 	taste_description = "gross metal"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#660000"
 
 	glass_name = "welder fuel"
