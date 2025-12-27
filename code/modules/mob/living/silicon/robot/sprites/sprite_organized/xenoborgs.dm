@@ -4,6 +4,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_cargo.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -12,6 +14,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_mining.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -20,6 +24,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_med.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -28,6 +34,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_engi.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -36,6 +44,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_service.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -44,6 +54,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_sci.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -52,6 +64,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_pk.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -60,6 +74,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/departmental/xenoborg_jani.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
@@ -69,6 +85,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/misc/xenoborg_syndi.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	module_type = list("Protector", "Mechanist", "Combat Medic")
@@ -79,6 +97,8 @@
 	sprite_icon_state = "xenoborg"
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/xenoborgs/misc/xenoborg_ninja.dmi'
+	icon_x = 64
+	icon_y = 64
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	module_type = "Ninja"
