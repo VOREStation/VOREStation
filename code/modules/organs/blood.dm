@@ -275,10 +275,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	if(!B.data["viruses"])
 		B.data["viruses"] = list()
 
-	for(var/datum/disease/D in GetSpreadableViruses())
-		B.data["viruses"] |= D.Copy()
-
-	for(var/datum/disease/D in GetDormantDiseases())
+	for(var/datum/disease/D in GetViruses())
 		B.data["viruses"] |= D.Copy()
 
 	if(!B.data["resistances"])
