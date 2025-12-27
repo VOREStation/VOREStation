@@ -68,8 +68,10 @@ SUBSYSTEM_DEF(overlays)
 			build_overlays[index] = icon2appearance(overlay)
 	return build_overlays
 
-/atom/proc/cut_overlays()
+/atom/proc/cut_overlays(priority)
 	STAT_START_STOPWATCH
+	if(priority)
+		priority_overlays = null
 	overlays = null
 	//POST_OVERLAY_CHANGE(src)
 	STAT_STOP_STOPWATCH
