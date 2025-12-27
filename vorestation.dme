@@ -3612,6 +3612,7 @@
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\gooborgs.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\myomer_dogborg.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\rabbot.dm"
+#include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\xenoborgs.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\gravekeeper.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\lost_drone.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\syndicate.dm"

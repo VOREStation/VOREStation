@@ -1,12 +1,10 @@
 // Syndie borg sprites
-
-/* none yet
+/*
 /datum/robot_sprite/syndie
 	module_type = list("Protector", "Mechanist", "Combat Medic")
 	sprite_icon = 'icons/mob/robot/syndie.dmi'
 	sprite_hud_icon_state = "malf"
 */
-
 // Wide/dogborg sprites
 
 /datum/robot_sprite/dogborg/syndie
