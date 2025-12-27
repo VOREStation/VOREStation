@@ -78,8 +78,6 @@
 		return
 	if(isbelly(output_dest) && length(output_dest.contents) >= BELLY_CONTENT_LIMIT)
 		return
-	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
-		target = get_turf(target) // Windows can be clicked to clean their turf
 	if(istype(output_dest,/obj/item/storage/bag/trash))
 		if(get_turf(output_dest) != get_turf(user))
 			vac_power = 0
@@ -110,6 +108,8 @@
 			output_dest = null
 			to_chat(user, span_warning("Target destination not found. Shutting down."))
 			return
+	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
+		target = get_turf(target) // Windows can be clicked to clean their turf
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/auto_setting = 1
 	if(isturf(target))
