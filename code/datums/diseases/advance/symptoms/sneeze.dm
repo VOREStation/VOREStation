@@ -128,7 +128,7 @@ Bonus
 		if(can_spontaneous_vore(unlucky, mob))
 			place = unlucky.vore_selected
 		else if(can_spontaneous_vore(mob, unlucky))
-			unlucky.forceMove(mob.vore_selected)
+			mob.vore_selected.nom_atom(unlucky)
 
 	mob.emote("sneeze")
 	do_teleport(mob, place)

@@ -72,13 +72,13 @@
 	if(istype(prey.loc, /obj/item/holder))
 		var/obj/item/holder/H = prey.loc
 		for(var/mob/living/M in H.contents)
-			belly.nom_mob(M, user)
-			if(M.loc == H) // In case nom_mob failed somehow.
+			belly.nom_atom(M, user)
+			if(M.loc == H) // In case nom_atom failed somehow.
 				M.forceMove(get_turf(user))
 		H.held_mob = null
 		qdel(H)
 	else
-		belly.nom_mob(prey, user)
+		belly.nom_atom(prey, user)
 
 	user.update_icon()
 

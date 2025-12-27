@@ -76,7 +76,7 @@
 			if(source.adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				source.visible_message(span_vwarning("[O] is thrown directly into [source]'s [lowertext(source.vore_selected.name)]!"))
 				O.throwing = 0
-				O.forceMove(source.vore_selected)
+				source.vore_selected.nom_atom(O)
 				return COMSIG_CANCEL_HITBY
 
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
@@ -96,10 +96,8 @@
 		if(can_throw_vore(prey = thrown_mob, pred = source))
 			if(!source.vore_selected)
 				return
-			source.vore_selected.nom_mob(thrown_mob) //Eat them!!!
+			source.vore_selected.nom_atom(thrown_mob) //Eat them!!!
 			source.visible_message(span_vwarning("[thrown_mob] is thrown right into [source]'s [lowertext(source.vore_selected.name)]!"))
-			if(thrown_mob.loc != source.vore_selected)
-				thrown_mob.forceMove(source.vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			source.on_throw_vore_special(TRUE, thrown_mob)
 			add_attack_logs(thrown_mob.thrower,source,"Devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
@@ -110,9 +108,7 @@
 			if(!thrown_mob.vore_selected)
 				return
 			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
-			thrown_mob.vore_selected.nom_mob(source) //Eat them!!!
-			if(source.loc != thrown_mob.vore_selected)
-				source.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			thrown_mob.vore_selected.nom_atom(source) //Eat them!!!
 			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 

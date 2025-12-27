@@ -104,7 +104,7 @@
 				if(!can_food_vore(M, F))
 					F.forceMove(get_turf(src))
 				else
-					F.forceMove(M.vore_selected)
+					M.vore_selected.nom_atom(F)
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return

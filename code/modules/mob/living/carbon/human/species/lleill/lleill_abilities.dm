@@ -233,7 +233,7 @@
 				if(target_list.len)
 					for(var/mob/living/M in target_list)
 						if(M.devourable && M.can_be_drop_prey)
-							M.forceMove(vore_selected)
+							vore_selected.nom_atom(M)
 							to_chat(M,span_vwarning("In a bright flash of white light, you suddenly find yourself trapped in \the [src]'s [vore_selected.get_belly_name()]!"))
 	species.update_lleill_hud(src)
 

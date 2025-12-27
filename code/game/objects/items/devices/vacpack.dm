@@ -76,8 +76,8 @@
 		return
 	if(!output_dest)
 		return
-	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
-		target = get_turf(target) // Windows can be clicked to clean their turf
+	if(isbelly(output_dest) && length(output_dest.contents) >= BELLY_CONTENT_LIMIT)
+		return
 	if(istype(output_dest,/obj/item/storage/bag/trash))
 		if(get_turf(output_dest) != get_turf(user))
 			vac_power = 0
@@ -108,6 +108,8 @@
 			output_dest = null
 			to_chat(user, span_warning("Target destination not found. Shutting down."))
 			return
+	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
+		target = get_turf(target) // Windows can be clicked to clean their turf
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/auto_setting = 1
 	if(isturf(target))
@@ -235,6 +237,10 @@
 		if(target_item.drop_sound)
 			playsound(src, target_item.drop_sound, vac_power * 5, 1, -1)
 	playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
+	if(isbelly(output_dest))
+		var/obj/belly/output_belly = output_dest
+		output_belly.nom_atom(target)
+		return
 	target.forceMove(output_dest)
 
 /obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)

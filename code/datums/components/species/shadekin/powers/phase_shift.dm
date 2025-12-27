@@ -170,13 +170,13 @@
 		if(potentials.len)
 			var/mob/living/target = pick(potentials)
 			if(can_phase_vore(src, target))
-				target.forceMove(vore_selected)
+				vore_selected.nom_atom(target)
 				to_chat(target, span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.get_belly_name()]!"))
 				to_chat(src, span_vwarning("You phase around [target], [vore_selected.vore_verb]ing them into your [vore_selected.get_belly_name()]!"))
 				our_prey = target
 			else if(can_phase_vore(target, src))
 				our_prey = src
-				forceMove(target.vore_selected)
+				target.vore_selected.nom_atom(src)
 				to_chat(target, span_vwarning("\The [src] phases into you, [target.vore_selected.vore_verb]ing them into your [target.vore_selected.get_belly_name()]!"))
 				to_chat(src, span_vwarning("You phase into [target], having them [target.vore_selected.vore_verb] you into their [target.vore_selected.get_belly_name()]!"))
 			if(our_prey)

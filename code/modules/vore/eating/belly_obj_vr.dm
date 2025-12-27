@@ -516,13 +516,16 @@
 			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
 			break
 
-
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
 	if(!owner)
 		thing.forceMove(get_turf(src))
 		return
+	if(length(contents) > BELLY_CONTENT_LIMIT * 0.9)
+		to_chat(owner, span_userdanger("Your belly [src] contains more than [BELLY_CONTENT_LIMIT * 0.9] items, keep the count below the limit of [BELLY_CONTENT_LIMIT]. Violations of the limit mights result in round removal or a ban."))
+	else if(length(contents) > BELLY_CONTENT_LIMIT)
+		log_and_message_admins("Ingested more than the sane limit of [BELLY_CONTENT_LIMIT] items.", owner)
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
 		var/S = pick(GLOB.slosh)
@@ -970,22 +973,26 @@
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-/obj/belly/proc/nom_mob(mob/prey, mob/user)
-	if(owner.stat == DEAD)
+/obj/belly/proc/nom_atom(atom/movable/prey, mob/user)
+	if(length(contents) >= BELLY_CONTENT_LIMIT)
+		to_chat(owner, span_vwarning("Your belly [src] is full."))
 		return
-	if(prey.buckled)
-		prey.buckled.unbuckle_mob()
+	if(ismob(prey))
+		var/mob/mob_prey = prey
+		if(owner.stat == DEAD)
+			return
+		if(mob_prey.buckled)
+			mob_prey.buckled.unbuckle_mob()
+		if(mob_prey.ckey)
+			GLOB.prey_eaten_roundstat++
+			if(owner.mind)
+				owner.mind.vore_prey_eaten++
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
-
-	if(prey.ckey)
-		GLOB.prey_eaten_roundstat++
-		if(owner.mind)
-			owner.mind.vore_prey_eaten++
 
 // new procs for handling digestion damage as a total rather than per-type
 // Returns the current total digestion damage per tick of a belly.
@@ -1050,6 +1057,9 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
+					if(length(contents) >= BELLY_CONTENT_LIMIT)
+						I.forceMove(drop_location())
+						return
 					if(contaminates)
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
@@ -1509,6 +1519,9 @@
 /obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
 		return
+	if(length(contents) >= BELLY_CONTENT_LIMIT)
+		to_chat(owner, span_vwarning("Your belly [target] is full."))
+		return
 	content.belly_cycles = 0
 	content.forceMove(target)
 	if(isitem(content))
@@ -1526,7 +1539,8 @@
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/atom/movable/prey)
-	if(!(prey in contents) || !prey.autotransferable) return
+	if(!(prey in contents) || !prey.autotransferable)
+		return FALSE
 	var/dest_belly_name
 	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
@@ -1540,13 +1554,16 @@
 			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
 	if(!dest_belly_name) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
-		return
+		return FALSE
 	var/obj/belly/dest_belly
 	for(var/obj/belly/B in owner.vore_organs)
 		if(B.name == dest_belly_name)
 			dest_belly = B
 			break
-	if(!dest_belly) return
+	if(!dest_belly)
+		return FALSE
+	if(length(dest_belly.contents) >= BELLY_CONTENT_LIMIT)
+		return FALSE
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
