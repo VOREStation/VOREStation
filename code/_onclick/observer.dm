@@ -18,7 +18,8 @@
 		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
 			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
 			return
-
+	if(isghosttrap(src.loc))
+		return
 	// Things you might plausibly want to follow
 	if(istype(A,/atom/movable))
 		ManualFollow(A)
