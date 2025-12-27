@@ -124,10 +124,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Cryogenic Storage"
 
 /area/shuttle/mining
-	name = "\improper Mining Elevator"
+	name = "\improper Mining Shuttle"
 	music = "music/escape.ogg"
 	dynamic_lighting = 0
-	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
+
+/area/shuttle/explo
+	name = "\improper Exploration Shuttle"
+	dynamic_lighting = 0
 
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
@@ -335,6 +338,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Clown Planet"
 	icon_state = "honk"
 	requires_power = 0
+
+/area/planet/tether
+	name = "\improper Outside - Surface"
+
+/area/planet/virgo3c/landingpad
+	name = "Escape Shuttle Landing Pad"
+
+/area/planet/virgo3c/centsquare
+	name = "\improper Central Square"
 
 /area/tdome
 	name = "\improper Thunderdome"
@@ -575,17 +587,54 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Aft Maintenance"
 	icon_state = "amaint"
 
+/area/maintenance/aft/deck_one
+	name = "Aft Maintenance - Deck 1"
+
+/area/maintenance/aft/deck_three
+	name = "Aft Maintenance - Deck 2"
+
+/area/maintenance/aft/deck_two
+	name = "Aft Maintenance - Deck 3"
+
 /area/maintenance/fore
 	name = "Fore Maintenance"
 	icon_state = "fmaint"
+
+/area/maintenance/fore/deck_one
+	name = "Fore Maintenance - Deck 1"
+
+/area/maintenance/fore/deck_two
+	name = "Fore Maintenance - Deck 2"
+
+/area/maintenance/fore/deck_three
+	name = "Fore Maintenance - Deck 3"
 
 /area/maintenance/starboard
 	name = "Starboard Maintenance"
 	icon_state = "smaint"
 
+/area/maintenance/starboard/deck_one
+	name = "Starboard Maintenance - Deck One"
+
+/area/maintenance/starboard/deck_two
+	name = "Starboard Maintenance - Deck Two"
+
+/area/maintenance/starboard/deck_three
+	name = "Starboard Maintenance - Deck Three"
+
 /area/maintenance/port
 	name = "Port Maintenance"
 	icon_state = "pmaint"
+
+/area/maintenance/port/deck_one
+	name = "Port Maintenance - Deck One"
+	icon_state = "pmaint"
+
+/area/maintenance/port/deck_two
+	name = "Port Maintenance - Deck Two"
+
+/area/maintenance/port/deck_three
+	name = "Port Maintenance - Deck Three"
 
 /area/maintenance/atmos_control
 	name = "Atmospherics Maintenance"
@@ -595,21 +644,52 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Fore Port Maintenance - 1"
 	icon_state = "fpmaint"
 
-/area/maintenance/fpmaint2
-	name = "Fore Port Maintenance - 2"
-	icon_state = "fpmaint"
+/area/maintenance/fpmaint/deck_one
+	name = "Fore Port Maintenance - Deck 1"
+
+/area/maintenance/fpmaint/deck_two
+	name = "Fore Port Maintenance - Deck 2"
+
+/area/maintenance/fpmaint/deck_three
+	name = "Fore Port Maintenance - Deck 3"
 
 /area/maintenance/fsmaint
 	name = "Fore Starboard Maintenance - 1"
 	icon_state = "fsmaint"
 
-/area/maintenance/fsmaint2
-	name = "Fore Starboard Maintenance - 2"
+/area/maintenance/fsmaint/deck_one
+	name = "Fore Starboard Maintenance - Deck 1"
+	icon_state = "fsmaint"
+
+/area/maintenance/fsmaint/deck_two
+	name = "Fore Starboard Maintenance - Deck 2"
+	icon_state = "fsmaint"
+
+/area/maintenance/fsmaint/deck_three
+	name = "Fore Starboard Maintenance - Deck 2"
 	icon_state = "fsmaint"
 
 /area/maintenance/asmaint
 	name = "Aft Starboard Maintenance"
 	icon_state = "asmaint"
+
+/area/maintenance/asmaint/deck_one
+	name = "Aft Starboard Maintenance - Deck 1"
+
+/area/maintenance/asmaint/deck_two
+	name = "Aft Starboard Maintenance - Deck 2"
+
+/area/maintenance/asmaint/deck_three
+	name = "Aft Starboard Maintenance - Deck 3"
+
+/area/maintenance/apmaint/deck_one
+	name = "Aft Port Maintenance - Deck 1"
+
+/area/maintenance/apmaint/deck_two
+	name = "Aft Port Maintenance - Deck 2"
+
+/area/maintenance/apmaint/deck_three
+	name = "Aft Port Maintenance - Deck 3"
 
 /area/maintenance/engi_shuttle
 	name = "Engineering Shuttle Access"
@@ -748,6 +828,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Tool Storage Maintenance"
 	icon_state = "maint_tool_storage"
 
+/area/maintenance/exploration
+	name = "Exploration Maintenance"
 
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
 
@@ -759,6 +841,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/maintenance/substation/engineering // Probably will be connected to engineering SMES room, as wires cannot be crossed properly without them sharing powernets.
 	name = "Engineering Substation"
+
+/area/maintenance/substation/engineering/atmospherics
+	name = "Atmospherics Substation"
+
 
 // No longer used:
 /area/maintenance/substation/medical_science // Medbay and Science. Each has it's own separated machinery, but it originates from the same room.
@@ -794,6 +880,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/substation/security // Security, Brig, Permabrig, etc.
 	name = "Security Substation"
 
+/area/maintenance/substation/explo
+	name = "Exploration Substation"
+
+/area/maintenance/substation/civai
+	name = "Civilian/AI Substation"
+
+/area/maintenance/substation/medcargo
+	name = "Medical/Cargo Substation"
+
 //Hallway
 
 /area/hallway/primary/
@@ -804,16 +899,58 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Fore Primary Hallway"
 	icon_state = "hallF"
 
+/area/hallway/primary/fore/deck_one
+	name = "\improper Fore Hallway - Deck One"
+	icon_state = "hallF"
+
+/area/hallway/primary/fore/deck_two
+	name = "\improper Fore Hallway - Deck Two"
+	icon_state = "hallF"
+
+/area/hallway/primary/fore/deck_three
+	name = "\improper Fore Hallway - Deck Three"
+	icon_state = "hallF"
+
 /area/hallway/primary/starboard
 	name = "\improper Starboard Primary Hallway"
 	icon_state = "hallS"
+
+/area/hallway/primary/starboard/deck_one
+	name = "\improper Starboard Hallway - Deck One"
+
+/area/hallway/primary/starboard/deck_two
+	name = "\improper Starboard Hallway - Deck Two"
+
+/area/hallway/primary/starboard/deck_three
+	name = "\improper Starboard Hallway - Deck Three"
 
 /area/hallway/primary/aft
 	name = "\improper Aft Primary Hallway"
 	icon_state = "hallA"
 
+/area/hallway/primary/aft/deck_one
+	name = "\improper Aft Hallway - Deck One"
+
+/area/hallway/primary/aft/deck_two
+	name = "\improper Aft Hallway - Deck Two"
+
+/area/hallway/primary/aft/deck_three
+	name = "\improper Aft Hallway - Deck Three"
+
 /area/hallway/primary/port
 	name = "\improper Port Primary Hallway"
+	icon_state = "hallP"
+
+/area/hallway/primary/port/deck_one
+	name = "\improper Port Hallway - Deck One"
+	icon_state = "hallP"
+
+/area/hallway/primary/port/deck_two
+	name = "\improper Port Hallway - Deck Two"
+	icon_state = "hallP"
+
+/area/hallway/primary/port/deck_three
+	name = "\improper Port Hallway - Deck Three"
 	icon_state = "hallP"
 
 /area/hallway/primary/central_one
@@ -912,6 +1049,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Cargo Hallway"
 	icon_state = "cargo_hallway"
 
+/area/hallway/secondary/explo_hallway
+	name = "\improper Exploration Hallway"
+
 /area/hallway/secondary/civilian_hallway_aft
 	name = "\improper Civilian Hallway Aft"
 	icon_state = "aft_civilian_hallway"
@@ -923,6 +1063,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway/secondary/civilian_hallway_mid
 	name = "\improper Civilian Hallway Mid"
 	icon_state = "mid_civilian_hallway"
+
+/area/hallway/secondary/command_hallway
+	name = "\improper Comand Hallway"
+
 
 /area/hallway/secondary/chapel_hallway
 	name = "\improper Chapel Hallway"
@@ -1002,6 +1146,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Courtroom"
 	icon_state = "courtroom"
 
+/area/crew_quarters/reading_room
+	name = "\improper Reading Room"
+
 /area/mint
 	name = "\improper Mint"
 	icon_state = "green"
@@ -1023,7 +1170,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambience = AMBIENCE_GENERIC
 
 /area/crew_quarters/toilet
-	name = "\improper Dormitory Toilets"
+	name = "\improper Toilet"
 	icon_state = "toilet"
 	sound_env = SMALL_ENCLOSED
 
@@ -1287,6 +1434,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Visitor Laundry"
 	icon_state = "visitor_laundry"
 
+/area/crew_quarters/entrepreneur
+	name = "\improper Shared Office"
+	icon_state = "entertainment"
+
 /area/library
 	name = "\improper Library"
 	icon_state = "library"
@@ -1493,6 +1644,27 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Engineering Aft Hallway"
 	icon_state = "engineering_aft_hallway"
 
+/area/engineering/eva
+	name = "\improper Engineering Eva"
+
+// Exploration
+
+/area/exploration
+	name = "\improper Exploration"
+	icon_state = "east"
+	flags = AREA_BLOCK_INSTANT_BUILDING
+
+/area/exploration/briefing
+	name = "\improper Exploration Briefing"
+
+/area/exploration/equipment
+	name = "\improper Exploration Equipment"
+
+/area/exploration/pilot_equipment
+	name = "\improper Pilot Equipment"
+
+/area/exploration/shuttle_bay
+	name = "\improper Shuttle Bay"
 
 //Solars
 
@@ -1636,15 +1808,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "medbay3"
 	music = 'sound/ambience/signal.ogg'
 
-/area/crew_quarters/medbreak
-	name = "\improper Break Room"
-	icon_state = "medbay3"
-	music = 'sound/ambience/signal.ogg'
-
-/area/crew_quarters/medical_restroom
-	name = "\improper Medbay Restroom"
-	icon_state = "medbay_restroom"
-	sound_env = SMALL_ENCLOSED
+/area/crew_quarters/fishing
+	name = "\improper Fish Farm"
 
 /area/medical/patients_rooms
 	name = "\improper Patient's Rooms"
@@ -1757,7 +1922,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Port First-Aid Station"
 	icon_state = "medbay2"
 
+/area/medical/lower
+	name = "\improper Lower Medical"
 
+/area/medical/breakroom
+	name = "\improper Medical Breakroom"
+
+/area/medical/breakroom/bathroom
+	name = "\improper Medical Breakroom Bathroom"
+
+/area/medical/storage
+	name = "\improper Medical Storage"
 
 //Security
 
@@ -1796,6 +1971,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/warden
 	name = "\improper Security - Warden's Office"
 	icon_state = "Warden"
+
+/area/security/iaa
+	name = "\improper IAA's Office"
 
 /area/security/armoury
 	name = "\improper Security - Armory"
@@ -1860,6 +2038,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Security - Tactical Equipment"
 	icon_state = "Tactical"
 	ambience = AMBIENCE_HIGHSEC
+
+/area/security/break_room
+	name = "\improper Security- Break Room"
 
 
 /*
@@ -1934,6 +2115,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Garden"
 	icon_state = "garden"
 
+/area/hydroponics/garden/second_floor
+	name = "\improper Second Floor Garden"
+
 // SUPPLY
 
 /area/quartermaster
@@ -1971,7 +2155,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Cargo Mining Dock"
 	icon_state = "mining"
 
+/area/quartermaster/mining_equipment
+	name = "\improper Mining Equipment"
 
+/area/quartermaster/oreprocessing
+	name = "\improper Ore Processing"
+
+/area/quartermaster/lockeroom
+	name = "\improper Cargo - Locker Room"
+
+/area/quartermaster/lockeroom/mining
+	name = "\improper Mining - Locker Room"
 // SCIENCE
 
 /area/rnd/research
@@ -2043,6 +2237,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/rnd/workshop
 	name = "\improper Workshop"
 	icon_state = "sci_workshop"
+
+/area/rnd/break_room
+	name = "\improper Research Break Room"
+	icon_state = "research"
 
 /area/toxins/server
 	name = "\improper Server Room"
@@ -2661,11 +2859,13 @@ var/list/the_station_areas = list (
 	/area/ai_monitored/storage/emergency,
 	/area/ai_upload,
 	/area/ai_upload_foyer,
-	/area/ai
+	/area/ai,
+	/area/exploration
 )
 
-
-
+/area/shuttle/tram
+	name = "\improper Tram Station"
+	icon_state = "dk_yellow"
 
 /area/beach
 	name = "Keelin's private beach"

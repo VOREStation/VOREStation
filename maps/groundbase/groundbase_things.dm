@@ -17,4 +17,4 @@
 // Shelter Capsule extra restrictions
 /datum/map_template/shelter/New()
 	..()
-	banned_areas += list(/area/groundbase/level3/escapepad)
+	banned_areas += list(/area/planet/virgo3c/landingpad)
