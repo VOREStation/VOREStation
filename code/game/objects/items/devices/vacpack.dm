@@ -237,6 +237,10 @@
 		if(target_item.drop_sound)
 			playsound(src, target_item.drop_sound, vac_power * 5, 1, -1)
 	playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
+	if(isbelly(output_dest))
+		var/obj/belly/output_belly = output_dest
+		output_belly.nom_atom(target)
+		return
 	target.forceMove(output_dest)
 
 /obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
