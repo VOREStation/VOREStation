@@ -82,12 +82,14 @@ export const modeToTooltip = {
   'Leave Remains': 'Prey might leave remains like bones.',
   Muffles: 'Causes all prey messages to become subtles.',
   'Affect Worn Items': 'Allows vorgan to coat and digest equipped items.',
-  'Jams Sensors': 'Blocks trackers, such as GPS, sensors, and tracking implants.',
+  'Jams Sensors':
+    'Blocks trackers, such as GPS, sensors, and tracking implants.',
   'Complete Absorb': 'Limits conversation to direct pred / prey.',
   'Spare Prosthetics': 'Applies no damage to synthetic limbs. ',
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
+  'Absorbed Devour': 'Allows absorbed prey to devour other prey.',
 };
 
 export const spriteToTooltip = {
@@ -147,4 +149,12 @@ export const aestehticTabsToIcons = {
   'Set Smell': 'wind',
   'Set Nutrition Examine': 'flask',
   'Set Weight Examine': 'weight-hanging',
+};
+
+export const preyAbilityToData = {
+  devour_as_absorbed: {
+    displayName: 'Devour Nearby',
+    desc: 'Allows you to devour nearby prey after having been absorbed.',
+    color: 'red',
+  },
 };

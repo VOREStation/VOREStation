@@ -1,7 +1,7 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
 
 import { reagentToColor } from '../../constants';
-import type { liqInteractData } from '../../types';
+import type { LiqInteractData } from '../../types';
 import { VorePanelEditColor } from '../../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
@@ -10,7 +10,7 @@ import { VorePanelEditText } from '../../VorePanelElements/VorePanelEditText';
 
 export const LiquidOptionsLeft = (props: {
   editMode: boolean;
-  liquidInteract: liqInteractData;
+  liquidInteract: LiqInteractData;
 }) => {
   const { editMode, liquidInteract } = props;
   const {

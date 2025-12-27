@@ -4,7 +4,7 @@ import { Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
-import type { DropdownEntry, hostMob, selectedData } from '../types';
+import type { DropdownEntry, HostMob, SelectedData } from '../types';
 import { VoreContentsPanel } from '../VoreSelectedBellyTabs/VoreContentsPanel';
 import { VoreSelectedBellyControls } from '../VoreSelectedBellyTabs/VoreSelectedBellyControls';
 import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';
@@ -19,9 +19,9 @@ import { VoreSelectedBellyVisuals } from '../VoreSelectedBellyTabs/VoreSelectedB
 export const VoreSelectedBelly = (props: {
   bellyDropdownNames: DropdownEntry[];
   activeVoreTab: number;
-  belly: selectedData;
+  belly: SelectedData;
   show_pictures: BooleanLike;
-  host_mobtype: hostMob;
+  host_mobtype: HostMob;
   icon_overflow: BooleanLike;
   vore_words: Record<string, string[]>;
   editMode: boolean;

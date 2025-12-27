@@ -1,7 +1,7 @@
 import { LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { noSelectionName } from '../constants';
-import type { bellyInteractionData, DropdownEntry } from '../types';
+import type { BellyInteractionData, DropdownEntry } from '../types';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
@@ -10,7 +10,7 @@ import { AutoTransferOptions } from './InteractionTab/AutoTransferOptions';
 export const VoreSelectedBellyInteractions = (props: {
   editMode: boolean;
   bellyDropdownNames: DropdownEntry[];
-  bellyInteractData: bellyInteractionData;
+  bellyInteractData: BellyInteractionData;
 }) => {
   const { editMode, bellyDropdownNames, bellyInteractData } = props;
   const { escapable, interacts, autotransfer_enabled, autotransfer } =

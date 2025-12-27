@@ -1,10 +1,10 @@
 import { Section, Stack } from 'tgui-core/components';
 
-import type { localPrefs } from '../types';
+import type { LocalPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
-  preferences: localPrefs;
+  preferences: LocalPrefs;
 }) => {
   const { preferences } = props;
 

@@ -32,6 +32,8 @@ export function BellyFullscreenPreview(props: {
           <Box color="red">
             Selected overly "{belly_fullscreen}" no longer exists!
           </Box>
+        </Stack.Item>
+        <Stack.Item>
           <Box color="label">Please select a new one.</Box>
         </Stack.Item>
       </Stack>

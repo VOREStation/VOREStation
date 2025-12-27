@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import {
-  Box,
-  Button,
-  Icon,
-  NoticeBox,
-  Section,
-  Stack,
-  Tabs,
-} from 'tgui-core/components';
+import { Button, Icon, NoticeBox, Stack, Tabs } from 'tgui-core/components';
 
 import type { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VorePanelMainTabs/VoreBellySelectionAndCustomization';
@@ -17,7 +9,7 @@ import { VoreInsidePanel } from './VorePanelMainTabs/VoreInsidePanel';
 import { VoreSoulcatcher } from './VorePanelMainTabs/VoreSoulcatcher';
 import { VoreUserGeneral } from './VorePanelMainTabs/VoreUserGeneral';
 import { VoreUserPreferences } from './VorePanelMainTabs/VoreUserPreferences';
-import { VoreContentsPanel } from './VoreSelectedBellyTabs/VoreContentsPanel';
+import { VoreContentsPreyPanel } from './VoreSelectedBellyTabs/VoreContentsPreyPanel';
 
 /**
  * There are three main sections to this UI.
@@ -42,6 +34,7 @@ export const VorePanel = () => {
     prefs,
     show_pictures,
     icon_overflow,
+    prey_abilities,
     host_mobtype,
     unsaved_changes,
     vore_words,
@@ -76,17 +69,13 @@ export const VorePanel = () => {
       maxBellyName={max_belly_name}
     />
   );
-  tabs[1] = inside.contents?.length ? (
-    <VoreContentsPanel
-      contents={inside.contents}
-      belly={inside.ref}
+  tabs[1] = (
+    <VoreContentsPreyPanel
+      inside={inside}
+      prey_abilities={prey_abilities}
       show_pictures={show_pictures}
       icon_overflow={icon_overflow}
     />
-  ) : (
-    <Section fill>
-      <Box>There is nothing else around you.</Box>
-    </Section>
   );
   tabs[2] = our_bellies && soulcatcher && abilities && (
     <VoreSoulcatcher

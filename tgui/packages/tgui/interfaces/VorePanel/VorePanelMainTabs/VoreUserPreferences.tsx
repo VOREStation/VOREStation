@@ -1,7 +1,7 @@
 import { Section } from 'tgui-core/components';
 
 import { digestModeToColor } from '../constants';
-import type { localPrefs, prefData } from '../types';
+import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
 import { VoreUserPreferencesMechanical } from '../VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
@@ -9,7 +9,7 @@ import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreU
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
 import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
-export const VoreUserPreferences = (props: { prefs: prefData }) => {
+export const VoreUserPreferences = (props: { prefs: PrefData }) => {
   const { prefs } = props;
   const {
     digestable,
@@ -65,7 +65,7 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
     max_voreoverlay_alpha,
   } = prefs;
 
-  const preferences: localPrefs = {
+  const preferences: LocalPrefs = {
     digestion: {
       action: 'toggle_digest',
       test: digestable,

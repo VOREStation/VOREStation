@@ -9,7 +9,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { noSelectionName } from '../constants';
-import type { abilities, DropdownEntry, soulcatcherData } from '../types';
+import type { Abilities, DropdownEntry, SoulcatcherData } from '../types';
 import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditTextTabs } from '../VorePanelElements/VorePaneldEditTextTabs';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
@@ -22,13 +22,13 @@ import { SoulOptions } from '../VoreSoulcatcherSettings/SoulOptions';
 import { VoreAbilities } from './VoreAbilities';
 
 export const VoreSoulcatcher = (props: {
-  soulcatcher: soulcatcherData | null;
+  soulcatcher: SoulcatcherData | null;
   our_bellies: Required<{ name: string; ref: string }[]> & {
     map(
       arg0: (belly: { name: string; ref: string }) => DropdownEntry,
     ): DropdownEntry[];
   };
-  abilities: abilities;
+  abilities: Abilities;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
   persist_edit_mode: BooleanLike;
@@ -71,7 +71,7 @@ export const VoreSoulcatcher = (props: {
 };
 
 const VoreSoulcatcherSection = (props: {
-  soulcatcher: soulcatcherData;
+  soulcatcher: SoulcatcherData;
   overlayBellies: DropdownEntry[];
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
