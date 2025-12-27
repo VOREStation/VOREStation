@@ -75,10 +75,12 @@ SUBSYSTEM_DEF(overlays)
 	STAT_STOP_STOPWATCH
 	STAT_LOG_ENTRY(SSoverlays.stats, type)
 
-/atom/proc/cut_overlay(list/remove_overlays)
+/atom/proc/cut_overlay(list/remove_overlays, priority)
 	if(!overlays)
 		return
 	STAT_START_STOPWATCH
+	if(priority)
+		priority_overlays -= remove_overlays
 	if(islist(remove_overlays))
 		remove_overlays = remove_overlays.Copy() //May not be ideal to copy, but as build_appearance_list modifies lists in place which breaks certain things
 	overlays -= build_appearance_list(remove_overlays)
