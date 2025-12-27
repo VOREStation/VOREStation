@@ -197,6 +197,9 @@
 	icon_state = "toolkit_engiborg_multitool"
 	toolspeed = 0.5
 
+/obj/item/multitool/cyborg/update_icon()
+	icon_state = "toolkit_engiborg_multitool"
+
 /obj/item/multitool/ai_detector/cyborg
 	name = "AI detector multitool"
 	toolspeed = 0.5

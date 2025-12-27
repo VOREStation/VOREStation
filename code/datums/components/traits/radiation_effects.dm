@@ -108,6 +108,11 @@
 	//Radiation calculation, done here since contamination uses it
 	var/rad_removal_mod = 1
 	var/rads = living_guy.radiation * 0.04
+	if(!rads)
+		return
+	if(living_guy.radiation < 0)
+		living_guy.radiation = 0
+		return
 
 	if(ishuman(living_guy))
 		var/mob/living/carbon/human/human_guy = parent
