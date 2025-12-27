@@ -1,7 +1,7 @@
 import { storage } from 'common/storage';
+import { gameAtom } from 'tgui-panel/game/atoms';
+import { settingsAtom } from 'tgui-panel/settings/atoms';
 import { store } from '../events/store';
-import type { GameAtom } from '../game/types';
-import type { SettingsState } from '../settings/types';
 import {
   allChatAtom,
   chatLoadedAtom,
@@ -16,7 +16,7 @@ import {
 } from './atoms';
 import { canPageAcceptType, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
-import type { SerializedMessage } from './types';
+import type { SerializedMessage, StoredChatSettings } from './types';
 
 chatRenderer.events.on(
   'batchProcessed',
@@ -68,10 +68,15 @@ function updateMessageCount(countByType: Record<string, number>): void {
   store.set(chatPagesRecordAtom, draftpagesRecord);
 }
 
-export function saveChatToStorage(
-  settings: SettingsState,
-  game: GameAtom,
-): void {
+export function saveChatToStorage(): void {
+  saveChatMessages();
+  const allChat = store.get(allChatAtom);
+  saveChatState(allChat);
+}
+
+function saveChatMessages(): void {
+  const settings = store.get(settingsAtom);
+  const game = store.get(gameAtom);
   const allChat = store.get(allChatAtom);
   storage.set('chat-state', allChat);
 
@@ -119,4 +124,22 @@ export function purgeMessageArchive() {
   store.set(storedRoundsAtom, 0);
   store.set(exportStartAtom, 0);
   store.set(exportEndAtom, 0);
+}
+
+export function saveChatState(state: StoredChatSettings): void {
+  // Avoid persisting frequently-changing unread counts.
+  const pageById = Object.fromEntries(
+    Object.entries(state.pageById).map(([id, page]) => [
+      id,
+      {
+        ...page,
+        unreadCount: 0,
+      },
+    ]),
+  );
+
+  storage.set('chat-state', {
+    ...state,
+    pageById,
+  });
 }

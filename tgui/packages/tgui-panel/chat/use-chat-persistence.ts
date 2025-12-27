@@ -88,9 +88,7 @@ export function useChatPersistence() {
     if (loaded && settings.saveInterval) {
       saveInterval = setInterval(() => {
         if (!game.databaseBackendEnabled) {
-          const intervalSettings = store.get(settingsAtom);
-          const intervalGame = store.get(gameAtom);
-          saveChatToStorage(intervalSettings, intervalGame);
+          saveChatToStorage();
         }
       }, settings.saveInterval * 1000);
     }
