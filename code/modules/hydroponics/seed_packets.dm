@@ -352,6 +352,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/gnomes
 	seed_type = PLANT_GNOMES
 
+/obj/item/seeds/smoles
+	seed_type = PLANT_SMOLES
+
 /obj/item/seeds/sifbulb
 	seed_type = PLANT_SIFBULB
 
