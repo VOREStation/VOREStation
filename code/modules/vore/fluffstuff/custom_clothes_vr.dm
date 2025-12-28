@@ -1258,12 +1258,10 @@ Departamental Swimsuits, for general use
 
 	if(unbuttoned)
 		icon_state = "[initial(icon_state)]"
-		item_state = "[initial(item_state)]"
 		unbuttoned = FALSE
 		to_chat(usr, "You button up the coat.")
 	else
 		icon_state = "[initial(icon_state)]_open"
-		item_state = "[initial(item_state)]_open"
 		unbuttoned = TRUE
 		to_chat(usr, "You unbutton the coat.")
 	usr.update_inv_wear_suit()
