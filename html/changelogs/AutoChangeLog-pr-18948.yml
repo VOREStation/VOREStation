@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - qol: "Non-Contagious viruses can be picked up with a sample of blood"
+  - qol: "Added extra info description to the extrapolator"
