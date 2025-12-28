@@ -42,7 +42,7 @@
 	skull_type = /obj/item/digestion_remains/skull/sergal
 
 /obj/belly/proc/handle_remains_leaving(var/mob/living/M)
-	if(!ishuman(M) && !isrobot(M))	//Are we even humanoid or a borg?
+	if(!isliving(M))	//Are we even a living thing? (Sorry ghosts)
 		return
 	//Moving some vars here for both borgs and carbons to use
 	var/bones_amount = rand(2,4) //some random variety in amount of bones left
@@ -59,6 +59,21 @@
 			var/new_bone = pick(borg_bones)
 			new new_bone(src,owner)
 		return //Dont need to do carbon stuff after this
+
+	if(ismouse(M)) //Mice dont have massive bones to leave behind
+		return
+	if(isanimal(M)) //If they are a simplemob
+		var/list/organic_bones = list( //Generic bone variation system
+			/obj/item/digestion_remains,
+			/obj/item/digestion_remains/variant1,
+			/obj/item/digestion_remains/variant2,
+			/obj/item/digestion_remains/variant3
+		)
+		for(var/i = 1, i <= bones_amount, i++)
+			var/new_bone = pick(organic_bones)
+			new new_bone(src,owner)
+		return
+
 
 	var/mob/living/carbon/human/H = M
 

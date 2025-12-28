@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Users with no DNA can no longer upload their non-existent DNA to a DNA locking chip"
+  - bugfix: "Artifact casings no longer drop."

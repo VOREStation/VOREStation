@@ -250,14 +250,6 @@
 		now off."))
 		accepting_refs = 0
 
-
-
-
-
-
-
-
-
 /obj/item/storage/bag/circuits
 	name = "circuit kit"
 	desc = "This kit's essential for any circuitry projects."
