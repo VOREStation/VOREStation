@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - code_imp: "Made it a bit easier to read xenoarch spawn code"
+  - bugfix: "Makes illegal excavations no longer crash the server"
+  - qol: "Telecube spawns now spawn with a second one, allowing for immediate mating."

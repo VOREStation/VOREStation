@@ -1246,7 +1246,7 @@
 	description = "A unknown liquid, it smells sweet"
 	metabolism = REM * 0.8
 	color = "#8A0829"
-	scannable = 0
+	scannable = SCANNABLE_ADVANCED
 	wiki_flag = WIKI_SPOILER
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
@@ -1264,7 +1264,7 @@
 	description = "A unknown liquid, it doesn't smell"
 	metabolism = REM * 0.5
 	color = "#41029B"
-	scannable = 0
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
@@ -1284,7 +1284,7 @@
 	description = "A unknown liquid, it doesn't smell"
 	metabolism= REM * 0.5
 	color = "#41029B"
-	scannable = 0
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
