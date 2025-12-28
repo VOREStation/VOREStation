@@ -214,7 +214,7 @@
 	board_type = new /datum/frame/frame_types/medical_pod
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	req_components = list(
-							/obj/item/stock_parts/scanning_module = 3,
+							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stack/material/glass/reinforced = 2)
 
 /obj/item/circuitboard/medical_kiosk

@@ -107,7 +107,7 @@ var/list/_slime_default_emotes = list(
 		drop_hat()
 	return ..()
 
-/mob/living/silicon/robot/drone/ventcrawl_get_item_whitelist()
+/mob/living/simple_mob/slime/ventcrawl_get_item_whitelist()
 	return list(
 		VENTCRAWL_BASE_WHITELIST,
 		VENTCRAWL_VORE_WHITELIST,
