@@ -40,6 +40,7 @@ export function useChatPersistence() {
   /** Loads chat + chat settings */
   useEffect(() => {
     if (!loaded && settingsLoaded) {
+      setLoaded(true);
       chatRenderer.setVisualChatLimits(
         settings.visibleMessageLimit,
         settings.combineMessageLimit,
@@ -153,14 +154,13 @@ export function useChatPersistence() {
 
   useEffect(() => {
     async function fetchChat() {
-      if (!game.userData || loaded) return;
+      if (!game.userData) return;
 
       if (game.userData.token) {
         await loadChatFromDBStorage(game.userData);
       } else {
         await loadChatFromStorage();
       }
-      setLoaded(true);
       chatRenderer.onStateLoaded();
     }
 
