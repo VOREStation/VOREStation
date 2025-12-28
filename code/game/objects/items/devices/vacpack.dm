@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BELT | SLOT_BACK
 	var/vac_power = 0
 	var/output_dest = null
-	var/list/vac_settings = list(
+	var/static/list/vac_settings = list(
 			"power off" = 0,
 			"dust and grime" = 1,
 			"tiny objects" = 2,
