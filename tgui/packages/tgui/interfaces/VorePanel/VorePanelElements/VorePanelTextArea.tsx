@@ -54,10 +54,8 @@ const CountedTextElement = (props: {
   index?: number;
 }) => {
   const { entry, limit, action, index } = props;
+  const [textInput, setTextInput] = useState(entry);
 
-  const ref = useRef<HTMLTextAreaElement | null>(null);
-
-  const currentCount = ref.current?.value.length || 0;
   return (
     <>
       <Stack.Item grow>
@@ -65,9 +63,9 @@ const CountedTextElement = (props: {
           height="100%"
           minHeight={calcLineHeight(limit, 16)}
           fluid
-          ref={ref}
           maxLength={limit}
           value={entry}
+          onChange={setTextInput}
           onBlur={(value) => {
             if (value !== entry) {
               action(value, index);
@@ -79,7 +77,7 @@ const CountedTextElement = (props: {
         <Stack>
           <Stack.Item grow />
           <Stack.Item>
-            <Box color="label">{`${currentCount} / ${limit}`}</Box>
+            <Box color="label">{`${textInput.length} / ${limit}`}</Box>
           </Stack.Item>
           <Stack.Item grow />
         </Stack>
