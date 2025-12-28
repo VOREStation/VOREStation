@@ -15,6 +15,8 @@
 	item_state = "gift1"
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
+	///Var used for attack_hand chain.
+	var/special_handling = FALSE
 
 /obj/item/a_gift/Initialize(mapload)
 	. = ..()
@@ -66,6 +68,8 @@
 	. = ..(M)
 	if(.)
 		return TRUE
+	if(special_handling)
+		return FALSE
 	var/gift_type = pick(
 		/obj/item/storage/wallet,
 		/obj/item/storage/photo_album,
@@ -199,6 +203,7 @@
 	item_state = "chomp_present"
 	plane = ABOVE_MOB_PLANE
 	var/chaos
+	special_handling = TRUE
 
 /obj/item/a_gift/advanced/Initialize(mapload)
 	. = ..()
@@ -209,6 +214,9 @@
 		desc = "The casino dev messed up and gave you the wrong present! This one pulses with potential for good or evil!"
 
 /obj/item/a_gift/advanced/attack_self(mob/M) //WIP - ALWAYS add more items to list! - Jack
+	. = ..(M)
+	if(.)
+		return TRUE
 	var/gift_type_advanced = pick(
 		/obj/item/binoculars/spyglass,
 		/obj/item/bodysnatcher,
