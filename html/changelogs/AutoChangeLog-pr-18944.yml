@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Radiation component will no longer passively heal + give nutrition when not irradiated"
+  - bugfix: "Hybrid cutters use the correct sprite, now."
+  - bugfix: "Robotic multitool will no longer go invisible when used to link references"
+  - bugfix: "Holodeck properly clears up its landmarks"
