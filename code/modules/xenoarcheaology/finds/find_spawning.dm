@@ -583,7 +583,7 @@
 			// Imperion circuit.
 			apply_prefix = FALSE
 			apply_image_decorations = FALSE
-			var/possible_circuits = subtypesof(/obj/item/circuitboard/mecha/imperion)
+			var/list/possible_circuits = subtypesof(/obj/item/circuitboard/mecha/imperion)
 			var/new_type = pick(possible_circuits)
 			new_item = new new_type(src.loc)
 			name = new_item.name
@@ -605,8 +605,9 @@
 
 		if(ARCHAEO_BATTERY)
 			// Battery!
-			var/new_path = pick(subtypesof(/obj/item/cell))
-			new_path -= list(/obj/item/cell/standin) //Item blacklist. These items crash the MC or otherwise.
+			var/list/possible_paths = subtypesof(/obj/item/cell)
+			possible_paths -= /obj/item/cell/standin
+			var/new_path = pick(possible_paths)
 			new_item = new new_path(src.loc)
 			new_item.name = pick("cell", "battery", "device")
 
