@@ -69,18 +69,21 @@
 /obj/item/walkpod/proc/update_music()
 	listener?.force_music(media_url, media_start_time, volume) // Calling this with "" url (when we aren't playing) helpfully disables forced music
 
-/obj/item/walkpod/AltClick(mob/living/L)
+/obj/item/walkpod/click_alt(mob/living/L)
 	if(L == listener && check_listener())
 		tgui_interact(L)
 	else if(loc == L) // at least they're holding it
 		to_chat(L, span_warning("Turn on the [src] first."))
 
-/obj/item/walkpod/attack_self(mob/living/L)
-	if(!istype(L) || loc != L)
+/obj/item/walkpod/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(!istype(user) || loc != user)
 		return
 	if(!listener)
-		set_listener(L)
-	tgui_interact(L)
+		set_listener(user)
+	tgui_interact(user)
 
 // Process ticks to ensure our listener remains valid and we do music-ing
 /obj/item/walkpod/process()

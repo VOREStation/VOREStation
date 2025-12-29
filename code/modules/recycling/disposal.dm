@@ -89,6 +89,8 @@
 // this will be revealed if a T-scanner is used
 // if visible, use regular icon_state
 /obj/structure/disposalpipe/update_icon()
+	if(!(flags & ATOM_INITIALIZED)) // Do not call update_icon before init. E.g. hide might be called before
+		return
 /*	if(invisibility)	//we hide things with alpha now, no need for transparent icons
 		icon_state = "[base_icon_state]f"
 	else

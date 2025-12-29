@@ -51,12 +51,15 @@
 	src.pixel_y = 0
 
 
-/obj/item/retail_scanner/attack_self(mob/user as mob)
+/obj/item/retail_scanner/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.set_machine(src)
 	interact(user)
 
 
-/obj/item/retail_scanner/AltClick(var/mob/user)
+/obj/item/retail_scanner/click_alt(var/mob/user)
 	if(Adjacent(user))
 		user.set_machine(src)
 		interact(user)

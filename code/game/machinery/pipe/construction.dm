@@ -149,6 +149,9 @@ Buildable meters
 		set_dir(turn(dir, 45))
 
 /obj/item/pipe/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	set_dir(turn(dir,-90))
 	fixdir()
 

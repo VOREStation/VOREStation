@@ -6,6 +6,7 @@
 	show_messages = 0
 	var/emagged = FALSE
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	special_handling = TRUE
 
 /obj/item/paicard/sleevecard/attack_ghost(mob/user as mob)
 	return
@@ -66,6 +67,9 @@
 	return 0
 
 /obj/item/paicard/sleevecard/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 
 	if(!pai)
@@ -73,7 +77,7 @@
 	else
 		if(!emagged)
 			to_chat(user,span_notice("\The [src] displays the name '[pai]'."))
-		else ..()
+		else ..(user, TRUE)
 
 /mob/living/silicon/pai/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.

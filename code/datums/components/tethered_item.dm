@@ -11,14 +11,14 @@
 	host_item.verbs += /obj/item/proc/toggle_tethered_handheld
 	host_item.actions_types += list(/datum/action/item_action/swap_tethered_item) // AddComponent for this must be called before . = ..() in Initilize()
 	RegisterSignal(host_item, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attackself))
-	RegisterSignal(host_item, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(host_item, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	// Link handheld
 	make_handheld()
 
 /datum/component/tethered_item/Destroy()
 	UnregisterSignal(host_item, COMSIG_ITEM_ATTACK_SELF)
-	UnregisterSignal(host_item, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(host_item, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
 	host_item.verbs -= /obj/item/proc/toggle_tethered_handheld
 	host_item = null
@@ -32,12 +32,12 @@
 // Anything that uses this component must intercept attack_hand() and emit COMSIG_ITEM_ATTACK_SELF.
 // This stops you from removing the item from your backpack slot while trying to take the handheld item out.
 // There's no way to block the item pickup code, so it has to be done this way. Unfortunately.
-// Will return COMPONENT_NO_INTERACT if the component handled the action. Otherwise attack_hand() should resolve normally.
+// Will return COMPONENT_CANCEL_ATTACK_CHAIN if the component handled the action. Otherwise attack_hand() should resolve normally.
 /datum/component/tethered_item/proc/on_attackself(obj/item/source, mob/living/carbon/human/user)
 	SIGNAL_HANDLER
 	if(hand_held.loc != host_item)
 		reattach_handheld()
-		return COMPONENT_NO_INTERACT
+		return COMPONENT_CANCEL_ATTACK_CHAIN
 	//Detach the handset into the user's hands
 	if(!slot_check())
 		if(ismob(host_item.loc))
@@ -49,7 +49,7 @@
 	host_item.update_icon()
 	hand_held.update_icon()
 	to_chat(user,span_notice("You remove \the [hand_held] from \the [host_item]."))
-	return COMPONENT_NO_INTERACT
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 // Signal registry for handheld item
 /datum/component/tethered_item/proc/make_handheld()

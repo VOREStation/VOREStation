@@ -36,6 +36,9 @@
 	var/age = 0
 	var/last_modified_ckey
 
+	///Occult check. Used for do_after
+	var/occult = FALSE
+
 	var/was_maploaded = FALSE // This tracks if the paper was created on mapload.
 
 	var/const/deffont = "Verdana"
@@ -48,7 +51,7 @@
 	icon_state = "greetingcard"
 	slot_flags = null //no fun allowed!!!!
 
-/obj/item/paper/card/AltClick() //No fun allowed
+/obj/item/paper/card/click_alt() //No fun allowed
 	return
 
 /obj/item/paper/card/update_icon()
@@ -89,7 +92,7 @@
 /obj/item/paper/alien/burnpaper()
 	return
 
-/obj/item/paper/alien/AltClick() // No airplanes for me.
+/obj/item/paper/alien/click_alt() // No airplanes for me.
 	return
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
@@ -175,7 +178,12 @@
 		add_fingerprint(usr)
 	return
 
-/obj/item/paper/attack_self(mob/living/user as mob)
+/obj/item/paper/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(occult)
+		return
 	if(user.a_intent == I_HURT)
 		if(icon_state == "scrap")
 			user.show_message(span_warning("\The [src] is already crumpled."))

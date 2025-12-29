@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 		balloon_alert(user,"the fabricator now holds [stored_matter]/30 fabrication-units.")
 		return
 
-/obj/item/rsf/CtrlClick(mob/living/user)
+/obj/item/rsf/item_ctrl_click(mob/living/user)
 	if(!Adjacent(user) || !istype(user))
 		balloon_alert(user,"you are too far away.")
 		return
@@ -65,7 +65,10 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 		balloon_alert(user, "container chosen: [glass_choice]")
 		glasstype_name = glass_choice
 
-/obj/item/rsf/attack_self(mob/user as mob)
+/obj/item/rsf/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/options = list(
 		"card deck" = image(icon = 'icons/obj/playing_cards.dmi', icon_state = "deck"),
 		"card deck (big)" = image(icon = 'icons/obj/playing_cards.dmi', icon_state = "deck"),

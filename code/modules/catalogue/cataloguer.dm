@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 
-/obj/item/cataloguer/AltClick(mob/user)
+/obj/item/cataloguer/click_alt(mob/user)
 	pulse_scan(user)
 
 // Gives everything capable of being scanned an outline for a brief moment.
@@ -239,6 +239,9 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	points_stored = max(0, points_stored += amount)
 
 /obj/item/cataloguer/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	interact(user)
 
 /obj/item/cataloguer/interact(mob/user)

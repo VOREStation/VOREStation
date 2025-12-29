@@ -36,11 +36,6 @@
 		return
 	return ..()
 
-/obj/item/storage/laundry_basket/attack_self(mob/user as mob)
-	var/turf/T = get_turf(user)
-	to_chat(user, span_notice("You dump the [src]'s contents onto \the [T]."))
-	return ..()
-
 /obj/item/storage/laundry_basket/pickup(mob/user)
 	var/obj/item/storage/laundry_basket/offhand/O = new(user)
 	O.name = "[name] - second hand"

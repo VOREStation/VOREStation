@@ -54,18 +54,21 @@
 	var/list/notifying_programs = list()
 	var/retro_mode = 0
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/pda/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
-/obj/item/pda/CtrlClick(mob/user)
+/obj/item/pda/item_ctrl_click(mob/user)
 	if(can_use(user) && !issilicon(user))
 		remove_pen()
 		return
 	..()
 
-/obj/item/pda/AltClick(mob/user)
+/obj/item/pda/click_alt(mob/user)
 	if(issilicon(user))
 		return
 
@@ -183,7 +186,12 @@
 /obj/item/pda/proc/close(mob/user)
 	SStgui.close_uis(src)
 
-/obj/item/pda/attack_self(mob/user as mob)
+/obj/item/pda/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(active_uplink_check(user))
 		return
 

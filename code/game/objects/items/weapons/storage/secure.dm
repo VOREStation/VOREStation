@@ -27,6 +27,7 @@
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = ITEMSIZE_SMALL * 7
 	use_sound = 'sound/items/storage/briefcase.ogg'
+	special_handling = TRUE
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
@@ -80,7 +81,7 @@
 		return
 	..()
 
-/obj/item/storage/secure/AltClick(mob/user as mob)
+/obj/item/storage/secure/click_alt(mob/user as mob)
 	if (isliving(user) && Adjacent(user) && (src.locked == 1))
 		to_chat(user, span_warning("[src] is locked and cannot be opened!"))
 	else if (isliving(user) && Adjacent(user) && (!src.locked))
@@ -92,7 +93,10 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/storage/secure/attack_self(mob/user as mob)
+/obj/item/storage/secure/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/storage/secure/tgui_interact(mob/user, datum/tgui/ui = null)

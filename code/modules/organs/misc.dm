@@ -48,14 +48,7 @@
 	parent_organ = BP_HEAD
 	icon_state = "brain_prosthetic"
 	organ_tag = "stack"
-	vital = 1
-	var/backup_time = 0
-	var/datum/mind/backup
-
-/obj/item/organ/internal/stack/process()
-	if(owner && owner.stat != DEAD && !is_broken())
-		backup_time = world.time
-		if(owner.mind) backup = owner.mind
+	vital = TRUE
 
 /obj/item/organ/internal/stack/vox/stack
 	name = "vox cortical stack"

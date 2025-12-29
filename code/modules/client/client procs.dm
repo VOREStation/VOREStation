@@ -60,39 +60,41 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
-	if (!check_rights_for(src, R_HOLDER) && mtl)
-		var/minute = round(world.time, 600)
-		if (!topiclimiter)
-			topiclimiter = new(LIMITER_SIZE)
-		if (minute != topiclimiter[CURRENT_MINUTE])
-			topiclimiter[CURRENT_MINUTE] = minute
-			topiclimiter[MINUTE_COUNT] = 0
-		topiclimiter[MINUTE_COUNT] += 1
-		if (topiclimiter[MINUTE_COUNT] > mtl)
-			var/msg = "Your previous action was ignored because you've done too many in a minute."
-			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
-				topiclimiter[ADMINSWARNED_AT] = minute
-				msg += " Administrators have been informed."
-				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
-				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
-			to_chat(src, span_danger("[msg]"))
-			return
+	if(!bypass_topic_limit(href_list))
+		if (!check_rights_for(src, R_HOLDER) && mtl)
+			var/minute = round(world.time, 600)
+			if (!topiclimiter)
+				topiclimiter = new(LIMITER_SIZE)
+			if (minute != topiclimiter[CURRENT_MINUTE])
+				topiclimiter[CURRENT_MINUTE] = minute
+				topiclimiter[MINUTE_COUNT] = 0
+			if(href_list["window_id"] != "statbrowser")
+				topiclimiter[MINUTE_COUNT] += 1
+			if (topiclimiter[MINUTE_COUNT] > mtl)
+				var/msg = "Your previous action was ignored because you've done too many in a minute."
+				if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+					topiclimiter[ADMINSWARNED_AT] = minute
+					msg += " Administrators have been informed."
+					log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
+				to_chat(src, span_danger("[msg]"))
+				return
 
-	var/stl = CONFIG_GET(number/second_topic_limit)
-	if (!check_rights_for(src, R_HOLDER) && stl && href_list["window_id"] != "statbrowser")
-		var/second = round(world.time, 10)
-		if (!topiclimiter)
-			topiclimiter = new(LIMITER_SIZE)
-		if (second != topiclimiter[CURRENT_SECOND])
-			topiclimiter[CURRENT_SECOND] = second
-			topiclimiter[SECOND_COUNT] = 0
-		topiclimiter[SECOND_COUNT] += 1
-		if (topiclimiter[SECOND_COUNT] > stl)
-			to_chat(src, span_danger("Your previous action was ignored because you've done too many in a second"))
-			return
+		var/stl = CONFIG_GET(number/second_topic_limit)
+		if (!check_rights_for(src, R_HOLDER) && stl)
+			var/second = round(world.time, 10)
+			if (!topiclimiter)
+				topiclimiter = new(LIMITER_SIZE)
+			if (second != topiclimiter[CURRENT_SECOND])
+				topiclimiter[CURRENT_SECOND] = second
+				topiclimiter[SECOND_COUNT] = 0
+			topiclimiter[SECOND_COUNT] += 1
+			if (topiclimiter[SECOND_COUNT] > stl)
+				to_chat(src, span_danger("Your previous action was ignored because you've done too many in a second"))
+				return
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if(findtext(href,"<script",1,0) )
 		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		return
@@ -266,6 +268,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (CONFIG_GET(flag/chatlog_database_backend))
 		chatlog_token = vchatlog_generate_token(ckey, GLOB.round_id)
 
+	winset(src, null, list("browser-options" = "find,refresh"))
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
 	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))

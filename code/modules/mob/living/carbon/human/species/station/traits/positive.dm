@@ -308,7 +308,7 @@
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
-/datum/trait/positive/pain_tolerance
+/datum/trait/positive/trauma_tolerance
 	name = "Grit"
 	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
 	cost = 2
@@ -668,7 +668,7 @@
 	if(last_adrenaline_rush && last_adrenaline_rush + (30 MINUTES) > world.time)
 		return
 	last_adrenaline_rush = world.time
-	log_and_message_admins("[H]'s adrenaline rush trait just activated!")
+	log_and_message_admins("[H]'s adrenaline rush trait just activated!", H)
 	H.add_modifier(/datum/modifier/adrenaline, 30 SECONDS)
 
 /datum/modifier/adrenaline

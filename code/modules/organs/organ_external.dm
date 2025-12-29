@@ -86,6 +86,8 @@
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
 
+	special_handling = TRUE
+
 /obj/item/organ/external/Destroy()
 
 	if(parent && parent.children)
@@ -147,9 +149,12 @@
 	if(burn_damage)
 		take_damage(0, burn_damage)
 
-/obj/item/organ/external/attack_self(var/mob/living/user)
+/obj/item/organ/external/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!contents.len)
-		return ..()
+		return ..(user, TRUE)
 	var/list/removable_objects = list()
 	for(var/obj/item/organ/external/E in (contents + src))
 		if(!istype(E))
@@ -165,7 +170,7 @@
 			user.put_in_hands(I)
 		user.visible_message(span_danger("\The [user] rips \the [I] out of \the [src]!"))
 		return //no eating the limb until everything's been removed
-	return ..()
+	return ..(user, TRUE)
 
 /obj/item/organ/external/examine(mob/user)
 	. = ..()
@@ -737,13 +742,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		handle_germ_effects()
 
 /obj/item/organ/external/proc/handle_germ_sync()
+	if(owner && isbelly(owner.loc)) //If we're in a belly, just skip infection spreading. This leads to extended vore scenes killing via infection.
+		return
 	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
-		if (owner.germ_level > W.germ_level && W.infection_check())
+		if(owner.germ_level > W.germ_level && W.infection_check())
 			W.germ_level++
 
-	if (antibiotics < ANTIBIO_NORM)
+	if(!antibiotics)
 		for(var/datum/wound/W in wounds)
 			//Infected wounds raise the organ's germ level
 			if (W.germ_level > germ_level)

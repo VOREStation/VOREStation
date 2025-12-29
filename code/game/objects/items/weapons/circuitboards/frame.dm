@@ -214,7 +214,7 @@
 	board_type = new /datum/frame/frame_types/medical_pod
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	req_components = list(
-							/obj/item/stock_parts/scanning_module = 3,
+							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stack/material/glass/reinforced = 2)
 
 /obj/item/circuitboard/medical_kiosk
@@ -345,6 +345,14 @@
 	build_path = /obj/machinery/reagent_refinery/pipe
 	board_type = new /datum/frame/frame_types/industrial_reagent_pipe
 	req_components = list( /obj/item/stack/material/glass/reinforced = 1)
+
+/obj/item/circuitboard/industrial_reagent_splitter
+	name = T_BOARD("industrial chemical splitter")
+	build_path = /obj/machinery/reagent_refinery/splitter
+	board_type = new /datum/frame/frame_types/industrial_reagent_splitter
+	req_components = list(
+							/obj/item/stack/material/glass/reinforced = 1,
+							/obj/item/stock_parts/motor = 1)
 
 /obj/item/circuitboard/industrial_reagent_waste_processor
 	name = T_BOARD("industrial chemical waste processor")

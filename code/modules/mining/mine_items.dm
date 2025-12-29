@@ -153,7 +153,7 @@
 	var/digspeed = 40
 	var/grave_mode = FALSE
 
-/obj/item/shovel/AltClick(mob/user)
+/obj/item/shovel/click_alt(mob/user)
 	grave_mode = !grave_mode
 	to_chat(user, span_notice("You'll now dig [grave_mode ? "out graves" : "for loot"]."))
 	. = ..()
@@ -210,6 +210,7 @@
 	icon = 'icons/obj/mining.dmi'
 	var/upright = 0
 	var/base_state
+	custom_handling = TRUE
 
 /obj/item/stack/flag/Initialize(mapload)
 	. = ..()
@@ -251,7 +252,10 @@
 	else
 		..()
 
-/obj/item/stack/flag/attack_self(mob/user as mob)
+/obj/item/stack/flag/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 

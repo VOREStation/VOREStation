@@ -301,6 +301,16 @@
 	if(grav_pulling)
 		supermatter_pull(src)
 
+	if(damage) // Start fucking things up
+		if(get_integrity() < 85 && prob(5))
+			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), FLUX_ANOMALY)
+		if(get_integrity() < 75 && prob(5))
+			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), HALLUCINATION_ANOMALY)
+		if(get_integrity() < 50 && prob(2))
+			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), GRAVITATIONAL_ANOMALY)
+		if(get_integrity() < 25 && prob(0.3))
+			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), PYRO_ANOMALY)
+
 	// Vary volume by power produced.
 	if(power)
 		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.

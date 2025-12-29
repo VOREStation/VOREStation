@@ -94,7 +94,7 @@
 				var/obj/item/handcuffs/cable/tape/T = new(user)
 				playsound(src, 'sound/effects/tape.ogg',25)
 
-				if(!T.place_handcuffs(H, user))
+				if(!T.attempt_to_cuff(H, user))
 					user.unEquip(T)
 					qdel(T)
 			else
@@ -135,6 +135,9 @@
 	overlays = W.overlays
 
 /obj/item/ducttape/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!stuck)
 		return
 

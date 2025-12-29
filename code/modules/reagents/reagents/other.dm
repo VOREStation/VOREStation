@@ -8,6 +8,7 @@
 	reagent_state = LIQUID
 	color = "#888888"
 	overdose = 10
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 
@@ -59,6 +60,7 @@
 	reagent_state = LIQUID
 	color = "#888888"
 	overdose = 10
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 
@@ -116,6 +118,7 @@
 	color = "#808080"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 
@@ -178,6 +181,7 @@
 	color = "#C8A5DC"
 	affects_dead = TRUE //This can even heal dead people.
 	metabolism = 0.1
+	scannable = SCANNABLE_UNSCANNABLE
 	mrate_static = TRUE //Just in case
 
 	glass_name = "liquid gold"
@@ -247,6 +251,7 @@
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	taste_description = "metal"
 	reagent_state = SOLID
+	scannable = SCANNABLE_ADVANCED
 	color = "#F7C430"
 	supply_conversion_value = 2 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -257,6 +262,7 @@
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	taste_description = "metal"
 	reagent_state = SOLID
+	scannable = SCANNABLE_ADVANCED
 	color = "#D0D0D0"
 	supply_conversion_value = 1 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -267,6 +273,7 @@
 	description = "Platinum is a dense, malleable, ductile, highly unreactive, precious, gray-white transition metal.  It is very resistant to corrosion."
 	taste_description = "metal"
 	reagent_state = SOLID
+	scannable = SCANNABLE_ADVANCED
 	color = "#777777"
 	supply_conversion_value = 5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -277,6 +284,7 @@
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	taste_description = "metal"
 	reagent_state = SOLID
+	scannable = SCANNABLE_ADVANCED
 	color = "#B8B8C0"
 	supply_conversion_value = 2 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -345,6 +353,7 @@
 	reagent_state = SOLID
 	affects_dead = TRUE
 	affects_robots = TRUE
+	scannable = SCANNABLE_UNSCANNABLE
 	description = "The immense power of a supermatter crystal, in liquid form. You're not entirely sure how that's possible, but it's probably best handled with care."
 	taste_description = "taffy" // 0. The supermatter is tasty, tasty taffy.
 	wiki_flag = WIKI_SPOILER
@@ -353,15 +362,12 @@
 
 // Same as if you boop it wrong. It touches you, you die
 /datum/reagent/supermatter/affect_touch(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 /datum/reagent/supermatter/affect_ingest(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 /datum/reagent/supermatter/affect_blood(mob/living/carbon/M, alien, removed)
-	. = ..()
 	M.ash()
 
 
@@ -371,6 +377,7 @@
 	description = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_BENEFICIAL
 	color = "#C8A5DC"
 	mrate_static = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
@@ -390,6 +397,7 @@
 	taste_description = "water"
 	color = "#E0E8EF"
 	mrate_static = TRUE
+	scannable = SCANNABLE_BENEFICIAL
 
 	glass_name = "holy water"
 	glass_desc = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
@@ -398,12 +406,28 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_NO
 	industrial_use = REFINERYEXPORT_REASON_RAW
 	coolant_modifier = 1 // It's water
+	var/failed_message = FALSE
 
 /datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(ishuman(M)) // Any location
 		if(M.mind && cult.is_antagonist(M.mind) && prob(10))
 			cult.remove_antagonist(M.mind)
+		if(prob(2)) //Get an ACTUAL chaplain for your stuff
+			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
+				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
+				to_chat(M, "You feel calmer.")
+
+			if(M.HasDisease(/datum/disease/fleshy_spread))
+				for(var/datum/disease/fleshy_spread/disease in M.GetViruses())
+					disease.cure()
+					break
+				to_chat(M, "Your fever subsides..")
+		if(volume < max_dose * 0.1 && !failed_message)
+			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption) || M.HasDisease(/datum/disease/fleshy_spread))
+				to_chat(M, span_notice("The power of the holy water courses through you, but seems to have failed to cure your ailments. Perhaps a larger dose is needed?"))
+				failed_message = TRUE
+
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	..()
@@ -418,6 +442,7 @@
 	taste_description = "mordant"
 	taste_mult = 2
 	reagent_state = GAS
+	scannable = SCANNABLE_ADVANCED
 	color = "#404030"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
@@ -429,6 +454,7 @@
 	description = "A secondary amine, mildly corrosive."
 	taste_description = REAGENT_ID_IRON
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#604030"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -439,6 +465,7 @@
 	description = "Also known as sodium hydroxide. As a profession making this is somewhat underwhelming."
 	taste_description = "acid"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#FFFFD6" // very very light yellow"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -449,6 +476,7 @@
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
 	taste_description = "metal"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#9E6B38"
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -459,6 +487,7 @@
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	taste_description = "metal"
 	reagent_state = SOLID
+	scannable = SCANNABLE_ADVANCED
 	color = "#664B63"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -469,6 +498,7 @@
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	taste_description = "sweet tasting metal"
 	reagent_state = SOLID
+	scannable = SCANNABLE_ADVANCED
 	color = "#673910"
 	touch_met = 50
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
@@ -498,6 +528,7 @@
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	taste_description = "sourness"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#A5F0EE"
 	touch_met = 50
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
@@ -588,6 +619,7 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	taste_description = "slime"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#009CA8"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_LUBE
@@ -605,6 +637,7 @@
 	description = "A compound that can be used to reinforce glass."
 	taste_description = "plastic"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#C7FFFF"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -623,6 +656,7 @@
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	taste_description = "sweetness"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -634,6 +668,7 @@
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	taste_description = "oil"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_UNSCANNABLE
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -645,6 +680,7 @@
 	taste_description = "sourness"
 	taste_mult = 1.1
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#C8A5DC"
 
 	affects_robots = TRUE
@@ -671,6 +707,7 @@
 /datum/reagent/ultraglue
 	name = REAGENT_GLUE
 	id = REAGENT_ID_GLUE
+	scannable = SCANNABLE_ADVANCED
 	description = "An extremely powerful bonding agent."
 	taste_description = "a special education class"
 	color = "#FFFFCC"
@@ -680,6 +717,7 @@
 /datum/reagent/woodpulp
 	name = REAGENT_WOODPULP
 	id = REAGENT_ID_WOODPULP
+	scannable = SCANNABLE_ADVANCED
 	description = "A mass of wood fibers."
 	taste_description = "wood"
 	reagent_state = LIQUID
@@ -690,6 +728,7 @@
 /datum/reagent/luminol
 	name = REAGENT_LUMINOL
 	id = REAGENT_ID_LUMINOL
+	scannable = SCANNABLE_ADVANCED
 	description = "A compound that interacts with blood on the molecular level."
 	taste_description = "metal"
 	reagent_state = LIQUID
@@ -719,6 +758,7 @@
 /datum/reagent/mineralfluid
 	name = REAGENT_MINERALIZEDFLUID
 	id = REAGENT_ID_MINERALIZEDFLUID
+	scannable = SCANNABLE_ADVANCED
 	description = "A warm, mineral-rich fluid."
 	taste_description = "salt"
 	reagent_state = LIQUID
@@ -731,6 +771,7 @@
 /datum/reagent/defective_nanites
 	name = REAGENT_DEFECTIVENANITES
 	id = REAGENT_ID_DEFECTIVENANITES
+	scannable = SCANNABLE_DIFFICULT
 	description = "Miniature medical robots that are malfunctioning and cause bodily harm. Fortunately, they cannot self-replicate."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -761,15 +802,12 @@
 /datum/reagent/carpet
 	name = REAGENT_LIQUIDCARPET
 	id = REAGENT_ID_LIQUIDCARPET
+	scannable = SCANNABLE_ADVANCED
 	description = "Liquified carpet fibers, ready for dyeing."
 	reagent_state = LIQUID
 	color = "#b51d05"
 	taste_description = "carpet"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
-	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
-
-/datum/reagent/carpet
-	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/carpet/black
@@ -831,6 +869,7 @@
 /datum/reagent/essential_oil
 	name = REAGENT_ESSENTIALOIL
 	id = REAGENT_ID_ESSENTIALOIL
+	scannable = SCANNABLE_ADVANCED
 	description = "A slurry of compounds that contains the basic requirements for life."
 	taste_description = "a mixture of thick, sweet, salty, salty and spicy flavours that all blend together to not be very nice at all"
 	reagent_state = LIQUID

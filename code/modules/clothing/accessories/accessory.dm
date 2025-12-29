@@ -476,6 +476,7 @@
 	var/breath_masked = FALSE
 	var/obj/item/clothing/mask/breath/breathmask
 	actions_types = list(/datum/action/item_action/pull_on_gaiter)
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/gaiter/update_clothing_icon()
 	. = ..()
@@ -493,7 +494,7 @@
 		item_flags &= ~FLEXIBLEMATERIAL
 	. = ..()
 
-/obj/item/clothing/accessory/gaiter/AltClick(mob/user)
+/obj/item/clothing/accessory/gaiter/click_alt(mob/user)
 	. = ..()
 	if(breath_masked && breathmask)
 		to_chat(user, span_notice("You pull [breathmask] out from behind [src], and it drops to your feet."))
@@ -504,6 +505,9 @@
 		item_flags |= FLEXIBLEMATERIAL
 
 /obj/item/clothing/accessory/gaiter/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/gaiterstring = "You pull [src] "
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]_up"

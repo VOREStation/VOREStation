@@ -36,7 +36,10 @@
 		return 1
 	..()
 
-/obj/item/xenobio/attack_self(mob/living/user as mob)
+/obj/item/xenobio/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
 		user.visible_message(span_notice("[user] removes [loaded_item] from [src]."), span_notice("You remove [loaded_item] from [src]."))
@@ -112,7 +115,8 @@
 		while(S.cores)
 			playsound(src, 'sound/machines/juicer.ogg', 25, 1)
 			if(do_after(user, 15, target = src))
-				new S.coretype(get_turf(AM))
+				var/atom/new_core = new S.coretype(get_turf(AM))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HARVEST_SLIME_CORE, new_core)
 				playsound(src, 'sound/effects/splat.ogg', 50, 1)
 				S.cores--
 		qdel(S)

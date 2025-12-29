@@ -34,9 +34,6 @@
 			WARNING("[src]([src.type]) starts with more reagents than it has total volume")
 		starts_with = null // it should gc, since it's just strings and numbers
 
-/obj/item/reagent_containers/attack_self(mob/user as mob)
-	return
-
 /obj/item/reagent_containers/afterattack(obj/target, mob/user, flag)
 	return
 
@@ -118,7 +115,7 @@
 			return FALSE
 
 	user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
-	SEND_SIGNAL(src, COMSIG_CONTAINER_DRANK, target, user)
+	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target, user)
 	if(user == target)
 		self_feed_message(user)
 		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
@@ -174,7 +171,7 @@
 			balloon_alert(user, "\The [W] burns the blood in \the [src].")
 			B.changling_blood_test(reagents)
 
-/obj/item/reagent_containers/AltClick(mob/user)
+/obj/item/reagent_containers/click_alt(mob/user)
 	. = ..()
 	if(!Adjacent(user))
 		return

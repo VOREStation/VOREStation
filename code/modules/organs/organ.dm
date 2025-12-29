@@ -47,6 +47,9 @@ var/list/organ_cache = list()
 	var/meat_type	// What does butchering, if possible, make?
 	var/list/medical_issues = list()
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/organ/Destroy()
 
 	handle_organ_mod_special(TRUE)
@@ -140,7 +143,7 @@ var/list/organ_cache = list()
 	STOP_PROCESSING(SSobj, src)
 	handle_organ_mod_special(TRUE)
 	if(owner && vital)
-		owner.can_defib = 0
+		owner.can_defib = FALSE
 		owner.death()
 
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
@@ -482,7 +485,13 @@ var/list/organ_cache = list()
 	user.put_in_active_hand(O)
 	qdel(src)
 
-/obj/item/organ/attack_self(mob/user as mob)
+/obj/item/organ/attack_self(mob/user, callback)
+	. = ..(user)
+	if(.)
+		return TRUE
+
+	if(special_handling && !callback)
+		return FALSE
 
 	// Convert it to an edible form, yum yum.
 	if(!(robotic >= ORGAN_ROBOT) && user.a_intent == I_HELP && user.zone_sel.selecting == O_MOUTH)

@@ -45,6 +45,9 @@
 			add_overlay(stampoverlay)
 
 /obj/item/paperplane/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("You unfold [src]."))
 	var/atom/movable/internal_paper_tmp = internalPaper
 	internal_paper_tmp.forceMove(loc)
@@ -93,7 +96,7 @@
 			E.damage += 2.5
 		H.emote("scream")
 
-/obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
+/obj/item/paper/click_alt(mob/living/carbon/user, obj/item/I)
 	if ( istype(user) )
 		if( (!in_range(src, user)) || user.stat || user.restrained() )
 			return

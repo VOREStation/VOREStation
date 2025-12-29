@@ -84,21 +84,23 @@
 
 	return
 
-/obj/item/blobcore_chunk/attack_self(var/mob/user)
+/obj/item/blobcore_chunk/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(blob_type && world.time > active_ability_cooldown + last_active_use)
 		last_active_use = world.time
 		to_chat(user, span_alien("[icon2html(src, user.client)] \The [src] gesticulates."))
 		blob_type.on_chunk_use(src, user)
 	else
 		to_chat(user, span_notice("\The [src] doesn't seem to respond."))
-	..()
 
 /obj/item/blobcore_chunk/process()
 	if(blob_type && should_tick && world.time > passive_ability_cooldown + last_passive_use)
 		last_passive_use = world.time
 		blob_type.on_chunk_tick(src)
 
-/obj/item/blobcore_chunk/AltClick(mob/living/carbon/user)
+/obj/item/blobcore_chunk/click_alt(mob/living/carbon/user)
 	if(blob_type && blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
 		should_tick = !should_tick
 

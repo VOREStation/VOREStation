@@ -78,16 +78,18 @@
 /*Click it when closed to open, when open to bring up a prompt asking you if you want to close it or press the button.*/
 
 /obj/item/flame/lighter/zippo/c4detonator
-	var/detonator_mode = 0
 	var/obj/item/syndie/c4explosive/bomb
 
-/obj/item/flame/lighter/zippo/c4detonator/attack_self(mob/user as mob)
+/obj/item/flame/lighter/zippo/c4detonator/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!detonator_mode)
-		..()
+		return FALSE
 
-	else if(!lit)
+	if(!lit)
 		base_state = icon_state
-		lit = 1
+		lit = TRUE
 		icon_state = "[base_state]1"
 		//item_state = "[base_state]on"
 		user.visible_message(span_rose("Without even breaking stride, \the [user] flips open \the [src] in one smooth movement."))
@@ -97,13 +99,15 @@
 			if("Press the button.")
 				to_chat(user, span_warning("You press the button."))
 				icon_state = "[base_state]click"
-				if(src.bomb)
-					src.bomb.detonate()
-					log_admin("[key_name(user)] has triggered [src.bomb] with [src].")
-					message_admins(span_danger("[key_name_admin(user)] has triggered [src.bomb] with [src]."))
+				if(bomb)
+					var/obj/item/syndie/c4explosive/bomb_to_explode = bomb
+					bomb = null //clear up our ref
+					bomb_to_explode.detonate()
+					log_admin("[key_name(user)] has triggered [bomb_to_explode] with [src].")
+					message_admins(span_danger("[key_name_admin(user)] has triggered [bomb_to_explode] with [src]."))
 
 			if("Close the lighter.")
-				lit = 0
+				lit = FALSE
 				icon_state = "[base_state]"
 				//item_state = "[base_state]"
 				user.visible_message(span_rose("You hear a quiet click, as \the [user] shuts off \the [src] without even looking at what they're doing."))

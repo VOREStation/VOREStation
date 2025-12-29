@@ -10,6 +10,9 @@
 	var/list/restricted_accessory_slots
 	var/list/starting_accessories
 
+	/// Trait modification, lazylist of traits to add/take away, on equipment/drop in the correct slot
+	var/list/clothing_traits
+
 	var/flash_protection = FLASH_PROTECTION_NONE
 	var/tint = TINT_NONE
 	var/list/enables_planes		//Enables these planes in the wearing mob's plane_holder
@@ -54,11 +57,16 @@
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
+	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
+		for(var/trait in clothing_traits)
+			ADD_CLOTHING_TRAIT(user, trait)
 
 /obj/item/clothing/dropped(mob/user)
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
+	for(var/trait in clothing_traits)
+		REMOVE_CLOTHING_TRAIT(user, trait)
 
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(M as mob, slot, disable_warning = FALSE)
@@ -470,16 +478,20 @@
 		)
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
+	helmet_handling = TRUE
 
-/obj/item/clothing/head/attack_self(mob/user)
+/obj/item/clothing/head/attack_self(mob/user, callback)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling && !callback)
+		return FALSE
 	if(light_range)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot toggle the light while in this [user.loc]")
 			return
 		update_flashlight(user)
 		to_chat(user, "You [light_on ? "enable" : "disable"] the helmet light.")
-	else
-		return ..(user)
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	set_light_on(!light_on)
@@ -847,15 +859,16 @@
 		var/mob/M = src.loc
 		M.update_inv_shoes()
 
-/obj/item/clothing/shoes/attack_self(var/mob/user)
+/obj/item/clothing/shoes/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	for(var/mob/M in src)
 		if(isvoice(M)) //Don't knock voices out!
 			continue
 		M.forceMove(get_turf(user))
 		to_chat(M, span_warning("[user] shakes you out of \the [src]!"))
 		to_chat(user, span_notice("You shake [M] out of \the [src]!"))
-
-	..()
 
 /obj/item/clothing/shoes/container_resist(mob/living/micro)
 	var/mob/living/carbon/human/macro = loc
@@ -1387,7 +1400,7 @@
 
 				// only override icon if a corresponding digitigrade replacement icon_state exists
 				// otherwise, keep the old non-digi icon_define (or nothing)
-				if(icon_state && cached_icon_states(update_icon_define_digi):Find(icon_state)) //Unsure what to do to this seeing as it does :Find()
+				if(icon_state && icon_states_fast(update_icon_define_digi):Find(icon_state)) //Unsure what to do to this seeing as it does :Find()
 					update_icon_define = update_icon_define_digi
 
 
@@ -1415,3 +1428,23 @@
 /obj/item/clothing/under/equipped(var/mob/user, var/slot)
 	. = ..()
 	handle_digitigrade(user)
+
+/obj/item/clothing/proc/attach_clothing_traits(trait_or_traits)
+	if(!islist(trait_or_traits))
+		trait_or_traits = list(trait_or_traits)
+
+	LAZYOR(clothing_traits, trait_or_traits)
+	var/mob/wearer = loc
+	if(istype(wearer) && (wearer.get_inventory_slot(src) & slot_flags))
+		for(var/new_trait in trait_or_traits)
+			ADD_CLOTHING_TRAIT(wearer, new_trait)
+
+/obj/item/clothing/proc/detach_clothing_traits(trait_or_traits)
+	if(!islist(trait_or_traits))
+		trait_or_traits = list(trait_or_traits)
+
+	LAZYREMOVE(clothing_traits, trait_or_traits)
+	var/mob/wearer = loc
+	if(istype(wearer))
+		for(var/new_trait in trait_or_traits)
+			REMOVE_CLOTHING_TRAIT(wearer, new_trait)

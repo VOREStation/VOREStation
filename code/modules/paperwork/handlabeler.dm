@@ -67,7 +67,10 @@
 		span_notice("You label [A] as [label]."))
 	A.name = "[A.name] ([label])"
 
-/obj/item/hand_labeler/attack_self(mob/user as mob)
+/obj/item/hand_labeler/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)

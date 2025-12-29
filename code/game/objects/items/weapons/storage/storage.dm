@@ -51,6 +51,8 @@
 	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
 	/// If you can use this storage while in a pocket
 	var/pocketable = FALSE
+	/// Used for attack_self chain
+	var/special_handling = FALSE
 
 /obj/item/storage/Initialize(mapload)
 	. = ..()
@@ -127,38 +129,39 @@
 		return
 
 	if (isliving(usr) || isobserver(usr))
+		var/mob/user = usr
 
-		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
+		if(istype(user.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-			src.open(usr)
+		if(over_object == user && Adjacent(user)) // this must come before the screen objects only block
+			open(user)
 			return
 
-		if (!( istype(over_object, /atom/movable/screen) ))
+		if(!(istype(over_object, /atom/movable/screen)))
 			return ..()
 
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
-		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+		if(!(loc == user) || (loc && loc.loc == user))
 			return
 
-		if (( usr.restrained() ) || ( usr.stat ))
+		if(user.restrained() || user.stat || user.is_paralyzed() || user.incapacitated(INCAPACITATION_KNOCKOUT))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
+		if((loc == user) && !(istype(over_object, /atom/movable/screen)) && !user.unEquip(src))
 			return
 
 		switch(over_object.name)
 			if("r_hand")
-				usr.unEquip(src)
-				usr.put_in_r_hand(src)
+				user.unEquip(src)
+				user.put_in_r_hand(src)
 			if("l_hand")
-				usr.unEquip(src)
-				usr.put_in_l_hand(src)
-		src.add_fingerprint(usr)
+				user.unEquip(src)
+				user.put_in_l_hand(src)
+		add_fingerprint(user)
 
-/obj/item/storage/AltClick(mob/user)
+/obj/item/storage/click_alt(mob/user)
 	if(user in is_seeing)
 		src.close(user)
 	// I would think there should be some incap check here or something
@@ -696,11 +699,16 @@
 		total_storage_space += I.get_storage_cost()
 	max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
-/obj/item/storage/attack_self(mob/user as mob)
+/obj/item/storage/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if((user.get_active_hand() == src) || (isrobot(user)) && allow_quick_empty)
 		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))
 			src.quick_empty()
-			return 1
+			return TRUE
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
@@ -786,6 +794,7 @@
 		)
 	var/open_state
 	var/closed_state
+	special_handling = TRUE
 
 /obj/item/storage/trinketbox/update_icon()
 	cut_overlays()
@@ -812,10 +821,12 @@
 		closed_state = "[initial(icon_state)]"
 	. = ..()
 
-/obj/item/storage/trinketbox/attack_self()
+/obj/item/storage/trinketbox/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	open = !open
 	update_icon()
-	..()
 
 /obj/item/storage/trinketbox/examine(mob/user)
 	. = ..()
