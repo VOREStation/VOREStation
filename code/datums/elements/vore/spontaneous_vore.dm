@@ -66,7 +66,7 @@
 		source.visible_message(span_vdanger("\The [drop_mob] falls right into \the [source]!"))
 		return COMSIG_CANCEL_FALL
 
-/datum/element/spontaneous_vore/proc/handle_hitby(mob/living/source, atom/movable/hitby, speed)
+/datum/element/spontaneous_vore/proc/handle_hitby(mob/living/source, atom/movable/hitby, mob/thrower)
 	SIGNAL_HANDLER
 
 	//Handle object throw vore
@@ -75,7 +75,6 @@
 		if(source.stat != DEAD && source.trash_catching && source.vore_selected)
 			if(source.adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				source.visible_message(span_vwarning("[O] is thrown directly into [source]'s [lowertext(source.vore_selected.name)]!"))
-				O.throwing = 0
 				O.forceMove(source.vore_selected)
 				return COMSIG_CANCEL_HITBY
 
@@ -101,7 +100,10 @@
 			if(thrown_mob.loc != source.vore_selected)
 				thrown_mob.forceMove(source.vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			source.on_throw_vore_special(TRUE, thrown_mob)
-			add_attack_logs(thrown_mob.thrower,source,"Devoured [thrown_mob.name] via throw vore.")
+			if(thrower)
+				add_attack_logs(thrower,source,"Devoured [thrown_mob.name] via throw vore.")
+			else
+				log_vore("Devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
@@ -113,7 +115,10 @@
 			thrown_mob.vore_selected.nom_mob(source) //Eat them!!!
 			if(source.loc != thrown_mob.vore_selected)
 				source.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
+			if(thrower)
+				add_attack_logs(thrower,source,"Was Devoured by [thrown_mob.name] via throw vore.")
+			else
+				log_vore("Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 
 //source = person standing up

@@ -344,7 +344,7 @@ emp_act
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
+/mob/living/carbon/human/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(src.is_incorporeal())
 		return
 //	if(buckled && buckled == AM)
@@ -353,6 +353,8 @@ emp_act
 	//VORESTATION EDIT START - Allows for thrown vore!
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
 	// I put more comments here for ease of reading.
+	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
+	var/mob/living/thrower = throwingdatum?.get_thrower()
 	if(isliving(source))
 		var/mob/living/thrown_mob = source
 		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
@@ -364,7 +366,10 @@ emp_act
 			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
 			if(thrown_mob.loc != vore_selected)
 				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
+			if(thrower)
+				add_attack_logs(thrower,src,"Devoured [thrown_mob.name] via throw vore.")
+			else
+				log_vore("Devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
@@ -374,7 +379,10 @@ emp_act
 			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
 			if(src.loc != thrown_mob.vore_selected)
 				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
+			if(thrower)
+				add_attack_logs(thrower,src,"Was Devoured by [thrown_mob.name] via throw vore.")
+			else
+				log_vore("Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 	//VORESTATION EDIT END - Allows for thrown vore!
 
@@ -383,7 +391,6 @@ emp_act
 		if(stat != DEAD && trash_catching && vore_selected)
 			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
-				O.throwing = 0
 				O.forceMove(vore_selected)
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
@@ -402,8 +409,8 @@ emp_act
 			return
 
 		var/zone
-		if (isliving(O.thrower))
-			var/mob/living/L = O.thrower
+		if (isliving(thrower))
+			var/mob/living/L = thrower
 			zone = check_zone(L.zone_sel.selecting)
 		else
 			zone = ran_zone(BP_TORSO,75)	//Hits a random part of the body, geared towards the chest
@@ -413,9 +420,9 @@ emp_act
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
 			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = O.thrower)
+		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = thrower)
 
-		if(zone && O.thrower != src)
+		if(zone && thrower != src)
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
 			if(shield_check == PROJECTILE_FORCE_MISS)
 				zone = null
@@ -426,15 +433,13 @@ emp_act
 			visible_message(span_infoplain(span_bold("\The [O]") + " misses [src] narrowly!"))
 			return
 
-		O.throwing = 0		//it hit, so stop moving
-
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
 		src.visible_message(span_filter_warning("[span_red("[src] has been hit in the [hit_area] by [O].")]"))
 
-		if(ismob(O.thrower))
-			add_attack_logs(O.thrower,src,"Hit with thrown [O.name]")
+		if(ismob(thrower))
+			add_attack_logs(thrower,src,"Hit with thrown [O.name]")
 
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 		if(armor < 100)

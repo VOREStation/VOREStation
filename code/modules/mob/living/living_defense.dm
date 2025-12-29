@@ -235,11 +235,12 @@
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/source, datum/thrownthing/throwingdatum)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
-	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, throwingdatum?.get_thrower()) & COMSIG_CANCEL_HITBY)
 		return
+	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
 	if(isitem(source))
 		var/obj/item/O = source
 		var/dtype = O.damtype
@@ -260,15 +261,13 @@
 
 		apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
-		O.throwing = 0		//it hit, so stop moving
-
-		if(ismob(O.thrower))
-			var/mob/M = O.thrower
-			var/client/assailant = M.client
+		var/mob/thrower = throwingdatum?.get_thrower()
+		if(ismob(thrower))
+			var/client/assailant = thrower.client
 			if(assailant)
-				add_attack_logs(M,src,"Hit by thrown [O.name]")
+				add_attack_logs(thrower, src, "Hit by thrown [O.name]")
 			if(ai_holder)
-				ai_holder.react_to_attack(O.thrower)
+				ai_holder.react_to_attack(thrower)
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = O.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
