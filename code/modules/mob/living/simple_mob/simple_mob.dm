@@ -17,6 +17,8 @@
 
 	has_huds = TRUE // We do show AI status huds for buildmode players
 
+	digest_leave_remains = TRUE
+
 	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
