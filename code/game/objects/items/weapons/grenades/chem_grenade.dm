@@ -17,6 +17,7 @@
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
 	var/affected_area = 3
+	special_handling = TRUE
 
 /obj/item/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
@@ -27,7 +28,10 @@
 	QDEL_LIST_NULL(beakers)
 	return ..()
 
-/obj/item/grenade/chem_grenade/attack_self(mob/user as mob)
+/obj/item/grenade/chem_grenade/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!stage || stage==1)
 		if(detonator)
 //				detonator.loc=src.loc

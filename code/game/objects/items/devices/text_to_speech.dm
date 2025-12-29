@@ -6,7 +6,10 @@
 	w_class = ITEMSIZE_SMALL
 	var/named
 
-/obj/item/text_to_speech/attack_self(mob/user as mob)
+/obj/item/text_to_speech/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.incapacitated(INCAPACITATION_KNOCKDOWN|INCAPACITATION_DISABLED)) // EDIT: We can use the device only if we are not in certain types of incapacitation. We don't want chairs stopping us from texting!!
 		to_chat(user, "You cannot activate the device in your state.")
 		return
