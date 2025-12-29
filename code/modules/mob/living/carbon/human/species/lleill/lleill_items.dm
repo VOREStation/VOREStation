@@ -20,7 +20,7 @@
 	taste_description = "nothingness"
 	reagent_state = LIQUID
 	color = "#ffffff"
-	scannable = 1
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
@@ -58,7 +58,7 @@
 	taste_description = "difficult to discern"
 	reagent_state = LIQUID
 	color = "#ffffff"
-	scannable = 1
+	scannable = SCANNABLE_ADVANCED
 	wiki_flag = WIKI_SPOILER
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
@@ -93,7 +93,7 @@
 	taste_description = "bright"
 	reagent_state = LIQUID
 	color = "#ffffff"
-	scannable = 1
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
@@ -130,7 +130,10 @@
 	icon_state = "face"
 	var/mob/living/homunculus = 0
 
-/obj/item/glamour_face/attack_self(var/mob/user)
+/obj/item/glamour_face/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!homunculus)
 		var/list/targets = list()
 		for(var/mob/living/carbon/human/M in GLOB.mob_list)
@@ -357,6 +360,9 @@
 		)
 
 /obj/item/glamour_unstable/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/M = user
 	if(!istype(M))
 		return

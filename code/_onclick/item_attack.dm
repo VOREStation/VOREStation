@@ -19,10 +19,19 @@ item/apply_hit_effect() can be overriden to do whatever you want. However "stand
 avoid code duplication. This includes items that may sometimes act as a standard weapon in addition to having other effects (e.g. stunbatons on harm intent).
 */
 
-// Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
+/**
+ * ## IF YOU ARE MAKING SOMETHING USE ATTACK SELF, ENSURE IT CALLS THE PARENT AND CHECKS FOR A TRUE RETURN VALUE, CANCELLING THE REST OF THE CHAIN IF SO.
+ * Called when the item is in the active hand and clicked
+ * alternately, there is an 'activate held object' verb or you can hit pagedown or Z in hotkey mode.
+ * returns TRUE if the attack was handled by a signal handler and no further processing should occur.
+ * returns FALSE if a signal handler did NOT handle it, resulting in the normal chain.
+*/
 /obj/item/proc/attack_self(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!user)
+		CRASH("attack_self was called without a user!")
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
-		return
+		return TRUE
 	return
 
 /// Called when the item is in the active hand, and right-clicked. Intended for alternate or opposite functions, such as lowering reagent transfer amount. At the moment, there is no verb or hotkey.
