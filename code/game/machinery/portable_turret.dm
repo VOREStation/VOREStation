@@ -51,7 +51,7 @@
 	req_one_access = list(ACCESS_SECURITY, ACCESS_HEADS)
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
-	var/last_process_time = 0
+	var/last_process_time = 0	// Prevents turrets in fast processing mode from healing and popping down faster.
 
 	var/raised = FALSE			//if the turret cover is "open" and the turret is raised
 	var/raising= FALSE			//if the turret is currently opening or closing its cover
