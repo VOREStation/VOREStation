@@ -58,7 +58,7 @@
 
 /datum/gear/gloves/fingerless
 	display_name = "fingerless gloves"
-	description = "Gloves that don't actually cover the fingers, useful for those who want to keep their hands warm without impeding touch or grip, or folks who have claws. Available in multiple variants; classic black or recolourable white, with or without cutouts, and elbow-length."
+	description = "Gloves that don't actually cover the fingers, useful for those who want to keep their hands warm without impeding touch or grip, or folks who have claws. Available in multiple variants; classic black or recolourable white, with or without cutouts, and extended or elbow-length."
 	path = /obj/item/clothing/gloves/fingerless
 
 /datum/gear/gloves/fingerless/New()
@@ -66,9 +66,11 @@
 	var/list/selector_uniforms = list(
 		"black"=/obj/item/clothing/gloves/fingerless,
 		"black, alt" =/obj/item/clothing/gloves/fingerless/alt,
+		"black, midlength" =/obj/item/clothing/gloves/fingerless/mid,
 		"black, long" =/obj/item/clothing/gloves/fingerless/long,
 		"recolourable white"=/obj/item/clothing/gloves/fingerless_recolourable,
 		"recolourable, alt"=/obj/item/clothing/gloves/fingerless_recolourable/alt,
+		"recolourable, midlength"=/obj/item/clothing/gloves/fingerless_recolourable/mid,
 		"recolourable, long"=/obj/item/clothing/gloves/fingerless_recolourable/long
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
