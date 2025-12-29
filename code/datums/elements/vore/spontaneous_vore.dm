@@ -103,7 +103,7 @@
 			if(thrower)
 				add_attack_logs(thrower,source,"Devoured [thrown_mob.name] via throw vore.")
 			else
-				log_vore("Devoured [thrown_mob.name] via throw vore.")
+				log_vore("[source] devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
@@ -118,7 +118,7 @@
 			if(thrower)
 				add_attack_logs(thrower,source,"Was Devoured by [thrown_mob.name] via throw vore.")
 			else
-				log_vore("Was Devoured by [thrown_mob.name] via throw vore.")
+				log_vore("[source] Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 
 //source = person standing up
