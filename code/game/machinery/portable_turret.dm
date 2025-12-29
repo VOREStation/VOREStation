@@ -34,7 +34,7 @@
 
 #define TURRET_RETALIATION_TIME 3 SECONDS
 #define TURRET_EMAG_FIRERATE 0.6 SECONDS
-#define TURRET_INSTANT_UPDATE 0
+#define TURRET_POPCOOLDOWN 1 SECOND
 
 /obj/machinery/porta_turret
 	name = "turret"
@@ -51,8 +51,7 @@
 	req_one_access = list(ACCESS_SECURITY, ACCESS_HEADS)
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
-	speed_process = TRUE // Otherwise we'll only tick every 2 seconds
-	var/last_process_time = TURRET_INSTANT_UPDATE
+	var/last_process_time = 0
 
 	var/raised = FALSE			//if the turret cover is "open" and the turret is raised
 	var/raising= FALSE			//if the turret is currently opening or closing its cover
@@ -100,7 +99,7 @@
 
 	var/wrenching = FALSE
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
-	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
+	var/timeout = TURRET_POPCOOLDOWN // When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
 
 /obj/machinery/porta_turret/crescent
@@ -689,15 +688,10 @@
 	stat |= BROKEN	//enables the BROKEN bit
 	spark_system?.start()	//creates some sparks because they look cool
 	update_icon()
+	set_processing_speed(FALSE) // Drop back to slow machine processing
 
 /obj/machinery/porta_turret/process()
 	//the main machinery process
-	// Use the timing that the machines subsystem would have normally. Things later in this process can force us to process instantly next tick!
-	var/can_heal = (last_process_time > TURRET_INSTANT_UPDATE) // Only heal on standard delays, not instant ticks
-	if(world.time < last_process_time + (SSmachines.wait))
-		return
-	last_process_time = world.time
-
 	if(stat & (NOPOWER|BROKEN))
 		//if the turret has no power or is broken, make the turret pop down if it hasn't already
 		popDown()
@@ -708,18 +702,48 @@
 		popDown()
 		return
 
-	var/list/targets = list()			//list of primary targets
-	var/list/secondarytargets = list()	//targets that are least important
+	var/shot_targets = FALSE
+	if(!last_fired) // We cannot fire anyway until our cooldown ends, don't bother checking for targets while in fast mode every 2 frames.
+		var/list/targets = list()			//list of primary targets
+		var/list/secondarytargets = list()	//targets that are least important
 
-	for(var/mob/M in mobs_in_view(world.view, src))
-		assess_and_assign(M, targets, secondarytargets)
+		for(var/mob/M in mobs_in_view(world.view, src))
+			assess_and_assign(M, targets, secondarytargets)
 
-	if(!tryToShootAt(targets) && !tryToShootAt(secondarytargets) && --timeout <= 0)
+		shot_targets = tryToShootAt(targets) || tryToShootAt(secondarytargets)
+
+	slow_process(shot_targets)
+
+/obj/machinery/porta_turret/proc/slow_process(var/shot_targets)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	if(speed_process) // Even while in fast processing mode we want to popdown and heal at the tickrate of the standard machine loop.
+		if(world.time < (last_process_time + SSmachines.wait))
+			return
+		last_process_time = world.time
+
+	if(!shot_targets && --timeout <= 0)
 		popDown() // no valid targets, close the cover
 
-	if(can_heal && auto_repair && (health < maxhealth))
+	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
+
+/obj/machinery/porta_turret/proc/set_processing_speed(var/fast)
+	if(fast == speed_process)
+		return
+	speed_process = fast
+
+	// high gear
+	if(speed_process)
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+		return
+
+	// low gear
+	STOP_PROCESSING(SSfastprocess, src)
+	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/porta_turret/proc/assess_and_assign(mob/living/L, list/targets, list/secondarytargets)
 	switch(assess_living(L))
@@ -796,17 +820,19 @@
 
 /obj/machinery/porta_turret/proc/tryToShootAt(var/list/mob/living/targets)
 	if(targets.len && last_target && (last_target in targets) && target(last_target))
-		return 1
+		return TRUE
 
 	while(targets.len > 0)
 		var/mob/living/M = pick(targets)
 		targets -= M
 		if(target(M))
-			return 1
+			return TRUE
 
+	return FALSE
 
 /obj/machinery/porta_turret/proc/popUp()	//pops the turret up
 	set waitfor = FALSE
+
 	if(disabled)
 		return
 	if(raising || raised)
@@ -829,11 +855,16 @@
 	qdel(flick_holder)
 	set_raised_raising(1, 0)
 	update_icon()
-	timeout = 15 // slightly longer
-	last_process_time = TURRET_INSTANT_UPDATE
+
+	set_processing_speed(TRUE)
+	timeout = TURRET_POPCOOLDOWN
 
 /obj/machinery/porta_turret/proc/popDown()	//pops the turret down
 	set waitfor = FALSE
+
+	set_processing_speed(FALSE)
+	timeout = TURRET_POPCOOLDOWN
+
 	last_target = null
 	if(disabled)
 		return
@@ -841,6 +872,7 @@
 		return
 	if(stat & BROKEN)
 		return
+
 	set_raised_raising(raised, 1)
 	update_icon()
 
@@ -857,7 +889,6 @@
 	qdel(flick_holder)
 	set_raised_raising(0, 0)
 	update_icon()
-	timeout = 10
 
 /obj/machinery/porta_turret/proc/set_raised_raising(var/incoming_raised, var/incoming_raising)
 	raised = incoming_raised
@@ -870,7 +901,10 @@
 	if(target)
 		if(target in check_trajectory(target, src))	//Finally, check if we can actually hit the target
 			last_target = target
-			popUp()				//pop the turret up if it's not already up.
+			//pop the turret up if it's not already up.
+			popUp()
+			if(raising || !raised)
+				return TRUE // We were delayed, but we really wanted to, so lets not count this as a failure
 			var/old_dir = dir
 			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
 			if(dir != old_dir) // Play rotating sound, but only if we actually rotated
@@ -929,14 +963,13 @@
 	A.launch_projectile_from_turf(target, def_zone, src)
 
 	// Reset the time needed to go back down, since we just tried to shoot at someone.
-	timeout = 10
+	timeout = TURRET_POPCOOLDOWN
 
 /obj/machinery/porta_turret/proc/shot_reload()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
 	last_fired = FALSE
-	last_process_time = TURRET_INSTANT_UPDATE
 
 /datum/turret_checks
 	var/enabled
@@ -1176,4 +1209,3 @@
 #undef TURRET_NOT_TARGET
 #undef TURRET_RETALIATION_TIME
 #undef TURRET_EMAG_FIRERATE
-#undef TURRET_INSTANT_UPDATE
