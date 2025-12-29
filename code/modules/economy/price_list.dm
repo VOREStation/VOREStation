@@ -768,9 +768,6 @@
 /obj/item/reagent_containers/food/snacks/slice/vegetablepizza
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/
-
-
 // Baked Goods //
 
 /obj/item/reagent_containers/food/snacks/poppypretzel

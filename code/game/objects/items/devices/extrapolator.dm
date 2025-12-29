@@ -62,7 +62,7 @@
 		return TRUE
 
 /obj/item/extrapolator/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	if(scan)
 		icon_state = "extrapolator_sample"

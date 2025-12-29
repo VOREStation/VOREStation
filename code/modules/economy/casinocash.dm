@@ -112,6 +112,9 @@
 	return worth
 
 /obj/item/spacecasinocash/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/amount = tgui_input_number(user, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20, src.worth)
 	if(!src || QDELETED(src))
 		return
@@ -196,7 +199,10 @@
 	throw_range = 2
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/casino_platinum_chip/attack_self(mob/user as mob)
+/obj/item/casino_platinum_chip/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1)
@@ -287,6 +293,9 @@
 	return worth
 
 /obj/item/spacecasinocash_fake/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/amount = tgui_input_number(user, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20, src.worth)
 	if(!src || QDELETED(src))
 		return
