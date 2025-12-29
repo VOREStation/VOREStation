@@ -1411,3 +1411,29 @@ var/eggs = 0
 		to_chat(pred, span_vnotice("Your [belly] manages to [lowertext(belly.vore_verb)] \the [target]."))
 		to_chat(target, span_vwarning("You are [lowertext(belly.vore_verb)]ed by \The [pred]'s [belly]!"))
 		return pred.begin_instant_nom(src, target, pred, belly, FALSE)
+
+// Eye color change ability for the "Colour changing eyes" trait
+/mob/living/carbon/human/proc/change_eye_color_trait()
+	set name = "Change Eye Color"
+	set desc = "Change your eye color using mental focus."
+	set category = "Abilities.General"
+
+	// Check if user has eyes
+	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]
+	if(!E)
+		to_chat(src, span_warning("You don't have any eyes to change the color of."))
+		return
+
+	var/current_color = rgb(r_eyes, g_eyes, b_eyes)
+	var/new_color = tgui_color_picker(src, "Pick a new color for your eyes.", "Eye Color", current_color)
+
+	if(new_color)
+		var/list/rgb_values = hex2rgb(new_color)
+
+		// Update RGB values..
+		r_eyes = rgb_values[1]
+		g_eyes = rgb_values[2]
+		b_eyes = rgb_values[3]
+
+		// Update sprite..
+		regenerate_icons()

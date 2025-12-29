@@ -1599,6 +1599,17 @@
 		H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
 	add_verb(H, /mob/living/proc/toggle_personal_space)
 
+/datum/trait/neutral/colour_changing_eyes
+	name = "Colour changing eyes"
+	desc = "You can change your eye color at will using an intuitive mental process."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/trait/neutral/colour_changing_eyes/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	add_verb(H, /mob/living/carbon/human/proc/change_eye_color_trait)
+
 /* // Commented out in lieu of finding a better solution.
 /datum/trait/neutral/coldadapt/xenochimera
 	sort = TRAIT_SORT_SPECIES
