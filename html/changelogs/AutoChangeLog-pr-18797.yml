@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - refactor: "All of attack_self now uses signals!"
+  - bugfix: "Fixes jackets not showing proper unbutton sprite"
