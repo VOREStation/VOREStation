@@ -1,0 +1,4 @@
+author: "Nova"
+delete-after: True
+changes:
+  - qol: "Add spice crate option to be requested from cargo."
