@@ -60,13 +60,18 @@
 	return IC.attackby(I, user)
 
 /obj/item/clothing/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
+	if(helmet_handling)
+		return FALSE
 	if(IC)
 		if(IC.opened)
 			IC.attack_self(user)
 		else
 			action_circuit.do_work()
-	else
-		..()
 
 // Does most of the repeatative setup.
 /obj/item/clothing/proc/setup_integrated_circuit(new_type)

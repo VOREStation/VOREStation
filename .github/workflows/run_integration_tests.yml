@@ -42,9 +42,14 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt update || true
           sudo apt install zlib1g-dev:i386
-          ldd librust_g.so
           ldd libbapi_dmm_reader.so
           ldd libverdigris.so
+      - name: Install rust-g
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt update || true
+          sudo apt install -o APT::Immediate-Configure=false zlib1g-dev:i386 libssl-dev:i386 curl:i386
+          bash tools/ci/install_rust_g.sh
       - name: Unit Tests
         id: run_tests
         run: tools/ci/compile_and_run.sh

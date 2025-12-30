@@ -72,6 +72,9 @@
 		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 /obj/item/transfer_valve/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/transfer_valve/tgui_state(mob/user)
