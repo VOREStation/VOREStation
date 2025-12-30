@@ -1430,13 +1430,12 @@ var/eggs = 0
 	if(!new_color)
 		return
 
-	if(new_color)
-		var/list/rgb_values = hex2rgb(new_color)
+	var/list/rgb_values = hex2rgb(new_color)
 
-		// Update RGB values..
-		r_eyes = rgb_values[1]
-		g_eyes = rgb_values[2]
-		b_eyes = rgb_values[3]
+	// Update RGB values..
+	r_eyes = rgb_values[1]
+	g_eyes = rgb_values[2]
+	b_eyes = rgb_values[3]
 
-		// Update sprite..
-		regenerate_icons()
+	// Update sprite..
+	regenerate_icons()
