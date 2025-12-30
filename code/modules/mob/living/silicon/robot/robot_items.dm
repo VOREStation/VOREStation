@@ -148,9 +148,13 @@
 	desc = "A black ink printing attachment with a paper naming mode."
 	name = "Printing Pen"
 	var/mode = 1
+	special_handling = TRUE
+
 
 /obj/item/pen/robopen/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/choice = tgui_alert(user, "Would you like to change colour or mode?", "Change What?", list("Colour","Mode","Cancel"))
 	if(!choice || choice == "Cancel")
 		return
@@ -213,6 +217,9 @@
 		deploy_paper(user)
 
 /obj/item/form_printer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	deploy_paper(user)
 
 /obj/item/form_printer/proc/deploy_paper(mob/user)
@@ -490,6 +497,9 @@
 	. = ..()
 
 /obj/item/borg/combat/shield/attack_self(var/mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	set_shield_level()
 
 /obj/item/borg/combat/shield/process()
@@ -562,6 +572,9 @@
 	. += "It is set to deploy [mode ? "doors" : "walls"]"
 
 /obj/item/inflatable_dispenser/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	mode = !mode
 	to_chat(user, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
 
@@ -643,7 +656,7 @@
 	icon_state = "setup_device_box"
 
 /obj/item/robo_dice/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	var/DI = 'icons/obj/dice.dmi'
 	var/dice_options = list(
 		"roll a custom die"	= image(icon = 'icons/obj/integrated_electronics/electronic_setups.dmi', icon_state = "setup_device_box"),

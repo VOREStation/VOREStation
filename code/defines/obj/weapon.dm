@@ -39,7 +39,30 @@
 	throw_speed = 3
 	throw_range = 15
 	attack_verb = list("HONKED")
-	var/spam_flag = 0
+	var/honk_sound = 'sound/items/bikehorn.ogg'
+	var/cooldown = 0
+	var/honk_text = FALSE
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
+/obj/item/bikehorn/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
+	if(cooldown <= world.time)
+		cooldown = (world.time + 2 SECONDS)
+		playsound(src, honk_sound, 50, 1)
+		add_fingerprint(user)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+
+/obj/item/bikehorn/Crossed(atom/movable/AM as mob|obj)
+	if(AM.is_incorporeal())
+		return
+	if(isliving(AM))
+		playsound(src, honk_sound, 50, 1)
 
 /obj/item/c_tube
 	name = "cardboard tube"
@@ -215,7 +238,10 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/camera_bug/attack_self(mob/user as mob)
+/obj/item/camera_bug/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(in_use)
 		return
 

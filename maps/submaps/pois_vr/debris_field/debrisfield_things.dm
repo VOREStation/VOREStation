@@ -149,7 +149,10 @@
 	icon_state = "egg_slimeglob"
 	origin_tech = list(TECH_BIO = 10)
 
-/obj/item/space_spider_egg/attack_self(mob/user as mob)
+/obj/item/space_spider_egg/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/turf/drop_loc = user.loc
 	to_chat(user, span_warning("The egg cracks open, splattering disgusting goop at your feet...\n \
 	Whatever life laid within shall never awaken, if it was even alive."))
