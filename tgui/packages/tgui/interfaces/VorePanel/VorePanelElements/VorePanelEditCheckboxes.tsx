@@ -2,13 +2,13 @@ import type { ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Floating, Stack, Tooltip } from 'tgui-core/components';
 
-import type { checkBoxEntry } from '../types';
+import type { CheckBoxEntry } from '../types';
 
 export const VorePanelEditCheckboxes = (props: {
   /** Switch between Element editing and display */
   editMode: boolean;
   /** Our option entry checboxes with labels and actiondata */
-  options: checkBoxEntry[];
+  options: CheckBoxEntry[];
   /** Our backend action on text area blur */
   action: string;
   /** Our secondary backend action on text area blur */

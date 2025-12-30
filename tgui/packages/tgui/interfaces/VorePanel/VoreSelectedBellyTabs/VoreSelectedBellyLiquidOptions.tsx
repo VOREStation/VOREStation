@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { liquidToTooltip, reagentToColor } from '../constants';
-import type { bellyLiquidData } from '../types';
+import type { BellyLiquidData } from '../types';
 import { VorePanelEditCheckboxes } from '../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { LiquidOptionsLeft } from './LiquidTab/LiquidOptionsLeft';
@@ -10,7 +10,7 @@ import { LiquidOptionsRight } from './LiquidTab/LiquidOptionsRight';
 
 export const VoreSelectedBellyLiquidOptions = (props: {
   editMode: boolean;
-  bellyLiquidData: bellyLiquidData;
+  bellyLiquidData: BellyLiquidData;
 }) => {
   const { act } = useBackend();
 

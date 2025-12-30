@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Having a spleen will no longer cause you to suffer infinite organ damage while damaged by toxins. Instead, it'll convert that toxin damage into organ damage."
+  - bugfix: "Having your spleen rupture will now cause real internal bleeding instead of fake internal bleeding"

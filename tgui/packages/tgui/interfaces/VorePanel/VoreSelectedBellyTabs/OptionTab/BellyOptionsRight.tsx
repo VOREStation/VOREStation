@@ -2,7 +2,7 @@ import { LabeledList } from 'tgui-core/components';
 
 import { digestModeToColor, selectiveBellyOptions } from '../../constants';
 import { bellyTemperatureToColor } from '../../functions';
-import type { bellyOptionData } from '../../types';
+import type { BellyOptionData } from '../../types';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
@@ -10,7 +10,7 @@ import { VorePanelEditText } from '../../VorePanelElements/VorePanelEditText';
 
 export const BellyOptionsRight = (props: {
   editMode: boolean;
-  bellyOptionData: bellyOptionData;
+  bellyOptionData: BellyOptionData;
 }) => {
   const { editMode, bellyOptionData } = props;
   const {
