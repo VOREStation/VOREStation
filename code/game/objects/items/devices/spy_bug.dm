@@ -26,11 +26,13 @@
 	camera = new camtype(src)
 
 /obj/item/camerabug/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.a_intent == I_HURT)
 		to_chat(user, span_notice("You crush the [src] under your foot, breaking it."))
 		visible_message(span_notice("[user.name] crushes the [src] under their foot, breaking it!"))
 		new brokentype(get_turf(src))
-		spawn(0)
 		qdel(src)
 /*	else
 		radio.interact(user)
@@ -170,7 +172,9 @@
 	radio = new(src)
 */
 /obj/item/bug_monitor/attack_self(mob/user)
-//	radio.attack_self(user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	view_cameras(user)
 
 /obj/item/bug_monitor/attackby(obj/item/W as obj, mob/living/user as mob)

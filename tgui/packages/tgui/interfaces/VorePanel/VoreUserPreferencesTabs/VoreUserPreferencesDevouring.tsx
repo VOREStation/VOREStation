@@ -3,14 +3,14 @@ import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
-import type { localPrefs } from '../types';
+import type { LocalPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesDevouring = (props: {
   devourable: BooleanLike;
   digestModeToColor: Record<string, string | undefined>;
   selective_active: string;
-  preferences: localPrefs;
+  preferences: LocalPrefs;
 }) => {
   const { act } = useBackend();
   const { devourable, digestModeToColor, selective_active, preferences } =

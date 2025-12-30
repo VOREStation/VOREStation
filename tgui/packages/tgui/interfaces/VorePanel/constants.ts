@@ -89,6 +89,7 @@ export const modeToTooltip = {
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
+  'Absorbed Devour': 'Allows absorbed prey to devour other prey.',
 };
 
 export const spriteToTooltip = {
@@ -148,4 +149,12 @@ export const aestehticTabsToIcons = {
   'Set Smell': 'wind',
   'Set Nutrition Examine': 'flask',
   'Set Weight Examine': 'weight-hanging',
+};
+
+export const preyAbilityToData = {
+  devour_as_absorbed: {
+    displayName: 'Devour Nearby',
+    desc: 'Allows you to devour nearby prey after having been absorbed.',
+    color: 'red',
+  },
 };
