@@ -1,0 +1,5 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - rscadd: "Added two sets of black and recolourable long fingerless glove variants; mid-forearm and elbow-length"
+  - image: "Fixed some stray pixels on two of the standard fingerless glove variants"
