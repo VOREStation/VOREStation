@@ -1427,6 +1427,9 @@ var/eggs = 0
 	var/current_color = rgb(r_eyes, g_eyes, b_eyes)
 	var/new_color = tgui_color_picker(src, "Pick a new color for your eyes.", "Eye Color", current_color)
 
+	if(!new_color)
+		return
+
 	if(new_color)
 		var/list/rgb_values = hex2rgb(new_color)
 
