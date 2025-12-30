@@ -1608,7 +1608,7 @@
 
 /datum/trait/neutral/colour_changing_eyes/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	add_verb(H, /mob/living/carbon/human/proc/change_eye_color_trait)
+	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_eye_colour)
 
 /* // Commented out in lieu of finding a better solution.
 /datum/trait/neutral/coldadapt/xenochimera
