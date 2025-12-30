@@ -10,8 +10,12 @@
 	var/base_icon
 	var/open
 	var/obj/item/held //Item inside locket.
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/locket/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!base_icon)
 		base_icon = icon_state
 

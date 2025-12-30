@@ -241,6 +241,9 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 		return
 
 /obj/item/rms/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/list/choices = list(
 		"Steel" = radial_image_steel,
 		"Glass" = radial_image_glass,
@@ -277,7 +280,6 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 
 	to_chat(user, span_notice("Changed mode to '[choice]'."))
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
-	return ..()
 
 /obj/item/rms/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_MULTITOOL))
