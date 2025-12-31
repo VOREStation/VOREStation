@@ -41,6 +41,9 @@
 			affect_mob(thing)
 			continue
 
+		if(!reagent_id) // No reagent was given, so don't do anything past this.
+			continue
+
 		reagent_holder.touch_obj(thing, 2)
 
 		if(!istype(thing, /obj/item/reagent_containers))
@@ -71,9 +74,12 @@
 		return
 
 	if(prob(5))
-		to_chat(affected_mob, span_notice(drench_message))
+		to_chat(affected_mob, span_danger(drench_message))
 
-	reagent_holder.touch(affected_mob, 2)
+	if(!reagent_id) // No reagent was given, no need to continue.
+		return
+
+	reagent_holder.splash_mob(affected_mob, 2)
 
 	if(reagent_id == REAGENT_ID_WATER)
 		affected_mob.wash(CLEAN_ALL)
@@ -92,7 +98,7 @@
 
 /datum/anomalous_weather/rain
 	name = "Rain"
-	icon_state = "rain"
+	icon_state = "anom_rain"
 	reagent_id = REAGENT_ID_WATER
 	sounds = /datum/looping_sound/weather/rain
 	telegraph_message = "Clouds begin to cover the ceiling of the area..."
@@ -116,7 +122,7 @@
 
 /datum/anomalous_weather/rain/storm
 	name = "Storm"
-	icon_state = "storm"
+	icon_state = "anom_rain_fast"
 	loop_sounds = /datum/looping_sound/weather/outside_blizzard
 	telegraph_message = "Grey clouds begin to cover the ceiling of the area..."
 	patter_message = "Rain patters continuously onto your umbrella."
@@ -132,3 +138,51 @@
 	name = "Digestive Rain"
 	reagent_id = REAGENT_ID_STOMACID
 	telegraph_message = "Strange clouds begin to cover the ceiling, along with a strange rumbling noise..."
+
+/datum/anomalous_weather/hail
+	name = "Hail"
+	icon_state = "snowfall_heavy_old"
+	reagent_id = REAGENT_ID_ICE
+	sounds = /datum/looping_sound/weather/outside_blizzard
+	telegraph_message = "Grey clouds begin to cover the ceiling of the area..."
+	patter_message = "Hail patters on your umbrella."
+	drench_message = "Hail pelts you"
+
+/datum/anomalous_weather/hail/affect_mob(mob/living/affected_mob)
+	..()
+
+	var/target_zone = pick(BP_ALL)
+	var/amount_blocked = affected_mob.run_armor_check(target_zone, "melee")
+
+	var/damage = rand(1,3)
+
+	if(amount_blocked >= 30)
+		return
+
+	affected_mob.apply_damage(damage, BRUTE, target_zone, amount_blocked, used_weapon = "hail")
+
+/datum/anomalous_weather/ash_storm
+	name = "Ash Storm"
+	icon_state = "ashfall_moderate-alt"
+	sounds = /datum/looping_sound/weather/outside_blizzard
+	telegraph_message = "Ash clouds begin to cover the ceiling of the area..."
+
+/datum/anomalous_weather/ash_storm/affect_mob(mob/living/affected_mob)
+	affected_mob.inflict_heat_damage(rand(1, 3))
+
+/datum/anomalous_weather/ash_storm/do_special(turf/simulated/T)
+	if(prob(5) && T.can_dirty)
+		T.dirt += 30
+
+/* Activate this one for a lot of rain
+/datum/anomalous_weather/rain/storm/cats_n_dogs
+	name = "Cats and dogs rain"
+	telegraph_message = "Strange, fuzzy clouds beging to cover the ceiling of the area..."
+
+/datum/anomalous_weather/rain/storm/cats_n_dogs/do_special(turf/simulated/T)
+	..()
+	if(prob(0.01))
+		var/mob/living/cat_or_dog = pick(/mob/living/simple_mob/animal/passive/cat, /mob/living/simple_mob/animal/passive/dog)
+		new cat_or_dog(T.loc)
+		T.visible_message(span_danger("A [cat_or_dog.name] falls from within the strange clouds!"))
+*/

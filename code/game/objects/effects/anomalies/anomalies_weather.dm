@@ -1,23 +1,26 @@
 /obj/effect/anomaly/weather
 	name = "weather anomaly"
+	icon_state = "weather"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/weather
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 2.5
+	var/telegraph_percent = 7
 
 	var/list/area/affected_areas = list()
 	var/list/turf/affected_turfs = list()
 
 	var/datum/anomalous_weather/selected_weather
 
-	var/start = FALSE
+	var/is_raining = FALSE
 
 /obj/effect/anomaly/weather/Initialize(mapload, new_lifespan, drops_core)
 	. = ..()
 
 	affected_areas.Add(impact_area)
 
-	pick_weather()
+	if(!selected_weather)
+		pick_weather()
 
-	var/telegraph = lifespan / 10
+	var/telegraph = lifespan / telegraph_percent
 
 	for(var/spread_dir in GLOB.alldirs)
 		var/area/nearby = find_adjacent_impacted_area(spread_dir)
@@ -32,6 +35,8 @@
 			to_chat(mob, span_notice(selected_weather.telegraph_message))
 		for(var/turf/turf in area)
 			affected_turfs.Add(turf)
+
+	apply_wibbly_filters(src)
 
 	addtimer(CALLBACK(src, PROC_REF(start_weather)), telegraph, TIMER_DELETE_ME)
 
@@ -51,10 +56,12 @@
 	return ..()
 
 /obj/effect/anomaly/weather/detonate()
+	new /obj/effect/effect/smoke/bad/burntfood(loc) // OOoooOooh spooky cloud... Doesn't do ANYTHING
+	qdel(src)
 
 /obj/effect/anomaly/weather/anomalyEffect(seconds_per_tick)
 	..()
-	if(!start)
+	if(!is_raining)
 		return
 
 	for(var/turf/turf in affected_turfs)
@@ -76,7 +83,7 @@
 	if(QDELETED(src))
 		return
 
-	start = TRUE
+	is_raining = TRUE
 
 	if(selected_weather.loop_sounds)
 		selected_weather.loop_sounds.start()
@@ -85,6 +92,8 @@
 		apply_to_turf(area_turf)
 
 /obj/effect/anomaly/weather/proc/clear_weather()
+	if(!is_raining)
+		return
 
 	if(selected_weather.sounds)
 		selected_weather.loop_sounds.stop()
