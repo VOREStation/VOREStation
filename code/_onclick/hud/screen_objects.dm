@@ -1012,16 +1012,17 @@
 	var/datum/weakref/our_gun
 
 /atom/movable/screen/ammo/Click()
-	if(!usr.checkClickCooldown())
+	var/mob/user = usr
+	if(!user.checkClickCooldown())
 		return TRUE
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+	if(user.stat || user.paralysis || user.stunned || user.weakened)
 		return TRUE
-	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
+	if(istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
 		return TRUE
 	var/obj/item/gun/gun = our_gun.resolve()
 	if(!gun)
 		return TRUE
-	gun.switch_firemodes(usr)
+	gun.switch_firemodes(user)
 	return TRUE
 
 /atom/movable/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
