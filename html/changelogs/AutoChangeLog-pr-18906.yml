@@ -1,0 +1,4 @@
+author: "Wide Eyes, Kashargul"
+delete-after: True
+changes:
+  - rscadd: "\"Absorbed prey can devour\" addon, which gives absorbed prey a verb in the abilities tab to devour adjacent creatures into that belly!\nfix:complete absorb and muffling belly addons now affect simplemobs"

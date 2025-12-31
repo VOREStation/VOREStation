@@ -52,6 +52,9 @@
 		/obj/machinery/computer/pandemic
 		)
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/reagent_containers/glass/Initialize(mapload)
 	. = ..()
 	if(LAZYLEN(prefill))
@@ -73,7 +76,11 @@
 			. += span_notice("Airtight lid seals it completely.")
 
 /obj/item/reagent_containers/glass/attack_self(mob/user)
-	..()
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(is_open_container())
 		balloon_alert(user, "lid put on \the [src]")
 		flags ^= OPENCONTAINER

@@ -261,3 +261,64 @@
       to destroy the artifact before you know what it is.
   Willburd:
   - bugfix: runtime during vore unit tests on some downstream maps
+2025-12-27:
+  Diana:
+  - bugfix: Grit can be selected once more.
+  - qol: Health scanners now tell you how much bloodloss an internal bleed is causing.
+  - refactor: Chemicals now have scannable 'tiers', starting at tier 0 (medications)
+      and scaling up to tier 3 (Secret chems). The tiers of health analyzers can scan
+      these.
+  - qol: Upgrading the bodyscanner now properly does something - it allows you to
+      identify secret chemicals in someone's system.
+  - bugfix: A lot of chemicals that were previously marked as 'unscannable' are now
+      properly scannable.
+  - bugfix: Amatoxin will properly nuke you when it finishes processing in your system
+  - bugfix: FAKEDEATH is now more believable.
+  - bugfix: Synap now properly works when eaten
+  - refactor: Bloodloss is refactored to operate a bit better.
+  - image: Giftboxes can now be multiple different colors.
+  - bugfix: Borgs can grab giftboxes in their cold, robotic hands.
+  Guti:
+  - rscadd: Added diamond dimensional anomaly theme
+  - bugfix: Fixed snow theme dimensional anomaly not changing wall/doors
+  - bugfix: Fixed anomaly placer picking non-station areas
+  - bugfix: Fixed reactive armour being able to be printed in any departmental lathe
+  Will:
+  - bugfix: Drone ventcrawling no longer using slime's vent crawling restriction list
+  tacoguy7765093:
+  - rscadd: Ckeyless simplemobs will drop bones on digestion if the preds belly's
+      'leave remains' are set to true.
+2025-12-29:
+  Diana:
+  - bugfix: Users with no DNA can no longer upload their non-existent DNA to a DNA
+      locking chip
+  - bugfix: Artifact casings no longer drop.
+  - qol: You can manually resleeve with the autosleever if you're given the prompt
+      and accidentally close it.
+  - rscadd: Added xenoborgs from Bubbers
+  - image: Xenoborgs added from Bubbers
+  - code_imp: Made it a bit easier to read xenoarch spawn code
+  - bugfix: Makes illegal excavations no longer crash the server
+  - qol: Telecube spawns now spawn with a second one, allowing for immediate mating.
+  - bugfix: Radiation component will no longer passively heal + give nutrition when
+      not irradiated
+  - bugfix: Hybrid cutters use the correct sprite, now.
+  - bugfix: Robotic multitool will no longer go invisible when used to link references
+  - bugfix: Holodeck properly clears up its landmarks
+  Guti:
+  - qol: Non-Contagious viruses can be picked up with a sample of blood
+  - qol: Added extra info description to the extrapolator
+  Kashargul:
+  - code_imp: rust-g 5.0.1
+  - bugfix: xenoarch runtime properly
+  - bugfix: whitelist help command
+2025-12-30:
+  Diana:
+  - refactor: All of attack_self now uses signals!
+  - bugfix: Fixes jackets not showing proper unbutton sprite
+  Kashargul:
+  - bugfix: ghosts and shadekin messing with production directions
+  zeskorion:
+  - bugfix: non-greyscale monitor icons now show the correct color, regardless of
+      your eye color
+  - bugfix: hephaestus alt monitor icons should work now

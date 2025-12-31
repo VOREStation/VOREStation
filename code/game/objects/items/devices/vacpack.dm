@@ -23,7 +23,10 @@
 	var/vac_owner = null
 	flags = NOBLUDGEON
 
-/obj/item/vac_attachment/attack_self(mob/living/user)
+/obj/item/vac_attachment/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/set_input = null
 	if(!output_dest)
 		set_input = "output destination"

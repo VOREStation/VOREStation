@@ -1246,7 +1246,7 @@
 	description = "A unknown liquid, it smells sweet"
 	metabolism = REM * 0.8
 	color = "#8A0829"
-	scannable = 0
+	scannable = SCANNABLE_ADVANCED
 	wiki_flag = WIKI_SPOILER
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
@@ -1264,7 +1264,7 @@
 	description = "A unknown liquid, it doesn't smell"
 	metabolism = REM * 0.5
 	color = "#41029B"
-	scannable = 0
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
@@ -1284,7 +1284,7 @@
 	description = "A unknown liquid, it doesn't smell"
 	metabolism= REM * 0.5
 	color = "#41029B"
-	scannable = 0
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
@@ -1364,3 +1364,50 @@ var/eggs = 0
 	src.visible_message(span_infoplain(span_red("[src] sinks their stinger into [T]!")))
 	T.bloodstr.add_reagent(REAGENT_ID_CONDENSEDCAPSAICINV,3)
 	last_special = world.time + (5 SECONDS) // Many little jabs instead of one big one
+
+/mob/living/proc/absorb_devour()
+	if(!absorbed || !isbelly(loc))
+		return
+	if(!isliving(loc.loc))
+		return
+	var/mob/living/pred = loc.loc
+	var/obj/belly/belly = loc
+	var/list/targets = list()
+	for(var/mob/living/potentialtarget in range(1, pred))
+		if(!isliving(potentialtarget)) //Don't eat anything that isn't mob/living. Failsafe.
+			continue
+		if(potentialtarget == pred)
+			continue
+		if(potentialtarget.devourable)
+			targets += potentialtarget
+	if(!(targets.len))
+		to_chat(src, span_notice("No eligible targets found."))
+		return
+	var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+	if(!absorbed || !isbelly(loc))
+		return
+	if(!isliving(loc.loc))
+		return
+	if(!target)
+		return
+	if(!isliving(target)) //Safety.
+		to_chat(src, span_warning("You need to select a living target!"))
+		return
+	if (get_dist(src,target) >= 2)
+		to_chat(src, span_warning("You need to be closer to do that."))
+		return
+	target.visible_message(span_vnotice("\The [pred]'s [belly] seems interested in \the [target]."),\
+			span_vwarning("\The [pred]'s [belly] threatens to [lowertext(belly.vore_verb)] you!"))
+	to_chat(pred, span_vnotice("Your [belly] tries to [lowertext(belly.vore_verb)] \the [target].")) //people who want this will often be unaware pred players, so I'm making the warning a bit smaller text for them
+	to_chat(pred, span_vwarning("You look for a chance to [lowertext(belly.vore_verb)] \the [target]."))
+	var/starting_loc = target.loc
+	if(do_after(src, 5 SECONDS, target))
+		if(target.loc != starting_loc)
+			to_chat(src, span_notice("\The [target] is no longer within reach."))
+			return
+		if(target.buckled)
+			target.buckled.unbuckle_mob()
+		to_chat(src, span_vwarning("You manage to [lowertext(belly.vore_verb)] \the [target]!"))
+		to_chat(pred, span_vnotice("Your [belly] manages to [lowertext(belly.vore_verb)] \the [target]."))
+		to_chat(target, span_vwarning("You are [lowertext(belly.vore_verb)]ed by \The [pred]'s [belly]!"))
+		return pred.begin_instant_nom(src, target, pred, belly, FALSE)

@@ -32,7 +32,10 @@ effective or pretty fucking useless.
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/batterer/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/batterer/attack_self(mob/user, flag = 0, emp = 0)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!user) 	return
 	if(times_used >= max_uses)
 		to_chat(user, span_warning("The mind batterer has been burnt out!"))
