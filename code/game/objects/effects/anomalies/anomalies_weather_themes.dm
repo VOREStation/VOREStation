@@ -134,10 +134,10 @@
 	if(prob(0.025))
 		lightning_strike(T)
 
-/datum/anomalous_weather/rain/digestive
-	name = "Digestive Rain"
-	reagent_id = REAGENT_ID_STOMACID
-	telegraph_message = "Strange clouds begin to cover the ceiling, along with a strange rumbling noise..."
+/datum/anomalous_weather/rain/acid
+	name = "Acid Rain"
+	reagent_id = REAGENT_ID_SACID
+	telegraph_message = "Strange clouds begin to cover the ceiling, an acidid tinge on them..."
 
 /datum/anomalous_weather/hail
 	name = "Hail"
