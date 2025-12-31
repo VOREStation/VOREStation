@@ -1380,6 +1380,8 @@
 
 	switch(ability)
 		if("devour_as_absorbed")
+			if(!(DB.mode_flags & DM_FLAG_ABSORBEDVORE))
+				return FALSE
 			user.absorb_devour()
 
 	return TRUE
