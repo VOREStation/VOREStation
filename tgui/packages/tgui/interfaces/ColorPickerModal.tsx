@@ -301,7 +301,6 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
     );
 
     const [showPresets, setShowPresets] = useState<boolean>(false);
-    const rgb = hsvaToRgba(color);
     const hexColor = hsvaToHex(color);
 
     return (
@@ -334,14 +333,14 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
                   backgroundColor={hexColor}
                 />
               </Tooltip>
-              <Tooltip content={defaultColor} position="bottom">
-                <Box
-                  inline
-                  width="100px"
-                  height="30px"
-                  backgroundColor={defaultColor}
-                />
-              </Tooltip>
+              <Button
+                tooltip={defaultColor}
+                tooltipPosition="bottom"
+                width="100px"
+                height="30px"
+                backgroundColor={defaultColor}
+                onClick={() => setColor(hexToHsva(defaultColor))}
+              />
             </Stack.Item>
           </Stack>
         </Stack.Item>

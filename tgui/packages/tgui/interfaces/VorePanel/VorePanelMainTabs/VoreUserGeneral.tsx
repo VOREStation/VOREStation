@@ -13,6 +13,7 @@ export const VoreUserGeneral = (props: {
   persist_edit_mode: BooleanLike;
   our_bellies: BellyData[];
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  presets: string;
 }) => {
   const { act } = useBackend();
   const {
@@ -21,6 +22,7 @@ export const VoreUserGeneral = (props: {
     persist_edit_mode,
     our_bellies,
     toggleEditMode,
+    presets,
   } = props;
 
   return (
@@ -51,6 +53,7 @@ export const VoreUserGeneral = (props: {
                 vore_sprite_color={general_pref_data.vore_sprite_color}
                 vore_sprite_multiply={general_pref_data.vore_sprite_multiply}
                 vore_icon_options={general_pref_data.vore_icon_options}
+                presets={presets}
               />
             </Stack.Item>
           </>

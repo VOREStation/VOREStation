@@ -13,8 +13,9 @@ export const VoreSpriteAffects = (props: {
   editMode: boolean;
   bellyVisualData: BellyVisualData;
   hostMobtype: HostMob;
+  presets: string;
 }) => {
-  const { editMode, bellyVisualData, hostMobtype } = props;
+  const { editMode, bellyVisualData, hostMobtype, presets } = props;
   const {
     vore_sprite_flags,
     absorbed_voresprite,
@@ -143,11 +144,11 @@ export const VoreSpriteAffects = (props: {
                         </Stack.Item>
                         <VorePanelEditColor
                           editMode={editMode}
-                          action="liq_set_attribute"
+                          action="set_attribute"
                           subAction="b_undergarment_color"
-                          value_of={null}
                           back_color={undergarment_color}
                           tooltip="Select your undergarment color."
+                          presets={presets}
                         />
                       </Stack>
                     </LabeledList.Item>

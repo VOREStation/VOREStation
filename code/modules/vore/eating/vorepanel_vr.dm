@@ -49,6 +49,7 @@
 	var/sc_message_subtab // our soulcatcher message subtab
 	var/aset_message_subtab
 	var/selected_message
+	var/list/preset_colors
 
 /datum/vore_look/New(mob/new_host)
 	if(istype(new_host))
@@ -57,6 +58,11 @@
 
 /datum/vore_look/Destroy()
 	host = null
+	. = ..()
+
+/datum/vore_look/tgui_close(mob/user)
+	if(user)
+		user.write_preference_directly(/datum/preference/text/preset_colors, preset_colors)
 	. = ..()
 
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
@@ -113,6 +119,7 @@
 	)
 	data["min_belly_name"] = BELLIES_NAME_MIN
 	data["max_belly_name"] = BELLIES_NAME_MAX
+	preset_colors = user.read_preference(/datum/preference/text/preset_colors)
 
 	return data
 
@@ -126,6 +133,7 @@
 	data["unsaved_changes"] = unsaved_changes
 	data["active_tab"] = active_tab
 	data["persist_edit_mode"] = host.persistend_edit_mode
+	data["presets"] = preset_colors
 
 	// Inisde Data
 	data["inside"] = get_inside_data(host)
@@ -653,7 +661,7 @@
 			var/belly_choice = params["attribute"]
 			if(!(belly_choice in host.vore_icon_bellies))
 				return FALSE
-			var/newcolor = tgui_color_picker(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice])
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(!newcolor)
 				return FALSE
 			host.vore_sprite_color[belly_choice] = newcolor
@@ -885,6 +893,20 @@
 			if(message)
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, SC_DELETE_MESSAGE)
+			return TRUE
+		if("preset")
+			var/raw_data = lowertext(params["color"])
+			var/index = lowertext(params["index"])
+			var/list/entries = splittext(preset_colors, ";")
+			while(LAZYLEN(entries) < 20)
+				entries += "#FFFFFF"
+			if(LAZYLEN(entries) > 20)
+				entries.Cut(21)
+			var/hex = sanitize_hexcolor(raw_data)
+			if (!hex || !isnum(index) || entries[index] == hex)
+				return
+			entries[index] = hex
+			preset_colors = entries.Join(";")
 			return TRUE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)

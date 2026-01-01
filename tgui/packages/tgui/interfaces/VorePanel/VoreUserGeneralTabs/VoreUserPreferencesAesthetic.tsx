@@ -19,6 +19,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
   aestethicMessages: AestMessageData;
+  presets: string;
 }) => {
   const {
     editMode,
@@ -29,6 +30,7 @@ export const VoreUserPreferencesAesthetic = (props: {
     vore_sprite_multiply,
     vore_icon_options,
     aestethicMessages,
+    presets,
   } = props;
 
   const sanitizeCorruption = fixCorruptedData(aestethicMessages.active_message);
@@ -67,7 +69,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                           entry +
                           "' sprite."
                         }
-                        value_of={undefined}
+                        presets={presets}
                       />
                       <Stack.Item>
                         <VorePanelEditSwitch

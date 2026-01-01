@@ -9,6 +9,7 @@ export type Data = {
   prey_abilities: PreyAbilityData[] | null;
   active_tab: number;
   persist_edit_mode: BooleanLike;
+  presets: string;
   host_mobtype: HostMob | null;
   our_bellies?: BellyData[] | null;
   min_belly_name: number;
