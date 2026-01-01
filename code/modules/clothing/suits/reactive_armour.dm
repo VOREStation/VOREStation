@@ -338,7 +338,7 @@
 	shock_turf_windup(owner.loc)
 
 /obj/item/clothing/suit/armor/reactive/weather/proc/shock_turf_windup(turf/target)
-	addtimer(CALLBACK(GLOBAL_PROC_REF(lightning_strike), target))
+	addtimer(CALLBACK(GLOBAL_PROC_REF(lightning_strike), target), 1 SECOND)
 
 /obj/item/clothing/suit/armor/reactive/stealth
 	name = "reactive stealth armor"

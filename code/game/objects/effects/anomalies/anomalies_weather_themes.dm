@@ -36,7 +36,7 @@
 	if(iswall(to_affect))
 		return
 
-	for(var/atom/thing as anything in to_affect)
+	for(var/atom/thing in to_affect)
 		if(isliving(thing))
 			affect_mob(thing)
 			continue
