@@ -22,61 +22,73 @@ export const BellyFullscreenSelection = (props: {
     possible_fullscreens,
   } = props;
 
-  return editMode ? (
-    <Section title="Belly Fullscreens Styles">
-      <Stack wrap="wrap" justify="center">
-        <Stack.Item basis="100%">
-          <Button
-            fluid
-            selected={belly_fullscreen === '' || belly_fullscreen === null}
-            onClick={() =>
-              act('set_attribute', { attribute: 'b_fullscreen', val: null })
-            }
-          >
-            Disabled
-          </Button>
-        </Stack.Item>
-        {possible_fullscreens.map((fullscreen) => (
-          <Stack.Item key={fullscreen} basis="32%">
-            <Button
-              width="256px"
-              height="256px"
-              selected={fullscreen === belly_fullscreen}
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_fullscreen',
-                  val: fullscreen,
-                })
-              }
-            >
-              <MultiOverlayImage
-                overlays={getOverlays(
-                  fullscreen,
-                  colors,
-                  !!colorization_enabled,
-                )}
-                size={colorization_enabled ? 120 : 480}
-                targetSize={240}
+  return (
+    <Stack vertical fill>
+      <Stack.Item>
+        <Section fill title="Belly Fullscreen">
+          <Stack align="center">
+            <Stack.Item grow />
+            <Stack.Item>
+              <BellyFullscreenPreview
+                colors={colors}
+                belly_fullscreen={belly_fullscreen}
+                colorization_enabled={colorization_enabled}
+                possible_fullscreens={possible_fullscreens}
               />
-            </Button>
-          </Stack.Item>
-        ))}
-      </Stack>
-    </Section>
-  ) : (
-    <Section fill title="Belly Fullscreen">
-      <Stack align="center">
-        <Stack.Item grow />
+            </Stack.Item>
+            <Stack.Item grow />
+          </Stack>
+        </Section>
+      </Stack.Item>
+      {editMode && (
         <Stack.Item>
-          <BellyFullscreenPreview
-            colors={colors}
-            belly_fullscreen={belly_fullscreen}
-            colorization_enabled={colorization_enabled}
-            possible_fullscreens={possible_fullscreens}
-          />
+          <Section title="Belly Fullscreens Styles">
+            <Stack wrap="wrap" justify="center">
+              <Stack.Item basis="100%">
+                <Button
+                  fluid
+                  selected={
+                    belly_fullscreen === '' || belly_fullscreen === null
+                  }
+                  onClick={() =>
+                    act('set_attribute', {
+                      attribute: 'b_fullscreen',
+                      val: null,
+                    })
+                  }
+                >
+                  Disabled
+                </Button>
+              </Stack.Item>
+              {possible_fullscreens.map((fullscreen) => (
+                <Stack.Item key={fullscreen} basis="32%">
+                  <Button
+                    width="256px"
+                    height="256px"
+                    selected={fullscreen === belly_fullscreen}
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_fullscreen',
+                        val: fullscreen,
+                      })
+                    }
+                  >
+                    <MultiOverlayImage
+                      overlays={getOverlays(
+                        fullscreen,
+                        colors,
+                        !!colorization_enabled,
+                      )}
+                      size={colorization_enabled ? 120 : 480}
+                      targetSize={240}
+                    />
+                  </Button>
+                </Stack.Item>
+              ))}
+            </Stack>
+          </Section>
         </Stack.Item>
-        <Stack.Item grow />
-      </Stack>
-    </Section>
+      )}
+    </Stack>
   );
 };
