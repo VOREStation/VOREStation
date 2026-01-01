@@ -28,7 +28,7 @@
 	//We are able to eat the person stumbling into us.
 	if(can_stumble_vore(prey = target, pred = source)) //This is if the person stumbling into us is able to eat us!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
-	var/obj/belly/destination_belly = get_current_spont_belly(source, target)
+		var/obj/belly/destination_belly = source.get_current_spont_belly(target)
 		source.begin_instant_nom(source, prey = target, pred = source, belly = destination_belly)
 		target.stop_flying()
 		return CANCEL_STUMBLED_INTO
@@ -37,7 +37,7 @@
 	if(can_stumble_vore(prey = source, pred = target)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
 		target.forceMove(get_turf(source))
-	var/obj/belly/destination_belly = get_current_spont_belly(target, source)
+		var/obj/belly/destination_belly = target.get_current_spont_belly(source)
 		source.begin_instant_nom(target, prey = source, pred = target, belly = destination_belly)
 		source.stop_flying()
 		return CANCEL_STUMBLED_INTO
@@ -74,7 +74,7 @@
 	//Handle object throw vore
 	if(isitem(hitby))
 		var/obj/item/O = hitby
-		var/obj/belly/destination_belly = get_current_spont_belly(source, O)
+		var/obj/belly/destination_belly = source.get_current_spont_belly(O)
 		if(!destination_belly)
 			return
 		if(source.stat != DEAD && source.trash_catching)
@@ -99,7 +99,7 @@
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
 		if(can_throw_vore(prey = thrown_mob, pred = source))
-			var/obj/belly/destination_belly = get_current_spont_belly(source, thrown_mob)
+			var/obj/belly/destination_belly = source.get_current_spont_belly(thrown_mob)
 			if(!destination_belly)
 				return
 			destination_belly.nom_mob(thrown_mob) //Eat them!!!
@@ -111,7 +111,7 @@
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
 		else if(can_throw_vore(prey = source, pred = thrown_mob))//Pred thrown into prey.
-			var/obj/belly/destination_belly = get_current_spont_belly(thrown_mob, source)
+			var/obj/belly/destination_belly = thrown_mob.get_current_spont_belly(source)
 			if(!destination_belly)
 				return
 			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(destination_belly.name)] as [thrown_mob] flies into them!"))
@@ -130,12 +130,12 @@
 
 	//Person being slipped into eats the person slipping
 	if(can_slip_vore(pred = source, prey = crossed))	//If we can vore them go for it
-		var/obj/belly/destination_belly = get_current_spont_belly(source, crossed)
+		var/obj/belly/destination_belly = source.get_current_spont_belly(crossed)
 		source.begin_instant_nom(source, prey = crossed, pred = source, belly = destination_belly)
 		return COMPONENT_BLOCK_CROSS
 
 	//The person slipping eats the person being slipped into
 	else if(can_slip_vore(pred = crossed, prey = source))
-		var/obj/belly/destination_belly = get_current_spont_belly(crossed, source)
+		var/obj/belly/destination_belly = crossed.get_current_spont_belly(source)
 		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = destination_belly) //Must be
 		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.

@@ -775,8 +775,8 @@
 	var/belly = user.vore_selected
 	return begin_instant_nom(user, prey, user, belly)
 
-/mob/living/proc/get_current_spont_belly(mob/pred, atom/movable/preything)
-	var/direction_diff = get_dir(pred, preything)
+/mob/living/proc/get_current_spont_belly(atom/movable/preything)
+	var/direction_diff = get_dir(src, preything)
 	switch(direction_diff)
 		if(NORTH)
 			if(spont_belly_rear)
