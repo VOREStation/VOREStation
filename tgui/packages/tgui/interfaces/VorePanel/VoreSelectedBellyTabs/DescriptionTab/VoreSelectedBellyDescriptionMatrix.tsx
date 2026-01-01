@@ -113,6 +113,7 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
                   subTabAction="change_message_type"
                   tooltip={displayed_message_types.tooltip}
                   maxLength={displayed_message_types.max_length}
+                  minLength={10}
                   activeMessage={displayed_message_types.active_message}
                   action="set_attribute"
                   listAction="b_msgs"

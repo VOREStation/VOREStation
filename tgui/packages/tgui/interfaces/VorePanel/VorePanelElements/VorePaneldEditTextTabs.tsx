@@ -53,6 +53,8 @@ export const VorePanelEditTextTabs = (
     tabsToIcons: Record<string, string>;
     /** Disable our special highlighting used on belly messages */
     noHighlight: boolean;
+    /** Warn if input is below the minimum */
+    minLength: number;
   }>,
 ) => {
   const { act } = useBackend();
@@ -81,6 +83,7 @@ export const VorePanelEditTextTabs = (
     button_tooltip,
     tabsToIcons,
     noHighlight,
+    minLength,
   } = props;
 
   return (
@@ -150,6 +153,7 @@ export const VorePanelEditTextTabs = (
             )}
             <Stack.Item grow>
               <VorePanelEditTextArea
+                minLength={minLength}
                 noHighlight={noHighlight}
                 editMode={editMode}
                 tooltip={tooltip}
