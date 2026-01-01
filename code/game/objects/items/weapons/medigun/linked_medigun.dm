@@ -29,6 +29,9 @@
 	return (medigun_base_unit.bcell && medigun_base_unit.bcell.checked_use(charge_amt))
 
 /obj/item/bork_medigun/linked/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(medigun_base_unit.is_twohanded())
 		update_twohanding()
 	if(busy)

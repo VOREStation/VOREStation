@@ -59,11 +59,6 @@
 	host = null
 	. = ..()
 
-/datum/vore_look/ui_assets(mob/user)
-	. = ..()
-	. += get_asset_datum(/datum/asset/spritesheet/vore)
-	. += get_asset_datum(/datum/asset/spritesheet/vore_fixed) //Either this isn't working or my cache is corrupted and won't show them.
-
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -138,6 +133,7 @@
 	data["host_mobtype"] = null
 	data["show_pictures"] = null
 	data["icon_overflow"] = null
+	data["prey_abilities"] = null
 	data["our_bellies"] = null
 	data["selected"] = null
 	data["soulcatcher"] = null
@@ -164,6 +160,7 @@
 			// Content Data
 			data["show_pictures"] = show_pictures
 			data["icon_overflow"] = icon_overflow
+			data["prey_abilities"] = get_prey_abilities(host)
 
 		if(SOULCATCHER_TAB)
 			// Soulcatcher and abilities
@@ -241,6 +238,11 @@
 		if("toggle_editmode_persistence")
 			host.persistend_edit_mode = !host.persistend_edit_mode
 			return TRUE
+
+		if("prey_ability")
+			if(!isliving(ui.user))
+				return FALSE
+			return perform_prey_ability(ui.user, params)
 
 		// Host is inside someone else, and is trying to interact with something else inside that person.
 		if("pick_from_inside")
@@ -530,7 +532,7 @@
 				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
 			if (isbelly(host.loc))
 				var/obj/belly/B = host.loc
-				B.vore_fx(host, TRUE)
+				B.vore_fx(host)
 			else
 				host.clear_fullscreen("belly")
 			if(!host.hud_used.hud_shown)
@@ -548,7 +550,7 @@
 				host.client.prefs_vr.max_voreoverlay_alpha = host.max_voreoverlay_alpha
 			if (isbelly(host.loc))
 				var/obj/belly/B = host.loc
-				B.vore_fx(host, TRUE)
+				B.vore_fx(host)
 			unsaved_changes = TRUE
 			return TRUE
 		// liquid belly code
@@ -1365,6 +1367,22 @@
 			if(condition)
 				to_chat(user, span_vwarning("\The [target] is currently [condition], they will not be able to [condition_consequences]."))
 			return FALSE
+
+/datum/vore_look/proc/perform_prey_ability(mob/living/user, params)
+	var/obj/belly/OB = locate(params["belly"])
+
+	if(!(user in OB))
+		return TRUE // Aren't here anymore, need to update menu
+
+	var/ability = params["ability"]
+	if(!(ability in list("devour_as_absorbed")))
+		return FALSE
+
+	switch(ability)
+		if("devour_as_absorbed")
+			user.absorb_devour()
+
+	return TRUE
 
 /datum/vore_look/proc/sanitize_fixed_list(var/list/messages, type, delim = "\n\n", limit)
 	if(!limit)

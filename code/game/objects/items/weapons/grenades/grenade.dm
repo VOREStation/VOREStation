@@ -16,6 +16,9 @@
 	var/hud_state = "grenade_he" // TGMC Ammo HUD Port
 	var/hud_state_empty = "grenade_empty" // TGMC Ammo HUD Port
 
+	///Var for special attack_self handling
+	var/special_handling = FALSE
+
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -55,7 +58,12 @@
 			. += "\The [src] is set for instant detonation."
 
 
-/obj/item/grenade/attack_self(mob/user as mob)
+/obj/item/grenade/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(!active)
 		if(clown_check(user))
 			to_chat(user, span_warning("You prime \the [name]! [det_time/10] seconds!"))

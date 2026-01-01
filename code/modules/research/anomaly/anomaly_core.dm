@@ -5,6 +5,7 @@
 
 	var/anomaly_type = /obj/effect/anomaly
 	var/worth = 250 // Pricey... Should be hard-ish to obtain.
+	special_handling = TRUE
 
 /obj/item/assembly/signaler/anomaly/Initialize(mapload)
 	. = ..()
@@ -21,6 +22,9 @@
 	return TRUE
 
 /obj/item/assembly/signaler/anomaly/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	return
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/W, mob/user, params)

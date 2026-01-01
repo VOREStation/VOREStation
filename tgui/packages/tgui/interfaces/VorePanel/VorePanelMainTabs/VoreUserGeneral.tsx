@@ -2,16 +2,16 @@ import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import type { bellyData, generalPrefData } from '../types';
+import type { BellyData, GeneralPrefData } from '../types';
 import { VoreUserPreferencesAesthetic } from '../VoreUserPreferencesTabs/VoreUserPreferencesAesthetic';
 /**
  * Subtemplate of VoreBellySelectionAndCustomization
  */
 export const VoreUserGeneral = (props: {
-  general_pref_data?: generalPrefData;
+  general_pref_data?: GeneralPrefData;
   editMode: boolean;
   persist_edit_mode: BooleanLike;
-  our_bellies: bellyData[];
+  our_bellies: BellyData[];
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { act } = useBackend();

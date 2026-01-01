@@ -186,6 +186,20 @@
 			if(L.absorbed && !issilicon(L))
 				L.Weaken(5)
 
+			//Thickbelly flag
+			if((mode_flags & DM_FLAG_THICKBELLY) && !L.muffled)
+				L.muffled = TRUE
+			//Fix muffled sometimes being sticky.
+			else if(!(mode_flags & DM_FLAG_THICKBELLY) && L.muffled)
+				L.muffled = FALSE
+
+			//Force psay
+			if((mode_flags & DM_FLAG_FORCEPSAY) && !L.forced_psay && L.absorbed)
+				L.forced_psay = TRUE
+			//Fix forcepsay sometimes being sticky.
+			else if(!(mode_flags & DM_FLAG_FORCEPSAY) && L.forced_psay)
+				L.forced_psay = FALSE
+
 			//Handle 'human'
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
@@ -194,20 +208,6 @@
 				if(mode_flags & DM_FLAG_NUMBING)
 					if(H.bloodstr.get_reagent_amount(REAGENT_ID_NUMBENZYME) < 2)
 						H.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,4)
-
-				//Thickbelly flag
-				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)
-					H.muffled = TRUE
-				//Fix muffled sometimes being sticky.
-				else if(!(mode_flags & DM_FLAG_THICKBELLY) && H.muffled)
-					H.muffled = FALSE
-
-				//Force psay
-				if((mode_flags & DM_FLAG_FORCEPSAY) && !H.forced_psay && H.absorbed)
-					H.forced_psay = TRUE
-				//Fix forcepsay sometimes being sticky.
-				else if(!(mode_flags & DM_FLAG_FORCEPSAY) && H.forced_psay)
-					H.forced_psay = FALSE
 
 				//Worn items flag
 				if((mode_flags & DM_FLAG_AFFECTWORN) && H.contaminate_pref)
