@@ -9,8 +9,15 @@
 	matter = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
 	var/obj/item/implant/imp = null
 	var/active = 1
+	///Var for attack_self chain
+	var/special_handling = FALSE
 
-/obj/item/implanter/attack_self(var/mob/user)
+/obj/item/implanter/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	active = !active
 	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update()

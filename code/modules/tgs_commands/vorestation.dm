@@ -404,6 +404,15 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	if(!(action in VALID_ACTIONS))
 		message.text = "```First param must be a valid action.```"
 		return message
+
+	if(action == "help")
+		var/list/whitelist_jobs = list()
+		for(var/datum/job/our_job in job_master.occupations)
+			if(our_job.whitelist_only)
+				whitelist_jobs += our_job.title
+		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
+		return message
+
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
 		message.text = "```Invalid command usage: [VALID_USAGE]```"
@@ -438,13 +447,6 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Resolve the action
 	switch(action)
-		if("help")
-			var/list/whitelist_jobs = list()
-			for(var/datum/job/our_job in job_master.occupations)
-				if(our_job.whitelist_only)
-					whitelist_jobs += our_job.title
-			message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
-			return message
 		if("add")
 			if(kind == "job")
 				var/datum/job/job = job_master.GetJob(role)

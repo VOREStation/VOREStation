@@ -38,7 +38,10 @@
 	else
 		..()
 
-/obj/item/plastique/attack_self(mob/user as mob)
+/obj/item/plastique/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/newtime = tgui_input_number(user, "Please set the timer.", "Timer", 10, 60000, 10)
 	if(user.get_active_hand() == src)
 		newtime = CLAMP(newtime, 10, 60000)

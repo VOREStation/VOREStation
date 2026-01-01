@@ -86,6 +86,8 @@
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
 
+	special_handling = TRUE
+
 /obj/item/organ/external/Destroy()
 
 	if(parent && parent.children)
@@ -147,9 +149,12 @@
 	if(burn_damage)
 		take_damage(0, burn_damage)
 
-/obj/item/organ/external/attack_self(var/mob/living/user)
+/obj/item/organ/external/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!contents.len)
-		return ..()
+		return ..(user, TRUE)
 	var/list/removable_objects = list()
 	for(var/obj/item/organ/external/E in (contents + src))
 		if(!istype(E))
@@ -165,7 +170,7 @@
 			user.put_in_hands(I)
 		user.visible_message(span_danger("\The [user] rips \the [I] out of \the [src]!"))
 		return //no eating the limb until everything's been removed
-	return ..()
+	return ..(user, TRUE)
 
 /obj/item/organ/external/examine(mob/user)
 	. = ..()
@@ -510,14 +515,15 @@
 		if("omni")  damage_amount = max(brute_dam,burn_dam)
 		else return 0
 
-	if(!damage_amount)
+	if(!damage_amount && !disfigured)
 		to_chat(user, span_notice("Nothing to fix!"))
 		return 0
 
 	if(brute_dam + burn_dam >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
 		to_chat(user, span_danger("The damage is far too severe to patch over externally."))
 		return 0
-
+	/*	// Leaving this here as a reference to how it used to work, but as of now, this just makes self repair for synths extra tedious.
+		// Normal meds like brute kits and such dont have this restriction, so this shouldn't have it either.
 	if(user == src.owner)
 		var/grasp
 		if(user.l_hand == tool && (src.body_part & (ARM_LEFT|HAND_LEFT)))
@@ -528,7 +534,7 @@
 		if(grasp)
 			to_chat(user, span_warning("You can't reach your [src.name] while holding [tool] in your [owner.get_bodypart_name(grasp)]."))
 			return 0
-
+	*/
 	user.setClickCooldown(user.get_attack_speed(tool))
 	if(!do_after(user, 1 SECOND, src))
 		to_chat(user, span_warning("You must stand still to do that."))
@@ -540,7 +546,10 @@
 		if("omni")src.heal_damage(repair_amount, repair_amount, 0, 1)
 
 	if(damage_desc)
-		var/fix_verb = (damage_amount > repair_amount) ? "patches" : "finishes patching"
+		var/fix_verb = "patches"
+		if(damage_amount > repair_amount)
+			fix_verb = "finishes patching"
+			disfigured = FALSE //Prevents some edgecases where you can repair despite hitting disfigurement thresholds, they're fully healed at this point anyways.
 		if(user == src.owner)
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [user.p_their()] [src.name] with [tool]."))
 		else

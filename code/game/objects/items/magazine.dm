@@ -85,6 +85,9 @@
 		to_chat(user, "The headline screams, \"[headline]\"")
 
 /obj/item/tabloid/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.visible_message(span_notice("\The [user] leafs idly through \the [src]."))
 	if(headline)
 		to_chat(user, "Most of it is the usual tabloid garbage, but the headline story, \"[headline]\", holds your attention for awhile.")

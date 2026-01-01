@@ -14,16 +14,16 @@ import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import { digestModeToColor } from '../constants';
-import type { bellyData, hostMob, selectedData } from '../types';
+import type { BellyData, HostMob, SelectedData } from '../types';
 import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {
   activeVoreTab?: number;
-  our_bellies: bellyData[];
-  selected: selectedData | null;
+  our_bellies: BellyData[];
+  selected: SelectedData | null;
   show_pictures: BooleanLike;
-  host_mobtype: hostMob;
+  host_mobtype: HostMob;
   icon_overflow: BooleanLike;
   vore_words: Record<string, string[]>;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -56,7 +56,7 @@ export const VoreBellySelectionAndCustomization = (props: {
 
   const bellySearch = createSearch(
     searchedBellies,
-    (belly: bellyData) => belly.name,
+    (belly: BellyData) => belly.name,
   );
 
   const belliesToDisplay = our_bellies.filter(bellySearch);
