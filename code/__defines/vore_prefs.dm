@@ -28,6 +28,7 @@
 	target.slip_vore = source.slip_vore;												\
 	target.stumble_vore = source.stumble_vore;											\
 	target.phase_vore = source.phase_vore;												\
+																						\
 	target.spont_belly_rear = source.spont_belly_rear;									\
 	target.spont_belly_left = source.spont_belly_left;									\
 	target.spont_belly_front = source.spont_belly_front;								\
