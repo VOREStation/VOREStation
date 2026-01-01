@@ -780,11 +780,11 @@
 	var/spont_belly_name
 	switch(direction_diff)
 		if(NORTH)
-			if(spont_belly_rear)
-				spont_belly_name = spont_belly_rear
-		if(SOUTH)
 			if(spont_belly_front)
 				spont_belly_name = spont_belly_front
+		if(SOUTH)
+			if(spont_belly_rear)
+				spont_belly_name = spont_belly_rear
 		if(EAST)
 			if(spont_belly_right)
 				spont_belly_name = spont_belly_right
