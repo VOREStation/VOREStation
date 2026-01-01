@@ -8,12 +8,14 @@ export function BellyFullscreenPreview(props: {
   belly_fullscreen: string;
   colorization_enabled: BooleanLike;
   possible_fullscreens: string[];
+  targetSize?: number;
 }) {
   const {
     colors,
     belly_fullscreen,
     colorization_enabled,
     possible_fullscreens,
+    targetSize = 240,
   } = props;
 
   if (!belly_fullscreen) {
@@ -44,7 +46,7 @@ export function BellyFullscreenPreview(props: {
     <MultiOverlayImage
       overlays={getOverlays(belly_fullscreen, colors, !!colorization_enabled)}
       size={colorization_enabled ? 120 : 480}
-      targetSize={240}
+      targetSize={targetSize}
     />
   );
 }

@@ -36,6 +36,7 @@ export const BellyFullscreenSelection = (props: {
                 belly_fullscreen={belly_fullscreen}
                 colorization_enabled={colorization_enabled}
                 possible_fullscreens={possible_fullscreens}
+                targetSize={360}
               />
             </Stack.Item>
             <Stack.Item grow />
@@ -76,6 +77,7 @@ export const BellyFullscreenSelection = (props: {
                     }
                   >
                     <MultiOverlayImage
+                      gallery
                       overlays={getOverlays(
                         fullscreen,
                         colors,
