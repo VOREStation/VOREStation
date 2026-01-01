@@ -27,6 +27,7 @@
 	// Autotransfer count moved here.
 	if(autotransfer_enabled)
 		var/list/autotransferables = list()
+		var/list/transfer_bellies = compile_autotransfer_bellies()
 		for(var/atom/movable/M in contents)
 			if(!M || !M.autotransferable)
 				continue
@@ -40,12 +41,12 @@
 		if(LAZYLEN(autotransferables) >= autotransfer_min_amount)
 			var/tally = 0
 			for(var/atom/movable/M in autotransferables)
-				if(check_autotransfer(M))
+				if(check_autotransfer(M, transfer_bellies))
 					tally++
 				if(autotransfer_max_amount > 0 && tally >= autotransfer_max_amount)
 					break
-				if(tally >= BELLY_CONTENT_LIMIT)
-					break
+			for(var/obj/belly/transfer_belly in (transfer_bellies["primary"] + transfer_bellies["secondary"]))
+				transfer_belly.handle_visual_update()
 
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
 	var/to_update = FALSE //Did anything update worthy happen?
@@ -228,9 +229,6 @@
 						if(!I || I.flags & NOSTRIP)
 							continue
 						if(H.unEquip(I, force = FALSE))
-							if(length(contents) >= BELLY_CONTENT_LIMIT)
-								I.forceMove(drop_location())
-								return
 							handle_digesting_item(I)
 							digestion_noise_chance = 25
 							to_update = TRUE

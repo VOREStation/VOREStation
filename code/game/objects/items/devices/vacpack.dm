@@ -79,10 +79,6 @@
 		return
 	if(!output_dest)
 		return
-	if(isbelly(output_dest))
-		var/obj/belly = output_dest
-		if(length(belly.contents) >= BELLY_CONTENT_LIMIT)
-			return
 	if(istype(output_dest,/obj/item/storage/bag/trash))
 		if(get_turf(output_dest) != get_turf(user))
 			vac_power = 0

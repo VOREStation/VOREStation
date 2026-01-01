@@ -103,14 +103,14 @@
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
 	var/autotransferwait = 10 				// Time between trying to transfer.
 	var/autotransferlocation				// Place to send them
-	var/autotransferextralocation = list()	// List of extra places this could go
+	var/list/autotransferextralocation = list()	// List of extra places this could go
 	var/autotransfer_whitelist = 0			// Flags for what can be transferred to the primary location
 	var/autotransfer_blacklist = 2			// Flags for what can not be transferred to the primary location, defaults to Absorbed
 	var/autotransfer_whitelist_items = 0	// Flags for what can be transferred to the primary location
 	var/autotransfer_blacklist_items = 0	// Flags for what can not be transferred to the primary location
 	var/autotransferchance_secondary = 0 	// % Chance of prey being autotransferred to secondary transfer location
 	var/autotransferlocation_secondary		// Second place to send them
-	var/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
+	var/list/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
 	var/autotransfer_secondary_whitelist = 0// Flags for what can be transferred to the secondary location
 	var/autotransfer_secondary_blacklist = 2// Flags for what can not be transferred to the secondary location, defaults to Absorbed
 	var/autotransfer_secondary_whitelist_items = 0// Flags for what can be transferred to the secondary location
@@ -267,6 +267,9 @@
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 	var/temperature_damage = FALSE			// Does temperature damage prey?
+	var/last_transfer_log = 0				// Prevent server message spam!
+	var/next_transfer_log = 0				// Prevent server message spam!
+	var/entrance_log_count = 0				// Entrance max before spawm
 	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
@@ -522,10 +525,6 @@
 	if(!owner)
 		thing.forceMove(get_turf(src))
 		return
-	if(length(contents) > BELLY_CONTENT_LIMIT * 0.9)
-		to_chat(owner, span_userdanger("Your belly [src] contains more than [BELLY_CONTENT_LIMIT * 0.9] items, keep the count below the limit of [BELLY_CONTENT_LIMIT]. Violations of the limit mights result in round removal or a ban."))
-	else if(length(contents) > BELLY_CONTENT_LIMIT)
-		log_and_message_admins("Ingested more than the sane limit of [BELLY_CONTENT_LIMIT] items.", owner)
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
 		var/S = pick(GLOB.slosh)
@@ -546,7 +545,15 @@
 	//Generic entered message
 	if(!owner.mute_entry && entrance_logs)
 		if(!istype(thing, /mob/observer))	//Don't have ghosts announce they're reentering the belly on death
-			to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+			if(world.time - last_transfer_log > 10)
+				last_transfer_log = world.time
+				entrance_log_count = 0
+			if(world.time >= next_transfer_log)
+				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+				entrance_log_count++
+				if(entrance_log_count >= 10)
+					next_transfer_log = world.time + 10
+					last_transfer_log = world.time
 
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound && !istype(thing, /mob/observer))
@@ -974,9 +981,6 @@
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
 /obj/belly/proc/nom_atom(atom/movable/prey, mob/user)
-	if(length(contents) >= BELLY_CONTENT_LIMIT)
-		to_chat(owner, span_vwarning("Your belly [src] is full."))
-		return
 	if(ismob(prey))
 		var/mob/mob_prey = prey
 		if(owner.stat == DEAD)
@@ -1057,9 +1061,6 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
-					if(length(contents) >= BELLY_CONTENT_LIMIT)
-						I.forceMove(drop_location())
-						return
 					if(contaminates)
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
@@ -1516,11 +1517,8 @@
 	return see
 
 //Transfers contents from one belly to another
-/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
+/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = FALSE)
 	if(!(content in src) || !istype(target))
-		return
-	if(length(contents) >= BELLY_CONTENT_LIMIT)
-		to_chat(owner, span_vwarning("Your belly [target] is full."))
 		return
 	content.belly_cycles = 0
 	content.forceMove(target)
@@ -1532,42 +1530,55 @@
 			I.wash(CLEAN_WASH)
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
+	if(!silent)
+		handle_visual_update()
+
+/obj/belly/proc/handle_visual_update()
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 	owner.handle_belly_update()
 
+//Autotransfer belly lookup
+/obj/belly/proc/compile_autotransfer_bellies()
+	var/list/primary_bellies = list()
+	var/list/secondary_bellies = list()
+
+	var/list/primary_locations = autotransferextralocation.Copy()
+	primary_locations += autotransferlocation
+	var/list/secondary_locations = autotransferextralocation_secondary.Copy()
+	secondary_locations += autotransferlocation_secondary
+	for(var/obj/belly/B in owner.vore_organs)
+		if(B.name in primary_locations)
+			primary_bellies += B
+		if(B.name in secondary_locations)
+			secondary_bellies += B
+
+	return list("primary" = primary_bellies, "secondary" = secondary_bellies)
+
 //Autotransfer callback
-/obj/belly/proc/check_autotransfer(var/atom/movable/prey)
+/obj/belly/proc/check_autotransfer(var/atom/movable/prey, var/list/transfer_locations)
 	if(!(prey in contents) || !prey.autotransferable)
 		return FALSE
-	var/dest_belly_name
+	var/obj/belly/dest_belly
 	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
-			dest_belly_name = pick(autotransferextralocation_secondary + autotransferlocation_secondary)
+			dest_belly = pick(transfer_locations["secondary"])
 		if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
-			dest_belly_name = pick(autotransferextralocation_secondary + autotransferlocation_secondary)
+			dest_belly = pick(transfer_locations["secondary"])
 	if(autotransferlocation && prob(autotransferchance))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
-			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
+			dest_belly = pick(transfer_locations["primary"])
 		if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
-			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
-	if(!dest_belly_name) // Didn't transfer, so wait before retrying
+			dest_belly = pick(transfer_locations["primary"])
+	if(!dest_belly) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
-		return FALSE
-	var/obj/belly/dest_belly
-	for(var/obj/belly/B in owner.vore_organs)
-		if(B.name == dest_belly_name)
-			dest_belly = B
-			break
-	if(!dest_belly)
-		return FALSE
-	if(length(dest_belly.contents) >= BELLY_CONTENT_LIMIT)
 		return FALSE
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
-		if(dest_belly_name == autotransferlocation)
+		var/dest_belly_name = dest_belly.name
+		if(dest_belly.name == autotransferlocation)
 			autotransfer_owner_message = span_vwarning(belly_format_string(primary_autotransfer_messages_owner, prey, dest = dest_belly_name))
 			autotransfer_prey_message = span_vwarning(belly_format_string(primary_autotransfer_messages_prey, prey, dest = dest_belly_name))
 		else
@@ -1578,7 +1589,7 @@
 		if(entrance_logs)
 			to_chat(owner, autotransfer_owner_message)
 
-	transfer_contents(prey, dest_belly)
+	transfer_contents(prey, dest_belly, TRUE)
 	return TRUE
 
 //Autotransfer filter
