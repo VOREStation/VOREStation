@@ -34,11 +34,11 @@ export const VoreUserGeneral = (props: {
                 persist_edit_mode={persist_edit_mode}
                 toggleEditMode={toggleEditMode}
                 active_belly={general_pref_data.active_belly}
-                our_bellies={[]}
-                spont_rear={null}
-                spont_front={null}
-                spont_left={null}
-                spont_right={null}
+                our_bellies={our_bellies}
+                spont_rear={general_pref_data.spont_rear}
+                spont_front={general_pref_data.spont_front}
+                spont_left={general_pref_data.spont_left}
+                spont_right={general_pref_data.spont_right}
               />
             </Stack.Item>
             <Stack.Item grow>

@@ -73,7 +73,12 @@
 		"aestethic_messages" = compile_aesthetic_messages(owner),
 		"vore_sprite_color" = owner.vore_sprite_color,
 		"vore_sprite_multiply" = owner.vore_sprite_multiply,
-		"vore_icon_options" = owner.vore_icon_bellies
+		"vore_icon_options" = owner.vore_icon_bellies,
+		// spont options
+		"spont_rear" = owner.spont_belly_rear,
+		"spont_front" = owner.spont_belly_front,
+		"spont_left" = owner.spont_belly_left,
+		"spont_right" = owner.spont_belly_right
 	)
 
 /datum/vore_look/proc/compile_aesthetic_messages(mob/owner)
