@@ -1,9 +1,9 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
 import type { BellyData, GeneralPrefData } from '../types';
-import { VoreUserPreferencesAesthetic } from '../VoreUserPreferencesTabs/VoreUserPreferencesAesthetic';
+import { VoreUserPreferencesAesthetic } from '../VoreUserGeneralTabs/VoreUserPreferencesAesthetic';
+import { VoreUserPreferencesSpont } from '../VoreUserGeneralTabs/VoreUserPreferencesSpont';
 /**
  * Subtemplate of VoreBellySelectionAndCustomization
  */
@@ -27,20 +27,33 @@ export const VoreUserGeneral = (props: {
     <Section fill>
       <Stack vertical fill>
         {!!general_pref_data && (
-          <Stack.Item grow>
-            <VoreUserPreferencesAesthetic
-              editMode={editMode}
-              persist_edit_mode={persist_edit_mode}
-              toggleEditMode={toggleEditMode}
-              active_belly={general_pref_data.active_belly}
-              belly_rub_target={general_pref_data.belly_rub_target}
-              aestethicMessages={general_pref_data.aestethic_messages}
-              our_bellies={our_bellies}
-              vore_sprite_color={general_pref_data.vore_sprite_color}
-              vore_sprite_multiply={general_pref_data.vore_sprite_multiply}
-              vore_icon_options={general_pref_data.vore_icon_options}
-            />
-          </Stack.Item>
+          <>
+            <Stack.Item>
+              <VoreUserPreferencesSpont
+                editMode={editMode}
+                persist_edit_mode={persist_edit_mode}
+                toggleEditMode={toggleEditMode}
+                active_belly={general_pref_data.active_belly}
+                our_bellies={[]}
+                spont_rear={null}
+                spont_front={null}
+                spont_left={null}
+                spont_right={null}
+              />
+            </Stack.Item>
+            <Stack.Item grow>
+              <VoreUserPreferencesAesthetic
+                editMode={editMode}
+                active_belly={general_pref_data.active_belly}
+                belly_rub_target={general_pref_data.belly_rub_target}
+                aestethicMessages={general_pref_data.aestethic_messages}
+                our_bellies={our_bellies}
+                vore_sprite_color={general_pref_data.vore_sprite_color}
+                vore_sprite_multiply={general_pref_data.vore_sprite_multiply}
+                vore_icon_options={general_pref_data.vore_icon_options}
+              />
+            </Stack.Item>
+          </>
         )}
         <Stack.Divider />
         <Stack.Item>

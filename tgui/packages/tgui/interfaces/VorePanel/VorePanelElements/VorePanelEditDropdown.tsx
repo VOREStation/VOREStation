@@ -7,7 +7,6 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
 
 import type { DropdownEntry } from '../types';
 
@@ -47,8 +46,9 @@ export const VorePanelEditDropdown = (props: {
 
   return editMode ? (
     <Stack>
-      <Stack.Item>
+      <Stack.Item grow>
         <Dropdown
+          fluid
           color={color}
           onSelected={(value) =>
             act(action, { attribute: subAction, val: value })
@@ -67,6 +67,6 @@ export const VorePanelEditDropdown = (props: {
       )}
     </Stack>
   ) : (
-    <Box textColor={color}>{capitalize(entry)}</Box>
+    <Box textColor={color}>{entry}</Box>
   );
 };

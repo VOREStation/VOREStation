@@ -1,5 +1,4 @@
-import { Button, Section, Stack } from 'tgui-core/components';
-import { useBackend } from 'tgui/backend';
+import { Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import type { LocalPrefs } from '../types';
@@ -10,7 +9,6 @@ export const VoreUserPreferencesSpontaneous = (props: {
   can_be_drop_pred: BooleanLike;
   preferences: LocalPrefs;
 }) => {
-  const { act } = useBackend();
   const { can_be_drop_prey, can_be_drop_pred, preferences } = props;
 
   return (
@@ -70,16 +68,6 @@ export const VoreUserPreferencesSpontaneous = (props: {
               spec={preferences.toggle_phase_vore}
               tooltipPosition="left"
             />
-          </Stack.Item>
-          <Stack.Item basis="35%">
-            <Button
-              fluid
-              tooltip="Choose a specific belly for spontaneous prey to land in, regardless of which is currently selected."
-              tooltipPosition="right"
-              onClick={() => act('switch_spont_belly')}
-            >
-              {`Set Spontaneous Bellies`}
-            </Button>
           </Stack.Item>
         </Stack>
       ) : (

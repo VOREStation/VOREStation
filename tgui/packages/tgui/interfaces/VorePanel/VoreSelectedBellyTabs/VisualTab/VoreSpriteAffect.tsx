@@ -1,5 +1,5 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
-
+import { capitalize } from 'tgui-core/string';
 import { spriteToTooltip } from '../../constants';
 import type { BellyVisualData, HostMob } from '../../types';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
@@ -105,7 +105,7 @@ export const VoreSpriteAffects = (props: {
                     subAction="b_belly_sprite_to_affect"
                     editMode={editMode}
                     options={belly_sprite_options}
-                    entry={belly_sprite_to_affect}
+                    entry={capitalize(belly_sprite_to_affect)}
                     tooltip="Set the belly sprite to effect."
                   />
                 </LabeledList.Item>

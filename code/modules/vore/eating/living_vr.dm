@@ -773,20 +773,24 @@
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
-	if(user.get_current_spont_belly() && isbelly(user.spont_belly_current))
-		belly = user.spont_belly_current
 	return begin_instant_nom(user, prey, user, belly)
 
-/mob/living/proc/get_current_spont_belly()
-	if(dir == 1)
-		spont_belly_current = spont_belly_n
-	if(dir == 2)
-		spont_belly_current = spont_belly_s
-	if(dir == 4)
-		spont_belly_current = spont_belly_e
-	if(dir == 8)
-		spont_belly_current = spont_belly_w
-	return spont_belly_current
+/mob/living/proc/get_current_spont_belly(var/mob/pred. var/atom/movable/preything)
+	var/direction_diff = get_dir(pred, preything)
+	switch(direction_diff)
+		if(NORTH)
+			if(spont_belly_rear)
+				return spont_belly_current = spont_belly_rear
+		if(SOUTH)
+			if(spont_belly_front)
+				return spont_belly_current = spont_belly_front
+		if(EAST)
+			if(spont_belly_left)
+				return spont_belly_current = spont_belly_left
+		if(WEST)
+			if(spont_belly_right)
+				return spont_belly_current = spont_belly_right
+	return vore_selected
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"

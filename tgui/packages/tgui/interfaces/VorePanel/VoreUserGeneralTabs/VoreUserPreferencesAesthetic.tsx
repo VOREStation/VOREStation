@@ -5,7 +5,6 @@ import { capitalize } from 'tgui-core/string';
 import { aestehticTabsToIcons } from '../constants';
 import { fixCorruptedData } from '../functions';
 import type { AestMessageData, BellyData } from '../types';
-import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditTextTabs } from '../VorePanelElements/VorePaneldEditTextTabs';
 import { VorePanelEditColor } from '../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
@@ -13,8 +12,6 @@ import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 
 export const VoreUserPreferencesAesthetic = (props: {
   editMode: boolean;
-  persist_edit_mode: BooleanLike;
-  toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   active_belly: string | null;
   our_bellies: BellyData[];
   belly_rub_target: string | null;
@@ -25,8 +22,6 @@ export const VoreUserPreferencesAesthetic = (props: {
 }) => {
   const {
     editMode,
-    persist_edit_mode,
-    toggleEditMode,
     active_belly,
     belly_rub_target,
     our_bellies,
@@ -51,18 +46,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   );
 
   return (
-    <Section
-      fill
-      title="Aesthetic Preferences"
-      scrollable
-      buttons={
-        <VorePanelEditToggle
-          editMode={editMode}
-          persistEditMode={persist_edit_mode}
-          toggleEditMode={toggleEditMode}
-        />
-      }
-    >
+    <Section fill title="Aesthetic Preferences" scrollable>
       <Stack vertical fill>
         <Stack.Item>
           <Stack>
