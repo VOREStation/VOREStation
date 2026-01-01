@@ -67,9 +67,9 @@
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
 	var/is_feedable = TRUE					// If this belly shows up in belly selections for others.
 	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
-	var/belly_mob_mult = 1		//Multiplier for how filling mob types are in borg bellies
-	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
-	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
+	var/belly_mob_mult = 1					//Multiplier for how filling mob types are in borg bellies
+	var/belly_item_mult = 1 				//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
+	var/belly_overall_mult = 1				//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
 	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
 	var/absorbedrename_enabled = FALSE		// If absorbed prey are renamed.
@@ -272,7 +272,7 @@
 	var/temperature_damage = FALSE			// Does temperature damage prey?
 	var/last_transfer_log = 0				// Prevent server message spam!
 	var/next_transfer_log = 0				// Prevent server message spam!
-	var/entrance_log_count = 0				// Entrance max before spawm
+	var/entrance_log_count = 0				// Entrance count before spawm
 	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
