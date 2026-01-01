@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Unsimmed turfs now have a properly set blast resistance"
