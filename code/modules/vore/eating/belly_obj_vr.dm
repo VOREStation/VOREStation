@@ -1,3 +1,6 @@
+#define MAX_ENTRY_MESSAAGES 20
+#define ENTRY_MESSAGE_INTERVAL 1 SECOND
+
 //
 //  Belly system 2.0, now using objects instead of datums because EH at datums.
 //	How many times have I rewritten bellies and vore now? -Aro
@@ -545,14 +548,14 @@
 	//Generic entered message
 	if(!owner.mute_entry && entrance_logs)
 		if(!istype(thing, /mob/observer))	//Don't have ghosts announce they're reentering the belly on death
-			if(world.time - last_transfer_log > 10)
+			if(world.time - last_transfer_log > ENTRY_MESSAGE_INTERVAL)
 				last_transfer_log = world.time
 				entrance_log_count = 0
 			if(world.time >= next_transfer_log)
 				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
 				entrance_log_count++
-				if(entrance_log_count >= 10)
-					next_transfer_log = world.time + 10
+				if(entrance_log_count >= MAX_ENTRY_MESSAAGES)
+					next_transfer_log = world.time + ENTRY_MESSAGE_INTERVAL
 					last_transfer_log = world.time
 
 	//Sound w/ antispam flag setting
@@ -2238,3 +2241,6 @@
 
 /obj/belly/proc/toggle_displayed_message_flags(flags_to_set)
 	displayed_message_flags ^= flags_to_set
+
+#undef MAX_ENTRY_MESSAAGES
+#undef ENTRY_MESSAGE_INTERVAL
