@@ -23,7 +23,9 @@
 		)
 
 /obj/item/gun/energy/mouseray/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(tf_allow_select)
 		pick_type(user)
 

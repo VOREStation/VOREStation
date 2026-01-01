@@ -76,7 +76,7 @@
 	B.release_sound = "Pred Escape"
 	B.fancy_vore = TRUE
 	B.belly_fullscreen_color = "#c47cb4"
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 
 /datum/say_list/fennec
 	speak = list("SKREEEE!","Chrp?","Ararrrararr.")

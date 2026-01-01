@@ -5,11 +5,10 @@
 	if(!allowed_areas)
 		generate_allowed_areas()
 
-	var/list/possible_areas = typecache_filter_list(GLOB.areas_by_type, allowed_areas)
-	if(!length(possible_areas))
+	if(!length(allowed_areas))
 		CRASH("No valid areas for anomaly found.")
 
-	var/area/landing_area = pick(possible_areas)
+	var/area/landing_area = pick(allowed_areas)
 	var/list/turf_test = get_area_turfs(landing_area)
 	if(!turf_test.len)
 		CRASH("Anomaly : No valid turfs found for [landing_area] - [landing_area.type]")
@@ -38,17 +37,21 @@
 	return TRUE
 
 /datum/anomaly_placer/proc/generate_allowed_areas()
-	var/static/list/safe_area_types = typecacheof(list(
+	var/static/list/safe_area_types = list(
 		/area/crew_quarters,
 		/area/shuttle,
 		/area/space,
 		/area/solar,
-		/area/engineering,
+		/area/engineering/engine_room,
 		/area/maintenance,
 		/area/holodeck,
-		/area/ai
-	))
+		/area/ai,
+		/area/tcommsat
+	)
 
-	var/static/list/unsafe_area_subtypes = typecacheof(list(/area/engineering/break_room))
+	allowed_areas = get_station_areas(safe_area_types)
 
-	allowed_areas = GLOB.areas_by_type - safe_area_types + unsafe_area_subtypes
+	for(var/area/check_area in allowed_areas)
+		if((check_area.z in using_map.station_levels) || !check_area.flag_check(AREA_FORBID_EVENTS))
+			continue
+		allowed_areas.Remove(check_area)

@@ -113,6 +113,10 @@ var/datum/antagonist/wizard/wizards
 
 /obj/item/clothing
 	var/wizard_garb = 0
+	///Var for attack_self chain
+	var/special_handling = FALSE
+	///Var for attack_self chain as well
+	var/helmet_handling = FALSE
 
 // Does this clothing slot count as wizard garb? (Combines a few checks)
 /proc/is_wiz_garb(var/obj/item/clothing/C)

@@ -7,7 +7,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import type { bellyDescriptionData } from '../types';
+import type { BellyDescriptionData } from '../types';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { VorePanelEditText } from '../VorePanelElements/VorePanelEditText';
@@ -15,7 +15,7 @@ import { VoreSelectedBellyDescriptionMatrix } from './DescriptionTab/VoreSelecte
 
 export const VoreSelectedBellyDescriptions = (props: {
   editMode: boolean;
-  bellyDescriptionData: bellyDescriptionData;
+  bellyDescriptionData: BellyDescriptionData;
   vore_words: Record<string, string[]>;
 }) => {
   const [showFormatHelp, setShowFormatHelp] = useState(false);

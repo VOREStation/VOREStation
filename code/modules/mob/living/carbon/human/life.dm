@@ -1251,8 +1251,12 @@
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
+		var/in_crit = FALSE
 		if((getOxyLoss() > (getMaxHealth()/2)) || (health <= (get_crit_point() * species.crit_mod)))
 			Paralyse(3)
+			set_stat(UNCONSCIOUS)
+			blinded = TRUE
+			in_crit = TRUE
 
 		if(hallucination)
 			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
@@ -1330,7 +1334,7 @@
 				if(prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client)
 					emote("snore")
 		//CONSCIOUS
-		else
+		else if(!in_crit)
 			set_stat(CONSCIOUS)
 			clear_alert("asleep")
 

@@ -89,7 +89,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if (!check_rights_for(src, R_HOLDER))
 		return
 
-	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"))
+	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"), encode = FALSE)
 
 	if (!msg)
 		return
@@ -115,7 +115,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if (!check_rights_for(src, R_HOLDER))
 		return
 
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
+	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"), encode = FALSE)
 
 	if (!msg)
 		return

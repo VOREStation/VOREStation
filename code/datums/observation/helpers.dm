@@ -1,6 +1,6 @@
 /*
 /atom/movable/proc/recursive_move(var/atom/movable/am, var/old_loc, var/new_loc)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, new_loc)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, new_loc)
 */
 /atom/movable/proc/move_to_destination(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
@@ -16,10 +16,10 @@
 
 /*
 /proc/register_all_movement(var/event_source, var/datum/listener)
-	listener.RegisterSignal(event_source, COMSIG_MOVABLE_MOVED, /atom/movable/proc/recursive_move)
+	listener.RegisterSignal(event_source, COMSIG_MOVABLE_ATTEMPTED_MOVE, /atom/movable/proc/recursive_move)
 	//GLOB.dir_set_event.register(event_source, listener, /atom/proc/recursive_dir_set)
 
 /proc/unregister_all_movement(var/event_source, var/datum/listener)
-	listener.UnregisterSignal(event_source, COMSIG_MOVABLE_MOVED)
+	listener.UnregisterSignal(event_source, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	//GLOB.dir_set_event.unregister(event_source, listener, /atom/proc/recursive_dir_set)
 */

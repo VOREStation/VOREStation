@@ -88,7 +88,10 @@
 	else
 		return ..()
 
-/obj/item/anodevice/attack_self(var/mob/user as mob)
+/obj/item/anodevice/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	return tgui_interact(user)
 
 /obj/item/anodevice/tgui_state(mob/user)

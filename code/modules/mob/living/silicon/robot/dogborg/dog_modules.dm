@@ -11,6 +11,9 @@
 	flags = NOBLUDGEON //No more attack messages
 
 /obj/item/boop_module/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (!( istype(user.loc, /turf) ))
 		return
 
@@ -130,6 +133,9 @@
 	flags = NOBLUDGEON //No more attack messages
 
 /obj/item/robot_tongue/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
@@ -210,6 +216,9 @@
 	flags = NOBLUDGEON
 
 /obj/item/pupscrubber/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/silicon/robot/R = user
 	if(!enabled)
 		R.scrubbing = TRUE
@@ -227,9 +236,12 @@
 	uses = 10
 	var/cooldown = 0
 	var/datum/matter_synth/glass = null
+	special_handling = TRUE
 
 /obj/item/lightreplacer/dogborg/attack_self(mob/user)//Recharger refill is so last season. Now we recycle without magic!
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/choice = tgui_alert(user, "Do you wish to check the reserves or change the color?", "Selection List", list("Reserves", "Color"))
 	if(!choice)
 		return
@@ -314,6 +326,9 @@
 	flags = NOBLUDGEON
 
 /obj/item/dogborg/pounce/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/silicon/robot/R = user
 	R.leap(bluespace)
 
@@ -402,7 +417,7 @@
 /obj/item/reagent_containers/glass/beaker/large/borg/Initialize(mapload)
 	. = ..()
 	R = loc.loc
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/reagent_containers/glass/beaker/large/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -418,7 +433,7 @@
 			hud_layerise()
 
 /obj/item/reagent_containers/glass/beaker/large/borg/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	R = null
 	last_robot_loc = null
 	. = ..()

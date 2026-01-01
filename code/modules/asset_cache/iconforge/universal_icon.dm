@@ -487,7 +487,7 @@
 					var/dir_count = state_data["dirs"]
 					if(dir_count == 1)
 						base_icon_dir = SOUTH
-			else if(!length(icon_states(icon(curicon, curstate, NORTH))))
+			else if(!length(icon_states_fast(icon(curicon, curstate, NORTH))))
 				base_icon_dir = SOUTH
 
 		var/list/icon_dimensions = get_icon_dimensions(curicon)

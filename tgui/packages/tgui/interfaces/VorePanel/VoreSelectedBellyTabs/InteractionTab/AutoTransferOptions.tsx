@@ -1,7 +1,7 @@
 import { LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { autoTransferOption, DropdownEntry } from '../../types';
+import type { AutoTransferOption, DropdownEntry } from '../../types';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
@@ -11,7 +11,7 @@ export const AutoTransferOptions = (props: {
   title: string;
   bellyDropdownNames: DropdownEntry[];
   locationNames: DropdownEntry[];
-  autotransferData: autoTransferOption;
+  autotransferData: AutoTransferOption;
 }) => {
   const {
     editMode,
