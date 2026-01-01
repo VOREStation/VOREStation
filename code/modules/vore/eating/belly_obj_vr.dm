@@ -1521,7 +1521,11 @@
 	if(!(content in src) || !istype(target))
 		return
 	content.belly_cycles = 0
+	var/old_entrance_logs = target.entrance_logs
+	if(silent)
+		target.entrance_logs = FALSE
 	content.forceMove(target)
+	target.entrance_logs = old_entrance_logs
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))
