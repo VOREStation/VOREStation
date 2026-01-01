@@ -74,7 +74,7 @@
 	//Handle object throw vore
 	if(isitem(hitby))
 		var/obj/item/O = hitby
-		var/obj/belly/destination_belly = get_current_spont_belly(source, target)
+		var/obj/belly/destination_belly = get_current_spont_belly(source, O)
 		if(!destination_belly)
 			return
 		if(source.stat != DEAD && source.trash_catching)
