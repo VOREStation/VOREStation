@@ -28,7 +28,10 @@
 	//We are able to eat the person stumbling into us.
 	if(can_stumble_vore(prey = target, pred = source)) //This is if the person stumbling into us is able to eat us!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
-		source.begin_instant_nom(source, prey = target, pred = source, belly = source.vore_selected)
+		if(source.get_current_spont_belly() && isbelly(source.spont_belly_current))
+			source.begin_instant_nom(source, prey = target, pred = source, belly = source.spont_belly_current)
+		else
+			source.begin_instant_nom(source, prey = target, pred = source, belly = source.vore_selected)
 		target.stop_flying()
 		return CANCEL_STUMBLED_INTO
 
@@ -36,7 +39,10 @@
 	if(can_stumble_vore(prey = source, pred = target)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
 		target.forceMove(get_turf(source))
-		source.begin_instant_nom(target, prey = source, pred = target, belly = target.vore_selected)
+		if(target.get_current_spont_belly() && isbelly(target.spont_belly_current))
+			source.begin_instant_nom(target, prey = source, pred = target, belly = target.spont_belly_current)
+		else
+			source.begin_instant_nom(target, prey = source, pred = target, belly = target.vore_selected)
 		source.stop_flying()
 		return CANCEL_STUMBLED_INTO
 
@@ -76,7 +82,10 @@
 			if(source.adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				source.visible_message(span_vwarning("[O] is thrown directly into [source]'s [lowertext(source.vore_selected.name)]!"))
 				O.throwing = 0
-				O.forceMove(source.vore_selected)
+				if(source.get_current_spont_belly() && isbelly(source.spont_belly_current))
+					O.forceMove(source.spont_belly_current)
+				else
+					O.forceMove(source.vore_selected)
 				return COMSIG_CANCEL_HITBY
 
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
@@ -93,13 +102,20 @@
 
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
+
 		if(can_throw_vore(prey = thrown_mob, pred = source))
 			if(!source.vore_selected)
 				return
-			source.vore_selected.nom_mob(thrown_mob) //Eat them!!!
-			source.visible_message(span_vwarning("[thrown_mob] is thrown right into [source]'s [lowertext(source.vore_selected.name)]!"))
-			if(thrown_mob.loc != source.vore_selected)
-				thrown_mob.forceMove(source.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			if(source.get_current_spont_belly() && isbelly(source.spont_belly_current))
+				source.spont_belly_current.nom_mob(thrown_mob) //Eat them!!!
+				source.visible_message(span_vwarning("[thrown_mob] is thrown right into [source]'s [lowertext(source.spont_belly_current.name)]!"))
+				if(thrown_mob.loc != source.spont_belly_current)
+					thrown_mob.forceMove(source.spont_belly_current) //Double check. Should never happen but...Weirder things have happened!
+			else
+				source.vore_selected.nom_mob(thrown_mob) //Eat them!!!
+				source.visible_message(span_vwarning("[thrown_mob] is thrown right into [source]'s [lowertext(source.vore_selected.name)]!"))
+				if(thrown_mob.loc != source.vore_selected)
+					thrown_mob.forceMove(source.vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			source.on_throw_vore_special(TRUE, thrown_mob)
 			add_attack_logs(thrown_mob.thrower,source,"Devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
@@ -109,10 +125,16 @@
 		else if(can_throw_vore(prey = source, pred = thrown_mob))//Pred thrown into prey.
 			if(!thrown_mob.vore_selected)
 				return
-			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
-			thrown_mob.vore_selected.nom_mob(source) //Eat them!!!
-			if(source.loc != thrown_mob.vore_selected)
-				source.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			if(thrown_mob.get_current_spont_belly() && isbelly(thrown_mob.spont_belly_current))
+				source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.spont_belly_current.name)] as [thrown_mob] flies into them!"))
+				thrown_mob.spont_belly_current.nom_mob(source) //Eat them!!!
+				if(source.loc != thrown_mob.spont_belly_current)
+					source.forceMove(thrown_mob.spont_belly_current) //Double check. Should never happen but...Weirder things have happened!
+			else
+				source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
+				thrown_mob.vore_selected.nom_mob(source) //Eat them!!!
+				if(source.loc != thrown_mob.vore_selected)
+					source.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 
@@ -126,10 +148,16 @@
 
 	//Person being slipped into eats the person slipping
 	if(can_slip_vore(pred = source, prey = crossed))	//If we can vore them go for it
-		source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.vore_selected)
+		if(source.get_current_spont_belly() && isbelly(source.spont_belly_current))
+			source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.spont_belly_current)
+		else
+			source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.vore_selected)
 		return COMPONENT_BLOCK_CROSS
 
 	//The person slipping eats the person being slipped into
 	else if(can_slip_vore(pred = crossed, prey = source))
-		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected) //Must be
+		if(source.get_current_spont_belly() && isbelly(crossed.spont_belly_current))
+			source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.spont_belly_current)
+		else
+			source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected) //Must be
 		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.

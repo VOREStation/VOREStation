@@ -28,6 +28,10 @@
 	target.slip_vore = source.slip_vore;												\
 	target.stumble_vore = source.stumble_vore;											\
 	target.phase_vore = source.phase_vore;												\
+	target.spont_belly_n = source.spont_belly_n;										\
+	target.spont_belly_e = source.spont_belly_e;										\
+	target.spont_belly_s = source.spont_belly_s;										\
+	target.spont_belly_w = source.spont_belly_w;										\
 																						\
 	target.resizable = source.resizable;												\
 	target.step_mechanics_pref = source.step_mechanics_pref;							\

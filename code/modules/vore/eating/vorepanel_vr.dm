@@ -621,6 +621,55 @@
 				host.client.prefs_vr.food_vore = host.food_vore
 			unsaved_changes = TRUE
 			return TRUE
+		if("switch_spont_belly")
+			var/spont_direction = tgui_input_list(ui.user, "Which belly direction do you wish to set?","Spontaneous prey belly", list("North","South","West","East","All","Clear All"))
+			if(!spont_direction)
+				return FALSE
+			if(spont_direction == "Clear All")
+				host.spont_belly_n = null
+				host.spont_belly_s = null
+				host.spont_belly_e = null
+				host.spont_belly_w = null
+				return TRUE
+			var/spont_belly_choice = tgui_input_list(ui.user, "Which belly should spontaneous prey end up in? Cancel to use whichever belly is active at the time.","Spontaneous prey belly", host.vore_organs)
+			if(spont_direction == "North")
+				if(spont_belly_choice)
+					host.spont_belly_n = spont_belly_choice
+				else
+					host.spont_belly_n = null
+			if(spont_direction == "South")
+				if(spont_belly_choice)
+					host.spont_belly_s = spont_belly_choice
+				else
+					host.spont_belly_s = null
+			if(spont_direction == "East")
+				if(spont_belly_choice)
+					host.spont_belly_e = spont_belly_choice
+				else
+					host.spont_belly_e = null
+			if(spont_direction == "West")
+				if(spont_belly_choice)
+					host.spont_belly_w = spont_belly_choice
+				else
+					host.spont_belly_w = null
+			if(spont_direction == "All")
+				if(spont_belly_choice)
+					host.spont_belly_n = spont_belly_choice
+					host.spont_belly_s = spont_belly_choice
+					host.spont_belly_e = spont_belly_choice
+					host.spont_belly_w = spont_belly_choice
+				else
+					host.spont_belly_n = null
+					host.spont_belly_s = null
+					host.spont_belly_e = null
+					host.spont_belly_w = null
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.spont_belly_n = host.spont_belly_n
+				host.client.prefs_vr.spont_belly_s = host.spont_belly_s
+				host.client.prefs_vr.spont_belly_e = host.spont_belly_e
+				host.client.prefs_vr.spont_belly_w = host.spont_belly_w
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_consume_liquid_belly")
 			host.consume_liquid_belly = !host.consume_liquid_belly
 			if(host.client.prefs_vr)

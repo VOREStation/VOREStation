@@ -36,6 +36,10 @@
 	can_be_afk_pred = client.prefs_vr.can_be_afk_pred
 	throw_vore = client.prefs_vr.throw_vore
 	food_vore = client.prefs_vr.food_vore
+	spont_belly_n = client.prefs_vr.spont_belly_n
+	spont_belly_e = client.prefs_vr.spont_belly_e
+	spont_belly_s = client.prefs_vr.spont_belly_s
+	spont_belly_w = client.prefs_vr.spont_belly_w
 	consume_liquid_belly = client.prefs_vr.consume_liquid_belly
 	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
 	digest_leave_remains = client.prefs_vr.digest_leave_remains
