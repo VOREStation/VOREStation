@@ -46,7 +46,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   );
 
   return (
-    <Section fill title="Aesthetic Preferences" scrollable>
+    <Section fill title="Aesthetic Preferences">
       <Stack vertical fill>
         <Stack.Item>
           <Stack>
@@ -125,7 +125,7 @@ export const VoreUserPreferencesAesthetic = (props: {
             <VorePanelEditTextTabs
               exactLength
               editMode={editMode}
-              messsageOptions={aestethicMessages.possible_messages}
+              messsageOptionsLeft={aestethicMessages.possible_messages}
               activeTab={aestethicMessages.aest_subtab}
               tabAction="change_aset_message_option"
               tabsToIcons={aestehticTabsToIcons}

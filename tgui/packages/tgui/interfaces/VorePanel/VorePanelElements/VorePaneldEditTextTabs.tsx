@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { LabeledList, Stack, Tabs } from 'tgui-core/components';
+import { LabeledList, Section, Stack, Tabs } from 'tgui-core/components';
 
 import { VorePanelEditSwitch } from './VorePanelEditSwitch';
 import { VorePanelEditTextArea } from './VorePanelTextArea';
@@ -8,11 +8,17 @@ export const VorePanelEditTextTabs = (props: {
   /** Switch between Element editing and display */
   editMode: boolean;
   /** The tab options to switch through */
-  messsageOptions: string[];
+  messsageOptionsLeft: string[];
+  /** Optional sub options to switch through */
+  messsageOptionsRight?: string[] | null;
   /** The current active tab */
   activeTab: string;
+  /** The current active subtab */
+  activeSubTab?: string;
   /** The backend action to perform on tab selection */
   tabAction: string;
+  /** The backend action to perform on subtab selection */
+  subTabAction?: string;
   /** Our displayed tooltip displayed above all texts */
   tooltip: string;
   /** The maximum length of each message */
@@ -50,9 +56,12 @@ export const VorePanelEditTextTabs = (props: {
 
   const {
     editMode,
-    messsageOptions,
+    messsageOptionsLeft,
+    messsageOptionsRight,
     activeTab,
+    activeSubTab,
     tabAction,
+    subTabAction,
     tooltip,
     maxLength,
     activeMessage,
@@ -74,52 +83,85 @@ export const VorePanelEditTextTabs = (props: {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <Tabs>
-          {messsageOptions.map((value) => (
-            <Tabs.Tab
-              key={value}
-              selected={value === activeTab}
-              onClick={() => {
-                if (value !== activeTab) {
-                  act(tabAction, { tab: value });
-                }
-              }}
-              icon={tabsToIcons?.[value]}
-            >
-              {value}
-            </Tabs.Tab>
-          ))}
-        </Tabs>
+        <Stack>
+          <Stack.Item>
+            <Tabs>
+              {messsageOptionsLeft.map((value) => (
+                <Tabs.Tab
+                  key={value}
+                  selected={value === activeTab}
+                  onClick={() => {
+                    if (value !== activeTab) {
+                      act(tabAction, { tab: value });
+                    }
+                  }}
+                  icon={tabsToIcons?.[value]}
+                >
+                  {value}
+                </Tabs.Tab>
+              ))}
+            </Tabs>
+          </Stack.Item>
+          {!!messsageOptionsRight && subTabAction && (
+            <>
+              <Stack.Item grow />
+              <Stack.Item>
+                <Tabs>
+                  {messsageOptionsRight.map((value) => (
+                    <Tabs.Tab
+                      key={value}
+                      selected={value === activeSubTab}
+                      onClick={() => {
+                        if (value !== activeSubTab) {
+                          act(subTabAction, { tab: value });
+                        }
+                      }}
+                      icon={tabsToIcons?.[value]}
+                    >
+                      {value}
+                    </Tabs.Tab>
+                  ))}
+                </Tabs>
+              </Stack.Item>
+            </>
+          )}
+        </Stack>
       </Stack.Item>
-      {!!button_action && (
-        <Stack.Item>
-          <LabeledList>
-            <LabeledList.Item label={button_label}>
-              <VorePanelEditSwitch
-                action={button_action}
-                subAction={button_subAction}
-                editMode={editMode}
-                active={!!button_data}
-                tooltip={`${button_data ? 'Dis' : 'En'}ables ${button_tooltip}`}
-              />
-            </LabeledList.Item>
-          </LabeledList>
-        </Stack.Item>
-      )}
       <Stack.Item grow>
-        <VorePanelEditTextArea
-          noHighlight={noHighlight}
-          editMode={editMode}
-          tooltip={tooltip}
-          limit={maxLength}
-          entry={activeMessage || ''}
-          action={action}
-          exactLength={exactLength}
-          subAction={subAction}
-          listAction={listAction}
-          maxEntries={maxEntries}
-          disableLegacyInput={disableLegacyInput}
-        />
+        <Section fill scrollable>
+          <Stack fill vertical>
+            {!!button_action && button_data && (
+              <Stack.Item>
+                <LabeledList>
+                  <LabeledList.Item label={button_label}>
+                    <VorePanelEditSwitch
+                      action={button_action}
+                      subAction={button_subAction}
+                      editMode={editMode}
+                      active={!!button_data}
+                      tooltip={`${button_data ? 'Dis' : 'En'}ables ${button_tooltip}`}
+                    />
+                  </LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+            )}
+            <Stack.Item grow>
+              <VorePanelEditTextArea
+                noHighlight={noHighlight}
+                editMode={editMode}
+                tooltip={tooltip}
+                limit={maxLength}
+                entry={activeMessage || ''}
+                action={action}
+                exactLength={exactLength}
+                subAction={subAction}
+                listAction={listAction}
+                maxEntries={maxEntries}
+                disableLegacyInput={disableLegacyInput}
+              />
+            </Stack.Item>
+          </Stack>
+        </Section>
       </Stack.Item>
     </Stack>
   );
