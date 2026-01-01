@@ -776,7 +776,7 @@
 	return begin_instant_nom(user, prey, user, belly)
 
 /mob/living/proc/get_current_spont_belly(atom/movable/preything)
-	var/direction_diff = get_dir(src, preything)
+	var/direction_diff = angle2dir(dir2angle(get_dir(src, preything)) - dir2angle(dir))
 	var/spont_belly_name
 	switch(direction_diff)
 		if(NORTH)
