@@ -1009,6 +1009,21 @@
 	screen_loc = ui_ammo_hud1
 	var/warned = FALSE
 	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
+	var/datum/weakref/our_gun
+
+/atom/movable/screen/ammo/Click()
+	var/mob/user = usr
+	if(!user.checkClickCooldown())
+		return TRUE
+	if(user.stat || user.paralysis || user.stunned || user.weakened)
+		return TRUE
+	if(istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+		return TRUE
+	var/obj/item/gun/gun = our_gun.resolve()
+	if(!gun)
+		return TRUE
+	gun.switch_firemodes(user)
+	return TRUE
 
 /atom/movable/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
 

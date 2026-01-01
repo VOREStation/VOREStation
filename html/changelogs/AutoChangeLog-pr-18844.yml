@@ -1,4 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - qol: "(mapping) broken floors can now be done via a landmark rather than a subtype of that specific floor"
