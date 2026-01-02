@@ -22,6 +22,8 @@
 		consider_birthday()
 	// VOREStation Add
 	if(species) species.handle_login_special(src)
+	AddComponent(/datum/component/pref_overlays/vore)
+	AddComponent(/datum/component/pref_overlays/vore_tail)
 	return
 
 // VOREStation Add Start: Doing this here bc AUTOHISS_FULL is more readable than #
