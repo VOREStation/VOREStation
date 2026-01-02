@@ -1,6 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - rscadd: "Added weather anomaly"
-  - qol: "Smoke from neutralized anomalies is now much short-lived"
-  - bugfix: "Fixed spawned anomalies from telesci not having cores"
