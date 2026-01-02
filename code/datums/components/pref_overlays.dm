@@ -39,10 +39,10 @@
 /datum/component/pref_overlays/proc/build_images(mob/viewer)
 	var/list/images = list()
 	var/icon_file = get_icon()
-	var/mob/M = parent
 	if(!icon_file)
 		return images
 
+	var/mob/M = parent
 	for(var/state in get_overlay_states(viewer))
 		var/icon/I = new/icon(icon = icon_file, icon_state = state)
 		apply_icon_blending(I)
