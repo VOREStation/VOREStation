@@ -133,6 +133,7 @@ SUBSYSTEM_DEF(throwing)
 	start_time = world.time
 
 /datum/thrownthing/Destroy()
+	UnregisterSignal(thrownthing, COMSIG_QDELETING)
 	SSthrowing.processing -= thrownthing
 	SSthrowing.currentrun -= thrownthing
 	thrownthing.throwing = null
