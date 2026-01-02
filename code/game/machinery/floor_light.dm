@@ -8,6 +8,9 @@ var/list/floor_light_cache = list()
 	matter = list(MAT_STEEL = 2500, MAT_GLASS = 2750)
 
 /obj/item/floor_light/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/turf/T = get_turf(user)
 	if(!T)
 		to_chat(user, span_warning("You need to be on a floor to install this."))

@@ -4,7 +4,7 @@
 // showadvscan toggles whether to give additional scan information about chemicals in their body.
 // By default this proc is set to it's most powerful scan.
 
-/mob/living/proc/scan_mob(mob/user, var/mode = 1, var/advscan = 3, var/showadvscan = 1)
+/mob/living/proc/scan_mob(mob/user, var/mode = 1, var/advscan = SCANNABLE_SECRETIVE, var/showadvscan = 1)
 	var/mob/living/M = src
 	var/dat = ""
 
@@ -146,7 +146,7 @@
 		OX = fake_oxy > 50 ? 		span_warning("Severe oxygen deprivation detected") 	: 	"Subject bloodstream oxygen level normal"
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
 	if(M.radiation)
-		if(advscan >= 2 && showadvscan == 1)
+		if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
 			var/severity = ""
 			if(M.radiation >= 1500)
 				severity = "Lethal"
@@ -164,7 +164,7 @@
 			dat += span_warning("Acute radiation sickness detected.")
 			dat += "<br>"
 	if(M.accumulated_rads)
-		if(advscan >= 2 && showadvscan == 1)
+		if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
 			var/severity = ""
 			if(M.accumulated_rads >= 1500)
 				severity = "Critical"
@@ -188,7 +188,7 @@
 			var/reagentdata[0]
 			var/unknownreagents[0]
 			for(var/datum/reagent/R as anything in C.reagents.reagent_list)
-				if(R.scannable)
+				if(R.scannable && advscan >= R.scannable)
 					reagentdata["[R.id]"] = span_notice("\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					reagentdata["[R.id]"] += "<br>"
 				else
@@ -201,72 +201,54 @@
 				for(var/d in reagentdata)
 					dat += reagentdata[d]
 			if(unknown)
-				if(advscan >= 3 && showadvscan == 1)
-					dat += span_warning("Warning: Non-medical reagent[(unknown>1)?"s":""] detected in subject's blood:")
-					dat += "<br>"
-					for(var/d in unknownreagents)
-						dat += unknownreagents[d]
-				else
-					dat += span_warning("Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.")
-					dat += "<br>"
+				dat += span_warning("Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.")
+				dat += "<br>"
 		if(C.ingested && C.ingested.total_volume)
 			var/unknown = 0
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
 			for(var/datum/reagent/R as anything in C.ingested.reagent_list)
-				if(R.scannable)
+				if(R.scannable && advscan >= R.scannable)
 					stomachreagentdata["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					stomachreagentdata["[R.id]"] += "<br>"
-					if (advscan == 0 || showadvscan == 0)
+					if(!advscan || !showadvscan)
 						dat += span_notice("[R.name] found in subject's stomach.")
 						dat += "<br>"
 				else
 					++unknown
 					stomachunknownreagents["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					stomachunknownreagents["[R.id]"] += "<br>"
-			if(advscan >= 1 && showadvscan == 1)
+			if(showadvscan == 1)
 				dat += span_notice("Beneficial reagents detected in subject's stomach:")
 				dat += "<br>"
 				for(var/d in stomachreagentdata)
 					dat += stomachreagentdata[d]
 			if(unknown)
-				if(advscan >= 3 && showadvscan == 1)
-					dat += span_warning("Warning: Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach:")
-					dat += "<br>"
-					for(var/d in stomachunknownreagents)
-						dat += stomachunknownreagents[d]
-				else
-					dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's stomach.")
-					dat += "<br>"
+				dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's stomach.")
+				dat += "<br>"
 		if(C.touching && C.touching.total_volume)
 			var/unknown = 0
 			var/touchreagentdata[0]
 			var/touchunknownreagents[0]
 			for(var/datum/reagent/R as anything in C.touching.reagent_list)
-				if(R.scannable)
+				if(R.scannable && advscan >= R.scannable)
 					touchreagentdata["[R.id]"] = span_notice("\t[round(C.touching.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					touchreagentdata["[R.id]"] += "<br>"
-					if (advscan == 0 || showadvscan == 0)
+					if(!advscan || !showadvscan)
 						dat += span_notice("[R.name] found in subject's dermis.")
 						dat += "<br>"
 				else
 					++unknown
 					touchunknownreagents["[R.id]"] = span_notice("\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - [span_danger("Overdose")]" : ""]")
 					touchunknownreagents["[R.id]"] += "<br>"
-			if(advscan >= 1 && showadvscan == 1)
+			if(showadvscan == 1)
 				dat += span_notice("Beneficial reagents detected in subject's dermis:")
 				dat += "<br>"
 				for(var/d in touchreagentdata)
 					dat += touchreagentdata[d]
 			if(unknown)
-				if(advscan >= 3 && showadvscan == 1)
-					dat += span_warning("Warning: Non-medical reagent[(unknown > 1)?"s":""] found in subject's dermis:")
-					dat += "<br>"
-					for(var/d in touchunknownreagents)
-						dat += touchunknownreagents[d]
-				else
-					dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's dermis.")
-					dat += "<br>"
+				dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's dermis.")
+				dat += "<br>"
 		if(C.IsInfected())
 			for (var/datum/disease/virus in C.GetViruses())
 				if(virus.visibility_flags & HIDDEN_SCANNER || virus.visibility_flags & HIDDEN_PANDEMIC)
@@ -344,8 +326,8 @@
 				continue 		// not there or robotic or brain which is handled separately
 			if(i.damage || i.status & ORGAN_DEAD)
 				int_damage_acc += (i.damage + ((i.status & ORGAN_DEAD) ? 30 : 0))
-				if(advscan >= 2 && showadvscan == 1)
-					if(advscan >= 3)
+				if(advscan >= SCANNABLE_DIFFICULT && showadvscan == 1)
+					if(advscan >= SCANNABLE_SECRETIVE)
 						var/dam_adj
 						if(i.damage >= i.min_broken_damage || i.status & ORGAN_DEAD)
 							dam_adj = "Severe"
@@ -358,7 +340,7 @@
 					else
 						dat += span_warning("Damage detected to subject's [i.name].")
 						dat += "<br>"
-		if(int_damage_acc >= 1 && (advscan < 2 || !showadvscan))
+		if(int_damage_acc >= 1 && (advscan < SCANNABLE_DIFFICULT || !showadvscan))
 			dat += span_warning("Damage detected to subject's internal organs.")
 			dat += "<br>"
 		for(var/obj/item/organ/external/e in H.organs)
@@ -369,7 +351,7 @@
 				if((e.name in list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_HEAD, BP_TORSO, BP_GROIN)) && (!e.splinted))
 					fracture_dat += span_warning("Unsecured fracture in subject [e.name]. Splinting recommended for transport.")
 					fracture_dat += "<br>"
-				else if(advscan >= 1 && showadvscan == 1)
+				else if(advscan >= SCANNABLE_ADVANCED && showadvscan == 1)
 					fracture_dat += span_warning("Bone fractures detected in subject [e.name].")
 					fracture_dat += "<br>"
 				else
@@ -381,7 +363,7 @@
 			// IB
 			for(var/datum/wound/W in e.wounds)
 				if(W.internal)
-					if(advscan >= 1 && showadvscan == 1)
+					if(advscan >= SCANNABLE_ADVANCED && showadvscan == 1)
 						ib_dat += span_warning("Internal bleeding detected in subject [e.name].")
 						ib_dat += "<br>"
 					else

@@ -174,6 +174,9 @@
 	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
 	var/emagged = 0
 /obj/item/melee/robotic/jaws/small/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
@@ -301,6 +304,9 @@
 	var/lcolor = "#38e541"
 
 /obj/item/melee/robotic/blade/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(active) //turning off
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		force = 0
@@ -440,6 +446,9 @@
 	return
 
 /obj/item/melee/robotic/baton/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	status = !status
 	to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 	playsound(src, "sparks", 75, 1, -1)

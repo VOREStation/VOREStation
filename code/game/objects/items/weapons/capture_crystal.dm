@@ -20,6 +20,7 @@
 	var/full_icon = "full"
 	var/spawn_mob_name = "A mob"
 	var/capture_chance_modifier = 1		//So we can have special subtypes with different capture rates!
+	var/loadout = FALSE
 
 /obj/item/capture_crystal/Initialize(mapload)
 	. = ..()
@@ -228,6 +229,13 @@
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(loadout && !bound_mob)
+		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
+		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		return
 	if(bound_mob && !owner)
 		if(bound_mob == user)
 			to_chat(user, span_notice("\The [src] emits an unpleasant tone... It does not activate for you."))
@@ -869,6 +877,7 @@
 
 /obj/item/capture_crystal/loadout
 	active = TRUE
+	loadout = TRUE
 
 /obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user)
 	if(!bound_mob && M != user)
@@ -877,12 +886,6 @@
 		return
 	. = ..()
 
-/obj/item/capture_crystal/loadout/attack_self(mob/living/user)
-	if(!bound_mob)
-		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
-		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
-		return
-	. = ..()
 
 /obj/item/capture_crystal/loadout/capture_chance()
 	return 0

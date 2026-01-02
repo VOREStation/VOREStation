@@ -308,7 +308,7 @@
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
 	if(remote_comp?.looking_at_target_already(loc))
 		return FALSE
-	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
+	if(isitem(loc) || isbelly(loc) || ismecha(loc)) // Requires more careful handling than structures because they are held by mobs
 		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
@@ -1072,6 +1072,8 @@
 		if(prob(selection.w_class * 5) && (affected.robotic < ORGAN_ROBOT)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
 			affected.wounds += I
+			affected.update_damages()
+			H.handle_organs(TRUE) //Force an update so we start processing the internal bleeding.
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 50)
 
 		if (ishuman(U))

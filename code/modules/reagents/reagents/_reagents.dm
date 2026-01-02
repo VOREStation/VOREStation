@@ -18,7 +18,7 @@
 	var/overdose = 0		//Amount at which overdose starts
 	var/overdose_mod = 1	//Modifier to overdose damage
 	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
-	var/scannable = 0 // Shows up on health analyzers.
+	var/scannable = SCANNABLE_SECRETIVE // Shows up on health analyzers.
 
 	var/affects_dead = 0	// Does this chem process inside a corpse without outside intervention required?
 	var/affects_robots = 0	// Does this chem process inside a Synth?
@@ -48,6 +48,11 @@
 	var/industrial_use = null // unique description for export off station
 
 	var/coolant_modifier = -0.5 // this is multiplied by the volume of the reagent. Most things are not good coolant. EX: Water is 1, coolant is 2. -1 would be a bad reagent for cooling.
+
+	var/glass_icon_file = null
+	var/glass_icon_state = null
+	var/glass_center_of_mass_x = 0
+	var/glass_center_of_mass_y = 0
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)

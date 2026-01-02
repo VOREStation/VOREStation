@@ -30,7 +30,7 @@
 #define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
 ///from /obj/machinery/set_occupant(atom/movable/O): (new_occupant)
 #define COMSIG_MACHINERY_SET_OCCUPANT "machinery_set_occupant"
-///from /obj/machinery/destructive_scanner/proc/open(aggressive): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
+///from /obj/machinery/rnd/destructive_analyzer/proc/destroy_item(gain_research_points = FALSE): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
 ///from /obj/machinery/computer/arcade/victory_tickets(tickets, sound = TRUE)
 #define COMSIG_ARCADE_VICTORY "arcade_victory"
@@ -638,3 +638,10 @@
 
 /// Sent from /obj/machinert/console/camera_advanced/attack_hand() : (mob/eye/camera/remote/new_camera)
 #define COMSIG_ADVANCED_CAMERA_EYE_CREATED "advanced_camera_eye_created"
+
+
+//Non TG signals:
+///from /proc/techweb_item_point_check(obj/item/I): Runs when assessing an item's techweb point value.
+#define COMSIG_TECHWEB_POINT_CHECK "techweb_point_check"
+///from /proc/techweb_item_point_check(obj/item/I): Runs when assessing an item's techweb point type.
+#define COMSIG_TECHWEB_TYPE_CHECK "techweb_type_check"
