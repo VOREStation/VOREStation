@@ -62,7 +62,7 @@ Bonus
 		if(4)
 			if(prob(1))
 				to_chat(infectee, span_warning("You feel disoriented and have trouble focusing."))
-				infectee.adjustBrainLoss(3)
+				infectee.Confuse(5)
 				check_and_deal_damage(infectee, 3)
 
 		if(5)
