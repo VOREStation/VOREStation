@@ -80,7 +80,7 @@
 	return FALSE
 
 /obj/effect/anomaly/proc/anomalyNeutralize()
-	new /obj/effect/effect/smoke/bad(loc)
+	new /obj/effect/effect/smoke(loc)
 	if(!isnull(anomaly_core))
 		anomaly_core.forceMove(get_turf(src))
 		anomaly_core = null
@@ -101,21 +101,23 @@
 			return TRUE
 	return ..()
 
-/proc/generate_anomaly(turf/anomalycenter, type = FLUX_ANOMALY, anomalyrange = 5, has_changed_lifespan = TRUE)
+/proc/generate_anomaly(turf/anomalycenter, type = FLUX_ANOMALY, anomalyrange = 5, has_changed_lifespan = TRUE, drops_core = TRUE)
 	var/turf/local_turf = pick(RANGE_TURFS(anomalyrange, anomalycenter))
 	if(!local_turf)
 		return
 	switch(type)
 		if(FLUX_ANOMALY)
 			var/explosive = has_changed_lifespan ? FLUX_NO_EMP : FLUX_LIGHT_EMP
-			new /obj/effect/anomaly/flux(local_turf, has_changed_lifespan ? rand(25 SECONDS, 35 SECONDS) : null, FALSE, explosive)
+			new /obj/effect/anomaly/flux(local_turf, has_changed_lifespan ? rand(25 SECONDS, 35 SECONDS) : null, drops_core, explosive)
 		if(GRAVITATIONAL_ANOMALY)
-			new /obj/effect/anomaly/grav(local_turf, has_changed_lifespan ? rand(20 SECONDS, 30 SECONDS) : null, FALSE)
+			new /obj/effect/anomaly/grav(local_turf, has_changed_lifespan ? rand(20 SECONDS, 30 SECONDS) : null, drops_core)
 		if(PYRO_ANOMALY)
-			new /obj/effect/anomaly/pyro(local_turf, has_changed_lifespan ? rand(15 SECONDS, 25 SECONDS) : null, FALSE)
+			new /obj/effect/anomaly/pyro(local_turf, has_changed_lifespan ? rand(15 SECONDS, 25 SECONDS) : null, drops_core)
 		if(HALLUCINATION_ANOMALY)
-			new /obj/effect/anomaly/hallucination/supermatter(local_turf, has_changed_lifespan ? rand(15 SECONDS, 25 SECONDS) : null, FALSE)
+			new /obj/effect/anomaly/hallucination/supermatter(local_turf, has_changed_lifespan ? rand(15 SECONDS, 25 SECONDS) : null, drops_core)
 		if(BIOSCRAMBLER_ANOMALY)
-			new /obj/effect/anomaly/bioscrambler/docile(local_turf, null, FALSE)
+			new /obj/effect/anomaly/bioscrambler/docile(local_turf, null, drops_core)
 		if(DIMENSIONAL_ANOMALY)
-			new /obj/effect/anomaly/dimensional(local_turf, null, FALSE)
+			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)
+		if(WEATHER_ANOMALY)
+			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)

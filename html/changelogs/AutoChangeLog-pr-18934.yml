@@ -1,7 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - rscadd: "Added diamond dimensional anomaly theme"
-  - bugfix: "Fixed snow theme dimensional anomaly not changing wall/doors"
-  - bugfix: "Fixed anomaly placer picking non-station areas"
-  - bugfix: "Fixed reactive armour being able to be printed in any departmental lathe"

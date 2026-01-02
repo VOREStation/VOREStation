@@ -202,7 +202,9 @@
 		icon = I
 
 /obj/item/card_fluff/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/choice = tgui_input_list(user, "What element would you like to customize?", "Customize Card", list("Band","Stamp","Reset"))
 	if(!choice) return
 

@@ -184,6 +184,9 @@
 	recharging = FALSE
 
 /obj/item/inducer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(opened && cell)
 		user.visible_message(span_notice("[user] removes [cell] from [src]!"), span_notice("You remove [cell]."))
 		cell.update_icon()

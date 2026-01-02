@@ -1,3 +1,4 @@
+#define CAN_USE "can_use"
 /*
  * Contains:
  *		Flashlights
@@ -36,6 +37,9 @@
 	var/flickering = FALSE
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
+
+	///Var for attack_self chain
+	var/special_handling = FALSE
 
 /obj/item/flashlight/Initialize(mapload)
 	. = ..()
@@ -89,25 +93,30 @@
 			. += "It appears to have a high amount of power remaining."
 
 /obj/item/flashlight/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(flickering)
 		to_chat(user, "The light is currently malfunctioning and you're unable to adjust it!") //To prevent some lighting anomalities.
-		return
+		return FALSE
 	if(power_use)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalities.
-			return 0
+			return FALSE
 		if(!cell || cell.charge == 0)
 			to_chat(user, "You flick the switch on [src], but nothing happens.")
-			return 0
+			return FALSE
 	on = !on
 	if(on && power_use)
 		START_PROCESSING(SSobj, src)
 	else if(power_use)
 		STOP_PROCESSING(SSobj, src)
-	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3) // VOREStation Edit
+	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
 	update_brightness()
 	user.update_mob_action_buttons()
-	return 1
+	return CAN_USE
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
@@ -430,20 +439,20 @@
 	update_brightness()
 
 /obj/item/flashlight/flare/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	// Usual checks
 	if(!fuel)
 		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(on)
 		return
-
-	. = ..()
 	// All good, turn it on.
-	if(.)
+	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
-		src.force = on_damage
-		src.damtype = BURN
+		force = on_damage
+		damtype = BURN
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/proc/ignite() //Used for flare launchers.
@@ -488,15 +497,16 @@
 	update_brightness()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!fuel)
 		to_chat(user, span_notice("The glowstick has already been turned on."))
 		return
 	if(on)
 		return
 
-	. = ..()
-	if(.)
+	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] cracks and shakes \the [name]."), span_notice("You crack and shake \the [src], turning it on!"))
 		START_PROCESSING(SSobj, src)
 
@@ -537,3 +547,5 @@
 	light_range = 8
 	light_power = 0.1
 	light_color = "#49F37C"
+
+#undef CAN_USE

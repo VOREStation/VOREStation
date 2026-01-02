@@ -583,6 +583,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/atom/movable/screen/ammo/ammo_hud = new
 	ammo_hud_list[G] = ammo_hud
 	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length(ammo_hud_list)]
+	ammo_hud.our_gun = WEAKREF(G)
 	ammo_hud.add_hud(user, G)
 	ammo_hud.update_hud(user, G)
 
@@ -591,6 +592,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/atom/movable/screen/ammo/ammo_hud = ammo_hud_list[G]
 	if(isnull(ammo_hud))
 		return
+	ammo_hud.our_gun = null
 	ammo_hud.remove_hud(user, G)
 	qdel(ammo_hud)
 	ammo_hud_list -= G
