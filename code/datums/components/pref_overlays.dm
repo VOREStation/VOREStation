@@ -47,7 +47,7 @@
 		var/icon/I = new/icon(icon = icon_file, icon_state = state)
 		apply_icon_blending(I)
 
-		var/image/img = image(I)
+		var/image/img = image(I, loc = parent)
 		img.overlays += em_block_image_generic(img)
 		img.layer = get_layer()
 		img.plane = M.plane
