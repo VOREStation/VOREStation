@@ -259,6 +259,7 @@
 							continue
 						O.show_message(span_danger("[M] starts having a seizure!"), 1)
 					M.Paralyse(10)
+					M.Sleeping(10)
 					M.make_jittery(1000)
 			else if(current_addiction <= 50)
 				to_chat(M, span_warning("You're really craving some alcohol. You feel nauseated."))
