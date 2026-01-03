@@ -67,8 +67,11 @@
 	return ..()
 */
 // Changes which mode it is on.
-/obj/item/rcd/attack_self(mob/living/user)
-/* VOREStation Removal - Moved to VR
+/*/obj/item/rcd/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	//VOREStation Removal - Moved to VR
 	if(mode_index >= modes.len) // Shouldn't overflow unless someone messes with it in VV poorly but better safe than sorry.
 		mode_index = 1
 	else

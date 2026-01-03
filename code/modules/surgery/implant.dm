@@ -176,6 +176,8 @@
 		to_chat(user, span_danger(" You tear some blood vessels trying to fit such a big object in this cavity."))
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
+		affected.update_damages()
+		affected.owner.handle_organs(TRUE) //Force an update so we start processing the internal bleeding.
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
 	affected.implants += tool
 	tool.loc = affected

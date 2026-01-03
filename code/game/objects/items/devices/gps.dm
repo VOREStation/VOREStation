@@ -26,6 +26,9 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/gps/Initialize(mapload)
 	. = ..()
 	compass = new(src)
@@ -182,6 +185,11 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		add_overlay("working")
 
 /obj/item/gps/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	display(user)
 
 // Compiles all the data not available directly from the GPS
