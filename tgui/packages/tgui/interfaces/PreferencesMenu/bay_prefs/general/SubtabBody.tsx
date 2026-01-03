@@ -170,7 +170,7 @@ export const SubtabBody = (props: {
                   </LabeledList.Item>
                   <LabeledList.Item>
                     <Button onClick={() => act('voice_test')}>
-                      Test Selected Voice
+                      Test Sel. Voice
                     </Button>
                   </LabeledList.Item>
                 </LabeledList>
