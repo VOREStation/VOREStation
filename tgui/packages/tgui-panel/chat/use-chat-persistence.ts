@@ -39,7 +39,7 @@ export function useChatPersistence() {
   /** Loads chat + chat settings */
   useEffect(() => {
     if (!loaded && settingsLoaded) {
-      async function initChatState() {
+      async function initChatState(): Promise<void> {
         console.log('Initializing chat');
 
         const [state] = await Promise.all([storage.get('chat-state')]);
