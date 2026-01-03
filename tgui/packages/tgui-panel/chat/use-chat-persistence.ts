@@ -30,7 +30,6 @@ const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
 export function useChatPersistence() {
   const version = useAtomValue(versionAtom);
   const settings = useAtomValue(settingsAtom);
-
   const allChat = useAtomValue(allChatAtom);
   const game = useAtomValue(gameAtom);
 
@@ -40,23 +39,33 @@ export function useChatPersistence() {
   /** Loads chat + chat settings */
   useEffect(() => {
     if (!loaded && settingsLoaded) {
-      setLoaded(true);
-      chatRenderer.setVisualChatLimits(
-        settings.visibleMessageLimit,
-        settings.combineMessageLimit,
-        settings.combineIntervalLimit,
-        settings.logEnable,
-        settings.logLimit,
-        settings.storedTypes,
-        game.roundId,
-        settings.prependTimestamps,
-        settings.hideImportantInAdminTab,
-        settings.interleave,
-        settings.interleaveColor,
-        game.databaseBackendEnabled,
-        settings.ttsVoice,
-        settings.ttsCategories,
-      );
+      async function initChatState() {
+        console.log('Initializing chat');
+
+        const [state] = await Promise.all([storage.get('chat-state')]);
+
+        setLoaded(true);
+
+        chatRenderer.setVisualChatLimits(
+          settings.visibleMessageLimit,
+          settings.combineMessageLimit,
+          settings.combineIntervalLimit,
+          settings.logEnable,
+          settings.logLimit,
+          settings.storedTypes,
+          game.roundId,
+          settings.prependTimestamps,
+          settings.hideImportantInAdminTab,
+          settings.interleave,
+          settings.interleaveColor,
+          game.databaseBackendEnabled,
+          settings.ttsVoice,
+          settings.ttsCategories,
+        );
+        loadChatState(state);
+      }
+
+      initChatState();
     }
   }, [loaded, settingsLoaded, setLoaded]);
 
@@ -154,29 +163,31 @@ export function useChatPersistence() {
 
   useEffect(() => {
     async function fetchChat() {
-      if (!game.userData) return;
+      if (!loaded || !game.userData) {
+        return;
+      }
+
+      let messages: SerializedMessage[] = [];
 
       if (game.userData.token) {
-        await loadChatFromDBStorage(game.userData);
+        messages = await loadChatFromDBStorage(game.userData);
       } else {
-        await loadChatFromStorage();
+        messages = await loadChatFromStorage();
       }
+
+      handleMessages(messages);
+
       chatRenderer.onStateLoaded();
     }
 
     fetchChat();
-  }, [game.userData]);
+  }, [loaded, game.userData]);
 
-  async function loadChatFromStorage(): Promise<void> {
-    const [state, messages, archived] = await Promise.all([
-      storage.get('chat-state'),
+  async function loadChatFromStorage(): Promise<SerializedMessage[]> {
+    const [messages, archived] = await Promise.all([
       storage.get('chat-messages'),
       storage.get('chat-messages-archive'),
     ]);
-
-    if (messages) {
-      handleMessages(messages);
-    }
 
     if (archived) {
       for (const msg of archived) {
@@ -201,17 +212,15 @@ export function useChatPersistence() {
         );
       }
     }
-    loadChatState(state);
+
+    return messages;
   }
 
-  async function loadChatFromDBStorage(userData: UserData): Promise<void> {
-    const [state] = await Promise.all([storage.get('chat-state')]);
+  async function loadChatFromDBStorage(
+    userData: UserData,
+  ): Promise<SerializedMessage[]> {
+    const messages: SerializedMessage[] = [];
 
-    const messages: SerializedMessage[] = []; // FIX ME, load from DB, first load has errors => check console
-
-    loadChatState(state);
-
-    // Thanks for inventing async/await
     await new Promise<void>((resolve) => {
       fetch(
         `${game.chatlogApiEndpoint}/api/logs/${userData.ckey}/${settings.persistentMessageLimit}`,
@@ -243,20 +252,17 @@ export function useChatPersistence() {
               messages.push(msg);
             },
           );
-
-          if (messages) {
-            handleMessages(messages);
-          }
-
           resolve();
         })
         .catch(() => {
           resolve();
         });
     });
+
+    return messages;
   }
 
-  function loadChatState(state: StoredChatSettings) {
+  function loadChatState(state: StoredChatSettings | null) {
     // Empty settings, set defaults
     if (!state) {
       console.log('Initialized chat with default settings');
@@ -269,7 +275,7 @@ export function useChatPersistence() {
     }
   }
 
-  function handleMessages(messages: any[]): void {
+  function handleMessages(messages: SerializedMessage[]): void {
     for (const message of messages) {
       if (message.html) {
         message.html = DOMPurify.sanitize(message.html, {
