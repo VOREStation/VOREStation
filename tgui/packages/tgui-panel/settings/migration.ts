@@ -118,9 +118,9 @@ export function startSettingsMigration(next: MergedSettings): void {
 
   const migratedHighlights = migrateHighlights(highlightPart);
 
+  storage.set('panel-settings', { ...draftSettings, ...migratedHighlights });
   // Just exit if no valid version was found
   if (!next.version) {
-    storage.set('panel-settings', { ...draftSettings, ...migratedHighlights });
     return;
   }
 
