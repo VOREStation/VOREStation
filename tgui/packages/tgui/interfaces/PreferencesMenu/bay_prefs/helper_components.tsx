@@ -94,7 +94,7 @@ export const drawColorizedIconToOffscreenCanvas = async (
 };
 
 export const ColorizedImage = (props: {
-  iconRef?: string;
+  iconRef: string;
   iconState: string;
   preRender?: (ctx: OffscreenCanvasRenderingContext2D) => Promise<void>;
   postRender?: (ctx: OffscreenCanvasRenderingContext2D) => Promise<void>;
@@ -109,12 +109,6 @@ export const ColorizedImage = (props: {
       ctx.imageSmoothingEnabled = false;
 
       if (preRender) await preRender(ctx);
-
-      if (!iconRef) {
-        ctx.fillStyle = '#ff0000';
-        ctx.fillRect(0, 0, 64, 64);
-        return;
-      }
 
       const finalDir = dir || '2';
 
@@ -182,7 +176,7 @@ export const CustomImageButton = (
 
 export const ColorizedImageButton = (
   props: PropsWithChildren<{
-    iconRef?: string;
+    iconRef: string;
     iconState: string;
     color?: string | null;
     dir?: string;
