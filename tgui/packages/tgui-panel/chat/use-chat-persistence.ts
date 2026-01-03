@@ -44,8 +44,6 @@ export function useChatPersistence() {
 
         const [state] = await Promise.all([storage.get('chat-state')]);
 
-        setLoaded(true);
-
         chatRenderer.setVisualChatLimits(
           settings.visibleMessageLimit,
           settings.combineMessageLimit,
@@ -63,6 +61,7 @@ export function useChatPersistence() {
           settings.ttsCategories,
         );
         loadChatState(state);
+        setLoaded(true);
       }
 
       initChatState();
