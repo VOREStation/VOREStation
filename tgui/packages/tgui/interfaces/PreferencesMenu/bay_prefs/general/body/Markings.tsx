@@ -363,9 +363,10 @@ export const AddMarkingWindow = (props: {
                 if (showHuman) {
                   ctx.save();
                   ctx.globalCompositeOperation = 'destination-over';
+                  const iconRef = Byond.iconRefMap?.['icons/mob/human.dmi'];
+                  if (!iconRef) return;
                   const background = await getImage(
-                    Byond.iconRefMap?.['icons/mob/human.dmi'] +
-                      '?state=body_m_s&dir=2',
+                    `${iconRef}?state=body_m_s&dir=2`,
                   );
                   ctx.drawImage(background, 0, 0, 64, 64);
                   ctx.restore();
