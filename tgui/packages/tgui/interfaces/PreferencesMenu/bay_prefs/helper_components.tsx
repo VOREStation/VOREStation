@@ -13,7 +13,8 @@ export const getImage = async (url: string): Promise<HTMLImageElement> => {
     image.onload = () => {
       resolve(image);
     };
-    image.onerror = (error) => {
+    image.onerror = (event) => {
+      const error = new Error(`Failed to load image: ${url}`);
       reject(error);
     };
     image.src = url;
@@ -55,7 +56,7 @@ export const CanvasBackedImage = (props: {
     };
   }, [props.render]);
 
-  return <img src={bitmap} width={64} height={64} />;
+  return bitmap ? <img src={bitmap} width={64} height={64} /> : null;
 };
 
 export const drawColorizedIconToOffscreenCanvas = async (
