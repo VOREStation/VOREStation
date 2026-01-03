@@ -8,8 +8,7 @@ export const getImage = async (url: string): Promise<HTMLImageElement> => {
       resolve(image);
     };
     image.onerror = (event) => {
-      const error = new Error(`Failed to load image: ${url}`);
-      reject(error);
+      reject(event);
     };
     image.src = url;
   });
