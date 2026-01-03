@@ -68,7 +68,6 @@ export const CanvasBackedImage = (props: {
       onError={() => setLoadFailed(true)}
       style={{
         visibility: bitmap && !loadFailed ? 'visible' : 'hidden',
-        imageRendering: 'pixelated',
       }}
     />
   );
