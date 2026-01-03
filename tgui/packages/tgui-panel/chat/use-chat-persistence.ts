@@ -174,7 +174,9 @@ export function useChatPersistence() {
         messages = await loadChatFromStorage();
       }
 
-      handleMessages(messages);
+      if (messages) {
+        handleMessages(messages);
+      }
 
       chatRenderer.onStateLoaded();
     }
@@ -212,7 +214,7 @@ export function useChatPersistence() {
       }
     }
 
-    return messages ?? [];
+    return messages;
   }
 
   async function loadChatFromDBStorage(
