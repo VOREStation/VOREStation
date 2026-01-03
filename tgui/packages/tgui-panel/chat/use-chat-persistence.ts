@@ -212,7 +212,7 @@ export function useChatPersistence() {
       }
     }
 
-    return messages;
+    return messages ?? [];
   }
 
   async function loadChatFromDBStorage(
