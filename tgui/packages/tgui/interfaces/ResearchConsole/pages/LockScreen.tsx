@@ -8,7 +8,10 @@ export const LockScreen = (props) => {
   const image = useRef<HTMLImageElement>(document.createElement('img'));
 
   useEffect(() => {
-    image.current.src = `${Byond.iconRefMap['icons/obj/machines/research.dmi']}?state=protolathe`;
+    const iconRef = Byond.iconRefMap?.['icons/obj/machines/research.dmi'];
+    if (iconRef) {
+      image.current.src = `${iconRef}?state=protolathe`;
+    }
   }, [image]);
 
   let randomSizeDiff = 0;

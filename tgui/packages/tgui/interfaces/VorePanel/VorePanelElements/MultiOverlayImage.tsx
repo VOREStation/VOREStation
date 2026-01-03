@@ -5,13 +5,21 @@ import type { Overlay } from '../types';
 const imageCache = new Map<string, Promise<HTMLImageElement | null>>();
 
 function cachedGetImage(url: string) {
-  if (!imageCache.has(url)) {
-    imageCache.set(
-      url,
-      getImage(url).catch(() => null),
-    );
-  }
-  return imageCache.get(url)!;
+  const existing = imageCache.get(url);
+  if (existing) return existing;
+
+  const promise = getImage(url)
+    .then((img) => {
+      imageCache.set(url, Promise.resolve(img));
+      return img;
+    })
+    .catch(() => {
+      imageCache.delete(url);
+      return null;
+    });
+
+  imageCache.set(url, promise);
+  return promise;
 }
 
 export const MultiOverlayImage = (props: {

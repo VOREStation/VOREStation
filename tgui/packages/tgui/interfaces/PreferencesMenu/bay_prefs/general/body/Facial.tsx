@@ -31,9 +31,9 @@ export const FacialImageButton = (
   const renderHuman = useCallback(
     async (ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.globalCompositeOperation = 'destination-over';
-      const image = await getImage(
-        `${Byond.iconRefMap['icons/mob/human.dmi']}?state=body_f_s&dir=2`,
-      );
+      const iconRef = Byond.iconRefMap?.['icons/mob/human.dmi'];
+      if (!iconRef) return;
+      const image = await getImage(`${iconRef}?state=body_f_s&dir=2`);
 
       ctx.drawImage(image, 0, 0, 32, 10, 0, 0, 64, 20);
     },
