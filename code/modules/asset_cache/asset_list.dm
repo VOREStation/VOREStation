@@ -642,6 +642,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	_abstract = /datum/asset/json
 	/// The filename, will be suffixed with ".json"
 	var/name
+	/// TRUE for keeping local asset names when browse_rsc backend is used
+	var/keep_local_name = FALSE
 
 /datum/asset/json/send(client)
 	return SSassets.transport.send_assets(client, "[name].json")
@@ -655,7 +657,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/filename = "data/[name].json"
 	fdel(filename)
 	rustg_file_write(json_encode(generate()), filename)
-	SSassets.transport.register_asset("[name].json", fcopy_rsc(filename))
+	var/datum/asset_cache_item/ACI = SSassets.transport.register_asset("[name].json", fcopy_rsc(filename))
+	if(keep_local_name)
+		ACI.keep_local_name = keep_local_name
 	fdel(filename)
 
 /// Returns the data that will be JSON encoded
