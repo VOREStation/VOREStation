@@ -974,7 +974,7 @@
 				if(M.absorbed)
 					M.absorbed = FALSE
 					OB.handle_absorb_langs(M, OB.owner)
-				TB.nom_mob(M)
+				TB.nom_atom(M)
 
 /datum/vore_look/proc/pick_from_outside(mob/user, params)
 	var/intent
@@ -1004,7 +1004,8 @@
 					to_chat(target,span_vwarning("You're squished from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
 					// Send the transfer message to indirect targets as well. Slightly different message because why not.
 					to_chat(host.vore_selected.get_belly_surrounding(target.contents),span_warning("You're squished along with [target] from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
-					host.vore_selected.transfer_contents(target, choice, 1)
+					host.vore_selected.transfer_contents(target, choice, TRUE)
+				host.vore_selected.handle_visual_update()
 				return TRUE
 		return FALSE
 
@@ -1070,7 +1071,6 @@
 			// Send the transfer message to indirect targets as well. Slightly different message because why not.
 			to_chat(host.vore_selected.get_belly_surrounding(target.contents),span_warning("You're squished along with [target] from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
 			host.vore_selected.transfer_contents(target, choice)
-
 
 		if("Transfer")
 			if(host.stat)
@@ -1380,6 +1380,8 @@
 
 	switch(ability)
 		if("devour_as_absorbed")
+			if(!(OB.mode_flags & DM_FLAG_ABSORBEDVORE))
+				return FALSE
 			user.absorb_devour()
 
 	return TRUE

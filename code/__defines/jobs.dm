@@ -29,7 +29,7 @@
 	#define JOB_ALT_SECURITY_MANAGER "Security Manager"
 
 #define JOB_CHIEF_ENGINEER "Chief Engineer"
-	// Cheif Engineer alt titles
+	// Chief Engineer alt titles
 	#define JOB_ALT_HEAD_ENGINEER "Head Engineer"
 	#define JOB_ALT_FOREMAN "Foreman"
 	#define JOB_ALT_MAINTENANCE_MANAGER "Maintenance Manager"

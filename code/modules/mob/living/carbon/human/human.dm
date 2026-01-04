@@ -210,6 +210,7 @@
 				// deaf_loop.start() // Used downstream
 			if (prob(70) && !shielded)
 				Paralyse(10)
+				Sleeping(10)
 
 		if(3.0)
 			b_loss += 30
@@ -221,6 +222,7 @@
 				// deaf_loop.start() // Used downstream
 			if (prob(50) && !shielded)
 				Paralyse(10)
+				Sleeping(10)
 
 	var/update = 0
 

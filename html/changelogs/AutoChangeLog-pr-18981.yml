@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Teshari CE cloak can now be properly selected"
+  - spellcheck: "Changes multiple instances of \"Cheif\" to \"Chief\""

@@ -360,10 +360,10 @@ emp_act
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
 		if(can_throw_vore(src, thrown_mob))
-			vore_selected.nom_mob(thrown_mob) //Eat them!!!
+			vore_selected.nom_atom(thrown_mob) //Eat them!!!
 			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
 			if(thrown_mob.loc != vore_selected)
-				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
+				vore_selected.nom_atom(thrown_mob) //Double check. Should never happen but...Weirder things have happened!
 			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 
@@ -371,9 +371,9 @@ emp_act
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
 		else if(can_throw_vore(thrown_mob, src)) //Pred thrown into prey.
 			visible_message(span_vwarning("[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
-			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
+			thrown_mob.vore_selected.nom_atom(src) //Eat them!!!
 			if(src.loc != thrown_mob.vore_selected)
-				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+				thrown_mob.vore_selected.nom_atom(src) //Double check. Should never happen but...Weirder things have happened!
 			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 	//VORESTATION EDIT END - Allows for thrown vore!
@@ -384,7 +384,7 @@ emp_act
 			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
 				O.throwing = 0
-				O.forceMove(vore_selected)
+				vore_selected.nom_atom(O)
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained() && !src.is_incorporeal())
