@@ -114,7 +114,7 @@
 					do_nom = TRUE
 
 			if(do_nom)
-				micro.forceMove(eater.vore_selected)
+				eater.vore_selected.nom_atom(micro)
 				food_inserted_micros -= micro
 
 	if(!reagents.total_volume && changed)

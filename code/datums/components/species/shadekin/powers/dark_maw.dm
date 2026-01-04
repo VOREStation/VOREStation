@@ -170,7 +170,7 @@
 
 	if(will_vore)
 		visible_message(span_warning("The shadowy tendrils grab around [L] and drag them into the floor, leaving nothing behind."))
-		L.forceMove(target)
+		target.nom_atom(L)
 		qdel(src)
 		return
 

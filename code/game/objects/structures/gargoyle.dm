@@ -267,7 +267,7 @@
 		if(gargoyle.adminbus_trash || is_type_in_list(W, GLOB.edible_trash) && W.trash_eatable && !is_type_in_list(W, GLOB.item_vore_blacklist))
 			to_chat(user, span_warning("You slip [W] into [gargoyle]'s [lowertext(gargoyle.vore_selected.name)] ."))
 			user.drop_item()
-			W.forceMove(gargoyle.vore_selected)
+			gargoyle.vore_selected.nom_atom(W)
 			return
 	else if(!(W.flags & NOBLUDGEON))
 		user.setClickCooldown(user.get_attack_speed(W))
