@@ -92,7 +92,7 @@
 			// reasons you can't select it
 			"banned" = !!jobban_isbanned(user, job.title),
 			"denylist_days" = !job.player_old_enough(user.client),
-			"available_in_days" = !job.available_in_days(user.client),
+			"available_in_days" = job.available_in_days(user.client),
 			"denylist_playtime" = !job.player_has_enough_playtime(user.client),
 			"available_in_hours" = job.available_in_playhours(user.client),
 			"denylist_whitelist" = !is_job_whitelisted(user, job.title),
