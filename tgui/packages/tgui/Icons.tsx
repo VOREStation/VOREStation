@@ -9,11 +9,16 @@ function setIconRefMap(map: Record<string, string>): void {
 }
 
 async function loadIconMap(): Promise<void> {
-  await awaitAsset('icon_ref_map.json');
-  fetchRetry(resolveAsset('icon_ref_map.json'))
-    .then((res) => res.json())
-    .then(setIconRefMap)
-    .catch((error) => logger.log(error));
+  try {
+    await awaitAsset('icon_ref_map.json');
+
+    const res = await fetchRetry(resolveAsset('icon_ref_map.json'));
+    const map = await res.json();
+
+    setIconRefMap(map);
+  } catch (error) {
+    logger.log(error);
+  }
 }
 
 function IconMapLoader(): null {
