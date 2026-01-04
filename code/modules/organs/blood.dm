@@ -148,6 +148,7 @@ BLOOD_VOLUME_SURVIVE = 40
 				update_icons_body()
 			eye_blurry = max(eye_blurry,6)
 			Paralyse(3)
+			Sleeping(3)
 			adjustToxLoss(3 * dmg_coef)
 			adjustOxyLoss(75 * dmg_coef) // 15 more than dexp fixes (also more than dex+dexp+tricord)
 
