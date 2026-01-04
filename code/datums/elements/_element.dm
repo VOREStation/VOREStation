@@ -101,3 +101,5 @@
 	SIGNAL_HANDLER
 	Detach(source)
 	UnregisterSignal(source, SIGNAL_REMOVETRAIT(trait))
+
+#include "electrovoreable.dm"
