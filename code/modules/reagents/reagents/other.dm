@@ -416,13 +416,13 @@
 		if(prob(2)) //Get an ACTUAL chaplain for your stuff
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
 				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
-				to_chat(M, "You feel calmer.")
+				to_chat(M, span_notice("You feel calmer."))
 
 			if(M.HasDisease(/datum/disease/fleshy_spread))
 				for(var/datum/disease/fleshy_spread/disease in M.GetViruses())
 					disease.cure()
 					break
-				to_chat(M, "Your fever subsides..")
+				to_chat(M, span_notice("Your fever subsides.."))
 		if(volume <= max_dose * 0.5 && !failed_message)
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption) || M.HasDisease(/datum/disease/fleshy_spread))
 				to_chat(M, span_notice("The power of the holy water courses through you, but seems to have failed to cure your ailments. Perhaps a larger dose is needed?"))
@@ -436,7 +436,7 @@
 		if(prob(1)) //injecting holy water makes it weaker because that's sinful
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
 				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
-				to_chat(M, "You feel calmer.")
+				to_chat(M, span_notice("You feel calmer."))
 
 			if(M.HasDisease(/datum/disease/fleshy_spread))
 				for(var/datum/disease/fleshy_spread/disease in M.GetViruses())
