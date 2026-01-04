@@ -303,7 +303,7 @@
 		cloaks[initial(cloak_type.name)] = cloak_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
 
-/datum/gear/suit/cloak/dept/ce
+/datum/gear/suit/dept/cloak/ce
 	display_name = "chief engineer cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/ce
 	allowed_roles = list(JOB_CHIEF_ENGINEER)
