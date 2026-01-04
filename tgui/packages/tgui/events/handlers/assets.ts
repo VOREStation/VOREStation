@@ -25,6 +25,7 @@ export function awaitAsset(name: string): Promise<void> {
   return assetPromises[name].promise;
 }
 
+/** This just lets us load in our own independent map */
 export function handleLoadAssets(payload: Record<string, string>): void {
   loadMappings(payload, loadedMappings);
 
