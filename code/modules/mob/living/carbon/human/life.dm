@@ -202,6 +202,7 @@
 			if(prob(50))
 				to_chat(src, span_danger("You suddenly black out!"))
 				Paralyse(10)
+				Sleeping(10)
 			else if(!lying)
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
@@ -390,6 +391,7 @@
 				if(!paralysis && prob(30) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
 					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
+					Sleeping(10)
 					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
@@ -450,6 +452,7 @@
 				if(!paralysis && prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //1 in 1000 chance per tick.
 					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
+					Sleeping(10)
 					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
@@ -716,6 +719,7 @@
 
 			// 3 gives them one second to wake up and run away a bit!
 			Paralyse(3)
+			Sleeping(1)
 
 			// Enough to make us sleep as well
 			if(SA_pp > SA_sleep_min)
@@ -1254,6 +1258,7 @@
 		var/in_crit = FALSE
 		if((getOxyLoss() > (getMaxHealth()/2)) || (health <= (get_crit_point() * species.crit_mod)))
 			Paralyse(3)
+			Sleeping(3)
 			set_stat(UNCONSCIOUS)
 			blinded = TRUE
 			in_crit = TRUE
@@ -1281,6 +1286,7 @@
 			to_chat(src, span_notice("You're in too much pain to keep going..."))
 			src.visible_message(span_infoplain(span_bold("[src]") + " slumps to the ground, too weak to continue fighting."))
 			Paralyse(10)
+			Sleeping(10)
 			setHalLoss(getMaxHealth() - 1)
 
 		if(tiredness) //tiredness for vore drain
@@ -1946,6 +1952,7 @@
 				if(prob(40) && !isbelly(loc))
 					emote("pain")
 			Paralyse(5)
+			Sleeping(5)
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
