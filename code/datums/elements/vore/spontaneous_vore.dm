@@ -106,7 +106,7 @@
 			source.visible_message(span_vwarning("[thrown_mob] is thrown right into [source]'s [lowertext(destination_belly.name)]!"))
 			source.on_throw_vore_special(TRUE, thrown_mob)
 			add_attack_logs(thrown_mob.thrower,source,"Devoured [thrown_mob.name] via throw vore.")
-			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
+			return COMSIG_CANCEL_HITBY //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
@@ -117,7 +117,7 @@
 			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(destination_belly.name)] as [thrown_mob] flies into them!"))
 			destination_belly.nom_mob(source) //Eat them!!!
 			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
-			return
+			return COMSIG_CANCEL_HITBY
 
 //source = person standing up
 //crossed = person sliding
