@@ -16,9 +16,6 @@
 /datum/element/electrovoreable/proc/on_attack_self(obj/item/source, mob/user)
 	SIGNAL_HANDLER
 
-	if(!isliving(user))
-		return
-
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/carbon_user = user
