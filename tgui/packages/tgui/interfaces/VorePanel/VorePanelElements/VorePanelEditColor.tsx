@@ -35,7 +35,7 @@ export const VorePanelEditColor = (
     /** User preset colors */
     presets: string;
     /**The set action on color changes */
-    onRealtimeValue: React.Dispatch<React.SetStateAction<string>>;
+    onRealtimeValue: (val: string) => void;
   }>,
 ) => {
   const { act } = useBackend();
