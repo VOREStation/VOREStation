@@ -131,11 +131,15 @@
 	//Person being slipped into eats the person slipping
 	if(can_slip_vore(pred = source, prey = crossed))	//If we can vore them go for it
 		var/obj/belly/destination_belly = source.get_current_spont_belly(crossed)
+		if(!destination_belly)
+			return
 		source.begin_instant_nom(source, prey = crossed, pred = source, belly = destination_belly)
 		return COMPONENT_BLOCK_CROSS
 
 	//The person slipping eats the person being slipped into
 	else if(can_slip_vore(pred = crossed, prey = source))
 		var/obj/belly/destination_belly = crossed.get_current_spont_belly(source)
+		if(!destination_belly)
+			return
 		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = destination_belly) //Must be
 		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.
