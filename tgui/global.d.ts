@@ -177,7 +177,7 @@ type ByondType = {
   /**
    * Maps icons to their ref
    */
-  iconRefMap: Record<string, string>;
+  iconRefMap: Readonly<Record<string, string | undefined>>;
 
   /**
    * Downloads a blob, platform-agnostic

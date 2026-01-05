@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { getIconFromMap } from 'tgui/events/handlers/assets';
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
-
 import {
   ColorizedImage,
   ColorizedImageButton,
@@ -115,8 +115,7 @@ export const MarkingsPopup = (props: {
                     postRender={async (ctx) => {
                       if (showHuman) {
                         ctx.globalCompositeOperation = 'destination-over';
-                        const iconRef =
-                          Byond.iconRefMap?.['icons/mob/human.dmi'];
+                        const iconRef = getIconFromMap('icons/mob/human.dmi');
                         if (!iconRef) return;
                         const background = await getImage(
                           `${iconRef}?state=body_m_s&dir=2`,
@@ -363,7 +362,7 @@ export const AddMarkingWindow = (props: {
                 if (showHuman) {
                   ctx.save();
                   ctx.globalCompositeOperation = 'destination-over';
-                  const iconRef = Byond.iconRefMap?.['icons/mob/human.dmi'];
+                  const iconRef = getIconFromMap('icons/mob/human.dmi');
                   if (!iconRef) return;
                   const background = await getImage(
                     `${iconRef}?state=body_m_s&dir=2`,

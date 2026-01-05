@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { getIconFromMap } from 'tgui/events/handlers/assets';
 import { getImage } from '../../PublicLibraryWiki/WikiCommon/WikiColorIcon';
 import type { Overlay } from '../types';
 
@@ -38,7 +39,7 @@ export const MultiOverlayImage = (props: {
 
       const images = await Promise.all(
         overlays.map(async (o, i) => {
-          const iconRef = o.icon ? Byond.iconRefMap?.[o.icon] : null;
+          const iconRef = o.icon ? getIconFromMap(o.icon) : null;
           if (!iconRef) return null;
           const url = `${iconRef}?state=${o.iconState}`;
           const img = await cachedGetImage(url);
