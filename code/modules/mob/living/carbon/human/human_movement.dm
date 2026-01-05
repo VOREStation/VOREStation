@@ -23,7 +23,7 @@
 	//100 max hp w/ 50 damage = (50/100) * 100 = 50HP
 	//100 max hp w/ 50 halloss = (50/100) * 100 = 50HP
 	//100 max hp w/ 75 damage = (25/100) * 100 = 75HP
-	//200 max hp w/ 50 damage = (50/200) * 100 = 25HP
+	//200 max hp w/ 50 damage = (50/200) * 100 = 75HP
 	var/health_percent = ((health / getMaxHealth()) * 100) * species.trauma_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
 
 	var/hal_pain = getHalLoss() * species.trauma_mod
