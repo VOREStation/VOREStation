@@ -6,6 +6,7 @@
 	matter = list(MAT_STEEL = 500, MAT_GLASS = 50)
 	var/listening = 0
 	var/recorded	//the activation message
+	special_handling = TRUE
 
 /obj/item/assembly/voice/hear_talk(mob/M, list/message_pieces, verb)
 	var/msg = multilingual_to_message(message_pieces)
@@ -27,6 +28,9 @@
 
 
 /obj/item/assembly/voice/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!user)
 		return FALSE
 	activate()

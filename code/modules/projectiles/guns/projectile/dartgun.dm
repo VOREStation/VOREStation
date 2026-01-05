@@ -69,6 +69,7 @@
 	var/dart_reagent_amount = 15
 	var/container_type = /obj/item/reagent_containers/glass/beaker
 	var/list/starting_chems = null
+	special_weapon_handling = TRUE
 
 /obj/item/gun/projectile/dartgun/Initialize(mapload)
 	. = ..()
@@ -134,6 +135,9 @@
 			B.reagents.trans_to_obj(dart, mix_amount)
 
 /obj/item/gun/projectile/dartgun/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.set_machine(src)
 	var/dat = span_bold("[src] mixing control:") + "<br><br>"
 

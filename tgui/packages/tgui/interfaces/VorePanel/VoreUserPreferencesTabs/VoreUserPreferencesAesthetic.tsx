@@ -4,7 +4,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { aestehticTabsToIcons } from '../constants';
 import { fixCorruptedData } from '../functions';
-import type { aestMessageData, bellyData } from '../types';
+import type { AestMessageData, BellyData } from '../types';
 import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditTextTabs } from '../VorePanelElements/VorePaneldEditTextTabs';
 import { VorePanelEditColor } from '../VorePanelElements/VorePanelEditColor';
@@ -16,12 +16,12 @@ export const VoreUserPreferencesAesthetic = (props: {
   persist_edit_mode: BooleanLike;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   active_belly: string | null;
-  our_bellies: bellyData[];
+  our_bellies: BellyData[];
   belly_rub_target: string | null;
   vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
-  aestethicMessages: aestMessageData;
+  aestethicMessages: AestMessageData;
 }) => {
   const {
     editMode,

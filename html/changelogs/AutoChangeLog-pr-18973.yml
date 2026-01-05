@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Things that 'knock you out' will properly KO you now, instead of simply paralyzing you."

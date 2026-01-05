@@ -829,7 +829,7 @@
 		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
 			return
 		drop_item()
-		I.forceMove(vore_selected)
+		vore_selected.nom_atom(I)
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)

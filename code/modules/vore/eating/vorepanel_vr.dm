@@ -133,6 +133,7 @@
 	data["host_mobtype"] = null
 	data["show_pictures"] = null
 	data["icon_overflow"] = null
+	data["prey_abilities"] = null
 	data["our_bellies"] = null
 	data["selected"] = null
 	data["soulcatcher"] = null
@@ -159,6 +160,7 @@
 			// Content Data
 			data["show_pictures"] = show_pictures
 			data["icon_overflow"] = icon_overflow
+			data["prey_abilities"] = get_prey_abilities(host)
 
 		if(SOULCATCHER_TAB)
 			// Soulcatcher and abilities
@@ -236,6 +238,11 @@
 		if("toggle_editmode_persistence")
 			host.persistend_edit_mode = !host.persistend_edit_mode
 			return TRUE
+
+		if("prey_ability")
+			if(!isliving(ui.user))
+				return FALSE
+			return perform_prey_ability(ui.user, params)
 
 		// Host is inside someone else, and is trying to interact with something else inside that person.
 		if("pick_from_inside")
@@ -967,7 +974,7 @@
 				if(M.absorbed)
 					M.absorbed = FALSE
 					OB.handle_absorb_langs(M, OB.owner)
-				TB.nom_mob(M)
+				TB.nom_atom(M)
 
 /datum/vore_look/proc/pick_from_outside(mob/user, params)
 	var/intent
@@ -997,7 +1004,8 @@
 					to_chat(target,span_vwarning("You're squished from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
 					// Send the transfer message to indirect targets as well. Slightly different message because why not.
 					to_chat(host.vore_selected.get_belly_surrounding(target.contents),span_warning("You're squished along with [target] from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
-					host.vore_selected.transfer_contents(target, choice, 1)
+					host.vore_selected.transfer_contents(target, choice, TRUE)
+				host.vore_selected.handle_visual_update()
 				return TRUE
 		return FALSE
 
@@ -1063,7 +1071,6 @@
 			// Send the transfer message to indirect targets as well. Slightly different message because why not.
 			to_chat(host.vore_selected.get_belly_surrounding(target.contents),span_warning("You're squished along with [target] from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
 			host.vore_selected.transfer_contents(target, choice)
-
 
 		if("Transfer")
 			if(host.stat)
@@ -1360,6 +1367,24 @@
 			if(condition)
 				to_chat(user, span_vwarning("\The [target] is currently [condition], they will not be able to [condition_consequences]."))
 			return FALSE
+
+/datum/vore_look/proc/perform_prey_ability(mob/living/user, params)
+	var/obj/belly/OB = locate(params["belly"])
+
+	if(!(user in OB))
+		return TRUE // Aren't here anymore, need to update menu
+
+	var/ability = params["ability"]
+	if(!(ability in list("devour_as_absorbed")))
+		return FALSE
+
+	switch(ability)
+		if("devour_as_absorbed")
+			if(!(OB.mode_flags & DM_FLAG_ABSORBEDVORE))
+				return FALSE
+			user.absorb_devour()
+
+	return TRUE
 
 /datum/vore_look/proc/sanitize_fixed_list(var/list/messages, type, delim = "\n\n", limit)
 	if(!limit)

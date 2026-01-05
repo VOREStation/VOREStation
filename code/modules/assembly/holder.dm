@@ -125,8 +125,11 @@
 	else
 		..()
 
-/obj/item/assembly_holder/attack_self(var/mob/user)
-	src.add_fingerprint(user)
+/obj/item/assembly_holder/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	add_fingerprint(user)
 	if(src.secured)
 		if(!a_left || !a_right)
 			to_chat(user, span_warning(" BUG:Assembly part missing, please report this!"))

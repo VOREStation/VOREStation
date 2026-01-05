@@ -9,7 +9,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { messageTabLabel } from '../../constants';
-import type { bellyDescriptionData } from '../../types';
+import type { BellyDescriptionData } from '../../types';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
 import { VorePanelEditTextArea } from '../../VorePanelElements/VorePanelTextArea';
 
@@ -18,7 +18,7 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
   showFormatHelp: boolean;
   onShowFormatHelp: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
-  bellyDescriptionData: bellyDescriptionData;
+  bellyDescriptionData: BellyDescriptionData;
 }) => {
   const { act } = useBackend();
 
