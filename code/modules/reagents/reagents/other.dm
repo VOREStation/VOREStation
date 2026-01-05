@@ -416,18 +416,38 @@
 		if(prob(2)) //Get an ACTUAL chaplain for your stuff
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
 				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
-				to_chat(M, "You feel calmer.")
+				to_chat(M, span_notice("You feel calmer."))
 
 			if(M.HasDisease(/datum/disease/fleshy_spread))
 				for(var/datum/disease/fleshy_spread/disease in M.GetViruses())
 					disease.cure()
 					break
-				to_chat(M, "Your fever subsides..")
-		if(volume < max_dose * 0.1 && !failed_message)
+				to_chat(M, span_notice("Your fever subsides.."))
+		if(volume <= max_dose * 0.5 && !failed_message)
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption) || M.HasDisease(/datum/disease/fleshy_spread))
 				to_chat(M, span_notice("The power of the holy water courses through you, but seems to have failed to cure your ailments. Perhaps a larger dose is needed?"))
 				failed_message = TRUE
 
+/datum/reagent/water/holywater/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(ishuman(M)) // Any location
+		if(M.mind && cult.is_antagonist(M.mind) && prob(5))
+			cult.remove_antagonist(M.mind)
+		if(prob(1)) //injecting holy water makes it weaker because that's sinful
+			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
+				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
+				to_chat(M, span_notice("You feel calmer."))
+
+			if(M.HasDisease(/datum/disease/fleshy_spread))
+				for(var/datum/disease/fleshy_spread/disease in M.GetViruses())
+					disease.cure()
+					break
+				to_chat(M, span_notice("Your fever subsides.."))
+		if(volume <= max_dose * 0.25 && !failed_message)
+			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption) || M.HasDisease(/datum/disease/fleshy_spread))
+				to_chat(M, span_notice("The power of the holy water courses through you, but seems to have failed to cure your ailments. Perhaps a larger dose is needed?"))
+				failed_message = TRUE
+	return
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	..()

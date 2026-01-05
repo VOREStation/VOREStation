@@ -17,7 +17,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(user == M)
-			to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
+			to_chat(user,span_warning("A message pops up on the LED display, informing you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
 			return
 
 		if(!M.mind) //Do they have a mind?

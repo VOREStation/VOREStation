@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - config: "new config entries to set discord channels for round start/end announcements"
