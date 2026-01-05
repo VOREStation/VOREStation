@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import type { BellyVisualData, HostMob } from '../types';
@@ -9,13 +9,14 @@ import { VoreSpriteAffects } from './VisualTab/VoreSpriteAffect';
 
 export const VoreSelectedBellyVisuals = (props: {
   editMode: boolean;
+  belly_name: string;
   bellyVisualData: BellyVisualData;
   hostMobtype: HostMob;
   presets: string;
 }) => {
   const { act } = useBackend();
 
-  const { editMode, bellyVisualData, hostMobtype, presets } = props;
+  const { editMode, belly_name, bellyVisualData, hostMobtype, presets } = props;
   const {
     belly_fullscreen,
     colorization_enabled,
@@ -28,36 +29,29 @@ export const VoreSelectedBellyVisuals = (props: {
     disable_hud,
     affects_voresprite,
   } = bellyVisualData;
-  const [liveColors, setLiveColors] = useState([
-    belly_fullscreen_color,
-    belly_fullscreen_color2,
-    belly_fullscreen_color3,
-    belly_fullscreen_color4,
-  ]);
 
-  useEffect(() => {
-    if (!editMode) return;
-    setLiveColors([
-      belly_fullscreen_color,
-      belly_fullscreen_color2,
-      belly_fullscreen_color3,
-      belly_fullscreen_color4,
-    ]);
-  }, [
-    belly_fullscreen_color,
-    belly_fullscreen_color2,
-    belly_fullscreen_color3,
-    belly_fullscreen_color4,
-    editMode,
-  ]);
+  const lastBellyRef = useRef<string | null>(null);
+  const [editedColors, setEditedColors] = useState<
+    Partial<Record<number, string>>
+  >({});
 
   const updateColor = (index: number, val: string) => {
-    setLiveColors((prev) => {
-      const newColors = [...prev];
-      newColors[index] = val;
-      return newColors;
-    });
+    setEditedColors((prev) => ({ ...prev, [index]: val }));
   };
+
+  const liveColorsToUse = editMode
+    ? [
+        editedColors[0] ?? belly_fullscreen_color,
+        editedColors[1] ?? belly_fullscreen_color2,
+        editedColors[2] ?? belly_fullscreen_color3,
+        editedColors[3] ?? belly_fullscreen_color4,
+      ]
+    : null;
+
+  if (belly_name !== lastBellyRef.current) {
+    lastBellyRef.current = belly_name;
+    setEditedColors({});
+  }
 
   return (
     <Stack vertical fill>
@@ -206,7 +200,7 @@ export const VoreSelectedBellyVisuals = (props: {
             belly_fullscreen_color4,
           ]}
           alpha={belly_fullscreen_alpha}
-          liveColors={liveColors}
+          liveColors={liveColorsToUse}
           editMode={editMode}
           belly_fullscreen={belly_fullscreen}
           colorization_enabled={colorization_enabled}

@@ -88,6 +88,7 @@ export const VoreSelectedBelly = (props: {
   tabs[4] = belly_visual_data && (
     <VoreSelectedBellyVisuals
       editMode={editMode}
+      belly_name={belly_name}
       bellyVisualData={belly_visual_data}
       hostMobtype={host_mobtype}
       presets={presets}
