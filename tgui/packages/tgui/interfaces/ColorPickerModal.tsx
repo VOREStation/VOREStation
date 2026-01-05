@@ -96,7 +96,11 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   });
 
   useEffect(() => {
-    syncColorPreset();
+    const timeoutId = setTimeout(() => {
+      syncColorPreset();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [selectedColor]);
 
   if (!title) {

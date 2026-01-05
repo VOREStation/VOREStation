@@ -114,7 +114,11 @@ export const VorePanelEditColor = (
   });
 
   useEffect(() => {
-    syncColorPreset();
+    const timeoutId = setTimeout(() => {
+      syncColorPreset();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [currentColor]);
 
   const pixelSize = 20;

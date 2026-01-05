@@ -907,7 +907,7 @@
 				return
 			entries[index] = hex
 			preset_colors = entries.Join(";")
-			return TRUE
+			return FALSE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
 	var/atom/movable/target = locate(params["pick"])
