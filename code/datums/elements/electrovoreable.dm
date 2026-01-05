@@ -4,7 +4,7 @@
 
 /datum/element/electrovoreable/Attach(datum/target)
 	. = ..()
-	if(!istype(target, /obj/item))
+	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 
 	RegisterSignal(target, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
