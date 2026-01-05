@@ -78,5 +78,3 @@
 		s.start()
 
 		return COMPONENT_CANCEL_ATTACK_CHAIN
-
-	return
