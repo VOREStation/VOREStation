@@ -35,6 +35,11 @@ export const VoreSelectedBellyVisuals = (props: {
     Partial<Record<number, string>>
   >({});
 
+  if (belly_name !== lastBellyRef.current) {
+    lastBellyRef.current = belly_name;
+    setEditedColors({});
+  }
+
   const updateColor = (index: number, val: string) => {
     setEditedColors((prev) => ({ ...prev, [index]: val }));
   };
@@ -47,11 +52,6 @@ export const VoreSelectedBellyVisuals = (props: {
         editedColors[3] ?? belly_fullscreen_color4,
       ]
     : null;
-
-  if (belly_name !== lastBellyRef.current) {
-    lastBellyRef.current = belly_name;
-    setEditedColors({});
-  }
 
   return (
     <Stack vertical fill>
