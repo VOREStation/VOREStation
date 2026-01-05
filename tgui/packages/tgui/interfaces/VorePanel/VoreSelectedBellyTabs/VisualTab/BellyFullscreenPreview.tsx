@@ -46,7 +46,6 @@ export function BellyFullscreenPreview(props: {
 
   return (
     <MultiOverlayImage
-      key={colors.join(',') + belly_fullscreen}
       overlays={getOverlays(belly_fullscreen, colors, !!colorization_enabled)}
       alpha={alpha}
       size={colorization_enabled ? 120 : 480}

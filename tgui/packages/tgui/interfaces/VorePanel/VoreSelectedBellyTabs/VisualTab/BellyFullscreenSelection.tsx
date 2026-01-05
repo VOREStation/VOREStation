@@ -18,8 +18,8 @@ export const BellyFullscreenSelection = (props: {
 
   const {
     colors,
-    alpha,
     liveColors,
+    alpha,
     editMode,
     belly_fullscreen,
     colorization_enabled,
