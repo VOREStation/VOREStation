@@ -21,6 +21,8 @@
 		return FALSE
 	if(!prey.can_be_afk_prey && (!prey.client || prey.away_from_keyboard))
 		return FALSE
+	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
+		return FALSE
 	return TRUE
 
 /// Basic spont vore check.
@@ -75,12 +77,5 @@
 	if(!pred.is_slipping && !prey.is_slipping)
 		return FALSE
 	if(world.time <= prey.slip_protect)
-		return FALSE
-	return TRUE
-
-/proc/can_animal_vore(mob/living/pred, mob/living/prey)
-	if(!can_vore(pred, prey))
-		return FALSE
-	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
 		return FALSE
 	return TRUE

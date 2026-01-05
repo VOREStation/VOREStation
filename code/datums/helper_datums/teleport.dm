@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 		if(can_spontaneous_vore(mob, telemob))
 			destturf = mob.vore_selected
 		else if(can_spontaneous_vore(telemob, mob))
-			mob.forceMove(telemob.vore_selected)
+			telemob.vore_selected.nom_atom(mob)
 
 	if(!destturf || !curturf)
 		return FALSE
