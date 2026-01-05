@@ -24,10 +24,10 @@
 	//100 max hp w/ 50 halloss = (50/100) * 100 = 50HP
 	//100 max hp w/ 75 damage = (25/100) * 100 = 75HP
 	//200 max hp w/ 50 damage = (50/200) * 100 = 75HP
-	var/health_percent = ((health / getMaxHealth()) * 100) * species.trauma_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
+	var/health_percent = ((health / getMaxHealth()) * 100) * species.pain_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
 
-	var/hal_pain = getHalLoss() * species.trauma_mod
-	//var/hal_pain = can_feel_pain() ? (getHalLoss() * 2) * species.trauma_mod : 0 //Variant for if you want pain immune people to not be affected by halloss slowdown.
+	var/hal_pain = getHalLoss() * species.pain_mod //trauma_mod is something entirely differently
+	//var/hal_pain = can_feel_pain() ? (getHalLoss() * 2) * species.pain_mod : 0 //Variant for if you want pain immune people to not be affected by halloss slowdown.
 
 	if((health_percent <= 60 || hal_pain >= 25) && !chem_effects[CE_NARCOTICS]) //Have taken 40% of our max health in damage OR we have >=25 halloss pain
 
