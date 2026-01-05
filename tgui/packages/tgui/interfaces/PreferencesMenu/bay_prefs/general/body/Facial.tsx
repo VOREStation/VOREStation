@@ -1,6 +1,6 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { getIconFromMap } from 'tgui/events/handlers/assets';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import { Button, ImageButton, Input, Section } from 'tgui-core/components';
 import {
   ColorizedImageButton,
@@ -31,7 +31,7 @@ export const FacialImageButton = (
   const renderHuman = useCallback(
     async (ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.globalCompositeOperation = 'destination-over';
-      const iconRef = getIconFromMap('icons/mob/human.dmi');
+      const iconRef = getIconFromRefMap('icons/mob/human.dmi');
       if (!iconRef) return;
       const image = await getImage(`${iconRef}?state=body_f_s&dir=2`);
 

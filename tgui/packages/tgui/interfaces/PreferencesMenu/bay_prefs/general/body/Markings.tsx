@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { getIconFromMap } from 'tgui/events/handlers/assets';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import {
   Box,
   Button,
@@ -115,7 +115,9 @@ export const MarkingsPopup = (props: {
                     postRender={async (ctx) => {
                       if (showHuman) {
                         ctx.globalCompositeOperation = 'destination-over';
-                        const iconRef = getIconFromMap('icons/mob/human.dmi');
+                        const iconRef = getIconFromRefMap(
+                          'icons/mob/human.dmi',
+                        );
                         if (!iconRef) return;
                         const background = await getImage(
                           `${iconRef}?state=body_m_s&dir=2`,
@@ -362,7 +364,7 @@ export const AddMarkingWindow = (props: {
                 if (showHuman) {
                   ctx.save();
                   ctx.globalCompositeOperation = 'destination-over';
-                  const iconRef = getIconFromMap('icons/mob/human.dmi');
+                  const iconRef = getIconFromRefMap('icons/mob/human.dmi');
                   if (!iconRef) return;
                   const background = await getImage(
                     `${iconRef}?state=body_m_s&dir=2`,

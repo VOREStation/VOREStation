@@ -19,7 +19,7 @@ export function handleLoadAssets(payload: Record<string, string>): void {
   }
 }
 
-export function getIconFromMap(icon: string): string | undefined {
+export function getIconFromRefMap(icon: string): string | undefined {
   return Byond.iconRefMap[icon];
 }
 
