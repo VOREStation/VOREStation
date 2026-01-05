@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import type { BellyVisualData, HostMob } from '../types';
@@ -32,6 +32,18 @@ export const VoreSelectedBellyVisuals = (props: {
   const [realtimeColor2, setRealtimeColor2] = useState(belly_fullscreen_color2);
   const [realtimeColor3, setRealtimeColor3] = useState(belly_fullscreen_color3);
   const [realtimeColor4, setRealtimeColor4] = useState(belly_fullscreen_color4);
+
+  useEffect(() => {
+    setRealtimeColor1(belly_fullscreen_color);
+    setRealtimeColor2(belly_fullscreen_color2);
+    setRealtimeColor3(belly_fullscreen_color3);
+    setRealtimeColor4(belly_fullscreen_color4);
+  }, [
+    belly_fullscreen_color,
+    belly_fullscreen_color2,
+    belly_fullscreen_color3,
+    belly_fullscreen_color4,
+  ]);
 
   return (
     <Stack vertical fill>
