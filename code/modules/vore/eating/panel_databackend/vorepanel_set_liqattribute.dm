@@ -102,7 +102,7 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_reagentcolor")
-			var/newcolor = tgui_color_picker(user, "Choose custom color for liquid overlay. Cancel for normal reagent color.", "", host.vore_selected.custom_reagentcolor)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.custom_reagentcolor = newcolor
 			else
@@ -137,7 +137,7 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_mush_color")
-			var/newcolor = tgui_color_picker(user, "Choose custom color for mush overlay.", "", host.vore_selected.mush_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.mush_color = newcolor
 				host.vore_selected.update_internal_overlay()
@@ -194,7 +194,7 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_ingested_color")
-			var/newcolor = tgui_color_picker(user, "Choose custom color for ingested metabolism overlay. Cancel for reagent-based dynamic blend.", "", host.vore_selected.custom_ingested_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.custom_ingested_color = newcolor
 			else

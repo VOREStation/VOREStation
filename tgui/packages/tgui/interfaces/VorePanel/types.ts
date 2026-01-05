@@ -9,6 +9,7 @@ export type Data = {
   prey_abilities: PreyAbilityData[] | null;
   active_tab: number;
   persist_edit_mode: BooleanLike;
+  presets: string;
   host_mobtype: HostMob | null;
   our_bellies?: BellyData[] | null;
   min_belly_name: number;
@@ -399,6 +400,10 @@ export type GeneralPrefData = {
   vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
+  spont_rear: string | null;
+  spont_front: string | null;
+  spont_left: string | null;
+  spont_right: string | null;
 };
 
 export type AestMessageData = {

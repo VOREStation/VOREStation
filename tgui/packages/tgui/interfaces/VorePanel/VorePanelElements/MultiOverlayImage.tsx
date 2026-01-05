@@ -18,15 +18,17 @@ export const MultiOverlayImage = (props: {
   overlays: Overlay[];
   size: number;
   targetSize: number;
+  alpha?: number;
+  gallery?: boolean;
 }) => {
-  const { overlays, size, targetSize } = props;
+  const { overlays, size, targetSize, alpha, gallery } = props;
   const [src, setSrc] = useState<string>('');
   const blobRef = useRef<string>('');
 
   const render = useCallback(
     async (canvas: OffscreenCanvas, ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.clearRect(0, 0, targetSize, targetSize);
-      ctx.imageSmoothingEnabled = false;
+      ctx.imageSmoothingEnabled = true;
 
       const images = await Promise.all(
         overlays.map(async (o, i) => {
@@ -51,7 +53,7 @@ export const MultiOverlayImage = (props: {
           const tempCtx = tempCanvas.getContext('2d');
           if (!tempCtx) continue;
 
-          tempCtx.imageSmoothingEnabled = false;
+          tempCtx.imageSmoothingEnabled = true;
           tempCtx.drawImage(
             image,
             0,
@@ -124,7 +126,10 @@ export const MultiOverlayImage = (props: {
       src={src}
       width={targetSize}
       height={targetSize}
-      style={{ transform: 'translate(1%, 3%)', imageRendering: 'pixelated' }}
+      style={{
+        opacity: (alpha ?? 255) / 255,
+        transform: gallery ? 'translate(1%, 3%)' : undefined,
+      }}
     />
   ) : null;
 };

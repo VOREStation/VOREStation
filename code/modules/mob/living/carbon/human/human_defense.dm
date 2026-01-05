@@ -350,33 +350,9 @@ emp_act
 //	if(buckled && buckled == AM)
 //		return // Don't get hit by the thing we're buckled to.
 
-	//VORESTATION EDIT START - Allows for thrown vore!
-	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
-	// I put more comments here for ease of reading.
 	if(isliving(source))
-		var/mob/living/thrown_mob = source
-		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
+		if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
 			return
-		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
-		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
-		if(can_throw_vore(src, thrown_mob))
-			vore_selected.nom_atom(thrown_mob) //Eat them!!!
-			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
-			if(thrown_mob.loc != vore_selected)
-				vore_selected.nom_atom(thrown_mob) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
-			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
-
-		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
-		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if(can_throw_vore(thrown_mob, src)) //Pred thrown into prey.
-			visible_message(span_vwarning("[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
-			thrown_mob.vore_selected.nom_atom(src) //Eat them!!!
-			if(src.loc != thrown_mob.vore_selected)
-				thrown_mob.vore_selected.nom_atom(src) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
-			return
-	//VORESTATION EDIT END - Allows for thrown vore!
 
 	if(isitem(source))
 		var/obj/item/O = source

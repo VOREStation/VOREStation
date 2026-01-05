@@ -5,7 +5,6 @@ import { capitalize } from 'tgui-core/string';
 import { aestehticTabsToIcons } from '../constants';
 import { fixCorruptedData } from '../functions';
 import type { AestMessageData, BellyData } from '../types';
-import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditTextTabs } from '../VorePanelElements/VorePaneldEditTextTabs';
 import { VorePanelEditColor } from '../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
@@ -13,8 +12,6 @@ import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 
 export const VoreUserPreferencesAesthetic = (props: {
   editMode: boolean;
-  persist_edit_mode: BooleanLike;
-  toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   active_belly: string | null;
   our_bellies: BellyData[];
   belly_rub_target: string | null;
@@ -22,11 +19,10 @@ export const VoreUserPreferencesAesthetic = (props: {
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
   aestethicMessages: AestMessageData;
+  presets: string;
 }) => {
   const {
     editMode,
-    persist_edit_mode,
-    toggleEditMode,
     active_belly,
     belly_rub_target,
     our_bellies,
@@ -34,6 +30,7 @@ export const VoreUserPreferencesAesthetic = (props: {
     vore_sprite_multiply,
     vore_icon_options,
     aestethicMessages,
+    presets,
   } = props;
 
   const sanitizeCorruption = fixCorruptedData(aestethicMessages.active_message);
@@ -51,18 +48,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   );
 
   return (
-    <Section
-      fill
-      title="Aesthetic Preferences"
-      scrollable
-      buttons={
-        <VorePanelEditToggle
-          editMode={editMode}
-          persistEditMode={persist_edit_mode}
-          toggleEditMode={toggleEditMode}
-        />
-      }
-    >
+    <Section fill title="Aesthetic Preferences">
       <Stack vertical fill>
         <Stack.Item>
           <Stack>
@@ -83,7 +69,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                           entry +
                           "' sprite."
                         }
-                        value_of={undefined}
+                        presets={presets}
                       />
                       <Stack.Item>
                         <VorePanelEditSwitch
@@ -141,7 +127,7 @@ export const VoreUserPreferencesAesthetic = (props: {
             <VorePanelEditTextTabs
               exactLength
               editMode={editMode}
-              messsageOptions={aestethicMessages.possible_messages}
+              messsageOptionsLeft={aestethicMessages.possible_messages}
               activeTab={aestethicMessages.aest_subtab}
               tabAction="change_aset_message_option"
               tabsToIcons={aestehticTabsToIcons}
