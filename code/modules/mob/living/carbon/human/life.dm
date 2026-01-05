@@ -1908,7 +1908,7 @@
 		shock_stage = max(shock_stage-1, 0)
 	if(!can_feel_pain()) return
 
-	if(health < (CONFIG_GET(number/health_threshold_softcrit) * species.crit_mod))
+	if(health < (CONFIG_GET(number/health_threshold_softcrit) * species.crit_mod) && !chem_effects[CE_NARCOTICS])
 		shock_stage = max(shock_stage, 61)
 	if(stat)
 		return 0
