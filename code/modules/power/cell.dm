@@ -38,11 +38,6 @@
 	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
-
-
-
-
 /obj/item/cell/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/electrovoreable)

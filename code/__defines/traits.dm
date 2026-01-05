@@ -102,7 +102,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MEDIBOTCOMINGTHROUGH "medibot" //Is a medibot healing you
 #define TRAIT_PASSTABLE			"passtable"
 
-
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
 

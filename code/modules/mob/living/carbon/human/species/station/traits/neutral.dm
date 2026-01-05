@@ -269,11 +269,10 @@
 	custom_only = FALSE
 	excludes = list(/datum/trait/neutral/electrovore_freeform)
 
-/datum/trait/neutral/electrovore/apply(var/datum/species/S, var/mob/living/carbon/human/H)
+/datum/trait/neutral/electrovore/apply(var/datum/species/S, var/mob/living/carbon/human/human)
 	..()
-	ADD_TRAIT(H, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(H, TRAIT_ELECTROVORE_OBLIGATE, ROUNDSTART_TRAIT)
-
+	ADD_TRAIT(human, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(human, TRAIT_ELECTROVORE_OBLIGATE, ROUNDSTART_TRAIT)
 
 /datum/trait/neutral/electrovore_freeform
 	name = "Electrovore"
@@ -285,11 +284,9 @@
 	custom_only = FALSE
 	excludes = list(/datum/trait/neutral/electrovore)
 
-/datum/trait/neutral/electrovore_freeform/apply(var/datum/species/S, var/mob/living/carbon/human/H)
+/datum/trait/neutral/electrovore_freeform/apply(var/datum/species/S, var/mob/living/carbon/human/human)
 	..()
-	ADD_TRAIT(H, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
-
-
+	ADD_TRAIT(human, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
 
 /datum/trait/neutral/succubus_drain
 	name = "Succubus Drain"
