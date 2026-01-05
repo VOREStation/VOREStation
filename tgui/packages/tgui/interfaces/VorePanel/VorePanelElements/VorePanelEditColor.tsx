@@ -90,6 +90,7 @@ export const VorePanelEditColor = (
 
   useEffect(() => {
     if (!onRealtimeValue) return;
+    if (!isOpen) return;
 
     const timeoutId = setTimeout(() => {
       onRealtimeValue(hsvaToHex(currentColor));
