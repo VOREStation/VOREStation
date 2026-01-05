@@ -52,8 +52,9 @@ const CountedTextElement = (props: {
   entry: string;
   action: (value: string | string[], index?: number) => void;
   index?: number;
+  minLength?: number;
 }) => {
-  const { entry, limit, action, index } = props;
+  const { entry, limit, action, index, minLength = 0 } = props;
   const [textInput, setTextInput] = useState(entry);
 
   return (
@@ -77,7 +78,9 @@ const CountedTextElement = (props: {
         <Stack>
           <Stack.Item grow />
           <Stack.Item>
-            <Box color="label">{`${textInput.length} / ${limit}`}</Box>
+            <Box
+              color={textInput.length < minLength ? 'red' : 'label'}
+            >{`${textInput.length} / ${limit}`}</Box>
           </Stack.Item>
           <Stack.Item grow />
         </Stack>
@@ -92,8 +95,9 @@ const AreaMapper = (props: {
   action: (value: string | string[], index?: number) => void;
   exactLength: boolean;
   maxEntries: number;
+  minLength?: number;
 }) => {
-  const { entry, limit, action, exactLength, maxEntries } = props;
+  const { entry, limit, action, exactLength, maxEntries, minLength } = props;
   const version = useRef(0); // No state needed, we call a backend update
 
   const filledArray = useMemo(() => {
@@ -121,6 +125,7 @@ const AreaMapper = (props: {
       entry={singleEntry}
       action={performAction}
       index={index}
+      minLength={minLength}
     />
   ));
 };
@@ -150,6 +155,8 @@ export const VorePanelEditTextArea = (
     disableLegacyInput: boolean;
     /** Disable our special highlighting used on belly messages */
     noHighlight: boolean;
+    /** Minimum text length, else warn */
+    minLength: number;
   }>,
 ) => {
   const { act } = useBackend();
@@ -166,6 +173,7 @@ export const VorePanelEditTextArea = (
     maxEntries = 10,
     disableLegacyInput = false,
     noHighlight,
+    minLength,
   } = props;
 
   function doAct(value: string | string[]): void {
@@ -227,9 +235,15 @@ export const VorePanelEditTextArea = (
             exactLength={exactLength}
             action={doAct}
             maxEntries={maxEntries}
+            minLength={minLength}
           />
         ) : (
-          <CountedTextElement limit={limit} entry={entry} action={doAct} />
+          <CountedTextElement
+            limit={limit}
+            entry={entry}
+            action={doAct}
+            minLength={minLength}
+          />
         )}
       </Stack.Item>
     </Stack>

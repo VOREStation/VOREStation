@@ -1,0 +1,8 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Plushies can be interacted with again"
+  - qol: "Changeling helmet can eat more than just survival rations."
+  - bugfix: "Vox magclaws no longer slow you down when enabled."
+  - bugfix: "Holywater thresholds adjusted for horror elements."
+  - spellcheck: "fixes a typo with the bodysnatcher"

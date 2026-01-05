@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "This adds the ability to choose which bellies spontaneous prey will end up in. If left null, they will go into the preds currently selected belly as per usual. Allows for 4 directions."
+  - bugfix: "some typescript fixes (by kash)"

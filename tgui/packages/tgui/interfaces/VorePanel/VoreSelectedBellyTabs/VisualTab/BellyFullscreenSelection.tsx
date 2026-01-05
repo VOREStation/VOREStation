@@ -7,6 +7,8 @@ import { BellyFullscreenPreview } from './BellyFullscreenPreview';
 
 export const BellyFullscreenSelection = (props: {
   colors: string[];
+  liveColors: string[] | null;
+  alpha: number;
   editMode: boolean;
   belly_fullscreen: string;
   colorization_enabled: BooleanLike;
@@ -16,6 +18,8 @@ export const BellyFullscreenSelection = (props: {
 
   const {
     colors,
+    liveColors,
+    alpha,
     editMode,
     belly_fullscreen,
     colorization_enabled,
@@ -30,10 +34,12 @@ export const BellyFullscreenSelection = (props: {
             <Stack.Item grow />
             <Stack.Item>
               <BellyFullscreenPreview
-                colors={colors}
+                colors={editMode ? (liveColors ?? colors) : colors}
+                alpha={alpha}
                 belly_fullscreen={belly_fullscreen}
                 colorization_enabled={colorization_enabled}
                 possible_fullscreens={possible_fullscreens}
+                targetSize={360}
               />
             </Stack.Item>
             <Stack.Item grow />
@@ -74,6 +80,7 @@ export const BellyFullscreenSelection = (props: {
                     }
                   >
                     <MultiOverlayImage
+                      gallery
                       overlays={getOverlays(
                         fullscreen,
                         colors,
