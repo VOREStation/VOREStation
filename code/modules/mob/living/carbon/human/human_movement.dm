@@ -42,7 +42,7 @@
 			hal_pain = max(0, hal_pain - (painkiller_strength * 0.33)) //Painkillers are only 33% effective against halloss pain.
 			amount_damaged = max(0, amount_damaged - painkiller_strength) + hal_pain
 
-		else if(amount_damaged >= 25) //Still in enough pain for it to be significant?
+		if(amount_damaged >= 25) //Still in enough pain for it to be significant?
 			. += CLAMP((amount_damaged / 25), 0, 4) //Max of 4 slowdown from pain.
 
 	var/hungry = (500 - nutrition) / 5 //Fixed 500 here instead of our huge MAX_NUTRITION
