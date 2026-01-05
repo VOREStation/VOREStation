@@ -179,6 +179,7 @@ export const VoreSelectedBellyVisuals = (props: {
             belly_fullscreen_color3,
             belly_fullscreen_color4,
           ]}
+          alpha={belly_fullscreen_alpha}
           liveColors={[
             realtimeColor1,
             realtimeColor2,

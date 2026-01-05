@@ -18,9 +18,10 @@ export const MultiOverlayImage = (props: {
   overlays: Overlay[];
   size: number;
   targetSize: number;
+  alpha?: number;
   gallery?: boolean;
 }) => {
-  const { overlays, size, targetSize, gallery } = props;
+  const { overlays, size, targetSize, alpha, gallery } = props;
   const [src, setSrc] = useState<string>('');
   const blobRef = useRef<string>('');
 
@@ -126,6 +127,7 @@ export const MultiOverlayImage = (props: {
       width={targetSize}
       height={targetSize}
       style={{
+        opacity: (alpha ?? 255) / 255,
         transform: gallery ? 'translate(1%, 3%)' : undefined,
       }}
     />
