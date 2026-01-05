@@ -40,7 +40,8 @@
 			var/painkiller_strength = chem_effects[CE_PAINKILLER]
 			if(hal_pain > 25)
 				hal_pain = max(0, max(25, hal_pain - (painkiller_strength * 0.33))) //Painkillers are only 33% effective against halloss pain and can never lower your hal_pain below 25. It makes it less noticible at high levels, but it can't completely nullify it (unless on narcotics)
-		amount_damaged = max(0, amount_damaged - painkiller_strength) + hal_pain
+			amount_damaged = max(0, amount_damaged - painkiller_strength)
+		amount_damaged += hal_pain
 
 		if(amount_damaged >= 25) //Still in enough pain for it to be significant?
 			. += CLAMP((amount_damaged / 25), 0, 4) //Max of 4 slowdown from pain.
