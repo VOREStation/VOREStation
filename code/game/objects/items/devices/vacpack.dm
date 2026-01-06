@@ -129,7 +129,7 @@
 					continue
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
-			for(var/mob/living/L in target)
+			for(var/mob/living/L in oview(pull_range, target))
 				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
 					continue
 				L.singularity_pull(target, STAGE_THREE)
@@ -191,8 +191,8 @@
 				sucklimit -= 1
 				if(suckanim)
 					if(vac_conga < 100)
-						vac_conga += 2
-					addtimer(CALLBACK(src, PROC_REF(prepare_sucking), F, user, auto_setting, target), 0.2 SECONDS + vac_conga)
+						vac_conga += 3
+					addtimer(CALLBACK(src, PROC_REF(prepare_sucking), F, user, auto_setting, target), 0.3 SECONDS + vac_conga)
 				else
 					handle_consumption(F, user, auto_setting)
 			if(vac_conga > 0)
