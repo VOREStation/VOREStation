@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - rscadd: "Added a new vac-pack subtype and a new power level and effects."
+  - qol: "Vac-pack custom sounds and verbs and anim toggle are now editable vars."
