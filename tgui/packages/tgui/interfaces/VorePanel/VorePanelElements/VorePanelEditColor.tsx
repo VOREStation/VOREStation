@@ -65,8 +65,8 @@ export const VorePanelEditColor = (
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
 
   useEffect(() => {
-    const newHeColor = hsvaToHex(currentColor);
-    if (!isOpen && back_color !== newHeColor) {
+    const newHeColor = hsvaToHex(currentColor).toLowerCase();
+    if (!isOpen && back_color.toLowerCase() !== newHeColor) {
       act(action, { attribute: subAction, val: newHeColor });
     }
   }, [isOpen]);
