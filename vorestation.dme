@@ -858,6 +858,7 @@
 #include "code\datums\elements\climbable.dm"
 #include "code\datums\elements\conflict_checking.dm"
 #include "code\datums\elements\connect_loc.dm"
+#include "code\datums\elements\electrovoreable.dm"
 #include "code\datums\elements\footstep.dm"
 #include "code\datums\elements\footstep_override.dm"
 #include "code\datums\elements\godmode.dm"
