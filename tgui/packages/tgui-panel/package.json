@@ -5,13 +5,13 @@
 		"common": "workspace:*",
 		"dompurify": "^3.3.1",
 		"es-toolkit": "^1.43.0",
-		"jotai": "^2.16.0",
+		"jotai": "^2.16.1",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
 		"tgui": "workspace:*",
-		"tgui-core": "^5.6.0",
+		"tgui-core": "^5.7.2",
 		"tgui-dev-server": "workspace:*",
-		"zod": "^4.2.1"
+		"zod": "^4.3.5"
 	},
 	"private": true
 }
