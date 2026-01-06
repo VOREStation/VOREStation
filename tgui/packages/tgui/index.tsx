@@ -39,6 +39,7 @@ import { setupHotReloading } from 'tgui-dev-server/link/client';
 import { App } from './App';
 import { setDebugHotKeys } from './debug/use-debug';
 import { bus } from './events/listeners';
+import { setupHotKeys } from './hotkeys';
 import { render } from './renderer';
 import { createStackAugmentor } from './stack';
 
@@ -52,6 +53,12 @@ function setupApp() {
   window.__augmentStack__ = createStackAugmentor();
 
   setupGlobalEvents();
+  setupHotKeys({
+    keyUpVerb: 'KeyUp',
+    keyDownVerb: 'KeyDown',
+    // In the future you could send a winget here to get mousepos/size from the map here if it's necessary
+    verbParamsFn: (verb, key) => `${verb} "${key}" 0 0 0 0`,
+  });
   captureExternalLinks();
 
   Byond.subscribe((type, payload) => bus.dispatch({ type, payload }));
