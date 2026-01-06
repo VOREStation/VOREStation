@@ -129,7 +129,7 @@
 					continue
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
-			for(var/mob/living/L oview(pull_range, target))
+			for(var/mob/living/L in oview(pull_range, target))
 				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
 					continue
 				L.singularity_pull(target, STAGE_THREE)
