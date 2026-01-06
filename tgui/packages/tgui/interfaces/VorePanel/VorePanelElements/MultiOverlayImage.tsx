@@ -1,17 +1,26 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import { getImage } from '../../PublicLibraryWiki/WikiCommon/WikiColorIcon';
 import type { Overlay } from '../types';
 
 const imageCache = new Map<string, Promise<HTMLImageElement | null>>();
 
 function cachedGetImage(url: string) {
-  if (!imageCache.has(url)) {
-    imageCache.set(
-      url,
-      getImage(url).catch(() => null),
-    );
-  }
-  return imageCache.get(url)!;
+  const existing = imageCache.get(url);
+  if (existing) return existing;
+
+  const promise = getImage(url)
+    .then((img) => {
+      imageCache.set(url, Promise.resolve(img));
+      return img;
+    })
+    .catch(() => {
+      imageCache.delete(url);
+      return null;
+    });
+
+  imageCache.set(url, promise);
+  return promise;
 }
 
 export const MultiOverlayImage = (props: {
@@ -32,7 +41,7 @@ export const MultiOverlayImage = (props: {
 
       const images = await Promise.all(
         overlays.map(async (o, i) => {
-          const iconRef = o.icon ? Byond.iconRefMap?.[o.icon] : null;
+          const iconRef = o.icon ? getIconFromRefMap(o.icon) : null;
           if (!iconRef) return null;
           const url = `${iconRef}?state=${o.iconState}`;
           const img = await cachedGetImage(url);

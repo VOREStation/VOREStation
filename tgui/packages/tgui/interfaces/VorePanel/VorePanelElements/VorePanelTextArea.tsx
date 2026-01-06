@@ -66,12 +66,12 @@ const CountedTextElement = (props: {
           fluid
           maxLength={limit}
           value={entry}
+          onChange={setTextInput}
           onBlur={(value) => {
             if (value !== entry) {
               action(value, index);
             }
           }}
-          onChange={setTextInput}
         />
       </Stack.Item>
       <Stack.Item>
