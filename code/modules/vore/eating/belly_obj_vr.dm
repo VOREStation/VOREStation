@@ -661,6 +661,7 @@
 			temp.filters += filter(type = "alpha", icon = icon(I.icon, I.icon_state))
 			I.d_stage_overlay = temp
 			for(var/count in I.d_mult to 1 step 0.25)
+				// Note, this should be refactored to drop priority overlays
 				I.add_overlay(I.d_stage_overlay, TRUE)
 
 // SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
