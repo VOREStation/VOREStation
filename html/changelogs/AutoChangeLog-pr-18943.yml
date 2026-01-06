@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "moves all forceMoves for vore code to nom_atom"
-  - bugfix: "limits belly entered messages and transfer lookups"

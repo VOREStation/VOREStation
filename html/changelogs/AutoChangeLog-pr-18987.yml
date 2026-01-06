@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "You can no longer activate grenades in your hand while dead."
-  - code_imp: "Rightclick functionality with held objects is possible now."
-  - bugfix: "Fultons can no longer be deployed inside of things."

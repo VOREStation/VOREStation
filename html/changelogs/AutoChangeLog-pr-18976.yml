@@ -1,6 +1,0 @@
-author: "Aroliacue"
-delete-after: True
-changes:
-  - rscadd: "Added new xenomorph queen backplate to wing menu."
-  - image: "Added new sprites for xeno queen backplate."
-  - bugfix: "Fixed xenomorph tail (vwag) not being able to toggle off vwag."
