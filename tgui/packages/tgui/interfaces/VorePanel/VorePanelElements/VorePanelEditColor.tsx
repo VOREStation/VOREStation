@@ -65,13 +65,6 @@ export const VorePanelEditColor = (
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
 
   useEffect(() => {
-    const newHeColor = hsvaToHex(currentColor);
-    if (!isOpen && back_color !== newHeColor) {
-      act(action, { attribute: subAction, val: newHeColor });
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
     if (!isOpen) {
@@ -146,12 +139,20 @@ export const VorePanelEditColor = (
     );
   }
 
-  const handleSetColor = (
-    value: HsvaColor | ((prev: HsvaColor) => HsvaColor),
-  ) => {
+  function handleSetColor(value: HsvaColor | ((prev: HsvaColor) => HsvaColor)) {
     const newColor = typeof value === 'function' ? value(currentColor) : value;
     setCurrentColor(newColor);
-  };
+  }
+
+  function handleIsOpen(newState: boolean) {
+    setIsOpen(newState);
+    if (!newState) {
+      const newHeColor = hsvaToHex(currentColor).toLowerCase();
+      if (back_color.toLowerCase() !== newHeColor) {
+        act(action, { attribute: subAction, val: newHeColor });
+      }
+    }
+  }
 
   return (
     <>
@@ -163,7 +164,7 @@ export const VorePanelEditColor = (
       <Stack.Item shrink>
         {editMode && alpha === undefined ? (
           <Floating
-            onOpenChange={setIsOpen}
+            onOpenChange={handleIsOpen}
             placement="top-end"
             contentClasses="VorePanel__Floating"
             content={
