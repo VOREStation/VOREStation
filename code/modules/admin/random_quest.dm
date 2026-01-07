@@ -79,9 +79,9 @@
 	else
 		complete_quest = specific_quest
 
-	to_chat(src,span_huge("You have been granted a quest from above!"))
-	to_chat(src,span_notice("From somewhere deep inside yourself, a quest has been conjured. You feel a compulsion to complete the following activity:"))
-	to_chat(src,span_bold("[complete_quest]"))
-	to_chat(src,span_small("Please note that this is just a bit of fun, you should not use this an excuse to break rules or cause major disruptions for other players."))
+	to_chat(src, span_notice(span_huge("You have been granted a quest from above!")))
+	to_chat(src, span_notice("From somewhere deep inside yourself, a quest has been conjured. You feel a compulsion to complete the following activity:"))
+	to_chat(src, span_boldnotice("[complete_quest]"))
+	to_chat(src, span_notice(span_small("Please note that this is just a bit of fun, you should not use this an excuse to break rules or cause major disruptions for other players.")))
 
 	log_and_message_admins("[src.ckey] playing as [src.name] has been given the quest: [complete_quest]")
