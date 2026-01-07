@@ -705,7 +705,9 @@
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		if(istype(user,/mob/living/carbon/brain))
-			to_chat(user, span_warning("You try to move, but you are not the pilot! The exosuit doesn't respond."))
+			if(world.time - last_message > 20)
+				to_chat(user, span_warning("You try to move, but you are not the pilot! The exosuit doesn't respond."))
+				last_message = world.time
 			return 0
 		user.forceMove(get_turf(src))
 		to_chat(user, "You climb out from [src]")
@@ -713,7 +715,9 @@
 
 	var/obj/item/mecha_parts/component/hull/HC = internal_components[MECH_HULL]
 	if(!HC)
-		occupant_message(span_notice("You can't operate an exosuit that doesn't have a hull!"))
+		if(world.time - last_message > 20)
+			occupant_message(span_notice("You can't operate an exosuit that doesn't have a hull!"))
+			last_message = world.time
 		return
 
 	if(connected_port)
