@@ -284,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `whitelist` (
 -- If you are doing this with the cli you will have to tell it first to use something else as a delimiter instead of ;
 -- Otherwise the copy/paste will fail. Do not forget to revert the change in the end.
 DELIMITER //
-CREATE PROCEDURE `chatlogs_rounds_insert`(
+CREATE PROCEDURE IF NOT EXISTS `chatlogs_rounds_insert`(
   IN `p_round_id` BIGINT,
   IN `p_ckey` VARCHAR(45)
 )
@@ -306,7 +306,7 @@ BEGIN
   END IF;
 END//
 
-CREATE EVENT `chatlogs_logs_clear_old_logs`
+CREATE EVENT IF NOT EXISTS `chatlogs_logs_clear_old_logs`
 ON SCHEDULE EVERY 1 MONTH
 STARTS '2025-01-01 04:00:00'
 ON COMPLETION PRESERVE
