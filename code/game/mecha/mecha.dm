@@ -628,7 +628,7 @@
 		show_radial_occupant(user)
 		return
 	if(state)
-		occupant_message(span_red("Maintenance protocols in effect"))
+		occupant_message(span_warning("Maintenance protocols in effect"))
 		return
 
 	if(phasing)//Phazon and other mechs with phasing.
@@ -722,8 +722,10 @@
 			last_message = world.time
 		return 0
 	if(state)
-		occupant_message(span_warning("Maintenance protocols in effect"))
-		return
+		if(world.time - last_message > 20)
+			occupant_message(span_warning("Unable to move whilst in maintenance mode"))
+			last_message = world.time
+		return 0
 /*
 	if(zoom)
 		if(world.time - last_message > 20)
@@ -2549,7 +2551,7 @@
 	if(href_list["toggle_maint_access"])
 		if(usr != src.occupant)	return
 		if(state)
-			occupant_message(span_red("Maintenance protocols in effect"))
+			occupant_message(span_warning("Maintenance protocols in effect"))
 			return
 		maint_access = !maint_access
 		send_byjax(src.occupant,"exosuit.browser","t_maint_access","[maint_access?"Forbid":"Permit"] maintenance protocols")
