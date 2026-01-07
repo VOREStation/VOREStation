@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Clicking the ammo hud will swap firemodes for guns if applicable, now."

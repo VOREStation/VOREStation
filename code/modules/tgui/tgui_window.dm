@@ -381,19 +381,17 @@
 			reinitialize()
 		if("chat/resend")
 			SSchat.handle_resend(client, payload)
-		/* Does not work with tgui say, so not in use yet
 		if("oversizedPayloadRequest")
 			var/payload_id = payload["id"]
-			var/chunk_count = payload["chunkCount"]
-			var/permit_payload = chunk_count <= CONFIG_GET(number/tgui_max_chunk_count)
+			var/chunk_count = text2num(payload["chunkCount"])
+			var/permit_payload = chunk_count <= MAX_MESSAGE_CHUNKS
 			if(permit_payload)
 				create_oversized_payload(payload_id, payload["type"], chunk_count)
 			send_message("oversizePayloadResponse", list("allow" = permit_payload, "id" = payload_id))
 		if("payloadChunk")
 			var/payload_id = payload["id"]
 			append_payload_chunk(payload_id, payload["chunk"])
-			send_message("acknowlegePayloadChunk", list("id" = payload_id))
-		*/
+			send_message("acknowledgePayloadChunk", list("id" = payload_id))
 
 /datum/tgui_window/vv_edit_var(var_name, var_value)
 	return var_name != NAMEOF(src, id) && ..()

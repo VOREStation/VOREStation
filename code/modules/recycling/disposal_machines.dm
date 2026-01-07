@@ -559,7 +559,7 @@
 
 	T.assume_air(gas)
 
-/obj/machinery/disposal/hitby(atom/movable/source)
+/obj/machinery/disposal/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(!source.CanEnterDisposals())
 		return ..()
 
@@ -568,7 +568,7 @@
 		if(isliving(source))
 			var/mob/living/to_be_dunked = source
 			if(to_be_dunked.client)
-				log_and_message_admins("[source] was thrown into \the [src]", null)
+				log_and_message_admins("has thrown [source] into \the [src]", throwingdatum?.get_thrower())
 			//flush()
 			visible_message("\The [source] lands in \the [src].") // "and triggers the flush system!"
 		else

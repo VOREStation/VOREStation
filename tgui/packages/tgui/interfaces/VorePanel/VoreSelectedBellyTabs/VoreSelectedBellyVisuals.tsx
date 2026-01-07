@@ -1,6 +1,6 @@
+import { useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
-
 import type { BellyVisualData, HostMob } from '../types';
 import { VorePanelEditColor } from '../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
@@ -9,12 +9,14 @@ import { VoreSpriteAffects } from './VisualTab/VoreSpriteAffect';
 
 export const VoreSelectedBellyVisuals = (props: {
   editMode: boolean;
+  belly_name: string;
   bellyVisualData: BellyVisualData;
   hostMobtype: HostMob;
+  presets: string;
 }) => {
   const { act } = useBackend();
 
-  const { editMode, bellyVisualData, hostMobtype } = props;
+  const { editMode, belly_name, bellyVisualData, hostMobtype, presets } = props;
   const {
     belly_fullscreen,
     colorization_enabled,
@@ -28,6 +30,29 @@ export const VoreSelectedBellyVisuals = (props: {
     affects_voresprite,
   } = bellyVisualData;
 
+  const lastBellyRef = useRef<string | null>(null);
+  const [editedColors, setEditedColors] = useState<
+    Partial<Record<number, string>>
+  >({});
+
+  if (belly_name !== lastBellyRef.current) {
+    lastBellyRef.current = belly_name;
+    setEditedColors({});
+  }
+
+  const updateColor = (index: number, val: string) => {
+    setEditedColors((prev) => ({ ...prev, [index]: val }));
+  };
+
+  const liveColorsToUse = editMode
+    ? [
+        editedColors[0] ?? belly_fullscreen_color,
+        editedColors[1] ?? belly_fullscreen_color2,
+        editedColors[2] ?? belly_fullscreen_color3,
+        editedColors[3] ?? belly_fullscreen_color4,
+      ]
+    : null;
+
   return (
     <Stack vertical fill>
       <Stack.Item>
@@ -38,7 +63,7 @@ export const VoreSelectedBellyVisuals = (props: {
               action="set_attribute"
               subAction="b_affects_vore_sprites"
               editMode={editMode}
-              tooltip="Allows you to toggle if this belly should effect voresprites"
+              tooltip="Allows you to toggle if this belly should affect voresprites"
               active={!!affects_voresprite}
             />
           }
@@ -48,6 +73,7 @@ export const VoreSelectedBellyVisuals = (props: {
               editMode={editMode}
               bellyVisualData={bellyVisualData}
               hostMobtype={hostMobtype}
+              presets={presets}
             />
           )}
         </Section>
@@ -65,7 +91,7 @@ export const VoreSelectedBellyVisuals = (props: {
                         subAction="b_colorization_enabled"
                         editMode={editMode}
                         active={!!colorization_enabled}
-                        tooltip="Switches between the legacy pre-colored icon set and the modern colorable one."
+                        tooltip="Switches between legacy pre-colored icons and modern colorable overlay"
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Hide Prey HUD">
@@ -112,44 +138,47 @@ export const VoreSelectedBellyVisuals = (props: {
                       editMode={editMode}
                       action="set_attribute"
                       subAction="b_fullscreen_color"
-                      value_of={null}
                       back_color={belly_fullscreen_color}
                       name_of="Color 1:"
                       tooltip="Set the Vore FX overlay's first color."
+                      presets={presets}
+                      onRealtimeValue={(val) => updateColor(0, val)}
                     />
                     <VorePanelEditColor
                       editMode={editMode}
                       action="set_attribute"
                       subAction="b_fullscreen_color2"
-                      value_of={null}
                       back_color={belly_fullscreen_color2}
                       name_of="Color 2:"
                       tooltip="Set the Vore FX overlay's second color."
+                      presets={presets}
+                      onRealtimeValue={(val) => updateColor(1, val)}
                     />
                     <VorePanelEditColor
                       editMode={editMode}
                       action="set_attribute"
                       subAction="b_fullscreen_color3"
-                      value_of={null}
                       back_color={belly_fullscreen_color3}
                       name_of="Color 3:"
                       tooltip="Set the Vore FX overlay's third color."
+                      presets={presets}
+                      onRealtimeValue={(val) => updateColor(2, val)}
                     />
                     <VorePanelEditColor
                       editMode={editMode}
                       action="set_attribute"
                       subAction="b_fullscreen_color4"
-                      value_of={null}
                       back_color={belly_fullscreen_color4}
                       name_of="Color 4:"
                       tooltip="Set the Vore FX overlay's fourth color."
+                      presets={presets}
+                      onRealtimeValue={(val) => updateColor(3, val)}
                     />
                     <VorePanelEditColor
                       removePlaceholder
                       editMode={editMode}
                       action="set_attribute"
                       subAction="b_fullscreen_alpha"
-                      value_of={null}
                       back_color="#FFFFFF"
                       alpha={belly_fullscreen_alpha}
                       name_of="Alpha:"
@@ -170,6 +199,8 @@ export const VoreSelectedBellyVisuals = (props: {
             belly_fullscreen_color3,
             belly_fullscreen_color4,
           ]}
+          alpha={belly_fullscreen_alpha}
+          liveColors={liveColorsToUse}
           editMode={editMode}
           belly_fullscreen={belly_fullscreen}
           colorization_enabled={colorization_enabled}

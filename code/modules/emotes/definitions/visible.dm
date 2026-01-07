@@ -57,6 +57,7 @@
 	..()
 	if(istype(user))
 		user.Paralyse(2)
+		user.Sleeping(2)
 
 /decl/emote/visible/flash
 	key = "flash"

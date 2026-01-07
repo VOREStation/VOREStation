@@ -1,3 +1,4 @@
+// This is REQUIRED until we have SSinput!
 import { globalEvents, type KeyEvent } from 'tgui-core/events';
 import * as keycodes from 'tgui-core/keycodes';
 

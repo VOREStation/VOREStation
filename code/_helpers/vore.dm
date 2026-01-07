@@ -4,7 +4,7 @@
 
 /// Most basic check of them all.
 /// Checks if PRED can eat PREY.
-/proc/can_vore(mob/living/pred, mob/living/prey)
+/proc/can_vore(mob/living/pred, mob/living/prey, allow_incorporeal = FALSE)
 	if(pred == prey)
 		return FALSE
 	if(!istype(pred) || !istype(prey))
@@ -14,19 +14,22 @@
 	if(!is_vore_predator(pred))
 		return FALSE
 	if(prey.is_incorporeal() || pred.is_incorporeal())
-		return FALSE
+		if(!allow_incorporeal)
+			return FALSE
 	if(!pred.vore_selected)
 		return FALSE
 	if(!pred.can_be_afk_pred && (!pred.client || pred.away_from_keyboard))
 		return FALSE
 	if(!prey.can_be_afk_prey && (!prey.client || prey.away_from_keyboard))
 		return FALSE
+	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
+		return FALSE
 	return TRUE
 
 /// Basic spont vore check.
 /// Checks if both have spont vore enable
-/proc/can_spontaneous_vore(mob/living/pred, mob/living/prey)
-	if(!can_vore(pred, prey))
+/proc/can_spontaneous_vore(mob/living/pred, mob/living/prey, allow_incorporeal = FALSE)
+	if(!can_vore(pred, prey, allow_incorporeal))
 		return FALSE
 	if(!pred.can_be_drop_pred || !prey.can_be_drop_prey)
 		return FALSE
@@ -60,8 +63,8 @@
 		return FALSE
 	return TRUE
 
-/proc/can_phase_vore(mob/living/pred, mob/living/prey)
-	if(!can_spontaneous_vore(pred, prey))
+/proc/can_phase_vore(mob/living/pred, mob/living/prey, allow_incorporeal = FALSE)
+	if(!can_spontaneous_vore(pred, prey, allow_incorporeal))
 		return FALSE
 	if(!pred.phase_vore || !prey.phase_vore)
 		return FALSE
@@ -75,12 +78,5 @@
 	if(!pred.is_slipping && !prey.is_slipping)
 		return FALSE
 	if(world.time <= prey.slip_protect)
-		return FALSE
-	return TRUE
-
-/proc/can_animal_vore(mob/living/pred, mob/living/prey)
-	if(!can_vore(pred, prey))
-		return FALSE
-	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
 		return FALSE
 	return TRUE

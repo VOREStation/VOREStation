@@ -52,7 +52,7 @@ export const VoreSoulcatcher = (props: {
     <Section scrollable fill>
       <Stack vertical fill>
         {soulcatcher && (
-          <Stack.Item>
+          <Stack.Item grow>
             <VoreSoulcatcherSection
               soulcatcher={soulcatcher}
               overlayBellies={locationNames}
@@ -136,7 +136,7 @@ const VoreSoulcatcherSection = (props: {
       }
     >
       {!!active && (
-        <Stack vertical>
+        <Stack fill vertical>
           <Stack.Item>
             <LabeledList>
               <LabeledList.Item label="Captured Souls">
@@ -206,11 +206,11 @@ const VoreSoulcatcherSection = (props: {
             </LabeledList>
           </Stack.Item>
           <Stack.Divider />
-          <Stack.Item>
+          <Stack.Item grow>
             <VorePanelEditTextTabs
               noHighlight
               editMode={editMode}
-              messsageOptions={sc_message_data.possible_messages}
+              messsageOptionsLeft={sc_message_data.possible_messages}
               activeTab={sc_message_data.sc_subtab}
               tabAction="change_sc_message_option"
               tooltip={sc_message_data.tooltip}

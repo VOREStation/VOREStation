@@ -225,7 +225,7 @@
 	if(href_list["window_id"] == "statbrowser")
 		return TRUE
 	// Chunked messages will exceed the limit
-	if(href_list["tgui"] && href_list["totalPackets"])
+	if(href_list["tgui"] && href_list["type"] == "payloadChunk")
 		return TRUE
 	return FALSE
 

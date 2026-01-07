@@ -1,17 +1,10 @@
 import { useBackend } from 'tgui/backend';
-import {
-  Button,
-  LabeledList,
-  Section,
-  Stack,
-  Tabs,
-} from 'tgui-core/components';
+import { Button, Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { messageTabLabel } from '../../constants';
 import type { BellyDescriptionData } from '../../types';
-import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
-import { VorePanelEditTextArea } from '../../VorePanelElements/VorePanelTextArea';
+import { VorePanelEditTextTabs } from '../../VorePanelElements/VorePaneldEditTextTabs';
 
 export const VoreSelectedBellyDescriptionMatrix = (props: {
   showAll: BooleanLike;
@@ -106,93 +99,35 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
         </Stack.Item>
         <Stack.Item grow>
           <Stack fill vertical ml="5px">
-            <Stack.Item>
-              <Stack>
-                <Stack.Item>
-                  {!!displayed_message_types &&
-                    !!displayed_message_types.subtypes && (
-                      <Tabs>
-                        {displayed_message_types.subtypes.map((subtype) => (
-                          <Tabs.Tab
-                            key={subtype}
-                            selected={subtype === message_subtab}
-                            onClick={() => {
-                              if (subtype !== message_subtab) {
-                                act('change_message_type', { tab: subtype });
-                              }
-                            }}
-                          >
-                            {subtype}
-                          </Tabs.Tab>
-                        ))}
-                      </Tabs>
-                    )}
-                </Stack.Item>
-                <Stack.Item grow />
-                <Stack.Item>
-                  {!!displayed_message_types &&
-                    !!displayed_message_types.possible_messages && (
-                      <Tabs>
-                        {displayed_message_types.possible_messages.map(
-                          (message_tyxpe) => (
-                            <Tabs.Tab
-                              key={message_tyxpe}
-                              selected={message_tyxpe === selected_message}
-                              onClick={() => {
-                                if (message_tyxpe !== selected_message) {
-                                  act('set_current_message', {
-                                    tab: message_tyxpe,
-                                  });
-                                }
-                              }}
-                            >
-                              {message_tyxpe}
-                            </Tabs.Tab>
-                          ),
-                        )}
-                      </Tabs>
-                    )}
-                </Stack.Item>
-              </Stack>
-            </Stack.Item>
             <Stack.Item grow>
-              {!!selected_message && !!displayed_message_types && (
-                <Stack vertical fill>
-                  {!!displayed_message_types.button_action && (
-                    <Stack.Item>
-                      <LabeledList>
-                        <LabeledList.Item
-                          label={displayed_message_types.button_label}
-                        >
-                          <VorePanelEditSwitch
-                            action="set_attribute"
-                            subAction={displayed_message_types.button_action}
-                            editMode={editMode}
-                            active={!!displayed_message_types.button_data}
-                            tooltip={
-                              (displayed_message_types.button_data
-                                ? 'Dis'
-                                : 'En') +
-                              'ables ' +
-                              displayed_message_types.button_tooltip
-                            }
-                          />
-                        </LabeledList.Item>
-                      </LabeledList>
-                    </Stack.Item>
-                  )}
-                  <Stack.Item grow>
-                    <VorePanelEditTextArea
-                      editMode={editMode}
-                      tooltip={displayed_message_types.tooltip}
-                      limit={displayed_message_types.max_length}
-                      entry={displayed_message_types.active_message || ''}
-                      action={'set_attribute'}
-                      listAction={'b_msgs'}
-                      subAction={displayed_message_types.set_action}
-                    />
-                  </Stack.Item>
-                </Stack>
+              {!!displayed_message_types?.possible_messages && (
+                <VorePanelEditTextTabs
+                  editMode={editMode}
+                  messsageOptionsLeft={
+                    displayed_message_types.possible_messages
+                  }
+                  messsageOptionsRight={displayed_message_types.subtypes}
+                  activeTab={selected_message}
+                  activeSubTab={message_subtab}
+                  tabAction="set_current_message"
+                  subTabAction="change_message_type"
+                  tooltip={displayed_message_types.tooltip}
+                  maxLength={displayed_message_types.max_length}
+                  minLength={10}
+                  activeMessage={displayed_message_types.active_message}
+                  action="set_attribute"
+                  listAction="b_msgs"
+                  subAction={displayed_message_types.set_action}
+                  button_action="set_attribute"
+                  button_subAction={displayed_message_types.button_action}
+                  button_data={!!displayed_message_types.button_data}
+                  button_label={displayed_message_types.button_label}
+                  button_tooltip={
+                    (displayed_message_types.button_data ? 'Dis' : 'En') +
+                    'ables ' +
+                    displayed_message_types.button_tooltip
+                  }
+                />
               )}
             </Stack.Item>
           </Stack>

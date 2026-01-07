@@ -267,7 +267,7 @@
 		if(gargoyle.adminbus_trash || is_type_in_list(W, GLOB.edible_trash) && W.trash_eatable && !is_type_in_list(W, GLOB.item_vore_blacklist))
 			to_chat(user, span_warning("You slip [W] into [gargoyle]'s [lowertext(gargoyle.vore_selected.name)] ."))
 			user.drop_item()
-			W.forceMove(gargoyle.vore_selected)
+			gargoyle.vore_selected.nom_atom(W)
 			return
 	else if(!(W.flags & NOBLUDGEON))
 		user.setClickCooldown(user.get_attack_speed(W))
@@ -285,14 +285,14 @@
 		tail_image.layer = BODY_LAYER + ((dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : tail_layering)
 		add_overlay(tail_image)
 
-/obj/structure/gargoyle/hitby(atom/movable/source ,var/speed = THROWFORCE_SPEED_DIVISOR)
+/obj/structure/gargoyle/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(!gargoyle)
 		return
 	if(isitem(source) && gargoyle.vore_selected && gargoyle.trash_catching)
 		var/obj/item/I = source
 		if(gargoyle.adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
-			gargoyle.hitby(source, speed)
+			gargoyle.hitby(source, throwingdatum)
 			return
 	else if(isliving(source))
 		var/mob/living/L = source
@@ -301,7 +301,7 @@
 			if(gargoyle.can_be_drop_prey)
 				drop_prey_temp = TRUE
 				gargoyle.can_be_drop_prey = FALSE //Making sure the original gargoyle body is not the one getting throwvored instead.
-			gargoyle.hitby(L, speed)
+			gargoyle.hitby(L, throwingdatum)
 			if(drop_prey_temp)
 				gargoyle.can_be_drop_prey = TRUE
 			return

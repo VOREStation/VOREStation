@@ -26,9 +26,11 @@
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
 	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
-	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	var/charge_delay = 0  // How long it takes for the cell to start recharging after last use
 	var/robot_durability = 50
+
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
+
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
@@ -38,6 +40,7 @@
 
 /obj/item/cell/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/electrovoreable)
 	c_uid = cell_uid++
 	update_icon()
 	if(self_recharge)

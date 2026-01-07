@@ -1,5 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - qol: "removed the same-limb restriction on synth limb self repairs"
-  - bugfix: "fixed synths being able to get disfigured at full health by being non-surgically repaired."

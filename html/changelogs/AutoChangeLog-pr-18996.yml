@@ -1,0 +1,4 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - bugfix: "fixed mech maintenance mode causing issues for clients and server whilst trying to move"

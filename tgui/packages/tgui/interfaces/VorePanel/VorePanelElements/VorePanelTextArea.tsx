@@ -52,12 +52,11 @@ const CountedTextElement = (props: {
   entry: string;
   action: (value: string | string[], index?: number) => void;
   index?: number;
+  minLength?: number;
 }) => {
-  const { entry, limit, action, index } = props;
+  const { entry, limit, action, index, minLength = 0 } = props;
+  const [textInput, setTextInput] = useState(entry);
 
-  const ref = useRef<HTMLTextAreaElement | null>(null);
-
-  const currentCount = ref.current?.value.length || 0;
   return (
     <>
       <Stack.Item grow>
@@ -65,9 +64,9 @@ const CountedTextElement = (props: {
           height="100%"
           minHeight={calcLineHeight(limit, 16)}
           fluid
-          ref={ref}
           maxLength={limit}
           value={entry}
+          onChange={setTextInput}
           onBlur={(value) => {
             if (value !== entry) {
               action(value, index);
@@ -79,7 +78,9 @@ const CountedTextElement = (props: {
         <Stack>
           <Stack.Item grow />
           <Stack.Item>
-            <Box color="label">{`${currentCount} / ${limit}`}</Box>
+            <Box
+              color={textInput.length < minLength ? 'red' : 'label'}
+            >{`${textInput.length} / ${limit}`}</Box>
           </Stack.Item>
           <Stack.Item grow />
         </Stack>
@@ -94,8 +95,9 @@ const AreaMapper = (props: {
   action: (value: string | string[], index?: number) => void;
   exactLength: boolean;
   maxEntries: number;
+  minLength?: number;
 }) => {
-  const { entry, limit, action, exactLength, maxEntries } = props;
+  const { entry, limit, action, exactLength, maxEntries, minLength } = props;
   const version = useRef(0); // No state needed, we call a backend update
 
   const filledArray = useMemo(() => {
@@ -123,34 +125,40 @@ const AreaMapper = (props: {
       entry={singleEntry}
       action={performAction}
       index={index}
+      minLength={minLength}
     />
   ));
 };
 
-export const VorePanelEditTextArea = (props: {
-  /** Switch between Element editing and display */
-  editMode: boolean;
-  /** Our backend action on text area blur */
-  action: string;
-  /** Our secondary backend action on text area blur */
-  subAction?: string;
-  /** Our secondary backend action if we used a list as input on text area blur */
-  listAction?: string;
-  /** Our displayed tooltip displayed above all texts */
-  tooltip?: string;
-  /** The maximum length of each message */
-  limit: number;
-  /** The current displayed message or message array */
-  entry: string | string[];
-  /** Do we force the input to always send the maxEntries as list length to byond */
-  exactLength?: boolean;
-  /** The amount of possible list entries. By default 10 */
-  maxEntries?: number;
-  /** Should we disbale the copy paste legacy field for text to list inputs */
-  disableLegacyInput?: boolean;
-  /** Disable our special highlighting used on belly messages */
-  noHighlight?: boolean;
-}) => {
+export const VorePanelEditTextArea = (
+  props: {
+    /** Switch between Element editing and display */
+    editMode: boolean;
+    /** Our backend action on text area blur */
+    action: string;
+    /** The maximum length of each message */
+    limit: number;
+    /** The current displayed message or message array */
+    entry: string | string[];
+  } & Partial<{
+    /** Our secondary backend action on text area blur */
+    subAction: string;
+    /** Our secondary backend action if we used a list as input on text area blur */
+    listAction: string;
+    /** Our displayed tooltip displayed above all texts */
+    tooltip: string;
+    /** Do we force the input to always send the maxEntries as list length to byond */
+    exactLength: boolean;
+    /** The amount of possible list entries. By default 10 */
+    maxEntries: number;
+    /** Should we disbale the copy paste legacy field for text to list inputs */
+    disableLegacyInput: boolean;
+    /** Disable our special highlighting used on belly messages */
+    noHighlight: boolean;
+    /** Minimum text length, else warn */
+    minLength: number;
+  }>,
+) => {
   const { act } = useBackend();
 
   const {
@@ -165,6 +173,7 @@ export const VorePanelEditTextArea = (props: {
     maxEntries = 10,
     disableLegacyInput = false,
     noHighlight,
+    minLength,
   } = props;
 
   function doAct(value: string | string[]): void {
@@ -226,9 +235,15 @@ export const VorePanelEditTextArea = (props: {
             exactLength={exactLength}
             action={doAct}
             maxEntries={maxEntries}
+            minLength={minLength}
           />
         ) : (
-          <CountedTextElement limit={limit} entry={entry} action={doAct} />
+          <CountedTextElement
+            limit={limit}
+            entry={entry}
+            action={doAct}
+            minLength={minLength}
+          />
         )}
       </Stack.Item>
     </Stack>
