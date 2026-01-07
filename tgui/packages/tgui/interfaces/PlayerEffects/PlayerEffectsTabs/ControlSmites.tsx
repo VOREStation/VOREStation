@@ -72,6 +72,9 @@ export const ControlSmites = (props) => {
       <Button fluid onClick={() => act('elder_smite')}>
         Elder Smite
       </Button>
+      <Button fluid onClick={() => act('wet_floors')}>
+        Wet Surrounding Floor
+      </Button>
     </Section>
   );
 };

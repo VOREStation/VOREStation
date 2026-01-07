@@ -246,6 +246,9 @@
 	STOP_PROCESSING(SSprocessing, src)
 
 /obj/item/kinetic_crusher/machete/gauntlets/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	ready_toggle()
 
 /obj/item/kinetic_crusher/machete/gauntlets/process()

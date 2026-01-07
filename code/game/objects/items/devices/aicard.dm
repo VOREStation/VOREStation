@@ -22,6 +22,9 @@
 		to_chat(user, span_infoplain(span_bold("ERROR ERROR ERROR")))
 
 /obj/item/aicard/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/aicard/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui_state/custom_state)

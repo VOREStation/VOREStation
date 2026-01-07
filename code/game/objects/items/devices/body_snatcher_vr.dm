@@ -17,7 +17,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(user == M)
-			to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
+			to_chat(user,span_warning("A message pops up on the LED display, informing you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
 			return
 
 		if(!M.mind) //Do they have a mind?
@@ -104,6 +104,9 @@
 	else
 		to_chat(user,span_warning(" A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!"))
 
-/obj/item/bodysnatcher/attack_self(mob/living/user)
-		to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
-		return
+/obj/item/bodysnatcher/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
+	return

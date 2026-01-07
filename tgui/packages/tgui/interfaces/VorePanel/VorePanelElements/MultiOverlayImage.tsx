@@ -1,36 +1,47 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import { getImage } from '../../PublicLibraryWiki/WikiCommon/WikiColorIcon';
 import type { Overlay } from '../types';
 
 const imageCache = new Map<string, Promise<HTMLImageElement | null>>();
 
 function cachedGetImage(url: string) {
-  if (!imageCache.has(url)) {
-    imageCache.set(
-      url,
-      getImage(url).catch(() => null),
-    );
-  }
-  return imageCache.get(url)!;
+  const existing = imageCache.get(url);
+  if (existing) return existing;
+
+  const promise = getImage(url)
+    .then((img) => {
+      imageCache.set(url, Promise.resolve(img));
+      return img;
+    })
+    .catch(() => {
+      imageCache.delete(url);
+      return null;
+    });
+
+  imageCache.set(url, promise);
+  return promise;
 }
 
 export const MultiOverlayImage = (props: {
   overlays: Overlay[];
   size: number;
   targetSize: number;
+  alpha?: number;
+  gallery?: boolean;
 }) => {
-  const { overlays, size, targetSize } = props;
+  const { overlays, size, targetSize, alpha, gallery } = props;
   const [src, setSrc] = useState<string>('');
   const blobRef = useRef<string>('');
 
   const render = useCallback(
     async (canvas: OffscreenCanvas, ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.clearRect(0, 0, targetSize, targetSize);
-      ctx.imageSmoothingEnabled = false;
+      ctx.imageSmoothingEnabled = true;
 
       const images = await Promise.all(
         overlays.map(async (o, i) => {
-          const iconRef = o.icon ? Byond.iconRefMap?.[o.icon] : null;
+          const iconRef = o.icon ? getIconFromRefMap(o.icon) : null;
           if (!iconRef) return null;
           const url = `${iconRef}?state=${o.iconState}`;
           const img = await cachedGetImage(url);
@@ -51,7 +62,7 @@ export const MultiOverlayImage = (props: {
           const tempCtx = tempCanvas.getContext('2d');
           if (!tempCtx) continue;
 
-          tempCtx.imageSmoothingEnabled = false;
+          tempCtx.imageSmoothingEnabled = true;
           tempCtx.drawImage(
             image,
             0,
@@ -124,7 +135,10 @@ export const MultiOverlayImage = (props: {
       src={src}
       width={targetSize}
       height={targetSize}
-      style={{ transform: 'translate(1%, 3%)', imageRendering: 'pixelated' }}
+      style={{
+        opacity: (alpha ?? 255) / 255,
+        transform: gallery ? 'translate(1%, 3%)' : undefined,
+      }}
     />
   ) : null;
 };

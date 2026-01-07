@@ -1,0 +1,5 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "Ctrl+R in tgui works again"
+  - bugfix: "Passthrough in tgui works again"

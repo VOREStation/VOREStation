@@ -21,6 +21,9 @@
 	desc = "A pocket-sized plastic slip with a button in the middle. \"[pick(descstrings)]\" is written on the back."
 
 /obj/item/pizzavoucher/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 	if(!spent)
 		user.visible_message(span_notice("[user] presses a button on [src]!"))

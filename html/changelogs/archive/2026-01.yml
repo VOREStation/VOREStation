@@ -1,0 +1,62 @@
+2026-01-01:
+  Willburd:
+  - bugfix: Unsimmed turfs now have a properly set blast resistance
+2026-01-02:
+  Aroliacue:
+  - rscadd: Added new sets of modular security armor - Regular black/red and black/red/white
+      sets.
+  - image: Added icons for new black/red/white modular security armor.
+  - rscadd: Added black gas half-masks and security black gas half-masks to loadout
+      under masks section. Added security black gas half-masks to security lockers.
+  - image: Added digi sprites for riot, laserproof, bulletproof and combat leg guards.
+      Credit to @ballisticarmoredchan (Valinari) on Chomp for sprites and concept.
+  Diana:
+  - qol: Clicking the ammo hud will swap firemodes for guns if applicable, now.
+  Guti:
+  - rscadd: Added weather anomaly
+  - qol: Smoke from neutralized anomalies is now much short-lived
+  - bugfix: Fixed spawned anomalies from telesci not having cores
+  ReoDaProtovali:
+  - qol: removed the same-limb restriction on synth limb self repairs
+  - bugfix: fixed synths being able to get disfigured at full health by being non-surgically
+      repaired.
+2026-01-06:
+  Aroliacue:
+  - rscadd: Added premade liquid options to the Swoopie mob's stomach.
+  - image: Changed Swoopie's fullscreen overlays to use animated versions.
+  - spellcheck: Changed Swoopie's throat vbellies to use fancier worded progressive
+      stages rather than numbered stages.
+  - rscadd: Added new xenomorph queen backplate to wing menu.
+  - image: Added new sprites for xeno queen backplate.
+  - bugfix: Fixed xenomorph tail (vwag) not being able to toggle off vwag.
+  Diana:
+  - bugfix: Plushies can be interacted with again
+  - qol: Changeling helmet can eat more than just survival rations.
+  - bugfix: Vox magclaws no longer slow you down when enabled.
+  - bugfix: Holywater thresholds adjusted for horror elements.
+  - spellcheck: fixes a typo with the bodysnatcher
+  - bugfix: You can no longer activate grenades in your hand while dead.
+  - code_imp: Rightclick functionality with held objects is possible now.
+  - bugfix: Fultons can no longer be deployed inside of things.
+  - bugfix: Things that 'knock you out' will properly KO you now, instead of simply
+      paralyzing you.
+  Guti:
+  - bugfix: Fixed accidental mob vore not caring about prefs
+  - bugfix: Teshari CE cloak can now be properly selected
+  - spellcheck: Changes multiple instances of "Cheif" to "Chief"
+  - bugfix: Fixed Dark Maw not eating captured prey, if prefs aligned
+  - bugfix: Fixed lead ingots not being grindable
+  ItsSelis:
+  - config: new config entries to set discord channels for round start/end announcements
+  Kashargul:
+  - code_imp: moves all forceMoves for vore code to nom_atom
+  - bugfix: limits belly entered messages and transfer lookups
+  SatinIsle:
+  - rscadd: This adds the ability to choose which bellies spontaneous prey will end
+      up in. If left null, they will go into the preds currently selected belly as
+      per usual. Allows for 4 directions.
+  - bugfix: some typescript fixes (by kash)
+  - bugfix: Fixes the number of hours until a job is available.
+  Will:
+  - bugfix: Attempting to pass mob grabs to another player no longer drops a qdeleted
+      grab on the floor

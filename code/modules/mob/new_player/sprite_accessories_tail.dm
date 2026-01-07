@@ -1945,6 +1945,7 @@
 /datum/sprite_accessory/tail/xenotail_fullcolour_vwag
 	name = "xenomorph tail (fully colourable, vwag)"
 	desc = ""
-	icon_state = "xenotail_fullcolour_vwag"
+	icon_state = "xenotail_fullcolouralt"
+	ani_state = "xenotail_fullcolouralt_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY

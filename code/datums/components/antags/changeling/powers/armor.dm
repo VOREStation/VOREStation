@@ -58,7 +58,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 	canremove = FALSE
-	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD | DROPDEL | NOSTRIP
+	item_flags = THICKMATERIAL | AIRTIGHT | FLEXIBLEMATERIAL | DROPDEL | NOSTRIP
 
 /obj/item/clothing/shoes/magboots/changeling
 	desc = "A suction cupped mass of flesh, shaped like a foot."
@@ -74,6 +74,9 @@
 		slowdown += 1		//It's already tied to a slowdown suit, 6 slowdown is huge.
 
 /obj/item/clothing/shoes/magboots/changeling/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(magpulse)
 		item_flags &= ~NOSLIP
 		magpulse = 0

@@ -32,8 +32,8 @@
 		overlays.Cut() // Snowflake handling, avoiding SSoverlays
 	else
 		icon_state = enabled_icon_state
-		flags |= OVERLAY_QUEUED //Trick SSoverlays
-		SSoverlays.queue += src
+		//flags |= OVERLAY_QUEUED //Trick SSoverlays
+		//SSoverlays.queue += src
 
 /obj/effect/shield/proc/update_color()
 	if(disabled_for || diffused_for)
