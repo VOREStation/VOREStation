@@ -238,9 +238,13 @@
 /mob/living/hitby(atom/movable/source, datum/thrownthing/throwingdatum)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
-	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, throwingdatum?.get_thrower()) & COMSIG_CANCEL_HITBY)
-		return
+
 	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
+	var/mob/living/thrower = throwingdatum?.get_thrower()
+
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, thrower, speed) & COMSIG_CANCEL_HITBY)
+		return
+
 	if(isitem(source))
 		var/obj/item/O = source
 		var/dtype = O.damtype
@@ -261,7 +265,6 @@
 
 		apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
-		var/mob/thrower = throwingdatum?.get_thrower()
 		if(ismob(thrower))
 			var/client/assailant = thrower.client
 			if(assailant)
