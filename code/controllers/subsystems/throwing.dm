@@ -95,6 +95,7 @@ SUBSYSTEM_DEF(throwing)
 	. = ..()
 	src.thrownthing = thrownthing
 	RegisterSignal(thrownthing, COMSIG_QDELETING, PROC_REF(on_thrownthing_qdel))
+	RegisterSignal(thrownthing, COMSIG_LIVING_TURF_COLLISION, PROC_REF(hit_atom))
 	src.starting_turf = get_turf(thrownthing)
 	src.target_turf = get_turf(target)
 	if(target_turf != target)
@@ -134,6 +135,7 @@ SUBSYSTEM_DEF(throwing)
 
 /datum/thrownthing/Destroy()
 	UnregisterSignal(thrownthing, COMSIG_QDELETING)
+	UnregisterSignal(thrownthing, COMSIG_LIVING_TURF_COLLISION)
 	SSthrowing.processing -= thrownthing
 	SSthrowing.currentrun -= thrownthing
 	thrownthing.throwing = null
