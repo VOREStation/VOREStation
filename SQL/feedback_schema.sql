@@ -285,8 +285,8 @@ CREATE TABLE IF NOT EXISTS `whitelist` (
 -- Otherwise the copy/paste will fail. Do not forget to revert the change in the end.
 DELIMITER //
 CREATE PROCEDURE IF NOT EXISTS `chatlogs_rounds_insert`(
-  IN `p_round_id` BIGINT,
-  IN `p_ckey` VARCHAR(45)
+	IN `p_round_id` BIGINT,
+	IN `p_ckey` VARCHAR(45)
 )
 LANGUAGE SQL
 NOT DETERMINISTIC
@@ -295,15 +295,15 @@ SQL SECURITY INVOKER
 COMMENT 'Inserts a new row into \'chatlogs_rounds\' and deletes the oldest entry, if the ckey already has 10 round ids stored.'
 BEGIN
 
-  INSERT IGNORE INTO chatlogs_rounds(round_id, ckey)
-  VALUES (p_round_id, p_ckey);
+	INSERT IGNORE INTO chatlogs_rounds(round_id, ckey)
+	VALUES (p_round_id, p_ckey);
 
-  IF (SELECT COUNT(*) FROM chatlogs_rounds WHERE ckey = p_ckey) > 10 THEN
-    DELETE FROM chatlogs_rounds
-    WHERE ckey = p_ckey
-    ORDER BY round_id ASC
-    LIMIT 1;
-  END IF;
+	IF (SELECT COUNT(*) FROM chatlogs_rounds WHERE ckey = p_ckey) > 10 THEN
+		DELETE FROM chatlogs_rounds
+		WHERE ckey = p_ckey
+		ORDER BY round_id ASC
+		LIMIT 1;
+	END IF;
 END//
 
 CREATE EVENT IF NOT EXISTS `chatlogs_logs_clear_old_logs`
@@ -314,16 +314,16 @@ ENABLE
 COMMENT 'This event periodically clears the chatlog logs of very old logs'
 DO
 BEGIN
-  DELETE FROM chatlogs_logs
-  WHERE created_at < UNIX_TIMESTAMP(
-    DATE_SUB(NOW(), INTERVAL 3 MONTH)
-  ) * 1000;
+	DELETE FROM chatlogs_logs
+	WHERE created_at < UNIX_TIMESTAMP(
+		DATE_SUB(NOW(), INTERVAL 3 MONTH)
+	) * 1000;
 
-  DELETE cr
-  FROM chatlogs_rounds cr
-  LEFT JOIN chatlogs_logs cl
-    ON cr.round_id = cl.round_id
-  WHERE cl.round_id IS NULL;
+	DELETE cr
+	FROM chatlogs_rounds cr
+	LEFT JOIN chatlogs_logs cl
+		ON cr.round_id = cl.round_id
+	WHERE cl.round_id IS NULL;
 END//
 
 DELIMITER ;
