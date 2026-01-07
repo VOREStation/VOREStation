@@ -4,7 +4,6 @@
 	plane_masters[VIS_CH_HEALTH_VR] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
 	plane_masters[VIS_CH_BACKUP] 		= new /atom/movable/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
 	plane_masters[VIS_CH_VANTAG] 		= new /atom/movable/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
-	plane_masters[VIS_CH_STOMACH] 		= new /atom/movable/screen/plane_master{plane = PLANE_CH_STOMACH}			//Stomach
 	plane_masters[VIS_SOULCATCHER] 		= new /atom/movable/screen/plane_master{plane = PLANE_SOULCATCHER}			// Soulcatcher
 	plane_masters[VIS_EVENT_INVIS] 		= new /atom/movable/screen/plane_master{plane = PLANE_INVIS_EVENT}			//Things only specific players can see at any time.
 

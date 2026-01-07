@@ -199,9 +199,6 @@
 	if(vantag_hud)
 		compiled_vis |= VIS_CH_VANTAG
 
-	if(client?.prefs?.read_preference(/datum/preference/toggle/tummy_sprites))
-		compiled_vis += VIS_CH_STOMACH
-
 	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))
 		compiled_vis += VIS_SOULCATCHER
 
