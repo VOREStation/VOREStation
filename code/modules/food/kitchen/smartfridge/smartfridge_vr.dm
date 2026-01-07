@@ -19,13 +19,14 @@
 /*
  * Allow thrown items into smartfridges
  */
-/obj/machinery/smartfridge/hitby(var/atom/movable/source, speed)
+/obj/machinery/smartfridge/hitby(var/atom/movable/source, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(accept_check(source) && source.thrower)
+	var/mob/thrower = throwingdatum?.get_thrower()
+	if(accept_check(source) && thrower)
 		//Try to find what job they are via ID
 		var/obj/item/card/id/thrower_id
-		if(ismob(source.thrower))
-			var/mob/T = source.thrower
+		if(ismob(thrower))
+			var/mob/T = thrower
 			thrower_id = T.GetIdCard()
 
 		//98% chance the expert makes it

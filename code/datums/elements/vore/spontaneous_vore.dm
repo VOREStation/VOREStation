@@ -68,7 +68,7 @@
 		source.visible_message(span_vdanger("\The [drop_mob] falls right into \the [source]!"))
 		return COMSIG_CANCEL_FALL
 
-/datum/element/spontaneous_vore/proc/handle_hitby(mob/living/source, atom/movable/hitby, speed)
+/datum/element/spontaneous_vore/proc/handle_hitby(mob/living/source, atom/movable/hitby, mob/thrower, speed)
 	SIGNAL_HANDLER
 
 	//Handle object throw vore
@@ -80,7 +80,6 @@
 		if(source.stat != DEAD && source.trash_catching)
 			if(source.adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				source.visible_message(span_vwarning("[O] is thrown directly into [source]'s [lowertext(destination_belly.name)]!"))
-				O.throwing = 0
 				destination_belly.nom_atom(O)
 				return COMSIG_CANCEL_HITBY
 
@@ -105,7 +104,11 @@
 			destination_belly.nom_atom(thrown_mob) //Eat them!!!
 			source.visible_message(span_vwarning("[thrown_mob] is thrown right into [source]'s [lowertext(destination_belly.name)]!"))
 			source.on_throw_vore_special(TRUE, thrown_mob)
-			add_attack_logs(thrown_mob.thrower,source,"Devoured [thrown_mob.name] via throw vore.")
+
+			if(thrower)
+				add_attack_logs(thrower,source,"Devoured [thrown_mob.name] via throw vore.")
+			else
+				log_vore("[source] devoured [thrown_mob.name] via throw vore.")
 			return COMSIG_CANCEL_HITBY //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
@@ -116,7 +119,12 @@
 				return
 			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(destination_belly.name)] as [thrown_mob] flies into them!"))
 			destination_belly.nom_atom(source) //Eat them!!!
-			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
+			if(source.loc != thrown_mob.vore_selected)
+				source.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			if(thrower)
+				add_attack_logs(thrower,source,"Was Devoured by [thrown_mob.name] via throw vore.")
+			else
+				log_vore("[source] Was Devoured by [thrown_mob.name] via throw vore.")
 			return COMSIG_CANCEL_HITBY
 
 //source = person standing up

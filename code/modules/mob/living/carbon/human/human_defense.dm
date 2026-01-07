@@ -344,116 +344,109 @@ emp_act
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
+/mob/living/carbon/human/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(src.is_incorporeal())
 		return
 //	if(buckled && buckled == AM)
 //		return // Don't get hit by the thing we're buckled to.
 
-	if(isliving(source))
-		if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
-			return
+	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
+	var/mob/living/thrower = throwingdatum?.get_thrower()
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, thrower, speed) & COMSIG_CANCEL_HITBY)
+		return
 
 	if(isitem(source))
-		var/obj/item/O = source
-		if(stat != DEAD && trash_catching && vore_selected)
-			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
-				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
-				O.throwing = 0
-				vore_selected.nom_atom(O)
-				return
+		var/obj/item/thrown_object = source
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained() && !src.is_incorporeal())
-				if(isturf(O.loc) && can_catch(O))
+				if(isturf(thrown_object.loc) && can_catch(thrown_object))
 					if(!SEND_SIGNAL(src, COMSIG_HUMAN_ON_CATCH_THROW, source, speed))
-						put_in_active_hand(O)
-						visible_message(span_warning("[src] catches [O]!"))
+						put_in_active_hand(thrown_object)
+						visible_message(span_warning("[src] catches [thrown_object]!"))
 						throw_mode_off()
 						return
 
-		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
+		var/throw_damage = thrown_object.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
 		if(species && species.throwforce_absorb_threshold >= throw_damage)
-			visible_message(span_infoplain(span_bold("\The [O]") + " simply bounces off of [src]'s body!"))
+			visible_message(span_infoplain(span_bold("\The [thrown_object]") + " simply bounces off of [src]'s body!"))
 			return
 
 		var/zone
-		if (isliving(O.thrower))
-			var/mob/living/L = O.thrower
+		if (isliving(thrower))
+			var/mob/living/L = thrower
 			zone = check_zone(L.zone_sel.selecting)
 		else
 			zone = ran_zone(BP_TORSO,75)	//Hits a random part of the body, geared towards the chest
 
 		//check if we hit
 		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
+		if (thrown_object.throw_source)
+			var/distance = get_dist(thrown_object.throw_source, loc)
 			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = O.thrower)
+		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = thrower)
 
-		if(zone && O.thrower != src)
-			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
+		if(zone && thrower != src)
+			var/shield_check = check_shields(throw_damage, thrown_object, thrower, zone, "[thrown_object]")
 			if(shield_check == PROJECTILE_FORCE_MISS)
 				zone = null
 			else if(shield_check)
 				return
 
 		if(!zone)
-			visible_message(span_infoplain(span_bold("\The [O]") + " misses [src] narrowly!"))
+			visible_message(span_infoplain(span_bold("\The [thrown_object]") + " misses [src] narrowly!"))
 			return
-
-		O.throwing = 0		//it hit, so stop moving
 
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		src.visible_message(span_filter_warning("[span_red("[src] has been hit in the [hit_area] by [O].")]"))
+		src.visible_message(span_filter_warning("[span_red("[src] has been hit in the [hit_area] by [thrown_object].")]"))
 
-		if(ismob(O.thrower))
-			add_attack_logs(O.thrower,src,"Hit with thrown [O.name]")
+		if(ismob(thrower))
+			add_attack_logs(thrower,src,"Hit with thrown [thrown_object.name]")
 
-		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
+		var/armor = run_armor_check(affecting, "melee", thrown_object.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 		if(armor < 100)
-			apply_damage(throw_damage, O.damtype, zone, armor, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, thrown_object.damtype, zone, armor, is_sharp(thrown_object), has_edge(thrown_object), thrown_object)
 
 
 		//thrown weapon embedded object code.
-		if(O.damtype == BRUTE)
-			if (!is_robot_module(O))
-				var/sharp = is_sharp(O)
+		if(thrown_object.damtype == BRUTE)
+			if (!is_robot_module(thrown_object))
+				var/sharp = is_sharp(thrown_object)
 				var/damage = throw_damage
 				if(armor)
 					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/O.w_class : damage/(O.w_class*3)
-				var/embed_threshold = sharp? 5*O.w_class : 15*O.w_class
+				var/embed_chance = sharp? damage/thrown_object.w_class : damage/(thrown_object.w_class*3)
+				var/embed_threshold = sharp? 5*thrown_object.w_class : 15*thrown_object.w_class
 
 				//Sharp objects will always embed if they do enough damage.
 				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*O.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
-					affecting.embed(O)
+				if((sharp && prob(damage/(10*thrown_object.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+					affecting.embed(thrown_object)
 
 		// Begin BS12 momentum-transfer code.
-		var/mass = O.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
+		var/mass = thrown_object.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
-			var/dir = get_dir(O.throw_source, src)
+		if(thrown_object.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
+			var/dir = get_dir(thrown_object.throw_source, src)
 
 			visible_message(span_filter_warning("[span_red("[src] staggers under the impact!")]"),span_filter_warning("[span_red("You stagger under the impact!")]"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
-			if(!O || !src) return
+			if(!thrown_object || !src) return
 
-			if(O.loc == src && O.sharp) //Projectile is embedded and suitable for pinning.
+			if(thrown_object.loc == src && thrown_object.sharp) //Projectile is embedded and suitable for pinning.
 				var/turf/T = near_wall(dir,2)
 
 				if(T)
 					src.loc = T
-					visible_message(span_warning("[src] is pinned to the wall by [O]!"),span_warning("You are pinned to the wall by [O]!"))
+					visible_message(span_warning("[src] is pinned to the wall by [thrown_object]!"),span_warning("You are pinned to the wall by [thrown_object]!"))
 					src.anchored = TRUE
-					src.pinned += O
+					src.pinned += thrown_object
 
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
 /mob/living/carbon/human/proc/can_catch(var/obj/item/O)

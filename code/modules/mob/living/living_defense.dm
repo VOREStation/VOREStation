@@ -235,11 +235,16 @@
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/source, datum/thrownthing/throwingdatum)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
-	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
+
+	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
+	var/mob/living/thrower = throwingdatum?.get_thrower()
+
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, thrower, speed) & COMSIG_CANCEL_HITBY)
 		return
+
 	if(isitem(source))
 		var/obj/item/O = source
 		var/dtype = O.damtype
@@ -260,15 +265,12 @@
 
 		apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
-		O.throwing = 0		//it hit, so stop moving
-
-		if(ismob(O.thrower))
-			var/mob/M = O.thrower
-			var/client/assailant = M.client
+		if(ismob(thrower))
+			var/client/assailant = thrower.client
 			if(assailant)
-				add_attack_logs(M,src,"Hit by thrown [O.name]")
+				add_attack_logs(thrower, src, "Hit by thrown [O.name]")
 			if(ai_holder)
-				ai_holder.react_to_attack(O.thrower)
+				ai_holder.react_to_attack(thrower)
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = O.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
@@ -306,6 +308,8 @@
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_TURF_COLLISION, T, speed) & COMPONENT_LIVING_BLOCK_TURF_COLLISION)
+		return
 	src.take_organ_damage(12)	// used to be 5 * speed. That's a default of 25 and I dont see anything ever changing the "speed" value.
 	//src.Weaken(3)				// That is absurdly high so im just setting it to a flat 12 with a bit of stun ontop. //Stun is too dangerous
 	playsound(src, get_sfx("punch"), 50) //ouch sound

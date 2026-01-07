@@ -1109,7 +1109,7 @@
 		src.log_append_to_last("Armor saved.")
 	return
 
-/obj/mecha/hitby(atom/movable/source) //wrapper
+/obj/mecha/hitby(atom/movable/source, datum/thrownthing/throwingdatum) //wrapper
 	..()
 	src.mecha_log_message("Hit by [source].",1)
 	call((proc_res["dynhitby"]||src), "dynhitby")(source)
