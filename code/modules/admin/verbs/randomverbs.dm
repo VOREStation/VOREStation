@@ -32,6 +32,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 			M.drop_from_inventory(W)
 		//teleport person to cell
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(GLOB.prisonwarp)
 		if(ishuman(M))

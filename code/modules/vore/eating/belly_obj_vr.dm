@@ -1,3 +1,6 @@
+#define MAX_ENTRY_MESSAAGES 20
+#define ENTRY_MESSAGE_INTERVAL 1 SECOND
+
 //
 //  Belly system 2.0, now using objects instead of datums because EH at datums.
 //	How many times have I rewritten bellies and vore now? -Aro
@@ -64,9 +67,9 @@
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
 	var/is_feedable = TRUE					// If this belly shows up in belly selections for others.
 	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
-	var/belly_mob_mult = 1		//Multiplier for how filling mob types are in borg bellies
-	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
-	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
+	var/belly_mob_mult = 1					//Multiplier for how filling mob types are in borg bellies
+	var/belly_item_mult = 1 				//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
+	var/belly_overall_mult = 1				//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
 	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
 	var/absorbedrename_enabled = FALSE		// If absorbed prey are renamed.
@@ -103,14 +106,14 @@
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
 	var/autotransferwait = 10 				// Time between trying to transfer.
 	var/autotransferlocation				// Place to send them
-	var/autotransferextralocation = list()	// List of extra places this could go
+	var/list/autotransferextralocation = list()	// List of extra places this could go
 	var/autotransfer_whitelist = 0			// Flags for what can be transferred to the primary location
 	var/autotransfer_blacklist = 2			// Flags for what can not be transferred to the primary location, defaults to Absorbed
 	var/autotransfer_whitelist_items = 0	// Flags for what can be transferred to the primary location
 	var/autotransfer_blacklist_items = 0	// Flags for what can not be transferred to the primary location
 	var/autotransferchance_secondary = 0 	// % Chance of prey being autotransferred to secondary transfer location
 	var/autotransferlocation_secondary		// Second place to send them
-	var/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
+	var/list/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
 	var/autotransfer_secondary_whitelist = 0// Flags for what can be transferred to the secondary location
 	var/autotransfer_secondary_blacklist = 2// Flags for what can not be transferred to the secondary location, defaults to Absorbed
 	var/autotransfer_secondary_whitelist_items = 0// Flags for what can be transferred to the secondary location
@@ -267,6 +270,9 @@
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 	var/temperature_damage = FALSE			// Does temperature damage prey?
+	var/last_transfer_log = 0				// Prevent server message spam!
+	var/next_transfer_log = 0				// Prevent server message spam!
+	var/entrance_log_count = 0				// Entrance count before spawm
 	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
@@ -516,7 +522,6 @@
 			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
 			break
 
-
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
@@ -543,7 +548,15 @@
 	//Generic entered message
 	if(!owner.mute_entry && entrance_logs)
 		if(!istype(thing, /mob/observer))	//Don't have ghosts announce they're reentering the belly on death
-			to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+			if(world.time - last_transfer_log > ENTRY_MESSAGE_INTERVAL)
+				last_transfer_log = world.time
+				entrance_log_count = 0
+			if(world.time >= next_transfer_log)
+				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+				entrance_log_count++
+				if(entrance_log_count >= MAX_ENTRY_MESSAAGES)
+					next_transfer_log = world.time + ENTRY_MESSAGE_INTERVAL
+					last_transfer_log = world.time
 
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound && !istype(thing, /mob/observer))
@@ -648,182 +661,8 @@
 			temp.filters += filter(type = "alpha", icon = icon(I.icon, I.icon_state))
 			I.d_stage_overlay = temp
 			for(var/count in I.d_mult to 1 step 0.25)
+				// Note, this should be refactored to drop priority overlays
 				I.add_overlay(I.d_stage_overlay, TRUE)
-
-// SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
-// to certain non-belly atoms. Not called here as vore_fx() is usually only called if a mob is in the belly.
-// Don't forget it if you need to rework vore_fx().
-/obj/belly/proc/vore_fx(mob/living/L, var/severity = 0)
-	if(!istype(L))
-		return
-	if(!L.client)
-		return
-	if(L.previewing_belly && L.previewing_belly != src)
-		return
-	if(L.previewing_belly == src && L.vore_selected != src)
-		L.previewing_belly = null
-		return
-	if(!L.show_vore_fx)
-		L.clear_fullscreen("belly")
-		L.previewing_belly = null
-		return
-	if(belly_fullscreen)
-		if(colorization_enabled)
-			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly, severity) // preserving save data
-			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
-			if(!lookup_belly_path)
-				var/used_fullscreen = belly_fullscreen
-				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
-				belly_fullscreen = null
-				log_runtime("Icon datum was not defined for [used_fullscreen]")
-
-			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
-			F.icon = initial(lookup_belly_path.belly_icon)
-			F.cut_overlays()
-			var/image/I = image(F.icon, belly_fullscreen) //Would be cool if I could just include color and alpha in the image define so we don't have to copy paste
-			I.color = belly_fullscreen_color
-			I.alpha = alpha
-			F.add_overlay(I)
-			I = image(F.icon, belly_fullscreen+"-2")
-			I.color = belly_fullscreen_color2
-			I.alpha = alpha
-			F.add_overlay(I)
-			I = image(F.icon, belly_fullscreen+"-3")
-			I.color = belly_fullscreen_color3
-			I.alpha = alpha
-			F.add_overlay(I)
-			I = image(F.icon, belly_fullscreen+"-4")
-			I.color = belly_fullscreen_color4
-			I.alpha = alpha
-			F.add_overlay(I)
-			var/extra_mush = 0
-			var/extra_mush_color = mush_color
-			if(L.liquidbelly_visuals && ishuman(owner) && metabolism_overlay && metabolism_mush_ratio > 0)
-				var/mob/living/carbon/human/H = owner
-				var/datum/reagents/metabolism/ingested = H.ingested
-				if(ingested && ingested.total_volume > 0)
-					if(custom_ingested_color)
-						extra_mush_color = custom_ingested_color
-					else
-						extra_mush_color = ingested.get_color()
-					extra_mush = ingested.total_volume * metabolism_mush_ratio
-				if(!mush_overlay)
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = min(custom_ingested_alpha, L.max_voreoverlay_alpha)
-					I.pixel_y = -450 + ((450 / max(max_ingested, 1)) * min(max_ingested, ingested.total_volume))
-					F.add_overlay(I)
-			if(show_liquids && L.liquidbelly_visuals && mush_overlay && (owner.nutrition > 0 || max_mush == 0 || min_mush > 0 || (LAZYLEN(contents) * item_mush_val) > 0))
-				I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-				I.color = mush_color
-				I.alpha = min(mush_alpha, L.max_voreoverlay_alpha)
-				var/total_mush_content = owner.nutrition + LAZYLEN(contents) * item_mush_val + extra_mush
-				I.pixel_y = -450 + (450 / max(max_mush, 1) * max(min(max_mush, total_mush_content), 1))
-				if(I.pixel_y < -450 + (450 / 100 * min_mush))
-					I.pixel_y = -450 + (450 / 100 * min_mush)
-				var/stored_y = I.pixel_y
-				F.add_overlay(I)
-				if(metabolism_overlay && metabolism_mush_ratio > 0 && extra_mush > 0)
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = min(mush_alpha, (extra_mush / max(total_mush_content, 1)) * mush_alpha)
-					I.pixel_y = stored_y
-					F.add_overlay(I)
-			if(show_liquids && L.liquidbelly_visuals && liquid_overlay && reagents.total_volume)
-				if(digest_mode == DM_HOLD && item_digest_mode == IM_HOLD)
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "calm")
-				else
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "bubbles")
-				if(custom_reagentcolor)
-					I.color = custom_reagentcolor
-				else
-					I.color = reagentcolor
-				if(custom_reagentalpha)
-					I.alpha = custom_reagentalpha
-				else
-					I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
-				I.pixel_y = -450 + min((450 / custom_max_volume * reagents.total_volume), 450 / 100 * max_liquid_level)
-				I.alpha = min(I.alpha, L.max_voreoverlay_alpha)
-				F.add_overlay(I)
-			F.update_for_view(L.client.view)
-		else
-			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly/fixed, severity) //preserving save data
-			F.icon = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi'
-			F.cut_overlays()
-			F.add_overlay(image(F.icon, belly_fullscreen))
-			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))
-			F.add_overlay(image(F.icon, belly_fullscreen+"-3"))
-			F.add_overlay(image(F.icon, belly_fullscreen+"-4"))
-			var/image/I
-			var/extra_mush = 0
-			var/extra_mush_color = mush_color
-			if(L.liquidbelly_visuals && ishuman(owner) && metabolism_overlay && metabolism_mush_ratio > 0)
-				var/mob/living/carbon/human/H = owner
-				var/datum/reagents/metabolism/ingested = H.ingested
-				if(ingested && ingested.total_volume > 0)
-					if(custom_ingested_color)
-						extra_mush_color = custom_ingested_color
-					else
-						extra_mush_color = ingested.get_color()
-					extra_mush = ingested.total_volume * metabolism_mush_ratio
-				if(!mush_overlay)
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = custom_ingested_alpha
-					I.pixel_y = -450 + (450 / max(max_ingested, 1) * max(min(max_ingested, ingested.total_volume), 1))
-					F.add_overlay(I)
-			if(show_liquids && L.liquidbelly_visuals && mush_overlay && (owner.nutrition > 0 || max_mush == 0 || min_mush > 0 || (LAZYLEN(contents) * item_mush_val) > 0))
-				I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-				I.color = mush_color
-				I.alpha = mush_alpha
-				var/total_mush_content = owner.nutrition + LAZYLEN(contents) * item_mush_val + extra_mush
-				I.pixel_y = -450 + (450 / max(max_mush, 1) * max(min(max_mush, total_mush_content), 1))
-				if(I.pixel_y < -450 + (450 / 100 * min_mush))
-					I.pixel_y = -450 + (450 / 100 * min_mush)
-				var/stored_y = I.pixel_y
-				F.add_overlay(I)
-				if(metabolism_overlay && metabolism_mush_ratio > 0 && extra_mush > 0)
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = min(mush_alpha, (extra_mush / max(total_mush_content, 1)) * mush_alpha)
-					I.pixel_y = stored_y
-					F.add_overlay(I)
-			if(show_liquids && L.liquidbelly_visuals && liquid_overlay && reagents.total_volume)
-				if(digest_mode == DM_HOLD && item_digest_mode == IM_HOLD)
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "calm")
-				else
-					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "bubbles")
-				if(custom_reagentcolor)
-					I.color = custom_reagentcolor
-				else
-					I.color = reagentcolor
-				if(custom_reagentalpha)
-					I.alpha = custom_reagentalpha
-				else
-					I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
-				I.pixel_y = -450 + min((450 / custom_max_volume * reagents.total_volume), 450 / 100 * max_liquid_level)
-				F.add_overlay(I)
-			F.update_for_view(L.client.view)
-	else
-		L.clear_fullscreen("belly")
-
-	if(disable_hud && L != owner)
-		if(L?.hud_used?.hud_shown)
-			to_chat(L, span_vnotice("((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))"))
-			L.toggle_hud_vis(TRUE)
-
-/obj/belly/proc/vore_preview(mob/living/L)
-	if(!istype(L) || !L.client)
-		L.previewing_belly = null
-		return
-	L.previewing_belly = src
-	vore_fx(L)
-
-/obj/belly/proc/clear_preview(mob/living/L)
-	L.previewing_belly = null
-	L.clear_fullscreen("belly")
-
-
 
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
@@ -970,22 +809,23 @@
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-/obj/belly/proc/nom_mob(mob/prey, mob/user)
-	if(owner.stat == DEAD)
-		return
-	if(prey.buckled)
-		prey.buckled.unbuckle_mob()
+/obj/belly/proc/nom_atom(atom/movable/prey, mob/user)
+	if(ismob(prey))
+		var/mob/mob_prey = prey
+		if(owner.stat == DEAD)
+			return
+		if(mob_prey.buckled)
+			mob_prey.buckled.unbuckle_mob()
+		if(mob_prey.ckey)
+			GLOB.prey_eaten_roundstat++
+			if(owner.mind)
+				owner.mind.vore_prey_eaten++
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
-
-	if(prey.ckey)
-		GLOB.prey_eaten_roundstat++
-		if(owner.mind)
-			owner.mind.vore_prey_eaten++
 
 // new procs for handling digestion damage as a total rather than per-type
 // Returns the current total digestion damage per tick of a belly.
@@ -1255,243 +1095,6 @@
 /obj/belly/onDropInto(atom/movable/AM)
 	return null
 
-//Handle a mob struggling
-// Called from /mob/living/carbon/relaymove()
-/obj/belly/proc/relay_resist(mob/living/R, obj/item/C)
-	if (!(R in contents))
-		if(!C)
-			return  // User is not in this belly
-
-	R.setClickCooldown(50)
-
-	var/escape_attempt_owner_message = span_vwarning(belly_format_string(escape_attempt_messages_owner, R))
-	var/escape_attempt_prey_message = span_vwarning(belly_format_string(escape_attempt_messages_prey, R))
-	var/escape_fail_owner_message = span_vwarning(belly_format_string(escape_fail_messages_owner, R))
-	var/escape_fail_prey_message = span_vnotice(belly_format_string(escape_fail_messages_prey, R))
-
-	if(owner.stat) //If owner is stat (dead, KO) we can actually escape
-		escape_attempt_prey_message = span_vwarning("[escape_attempt_prey_message] (will take around [escapetime/10] seconds.)")
-		to_chat(R, escape_attempt_prey_message)
-		to_chat(owner, escape_attempt_owner_message)
-
-		if(do_after(R, escapetime, owner, target = src, timed_action_flags = IGNORE_INCAPACITATED))
-			if((owner.stat || escapable)) //Can still escape?
-				if(C)
-					release_specific_contents(C)
-					return
-				if(R.loc == src)
-					release_specific_contents(R)
-					return
-			else if(R.loc != src) //Aren't even in the belly. Quietly fail.
-				return
-			else //Belly became inescapable or mob revived
-				to_chat(R, escape_fail_prey_message)
-				to_chat(owner, escape_fail_owner_message)
-				return
-			return
-
-	var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, R))
-
-	if(displayed_message_flags & MS_FLAG_STRUGGLE_OUTSIDE)
-		var/struggle_outer_message = span_valert(belly_format_string(struggle_messages_outside, R))
-		if(private_struggle)
-			to_chat(owner, struggle_outer_message)
-		else
-			for(var/mob/M in hearers(4, owner))
-				M.show_message(struggle_outer_message, 2) // hearable
-
-	var/sound/struggle_snuggle
-	var/sound/struggle_rustle = sound(get_sfx("rustle"))
-
-	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && !private_struggle && resist_triggers_animation && affects_vore_sprites)
-		owner.vs_animate(belly_sprite_to_affect)
-
-	if(!private_struggle)
-		if(is_wet)
-			if(!fancy_vore)
-				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
-			else
-				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
-		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
-	if(prob(belchchance))//Unsure if this should go in escapable or not, leaving it here for now.
-		owner.emote("belch")
-	if(escapable) //If the stomach has escapable enabled.
-		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
-			to_chat(R, escape_attempt_prey_message)
-			to_chat(owner, escape_attempt_owner_message)
-			if(do_after(R, escapetime, target = src))
-				if(escapable && C)
-					var/escape_item_owner_message = span_vwarning(belly_format_string(escape_item_messages_owner, R, item = C))
-					var/escape_item_prey_message = span_vwarning(belly_format_string(escape_item_messages_prey, R, item = C))
-					var/escape_item_outside_message = span_vwarning(belly_format_string(escape_item_messages_outside, R, item = C))
-
-					release_specific_contents(C)
-					to_chat(R, escape_item_prey_message)
-					to_chat(owner, escape_item_owner_message)
-					if(!private_struggle)
-						for(var/mob/M in hearers(4, owner))
-							M.show_message(escape_item_outside_message, 2)
-					return
-				if(escapable && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
-					var/escape_owner_message = span_vwarning(belly_format_string(escape_messages_owner, R))
-					var/escape_prey_message = span_vwarning(belly_format_string(escape_messages_prey, R))
-					var/escape_outside_message = span_vwarning(belly_format_string(escape_messages_outside, R))
-
-					release_specific_contents(R)
-					to_chat(R, escape_prey_message)
-					to_chat(owner, escape_owner_message)
-					if(!private_struggle)
-						for(var/mob/M in hearers(4, owner))
-							M.show_message(escape_outside_message, 2)
-					return
-				else if(!(R.loc == src)) //Aren't even in the belly. Quietly fail.
-					return
-				else //Belly became inescapable.
-					to_chat(R, escape_fail_prey_message)
-					to_chat(owner, escape_fail_owner_message)
-					return
-
-		else if(prob(transferchance) && transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
-			var/obj/belly/dest_belly
-			for(var/obj/belly/B as anything in owner.vore_organs)
-				if(B.name == transferlocation)
-					dest_belly = B
-					break
-
-			if(!dest_belly)
-				to_chat(owner, span_vwarning("Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution."))
-				transferchance = 0
-				transferlocation = null
-				return
-			var/primary_transfer_owner_message = span_vwarning(belly_format_string(primary_transfer_messages_owner, R, dest = transferlocation))
-			var/primary_transfer_prey_message = span_vwarning(belly_format_string(primary_transfer_messages_prey, R, dest = transferlocation))
-
-			to_chat(R, primary_transfer_prey_message)
-			to_chat(owner, primary_transfer_owner_message)
-			if(C)
-				transfer_contents(C, dest_belly)
-				return
-			transfer_contents(R, dest_belly)
-			return
-
-		else if(prob(transferchance_secondary) && transferlocation_secondary) //After the first potential mess getting into, run the secondary one which might be even bigger of a mess.
-			var/obj/belly/dest_belly
-			for(var/obj/belly/B as anything in owner.vore_organs)
-				if(B.name == transferlocation_secondary)
-					dest_belly = B
-					break
-
-			if(!dest_belly)
-				to_chat(owner, span_vwarning("Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution."))
-				transferchance_secondary = 0
-				transferlocation_secondary = null
-				return
-
-			var/secondary_transfer_owner_message = span_vwarning(belly_format_string(secondary_transfer_messages_owner, R, dest = transferlocation_secondary))
-			var/secondary_transfer_prey_message = span_vwarning(belly_format_string(secondary_transfer_messages_prey, R, dest = transferlocation_secondary))
-
-			to_chat(R, secondary_transfer_prey_message)
-			to_chat(owner, secondary_transfer_owner_message)
-			if(C)
-				transfer_contents(C, dest_belly)
-				return
-			transfer_contents(R, dest_belly)
-			return
-
-		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
-			var/absorb_chance_owner_message = span_vwarning(belly_format_string(absorb_chance_messages_owner, R))
-			var/absorb_chance_prey_message = span_vwarning(belly_format_string(absorb_chance_messages_prey, R))
-
-			to_chat(R, absorb_chance_prey_message)
-			to_chat(owner, absorb_chance_owner_message)
-			digest_mode = DM_ABSORB
-			return
-
-		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Then, let's see if it should run the digest chance.
-			var/digest_chance_owner_message = span_vwarning(belly_format_string(digest_chance_messages_owner, R))
-			var/digest_chance_prey_message = span_vwarning(belly_format_string(digest_chance_messages_prey, R))
-
-			to_chat(R, digest_chance_prey_message)
-			to_chat(owner, digest_chance_owner_message)
-			digest_mode = DM_DIGEST
-			return
-		else if(prob(selectchance) && digest_mode != DM_SELECT) //Finally, let's see if it should run the selective mode chance.
-			var/select_chance_owner_message = span_vwarning(belly_format_string(select_chance_messages_owner, R))
-			var/select_chance_prey_message = span_vwarning(belly_format_string(select_chance_messages_prey, R))
-
-			to_chat(R, select_chance_prey_message)
-			to_chat(owner, select_chance_owner_message)
-			digest_mode = DM_SELECT
-
-		else //Nothing interesting happened.
-			to_chat(R, struggle_user_message)
-			to_chat(owner, span_vwarning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]."))
-			return
-	to_chat(R, struggle_user_message)
-
-/obj/belly/proc/relay_absorbed_resist(mob/living/R)
-	if (!(R in contents) || !R.absorbed)
-		return  // User is not in this belly or isn't actually absorbed
-
-	R.setClickCooldown(50)
-
-	var/struggle_user_message = span_valert(belly_format_string(absorbed_struggle_messages_inside, R, use_absorbed_count = TRUE))
-
-	if(displayed_message_flags & MS_FLAG_STRUGGLE_ABSORBED_OUTSIDE)
-		var/struggle_outer_message = span_valert(belly_format_string(absorbed_struggle_messages_outside, R, use_absorbed_count = TRUE))
-		if(private_struggle)
-			to_chat(owner, struggle_outer_message)
-		else
-			for(var/mob/M in hearers(4, owner))
-				M.show_message(struggle_outer_message, 2) // hearable
-
-	var/sound/struggle_snuggle
-	var/sound/struggle_rustle = sound(get_sfx("rustle"))
-
-	if(!private_struggle)
-		if(is_wet)
-			if(!fancy_vore)
-				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
-			else
-				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
-		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
-
-	//absorb resists
-	if(escapable || owner.stat) //If the stomach has escapable enabled or the owner is dead/unconscious
-		if(prob(escapechance) || owner.stat) //Let's have it check to see if the prey's escape attempt starts.
-			var/escape_attempt_absorbed_owner_message = span_vwarning(belly_format_string(escape_attempt_absorbed_messages_owner, R))
-			var/escape_attempt_absorbed_prey_message = span_vwarning(belly_format_string(escape_attempt_absorbed_messages_prey, R))
-
-			to_chat(R, escape_attempt_absorbed_prey_message)
-			to_chat(owner, escape_attempt_absorbed_owner_message)
-			if(do_after(R, escapetime, target = src))
-				if((escapable || owner.stat) && (R.loc == src) && prob(escapechance_absorbed)) //Does the escape attempt succeed?
-					var/escape_absorbed_owner_message = span_vwarning(belly_format_string(escape_absorbed_messages_owner, R))
-					var/escape_absorbed_prey_message = span_vwarning(belly_format_string(escape_absorbed_messages_prey, R))
-					var/escape_absorbed_outside_message = span_vwarning(belly_format_string(escape_absorbed_messages_outside, R))
-
-					release_specific_contents(R)
-					to_chat(R, escape_absorbed_prey_message)
-					to_chat(owner, escape_absorbed_owner_message)
-					if(!private_struggle)
-						for(var/mob/M in hearers(4, owner))
-							M.show_message(escape_absorbed_outside_message, 2)
-					return
-				else if(!(R.loc == src)) //Aren't even in the belly. Quietly fail.
-					return
-				else //Belly became inescapable or you failed your roll.
-					var/escape_fail_absorbed_owner_message = span_vwarning(belly_format_string(escape_fail_absorbed_messages_owner, R))
-					var/escape_fail_absorbed_prey_message = span_vnotice(belly_format_string(escape_fail_absorbed_messages_prey, R))
-
-					to_chat(R, escape_fail_absorbed_prey_message)
-					to_chat(owner, escape_fail_absorbed_owner_message)
-					return
-	to_chat(R, struggle_user_message)
-
 /obj/belly/proc/get_mobs_and_objs_in_belly()
 	var/list/see = list()
 	var/list/belly_mobs = list()
@@ -1506,11 +1109,15 @@
 	return see
 
 //Transfers contents from one belly to another
-/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
+/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = FALSE)
 	if(!(content in src) || !istype(target))
 		return
 	content.belly_cycles = 0
+	var/old_entrance_logs = target.entrance_logs
+	if(silent)
+		target.entrance_logs = FALSE
 	content.forceMove(target)
+	target.entrance_logs = old_entrance_logs
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))
@@ -1519,38 +1126,55 @@
 			I.wash(CLEAN_WASH)
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
+	if(!silent)
+		handle_visual_update()
+
+/obj/belly/proc/handle_visual_update()
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 	owner.handle_belly_update()
 
+//Autotransfer belly lookup
+/obj/belly/proc/compile_autotransfer_bellies()
+	var/list/primary_bellies = list()
+	var/list/secondary_bellies = list()
+
+	var/list/primary_locations = autotransferextralocation.Copy()
+	primary_locations += autotransferlocation
+	var/list/secondary_locations = autotransferextralocation_secondary.Copy()
+	secondary_locations += autotransferlocation_secondary
+	for(var/obj/belly/B in owner.vore_organs)
+		if(B.name in primary_locations)
+			primary_bellies += B
+		if(B.name in secondary_locations)
+			secondary_bellies += B
+
+	return list("primary" = primary_bellies, "secondary" = secondary_bellies)
+
 //Autotransfer callback
-/obj/belly/proc/check_autotransfer(var/atom/movable/prey)
-	if(!(prey in contents) || !prey.autotransferable) return
-	var/dest_belly_name
+/obj/belly/proc/check_autotransfer(var/atom/movable/prey, var/list/transfer_locations)
+	if(!(prey in contents) || !prey.autotransferable)
+		return FALSE
+	var/obj/belly/dest_belly
 	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
-			dest_belly_name = pick(autotransferextralocation_secondary + autotransferlocation_secondary)
+			dest_belly = pick(transfer_locations["secondary"])
 		if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
-			dest_belly_name = pick(autotransferextralocation_secondary + autotransferlocation_secondary)
+			dest_belly = pick(transfer_locations["secondary"])
 	if(autotransferlocation && prob(autotransferchance))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
-			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
+			dest_belly = pick(transfer_locations["primary"])
 		if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
-			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
-	if(!dest_belly_name) // Didn't transfer, so wait before retrying
+			dest_belly = pick(transfer_locations["primary"])
+	if(!dest_belly) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
-		return
-	var/obj/belly/dest_belly
-	for(var/obj/belly/B in owner.vore_organs)
-		if(B.name == dest_belly_name)
-			dest_belly = B
-			break
-	if(!dest_belly) return
+		return FALSE
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
-		if(dest_belly_name == autotransferlocation)
+		var/dest_belly_name = dest_belly.name
+		if(dest_belly.name == autotransferlocation)
 			autotransfer_owner_message = span_vwarning(belly_format_string(primary_autotransfer_messages_owner, prey, dest = dest_belly_name))
 			autotransfer_prey_message = span_vwarning(belly_format_string(primary_autotransfer_messages_prey, prey, dest = dest_belly_name))
 		else
@@ -1561,7 +1185,7 @@
 		if(entrance_logs)
 			to_chat(owner, autotransfer_owner_message)
 
-	transfer_contents(prey, dest_belly)
+	transfer_contents(prey, dest_belly, TRUE)
 	return TRUE
 
 //Autotransfer filter
@@ -2206,3 +1830,6 @@
 
 /obj/belly/proc/toggle_displayed_message_flags(flags_to_set)
 	displayed_message_flags ^= flags_to_set
+
+#undef MAX_ENTRY_MESSAAGES
+#undef ENTRY_MESSAGE_INTERVAL

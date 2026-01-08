@@ -25,6 +25,7 @@ export const VoreSelectedBelly = (props: {
   icon_overflow: BooleanLike;
   vore_words: Record<string, string[]>;
   editMode: boolean;
+  presets: string;
 }) => {
   const { act } = useBackend();
   const {
@@ -36,6 +37,7 @@ export const VoreSelectedBelly = (props: {
     icon_overflow,
     vore_words,
     editMode,
+    presets,
   } = props;
   const {
     belly_name,
@@ -86,8 +88,10 @@ export const VoreSelectedBelly = (props: {
   tabs[4] = belly_visual_data && (
     <VoreSelectedBellyVisuals
       editMode={editMode}
+      belly_name={belly_name}
       bellyVisualData={belly_visual_data}
       hostMobtype={host_mobtype}
+      presets={presets}
     />
   );
   tabs[5] = belly_interaction_data && (
@@ -112,6 +116,7 @@ export const VoreSelectedBelly = (props: {
     <VoreSelectedBellyLiquidOptions
       editMode={editMode}
       bellyLiquidData={belly_liquid_data}
+      presets={presets}
     />
   );
 

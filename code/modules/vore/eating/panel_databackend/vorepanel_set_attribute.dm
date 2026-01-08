@@ -822,25 +822,25 @@
 			host.vore_selected.clear_preview(host) //Clears the stomach overlay. This is a failsafe but shouldn't occur.
 			. = TRUE
 		if("b_fullscreen_color")
-			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color = newcolor
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color2")
-			var/newcolor2 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color2)
+			var/newcolor2 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor2)
 				host.vore_selected.belly_fullscreen_color2 = newcolor2
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color3")
-			var/newcolor3 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color3)
+			var/newcolor3 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor3)
 				host.vore_selected.belly_fullscreen_color3 = newcolor3
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color4")
-			var/newcolor4 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color4)
+			var/newcolor4 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor4)
 				host.vore_selected.belly_fullscreen_color4 = newcolor4
 				host.vore_selected.update_internal_overlay()
@@ -1003,7 +1003,7 @@
 			host.handle_belly_update()
 			host.updateVRPanel()
 		if("b_undergarment_color")
-			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.undergarment_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.undergarment_color = newcolor
 				host.handle_belly_update()
@@ -1015,17 +1015,17 @@
 			host.vore_selected.tail_to_change_to = tail_choice
 			. = TRUE
 		if("b_tail_color")
-			var/newcolor = tgui_color_picker(user, "Choose tail color.", "", host.vore_selected.tail_colouration)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_colouration = newcolor
 			. = TRUE
 		if("b_tail_color2")
-			var/newcolor = tgui_color_picker(user, "Choose tail secondary color.", "", host.vore_selected.tail_extra_overlay)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay = newcolor
 			. = TRUE
 		if("b_tail_color3")
-			var/newcolor = tgui_color_picker(user, "Choose tail tertiary color.", "", host.vore_selected.tail_extra_overlay2)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay2 = newcolor
 			. = TRUE

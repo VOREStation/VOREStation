@@ -1,7 +1,4 @@
-import { useDispatch } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
-
-import { dismissWarning } from './game/actions';
 
 let url: string | null = null;
 
@@ -14,11 +11,14 @@ setInterval(() => {
   });
 }, 5000);
 
-export const ReconnectButton = (props) => {
+export function ReconnectButton(props: {
+  onDismissedWarning: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   if (!url) {
     return null;
   }
-  const dispatch = useDispatch();
+  const { onDismissedWarning } = props;
+
   return (
     <Stack>
       <Stack.Item>
@@ -47,7 +47,7 @@ export const ReconnectButton = (props) => {
         <Button
           color="white"
           onClick={() => {
-            dispatch(dismissWarning());
+            onDismissedWarning(true);
           }}
         >
           Dismiss
@@ -55,4 +55,4 @@ export const ReconnectButton = (props) => {
       </Stack.Item>
     </Stack>
   );
-};
+}

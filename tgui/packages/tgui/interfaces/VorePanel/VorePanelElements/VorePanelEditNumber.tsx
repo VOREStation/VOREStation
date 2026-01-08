@@ -9,34 +9,37 @@ import {
 } from 'tgui-core/components';
 import { round, toFixed } from 'tgui-core/math';
 
-export const VorePanelEditNumber = (props: {
-  /** Switch between Element editing and display */
-  editMode: boolean;
-  /** Our backend action on number change */
-  action: string;
-  /** Our secondary backend action on number change */
-  subAction?: string;
-  /** The current displayed number */
-  value: number;
-  /** The minimum number allowed */
-  minValue: number;
-  /** The maximum number allowed */
-  maxValue: number;
-  /** The steps of the input */
-  step?: number;
-  /** The pixels required for each step */
-  stepPixel?: number;
-  /** The unit shown behind the number */
-  unit?: string;
-  /** The color of the displayed text */
-  color?: string;
-  /** Our displayed tooltip behind the input element */
-  tooltip?: string;
-  /** The position of the tooltip if static */
-  tooltipPosition?: ComponentProps<typeof Floating>['placement'];
-  /** The amount of fractional digits shown */
-  digits?: number;
-}) => {
+export const VorePanelEditNumber = (
+  props: {
+    /** Switch between Element editing and display */
+    editMode: boolean;
+    /** Our backend action on number change */
+    action: string;
+    /** The current displayed number */
+    value: number;
+    /** The minimum number allowed */
+    minValue: number;
+    /** The maximum number allowed */
+    maxValue: number;
+  } & Partial<{
+    /** Our secondary backend action on number change */
+    subAction: string;
+    /** The steps of the input */
+    step: number;
+    /** The pixels required for each step */
+    stepPixel: number;
+    /** The unit shown behind the number */
+    unit: string;
+    /** The color of the displayed text */
+    color: string;
+    /** Our displayed tooltip behind the input element */
+    tooltip: string;
+    /** The position of the tooltip if static */
+    tooltipPosition: ComponentProps<typeof Floating>['placement'];
+    /** The amount of fractional digits shown */
+    digits: number;
+  }>,
+) => {
   const { act } = useBackend();
 
   const {

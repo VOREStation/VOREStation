@@ -18,14 +18,14 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/cached_serialized_url_mappings
 	var/cached_serialized_url_mappings_transport_type
 
+	/// Whether or not this asset should be loaded in the "early assets" SS
+	var/early = FALSE
+
 	/// Whether or not this asset can be cached across rounds of the same commit under the `CACHE_ASSETS` config.
 	/// This is not a *guarantee* the asset will be cached. Not all asset subtypes respect this field, and the
 	/// config can, of course, be disabled.
 	/// Disable this if your asset can change between rounds on the same exact version of the code.
 	var/cross_round_cachable = FALSE
-
-	/// Whether or not this asset should be loaded in the "early assets" SS
-	var/early = FALSE
 
 /datum/asset/New()
 	GLOB.asset_datums[type] = src
@@ -114,6 +114,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for (var/asset_name in assets)
 		.[asset_name] = SSassets.transport.get_asset_url(asset_name, assets[asset_name])
 
+/datum/asset/simple/unregister()
+	for (var/asset_name in assets)
+		SSassets.transport.unregister_asset(asset_name)
 
 // For registering or sending multiple others at once
 /datum/asset/group
@@ -545,6 +548,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	if (!item_filename)
 		return
 	. = list("[item_filename]" = SSassets.transport.get_asset_url(item_filename))
+
+/datum/asset/changelog_item/unregister()
+	if (!item_filename)
+		return
+	SSassets.transport.unregister_asset(item_filename)
 
 //Generates assets based on iconstates of a single icon
 /datum/asset/simple/icon_states

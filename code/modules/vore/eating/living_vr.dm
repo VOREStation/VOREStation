@@ -775,6 +775,27 @@
 	var/belly = user.vore_selected
 	return begin_instant_nom(user, prey, user, belly)
 
+/mob/living/proc/get_current_spont_belly(atom/movable/preything)
+	var/direction_diff = angle2dir_cardinal(dir2angle(get_dir(src, preything)) - dir2angle(dir))
+	var/spont_belly_name
+	switch(direction_diff)
+		if(NORTH)
+			if(spont_belly_front)
+				spont_belly_name = spont_belly_front
+		if(SOUTH)
+			if(spont_belly_rear)
+				spont_belly_name = spont_belly_rear
+		if(EAST)
+			if(spont_belly_right)
+				spont_belly_name = spont_belly_right
+		if(WEST)
+			if(spont_belly_left)
+				spont_belly_name = spont_belly_left
+	for(var/obj/belly/lookup_belly in vore_organs)
+		if(lookup_belly.name == spont_belly_name)
+			return lookup_belly
+	return vore_selected
+
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
 	set category = "Abilities.General"
@@ -829,7 +850,7 @@
 		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
 			return
 		drop_item()
-		I.forceMove(vore_selected)
+		vore_selected.nom_atom(I)
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
