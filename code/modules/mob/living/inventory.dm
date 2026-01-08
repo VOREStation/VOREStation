@@ -153,23 +153,27 @@
 	set category = "Object"
 	set src = usr
 
+	if(ismecha(loc))
+		return
+
+	if(INCAPACITATED_IGNORING(src, INCAPABLE_GRAB))
+		return
+
+	if(stat || paralysis || stunned)
+		return
+
+	if(restrained())
+		return
+
 	if(!checkClickCooldown())
 		return
 
 	setClickCooldown(1)
 
-	if(istype(loc,/obj/mecha)) return
-
-	if(hand)
-		var/obj/item/W = l_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_l_hand()
-	else
-		var/obj/item/W = r_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_r_hand()
+	var/obj/item/inhand = get_active_hand()
+	if(inhand)
+		inhand.attack_self(src)
+		update_inv_active_hand()
 	return
 
 /mob/living/abiotic(var/full_body = 0)

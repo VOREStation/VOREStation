@@ -57,7 +57,7 @@
 	holder_type = /obj/item/holder/protoblob
 	var/hiding = FALSE
 	vore_icons = TRUE
-	vore_active = TRUE
+	vore_active = FALSE
 
 	plane = ABOVE_MOB_PLANE	//Necessary for overlay based icons
 
@@ -386,7 +386,7 @@
 				if(can_spontaneous_vore(src, target))
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
-					target.forceMove(vore_selected)
+					vore_selected.nom_atom(target)
 					to_chat(target,span_warning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.get_belly_name()]!"))
 	update_canmove()
 
@@ -572,6 +572,7 @@
 
 		if(blob.mob_radio)
 			blob.mob_radio.forceMove(src)
+			equip_to_appropriate_slot(blob.mob_radio) // Actually put it back on the mob in a slot
 			blob.mob_radio = null
 		if(blob.myid)
 			blob.myid = null

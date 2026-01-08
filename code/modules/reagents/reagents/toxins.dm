@@ -10,6 +10,7 @@
 	color = "#CF3600"
 	metabolism = REM * 0.25 // 0.05 by default. Hopefully enough to get some help, or die horribly, whatever floats your boat
 	filtered_organs = list(O_LIVER, O_KIDNEYS)
+	scannable = SCANNABLE_DIFFICULT
 	var/strength = 4 // How much damage it deals per unit
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
@@ -54,8 +55,9 @@
 
 /datum/reagent/toxin/amatoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	// Trojan horse. Waits until most of the toxin has gone through the body before dealing the bulk of it in one big strike.
-	if(volume < max_dose * 0.2)
-		M.adjustToxLoss(max_dose * strength * removed / (max_dose * 0.2))
+	if(volume < max_dose * 0.1)
+		M.adjustToxLoss(max_dose * strength) //Get hit all at once.
+		M.reagents.del_reagent(REAGENT_ID_AMATOXIN) //Remove the rest of ourselves.
 
 /datum/reagent/toxin/carpotoxin
 	name = REAGENT_CARPOTOXIN
@@ -364,7 +366,7 @@
 	metabolism = REM
 	strength = 3
 	mrate_static = TRUE
-	scannable = FALSE
+	scannable = SCANNABLE_SECRETIVE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
@@ -374,11 +376,12 @@
 		return
 	if(!(M.status_flags & FAKEDEATH))
 		M.emote("deathgasp")
+		M.tod = stationtime2text()
+		M.timeofdeath = world.time
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(1 * removed)
 	M.silent = max(M.silent, 10)
 	M.paralysis = max(M.paralysis, 10)
-	M.tod = stationtime2text()
 
 /datum/reagent/toxin/zombiepowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
@@ -394,7 +397,7 @@
 	color = "#666666"
 	metabolism = REM * 0.75
 	mrate_static = TRUE
-	scannable = FALSE
+	scannable = SCANNABLE_SECRETIVE
 	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
@@ -403,10 +406,11 @@
 		return
 	if(!(M.status_flags & FAKEDEATH))
 		M.emote("deathgasp")
+		M.tod = stationtime2text()
+		M.timeofdeath = world.time
 	M.status_flags |= FAKEDEATH
 	M.silent = max(M.silent, 10)
 	M.paralysis = max(M.paralysis, 10)
-	M.tod = stationtime2text()
 
 	if(prob(0.1))
 		M.visible_message("[M] wheezes.", "You wheeze sharply... it's cold.")
@@ -534,6 +538,7 @@
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
 	taste_description = "acid"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#8E18A9"
 	power = 10
 	meltdose = 4
@@ -546,6 +551,7 @@
 	description = "Some form of digestive slurry."
 	taste_description = "vomit"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#664330"
 	power = 2
 	meltdose = 30
@@ -619,6 +625,7 @@
 /datum/reagent/lexorin
 	name = REAGENT_LEXORIN
 	id = REAGENT_ID_LEXORIN
+	scannable = SCANNABLE_DIFFICULT
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	taste_description = "acid"
 	reagent_state = LIQUID
@@ -644,6 +651,7 @@
 /datum/reagent/mutagen
 	name = REAGENT_MUTAGEN
 	id = REAGENT_ID_MUTAGEN
+	scannable = SCANNABLE_ADVANCED
 	description = "Might cause unpredictable mutations. Keep away from children."
 	taste_description = "slime"
 	taste_mult = 0.9
@@ -711,6 +719,7 @@
 /datum/reagent/slimejelly
 	name = REAGENT_SLIMEJELLY
 	id = REAGENT_ID_SLIMEJELLY
+	scannable = SCANNABLE_ADVANCED
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
 	taste_description = "slime"
 	taste_mult = 1.3
@@ -739,6 +748,7 @@
 /datum/reagent/soporific
 	name = REAGENT_STOXIN
 	id = REAGENT_ID_STOXIN
+	scannable = SCANNABLE_ADVANCED
 	description = "An effective hypnotic used to treat insomnia."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
@@ -788,6 +798,7 @@
 /datum/reagent/chloralhydrate
 	name = REAGENT_CHLORALHYDRATE
 	id = REAGENT_ID_CHLORALHYDRATE
+	scannable = SCANNABLE_ADVANCED
 	description = "A powerful sedative."
 	taste_description = "bitterness"
 	reagent_state = SOLID
@@ -841,6 +852,7 @@
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = REAGENT_BEER2
 	id = REAGENT_ID_BEER2
+	scannable = SCANNABLE_SECRETIVE
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	taste_description = "beer"
 	reagent_state = LIQUID
@@ -857,6 +869,7 @@
 	id = REAGENT_ID_SEROTROTIUM
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
 	taste_description = "bitterness"
+	scannable = SCANNABLE_ADVANCED
 	reagent_state = LIQUID
 	color = "#202040"
 	metabolism = REM * 0.25
@@ -893,6 +906,7 @@
 /datum/reagent/cryptobiolin
 	name = REAGENT_CRYPTOBIOLIN
 	id = REAGENT_ID_CRYPTOBIOLIN
+	scannable = SCANNABLE_ADVANCED
 	description = "Cryptobiolin causes confusion and dizzyness."
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -918,6 +932,7 @@
 /datum/reagent/impedrezene
 	name = REAGENT_IMPEDREZENE
 	id = REAGENT_ID_IMPEDREZENE
+	scannable = SCANNABLE_ADVANCED
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	taste_description = "numbness"
 	reagent_state = LIQUID
@@ -941,6 +956,7 @@
 /datum/reagent/mindbreaker
 	name = REAGENT_MINDBREAKER
 	id = REAGENT_ID_MINDBREAKER
+	scannable = SCANNABLE_DIFFICULT
 	description = "A powerful hallucinogen that causes immediate, prolonged hallucinations in its users."
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -970,6 +986,7 @@
 /datum/reagent/slimetoxin
 	name = REAGENT_MUTATIONTOXIN
 	id = REAGENT_ID_MUTATIONTOXIN
+	scannable = SCANNABLE_DIFFICULT
 	description = "A corruptive toxin produced by slimes."
 	taste_description = "sludge"
 	reagent_state = LIQUID
@@ -999,6 +1016,7 @@
 /datum/reagent/aslimetoxin
 	name = REAGENT_DOCILITYTOXIN
 	id = REAGENT_ID_DOCILITYTOXIN
+	scannable = SCANNABLE_DIFFICULT
 	description = "A corruptive toxin produced by slimes."
 	taste_description = "sludge"
 	reagent_state = LIQUID
@@ -1033,6 +1051,7 @@
 /datum/reagent/shredding_nanites
 	name = REAGENT_SHREDDINGNANITES
 	id = REAGENT_ID_SHREDDINGNANITES
+	scannable = SCANNABLE_SECRETIVE
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -1050,6 +1069,7 @@
 /datum/reagent/irradiated_nanites
 	name = REAGENT_IRRADIATEDNANITES
 	id = REAGENT_ID_IRRADIATEDNANITES
+	scannable = SCANNABLE_SECRETIVE
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -1067,6 +1087,7 @@
 /datum/reagent/neurophage_nanites
 	name = REAGENT_NEUROPHAGENANITES
 	id = REAGENT_ID_NEUROPHAGENANITES
+	scannable = SCANNABLE_SECRETIVE
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be completely hostile."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -1085,6 +1106,7 @@
 /datum/reagent/salmonella
 	name = REAGENT_SALMONELLA
 	id = REAGENT_ID_SALMONELLA
+	scannable = SCANNABLE_ADVANCED
 	description = "A nasty bacteria found in spoiled food."
 	reagent_state = LIQUID
 	color = "#1E4600"

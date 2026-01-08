@@ -325,6 +325,34 @@
 			target.overlay_fullscreen("scrolls", /atom/movable/screen/fullscreen/scrolls, 1)
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, clear_fullscreen), "scrolls"), 20 SECONDS)
 
+		if("wet_floors")
+			var/chem
+			var/reagent_choice = tgui_alert(user, "Which reagent do you want to place on the floors around them?", "Reagent", list("Water", "Space Lube", "Other", "Cancel"))
+			if(!reagent_choice || (reagent_choice == "Cancel"))
+				return
+			if(reagent_choice ==  "Water")
+				chem = REAGENT_ID_WATER
+			if(reagent_choice == "Space Lube")
+				chem = REAGENT_ID_LUBE
+			if(reagent_choice == "Other")
+				var/list/chem_list = typesof(/datum/reagent)
+				var/datum/reagent/chemical = tgui_input_list(user, "Which chemical would you like to use?", "Chemicals", chem_list)
+				if(!chemical)
+					return
+				chem = chemical.id
+
+			if(!target)
+				return //Check target still exists after choices were made
+			var/turf/target_turf = get_turf(target)
+			for(var/turf/simulated/floor/surroundings in orange(1,target))
+				if(target_turf == surroundings) //Don't put it directly on our turf, just neighbouring ones
+					continue
+				var/datum/reagents/our_chem = new /datum/reagents(30) //Create some reagents, move them over, and clean up the datum afterwards
+				our_chem.add_reagent(chem, 30)
+				our_chem.trans_to_turf(surroundings,30)
+				our_chem.Destroy()
+
+
 		////////MEDICAL//////////////
 
 		if("health_scan")
@@ -802,6 +830,20 @@
 				target.uncloak()
 			else if(!target.cloaked)
 				target.cloak()
+
+		if("give_quest")
+			if(!target)
+				return
+			var/admin_quest =  tgui_alert(user, "Do you want to give a random quest or a personalised one?", "Quest!", list("Random", "Personalised", "Cancel"))
+			if(!admin_quest || (admin_quest == "Cancel"))
+				return
+			if(admin_quest == "Personalised")
+				var/specific_quest = tgui_input_text(user, "What is their quest?", "Quest!!!")
+				if(!specific_quest)
+					return
+				target.quest_from_above(specific_quest)
+			else
+				target.quest_from_above()
 
 
 		////////FIXES//////////////

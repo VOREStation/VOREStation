@@ -6,11 +6,11 @@
 	var/obj/machinery/filler_object/filler2
 	open_sound_powered = 'sound/machines/door/WideOpen.ogg'
 	close_sound_powered = 'sound/machines/door/WideClose.ogg'
+	update_adjacent_tiles = FALSE
 
 /obj/machinery/door/airlock/multi_tile/Initialize(mapload)
 	. = ..()
 	SetBounds()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(SetBounds))
 	apply_opacity_to_my_turfs(opacity)
 
 /obj/machinery/door/airlock/multi_tile/set_opacity()
@@ -21,10 +21,6 @@
 	for(var/turf/T in locs)
 		T.set_opacity(new_opacity)
 	update_nearby_tiles()
-
-/obj/machinery/door/airlock/multi_tile/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
-	return ..()
 
 /obj/machinery/door/airlock/multi_tile/proc/SetBounds()
 	SIGNAL_HANDLER

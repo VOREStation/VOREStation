@@ -202,6 +202,7 @@
 			if(prob(50))
 				to_chat(src, span_danger("You suddenly black out!"))
 				Paralyse(10)
+				Sleeping(10)
 			else if(!lying)
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
@@ -390,6 +391,7 @@
 				if(!paralysis && prob(30) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
 					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
+					Sleeping(10)
 					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
@@ -450,6 +452,7 @@
 				if(!paralysis && prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //1 in 1000 chance per tick.
 					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
+					Sleeping(10)
 					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
@@ -716,6 +719,7 @@
 
 			// 3 gives them one second to wake up and run away a bit!
 			Paralyse(3)
+			Sleeping(1)
 
 			// Enough to make us sleep as well
 			if(SA_pp > SA_sleep_min)
@@ -1251,11 +1255,16 @@
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
+		var/in_crit = FALSE
 		if((getOxyLoss() > (getMaxHealth()/2)) || (health <= (get_crit_point() * species.crit_mod)))
 			Paralyse(3)
+			Sleeping(3)
+			set_stat(UNCONSCIOUS)
+			blinded = TRUE
+			in_crit = TRUE
 
 		if(hallucination)
-			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
+			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
 				handle_hallucinations()
 				/* Stop spinning the view, it breaks too much.
 				if(client && prob(5))
@@ -1277,6 +1286,7 @@
 			to_chat(src, span_notice("You're in too much pain to keep going..."))
 			src.visible_message(span_infoplain(span_bold("[src]") + " slumps to the ground, too weak to continue fighting."))
 			Paralyse(10)
+			Sleeping(10)
 			setHalLoss(getMaxHealth() - 1)
 
 		if(tiredness) //tiredness for vore drain
@@ -1330,7 +1340,7 @@
 				if(prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client)
 					emote("snore")
 		//CONSCIOUS
-		else
+		else if(!in_crit)
 			set_stat(CONSCIOUS)
 			clear_alert("asleep")
 
@@ -1655,7 +1665,7 @@
 	if(!. || !healths)
 		return
 
-	if(stat == DEAD) //Dead
+	if(stat == DEAD || (status_effects & FAKEDEATH)) //Dead
 		healths.icon_state = "health7"	//DEAD healthmeter
 		return
 
@@ -1942,6 +1952,7 @@
 				if(prob(40) && !isbelly(loc))
 					emote("pain")
 			Paralyse(5)
+			Sleeping(5)
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
@@ -2091,7 +2102,7 @@
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = grab_hud(HEALTH_HUD)
 		var/image/health_us = grab_hud(HEALTH_VR_HUD)
-		if(stat == DEAD)
+		if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "-100" 	// X_X
 		else
 			holder.icon_state = RoundHealth((health-get_crit_point())/(getMaxHealth()-get_crit_point())*100)
@@ -2105,7 +2116,7 @@
 		var/image/holder = grab_hud(LIFE_HUD)
 		if(isSynthetic())
 			holder.icon_state = "hudrobo"
-		else if(stat == DEAD)
+		else if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
@@ -2120,7 +2131,7 @@
 		var/image/status_r = grab_hud(STATUS_R_HUD)
 		if (isSynthetic())
 			holder.icon_state = "hudrobo"
-		else if(stat == DEAD)
+		else if(stat == DEAD || (status_flags & FAKEDEATH))
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(has_virus())

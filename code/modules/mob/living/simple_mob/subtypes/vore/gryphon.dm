@@ -240,7 +240,7 @@
 	autotransfer_enabled = TRUE
 	autotransferchance = 50
 	autotransferwait = 5
-	belly_fullscreen = "VBO_intestines1"
+	belly_fullscreen = "VBOanim_intestine2"
 	vore_sound = "Tauric Swallow"
 
 /obj/belly/gryphon/stomach

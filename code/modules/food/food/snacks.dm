@@ -51,6 +51,9 @@
 	/// Yems.
 	food_can_insert_micro = TRUE
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/reagent_containers/food/snacks/Initialize(mapload)
 	. = ..()
 	if(nutriment_amt)
@@ -74,7 +77,7 @@
 					do_nom = TRUE
 
 			if(do_nom)
-				micro.forceMove(eater.vore_selected)
+				eater.vore_selected.nom_atom(micro)
 				food_inserted_micros -= micro
 
 	if(!reagents.total_volume)
@@ -87,7 +90,12 @@
 			eater.put_in_hands(TrashItem)
 		qdel(src)
 
-/obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(package && !user.incapacitated())
 		unpackage(user)
 
@@ -1264,13 +1272,17 @@
 	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
 	filling_color = "#6D6D00"
 	heated_reagents = list(REAGENT_ID_DOCTORSDELIGHT = 5, REAGENT_ID_HYPERZINE = 0.75, REAGENT_ID_SYNAPTIZINE = 0.25)
-	var/has_been_heated = 0
+	var/has_been_heated = FALSE
+	special_handling = TRUE
 
 /obj/item/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(has_been_heated)
 		to_chat(user, span_notice("The heating chemicals have already been spent."))
 		return
-	has_been_heated = 1
+	has_been_heated = TRUE
 	user.visible_message(span_notice("[user] crushes \the [src] package."), "You crush \the [src] package and feel a comfortable heat build up. Now just to wait for it to be ready.")
 	spawn(200)
 		if(!QDELETED(src))
@@ -1953,12 +1965,16 @@
 
 	var/wrapped = 0
 	var/monkey_type = "Monkey"
+	special_handling = TRUE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 10)
 
-/obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(wrapped)
 		Unwrap(user)
 
@@ -1973,24 +1989,31 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.unEquip(src)
+	if(possessed_voice && LAZYLEN(possessed_voice))
+		var/mob/living/voice/V = possessed_voice[1]
+		V.mind.transfer_to(H)
+		H.tf_mob_holder = V.tf_mob_holder
+		qdel(V)
 	qdel(src)
-	return 1
+	return H
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	to_chat(user, "You unwrap the cube.")
-	wrapped = 0
+	wrapped = FALSE
 	flags |= OPENCONTAINER
 	return
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.visible_message(span_warning("A screeching creature bursts out of [M]'s chest!"))
-		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
-		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
-	Expand()
+	var/mob/living/Prey = Expand()
+
+	if(!isliving(M))
+		return
+
+	var/mob/living/Pred = M
+	if(Pred.can_be_drop_pred && Pred.food_vore && Pred.vore_selected)
+		Pred.vore_selected.nom_atom(Prey)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent(REAGENT_ID_WATER))
@@ -4182,8 +4205,10 @@
 		return
 	..()
 
-/obj/item/pizzabox/attack_self( mob/user as mob )
-
+/obj/item/pizzabox/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if( boxes.len > 0 )
 		return
 
@@ -4194,7 +4219,7 @@
 
 	update_icon()
 
-/obj/item/pizzabox/attackby( obj/item/I as obj, mob/user as mob )
+/obj/item/pizzabox/attackby(obj/item/I, mob/user)
 	if( istype(I, /obj/item/pizzabox/) )
 		var/obj/item/pizzabox/box = I
 

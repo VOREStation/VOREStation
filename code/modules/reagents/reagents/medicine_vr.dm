@@ -5,7 +5,7 @@
 	taste_description = "milk"
 	reagent_state = LIQUID
 	color = "#d5e2e5"
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
@@ -28,7 +28,7 @@
 	metabolism = 0.1 //Lasts up to 200 seconds if you give 20u which is OD.
 	mrate_static = TRUE
 	overdose = 20 //High OD. This is to make numbing bites have somewhat of a downside if you get bit too much. Have to go to medical for dialysis.
-	scannable = 0 //Let's not have medical mechs able to make an extremely strong organic painkiller
+	scannable = SCANNABLE_ADVANCED //Let's not have medical mechs able to make an extremely strong organic painkiller
 	wiki_flag = WIKI_SPOILER
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_DRUG
@@ -73,7 +73,7 @@
 	reagent_state = LIQUID
 	color = "#750404"
 	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
@@ -93,7 +93,7 @@
 	reagent_state = LIQUID
 	color = "#b4dcdc"
 	overdose = 5
-	scannable = 0
+	scannable = SCANNABLE_BENEFICIAL
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_DRUG
@@ -113,7 +113,7 @@
 	color = "#003153" //Blue!
 	metabolism = REM * 0.25//20 ticks to do things per unit injected. This means injecting 30u will give you 10 minutes to do what you need.
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
@@ -129,6 +129,7 @@
 	description = "A chemical compound that causes a dangerously powerful fat-burning reaction."
 	taste_description = "blandness"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_BENEFICIAL
 	color = "#47AD6D"
 	overdose = REAGENTS_OVERDOSE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
@@ -146,6 +147,7 @@
 	taste_description = "blubber"
 	reagent_state = LIQUID
 	color = "#61731C"
+	scannable = SCANNABLE_BENEFICIAL
 	overdose = REAGENTS_OVERDOSE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_DIET
@@ -161,6 +163,7 @@
 	description = "A chemical that instantly transforms the consumer into another creature."
 	taste_description = "luck"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_SECRETIVE
 	color = "#a754de"
 	scannable = 1
 	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
@@ -272,7 +275,7 @@
 	taste_description = "change"
 	reagent_state = LIQUID
 	color = "#ffffff"
-	scannable = 1
+	scannable = SCANNABLE_SECRETIVE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 

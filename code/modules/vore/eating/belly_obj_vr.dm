@@ -1,3 +1,6 @@
+#define MAX_ENTRY_MESSAAGES 20
+#define ENTRY_MESSAGE_INTERVAL 1 SECOND
+
 //
 //  Belly system 2.0, now using objects instead of datums because EH at datums.
 //	How many times have I rewritten bellies and vore now? -Aro
@@ -64,9 +67,9 @@
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
 	var/is_feedable = TRUE					// If this belly shows up in belly selections for others.
 	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
-	var/belly_mob_mult = 1		//Multiplier for how filling mob types are in borg bellies
-	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
-	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
+	var/belly_mob_mult = 1					//Multiplier for how filling mob types are in borg bellies
+	var/belly_item_mult = 1 				//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
+	var/belly_overall_mult = 1				//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
 	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
 	var/absorbedrename_enabled = FALSE		// If absorbed prey are renamed.
@@ -103,14 +106,14 @@
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
 	var/autotransferwait = 10 				// Time between trying to transfer.
 	var/autotransferlocation				// Place to send them
-	var/autotransferextralocation = list()	// List of extra places this could go
+	var/list/autotransferextralocation = list()	// List of extra places this could go
 	var/autotransfer_whitelist = 0			// Flags for what can be transferred to the primary location
 	var/autotransfer_blacklist = 2			// Flags for what can not be transferred to the primary location, defaults to Absorbed
 	var/autotransfer_whitelist_items = 0	// Flags for what can be transferred to the primary location
 	var/autotransfer_blacklist_items = 0	// Flags for what can not be transferred to the primary location
 	var/autotransferchance_secondary = 0 	// % Chance of prey being autotransferred to secondary transfer location
 	var/autotransferlocation_secondary		// Second place to send them
-	var/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
+	var/list/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
 	var/autotransfer_secondary_whitelist = 0// Flags for what can be transferred to the secondary location
 	var/autotransfer_secondary_blacklist = 2// Flags for what can not be transferred to the secondary location, defaults to Absorbed
 	var/autotransfer_secondary_whitelist_items = 0// Flags for what can be transferred to the secondary location
@@ -127,7 +130,7 @@
 	//Actual full digest modes
 	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_SELECT,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB, "Slow Body Digestion" = DM_FLAG_SLOWBODY, "Muffle Items" = DM_FLAG_MUFFLEITEMS, "TURBO MODE" = DM_FLAG_TURBOMODE)
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB, "Slow Body Digestion" = DM_FLAG_SLOWBODY, "Muffle Items" = DM_FLAG_MUFFLEITEMS, "TURBO MODE" = DM_FLAG_TURBOMODE, "Absorbed prey can devour" = DM_FLAG_ABSORBEDVORE)
 	//Item related modes
 	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST,IM_DIGEST_PARALLEL)
 	//drain modes
@@ -267,6 +270,9 @@
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 	var/temperature_damage = FALSE			// Does temperature damage prey?
+	var/last_transfer_log = 0				// Prevent server message spam!
+	var/next_transfer_log = 0				// Prevent server message spam!
+	var/entrance_log_count = 0				// Entrance count before spawm
 	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
@@ -516,7 +522,6 @@
 			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
 			break
 
-
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
@@ -543,7 +548,15 @@
 	//Generic entered message
 	if(!owner.mute_entry && entrance_logs)
 		if(!istype(thing, /mob/observer))	//Don't have ghosts announce they're reentering the belly on death
-			to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+			if(world.time - last_transfer_log > ENTRY_MESSAGE_INTERVAL)
+				last_transfer_log = world.time
+				entrance_log_count = 0
+			if(world.time >= next_transfer_log)
+				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+				entrance_log_count++
+				if(entrance_log_count >= MAX_ENTRY_MESSAAGES)
+					next_transfer_log = world.time + ENTRY_MESSAGE_INTERVAL
+					last_transfer_log = world.time
 
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound && !istype(thing, /mob/observer))
@@ -588,9 +601,9 @@
 		var/taste
 		if(can_taste && living_mob.loc == src && (taste = living_mob.get_taste_message(FALSE))) // Prevent indirect tasting
 			to_chat(owner, span_vnotice("[living_mob] tastes of [taste]."))
-		vore_fx(living_mob, TRUE)
+		vore_fx(living_mob)
 		if(owner.previewing_belly == src)
-			vore_fx(owner, TRUE)
+			vore_fx(owner)
 		//Stop AI processing in bellies
 		if(living_mob.ai_holder)
 			living_mob.ai_holder.go_sleep()
@@ -648,12 +661,13 @@
 			temp.filters += filter(type = "alpha", icon = icon(I.icon, I.icon_state))
 			I.d_stage_overlay = temp
 			for(var/count in I.d_mult to 1 step 0.25)
+				// Note, this should be refactored to drop priority overlays
 				I.add_overlay(I.d_stage_overlay, TRUE)
 
 // SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
 // to certain non-belly atoms. Not called here as vore_fx() is usually only called if a mob is in the belly.
 // Don't forget it if you need to rework vore_fx().
-/obj/belly/proc/vore_fx(mob/living/L, var/update, var/severity = 0)
+/obj/belly/proc/vore_fx(mob/living/L, var/severity = 0)
 	if(!istype(L))
 		return
 	if(!L.client)
@@ -667,8 +681,6 @@
 		L.clear_fullscreen("belly")
 		L.previewing_belly = null
 		return
-	if(update)
-		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
 			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly, severity) // preserving save data
@@ -677,7 +689,7 @@
 				var/used_fullscreen = belly_fullscreen
 				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
 				belly_fullscreen = null
-				CRASH("Icon datum was not defined for [used_fullscreen]")
+				log_runtime("Icon datum was not defined for [used_fullscreen]")
 
 			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
@@ -750,7 +762,7 @@
 			F.update_for_view(L.client.view)
 		else
 			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly/fixed, severity) //preserving save data
-			F.icon = 'icons/mob/screen_full_vore.dmi'
+			F.icon = 'icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi'
 			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))
@@ -972,22 +984,23 @@
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-/obj/belly/proc/nom_mob(mob/prey, mob/user)
-	if(owner.stat == DEAD)
-		return
-	if(prey.buckled)
-		prey.buckled.unbuckle_mob()
+/obj/belly/proc/nom_atom(atom/movable/prey, mob/user)
+	if(ismob(prey))
+		var/mob/mob_prey = prey
+		if(owner.stat == DEAD)
+			return
+		if(mob_prey.buckled)
+			mob_prey.buckled.unbuckle_mob()
+		if(mob_prey.ckey)
+			GLOB.prey_eaten_roundstat++
+			if(owner.mind)
+				owner.mind.vore_prey_eaten++
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
-
-	if(prey.ckey)
-		GLOB.prey_eaten_roundstat++
-		if(owner.mind)
-			owner.mind.vore_prey_eaten++
 
 // new procs for handling digestion damage as a total rather than per-type
 // Returns the current total digestion damage per tick of a belly.
@@ -1508,11 +1521,15 @@
 	return see
 
 //Transfers contents from one belly to another
-/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
+/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = FALSE)
 	if(!(content in src) || !istype(target))
 		return
 	content.belly_cycles = 0
+	var/old_entrance_logs = target.entrance_logs
+	if(silent)
+		target.entrance_logs = FALSE
 	content.forceMove(target)
+	target.entrance_logs = old_entrance_logs
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))
@@ -1521,38 +1538,55 @@
 			I.wash(CLEAN_WASH)
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
+	if(!silent)
+		handle_visual_update()
+
+/obj/belly/proc/handle_visual_update()
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 	owner.handle_belly_update()
 
+//Autotransfer belly lookup
+/obj/belly/proc/compile_autotransfer_bellies()
+	var/list/primary_bellies = list()
+	var/list/secondary_bellies = list()
+
+	var/list/primary_locations = autotransferextralocation.Copy()
+	primary_locations += autotransferlocation
+	var/list/secondary_locations = autotransferextralocation_secondary.Copy()
+	secondary_locations += autotransferlocation_secondary
+	for(var/obj/belly/B in owner.vore_organs)
+		if(B.name in primary_locations)
+			primary_bellies += B
+		if(B.name in secondary_locations)
+			secondary_bellies += B
+
+	return list("primary" = primary_bellies, "secondary" = secondary_bellies)
+
 //Autotransfer callback
-/obj/belly/proc/check_autotransfer(var/atom/movable/prey)
-	if(!(prey in contents) || !prey.autotransferable) return
-	var/dest_belly_name
+/obj/belly/proc/check_autotransfer(var/atom/movable/prey, var/list/transfer_locations)
+	if(!(prey in contents) || !prey.autotransferable)
+		return FALSE
+	var/obj/belly/dest_belly
 	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
-			dest_belly_name = pick(autotransferextralocation_secondary + autotransferlocation_secondary)
+			dest_belly = pick(transfer_locations["secondary"])
 		if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
-			dest_belly_name = pick(autotransferextralocation_secondary + autotransferlocation_secondary)
+			dest_belly = pick(transfer_locations["secondary"])
 	if(autotransferlocation && prob(autotransferchance))
 		if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
-			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
+			dest_belly = pick(transfer_locations["primary"])
 		if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
-			dest_belly_name = pick(autotransferextralocation + autotransferlocation)
-	if(!dest_belly_name) // Didn't transfer, so wait before retrying
+			dest_belly = pick(transfer_locations["primary"])
+	if(!dest_belly) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
-		return
-	var/obj/belly/dest_belly
-	for(var/obj/belly/B in owner.vore_organs)
-		if(B.name == dest_belly_name)
-			dest_belly = B
-			break
-	if(!dest_belly) return
+		return FALSE
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
-		if(dest_belly_name == autotransferlocation)
+		var/dest_belly_name = dest_belly.name
+		if(dest_belly.name == autotransferlocation)
 			autotransfer_owner_message = span_vwarning(belly_format_string(primary_autotransfer_messages_owner, prey, dest = dest_belly_name))
 			autotransfer_prey_message = span_vwarning(belly_format_string(primary_autotransfer_messages_prey, prey, dest = dest_belly_name))
 		else
@@ -1563,7 +1597,7 @@
 		if(entrance_logs)
 			to_chat(owner, autotransfer_owner_message)
 
-	transfer_contents(prey, dest_belly)
+	transfer_contents(prey, dest_belly, TRUE)
 	return TRUE
 
 //Autotransfer filter
@@ -2208,3 +2242,6 @@
 
 /obj/belly/proc/toggle_displayed_message_flags(flags_to_set)
 	displayed_message_flags ^= flags_to_set
+
+#undef MAX_ENTRY_MESSAAGES
+#undef ENTRY_MESSAGE_INTERVAL

@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { liquidToTooltip, reagentToColor } from '../constants';
-import type { bellyLiquidData } from '../types';
+import type { BellyLiquidData } from '../types';
 import { VorePanelEditCheckboxes } from '../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { LiquidOptionsLeft } from './LiquidTab/LiquidOptionsLeft';
@@ -10,11 +10,12 @@ import { LiquidOptionsRight } from './LiquidTab/LiquidOptionsRight';
 
 export const VoreSelectedBellyLiquidOptions = (props: {
   editMode: boolean;
-  bellyLiquidData: bellyLiquidData;
+  bellyLiquidData: BellyLiquidData;
+  presets: string;
 }) => {
   const { act } = useBackend();
 
-  const { editMode, bellyLiquidData } = props;
+  const { editMode, bellyLiquidData, presets } = props;
   const { show_liq, liq_interacts } = bellyLiquidData;
 
   return (
@@ -73,6 +74,7 @@ export const VoreSelectedBellyLiquidOptions = (props: {
                     <LiquidOptionsLeft
                       editMode={editMode}
                       liquidInteract={liq_interacts}
+                      presets={presets}
                     />
                   </Stack.Item>
                   <Stack.Item basis="49%" grow>

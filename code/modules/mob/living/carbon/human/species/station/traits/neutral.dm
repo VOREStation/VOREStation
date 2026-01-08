@@ -259,6 +259,35 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/bloodsuck)
 
+/datum/trait/neutral/electrovore
+	name = "Electrovore, Obligate"
+	desc = "Makes you unable to gain nutrition from anything but electricity"
+	tutorial = "HELP intent lets you consume nutrition to charge a Cell by clicking it in your hand.<br>\
+	HARM intent drains battery charge and gives nutrition in exchange"
+
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/electrovore_freeform)
+
+/datum/trait/neutral/electrovore/apply(var/datum/species/S, var/mob/living/carbon/human/human)
+	..()
+	ADD_TRAIT(human, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(human, TRAIT_ELECTROVORE_OBLIGATE, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/electrovore_freeform
+	name = "Electrovore"
+	desc = "Allows you to drain power cells for nutrition."
+	tutorial = "This trait allows you to consume electricity!<br>\
+	Clicking a power cell in your hand on HARM intent drains its power for nutrition"
+
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/electrovore)
+
+/datum/trait/neutral/electrovore_freeform/apply(var/datum/species/S, var/mob/living/carbon/human/human)
+	..()
+	ADD_TRAIT(human, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
+
 /datum/trait/neutral/succubus_drain
 	name = "Succubus Drain"
 	desc = "Makes you able to gain nutrition from draining prey in your grasp."
@@ -1599,6 +1628,17 @@
 		H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
 	add_verb(H, /mob/living/proc/toggle_personal_space)
 
+/datum/trait/neutral/colour_changing_eyes
+	name = "Colour changing eyes"
+	desc = "You can change your eye color at will using an intuitive mental process."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/trait/neutral/colour_changing_eyes/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_eye_colour)
+
 /* // Commented out in lieu of finding a better solution.
 /datum/trait/neutral/coldadapt/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1895,4 +1935,4 @@
 
 /datum/trait/neutral/abnormal_mind/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
-	ADD_TRAIT(H.mind, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(H, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)

@@ -20,6 +20,7 @@
 	var/full_icon = "full"
 	var/spawn_mob_name = "A mob"
 	var/capture_chance_modifier = 1		//So we can have special subtypes with different capture rates!
+	var/loadout = FALSE
 
 /obj/item/capture_crystal/Initialize(mapload)
 	. = ..()
@@ -228,6 +229,13 @@
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(loadout && !bound_mob)
+		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
+		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		return
 	if(bound_mob && !owner)
 		if(bound_mob == user)
 			to_chat(user, span_notice("\The [src] emits an unpleasant tone... It does not activate for you."))
@@ -356,7 +364,7 @@
 //If the crystal hasn't been set up, it does this
 /obj/item/capture_crystal/proc/activate(mob/living/user, target)
 	if(!cooldown_check())		//Are we ready to do things yet?
-		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
+		to_chat(user, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want
@@ -416,7 +424,7 @@
 //We're using the crystal, but what will it do?
 /obj/item/capture_crystal/proc/determine_action(mob/living/U, T)
 	if(!cooldown_check())	//Are we ready yet?
-		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
+		to_chat(U, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return				//No
 	if(bound_mob in contents)	//Do we have our mob?
@@ -869,6 +877,7 @@
 
 /obj/item/capture_crystal/loadout
 	active = TRUE
+	loadout = TRUE
 
 /obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user)
 	if(!bound_mob && M != user)
@@ -877,12 +886,6 @@
 		return
 	. = ..()
 
-/obj/item/capture_crystal/loadout/attack_self(mob/living/user)
-	if(!bound_mob)
-		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
-		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
-		return
-	. = ..()
 
 /obj/item/capture_crystal/loadout/capture_chance()
 	return 0
@@ -914,7 +917,7 @@
 
 /obj/item/capture_crystal/cheap/activate(mob/living/user, target)
 	if(!cooldown_check())		//Are we ready to do things yet?
-		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
+		to_chat(user, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want

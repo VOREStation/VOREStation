@@ -3,6 +3,7 @@
 
 	//Prime this list if we need it.
 	if(has_huds)
+		// Note, this should be refactored to drop priority overlays
 		add_overlay(backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
 		hud_list = list()
 		hud_list.len = TOTAL_HUDS
@@ -21,9 +22,10 @@
 	AddElement(/datum/element/spontaneous_vore)
 
 /mob/living/proc/get_visible_name()
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(SK && SK.in_phase)
-		return "Something"
+	var/list/name_data = list(null)
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_GET_VISIBLE_NAME, name_data) & COMPONENT_VISIBLE_NAME_CHANGED)
+		return name_data[1]
+
 	if(real_name)
 		return real_name
 	else
@@ -119,7 +121,7 @@
 	set name = "Pull"
 	set category = "Object"
 
-	if(AM.Adjacent(src))
+	if(istype(AM) && AM.Adjacent(src))
 		src.start_pulling(AM)
 
 	return
@@ -1325,7 +1327,6 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
-			item.throwing = 1 //Small edit so thrown interactions actually work!
 			return TRUE
 		else
 			return FALSE

@@ -27,6 +27,7 @@ var/list/marker_beacon_colors = list(
 	w_class = ITEMSIZE_SMALL
 	var/icon_base = "marker"
 	var/picked_color = "random"
+	custom_handling = TRUE
 
 /obj/item/stack/marker_beacon/ten
 	amount = 10
@@ -50,6 +51,9 @@ var/list/marker_beacon_colors = list(
 	icon_state = "[icon_base][lowertext(picked_color)]"
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!isturf(user.loc))
 		to_chat(user, span_warning("You need more space to place a [singular_name] here."))
 		return
