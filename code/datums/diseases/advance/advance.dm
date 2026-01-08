@@ -1,19 +1,17 @@
 GLOBAL_LIST_EMPTY(archive_diseases)
 
 GLOBAL_LIST_INIT(advance_cures, list(
-	REAGENT_ID_SPACEACILLIN,
-	REAGENT_ID_ORANGEJUICE,
-	REAGENT_ID_ETHANOL,
-	REAGENT_ID_GLUCOSE,
-	REAGENT_ID_COPPER,
-	REAGENT_ID_LEAD,
-	REAGENT_ID_LITHIUM,
-	REAGENT_ID_RADIUM,
-	REAGENT_ID_MERCURY,
-	REAGENT_ID_BLISS,
-	REAGENT_ID_MUTAGEN,
-	REAGENT_ID_PHORON,
-	REAGENT_ID_SACID
+	list(REAGENT_ID_WATER, REAGENT_ID_NUTRIMENT, REAGENT_ID_IRON),
+	list(REAGENT_ID_ETHANOL, REAGENT_ID_RADIUM, REAGENT_ID_POTASSIUM, REAGENT_ID_LITHIUM),
+	list(REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_NICOTINE, REAGENT_ID_BLISS),
+	list(REAGENT_ID_ANTITOXIN, REAGENT_ID_ETHYLREDOXRAZINE, REAGENT_ID_FUEL, REAGENT_ID_CLEANER),
+	list(REAGENT_ID_SPACEACILLIN, REAGENT_ID_MINDBREAKER, REAGENT_ID_CRYOXADONE),
+	list(REAGENT_ID_TRAMADOL, REAGENT_ID_KELOTANE, REAGENT_INAPROVALINE),
+	list(REAGENT_ID_LEPORAZINE, REAGENT_ID_HOLYWATER, REAGENT_ID_ALKYSINE),
+	list(REAGENT_ID_PAROXETINE, REAGENT_ID_RADIUM, REAGENT_ID_PHORON),
+	list(REAGENT_ID_ADRANOL, REAGENT_ID_MUTAGEN, REAGENT_ID_ARITHRAZINE),
+	list(REAGENT_ID_LIPOZINE, REAGENT_ID_LUBE, REAGENT_ID_SACID),
+	list(REAGENT_ID_ASUSTENANCE, REAGENT_ID_CORDRADAXON, REAGENT_ID_OXYCODONE),
 ))
 
 /datum/disease/advance
@@ -273,7 +271,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance/proc/GenerateCure()
 	var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-	cures = list(GLOB.advance_cures[res])
+	cures = list(pick(GLOB.advance_cures[res]))
 	cure_text = cures[1]
 	return
 
@@ -369,6 +367,40 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		S.neutered = TRUE
 		S.name += " (neutered)"
 		S.OnRemove(src)
+
+/datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
+    var/list/advance_diseases = list()
+    var/channel = check_channel()
+    for(var/datum/disease/advance/disease in infectee.GetViruses())
+        var/other_channel = disease.check_channel()
+        if(global_flag_check(disease_flags, DORMANT) || global_flag_check(disease.disease_flags, DORMANT))
+            continue
+        if(IsSame(disease))
+            continue
+        if(channel == other_channel)
+            advance_diseases += disease
+    var/replace_num = advance_diseases.len + 1 - DISEASE_LIMIT
+    if(replace_num >= 0)
+        sortList(advance_diseases, GLOBAL_PROC_REF(cmp_advdisease_resistance_asc))
+        for(var/i in 1 to max(1, replace_num))
+            var/datum/disease/advance/competition = advance_diseases[i]
+            if(transmission > (competition.resistance * 2))
+                competition.cure(FALSE)
+            else
+                return FALSE
+    infect(infectee, make_copy)
+    return TRUE
+
+/datum/disease/advance/proc/check_channel()
+	switch(get_disease_danger_value(severity))
+		if(-INFINITY to 0)
+			return 1
+		if(1 to 4)
+			return 2
+		if(5 to INFINITY)
+			return 3
+		else
+			return 2
 
 // Mix a list of advance diseases and return the mixed result.
 /proc/Advance_Mix(list/D_list)

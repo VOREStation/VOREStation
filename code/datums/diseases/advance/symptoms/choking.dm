@@ -60,7 +60,7 @@ Bonus
 
 	switch(A.stage)
 		if(3, 4)
-			to_chat(M, span_warning(pick("Your windpipe feels thin.", "Your lungs feel small-")))
+			to_chat(M, span_warning(pick("Your windpipe feels thin.", "Your lungs feel small.")))
 			Choke_stage_3_4(M, A)
 			M.emote("gasp")
 		if(5)

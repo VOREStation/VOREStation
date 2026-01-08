@@ -38,14 +38,6 @@
 	if(HasDisease(D))
 		return FALSE
 
-	if(istype(D, /datum/disease/advance))
-		var/active_diseases = 0
-		for(var/datum/disease/AD in GetViruses())
-			if(!(AD.virus_modifiers & DORMANT)) // You can have as many dormant diseases as you want
-				active_diseases++
-		if(active_diseases > 0) // But ONLY one active disease
-			return FALSE
-
 	var/compatible_type = FALSE
 	for(var/type_to_test in D.viable_mobtypes)
 		if(ispath(type, type_to_test))
@@ -64,7 +56,7 @@
 /mob/proc/ContractDisease(datum/disease/D, var/target_zone)
 	if(!CanContractDisease(D))
 		return 0
-	D.infect(src)
+	D.try_infect(src)
 	return TRUE
 
 /mob/living/carbon/human/ContractDisease(datum/disease/D, target_zone)
@@ -85,8 +77,10 @@
 	if(prob(15/D.permeability_mod))
 		return
 
+/* We have stupid high nutrition values - Something to see about in the future
 	if(nutrition > 300 && prob(nutrition/50))
 		return
+*/
 
 	if(!target_zone)
 		target_zone = pick(list(
@@ -136,7 +130,7 @@
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
 	if(passed)
-		D.infect(src)
+		D.try_infect(src)
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
 	if(((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob(50*D.spreading_modifier) - 1)

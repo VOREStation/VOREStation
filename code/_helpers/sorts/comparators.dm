@@ -122,3 +122,9 @@
 
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
+
+/proc/cmp_advdisease_resistance_asc(datum/disease/advance/A, datum/disease/advance/B)
+	return A.resistance - B.resistance
+
+/proc/cmp_advdisease_symptomid_asc(datum/symptom/A, datum/symptom/B)
+	return sorttext(B.id, A.id)
