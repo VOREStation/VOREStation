@@ -1214,10 +1214,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 
 GLOBAL_LIST_EMPTY(gun_choices)
 
-GLOBAL_ALIST_INIT(severity_to_string, alist(
-	EVENT_LEVEL_MUNDANE = "Mundane",
-	EVENT_LEVEL_MODERATE = "Moderate",
-	EVENT_LEVEL_MAJOR = "Major"
+GLOBAL_ALIST_INIT(severity_to_string, list(
+	/* EVENT_LEVEL_MUNDANE = */ "Mundane",
+	/* EVENT_LEVEL_MODERATE = */ "Moderate",
+	/* EVENT_LEVEL_MAJOR = */ "Major"
 	))
 
 //Some global icons for the examine tab to use to display some item properties.
