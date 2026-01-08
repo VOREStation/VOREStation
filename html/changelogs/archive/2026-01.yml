@@ -60,3 +60,27 @@
   Will:
   - bugfix: Attempting to pass mob grabs to another player no longer drops a qdeleted
       grab on the floor
+2026-01-08:
+  Kashargul:
+  - code_imp: update overlay subsystem
+  - code_imp: updates rust g to 6.0.0
+  - rscadd: Added a new vac-pack subtype and a new power level and effects.
+  - qol: Vac-pack custom sounds and verbs and anim toggle are now editable vars.
+  - bugfix: multiple throwing issues
+  - code_imp: modernises the chat and tgui backend code
+  KillianKirilenko:
+  - bugfix: fixed mech maintenance mode causing issues for clients and server whilst
+      trying to move
+  SatinIsle:
+  - rscadd: 'Added two more admin player effects: Wet Surrounding Surfaces and Give
+      Quest'
+  ShadowLarkens:
+  - bugfix: Ctrl+R in tgui works again
+  - bugfix: Passthrough in tgui works again
+  Shoanaea, Zayahpapayah:
+  - rscadd: Added the Electrovore trait to allow players to drain power cells for
+      nutrition
+  - rscadd: Added the Electrovore, Obligate to allow players to drain cells for and
+      charge cells with nutrition
+  - code_imp: Added the Electrovore and Obligate code, touched up cell.dm to allow
+      for draining and charging

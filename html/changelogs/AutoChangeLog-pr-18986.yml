@@ -1,6 +1,0 @@
-author: "Shoanaea, Zayahpapayah"
-delete-after: True
-changes:
-  - rscadd: "Added the Electrovore trait to allow players to drain power cells for nutrition"
-  - rscadd: "Added the Electrovore, Obligate to allow players to drain cells for and charge cells with nutrition"
-  - code_imp: "Added the Electrovore and Obligate code, touched up cell.dm to allow for draining and charging"
