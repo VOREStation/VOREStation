@@ -258,7 +258,7 @@
 		M.show_message(struggle_outer_message, 2) // hearable
 
 /obj/belly/proc/absorbed_resist_check_escapechance(mob/living/R)
-	if(!(prob(escapechance) || owner.stat)) //Let's have it check to see if the prey's escape attempt starts.
+	if(!(prob(escapechance_absorbed) || owner.stat)) //Let's have it check to see if the prey's escape attempt starts.
 		return FALSE
 	var/escape_attempt_absorbed_owner_message = span_vwarning(belly_format_string(escape_attempt_absorbed_messages_owner, R))
 	var/escape_attempt_absorbed_prey_message = span_vwarning(belly_format_string(escape_attempt_absorbed_messages_prey, R))
