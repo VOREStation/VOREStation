@@ -485,6 +485,7 @@
 	custom_only = FALSE
 	var_changes = list("flags" = NO_DEFIB)
 	can_take = ORGANICS
+	banned_species = list(SPECIES_SHADEKIN)
 	excludes = list(/datum/trait/negative/noresleeve, /datum/trait/negative/onelife)
 
 /datum/trait/negative/noresleeve
