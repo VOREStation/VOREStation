@@ -142,33 +142,34 @@
 	if(!prob(transferchance) || !transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
 		return FALSE
 
-		var/obj/belly/dest_belly
-		for(var/obj/belly/B as anything in owner.vore_organs)
-			if(B.name == transferlocation)
-				dest_belly = B
-				break
+	var/obj/belly/dest_belly
+	for(var/obj/belly/B as anything in owner.vore_organs)
+		if(B.name == transferlocation)
+			dest_belly = B
+			break
 
-		if(!dest_belly)
-			to_chat(owner, span_vwarning("Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution."))
-			transferchance = 0
-			transferlocation = null
-			return TRUE
-
-		var/primary_transfer_owner_message = span_vwarning(belly_format_string(primary_transfer_messages_owner, R, dest = transferlocation))
-		var/primary_transfer_prey_message = span_vwarning(belly_format_string(primary_transfer_messages_prey, R, dest = transferlocation))
-
-		to_chat(R, primary_transfer_prey_message)
-		to_chat(owner, primary_transfer_owner_message)
-		if(C)
-			transfer_contents(C, dest_belly)
-			return TRUE
-
-		transfer_contents(R, dest_belly)
+	if(!dest_belly)
+		to_chat(owner, span_vwarning("Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution."))
+		transferchance = 0
+		transferlocation = null
 		return TRUE
+
+	var/primary_transfer_owner_message = span_vwarning(belly_format_string(primary_transfer_messages_owner, R, dest = transferlocation))
+	var/primary_transfer_prey_message = span_vwarning(belly_format_string(primary_transfer_messages_prey, R, dest = transferlocation))
+
+	to_chat(R, primary_transfer_prey_message)
+	to_chat(owner, primary_transfer_owner_message)
+	if(C)
+		transfer_contents(C, dest_belly)
+		return TRUE
+
+	transfer_contents(R, dest_belly)
+	return TRUE
 
 /obj/belly/proc/resist_check_secondary_transferchance(mob/living/R, obj/item/C)
 	if(!prob(transferchance_secondary) || !transferlocation_secondary) //After the first potential mess getting into, run the secondary one which might be even bigger of a mess.
 		return FALSE
+
 	var/obj/belly/dest_belly
 	for(var/obj/belly/B as anything in owner.vore_organs)
 		if(B.name == transferlocation_secondary)
