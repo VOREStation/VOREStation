@@ -838,6 +838,7 @@
 #include "code\datums\diseases\advance\symptoms\light.dm"
 #include "code\datums\diseases\advance\symptoms\macrophage.dm"
 #include "code\datums\diseases\advance\symptoms\mlem.dm"
+#include "code\datums\diseases\advance\symptoms\narcolepsy.dm"
 #include "code\datums\diseases\advance\symptoms\necrotic_agent.dm"
 #include "code\datums\diseases\advance\symptoms\radiation.dm"
 #include "code\datums\diseases\advance\symptoms\robot.dm"

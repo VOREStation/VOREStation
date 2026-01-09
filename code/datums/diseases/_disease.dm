@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/list/cures = list()
 	var/infectivity = 10
 	var/cure_chance = 8
-	var/spreading_modifier = 1
 	var/permeability_mod = 1
 	var/danger = DISEASE_MINOR
 	var/list/required_organs = list()
@@ -43,6 +42,9 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(global_flag_check(virus_modifiers, PROCESSING))
 		End()
 	return ..()
+
+/datum/disease/proc/try_infect(var/mob/living/infectee, make_copy = TRUE)
+	infect(infectee, make_copy)
 
 /datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/D = make_copy ? Copy() : src
@@ -247,3 +249,24 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	GLOB.virusDB["[GetDiseaseID()]"] = v
 
 	return TRUE
+
+/proc/get_disease_danger_value(danger)
+	switch(danger)
+		if(DISEASE_BENEFICIAL)
+			return 1
+		if(DISEASE_POSITIVE)
+			return 2
+		if(DISEASE_NONTHREAT)
+			return 3
+		if(DISEASE_MINOR)
+			return 4
+		if(DISEASE_MEDIUM)
+			return 5
+		if(DISEASE_HARMFUL)
+			return 6
+		if(DISEASE_DANGEROUS)
+			return 7
+		if(DISEASE_BIOHAZARD)
+			return 8
+		if(DISEASE_PANDEMIC)
+			return 9
