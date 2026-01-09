@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/list/cures = list()
 	var/infectivity = 10
 	var/cure_chance = 8
-	var/spreading_modifier = 1
 	var/permeability_mod = 1
 	var/danger = DISEASE_MINOR
 	var/list/required_organs = list()

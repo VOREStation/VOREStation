@@ -133,7 +133,7 @@
 		D.try_infect(src)
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
-	if(((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob(50*D.spreading_modifier) - 1)
+	if(((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob(50*D.permeability_mod) - 1)
 		ForceContractDisease(D)
 
 /mob/living/carbon/AirborneContractDisease(datum/disease/D, force_spread)
@@ -203,6 +203,17 @@
 	LAZYINITLIST(resistances)
 	resistances |= resistance
 	return TRUE
+
+/mob/proc/check_virus()
+	var/threat
+	var/danger
+	for(var/thing in viruses)
+		var/datum/disease/disease = thing
+		if(!(disease.visibility_flags & HIDDEN_SCANNER))
+			if(!threat || get_disease_danger_value(disease.danger) > threat)
+				threat = get_disease_danger_value(disease.danger)
+				danger = disease.danger
+	return danger
 
 /client/proc/ReleaseVirus()
 	set category = "Fun.Event Kit"

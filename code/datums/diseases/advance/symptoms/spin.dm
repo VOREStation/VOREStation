@@ -17,8 +17,9 @@ BONUS
 
 /datum/symptom/spyndrome
 	name = "Spyndrome"
-	stealth = 2
-	resistance = 0
+	desc = "The virus hijacks the host's motor system, making them spin incontrollably."
+	stealth = -1
+	resistance = 3
 	stage_speed = 3
 	transmission = 1
 	level = 1
@@ -26,7 +27,7 @@ BONUS
 	symptom_delay_max = 35 SECONDS
 	severity = 0
 	threshold_descs = list(
-		"Resistance 6" = "The target will flip more violently."
+		"Resistance 6" = "The target will spin more violently."
 	)
 
 	var/bigspin = FALSE
@@ -45,7 +46,7 @@ BONUS
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
-		if(1, 2, 3)
+		if(1 to 3)
 			if(prob(base_message_chance))
 				to_chat(M, span_notice("You can't stand still."))
 		else

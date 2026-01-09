@@ -68,7 +68,7 @@ BONUS
 	if(M.stat == DEAD)
 		return
 	switch(A.stage)
-		if(1, 2, 3)
+		if(1 to 3)
 			if(prob(base_message_chance) && !supress_warning)
 				to_chat(M, span_warning(pick("Your throat itches.", "You lightly cough.")))
 		else

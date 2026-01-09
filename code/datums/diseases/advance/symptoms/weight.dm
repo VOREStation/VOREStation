@@ -24,7 +24,7 @@ Bonus
 	stage_speed = -2
 	transmission = -1
 	level = 3
-	severity = 2
+	severity = 1
 	base_message_chance = 100
 	symptom_delay_min = 15 SECONDS
 	symptom_delay_max = 45 SECONDS
@@ -56,7 +56,7 @@ Bonus
 	if(M.stat == DEAD)
 		return
 	switch(A.stage)
-		if(1, 2, 3, 4)
+		if(1 to 4)
 			if(prob(base_message_chance))
 				to_chat(M, span_warning(pick("You feel hungry.", "You crave for food.")))
 		else

@@ -196,6 +196,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		transmission += S.transmission
 	for(var/datum/symptom/S as anything in symptoms)
 		S.severityset(src)
+		if(S.neutered)
+			continue
 		switch(S.severity)
 			if(-INFINITY to 0)
 				c1sev += S.severity
@@ -220,10 +222,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	SetSpread()
 	permeability_mod = max(CEILING(0.4 * transmission, 1), 1)
-	cure_chance = 15 - clamp(resistance, -5, 5) // can be between 10 and 20
+	cure_chance = clamp(7.5 - (0.5 * resistance), 5, 10)
 	stage_prob = max(stage_rate, 2)
-	SetSeverity(severity)
+	SetDanger(severity)
 	GenerateCure()
+	symptoms = sortList(symptoms, GLOBAL_PROC_REF(cmp_advdisease_symptomid_asc))
 
 /datum/disease/advance/proc/SetSpread()
 	if(global_flag_check(virus_modifiers, FALTERED))
@@ -244,30 +247,30 @@ GLOBAL_LIST_INIT(advance_cures, list(
 				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
 				spread_text = "On Contact"
 
-/datum/disease/advance/proc/SetSeverity(level_sev)
+/datum/disease/advance/proc/SetDanger(level_sev)
 
 	switch(level_sev)
 
 		if(-INFINITY to -2)
-			severity = DISEASE_BENEFICIAL
+			danger = DISEASE_BENEFICIAL
 		if(-1)
-			severity = DISEASE_POSITIVE
+			danger = DISEASE_POSITIVE
 		if(0)
-			severity = DISEASE_NONTHREAT
+			danger = DISEASE_NONTHREAT
 		if(1)
-			severity = DISEASE_MINOR
+			danger = DISEASE_MINOR
 		if(2)
-			severity = DISEASE_MEDIUM
+			danger = DISEASE_MEDIUM
 		if(3)
-			severity = DISEASE_HARMFUL
+			danger = DISEASE_HARMFUL
 		if(4)
-			severity = DISEASE_DANGEROUS
+			danger = DISEASE_DANGEROUS
 		if(5)
-			severity = DISEASE_BIOHAZARD
+			danger = DISEASE_BIOHAZARD
 		if(6 to INFINITY)
-			severity = DISEASE_PANDEMIC
+			danger = DISEASE_PANDEMIC
 		else
-			severity = "Unknown"
+			danger = "Unknown"
 
 /datum/disease/advance/proc/GenerateCure()
 	var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
@@ -379,20 +382,21 @@ GLOBAL_LIST_INIT(advance_cures, list(
             continue
         if(channel == other_channel)
             advance_diseases += disease
-    var/replace_num = advance_diseases.len + 1 - DISEASE_LIMIT
-    if(replace_num >= 0)
+    if(advance_diseases.len > 0)
         sortList(advance_diseases, GLOBAL_PROC_REF(cmp_advdisease_resistance_asc))
-        for(var/i in 1 to max(1, replace_num))
+        for(var/i in 1 to advance_diseases.len)
             var/datum/disease/advance/competition = advance_diseases[i]
             if(transmission > (competition.resistance * 2))
                 competition.cure(FALSE)
             else
                 return FALSE
+    else if(length(infectee.GetViruses()) >= DISEASE_LIMIT)
+        return FALSE
     infect(infectee, make_copy)
     return TRUE
 
 /datum/disease/advance/proc/check_channel()
-	switch(get_disease_danger_value(severity))
+	switch(severity)
 		if(-INFINITY to 0)
 			return 1
 		if(1 to 4)
@@ -479,7 +483,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/new_name = tgui_input_text(src, "Name your new disease.", "New Name")
 		if(!new_name)
 			return FALSE
-		D.Refresh(new_name)
+		D.AssignName(new_name)
 		D.Finalize()
 
 		for(var/datum/disease/advance/AD in GLOB.active_diseases)
