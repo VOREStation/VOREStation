@@ -178,6 +178,11 @@
 	LAZYINITLIST(viruses)
 	return viruses
 
+/mob/proc/GetActiveViruses()
+	var/list/viruses_to_return = GetViruses()
+	viruses_to_return.Remove(GetDormantDiseases())
+	return viruses_to_return
+
 /mob/proc/GetSpreadableViruses()
 	LAZYINITLIST(viruses)
 	var/list/viruses_to_return = list()

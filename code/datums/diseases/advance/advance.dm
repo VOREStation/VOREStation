@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
                 competition.cure(FALSE)
             else
                 return FALSE
-    else if(length(infectee.GetViruses()) >= DISEASE_LIMIT)
+    else if(length(infectee.GetActiveViruses()) >= DISEASE_LIMIT)
         return FALSE
     infect(infectee, make_copy)
     return TRUE
