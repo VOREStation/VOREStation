@@ -25,21 +25,21 @@
 
 	if(escapable && living_prey.a_intent != I_DISARM) //If the stomach has escapable enabled.
 		switch(living_prey.a_intent)
-		if(I_HARM)
-			if(resist_check_escapechance(living_prey, prey_item))
-				return
-		if(I_HELP)
-			if(resist_check_transferchance(living_prey, prey_item))
-				return
-			if(resist_check_secondary_transferchance(living_prey,prey_item))
-				return
-		if(I_GRAB)
-			if(resist_check_absorbchance(living_prey))
-				return
-			if(resist_check_digestchance(living_prey))
-				return
-			if(resist_check_selectchance(living_prey))
-				return
+			if(I_HURT)
+				if(resist_check_escapechance(living_prey, prey_item))
+					return
+			if(I_HELP)
+				if(resist_check_transferchance(living_prey, prey_item))
+					return
+				if(resist_check_secondary_transferchance(living_prey,prey_item))
+					return
+			if(I_GRAB)
+				if(resist_check_absorbchance(living_prey))
+					return
+				if(resist_check_digestchance(living_prey))
+					return
+				if(resist_check_selectchance(living_prey))
+					return
 
 		var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, living_prey))
 		to_chat(living_prey, struggle_user_message)
