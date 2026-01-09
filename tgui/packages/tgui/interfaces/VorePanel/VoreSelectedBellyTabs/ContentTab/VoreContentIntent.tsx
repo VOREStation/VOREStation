@@ -14,6 +14,7 @@ export const VoreContentIntent = (props: { intent_data: IntentData }) => {
           tooltip={tooltip(!!intent_data[key])}
           displayText={label}
           color={intent_data[key] ? color : 'transparent'}
+          selected={intent_data.current_intent === key}
         />
       </Stack.Item>
     ))

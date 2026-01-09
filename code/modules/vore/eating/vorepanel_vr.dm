@@ -175,7 +175,7 @@
 				var/mob/living/human_host = host
 				hostloc = human_host.surrounding_belly()
 			data["prey_abilities"] = get_prey_abilities(host, hostloc)
-			data["intent_data"] = get_intent_data(hostloc)
+			data["intent_data"] = get_intent_data(host, hostloc)
 
 		if(SOULCATCHER_TAB)
 			// Soulcatcher and abilities

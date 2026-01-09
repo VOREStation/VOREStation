@@ -32,6 +32,12 @@
   background-color: var(--vp-background);
   color: var(--vp-color);
 
+  &:hover {
+    background-color: hsl(
+      from var(--vp-background) h s calc(l + var(--adjust-hover))
+    );
+  }
+
   &.color-bg-transparent {
     --vp-background: hsl(from var(--vp-color) h s l / 0.2);
     background-color: var(--vp-background);
@@ -49,6 +55,14 @@
       }
     }
   }
+}
+
+.VorePanel__floatingButton.VorePanel__noCursor {
+  cursor: default;
+}
+
+.VorePanel__floatingButton.VorePanel__selected {
+  box-shadow: inset 0 0 0 2px var(--color-white);
 }
 
 .VorePanel__pasteArea {

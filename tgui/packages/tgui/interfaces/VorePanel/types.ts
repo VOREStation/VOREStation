@@ -504,6 +504,7 @@ export type Overlay = {
 
 export type IntentData = {
   active: BooleanLike;
+  current_intent: string;
   help: BooleanLike;
   disarm: BooleanLike;
   grab: BooleanLike;

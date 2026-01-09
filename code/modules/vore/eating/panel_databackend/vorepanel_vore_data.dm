@@ -102,12 +102,13 @@
 		UNTYPED_LIST_ADD(abilities, list("name" = "devour_as_absorbed", "available" = owner.absorbed))
 	return abilities
 
-/datum/vore_look/proc/get_intent_data(obj/belly/inside_belly)
+/datum/vore_look/proc/get_intent_data(mob/owner, obj/belly/inside_belly)
 	if(!isbelly(inside_belly))
 		return null
 
 	return list(
 		"active" = inside_belly.escapable == B_ESCAPABLE_INTENT,
+		"current_intent" = owner.a_intent,
 		"help" = !!inside_belly.belchchance,
 		"disarm" = (inside_belly.transferchance && inside_belly.transferlocation) || (inside_belly.transferchance_secondary && inside_belly.transferlocation_secondary),
 		"grab" = (inside_belly.absorbchance && inside_belly.digest_mode != DM_ABSORB) || (inside_belly.digestchance && inside_belly.digest_mode != DM_DIGEST) || (inside_belly.selectchance && inside_belly.digest_mode != DM_SELECT),
