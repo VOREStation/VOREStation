@@ -89,7 +89,7 @@
 	icon_state = "maglevup"
 	can_be_plated = FALSE
 
-	var/area/shock_area = /area/tether/surfacebase/tram
+	var/area/shock_area = /area/shuttle/tram
 
 //For the tram.
 /turf/simulated/floor/maglev/moving

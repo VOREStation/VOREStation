@@ -11,7 +11,7 @@
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/exploration
 	name = "Exploration Shuttle Landing Pad"
-	base_area = /area/stellardelight/deck1/shuttlebay
+	base_area = /area/exploration/shuttle_bay
 	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "sd_explo"
 	docking_controller = "explodocker_bay"
@@ -27,7 +27,7 @@
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/mining
 	name = "Mining Shuttle Landing Pad"
-	base_area = /area/stellardelight/deck1/shuttlebay
+	base_area = /area/exploration/shuttle_bay
 	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "sd_mining"
 	docking_controller = "miningdocker_bay"
@@ -50,7 +50,7 @@
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/sdboat
 	name = "Port Shuttlepad"
-	base_area = /area/stellardelight/deck3/exterior
+	base_area = /area/exploration/shuttle_bay
 	base_turf = /turf/simulated/floor/reinforced/airless
 	landmark_tag = "port_shuttlepad"
 	docking_controller = "sd_port_landing"
