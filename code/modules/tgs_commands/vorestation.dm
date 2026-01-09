@@ -191,8 +191,9 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		for(var/list/item in GLOB.PDA_Manifest)
 			outp += "\n__**[item["cat"]]:**__"
 			for(var/list/person in item["elems"])
-				total |= person
-				outp += "\n[person["name"]] -:- [person["rank"]]"
+				var/output_string = "[person["name"]] -:- [person["rank"]]"
+				total |= output_string
+				outp += "\n[output_string]"
 
 		return "**Total crew members:** [total.len]\n" + outp
 
@@ -410,7 +411,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		for(var/datum/job/our_job in job_master.occupations)
 			if(our_job.whitelist_only)
 				whitelist_jobs += our_job.title
-		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
+		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]"
 		return message
 
 	message_as_list.Cut(1, 2)

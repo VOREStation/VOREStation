@@ -815,7 +815,7 @@
 	//This should be used if a plushie can be made to say custom messages. Not currently required at the moment, but here just in case it'd added in the future.
 	var/prevent_impersonation = FALSE
 
-	var/special_handling = TRUE
+	var/special_handling = FALSE
 
 	///The sound we make when squeezed
 	var/squeeze_sound = 'sound/items/drop/plushie.ogg'

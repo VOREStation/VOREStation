@@ -144,7 +144,7 @@
 		ui.open()
 
 /obj/item/radio/tgui_data(mob/user)
-	var/data[0]
+	var/data = list()
 
 	data["rawfreq"] = frequency
 	data["listening"] = listening
@@ -164,6 +164,9 @@
 
 	if(syndie)
 		data["useSyndMode"] = 1
+	else
+		data["useSyndMode"] = 0
+
 
 	data["minFrequency"] = PUBLIC_LOW_FREQ
 	data["maxFrequency"] = PUBLIC_HIGH_FREQ

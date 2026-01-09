@@ -52,7 +52,7 @@
 	if(burn_stuff(AM))
 		START_PROCESSING(SSturfs, src)
 
-/turf/simulated/floor/lava/hitby(atom/movable/source)
+/turf/simulated/floor/lava/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(burn_stuff(source))
 		START_PROCESSING(SSturfs, src)
 

@@ -28,7 +28,7 @@
 		AM.forceMove(src)
 	flush()
 
-/obj/machinery/disposal/deliveryChute/hitby(atom/movable/source)
+/obj/machinery/disposal/deliveryChute/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(!QDELETED(source) || (isitem(source) || isliving(source)) && !istype(source, /obj/item/projectile))
 		switch(dir)
 			if(NORTH)

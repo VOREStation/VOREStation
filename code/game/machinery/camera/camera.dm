@@ -121,7 +121,7 @@
 		return
 	destroy()
 
-/obj/machinery/camera/hitby(atom/movable/source)
+/obj/machinery/camera/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	if (!isobj(source))
 		return

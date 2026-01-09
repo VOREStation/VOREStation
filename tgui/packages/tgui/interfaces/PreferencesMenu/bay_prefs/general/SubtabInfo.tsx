@@ -30,18 +30,18 @@ export const GenderButton = (props: {
         placement="right-end"
         content={
           <Stack backgroundColor="black" ml={0.5} pl={0.5} pr={0.5}>
-            {Object.keys(Gender).map((x) => (
+            {Object.values(Gender).map((x) => (
               <Button
                 selected={props.gender === x}
                 key={x}
-                icon={gender2icon(x as Gender)}
-                tooltip={props.usePronouns ? gender2pronouns(x as Gender) : x}
+                icon={gender2icon(x)}
+                tooltip={props.usePronouns ? gender2pronouns(x) : x}
                 fontSize="22px"
                 width={4}
                 height={4}
                 verticalAlignContent="middle"
                 textAlign="center"
-                onClick={() => props.setGender(x as Gender)}
+                onClick={() => props.setGender(x)}
               />
             ))}
           </Stack>

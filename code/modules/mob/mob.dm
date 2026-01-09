@@ -43,6 +43,7 @@
 	previewing_belly = null // from code/modules/vore/eating/mob_ch.dm
 	vore_selected = null // from code/modules/vore/eating/mob_vr
 	focus = null
+	LAssailant = null
 
 	motiontracker_unsubscribe(TRUE) // Force unsubscribe
 

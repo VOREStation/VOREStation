@@ -49,6 +49,7 @@
 	var/sc_message_subtab // our soulcatcher message subtab
 	var/aset_message_subtab
 	var/selected_message
+	var/list/preset_colors
 
 /datum/vore_look/New(mob/new_host)
 	if(istype(new_host))
@@ -57,6 +58,11 @@
 
 /datum/vore_look/Destroy()
 	host = null
+	. = ..()
+
+/datum/vore_look/tgui_close(mob/user)
+	if(user)
+		user.write_preference_directly(/datum/preference/text/preset_colors, preset_colors)
 	. = ..()
 
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
@@ -113,6 +119,7 @@
 	)
 	data["min_belly_name"] = BELLIES_NAME_MIN
 	data["max_belly_name"] = BELLIES_NAME_MAX
+	preset_colors = user.read_preference(/datum/preference/text/preset_colors)
 
 	return data
 
@@ -126,6 +133,7 @@
 	data["unsaved_changes"] = unsaved_changes
 	data["active_tab"] = active_tab
 	data["persist_edit_mode"] = host.persistend_edit_mode
+	data["presets"] = preset_colors
 
 	// Inisde Data
 	data["inside"] = get_inside_data(host)
@@ -621,6 +629,8 @@
 				host.client.prefs_vr.food_vore = host.food_vore
 			unsaved_changes = TRUE
 			return TRUE
+		if("set_spont_belly")
+			return set_spont_belly(params)
 		if("toggle_consume_liquid_belly")
 			host.consume_liquid_belly = !host.consume_liquid_belly
 			if(host.client.prefs_vr)
@@ -651,7 +661,7 @@
 			var/belly_choice = params["attribute"]
 			if(!(belly_choice in host.vore_icon_bellies))
 				return FALSE
-			var/newcolor = tgui_color_picker(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice])
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(!newcolor)
 				return FALSE
 			host.vore_sprite_color[belly_choice] = newcolor
@@ -884,6 +894,20 @@
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, SC_DELETE_MESSAGE)
 			return TRUE
+		if("preset")
+			var/raw_data = lowertext(params["color"])
+			var/index = lowertext(params["index"])
+			var/list/entries = splittext(preset_colors, ";")
+			while(LAZYLEN(entries) < 20)
+				entries += "#FFFFFF"
+			if(LAZYLEN(entries) > 20)
+				entries.Cut(21)
+			var/hex = sanitize_hexcolor(raw_data)
+			if (!hex || !isnum(index) || entries[index] == hex)
+				return
+			entries[index] = hex
+			preset_colors = entries.Join(";")
+			return FALSE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
 	var/atom/movable/target = locate(params["pick"])
@@ -1385,6 +1409,50 @@
 			user.absorb_devour()
 
 	return TRUE
+
+/datum/vore_look/proc/set_spont_belly(params)
+	switch(params["attribute"])
+		if("rear")
+			var/spont_target = html_encode(params["val"])
+			if(spont_target == "Current Selected")
+				host.spont_belly_rear = null
+			else
+				host.spont_belly_rear = spont_target
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.spont_belly_rear = host.spont_belly_rear
+			unsaved_changes = TRUE
+			return TRUE
+		if("front")
+			var/spont_target = html_encode(params["val"])
+			if(spont_target == "Current Selected")
+				host.spont_belly_front = null
+			else
+				host.spont_belly_front = spont_target
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.spont_belly_front = host.spont_belly_front
+			unsaved_changes = TRUE
+			return TRUE
+		if("left")
+			var/spont_target = html_encode(params["val"])
+			if(spont_target == "Current Selected")
+				host.spont_belly_left = null
+			else
+				host.spont_belly_left = spont_target
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.spont_belly_left = host.spont_belly_left
+			unsaved_changes = TRUE
+			return TRUE
+		if("right")
+			var/spont_target = html_encode(params["val"])
+			if(spont_target == "Current Selected")
+				host.spont_belly_right = null
+			else
+				host.spont_belly_right = spont_target
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.spont_belly_right = host.spont_belly_right
+			unsaved_changes = TRUE
+			return TRUE
+	return FALSE
 
 /datum/vore_look/proc/sanitize_fixed_list(var/list/messages, type, delim = "\n\n", limit)
 	if(!limit)

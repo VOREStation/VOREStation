@@ -90,9 +90,9 @@
 #endif
 	if (!istype(client))
 		if (ismob(client))
-			var/mob/M = client
-			if (M.client)
-				client = M.client
+			var/mob/our_mob = client
+			if (our_mob.client)
+				client = our_mob.client
 			else //no stacktrace because this will mainly happen because the client went away
 				return
 		else
