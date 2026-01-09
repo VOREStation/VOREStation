@@ -11,7 +11,7 @@ export const VoreContentIntent = (props: { intent_data: IntentData }) => {
     intentMappings.map(({ key, label, color, tooltip }) => (
       <Stack.Item key={key}>
         <VorePanelTooltip
-          tooltip={tooltip(intent_data[key])}
+          tooltip={tooltip(!!intent_data[key])}
           displayText={label}
           color={intent_data[key] ? color : 'transparent'}
         />
