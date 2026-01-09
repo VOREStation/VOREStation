@@ -55,7 +55,7 @@
 
 /mob/proc/ContractDisease(datum/disease/D, var/target_zone)
 	if(!CanContractDisease(D))
-		return 0
+		return FALSE
 	D.try_infect(src)
 	return TRUE
 
