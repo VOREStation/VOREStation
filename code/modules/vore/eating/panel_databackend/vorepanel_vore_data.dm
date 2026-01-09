@@ -108,8 +108,8 @@
 
 	return list(
 		"active" = inside_belly.escapable,
-		"help" = (inside_belly.transferchance && inside_belly.transferlocation) || (inside_belly.transferchance_secondary && inside_belly.transferlocation_secondary),
-		"disarm" = !!inside_belly.belchchance,
+		"help" = !!inside_belly.belchchance,
+		"disarm" = (inside_belly.transferchance && inside_belly.transferlocation) || (inside_belly.transferchance_secondary && inside_belly.transferlocation_secondary),
 		"grab" = (inside_belly.absorbchance && inside_belly.digest_mode == DM_ABSORB) || (inside_belly.digestchance && inside_belly.digest_mode == DM_DIGEST) || (inside_belly.selectchance && inside_belly.digest_mode == DM_SELECT),
 		"harm" = !!inside_belly.escapechance
 	)

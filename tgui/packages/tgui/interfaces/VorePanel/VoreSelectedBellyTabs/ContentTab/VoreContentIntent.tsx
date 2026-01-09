@@ -12,8 +12,8 @@ export const VoreContentIntent = (props: { intent_data: IntentData }) => {
           <VorePanelTooltip
             tooltip={
               intent_data.help
-                ? 'Struggling in help intent might cause auto transfer interactions.'
-                : 'Help intent struggle auto transfer chance disabled.'
+                ? 'Struggling in disarm intent might cause belch interactions.'
+                : 'Disarm intent struggle belch chance disabled.'
             }
             displayText="Help"
             color={intent_data.help ? 'green' : 'transparent'}
@@ -23,8 +23,8 @@ export const VoreContentIntent = (props: { intent_data: IntentData }) => {
           <VorePanelTooltip
             tooltip={
               intent_data.disarm
-                ? 'Struggling in disarm intent might cause belch interactions.'
-                : 'Disarm intent struggle belch chance disabled.'
+                ? 'Struggling in help intent might cause auto transfer interactions.'
+                : 'Help intent struggle auto transfer chance disabled.'
             }
             displayText="Disarm"
             color={intent_data.disarm ? 'blue' : 'transparent'}
