@@ -372,28 +372,28 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		S.OnRemove(src)
 
 /datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
-    var/list/advance_diseases = list()
-    var/channel = check_channel()
-    for(var/datum/disease/advance/disease in infectee.GetViruses())
-        var/other_channel = disease.check_channel()
-        if(global_flag_check(disease_flags, DORMANT) || global_flag_check(disease.disease_flags, DORMANT))
-            continue
-        if(IsSame(disease))
-            continue
-        if(channel == other_channel)
-            advance_diseases += disease
-    if(advance_diseases.len > 0)
-        sortList(advance_diseases, GLOBAL_PROC_REF(cmp_advdisease_resistance_asc))
-        for(var/i in 1 to advance_diseases.len)
-            var/datum/disease/advance/competition = advance_diseases[i]
-            if(transmission > (competition.resistance * 2))
-                competition.cure(FALSE)
-            else
-                return FALSE
-    else if(length(infectee.GetActiveViruses()) >= DISEASE_LIMIT)
-        return FALSE
-    infect(infectee, make_copy)
-    return TRUE
+	var/list/advance_diseases = list()
+	var/channel = check_channel()
+	for(var/datum/disease/advance/disease in infectee.GetViruses())
+		var/other_channel = disease.check_channel()
+		if(global_flag_check(disease_flags, DORMANT) || global_flag_check(disease.disease_flags, DORMANT))
+			continue
+		if(IsSame(disease))
+			continue
+		if(channel == other_channel)
+			advance_diseases += disease
+	if(advance_diseases.len > 0)
+		sortList(advance_diseases, GLOBAL_PROC_REF(cmp_advdisease_resistance_asc))
+		for(var/i in 1 to advance_diseases.len)
+			var/datum/disease/advance/competition = advance_diseases[i]
+			if(transmission > (competition.resistance * 2))
+				competition.cure(FALSE)
+			else
+				return FALSE
+	else if(length(infectee.GetActiveViruses()) >= DISEASE_LIMIT)
+		return FALSE
+	infect(infectee, make_copy)
+	return TRUE
 
 /datum/disease/advance/proc/check_channel()
 	switch(severity)
