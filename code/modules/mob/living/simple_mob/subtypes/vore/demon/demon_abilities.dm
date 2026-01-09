@@ -93,7 +93,7 @@
 		health = maxHealth	//Fullheal
 
 		for(var/obj/belly/B as anything in vore_organs)
-			B.escapable = B_ESCAPBALE_NONE
+			B.escapable = B_ESCAPABLE_NONE
 
 		cut_overlays()
 		flick("phaseout",src)
@@ -148,7 +148,7 @@
 	name = "Something"
 
 	for(var/obj/belly/B as anything in vore_organs)
-		B.escapable = B_ESCAPBALE_NONE
+		B.escapable = B_ESCAPABLE_NONE
 
 	cut_overlays()
 	flick("phaseout",src)

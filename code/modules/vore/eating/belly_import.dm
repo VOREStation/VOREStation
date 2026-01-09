@@ -844,9 +844,9 @@
 		if(isnum(belly_data["escapable"]))
 			var/new_escapable = belly_data["escapable"]
 			if(new_escapable == 0)
-				new_belly.escapable = B_ESCAPBALE_NONE
+				new_belly.escapable = B_ESCAPABLE_NONE
 			if(new_escapable == 1)
-				new_belly.escapable = B_ESCAPBALE_DEFAULT
+				new_belly.escapable = B_ESCAPABLE_DEFAULT
 			if(new_escapable == 2)
 				new_belly.escapable = B_ESCAPABLE_INTENT
 
