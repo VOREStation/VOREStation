@@ -106,6 +106,6 @@
 /mob/living/simple_mob/animal/passive/mouse/beastmode
 	body_color = "white" // Always set white so it can be easily recoloured
 
-/mob/living/simple_mob/animal/passive/mouse/beastmode/Initialize()
+/mob/living/simple_mob/animal/passive/mouse/beastmode/Initialize(mapload)
 	. = ..()
 	remove_verb(src,/mob/living/proc/ventcrawl) //No ventcrawl for hanner
