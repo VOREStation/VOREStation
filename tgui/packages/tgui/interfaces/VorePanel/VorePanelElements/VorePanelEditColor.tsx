@@ -7,9 +7,10 @@ import {
 import { useBackend } from 'tgui/backend';
 import { ColorSelector } from 'tgui/interfaces/ColorPickerModal';
 import { type HsvaColor, hexToHsva, hsvaToHex } from 'tgui-core/color';
-import { Box, Floating, Stack, Tooltip } from 'tgui-core/components';
+import { Box, Floating, Stack } from 'tgui-core/components';
 import { VorePanelColorBox } from './VorePanelCommonElements';
 import { VorePanelEditNumber } from './VorePanelEditNumber';
+import { VorePanelTooltip } from './VorePanelTooltip';
 
 export const VorePanelEditColor = (
   props: {
@@ -212,9 +213,11 @@ export const VorePanelEditColor = (
               tooltip={tooltip}
             />
           ) : (
-            <Tooltip content={tooltip} position={tooltipPosition}>
-              <Box className="VorePanel__floatingButton">?</Box>
-            </Tooltip>
+            <VorePanelTooltip
+              tooltip={tooltip}
+              tooltipPosition={tooltipPosition}
+              displayText="?"
+            />
           )}
         </Stack.Item>
       )}

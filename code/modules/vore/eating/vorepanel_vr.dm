@@ -142,6 +142,7 @@
 	data["show_pictures"] = null
 	data["icon_overflow"] = null
 	data["prey_abilities"] = null
+	data["intent_data"] = null
 	data["our_bellies"] = null
 	data["selected"] = null
 	data["soulcatcher"] = null
@@ -168,7 +169,13 @@
 			// Content Data
 			data["show_pictures"] = show_pictures
 			data["icon_overflow"] = icon_overflow
-			data["prey_abilities"] = get_prey_abilities(host)
+			var/atom/hostloc = owner.loc
+			// Allow VorePanel to show pred belly details even while indirectly inside
+			if(isliving(owner))
+				var/mob/living/H = owner
+				hostloc = H.surrounding_belly()
+			data["intent_data"] = get_intent_data(hostloc)
+			data["prey_abilities"] = get_prey_abilities(hostloc)
 
 		if(SOULCATCHER_TAB)
 			// Soulcatcher and abilities

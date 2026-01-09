@@ -1,14 +1,9 @@
 import type { ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
-import {
-  Box,
-  Dropdown,
-  type Floating,
-  Stack,
-  Tooltip,
-} from 'tgui-core/components';
+import { Box, Dropdown, type Floating, Stack } from 'tgui-core/components';
 
 import type { DropdownEntry } from '../types';
+import { VorePanelTooltip } from './VorePanelTooltip';
 
 export const VorePanelEditDropdown = (
   props: {
@@ -63,9 +58,11 @@ export const VorePanelEditDropdown = (
       </Stack.Item>
       {tooltip && (
         <Stack.Item>
-          <Tooltip content={tooltip} position={tooltipPosition}>
-            <Box className="VorePanel__floatingButton">?</Box>
-          </Tooltip>
+          <VorePanelTooltip
+            tooltip={tooltip}
+            tooltipPosition={tooltipPosition}
+            displayText="?"
+          />
         </Stack.Item>
       )}
     </Stack>

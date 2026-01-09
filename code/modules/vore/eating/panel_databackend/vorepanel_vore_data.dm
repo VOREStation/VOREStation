@@ -93,20 +93,27 @@
 	inside["contents"] = inside_contents
 	return inside
 
-/datum/vore_look/proc/get_prey_abilities(mob/owner)
-	var/atom/hostloc = owner.loc
-	// Allow VorePanel to show pred belly details even while indirectly inside
-	if(isliving(owner))
-		var/mob/living/H = owner
-		hostloc = H.surrounding_belly()
-	if(!isbelly(hostloc))
-		return list()
+/datum/vore_look/proc/get_prey_abilities(obj/belly/inside_belly)
+	if(!istype(hostloc))
+		return null
 
 	var/obj/belly/inside_belly = hostloc
 	var/list/abilities = list()
 	if(inside_belly.mode_flags & DM_FLAG_ABSORBEDVORE)
 		UNTYPED_LIST_ADD(abilities, list("name" = "devour_as_absorbed", "available" = owner.absorbed))
 	return abilities
+
+/datum/vore_look/proc/get_intent_data(obj/belly/inside_belly)
+	if(!isbelly(hostloc))
+		return null
+
+	return list(
+		"active" = inside_belly.escapable
+		"help" = (inside_belly.transferchance && inside_belly.transferlocation) || (transferchance_secondary && transferlocation_secondary)
+		"disarm" = !!inside_belly.belchchance
+		"grab" = (inside_belly.absorbchance && inside_belly.digest_mode == DM_ABSORB) || (inside_belly.digestchance && inside_belly.digest_mode == DM_DIGEST) || (inside_belly.selectchance && inside_belly.digest_mode == DM_SELECT)
+		"harm" = !!inside_belly.escapechance
+	)
 
 /datum/vore_look/proc/get_host_mobtype(mob/owner)
 	var/list/host_mobtype = list("is_cyborg" = FALSE, "is_vore_simple_mob" = FALSE)

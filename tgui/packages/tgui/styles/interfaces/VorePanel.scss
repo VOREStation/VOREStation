@@ -1,3 +1,5 @@
+@use '../colors';
+
 .VorePanel__Floating {
   height: 200px;
   background-color: var(--color-section);
@@ -13,17 +15,49 @@
 }
 
 .VorePanel__floatingButton {
-  cursor: var(--cursor-pointer);
+  cursor: var(--cursor-pointer, pointer);
   display: inline-block;
   line-height: 1.667em;
-  padding: 0 var(--space-m);
+  padding: 0 var(--space-m, 1em);
   outline: 0;
-  border-radius: var(--button-border-radius);
-  transition-property: background-color, color, opacity;
-  transition-duration: var(--button-transition);
-  transition-timing-function: var(--button-transition-timing);
+  border-radius: var(--button-border-radius, 0.25em);
   user-select: none;
-  background-color: var(--button-background-default);
+  transition:
+    background-color var(--button-transition, 0.2s),
+    color var(--button-transition, 0.2s),
+    opacity var(--button-transition, 0.2s);
+
+  --vp-color: currentColor;
+  --vp-background: var(--button-background-default);
+  --vp-background-hsl: hsl(from var(--vp-background) h s l);
+
+  background-color: var(--vp-background);
+  color: var(--vp-color);
+
+  &:hover {
+    background-color: hsl(
+      from var(--vp-background-hsl) h s calc(l + var(--adjust-hover))
+    );
+  }
+
+  &.color-bg-transparent {
+    --vp-background: hsl(from var(--vp-color) h s l / 0.2);
+    background-color: var(--vp-background);
+    opacity: 1;
+  }
+}
+
+@each $color-name, $color-value in colors.$color-map {
+  .VorePanel__floatingButton.color-bg-#{$color-name} {
+    --vp-background: #{$color-value};
+    --vp-background-hsl: hsl(from var(--vp-background) h s l);
+
+    @each $low-color in colors.$low-contrast-color-map {
+      @if $color-name == $low-color {
+        --vp-color: var(--color-black);
+      }
+    }
+  }
 }
 
 .VorePanel__pasteArea {
