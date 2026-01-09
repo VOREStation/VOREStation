@@ -84,3 +84,11 @@
       charge cells with nutrition
   - code_imp: Added the Electrovore and Obligate code, touched up cell.dm to allow
       for draining and charging
+2026-01-09:
+  Aroliacue:
+  - balance: Security Protolathe can now print researched device cells.
+  Asher-42:
+  - rscadd: shoulder light from base command dullataur
+  Kashargul:
+  - code_imp: moves those alists to lists
+  - code_imp: cleans up the vore fx and resist code
