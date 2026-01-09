@@ -20,23 +20,21 @@
   line-height: 1.667em;
   padding: 0 var(--space-m);
   outline: 0;
-  border-radius: var(--button-border-radius, 0.25em);
+  border-radius: var(--button-border-radius);
+  transition-property: background-color, color, opacity;
+  transition-duration: var(--button-transition);
+  transition-timing-function: var(--button-transition-timing);
   user-select: none;
-  transition:
-    background-color var(--button-transition, 0.2s),
-    color var(--button-transition, 0.2s),
-    opacity var(--button-transition, 0.2s);
 
   --vp-color: currentColor;
   --vp-background: var(--button-background-default);
-  --vp-background-hsl: hsl(from var(--vp-background) h s l);
 
   background-color: var(--vp-background);
   color: var(--vp-color);
 
   &:hover {
     background-color: hsl(
-      from var(--vp-background-hsl) h s calc(l + var(--adjust-hover))
+      from var(--vp-background) h s calc(l + var(--adjust-hover))
     );
   }
 
@@ -50,7 +48,6 @@
 @each $color-name, $color-value in colors.$color-map {
   .VorePanel__floatingButton.color-bg-#{$color-name} {
     --vp-background: #{$color-value};
-    --vp-background-hsl: hsl(from var(--vp-background) h s l);
 
     @each $low-color in colors.$low-contrast-color-map {
       @if $color-name == $low-color {
