@@ -1,6 +1,10 @@
 import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { intentMappings, noSelectionName } from '../constants';
+import {
+  intentMappings,
+  interactionModes,
+  noSelectionName,
+} from '../constants';
 import type { BellyInteractionData, DropdownEntry } from '../types';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
@@ -27,18 +31,14 @@ export const VoreSelectedBellyInteractions = (props: {
         <Section
           title="Belly Interactions"
           buttons={
-            <VorePanelEditSwitch
+            <VorePanelEditDropdown
+              icon={escapable ? 'toggle-on' : 'toggle-off'}
+              editMode={editMode}
               action="set_attribute"
               subAction="b_escapable"
-              editMode={editMode}
-              active={!!escapable}
-              content={
-                escapable === 1
-                  ? 'Default'
-                  : escapable === 2
-                    ? 'Intent'
-                    : undefined
-              }
+              entry={interactionModes[escapable].displayText ?? 'Disabled'}
+              options={interactionModes}
+              color={escapable ? 'green' : editMode ? undefined : 'red'}
               tooltip={
                 <Stack vertical>
                   <Stack.Item>

@@ -42,15 +42,24 @@ export const VorePanelEditDropdown = (
     tooltipPosition,
   } = props;
 
+  const normalizedOptions: DropdownEntry[] = options.map((opt) =>
+    typeof opt === 'string' ? { value: opt, displayText: opt } : opt,
+  );
+
+  const entryValue =
+    normalizedOptions.find((o) => o.displayText === entry)?.value ?? '';
+
+  function saneAct(value: string) {
+    if (value !== entryValue) act(action, { attribute: subAction, val: value });
+  }
+
   return editMode ? (
     <Stack>
       <Stack.Item grow>
         <Dropdown
           fluid
           color={color}
-          onSelected={(value) =>
-            act(action, { attribute: subAction, val: value })
-          }
+          onSelected={saneAct}
           options={options}
           selected={entry}
           icon={icon}

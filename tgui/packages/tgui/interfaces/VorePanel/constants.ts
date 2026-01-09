@@ -197,3 +197,9 @@ export const intentMappings = [
         : 'Harm intent struggle escape chance disabled.',
   },
 ];
+
+export const interactionModes = [
+  { value: '0', displayText: 'Disabled' },
+  { value: '1', displayText: 'Enabled (Default)' },
+  { value: '2', displayText: 'Enabled (Intent)' },
+];
