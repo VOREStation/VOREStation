@@ -15,10 +15,10 @@
 }
 
 .VorePanel__floatingButton {
-  cursor: var(--cursor-pointer, pointer);
+  cursor: var(--cursor-pointer);
   display: inline-block;
   line-height: 1.667em;
-  padding: 0 var(--space-m, 1em);
+  padding: 0 var(--space-m);
   outline: 0;
   border-radius: var(--button-border-radius, 0.25em);
   user-select: none;
