@@ -614,15 +614,16 @@
 			host.vore_selected.emote_time = CLAMP(new_time, 60, 600)
 			. = TRUE
 		if("b_escapable")
-			if(host.vore_selected.escapable == 0) //Possibly escapable and special interactions.
-				host.vore_selected.escapable = 1
-				to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings."))
-			else if(host.vore_selected.escapable == 1) //Never escapable.
-				host.vore_selected.escapable = 0
-				to_chat(user,span_warning("Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)]."))
-			else
-				tgui_alert_async(user, "Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
-				host.vore_selected.escapable = 0
+			switch(host.vore_selected.escapable)
+				if(B_ESCAPBALE_NONE) //Possibly escapable and special interactions.
+					host.vore_selected.escapable = B_ESCAPBALE_DEFAULT
+					to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings."))
+				if(B_ESCAPBALE_DEFAULT)
+					host.vore_selected.escapable = B_ESCAPABLE_INTENT
+					to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings and their intent."))
+				if(B_ESCAPABLE_INTENT) //Never escapable.
+					host.vore_selected.escapable = B_ESCAPBALE_NONE
+					to_chat(user,span_warning("Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)]."))
 			. = TRUE
 		if("b_escapechance")
 			var/escape_chance_input = text2num(params["val"])

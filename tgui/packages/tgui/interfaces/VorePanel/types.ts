@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
@@ -194,7 +195,7 @@ export type BellyVisualData = {
 };
 
 export type BellyInteractionData = {
-  escapable: BooleanLike;
+  escapable: number;
   interacts: interactData;
   autotransfer_enabled: BooleanLike;
   autotransfer: AutotransferData;
@@ -484,7 +485,7 @@ export type PreferenceData = {
 
 export type ActionButtonData = {
   name: string;
-  tooltip: string;
+  tooltip: ReactNode;
   disabled?: boolean;
   color?: string;
   needsConfirm?: boolean;

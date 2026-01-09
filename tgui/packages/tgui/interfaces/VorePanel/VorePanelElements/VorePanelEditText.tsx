@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, type Floating, Input, Stack } from 'tgui-core/components';
 import { VorePanelTooltip } from './VorePanelTooltip';
@@ -21,7 +21,7 @@ export const VorePanelEditText = (
     /** The color of the displayed text */
     color: string;
     /** Our displayed tooltip displayed the text */
-    tooltip: string;
+    tooltip: ReactNode;
     /** The position of the tooltip if static */
     tooltipPosition: ComponentProps<typeof Floating>['placement'];
   }>,

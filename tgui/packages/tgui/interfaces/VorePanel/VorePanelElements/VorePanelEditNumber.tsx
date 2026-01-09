@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, type Floating, NumberInput, Stack } from 'tgui-core/components';
 import { round, toFixed } from 'tgui-core/math';
@@ -28,7 +28,7 @@ export const VorePanelEditNumber = (
     /** The color of the displayed text */
     color: string;
     /** Our displayed tooltip behind the input element */
-    tooltip: string;
+    tooltip: ReactNode;
     /** The position of the tooltip if static */
     tooltipPosition: ComponentProps<typeof Floating>['placement'];
     /** The amount of fractional digits shown */

@@ -20,10 +20,15 @@
 	if(!private_struggle)
 		resist_play_sound()
 
-	if(prob(belchchance) && living_prey.a_intent == I_HELP)//Unsure if this should go in escapable or not, leaving it here for now.
+	if((prob(belchchance) && escapable != B_ESCAPABLE_INTENT) || (living_prey.a_intent == I_HELP && escapable == B_ESCAPABLE_INTENT))
 		owner.emote("belch")
 
-	if(escapable && living_prey.a_intent != I_HELP) //If the stomach has escapable enabled.
+	if(!escapable) //If the stomach has escapable enabled.
+		var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, living_prey))
+		to_chat(living_prey, struggle_user_message)
+		return
+
+	if(escapable == B_ESCAPABLE_INTENT && living_prey.a_intent != I_HELP)
 		switch(living_prey.a_intent)
 			if(I_HURT)
 				if(resist_check_escapechance(living_prey, prey_item))
@@ -40,15 +45,23 @@
 					return
 				if(resist_check_selectchance(living_prey))
 					return
-
-		var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, living_prey))
-		to_chat(living_prey, struggle_user_message)
-		to_chat(owner, span_vwarning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]."))
-
-		return
+	else
+		if(resist_check_escapechance(living_prey, prey_item))
+			return
+		if(resist_check_transferchance(living_prey, prey_item))
+			return
+		if(resist_check_secondary_transferchance(living_prey,prey_item))
+			return
+		if(resist_check_absorbchance(living_prey))
+			return
+		if(resist_check_digestchance(living_prey))
+			return
+		if(resist_check_selectchance(living_prey))
+			return
 
 	var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, living_prey))
 	to_chat(living_prey, struggle_user_message)
+	to_chat(owner, span_vwarning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]."))
 
 /obj/belly/proc/resist_default_escape(mob/living/living_prey, obj/item/prey_item)
 	var/escape_attempt_owner_message = span_vwarning(belly_format_string(escape_attempt_messages_owner, living_prey))

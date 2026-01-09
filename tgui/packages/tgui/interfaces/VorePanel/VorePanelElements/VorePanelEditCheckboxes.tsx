@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Floating, Stack } from 'tgui-core/components';
 
@@ -19,7 +19,7 @@ export const VorePanelEditCheckboxes = (
     /** Our tooltips associated to the checkbox actions as Record mapping our options to a tooltip */
     tooltipList: Record<string, string>;
     /** Our displayed tooltip behind the input element */
-    tooltip: string;
+    tooltip: ReactNode;
     /** The position of the tooltip if static */
     tooltipPosition: ComponentProps<typeof Floating>['placement'];
   }>,

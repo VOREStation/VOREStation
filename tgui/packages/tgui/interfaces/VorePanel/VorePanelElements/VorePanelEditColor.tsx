@@ -1,5 +1,6 @@
 import {
   type ComponentProps,
+  type ReactNode,
   useEffect,
   useEffectEvent,
   useState,
@@ -28,7 +29,7 @@ export const VorePanelEditColor = (
     /** Optional label to show before the color box */
     name_of: string;
     /** Our displayed tooltip behind the input element */
-    tooltip: string;
+    tooltip: ReactNode;
     /** The position of the tooltip if static */
     tooltipPosition: ComponentProps<typeof Floating>['placement'];
     /** Removes the spacing behind the color box */

@@ -694,10 +694,13 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += `<div id="settingsAccordion${index}-collapseThree" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingThree">`;
   result += '<div class="accordion-body">';
   result += `<b>Belly Interactions (${
-    escapable
-      ? '<span style="color: green;">Enabled'
-      : '<span style="color: red;">Disabled'
+    escapable === 1
+      ? '<span style="color: green;">Enabled (Default)'
+      : escapable === 2
+        ? '<span style="color: green;">Enabled (Intent)'
+        : '<span style="color: red;">Disabled'
   }</span>)</b>`;
+
   result += '<ul class="list-group">';
 
   const interactionItems = [
