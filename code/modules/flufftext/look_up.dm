@@ -14,7 +14,7 @@
 
 	var/show_nothing = TRUE
 	var/turf/above_turf = GetAbove(src)
-	if(above_turf && (above_turf.CanZPass(src, DOWN) || istype(above_turf, /turf/simulated/floor/glass)))
+	if(istype(above_turf, /turf/simulated/open) || istype(above_turf, /turf/space) || istype(above_turf, /turf/simulated/floor/glass)) // Typecheck because CanZPass() doesn't work right, because our actual loc is at the destination so it always returns true if on a floor.
 		if(is_remote_viewing())
 			reset_perspective()
 			return
