@@ -212,7 +212,7 @@
 /obj/belly/gryphon/beak
 	name = "Beak"
 	mode_flags = DM_FLAG_THICKBELLY
-	escapable = TRUE
+	escapable = B_ESCAPABLE_DEFAULT
 	escapechance = 5
 	desc = "Noticing you alone, the gryphon lunges forwards and wraps its beak around your head, forcing you to stare into the dark abyss at the back of the gryphon's throat. It quickly tries to swallow you down, beak closing around your torso and head tilting back, letting gravity help make you disappear before anyone sees."
 	struggle_messages_inside = list(

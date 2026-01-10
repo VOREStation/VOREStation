@@ -96,7 +96,7 @@
 	tail.contaminates = vore_default_contaminates
 	tail.contamination_flavor = vore_default_contamination_flavor
 	tail.contamination_color = vore_default_contamination_color
-	tail.escapable = TRUE // needed for transferchance
+	tail.escapable = B_ESCAPABLE_DEFAULT // needed for transferchance
 	tail.escapechance = 0 // No directly escaping a tail, gotta squirm back out.
 	tail.digestchance = vore_tail_digest_chance
 	tail.absorbchance = vore_tail_absorb_chance

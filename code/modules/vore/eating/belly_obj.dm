@@ -30,7 +30,7 @@
 	var/digest_tox = 0						// Toxins damage per tick in digestion mode
 	var/digest_clone = 0					// Clone damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
-	var/escapable = FALSE					// Belly can be resisted out of at any time
+	var/escapable = B_ESCAPABLE_NONE		// Belly can be resisted out of at any time
 	var/escapetime = 10 SECONDS				// Deciseconds, how long to escape this belly
 	var/selectchance = 0					// % Chance of stomach switching to selective mode if prey struggles
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles

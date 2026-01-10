@@ -248,7 +248,7 @@
 			name = get_visible_name()
 
 		for(var/obj/belly/B as anything in vore_organs)
-			B.escapable = FALSE
+			B.escapable = B_ESCAPABLE_NONE
 
 		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new SK.phase_out_anim(src.loc)
 		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
