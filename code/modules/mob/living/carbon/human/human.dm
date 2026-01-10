@@ -1836,6 +1836,10 @@
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
 
+/mob/living/carbon/human/lay_down()
+	rest_dir = prob(50) //50/50?
+	. = ..()
+
 /mob/living/carbon/human/verb/flip_lying()
 	set name = "Flip Resting Direction"
 	set category = "Abilities.General"
@@ -1849,6 +1853,31 @@
 		rest_dir = FALSE
 	rest_dir = !rest_dir
 	update_transform(TRUE)
+
+// These are here mostly for people who wish to use macros for funny things, so they can lay in specific directions.
+// They're hidden so they dont clog up the verb panel normally.
+/mob/living/carbon/human/verb/lay_right()
+	set name = "Rest Right"
+	set hidden = TRUE
+
+	rest_dir = FALSE
+	resting = !resting
+	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
+
+/mob/living/carbon/human/verb/lay_left()
+	set name = "Rest Left"
+	set hidden = TRUE
+
+	rest_dir = TRUE
+	resting = !resting
+	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
+
+/mob/living/carbon/human/verb/lay_same()
+	set name = "Rest Same"
+	set hidden = TRUE
+
+	resting = !resting
+	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 
 /mob/living/carbon/human/get_digestion_nutrition_modifier()
 	return species.digestion_nutrition_modifier
