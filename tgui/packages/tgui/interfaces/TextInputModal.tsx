@@ -41,7 +41,7 @@ export const TextInputModal = (props) => {
 
   const [input, setInput] = useState(placeholder || '');
 
-  const onType = (value: string) => {
+  function onType(value: string) {
     if (value === input) {
       return;
     }
@@ -49,7 +49,7 @@ export const TextInputModal = (props) => {
       ? sanitizeMultiline(value)
       : removeAllSkiplines(value);
     setInput(sanitizedInput);
-  };
+  }
 
   const visualMultiline = multiline || input.length >= 30;
   // Dynamically changes the window height based on the message.
