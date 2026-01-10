@@ -14,7 +14,7 @@
 
 	var/show_nothing = TRUE
 	var/turf/above_turf = GetAbove(src)
-	if(above_turf && above_turf.CanZPass(src, DOWN))
+	if(above_turf && (above_turf.CanZPass(src, DOWN) || istype(above_turf, /turf/simulated/floor/glass)))
 		if(is_remote_viewing())
 			reset_perspective()
 			return
