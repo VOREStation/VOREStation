@@ -177,7 +177,7 @@
 
 	// ok, we're alive, camera is good and in our network...
 	src.current = C
-	src.AddComponent(/datum/component/remote_view, focused_on = C, vconfig_path = /datum/remote_view_config/camera_standard)
+	src.AddComponent(/datum/component/remote_view, focused_on = C, viewsize = null, vconfig_path = /datum/remote_view_config/camera_standard)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
