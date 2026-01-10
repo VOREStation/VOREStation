@@ -18,7 +18,7 @@
 		if(is_remote_viewing())
 			reset_perspective()
 			return
-		AddComponent(/datum/component/remote_view, focused_on = above_turf, viewsize = 5, vconfig_path = /datum/remote_view_config/turf_decoupling)
+		AddComponent(/datum/component/remote_view, focused_on = above_turf, viewsize = 5, vconfig_path = /datum/remote_view_config/looking_up)
 		show_nothing = FALSE
 
 	if(!T.is_outdoors()) // They're inside.

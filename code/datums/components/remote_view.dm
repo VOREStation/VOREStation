@@ -60,6 +60,9 @@
 		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
 		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	if(settings.use_zoom_hud && host_mob.hud_used.hud_shown)
+		host_mob.toggle_zoom_hud()
 	// Set view to size, null is default
 	host_mob.set_viewsize(viewsize)
 
@@ -111,6 +114,8 @@
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	// Reset to default size
 	host_mob.set_viewsize()
+	if(settings.use_zoom_hud && !host_mob.hud_used.hud_shown)
+		host_mob.toggle_zoom_hud()
 	// Update the mob's vision right away if it still exists
 	if(!QDELETED(host_mob))
 		settings.detatch_from_mob(src, host_mob)
@@ -293,9 +298,6 @@
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
-	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-	if(host_mob.hud_used.hud_shown)
-		host_mob.toggle_zoom_hud()
 	// Unfortunately too many things read this to control item state for me to remove this.
 	// Oh well! better than GetComponent() everywhere. Lets just manage item/zoom in this component though...
 	our_item.zoom = TRUE
@@ -325,8 +327,6 @@
 	// Feedback
 	if(show_message)
 		host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
-	if(!host_mob.hud_used.hud_shown)
-		host_mob.toggle_zoom_hud()
 	host_item.zoom = FALSE
 	// return view offset
 	if(host_mob.client)
