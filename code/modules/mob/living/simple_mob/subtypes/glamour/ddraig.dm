@@ -1,6 +1,6 @@
 /mob/living/simple_mob/vore/ddraig
 	name = "ddraig"
-	desc = "A massive drake-like creature with dark purple scales and a seemingly exposed skull."
+	desc = "A massive, slender dragon like creature. It's body is covered in slick, vibrant pink scales. Atop its back sits large, thin white wings that are reminiscent of those scene on butterflies."
 	tt_desc = "Draconis glamoris"
 	icon = 'icons/mob/vore96x96.dmi'
 	icon_dead = "ddraig-dead"
