@@ -67,6 +67,10 @@ var/global/datum/repository/crew/crew_repository = new()
 /datum/repository/crew/proc/scan()
 	var/list/tracked = list()
 	for(var/mob/living/carbon/human/H in GLOB.mob_list)
+		if(isanimal(H.loc))
+			var/mob/living/simple_mob/tf_holder = H.loc
+			if(tf_holder.tf_mob_holder == H) //Exclude characters that are TFd into other mobs.
+				continue
 		if(istype(H.w_uniform, /obj/item/clothing/under))
 			var/obj/item/clothing/under/C = H.w_uniform
 			if (C.has_sensor)
