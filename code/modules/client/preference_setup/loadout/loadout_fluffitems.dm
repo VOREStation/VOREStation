@@ -1016,7 +1016,7 @@
 /datum/gear/fluff/clara_flask
 	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
 	display_name = "Clara's Vacuum Flask"
-	ckeywhitelist = list("rboys2")
+	ckeywhitelist = list("claracow")
 	character_name = list("Clara Mali")
 	cost = 1
 
