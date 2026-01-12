@@ -31,8 +31,14 @@ export const MultiOverlayImage = (props: {
   gallery?: boolean;
 }) => {
   const { overlays, size, targetSize, alpha, gallery } = props;
+
   const [src, setSrc] = useState<string>('');
+
   const blobRef = useRef<string>('');
+  const renderIdRef = useRef(0);
+
+  const tempCanvasRef = useRef<OffscreenCanvas | null>(null);
+  const tempCtxRef = useRef<OffscreenCanvasRenderingContext2D | null>(null);
 
   const render = useCallback(
     async (canvas: OffscreenCanvas, ctx: OffscreenCanvasRenderingContext2D) => {
@@ -40,14 +46,21 @@ export const MultiOverlayImage = (props: {
       ctx.imageSmoothingEnabled = true;
 
       const images = await Promise.all(
-        overlays.map(async (o, i) => {
+        overlays.map(async (o) => {
           const iconRef = o.icon ? getIconFromRefMap(o.icon) : null;
           if (!iconRef) return null;
           const url = `${iconRef}?state=${o.iconState}`;
-          const img = await cachedGetImage(url);
-          return img;
+          return cachedGetImage(url);
         }),
       );
+
+      if (!tempCanvasRef.current) {
+        tempCanvasRef.current = new OffscreenCanvas(targetSize, targetSize);
+        tempCtxRef.current = tempCanvasRef.current.getContext('2d');
+      }
+
+      const tempCanvas = tempCanvasRef.current!;
+      const tempCtx = tempCtxRef.current!;
 
       for (let i = 0; i < overlays.length; i++) {
         const overlay = overlays[i];
@@ -58,11 +71,9 @@ export const MultiOverlayImage = (props: {
         ctx.drawImage(image, 0, 0, size, size, 0, 0, targetSize, targetSize);
 
         if (overlay.color) {
-          const tempCanvas = new OffscreenCanvas(targetSize, targetSize);
-          const tempCtx = tempCanvas.getContext('2d');
-          if (!tempCtx) continue;
-
+          tempCtx.clearRect(0, 0, targetSize, targetSize);
           tempCtx.imageSmoothingEnabled = true;
+
           tempCtx.drawImage(
             image,
             0,
@@ -92,6 +103,7 @@ export const MultiOverlayImage = (props: {
             targetSize,
           );
 
+          tempCtx.globalCompositeOperation = 'source-over';
           ctx.drawImage(tempCanvas, 0, 0);
         }
       }
@@ -102,16 +114,25 @@ export const MultiOverlayImage = (props: {
   );
 
   const drawToBlob = useCallback(async () => {
+    const renderId = ++renderIdRef.current;
+
     const offscreen = new OffscreenCanvas(targetSize, targetSize);
     const ctx = offscreen.getContext('2d');
     if (!ctx) return;
 
     try {
       await render(offscreen, ctx);
+      if (renderId !== renderIdRef.current) return;
+
       const blob = await offscreen.convertToBlob();
-      if (!blob) return;
+      if (renderId !== renderIdRef.current || !blob) return;
 
       const url = URL.createObjectURL(blob);
+      if (renderId !== renderIdRef.current) {
+        URL.revokeObjectURL(url);
+        return;
+      }
+
       if (blobRef.current) URL.revokeObjectURL(blobRef.current);
       blobRef.current = url;
       setSrc(url);
@@ -122,7 +143,10 @@ export const MultiOverlayImage = (props: {
 
   useEffect(() => {
     drawToBlob();
+
     return () => {
+      renderIdRef.current++;
+
       if (blobRef.current) {
         URL.revokeObjectURL(blobRef.current);
         blobRef.current = '';
@@ -139,6 +163,7 @@ export const MultiOverlayImage = (props: {
         opacity: (alpha ?? 255) / 255,
         transform: gallery ? 'translate(1%, 3%)' : undefined,
       }}
+      draggable={false}
     />
   ) : null;
 };
