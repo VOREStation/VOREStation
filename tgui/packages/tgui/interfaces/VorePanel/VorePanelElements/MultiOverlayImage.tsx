@@ -42,11 +42,11 @@ export const MultiOverlayImage = (props: {
   const tempCanvasRef = useRef<OffscreenCanvas | null>(null);
   const tempCtxRef = useRef<OffscreenCanvasRenderingContext2D | null>(null);
 
-  const drawToBlob = useCallback(async () => {
-    const overlayKey = overlays
-      .map((o) => `${o.icon}:${o.iconState}:${o.color ?? ''}`)
-      .join('|');
+  const overlayKey = overlays
+    .map((o) => `${o.icon}:${o.iconState}:${o.color ?? ''}`)
+    .join('|');
 
+  const drawToBlob = useCallback(async () => {
     if (overlayKey === lastOverlayKeyRef.current) return;
     lastOverlayKeyRef.current = overlayKey;
 
@@ -59,28 +59,20 @@ export const MultiOverlayImage = (props: {
       }),
     );
 
-    if (images.some((img, i) => overlays[i].icon && !img)) {
-      return;
-    }
+    if (images.some((img, i) => overlays[i].icon && !img)) return;
 
-    if (!mainCanvasRef.current) {
+    if (!mainCanvasRef.current)
       mainCanvasRef.current = new OffscreenCanvas(targetSize, targetSize);
-      const ctx = mainCanvasRef.current.getContext('2d');
-      if (!ctx) return;
-      mainCtxRef.current = ctx;
-    }
-
-    if (!tempCanvasRef.current) {
+    if (!mainCtxRef.current)
+      mainCtxRef.current = mainCanvasRef.current.getContext('2d')!;
+    if (!tempCanvasRef.current)
       tempCanvasRef.current = new OffscreenCanvas(targetSize, targetSize);
-      const ctx = tempCanvasRef.current.getContext('2d');
-      if (!ctx) return;
-      tempCtxRef.current = ctx;
-    }
+    if (!tempCtxRef.current)
+      tempCtxRef.current = tempCanvasRef.current.getContext('2d')!;
 
-    const canvas = mainCanvasRef.current;
     const ctx = mainCtxRef.current!;
-    const tempCanvas = tempCanvasRef.current;
     const tempCtx = tempCtxRef.current!;
+    const tempCanvas = tempCanvasRef.current;
 
     ctx.clearRect(0, 0, targetSize, targetSize);
     ctx.imageSmoothingEnabled = true;
@@ -131,14 +123,15 @@ export const MultiOverlayImage = (props: {
       }
     }
 
-    const blob = await canvas.convertToBlob();
+    const blob = await mainCanvasRef.current.convertToBlob();
     if (!blob) return;
+
     const url = URL.createObjectURL(blob);
 
     if (blobRef.current) URL.revokeObjectURL(blobRef.current);
     blobRef.current = url;
     setSrc(url);
-  }, [overlays]);
+  }, [overlayKey]);
 
   useEffect(() => {
     drawToBlob();
