@@ -350,6 +350,13 @@
 	ckeywhitelist = list("coolcrow420")
 	character_name = list("M41L")
 
+/datum/gear/fluff/clara_flask
+	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
+	display_name = "Clara's Vacuum Flask"
+	ckeywhitelist = list("claracow")
+	character_name = list("Clara Mali")
+	cost = 1
+
 //  D CKEYS
 /datum/gear/fluff/Aku_briefcase
 	path = /obj/item/storage/secure/briefcase/dealer
@@ -1012,13 +1019,6 @@
 	ckeywhitelist = list("radiantaurora")
 	character_name = list("Tiemli Kroto")
 	allowed_roles = list(JOB_ROBOTICIST)
-
-/datum/gear/fluff/clara_flask
-	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
-	display_name = "Clara's Vacuum Flask"
-	ckeywhitelist = list("rboys2")
-	character_name = list("Clara Mali")
-	cost = 1
 
 /datum/gear/fluff/luna_sci_medal
 	path = /obj/item/clothing/accessory/medal/nobel_science
