@@ -381,6 +381,7 @@ so as to remain in compliance with the most up-to-date laws."
 	name = "Vote"
 	desc = "A vote has been called. \
 	Click here to cast your vote."
+	timeout = 60 SECONDS
 
 /atom/movable/screen/alert/vote/Click()
 	if(!usr || !usr.client)

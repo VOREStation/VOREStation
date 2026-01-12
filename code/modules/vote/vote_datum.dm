@@ -135,8 +135,6 @@
 	if(remaining() == 0)
 		var/result = calculate_result()
 		handle_result(result)
-		for(var/mob/mob in GLOB.player_list)
-			mob.clear_alert("vote")
 		qdel(src)
 
 /datum/vote/Destroy(force)
