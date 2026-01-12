@@ -42,11 +42,11 @@ export const MultiOverlayImage = (props: {
   const tempCanvasRef = useRef<OffscreenCanvas | null>(null);
   const tempCtxRef = useRef<OffscreenCanvasRenderingContext2D | null>(null);
 
-  const overlayKey = overlays
-    .map((o) => `${o.icon}:${o.iconState}:${o.color ?? ''}`)
-    .join('|');
-
   const drawToBlob = useCallback(async () => {
+    const overlayKey = overlays
+      .map((o) => `${o.icon}:${o.iconState}:${o.color ?? ''}`)
+      .join('|');
+
     if (overlayKey === lastOverlayKeyRef.current) return;
     lastOverlayKeyRef.current = overlayKey;
 
@@ -131,7 +131,7 @@ export const MultiOverlayImage = (props: {
     if (blobRef.current) URL.revokeObjectURL(blobRef.current);
     blobRef.current = url;
     setSrc(url);
-  }, [overlayKey]);
+  }, [overlays]);
 
   useEffect(() => {
     drawToBlob();
