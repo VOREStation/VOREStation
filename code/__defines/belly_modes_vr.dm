@@ -95,3 +95,8 @@
 //Message display flags
 #define MS_FLAG_STRUGGLE_OUTSIDE			0x1
 #define MS_FLAG_STRUGGLE_ABSORBED_OUTSIDE	0x2
+
+//Escapable resist options
+#define B_ESCAPABLE_NONE		0
+#define B_ESCAPABLE_DEFAULT		1
+#define B_ESCAPABLE_INTENT		2

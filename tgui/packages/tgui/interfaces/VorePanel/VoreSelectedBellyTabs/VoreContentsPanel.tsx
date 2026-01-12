@@ -15,10 +15,12 @@ import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 import { stats } from '../constants';
 import { ourTypeToOptions } from '../functions';
-import type { ContentData, DropdownEntry } from '../types';
+import type { ContentData, DropdownEntry, IntentData } from '../types';
+import { VoreContentIntent } from './ContentTab/VoreContentIntent';
 
 export const VoreContentsPanel = (props: {
   contents?: ContentData[] | null;
+  intent_data?: IntentData | null;
   targetBelly?: string;
   allow_absorbed_devour?: BooleanLike;
   onTargetBely?: React.Dispatch<React.SetStateAction<string>>;
@@ -34,6 +36,7 @@ export const VoreContentsPanel = (props: {
 
   const {
     contents = [],
+    intent_data,
     targetBelly = '',
     onTargetBely,
     bellyDropdownNames,
@@ -79,6 +82,7 @@ export const VoreContentsPanel = (props: {
       title="Contents"
       buttons={
         <Stack>
+          {!!intent_data && <VoreContentIntent intent_data={intent_data} />}
           <Stack.Item>
             <Input
               width="200px"

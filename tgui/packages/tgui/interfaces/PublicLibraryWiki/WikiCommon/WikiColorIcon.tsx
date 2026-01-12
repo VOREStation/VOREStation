@@ -70,6 +70,7 @@ export const CanvasBackedImage = (props: {
       style={{
         visibility: bitmap && !loadFailed ? 'visible' : 'hidden',
       }}
+      draggable={false}
     />
   );
 };
