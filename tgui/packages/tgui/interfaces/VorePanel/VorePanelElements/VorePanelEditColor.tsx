@@ -73,7 +73,7 @@ export const VorePanelEditColor = (
       timeoutId = setTimeout(() => {
         setInitialColor(back_color);
         setCurrentColor(hexToHsva(back_color));
-      }, 300);
+      }, 100);
     }
 
     return () => {
@@ -89,7 +89,7 @@ export const VorePanelEditColor = (
 
     const timeoutId = setTimeout(() => {
       onRealtimeValue(hsvaToHex(currentColor));
-    }, 300);
+    }, 100);
 
     return () => {
       clearTimeout(timeoutId);
