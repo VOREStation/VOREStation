@@ -5,7 +5,7 @@ import type { Overlay } from '../types';
 
 const imageCache = new Map<string, Promise<HTMLImageElement | null>>();
 
-function cachedGetImage(url: string) {
+async function cachedGetImage(url: string) {
   const existing = imageCache.get(url);
   if (existing) return existing;
 
@@ -32,125 +32,119 @@ export const MultiOverlayImage = (props: {
 }) => {
   const { overlays, size, targetSize, alpha, gallery } = props;
 
-  const [src, setSrc] = useState<string>('');
-
+  const [src, setSrc] = useState<string | null>(null);
   const blobRef = useRef<string>('');
-  const renderIdRef = useRef(0);
+  const lastOverlayKeyRef = useRef<string>('');
+
+  const mainCanvasRef = useRef<OffscreenCanvas | null>(null);
+  const mainCtxRef = useRef<OffscreenCanvasRenderingContext2D | null>(null);
 
   const tempCanvasRef = useRef<OffscreenCanvas | null>(null);
   const tempCtxRef = useRef<OffscreenCanvasRenderingContext2D | null>(null);
 
-  const render = useCallback(
-    async (canvas: OffscreenCanvas, ctx: OffscreenCanvasRenderingContext2D) => {
-      ctx.clearRect(0, 0, targetSize, targetSize);
-      ctx.imageSmoothingEnabled = true;
+  const drawToBlob = useCallback(async () => {
+    const overlayKey = overlays
+      .map((o) => `${o.icon}:${o.iconState}:${o.color ?? ''}`)
+      .join('|');
 
-      const images = await Promise.all(
-        overlays.map(async (o) => {
-          const iconRef = o.icon ? getIconFromRefMap(o.icon) : null;
-          if (!iconRef) return null;
-          const url = `${iconRef}?state=${o.iconState}`;
-          return cachedGetImage(url);
-        }),
-      );
+    if (overlayKey === lastOverlayKeyRef.current) return;
+    lastOverlayKeyRef.current = overlayKey;
 
-      if (!tempCanvasRef.current) {
-        tempCanvasRef.current = new OffscreenCanvas(targetSize, targetSize);
-        tempCtxRef.current = tempCanvasRef.current.getContext('2d');
-      }
+    const images = await Promise.all(
+      overlays.map(async (o) => {
+        if (!o.icon) return null;
+        const iconRef = getIconFromRefMap(o.icon);
+        if (!iconRef) return null;
+        return cachedGetImage(`${iconRef}?state=${o.iconState}`);
+      }),
+    );
 
-      const tempCanvas = tempCanvasRef.current!;
-      const tempCtx = tempCtxRef.current!;
+    if (images.some((img, i) => overlays[i].icon && !img)) {
+      return;
+    }
 
-      for (let i = 0; i < overlays.length; i++) {
-        const overlay = overlays[i];
-        const image = images[i];
-        if (!image) continue;
+    if (!mainCanvasRef.current) {
+      mainCanvasRef.current = new OffscreenCanvas(targetSize, targetSize);
+      const ctx = mainCanvasRef.current.getContext('2d');
+      if (!ctx) return;
+      mainCtxRef.current = ctx;
+    }
 
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(image, 0, 0, size, size, 0, 0, targetSize, targetSize);
+    if (!tempCanvasRef.current) {
+      tempCanvasRef.current = new OffscreenCanvas(targetSize, targetSize);
+      const ctx = tempCanvasRef.current.getContext('2d');
+      if (!ctx) return;
+      tempCtxRef.current = ctx;
+    }
 
-        if (overlay.color) {
-          tempCtx.clearRect(0, 0, targetSize, targetSize);
-          tempCtx.imageSmoothingEnabled = true;
+    const canvas = mainCanvasRef.current;
+    const ctx = mainCtxRef.current!;
+    const tempCanvas = tempCanvasRef.current;
+    const tempCtx = tempCtxRef.current!;
 
-          tempCtx.drawImage(
-            image,
-            0,
-            0,
-            size,
-            size,
-            0,
-            0,
-            targetSize,
-            targetSize,
-          );
+    ctx.clearRect(0, 0, targetSize, targetSize);
+    ctx.imageSmoothingEnabled = true;
 
-          tempCtx.globalCompositeOperation = 'multiply';
-          tempCtx.fillStyle = overlay.color;
-          tempCtx.fillRect(0, 0, targetSize, targetSize);
-
-          tempCtx.globalCompositeOperation = 'destination-in';
-          tempCtx.drawImage(
-            image,
-            0,
-            0,
-            size,
-            size,
-            0,
-            0,
-            targetSize,
-            targetSize,
-          );
-
-          tempCtx.globalCompositeOperation = 'source-over';
-          ctx.drawImage(tempCanvas, 0, 0);
-        }
-      }
+    for (let i = 0; i < overlays.length; i++) {
+      const overlay = overlays[i];
+      const image = images[i];
+      if (!image) continue;
 
       ctx.globalCompositeOperation = 'source-over';
-    },
-    [overlays],
-  );
+      ctx.drawImage(image, 0, 0, size, size, 0, 0, targetSize, targetSize);
 
-  const drawToBlob = useCallback(async () => {
-    const renderId = ++renderIdRef.current;
+      if (overlay.color) {
+        tempCtx.clearRect(0, 0, targetSize, targetSize);
+        tempCtx.imageSmoothingEnabled = true;
 
-    const offscreen = new OffscreenCanvas(targetSize, targetSize);
-    const ctx = offscreen.getContext('2d');
-    if (!ctx) return;
+        tempCtx.drawImage(
+          image,
+          0,
+          0,
+          size,
+          size,
+          0,
+          0,
+          targetSize,
+          targetSize,
+        );
 
-    try {
-      await render(offscreen, ctx);
-      if (renderId !== renderIdRef.current) return;
+        tempCtx.globalCompositeOperation = 'multiply';
+        tempCtx.fillStyle = overlay.color;
+        tempCtx.fillRect(0, 0, targetSize, targetSize);
 
-      const blob = await offscreen.convertToBlob();
-      if (renderId !== renderIdRef.current || !blob) return;
+        tempCtx.globalCompositeOperation = 'destination-in';
+        tempCtx.drawImage(
+          image,
+          0,
+          0,
+          size,
+          size,
+          0,
+          0,
+          targetSize,
+          targetSize,
+        );
 
-      const url = URL.createObjectURL(blob);
-      if (renderId !== renderIdRef.current) {
-        URL.revokeObjectURL(url);
-        return;
+        tempCtx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(tempCanvas, 0, 0);
       }
-
-      if (blobRef.current) URL.revokeObjectURL(blobRef.current);
-      blobRef.current = url;
-      setSrc(url);
-    } catch (e) {
-      console.error('Failed to render image', e);
     }
-  }, [render]);
+
+    const blob = await canvas.convertToBlob();
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+
+    if (blobRef.current) URL.revokeObjectURL(blobRef.current);
+    blobRef.current = url;
+    setSrc(url);
+  }, [overlays]);
 
   useEffect(() => {
     drawToBlob();
-
     return () => {
-      renderIdRef.current++;
-
-      if (blobRef.current) {
-        URL.revokeObjectURL(blobRef.current);
-        blobRef.current = '';
-      }
+      if (blobRef.current) URL.revokeObjectURL(blobRef.current);
+      blobRef.current = '';
     };
   }, [drawToBlob]);
 
