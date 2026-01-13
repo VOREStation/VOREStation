@@ -52,6 +52,5 @@
 	allowed_areas = get_station_areas(safe_area_types)
 
 	for(var/area/check_area in allowed_areas)
-		if((check_area.z in using_map.station_levels) || !check_area.flag_check(AREA_FORBID_EVENTS))
-			continue
-		allowed_areas.Remove(check_area)
+		if(!(check_area.z in using_map.station_levels) || check_area.flag_check(AREA_FORBID_EVENTS))
+			allowed_areas.Remove(check_area)
