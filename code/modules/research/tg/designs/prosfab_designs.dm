@@ -279,7 +279,7 @@
 /datum/design_techweb/prosfab/cyborg/component/armour_heavy
 	name = "Armour Plating (Platform)"
 	id = "platform_armour"
-	build_path = /obj/item/robot_parts/robot_component/armour_platform
+	build_path = /obj/item/robot_parts/robot_component/armour/armour_platform
 
 /datum/design_techweb/prosfab/cyborg/component/ai_shell
 	name = "AI Remote Interface"

@@ -102,7 +102,7 @@
 
 /datum/robot_component/armour/platform
 	name = "platform armour plating"
-	external_type = /obj/item/robot_parts/robot_component/armour_platform
+	external_type = /obj/item/robot_parts/robot_component/armour/armour_platform
 	max_damage = 140
 
 // ACTUATOR
@@ -286,7 +286,7 @@
 	icon_state_broken = "armor_broken"
 	max_damage = 90
 
-/obj/item/robot_parts/robot_component/armour_platform
+/obj/item/robot_parts/robot_component/armour/armour_platform
 	name = "platform armour plating"
 	desc = "A pair of reinforced armor plates, used to protect the internals of robots."
 	icon_state = "armor"
