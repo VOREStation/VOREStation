@@ -195,8 +195,9 @@
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.species.can_shred(H))
-				attack_generic(H,25)
+			var/shreddamage = H.species.can_shred(H, FALSE, 10) //20% chance for a character with base 5 unarmed to damage
+			if(shreddamage)
+				attack_generic(H, shreddamage + 5, "attacks")
 				return
 
 		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
