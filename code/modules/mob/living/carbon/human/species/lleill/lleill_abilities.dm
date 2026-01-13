@@ -421,10 +421,14 @@
 									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Lizard" = /mob/living/simple_mob/animal/passive/lizard,
+									"Mouse" = /mob/living/simple_mob/animal/passive/mouse/beastmode,
 									"Otie" = /mob/living/simple_mob/vore/otie,
 									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Possum" = /mob/living/simple_mob/animal/passive/opossum/beastmode,
 									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Raccoon" = /mob/living/simple_mob/animal/passive/raccoon,
 									"Raptor" = /mob/living/simple_mob/vore/raptor,
 									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
 									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
@@ -433,7 +437,8 @@
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Slug" = /mob/living/simple_mob/vore/slug,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Wolf" = /mob/living/simple_mob/vore/wolf
+									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Unicorn" = /mob/living/simple_mob/vore/horse/unicorn/beastmode
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -620,10 +625,14 @@
 									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Lizard" = /mob/living/simple_mob/animal/passive/lizard,
+									"Mouse" = /mob/living/simple_mob/animal/passive/mouse/beastmode,
 									"Otie" = /mob/living/simple_mob/vore/otie,
-									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
 									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Possum" = /mob/living/simple_mob/animal/passive/opossum/beastmode,
 									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Raccoon" = /mob/living/simple_mob/animal/passive/raccoon,
 									"Raptor" = /mob/living/simple_mob/vore/raptor,
 									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
 									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
@@ -632,7 +641,8 @@
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Slug" = /mob/living/simple_mob/vore/slug,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Wolf" = /mob/living/simple_mob/vore/wolf
+									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Unicorn" = /mob/living/simple_mob/vore/horse/unicorn/beastmode
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)

@@ -570,7 +570,7 @@ I think I covered everything.
 	autotransferchance = 50
 	autotransferwait = 150
 	autotransfer_enabled = TRUE
-	escapable = TRUE
+	escapable = B_ESCAPABLE_DEFAULT
 	escapechance = 100
 	escapetime = 15
 	fancy_vore = TRUE

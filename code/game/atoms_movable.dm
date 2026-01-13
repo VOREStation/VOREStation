@@ -290,8 +290,8 @@
 	if(!A)
 		CRASH("Bump was called with no argument.")
 	. = ..()
-	if(throwing)
-		throw_impact(A, throwing)
+	if(!QDELETED(throwing))
+		throwing.finalize(hit = TRUE, t_target = A)
 		if(QDELETED(A))
 			return
 

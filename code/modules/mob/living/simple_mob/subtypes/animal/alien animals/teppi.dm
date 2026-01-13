@@ -287,7 +287,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	p.digest_brute = 0
 	p.digest_burn = 0
 	p.absorbchance = 0
-	p.escapable = TRUE
+	p.escapable = B_ESCAPABLE_DEFAULT
 	p.escapechance = 40
 	p.digest_mode = DM_HEAL
 	p.name = "propeutpericulum" 	//I'm no latin professor I just know that some organs and things are based on latin words

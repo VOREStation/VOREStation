@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 export const SpawnElement = (props: {
   title: string;
   disabled: boolean;
-  tooltip: string;
+  tooltip: ReactNode;
   action: string;
 }) => {
   const { act } = useBackend();

@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   ColorBox,
   LabeledList,
@@ -9,9 +8,9 @@ import {
   NumberInput,
   Section,
   Stack,
-  Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { VorePanelTooltip } from './VorePanel/VorePanelElements/VorePanelTooltip';
 
 type Data = {
   stun_time: number;
@@ -84,9 +83,10 @@ export const ShadekinConfig = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item>
-                      <Tooltip content="Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)">
-                        <Box className="VorePanel__floatingButton">?</Box>
-                      </Tooltip>
+                      <VorePanelTooltip
+                        tooltip="Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)"
+                        displayText="?"
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
@@ -120,9 +120,10 @@ export const ShadekinConfig = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item>
-                      <Tooltip content="Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)">
-                        <Box className="VorePanel__floatingButton">?</Box>
-                      </Tooltip>
+                      <VorePanelTooltip
+                        tooltip="Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)"
+                        displayText="?"
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
@@ -141,9 +142,10 @@ export const ShadekinConfig = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item>
-                      <Tooltip content="Adjust the range in which lights flicker when you phase in! (Default 4. Min 4. Max 10)">
-                        <Box className="VorePanel__floatingButton">?</Box>
-                      </Tooltip>
+                      <VorePanelTooltip
+                        tooltip="Adjust the range in which lights flicker when you phase in! (Default 4. Min 4. Max 10)"
+                        displayText="?"
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>

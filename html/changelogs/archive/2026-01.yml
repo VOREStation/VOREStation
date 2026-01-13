@@ -92,3 +92,8 @@
   Kashargul:
   - code_imp: moves those alists to lists
   - code_imp: cleans up the vore fx and resist code
+2026-01-13:
+  Kashargul:
+  - qol: prey struggles are now intent based
+  SatinIsle:
+  - bugfix: Fixes the ddraig description.
