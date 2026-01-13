@@ -26,6 +26,7 @@
 #define DM_FLAG_MUFFLEITEMS		0x200
 #define DM_FLAG_TURBOMODE		0x400
 #define DM_FLAG_ABSORBEDVORE	0x800
+#define DM_FLAG_WETTENS			0x1000
 
 //Item related modes
 #define IM_HOLD									"Hold"
