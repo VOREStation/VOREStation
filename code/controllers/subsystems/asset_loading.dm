@@ -18,6 +18,10 @@ SUBSYSTEM_DEF(asset_loading)
 		last_queue_len = length(generate_queue)
 		generate_queue.len--
 
+		// horrible performance hog, but I want to see if we somehow run into a lock with multiple threads
+		if(assets_generating)
+			continue
+
 		to_load.queued_generation()
 
 		if(MC_TICK_CHECK)
