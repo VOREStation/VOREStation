@@ -33,7 +33,7 @@
 
 	if(anomaly_core)
 		anomaly_core = new anomaly_core(src)
-		anomaly_core.set_frequency(rand(PUBLIC_LOW_FREQ, PUBLIC_HIGH_FREQ))
+		anomaly_core.set_frequency(sanitize_frequency(rand(PUBLIC_LOW_FREQ, PUBLIC_HIGH_FREQ)))
 		anomaly_core.code = rand(1, 100)
 		anomaly_core.anomaly_type = type
 
