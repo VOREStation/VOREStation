@@ -6,7 +6,7 @@
 	VAR_PROTECTED/mob/host_mob
 	VAR_PROTECTED/atom/remote_view_target
 
-/datum/component/remote_view/Initialize(atom/focused_on, vconfig_path)
+/datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path)
 	. = ..()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -60,6 +60,11 @@
 		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
 		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	if(settings.use_zoom_hud && host_mob.hud_used.hud_shown)
+		host_mob.toggle_zoom_hud()
+	// Set view to size, null is default
+	host_mob.set_viewsize(viewsize)
 
 /datum/component/remote_view/RegisterWithParent()
 	// Update the mob's vision after we attach.
@@ -107,6 +112,10 @@
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
+	// Reset to default size
+	host_mob.set_viewsize()
+	if(settings.use_zoom_hud && !host_mob.hud_used.hud_shown)
+		host_mob.toggle_zoom_hud()
 	// Update the mob's vision right away if it still exists
 	if(!QDELETED(host_mob))
 		settings.detatch_from_mob(src, host_mob)
@@ -281,7 +290,7 @@
 	VAR_PRIVATE/obj/item/host_item
 	VAR_PRIVATE/show_message
 
-/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, vconfig_path, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
+/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, viewsize, vconfig_path, obj/item/our_item, tileoffset, show_visible_messages)
 	. = ..()
 	host_item = our_item
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
@@ -289,10 +298,6 @@
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
-	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-	if(host_mob.hud_used.hud_shown)
-		host_mob.toggle_zoom_hud()
-	host_mob.set_viewsize(viewsize)
 	// Unfortunately too many things read this to control item state for me to remove this.
 	// Oh well! better than GetComponent() everywhere. Lets just manage item/zoom in this component though...
 	our_item.zoom = TRUE
@@ -322,10 +327,6 @@
 	// Feedback
 	if(show_message)
 		host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
-	// Reset to default
-	host_mob.set_viewsize()
-	if(!host_mob.hud_used.hud_shown)
-		host_mob.toggle_zoom_hud()
 	host_item.zoom = FALSE
 	// return view offset
 	if(host_mob.client)
@@ -347,7 +348,7 @@
  */
 /datum/component/remote_view/mremote_mutation
 
-/datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on, vconfig_path)
+/datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on, viewsize, vconfig_path)
 	if(!ismob(focused_on)) // What are you doing? This gene only works on mob targets, if you adminbus this I will personally eat your face.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
@@ -381,7 +382,7 @@
 	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
 	VAR_PRIVATE/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
 
-/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, vconfig_path, datum/coordinator, list/viewer_list)
+/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, viewsize, vconfig_path, datum/coordinator, list/viewer_list)
 	. = ..()
 	if(!islist(viewer_list)) // BAD BAD BAD NO
 		CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view/viewer_managed component. Ensure the viewer_list exists before passing it into AddComponent.")
@@ -413,7 +414,7 @@
 /datum/component/remote_view/mob_holding_item
 	var/needs_to_decouple = FALSE // if the current top level atom is a mob
 
-/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on, vconfig_path)
+/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on, viewsize, vconfig_path)
 	if(!isobj(focused_on)) // You shouldn't be using this if so.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
@@ -485,7 +486,7 @@
 		spawn(0)
 			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
 			if(!QDELETED(cache_mob))
-				cache_mob.AddComponent(/datum/component/remote_view, focused_on = release_turf, vconfig_path = /datum/remote_view_config/turf_decoupling)
+				cache_mob.AddComponent(/datum/component/remote_view, focused_on = release_turf, viewsize = null, vconfig_path = /datum/remote_view_config/turf_decoupling)
 				cache_mob.client.eye = release_turf // Yes--
 				cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 				if(!isturf(cache_mob.loc)) // For stuff like paicards

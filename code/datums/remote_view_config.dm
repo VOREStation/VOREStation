@@ -2,6 +2,7 @@
 	// Signal config for remote view component. This controls what signals will be subbed to during init.
 	var/forbid_movement = TRUE
 	var/relay_movement = FALSE
+	var/use_zoom_hud = FALSE
 	// Status effects that will knock us out of remote view
 	var/will_death = TRUE
 	var/will_stun = TRUE
@@ -96,12 +97,23 @@
 	will_sleep = FALSE
 	will_blind = FALSE
 
+/// Remote view that only allows decoupling a turf view by movement. Seperate from effect_immune to allow for easier removal in the future if the underlying issue that makes this needed is someday fixed
+/datum/remote_view_config/looking_up
+	forbid_movement = TRUE
+	use_zoom_hud = TRUE
+
 /// Remote view that relays movement to the remote_view_target
 /datum/remote_view_config/relay_movement
 	relay_movement = TRUE
 
+/// Remote view that relays movement and hides most of the hud
+/datum/remote_view_config/zoomed_item
+	relay_movement = TRUE
+	use_zoom_hud = TRUE
+
 /// Remote view that respects camera vision flags and checking for functionality of the camera.
 /datum/remote_view_config/camera_standard
+	use_zoom_hud = TRUE
 
 /datum/remote_view_config/camera_standard/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
 	var/obj/machinery/camera/view_camera = owner_component.get_target()
