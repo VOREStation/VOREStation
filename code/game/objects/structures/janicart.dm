@@ -69,7 +69,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 	else if(istype(I, /obj/item/lightreplacer))
 		if(myreplacer)
-			user.balloon_alert(user, span_warning("[src] already has \an [I]."))
+			user.balloon_alert(user, "[src] already has \an [I].")
 			return FALSE
 		myreplacer = I
 		setTguiIcon("myreplacer", myreplacer)
