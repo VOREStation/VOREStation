@@ -25,13 +25,6 @@ export const DateDropdown = (props: {
     return null;
   }
 
-  function scrollToBottom() {
-    window.scrollTo(
-      0,
-      document.body.scrollHeight || document.documentElement.scrollHeight,
-    );
-  }
-
   function handleSelect(date: string) {
     const index = dateChoices.indexOf(date);
     if (index === -1) return;
@@ -39,7 +32,6 @@ export const DateDropdown = (props: {
     setData('Loading changelog data...');
     setSelectedIndex(index);
     setSelectedDate(dateChoices[index]);
-    scrollToBottom();
     getData(sortedDates[index]);
   }
 
