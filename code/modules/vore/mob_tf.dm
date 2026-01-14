@@ -15,6 +15,39 @@
 		I.unacidable = !digestable
 		forceMove(possessed_voice)
 
+/mob/living/proc/clear_vore_organs()
+	if(!vore_organs)
+		vore_organs = list()
+		return
+	while(vore_organs.len)
+		var/obj/belly/B = vore_organs[vore_organs.len]
+		vore_organs.Cut(vore_organs.len, vore_organs.len + 1)
+		qdel(B)
+	vore_organs = list()
+
+/mob/living/proc/copy_tf_identity_from(var/mob/living/source_mob)
+	if(!istype(source_mob))
+		return
+	name = source_mob.name
+	real_name = source_mob.real_name
+	for(var/lang in source_mob.languages)
+		languages |= lang
+	source_mob.copy_vore_prefs_to_mob(src)
+	vore_selected = source_mob.vore_selected
+	if(ishuman(source_mob))
+		var/mob/living/carbon/human/H = source_mob
+		if(ishuman(src))
+			var/mob/living/carbon/human/N = src
+			N.gender = H.gender
+			N.identifying_gender = H.identifying_gender
+		else
+			gender = H.gender
+	else
+		gender = source_mob.gender
+		if(ishuman(src))
+			var/mob/living/carbon/human/N = src
+			N.identifying_gender = source_mob.gender
+
 /mob/living/proc/mob_tf(var/mob/living/M)
 	if(!istype(M))
 		return
@@ -25,32 +58,11 @@
 			if(!S.voremob_loaded)
 				S.init_vore(TRUE)
 		new /obj/effect/effect/teleport_greyscale(M.loc)
-		for(var/obj/belly/B as anything in src.vore_organs)
-			src.vore_organs -= B
-			qdel(B)
-		src.vore_organs = list()
-		src.name = M.name
-		src.real_name = M.real_name
-		for(var/lang in M.languages)
-			src.languages |= lang
-		M.copy_vore_prefs_to_mob(src)
-		src.vore_selected = M.vore_selected
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(ishuman(src))
-				var/mob/living/carbon/human/N = src
-				N.gender = H.gender
-				N.identifying_gender = H.identifying_gender
-			else
-				src.gender = H.gender
-		else
-			src.gender = M.gender
-			if(ishuman(src))
-				var/mob/living/carbon/human/N = src
-				N.identifying_gender = M.gender
+		src.clear_vore_organs()
+		src.copy_tf_identity_from(M)
 
 		mob_belly_transfer(M)
-		M.soulgem.transfer_self(src) // Soulcatcher
+		M.soulgem?.transfer_self(src) // Soulcatcher
 
 		nutrition = M.nutrition
 		src.ckey = M.ckey
@@ -65,11 +77,16 @@
 		src.tf_mob_holder = M
 
 /mob/living/proc/mob_belly_transfer(var/mob/living/M)
-	for(var/obj/belly/B as anything in M.vore_organs)
+	if(!istype(M) || !M.vore_organs)
+		return
+	if(!vore_organs)
+		vore_organs = list()
+	while(M.vore_organs.len)
+		var/obj/belly/B = M.vore_organs[M.vore_organs.len]
+		M.vore_organs.Cut(M.vore_organs.len, M.vore_organs.len + 1)
 		B.loc = src
 		B.forceMove(src)
 		B.owner = src
-		M.vore_organs -= B
 		src.vore_organs += B
 
 /mob/living
@@ -79,8 +96,7 @@
 	if(!tf_mob_holder)
 		return
 	var/mob/living/ourmob = tf_mob_holder
-	if(soulgem) //Should always be the case, but...Safety. Done here first
-		soulgem.transfer_self(ourmob)
+	soulgem?.transfer_self(ourmob) //Should always be the case, but...Safety. Done here first
 	if(ourmob.loc != src)
 		if(isnull(ourmob.loc))
 			to_chat(src,span_notice("You have no body."))
@@ -123,12 +139,14 @@
 	if(!tf_form_ckey)
 		ourmob.vore_selected = vore_selected
 		vore_selected = null
-		for(var/obj/belly/B as anything in vore_organs)
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			vore_organs -= B
-			ourmob.vore_organs += B
+		if(vore_organs)
+			while(vore_organs.len)
+				var/obj/belly/B = vore_organs[vore_organs.len]
+				vore_organs.Cut(vore_organs.len, vore_organs.len + 1)
+				B.loc = ourmob
+				B.forceMove(ourmob)
+				B.owner = ourmob
+				ourmob.vore_organs += B
 
 	ourmob.Life(1)
 
@@ -201,46 +219,16 @@
 			new_mob = new new_form(get_turf(src))
 
 		if(new_mob && isliving(new_mob))
+			if(!new_mob.ckey)
+				new_mob.mob_tf(src)
+				return new_mob
+
 			new_mob.faction = src.faction
 			if(istype(new_mob, /mob/living/simple_mob))
 				var/mob/living/simple_mob/S = new_mob
 				if(!S.voremob_loaded)
 					S.init_vore(TRUE)
 			new /obj/effect/effect/teleport_greyscale(src.loc)
-			if(!new_mob.ckey)
-				for(var/obj/belly/B as anything in new_mob.vore_organs)
-					new_mob.vore_organs -= B
-					qdel(B)
-				new_mob.vore_organs = list()
-				new_mob.name = src.name
-				new_mob.real_name = src.real_name
-				for(var/lang in src.languages)
-					new_mob.languages |= lang
-				src.copy_vore_prefs_to_mob(new_mob)
-				new_mob.vore_selected = src.vore_selected
-				if(ishuman(src))
-					var/mob/living/carbon/human/H = src
-					if(ishuman(new_mob))
-						var/mob/living/carbon/human/N = new_mob
-						N.gender = H.gender
-						N.identifying_gender = H.identifying_gender
-					else
-						new_mob.gender = H.gender
-				else
-					new_mob.gender = src.gender
-					if(ishuman(new_mob))
-						var/mob/living/carbon/human/N = new_mob
-						N.identifying_gender = src.gender
-
-				for(var/obj/belly/B as anything in src.vore_organs)
-					B.loc = new_mob
-					B.forceMove(new_mob)
-					B.owner = new_mob
-					src.vore_organs -= B
-					new_mob.vore_organs += B
-				new_mob.nutrition = src.nutrition
-
-				src.soulgem?.transfer_self(new_mob)
 
 			new_mob.ckey = src.ckey
 			if(new_mob.tf_form_ckey)

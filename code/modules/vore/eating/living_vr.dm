@@ -579,7 +579,8 @@
 
 	//You've been turned into an item!
 	else if(tf_mob_holder && isvoice(src) && istype(src.loc, /obj/item))
-		var/obj/item/item_to_destroy = src.loc //If so, let's destroy the item they just TF'd out of.
+		var/obj/item/item_to_destroy = src.loc
+		var/turf/item_turf = get_turf(item_to_destroy)
 		//If tf_mob_holder is not located in src, then it's a Mind Binder OOC Escape
 		var/mob/living/ourmob = tf_mob_holder
 		if(ourmob.loc != src)
@@ -587,10 +588,11 @@
 				var/mob/living/voice/possessed_voice = src  // Stupid band-aid fix for OOC escaping object TF
 				if(possessed_voice.item_tf)
 					mind.transfer_to(ourmob)
-					item_to_destroy.possessed_voice -= src
+					if(item_to_destroy.possessed_voice)
+						item_to_destroy.possessed_voice -= src
 					qdel(src)
-					ourmob.forceMove(item_to_destroy.loc)
-					qdel(item_to_destroy)
+					ourmob.forceMove(item_turf)
+					item_to_destroy.revert_item_tf(item_turf)
 					log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
 					return
 				to_chat(src,span_notice("You have no body."))
@@ -600,19 +602,20 @@
 				to_chat(src,span_notice("Your body appears to be in someone else's control."))
 				return
 			src.mind.transfer_to(ourmob)
-			item_to_destroy.possessed_voice -= src
+			if(item_to_destroy.possessed_voice)
+				item_to_destroy.possessed_voice -= src
 			qdel(src)
+			item_to_destroy.revert_item_tf(item_turf)
 			log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
 			return
-		if(istype(src.loc, /obj/item/clothing)) //Are they in clothes? Delete the item then revert them.
-			qdel(item_to_destroy)
-			log_and_message_admins("used the OOC escape button to revert back to their original form from being TFed into an object.", src)
-			revert_mob_tf()
-		else //Are they in any other type of object? If qdel is done first, the mob is deleted from the world.
-			forceMove(get_turf(src))
-			qdel(item_to_destroy)
-			log_and_message_admins("used the OOC escape button to revert back to their original form from being TFed into an object.", src)
-			revert_mob_tf()
+		// Normal case: our original body is inside us.
+		// If this item was provided by the item ray, preserve/return it instead of deleting it.
+		forceMove(item_turf)
+		if(item_to_destroy.possessed_voice)
+			item_to_destroy.possessed_voice -= src
+		item_to_destroy.revert_item_tf(item_turf)
+		log_and_message_admins("used the OOC escape button to revert back to their original form from being TFed into an object.", src)
+		revert_mob_tf()
 
 	//You've been turned into a mob!
 	else if(tf_mob_holder)

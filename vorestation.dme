@@ -4795,6 +4795,7 @@
 #include "code\modules\ventcrawl\ventcrawl_multiz.dm"
 #include "code\modules\ventcrawl\ventcrawl_verb.dm"
 #include "code\modules\vore\chat_healthbars.dm"
+#include "code\modules\vore\itemray.dm"
 #include "code\modules\vore\mob_tf.dm"
 #include "code\modules\vore\mouseray.dm"
 #include "code\modules\vore\appearance\preferences_vr.dm"
