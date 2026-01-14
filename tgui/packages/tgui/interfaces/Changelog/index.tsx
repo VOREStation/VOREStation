@@ -8,7 +8,7 @@ import { Stack } from 'tgui-core/components';
 import { Changes } from './Changes';
 import { DateDropdown } from './DateDropdown';
 import { Footer } from './Resources/Footer';
-import { Header } from './Resources/HEader';
+import { Header } from './Resources/Header';
 import { Testmerges } from './Testmerges';
 import type { ChangelogData, ChangelogEntry } from './types';
 
