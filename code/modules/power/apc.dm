@@ -742,6 +742,7 @@ GLOBAL_LIST_EMPTY(apcs)
 			user.setClickCooldown(user.get_attack_speed())
 			user.visible_message(span_warning("[user.name] slashes at the [name]!"), span_notice("You slash at the [name]!"))
 			playsound(src, 'sound/weapons/slash.ogg', 100, 1)
+			add_hiddenprint(H)
 
 			var/allcut = wires.is_all_cut()
 
