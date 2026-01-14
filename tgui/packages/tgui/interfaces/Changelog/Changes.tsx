@@ -7,7 +7,7 @@ import type { ChangelogEntry } from './types';
 export const Changes = (props: { data: ChangelogEntry | string }) => {
   const { data } = props;
 
-  if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
+  if (typeof data !== 'object' || Object.keys(data).length === 0) {
     return null;
   }
 

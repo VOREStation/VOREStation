@@ -50,7 +50,14 @@ export const Changelog = (props) => {
           getData(date, attemptNumber + 1);
         }, timeout);
       } else {
-        setData(yaml.load(result, { schema: yaml.CORE_SCHEMA }));
+        const parsed = yaml.load(result, { schema: yaml.CORE_SCHEMA });
+        if (parsed === null || parsed === undefined) {
+          setData('Changelog is empty or invalid');
+        } else if (typeof parsed === 'string' || typeof parsed === 'object') {
+          setData(parsed);
+        } else {
+          setData('Unexpected changelog format');
+        }
       }
     });
   }
