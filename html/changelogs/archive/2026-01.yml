@@ -97,3 +97,21 @@
   - qol: prey struggles are now intent based
   SatinIsle:
   - bugfix: Fixes the ddraig description.
+2026-01-14:
+  Diana:
+  - bugfix: Blacklists some more mobs from spawning in tsci
+  Kashargul:
+  - bugfix: start Now shown as usable after pregame
+  - bugfix: the sql schema can now be cleanly imported including the procedures and
+      events
+  - bugfix: loose round associations should no longer exist
+  SatinIsle:
+  - bugfix: Fixed simple mobs requiring insane amounts of nutrition to remove their
+      hunger bar.
+  - bugfix: Fixed TFd mobs showing up on crew monitors.
+  - bugfix: People flying above tables when they should fall down.
+  - rscadd: Added new options for hanner beastforms.
+  - spellcheck: Minor reordering of beastform lists to keep them alphabetical.
+  Will:
+  - qol: Look upward verb now lets you look upward one z level
+  - code_imp: remote views with zoom hude or different sizes are easier to start

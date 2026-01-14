@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "the sql schema can now be cleanly imported including the procedures and events"
-  - bugfix: "loose round associations should no longer exist"

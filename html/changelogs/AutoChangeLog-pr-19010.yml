@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixed simple mobs requiring insane amounts of nutrition to remove their hunger bar."
