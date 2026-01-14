@@ -25,29 +25,6 @@
 		qdel(B)
 	vore_organs = list()
 
-/mob/living/proc/copy_tf_identity_from(var/mob/living/source_mob)
-	if(!istype(source_mob))
-		return
-	name = source_mob.name
-	real_name = source_mob.real_name
-	for(var/lang in source_mob.languages)
-		languages |= lang
-	source_mob.copy_vore_prefs_to_mob(src)
-	vore_selected = source_mob.vore_selected
-	if(ishuman(source_mob))
-		var/mob/living/carbon/human/H = source_mob
-		if(ishuman(src))
-			var/mob/living/carbon/human/N = src
-			N.gender = H.gender
-			N.identifying_gender = H.identifying_gender
-		else
-			gender = H.gender
-	else
-		gender = source_mob.gender
-		if(ishuman(src))
-			var/mob/living/carbon/human/N = src
-			N.identifying_gender = source_mob.gender
-
 /mob/living/proc/mob_tf(var/mob/living/M)
 	if(!istype(M))
 		return
@@ -175,6 +152,29 @@
 			tf_mob_holder.death(FALSE, null)
 		if(tf_mob_holder.stat == DEAD)
 			death()
+
+/mob/living/proc/copy_tf_identity_from(var/mob/living/source_mob)
+	if(!istype(source_mob))
+		return
+	name = source_mob.name
+	real_name = source_mob.real_name
+	for(var/lang in source_mob.languages)
+		languages |= lang
+	source_mob.copy_vore_prefs_to_mob(src)
+	vore_selected = source_mob.vore_selected
+	if(ishuman(source_mob))
+		var/mob/living/carbon/human/H = source_mob
+		if(ishuman(src))
+			var/mob/living/carbon/human/N = src
+			N.gender = H.gender
+			N.identifying_gender = H.identifying_gender
+		else
+			gender = H.gender
+	else
+		gender = source_mob.gender
+		if(ishuman(src))
+			var/mob/living/carbon/human/N = src
+			N.identifying_gender = source_mob.gender
 
 /mob/living/proc/copy_vore_prefs_to_mob(var/mob/living/new_mob)
 	//For primarily copying vore preference settings from a carbon mob to a simplemob

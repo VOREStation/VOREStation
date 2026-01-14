@@ -1,5 +1,5 @@
 // An item-targeted transformation ray. Load an item into it, then shoot someone to turn them into that item.
-// Uses existing item possession TF hooks (see /mob/living/proc/tf_into and /obj/item/proc/inhabit_item).
+// See mob_tf.dm for the transformation code. This is probably garbage!
 
 /obj/item/gun/energy/itemray
 	name = "item ray"
@@ -7,12 +7,9 @@
 	icon = 'icons/obj/mouseray.dmi'
 	icon_state = "mouseray"
 	item_state = "mouseray"
-	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	fire_sound = 'sound/weapons/wave.ogg'
-	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/itemlaser
-	battery_lock = 1
-	firemodes = list()
+	battery_lock = TRUE
 
 	var/obj/item/loaded_item = null
 	var/cooldown = 0
@@ -65,11 +62,11 @@
 		return
 	if(W == src)
 		return
-	if(W.anchored)
-		to_chat(user, span_warning("\The [W] can't be loaded."))
+	if(is_type_in_list(W, GLOB.item_vore_blacklist))
+		to_chat(user, span_warning("\The [W] resists being loaded into \the [src]."))
 		return
 	if(W.possessed_voice && W.possessed_voice.len)
-		to_chat(user, span_warning("\The [W] is inhabited and won't fit safely into \the [src]."))
+		to_chat(user, span_warning("\The [src] detects that \the [W] is inhabited and refuses to accept it."))
 		return
 
 	user.drop_from_inventory(W)
@@ -106,9 +103,10 @@
 		to_chat(user, span_warning("\The [src] isn't ready yet."))
 		return
 	if(!loaded_item)
-		to_chat(user, span_warning("\The [src] is empty."))
+		to_chat(user, span_warning("\The [src] clicks harmlessly. It has nothing loaded!"))
 		return
 	if(loaded_item.possessed_voice && loaded_item.possessed_voice.len)
+		// The user should never be able to see this but just in case.
 		to_chat(user, span_warning("\The [src] refuses to fire while its loaded item is inhabited."))
 		return
 	. = ..()
@@ -148,7 +146,6 @@
 	var/datum/weakref/gun_ref
 	var/datum/weakref/loaded_item_ref
 	var/tf_admin_pref_override = FALSE
-	var/tf_allow_emotes = TRUE
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
@@ -177,7 +174,7 @@
 		return
 	I.forceMove(T)
 
-	M.tf_into(I, tf_allow_emotes)
+	M.tf_into(I, TRUE)
 
 	var/obj/item/gun/energy/itemray/gun = gun_ref ? gun_ref.resolve() : null
 	if(gun && gun.loaded_item == I)
