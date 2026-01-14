@@ -25,14 +25,14 @@ export const DateDropdown = (props: {
     return null;
   }
 
-  const scrollToBottom = () => {
+  function scrollToBottom() {
     window.scrollTo(
       0,
       document.body.scrollHeight || document.documentElement.scrollHeight,
     );
-  };
+  }
 
-  const handleSelect = (date: string) => {
+  function handleSelect(date: string) {
     const index = dateChoices.indexOf(date);
     if (index === -1) return;
 
@@ -41,12 +41,12 @@ export const DateDropdown = (props: {
     setSelectedDate(dateChoices[index]);
     scrollToBottom();
     getData(sortedDates[index]);
-  };
+  }
 
-  const handlePrev = () => {
+  function handlePrev() {
     if (selectedIndex >= dateChoices.length - 1) return;
     handleSelect(dateChoices[selectedIndex + 1]);
-  };
+  }
 
   const handleNext = () => {
     if (selectedIndex <= 0) return;
