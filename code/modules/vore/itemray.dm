@@ -15,7 +15,6 @@
 	var/cooldown = 0
 	var/cooldown_time = 15 SECONDS
 	var/tf_admin_pref_override = FALSE
-	var/tf_allow_emotes = TRUE
 
 /obj/item/gun/energy/itemray/proc/receive_returned_item(obj/item/I, turf/fallback)
 	if(!I)
@@ -131,8 +130,6 @@
 	if(loaded_item)
 		P.loaded_item_ref = WEAKREF(loaded_item)
 	P.tf_admin_pref_override = tf_admin_pref_override
-	P.tf_allow_emotes = tf_allow_emotes
-
 
 /obj/item/projectile/beam/itemlaser
 	name = "transmutation beam"
