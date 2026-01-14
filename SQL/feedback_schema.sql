@@ -90,7 +90,9 @@ CREATE TABLE IF NOT EXISTS `erro_player` (
   `discord_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ckey` (`ckey`),
-  KEY `discord_id` (`discord_id`)
+  KEY `discord_id` (`discord_id`),
+  KEY `computerid` (`computerid`),
+  KEY `ip` (`ip`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
 -- Table structure for table `erro_poll_option`
