@@ -63,3 +63,8 @@
 /datum/category_item/autolathe/tools/rsf
 	name = "rapid service fabricator"
 	path = /obj/item/rsf
+
+/datum/category_item/autolathe/tools/dest_tagger
+	name = "destination tagger"
+	path = /obj/item/destTagger
+	resources = list(MAT_STEEL = 250, MAT_GLASS = 125)
