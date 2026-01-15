@@ -125,11 +125,13 @@ export const ComplexModal = (props: {
 
   const { modal } = data;
 
-  const [curValue, setCurValue] = useState(modal?.value);
+  const [curValue, setCurValue] = useState(() =>
+    modal?.value != null ? String(modal.value) : '',
+  );
 
   useEffect(() => {
     if (modal?.type === 'input') {
-      setCurValue(modal.value);
+      setCurValue(modal.value != null ? String(modal.value) : '');
     }
   }, [modal?.value, modal?.type]);
 
@@ -154,7 +156,9 @@ export const ComplexModal = (props: {
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
-    modalOnEnter = (e) => modalAnswer(id, curValue, {});
+    modalOnEnter = (e) => {
+      modalAnswer(id, curValue, {});
+    };
     modalBody = (
       <Input
         key={id}
