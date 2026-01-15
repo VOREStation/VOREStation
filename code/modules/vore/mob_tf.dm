@@ -186,7 +186,10 @@
 			if(new_mob.ckey)
 				new_mob.tf_form_ckey = new_mob.ckey
 		else
-			new_mob = new new_form(get_turf(src))
+			if(isliving(new_form))
+				new_mob = new_form
+			else
+				new_mob = new new_form(get_turf(src))
 
 		if(new_mob && isliving(new_mob))
 			new_mob.faction = src.faction
