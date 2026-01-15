@@ -125,13 +125,11 @@ export const ComplexModal = (props: {
 
   const { modal } = data;
 
-  const [curValue, setCurValue] = useState(
-    modal?.value != null ? String(modal.value) : '',
-  );
+  const [curValue, setCurValue] = useState(String(modal?.value ?? ''));
 
   useEffect(() => {
     if (modal?.type === 'input') {
-      setCurValue(modal.value != null ? String(modal.value) : '');
+      setCurValue(String(modal.value ?? ''));
     }
   }, [modal?.value, modal?.type]);
 
