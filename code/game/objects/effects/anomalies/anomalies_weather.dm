@@ -89,7 +89,7 @@
 		selected_weather.loop_sounds.start()
 
 	for(var/turf/area_turf in affected_turfs)
-		apply_to_turf(area_turf)
+		selected_weather.apply_to_turf(area_turf)
 
 /obj/effect/anomaly/weather/proc/clear_weather()
 	if(!is_raining)
@@ -100,22 +100,13 @@
 
 	for(var/area in affected_areas)
 		for(var/turf/area_turf in area)
-			remove_from_turf(area_turf)
+			selected_weather.remove_from_turf(area_turf)
 		for(var/mob/mob in area)
 			selected_weather.hear_sounds(mob, FALSE)
-
-/obj/effect/anomaly/weather/proc/apply_to_turf(turf/T)
-	if(selected_weather.visuals in T.vis_contents)
-		WARNING("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
-		return
-	T.vis_contents += selected_weather.visuals
-
-/obj/effect/anomaly/weather/proc/remove_from_turf(turf/T)
-	if(!(selected_weather.visuals in T.vis_contents))
-		WARNING("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
-		return
-	T.vis_contents -= selected_weather.visuals
 
 /obj/effect/anomaly/weather/Destroy()
 	clear_weather()
 	. = ..()
+
+/obj/effect/anomaly/weather/proc/update_reagent(reagent)
+	selected_weather.update_reagent(reagent)
