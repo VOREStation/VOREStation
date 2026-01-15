@@ -1,11 +1,13 @@
 // Procs for living mobs based around mob transformation. Initially made for the mouseray, they are now used in various other places and the main procs are now called from here.
 
-/mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name)
+/mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name, var/revert = FALSE)
+	if(revert)
+		revert_mob_tf()
 	if(!object_name)
 		object_name = name
 	if(isliving(A))
 		var/mob/living/M = A
-		M.mob_tf(src)
+		transform_into_mob(M, FALSE, revert)
 		return
 	if(isitem(A))
 		var/obj/item/I = A
@@ -15,55 +17,6 @@
 		I.unacidable = !digestable
 		forceMove(possessed_voice)
 
-/mob/living/proc/mob_tf(var/mob/living/M)
-	if(!istype(M))
-		return
-	if(src && isliving(src))
-		faction = M.faction
-		if(istype(src, /mob/living/simple_mob))
-			var/mob/living/simple_mob/S = src
-			if(!S.voremob_loaded)
-				S.init_vore(TRUE)
-		new /obj/effect/effect/teleport_greyscale(M.loc)
-		for(var/obj/belly/B as anything in src.vore_organs)
-			src.vore_organs -= B
-			qdel(B)
-		src.vore_organs = list()
-		src.name = M.name
-		src.real_name = M.real_name
-		for(var/lang in M.languages)
-			src.languages |= lang
-		M.copy_vore_prefs_to_mob(src)
-		src.vore_selected = M.vore_selected
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(ishuman(src))
-				var/mob/living/carbon/human/N = src
-				N.gender = H.gender
-				N.identifying_gender = H.identifying_gender
-			else
-				src.gender = H.gender
-		else
-			src.gender = M.gender
-			if(ishuman(src))
-				var/mob/living/carbon/human/N = src
-				N.identifying_gender = M.gender
-
-		mob_belly_transfer(M)
-		M.soulgem.transfer_self(src) // Soulcatcher
-
-		nutrition = M.nutrition
-		src.ckey = M.ckey
-		if(M.ai_holder && src.ai_holder)
-			var/datum/ai_holder/old_AI = M.ai_holder
-			old_AI.set_stance(STANCE_SLEEP)
-			var/datum/ai_holder/new_AI = src.ai_holder
-			new_AI.hostile = old_AI.hostile
-			new_AI.retaliate = old_AI.retaliate
-		M.loc = src
-		M.forceMove(src)
-		src.tf_mob_holder = M
-
 /mob/living/proc/mob_belly_transfer(var/mob/living/M)
 	for(var/obj/belly/B as anything in M.vore_organs)
 		B.loc = src
@@ -71,6 +24,41 @@
 		B.owner = src
 		M.vore_organs -= B
 		src.vore_organs += B
+
+/mob/living/proc/transfer_identity(var/mob/living/new_mob)
+	for(var/obj/belly/B as anything in new_mob.vore_organs)
+		new_mob.vore_organs -= B
+		qdel(B)
+	new_mob.vore_organs = list()
+	new_mob.name = src.name
+	new_mob.real_name = src.real_name
+	for(var/lang in src.languages)
+		new_mob.languages |= lang
+	src.copy_vore_prefs_to_mob(new_mob)
+	new_mob.vore_selected = src.vore_selected
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(ishuman(new_mob))
+			var/mob/living/carbon/human/N = new_mob
+			N.gender = H.gender
+			N.identifying_gender = H.identifying_gender
+		else
+			new_mob.gender = H.gender
+	else
+		new_mob.gender = src.gender
+		if(ishuman(new_mob))
+			var/mob/living/carbon/human/N = new_mob
+			N.identifying_gender = src.gender
+
+	for(var/obj/belly/B as anything in src.vore_organs)
+		B.loc = new_mob
+		B.forceMove(new_mob)
+		B.owner = new_mob
+		src.vore_organs -= B
+		new_mob.vore_organs += B
+	new_mob.nutrition = src.nutrition
+
+	src.soulgem?.transfer_self(new_mob)
 
 /mob/living
 	var/mob/living/tf_mob_holder = null
@@ -208,39 +196,7 @@
 					S.init_vore(TRUE)
 			new /obj/effect/effect/teleport_greyscale(src.loc)
 			if(!new_mob.ckey)
-				for(var/obj/belly/B as anything in new_mob.vore_organs)
-					new_mob.vore_organs -= B
-					qdel(B)
-				new_mob.vore_organs = list()
-				new_mob.name = src.name
-				new_mob.real_name = src.real_name
-				for(var/lang in src.languages)
-					new_mob.languages |= lang
-				src.copy_vore_prefs_to_mob(new_mob)
-				new_mob.vore_selected = src.vore_selected
-				if(ishuman(src))
-					var/mob/living/carbon/human/H = src
-					if(ishuman(new_mob))
-						var/mob/living/carbon/human/N = new_mob
-						N.gender = H.gender
-						N.identifying_gender = H.identifying_gender
-					else
-						new_mob.gender = H.gender
-				else
-					new_mob.gender = src.gender
-					if(ishuman(new_mob))
-						var/mob/living/carbon/human/N = new_mob
-						N.identifying_gender = src.gender
-
-				for(var/obj/belly/B as anything in src.vore_organs)
-					B.loc = new_mob
-					B.forceMove(new_mob)
-					B.owner = new_mob
-					src.vore_organs -= B
-					new_mob.vore_organs += B
-				new_mob.nutrition = src.nutrition
-
-				src.soulgem?.transfer_self(new_mob)
+				transfer_identity(new_mob)
 
 			new_mob.ckey = src.ckey
 			if(new_mob.tf_form_ckey)
