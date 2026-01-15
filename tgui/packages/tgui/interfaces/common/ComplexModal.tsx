@@ -125,7 +125,7 @@ export const ComplexModal = (props: {
 
   const { modal } = data;
 
-  const [curValue, setCurValue] = useState(() =>
+  const [curValue, setCurValue] = useState(
     modal?.value != null ? String(modal.value) : '',
   );
 
