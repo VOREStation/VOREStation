@@ -25,7 +25,7 @@
 		M.vore_organs -= B
 		src.vore_organs += B
 
-/mob/living/proc/transfer_identity(var/mob/living/new_mob)
+/mob/living/proc/transfer_mob_identity(var/mob/living/new_mob)
 	for(var/obj/belly/B as anything in new_mob.vore_organs)
 		new_mob.vore_organs -= B
 		qdel(B)
@@ -196,7 +196,7 @@
 					S.init_vore(TRUE)
 			new /obj/effect/effect/teleport_greyscale(src.loc)
 			if(!new_mob.ckey)
-				transfer_identity(new_mob)
+				transfer_mob_identity(new_mob)
 
 			new_mob.ckey = src.ckey
 			if(new_mob.tf_form_ckey)

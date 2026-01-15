@@ -481,7 +481,7 @@
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
 			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
-			transfer_identity(new_mob)
+			transfer_mob_identity(new_mob)
 			new_mob.visible_message(span_infoplain(span_bold("\The [src]") + " has transformed into \the [chosen_beast]!"))
 	species.update_lleill_hud(src)
 
@@ -645,5 +645,5 @@
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
 			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
-			transfer_identity(new_mob)
+			transfer_mob_identity(new_mob)
 			new_mob.visible_message(span_infoplain(span_bold("\The [src]") + " has transformed into \the [chosen_beast]!"))

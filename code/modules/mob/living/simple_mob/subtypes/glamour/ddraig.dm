@@ -473,7 +473,7 @@
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
-			transfer_identity(new_mob)
+			transfer_mob_identity(new_mob)
 			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
 
 /mob/living/proc/spawn_polymorph_mob(var/chosen_beast)
