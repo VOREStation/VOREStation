@@ -1,12 +1,16 @@
-import { Section, Stack } from 'tgui-core/components';
+import { useBackend } from 'tgui/backend';
+import { Button, Section, Stack } from 'tgui-core/components';
 
 import type { LocalPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
   preferences: LocalPrefs;
+  stripModeToColor: Record<string, string | undefined>;
+  strip_active: string;
 }) => {
-  const { preferences } = props;
+  const { act } = useBackend();
+  const { preferences, strip_active, stripModeToColor } = props;
 
   return (
     <Section title="Mechanical Preferences">
@@ -100,6 +104,17 @@ export const VoreUserPreferencesMechanical = (props: {
             spec={preferences.afk_pred}
             tooltipPosition="left"
           />
+        </Stack.Item>
+        <Stack.Item basis="35%">
+          <Button
+            fluid
+            backgroundColor={stripModeToColor[strip_active]}
+            tooltip="Allows to set whether all your clothing and/or underwear comes off when size changed."
+            tooltipPosition="right"
+            onClick={() => act('switch_strip_mode_pref')}
+          >
+            {`Size Change Stripping Mode: ${strip_active}`}
+          </Button>
         </Stack.Item>
       </Stack>
     </Section>

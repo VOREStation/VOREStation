@@ -1,6 +1,6 @@
 import { Section } from 'tgui-core/components';
 
-import { digestModeToColor } from '../constants';
+import { digestModeToColor, stripModeToColor } from '../constants';
 import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
@@ -58,6 +58,7 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
     no_spawnpred_warning_save,
     no_spawnprey_warning_save,
     selective_active,
+    strip_active,
     soulcatcher_allow_capture,
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
@@ -760,7 +761,11 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
 
   return (
     <Section scrollable fill>
-      <VoreUserPreferencesMechanical preferences={preferences} />
+      <VoreUserPreferencesMechanical
+        preferences={preferences}
+        stripModeToColor={stripModeToColor}
+        strip_active={strip_active}
+      />
       <VoreUserPreferencesDevouring
         devourable={devourable}
         digestModeToColor={digestModeToColor}

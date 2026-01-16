@@ -656,6 +656,14 @@
 				host.client.prefs_vr.selective_preference = host.selective_preference
 			unsaved_changes = TRUE
 			return TRUE
+		if("switch_strip_mode_pref")
+			host.size_strip_preference = tgui_input_list(ui.user, "What would you prefer happen to you when your size is changed by over 30%?","Selective Bellymode", list(SIZESTRIP_NONE, SIZESTRIP_ITEMS, SIZESTRIP_ALL))
+			if(!(host.size_strip_preference))
+				host.size_strip_preference = SIZESTRIP_NONE
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.size_strip_preference = host.size_strip_preference
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_nutrition_ex")
 			host.nutrition_message_visible = !host.nutrition_message_visible
 			unsaved_changes = TRUE

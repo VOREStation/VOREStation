@@ -35,6 +35,7 @@
 		"autotransferable" = owner.autotransferable,
 		"noisy_full" = owner.noisy_full, //Belching while full
 		"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
+		"strip_active" = owner.size_strip_preference,
 
 		"allow_mind_transfer" = owner.allow_mind_transfer,
 		"drop_vore" = owner.drop_vore,

@@ -39,6 +39,13 @@ export const reagentToColor = {
   Ethanol: undefined,
 } as const;
 
+export const stripModeToColor = {
+  Default: undefined,
+  'Drop Nothing': undefined,
+  'Drop Equipment': 'green',
+  'Drop Equipment and Underwear': 'green',
+} as const;
+
 export const digestModeToPreyMode = {
   Hold: 'being held.',
   Digest: 'being digested.',

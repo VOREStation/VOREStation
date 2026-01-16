@@ -102,6 +102,7 @@
 	var/vore_smell = "nothing in particular"
 
 	var/selective_preference = DM_DEFAULT
+	var/size_strip_preference = SIZESTRIP_NONE
 
 
 	var/nutrition_message_visible = TRUE
@@ -207,6 +208,7 @@
 	permit_healbelly = json_from_file["permit_healbelly"]
 	noisy = json_from_file["noisy"]
 	selective_preference = json_from_file["selective_preference"]
+	size_strip_preference = json_from_file["size_strip_preference"]
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
@@ -284,6 +286,8 @@
 		permit_healbelly = TRUE
 	if(isnull(selective_preference))
 		selective_preference = DM_DEFAULT
+	if(isnull(size_strip_preference))
+		size_strip_preference = SIZESTRIP_NONE
 	if (isnull(noisy))
 		noisy = FALSE
 	if(isnull(show_vore_fx))
@@ -427,6 +431,7 @@
 			"noisy" 				= noisy,
 			"noisy_full" 			= noisy_full,
 			"selective_preference"	= selective_preference,
+			"size_strip_preference"		= size_strip_preference,
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
