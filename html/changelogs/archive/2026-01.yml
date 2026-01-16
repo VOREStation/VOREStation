@@ -140,3 +140,6 @@
       to objects... Again.
   - admin: Disposal pipes will now give an alert for any mob that has a client getting
       flushed, not just carbon humans
+2026-01-16:
+  Kashargul:
+  - bugfix: initial input getting dropped in the backend
