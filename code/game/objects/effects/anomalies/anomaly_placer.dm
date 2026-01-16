@@ -46,7 +46,11 @@
 		/area/maintenance,
 		/area/holodeck,
 		/area/ai,
-		/area/tcommsat
+		/area/ai_core_foyer,
+		/area/ai_upload_foyer,
+		/area/ai_server_room,
+		/area/tcommsat,
+		/area/tcomm
 	)
 
 	allowed_areas = get_station_areas(safe_area_types)
