@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/Destroy()
 	GLOB.directory -= ckey
 	GLOB.clients -= src
-	persistent_client.set_client(null)
+	persistent_client?.set_client(null)
 
 	log_access("Logout: [key_name(src)]")
 	GLOB.tickets.ClientLogout(src)
