@@ -7,10 +7,12 @@ import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceI
 export const VoreUserPreferencesMechanical = (props: {
   preferences: LocalPrefs;
   stripModeToColor: Record<string, string | undefined>;
-  strip_active: string;
+  strip_activeToText: Record<number, string | undefined>;
+  strip_active: number;
 }) => {
   const { act } = useBackend();
-  const { preferences, strip_active, stripModeToColor } = props;
+  const { preferences, strip_active, strip_activeToText, stripModeToColor } =
+    props;
 
   return (
     <Section title="Mechanical Preferences">
@@ -113,7 +115,7 @@ export const VoreUserPreferencesMechanical = (props: {
             tooltipPosition="right"
             onClick={() => act('switch_strip_mode_pref')}
           >
-            {`Size Change Stripping Mode: ${strip_active}`}
+            {`Size Change Stripping: ${strip_activeToText[strip_active]}`}
           </Button>
         </Stack.Item>
       </Stack>

@@ -41,9 +41,15 @@ export const reagentToColor = {
 
 export const stripModeToColor = {
   Default: undefined,
-  'Drop Nothing': undefined,
-  'Drop Equipment': 'green',
-  'Drop Equipment and Underwear': 'green',
+  0: undefined,
+  1: 'green',
+  2: 'green',
+} as const;
+
+export const strip_activeToText = {
+  0: 'Drop Nothing',
+  1: 'Drop Equipment',
+  2: 'Drop Equipment and Underwear',
 } as const;
 
 export const digestModeToPreyMode = {

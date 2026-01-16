@@ -337,7 +337,7 @@ export type PrefData = {
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
   selective_active: string;
-  strip_active: string;
+  strip_active: number;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;

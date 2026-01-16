@@ -1,6 +1,10 @@
 import { Section } from 'tgui-core/components';
 
-import { digestModeToColor, stripModeToColor } from '../constants';
+import {
+  digestModeToColor,
+  strip_activeToText,
+  stripModeToColor,
+} from '../constants';
 import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
@@ -764,6 +768,7 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
       <VoreUserPreferencesMechanical
         preferences={preferences}
         stripModeToColor={stripModeToColor}
+        strip_activeToText={strip_activeToText}
         strip_active={strip_active}
       />
       <VoreUserPreferencesDevouring
