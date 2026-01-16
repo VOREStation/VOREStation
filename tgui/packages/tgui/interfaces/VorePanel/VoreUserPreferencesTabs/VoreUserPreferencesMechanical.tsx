@@ -109,7 +109,7 @@ export const VoreUserPreferencesMechanical = (props: {
           <Button
             fluid
             backgroundColor={stripModeToColor[strip_active]}
-            tooltip="Allows to set whether all your clothing and/or underwear comes off when size changed."
+            tooltip="Allows to set whether all your clothing and/or underwear comes off when size changed. Currently affects: Size guns and bluespace crackers."
             tooltipPosition="right"
             onClick={() => act('switch_strip_mode_pref')}
           >
