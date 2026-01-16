@@ -89,6 +89,7 @@
  * * uncapped - CHANGE_ME. Default: FALSE
  * * ignore_prefs - CHANGE_ME. Default: FALSE
  * * aura_animation - CHANGE_ME. Default: TRUE
+ * * allow_stripping - CHANGE_ME.  Default: FALSE
  */
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
 	if(!uncapped)
@@ -169,7 +170,7 @@
 			apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
+/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
 	size_multiplier = new_size
 
 /**
