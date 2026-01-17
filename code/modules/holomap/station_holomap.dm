@@ -72,6 +72,8 @@
 	if(user.loc != loc)
 		to_chat(user, span_warning("You need to stand in front of \the [src]."))
 		return
+	if(watching_mob)
+		return
 	startWatching(user)
 
 // Let people bump up against it to watch
