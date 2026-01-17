@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(affected_mob.stat == DEAD && !global_flag_check(virus_modifiers, SPREAD_DEAD) && !force_spread)
 		return
 
-	if(affected_mob.reagents.has_reagent(REAGENT_ID_SPACEACILLIN) || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
+	if(affected_mob.reagents.has_reagent(REAGENT_ID_SPACEACILLIN))
 		return
 
 	var/spread_range = 2
