@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(explosions)
 	// Build both queues. The first one gets the explosion power in each turf
 	// The second queue applies that explosion power to all turfs and objects in them
 	if(!resumed)
-		if(resolve_explosions && !currentrun.len)
+		if(resolve_explosions && !LAZYLEN(currentrun))
 			end_resolve()
 		if(!resolve_explosions)
 			// Setup the explosion buffer!
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(explosions)
 			currentsignals = explosion_signals.Copy()
 			pending_explosions.Cut()
 			explosion_signals.Cut()
-	if(currentrun.len == 0 && !resolve_explosions) // Wait till we're useful if we have nothing to do!
+	if(!LAZYLEN(currentrun) && !resolve_explosions) // Wait till we're useful if we have nothing to do!
 		gotosleep()
 		return
 
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(explosions)
 		currentrun.Remove(key)
 
 		// Check if we move on to final resolution
-		if(currentrun.len == 0)
+		if(!currentrun.len)
 			if(!resolve_explosions)
 				start_resolve()
 				currentrun = resolving_explosions.Copy()
@@ -186,7 +186,7 @@ SUBSYSTEM_DEF(explosions)
 	gotosleep()
 
 /datum/controller/subsystem/explosions/proc/abort()
-	if(!currentrun.len)
+	if(!LAZYLEN(currentrun))
 		return
 	// Removes all entries except the top most, so we enter resolution phase properly, need at least one entry to do so...
 	var/key = currentrun[1]
