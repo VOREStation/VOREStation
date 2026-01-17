@@ -355,12 +355,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 
-	if(GLOB.custom_event_msg && GLOB.custom_event_msg != "")
-		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
-		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, span_alert("[GLOB.custom_event_msg]"))
-		to_chat(src, "<br>")
-
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
@@ -377,12 +371,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!void)
 		void = new()
 	screen += void
-
-	if((prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, span_info("You have unread updates in the changelog."))
-		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
-		if(CONFIG_GET(flag/aggressive_changelog))
-			src.changes()
 
 	if(CONFIG_GET(flag/paranoia_logging))
 		var/alert = FALSE //VOREStation Edit start.
