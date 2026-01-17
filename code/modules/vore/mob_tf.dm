@@ -50,12 +50,7 @@
 			var/mob/living/carbon/human/N = new_mob
 			N.identifying_gender = src.gender
 
-	for(var/obj/belly/B as anything in src.vore_organs)
-		B.loc = new_mob
-		B.forceMove(new_mob)
-		B.owner = new_mob
-		src.vore_organs -= B
-		new_mob.vore_organs += B
+	new_mob.mob_belly_transfer(src)
 	new_mob.nutrition = src.nutrition
 
 	src.soulgem?.transfer_self(new_mob)
@@ -111,12 +106,7 @@
 	if(!tf_form_ckey)
 		ourmob.vore_selected = vore_selected
 		vore_selected = null
-		for(var/obj/belly/B as anything in vore_organs)
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			vore_organs -= B
-			ourmob.vore_organs += B
+		ourmob.mob_belly_transfer(src)
 
 	ourmob.Life(1)
 

@@ -523,12 +523,7 @@
 	ourmob.forceMove(beast_loc)
 	ourmob.vore_selected = vore_selected
 	vore_selected = null
-	for(var/obj/belly/B as anything in vore_organs)
-		B.loc = ourmob
-		B.forceMove(ourmob)
-		B.owner = ourmob
-		vore_organs -= B
-		ourmob.vore_organs += B
+	ourmob.mob_belly_transfer(src)
 
 	ourmob.Life(1)
 
