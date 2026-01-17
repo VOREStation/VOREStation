@@ -136,7 +136,7 @@ export const VorePanelEditTextTabs = (
       <Stack.Item grow>
         <Section fill scrollable>
           <Stack fill vertical>
-            {!!button_action && button_data && (
+            {!!button_action && !!button_label && (
               <Stack.Item>
                 <LabeledList>
                   <LabeledList.Item label={button_label}>
