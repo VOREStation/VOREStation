@@ -173,6 +173,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/update_icons_body()
+	to_chat(world, "update_icons_body")
 	if(QDESTROYING(src))
 		return
 
@@ -191,9 +192,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
-
-	//Create a new, blank icon for our mob to use.
-	var/icon/stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
 
 	var/g = (gender == MALE ? "male" : "female")
 	var/icon_key = "[species.get_race_key(src)][g][s_tone][r_skin][g_skin][b_skin]"
@@ -271,99 +269,132 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 				default_pixel_y = tail_style.mob_offset_y
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
-	var/icon/base_icon
-
+	var/mutable_appearance/body = null
 	if(GLOB.human_icon_cache[icon_key])
-		base_icon = GLOB.human_icon_cache[icon_key]
+		body = GLOB.human_icon_cache[icon_key]
 	else
-		//BEGIN CACHED ICON GENERATION.
+		body = mutable_appearance(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', "blank")
+		body.layer = BODY_LAYER + BODYPARTS_LAYER
+
 		var/obj/item/organ/external/chest = get_organ(BP_TORSO)
-		base_icon = new(chest?.get_icon(skeleton, !wholeicontransparent))
+		var/list/chest_appearance = chest.get_appearance(skeleton, !wholeicontransparent)
+		var/mutable_appearance/chest_MA = chest_appearance["base"]
+		chest_MA.layer = BODY_LAYER + BODYPARTS_LAYER
+		for(var/M in chest_appearance["markings"])
+			chest_MA.overlays += M
+		for(var/extra_MA in chest_appearance["extra"])
+			chest_MA.overlays += extra_MA
+		body.overlays += chest_MA
 
-		var/apply_extra_transparency_leg = organs_by_name[BP_L_LEG] && organs_by_name[BP_R_LEG]
-		var/apply_extra_transparency_foot = organs_by_name[BP_L_FOOT] && organs_by_name[BP_R_FOOT]
+		// Taur cutting
+		var/icon/taur_cutter = null
+		var/taur_cutter_x = 0
+		var/taur_cutter_y = 0
 
-		var/icon/Cutter = null
-		var/icon_x_offset = 0
-		var/icon_y_offset = 0
-
+		// TODO: Can we remove this outer if statement?
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
 			if(tail_style.clip_mask)
-				Cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
+				taur_cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
+				taur_cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
+				taur_cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
+				taur_cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
+				taur_cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
-				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
+				taur_cutter_x = tail_style.offset_x
+				taur_cutter_y = tail_style.offset_y
 
-				Cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
-				Cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
-
-				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
-
-				icon_x_offset = tail_style.offset_x
-				icon_y_offset = tail_style.offset_y
+		// Extra transparency when you have double legs/double feet
+		var/apply_extra_transparency_leg = organs_by_name[BP_L_LEG] && organs_by_name[BP_R_LEG]
+		var/apply_extra_transparency_foot = organs_by_name[BP_L_FOOT] && organs_by_name[BP_R_FOOT]
 
 		for(var/obj/item/organ/external/part in organs)
 			if(isnull(part) || part.is_stump() || part == chest || part.is_hidden_by_sprite_accessory()) //Allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
-			var/icon/temp = new(part.get_icon(skeleton, !wholeicontransparent))
+			var/list/part_appearance = part.get_appearance(skeleton, !wholeicontransparent)
+			var/mutable_appearance/part_MA = part_appearance["base"]
+			part_MA.layer = BODY_LAYER + BODYPARTS_LAYER + 0.2
 
-			if((part.organ_tag in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)) && Cutter)
-				temp.Blend(Cutter, ICON_AND, x = icon_x_offset, y = icon_y_offset)
+			if((part.organ_tag in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)) && taur_cutter)
+				part_MA.filters += filter(arglist(alpha_mask_filter(taur_cutter_x, taur_cutter_y, icon = taur_cutter)))
 
-			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
-			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
+			// Problem: For dir = EAST and dir = WEST, a different leg needs to render on top.
+			// Solution:
 			if(part.icon_position & (LEFT | RIGHT))
-				var/icon/temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
-				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
-				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
-				if(!(part.icon_position & LEFT))
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(!(part.icon_position & RIGHT))
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp2, ICON_OVERLAY)
-				temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
-				if(part.icon_position & LEFT)
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(part.icon_position & RIGHT)
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				if (part.transparent && !wholeicontransparent) //apply a little (a lot) extra transparency to make it look better.
-					if ((istype(part, /obj/item/organ/external/leg) && apply_extra_transparency_leg) || (istype(part, /obj/item/organ/external/foot) && apply_extra_transparency_foot)) //maybe
-						temp2 += rgb(,,,30)
-				base_icon.Blend(temp2, ICON_UNDERLAY)
-			else if(part.icon_position & UNDER)
-				base_icon.Blend(temp, ICON_UNDERLAY)
+				var/mutable_appearance/part_MA_lower = new /mutable_appearance(part_MA)
+				part_MA_lower.layer = BODY_LAYER + BODYPARTS_LAYER + 0.1
+
+				// We also have to apply some extra transparency.
+				if(part.transparent && !wholeicontransparent)
+					if((istype(part, /obj/item/organ/external/leg) && apply_extra_transparency_leg) \
+						|| (istype(part, /obj/item/organ/external/foot) && apply_extra_transparency_foot))
+						part_MA_lower.alpha = 30
+
+				for(var/mutable_appearance/mark_MA as anything in part_appearance["markings"])
+					part_MA.overlays += mark_MA
+					// Do not render emissive markings to part_MA_lower or they will clip
+					if(mark_MA.plane == FLOAT_PLANE)
+						part_MA_lower.overlays += mark_MA
+
+				for(var/mutable_appearance/extra_MA as anything in part_appearance["extra"])
+					part_MA.overlays += extra_MA
+					part_MA_lower.overlays += extra_MA
+
+				// Apply masking
+				// We cannot use alpha mask filters here because they don't work on directional sprites :)
+				// - If we're on the left leg, we mask the upper layer to only show on dir = NORTH|WEST|SOUTH
+				//   and mask the lower layer to only show on dir = EAST
+				// - If we're on the right leg, we mask the upper layer to only show on dir = NORTH|EAST|SOUTH
+				//   and mask the lower layer to only show on dir = WEST
+				var/icon/leg_crop_mask = icon('icons/mob/leg_masks.dmi', (part.icon_position & LEFT) ? "left_leg" : "right_leg")
+				var/icon/leg_crop_mask_lower = icon('icons/mob/leg_masks.dmi', (part.icon_position & LEFT) ? "left_leg_lower" : "right_leg_lower")
+
+				var/icon/upper = getCompoundIcon(part_MA)
+				var/icon/lower = getCompoundIcon(part_MA_lower)
+
+				upper.Blend(leg_crop_mask, ICON_MULTIPLY)
+				lower.Blend(leg_crop_mask_lower, ICON_MULTIPLY)
+
+				part_MA.icon = upper
+				part_MA_lower.icon = lower
+
+				// this is important for actually applying the masks....
+				part_MA.overlays.Cut()
+				part_MA_lower.overlays.Cut()
+
+				body.overlays += part_MA
+				body.overlays += part_MA_lower
 			else
-				base_icon.Blend(temp, ICON_OVERLAY)
+				for(var/mark_MA in part_appearance["markings"])
+					part_MA.overlays += mark_MA
 
-		if (wholeicontransparent) //because, I mean. It's basically never gonna happen that you'll have just one non-transparent limb but if you do your icon will look meh. Still good but meh, will have some areas with higher transparencies unless you're literally just a torso and a head
-			base_icon += rgb(,,,180)
+				for(var/extra_MA in part_appearance["extra"])
+					part_MA.overlays += extra_MA
 
+				body.overlays += part_MA
+
+		// Apply transparency to the whole icon if needed.
+		if(wholeicontransparent)
+			body.alpha = 180
+
+		// Apply color mods
 		if(!skeleton)
 			if(husk)
-				base_icon.ColorTone(husk_color_mod)
+				body.color = husk_color_mod
 			else if(hulk)
-				var/list/tone = rgb2num(hulk_color_mod)
-				base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
+				body.color = hulk_color_mod
 
 		//Handle husk overlay.
 		if(husk && icon_exists(species.icobase, "overlay_husk"))
-			var/icon/mask = new(base_icon)
-			var/icon/husk_over = new(species.icobase,"overlay_husk")
-			mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
-			husk_over.Blend(mask, ICON_ADD)
-			base_icon.Blend(husk_over, ICON_OVERLAY)
+			var/mutable_appearance/husk_over = mutable_appearance(species.icobase, "overlay_husk")
+			// TODO: MASK_INVERSE?
+			husk_over.filters += filter(arglist(alpha_mask_filter(0, 0, getCompoundIcon(body))))
+			body.overlays += husk_over
 
-		GLOB.human_icon_cache[icon_key] = base_icon
+		GLOB.human_icon_cache[icon_key] = body
 
-	//END CACHED ICON GENERATION.
-	stand_icon.Blend(base_icon,ICON_OVERLAY)
-
-	var/image/body = image(stand_icon)
-	if (body)
-		body.layer = BODY_LAYER + BODYPARTS_LAYER
-		overlays_standing[BODYPARTS_LAYER] = body
-		apply_layer(BODYPARTS_LAYER)
-
-	icon = stand_icon
+	// technically this can go at the top but it's more readable here
+	overlays_standing[BODYPARTS_LAYER] = body
+	apply_layer(BODYPARTS_LAYER)
 
 	//tail
 	update_tail_showing()
