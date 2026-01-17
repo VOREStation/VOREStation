@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "spasm self ownership not being reversible"
+  - bugfix: "some missing buttons in the vorepanel for examine messages"

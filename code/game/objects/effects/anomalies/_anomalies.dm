@@ -33,10 +33,9 @@
 
 	if(anomaly_core)
 		anomaly_core = new anomaly_core(src)
+		anomaly_core.set_frequency(sanitize_frequency(rand(PUBLIC_LOW_FREQ, PUBLIC_HIGH_FREQ)))
 		anomaly_core.code = rand(1, 100)
 		anomaly_core.anomaly_type = type
-
-		anomaly_core.set_frequency(sanitize_frequency(get_rand_frequency()))
 
 	if(new_lifespan)
 		lifespan = new_lifespan
@@ -120,4 +119,4 @@
 		if(DIMENSIONAL_ANOMALY)
 			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)
 		if(WEATHER_ANOMALY)
-			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)
+			new /obj/effect/anomaly/weather(local_turf, null, drops_core)

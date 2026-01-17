@@ -1,0 +1,8 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixed Anomalies not having a randomized frequency"
+  - bugfix: "Fixed weather anomalies not spawning with telescience"
+  - bugfix: "Fixed dimensional anomaly removing all the airlocks required access"
+  - code_imp: "Fixed get_station_areas returning areas from other stations"
+  - code_imp: "Moves a couple of procs from weather anomaly to anomalous weather datum"

@@ -58,7 +58,7 @@ Bonus
 	if(M.stat == DEAD)
 		return
 	switch(A.stage)
-		if(1, 2, 3, 4)
+		if(1 to 4)
 			if(prob(base_message_chance) && !supress_warning)
 				to_chat(M, span_warning(pick("You feel nauseated.", "You feel like you're going to throw up!")))
 		else

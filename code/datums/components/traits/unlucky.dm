@@ -195,7 +195,7 @@
 				our_guy.visible_message(span_danger("[our_guy] slips on a spill near the [evil_disposal] and falls in!"), span_boldwarning("You slip on a spill near the [evil_disposal] and fall in!"))
 				living_guy.forceMove(evil_disposal)
 				evil_disposal.flush = TRUE
-				evil_disposal.update()
+				evil_disposal.update_icon()
 				living_guy.Stun(5)
 				consume_omen()
 				return

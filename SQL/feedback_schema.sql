@@ -90,8 +90,10 @@ CREATE TABLE IF NOT EXISTS `erro_player` (
   `discord_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ckey` (`ckey`),
-  KEY `discord_id` (`discord_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+  KEY `discord_id` (`discord_id`),
+  KEY `computerid` (`computerid`),
+  KEY `ip` (`ip`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `erro_poll_option`
 CREATE TABLE IF NOT EXISTS `erro_poll_option` (
@@ -105,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `erro_poll_option` (
   `descmid` varchar(32) DEFAULT NULL,
   `descmax` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `erro_poll_question`
 CREATE TABLE IF NOT EXISTS `erro_poll_question` (
@@ -116,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `erro_poll_question` (
   `question` varchar(255) NOT NULL,
   `adminonly` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `erro_poll_textreply`
 CREATE TABLE IF NOT EXISTS `erro_poll_textreply` (
@@ -128,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `erro_poll_textreply` (
   `replytext` text NOT NULL,
   `adminrank` varchar(32) NOT NULL DEFAULT 'Player',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `erro_poll_vote`
 CREATE TABLE IF NOT EXISTS `erro_poll_vote` (
@@ -141,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `erro_poll_vote` (
   `adminrank` varchar(32) NOT NULL,
   `rating` int(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `erro_privacy`
 CREATE TABLE IF NOT EXISTS `erro_privacy` (
@@ -150,70 +152,70 @@ CREATE TABLE IF NOT EXISTS `erro_privacy` (
   `ckey` varchar(32) NOT NULL,
   `option` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `death`
 CREATE TABLE IF NOT EXISTS `death` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `pod` TEXT NOT NULL COMMENT 'Place of death' ,
-  `coord` TEXT NOT NULL COMMENT 'X, Y, Z POD' ,
-  `tod` DATETIME NOT NULL COMMENT 'Time of death' ,
-  `job` TEXT NOT NULL ,
-  `special` TEXT NOT NULL ,
-  `name` TEXT NOT NULL ,
-  `byondkey` TEXT NOT NULL ,
-  `laname` TEXT NOT NULL COMMENT 'Last attacker name' ,
-  `lakey` TEXT NOT NULL COMMENT 'Last attacker key' ,
-  `gender` TEXT NOT NULL ,
-  `bruteloss` INT(11) NOT NULL ,
-  `brainloss` INT(11) NOT NULL ,
-  `fireloss` INT(11) NOT NULL ,
-  `oxyloss` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `pod` TEXT NOT NULL COMMENT 'Place of death',
+  `coord` TEXT NOT NULL COMMENT 'X, Y, Z POD',
+  `tod` DATETIME NOT NULL COMMENT 'Time of death',
+  `job` TEXT NOT NULL,
+  `special` TEXT NOT NULL,
+  `name` TEXT NOT NULL,
+  `byondkey` TEXT NOT NULL,
+  `laname` TEXT NOT NULL COMMENT 'Last attacker name',
+  `lakey` TEXT NOT NULL COMMENT 'Last attacker key',
+  `gender` TEXT NOT NULL,
+  `bruteloss` INT(11) NOT NULL,
+  `brainloss` INT(11) NOT NULL,
+  `fireloss` INT(11) NOT NULL,
+  `oxyloss` INT(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
 -- Table structure for table `karma`
 CREATE TABLE IF NOT EXISTS `karma` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `spendername` TEXT NOT NULL ,
-  `spenderkey` TEXT NOT NULL ,
-  `receivername` TEXT NOT NULL ,
-  `receiverkey` TEXT NOT NULL ,
-  `receiverrole` TEXT NOT NULL ,
-  `receiverspecial` TEXT NOT NULL ,
-  `isnegative` TINYINT(1) NOT NULL ,
-  `spenderip` TEXT NOT NULL ,
-  `time` DATETIME NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `spendername` TEXT NOT NULL,
+  `spenderkey` TEXT NOT NULL,
+  `receivername` TEXT NOT NULL,
+  `receiverkey` TEXT NOT NULL,
+  `receiverrole` TEXT NOT NULL,
+  `receiverspecial` TEXT NOT NULL,
+  `isnegative` TINYINT(1) NOT NULL,
+  `spenderip` TEXT NOT NULL,
+  `time` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `karmatotals`
 CREATE TABLE IF NOT EXISTS `karmatotals` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `byondkey` TEXT NOT NULL ,
-  `karma` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `byondkey` TEXT NOT NULL,
+  `karma` INT(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `library`
 CREATE TABLE IF NOT EXISTS `library` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `author` TEXT NOT NULL ,
-  `title` TEXT NOT NULL ,
-  `content` TEXT NOT NULL ,
-  `category` TEXT NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `author` TEXT NOT NULL,
+  `title` TEXT NOT NULL,
+  `content` TEXT NOT NULL,
+  `category` TEXT NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
 -- Table structure for table `population`
 CREATE TABLE IF NOT EXISTS `population` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `playercount` INT(11) NULL DEFAULT NULL ,
-  `admincount` INT(11) NULL DEFAULT NULL ,
-  `time` DATETIME NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `playercount` INT(11) NULL DEFAULT NULL,
+  `admincount` INT(11) NULL DEFAULT NULL,
+  `time` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- Table structure for table `vr_player_hours`
 CREATE TABLE IF NOT EXISTS `vr_player_hours` (

@@ -1,0 +1,4 @@
+author: "nova"
+delete-after: True
+changes:
+  - qol: "Adds option to avoid attempts at being picked up with the personal space bubble trait"
