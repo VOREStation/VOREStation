@@ -861,12 +861,7 @@
 		M.tf_mob_holder.forceMove(M.loc)
 		QDEL_LIST_NULL(M.tf_mob_holder.vore_organs)
 		M.tf_mob_holder.vore_organs = list()
-		for(var/obj/belly/B as anything in M.vore_organs)
-			B.loc = M.tf_mob_holder
-			B.forceMove(M.tf_mob_holder)
-			B.owner = M.tf_mob_holder
-			M.tf_mob_holder.vore_organs |= B
-			M.vore_organs -= B
+		M.tf_mob_holder.mob_belly_transfer(M)
 
 	if(M.tf_mob_holder)
 		M.tf_mob_holder = null
