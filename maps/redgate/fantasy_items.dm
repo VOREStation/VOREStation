@@ -201,14 +201,7 @@
 	src.icon_state = "cookingpot1"
 	SStgui.update_uis(src)
 
-/obj/machinery/microwave/cookingpot/abort()
-	operating = FALSE // Turn it off again aferwards
-	if(icon_state == "cookingpot1")
-		icon_state = "cookingpot"
-	SStgui.update_uis(src)
-
-
-/obj/machinery/microwave/cookingpot/stop()
+/obj/machinery/microwave/cookingpot/stop(var/success = TRUE)
 	operating = FALSE // Turn it off again aferwards
 	if(icon_state == "cookingpot1")
 		icon_state = "cookingpot"

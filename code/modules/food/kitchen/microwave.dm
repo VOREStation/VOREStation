@@ -16,7 +16,7 @@
 	clickvol = "30"
 	flags = MICROWAVE_FLAGS
 	circuit = /obj/item/circuitboard/microwave
-	var/operating = 0 // Is it on?
+	var/operating = FALSE // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
 	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
@@ -289,49 +289,24 @@
 /obj/machinery/microwave/proc/get_items_list()
 	var/list/data = list()
 
-	var/list/items_counts = list()
-	var/list/items_measures = list()
-	var/list/items_measures_p = list()
+	var/list/item_count = list()
 	var/list/icons = list()
 
-	for(var/obj/O in cookingContents())
-		var/display_name = O.name
-		if(istype(O,/obj/item/reagent_containers/food/snacks/egg))
-			items_measures[display_name] = "egg"
-			items_measures_p[display_name] = "eggs"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/tofu))
-			items_measures[display_name] = "tofu chunk"
-			items_measures_p[display_name] = "tofu chunks"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/meat)) //any meat
-			items_measures[display_name] = "slab of meat"
-			items_measures_p[display_name] = "slabs of meat"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/donkpocket))
-			display_name = "Turnovers"
-			items_measures[display_name] = "turnover"
-			items_measures_p[display_name] = "turnovers"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/carpmeat))
-			items_measures[display_name] = "fillet of meat"
-			items_measures_p[display_name] = "fillets of meat"
-		items_counts[display_name]++
-		icons[display_name] = list("icon" = O.icon, "icon_state" = O.icon_state)
+	for(var/obj/ingredient in cookingContents())
+		item_count[ingredient.name]++
+		if(!icons[ingredient.name])
+			icons[ingredient.name] = list("icon" = ingredient.icon, "icon_state" = ingredient.icon_state)
 
-	for(var/O in items_counts)
-		var/N = items_counts[O]
-		var/icon = icons[O]
-		if(!(O in items_measures))
-			data.Add(list(list(
-				"name" = capitalize(O),
-				"amt" = N,
-				"extra" = "[lowertext(O)][N > 1 ? "s" : ""]",
-				"icon" = icon,
-			)))
-		else
-			data.Add(list(list(
-				"name" = capitalize(O),
-				"amt" = N,
-				"extra" = N == 1 ? items_measures[O] : items_measures_p[O],
-				"icon" = icon,
-			)))
+	for(var/item in item_count)
+		var/display_name = item
+		var/plural_name = display_name + plural_s(display_name)
+		var/ingredient_amt = item_count[item]
+		data.Add(list(list(
+			"name" = capitalize(display_name),
+			"amt" = ingredient_amt,
+			"extra" = ingredient_amt == 1 ? display_name : plural_name,
+			"icon" = icons[item],
+		)))
 
 	return data
 
@@ -361,55 +336,32 @@
 	start()
 	if(reagents.total_volume==0 && !(locate(/obj) in cookingContents())) //dry run
 		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
-			abort()
+			stop(FALSE)
 			return
-		abort()
+		stop(FALSE)
 		return
 
 	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes,src)
 	var/obj/cooked
 	if(!recipe)
-		dirty += 1
-		if(prob(max(10,dirty*5)))
-			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-				abort()
-				return
-			muck_start()
-			wzhzhzh(2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-			muck_finish()
-			cooked = fail()
-			cooked.forceMove(src.loc)
-		else if(has_extra_item())
-			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-				abort()
-				return
-			broke()
-			cooked = fail()
-			cooked.forceMove(src.loc)
-		else
-			if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
-				abort()
-				return
-			stop()
-			cooked = fail()
-			cooked.forceMove(src.loc)
+		handle_incorrect_recipe(cooked)
 		return
 
 	//Making multiple copies of a recipe
 	var/halftime = round(recipe.time*4/10/2) // VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
 	if(!wzhzhzh(halftime))
-		abort()
+		stop(FALSE)
 		return
 	recipe.before_cook(src)
 	if(!wzhzhzh(halftime))
-		abort()
+		stop(FALSE)
 		cooked = fail()
 		cooked.forceMove(loc)
 		recipe.after_cook(src)
 		return
 
 	var/result = recipe.result
-	var/valid = 1
+	var/valid = TRUE
 	var/list/cooked_items = list()
 	var/obj/temp = new /obj(src) //To prevent infinite loops, all results will be moved into a temporary location so they're not considered as inputs for other recipes
 	while(valid)
@@ -420,11 +372,11 @@
 		for(var/atom/movable/AM in things)
 			AM.forceMove(temp)
 
-		valid = 0
+		valid = FALSE
 		recipe.after_cook(src)
 		recipe = select_recipe(GLOB.available_recipes,src)
 		if(recipe && recipe.result == result)
-			valid = 1
+			valid = TRUE
 			sleep(2)
 
 	for(var/atom/movable/R as anything in cooked_items)
@@ -440,10 +392,36 @@
 	for(var/obj/item/reagent_containers/food/snacks/S in cookingContents())
 		S.cook()
 
-	dispose(0) //clear out anything left
-	stop()
+	dispose(FALSE) //clear out anything left
+	stop(TRUE)
 
 	return
+
+/obj/machinery/microwave/proc/handle_incorrect_recipe(var/obj/cooked)
+	dirty += 1
+	if(prob(max(10,dirty*5)))
+		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
+			stop(FALSE)
+			return
+		muck_start()
+		wzhzhzh(2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
+		muck_finish()
+		cooked = fail()
+		cooked.forceMove(src.loc)
+	else if(has_extra_item())
+		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
+			stop(FALSE)
+			return
+		broke()
+		cooked = fail()
+		cooked.forceMove(src.loc)
+	else
+		if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
+			stop(FALSE)
+			return
+		stop(TRUE)
+		cooked = fail()
+		cooked.forceMove(src.loc)
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
@@ -481,22 +459,16 @@
 	src.icon_state = "mw1"
 	SStgui.update_uis(src)
 
-/obj/machinery/microwave/proc/abort()
+/obj/machinery/microwave/proc/stop(var/success = TRUE)
+	if(success)
+		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
 	if(icon_state == "mw1")
 		icon_state = "mw"
 	SStgui.update_uis(src)
 	soundloop.stop()
 
-/obj/machinery/microwave/proc/stop()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	operating = FALSE // Turn it off again aferwards
-	if(icon_state == "mw1")
-		icon_state = "mw"
-	SStgui.update_uis(src)
-	soundloop.stop()
-
-/obj/machinery/microwave/proc/dispose(var/message = 1)
+/obj/machinery/microwave/proc/dispose(var/message = TRUE)
 	for (var/atom/movable/A in cookingContents())
 		A.forceMove(loc)
 	if (src.reagents.total_volume)
@@ -515,7 +487,7 @@
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.icon_state = "mwbloody0" // Make it look dirty too
-	src.operating = 0 // Turn it off again aferwards
+	src.operating = FALSE // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
 
@@ -528,7 +500,7 @@
 	src.visible_message(span_warning("The microwave breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
-	src.operating = 0 // Turn it off again aferwards
+	src.operating = FALSE // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
 	src.ejectpai() // If it broke, time to yeet the PAI.
