@@ -3,7 +3,7 @@
 
 Necrotic Agent
 
-	Very Noticable.
+	Stealthy.
 	Lowers resistance resistance considerably.
 	Decreases stage speed.
 	Reduced transmittable.
