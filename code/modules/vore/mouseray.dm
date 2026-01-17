@@ -94,7 +94,7 @@
 			return
 	M.drop_both_hands()
 	if(M.tf_mob_holder && M.tf_mob_holder.loc == M)
-		M.tf_into(null, null, null, TRUE)
+		M.revert_mob_tf()
 		return
 	else
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
@@ -160,7 +160,7 @@
 			firer.visible_message(span_warning("\The [src] buzzes impolitely."))
 			return
 	if(M.tf_mob_holder)
-		M.tf_into(null, null, null, TRUE)
+		M.revert_mob_tf()
 		firer.visible_message(span_notice("\The [shot_from] boops pleasantly."))
 		return
 	else
