@@ -143,3 +143,7 @@
 2026-01-16:
   Kashargul:
   - bugfix: initial input getting dropped in the backend
+2026-01-17:
+  Kashargul:
+  - code_imp: speeds up robot sprite sheet gen
+  - bugfix: changes player note stack behaviour
