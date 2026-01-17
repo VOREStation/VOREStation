@@ -3,7 +3,7 @@
 /mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name)
 	if(isliving(A))
 		var/mob/living/M = A
-		transform_into_mob(M, FALSE, revert)
+		transform_into_mob(M, FALSE)
 		return
 	if(isitem(A))
 		if(!object_name)
