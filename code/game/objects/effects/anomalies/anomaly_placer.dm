@@ -49,8 +49,7 @@
 		/area/ai_core_foyer,
 		/area/ai_upload_foyer,
 		/area/ai_server_room,
-		/area/tcommsat,
-		/area/tcomm
+		/area/tcommsat
 	)
 
 	allowed_areas = get_station_areas(safe_area_types)
