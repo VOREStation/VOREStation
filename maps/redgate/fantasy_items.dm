@@ -200,14 +200,10 @@
 	dirty_cooking_icon_state = "cookingpotbloody1"
 	broken_icon_state = "cookingpotb"
 
-/obj/machinery/microwave/cookingpot/start(var/msg = "The [src] starts cooking.", var/msgblind = "You hear a fire roar.")
-	. = ..()
-
 /obj/machinery/microwave/cookingpot/broke(var/spark = FALSE)
 	. = ..()
 
 // Magic bluespace stuff
-
 
 /obj/item/clothing/gloves/bluespace/magic
 	name = "bracer of resilience"

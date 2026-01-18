@@ -454,8 +454,8 @@
 				return 1
 		return 0
 
-/obj/machinery/microwave/proc/start(var/msg = "The [src] turns on.", var/msgblind = "You hear a [src].")
-	src.visible_message(span_notice(msg), span_notice(msgblind))
+/obj/machinery/microwave/proc/start()
+	src.visible_message(span_notice("The [src] starts cooking."), span_notice("You hear a [src]."))
 	soundloop.start()
 	src.operating = TRUE
 	src.icon_state = cooking_icon_state
@@ -492,7 +492,6 @@
 	src.operating = FALSE // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
-
 
 /obj/machinery/microwave/proc/broke(var/spark = TRUE)
 	if(spark)
