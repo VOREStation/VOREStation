@@ -34,7 +34,6 @@
 		"liq_apply" = owner.apply_reagents,
 		"autotransferable" = owner.autotransferable,
 		"noisy_full" = owner.noisy_full, //Belching while full
-		"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
 
 		"allow_mind_transfer" = owner.allow_mind_transfer,
 		"drop_vore" = owner.drop_vore,
@@ -60,6 +59,7 @@
 		"max_voreoverlay_alpha" = owner.max_voreoverlay_alpha,
 		"dropdown_preferences" = list(
 			"strip_active" = owner.size_strip_preference,
+			"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
 		)
 	)
 
