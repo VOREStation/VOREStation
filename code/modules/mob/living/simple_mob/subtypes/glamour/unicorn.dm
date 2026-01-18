@@ -73,3 +73,8 @@
 
 /datum/ai_holder/simple_mob/ranged/aggressive/unicorn
 	pointblank = FALSE
+
+/mob/living/simple_mob/vore/horse/unicorn/beastmode //for hanner TF
+	projectiletype = null
+	maxHealth = 100
+	health = 100

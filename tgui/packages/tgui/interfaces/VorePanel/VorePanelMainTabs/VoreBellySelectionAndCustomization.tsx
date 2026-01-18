@@ -31,6 +31,7 @@ export const VoreBellySelectionAndCustomization = (props: {
   persist_edit_mode: BooleanLike;
   minBellyName: number;
   maxBellyName: number;
+  presets: string;
 }) => {
   const { act } = useBackend();
 
@@ -47,6 +48,7 @@ export const VoreBellySelectionAndCustomization = (props: {
     persist_edit_mode,
     minBellyName,
     maxBellyName,
+    presets,
   } = props;
 
   const [showSearch, setShowSearch] = useState(false);
@@ -191,6 +193,7 @@ export const VoreBellySelectionAndCustomization = (props: {
               host_mobtype={host_mobtype}
               icon_overflow={icon_overflow}
               editMode={editMode}
+              presets={presets}
             />
           </Section>
         )}

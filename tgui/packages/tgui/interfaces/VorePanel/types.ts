@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
@@ -7,8 +8,10 @@ export type Data = {
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
   prey_abilities: PreyAbilityData[] | null;
+  intent_data: IntentData | null;
   active_tab: number;
   persist_edit_mode: BooleanLike;
+  presets: string;
   host_mobtype: HostMob | null;
   our_bellies?: BellyData[] | null;
   min_belly_name: number;
@@ -192,7 +195,7 @@ export type BellyVisualData = {
 };
 
 export type BellyInteractionData = {
-  escapable: BooleanLike;
+  escapable: number;
   interacts: interactData;
   autotransfer_enabled: BooleanLike;
   autotransfer: AutotransferData;
@@ -399,6 +402,10 @@ export type GeneralPrefData = {
   vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
+  spont_rear: string | null;
+  spont_front: string | null;
+  spont_left: string | null;
+  spont_right: string | null;
 };
 
 export type AestMessageData = {
@@ -478,7 +485,7 @@ export type PreferenceData = {
 
 export type ActionButtonData = {
   name: string;
-  tooltip: string;
+  tooltip: ReactNode;
   disabled?: boolean;
   color?: string;
   needsConfirm?: boolean;
@@ -493,4 +500,13 @@ export type Overlay = {
   icon: string;
   iconState: string;
   color?: string;
+};
+
+export type IntentData = {
+  active: BooleanLike;
+  current_intent: string;
+  help: BooleanLike;
+  disarm: BooleanLike;
+  grab: BooleanLike;
+  harm: BooleanLike;
 };

@@ -68,7 +68,7 @@
 			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.add_overlay(image_overlay, TRUE)
+		target.add_overlay(image_overlay)
 		to_chat(user, "Bomb has been planted. Timer counting down from [timer].")
 		spawn(timer*10)
 			explode(get_turf(target))
@@ -90,7 +90,7 @@
 		else
 			target.ex_act(1)
 	if(target)
-		target.cut_overlay(image_overlay, TRUE)
+		target.cut_overlay(image_overlay)
 	qdel(src)
 
 /obj/item/plastique/attack(mob/M as mob, mob/user as mob, def_zone)

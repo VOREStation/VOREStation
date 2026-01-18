@@ -20,3 +20,176 @@
   - qol: removed the same-limb restriction on synth limb self repairs
   - bugfix: fixed synths being able to get disfigured at full health by being non-surgically
       repaired.
+2026-01-06:
+  Aroliacue:
+  - rscadd: Added premade liquid options to the Swoopie mob's stomach.
+  - image: Changed Swoopie's fullscreen overlays to use animated versions.
+  - spellcheck: Changed Swoopie's throat vbellies to use fancier worded progressive
+      stages rather than numbered stages.
+  - rscadd: Added new xenomorph queen backplate to wing menu.
+  - image: Added new sprites for xeno queen backplate.
+  - bugfix: Fixed xenomorph tail (vwag) not being able to toggle off vwag.
+  Diana:
+  - bugfix: Plushies can be interacted with again
+  - qol: Changeling helmet can eat more than just survival rations.
+  - bugfix: Vox magclaws no longer slow you down when enabled.
+  - bugfix: Holywater thresholds adjusted for horror elements.
+  - spellcheck: fixes a typo with the bodysnatcher
+  - bugfix: You can no longer activate grenades in your hand while dead.
+  - code_imp: Rightclick functionality with held objects is possible now.
+  - bugfix: Fultons can no longer be deployed inside of things.
+  - bugfix: Things that 'knock you out' will properly KO you now, instead of simply
+      paralyzing you.
+  Guti:
+  - bugfix: Fixed accidental mob vore not caring about prefs
+  - bugfix: Teshari CE cloak can now be properly selected
+  - spellcheck: Changes multiple instances of "Cheif" to "Chief"
+  - bugfix: Fixed Dark Maw not eating captured prey, if prefs aligned
+  - bugfix: Fixed lead ingots not being grindable
+  ItsSelis:
+  - config: new config entries to set discord channels for round start/end announcements
+  Kashargul:
+  - code_imp: moves all forceMoves for vore code to nom_atom
+  - bugfix: limits belly entered messages and transfer lookups
+  SatinIsle:
+  - rscadd: This adds the ability to choose which bellies spontaneous prey will end
+      up in. If left null, they will go into the preds currently selected belly as
+      per usual. Allows for 4 directions.
+  - bugfix: some typescript fixes (by kash)
+  - bugfix: Fixes the number of hours until a job is available.
+  Will:
+  - bugfix: Attempting to pass mob grabs to another player no longer drops a qdeleted
+      grab on the floor
+2026-01-08:
+  Kashargul:
+  - code_imp: update overlay subsystem
+  - code_imp: updates rust g to 6.0.0
+  - rscadd: Added a new vac-pack subtype and a new power level and effects.
+  - qol: Vac-pack custom sounds and verbs and anim toggle are now editable vars.
+  - bugfix: multiple throwing issues
+  - code_imp: modernises the chat and tgui backend code
+  KillianKirilenko:
+  - bugfix: fixed mech maintenance mode causing issues for clients and server whilst
+      trying to move
+  SatinIsle:
+  - rscadd: 'Added two more admin player effects: Wet Surrounding Surfaces and Give
+      Quest'
+  ShadowLarkens:
+  - bugfix: Ctrl+R in tgui works again
+  - bugfix: Passthrough in tgui works again
+  Shoanaea, Zayahpapayah:
+  - rscadd: Added the Electrovore trait to allow players to drain power cells for
+      nutrition
+  - rscadd: Added the Electrovore, Obligate to allow players to drain cells for and
+      charge cells with nutrition
+  - code_imp: Added the Electrovore and Obligate code, touched up cell.dm to allow
+      for draining and charging
+2026-01-09:
+  Aroliacue:
+  - balance: Security Protolathe can now print researched device cells.
+  Asher-42:
+  - rscadd: shoulder light from base command dullataur
+  Kashargul:
+  - code_imp: moves those alists to lists
+  - code_imp: cleans up the vore fx and resist code
+2026-01-13:
+  Kashargul:
+  - qol: prey struggles are now intent based
+  SatinIsle:
+  - bugfix: Fixes the ddraig description.
+2026-01-14:
+  Diana:
+  - bugfix: Blacklists some more mobs from spawning in tsci
+  Kashargul:
+  - bugfix: start Now shown as usable after pregame
+  - bugfix: the sql schema can now be cleanly imported including the procedures and
+      events
+  - bugfix: loose round associations should no longer exist
+  SatinIsle:
+  - bugfix: Fixed simple mobs requiring insane amounts of nutrition to remove their
+      hunger bar.
+  - bugfix: Fixed TFd mobs showing up on crew monitors.
+  - bugfix: People flying above tables when they should fall down.
+  - rscadd: Added new options for hanner beastforms.
+  - spellcheck: Minor reordering of beastform lists to keep them alphabetical.
+  Will:
+  - qol: Look upward verb now lets you look upward one z level
+  - code_imp: remote views with zoom hude or different sizes are easier to start
+2026-01-15:
+  Kashargul:
+  - bugfix: painting meta data runtiming
+  ReoDaProtovali:
+  - rscadd: 'Added new signals: COMSIG_DISPOSAL_SEND, COMSIG_DISPOSAL_LINK, and COMSIG_DISPOSAL_UNLINK,
+      also renamed COMSIG_DISPOSAL_RECEIVING to COMSIG_DISPOSAL_RECEIVE'
+  - rscadd: Added the ability to adjust the ejection distance on disposal pipe outlets.
+      A treat for mappers and disposal pipe enthusiasts alike, just use a multitool!
+  - rscdel: Removed the /datum/component/disposal_system_connection/disposaloutlet
+      subtype of the disposal connection component as is now redundant.
+  - qol: Lets you alt-click on a disposal bin to flush it. Nice.
+  - qol: Adds the destination tagger to the autolathe. It's a thing on TG code, and
+      makes tagging stuff far less of a hassle than it currently is if you lost/dont
+      have a tagger.
+  - qol: You can resist to break out of a disposal tube that has stopped moving. No
+      longer shall you be trapped forever!
+  - bugfix: Fixed that minor issue with disposal bin/chute ejecting in a wildly overthetop
+      way. Because muh disposal code
+  - spellcheck: Fixed a missing space in hazardous disposal bin's name.
+  - code_imp: Moved disposal device ejection code back to the object that receives
+      the packet.
+  - refactor: Entirely refactored how disposal connection components work and connect
+      to objects... Again.
+  - admin: Disposal pipes will now give an alert for any mob that has a client getting
+      flushed, not just carbon humans
+2026-01-16:
+  Kashargul:
+  - bugfix: initial input getting dropped in the backend
+2026-01-17:
+  Kashargul:
+  - code_imp: speeds up robot sprite sheet gen
+  - bugfix: changes player note stack behaviour
+2026-01-18:
+  Azzy.Dreemurr:
+  - qol: Mentors now have the ability to communicate more easily in the Mentor Channel
+      via the button F9
+  Guti:
+  - balance: You can now have up to 3 viruses in your body.
+  - balance: Viruses will have a varied range of reagents for their cures now.
+  - balance: Removed nutriment-based virus protection.
+  - balance: Cure chance lowered to 5-10
+  - balance: Headache symptom stun reduced from 15 to 5
+  - balance: Incremented the power of Tissue Hydration
+  - balance: Reduced the severity of Weight Loss symptom to 1
+  - balance: Spyndrome's stealth changed to -1, resistance to 3
+  - rscadd: Added Narcolepsy symptom
+  - bugfix: Fixed admin-created viruses having the developer warning name
+  - bugfix: Injecting diseased blood will no longer check for clothing immunity
+  - code_imp: Cleaned up a few old symptom files
+  - code_imp: Added comparators for virus resistance and symptom names
+  - spellcheck: Corrected some spelling mistakes across various symptoms
+  - bugfix: Fixed Anomalies not having a randomized frequency
+  - bugfix: Fixed weather anomalies not spawning with telescience
+  - bugfix: Fixed dimensional anomaly removing all the airlocks required access
+  - code_imp: Fixed get_station_areas returning areas from other stations
+  - code_imp: Moves a couple of procs from weather anomaly to anomalous weather datum
+  Kashargul:
+  - code_imp: updates the changelog
+  - bugfix: runtime in clothing selection in the char editor
+  - bugfix: jani catborg still using the placeholder
+  - bugfix: chat message order for event announcements
+  - bugfix: ss explosion runtiming in stat entry lookups
+  - bugfix: spasm self ownership not being reversible
+  - bugfix: some missing buttons in the vorepanel for examine messages
+  - bugfix: linking in motd
+  - bugfix: prevents signal reg spam on holomap spam clicking
+  ShadowLarkens:
+  - rscadd: Major Slobberer trait, adds wet stacks on lick and makes people drippy.
+  - rscadd: Makes Prey Wet belly addon, adds wet stacks to prey in a belly and makes
+      them drippy. Basically irrelevant unless you spit them back out.
+  Tost:
+  - qol: Moved a bunch of of cleaning messages to ballons.
+  - bugfix: Advanced Mop has sprites now.
+  nova:
+  - qol: Adds option to avoid attempts at being picked up with the personal space
+      bubble trait
+  tacoguy7765093:
+  - image: Janitor catborg

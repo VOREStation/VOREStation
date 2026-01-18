@@ -5,15 +5,19 @@ import { MultiOverlayImage } from '../../VorePanelElements/MultiOverlayImage';
 
 export function BellyFullscreenPreview(props: {
   colors: string[];
+  alpha: number;
   belly_fullscreen: string;
   colorization_enabled: BooleanLike;
   possible_fullscreens: string[];
+  targetSize?: number;
 }) {
   const {
     colors,
+    alpha,
     belly_fullscreen,
     colorization_enabled,
     possible_fullscreens,
+    targetSize = 240,
   } = props;
 
   if (!belly_fullscreen) {
@@ -43,8 +47,9 @@ export function BellyFullscreenPreview(props: {
   return (
     <MultiOverlayImage
       overlays={getOverlays(belly_fullscreen, colors, !!colorization_enabled)}
+      alpha={alpha}
       size={colorization_enabled ? 120 : 480}
-      targetSize={240}
+      targetSize={targetSize}
     />
   );
 }

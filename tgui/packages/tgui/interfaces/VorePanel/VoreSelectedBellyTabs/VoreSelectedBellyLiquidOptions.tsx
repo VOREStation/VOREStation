@@ -11,10 +11,11 @@ import { LiquidOptionsRight } from './LiquidTab/LiquidOptionsRight';
 export const VoreSelectedBellyLiquidOptions = (props: {
   editMode: boolean;
   bellyLiquidData: BellyLiquidData;
+  presets: string;
 }) => {
   const { act } = useBackend();
 
-  const { editMode, bellyLiquidData } = props;
+  const { editMode, bellyLiquidData, presets } = props;
   const { show_liq, liq_interacts } = bellyLiquidData;
 
   return (
@@ -73,6 +74,7 @@ export const VoreSelectedBellyLiquidOptions = (props: {
                     <LiquidOptionsLeft
                       editMode={editMode}
                       liquidInteract={liq_interacts}
+                      presets={presets}
                     />
                   </Stack.Item>
                   <Stack.Item basis="49%" grow>

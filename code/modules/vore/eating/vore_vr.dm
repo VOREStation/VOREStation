@@ -59,6 +59,10 @@
 	var/slip_vore = TRUE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
+	var/spont_belly_rear = null
+	var/spont_belly_left = null
+	var/spont_belly_right = null
+	var/spont_belly_front = null
 	var/consume_liquid_belly = FALSE //starting off because if someone is into that, they'll toggle it first time they get the error. Otherway around would be more pref breaky.
 
 	var/digest_pain = TRUE
@@ -216,6 +220,10 @@
 	slip_vore = json_from_file["slip_vore"]
 	food_vore = json_from_file["food_vore"]
 	throw_vore = json_from_file["throw_vore"]
+	spont_belly_rear = json_from_file["spont_belly_rear"]
+	spont_belly_left = json_from_file["spont_belly_left"]
+	spont_belly_front = json_from_file["spont_belly_front"]
+	spont_belly_right = json_from_file["spont_belly_right"]
 	consume_liquid_belly = json_from_file["consume_liquid_belly"]
 	stumble_vore = json_from_file["stumble_vore"]
 	digest_pain = json_from_file["digest_pain"]
@@ -438,6 +446,10 @@
 			"slip_vore"				= slip_vore,
 			"stumble_vore"			= stumble_vore,
 			"throw_vore" 			= throw_vore,
+			"spont_belly_rear"		= spont_belly_rear,
+			"spont_belly_left"		= spont_belly_left,
+			"spont_belly_front"		= spont_belly_front,
+			"spont_belly_right"		= spont_belly_right,
 			"allow_mind_transfer"	= allow_mind_transfer,
 			"phase_vore" 			= phase_vore,
 			"consume_liquid_belly" 	= consume_liquid_belly,

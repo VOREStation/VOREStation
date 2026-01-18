@@ -45,18 +45,20 @@
 	icon_state = icon_flight
 	underlays.Cut()
 
-/obj/item/syringe_cartridge/throw_impact(atom/hit_atom, var/speed)
+/obj/item/syringe_cartridge/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..() //handles embedding for us. Should have a decent chance if thrown fast enough
 	if(syringe)
 		//check speed to see if we hit hard enough to trigger the rapid injection
 		//incidentally, this means syringe_cartridges can be used with the pneumatic launcher
-		if(speed >= 10 && isliving(hit_atom))
+		if(throwingdatum?.speed >= 10 && isliving(hit_atom))
 			var/mob/living/L = hit_atom
 			//unfortuately we don't know where the dart will actually hit, since that's done by the parent.
 			if(L.can_inject() && syringe.reagents)
 				var/contained = syringe.reagents.get_reagents()
 				var/trans = syringe.reagents.trans_to_mob(L, 15, CHEM_BLOOD)
-				add_attack_logs(thrower,L,"Shot with [src.name] containing [contained], trasferred [trans] units")
+				var/mob/thrower = throwingdatum?.get_thrower()
+				if(thrower)
+					add_attack_logs(thrower,L,"Shot with [src.name] containing [contained], trasferred [trans] units")
 
 		syringe.break_syringe(iscarbon(hit_atom)? hit_atom : null)
 		syringe.update_icon()

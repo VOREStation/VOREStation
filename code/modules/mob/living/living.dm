@@ -3,6 +3,7 @@
 
 	//Prime this list if we need it.
 	if(has_huds)
+		// Note, this should be refactored to drop priority overlays
 		add_overlay(backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
 		hud_list = list()
 		hud_list.len = TOTAL_HUDS
@@ -78,12 +79,7 @@
 			tf_mob_holder.forceMove(get_dat_turf)
 		QDEL_LIST_NULL(tf_mob_holder.vore_organs)
 		tf_mob_holder.vore_organs = list()
-		for(var/obj/belly/B as anything in vore_organs)
-			B.loc = tf_mob_holder
-			B.forceMove(tf_mob_holder)
-			B.owner = tf_mob_holder
-			tf_mob_holder.vore_organs |= B
-			vore_organs -= B
+		tf_mob_holder.mob_belly_transfer(src)
 	if(tf_mob_holder)
 		tf_mob_holder = null
 	QDEL_NULL_LIST(hud_list)
@@ -1326,7 +1322,6 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
-			item.throwing = 1 //Small edit so thrown interactions actually work!
 			return TRUE
 		else
 			return FALSE
