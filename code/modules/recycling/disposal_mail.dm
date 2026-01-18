@@ -134,9 +134,12 @@
 	var/nameset = 0
 	var/tag_x
 
-/obj/item/smallDelivery/attack_self(mob/user as mob)
-	if (src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = user.loc
+/obj/item/smallDelivery/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if (wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
+		wrapped.forceMove(user.loc)
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
 		else

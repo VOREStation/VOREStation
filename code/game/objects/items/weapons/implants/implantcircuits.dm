@@ -46,4 +46,7 @@
 		..()
 
 /obj/item/implant/integrated_circuit/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	IC.attack_self(user)

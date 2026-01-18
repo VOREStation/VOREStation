@@ -41,7 +41,7 @@ export const TextInputModal = (props) => {
 
   const [input, setInput] = useState(placeholder || '');
 
-  const onType = (value: string) => {
+  function onType(value: string) {
     if (value === input) {
       return;
     }
@@ -49,7 +49,7 @@ export const TextInputModal = (props) => {
       ? sanitizeMultiline(value)
       : removeAllSkiplines(value);
     setInput(sanitizedInput);
-  };
+  }
 
   const visualMultiline = multiline || input.length >= 30;
   // Dynamically changes the window height based on the message.
@@ -67,6 +67,11 @@ export const TextInputModal = (props) => {
       act('cancel');
     }
   }
+
+  // This is the length of the input in terms of unicode code points.
+  // Should be equivalent to what length_char would output for the same string in BYOND.
+  const char_length = [...input].length;
+
   return (
     <Window title={title} width={325} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
@@ -94,7 +99,7 @@ export const TextInputModal = (props) => {
             <Stack.Item>
               <InputButtons
                 input={input}
-                message={`${input.length}/${max_length || '∞'}`}
+                message={`${char_length}/${max_length || '∞'}`}
               />
             </Stack.Item>
           </Stack>

@@ -17,8 +17,10 @@
 	. = ..()
 	linked = to_link
 
-/obj/item/petrifier/attack_self(var/mob/user)
-	. = ..()
+/obj/item/petrifier/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (!isturf(user.loc) && user.get_ultimate_mob() != target)
 		to_chat(user, span_warning("The device beeps but does nothing."))
 		return

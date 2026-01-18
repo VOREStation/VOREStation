@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
-	if(href_list["window_id"] != "statbrowser") //Deviation from TG. Our statbrowser has so many commands that logging in as a borg can cause it to rate limit you. This needs fixing eventually.
+	if(!bypass_topic_limit(href_list))
 		if (!check_rights_for(src, R_HOLDER) && mtl)
 			var/minute = round(world.time, 600)
 			if (!topiclimiter)
@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				return
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if(findtext(href,"<script",1,0) )
 		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		return
@@ -355,12 +355,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 
-	if(GLOB.custom_event_msg && GLOB.custom_event_msg != "")
-		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
-		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, span_alert("[GLOB.custom_event_msg]"))
-		to_chat(src, "<br>")
-
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
@@ -377,12 +371,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!void)
 		void = new()
 	screen += void
-
-	if((prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, span_info("You have unread updates in the changelog."))
-		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
-		if(CONFIG_GET(flag/aggressive_changelog))
-			src.changes()
 
 	if(CONFIG_GET(flag/paranoia_logging))
 		var/alert = FALSE //VOREStation Edit start.
@@ -425,7 +413,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/Destroy()
 	GLOB.directory -= ckey
 	GLOB.clients -= src
-	persistent_client.set_client(null)
+	persistent_client?.set_client(null)
 
 	log_access("Logout: [key_name(src)]")
 	GLOB.tickets.ClientLogout(src)

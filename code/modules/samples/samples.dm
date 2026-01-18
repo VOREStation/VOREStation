@@ -130,6 +130,9 @@
 		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon=src)
 
 /obj/item/research_sample/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/M = user
 	if(!istype(M))
 		return

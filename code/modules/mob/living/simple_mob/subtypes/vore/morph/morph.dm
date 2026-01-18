@@ -220,7 +220,7 @@
 					if(can_spontaneous_vore(src, target))
 						if(target.buckled)
 							target.buckled.unbuckle_mob(target, force = TRUE)
-						target.forceMove(vore_selected)
+						vore_selected.nom_atom(target)
 						to_chat(target,span_vwarning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.get_belly_name()]!"))
 	else
 		..()
@@ -367,7 +367,7 @@
 		parent_morph.forceMove(get_turf(prey_body))
 		parent_morph.ckey = parent_morph.original_ckey
 		prey_body.ckey = prey_ckey
-		prey_body.forceMove(parent_morph.vore_selected)
+		parent_morph.vore_selected.nom_atom(prey_body)
 		log_and_message_admins("and [key_name_admin(parent_morph)] have been returned to their original bodies. [get_area(src)] - [COORD(src)].", prey_body)
 	qdel(src)
 

@@ -32,6 +32,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 			M.drop_from_inventory(W)
 		//teleport person to cell
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(GLOB.prisonwarp)
 		if(ishuman(M))
@@ -89,7 +90,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if (!check_rights_for(src, R_HOLDER))
 		return
 
-	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"))
+	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"), encode = FALSE)
 
 	if (!msg)
 		return
@@ -115,7 +116,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if (!check_rights_for(src, R_HOLDER))
 		return
 
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
+	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"), encode = FALSE)
 
 	if (!msg)
 		return

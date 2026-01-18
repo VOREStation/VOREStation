@@ -19,6 +19,10 @@
 	var/drop_vore = TRUE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
+	var/obj/belly/spont_belly_front = null
+	var/obj/belly/spont_belly_rear = null
+	var/obj/belly/spont_belly_left = null
+	var/obj/belly/spont_belly_right = null
 	var/consume_liquid_belly = FALSE	//starting off because if someone is into that, they'll toggle it first time they get the error. Otherway around would be more pref breaky.
 	var/digest_pain = TRUE
 	var/can_be_drop_prey = FALSE

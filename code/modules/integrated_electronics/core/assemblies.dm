@@ -408,6 +408,9 @@
 		return ..()
 
 /obj/item/electronic_assembly/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!check_interactivity(user))
 		return
 	if(opened)

@@ -30,7 +30,10 @@
 		watchowner = null
 	return
 
-/obj/item/deadringer/attack_self(var/mob/living/user as mob)
+/obj/item/deadringer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/H = src.loc
 	if (!ishuman(H))
 		to_chat(H, span_blue("You have no clue what to do with this thing."))

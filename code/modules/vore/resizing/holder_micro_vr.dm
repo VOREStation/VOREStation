@@ -57,6 +57,9 @@
 		O.show_inventory_panel(usr, state = GLOB.tgui_deep_inventory_state)
 
 /obj/item/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.setClickCooldown(user.get_attack_speed())
 	for(var/L in contents)
 		if(ishuman(L))

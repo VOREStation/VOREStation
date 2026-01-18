@@ -195,7 +195,7 @@
 			return
 		if(81 to 85)
 			sparks()
-			var/anomaly = pick(FLUX_ANOMALY, GRAVITATIONAL_ANOMALY, PYRO_ANOMALY, HALLUCINATION_ANOMALY, BIOSCRAMBLER_ANOMALY, DIMENSIONAL_ANOMALY)
+			var/anomaly = pick(FLUX_ANOMALY, GRAVITATIONAL_ANOMALY, PYRO_ANOMALY, HALLUCINATION_ANOMALY, BIOSCRAMBLER_ANOMALY, DIMENSIONAL_ANOMALY, WEATHER_ANOMALY)
 			generate_anomaly(get_turf(telepad), anomaly, 1, FALSE)
 			for(var/mob/living/carbon/human/human in viewers(telepad, null))
 				to_chat(human, span_warning("The telepad crackles with energy, as a tear in reality is created!"))
@@ -214,7 +214,7 @@
 			sparks()
 			if(telepad)
 				var/L = get_turf(telepad)
-				var/blocked = list(/mob/living/simple_mob/vore)
+				var/blocked = list(/mob/living/simple_mob/vore, /mob/living/simple_mob/vore/ddraig) + typesof(/mob/living/simple_mob/vore/woof) + typesof(/mob/living/simple_mob/vore/overmap)
 				var/list/hostiles = typesof(/mob/living/simple_mob/vore) - blocked
 				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
 				for(var/i in 1 to rand(1,4))

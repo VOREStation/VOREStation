@@ -28,69 +28,92 @@
 
 /datum/vore_look/proc/get_inside_data(mob/owner)
 	var/atom/hostloc = owner.loc
-	//Allow VorePanel to show pred belly details even while indirectly inside
+	// Allow VorePanel to show pred belly details even while indirectly inside
 	if(isliving(owner))
 		var/mob/living/H = owner
 		hostloc = H.surrounding_belly()
-	//End of indirect vorefx additions
+	if(!isbelly(hostloc))
+		return list()
+
 	var/list/inside = list()
-	if(isbelly(hostloc))
-		var/obj/belly/inside_belly = hostloc
-		var/mob/living/pred = inside_belly.owner
+	var/obj/belly/inside_belly = hostloc
+	var/mob/living/pred = inside_belly.owner
 
-		var/inside_desc = "No description."
-		if(owner.absorbed && inside_belly.absorbed_desc)
-			inside_desc = inside_belly.absorbed_desc
-		else if(inside_belly.desc)
-			inside_desc = inside_belly.desc
+	var/inside_desc = "No description."
+	if(owner.absorbed && inside_belly.absorbed_desc)
+		inside_desc = inside_belly.absorbed_desc
+	else if(inside_belly.desc)
+		inside_desc = inside_belly.desc
 
-		if(inside_desc != "No description.")
-			inside_desc = inside_belly.belly_format_string(inside_desc, owner, use_first_only = TRUE)
+	if(inside_desc != "No description.")
+		inside_desc = inside_belly.belly_format_string(inside_desc, owner, use_first_only = TRUE)
 
-		inside = list(
-			"absorbed" = owner.absorbed,
-			"belly_name" = inside_belly.name,
-			"belly_mode" = inside_belly.digest_mode,
-			"desc" = inside_desc,
-			"pred" = pred,
-			"ref" = "\ref[inside_belly]",
-			"liq_lvl" = inside_belly.reagents.total_volume,
-			"liq_reagent_type" = inside_belly.reagent_chosen,
-			"liuq_name" = inside_belly.reagent_name,
+	inside = list(
+		"absorbed" = owner.absorbed,
+		"belly_name" = inside_belly.name,
+		"belly_mode" = inside_belly.digest_mode,
+		"desc" = inside_desc,
+		"pred" = pred,
+		"ref" = "\ref[inside_belly]",
+		"liq_lvl" = inside_belly.reagents.total_volume,
+		"liq_reagent_type" = inside_belly.reagent_chosen,
+		"liuq_name" = inside_belly.reagent_name,
+	)
+
+	var/list/inside_contents = list()
+	for(var/atom/movable/O in inside_belly)
+		if(O == owner)
+			continue
+		var/our_type
+		if(isliving(O))
+			our_type = "Living"
+		else if(isitem(O))
+			our_type = "Item"
+
+		var/list/info = list(
+			"name" = "[O]",
+			"absorbed" = FALSE,
+			"stat" = 0,
+			"ref" = "\ref[O]",
+			"outside" = FALSE,
+			"our_type" = our_type
 		)
-
-		var/list/inside_contents = list()
-		for(var/atom/movable/O in inside_belly)
-			if(O == owner)
-				continue
-			var/our_type
-			if(isliving(O))
-				our_type = "Living"
-			else if(isitem(O))
-				our_type = "Item"
-
-			var/list/info = list(
-				"name" = "[O]",
-				"absorbed" = FALSE,
-				"stat" = 0,
-				"ref" = "\ref[O]",
-				"outside" = FALSE,
-				"our_type" = our_type
-			)
-			if(show_pictures) //disables icon mode
-				if(inside_belly.contents.len <= max_icon_content)
-					icon_overflow = FALSE
-					info["icon"] = cached_nom_icon(O)
-				else
-					icon_overflow = TRUE
-			if(isliving(O))
-				var/mob/living/M = O
-				info["stat"] = M.stat
-				if(M.absorbed)
-					info["absorbed"] = TRUE
-			UNTYPED_LIST_ADD(inside_contents, info)
-		inside["contents"] = inside_contents
+		if(show_pictures) //disables icon mode
+			if(inside_belly.contents.len <= max_icon_content)
+				icon_overflow = FALSE
+				info["icon"] = cached_nom_icon(O)
+			else
+				icon_overflow = TRUE
+		if(isliving(O))
+			var/mob/living/M = O
+			info["stat"] = M.stat
+			if(M.absorbed)
+				info["absorbed"] = TRUE
+		UNTYPED_LIST_ADD(inside_contents, info)
+	inside["contents"] = inside_contents
 	return inside
+
+/datum/vore_look/proc/get_prey_abilities(mob/owner, obj/belly/inside_belly)
+	if(!istype(inside_belly))
+		return null
+
+	var/list/abilities = list()
+	if(inside_belly.mode_flags & DM_FLAG_ABSORBEDVORE)
+		UNTYPED_LIST_ADD(abilities, list("name" = "devour_as_absorbed", "available" = owner.absorbed))
+	return abilities
+
+/datum/vore_look/proc/get_intent_data(mob/owner, obj/belly/inside_belly)
+	if(!isbelly(inside_belly))
+		return null
+
+	return list(
+		"active" = inside_belly.escapable == B_ESCAPABLE_INTENT,
+		"current_intent" = owner.a_intent,
+		"help" = !!inside_belly.belchchance,
+		"disarm" = (inside_belly.transferchance && inside_belly.transferlocation) || (inside_belly.transferchance_secondary && inside_belly.transferlocation_secondary),
+		"grab" = (inside_belly.absorbchance && inside_belly.digest_mode != DM_ABSORB) || (inside_belly.digestchance && inside_belly.digest_mode != DM_DIGEST) || (inside_belly.selectchance && inside_belly.digest_mode != DM_SELECT),
+		"harm" = !!inside_belly.escapechance
+	)
 
 /datum/vore_look/proc/get_host_mobtype(mob/owner)
 	var/list/host_mobtype = list("is_cyborg" = FALSE, "is_vore_simple_mob" = FALSE)
@@ -238,9 +261,9 @@
 				)
 				var/list/belly_fullscreens
 				if(selected.colorization_enabled)
-					belly_fullscreens = cached_icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
+					belly_fullscreens = icon_states_fast('icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi') //Makes any icons inside of here selectable.
 				else
-					belly_fullscreens = cached_icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
+					belly_fullscreens = icon_states_fast('icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi') //Non colorable
 
 				var/list/vs_flags = list()
 				for(var/flag_name in selected.vore_sprite_flag_list)

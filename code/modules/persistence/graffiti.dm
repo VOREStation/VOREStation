@@ -25,7 +25,7 @@
 		author = _author
 
 /obj/effect/decal/writing/Initialize(mapload)
-	var/list/random_icon_states = cached_icon_states(icon)
+	var/list/random_icon_states = icon_states_fast(icon)
 	for(var/obj/effect/decal/writing/writing in loc)
 		random_icon_states.Remove(writing.icon_state)
 	if(length(random_icon_states))

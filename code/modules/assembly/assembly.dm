@@ -24,6 +24,9 @@
 	var/const/WIRE_RADIO_RECEIVE = 8		//Allows Pulsed(1) to call Activate()
 	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio message
 
+	///var used for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/assembly/proc/holder_movement()
 	return
 
@@ -89,11 +92,15 @@
 		else
 			. += "\The [src] can be attached!"
 
-/obj/item/assembly/attack_self(mob/user as mob)
+/obj/item/assembly/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(!user)
-		return 0
+		return FALSE
 	tgui_interact(user)
-	return 1
 
 /obj/item/assembly/tgui_state(mob/user)
 	return GLOB.tgui_deep_inventory_state

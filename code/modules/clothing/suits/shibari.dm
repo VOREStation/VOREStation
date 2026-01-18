@@ -13,6 +13,8 @@
 
 	var/rope_mode = SHIBARI_NONE
 
+	special_handling = TRUE
+
 
 /obj/item/clothing/suit/shibari/attack_hand(mob/living/user as mob)
 	if(ishuman(user))
@@ -23,6 +25,9 @@
 	..()
 
 /obj/item/clothing/suit/shibari/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	rope_mode = tgui_input_list(user, "Which limbs would you like to restrain with the bindings?", "Shibari", list(SHIBARI_NONE, SHIBARI_ARMS, SHIBARI_LEGS, SHIBARI_BOTH))
 	if(!rope_mode)
 		rope_mode = SHIBARI_NONE

@@ -210,6 +210,7 @@
 				// deaf_loop.start() // Used downstream
 			if (prob(70) && !shielded)
 				Paralyse(10)
+				Sleeping(10)
 
 		if(3.0)
 			b_loss += 30
@@ -221,6 +222,7 @@
 				// deaf_loop.start() // Used downstream
 			if (prob(50) && !shielded)
 				Paralyse(10)
+				Sleeping(10)
 
 	var/update = 0
 
@@ -1007,7 +1009,7 @@
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
 	if(target)
-		AddComponent(/datum/component/remote_view/mremote_mutation, focused_on = target, vconfig_path = null)
+		AddComponent(/datum/component/remote_view/mremote_mutation, focused_on = target, viewsize = null, vconfig_path = null)
 		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)

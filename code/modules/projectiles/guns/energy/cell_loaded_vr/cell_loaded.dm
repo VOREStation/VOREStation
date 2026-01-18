@@ -26,6 +26,9 @@
 	var/max_charge = 0
 	charge_sections = 5
 
+	special_handling = TRUE
+	special_weapon_handling = TRUE
+
 /obj/item/gun/projectile/cell_loaded/consume_next_projectile()
 	if(chambered && ammo_magazine)
 		var/obj/item/ammo_casing/microbattery/batt = chambered
@@ -69,6 +72,9 @@
 		M?.hud_used.update_ammo_hud(M, src)
 
 /obj/item/gun/projectile/cell_loaded/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!chambered)
 		return
 

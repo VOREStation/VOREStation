@@ -88,7 +88,8 @@
 				var/datum/disease/D = ID
 				if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 					continue
-				M.ContractDisease(D)
+				M.ForceContractDisease(D)
+				D.try_infect(M)
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -247,6 +248,7 @@
 	taste_description = REAGENT_ID_WATER
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
+	scannable = SCANNABLE_BENEFICIAL
 	color = "#0064C877"
 	metabolism = REM * 10
 
@@ -347,6 +349,7 @@
 	description = "Required for welders. Flamable."
 	taste_description = "gross metal"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_ADVANCED
 	color = "#660000"
 
 	glass_name = "welder fuel"

@@ -170,7 +170,10 @@
 	light_color = "#3728ff"
 	var/active
 
-/obj/item/spaceflare/attack_self(var/mob/user)
+/obj/item/spaceflare/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!active)
 		visible_message(span_notice("[user] pulls the cord, activating the [src]."))
 		activate()

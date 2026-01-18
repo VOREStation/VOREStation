@@ -29,6 +29,11 @@
 	target.stumble_vore = source.stumble_vore;											\
 	target.phase_vore = source.phase_vore;												\
 																						\
+	target.spont_belly_rear = source.spont_belly_rear;									\
+	target.spont_belly_left = source.spont_belly_left;									\
+	target.spont_belly_front = source.spont_belly_front;								\
+	target.spont_belly_right = source.spont_belly_right;								\
+																						\
 	target.resizable = source.resizable;												\
 	target.step_mechanics_pref = source.step_mechanics_pref;							\
 	target.pickup_pref = source.pickup_pref;											\

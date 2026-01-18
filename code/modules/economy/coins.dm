@@ -146,7 +146,10 @@
 		balloon_alert(user, "string detached")
 	else ..()
 
-/obj/item/coin/attack_self(mob/user as mob)
+/obj/item/coin/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1)

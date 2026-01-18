@@ -190,7 +190,7 @@
 
 	QDEL_NULL(eyeobj)
 	gem.notify_holder("[src] ended SR projection.")
-	gem.show_vore_fx(src, TRUE)
+	gem.show_vore_fx(src)
 
 /mob/living/carbon/brain/caught_soul/vore/nsay_brain()
 	set name = "NSay"

@@ -39,11 +39,11 @@
 						continue
 					if(reagents.total_volume)
 						reagents.trans_to(I, affecting_amt, 1, FALSE)
-		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX, FALSE, reagents.total_volume) // Signals vore_fx() reagents updates.
+		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX, reagents.total_volume) // Signals vore_fx() reagents updates.
 		for(var/mob/living/L in contents)
-			vore_fx(L, FALSE, reagents.total_volume)
+			vore_fx(L, reagents.total_volume)
 	if(owner.previewing_belly == src)
-		vore_fx(owner, FALSE, reagents.total_volume)
+		vore_fx(owner, reagents.total_volume)
 
 /obj/belly/proc/GenerateBellyReagents()
 	if(isrobot(owner))
@@ -57,7 +57,7 @@
 	if(count_liquid_for_sprite)
 		owner.handle_belly_update() //This is run whenever a belly's contents are changed.
 	if(LAZYLEN(belly_surrounding))
-		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX, FALSE, reagents.total_volume) // Signals vore_fx() reagents updates.
+		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX, reagents.total_volume) // Signals vore_fx() reagents updates.
 
 //////////////////////////// REAGENT_DIGEST ////////////////////////
 
@@ -325,15 +325,15 @@
 
 /obj/belly/proc/update_internal_overlay()
 	if(LAZYLEN(belly_surrounding))
-		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX, TRUE) // Signals vore_fx() to listening atoms. Atoms must handle appropriate isliving() checks.
+		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX) // Signals vore_fx() to listening atoms. Atoms must handle appropriate isliving() checks.
 	for(var/A in belly_surrounding)
 		if(isliving(A))
-			vore_fx(A,1)
+			vore_fx(A)
 	if(owner.previewing_belly == src)
 		if(isbelly(owner.loc))
 			owner.previewing_belly = null
 			return
-		vore_fx(owner,1)
+		vore_fx(owner)
 
 /obj/belly/deserialize(var/list/data)
 	..()

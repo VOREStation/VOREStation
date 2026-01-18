@@ -149,7 +149,7 @@
 		if(selected.message_mode || selected.escapechance)
 			tab_data["subtypes"] += SUCCESS_MESSAGE
 		if(!message_subtab)
-			message_subtab = ATTEMPT_MESSAGE
+			message_subtab = ITEM_MESSAGE
 		if(message_subtab == ATTEMPT_MESSAGE)
 			tab_data["possible_messages"] = list(TO_PREY, TO_YOU)
 			if(!selected_message)

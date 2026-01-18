@@ -18,6 +18,9 @@
 	var/icon_on = 0
 
 /obj/item/generic_item/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(activatable_hand)
 		if(!on)
 			if(delay_time)
@@ -87,7 +90,6 @@
 			if(user)
 				user.visible_message(span_notice("[text_deactivated]"))
 			update_icon()
-	return ..()
 
 /client/proc/generic_item()
 	set category = "Fun.Event Kit"

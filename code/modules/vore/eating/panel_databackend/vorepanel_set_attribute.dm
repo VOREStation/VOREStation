@@ -614,15 +614,17 @@
 			host.vore_selected.emote_time = CLAMP(new_time, 60, 600)
 			. = TRUE
 		if("b_escapable")
-			if(host.vore_selected.escapable == 0) //Possibly escapable and special interactions.
-				host.vore_selected.escapable = 1
-				to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings."))
-			else if(host.vore_selected.escapable == 1) //Never escapable.
-				host.vore_selected.escapable = 0
-				to_chat(user,span_warning("Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)]."))
-			else
-				tgui_alert_async(user, "Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
-				host.vore_selected.escapable = 0
+			var/new_mode = text2num(params["val"])
+			switch(new_mode)
+				if(B_ESCAPABLE_NONE) //Never escapable.
+					host.vore_selected.escapable = B_ESCAPABLE_NONE
+					to_chat(user,span_warning("Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)]."))
+				if(B_ESCAPABLE_DEFAULT) //Possibly escapable and special interactions.
+					host.vore_selected.escapable = B_ESCAPABLE_DEFAULT
+					to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings."))
+				if(B_ESCAPABLE_INTENT) //Possibly escapable and special intent based interactions.
+					host.vore_selected.escapable = B_ESCAPABLE_INTENT
+					to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings and their intent."))
 			. = TRUE
 		if("b_escapechance")
 			var/escape_chance_input = text2num(params["val"])
@@ -822,25 +824,25 @@
 			host.vore_selected.clear_preview(host) //Clears the stomach overlay. This is a failsafe but shouldn't occur.
 			. = TRUE
 		if("b_fullscreen_color")
-			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color = newcolor
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color2")
-			var/newcolor2 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color2)
+			var/newcolor2 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor2)
 				host.vore_selected.belly_fullscreen_color2 = newcolor2
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color3")
-			var/newcolor3 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color3)
+			var/newcolor3 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor3)
 				host.vore_selected.belly_fullscreen_color3 = newcolor3
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color4")
-			var/newcolor4 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color4)
+			var/newcolor4 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor4)
 				host.vore_selected.belly_fullscreen_color4 = newcolor4
 				host.vore_selected.update_internal_overlay()
@@ -1003,7 +1005,7 @@
 			host.handle_belly_update()
 			host.updateVRPanel()
 		if("b_undergarment_color")
-			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.undergarment_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.undergarment_color = newcolor
 				host.handle_belly_update()
@@ -1015,17 +1017,17 @@
 			host.vore_selected.tail_to_change_to = tail_choice
 			. = TRUE
 		if("b_tail_color")
-			var/newcolor = tgui_color_picker(user, "Choose tail color.", "", host.vore_selected.tail_colouration)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_colouration = newcolor
 			. = TRUE
 		if("b_tail_color2")
-			var/newcolor = tgui_color_picker(user, "Choose tail secondary color.", "", host.vore_selected.tail_extra_overlay)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay = newcolor
 			. = TRUE
 		if("b_tail_color3")
-			var/newcolor = tgui_color_picker(user, "Choose tail tertiary color.", "", host.vore_selected.tail_extra_overlay2)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay2 = newcolor
 			. = TRUE

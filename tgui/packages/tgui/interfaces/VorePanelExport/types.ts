@@ -150,7 +150,7 @@ export type Belly = {
   disable_hud: BooleanLike;
 
   // Interactions
-  escapable: BooleanLike;
+  escapable: number;
 
   escapechance: number;
   escapechance_absorbed: number;

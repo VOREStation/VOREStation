@@ -49,7 +49,7 @@
 	return p_they(temp_gender) + "'" + copytext_char(p_are(temp_gender), 2)
 
 /datum/proc/p_Theyre(temp_gender)
-	return p_they(temp_gender) + "'" + copytext_char(p_are(temp_gender), 2)
+	return p_They(temp_gender) + "'" + copytext_char(p_are(temp_gender), 2)
 
 /datum/proc/p_s(temp_gender)
 	return "s"

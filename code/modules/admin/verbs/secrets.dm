@@ -115,6 +115,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 				//don't warp them if they aren't ready or are already there
 					continue
 				H.Paralyse(5)
+				H.Sleeping(5)
 				if(H.wear_id)
 					var/obj/item/card/id/id = H.get_idcard()
 					for(var/A in id.GetAccess())

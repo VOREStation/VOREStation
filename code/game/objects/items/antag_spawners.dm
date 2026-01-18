@@ -56,6 +56,9 @@
 	ghost_query_type = /datum/ghost_query/apprentice
 
 /obj/item/antag_spawner/technomancer_apprentice/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("Teleporter attempting to lock on to your apprentice."))
 	request_player()
 
@@ -102,6 +105,9 @@
 	var/drone_type = null
 
 /obj/item/antag_spawner/syndicate_drone/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("Teleporter attempting to lock on to an available unit."))
 	request_player()
 
