@@ -203,7 +203,7 @@
 /obj/machinery/microwave/cookingpot/start(var/msg = "The [src] starts cooking.", var/msgblind = "You hear a fire roar.")
 	. = ..()
 
-/obj/machinery/microwave/cookingpot/broke(var/spark = TRUE)
+/obj/machinery/microwave/cookingpot/broke(var/spark = FALSE)
 	. = ..()
 
 // Magic bluespace stuff
