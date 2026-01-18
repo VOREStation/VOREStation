@@ -32,6 +32,8 @@
 	var/dirty_cooking_icon_state = "mwbloody1"
 	var/broken_icon_state = "mwb"
 
+	var/visible_action = "turns on"
+	var/audible_action = null
 
 //see code/modules/food/recipes_microwave.dm for recipes
 
@@ -455,7 +457,7 @@
 		return FALSE
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message(span_notice("The [src] starts cooking."), span_notice("You hear a [src]."))
+	src.visible_message(span_notice("The [src] " + visible_action + "."), span_notice("You hear a " + audible_action ? audible_action : "[src]" + "."))
 	soundloop.start()
 	src.operating = TRUE
 	src.icon_state = cooking_icon_state

@@ -200,6 +200,9 @@
 	dirty_cooking_icon_state = "cookingpotbloody1"
 	broken_icon_state = "cookingpotb"
 
+	visible_action = "starts cooking"
+	audible_action = "fire roar"
+
 /obj/machinery/microwave/cookingpot/broke(var/spark = FALSE)
 	. = ..()
 
