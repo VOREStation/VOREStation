@@ -35,7 +35,6 @@
 		"autotransferable" = owner.autotransferable,
 		"noisy_full" = owner.noisy_full, //Belching while full
 		"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
-		"strip_active" = owner.size_strip_preference,
 
 		"allow_mind_transfer" = owner.allow_mind_transfer,
 		"drop_vore" = owner.drop_vore,
@@ -59,6 +58,9 @@
 		"soulcatcher_allow_takeover" = owner.soulcatcher_pref_flags & SOULCATCHER_ALLOW_TAKEOVER,
 		"soulcatcher_allow_deletion" = (global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION) + global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION_INSTANT)),
 		"max_voreoverlay_alpha" = owner.max_voreoverlay_alpha,
+		"dropdown_preferemces" = list(
+			"strip_active" = owner.size_strip_preference,
+		)
 	)
 
 #define SET_TASTE "Set Taste"

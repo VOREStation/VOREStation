@@ -337,7 +337,7 @@ export type PrefData = {
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
   selective_active: string;
-  strip_active: number;
+  dropdown_preferemces: DropdownPrefernces;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;
@@ -354,6 +354,10 @@ export type PrefData = {
   soulcatcher_allow_deletion: BooleanLike;
   soulcatcher_allow_takeover: BooleanLike;
   max_voreoverlay_alpha: number;
+};
+
+export type DropdownPrefernces = {
+  strip_active: number;
 };
 
 export type ScMessageData = {
