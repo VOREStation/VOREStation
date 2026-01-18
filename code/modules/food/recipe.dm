@@ -79,7 +79,7 @@
 		if(aval_r_amnt > (reagents[r_r]) && exact)
 			return FALSE
 
-	if((LAZYLEN(reagents) < avail_reagents.reagent_list.len)
+	if(LAZYLEN(reagents) < avail_reagents.reagent_list.len)
 		return FALSE
 	return TRUE
 
