@@ -45,9 +45,9 @@ export const stripModeModel: PreferenceDropdown = {
   action: 'switch_strip_mode_pref',
   prefix: 'Size Stripping',
   data: {
-    0: { displayText: 'Drop Nothing' },
-    1: { displayText: 'Drop Equipment', color: 'green', enabled: true },
-    2: {
+    '0': { displayText: 'Drop Nothing' },
+    '1': { displayText: 'Drop Equipment', color: 'green', enabled: true },
+    '2': {
       displayText: 'Drop Equipment and Underwear',
       color: 'green',
       enabled: true,

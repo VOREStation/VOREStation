@@ -520,7 +520,7 @@ export type PreferenceDropdown = {
   action: string;
   prefix: string;
   data: Record<
-    number,
+    string,
     { displayText: string; color?: string; enabled?: boolean }
   >;
 };
