@@ -1028,7 +1028,8 @@
 
 /datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
 	cam_screen.vis_contents = list(owner)
@@ -1038,7 +1039,8 @@
 
 /datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
 	. = ..()
-	QDEL_IN(src, 1)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/changed_hook(flag)
 	var/mob/living/carbon/human/M = owner
@@ -1074,7 +1076,8 @@
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	if(!istype(owner.loc, /obj/item/holder/micro))
@@ -1091,7 +1094,8 @@
 
 /datum/tgui_module/appearance_changer/superpower/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
 	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
@@ -1109,7 +1113,8 @@
 
 /datum/tgui_module/appearance_changer/innate/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/innate/tgui_status(mob/user, datum/tgui_state/state)
 	if(owner.stat != CONSCIOUS)
@@ -1170,4 +1175,5 @@
 /datum/tgui_module/appearance_changer/self_deleting
 /datum/tgui_module/appearance_changer/self_deleting/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)

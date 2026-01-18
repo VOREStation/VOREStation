@@ -13,7 +13,8 @@
 
 /datum/tgui_module/player_notes/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/player_notes/proc/filter_ckeys(var/page, var/filter)
 	var/savefile/S=new("data/player_notes.sav")
@@ -112,7 +113,8 @@
 
 /datum/tgui_module/player_notes_info/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/player_notes_info/tgui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
