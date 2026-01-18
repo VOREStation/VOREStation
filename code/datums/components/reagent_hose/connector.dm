@@ -13,7 +13,7 @@
 
 /datum/component/hose_connector/Initialize(var/set_unique_name = null)
 	carrier = parent
-	reagents = new /datum/reagents( 60, src)
+	reagents = new /datum/reagents(60, src)
 	// Handle uniquely named connectors
 	if(set_unique_name)
 		name = set_unique_name
