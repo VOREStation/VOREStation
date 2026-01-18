@@ -76,10 +76,10 @@
 		if(aval_r_amnt - reagents[r_r] < 0)
 			return FALSE
 
-		if(aval_r_amnt>(reagents[r_r]) && exact)
+		if(aval_r_amnt > (reagents[r_r]) && exact)
 			return FALSE
 
-	if((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
+	if((LAZYLEN(reagents) < avail_reagents.reagent_list.len)
 		return FALSE
 	return TRUE
 
