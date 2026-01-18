@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack } from 'tgui-core/components';
-
+import { Section, Stack } from 'tgui-core/components';
 import type { LocalPrefs } from '../types';
+import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
@@ -13,6 +13,11 @@ export const VoreUserPreferencesMechanical = (props: {
   const { act } = useBackend();
   const { preferences, strip_active, strip_activeToText, stripModeToColor } =
     props;
+  const strip_options = [
+    'Drop Nothing',
+    'Drop Equipment',
+    'Drop Equipment and Underwear',
+  ];
 
   return (
     <Section title="Mechanical Preferences">
@@ -108,15 +113,13 @@ export const VoreUserPreferencesMechanical = (props: {
           />
         </Stack.Item>
         <Stack.Item basis="35%">
-          <Button
-            fluid
-            backgroundColor={stripModeToColor[strip_active]}
-            tooltip="Allows to set whether all your clothing and/or underwear comes off when size changed. Currently affects: Size guns and bluespace crackers."
-            tooltipPosition="right"
-            onClick={() => act('switch_strip_mode_pref')}
-          >
-            {`Size Change Stripping: ${strip_activeToText[strip_active]}`}
-          </Button>
+          <VorePanelEditDropdown
+            action="switch_strip_mode_pref"
+            editMode={true}
+            options={strip_options}
+            entry={`Size Stripping Mode: (${strip_activeToText[strip_active]})`}
+            color={stripModeToColor[strip_active]}
+          />
         </Stack.Item>
       </Stack>
     </Section>

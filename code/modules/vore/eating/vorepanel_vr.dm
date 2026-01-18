@@ -657,7 +657,7 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_strip_mode_pref")
-			var/check_strip_preference = tgui_input_list(ui.user, "What would you prefer happen to you when your size is changed by over 30%?","Selective Bellymode", list("Drop Nothing", "Drop Equipment", "Drop Equipment and Underwear"))
+			var/check_strip_preference = html_encode(params["val"])
 			if(!(check_strip_preference))
 				host.size_strip_preference = SIZESTRIP_NONE
 			switch(check_strip_preference)
