@@ -94,7 +94,7 @@
 	var/no_latejoin_vore_warning_persists = FALSE	//Do we save it?
 	var/no_latejoin_prey_warning_persists = FALSE	//Do we save it?
 	var/belly_rub_target = null
-	var/soulcatcher_pref_flags = 0			//Default disabled
+	var/soulcatcher_pref_flags = NONE			//Default disabled
 	var/persistend_edit_mode = FALSE
 
 	var/voice_freq = 42500	// Preference for character voice frequency
