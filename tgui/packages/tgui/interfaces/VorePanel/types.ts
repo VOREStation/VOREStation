@@ -519,6 +519,7 @@ export type IntentData = {
 export type PreferenceDropdown = {
   action: string;
   prefix: string;
+  tooltip: string;
   data: Record<
     string,
     { displayText: string; color?: string; enabled?: boolean }

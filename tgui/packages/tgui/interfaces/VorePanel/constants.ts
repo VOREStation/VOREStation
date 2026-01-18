@@ -44,6 +44,8 @@ export const reagentToColor = {
 export const stripModeModel: PreferenceDropdown = {
   action: 'switch_strip_mode_pref',
   prefix: 'Size Stripping',
+  tooltip:
+    'Allows you to set if you should get stripped while being resized and how much should get stripped.',
   data: {
     '0': { displayText: 'Drop Nothing' },
     '1': { displayText: 'Drop Equipment', color: 'green', enabled: true },

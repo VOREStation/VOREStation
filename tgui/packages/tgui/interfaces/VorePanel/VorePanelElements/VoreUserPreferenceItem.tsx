@@ -61,6 +61,7 @@ export const VoreUserPreferenceDropdown = (props: {
       options={options}
       color={spec.data[currentActive].color}
       entry={`${spec.prefix}: ${spec.data[currentActive].displayText}`}
+      tooltip={spec.tooltip}
       tooltipPosition={tooltipPosition}
     />
   );
