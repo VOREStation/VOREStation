@@ -38,7 +38,7 @@ export const VoreUserPreferenceItem = (props: {
 
 export const VoreUserPreferenceDropdown = (props: {
   /** The currently selected entry */
-  currentActive: number;
+  currentActive: string;
   /** The preference data object */
   spec: PreferenceDropdown;
   /** Position of the tooltip */

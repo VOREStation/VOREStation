@@ -108,7 +108,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="35%">
           <VoreUserPreferenceDropdown
             spec={stripModeModel}
-            currentActive={dropdownPreferences.strip_active}
+            currentActive={dropdownPreferences.strip_active.toString()}
             tooltipPosition="top"
           />
         </Stack.Item>
