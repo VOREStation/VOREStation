@@ -19,6 +19,10 @@
 	dir = SOUTH
 	organ_tag = "limb"
 
+	icon = 'icons/obj/surgery.dmi'
+	// deliberately no icon because we render with overlays now
+	icon_state = "nothing"
+
 	// Strings
 	var/broken_description             // fracture string if any.
 	var/damage_state = "00"            // Modifier used for generating the on-mob damage overlay for this limb.
