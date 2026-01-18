@@ -649,9 +649,10 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_selective_mode_pref")
-			host.selective_preference = tgui_input_list(ui.user, "What would you prefer happen to you with selective bellymode?","Selective Bellymode", list(DM_DEFAULT, DM_DIGEST, DM_ABSORB, DM_DRAIN))
-			if(!(host.selective_preference))
-				host.selective_preference = DM_DEFAULT
+			var/new_selective_preference = params["val"]
+			if(new_selective_preference == host.selective_preference)
+				return FALSE
+			host.selective_preference = new_selective_preference
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.selective_preference = host.selective_preference
 			unsaved_changes = TRUE

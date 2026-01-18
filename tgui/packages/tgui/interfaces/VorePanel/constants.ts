@@ -41,6 +41,19 @@ export const reagentToColor = {
   Ethanol: undefined,
 } as const;
 
+export const selectiveModeModel: PreferenceDropdown = {
+  action: 'switch_selective_mode_pref',
+  prefix: 'Selective Mode Preference',
+  tooltip:
+    'Allows to set the personal belly mode preference for selective bellies.',
+  data: {
+    Default: { displayText: 'Default' },
+    Digest: { displayText: 'Digest', color: 'red', enabled: true },
+    Absorb: { displayText: 'Absorb', color: 'purple', enabled: true },
+    Drain: { displayText: 'Drain', color: 'orange', enabled: true },
+  },
+};
+
 export const stripModeModel: PreferenceDropdown = {
   action: 'switch_strip_mode_pref',
   prefix: 'Size Stripping',

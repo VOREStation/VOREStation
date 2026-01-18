@@ -1,6 +1,5 @@
 import { Section } from 'tgui-core/components';
 
-import { digestModeToColor } from '../constants';
 import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
@@ -57,7 +56,6 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
     no_spawnprey_warning_time,
     no_spawnpred_warning_save,
     no_spawnprey_warning_save,
-    selective_active,
     dropdown_preferences,
     soulcatcher_allow_capture,
     soulcatcher_allow_transfer,
@@ -767,9 +765,8 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
       />
       <VoreUserPreferencesDevouring
         devourable={devourable}
-        digestModeToColor={digestModeToColor}
-        selective_active={selective_active}
         preferences={preferences}
+        dropdownPreferences={dropdown_preferences}
       />
       <VoreUserPreferencesSpontaneous
         can_be_drop_prey={can_be_drop_prey}

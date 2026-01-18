@@ -336,7 +336,6 @@ export type PrefData = {
   consume_liquid_belly: BooleanLike;
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
-  selective_active: string;
   dropdown_preferences: DropdownPrefernces;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
@@ -358,6 +357,7 @@ export type PrefData = {
 
 export type DropdownPrefernces = {
   strip_active: number;
+  selective_active: string;
 };
 
 export type ScMessageData = {
