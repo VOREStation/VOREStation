@@ -368,7 +368,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		// Apply transparency to the whole icon if needed.
 		if(wholeicontransparent)
 			body.appearance_flags = KEEP_TOGETHER
-			body.alpha = 180
+			body.alpha = 200
 
 		// Apply color mods
 		if(!skeleton)
