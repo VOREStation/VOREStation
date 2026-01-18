@@ -1,4 +1,9 @@
-import { Component, type CSSProperties, type PropsWithChildren } from 'react';
+import {
+  Component,
+  type CSSProperties,
+  type PropsWithChildren,
+  type ReactNode,
+} from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import {
@@ -229,7 +234,7 @@ type NanoMapMarkerProps = {
   y: number;
   zoom: number;
   icon: string;
-  tooltip: string;
+  tooltip: ReactNode;
   color: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };

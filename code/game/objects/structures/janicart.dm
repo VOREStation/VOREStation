@@ -39,37 +39,37 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		))
 
 	if(!is_type_in_typecache(I, equippable_item_whitelist))
-		to_chat(user, span_warning("There's no room in [src] for [I]."))
+		user.balloon_alert(user, "there's no room in [src] for [I].")
 		return FALSE
 
 	if(!user.canUnEquip(I))
-		to_chat(user, span_warning("[I] is stuck to your hand."))
+		user.balloon_alert(user, "[I] is stuck to your hand.")
 		return FALSE
 
 	if(istype(I, /obj/item/storage/bag/trash))
 		if(mybag)
-			to_chat(user, span_warning("[src] already has \an [I]."))
+			user.balloon_alert(user, "[src] already has \an [I].")
 			return FALSE
 		mybag = I
 		setTguiIcon("mybag", mybag)
 
 	else if(istype(I, /obj/item/mop) || istype(I, /obj/item/mop/advanced))
 		if(mymop)
-			to_chat(user, span_warning("[src] already has \an [I]."))
+			user.balloon_alert(user, "[src] already has \an [I].")
 			return FALSE
 		mymop = I
 		setTguiIcon("mymop", mymop)
 
 	else if(istype(I, /obj/item/reagent_containers/spray))
 		if(myspray)
-			to_chat(user, span_warning("[src] already has \an [I]."))
+			user.balloon_alert(user, "[src] already has \an [I].")
 			return FALSE
 		myspray = I
 		setTguiIcon("myspray", myspray)
 
 	else if(istype(I, /obj/item/lightreplacer))
 		if(myreplacer)
-			to_chat(user, span_warning("[src] already has \an [I]."))
+			user.balloon_alert(user, "[src] already has \an [I].")
 			return FALSE
 		myreplacer = I
 		setTguiIcon("myreplacer", myreplacer)
@@ -79,17 +79,17 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 			signs++
 			setTguiIcon("signs", I)
 		else
-			to_chat(user, span_notice("[src] can't hold any more signs."))
+			user.balloon_alert(user, "[src] can't hold any more signs.")
 			return FALSE
 	else
 		// This may look like duplicate code, but it's important that we don't call unEquip *and* warn the user if
 		// something horrible goes wrong. (this else is never supposed to happen)
-		to_chat(user, span_warning("There's no room in [src] for [I]."))
+		user.balloon_alert(user, "there's no room in [src] for [I].")
 		return FALSE
 
 	user.drop_from_inventory(I, src)
 	update_icon()
-	to_chat(user, span_notice("You put [I] into [src]."))
+	user.balloon_alert(user, "you put [I] into [src].")
 	return TRUE
 
 /obj/structure/janitorialcart/proc/setTguiIcon(key, atom/A)
@@ -132,7 +132,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		O.forceMove(src)
 		mybucket = O
 		setTguiIcon("mybucket", mybucket)
-		to_chat(user, "You mount the [O] on the janicart.")
+		user.balloon_alert(user, "you mount the [O] on the janicart.")
 		update_icon()
 	else
 		..()
@@ -142,13 +142,13 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		if (mybucket)
 			if(I.reagents.total_volume < I.reagents.maximum_volume)
 				if(mybucket.reagents.total_volume < 1)
-					to_chat(user, span_notice("[mybucket] is empty!"))
+					user.balloon_alert(user, "[mybucket] is empty!")
 				else
 					mybucket.reagents.trans_to_obj(I, 5)	//
-					to_chat(user, span_notice("You wet [I] in [mybucket]."))
+					user.balloon_alert(user, "you wet [I] in [mybucket].")
 					playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 			else
-				to_chat(user, span_notice("[I] can't absorb anymore liquid!"))
+				user.balloon_alert(user, "[I] can't absorb anymore liquid!")
 		else
 			to_chat(user, span_notice("There is no bucket mounted here to dip [I] into!"))
 		return 1
@@ -235,7 +235,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		if("bag")
 			if(mybag)
 				ui.user.put_in_hands(mybag)
-				to_chat(ui.user, span_notice("You take [mybag] from [src]."))
+				ui.user.balloon_alert(ui.user, "you take [mybag] from [src].")
 				mybag = null
 				nullTguiIcon("mybag")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
@@ -243,7 +243,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		if("mop")
 			if(mymop)
 				ui.user.put_in_hands(mymop)
-				to_chat(ui.user, span_notice("You take [mymop] from [src]."))
+				ui.user.balloon_alert(ui.user, "you take [mymop] from [src].")
 				mymop = null
 				nullTguiIcon("mymop")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
@@ -251,7 +251,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		if("spray")
 			if(myspray)
 				ui.user.put_in_hands(myspray)
-				to_chat(ui.user, span_notice("You take [myspray] from [src]."))
+				ui.user.balloon_alert(ui.user, "you take [myspray] from [src].")
 				myspray = null
 				nullTguiIcon("myspray")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
@@ -259,7 +259,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		if("replacer")
 			if(myreplacer)
 				ui.user.put_in_hands(myreplacer)
-				to_chat(ui.user, span_notice("You take [myreplacer] from [src]."))
+				ui.user.balloon_alert(ui.user, "you take [myreplacer] from [src].")
 				myreplacer = null
 				nullTguiIcon("myreplacer")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
@@ -271,16 +271,16 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 				var/obj/item/clothing/suit/caution/sign = locate() in src
 				if(sign)
 					ui.user.put_in_hands(sign)
-					to_chat(ui.user, span_notice("You take \a [sign] from [src]."))
+					ui.user.balloon_alert(ui.user, "you take \a [sign] from [src].")
 					signs--
 					if(!signs)
 						nullTguiIcon("signs")
 			else
-				to_chat(ui.user, span_notice("[src] doesn't have any signs left."))
+				ui.user.balloon_alert(ui.user, "[src] doesn't have any signs left.")
 		if("bucket")
 			if(mybucket)
 				mybucket.forceMove(get_turf(ui.user))
-				to_chat(ui.user, span_notice("You unmount [mybucket] from [src]."))
+				ui.user.balloon_alert(ui.user, "you unmount [mybucket] from [src].")
 				mybucket = null
 				nullTguiIcon("mybucket")
 			else

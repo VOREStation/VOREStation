@@ -1617,16 +1617,20 @@
 
 /datum/trait/neutral/personal_space
 	name = "Personal Space Bubble"
-	desc = "You are adept at avoiding unwanted physical contact and dodge it with ease. You will reflexively dodge any attempt to hug, pat, boop, lick, sniff you or even shake your hand, this can be toggled off."
+	desc = "You are adept at avoiding unwanted physical contact and dodge it with ease. You will reflexively dodge any attempt to hug, pat, boop, lick, sniff you, shake your hand, or pick you up. These can be toggled independently."
 	cost = 0
 	custom_only = FALSE
-	has_preferences = list("bubble_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Enabled on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
+	has_preferences = list("bubble_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge physical contact on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE),
+						  "pickup_dodge_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge pickup attempts on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
 
 /datum/trait/neutral/personal_space/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
 	if(trait_prefs && trait_prefs["bubble_toggle"])
 		H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
+	if(trait_prefs && trait_prefs["pickup_dodge_toggle"])
+		H.touch_reaction_flags |= SPECIES_TRAIT_PICKUP_DODGE
 	add_verb(H, /mob/living/proc/toggle_personal_space)
+	add_verb(H, /mob/living/proc/toggle_pickup_dodge)
 
 /datum/trait/neutral/colour_changing_eyes
 	name = "Colour changing eyes"
@@ -1936,3 +1940,15 @@
 /datum/trait/neutral/abnormal_mind/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
 	ADD_TRAIT(H, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/slobber
+	name = "Major Slobberer"
+	desc = "You produce more saliva than most people and leave people dripping when you lick them."
+	tutorial = "Lick someone! Consensually please!"
+
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/slobber/apply(var/datum/species/S, var/mob/living/carbon/human/human)
+	..()
+	ADD_TRAIT(human, TRAIT_SLOBBER, ROUNDSTART_TRAIT)

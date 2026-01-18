@@ -206,6 +206,10 @@
 			else if(!(mode_flags & DM_FLAG_FORCEPSAY) && L.forced_psay)
 				L.forced_psay = FALSE
 
+			// Wet flag
+			if(mode_flags & DM_FLAG_WETTENS)
+				L.set_wet_stacks(20)
+
 			//Handle 'human'
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L

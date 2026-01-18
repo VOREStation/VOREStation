@@ -252,7 +252,7 @@
 	B.contaminates = vore_default_contaminates
 	B.contamination_flavor = vore_default_contamination_flavor
 	B.contamination_color = vore_default_contamination_color
-	B.escapable = vore_escape_chance > 0
+	B.escapable = vore_escape_chance > 0 ? B_ESCAPABLE_DEFAULT : B_ESCAPABLE_NONE
 	B.escapechance = vore_escape_chance
 	B.escapechance_absorbed = vore_escape_chance_absorbed
 	B.digestchance = vore_digest_chance

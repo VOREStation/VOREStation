@@ -51,6 +51,11 @@
 	if(!drop_mob || drop_mob == source)
 		return
 
+	if((drop_mob.status_flags & HIDING))
+		var/obj/structure/table/is_there_a_table = locate() in landing //Don't eat people hiding under tables
+		if(is_there_a_table)
+			return
+
 	//pred = drop_mob
 	//prey = source
 	//result: source is eaten by drop_mob

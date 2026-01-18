@@ -85,7 +85,9 @@ export const modeToTooltip = {
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
-  'Absorbed Devour': 'Allows absorbed prey to devour other prey.',
+  'Absorbed Prey Can Devour': 'Allows absorbed prey to devour other prey.',
+  'Makes Prey Wet':
+    'Prey will be constantly made wet. This means they will drip if you let them out.',
 } as const;
 
 export const spriteToTooltip = {
@@ -154,3 +156,52 @@ export const preyAbilityToData = {
     color: 'red',
   },
 } as const;
+
+export const intentMappings = [
+  {
+    key: 'help',
+    label: 'Help',
+    color: 'green',
+    description: 'Belch chance',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in help intent might cause belch interactions.'
+        : 'Help intent struggle belch chance disabled.',
+  },
+  {
+    key: 'disarm',
+    label: 'Disarm',
+    color: 'blue',
+    description: 'Transfer chance',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in disarm intent might cause auto transfer interactions.'
+        : 'Disarm intent struggle auto transfer chance disabled.',
+  },
+  {
+    key: 'grab',
+    label: 'Grab',
+    color: 'yellow',
+    description: 'Belly mode change chances (Absorb/Digest/Select)',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in grab intent might cause digest mode change interactions.'
+        : 'Grab intent struggle digest mode change disabled.',
+  },
+  {
+    key: 'harm',
+    label: 'Harm',
+    color: 'red',
+    description: 'Escape chance',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in harm intent might cause escape interactions.'
+        : 'Harm intent struggle escape chance disabled.',
+  },
+];
+
+export const interactionModes = [
+  { value: '0', displayText: 'Disabled' },
+  { value: '1', displayText: 'Enabled (Default)' },
+  { value: '2', displayText: 'Enabled (Intent)' },
+];

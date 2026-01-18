@@ -1,3 +1,5 @@
+@use '../colors';
+
 .VorePanel__Floating {
   height: 200px;
   background-color: var(--color-section);
@@ -23,7 +25,44 @@
   transition-duration: var(--button-transition);
   transition-timing-function: var(--button-transition-timing);
   user-select: none;
-  background-color: var(--button-background-default);
+
+  --vp-color: currentColor;
+  --vp-background: var(--button-background-default);
+
+  background-color: var(--vp-background);
+  color: var(--vp-color);
+
+  &:hover {
+    background-color: hsl(
+      from var(--vp-background) h s calc(l + var(--adjust-hover))
+    );
+  }
+
+  &.color-bg-transparent {
+    --vp-background: hsl(from var(--vp-color) h s l / 0.2);
+    background-color: var(--vp-background);
+    opacity: 1;
+  }
+}
+
+@each $color-name, $color-value in colors.$color-map {
+  .VorePanel__floatingButton.color-bg-#{$color-name} {
+    --vp-background: #{$color-value};
+
+    @each $low-color in colors.$low-contrast-color-map {
+      @if $color-name == $low-color {
+        --vp-color: var(--color-black);
+      }
+    }
+  }
+}
+
+.VorePanel__floatingButton.VorePanel__noCursor {
+  cursor: default;
+}
+
+.VorePanel__floatingButton.VorePanel__selected {
+  box-shadow: inset 0 0 0 2px var(--color-white);
 }
 
 .VorePanel__pasteArea {

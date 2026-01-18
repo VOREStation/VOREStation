@@ -142,6 +142,7 @@
 	data["show_pictures"] = null
 	data["icon_overflow"] = null
 	data["prey_abilities"] = null
+	data["intent_data"] = null
 	data["our_bellies"] = null
 	data["selected"] = null
 	data["soulcatcher"] = null
@@ -168,7 +169,13 @@
 			// Content Data
 			data["show_pictures"] = show_pictures
 			data["icon_overflow"] = icon_overflow
-			data["prey_abilities"] = get_prey_abilities(host)
+			var/atom/hostloc = host.loc
+			// Allow VorePanel to show pred belly details even while indirectly inside
+			if(isliving(host))
+				var/mob/living/human_host = host
+				hostloc = human_host.surrounding_belly()
+			data["prey_abilities"] = get_prey_abilities(host, hostloc)
+			data["intent_data"] = get_intent_data(host, hostloc)
 
 		if(SOULCATCHER_TAB)
 			// Soulcatcher and abilities
@@ -907,7 +914,7 @@
 				return
 			entries[index] = hex
 			preset_colors = entries.Join(";")
-			return FALSE
+			return TRUE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
 	var/atom/movable/target = locate(params["pick"])

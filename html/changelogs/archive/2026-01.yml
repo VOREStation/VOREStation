@@ -84,3 +84,112 @@
       charge cells with nutrition
   - code_imp: Added the Electrovore and Obligate code, touched up cell.dm to allow
       for draining and charging
+2026-01-09:
+  Aroliacue:
+  - balance: Security Protolathe can now print researched device cells.
+  Asher-42:
+  - rscadd: shoulder light from base command dullataur
+  Kashargul:
+  - code_imp: moves those alists to lists
+  - code_imp: cleans up the vore fx and resist code
+2026-01-13:
+  Kashargul:
+  - qol: prey struggles are now intent based
+  SatinIsle:
+  - bugfix: Fixes the ddraig description.
+2026-01-14:
+  Diana:
+  - bugfix: Blacklists some more mobs from spawning in tsci
+  Kashargul:
+  - bugfix: start Now shown as usable after pregame
+  - bugfix: the sql schema can now be cleanly imported including the procedures and
+      events
+  - bugfix: loose round associations should no longer exist
+  SatinIsle:
+  - bugfix: Fixed simple mobs requiring insane amounts of nutrition to remove their
+      hunger bar.
+  - bugfix: Fixed TFd mobs showing up on crew monitors.
+  - bugfix: People flying above tables when they should fall down.
+  - rscadd: Added new options for hanner beastforms.
+  - spellcheck: Minor reordering of beastform lists to keep them alphabetical.
+  Will:
+  - qol: Look upward verb now lets you look upward one z level
+  - code_imp: remote views with zoom hude or different sizes are easier to start
+2026-01-15:
+  Kashargul:
+  - bugfix: painting meta data runtiming
+  ReoDaProtovali:
+  - rscadd: 'Added new signals: COMSIG_DISPOSAL_SEND, COMSIG_DISPOSAL_LINK, and COMSIG_DISPOSAL_UNLINK,
+      also renamed COMSIG_DISPOSAL_RECEIVING to COMSIG_DISPOSAL_RECEIVE'
+  - rscadd: Added the ability to adjust the ejection distance on disposal pipe outlets.
+      A treat for mappers and disposal pipe enthusiasts alike, just use a multitool!
+  - rscdel: Removed the /datum/component/disposal_system_connection/disposaloutlet
+      subtype of the disposal connection component as is now redundant.
+  - qol: Lets you alt-click on a disposal bin to flush it. Nice.
+  - qol: Adds the destination tagger to the autolathe. It's a thing on TG code, and
+      makes tagging stuff far less of a hassle than it currently is if you lost/dont
+      have a tagger.
+  - qol: You can resist to break out of a disposal tube that has stopped moving. No
+      longer shall you be trapped forever!
+  - bugfix: Fixed that minor issue with disposal bin/chute ejecting in a wildly overthetop
+      way. Because muh disposal code
+  - spellcheck: Fixed a missing space in hazardous disposal bin's name.
+  - code_imp: Moved disposal device ejection code back to the object that receives
+      the packet.
+  - refactor: Entirely refactored how disposal connection components work and connect
+      to objects... Again.
+  - admin: Disposal pipes will now give an alert for any mob that has a client getting
+      flushed, not just carbon humans
+2026-01-16:
+  Kashargul:
+  - bugfix: initial input getting dropped in the backend
+2026-01-17:
+  Kashargul:
+  - code_imp: speeds up robot sprite sheet gen
+  - bugfix: changes player note stack behaviour
+2026-01-18:
+  Azzy.Dreemurr:
+  - qol: Mentors now have the ability to communicate more easily in the Mentor Channel
+      via the button F9
+  Guti:
+  - balance: You can now have up to 3 viruses in your body.
+  - balance: Viruses will have a varied range of reagents for their cures now.
+  - balance: Removed nutriment-based virus protection.
+  - balance: Cure chance lowered to 5-10
+  - balance: Headache symptom stun reduced from 15 to 5
+  - balance: Incremented the power of Tissue Hydration
+  - balance: Reduced the severity of Weight Loss symptom to 1
+  - balance: Spyndrome's stealth changed to -1, resistance to 3
+  - rscadd: Added Narcolepsy symptom
+  - bugfix: Fixed admin-created viruses having the developer warning name
+  - bugfix: Injecting diseased blood will no longer check for clothing immunity
+  - code_imp: Cleaned up a few old symptom files
+  - code_imp: Added comparators for virus resistance and symptom names
+  - spellcheck: Corrected some spelling mistakes across various symptoms
+  - bugfix: Fixed Anomalies not having a randomized frequency
+  - bugfix: Fixed weather anomalies not spawning with telescience
+  - bugfix: Fixed dimensional anomaly removing all the airlocks required access
+  - code_imp: Fixed get_station_areas returning areas from other stations
+  - code_imp: Moves a couple of procs from weather anomaly to anomalous weather datum
+  Kashargul:
+  - code_imp: updates the changelog
+  - bugfix: runtime in clothing selection in the char editor
+  - bugfix: jani catborg still using the placeholder
+  - bugfix: chat message order for event announcements
+  - bugfix: ss explosion runtiming in stat entry lookups
+  - bugfix: spasm self ownership not being reversible
+  - bugfix: some missing buttons in the vorepanel for examine messages
+  - bugfix: linking in motd
+  - bugfix: prevents signal reg spam on holomap spam clicking
+  ShadowLarkens:
+  - rscadd: Major Slobberer trait, adds wet stacks on lick and makes people drippy.
+  - rscadd: Makes Prey Wet belly addon, adds wet stacks to prey in a belly and makes
+      them drippy. Basically irrelevant unless you spit them back out.
+  Tost:
+  - qol: Moved a bunch of of cleaning messages to ballons.
+  - bugfix: Advanced Mop has sprites now.
+  nova:
+  - qol: Adds option to avoid attempts at being picked up with the personal space
+      bubble trait
+  tacoguy7765093:
+  - image: Janitor catborg

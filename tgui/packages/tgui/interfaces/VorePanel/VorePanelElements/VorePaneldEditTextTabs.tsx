@@ -1,6 +1,6 @@
+import type { ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { LabeledList, Section, Stack, Tabs } from 'tgui-core/components';
-
 import { VorePanelEditSwitch } from './VorePanelEditSwitch';
 import { VorePanelEditTextArea } from './VorePanelTextArea';
 
@@ -15,7 +15,7 @@ export const VorePanelEditTextTabs = (
     /** The backend action to perform on tab selection */
     tabAction: string;
     /** Our displayed tooltip displayed above all texts */
-    tooltip: string;
+    tooltip: ReactNode;
     /** The maximum length of each message */
     maxLength: number;
     /** The current displayed message or message array */
@@ -48,7 +48,7 @@ export const VorePanelEditTextTabs = (
     /** The data of the button to show its possible selected state */
     button_data: boolean;
     /** The tooltip to display on button hover */
-    button_tooltip: string;
+    button_tooltip: ReactNode;
     /** The icon of each tab as record, mapping the messageOptions to icons */
     tabsToIcons: Record<string, string>;
     /** Disable our special highlighting used on belly messages */
@@ -136,7 +136,7 @@ export const VorePanelEditTextTabs = (
       <Stack.Item grow>
         <Section fill scrollable>
           <Stack fill vertical>
-            {!!button_action && button_data && (
+            {!!button_action && !!button_label && (
               <Stack.Item>
                 <LabeledList>
                   <LabeledList.Item label={button_label}>
