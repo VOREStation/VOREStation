@@ -1,3 +1,5 @@
+import type { PreferenceDropdown } from './types';
+
 export const stats = [undefined, 'average', 'bad'] as const;
 
 export const vorespawnAbsorbedText = ['No', 'Yes', 'Prey Choice'];
@@ -39,18 +41,19 @@ export const reagentToColor = {
   Ethanol: undefined,
 } as const;
 
-export const stripModeToColor = {
-  Default: undefined,
-  0: undefined,
-  1: 'green',
-  2: 'green',
-} as const;
-
-export const strip_activeToText = {
-  0: 'Drop Nothing',
-  1: 'Drop Equipment',
-  2: 'Drop Equipment and Underwear',
-} as const;
+export const stripModeModel: PreferenceDropdown = {
+  action: 'switch_strip_mode_pref',
+  prefix: 'Size Stripping',
+  data: {
+    0: { displayText: 'Drop Nothing' },
+    1: { displayText: 'Drop Equipment', color: 'green', enabled: true },
+    2: {
+      displayText: 'Drop Equipment and Underwear',
+      color: 'green',
+      enabled: true,
+    },
+  },
+};
 
 export const digestModeToPreyMode = {
   Hold: 'being held.',

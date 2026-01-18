@@ -1,23 +1,16 @@
-import { useBackend } from 'tgui/backend';
 import { Section, Stack } from 'tgui-core/components';
+import { stripModeModel } from '../constants';
 import type { LocalPrefs } from '../types';
-import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
-import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
+import {
+  VoreUserPreferenceDropdown,
+  VoreUserPreferenceItem,
+} from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
   preferences: LocalPrefs;
-  stripModeToColor: Record<string, string | undefined>;
-  strip_activeToText: Record<number, string | undefined>;
   strip_active: number;
 }) => {
-  const { act } = useBackend();
-  const { preferences, strip_active, strip_activeToText, stripModeToColor } =
-    props;
-  const strip_options = [
-    'Drop Nothing',
-    'Drop Equipment',
-    'Drop Equipment and Underwear',
-  ];
+  const { preferences, strip_active } = props;
 
   return (
     <Section title="Mechanical Preferences">
@@ -113,12 +106,10 @@ export const VoreUserPreferencesMechanical = (props: {
           />
         </Stack.Item>
         <Stack.Item basis="35%">
-          <VorePanelEditDropdown
-            action="switch_strip_mode_pref"
-            editMode={true}
-            options={strip_options}
-            entry={`Size Stripping Mode: (${strip_activeToText[strip_active]})`}
-            color={stripModeToColor[strip_active]}
+          <VoreUserPreferenceDropdown
+            spec={stripModeModel}
+            currentActive={strip_active}
+            tooltipPosition="right"
           />
         </Stack.Item>
       </Stack>

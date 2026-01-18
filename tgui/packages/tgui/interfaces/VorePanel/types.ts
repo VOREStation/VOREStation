@@ -511,3 +511,12 @@ export type IntentData = {
   grab: BooleanLike;
   harm: BooleanLike;
 };
+
+export type PreferenceDropdown = {
+  action: string;
+  prefix: string;
+  data: Record<
+    number,
+    { displayText: string; color?: string; enabled?: boolean }
+  >;
+};

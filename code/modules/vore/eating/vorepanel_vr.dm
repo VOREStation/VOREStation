@@ -657,16 +657,11 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_strip_mode_pref")
-			var/check_strip_preference = html_encode(params["val"])
-			if(!(check_strip_preference))
-				host.size_strip_preference = SIZESTRIP_NONE
-			switch(check_strip_preference)
-				if("Drop Nothing")
-					host.size_strip_preference = SIZESTRIP_NONE
-				if("Drop Equipment")
-					host.size_strip_preference = SIZESTRIP_ITEMS
-				if("Drop Equipment and Underwear")
-					host.size_strip_preference = SIZESTRIP_ALL
+			var/new_size_strip_pref = text2num(params["val"])
+			new_size_strip_pref = clamp(new_size_strip_pref, SIZESTRIP_NONE, SIZESTRIP_ALL)
+			if(new_size_strip_pref == host.size_strip_preference)
+				return FALSE
+			host.size_strip_preference = new_size_strip_pref
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.size_strip_preference = host.size_strip_preference
 			unsaved_changes = TRUE

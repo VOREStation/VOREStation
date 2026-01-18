@@ -1,10 +1,6 @@
 import { Section } from 'tgui-core/components';
 
-import {
-  digestModeToColor,
-  strip_activeToText,
-  stripModeToColor,
-} from '../constants';
+import { digestModeToColor } from '../constants';
 import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
@@ -767,8 +763,6 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
     <Section scrollable fill>
       <VoreUserPreferencesMechanical
         preferences={preferences}
-        stripModeToColor={stripModeToColor}
-        strip_activeToText={strip_activeToText}
         strip_active={strip_active}
       />
       <VoreUserPreferencesDevouring
