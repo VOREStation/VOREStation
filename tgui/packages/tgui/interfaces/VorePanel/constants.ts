@@ -85,7 +85,9 @@ export const modeToTooltip = {
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
-  'Absorbed Devour': 'Allows absorbed prey to devour other prey.',
+  'Absorbed Prey Can Devour': 'Allows absorbed prey to devour other prey.',
+  'Makes Prey Wet':
+    'Prey will be constantly made wet. This means they will drip if you let them out.',
 } as const;
 
 export const spriteToTooltip = {

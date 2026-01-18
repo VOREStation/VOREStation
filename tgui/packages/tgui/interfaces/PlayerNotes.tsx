@@ -29,7 +29,7 @@ export const PlayerNotes = (props) => {
     >
       <Window.Content>
         <Section fill title="Player notes">
-          <Stack vertical>
+          <Stack fill vertical>
             <Stack.Item>
               <Stack>
                 <Stack.Item>
@@ -75,27 +75,29 @@ export const PlayerNotes = (props) => {
               </Stack>
             </Stack.Item>
             <Stack.Divider />
-            <Stack.Item>
-              <Table>
-                {ckeys.map((ckey) => (
-                  <Table.Row key={ckey.name}>
-                    <Table.Cell>
-                      <Button
-                        fluid
-                        color="transparent"
-                        icon={'user'}
-                        onClick={() =>
-                          act('show_player_info', {
-                            name: ckey.name,
-                          })
-                        }
-                      >
-                        {ckey.name}
-                      </Button>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table>
+            <Stack.Item grow>
+              <Section fill scrollable>
+                <Table>
+                  {ckeys.map((ckey) => (
+                    <Table.Row key={ckey.name}>
+                      <Table.Cell>
+                        <Button
+                          fluid
+                          color="transparent"
+                          icon={'user'}
+                          onClick={() =>
+                            act('show_player_info', {
+                              name: ckey.name,
+                            })
+                          }
+                        >
+                          {ckey.name}
+                        </Button>
+                      </Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table>
+              </Section>
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>

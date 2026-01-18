@@ -88,7 +88,8 @@
 				var/datum/disease/D = ID
 				if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 					continue
-				M.ContractDisease(D)
+				M.ForceContractDisease(D)
+				D.try_infect(M)
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
