@@ -107,7 +107,7 @@
 				src.flags |= MICROWAVE_FLAGS
 		else
 			to_chat(user, span_warning("It's broken!"))
-			return 1
+			return TRUE
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
@@ -127,12 +127,12 @@
 				update_static_data_for_all_viewers()
 		else //Otherwise bad luck!!
 			to_chat(user, span_warning("It's dirty!"))
-			return 1
+			return TRUE
 	else if(is_type_in_list(O,GLOB.acceptable_items))
 		var/list/workingList = cookingContents()
 		if(workingList.len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
 			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
-			return 1
+			return TRUE
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = O
 			new O.type (src)
@@ -159,7 +159,7 @@
 			failed = 0
 			if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
 				to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
-				return 0
+				return FALSE
 			else
 				bag.remove_from_storage(G, src)
 				contents += G
@@ -168,7 +168,7 @@
 
 		if(failed)
 			to_chat(user, "Nothing in the plant bag is usable.")
-			return 0
+			return FALSE
 
 		if(!O.contents.len)
 			to_chat(user, "You empty \the [O] into \the [src].")
@@ -177,25 +177,25 @@
 
 		SStgui.update_uis(src)
 		update_static_data_for_all_viewers()
-		return 0
+		return FALSE
 
 	else if(istype(O,/obj/item/reagent_containers/glass) || \
 			istype(O,/obj/item/reagent_containers/food/drinks) || \
 			istype(O,/obj/item/reagent_containers/food/condiment) \
 		)
 		if (!O.reagents)
-			return 1
+			return TRUE
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in GLOB.acceptable_reagents))
 				to_chat(user, span_warning("Your [O] contains components unsuitable for cookery."))
-				return 1
+				return TRUE
 		// gotta let afterattack resolve
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)), 1 SECOND)
 		return
 	else if(istype(O,/obj/item/grab))
 		var/obj/item/grab/G = O
 		to_chat(user, span_warning("This is ridiculous. You can not fit \the [G.affecting] in this [src]."))
-		return 1
+		return TRUE
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		default_deconstruction_screwdriver(user, O)
 		return
@@ -428,10 +428,10 @@
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
 		if (stat & (NOPOWER|BROKEN))
-			return 0
+			return FALSE
 		use_power(active_power_usage)
 		sleep(5) //VOREStation Edit - Quicker Microwaves
-	return 1
+	return TRUE
 
 /obj/machinery/microwave/proc/has_extra_item() //- coded to have different microwaves be able to handle different items
 	if(item_level == 0)
@@ -440,8 +440,8 @@
 					!istype(O,/obj/item/reagent_containers/food) && \
 					!istype(O, /obj/item/grown) \
 				)
-				return 1
-		return 0
+				return TRUE
+		return FALSE
 	if(item_level == 1)
 		for (var/obj/O in cookingContents())
 			if ( \
@@ -451,8 +451,8 @@
 					!istype(O, /obj/item/organ) && \
 					!istype(O, /obj/item/stack/material) \
 				)
-				return 1
-		return 0
+				return TRUE
+		return FALSE
 
 /obj/machinery/microwave/proc/start()
 	src.visible_message(span_notice("The [src] starts cooking."), span_notice("You hear a [src]."))
@@ -550,10 +550,10 @@
 
 /obj/machinery/microwave/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)
-		return 1
+		return TRUE
 	if(mover.checkpass(PASSTABLE))
 	//Animals can run under them, lots of empty space
-		return 1
+		return TRUE
 	return ..()
 
 /obj/machinery/microwave/advanced // specifically for complex recipes
