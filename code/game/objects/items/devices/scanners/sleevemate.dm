@@ -291,6 +291,10 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			sleevemate_mob = new()
 
 		put_mind(sleevemate_mob)
+		if(!(sleevemate_mob.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE))
+			get_mind(sleevemate_mob)
+			to_chat(usr,span_notice("[sleevemate_mob] can't be transferred!"))
+			return
 		SC.catch_mob(sleevemate_mob)
 		to_chat(usr,span_notice("Mind transferred into Soulcatcher!"))
 
