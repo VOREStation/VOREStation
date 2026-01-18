@@ -87,3 +87,8 @@ Name = Developer
 Include = DEBUG VAREDIT SERVER SPAWN REJUVINATE POSSESS BUILD
 Exclude =
 Edit =
+
+Name = Mentor
+Include = MENTOR
+Exclude =
+Edit =
