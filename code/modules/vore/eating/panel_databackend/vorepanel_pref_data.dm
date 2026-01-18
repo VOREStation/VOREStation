@@ -58,7 +58,7 @@
 		"soulcatcher_allow_takeover" = owner.soulcatcher_pref_flags & SOULCATCHER_ALLOW_TAKEOVER,
 		"soulcatcher_allow_deletion" = (global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION) + global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION_INSTANT)),
 		"max_voreoverlay_alpha" = owner.max_voreoverlay_alpha,
-		"dropdown_preferemces" = list(
+		"dropdown_preferences" = list(
 			"strip_active" = owner.size_strip_preference,
 		)
 	)

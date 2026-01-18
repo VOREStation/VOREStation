@@ -8,9 +8,9 @@ import {
 
 export const VoreUserPreferencesMechanical = (props: {
   preferences: LocalPrefs;
-  dropdown_preferemces: DropdownPrefernces;
+  dropdownPreferences: DropdownPrefernces;
 }) => {
-  const { preferences, dropdown_preferemces } = props;
+  const { preferences, dropdownPreferences } = props;
 
   return (
     <Section title="Mechanical Preferences">
@@ -108,7 +108,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="35%">
           <VoreUserPreferenceDropdown
             spec={stripModeModel}
-            currentActive={dropdown_preferemces.strip_active}
+            currentActive={dropdownPreferences.strip_active}
             tooltipPosition="right"
           />
         </Stack.Item>

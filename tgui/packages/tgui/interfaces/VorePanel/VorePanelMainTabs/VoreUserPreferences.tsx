@@ -58,7 +58,7 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
     no_spawnpred_warning_save,
     no_spawnprey_warning_save,
     selective_active,
-    strip_active,
+    dropdown_preferences,
     soulcatcher_allow_capture,
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
@@ -763,7 +763,7 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
     <Section scrollable fill>
       <VoreUserPreferencesMechanical
         preferences={preferences}
-        strip_active={strip_active}
+        dropdownPreferences={dropdown_preferences}
       />
       <VoreUserPreferencesDevouring
         devourable={devourable}
