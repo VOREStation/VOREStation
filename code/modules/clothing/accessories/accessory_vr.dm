@@ -191,7 +191,8 @@
 			. = TRUE
 		if("power")
 			on = !on
-			icon_state = "collar_shk[on]"
+			if(!istype(src, /obj/item/clothing/accessory/collar/shock/bluespace))
+				icon_state = "collar_shk[on]"
 			. = TRUE
 		if("tag")
 			var/sanitized = tgui_input_text(ui.user, "Tag text?", "Set Tag", "", MAX_NAME_LEN, encode = TRUE)
@@ -362,10 +363,6 @@
 	return data
 
 /obj/item/clothing/accessory/collar/shock/bluespace/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	if(action == "power") //No multiple sprites for these
-		on = !on
-		. = TRUE
-		return
 	. = ..()
 	if(.)
 		return
