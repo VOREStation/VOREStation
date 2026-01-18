@@ -173,7 +173,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/update_icons_body()
-	to_chat(world, "update_icons_body")
 	if(QDESTROYING(src))
 		return
 
@@ -368,6 +367,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 		// Apply transparency to the whole icon if needed.
 		if(wholeicontransparent)
+			body.appearance_flags = KEEP_TOGETHER
 			body.alpha = 180
 
 		// Apply color mods

@@ -209,9 +209,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 		// TODO: verify this branch
 		var/icon/I = new(nail_polish.icon, nail_polish.icon_state)
 		I.Blend(nail_polish.color, ICON_MULTIPLY)
-		. += I
-
-	return list()
+		. += new /mutable_appearance(I)
 
 /obj/item/organ/external/head/get_extra_appearances()
 	. = ..()
