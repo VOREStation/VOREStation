@@ -261,7 +261,7 @@
 
 /obj/item/organ/external/LateInitialize()
 	if(!QDELETED(src))
-		get_icon()
+		update_dropped_icon()
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
@@ -1011,7 +1011,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			appearance_flags &= ~PIXEL_SCALE
-			compile_icon()
+			update_dropped_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
 			M.Turn(rand(180))
@@ -1052,7 +1052,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if(DROPLIMB_ACID)
 			appearance_flags &= ~PIXEL_SCALE
-			compile_icon()
+			update_dropped_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
 			M.Turn(rand(180))
@@ -1245,7 +1245,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	cannot_break = 1
 	min_broken_damage = ROBOLIMB_REPAIR_CAP //VOREStation Addition - Makes robotic limb damage scalable
 	remove_splint()
-	get_icon()
+	update_dropped_icon()
 	unmutate()
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'

@@ -277,13 +277,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		body.layer = BODY_LAYER + BODYPARTS_LAYER
 
 		var/obj/item/organ/external/chest = get_organ(BP_TORSO)
-		var/list/chest_appearance = chest.get_appearance(skeleton, !wholeicontransparent)
-		var/mutable_appearance/chest_MA = chest_appearance["base"]
+		var/mutable_appearance/chest_MA = chest.simple_compile_ma(skeleton, !wholeicontransparent)
 		chest_MA.layer = BODY_LAYER + BODYPARTS_LAYER
-		for(var/M in chest_appearance["markings"])
-			chest_MA.overlays += M
-		for(var/extra_MA in chest_appearance["extra"])
-			chest_MA.overlays += extra_MA
 		body.overlays += chest_MA
 
 		// Taur cutting
@@ -291,7 +286,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/taur_cutter_x = 0
 		var/taur_cutter_y = 0
 
-		// TODO: Can we remove this outer if statement?
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
 			if(tail_style.clip_mask)
 				taur_cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
