@@ -26,6 +26,12 @@
 	var/appliancetype = MICROWAVE
 	var/datum/looping_sound/microwave/soundloop
 
+	var/idle_icon_state = "mw"
+	var/cooking_icon_state = "mw1"
+	var/dirty_idle_icon_state = "mwbloody0"
+	var/dirty_cooking_icon_state = "mwbloody1"
+	var/broken_icon_state = "mwb"
+
 
 //see code/modules/food/recipes_microwave.dm for recipes
 
@@ -73,29 +79,29 @@
 
 /obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.broken > 0)
-		if(src.broken == 2 && O.has_tool_quality(TOOL_SCREWDRIVER)) // If it's broken and they're using a screwdriver
+		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				span_infoplain(span_bold("\The [user]") + " starts to fix part of the microwave."), \
-				span_notice("You start to fix part of the microwave.") \
+				span_infoplain(span_bold("\The [user]") + " starts to fix part of the [src]."), \
+				span_notice("You start to fix part of the [src].") \
 			)
 			playsound(src, O.usesound, 50, 1)
 			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				user.visible_message( \
-					span_infoplain(span_bold("\The [user]") + " fixes part of the microwave."), \
-					span_notice("You have fixed part of the microwave.") \
+					span_infoplain(span_bold("\The [user]") + " fixes part of the [src]."), \
+					span_notice("You have fixed part of the [src].") \
 				)
 				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && O.has_tool_quality(TOOL_WRENCH)) // If it's broken and they're doing the wrench
+		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				span_infoplain(span_bold("\The [user]") + " starts to fix part of the microwave."), \
-				span_notice("You start to fix part of the microwave.") \
+				span_infoplain(span_bold("\The [user]") + " starts to fix part of the [src]."), \
+				span_notice("You start to fix part of the [src].") \
 			)
 			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				user.visible_message( \
-					span_infoplain(span_bold("\The [user]") + " fixes the microwave."), \
-					span_notice("You have fixed the microwave.") \
+					span_infoplain(span_bold("\The [user]") + " fixes the [src]."), \
+					span_notice("You have fixed the [src].") \
 				)
-				src.icon_state = "mw"
+				src.icon_state = idle_icon_state
 				src.broken = 0 // Fix it!
 				src.dirty = 0 // just to be sure
 				src.flags |= MICROWAVE_FLAGS
@@ -106,19 +112,19 @@
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
-				span_infoplain(span_bold("\The [user]") + " starts to clean the microwave."), \
-				span_notice("You start to clean the microwave.") \
+				span_bold("\The [user]") + "starts to clean the [src].", \
+				span_notice("You start to clean the [src].") \
 			)
 			if (do_after(user, 2 SECONDS, target = src))
 				user.visible_message( \
-					span_notice("\The [user] has cleaned the microwave."), \
-					span_notice("You have cleaned the microwave.") \
+					span_notice("\The [user] has cleaned the [src]."), \
+					span_notice("You have cleaned the [src].") \
 				)
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
-				src.icon_state = "mw"
+				src.icon_state = idle_icon_state
 				src.flags |= MICROWAVE_FLAGS
-				SStgui.update_uis(src)
+				update_static_data_for_all_viewers()
 		else //Otherwise bad luck!!
 			to_chat(user, span_warning("It's dirty!"))
 			return 1
@@ -198,13 +204,13 @@
 			return
 		else
 			user.visible_message( \
-				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the microwave."), \
-				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the microwave.")
+				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the [src]."), \
+				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the [src].")
 				)
 			if (do_after(user, (2 SECONDS)/O.toolspeed, target = src))
 				user.visible_message( \
-				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the microwave."), \
-				span_notice("You [src.anchored ? "unsecure" : "secure"] the microwave.")
+				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the [src]."), \
+				span_notice("You [src.anchored ? "unsecure" : "secure"] the [src].")
 				)
 				src.anchored = !src.anchored
 			else
@@ -406,22 +412,18 @@
 		muck_start()
 		wzhzhzh(2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 		muck_finish()
-		cooked = fail()
-		cooked.forceMove(src.loc)
 	else if(has_extra_item())
 		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 			stop(FALSE)
 			return
 		broke()
-		cooked = fail()
-		cooked.forceMove(src.loc)
 	else
 		if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
 			stop(FALSE)
 			return
 		stop(TRUE)
-		cooked = fail()
-		cooked.forceMove(src.loc)
+	cooked = fail()
+	cooked.forceMove(src.loc)
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
@@ -452,19 +454,19 @@
 				return 1
 		return 0
 
-/obj/machinery/microwave/proc/start()
-	src.visible_message(span_notice("The microwave turns on."), span_notice("You hear a microwave."))
+/obj/machinery/microwave/proc/start(var/msg = "The [src] turns on.", var/msgblind = "You hear a [src].")
+	src.visible_message(span_notice(msg), span_notice(msgblind))
 	soundloop.start()
 	src.operating = TRUE
-	src.icon_state = "mw1"
+	src.icon_state = cooking_icon_state
 	SStgui.update_uis(src)
 
 /obj/machinery/microwave/proc/stop(var/success = TRUE)
 	if(success)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
-	if(icon_state == "mw1")
-		icon_state = "mw"
+	if(icon_state == cooking_icon_state)
+		icon_state = idle_icon_state
 	SStgui.update_uis(src)
 	soundloop.stop()
 
@@ -475,29 +477,30 @@
 		src.dirty++
 	src.reagents.clear_reagents()
 	if(message)
-		to_chat(usr, span_notice("You dispose of the microwave contents."))
+		to_chat(usr, span_notice("You dispose of the [src]'s contents."))
 	SStgui.update_uis(src)
 
 /obj/machinery/microwave/proc/muck_start()
 	playsound(src, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
-	src.icon_state = "mwbloody1" // Make it look dirty!!
+	src.icon_state = dirty_cooking_icon_state // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	src.visible_message(span_warning("The microwave gets covered in muck!"))
+	src.visible_message(span_warning("The [src] gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
-	src.icon_state = "mwbloody0" // Make it look dirty too
+	src.icon_state = dirty_idle_icon_state // Make it look dirty too
 	src.operating = FALSE // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
 
 
-/obj/machinery/microwave/proc/broke()
-	var/datum/effect/effect/system/spark_spread/s = new
-	s.set_up(2, 1, src)
-	s.start()
-	src.icon_state = "mwb" // Make it look all busted up and shit
-	src.visible_message(span_warning("The microwave breaks!")) //Let them know they're stupid
+/obj/machinery/microwave/proc/broke(var/spark = TRUE)
+	if(spark)
+		var/datum/effect/effect/system/spark_spread/s = new
+		s.set_up(2, 1, src)
+		s.start()
+	src.icon_state = broken_icon_state // Make it look all busted up and shit
+	src.visible_message(span_warning("The [src] breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.operating = FALSE // Turn it off again aferwards
