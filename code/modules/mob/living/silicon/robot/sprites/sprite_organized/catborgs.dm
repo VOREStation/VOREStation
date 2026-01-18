@@ -252,11 +252,11 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
-	module_type = list("Service", "Clerical", "Janitor") //They get Janitor because no specific janitor sprite.
+	module_type = list("Service", "Clerical") //They get Janitor because no specific janitor sprite.
 
 /// Janiborg
 /datum/robot_sprite/dogborg/janitor/catborg
-	name = "Catborg - Janitor"
+	name = "Catborg"
 	sprite_icon_state = "service"
 	sprite_hud_icon_state = "service"
 	has_eye_sprites = TRUE
