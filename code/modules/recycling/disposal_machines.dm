@@ -525,7 +525,7 @@
 
 	if(!SEND_SIGNAL(src, COMSIG_DISPOSAL_FLUSH, flushed_items, air_contents)) //If the signal isnt recieved, we'll just expel immediately.
 		if(length(contents))
-			packet_expel( src, flushed_items, air_contents)
+			packet_expel(src, flushed_items, air_contents)
 
 	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv. Disposal packet takes ownership of the original one!
 	flushing = FALSE
