@@ -26,12 +26,6 @@
 	var/appliancetype = MICROWAVE
 	var/datum/looping_sound/microwave/soundloop
 
-	var/idle_icon_state = "mw"
-	var/cooking_icon_state = "mw1"
-	var/dirty_idle_icon_state = "mwbloody0"
-	var/dirty_cooking_icon_state = "mwbloody1"
-	var/broken_icon_state = "mwb"
-
 	var/visible_action = "turns on"
 	var/audible_action = null
 
@@ -79,131 +73,173 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(src.broken > 0)
-		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
-			user.visible_message( \
-				span_infoplain(span_bold("\The [user]") + " starts to fix part of the [src]."), \
-				span_notice("You start to fix part of the [src].") \
-			)
-			playsound(src, O.usesound, 50, 1)
-			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
-				user.visible_message( \
-					span_infoplain(span_bold("\The [user]") + " fixes part of the [src]."), \
-					span_notice("You have fixed part of the [src].") \
-				)
-				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
-			user.visible_message( \
-				span_infoplain(span_bold("\The [user]") + " starts to fix part of the [src]."), \
-				span_notice("You start to fix part of the [src].") \
-			)
-			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
-				user.visible_message( \
-					span_infoplain(span_bold("\The [user]") + " fixes the [src]."), \
-					span_notice("You have fixed the [src].") \
-				)
-				src.icon_state = idle_icon_state
-				src.broken = 0 // Fix it!
-				src.dirty = 0 // just to be sure
-				src.flags |= MICROWAVE_FLAGS
+/obj/machinery/microwave/proc/update_icon()
+	if(broken >= 1)
+		icon_state = "mwb"
+		return TRUE
+	if(dirty >= 100)
+		if(operating)
+			icon_state = "mwbloody1"
 		else
-			to_chat(user, span_warning("It's broken!"))
-			return TRUE
+			icon_state = "mwbloody0"
+		return TRUE
+	if(operating)
+		icon_state = "mw1"
+	else
+		icon_state = "mw"
+	return TRUE
 
-	else if(src.dirty==100) // The microwave is all dirty so can't be used!
-		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
-			user.visible_message( \
-				span_bold("\The [user]") + "starts to clean the [src].", \
-				span_notice("You start to clean the [src].") \
-			)
-			if (do_after(user, 2 SECONDS, target = src))
-				user.visible_message( \
-					span_notice("\The [user] has cleaned the [src]."), \
-					span_notice("You have cleaned the [src].") \
-				)
-				src.dirty = 0 // It's clean!
-				src.broken = 0 // just to be sure
-				src.icon_state = idle_icon_state
-				src.flags |= MICROWAVE_FLAGS
-				update_static_data_for_all_viewers()
-		else //Otherwise bad luck!!
-			to_chat(user, span_warning("It's dirty!"))
+/obj/machinery/microwave/proc/post_state_change()
+	update_static_data_for_all_viewers()
+	update_icon()
+	SStgui.update_uis(src)
+
+/obj/machinery/microwave/attackby(obj/item/O, mob/user)
+	if(handle_broken(O, user)) return TRUE
+	if(handle_dirty(O, user)) return TRUE
+	if(handle_deconstruction(O, user)) return TRUE
+	if(try_insert_item(O, user)) return TRUE
+	if(istype(O,/obj/item/grab))
+		to_chat(user, span_warning("Unfortunately, the laws of physics prevent you from inserting \the [O.affecting] into the [src]."))
+		return TRUE
+	if(istype(O, /obj/item/paicard))
+		if(!paicard)
+			insertpai(user, O)
 			return TRUE
-	else if(is_type_in_list(O,GLOB.acceptable_items))
+		to_chat(user, span_warning("There is already a pAI inserted, and you don't feel like cooking \the [O]."))
+		return TRUE
+	to_chat(user, span_warning("You have no idea what you can cook with \the [O]."))
+	..()
+	post_state_change()
+	return FALSE
+
+/obj/machinery/microwave/proc/handle_broken(obj/item/O, mob/user)
+	if(src.broken <= 0)
+		return FALSE
+
+	if(src.broken == 2 && O.has_tool_quality(SCREWDRIVER)) // If it's broken and they're using a screwdriver
+		return do_repair_step(user, O, FALSE)
+
+	if(src.broken == 1 && O.has_tool_quality(TOOL_WRENCH)) // If it's broken and they're doing the wrench
+		return do_repair_step(user, O, TRUE)
+
+	to_chat(user, span_warning("It's broken!"))
+	return TRUE
+
+/obj/machinery/microwave/proc/do_repair_step(mob/user, obj/item/tool, full_repair = FALSE)
+	user.visible_message(
+		span_infoplain(span_bold("\The [user]") + " starts to fix part of the [src]."),
+		span_notice("You start to fix part of the [src].")
+	)
+	playsound(src, tool.usesound, 50, 1)
+
+	if(!do_after(user, 2 SECONDS * tool.toolspeed, target = src))
+		return TRUE
+
+	user.visible_message(
+		span_infoplain(span_bold("\The [user]") + (full_repair ? " fixes the [src]." : " fixes part of the [src].")),
+		span_notice(full_repair ? "You have fixed the [src]." : "You have fixed part of the [src].")
+	)
+
+	broken = full_repair ? 0 : 1
+	if(full_repair)
+		dirty = 0
+		flags |= MICROWAVE_FLAGS
+
+	post_state_change()
+	return TRUE
+
+/obj/machinery/microwave/proc/handle_dirty(obj/item/O, mob/user)
+	if(dirty < 100)
+		return FALSE
+
+	if(!is_type_in_list(O, list(/obj/item/soap, /obj/item/reagent_containers/spray/cleaner, /obj/item/reagent_containers/glass/rag)))
+		to_chat(user, span_warning("It's dirty!"))
+		return TRUE
+
+	user.visible_message( \
+		span_infoplain(span_bold("\The [user]") + " starts to clean the [src]."),
+		span_notice("You start to clean the [src].") \
+	)
+
+	if(!do_after(user, 2 SECONDS, target = src))
+
+	user.visible_message( \
+		span_infoplain(span_bold("\The [user]") + " has cleaned the [src]."),
+		span_notice("You have cleaned the [src].") \
+	)
+
+	dirty = 0
+	broken = 0
+	flags |= MICROWAVE_FLAGS
+	post_state_change()
+	return TRUE
+
+/obj/machinery/microwave/proc/try_insert_item(obj/item/O, mob/user)
+	if(is_type_in_list(O, GLOB.acceptable_items))
 		var/list/workingList = cookingContents()
-		if(workingList.len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
+		if(length(workingList) >= (max_n_of_items + circuit_item_capacity))
 			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 			return TRUE
-		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
-			var/obj/item/stack/S = O
-			new O.type (src)
-			S.use(1)
+		if(istype(O, /obj/item/stack) && O.amount > 1)
+			var/obj/item/stack/S = O.split(1)
+			if(!S)
+			S.forceMove(src)
 			user.visible_message( \
-				span_notice("\The [user] has added one of [O] to \the [src]."), \
-				span_notice("You add one of [O] to \the [src]."))
-			update_static_data_for_all_viewers()
-			return
-		else
-		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete - Man whoever you are, it's been years. o7
-			user.drop_from_inventory(O,src)
-			user.visible_message( \
-				span_notice("\The [user] has added \the [O] to \the [src]."), \
-				span_notice("You add \the [O] to \the [src]."))
-			update_static_data_for_all_viewers()
-			return
-	else if (istype(O,/obj/item/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
+				span_notice(span_bold("\The [user]") + " has added one [O] to \the [src]."), \
+				span_notice("You add one [O] to \the [src]."))
+			return TRUE
+		user.drop_from_inventory(O, src)
+		user.visible_message(
+			span_infoplain(span_bold("\The [user]") + " has added \the [O] to \the [src].")
+			span_notice("You add \the [O] to \the [src].")
+		)
+		return TRUE
+	if(istype(O, /obj/item/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
 		var/obj/item/storage/bag/plants/bag = O
 		var/failed = 1
 		for(var/obj/item/G in O.contents)
 			if(!G.reagents || !G.reagents.total_volume)
 				continue
 			failed = 0
-			if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
+			if(length(contents) >= (max_n_of_items + circuit_item_capacity))
 				to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
-				return FALSE
-			else
-				bag.remove_from_storage(G, src)
-				contents += G
-				if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
-					break
+				return TRUE
+			bag.remove_from_storage(G, src)
+			contents += G
+			if(length(contents) >= (max_n_of_items + circuit_item_capacity))
+				break
 
 		if(failed)
-			to_chat(user, "Nothing in the plant bag is usable.")
-			return FALSE
+			to_chat(user, "Nothing in the [O] can be used for cooking.")
+			return TRUE
 
-		if(!O.contents.len)
-			to_chat(user, "You empty \the [O] into \the [src].")
-		else
-			to_chat(user, "You fill \the [src] from \the [O].")
+		to_chat(user, !length(O.contents) ? "You empty \the [O] into \the [src]." : "You fill \the [src] from \the [O].")
+		return TRUE
 
-		SStgui.update_uis(src)
-		update_static_data_for_all_viewers()
-		return FALSE
-
-	else if(istype(O,/obj/item/reagent_containers/glass) || \
+	if(istype(O,/obj/item/reagent_containers/glass) || \
 			istype(O,/obj/item/reagent_containers/food/drinks) || \
 			istype(O,/obj/item/reagent_containers/food/condiment) \
 		)
 		if (!O.reagents)
+			to_chat(user, span_warning("\The [O] is empty!"))
 			return TRUE
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in GLOB.acceptable_reagents))
-				to_chat(user, span_warning("Your [O] contains components unsuitable for cookery."))
+				to_chat(user, span_warning("\The [O] contains components unsuitable for cooking."))
 				return TRUE
 		// gotta let afterattack resolve
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)), 1 SECOND)
-		return
-	else if(istype(O,/obj/item/grab))
-		var/obj/item/grab/G = O
-		to_chat(user, span_warning("This is ridiculous. You can not fit \the [G.affecting] in this [src]."))
 		return TRUE
-	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
+	return FALSE
+
+/obj/machinery/microwave/proc/handle_deconstruction(obj/item/O, mob/user)
+	if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		default_deconstruction_screwdriver(user, O)
-		return
-	else if(O.has_tool_quality(TOOL_CROWBAR))
+		return TRUE
+	if(O.has_tool_quality(TOOL_CROWBAR))
 		if(default_deconstruction_crowbar(user, O))
-			return
+			return TRUE
 		else
 			user.visible_message( \
 				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the [src]."), \
@@ -217,15 +253,10 @@
 				src.anchored = !src.anchored
 			else
 				to_chat(user, span_notice("You decide not to do that."))
-	else if(default_part_replacement(user, O))
-		return
-	else if(istype(O, /obj/item/paicard))
-		if(!paicard)
-			insertpai(user, O)
-	else
-		to_chat(user, span_warning("You have no idea what you can cook with this [O]."))
-	..()
-	SStgui.update_uis(src)
+			return TRUE
+	if(default_part_replacement(user, O))
+		return TRUE
+	return FALSE
 
 /obj/machinery/microwave/tgui_status(mob/user)
 	if(user == paicard?.pai)
@@ -436,40 +467,30 @@
 	return TRUE
 
 /obj/machinery/microwave/proc/has_extra_item() //- coded to have different microwaves be able to handle different items
-	if(item_level == 0)
-		for (var/obj/O in cookingContents())
-			if ( \
-					!istype(O,/obj/item/reagent_containers/food) && \
-					!istype(O, /obj/item/grown) \
-				)
-				return TRUE
-		return FALSE
-	if(item_level == 1)
-		for (var/obj/O in cookingContents())
-			if ( \
-					!istype(O, /obj/item/reagent_containers/food) && \
-					!istype(O, /obj/item/grown) && \
-					!istype(O, /obj/item/slime_extract) && \
-					!istype(O, /obj/item/organ) && \
-					!istype(O, /obj/item/stack/material) \
-				)
-				return TRUE
-		return FALSE
+	var/is_advanced = item_level >= 1
+	var/basic_microwave_types = list(/obj/item/reagent_containers/food, /obj/item/grown)
+	var/advanced_microwave_types = list(/obj/item/slime_extract, /obj/item/organ, /obj/item/stack/material)
+	for (var/obj/O in cookingContents())
+		if ( \
+				!is_type_in_list(O, basic_microwave_types) && \
+				(
+					!is_advanced || !is_type_in_list(O, advanced_microwave_types)
+				) \
+			)
+			return TRUE
+	return FALSE
 
 /obj/machinery/microwave/proc/start()
 	src.visible_message(span_notice("The [src] " + visible_action + "."), span_notice("You hear a " + audible_action ? audible_action : "[src]" + "."))
-	soundloop.start()
 	src.operating = TRUE
-	src.icon_state = cooking_icon_state
-	SStgui.update_uis(src)
+	post_state_change()
+	soundloop.start()
 
 /obj/machinery/microwave/proc/stop(var/success = TRUE)
 	if(success)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
-	if(icon_state == cooking_icon_state)
-		icon_state = idle_icon_state
-	SStgui.update_uis(src)
+	post_state_change()
 	soundloop.stop()
 
 /obj/machinery/microwave/proc/dispose(var/message = TRUE)
@@ -484,15 +505,14 @@
 
 /obj/machinery/microwave/proc/muck_start()
 	playsound(src, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
-	src.icon_state = dirty_cooking_icon_state // Make it look dirty!!
+	src.dirty = 100 // Make it dirty so it can't be used util cleaned
+	post_state_change()
 
 /obj/machinery/microwave/proc/muck_finish()
 	src.visible_message(span_warning("The [src] gets covered in muck!"))
-	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
-	src.icon_state = dirty_idle_icon_state // Make it look dirty too
 	src.operating = FALSE // Turn it off again aferwards
-	SStgui.update_uis(src)
+	post_state_change()
 	soundloop.stop()
 
 /obj/machinery/microwave/proc/broke(var/spark = TRUE)
@@ -500,14 +520,13 @@
 		var/datum/effect/effect/system/spark_spread/s = new
 		s.set_up(2, 1, src)
 		s.start()
-	src.icon_state = broken_icon_state // Make it look all busted up and shit
 	src.visible_message(span_warning("The [src] breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.operating = FALSE // Turn it off again aferwards
-	SStgui.update_uis(src)
-	soundloop.stop()
 	src.ejectpai() // If it broke, time to yeet the PAI.
+	post_state_change()
+	soundloop.stop()
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)

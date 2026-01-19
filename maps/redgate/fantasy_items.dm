@@ -194,14 +194,25 @@
 	name = "cooking pot"
 	icon_state = "cookingpot"
 	desc = "An old fashioned cooking pot above some logs."
-	idle_icon_state = "cookingpot"
-	cooking_icon_state = "cookingpot1"
-	dirty_idle_icon_state = "cookingpotbloody0"
-	dirty_cooking_icon_state = "cookingpotbloody1"
-	broken_icon_state = "cookingpotb"
 
 	visible_action = "starts cooking"
 	audible_action = "fire roar"
+
+/obj/machinery/microwave/proc/update_icon()
+	if(broken >= 1)
+		icon_state = "cookingpotb"
+		return TRUE
+	if(dirty >= 100)
+		if(operating)
+			icon_state = "cookingpotbloody1"
+		else
+			icon_state = "cookingpotbloody0"
+		return TRUE
+	if(operating)
+		icon_state = "cookingpot1"
+	else
+		icon_state = "cookingpot"
+	return TRUE
 
 /obj/machinery/microwave/cookingpot/broke(var/spark = FALSE)
 	. = ..()
