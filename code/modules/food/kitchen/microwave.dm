@@ -19,10 +19,9 @@
 	var/operating = FALSE // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
-	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
 	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
 
-	var/global/max_n_of_items = 20
+	var/item_capacity = 21
 	var/appliancetype = MICROWAVE
 	var/datum/looping_sound/microwave/soundloop
 
@@ -177,7 +176,7 @@
 /obj/machinery/microwave/proc/try_insert_item(obj/item/O, mob/user)
 	if(is_type_in_list(O, GLOB.acceptable_items))
 		var/list/workingList = cookingContents()
-		if(length(workingList) >= (max_n_of_items + circuit_item_capacity))
+		if(length(workingList) >= (item_capacity))
 			to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 			return TRUE
 		if(istype(O, /obj/item/stack) && O:get_amount() > 0)
@@ -201,12 +200,12 @@
 			if(!G.reagents || !G.reagents.total_volume)
 				continue
 			failed = 0
-			if(length(contents) >= (max_n_of_items + circuit_item_capacity))
+			if(length(contents) >= (item_capacity))
 				to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 				return TRUE
 			bag.remove_from_storage(G, src)
 			contents += G
-			if(length(contents) >= (max_n_of_items + circuit_item_capacity))
+			if(length(contents) >= (item_capacity))
 				break
 
 		if(failed)
@@ -578,7 +577,7 @@
 	icon = 'icons/obj/deluxemicrowave.dmi'
 	icon_state = "mw"
 	circuit = /obj/item/circuitboard/microwave/advanced
-	circuit_item_capacity = 100
+	item_capacity = 120
 	item_level = 1
 
 /obj/machinery/microwave/advanced/Initialize(mapload)
