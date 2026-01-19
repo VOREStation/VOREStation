@@ -65,7 +65,6 @@
 	if (!ckey)
 		return
 
-	/* FIXME: Stuff we dont have > Can be reimplemented later on
 	var/list/all_known_alts = GLOB.known_alts.load_known_alts()
 	var/list/our_known_alts = list()
 
@@ -140,7 +139,6 @@
 		))
 		query.Execute()
 		qdel(query)
-	*/
 
 #undef TGUI_TELEMETRY_MAX_CONNECTIONS
 #undef TGUI_TELEMETRY_RESPONSE_WINDOW
