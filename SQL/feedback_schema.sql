@@ -244,6 +244,27 @@ CREATE TABLE IF NOT EXISTS `round` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE IF NOT EXISTS `known_alts` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `ckey1` VARCHAR(32) NOT NULL,
+    `ckey2` VARCHAR(32) NOT NULL,
+    `admin_ckey` VARCHAR(32) NOT NULL DEFAULT '*no key*',
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `unique_contraints` (`ckey1` , `ckey2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `telemetry_connections` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `ckey` VARCHAR(32) NOT NULL,
+    `telemetry_ckey` VARCHAR(32) NOT NULL,
+    `address` INT(10) UNSIGNED NOT NULL,
+    `computer_id` VARCHAR(32) NOT NULL,
+    `first_round_id` INT(11) UNSIGNED NULL,
+    `latest_round_id` INT(11) UNSIGNED NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `unique_constraints` (`ckey` , `telemetry_ckey` , `address` , `computer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `chatlogs_ckeys` (
   `ckey` varchar(45) NOT NULL,
   `token` varchar(255) DEFAULT NULL,
