@@ -366,7 +366,7 @@
 ************************************/
 
 /obj/machinery/microwave/proc/cook()
-	if(stat & (NOPOWER|BROKEN))
+	if(inoperable())
 		return
 	start()
 	if(reagents.total_volume==0 && !(locate(/obj) in cookingContents())) //dry run
@@ -458,7 +458,6 @@
 	for (var/i=1 to seconds)
 		if (stat & (NOPOWER|BROKEN))
 			return FALSE
-		use_power(active_power_usage)
 		sleep(5) //VOREStation Edit - Quicker Microwaves
 	return TRUE
 
@@ -477,8 +476,9 @@
 	return FALSE
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message(span_notice("The [src] " + visible_action + "."), span_notice("You hear a " + audible_action ? audible_action : "[src]" + "."))
+	src.visible_message(span_notice("\The [src] " + visible_action + "."), span_notice("You hear a " + audible_action ? audible_action : "[src]" + "."))
 	src.operating = TRUE
+	update_use_power(USE_POWER_ACTIVE)
 	post_state_change()
 	soundloop.start()
 
@@ -486,6 +486,10 @@
 	if(success)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
+	if(broken)
+		update_use_power(USE_POWER_OFF)
+	else
+		update_use_power(USE_POWER_IDLE)
 	post_state_change()
 	soundloop.stop()
 
@@ -505,24 +509,20 @@
 	post_state_change()
 
 /obj/machinery/microwave/proc/muck_finish()
-	src.visible_message(span_warning("The [src] gets covered in muck!"))
+	src.visible_message(span_warning("\The [src] gets covered in muck!"))
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
-	src.operating = FALSE // Turn it off again aferwards
-	post_state_change()
-	soundloop.stop()
+	stop(FALSE)
 
 /obj/machinery/microwave/proc/broke(var/spark = TRUE)
 	if(spark)
 		var/datum/effect/effect/system/spark_spread/s = new
 		s.set_up(2, 1, src)
 		s.start()
-	src.visible_message(span_warning("The [src] breaks!")) //Let them know they're stupid
+	src.visible_message(span_warning("\The [src] breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
-	src.operating = FALSE // Turn it off again aferwards
 	src.ejectpai() // If it broke, time to yeet the PAI.
-	post_state_change()
-	soundloop.stop()
+	stop(FALSE)
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
