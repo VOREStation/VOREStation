@@ -1,7 +1,16 @@
 #define MICROWAVE_FLAGS (OPENCONTAINER | NOREACT)
+#define MICROWAVE_NORMAL 0
+#define MICROWAVE_MUCK 1
+#define MICROWAVE_PRE 2
+
+#define NOT_BROKEN 0
+#define KINDA_BROKEN 1
+#define REALLY_BROKEN 2
+
+#define MAX_MICROWAVE_DIRTINESS 100
 
 /obj/machinery/microwave
-	name = "Microwave"
+	name = "microwave"
 	desc = "Studies are inconclusive on whether pressing your face against the glass is harmful."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
@@ -16,23 +25,51 @@
 	clickvol = 30
 	flags = MICROWAVE_FLAGS
 	circuit = /obj/item/circuitboard/microwave
-	var/operating = FALSE // Is it on?
+	var/operating = FALSE
 	var/dirty = 0 // = {0..100} Does it need cleaning?
-	var/broken = 0 // ={0,1,2} How broken is it???
-	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
+	var/broken = NOT_BROKEN // ={0,1,2} How broken is it???
+	var/advanced_microwave = FALSE // is this an advanced microwave?
+	var/always_advanced = FALSE // is this advanced no matter what?
+	var/efficiency = 0
 
-	var/item_capacity = 21
+	var/item_capacity = 20
 	var/appliancetype = MICROWAVE
 	var/datum/looping_sound/microwave/soundloop
 
 	var/visible_action = "turns on"
 	var/audible_action = null
 
+/obj/machinery/microwave/advanced
+	name = "deluxe microwave"
+	icon = 'icons/obj/deluxemicrowave.dmi'
+	always_advanced = TRUE
+	advanced_microwave = TRUE
+
 //see code/modules/food/recipes_microwave.dm for recipes
 
 /*******************
 *   Initialising
 ********************/
+
+/obj/machinery/microwave/RefreshParts()
+	efficiency = 0
+	advanced_microwave = FALSE
+	name = "microwave"
+	icon = 'icons/obj/kitchen.dmi'
+	for(var/obj/item/stock_parts/scanning_module/scanning_module in component_parts)
+		if(scanning_module.rating >= 3 || always_advanced)
+			advanced_microwave = TRUE
+			name = "deluxe microwave"
+			icon = 'icons/obj/deluxemicrowave.dmi'
+		break
+	for(var/obj/item/stock_parts/matter_bin/matter_bin in component_parts)
+		item_capacity = (advanced_microwave ? 80 : 20) * matter_bin.rating
+		reagents.maximum_volume = (advanced_microwave ? 400 : 80) * matter_bin.rating
+		break
+	for(var/obj/item/stock_parts/micro_laser/micro_laser in component_parts)
+		efficiency += micro_laser.rating
+	for(var/obj/item/stock_parts/capacitor/capacitor in component_parts)
+		active_power_usage = max(100, 2000 / capacitor.rating)
 
 /obj/machinery/microwave/Initialize(mapload)
 	. = ..()
@@ -61,8 +98,10 @@
 		GLOB.acceptable_items |= /obj/item/fuel_assembly/supermatter
 
 	soundloop = new(list(src), FALSE)
+	update_icon()
 
 /obj/machinery/microwave/Destroy()
+	dispose(FALSE)
 	if(paicard)
 		ejectpai() // Lets not delete the pAI.
 	QDEL_NULL(soundloop)
@@ -73,10 +112,10 @@
 ********************/
 
 /obj/machinery/microwave/update_icon()
-	if(broken >= 1)
+	if(broken)
 		icon_state = "mwb"
 		return TRUE
-	if(dirty >= 100)
+	if(dirty >= MAX_MICROWAVE_DIRTINESS)
 		if(operating)
 			icon_state = "mwbloody1"
 		else
@@ -114,13 +153,13 @@
 	return FALSE
 
 /obj/machinery/microwave/proc/handle_broken(obj/item/O, mob/user)
-	if(src.broken <= 0)
+	if(src.broken <= NOT_BROKEN)
 		return FALSE
 
-	if(src.broken == 2 && O.has_tool_quality(TOOL_SCREWDRIVER)) // If it's broken and they're using a screwdriver
+	if(src.broken == REALLY_BROKEN && O.has_tool_quality(TOOL_SCREWDRIVER)) // If it's broken and they're using a screwdriver
 		return do_repair_step(user, O, FALSE)
 
-	if(src.broken == 1 && O.has_tool_quality(TOOL_WRENCH)) // If it's broken and they're doing the wrench
+	if(src.broken == KINDA_BROKEN && O.has_tool_quality(TOOL_WRENCH)) // If it's broken and they're doing the wrench
 		return do_repair_step(user, O, TRUE)
 
 	to_chat(user, span_warning("It's broken!"))
@@ -141,14 +180,14 @@
 		span_notice(full_repair ? "You have fixed \the [src]." : "You have fixed part of \the [src].")
 	)
 
-	broken = full_repair ? 0 : 1
+	broken = full_repair ? NOT_BROKEN : KINDA_BROKEN
 	flags |= MICROWAVE_FLAGS
 
 	post_state_change()
 	return TRUE
 
 /obj/machinery/microwave/proc/handle_dirty(obj/item/O, mob/user)
-	if(dirty < 100)
+	if(dirty < MAX_MICROWAVE_DIRTINESS)
 		return FALSE
 
 	if(!is_type_in_list(O, list(/obj/item/soap, /obj/item/reagent_containers/spray/cleaner, /obj/item/reagent_containers/glass/rag)))
@@ -175,8 +214,7 @@
 
 /obj/machinery/microwave/proc/try_insert_item(obj/item/O, mob/user)
 	if(is_type_in_list(O, GLOB.acceptable_items))
-		var/list/workingList = cookingContents()
-		if(length(workingList) >= (item_capacity))
+		if(length(cookingContents()) >= (item_capacity))
 			to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 			return TRUE
 		if(istype(O, /obj/item/stack) && O:get_amount() > 0)
@@ -200,12 +238,11 @@
 			if(!G.reagents || !G.reagents.total_volume)
 				continue
 			failed = 0
-			if(length(contents) >= (item_capacity))
+			if(length(cookingContents()) >= (item_capacity))
 				to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 				return TRUE
 			bag.remove_from_storage(G, src)
-			contents += G
-			if(length(contents) >= (item_capacity))
+			if(length(cookingContents()) >= (item_capacity))
 				break
 
 		if(failed)
@@ -258,12 +295,6 @@
 		return STATUS_INTERACTIVE
 	. = ..()
 
-/obj/machinery/microwave/tgui_state(mob/user)
-	return GLOB.tgui_physical_state
-
-/obj/machinery/microwave/attack_ai(mob/user as mob)
-	attack_hand(user)
-
 /obj/machinery/microwave/attack_hand(mob/user as mob)
 	if(user.a_intent == I_GRAB)
 		if(paicard)
@@ -289,7 +320,7 @@
 /obj/machinery/microwave/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes,src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes, src)
 	data["recipe"] = recipe ? sanitize_css_class_name("[recipe.type]") : null
 	data["recipe_name"] = recipe ? initial(recipe.result:name) : null
 
@@ -300,7 +331,7 @@
 
 	data["broken"] = broken
 	data["operating"] = operating
-	data["dirty"] = dirty == 100
+	data["dirty"] = dirty == MAX_MICROWAVE_DIRTINESS
 	data["items"] = get_items_list()
 
 	var/list/reagents_data = list()
@@ -367,31 +398,71 @@
 /obj/machinery/microwave/proc/cook()
 	if(inoperable())
 		return
+
+	if(operating || broken > NOT_BROKEN || panel_open || !anchored || dirty >= MAX_MICROWAVE_DIRTINESS)
+		return
+
+	if(prob(max((5 / efficiency) - 5, dirty * 5)))
+		muck()
+		return
+
+	if(prob(min(dirty * 5, 100)))
+		start_can_fail()
+
 	start()
-	if(reagents.total_volume==0 && !(locate(/obj) in cookingContents())) //dry run
-		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
-			stop(FALSE)
-			return
-		stop(FALSE)
+
+/obj/machinery/microwave/proc/start()
+	wzhzhzh()
+	cook_loop()
+
+/obj/machinery/microwave/proc/start_can_fail()
+	wzhzhzh()
+	cook_loop(type = MICROWAVE_PRE, cycles = 4)
+
+/obj/machinery/microwave/proc/muck()
+	wzhzhzh()
+	playsound(src, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
+	src.dirty = MAX_MICROWAVE_DIRTINESS // Make it dirty so it can't be used util cleaned
+	post_state_change()
+	cook_loop(type = MICROWAVE_MUCK, cycles = 4)
+
+/obj/machinery/microwave/proc/cook_loop(type = MICROWAVE_NORMAL, cycles = 10, wait = max(12 - 2 * efficiency, 2))
+	if((stat & BROKEN) && type == MICROWAVE_PRE)
+		broke()
 		return
 
-	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes,src)
-	var/obj/cooked
+	if(cycles <= 0 || !length(cookingContents()))
+		switch(type)
+			if(MICROWAVE_NORMAL)
+				loop_finish()
+			if(MICROWAVE_MUCK)
+				muck_finish()
+				stop(FALSE)
+			if(MICROWAVE_PRE)
+				cook_loop(type = MICROWAVE_NORMAL, cycles = 10)
+		return
+
+	cycles--
+	addtimer(CALLBACK(src, PROC_REF(cook_loop), type, cycles, wait), wait)
+
+/obj/machinery/microwave/power_change()
+	. = ..()
+	if((stat & NOPOWER) && operating)
+		broke()
+		dispose(FALSE)
+
+/obj/machinery/microwave/proc/loop_finish()
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes, src)
 	if(!recipe)
-		handle_incorrect_recipe(cooked)
-		return
-
-	//Making multiple copies of a recipe
-	var/halftime = round(recipe.time*4/10/2) // VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
-	if(!wzhzhzh(halftime))
-		stop(FALSE)
-		return
-	recipe.before_cook(src)
-	if(!wzhzhzh(halftime))
-		stop(FALSE)
-		cooked = fail()
-		cooked.forceMove(loc)
-		recipe.after_cook(src)
+		if(length(cookingContents()) >= 1)
+			dirty += 1
+			var/obj/item/cooked = fail()
+			cooked.forceMove(loc)
+			if(prob(max(10,dirty*5)))
+				muck()
+			if(has_extra_item())
+				broke()
+		stop()
 		return
 
 	var/result = recipe.result
@@ -408,10 +479,9 @@
 
 		valid = FALSE
 		recipe.after_cook(src)
-		recipe = select_recipe(GLOB.available_recipes,src)
+		recipe = select_recipe(GLOB.available_recipes, src)
 		if(recipe && recipe.result == result)
 			valid = TRUE
-			sleep(2)
 
 	for(var/atom/movable/R as anything in cooked_items)
 		R.forceMove(src) //Move everything from the buffer back to the container
@@ -431,55 +501,25 @@
 
 	return
 
-/obj/machinery/microwave/proc/handle_incorrect_recipe(var/obj/cooked)
-	dirty += 1
-	if(prob(max(10,dirty*5)))
-		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-			stop(FALSE)
-			return
-		muck_start()
-		wzhzhzh(2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-		muck_finish()
-	else if(has_extra_item())
-		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-			stop(FALSE)
-			return
-		broke()
-	else
-		if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
-			stop(FALSE)
-			return
-		stop(TRUE)
-	cooked = fail()
-	cooked.forceMove(src.loc)
-
-/obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
-	for (var/i=1 to seconds)
-		if (stat & (NOPOWER|BROKEN))
-			return FALSE
-		sleep(5) //VOREStation Edit - Quicker Microwaves
-	return TRUE
+/obj/machinery/microwave/proc/wzhzhzh() // Whoever named this proc is fucking literally Satan. ~ Z
+	visible_message(span_notice("\The [src] " + visible_action + "."), span_notice("You hear a " + audible_action ? audible_action : "[src]" + "."))
+	operating = TRUE
+	update_use_power(USE_POWER_ACTIVE)
+	post_state_change()
+	soundloop.start()
 
 /obj/machinery/microwave/proc/has_extra_item() //- coded to have different microwaves be able to handle different items
-	var/is_advanced = item_level >= 1
 	var/basic_microwave_types = list(/obj/item/reagent_containers/food, /obj/item/grown)
 	var/advanced_microwave_types = list(/obj/item/slime_extract, /obj/item/organ, /obj/item/stack/material)
 	for (var/obj/O in cookingContents())
 		if ( \
 				!is_type_in_list(O, basic_microwave_types) && \
 				(
-					!is_advanced || !is_type_in_list(O, advanced_microwave_types)
+					!advanced_microwave || !is_type_in_list(O, advanced_microwave_types)
 				) \
 			)
 			return TRUE
 	return FALSE
-
-/obj/machinery/microwave/proc/start()
-	src.visible_message(span_notice("\The [src] " + visible_action + "."), span_notice("You hear a " + audible_action ? audible_action : "[src]" + "."))
-	src.operating = TRUE
-	update_use_power(USE_POWER_ACTIVE)
-	post_state_change()
-	soundloop.start()
 
 /obj/machinery/microwave/proc/stop(var/success = TRUE)
 	if(success)
@@ -502,15 +542,9 @@
 		to_chat(usr, span_notice("You dispose of \the [src]'s contents."))
 	SStgui.update_uis(src)
 
-/obj/machinery/microwave/proc/muck_start()
-	playsound(src, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
-	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	post_state_change()
-
 /obj/machinery/microwave/proc/muck_finish()
 	src.visible_message(span_warning("\The [src] gets covered in muck!"))
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
-	stop(FALSE)
 
 /obj/machinery/microwave/proc/broke(var/spark = TRUE)
 	if(spark)
@@ -518,10 +552,9 @@
 		s.set_up(2, 1, src)
 		s.start()
 	src.visible_message(span_warning("\The [src] breaks!")) //Let them know they're stupid
-	src.broken = 2 // Make it broken so it can't be used util fixed
+	src.broken = REALLY_BROKEN // Make it broken so it can't be used util fixed
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.ejectpai() // If it broke, time to yeet the PAI.
-	stop(FALSE)
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
@@ -572,18 +605,6 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/microwave/advanced // specifically for complex recipes
-	name = "deluxe microwave"
-	icon = 'icons/obj/deluxemicrowave.dmi'
-	icon_state = "mw"
-	circuit = /obj/item/circuitboard/microwave/advanced
-	item_capacity = 120
-	item_level = 1
-
-/obj/machinery/microwave/advanced/Initialize(mapload)
-	. = ..()
-	reagents.maximum_volume = 1000
-
 /datum/recipe/splat // We use this to handle cooking micros (or mice, etc) in a microwave. Janky but it works better than snowflake code to handle the same thing.
 	items = list(
 		/obj/item/holder
@@ -594,7 +615,7 @@
 /datum/recipe/splat/before_cook(obj/container)
 	if(istype(container, /obj/machinery/microwave))
 		var/obj/machinery/microwave/M = container
-		M.muck_start()
+		M.muck()
 		playsound(container.loc, 'sound/items/drop/flesh.ogg', 100, 1)
 	. = ..()
 
@@ -607,12 +628,6 @@
 			qdel(H)
 
 	. = ..()
-
-/datum/recipe/splat/after_cook(obj/container)
-	if(istype(container, /obj/machinery/microwave))
-		var/obj/machinery/microwave/M = container
-		M.muck_finish()
-	.  = ..()
 
 /obj/machinery/microwave/proc/cookingContents() //VOREEdit, this is a better way to deal with the contents of a microwave, since the previous method is stupid.
 	var/list/workingList = contents.Copy() // Using the copy proc because otherwise the two lists seem to become soul bonded.

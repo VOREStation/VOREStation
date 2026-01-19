@@ -199,10 +199,10 @@
 	audible_action = "fire roar"
 
 /obj/machinery/microwave/cookingpot/update_icon()
-	if(broken >= 1)
+	if(broken)
 		icon_state = "cookingpotb"
 		return TRUE
-	if(dirty >= 100)
+	if(dirty >= MAX_MICROWAVE_DIRTINESS)
 		if(operating)
 			icon_state = "cookingpotbloody1"
 		else

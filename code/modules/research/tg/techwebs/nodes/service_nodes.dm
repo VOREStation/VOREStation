@@ -240,7 +240,6 @@
 	description = "Top-tier kitchen appliances from Nanotrasen, designed to keep the crew well-fed and happy."
 	prereq_ids = list(TECHWEB_NODE_CAFETERIA_EQUIP)
 	design_ids = list(
-		"deluxe microwave",
 		"oven_board",
 		"fryer_board",
 		"cerealmaker_board",
