@@ -73,7 +73,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/proc/update_icon()
+/obj/machinery/microwave/update_icon()
 	if(broken >= 1)
 		icon_state = "mwb"
 		return TRUE
@@ -100,7 +100,8 @@
 	if(handle_deconstruction(O, user)) return TRUE
 	if(try_insert_item(O, user)) return TRUE
 	if(istype(O,/obj/item/grab))
-		to_chat(user, span_warning("Unfortunately, the laws of physics prevent you from inserting \the [O.affecting] into the [src]."))
+		var/obj/item/grab/G = O
+		to_chat(user, span_warning("Unfortunately, the laws of physics prevent you from inserting \the [G.affecting] into the [src]."))
 		return TRUE
 	if(istype(O, /obj/item/paicard))
 		if(!paicard)
@@ -117,7 +118,7 @@
 	if(src.broken <= 0)
 		return FALSE
 
-	if(src.broken == 2 && O.has_tool_quality(SCREWDRIVER)) // If it's broken and they're using a screwdriver
+	if(src.broken == 2 && O.has_tool_quality(TOOL_SCREWDRIVER)) // If it's broken and they're using a screwdriver
 		return do_repair_step(user, O, FALSE)
 
 	if(src.broken == 1 && O.has_tool_quality(TOOL_WRENCH)) // If it's broken and they're doing the wrench
@@ -163,6 +164,7 @@
 	)
 
 	if(!do_after(user, 2 SECONDS, target = src))
+		return TRUE
 
 	user.visible_message( \
 		span_infoplain(span_bold("\The [user]") + " has cleaned the [src]."),
@@ -181,17 +183,17 @@
 		if(length(workingList) >= (max_n_of_items + circuit_item_capacity))
 			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 			return TRUE
-		if(istype(O, /obj/item/stack) && O.amount > 1)
-			var/obj/item/stack/S = O.split(1)
-			if(!S)
-			S.forceMove(src)
+		if(istype(O, /obj/item/stack) && O:get_amount() > 0)
+			var/obj/item/stack/S = O
+			var/obj/item/stack/St = S.split(1)
+			St.forceMove(src)
 			user.visible_message( \
 				span_notice(span_bold("\The [user]") + " has added one [O] to \the [src]."), \
 				span_notice("You add one [O] to \the [src]."))
 			return TRUE
 		user.drop_from_inventory(O, src)
 		user.visible_message(
-			span_infoplain(span_bold("\The [user]") + " has added \the [O] to \the [src].")
+			span_infoplain(span_bold("\The [user]") + " has added \the [O] to \the [src]."), \
 			span_notice("You add \the [O] to \the [src].")
 		)
 		return TRUE
