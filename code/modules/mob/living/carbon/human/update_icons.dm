@@ -405,7 +405,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		//Handle husk overlay.
 		if(husk && icon_exists(species.icobase, "overlay_husk"))
 			var/mutable_appearance/husk_over = mutable_appearance(species.icobase, "overlay_husk")
-			// TODO: MASK_SWAP
 			husk_over.filters += filter(arglist(alpha_mask_filter(0, 0, getCompoundIcon(body))))
 			body.overlays += husk_over
 
