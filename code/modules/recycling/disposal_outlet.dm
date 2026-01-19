@@ -78,7 +78,6 @@
 /obj/structure/disposaloutlet/proc/packet_expel(datum/source, list/received_items, datum/gas_mixture/gas)
 	SIGNAL_HANDLER
 
-	to_chat(world, "[src] recieve signal expel: [gas]")
 	flick("outlet-open", src)
 	if((start_eject + 30) < world.time)
 		start_eject = world.time
@@ -92,7 +91,6 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 
 	var/turf/T = get_turf(src)
-	to_chat(world, "[src] expel contents: [gas]")
 
 	for(var/atom/movable/AM in ejected_items)
 		AM.forceMove(T)
