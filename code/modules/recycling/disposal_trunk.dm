@@ -42,7 +42,7 @@
 		if(SEND_SIGNAL(src, COMSIG_DISPOSAL_SEND, H))
 			return //Sent, and handled. Our job is done.
 
-	expel(H, get_turf(src), 0) // expel at turf if nothing handled it
+	pipe_expel(H, get_turf(src), 0) // expel at turf if nothing handled it
 
 	return null
 

@@ -111,5 +111,6 @@
 	var/datum/gas_mixture/gas = new()
 	gas.copy_from(packet.gas)
 	qdel(packet)
+	to_chat(world, "Before send: [gas]")
 	SEND_SIGNAL(disposal_owner, COMSIG_DISPOSAL_RECEIVE, expelled_items, gas)
 	return TRUE
