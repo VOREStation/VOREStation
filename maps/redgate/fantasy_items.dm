@@ -198,7 +198,7 @@
 	visible_action = "starts cooking"
 	audible_action = "fire roar"
 
-/obj/machinery/microwave/update_icon()
+/obj/machinery/microwave/cookingpot/update_icon()
 	if(broken >= 1)
 		icon_state = "cookingpotb"
 		return TRUE
