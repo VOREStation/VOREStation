@@ -101,7 +101,7 @@
 	if(try_insert_item(O, user)) return TRUE
 	if(istype(O,/obj/item/grab))
 		var/obj/item/grab/G = O
-		to_chat(user, span_warning("Unfortunately, the laws of physics prevent you from inserting \the [G.affecting] into the [src]."))
+		to_chat(user, span_warning("Unfortunately, the laws of physics prevent you from inserting \the [G.affecting] into \the [src]."))
 		return TRUE
 	if(istype(O, /obj/item/paicard))
 		if(!paicard)
@@ -129,8 +129,8 @@
 
 /obj/machinery/microwave/proc/do_repair_step(mob/user, obj/item/tool, full_repair = FALSE)
 	user.visible_message(
-		span_infoplain(span_bold("\The [user]") + " starts to fix part of the [src]."),
-		span_notice("You start to fix part of the [src].")
+		span_infoplain(span_bold("\The [user]") + " starts to fix part of \the [src]."),
+		span_notice("You start to fix part of \the [src].")
 	)
 	playsound(src, tool.usesound, 50, 1)
 
@@ -138,14 +138,12 @@
 		return TRUE
 
 	user.visible_message(
-		span_infoplain(span_bold("\The [user]") + (full_repair ? " fixes the [src]." : " fixes part of the [src].")),
-		span_notice(full_repair ? "You have fixed the [src]." : "You have fixed part of the [src].")
+		span_infoplain(span_bold("\The [user]") + (full_repair ? " fixes \the [src]." : " fixes part of \the [src].")),
+		span_notice(full_repair ? "You have fixed \the [src]." : "You have fixed part of \the [src].")
 	)
 
 	broken = full_repair ? 0 : 1
-	if(full_repair)
-		dirty = 0
-		flags |= MICROWAVE_FLAGS
+	flags |= MICROWAVE_FLAGS
 
 	post_state_change()
 	return TRUE
@@ -159,20 +157,19 @@
 		return TRUE
 
 	user.visible_message( \
-		span_infoplain(span_bold("\The [user]") + " starts to clean the [src]."),
-		span_notice("You start to clean the [src].") \
+		span_infoplain(span_bold("\The [user]") + " starts to clean \the [src]."),
+		span_notice("You start to clean \the [src].") \
 	)
 
 	if(!do_after(user, 2 SECONDS, target = src))
 		return TRUE
 
 	user.visible_message( \
-		span_infoplain(span_bold("\The [user]") + " has cleaned the [src]."),
-		span_notice("You have cleaned the [src].") \
+		span_infoplain(span_bold("\The [user]") + " has cleaned \the [src]."),
+		span_notice("You have cleaned \the [src].") \
 	)
 
 	dirty = 0
-	broken = 0
 	flags |= MICROWAVE_FLAGS
 	post_state_change()
 	return TRUE
@@ -181,7 +178,7 @@
 	if(is_type_in_list(O, GLOB.acceptable_items))
 		var/list/workingList = cookingContents()
 		if(length(workingList) >= (max_n_of_items + circuit_item_capacity))
-			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
+			to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 			return TRUE
 		if(istype(O, /obj/item/stack) && O:get_amount() > 0)
 			var/obj/item/stack/S = O
@@ -205,7 +202,7 @@
 				continue
 			failed = 0
 			if(length(contents) >= (max_n_of_items + circuit_item_capacity))
-				to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
+				to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 				return TRUE
 			bag.remove_from_storage(G, src)
 			contents += G
@@ -213,16 +210,13 @@
 				break
 
 		if(failed)
-			to_chat(user, "Nothing in the [O] can be used for cooking.")
+			to_chat(user, "Nothing in \the [O] can be used for cooking.")
 			return TRUE
 
 		to_chat(user, !length(O.contents) ? "You empty \the [O] into \the [src]." : "You fill \the [src] from \the [O].")
 		return TRUE
 
-	if(istype(O,/obj/item/reagent_containers/glass) || \
-			istype(O,/obj/item/reagent_containers/food/drinks) || \
-			istype(O,/obj/item/reagent_containers/food/condiment) \
-		)
+	if(is_type_in_list(O, list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/drinks, /obj/item/reagent_containers/food/condiment)))
 		if (!O.reagents)
 			to_chat(user, span_warning("\The [O] is empty!"))
 			return TRUE
@@ -244,13 +238,13 @@
 			return TRUE
 		else
 			user.visible_message( \
-				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the [src]."), \
-				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the [src].")
+				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] \the [src]."), \
+				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] \the [src].")
 				)
 			if (do_after(user, (2 SECONDS)/O.toolspeed, target = src))
 				user.visible_message( \
-				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the [src]."), \
-				span_notice("You [src.anchored ? "unsecure" : "secure"] the [src].")
+				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] \the [src]."), \
+				span_notice("You [src.anchored ? "unsecure" : "secure"] \the [src].")
 				)
 				src.anchored = !src.anchored
 			else
@@ -502,7 +496,7 @@
 		src.dirty++
 	src.reagents.clear_reagents()
 	if(message)
-		to_chat(usr, span_notice("You dispose of the [src]'s contents."))
+		to_chat(usr, span_notice("You dispose of \the [src]'s contents."))
 	SStgui.update_uis(src)
 
 /obj/machinery/microwave/proc/muck_start()
