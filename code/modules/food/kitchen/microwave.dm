@@ -13,7 +13,7 @@
 	idle_power_usage = 5
 	active_power_usage = 2000
 	clicksound = "button"
-	clickvol = "30"
+	clickvol = 30
 	flags = MICROWAVE_FLAGS
 	circuit = /obj/item/circuitboard/microwave
 	var/operating = FALSE // Is it on?
