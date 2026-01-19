@@ -4,11 +4,13 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	return
 
 // Compile the primary mutable_appearance for this organ with no control over markings and extras
-/obj/item/organ/external/proc/simple_compile_ma(skeletal, can_apply_transparency = TRUE, skip_extra = FALSE)
+/obj/item/organ/external/proc/simple_compile_ma(skeletal, can_apply_transparency = TRUE, skip_extra = FALSE, markings_filter)
 	var/list/appearances = get_appearance(skeletal, can_apply_transparency)
 
 	var/mutable_appearance/MA = appearances["base"]
-	for(var/M in appearances["markings"])
+	for(var/mutable_appearance/M as anything in appearances["markings"])
+		if(markings_filter)
+			M.filters += markings_filter
 		MA.overlays += M
 
 	if(!skip_extra)
@@ -242,8 +244,9 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 			var/icon/mark_s = new/icon("icon" = digitigrade ? mark_style.digitigrade_icon : mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 			mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)
 			var/mutable_appearance/mark_MA = new /mutable_appearance(mark_s)
-			// TODO: emissive markings
-			// TODO: do we need to apply transparency again?
+			if(markings[M]["emissive"])
+				mark_MA.appearance_flags |= KEEP_APART
+				mark_MA.plane = PLANE_LIGHTING_ABOVE
 			marking_appearances += mark_MA
 
 	var/list/extra = get_extra_appearances()

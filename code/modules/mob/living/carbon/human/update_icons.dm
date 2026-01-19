@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 //Add an entry to overlays, assuming it exists
 /mob/living/carbon/human/proc/apply_layer(cache_index)
+	if(cache_index != BODY_BLOCK_LAYER)
+		update_body_blocker()
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)
 
@@ -171,6 +173,27 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	overlays_standing[MOB_DAM_LAYER]	= standing_image
 	apply_layer(MOB_DAM_LAYER)
 
+
+/mob/living/carbon/human/proc/generate_body_blocker_render_target()
+	return "*[REF(src)]_body_blocker"
+
+/mob/living/carbon/human/proc/update_body_blocker()
+	if(QDESTROYING(src))
+		return
+
+	remove_layer(BODY_BLOCK_LAYER)
+	var/image/I = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", layer = BODY_LAYER)
+	I.appearance_flags = KEEP_TOGETHER
+	I.render_target = generate_body_blocker_render_target()
+
+	// just slam all of these on top
+	for(var/layer_idx in BODYPARTS_LAYER + 1 to BODY_BLOCK_LAYER - 1)
+		I.overlays += overlays_standing[layer_idx]
+
+	overlays_standing[BODY_BLOCK_LAYER] = I
+	apply_layer(BODY_BLOCK_LAYER)
+
+
 //BASE MOB SPRITE
 /mob/living/carbon/human/update_icons_body()
 	if(QDESTROYING(src))
@@ -276,7 +299,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		body.layer = BODY_LAYER + BODYPARTS_LAYER
 
 		var/obj/item/organ/external/chest = get_organ(BP_TORSO)
-		var/mutable_appearance/chest_MA = chest.simple_compile_ma(skeleton, !wholeicontransparent)
+		var/mutable_appearance/chest_MA = chest.simple_compile_ma(skeleton, !wholeicontransparent, markings_filter = filter(arglist(alpha_mask_filter(0, 0, null, generate_body_blocker_render_target(), MASK_INVERSE))))
 		chest_MA.layer = BODY_LAYER + BODYPARTS_LAYER
 		body.overlays += chest_MA
 
@@ -323,6 +346,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 						part_MA_lower.alpha = 30
 
 				for(var/mutable_appearance/mark_MA as anything in part_appearance["markings"])
+					mark_MA.filters += filter(arglist(alpha_mask_filter(0, 0, null, generate_body_blocker_render_target(), MASK_INVERSE)))
 					part_MA.overlays += mark_MA
 					// Do not render emissive markings to part_MA_lower or they will clip
 					if(mark_MA.plane == FLOAT_PLANE)
@@ -357,7 +381,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 				body.overlays += part_MA
 				body.overlays += part_MA_lower
 			else
-				for(var/mark_MA in part_appearance["markings"])
+				for(var/mutable_appearance/mark_MA as anything in part_appearance["markings"])
+					mark_MA.filters += filter(arglist(alpha_mask_filter(0, 0, null, generate_body_blocker_render_target(), MASK_INVERSE)))
 					part_MA.overlays += mark_MA
 
 				for(var/extra_MA in part_appearance["extra"])
@@ -380,7 +405,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		//Handle husk overlay.
 		if(husk && icon_exists(species.icobase, "overlay_husk"))
 			var/mutable_appearance/husk_over = mutable_appearance(species.icobase, "overlay_husk")
-			// TODO: MASK_INVERSE?
+			// TODO: MASK_SWAP
 			husk_over.filters += filter(arglist(alpha_mask_filter(0, 0, getCompoundIcon(body))))
 			body.overlays += husk_over
 
@@ -436,7 +461,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		both.add_overlay(bloodsies)
 
 	overlays_standing[BLOOD_LAYER] = both
-
 	apply_layer(BLOOD_LAYER)
 
 //UNDERWEAR OVERLAY
@@ -677,7 +701,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/obj/item/clothing/suit/S = wear_suit
 		if((wear_suit?.flags_inv & HIDETAIL) || (istype(S) && S.taurized)) // Reasons to not mask: 1. If you're wearing a suit that hides the tail or if you're wearing a taurized suit.
 			c_mask = null
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	var/image/worn_icon = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	overlays_standing[UNIFORM_LAYER] = worn_icon
+
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -706,7 +732,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!gloves)
 		return //No gloves, no reason to be here.
 
-	overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_GLOVES_DEF_ICON, default_layer = GLOVES_LAYER)
+	var/image/worn_icon = gloves.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_GLOVES_DEF_ICON, default_layer = GLOVES_LAYER)
+	overlays_standing[GLOVES_LAYER]	= worn_icon
 
 	apply_layer(GLOVES_LAYER)
 
@@ -726,7 +753,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(our_glasses.glasses_layer_above)
 			glasses_layer = GLASSES_LAYER_ALT
 
-	overlays_standing[glasses_layer] = glasses.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_EYES_DEF_ICON, default_layer = glasses_layer)
+	var/image/worn_icon = glasses.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_EYES_DEF_ICON, default_layer = glasses_layer)
+	overlays_standing[glasses_layer] = worn_icon
 
 	apply_layer(glasses_layer)
 
@@ -805,7 +833,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			shoe_layer = SHOES_LAYER_ALT
 
 	//NB: the use of a var for the layer on this one
-	overlays_standing[shoe_layer] = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
+	var/image/worn_icon = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
+	overlays_standing[shoe_layer] = worn_icon
 
 	apply_layer(SHOES_LAYER)
 	apply_layer(SHOES_LAYER_ALT)
@@ -837,7 +866,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!head)
 		return //No head item, why bother.
 
-	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+	var/image/worn_icon = head.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+	overlays_standing[HEAD_LAYER] = worn_icon
 
 	apply_layer(HEAD_LAYER)
 
@@ -862,7 +892,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/icon/c_mask = tail_style?.clip_mask
 
 	//NB: this uses a var from above
-	overlays_standing[belt_layer] = belt.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_belt_str, default_icon = INV_BELT_DEF_ICON, default_layer = belt_layer, clip_mask = c_mask)
+	var/image/worn_icon = belt.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_belt_str, default_icon = INV_BELT_DEF_ICON, default_layer = belt_layer, clip_mask = c_mask)
+	overlays_standing[belt_layer] = worn_icon
 
 	apply_layer(belt_layer)
 
@@ -895,7 +926,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
 		c_mask = valid_clip_mask
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+
+	var/image/worn_icon = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+	overlays_standing[SUIT_LAYER] = worn_icon
 
 	apply_layer(SUIT_LAYER)
 
@@ -929,7 +962,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(istype(back, /obj/item/storage/backpack/saddlebag) || istype(back, /obj/item/storage/backpack/saddlebag_common))
 			c_mask = null
 
-	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER, clip_mask = c_mask)
+	var/image/worn_icon = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER, clip_mask = c_mask)
+	overlays_standing[BACK_LAYER] = worn_icon
 
 	apply_layer(BACK_LAYER)
 
@@ -991,7 +1025,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!r_hand)
 		return //No hand, no bother.
 
-	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
+	var/image/worn_icon = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
+	overlays_standing[R_HAND_LAYER] = worn_icon
 
 	apply_layer(R_HAND_LAYER)
 
@@ -1004,7 +1039,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!l_hand)
 		return //No hand, no bother.
 
-	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_l_hand_str, default_icon = INV_L_HAND_DEF_ICON, default_layer = L_HAND_LAYER)
+	var/image/worn_icon = l_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_l_hand_str, default_icon = INV_L_HAND_DEF_ICON, default_layer = L_HAND_LAYER)
+	overlays_standing[L_HAND_LAYER] = worn_icon
 
 	apply_layer(L_HAND_LAYER)
 

@@ -67,12 +67,12 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			continue
 		.[instance.name] = instance
 
-/datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000")
+/datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/change_emissive = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000", var/emissive = FALSE)
 	var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[marking]
 	var/list/new_marking = marking_value||mark_datum.body_parts
 	for (var/NM in new_marking)
 		if (marking_value && !islist(new_marking[NM])) continue
-		new_marking[NM] = list("on" = (!change_on && marking_value) ? marking_value[NM]["on"] : on, "color" = (!change_color && marking_value) ? marking_value[NM]["color"] : color)
+		new_marking[NM] = list("on" = (!change_on && marking_value) ? marking_value[NM]["on"] : on, "color" = (!change_color && marking_value) ? marking_value[NM]["color"] : color, "emissive" = (!change_emissive && marking_value) ? marking_value[NM]["emissive"] : emissive)
 	if (change_color)
 		new_marking["color"] = color
 	return new_marking
@@ -252,7 +252,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O && islist(O.markings) && islist(pref.body_markings[M]) && islist(pref.body_markings[M][BP]))
-				O.markings[M] = list("color" = pref.body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = pref.body_markings[M][BP]["on"])
+				O.markings[M] = list("color" = pref.body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = pref.body_markings[M][BP]["on"], "emissive" = !!pref.body_markings[M][BP]["emissive"])
 	character.markings_len = priority
 
 /datum/category_item/player_setup_item/general/body/proc/has_flag(var/datum/species/mob_species, var/flag)
@@ -577,14 +577,21 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 					return TOPIC_NOACTION
 			var/mark_color = tgui_color_picker(user, "Choose the [M] color: ", "Character Preference", pref.body_markings[M]["color"])
 			if(mark_color)
-				pref.body_markings[M] = pref.mass_edit_marking_list(M,FALSE,TRUE,pref.body_markings[M],color="[mark_color]")
+				pref.body_markings[M] = pref.mass_edit_marking_list(M,FALSE,TRUE,FALSE,pref.body_markings[M],color="[mark_color]")
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("toggle_all_marking_selection")
 			var/toggle = text2num(params["toggle"])
 			var/marking = params["marking"]
 			if(pref.body_markings.Find(marking) == 0)
 				return TOPIC_NOACTION
-			pref.body_markings[marking] = pref.mass_edit_marking_list(marking,TRUE,FALSE,pref.body_markings[marking],on=toggle)
+			pref.body_markings[marking] = pref.mass_edit_marking_list(marking,TRUE,FALSE,FALSE,pref.body_markings[marking],on=toggle)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("toggle_all_marking_emissive")
+			var/toggle = !!text2num(params["toggle"])
+			var/marking = params["marking"]
+			if(pref.body_markings.Find(marking) == 0)
+				return TOPIC_NOACTION
+			pref.body_markings[marking] = pref.mass_edit_marking_list(marking,FALSE,FALSE,TRUE,pref.body_markings[marking],emissive=toggle)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("color_all_marking_selection")
 			var/marking = params["marking"]
@@ -592,7 +599,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 				return TOPIC_NOACTION
 			var/mark_color = tgui_color_picker(user, "Choose the [marking] color: ", "Character Preference", pref.body_markings[marking]["color"])
 			if(mark_color)
-				pref.body_markings[marking] = pref.mass_edit_marking_list(marking,FALSE,TRUE,pref.body_markings[marking],color="[mark_color]")
+				pref.body_markings[marking] = pref.mass_edit_marking_list(marking,FALSE,TRUE,FALSE,pref.body_markings[marking],color="[mark_color]")
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("zone_marking_color")
 			var/marking = params["marking"]
@@ -610,6 +617,13 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 				return TOPIC_NOACTION
 			var/zone = params["zone"]
 			pref.body_markings[marking][zone]["on"] = !pref.body_markings[marking][zone]["on"]
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("zone_marking_emissive")
+			var/marking = params["marking"]
+			if(pref.body_markings.Find(marking) == 0)
+				return TOPIC_NOACTION
+			var/zone = params["zone"]
+			pref.body_markings[marking][zone]["emissive"] = !pref.body_markings[marking][zone]["emissive"]
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Ears */

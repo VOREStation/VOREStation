@@ -92,7 +92,7 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like JOB_MEDICAL_DOCTOR
 
-	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
+	var/list/body_markings = list() // "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor", "emissive" = <emissive>), BP_TORSO = ...)
 
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
@@ -554,7 +554,7 @@ var/list/preferences_datums = list()
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
 				if(!islist(body_markings[M][BP])) continue
-				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
+				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"], "emissive" = body_markings[M][BP]["emissive"])
 	character.markings_len = priority
 
 	if (copy_flavour)

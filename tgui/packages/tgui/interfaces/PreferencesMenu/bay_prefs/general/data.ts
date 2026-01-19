@@ -1,11 +1,14 @@
 import type { BooleanLike } from 'tgui-core/react';
 
+export type BodyMarkingZone = {
+  on: BooleanLike;
+  color: string;
+  emissive: BooleanLike;
+};
+
 export type BodyMarking = Record<
   string,
-  {
-    on: BooleanLike;
-    color: string;
-  }
+  BodyMarkingZone
 > & {
   color: string;
 };
