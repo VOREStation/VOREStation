@@ -525,7 +525,7 @@
 
 	if(!SEND_SIGNAL(src, COMSIG_DISPOSAL_FLUSH, flushed_items, air_contents)) //If the signal isnt recieved, we'll just expel immediately.
 		if(length(contents))
-			expel(flushed_items)
+			expel(flushed_items, air_contents)
 
 	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv. Disposal packet takes ownership of the original one!
 	flushing = FALSE
@@ -546,6 +546,7 @@
 // called when the bin expels items, generally from a disposal network, or trying to flush without a proper connection.
 // should usually only occur if the pipe network if modified or delivering mail
 /obj/machinery/disposal/proc/expel(list/expelled_items, datum/gas_mixture/gas)
+	SIGNAL_HANDLER
 	var/turf/T = get_turf(src)
 	var/turf/target
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)

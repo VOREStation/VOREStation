@@ -97,7 +97,7 @@
 					wearable = FALSE
 
 				///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
-				else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !sprite_sheets[our_species]) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
+				else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !LAZYACCESS(sprite_sheets, our_species)) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
 					wearable = FALSE
 				else
 					wearable = TRUE

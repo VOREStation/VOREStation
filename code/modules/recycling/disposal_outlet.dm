@@ -75,7 +75,7 @@
 		eject_range = new_range
 		to_chat(user, span_notice("You set the range on the [src] to [new_range] tiles."))
 
-/obj/structure/disposaloutlet/proc/expel(datum/source, list/received_items, datum/gas_mixture/gas)
+/obj/structure/disposaloutlet/proc/expel(list/received_items, datum/gas_mixture/gas)
 	SIGNAL_HANDLER
 
 	flick("outlet-open", src)

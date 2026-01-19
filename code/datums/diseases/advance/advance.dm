@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		if(global_flag_check(disease_flags, DORMANT) || global_flag_check(disease.disease_flags, DORMANT))
 			continue
 		if(IsSame(disease))
-			continue
+			return FALSE
 		if(channel == other_channel)
 			advance_diseases += disease
 	if(advance_diseases.len > 0)

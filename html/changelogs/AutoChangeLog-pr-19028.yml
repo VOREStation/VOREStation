@@ -1,5 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - qol: "Moved a bunch of of cleaning messages to ballons."
-  - bugfix: "Advanced Mop has sprites now."

@@ -17,14 +17,14 @@ SUBSYSTEM_DEF(explosions)
 
 /datum/controller/subsystem/explosions/stat_entry(msg)
 	var/meme = ""
-	switch(resolving_explosions.len)
+	switch(length(resolving_explosions))
 		if(0 to 10000) meme = ""
 		if(10000 to 15000) meme = "- HEAVY LOAD"
 		if(15000 to 20000) meme = "- EXTREME LOAD"
 		if(20000 to 25000) meme = "- I STILL FUNCTION"
 		if(25000 to 30000) meme = "- WANNA BET?"
 		if(30000 to INFINITY) meme = "- CALL /abort() TO FORCE END"
-	msg = "E: [explosion_signals.len] | P: [pending_explosions.len] | R: [resolving_explosions.len] | CR : [currentrun.len] | CS : [currentsignals.len] - [resolve_explosions ? "RESOLVING" : currentrun.len ? "PREPARING" : "IDLING"] [meme]"
+	msg = "E: [length(explosion_signals)] | P: [length(pending_explosions)] | R: [length(resolving_explosions)] | CR : [LAZYLEN(currentrun)] | CS : [LAZYLEN(currentsignals)] - [resolve_explosions ? "RESOLVING" : LAZYLEN(currentrun) ? "PREPARING" : "IDLING"] [meme]"
 	return ..()
 
 /datum/controller/subsystem/explosions/proc/gotosleep()
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(explosions)
 	// Build both queues. The first one gets the explosion power in each turf
 	// The second queue applies that explosion power to all turfs and objects in them
 	if(!resumed)
-		if(resolve_explosions && !currentrun.len)
+		if(resolve_explosions && !LAZYLEN(currentrun))
 			end_resolve()
 		if(!resolve_explosions)
 			// Setup the explosion buffer!
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(explosions)
 			currentsignals = explosion_signals.Copy()
 			pending_explosions.Cut()
 			explosion_signals.Cut()
-	if(currentrun.len == 0 && !resolve_explosions) // Wait till we're useful if we have nothing to do!
+	if(!LAZYLEN(currentrun) && !resolve_explosions) // Wait till we're useful if we have nothing to do!
 		gotosleep()
 		return
 
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(explosions)
 		currentrun.Remove(key)
 
 		// Check if we move on to final resolution
-		if(currentrun.len == 0)
+		if(!currentrun.len)
 			if(!resolve_explosions)
 				start_resolve()
 				currentrun = resolving_explosions.Copy()
@@ -186,7 +186,7 @@ SUBSYSTEM_DEF(explosions)
 	gotosleep()
 
 /datum/controller/subsystem/explosions/proc/abort()
-	if(!currentrun.len)
+	if(!LAZYLEN(currentrun))
 		return
 	// Removes all entries except the top most, so we enter resolution phase properly, need at least one entry to do so...
 	var/key = currentrun[1]

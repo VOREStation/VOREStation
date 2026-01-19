@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixed being able to contract the same disease multiple times."
+  - bugfix: "Fixed viruses not removing their mob reference when the mob was deleted."

@@ -24,7 +24,7 @@ export const Footer = (props: { dateDropdown: ReactNode | null }) => {
         {'. All code before that commit is licensed under '}
         <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
         {', including tools unless their readme specifies otherwise. See '}
-        <a href="https://github.com/VOREStation/VOREStation/blob/master/LICENSE">
+        <a href="https://github.com/VOREStation/VOREStation/blob/master/COPYING">
           LICENSE
         </a>
         {' and '}
