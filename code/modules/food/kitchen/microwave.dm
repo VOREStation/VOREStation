@@ -641,3 +641,12 @@
 	return workingList
 
 #undef MICROWAVE_FLAGS
+#undef MICROWAVE_NORMAL
+#undef MICROWAVE_MUCK
+#undef MICROWAVE_PRE
+
+#undef NOT_BROKEN
+#undef KINDA_BROKEN
+#undef REALLY_BROKEN
+
+#undef MAX_MICROWAVE_DIRTINESS

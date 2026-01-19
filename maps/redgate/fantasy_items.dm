@@ -202,7 +202,7 @@
 	if(broken)
 		icon_state = "cookingpotb"
 		return TRUE
-	if(dirty >= MAX_MICROWAVE_DIRTINESS)
+	if(dirty >= 100)
 		if(operating)
 			icon_state = "cookingpotbloody1"
 		else
