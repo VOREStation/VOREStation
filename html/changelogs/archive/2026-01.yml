@@ -193,3 +193,9 @@
       bubble trait
   tacoguy7765093:
   - image: Janitor catborg
+2026-01-19:
+  Kashargul:
+  - bugfix: detailed subsystem stat view crashing
+  SatinIsle:
+  - bugfix: Fixed a handful of big strong mobs that have leap attacks literally throwing
+      themselves into spont vore bellies.
