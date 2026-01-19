@@ -12,7 +12,6 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 import {
   ColorizedImage,
