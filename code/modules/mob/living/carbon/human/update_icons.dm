@@ -177,6 +177,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 /mob/living/carbon/human/proc/generate_body_blocker_render_target()
 	return "*[REF(src)]_body_blocker"
 
+// How this works:
+// 1. This proc is called whenever a layer other than BODY_BLOCK_LAYER is applied
+// 2. We overlay all layers from BODYPARTS_LAYER + 1 to BODY_BLOCK_LAYER - 1 in an image
+// 3. The image is set to render_target = "*[REF(src)]_body_blocker", where the * means "do not draw this to the map, only to a slate"
+// 4. The image is stored in BODY_BLOCK_LAYER and applied so that clients are aware of it and draw it to the slate (required)
 /mob/living/carbon/human/proc/update_body_blocker()
 	if(QDESTROYING(src))
 		return
