@@ -48,6 +48,7 @@
 	special_handling = TRUE
 	///Var for attack_self chain
 	var/special_collar = FALSE
+	default_worn_icon = INV_ACCESSORIES_DEF_ICON
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/Initialize(mapload)
