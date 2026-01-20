@@ -1,4 +1,4 @@
-/obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun_new/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
 	if(!user.aiming)
@@ -16,7 +16,7 @@
 		Fire(A, user, params) //Otherwise, fire normally.
 		return
 
-/obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+/obj/item/gun_new/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target)
 		return
 	if(target.z != user.z)
@@ -46,7 +46,7 @@
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
-/obj/item/gun/proc/special_check(var/mob/living/user)
+/obj/item/gun_new/proc/special_check(var/mob/living/user)
 	if(!isliving(user) || !user.IsAdvancedToolUser())
 		return FALSE
 	if(isanimal(user))
@@ -100,10 +100,10 @@
 	return TRUE
 
 //obtains the next projectile to fire
-/obj/item/gun/proc/consume_next_projectile()
+/obj/item/gun_new/proc/consume_next_projectile()
 	return null
 
-/obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
+/obj/item/gun_new/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -166,11 +166,13 @@
 				if(recoil_mode > 0)
 					if(mysize <= 0.60)
 						micro.Weaken(1*recoil_mode)
-						if(!istype(src,/obj/item/gun/energy))
+						/* TODO - micro harm from energy weapons?
+						if(!istype(src,/obj/item/gun_new/energy))
 							micro.adjustBruteLoss((5-mysize*4)*recoil_mode)
 							to_chat(micro, span_danger("You're so tiny that you drop the gun and hurt yourself from the recoil!"))
 						else
 							to_chat(micro, span_danger("You're so tiny that the pull of the trigger causes you to drop the gun!"))
+						*/
 
 			if(!(target && target.loc))
 				target = targloc
@@ -189,7 +191,7 @@
 						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),0), burst_delay, TIMER_DELETE_ME)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
-/obj/item/gun/proc/Fire_userless(atom/target)
+/obj/item/gun_new/proc/Fire_userless(atom/target)
 	if(!target)
 		return
 
@@ -202,7 +204,7 @@
 
 // This is horrible. I tried to keep the old way it had because if I try to use the fancy procs above like handle_post_fire, it expects a user.
 // Which this doesn't have. It's ugly but whatever. This is used in literally one place (sawn off shotguns) and should honestly just be axed.
-/obj/item/gun/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
+/obj/item/gun_new/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -254,7 +256,7 @@
 
 	add_attack_logs(src,target,"Fired [src.name] (Unmanned)")
 
-/obj/item/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
+/obj/item/gun_new/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -276,7 +278,7 @@
 	P.agony *= damage_mult
 	P.damage *= damage_mult
 
-/obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
+/obj/item/gun_new/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -321,7 +323,7 @@
 			P.accuracy -= 35
 
 //does the actual launching of the projectile
-/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun_new/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles

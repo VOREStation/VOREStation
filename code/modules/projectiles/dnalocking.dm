@@ -1,3 +1,7 @@
+/***
+ * TODO Gattening: Unexist this file.
+*/
+
 /obj/item/dnalockingchip
 	name = "DNA Chip Lock"
 	icon = 'icons/obj/ammo.dmi'
@@ -16,7 +20,7 @@
 	stored_dna.Cut()
 	. = ..()
 
-/obj/item/gun_new/proc/get_dna(mob/user)
+/obj/item/gun/proc/get_dna(mob/user)
 	var/mob/living/M = user
 	if(!attached_lock.controller_lock)
 
@@ -39,13 +43,13 @@
 		to_chat(M, span_warning("\The [src] buzzes and displays a locked symbol. It is not allowing DNA samples at this time."))
 		return FALSE
 
-/obj/item/gun_new/verb/give_dna()
+/obj/item/gun/verb/give_dna()
 	set name = "Give DNA"
 	set category = "Object"
 	set src in usr
 	get_dna(usr)
 
-/obj/item/gun_new/proc/clear_dna(mob/user)
+/obj/item/gun/proc/clear_dna(mob/user)
 	var/mob/living/M = user
 	if(!attached_lock.controller_lock)
 		if(!authorized_user(M))
@@ -63,13 +67,13 @@
 		to_chat(M, span_warning("\The [src] buzzes and displays a locked symbol. It is not allowing DNA modifcation at this time."))
 		return FALSE
 
-/obj/item/gun_new/verb/remove_dna()
+/obj/item/gun/verb/remove_dna()
 	set name = "Remove DNA"
 	set category = "Object"
 	set src in usr
 	clear_dna(usr)
 
-/obj/item/gun_new/proc/toggledna(mob/user)
+/obj/item/gun/proc/toggledna(mob/user)
 	var/mob/living/M = user
 	if(authorized_user(M) && user.dna.unique_enzymes == attached_lock.controller_dna)
 		if(!attached_lock.controller_lock)
@@ -81,19 +85,15 @@
 	else
 		to_chat(M, span_warning("\The [src] buzzes and displays an invalid user symbol."))
 
-/obj/item/gun_new/verb/allow_dna()
+/obj/item/gun/verb/allow_dna()
 	set name = "Toggle DNA Samples Allowance"
 	set category = "Object"
 	set src in usr
 	toggledna(usr)
 
-/obj/item/gun_new/proc/authorized_user(mob/user)
+/obj/item/gun/proc/authorized_user(mob/user)
 	if(!attached_lock.stored_dna || !attached_lock.stored_dna.len)
 		return TRUE
 	if(!(user.dna.unique_enzymes in attached_lock.stored_dna))
 		return FALSE
 	return TRUE
-
-/obj/item/gun_new/proc/lock_explosion()
-	explosion(src, 0, 0, 3, 4)
-	QDEL_IN(src, 1)

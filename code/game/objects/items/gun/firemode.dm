@@ -5,11 +5,11 @@
 	If the fire mode value for a setting is null, it will be replaced with the initial value of that gun's variable when the firemode is created.
 	Obviously not compatible with variables that take a null value. If a setting is not present, then the corresponding var will not be modified.
 */
-/datum/firemode
+/datum/firemode_new
 	var/name = "default"
 	var/list/settings = list()
 
-/datum/firemode/New(obj/item/gun/gun, list/properties = null)
+/datum/firemode_new/New(obj/item/gun/gun, list/properties = null)
 	..()
 	if(!properties) return
 
@@ -23,6 +23,6 @@
 		else
 			settings[propname] = propvalue
 
-/datum/firemode/proc/apply_to(obj/item/gun/gun)
+/datum/firemode_new/proc/apply_to(obj/item/gun/gun)
 	for(var/propname in settings)
 		gun.vars[propname] = settings[propname]

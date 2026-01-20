@@ -1,4 +1,4 @@
-/obj/item/gun/proc/toggle_scope(zoom_amount=2.0)
+/obj/item/gun_new/proc/toggle_scope(zoom_amount=2.0)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	var/zoom_offset = round(world.view * zoom_amount)
@@ -12,7 +12,7 @@
 			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
-/obj/item/gun/zoom()
+/obj/item/gun_new/zoom()
 	..()
 	if(!zoom)
 		accuracy = initial(accuracy)

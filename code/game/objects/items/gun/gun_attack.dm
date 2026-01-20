@@ -1,4 +1,4 @@
-/obj/item/gun/attack_self(mob/user)
+/obj/item/gun_new/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
@@ -6,14 +6,14 @@
 		return FALSE
 	switch_firemodes(user)
 
-/obj/item/gun/proc/switch_firemodes(mob/user)
+/obj/item/gun_new/proc/switch_firemodes(mob/user)
 	if(firemodes.len <= 1)
 		return null
 
 	sel_mode++
 	if(sel_mode > firemodes.len)
 		sel_mode = 1
-	var/datum/firemode/new_mode = firemodes[sel_mode]
+	var/datum/firemode_new/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	to_chat(user, span_notice("\The [src] is now set to [new_mode.name]."))
 	user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
@@ -22,7 +22,7 @@
 		update_icon()
 	return new_mode
 
-/obj/item/gun/attack(atom/A, mob/living/user, def_zone)
+/obj/item/gun_new/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
@@ -34,7 +34,7 @@
 	else
 		return ..() //Pistolwhippin'
 
-/obj/item/gun/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun_new/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/dnalockingchip))
 		if(dna_lock)
 			to_chat(user, span_notice("\The [src] already has a [attached_lock]."))
@@ -44,9 +44,9 @@
 		A.loc = src
 		attached_lock = A
 		dna_lock = 1
-		verbs += /obj/item/gun/verb/remove_dna
-		verbs += /obj/item/gun/verb/give_dna
-		verbs += /obj/item/gun/verb/allow_dna
+		verbs += /obj/item/gun_new/verb/remove_dna
+		verbs += /obj/item/gun_new/verb/give_dna
+		verbs += /obj/item/gun_new/verb/allow_dna
 		return
 
 	if(A.has_tool_quality(TOOL_SCREWDRIVER))
@@ -58,14 +58,14 @@
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
 				attached_lock = null
-				verbs -= /obj/item/gun/verb/remove_dna
-				verbs -= /obj/item/gun/verb/give_dna
-				verbs -= /obj/item/gun/verb/allow_dna
+				verbs -= /obj/item/gun_new/verb/remove_dna
+				verbs -= /obj/item/gun_new/verb/give_dna
+				verbs -= /obj/item/gun_new/verb/allow_dna
 		else
 			to_chat(user, span_warning("\The [src] is not accepting modifications at this time."))
 	..()
 
-/obj/item/gun/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/gun_new/emag_act(var/remaining_charges, var/mob/user)
 	if(dna_lock && attached_lock.controller_lock)
 		to_chat(user, span_notice("You short circuit the internal locking mechanisms of \the [src]!"))
 		attached_lock.controller_dna = null
@@ -73,7 +73,7 @@
 		attached_lock.stored_dna = list()
 		return 1
 
-/obj/item/gun/MouseDrop(obj/over_object as obj)
+/obj/item/gun_new/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 

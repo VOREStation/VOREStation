@@ -1,11 +1,11 @@
 //Flashlight handlers
-/obj/item/gun/item_ctrl_click(mob/user)
+/obj/item/gun_new/item_ctrl_click(mob/user)
 	if(can_flashlight && ishuman(user) && loc == user && !user.incapacitated(INCAPACITATION_ALL))
 		toggle_flashlight()
 	else
 		return ..()
 
-/obj/item/gun/proc/toggle_flashlight()
+/obj/item/gun_new/proc/toggle_flashlight()
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
