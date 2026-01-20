@@ -51,12 +51,9 @@
 
 	var/wielded_item_state
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
-	var/atom/movable/screen/auto_target/auto_target
+
 	var/shooting = 0
 	var/next_fire_time = 0
-
-	var/sel_mode = 1 //index of the currently selected mode
-	var/list/firemodes = list()
 
 	var/reload_time = 1		//Base reload time in seconds
 
@@ -69,8 +66,6 @@
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
 
-	var/dna_lock = 0				//whether or not the gun is locked to dna
-	var/obj/item/dnalockingchip/attached_lock
 
 	var/last_shot = 0			//records the last shot fired
 	var/recoil_mode = 0			//If the gun will hurt micros if shot or not. Disabled on Virgo, used downstream.
@@ -80,70 +75,3 @@
 	var/shaded_charge = FALSE
 	var/ammo_x_offset = 2
 	var/ammo_y_offset = 0
-
-
-	///Var for attack_self chain
-	var/special_handling = FALSE
-
-
-
-//Checks whether a given mob can use the gun
-//Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
-//Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
-/obj/item/gun/proc/special_check(var/mob/user)
-
-	if(!isliving(user))
-		return FALSE
-	if(!user.IsAdvancedToolUser())
-		return FALSE
-	if(isanimal(user))
-		var/mob/living/simple_mob/S = user
-		if(!S.IsHumanoidToolUser(src))
-			return FALSE
-
-	var/mob/living/M = user
-	if(istype(M))
-		if(M.has_modifier_of_type(/datum/modifier/underwater_stealth))
-			to_chat(user, span_warning("You cannot use guns whilst hiding underwater!"))
-			return FALSE
-		else if(M.has_modifier_of_type(/datum/modifier/phased_out))
-			to_chat(user, span_warning("You cannot use guns whilst incorporeal!"))
-			return FALSE
-		else if(M.has_modifier_of_type(/datum/modifier/rednet))
-			to_chat(user, span_warning("Your gun refuses to fire!"))
-			return FALSE
-		else if(M.has_modifier_of_type(/datum/modifier/trait/thickdigits))
-			to_chat(user, span_warning("Your hands can't pull the trigger!!"))
-			return FALSE
-		else if(M.has_modifier_of_type(/datum/modifier/shield_projection/melee_focus))
-			to_chat(user, span_warning("The shield projection around you prevents you from using anything but melee!!"))
-			return FALSE
-	if(dna_lock && attached_lock.stored_dna)
-		if(!authorized_user(user))
-			if(attached_lock.safety_level == 0)
-				to_chat(M, span_danger("\The [src] buzzes in dissapointment and displays an invalid DNA symbol."))
-				return FALSE
-			if(!attached_lock.exploding)
-				if(attached_lock.safety_level == 1)
-					to_chat(M, span_danger("\The [src] hisses in dissapointment."))
-					visible_message(span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")), span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")))
-					attached_lock.exploding = 1
-					addtimer(CALLBACK(src, PROC_REF(lock_explosion)), 10 SECONDS, TIMER_DELETE_ME)
-					return FALSE
-	if(HULK in M.mutations)
-		to_chat(M, span_danger("Your fingers are much too large for the trigger guard!"))
-		return FALSE
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
-		var/obj/P = consume_next_projectile()
-		if(P)
-			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
-				handle_post_fire(user, user)
-				user.visible_message(
-					span_danger("\The [user] shoots [user.p_themselves()] in the foot with \the [src]!"),
-					span_danger("You shoot yourself in the foot with \the [src]!")
-					)
-				M.drop_item()
-		else
-			handle_click_empty(user)
-		return FALSE
-	return TRUE

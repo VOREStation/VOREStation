@@ -6,6 +6,9 @@
 		return ..()
 
 /obj/item/gun/proc/toggle_flashlight()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(gun_light)
 		set_light(0)
 		gun_light = FALSE

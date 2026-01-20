@@ -1,4 +1,3 @@
-
 /obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
@@ -44,6 +43,62 @@
 	next_fire_time = world.time + shoot_time
 	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
+//Checks whether a given mob can use the gun
+//Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
+//Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
+/obj/item/gun/proc/special_check(var/mob/living/user)
+	if(!isliving(user) || !user.IsAdvancedToolUser())
+		return FALSE
+	if(isanimal(user))
+		var/mob/living/simple_mob/S = user
+		if(!S.IsHumanoidToolUser(src))
+			return FALSE
+
+	if(user.has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(user, span_warning("You cannot use guns whilst hiding underwater!"))
+		return FALSE
+	if(user.has_modifier_of_type(/datum/modifier/phased_out))
+		to_chat(user, span_warning("You cannot use guns whilst incorporeal!"))
+		return FALSE
+	if(user.has_modifier_of_type(/datum/modifier/rednet))
+		to_chat(user, span_warning("Your gun refuses to fire!"))
+		return FALSE
+	if(user.has_modifier_of_type(/datum/modifier/trait/thickdigits))
+		to_chat(user, span_warning("Your hands can't pull the trigger!!"))
+		return FALSE
+	if(user.has_modifier_of_type(/datum/modifier/shield_projection/melee_focus))
+		to_chat(user, span_warning("The shield projection around you prevents you from using anything but melee!!"))
+		return FALSE
+	if(HULK in user.mutations)
+		to_chat(user, span_danger("Your fingers are much too large for the trigger guard!"))
+		return FALSE
+
+	if(dna_lock && attached_lock.stored_dna && !authorized_user(user))
+		if(attached_lock.safety_level == 0)
+			to_chat(user, span_danger("\The [src] buzzes in dissapointment and displays an invalid DNA symbol."))
+			return FALSE
+		if(!attached_lock.exploding && attached_lock.safety_level == 1)
+			to_chat(user, span_danger("\The [src] hisses in dissapointment."))
+			visible_message(span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")), span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")))
+			attached_lock.exploding = 1
+			addtimer(CALLBACK(src, PROC_REF(lock_explosion)), 10 SECONDS, TIMER_DELETE_ME)
+			return FALSE
+
+	if((CLUMSY in user.mutations) && prob(40)) //Clumsy handling
+		var/obj/P = consume_next_projectile()
+		if(P)
+			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
+				handle_post_fire(user, user)
+				user.visible_message(
+					span_danger("\The [user] shoots [user.p_themselves()] in the foot with \the [src]!"),
+					span_danger("You shoot yourself in the foot with \the [src]!")
+					)
+				user.drop_item()
+		else
+			handle_click_empty(user)
+		return FALSE
+	return TRUE
+
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()
 	return null
@@ -51,6 +106,7 @@
 /obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(ticker > burst)
 		return //we're done here
 	if(!ismob(loc) && !mounted_gun) //We've been dropped and we are NOT a mounted gun.
@@ -149,6 +205,7 @@
 /obj/item/gun/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(ticker > burst)
 		return //we're done here
 
@@ -220,6 +277,9 @@
 	P.damage *= damage_mult
 
 /obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles

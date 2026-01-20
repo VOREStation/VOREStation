@@ -25,6 +25,8 @@
 
 	//Primary Vars
 	var/datum/bulletdata/chamberedtype = /datum/bulletdata
+	var/sel_mode = 1 //index of the currently selected mode
+	var/list/firemodes = list()
 
 	//Flashlights
 	var/can_flashlight = FALSE
@@ -34,6 +36,15 @@
 	var/flight_x_offset = 0
 	var/flight_y_offset = 0
 
+	//whether or not the gun is locked to dna
+	var/dna_lock = FALSE
+	var/obj/item/dnalockingchip/attached_lock
+
+	//Aiming
+	var/atom/movable/screen/auto_target/auto_target
+
+	//Var for attack_self chain
+	var/special_handling = FALSE
 	var/mouthshoot = 0 //To stop people from suiciding twice... >.>
 
 /obj/item/gun/Initialize(mapload)
@@ -46,7 +57,7 @@
 
 	if(dna_lock)
 		attached_lock = new /obj/item/dnalockingchip(src)
-	if(!dna_lock)
+	else
 		verbs -= /obj/item/gun/verb/remove_dna
 		verbs -= /obj/item/gun/verb/give_dna
 		verbs -= /obj/item/gun/verb/allow_dna

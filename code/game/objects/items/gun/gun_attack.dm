@@ -18,6 +18,8 @@
 	to_chat(user, span_notice("\The [src] is now set to [new_mode.name]."))
 	user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
 
+	if(new_mode)
+		update_icon()
 	return new_mode
 
 /obj/item/gun/attack(atom/A, mob/living/user, def_zone)
