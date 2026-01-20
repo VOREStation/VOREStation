@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - maptweak: "Removes the window from the door to the security processing room on the SD, and adds a lock to it."
