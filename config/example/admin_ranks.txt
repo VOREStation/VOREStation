@@ -30,6 +30,7 @@
 #SOUND = allows you to upload and play SOUND.
 #SPAWN = mob transformations, spawning of most atoms including mobs (high-risk atoms, e.g. blackholes, will require the +FUN flag too).
 #EVENT = a group of verbs that make it possible to run an event, or other badminnery.
+#DBRANKS = when sql-based admin loading is enabled, allows for non-temporary changes in the permissions panel to be saved (requires DB).
 #EVERYTHING = Simply gives you everything without having to type every flag.
 #@ = special keyword for the current permission type that adds all the keywords that the preceding rank has of the same type.
 
@@ -85,5 +86,10 @@ Edit = EVERYTHING
 
 Name = Developer
 Include = DEBUG VAREDIT SERVER SPAWN REJUVINATE POSSESS BUILD
+Exclude =
+Edit =
+
+Name = Mentor
+Include = MENTOR
 Exclude =
 Edit =
