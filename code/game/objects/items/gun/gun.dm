@@ -3,13 +3,6 @@
 /obj/item/gun
 	name = "gun"
 	desc = "Its a gun, it go pew."
-	icon = 'icons/obj/gun.dmi'
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi',
-		slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi',
-		)
-	icon_state = "detective"
-	item_state = "gun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MAT_STEEL = 2000)
 	w_class = ITEMSIZE_NORMAL
@@ -19,33 +12,56 @@
 	force = 5
 	preserve_item = 1
 	attack_verb = list("struck", "hit", "bashed")
-	zoomdevicename = "scope"
 	drop_sound = 'sound/items/drop/gun.ogg'
 	pickup_sound = 'sound/items/pickup/gun.ogg'
 
-	//Primary Vars
-	var/datum/bulletdata/chamberedtype = /datum/bulletdata
+	// Icon
+	icon = 'icons/obj/gun.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi',
+		)
+	icon_state = "detective"
+	item_state = "gun"
+	var/wielded_item_state
+
+	// Bullet type and currently chambered round
+	var/datum/bulletdata/bullet_type = /datum/bulletdata
+	var/datum/bulletdata/currently_chambered = null
+
+	// Firemode
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 
-	//Flashlights
+	// Whether or not the gun is locked to dna
+	var/dna_lock = FALSE
+	var/obj/item/dnalockingchip/attached_lock
+
+	//aiming system stuff
+	var/keep_aim = 1 	//1 for keep shooting until aim is lowered
+						//0 for one bullet after tarrget moves and aim is lowered
+	var/multi_aim = 0 //Used to determine if you can target multiple people.
+	var/tmp/list/mob/living/aim_targets //List of who yer targeting.
+	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
+	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
+	var/tmp/lock_time = -100
+	var/atom/movable/screen/auto_target/auto_target
+	zoomdevicename = "scope"
+
+	// Attack chain
+	var/special_handling = FALSE
+	var/mouthshoot = 0 //To stop people from suiciding twice... >.>
+
+	// Effects
+	var/muzzle_flash = 3
+
+	// Flashlights
 	var/can_flashlight = FALSE
 	var/gun_light = FALSE
 	var/light_state = "flight"
 	var/light_brightness = 4
 	var/flight_x_offset = 0
 	var/flight_y_offset = 0
-
-	//whether or not the gun is locked to dna
-	var/dna_lock = FALSE
-	var/obj/item/dnalockingchip/attached_lock
-
-	//Aiming
-	var/atom/movable/screen/auto_target/auto_target
-
-	//Var for attack_self chain
-	var/special_handling = FALSE
-	var/mouthshoot = 0 //To stop people from suiciding twice... >.>
 
 /obj/item/gun/Initialize(mapload)
 	. = ..()
@@ -93,15 +109,6 @@
 				LAZYSET(item_state_slots, slot_l_hand_str, initial(item_state))
 				LAZYSET(item_state_slots, slot_r_hand_str, initial(item_state))
 	..()
-
-//used by aiming code
-/obj/item/gun/proc/can_hit(atom/target as mob, var/mob/living/user as mob)
-	if(!special_check(user))
-		return 2
-	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
-	//on the other side of a window if it makes a difference. Or if they run behind a window, too bad.
-	if(target in check_trajectory(target, user))
-		return 1 // Magic numbers are fun.
 
 //called after successfully firing
 /obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
