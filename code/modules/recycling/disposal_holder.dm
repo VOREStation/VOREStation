@@ -86,7 +86,7 @@
 	if(!active)
 		return // Handled by a machine connected to a trunk during transfer()
 	if(!curr)
-		last.expel(src, get_turf(loc), dir)
+		last.pipe_expel(src, get_turf(loc), dir)
 		return
 
 	// Onto the next segment
@@ -143,7 +143,7 @@
 		return
 	for(var/mob/living/jailbird in contents)
 		jailbird.apply_damage(rand(5,15), BRUTE)
-	transport_cylinder.expel(src, get_turf(loc), NONE) //Direction: NONE, this makes the stuff spew everywhere (lol)
+	transport_cylinder.pipe_expel(src, get_turf(loc), NONE) //Direction: NONE, this makes the stuff spew everywhere (lol)
 
 // called when player tries to move while in a pipe
 /obj/structure/disposalholder/relaymove(mob/living/user)
