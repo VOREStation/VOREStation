@@ -940,6 +940,7 @@
 #include "code\datums\outfits\military\marines.dm"
 #include "code\datums\outfits\military\military.dm"
 #include "code\datums\outfits\military\sifguard.dm"
+#include "code\datums\projectiles\projectiles.dm"
 #include "code\datums\repositories\ammomaterial.dm"
 #include "code\datums\repositories\cameras.dm"
 #include "code\datums\repositories\crew.dm"
