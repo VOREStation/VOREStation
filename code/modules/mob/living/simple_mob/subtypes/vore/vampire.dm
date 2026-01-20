@@ -60,7 +60,7 @@
 	B.name = "stomach"
 	B.desc = "Having been rapidly gulped up by the vampire, you find yourself tightly contained with a set of groaning, wrinkled walls. It seems that the beast has decided against draining your lifeforce through you blood, and instead taking a more direct approach as it saps your strength from all around you. Your attacker seems content to just take that essence for now, but it is a gut afterall and struggling may set it off."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.belly_fullscreen = "VBO_fleshs"
 	B.digest_brute = 3
 	B.digest_burn = 0
 	B.digest_oxy = 1

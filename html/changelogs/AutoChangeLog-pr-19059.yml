@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Collars, when worn in the 'suit' slot, now properly show."
+  - bugfix: "Translocators work when clicked vs having to press Z"

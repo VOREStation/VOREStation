@@ -277,7 +277,10 @@ var/list/_cat_default_emotes = list(
 	icon_state = "box"
 	var/cattype = /mob/living/simple_mob/animal/passive/cat
 
-/obj/item/cat_box/attack_self(var/mob/user)
+/obj/item/cat_box/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/turf/catturf = get_turf(src)
 	to_chat(user, span_notice("You peek into \the [name]-- and a cat jumps out!"))
 	new cattype(catturf)

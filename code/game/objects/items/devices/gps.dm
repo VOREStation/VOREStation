@@ -26,6 +26,9 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/gps/Initialize(mapload)
 	. = ..()
 	compass = new(src)
@@ -40,14 +43,14 @@ GLOBAL_LIST_EMPTY(GPS_list)
 /obj/item/gps/proc/update_holder()
 
 	if(holder && loc != holder)
-		UnregisterSignal(holder, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(holder, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		//GLOB.dir_set_event.unregister(holder, src)
 		holder.client?.screen -= compass
 		holder = null
 
 	if(istype(loc, /mob))
 		holder = loc
-		RegisterSignal(holder, COMSIG_MOVABLE_MOVED, PROC_REF(update_compass), override = TRUE)
+		RegisterSignal(holder, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_compass), override = TRUE)
 		holder.AddComponent(/datum/component/recursive_move)
 		//GLOB.dir_set_event.register(holder, src, PROC_REF(update_compass))
 
@@ -182,6 +185,11 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		add_overlay("working")
 
 /obj/item/gps/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	display(user)
 
 // Compiles all the data not available directly from the GPS

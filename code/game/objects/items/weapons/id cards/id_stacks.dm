@@ -306,7 +306,7 @@
 	if(isrobot(loc?.loc))
 		R = loc.loc
 		registered_name = R.braintype
-		RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
+		RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/card/id/exploration/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -323,7 +323,7 @@
 
 /obj/item/card/id/exploration/borg/Destroy()
 	if(R)
-		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		R = null
 		last_robot_loc = null
 	. = ..()
@@ -370,6 +370,7 @@
 	name = "Syndicate ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
 	rank = JOB_SYNDICATE
+	special_handling = TRUE
 
 /obj/item/card/id/syndicate/officer
 	name = "Syndicate Officer ID"

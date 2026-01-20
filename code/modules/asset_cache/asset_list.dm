@@ -18,14 +18,14 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/cached_serialized_url_mappings
 	var/cached_serialized_url_mappings_transport_type
 
+	/// Whether or not this asset should be loaded in the "early assets" SS
+	var/early = FALSE
+
 	/// Whether or not this asset can be cached across rounds of the same commit under the `CACHE_ASSETS` config.
 	/// This is not a *guarantee* the asset will be cached. Not all asset subtypes respect this field, and the
 	/// config can, of course, be disabled.
 	/// Disable this if your asset can change between rounds on the same exact version of the code.
 	var/cross_round_cachable = FALSE
-
-	/// Whether or not this asset should be loaded in the "early assets" SS
-	var/early = FALSE
 
 /datum/asset/New()
 	GLOB.asset_datums[type] = src
@@ -114,6 +114,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for (var/asset_name in assets)
 		.[asset_name] = SSassets.transport.get_asset_url(asset_name, assets[asset_name])
 
+/datum/asset/simple/unregister()
+	for (var/asset_name in assets)
+		SSassets.transport.unregister_asset(asset_name)
 
 // For registering or sending multiple others at once
 /datum/asset/group
@@ -440,7 +443,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/spritesheet/proc/queuedInsert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
 	I = icon(I, icon_state=icon_state, dir=dir, frame=frame, moving=moving)
-	if(!I || !length(cached_icon_states(I)))  // that direction or state doesn't exist
+	if(!I || !length(icon_states_fast(I)))  // that direction or state doesn't exist
 		return
 	var/size_id = "[I.Width()]x[I.Height()]"
 	var/size = sizes[size_id]
@@ -476,7 +479,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	if(!directions)
 		directions = list(SOUTH)
 
-	for(var/icon_state_name in cached_icon_states(I))
+	for(var/icon_state_name in icon_states_fast(I))
 		for(var/direction in directions)
 			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]-" : ""
 			Insert("[prefix][prefix2][icon_state_name]", I, icon_state=icon_state_name, dir=direction)
@@ -546,6 +549,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		return
 	. = list("[item_filename]" = SSassets.transport.get_asset_url(item_filename))
 
+/datum/asset/changelog_item/unregister()
+	if (!item_filename)
+		return
+	SSassets.transport.unregister_asset(item_filename)
+
 //Generates assets based on iconstates of a single icon
 /datum/asset/simple/icon_states
 	_abstract = /datum/asset/simple/icon_states
@@ -558,7 +566,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/generic_icon_names = FALSE //generate icon filenames using generate_asset_name() instead the above format
 
 /datum/asset/simple/icon_states/register(_icon = icon)
-	for(var/icon_state_name in icon_states(_icon))
+	for(var/icon_state_name in icon_states_fast(_icon))
 		for(var/direction in directions)
 			var/asset = icon(_icon, icon_state_name, direction, frame, movement_states)
 			if(!asset)

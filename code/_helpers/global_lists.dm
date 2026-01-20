@@ -1214,10 +1214,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 
 GLOBAL_LIST_EMPTY(gun_choices)
 
-GLOBAL_ALIST_INIT(severity_to_string, alist(
-	EVENT_LEVEL_MUNDANE = "Mundane",
-	EVENT_LEVEL_MODERATE = "Moderate",
-	EVENT_LEVEL_MAJOR = "Major"
+GLOBAL_ALIST_INIT(severity_to_string, list(
+	/* EVENT_LEVEL_MUNDANE = */ "Mundane",
+	/* EVENT_LEVEL_MODERATE = */ "Moderate",
+	/* EVENT_LEVEL_MAJOR = */ "Major"
 	))
 
 //Some global icons for the examine tab to use to display some item properties.
@@ -1469,6 +1469,7 @@ GLOBAL_LIST_INIT(sheet_reagents, list( //have a number of reagents divisible by 
 	/obj/item/stack/material/sandstone = list(REAGENT_ID_SILICON, REAGENT_ID_OXYGEN),
 	/obj/item/stack/material/marble = list(REAGENT_ID_CALCIUM),
 	/obj/item/stack/material/titanium = list(REAGENT_ID_ALUMINIUM),
+	/obj/item/stack/material/lead = list(REAGENT_ID_LEAD),
 	// Nuclear
 	/obj/item/stack/material/mhydrogen = list(REAGENT_ID_HYDROGEN),
 	/obj/item/stack/material/deuterium = list(REAGENT_ID_HYDROGEN),

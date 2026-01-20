@@ -129,7 +129,7 @@
 				spk.attach(winner)
 				playsound(T, "sparks", 50, 1)
 				anim(T,winner,'icons/mob/mob.dmi',,"phaseout",,winner.dir)
-				winner.forceMove(loser.vore_selected)
+				loser.vore_selected.nom_atom(winner)
 		if(WEALTHY_CRACKER)
 			new /obj/random/cash/huge(spawnloc)
 			new /obj/random/cash/huge(spawnloc)

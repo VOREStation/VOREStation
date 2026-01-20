@@ -26,6 +26,7 @@
 	QDEL_NULL(hud_used)
 	for(var/key in alerts) //clear out alerts
 		clear_alert(key)
+	QDEL_NULL_LIST(viruses)
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
@@ -43,6 +44,7 @@
 	previewing_belly = null // from code/modules/vore/eating/mob_ch.dm
 	vore_selected = null // from code/modules/vore/eating/mob_vr
 	focus = null
+	LAssailant = null
 
 	motiontracker_unsubscribe(TRUE) // Force unsubscribe
 
@@ -308,11 +310,11 @@
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
 	if(remote_comp?.looking_at_target_already(loc))
 		return FALSE
-	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
-		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, vconfig_path = /datum/remote_view_config/inside_object)
+	if(isitem(loc) || isbelly(loc) || ismecha(loc)) // Requires more careful handling than structures because they are held by mobs
+		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, viewsize = null, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
-		AddComponent(/datum/component/remote_view, focused_on = loc, vconfig_path = /datum/remote_view_config/inside_object)
+		AddComponent(/datum/component/remote_view, focused_on = loc, viewsize = null, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	return FALSE
 
@@ -567,7 +569,7 @@
 	var/mob/mob_eye = targets[eye_name]
 
 	if(client && mob_eye)
-		AddComponent(/datum/component/remote_view, focused_on = mob_eye, vconfig_path = null)
+		AddComponent(/datum/component/remote_view, focused_on = mob_eye, viewsize = null, vconfig_path = null)
 		if(is_admin)
 			client.adminobs = TRUE
 			if(mob_eye == client.mob || !is_remote_viewing())
@@ -1072,6 +1074,8 @@
 		if(prob(selection.w_class * 5) && (affected.robotic < ORGAN_ROBOT)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
 			affected.wounds += I
+			affected.update_damages()
+			H.handle_organs(TRUE) //Force an update so we start processing the internal bleeding.
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 50)
 
 		if (ishuman(U))

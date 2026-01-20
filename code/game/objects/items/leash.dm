@@ -98,6 +98,9 @@
 //Called when the leash is used in hand
 //Tugs the pet closer
 /obj/item/leash/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!leash_pet) //No pet, no tug.
 		return
 	//Yank the pet. Yank em in close.

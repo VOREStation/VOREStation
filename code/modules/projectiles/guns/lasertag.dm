@@ -144,9 +144,9 @@
 	return TRUE
 
 ///go my hack
-/obj/item/lasertagknife/throw_impact(atom/hit_atom, var/speed)
+/obj/item/lasertagknife/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(ismob(hit_atom))
 		//So, attacker should ALWAYS be true, but there's a problem. The code doesn't actually set 'thrower' which we used for thrown laser knives.
 		//Instead of this PR getting massively out of scope and refactoring throwing code, we're just going to have thrown knives do vest override.
-		return handle_lasertag_attack(hit_atom, thrower, tag_damage, TRUE, required_vest, allowed_suits)
+		return handle_lasertag_attack(hit_atom, throwingdatum?.get_thrower(), tag_damage, TRUE, required_vest, allowed_suits)
 	..()

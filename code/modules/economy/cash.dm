@@ -18,6 +18,8 @@
 	var/worth = 0
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
+	///Var for attack_self chain
+	var/special_handling = FALSE
 
 /obj/item/spacecash/Initialize(mapload)
 	. = ..()
@@ -84,6 +86,9 @@
 	return worth
 
 /obj/item/spacecash/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/amount = tgui_input_number(user, "How many [initial_name]s do you want to take? (0 to [src.worth])", "Take Money", 20, src.worth)
 	if(!src || QDELETED(src))
 		return
@@ -167,8 +172,12 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
+	special_handling = TRUE
 
-/obj/item/spacecash/ewallet/attack_self() return  //Don't act
+/obj/item/spacecash/ewallet/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 /obj/item/spacecash/ewallet/attackby()    return  //like actual
 /obj/item/spacecash/ewallet/update_icon() return  //space cash
 

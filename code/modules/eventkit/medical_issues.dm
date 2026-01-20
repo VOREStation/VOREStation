@@ -19,7 +19,7 @@
 	var/datum/surgery_step/cure_surgery			//Which surgery step can be used to cure this?
 	var/unhealth = 100			//The amount of health the issue has, depleted by reagent
 	var/reagent_strength = 10	//How much health the reagent will remove per processing
-	var/advscan_cure = 0		//What level of advanced scan is required to reveal the cure?
+	var/advscan_cure = SCANNABLE_BENEFICIAL		//What level of advanced scan is required to reveal the cure?
 
 	var/symptom_text			//Messages relayed to the patient about their symptoms
 	var/symptom_affect			//Visible effects on the patient such as vomiting or weakness

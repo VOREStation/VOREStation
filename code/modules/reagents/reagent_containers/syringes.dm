@@ -63,7 +63,10 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/attack_self(mob/user as mob)
+/obj/item/reagent_containers/syringe/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	switch(mode)
 		if(SYRINGE_CAPPED)
 			mode = SYRINGE_DRAW
@@ -413,8 +416,7 @@
 	//Grab any viruses they have
 	if(iscarbon(target) && LAZYLEN(target.IsInfected()))
 		LAZYINITLIST(viruses)
-		var/datum/disease/virus = pick(target.IsInfected())
-		viruses[hash] = virus.Copy()
+		viruses[hash] = target.GetViruses()
 
 	//Dirtiness should be very low if you're the first injectee. If you're spam-injecting 4 people in a row around you though,
 	//This gives the last one a 30% chance of infection.

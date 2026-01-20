@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "disable capture prefs should not hardfail on nif soulcatcher transfers"

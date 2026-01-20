@@ -195,7 +195,7 @@
     if (message.payload !== null && message.payload !== undefined) {
       message.payload = JSON.stringify(message.payload);
 
-      if (!Byond.TRIDENT && message.payload.length > MAX_PACKET_SIZE) {
+      if (!Byond.TRIDENT && message.payload.length > MAX_PACKET_SIZE && type !== "payloadChunk") {
         const chunks = [];
 
         for (

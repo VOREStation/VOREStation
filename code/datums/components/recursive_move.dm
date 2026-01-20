@@ -83,12 +83,12 @@
 //Parent at top of heirarchy moved.
 /datum/component/recursive_move/proc/top_moved(var/atom/movable/am, var/atom/new_loc, var/atom/old_loc)
 	SIGNAL_HANDLER
-	SEND_SIGNAL(holder, COMSIG_MOVABLE_MOVED, old_loc, new_loc)
+	SEND_SIGNAL(holder, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, new_loc)
 
 //One of the parents other than the top parent moved.
 /datum/component/recursive_move/proc/heirarchy_changed(var/atom/old_loc, var/atom/movable/am, var/atom/new_loc)
 	SIGNAL_HANDLER
-	SEND_SIGNAL(holder, COMSIG_MOVABLE_MOVED, old_loc, new_loc)
+	SEND_SIGNAL(holder, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, new_loc)
 	//Rebuild our list of parents
 	reset_parents()
 	setup_parents()
@@ -130,4 +130,4 @@
 /obj/item/bananapeel/test/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(shmove))
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(shmove))

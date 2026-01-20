@@ -58,7 +58,7 @@
 				var/obj/machinery/computer/C = item
 				var/screen = initial(C.icon_screen)
 				var/keyboard = initial(C.icon_keyboard)
-				var/all_states = cached_icon_states(icon_file)
+				var/all_states = icon_states_fast(icon_file)
 				if (screen && (screen in all_states))
 					transform.blend_icon(uni_icon(icon_file, screen), ICON_OVERLAY)
 				if (keyboard && (keyboard in all_states))

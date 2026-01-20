@@ -19,6 +19,10 @@
 	var/drop_vore = TRUE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
+	var/obj/belly/spont_belly_front = null
+	var/obj/belly/spont_belly_rear = null
+	var/obj/belly/spont_belly_left = null
+	var/obj/belly/spont_belly_right = null
 	var/consume_liquid_belly = FALSE	//starting off because if someone is into that, they'll toggle it first time they get the error. Otherway around would be more pref breaky.
 	var/digest_pain = TRUE
 	var/can_be_drop_prey = FALSE
@@ -90,7 +94,7 @@
 	var/no_latejoin_vore_warning_persists = FALSE	//Do we save it?
 	var/no_latejoin_prey_warning_persists = FALSE	//Do we save it?
 	var/belly_rub_target = null
-	var/soulcatcher_pref_flags = 0			//Default disabled
+	var/soulcatcher_pref_flags = NONE			//Default disabled
 	var/persistend_edit_mode = FALSE
 
 	var/voice_freq = 42500	// Preference for character voice frequency

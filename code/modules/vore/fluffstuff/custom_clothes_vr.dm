@@ -669,6 +669,7 @@
 	light_system = MOVABLE_LIGHT
 
 	actions_types = list(/datum/action/item_action/toggle_pom_pom)
+	special_handling = TRUE
 
 /obj/item/clothing/head/fluff/pompom/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -677,6 +678,9 @@
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	//if(!isturf(user.loc)) -- doesn't seem to cause problems to allow this and it's silly not to
 	//	to_chat(user, "You cannot turn the light on while in this [user.loc]")
 	//	return
@@ -1254,12 +1258,10 @@ Departamental Swimsuits, for general use
 
 	if(unbuttoned)
 		icon_state = "[initial(icon_state)]"
-		item_state = "[initial(item_state)]"
 		unbuttoned = FALSE
 		to_chat(usr, "You button up the coat.")
 	else
 		icon_state = "[initial(icon_state)]_open"
-		item_state = "[initial(item_state)]_open"
 		unbuttoned = TRUE
 		to_chat(usr, "You unbutton the coat.")
 	usr.update_inv_wear_suit()
@@ -1933,7 +1935,10 @@ Departamental Swimsuits, for general use
 		translocator_unequip(translocator, user)
 
 /obj/item/clothing/head/fluff/nikki/attack_self(mob/user)
-	..()
+	. = ..(user)
+	if(.)
+		return TRUE
+	..(user, TRUE)
 	if (translocator)
 		translocator.attack_self(user, user)
 		return

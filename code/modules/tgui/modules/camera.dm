@@ -95,7 +95,7 @@
 
 /datum/tgui_module/camera/Destroy()
 	if(active_camera)
-		UnregisterSignal(active_camera, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(active_camera, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	active_camera = null
 	last_camera_turf = null
 	QDEL_NULL(cam_screen_tg)
@@ -164,11 +164,11 @@
 		var/list/cameras = get_available_cameras(ui.user)
 		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		if(active_camera)
-			UnregisterSignal(active_camera, COMSIG_MOVABLE_MOVED)
+			UnregisterSignal(active_camera, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		if(C)
 			active_camera = C
 			active_camera.AddComponent(/datum/component/recursive_move)
-			RegisterSignal(active_camera, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen))
+			RegisterSignal(active_camera, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen))
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 		update_active_camera_screen()
 		return TRUE
@@ -193,10 +193,10 @@
 
 			if(target)
 				if(active_camera)
-					UnregisterSignal(active_camera, COMSIG_MOVABLE_MOVED)
+					UnregisterSignal(active_camera, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 				active_camera = target
 				active_camera.AddComponent(/datum/component/recursive_move)
-				RegisterSignal(active_camera, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen))
+				RegisterSignal(active_camera, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen))
 				playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 				update_active_camera_screen()
 				. = TRUE
@@ -290,7 +290,7 @@
 	// Turn off the console
 	if(length(concurrent_users) == 0 && is_living)
 		if(active_camera)
-			UnregisterSignal(active_camera, COMSIG_MOVABLE_MOVED)
+			UnregisterSignal(active_camera, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		active_camera = null
 		last_camera_turf = null
 		playsound(tgui_host(), 'sound/machines/terminal_off.ogg', 25, FALSE)

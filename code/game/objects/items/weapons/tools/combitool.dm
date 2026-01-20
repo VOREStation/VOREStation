@@ -36,14 +36,16 @@
 	for(var/type in spawn_tools)
 		tools |= new type(src)
 
-/obj/item/combitool/attack_self(mob/user as mob)
+/obj/item/combitool/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(++current_tool > tools.len) current_tool = 1
 	var/obj/item/tool = tools[current_tool]
 	if(!tool)
 		to_chat(user, "You can't seem to find any fittings in \the [src].")
 	else
 		to_chat(user, "You switch \the [src] to the [tool.name] fitting.")
-	return 1
 
 /obj/item/combitool/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!M.Adjacent(user))

@@ -288,6 +288,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	zippomes = span_rose("With a flick of their wrist, USER lights their NAME with their FLAME.")
 	weldermes = span_notice("USER casually lights the NAME with FLAME.")
 	ignitermes = span_notice("USER fiddles with FLAME, and manages to light their NAME.")
+	special_handling = TRUE
 
 /obj/item/clothing/mask/smokable/cigarette/Initialize(mapload)
 	. = ..()
@@ -318,7 +319,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				to_chat(user, span_notice("[src] is full."))
 
-/obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user as mob)
+/obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(lit == 1)
 		if(user.a_intent == I_HURT)
 			user.visible_message(span_notice("[user] drops and treads on the lit [src], putting it out instantly."))
@@ -327,7 +331,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			user.visible_message(span_notice("[user] puts out \the [src]."))
 			quench()
-	return ..()
 
 ////////////
 // CIGARS //
@@ -428,7 +431,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	name = "empty [initial(name)]"
 
-/obj/item/clothing/mask/smokable/pipe/attack_self(mob/user as mob)
+/obj/item/clothing/mask/smokable/pipe/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(lit == 1)
 		if(user.a_intent == I_HURT)
 			user.visible_message(span_notice("[user] empties the lit [src] on the floor!."))
@@ -555,14 +561,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		qdel(G)
 
 /obj/item/reagent_containers/rollingpaper/attack_self(mob/living/user)
-	if(!src.reagents)                                                                                        //don't roll an empty joint
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(!reagents)                                                                                        //don't roll an empty joint
 		to_chat(user, span_warning("There is nothing in [src]. Add something to it first."))
 		return
 	var/obj/item/clothing/mask/smokable/cigarette/J = new crafted_type()
 	to_chat(user,span_notice("You roll the [src] into a blunt!"))
 	J.add_fingerprint(user)
-	if(src.reagents)
-		src.reagents.trans_to_obj(J, src.reagents.total_volume)
+	if(reagents)
+		reagents.trans_to_obj(J, reagents.total_volume)
 	user.drop_from_inventory(src)
 	user.put_in_hands(J)
 	qdel(src)
@@ -607,6 +616,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 								COLOR_ASSEMBLY_BLUE,
 								COLOR_ASSEMBLY_PURPLE,
 								COLOR_ASSEMBLY_HOT_PINK)
+	/// If we are a special variant (see: override attack_self)
+	var/special_variant = FALSE
+	/// Var used for detonator zippos
+	var/detonator_mode = 0
 
 // TODO: Remove this path from POIs and loose maps (it's no longer needed)
 /obj/item/flame/lighter/random
@@ -619,8 +632,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	add_overlay(I)
 
 /obj/item/flame/lighter/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_variant)
+		return FALSE
+	if(detonator_mode)
+		return FALSE
 	if(!lit)
-		lit = 1
+		lit = TRUE
 		icon_state = "lighteron"
 		playsound(src, activation_sound, 75, 1)
 		user.visible_message(span_notice("After a few attempts, [user] manages to light the [src]."))
@@ -629,7 +649,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		START_PROCESSING(SSobj, src)
 		update_icon()
 	else
-		lit = 0
+		lit = FALSE
 		icon_state = "lighter"
 		playsound(src, deactivation_sound, 75, 1)
 		user.visible_message(span_notice("[user] quietly shuts off the [src]."))
@@ -676,16 +696,22 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "zippo"
 	activation_sound = 'sound/items/zippo_on.ogg'
 	deactivation_sound = 'sound/items/zippo_off.ogg'
+	special_variant = TRUE
 
 /obj/item/flame/lighter/zippo/Initialize(mapload)
 	. = ..()
 	cut_overlays() //Prevents the Cheap Lighter overlay from appearing on this
 
 /obj/item/flame/lighter/zippo/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(detonator_mode)
+		return FALSE
 	if(!base_state)
 		base_state = icon_state
 	if(!lit)
-		lit = 1
+		lit = TRUE
 		icon_state = "[base_state]on"
 		item_state = "[base_state]on"
 		playsound(src, activation_sound, 75, 1)
@@ -694,7 +720,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		set_light(2, 0.5, "#FF9933")
 		START_PROCESSING(SSobj, src)
 	else
-		lit = 0
+		lit = FALSE
 		icon_state = "[base_state]"
 		item_state = "[base_state]"
 		playsound(src, deactivation_sound, 75, 1)
@@ -775,6 +801,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "SMzippo"
 	activation_sound = 'sound/items/zippo_on_alt.ogg'
 	deactivation_sound = 'sound/items/zippo_off.ogg'
+	special_variant = TRUE
+	///Special supermatter var used for attack_self chain logic.
+	var/special_supermatter = FALSE
 
 /obj/item/flame/lighter/supermatter/syndismzippo
 	name = "Phoron Supermatter Zippo"		// Syndicate SM Lighter
@@ -784,6 +813,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "SyndiSMzippo"
 	activation_sound = 'sound/items/zippo_on_alt.ogg'
 	deactivation_sound = 'sound/items/zippo_off.ogg'
+	special_supermatter = TRUE
 
 /obj/item/flame/lighter/supermatter/expsmzippo
 	name = "Experimental SM Lighter"		// Dangerous WIP (admin/event only ATM)
@@ -793,9 +823,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "ExpSMzippo"
 	activation_sound = 'sound/items/button-open.ogg'
 	deactivation_sound = 'sound/items/button-close.ogg'
+	special_supermatter = TRUE
 
 // safe smzippo
 /obj/item/flame/lighter/supermatter/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_supermatter)
+		return FALSE
 	if(!base_state)
 		base_state = icon_state
 	if(!lit)
@@ -867,6 +903,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 // syndicate smzippo
 /obj/item/flame/lighter/supermatter/syndismzippo/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!base_state)
 		base_state = icon_state
 	if(!lit)
@@ -938,6 +977,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 // Experimental smzippo
 /obj/item/flame/lighter/supermatter/expsmzippo/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (!base_state)
 		base_state = icon_state
 	if (!lit)

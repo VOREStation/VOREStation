@@ -34,8 +34,12 @@
 	projectile_type=/obj/item/projectile/beam/pulse
 	charge_cost = 120
 	fire_delay = 12
+	special_handling = TRUE
 
-/obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_warning("[src.name] has three settings, and they are all DESTROY."))
 
 /*

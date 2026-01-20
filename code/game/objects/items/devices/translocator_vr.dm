@@ -34,6 +34,9 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/perfect_tele/Initialize(mapload)
 	. = ..()
 
@@ -114,7 +117,12 @@
 		return FALSE
 	return TRUE
 
-/obj/item/perfect_tele/attack_self(mob/user, var/radial_menu_anchor = src)
+/obj/item/perfect_tele/attack_self(mob/user, list/modifiers, var/radial_menu_anchor = src)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(loc_network)
 		for(var/obj/item/perfect_tele_beacon/stationary/nb in GLOB.premade_tele_beacons)
 			if(nb.tele_network == loc_network)
@@ -404,6 +412,9 @@ not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stationary)
 
 /obj/item/perfect_tele_beacon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!isliving(user))
 		return
 	var/mob/living/L = user

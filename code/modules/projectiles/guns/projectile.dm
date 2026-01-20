@@ -33,6 +33,11 @@
 
 	var/random_start_ammo = FALSE	//randomize amount of starting ammo
 
+	special_handling = TRUE
+
+	///Var for attack_self chain
+	var/special_weapon_handling = FALSE
+
 /obj/item/gun/projectile/Initialize(mapload, var/starts_loaded = 1)
 	. = ..()
 	if(starts_loaded)
@@ -227,7 +232,12 @@
 	..()
 	load_ammo(A, user)
 
-/obj/item/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user, callback)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_weapon_handling && !callback)
+		return FALSE
 	if(firemodes.len > 1)
 		switch_firemodes(user)
 	else

@@ -285,7 +285,7 @@
 		msg += "[p_Theyre()] very short!"
 
 	if (src.stat || (status_flags & FAKEDEATH))
-		msg += span_warning("[p_Theyre()] not responding to anything around [p_they()] and seems to be asleep.")
+		msg += span_warning("[p_Theyre()] not responding to anything around [p_them()] and seems to be asleep.")
 		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 		if(((stat == DEAD || losebreath || !L || (status_flags & FAKEDEATH)) && get_dist(user, src) <= 3))
 			msg += span_warning("[p_They()] [user.p_do()] not appear to be breathing.")

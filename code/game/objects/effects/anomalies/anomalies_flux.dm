@@ -41,7 +41,7 @@
 	. = ..()
 
 /obj/effect/anomaly/flux/proc/mobShock(mob/living/M)
-	if(canshock && istype(M))
+	if(canshock && istype(M) && !M.is_incorporeal())
 		canshock = FALSE
 		M.electrocute_act(shockdamage, name)
 

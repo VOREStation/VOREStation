@@ -231,7 +231,7 @@
 	icon_state = "tesh_uniform_hop"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/ce
-	name = "cheif engineer undercoat"
+	name = "chief engineer undercoat"
 	desc = "A traditional Teshari garb made for the " + JOB_CHIEF_ENGINEER
 	icon_state = "tesh_uniform_ce"
 
@@ -257,7 +257,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/cmo
 	name = "chief medical officer undercoat"
-	desc = "A traditional Teshari garb made for the Cheif Medical Officer"
+	desc = "A traditional Teshari garb made for the Chief Medical Officer"
 	icon_state = "tesh_uniform_cmo"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/qm

@@ -145,6 +145,8 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 
 	var/slot = ghost.client.prefs.default_slot
 	if(tgui_alert(ghost, "Would you like to be resleeved?", "Resleeve", list("No","Yes")) != "Yes")
+		if(respawn >= world.time - ghost.timeofdeath) //We were given the option to resleeve due to an outside event, but closed the input box (be it by typing or otherwise) so we allow clicking the autosleever to revive.
+			ghost.timeofdeath = world.time - respawn
 		return
 	//This keeps people from dying in round, clicking the autoresleever, then swapping savefiles and clicking 'yes'
 	if(slot != ghost.client.prefs.default_slot && (!equip_body || !ghost_spawns))

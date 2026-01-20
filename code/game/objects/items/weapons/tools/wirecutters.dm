@@ -85,6 +85,7 @@
 	name = "strange wirecutters"
 	desc = "This cuts wires. With " + span_purple("Science!")
 	icon_state = "hybcutters"
+	random_color = FALSE
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("pinched", "nipped", "warped", "blasted")

@@ -217,20 +217,33 @@
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
+
+/obj/item/radio/uplink
+	uplink = TRUE
+
 /obj/item/radio/uplink/Initialize(mapload)
 	. = ..()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
-/obj/item/radio/uplink/attack_self(mob/user as mob)
+/obj/item/radio/uplink/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
+
+/obj/item/multitool/uplink
+	uplink = TRUE
 
 /obj/item/multitool/uplink/Initialize(mapload)
 	. = ..()
 	hidden_uplink = new(src)
 
-/obj/item/multitool/uplink/attack_self(mob/user as mob)
+/obj/item/multitool/uplink/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 

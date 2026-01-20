@@ -220,9 +220,10 @@
 
 
 
-/obj/machinery/door/hitby(atom/movable/source, var/speed=5)
+/obj/machinery/door/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	visible_message(span_danger("[name] was hit by [source]."))
+	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
 	var/tforce = 0
 	if(ismob(source))
 		tforce = 15 * (speed/THROWFORCE_SPEED_DIVISOR)

@@ -68,6 +68,9 @@
 		to_chat(user, span_notice("You clip the [P] onto \the [src]."))
 
 /obj/item/clipboard/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/dat = "<title>Clipboard</title>"
 	if(haspen)
 		dat += "<A href='byond://?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"

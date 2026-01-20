@@ -160,7 +160,7 @@
 	B.digest_brute = 0.5
 	B.digest_burn = 0.5
 	B.escapechance = 20
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 	B.belly_fullscreen_color = "#660021"
 	B.belly_fullscreen_color2 = "#660021"
 	B.fancy_vore = 1

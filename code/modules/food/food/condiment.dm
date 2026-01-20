@@ -19,9 +19,6 @@
 /obj/item/reagent_containers/food/condiment/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	return
 
-/obj/item/reagent_containers/food/condiment/attack_self(var/mob/user as mob)
-	return
-
 /obj/item/reagent_containers/food/condiment/attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
 	if(standard_feed_mob(user, M))
 		return

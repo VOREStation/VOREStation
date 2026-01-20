@@ -21,11 +21,17 @@
 		if(!O.anchored)
 			step_towards(O, src)
 	for(var/mob/living/M in range(0, src))
-		if(!M.can_overcome_gravity())
-			gravShock(M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.item_flags & NOSLIP))
+				continue
+		gravShock(M)
 	for(var/mob/living/M in range(4, src))
-		if(!M.can_overcome_gravity())
-			step_towards(M, src)
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.item_flags & NOSLIP))
+				continue
+		step_towards(M, src)
 	for(var/obj/O in range(0, src))
 		if(O.anchored)
 			continue

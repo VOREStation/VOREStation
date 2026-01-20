@@ -48,19 +48,28 @@
 	// mentor_commands(href, href_list, src) - Skip because client is already admin & contents handled above
 
 	else if(href_list["editrightsbrowser"])
-		edit_admin_permissions(0)
+		edit_admin_permissions(PERMISSIONS_PAGE_PERMISSIONS)
 
-	else if(href_list["editrightsbrowserlog"])
-		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+	else if(href_list["editrightsbrowserranks"])
+		if(href_list["editrightsaddrank"])
+			add_rank()
+		else if(href_list["editrightsremoverank"])
+			remove_rank(href_list["editrightsremoverank"])
+		else if(href_list["editrightseditrank"])
+			change_rank(href_list["editrightseditrank"])
+		edit_admin_permissions(PERMISSIONS_PAGE_RANKS)
 
-	if(href_list["editrightsbrowsermanage"])
+	else if(href_list["editrightsbrowserlogging"])
+		edit_admin_permissions(PERMISSIONS_PAGE_LOGGING, href_list["editrightslogtarget"], href_list["editrightslogactor"], href_list["editrightslogoperation"], href_list["editrightslogpage"])
+
+	if(href_list["editrightsbrowserhousekeep"])
 		if(href_list["editrightschange"])
 			change_admin_rank(ckey(href_list["editrightschange"]), href_list["editrightschange"], TRUE)
 		else if(href_list["editrightsremove"])
 			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
 		else if(href_list["editrightsremoverank"])
 			remove_rank(href_list["editrightsremoverank"])
-		edit_admin_permissions(2)
+		edit_admin_permissions(PERMISSIONS_PAGE_HOUSEKEEPING)
 
 	else if(href_list["editrights"])
 		edit_rights_topic(href_list)
@@ -949,6 +958,7 @@
 
 		//so they black out before warping
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		if(!M)	return
 
@@ -1003,6 +1013,7 @@
 			M.drop_from_inventory(I)
 
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdome1)
 		spawn(50)
@@ -1028,6 +1039,7 @@
 			M.drop_from_inventory(I)
 
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdome2)
 		spawn(50)
@@ -1050,6 +1062,7 @@
 			return
 
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdomeadmin)
 		spawn(50)
@@ -1079,6 +1092,7 @@
 			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdomeobserve)
 		spawn(50)

@@ -53,7 +53,7 @@
 	data["new_station_news"] = client.prefs.lastlorenews != GLOB.news_data.newsindex
 	data["new_changelog"] = read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash
 	data["can_start_now"] = client.is_localhost() && check_rights_for(client, R_SERVER)
-	data["immediate_start"] = SSticker.start_immediately || (!isnull(SSticker.timeLeft) && SSticker.timeLeft < 0)
+	data["immediate_start"] = SSticker.start_immediately || SSticker.current_state > GAME_STATE_PREGAME
 
 	return data
 

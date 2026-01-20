@@ -173,6 +173,7 @@
 	blood_overlay_type = "armor"
 	slowdown = 1
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	special_handling = TRUE
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))
@@ -197,8 +198,11 @@
 		return PROJECTILE_FORCE_MISS
 	return 0
 
-/obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	active = !( active )
+/obj/item/clothing/suit/armor/reactive/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	active = !active
 	if (active)
 		to_chat(user, span_blue("The reactive armor is now active."))
 		icon_state = "reactive"

@@ -170,6 +170,9 @@
 		delete_box(box_segments, user.client)
 
 /obj/item/slow_sizegun/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(busy)
 		busy = !busy
 	else

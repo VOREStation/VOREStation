@@ -202,7 +202,9 @@
 		icon = I
 
 /obj/item/card_fluff/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/choice = tgui_input_list(user, "What element would you like to customize?", "Customize Card", list("Band","Stamp","Reset"))
 	if(!choice) return
 
@@ -280,7 +282,7 @@
 	if(isrobot(loc?.loc))
 		R = loc.loc
 		registered_name = R.braintype
-		RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
+		RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -297,7 +299,7 @@
 
 /obj/item/card/id/cargo/miner/borg/Destroy()
 	if(R)
-		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		R = null
 		last_robot_loc = null
 	. = ..()
