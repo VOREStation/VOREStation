@@ -193,3 +193,14 @@
       bubble trait
   tacoguy7765093:
   - image: Janitor catborg
+2026-01-19:
+  Guti:
+  - bugfix: Fixed being able to contract the same disease multiple times.
+  - bugfix: Fixed viruses not removing their mob reference when the mob was deleted.
+  Kashargul:
+  - bugfix: detailed subsystem stat view crashing
+  - bugfix: disable capture prefs should not hardfail on nif soulcatcher transfers
+  - bugfix: crashes in the station disposals system
+  SatinIsle:
+  - bugfix: Fixed a handful of big strong mobs that have leap attacks literally throwing
+      themselves into spont vore bellies.
