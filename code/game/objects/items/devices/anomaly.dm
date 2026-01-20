@@ -28,7 +28,7 @@
 /obj/item/anomaly_releaser
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "anomaly_releaser"
-	name = "anomaly releaser"
+	name = "advanced anomaly releaser"
 	desc = "Single-use injector that releases and stabilizes anomalies by injecting an unknown substance."
 	throwforce = 0
 	w_class = ITEMSIZE_SMALL
@@ -41,3 +41,34 @@
 	var/used = FALSE
 	///Can we be used infinitely?
 	var/infinite = FALSE
+	//If the created anomaly leaves a core behind
+	var/has_core = TRUE
+	//If this will anchor the anomaly in place
+	var/will_anchor = TRUE
+
+/obj/item/anomaly_releaser/science
+	icon = 'icons/obj/devices/tool.dmi'
+	icon_state = "sci_releaser"
+	name = "scientific anomaly releaser"
+	used_icon_state = "sci_releaser_used"
+	has_core = FALSE
+
+// The one for antags and evil-doers
+/obj/item/anomaly_releaser/antag
+	has_core = TRUE
+	will_anchor = TRUE
+	desc = "Single-use injector that releases and stabilizes anomalies by injecting an unknown substance. This one seems odd."
+
+/obj/item/anomaly_scanner
+	name = "anomaly scanner"
+	desc = "A hand-held anomaly scanner, able to distinguish the particles that might affect a stable anomaly."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "anom_scanner"
+	slot_flags = SLOT_BELT
+	w_class = ITEMSIZE_SMALL
+	throw_speed = 5
+	throw_range = 10
+	matter = list(MAT_STEEL = 200)
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'

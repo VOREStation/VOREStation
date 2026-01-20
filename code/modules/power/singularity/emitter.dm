@@ -59,13 +59,13 @@
 		if(!src.locked)
 			if(src.active==1)
 				src.active = 0
-				to_chat(user, "You turn off [src].")
+				balloon_alert_visible("turned off")
 				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("EMITTER([x],[y],[z]) OFF by [key_name(user)]")
 				investigate_log("turned " + span_red("off") + " by [user.key]","singulo")
 			else
 				src.active = 1
-				to_chat(user, "You turn on [src].")
+				balloon_alert_visible("turned on")
 				src.shot_number = 0
 				src.fire_delay = get_initial_fire_delay()
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -283,3 +283,67 @@
 
 /obj/machinery/power/emitter/proc/get_emitter_beam()
 	return new /obj/item/projectile/beam/emitter(get_turf(src))
+
+/obj/machinery/power/emitter/anomaly
+	name = "anomaly emitter"
+	desc = "It is a heavy duty anomalous particle projector."
+	icon_state = "emitter"
+	burst_delay = 8
+	var/particle = ANOMALY_PARTICLE_SIGMA
+
+/obj/machinery/power/emitter/anomaly/update_icon()
+	if(powered && powernet && avail(active_power_usage) && active)
+		icon_state = "emitter_+a"
+	else
+		icon_state = "emitter"
+
+/obj/machinery/power/emitter/anomaly/process()
+	if(stat & (BROKEN))
+		return
+	if(src.state != 2 || (!powernet && active_power_usage))
+		src.active = 0
+		update_icon()
+		return
+	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == TRUE))
+
+		var/actual_load = draw_power(active_power_usage)
+		if(actual_load >= active_power_usage)
+			if(!powered)
+				powered = TRUE
+				update_icon()
+				log_game("EMITTER([x],[y],[z]) Regained power and is ON.")
+				investigate_log("regained power and turned " + span_green("on"),"singulo")
+		else
+			if(powered)
+				powered = 0
+				update_icon()
+				log_game("EMITTER([x],[y],[z]) Lost power and was ON.")
+				investigate_log("lost power and turned" + span_red("off"),"singulo")
+			return
+
+		src.last_shot = world.time
+		src.fire_delay = get_burst_delay()
+
+		playsound(src, 'sound/weapons/emitter.ogg', 25, 1)
+		if(prob(35))
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+
+		var/obj/item/projectile/energy/anomaly/A = get_emitter_beam()
+		A.particle_type = particle
+		A.firer = src
+		A.fire(dir2angle(dir))
+
+/obj/machinery/power/emitter/anomaly/attackby(obj/item/W, mob/user)
+	if(W.has_tool_quality(TOOL_MULTITOOL))
+		var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)
+		if(!chosen_particle)
+			return
+		particle = chosen_particle
+		balloon_alert_visible("changed to [chosen_particle]")
+		return
+	..()
+
+/obj/machinery/power/emitter/anomaly/get_emitter_beam()
+	return new /obj/item/projectile/energy/anomaly(get_turf(src))

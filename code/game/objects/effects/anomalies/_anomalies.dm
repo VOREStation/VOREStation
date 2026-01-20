@@ -19,6 +19,8 @@
 	var/immortal = FALSE
 	var/move_chance = ANOMALY_MOVECHANCE
 
+	var/datum/anomaly_stats/stats
+
 /obj/effect/anomaly/Initialize(mapload, new_lifespan, drops_core = TRUE)
 	. = ..()
 
@@ -60,6 +62,7 @@
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(countdown)
 	QDEL_NULL(anomaly_core)
+	QDEL_NULL(stats)
 	return ..()
 
 /obj/effect/anomaly/proc/anomalyEffect(seconds_per_tick)
@@ -92,11 +95,18 @@
 		QDEL_NULL(anomaly_core)
 	if(anchor)
 		move_chance = 0
+	if(!stats)
+		stats = new /datum/anomaly_stats
+		stats.attached_anomaly = src
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/analyzer))
 		if(anomaly_core)
 			to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(anomaly_core.frequency)], code [anomaly_core.code]."))
+			return TRUE
+	if(istype(I, /obj/item/anomaly_scanner))
+		if(stats)
+			stats.show_stats(user)
 			return TRUE
 	return ..()
 

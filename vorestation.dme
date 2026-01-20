@@ -1582,6 +1582,8 @@
 #include "code\game\objects\effects\anomalies\anomalies_weather_themes.dm"
 #include "code\game\objects\effects\anomalies\anomaly_placer.dm"
 #include "code\game\objects\effects\anomalies\anomaly_spawner.dm"
+#include "code\game\objects\effects\anomalies\anomaly_stats.dm"
+#include "code\game\objects\effects\anomalies\anomaly_stats_mods.dm"
 #include "code\game\objects\effects\chem\chemsmoke.dm"
 #include "code\game\objects\effects\chem\coating.dm"
 #include "code\game\objects\effects\chem\foam.dm"
