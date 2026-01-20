@@ -1019,7 +1019,7 @@ Byond.subscribeTo('update_misc', (payload) => {
 
   misc.set(TN, TC);
 
-  if (JSON.stringify(old) !== JSON.stringify(TC)) {
+  if (current_tab === TN && JSON.stringify(old) !== JSON.stringify(TC)) {
     draw_misc(TN);
   }
 });
