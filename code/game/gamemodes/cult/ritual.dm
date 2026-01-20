@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(engwords, list("travel", "blood", "join", "hell", "destroy", "t
 GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri"))
 
 /client/proc/check_words() // -- Urist
-	set category = "Admin.Secrets"
+	set category = ADMIN_CATEGORY_SECRETS
 	set name = "Check Rune Words"
 	set desc = "Check the rune-word meaning"
 	if(!GLOB.cultwords["travel"])
