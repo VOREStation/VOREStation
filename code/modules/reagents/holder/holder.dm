@@ -254,7 +254,10 @@
 	if(!target || !istype(target))
 		return
 
-	amount = max(0, min(amount, total_volume, target.get_free_space() / multiplier))
+	if(multiplier <= 0)
+		amount = max(0, min(amount, total_volume))
+	else
+		amount = max(0, min(amount, total_volume, target.get_free_space() / multiplier))
 
 	if(!amount)
 		return
