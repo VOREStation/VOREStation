@@ -101,33 +101,10 @@
 	var/shaded_charge = FALSE
 	var/ammo_x_offset = 2
 	var/ammo_y_offset = 0
-	var/can_flashlight = FALSE
-	var/gun_light = FALSE
-	var/light_state = "flight"
-	var/light_brightness = 4
-	var/flight_x_offset = 0
-	var/flight_y_offset = 0
+
 
 	///Var for attack_self chain
 	var/special_handling = FALSE
-
-/obj/item/gun/item_ctrl_click(mob/user)
-	if(can_flashlight && ishuman(user) && loc == user && !user.incapacitated(INCAPACITATION_ALL))
-		toggle_flashlight()
-	else
-		return ..()
-
-/obj/item/gun/proc/toggle_flashlight()
-	if(gun_light)
-		set_light(0)
-		gun_light = FALSE
-	else
-		set_light(light_brightness)
-		gun_light = TRUE
-
-	playsound(src, 'sound/machines/button.ogg', 25)
-	update_icon()
-//VOREStation Add End
 
 /obj/item/gun/Initialize(mapload)
 	. = ..()
@@ -143,31 +120,6 @@
 		verbs -= /obj/item/gun/verb/remove_dna
 		verbs -= /obj/item/gun/verb/give_dna
 		verbs -= /obj/item/gun/verb/allow_dna
-
-/obj/item/gun/update_twohanding()
-	if(one_handed_penalty)
-		var/mob/living/M = loc
-		if(istype(M))
-			if(M.can_wield_item(src) && src.is_held_twohanded(M))
-				name = "[initial(name)] (wielded)"
-			else
-				name = initial(name)
-		else
-			name = initial(name)
-		update_icon() // In case item_state is set somewhere else.
-	..()
-
-/obj/item/gun/update_held_icon()
-	if(wielded_item_state)
-		var/mob/living/M = loc
-		if(istype(M))
-			if(M.can_wield_item(src) && src.is_held_twohanded(M))
-				LAZYSET(item_state_slots, slot_l_hand_str, wielded_item_state)
-				LAZYSET(item_state_slots, slot_r_hand_str, wielded_item_state)
-			else
-				LAZYSET(item_state_slots, slot_l_hand_str, initial(item_state))
-				LAZYSET(item_state_slots, slot_r_hand_str, initial(item_state))
-	..()
 
 
 //Checks whether a given mob can use the gun

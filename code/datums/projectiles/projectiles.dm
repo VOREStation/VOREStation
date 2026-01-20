@@ -26,7 +26,7 @@
  * bulletdata datum. This proc will allow unique behavior on bullet impact, bullet end-of-range, etc.
  *
  * Guns restrict their ammo types based on using subtypes of a datum. For example a gun that uses 10mm
- * will restrict it's bullets by setting it's bullet datum path to /datum/bulletdata/10mm, all subtypes
+ * will restrict its bullets by setting its bullet datum path to /datum/bulletdata/10mm, all subtypes
  * of 10mm including the base type can fit in that gun. This allows multiple ammos to work automatically
  * on every gun capable of shooting that bullet subtype without manually having to list them on the gun
  * itself. Which is an issue present on older gun reworks.
@@ -38,6 +38,7 @@
 	var/casing_desc = "a singular bullet, ready to go pew."
 	var/damage = 1
 
+/// fired on hit when a projectile hits an atom.
 /datum/bulletdata/proc/on_hit(obj/item/projectile, atom/hit_atom)
 	// TODO - Bullet hit an atom
 
@@ -45,6 +46,8 @@
 	// TODO - Bullet reached maximum range
 
 
+/datum/bulletdata/tenmil //Base type that the gun actually cares about.
+	casing_name = "10mm"
 
-/datum/bulletdata/10mm
-	casing_name = "10mm bullet"
+/datum/bulletdata/tenmil/ap //Example of a specialized bullet
+	casing_name = "10mm AP"
