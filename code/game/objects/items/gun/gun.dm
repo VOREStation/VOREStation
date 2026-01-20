@@ -225,7 +225,3 @@
 		handle_click_empty(user)
 		mouthshoot = 0
 		return
-
-/obj/item/gun/proc/lock_explosion()
-	explosion(src, 0, 0, 3, 4)
-	QDEL_IN(src, 1)

@@ -93,3 +93,7 @@
 	if(!(user.dna.unique_enzymes in attached_lock.stored_dna))
 		return FALSE
 	return TRUE
+
+/obj/item/gun/proc/lock_explosion()
+	explosion(src, 0, 0, 3, 4)
+	QDEL_IN(src, 1)

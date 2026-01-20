@@ -36,7 +36,86 @@
 /datum/bulletdata
 	var/casing_name = "bullet"
 	var/casing_desc = "a singular bullet, ready to go pew."
-	var/damage = 1
+
+	var/damage = 10
+	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID, SEARING are the only things that should be in here
+	var/mob_bonus_damage = 0 // Some bullets inflict extra damage on simple animals.
+	var/accuracy = 0
+	var/dispersion = 0.0
+	var/range = 50
+
+	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 for intense fire. - Mech
+	var/flammability = 0 //Amount of fire stacks to add for the above.
+	var/combustion = TRUE	//Does this set off flammable objects on fire/hit?
+	var/stun = 0
+	var/weaken = 0
+	var/paralyze = 0
+	var/irradiate = 0
+	var/stutter = 0
+	var/eyeblur = 0
+	var/drowsy = 0
+	var/agony = 0
+	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
+	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
+	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
+	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
+
+	///If the rounds dephase or not
+	var/dephasing = FALSE
+	///If the rounds hit phased entities or not.
+	var/hits_phased = FALSE
+
+	var/hitsound_wall = null // Played when something hits a wall, or anything else that isn't a mob.
+
+	var/homing = FALSE
+	var/homing_turn_speed = 10		//Angle per tick.
+	var/homing_inaccuracy_min = 0		//in pixels for these. offsets are set once when setting target.
+	var/homing_inaccuracy_max = 0
+
+	var/fire_sound = 'sound/weapons/gunshot_old.ogg' // Can be overriden in gun.dm's fire_sound var. It can also be null but I don't know why you'd ever want to do that. -Ace
+
+	var/vacuum_traversal = TRUE //Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
+
+	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
+	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
+
+	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
+	var/taser_effect = 0 //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
+	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
+	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
+
+	// Sub-munitions. Basically, multi-projectile shotgun, rather than pellets.
+	var/use_submunitions = FALSE
+	var/only_submunitions = FALSE // Will the projectile delete itself after firing the submunitions?
+	var/submunition_spread_max = 30 // Divided by 10 to get the percentile dispersion.
+	var/submunition_spread_min = 5 // Above.
+	var/force_max_submunition_spread = FALSE // Do we just force the maximum?
+	var/spread_submunition_damage = FALSE // Do we assign damage to our sub projectiles based on our main projectile damage?
+
+	var/hitscan_light_intensity = 1.5
+	var/hitscan_light_range = 0.75
+	var/hitscan_light_color_override
+	var/muzzle_flash_intensity = 3
+	var/muzzle_flash_range = 1.5
+	var/muzzle_flash_color_override
+	var/impact_light_intensity = 3
+	var/impact_light_range = 2
+	var/impact_light_color_override
+
+	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
+	var/tracer_type
+	var/muzzle_type
+	var/impact_type
+
+	var/ricochets = 0
+	var/ricochets_max = 2
+	var/ricochet_chance = 30
+	var/can_miss = TRUE
+	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /test
+
+	// When a non-hitscan projectile hits something, a visual effect can be spawned.
+	// This is distinct from the hitscan's "impact_type" var.
+	var/impact_effect_type = null
 
 /// fired on hit when a projectile hits an atom.
 /datum/bulletdata/proc/on_hit(obj/item/projectile, atom/hit_atom)
@@ -44,10 +123,3 @@
 
 /datum/bulletdata/proc/on_range(obj/item/projectile)
 	// TODO - Bullet reached maximum range
-
-
-/datum/bulletdata/tenmil //Base type that the gun actually cares about.
-	casing_name = "10mm"
-
-/datum/bulletdata/tenmil/ap //Example of a specialized bullet
-	casing_name = "10mm AP"
