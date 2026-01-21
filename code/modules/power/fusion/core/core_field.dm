@@ -518,8 +518,8 @@
 		owned_core = null
 	. = ..()
 
-/obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile/Proj)
-	AddEnergy(Proj.damage)
+/obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile_new/Proj)
+	AddEnergy(Proj.shot_data.damage)
 	update_icon()
 	return 0
 //All procs below this point are called in _core.dm, starting at line 41.

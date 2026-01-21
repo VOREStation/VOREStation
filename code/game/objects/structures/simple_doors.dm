@@ -193,8 +193,8 @@
 		attack_hand(user)
 	return
 
-/obj/structure/simple_door/bullet_act(var/obj/item/projectile/Proj)
-	take_damage(Proj.damage/10)
+/obj/structure/simple_door/bullet_act(var/obj/item/projectile_new/Proj)
+	take_damage(Proj.shot_data.damage/10)
 	CheckHardness()
 
 /obj/structure/simple_door/take_damage(var/damage)

@@ -95,7 +95,7 @@
 	spawn(1) dismantle()
 	return 1
 
-/obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/girder/bullet_act(var/obj/item/projectile_new/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)
 	if(Proj.original != src && !prob(cover))
 		return PROJECTILE_CONTINUE //pass through
@@ -111,7 +111,7 @@
 		var/new_damage = damage * girder_material.reflectivity
 		var/outgoing_damage = damage - new_damage
 		damage = round(new_damage)
-		Proj.damage = outgoing_damage
+		Proj.shot_data.damage = outgoing_damage
 
 		visible_message(span_danger("\The [src] reflects \the [Proj]!"))
 
@@ -121,7 +121,7 @@
 		//var/turf/curloc = get_turf(src)
 		var/turf/curloc = get_step(src, get_dir(src, Proj.starting))
 
-		Proj.penetrating += 1 // Needed for the beam to get out of the girder.
+		Proj.shot_data.penetrating += 1 // Needed for the beam to get out of the girder.
 
 		// redirect the projectile
 		Proj.redirect(new_x, new_y, curloc, null)

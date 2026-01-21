@@ -160,7 +160,7 @@
 /obj/structure/foamedmetal/ex_act(severity)
 	qdel(src)
 
-/obj/structure/foamedmetal/bullet_act(var/obj/item/projectile/P)
+/obj/structure/foamedmetal/bullet_act(var/obj/item/projectile_new/P)
 	if(istype(P, /obj/item/projectile/test))
 		return
 	else if(metal == 1 || prob(50))

@@ -196,7 +196,7 @@
 			do_animate("deny")
 	return
 
-/obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/bullet_act(var/obj/item/projectile_new/Proj)
 	..()
 
 	var/damage = Proj.get_structure_damage()
@@ -206,7 +206,7 @@
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(span_danger("\The [name] disintegrates!"))
-			switch (Proj.damage_type)
+			switch (Proj.shot_data.damage_type)
 				if(BRUTE)
 					new /obj/item/stack/material/steel(loc, 2)
 					new /obj/item/stack/rods(loc, 3)

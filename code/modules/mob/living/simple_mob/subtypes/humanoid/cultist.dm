@@ -506,7 +506,7 @@
 		to_chat(user, span_warning("This weapon is ineffective, it does no damage."))
 		visible_message(span_warning("\The [user] gently taps [src] with \the [O]."))
 
-/mob/living/simple_mob/humanoid/cultist/elite/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/humanoid/cultist/elite/bullet_act(var/obj/item/projectile_new/Proj)
 	if(!Proj)	return
 	if(prob(50))
 		visible_message(span_bolddanger("[Proj] disappears into the mirror world as it hits the shield."))

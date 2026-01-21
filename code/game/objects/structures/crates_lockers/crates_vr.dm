@@ -1,11 +1,11 @@
 /obj/structure/closet/crate/secure
 	var/tamper_proof = 0
 
-/obj/structure/closet/crate/secure/bullet_act(var/obj/item/projectile/Proj)
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
+/obj/structure/closet/crate/secure/bullet_act(var/obj/item/projectile_new/Proj)
+	if(!(Proj.shot_data.damage_type == BRUTE || Proj.shot_data.damage_type == BURN))
 		return
 
-	if(locked && tamper_proof && health <= Proj.damage)
+	if(locked && tamper_proof && health <= Proj.shot_data.damage)
 		if(tamper_proof == 2) // Mainly used for events to prevent any chance of opening the box improperly.
 			visible_message(span_bolddanger("The anti-tamper mechanism of [src] triggers an explosion!"))
 			var/turf/T = get_turf(src.loc)

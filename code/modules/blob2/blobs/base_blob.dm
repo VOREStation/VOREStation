@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	adjust_integrity(-damage)
 	return
 
-/obj/structure/blob/bullet_act(var/obj/item/projectile/P)
+/obj/structure/blob/bullet_act(var/obj/item/projectile_new/P)
 	if(!P)
 		return
 
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	if(!damage)
 		return
 
-	switch(P.damage_type)
+	switch(P.shot_data.damage_type)
 		if(BRUTE)
 			if(overmind)
 				damage *= overmind.blob_type.brute_multiplier
@@ -367,7 +367,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 				damage *= overmind.blob_type.burn_multiplier
 
 	if(overmind)
-		damage = overmind.blob_type.on_received_damage(src, damage, P.damage_type, P.firer)
+		damage = overmind.blob_type.on_received_damage(src, damage, P.shot_data.damage_type, P.firer)
 
 	adjust_integrity(-damage)
 

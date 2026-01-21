@@ -137,7 +137,7 @@
 		if(ai_holder)
 			ai_holder.add_attacker(L)
 
-/mob/living/simple_mob/mechanical/mining_drone/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/simple_mob/mechanical/mining_drone/bullet_act(var/obj/item/projectile_new/P, var/def_zone)
 	..()
 	if(ai_holder && P.firer)
 		ai_holder.add_attacker(P.firer)

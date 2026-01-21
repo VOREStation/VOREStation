@@ -16,7 +16,8 @@
 	embed_chance = 0	//Base chance for a projectile to embed
 	light_on = TRUE
 
-	var/obj/item/ammo_casing/my_case = null
+	var/shot_from = ""   // name of the object which shot us
+
 	var/datum/bulletdata/shot_data = null
 	var/last_projectile_move = 0
 	var/last_process = 0
@@ -26,7 +27,7 @@
 	var/ignore_source_check = FALSE
 
 	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
-	var/Angle = 0
+	var/angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/ricochets = 0
 
@@ -53,7 +54,6 @@
 	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
 	var/def_zone = ""	 //Aiming at
 	var/mob/firer = null //Who shot it
-	var/shot_from = ""   // name of the object which shot us
 
 	var/temporary_unstoppable_movement = FALSE
 	var/list/impacted_mobs = list()
@@ -70,12 +70,12 @@
 		qdel(src)
 
 /obj/item/projectile_new/proc/return_predicted_turf_after_moves(moves, forced_angle)		//I say predicted because there's no telling that the projectile won't change direction/location in flight.
-	if(!trajectory && isnull(forced_angle) && isnull(Angle))
+	if(!trajectory && isnull(forced_angle) && isnull(angle))
 		return FALSE
 	var/datum/point/vector/current = trajectory
 	if(!current)
 		var/turf/T = get_turf(src)
-		current = new(T.x, T.y, T.z, pixel_x, pixel_y, isnull(forced_angle)? Angle : forced_angle, SSprojectiles.global_pixel_speed)
+		current = new(T.x, T.y, T.z, pixel_x, pixel_y, isnull(forced_angle)? angle : forced_angle, SSprojectiles.global_pixel_speed)
 	var/datum/point/vector/v = current.return_vector_after_increments(moves * SSprojectiles.global_iterations_per_move)
 	return v.return_turf()
 
@@ -98,7 +98,7 @@
 
 /obj/item/projectile_new/proc/process_hitscan()
 	var/safety = shot_data.range * 3
-	record_hitscan_start(RETURN_POINT_VECTOR_INCREMENT(src, Angle, MUZZLE_EFFECT_PIXEL_INCREMENT, 1))
+	record_hitscan_start(RETURN_POINT_VECTOR_INCREMENT(src, angle, MUZZLE_EFFECT_PIXEL_INCREMENT, 1))
 	while(loc && !QDELETED(src))
 		if(safety-- <= 0)
 			if(loc)
@@ -165,8 +165,8 @@
 	var/datum/point/PT = RETURN_PRECISE_POINT(homing_target)
 	PT.x += CLAMP(homing_offset_x, 1, world.maxx)
 	PT.y += CLAMP(homing_offset_y, 1, world.maxy)
-	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
-	setAngle(Angle + CLAMP(angle, -shot_data.homing_turn_speed, shot_data.homing_turn_speed))
+	var/solved_angle = closer_angle_difference(angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
+	setAngle(angle + CLAMP(solved_angle, -shot_data.homing_turn_speed, shot_data.homing_turn_speed))
 
 /obj/item/projectile_new/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))
@@ -203,10 +203,10 @@
 		pixel_move(1, FALSE)
 
 /obj/item/projectile_new/proc/setAngle(new_angle)	//wrapper for overrides.
-	Angle = new_angle
+	angle = new_angle
 	if(!shot_data.nondirectional_sprite)
 		var/matrix/M = new
-		M.Turn(Angle)
+		M.Turn(angle)
 		transform = M
 	if(trajectory)
 		trajectory.set_angle(new_angle)
@@ -242,7 +242,7 @@
 	if(!starting)
 		qdel(src)
 		return
-	if(isnull(Angle))	//Try to resolve through offsets if there's no angle set.
+	if(isnull(angle))	//Try to resolve through offsets if there's no angle set.
 		if(isnull(xo) || isnull(yo))
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
 			qdel(src)
@@ -250,12 +250,12 @@
 		var/turf/target = locate(CLAMP(starting + xo, 1, world.maxx), CLAMP(starting + yo, 1, world.maxy), starting.z)
 		setAngle(Get_Angle(src, target))
 	if(shot_data.dispersion)
-		setAngle(Angle + rand(-shot_data.dispersion, shot_data.dispersion))
-	original_angle = Angle
+		setAngle(angle + rand(-shot_data.dispersion, shot_data.dispersion))
+	original_angle = angle
 	trajectory_ignore_forcemove = TRUE
 	forceMove(starting)
 	trajectory_ignore_forcemove = FALSE
-	trajectory = new(starting.x, starting.y, starting.z, pixel_x, pixel_y, Angle, SSprojectiles.global_pixel_speed)
+	trajectory = new(starting.x, starting.y, starting.z, pixel_x, pixel_y, angle, SSprojectiles.global_pixel_speed)
 	last_projectile_move = world.time
 	permutated = list()
 	if(shot_data.hitscan)
@@ -414,7 +414,7 @@
 			generate_tracer_between_points(p, beam_segments[p], beam_components, shot_data.tracer_type, color, duration, shot_data.hitscan_light_range, shot_data.hitscan_light_color_override, shot_data.hitscan_light_intensity, tempref)
 	if(shot_data.muzzle_type && duration > 0)
 		var/datum/point/p = beam_segments[1]
-		var/atom/movable/thing = new muzzle_type
+		var/atom/movable/thing = new shot_data.muzzle_type
 		p.move_atom_to_src(thing)
 		var/matrix/M = new
 		M.Turn(original_angle)
@@ -424,10 +424,10 @@
 		beam_components.beam_components += thing
 	if(impacting && shot_data.impact_type && duration > 0)
 		var/datum/point/p = beam_segments[beam_segments[beam_segments.len]]
-		var/atom/movable/thing = new impact_type
+		var/atom/movable/thing = new shot_data.impact_type
 		p.move_atom_to_src(thing)
 		var/matrix/M = new
-		M.Turn(Angle)
+		M.Turn(angle)
 		thing.transform = M
 		thing.color = color
 		thing.set_light(shot_data.impact_light_range, shot_data.impact_light_intensity, shot_data.impact_light_color_override? shot_data.impact_light_color_override : color)
@@ -653,100 +653,36 @@
 
 	return TRUE
 
-
-/obj/item/projectile_new/proc/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
-	original = target
-	def_zone = check_zone(target_zone)
-	firer = user
+/atom/proc/fire_projectile(datum/bulletdata/prepared_data, atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	var/direct_target
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
 
-	if(shot_data.use_submunitions && shot_data.submunitions.len)
-		var/temp_min_spread = 0
-		if(shot_data.force_max_submunition_spread)
-			temp_min_spread = shot_data.submunition_spread_max
+	var/start_angle = null
+	var/i = prepared_data.projectile_count
+	while(i--)
+		var/obj/item/projectile_new/SM = new(get_turf(loc))
+		// Set the angle for secondary shots
+		var/subshot_angle_override = angle_override
+		if(i == 0)
+			// Only the first shot uses the angle override...
+			SM.shot_data = prepared_data
+			if(isnull(angle_override)) // forcing an angle doesn't use dispersion
+				subshot_angle_override += rand(-prepared_data.dispersion, prepared_data.dispersion)
 		else
-			temp_min_spread = shot_data.submunition_spread_min
+			// ...all the rest apply dispersion, and modify the first shot's
+			SM.shot_data = DuplicateObject(prepared_data, 1) // Copy the shot datum to all secondary shots
+			subshot_angle_override = start_angle
+			subshot_angle_override += rand(-prepared_data.dispersion, prepared_data.dispersion)
 
-		var/damage_override = null
-
-		if(shot_data.spread_submunition_damage)
-			damage_override = shot_data.damage
-			if(shot_data.nodamage)
-				damage_override = 0
-
-			var/projectile_count = 0
-
-			for(var/proj in shot_data.submunitions)
-				projectile_count += shot_data.submunitions[proj]
-
-			damage_override = round(damage_override / max(1, projectile_count))
-
-		for(var/path in shot_data.submunitions)
-			for(var/count = 1 to shot_data.submunitions[path])
-				var/obj/item/projectile_new/SM = new path(get_turf(loc))
-				SM.shot_data = shot_data // TEMP DO NOT KEEP, MASSIVE MEMORY LEAK
-				SM.shot_from = shot_from
-				SM.shot_data.dispersion = rand(temp_min_spread, shot_data.submunition_spread_max) / 10
-				if(!isnull(damage_override))
-					SM.shot_data.damage = damage_override
-				SM.launch_projectile(target, target_zone, user, params, angle_override)
-
-	preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
-	return fire(angle_override, direct_target)
-
-//called to launch a projectile from a gun
-/obj/item/projectile_new/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/gun/launcher)
-
-	shot_from = launcher.name
-	shot_data.silenced |= launcher.silenced // Silent bullets (e.g., BBs) are always silent
-	if(user)
-		firer = user
-
-	return launch_projectile(target, target_zone, user, params, angle_override, forced_spread)
-
-/obj/item/projectile_new/proc/launch_projectile_from_turf(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
-	original = target
-	def_zone = check_zone(target_zone)
-	firer = user
-	var/direct_target
-	if(get_turf(target) == get_turf(src))
-		direct_target = target
-
-	if(shot_data.use_submunitions && shot_data.submunitions.len)
-		var/temp_min_spread = 0
-		if(shot_data.force_max_submunition_spread)
-			temp_min_spread = shot_data.submunition_spread_max
-		else
-			temp_min_spread = shot_data.submunition_spread_min
-
-		var/damage_override = null
-
-		if(shot_data.spread_submunition_damage)
-			damage_override = shot_data.damage
-			if(shot_data.nodamage)
-				damage_override = 0
-
-			var/projectile_count = 0
-
-			for(var/proj in shot_data.submunitions)
-				projectile_count += shot_data.submunitions[proj]
-
-			damage_override = round(damage_override / max(1, projectile_count))
-
-		for(var/path in shot_data.submunitions)
-			for(var/count = 1 to shot_data.submunitions[path])
-				var/obj/item/projectile_new/SM = new path(get_turf(loc))
-				SM.shot_data = shot_data // TEMP DO NOT KEEP THIS - AWFUL MEM LEAK
-				SM.shot_from = shot_from
-				SM.shot_data.dispersion = rand(temp_min_spread, shot_data.submunition_spread_max) / 10
-				if(!isnull(damage_override))
-					SM.shot_data.damage = damage_override
-				SM.launch_projectile_from_turf(target, target_zone, user, params, angle_override)
-
-	preparePixelProjectile(target, get_turf(src), params, forced_spread)
-	return fire(angle_override, direct_target)
+		// Fire the shot
+		SM.shot_from = name
+		SM.original = target
+		SM.firer = user
+		SM.def_zone = check_zone(target_zone)
+		SM.preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
+		SM.fire(subshot_angle_override, direct_target)
+		start_angle = SM.angle // Get angle for next shot, this is solved in SM.fire(0)
 
 // Makes a brief effect sprite appear when the projectile hits something solid.
 /obj/item/projectile_new/proc/impact_visuals(atom/A, hit_x, hit_y)

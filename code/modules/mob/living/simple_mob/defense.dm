@@ -1,8 +1,8 @@
 // Hit by a projectile.
-/mob/living/simple_mob/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/bullet_act(var/obj/item/projectile_new/P)
 	//Projectiles with bonus SA damage
-	if(!P.nodamage && P.mob_bonus_damage && !mind) //If the projectile is NOT a nodamage projectile, we HAVE A BONUS damage, AND the mob is not player controlled (it has no mind), we do bonus damage
-		P.damage += P.mob_bonus_damage
+	if(!P.shot_data.nodamage && P.shot_data.mob_bonus_damage && !mind) //If the projectile is NOT a nodamage projectile, we HAVE A BONUS damage, AND the mob is not player controlled (it has no mind), we do bonus damage
+		P.shot_data.damage += P.shot_data.mob_bonus_damage
 
 	. = ..()
 

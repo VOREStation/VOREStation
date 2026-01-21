@@ -25,8 +25,10 @@
 	item_state = "gun"
 	var/wielded_item_state
 
-	// Bullet type and currently chambered round
-	var/datum/bulletdata/bullet_type = /datum/bulletdata
+	/// Bullet datum path that this gun accepts subtypes of
+	var/datum/bulletdata/bullet_filter_type = /datum/bulletdata
+
+	/// Bullet type and currently chambered round
 	var/datum/bulletdata/currently_chambered = null
 
 	// Firemode
@@ -77,9 +79,7 @@
 	var/fire_sound = null // This is handled by projectile.dm's fire_sound var now, but you can override the projectile's fire_sound with this one if you want to.
 	var/fire_sound_text = "gunshot"
 
-	var/wielded_item_state
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
-	var/atom/movable/screen/auto_target/auto_target
 	var/shooting = 0
 	var/next_fire_time = 0
 
@@ -90,7 +90,6 @@
 	var/list/dispersion = list(0)
 	var/silenced = 0
 	var/fire_anim = null
-
 
 /obj/item/gun_new/Initialize(mapload)
 	. = ..()
@@ -205,18 +204,10 @@
 
 	add_attack_logs(user, target, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
 
-/obj/item/gun_new/proc/play_fire_sound(var/mob/user, var/obj/item/projectile/P)
-	var/shot_sound = fire_sound
-
-	if(!shot_sound && istype(P) && P.fire_sound) // If the gun didn't have a fire_sound, but the projectile exists, and has a sound...
-		shot_sound = P.fire_sound
-	if(!shot_sound) // If there's still no sound...
+/obj/item/gun_new/proc/play_fire_sound(var/mob/user)
+	if(!fire_sound)
 		return
-
-	if(silenced)
-		playsound(src, shot_sound, 10, 1)
-	else
-		playsound(src, shot_sound, 50, 1)
+	playsound(src, fire_sound, silenced ? 10 : 50, 1)
 
 //Suicide handling.
 /obj/item/gun_new/proc/handle_suicide(mob/living/user)
@@ -224,33 +215,43 @@
 		return
 	var/mob/living/carbon/human/M = user
 
-	mouthshoot = 1
+	mouthshoot = TRUE
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
-		mouthshoot = 0
+		mouthshoot = FALSE
 		return
-	var/obj/item/projectile_new/in_chamber = generate_projectile(src, bullet_type)
-	if (istype(in_chamber))
-		user.visible_message(span_warning("[user] pulls the trigger."))
-		play_fire_sound(M, in_chamber)
-		if(istype(in_chamber, /obj/item/projectile/beam/lasertag))
-			user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
-			mouthshoot = 0
-			return
 
-		in_chamber.on_hit(M)
-		if(in_chamber.shot_data.damage_type != HALLOSS && !in_chamber.shot_data.nodamage)
-			log_and_message_admins("commited suicide using \a [src]", user)
-			user.apply_damage(in_chamber.shot_data.damage*2.5, in_chamber.shot_data.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
-			user.death()
-		else if(in_chamber.shot_data.damage_type == HALLOSS)
-			to_chat(user, span_notice("Ow..."))
-			user.apply_effect(110,AGONY,0)
-		qdel(in_chamber)
-		mouthshoot = 0
-		return
-	else
+	if(!ispath(currently_chambered))
 		handle_click_empty(user)
-		mouthshoot = 0
+		mouthshoot = FALSE
 		return
+
+	user.visible_message(span_warning("[user] pulls the trigger."))
+
+	var/datum/bulletdata/shot = create_bullet_datum(user, user, 0, FALSE, FALSE)
+	var/no_damage = shot.nodamage
+	var/damage_type = shot.damage_type
+	mouthshoot = FALSE
+	qdel(shot)
+
+	play_fire_sound(M)
+
+	/* TODO - LASERTAG PROJECTILES UPDATED
+	if(istype(shot, /obj/item/projectile/beam/lasertag))
+		user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
+		return
+	*/
+
+	shot.on_hit(M)
+
+	// Just hurts really bad!
+	if(damage_type == HALLOSS || no_damage)
+		to_chat(user, span_notice("Ow..."))
+		user.apply_effect(110,AGONY,0)
+		return
+
+	// Standard death
+	log_and_message_admins("commited suicide using \a [src]", user)
+	user.apply_damage(shot.damage*2.5, shot.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
+	user.death()

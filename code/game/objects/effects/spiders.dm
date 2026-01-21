@@ -52,7 +52,7 @@
 	visible_message(span_warning("\The [user] stomps \the [src] dead!"))
 	die()
 
-/obj/effect/spider/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/spider/bullet_act(var/obj/item/projectile_new/Proj)
 	..()
 	health -= Proj.get_structure_damage()
 	healthcheck()

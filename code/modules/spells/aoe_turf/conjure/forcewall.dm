@@ -34,7 +34,7 @@
 	density = TRUE
 	unacidable = TRUE
 
-/obj/effect/forcefield/bullet_act(var/obj/item/projectile/Proj, var/def_zone)
+/obj/effect/forcefield/bullet_act(var/obj/item/projectile_new/Proj, var/def_zone)
 	var/turf/T = get_turf(src.loc)
 	if(T)
 		for(var/mob/M in T)

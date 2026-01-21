@@ -116,14 +116,14 @@
 /mob/living/silicon/IsAdvancedToolUser()
 	return 1
 
-/mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/bullet_act(var/obj/item/projectile_new/Proj)
 
-	if(!Proj.nodamage)
-		switch(Proj.damage_type)
+	if(!Proj.shot_data.nodamage)
+		switch(Proj.shot_data.damage_type)
 			if(BRUTE)
-				adjustBruteLoss(Proj.damage)
+				adjustBruteLoss(Proj.shot_data.damage)
 			if(BURN)
-				adjustFireLoss(Proj.damage)
+				adjustFireLoss(Proj.shot_data.damage)
 
 	Proj.on_hit(src,2)
 	updatehealth()

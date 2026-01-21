@@ -578,9 +578,9 @@
 /mob/living/silicon/robot/restrained()
 	return 0
 
-/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/robot/bullet_act(var/obj/item/projectile_new/Proj)
 	..(Proj)
-	if(prob(75) && Proj.damage > 0) spark_system.start()
+	if(prob(75) && Proj.shot_data.damage > 0) spark_system.start()
 	return 2
 
 /mob/living/silicon/robot/attackby(obj/item/W, mob/user)

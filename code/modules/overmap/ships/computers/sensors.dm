@@ -196,7 +196,7 @@
 	else if(health < max_health * 0.75)
 		. += "It shows signs of damage!"
 
-/obj/machinery/shipsensors/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shipsensors/bullet_act(var/obj/item/projectile_new/Proj)
 	take_damage(Proj.get_structure_damage())
 	..()
 

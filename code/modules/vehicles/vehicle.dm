@@ -134,7 +134,7 @@
 	else
 		..()
 
-/obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/bullet_act(var/obj/item/projectile_new/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()

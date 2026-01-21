@@ -94,30 +94,30 @@
 				span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
 				span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
 
-/mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/bullet_act(var/obj/item/projectile_new/P, var/def_zone)
 
 	if(ai_holder && P.firer)
 		ai_holder.react_to_attack(P.firer)
 
 	//Armor
-	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
+	var/absorb = run_armor_check(def_zone, P.shot_data.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
 	var/proj_edge = has_edge(P)
 
-	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
+	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.shot_data.check_armour)))
 		proj_sharp = 0
 		proj_edge = 0
 
 	//Stun Beams
-	if(P.taser_effect)
-		stun_effect_act(0, P.agony, def_zone, P, electric = TRUE)
-		if(!P.nodamage)
-			apply_damage(P.damage, P.damage_type, def_zone, absorb, proj_sharp, proj_edge, P, TRUE)
+	if(P.shot_data.taser_effect)
+		stun_effect_act(0, P.shot_data.agony, def_zone, P, electric = TRUE)
+		if(!P.shot_data.nodamage)
+			apply_damage(P.shot_data.damage, P.shot_data.damage_type, def_zone, absorb, proj_sharp, proj_edge, P, TRUE)
 		qdel(P)
 		return
 
-	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, proj_sharp, proj_edge, P, TRUE)
+	if(!P.shot_data.nodamage)
+		apply_damage(P.shot_data.damage, P.shot_data.damage_type, def_zone, absorb, proj_sharp, proj_edge, P, TRUE)
 	P.on_hit(src, absorb, def_zone)
 
 	if(absorb == 100)

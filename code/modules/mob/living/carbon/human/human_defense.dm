@@ -8,7 +8,7 @@ emp_act
 
 */
 
-/mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/carbon/human/bullet_act(var/obj/item/projectile_new/P, var/def_zone)
 
 	def_zone = check_zone(def_zone)
 	if(!has_organ(def_zone))
@@ -17,26 +17,26 @@ emp_act
 	var/obj/item/organ/external/organ = get_organ()
 
 	//Shields
-	var/shield_check = check_shields(P.damage, P, null, def_zone, "the [P.name]")
+	var/shield_check = check_shields(P.shot_data.damage, P, null, def_zone, "the [P.name]")
 	if(shield_check) // If the block roll succeeded, this is true.
 		if(shield_check < 0) // The shield did something weird and the bullet needs to keep doing things (e.g. it was reflected).
 			return shield_check // Likely equal to PROJECTILE_FORCE_MISS or PROJECTILE_CONTINUE.
 		else // Otherwise we blocked normally and stopped all the damage.
 			return 0
 
-	if(!P.nodamage)
-		organ.add_autopsy_data("[P.name]", P.damage)
+	if(!P.shot_data.nodamage)
+		organ.add_autopsy_data("[P.name]", P.shot_data.damage)
 
 	// Tell clothing we're wearing that it got hit by a bullet/laser/etc
 	var/list/clothing = get_clothing_list_organ(organ)
 	for(var/obj/item/clothing/C in clothing)
-		C.clothing_impact(P, P.damage)
+		C.clothing_impact(P, P.shot_data.damage)
 
 	//Shrapnel
 	if(P.can_embed())
 		var/armor = getarmor_organ(organ, "bullet")
 		if(!prob(armor/2))		//Even if the armor doesn't stop the bullet from hurting you, it might stop it from embedding.
-			var/hit_embed_chance = P.embed_chance + (P.damage - armor)	//More damage equals more chance to embed
+			var/hit_embed_chance = P.embed_chance + (P.shot_data.damage - armor)	//More damage equals more chance to embed
 
 			//Modifiers can make bullets less likely to embed! These are the normal modifiers and shouldn't be related to energy stuff, but they can be anyways!
 			for(var/datum/modifier/M in modifiers)
@@ -44,7 +44,7 @@ emp_act
 					if(M.energy_based)
 						M.energy_source.use(M.energy_cost) //We use energy_cost here for special effects, such as embedding.
 					hit_embed_chance = hit_embed_chance*M.incoming_damage_percent
-				if(P.damage_type == BRUTE && (!isnull(M.incoming_brute_damage_percent)))
+				if(P.shot_data.damage_type == BRUTE && (!isnull(M.incoming_brute_damage_percent)))
 					if(M.energy_based)
 						M.energy_source.use(M.energy_cost)
 					hit_embed_chance = hit_embed_chance*M.incoming_brute_damage_percent

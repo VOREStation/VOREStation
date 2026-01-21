@@ -30,7 +30,7 @@
 			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
 			return
 		else
-			Fire(A, user, pointblank=1)
+			Fire(A, user, pointblank = TRUE)
 	else
 		return ..() //Pistolwhippin'
 

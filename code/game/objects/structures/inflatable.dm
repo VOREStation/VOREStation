@@ -49,7 +49,7 @@
 	update_nearby_tiles()
 	return ..()
 
-/obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/inflatable/bullet_act(var/obj/item/projectile_new/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
 

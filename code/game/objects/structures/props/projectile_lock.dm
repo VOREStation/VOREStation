@@ -39,11 +39,11 @@
 
 	interaction_message = span_notice("The object remains inert to your touch.")
 
-/obj/structure/prop/lock/projectile/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/prop/lock/projectile/bullet_act(var/obj/item/projectile_new/Proj)
 	if(!istype(Proj, projectile_key) || timing)
 		return
 
-	if(istype(Proj, /obj/item/projectile/beam/heavylaser/cannon) || istype(Proj, /obj/item/projectile/beam/emitter) || (Proj.damage >= 80 && Proj.damtype == BURN))
+	if(istype(Proj, /obj/item/projectile/beam/heavylaser/cannon) || istype(Proj, /obj/item/projectile/beam/emitter) || (Proj.shot_data.damage >= 80 && Proj.damtype == BURN))
 		toggle_lock()
 		visible_message(span_notice("\The [src] [enabled ? "disengages" : "engages"] its locking mechanism."))
 

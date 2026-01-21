@@ -214,12 +214,12 @@ GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths o
 		return
 	..()
 
-/obj/effect/meteor/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.excavation_amount)
+/obj/effect/meteor/bullet_act(var/obj/item/projectile_new/Proj)
+	if(Proj.shot_data.excavation_amount)
 		get_hit()
 
 	if(!QDELETED(src))
-		wall_power -= Proj.excavation_amount + Proj.damage + (Proj.hitscan * 25)	// Instant-impact projectiles are inherently better at dealing with meteors.
+		wall_power -= Proj.shot_data.excavation_amount + Proj.shot_data.damage + (Proj.shot_data.hitscan * 25)	// Instant-impact projectiles are inherently better at dealing with meteors.
 
 		if(wall_power <= 0)
 			die(FALSE) // If you kill the meteor, then it dies.

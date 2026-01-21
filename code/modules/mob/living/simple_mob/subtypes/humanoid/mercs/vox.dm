@@ -108,7 +108,7 @@
 		to_chat(user, span_warning("This weapon is ineffective, it does no damage."))
 		visible_message(span_warning("\The [user] gently taps [src] with \the [O]."))
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/boarder/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/humanoid/merc/voxpirate/boarder/bullet_act(var/obj/item/projectile_new/Proj)
 	if(!Proj)	return
 	if(prob(35))
 		visible_message(span_warning("[src] blocks [Proj] with its sword!"))

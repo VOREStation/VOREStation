@@ -13,8 +13,8 @@
 		qdel(src)
 	return
 
-/obj/structure/alien/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+/obj/structure/alien/bullet_act(var/obj/item/projectile_new/Proj)
+	health -= Proj.shot_data.damage
 	..()
 	healthcheck()
 	return

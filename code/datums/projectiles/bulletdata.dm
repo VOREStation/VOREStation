@@ -37,14 +37,20 @@
 	var/casing_name = "bullet"
 	var/casing_desc = "a singular bullet, ready to go pew."
 
-	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID, SEARING are the only things that should be in here
 	var/mob_bonus_damage = 0 // Some bullets inflict extra damage on simple animals.
+
+	// Chance the projectile will hit the mob when it crosses it
 	var/accuracy = 0
+
 	var/dispersion = 0.0
-	var/range = 50
 
 	// TODO - Confirmed keeping vars
+
+	var/damage = 10 // TODO - change this to a damage type list
+	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID, SEARING are the only things that should be in here
+
+	/// Maximum range of the projectile
+	var/range = 50
 
 	/// Played when something hits a wall, or anything else that isn't a mob.
 	var/hitsound_wall = null
@@ -54,8 +60,18 @@
 	///If the rounds hit phased entities or not.
 	var/hits_phased = FALSE
 
+	/// If set, will apply a modifier to mobs that are hit by this projectile.
+	var/modifier_type_to_apply = null
+	/// How long the above modifier should last for. Leave null to be permanent.
+	var/modifier_duration = null
 
+	///Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
+	var/vacuum_traversal = TRUE
 
+	var/silenced = FALSE
+
+	var/ricochets_max = 2
+	var/ricochet_chance = 30
 
 
 	// TODO - Go through code and determine which of these should continue to exist
@@ -71,8 +87,6 @@
 	var/drowsy = 0
 	var/agony = 0
 
-	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
-	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
 	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
 
 
@@ -81,9 +95,6 @@
 	var/homing_inaccuracy_min = 0		//in pixels for these. offsets are set once when setting target.
 	var/homing_inaccuracy_max = 0
 
-	var/fire_sound = 'sound/weapons/gunshot_old.ogg' // Can be overriden in gun.dm's fire_sound var. It can also be null but I don't know why you'd ever want to do that. -Ace
-
-	var/vacuum_traversal = TRUE //Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
 
 	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
 	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
@@ -93,14 +104,8 @@
 	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 
-	// Sub-munitions. Basically, multi-projectile shotgun, rather than pellets.
-	var/list/submunitions = list() // Assoc list of the paths of any submunitions, and how many they are. [projectilepath] = [projectilecount].
-	var/use_submunitions = FALSE
-	var/only_submunitions = FALSE // Will the projectile delete itself after firing the submunitions?
-	var/submunition_spread_max = 30 // Divided by 10 to get the percentile dispersion.
-	var/submunition_spread_min = 5 // Above.
-	var/force_max_submunition_spread = FALSE // Do we just force the maximum?
-	var/spread_submunition_damage = FALSE // Do we assign damage to our sub projectiles based on our main projectile damage?
+	/// If a shot has multiple projectiles.
+	var/projectile_count = 1
 
 	var/hitscan_light_intensity = 1.5
 	var/hitscan_light_range = 0.75
@@ -119,10 +124,6 @@
 
 	var/spread = 0			//amount (in degrees) of projectile spread
 
-	var/silenced = FALSE
-
-	var/ricochets_max = 2
-	var/ricochet_chance = 30
 	var/can_miss = TRUE
 	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /test
 
@@ -132,22 +133,19 @@
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
 
 /// Fired when a projectile hits an atom.
-/datum/bulletdata/proc/on_hit(obj/item/projectile_new/shot, atom/hit_atom)
-	// TODO - Bullet hit an atom
+/datum/bulletdata/proc/on_hit(obj/item/projectile_new/shot, atom/target, blocked = 0, def_zone)
+	if(blocked >= 100)
+		return
+	if(!isliving(target))
+		return
+
+	var/mob/living/L = target
+	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked, incendiary, flammability) // add in AGONY!
+	if(modifier_type_to_apply)
+		L.add_modifier(modifier_type_to_apply, modifier_duration)
 
 /// Fired when a projectile reaches its maximum range
 /datum/bulletdata/proc/on_range(obj/item/projectile_new/shot)
 	// So it does a little 'burst' effect, but not actually do anything (unless overrided).
 	shot.impact_sounds(shot.loc)
 	shot.impact_visuals(shot.loc)
-
-/// Takes a /datum/bulletdata path and creates a projectile based on it's data. Returns the instantiated projectile
-/proc/generate_projectile(obj/firer, bulletdata_path)
-	RETURN_TYPE(/obj/item/projectile_new)
-
-	// Create projectile
-	var/obj/item/projectile_new/fired_shot = new(firer)
-	fired_shot.shot_data = new bulletdata_path()
-	// Apply datum to projectile
-
-	return fired_shot

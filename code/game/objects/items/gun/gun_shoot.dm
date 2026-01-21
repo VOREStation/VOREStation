@@ -11,32 +11,8 @@
 	if(user && user.a_intent == I_HELP && user.client?.prefs?.read_preference(/datum/preference/toggle/safefiring)) //regardless of what happens, refuse to shoot if help intent is on
 		to_chat(user, span_warning("You refrain from firing your [src] as your intent is set to help."))
 		return
+
 	Fire(A, user, params) //Otherwise, fire normally.
-
-/obj/item/gun_new/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-
-	if(!target)
-		return
-
-	var/shoot_time = (burst - 1)* burst_delay
-	if(user) // Rarely we need to support null user firing.
-		if(target.z != user.z)
-			return
-		add_fingerprint(user)
-		user.break_cloak()
-		if(!special_check(user))
-			return
-		user.setClickCooldown(shoot_time) //no clicking on things while shooting
-		user.setMoveCooldown(shoot_time) //no moving while shooting either
-
-	if(world.time < next_fire_time)
-		if (world.time % 3) //to prevent spam
-			to_chat(user, span_warning("[src] is not ready to fire again!"))
-		return
-	next_fire_time = world.time + shoot_time
-	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -82,21 +58,49 @@
 			addtimer(CALLBACK(src, PROC_REF(lock_explosion)), 10 SECONDS, TIMER_DELETE_ME)
 			return FALSE
 
-	if((CLUMSY in user.mutations) && prob(40)) //Clumsy handling
-		var/obj/P = generate_projectile(src, bullet_type)
-		if(P)
-			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
-				handle_post_fire(user, user)
-				user.visible_message(
-					span_danger("\The [user] shoots [user.p_themselves()] in the foot with \the [src]!"),
-					span_danger("You shoot yourself in the foot with \the [src]!")
-					)
-				user.drop_item()
-		else
+	// Shoot self in foot with clumsy
+	if((CLUMSY in user.mutations) && prob(40))
+		if(!ispath(currently_chambered))
 			handle_click_empty(user)
+			return FALSE
+		var/datum/bulletdata/shot = create_bullet_datum(user, user, 0, FALSE, FALSE)
+		fire_gun_projectile(shot, user, user, pick(BP_L_FOOT, BP_R_FOOT))
+		user.visible_message(
+			span_danger("\The [user] shoots [user.p_themselves()] in the foot with \the [src]!"),
+			span_danger("You shoot yourself in the foot with \the [src]!")
+			)
+		user.drop_item()
 		return FALSE
 	return TRUE
 
+/// Initial gunfire proc, checks gun cooldown and if we are currently in the middle of a burst of gunfire.
+/obj/item/gun_new/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!target)
+		return
+
+	var/shoot_time = (burst - 1)* burst_delay
+	if(user) // Rarely we need to support null user firing.
+		if(target.z != user.z)
+			return
+		add_fingerprint(user)
+		user.break_cloak()
+		if(!special_check(user))
+			return
+		user.setClickCooldown(shoot_time) //no clicking on things while shooting
+		user.setMoveCooldown(shoot_time) //no moving while shooting either
+
+	if(world.time < next_fire_time)
+		if (world.time % 3) //to prevent spam
+			to_chat(user, span_warning("[src] is not ready to fire again!"))
+		return
+	next_fire_time = world.time + shoot_time
+
+	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
+
+/// Handles actual gunfire. Repeatedly called via timers during burstfire.
 /obj/item/gun_new/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -127,25 +131,22 @@
 			else
 				set_light(0)
 
+	// End burst shot
 	if(ticker > burst)
 		return
 
-	var/obj/item/projectile_new/projectile = generate_projectile(src, bullet_type)
-	if(!projectile) //click, out of bullets
+	//click, out of bullets
+	if(!ispath(currently_chambered))
 		handle_click_empty(user)
 		return
 
-	if(ticker == 1) // So one burst only makes one message and not 3+ messages.
+	// So one burst only makes one message and not 3+ messages.
+	if(ticker == 1)
 		handle_firing_text(user, target, pointblank, reflex)
 
-	process_accuracy(projectile, user, target, ticker, held_twohanded)
-
-	if(pointblank)
-		process_point_blank(projectile, user, target)
-
-	if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
-		handle_post_fire(user, target, pointblank, reflex)
-		update_icon()
+	// Take the shot
+	var/datum/bulletdata/shot = create_bullet_datum(user, target, ticker, held_twohanded, pointblank)
+	fire_gun_projectile(shot, user, target, user.zone_sel.selecting, clickparams)
 
 	// We do this down here, so we don't get the message if we fire an empty gun.
 	if(user)
@@ -189,11 +190,14 @@
 			else
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),0), burst_delay, TIMER_DELETE_ME)
 
-/obj/item/gun_new/proc/process_point_blank(obj/projectile, mob/user, atom/target)
-	var/obj/item/projectile/P = projectile
-	if(!istype(P))
-		return //default behaviour only applies to true projectiles
+/obj/item/gun_new/proc/create_bullet_datum(user, target, ticker, held_twohanded, pointblank)
+	var/datum/bulletdata/shot_dat = new currently_chambered()
+	process_accuracy(shot_dat, user, target, ticker, held_twohanded)
+	if(pointblank)
+		process_point_blank(shot_dat, user, target)
+	return shot_dat
 
+/obj/item/gun_new/proc/process_point_blank(datum/bulletdata/current_shot, mob/user, atom/target)
 	//default point blank multiplier
 	var/damage_mult = 1.3
 
@@ -208,16 +212,13 @@
 				damage_mult = 2.5
 			else if(grabstate >= GRAB_AGGRESSIVE)
 				damage_mult = 1.5
-	P.agony *= damage_mult
-	P.damage *= damage_mult
 
-/obj/item/gun_new/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
+	current_shot.agony *= damage_mult
+	current_shot.damage *= damage_mult
+
+/obj/item/gun_new/proc/process_accuracy(datum/bulletdata/current_shot, mob/living/user, atom/target, var/burst, var/held_twohanded)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-
-	var/obj/item/projectile/P = projectile
-	if(!istype(P))
-		return //default behaviour only applies to true projectiles
 
 	var/acc_mod = burst_accuracy[min(burst, burst_accuracy.len)]
 	var/disp_mod = dispersion[min(burst, dispersion.len)]
@@ -228,41 +229,36 @@
 			disp_mod += one_handed_penalty*0.5 //dispersion per point of two-handedness
 
 	//Accuracy modifiers
-	P.accuracy = accuracy + acc_mod
-	P.dispersion = disp_mod
-
-	P.accuracy -= user.get_accuracy_penalty()
+	current_shot.accuracy = accuracy + acc_mod
+	current_shot.dispersion = disp_mod
+	current_shot.accuracy -= user.get_accuracy_penalty()
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
 		//If you aim at someone beforehead, it'll hit more often.
 		//Kinda balanced by fact you need like 2 seconds to aim
 		//As opposed to no-delay pew pew
-		P.accuracy += 30
+		current_shot.accuracy += 30
 
 	// Some modifiers make it harder or easier to hit things.
 	for(var/datum/modifier/M in user.modifiers)
 		if(!isnull(M.accuracy))
-			P.accuracy += M.accuracy
+			current_shot.accuracy += M.accuracy
 		if(!isnull(M.accuracy_dispersion))
-			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
+			current_shot.dispersion = max(current_shot.dispersion + M.accuracy_dispersion, 0)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species)
-			P.accuracy += H.species.gun_accuracy_mod
-			P.dispersion = max(P.dispersion + H.species.gun_accuracy_dispersion_mod, 0)
+			current_shot.accuracy += H.species.gun_accuracy_mod
+			current_shot.dispersion = max(current_shot.dispersion + H.species.gun_accuracy_dispersion_mod, 0)
 		if(H.fear > 30)
-			P.accuracy -= 35
+			current_shot.accuracy -= 35
 
 //does the actual launching of the projectile
-/obj/item/gun_new/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun_new/proc/fire_gun_projectile(datum/bulletdata/current_shot, mob/user, atom/target, var/target_zone, var/params=null)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-
-	var/obj/item/projectile/P = projectile
-	if(!istype(P))
-		return FALSE //default behaviour only applies to true projectiles
 
 	//shooting while in shock
 	var/forcespread
@@ -272,9 +268,7 @@
 			forcespread = rand(50, 50)
 		else if(mob.shock_stage > 70)
 			forcespread = rand(-25, 25)
-	var/launched = !P.launch_from_gun(target, target_zone, user, params, null, forcespread, src)
 
-	if(launched)
-		play_fire_sound(user, P)
-
-	return launched
+	fire_projectile(current_shot, target, target_zone, user, params, null, forcespread)
+	play_fire_sound(user)
+	handle_post_fire(user, target)

@@ -122,15 +122,15 @@
 		return
 	B.pulse(forceLeft - 1, dirs)
 
-/obj/effect/blob/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/blob/bullet_act(var/obj/item/projectile_new/Proj)
 	if(!Proj)
 		return
 
-	switch(Proj.damage_type)
+	switch(Proj.shot_data.damage_type)
 		if(BRUTE)
-			take_damage(Proj.damage / brute_resist)
+			take_damage(Proj.shot_data.damage / brute_resist)
 		if(BURN)
-			take_damage(Proj.damage / fire_resist)
+			take_damage(Proj.shot_data.damage / fire_resist)
 	return 0
 
 /obj/effect/blob/attackby(var/obj/item/W, var/mob/user)

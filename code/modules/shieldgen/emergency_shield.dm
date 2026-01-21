@@ -56,7 +56,7 @@
 
 	..()
 
-/obj/machinery/shield/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shield/bullet_act(var/obj/item/projectile_new/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	check_failure()

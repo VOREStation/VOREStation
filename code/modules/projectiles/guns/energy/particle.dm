@@ -183,8 +183,8 @@
 	light_power = 1
 	light_color = "#CCFFFF"
 
-/turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
+/turf/simulated/mineral/bullet_act(var/obj/item/projectile_new/Proj)
 	if(istype(Proj, /obj/item/projectile/bullet/particle))
-		if(prob(Proj.damage))
+		if(prob(Proj.shot_data.damage))
 			GetDrilled()
 	..()

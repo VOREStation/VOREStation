@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 		owned_field.AddParticles(name, quantity)
 		. = 1
 
-/obj/machinery/power/fusion_core/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/fusion_core/bullet_act(var/obj/item/projectile_new/Proj)
 	if(owned_field)
 		. = owned_field.bullet_act(Proj)
 
