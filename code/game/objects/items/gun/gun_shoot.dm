@@ -110,13 +110,16 @@
 
 	if(ticker > burst)
 		return //we're done here
-	if(!ismob(loc) && !mounted_gun) //We've been dropped and we are NOT a mounted gun.
-		return
-	if(user.stat) //We've been KO'd or have died. No shooting while dead.
-		return
 	if(ticker >= 250) //If you go too far above this, your game will kick you and force you to reconnect. This is already EXTREMELY leninent.
 		return //In testing, I reached 937 bullets out of 1000 being fired with a delay  of 0.1 before being kicked.
-	var/held_twohanded = (user.can_wield_item(src) && is_held_twohanded(user))
+
+	var/held_twohanded = FALSE
+	if(user)
+		if(!ismob(loc) && !mounted_gun) //We've been dropped and we are NOT a mounted gun.
+			return
+		if(user.stat) //We've been KO'd or have died. No shooting while dead.
+			return
+		held_twohanded = (user.can_wield_item(src) && is_held_twohanded(user))
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -131,131 +134,67 @@
 			else
 				set_light(0)
 
-	if(ticker <= burst)
-		var/obj/projectile = consume_next_projectile(user)
-		if(!projectile) //click, out of bullets
-			handle_click_empty(user)
-			return
-
-		else
-			if(ticker == 1) // So one burst only makes one message and not 3+ messages.
-				handle_firing_text(user, target, pointblank, reflex)
-
-			process_accuracy(projectile, user, target, ticker, held_twohanded)
-
-			if(pointblank)
-				process_point_blank(projectile, user, target)
-
-			if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
-				handle_post_fire(user, target, pointblank, reflex)
-				update_icon()
-
-			// We do this down here, so we don't get the message if we fire an empty gun.
-			if(user.item_is_in_hands(src) && user.hands_are_full())
-				if(one_handed_penalty >= 20)
-					to_chat(user, span_warning("You struggle to keep \the [src] pointed at the correct position with just one hand!"))
-
-			if(!zoom) //If we're not zoomed, reset our accuracy to our initial accuracy.
-				accuracy = initial(accuracy) //Reset our accuracy
-			last_shot = world.time
-			user.hud_used.update_ammo_hud(user, src)
-			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-
-			if(recoil_mode && iscarbon(user))
-				var/mob/living/carbon/micro = user
-				var/mysize = micro.size_multiplier
-				if(recoil_mode > 0)
-					if(mysize <= 0.60)
-						micro.Weaken(1*recoil_mode)
-						/* TODO - micro harm from energy weapons?
-						if(!istype(src,/obj/item/gun_new/energy))
-							micro.adjustBruteLoss((5-mysize*4)*recoil_mode)
-							to_chat(micro, span_danger("You're so tiny that you drop the gun and hurt yourself from the recoil!"))
-						else
-							to_chat(micro, span_danger("You're so tiny that the pull of the trigger causes you to drop the gun!"))
-						*/
-
-			if(!(target && target.loc))
-				target = targloc
-				pointblank = 0
-
-			if(ticker < burst)
-				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, user, clickparams, pointblank, reflex, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
-				return
-
-			if(ticker == burst)
-				next_fire_time = world.time + fire_delay
-				if(muzzle_flash)
-					if(gun_light)
-						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),light_brightness), burst_delay, TIMER_DELETE_ME)
-					else
-						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),0), burst_delay, TIMER_DELETE_ME)
-
-// Similar to the above proc, but does not require a user, which is ideal for things like turrets.
-/obj/item/gun_new/proc/Fire_userless(atom/target)
-	if(!target)
-		return
-
-	if(world.time < next_fire_time)
-		return
-
-	var/shoot_time = (burst - 1)* burst_delay
-	next_fire_time = world.time + shoot_time
-	handle_userless_gunfire(target, 1, FALSE)
-
-// This is horrible. I tried to keep the old way it had because if I try to use the fancy procs above like handle_post_fire, it expects a user.
-// Which this doesn't have. It's ugly but whatever. This is used in literally one place (sawn off shotguns) and should honestly just be axed.
-/obj/item/gun_new/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-
 	if(ticker > burst)
-		return //we're done here
+		return
 
-	//actually attempt to shoot
-	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
+	var/obj/projectile = consume_next_projectile(user)
+	if(!projectile) //click, out of bullets
+		handle_click_empty(user)
+		return
 
-	//update timing
-	if(recursive)
+	if(ticker == 1) // So one burst only makes one message and not 3+ messages.
+		handle_firing_text(user, target, pointblank, reflex)
+
+	process_accuracy(projectile, user, target, ticker, held_twohanded)
+
+	if(pointblank)
+		process_point_blank(projectile, user, target)
+
+	if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
+		handle_post_fire(user, target, pointblank, reflex)
+		update_icon()
+
+	// We do this down here, so we don't get the message if we fire an empty gun.
+	if(user)
+		if(user.item_is_in_hands(src) && user.hands_are_full())
+			if(one_handed_penalty >= 20)
+				to_chat(user, span_warning("You struggle to keep \the [src] pointed at the correct position with just one hand!"))
+
+		if(!zoom) //If we're not zoomed, reset our accuracy to our initial accuracy.
+			accuracy = initial(accuracy) //Reset our accuracy
+		last_shot = world.time
+		user.hud_used.update_ammo_hud(user, src)
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+
+		if(recoil_mode && iscarbon(user))
+			var/mob/living/carbon/micro = user
+			var/mysize = micro.size_multiplier
+			if(recoil_mode > 0)
+				if(mysize <= 0.60)
+					micro.Weaken(1*recoil_mode)
+					/* TODO - micro harm from energy weapons?
+					if(!istype(src,/obj/item/gun_new/energy))
+						micro.adjustBruteLoss((5-mysize*4)*recoil_mode)
+						to_chat(micro, span_danger("You're so tiny that you drop the gun and hurt yourself from the recoil!"))
+					else
+						to_chat(micro, span_danger("You're so tiny that the pull of the trigger causes you to drop the gun!"))
+					*/
+
+	if(!(target && target.loc))
+		target = targloc
+		pointblank = 0
+
+	if(ticker < burst)
+		addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, user, clickparams, pointblank, reflex, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
+		return
+
+	if(ticker == burst)
 		next_fire_time = world.time + fire_delay
 		if(muzzle_flash)
-			set_light(0)
-
-	if(ticker <= burst)
-		var/obj/item/projectile/P = consume_next_projectile()
-		if(!P) //click, out of bullets
-			handle_click_empty()
-			return
-
-		else
-			var/acc = burst_accuracy[min(ticker, burst_accuracy.len)]
-			var/disp = dispersion[min(ticker, dispersion.len)]
-
-			P.accuracy = accuracy + acc
-			P.dispersion = disp
-
-			P.shot_from = src.name
-			P.silenced |= silenced // A silent bullet (e.g., BBs) can be fired quietly from any gun.
-
-			P.old_style_target(target)
-			P.fire()
-
-			accuracy = initial(accuracy)
-			last_shot = world.time
-
-			play_fire_sound()
-
-			if(muzzle_flash)
-				set_light(muzzle_flash)
-			update_icon()
-
-			if(!(target && target.loc))
-				target = targloc
-
-			if(ticker < burst)
-				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
-
-	add_attack_logs(src,target,"Fired [src.name] (Unmanned)")
+			if(gun_light)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),light_brightness), burst_delay, TIMER_DELETE_ME)
+			else
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),0), burst_delay, TIMER_DELETE_ME)
 
 /obj/item/gun_new/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
