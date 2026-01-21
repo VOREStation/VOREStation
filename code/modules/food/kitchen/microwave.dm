@@ -438,7 +438,7 @@
 		reagents.trans_to_holder(S.reagents, total/cooked_items.len)
 
 	for(var/obj/item/food/S in cookingContents())
-		S.cook()
+		S.cook_no_recipe()
 
 	dispose(0) //clear out anything left
 	stop()
