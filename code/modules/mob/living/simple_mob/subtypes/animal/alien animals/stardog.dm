@@ -1447,6 +1447,11 @@
 		we_process = FALSE
 		return PROCESS_KILL
 
+/turf/simulated/floor/water/digestive_enzymes/Destroy()
+	if(we_process)
+		STOP_PROCESSING(SSturfs, src)
+	. = ..()
+
 /turf/simulated/floor/water/digestive_enzymes/proc/can_digest(atom/movable/digest_target)
 	. = FALSE
 	if(digest_target.loc != src)
