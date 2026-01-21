@@ -215,7 +215,7 @@
 	src.cleanup(8)
 	. = ..()
 
-/obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
 	..()
 	return
@@ -280,7 +280,7 @@
 			gen_secondary.storedpower -= power_usage
 
 
-/obj/machinery/shieldwall/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/machinery/shieldwall/bullet_act(var/obj/item/projectile/Proj)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		if(prob(50))

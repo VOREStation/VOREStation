@@ -49,7 +49,7 @@
 /obj/structure/cult/pylon/take_damage(var/damage)
 	pylonhit(damage)
 
-/obj/structure/cult/pylon/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/cult/pylon/bullet_act(var/obj/item/projectile/Proj)
 	pylonhit(Proj.get_structure_damage())
 
 /obj/structure/cult/pylon/proc/pylonhit(var/damage)

@@ -117,7 +117,7 @@
 	else
 		animate(src, transform = turn(src.transform, rotate_degrees), time = 6)
 
-/obj/structure/prop/prism/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/prop/prism/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, redirect_type))
 		visible_message(span_danger("\The [src] redirects \the [Proj]!"))
 		flick("[initial(icon_state)]+glow", src)
@@ -126,7 +126,7 @@
 		var/new_y = (-1 * round(10 * sin(degrees_from_north - 90))) + y
 		var/turf/curloc = get_turf(src)
 
-		Proj.shot_data.penetrating += 1 // Needed for the beam to get out of the turret.
+		Proj.penetrating += 1 // Needed for the beam to get out of the turret.
 
 		Proj.redirect(new_x, new_y, curloc, null)
 

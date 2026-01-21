@@ -1,7 +1,3 @@
-/***
- * TODO Gattening: Unexist this file.
-*/
-
 /obj/item/ammo_casing
 	name = "bullet casing"
 	desc = "A bullet casing."

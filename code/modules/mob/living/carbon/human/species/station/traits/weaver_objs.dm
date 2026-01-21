@@ -18,7 +18,7 @@
 		visible_message(span_warning("\The [src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with \the [W][(user ? " by [user]." : ".")]"))
 		qdel(src)
 
-/obj/effect/weaversilk/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/effect/weaversilk/bullet_act(var/obj/item/projectile/Proj)
 	..()
 	if(Proj.get_structure_damage())
 		qdel(src)

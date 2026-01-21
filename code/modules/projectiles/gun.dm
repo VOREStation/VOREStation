@@ -1,7 +1,3 @@
-/***
- * TODO Gattening: Unexist this file.
-*/
-
 /*
 	Defines a firing mode for a gun.
 

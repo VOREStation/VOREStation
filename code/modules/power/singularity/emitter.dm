@@ -233,8 +233,8 @@
 		user.visible_message("[user.name] emags [src].",span_warning("You short out the lock."))
 		return 1
 
-/obj/machinery/power/emitter/bullet_act(var/obj/item/projectile_new/P)
-	if(!P || !P.shot_data.damage || P.get_structure_damage() <= 0 )
+/obj/machinery/power/emitter/bullet_act(var/obj/item/projectile/P)
+	if(!P || !P.damage || P.get_structure_damage() <= 0 )
 		return
 
 	adjust_integrity(-P.get_structure_damage())

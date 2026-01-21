@@ -145,7 +145,7 @@
 	.=..()
 	alpha = 255	// Needed because of grave hiding
 
-/obj/structure/closet/grave/bullet_act(var/obj/item/projectile_new/P)
+/obj/structure/closet/grave/bullet_act(var/obj/item/projectile/P)
 	return PROJECTILE_CONTINUE	// It's a hole in the ground, doesn't usually stop or even care about bullets
 
 /obj/structure/closet/grave/return_air_for_internal_lifeform(var/mob/living/L)

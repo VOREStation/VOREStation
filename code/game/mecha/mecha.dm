@@ -1183,13 +1183,13 @@
 	return
 
 
-/obj/mecha/bullet_act(var/obj/item/projectile_new/Proj) //wrapper
+/obj/mecha/bullet_act(var/obj/item/projectile/Proj) //wrapper
 	if(istype(Proj, /obj/item/projectile/test))
 		var/obj/item/projectile/test/Test = Proj
 		Test.hit |= occupant // Register a hit on the occupant, for things like turrets, or in simple-mob cases stopping friendly fire in firing line mode.
 		return
 
-	src.mecha_log_message("Hit by projectile. Type: [Proj.name]([Proj.shot_data.check_armour]).",1)
+	src.mecha_log_message("Hit by projectile. Type: [Proj.name]([Proj.check_armour]).",1)
 	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
 	..()
 	return

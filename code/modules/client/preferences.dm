@@ -585,8 +585,10 @@ var/list/preferences_datums = list()
 
 	var/list/traits_to_copy = list(/datum/trait/neutral/tall,
 									/datum/trait/neutral/taller,
+									/datum/trait/neutral/tallest,
 									/datum/trait/neutral/short,
 									/datum/trait/neutral/shorter,
+									/datum/trait/neutral/shortest,
 									/datum/trait/neutral/obese,
 									/datum/trait/neutral/fat,
 									/datum/trait/neutral/thin,
@@ -603,9 +605,10 @@ var/list/preferences_datums = list()
 				var/datum/trait/instance = GLOB.all_traits[trait]
 				if (!instance)
 					continue
-				for (var/to_edit in instance.var_changes)
-					character.species.vars[to_edit] = instance.var_changes[to_edit]
+				for(var/key, value in instance.var_changes)
+					character.species.vars[key] = value
 	character.update_transform()
+
 	if(!voice_sound)
 		character.voice_sounds_list = DEFAULT_TALK_SOUNDS
 	else

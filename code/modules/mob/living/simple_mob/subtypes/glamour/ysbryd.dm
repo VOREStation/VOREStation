@@ -157,7 +157,7 @@
 			chosen_target << sound(chosen_sound, repeat = 0, wait = 0, volume = 15, channel = CHANNEL_AMBIENCE_FORCED)
 			last_effect = world.time
 
-/mob/living/simple_mob/ysbryd/bullet_act(var/obj/item/projectile_new/Proj)
+/mob/living/simple_mob/ysbryd/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj ,/obj/item/projectile/beam/xray) || istype(Proj ,/obj/item/projectile/beam/gamma) || istype(Proj ,/obj/item/projectile/beam/emitter))
 		plane = MOB_PLANE
 

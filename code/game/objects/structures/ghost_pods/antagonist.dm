@@ -45,12 +45,12 @@
 	..()
 	return
 
-/obj/structure/ghost_pod/automatic/xenomorph_egg/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/ghost_pod/automatic/xenomorph_egg/bullet_act(var/obj/item/projectile/Proj)
 	switch(Proj.damtype)
 		if(BURN)
-			health -= Proj.shot_data.damage * 1.5 //It burns!
+			health -= Proj.damage * 1.5 //It burns!
 		if(BRUTE)
-			health -= Proj.shot_data.damage //It hurts a bit more then a sharp stick
+			health -= Proj.damage //It hurts a bit more then a sharp stick
 	healthcheck()
 	..()
 	return

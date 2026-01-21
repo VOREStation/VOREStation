@@ -529,7 +529,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	update_icon()
 	..()
 
-/obj/machinery/power/smes/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/machinery/power/smes/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
 
 /obj/machinery/power/smes/ex_act(var/severity)

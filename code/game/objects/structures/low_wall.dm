@@ -251,7 +251,7 @@
 			I.color = main_color
 			add_overlay(I)
 
-/obj/structure/low_wall/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/low_wall/bullet_act(var/obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	var/damage = min(proj_damage, 100)
 	take_damage(damage)

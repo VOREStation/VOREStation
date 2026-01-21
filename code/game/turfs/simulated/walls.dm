@@ -58,7 +58,7 @@
 /turf/simulated/wall/proc/get_material()
 	return material
 
-/turf/simulated/wall/bullet_act(var/obj/item/projectile_new/Proj)
+/turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(2500)
 	else if(istype(Proj,/obj/item/projectile/ion))
@@ -69,7 +69,7 @@
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
 
-	if(Proj.shot_data.damage_type == BURN && damage > 0)
+	if(Proj.damage_type == BURN && damage > 0)
 		if(thermite)
 			thermitemelt()
 
@@ -78,7 +78,7 @@
 			var/new_damage = damage * material.reflectivity
 			var/outgoing_damage = damage - new_damage
 			damage = new_damage
-			Proj.shot_data.damage = outgoing_damage
+			Proj.damage = outgoing_damage
 
 			visible_message(span_danger("\The [src] reflects \the [Proj]!"))
 
@@ -88,7 +88,7 @@
 			//var/turf/curloc = get_turf(src)
 			var/turf/curloc = get_step(src, get_dir(src, Proj.starting))
 
-			Proj.shot_data.penetrating += 1 // Needed for the beam to get out of the wall.
+			Proj.penetrating += 1 // Needed for the beam to get out of the wall.
 
 			// redirect the projectile
 			Proj.redirect(new_x, new_y, curloc, null)

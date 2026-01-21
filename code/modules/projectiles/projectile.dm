@@ -1,7 +1,3 @@
-/***
- * TODO Gattening: Unexist this file.
-*/
-
 #define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
 #define MUZZLE_EFFECT_PIXEL_INCREMENT 17	//How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
 
@@ -427,7 +423,6 @@
 		stack_trace("WARNING: Projectile [type] fired without either mouse parameters, or a target atom to aim at!")
 		qdel(src)
 
-/* TODO Gattening: Unexist this file.
 /proc/calculate_projectile_angle_and_pixel_offsets(mob/user, params)
 	var/list/mouse_control = params2list(params)
 	var/p_x = 0
@@ -458,7 +453,6 @@
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
 		angle = ATAN2(y - oy, x - ox)
 	return list(angle, p_x, p_y)
-*/
 
 /obj/item/projectile/proc/redirect(x, y, starting, source)
 	old_style_target(locate(x, y, z), starting? get_turf(starting) : get_turf(source))

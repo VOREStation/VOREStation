@@ -173,9 +173,9 @@
 /obj/machinery/field_generator/emp_act(severity, recursive)
 	return FALSE
 
-/obj/machinery/field_generator/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/machinery/field_generator/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
-		power += Proj.shot_data.damage * EMITTER_DAMAGE_POWER_TRANSFER
+		power += Proj.damage * EMITTER_DAMAGE_POWER_TRANSFER
 		update_icon()
 	return 0
 

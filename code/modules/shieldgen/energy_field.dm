@@ -50,7 +50,7 @@
 /obj/effect/energy_field/ex_act(var/severity)
 	adjust_strength(-(4 - severity) * 4)
 
-/obj/effect/energy_field/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/effect/energy_field/bullet_act(var/obj/item/projectile/Proj)
 	adjust_strength(-Proj.get_structure_damage() / 10)
 
 /obj/effect/energy_field/attackby(obj/item/W, mob/user)

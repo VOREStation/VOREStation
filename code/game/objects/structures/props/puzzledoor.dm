@@ -27,7 +27,7 @@
 			return 0
 	return 1
 
-/obj/machinery/door/blast/puzzle/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/machinery/door/blast/puzzle/bullet_act(var/obj/item/projectile/Proj)
 	if(!istype(Proj, /obj/item/projectile/test))
 		visible_message(span_cult("\The [src] is completely unaffected by \the [Proj]."))
 	qdel(Proj) //No piercing. No.

@@ -64,7 +64,7 @@
 			return FALSE
 	return TRUE
 
-/obj/effect/directional_shield/bullet_act(var/obj/item/projectile_new/P)
+/obj/effect/directional_shield/bullet_act(var/obj/item/projectile/P)
 	adjust_health(-P.get_structure_damage())
 	P.on_hit(src)
 	playsound(src, 'sound/effects/EMPulse.ogg', 75, 1)

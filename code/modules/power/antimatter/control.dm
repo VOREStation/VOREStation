@@ -112,8 +112,8 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile_new/Proj)
-	if(Proj.shot_data.check_armour != "bullet")
+/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
+	if(Proj.check_armour != "bullet")
 		stability -= Proj.force
 	return 0
 

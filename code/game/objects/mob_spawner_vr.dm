@@ -79,7 +79,7 @@
 	visible_message(span_warning("\The [src] has been [LAZYLEN(I.attack_verb) ? "[pick(I.attack_verb)]":"attacked"] with \the [I] by [user]."))
 	take_damage(I.force)
 
-/obj/structure/mob_spawner/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/mob_spawner/bullet_act(var/obj/item/projectile/Proj)
 	..()
 	if(destructible)
 		take_damage(Proj.get_structure_damage())
@@ -265,3 +265,4 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	simultaneous_spawns = 6
 	spawn_delay = 300
 	spawn_types = list(/mob/living/simple_mob/mechanical/hivebot/swarm = 200, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 10)
+

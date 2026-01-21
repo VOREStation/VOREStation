@@ -303,9 +303,9 @@ var/list/mining_overlay_cache = list()
 					new oretype(src)
 				resources[ore] = 0
 
-/turf/simulated/mineral/bullet_act(var/obj/item/projectile_new/Proj) // only emitters for now
-	if(Proj.shot_data.excavation_amount)
-		var/newDepth = excavation_level + Proj.shot_data.excavation_amount // Used commonly below
+/turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj) // only emitters for now
+	if(Proj.excavation_amount)
+		var/newDepth = excavation_level + Proj.excavation_amount // Used commonly below
 		if(newDepth >= 200) // first, if the turf is completely drilled then don't bother checking for finds and just drill it
 			GetDrilled(0)
 
@@ -317,8 +317,8 @@ var/list/mining_overlay_cache = list()
 				if(prob(50))
 					artifact_debris()
 
-		excavation_level += Proj.shot_data.excavation_amount
-		update_archeo_overlays(Proj.shot_data.excavation_amount)
+		excavation_level += Proj.excavation_amount
+		update_archeo_overlays(Proj.excavation_amount)
 
 /turf/simulated/mineral/Bumped(AM)
 

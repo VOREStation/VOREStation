@@ -250,7 +250,7 @@
 	dismantle()
 	return
 //checks for projectile damage and does the same as dismaintle but spawns material instead.
-/obj/structure/smolebuilding/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/smolebuilding/bullet_act(var/obj/item/projectile/Proj)
 	displode()
 	return
 //is the same as dismaintal but instead of ruins it just makes it all explode
@@ -279,7 +279,7 @@
 	displode()
 	return
 
-/obj/structure/smoleruins/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/smoleruins/bullet_act(var/obj/item/projectile/Proj)
 	displode()
 	return
 

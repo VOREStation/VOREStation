@@ -61,7 +61,7 @@
 				add_attack_logs(D,M,"Ran over with [src.name]")
 
 //trains are commonly open topped, so there is a chance the projectile will hit the mob riding the train instead
-/obj/vehicle/train/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/vehicle/train/bullet_act(var/obj/item/projectile/Proj)
 	if(has_buckled_mobs() && prob(70))
 		var/mob/living/L = pick(buckled_mobs)
 		L.bullet_act(Proj)

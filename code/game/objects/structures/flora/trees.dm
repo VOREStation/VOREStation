@@ -120,7 +120,7 @@
 /obj/structure/flora/tree/ex_act(var/severity)
 	adjust_health(-(max_health / severity), TRUE)
 
-/obj/structure/flora/tree/bullet_act(var/obj/item/projectile_new/Proj)
+/obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		adjust_health(-Proj.get_structure_damage(), TRUE)
 

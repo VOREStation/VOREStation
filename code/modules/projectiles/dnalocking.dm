@@ -1,7 +1,3 @@
-/***
- * TODO Gattening: Unexist this file.
-*/
-
 /obj/item/dnalockingchip
 	name = "DNA Chip Lock"
 	icon = 'icons/obj/ammo.dmi'
