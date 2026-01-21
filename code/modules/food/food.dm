@@ -94,7 +94,7 @@
 		for(var/string in food_reagents)
 			var/amt = food_reagents[string] || 1
 			total_so_far += amt
-			reagents.add_reagent(string, amt)
+			reagents.add_reagent(string, amt, nutriment_desc)
 		if(total_so_far > volume)
 			WARNING("[src]([src.type]) starts with more reagents than it has total volume")
 		food_reagents = null

@@ -101,15 +101,6 @@
 	else
 		price_tag = null
 
-// for /obj/machinery/vending/sovietsoda
-/obj/item/food/drinks/drinkingglass/soda/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SODAWATER, 50)
-
-/obj/item/food/drinks/drinkingglass/cola/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_COLA, 50)
-
 /obj/item/food/drinks/drinkingglass/shotglass
 	name = "shot glass"
 	desc = "No glasses were shot in the making of this glass."
@@ -170,12 +161,10 @@
 /obj/item/food/drinks/drinkingglass/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 30)
-	reagents.add_reagent(REAGENT_ID_IRON, 10)
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 15)
-	reagents.add_reagent(REAGENT_ID_WATER, 45)
+	food_reagents = list(REAGENT_ID_NUTRIMENT = 30,
+						REAGENT_ID_IRON = 10,
+						REAGENT_ID_PROTEIN = 15,
+						REAGENT_ID_WATER = 45)
 
 
 ////////////////Fancy coffee cups

@@ -28,8 +28,6 @@
 //	reagents.add_reagent("xenomicrobes", 10)								//This is what is in the food item. you may copy/paste this line of code for all the contents.
 
 
-
-
 /obj/item/food/aesirsalad
 	name = "Aesir salad"
 	desc = "Probably too incredible for mortal men to fully enjoy."
@@ -55,9 +53,7 @@
 	nutriment_desc = list("candy" = 10)
 	bitesize = 5
 
-/obj/item/food/candy/donor/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SUGAR, 3)
+	food_reagents = list(REAGENT_ID_SUGAR = 3)
 
 /obj/item/food/candy_corn
 	name = "candy corn"

@@ -235,9 +235,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 4
 
-/obj/item/food/drinks/bottle/gin/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_GIN, 100)
+	food_reagents = list(REAGENT_ID_GIN = 100)
 
 /obj/item/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
@@ -246,9 +244,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/whiskey/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_WHISKEY, 100)
+	food_reagents = list(REAGENT_ID_WHISKEY = 100)
 
 /obj/item/food/drinks/bottle/specialwhiskey
 	name = REAGENT_SPECIALWHISKEY
@@ -257,9 +253,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/specialwhiskey/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SPECIALWHISKEY, 100)
+	food_reagents = list(REAGENT_ID_SPECIALWHISKEY = 100)
 
 /obj/item/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
@@ -268,9 +262,7 @@
 	center_of_mass_x = 17
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/vodka/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_VODKA, 100)
+	food_reagents = list(REAGENT_ID_VODKA = 100)
 
 /obj/item/food/drinks/bottle/tequila
 	name = "Caccavo Guaranteed Quality Tequilla"
@@ -279,9 +271,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/tequila/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_TEQUILA, 100)
+	food_reagents = list(REAGENT_ID_TEQUILA = 100)
 
 /obj/item/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
@@ -290,9 +280,7 @@
 	center_of_mass_x = 17
 	center_of_mass_y = 5
 
-/obj/item/food/drinks/bottle/bottleofnothing/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_NOTHING, 100)
+	food_reagents = list(REAGENT_ID_NOTHING = 100)
 
 /obj/item/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
@@ -301,9 +289,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/patron/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PATRON, 100)
+	food_reagents = list(REAGENT_ID_PATRON = 100)
 
 /obj/item/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
@@ -312,9 +298,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/food/drinks/bottle/rum/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_RUM, 100)
+	food_reagents = list(REAGENT_ID_RUM = 100)
 
 /obj/item/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
@@ -323,9 +307,7 @@
 	center_of_mass_x = 17
 	center_of_mass_y = 10
 
-/obj/item/food/drinks/bottle/holywater/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_HOLYWATER, 100)
+	food_reagents = list(REAGENT_ID_HOLYWATER = 100)
 
 /obj/item/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
@@ -334,9 +316,7 @@
 	center_of_mass_x = 17
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/vermouth/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_VERMOUTH, 100)
+	food_reagents = list(REAGENT_ID_VERMOUTH = 100)
 
 /obj/item/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
@@ -345,9 +325,7 @@
 	center_of_mass_x = 17
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/kahlua/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_KAHLUA, 100)
+	food_reagents = list(REAGENT_ID_KAHLUA = 100)
 
 /obj/item/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
@@ -356,9 +334,7 @@
 	center_of_mass_x = 15
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/goldschlager/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_GOLDSCHLAGER, 100)
+	food_reagents = list(REAGENT_ID_GOLDSCHLAGER = 100)
 
 /obj/item/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
@@ -367,9 +343,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/cognac/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_COGNAC, 100)
+	food_reagents = list(REAGENT_ID_COGNAC = 100)
 
 /obj/item/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
@@ -378,9 +352,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/absinthe/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_ABSINTHE, 100)
+	food_reagents = list(REAGENT_ID_ABSINTHE = 100)
 
 /obj/item/food/drinks/bottle/melonliquor //MODIFIED ON 04/21/2021
 	name = "Emeraldine Melon Liqueur"
@@ -389,9 +361,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/melonliquor/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_MELONLIQUOR, 100)
+	food_reagents = list(REAGENT_ID_MELONLIQUOR = 100)
 
 /obj/item/food/drinks/bottle/bluecuracao //MODIFIED ON 04/21/2021
 	name = "Miss Blue Curacao"
@@ -400,9 +370,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/bluecuracao/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_BLUECURACAO, 100)
+	food_reagents = list(REAGENT_ID_BLUECURACAO = 100)
 
 /obj/item/food/drinks/bottle/redeemersbrew
 	name = REAGENT_UNATHILIQUOR
@@ -411,9 +379,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/redeemersbrew/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_UNATHILIQUOR, 100)
+	food_reagents = list(REAGENT_ID_UNATHILIQUOR = 100)
 
 /obj/item/food/drinks/bottle/peppermintschnapps
 	name = "Dr. Bone's Peppermint Schnapps"
@@ -422,9 +388,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/peppermintschnapps/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SCHNAPPSPEP, 100)
+	food_reagents = list(REAGENT_ID_SCHNAPPSPEP = 100)
 
 /obj/item/food/drinks/bottle/peachschnapps
 	name = "Dr. Bone's Peach Schnapps"
@@ -433,9 +397,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/peachschnapps/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SCHNAPPSPEA, 100)
+	food_reagents = list(REAGENT_ID_SCHNAPPSPEA = 100)
 
 /obj/item/food/drinks/bottle/lemonadeschnapps
 	name = "Dr. Bone's Lemonade Schnapps"
@@ -444,9 +406,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/lemonadeschnapps/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SCHNAPPSLEM, 100)
+	food_reagents = list(REAGENT_ID_SCHNAPPSLEM = 100)
 
 /obj/item/food/drinks/bottle/jager
 	name = "Schusskonig"
@@ -455,9 +415,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/jager/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_JAGER, 100)
+	food_reagents = list(REAGENT_ID_JAGER = 100)
 
 /////////////////////////WINES/////////////////////////
 
@@ -468,9 +426,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 4
 
-/obj/item/food/drinks/bottle/wine/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_REDWINE, 100)
+	food_reagents = list(REAGENT_ID_REDWINE = 100)
 
 /obj/item/food/drinks/bottle/whitewine
 	name = "Doublebeard Bearded Special White"
@@ -479,9 +435,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 4
 
-/obj/item/food/drinks/bottle/whitewine/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_WHITEWINE, 100)
+	food_reagents = list(REAGENT_ID_WHITEWINE = 100)
 
 /obj/item/food/drinks/bottle/carnoth //anagram of 'ntcahors' where the bottle sprite originated from
 	name = "NanoTrasen Carnoth Red"
@@ -490,9 +444,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 4
 
-/obj/item/food/drinks/bottle/carnoth/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_CARNOTH, 100)
+	food_reagents = list(REAGENT_ID_CARNOTH = 100)
 
 /obj/item/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
@@ -501,9 +453,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 4
 
-/obj/item/food/drinks/bottle/pwine/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PWINE, 100)
+	food_reagents = list(REAGENT_ID_PWINE = 100)
 
 /obj/item/food/drinks/bottle/champagne
 	name = "Gilthari Luxury Champagne"
@@ -512,9 +462,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/champagne/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_CHAMPAGNE, 100)
+	food_reagents = list(REAGENT_ID_CHAMPAGNE = 100)
 
 /obj/item/food/drinks/bottle/sake
 	name = "Mono-No-Aware Luxury Sake"
@@ -523,9 +471,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/sake/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SAKE, 100)
+	food_reagents = list(REAGENT_ID_SAKE = 100)
 
 //////////////////////////JUICES AND STUFF///////////////////////
 
@@ -536,9 +482,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/cola/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_COLA, 100)
+	food_reagents = list(REAGENT_ID_COLA = 100)
 
 /obj/item/food/drinks/bottle/decaf_cola
 	name = "\improper two-liter Space Cola Free"
@@ -547,9 +491,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/decaf_cola/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_DECAFCOLA, 100)
+	food_reagents = list(REAGENT_ID_DECAFCOLA = 100)
 
 /obj/item/food/drinks/bottle/space_up
 	name = "\improper two-liter Space-Up"
@@ -558,9 +500,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/space_up/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SPACEUP, 100)
+	food_reagents = list(REAGENT_ID_SPACEUP = 100)
 
 /obj/item/food/drinks/bottle/space_mountain_wind
 	name = "\improper two-liter Space Mountain Wind"
@@ -569,9 +509,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/space_mountain_wind/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 100)
+	food_reagents = list(REAGENT_ID_SPACEMOUNTAINWIND = 100)
 
 /obj/item/food/drinks/bottle/dr_gibb
 	name = "\improper two-liter Dr. Gibb"
@@ -580,9 +518,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/dr_gibb/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_DRGIBB, 100)
+	food_reagents = list(REAGENT_ID_DRGIBB = 100)
 
 /obj/item/food/drinks/bottle/orangejuice
 	name = "Orange Juice"
@@ -593,9 +529,7 @@
 	center_of_mass_y = 7
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/orangejuice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_ORANGEJUICE, 100)
+	food_reagents = list(REAGENT_ID_ORANGEJUICE = 100)
 
 /obj/item/food/drinks/bottle/applejuice
 	name = REAGENT_APPLEJUICE
@@ -606,9 +540,7 @@
 	center_of_mass_y = 7
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/applejuice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_APPLEJUICE, 100)
+	food_reagents = list(REAGENT_ID_APPLEJUICE = 100)
 
 /obj/item/food/drinks/bottle/milk
 	name = "Large Milk Carton"
@@ -619,9 +551,7 @@
 	center_of_mass_y = 9
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/milk/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_MILK, 100)
+	food_reagents = list(REAGENT_ID_MILK = 100)
 
 /obj/item/food/drinks/bottle/cream
 	name = "Milk Cream"
@@ -632,9 +562,7 @@
 	center_of_mass_y = 8
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/cream/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_CREAM, 100)
+	food_reagents = list(REAGENT_ID_CREAM = 100)
 
 /obj/item/food/drinks/bottle/tomatojuice
 	name = REAGENT_TOMATOJUICE
@@ -645,9 +573,7 @@
 	center_of_mass_y = 8
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/tomatojuice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_TOMATOJUICE, 100)
+	food_reagents = list(REAGENT_ID_TOMATOJUICE = 100)
 
 /obj/item/food/drinks/bottle/limejuice
 	name = REAGENT_LIMEJUICE
@@ -658,9 +584,7 @@
 	center_of_mass_y = 8
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/limejuice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_LIMEJUICE, 100)
+	food_reagents = list(REAGENT_ID_LIMEJUICE = 100)
 
 /obj/item/food/drinks/bottle/lemonjuice
 	name = REAGENT_LEMONJUICE
@@ -671,9 +595,7 @@
 	center_of_mass_y = 8
 	isGlass = 0
 
-/obj/item/food/drinks/bottle/lemonjuice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_LEMONJUICE, 100)
+	food_reagents = list(REAGENT_ID_LEMONJUICE = 100)
 
 /obj/item/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
@@ -682,9 +604,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/grenadine/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_GRENADINE, 100)
+	food_reagents = list(REAGENT_ID_GRENADINE = 100)
 
 /obj/item/food/drinks/bottle/grapejuice
 	name = "Special Blend Grapejuice"
@@ -693,9 +613,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 3
 
-/obj/item/food/drinks/bottle/grapejuice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 100)
+	food_reagents = list(REAGENT_ID_GRAPEJUICE = 100)
 
 //////////////////////////SMALL BOTTLES///////////////////////
 
@@ -713,9 +631,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 12
 
-/obj/item/food/drinks/bottle/small/beer/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_BEER, 50)
+	food_reagents = list(REAGENT_ID_BEER = 50)
 
 /obj/item/food/drinks/bottle/small/beer/silverdragon
 	name = "Silver Dragon pilsner"
@@ -735,9 +651,7 @@
 	description_fluff = "Lite-Speed is Spacer Beer's light brand, and despite being widely considered inferior in every regard, it's still pretty cheap. The lower alcohol content also appeals to some Skrell, for whom full-strength beer is too strong."
 	icon_state = "beerlite"
 
-/obj/item/food/drinks/bottle/small/litebeer/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_LITEBEER, 50)
+	food_reagents = list(REAGENT_ID_LITEBEER = 50)
 
 /obj/item/food/drinks/bottle/small/cider
 	name = "Crisp's Cider"
@@ -746,9 +660,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 12
 
-/obj/item/food/drinks/bottle/small/cider/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_CIDER, 50)
+	food_reagents = list(REAGENT_ID_CIDER = 50)
 
 /obj/item/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
@@ -758,9 +670,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/food/drinks/bottle/small/ale/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_ALE, 50)
+	food_reagents = list(REAGENT_ID_ALE = 50)
 
 /obj/item/food/drinks/bottle/small/ale/hushedwhisper
 	name = "Hushed Whisper IPA"
@@ -768,9 +678,7 @@
 	description_fluff = "Named for one of history's most infamous pirates, Qar’raqel, who ruled over Natuna before suffering a mysterious fate. This ale is brewed on Sif by a small company... Owned by Centauri Provisions."
 	icon_state = "alebottle2"
 
-/obj/item/food/drinks/bottle/small/ale/hushedwhisper/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_ALE, 50)
+	food_reagents = list(REAGENT_ID_ALE = 50)
 
 //////////////////////////SMALL BOTTLED SODA///////////////////////
 
@@ -781,9 +689,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/small/cola/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_COLA, 50)
+	food_reagents = list(REAGENT_ID_COLA = 50)
 
 /obj/item/food/drinks/bottle/small/space_up
 	name = REAGENT_SPACEUP
@@ -792,9 +698,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/small/space_up/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SPACEUP, 50)
+	food_reagents = list(REAGENT_ID_SPACEUP = 50)
 
 /obj/item/food/drinks/bottle/small/space_mountain_wind
 	name = "Space Mountain Wind"
@@ -803,9 +707,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/small/space_mountain_wind/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 50)
+	food_reagents = list(REAGENT_ID_SPACEMOUNTAINWIND = 50)
 
 /obj/item/food/drinks/bottle/small/dr_gibb
 	name = REAGENT_DRGIBB
@@ -814,6 +716,4 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 
-/obj/item/food/drinks/bottle/small/dr_gibb/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_DRGIBB, 50)
+	food_reagents = list(REAGENT_ID_DRGIBB = 50)

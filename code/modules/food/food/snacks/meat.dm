@@ -6,12 +6,10 @@
 	filling_color = "#FF1C1C"
 	center_of_mass_x = 16
 	center_of_mass_y = 14
+	bitesize = 1.5
 
-/obj/item/food/meat/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
+	food_reagents = list(REAGENT_ID_PROTEIN = 6)
 	reagents.add_reagent(REAGENT_ID_TRIGLYCERIDE, 2)
-	src.bitesize = 1.5
 
 /obj/item/food/meat/cook_no_recipe()
 
@@ -65,9 +63,7 @@
 	icon_state = "crabmeat"
 	bitesize = 1
 
-/obj/item/food/crabmeat/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SEAFOOD, 2)
+	food_reagents = list(REAGENT_ID_SEAFOOD = 2)
 
 /obj/item/food/hugemushroomslice
 	name = "fungus slice"
@@ -80,10 +76,8 @@
 	nutriment_desc = list("raw" = 2, PLANT_MUSHROOMS = 2)
 	bitesize = 6
 
-/obj/item/food/hugemushroomslice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
-	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
+	food_reagents = list(REAGENT_ID_PSILOCYBIN = 3,
+						REAGENT_ID_FUNGI = 1)
 
 /obj/item/food/tomatomeat
 	name = "tomato slice"
@@ -105,10 +99,8 @@
 	center_of_mass_y = 10
 	bitesize = 3
 
-/obj/item/food/bearmeat/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 12)
-	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
+	food_reagents = list(REAGENT_ID_PROTEIN = 12,
+						REAGENT_ID_HYPERZINE = 5)
 
 /obj/item/food/xenomeat
 	name = "xenomeat"
@@ -119,10 +111,8 @@
 	center_of_mass_y = 10
 	bitesize = 6
 
-/obj/item/food/xenomeat/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
-	reagents.add_reagent(REAGENT_ID_PACID,6)
+	food_reagents = list(REAGENT_ID_PROTEIN = 6,
+						REAGENT_ID_PACID = 6)
 
 /obj/item/food/xenomeat/spidermeat // Substitute for recipes requiring xeno meat.
 	name = "insect meat"
@@ -144,9 +134,7 @@
 	icon_state = "rawturkey"
 	bitesize = 2.5
 
-/obj/item/food/rawturkey/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 10)
+	food_reagents = list(REAGENT_ID_PROTEIN = 10)
 
 /obj/item/food/meat/fox
 	name = "foxmeat"
@@ -160,10 +148,8 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/food/meat/grubmeat/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
-	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
+	food_reagents = list(REAGENT_ID_PROTEIN = 1,
+						REAGENT_ID_SHOCKCHEM = 6)
 	bitesize = 6
 
 var/static/list/worm_meat_spawns = list (
@@ -190,13 +176,11 @@ var/static/list/worm_meat_spawns = list (
 	filling_color = "#551A8B"
 	center_of_mass_x = 16
 	center_of_mass_y = 14
+	bitesize = 3
 
-/obj/item/food/meat/worm/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
-	reagents.add_reagent(REAGENT_ID_PHORON, 3)
-	reagents.add_reagent(REAGENT_ID_MYELAMINE, 3)
-	src.bitesize = 3
+	food_reagents = list(REAGENT_ID_PROTEIN = 6,
+						REAGENT_ID_PHORON = 3,
+						REAGENT_ID_MYELAMINE = 3)
 
 /obj/item/food/meat/worm/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/material/knife))
