@@ -106,8 +106,8 @@
 	. = ..()
 
 /obj/item/food/afterattack(atom/A, mob/user, proximity, params)
-	if(O.is_open_container() && O.reagents && !(isfood(O)) && proximity)
-		for (var/r in O.reagents.reagent_list)
+	if(A.is_open_container() && A.reagents && !(isfood(A)) && proximity)
+		for (var/r in A.reagents.reagent_list)
 
 			var/datum/reagent/R = r
 			if (istype(R, /datum/reagent/nutriment/coating))
