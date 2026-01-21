@@ -55,9 +55,9 @@
 	organ_names = /decl/mob_organ_names/smallflying
 
 	tame_items = list(
-	/obj/item/reagent_containers/food/snacks/grown = 90,
-	/obj/item/reagent_containers/food/snacks/crabmeat = 10,
-	/obj/item/reagent_containers/food/snacks/meat = 5
+	/obj/item/food/grown = 90,
+	/obj/item/food/crabmeat = 10,
+	/obj/item/food/meat = 5
 	)
 
 	say_list_type = /datum/say_list/glitterfly
@@ -93,8 +93,8 @@
 	. = ..()
 
 	if(.)
-		if(istype(O, /obj/item/reagent_containers/food/snacks/grown))
-			var/obj/item/reagent_containers/food/snacks/grown/G = O
+		if(istype(O, /obj/item/food/grown))
+			var/obj/item/food/grown/G = O
 
 			if(G.seed && G.seed.kitchen_tag == PLANT_BERRIES)
 				return TRUE

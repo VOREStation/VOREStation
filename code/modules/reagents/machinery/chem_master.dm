@@ -45,7 +45,7 @@
 
 /obj/machinery/chem_master/attackby(var/obj/item/B as obj, var/mob/user as mob)
 
-	if(istype(B, /obj/item/reagent_containers/glass) || istype(B, /obj/item/reagent_containers/food))
+	if(istype(B, /obj/item/reagent_containers/glass) || isfood(B))
 
 		if(src.beaker)
 			to_chat(user, "\A [beaker] is already loaded into the machine.")
@@ -471,7 +471,7 @@
 		if("create_condi_bottle")
 			if(!condi || !reagents.total_volume)
 				return
-			var/obj/item/reagent_containers/food/condiment/P = new(loc)
+			var/obj/item/food/condiment/P = new(loc)
 			reagents.trans_to_obj(P, 50)
 		else
 			return FALSE

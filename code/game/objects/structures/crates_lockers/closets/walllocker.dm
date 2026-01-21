@@ -259,7 +259,7 @@
 		/obj/random/mre,
 		/obj/item/flashlight/color/yellow,
 		/obj/item/flashlight/flare,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle)
+		/obj/item/food/drinks/cans/waterbottle)
 
 /obj/structure/closet/walllocker_double/survival/north
 	pixel_y = 32

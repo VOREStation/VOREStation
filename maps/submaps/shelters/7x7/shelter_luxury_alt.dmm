@@ -220,7 +220,7 @@
 /obj/machinery/light/floortube,
 /obj/item/storage/mre/random,
 /obj/item/storage/mre/random,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
@@ -270,15 +270,15 @@
 /area/survivalpod/dorms)
 "O" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor{
+/obj/item/food/drinks/bottle/melonliquor{
 	pixel_y = 11;
 	pixel_x = -6
 	},
-/obj/item/reagent_containers/food/drinks/metaglass{
+/obj/item/food/drinks/metaglass{
 	pixel_y = 10;
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/metaglass{
+/obj/item/food/drinks/metaglass{
 	pixel_y = 5;
 	pixel_x = 3
 	},

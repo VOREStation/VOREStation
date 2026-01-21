@@ -347,7 +347,7 @@
 
 
 
-/obj/item/reagent_containers/food/snacks/egg/slime
+/obj/item/food/egg/slime
 	name = "slime egg"
 	desc = "A small, gelatinous egg."
 	icon = 'icons/mob/mob.dmi'
@@ -356,19 +356,19 @@
 	origin_tech = list(TECH_BIO = 4)
 	var/grown = 0
 
-/obj/item/reagent_containers/food/snacks/egg/slime/Initialize(mapload)
+/obj/item/food/egg/slime/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
 	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 1)
 	addtimer(CALLBACK(src, ./proc/Grow), rand(120 SECONDS, 150 SECONDS))
 
-/obj/item/reagent_containers/food/snacks/egg/slime/proc/Grow()
+/obj/item/food/egg/slime/proc/Grow()
 	grown = 1
 	icon_state = "slime egg-grown"
 	START_PROCESSING(SSobj, src)
 	return
 
-/obj/item/reagent_containers/food/snacks/egg/slime/proc/Hatch()
+/obj/item/food/egg/slime/proc/Hatch()
 	STOP_PROCESSING(SSobj, src)
 	var/turf/T = get_turf(src)
 	src.visible_message(span_warning(" The [name] pulsates and quivers!"))
@@ -378,13 +378,13 @@
 		qdel(src)
 
 
-/obj/item/reagent_containers/food/snacks/egg/slime/process()
+/obj/item/food/egg/slime/process()
 	var/turf/location = get_turf(src)
 	var/datum/gas_mixture/environment = location.return_air()
 	if (environment.phoron > MOLES_PHORON_VISIBLE)//phoron exposure causes the egg to hatch
 		src.Hatch()
 
-/obj/item/reagent_containers/food/snacks/egg/slime/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/food/egg/slime/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype( W, /obj/item/pen/crayon ))
 		return
 	else

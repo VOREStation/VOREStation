@@ -96,7 +96,7 @@
 /area/awaymission/academy/headmaster)
 "aq" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/coffee,
+/obj/item/food/drinks/coffee,
 /turf/simulated/floor/carpet,
 /area/awaymission/academy/headmaster)
 "ar" = (
@@ -170,7 +170,7 @@
 /area/awaymission/academy/headmaster)
 "aC" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/tea,
+/obj/item/food/drinks/tea,
 /turf/simulated/floor/carpet,
 /area/awaymission/academy/headmaster)
 "aD" = (
@@ -335,7 +335,7 @@
 /area/awaymission/academy/headmaster)
 "bg" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/tea,
+/obj/item/food/drinks/tea,
 /turf/simulated/floor/carpet,
 /area/awaymission/academy/headmaster)
 "bh" = (
@@ -1636,7 +1636,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/spellburger,
+/obj/item/food/spellburger,
 /turf/simulated/floor{
 	dir = 8;
 	icon_state = "barber"
@@ -2820,7 +2820,7 @@
 /area/awaymission/academy/academyaft)
 "hU" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /obj/item/clothing/under/purple,
 /obj/item/poster,
 /turf/simulated/floor,
@@ -3373,7 +3373,7 @@
 "jk" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/floor{
 	icon_state = "red"
 	},

@@ -13,7 +13,7 @@
 /turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
 /area/mine/explored/underdark)
 "e" = (
-/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/food/condiment/ketchup,
 /turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
 /area/mine/explored/underdark)
 "f" = (

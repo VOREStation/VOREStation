@@ -10,12 +10,12 @@
 /obj/structure/foodcart/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/I in loc)
-		if(istype(I, /obj/item/reagent_containers/food))
+		if(isfood(I))
 			I.loc = src
 	update_icon()
 
 /obj/structure/foodcart/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/reagent_containers/food))
+	if(isfood(O))
 		user.drop_item()
 		O.loc = src
 		update_icon()
@@ -24,7 +24,7 @@
 
 /obj/structure/foodcart/attack_hand(var/mob/user as mob)
 	if(contents.len)
-		var/obj/item/reagent_containers/food/choice = tgui_input_list(user, "What would you like to grab from the cart?", "Grab Choice", contents)
+		var/obj/item/food/choice = tgui_input_list(user, "What would you like to grab from the cart?", "Grab Choice", contents)
 		if(choice)
 			if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
 				return

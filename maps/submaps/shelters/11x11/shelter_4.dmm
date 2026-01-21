@@ -94,7 +94,7 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/obj/item/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "i" = (
@@ -242,7 +242,7 @@
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/material/knife/tacknife/survival,
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -262,14 +262,14 @@
 /obj/random/mre,
 /obj/random/mre,
 /obj/random/mre,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "D" = (

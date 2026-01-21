@@ -189,8 +189,8 @@
 /obj/item/tool/screwdriver,
 /obj/item/weldingtool,
 /obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aM" = (
@@ -223,7 +223,7 @@
 /area/tether_away/alienship)
 "aR" = (
 /obj/structure/table/alien,
-/obj/item/reagent_containers/food/drinks/glass2/pint{
+/obj/item/food/drinks/glass2/pint{
 	desc = "There's a permanent colored stain around the inside, as if it held a liquid for a very, very long time.";
 	name = "ancient pint glass"
 	},
@@ -555,7 +555,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "gG" = (
-/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/food/liquidfood,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "nr" = (
@@ -580,7 +580,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship/equip_dump)
 "Rx" = (
-/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/food/liquidfood,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "YP" = (

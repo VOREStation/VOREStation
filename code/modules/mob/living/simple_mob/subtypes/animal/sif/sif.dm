@@ -6,8 +6,8 @@
 	allow_mind_transfer = TRUE
 
 	tame_items = list(
-	/obj/item/reagent_containers/food/snacks/crabmeat = 20,
-	/obj/item/reagent_containers/food/snacks/meat = 10
+	/obj/item/food/crabmeat = 20,
+	/obj/item/food/meat = 10
 	)
 
 	can_be_drop_prey = FALSE

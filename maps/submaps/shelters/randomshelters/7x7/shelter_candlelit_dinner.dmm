@@ -8,7 +8,7 @@
 /area/survivalpod/redspace)
 "e" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/snacks/mint{
+/obj/item/food/mint{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -55,7 +55,7 @@
 /obj/item/flame/candle/candelabra/everburn{
 	pixel_y = 17
 	},
-/obj/item/reagent_containers/food/snacks/meatballspagetti{
+/obj/item/food/meatballspagetti{
 	pixel_y = 4
 	},
 /obj/item/material/kitchen/utensil/fork{
@@ -152,15 +152,15 @@
 /obj/item/flame/candle/everburn{
 	pixel_x = 10
 	},
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
+/obj/item/food/drinks/bottle/champagne{
 	pixel_y = 19;
 	pixel_x = -6
 	},
-/obj/item/reagent_containers/food/drinks/glass2/wine{
+/obj/item/food/drinks/glass2/wine{
 	pixel_x = -11;
 	pixel_y = 1
 	},
-/obj/item/reagent_containers/food/drinks/glass2/wine{
+/obj/item/food/drinks/glass2/wine{
 	pixel_x = 1;
 	pixel_y = 1
 	},

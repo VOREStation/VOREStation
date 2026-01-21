@@ -85,9 +85,9 @@
 	var/datum/reagents/grown_reagents
 	if(istype(target,/obj/structure/table))
 		return ..()
-	else if(istype(target,/obj/item/reagent_containers/food/snacks/grown))
+	else if(istype(target,/obj/item/food/grown))
 
-		var/obj/item/reagent_containers/food/snacks/grown/G = target
+		var/obj/item/food/grown/G = target
 		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 

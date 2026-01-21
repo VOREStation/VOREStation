@@ -22,7 +22,7 @@
 	say_list_type = /datum/say_list/dog
 
 	meat_amount = 3
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/corgi
+	meat_type = /obj/item/food/meat/corgi
 
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
@@ -69,7 +69,7 @@
 
 
 
-/obj/item/reagent_containers/food/snacks/meat/corgi
+/obj/item/food/meat/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well, you know..."
 
@@ -142,7 +142,7 @@
 				movement_target = null
 			if(!movement_target || !(movement_target.loc in oview(src, 7)) )
 				movement_target = null
-				for(var/obj/item/reagent_containers/food/snacks/S in oview(src,7))
+				for(var/obj/item/food/S in oview(src,7))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break

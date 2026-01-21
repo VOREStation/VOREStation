@@ -641,7 +641,7 @@ SUBSYSTEM_DEF(internal_wiki)
 				else
 					working_ing_list["micro"] = 1
 			else
-				if(I in typesof(/obj/item/reagent_containers/food/snacks)) // only subtypes of this have a coating variable and are checked for it (fruit are a subtype of this, so there's a check for them too later)
+				if(I in typesof(/obj/item/food)) // only subtypes of this have a coating variable and are checked for it (fruit are a subtype of this, so there's a check for them too later)
 					food_recipes[Rp]["has_coatable_items"] = TRUE
 
 				//So now we add something like "Bread" = 3

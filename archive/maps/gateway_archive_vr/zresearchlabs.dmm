@@ -5405,9 +5405,9 @@
 /area/awaymission/labs/cargo)
 "mw" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor,
 /area/awaymission/labs/cargo)
 "mx" = (

@@ -18,7 +18,7 @@
 			list(/obj/item/spacecash/c100, 1) = 10,
 			list(/obj/item/spacecash/c50, 1) = 10,
 			list(/obj/item/spacecash/c20, 1) = 10,
-			list(pick(subtypesof(/obj/item/reagent_containers/food/drinks/bottle/) - /obj/item/reagent_containers/food/drinks/bottle/small), 1) = 5,
+			list(pick(subtypesof(/obj/item/food/drinks/bottle/) - /obj/item/food/drinks/bottle/small), 1) = 5,
 			list(/obj/item/storage/backpack/dufflebag/cratebooze,5) = 5,
 			list(/obj/item/storage/backpack/dufflebag/cratedrills, 5) = 5,
 			list(/obj/item/reagent_containers/glass/beaker/bluespace, 3) = 5,
@@ -82,7 +82,7 @@
 				prob(1);/obj/item/gun/energy/mouseray/metamorphosis/advanced/random
 				), 8) = 2,
 			list(/obj/item/gun/energy/pummeler, 11) = 2,
-			list(pick(subtypesof(/obj/item/reagent_containers/food/drinks/glass2/coffeemug)), 1) = 1,
+			list(pick(subtypesof(/obj/item/food/drinks/glass2/coffeemug)), 1) = 1,
 			list(/obj/item/xenos_claw, 1) = 1,
 			list(/obj/item/organ/internal/heart, 1) = 1,
 			list(/obj/item/vampiric, 2) = 1,
@@ -116,11 +116,11 @@
 
 /obj/item/storage/backpack/dufflebag/cratebooze
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/bottle/rum,
-		/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
-		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
-		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+		/obj/item/food/drinks/bottle/rum,
+		/obj/item/food/drinks/bottle/whiskey,
+		/obj/item/food/grown/ambrosiadeus,
+		/obj/item/food/grown/ambrosiadeus,
+		/obj/item/food/grown/ambrosiadeus,
 		)
 
 /obj/item/storage/backpack/dufflebag/cratedrills
@@ -152,7 +152,7 @@
 		/obj/item/clothing/head/beret,
 		/obj/item/clothing/suit/suspenders,
 		/obj/item/pen/crayon/mime,
-		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
+		/obj/item/food/drinks/bottle/bottleofnothing
 	)
 
 /obj/item/storage/backpack/luchador/loaded

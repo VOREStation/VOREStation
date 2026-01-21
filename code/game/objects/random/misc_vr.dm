@@ -410,14 +410,14 @@
 	spawn_nothing_percentage = 0
 
 /obj/random/mega_nukies/item_to_spawn()
-	return pick(prob(5);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight,
-				prob(2);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart,
-				prob(5);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep,
-				prob(5);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock,
-				prob(5);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast,
-				prob(5);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_high,
-				prob(10);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink,
-				prob(10);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow
+	return pick(prob(5);/obj/item/food/drinks/cans/nukie_mega_sight,
+				prob(2);/obj/item/food/drinks/cans/nukie_mega_heart,
+				prob(5);/obj/item/food/drinks/cans/nukie_mega_sleep,
+				prob(5);/obj/item/food/drinks/cans/nukie_mega_shock,
+				prob(5);/obj/item/food/drinks/cans/nukie_mega_fast,
+				prob(5);/obj/item/food/drinks/cans/nukie_mega_high,
+				prob(10);/obj/item/food/drinks/cans/nukie_mega_shrink,
+				prob(10);/obj/item/food/drinks/cans/nukie_mega_grow
 				)
 
 /obj/random/shibari

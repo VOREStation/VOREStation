@@ -293,7 +293,7 @@
 		if(istype(container, /obj/machinery/particle_smasher))
 			var/obj/machinery/particle_smasher/machine = container
 			for(var/obj/O in machine.storage)
-				if(istype(O,/obj/item/reagent_containers/food/snacks/grown))
+				if(istype(O,/obj/item/food/grown))
 					continue // Fruit is handled in check_fruit().
 				var/found = 0
 				for(var/i = 1; i < checklist.len+1; i++)
@@ -398,7 +398,7 @@
 
 /datum/particle_smasher_recipe/donkpockets_coal
 	display_name = "Ruined Donkpocket"
-	items = list(/obj/item/reagent_containers/food/snacks/donkpocket)
+	items = list(/obj/item/food/donkpocket)
 
 	recipe_type = PS_RESULT_ITEM
 
@@ -414,12 +414,12 @@
 
 /datum/particle_smasher_recipe/donkpockets_ascend
 	display_name = "Ascended Donkpocket"
-	items = list(/obj/item/reagent_containers/food/snacks/donkpocket)
+	items = list(/obj/item/food/donkpocket)
 	reagents = list(REAGENT_ID_PHORON = 120)
 
 	recipe_type = PS_RESULT_ITEM
 
-	result = /obj/item/reagent_containers/food/snacks/donkpocket/ascended
+	result = /obj/item/food/donkpocket/ascended
 	required_material = /obj/item/stack/material/uranium
 
 	required_energy_min = 501

@@ -401,10 +401,10 @@
 /area/space)
 "bm" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -412,10 +412,10 @@
 /area/space)
 "bn" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "bo" = (

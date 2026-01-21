@@ -3443,7 +3443,7 @@
 /obj/item/flame/candle/candelabra,
 /obj/item/flame/candle/candelabra,
 /obj/item/flame/candle/candelabra,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /obj/item/nullrod,
 /obj/item/deck/tarot,
 /obj/item/retail_scanner/civilian,

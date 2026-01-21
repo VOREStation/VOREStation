@@ -7481,7 +7481,7 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/simulated/floor/carpet,
 /area/engineering/break_room)
 "arO" = (

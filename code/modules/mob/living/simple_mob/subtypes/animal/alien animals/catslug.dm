@@ -28,7 +28,7 @@
 	health = 50
 	movement_cooldown = -1
 	meat_amount = 2
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	holder_type = /obj/item/holder/catslug
 
 	response_help = "hugs"
@@ -100,7 +100,7 @@
 		/obj/item/melee,
 		/obj/item/stack/,
 		/obj/item/tool,
-		/obj/item/reagent_containers/food,
+		/obj/item/food,
 		/obj/item/ore,
 		/obj/item/disk/nuclear,
 		/obj/item/card,
@@ -127,11 +127,11 @@
 		drop_hat()
 	return ..()
 
-/mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/food/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/clothing/head)) // Handle hat simulator.
 		give_hat(O, user)
 		return
-	else if(!istype(O, /obj/item/reagent_containers/food/snacks))
+	else if(!isfood(O))
 		return ..()
 	if(resting)
 		to_chat(user, span_notice("\The [src] is napping, and doesn't respond to \the [O]."))

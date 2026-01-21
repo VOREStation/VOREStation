@@ -10,7 +10,7 @@
 	var/food_items = 0 // Used for icon updates
 	flags = OPENCONTAINER | NOREACT
 	var/list/insertable = list(
-		/obj/item/reagent_containers/food/snacks,
+		/obj/item/food,
 		/obj/item/holder,
 		/obj/item/paper,
 		/obj/item/clothing/head/wizard,

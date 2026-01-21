@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/bluespace_coffee
+/obj/item/food/drinks/bluespace_coffee
 	name = "bluespace coffee"
 	desc = "Dreamt up in a strange feverish dream, this coffee cup seems to have been heavily modified with a variety of unlikely parts and wires, and never seems to run out of coffee. Truly the differance between madmen and genius is success."
 	icon = 'icons/obj/coffee.dmi'
@@ -8,11 +8,11 @@
 	volume = 50
 	max_transfer_amount = 50
 
-/obj/item/reagent_containers/food/drinks/bluespace_coffee/Initialize(mapload)
+/obj/item/food/drinks/bluespace_coffee/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COFFEE, 50)
 
 	//Infinite Coffee
-/obj/item/reagent_containers/food/drinks/bluespace_coffee/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/food/drinks/bluespace_coffee/attack(mob/M as mob, mob/user as mob, def_zone)
 	..()
 	src.reagents.add_reagent(REAGENT_ID_COFFEE, 50)

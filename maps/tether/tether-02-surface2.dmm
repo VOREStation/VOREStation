@@ -21224,7 +21224,7 @@
 /area/tether/surfacebase/surface_two_hall)
 "aMJ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /obj/item/nullrod,
 /obj/machinery/light/small,
 /turf/simulated/floor/lino,
@@ -28760,7 +28760,7 @@
 /area/maintenance/lower/atmos)
 "bdl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/teapot,
+/obj/item/food/drinks/teapot,
 /turf/simulated/floor/wood,
 /area/maintenance/lower/atmos)
 "bdm" = (
@@ -29819,9 +29819,9 @@
 /area/vacant/vacant_bar_upper)
 "bhi" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/reagent_containers/food/drinks/bottle/vermouth,
-/obj/item/reagent_containers/food/drinks/bottle/rum,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/vermouth,
+/obj/item/food/drinks/bottle/rum,
+/obj/item/food/drinks/bottle/cognac,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
 "bhj" = (
@@ -30044,8 +30044,8 @@
 /area/vacant/vacant_bar_upper)
 "bhX" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/food/drinks/bottle/space_mountain_wind,
+/obj/item/food/drinks/bottle/cola,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
 "bih" = (
@@ -30176,10 +30176,10 @@
 /area/vacant/vacant_bar_upper)
 "biu" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/limejuice,
-/obj/item/reagent_containers/food/drinks/bottle/lemonjuice,
+/obj/item/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/cream,
+/obj/item/food/drinks/bottle/limejuice,
+/obj/item/food/drinks/bottle/lemonjuice,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -30303,14 +30303,14 @@
 /area/vacant/vacant_bar_upper)
 "biX" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/patron,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/tequila,
-/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/food/drinks/bottle/goldschlager,
+/obj/item/food/drinks/bottle/sake,
+/obj/item/food/drinks/bottle/kahlua,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/patron,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/tequila,
+/obj/item/food/drinks/bottle/specialwhiskey,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
 "bje" = (

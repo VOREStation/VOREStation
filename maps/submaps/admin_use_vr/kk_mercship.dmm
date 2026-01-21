@@ -2154,12 +2154,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/snacks/meat/chicken,
-/obj/item/reagent_containers/food/snacks/meat/chicken,
-/obj/item/reagent_containers/food/snacks/meat/chicken,
-/obj/item/reagent_containers/food/snacks/meat/chicken,
-/obj/item/reagent_containers/food/snacks/meat/chicken,
-/obj/item/reagent_containers/food/snacks/meat/chicken,
+/obj/item/food/meat/chicken,
+/obj/item/food/meat/chicken,
+/obj/item/food/meat/chicken,
+/obj/item/food/meat/chicken,
+/obj/item/food/meat/chicken,
+/obj/item/food/meat/chicken,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/recreation)
 "iB" = (
@@ -3588,11 +3588,11 @@
 /area/ship/manta/armoury_st)
 "oS" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
+/obj/item/food/drinks/bottle/vodka{
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/item/food/drinks/bottle/wine{
 	pixel_x = -1;
 	pixel_y = 8
 	},
@@ -4362,11 +4362,11 @@
 /area/ship/manta/gunnery)
 "tk" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "tm" = (
@@ -9938,32 +9938,32 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks/bed_1)
 "Ta" = (
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},

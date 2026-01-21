@@ -581,10 +581,10 @@
 /area/space)
 "dp" = (
 /obj/structure/table/fancyblack,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -769,7 +769,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
 "en" = (
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2299,10 +2299,10 @@
 /area/aro3/suite_starboard)
 "nW" = (
 /obj/structure/table/fancyblack,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{

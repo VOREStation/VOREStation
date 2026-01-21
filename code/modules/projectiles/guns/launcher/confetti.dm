@@ -98,7 +98,7 @@
 				chambered = new /obj/item/bananapeel
 				to_chat(user, span_blue("Banana peel loaded."))
 			if("Cream Pie")
-				chambered = new /obj/item/reagent_containers/food/snacks/pie
+				chambered = new /obj/item/food/pie
 				to_chat(user, span_blue("Banana cream pie loaded."))
 	else
 		to_chat(user, span_red("The [src] is already loaded!"))

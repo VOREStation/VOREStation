@@ -105,18 +105,18 @@
 /area/redgate/city/workshop)
 "alA" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/jager,
-/obj/item/reagent_containers/food/drinks/bottle/jager,
-/obj/item/reagent_containers/food/drinks/bottle/jager,
-/obj/item/reagent_containers/food/drinks/bottle/jager,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/rum,
-/obj/item/reagent_containers/food/drinks/bottle/rum,
-/obj/item/reagent_containers/food/drinks/bottle/rum,
-/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/food/drinks/bottle/jager,
+/obj/item/food/drinks/bottle/jager,
+/obj/item/food/drinks/bottle/jager,
+/obj/item/food/drinks/bottle/jager,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/rum,
+/obj/item/food/drinks/bottle/rum,
+/obj/item/food/drinks/bottle/rum,
+/obj/item/food/drinks/bottle/rum,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "alF" = (
@@ -327,22 +327,22 @@
 /area/redgate/city/science)
 "aBw" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/structure/closet/walllocker_double/kitchen/east,
 /turf/simulated/floor/tiled/white,
@@ -495,31 +495,31 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/redgate/city/bar1)
 "aMa" = (
@@ -817,14 +817,14 @@
 /area/redgate/city/gamblingden)
 "beL" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -859,10 +859,10 @@
 /area/redgate/city/hospital)
 "bhc" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
-/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
-/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
-/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/food/packaged/vendhotdog,
+/obj/item/food/packaged/vendhotdog,
+/obj/item/food/packaged/vendhotdog,
+/obj/item/food/packaged/vendhotdog,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "bhX" = (
@@ -954,11 +954,11 @@
 /area/redgate/city/offlicense)
 "boo" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "bpi" = (
@@ -1164,10 +1164,10 @@
 /area/redgate/city/hospital)
 "bGz" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratpacktaco,
-/obj/item/reagent_containers/food/snacks/ratpacktaco,
-/obj/item/reagent_containers/food/snacks/ratpacktaco,
-/obj/item/reagent_containers/food/snacks/ratpacktaco,
+/obj/item/food/ratpacktaco,
+/obj/item/food/ratpacktaco,
+/obj/item/food/ratpacktaco,
+/obj/item/food/ratpacktaco,
 /obj/machinery/light/small/neon/import{
 	pixel_y = 25
 	},
@@ -1355,15 +1355,15 @@
 /area/redgate/city/science)
 "bTR" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "bUz" = (
@@ -1529,9 +1529,9 @@
 /area/redgate/city/police)
 "cdy" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/liquidprotein,
-/obj/item/reagent_containers/food/snacks/liquidprotein,
-/obj/item/reagent_containers/food/snacks/liquidprotein,
+/obj/item/food/liquidprotein,
+/obj/item/food/liquidprotein,
+/obj/item/food/liquidprotein,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "cdL" = (
@@ -1860,7 +1860,7 @@
 /area/redgate/city/cafe)
 "cBU" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house18)
 "cCO" = (
@@ -2039,11 +2039,11 @@
 /area/redgate/city/hotel)
 "cRx" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -2122,9 +2122,9 @@
 /area/redgate/city/scughouse)
 "cYY" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/liquidvitamin,
-/obj/item/reagent_containers/food/snacks/liquidvitamin,
-/obj/item/reagent_containers/food/snacks/liquidvitamin,
+/obj/item/food/liquidvitamin,
+/obj/item/food/liquidvitamin,
+/obj/item/food/liquidvitamin,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "cZx" = (
@@ -2201,7 +2201,7 @@
 /obj/random/snack,
 /obj/random/snack,
 /obj/random/snack,
-/obj/item/reagent_containers/food/snacks/truffle/random,
+/obj/item/food/truffle/random,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house2)
 "dew" = (
@@ -2671,15 +2671,15 @@
 	light_color = "#575656";
 	name = "dim light"
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "dKy" = (
@@ -3375,11 +3375,11 @@
 /area/redgate/city/clotheshop)
 "eEp" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = 14;
 	pixel_y = 13
 	},
@@ -3485,15 +3485,15 @@
 /area/redgate/city/streets)
 "eKL" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "eKM" = (
@@ -3743,9 +3743,9 @@
 /area/redgate/city/toys)
 "fap" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/food/drinks/bottle/small/beer/meteor,
+/obj/item/food/drinks/bottle/small/beer/meteor,
+/obj/item/food/drinks/bottle/small/beer/meteor,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "fba" = (
@@ -3884,7 +3884,7 @@
 /area/redgate/city/stripclub)
 "fmA" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple,
+/obj/item/food/sliceable/pizza/pineapple,
 /turf/simulated/floor/tiled/kafel_full/blue,
 /area/redgate/city/pizza)
 "fnj" = (
@@ -3969,7 +3969,7 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/redgate/city/engine)
 "fuf" = (
-/obj/item/reagent_containers/food/snacks/old/horseburger,
+/obj/item/food/old/horseburger,
 /turf/simulated/floor/plating,
 /area/redgate/city/dump)
 "fuu" = (
@@ -4189,11 +4189,11 @@
 /area/redgate/city/hospital)
 "fEX" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -4457,10 +4457,10 @@
 /area/redgate/city/casino)
 "gbV" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratpackcheese,
-/obj/item/reagent_containers/food/snacks/ratpackcheese,
-/obj/item/reagent_containers/food/snacks/ratpackcheese,
-/obj/item/reagent_containers/food/snacks/ratpackcheese,
+/obj/item/food/ratpackcheese,
+/obj/item/food/ratpackcheese,
+/obj/item/food/ratpackcheese,
+/obj/item/food/ratpackcheese,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4731,11 +4731,11 @@
 /area/redgate/city/storage)
 "gyl" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/food/drinks/bottle/pwine,
+/obj/item/food/drinks/bottle/pwine,
+/obj/item/food/drinks/bottle/pwine,
+/obj/item/food/drinks/bottle/pwine,
+/obj/item/food/drinks/bottle/pwine,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "gyB" = (
@@ -4863,18 +4863,18 @@
 /area/redgate/city/stripclub)
 "gIf" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "gJm" = (
@@ -5276,14 +5276,14 @@
 /area/redgate/city/streets)
 "heQ" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -5406,7 +5406,7 @@
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/weretiger)
 "hnf" = (
-/obj/item/reagent_containers/food/snacks/old/fries,
+/obj/item/food/old/fries,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "hny" = (
@@ -5562,15 +5562,15 @@
 /area/redgate/city/pharmacy)
 "hBE" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratveggies,
-/obj/item/reagent_containers/food/snacks/ratveggies,
-/obj/item/reagent_containers/food/snacks/ratveggies,
-/obj/item/reagent_containers/food/snacks/ratveggies,
+/obj/item/food/ratveggies,
+/obj/item/food/ratveggies,
+/obj/item/food/ratveggies,
+/obj/item/food/ratveggies,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "hCn" = (
 /obj/structure/bed/chair/sofa/left/brown,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/food/drinks/bottle/small/beer/meteor,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "hCP" = (
@@ -5789,11 +5789,11 @@
 /area/redgate/city/science)
 "hQh" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/reagent_containers/food/drinks/cans/bodaplus,
+/obj/item/food/drinks/cans/bodaplus,
+/obj/item/food/drinks/cans/bodaplus,
+/obj/item/food/drinks/cans/bodaplus,
+/obj/item/food/drinks/cans/bodaplus,
+/obj/item/food/drinks/cans/bodaplus,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "hQZ" = (
@@ -5805,9 +5805,9 @@
 /area/redgate/city/drugden)
 "hRb" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/tuna,
-/obj/item/reagent_containers/food/snacks/tuna,
-/obj/item/reagent_containers/food/snacks/tuna,
+/obj/item/food/tuna,
+/obj/item/food/tuna,
+/obj/item/food/tuna,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "hRs" = (
@@ -6250,7 +6250,7 @@
 /area/redgate/city/nifshop)
 "iuB" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/city/casino)
 "ivG" = (
@@ -6463,11 +6463,11 @@
 /obj/structure/sign/painting/public{
 	pixel_x = -30
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -6595,13 +6595,13 @@
 /area/redgate/city/check2)
 "iQt" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/vodka,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "iRO" = (
@@ -6658,15 +6658,15 @@
 /area/redgate/city/drugden)
 "iUI" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "iVh" = (
@@ -6913,10 +6913,10 @@
 /area/redgate/city/science)
 "jlg" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratprotein,
-/obj/item/reagent_containers/food/snacks/ratprotein,
-/obj/item/reagent_containers/food/snacks/ratprotein,
-/obj/item/reagent_containers/food/snacks/ratprotein,
+/obj/item/food/ratprotein,
+/obj/item/food/ratprotein,
+/obj/item/food/ratprotein,
+/obj/item/food/ratprotein,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "jlA" = (
@@ -6961,10 +6961,10 @@
 /area/redgate/city/wiz)
 "jpC" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratpackramen,
-/obj/item/reagent_containers/food/snacks/ratpackramen,
-/obj/item/reagent_containers/food/snacks/ratpackramen,
-/obj/item/reagent_containers/food/snacks/ratpackramen,
+/obj/item/food/ratpackramen,
+/obj/item/food/ratpackramen,
+/obj/item/food/ratpackramen,
+/obj/item/food/ratpackramen,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "jpH" = (
@@ -7489,7 +7489,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house17)
 "jVD" = (
-/obj/item/reagent_containers/food/snacks/old/taco,
+/obj/item/food/old/taco,
 /turf/simulated/floor/plating,
 /area/redgate/city/dump)
 "jVJ" = (
@@ -8086,7 +8086,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/house3)
 "kLq" = (
-/obj/item/reagent_containers/food/snacks/old/pizza,
+/obj/item/food/old/pizza,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "kLU" = (
@@ -8362,10 +8362,10 @@
 /area/redgate/city/spa)
 "kZm" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/packaged/meatration,
-/obj/item/reagent_containers/food/snacks/packaged/meatration,
-/obj/item/reagent_containers/food/snacks/packaged/meatration,
-/obj/item/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/food/packaged/meatration,
+/obj/item/food/packaged/meatration,
+/obj/item/food/packaged/meatration,
+/obj/item/food/packaged/meatration,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "kZP" = (
@@ -8392,9 +8392,9 @@
 /area/redgate/city/library)
 "lbl" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "lbt" = (
@@ -8461,15 +8461,15 @@
 /area/redgate/city/streets)
 "leS" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "lfd" = (
@@ -8480,11 +8480,11 @@
 /area/redgate/city/streets)
 "lfQ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -8492,11 +8492,11 @@
 /area/redgate/city/cafe)
 "lfT" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/reagent_containers/food/drinks/cans/root_beer,
+/obj/item/food/drinks/cans/root_beer,
+/obj/item/food/drinks/cans/root_beer,
+/obj/item/food/drinks/cans/root_beer,
+/obj/item/food/drinks/cans/root_beer,
+/obj/item/food/drinks/cans/root_beer,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "lgF" = (
@@ -8741,10 +8741,10 @@
 /area/redgate/city/pool)
 "lxh" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
-/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
-/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
-/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
+/obj/item/food/packaged/vendburrito,
+/obj/item/food/packaged/vendburrito,
+/obj/item/food/packaged/vendburrito,
+/obj/item/food/packaged/vendburrito,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "lxv" = (
@@ -9399,10 +9399,10 @@
 /area/redgate/city/science)
 "msF" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/packaged/vegration,
-/obj/item/reagent_containers/food/snacks/packaged/vegration,
-/obj/item/reagent_containers/food/snacks/packaged/vegration,
-/obj/item/reagent_containers/food/snacks/packaged/vegration,
+/obj/item/food/packaged/vegration,
+/obj/item/food/packaged/vegration,
+/obj/item/food/packaged/vegration,
+/obj/item/food/packaged/vegration,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "msM" = (
@@ -9446,10 +9446,10 @@
 /area/redgate/city/teppi)
 "mwe" = (
 /obj/structure/closet/walllocker_double/kitchen/north,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/item/reagent_containers/glass/beaker{
@@ -9781,10 +9781,10 @@
 /area/redgate/city/dealership)
 "mPN" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/popcorn,
-/obj/item/reagent_containers/food/snacks/popcorn,
-/obj/item/reagent_containers/food/snacks/popcorn,
-/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/food/popcorn,
+/obj/item/food/popcorn,
+/obj/item/food/popcorn,
+/obj/item/food/popcorn,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/theatre)
 "mQe" = (
@@ -9827,12 +9827,12 @@
 /area/redgate/city/house10)
 "mSj" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/cognac,
+/obj/item/food/drinks/bottle/cognac,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "mSy" = (
@@ -10074,10 +10074,10 @@
 /area/redgate/city/science)
 "nkD" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/packaged/vendburger,
-/obj/item/reagent_containers/food/snacks/packaged/vendburger,
-/obj/item/reagent_containers/food/snacks/packaged/vendburger,
-/obj/item/reagent_containers/food/snacks/packaged/vendburger,
+/obj/item/food/packaged/vendburger,
+/obj/item/food/packaged/vendburger,
+/obj/item/food/packaged/vendburger,
+/obj/item/food/packaged/vendburger,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "nlQ" = (
@@ -10316,7 +10316,7 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/city/hospital)
 "nBM" = (
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/oldpizza,
+/obj/item/food/sliceable/pizza/oldpizza,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/pizza)
 "nCg" = (
@@ -11293,7 +11293,7 @@
 /area/redgate/city/succ)
 "oPf" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/food/mint,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "oPT" = (
@@ -11428,9 +11428,9 @@
 /area/redgate/city/bar1)
 "oXJ" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
@@ -11545,9 +11545,9 @@
 /area/redgate/city/offlicense)
 "pdK" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratpackburger,
-/obj/item/reagent_containers/food/snacks/ratpackburger,
-/obj/item/reagent_containers/food/snacks/ratpackburger,
+/obj/item/food/ratpackburger,
+/obj/item/food/ratpackburger,
+/obj/item/food/ratpackburger,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "pdR" = (
@@ -11999,12 +11999,12 @@
 /area/redgate/city/house6)
 "pIU" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/redeemersbrew,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "pKp" = (
@@ -12201,7 +12201,7 @@
 /area/redgate/city/police)
 "pVc" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/kafel_full/blue,
 /area/redgate/city/pizza)
 "pVH" = (
@@ -12660,27 +12660,27 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 33
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/stripclub)
 "qzT" = (
@@ -12703,10 +12703,10 @@
 /area/redgate/city/house15)
 "qBE" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/baconsoda,
-/obj/item/reagent_containers/food/drinks/cans/baconsoda,
-/obj/item/reagent_containers/food/drinks/cans/baconsoda,
-/obj/item/reagent_containers/food/drinks/cans/baconsoda,
+/obj/item/food/drinks/cans/baconsoda,
+/obj/item/food/drinks/cans/baconsoda,
+/obj/item/food/drinks/cans/baconsoda,
+/obj/item/food/drinks/cans/baconsoda,
 /obj/machinery/light{
 	dir = 8;
 	light_color = "#575656";
@@ -12756,9 +12756,9 @@
 /area/redgate/city/science)
 "qDV" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/condiment/ketchup,
-/obj/item/reagent_containers/food/condiment/ketchup,
-/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/food/condiment/ketchup,
+/obj/item/food/condiment/ketchup,
+/obj/item/food/condiment/ketchup,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -14108,7 +14108,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house17)
 "suq" = (
-/obj/item/reagent_containers/food/snacks/old/hotdog,
+/obj/item/food/old/hotdog,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "suC" = (
@@ -14698,7 +14698,7 @@
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house12)
 "tdw" = (
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 11
 	},
@@ -14979,7 +14979,7 @@
 /area/redgate/city/house16)
 "tyl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/oldpizza,
+/obj/item/food/sliceable/pizza/oldpizza,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "tyH" = (
@@ -14987,13 +14987,13 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
 /obj/random/mug,
 /obj/random/mug,
 /obj/random/mug,
@@ -15117,12 +15117,12 @@
 /area/redgate/city/house18)
 "tGw" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/food/drinks/bottle/melonliquor,
+/obj/item/food/drinks/bottle/melonliquor,
+/obj/item/food/drinks/bottle/melonliquor,
+/obj/item/food/drinks/bottle/melonliquor,
+/obj/item/food/drinks/bottle/melonliquor,
+/obj/item/food/drinks/bottle/melonliquor,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -15294,7 +15294,7 @@
 /area/redgate/city/science)
 "tSf" = (
 /obj/structure/table/darkglass,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/redgate/city/bar1)
 "tSF" = (
@@ -15655,11 +15655,11 @@
 /area/redgate/city/hospital)
 "uwE" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/food/drinks/bottle/kahlua,
+/obj/item/food/drinks/bottle/kahlua,
+/obj/item/food/drinks/bottle/kahlua,
+/obj/item/food/drinks/bottle/kahlua,
+/obj/item/food/drinks/bottle/kahlua,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "uxg" = (
@@ -15762,10 +15762,10 @@
 /area/redgate/city/gallery)
 "uDr" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/alecan,
-/obj/item/reagent_containers/food/drinks/cans/alecan,
-/obj/item/reagent_containers/food/drinks/cans/alecan,
-/obj/item/reagent_containers/food/drinks/cans/alecan,
+/obj/item/food/drinks/cans/alecan,
+/obj/item/food/drinks/cans/alecan,
+/obj/item/food/drinks/cans/alecan,
+/obj/item/food/drinks/cans/alecan,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "uDH" = (
@@ -15936,7 +15936,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/city/chopshop)
 "uMt" = (
-/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/food/drinks/bottle/small/beer/meteor,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "uMU" = (
@@ -16119,20 +16119,20 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
 /obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /turf/simulated/floor/wood/alt,
@@ -16353,11 +16353,11 @@
 /area/redgate/city/house1)
 "vko" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "vkJ" = (
@@ -16385,11 +16385,11 @@
 /area/redgate/city/offlicense)
 "vlR" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/reagent_containers/food/drinks/cans/iced_tea,
+/obj/item/food/drinks/cans/iced_tea,
+/obj/item/food/drinks/cans/iced_tea,
+/obj/item/food/drinks/cans/iced_tea,
+/obj/item/food/drinks/cans/iced_tea,
+/obj/item/food/drinks/cans/iced_tea,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "vmc" = (
@@ -16736,29 +16736,29 @@
 	name = "kitchen cupboard";
 	pixel_y = -30
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "vJx" = (
@@ -16942,7 +16942,7 @@
 /area/redgate/city/stripclub)
 "waR" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/slice/vegetablepizza,
+/obj/item/food/slice/vegetablepizza,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/pizza)
 "wbr" = (
@@ -17488,11 +17488,11 @@
 /area/redgate/city/dealership)
 "wOo" = (
 /obj/structure/table/rack,
-/obj/item/reagent_containers/food/drinks/cans/boda,
-/obj/item/reagent_containers/food/drinks/cans/boda,
-/obj/item/reagent_containers/food/drinks/cans/boda,
-/obj/item/reagent_containers/food/drinks/cans/boda,
-/obj/item/reagent_containers/food/drinks/cans/boda,
+/obj/item/food/drinks/cans/boda,
+/obj/item/food/drinks/cans/boda,
+/obj/item/food/drinks/cans/boda,
+/obj/item/food/drinks/cans/boda,
+/obj/item/food/drinks/cans/boda,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "wOJ" = (
@@ -17572,9 +17572,9 @@
 /area/redgate/city/house13)
 "wUr" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/snacks/ratpackturkey,
-/obj/item/reagent_containers/food/snacks/ratpackturkey,
-/obj/item/reagent_containers/food/snacks/ratpackturkey,
+/obj/item/food/ratpackturkey,
+/obj/item/food/ratpackturkey,
+/obj/item/food/ratpackturkey,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "wUP" = (
@@ -17716,7 +17716,7 @@
 /area/redgate/city/house16)
 "xfo" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
 /turf/simulated/floor/wood,
 /area/redgate/city/house4)
 "xfB" = (
@@ -17873,12 +17873,12 @@
 /area/redgate/city/house18)
 "xrc" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "xsl" = (

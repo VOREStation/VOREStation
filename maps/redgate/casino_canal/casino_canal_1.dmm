@@ -2445,22 +2445,22 @@
 /area/redgate/underwater_casino/indoors/lower/dorms/privategameroom2)
 "fY" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/structure/closet/walllocker_double/kitchen/north,
 /obj/item/storage/box/beakers{
@@ -3123,7 +3123,7 @@
 /area/redgate/underwater_casino/indoors/lower/dorms/vip/bath)
 "ia" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/rum{
+/obj/item/food/drinks/bottle/rum{
 	pixel_y = 9;
 	pixel_x = -5
 	},
@@ -4087,7 +4087,7 @@
 /area/redgate/underwater_casino/indoors/lower/laundry)
 "sn" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5062,11 +5062,11 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = -4;
 	pixel_y = 4
 	},
@@ -5332,11 +5332,11 @@
 /area/redgate/underwater_casino/indoors/lower/resleeving)
 "Gj" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/food/drinks/metaglass{
+/obj/item/food/drinks/metaglass{
 	pixel_y = 8;
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+/obj/item/food/drinks/drinkingglass/shotglass{
 	pixel_x = -3
 	},
 /turf/simulated/floor/wood/alt/tile,
@@ -5873,7 +5873,7 @@
 	pixel_y = 23;
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5;
 	pixel_x = -9;
 	pixel_y = 22

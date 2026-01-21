@@ -143,8 +143,8 @@
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aG" = (
-/obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
+/obj/item/food/chips,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
 "aH" = (
@@ -198,8 +198,8 @@
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aQ" = (
-/obj/item/reagent_containers/food/snacks/cheesiehonkers,
-/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/food/cheesiehonkers,
+/obj/item/food/cheesiehonkers,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
 "aR" = (

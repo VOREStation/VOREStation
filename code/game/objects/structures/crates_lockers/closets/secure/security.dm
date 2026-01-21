@@ -275,7 +275,7 @@
 		/obj/item/taperoll/police,
 		/obj/item/clothing/accessory/holster/armpit,
 		/obj/item/flashlight/maglight,
-		/obj/item/reagent_containers/food/drinks/flask/detflask,
+		/obj/item/food/drinks/flask/detflask,
 		/obj/item/storage/briefcase/crimekit,
 		/obj/item/taperecorder,
 		/obj/item/storage/bag/detective,

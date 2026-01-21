@@ -228,7 +228,7 @@
 /area/submap/BorgLab)
 "gf" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/burrito_cheese,
+/obj/item/food/burrito_cheese,
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/item/cell/super/empty,
@@ -511,7 +511,7 @@
 /area/submap/BorgLab)
 "qa" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/monkeysdelight,
+/obj/item/food/monkeysdelight,
 /obj/effect/floor_decal/rust/mono_rusted2,
 /turf/simulated/floor/tiled/dark,
 /area/submap/BorgLab)

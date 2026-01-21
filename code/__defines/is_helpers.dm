@@ -37,6 +37,9 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isdisposalpacket(A)	istype(A,/obj/structure/disposalholder)
 
+#define isfood(A) 		istype(A,/obj/item/food)
+#define isdrink(A)		istype(A,/obj/item/food/drinks)
+
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in
 

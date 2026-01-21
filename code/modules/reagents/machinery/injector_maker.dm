@@ -58,8 +58,8 @@
 		return ..()
 
 	if(istype(O,/obj/item/reagent_containers/glass) || \
-		istype(O,/obj/item/reagent_containers/food/drinks/glass2) || \
-		istype(O,/obj/item/reagent_containers/food/drinks/shaker))
+		istype(O,/obj/item/food/drinks/glass2) || \
+		istype(O,/obj/item/food/drinks/shaker))
 
 		if (beaker)
 			return 1

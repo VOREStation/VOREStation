@@ -24,7 +24,7 @@
 	health = 40
 	movement_cooldown = -1
 	meat_amount = 1
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	response_help = "pets"
 	response_disarm = "slaps"

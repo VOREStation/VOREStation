@@ -1079,11 +1079,11 @@
 /area/submap/v5/outpost_nhall)
 "sm" = (
 /obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -2635,7 +2635,7 @@
 /area/submap/v5/outpost_whall)
 "Qr" = (
 /obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 11
 	},

@@ -53,8 +53,8 @@
 		update_icon()
 		return
 	if(istype(C,/obj/item/reagent_containers/glass) || \
-		istype(C,/obj/item/reagent_containers/food/drinks/glass2) || \
-		istype(C,/obj/item/reagent_containers/food/drinks/shaker))
+		istype(C,/obj/item/food/drinks/glass2) || \
+		istype(C,/obj/item/food/drinks/shaker))
 		// Drain it!
 		C.reagents.trans_to_holder( src.reagents, src.reagents.maximum_volume)
 		visible_message("\The [user] dumps \the [C] into \the [src].")

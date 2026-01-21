@@ -80,6 +80,6 @@
 //Drink
 
 ///from base of:
-/// /obj/item/reagent_containers/food/drinks/proc/On_Consume(var/mob/living/eater, var/mob/feeder, var/changed = FALSE)
+/// /obj/item/food/drinks/proc/On_Consume(var/mob/living/eater, var/mob/feeder, var/changed = FALSE)
 /// and /obj/item/reagent_containers/proc/standard_feed_mob(var/mob/user, var/mob/target)
 #define COMSIG_GLASS_DRANK "glass_drank"

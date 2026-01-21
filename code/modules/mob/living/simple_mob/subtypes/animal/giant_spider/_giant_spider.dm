@@ -100,14 +100,14 @@
 	speak_emote = list("chitters")
 
 	meat_amount = 5
-	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/food/xenomeat/spidermeat
 
 	say_list_type = /datum/say_list/spider
 
 	tame_items = list(
-	/obj/item/reagent_containers/food/snacks/xenomeat = 10,
-	/obj/item/reagent_containers/food/snacks/crabmeat = 40,
-	/obj/item/reagent_containers/food/snacks/meat = 20
+	/obj/item/food/xenomeat = 10,
+	/obj/item/food/crabmeat = 40,
+	/obj/item/food/meat = 20
 	)
 
 	var/poison_type = REAGENT_ID_SPIDERTOXIN	// The reagent that gets injected when it attacks.

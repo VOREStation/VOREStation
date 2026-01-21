@@ -34,14 +34,14 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/unathi,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "g" = (

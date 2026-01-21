@@ -2,6 +2,6 @@
 	appliance = OVEN
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/scorpion
+		/obj/item/food/scorpion
 	)
-	result = /obj/item/reagent_containers/food/snacks/scorpion_cooked
+	result = /obj/item/food/scorpion_cooked

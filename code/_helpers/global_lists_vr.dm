@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(edible_trash, list(/obj/item/broken_device,
 				/obj/item/paperplane,
 				/obj/item/pen,
 				/obj/item/photo,
-				/obj/item/reagent_containers/food,
+				/obj/item/food,
 				/obj/item/reagent_containers/glass/rag,
 				/obj/item/soap,
 				/obj/item/spacecash,
@@ -1241,7 +1241,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/disposable_teleporter/slime, \
 	/obj/item/slimepotion, \
 	/obj/item/slime_extract, \
-	/obj/item/reagent_containers/food/snacks/monkeycube
+	/obj/item/food/monkeycube
 
 #define CIRCUIT_GRIPPER \
 	/obj/item/cell/device, \
@@ -1259,7 +1259,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 
 #define SERVICE_GRIPPER \
 	/obj/item/reagent_containers/glass, \
-	/obj/item/reagent_containers/food, \
+	/obj/item/food, \
 	/obj/item/seeds, \
 	/obj/item/grown, \
 	/obj/item/trash, \

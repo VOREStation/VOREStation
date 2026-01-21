@@ -428,9 +428,9 @@
 /area/awaymission/wwmines)
 "bJ" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/reagent_containers/food/drinks/flour,
-/obj/item/reagent_containers/food/drinks/flour,
-/obj/item/reagent_containers/food/drinks/flour,
+/obj/item/food/drinks/flour,
+/obj/item/food/drinks/flour,
+/obj/item/food/drinks/flour,
 /turf/simulated/floor{
 	 icon_state = "cafeteria";
 	dir = 5
@@ -461,11 +461,11 @@
 /area/awaymission/wwmines)
 "bN" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
 /turf/simulated/floor{
 	 icon_state = "cafeteria";
 	dir = 5
@@ -813,12 +813,12 @@
 /area/awaymission/wwmines)
 "cJ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/food/condiment/peppermill,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "cK" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/food/condiment/saltshaker,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "cL" = (
@@ -900,7 +900,7 @@
 /area/awaymission/wwgov)
 "cV" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/monkeysdelight,
+/obj/item/food/monkeysdelight,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
@@ -914,7 +914,7 @@
 /area/awaymission/wwgov)
 "cX" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/food/stew,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
@@ -962,7 +962,7 @@
 /area/awaymission/wwgov)
 "dd" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread,
+/obj/item/food/sliceable/creamcheesebread,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
@@ -976,7 +976,7 @@
 /area/awaymission/wwgov)
 "df" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/lemoncake,
+/obj/item/food/sliceable/lemoncake,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
@@ -1054,24 +1054,24 @@
 /area/awaymission/wwgov)
 "dq" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
 /area/awaymission/wwgov)
 "dr" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
 /area/awaymission/wwgov)
 "ds" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/patron,
+/obj/item/food/drinks/bottle/patron,
 /turf/simulated/floor{
 	 icon_state = "stage_bleft"
 	},
@@ -1285,22 +1285,22 @@
 /area/awaymission/wwmines)
 "dY" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/donut/slimejelly,
+/obj/item/food/donut/slimejelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "dZ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/coffee,
+/obj/item/food/drinks/coffee,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "ea" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/donut/jelly,
+/obj/item/food/donut/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "eb" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/donut/normal,
+/obj/item/food/donut/normal,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "ec" = (
@@ -1500,8 +1500,8 @@
 /area/awaymission/wwmines)
 "eG" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/coffee,
-/obj/item/reagent_containers/food/snacks/donut/slimejelly,
+/obj/item/food/drinks/coffee,
+/obj/item/food/donut/slimejelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "eH" = (

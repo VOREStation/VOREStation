@@ -23,7 +23,7 @@
 	has_langs = list(LANGUAGE_GALCOM , LANGUAGE_ANIMAL)
 
 	meat_amount = 100
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/food/meat/chicken
 
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
@@ -73,11 +73,11 @@
 	if(resting)
 		icon_state = "[icon_state]-resting"
 
-/mob/living/simple_mob/vore/turkeygirl/attackby(var/obj/item/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/turkeygirl/attackby(var/obj/item/food/O as obj, var/mob/user as mob)
 	if(stat)
 		return ..()
 
-	if(!istype(O, /obj/item/reagent_containers/food/snacks))
+	if(!isfood(O))
 		return ..()
 
 	if(nutrition >= max_nutrition)

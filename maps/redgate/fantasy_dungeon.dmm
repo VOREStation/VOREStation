@@ -49,7 +49,7 @@
 /area/redgate/fantasy/underwater)
 "bp" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/bloodsoup,
+/obj/item/food/bloodsoup,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "bw" = (
@@ -272,10 +272,10 @@
 /obj/structure/closet/crate/chest,
 /obj/random/fishing_junk,
 /obj/random/fishing_junk,
-/obj/item/reagent_containers/food/snacks/wormdeluxe,
-/obj/item/reagent_containers/food/snacks/wormdeluxe,
-/obj/item/reagent_containers/food/snacks/wormdeluxe,
-/obj/item/reagent_containers/food/snacks/wormdeluxe,
+/obj/item/food/wormdeluxe,
+/obj/item/food/wormdeluxe,
+/obj/item/food/wormdeluxe,
+/obj/item/food/wormdeluxe,
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/mines)
 "fT" = (
@@ -355,7 +355,7 @@
 /turf/simulated/floor/cult,
 /area/redgate/fantasy/dungeon)
 "hY" = (
-/obj/item/reagent_containers/food/snacks/bearstew,
+/obj/item/food/bearstew,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "id" = (
@@ -1325,7 +1325,7 @@
 /area/redgate/fantasy/alienbasement)
 "Bs" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/lemoncake,
+/obj/item/food/sliceable/lemoncake,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "BG" = (
@@ -1335,20 +1335,20 @@
 /area/redgate/fantasy/dungeon)
 "BJ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -1590,7 +1590,7 @@
 /area/redgate/fantasy/dungeon)
 "Ga" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/dungeon)
 "Gh" = (
@@ -1738,14 +1738,14 @@
 /area/redgate/fantasy/caves)
 "Jo" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Jp" = (
@@ -2064,7 +2064,7 @@
 /area/redgate/fantasy/alienbasement)
 "PA" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/food/flatbread,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "PC" = (
@@ -2166,7 +2166,7 @@
 /area/redgate/fantasy/dungeon)
 "Sk" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/snacks/bloodsoup,
+/obj/item/food/bloodsoup,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -2174,7 +2174,7 @@
 /area/redgate/fantasy/dungeon)
 "Sn" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/snacks/bloodsoup,
+/obj/item/food/bloodsoup,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "Sx" = (
@@ -2304,7 +2304,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/fantasy/alienbasement)
 "Vo" = (
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/caves)
 "Vq" = (
@@ -2396,7 +2396,7 @@
 /area/redgate/fantasy/dungeon)
 "Xq" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "Xr" = (

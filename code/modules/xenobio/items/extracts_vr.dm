@@ -100,7 +100,7 @@
 
 /decl/chemical_reaction/instant/slime/grey_monkey/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 4)
-		new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
+		new /obj/item/food/monkeycube(get_turf(holder.my_atom))
 	..()
 
 
@@ -1254,7 +1254,7 @@
 	required = /obj/item/slime_extract/amber
 
 /decl/chemical_reaction/instant/slime/amber_random_food/on_reaction(var/datum/reagents/holder)
-	var/list/edibles = subtypesof(/obj/item/reagent_containers/food/snacks)
+	var/list/edibles = subtypesof(/obj/item/food)
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 
@@ -1278,7 +1278,7 @@
 
 /decl/chemical_reaction/instant/slime/amber_snack/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to rand(3, 5))
-		new /obj/item/reagent_containers/food/snacks/slime(get_turf(holder.my_atom))
+		new /obj/item/food/slime(get_turf(holder.my_atom))
 	..()
 
 

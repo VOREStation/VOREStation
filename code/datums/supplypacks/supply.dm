@@ -10,14 +10,14 @@
 	name = "Kitchen supply crate"
 	desc = "An assortment of standard kitchen supplies, fit for preparing a variety of basic meals."
 	contains = list(
-			/obj/item/reagent_containers/food/condiment/carton/flour = 6,
-			/obj/item/reagent_containers/food/drinks/milk = 3,
-			/obj/item/reagent_containers/food/drinks/soymilk = 2,
+			/obj/item/food/condiment/carton/flour = 6,
+			/obj/item/food/drinks/milk = 3,
+			/obj/item/food/drinks/soymilk = 2,
 			/obj/item/storage/fancy/egg_box = 2,
-			/obj/item/reagent_containers/food/snacks/tofu = 4,
-			/obj/item/reagent_containers/food/snacks/meat = 4,
-			/obj/item/reagent_containers/food/condiment/yeast = 3,
-			/obj/item/reagent_containers/food/condiment/sprinkles = 1
+			/obj/item/food/tofu = 4,
+			/obj/item/food/meat = 4,
+			/obj/item/food/condiment/yeast = 3,
+			/obj/item/food/condiment/sprinkles = 1
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer/centauri
@@ -27,8 +27,8 @@
 	name = "Artisanal food delivery"
 	desc = "High-quality flour and sugar from luxury Centauri Foods brands."
 	contains = list(
-			/obj/item/reagent_containers/food/condiment/carton/flour/rustic = 6,
-			/obj/item/reagent_containers/food/condiment/carton/sugar/rustic = 6
+			/obj/item/food/condiment/carton/flour/rustic = 6,
+			/obj/item/food/condiment/carton/sugar/rustic = 6
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer/centauri
@@ -38,10 +38,10 @@
 	name = "Cooking seasonings crate"
 	desc = "Essential seasonings and spices for cooking."
 	contains = list(
-			/obj/item/reagent_containers/food/condiment/small/saltshaker = 6,
-			/obj/item/reagent_containers/food/condiment/small/peppermill = 6,
-			/obj/item/reagent_containers/food/condiment/spacespice = 3,
-			/obj/item/reagent_containers/food/condiment/sugar = 3,
+			/obj/item/food/condiment/small/saltshaker = 6,
+			/obj/item/food/condiment/small/peppermill = 6,
+			/obj/item/food/condiment/spacespice = 3,
+			/obj/item/food/condiment/sugar = 3,
 			)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer/centauri

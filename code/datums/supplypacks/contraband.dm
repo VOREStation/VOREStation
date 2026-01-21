@@ -10,7 +10,7 @@
 			/obj/item/seeds/bloodtomatoseed,
 			/obj/item/storage/pill_bottle/zoom,
 			/obj/item/storage/pill_bottle/happy,
-			/obj/item/reagent_containers/food/drinks/bottle/pwine
+			/obj/item/food/drinks/bottle/pwine
 			)
 
 	name = "Contraband crate"
@@ -38,8 +38,8 @@
 	name = "Moghes imports"
 	desc = "Black market imports, straight from the Hegemony."
 	contains = list(
-			/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew = 2,
-			/obj/item/reagent_containers/food/snacks/unajerky = 4
+			/obj/item/food/drinks/bottle/redeemersbrew = 2,
+			/obj/item/food/unajerky = 4
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/unathi

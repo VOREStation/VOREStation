@@ -153,7 +153,7 @@
 	pixel_y = 23;
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5;
 	pixel_x = -9;
 	pixel_y = 22
@@ -222,22 +222,22 @@
 /area/survivalpod)
 "S" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/item/storage/box/beakers{
 	name = "box of measuring cups";

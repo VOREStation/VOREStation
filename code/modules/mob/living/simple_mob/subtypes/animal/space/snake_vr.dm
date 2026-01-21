@@ -39,7 +39,7 @@
 	response_harm   = "kicks"
 
 	meat_amount = 2
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	melee_damage_lower = 2
 	melee_damage_upper = 3
@@ -153,7 +153,7 @@
 				movement_target = null
 			if(!movement_target || !(movement_target.loc in oview(src, 7)) )
 				movement_target = null
-				for(var/obj/item/reagent_containers/food/snacks/snakesnack/S in oview(src,7))
+				for(var/obj/item/food/snakesnack/S in oview(src,7))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						visible_emote("turns towards \the [movement_target] and slithers towards it.")
@@ -171,7 +171,7 @@
 		..()
 
 /mob/living/simple_mob/animal/passive/snake/python/noodle/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/reagent_containers/food/snacks/snakesnack))
+	if(istype(O, /obj/item/food/snakesnack))
 		visible_message(span_notice("[user] feeds \the [O] to [src]."))
 		adjust_nutrition(100) //It's sugar!
 		qdel(O)
@@ -181,7 +181,7 @@
 /*
  * Special snek-snax for Noodle!
  */
-/obj/item/reagent_containers/food/snacks/snakesnack
+/obj/item/food/snakesnack
 	name = "sugar mouse"
 	desc = "A little mouse treat made of coloured sugar. Noodle loves these!"
 	var/snack_colour
@@ -190,7 +190,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list(REAGENT_ID_SUGAR = 1)
 
-/obj/item/reagent_containers/food/snacks/snakesnack/Initialize(mapload)
+/obj/item/food/snakesnack/Initialize(mapload)
 	. = ..()
 	if(!snack_colour)
 		snack_colour = pick( list("yellow","green","pink","blue") )
@@ -206,11 +206,11 @@
 	storage_slots = 7
 
 /obj/item/storage/box/snakesnackbox/Initialize(mapload)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
+	new /obj/item/food/snakesnack(src)
 	. = ..()

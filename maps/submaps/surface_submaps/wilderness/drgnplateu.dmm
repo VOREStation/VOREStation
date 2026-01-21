@@ -90,7 +90,7 @@
 	pixel_x = -12;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/drinks/golden_cup{
+/obj/item/food/drinks/golden_cup{
 	pixel_x = -10;
 	pixel_y = -5
 	},

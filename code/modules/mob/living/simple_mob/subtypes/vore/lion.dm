@@ -23,7 +23,7 @@
 	melee_damage_upper = 20
 	grab_resist = 100
 
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	meat_amount = 5
 
 	response_help = "pets"

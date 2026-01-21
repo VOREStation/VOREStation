@@ -85,11 +85,11 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "ju" = (
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "kg" = (

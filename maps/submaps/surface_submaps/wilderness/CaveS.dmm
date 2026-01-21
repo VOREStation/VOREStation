@@ -14,7 +14,7 @@
 /area/submap/CaveS)
 "e" = (
 /obj/item/ammo_casing/a45,
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
+/obj/item/food/xenomeat/spidermeat,
 /turf/template_noop,
 /area/submap/CaveS)
 "f" = (
@@ -49,7 +49,7 @@
 	},
 /area/submap/CaveS)
 "l" = (
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
+/obj/item/food/xenomeat/spidermeat,
 /turf/template_noop,
 /area/submap/CaveS)
 "m" = (

@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/glass2/carafe
+/obj/item/food/drinks/glass2/carafe
 	name = "glass carafe"
 	base_name = "carafe"
 	base_icon = "carafe"
@@ -8,7 +8,7 @@
 	max_transfer_amount = 60
 	matter = list(MAT_GLASS = 50)
 
-/obj/item/reagent_containers/food/drinks/glass2/pitcher
+/obj/item/food/drinks/glass2/pitcher
 	name = "plastic pitcher"
 	base_name = "pitcher"
 	base_icon = "pitcher"

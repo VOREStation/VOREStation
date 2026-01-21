@@ -76,7 +76,7 @@
 	else
 		icon_state = "rag"
 
-	var/obj/item/reagent_containers/food/drinks/bottle/B = loc
+	var/obj/item/food/drinks/bottle/B = loc
 	if(istype(B))
 		B.update_icon()
 

@@ -192,13 +192,13 @@
 	pokephrase = "Ping!"
 	squeeze_sound = 'sound/machines/ping.ogg'
 
-/obj/item/reagent_containers/food/snacks/slice/bread
+/obj/item/food/slice/bread
 	var/toasted = FALSE
 
-/obj/item/reagent_containers/food/snacks/tastybread
+/obj/item/food/tastybread
 	var/toasted = FALSE
 
-/obj/item/reagent_containers/food/snacks/slice/bread/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/food/slice/bread/afterattack(atom/A, mob/user as mob, proximity)
 	if(istype(A, /obj/item/toy/plushie/ipc) && !toasted)
 		toasted = TRUE
 		icon = 'icons/obj/toy.dmi'
@@ -206,7 +206,7 @@
 		to_chat(user, span_notice(" You insert bread into the toaster. "))
 		playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 
-/obj/item/reagent_containers/food/snacks/tastybread/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/food/tastybread/afterattack(atom/A, mob/user as mob, proximity)
 	if(istype(A, /obj/item/toy/plushie/ipc) && !toasted)
 		toasted = TRUE
 		icon = 'icons/obj/toy.dmi'
@@ -1168,7 +1168,7 @@
 		to_chat(user, span_notice("You need to have a free hand to pick an acorn out!"))
 		return
 	var/spawnloc = get_turf(H)
-	var/obj/item/I = new /obj/item/reagent_containers/food/snacks/acorn(spawnloc)
+	var/obj/item/I = new /obj/item/food/acorn(spawnloc)
 	H.put_in_inactive_hand(I)
 	next_use = (world.time + 30 SECONDS)
 	H.visible_message(span_notice("\The [H] pulls an acorn from \the [src]!"))

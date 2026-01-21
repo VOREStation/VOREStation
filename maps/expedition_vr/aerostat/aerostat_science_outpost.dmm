@@ -8156,19 +8156,19 @@
 /area/offmap/aerostat/inside/airlock/west)
 "EP" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 5;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 5;
 	pixel_y = -4
 	},

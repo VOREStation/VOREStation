@@ -249,9 +249,9 @@
 /area/awaymission/BMPship1)
 "aQ" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/appendix,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/appendix,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/plating{
 	 icon_state = "warnplate";
 	dir = 1
@@ -260,8 +260,8 @@
 "aR" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/brain,
-/obj/item/reagent_containers/food/snacks/appendix,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/appendix,
+/obj/item/food/meat,
 /turf/simulated/floor/plating{
 	 icon_state = "warnplate";
 	dir = 1
@@ -388,7 +388,7 @@
 /obj/structure/table/woodentable,
 /obj/item/spacecash/c500,
 /obj/item/spacecash/c100,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor/wood,
 /area/awaymission/BMPship3)
 "bl" = (
@@ -484,8 +484,8 @@
 /area/awaymission/BMPship1)
 "bz" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/drinks/beer,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "bA" = (
@@ -774,9 +774,9 @@
 /area/awaymission/BMPship1)
 "ct" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/hugemushroomslice,
-/obj/item/reagent_containers/food/snacks/appendix,
+/obj/item/food/meat,
+/obj/item/food/hugemushroomslice,
+/obj/item/food/appendix,
 /turf/simulated/floor/plating{
 	dir = 2;
 	icon_state = "warnplate"
@@ -924,8 +924,8 @@
 "cL" = (
 /obj/structure/table/standard,
 /obj/item/butch,
-/obj/item/reagent_containers/food/drinks/beer,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/drinks/beer,
+/obj/item/food/meat,
 /turf/simulated/floor{
 	 icon_state = "barber"
 	},
@@ -958,7 +958,7 @@
 /area/awaymission/BMPship2)
 "cP" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1024,7 +1024,7 @@
 	},
 /area/awaymission/BMPship3)
 "cY" = (
-/obj/item/reagent_containers/food/snacks/hugemushroomslice,
+/obj/item/food/hugemushroomslice,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1033,7 +1033,7 @@
 /turf/simulated/floor,
 /area/awaymission/BMPship2)
 "da" = (
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor,
 /area/awaymission/BMPship2)
 "db" = (
@@ -1154,7 +1154,7 @@
 	},
 /area/awaymission/BMPship3)
 "du" = (
-/obj/item/reagent_containers/food/snacks/hugemushroomslice,
+/obj/item/food/hugemushroomslice,
 /turf/simulated/floor,
 /area/awaymission/BMPship2)
 "dv" = (
@@ -1195,7 +1195,7 @@
 	},
 /area/awaymission/BMPship2)
 "dA" = (
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1219,8 +1219,8 @@
 /area/awaymission/BMPship1)
 "dD" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -1279,7 +1279,7 @@
 /area/awaymission/BMPship3)
 "dK" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor{
 	 icon_state = "carpet14-2";
 	dir = 4
@@ -1369,7 +1369,7 @@
 	},
 /area/awaymission/BMPship2)
 "dW" = (
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -2571,7 +2571,7 @@
 /area/awaymission/BMPship2)
 "gU" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
 /turf/simulated/floor{
 	icon_state = "showroomfloor"
 	},
@@ -2739,7 +2739,7 @@
 "hv" = (
 /obj/structure/table/standard,
 /obj/item/pen/red,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "hw" = (
@@ -3129,7 +3129,7 @@
 	},
 /area/awaymission/BMPship3)
 "iI" = (
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship3)
 "iJ" = (

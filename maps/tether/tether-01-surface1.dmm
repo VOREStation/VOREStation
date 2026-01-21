@@ -7719,17 +7719,17 @@
 "anq" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
+/obj/item/food/drinks/bottle/small/beer{
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
+/obj/item/food/drinks/bottle/small/beer{
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
+/obj/item/food/drinks/bottle/small/beer{
 	pixel_x = -7;
 	pixel_y = -7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
+/obj/item/food/drinks/bottle/small/beer{
 	pixel_x = -10;
 	pixel_y = 5
 	},
@@ -17645,7 +17645,7 @@
 "aEa" = (
 /obj/structure/table/marble,
 /obj/item/hand_labeler,
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /obj/machinery/floor_light/prebuilt{
 	on = 1
 	},
@@ -17654,9 +17654,9 @@
 	pixel_y = 22
 	},
 /obj/structure/closet/walllocker_double/kitchen/east,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,
@@ -18640,33 +18640,33 @@
 /area/crew_quarters/visitor_dining)
 "aFT" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -32268,7 +32268,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /turf/simulated/floor/wood,
 /area/crew_quarters/visitor_dining)
 "gAn" = (
@@ -35232,7 +35232,7 @@
 /obj/structure/sign/painting/public{
 	pixel_y = 30
 	},
-/obj/item/reagent_containers/food/snacks/pie,
+/obj/item/food/pie,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)

@@ -128,7 +128,7 @@ var/list/organ_cache = list()
 				if(owner.meat_type)
 					meat_type = owner.meat_type
 				else
-					meat_type = /obj/item/reagent_containers/food/snacks/meat
+					meat_type = /obj/item/food/meat
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
@@ -472,7 +472,7 @@ var/list/organ_cache = list()
 	blood_splatter(src,B,1)
 
 	user.drop_from_inventory(src)
-	var/obj/item/reagent_containers/food/snacks/organ/O = new(get_turf(src))
+	var/obj/item/food/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon = icon
 	O.icon_state = icon_state
@@ -533,7 +533,7 @@ var/list/organ_cache = list()
 
 	var/obj/item/newmeat = new meat_type(newtarget)
 
-	if(istype(newmeat, /obj/item/reagent_containers/food/snacks/meat))
+	if(istype(newmeat, /obj/item/food/meat))
 		newmeat.name = "[src.name] [newmeat.name]"	// "liver meat" "heart meat", etc.
 
 	qdel(src)

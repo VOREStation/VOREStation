@@ -549,7 +549,7 @@
 
 	src.modules += new /obj/item/tray/robotray(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/service(src)
-	var/obj/item/reagent_containers/food/drinks/bottle/small/beer/PB = new /obj/item/reagent_containers/food/drinks/bottle/small/beer(src)
+	var/obj/item/food/drinks/bottle/small/beer/PB = new /obj/item/food/drinks/bottle/small/beer(src)
 	src.emag += PB
 
 	var/datum/reagents/R = new/datum/reagents(50)
@@ -564,7 +564,7 @@
 	src.emag += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/reagent_containers/food/drinks/bottle/small/beer/PB = locate() in src.emag
+	var/obj/item/food/drinks/bottle/small/beer/PB = locate() in src.emag
 	if(PB)
 		PB.reagents.add_reagent(REAGENT_ID_BEER2, 2 * amount)
 

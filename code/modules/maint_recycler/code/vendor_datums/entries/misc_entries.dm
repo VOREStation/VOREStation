@@ -27,6 +27,6 @@
 	name = "TRASH 4 BURGER REDEMPTION"
 	desc = "RSG is glad to partner with on-station cooking staff for EXCLUSIVE culinary deals! Packaged daily, stocked daily, always fresh!"
 	item_cost = 5
-	object_type_to_spawn = /obj/item/reagent_containers/food/snacks/packaged/vendburger/ancient
+	object_type_to_spawn = /obj/item/food/packaged/vendburger/ancient
 	ad_message = "Always fresh, the 2285 Guarantee!"
 	tagline = "Tasty! The RSG way!"

@@ -14,7 +14,7 @@
 "B" = (/obj/structure/dogbed,/mob/living/simple_mob/animal/passive/lizard,/obj/item/trash/unajerky,/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
 "E" = (/obj/structure/window/basic{dir = 1},/obj/structure/table/standard,/obj/structure/bedsheetbin,/obj/random/plushie,/turf/simulated/floor/wood,/area/template_noop)
 "G" = (/obj/machinery/light/small{dir = 8},/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
-"I" = (/obj/item/reagent_containers/food/snacks/wishsoup{pixel_y = -6},/obj/structure/sink/generic{dir = 4; pixel_x = -12; pixel_y = -4},/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
+"I" = (/obj/item/food/wishsoup{pixel_y = -6},/obj/structure/sink/generic{dir = 4; pixel_x = -12; pixel_y = -4},/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
 "L" = (/obj/item/trash/sosjerky,/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
 "M" = (/obj/structure/window/basic{dir = 1},/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 1},/turf/simulated/floor/wood,/area/template_noop)
 "N" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/simulated/floor/wood,/area/template_noop)

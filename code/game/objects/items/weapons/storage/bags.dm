@@ -258,7 +258,7 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/grown)
+	can_hold = list(/obj/item/food/grown,/obj/item/seeds,/obj/item/grown)
 
 /obj/item/storage/bag/plants/large
 	name = "large plant bag"
@@ -461,7 +461,7 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 12
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/slime_extract,/obj/item/slimepotion, /obj/item/reagent_containers/food/snacks/monkeycube)
+	can_hold = list(/obj/item/slime_extract,/obj/item/slimepotion, /obj/item/food/monkeycube)
 
 // -----------------------------
 //         Virology Bag
@@ -487,7 +487,7 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/reagent_containers/food/snacks,/obj/item/reagent_containers/food/condiment)
+	can_hold = list(/obj/item/food,/obj/item/food/condiment)
 
 // -----------------------------
 //    Food Bag (Service Hound)
@@ -500,9 +500,9 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/reagent_containers/food/snacks,/obj/item/reagent_containers/food/condiment,
+	can_hold = list(/obj/item/food,/obj/item/food/condiment,
 	/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle,/obj/item/coin,/obj/item/spacecash,
-	/obj/item/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/grown,/obj/item/reagent_containers/pill)
+	/obj/item/food/grown,/obj/item/seeds,/obj/item/grown,/obj/item/reagent_containers/pill)
 
 // -----------------------------
 //           Evidence Bag

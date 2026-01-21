@@ -1422,7 +1422,7 @@
 /obj/structure/closet/wardrobe/ert,
 /obj/item/modular_computer/tablet/preset/custom_loadout/elite,
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/light/no_nightshift{
 	dir = 1
@@ -1451,7 +1451,7 @@
 /obj/structure/closet/wardrobe/ert,
 /obj/item/modular_computer/tablet/preset/custom_loadout/elite,
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/light/no_nightshift{
 	dir = 1
@@ -3141,7 +3141,7 @@
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/obj/item/food/drinks/drinkingglass/fitnessflask/glucose,
 /obj/item/storage/pill_bottle/blood_regen,
 /obj/item/storage/pill_bottle/blood_regen,
 /obj/item/storage/pill_bottle/sleevingcure/full,
@@ -6135,7 +6135,7 @@
 /obj/structure/closet/wardrobe/ert,
 /obj/item/modular_computer/tablet/preset/custom_loadout/elite,
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/light/no_nightshift,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -9043,7 +9043,7 @@
 /obj/structure/closet/wardrobe/ert,
 /obj/item/modular_computer/tablet/preset/custom_loadout/elite,
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/item/modular_computer/laptop/preset/custom_loadout/elite,

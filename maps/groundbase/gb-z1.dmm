@@ -3657,7 +3657,7 @@
 	pixel_y = 4
 	},
 /obj/item/radio/off,
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/food/drinks/flask/barflask{
 	pixel_x = -9;
 	pixel_y = -2
 	},
@@ -5870,7 +5870,7 @@
 /obj/random/mug,
 /obj/random/mug,
 /obj/random/mug,
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 18
 	},
@@ -7699,7 +7699,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask{
+/obj/item/food/drinks/flask/vacuumflask{
 	pixel_x = -9;
 	pixel_y = 5
 	},
@@ -17462,7 +17462,7 @@
 	pixel_x = -3;
 	pixel_y = 26
 	},
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = -10;
 	pixel_y = 11
 	},

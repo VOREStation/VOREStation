@@ -889,7 +889,7 @@
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
-					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
+					else if(item_digest_mode == IM_DIGEST_FOOD && !(isfood(I) || istype(I,/obj/item/organ)))
 						items_preserved |= I
 
 	//Reagent transfer
@@ -1272,7 +1272,7 @@
 		if(blacklist & autotransfer_flags_list_items["Clothes and Bags"])
 			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Food"])
-			if(istype(prey, /obj/item/reagent_containers/food)) return FALSE
+			if(isfood(prey)) return FALSE
 		if(whitelist == 0) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Items"])
 			if(isitem(prey)) return TRUE
@@ -1293,7 +1293,7 @@
 		if(whitelist & autotransfer_flags_list_items["Clothes and Bags"])
 			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Food"])
-			if(istype(prey, /obj/item/reagent_containers/food)) return TRUE
+			if(isfood(prey)) return TRUE
 	return FALSE
 
 // Belly copies and then returns the copy
@@ -1760,17 +1760,17 @@
 
 /obj/belly/proc/owner_adjust_nutrition(var/amount = 0)
 	if(storing_nutrition && amount > 0)
-		for(var/obj/item/reagent_containers/food/rawnutrition/R in contents)
+		for(var/obj/item/food/rawnutrition/R in contents)
 			if(istype(R))
 				R.stored_nutrition += amount
 				return
-		var/obj/item/reagent_containers/food/rawnutrition/NR = new /obj/item/reagent_containers/food/rawnutrition(src)
+		var/obj/item/food/rawnutrition/NR = new /obj/item/food/rawnutrition(src)
 		NR.stored_nutrition += amount
 		return
 	else
 		owner.adjust_nutrition(amount)
 
-/obj/item/reagent_containers/food/rawnutrition
+/obj/item/food/rawnutrition
 	name = "raw nutrition"
 	desc = "A nutritious pile of converted mass ready for consumption."
 	icon = 'icons/obj/recycling.dmi'
@@ -1779,7 +1779,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/stored_nutrition = 0
 
-/obj/item/reagent_containers/food/rawnutrition/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/food/rawnutrition/standard_feed_mob(var/mob/user, var/mob/target)
 	if(isliving(target))
 		var/mob/living/L = target
 		L.nutrition += stored_nutrition

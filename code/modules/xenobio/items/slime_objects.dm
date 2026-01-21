@@ -119,7 +119,7 @@
 
 
 // Very filling food.
-/obj/item/reagent_containers/food/snacks/slime
+/obj/item/food/slime
 	name = "slimy clump"
 	desc = "A glob of slime that is thick as honey.  For the brave " + JOB_XENOBIOLOGIST + "."
 	icon_state = "honeycomb"
@@ -129,7 +129,7 @@
 	nutriment_amt = 25 // Very filling.
 	nutriment_desc = list("slime" = 10, "sweetness" = 10, REAGENT_ID_BLISS = 5)
 
-/obj/item/reagent_containers/food/snacks/slime/Initialize(mapload)
+/obj/item/food/slime/Initialize(mapload)
 	. = ..()
 	bitesize = 5
 

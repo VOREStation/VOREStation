@@ -1,9 +1,5 @@
 // This folder contains code that was originally ported from Apollo Station and then refactored/optimized/changed.
 
-// Tracks precooked food to stop deep fried baked grilled grilled grilled diona nymph cereal.
-/obj/item/reagent_containers/food/snacks
-	var/tmp/list/cooked = list()
-
 // Root type for cooking machines. See following files for specific implementations.
 /obj/machinery/appliance
 	name = "cooker"
@@ -236,7 +232,7 @@
 		return 1
 
 	// We're trying to cook something else. Check if it's valid.
-	var/obj/item/reagent_containers/food/snacks/check = I
+	var/obj/item/food/check = I
 	if(istype(check) && islist(check.cooked) && (cook_type in check.cooked))
 		to_chat(user, span_warning("\The [check] has already been [cook_type]."))
 		return 0
@@ -369,7 +365,7 @@
 
 //Just a helper to save code duplication in the above
 /obj/machinery/appliance/proc/cookwork_by_item(var/obj/item/I, var/datum/cooking_item/CI)
-	var/obj/item/reagent_containers/food/snacks/S = I
+	var/obj/item/food/S = I
 	var/work = 0
 	if (istype(S))
 		if (S.reagents)
@@ -459,7 +455,7 @@
 	var/list/words = list()
 	var/list/cooktypes = list()
 
-	for(var/obj/item/reagent_containers/food/snacks/S in CI.container)
+	for(var/obj/item/food/S in CI.container)
 		words |= splittext(S.name, " ")
 		cooktypes |= S.cooked
 
@@ -514,7 +510,7 @@
 			results += TR
 
 
-		for(var/obj/item/reagent_containers/food/snacks/R as anything in results)
+		for(var/obj/item/food/R as anything in results)
 			R.forceMove(C) //Move everything from the buffer back to the container
 			R.cooked |= cook_type
 
@@ -532,7 +528,7 @@
 			modify_cook(i, CI)
 
 	//Final step. Cook function just cooks batter for now.
-	for (var/obj/item/reagent_containers/food/snacks/S in CI.container)
+	for (var/obj/item/food/S in CI.container)
 		S.cook()
 
 
@@ -551,10 +547,10 @@
 		reagents_determine_color = TRUE
 
 	for (var/obj/item/I in CI.container)
-		var/obj/item/reagent_containers/food/snacks/S
+		var/obj/item/food/S
 		if (istype(I, /obj/item/holder))
 			S = create_mob_food(I, CI)
-		else if (istype(I, /obj/item/reagent_containers/food/snacks))
+		else if (isfood(I))
 			S = I
 
 		if (!S)
@@ -583,7 +579,7 @@
 
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
-	var/obj/item/reagent_containers/food/snacks/result = new cook_path(CI.container)
+	var/obj/item/food/result = new cook_path(CI.container)
 	buffer.trans_to_holder(result.reagents, buffer.total_volume)	//trans_to doesn't handle food items well, so
 																	//just call trans_to_holder instead
 
@@ -620,10 +616,10 @@
 
 //Helper proc for standard modification cooking
 /obj/machinery/appliance/proc/modify_cook(var/obj/item/input, var/datum/cooking_item/CI)
-	var/obj/item/reagent_containers/food/snacks/result
+	var/obj/item/food/result
 	if (istype(input, /obj/item/holder))
 		result = create_mob_food(input, CI)
-	else if (istype(input, /obj/item/reagent_containers/food/snacks))
+	else if (isfood(input))
 		result = input
 	else
 		//Nonviable item
@@ -644,7 +640,7 @@
 	// You dun goofed.
 	CI.burned = 1
 	CI.container.clear()
-	new /obj/item/reagent_containers/food/snacks/badrecipe(CI.container)
+	new /obj/item/food/badrecipe(CI.container)
 
 	// Produce nasty smoke.
 	visible_message(span_danger("\The [src] vomits a gout of rancid smoke!"))
@@ -752,12 +748,12 @@
 /obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
 	return
 
-/obj/machinery/appliance/proc/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+/obj/machinery/appliance/proc/change_product_strings(var/obj/item/food/product, var/datum/cooking_item/CI)
 	product.name = "[cook_type] [product.name]"
 	product.desc = "[product.desc]\nIt has been [cook_type]."
 
 
-/obj/machinery/appliance/proc/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+/obj/machinery/appliance/proc/change_product_appearance(var/obj/item/food/product, var/datum/cooking_item/CI)
 	if (!product.coating) //Coatings change colour through a new sprite
 		product.color = food_color
 	product.filling_color = food_color
@@ -799,7 +795,7 @@
 
 	victim.calculate_composition()
 
-	var/obj/item/reagent_containers/food/snacks/variable/mob/result = new /obj/item/reagent_containers/food/snacks/variable/mob(CI.container)
+	var/obj/item/food/variable/mob/result = new /obj/item/food/variable/mob(CI.container)
 	result.w_class = victim.mob_size
 	result.reagents.add_reagent(victim.composition_reagent, victim.composition_reagent_quantity)
 

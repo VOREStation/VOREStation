@@ -531,7 +531,7 @@
 /obj/machinery/light/small/emergency/flicker{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/truffle/random,
+/obj/item/food/truffle/random,
 /turf/simulated/floor,
 /area/submap/XenoHive)
 "YG" = (

@@ -16,7 +16,7 @@
 "y" = (/turf/simulated/floor/wood/broken,/area/template_noop)
 "z" = (/obj/machinery/papershredder,/turf/simulated/floor/wood,/area/template_noop)
 "B" = (/obj/structure/dogbed,/obj/random/plushie,/turf/simulated/floor/carpet/bcarpet,/area/template_noop)
-"F" = (/obj/item/reagent_containers/food/snacks/wishsoup{pixel_y = -6},/obj/structure/sink/generic{dir = 4; pixel_x = -12; pixel_y = -4},/turf/simulated/floor/carpet/bcarpet,/area/template_noop)
+"F" = (/obj/item/food/wishsoup{pixel_y = -6},/obj/structure/sink/generic{dir = 4; pixel_x = -12; pixel_y = -4},/turf/simulated/floor/carpet/bcarpet,/area/template_noop)
 "G" = (/obj/item/trash/semki,/turf/simulated/floor/carpet/bcarpet,/area/template_noop)
 "H" = (/obj/structure/sign/poster{dir = 8; pixel_x = -32; poster_decl = /decl/poster/bay_49},/turf/simulated/floor/wood,/area/template_noop)
 "J" = (/obj/item/beach_ball,/turf/simulated/floor/carpet/bcarpet,/area/template_noop)

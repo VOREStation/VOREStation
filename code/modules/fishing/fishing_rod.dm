@@ -22,8 +22,8 @@
 	var/strung = TRUE
 	var/line_break = TRUE
 
-	var/obj/item/reagent_containers/food/snacks/Bait
-	var/bait_type = /obj/item/reagent_containers/food/snacks
+	var/obj/item/food/Bait
+	var/bait_type = /obj/item/food
 
 	var/cast = FALSE
 

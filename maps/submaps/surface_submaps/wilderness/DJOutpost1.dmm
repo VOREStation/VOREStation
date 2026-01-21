@@ -212,7 +212,7 @@
 /area/submap/DJOutpost1)
 "F" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/unajerky,
+/obj/item/food/unajerky,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8

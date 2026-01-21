@@ -146,7 +146,7 @@
 		EQUIPMENT("Shelter Capsule - Cafe (11x11)",					/obj/item/survivalcapsule/cafe,								10000),
 	)
 	prize_list["Miscellaneous"] = list(
-		EQUIPMENT(REAGENT_ABSINTHE,				/obj/item/reagent_containers/food/drinks/bottle/absinthe,					125),
+		EQUIPMENT(REAGENT_ABSINTHE,				/obj/item/food/drinks/bottle/absinthe,					125),
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,					150),
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,			500),
 		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,			1000),
@@ -156,7 +156,7 @@
 		EQUIPMENT("Thalers - 100",				/obj/item/spacecash/c100,													1000),
 		EQUIPMENT("Thalers - 1000",				/obj/item/spacecash/c1000,													10000),
 		EQUIPMENT("Umbrella",					/obj/item/melee/umbrella/random,											200),
-		EQUIPMENT(REAGENT_WHISKEY,				/obj/item/reagent_containers/food/drinks/bottle/whiskey,					125),
+		EQUIPMENT(REAGENT_WHISKEY,				/obj/item/food/drinks/bottle/whiskey,					125),
 	)
 	prize_list["Extra"] = list() // Used in child vendors
 

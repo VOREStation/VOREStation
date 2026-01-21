@@ -639,8 +639,8 @@
 		log_and_message_admins("[key_name(src)] used the OOC escape button to escape from of a pair of shoes. [ADMIN_FLW(src)] - Shoes [ADMIN_VV(S)]")
 
 	//You are in food and for some reason can't resist out
-	else if(istype(loc, /obj/item/reagent_containers/food))
-		var/obj/item/reagent_containers/food/F = src.loc
+	else if(isfood(loc))
+		var/obj/item/food/F = src.loc
 		if(F.food_inserted_micros)
 			F.food_inserted_micros -= src
 		src.forceMove(get_turf(F))

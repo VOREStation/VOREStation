@@ -296,7 +296,7 @@ GLOBAL_LIST_EMPTY(Holiday) //Holidays are lists now, so we can have more than on
 			var/turf/simulated/floor/F = Floorlist[rand(1,Floorlist.len)]
 			Floorlist = null
 			var/obj/structure/closet/C = locate(/obj/structure/closet) in F
-			var/obj/item/reagent_containers/food/snacks/chocolateegg/wrapped/Egg
+			var/obj/item/food/chocolateegg/wrapped/Egg
 			if( C )			Egg = new(C)
 			else			Egg = new(F)
 */

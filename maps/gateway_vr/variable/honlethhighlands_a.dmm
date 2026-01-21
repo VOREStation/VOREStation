@@ -414,10 +414,10 @@
 /area/gateway/honlethhighlands/town/supply)
 "cT" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /turf/simulated/floor/lino,
@@ -730,16 +730,16 @@
 /area/gateway/honlethhighlands/town/bar)
 "kS" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/item/storage/box/beakers{
@@ -1169,7 +1169,7 @@
 /area/gateway/honlethhighlands/gate)
 "rP" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /obj/random/drinkbottle,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
@@ -1368,8 +1368,8 @@
 /area/gateway/honlethhighlands/town/engineering)
 "vL" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/jar,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/food/drinks/jar,
+/obj/item/food/drinks/drinkingglass,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "vU" = (
@@ -1663,7 +1663,7 @@
 /area/gateway/honlethhighlands)
 "AF" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/cup,
+/obj/item/food/drinks/cup,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
 "AK" = (
@@ -1729,7 +1729,7 @@
 /area/gateway/honlethhighlands/town/bar)
 "BW" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "Ca" = (
@@ -1964,7 +1964,7 @@
 /area/gateway/honlethhighlands)
 "FR" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
 /obj/random/awayloot,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)

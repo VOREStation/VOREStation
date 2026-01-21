@@ -450,8 +450,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	..()
 
-	if (istype(W, /obj/item/reagent_containers/food/snacks))
-		var/obj/item/reagent_containers/food/snacks/grown/G = W
+	if (isfood(W))
+		var/obj/item/food/grown/G = W
 		if (!G.dry)
 			to_chat(user, span_notice("[G] must be dried before you stuff it into [src]."))
 			return
@@ -540,8 +540,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	crafted_type = /obj/item/clothing/mask/smokable/cigarette/joint/blunt
 
 /obj/item/reagent_containers/rollingpaper/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/reagent_containers/food/snacks))
-		var/obj/item/reagent_containers/food/snacks/grown/G = W
+	if (isfood(W))
+		var/obj/item/food/grown/G = W
 		if (!G.dry)                                                                                          //This prevents people from just stuffing cheeseburgers into their joint
 			to_chat(user, span_notice("[G.name] must be dried before you add it to [src]."))
 			return

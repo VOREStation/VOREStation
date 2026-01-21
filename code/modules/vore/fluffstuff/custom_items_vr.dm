@@ -1202,11 +1202,11 @@
 	icon_state = "kenziehypo"
 
 //Semaun - Viktor Solothurn
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
+/obj/item/food/drinks/flask/vacuumflask/fluff/viktor
 	name = "flask of expensive alcohol"
 	desc = "A standard vacuum-flask filled with good and expensive drink."
 
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize(mapload)
+/obj/item/food/drinks/flask/vacuumflask/fluff/viktor/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PWINE, 60)
 
@@ -1304,7 +1304,7 @@
 	icon_state_closed = "shadowlaptop-closed"
 
 //claracow - Clara Mali
-/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
+/obj/item/food/drinks/glass2/fluff/claraflask
 	name = "Clara's Vacuum Flask"
 	desc = "A rose gold vacuum flask."
 	base_name = "Clara's Vacuum Flask"
@@ -1315,12 +1315,12 @@
 	filling_states = list(15, 30, 50, 60, 80, 100)
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize(mapload)
+/obj/item/food/drinks/glass2/fluff/claraflask/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_TEA, 40)
 	reagents.add_reagent(REAGENT_ID_MILK, 20)
 
-/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/update_icon()
+/obj/item/food/drinks/glass2/fluff/claraflask/update_icon()
 	..()
 	name = initial(name)
 	desc = initial(desc)

@@ -78,13 +78,13 @@
 /datum/reagent/drink/hot_coco
 	price_tag = 3
 
-/obj/item/reagent_containers/food/drinks/coffee
+/obj/item/food/drinks/coffee
 	price_tag = 3
 
-/obj/item/reagent_containers/food/drinks/tea
+/obj/item/food/drinks/tea
 	price_tag = 3
 
-/obj/item/reagent_containers/food/drinks/h_chocolate
+/obj/item/food/drinks/h_chocolate
 	price_tag = 3
 
 
@@ -378,31 +378,31 @@
 
 // From the machine //
 
-/obj/item/reagent_containers/food/drinks/cans/cola
+/obj/item/food/drinks/cans/cola
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind
+/obj/item/food/drinks/cans/space_mountain_wind
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/dr_gibb
+/obj/item/food/drinks/cans/dr_gibb
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/starkist
+/obj/item/food/drinks/cans/starkist
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/waterbottle
+/obj/item/food/drinks/cans/waterbottle
 	price_tag = 2
 
-/obj/item/reagent_containers/food/drinks/cans/space_up
+/obj/item/food/drinks/cans/space_up
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/iced_tea
+/obj/item/food/drinks/cans/iced_tea
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/grape_juice
+/obj/item/food/drinks/cans/grape_juice
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/cans/gingerale
+/obj/item/food/drinks/cans/gingerale
 	price_tag = 1
 
 //***************//
@@ -411,103 +411,103 @@
 
 // Juices, soda and similar //
 
-/obj/item/reagent_containers/food/drinks/bottle/cola
+/obj/item/food/drinks/bottle/cola
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/space_up
+/obj/item/food/drinks/bottle/space_up
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind
+/obj/item/food/drinks/bottle/space_mountain_wind
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice
+/obj/item/food/drinks/bottle/orangejuice
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/applejuice
+/obj/item/food/drinks/bottle/applejuice
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/cream
+/obj/item/food/drinks/bottle/cream
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/tomatojuice
+/obj/item/food/drinks/bottle/tomatojuice
 	price_tag = 6
 
-/obj/item/reagent_containers/food/drinks/bottle/limejuice
+/obj/item/food/drinks/bottle/limejuice
 	price_tag = 6
 
 
 // Beer //
 
-/obj/item/reagent_containers/food/drinks/bottle/small/beer
+/obj/item/food/drinks/bottle/small/beer
 	price_tag = 3
 
-/obj/item/reagent_containers/food/drinks/bottle/small/ale
+/obj/item/food/drinks/bottle/small/ale
 	price_tag = 3
 
 
 // Spirituous Liquors //
 
-/obj/item/reagent_containers/food/drinks/bottle/absinthe
+/obj/item/food/drinks/bottle/absinthe
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/bluecuracao
+/obj/item/food/drinks/bottle/bluecuracao
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/gin
+/obj/item/food/drinks/bottle/gin
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/kahlua
+/obj/item/food/drinks/bottle/kahlua
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor
+/obj/item/food/drinks/bottle/melonliquor
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/rum
+/obj/item/food/drinks/bottle/rum
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/tequila
+/obj/item/food/drinks/bottle/tequila
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/vodka
+/obj/item/food/drinks/bottle/vodka
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/whiskey
+/obj/item/food/drinks/bottle/whiskey
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey
+/obj/item/food/drinks/bottle/specialwhiskey
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/patron
+/obj/item/food/drinks/bottle/patron
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/goldschlager
+/obj/item/food/drinks/bottle/goldschlager
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
+/obj/item/food/drinks/bottle/bottleofnothing
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/grenadine
+/obj/item/food/drinks/bottle/grenadine
 	price_tag = 15
 
 
 // Wines //
 
-/obj/item/reagent_containers/food/drinks/bottle/wine
+/obj/item/food/drinks/bottle/wine
 	price_tag = 25
 
-/obj/item/reagent_containers/food/drinks/bottle/cognac
+/obj/item/food/drinks/bottle/cognac
 	price_tag = 25
 
-/obj/item/reagent_containers/food/drinks/bottle/vermouth
+/obj/item/food/drinks/bottle/vermouth
 	price_tag = 25
 
-/obj/item/reagent_containers/food/drinks/bottle/pwine
+/obj/item/food/drinks/bottle/pwine
 	price_tag = 25
 
-/obj/item/reagent_containers/food/drinks/bottle/sake
+/obj/item/food/drinks/bottle/sake
 	price_tag = 25
 
-/obj/item/reagent_containers/food/drinks/bottle/jager
+/obj/item/food/drinks/bottle/jager
 	price_tag = 25
 
 //***************//
@@ -516,468 +516,468 @@
 
 // Snacks //
 
-/obj/item/reagent_containers/food/snacks/candy
+/obj/item/food/candy
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sosjerky
+/obj/item/food/sosjerky
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/unajerky
+/obj/item/food/unajerky
 	price_tag = 12
 
-/obj/item/reagent_containers/food/snacks/cheesiehonkers
+/obj/item/food/cheesiehonkers
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/tastybread
+/obj/item/food/tastybread
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/no_raisin
+/obj/item/food/no_raisin
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/packaged/spacetwinkie
+/obj/item/food/packaged/spacetwinkie
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/skrellsnacks
+/obj/item/food/skrellsnacks
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/chips
+/obj/item/food/chips
 	price_tag = 1
 
-/obj/item/reagent_containers/food/drinks/dry_ramen
+/obj/item/food/drinks/dry_ramen
 	price_tag = 5
 
 
 // Burger //
 
-/obj/item/reagent_containers/food/snacks/brainburger
+/obj/item/food/brainburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/ghostburger
+/obj/item/food/ghostburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/human/burger
+/obj/item/food/human/burger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/cheeseburger
+/obj/item/food/cheeseburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/monkeyburger
+/obj/item/food/monkeyburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/fishburger
+/obj/item/food/fishburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/tofuburger
+/obj/item/food/tofuburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/roburger
+/obj/item/food/roburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/roburgerbig
+/obj/item/food/roburgerbig
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/xenoburger
+/obj/item/food/xenoburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/clownburger
+/obj/item/food/clownburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/mimeburger
+/obj/item/food/mimeburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/spellburger
+/obj/item/food/spellburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/jellyburger
+/obj/item/food/jellyburger
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/bigbiteburger
+/obj/item/food/bigbiteburger
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/superbiteburger
+/obj/item/food/superbiteburger
 	price_tag = 8
 
 
 // Sandwiches //
 
-/obj/item/reagent_containers/food/snacks/sandwich
+/obj/item/food/sandwich
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/toastedsandwich
+/obj/item/food/toastedsandwich
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/grilledcheese
+/obj/item/food/grilledcheese
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/jellysandwich
+/obj/item/food/jellysandwich
 	price_tag = 3
 
 
 // Cookies and Candies //
 
-/obj/item/reagent_containers/food/snacks/cookie
+/obj/item/food/cookie
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/chocolatebar
+/obj/item/food/chocolatebar
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/chocolateegg
+/obj/item/food/chocolateegg
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/candy_corn
+/obj/item/food/candy_corn
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/donut
+/obj/item/food/donut
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/donut/chaos
+/obj/item/food/donut/chaos
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/popcorn
+/obj/item/food/popcorn
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/fortunecookie
+/obj/item/food/fortunecookie
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/candiedapple
+/obj/item/food/candiedapple
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit
+/obj/item/food/plumphelmetbiscuit
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/chawanmushi
+/obj/item/food/chawanmushi
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/cracker
+/obj/item/food/cracker
 	price_tag = 1
 
 
 // Full meals //
 
-/obj/item/reagent_containers/food/snacks/friedegg
+/obj/item/food/friedegg
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/tofurkey
+/obj/item/food/tofurkey
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/carpmeat
+/obj/item/food/carpmeat
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/fishfingers
+/obj/item/food/fishfingers
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/omelette
+/obj/item/food/omelette
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/berryclafoutis
+/obj/item/food/berryclafoutis
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/waffles
+/obj/item/food/waffles
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/eggplantparm
+/obj/item/food/eggplantparm
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/soylentgreen
+/obj/item/food/soylentgreen
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/soylenviridians
+/obj/item/food/soylenviridians
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/wingfangchu
+/obj/item/food/wingfangchu
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/monkeykabob
+/obj/item/food/monkeykabob
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/tofukabob
+/obj/item/food/tofukabob
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/cubancarp
+/obj/item/food/cubancarp
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/loadedbakedpotato
+/obj/item/food/loadedbakedpotato
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/fries
+/obj/item/food/fries
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/spagetti
+/obj/item/food/spagetti
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/cheesyfries
+/obj/item/food/cheesyfries
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/enchiladas
+/obj/item/food/enchiladas
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/taco
+/obj/item/food/taco
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/monkeysdelight
+/obj/item/food/monkeysdelight
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/fishandchips
+/obj/item/food/fishandchips
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/rofflewaffles
+/obj/item/food/rofflewaffles
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/stew
+/obj/item/food/stew
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/stewedsoymeat
+/obj/item/food/stewedsoymeat
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/boiledspagetti
+/obj/item/food/boiledspagetti
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/boiledrice
+/obj/item/food/boiledrice
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/ricepudding
+/obj/item/food/ricepudding
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/pastatomato
+/obj/item/food/pastatomato
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/meatballspagetti
+/obj/item/food/meatballspagetti
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/spesslaw
+/obj/item/food/spesslaw
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/carrotfries
+/obj/item/food/carrotfries
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/appletart
+/obj/item/food/appletart
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/sliceable/pizza
+/obj/item/food/sliceable/pizza
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/margherita
+/obj/item/food/slice/margherita
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/slice/meatpizza
+/obj/item/food/slice/meatpizza
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/slice/mushroompizza
+/obj/item/food/slice/mushroompizza
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/slice/vegetablepizza
+/obj/item/food/slice/vegetablepizza
 	price_tag = 1
 
 // Baked Goods //
 
-/obj/item/reagent_containers/food/snacks/poppypretzel
+/obj/item/food/poppypretzel
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/baguette
+/obj/item/food/baguette
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/jelliedtoast
+/obj/item/food/jelliedtoast
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/twobread
+/obj/item/food/twobread
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/sliceable/meatbread
+/obj/item/food/sliceable/meatbread
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/meatbread
+/obj/item/food/slice/meatbread
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
+/obj/item/food/sliceable/xenomeatbread
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/xenomeatbread
+/obj/item/food/slice/xenomeatbread
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/bananabread
+/obj/item/food/sliceable/bananabread
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/bananabread
+/obj/item/food/slice/bananabread
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/tofubread
+/obj/item/food/sliceable/tofubread
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/tofubread
+/obj/item/food/slice/tofubread
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/bread
+/obj/item/food/sliceable/bread
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/bread
+/obj/item/food/slice/bread
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread
+/obj/item/food/sliceable/creamcheesebread
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/creamcheesebread
+/obj/item/food/slice/creamcheesebread
 	price_tag = 1
 
 
 // Soups //
 
-/obj/item/reagent_containers/food/snacks/meatballsoup
+/obj/item/food/meatballsoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/slimesoup
+/obj/item/food/slimesoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/bloodsoup
+/obj/item/food/bloodsoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/clownstears
+/obj/item/food/clownstears
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/vegetablesoup
+/obj/item/food/vegetablesoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/nettlesoup
+/obj/item/food/nettlesoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/mysterysoup
+/obj/item/food/mysterysoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/wishsoup
+/obj/item/food/wishsoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/hotchili
+/obj/item/food/hotchili
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/coldchili
+/obj/item/food/coldchili
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/tomatosoup
+/obj/item/food/tomatosoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/milosoup
+/obj/item/food/milosoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/mushroomsoup
+/obj/item/food/mushroomsoup
 	price_tag = 3
 
-/obj/item/reagent_containers/food/snacks/beetsoup
+/obj/item/food/beetsoup
 	price_tag = 3
 
 
 // Pies //
 
-/obj/item/reagent_containers/food/snacks/pie
+/obj/item/food/pie
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/meatpie
+/obj/item/food/meatpie
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/tofupie
+/obj/item/food/tofupie
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/plump_pie
+/obj/item/food/plump_pie
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/xemeatpie
+/obj/item/food/xemeatpie
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/applepie
+/obj/item/food/applepie
 	price_tag = 4
 
-/obj/item/reagent_containers/food/snacks/cherrypie
+/obj/item/food/cherrypie
 	price_tag = 4
 
 
 // Cakes //
 
-/obj/item/reagent_containers/food/snacks/sliceable/carrotcake
+/obj/item/food/sliceable/carrotcake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/carrotcake
+/obj/item/food/slice/carrotcake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/braincake
+/obj/item/food/sliceable/braincake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/braincake
+/obj/item/food/slice/braincake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/cheesecake
+/obj/item/food/sliceable/cheesecake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/cheesecake
+/obj/item/food/slice/cheesecake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/plaincake
+/obj/item/food/sliceable/plaincake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/plaincake
+/obj/item/food/slice/plaincake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/orangecake
+/obj/item/food/sliceable/orangecake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/orangecake
+/obj/item/food/slice/orangecake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/limecake
+/obj/item/food/sliceable/limecake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/limecake
+/obj/item/food/slice/limecake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/lemoncake
+/obj/item/food/sliceable/lemoncake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/lemoncake
+/obj/item/food/slice/lemoncake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake
+/obj/item/food/sliceable/chocolatecake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/chocolatecake
+/obj/item/food/slice/chocolatecake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
+/obj/item/food/sliceable/birthdaycake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/birthdaycake
+/obj/item/food/slice/birthdaycake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/applecake
+/obj/item/food/sliceable/applecake
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/applecake
+/obj/item/food/slice/applecake
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
+/obj/item/food/sliceable/pumpkinpie
 	price_tag = 5
 
-/obj/item/reagent_containers/food/snacks/slice/pumpkinpie
+/obj/item/food/slice/pumpkinpie
 	price_tag = 1
 
 
 // Misc //
 
-/obj/item/reagent_containers/food/snacks/boiledegg
+/obj/item/food/boiledegg
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/donkpocket
+/obj/item/food/donkpocket
 	price_tag = 1
 
-/obj/item/reagent_containers/food/snacks/sausage
+/obj/item/food/sausage
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/muffin
+/obj/item/food/muffin
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/tossedsalad
+/obj/item/food/tossedsalad
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/validsalad
+/obj/item/food/validsalad
 	price_tag = 2
 
-/obj/item/reagent_containers/food/snacks/dionaroast
+/obj/item/food/dionaroast
 	price_tag = 25
 
 /obj/item/pizzabox/get_item_cost()

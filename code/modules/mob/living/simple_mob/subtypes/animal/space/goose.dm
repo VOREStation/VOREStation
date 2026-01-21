@@ -25,7 +25,7 @@
 
 	has_langs = list(LANGUAGE_ANIMAL)
 
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/food/meat/chicken
 	meat_amount = 3
 
 	can_be_drop_prey = FALSE

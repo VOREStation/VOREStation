@@ -76,8 +76,8 @@
 "i" = (
 /obj/structure/closet/crate/freezer/centauri,
 /obj/random/meat,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/food/drinks/milk,
+/obj/item/food/drinks/soymilk,
 /obj/item/storage/fancy/egg_box,
 /turf/simulated/floor/tiled,
 /area/template_noop)
@@ -415,14 +415,14 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/unathi,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
+/obj/item/food/unajerky,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "Y" = (

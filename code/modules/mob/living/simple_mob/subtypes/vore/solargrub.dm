@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(moth_amount, 0)
 
 	movement_cooldown = 3
 
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/grubmeat
+	meat_type = /obj/item/food/meat/grubmeat
 	meat_amount = 6
 
 	response_help = "pokes"

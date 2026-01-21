@@ -262,7 +262,7 @@
 /obj/structure/table/rack,
 /obj/item/storage/pill_bottle/iron,
 /obj/item/storage/pill_bottle/iron,
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/obj/item/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -1656,7 +1656,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "dB" = (
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 6
 	},
@@ -1668,7 +1668,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "dC" = (
-/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{
@@ -1687,32 +1687,32 @@
 /area/centcom/control)
 "dE" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -2229,9 +2229,9 @@
 /area/tdome/tdomeobserve)
 "eG" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
 /obj/item/flame/lighter/zippo,
 /obj/item/storage/fancy/cigarettes,
 /turf/unsimulated/floor{
@@ -2239,9 +2239,9 @@
 	},
 /area/tdome/tdomeobserve)
 "eH" = (
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
 /obj/structure/table/standard,
 /turf/unsimulated/floor{
 	icon_state = "lino"
@@ -2342,7 +2342,7 @@
 	},
 /area/centcom/control)
 "eU" = (
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -6
 	},
 /obj/structure/table/standard,
@@ -3402,11 +3402,11 @@
 	},
 /obj/structure/table/marble,
 /obj/item/book/manual/chef_recipes,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 0
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/item/material/kitchen/rollingpin,
@@ -5926,7 +5926,7 @@
 	dir = 6
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/food/drinks/flask/barflask{
 	pixel_x = -4;
 	pixel_y = 8
 	},
@@ -7894,7 +7894,7 @@
 /obj/structure/table/woodentable{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -7930,7 +7930,7 @@
 /obj/structure/table/woodentable{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 3
 	},
 /turf/unsimulated/floor{
@@ -8449,32 +8449,32 @@
 /area/centcom/command)
 "rb" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -8491,27 +8491,27 @@
 /area/centcom/command)
 "rd" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 0;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 0;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = -8;
 	pixel_y = 4
 	},
@@ -11506,16 +11506,16 @@
 /area/centcom/restaurant)
 "xk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/food/fries,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/cheeseburger{
+/obj/item/food/cheeseburger{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/food/cheeseburger,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xm" = (
@@ -11527,12 +11527,12 @@
 /area/centcom/restaurant)
 "xn" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/food/grilledcheese,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xo" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
+/obj/item/food/meatballsoup,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xp" = (
@@ -11820,8 +11820,8 @@
 /area/centcom/main_hall)
 "xJ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/hotdog,
-/obj/item/reagent_containers/food/snacks/hotdog{
+/obj/item/food/hotdog,
+/obj/item/food/hotdog{
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -11829,17 +11829,17 @@
 /area/centcom/restaurant)
 "xK" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/food/bigbiteburger,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xL" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/roastbeef,
+/obj/item/food/roastbeef,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xM" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatsteak,
+/obj/item/food/meatsteak,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "xN" = (
@@ -12442,12 +12442,12 @@
 /area/centcom/restaurant)
 "yH" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pastatomato,
+/obj/item/food/pastatomato,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "yI" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatballspagetti,
+/obj/item/food/meatballspagetti,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "yJ" = (
@@ -12462,32 +12462,32 @@
 /area/centcom/restaurant)
 "yL" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -12501,27 +12501,27 @@
 /area/centcom/restaurant)
 "yN" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 0;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 0;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = -8;
 	pixel_y = 4
 	},
@@ -12763,12 +12763,12 @@
 /area/centcom/main_hall)
 "zf" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/kitsuneudon,
+/obj/item/food/kitsuneudon,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "zg" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/food/lasagna,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "zh" = (
@@ -13213,12 +13213,12 @@
 /area/centcom/bar)
 "zV" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/grenadine,
+/obj/item/food/drinks/bottle/grenadine,
 /turf/unsimulated/floor/wood,
 /area/centcom/bar)
 "zW" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/food/drinks/bottle/cola,
 /turf/unsimulated/floor/wood,
 /area/centcom/bar)
 "zX" = (
@@ -13228,12 +13228,12 @@
 /area/centcom/bar)
 "zY" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
+/obj/item/food/drinks/bottle/space_mountain_wind,
 /turf/unsimulated/floor/wood,
 /area/centcom/bar)
 "zZ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/toastedsandwich,
+/obj/item/food/toastedsandwich,
 /turf/unsimulated/floor/wood,
 /area/centcom/bar)
 "Aa" = (
@@ -13460,9 +13460,9 @@
 /area/centcom/bar)
 "AB" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/item/food/drinks/flask/barflask,
 /obj/item/reagent_containers/glass/rag,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /turf/unsimulated/floor/wood,
 /area/centcom/bar)
 "AC" = (
@@ -13963,11 +13963,11 @@
 	},
 /obj/structure/table/marble,
 /obj/item/book/manual/chef_recipes,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 0
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/item/material/kitchen/rollingpin,
@@ -15032,22 +15032,22 @@
 "Fo" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/comp{
-	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/food/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"

@@ -1384,7 +1384,7 @@
 /area/groundbase/science/robotics)
 "df" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /obj/item/nullrod,
 /obj/structure/noticeboard{
 	pixel_y = 32
@@ -1785,10 +1785,10 @@
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -7636,22 +7636,22 @@
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level2/northspur)
 "uU" = (
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/structure/closet,
 /obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
@@ -13516,12 +13516,12 @@
 /area/groundbase/dorms/room5)
 "LD" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/mint,
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -17093,10 +17093,10 @@
 /obj/item/storage/photo_album{
 	pixel_y = -10
 	},
-/obj/item/reagent_containers/food/drinks/flask{
+/obj/item/food/drinks/flask{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/carnoth,
+/obj/item/food/drinks/bottle/carnoth,
 /turf/simulated/floor/wood,
 /area/groundbase/command/captainq)
 "VG" = (

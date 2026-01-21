@@ -364,7 +364,7 @@
 	var/next_result = 0
 	var/ghost_enabled = 1
 
-/obj/item/entrepreneur/spirit_board/attackby(obj/item/reagent_containers/food/drinks/W as obj, mob/living/user as mob)
+/obj/item/entrepreneur/spirit_board/attackby(obj/item/food/drinks/W as obj, mob/living/user as mob)
 	if(!istype(user))
 		return 0
 	if(!istype(W))
@@ -499,21 +499,21 @@
 	desc = "A kit containing everything that a fitness trainer needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "fitness_trainer"
-	starts_with = list(/obj/item/bedsheet/pillow/exercise, /obj/item/entrepreneur/dumbbell, /obj/item/entrepreneur/dumbbell, /obj/item/reagent_containers/food/snacks/candy/proteinbar, /obj/item/ticket_printer/train)
+	starts_with = list(/obj/item/bedsheet/pillow/exercise, /obj/item/entrepreneur/dumbbell, /obj/item/entrepreneur/dumbbell, /obj/item/food/candy/proteinbar, /obj/item/ticket_printer/train)
 
 /obj/item/storage/box/yoga_teacher
 	name = "yoga kit"
 	desc = "A kit containing everything that a yoga teacher needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "yoga_teacher"
-	starts_with = list(/obj/item/bedsheet/pillow/exercise, /obj/item/bedsheet/pillow/exercise, /obj/item/reagent_containers/food/snacks/fruitbar, /obj/item/ticket_printer/train)
+	starts_with = list(/obj/item/bedsheet/pillow/exercise, /obj/item/bedsheet/pillow/exercise, /obj/item/food/fruitbar, /obj/item/ticket_printer/train)
 
 /obj/item/storage/box/paranormal_investigator
 	name = "ghost hunting kit"
 	desc = "A kit containing everything that a paranormal investigator needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "paranormal_investigator"
-	starts_with = list(/obj/item/entrepreneur/emf, /obj/item/entrepreneur/spirit_board, /obj/item/reagent_containers/food/drinks/glass2/shot, /obj/item/ticket_printer/train)
+	starts_with = list(/obj/item/entrepreneur/emf, /obj/item/entrepreneur/spirit_board, /obj/item/food/drinks/glass2/shot, /obj/item/ticket_printer/train)
 
 /obj/item/storage/box/spirit_healer
 	name = "exercise kit"

@@ -334,7 +334,7 @@
 		/obj/item/cell/infinite = 10,
 		/obj/item/cell/void = 15,
 		/obj/item/cell/device/weapon/recharge/alien = 10,
-		/obj/item/reagent_containers/food/snacks/jellyfishcore = 50,
+		/obj/item/food/jellyfishcore = 50,
 		/obj/item/denecrotizer = 10,
 		/obj/item/clothing/shoes/boots/speed = 15,
 		/obj/item/bluespace_harpoon = 20,
@@ -362,7 +362,7 @@
 		/obj/item/cell/infinite = 20,
 		/obj/item/cell/void = 20,
 		/obj/item/cell/device/weapon/recharge/alien = 20,
-		/obj/item/reagent_containers/food/snacks/jellyfishcore = 3,
+		/obj/item/food/jellyfishcore = 3,
 		/obj/item/denecrotizer = 20,
 		/obj/item/clothing/shoes/boots/speed = 20,
 		/obj/item/bluespace_harpoon = 20,
@@ -382,5 +382,5 @@
 		/obj/item/clothing/accessory/collar/shock/bluespace = 2,
 		/obj/item/implant/sizecontrol = 2,
 		/obj/item/clothing/under/hyperfiber/bluespace = 2,
-		/obj/item/reagent_containers/food/snacks/jellyfishcore = 10
+		/obj/item/food/jellyfishcore = 10
 		)

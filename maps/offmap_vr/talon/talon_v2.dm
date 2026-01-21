@@ -467,8 +467,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 		/obj/item/clothing/gloves/fingerless,
-		/obj/item/reagent_containers/food/snacks/liquidfood,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+		/obj/item/food/liquidfood,
+		/obj/item/food/drinks/cans/waterbottle,
 		/obj/item/radio,
 		/obj/item/clothing/under/utility/blue,
 		/obj/item/clothing/accessory/solgov/specialty/pilot,
@@ -968,14 +968,14 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
@@ -997,14 +997,14 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(2);list(

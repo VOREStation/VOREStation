@@ -1810,10 +1810,10 @@
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/item/reagent_containers/dropper,
@@ -1845,21 +1845,21 @@
 "AJ" = (
 /obj/structure/table/standard,
 /obj/structure/closet/walllocker_double/kitchen/west,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/train/kitchen)
 "AQ" = (
@@ -3582,7 +3582,7 @@
 /obj/structure/table/rack{
 	color = "#FFD700"
 	},
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/shuttle/floor/yellow,
 /area/redgate/train/vault)
 "Zl" = (

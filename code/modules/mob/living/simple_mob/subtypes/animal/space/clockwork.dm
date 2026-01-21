@@ -33,7 +33,7 @@
 	say_got_target = list("Purge!","Cleanse!","Burn!") */
 
 	meat_amount = 0
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	var/turns_since_scan = 0
 	var/mob/flee_target

@@ -4,7 +4,7 @@
 	desc = "A twisted, warped version of a appendix covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 /obj/item/organ/internal/appendix/horror/Initialize(mapload)
 	. = ..()
 	adjust_scale(1.5,1.5)
@@ -24,7 +24,7 @@
 	innate_flash_protection = FLASH_PROTECTION_VULNERABLE //It's VERY good at seeing things...And it doesn't like light.
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 
 /obj/item/organ/internal/eyes/horror/process()
 	..()
@@ -48,7 +48,7 @@
 	standard_pulse_level = PULSE_NONE //It's just quivering and pushing blood through in some strange method.
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 
 /obj/item/organ/internal/heart/horror/process()
 	..()
@@ -67,7 +67,7 @@
 	desc = "A twisted, warped version of intestines covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 	var/escaping = FALSE
 	var/escaping_attempts = 0
 	var/entering_vent = FALSE
@@ -115,7 +115,7 @@
 	desc = "A twisted, warped version of kidneys covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 
 /obj/item/organ/internal/kidneys/horror/process()
 	..()
@@ -136,7 +136,7 @@
 	desc = "A twisted, warped version of a liver covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 
 /obj/item/organ/internal/liver/horror/process()
 	..()
@@ -157,7 +157,7 @@
 	desc = "A twisted, warped version of lungs covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 
 /obj/item/organ/internal/lungs/horror/process()
 	..()
@@ -176,7 +176,7 @@
 	desc = "A twisted, warped version of a spleen covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 	spleen_efficiency = 5
 
 /obj/item/organ/internal/spleen/horror/process()
@@ -194,7 +194,7 @@
 	desc = "A twisted, warped version of a stomach covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 	var/spider_chance = 10 //for admemes
 
 /obj/item/organ/internal/stomach/horror/process()
@@ -222,7 +222,7 @@
 	desc = "A twisted, warped version of a voicebox covered in thick, red, pulsating tendrils."
 	decays = FALSE
 	can_reject = FALSE
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/food/meat/worm
 	will_assist_languages = list(LANGUAGE_REDSPACE)
 	var/speak_chance = 25 //25% chance to speak Daemon every 10 ticks
 	var/datum/language/redspace

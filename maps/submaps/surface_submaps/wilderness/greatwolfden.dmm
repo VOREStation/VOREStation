@@ -81,11 +81,11 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/GreatWolfDen)
 "ju" = (
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
-/obj/item/reagent_containers/food/snacks/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
+/obj/item/food/meat/human,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/GreatWolfDen)
 "kg" = (

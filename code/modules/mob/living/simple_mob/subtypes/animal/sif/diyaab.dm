@@ -30,7 +30,7 @@
 	health = 25
 
 	meat_amount = 2
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	movement_cooldown = -1
 

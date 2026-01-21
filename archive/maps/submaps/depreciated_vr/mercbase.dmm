@@ -1180,32 +1180,32 @@
 /area/antag/antag_base)
 "bO" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -1257,11 +1257,11 @@
 /area/antag/antag_base)
 "bT" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
+/obj/item/food/sandwich,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "cult"
@@ -2506,11 +2506,11 @@
 /area/antag/antag_base)
 "dQ" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
+/obj/item/food/drinks/bottle/vodka{
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/item/food/drinks/bottle/wine{
 	pixel_x = -1;
 	pixel_y = 8
 	},
@@ -3695,10 +3695,10 @@
 /area/shuttle/mercenary)
 "gd" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
-/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
+/obj/item/food/tastybread,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -3710,10 +3710,10 @@
 /area/shuttle/mercenary)
 "ge" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
+/obj/item/food/liquidfood,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},

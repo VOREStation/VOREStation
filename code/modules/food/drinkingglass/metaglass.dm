@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/metaglass
+/obj/item/food/drinks/metaglass
 	name = "metamorphic glass"
 	desc = "This glass changes shape and form depending on the drink inside... fancy!"
 	icon_state = "glass_empty"
@@ -10,13 +10,13 @@
 	matter = list(MAT_GLASS = 500)
 	icon = 'icons/obj/drinks.dmi'
 
-/obj/item/reagent_containers/food/drinks/metaglass/metapint
+/obj/item/food/drinks/metaglass/metapint
 	name = "metamorphic pint glass"
 	desc = "This glass changes shape and form depending on the drink inside... fancy!"
 	icon_state = "pglass_empty"
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/metaglass/on_reagent_change()
+/obj/item/food/drinks/metaglass/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 
@@ -52,7 +52,7 @@
 		else
 			price_tag = null
 	else
-		if(type == /obj/item/reagent_containers/food/drinks/metaglass/metapint)
+		if(type == /obj/item/food/drinks/metaglass/metapint)
 			icon_state = "pglass_empty"
 			name = "metamorphic pint glass"
 			desc = "This glass changes shape and form depending on the drink inside... fancy!"

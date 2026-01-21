@@ -20,11 +20,11 @@
 	},
 /area/submap/Shakden)
 "f" = (
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -36,9 +36,9 @@
 	},
 /area/submap/Shakden)
 "h" = (
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -48,16 +48,16 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/Shakden)
 "j" = (
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
 /area/submap/Shakden)
 "k" = (
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /obj/item/material/knife/hook,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0

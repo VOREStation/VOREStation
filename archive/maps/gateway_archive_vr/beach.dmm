@@ -121,7 +121,7 @@
 /area/awaymission/beach)
 "w" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /turf/unsimulated/floor{
 	 icon_state = "wood"
 	},
@@ -194,7 +194,7 @@
 /area/awaymission/beach)
 "I" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/drinks/beer,
 /turf/unsimulated/floor{
 	 icon_state = "wood"
 	},

@@ -20,7 +20,7 @@
 	},
 /area/wizard_station)
 "ae" = (
-/obj/item/reagent_containers/food/drinks/bottle/pwine{
+/obj/item/food/drinks/bottle/pwine{
 	pixel_x = -4;
 	pixel_y = 10
 	},
@@ -201,7 +201,7 @@
 	},
 /area/wizard_station)
 "ax" = (
-/obj/item/reagent_containers/food/snacks/spellburger{
+/obj/item/food/spellburger{
 	pixel_y = 8
 	},
 /obj/structure/table/marble,
@@ -325,7 +325,7 @@
 	},
 /area/wizard_station)
 "aN" = (
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/food/cheesewedge,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},

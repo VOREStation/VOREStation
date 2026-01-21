@@ -220,7 +220,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/DJOutpost1)
 "aH" = (
-/obj/item/reagent_containers/food/snacks/unajerky,
+/obj/item/food/unajerky,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8

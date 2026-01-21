@@ -169,7 +169,7 @@
 					to_chat(user, span_notice("[target] is empty."))
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/reagent_containers/food) && !istype(target, /obj/item/reagent_containers/blood))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract) && !isfood(target) && !istype(target, /obj/item/reagent_containers/blood))
 					to_chat(user, span_notice("You cannot directly remove reagents from this object."))
 					return
 

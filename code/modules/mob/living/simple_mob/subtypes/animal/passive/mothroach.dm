@@ -22,7 +22,7 @@
 	see_in_dark = 10
 
 	meat_amount = 2
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	holder_type = /obj/item/holder/mothroach
 
 	response_help   = "pats"

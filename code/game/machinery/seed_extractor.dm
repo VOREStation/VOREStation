@@ -9,7 +9,7 @@
 /obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	// Fruits and vegetables.
-	if(istype(O, /obj/item/reagent_containers/food/snacks/grown) || istype(O, /obj/item/grown))
+	if(istype(O, /obj/item/food/grown) || istype(O, /obj/item/grown))
 
 		user.remove_from_mob(O)
 
@@ -18,7 +18,7 @@
 			var/obj/item/grown/F = O
 			new_seed_type = SSplants.seeds[F.plantname]
 		else
-			var/obj/item/reagent_containers/food/snacks/grown/F = O
+			var/obj/item/food/grown/F = O
 			new_seed_type = SSplants.seeds[F.plantname]
 
 		if(new_seed_type)

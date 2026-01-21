@@ -247,7 +247,7 @@
 		return
 	to_chat(user, span_notice("You can taste the sweet flavor of digital friendship. Or maybe it is something else."))
 
-/obj/item/reagent_containers/food/after_trash_eaten(var/mob/living/user)
+/obj/item/food/after_trash_eaten(var/mob/living/user)
 	if(!..(user))
 		return
 	if(!reagents?.total_volume)

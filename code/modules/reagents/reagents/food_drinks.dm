@@ -112,7 +112,7 @@
 			data["cooked"] = 0
 		return
 	data["cooked"] = 0
-	if (holder && holder.my_atom && istype(holder.my_atom,/obj/item/reagent_containers/food/snacks))
+	if (holder && holder.my_atom && isfood(holder.my_atom))
 		data["cooked"] = 1
 		name = cooked_name
 

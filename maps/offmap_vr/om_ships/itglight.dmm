@@ -431,10 +431,10 @@
 /obj/structure/cable/pink{
 	icon_state = "4-8"
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -496,10 +496,10 @@
 /area/itglight/shuttlebay)
 "cx" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/light{
@@ -795,7 +795,7 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/material/kitchen/rollingpin,
 /obj/item/book/manual/chef_recipes,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -1821,28 +1821,28 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "lO" = (
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /obj/item/material/knife/butch,
 /obj/item/material/minihoe,
 /obj/item/material/knife/machete/hatchet,
@@ -1854,10 +1854,10 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/analyzer/plant_analyzer,
 /obj/item/analyzer/plant_analyzer,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -3367,9 +3367,9 @@
 	name = "captain's coat"
 	},
 /obj/item/clothing/suit/storage/solgov/service/army/command,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
+/obj/item/food/candy/proteinbar,
 /obj/item/gun/energy/taser,
 /obj/item/clothing/accessory/holster/hip,
 /turf/simulated/floor/carpet/sblucarpet,

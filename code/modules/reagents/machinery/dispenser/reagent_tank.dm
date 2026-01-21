@@ -389,7 +389,7 @@
 			new /obj/item/stack/material/plastic( src.loc )
 			if(cups)
 				for(var/i = 0 to cups)
-					new /obj/item/reagent_containers/food/drinks/sillycup(src.loc)
+					new /obj/item/food/drinks/sillycup(src.loc)
 			cups = 0
 			cupholder = 0
 			update_icon()
@@ -443,7 +443,7 @@
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)
 	if(cups)
-		new /obj/item/reagent_containers/food/drinks/sillycup(src.loc)
+		new /obj/item/food/drinks/sillycup(src.loc)
 		cups--
 		flick("[icon_state]-vend", src)
 		return

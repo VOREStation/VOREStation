@@ -70,11 +70,11 @@
 	light_type = /obj/item/light/bulb/blue
 	},
 /obj/structure/table/wooden_reinforced,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/item/food/drinks/bottle/wine{
 	pixel_x = -6;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/glass2/rocks{
+/obj/item/food/drinks/glass2/rocks{
 	pixel_x = 7;
 	pixel_y = 2
 	},

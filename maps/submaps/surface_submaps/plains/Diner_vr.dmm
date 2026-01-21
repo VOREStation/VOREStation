@@ -30,7 +30,7 @@
 /area/submap/Diner)
 "ai" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /obj/item/reagent_containers/glass/beaker,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -76,14 +76,14 @@
 "ar" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /obj/item/material/kitchen/utensil/fork,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "as" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -123,14 +123,14 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/cream,
+/obj/item/food/drinks/bottle/cream,
+/obj/item/food/drinks/bottle/cream,
+/obj/item/food/drinks/bottle/cream,
+/obj/item/food/condiment/carton/sugar,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "az" = (
@@ -147,14 +147,14 @@
 /area/submap/Diner)
 "aC" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/item/material/kitchen/utensil/fork,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aD" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/effect/floor_decal/corner/red/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -176,19 +176,19 @@
 /area/submap/Diner)
 "aI" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aJ" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/red/diagonal,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aK" = (
@@ -221,20 +221,20 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aO" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/red/diagonal,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aP" = (
@@ -245,13 +245,13 @@
 /area/submap/Diner)
 "aQ" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aR" = (
@@ -331,17 +331,17 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
+/obj/item/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/milk,
+/obj/item/food/drinks/bottle/cream,
+/obj/item/food/drinks/bottle/cream,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "bh" = (

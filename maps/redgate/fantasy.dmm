@@ -45,7 +45,7 @@
 /area/redgate/fantasy/restaurant)
 "aj" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/slice/bread/filled,
+/obj/item/food/slice/bread/filled,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "al" = (
@@ -68,9 +68,9 @@
 /area/redgate/fantasy/guardhouse)
 "aq" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/condiment/vinegar,
-/obj/item/reagent_containers/food/condiment/vinegar,
-/obj/item/reagent_containers/food/condiment/vinegar,
+/obj/item/food/condiment/vinegar,
+/obj/item/food/condiment/vinegar,
+/obj/item/food/condiment/vinegar,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "ar" = (
@@ -207,7 +207,7 @@
 /area/redgate/fantasy/mininghouse)
 "bw" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread,
+/obj/item/food/sliceable/creamcheesebread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "bx" = (
@@ -390,7 +390,7 @@
 /area/redgate/fantasy/druid)
 "cs" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/xenomeat,
+/obj/item/food/xenomeat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "ct" = (
@@ -467,7 +467,7 @@
 /area/redgate/fantasy/alchemist)
 "cS" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatbun,
+/obj/item/food/meatbun,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "cT" = (
@@ -477,7 +477,7 @@
 /area/redgate/fantasy/walls)
 "cU" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pancakes,
+/obj/item/food/pancakes,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "cV" = (
@@ -521,7 +521,7 @@
 /area/redgate/fantasy/house)
 "di" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/snacks/rawmeatball,
+/obj/item/food/rawmeatball,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "dj" = (
@@ -561,7 +561,7 @@
 /area/redgate/fantasy/streets)
 "du" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/bearmeat,
+/obj/item/food/bearmeat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "dw" = (
@@ -734,7 +734,7 @@
 /area/redgate/fantasy/jewler)
 "eE" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "eF" = (
@@ -758,7 +758,7 @@
 /area/redgate/fantasy/paladinhouse)
 "eN" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/quicheslice/filled,
+/obj/item/food/quicheslice/filled,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "eO" = (
@@ -789,8 +789,8 @@
 /area/redgate/fantasy/bard)
 "eT" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/carrotcake,
-/obj/item/reagent_containers/food/snacks/sliceable/carrotcake,
+/obj/item/food/sliceable/carrotcake,
+/obj/item/food/sliceable/carrotcake,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "eV" = (
@@ -827,7 +827,7 @@
 /area/redgate/fantasy/arena)
 "fb" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/bearmeat,
+/obj/item/food/bearmeat,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/barbarian)
 "fc" = (
@@ -1056,7 +1056,7 @@
 /area/redgate/fantasy/gambling)
 "gN" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/food/bun,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "gO" = (
@@ -1398,7 +1398,7 @@
 /area/redgate/fantasy/arena)
 "jc" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "je" = (
@@ -1457,7 +1457,7 @@
 /area/redgate/fantasy/house)
 "jv" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/tofubread,
+/obj/item/food/sliceable/tofubread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "jw" = (
@@ -1861,7 +1861,7 @@
 /area/redgate/fantasy/castle)
 "lR" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/food/flatbread,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -1944,7 +1944,7 @@
 /area/redgate/fantasy/restaurant)
 "mn" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "mo" = (
@@ -2208,7 +2208,7 @@
 /area/redgate/fantasy/churchhouse)
 "nP" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/food/sliceable/bread,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -2447,7 +2447,7 @@
 /area/redgate/fantasy/house)
 "oW" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/berryclafoutis,
+/obj/item/food/berryclafoutis,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "oX" = (
@@ -2483,8 +2483,8 @@
 /area/redgate/fantasy/aliens)
 "pg" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/food/sliceable/bread,
+/obj/item/food/sliceable/bread,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "pi" = (
@@ -2746,14 +2746,14 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/sliceable/bread,
+/obj/item/food/sliceable/bread,
+/obj/item/food/sliceable/bread,
+/obj/item/food/sliceable/bread,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -3275,7 +3275,7 @@
 /area/redgate/fantasy/house)
 "ud" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "ue" = (
@@ -3328,7 +3328,7 @@
 /area/redgate/fantasy/paladinhouse)
 "uq" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/food/cookie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "ur" = (
@@ -3350,20 +3350,20 @@
 /area/redgate/fantasy/cafe)
 "uu" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -3450,7 +3450,7 @@
 /area/redgate/fantasy/cafe)
 "vb" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/meatbread,
+/obj/item/food/sliceable/meatbread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "ve" = (
@@ -3771,7 +3771,7 @@
 /area/redgate/fantasy/alchemist)
 "xb" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/beetsoup,
+/obj/item/food/beetsoup,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "xc" = (
@@ -4224,7 +4224,7 @@
 /area/redgate/fantasy/aliens)
 "zK" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "zP" = (
@@ -4324,7 +4324,7 @@
 /area/redgate/fantasy/house)
 "As" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/food/bun,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "At" = (
@@ -4427,7 +4427,7 @@
 /area/redgate/fantasy/castle)
 "Ba" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread,
+/obj/item/food/sliceable/xenomeatbread,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -4794,7 +4794,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/mininghouse)
 "Dz" = (
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
@@ -4843,7 +4843,7 @@
 /area/redgate/fantasy/redgate)
 "DS" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/twobread,
+/obj/item/food/twobread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "DT" = (
@@ -5064,7 +5064,7 @@
 "Fn" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/pirate,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/food/sliceable/bread,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "Fo" = (
@@ -5181,7 +5181,7 @@
 /area/redgate/fantasy/grocery)
 "Gf" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/roastbeef,
+/obj/item/food/roastbeef,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "Gi" = (
@@ -5284,7 +5284,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "GL" = (
-/obj/item/reagent_containers/food/snacks/old/taco,
+/obj/item/food/old/taco,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "GM" = (
@@ -5905,7 +5905,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "KK" = (
-/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/food/worm,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "KM" = (
@@ -5972,7 +5972,7 @@
 /area/redgate/fantasy/aliens)
 "Lj" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/risottoballs,
+/obj/item/food/risottoballs,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "Lk" = (
@@ -6112,7 +6112,7 @@
 /area/redgate/fantasy/walls)
 "Mj" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "Ml" = (
@@ -6286,7 +6286,7 @@
 /area/redgate/fantasy/churchhouse)
 "Nn" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "Np" = (
@@ -6393,7 +6393,7 @@
 /area/redgate/fantasy/restaurant)
 "NT" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/berrymuffin/berry,
+/obj/item/food/berrymuffin/berry,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "NW" = (
@@ -6651,20 +6651,20 @@
 /area/redgate/fantasy/house)
 "PG" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -6690,8 +6690,8 @@
 /area/redgate/fantasy/aliens)
 "PJ" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/funnelcake,
-/obj/item/reagent_containers/food/snacks/funnelcake,
+/obj/item/food/funnelcake,
+/obj/item/food/funnelcake,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "PK" = (
@@ -6748,21 +6748,21 @@
 /area/redgate/fantasy/castle)
 "PX" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -6805,19 +6805,19 @@
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "Qn" = (
@@ -6830,26 +6830,26 @@
 /area/redgate/fantasy/house)
 "Qu" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/bananabread,
+/obj/item/food/sliceable/bananabread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "Qv" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -6861,7 +6861,7 @@
 /area/redgate/fantasy/jewler)
 "QA" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatsteak,
+/obj/item/food/meatsteak,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "QF" = (
@@ -6899,14 +6899,14 @@
 /area/redgate/fantasy/tavern)
 "QR" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "QS" = (
@@ -6946,8 +6946,8 @@
 /area/redgate/fantasy/house)
 "Rj" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/food/chocolatebar,
+/obj/item/food/chocolatebar,
 /obj/fruitspawner/apple,
 /obj/fruitspawner/apple,
 /obj/fruitspawner/apple,
@@ -6976,7 +6976,7 @@
 /area/redgate/fantasy/church)
 "Rp" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/croissant,
+/obj/item/food/croissant,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "Rq" = (
@@ -7025,7 +7025,7 @@
 /area/redgate/fantasy/castle)
 "RC" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/cherrypie,
+/obj/item/food/cherrypie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "RE" = (
@@ -7037,8 +7037,8 @@
 /area/redgate/fantasy/restaurant)
 "RF" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/flatbread,
-/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/food/flatbread,
+/obj/item/food/flatbread,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "RG" = (
@@ -7378,7 +7378,7 @@
 /area/redgate/fantasy/castle)
 "TR" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/meat/grubmeat,
+/obj/item/food/meat/grubmeat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "TS" = (
@@ -7472,7 +7472,7 @@
 /area/redgate/fantasy/guardhouse)
 "UB" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/old/horseburger,
+/obj/item/food/old/horseburger,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "UF" = (
@@ -7639,7 +7639,7 @@
 /area/redgate/fantasy/ranger)
 "VK" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "VL" = (
@@ -7793,7 +7793,7 @@
 /area/redgate/fantasy/bakery)
 "WH" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/meat/chicken,
+/obj/item/food/meat/chicken,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "WP" = (
@@ -7807,21 +7807,21 @@
 /area/redgate/fantasy/mininghouse)
 "WT" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/sugar/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/carton/flour/rustic,
+/obj/item/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -7830,11 +7830,11 @@
 /area/redgate/fantasy/bard)
 "WU" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/food/bun,
+/obj/item/food/bun,
+/obj/item/food/bun,
+/obj/item/food/bun,
+/obj/item/food/bun,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "WV" = (
@@ -8077,7 +8077,7 @@
 /area/redgate/fantasy/castle)
 "Yx" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/soup/onion,
+/obj/item/food/soup/onion,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "YC" = (
@@ -8103,7 +8103,7 @@
 /area/redgate/fantasy/gambling)
 "YO" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatpie,
+/obj/item/food/meatpie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "YP" = (

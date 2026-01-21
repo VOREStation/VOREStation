@@ -172,15 +172,15 @@
 	desc = "This is a random can of (legal) Nukies Energy Drink."
 
 /obj/random/nukies_can_legal/item_to_spawn()
-	return pick(/obj/item/reagent_containers/food/drinks/cans/nukie_peach,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_pear,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_cherry,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_melon,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_banana,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_rose,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_lemon,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_fruit,
-				/obj/item/reagent_containers/food/drinks/cans/nukie_special)
+	return pick(/obj/item/food/drinks/cans/nukie_peach,
+				/obj/item/food/drinks/cans/nukie_pear,
+				/obj/item/food/drinks/cans/nukie_cherry,
+				/obj/item/food/drinks/cans/nukie_melon,
+				/obj/item/food/drinks/cans/nukie_banana,
+				/obj/item/food/drinks/cans/nukie_rose,
+				/obj/item/food/drinks/cans/nukie_lemon,
+				/obj/item/food/drinks/cans/nukie_fruit,
+				/obj/item/food/drinks/cans/nukie_special)
 
 /obj/random/desatti_snacks
 	name = "Random Desatti Snacks"
@@ -194,10 +194,10 @@
 				/obj/item/storage/box/rhubarbcustard,
 				/obj/item/storage/box/custardcream,
 				/obj/item/storage/box/bourbon,
-				/obj/item/reagent_containers/food/snacks/packaged/sausageroll,
-				/obj/item/reagent_containers/food/snacks/packaged/pasty,
-				/obj/item/reagent_containers/food/snacks/packaged/scotchegg,
-				/obj/item/reagent_containers/food/snacks/packaged/porkpie)
+				/obj/item/food/packaged/sausageroll,
+				/obj/item/food/packaged/pasty,
+				/obj/item/food/packaged/scotchegg,
+				/obj/item/food/packaged/porkpie)
 
 /obj/random_multi/single_item/captains_spare_id
 	name = "Multi Point - Captain's Spare"
@@ -238,9 +238,9 @@
 	return pick(
 			prob(5);list(
 				/obj/item/clothing/mask/smokable/pipe,
-				/obj/item/reagent_containers/food/drinks/bottle/rum,
-				/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-				/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+				/obj/item/food/drinks/bottle/rum,
+				/obj/item/food/drinks/bottle/whiskey,
+				/obj/item/food/grown/ambrosiadeus,
 				/obj/item/flame/lighter/zippo,
 				/obj/structure/closet/crate/hydroponics
 			),
@@ -527,7 +527,7 @@
 				/obj/item/clothing/head/beret,
 				/obj/item/clothing/suit/suspenders,
 				/obj/item/pen/crayon/mime,
-				/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing,
+				/obj/item/food/drinks/bottle/bottleofnothing,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
@@ -934,14 +934,14 @@
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
@@ -964,14 +964,14 @@
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(5);list(
@@ -1237,14 +1237,14 @@
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
@@ -1267,14 +1267,14 @@
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(5);list(
@@ -1935,14 +1935,14 @@
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
-				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
+				/obj/item/food/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
@@ -1965,14 +1965,14 @@
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
+				/obj/item/food/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(5);list(

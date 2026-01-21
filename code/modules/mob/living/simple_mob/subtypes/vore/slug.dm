@@ -10,7 +10,7 @@
 	icon_living = "slug"
 	icon_state = "slug"
 	faction = "slug" //A faction other than neutral is necessary to get the slug to try eating station crew.
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	melee_damage_lower = 0
 	melee_damage_upper = 1 //Not intended to pose any sort of threat outside of vore. Other code should stop it from ever attacking but this is an extra safety check.
 	friendly = list("blinks at")

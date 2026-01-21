@@ -69,7 +69,7 @@
 /obj/item/xenobio/monkey_gun
 	name = "Bluespace Cube Rehydrator"
 	desc = "Based on the technology of the 'Bluespace Harpoon' this device can teleport a loaded cube to a given target and rehydrate it."
-	loadable_item = /obj/item/reagent_containers/food/snacks/monkeycube
+	loadable_item = /obj/item/food/monkeycube
 	loadable_name = "Monkey Cube"
 	origin_tech = list(TECH_BLUESPACE = 5, TECH_BIO = 6)
 	//projectile_type = /obj/item/projectile/beam/xenobio/monkey
@@ -90,7 +90,7 @@
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(loaded_item)
-		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = loaded_item
+		var/obj/item/food/monkeycube/cube = loaded_item
 		cube.loc = A
 		cube.Expand()
 		loaded_item = null
@@ -130,7 +130,7 @@
 			monkeys_recycled++
 			sleep(1 SECOND)
 		while(monkeys_recycled >= 4)
-			new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(src))
+			new /obj/item/food/monkeycube(get_turf(src))
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			monkeys_recycled -= 4
 			sleep(1 SECOND)

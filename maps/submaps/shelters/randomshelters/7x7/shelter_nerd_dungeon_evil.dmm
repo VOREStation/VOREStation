@@ -33,12 +33,12 @@
 /area/survivalpod/redspace)
 "r" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/reagent_containers/food/drinks/cans/nukie_melon,
-/obj/item/reagent_containers/food/drinks/cans/nukie_rose,
-/obj/item/reagent_containers/food/drinks/cans/nukie_special,
-/obj/item/reagent_containers/food/drinks/cans/nukie_peach,
-/obj/item/reagent_containers/food/drinks/cans/nukie_pear,
-/obj/item/reagent_containers/food/drinks/cans/nukie_pear,
+/obj/item/food/drinks/cans/nukie_melon,
+/obj/item/food/drinks/cans/nukie_rose,
+/obj/item/food/drinks/cans/nukie_special,
+/obj/item/food/drinks/cans/nukie_peach,
+/obj/item/food/drinks/cans/nukie_pear,
+/obj/item/food/drinks/cans/nukie_pear,
 /obj/item/deck/wizoff,
 /obj/item/storage/box/donkpockets/honk,
 /turf/simulated/floor/wood,
@@ -46,7 +46,7 @@
 "s" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/cans/nukie_fruit,
+/obj/item/food/drinks/cans/nukie_fruit,
 /turf/simulated/floor/wood,
 /area/survivalpod/redspace)
 "t" = (

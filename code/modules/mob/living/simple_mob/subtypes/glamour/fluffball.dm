@@ -131,7 +131,7 @@
 
 /mob/living/simple_mob/vore/fluffball/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W,/obj/item/reagent_containers/food))
+	if(isfood(W))
 		user.drop_item(W)
 		qdel(W)
 		visible_message("<span class='notice'>\The [src] quickly steals \the [W] into its fluff, it seems to have become a little less shy!</span>!")
@@ -182,8 +182,8 @@
 	for(var/mob/living/possible_target in possible_targets)
 		var/mob/living/carbon/human/H = possible_target
 		if(istype(H))
-			var/obj/item/reagent_containers/food/B = H.get_active_hand()
-			var/obj/item/reagent_containers/food/R = H.get_inactive_hand()
+			var/obj/item/food/B = H.get_active_hand()
+			var/obj/item/food/R = H.get_inactive_hand()
 			if(istype(R) || istype(B))
 				continue
 		if(!can_attack(possible_target))

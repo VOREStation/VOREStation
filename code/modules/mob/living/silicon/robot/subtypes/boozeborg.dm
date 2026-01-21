@@ -78,7 +78,7 @@
 
 	src.modules += new /obj/item/tray/robotray(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/service/booze(src)
-	src.emag = new /obj/item/reagent_containers/food/drinks/bottle/small/beer(src)
+	src.emag = new /obj/item/food/drinks/bottle/small/beer(src)
 
 	var/datum/reagents/N = new/datum/reagents(50)
 	src.emag.reagents = N
@@ -101,10 +101,10 @@
 	add_verb(R,/mob/living/silicon/robot/proc/ex_reserve_refill) //TGPanel
 
 /obj/item/robot_module/robot/booze/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
+	var/obj/item/food/condiment/enzyme/E = locate() in src.modules
 	E.reagents.add_reagent("enzyme", 2 * amount)
 	if(src.emag)
-		var/obj/item/reagent_containers/food/drinks/bottle/small/beer/B = src.emag
+		var/obj/item/food/drinks/bottle/small/beer/B = src.emag
 		B.reagents.add_reagent("beer2", 2 * amount)
 
 //BORGHYPO

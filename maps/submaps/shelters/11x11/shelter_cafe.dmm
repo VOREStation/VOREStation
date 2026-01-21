@@ -116,7 +116,7 @@
 /area/survivalpod)
 "gw" = (
 /obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/condiment/small/sugar{
+/obj/item/food/condiment/small/sugar{
 	pixel_y = 12
 	},
 /turf/simulated/floor/wood/alt/parquet,
@@ -162,44 +162,44 @@
 /area/survivalpod)
 "rB" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/reagent_containers/food/snacks/donut/choc,
-/obj/item/reagent_containers/food/snacks/donut/choc,
-/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
-/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/plain,
-/obj/item/reagent_containers/food/snacks/donut/plain,
-/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
-/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
-/obj/item/reagent_containers/food/snacks/donut/purple,
-/obj/item/reagent_containers/food/snacks/donut/purple,
-/obj/item/reagent_containers/food/snacks/donut/purple/jelly,
-/obj/item/reagent_containers/food/snacks/donut/purple/jelly,
-/obj/item/reagent_containers/food/snacks/donut/yellow,
-/obj/item/reagent_containers/food/snacks/donut/yellow,
-/obj/item/reagent_containers/food/snacks/donut/yellow/jelly,
-/obj/item/reagent_containers/food/snacks/donut/yellow/jelly,
-/obj/item/reagent_containers/food/snacks/donut/pink,
-/obj/item/reagent_containers/food/snacks/donut/pink,
-/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
-/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
-/obj/item/reagent_containers/food/snacks/donut/blue,
-/obj/item/reagent_containers/food/snacks/donut/blue,
-/obj/item/reagent_containers/food/snacks/donut/blue/jelly,
-/obj/item/reagent_containers/food/snacks/donut/blue/jelly,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/food/donut/choc,
+/obj/item/food/donut/choc,
+/obj/item/food/donut/choc/jelly,
+/obj/item/food/donut/choc/jelly,
+/obj/item/food/donut/choc_sprinkles,
+/obj/item/food/donut/choc_sprinkles,
+/obj/item/food/donut/choc_sprinkles/jelly,
+/obj/item/food/donut/choc_sprinkles/jelly,
+/obj/item/food/donut/homer,
+/obj/item/food/donut/homer,
+/obj/item/food/donut/homer,
+/obj/item/food/donut/homer,
+/obj/item/food/donut/homer/jelly,
+/obj/item/food/donut/homer/jelly,
+/obj/item/food/donut/homer/jelly,
+/obj/item/food/donut/homer/jelly,
+/obj/item/food/donut/plain,
+/obj/item/food/donut/plain,
+/obj/item/food/donut/plain/jelly,
+/obj/item/food/donut/plain/jelly,
+/obj/item/food/donut/purple,
+/obj/item/food/donut/purple,
+/obj/item/food/donut/purple/jelly,
+/obj/item/food/donut/purple/jelly,
+/obj/item/food/donut/yellow,
+/obj/item/food/donut/yellow,
+/obj/item/food/donut/yellow/jelly,
+/obj/item/food/donut/yellow/jelly,
+/obj/item/food/donut/pink,
+/obj/item/food/donut/pink,
+/obj/item/food/donut/pink/jelly,
+/obj/item/food/donut/pink/jelly,
+/obj/item/food/donut/blue,
+/obj/item/food/donut/blue,
+/obj/item/food/donut/blue/jelly,
+/obj/item/food/donut/blue/jelly,
+/obj/item/food/drinks/milk,
+/obj/item/food/drinks/milk,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "ta" = (
@@ -297,7 +297,7 @@
 /area/survivalpod)
 "Dd" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/sugar{
+/obj/item/food/condiment/small/sugar{
 	pixel_y = 22
 	},
 /turf/simulated/floor/carpet/brown,
@@ -394,7 +394,7 @@
 /area/survivalpod)
 "KP" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup{
+/obj/item/food/drinks/glass2/coffeemug/britcup{
 	pixel_x = 5;
 	pixel_y = 3
 	},
@@ -446,12 +446,12 @@
 "OZ" = (
 /obj/structure/table/hardwoodtable,
 /obj/item/hand_labeler,
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /obj/item/reagent_containers/glass/rag,
 /obj/structure/closet/walllocker_double/kitchen/north,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,
@@ -462,7 +462,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/obj/item/reagent_containers/food/drinks/glass2/pitcher,
+/obj/item/food/drinks/glass2/pitcher,
 /obj/machinery/light/floortube,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
@@ -507,7 +507,7 @@
 "Te" = (
 /obj/machinery/light,
 /obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/condiment/small/sugar{
+/obj/item/food/condiment/small/sugar{
 	pixel_y = 12
 	},
 /turf/simulated/floor/wood/alt/parquet,
@@ -524,33 +524,33 @@
 /area/survivalpod)
 "Xu" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},

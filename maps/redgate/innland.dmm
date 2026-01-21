@@ -378,7 +378,7 @@
 "dE" = (
 /obj/structure/table/marble,
 /obj/item/book/manual/barman_recipes,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /obj/item/reagent_containers/glass/rag,
 /obj/item/reagent_containers/glass/rag,
 /obj/machinery/light{
@@ -391,7 +391,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/item/reagent_containers/dropper,
@@ -455,7 +455,7 @@
 /area/redgate/wilds)
 "dR" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/food/grilledcheese,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dS" = (
@@ -491,7 +491,7 @@
 /area/redgate/structure/powered)
 "ea" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/roastbeef,
+/obj/item/food/roastbeef,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eb" = (
@@ -532,10 +532,10 @@
 /area/redgate/structure/powered)
 "eh" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /turf/unsimulated/floor/wood,
@@ -640,10 +640,10 @@
 /area/redgate/structure/powered)
 "ew" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /turf/simulated/floor/lino,
@@ -671,7 +671,7 @@
 /area/redgate/structure/powered)
 "eE" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
+/obj/item/food/meatballsoup,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eF" = (
@@ -693,7 +693,7 @@
 /area/redgate/structure/powered)
 "eN" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatsteak,
+/obj/item/food/meatsteak,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eO" = (
@@ -879,10 +879,10 @@
 	dir = 4
 	},
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /obj/structure/extinguisher_cabinet{

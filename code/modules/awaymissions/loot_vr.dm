@@ -263,15 +263,15 @@
 			var/obj/structure/closet/crate/freezer/C = new(src.loc)
 			var/num = rand(2,6)
 			var/new_type = pick(
-			/obj/item/reagent_containers/food/drinks/bottle/small/beer, \
-			/obj/item/reagent_containers/food/drinks/tea, \
-			/obj/item/reagent_containers/food/drinks/dry_ramen, \
-			/obj/item/reagent_containers/food/snacks/candiedapple, \
-			/obj/item/reagent_containers/food/snacks/chocolatebar, \
-			/obj/item/reagent_containers/food/snacks/cookie, \
-			/obj/item/reagent_containers/food/snacks/meatball, \
-			/obj/item/reagent_containers/food/snacks/plump_pie, \
-			/obj/item/reagent_containers/food/snacks/liquidfood)
+			/obj/item/food/drinks/bottle/small/beer, \
+			/obj/item/food/drinks/tea, \
+			/obj/item/food/drinks/dry_ramen, \
+			/obj/item/food/candiedapple, \
+			/obj/item/food/chocolatebar, \
+			/obj/item/food/cookie, \
+			/obj/item/food/meatball, \
+			/obj/item/food/plump_pie, \
+			/obj/item/food/liquidfood)
 			for(var/i=0,i<num,i++)
 				new new_type(C)
 		if("alien")

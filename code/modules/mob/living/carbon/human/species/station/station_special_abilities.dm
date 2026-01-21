@@ -1332,7 +1332,7 @@ var/eggs = 0
 			while(eggs > 0)
 				src.show_message(span_warning("You lay a egg!"))
 				eggs--
-				var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(src))
+				var/obj/item/food/egg/E = new(get_turf(src))
 				E.pixel_x = rand(-6,6)
 				E.pixel_y = rand(-6,6)
 			return

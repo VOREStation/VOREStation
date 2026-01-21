@@ -137,7 +137,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/chickensuit(src.loc)
 	new /obj/item/clothing/head/chicken(src.loc)
-	new /obj/item/reagent_containers/food/snacks/egg(src.loc)
+	new /obj/item/food/egg(src.loc)
 
 /obj/effect/landmark/costume/gladiator/Initialize(mapload)
 	. = ..()

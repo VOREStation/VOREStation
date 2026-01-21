@@ -891,9 +891,9 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 /datum/gear_disp/adventure_box/food
 	name = "Food Plate"
 	to_spawn = list(
-					/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-					/obj/item/reagent_containers/food/snacks/no_raisin,
-					/obj/item/reagent_containers/food/drinks/tea
+					/obj/item/food/candy/proteinbar,
+					/obj/item/food/no_raisin,
+					/obj/item/food/drinks/tea
 					)
 	amount = 10
 

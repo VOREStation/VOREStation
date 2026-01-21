@@ -39,7 +39,7 @@
 	organ_names = /decl/mob_organ_names/fish
 
 	meat_amount = 10
-	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/shark
+	meat_type = /obj/item/food/carpmeat/shark
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 

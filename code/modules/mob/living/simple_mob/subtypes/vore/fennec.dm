@@ -42,7 +42,7 @@
 	response_harm = "hits"
 
 	meat_amount = 2
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/fox
+	meat_type = /obj/item/food/meat/fox
 
 	harm_intent_damage = 5
 	melee_damage_lower = 1

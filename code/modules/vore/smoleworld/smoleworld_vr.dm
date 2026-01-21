@@ -399,7 +399,7 @@
 	desc = "Its a tiny bit of plastic in the shape of the tether. There seems to be a small button on top."
 	honk_sound = 'sound/items/tinytether.ogg'
 
-/obj/item/reagent_containers/food/snacks/snackplanet/moon
+/obj/item/food/snackplanet/moon
 	name = "moon"
 	desc = "A firm solid mass of white powdery sugar in the shape of a moon!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -409,7 +409,7 @@
 	nutriment_desc = list(REAGENT_ID_SUGAR = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/reagent_containers/food/snacks/snackplanet/virgo3b
+/obj/item/food/snackplanet/virgo3b
 	name = "Virgo 3B"
 	desc = "A sticky jelly jaw breaker in the shape of Virgo-3B, it even has a tiny tether!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -420,7 +420,7 @@
 	nutriment_desc = list("spicy" = 2, "tang" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/reagent_containers/food/snacks/snackplanet/phoron
+/obj/item/food/snackplanet/phoron
 	name = "phoron giant"
 	desc = "A spicy jaw breaker that seems to swirl in the light."
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -431,7 +431,7 @@
 	nutriment_desc = list("spicy" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/reagent_containers/food/snacks/snackplanet/virgoprime
+/obj/item/food/snackplanet/virgoprime
 	name = "Virgo Prime"
 	desc = "It's a orange jaw breaker in the shape of Virgo Prime!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -452,7 +452,7 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // most code copied from toolbox
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
-	starts_with = list(/obj/item/reagent_containers/food/snacks/snackplanet/phoron,
-	/obj/item/reagent_containers/food/snacks/snackplanet/virgo3b,/obj/item/reagent_containers/food/snacks/snackplanet/moon,
-	/obj/item/reagent_containers/food/snacks/snackplanet/virgoprime
+	starts_with = list(/obj/item/food/snackplanet/phoron,
+	/obj/item/food/snackplanet/virgo3b,/obj/item/food/snackplanet/moon,
+	/obj/item/food/snackplanet/virgoprime
 	)

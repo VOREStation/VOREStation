@@ -10,7 +10,7 @@
 	icon_rest = "leopardmander-rest"
 	faction = FACTION_NEUTRAL
 	meat_amount = 40 //I mean...
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	old_x = -48
 	old_y = 0
 	vis_height = 92

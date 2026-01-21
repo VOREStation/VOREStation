@@ -843,7 +843,7 @@
 /area/redgate/train/redgate)
 "qk" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /obj/item/flame/lighter/zippo,
 /obj/item/book/manual/barman_recipes,
 /obj/item/clothing/head/that{

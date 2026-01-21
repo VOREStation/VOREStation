@@ -273,8 +273,8 @@
 	max_harvests = 2
 	min_harvests = 0
 	harvest_loot = list(
-		/obj/item/reagent_containers/food/snacks/siffruit = 20,
-		/obj/item/reagent_containers/food/snacks/grown/sif/sifpod = 5,
+		/obj/item/food/siffruit = 20,
+		/obj/item/food/grown/sif/sifpod = 5,
 		/obj/item/seeds/sifbulb = 1
 	)
 

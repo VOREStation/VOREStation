@@ -69,7 +69,7 @@ var/list/gurgled_overlays = list(
 /obj/item/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/reagent_containers/food/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/food/gurgle_contaminate(var/atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/storage/vore_egg/gurgle_contaminate(var/atom/movable/item_storage = null)

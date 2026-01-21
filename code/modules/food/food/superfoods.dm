@@ -4,10 +4,10 @@
 	reagents = list(REAGENT_ID_FLOUR = 30,REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9)
 	fruit = list(PLANT_POISONBERRIES = 2, PLANT_CHERRY =  2)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/meat/,
-			/obj/item/reagent_containers/food/snacks/meat/,
-			/obj/item/reagent_containers/food/snacks/meat/,
-			/obj/item/reagent_containers/food/snacks/meat/
+			/obj/item/food/meat/,
+			/obj/item/food/meat/,
+			/obj/item/food/meat/,
+			/obj/item/food/meat/
 		)
 	result = /obj/structure/chaoscake
 	wiki_flag = WIKI_SPOILER
@@ -16,10 +16,10 @@
 	reagents = list(REAGENT_ID_FLOUR = 30, REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9, )
 	fruit = list(PLANT_VANILLA =  2, PLANT_BANANA = 2)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough
 		)
 	result = /obj/item/chaoscake_layer
 	wiki_flag = WIKI_SPOILER
@@ -28,9 +28,9 @@
 	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_DEATHBELL = 10)
 	fruit = list(PLANT_GRAPES = 3)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough
 		)
 	result = /obj/item/chaoscake_layer/three
 	wiki_flag = WIKI_SPOILER
@@ -39,9 +39,9 @@
 	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_MILKSHAKE = 30)
 	fruit = list(PLANT_RICE = 3)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough
 		)
 	result = /obj/item/chaoscake_layer/four
 	wiki_flag = WIKI_SPOILER
@@ -57,12 +57,12 @@
 	reagents = list(REAGENT_ID_FLOUR = 20, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_SPRINKLES = 5)
 	fruit = list(PLANT_APPLE = 2)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/chocolatebar,
-			/obj/item/reagent_containers/food/snacks/chocolatebar,
-			/obj/item/reagent_containers/food/snacks/chocolatebar
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/chocolatebar,
+			/obj/item/food/chocolatebar,
+			/obj/item/food/chocolatebar
 		)
 	result = /obj/item/chaoscake_layer/six
 	wiki_flag = WIKI_SPOILER
@@ -71,9 +71,9 @@
 	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, REAGENT_ID_DEVILSKISS = 20)
 	fruit = list(PLANT_POTATO = 1)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough
 		)
 	result = /obj/item/chaoscake_layer/seven
 	wiki_flag = WIKI_SPOILER
@@ -82,9 +82,9 @@
 	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, REAGENT_ID_CREAM = 20)
 	fruit = list(PLANT_LEMON = 1)
 	items = list(
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough,
-			/obj/item/reagent_containers/food/snacks/dough
+			/obj/item/food/dough,
+			/obj/item/food/dough,
+			/obj/item/food/dough
 		)
 	result = /obj/item/chaoscake_layer/eight
 	wiki_flag = WIKI_SPOILER
@@ -180,7 +180,7 @@
 	else
 		return
 
-/obj/item/reagent_containers/food/snacks/chaoscakeslice
+/obj/item/food/chaoscakeslice
 	name = "The Chaos Cake Slice"
 	desc = "A slice from The Chaos Cake, it pulses weirdly, as if angry to be separated from the whole"
 	icon_state = "chaoscake_slice-1"
@@ -191,7 +191,7 @@
 	nutriment_amt = 4
 	volume = 80
 
-/obj/item/reagent_containers/food/snacks/chaoscakeslice/Initialize(mapload)
+/obj/item/food/chaoscakeslice/Initialize(mapload)
 	. = ..()
 	var/i = rand(1,6)
 	icon_state = "chaoscake_slice-[i]"
@@ -261,7 +261,7 @@
 				to_chat(user, "You cut a slice of the cake. The slice looks like the cake was just baked, and you can see before your eyes as the spot where you cut the slice slowly regenerates!")
 				slices = slices - 1
 				icon_state = "chaoscake-[slices]"
-				new /obj/item/reagent_containers/food/snacks/chaoscakeslice(src.loc)
+				new /obj/item/food/chaoscakeslice(src.loc)
 
 		else
 			to_chat(user, span_notice("It looks so good... But it feels so wrong to eat it before it's finished..."))
@@ -301,11 +301,11 @@
 
 	var/slicetime = 15 SECONDS
 
-	var/slicelist = list(/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita/bigslice,
-							/obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple/bigslice,
-							/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza/bigslice,
-							/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza/bigslice,
-							/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza/bigslice)
+	var/slicelist = list(/obj/item/food/sliceable/pizza/margherita/bigslice,
+							/obj/item/food/sliceable/pizza/pineapple/bigslice,
+							/obj/item/food/sliceable/pizza/meatpizza/bigslice,
+							/obj/item/food/sliceable/pizza/mushroompizza/bigslice,
+							/obj/item/food/sliceable/pizza/vegetablepizza/bigslice)
 
 /obj/structure/theonepizza/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W,/obj/item/material/knife))
@@ -318,27 +318,27 @@
 				new slicetype(src.loc)
 			qdel(src)
 
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita/bigslice
+/obj/item/food/sliceable/pizza/margherita/bigslice
 	name = "Giant Margherita slice"
 	desc = "Big enough to be a sign at a pizzeria."
 	icon_state = "big_cheese_slice"
 
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple/bigslice
+/obj/item/food/sliceable/pizza/pineapple/bigslice
 	name = "Giant ham & pineapple pizza slice"
 	desc = "This thing probably constitutes an italian warcrime."
 	icon_state = "big_pineapple_slice"
 
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza/bigslice
+/obj/item/food/sliceable/pizza/meatpizza/bigslice
 	name = "Giant meatpizza slice"
 	desc = "A Meat Feast fit for a king."
 	icon_state = "big_meat_slice"
 
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza/bigslice
+/obj/item/food/sliceable/pizza/mushroompizza/bigslice
 	name = "Giant mushroompizza slice"
 	desc = "Practically a honey mushroom at this scale."
 	icon_state = "big_mushroom_slice"
 
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza/bigslice
+/obj/item/food/sliceable/pizza/vegetablepizza/bigslice
 	name = "Giant vegetable pizza slice"
 	desc = "So healthy it'll give you a heart attack."
 	icon_state = "big_veggie_slice"
@@ -346,23 +346,23 @@
 /datum/recipe/theonepizza
 	fruit = list(PLANT_TOMATO = 5, PLANT_MUSHROOMS = 5, PLANT_EGGPLANT = 1, PLANT_CARROT = 1, PLANT_CORN = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/pineapple_ring,
-		/obj/item/reagent_containers/food/snacks/pineapple_ring
+		/obj/item/food/sliceable/flatdough,
+		/obj/item/food/sliceable/flatdough,
+		/obj/item/food/sliceable/flatdough,
+		/obj/item/food/sliceable/flatdough,
+		/obj/item/food/sliceable/flatdough,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/cheesewedge,
+		/obj/item/food/meat,
+		/obj/item/food/meat,
+		/obj/item/food/meat,
+		/obj/item/food/pineapple_ring,
+		/obj/item/food/pineapple_ring
 	)
 	result = /obj/structure/theonepizza

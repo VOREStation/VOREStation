@@ -39,7 +39,7 @@
 							// Any typepath indicates a specific coating that should be present
 							// Coatings are used for batter, breadcrumbs, beer-batter, colonel's secret coating, etc
 
-	var/result				// Example: = /obj/item/reagent_containers/food/snacks/donut/normal
+	var/result				// Example: = /obj/item/food/donut/normal
 	var/result_quantity = 1 // Number of instances of result that are created.
 	var/time = 100			// 1/10 part of second
 
@@ -92,7 +92,7 @@
 		var/list/checklist = list()
 		// You should trust Copy().
 		checklist = fruit.Copy()
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
+		for(var/obj/item/food/grown/G in container)
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
 				continue
 			if(check_coating(G))
@@ -117,7 +117,7 @@
 		if(istype(container, /obj/machinery))
 			var/obj/machinery/machine = container
 			for(var/obj/O in ((machine.contents - machine.component_parts) - machine.circuit))
-				if(istype(O,/obj/item/reagent_containers/food/snacks/grown))
+				if(istype(O,/obj/item/food/grown))
 					continue // Fruit is handled in check_fruit().
 				var/found = FALSE
 				for(var/i = 1; i < checklist.len+1; i++)
@@ -130,7 +130,7 @@
 					return FALSE
 		else
 			for(var/obj/O in container.contents)
-				if(istype(O,/obj/item/reagent_containers/food/snacks/grown))
+				if(istype(O,/obj/item/food/grown))
 					continue // Fruit is handled in check_fruit().
 				var/found = FALSE
 				for(var/i = 1; i < checklist.len+1; i++)
@@ -148,13 +148,13 @@
 
 //This is called on individual items within the container.
 /datum/recipe/proc/check_coating(var/obj/O, var/exact = FALSE)
-	if(!istype(O,/obj/item/reagent_containers/food/snacks))
+	if(!isfood(O))
 		return TRUE //Only snacks can be battered
 
 	if (coating == -1)
 		return TRUE //-1 value doesnt care
 
-	var/obj/item/reagent_containers/food/snacks/S = O
+	var/obj/item/food/S = O
 	if (!S.coating)
 		if (!coating)
 			return TRUE
@@ -223,7 +223,7 @@
 		var/list/checklist = list()
 		checklist = fruit.Copy()
 
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
+		for(var/obj/item/food/grown/G in container)
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
 				continue
 

@@ -156,7 +156,7 @@
 	},
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/condimentbottles,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
 /obj/structure/curtain/open/bed,
 /obj/structure/table/rack,
 /obj/structure/window/reinforced/polarized{
@@ -218,7 +218,7 @@
 /obj/machinery/button/windowtint{
 	id = "h_kitchen"
 	},
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /obj/structure/window/reinforced/polarized{
 	dir = 4;
 	id = "h_kitchen"
@@ -331,7 +331,7 @@
 /area/submap/lonehome)
 "bd" = (
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /obj/structure/table/sifwooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -412,7 +412,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bn" = (
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
@@ -422,7 +422,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bp" = (
-/obj/item/reagent_containers/food/snacks/ghostmuffin/poison,
+/obj/item/food/ghostmuffin/poison,
 /obj/structure/table/sifwooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -449,7 +449,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bu" = (
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/item/pen,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)

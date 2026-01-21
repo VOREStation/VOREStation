@@ -145,11 +145,11 @@
 	icon_state = "bottle-3"
 	prefill = list(REAGENT_ID_UNSORBITOL = 60)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose
+/obj/item/food/drinks/drinkingglass/fitnessflask/glucose
 	name = "glucose container"
 	desc = "A container of glucose. Used to treat bloodloss through a hardsuit in unconscious patients."
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose/Initialize(mapload)
+/obj/item/food/drinks/drinkingglass/fitnessflask/glucose/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_GLUCOSE, 100)
 	on_reagent_change()

@@ -20,7 +20,7 @@
 /decl/chemical_reaction/instant/food/tofu/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/tofu(location)
+		new /obj/item/food/tofu(location)
 	return
 
 /decl/chemical_reaction/instant/food/chocolate_bar
@@ -34,7 +34,7 @@
 /decl/chemical_reaction/instant/food/chocolate_bar/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
+		new /obj/item/food/chocolatebar(location)
 	return
 
 /decl/chemical_reaction/instant/food/chocolate_bar2
@@ -48,7 +48,7 @@
 /decl/chemical_reaction/instant/food/chocolate_bar2/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
+		new /obj/item/food/chocolatebar(location)
 	return
 
 /decl/chemical_reaction/instant/food/cookingoilcorn
@@ -116,7 +116,7 @@
 /decl/chemical_reaction/instant/food/cheesewheel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel(location)
+		new /obj/item/food/sliceable/cheesewheel(location)
 	return
 
 /decl/chemical_reaction/instant/food/meatball
@@ -130,7 +130,7 @@
 /decl/chemical_reaction/instant/food/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/meatball(location)
+		new /obj/item/food/meatball(location)
 	return
 
 /decl/chemical_reaction/instant/food/dough
@@ -144,7 +144,7 @@
 /decl/chemical_reaction/instant/food/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/dough(location)
+		new /obj/item/food/dough(location)
 	return
 
 /decl/chemical_reaction/instant/food/syntiflesh
@@ -157,7 +157,7 @@
 /decl/chemical_reaction/instant/food/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/meat/syntiflesh(location)
+		new /obj/item/food/meat/syntiflesh(location)
 	return
 
 /*
@@ -204,5 +204,5 @@
 /decl/chemical_reaction/instant/food/butter/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/spreads/butter(location)
+		new /obj/item/food/spreads/butter(location)
 	return

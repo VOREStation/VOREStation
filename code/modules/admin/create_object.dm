@@ -24,7 +24,7 @@
 	"/obj/item/melee",
 	"/obj/item/gun",
 	"/obj/item/reagent_containers",
-	"/obj/item/reagent_containers/food",
+	"/obj/item/food",
 	"/obj/item/clothing",
 	"/obj/item/storage/box/fluff", //VOREStation Edit,
 	"/obj/machinery",

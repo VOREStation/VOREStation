@@ -14,7 +14,7 @@
 /turf/template_noop,
 /area/submap/bonfire)
 "e" = (
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/orangejuice,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/bonfire)
 "f" = (

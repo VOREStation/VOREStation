@@ -1,5 +1,5 @@
 //Grown foods.
-/obj/item/reagent_containers/food/snacks/grown
+/obj/item/food/grown
 
 	name = "fruit"
 	icon = 'icons/obj/hydroponics_products.dmi'
@@ -16,7 +16,7 @@
 	special_handling = TRUE
 
 
-/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, var/planttype)
+/obj/item/food/grown/Initialize(mapload, var/planttype)
 	. = ..()
 
 	if(!dried_type)
@@ -63,7 +63,7 @@
 		if(seed.get_trait(TRAIT_STINGS))
 			force = 1
 
-/obj/item/reagent_containers/food/snacks/grown/proc/update_desc()
+/obj/item/food/grown/proc/update_desc()
 	if(!seed)
 		return
 
@@ -123,7 +123,7 @@
 		SSplants.product_descs["[seed.uid]"] = desc
 	desc += ". Delicious! Probably."
 
-/obj/item/reagent_containers/food/snacks/grown/update_icon()
+/obj/item/food/grown/update_icon()
 	if(!seed || !SSplants || !SSplants.plant_icon_cache)
 		return
 	cut_overlays()
@@ -143,7 +143,7 @@
 		SSplants.plant_icon_cache[icon_key] = plant_icon
 	add_overlay(plant_icon)
 
-/obj/item/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
+/obj/item/food/grown/Crossed(var/mob/living/M)
 	if(M.is_incorporeal())
 		return
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
@@ -166,11 +166,11 @@
 			qdel(src)
 			return
 
-/obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom)
+/obj/item/food/grown/throw_impact(atom/hit_atom)
 	if(seed) seed.thrown_at(src,hit_atom)
 	..()
 
-/obj/item/reagent_containers/food/snacks/grown/attackby(var/obj/item/W, var/mob/living/user)
+/obj/item/food/grown/attackby(var/obj/item/W, var/mob/living/user)
 
 	if(seed)
 		if(seed.get_trait(TRAIT_PRODUCES_POWER) && istype(W, /obj/item/stack/cable_coil))
@@ -215,32 +215,32 @@
 					return
 
 				if(seed.kitchen_tag == PLANT_SUNFLOWERS)
-					new /obj/item/reagent_containers/food/snacks/rawsunflower(get_turf(src))
+					new /obj/item/food/rawsunflower(get_turf(src))
 					to_chat(user, span_notice("You remove the seeds from the flower, slightly damaging them."))
 					qdel(src)
 					return
 
 				if(seed.kitchen_tag == PLANT_POTATO || !isnull(seed.chems[REAGENT_ID_POTATOJUICE]))
 					to_chat(user, span_filter_notice("You slice \the [src] into sticks."))
-					new /obj/item/reagent_containers/food/snacks/rawsticks(get_turf(src))
+					new /obj/item/food/rawsticks(get_turf(src))
 					qdel(src)
 					return
 
 				if(!isnull(seed.chems[REAGENT_ID_CARROTJUICE]))
 					to_chat(user, span_filter_notice("You slice \the [src] into sticks."))
-					new /obj/item/reagent_containers/food/snacks/carrotfries(get_turf(src))
+					new /obj/item/food/carrotfries(get_turf(src))
 					qdel(src)
 					return
 
 				if(!isnull(seed.chems[REAGENT_ID_PINEAPPLEJUICE]))
 					to_chat(user, span_filter_notice("You slice \the [src] into rings."))
-					new /obj/item/reagent_containers/food/snacks/pineapple_ring(get_turf(src))
+					new /obj/item/food/pineapple_ring(get_turf(src))
 					qdel(src)
 					return
 
 				if(!isnull(seed.chems[REAGENT_ID_SOYMILK]))
 					to_chat(user, span_filter_notice("You roughly chop up \the [src]."))
-					new /obj/item/reagent_containers/food/snacks/soydope(get_turf(src))
+					new /obj/item/food/soydope(get_turf(src))
 					qdel(src)
 					return
 
@@ -249,7 +249,7 @@
 					var/slices = rand(3,5)
 					var/reagents_to_transfer = round(reagents.total_volume/slices)
 					for(var/i=1; i<=slices; i++)
-						var/obj/item/reagent_containers/food/snacks/fruit_slice/F = new(get_turf(src),seed)
+						var/obj/item/food/fruit_slice/F = new(get_turf(src),seed)
 						if(reagents_to_transfer)
 							reagents.trans_to_obj(F,reagents_to_transfer)
 					qdel(src)
@@ -257,7 +257,7 @@
 
 	. = ..()
 
-/obj/item/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/food/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
 
 	if(seed && seed.get_trait(TRAIT_STINGS))
@@ -274,7 +274,7 @@
 				user.drop_from_inventory(src)
 			qdel(src)
 
-/obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
+/obj/item/food/grown/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
@@ -346,7 +346,7 @@
 				return
 	*/
 
-/obj/item/reagent_containers/food/snacks/grown/pickup(mob/user)
+/obj/item/food/grown/pickup(mob/user)
 	..()
 	if(!seed)
 		return
@@ -363,13 +363,13 @@
 
 // Predefined types for placing on the map.
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
+/obj/item/food/grown/mushroom/libertycap
 	plantname = PLANT_LIBERTYCAP
 
-/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
+/obj/item/food/grown/ambrosiavulgaris
 	plantname = PLANT_AMBROSIA
 
-/obj/item/reagent_containers/food/snacks/fruit_slice
+/obj/item/food/fruit_slice
 	name = "fruit slice"
 	desc = "A slice of some tasty fruit."
 	icon = 'icons/obj/hydroponics_misc.dmi'
@@ -377,7 +377,7 @@
 
 var/list/fruit_icon_cache = list()
 
-/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, var/datum/seed/S)
+/obj/item/food/fruit_slice/Initialize(mapload, var/datum/seed/S)
 	. = ..()
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))

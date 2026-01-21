@@ -98,14 +98,14 @@
 			C.loc = loc
 			playsound(src, W.usesound, 50, 1)
 
-	else if(istype(W, /obj/item/reagent_containers/glass) || istype(W, /obj/item/reagent_containers/food))
+	else if(istype(W, /obj/item/reagent_containers/glass) || isfood(W))
 		if(container)
 			to_chat(user, span_warning("There is already \a [container] on \the [src]!"))
 			return
 
 		var/obj/item/reagent_containers/RC = W
 
-		if(!accept_drinking && istype(RC,/obj/item/reagent_containers/food))
+		if(!accept_drinking && isfood(RC))
 			to_chat(user, span_warning("This machine only accepts beakers!"))
 			return
 

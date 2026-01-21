@@ -247,9 +247,9 @@
 	name = "Fish supply crate"
 	desc = "An assortment of seafood, kept on ice."
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/lobster = 6,
-			/obj/item/reagent_containers/food/snacks/cuttlefish = 8,
-			/obj/item/reagent_containers/food/snacks/sliceable/monkfish = 1
+			/obj/item/food/lobster = 6,
+			/obj/item/food/cuttlefish = 8,
+			/obj/item/food/sliceable/monkfish = 1
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
@@ -259,14 +259,14 @@
 	name = "Fennec treats crate"
 	desc = "Assorted treats fit for a fennec."
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/locust = 6,
+			/obj/item/food/locust = 6,
 			/obj/item/storage/box/wings/bucket = 2,
-			/obj/item/reagent_containers/food/snacks/grub_pink = 2,
-			/obj/item/reagent_containers/food/snacks/grub_blue = 2,
-			/obj/item/reagent_containers/food/snacks/grub_purple = 2,
-			/obj/item/reagent_containers/food/snacks/honey_candy = 4,
-			/obj/item/reagent_containers/food/snacks/scorpion = 4,
-			/obj/item/reagent_containers/food/snacks/ant = 4
+			/obj/item/food/grub_pink = 2,
+			/obj/item/food/grub_blue = 2,
+			/obj/item/food/grub_purple = 2,
+			/obj/item/food/honey_candy = 4,
+			/obj/item/food/scorpion = 4,
+			/obj/item/food/ant = 4
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/fennec

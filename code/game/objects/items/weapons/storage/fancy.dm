@@ -56,10 +56,10 @@
 	center_of_mass_y = 7
 	storage_slots = 12
 	can_hold = list(
-		/obj/item/reagent_containers/food/snacks/egg,
-		/obj/item/reagent_containers/food/snacks/boiledegg
+		/obj/item/food/egg,
+		/obj/item/food/boiledegg
 		)
-	starts_with = list(/obj/item/reagent_containers/food/snacks/egg = 12)
+	starts_with = list(/obj/item/food/egg = 12)
 
 /obj/item/storage/fancy/egg_box/Initialize(mapload)
 	if(!open_state)
@@ -231,8 +231,8 @@
 	max_storage_space = ITEMSIZE_COST_TINY * 6
 	max_w_class = ITEMSIZE_TINY
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/reagent_containers/food/snacks/cracker)
-	starts_with = list(/obj/item/reagent_containers/food/snacks/cracker = 6)
+	can_hold = list(/obj/item/food/cracker)
+	starts_with = list(/obj/item/food/cracker = 6)
 
 /*
  * Cigarette Pack
@@ -537,17 +537,17 @@
 	var/startswith = 6
 	max_storage_space = ITEMSIZE_COST_SMALL * 6
 	can_hold = list(
-		/obj/item/reagent_containers/food/snacks/chocolatepiece,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece/white,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece/truffle
+		/obj/item/food/chocolatepiece,
+		/obj/item/food/chocolatepiece/white,
+		/obj/item/food/chocolatepiece/truffle
 		)
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/chocolatepiece,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece/white,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece/white,
-		/obj/item/reagent_containers/food/snacks/chocolatepiece/truffle
+		/obj/item/food/chocolatepiece,
+		/obj/item/food/chocolatepiece,
+		/obj/item/food/chocolatepiece,
+		/obj/item/food/chocolatepiece/white,
+		/obj/item/food/chocolatepiece/white,
+		/obj/item/food/chocolatepiece/truffle
 	)
 
 /obj/item/storage/fancy/heartbox/Initialize(mapload)

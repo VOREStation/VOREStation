@@ -3238,12 +3238,12 @@
 	dir = 10
 	},
 /obj/structure/closet/crate/freezer/rations,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/floor/tiled,
 /area/tcommsat/cynosure/lounge)
 "Ju" = (

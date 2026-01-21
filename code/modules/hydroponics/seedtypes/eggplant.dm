@@ -28,4 +28,4 @@
 	kitchen_tag = PLANT_EGG_PLANT
 	mutants = null
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_EGG = list(3,12))
-	has_item_product = /obj/item/reagent_containers/food/snacks/egg/purple
+	has_item_product = /obj/item/food/egg/purple

@@ -3,7 +3,7 @@
 /turf/unsimulated/fake_space,
 /area/survivalpod/redspace)
 "b" = (
-/obj/item/reagent_containers/food/snacks/snackplanet/virgo3b,
+/obj/item/food/snackplanet/virgo3b,
 /turf/unsimulated/fake_space,
 /area/survivalpod/redspace)
 "e" = (
@@ -18,7 +18,7 @@
 /turf/unsimulated/fake_space,
 /area/survivalpod/redspace)
 "i" = (
-/obj/item/reagent_containers/food/snacks/snackplanet/virgoprime{
+/obj/item/food/snackplanet/virgoprime{
 	name = "Ringed planet"
 	},
 /turf/unsimulated/fake_space,
@@ -64,7 +64,7 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod/redspace)
 "P" = (
-/obj/item/reagent_containers/food/snacks/snackplanet/moon,
+/obj/item/food/snackplanet/moon,
 /turf/unsimulated/fake_space,
 /area/survivalpod/redspace)
 "R" = (

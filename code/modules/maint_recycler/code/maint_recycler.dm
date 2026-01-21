@@ -78,14 +78,14 @@
 		/obj/item/soap = 7,
 		/obj/item/aliencoin = 20,
 		/obj/item/card/emag_broken = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_high = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink = 15,
-		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow = 15, //nukies is epic but rare enough to warrant being recyclable.
+		/obj/item/food/drinks/cans/nukie_mega_sight = 15,
+		/obj/item/food/drinks/cans/nukie_mega_heart = 15,
+		/obj/item/food/drinks/cans/nukie_mega_sleep = 15,
+		/obj/item/food/drinks/cans/nukie_mega_shock = 15,
+		/obj/item/food/drinks/cans/nukie_mega_fast = 15,
+		/obj/item/food/drinks/cans/nukie_mega_high = 15,
+		/obj/item/food/drinks/cans/nukie_mega_shrink = 15,
+		/obj/item/food/drinks/cans/nukie_mega_grow = 15, //nukies is epic but rare enough to warrant being recyclable.
 		/obj/item/material/fishing_net/butterfly_net = 10
 	)
 

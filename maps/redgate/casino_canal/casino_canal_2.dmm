@@ -43,22 +43,22 @@
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "ah" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/structure/closet/walllocker_double/kitchen/north,
 /obj/item/storage/box/beakers{
@@ -74,11 +74,11 @@
 /area/redgate/underwater_casino/indoors/upper/hall)
 "aj" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = -10
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = -6
 	},
@@ -625,11 +625,11 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "bu" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = -10
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = -6
 	},
@@ -1406,7 +1406,7 @@
 /area/redgate/underwater_casino/indoors/upper/hall)
 "dv" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	pixel_x = -15
 	},
 /obj/item/material/kitchen/rollingpin{
@@ -2766,7 +2766,7 @@
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "he" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint{
+/obj/item/food/drinks/metaglass/metapint{
 	pixel_y = 6;
 	pixel_x = -5
 	},
@@ -4167,17 +4167,17 @@
 /area/redgate/underwater_casino/indoors/upper/entry)
 "sh" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
+/obj/item/food/carpmeat/fish,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/underwater_casino/indoors/upper/kitchen)
 "si" = (
@@ -5504,7 +5504,7 @@
 /area/redgate/underwater_casino/indoors/upper/casino/back)
 "LX" = (
 /obj/structure/table/darkglass,
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 11
 	},

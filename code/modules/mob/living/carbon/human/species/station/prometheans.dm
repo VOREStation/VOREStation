@@ -153,7 +153,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 							/obj/item/storage/toolbox/lunchbox/nymph,
 							/obj/item/storage/toolbox/lunchbox/syndicate))	//Only pick the empty types
 	var/obj/item/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
-	new /obj/item/reagent_containers/food/snacks/candy/proteinbar(L)
+	new /obj/item/food/candy/proteinbar(L)
 	new /obj/item/tool/prybar/red(L) //VOREStation Add,
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(L, slot_r_hand)

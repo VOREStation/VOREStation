@@ -128,7 +128,7 @@
 		CASINO_PRIZE("Magic eight ball", /obj/item/toy/eight_ball, 1, 100, "misc"),
 		CASINO_PRIZE("Foam sword", /obj/item/material/sword/foam, 1, 200, "misc"),
 		CASINO_PRIZE("Whistle", /obj/item/toy/bosunwhistle, 1, 100, "misc"),
-		CASINO_PRIZE("Golden cup", /obj/item/reagent_containers/food/drinks/golden_cup, 1, 250, "misc"),
+		CASINO_PRIZE("Golden cup", /obj/item/food/drinks/golden_cup, 1, 250, "misc"),
 		CASINO_PRIZE("Quality cigars", /obj/item/storage/fancy/cigar/havana, 1, 100, "misc"),
 		CASINO_PRIZE("Golden zippo lighter", /obj/item/flame/lighter/zippo/gold, 1, 100, "misc"),
 		CASINO_PRIZE("Candelabra", /obj/item/flame/candle/candelabra/everburn, 1, 400, "misc"),
@@ -155,14 +155,14 @@
 		CASINO_PRIZE("Instrument: Musical Moth (you monster)", /obj/item/instrument/musicalmoth, 1, 500, "misc"),
 	)
 	item_list["Drinks"] = list(
-		CASINO_PRIZE("Redeemer's brew", /obj/item/reagent_containers/food/drinks/bottle/redeemersbrew, 1, 150, "drinks"),
-		CASINO_PRIZE("Poison wine", /obj/item/reagent_containers/food/drinks/bottle/pwine, 1, 150, "drinks"),
-		CASINO_PRIZE(REAGENT_PATRON, /obj/item/reagent_containers/food/drinks/bottle/patron, 1, 150, "drinks"),
-		CASINO_PRIZE("Holy water", /obj/item/reagent_containers/food/drinks/bottle/holywater, 1, 150, "drinks"),
-		CASINO_PRIZE(REAGENT_GOLDSCHLAGER, /obj/item/reagent_containers/food/drinks/bottle/goldschlager, 1, 150, "drinks"),
-		CASINO_PRIZE(REAGENT_CHAMPAGNE, /obj/item/reagent_containers/food/drinks/bottle/champagne, 1, 150, "drinks"),
-		CASINO_PRIZE("Bottle of Nothing", /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing, 1, 150, "drinks"),
-		CASINO_PRIZE("Whiskey bliss", /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey, 1, 150, "drinks"),
+		CASINO_PRIZE("Redeemer's brew", /obj/item/food/drinks/bottle/redeemersbrew, 1, 150, "drinks"),
+		CASINO_PRIZE("Poison wine", /obj/item/food/drinks/bottle/pwine, 1, 150, "drinks"),
+		CASINO_PRIZE(REAGENT_PATRON, /obj/item/food/drinks/bottle/patron, 1, 150, "drinks"),
+		CASINO_PRIZE("Holy water", /obj/item/food/drinks/bottle/holywater, 1, 150, "drinks"),
+		CASINO_PRIZE(REAGENT_GOLDSCHLAGER, /obj/item/food/drinks/bottle/goldschlager, 1, 150, "drinks"),
+		CASINO_PRIZE(REAGENT_CHAMPAGNE, /obj/item/food/drinks/bottle/champagne, 1, 150, "drinks"),
+		CASINO_PRIZE("Bottle of Nothing", /obj/item/food/drinks/bottle/bottleofnothing, 1, 150, "drinks"),
+		CASINO_PRIZE("Whiskey bliss", /obj/item/food/drinks/bottle/specialwhiskey, 1, 150, "drinks"),
 	)
 	item_list["Pets"] = list(
 		CASINO_PRIZE("Cat", /obj/item/grenade/spawnergrenade/casino, 1, 700, "pets"),

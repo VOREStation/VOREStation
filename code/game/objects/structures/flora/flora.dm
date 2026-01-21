@@ -457,7 +457,7 @@
 	desc = "Hey, this one seems like a fun guy."
 	icon_state = "mush1"
 	icon = 'icons/obj/flora/mushrooms.dmi'
-	harvest_loot = list(/obj/item/reagent_containers/food/snacks/mushroomslice = 1)
+	harvest_loot = list(/obj/item/food/mushroomslice = 1)
 	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
@@ -530,7 +530,7 @@
 	light_color = "#FF6633"
 	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
-	harvest_loot = list(/obj/item/reagent_containers/food/snacks/grown/sif/cavebulbs = 1)
+	harvest_loot = list(/obj/item/food/grown/sif/cavebulbs = 1)
 	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
@@ -554,7 +554,7 @@
 	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
-	harvest_loot = list(/obj/item/reagent_containers/food/snacks/grown/sif/eyebulbs = 1)
+	harvest_loot = list(/obj/item/food/grown/sif/eyebulbs = 1)
 
 /obj/structure/flora/sif/eyes/Initialize(mapload)
 	icon_state = "[initial(icon_state)][rand(1,3)]"
@@ -578,9 +578,9 @@
 	max_harvests = 3
 	min_harvests = 0
 	harvest_loot = list(
-		/obj/item/reagent_containers/food/snacks/grown/sif/wabback = 15,
-		/obj/item/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
-		/obj/item/reagent_containers/food/snacks/grown/sif/wildwabback = 30
+		/obj/item/food/grown/sif/wabback = 15,
+		/obj/item/food/grown/sif/blackwabback = 1,
+		/obj/item/food/grown/sif/wildwabback = 30
 	)
 
 /obj/structure/flora/sif/tendrils/Initialize(mapload)
@@ -610,7 +610,7 @@
 	max_harvests = 2
 	min_harvests = 0
 	harvest_loot = list(
-		/obj/item/reagent_containers/food/snacks/frostbelle = 1
+		/obj/item/food/frostbelle = 1
 	)
 
 	var/variantnum = null

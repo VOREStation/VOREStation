@@ -68,14 +68,14 @@
 		BIOGEN_REAGENT("Milk x50", REAGENT_ID_MILK, 50, 95),
 		BIOGEN_REAGENT("Cream x10", REAGENT_ID_CREAM, 10, 30),
 		BIOGEN_REAGENT("Cream x50", REAGENT_ID_CREAM, 50, 120),
-		BIOGEN_ITEM("Slab of meat", /obj/item/reagent_containers/food/snacks/meat, 1, 50),
-		BIOGEN_ITEM("Slabs of meat x5", /obj/item/reagent_containers/food/snacks/meat, 5, 250),
+		BIOGEN_ITEM("Slab of meat", /obj/item/food/meat, 1, 50),
+		BIOGEN_ITEM("Slabs of meat x5", /obj/item/food/meat, 5, 250),
 	)
 	item_list["Cooking Ingredients"] = list(
 		BIOGEN_REAGENT("Universal Enzyme x10", REAGENT_ID_ENZYME, 10, 30),
 		BIOGEN_REAGENT("Universal Enzyme x50", REAGENT_ID_ENZYME, 50, 120),
-		BIOGEN_ITEM("Nutri-spread", /obj/item/reagent_containers/food/snacks/spreads, 1, 30),
-		BIOGEN_ITEM("Nutri-spread x5", /obj/item/reagent_containers/food/snacks/spreads, 5, 120),
+		BIOGEN_ITEM("Nutri-spread", /obj/item/food/spreads, 1, 30),
+		BIOGEN_ITEM("Nutri-spread x5", /obj/item/food/spreads, 5, 120),
 	)
 	item_list["Gardening Nutrients"] = list(
 		BIOGEN_ITEM("E-Z-Nutrient", /obj/item/reagent_containers/glass/bottle/eznutrient, 1, 60),
@@ -227,12 +227,12 @@
 		to_chat(user, span_notice("\The [src] is currently processing."))
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/i = 0
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/food/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, span_notice("\The [src] is already full! Activate it."))
 		else
-			for(var/obj/item/reagent_containers/food/snacks/grown/G in O.contents)
+			for(var/obj/item/food/grown/G in O.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
@@ -242,11 +242,11 @@
 				to_chat(user, span_notice("You empty \the [O] into \the [src]."))
 
 
-	else if(!istype(O, /obj/item/reagent_containers/food/snacks/grown))
+	else if(!istype(O, /obj/item/food/grown))
 		to_chat(user, span_notice("You cannot put this in \the [src]."))
 	else
 		var/i = 0
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/food/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, span_notice("\The [src] is full! Activate it."))
@@ -271,7 +271,7 @@
 		to_chat(user, span_notice("The biogenerator is in the process of working."))
 		return
 	var/S = 0
-	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
+	for(var/obj/item/food/grown/I in contents)
 		S += 5
 		if(I.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) < 0.1)
 			points += 1

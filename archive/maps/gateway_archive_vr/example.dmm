@@ -21,7 +21,7 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1;
-	
+
 	},
 /turf/simulated/floor,
 /area/awaymission/example)
@@ -32,7 +32,7 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1;
-	
+
 	},
 /turf/simulated/floor,
 /area/awaymission/example)
@@ -46,7 +46,7 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1;
-	
+
 	},
 /turf/simulated/floor,
 /area/awaymission/example)
@@ -106,7 +106,7 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1;
-	
+
 	},
 /obj/machinery/gateway/centeraway,
 /turf/simulated/floor,
@@ -163,7 +163,7 @@
 "ax" = (
 /obj/structure/cable{
 	icon_state = "0-4";
-	
+
 	},
 /turf/simulated/floor/plating,
 /area/awaymission/example)
@@ -623,7 +623,7 @@
 /area/awaymission/example)
 "bI" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/sodawater,
+/obj/item/food/drinks/sodawater,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -677,7 +677,7 @@
 /area/awaymission/example)
 "bO" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -719,7 +719,7 @@
 /area/awaymission/example)
 "bU" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/validsalad,
+/obj/item/food/validsalad,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},

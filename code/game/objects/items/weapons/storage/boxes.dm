@@ -104,7 +104,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/flashlight/glowstick,
-		/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+		/obj/item/food/candy/proteinbar,
 		/obj/item/clothing/mask/breath
 	)
 
@@ -299,43 +299,43 @@
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
 	icon_state = "condiment"
-	starts_with = list(/obj/item/reagent_containers/food/condiment = 7)
+	starts_with = list(/obj/item/food/condiment = 7)
 
 /obj/item/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
 	icon_state = "cups"
-	starts_with = list(/obj/item/reagent_containers/food/drinks/sillycup = 7)
+	starts_with = list(/obj/item/food/drinks/sillycup = 7)
 
 /obj/item/storage/box/buns
 	name = "box of bread buns"
 	desc = "Freshly baked at some point in the past few months."
 	icon_state = "bun_box"
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5
-	starts_with = list(/obj/item/reagent_containers/food/snacks/bun = 12)
+	starts_with = list(/obj/item/food/bun = 12)
 
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "monkeycubebox"
-	can_hold = list(/obj/item/reagent_containers/food/snacks/monkeycube)
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped = 4)
+	can_hold = list(/obj/item/food/monkeycube)
+	starts_with = list(/obj/item/food/monkeycube/wrapped = 4)
 
 /obj/item/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
 	desc = "Drymate brand farwa cubes, shipped from Meralar. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/farwacube = 4)
 
 /obj/item/storage/box/monkeycubes/stokcubes
 	name = "stok cube box"
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/stokcube = 4)
 
 /obj/item/storage/box/monkeycubes/neaeracubes
 	name = "neaera cube box"
 	desc = "Drymate brand neaera cubes, shipped from Qerr'balak. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/neaeracube = 4)
 
 // Pet cubes!
 /obj/item/storage/box/monkeycubes/pets
@@ -353,7 +353,7 @@
 			first = FALSE
 		else
 			desc += ", "
-		var/obj/item/reagent_containers/food/snacks/monkeycube/pet/wrapped/C = new(src)
+		var/obj/item/food/monkeycube/pet/wrapped/C = new(src)
 		C.name ="[pet] pet cube"
 		C.pet_path = pet_list[pet]
 		desc += "[pet]"
@@ -543,43 +543,43 @@
 	name = "box of donk-pockets"
 	desc = span_bold("Instructions:") + " " + span_italics("Heat in microwave. Product will cool if not eaten within seven minutes.")
 	icon_state = "donkpocketbox"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket = 7)
+	starts_with = list(/obj/item/food/donkpocket = 7)
 
 /obj/item/storage/box/donkpockets/spicy
 	name = "box of spicy-flavoured donk-pockets"
 	icon_state = "donkpocketboxspicy"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/spicy = 7)
+	starts_with = list(/obj/item/food/donkpocket/spicy = 7)
 
 /obj/item/storage/box/donkpockets/teriyaki
 	name = "box of teriyaki-flavoured donk-pockets"
 	icon_state = "donkpocketboxteriyaki"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/teriyaki = 7)
+	starts_with = list(/obj/item/food/donkpocket/teriyaki = 7)
 
 /obj/item/storage/box/donkpockets/pizza
 	name = "box of pizza-flavoured donk-pockets"
 	icon_state = "donkpocketboxpizza"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/pizza = 7)
+	starts_with = list(/obj/item/food/donkpocket/pizza = 7)
 
 /obj/item/storage/box/donkpockets/honk
 	name = "box of banana-flavoured donk-pockets"
 	icon_state = "donkpocketboxbanana"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/honk = 7)
+	starts_with = list(/obj/item/food/donkpocket/honk = 7)
 
 /obj/item/storage/box/donkpockets/gondola
 	name = "box of gondola-flavoured donk-pockets"
 	icon_state = "donkpocketboxgondola"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/gondola = 7)
+	starts_with = list(/obj/item/food/donkpocket/gondola = 7)
 
 /obj/item/storage/box/donkpockets/berry
 	name = "box of berry-flavoured donk-pockets"
 	icon_state = "donkpocketboxberry"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/berry = 7)
+	starts_with = list(/obj/item/food/donkpocket/berry = 7)
 
 /obj/item/storage/box/sinpockets
 	name = "box of sin-pockets"
 	desc = span_bold("Instructions:") + " " + span_italics("Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.")
 	icon_state = "donk_kit"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
+	starts_with = list(/obj/item/food/donkpocket/sinpocket = 7)
 
 /obj/item/storage/box/explorerkeys
 	name = "box of volunteer headsets"
@@ -613,15 +613,15 @@
 	name = "\improper BrainzSnax box"
 	icon_state = "brainzsnax_box"
 	desc = "A box designed to hold canned food. This one has BrainzSnax branding printed on it."
-	can_hold = list(/obj/item/reagent_containers/food/snacks/canned)
+	can_hold = list(/obj/item/food/canned)
 	max_storage_space = ITEMSIZE_COST_NORMAL * 6
-	starts_with = list(/obj/item/reagent_containers/food/snacks/canned/brainzsnax = 6)
+	starts_with = list(/obj/item/food/canned/brainzsnax = 6)
 
 /obj/item/storage/box/brainzsnax/red
-	starts_with = list(/obj/item/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
+	starts_with = list(/obj/item/food/canned/brainzsnax/red = 6)
 
 /obj/item/storage/box/freezer
-	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/glass, /obj/item/reagent_containers/food)
+	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/glass, /obj/item/food)
 
 /obj/item/storage/box/altevian_ammo
 	name = "SAM .48 ammo box"

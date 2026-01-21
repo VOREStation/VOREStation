@@ -171,10 +171,10 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	attack_sound = 'sound/weapons/slice.ogg'
 
 	tame_items = list(
-		/obj/item/reagent_containers/food/snacks/siffruit = 20,
-		/obj/item/reagent_containers/food/snacks/grown/sif/sifpod = 10,
-		/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat = 20,
-		/obj/item/reagent_containers/food/snacks/meat = 10
+		/obj/item/food/siffruit = 20,
+		/obj/item/food/grown/sif/sifpod = 10,
+		/obj/item/food/xenomeat/spidermeat = 20,
+		/obj/item/food/meat = 10
 	)
 
 	// Attack strings for swapping.

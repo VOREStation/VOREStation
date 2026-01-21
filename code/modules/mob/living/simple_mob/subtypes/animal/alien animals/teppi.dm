@@ -65,7 +65,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	health = 600
 	movement_cooldown = -1
 	meat_amount = 12
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	response_help = "pets"
 	response_disarm = "rudely paps"
@@ -505,7 +505,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(teppi_shear(user, O))
 			return
 	/////FOOD/////
-	if(istype(O, /obj/item/reagent_containers/food))
+	if(isfood(O))
 		if(resting)
 			to_chat(user, span_notice("\The [src] is napping, and doesn't respond to \the [O]."))
 			return

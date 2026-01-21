@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ah" = (
 /obj/item/stack/rods,
-/obj/item/reagent_containers/food/snacks/slice/vegetablepizza,
+/obj/item/food/slice/vegetablepizza,
 /turf/space/cracked_asteroid{
 	temperature = 2.7
 	},
@@ -139,7 +139,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/debrisfield/phoron_tanker)
 "li" = (
-/obj/item/reagent_containers/food/snacks/slice/vegetablepizza,
+/obj/item/food/slice/vegetablepizza,
 /turf/space/cracked_asteroid{
 	temperature = 2.7
 	},
@@ -231,7 +231,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "sY" = (
-/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/food/meat,
 /turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "ta" = (

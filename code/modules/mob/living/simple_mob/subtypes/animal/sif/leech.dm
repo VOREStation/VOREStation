@@ -477,7 +477,7 @@
 
 	else if(istype(A, /obj/item))
 		var/obj/item/I = A
-		if(istype(I, /obj/item/reagent_containers/food/snacks))
+		if(isfood(I))
 			holder.a_intent = I_HURT
 	else
 		holder.a_intent = I_HURT

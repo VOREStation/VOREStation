@@ -74,7 +74,7 @@
 /area/awaymission/wwmines)
 "as" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/simulated/floor/carpet/turcarpet,
 /area/awaymission/wwmines)
 "at" = (
@@ -99,12 +99,12 @@
 /area/awaymission/wwmines)
 "ax" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/food/drinks/bottle/whiskey,
 /turf/simulated/floor/carpet/turcarpet,
 /area/awaymission/wwmines)
 "ay" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
+/obj/item/food/drinks/glass2/shot,
 /turf/simulated/floor/carpet/turcarpet,
 /area/awaymission/wwmines)
 "az" = (
@@ -115,9 +115,9 @@
 /area/awaymission/wwmines)
 "aA" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
+/obj/item/food/drinks/glass2/shot,
+/obj/item/food/drinks/glass2/shot,
+/obj/item/food/drinks/glass2/shot,
 /turf/simulated/floor/carpet/turcarpet,
 /area/awaymission/wwmines)
 "aB" = (
@@ -190,12 +190,12 @@
 /area/awaymission/wwmines)
 "aM" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/fruitsalad,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/meat,
+/obj/item/food/fruitsalad,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "aN" = (

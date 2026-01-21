@@ -42,7 +42,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/clothing/mask/gas/half,
 				prob(4);/obj/item/clothing/mask/breath,
 				prob(2);/obj/item/reagent_containers/glass/rag,
-				prob(4);/obj/item/reagent_containers/food/snacks/liquidfood,
+				prob(4);/obj/item/food/liquidfood,
 				prob(2);/obj/item/storage/secure/briefcase,
 				prob(4);/obj/item/storage/briefcase,
 				prob(5);/obj/item/storage/backpack,

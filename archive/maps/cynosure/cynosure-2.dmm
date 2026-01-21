@@ -4427,7 +4427,7 @@
 /area/surface/station/medical/ward)
 "cgM" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/food/drinks/britcup,
+/obj/item/food/drinks/britcup,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/medical/hallway/gnd)
 "cgV" = (
@@ -8842,11 +8842,11 @@
 	dir = 9
 	},
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = 2
 	},
-/obj/item/reagent_containers/food/condiment/small/peppershaker{
+/obj/item/food/condiment/small/peppershaker{
 	pixel_x = -4
 	},
 /obj/item/toy/xmastree{
@@ -10168,7 +10168,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/food/mint,
 /obj/item/packageWrap,
 /obj/item/reagent_containers/dropper,
 /obj/item/deskbell,
@@ -12269,7 +12269,7 @@
 	pixel_y = -11
 	},
 /obj/item/nullrod,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/food/drinks/bottle/holywater,
 /turf/simulated/floor/lino,
 /area/surface/station/chapel/office)
 "fOW" = (
@@ -13054,7 +13054,7 @@
 /obj/structure/table/marble,
 /obj/item/storage/box/donkpockets,
 /obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "gnA" = (
@@ -20822,7 +20822,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/reagentgrinder,
 /obj/item/packageWrap,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /obj/structure/sign/securearea{
 	desc = "Under the painting a plaque reads: 'Pun Pun I'";
 	icon_state = "monkey_painting";
@@ -25514,7 +25514,7 @@
 "mmg" = (
 /obj/structure/table/marble,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /obj/item/storage/box/glasses/coffeemug,
 /obj/item/storage/box/glasses/coffeecup{
 	pixel_x = 2;
@@ -29453,10 +29453,10 @@
 	dir = 4
 	},
 /obj/item/book/manual/chef_recipes,
-/obj/item/reagent_containers/food/condiment/small/peppershaker{
+/obj/item/food/condiment/small/peppershaker{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = 2
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -33061,7 +33061,7 @@
 	name = "Medical Reception";
 	req_access = list(5)
 	},
-/obj/item/reagent_containers/food/drinks/britcup,
+/obj/item/food/drinks/britcup,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/reception)
 "pzA" = (
@@ -48031,7 +48031,7 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped,
+/obj/item/food/cube/monkeycube/wrapped,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/xenobiology)
 "wOs" = (
@@ -49839,8 +49839,8 @@
 /area/surface/station/hydroponics)
 "xHq" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/barflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /obj/item/flame/lighter/zippo,
 /obj/item/reagent_containers/glass/rag,
 /obj/item/deskbell,

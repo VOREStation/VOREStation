@@ -142,7 +142,7 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		if(targetitem.unacidable || targetitem.throwing || targetitem.is_incorporeal() || !targetitem)
 			return FALSE
 		var/food = FALSE
-		if(istype(targetitem,/obj/item/reagent_containers/food))
+		if(isfood(targetitem))
 			food = TRUE
 		if(prob(95))	//Give people a chance to pick them up
 			return TRUE

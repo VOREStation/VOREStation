@@ -105,7 +105,7 @@
 	new /obj/item/fluff/id_kit_ivy(src)
 	new /obj/item/storage/fancy/cigarettes/dromedaryco(src)
 	new /obj/item/storage/box/matches(src)
-	new /obj/item/reagent_containers/food/snacks/sliceable/plaincake(src)
+	new /obj/item/food/sliceable/plaincake(src)
 
 // jemli:Cirra Mayhem
 /obj/item/storage/box/fluff/cirra
@@ -125,7 +125,7 @@
 		/obj/item/fluff/id_kit_mime,
 		/obj/item/clothing/gloves/white,
 		/obj/item/clothing/head/beret,
-		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing,
+		/obj/item/food/drinks/bottle/bottleofnothing,
 		/obj/item/clothing/shoes/black,
 		/*/obj/item/toy/crayon/mime*/) //Need to track down the code for crayons before adding this back in
 
@@ -326,19 +326,19 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 /obj/item/storage/box/monkeycubes/sobakacubes
 	name = "sobaka cube box"
 	desc = "Drymate brand sobaka cubes. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/sobakacube = 4)
 
 /obj/item/storage/box/monkeycubes/sarucubes
 	name = "saru cube box"
 	desc = "Drymate brand saru cubes. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/sarucube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/sarucube = 4)
 
 /obj/item/storage/box/monkeycubes/sparracubes
 	name = "sparra cube box"
 	desc = "Drymate brand sparra cubes. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/sparracube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/sparracube = 4)
 
 /obj/item/storage/box/monkeycubes/wolpincubes
 	name = "wolpin cube box"
 	desc = "Drymate brand wolpin cubes. Just add water!"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube = 4)
+	starts_with = list(/obj/item/food/monkeycube/wrapped/wolpincube = 4)

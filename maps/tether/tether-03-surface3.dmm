@@ -691,7 +691,7 @@
 /area/tether/surfacebase/outside/outside3)
 "abe" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/obj/item/food/drinks/bottle/tequila,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/medsec_maintenance)
 "abf" = (
@@ -805,7 +805,7 @@
 /obj/random/maintenance/medical,
 /obj/random/maintenance/clean,
 /obj/random/junk,
-/obj/item/reagent_containers/food/drinks/bottle/rum{
+/obj/item/food/drinks/bottle/rum{
 	desc = "TASTE DEMOCRACY";
 	name = "Managed Democra-cider"
 	},
@@ -1193,7 +1193,7 @@
 /area/maintenance/lower/medsec_maintenance)
 "abS" = (
 /obj/structure/table/steel,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	desc = "Taste liberty";
 	name = "Cup of Liber-tea"
 	},
@@ -11278,10 +11278,10 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /obj/machinery/door/blast/gate/thin{
@@ -11655,7 +11655,7 @@
 /obj/item/storage/photo_album{
 	pixel_y = -10
 	},
-/obj/item/reagent_containers/food/drinks/flask{
+/obj/item/food/drinks/flask{
 	pixel_x = 8
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -11665,7 +11665,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/reagent_containers/food/drinks/bottle/carnoth,
+/obj/item/food/drinks/bottle/carnoth,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "atv" = (
@@ -11823,10 +11823,10 @@
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/standard,
 /obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -14266,7 +14266,7 @@
 "axY" = (
 /obj/structure/table/woodentable,
 /obj/structure/disposalpipe/segment,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
@@ -21420,10 +21420,10 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/door/blast/gate/thin{
@@ -24925,12 +24925,12 @@
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped,
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped,
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped,
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped,
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped,
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped,
+/obj/item/food/monkeycube/wrapped,
+/obj/item/food/monkeycube/wrapped,
+/obj/item/food/monkeycube/wrapped,
+/obj/item/food/monkeycube/wrapped,
+/obj/item/food/monkeycube/wrapped,
+/obj/item/food/monkeycube/wrapped,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 22
@@ -28570,7 +28570,7 @@
 /area/tether/surfacebase/bar_backroom)
 "aXR" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
@@ -28671,7 +28671,7 @@
 /area/vacant/vacant_shop)
 "aYa" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/food/drinks/bottle/orangejuice,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
@@ -30072,10 +30072,10 @@
 	icon_state = "4-8"
 	},
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -31482,7 +31482,7 @@
 	pixel_x = 1;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/food/mint,
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
@@ -31704,10 +31704,10 @@
 /area/tether/surfacebase/bar_backroom)
 "bdv" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
@@ -33587,7 +33587,7 @@
 	pixel_y = 4
 	},
 /obj/item/radio/off,
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/food/drinks/flask/barflask{
 	pixel_x = -9;
 	pixel_y = -2
 	},
@@ -33614,7 +33614,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /obj/machinery/door/blast/gate/thin{
 	dir = 8;
 	id = "poolbar";
@@ -45447,10 +45447,10 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/door/blast/gate/thin{

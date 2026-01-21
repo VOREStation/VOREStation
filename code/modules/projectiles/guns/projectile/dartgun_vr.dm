@@ -32,5 +32,5 @@
 /obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	..()
 	if(blocked < 2)
-		if(istype(target, /obj/item/reagent_containers/food) || istype(target, /obj/item/slime_extract))
+		if(isfood(target) || istype(target, /obj/item/slime_extract))
 			reagents.trans_to_obj(target, reagent_amount)

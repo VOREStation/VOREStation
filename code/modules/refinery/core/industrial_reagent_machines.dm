@@ -54,8 +54,8 @@
 		update_icon()
 		return
 	if(reagents && (istype(O,/obj/item/reagent_containers/glass) || \
-		istype(O,/obj/item/reagent_containers/food/drinks/glass2) || \
-		istype(O,/obj/item/reagent_containers/food/drinks/shaker)))
+		istype(O,/obj/item/food/drinks/glass2) || \
+		istype(O,/obj/item/food/drinks/shaker)))
 		// Transfer FROM internal beaker to this.
 		if (reagents.total_volume <= 0)
 			to_chat(usr,"\The [src] is empty. There is nothing to drain into \the [O].")

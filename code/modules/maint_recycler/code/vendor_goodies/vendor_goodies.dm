@@ -128,12 +128,12 @@
 		/obj/item/toy/mecha/fivestars = 1
 	)
 
-/obj/item/reagent_containers/food/snacks/packaged/vendburger/ancient
+/obj/item/food/packaged/vendburger/ancient
 	name = "dubious packaged burger"
 	desc = "God weeps. you flew too close to the sun. the plastic is yellowed. the bun is nearly entirely a whiteish-bluish-greenish mess. This abomination is probably sapient at this point, no doubt older than most of the station. you didn't even think twice. your wax wings are melting. it's over. you're falling. and the burger remains, as accursed as it is. this is your fault. you unleashed it from it's damnable prison. Pandora's box has been opened, and the only thing inside was this burger."
 	nutriment_desc = list("regret. regret. regret.")
 
-/obj/item/reagent_containers/food/snacks/packaged/vendburger/ancient/Initialize(mapload)
+/obj/item/food/packaged/vendburger/ancient/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_MOLD, 5) //entirely mold by volume
 	reagents.add_reagent(REAGENT_ID_SALMONELLA, 5) //don't ask where the chicken came from.

@@ -142,7 +142,7 @@
 			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
-		new /obj/item/reagent_containers/food/snacks/egg/roiz(get_turf(src))
+		new /obj/item/food/egg/roiz(get_turf(src))
 
 		var/index = rand(0,3)
 
@@ -211,7 +211,7 @@
 			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
-		new /obj/item/reagent_containers/food/snacks/egg/roiz(get_turf(src))
+		new /obj/item/food/egg/roiz(get_turf(src))
 
 		var/index = rand(0,3)
 
@@ -280,7 +280,7 @@
 			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
-		new /obj/item/reagent_containers/food/snacks/egg/teshari(get_turf(src))
+		new /obj/item/food/egg/teshari(get_turf(src))
 
 		var/index = rand(0,3)
 
@@ -298,7 +298,7 @@
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
-/obj/item/reagent_containers/food/snacks/egg/teshari
+/obj/item/food/egg/teshari
 	name = "teshari egg"
 	desc = "It's a large teshari egg."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -306,12 +306,12 @@
 	filling_color = "#FDFFD1"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/egg/teshari/Initialize(mapload)
+/obj/item/food/egg/teshari/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_EGG, 10)
 	bitesize = 2
 
-/obj/item/reagent_containers/food/snacks/egg/teshari/tesh2
+/obj/item/food/egg/teshari/tesh2
 	icon_state = "tesh_egg_2"
 
 //Konabird: Rischi
@@ -365,7 +365,7 @@
 			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
-		new /obj/item/reagent_containers/food/snacks/egg/teshari/tesh2(get_turf(src))
+		new /obj/item/food/egg/teshari/tesh2(get_turf(src))
 
 		var/index = rand(0,3)
 
@@ -401,7 +401,7 @@
 */
 //Egg item
 //-------------
-/obj/item/reagent_containers/food/snacks/egg/roiz
+/obj/item/food/egg/roiz
 	name = "lizard egg"
 	desc = "It's a large lizard egg."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -409,12 +409,12 @@
 	filling_color = "#FDFFD1"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/egg/roiz/Initialize(mapload)
+/obj/item/food/egg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_EGG, 9)
 	bitesize = 2
 
-/obj/item/reagent_containers/food/snacks/egg/roiz/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/food/egg/roiz/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype( W, /obj/item/pen/crayon ))
 		var/obj/item/pen/crayon/C = W
 		var/clr = C.colourName
@@ -432,31 +432,31 @@
 	else
 		..()
 
-/obj/item/reagent_containers/food/snacks/friedegg/roiz
+/obj/item/food/friedegg/roiz
 	name = "fried lizard egg"
 	desc = "A large, fried lizard egg, with a touch of salt and pepper. It looks rather chewy."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "friedegg"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/friedegg/roiz/Initialize(mapload)
+/obj/item/food/friedegg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 9)
 	bitesize = 2
 
-/obj/item/reagent_containers/food/snacks/boiledegg/roiz
+/obj/item/food/boiledegg/roiz
 	name = "boiled lizard egg"
 	desc = "A hard boiled lizard egg. Be careful, a lizard detective may hatch!"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "egg_roiz"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/boiledegg/roiz/Initialize(mapload)
+/obj/item/food/boiledegg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	bitesize = 2
 
-/obj/item/reagent_containers/food/snacks/chocolateegg/roiz
+/obj/item/food/chocolateegg/roiz
 	name = "chocolate lizard egg"
 	desc = "Such huge, sweet, fattening food. You feel gluttonous just looking at it."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -466,7 +466,7 @@
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 5)
 	volume = 18
 
-/obj/item/reagent_containers/food/snacks/chocolateegg/roiz/Initialize(mapload)
+/obj/item/food/chocolateegg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SUGAR, 6)
 	reagents.add_reagent(REAGENT_ID_COCO, 6)
@@ -516,7 +516,7 @@
 			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
-		new /obj/item/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
+		new /obj/item/food/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
 
 		var/index = rand(0,3)
 
@@ -534,13 +534,13 @@
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
-/obj/item/reagent_containers/food/snacks/egg/roiz/evian
+/obj/item/food/egg/roiz/evian
 	name = "dragon egg"
 	desc = "A quite large dragon egg!"
 	icon_state = "egg_roiz_yellow"
 
 
-/obj/item/reagent_containers/food/snacks/egg/roiz/evian/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/food/egg/roiz/evian/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype( W, /obj/item/pen/crayon)) //No coloring these ones!
 		return
 	else

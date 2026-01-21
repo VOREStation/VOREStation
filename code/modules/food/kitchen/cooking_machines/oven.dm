@@ -30,15 +30,15 @@
 	tgui_id = "CookingOven"
 
 	output_options = list(
-		"Pizza" = /obj/item/reagent_containers/food/snacks/variable/pizza,
-		"Bread" = /obj/item/reagent_containers/food/snacks/variable/bread,
-		"Pie" = /obj/item/reagent_containers/food/snacks/variable/pie,
-		"Cake" = /obj/item/reagent_containers/food/snacks/variable/cake,
-		"Hot Pocket" = /obj/item/reagent_containers/food/snacks/variable/pocket,
-		"Kebab" = /obj/item/reagent_containers/food/snacks/variable/kebab,
-		"Waffles" = /obj/item/reagent_containers/food/snacks/variable/waffles,
-		"Cookie" = /obj/item/reagent_containers/food/snacks/variable/cookie,
-		"Donut" = /obj/item/reagent_containers/food/snacks/variable/donut,
+		"Pizza" = /obj/item/food/variable/pizza,
+		"Bread" = /obj/item/food/variable/bread,
+		"Pie" = /obj/item/food/variable/pie,
+		"Cake" = /obj/item/food/variable/cake,
+		"Hot Pocket" = /obj/item/food/variable/pocket,
+		"Kebab" = /obj/item/food/variable/kebab,
+		"Waffles" = /obj/item/food/variable/waffles,
+		"Cookie" = /obj/item/food/variable/cookie,
+		"Donut" = /obj/item/food/variable/donut,
 		)
 
 /obj/machinery/appliance/cooker/oven/Initialize(mapload)

@@ -349,12 +349,12 @@
 /area/redgate/laserdome/lobby/spaceview_lounge)
 "dLr" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/snacks/chickenfillet,
-/obj/item/reagent_containers/food/snacks/chickenfillet,
-/obj/item/reagent_containers/food/snacks/chickenfillet,
-/obj/item/reagent_containers/food/snacks/chickenfillet,
-/obj/item/reagent_containers/food/snacks/chickenfillet,
-/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/food/chickenfillet,
+/obj/item/food/chickenfillet,
+/obj/item/food/chickenfillet,
+/obj/item/food/chickenfillet,
+/obj/item/food/chickenfillet,
+/obj/item/food/chickenfillet,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "dPZ" = (
@@ -520,12 +520,12 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "fsP" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/food/cheeseburger,
+/obj/item/food/cheeseburger,
+/obj/item/food/cheeseburger,
+/obj/item/food/cheeseburger,
+/obj/item/food/cheeseburger,
+/obj/item/food/cheeseburger,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "fxa" = (
@@ -940,11 +940,11 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "iVw" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -1214,14 +1214,14 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "lgv" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/food/mint,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "lpp" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/snacks/fries,
-/obj/item/reagent_containers/food/snacks/fries,
-/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "lDM" = (
@@ -1451,14 +1451,14 @@
 /area/redgate/laserdome/arena/hyperball)
 "nVx" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/sugar,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/sugar,
+/obj/item/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 4
 	},

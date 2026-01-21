@@ -98,8 +98,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 /obj/item/storage/bible/booze/Initialize(mapload)
 	. = ..()
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-		/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+		/obj/item/food/drinks/bottle/small/beer,
+		/obj/item/food/drinks/bottle/small/beer,
 		/obj/item/spacecash/c100,
 		/obj/item/spacecash/c100,
 		/obj/item/spacecash/c100

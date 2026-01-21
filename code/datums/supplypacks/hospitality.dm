@@ -13,16 +13,16 @@
 	contains = list(
 			/obj/item/storage/box/mixedglasses = 2,
 			/obj/item/storage/box/glasses/square,
-			/obj/item/reagent_containers/food/drinks/shaker,
-			/obj/item/reagent_containers/food/drinks/flask/barflask,
-			/obj/item/reagent_containers/food/drinks/bottle/patron,
-			/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
-			/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
-			/obj/item/reagent_containers/food/drinks/bottle/jager,
+			/obj/item/food/drinks/shaker,
+			/obj/item/food/drinks/flask/barflask,
+			/obj/item/food/drinks/bottle/patron,
+			/obj/item/food/drinks/bottle/goldschlager,
+			/obj/item/food/drinks/bottle/specialwhiskey,
+			/obj/item/food/drinks/bottle/jager,
 			/obj/item/storage/fancy/cigarettes/dromedaryco,
 			/obj/item/lipstick/random,
-			/obj/item/reagent_containers/food/drinks/bottle/small/ale = 2,
-			/obj/item/reagent_containers/food/drinks/bottle/small/beer = 4,
+			/obj/item/food/drinks/bottle/small/ale = 2,
+			/obj/item/food/drinks/bottle/small/beer = 4,
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
@@ -42,7 +42,7 @@
 			/obj/item/storage/box/glasses/mug,
 			/obj/item/storage/box/glasses/meta,
 			/obj/item/storage/box/glasses/meta/metapint,
-			/obj/item/reagent_containers/food/drinks/shaker,
+			/obj/item/food/drinks/shaker,
 			/obj/item/storage/box/glass_extras/straws,
 			/obj/item/storage/box/glass_extras/sticks
 			)
@@ -108,7 +108,7 @@
 	name = "Holy water crate"
 	desc = "Three flasks of genuine Holy water, guaranteed to have been blessed by at least one ordained priest."
 	contains = list(
-		/obj/item/reagent_containers/food/drinks/bottle/holywater = 3
+		/obj/item/food/drinks/bottle/holywater = 3
 		)
 	cost = 15
 	containertype = /obj/structure/closet/crate/gilthari
@@ -121,11 +121,11 @@
 	num_contained = 5
 	desc = "A random selection of burgers and/or fries."
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/bigbiteburger,
-			/obj/item/reagent_containers/food/snacks/cheeseburger,
-			/obj/item/reagent_containers/food/snacks/jellyburger,
-			/obj/item/reagent_containers/food/snacks/tofuburger,
-			/obj/item/reagent_containers/food/snacks/fries
+			/obj/item/food/bigbiteburger,
+			/obj/item/food/cheeseburger,
+			/obj/item/food/jellyburger,
+			/obj/item/food/tofuburger,
+			/obj/item/food/fries
 			)
 	name = "Burger crate"
 	cost = 25
@@ -135,23 +135,23 @@
 /datum/supply_pack/randomised/hospitality/bakery_vr
 	num_contained = 5
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/baguette,
-			/obj/item/reagent_containers/food/snacks/appletart,
-			/obj/item/reagent_containers/food/snacks/berrymuffin,
-			/obj/item/reagent_containers/food/snacks/bunbun,
-			/obj/item/reagent_containers/food/snacks/cherrypie,
-			/obj/item/reagent_containers/food/snacks/cookie,
-			/obj/item/reagent_containers/food/snacks/croissant,
-			/obj/item/reagent_containers/food/snacks/donut/normal,
-			/obj/item/reagent_containers/food/snacks/donut/jelly,
-			/obj/item/reagent_containers/food/snacks/donut/cherryjelly,
-			/obj/item/reagent_containers/food/snacks/muffin,
-			/obj/item/reagent_containers/food/snacks/pie,
-			/obj/item/reagent_containers/food/snacks/plump_pie,
-			/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit,
-			/obj/item/reagent_containers/food/snacks/poppypretzel,
-			/obj/item/reagent_containers/food/snacks/sugarcookie,
-			/obj/item/reagent_containers/food/snacks/waffles
+			/obj/item/food/baguette,
+			/obj/item/food/appletart,
+			/obj/item/food/berrymuffin,
+			/obj/item/food/bunbun,
+			/obj/item/food/cherrypie,
+			/obj/item/food/cookie,
+			/obj/item/food/croissant,
+			/obj/item/food/donut/normal,
+			/obj/item/food/donut/jelly,
+			/obj/item/food/donut/cherryjelly,
+			/obj/item/food/muffin,
+			/obj/item/food/pie,
+			/obj/item/food/plump_pie,
+			/obj/item/food/plumphelmetbiscuit,
+			/obj/item/food/poppypretzel,
+			/obj/item/food/sugarcookie,
+			/obj/item/food/waffles
 			)
 	name = "Bakery products crate"
 	cost = 25
@@ -161,15 +161,15 @@
 /datum/supply_pack/randomised/hospitality/cakes_vr
 	num_contained = 2
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/sliceable/applecake,
-			/obj/item/reagent_containers/food/snacks/sliceable/birthdaycake,
-			/obj/item/reagent_containers/food/snacks/sliceable/carrotcake,
-			/obj/item/reagent_containers/food/snacks/sliceable/cheesecake,
-			/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake,
-			/obj/item/reagent_containers/food/snacks/sliceable/lemoncake,
-			/obj/item/reagent_containers/food/snacks/sliceable/limecake,
-			/obj/item/reagent_containers/food/snacks/sliceable/orangecake,
-			/obj/item/reagent_containers/food/snacks/sliceable/plaincake
+			/obj/item/food/sliceable/applecake,
+			/obj/item/food/sliceable/birthdaycake,
+			/obj/item/food/sliceable/carrotcake,
+			/obj/item/food/sliceable/cheesecake,
+			/obj/item/food/sliceable/chocolatecake,
+			/obj/item/food/sliceable/lemoncake,
+			/obj/item/food/sliceable/limecake,
+			/obj/item/food/sliceable/orangecake,
+			/obj/item/food/sliceable/plaincake
 			)
 	name = "Cake crate"
 	cost = 100
@@ -179,10 +179,10 @@
 /datum/supply_pack/randomised/hospitality/mexican_vr
 	num_contained = 5
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/cheeseburrito,
-			/obj/item/reagent_containers/food/snacks/enchiladas,
-			/obj/item/reagent_containers/food/snacks/meatburrito,
-			/obj/item/reagent_containers/food/snacks/taco
+			/obj/item/food/cheeseburrito,
+			/obj/item/food/enchiladas,
+			/obj/item/food/meatburrito,
+			/obj/item/food/taco
 			)
 	name = "Mexican takeout crate"
 	cost = 50
@@ -192,8 +192,8 @@
 /datum/supply_pack/randomised/hospitality/asian_vr
 	num_contained = 5
 	contains = list(
-			/obj/item/reagent_containers/food/snacks/generalschicken,
-			/obj/item/reagent_containers/food/snacks/hotandsoursoup
+			/obj/item/food/generalschicken,
+			/obj/item/food/hotandsoursoup
 			)
 	name = "Chinese takeout crate"
 	desc = "Classic chinese-style takeout, a Terran staple throughout much of the 21st century."

@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 	melee_damage_upper = 1
 
 	meat_amount = 1
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/grubmeat
+	meat_type = /obj/item/food/meat/grubmeat
 	butchery_loot = list()		// No hides
 
 	faction = FACTION_GRUBS

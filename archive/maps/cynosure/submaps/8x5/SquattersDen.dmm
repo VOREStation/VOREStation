@@ -58,7 +58,7 @@
 /area/template_noop)
 "L" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle{
+/obj/item/food/drinks/cans/waterbottle{
 	pixel_x = 6;
 	pixel_y = 12
 	},
@@ -90,7 +90,7 @@
 "Y" = (
 /obj/structure/table/standard,
 /obj/random/snack,
-/obj/item/reagent_containers/food/drinks/dry_ramen{
+/obj/item/food/drinks/dry_ramen{
 	pixel_x = -6;
 	pixel_y = 6
 	},

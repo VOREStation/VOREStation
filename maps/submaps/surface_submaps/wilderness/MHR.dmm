@@ -56,7 +56,7 @@
 	},
 /area/submap/MHR)
 "m" = (
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
+/obj/item/food/xenomeat/spidermeat,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},

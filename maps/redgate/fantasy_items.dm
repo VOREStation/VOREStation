@@ -315,8 +315,8 @@
 		return 0
 
 	else if(istype(O,/obj/item/reagent_containers/glass) || \
-			istype(O,/obj/item/reagent_containers/food/drinks) || \
-			istype(O,/obj/item/reagent_containers/food/condiment) \
+			isdrink(O) || \
+			istype(O,/obj/item/food/condiment) \
 		)
 		if (!O.reagents)
 			return 1

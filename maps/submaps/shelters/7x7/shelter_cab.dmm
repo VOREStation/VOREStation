@@ -10,11 +10,11 @@
 /area/survivalpod)
 "f" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = -4
 	},
 /turf/simulated/floor/wood,
@@ -24,8 +24,8 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/obj/item/reagent_containers/food/snacks/pastatomato,
-/obj/item/reagent_containers/food/snacks/pastatomato,
+/obj/item/food/pastatomato,
+/obj/item/food/pastatomato,
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "u" = (

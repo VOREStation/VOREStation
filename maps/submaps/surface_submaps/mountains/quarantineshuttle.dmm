@@ -124,7 +124,7 @@
 "as" = (
 /obj/machinery/vending/snack{
 	contraband = null;
-	products = list(/obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/snacks/packaged/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/tastybread = 0, /obj/item/reagent_containers/food/snacks/skrellsnacks = 0)
+	products = list(/obj/item/food/candy = 0, /obj/item/food/drinks/dry_ramen = 0, /obj/item/food/chips = 0, /obj/item/food/sosjerky = 0, /obj/item/food/no_raisin = 0, /obj/item/food/packaged/spacetwinkie = 0, /obj/item/food/cheesiehonkers = 0, /obj/item/food/tastybread = 0, /obj/item/food/skrellsnacks = 0)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
@@ -133,7 +133,7 @@
 "at" = (
 /obj/machinery/vending/cola{
 	contraband = null;
-	products = list(/obj/item/reagent_containers/food/drinks/cans/cola = 0, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/reagent_containers/food/drinks/cans/gingerale = 0)
+	products = list(/obj/item/food/drinks/cans/cola = 0, /obj/item/food/drinks/cans/space_mountain_wind = 0, /obj/item/food/drinks/cans/dr_gibb = 0, /obj/item/food/drinks/cans/starkist = 0, /obj/item/food/drinks/cans/waterbottle = 0, /obj/item/food/drinks/cans/space_up = 0, /obj/item/food/drinks/cans/iced_tea = 0, /obj/item/food/drinks/cans/grape_juice = 0, /obj/item/food/drinks/cans/gingerale = 0)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
@@ -204,7 +204,7 @@
 "aE" = (
 /obj/item/trash/sosjerky,
 /obj/item/storage/box/donut/empty,
-/obj/item/reagent_containers/food/drinks/sillycup,
+/obj/item/food/drinks/sillycup,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},

@@ -7,11 +7,11 @@
 	req_access = list(ACCESS_KITCHEN)
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/condiment/carton/flour = 6,
-		/obj/item/reagent_containers/food/condiment/carton/sugar = 1,
-		/obj/item/reagent_containers/food/condiment/carton/flour/rustic = 1,
-		/obj/item/reagent_containers/food/condiment/carton/sugar/rustic = 1,
-		/obj/item/reagent_containers/food/condiment/spacespice = 2
+		/obj/item/food/condiment/carton/flour = 6,
+		/obj/item/food/condiment/carton/sugar = 1,
+		/obj/item/food/condiment/carton/flour/rustic = 1,
+		/obj/item/food/condiment/carton/sugar/rustic = 1,
+		/obj/item/food/condiment/spacespice = 2
 		)
 
 	open_sound = 'sound/machines/click.ogg'
@@ -28,7 +28,7 @@
 	closet_appearance = null
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/meat/monkey = 10)
+		/obj/item/food/meat/monkey = 10)
 
 
 /obj/structure/closet/secure_closet/freezer/fridge
@@ -38,8 +38,8 @@
 	closet_appearance = null
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/milk = 6,
-		/obj/item/reagent_containers/food/drinks/soymilk = 4,
+		/obj/item/food/drinks/milk = 6,
+		/obj/item/food/drinks/soymilk = 4,
 		/obj/item/storage/fancy/egg_box = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose = 2)
 

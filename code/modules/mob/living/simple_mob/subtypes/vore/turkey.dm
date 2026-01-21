@@ -14,7 +14,7 @@
 	health = 25
 
 	meat_amount = 1
-	meat_type = /obj/item/reagent_containers/food/snacks/rawturkey
+	meat_type = /obj/item/food/rawturkey
 	name_the_meat = FALSE
 
 	response_help = "pats"

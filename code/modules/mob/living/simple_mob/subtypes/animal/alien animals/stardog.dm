@@ -1347,7 +1347,7 @@
 
 /obj/effect/dog_teleporter/food_gobbler/Crossed(atom/movable/AM)
 
-	if(istype(AM, /obj/item/reagent_containers/food))
+	if(isfood(AM))
 		gobble_food(AM)
 	else return	..()
 
@@ -1456,7 +1456,7 @@
 		if(I.unacidable || I.throwing || I.is_incorporeal())
 			return FALSE
 		var/food = FALSE
-		if(istype(I,/obj/item/reagent_containers/food))
+		if(isfood(I))
 			food = TRUE
 		if(prob(95))	//Give people a chance to pick them up
 			return TRUE

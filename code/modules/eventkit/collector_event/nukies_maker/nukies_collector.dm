@@ -16,7 +16,7 @@
 	wait_between_items = 1 MINUTE
 	need_recipe_in_order = TRUE
 
-	type_to_spawn_on_complete = /obj/item/reagent_containers/food/drinks/cans/nukie_one
+	type_to_spawn_on_complete = /obj/item/food/drinks/cans/nukie_one
 
 /obj/structure/event_collector/update_icon()
 	. = ..()

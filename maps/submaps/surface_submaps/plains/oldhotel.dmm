@@ -135,8 +135,8 @@
 /area/submap/oldhotel)
 "kW" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /turf/simulated/floor/wood/virgo3b,
@@ -314,7 +314,7 @@
 "wV" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "wX" = (

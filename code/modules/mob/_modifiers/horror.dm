@@ -296,7 +296,7 @@ var/static/list/redspace_areas = list (
 		O.color = "#760b0b"
 		O.add_autopsy_data("ANOMALOUS FLESH GROWTH", 3)
 		O.decays = FALSE
-		O.meat_type = /obj/item/reagent_containers/food/snacks/meat/worm //It turns into 'weird meat' with the desc of 'A chunk of pulsating meat'
+		O.meat_type = /obj/item/food/meat/worm //It turns into 'weird meat' with the desc of 'A chunk of pulsating meat'
 		O.can_reject = FALSE
 */
 

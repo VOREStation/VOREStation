@@ -5,17 +5,17 @@ RSF
 */
 
 GLOBAL_LIST_INIT(robot_glass_options, list(
-		"metamorphic glass" = /obj/item/reagent_containers/food/drinks/metaglass,
-		"metamorphic pint glass" = /obj/item/reagent_containers/food/drinks/metaglass/metapint,
-		"half-pint glass" = /obj/item/reagent_containers/food/drinks/glass2/square,
-		"rocks glass" = /obj/item/reagent_containers/food/drinks/glass2/rocks,
-		"milkshake glass" = /obj/item/reagent_containers/food/drinks/glass2/shake,
-		"cocktail glass" = /obj/item/reagent_containers/food/drinks/glass2/cocktail,
-		"shot glass" = /obj/item/reagent_containers/food/drinks/glass2/shot,
-		"pint glass" = /obj/item/reagent_containers/food/drinks/glass2/pint,
-		"mug" = /obj/item/reagent_containers/food/drinks/glass2/mug,
-		"wine glass" = /obj/item/reagent_containers/food/drinks/glass2/wine,
-		"condiment bottle" = /obj/item/reagent_containers/food/condiment
+		"metamorphic glass" = /obj/item/food/drinks/metaglass,
+		"metamorphic pint glass" = /obj/item/food/drinks/metaglass/metapint,
+		"half-pint glass" = /obj/item/food/drinks/glass2/square,
+		"rocks glass" = /obj/item/food/drinks/glass2/rocks,
+		"milkshake glass" = /obj/item/food/drinks/glass2/shake,
+		"cocktail glass" = /obj/item/food/drinks/glass2/cocktail,
+		"shot glass" = /obj/item/food/drinks/glass2/shot,
+		"pint glass" = /obj/item/food/drinks/glass2/pint,
+		"mug" = /obj/item/food/drinks/glass2/mug,
+		"wine glass" = /obj/item/food/drinks/glass2/wine,
+		"condiment bottle" = /obj/item/food/condiment
 		))
 
 /obj/item/rsf

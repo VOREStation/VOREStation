@@ -684,7 +684,7 @@
 /obj/structure/closet{
 	name = "Prisoner's Locker"
 	},
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
 /obj/item/clothing/suit/storage/apron/overalls,
 /turf/simulated/floor/tiled,
 /area/surface/station/security/prison)
@@ -4559,8 +4559,8 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/item/reagent_containers/food/snacks/cheesiehonkers,
-/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind,
+/obj/item/food/cheesiehonkers,
+/obj/item/food/drinks/cans/space_mountain_wind,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
@@ -7627,7 +7627,7 @@
 /obj/structure/table/wooden_reinforced,
 /obj/item/storage/box/matches,
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana,
-/obj/item/reagent_containers/food/drinks/flask,
+/obj/item/food/drinks/flask,
 /obj/random_multi/single_item/captains_spare_id,
 /obj/item/material/ashtray/bronze,
 /turf/simulated/floor/carpet,
@@ -21591,7 +21591,7 @@
 /obj/item/paicard,
 /obj/item/tape/random,
 /obj/item/taperecorder,
-/obj/item/reagent_containers/food/drinks/jar,
+/obj/item/food/drinks/jar,
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -23383,7 +23383,7 @@
 	pixel_y = 10
 	},
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/britcup{
+/obj/item/food/drinks/britcup{
 	pixel_x = 10;
 	pixel_y = -2
 	},
@@ -29279,7 +29279,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/drinks/britcup,
+/obj/item/food/drinks/britcup,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/office)
 "tUU" = (

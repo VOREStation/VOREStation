@@ -8,7 +8,7 @@
 /area/template_noop)
 "bv" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+/obj/item/food/drinks/drinkingglass/shotglass{
 	pixel_x = 11
 	},
 /turf/simulated/floor/lino,
@@ -264,7 +264,7 @@
 /obj/machinery/newscaster{
 	pixel_y = 26
 	},
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/food/drinks/flask/barflask{
 	pixel_x = -4;
 	pixel_y = 8
 	},
@@ -454,7 +454,7 @@
 /area/template_noop)
 "Xi" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/lino,
 /area/template_noop)
 "Xn" = (
@@ -493,7 +493,7 @@
 	poster_decl = /decl/poster/bay_27
 	},
 /obj/random/drinkbottle,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+/obj/item/food/drinks/drinkingglass/shotglass{
 	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/dark,

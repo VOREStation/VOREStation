@@ -51,14 +51,14 @@
 				number_of_times = rand(3,10)
 				complete_quest = "[chosen_one] [number_of_times] [chosen_two]!"
 			if("Drink")
-				var/list/drink_list = typesof(/obj/item/reagent_containers/food/drinks)
-				var/obj/item/reagent_containers/food/drinks/pick_drink = pick(drink_list)
+				var/list/drink_list = typesof(/obj/item/food/drinks)
+				var/obj/item/food/drinks/pick_drink = pick(drink_list)
 				chosen_two = pick_drink.name
 				number_of_times = rand(2,6)
 				complete_quest = "[chosen_one] [number_of_times] [chosen_two]s!"
 			if("Eat")
-				var/list/snack_list = typesof(/obj/item/reagent_containers/food/snacks)
-				var/obj/item/reagent_containers/food/snacks/pick_snack = pick(snack_list)
+				var/list/snack_list = typesof(/obj/item/food)
+				var/obj/item/food/pick_snack = pick(snack_list)
 				chosen_two = pick_snack.name
 				number_of_times = rand(2,6)
 				complete_quest = "[chosen_one] [number_of_times] [chosen_two]s!"

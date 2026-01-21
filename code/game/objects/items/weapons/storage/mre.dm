@@ -158,8 +158,8 @@ MRE Stuff
 	starts_with = list(
 	/obj/item/storage/mrebag/menu10,
 	/obj/item/storage/mrebag/menu10,
-	/obj/item/reagent_containers/food/snacks/candy/proteinbar,
-	/obj/item/reagent_containers/food/condiment/small/packet/protein,
+	/obj/item/food/candy/proteinbar,
+	/obj/item/food/condiment/small/packet/protein,
 	/obj/random/mre/sauce/sugarfree,
 	/obj/item/material/kitchen/utensil/spoon/plastic
 	)
@@ -169,12 +169,12 @@ MRE Stuff
 	meal_desc = "This one is menu 11, nutriment paste. Only for emergencies."
 	icon_state = "crayonmre"
 	starts_with = list(
-	/obj/item/reagent_containers/food/snacks/liquidfood,
-	/obj/item/reagent_containers/food/snacks/liquidfood,
-	/obj/item/reagent_containers/food/snacks/liquidfood,
-	/obj/item/reagent_containers/food/snacks/liquidfood,
-	/obj/item/reagent_containers/food/snacks/liquidprotein,
-	/obj/item/reagent_containers/food/snacks/liquidprotein,
+	/obj/item/food/liquidfood,
+	/obj/item/food/liquidfood,
+	/obj/item/food/liquidfood,
+	/obj/item/food/liquidfood,
+	/obj/item/food/liquidprotein,
+	/obj/item/food/liquidprotein,
 	)
 
 /obj/item/storage/mre/menu12
@@ -194,10 +194,10 @@ MRE Stuff
 	meal_desc = "This one is menu 13, vitamin paste & dessert. Only for emergencies."
 	icon_state = "crayonmre"
 	starts_with = list(
-	/obj/item/reagent_containers/food/snacks/liquidvitamin,
-	/obj/item/reagent_containers/food/snacks/liquidvitamin,
-	/obj/item/reagent_containers/food/snacks/liquidvitamin,
-	/obj/item/reagent_containers/food/snacks/liquidprotein,
+	/obj/item/food/liquidvitamin,
+	/obj/item/food/liquidvitamin,
+	/obj/item/food/liquidvitamin,
+	/obj/item/food/liquidprotein,
 	/obj/random/mre/drink,
 	/obj/item/storage/mrebag/dessert,
 	/obj/item/material/kitchen/utensil/spoon/plastic
@@ -225,7 +225,7 @@ MRE Stuff
 	w_class = ITEMSIZE_SMALL
 	max_w_class = ITEMSIZE_SMALL
 	var/opened = FALSE
-	starts_with = list(/obj/item/reagent_containers/food/snacks/slice/meatpizza/filled)
+	starts_with = list(/obj/item/food/slice/meatpizza/filled)
 	special_handling = TRUE
 
 /obj/item/storage/mrebag/Initialize(mapload)
@@ -250,31 +250,31 @@ MRE Stuff
 	. = ..()
 
 /obj/item/storage/mrebag/menu2
-	starts_with = list(/obj/item/reagent_containers/food/snacks/slice/margherita/filled)
+	starts_with = list(/obj/item/food/slice/margherita/filled)
 
 /obj/item/storage/mrebag/menu3
-	starts_with = list(/obj/item/reagent_containers/food/snacks/slice/vegetablepizza/filled)
+	starts_with = list(/obj/item/food/slice/vegetablepizza/filled)
 
 /obj/item/storage/mrebag/menu4
-	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeyburger)
+	starts_with = list(/obj/item/food/monkeyburger)
 
 /obj/item/storage/mrebag/menu5
-	starts_with = list(/obj/item/reagent_containers/food/snacks/taco)
+	starts_with = list(/obj/item/food/taco)
 
 /obj/item/storage/mrebag/menu6
-	starts_with = list(/obj/item/reagent_containers/food/snacks/slice/meatbread/filled)
+	starts_with = list(/obj/item/food/slice/meatbread/filled)
 
 /obj/item/storage/mrebag/menu7
-	starts_with = list(/obj/item/reagent_containers/food/snacks/tossedsalad)
+	starts_with = list(/obj/item/food/tossedsalad)
 
 /obj/item/storage/mrebag/menu8
-	starts_with = list(/obj/item/reagent_containers/food/snacks/hotchili)
+	starts_with = list(/obj/item/food/hotchili)
 
 /obj/item/storage/mrebag/menu9
-	starts_with = list(/obj/item/reagent_containers/food/snacks/boiledrice)
+	starts_with = list(/obj/item/food/boiledrice)
 
 /obj/item/storage/mrebag/menu10
-	starts_with = list(/obj/item/reagent_containers/food/snacks/meatcube)
+	starts_with = list(/obj/item/food/meatcube)
 
 /obj/item/storage/mrebag/side
 	name = "side dish"
@@ -283,7 +283,7 @@ MRE Stuff
 	starts_with = list(/obj/random/mre/side)
 
 /obj/item/storage/mrebag/side/menu10
-	starts_with = list(/obj/item/reagent_containers/food/snacks/meatcube)
+	starts_with = list(/obj/item/food/meatcube)
 
 /obj/item/storage/mrebag/dessert
 	name = "dessert"
@@ -292,7 +292,7 @@ MRE Stuff
 	starts_with = list(/obj/random/mre/dessert)
 
 /obj/item/storage/mrebag/dessert/menu9
-	starts_with = list(/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit)
+	starts_with = list(/obj/item/food/plumphelmetbiscuit)
 
 /obj/item/storage/mrebag/dessert/menu11
 	starts_with = list(/obj/item/pen/crayon/rainbow)
@@ -328,10 +328,10 @@ MRE Stuff
 
 	name = "[initial(name)] ([entree])"
 
-	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, entree)
-	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, side)
-	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, snack)
-	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, desert)
+	new /obj/item/food/tgmc_mre_component(src, entree)
+	new /obj/item/food/tgmc_mre_component(src, side)
+	new /obj/item/food/tgmc_mre_component(src, snack)
+	new /obj/item/food/tgmc_mre_component(src, desert)
 	new /obj/random/mre/drink(src)
 
 /obj/item/storage/box/tgmc_mre/remove_from_storage()
@@ -345,24 +345,24 @@ MRE Stuff
 		icon_state = "tgmc_mre_opened"
 
 // The sneaky food-looks-like-a-package items
-/obj/item/reagent_containers/food/snacks/tgmc_mre_component
+/obj/item/food/tgmc_mre_component
 	name = "\improper MRE component"
 	package = TRUE
 	bitesize = 1
 	icon_state = "tgmcmre_entree"
 	var/flavor = "boneless pork ribs"
 
-/obj/item/reagent_containers/food/snacks/tgmc_mre_component/Initialize(mapload, newflavor)
+/obj/item/food/tgmc_mre_component/Initialize(mapload, newflavor)
 	determinetype(newflavor)
 	desc = "A packaged [flavor] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back."
 	. = ..()
 
-/obj/item/reagent_containers/food/snacks/tgmc_mre_component/unpackage(mob/user as mob)
+/obj/item/food/tgmc_mre_component/unpackage(mob/user as mob)
 	. = ..()
 	name = "\improper" + flavor
 	desc = "The contents of a standard issue CRS MRE. This one is " + flavor + "."
 
-/obj/item/reagent_containers/food/snacks/tgmc_mre_component/proc/determinetype(newflavor)
+/obj/item/food/tgmc_mre_component/proc/determinetype(newflavor)
 	name = "\improper MRE component" + " (" + newflavor + ")"
 	flavor = newflavor
 	var/static/tastes = list("something scrumptious","nothing","the usual grub","something mediocre","hell","heaven","tentalization","disgust","dog food","cat food","fish food","recycled pizza","junk","trash","rubbish","sawdust","nutraloafs","gourmand food","gourmet food","moistness","squalidness","old grub","actually good food","bleach","soap","sand","synthetic grub","blandness","prison food","Discount Dan's","Discount Dan's Special","Discount Dan's leftovers","yesterday leftovers","microwaved leftovers","leftovers","UPP rations","uncooked grub","overcooked grub","not-so-bad grub","pinapple pizza flavored grub","mystery food","burnt food","frozen food","lukewarm food","rancidness","processed grub","crunchiness","faux meat","something false","low-calorie food","high-carb food","transfat-free food","gluten-free food","delictableness","acid","mintiness","sauciness","saltiness","extreme saltiness","spiced grub","crispness","questionable grub","something untastable","bitterness","savoriness","sourness","sweetness","umami","chewing gum","shoe polish","the jungle","indigestion","oldberries","butter","lard","oil","grass","cough syrup","water","iron","rubber","lead","bronze","wood","paper","plastic","kevlar","cloth","buckshot","gunpowder","black powder","petroleum","gasoline","diesel","biofuel","paint","jelly","slime","sludge","tofu","dietetic food","counterfeit food","grossness","dryness","tartiness","cryogenic juice","the secret ingredient","the ninth element","compressed matter","deep-fried food","double-fried food","a culinary apocalypse","experimental post-modern cuisine","a disaster","muckiness","mustard","mordant","citruses","crayon dust")
@@ -372,19 +372,19 @@ MRE Stuff
 		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 			icon_state = "tgmcmre_entree"
 			nutriment_amt = 5
-			starts_with = list(REAGENT_ID_SODIUMCHLORIDE = 1)
+			food_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
 		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
 			icon_state = "tgmcmre_side"
 			nutriment_amt = 3
-			starts_with = list(REAGENT_ID_SODIUMCHLORIDE= 1)
+			food_reagents = list(REAGENT_ID_SODIUMCHLORIDE= 1)
 		if("biscuit", "pretzels", "peanuts", "cracker")
 			icon_state = "tgmcmre_snack"
 			nutriment_amt = 2
-			starts_with = list(REAGENT_ID_SODIUMCHLORIDE = 1)
+			food_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
 		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar")
 			icon_state = "tgmcmre_dessert"
 			nutriment_amt = 2
-			starts_with = list(REAGENT_ID_SUGAR = 1)
+			food_reagents = list(REAGENT_ID_SUGAR = 1)
 
 	package_open_state = "tgmcmre_[flavor]"
 	nutriment_desc = list("[new_taste]" = nutriment_amt)

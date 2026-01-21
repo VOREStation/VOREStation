@@ -553,33 +553,33 @@
 /area/redgate/islands/piratecave)
 "lk" = (
 /obj/structure/closet/walllocker_double/kitchen/west,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/glass2/carafe,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/glass2/carafe,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
+/obj/item/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/bar)
 "lq" = (
@@ -631,18 +631,18 @@
 /area/redgate/islands/robotics)
 "lW" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
+/obj/item/food/bigbiteburger,
 /obj/item/clothing/under/pants/khaki,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/mess)
@@ -919,7 +919,7 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/piratecave)
 "sF" = (
-/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/food/packaged/vendhotdog,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "sH" = (
@@ -1282,7 +1282,7 @@
 /turf/simulated/wall/cult,
 /area/redgate/islands/cult)
 "zE" = (
-/obj/item/reagent_containers/food/snacks/old/hotdog,
+/obj/item/food/old/hotdog,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "zK" = (
@@ -1507,7 +1507,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "DW" = (
-/obj/item/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/food/packaged/meatration,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/underwatercave)
 "DZ" = (
@@ -1620,7 +1620,7 @@
 /area/redgate/islands/underwatercave)
 "Gv" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/bar)
 "Gz" = (
@@ -2524,7 +2524,7 @@
 /area/redgate/islands/bar)
 "XZ" = (
 /obj/structure/table/gold,
-/obj/item/reagent_containers/food/drinks/golden_cup,
+/obj/item/food/drinks/golden_cup,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "Yd" = (

@@ -703,21 +703,21 @@
 "bu" = (
 /obj/structure/table/darkglass,
 /obj/machinery/atmospherics/pipe/vent,
-/obj/item/reagent_containers/food/snacks/bagelsunflower,
-/obj/item/reagent_containers/food/snacks/applepie,
-/obj/item/reagent_containers/food/snacks/carrotfries,
-/obj/item/reagent_containers/food/snacks/cube/nutriment,
-/obj/item/reagent_containers/food/snacks/cube/protein,
-/obj/item/reagent_containers/food/snacks/cube/protein,
-/obj/item/reagent_containers/food/snacks/cube/protein,
-/obj/item/reagent_containers/food/snacks/cracker,
+/obj/item/food/bagelsunflower,
+/obj/item/food/applepie,
+/obj/item/food/carrotfries,
+/obj/item/food/cube/nutriment,
+/obj/item/food/cube/protein,
+/obj/item/food/cube/protein,
+/obj/item/food/cube/protein,
+/obj/item/food/cracker,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/shuttle/curabitur/curashuttle/med)
 "bv" = (
 /obj/structure/table/darkglass,
-/obj/item/reagent_containers/food/snacks/bangersandmash,
-/obj/item/reagent_containers/food/snacks/candiedapple,
-/obj/item/reagent_containers/food/snacks/chickenwing,
+/obj/item/food/bangersandmash,
+/obj/item/food/candiedapple,
+/obj/item/food/chickenwing,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/shuttle/curabitur/curashuttle/med)
 "bw" = (

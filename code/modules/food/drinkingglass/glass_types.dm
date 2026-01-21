@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/glass2/square
+/obj/item/food/drinks/glass2/square
 	name = "half-pint glass"
 	base_name = "glass"
 	base_icon = "square"
@@ -10,7 +10,7 @@
 	rim_pos = list(23,13,20) // y, x0, x1
 	matter = list(MAT_GLASS = 60)
 
-/obj/item/reagent_containers/food/drinks/glass2/rocks
+/obj/item/food/drinks/glass2/rocks
 	name = "rocks glass"
 	base_name = "glass"
 	base_icon = "rocks"
@@ -21,7 +21,7 @@
 	rim_pos = list(21, 10, 23)
 	matter = list(MAT_GLASS = 40)
 
-/obj/item/reagent_containers/food/drinks/glass2/shake
+/obj/item/food/drinks/glass2/shake
 	name = "milkshake glass"
 	base_name = "glass"
 	base_icon = "shake"
@@ -32,7 +32,7 @@
 	rim_pos = list(25, 13, 21)
 	matter = list(MAT_GLASS = 30)
 
-/obj/item/reagent_containers/food/drinks/glass2/cocktail
+/obj/item/food/drinks/glass2/cocktail
 	name = "cocktail glass"
 	base_name = "glass"
 	base_icon = "cocktail"
@@ -43,7 +43,7 @@
 	rim_pos = list(22, 13, 21)
 	matter = list(MAT_GLASS = 30)
 
-/obj/item/reagent_containers/food/drinks/glass2/shot
+/obj/item/food/drinks/glass2/shot
 	name = "shot glass"
 	base_name = "shot"
 	base_icon = "shot"
@@ -54,7 +54,7 @@
 	rim_pos = list(17, 13, 21)
 	matter = list(MAT_GLASS = 10)
 
-/obj/item/reagent_containers/food/drinks/glass2/pint
+/obj/item/food/drinks/glass2/pint
 	name = "pint glass"
 	base_name = "pint"
 	base_icon = "pint"
@@ -65,7 +65,7 @@
 	rim_pos = list(25, 12, 21)
 	matter = list(MAT_GLASS = 120)
 
-/obj/item/reagent_containers/food/drinks/glass2/mug
+/obj/item/food/drinks/glass2/mug
 	name = "glass mug"
 	base_name = "mug"
 	base_icon = "mug"
@@ -76,7 +76,7 @@
 	rim_pos = list(22, 12, 20)
 	matter = list(MAT_GLASS = 80)
 
-/obj/item/reagent_containers/food/drinks/glass2/wine
+/obj/item/food/drinks/glass2/wine
 	name = "wine glass"
 	base_name = "glass"
 	base_icon = "wine"

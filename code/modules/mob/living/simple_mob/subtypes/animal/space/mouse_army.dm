@@ -55,7 +55,7 @@
 	has_langs = list("Mouse")
 
 	holder_type = /obj/item/holder/mouse
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	say_list_type = /datum/say_list/mouse
 

@@ -377,14 +377,14 @@
 /area/submap/debrisfield/sci_overrun)
 "bq" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/monkeycube,
-/obj/item/reagent_containers/food/snacks/monkeycube/farwacube,
-/obj/item/reagent_containers/food/snacks/monkeycube/neaeracube,
-/obj/item/reagent_containers/food/snacks/monkeycube/sarucube,
-/obj/item/reagent_containers/food/snacks/monkeycube/sobakacube,
-/obj/item/reagent_containers/food/snacks/monkeycube/sparracube,
-/obj/item/reagent_containers/food/snacks/monkeycube/stokcube,
-/obj/item/reagent_containers/food/snacks/monkeycube/wolpincube,
+/obj/item/food/monkeycube,
+/obj/item/food/monkeycube/farwacube,
+/obj/item/food/monkeycube/neaeracube,
+/obj/item/food/monkeycube/sarucube,
+/obj/item/food/monkeycube/sobakacube,
+/obj/item/food/monkeycube/sparracube,
+/obj/item/food/monkeycube/stokcube,
+/obj/item/food/monkeycube/wolpincube,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "br" = (

@@ -910,7 +910,7 @@
 /area/awaymission/spacebattle/cruiser)
 "cE" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/food/sausage,
 /turf/simulated/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -918,7 +918,7 @@
 /area/awaymission/spacebattle/cruiser)
 "cF" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /turf/simulated/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -1022,7 +1022,7 @@
 /area/awaymission/spacebattle/cruiser)
 "cW" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/food/fries,
 /turf/simulated/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -1030,7 +1030,7 @@
 /area/awaymission/spacebattle/cruiser)
 "cX" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/food/stew,
 /turf/simulated/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -1357,7 +1357,7 @@
 /area/awaymission/spacebattle/cruiser)
 "dU" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/food/condiment/peppermill,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1736,7 +1736,7 @@
 /area/awaymission/spacebattle/cruiser)
 "eY" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/food/condiment/saltshaker,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},

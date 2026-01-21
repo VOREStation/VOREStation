@@ -58,7 +58,7 @@
 
 /datum/alt_title/intern_sec
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut/plain = 200,
+		/obj/item/food/donut/plain = 200,
 		/obj/item/poster/custom = 200,
 		/obj/item/ticket_printer = 200,
 		/obj/item/holowarrant = 200,
@@ -89,8 +89,8 @@
 		/obj/item/tray = 200,
 		/obj/item/material/kitchen/utensil/fork = 200,
 		/obj/item/material/knife/plastic = 200,
-		/obj/item/reagent_containers/food/snacks/tofu = 200,
-		/obj/item/reagent_containers/food/snacks/candy_corn = 200,
+		/obj/item/food/tofu = 200,
+		/obj/item/food/candy_corn = 200,
 	)
 
 /datum/alt_title/assistant
@@ -182,7 +182,7 @@
 
 /datum/job/bartender
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/drinks/metaglass/metapint = 300,
+		/obj/item/food/drinks/metaglass/metapint = 300,
 		/obj/item/reagent_containers/glass/bottle/nothing = 250,
 		/obj/item/reagent_containers/glass/bottle/gelatin = 250,
 		/obj/item/stack/material/uranium = 150,
@@ -193,20 +193,20 @@
 
 /datum/alt_title/barista
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/drinks/metaglass/metapint = 300,
+		/obj/item/food/drinks/metaglass/metapint = 300,
 		/obj/item/reagent_containers/glass/bottle/gelatin = 225,
-		/obj/item/reagent_containers/food/drinks/smallmilk = 225,
+		/obj/item/food/drinks/smallmilk = 225,
 		/obj/item/reagent_containers/glass/bottle/cinnamonpowder = 100,
-		/obj/item/reagent_containers/food/drinks/teapot = 100,
+		/obj/item/food/drinks/teapot = 100,
 		/obj/item/reagent_containers/chem_disp_cartridge/gelatin = 50,
 	)
 
 /datum/job/chef
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/condiment/soysauce = 250,
-		/obj/item/reagent_containers/food/drinks/smallmilk = 250,
+		/obj/item/food/condiment/soysauce = 250,
+		/obj/item/food/drinks/smallmilk = 250,
 		/obj/item/reagent_containers/glass/bottle/cakebatter = 200,
-		/obj/item/reagent_containers/food/snacks/cuttlefish = 200,
+		/obj/item/food/cuttlefish = 200,
 		/obj/item/reagent_containers/glass/bottle/cinnamonpowder = 100
 	)
 	mail_color = COMMS_COLOR_SERVICE
@@ -248,7 +248,7 @@
 		/obj/item/book/codex/lore/robutt = 95,
 		/obj/item/book/codex/lore/news = 95,
 		/obj/item/pen/fountain3 = 50,
-		/obj/item/reagent_containers/food/snacks/egg = 10
+		/obj/item/food/egg = 10
 	)
 	mail_color = COMMS_COLOR_SERVICE
 
@@ -283,14 +283,14 @@
 		/obj/item/soap/rainbow_soap = 100,
 		/obj/item/reagent_containers/spray/waterflower = 100,
 		/obj/item/reagent_containers/glass/bottle/lube = 100,
-		/obj/item/reagent_containers/food/snacks/pie = 100
+		/obj/item/food/pie = 100
 	)
 
 /datum/alt_title/mime
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/drinks/bottle/wine = 250,
+		/obj/item/food/drinks/bottle/wine = 250,
 		/obj/item/reagent_containers/glass/bottle/nothing = 250,
-		/obj/item/reagent_containers/food/snacks/baguette = 200,
+		/obj/item/food/baguette = 200,
 		/obj/item/pen/crayon/mime = 200
 	)
 /datum/job/entrepreneur // Same for these guys! What could they get?
@@ -322,8 +322,8 @@
 
 /datum/job/captain
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey = 250,
-		/obj/item/reagent_containers/food/drinks/bottle/champagne = 250,
+		/obj/item/food/drinks/bottle/specialwhiskey = 250,
+		/obj/item/food/drinks/bottle/champagne = 250,
 		/obj/item/storage/fancy/cigar/havana = 250,
 		/obj/item/form_printer = 200,
 		/obj/item/pen/fountain6 = 50
@@ -541,7 +541,7 @@
 
 /datum/job/geneticist
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/monkeycube = 600,
+		/obj/item/food/monkeycube = 600,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/toxin = 200,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/purity = 200,
 	)
@@ -607,7 +607,7 @@
 
 /datum/job/xenobiologist
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/monkeycube = 780,
+		/obj/item/food/monkeycube = 780,
 		/obj/item/clothing/head/helmet = 100,
 		/obj/item/melee/baton/slime = 100,
 		/obj/item/xenobio/monkey_gun = 20
@@ -650,7 +650,7 @@
 
 /datum/job/hos
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut/homer = 200,
+		/obj/item/food/donut/homer = 200,
 		/obj/item/clothing/mask/smokable/cigarette/cigar/havana = 165,
 		/obj/item/grenade/concussion = 150,
 		/obj/item/grenade/chem_grenade/teargas = 125,
@@ -666,7 +666,7 @@
 
 /datum/job/warden
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut/homer = 250,
+		/obj/item/food/donut/homer = 250,
 		/obj/item/clothing/mask/smokable/cigarette/cigar/havana = 165,
 		/obj/item/grenade/concussion = 150,
 		/obj/item/grenade/chem_grenade/teargas = 150,
@@ -682,7 +682,7 @@
 	mail_goodies = list(
 		/obj/item/storage/box/matches = 200,
 		/obj/item/storage/fancy/cigarettes = 100,
-		/obj/item/reagent_containers/food/drinks/bottle/whiskey = 100,
+		/obj/item/food/drinks/bottle/whiskey = 100,
 		/obj/item/storage/fancy/cigarettes/dromedaryco = 75,
 		/obj/item/storage/fancy/cigarettes/killthroat = 75,
 		/obj/item/storage/fancy/cigarettes/luckystars = 75,
@@ -700,10 +700,10 @@
 
 /datum/job/officer
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut/olive = 175,
-		/obj/item/reagent_containers/food/snacks/donut/homer/jelly = 155,
-		/obj/item/reagent_containers/food/snacks/donut/purple = 155,
-		/obj/item/reagent_containers/food/snacks/donut/plain = 155,
+		/obj/item/food/donut/olive = 175,
+		/obj/item/food/donut/homer/jelly = 155,
+		/obj/item/food/donut/purple = 155,
+		/obj/item/food/donut/plain = 155,
 		/obj/item/handcuffs = 75,
 		/obj/item/hailer = 75,
 		/obj/item/ammo_magazine/m9mmt/rubber = 50,

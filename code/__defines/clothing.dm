@@ -19,7 +19,7 @@ NOTICE: Do not leave trailing commas!!!!
 	/obj/item/flashlight, \
 	/obj/item/storage/fancy/cigarettes, \
 	/obj/item/storage/box/matches, \
-	/obj/item/reagent_containers/food/drinks/flask, \
+	/obj/item/food/drinks/flask, \
 	/obj/item/toy, \
 	/obj/item/cell, \
 	/obj/item/spacecash, \
@@ -88,7 +88,7 @@ NOTICE: Do not leave trailing commas!!!!
 	/obj/item/radio_jammer
 
 #define POCKET_SLEUTH \
-	/obj/item/reagent_containers/food/snacks/candy_corn, \
+	/obj/item/food/candy_corn, \
 	/obj/item/pen
 
 #define POCKET_MINING \

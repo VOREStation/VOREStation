@@ -565,13 +565,13 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/carpfarm/base)
 "bS" = (
-/obj/item/reagent_containers/food/snacks/cubancarp,
+/obj/item/food/cubancarp,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled,
 /area/awaymission/carpfarm/base)
 "bT" = (
-/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/food/carpmeat,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled,

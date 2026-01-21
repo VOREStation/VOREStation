@@ -680,7 +680,7 @@ datum
 
 
 			/*burger
-				steal_target = /obj/item/reagent_containers/food/snacks/human/burger
+				steal_target = /obj/item/food/human/burger
 				explanation_text = "Steal a burger made out of human organs, this will be presented as proof of NanoTrasen's chronic lack of standards."
 				weight = 60
 

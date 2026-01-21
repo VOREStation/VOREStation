@@ -2631,7 +2631,7 @@
 /area/holodeck/source_chess)
 "Dw" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "DJ" = (
@@ -2749,12 +2749,12 @@
 /area/holodeck/source_game_room)
 "Ik" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "In" = (

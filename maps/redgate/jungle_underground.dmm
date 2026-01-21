@@ -100,7 +100,7 @@
 /area/redgate/jungle/facilityne)
 "bw" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/snacks/packaged/pasty,
+/obj/item/food/packaged/pasty,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "bA" = (
@@ -959,7 +959,7 @@
 /area/redgate/jungle/facilitynw)
 "lD" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/snacks/packaged/sausageroll,
+/obj/item/food/packaged/sausageroll,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "lH" = (
@@ -1652,7 +1652,7 @@
 /area/redgate/jungle/underwatercaveswamp)
 "tQ" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/snacks/packaged/scotchegg,
+/obj/item/food/packaged/scotchegg,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "tR" = (
@@ -1959,7 +1959,7 @@
 /area/redgate/jungle/facilitynw)
 "yc" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/snacks/packaged/porkpie,
+/obj/item/food/packaged/porkpie,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "yd" = (
@@ -2128,7 +2128,7 @@
 /area/redgate/jungle/facilityse)
 "Al" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/snacks/old/burger,
+/obj/item/food/old/burger,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "An" = (
@@ -2860,7 +2860,7 @@
 /area/redgate/jungle/facilitybar)
 "IB" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 11
 	},
@@ -3982,7 +3982,7 @@
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/facilitybar)
 "VP" = (
-/obj/item/reagent_containers/food/snacks/jaffacake{
+/obj/item/food/jaffacake{
 	bitesize = 0.1;
 	icon_scale_x = 3;
 	icon_scale_y = 3;
@@ -4197,7 +4197,7 @@
 /area/redgate/jungle/facilityne)
 "Zb" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/snacks/truffle/random,
+/obj/item/food/truffle/random,
 /turf/simulated/floor/redgrid/animated,
 /area/redgate/jungle/facilitybar)
 "Zc" = (

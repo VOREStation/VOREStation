@@ -351,7 +351,7 @@
 	character_name = list("M41L")
 
 /datum/gear/fluff/clara_flask
-	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
+	path = /obj/item/food/drinks/glass2/fluff/claraflask
 	display_name = "Clara's Vacuum Flask"
 	ckeywhitelist = list("claracow")
 	character_name = list("Clara Mali")
@@ -1104,7 +1104,7 @@
 	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL)
 
 /datum/gear/fluff/viktor_flask
-	path = /obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
+	path = /obj/item/food/drinks/flask/vacuumflask/fluff/viktor
 	display_name = "Viktor's Flask"
 	ckeywhitelist = list("semaun")
 	character_name = list("Viktor Solothurn")

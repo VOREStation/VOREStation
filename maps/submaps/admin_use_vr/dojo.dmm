@@ -613,7 +613,7 @@
 /area/ninja_dojo/dojo)
 "by" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/fortunecookie,
+/obj/item/food/fortunecookie,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"

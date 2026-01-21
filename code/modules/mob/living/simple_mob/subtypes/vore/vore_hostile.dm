@@ -32,7 +32,7 @@
 	melee_damage_upper = 1
 
 	meat_amount = 5
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	catalogue_data = list(/datum/category_item/catalogue/fauna/abyss_lurker)
 
 	see_in_dark = 8
@@ -138,7 +138,7 @@
 
 	movement_cooldown = 1
 	meat_amount = 5
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 	catalogue_data = list(/datum/category_item/catalogue/fauna/leaper)
 
 	see_in_dark = 8

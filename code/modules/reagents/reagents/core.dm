@@ -286,12 +286,12 @@
 
 /datum/reagent/water/touch_obj(var/obj/O, var/amount)
 	..()
-	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
-		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
+	if(istype(O, /obj/item/food/monkeycube))
+		var/obj/item/food/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
-	else if(istype(O, /obj/item/reagent_containers/food/snacks/cube))
-		var/obj/item/reagent_containers/food/snacks/cube/cube = O
+	else if(istype(O, /obj/item/food/cube))
+		var/obj/item/food/cube/cube = O
 		cube.Expand()
 	else
 		O.water_act(amount / 5)

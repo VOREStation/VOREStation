@@ -238,7 +238,7 @@
 	persist_storable = FALSE
 /obj/item/seeds
 	persist_storable = FALSE
-/obj/item/reagent_containers/food/snacks/grown
+/obj/item/food/grown
 	persist_storable = FALSE
 /obj/item/stock_parts
 	persist_storable = FALSE

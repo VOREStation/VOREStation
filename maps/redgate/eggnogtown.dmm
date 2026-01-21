@@ -30,15 +30,15 @@
 /area/redgate/eggnogtown/vibeout)
 "af" = (
 /obj/structure/table/fancyblack,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = -1
 	},
@@ -805,11 +805,11 @@
 /area/redgate/eggnogtown/visitorlounge)
 "dX" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/lasagna,
-/obj/item/reagent_containers/food/snacks/lasagna,
-/obj/item/reagent_containers/food/snacks/lasagna,
-/obj/item/reagent_containers/food/snacks/lasagna,
-/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/food/lasagna,
+/obj/item/food/lasagna,
+/obj/item/food/lasagna,
+/obj/item/food/lasagna,
+/obj/item/food/lasagna,
 /obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
@@ -848,19 +848,19 @@
 /area/redgate/eggnogtown/stokeswashere/bedroom)
 "ex" = (
 /obj/structure/table/fancyblack,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -998,31 +998,31 @@
 /turf/simulated/floor/tiled,
 /area/redgate/eggnogtown/loniabode)
 "gk" = (
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /obj/structure/closet,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/peppermill,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 21
 	},
@@ -1970,7 +1970,7 @@
 "tC" = (
 /obj/structure/table/marble,
 /obj/item/reagent_containers/glass/rag,
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/food/drinks/flask/vacuumflask,
 /obj/item/book/manual/barman_recipes,
 /obj/random/awayloot,
 /turf/simulated/floor/lino,
@@ -2056,7 +2056,7 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/material/kitchen/rollingpin,
 /obj/item/book/manual/chef_recipes,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/item/reagent_containers/glass/bucket,
@@ -3655,10 +3655,10 @@
 "Rd" = (
 /obj/structure/table/marble,
 /obj/item/material/kitchen/rollingpin,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/yeast,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/yeast,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/yeast,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/yeast,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "Ri" = (
@@ -4200,10 +4200,10 @@
 /area/redgate/eggnogtown/stokeswashere)
 "Zl" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/ketchup,
-/obj/item/reagent_containers/food/condiment/hotsauce,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/food/condiment/ketchup,
+/obj/item/food/condiment/hotsauce,
+/obj/item/food/condiment/enzyme,
+/obj/item/food/condiment/soysauce,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "Zm" = (
@@ -4252,10 +4252,10 @@
 /area/redgate/eggnogtown/kitchihome/bedroom)
 "ZJ" = (
 /obj/structure/table/fancyblack,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /turf/simulated/floor/wood,

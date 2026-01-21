@@ -129,14 +129,14 @@
 				S.use(1)
 				digest_stage = w_class
 		else
-			if(istype(B) && istype(src, /obj/item/reagent_containers/food))
+			if(istype(B) && isfood(src))
 				if(ishuman(B.owner) && reagents)
 					var/mob/living/carbon/human/H = B.owner
 					reagents.trans_to_holder(H.ingested, (reagents.total_volume), B.nutrition_percent / 100, 0)
 				else if(isliving(B.owner))
 					B.owner.nutrition += 15 * w_class * B.nutrition_percent / 100
-				if(istype(src,/obj/item/reagent_containers/food/snacks))
-					var/obj/item/reagent_containers/food/snacks/goodmeal = src //What a typecast
+				if(isfood(src))
+					var/obj/item/food/goodmeal = src //What a typecast
 					//Drop the leftover garbage when the food melts
 					if(goodmeal.package_trash)
 						new goodmeal.package_trash(src)
@@ -221,7 +221,7 @@
 			return FALSE
 	. = ..()
 
-/obj/item/reagent_containers/food/rawnutrition/digest_act(atom/movable/item_storage = null)
+/obj/item/food/rawnutrition/digest_act(atom/movable/item_storage = null)
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
 		if(istype(B) && B.storing_nutrition)

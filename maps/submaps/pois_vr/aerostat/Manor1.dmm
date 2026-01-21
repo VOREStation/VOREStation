@@ -18,7 +18,7 @@
 /area/submap/virgo2/Manor1)
 "ae" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "af" = (
@@ -210,7 +210,7 @@
 /area/submap/virgo2/Manor1)
 "aW" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aX" = (
@@ -224,7 +224,7 @@
 /area/submap/virgo2/Manor1)
 "aZ" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "ba" = (
@@ -244,8 +244,8 @@
 /area/submap/virgo2/Manor1)
 "bd" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "be" = (
@@ -342,7 +342,7 @@
 /area/submap/virgo2/Manor1)
 "bv" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bw" = (
@@ -376,8 +376,8 @@
 /area/submap/virgo2/Manor1)
 "bB" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/snacks/stew,
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/food/stew,
+/obj/item/food/stew,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bC" = (
@@ -407,8 +407,8 @@
 /area/submap/virgo2/Manor1)
 "bG" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/snacks/sausage,
-/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/food/sausage,
+/obj/item/food/sausage,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bH" = (

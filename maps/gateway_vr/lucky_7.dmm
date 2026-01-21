@@ -782,25 +782,25 @@
 /area/awaymission/lucky7/loungeprivateroom)
 "da" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = -3
 	},
@@ -4007,7 +4007,7 @@
 /area/awaymission/lucky7/dock1)
 "wd" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /turf/simulated/floor/lino,
 /area/awaymission/lucky7/bar)
 "we" = (
@@ -6912,25 +6912,25 @@
 /area/awaymission/lucky7/lounge)
 "Mc" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = 3
 	},
@@ -7722,7 +7722,7 @@
 "Pq" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/item/reagent_containers/glass/beaker{
@@ -8360,10 +8360,10 @@
 "SM" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/white,

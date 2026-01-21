@@ -212,7 +212,7 @@
 /area/tether_away/beach/resort/janibar)
 "aU" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/small/ale,
+/obj/item/food/drinks/bottle/small/ale,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "aV" = (
@@ -221,7 +221,7 @@
 /area/tether_away/beach/resort/janibar)
 "aW" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "aX" = (
@@ -245,7 +245,7 @@
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach)
 "bc" = (
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/cans/waterbottle,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach)
 "bd" = (
@@ -1277,28 +1277,28 @@
 /turf/simulated/floor/beach/sand/outdoors,
 /area/tether_away/beach/resort)
 "Bk" = (
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/spacespice,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/spacespice,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /obj/item/material/knife/butch,
 /obj/item/material/minihoe,
 /obj/item/material/knife/machete/hatchet,
@@ -1309,10 +1309,10 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/analyzer/plant_analyzer,
 /obj/item/analyzer/plant_analyzer,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /obj/item/reagent_containers/glass/bottle/eznutrient,
@@ -1518,7 +1518,7 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/material/kitchen/rollingpin,
 /obj/item/book/manual/chef_recipes,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/item/reagent_containers/glass/bucket,
@@ -1832,9 +1832,9 @@
 	pixel_y = 26
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/shaker,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/wood,

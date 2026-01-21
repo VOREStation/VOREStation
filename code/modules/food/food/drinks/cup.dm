@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/cup
+/obj/item/food/drinks/cup
 	name = "coffee cup"
 	desc = "The container of oriental luxuries."
 	icon_state = "cup_empty"
@@ -7,7 +7,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 16
 
-/obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
+/obj/item/food/drinks/cup/on_reagent_change()
 	..()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()

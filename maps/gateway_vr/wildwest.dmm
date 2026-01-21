@@ -321,7 +321,7 @@
 /area/awaymission/wwgov)
 "co" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/food/drinks/bottle/wine,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "cp" = (
@@ -604,9 +604,9 @@
 /area/awaymission/wwmines)
 "fb" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwmines)
 "fc" = (
@@ -628,11 +628,11 @@
 /area/awaymission/wwmines)
 "fg" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
+/obj/item/food/meat/syntiflesh,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwmines)
 "fi" = (
@@ -843,12 +843,12 @@
 /area/awaymission/wwmines)
 "gt" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/food/condiment/small/peppermill,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "gu" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "gv" = (
@@ -907,7 +907,7 @@
 /area/awaymission/wwmines)
 "gQ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/monkeysdelight,
+/obj/item/food/monkeysdelight,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "gS" = (
@@ -917,7 +917,7 @@
 /area/awaymission/wwgov)
 "gT" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/food/stew,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "gW" = (
@@ -1224,7 +1224,7 @@
 /area/awaymission/wwmines)
 "tk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/lemoncake,
+/obj/item/food/sliceable/lemoncake,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "tn" = (
@@ -1307,7 +1307,7 @@
 /area/awaymission/wwvault)
 "ws" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
+/obj/item/food/donut/pink/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "xo" = (
@@ -1418,7 +1418,7 @@
 /area/awaymission/wwrefine)
 "zY" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
+/obj/item/food/donut/choc/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "AA" = (
@@ -1429,7 +1429,7 @@
 /area/awaymission/wwrefine)
 "Bf" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/patron,
+/obj/item/food/drinks/bottle/patron,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "BQ" = (
@@ -1441,7 +1441,7 @@
 /area/awaymission/wwmines)
 "Ce" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/donut/plain,
+/obj/item/food/donut/plain,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "Ch" = (
@@ -1609,7 +1609,7 @@
 /area/awaymission/wwrefine)
 "HT" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/coffee,
+/obj/item/food/drinks/coffee,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "HU" = (
@@ -1627,8 +1627,8 @@
 /area/awaymission/wwmines)
 "Io" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/coffee,
-/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
+/obj/item/food/drinks/coffee,
+/obj/item/food/donut/pink/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "Iy" = (
@@ -1651,7 +1651,7 @@
 /area/awaymission/wwmines)
 "Jd" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread,
+/obj/item/food/sliceable/creamcheesebread,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "Jo" = (
@@ -2049,10 +2049,10 @@
 /area/awaymission/wwmines)
 "YL" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
+/obj/item/food/drinks/drinkingglass,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
 "YV" = (

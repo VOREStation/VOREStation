@@ -164,7 +164,7 @@
 			grenade.detonate()
 
 		if(SMITE_SPICEREQUEST)
-			var/obj/item/reagent_containers/food/condiment/spacespice/spice = new /obj/item/reagent_containers/food/condiment/spacespice
+			var/obj/item/food/condiment/spacespice/spice = new /obj/item/food/condiment/spacespice
 			spice.loc = target.loc
 			to_chat(target,"A bottle of spices appears at your feet... be careful what you wish for!")
 

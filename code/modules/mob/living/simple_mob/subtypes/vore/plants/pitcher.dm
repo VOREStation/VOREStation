@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
-	meat_type = /obj/item/reagent_containers/food/snacks/pitcher_fruit // Allows pitcher plants to be chopped up and replanted. Probably.
+	meat_type = /obj/item/food/pitcher_fruit // Allows pitcher plants to be chopped up and replanted. Probably.
 	meat_amount = 1 // And allows you to replant them should you so please.
 
 	melee_damage_upper = 0 //This shouldn't attack people but if it does (admemes) no damage can be dealt.
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	..()
 	anchored = 0
 	if(fruit)
-		new /obj/item/reagent_containers/food/snacks/pitcher_fruit(get_turf(src))
+		new /obj/item/food/pitcher_fruit(get_turf(src))
 		fruit = FALSE
 
 /mob/living/simple_mob/vore/pitcher_plant/proc/grow_fruit() //This proc handles the pitcher turning nutrition into fruit (and new pitchers).
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	if(user.a_intent == I_HELP)
 		if(fruit)
 			to_chat(user, span_infoplain("You pick a fruit from \the [src]."))
-			var/obj/F = new /obj/item/reagent_containers/food/snacks/pitcher_fruit(get_turf(user)) //Drops at the user's feet if put_in_hands fails
+			var/obj/F = new /obj/item/food/pitcher_fruit(get_turf(user)) //Drops at the user's feet if put_in_hands fails
 			fruit = FALSE
 			user.put_in_hands(F)
 		else
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 		. += "A plump fruit glistens beneath \the [src]'s cap."
 
 /mob/living/simple_mob/vore/pitcher_plant/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/reagent_containers/food/snacks/meat))
+	if(istype(O, /obj/item/food/meat))
 		if(meat > NUTRITION_FRUIT - NUTRITION_MEAT) //Can't exceed 250
 			to_chat(user, span_infoplain("The [src] is full!"))
 			return
@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 /datum/ai_holder/simple_mob/passive/pitcher
 	wander = 0
 
-/obj/item/reagent_containers/food/snacks/pitcher_fruit //As much as I want to tie hydroponics harvest code to the mob, this is simpler (albeit kinda hacky).
+/obj/item/food/pitcher_fruit //As much as I want to tie hydroponics harvest code to the mob, this is simpler (albeit kinda hacky).
 	name = "squishy fruit"
 	desc = "A tender, fleshy fruit with a thin skin. Said to have an intensely sweet flavor, and also a narcotic paralyzing effect."
 	icon = 'icons/obj/hydroponics_products.dmi'
@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	var/obj/item/seeds/pit = null
 	special_handling = TRUE
 
-/obj/item/reagent_containers/food/snacks/pitcher_fruit/Initialize(mapload)
+/obj/item/food/pitcher_fruit/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PITCHERNECTAR, 5)
 	reagents.add_reagent(REAGENT_ID_PARALYZE_FLUID, 5) // Something worth harvesting the fruits for.
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	pit = new /obj/item/seeds/pitcherseed(src.contents)
 	seed = pit.seed
 
-/obj/item/reagent_containers/food/snacks/pitcher_fruit/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/food/pitcher_fruit/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return ..()
 	if(istype (O, /obj/machinery/seed_extractor))
@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	pit.loc = user.loc
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/pitcher_fruit/attack_self(mob/user)
+/obj/item/food/pitcher_fruit/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE

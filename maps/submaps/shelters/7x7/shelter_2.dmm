@@ -10,7 +10,7 @@
 /area/survivalpod)
 "c" = (
 /obj/structure/table/steel,
-/obj/item/reagent_containers/food/drinks/glass2/rocks{
+/obj/item/food/drinks/glass2/rocks{
 	pixel_x = 7;
 	pixel_y = 2
 	},
@@ -130,11 +130,11 @@
 	light_color = "#DDFFD3"
 	},
 /obj/structure/table/steel,
-/obj/item/reagent_containers/food/drinks/glass2/rocks{
+/obj/item/food/drinks/glass2/rocks{
 	pixel_x = 7;
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/item/food/drinks/bottle/wine{
 	pixel_x = -6;
 	pixel_y = 10
 	},

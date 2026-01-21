@@ -1578,33 +1578,33 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_server_room)
 "fd" = (
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -5481,7 +5481,7 @@
 /obj/item/taperecorder{
 	pixel_x = 10
 	},
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/food/drinks/flask/barflask{
 	pixel_x = -9;
 	pixel_y = -2
 	},
@@ -8965,7 +8965,7 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "GB" = (
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /obj/item/reagent_containers/glass/rag,
 /obj/structure/table/rack,
 /obj/random/donkpocketbox,
@@ -13974,10 +13974,10 @@
 /area/maintenance/stellardelight/deck3/aftstarroom)
 "Yp" = (
 /obj/structure/closet/walllocker_double/kitchen/north,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
 /obj/item/hand_labeler,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,

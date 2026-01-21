@@ -61,7 +61,7 @@
 		/obj/item/clothing/suit/caution,
 		/obj/item/cell,
 		/obj/item/cell/device,
-		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/food/liquidfood,
 		/obj/item/spacecash/c1,
 		/obj/item/storage/backpack/satchel,
 		/obj/item/storage/briefcase,

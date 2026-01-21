@@ -139,7 +139,7 @@
 	var/has_vibration_sense = FALSE 	// Motion tracker subsystem
 
 	// Death vars.
-	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/human
+	var/meat_type = /obj/item/food/meat/human
 	var/remains_type = /obj/effect/decal/remains/xeno
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"

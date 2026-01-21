@@ -576,13 +576,13 @@
 /turf/simulated/floor/tiled,
 /area/awaymission)
 "bO" = (
-/obj/item/reagent_containers/food/snacks/cubancarp,
+/obj/item/food/cubancarp,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled,
 /area/awaymission)
 "bP" = (
-/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/food/carpmeat,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled,

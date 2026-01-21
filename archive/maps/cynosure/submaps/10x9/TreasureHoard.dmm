@@ -202,14 +202,14 @@
 /area/template_noop)
 "D" = (
 /obj/structure/closet/crate/allico,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
+/obj/item/food/candy/gummy,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
 "E" = (

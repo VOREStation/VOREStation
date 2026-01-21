@@ -26,7 +26,7 @@
 	maxbodytemp = 323	//Above 50 Degrees Celsius
 
 	meat_amount = 1
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/food/meat
 
 	vore_active = TRUE
 	vore_capacity = 1

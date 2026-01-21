@@ -1,6 +1,6 @@
 
 
-/obj/item/reagent_containers/food/drinks/drinkingglass
+/obj/item/food/drinks/drinkingglass
 	name = "glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
@@ -13,7 +13,7 @@
 	center_of_mass_y = 10
 	matter = list(MAT_GLASS = 500)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
+/obj/item/food/drinks/drinkingglass/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "glass_empty"
 		name = "glass"
@@ -50,7 +50,7 @@
 	else
 		price_tag = null
 
-/obj/item/reagent_containers/food/drinks/cup
+/obj/item/food/drinks/cup
 	name = "coffee cup"
 	desc = "The container of oriental luxuries."
 	icon_state = "cup_empty"
@@ -59,7 +59,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 16
 
-/obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
+/obj/item/food/drinks/cup/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "cup_empty"
 		name = "coffee cup"
@@ -102,15 +102,15 @@
 		price_tag = null
 
 // for /obj/machinery/vending/sovietsoda
-/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize(mapload)
+/obj/item/food/drinks/drinkingglass/soda/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODAWATER, 50)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize(mapload)
+/obj/item/food/drinks/drinkingglass/cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COLA, 50)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
+/obj/item/food/drinks/drinkingglass/shotglass
 	name = "shot glass"
 	desc = "No glasses were shot in the making of this glass."
 	icon_state = "shotglass"
@@ -118,7 +118,7 @@
 	volume = 10
 	matter = list(MAT_GLASS = 175)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
+/obj/item/food/drinks/drinkingglass/shotglass/on_reagent_change()
 	cut_overlays()
 	name = "shot glass"
 
@@ -135,18 +135,18 @@
 	add_overlay(filling)
 	name += " of [reagents.get_master_reagent_name()]" //No matter what, the glass will tell you the reagent's name. Might be too abusable in the future.
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask
+/obj/item/food/drinks/drinkingglass/fitnessflask
 	name = "fitness shaker"
 	desc = "Big enough to contain enough protein to get perfectly swole. Don't mind the bits."
 	icon_state = "fitness-cup_black"
 	volume = 100
 	matter = list(MAT_PLASTIC = 2000)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/Initialize(mapload)
+/obj/item/food/drinks/drinkingglass/fitnessflask/Initialize(mapload)
 	. = ..()
 	icon_state = pick("fitness-cup_black", "fitness-cup_red", "fitness-cup_black")
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
+/obj/item/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -167,10 +167,10 @@
 		filling.color += reagents.get_color()
 		add_overlay(filling)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake
+/obj/item/food/drinks/drinkingglass/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize(mapload)
+/obj/item/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 30)
 	reagents.add_reagent(REAGENT_ID_IRON, 10)
@@ -180,7 +180,7 @@
 
 ////////////////Fancy coffee cups
 
-/obj/item/reagent_containers/food/drinks/tall
+/obj/item/food/drinks/tall
 	name = "tall cup"
 	desc = "A larger coffee cup."
 	icon_state = "tall_cup_empty"
@@ -189,7 +189,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y =  16
 
-/obj/item/reagent_containers/food/drinks/tall/on_reagent_change()
+/obj/item/food/drinks/tall/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "tall_cup_empty"
 		name = "tall cup"
@@ -231,7 +231,7 @@
 	else
 		price_tag = null
 
-/obj/item/reagent_containers/food/drinks/grande
+/obj/item/food/drinks/grande
 	name = "grande cup"
 	desc = "A much taller coffee cup for people who really need their coffee."
 	icon_state = "grande_cup_empty"
@@ -240,7 +240,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y =  16
 
-/obj/item/reagent_containers/food/drinks/grande/on_reagent_change()
+/obj/item/food/drinks/grande/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "grande_cup_empty"
 		name = "grande cup"
@@ -282,7 +282,7 @@
 	else
 		price_tag = null
 
-/obj/item/reagent_containers/food/drinks/venti
+/obj/item/food/drinks/venti
 	name = "venti cup"
 	desc = "A huge coffee cup for people who literally cannot function without it."
 	icon_state = "venti_cup_empty"
@@ -291,7 +291,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y =  16
 
-/obj/item/reagent_containers/food/drinks/venti/on_reagent_change()
+/obj/item/food/drinks/venti/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "venti_cup_empty"
 		name = "venti cup"

@@ -86,8 +86,8 @@
 		EQUIPMENT("Shelter Capsule - Cafe (11x11)",					/obj/item/survivalcapsule/cafe,								1000),
 	)
 	prize_list["Miscellaneous"] = list(
-		EQUIPMENT(REAGENT_ABSINTHE,									/obj/item/reagent_containers/food/drinks/bottle/absinthe,					10),
-		EQUIPMENT(REAGENT_WHISKEY,									/obj/item/reagent_containers/food/drinks/bottle/whiskey,					10),
+		EQUIPMENT(REAGENT_ABSINTHE,									/obj/item/food/drinks/bottle/absinthe,					10),
+		EQUIPMENT(REAGENT_WHISKEY,									/obj/item/food/drinks/bottle/whiskey,					10),
 		EQUIPMENT("Cigar",											/obj/item/clothing/mask/smokable/cigarette/cigar/havana,					15),
 		EQUIPMENT("Digital Tablet - Standard",						/obj/item/modular_computer/tablet/preset/custom_loadout/standard,			50),
 		EQUIPMENT("Digital Tablet - Advanced",						/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,			100),

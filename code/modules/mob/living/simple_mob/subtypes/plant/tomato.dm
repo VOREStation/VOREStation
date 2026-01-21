@@ -26,7 +26,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-	meat_type = /obj/item/reagent_containers/food/snacks/tomatomeat
+	meat_type = /obj/item/food/tomatomeat
 	meat_amount = 4
 
 	can_be_drop_prey = FALSE

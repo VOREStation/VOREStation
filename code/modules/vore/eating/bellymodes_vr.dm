@@ -289,7 +289,7 @@
 		if(IM_HOLD)
 			items_preserved |= I
 		if(IM_DIGEST_FOOD)
-			if(istype(I,/obj/item/reagent_containers/food) || istype(I, /obj/item/organ))
+			if(isfood(I) || istype(I, /obj/item/organ))
 				var/obj/item/organ/R = I
 				if(istype(R) && R.robotic >= ORGAN_ROBOT)
 					items_preserved |= I

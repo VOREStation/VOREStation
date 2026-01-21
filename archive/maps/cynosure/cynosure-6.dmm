@@ -111,25 +111,25 @@
 	dir = 4
 	},
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/cup{
+/obj/item/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = -4
 	},
@@ -974,7 +974,7 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_emptycourt)
 "bcf" = (
-/obj/item/reagent_containers/food/condiment/small/peppershaker{
+/obj/item/food/condiment/small/peppershaker{
 	pixel_x = 2;
 	pixel_y = 6
 	},
@@ -2485,7 +2485,7 @@
 "cRp" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/white/diagonal,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/condiment/enzyme,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -3010,7 +3010,7 @@
 	},
 /area/shuttle/trade)
 "dAU" = (
-/obj/item/reagent_containers/food/snacks/spellburger{
+/obj/item/food/spellburger{
 	pixel_y = 8
 	},
 /obj/structure/table/marble,
@@ -4549,7 +4549,7 @@
 /area/holodeck/source_emptycourt)
 "fnh" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/teapot,
+/obj/item/food/drinks/teapot,
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "fnp" = (
@@ -4606,9 +4606,9 @@
 /area/holodeck/source_theatre)
 "fok" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
+/obj/item/food/drinks/bottle/small/beer,
 /obj/item/flame/lighter/zippo,
 /obj/item/storage/fancy/cigarettes,
 /turf/unsimulated/floor{
@@ -7499,7 +7499,7 @@
 /obj/effect/floor_decal/corner/yellow{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "iFP" = (
@@ -8290,11 +8290,11 @@
 /area/centcom/specops)
 "jyC" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
+/obj/item/food/drinks/bottle/vodka{
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/item/food/drinks/bottle/wine{
 	pixel_x = -1;
 	pixel_y = 8
 	},
@@ -8320,7 +8320,7 @@
 	},
 /area/shuttle/arrival/pre_game)
 "jAm" = (
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = -6
 	},
 /obj/structure/table/standard,
@@ -8518,7 +8518,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "jJx" = (
-/obj/item/reagent_containers/food/drinks/bottle/pwine{
+/obj/item/food/drinks/bottle/pwine{
 	pixel_x = -4;
 	pixel_y = 10
 	},
@@ -8836,7 +8836,7 @@
 /area/centcom/main_hall)
 "kfC" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/fortunecookie,
+/obj/item/food/fortunecookie,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -8913,7 +8913,7 @@
 /obj/effect/floor_decal/corner/yellow{
 	dir = 10
 	},
-/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/food/condiment/small/sugar,
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "kiC" = (
@@ -10600,12 +10600,12 @@
 /area/centcom/medical)
 "lQg" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "lQh" = (
@@ -11225,11 +11225,11 @@
 /obj/structure/table/woodentable{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = 4;
 	pixel_y = -2
 	},
-/obj/item/reagent_containers/food/condiment/small/peppershaker,
+/obj/item/food/condiment/small/peppershaker,
 /obj/item/flame/candle,
 /turf/unsimulated/floor{
 	icon_state = "wood"
@@ -11524,26 +11524,26 @@
 	dir = 4
 	},
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = -8;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/food/drinks/glass2/square{
 	pixel_x = 4;
 	pixel_y = 5
 	},
@@ -13032,7 +13032,7 @@
 /area/shuttle/administration/centcom)
 "oNc" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "oNs" = (
@@ -16405,9 +16405,9 @@
 	},
 /area/wizard_station)
 "sfb" = (
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
 /obj/structure/table/standard,
 /turf/unsimulated/floor{
 	icon_state = "lino"
@@ -20343,7 +20343,7 @@
 /area/wizard_station)
 "wux" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/food/drinks/glass2/square,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -21504,7 +21504,7 @@
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/syndicate_station/start)
 "xBj" = (
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/food/cheesewedge,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -21534,7 +21534,7 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/transport1/centcom)
 "xEn" = (
-/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/food/drinks/cans/cola,
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{

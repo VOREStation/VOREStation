@@ -592,7 +592,7 @@
 		attack_hand(user)
 
 		var/obj/item/storage/bag/plants/S = O
-		for (var/obj/item/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
+		for (var/obj/item/food/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, 1)

@@ -123,8 +123,8 @@
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/radio/headset/pilot/alt,
 		/obj/item/flashlight,
-		/obj/item/reagent_containers/food/snacks/liquidfood,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+		/obj/item/food/liquidfood,
+		/obj/item/food/drinks/cans/waterbottle,
 		/obj/item/storage/box/flare,
 		/obj/item/cell/device,
 		/obj/item/radio)

@@ -192,7 +192,7 @@
 	flee_when_dying = TRUE
 
 	var/greed = 0	// The probability we will try to steal something. Increases over time if we are not holding something, or wearing a hat.
-	var/list/steal_loot_list = list(/obj/item/coin, /obj/item/gun, /obj/item/fossil, /obj/item/stack/material, /obj/item/material, /obj/item/reagent_containers/food/snacks, /obj/item/clothing/head, /obj/item/reagent_containers/glass, /obj/item/flashlight, /obj/item/stack/medical, /obj/item/seeds, /obj/item/spacecash)
+	var/list/steal_loot_list = list(/obj/item/coin, /obj/item/gun, /obj/item/fossil, /obj/item/stack/material, /obj/item/material, /obj/item/food, /obj/item/clothing/head, /obj/item/reagent_containers/glass, /obj/item/flashlight, /obj/item/stack/medical, /obj/item/seeds, /obj/item/spacecash)
 	var/hoard_items = TRUE
 	var/hoard_distance = 1	// How far an item can be from the Sakimm's home turf to be counted inside its 'hoard'.
 	var/original_home_distance = null
@@ -289,7 +289,7 @@
 
 	else if(istype(A, /obj/item))
 		var/obj/item/I = A
-		if(istype(I, /obj/item/reagent_containers/food/snacks))	// If we can't pick it up, or it's edible, go to harm.
+		if(isfood(I))	// If we can't pick it up, or it's edible, go to harm.
 			holder.a_intent = I_HURT
 		else
 			holder.a_intent = I_HELP

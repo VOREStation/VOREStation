@@ -40,7 +40,7 @@
 /area/submap/debrisfield/luxury_boat/engine)
 "aS" = (
 /obj/structure/bed/chair/wood/wings,
-/obj/item/reagent_containers/food/snacks/slice/meatpizza/filled,
+/obj/item/food/slice/meatpizza/filled,
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/luxury_boat/crew)
 "bh" = (
@@ -141,7 +141,7 @@
 /area/submap/debrisfield/luxury_boat/bridge)
 "df" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
+/obj/item/food/sliceable/pizza/mushroompizza,
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/luxury_boat/crew)
 "dk" = (
@@ -329,7 +329,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "iE" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/food/drinks/bottle/whitewine,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/lino,
 /area/submap/debrisfield/luxury_boat/crew)
@@ -414,7 +414,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "lo" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple,
+/obj/item/food/sliceable/pizza/pineapple,
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/luxury_boat/crew)
 "lv" = (
@@ -672,7 +672,7 @@
 /turf/simulated/floor/carpet/purple,
 /area/submap/debrisfield/luxury_boat/crew)
 "sh" = (
-/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/food/drinks/metaglass/metapint,
 /turf/simulated/floor/lino,
 /area/submap/debrisfield/luxury_boat/crew)
 "sz" = (
@@ -789,7 +789,7 @@
 "wp" = (
 /obj/structure/table/hardwoodtable,
 /obj/machinery/atmospherics/unary/vent_scrubber,
-/obj/item/reagent_containers/food/snacks/slice/meatpizza/filled,
+/obj/item/food/slice/meatpizza/filled,
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/luxury_boat/crew)
 "wq" = (
@@ -1401,7 +1401,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "PV" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/britcup,
+/obj/item/food/drinks/britcup,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -1532,7 +1532,7 @@
 /area/submap/debrisfield/luxury_boat/cryo)
 "Vo" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/bottle/vermouth,
+/obj/item/food/drinks/bottle/vermouth,
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/luxury_boat/crew)
 "Vq" = (

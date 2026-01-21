@@ -44,7 +44,7 @@
 /area/survivalpod)
 "i" = (
 /obj/item/book/manual/barman_recipes,
-/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/food/drinks/shaker,
 /obj/item/reagent_containers/glass/rag,
 /obj/structure/table/gamblingtable,
 /turf/simulated/shuttle/floor/voidcraft/dark,
@@ -195,11 +195,11 @@
 /area/survivalpod)
 "F" = (
 /obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/condiment/small/peppermill{
+/obj/item/food/condiment/small/peppermill{
 	pixel_x = -4;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/food/condiment/small/saltshaker{
 	pixel_x = 4;
 	pixel_y = 4
 	},

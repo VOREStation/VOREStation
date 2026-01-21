@@ -5261,7 +5261,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/food/condiment/small/saltshaker,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,

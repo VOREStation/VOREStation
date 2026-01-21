@@ -272,17 +272,17 @@
 /area/redgate/hotsprings/outdoors)
 "hv" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
-/obj/item/reagent_containers/food/drinks/bottle/jager,
-/obj/item/reagent_containers/food/drinks/bottle/peppermintschnapps,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/bottle/tequila,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
-/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/food/drinks/bottle/goldschlager,
+/obj/item/food/drinks/bottle/jager,
+/obj/item/food/drinks/bottle/peppermintschnapps,
+/obj/item/food/drinks/bottle/sake,
+/obj/item/food/drinks/bottle/small/space_mountain_wind,
+/obj/item/food/drinks/bottle/vodka,
+/obj/item/food/drinks/bottle/wine,
+/obj/item/food/drinks/cans/waterbottle,
+/obj/item/food/drinks/bottle/tequila,
+/obj/item/food/drinks/bottle/small/beer/meteor,
+/obj/item/food/drinks/bottle/redeemersbrew,
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -787,7 +787,7 @@
 	},
 /area/redgate/hotsprings/house/hotspringhouse)
 "um" = (
-/obj/item/reagent_containers/food/drinks/shaker{
+/obj/item/food/drinks/shaker{
 	pixel_x = 7;
 	pixel_y = -5
 	},
@@ -893,11 +893,11 @@
 	},
 /area/redgate/hotsprings/outdoors)
 "vA" = (
-/obj/item/reagent_containers/food/drinks/cans/beercan{
+/obj/item/food/drinks/cans/beercan{
 	pixel_x = 11;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/cans/beercan,
+/obj/item/food/drinks/cans/beercan,
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -1001,7 +1001,7 @@
 	},
 /area/redgate/hotsprings/outdoors)
 "yt" = (
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/food/drinks/bottle/champagne,
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -1657,12 +1657,12 @@
 /area/redgate/hotsprings/westcave)
 "Nw" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
+/obj/item/food/drinks/bottle/absinthe,
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -1747,12 +1747,12 @@
 /area/redgate/hotsprings/eastcave)
 "PX" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
+/obj/item/food/drinks/bottle/gin,
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -1771,11 +1771,11 @@
 /area/redgate/hotsprings/outdoors)
 "Qu" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/food/drinks/bottle/small/ale,
-/obj/item/reagent_containers/food/drinks/bottle/small/ale,
-/obj/item/reagent_containers/food/drinks/bottle/small/ale,
-/obj/item/reagent_containers/food/drinks/bottle/small/ale,
-/obj/item/reagent_containers/food/drinks/bottle/small/ale,
+/obj/item/food/drinks/bottle/small/ale,
+/obj/item/food/drinks/bottle/small/ale,
+/obj/item/food/drinks/bottle/small/ale,
+/obj/item/food/drinks/bottle/small/ale,
+/obj/item/food/drinks/bottle/small/ale,
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -2040,12 +2040,12 @@
 /area/redgate/hotsprings/outdoors)
 "XD" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
+/obj/item/food/condiment/carton/flour,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,

@@ -92,7 +92,7 @@
 
 /decl/chemical_reaction/instant/slime/grey_monkey/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 4)
-		new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
+		new /obj/item/food/monkeycube(get_turf(holder.my_atom))
 	..()
 
 /decl/chemical_reaction/instant/slime/grey_slimejelly
@@ -799,7 +799,7 @@
 	required = /obj/item/slime_extract/amber
 
 /decl/chemical_reaction/instant/slime/amber_peoplefood/on_reaction(var/datum/reagents/holder)
-	new /obj/item/reagent_containers/food/snacks/slime(get_turf(holder.my_atom))
+	new /obj/item/food/slime(get_turf(holder.my_atom))
 	..()
 
 

@@ -30,7 +30,7 @@ var/list/turf_edge_cache = list()
 /turf/simulated/floor/outdoors/proc/get_loot_type()
 	if(loot_count && prob(60))
 		return pick( \
-			12;/obj/item/reagent_containers/food/snacks/worm, \
+			12;/obj/item/food/worm, \
 			1;/obj/item/material/knife/machete/hatchet/stone  \
 		)
 

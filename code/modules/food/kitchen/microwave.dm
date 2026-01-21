@@ -55,7 +55,7 @@
 		// will also allow anything using the holder item to be microwaved into
 		// impure carbon. ~Z
 		GLOB.acceptable_items |= /obj/item/holder
-		GLOB.acceptable_items |= /obj/item/reagent_containers/food/snacks/grown
+		GLOB.acceptable_items |= /obj/item/food/grown
 		GLOB.acceptable_items |= /obj/item/soulstone
 		GLOB.acceptable_items |= /obj/item/fuel_assembly/supermatter
 
@@ -174,8 +174,8 @@
 		return 0
 
 	else if(istype(O,/obj/item/reagent_containers/glass) || \
-			istype(O,/obj/item/reagent_containers/food/drinks) || \
-			istype(O,/obj/item/reagent_containers/food/condiment) \
+			isdrink(O) || \
+			istype(O,/obj/item/food/condiment) \
 		)
 		if (!O.reagents)
 			return 1
@@ -296,20 +296,20 @@
 
 	for(var/obj/O in cookingContents())
 		var/display_name = O.name
-		if(istype(O,/obj/item/reagent_containers/food/snacks/egg))
+		if(istype(O,/obj/item/food/egg))
 			items_measures[display_name] = "egg"
 			items_measures_p[display_name] = "eggs"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/tofu))
+		if(istype(O,/obj/item/food/tofu))
 			items_measures[display_name] = "tofu chunk"
 			items_measures_p[display_name] = "tofu chunks"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/meat)) //any meat
+		if(istype(O,/obj/item/food/meat)) //any meat
 			items_measures[display_name] = "slab of meat"
 			items_measures_p[display_name] = "slabs of meat"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/donkpocket))
+		if(istype(O,/obj/item/food/donkpocket))
 			display_name = "Turnovers"
 			items_measures[display_name] = "turnover"
 			items_measures_p[display_name] = "turnovers"
-		if(istype(O,/obj/item/reagent_containers/food/snacks/carpmeat))
+		if(istype(O,/obj/item/food/carpmeat))
 			items_measures[display_name] = "fillet of meat"
 			items_measures_p[display_name] = "fillets of meat"
 		items_counts[display_name]++
@@ -434,10 +434,10 @@
 
 	//Any leftover reagents are divided amongst the foods
 	var/total = reagents.total_volume
-	for(var/obj/item/reagent_containers/food/snacks/S in cooked_items)
+	for(var/obj/item/food/S in cooked_items)
 		reagents.trans_to_holder(S.reagents, total/cooked_items.len)
 
-	for(var/obj/item/reagent_containers/food/snacks/S in cookingContents())
+	for(var/obj/item/food/S in cookingContents())
 		S.cook()
 
 	dispose(0) //clear out anything left
@@ -457,7 +457,7 @@
 	if(item_level == 0)
 		for (var/obj/O in cookingContents())
 			if ( \
-					!istype(O,/obj/item/reagent_containers/food) && \
+					!isfood(O) && \
 					!istype(O, /obj/item/grown) \
 				)
 				return 1
@@ -465,7 +465,7 @@
 	if(item_level == 1)
 		for (var/obj/O in cookingContents())
 			if ( \
-					!istype(O, /obj/item/reagent_containers/food) && \
+					!isfood(O) && \
 					!istype(O, /obj/item/grown) && \
 					!istype(O, /obj/item/slime_extract) && \
 					!istype(O, /obj/item/organ) && \
@@ -534,7 +534,7 @@
 	src.ejectpai() // If it broke, time to yeet the PAI.
 
 /obj/machinery/microwave/proc/fail()
-	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
+	var/obj/item/food/badrecipe/ffuu = new(src)
 	var/amount = 0
 	for (var/obj/O in cookingContents() - ffuu)
 		amount++

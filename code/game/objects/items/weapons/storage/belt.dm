@@ -300,7 +300,7 @@
 		/obj/item/ammo_casing/a12g,
 		/obj/item/ammo_magazine,
 		/obj/item/cell/device,
-		/obj/item/reagent_containers/food/snacks/donut/,
+		/obj/item/food/donut/,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
 		/obj/item/gun/energy/stunrevolver,
@@ -363,12 +363,12 @@
 		/obj/item/handcuffs,
 		/obj/item/flash,
 		/obj/item/flame/lighter,
-		/obj/item/reagent_containers/food/snacks/donut/,
+		/obj/item/food/donut/,
 		///obj/item/ammo_magazine,	//Detectives don't get projectile weapons as standard here
 		///obj/item/gun/projectile/colt/detective,	//Detectives don't get projectile weapons as standard here
 		/obj/item/gun/energy/stunrevolver/detective,	//In keeping with the same vein as above, they can store their special one
 		/obj/item/holowarrant,
-		/obj/item/reagent_containers/food/drinks/flask,
+		/obj/item/food/drinks/flask,
 		/obj/item/ticket_printer	//VOREStation Edit
 		)
 
