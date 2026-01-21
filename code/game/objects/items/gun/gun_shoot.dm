@@ -83,7 +83,7 @@
 			return FALSE
 
 	if((CLUMSY in user.mutations) && prob(40)) //Clumsy handling
-		var/obj/P = consume_next_projectile()
+		var/obj/P = generate_projectile(src, bullet_type)
 		if(P)
 			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
@@ -96,13 +96,6 @@
 			handle_click_empty(user)
 		return FALSE
 	return TRUE
-
-//obtains the next projectile to fire
-/obj/item/gun_new/proc/consume_next_projectile()
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-
-	return null
 
 /obj/item/gun_new/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
@@ -137,7 +130,7 @@
 	if(ticker > burst)
 		return
 
-	var/obj/projectile = consume_next_projectile(user)
+	var/obj/item/projectile_new/projectile = generate_projectile(src, bullet_type)
 	if(!projectile) //click, out of bullets
 		handle_click_empty(user)
 		return

@@ -14,15 +14,7 @@
 
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
-	var/hitsound_wall = null // Played when something hits a wall, or anything else that isn't a mob.
-
-	////TG PROJECTILE SYTSEM
-	//Projectile stuff
-	var/range = 50
-	var/originalRange
-
-	//Fired processing vars
-	var/fired = FALSE	//Have we been fired yet
+	var/datum/bulletdata/shot_data = null
 	var/last_projectile_move = 0
 	var/last_process = 0
 	var/time_offset = 0
@@ -33,43 +25,19 @@
 	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
-	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
-	var/spread = 0			//amount (in degrees) of projectile spread
 	animate_movement = 0	//Use SLIDE_STEPS in conjunction with legacy
 	var/ricochets = 0
-	var/ricochets_max = 2
-	var/ricochet_chance = 30
-	var/can_miss = TRUE
-	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /test
 
 	//Hitscan
-	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
 	var/list/beam_segments	//assoc list of datum/point or datum/point/vector, start = end. Used for hitscan effect generation.
 	var/datum/point/beam_index
 	var/turf/hitscan_last	//last turf touched during hitscanning.
-	var/tracer_type
-	var/muzzle_type
-	var/impact_type
 	var/datum/beam_components_cache/beam_components
 
-	//Fancy hitscan lighting effects!
 	light_on = TRUE
-	var/hitscan_light_intensity = 1.5
-	var/hitscan_light_range = 0.75
-	var/hitscan_light_color_override
-	var/muzzle_flash_intensity = 3
-	var/muzzle_flash_range = 1.5
-	var/muzzle_flash_color_override
-	var/impact_light_intensity = 3
-	var/impact_light_range = 2
-	var/impact_light_color_override
 
 	//Homing
-	var/homing = FALSE
 	var/atom/homing_target
-	var/homing_turn_speed = 10		//Angle per tick.
-	var/homing_inaccuracy_min = 0		//in pixels for these. offsets are set once when setting target.
-	var/homing_inaccuracy_max = 0
 	var/homing_offset_x = 0
 	var/homing_offset_y = 0
 
@@ -82,90 +50,27 @@
 	var/p_x = 16
 	var/p_y = 16			// the pixel location of the tile that the player clicked. Default is the center
 
-	//Misc/Polaris variables
-
 	var/def_zone = ""	 //Aiming at
 	var/mob/firer = null //Who shot it
-	var/silenced = FALSE //Attack message
 	var/shot_from = ""   // name of the object which shot us
-
-	var/accuracy = 0
-	var/dispersion = 0.0
-
-	// Sub-munitions. Basically, multi-projectile shotgun, rather than pellets.
-	var/use_submunitions = FALSE
-	var/only_submunitions = FALSE // Will the projectile delete itself after firing the submunitions?
-	var/list/submunitions = list() // Assoc list of the paths of any submunitions, and how many they are. [projectilepath] = [projectilecount].
-	var/submunition_spread_max = 30 // Divided by 10 to get the percentile dispersion.
-	var/submunition_spread_min = 5 // Above.
-	var/force_max_submunition_spread = FALSE // Do we just force the maximum?
-	var/spread_submunition_damage = FALSE // Do we assign damage to our sub projectiles based on our main projectile damage?
-
-	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID, SEARING are the only things that should be in here
-	var/mob_bonus_damage = 0 // Some bullets inflict extra damage on simple animals.
-	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
-	var/taser_effect = 0 //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
-	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
-	var/projectile_type = /obj/item/projectile_new
-	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
-		//Effects
-	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 for intense fire. - Mech
-	var/flammability = 0 //Amount of fire stacks to add for the above.
-	var/combustion = TRUE	//Does this set off flammable objects on fire/hit?
-	var/stun = 0
-	var/weaken = 0
-	var/paralyze = 0
-	var/irradiate = 0
-	var/stutter = 0
-	var/eyeblur = 0
-	var/drowsy = 0
-	var/agony = 0
-	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
-	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
-	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
-	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
 
 	embed_chance = 0	//Base chance for a projectile to embed
 
-	var/fire_sound = 'sound/weapons/gunshot_old.ogg' // Can be overriden in gun.dm's fire_sound var. It can also be null but I don't know why you'd ever want to do that. -Ace
-
-	var/vacuum_traversal = TRUE //Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
-
 	var/temporary_unstoppable_movement = FALSE
-
-	// When a non-hitscan projectile hits something, a visual effect can be spawned.
-	// This is distinct from the hitscan's "impact_type" var.
-	var/impact_effect_type = null
 
 	var/list/impacted_mobs = list()
 
-	// TGMC Ammo HUD Port
-	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
-	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
-
-	///If the rounds dephase or not
-	var/dephasing = FALSE
-	///If the rounds hit phased entities or not.
-	var/hits_phased = FALSE
-
 	var/obj/item/ammo_casing/my_case = null
 
-
-/obj/item/projectile_new/Initialize(mapload)
+/obj/item/projectile_new/Destroy()
+	QDEL_NULL(shot_data)
 	. = ..()
-	if(istype(loc, /obj/item/ammo_casing))
-		my_case = loc
 
 /obj/item/projectile_new/proc/Range()
-	range--
-	if(range <= 0 && loc)
-		on_range()
-
-/obj/item/projectile_new/proc/on_range() //if we want there to be effects when they reach the end of their range
-	impact_sounds(loc)
-	impact_visuals(loc) // So it does a little 'burst' effect, but not actually do anything (unless overrided).
-	qdel(src)
+	shot_data.range--
+	if(shot_data.range <= 0 && loc)
+		shot_data.on_range(src)
+		qdel(src)
 
 /obj/item/projectile_new/proc/return_predicted_turf_after_moves(moves, forced_angle)		//I say predicted because there's no telling that the projectile won't change direction/location in flight.
 	if(!trajectory && isnull(forced_angle) && isnull(Angle))
@@ -195,7 +100,7 @@
 		beam_segments[beam_index] = null	//record start.
 
 /obj/item/projectile_new/proc/process_hitscan()
-	var/safety = range * 3
+	var/safety = shot_data.range * 3
 	record_hitscan_start(RETURN_POINT_VECTOR_INCREMENT(src, Angle, MUZZLE_EFFECT_PIXEL_INCREMENT, 1))
 	while(loc && !QDELETED(src))
 		if(safety-- <= 0)
@@ -210,7 +115,7 @@
 	if(!loc || !trajectory)
 		return
 	last_projectile_move = world.time
-	if(homing)
+	if(shot_data.homing)
 		process_homing()
 	var/forcemoved = FALSE
 	for(var/i in 1 to SSprojectiles.global_iterations_per_move)
@@ -247,14 +152,14 @@
 	Range()
 
 /obj/item/projectile_new/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
-	if(AM.is_incorporeal() && !hits_phased)
+	if(AM.is_incorporeal() && !shot_data.hits_phased)
 		return
 	..()
 	if(isliving(AM) && !(pass_flags & PASSMOB))
 		var/mob/living/L = AM
 		if(can_hit_target(L, permutated, (AM == original)))
 			Bump(AM)
-			if(dephasing)
+			if(shot_data.dephasing)
 				L.phase_in() //If the mob is phased, dephase them. If they're not phased, this does nothing.
 
 /obj/item/projectile_new/proc/process_homing()			//may need speeding up in the future performance wise.
@@ -264,15 +169,15 @@
 	PT.x += CLAMP(homing_offset_x, 1, world.maxx)
 	PT.y += CLAMP(homing_offset_y, 1, world.maxy)
 	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
-	setAngle(Angle + CLAMP(angle, -homing_turn_speed, homing_turn_speed))
+	setAngle(Angle + CLAMP(angle, -shot_data.homing_turn_speed, shot_data.homing_turn_speed))
 
 /obj/item/projectile_new/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))
 		return FALSE
-	homing = TRUE
+	shot_data.homing = TRUE
 	homing_target = A
-	homing_offset_x = rand(homing_inaccuracy_min, homing_inaccuracy_max)
-	homing_offset_y = rand(homing_inaccuracy_min, homing_inaccuracy_max)
+	homing_offset_x = rand(shot_data.homing_inaccuracy_min, shot_data.homing_inaccuracy_max)
+	homing_offset_y = rand(shot_data.homing_inaccuracy_min, shot_data.homing_inaccuracy_max)
 	if(prob(50))
 		homing_offset_x = -homing_offset_x
 	if(prob(50))
@@ -280,8 +185,7 @@
 
 /obj/item/projectile_new/process()
 	last_process = world.time
-	if(!loc || !fired || !trajectory)
-		fired = FALSE
+	if(!loc || !trajectory)
 		return PROCESS_KILL
 	if(!isturf(loc))
 		last_projectile_move += world.time - last_process
@@ -303,7 +207,7 @@
 
 /obj/item/projectile_new/proc/setAngle(new_angle)	//wrapper for overrides.
 	Angle = new_angle
-	if(!nondirectional_sprite)
+	if(!shot_data.nondirectional_sprite)
 		var/matrix/M = new
 		M.Turn(Angle)
 		transform = M
@@ -320,10 +224,10 @@
 		before_z_change(old, target)
 	. = ..()
 	if(trajectory && !trajectory_ignore_forcemove && isturf(target))
-		if(hitscan)
+		if(shot_data.hitscan)
 			finalize_hitscan_and_generate_tracers(FALSE)
 		trajectory.initialize_location(target.x, target.y, target.z, 0, 0)
-		if(hitscan)
+		if(shot_data.hitscan)
 			record_hitscan_start(RETURN_PRECISE_POINT(src))
 	if(zc)
 		after_z_change(old, target)
@@ -331,7 +235,7 @@
 /obj/item/projectile_new/proc/fire(angle, atom/direct_target)
 	//If no angle needs to resolve it from xo/yo!
 	if(direct_target)
-		if(bump_targets)
+		if(shot_data.bump_targets)
 			direct_target.bullet_act(src, def_zone)
 		qdel(src)
 		return
@@ -348,8 +252,8 @@
 			return
 		var/turf/target = locate(CLAMP(starting + xo, 1, world.maxx), CLAMP(starting + yo, 1, world.maxy), starting.z)
 		setAngle(Get_Angle(src, target))
-	if(dispersion)
-		setAngle(Angle + rand(-dispersion, dispersion))
+	if(shot_data.dispersion)
+		setAngle(Angle + rand(-shot_data.dispersion, shot_data.dispersion))
 	original_angle = Angle
 	trajectory_ignore_forcemove = TRUE
 	forceMove(starting)
@@ -357,9 +261,7 @@
 	trajectory = new(starting.x, starting.y, starting.z, pixel_x, pixel_y, Angle, SSprojectiles.global_pixel_speed)
 	last_projectile_move = world.time
 	permutated = list()
-	originalRange = range
-	fired = TRUE
-	if(hitscan)
+	if(shot_data.hitscan)
 		. = process_hitscan()
 	START_PROCESSING(SSprojectiles, src)
 	pixel_move(1, FALSE)	//move it now!
@@ -369,7 +271,7 @@
 	if(temporary_unstoppable_movement)
 		temporary_unstoppable_movement = FALSE
 		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
-	if(fired && can_hit_target(original, permutated, TRUE))
+	if(can_hit_target(original, permutated, TRUE))
 		Bump(original)
 
 /obj/item/projectile_new/proc/after_z_change(atom/olcloc, atom/newloc)
@@ -465,7 +367,7 @@
 	setAngle(Get_Angle(source, target))
 
 /obj/item/projectile_new/Destroy()
-	if(hitscan)
+	if(shot_data.hitscan)
 		finalize_hitscan_and_generate_tracers()
 	STOP_PROCESSING(SSprojectiles, src)
 
@@ -490,8 +392,8 @@
 	qdel(beam_index)
 
 /obj/item/projectile_new/proc/vol_by_damage()
-	if(damage || agony)
-		var/value_to_use = damage > agony ? damage : agony
+	if(shot_data.damage || shot_data.agony)
+		var/value_to_use = shot_data.damage > shot_data.agony ? shot_data.damage : shot_data.agony
 		// Multiply projectile damage by 1.2, then CLAMP the value between 30 and 100.
 		// This was 0.67 but in practice it made all projectiles that did 45 or less damage play at 30,
 		// which is hard to hear over the gunshots, and is rather rare for a projectile to do that much.
@@ -509,11 +411,11 @@
 	if(!length(beam_segments))
 		return
 	beam_components = new
-	if(tracer_type)
+	if(shot_data.tracer_type)
 		var/tempref = "\ref[src]"
 		for(var/datum/point/p in beam_segments)
-			generate_tracer_between_points(p, beam_segments[p], beam_components, tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity, tempref)
-	if(muzzle_type && duration > 0)
+			generate_tracer_between_points(p, beam_segments[p], beam_components, shot_data.tracer_type, color, duration, shot_data.hitscan_light_range, shot_data.hitscan_light_color_override, shot_data.hitscan_light_intensity, tempref)
+	if(shot_data.muzzle_type && duration > 0)
 		var/datum/point/p = beam_segments[1]
 		var/atom/movable/thing = new muzzle_type
 		p.move_atom_to_src(thing)
@@ -521,9 +423,9 @@
 		M.Turn(original_angle)
 		thing.transform = M
 		thing.color = color
-		thing.set_light(muzzle_flash_range, muzzle_flash_intensity, muzzle_flash_color_override? muzzle_flash_color_override : color)
+		thing.set_light(shot_data.muzzle_flash_range, shot_data.muzzle_flash_intensity, shot_data.muzzle_flash_color_override? shot_data.muzzle_flash_color_override : color)
 		beam_components.beam_components += thing
-	if(impacting && impact_type && duration > 0)
+	if(impacting && shot_data.impact_type && duration > 0)
 		var/datum/point/p = beam_segments[beam_segments[beam_segments.len]]
 		var/atom/movable/thing = new impact_type
 		p.move_atom_to_src(thing)
@@ -531,7 +433,7 @@
 		M.Turn(Angle)
 		thing.transform = M
 		thing.color = color
-		thing.set_light(impact_light_range, impact_light_intensity, impact_light_color_override? impact_light_color_override : color)
+		thing.set_light(shot_data.impact_light_range, shot_data.impact_light_intensity, shot_data.impact_light_color_override? shot_data.impact_light_color_override : color)
 		beam_components.beam_components += thing
 	QDEL_IN(beam_components, duration)
 
@@ -562,7 +464,7 @@
 				return TRUE
 			if(!L.density)
 				var/datum/component/shadekin/SK = L.GetComponent(/datum/component/shadekin)
-				if(!SK || (SK.in_phase && !hits_phased)) //We don't have the phasing component, or we do but we're currently phased and the bullet can't hit phased things...This is needed for simple mobs.
+				if(!SK || (SK.in_phase && !shot_data.hits_phased)) //We don't have the phasing component, or we do but we're currently phased and the bullet can't hit phased things...This is needed for simple mobs.
 					return FALSE
 	return TRUE
 
@@ -572,7 +474,7 @@
 		forceMove(get_turf(A))
 		trajectory_ignore_forcemove = FALSE
 		return FALSE
-	if(firer && !reflected)
+	if(firer && !shot_data.reflected)
 		if(A == firer || (A == firer.loc && istype(A, /obj/mecha))) //cannot shoot yourself or your mech
 			trajectory_ignore_forcemove = TRUE
 			forceMove(get_turf(A))
@@ -593,18 +495,18 @@
 					var/shield_chance = min(80, (30 * (M.mob_size / 10)))	//Small mobs have a harder time keeping a dead body as a shield than a human-sized one. Unathi would have an easier job, if they are made to be SIZE_LARGE in the future. -Mech
 					if(prob(shield_chance))
 						visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
-						if(bump_targets)
+						if(shot_data.bump_targets)
 							if(Bump(G.affecting))
 								return
 					else
 						visible_message(span_danger("\The [M] tries to use [G.affecting] as a shield, but fails!"))
 				else
 					visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
-					if(bump_targets)
+					if(shot_data.bump_targets)
 						if(Bump(G.affecting))
 							return //If Bump() returns 0 (keep going) then we continue on to attack M.
 
-			if(bump_targets)
+			if(shot_data.bump_targets)
 				passthrough = !attack_mob(M, distance)
 			else
 				passthrough = 1 //Projectiles that don't bump (raytraces) always pass through
@@ -612,7 +514,7 @@
 			passthrough = 1 //so ghosts don't stop bullets
 	else
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
-		if(bump_targets) // only attack/act a turf's contents if our projectile is not a raytrace
+		if(shot_data.bump_targets) // only attack/act a turf's contents if our projectile is not a raytrace
 			if(isturf(A))
 				for(var/obj/O in A)
 					O.bullet_act(src)
@@ -620,10 +522,10 @@
 					attack_mob(M, distance)
 
 	//penetrating projectiles can pass through things that otherwise would not let them
-	if(!passthrough && penetrating > 0)
+	if(!passthrough && shot_data.penetrating > 0)
 		if(check_penetrate(A))
 			passthrough = TRUE
-		penetrating--
+		shot_data.penetrating--
 
 	if(passthrough)
 		trajectory_ignore_forcemove = TRUE
@@ -632,7 +534,7 @@
 		trajectory_ignore_forcemove = FALSE
 		return FALSE
 
-	if(A && bump_targets)
+	if(A && shot_data.bump_targets)
 		on_impact(A)
 	qdel(src)
 	return TRUE
@@ -643,9 +545,9 @@
 	if(!isliving(target))	return 0
 //	if(isanimal(target))	return 0
 	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked, incendiary, flammability) // add in AGONY!
-	if(modifier_type_to_apply)
-		L.add_modifier(modifier_type_to_apply, modifier_duration)
+	L.apply_effects(shot_data.stun, shot_data.weaken, shot_data.paralyze, shot_data.irradiate, shot_data.stutter, shot_data.eyeblur, shot_data.drowsy, shot_data.agony, blocked, shot_data.incendiary, shot_data.flammability) // add in AGONY!
+	if(shot_data.modifier_type_to_apply)
+		L.add_modifier(shot_data.modifier_type_to_apply, shot_data.modifier_duration)
 	return 1
 
 //called when the projectile stops flying because it Bump'd with something
@@ -653,7 +555,7 @@
 	impact_sounds(A)
 	impact_visuals(A)
 
-	if(damage && damage_type == BURN)
+	if(shot_data.damage && shot_data.damage_type == BURN)
 		var/turf/T = get_turf(A)
 		if(T)
 			T.hotspot_expose(700, 5)
@@ -661,13 +563,13 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile_new/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(embed_chance == 0 || damage_type != BRUTE)
+	if(embed_chance == 0 || shot_data.damage_type != BRUTE)
 		return 0
 	return 1
 
 /obj/item/projectile_new/proc/get_structure_damage()
-	if(damage_type == BRUTE || damage_type == BURN)
-		return damage
+	if(shot_data.damage_type == BRUTE || shot_data.damage_type == BURN)
+		return shot_data.damage
 	return 0
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
@@ -687,7 +589,7 @@
 	if(!istype(target_mob))
 		return
 
-	if(target_mob.is_incorporeal() && !hits_phased)
+	if(target_mob.is_incorporeal() && !shot_data.hits_phased)
 		return
 
 	if(target_mob in impacted_mobs)
@@ -699,8 +601,8 @@
 	// +accuracy = higher chance to hit through evasion. -accuracy = lower chance to hit through evasion.
 	// These ONLY matter if the mob you are attacking has evasion OR if it's coming from a non-living attacker (Mines/Turrets)
 	// The get_zone_with_miss_chance() proc is HIGHLY variable and can be changed server to server with multiple simple var switches built in without having to do specialty code or multiple edits.
-	var/miss_chance = (-accuracy + miss_modifier) //Chance to miss the target. Higher
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
+	var/miss_chance = (-shot_data.accuracy + miss_modifier) //Chance to miss the target. Higher
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), force_hit = !shot_data.can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)
@@ -715,7 +617,7 @@
 		impacted_mobs |= target_mob
 
 	if(result == PROJECTILE_FORCE_MISS)
-		if(!silenced)
+		if(!shot_data.silenced)
 			target_mob.visible_message(span_infoplain(span_bold("\The [src]") + " misses \the [target_mob] narrowly!"))
 			playsound(target_mob, "bullet_miss", 75, 1)
 		return FALSE
@@ -727,7 +629,7 @@
 		impacted_organ = pick(organ_plan.hit_zones)
 
 	//hit messages
-	if(silenced)
+	if(shot_data.silenced)
 		playsound(target_mob, hitsound, 5, 1, -1)
 		to_chat(target_mob, span_critical("You've been hit in the [impacted_organ] by \the [src]!"))
 	else
@@ -744,7 +646,7 @@
 		if(istype(firer, /mob) && istype(target_mob))
 			add_attack_logs(firer,target_mob,"Shot with \a [src.type] projectile")
 
-	if(dephasing)
+	if(shot_data.dephasing)
 		target_mob.phase_in() //If the mob is phased, dephase them. If they're not phased, this does nothing.
 
 
@@ -763,35 +665,35 @@
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
 
-	if(use_submunitions && submunitions.len)
+	if(shot_data.use_submunitions && shot_data.submunitions.len)
 		var/temp_min_spread = 0
-		if(force_max_submunition_spread)
-			temp_min_spread = submunition_spread_max
+		if(shot_data.force_max_submunition_spread)
+			temp_min_spread = shot_data.submunition_spread_max
 		else
-			temp_min_spread = submunition_spread_min
+			temp_min_spread = shot_data.submunition_spread_min
 
 		var/damage_override = null
 
-		if(spread_submunition_damage)
-			damage_override = damage
-			if(nodamage)
+		if(shot_data.spread_submunition_damage)
+			damage_override = shot_data.damage
+			if(shot_data.nodamage)
 				damage_override = 0
 
 			var/projectile_count = 0
 
-			for(var/proj in submunitions)
-				projectile_count += submunitions[proj]
+			for(var/proj in shot_data.submunitions)
+				projectile_count += shot_data.submunitions[proj]
 
 			damage_override = round(damage_override / max(1, projectile_count))
 
-		for(var/path in submunitions)
-			for(var/count = 1 to submunitions[path])
+		for(var/path in shot_data.submunitions)
+			for(var/count = 1 to shot_data.submunitions[path])
 				var/obj/item/projectile_new/SM = new path(get_turf(loc))
+				SM.shot_data = shot_data // TEMP DO NOT KEEP, MASSIVE MEMORY LEAK
 				SM.shot_from = shot_from
-				SM.silenced = silenced
-				SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
+				SM.shot_data.dispersion = rand(temp_min_spread, shot_data.submunition_spread_max) / 10
 				if(!isnull(damage_override))
-					SM.damage = damage_override
+					SM.shot_data.damage = damage_override
 				SM.launch_projectile(target, target_zone, user, params, angle_override)
 
 	preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
@@ -801,7 +703,7 @@
 /obj/item/projectile_new/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/gun/launcher)
 
 	shot_from = launcher.name
-	silenced |= launcher.silenced // Silent bullets (e.g., BBs) are always silent
+	shot_data.silenced |= launcher.silenced // Silent bullets (e.g., BBs) are always silent
 	if(user)
 		firer = user
 
@@ -815,35 +717,35 @@
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
 
-	if(use_submunitions && submunitions.len)
+	if(shot_data.use_submunitions && shot_data.submunitions.len)
 		var/temp_min_spread = 0
-		if(force_max_submunition_spread)
-			temp_min_spread = submunition_spread_max
+		if(shot_data.force_max_submunition_spread)
+			temp_min_spread = shot_data.submunition_spread_max
 		else
-			temp_min_spread = submunition_spread_min
+			temp_min_spread = shot_data.submunition_spread_min
 
 		var/damage_override = null
 
-		if(spread_submunition_damage)
-			damage_override = damage
-			if(nodamage)
+		if(shot_data.spread_submunition_damage)
+			damage_override = shot_data.damage
+			if(shot_data.nodamage)
 				damage_override = 0
 
 			var/projectile_count = 0
 
-			for(var/proj in submunitions)
-				projectile_count += submunitions[proj]
+			for(var/proj in shot_data.submunitions)
+				projectile_count += shot_data.submunitions[proj]
 
 			damage_override = round(damage_override / max(1, projectile_count))
 
-		for(var/path in submunitions)
-			for(var/count = 1 to submunitions[path])
+		for(var/path in shot_data.submunitions)
+			for(var/count = 1 to shot_data.submunitions[path])
 				var/obj/item/projectile_new/SM = new path(get_turf(loc))
+				SM.shot_data = shot_data // TEMP DO NOT KEEP THIS - AWFUL MEM LEAK
 				SM.shot_from = shot_from
-				SM.silenced = silenced
-				SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
+				SM.shot_data.dispersion = rand(temp_min_spread, shot_data.submunition_spread_max) / 10
 				if(!isnull(damage_override))
-					SM.damage = damage_override
+					SM.shot_data.damage = damage_override
 				SM.launch_projectile_from_turf(target, target_zone, user, params, angle_override)
 
 	preparePixelProjectile(target, get_turf(src), params, forced_spread)
@@ -851,7 +753,7 @@
 
 // Makes a brief effect sprite appear when the projectile hits something solid.
 /obj/item/projectile_new/proc/impact_visuals(atom/A, hit_x, hit_y)
-	if(impact_effect_type && !hitscan) // Hitscan things have their own impact sprite.
+	if(shot_data.impact_effect_type && !shot_data.hitscan) // Hitscan things have their own impact sprite.
 		if(isnull(hit_x) && isnull(hit_y))
 			if(trajectory)
 				// Effect goes where the projectile 'stopped'.
@@ -868,11 +770,11 @@
 		new impact_effect_type(get_turf(A), src, hit_x, hit_y)
 
 /obj/item/projectile_new/proc/impact_sounds(atom/A)
-	if(hitsound_wall && !ismob(A)) // Mob sounds are handled in attack_mob().
+	if(shot_data.hitsound_wall && !ismob(A)) // Mob sounds are handled in attack_mob().
 		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
-		if(silenced)
+		if(shot_data.silenced)
 			volume = 5
-		playsound(A, hitsound_wall, volume, 1, -1)
+		playsound(A, shot_data.hitsound_wall, volume, 1, -1)
 
 #undef MOVES_HITSCAN
 #undef MUZZLE_EFFECT_PIXEL_INCREMENT

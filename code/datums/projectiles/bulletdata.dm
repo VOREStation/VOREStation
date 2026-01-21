@@ -85,6 +85,7 @@
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 
 	// Sub-munitions. Basically, multi-projectile shotgun, rather than pellets.
+	var/list/submunitions = list() // Assoc list of the paths of any submunitions, and how many they are. [projectilepath] = [projectilecount].
 	var/use_submunitions = FALSE
 	var/only_submunitions = FALSE // Will the projectile delete itself after firing the submunitions?
 	var/submunition_spread_max = 30 // Divided by 10 to get the percentile dispersion.
@@ -107,7 +108,10 @@
 	var/muzzle_type
 	var/impact_type
 
-	var/ricochets = 0
+	var/spread = 0			//amount (in degrees) of projectile spread
+
+	var/silenced = FALSE
+
 	var/ricochets_max = 2
 	var/ricochet_chance = 30
 	var/can_miss = TRUE
@@ -116,10 +120,25 @@
 	// When a non-hitscan projectile hits something, a visual effect can be spawned.
 	// This is distinct from the hitscan's "impact_type" var.
 	var/impact_effect_type = null
+	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
 
-/// fired on hit when a projectile hits an atom.
-/datum/bulletdata/proc/on_hit(obj/item/projectile, atom/hit_atom)
+/// Fired when a projectile hits an atom.
+/datum/bulletdata/proc/on_hit(obj/item/projectile_new/shot, atom/hit_atom)
 	// TODO - Bullet hit an atom
 
-/datum/bulletdata/proc/on_range(obj/item/projectile)
-	// TODO - Bullet reached maximum range
+/// Fired when a projectile reaches its maximum range
+/datum/bulletdata/proc/on_range(obj/item/projectile_new/shot)
+	// So it does a little 'burst' effect, but not actually do anything (unless overrided).
+	shot.impact_sounds(shot.loc)
+	shot.impact_visuals(shot.loc)
+
+/// Takes a /datum/bulletdata path and creates a projectile based on it's data. Returns the instantiated projectile
+/proc/generate_projectile(obj/firer, bulletdata_path)
+	RETURN_TYPE(/obj/item/projectile_new)
+
+	// Create projectile
+	var/obj/item/projectile_new/fired_shot = new(firer)
+	fired_shot.shot_data = new bulletdata_path()
+	// Apply datum to projectile
+
+	return fired_shot

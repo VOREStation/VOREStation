@@ -230,7 +230,7 @@
 		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return
-	var/obj/item/projectile/in_chamber = consume_next_projectile()
+	var/obj/item/projectile_new/in_chamber = generate_projectile(src, bullet_type)
 	if (istype(in_chamber))
 		user.visible_message(span_warning("[user] pulls the trigger."))
 		play_fire_sound(M, in_chamber)
@@ -240,11 +240,11 @@
 			return
 
 		in_chamber.on_hit(M)
-		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
+		if(in_chamber.shot_data.damage_type != HALLOSS && !in_chamber.shot_data.nodamage)
 			log_and_message_admins("commited suicide using \a [src]", user)
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
+			user.apply_damage(in_chamber.shot_data.damage*2.5, in_chamber.shot_data.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
 			user.death()
-		else if(in_chamber.damage_type == HALLOSS)
+		else if(in_chamber.shot_data.damage_type == HALLOSS)
 			to_chat(user, span_notice("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
