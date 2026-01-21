@@ -8,8 +8,8 @@
 	center_of_mass_y = 14
 	bitesize = 1.5
 
-	food_reagents = list(REAGENT_ID_PROTEIN = 6)
-	reagents.add_reagent(REAGENT_ID_TRIGLYCERIDE, 2)
+	food_reagents = list(REAGENT_ID_PROTEIN = 6,
+						REAGENT_ID_TRIGLYCERIDE = 2)
 
 /obj/item/food/meat/cook_no_recipe()
 
