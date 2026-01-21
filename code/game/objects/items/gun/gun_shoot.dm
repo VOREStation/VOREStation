@@ -1,45 +1,40 @@
 /obj/item/gun_new/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
+	// locate what they're aiming at.
 	if(!user.aiming)
 		user.aiming = new(user)
-
 	if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A)
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
+		PreFire(A,user,params)
 		return
 
 	if(user && user.a_intent == I_HELP && user.client?.prefs?.read_preference(/datum/preference/toggle/safefiring)) //regardless of what happens, refuse to shoot if help intent is on
 		to_chat(user, span_warning("You refrain from firing your [src] as your intent is set to help."))
 		return
-
-	else
-		Fire(A, user, params) //Otherwise, fire normally.
-		return
+	Fire(A, user, params) //Otherwise, fire normally.
 
 /obj/item/gun_new/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target)
-		return
-	if(target.z != user.z)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!target)
 		return
 
-	add_fingerprint(user)
-
-	user.break_cloak()
-
-	if(!special_check(user))
-		return
+	var/shoot_time = (burst - 1)* burst_delay
+	if(user) // Rarely we need to support null user firing.
+		if(target.z != user.z)
+			return
+		add_fingerprint(user)
+		user.break_cloak()
+		if(!special_check(user))
+			return
+		user.setClickCooldown(shoot_time) //no clicking on things while shooting
+		user.setMoveCooldown(shoot_time) //no moving while shooting either
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
 			to_chat(user, span_warning("[src] is not ready to fire again!"))
 		return
-
-	var/shoot_time = (burst - 1)* burst_delay
-
-	//These should apparently be disabled to allow for the automatic system to function without causing near-permanant paralysis. Re-enabling them while we sort that out.
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
-
 	next_fire_time = world.time + shoot_time
 	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
@@ -47,6 +42,9 @@
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
 /obj/item/gun_new/proc/special_check(var/mob/living/user)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(!isliving(user) || !user.IsAdvancedToolUser())
 		return FALSE
 	if(isanimal(user))
@@ -101,6 +99,9 @@
 
 //obtains the next projectile to fire
 /obj/item/gun_new/proc/consume_next_projectile()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	return null
 
 /obj/item/gun_new/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
@@ -324,6 +325,9 @@
 
 //does the actual launching of the projectile
 /obj/item/gun_new/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
