@@ -11,9 +11,12 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	hitsound = 'sound/weapons/pierce.ogg'
-
+	animate_movement = 0	//Use SLIDE_STEPS in conjunction with legacy
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	embed_chance = 0	//Base chance for a projectile to embed
+	light_on = TRUE
 
+	var/obj/item/ammo_casing/my_case = null
 	var/datum/bulletdata/shot_data = null
 	var/last_projectile_move = 0
 	var/last_process = 0
@@ -25,7 +28,6 @@
 	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
-	animate_movement = 0	//Use SLIDE_STEPS in conjunction with legacy
 	var/ricochets = 0
 
 	//Hitscan
@@ -33,8 +35,6 @@
 	var/datum/point/beam_index
 	var/turf/hitscan_last	//last turf touched during hitscanning.
 	var/datum/beam_components_cache/beam_components
-
-	light_on = TRUE
 
 	//Homing
 	var/atom/homing_target
@@ -50,17 +50,14 @@
 	var/p_x = 16
 	var/p_y = 16			// the pixel location of the tile that the player clicked. Default is the center
 
+	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
 	var/def_zone = ""	 //Aiming at
 	var/mob/firer = null //Who shot it
 	var/shot_from = ""   // name of the object which shot us
 
-	embed_chance = 0	//Base chance for a projectile to embed
-
 	var/temporary_unstoppable_movement = FALSE
-
 	var/list/impacted_mobs = list()
 
-	var/obj/item/ammo_casing/my_case = null
 
 /obj/item/projectile_new/Destroy()
 	QDEL_NULL(shot_data)
@@ -474,7 +471,7 @@
 		forceMove(get_turf(A))
 		trajectory_ignore_forcemove = FALSE
 		return FALSE
-	if(firer && !shot_data.reflected)
+	if(firer && !reflected)
 		if(A == firer || (A == firer.loc && istype(A, /obj/mecha))) //cannot shoot yourself or your mech
 			trajectory_ignore_forcemove = TRUE
 			forceMove(get_turf(A))
@@ -767,7 +764,7 @@
 				// Otherwise it'll be random.
 				hit_x = A.pixel_x + rand(-8, 8)
 				hit_y = A.pixel_y + rand(-8, 8)
-		new impact_effect_type(get_turf(A), src, hit_x, hit_y)
+		new shot_data.impact_effect_type(get_turf(A), src, hit_x, hit_y)
 
 /obj/item/projectile_new/proc/impact_sounds(atom/A)
 	if(shot_data.hitsound_wall && !ismob(A)) // Mob sounds are handled in attack_mob().

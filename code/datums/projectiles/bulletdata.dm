@@ -44,6 +44,21 @@
 	var/dispersion = 0.0
 	var/range = 50
 
+	// TODO - Confirmed keeping vars
+
+	/// Played when something hits a wall, or anything else that isn't a mob.
+	var/hitsound_wall = null
+
+	///If the rounds dephase or not
+	var/dephasing = FALSE
+	///If the rounds hit phased entities or not.
+	var/hits_phased = FALSE
+
+
+
+
+
+	// TODO - Go through code and determine which of these should continue to exist
 	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 for intense fire. - Mech
 	var/flammability = 0 //Amount of fire stacks to add for the above.
 	var/combustion = TRUE	//Does this set off flammable objects on fire/hit?
@@ -55,17 +70,11 @@
 	var/eyeblur = 0
 	var/drowsy = 0
 	var/agony = 0
-	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
+
 	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
 	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
 	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
 
-	///If the rounds dephase or not
-	var/dephasing = FALSE
-	///If the rounds hit phased entities or not.
-	var/hits_phased = FALSE
-
-	var/hitsound_wall = null // Played when something hits a wall, or anything else that isn't a mob.
 
 	var/homing = FALSE
 	var/homing_turn_speed = 10		//Angle per tick.
