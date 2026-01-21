@@ -107,12 +107,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user, target_zone))
+		return TRUE
+
 	if(!force || (flags & NOBLUDGEON))
-		return 0
+		return FALSE
 	if(M == user && user.a_intent != I_HURT)
-		return 0
+		return FALSE
 	if(M.is_incorporeal()) // No attacking phased entities :)
-		return 0
+		return FALSE
 
 	/////////////////////////
 	user.lastattacked = M
@@ -129,7 +132,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone, attack_modifier)
 
-	return 1
+	return TRUE
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone, var/attack_modifier)

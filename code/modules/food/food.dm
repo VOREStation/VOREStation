@@ -98,9 +98,12 @@
 		if(total_so_far > volume)
 			WARNING("[src]([src.type]) starts with more reagents than it has total volume")
 		food_reagents = null
+	if(nutriment_amt)
+		reagents.add_reagent(REAGENT_ID_NUTRIMENT, (nutriment_amt * 2), nutriment_desc)
 	if ((center_of_mass_x || center_of_mass_y) && !pixel_x && !pixel_y)
 		src.pixel_x = rand(-6.0, 6) //Randomizes postion
 		src.pixel_y = rand(-6.0, 6)
+	AddComponent(/datum/component/edible)
 
 /obj/item/food/attackby(obj/item/W, mob/user)
 	. = ..()
@@ -313,156 +316,6 @@
 		return FALSE
 	if(package && !user.incapacitated())
 		unpackage(user)
-
-/obj/item/food/attack(mob/living/eater as mob, mob/user as mob, def_zone)
-	if(reagents && !reagents.total_volume)
-		balloon_alert(user, "none of \the [src] left!")
-		user.drop_from_inventory(src)
-		qdel(src)
-		return FALSE
-
-	if(package)
-		balloon_alert(user, "the package is in the way!")
-		return FALSE
-
-	if(istype(eater, /mob/living/carbon))
-		//TODO: replace with standard_feed_mob() call.
-
-		if(!eater.consume_liquid_belly)
-			if(liquid_belly_check())
-				to_chat(user, span_infoplain("[user == eater ? "You can't" : "\The [eater] can't"] consume that, it contains something produced from a belly!"))
-				return FALSE
-		var/swallow_whole = FALSE
-		var/obj/belly/belly_target				// These are surprise tools that will help us later
-
-		var/fullness = eater.nutrition + (eater.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
-		if(eater == user)								//If you're eating it yourself
-			if(ishuman(eater))
-				var/mob/living/carbon/human/human_eater = eater
-				if(!human_eater.check_has_mouth())
-					balloon_alert(user, "you don't have a mouth!")
-					return
-				var/obj/item/blocked = null
-				if(survivalfood)
-					blocked = human_eater.check_mouth_coverage_survival()
-				else
-					blocked = human_eater.check_mouth_coverage()
-				if(blocked)
-					balloon_alert(user, "\the [blocked] is in the way!")
-					return
-
-			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
-			if (fullness <= 50)
-				to_chat(eater, span_danger("You hungrily chew out a piece of [src] and gobble it!"))
-			if (fullness > 50 && fullness <= 150)
-				to_chat(eater, span_notice("You hungrily begin to eat [src]."))
-			if (fullness > 150 && fullness <= 350)
-				to_chat(eater, span_notice("You take a bite of [src]."))
-			if (fullness > 350 && fullness <= 550)
-				to_chat(eater, span_notice("You chew a bit of [src], despite feeling rather full."))
-			if (fullness > 550 && fullness <= 650)
-				to_chat(eater, span_notice("You swallow some more of the [src], causing your belly to swell out a little."))
-			if (fullness > 650 && fullness <= 1000)
-				to_chat(eater, span_notice("You stuff yourself with the [src]. Your stomach feels very heavy."))
-			if (fullness > 1000 && fullness <= 3000)
-				to_chat(eater, span_notice("You swallow down the hunk of [src]. Surely you have to have some limits?"))
-			if (fullness > 3000 && fullness <= 5500)
-				to_chat(eater, span_danger("You force the piece of [src] down. You can feel your stomach getting firm as it reaches its limits."))
-			if (fullness > 5500 && fullness <= 6000)
-				to_chat(eater, span_danger("You glug down the bite of [src], you are reaching the very limits of what you can eat, but maybe a few more bites could be managed..."))
-			if (fullness > 6000) // There has to be a limit eventually.
-				to_chat(eater, span_danger("Nope. That's it. You literally cannot force any more of [src] to go down your throat. It's fair to say you're full."))
-				return FALSE
-
-		else if(user.a_intent == I_HURT)
-			return ..()
-
-		else
-			if(ishuman(eater))
-				var/mob/living/carbon/human/human_eater = eater
-				if(!human_eater.check_has_mouth())
-					balloon_alert(user, "\the [human_eater] doesn't have a mouth!")
-					return
-				var/obj/item/blocked = null
-				var/unconcious = FALSE
-				blocked = human_eater.check_mouth_coverage()
-				if(survivalfood)
-					blocked = human_eater.check_mouth_coverage_survival()
-					if(human_eater.stat && human_eater.check_mouth_coverage())
-						unconcious = TRUE
-						blocked = human_eater.check_mouth_coverage()
-
-				if(isliving(user))	// We definitely are, but never hurts to check
-					var/mob/living/feeder = user
-					swallow_whole = feeder.stuffing_feeder
-				if(swallow_whole)
-					belly_target = tgui_input_list(user, "Choose Belly", "Belly Choice", human_eater.feedable_bellies())
-
-				if(unconcious)
-					to_chat(user, span_warning("You can't feed [human_eater] through \the [blocked] while they are unconcious!"))
-					return
-
-				if(blocked)
-					// to_chat(user, span_warning("\The [blocked] is in the way!"))
-					balloon_alert(user, "\the [blocked] is in the way!")
-					return
-
-				if(swallow_whole)
-					if(!(human_eater.feeding))
-						balloon_alert(user, "you can't feed [human_eater] a whole [src] as they refuse to be fed whole things!")
-						return
-					if(!belly_target)
-						balloon_alert(user, "you can't feed [human_eater] a whole [src] as they don't appear to have a belly to fit it!")
-						return
-
-				if(swallow_whole)
-					user.balloon_alert_visible("[user] attempts to make [human_eater] consume [src] whole into their [belly_target].")
-				else
-					user.balloon_alert_visible("[user] attempts to feed [human_eater] [src].")
-
-				var/feed_duration = 3 SECONDS
-				if(swallow_whole)
-					feed_duration = 5 SECONDS
-
-				user.setClickCooldown(user.get_attack_speed(src))
-				if(!do_after(user, feed_duration, human_eater)) return
-				if(!reagents || (reagents && !reagents.total_volume)) return
-
-				if(swallow_whole && !belly_target) return			// Just in case we lost belly mid-feed
-
-				if(swallow_whole)
-					add_attack_logs(user, human_eater,"Whole-fed with [src.name] containing [reagentlist(src)] into [belly_target]", admin_notify = FALSE)
-					user.visible_message("[user] successfully forces [src] into [human_eater]'s [belly_target].")
-					user.balloon_alert_visible("forces [src] into [human_eater]'s [belly_target]")
-				else
-					add_attack_logs(user, human_eater,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
-					user.visible_message("[user] feeds [human_eater] [src].")
-					user.balloon_alert_visible("feeds [human_eater] [src].")
-
-			else
-				balloon_alert(user, "this creature does not seem to have a mouth!")
-				return
-
-		if(swallow_whole)
-			user.drop_item()
-			forceMove(belly_target)
-			return TRUE
-		else if(reagents)								//Handle ingestion of the reagent.
-			feed_sound(eater)
-			if(reagents.total_volume)
-				var/bite_mod = 1
-				var/mob/living/carbon/human/human_eater = eater
-				if(istype(human_eater))
-					bite_mod = human_eater.species.bite_mod
-				if(reagents.total_volume > bitesize * bite_mod)
-					reagents.trans_to_mob(eater, bitesize * bite_mod, CHEM_INGEST)
-				else
-					reagents.trans_to_mob(eater, reagents.total_volume, CHEM_INGEST)
-				bitecount++
-				On_Consume(eater, user)
-			return TRUE
-
-	return FALSE
 
 /obj/item/food/examine(mob/user)
 	. = ..()
