@@ -529,7 +529,7 @@
 
 	//Final step. Cook function just cooks batter for now.
 	for (var/obj/item/food/S in CI.container)
-		S.cook()
+		S.cook_no_recipe()
 
 
 //Combination cooking involves combining the names and reagents of ingredients into a predefined output object

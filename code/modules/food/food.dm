@@ -40,7 +40,7 @@
 	var/list/nutriment_desc = list("food" = 1)
 	var/datum/reagent/nutriment/coating/coating = null
 	var/icon/flat_icon = null //Used to cache a flat icon generated from dipping in batter. This is used again to make the cooked-batter-overlay
-	var/do_coating_prefix = 1 //If 0, we wont do "battered thing" or similar prefixes. Mainly for recipes that include batter but have a special name
+	var/do_coating_prefix = TRUE //If 0, we wont do "battered thing" or similar prefixes. Mainly for recipes that include batter but have a special name
 
 	/// Used for foods that are "cooked" without being made into a specific recipe or combination.
 	/// Generally applied during modification cooking with oven/fryer
@@ -106,6 +106,14 @@
 	. = ..()
 
 /obj/item/food/afterattack(atom/A, mob/user, proximity, params)
+	if(O.is_open_container() && O.reagents && !(isfood(O)) && proximity)
+		for (var/r in O.reagents.reagent_list)
+
+			var/datum/reagent/R = r
+			if (istype(R, /datum/reagent/nutriment/coating))
+				if (apply_coating(R, user))
+					return 1
+
 	if((center_of_mass_x || center_of_mass_y) && proximity && params && istype(A, /obj/structure/table))
 		//Places the item on a grid
 		var/list/mouse_control = params2list(params)
@@ -620,6 +628,103 @@
 			user.automatic_custom_emote(VISIBLE_MESSAGE,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]", check_stat = TRUE)
 			qdel(src)
 	On_Consume(user)
+
+//This proc handles drawing coatings out of a container when this food is dipped into it
+/obj/item/food/proc/apply_coating(var/datum/reagent/nutriment/coating/C, var/mob/user)
+	if (coating)
+		to_chat(user, "The [src] is already coated in [coating.name]!")
+		return 0
+
+	//Calculate the reagents of the coating needed
+	var/req = 0
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
+		if (istype(R, /datum/reagent/nutriment))
+			req += R.volume * 0.2
+		else
+			req += R.volume * 0.1
+
+	req += w_class*0.5
+
+	if (!req)
+		//the food has no reagents left, its probably getting deleted soon
+		return 0
+
+	if (C.volume < req)
+		to_chat(user, span_warning("There's not enough [C.name] to coat the [src]!"))
+		return 0
+
+	var/id = C.id
+
+	//First make sure there's space for our batter
+	if (reagents.get_free_space() < req+5)
+		var/extra = req+5 - reagents.get_free_space()
+		reagents.maximum_volume += extra
+
+	//Suck the coating out of the holder
+	C.holder.trans_to_holder(reagents, req)
+
+	//We're done with C now, repurpose the var to hold a reference to our local instance of it
+	C = reagents.get_reagent(id)
+	if (!C)
+		return
+
+	coating = C
+	//Now we have to do the witchcraft with masking images
+	//var/icon/I = new /icon(icon, icon_state)
+
+	if (!flat_icon)
+		flat_icon = getFlatIcon(src)
+	var/icon/I = flat_icon
+	color = "#FFFFFF" //Some fruits use the color var. Reset this so it doesnt tint the batter
+	I.Blend(new /icon('icons/obj/food_custom.dmi', rgb(255,255,255)),ICON_ADD)
+	I.Blend(new /icon('icons/obj/food_custom.dmi', coating.icon_raw),ICON_MULTIPLY)
+	var/image/J = image(I)
+	J.alpha = 200
+	J.blend_mode = BLEND_OVERLAY
+	J.tag = "coating"
+	add_overlay(J)
+
+	if (user)
+		user.visible_message(span_notice("[user] dips \the [src] into \the [coating.name]"), span_notice("You dip \the [src] into \the [coating.name]"))
+
+	return 1
+
+
+//Called by cooking machines. This is mainly intended to set properties on the food that differ between raw/cooked
+/obj/item/food/proc/cook_no_recipe()
+	if (coating)
+		var/list/temp = overlays.Copy()
+		for (var/i in temp)
+			if (istype(i, /image))
+				var/image/I = i
+				if (I.tag == "coating")
+					temp.Remove(I)
+					break
+
+		overlays = temp
+		//Carefully removing the old raw-batter overlay
+
+		if (!flat_icon)
+			flat_icon = getFlatIcon(src)
+		var/icon/I = flat_icon
+		color = "#FFFFFF" //Some fruits use the color var
+		I.Blend(new /icon('icons/obj/food_custom.dmi', rgb(255,255,255)),ICON_ADD)
+		I.Blend(new /icon('icons/obj/food_custom.dmi', coating.icon_cooked),ICON_MULTIPLY)
+		var/image/J = image(I)
+		J.alpha = 200
+		J.tag = "coating"
+		add_overlay(J)
+
+
+		if (do_coating_prefix)
+			name = "[coating.coated_adj] [name]"
+
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
+		if (istype(R, /datum/reagent/nutriment/coating))
+			var/datum/reagent/nutriment/coating/C = R
+			C.data["cooked"] = 1
+			C.name = C.cooked_name
+
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
 ////////////////////////////////////////////////////////////////////////////////

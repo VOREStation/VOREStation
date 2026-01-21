@@ -13,7 +13,7 @@
 	reagents.add_reagent(REAGENT_ID_TRIGLYCERIDE, 2)
 	src.bitesize = 1.5
 
-/obj/item/food/meat/cook()
+/obj/item/food/meat/cook_no_recipe()
 
 	if (!isnull(cooked_icon))
 		icon_state = cooked_icon
