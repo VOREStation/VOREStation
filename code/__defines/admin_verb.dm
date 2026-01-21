@@ -83,6 +83,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_SHUTTLE "Admin.Shuttle"
 #define ADMIN_CATEGORY_LOGS "Admin.Logs"
 #define ADMIN_CATEGORY_MISC "Admin.Misc"
+#define ADMIN_CATEGORY_SECRETS "Admin.Secrets"
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Debug"
