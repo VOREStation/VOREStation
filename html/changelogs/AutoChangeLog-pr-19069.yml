@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "runtime on 0 permeability"

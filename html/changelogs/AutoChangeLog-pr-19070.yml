@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "some missing vanity copy traits"
-  - qol: "reduce protean tab flicker"

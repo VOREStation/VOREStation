@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "moves the loading for the browser to promiseAll, similar to chat data loading"

@@ -1,6 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - admin: "added new dbranks permission"
-  - admin: "updated permissions panel"
-  - admin: "ranks with no permission will now be displayed with the \"NONE\" permission"
