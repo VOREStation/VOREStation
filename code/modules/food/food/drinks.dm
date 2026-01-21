@@ -30,9 +30,7 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/food/drinks/milk/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_MILK, 50)
+	food_reagents = list(REAGENT_ID_MILK = 50)
 
 /obj/item/food/drinks/soymilk
 	name = "soymilk carton"
@@ -45,9 +43,7 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/food/drinks/soymilk/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_SOYMILK, 50)
+	food_reagents = list(REAGENT_ID_SOYMILK = 50)
 
 /obj/item/food/drinks/smallmilk
 	name = "small milk carton"
@@ -61,9 +57,7 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/food/drinks/smallmilk/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_MILK, 30)
+	food_reagents = list(REAGENT_ID_MILK = 30)
 
 /obj/item/food/drinks/smallchocmilk
 	name = "small chocolate milk carton"
@@ -77,9 +71,7 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/food/drinks/smallchocmilk/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_CHOCOLATEMILK, 30)
+	food_reagents = list(REAGENT_ID_CHOCOLATEMILK = 30)
 
 /obj/item/food/drinks/coffee
 	name = "\improper Robust Coffee"
@@ -92,9 +84,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/coffee/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_COFFEE, 30)
+	food_reagents = list(REAGENT_ID_COFFEE = 30)
 
 /obj/item/food/drinks/tea
 	name = "cup of Duke Purple tea"
@@ -108,9 +98,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/tea/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_TEA, 30)
+	food_reagents = list(REAGENT_ID_TEA = 30)
 
 /obj/item/food/drinks/decaf_tea
 	name = "cup of Count Mauve decaffeinated tea"
@@ -124,9 +112,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/decaf_tea/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_TEADECAF, 30)
+	food_reagents = list(REAGENT_ID_TEADECAF = 30)
 
 /obj/item/food/drinks/ice
 	name = "cup of ice"
@@ -134,9 +120,7 @@
 	icon_state = "ice"
 	center_of_mass_x = 15
 	center_of_mass_y = 10
-/obj/item/food/drinks/ice/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_ICE, 30)
+	food_reagents = list(REAGENT_ID_ICE = 30)
 
 /obj/item/food/drinks/h_chocolate
 	name = "cup of Counselor's Choice hot cocoa"
@@ -150,9 +134,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/h_chocolate/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_HOTCOCO, 30)
+	food_reagents = list(REAGENT_ID_HOTCOCO = 30)
 
 /obj/item/food/drinks/greentea
 	name = "cup of green tea"
@@ -166,9 +148,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/greentea/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_GREENTEA, 30)
+	food_reagents = list(REAGENT_ID_GREENTEA = 30)
 
 /obj/item/food/drinks/chaitea
 	name = "cup of chai tea"
@@ -182,9 +162,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/chaitea/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_CHAITEA, 30)
+	food_reagents = list(REAGENT_ID_CHAITEA = 30)
 
 /obj/item/food/drinks/decaf
 	name = "cup of decaf coffee"
@@ -198,9 +176,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/decaf/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_DECAF, 30)
+	food_reagents = list(REAGENT_ID_DECAF = 30)
 
 /obj/item/food/drinks/dry_ramen
 	name = "Cup Ramen"
@@ -213,9 +189,7 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/food/drinks/dry_ramen/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_DRYRAMEN, 30)
+	food_reagents = list(REAGENT_ID_DRYRAMEN = 30)
 
 /obj/item/food/drinks/sillycup
 	name = "paper cup"
