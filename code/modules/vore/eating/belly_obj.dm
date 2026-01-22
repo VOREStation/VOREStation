@@ -296,6 +296,7 @@
 	"digest_tox",
 	"digest_clone",
 	"bellytemperature",
+	"temperature_damage",
 	"immutable",
 	"can_taste",
 	"escapable",
@@ -1320,6 +1321,7 @@
 	dupe.digest_tox = digest_tox
 	dupe.digest_clone = digest_clone
 	dupe.bellytemperature = bellytemperature
+	dupe.temperature_damage = temperature_damage
 	dupe.immutable = immutable
 	dupe.can_taste = can_taste
 	dupe.escapable = escapable

@@ -1,3 +1,5 @@
+import type { PreferenceDropdown } from './types';
+
 export const stats = [undefined, 'average', 'bad'] as const;
 
 export const vorespawnAbsorbedText = ['No', 'Yes', 'Prey Choice'];
@@ -38,6 +40,35 @@ export const reagentToColor = {
   Tricordrazine: 'green',
   Ethanol: undefined,
 } as const;
+
+export const selectiveModeModel: PreferenceDropdown = {
+  action: 'switch_selective_mode_pref',
+  prefix: 'Selective Mode Preference',
+  tooltip:
+    'Allows to set the personal belly mode preference for selective bellies.',
+  data: {
+    Default: { displayText: 'Default' },
+    Digest: { displayText: 'Digest', color: 'red', enabled: true },
+    Absorb: { displayText: 'Absorb', color: 'purple', enabled: true },
+    Drain: { displayText: 'Drain', color: 'orange', enabled: true },
+  },
+};
+
+export const stripModeModel: PreferenceDropdown = {
+  action: 'switch_strip_mode_pref',
+  prefix: 'Size Stripping',
+  tooltip:
+    'Allows you to set if you should get stripped while being resized and how much should get stripped.',
+  data: {
+    '0': { displayText: 'Drop Nothing' },
+    '1': { displayText: 'Drop Equipment', color: 'green', enabled: true },
+    '2': {
+      displayText: 'Drop Equipment and Underwear',
+      color: 'green',
+      enabled: true,
+    },
+  },
+};
 
 export const digestModeToPreyMode = {
   Hold: 'being held.',

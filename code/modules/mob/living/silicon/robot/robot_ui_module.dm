@@ -14,7 +14,8 @@
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
 		R.selecting_module = FALSE
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/robot_ui_module/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	. = ..()
