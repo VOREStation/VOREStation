@@ -223,3 +223,14 @@
       themselves into spont vore bellies.
   Will:
   - bugfix: Disposal expel runtime fixed
+2026-01-22:
+  Azzy.Dreemurr:
+  - qol: Added buttons for Staff chats Easy -> F10; Msay -> F9
+  - bugfix: MentorSay now F11 and the button works
+  Cameron-The-Raven:
+  - bugfix: Non-revivable entities can no longer be revived via CPR
+  - bugfix: Synthetics can no longer be revived via CPR
+  - bugfix: You will no longer gasp after being revived via CPR if you have no lungs
+  Kashargul:
+  - bugfix: empty to chat runtime for digestive turfs
+  - bugfix: janicart examine dupe
