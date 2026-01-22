@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "adds spoiler to character directory"
+  - bugfix: "a crash case in the character editor"
+  - code_imp: "tgui dependency up"
