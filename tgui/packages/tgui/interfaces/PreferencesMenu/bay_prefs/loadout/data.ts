@@ -42,10 +42,10 @@ export type Gear = {
   allowed_roles: string[];
 };
 
-export type LoadoutDataStatic = {
+export type LoadoutDataStatic = Partial<{
   categories: Record<string, Gear[]>;
   max_gear_cost: number;
-};
+}>;
 
 // Never changes
 export type LoadoutDataConstant = {
