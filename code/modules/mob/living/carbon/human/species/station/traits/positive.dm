@@ -922,6 +922,7 @@
 		G.radiation_color = trait_prefs["glow_color"]
 		G.glows = trait_prefs["glow_enabled"]
 	G.radiation_healing = TRUE
+	G.radiation_nutrition = TRUE
 
 /datum/trait/positive/radioactive_heal/unapply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..() //Does all the removal stuff
@@ -930,3 +931,4 @@
 	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
 	if(G)
 		G.radiation_healing = initial(G.radiation_healing)
+		G.radiation_nutrition = initial(G.radiation_nutrition)
