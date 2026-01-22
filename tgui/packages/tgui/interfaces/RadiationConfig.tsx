@@ -34,7 +34,7 @@ export const RadiationConfig = (props) => {
   } = data;
 
   const windowHeight =
-    35 + (glowtoggle ? 90 : 0) + (nutrition_toggle ? 100 : 0);
+    45 + (glowtoggle ? 100 : 0) + (nutrition_toggle ? 100 : 0);
 
   return (
     <Window width={255} height={windowHeight} theme="nuclear">
@@ -73,8 +73,9 @@ export const RadiationConfig = (props) => {
           <Stack.Item>
             {!!nutrition_toggle && (
               <Section fill title="Mechanical Settings">
-                <NoticeBox>
-                  Nutrition: {current_nutrition} / {radiation_nutrition_cap}
+                <NoticeBox danger={current_nutrition > radiation_nutrition_cap}>
+                  {`Nutrition: ${current_nutrition.toFixed()} /
+                  ${radiation_nutrition_cap}`}
                 </NoticeBox>
                 <LabeledList>
                   <LabeledList.Item label="Toggle Nutrition Gain">
@@ -83,7 +84,7 @@ export const RadiationConfig = (props) => {
                         <Button.Checkbox
                           checked={radiation_nutrition}
                           onClick={() => act('toggle_nutrition')}
-                          tooltip="Toggle if you wish to gain nutrition when irradiated."
+                          tooltip={`Gain nutrition when toggled on, up to ${radiation_nutrition_cap}.`}
                         />
                       </Stack.Item>
                     </Stack>
