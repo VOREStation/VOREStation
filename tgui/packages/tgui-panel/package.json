@@ -4,14 +4,14 @@
 	"dependencies": {
 		"common": "workspace:*",
 		"dompurify": "^3.3.1",
-		"es-toolkit": "^1.43.0",
-		"jotai": "^2.16.1",
+		"es-toolkit": "^1.44.0",
+		"jotai": "^2.16.2",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
 		"tgui": "workspace:*",
-		"tgui-core": "^5.8.0",
+		"tgui-core": "^5.9.0",
 		"tgui-dev-server": "workspace:*",
-		"zod": "^4.3.5"
+		"zod": "^4.3.6"
 	},
 	"private": true
 }
