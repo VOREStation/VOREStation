@@ -45,6 +45,8 @@
 	var/has_core = TRUE
 	//If this will anchor the anomaly in place
 	var/will_anchor = TRUE
+	// If it will apply stats to it
+	var/gives_stats = TRUE
 
 /obj/item/anomaly_releaser/science
 	icon = 'icons/obj/devices/tool.dmi'
@@ -57,6 +59,7 @@
 /obj/item/anomaly_releaser/antag
 	has_core = TRUE
 	will_anchor = TRUE
+	gives_stats = FALSE // Evil and fucked up...
 	desc = "Single-use injector that releases and stabilizes anomalies by injecting an unknown substance. This one seems odd."
 
 /obj/item/anomaly_scanner
@@ -72,3 +75,35 @@
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
+
+	var/obj/effect/anomaly/buffered_anomaly = null
+
+/obj/item/anomaly_scanner/attack_self(mob/living/user)
+	if(loc == user)
+		tgui_interact(user)
+	else
+		..()
+
+/obj/item/anomaly_scanner/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AnomalyScanner", name)
+		ui.open()
+
+/obj/item/anomaly_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = list()
+	var/datum/anomaly_stats/stats = buffered_anomaly.stats
+
+	data["anomaly_name"] = buffered_anomaly.name
+	data["severity"] = stats.severity
+	data["stability"] = stats.stability
+	data["point_output"] = stats.points_mult
+	data["danger_type"] = stats.danger_type
+	data["unstable_type"] = stats.unstable_type
+	data["containment_type"] = stats.containment_type
+	data["transformation_type"] = stats.transformation_type
+	if(stats.modifier)
+		data["modifier"] = stats.modifier.get_description()
+	data["countdown"] = stats.get_activation_countdown()
+
+	return data

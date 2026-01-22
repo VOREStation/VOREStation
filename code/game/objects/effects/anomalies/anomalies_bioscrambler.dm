@@ -21,6 +21,8 @@
 
 /obj/effect/anomaly/bioscrambler/anomalyEffect(seconds_per_tick)
 	. = ..()
+	if(stats)
+		return
 	if(!COOLDOWN_FINISHED(src, pulse_cooldown))
 		return
 

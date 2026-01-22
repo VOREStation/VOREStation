@@ -12,6 +12,8 @@
 
 /obj/effect/anomaly/pyro/anomalyEffect(seconds_per_tick)
 	..()
+	if(stats)
+		return
 	ticks += seconds_per_tick
 	if(ticks < releasedelay)
 		return FALSE

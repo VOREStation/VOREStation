@@ -13,6 +13,7 @@
 
 	var/obj/effect/anomaly/attached_anomaly
 
+	var/next_activation
 	// Total of points we'll get once the anomaly does a pulse
 	var/points_mult
 	// Should give a pulse and do things every minute or so
@@ -100,6 +101,7 @@
 /datum/anomaly_stats/proc/kill_anomaly(critical)
 	if(critical)
 		attached_anomaly.detonate()
+		qdel(attached_anomaly)
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
@@ -143,6 +145,9 @@
 	calc_points_mult()
 	return
 
+/datum/anomaly_stats/proc/get_activation_countdown()
+	return round((next_activation - world.time)/10)
+/*
 /datum/anomaly_stats/proc/show_stats(mob/user)
 	var/list/message = list()
 	message += "<b>Current severity:</b> [severity]"
@@ -160,6 +165,7 @@
 		message += "- [modifier.get_description()]"
 	message += "- [span_yellow("Anomaly produces [get_points_multiplier()] of the points")]"
 	message += ""
-	message += "Time until next pulse: "
+	message += "Time until next pulse: [get_activation_countdown()] seconds"
 
 	to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+*/

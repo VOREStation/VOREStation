@@ -44,7 +44,7 @@
 			return FALSE
 
 		var/obj/effect/anomaly/anomaly = new core.anomaly_type(get_turf(core))
-		anomaly.stabilize(releaser.will_anchor, releaser.has_core)
+		anomaly.stabilize(releaser.will_anchor, releaser.has_core, releaser.gives_stats)
 
 		if(!releaser.infinite)
 			releaser.icon_state = releaser.used_icon_state
