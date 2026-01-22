@@ -26,6 +26,7 @@
 	QDEL_NULL(hud_used)
 	for(var/key in alerts) //clear out alerts
 		clear_alert(key)
+	QDEL_NULL_LIST(viruses)
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
