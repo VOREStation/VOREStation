@@ -1,6 +1,7 @@
 import { Box } from 'tgui-core/components';
 
-export const SpoilerText = (props: { text: string }) => {
+/** Element to spoiler Text surrpunded with || */
+export const MarkdownSpoilerText = (props: { text: string }) => {
   const { text } = props;
 
   const parts = text.split('||');
@@ -18,5 +19,16 @@ export const SpoilerText = (props: { text: string }) => {
         </Box>
       ))}
     </>
+  );
+};
+
+/** Element to spoiler Text */
+export const SpoilerText = (props: { text: string }) => {
+  const { text } = props;
+
+  return (
+    <Box inline preserveWhitespace>
+      {text}
+    </Box>
   );
 };
