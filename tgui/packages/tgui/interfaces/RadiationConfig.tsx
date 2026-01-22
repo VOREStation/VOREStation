@@ -79,15 +79,11 @@ export const RadiationConfig = (props) => {
                 </NoticeBox>
                 <LabeledList>
                   <LabeledList.Item label="Toggle Nutrition Gain">
-                    <Stack align="center">
-                      <Stack.Item>
-                        <Button.Checkbox
-                          checked={radiation_nutrition}
-                          onClick={() => act('toggle_nutrition')}
-                          tooltip={`Gain nutrition when toggled on, up to ${radiation_nutrition_cap}.`}
-                        />
-                      </Stack.Item>
-                    </Stack>
+                    <Button.Checkbox
+                      checked={radiation_nutrition}
+                      onClick={() => act('toggle_nutrition')}
+                      tooltip={`Gain nutrition when toggled on, up to ${radiation_nutrition_cap}.`}
+                    />
                   </LabeledList.Item>
                 </LabeledList>
               </Section>
