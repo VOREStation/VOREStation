@@ -8,22 +8,31 @@
 
 	///If we spread radiation or not.
 	var/contamination = FALSE
+
 	///Strength of our contamination, if we contaminate. Each 1 strength is 100% of the rads we're dissipating.
 	var/contamination_strength = 0.1
+
 	///What level our radiation has to be above to begin to contaminate our surroundings.
 	var/contamination_threshold = 600
+
+	///If we can control if we glow or not
+	var/glow_toggle = TRUE
 
 	///If we glow or not.
 	var/glows = TRUE
 
 	///What color we glow.
 	var/radiation_color = "#c3f314"
+
 	///Intensity modifier of our glow
 	var/intensity_mod = 1
+
 	///Range modifier of our glow
 	var/range_mod = 1
+
 	///How much we divide our radiation by to determine how far our glow is.
 	var/range_coefficient = 100
+
 	///How much we divide our radiation by to determine how intense our glow is.
 	var/intensity_coefficient = 150
 
@@ -36,15 +45,23 @@
 	///If we dissipate radiation or keep it.
 	var/radiation_dissipation = TRUE
 
+	///If we gain nutrition from radiation.
+	var/radiation_nutrition = FALSE
+
+	///What is the max nutrition we can gain from radiation.
+	var/radiation_nutrition_cap = 1000
+
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	dupe_type = /datum/component/radiation_effects
 
-/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation)
+/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation, radiation_nutrition, radiation_nutrition_cap, glow_toggle)
 
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(glows)
 		src.glows = glows
+	if(glow_toggle)
+		src.glow_toggle = glow_toggle
 	if(radiation_glow_threshold)
 		src.radiation_glow_threshold = radiation_glow_threshold
 	if(contamination)
@@ -59,6 +76,10 @@
 		src.range_mod = range_mod
 	if(radiation_immunity)
 		src.radiation_immunity = radiation_immunity
+	if(radiation_nutrition)
+		src.radiation_nutrition = radiation_nutrition
+	if(radiation_nutrition_cap)
+		src.radiation_nutrition_cap = radiation_nutrition_cap
 	if(radiation_healing)
 		src.radiation_healing = radiation_healing
 	if(radiation_dissipation)
@@ -122,16 +143,24 @@
 	if(contamination && living_guy.radiation > contamination_threshold)
 		SSradiation.radiate(living_guy, rads * contamination_strength * rad_removal_mod)
 
+	///Used for radiation nutrition and healing.
+	var/rads_to_utilize
+
+	if(radiation_nutrition)
+		if(living_guy.nutrition < radiation_nutrition_cap)
+			rads_to_utilize = rads * rad_removal_mod
+			living_guy.adjust_nutrition(rads_to_utilize)
+
 	if(radiation_immunity || radiation_healing)
 		//We have to remove radiation here since we're blocking radiation altogether.
-		var/rads_to_utilize = rads * rad_removal_mod
+		if(!rads_to_utilize) //In case we did it above. Save some CPU.
+			rads_to_utilize = rads * rad_removal_mod
 
 		//If we heal from radiation, we will dissipate (use up) the amount we heal.
 		if(radiation_healing)
 			living_guy.radiation -= rads_to_utilize
 			living_guy.accumulated_rads -= rads_to_utilize
 			rads_to_utilize = CLAMP(rads_to_utilize, 1, 10) //Only heal up to 10 rads.
-			living_guy.adjust_nutrition(rads_to_utilize)
 			living_guy.adjustBruteLoss(-rads_to_utilize)
 			living_guy.adjustFireLoss(-rads_to_utilize)
 			living_guy.adjustOxyLoss(-rads_to_utilize)
@@ -166,17 +195,23 @@
 		//However, we'll lose our rads faster than we accumulate.
 		living_guy.radiation += max((radiation_to_apply * rad_protection), 0)
 		return COMPONENT_BLOCK_IRRADIATION
+
 /datum/component/radiation_effects/promethean
 	radiation_immunity = TRUE
+	radiation_nutrition = TRUE
 
 /datum/component/radiation_effects/shadekin
 	radiation_immunity = TRUE
+	radiation_nutrition = TRUE
 	glows = FALSE
+	glow_toggle = FALSE
 
 ///Heals from radiation. Does not glow.
 /datum/component/radiation_effects/diona
 	glows = FALSE
 	radiation_healing = TRUE
+	radiation_nutrition = TRUE
+	glow_toggle = FALSE
 
 ///TGUI below here
 //TGUI Weaver Panel
@@ -203,6 +238,9 @@
 	var/data = list(
 		"glowing" = glows,
 		"radiation_color" = radiation_color,
+		"glowtoggle" = glow_toggle,
+		"radiation_nutrition" = radiation_nutrition,
+		"radiation_nutrition_cap" = radiation_nutrition_cap
 	)
 
 	return data
