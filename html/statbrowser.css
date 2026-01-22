@@ -297,7 +297,6 @@ body.dark {
 .spoiler {
   background-color: gray;
   color: transparent;
-  user-select: none;
 }
 
 .spoiler:hover {
