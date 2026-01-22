@@ -146,7 +146,7 @@
 	return
 
 /datum/anomaly_stats/proc/get_activation_countdown()
-	return round((next_activation - world.time)/10)
+	return (next_activation - world.time)/10
 /*
 /datum/anomaly_stats/proc/show_stats(mob/user)
 	var/list/message = list()
