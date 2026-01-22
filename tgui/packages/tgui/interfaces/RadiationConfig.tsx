@@ -78,15 +78,13 @@ export const RadiationConfig = (props) => {
                           </Button>
                         </Stack.Item>
                       </Stack>
+                      <Stack.Item>
+                        <NoticeBox>
+                          Nutrition is capped at {radiation_nutrition_cap}
+                        </NoticeBox>
+                      </Stack.Item>
                     </LabeledList.Item>
                   </LabeledList>
-                )}
-                {radiation_nutrition && (
-                  <Stack.Item>
-                    <NoticeBox>
-                      Nutrition is capped at {radiation_nutrition_cap}
-                    </NoticeBox>
-                  </Stack.Item>
                 )}
               </Section>
             </Section>
