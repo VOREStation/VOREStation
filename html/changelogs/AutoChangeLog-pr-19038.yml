@@ -1,0 +1,6 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new preference that allows you to drop all of your items and possibly underwear upon being suddenly resized by more than 30%."
+  - bugfix: "Fixed temperature damage toggle saving."
+  - bugfix: "Bluespace collars changing into shock collar sprites on toggling power."
