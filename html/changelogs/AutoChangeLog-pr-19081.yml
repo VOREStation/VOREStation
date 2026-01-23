@@ -1,0 +1,10 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixed mlemington activating the mlem spree at any time"
+  - bugfix: "Fixed narcolepsy missing a description"
+  - bugfix: "Fixed Pandemic UI not showing the severity of a virus"
+  - bugfix: "Fixed viruses changing cures when taking it out of a mob"
+  - bugfix: "Fixed the PanDEMIC showing the ID for the reagent instead of the name as the cure"
+  - spellcheck: "Removed \"the\" when Biometallic Replication symptom picked any organ"
+  - code_imp: "Added IMMUTABLE flag for viruses, to not allow them to change"
