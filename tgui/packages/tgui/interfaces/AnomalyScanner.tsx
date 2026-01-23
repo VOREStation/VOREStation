@@ -24,6 +24,17 @@ type Data = {
   countdown: number;
 };
 
+function getColor(stability: string): string {
+  switch (true) {
+    case stability === 'Decaying':
+      return 'yellow';
+    case stability === 'Stable':
+      return 'green';
+    default:
+      return 'bad';
+  }
+}
+
 export const AnomalyScanner = (props) => {
   const { act, data } = useBackend<Data>();
 
@@ -64,7 +75,10 @@ export const AnomalyScanner = (props) => {
                 <LabeledList.Item label="Current severity">
                   {severity}%
                 </LabeledList.Item>
-                <LabeledList.Item label="Current anomaly state">
+                <LabeledList.Item
+                  label="Current anomaly state"
+                  color={getColor(stability)}
+                >
                   {stability}
                 </LabeledList.Item>
                 <LabeledList.Item label="Point output">
@@ -77,16 +91,16 @@ export const AnomalyScanner = (props) => {
             </Section>
             <Section title="Particle Reaction Analysis">
               <LabeledList>
-                <LabeledList.Item label="Danger Type">
+                <LabeledList.Item label="Danger Type" color="red">
                   {danger_type}
                 </LabeledList.Item>
-                <LabeledList.Item label="Unstable Type">
+                <LabeledList.Item label="Unstable Type" color="pink">
                   {unstable_type}
                 </LabeledList.Item>
-                <LabeledList.Item label="Containment Type">
+                <LabeledList.Item label="Containment Type" color="yellow">
                   {containment_type}
                 </LabeledList.Item>
-                <LabeledList.Item label="Transformation Type">
+                <LabeledList.Item label="Transformation Type" color="blue">
                   {transformation_type}
                 </LabeledList.Item>
               </LabeledList>
