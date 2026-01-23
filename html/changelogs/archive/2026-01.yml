@@ -234,3 +234,13 @@
   Kashargul:
   - bugfix: empty to chat runtime for digestive turfs
   - bugfix: janicart examine dupe
+2026-01-23:
+  Kashargul:
+  - qol: adds spoiler to character directory
+  - bugfix: a crash case in the character editor
+  - code_imp: tgui dependency up
+  SatinIsle:
+  - rscadd: Added a new preference that allows you to drop all of your items and possibly
+      underwear upon being suddenly resized by more than 30%.
+  - bugfix: Fixed temperature damage toggle saving.
+  - bugfix: Bluespace collars changing into shock collar sprites on toggling power.
