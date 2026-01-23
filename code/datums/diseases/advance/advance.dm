@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
 	GenerateProperties()
 	AssignProperties()
-	if(s_processing && symptoms && symptoms.len)
+	if(s_processing && length(symptoms))
 		for(var/datum/symptom/S in symptoms)
 			S.Start(src)
 			S.OnStageChange(src)
