@@ -61,7 +61,7 @@ BONUS
 			M.emote("mlem")
 			if(power >= 1.5)
 				M.emote("mlem")
-				if(power >= 2)
+				if(resistance >= 5)
 					M.emote("mlem")
 					addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "mlem"), 2 SECONDS)
 					addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "mlem"), 5 SECONDS)

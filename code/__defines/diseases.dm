@@ -42,6 +42,7 @@
 #define DISCOVERED				0x80	/// If applied, this virus will show up on medical HUDs. Automatically set when it reaches mid-stage.
 #define DORMANT					0x100	/// If applied, the virus is dormant and will not act or spread.
 #define FALTERED				0x200	/// If applied, the virus is faltered and will only spread by intentional injection.
+#define IMMUTABLE				0x400 	/// If applied, the virus will not mutate in any kind of way.
 
 #define EXTRAPOLATOR_RESULT_DISEASES		"extrapolator_result_disease"
 #define EXTRAPOLATOR_RESULT_ACT_PRIORITY	"extrapolator_result_action_priority"

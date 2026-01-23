@@ -31,6 +31,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/transmission
 	var/severity
 	var/speed
+
+	var/mutability = 1
+	var/keepid = FALSE
+	var/archivecure
+
 	var/list/symptoms = list()
 
 	var/s_processing = FALSE
@@ -99,6 +104,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	A.transmission = transmission
 	A.severity = severity
 	A.speed = speed
+	A.mutability = mutability
+	A.keepid = keepid
 	A.id = id
 	A.Refresh()
 	return A
@@ -164,7 +171,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
 	GenerateProperties()
 	AssignProperties()
-	id = null
+	if(s_processing && length(symptoms))
+		for(var/datum/symptom/S in symptoms)
+			S.Start(src)
+			S.OnStageChange(src)
+
+	if(!keepid)
+		id = null
 
 	if(!GLOB.archive_diseases[GetDiseaseID()])
 		if(new_name)
@@ -273,13 +286,24 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			danger = "Unknown"
 
 /datum/disease/advance/proc/GenerateCure()
-	var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-	cures = list(pick(GLOB.advance_cures[res]))
-	cure_text = cures[1]
+	if(GLOB.archive_diseases[id])
+		var/datum/disease/advance/archived = GLOB.archive_diseases[id]
+		cures = archived.cures
+		cure_text = archived.cure_text
+	else
+		var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
+		cures = list(pick(GLOB.advance_cures[res]))
+		var/datum/reagent/cure_reag = SSchemistry.chemical_reagents[cures[1]]
+		if(!cure_reag) // Something went terribly wrong, return to sippy
+			cure_reag = /datum/reagent/water
+		cure_text = cure_reag.name
+		archivecure = res
 	return
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
-/datum/disease/advance/proc/Evolve(min_level, max_level)
+/datum/disease/advance/proc/Evolve(min_level, max_level, ignore_mutable = FALSE)
+	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
@@ -287,7 +311,9 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
-/datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D)
+/datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D, ignore_mutable)
+	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	var/s = safepick(D)
 	if(s)
 		AddSymptom(new s)
@@ -295,7 +321,9 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly remove a symptom.
-/datum/disease/advance/proc/Devolve()
+/datum/disease/advance/proc/Devolve(ignore_mutable = FALSE)
+	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	if(length(symptoms) > 1)
 		var/s = safepick(symptoms)
 		if(s)
@@ -304,7 +332,9 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly neuter a symptom.
-/datum/disease/advance/proc/Neuter()
+/datum/disease/advance/proc/Neuter(ignore_mutable = FALSE)
+	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	if(symptoms.len)
 		var/s = safepick(symptoms)
 		if(s)
@@ -412,6 +442,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)
+		if(!global_flag_check(A.virus_modifiers, IMMUTABLE))
+			return
 		diseases += A.Copy()
 
 	if(!length(diseases))
@@ -507,6 +539,18 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/advance/A = make_copy ? Copy() : src
+	if(!initial && global_flag_check(A.virus_modifiers, IMMUTABLE) && (spread_flags & DISEASE_SPREAD_FLUIDS))
+		var/minimum = 1
+		if(prob(clamp(35-(A.resistance + A.stealth - A.speed), 0, 50) * (A.mutability)))
+			if(infectee.job == JOB_CLOWN || infectee.job == JOB_MIME || prob(1))
+				minimum = 0
+			else
+				minimum = clamp(A.severity - 1, 1, 7)
+			A.Evolve(minimum, clamp(A.severity + 4, minimum, 9))
+			A.id = GetDiseaseID()
+			A.keepid = TRUE
+	else
+		A.initial = FALSE
 	infectee.addDisease(A)
 	A.affected_mob = infectee
 	GLOB.active_diseases += A
