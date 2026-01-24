@@ -55,9 +55,6 @@ BAN_LEGACY_SYSTEM
 ## Non-automatic antagonist recruitment, such as being converted to cultism is not affected. Has the same database requirements and notes as USE_AGE_RESTRICTION_FOR_JOBS.
 #USE_AGE_RESTRICTION_FOR_ANTAGS
 
-## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
-#USE_RECURSIVE_EXPLOSIONS
-
 ## Configure how fast explosion strength diminishes when travelling up/down z levels. All explosion distances are multiplied by this each time they go up/down z-levels.
 #MULTI_Z_EXPLOSION_SCALAR 0.5
 
