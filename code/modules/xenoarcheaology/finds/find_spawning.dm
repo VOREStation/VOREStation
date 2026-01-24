@@ -199,6 +199,7 @@
 			item_type = "tool"
 			var/possible_object_paths = list()
 			possible_object_paths += subtypesof(/obj/item/tool)
+			possible_object_paths -= /obj/item/tool/screwdriver/test_driver
 			var/new_tool = pick(possible_object_paths)
 			new_item = new new_tool(src.loc)
 			new_item.color = rgb(rand(0,255),rand(0,255),rand(0,255))
