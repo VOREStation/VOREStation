@@ -1642,7 +1642,6 @@
 
 /datum/trait/neutral/skin_reagents/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	H.touch_reaction_flags |= SPECIES_TRAIT_SKIN_REAGENTS
 	if(trait_prefs && trait_prefs["Reagent"])
 		H.skin_reagent = trait_prefs["Reagent"]
 

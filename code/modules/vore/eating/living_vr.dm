@@ -459,7 +459,7 @@
 		if((tasted.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!tasted.grabbed_by.len || !tasted.stat))
 			visible_message(span_warning("[src] tries to lick [tasted], but they dodge out of the way!"),span_warning("You try to lick [tasted], but they deftly avoid your attempt."))
 			return
-		if((tasted.touch_reaction_flags & SPECIES_TRAIT_SKIN_REAGENTS) && (tasted.skin_reagent) && ishuman(src) && (tasted != src))
+		if(tasted.skin_reagent && ishuman(src) && (tasted != src))
 			var/mob/living/carbon/human/us_but_human = src
 			us_but_human.ingested.add_reagent(tasted.skin_reagent, 10)
 

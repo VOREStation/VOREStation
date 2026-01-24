@@ -64,7 +64,7 @@
 			var/new_string = instance.apply_sanitization_to_string(preference, tgui_input_text(user, "What should the new value be?", instance.has_preferences[preference][2], trait_prefs[preference], MAX_NAME_LEN))
 			trait_prefs[preference] = new_string
 		if (4) //TRAIT_PREF_TYPE_LIST
-			if(instance.multiple_choice.len)
+			if(LAZYLEN(instance.multiple_choice))
 				var/new_choice = tgui_input_list(user, "Choose an option for this trait preference:", "Trait Preference", instance.multiple_choice, trait_prefs[preference])
 				if(new_choice)
 					trait_prefs[preference] = new_choice

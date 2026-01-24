@@ -41,7 +41,7 @@
 
 	var/datum/gene/trait/linked_gene = null // Internal use, do not assign.
 
-	var/list/multiple_choice = list()
+	var/list/multiple_choice
 
 
 
