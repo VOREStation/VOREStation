@@ -310,11 +310,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 			if(1)
 				to_chat(C, span_adminnotice("PM to-" + span_bold("Admins") + ": [name]"))
 
-		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, name)
-		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
-		if(admin_number_present <= 0)
-			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin discord."))
 	send2adminchatwebhook()
 
 	var/list/adm = get_admin_counts()
@@ -718,37 +713,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 			.["stealth"] += X
 		else
 			.["present"] += X
-
-/proc/send2irc_adminless_only(source, msg, requiredflags = R_BAN)
-	var/list/adm = get_admin_counts()
-	var/list/activemins = adm["present"]
-	. = activemins.len
-	/*
-	if(. <= 0)
-		var/final = ""
-		var/list/afkmins = adm["afk"]
-		var/list/stealthmins = adm["stealth"]
-		var/list/powerlessmins = adm["noflags"]
-		var/list/allmins = adm["total"]
-		if(!afkmins.len && !stealthmins.len && !powerlessmins.len)
-			final = "[msg] - No admins online"
-		else
-			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)*/
-
-/proc/ircadminwho()
-	var/list/message = list("Admins: ")
-	var/list/admin_keys = list()
-	for(var/client/C as anything in GLOB.admins)
-		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
-
-	for(var/admin in admin_keys)
-		if(LAZYLEN(admin_keys) > 1)
-			message += ", [admin]"
-		else
-			message += "[admin]"
-
-	return jointext(message, "")
 
 /proc/keywords_lookup(msg,irc)
 
