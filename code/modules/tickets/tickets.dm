@@ -325,16 +325,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	else
 		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: \n ```[raw_msg]``` \n Heard by [activeMins] NON-AFK staff members.")
 
-		// Also send it to discord since that's the hip cool thing now.
-		SSwebhooks.send(
-			WEBHOOK_AHELP_SENT,
-			list(
-				"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) ticket opened.",
-				"body" = "[key_name(initiator)] has opened a ticket. \n[msg]",
-				"color" = COLOR_WEBHOOK_POOR
-			)
-		)
-
 	GLOB.tickets.active_tickets += src
 
 	// Open a new chat with the user
@@ -477,14 +467,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	initiator.mob.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 	//TicketPanel()	//can only be done from here, so refresh it
 
-	SSwebhooks.send(
-		WEBHOOK_AHELP_SENT,
-		list(
-			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) reopened.",
-			"body" = "Reopened by [ismob(user) ? key_name(user) : user]."
-		)
-	)
-
 //private
 /datum/ticket/proc/RemoveActive()
 	if(state != AHELP_ACTIVE)
@@ -511,14 +493,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [admin_closer_name]."
 		message_admins(msg)
 		log_admin(msg)
-		SSwebhooks.send(
-			WEBHOOK_AHELP_SENT,
-			list(
-				"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) closed.",
-				"body" = "Closed by [ismob(user) ? key_name(user) : user].",
-				"color" = COLOR_WEBHOOK_BAD
-			)
-		)
 	initiator?.mob?.clear_alert("open ticket")
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
@@ -542,15 +516,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 			message_admins(msg)
 
 		log_admin(msg)
-		if(type == 1)
-			SSwebhooks.send(
-				WEBHOOK_AHELP_SENT,
-				list(
-					"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) resolved.",
-					"body" = "Marked as Resolved by [ismob(user) ? key_name(user) : user].",
-					"color" = COLOR_WEBHOOK_GOOD
-				)
-			)
 	initiator?.mob?.clear_alert("open ticket")
 
 //Close and return ahelp verb, use if ticket is incoherent
@@ -573,14 +538,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	log_admin(msg)
 	AddInteraction("Rejected by [admin_rejecter_name].")
 	Close(user, silent = TRUE)
-	SSwebhooks.send(
-		WEBHOOK_AHELP_SENT,
-		list(
-			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) rejected.",
-			"body" = "Rejected by [ismob(user) ? key_name(user) : user].",
-			"color" = COLOR_WEBHOOK_BAD
-		)
-	)
 
 //Resolve ticket with IC Issue message
 /datum/ticket/proc/ICIssue(user)
@@ -601,14 +558,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	log_admin(msg)
 	AddInteraction("Marked as IC issue by [admin_resolve_name]")
 	Resolve(user, silent = TRUE)
-	SSwebhooks.send(
-		WEBHOOK_AHELP_SENT,
-		list(
-			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) marked as IC issue.",
-			"body" = "Marked as IC Issue by [ismob(user) ? key_name(user) : user].",
-			"color" = COLOR_WEBHOOK_BAD
-		)
-	)
 
 //Handle ticket
 /datum/ticket/proc/HandleIssue(user)
@@ -640,13 +589,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(ismob(user))
 		var/mob/our_handler_mob = user
 		handler_ref = WEAKREF(our_handler_mob.client)
-	SSwebhooks.send(
-		WEBHOOK_AHELP_SENT,
-		list(
-			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) being handled.",
-			"body" = "[ismob(user) ? key_name(user) : user] is now handling the ticket."
-		)
-	)
 
 /datum/ticket/proc/Retitle()
 	var/new_title = tgui_input_text(usr, "Enter a title for the ticket", "Rename Ticket", name)
