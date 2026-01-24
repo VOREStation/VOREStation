@@ -24,6 +24,7 @@
 	var/digestion_in_progress = FALSE	// Gradual corpse gurgles
 	var/trash_catching = FALSE					//Toggle for trash throw vore
 	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
+	var/skin_reagent
 	var/trait_injection_selected = null			//What trait reagent you're injecting.
 	var/trait_injection_amount = 5				//How much you're injecting with traits.
 	var/trait_injection_verb = "bite"			//Which fluffy manner you're doing the injecting.
@@ -458,6 +459,10 @@
 		if((tasted.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!tasted.grabbed_by.len || !tasted.stat))
 			visible_message(span_warning("[src] tries to lick [tasted], but they dodge out of the way!"),span_warning("You try to lick [tasted], but they deftly avoid your attempt."))
 			return
+		if(tasted.skin_reagent && ishuman(src) && (tasted != src))
+			var/mob/living/carbon/human/us_but_human = src
+			us_but_human.ingested.add_reagent(tasted.skin_reagent, 10)
+
 		visible_message(span_vwarning("[src] licks [tasted]!"),span_notice("You lick [tasted]. They taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 		//balloon_alert_visible("licks [tasted]!", "tastes like [tasted.get_taste_message()]")
 	// This has already passed consent tests
