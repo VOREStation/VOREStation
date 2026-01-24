@@ -7,14 +7,15 @@
 			if(R.cell && R.cell.charge >= gen_cost*10 && gen_interval >= gen_time)
 				GenerateBellyReagents()
 				gen_interval = 0
-			else
-				gen_interval++
-		else
-			if(owner.nutrition >= gen_cost && gen_interval >= gen_time)
-				GenerateBellyReagents()
-				gen_interval = 0
-			else
-				gen_interval++
+				return
+			gen_interval++
+			return
+
+		if(owner.nutrition >= gen_cost && gen_interval >= gen_time)
+			GenerateBellyReagents()
+			gen_interval = 0
+			return
+		gen_interval++
 
 /obj/belly/proc/HandleBellyReagentEffects(var/list/touchable_atoms)
 	if(LAZYLEN(contents))
@@ -51,7 +52,7 @@
 		if(!R.use_direct_power(gen_cost*10, 200))
 			return
 	else
-		owner.nutrition -= gen_cost
+		owner.adjust_nutrition(-gen_cost)
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent], was_from_belly = TRUE)
 	if(count_liquid_for_sprite)

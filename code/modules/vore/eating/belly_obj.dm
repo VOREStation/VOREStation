@@ -1146,6 +1146,9 @@
 		if(B.name in secondary_locations)
 			secondary_bellies += B
 
+	if(!length(primary_bellies) && !length(secondary_bellies))
+		return null
+
 	return list("primary" = primary_bellies, "secondary" = secondary_bellies)
 
 //Autotransfer callback
@@ -1153,16 +1156,18 @@
 	if(!(prey in contents) || !prey.autotransferable)
 		return FALSE
 	var/obj/belly/dest_belly
-	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
-		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
-			dest_belly = pick(transfer_locations["secondary"])
-		if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
-			dest_belly = pick(transfer_locations["secondary"])
-	if(autotransferlocation && prob(autotransferchance))
-		if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
-			dest_belly = pick(transfer_locations["primary"])
-		if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
-			dest_belly = pick(transfer_locations["primary"])
+	if(length(transfer_locations["secondary"]))
+		if(autotransferlocation_secondary && prob(autotransferchance_secondary))
+			if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
+				dest_belly = pick(transfer_locations["secondary"])
+			if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
+				dest_belly = pick(transfer_locations["secondary"])
+	if(length(transfer_locations["primary"]))
+		if(autotransferlocation && prob(autotransferchance))
+			if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
+				dest_belly = pick(transfer_locations["primary"])
+			if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
+				dest_belly = pick(transfer_locations["primary"])
 	if(!dest_belly) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
 		return FALSE

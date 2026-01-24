@@ -48,11 +48,15 @@
 	set name = "Log Out Of Virtual Reality"
 	set category = "Abilities.VR"
 
-	if(tgui_alert(usr, "Would you like to log out of virtual reality?", "Log out?", list("Yes", "No")) == "Yes")
-		release_vore_contents(TRUE)
-		for(var/obj/item/I in src)
-			drop_from_inventory(I)
-		qdel(src)
+	if(tgui_alert(src, "Would you like to log out of virtual reality?", "Log out?", list("Yes", "No")) != "Yes")
+		return
+
+	release_vore_contents(TRUE)
+	for(var/obj/item/I in src)
+		drop_from_inventory(I)
+
+	ghostize(src)
+	qdel(src)
 
 /mob/observer/dead/proc/fake_enter_vr(landmark)
 	if(!landmark)
