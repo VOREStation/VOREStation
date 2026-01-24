@@ -5,14 +5,16 @@
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			if(R.cell && R.cell.charge >= gen_cost*10 && gen_interval >= gen_time)
-				GenerateBellyReagents()
+				if(R.cell.percent() >= reagent_gen_cost_limit)
+					GenerateBellyReagents()
 				gen_interval = 0
 				return
 			gen_interval++
 			return
 
 		if(owner.nutrition >= gen_cost && gen_interval >= gen_time)
-			GenerateBellyReagents()
+			if(owner.nutrition_percent() >= reagent_gen_cost_limit)
+				GenerateBellyReagents()
 			gen_interval = 0
 			return
 		gen_interval++

@@ -162,6 +162,7 @@
 	var/belly_fullscreen_alpha = 255
 
 	// Liquid belly vars
+	var/reagent_gen_cost_limit = 10			//Our lower percentage limit of nutrition / charge until which we produce liquids
 	var/reagentbellymode = FALSE			// Belly has abilities to make liquids from digested/absorbed/drained prey and/or nutrition
 	var/reagent_mode_flags = 0
 
@@ -378,6 +379,7 @@
 	"colorization_enabled",
 	"show_liquids",
 	"reagentbellymode",
+	"reagent_gen_cost_limit",
 	"liquid_fullness1_messages",
 	"liquid_fullness2_messages",
 	"liquid_fullness3_messages",
@@ -1357,6 +1359,7 @@
 	dupe.belly_fullscreen_color4 = belly_fullscreen_color4
 	dupe.belly_fullscreen_alpha = belly_fullscreen_alpha
 	dupe.show_liquids = show_liquids
+	dupe.reagent_gen_cost_limit = reagent_gen_cost_limit
 	dupe.reagentbellymode = reagentbellymode
 	dupe.vorefootsteps_sounds = vorefootsteps_sounds
 	dupe.liquid_fullness1_messages = liquid_fullness1_messages
