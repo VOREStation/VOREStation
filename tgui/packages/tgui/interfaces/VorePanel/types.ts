@@ -213,6 +213,7 @@ export type ContentData = {
 
 export type BellyLiquidData = {
   show_liq: BooleanLike;
+  liq_gen_resources: number;
   liq_interacts: LiqInteractData;
 };
 
@@ -279,6 +280,7 @@ export type LiqInteractData = {
   liq_reagent_transfer_verb: string;
   liq_reagent_nutri_rate: number;
   liq_reagent_capacity: number;
+  liq_gen_cost_limit: number;
   liq_sloshing: BooleanLike;
   liq_reagent_addons: CheckBoxEntry[];
   custom_reagentcolor: string;

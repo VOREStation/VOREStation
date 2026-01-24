@@ -717,6 +717,7 @@
 			"liq_reagent_transfer_verb" = selected.reagent_transfer_verb,
 			"liq_reagent_nutri_rate" = selected.gen_time,
 			"liq_reagent_capacity" = selected.custom_max_volume,
+			"liq_gen_cost_limit" = selected.reagent_gen_cost_limit,
 			"liq_sloshing" = selected.vorefootsteps_sounds,
 			"liq_reagent_addons" = liquid_addon_list,
 			"custom_reagentcolor" = (selected.custom_reagentcolor ? selected.custom_reagentcolor : selected.reagentcolor),
