@@ -78,7 +78,7 @@
 		return FALSE
 	else
 		balloon_alert_visible("I'm pulsing it")
-		stats.update_state(TRUE)
+		stats.pulse_effect()
 		stats.next_activation = world.time + rand(45 SECONDS, 90 SECONDS)
 
 /obj/effect/anomaly/proc/move_anomaly()
@@ -119,7 +119,10 @@
 	if(istype(I, /obj/item/anomaly_scanner))
 		var/obj/item/anomaly_scanner/scanner = I
 		if(stats)
+			if(!do_after(user, 1 SECOND, src))
+				return
 			scanner.buffered_anomaly = src
+			scanner.tgui_interact(user)
 			return TRUE
 	return ..()
 

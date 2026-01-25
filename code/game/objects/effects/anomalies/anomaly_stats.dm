@@ -1,6 +1,6 @@
 /datum/anomaly_stats
 	var/severity = 1.0
-	var/stability = ANOMALY_STABLE
+	var/stability
 	var/max_health
 	var/base_mult = 1
 
@@ -28,6 +28,7 @@
 	max_health = rand(50, 150)
 	curr_health = max_health
 	calc_points_mult()
+	stability = ANOMALY_STABLE
 
 /datum/anomaly_stats/proc/randomize_particle_types()
 	var/list/particles = list(ANOMALY_PARTICLE_SIGMA, ANOMALY_PARTICLE_DELTA, ANOMALY_PARTICLE_ZETA, ANOMALY_PARTICLE_EPSILON)
@@ -55,7 +56,7 @@
 /datum/anomaly_stats/proc/particle_hit(particle)
 	// I don't really like this, but switch() expects a constant expression
 	if(particle == danger_type)
-		update_severity(0.1, 5.0)
+		update_severity(1, 5)
 		return
 	else if(particle == unstable_type)
 		update_state(TRUE)
@@ -101,8 +102,6 @@
 /datum/anomaly_stats/proc/kill_anomaly(critical)
 	if(critical)
 		attached_anomaly.detonate()
-		qdel(attached_anomaly)
-		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
@@ -147,25 +146,15 @@
 
 /datum/anomaly_stats/proc/get_activation_countdown()
 	return (next_activation - world.time)/10
-/*
-/datum/anomaly_stats/proc/show_stats(mob/user)
-	var/list/message = list()
-	message += "<b>Current severity:</b> [severity]"
-	message += "<b>Current anomaly state:</b> [stability]"
-	message += "<b>Point output:</b> [points_mult]"
-	message += ""
-	message += "Particle Reaction Analysis:"
-	message += "- [span_red("Danger type:")] [danger_type]"
-	message += "- [span_pink("Unstable type:")] [unstable_type]"
-	message += "- [span_yellow("Containment type:")] [containment_type]"
-	message += "- [span_blue("Transformation type:")] [transformation_type]"
-	message += ""
-	message += "Behavior Deviation Analysis:"
-	if(modifier)
-		message += "- [modifier.get_description()]"
-	message += "- [span_yellow("Anomaly produces [get_points_multiplier()] of the points")]"
-	message += ""
-	message += "Time until next pulse: [get_activation_countdown()] seconds"
 
-	to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
-*/
+/datum/anomaly_stats/proc/pulse_effect()
+	if(stability == ANOMALY_DECAYING)
+		update_health(-1, -10)
+	else if(stability == ANOMALY_GROWING)
+		update_severity(1, 10)
+
+	if(prob(5))
+		if(stability == ANOMALY_STABLE)
+			stability = pick(ANOMALY_DECAYING, ANOMALY_GROWING)
+		else
+			stability = ANOMALY_STABLE

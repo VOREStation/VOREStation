@@ -82,7 +82,7 @@ export const AnomalyScanner = (props) => {
                   {stability}
                 </LabeledList.Item>
                 <LabeledList.Item label="Point output">
-                  {point_output}
+                  {round(point_output, 0)}
                 </LabeledList.Item>
                 <LabeledList.Item label="Time until next pulse">
                   {round(countdown, 0)} seconds
