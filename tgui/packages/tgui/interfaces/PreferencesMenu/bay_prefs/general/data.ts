@@ -258,6 +258,7 @@ export type SizeData = {
   custom_speech_bubble: string;
   custom_species_sound: string;
   custom_footstep: string;
+  ignore_shoes: BooleanLike;
   weight_vr: number;
   weight_gain: number;
   weight_loss: number;
