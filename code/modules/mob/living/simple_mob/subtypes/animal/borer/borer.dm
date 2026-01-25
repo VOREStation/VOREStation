@@ -77,7 +77,7 @@
 /mob/living/simple_mob/animal/borer/Login()
 	. = ..()
 	if(antag && mind)
-		borers.add_antagonist(mind)
+		GLOB.borers.add_antagonist(mind)
 
 /mob/living/simple_mob/animal/borer/Initialize(mapload)
 	add_language("Cortical Link")
@@ -284,7 +284,7 @@
 		return
 
 	if(host.mind)
-		borers.remove_antagonist(host.mind)
+		GLOB.borers.remove_antagonist(host.mind)
 
 	if(!QDELETED(src))
 		forceMove(get_turf(host.loc))

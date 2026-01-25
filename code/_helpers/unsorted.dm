@@ -1172,21 +1172,21 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
-var/mob/dview/dview_mob
+GLOBAL_DATUM(dview_mob, /mob/dview)
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
-	if(!dview_mob) //VOREStation Add: Debugging
-		dview_mob = new
+	if(!GLOB.dview_mob) //VOREStation Add: Debugging
+		GLOB.dview_mob = new
 
-	dview_mob.loc = center
+	GLOB.dview_mob.loc = center
 
-	dview_mob.see_invisible = invis_flags
+	GLOB.dview_mob.see_invisible = invis_flags
 
-	. = view(range, dview_mob)
-	dview_mob.loc = null
+	. = view(range, GLOB.dview_mob)
+	GLOB.dview_mob.loc = null
 
 /mob/dview
 	invisibility = INVISIBILITY_ABSTRACT
@@ -1220,7 +1220,7 @@ var/mob/dview/dview_mob
 	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")
 	if (!force)
 		return QDEL_HINT_LETMELIVE
-	global.dview_mob = new
+	GLOB.dview_mob = new
 	return ..()
 
 /proc/screen_loc2turf(scr_loc, turf/origin)

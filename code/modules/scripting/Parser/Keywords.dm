@@ -9,11 +9,6 @@
 #define KW_WARN 3 //Warning
 
 /*
-var/const/Class: n_Keyword
-var/const/Represents a special statement in the code triggered by a keyword.
-*/
-
-/*
 	Var: inline
 	1 if the keyword is in an expression (e.g. the new keyword in many languages), 0 otherwise (such as the if and else keywords).
 */
