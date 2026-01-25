@@ -655,12 +655,12 @@
 			owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 		var/obj/item/I = thing
 		if(I.gurgled)
-			I.cut_overlay(gurgled_overlays[I.gurgled_color]) //No double-overlay for worn items.
-			I.add_overlay(gurgled_overlays[I.gurgled_color])
+			I.cut_overlay(GLOB.gurgled_overlays[I.gurgled_color]) //No double-overlay for worn items.
+			I.add_overlay(GLOB.gurgled_overlays[I.gurgled_color])
 		if(I.d_mult < 1)
 			if(I.d_stage_overlay)
 				I.cut_overlay(I.d_stage_overlay)
-			var/image/temp = new /image(gurgled_overlays[I.gurgled_color ? I.gurgled_color : "green"])
+			var/image/temp = new /image(GLOB.gurgled_overlays[I.gurgled_color ? I.gurgled_color : "green"])
 			temp.filters += filter(type = "alpha", icon = icon(I.icon, I.icon_state))
 			I.d_stage_overlay = temp
 			for(var/count in I.d_mult to 1 step 0.25)

@@ -168,10 +168,10 @@
 		overlays.Remove(blood_overlay)
 	if(gurgled && clean_types & CLEAN_WASH)
 		gurgled = FALSE
-		cut_overlay(gurgled_overlays[gurgled_color])
+		cut_overlay(GLOB.gurgled_overlays[gurgled_color])
 	if(contaminated && clean_types & CLEAN_RAD) // Phoron and stuff, washing machine needed
 		contaminated = FALSE
-		cut_overlay(contamination_overlay)
+		cut_overlay(GLOB.contamination_overlay)
 
 /obj/vv_get_dropdown()
 	. = ..()

@@ -128,7 +128,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 					qdel(F)
 	feedback_add_details("admin_verb","mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-var/list/debug_verbs = list (
+GLOBAL_LIST_INIT(debug_verbs, list(
 		/client/proc/do_not_use_these
 		,/client/proc/camera_view
 		,/client/proc/sec_camera_report
@@ -159,7 +159,7 @@ var/list/debug_verbs = list (
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
 		,/client/proc/take_picture
-	)
+	))
 
 
 /client/proc/enable_debug_verbs()
@@ -168,7 +168,7 @@ var/list/debug_verbs = list (
 
 	if(!check_rights(R_DEBUG)) return
 
-	add_verb(src, debug_verbs)
+	add_verb(src, GLOB.debug_verbs)
 
 	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -178,7 +178,7 @@ var/list/debug_verbs = list (
 
 	if(!check_rights(R_DEBUG)) return
 
-	remove_verb(src, debug_verbs)
+	remove_verb(src, GLOB.debug_verbs)
 
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

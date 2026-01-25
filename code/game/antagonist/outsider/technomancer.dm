@@ -1,4 +1,4 @@
-var/datum/antagonist/technomancer/technomancers
+GLOBAL_DATUM(technomancers, /datum/antagonist/technomancer)
 
 /datum/antagonist/technomancer
 	id = MODE_TECHNOMANCER
@@ -24,7 +24,7 @@ var/datum/antagonist/technomancer/technomancers
 
 /datum/antagonist/technomancer/New()
 	..()
-	technomancers = src
+	GLOB.technomancers = src
 
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()

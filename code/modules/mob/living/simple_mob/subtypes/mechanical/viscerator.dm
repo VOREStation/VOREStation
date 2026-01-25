@@ -63,14 +63,14 @@
 /mob/living/simple_mob/mechanical/viscerator/mercenary/IIsAlly(mob/living/L)
 	. = ..()
 	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
-		if(L.mind && mercs.is_antagonist(L.mind))
+		if(L.mind && GLOB.mercs.is_antagonist(L.mind))
 			return TRUE
 
 // Similar to above but for raiders.
 /mob/living/simple_mob/mechanical/viscerator/raider/IIsAlly(mob/living/L)
 	. = ..()
 	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
-		if(L.mind && raiders.is_antagonist(L.mind))
+		if(L.mind && GLOB.raiders.is_antagonist(L.mind))
 			return TRUE
 
 // Variant that is neutral, and thus on the station's side. It checks records.
