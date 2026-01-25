@@ -138,7 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
-	excludes = list(/datum/trait/negative/boneless, /datum/trait/positive/densebones)
+	excludes = list(/datum/trait/negative/boneless, /datum/trait/densebones)
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -246,7 +246,7 @@
 	custom_only = FALSE
 	var_changes = list("bad_swimmer" = 1, "water_movement" = 4, "swim_mult" = 1.25)
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
-	excludes = list(/datum/trait/positive/good_swimmer)
+	excludes = list(/datum/trait/good_swimmer)
 
 /datum/trait/negative/less_blood
 	name = "Low Blood Volume"
@@ -466,7 +466,7 @@
 	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
 	cost = -5
 	var_changes = list("dirtslip" = TRUE)
-	excludes = list(/datum/trait/positive/absorbent)
+	excludes = list(/datum/trait/absorbent)
 
 /datum/trait/negative/thick_digits
 	name = "Thick Digits"
@@ -607,7 +607,7 @@
 	cost = -1
 	var_changes = list("soft_landing" = FALSE) //override soft landing if the species would otherwise start with it
 	custom_only = FALSE
-	excludes = list(/datum/trait/positive/soft_landing)
+	excludes = list(/datum/trait/soft_landing)
 
 /datum/trait/negative/heavy_landing/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
@@ -674,7 +674,7 @@
 	can_take = ORGANICS
 
 	var_changes = list("minimum_breath_pressure" = 18)
-	excludes = list(/datum/trait/positive/light_breather)
+	excludes = list(/datum/trait/light_breather)
 
 
 /*EMP traits. Noting this down because I was like 'what is the difference between emp_dmg_mod and the modifier?'
@@ -689,7 +689,7 @@
 	custom_only = FALSE
 	can_take = SYNTHETICS
 	var_changes = list("emp_dmg_mod" = 1.3, "emp_stun_mod" = 1.3, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE))
-	excludes = list(/datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
+	excludes = list(/datum/trait/negative/poorconstruction, /datum/trait/emp_resist, /datum/trait/emp_resist_major)
 
 /datum/trait/negative/faultwires/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -702,7 +702,7 @@
 	custom_only = FALSE
 	can_take = SYNTHETICS
 	var_changes = list("emp_dmg_mod" = 1.6, "emp_stun_mod" = 1.6, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE | EMP_WEAKEN))
-	excludes = list(/datum/trait/negative/faultwires, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
+	excludes = list(/datum/trait/negative/faultwires, /datum/trait/emp_resist, /datum/trait/emp_resist_major)
 
 /datum/trait/negative/poorconstruction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
