@@ -1301,7 +1301,6 @@
 	set desc = "you can lay Eggs"
 	set category = "Abilities.General"
 
-	var/eggs = 0
 	var/mob/living/carbon/human/C = src
 
 	if(last_special > world.time)
