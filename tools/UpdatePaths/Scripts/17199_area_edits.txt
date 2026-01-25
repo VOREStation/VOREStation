@@ -1,0 +1,17 @@
+/area/centcom/security{name="\improper CentCom Residential Security";} : /area/centcom/security/residential
+/area/centcom/security{name="\improper CentCom Security Arrivals";} : /area/centcom/security/arrivals
+/area/crew_quarters/recreation_area_restroom{name="\improper Recreation Area Showers";} : /area/crew_quarters/recreation_area_restroom/showers
+/area/gateway/arynthilake/underground/intocave{enter_message="There is some light filtering from the center of this patch of sand. You could probably climb up from there.";} : /area/gateway/arynthilake/underground/intocave/entry
+/area/maintenance/substation/bar{name="\improper Surface Civilian Substation";} : /area/maintenance/substation/bar/civilian
+/area/shuttle/escape{base_turf=/turf/simulated/floor/tiled/techfloor/grid;} : /area/shuttle/escape/techfloor_grid_base
+/area/shuttle/sdboat/aft{base_turf=/turf/simulated/floor/reinforced/airless;} : /area/shuttle/sdboat/aft/airless_base
+/area/shuttle/sdboat/fore{base_turf=/turf/simulated/floor/reinforced/airless;} : /area/shuttle/sdboat/fore/airless_base
+/area/shuttle/tether{base_turf=/turf/simulated/floor/reinforced;} : /area/shuttle/tether/reinforced_base
+/area/submap/admin_upload/AU2{requires_power=0;} : /area/submap/admin_upload/AU2/req_no_power
+/area/syndicate_mothership{name="\improper Trader Base";} : /area/syndicate_mothership/trader
+/area/syndicate_station/southwest{base_turf=/turf/simulated/floor/outdoors/dirt/virgo3b;} : /area/syndicate_station/southwest/outside
+/area/tcomfoyer{name="\improper Telecomms Storage";} : /area/tcomfoyer/storage
+/area/tcommsat/entrance{name="\improper Telecomms Entrance";} : /area/tcommsat/entrance/actually
+/area/tcomsat{name="\improper Telecomms Lobby";} : /area/tcomsat/lobby
+/area/tether/outpost/solars_outside{name="\improper Telecomms Solar Field";} : /area/tether/outpost/solars_outside
+/area/tether/surfacebase/medical/uppernorthstairwell{name="\improper North Medical Stairwell";} : /area/tether/surfacebase/medical/uppernorthstairwell

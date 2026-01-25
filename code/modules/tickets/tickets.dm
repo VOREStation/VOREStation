@@ -310,11 +310,16 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 			if(1)
 				to_chat(C, span_adminnotice("PM to-" + span_bold("Admins") + ": [name]"))
 
+		var/admin_number_present = count_admins()
+		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
+		if(admin_number_present <= 0)
+			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin discord."))
+
 	send2adminchatwebhook()
 
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
-	var activeMins = activemins.len
+	var/activeMins = activemins.len
 	if(is_bwoink)
 		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: \n ```[raw_msg]``` \n Heard by [activeMins] NON-AFK staff members.")
 	else
@@ -700,6 +705,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 //
 // HELPER PROCS
 //
+
+/proc/count_admins(requiredflags = R_BAN)
+	var/list/adm = get_admin_counts(requiredflags)
+	var/list/activemins = adm["present"]
+	. = activemins.len
 
 /proc/get_admin_counts(requiredflags = R_BAN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
