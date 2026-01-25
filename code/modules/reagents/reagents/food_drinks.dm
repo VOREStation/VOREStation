@@ -14,6 +14,7 @@
 	affects_robots = 1	//VOREStation Edit
 	wiki_flag = WIKI_FOOD
 	coolant_modifier = -1
+	scannable = SCANNABLE_BENEFICIAL
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_FOOD
@@ -867,6 +868,7 @@
 /datum/reagent/condensedcapsaicin
 	name = REAGENT_CONDENSEDCAPSAICIN
 	id = REAGENT_ID_CONDENSEDCAPSAICIN
+	scannable = SCANNABLE_ADVANCED
 	description = "A chemical agent used for self-defense and in police work."
 	taste_description = "fire"
 	taste_mult = 10

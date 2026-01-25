@@ -28,6 +28,7 @@
 #define FACTION_SYNDICATE "syndicate"
 #define FACTION_TECHNOMANCER "technomancer"
 #define FACTION_VAMPIRE "vampire"
+#define FACTION_MOUSE_ARMY "mouse_army"
 
 #define FACTION_CORRUPT "corrupt"
 #define FACTION_HIVEBOT "hivebot"

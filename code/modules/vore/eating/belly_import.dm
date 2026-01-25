@@ -828,9 +828,9 @@
 			if(new_disable_hud == 1)
 				new_belly.disable_hud = TRUE
 
-		var/possible_fullscreens = cached_icon_states('icons/mob/screen_full_vore_list.dmi')
+		var/possible_fullscreens = icon_states_fast('icons/mob/vore_fullscreens/ui_lists/screen_full_vore_list_base.dmi')
 		if(!new_belly.colorization_enabled)
-			possible_fullscreens = cached_icon_states('icons/mob/screen_full_vore.dmi')
+			possible_fullscreens = icon_states_fast('icons/mob/vore_fullscreens/ui_lists/screen_full_vore.dmi')
 		if(!(new_belly.belly_fullscreen in possible_fullscreens))
 			new_belly.belly_fullscreen = ""
 
@@ -844,9 +844,11 @@
 		if(isnum(belly_data["escapable"]))
 			var/new_escapable = belly_data["escapable"]
 			if(new_escapable == 0)
-				new_belly.escapable = FALSE
+				new_belly.escapable = B_ESCAPABLE_NONE
 			if(new_escapable == 1)
-				new_belly.escapable = TRUE
+				new_belly.escapable = B_ESCAPABLE_DEFAULT
+			if(new_escapable == 2)
+				new_belly.escapable = B_ESCAPABLE_INTENT
 
 		if(isnum(belly_data["escapechance"]))
 			var/new_escapechance = belly_data["escapechance"]
@@ -1000,6 +1002,10 @@
 				new_belly.show_liquids = FALSE
 			if(new_show_liquids == 1)
 				new_belly.show_liquids = TRUE
+
+		if(isnum(belly_data["reagent_gen_cost_limit"]))
+			var/new_reagent_gen_cost_limit = belly_data["reagent_gen_cost_limit"]
+			new_belly.reagent_gen_cost_limit = sanitize_integer(new_reagent_gen_cost_limit, 0, 100, initial(new_belly.reagent_gen_cost_limit))
 
 		if(isnum(belly_data["reagentbellymode"]))
 			var/new_reagentbellymode = belly_data["reagentbellymode"]

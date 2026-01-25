@@ -82,7 +82,10 @@
 		update_icon()
 		to_chat(user, span_notice("You tuck the [P] into \the [src]."))
 
-/obj/item/folder/attack_self(mob/user as mob)
+/obj/item/folder/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/dat = "<title>[name]</title>"
 
 	for(var/obj/item/paper/P in src)

@@ -245,6 +245,13 @@
 /obj/item/card/id
 	var/last_job_switch
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
+	///Var for event IDs
+	var/can_configure = FALSE
+	var/configured = FALSE
+
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
 	last_job_switch = world.time

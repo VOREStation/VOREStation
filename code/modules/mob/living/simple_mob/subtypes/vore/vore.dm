@@ -36,6 +36,10 @@
 	can_be_afk_pred = client.prefs_vr.can_be_afk_pred
 	throw_vore = client.prefs_vr.throw_vore
 	food_vore = client.prefs_vr.food_vore
+	spont_belly_rear = client.prefs_vr.spont_belly_rear
+	spont_belly_left = client.prefs_vr.spont_belly_left
+	spont_belly_front = client.prefs_vr.spont_belly_front
+	spont_belly_right = client.prefs_vr.spont_belly_right
 	consume_liquid_belly = client.prefs_vr.consume_liquid_belly
 	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
 	digest_leave_remains = client.prefs_vr.digest_leave_remains
@@ -43,6 +47,7 @@
 	permit_healbelly = client.prefs_vr.permit_healbelly
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
+	size_strip_preference = client.prefs_vr.size_strip_preference
 	eating_privacy_global = client.prefs_vr.eating_privacy_global
 	allow_mimicry = client.prefs_vr.allow_mimicry
 	allowtemp = client.prefs_vr.allowtemp

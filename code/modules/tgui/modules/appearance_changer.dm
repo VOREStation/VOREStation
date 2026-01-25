@@ -95,7 +95,7 @@
 	. = ..()
 	if(owner == user || !customize_usr)
 		close_ui()
-		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		SEND_SIGNAL(owner, COMSIG_HUMAN_DNA_FINALIZED) // Update any components using our saved appearance
 		owner = null
 		last_camera_turf = null
@@ -672,7 +672,7 @@
 		return
 	if(!ui)
 		owner.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+		RegisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen), TRUE)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
 		for(var/plane in cam_plane_masters)
@@ -1028,7 +1028,8 @@
 
 /datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
 	cam_screen.vis_contents = list(owner)
@@ -1038,7 +1039,8 @@
 
 /datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
 	. = ..()
-	QDEL_IN(src, 1)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/changed_hook(flag)
 	var/mob/living/carbon/human/M = owner
@@ -1074,7 +1076,8 @@
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	if(!istype(owner.loc, /obj/item/holder/micro))
@@ -1091,7 +1094,8 @@
 
 /datum/tgui_module/appearance_changer/superpower/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
 	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
@@ -1109,7 +1113,8 @@
 
 /datum/tgui_module/appearance_changer/innate/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/innate/tgui_status(mob/user, datum/tgui_state/state)
 	if(owner.stat != CONSCIOUS)
@@ -1139,7 +1144,7 @@
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()
 	// checks for monkey to tell if on the menu
 	if(owner)
-		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		QDEL_NULL(owner)
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
@@ -1147,11 +1152,11 @@
 	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+	RegisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen), TRUE)
 
 /datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
 	if(owner)
-		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		QDEL_NULL(owner)
 	owner = current_project.produce_human_mob(src,FALSE,FALSE,"Designer [rand(999)]")
 	// Update some specifics from the current record
@@ -1165,9 +1170,10 @@
 		owner.custom_species = current_project.speciesname
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+	RegisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen), TRUE)
 
 /datum/tgui_module/appearance_changer/self_deleting
 /datum/tgui_module/appearance_changer/self_deleting/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)

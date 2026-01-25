@@ -92,12 +92,12 @@
 	if(m_type != use_emote.message_type && use_emote.conscious && stat != CONSCIOUS)
 		return
 
+	next_emote = world.time + use_emote.emote_delay
 	if(use_emote.message_type == AUDIBLE_MESSAGE && is_muzzled())
 		var/muffle_message = use_emote.emote_message_muffled || "makes a muffled sound."
 		audible_message(span_bold("\The [src]") + " [muffle_message]", runemessage = "[muffle_message]")
 		return
 
-	next_emote = world.time + use_emote.emote_delay
 	use_emote.do_emote(src, message)
 	for (var/obj/item/implant/I in src)
 		if (I.implanted)

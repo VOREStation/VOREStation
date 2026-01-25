@@ -146,7 +146,8 @@
 			if(darth_airlock.locked || !darth_airlock.arePowerSystemsOn())
 				continue
 			to_chat(living_guy, span_warning("The airlock suddenly closes on you!"))
-			living_guy.Paralyse(1 SECONDS)
+			living_guy.Paralyse(5)
+			living_guy.Sleeping(5)
 			slam_airlock(darth_airlock)
 			consume_omen()
 			return
@@ -194,7 +195,7 @@
 				our_guy.visible_message(span_danger("[our_guy] slips on a spill near the [evil_disposal] and falls in!"), span_boldwarning("You slip on a spill near the [evil_disposal] and fall in!"))
 				living_guy.forceMove(evil_disposal)
 				evil_disposal.flush = TRUE
-				evil_disposal.update()
+				evil_disposal.update_icon()
 				living_guy.Stun(5)
 				consume_omen()
 				return
@@ -277,6 +278,8 @@
 
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
+				continue
+			if(!prob(10)) //Reduce the chance further, due to the number of tables that are passed in normal play.
 				continue
 			living_guy.visible_message(span_danger("[living_guy] stubs [living_guy.p_their()] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")

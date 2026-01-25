@@ -39,9 +39,6 @@ var/list/mob_hat_cache = list()
 
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER
-	can_enter_vent_with = list(
-		/obj,
-		/atom/movable/emissive_blocker)
 
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = SIMPLE_ANIMAL
@@ -79,6 +76,14 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/is_sentient()
 	return FALSE
+
+/mob/living/silicon/robot/drone/ventcrawl_get_item_whitelist()
+	// Yes this allows any object, yes it's silly. I don't know if it's ever been abused by drones though.
+	return list(
+		/atom/movable/emissive_blocker,
+		/atom/movable/screen,
+		/obj
+		)
 
 /mob/living/silicon/robot/drone/construction
 	name = "construction drone"

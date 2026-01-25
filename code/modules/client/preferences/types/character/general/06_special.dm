@@ -81,3 +81,14 @@
 	var/datum/component/shadekin/our_SK = target.get_shadekin_component()
 	if(our_SK)
 		our_SK.nutrition_energy_conversion = value
+
+/datum/preference/toggle/living/shadekin_hide_voice_in_phase
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "SHADEKIN_HIDE_VOICE_IN_PHASE"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/living/shadekin_hide_voice_in_phase/apply_to_living(mob/living/target, value)
+	var/datum/component/shadekin/our_SK = target.get_shadekin_component()
+	if(our_SK)
+		our_SK.hide_voice_in_phase = value

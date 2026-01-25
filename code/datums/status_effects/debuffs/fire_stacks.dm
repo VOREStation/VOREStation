@@ -221,6 +221,9 @@
 /datum/status_effect/fire_handler/fire_stacks/proc/deal_damage(seconds_per_tick)
 	owner.on_fire_stack(seconds_per_tick, src)
 
+	if(owner.is_incorporeal()) // Shadekin don't spread fire in phase, but still take damage
+		return
+
 	var/turf/location = get_turf(owner)
 	location.hotspot_expose(700, 25 * seconds_per_tick, TRUE)
 

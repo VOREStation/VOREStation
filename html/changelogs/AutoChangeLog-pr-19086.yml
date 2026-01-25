@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - rscdel: "no longer existing config entry"
+  - bugfix: "another bad object spawn in xenoarch"

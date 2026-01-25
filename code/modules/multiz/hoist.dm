@@ -11,6 +11,9 @@
 	icon_state = "hoist_case"
 
 /obj/item/hoist_kit/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	new /obj/structure/hoist (get_turf(user), user.dir)
 	user.visible_message(span_warning("[user] deploys the hoist kit!"), span_notice("You deploy the hoist kit!"), span_notice("You hear the sound of parts snapping into place."))
 	qdel(src)

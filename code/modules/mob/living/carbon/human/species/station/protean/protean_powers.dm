@@ -593,6 +593,7 @@
 						S.dullahan_overlays[S.dullahan_overlays[6]] = tempcolor
 					else
 						S.dullahan_overlays[6] = extraoff
+						S.dullahan_overlays[S.dullahan_overlays[6]] = "#FFFFFF"
 				if("Eyes")
 					options = dullahaneyes_styles
 					for(var/option in options)
@@ -639,13 +640,21 @@
 					S.dullahan_overlays[S.dullahan_overlays[7]] = new_color
 				if("Head")
 					options = dullahanhead_styles
+					var/new_color = "#FFFFFF"
 					for(var/option in options)
 						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
 						LAZYSET(options, option, I)
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					S.dullahan_overlays[4] = choice //head overlay is 2
+					if (choice == "dullahanhead" || choice == "dullahanhead2")
+						new_color = "#FFFFFF"
+					else
+						new_color = tgui_color_picker(protie, "Pick clothes color:","Clothes Color", S.dullahan_overlays[4])
+					if(!new_color)
+						return 0
+					S.dullahan_overlays[4] = choice //head overlay is 4
+					S.dullahan_overlays[S.dullahan_overlays[4]] = new_color
 				if("Import")
 					var/dinput_style
 					dinput_style = sanitizeSafe(tgui_input_text(protie,"Paste the style string you exported with Export Style.", "Style loading","", 120, encode = FALSE), 128)

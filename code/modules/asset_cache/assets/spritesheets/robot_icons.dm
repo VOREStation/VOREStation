@@ -90,13 +90,8 @@ GLOBAL_LIST_EMPTY(robot_sprite_sheets)
 /datum/asset/spritesheet_batched/robot_icons/create_spritesheets()
 	if(!module_type)
 		return
-	for(var/datum/robot_sprite/S as anything in SSrobot_sprites.all_cyborg_sprites)
+	for(var/datum/robot_sprite/S as anything in SSrobot_sprites.cyborg_sprites_by_module[module_type])
 		if(!S.name || !S.sprite_icon_state) // snowflake out those customs... they suck
-			continue
-		if(islist(S.module_type))
-			if(!(module_type in S.module_type))
-				continue
-		else if(S.module_type != module_type)
 			continue
 
 		var/datum/universal_icon/I_N = uni_icon(S.sprite_icon, S.sprite_icon_state, NORTH)

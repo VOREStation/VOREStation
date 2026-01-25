@@ -29,7 +29,7 @@ export type LoadoutData = {
   // loadout
   gear_slot: number;
   total_cost: number;
-  active_gear_list: Record<string, any>; // we don't actually care about the subkeys
+  active_gear_list: Record<string, unknown>; // we don't actually care about the subkeys
   gear_tweaks: Record<string, GearTweak[]>;
 };
 
@@ -42,10 +42,10 @@ export type Gear = {
   allowed_roles: string[];
 };
 
-export type LoadoutDataStatic = {
+export type LoadoutDataStatic = Partial<{
   categories: Record<string, Gear[]>;
   max_gear_cost: number;
-};
+}>;
 
 // Never changes
 export type LoadoutDataConstant = {

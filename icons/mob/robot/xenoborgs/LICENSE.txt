@@ -1,0 +1,4 @@
+Xenoborgs are licensed under CC BY-SA 4.0, the full text of which can be found at the following URL:
+https://creativecommons.org/licenses/by-sa/4.0/deed.en
+Created by Octopus King
+See: https://github.com/Bubberstation/Bubberstation/pull/5033 for original asset upload

@@ -273,7 +273,7 @@
 	if(!. || !healths)
 		return
 
-	if(stat == DEAD)
+	if(stat == DEAD || (status_effects & FAKEDEATH))
 		healths.icon_state = "health7"
 		return
 
@@ -370,6 +370,8 @@
 	return canmove
 
 /mob/living/silicon/robot/fire_act()
+	if(is_incorporeal())
+		return
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
 		ignite_mob()
 

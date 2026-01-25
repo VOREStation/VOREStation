@@ -49,6 +49,7 @@
 
 #define LANGUAGE_XENOLINGUA "Xenomorph"
 #define LANGUAGE_HIVEMIND "Hivemind"
+#define LANGUAGE_REDSPACE "Carnem amplecti"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

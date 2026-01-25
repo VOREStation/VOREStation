@@ -36,6 +36,8 @@
 	if(channel == "Whis" || channel == "Subtle" || channel == "whisper" || channel == "subtle")
 		if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
 			return FALSE
+	if(mob.status_flags & FAKEDEATH)
+		return FALSE
 	ADD_TRAIT(mob, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 	mob.create_thinking_indicator()
 

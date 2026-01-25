@@ -182,20 +182,30 @@ Book Cart End
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
+	var/occult_tier = 0 //If the book is an occult book or not and how strong it is. Used for attack_self
+	///Var for attack_self chain
+	var/special_handling = FALSE
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
-/obj/item/book/attack_self(var/mob/user)
+/obj/item/book/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(occult_tier)
+		return FALSE
+	if(special_handling)
+		return FALSE
 	if(carved)
 		if(store)
 			to_chat(user, span_notice("[store] falls out of [title]!"))
-			store.loc = get_turf(src.loc)
+			store.forceMove(get_turf(src.loc))
 			store = null
 			return
 		else
 			to_chat(user, span_notice("The pages of [title] have been cut out!"))
 			return
-	if(src.dat)
+	if(dat)
 		display_content(user)
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		playsound(src, 'sound/bureaucracy/bookopen.ogg', 50, 1)
@@ -309,6 +319,7 @@ Book Cart End
 /obj/item/book/bundle
 	var/page = 1 //current page
 	var/list/pages = list() //the contents of each page
+	special_handling = TRUE
 
 /obj/item/book/bundle/proc/show_content(mob/user)
 	if(!pages.len)
@@ -350,6 +361,9 @@ Book Cart End
 		user << browse(dat, "window=[name]")
 
 /obj/item/book/bundle/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	src.show_content(user)
 	add_fingerprint(user)
 	update_icon()
@@ -388,6 +402,9 @@ Book Cart End
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
 /obj/item/barcodescanner/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	mode += 1
 	if(mode > 3)
 		mode = 0

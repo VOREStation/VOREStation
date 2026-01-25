@@ -1,8 +1,8 @@
 import { LabeledList, Stack } from 'tgui-core/components';
-
+import { capitalize } from 'tgui-core/string';
 import { eatingMessagePrivacy } from '../../constants';
 import { sanitize_color } from '../../functions';
-import type { bellyOptionData } from '../../types';
+import type { BellyOptionData } from '../../types';
 import { VorePanelColorBox } from '../../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
@@ -12,7 +12,7 @@ import { VoreSelectedWhitelist } from '../VisualTab/VoreSelecetedWhitelist';
 
 export const BellyOptionsLeft = (props: {
   editMode: boolean;
-  bellyOptionData: bellyOptionData;
+  bellyOptionData: BellyOptionData;
 }) => {
   const { editMode, bellyOptionData } = props;
   const {
@@ -148,7 +148,7 @@ export const BellyOptionsLeft = (props: {
           <VorePanelEditDropdown
             editMode={editMode}
             options={Object.keys(eatingMessagePrivacy)}
-            entry={eating_privacy_local}
+            entry={capitalize(eating_privacy_local)}
             action="set_attribute"
             subAction="b_eating_privacy"
             color={eatingMessagePrivacy[eating_privacy_local]}

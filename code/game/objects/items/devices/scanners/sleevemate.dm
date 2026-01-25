@@ -23,6 +23,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	var/ooc_notes_maybes = null
 	var/ooc_notes_dislikes = null
 	var/ooc_notes_style = FALSE
+	var/soulcatcher_pref_flags = NONE
 
 	// Resleeving database this machine interacts with. Blank for default database
 	// Needs a matching /datum/transcore_db with key defined in code
@@ -52,6 +53,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	ooc_notes_maybes = M.ooc_notes_maybes
 	ooc_notes_style = M.ooc_notes_style
 	stored_mind = M.mind
+	soulcatcher_pref_flags = M.soulcatcher_pref_flags
 	M.ghostize()
 	stored_mind.current = null
 	update_icon()
@@ -65,6 +67,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	M.ooc_notes_favs = ooc_notes_favs
 	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_style = ooc_notes_style
+	M.soulcatcher_pref_flags = soulcatcher_pref_flags
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()
 
@@ -97,6 +100,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		to_chat(user,span_warning("Not a compatible subject to work with!"))
 
 /obj/item/sleevemate/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!stored_mind)
 		to_chat(user,span_warning("No stored mind in \the [src]."))
 		return
@@ -135,7 +141,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Body status
 	output += span_bold("Sleeve Status:") + " "
-	if(H.status_flags |= FAKEDEATH)
+	if(H.status_flags & FAKEDEATH)
 		output += span_warning("Deceased") + "<br>"
 	else
 		switch(H.stat)
@@ -286,6 +292,10 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		//Lazzzyyy.
 		if(!sleevemate_mob)
 			sleevemate_mob = new()
+
+		if(!(soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE))
+			to_chat(usr,span_notice("[sleevemate_mob] can't be transferred!"))
+			return
 
 		put_mind(sleevemate_mob)
 		SC.catch_mob(sleevemate_mob)

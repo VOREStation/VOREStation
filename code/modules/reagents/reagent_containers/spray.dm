@@ -69,7 +69,7 @@
 	return
 
 /*
-/obj/item/reagent_containers/spray/attack_self(var/mob/user) //Now done via alt-click instead
+/obj/item/reagent_containers/spray/attack_self(mob/user) //Now done via alt-click instead
 	if(!max_transfer_amount)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
@@ -137,7 +137,10 @@
 	if(Adjacent(user))
 		. += "The safety is [safety ? "on" : "off"]."
 
-/obj/item/reagent_containers/spray/pepper/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	safety = !safety
 	balloon_alert(user, "safety [safety ? "on" : "off"].")
 
@@ -231,10 +234,10 @@
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	AddComponent(/datum/component/hose_connector/input)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	. = ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)

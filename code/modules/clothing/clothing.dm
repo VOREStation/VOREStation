@@ -97,7 +97,7 @@
 					wearable = FALSE
 
 				///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
-				else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !sprite_sheets[our_species]) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
+				else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !LAZYACCESS(sprite_sheets, our_species)) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
 					wearable = FALSE
 				else
 					wearable = TRUE
@@ -478,16 +478,20 @@
 		)
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
+	helmet_handling = TRUE
 
-/obj/item/clothing/head/attack_self(mob/user)
+/obj/item/clothing/head/attack_self(mob/user, callback)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling && !callback)
+		return FALSE
 	if(light_range)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot toggle the light while in this [user.loc]")
 			return
 		update_flashlight(user)
 		to_chat(user, "You [light_on ? "enable" : "disable"] the helmet light.")
-	else
-		return ..(user)
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	set_light_on(!light_on)
@@ -855,15 +859,16 @@
 		var/mob/M = src.loc
 		M.update_inv_shoes()
 
-/obj/item/clothing/shoes/attack_self(var/mob/user)
+/obj/item/clothing/shoes/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	for(var/mob/M in src)
 		if(isvoice(M)) //Don't knock voices out!
 			continue
 		M.forceMove(get_turf(user))
 		to_chat(M, span_warning("[user] shakes you out of \the [src]!"))
 		to_chat(user, span_notice("You shake [M] out of \the [src]!"))
-
-	..()
 
 /obj/item/clothing/shoes/container_resist(mob/living/micro)
 	var/mob/living/carbon/human/macro = loc
@@ -1395,7 +1400,7 @@
 
 				// only override icon if a corresponding digitigrade replacement icon_state exists
 				// otherwise, keep the old non-digi icon_define (or nothing)
-				if(icon_state && cached_icon_states(update_icon_define_digi):Find(icon_state)) //Unsure what to do to this seeing as it does :Find()
+				if(icon_state && icon_states_fast(update_icon_define_digi):Find(icon_state)) //Unsure what to do to this seeing as it does :Find()
 					update_icon_define = update_icon_define_digi
 
 

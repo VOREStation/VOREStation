@@ -28,6 +28,7 @@
 
 	var/on_fire = 0
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
+	special_handling = TRUE
 
 /obj/item/reagent_containers/glass/rag/Initialize(mapload)
 	. = ..()
@@ -37,7 +38,10 @@
 	STOP_PROCESSING(SSobj, src) //so we don't continue turning to ash while gc'd
 	return ..()
 
-/obj/item/reagent_containers/glass/rag/attack_self(mob/user as mob)
+/obj/item/reagent_containers/glass/rag/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(on_fire)
 		user.visible_message(span_warning("\The [user] stamps out [src]."), span_warning("You stamp out [src]."))
 		user.unEquip(src)

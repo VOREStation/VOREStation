@@ -1,7 +1,8 @@
 /mob/living/carbon/human/GetAltName()
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(SK && SK.in_phase)
-		return ""
+	var/list/name_data = list(null)
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_GET_ALT_NAME, name_data) & COMPONENT_ALT_NAME_CHANGED)
+		return name_data[1]
+
 	if(absorbed && isbelly(loc))
 		var/obj/belly/B = loc
 		if(B.absorbedrename_enabled)
@@ -88,6 +89,12 @@
 	return ..()
 
 /mob/living/carbon/human/GetVoice()
+	// Allow components to override voice (e.g., shadekin phase hiding)
+	var/list/voice_data = list(null)
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_GET_VOICE, voice_data) & COMPONENT_VOICE_CHANGED)
+		return voice_data[1]
+
+	// Normal voice determination logic
 	var/voice_sub
 	if(istype(get_rig(),/obj/item/rig))
 		var/obj/item/rig/rig = get_rig()

@@ -100,8 +100,8 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, span_boldnotice("Welcome to [station_name()]!"))
-			//for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
-			//	send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
+			for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+				send2chat(new /datum/tgs_message_content("New round starting on [using_map.full_name] ([using_map.name])!"), channel_tag)
 			current_state = GAME_STATE_PREGAME
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
 
@@ -511,12 +511,12 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/announce_countdown(remaining_time)
 	remaining_time -= 60 SECONDS
-	if(remaining_time >= 60 SECONDS)
+	if(remaining_time > 60 SECONDS)
 		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(remaining_time)]."))
 		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time), 60 SECONDS)
 		return
-	if(remaining_time > 0)
-		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), 0), remaining_time)
+	if(remaining_time <= 60 SECONDS && remaining_time > 0)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time - 1 SECOND), remaining_time)
 		return
 	if(!delay_end)
 		to_chat(world, span_boldannounce("Rebooting World."))

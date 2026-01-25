@@ -145,3 +145,202 @@
       />'
   Will:
   - balance: Ice slips you repeatedly instead of a set distance
+2025-12-12:
+  Asher-42:
+  - rscadd: 'Fixes the insivible head issue for dullahans
+
+      Change/fix: removed neck light cover from frame option 2 to show the neck light'
+  Cameron-The-Raven:
+  - qol: You can now eat monkeys via eating the cube directly instead of having to
+      wet it then eat it to avoid being chestbusted
+  Guti:
+  - code_imp: Made anomalies defines use SECONDS instead of EVENT_SECONDS
+  - rscadd: Added TG-like anomalies
+  - rscadd: Added anomaly cores
+  Kashargul:
+  - bugfix: some bad flag compares
+  - bugfix: disposal template loading being broken
+  Nova:
+  - bugfix: Fix shadekin voices always being known in phase.
+  - qol: Add ability to reveal/hide voice in shadekin control panel.
+  Will:
+  - refactor: Ventcrawl item whitelist is now a proc instead of a list instantiated
+      on every single mob in the world
+  - bugfix: promies and proteans properly reequip their radio when they return to
+      human form from blob
+  zeskorion:
+  - balance: Pulled punches are now affected by species brutemod, and don't have an
+      inherent damage bonus
+  - balance: Pulled punches no longer use species unarmed bonus. You're holding back,
+      not hitting with full strength
+  - bugfix: xenochimerae cannot pull their special unarmed attack when feral
+2025-12-13:
+  Diana:
+  - bugfix: Fixes a bug that prevented moving/unremoving storage items
+2025-12-14:
+  Diana:
+  - bugfix: Sleevemates will no longer apply fakedeath status instead of checking
+      for it
+  - bugfix: Health hud will now properly show someone with FAKEDEATH as DEAD
+  - bugfix: Bodyscanners will treat someone with FAKEDEATH as if they were dead.
+  - bugfix: Hacktool now works again.
+  - bugfix: Fixes a runtime with abnormal mind trait.
+  - bugfix: Wounds now use the proper gender
+  Willbird:
+  - bugfix: control clicking turf no longer runtimes attempting to pull it
+2025-12-15:
+  Diana:
+  - rscadd: Bodyscanner is now upgradable and will show hidden (unscannable) chemicals.
+  - bugfix: Unscannable (hidden) chemicals no longer show up on bodyscanner by default,
+      instead requiring upgrading it.
+  Kashargul:
+  - rscdel: Removed the TGUI kitchensink component view
+  - rscadd: Added a new data explorer for TGUI dev mode
+  - bugfix: TGUI window drag and resize should be smoother on low end systems.
+2025-12-18:
+  Diana:
+  - code_imp: Fixes signal usage in a few places
+  FluffMedic:
+  - bugfix: Mouse army uses defines now
+  Guti:
+  - bugfix: Fixed Dark Maw not respecting prefs
+  Lilly-Lira:
+  - bugfix: Flavored donk pockets retain flavor after microwaving
+2025-12-19:
+  Diana:
+  - bugfix: Null rod's special powers can only be used by chaplain.
+  - bugfix: Typing indicator no longer shows up when under FAKEDEATH
+  - qol: Null rod no longer has a 10% chance when used to harm-intent someone's head
+  Willbird:
+  - bugfix: Fixes shadekin getting set on fire while in phase, and being able to spread
+      fire while phased
+2025-12-20:
+  FluffMedic:
+  - code_imp: Adds early returns to gunboxes if no choice is made
+  Guti:
+  - rscadd: Telesci can now fuck around and find out what happens if you try to teleport
+      things from outside the universe
+  - rscadd: Hallucination anomaly confuses players
+  - bugfix: Wearing magboots keeps you grounded with gravity anomalies
+  - bugfix: Fixed phased kin being zapped by the flux anomaly
+  - code_imp: Improved the anomaly placer datum
+  Kashargul:
+  - bugfix: emote spamming no longer allows for rapidly spammed muffled messages
+  - bugfix: robot camera replacement
+  NickBelmont:
+  - qol: Unstable metamorphosis ray can be repaired into an advanced one with a multitool.
+  Willbird:
+  - rscadd: no sleeving trait prevents characters from having a round start body record
+2025-12-21:
+  Diana:
+  - code_imp: Properly has some signals apply.
+  Kashargul:
+  - rscdel: VBOs with unknown licensing
+  - code_imp: unit test simple mob belly_fullscreens
+2025-12-22:
+  Cameron-The-Raven:
+  - admin: Global narrate and Admin Subtle PM can now use HTML
+  Kashargul:
+  - bugfix: large, chunked payloads hitting rate limits
+2025-12-24:
+  Kashargul:
+  - bugfix: fixes an oversight from landmarks lasting forever
+2025-12-25:
+  Kashargul:
+  - qol: the belly preview is now realtime color rendered
+  - code_imp: move icon_states usage fully to rust g based icon_states_fast
+  - bugfix: preview breaking on fast image swapping
+  - bugfix: bad layer order on some vore overlays
+2025-12-26:
+  Asher-42:
+  - rscadd: edited dullahan sprites
+  Diana:
+  - rscadd: Alien hive node also adds the alien language to the newfound owner.
+  - bugfix: Critical condition now works like it did before.
+  - qol: Archeological finds can now be deconstructed for points instead of having
+      to destroy the artifact before you know what it is.
+  Willburd:
+  - bugfix: runtime during vore unit tests on some downstream maps
+2025-12-27:
+  Diana:
+  - bugfix: Grit can be selected once more.
+  - qol: Health scanners now tell you how much bloodloss an internal bleed is causing.
+  - refactor: Chemicals now have scannable 'tiers', starting at tier 0 (medications)
+      and scaling up to tier 3 (Secret chems). The tiers of health analyzers can scan
+      these.
+  - qol: Upgrading the bodyscanner now properly does something - it allows you to
+      identify secret chemicals in someone's system.
+  - bugfix: A lot of chemicals that were previously marked as 'unscannable' are now
+      properly scannable.
+  - bugfix: Amatoxin will properly nuke you when it finishes processing in your system
+  - bugfix: FAKEDEATH is now more believable.
+  - bugfix: Synap now properly works when eaten
+  - refactor: Bloodloss is refactored to operate a bit better.
+  - image: Giftboxes can now be multiple different colors.
+  - bugfix: Borgs can grab giftboxes in their cold, robotic hands.
+  Guti:
+  - rscadd: Added diamond dimensional anomaly theme
+  - bugfix: Fixed snow theme dimensional anomaly not changing wall/doors
+  - bugfix: Fixed anomaly placer picking non-station areas
+  - bugfix: Fixed reactive armour being able to be printed in any departmental lathe
+  Will:
+  - bugfix: Drone ventcrawling no longer using slime's vent crawling restriction list
+  tacoguy7765093:
+  - rscadd: Ckeyless simplemobs will drop bones on digestion if the preds belly's
+      'leave remains' are set to true.
+2025-12-29:
+  Diana:
+  - bugfix: Users with no DNA can no longer upload their non-existent DNA to a DNA
+      locking chip
+  - bugfix: Artifact casings no longer drop.
+  - qol: You can manually resleeve with the autosleever if you're given the prompt
+      and accidentally close it.
+  - rscadd: Added xenoborgs from Bubbers
+  - image: Xenoborgs added from Bubbers
+  - code_imp: Made it a bit easier to read xenoarch spawn code
+  - bugfix: Makes illegal excavations no longer crash the server
+  - qol: Telecube spawns now spawn with a second one, allowing for immediate mating.
+  - bugfix: Radiation component will no longer passively heal + give nutrition when
+      not irradiated
+  - bugfix: Hybrid cutters use the correct sprite, now.
+  - bugfix: Robotic multitool will no longer go invisible when used to link references
+  - bugfix: Holodeck properly clears up its landmarks
+  Guti:
+  - qol: Non-Contagious viruses can be picked up with a sample of blood
+  - qol: Added extra info description to the extrapolator
+  Kashargul:
+  - code_imp: rust-g 5.0.1
+  - bugfix: xenoarch runtime properly
+  - bugfix: whitelist help command
+2025-12-30:
+  Diana:
+  - refactor: All of attack_self now uses signals!
+  - bugfix: Fixes jackets not showing proper unbutton sprite
+  Kashargul:
+  - bugfix: ghosts and shadekin messing with production directions
+  zeskorion:
+  - bugfix: non-greyscale monitor icons now show the correct color, regardless of
+      your eye color
+  - bugfix: hephaestus alt monitor icons should work now
+2025-12-31:
+  Diana:
+  - bugfix: Medical implant will no longer become infected
+  - qol: Having a spleen will no longer cause you to suffer infinite organ damage
+      while damaged by toxins. Instead, it'll convert that toxin damage into organ
+      damage.
+  - bugfix: Having your spleen rupture will now cause real internal bleeding instead
+      of fake internal bleeding
+  KillianKirilenko:
+  - rscadd: Added two sets of black and recolourable long fingerless glove variants;
+      mid-forearm and elbow-length
+  - image: Fixed some stray pixels on two of the standard fingerless glove variants
+  - qol: (mapping) broken floors can now be done via a landmark rather than a subtype
+      of that specific floor
+  Nova:
+  - rscadd: '"Colour changing eyes" trait'
+  - qol: Add spice crate option to be requested from cargo.
+  Wide Eyes, Kashargul:
+  - rscadd: '"Absorbed prey can devour" addon, which gives absorbed prey a verb in
+      the abilities tab to devour adjacent creatures into that belly!
+
+      fix:complete absorb and muffling belly addons now affect simplemobs'

@@ -206,3 +206,7 @@
 
 /decl/mob_organ_names/poppy
 	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "pouch", "cute little jacket")
+
+/mob/living/simple_mob/animal/passive/opossum/beastmode/Initialize(mapload)
+	. = ..()
+	remove_verb(src,/mob/living/proc/ventcrawl) //No ventcrawl for hanner

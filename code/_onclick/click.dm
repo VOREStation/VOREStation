@@ -84,7 +84,7 @@
 		CtrlClickOn(A)
 		return
 
-	//Replaces thee old 'stat||paralysis||stunned' check
+	//Replaces the old 'stat||paralysis||stunned' check
 	//Not fully implemented yet.
 	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS))
 		return
@@ -118,10 +118,16 @@
 	var/obj/item/W = get_active_hand()
 
 	if(!currently_restrained && W == A) // Handle attack_self
-		W.attack_self(src)
-		trigger_aiming(TARGET_CAN_CLICK)
-		update_inv_active_hand(0)
-		return 1
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+			W.attack_self_secondary(src, modifiers)
+			trigger_aiming(TARGET_CAN_CLICK)
+			update_inv_active_hand(0)
+			return TRUE
+		else
+			W.attack_self(src, modifiers)
+			trigger_aiming(TARGET_CAN_CLICK)
+			update_inv_active_hand(0)
+			return TRUE
 
 	//Atoms on your person
 	// A is your location but is not a turf; or is on you (backpack); or is on something on you (box in backpack); sdepth is needed here because contents depth does not equate inventory storage depth.

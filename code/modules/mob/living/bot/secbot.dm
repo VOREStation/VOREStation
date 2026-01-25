@@ -214,19 +214,19 @@
 	playsound(src, pick(preparing_arrest_sounds), 50)
 	// Register to be told when the target moves
 	target.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, /mob/living/bot/secbot/proc/target_moved)
+	RegisterSignal(target, COMSIG_MOVABLE_ATTEMPTED_MOVE, /mob/living/bot/secbot/proc/target_moved)
 
 // Callback invoked if the registered target moves
 /mob/living/bot/secbot/proc/target_moved(atom/movable/moving_instance, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
 	if(get_dist(get_turf(src), get_turf(target)) >= 1)
 		awaiting_surrender = INFINITY	// Done waiting!
-		UnregisterSignal(moving_instance, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(moving_instance, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 /mob/living/bot/secbot/resetTarget()
 	..()
 	if(target)
-		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(target, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	awaiting_surrender = 0
 	attacked = FALSE
 	walk_to(src, 0)

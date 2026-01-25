@@ -118,17 +118,20 @@
 			update_icon()
 			to_chat(user, span_notice("You insert [I] into [src]."))
 
-/obj/item/clothing/mask/smokable/ecig/attack_self(mob/user as mob)
-	if (active)
-		active=0
+/obj/item/clothing/mask/smokable/ecig/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(active)
+		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		to_chat(user, span_notice("You turn off \the [src]. "))
 		update_icon()
 	else
-		if (!ec_cartridge)
+		if(!ec_cartridge)
 			to_chat(user, span_notice("You can't use it with no cartridge installed!."))
 			return
-		active=1
+		active = TRUE
 		START_PROCESSING(SSobj, src)
 		to_chat(user, span_notice("You turn on \the [src]. "))
 		update_icon()

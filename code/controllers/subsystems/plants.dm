@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(plants)
 // Looks like shit but it's sort of necessary.
 /datum/controller/subsystem/plants/proc/setup()
 	// Build the icon lists.
-	for(var/icostate in cached_icon_states('icons/obj/hydroponics_growing.dmi'))
+	for(var/icostate in icon_states_fast('icons/obj/hydroponics_growing.dmi'))
 		var/split = findtext(icostate,"-")
 		if(!split)
 			// invalid icon_state
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(plants)
 			if(!(base in GLOB.forbidden_plant_growth_sprites))
 				accessible_plant_sprites[base] = ikey
 
-	for(var/icostate in cached_icon_states('icons/obj/hydroponics_products.dmi'))
+	for(var/icostate in icon_states_fast('icons/obj/hydroponics_products.dmi'))
 		var/split = findtext(icostate,"-")
 		var/base = copytext(icostate,1,split)
 		if(split)

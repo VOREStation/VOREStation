@@ -120,7 +120,8 @@
 #include "timer_sanity.dm"
 #include "trait_tests.dm"
 #include "unit_test.dm"
-// #include "vore_tests.dm" // FIXME: REWRITE OR FIX THIS
+#include "vbo_tests.dm"
+#include "vore_tests.dm"
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"

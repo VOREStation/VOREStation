@@ -34,6 +34,19 @@
 	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Artisanal food crate"
 
+/datum/supply_pack/supply/condiments
+	name = "Cooking seasonings crate"
+	desc = "Essential seasonings and spices for cooking."
+	contains = list(
+			/obj/item/reagent_containers/food/condiment/small/saltshaker = 6,
+			/obj/item/reagent_containers/food/condiment/small/peppermill = 6,
+			/obj/item/reagent_containers/food/condiment/spacespice = 3,
+			/obj/item/reagent_containers/food/condiment/sugar = 3,
+			)
+	cost = 30
+	containertype = /obj/structure/closet/crate/freezer/centauri
+	containername = "Cooking seasonings crate"
+
 
 /datum/supply_pack/supply/toner
 	name = "Toner cartridges"

@@ -149,16 +149,19 @@
 		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
 
 /obj/machinery/mecha_part_fabricator_tg/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
-	if(!Adjacent(usr))
+	var/mob/user = usr
+	if(!Adjacent(user))
+		return
+	if(isobserver(user) || user.is_incorporeal())
 		return
 	if(being_built)
-		balloon_alert(usr, "printing started!")
+		balloon_alert(user, "printing started!")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(usr, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "dropping [dir2text(drop_direction)]")
 
 /**
  * Updates the `final_sets` and `buildable_parts` for the current mecha fabricator.

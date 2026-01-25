@@ -39,6 +39,8 @@
 	return FALSE
 
 /datum/unarmed_attack/proc/get_unarmed_damage(var/mob/living/carbon/human/user)
+	if(HAS_TRAIT(user, TRAIT_NONLETHAL_BLOWS))//don't add extra species strength when pulling punches
+		return damage
 	return damage + user.species.unarmed_bonus
 
 /datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
@@ -208,6 +210,8 @@
 	var/obj/item/clothing/shoes = user.shoes
 	if(!istype(shoes))
 		return user.species.unarmed_bonus + damage
+	if(HAS_TRAIT(user, TRAIT_NONLETHAL_BLOWS))//don't add extra species strength when pulling punches
+		return damage + (shoes ? shoes.force : 0)
 	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
 /datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
@@ -253,6 +257,8 @@
 
 /datum/unarmed_attack/stomp/get_unarmed_damage(var/mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
+	if(HAS_TRAIT(user, TRAIT_NONLETHAL_BLOWS))//don't add extra species strength when pulling punches
+		return damage + (shoes ? shoes.force : 0)
 	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
 /datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
@@ -270,6 +276,6 @@
 	attack_name = "light hit"
 	attack_noun = list("tap","light strike")
 	attack_verb = list("tapped", "lightly struck")
-	damage = 3
+	damage = 0
 	damage_type = HALLOSS
 	is_punch = TRUE

@@ -34,6 +34,7 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 	projectile_type = /obj/item/projectile/bullet/cap //Just a placeholder. Doesn't actually matter what this is. All that matters is what the projecttile_type of our BB is.
+	caseless = TRUE
 
 /obj/item/ammo_casing/artifact/Initialize(mapload) //These should ONLY ever be in artifact weapons. If you spawn outside of artifact weapons, it'll have a riot foam dart inside of it as the bullet.
 	. = ..()

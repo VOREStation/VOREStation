@@ -82,7 +82,7 @@
 	B.release_sound = "Pred Escape"
 	B.fancy_vore = TRUE
 	B.belly_fullscreen_color = "#c47cb4"
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 
 	B.emote_lists[DM_HOLD] = list(
 		"As time passes, the massive rat's stomach slowly churns and squeezes down around you, packing you into an easier to carry bundle amidst that oddly soothing massage.",

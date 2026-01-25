@@ -22,6 +22,9 @@
 
 	var/list/accepted_mobs = list(/mob/living/simple_mob/animal/passive/fish)
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/material/fishing_net/Initialize(mapload)
 	. = ..()
 	update_icon()
@@ -58,7 +61,12 @@
 		return
 	return ..()
 
-/obj/item/material/fishing_net/attack_self(var/mob/user)
+/obj/item/material/fishing_net/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	for(var/mob/M in src)
 		M.forceMove(get_turf(src))
 		user.visible_message(span_notice("[user] releases [M] from \the [src]."), span_notice("You release [M] from \the [src]."))
@@ -129,6 +137,8 @@
 
 	accepted_mobs = list(/mob/living/simple_mob/animal/sif/glitterfly, /mob/living/carbon/human)
 
+	special_handling = TRUE
+
 /obj/item/material/fishing_net/butterfly_net/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(get_dist(get_turf(src), A) > reach)
 		return
@@ -168,7 +178,10 @@
 		return
 	return ..()
 
-/obj/item/material/fishing_net/butterfly_net/attack_self(var/mob/user)
+/obj/item/material/fishing_net/butterfly_net/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	for(var/mob/living/M in src)
 		if(!user.get_inactive_hand()) //Check if the inactive hand is empty
 			M.forceMove(get_turf(src))

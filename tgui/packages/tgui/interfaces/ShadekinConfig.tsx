@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   ColorBox,
   LabeledList,
@@ -9,9 +8,9 @@ import {
   NumberInput,
   Section,
   Stack,
-  Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { VorePanelTooltip } from './VorePanel/VorePanelElements/VorePanelTooltip';
 
 type Data = {
   stun_time: number;
@@ -23,6 +22,7 @@ type Data = {
   extended_kin: BooleanLike;
   savefile_selected: BooleanLike;
   nutrition_energy_conversion: number;
+  hide_voice_in_phase: BooleanLike;
 };
 
 export const ShadekinConfig = (props) => {
@@ -38,13 +38,14 @@ export const ShadekinConfig = (props) => {
     savefile_selected,
     extended_kin,
     nutrition_energy_conversion,
+    hide_voice_in_phase,
   } = data;
 
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
   const windowHeight =
-    (isSubtle ? 220 : 190) +
+    (isSubtle ? 285 : 255) +
     (extended_kin ? 95 : 0) +
     (savefile_selected ? 0 : 90);
 
@@ -82,9 +83,10 @@ export const ShadekinConfig = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item>
-                      <Tooltip content="Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)">
-                        <Box className="VorePanel__floatingButton">?</Box>
-                      </Tooltip>
+                      <VorePanelTooltip
+                        tooltip="Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)"
+                        displayText="?"
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
@@ -118,9 +120,10 @@ export const ShadekinConfig = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item>
-                      <Tooltip content="Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)">
-                        <Box className="VorePanel__floatingButton">?</Box>
-                      </Tooltip>
+                      <VorePanelTooltip
+                        tooltip="Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)"
+                        displayText="?"
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
@@ -139,13 +142,25 @@ export const ShadekinConfig = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item>
-                      <Tooltip content="Adjust the range in which lights flicker when you phase in! (Default 4. Min 4. Max 10)">
-                        <Box className="VorePanel__floatingButton">?</Box>
-                      </Tooltip>
+                      <VorePanelTooltip
+                        tooltip="Adjust the range in which lights flicker when you phase in! (Default 4. Min 4. Max 10)"
+                        displayText="?"
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
               </LabeledList>
+            </Section>
+          </Stack.Item>
+          <Stack.Item>
+            <Section fill title="Phase Settings">
+              <LabeledList.Item label="Hide Voice in Phase">
+                <Button.Checkbox
+                  tooltip="Toggle if your voice should be hidden (showing as 'Something') when phased!"
+                  checked={hide_voice_in_phase}
+                  onClick={() => act('toggle_voice')}
+                />
+              </LabeledList.Item>
             </Section>
           </Stack.Item>
           {!!extended_kin && (

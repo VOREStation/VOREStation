@@ -14,7 +14,7 @@
 	desc = "This armor has no inherent ability to absorb shock, as normal armor usually does.  Instead, this emits a strong field \
 	around the wearer, designed to protect from most forms of harm, from lasers to bullets to close quarters combat.  It appears to \
 	require a very potent supply of an energy of some kind in order to function."
-	icon_state = "shield_armor_0"
+	icon_state = "reactive"
 	blood_overlay_type = "armor"
 	slowdown = 0
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -74,6 +74,9 @@
 	return 0 // This shield does not block all damage, so returning 0 is needed to tell the game to apply the new damage.
 
 /obj/item/clothing/suit/armor/shield/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	active = !active
 	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update_icon()

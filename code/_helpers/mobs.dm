@@ -139,7 +139,7 @@
 		else				return "unknown"
 
 /proc/RoundHealth(health)
-	var/list/icon_states = cached_icon_states(GLOB.ingame_hud_med)
+	var/list/icon_states = icon_states_fast(GLOB.ingame_hud_med)
 	for(var/icon_state in icon_states)
 		if(health >= text2num(icon_state))
 			return icon_state
