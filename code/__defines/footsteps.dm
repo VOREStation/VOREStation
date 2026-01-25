@@ -283,13 +283,17 @@ GLOBAL_LIST_INIT(heavyaltfootstep, list(
 //heavy alt footsteps list
 GLOBAL_LIST_INIT(mechfootstep, list(
 	FOOTSTEP_WOOD_BAREFOOT = list(list(
-		'sound/mecha/mechstep.ogg'), 90, 1),
+		'sound/mecha/mechstep1.ogg',
+		'sound/mecha/mechstep2.ogg'), 90, 1),
 	FOOTSTEP_HARD_BAREFOOT = list(list(
-		'sound/mecha/mechstep.ogg'), 90, 1),
+		'sound/mecha/mechstep1.ogg',
+		'sound/mecha/mechstep2.ogg'), 90, 1),
 	FOOTSTEP_CARPET_BAREFOOT = list(list(
-		'sound/mecha/mechstep.ogg'), 75, -2),
+		'sound/mecha/mechstep1.ogg',
+		'sound/mecha/mechstep2.ogg'), 75, -2),
 	FOOTSTEP_GRASS = list(list(
-		'sound/mecha/mechstep.ogg'), 75, 0),
+		'sound/mecha/mechstep1.ogg',
+		'sound/mecha/mechstep2.ogg'), 75, 0),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
