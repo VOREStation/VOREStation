@@ -256,3 +256,25 @@
   - code_imp: Added IMMUTABLE flag for viruses, to not allow them to change
   SatinIsle:
   - qol: Made unlucky trigger toe stubbing one tenth as often.
+2026-01-26:
+  Diana:
+  - code_imp: Adds more framework for radiation component to do more fancy things.
+  - bugfix: Shadekin no longer have an unusable radiation-glow subpanel.
+  - rscadd: Shadekin now gain nutrition (which can be converted to energy) via radiation
+  - rscadd: BESK no longer die from radiation, but rather gain halloss via radiation.
+  - qol: Nutrition gain from radiation gains can be toggled on/off
+  Kashargul:
+  - rscdel: no longer existing config entry
+  - bugfix: another bad object spawn in xenoarch
+  - qol: allows to lower limit liquid gen %
+  - bugfix: empty lists for auto transfer
+  - bugfix: ghost leaving VR not getting ghostized before qdel
+  - bugfix: flip no longer restores any flags badly
+  - code_imp: converts a bunch of variables to GLOB
+  - bugfix: a few runtimes
+  SatinIsle:
+  - rscadd: 'Added a new Skin Reagent trait, that allows you to pick one of six reagents
+      that coat your skin and are applied to people when they lick you. These include:
+      Ethanol, Capsaicin, Sleep Toxin, Rainbow Toxin, Paralysis Toxin and Pain Enzyme.'
+  - code_imp: Also added a new option to traits to allow you to use a single list
+      for them to select preferences, using a list variable called "multiple_choice".
