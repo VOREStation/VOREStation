@@ -421,10 +421,14 @@
 									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Lizard" = /mob/living/simple_mob/animal/passive/lizard,
+									"Mouse" = /mob/living/simple_mob/animal/passive/mouse/beastmode,
 									"Otie" = /mob/living/simple_mob/vore/otie,
 									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Possum" = /mob/living/simple_mob/animal/passive/opossum/beastmode,
 									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Raccoon" = /mob/living/simple_mob/animal/passive/raccoon,
 									"Raptor" = /mob/living/simple_mob/vore/raptor,
 									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
 									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
@@ -433,7 +437,8 @@
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Slug" = /mob/living/simple_mob/vore/slug,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Wolf" = /mob/living/simple_mob/vore/wolf
+									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Unicorn" = /mob/living/simple_mob/vore/horse/unicorn/beastmode
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -473,50 +478,10 @@
 
 		if(new_mob && isliving(new_mob))
 			species.lleill_energy -= energy_cost
-			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				new_mob.vore_organs -= B
-				qdel(B)
-			new_mob.vore_organs = list()
-			new_mob.name = M.name
-			new_mob.real_name = M.real_name
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
 			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
-			for(var/lang in M.languages)
-				new_mob.languages |= lang
-			M.copy_vore_prefs_to_mob(new_mob)
-			new_mob.vore_selected = M.vore_selected
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.gender = H.gender
-					N.identifying_gender = H.identifying_gender
-				else
-					new_mob.gender = H.gender
-			else
-				new_mob.gender = M.gender
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.identifying_gender = M.gender
-
-			for(var/obj/belly/B as anything in M.vore_organs)
-				B.loc = new_mob
-				B.forceMove(new_mob)
-				B.owner = new_mob
-				M.vore_organs -= B
-				new_mob.vore_organs += B
-
-			new_mob.ckey = M.ckey
-			if(M.ai_holder && new_mob.ai_holder)
-				var/datum/ai_holder/old_AI = M.ai_holder
-				old_AI.set_stance(STANCE_SLEEP)
-				var/datum/ai_holder/new_AI = new_mob.ai_holder
-				new_AI.hostile = old_AI.hostile
-				new_AI.retaliate = old_AI.retaliate
-			M.loc = new_mob
-			M.forceMove(new_mob)
-			new_mob.tf_mob_holder = M
+			transfer_mob_identity(new_mob)
 			new_mob.visible_message(span_infoplain(span_bold("\The [src]") + " has transformed into \the [chosen_beast]!"))
 	species.update_lleill_hud(src)
 
@@ -558,12 +523,7 @@
 	ourmob.forceMove(beast_loc)
 	ourmob.vore_selected = vore_selected
 	vore_selected = null
-	for(var/obj/belly/B as anything in vore_organs)
-		B.loc = ourmob
-		B.forceMove(ourmob)
-		B.owner = ourmob
-		vore_organs -= B
-		ourmob.vore_organs += B
+	ourmob.mob_belly_transfer(src)
 
 	ourmob.Life(1)
 
@@ -620,10 +580,14 @@
 									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Lizard" = /mob/living/simple_mob/animal/passive/lizard,
+									"Mouse" = /mob/living/simple_mob/animal/passive/mouse/beastmode,
 									"Otie" = /mob/living/simple_mob/vore/otie,
-									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
 									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Possum" = /mob/living/simple_mob/animal/passive/opossum/beastmode,
 									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Raccoon" = /mob/living/simple_mob/animal/passive/raccoon,
 									"Raptor" = /mob/living/simple_mob/vore/raptor,
 									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
 									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
@@ -632,7 +596,8 @@
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Slug" = /mob/living/simple_mob/vore/slug,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Wolf" = /mob/living/simple_mob/vore/wolf
+									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Unicorn" = /mob/living/simple_mob/vore/horse/unicorn/beastmode
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -672,51 +637,8 @@
 
 		if(new_mob && isliving(new_mob))
 			species.lleill_energy -= energy_cost
-			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				new_mob.vore_organs -= B
-				qdel(B)
-			new_mob.vore_organs = list()
-			new_mob.name = M.name
-			new_mob.real_name = M.real_name
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
 			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
-			new_mob.hasthermals = 0
-			new_mob.health = M.health
-			new_mob.maxHealth = M.health
-			for(var/lang in M.languages)
-				new_mob.languages |= lang
-			M.copy_vore_prefs_to_mob(new_mob)
-			new_mob.vore_selected = M.vore_selected
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.gender = H.gender
-					N.identifying_gender = H.identifying_gender
-				else
-					new_mob.gender = H.gender
-			else
-				new_mob.gender = M.gender
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.identifying_gender = M.gender
-
-			for(var/obj/belly/B as anything in M.vore_organs)
-				B.loc = new_mob
-				B.forceMove(new_mob)
-				B.owner = new_mob
-				M.vore_organs -= B
-				new_mob.vore_organs += B
-
-			new_mob.ckey = M.ckey
-			if(M.ai_holder && new_mob.ai_holder)
-				var/datum/ai_holder/old_AI = M.ai_holder
-				old_AI.set_stance(STANCE_SLEEP)
-				var/datum/ai_holder/new_AI = new_mob.ai_holder
-				new_AI.hostile = old_AI.hostile
-				new_AI.retaliate = old_AI.retaliate
-			M.loc = new_mob
-			M.forceMove(new_mob)
-			new_mob.tf_mob_holder = M
+			transfer_mob_identity(new_mob)
 			new_mob.visible_message(span_infoplain(span_bold("\The [src]") + " has transformed into \the [chosen_beast]!"))

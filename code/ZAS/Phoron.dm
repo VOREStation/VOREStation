@@ -1,4 +1,4 @@
-var/image/contamination_overlay = image('icons/effects/contamination.dmi')
+GLOBAL_DATUM_INIT(contamination_overlay, /image, 'icons/effects/contamination.dmi')
 
 /pl_control
 	var/PHORON_DMG = 3
@@ -63,7 +63,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	else
 		if(!contaminated)
 			contaminated = 1
-			add_overlay(contamination_overlay)
+			add_overlay(GLOB.contamination_overlay)
 
 /mob/proc/contaminate()
 

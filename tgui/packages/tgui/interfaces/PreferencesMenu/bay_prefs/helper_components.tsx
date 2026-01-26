@@ -55,7 +55,9 @@ export const CanvasBackedImage = (props: {
     };
   }, [props.render]);
 
-  return bitmap ? <img src={bitmap} width={64} height={64} /> : null;
+  return bitmap ? (
+    <img src={bitmap} width={64} height={64} draggable={false} />
+  ) : null;
 };
 
 export const drawColorizedIconToOffscreenCanvas = async (

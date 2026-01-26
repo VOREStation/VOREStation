@@ -146,7 +146,7 @@ export const VorePanelEditTextArea = (
     /** Our secondary backend action if we used a list as input on text area blur */
     listAction: string;
     /** Our displayed tooltip displayed above all texts */
-    tooltip: string;
+    tooltip: ReactNode;
     /** Do we force the input to always send the maxEntries as list length to byond */
     exactLength: boolean;
     /** The amount of possible list entries. By default 10 */

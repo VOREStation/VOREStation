@@ -261,3 +261,11 @@ var/list/flesh_overlay_cache = list()
 
 /turf/simulated/wall/stonelogs/Initialize(mapload)
 			. = ..(mapload, MAT_CONCRETE,MAT_LOG)
+
+/turf/simulated/wall/glass
+	icon = 'icons/obj/structures_vr.dmi'
+	icon_state = "window-full"
+	opacity = 0
+
+/turf/simulated/wall/glass/Initialize(mapload)
+	. = ..(mapload, MAT_GLASS)

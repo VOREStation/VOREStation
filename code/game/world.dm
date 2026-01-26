@@ -128,8 +128,8 @@ GLOBAL_VAR(restart_counter)
 /world/New()
 	log_world("World loaded at [time_stamp()]!")
 
-	world_startup_time = world.timeofday
-	rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
+	GLOB.world_startup_time = world.timeofday
+	GLOB.rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
 
 	InitTgs()
 
@@ -303,8 +303,8 @@ GLOBAL_VAR(restart_counter)
 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
 
-var/world_topic_spam_protect_ip = "0.0.0.0"
-var/world_topic_spam_protect_time = world.timeofday
+GLOBAL_VAR_INIT(world_topic_spam_protect_ip, "0.0.0.0")
+GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
@@ -462,14 +462,14 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/input[] = params2list(T)
 		var/password = CONFIG_GET(string/comms_password)
 		if(!password || input["key"] != password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
+			if(GLOB.world_topic_spam_protect_ip == addr && abs(GLOB.world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
-					world_topic_spam_protect_time = world.time
+					GLOB.world_topic_spam_protect_time = world.time
 					return
 
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
+			GLOB.world_topic_spam_protect_time = world.time
+			GLOB.world_topic_spam_protect_ip = addr
 
 			return "Bad Key"
 
@@ -691,8 +691,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		src.status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
-var/failed_db_connections = 0
-var/failed_old_db_connections = 0
+GLOBAL_VAR_INIT(failed_db_connections, 0)
 
 /hook/startup/proc/connectDB()
 	if(!CONFIG_GET(flag/sql_enabled))
@@ -706,7 +705,7 @@ var/failed_old_db_connections = 0
 /proc/setup_database_connection()
 	if(!CONFIG_GET(flag/sql_enabled))
 		return 0
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+	if(GLOB.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
 	if(!SSdbcore)
@@ -721,16 +720,15 @@ var/failed_old_db_connections = 0
 	SSdbcore.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = SSdbcore.IsConnected()
 	if ( . )
-		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_db_connections++		//If it failed, increase the failed connections counter.
-		log_sql(SSdbcore.ErrorMsg())
-
-	return .
+		GLOB.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+		return
+	GLOB.failed_db_connections++		//If it failed, increase the failed connections counter.
+	log_sql(SSdbcore.ErrorMsg())
+	return
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 /proc/establish_db_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+	if(GLOB.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
 	if(!SSdbcore || !SSdbcore.IsConnected())
@@ -741,7 +739,7 @@ var/failed_old_db_connections = 0
 // Cleans up DB connections and recreates them
 /proc/reset_database_connections()
 	var/list/results = list("-- Resetting DB connections --")
-	failed_db_connections = 0
+	GLOB.failed_db_connections = 0
 
 	if(SSdbcore?.IsConnected())
 		SSdbcore.Disconnect()

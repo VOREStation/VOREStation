@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, type Floating } from 'tgui-core/components';
 
@@ -16,7 +16,7 @@ export const VorePanelEditSwitch = (
     /** Displayed text content */
     content: string;
     /** Our displayed tooltip on button hover */
-    tooltip: string;
+    tooltip: ReactNode;
     /** The position of the tooltip if static */
     tooltipPosition: ComponentProps<typeof Floating>['placement'];
     /** Color of the button and displayed text */

@@ -1,6 +1,10 @@
-import { LabeledList, Section, Stack } from 'tgui-core/components';
+import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { noSelectionName } from '../constants';
+import {
+  intentMappings,
+  interactionModes,
+  noSelectionName,
+} from '../constants';
 import type { BellyInteractionData, DropdownEntry } from '../types';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
@@ -27,15 +31,41 @@ export const VoreSelectedBellyInteractions = (props: {
         <Section
           title="Belly Interactions"
           buttons={
-            <VorePanelEditSwitch
+            <VorePanelEditDropdown
+              icon={escapable ? 'toggle-on' : 'toggle-off'}
+              editMode={editMode}
               action="set_attribute"
               subAction="b_escapable"
-              editMode={editMode}
-              active={!!escapable}
+              entry={interactionModes[escapable].displayText ?? 'Disabled'}
+              options={interactionModes}
+              color={escapable ? 'green' : editMode ? undefined : 'red'}
               tooltip={
-                "These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, and you can change them to whatever you see fit. " +
-                "Setting them to 0% will disable the possibility of that interaction. These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) " +
-                "will affect all prey in that belly, if one resists and triggers digestion/absorption. If multiple trigger at the same time, only the first in the order of 'Escape > Transfer > Absorb > Digest' will occur."
+                <Stack vertical>
+                  <Stack.Item>
+                    These control how your belly responds to someone using
+                    'resist' while inside you. You can switch between the
+                    default behavior or giving prey intent-based options. The
+                    percent chance to trigger each is listed below, and you can
+                    change them to whatever you see fit. Setting them to 0% will
+                    disable the possibility of that interaction. These only
+                    function as long as interactions are turned on in general.
+                    Keep in mind, the 'belly mode' interactions (digest/absorb)
+                    will affect all prey in that belly: if multiple could
+                    trigger at the same time, only the first in the order of
+                    'Escape &gt; Transfer &gt; Absorb &gt; Digest' will occur.
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Box bold>Intent mappings:</Box>
+                    {intentMappings.map(({ label, color, description }) => (
+                      <Box key={label}>
+                        <Box inline color={color}>
+                          {label}
+                        </Box>
+                        : {description}
+                      </Box>
+                    ))}
+                  </Stack.Item>
+                </Stack>
               }
             />
           }

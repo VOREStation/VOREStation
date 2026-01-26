@@ -666,6 +666,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		to_chat(usr, span_mentor_warning("Error: client not found, unable to escalate."))
 		return
 
+	SStgui.close_uis(src)
 	level = level + 1
 
 	AddInteraction("[key_name_admin(usr)] escalated Ticket.")

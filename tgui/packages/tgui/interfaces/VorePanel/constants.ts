@@ -1,3 +1,5 @@
+import type { PreferenceDropdown } from './types';
+
 export const stats = [undefined, 'average', 'bad'] as const;
 
 export const vorespawnAbsorbedText = ['No', 'Yes', 'Prey Choice'];
@@ -38,6 +40,35 @@ export const reagentToColor = {
   Tricordrazine: 'green',
   Ethanol: undefined,
 } as const;
+
+export const selectiveModeModel: PreferenceDropdown = {
+  action: 'switch_selective_mode_pref',
+  prefix: 'Selective Mode Preference',
+  tooltip:
+    'Allows to set the personal belly mode preference for selective bellies.',
+  data: {
+    Default: { displayText: 'Default' },
+    Digest: { displayText: 'Digest', color: 'red', enabled: true },
+    Absorb: { displayText: 'Absorb', color: 'purple', enabled: true },
+    Drain: { displayText: 'Drain', color: 'orange', enabled: true },
+  },
+};
+
+export const stripModeModel: PreferenceDropdown = {
+  action: 'switch_strip_mode_pref',
+  prefix: 'Size Stripping',
+  tooltip:
+    'Allows you to set if you should get stripped while being resized and how much should get stripped.',
+  data: {
+    '0': { displayText: 'Drop Nothing' },
+    '1': { displayText: 'Drop Equipment', color: 'green', enabled: true },
+    '2': {
+      displayText: 'Drop Equipment and Underwear',
+      color: 'green',
+      enabled: true,
+    },
+  },
+};
 
 export const digestModeToPreyMode = {
   Hold: 'being held.',
@@ -85,7 +116,9 @@ export const modeToTooltip = {
   'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
-  'Absorbed Devour': 'Allows absorbed prey to devour other prey.',
+  'Absorbed Prey Can Devour': 'Allows absorbed prey to devour other prey.',
+  'Makes Prey Wet':
+    'Prey will be constantly made wet. This means they will drip if you let them out.',
 } as const;
 
 export const spriteToTooltip = {
@@ -154,3 +187,52 @@ export const preyAbilityToData = {
     color: 'red',
   },
 } as const;
+
+export const intentMappings = [
+  {
+    key: 'help',
+    label: 'Help',
+    color: 'green',
+    description: 'Belch chance',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in help intent might cause belch interactions.'
+        : 'Help intent struggle belch chance disabled.',
+  },
+  {
+    key: 'disarm',
+    label: 'Disarm',
+    color: 'blue',
+    description: 'Transfer chance',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in disarm intent might cause auto transfer interactions.'
+        : 'Disarm intent struggle auto transfer chance disabled.',
+  },
+  {
+    key: 'grab',
+    label: 'Grab',
+    color: 'yellow',
+    description: 'Belly mode change chances (Absorb/Digest/Select)',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in grab intent might cause digest mode change interactions.'
+        : 'Grab intent struggle digest mode change disabled.',
+  },
+  {
+    key: 'harm',
+    label: 'Harm',
+    color: 'red',
+    description: 'Escape chance',
+    tooltip: (active: boolean) =>
+      active
+        ? 'Struggling in harm intent might cause escape interactions.'
+        : 'Harm intent struggle escape chance disabled.',
+  },
+];
+
+export const interactionModes = [
+  { value: '0', displayText: 'Disabled' },
+  { value: '1', displayText: 'Enabled (Default)' },
+  { value: '2', displayText: 'Enabled (Intent)' },
+];

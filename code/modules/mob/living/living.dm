@@ -79,12 +79,7 @@
 			tf_mob_holder.forceMove(get_dat_turf)
 		QDEL_LIST_NULL(tf_mob_holder.vore_organs)
 		tf_mob_holder.vore_organs = list()
-		for(var/obj/belly/B as anything in vore_organs)
-			B.loc = tf_mob_holder
-			B.forceMove(tf_mob_holder)
-			B.owner = tf_mob_holder
-			tf_mob_holder.vore_organs |= B
-			vore_organs -= B
+		tf_mob_holder.mob_belly_transfer(src)
 	if(tf_mob_holder)
 		tf_mob_holder = null
 	QDEL_NULL_LIST(hud_list)
@@ -1418,6 +1413,9 @@
 
 /mob/living/proc/adjust_nutrition(amount)
 	nutrition = between(0, nutrition + amount, max_nutrition)
+
+/mob/living/proc/nutrition_percent()
+	return 100 * nutrition / max_nutrition
 
 /mob/living/vv_get_header()
 	. = ..()
