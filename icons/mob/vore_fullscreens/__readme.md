@@ -13,7 +13,7 @@ This is a short guide and ruleset for contributing new overlays.
 ## Rules
 
 To contribute new overlays, you need to be either the artist or the owner of the images, with written permission from the artist in the latter case.
-The artist must explicitly allow the usage of those assets under a **CC-BY-SA 3.0** or **CC-BY-NC-SA 3.0** license.
+The artist must explicitly allow the usage of those assets under a **CC BY-SA 3.0** or **CC BY-NC-SA 3.0** license.
 
 > **No derivatives (ND) licenses are not accepted.**
 
@@ -28,7 +28,7 @@ For assets to be included, the following will be required:
 | Overlay images   | PNG format                                                                       |
 | Resolution       | 480x480 and 120x120                                                              |
 | Layers           | The image can consist of up to 4 layers; each layer needs to be its own PNG file |
-| License          | Must be **CC-BY-SA 3.0** or **CC-BY-NC-SA 3.0**                                  |
+| License          | Must be **CC BY-SA 3.0** or **CC BY-NC-SA 3.0**                                  |
 | Artist credit    | Required                                                                         |
 | Permission proof | Required if not the artist                                                       |
 
