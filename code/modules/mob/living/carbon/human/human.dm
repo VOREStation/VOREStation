@@ -32,6 +32,7 @@
 
 	var/rest_dir = 0					//To lay down in a specific direction
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
+	var/last_chew = 0
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)

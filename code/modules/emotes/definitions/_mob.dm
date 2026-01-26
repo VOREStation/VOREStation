@@ -1,4 +1,4 @@
-var/list/_default_mob_emotes = list(
+GLOBAL_LIST_INIT(default_mob_emotes, list(
 	/decl/emote/visible,
 	/decl/emote/visible/scratch,
 	/decl/emote/visible/drool,
@@ -23,4 +23,4 @@ var/list/_default_mob_emotes = list(
 	/decl/emote/audible/choke,
 	/decl/emote/audible/moan,
 	/decl/emote/audible/gnarl,
-)
+))

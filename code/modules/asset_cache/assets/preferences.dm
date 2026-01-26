@@ -67,3 +67,7 @@
 			preference_data[preference_entry.savefile_key] = data
 
 	return preference_data
+
+// Not actually used; just forces this into the RSC for TGUI.
+/datum/prefrence_icons
+	var/preview_icons = 'icons/mob/human_races/preview.dmi'
