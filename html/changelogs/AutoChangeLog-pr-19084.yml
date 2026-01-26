@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "empty lists for auto transfer"
-  - bugfix: "ghost leaving VR not getting ghostized before qdel"
-  - bugfix: "flip no longer restores any flags badly"
