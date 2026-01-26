@@ -17,7 +17,7 @@ The artist must explicitly allow the usage of those assets under a **CC-BY-SA 3.
 
 > **No derivatives (ND) licenses are not accepted.**
 
-This policy applies to all assets added from **February 2026 onward**.
+This policy applies to all VBO assets added from **February 2026 onward**.
 
 ## Assets
 
