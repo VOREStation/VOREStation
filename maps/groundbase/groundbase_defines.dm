@@ -92,64 +92,16 @@
 
 
 	meteor_strike_areas = list(
-		/area/groundbase/level3,
-		/area/groundbase/level2,
-		/area/groundbase/level1,
+		/area/planet/virgo3c,
+		/area/maintenance,
+		/area/rnd/break_room
 		)
 
 
 	default_skybox = /datum/skybox_settings/groundbase
 
 	unit_test_exempt_areas = list(		//These are all outside
-		/area/groundbase/cargo/bay,
-		/area/groundbase/civilian/bar/upper,
-		/area/groundbase/exploration/shuttlepad,
-		/area/groundbase/level1,
-		/area/groundbase/level1/ne,
-		/area/groundbase/level1/nw,
-		/area/groundbase/level1/se,
-		/area/groundbase/level1/sw,
-		/area/groundbase/level1/centsquare,
-		/area/groundbase/level1/northspur,
-		/area/groundbase/level1/eastspur,
-		/area/groundbase/level1/westspur,
-		/area/groundbase/level1/southeastspur,
-		/area/groundbase/level1/southwestspur,
-		/area/groundbase/level2,
-		/area/groundbase/level2/ne,
-		/area/groundbase/level2/nw,
-		/area/groundbase/level2/se,
-		/area/groundbase/level2/sw,
-		/area/groundbase/level2/northspur,
-		/area/groundbase/level2/eastspur,
-		/area/groundbase/level2/westspur,
-		/area/groundbase/level2/southeastspur,
-		/area/groundbase/level2/southwestspur,
-		/area/groundbase/level3,
-		/area/groundbase/level3/ne,
-		/area/groundbase/level3/nw,
-		/area/groundbase/level3/se,
-		/area/groundbase/level3/sw,
-		/area/groundbase/level3/ne/open,
-		/area/groundbase/level3/nw/open,
-		/area/groundbase/level3/se/open,
-		/area/groundbase/level3/sw/open,
-		/area/maintenance/groundbase/level1/netunnel,
-		/area/maintenance/groundbase/level1/nwtunnel,
-		/area/maintenance/groundbase/level1/setunnel,
-		/area/maintenance/groundbase/level1/stunnel,
-		/area/maintenance/groundbase/level1/swtunnel,
-		/area/groundbase/science/picnic,
-		/area/groundbase/medical/patio,
-		/area/groundbase/civilian/hydroponics/out,
-		/area/groundbase/level3/escapepad,
-		/area/maintenance/groundbase/poi/caves,
-		/area/submap/groundbase/poi,
-		/area/maintenance/groundbase/poi/caves,
-		/area/groundbase/unexplored/outdoors,
-		/area/groundbase/unexplored/rock,
-		/area/groundbase/engineering/solarshed,
-		/area/groundbase/engineering/solarfield,
+		/area/planet/virgo3c
 		)
 
 	unit_test_exempt_from_atmos = list()

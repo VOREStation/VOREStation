@@ -76,8 +76,3 @@
 // Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
 /obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
-
-// Shelter Capsule extra restrictions
-/datum/map_template/shelter/New()
-	..()
-	banned_areas += list(/area/tether/surfacebase/fish_farm, /area/tether/surfacebase/public_garden, /area/tether/surfacebase/tram)
