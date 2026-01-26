@@ -20,6 +20,7 @@ VBO_notbelly
 VBO_wriggly
 
 Hunter Dovetail:
+CC BY-SA-ND 3.0
 VBO_maw15
 VBO_maw16
 VBOanim_belly2
@@ -27,7 +28,28 @@ VBOanim_gullet1
 VBOanim_gullet2
 VBOanim_intestine1
 VBOanim_belly3
-VBO_anim_intestine2
+VBOanim_intestine2
+
+VBO_maw17
+VBO_maw18
+VBO_maw19
+VBO_maw20
+VBO_maw21
+VBO_maw22
+VBO_maw23
+VBO_maw24
+VBO_maw25
+VBO_maw26
+VBOanim_belly4
+VBOanim_belly5
+VBOanim_belly6
+VBOanim_belly7
+VBOanim_belly8
+VBOanim_belly9
+VBOanim_belly10
+VBOanim_synthbelly1
+VBOanim_taurbelly1
+VBOanim_snakebelly1
 
 Koreley:
 VBO_maw27
