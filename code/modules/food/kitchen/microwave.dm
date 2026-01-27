@@ -217,9 +217,9 @@
 		if(length(cookingContents()) >= (item_capacity))
 			to_chat(user, span_warning("\The [src] is full of ingredients, you cannot put more."))
 			return TRUE
-		if(istype(O, /obj/item/stack) && O:get_amount() > 0)
-			var/obj/item/stack/S = O
-			var/obj/item/stack/St = S.split(1)
+		var/obj/item/stack/our_stack = O
+		if(istype(our_stack) && our_stack.get_amount() > 0)
+			var/obj/item/stack/St = our_stack.split(1)
 			St.forceMove(src)
 			user.visible_message( \
 				span_notice(span_bold("\The [user]") + " has added one [O] to \the [src]."), \
