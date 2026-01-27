@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Adds more framework for radiation component to do more fancy things."
-  - bugfix: "Shadekin no longer have an unusable radiation-glow subpanel."
-  - rscadd: "Shadekin now gain nutrition (which can be converted to energy) via radiation"
-  - rscadd: "BESK no longer die from radiation, but rather gain halloss via radiation."
-  - qol: "Nutrition gain from radiation gains can be toggled on/off"

@@ -1,5 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added a new Skin Reagent trait, that allows you to pick one of six reagents that coat your skin and are applied to people when they lick you. These include: Ethanol, Capsaicin, Sleep Toxin, Rainbow Toxin, Paralysis Toxin and Pain Enzyme."
-  - code_imp: "Also added a new option to traits to allow you to use a single list for them to select preferences, using a list variable called \"multiple_choice\"."
