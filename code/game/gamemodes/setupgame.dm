@@ -31,9 +31,9 @@
 			GLOB.dna_genes.Add(G)
 			blocks_remaining.Remove(G.block)
 			// Add traitgenes to good/bad gene lists for randomized mutation procs!
-			if(T.category == TRAIT_TYPE_NEUTRAL)
+			if(G.linked_trait.category == TRAIT_TYPE_NEUTRAL)
 				GLOB.dna_genes_neutral.Add(G)
-			else if(T.category == TRAIT_TYPE_NEGATIVE)
+			else if(G.linked_trait.category == TRAIT_TYPE_NEGATIVE)
 				GLOB.dna_genes_bad.Add(G)
 			else
 				GLOB.dna_genes_good.Add(G)
