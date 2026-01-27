@@ -237,7 +237,7 @@
 
 // Injectors for all original genes and some new ones
 /obj/item/dnainjector/set_trait/anxiety	// stutter
-	trait_path = /datum/trait/neutral/disability_nervousness
+	trait_path = /datum/trait/disability_nervousness
 /obj/item/dnainjector/set_trait/anxiety/disable
 	disabling = TRUE
 
@@ -247,7 +247,7 @@
 	disabling = TRUE
 /* //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/tourettes // tour
-	trait_path = /datum/trait/neutral/disability_tourettes
+	trait_path = /datum/trait/disability_tourettes
 /obj/item/dnainjector/set_trait/tourettes/disable
 	disabling = TRUE
 */ //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
@@ -262,7 +262,7 @@
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/heatadapt // fire
-	trait_path = /datum/trait/neutral/hotadapt
+	trait_path = /datum/trait/hotadapt
 /obj/item/dnainjector/set_trait/heatadapt/disable
 	disabling = TRUE
 
@@ -287,7 +287,7 @@
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/coldadapt // insulated
-	trait_path = /datum/trait/neutral/coldadapt
+	trait_path = /datum/trait/coldadapt
 /obj/item/dnainjector/set_trait/coldadapt/disable
 	disabling = TRUE
 /* //VOREStation Note: TRAITGENETICS - Disabled on VS

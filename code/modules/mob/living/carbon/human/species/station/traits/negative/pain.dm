@@ -27,7 +27,7 @@
 	cost = -4
 	custom_only = FALSE
 	can_take = SYNTHETICS
-	excludes = list(/datum/trait/neutral/synth_cosmetic_pain)
+	excludes = list(/datum/trait/synth_cosmetic_pain)
 	category = TRAIT_TYPE_NEGATIVE
 
 

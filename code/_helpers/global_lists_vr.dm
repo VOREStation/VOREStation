@@ -633,7 +633,7 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 		GLOB.hair_accesories_list[path] = instance
 
 	// Custom species traits
-	paths = typesof(/datum/trait) - /datum/trait - /datum/trait/neutral
+	paths = typesof(/datum/trait) - /datum/trait
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)
