@@ -6,7 +6,7 @@
 	custom_only = FALSE
 	can_take = ORGANICS
 	var_changes = list("minimum_breath_pressure" = 12)
-	excludes = list(/datum/trait/negative/deep_breather)
+	excludes = list(/datum/trait/deep_breather)
 	category = TRAIT_TYPE_POSITIVE
 
 /datum/trait/nobreathe
@@ -17,11 +17,11 @@
 	category = TRAIT_TYPE_POSITIVE
 
 	var_changes = list("breath_type" = "null", "poison_type" = "null", "exhale_type" = "null")
-	excludes = list(/datum/trait/negative/breathes/phoron,
-					/datum/trait/negative/breathes/nitrogen,
-					/datum/trait/negative/breathes/carbon_dioxide,
+	excludes = list(/datum/trait/breathes/phoron,
+					/datum/trait/breathes/nitrogen,
+					/datum/trait/breathes/carbon_dioxide,
 					/datum/trait/light_breather,
-					/datum/trait/negative/deep_breather
+					/datum/trait/deep_breather
 )
 
 /datum/trait/nobreathe/apply(var/datum/species/S, var/mob/living/carbon/human/H)

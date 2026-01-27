@@ -252,12 +252,12 @@
 	disabling = TRUE
 */ //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/cough // cough
-	trait_path = /datum/trait/negative/disability_cough
+	trait_path = /datum/trait/disability_cough
 /obj/item/dnainjector/set_trait/cough/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/nearsighted // glasses
-	trait_path = /datum/trait/negative/disability_nearsighted
+	trait_path = /datum/trait/disability_nearsighted
 /obj/item/dnainjector/set_trait/nearsighted/disable
 	disabling = TRUE
 
@@ -267,7 +267,7 @@
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/epilepsy // epi
-	trait_path = /datum/trait/negative/disability_epilepsy
+	trait_path = /datum/trait/disability_epilepsy
 /obj/item/dnainjector/set_trait/epilepsy/disable
 	disabling = TRUE
 
@@ -282,7 +282,7 @@
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/clumsy // clumsy
-	trait_path = /datum/trait/negative/disability_clumsy
+	trait_path = /datum/trait/disability_clumsy
 /obj/item/dnainjector/set_trait/clumsy/disable
 	disabling = TRUE
 
@@ -297,7 +297,7 @@
 	disabling = TRUE
 */ //VOREStation Note: TRAITGENETICS - Disabled on VS
 /obj/item/dnainjector/set_trait/deaf // deafmut
-	trait_path = /datum/trait/negative/disability_deaf
+	trait_path = /datum/trait/disability_deaf
 /obj/item/dnainjector/set_trait/deaf/disable
 	disabling = TRUE
 
@@ -312,7 +312,7 @@
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/blind // blindmut
-	trait_path = /datum/trait/negative/blindness
+	trait_path = /datum/trait/blindness
 /obj/item/dnainjector/set_trait/blind/disable
 	disabling = TRUE
 
@@ -351,6 +351,6 @@
 	disabling = TRUE
 */
 /obj/item/dnainjector/set_trait/damagedspine // brokenspine
-	trait_path = /datum/trait/negative/disability_damagedspine
+	trait_path = /datum/trait/disability_damagedspine
 /obj/item/dnainjector/set_trait/damagedspine/disable
 	disabling = TRUE

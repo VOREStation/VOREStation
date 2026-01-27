@@ -35,7 +35,7 @@
 	category = TRAIT_TYPE_POSITIVE
 
 	added_component_path = /datum/component/radiation_effects
-	excludes = list(/datum/trait/neutral/glowing_radiation, /datum/trait/rad_resistance, /datum/trait/rad_resistance_extreme, /datum/trait/rad_immune, /datum/trait/negative/rad_weakness)
+	excludes = list(/datum/trait/neutral/glowing_radiation, /datum/trait/rad_resistance, /datum/trait/rad_resistance_extreme, /datum/trait/rad_immune, /datum/trait/rad_weakness)
 
 /datum/trait/radioactive_heal/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
