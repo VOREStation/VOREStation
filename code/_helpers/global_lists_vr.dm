@@ -632,12 +632,14 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
 		GLOB.hair_accesories_list[path] = instance
 
-	// Custom species traits
+	// Custom traits
 	paths = typesof(/datum/trait) - /datum/trait
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)
 			continue //A prototype or something
+		if(!instance.category)
+			continue //Someone forgot to set a trait category.
 		var/cost = instance.cost
 		GLOB.traits_costs[path] = cost
 		GLOB.all_traits[path] = instance
