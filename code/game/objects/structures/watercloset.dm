@@ -180,18 +180,11 @@
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
 	QDEL_NULL(reagents)
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_MACHINE_PROCESSING()
 	return ..()
 
 //add heat controls? when emagged, you can freeze to death in it?
-
-/obj/effect/mist
-	name = "mist"
-	icon = 'icons/obj/watercloset.dmi'
-	icon_state = "mist"
-	plane = MOB_PLANE
-	layer = ABOVE_MOB_LAYER
-	anchored = TRUE
-	mouse_opacity = 0
 
 /obj/machinery/shower/attack_hand(mob/M as mob)
 	on = !on
@@ -220,10 +213,19 @@
 		add_fingerprint(user)
 	handle_mist()
 
+/obj/machinery/shower/examine(mob/user)
+	. = ..()
+	. += span_notice("You can <b>alt-click</b> to change the temperature.")
+
 /obj/machinery/shower/update_icon()
 	cut_overlays()
 	if(on)
-		add_overlay(image('icons/obj/watercloset.dmi', src, REAGENT_ID_WATER, MOB_LAYER + 1, dir))
+		if(reagent_id == REAGENT_ID_WATER)
+			add_overlay(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
+		else
+			var/mutable_appearance/colorful_shower = image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+			colorful_shower.color = reagents.get_color() //Whatever the fuck happens to be spewing out of here.
+			add_overlay(colorful_shower)
 
 /obj/machinery/shower/proc/handle_mist()
 	// If there is no mist, and the shower was turned on (on a non-freezing temp): make mist in 5 seconds
@@ -250,31 +252,12 @@
 		qdel(mist)
 
 
-//Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/do_wash(atom/movable/O as obj|mob)
-	if(!on) return
-
-	if(isliving(O))
-		var/mob/living/L = O
-		L.extinguish_mob()
-		L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
-
-	if(iscarbon(O))
-		//flush away reagents on the skin
-		var/mob/living/carbon/M = O
-		if(M.touching)
-			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
-			M.touching.remove_any(remove_amount)
-
-	O.wash(CLEAN_SCRUB)
-
-	reagents.splash(O, 10, min_spill = 0, max_spill = 0)
-
 /obj/machinery/shower/Crossed(atom/movable/AM)
 	..()
 	if(on)
 		wash_atom(AM)
 
+//Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash_atom(atom/A)
 	/* //TG cleans rads and only does CLEAN_WASH, not sure if that's wanted here.
 	A.wash(CLEAN_RAD | CLEAN_TYPE_WEAK) // Clean radiation non-instantly
@@ -344,6 +327,15 @@
 			if(L.bodytemperature > 298) // 25C
 				L.bodytemperature = max(L.bodytemperature - 10, SHOWER_TEMP_NORMAL)
 				//L.adjust_bodytemperature(-10)
+
+/obj/effect/mist
+	name = "mist"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "mist"
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+	anchored = TRUE
+	mouse_opacity = 0
 
 ////////////////////////RUBBER DUCKIES//////////////////////////////
 
