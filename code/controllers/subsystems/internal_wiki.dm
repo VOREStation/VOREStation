@@ -1484,7 +1484,7 @@ SUBSYSTEM_DEF(internal_wiki)
 				data["trait_type"] = "Positive"
 			else
 				data["trait_type"] = "Super Power" // Likely eye lasers
-		else if(istype(T.linked_trait,/datum/trait/negative))
+		else if(T.linked_trait.category == TRAIT_TYPE_NEGATIVE)
 			if(!T.linked_trait.hidden)
 				data["trait_type"] = "Negative"
 			else
