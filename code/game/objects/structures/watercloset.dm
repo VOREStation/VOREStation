@@ -180,7 +180,7 @@
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
 	QDEL_NULL(reagents)
-	STOP_MACHINE_PROCESSING()
+	STOP_MACHINE_PROCESSING(src)
 	return ..()
 
 //add heat controls? when emagged, you can freeze to death in it?
