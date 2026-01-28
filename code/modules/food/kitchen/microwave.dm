@@ -512,12 +512,7 @@
 	var/basic_microwave_types = list(/obj/item/reagent_containers/food, /obj/item/grown)
 	var/advanced_microwave_types = list(/obj/item/slime_extract, /obj/item/organ, /obj/item/stack/material)
 	for (var/obj/O in cookingContents())
-		if ( \
-				!is_type_in_list(O, basic_microwave_types) && \
-				(
-					!advanced_microwave || !is_type_in_list(O, advanced_microwave_types)
-				) \
-			)
+		if(!is_type_in_list(O, basic_microwave_types) && (!advanced_microwave || !is_type_in_list(O, advanced_microwave_types)))
 			return TRUE
 	return FALSE
 
