@@ -655,19 +655,18 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 		var/datum/trait/T = GLOB.all_traits[traitpath]
 		var/category = T.category
 		if(!T.hidden) // Traitgenes forbid hidden traits from showing, done to hide genetics only traits
-			switch(category)
-				if(-INFINITY to -0.1)
-					GLOB.negative_traits[traitpath] = T
-					if(!(T.custom_only))
-						GLOB.everyone_traits_negative[traitpath] = T
-				if(0)
-					GLOB.neutral_traits[traitpath] = T
-					if(!(T.custom_only))
-						GLOB.everyone_traits_neutral[traitpath] = T
-				if(0.1 to INFINITY)
-					GLOB.positive_traits[traitpath] = T
-					if(!(T.custom_only))
-						GLOB.everyone_traits_positive[traitpath] = T
+			if(category & TRAIT_TYPE_NEGATIVE)
+				GLOB.negative_traits[traitpath] = T
+				if(!(T.custom_only))
+					GLOB.everyone_traits_negative[traitpath] = T
+			else if(category & TRAIT_TYPE_NEUTRAL)
+				GLOB.neutral_traits[traitpath] = T
+				if(!(T.custom_only))
+					GLOB.everyone_traits_neutral[traitpath] = T
+			else if(category & TRAIT_TYPE_POSITIVE)
+				GLOB.positive_traits[traitpath] = T
+				if(!(T.custom_only))
+					GLOB.everyone_traits_positive[traitpath] = T
 
 
 	// Weaver recipe stuff

@@ -5,7 +5,7 @@
 
 	var/cost = 0
 	var/sort = TRAIT_SORT_NORMAL	// Sort order, 1 before 2 before 3 etc. Alphabetical is used for same-group traits.
-	var/category					// What category this trait is. -1 is Negative, 0 is Neutral, 1 is Positive
+	var/category					// Category flags. See code\__defines\traits.dm
 	var/list/var_changes			// A list to apply to the custom species vars.
 	var/list/var_changes_pref		// A list to apply to the preference vars.
 	var/list/excludes				// Store a list of paths of traits to exclude, but done automatically if they change the same vars.
