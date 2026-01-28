@@ -16,7 +16,7 @@
   };
   const parseMetaTag = function (name) {
     const content = document.getElementById(name).getAttribute('content');
-    if (content === '[' + name + ']') {
+    if (content === `[${name}]`) {
       return null;
     }
     return content;
@@ -81,7 +81,7 @@
       return;
     }
     // Build the URL
-    let url = (path || '') + '?';
+    let url = `${path || ''}?`;
     let i = 0;
     if (params) {
       for (const key in params) {
@@ -93,20 +93,20 @@
           if (value === null || value === undefined) {
             value = '';
           }
-          url += encodeURIComponent(key) + '=' + encodeURIComponent(value);
+          url += `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
         }
       }
     }
 
     // If we're a Chromium client, just use the fancy method
     if (window.cef_to_byond) {
-      cef_to_byond('byond://' + url);
+      cef_to_byond(`byond://${url}`);
       return;
     }
 
     // Perform a standard call via location.href
     if (url.length < 2048) {
-      location.href = 'byond://' + url;
+      location.href = `byond://${url}`;
       return;
     }
     // Send an HTTP request to DreamSeeker's HTTP server.
@@ -127,7 +127,7 @@
     Byond.call(
       path,
       assign({}, params, {
-        callback: 'Byond.__callbacks__[' + index + ']',
+        callback: `Byond.__callbacks__[${index}]`,
       })
     );
     return promise;
@@ -181,7 +181,7 @@
     try {
       return JSON.parse(json, byondJsonReviver);
     } catch (err) {
-      throw new Error('JSON parsing error: ' + (err && err.message));
+      throw new Error(`JSON parsing error: ${err?.message}`);
     }
   };
 
@@ -293,16 +293,9 @@
     // Generic retry function
     const retry = function () {
       if (attempt >= RETRY_ATTEMPTS) {
-        let errorMessage =
-          'Error: Failed to load the asset ' +
-          "'" +
-          url +
-          "' after several attempts.";
+        let errorMessage = `Error: Failed to load the asset '${url}' after several attempts.`;
         if (type === 'css') {
-          errorMessage +=
-            +'\nStylesheet was either not found, ' +
-            "or you're trying to load an empty stylesheet " +
-            'that has no CSS rules in it.';
+          errorMessage += `\nStylesheet was either not found, or you're trying to load an empty stylesheet that has no CSS rules in it.`;
         }
         throw new Error(errorMessage);
       }
@@ -425,10 +418,7 @@ window.onerror = function (msg, url, line, col, error) {
   let stack = error && error.stack;
   // Ghetto stacktrace
   if (!stack) {
-    stack = msg + '\n   at ' + url + ':' + line;
-    if (col) {
-      stack += ':' + col;
-    }
+    stack = `${msg}\n   at ${url}:${line}${col ? `:${col}` : ''}`;
   }
   // Augment the stack
   stack = window.__augmentStack__(stack, error);
@@ -486,7 +476,7 @@ window.onunhandledrejection = function (e) {
   if (e.reason) {
     msg += ': ' + (e.reason.message || e.reason.description || e.reason);
     if (e.reason.stack) {
-      e.reason.stack = 'UnhandledRejection: ' + e.reason.stack;
+      e.reason.stack = `UnhandledRejection: ${e.reason.stack}`;
     }
   }
   window.onerror(msg, null, null, null, e.reason);
@@ -494,7 +484,7 @@ window.onunhandledrejection = function (e) {
 
 // Helper for augmenting stack traces on fatal errors
 window.__augmentStack__ = function (stack, error) {
-  return stack + '\nUser Agent: ' + navigator.userAgent;
+  return `${stack}\nUser Agent: ${navigator.userAgent}`;
 };
 
 // Incoming message handling
@@ -552,8 +542,6 @@ window.replaceHtml = function (inline_html) {
 
   document.body.insertAdjacentHTML(
     'afterbegin',
-    '<!-- tgui:inline-html-start -->' +
-      inline_html +
-      '<!-- tgui:inline-html-end -->'
+    `<!-- tgui:inline-html-start -->${inline_html}<!-- tgui:inline-html-end -->`
   );
 };
