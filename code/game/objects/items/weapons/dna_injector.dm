@@ -237,120 +237,120 @@
 
 // Injectors for all original genes and some new ones
 /obj/item/dnainjector/set_trait/anxiety	// stutter
-	trait_path = /datum/trait/neutral/disability_nervousness
+	trait_path = /datum/trait/disability_nervousness
 /obj/item/dnainjector/set_trait/anxiety/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/noprints // noprints
-	trait_path = /datum/trait/positive/superpower_noprints
+	trait_path = /datum/trait/superpower_noprints
 /obj/item/dnainjector/set_trait/noprints/disable
 	disabling = TRUE
 /* //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/tourettes // tour
-	trait_path = /datum/trait/neutral/disability_tourettes
+	trait_path = /datum/trait/disability_tourettes
 /obj/item/dnainjector/set_trait/tourettes/disable
 	disabling = TRUE
 */ //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/cough // cough
-	trait_path = /datum/trait/negative/disability_cough
+	trait_path = /datum/trait/disability_cough
 /obj/item/dnainjector/set_trait/cough/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/nearsighted // glasses
-	trait_path = /datum/trait/negative/disability_nearsighted
+	trait_path = /datum/trait/disability_nearsighted
 /obj/item/dnainjector/set_trait/nearsighted/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/heatadapt // fire
-	trait_path = /datum/trait/neutral/hotadapt
+	trait_path = /datum/trait/hotadapt
 /obj/item/dnainjector/set_trait/heatadapt/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/epilepsy // epi
-	trait_path = /datum/trait/negative/disability_epilepsy
+	trait_path = /datum/trait/disability_epilepsy
 /obj/item/dnainjector/set_trait/epilepsy/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/morph // morph
-	trait_path = /datum/trait/positive/superpower_morph
+	trait_path = /datum/trait/superpower_morph
 /obj/item/dnainjector/set_trait/morph/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/regenerate // regenerate
-	trait_path = /datum/trait/positive/superpower_regenerate
+	trait_path = /datum/trait/superpower_regenerate
 /obj/item/dnainjector/set_trait/regenerate/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/clumsy // clumsy
-	trait_path = /datum/trait/negative/disability_clumsy
+	trait_path = /datum/trait/disability_clumsy
 /obj/item/dnainjector/set_trait/clumsy/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/coldadapt // insulated
-	trait_path = /datum/trait/neutral/coldadapt
+	trait_path = /datum/trait/coldadapt
 /obj/item/dnainjector/set_trait/coldadapt/disable
 	disabling = TRUE
 /* //VOREStation Note: TRAITGENETICS - Disabled on VS
 /obj/item/dnainjector/set_trait/xray // xraymut
-	trait_path = /datum/trait/positive/superpower_xray
+	trait_path = /datum/trait/superpower_xray
 /obj/item/dnainjector/set_trait/xray/disable
 	disabling = TRUE
 */ //VOREStation Note: TRAITGENETICS - Disabled on VS
 /obj/item/dnainjector/set_trait/deaf // deafmut
-	trait_path = /datum/trait/negative/disability_deaf
+	trait_path = /datum/trait/disability_deaf
 /obj/item/dnainjector/set_trait/deaf/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/tk // telemut
-	trait_path = /datum/trait/positive/superpower_tk
+	trait_path = /datum/trait/superpower_tk
 /obj/item/dnainjector/set_trait/tk/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/haste // runfast
-	trait_path = /datum/trait/positive/speed_fast
+	trait_path = /datum/trait/speed_fast
 /obj/item/dnainjector/set_trait/haste/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/blind // blindmut
-	trait_path = /datum/trait/negative/blindness
+	trait_path = /datum/trait/blindness
 /obj/item/dnainjector/set_trait/blind/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/nobreathe // nobreath
-	trait_path = /datum/trait/positive/superpower_nobreathe
+	trait_path = /datum/trait/superpower_nobreathe
 /obj/item/dnainjector/set_trait/nobreathe/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/remoteview // remoteview
-	trait_path = /datum/trait/positive/superpower_remoteview
+	trait_path = /datum/trait/superpower_remoteview
 /obj/item/dnainjector/set_trait/remoteview/disable
 	disabling = TRUE
 /obj/item/dnainjector/set_trait/flashproof // flashproof
-	trait_path = /datum/trait/positive/superpower_flashproof
+	trait_path = /datum/trait/superpower_flashproof
 /obj/item/dnainjector/set_trait/flashproof/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/hulk // hulk
-	trait_path = /datum/trait/positive/superpower_hulk
+	trait_path = /datum/trait/superpower_hulk
 /obj/item/dnainjector/set_trait/hulk/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/table_passer // midgit
-	trait_path = /datum/trait/positive/table_passer
+	trait_path = /datum/trait/table_passer
 /obj/item/dnainjector/set_trait/table_passer/disable
 	disabling = TRUE
 
 /obj/item/dnainjector/set_trait/remotetalk // remotetalk
-	trait_path = /datum/trait/positive/superpower_remotetalk
+	trait_path = /datum/trait/superpower_remotetalk
 /obj/item/dnainjector/set_trait/remotetalk/disable
 	disabling = TRUE
 /*
 /obj/item/dnainjector/set_trait/nonconduct // shock
-	trait_path = /datum/trait/positive/nonconductive_plus
+	trait_path = /datum/trait/nonconductive_plus
 /obj/item/dnainjector/set_trait/nonconduct/disable
 	disabling = TRUE
 */
 /obj/item/dnainjector/set_trait/damagedspine // brokenspine
-	trait_path = /datum/trait/negative/disability_damagedspine
+	trait_path = /datum/trait/disability_damagedspine
 /obj/item/dnainjector/set_trait/damagedspine/disable
 	disabling = TRUE

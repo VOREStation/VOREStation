@@ -1587,7 +1587,7 @@
 			starving_alert = /atom/movable/screen/alert/starving/synth
 		else if(get_species() in list(SPECIES_CUSTOM, SPECIES_HANNER))
 			var/datum/species/custom/C = species
-			if(/datum/trait/neutral/bloodsucker in C.traits)
+			if(/datum/trait/bloodsucker in C.traits)
 				fat_alert = /atom/movable/screen/alert/fat/vampire
 				hungry_alert = /atom/movable/screen/alert/hungry/vampire
 				starving_alert = /atom/movable/screen/alert/starving/vampire

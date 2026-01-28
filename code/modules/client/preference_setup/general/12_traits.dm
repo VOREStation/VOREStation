@@ -39,13 +39,12 @@
 	var/list/trait_prefs
 	var/datum/trait/instance = GLOB.all_traits[trait]
 	var/list/traitlist
-	switch(instance.category)
-		if (1)
-			traitlist = pref.pos_traits
-		if (0)
-			traitlist = pref.neu_traits
-		if (-1)
-			traitlist = pref.neg_traits
+	if (instance.category & TRAIT_TYPE_POSITIVE)
+		traitlist = pref.pos_traits
+	if (instance.category & TRAIT_TYPE_NEUTRAL)
+		traitlist = pref.neu_traits
+	if (instance.category & TRAIT_TYPE_NEGATIVE)
+		traitlist = pref.neg_traits
 	if (!LAZYLEN(instance.has_preferences) || !(preference in instance.has_preferences) || !traitlist)
 		return
 	if (!LAZYLEN(traitlist[trait]))
@@ -225,7 +224,7 @@
 		all_traits[path] = list(
 			"cost" = T.cost,
 			"name" = T.name,
-			"category" = T.category,
+			"category" = T.category, //TRAITREWORK TODO: change to be trait flags
 			"has_preferences" = T.has_preferences,
 		)
 

@@ -302,7 +302,7 @@ var/static/list/redspace_areas = list (
 
 /datum/modifier/redspace_drain/proc/become_drippy()
 	if(!(unfortunate_soul.species.flags & NO_DNA)) //Doing it as such in case drippy is ever made NOT a trait gene.
-		var/datum/gene/trait/drippy_trait = get_gene_from_trait(/datum/trait/neutral/drippy)
+		var/datum/gene/trait/drippy_trait = get_gene_from_trait(/datum/trait/drippy)
 		unfortunate_soul.dna.SetSEState(drippy_trait.block, TRUE)
 		domutcheck(unfortunate_soul, null, GENE_ALWAYS_ACTIVATE)
 		unfortunate_soul.UpdateAppearance()

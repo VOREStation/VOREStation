@@ -48,7 +48,7 @@
 	for(var/datum/trait/T as anything in megalist)
 		var/cost = GLOB.traits_costs[T]
 
-		if(T.category == TRAIT_TYPE_POSITIVE)
+		if(T.category & TRAIT_TYPE_POSITIVE)
 			traits_left--
 
 		//A trait was removed from the game

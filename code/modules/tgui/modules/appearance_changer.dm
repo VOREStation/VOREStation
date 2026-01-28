@@ -1098,7 +1098,7 @@
 		qdel(src)
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
-	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
+	var/datum/gene/G = get_gene_from_trait(/datum/trait/superpower_morph)
 	if(!owner.dna.GetSEState(G.block))
 		return STATUS_CLOSE
 	return ..()
