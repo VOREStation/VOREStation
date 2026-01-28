@@ -29,6 +29,7 @@
 	var/list/crystals = list()
 	var/obj/item/gps/inserted_gps
 	var/overmap_range = 3
+	var/fail_cooldown = 2 SECONDS
 
 /obj/machinery/computer/telescience/Destroy()
 	eject()
@@ -154,9 +155,9 @@
 			if(last_target && inserted_gps)
 				// TODO - What was this even supposed to do??
 				//inserted_gps.locked_location = last_target
-				temp_msg = "Location saved."
+				temp_msg = "Function Deprecated. No action taken."
 			else
-				temp_msg = "ERROR! No data was stored."
+				temp_msg = "Function Deprecated. No action taken."
 
 		if("send")
 			sending = 1
@@ -188,6 +189,7 @@
 		return
 
 /obj/machinery/computer/telescience/proc/telefail()
+	teleport_cooldown = world.time + fail_cooldown
 	switch(rand(99))
 		if(0 to 80)
 			sparks()
@@ -348,6 +350,12 @@
 			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
+	if(teleport_cooldown > world.time)
+		temp_msg = "ERROR! Teleportation console is cooling down. Please wait."
+		return
+	if(teleporting)
+		temp_msg = "ERROR! Teleportation in progress. Please wait."
+		return
 	distance = CLAMP(distance, 0, get_max_allowed_distance())
 	if(rotation == null || distance == null || z_co == null)
 		temp_msg = "ERROR! Set a distance, rotation and sector."
