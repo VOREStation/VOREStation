@@ -236,8 +236,6 @@
 
 	if(teleport_cooldown > world.time)
 		return
-	if(teleporting)
-		return
 
 	if(telepad)
 		var/trueDistance = CLAMP(distance + distance_off, 1, get_max_allowed_distance())
