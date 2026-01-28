@@ -165,7 +165,7 @@
 	if(core.loc != owner || owner.back != core) //Make sure the core's being worn.
 		to_chat(owner, span_danger("You need to be wearing a core on your back!"))
 		return 0
-	if(!technomancers.is_antagonist(owner.mind) && !core.universal) //Now make sure the person using this is the actual antag. //VOREStation Edit - Universal cores
+	if(!GLOB.technomancers.is_antagonist(owner.mind) && !core.universal) //Now make sure the person using this is the actual antag. //VOREStation Edit - Universal cores
 		to_chat(owner, span_danger("You can't seem to figure out how to make the machine work properly."))
 		return 0
 	return 1

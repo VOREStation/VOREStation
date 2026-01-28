@@ -43,7 +43,7 @@
 
 		// otherwise, do normal expel from turf
 		if(H)
-			expel(H, T, 0)
+			pipe_expel(H, T, 0)
 	. = ..()
 
 // returns the direction of the next pipe object, given the entrance dir
@@ -101,7 +101,7 @@
 
 // expel the held objects into a turf
 // called when there is a break in the pipe
-/obj/structure/disposalpipe/proc/expel(obj/structure/disposalholder/H, turf/T, direction)
+/obj/structure/disposalpipe/proc/pipe_expel(obj/structure/disposalholder/H, turf/T, direction)
 	if(!istype(H))
 		return
 
@@ -183,7 +183,7 @@
 
 		// otherwise, do normal expel from turf
 		if(H)
-			expel(H, T, 0)
+			pipe_expel(H, T, 0)
 
 	spawn(2)	// delete pipe after 2 ticks to ensure expel proc finished
 		qdel(src)
@@ -300,7 +300,7 @@
 
 		// otherwise, do normal expel from turf
 		if(H)
-			expel(H, T, 0)
+			pipe_expel(H, T, 0)
 	. = ..()
 
 /obj/structure/disposalpipe/hides_under_flooring()

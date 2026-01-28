@@ -5,10 +5,10 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/ui_style/init_possible_values()
-	return assoc_to_keys(all_ui_styles)
+	return assoc_to_keys(GLOB.all_ui_styles)
 
 /datum/preference/choiced/ui_style/icon_for(value)
-	var/icon/icon_file = all_ui_styles[value]
+	var/icon/icon_file = GLOB.all_ui_styles[value]
 
 	var/icon/icon = icon(icon_file, "r_hand_inactive")
 	icon.Crop(1, 1, ICON_SIZE_X * 2, ICON_SIZE_Y)
@@ -17,7 +17,7 @@
 	return icon
 
 /datum/preference/choiced/ui_style/create_default_value()
-	return all_ui_styles[1]
+	return GLOB.all_ui_styles[1]
 
 /datum/preference/choiced/ui_style/apply_to_client_updated(client/client, value)
 	client.mob?.update_ui_style(UI_style_new = value)

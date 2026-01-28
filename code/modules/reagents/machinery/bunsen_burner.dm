@@ -24,7 +24,7 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(W.has_tool_quality(TOOL_CROWBAR) && panel_open && isturf(loc))
-		if(do_after(user, 5 * W.toolspeed))
+		if(do_after(user, 5 * W.toolspeed, src))
 			// Breaking it down
 			drop_held_container()
 			to_chat(user, span_notice("You dissasemble \the [src]"))

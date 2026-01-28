@@ -368,9 +368,18 @@
 				selected_list["contents"] = selected_contents
 
 			if(LIQUID_OPTIONS_TAB)
+				var/liq_gen_resources = 0
+				if(isrobot(owner))
+					var/mob/living/silicon/robot/robot_owner = owner
+					if(robot_owner.cell)
+						liq_gen_resources = robot_owner.cell.percent()
+				else if(isliving(owner))
+					var/mob/living/living_owner = owner
+					liq_gen_resources = living_owner.nutrition_percent()
 				// liquid belly options
 				var/list/belly_liquid_data = list(
 					"show_liq" = selected.show_liquids,
+					"liq_gen_resources" = liq_gen_resources,
 					"liq_interacts" = compile_liquid_interact_data(selected)
 				)
 				selected_list["belly_liquid_data"] = belly_liquid_data

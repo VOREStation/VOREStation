@@ -1392,6 +1392,8 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/crewkin)
 		)
 
+	species_component = list(/datum/component/radiation_effects/besk)
+
 /datum/species/crew_shadekin/get_bodytype()
 	return SPECIES_SHADEKIN
 

@@ -22,7 +22,7 @@
 
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in get_turf(src)
 	AddComponent(/datum/component/disposal_system_connection)
-	RegisterSignal(src, COMSIG_DISPOSAL_RECEIVE, PROC_REF(expel))
+	RegisterSignal(src, COMSIG_DISPOSAL_RECEIVE, PROC_REF(packet_expel))
 	if(trunk)
 		SEND_SIGNAL(src, COMSIG_DISPOSAL_LINK, trunk)
 
@@ -75,7 +75,7 @@
 		eject_range = new_range
 		to_chat(user, span_notice("You set the range on the [src] to [new_range] tiles."))
 
-/obj/structure/disposaloutlet/proc/expel(list/received_items, datum/gas_mixture/gas)
+/obj/structure/disposaloutlet/proc/packet_expel(datum/source, list/received_items, datum/gas_mixture/gas)
 	SIGNAL_HANDLER
 
 	flick("outlet-open", src)

@@ -14,6 +14,12 @@
 				host.vore_selected.show_liquids = 0
 				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] no longer has liquid options."))
 			. = TRUE
+		if("b_liq_reagent_gen_cost_limit")
+			var/new_limit = text2num(params["val"])
+			if(!isnum(new_limit))
+				return FALSE
+			host.vore_selected.reagent_gen_cost_limit = CLAMP(new_limit, 0, 100)
+			. = TRUE
 		if("b_liq_reagent_gen")
 			if(!host.vore_selected.reagentbellymode) //liquid container adjustments and interactions.
 				host.vore_selected.reagentbellymode = 1

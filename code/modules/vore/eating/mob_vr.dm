@@ -32,6 +32,7 @@
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
+	var/size_strip_preference = SIZESTRIP_NONE	// Preference for size change stripping
 	var/eating_privacy_global = FALSE 	// Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
 	var/vore_death_privacy = FALSE		// Chooses whether to announce prey death when digested to ghosts.
 	var/allow_mimicry = TRUE 	// Allows mimicking their character

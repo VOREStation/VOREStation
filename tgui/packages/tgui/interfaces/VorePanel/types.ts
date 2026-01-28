@@ -213,6 +213,7 @@ export type ContentData = {
 
 export type BellyLiquidData = {
   show_liq: BooleanLike;
+  liq_gen_resources: number;
   liq_interacts: LiqInteractData;
 };
 
@@ -279,6 +280,7 @@ export type LiqInteractData = {
   liq_reagent_transfer_verb: string;
   liq_reagent_nutri_rate: number;
   liq_reagent_capacity: number;
+  liq_gen_cost_limit: number;
   liq_sloshing: BooleanLike;
   liq_reagent_addons: CheckBoxEntry[];
   custom_reagentcolor: string;
@@ -336,7 +338,7 @@ export type PrefData = {
   consume_liquid_belly: BooleanLike;
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
-  selective_active: string;
+  dropdown_preferences: DropdownPrefernces;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;
@@ -353,6 +355,11 @@ export type PrefData = {
   soulcatcher_allow_deletion: BooleanLike;
   soulcatcher_allow_takeover: BooleanLike;
   max_voreoverlay_alpha: number;
+};
+
+export type DropdownPrefernces = {
+  strip_active: number;
+  selective_active: string;
 };
 
 export type ScMessageData = {
@@ -509,4 +516,14 @@ export type IntentData = {
   disarm: BooleanLike;
   grab: BooleanLike;
   harm: BooleanLike;
+};
+
+export type PreferenceDropdown = {
+  action: string;
+  prefix: string;
+  tooltip: string;
+  data: Record<
+    string,
+    { displayText: string; color?: string; enabled?: boolean }
+  >;
 };

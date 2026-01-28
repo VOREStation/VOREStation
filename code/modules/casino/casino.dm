@@ -591,7 +591,7 @@
 				selected_collar = tgui_input_list(user, "Select a prize", "Chose a collar", collar_list)
 				if(QDELETED(selected_collar))
 					collar_list -= selected_collar
-					sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
+					sentientprizes_ckeys_list -= selected_collar?.sentientprizeckey
 					to_chat(user, span_warning("No collars to chose, or selected collar has been destroyed or deactived, selection has been removed from list."))
 					selected_collar = null
 					return
@@ -788,7 +788,7 @@
 				// Show the claimer a list of options to turn their prize into.
 				var/item_choice = tgui_input_list(user, "Choose the item to claim your prize as. (Cancelling will default you to claiming your prize without transformation!)", "Choose Sentient Prize Item", GLOB.item_tf_options)
 				if(LAZYLEN(item_choice))
-					var/mob/living/sentient_prize = selected_collar.wearer.resolve()
+					var/mob/living/sentient_prize = selected_collar.wearer?.resolve()
 					if(sentient_prize)
 						do_item_tf(selected_collar.wearer, item_choice)
 					else
