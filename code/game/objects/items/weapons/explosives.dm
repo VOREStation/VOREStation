@@ -13,7 +13,7 @@
 	var/atom/target = null
 	var/open_panel = 0
 	var/image_overlay = null
-	var/blast_dev = 3
+	var/blast_dev = 0
 	var/blast_heavy = 1
 	var/blast_light = 2
 	var/blast_flash = 3
@@ -100,6 +100,7 @@
 	name = "seismic charge"
 	desc = "Used to dig holes in specific areas without too much extra hole."
 
+	blast_dev = 3
 	blast_heavy = 2
 	blast_light = 4
 	blast_flash = 7
