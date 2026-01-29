@@ -1,4 +1,4 @@
-var/datum/antagonist/trader/traders
+GLOBAL_DATUM(traders, /datum/antagonist/trader)
 
 /datum/antagonist/trader
 	id = MODE_TRADE
@@ -33,7 +33,7 @@ var/datum/antagonist/trader/traders
 
 /datum/antagonist/trader/New()
 	..()
-	traders = src
+	GLOB.traders = src
 
 /datum/antagonist/trader/greet(var/datum/mind/player)
 	if(!..())

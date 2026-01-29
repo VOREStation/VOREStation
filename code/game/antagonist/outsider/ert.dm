@@ -1,4 +1,4 @@
-var/datum/antagonist/ert/ert
+GLOBAL_DATUM(ert, /datum/antagonist/ert)
 
 /datum/antagonist/ert
 	id = MODE_ERT
@@ -16,15 +16,15 @@ var/datum/antagonist/ert/ert
 		rules aside from those without explicit exceptions apply to the ERT.")
 	leader_welcome_text = "As leader of the Emergency Response Team, you answer only to the Company, and have authority to override the " + JOB_SITE_MANAGER + " where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the " + JOB_SITE_MANAGER + " where possible, however."
 	landmark_id = "Response Team"
-	id_type = /obj/item/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ert
 
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_SET_APPEARANCE | ANTAG_HAS_LEADER | ANTAG_CHOOSE_NAME
 	antaghud_indicator = "hudloyalist"
 
-	hard_cap = 5
-	hard_cap_round = 7
-	initial_spawn_req = 5
-	initial_spawn_target = 7
+	hard_cap = 12
+	hard_cap_round = 12
+	initial_spawn_req = 4
+	initial_spawn_target = 12
 
 	can_hear_aooc = FALSE // They're the good guys.
 	can_speak_aooc = FALSE	// Just in case the above var bugs, or gets touched.
@@ -35,7 +35,7 @@ var/datum/antagonist/ert/ert
 
 /datum/antagonist/ert/New()
 	..()
-	ert = src
+	GLOB.ert = src
 
 /datum/antagonist/ert/greet(var/datum/mind/player)
 	if(!..())

@@ -392,9 +392,9 @@ GLOBAL_LIST_INIT(global_huds, list(
 
 	if(UI_style_new)
 		if(isrobot(src))
-			ic = all_ui_styles_robot[UI_style_new]
+			ic = GLOB.all_ui_styles_robot[UI_style_new]
 		else
-			ic = all_ui_styles[UI_style_new]
+			ic = GLOB.all_ui_styles[UI_style_new]
 		hud_used.ui_style = ic
 	else
 		ic = hud_used.ui_style

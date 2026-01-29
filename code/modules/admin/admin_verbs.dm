@@ -3,14 +3,14 @@
 	var/rights = holder.rank_flags()
 	if(rights & R_HOLDER)
 		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
-		if(rights & R_ADMIN)		add_verb(src, admin_verbs_admin)
-		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
-		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(rights & R_DEBUG)		add_verb(src, admin_verbs_debug)
-		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(rights & R_SPAWN)		add_verb(src, admin_verbs_spawn)
-		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(rights & R_EVENT)		add_verb(src, admin_verbs_event_manager)
+		if(rights & R_ADMIN)		add_verb(src, GLOB.admin_verbs_admin)
+		if(rights & R_FUN)			add_verb(src, GLOB.admin_verbs_fun)
+		if(rights & R_SERVER)		add_verb(src, GLOB.admin_verbs_server)
+		if(rights & R_DEBUG)		add_verb(src, GLOB.admin_verbs_debug)
+		if(rights & R_SOUNDS)		add_verb(src, GLOB.admin_verbs_sounds)
+		if(rights & R_SPAWN)		add_verb(src, GLOB.admin_verbs_spawn)
+		if(rights & R_MOD)			add_verb(src, GLOB.admin_verbs_mod)
+		if(rights & R_EVENT)		add_verb(src, GLOB.admin_verbs_event_manager)
 
 	// NEW ADMIN VERBS SYSTEM
 	SSadmin_verbs.assosciate_admin(src)
@@ -19,13 +19,13 @@
 	// OLD ADMIN VERB SYSTEM
 	remove_verb(src, list(
 		/client/proc/togglebuildmodeself,
-		admin_verbs_admin,
-		admin_verbs_fun,
-		admin_verbs_server,
-		admin_verbs_debug,
-		admin_verbs_sounds,
-		admin_verbs_spawn,
-		debug_verbs
+		GLOB.admin_verbs_admin,
+		GLOB.admin_verbs_fun,
+		GLOB.admin_verbs_server,
+		GLOB.admin_verbs_debug,
+		GLOB.admin_verbs_sounds,
+		GLOB.admin_verbs_spawn,
+		GLOB.debug_verbs
 		))
 
 	// NEW ADMIN VERBS SYSTEM
@@ -35,7 +35,7 @@
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin.Misc"
 
-	remove_verb(src, list(/client/proc/hide_most_verbs, admin_verbs_hideable))
+	remove_verb(src, list(/client/proc/hide_most_verbs, GLOB.admin_verbs_hideable))
 	add_verb(src, /client/proc/show_verbs)
 
 	to_chat(src, span_filter_system(span_interface("Most of your adminverbs have been hidden.")))

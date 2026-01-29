@@ -27,19 +27,16 @@
 #define BE_NINJA      0x400
 #define BE_RAIDER     0x800
 #define BE_PLANT      0x1000
-#define BE_MUTINEER   0x2000
-#define BE_LOYALIST   0x4000
-#define BE_PAI        0x8000
-//VOREStation Add
-#define BE_LOSTDRONE	0x10000
-#define BE_MAINTCRITTER 0x20000
-#define BE_CORGI		0x40000
-#define BE_CURSEDSWORD	0x80000
-#define BE_SURVIVOR		0x100000
-#define BE_EVENT		0x200000
-//VOREStation Add End
+#define BE_LOYALIST   0x2000
+#define BE_PAI        0x4000
+#define BE_LOSTDRONE	0x8000
+#define BE_MAINTCRITTER 0x10000
+#define BE_CORGI		0x20000
+#define BE_CURSEDSWORD	0x40000
+#define BE_SURVIVOR		0x80000
+#define BE_EVENT		0x100000
 
-var/list/be_special_flags = list(
+GLOBAL_LIST_INIT(be_special_flags, list(
 	"Traitor"          = BE_TRAITOR,
 	"Operative"        = BE_OPERATIVE,
 	"Changeling"       = BE_CHANGELING,
@@ -53,17 +50,14 @@ var/list/be_special_flags = list(
 	"Ninja"            = BE_NINJA,
 	"Raider"           = BE_RAIDER,
 	"Diona"            = BE_PLANT,
-	"Mutineer"         = BE_MUTINEER,
 	"Loyalist"         = BE_LOYALIST,
 	"pAI"              = BE_PAI,
-	//VOREStation Add
 	"Lost Drone"       = BE_LOSTDRONE,
 	"Maint Critter"    = BE_MAINTCRITTER,
 	"Corgi"            = BE_CORGI,
 	"Cursed Sword"     = BE_CURSEDSWORD,
 	"Ship Survivor"	   = BE_SURVIVOR
-	//VOREStation Add End
-)
+))
 
 
 // Antagonist datum flags.
