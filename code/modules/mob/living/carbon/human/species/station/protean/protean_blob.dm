@@ -743,8 +743,6 @@
 			qdel(I)
 
 		if(S.blob_appearance == "dullahan")
-			vore_capacity = 2
-			vore_icon_bellies = list("dullahan_belly")
 			icon = 'icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi'
 			vis_height = 64
 			var/image/I = image(icon, "[S.dullahan_overlays[1]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
