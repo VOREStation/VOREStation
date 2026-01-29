@@ -146,3 +146,4 @@
 
 /// Default circuitboard material list
 #define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 2000)
+#define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = 40)
