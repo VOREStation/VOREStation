@@ -25,9 +25,9 @@
 			hide_underwear[undergarment_class.name] = new_fullness[undergarment_class.name]
 			update_underwear(1)
 	if(vore_fullness_ex["stomach"] != previous_stomach_fullness)
-		update_vore_belly_sprite()
+		SEND_SIGNAL(src, COMSIG_VORE_OVERLAY_CHANGED)
 	if(vore_fullness_ex["taur belly"] != previous_taur_fullness)
-		update_vore_tail_sprite()
+		SEND_SIGNAL(src, COMSIG_VORE_TAIL_CHANGED)
 
 /mob/living/carbon/human/vs_animate(var/belly_to_animate)
 	if(belly_to_animate == "stomach")
