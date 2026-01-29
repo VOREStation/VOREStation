@@ -1,0 +1,7 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - qol: "Showers now instantly run a wash call on things that go under them while active"
+  - code_imp: "Removed a fair few unnecessary variables on showers and replaced it with better code."
+  - code_imp: "Showers can have their output reagent overridden, either by adminbus or subtypes."
+  - code_imp: "Showers no longer run process() calls while inactive. This should free up a fair few SSmachines process calls that did literally nothing"
