@@ -20,7 +20,7 @@
 	var/distance = 5
 
 	// Based on the distance used
-	var/teleport_cooldown = 0
+	COOLDOWN_DECLARE(teleport_cooldown)
 	var/teleporting = 0
 	var/starting_crystals = 0
 	var/max_crystals = 4
@@ -29,7 +29,6 @@
 	var/list/crystals = list()
 	var/obj/item/gps/inserted_gps
 	var/overmap_range = 3
-	var/fail_cooldown = 2 SECONDS
 
 /obj/machinery/computer/telescience/Destroy()
 	eject()
@@ -102,7 +101,7 @@
 		data["insertedGps"] = inserted_gps
 		data["rotation"] = rotation
 		data["currentZ"] = z_co
-		data["cooldown"] = max(0, min(100, round(teleport_cooldown - world.time) / 10))
+		data["cooldown"] = max(0, min(100, COOLDOWN_TIMELEFT(src, teleport_cooldown) / 10))
 		data["crystalCount"] = crystals.len
 		data["maxCrystals"] = max_crystals
 		data["maxPossibleDistance"] = FLOOR((max_crystals * powerCoefficient * 6), 1); // max efficiency is 6
@@ -189,7 +188,7 @@
 		return
 
 /obj/machinery/computer/telescience/proc/telefail()
-	teleport_cooldown = world.time + fail_cooldown
+	COOLDOWN_START(src, teleport_cooldown, (2 SECONDS))
 	switch(rand(99))
 		if(0 to 80)
 			sparks()
@@ -234,7 +233,7 @@
 
 /obj/machinery/computer/telescience/proc/doteleport(mob/user)
 
-	if(teleport_cooldown > world.time)
+	if(!COOLDOWN_FINISHED(src, teleport_cooldown))
 		return
 
 	if(telepad)
@@ -270,7 +269,7 @@
 			if(telepad.inoperable())
 				return
 			teleporting = 0
-			teleport_cooldown = world.time + (spawn_time * 2)
+			COOLDOWN_START(src, teleport_cooldown, (spawn_time * 2))
 			teles_left -= 1
 
 			// use a lot of power
@@ -348,7 +347,7 @@
 			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
-	if(teleport_cooldown > world.time)
+	if(!COOLDOWN_FINISHED(src, teleport_cooldown))
 		temp_msg = "ERROR! Teleportation console is cooling down. Please wait."
 		return
 	if(teleporting)
