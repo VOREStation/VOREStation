@@ -562,8 +562,9 @@
 				"dullahanclothesempty",
 				"dullahanclothes",
 				"dullahanclothes2",
-				"dullahanclothes5",
-				"dullahanclothes6",
+				"dullahan_belly",
+				"dullahan_belly2",
+				"dullahan_belly3",
 				"dullahanengibreastplate"
 			)
 			var/dmetal
