@@ -1,0 +1,4 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - bugfix: "Fixes an uncleared hardref on disposal pipe trunks when deleting their linked object"
