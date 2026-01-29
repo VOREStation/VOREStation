@@ -61,8 +61,8 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/N = M
 			to_chat(N, span_infoplain(span_bold("You have joined the ranks of the Syndicate and become a traitor to the station!")))
-			traitors.add_antagonist(N.mind)
-			traitors.equip(N)
+			GLOB.traitors.add_antagonist(N.mind)
+			GLOB.traitors.equip(N)
 			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
 
 	updateUsrDialog(usr)
