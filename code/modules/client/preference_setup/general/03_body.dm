@@ -1,6 +1,3 @@
-// Not actually used; just forces this into the RSC for TGUI.
-var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
-
 /datum/preferences
 	var/equip_preview_mob = EQUIP_PREVIEW_ALL
 	var/animations_toggle = FALSE
