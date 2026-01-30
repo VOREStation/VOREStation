@@ -19,8 +19,8 @@
 //- Identify how hard it is to break into the area and where the weak points are
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
-var/camera_range_display_status = 0
-var/intercom_range_display_status = 0
+GLOBAL_VAR_INIT(camera_range_display_status, FALSE)
+GLOBAL_VAR_INIT(intercom_range_display_status, FALSE)
 
 GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
@@ -48,17 +48,17 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Camera Range Display"
 
-	if(camera_range_display_status)
-		camera_range_display_status = 0
+	if(GLOB.camera_range_display_status)
+		GLOB.camera_range_display_status = FALSE
 	else
-		camera_range_display_status = 1
+		GLOB.camera_range_display_status = TRUE
 
 
 
 	for(var/obj/effect/debugging/camera_range/C in GLOB.all_debugging_effects)
 		qdel(C)
 
-	if(camera_range_display_status)
+	if(GLOB.camera_range_display_status)
 		for(var/obj/machinery/camera/C in cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb","mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -112,15 +112,15 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Intercom Range Display"
 
-	if(intercom_range_display_status)
-		intercom_range_display_status = 0
+	if(GLOB.intercom_range_display_status)
+		GLOB.intercom_range_display_status = FALSE
 	else
-		intercom_range_display_status = 1
+		GLOB.intercom_range_display_status = TRUE
 
 	for(var/obj/effect/debugging/marker/M in GLOB.all_debugging_effects)
 		qdel(M)
 
-	if(intercom_range_display_status)
+	if(GLOB.intercom_range_display_status)
 		for(var/obj/item/radio/intercom/I in GLOB.machines)
 			for(var/turf/T in orange(7,I))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)

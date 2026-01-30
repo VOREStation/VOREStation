@@ -221,11 +221,10 @@ SUBSYSTEM_DEF(ticker)
 	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
 
 	// Spawn randomized items
-	for(var/id in multi_point_spawns)
-		var/list/spawn_points = multi_point_spawns[id]
-		var/obj/random_multi/rm = pickweight(spawn_points)
+	for(var/id, value in GLOB.multi_point_spawns)
+		var/obj/random_multi/rm = pickweight(value)
 		rm.generate_items()
-		for(var/entry in spawn_points)
+		for(var/entry in value)
 			qdel(entry)
 
 	// Place empty AI cores once we know who is playing AI
