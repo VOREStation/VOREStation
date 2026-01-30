@@ -6765,9 +6765,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port_store)
 "wS" = (
-/obj/structure/closet/wardrobe/black{
-	starts_with = list(/obj/item/clothing/under/color/black = 4, /obj/item/clothing/accessory/storage/black_vest = 4, /obj/item/clothing/accessory/storage/black_drop_pouches = 4, /obj/item/clothing/gloves/black = 4, /obj/item/clothing/head/soft/black = 4, /obj/item/clothing/mask/balaclava = 4, /obj/item/clothing/mask/bandana = 4, /obj/item/clothing/mask/gas/commando = 4, /obj/item/storage/backpack/messenger/black = 4, /obj/item/storage/backpack/dufflebag = 4, /obj/item/clothing/shoes/black = 4, /obj/item/clothing/shoes/boots/duty = 4)
-	},
+/obj/structure/closet/wardrobe/black/talon,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "wT" = (
@@ -8032,9 +8030,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "BH" = (
-/obj/structure/closet/wardrobe/black{
-	starts_with = list(/obj/item/clothing/under/color/black = 4, /obj/item/clothing/accessory/storage/black_vest = 4, /obj/item/clothing/accessory/storage/black_drop_pouches = 4, /obj/item/clothing/gloves/black = 4, /obj/item/clothing/head/soft/black = 4, /obj/item/clothing/mask/balaclava = 4, /obj/item/clothing/mask/bandana = 4, /obj/item/clothing/mask/gas/commando = 4, /obj/item/storage/backpack/messenger/black = 4, /obj/item/storage/backpack/dufflebag = 4, /obj/item/clothing/shoes/black = 4, /obj/item/clothing/shoes/boots/duty = 4)
-	},
+/obj/structure/closet/wardrobe/black/talon,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/crew_quarters/restrooms)
 "BI" = (

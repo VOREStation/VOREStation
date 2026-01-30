@@ -85,11 +85,7 @@
 	name = "Station Intercom (General)";
 	pixel_x = -28
 	},
-/obj/structure/closet/crate/hydroponics{
-	desc = "All you need to destroy that pesky planet.";
-	name = "exotic seeds crate";
-	starts_with = list(/obj/item/seeds/random = 6, /obj/item/seeds/replicapod = 2, /obj/item/seeds/ambrosiavulgarisseed = 2, /obj/item/seeds/kudzuseed, /obj/item/seeds/libertymycelium, /obj/item/seeds/reishimycelium)
-	},
+/obj/structure/closet/crate/hydroponics/exotic,
 /turf/simulated/floor/water,
 /area/submap/Epod4)
 "o" = (
