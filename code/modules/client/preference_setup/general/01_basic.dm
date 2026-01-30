@@ -48,26 +48,19 @@
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
 	var/char_real_name = pref.read_preference(/datum/preference/text/human/real_name)
-	var/char_real_name = pref.read_preference(/datum/preference/text/human/real_name)
 	if(CONFIG_GET(flag/humans_need_surnames))
-		var/firstspace = findtext(char_real_name, " ")
-		var/name_length = length(char_real_name)
 		var/firstspace = findtext(char_real_name, " ")
 		var/name_length = length(char_real_name)
 		if(!firstspace)	//we need a surname
 			char_real_name += " [pick(GLOB.last_names)]"
-			char_real_name += " [pick(GLOB.last_names)]"
 		else if(firstspace == name_length)
 			char_real_name += "[pick(GLOB.last_names)]"
-			char_real_name += "[pick(GLOB.last_names)]"
 
-	character.real_name = char_real_name
 	character.real_name = char_real_name
 	character.name = character.real_name
 	if(character.dna)
 		character.dna.real_name = character.real_name
 
-	character.nickname = pref.read_preference(/datum/preference/text/human/nickname)
 	character.nickname = pref.read_preference(/datum/preference/text/human/nickname)
 
 	character.gender = pref.biological_gender
@@ -91,9 +84,7 @@
 	var/list/data = ..()
 
 	data["real_name"] = pref.read_preference(/datum/preference/text/human/real_name)
-	data["real_name"] = pref.read_preference(/datum/preference/text/human/real_name)
 	data["be_random_name"] = pref.read_preference(/datum/preference/toggle/human/name_is_always_random)
-	data["nickname"] = pref.read_preference(/datum/preference/text/human/nickname)
 	data["nickname"] = pref.read_preference(/datum/preference/text/human/nickname)
 	data["biological_sex"] = gender2text(pref.biological_gender)
 	data["identifying_gender"] = gender2text(pref.identifying_gender)
@@ -215,12 +206,9 @@
 		if("rename")
 			var/current_name = pref.read_preference(/datum/preference/text/human/real_name)
 			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", current_name, encode = FALSE)
-			var/current_name = pref.read_preference(/datum/preference/text/human/real_name)
-			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", current_name, encode = FALSE)
 			if(!isnull(raw_name))
 				var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
 				if(new_name)
-					pref.update_preference_by_type(/datum/preference/text/human/real_name, new_name)
 					pref.update_preference_by_type(/datum/preference/text/human/real_name, new_name)
 					return TOPIC_REFRESH
 				else
@@ -228,7 +216,6 @@
 					return TOPIC_NOACTION
 
 		if("random_name")
-			pref.update_preference_by_type(/datum/preference/text/human/real_name, random_name(pref.identifying_gender, pref.species))
 			pref.update_preference_by_type(/datum/preference/text/human/real_name, random_name(pref.identifying_gender, pref.species))
 			return TOPIC_REFRESH
 
@@ -239,12 +226,9 @@
 		if("nickname")
 			var/current_nickname = pref.read_preference(/datum/preference/text/human/nickname)
 			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", current_nickname, encode = FALSE)
-			var/current_nickname = pref.read_preference(/datum/preference/text/human/nickname)
-			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", current_nickname, encode = FALSE)
 			if(!isnull(raw_nickname))
 				var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
 				if(new_nickname)
-					pref.update_preference_by_type(/datum/preference/text/human/nickname, new_nickname)
 					pref.update_preference_by_type(/datum/preference/text/human/nickname, new_nickname)
 					return TOPIC_REFRESH
 				else
@@ -254,7 +238,6 @@
 		if("reset_nickname")
 			var/nick_choice = tgui_alert(user, "Wipe your Nickname? This will completely remove any chosen nickname(s).","Wipe Nickname",list("Yes","No"))
 			if(nick_choice == "Yes")
-				pref.update_preference_by_type(/datum/preference/text/human/nickname, null)
 				pref.update_preference_by_type(/datum/preference/text/human/nickname, null)
 			return TOPIC_REFRESH
 
