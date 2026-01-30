@@ -463,7 +463,7 @@
 		return 0
 
 	var/obj/target_module = R.has_upgrade_module(/obj/item/mining_scanner/robot)
-	if(!T)
+	if(!target_module)
 		to_chat(usr, span_warning("This robot has had its scanner removed!"))
 		return 0
 
@@ -472,7 +472,7 @@
 		to_chat(usr, "There's no room for another scanning upgrade!")
 		return 0
 
-	var/obj/item/mining_scanner/robot/robot_scanner = T
+	var/obj/item/mining_scanner/robot/robot_scanner = target_module
 	robot_scanner.upgrade()
 	return 1
 

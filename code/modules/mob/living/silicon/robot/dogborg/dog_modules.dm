@@ -447,7 +447,6 @@
 	description_info = "This scanner has variable range, you can use the Set Scanner Range verb, or alt+click the device. Drills dig in 5x5."
 	scan_time = 0.5 SECONDS
 	exact = TRUE
-	to_chat(user, span_notice("You've upgraded the mining scanner for [upgrade_cost] points."))
 
 /obj/item/mining_scanner/robot/click_alt(mob/user)
 	change_size(user)
