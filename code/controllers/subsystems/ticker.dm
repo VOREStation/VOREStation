@@ -82,14 +82,6 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize()
 	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
-	SSwebhooks.send(
-		WEBHOOK_ROUNDPREP,
-		list(
-			"map" = station_name(),
-			"url" = get_world_url()
-		)
-	)
-
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
@@ -218,7 +210,6 @@ SUBSYSTEM_DEF(ticker)
 	GLOB.round_start_time = REALTIMEOFDAY
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_START)
-	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
 
 	// Spawn randomized items
 	for(var/id, value in GLOB.multi_point_spawns)

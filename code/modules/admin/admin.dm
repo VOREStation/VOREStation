@@ -1588,14 +1588,6 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 		log_game(plaintext_title)
 		log_game(fax_text)
 
-		SSwebhooks.send(
-			WEBHOOK_FAX_SENT,
-			list(
-				"name" = "[key_name(owner)] [plaintext_title].",
-				"body" = fax_text
-			)
-		)
-
 	else
 		to_chat(src.owner, span_warning("Message reply failed."))
 
