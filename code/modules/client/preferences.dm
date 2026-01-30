@@ -1,4 +1,4 @@
-var/list/preferences_datums = list()
+GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences
 	/// The path to the general savefile for this datum
