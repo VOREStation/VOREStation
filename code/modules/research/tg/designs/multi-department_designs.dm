@@ -2,7 +2,7 @@
 	name = "Beaker"
 	id = "beaker"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(/datum/material/glass = 500)
+	materials = list(MAT_GLASS = 500)
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
@@ -13,7 +13,7 @@
 	name = "Large Beaker"
 	id = "large_beaker"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(/datum/material/glass = 1000)
+	materials = list(MAT_GLASS = 1000)
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
