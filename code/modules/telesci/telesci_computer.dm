@@ -303,6 +303,7 @@
 				source = dest
 				dest = target
 
+			var/list/sent_atoms = list()
 			flick("pad-beam", telepad)
 			playsound(telepad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 			for(var/atom/movable/ROI in source)
@@ -338,7 +339,11 @@
 						else
 							log_msg += ")"
 					log_msg += ", "
+				sent_atoms += ROI
 				do_teleport(ROI, dest)
+			// Either works for the experiment scan, so fire signals on both
+			SEND_SIGNAL(src, COMSIG_TELESCI_TELEPORT, sent_atoms, target, sending)
+			SEND_SIGNAL(telepad, COMSIG_TELESCI_TELEPORT, sent_atoms, target, sending)
 
 			if (!dd_hassuffix(log_msg, ", "))
 				log_msg += "nothing"
