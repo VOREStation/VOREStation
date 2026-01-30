@@ -400,7 +400,7 @@
 
 	if(CONFIG_GET(flag/force_random_names))
 		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
+		client.prefs.update_preference_by_type(/datum/preference/text/human/real_name, random_name(new_character.gender))
 	else
 		client.prefs.copy_to(new_character, icon_updates = TRUE)
 

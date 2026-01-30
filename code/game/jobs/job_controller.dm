@@ -725,19 +725,20 @@ var/global/datum/controller/occupations/job_master
 				message_admins("[key_name(C)] has requested to vore spawn into [key_name(pred)]")
 
 				var/confirm
+				var/spawner_name = C.prefs.read_preference(/datum/preference/text/human/real_name)
 				if(pred.no_latejoin_vore_warning)
 					if(pred.no_latejoin_vore_warning_time > 0)
 						if(absorb_choice)
-							confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn absorbed as your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), pred.no_latejoin_vore_warning_time SECONDS)
+							confirm = tgui_alert(pred, "[spawner_name] is attempting to spawn absorbed as your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), pred.no_latejoin_vore_warning_time SECONDS)
 						else
-							confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), pred.no_latejoin_vore_warning_time SECONDS)
+							confirm = tgui_alert(pred, "[spawner_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), pred.no_latejoin_vore_warning_time SECONDS)
 					if(!confirm)
 						confirm = "Yes"
 				else
 					if(absorb_choice)
-						confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn absorbed as your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+						confirm = tgui_alert(pred, "[spawner_name] is attempting to spawn absorbed as your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
 					else
-						confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+						confirm = tgui_alert(pred, "[spawner_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
 				if(confirm != "Yes")
 					to_chat(C, span_warning("[pred] has declined your spawn request."))
 					var/message = tgui_input_text(pred,"Do you want to leave them a message?", "Notify Prey", max_length = MAX_MESSAGE_LEN)
@@ -802,19 +803,20 @@ var/global/datum/controller/occupations/job_master
 				message_admins("[key_name(C)] has requested to pred spawn onto [key_name(prey)]")
 
 				var/confirm
+				var/spawner_name = C.prefs.read_preference(/datum/preference/text/human/real_name)
 				if(prey.no_latejoin_prey_warning)
 					if(prey.no_latejoin_prey_warning_time > 0)
 						if(absorb_choice)
-							confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore and instantly absorb you with their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), prey.no_latejoin_prey_warning_time SECONDS)
+							confirm = tgui_alert(prey, "[spawner_name] is attempting to televore and instantly absorb you with their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), prey.no_latejoin_prey_warning_time SECONDS)
 						else
-							confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), prey.no_latejoin_prey_warning_time SECONDS)
+							confirm = tgui_alert(prey, "[spawner_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), prey.no_latejoin_prey_warning_time SECONDS)
 					if(!confirm)
 						confirm = "Yes"
 				else
 					if(absorb_choice)
-						confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore and instantly absorb you with their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+						confirm = tgui_alert(prey, "[spawner_name] is attempting to televore and instantly absorb you with their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
 					else
-						confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+						confirm = tgui_alert(prey, "[spawner_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
 				if(confirm != "Yes")
 					to_chat(C, span_warning("[prey] has declined your spawn request."))
 					var/message = tgui_input_text(prey,"Do you want to leave them a message?", "Notify Pred", max_length = MAX_MESSAGE_LEN)
@@ -898,7 +900,7 @@ var/global/datum/controller/occupations/job_master
 					to_chat(C, span_boldwarning("[carrier] has received your spawn request. Please wait."))
 					log_and_message_admins("[key_name(C)] has requested to item spawn into [key_name(carrier)]'s possession")
 
-					var/confirm = tgui_alert(carrier, "[C.prefs.real_name] is attempting to join as the [item_name] in your possession.", "Confirm", list("No", "Yes"))
+					var/confirm = tgui_alert(carrier, "[C.prefs.read_preference(/datum/preference/text/human/real_name)] is attempting to join as the [item_name] in your possession.", "Confirm", list("No", "Yes"))
 					if(confirm != "Yes")
 						to_chat(C, span_warning("[carrier] has declined your spawn request."))
 						var/message = tgui_input_text(carrier,"Do you want to leave them a message?", "Notify Spawner", max_length = MAX_MESSAGE_LEN)

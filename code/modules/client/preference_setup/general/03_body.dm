@@ -270,9 +270,11 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		pref.rlimb_data -= null
 
 	// Sanitize the name so that there aren't any numbers sticking around.
-	pref.real_name          = sanitize_name(pref.real_name, pref.species)
-	if(!pref.real_name)
-		pref.real_name      = random_name(pref.identifying_gender, pref.species)
+	var/current_name = pref.read_preference(/datum/preference/text/human/real_name)
+	current_name = sanitize_name(current_name, pref.species)
+	if(!current_name)
+		current_name = random_name(pref.identifying_gender, pref.species)
+	pref.update_preference_by_type(/datum/preference/text/human/real_name, current_name)
 
 /datum/category_item/player_setup_item/general/body/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
