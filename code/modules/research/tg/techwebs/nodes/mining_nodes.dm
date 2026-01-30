@@ -65,6 +65,7 @@
 	design_ids = list(
 		"borg_pka_module",
 		"pka_mineaoe",
+		"borg_adv_scanner_module",
 		// "damagemod",
 		// "cooldownmod",
 		// "triggermod",
