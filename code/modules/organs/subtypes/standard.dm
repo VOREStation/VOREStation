@@ -318,7 +318,7 @@
 			owner.drop_from_inventory(owner.wear_mask)
 			spawn(1)
 				owner.update_hair()
-	get_icon()
+	update_dropped_icon()
 	..()
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation, projectile)
@@ -348,77 +348,6 @@
 		user.visible_message(span_notice("[user] makes \the [I] kiss \the [src]!."), \
 		span_notice("You make \the [I] kiss \the [src]!."))
 	return ..()
-
-/obj/item/organ/external/head/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
-	..()
-
-	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
-	cut_overlays()
-
-	//Every 'addon' below requires information from species
-	if(!iscarbon(owner) || !owner.species)
-		return
-
-	var/icon/eyecon //VOREStation Add
-
-	//Eye color/icon
-	var/should_have_eyes = owner.should_have_organ(O_EYES)
-	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
-	if((should_have_eyes || has_eye_color) && eye_icon)
-		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
-		var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
-		//Do we have a special eye icon with its own coloration? Remove
-		if(!findtext(eye_icon, regex("-colored")))
-			//Should have eyes
-			if(should_have_eyes)
-				//And we have them
-				if(eyes)
-					if(has_eye_color)
-						eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
-				//They're gone!
-				else
-					eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
-			//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
-			else
-				eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
-
-
-		//VOREStation edit -- allow rendering of eyes over markings.
-		if(eyes_over_markings)
-			eyecon = eyes_icon
-		else
-			add_overlay(eyes_icon)
-			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-			icon_cache_key += "[eye_icon]"
-
-	//Lip color/icon
-	if(owner.lip_style && (data.get_species_appearance_flags() & HAS_LIPS))
-		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
-		add_overlay(lip_icon)
-		mob_icon.Blend(lip_icon, ICON_OVERLAY)
-
-	//Head markings
-	for(var/M in markings)
-		if (!markings[M]["on"])
-			continue
-		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)
-		add_overlay(mark_s) //So when it's not on your body, it has icons
-		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
-		icon_cache_key += "[M][markings[M]["color"]]"
-
-	if(eyes_over_markings && eyecon) //VOREStation edit -- toggle to render eyes above markings.
-		add_overlay(eyecon)
-		mob_icon.Blend(eyecon, ICON_OVERLAY)
-		icon_cache_key += "[eye_icon]"
-
-	add_overlay(get_hair_icon())
-
-	if (transparent && can_apply_transparency) //VOREStation Edit: transparent instead of nonsolid
-		mob_icon += rgb(,,,180) //do it here so any markings become transparent as well
-
-	return mob_icon
 
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"

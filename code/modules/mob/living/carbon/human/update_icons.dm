@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 //Add an entry to overlays, assuming it exists
 /mob/living/carbon/human/proc/apply_layer(cache_index)
+	if(cache_index != BODY_BLOCK_LAYER)
+		update_body_blocker()
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)
 
@@ -171,6 +173,32 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	overlays_standing[MOB_DAM_LAYER]	= standing_image
 	apply_layer(MOB_DAM_LAYER)
 
+
+/mob/living/carbon/human/proc/generate_body_blocker_render_target()
+	return "*[REF(src)]_body_blocker"
+
+// How this works:
+// 1. This proc is called whenever a layer other than BODY_BLOCK_LAYER is applied
+// 2. We overlay all layers from BODYPARTS_LAYER + 1 to BODY_BLOCK_LAYER - 1 in an image
+// 3. The image is set to render_target = "*[REF(src)]_body_blocker", where the * means "do not draw this to the map, only to a slate"
+// 4. The image is stored in BODY_BLOCK_LAYER and applied so that clients are aware of it and draw it to the slate (required)
+/mob/living/carbon/human/proc/update_body_blocker()
+	if(QDESTROYING(src))
+		return
+
+	remove_layer(BODY_BLOCK_LAYER)
+	var/image/I = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", layer = BODY_LAYER)
+	I.appearance_flags = KEEP_TOGETHER
+	I.render_target = generate_body_blocker_render_target()
+
+	// just slam all of these on top
+	for(var/layer_idx in BODYPARTS_LAYER + 1 to BODY_BLOCK_LAYER - 1)
+		I.overlays += overlays_standing[layer_idx]
+
+	overlays_standing[BODY_BLOCK_LAYER] = I
+	apply_layer(BODY_BLOCK_LAYER)
+
+
 //BASE MOB SPRITE
 /mob/living/carbon/human/update_icons_body()
 	if(QDESTROYING(src))
@@ -191,9 +219,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
-
-	//Create a new, blank icon for our mob to use.
-	var/icon/stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
 
 	var/g = (gender == MALE ? "male" : "female")
 	var/icon_key = "[species.get_race_key(src)][g][s_tone][r_skin][g_skin][b_skin]"
@@ -271,99 +296,128 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 				default_pixel_y = tail_style.mob_offset_y
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
-	var/icon/base_icon
-
+	var/mutable_appearance/body = null
 	if(GLOB.human_icon_cache[icon_key])
-		base_icon = GLOB.human_icon_cache[icon_key]
+		body = GLOB.human_icon_cache[icon_key]
 	else
-		//BEGIN CACHED ICON GENERATION.
+		body = mutable_appearance(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', "blank")
+		body.layer = BODY_LAYER + BODYPARTS_LAYER
+
 		var/obj/item/organ/external/chest = get_organ(BP_TORSO)
-		base_icon = new(chest?.get_icon(skeleton, !wholeicontransparent))
+		var/mutable_appearance/chest_MA = chest.simple_compile_ma(skeleton, !wholeicontransparent, markings_filter = filter(arglist(alpha_mask_filter(0, 0, null, generate_body_blocker_render_target(), MASK_INVERSE))))
+		chest_MA.layer = BODY_LAYER + BODYPARTS_LAYER
+		body.overlays += chest_MA
 
-		var/apply_extra_transparency_leg = organs_by_name[BP_L_LEG] && organs_by_name[BP_R_LEG]
-		var/apply_extra_transparency_foot = organs_by_name[BP_L_FOOT] && organs_by_name[BP_R_FOOT]
-
-		var/icon/Cutter = null
-		var/icon_x_offset = 0
-		var/icon_y_offset = 0
+		// Taur cutting
+		var/icon/taur_cutter = null
+		var/taur_cutter_x = 0
+		var/taur_cutter_y = 0
 
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
 			if(tail_style.clip_mask)
-				Cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
+				taur_cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
+				taur_cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
+				taur_cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
+				taur_cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
+				taur_cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
-				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
+				taur_cutter_x = tail_style.offset_x
+				taur_cutter_y = tail_style.offset_y
 
-				Cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
-				Cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
-
-				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
-
-				icon_x_offset = tail_style.offset_x
-				icon_y_offset = tail_style.offset_y
+		// Extra transparency when you have double legs/double feet
+		var/apply_extra_transparency_leg = organs_by_name[BP_L_LEG] && organs_by_name[BP_R_LEG]
+		var/apply_extra_transparency_foot = organs_by_name[BP_L_FOOT] && organs_by_name[BP_R_FOOT]
 
 		for(var/obj/item/organ/external/part in organs)
 			if(isnull(part) || part.is_stump() || part == chest || part.is_hidden_by_sprite_accessory()) //Allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
-			var/icon/temp = new(part.get_icon(skeleton, !wholeicontransparent))
+			var/list/part_appearance = part.get_appearance(skeleton, !wholeicontransparent)
+			var/mutable_appearance/part_MA = part_appearance["base"]
+			part_MA.layer = BODY_LAYER + BODYPARTS_LAYER + 0.2
 
-			if((part.organ_tag in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)) && Cutter)
-				temp.Blend(Cutter, ICON_AND, x = icon_x_offset, y = icon_y_offset)
+			if((part.organ_tag in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)) && taur_cutter)
+				part_MA.filters += filter(arglist(alpha_mask_filter(taur_cutter_x, taur_cutter_y, icon = taur_cutter)))
 
-			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
-			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
+			// Problem: For dir = EAST and dir = WEST, a different leg needs to render on top.
+			// Solution:
 			if(part.icon_position & (LEFT | RIGHT))
-				var/icon/temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
-				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
-				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
-				if(!(part.icon_position & LEFT))
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(!(part.icon_position & RIGHT))
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp2, ICON_OVERLAY)
-				temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
-				if(part.icon_position & LEFT)
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(part.icon_position & RIGHT)
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				if (part.transparent && !wholeicontransparent) //apply a little (a lot) extra transparency to make it look better.
-					if ((istype(part, /obj/item/organ/external/leg) && apply_extra_transparency_leg) || (istype(part, /obj/item/organ/external/foot) && apply_extra_transparency_foot)) //maybe
-						temp2 += rgb(,,,30)
-				base_icon.Blend(temp2, ICON_UNDERLAY)
-			else if(part.icon_position & UNDER)
-				base_icon.Blend(temp, ICON_UNDERLAY)
+				var/mutable_appearance/part_MA_lower = new /mutable_appearance(part_MA)
+				part_MA_lower.layer = BODY_LAYER + BODYPARTS_LAYER + 0.1
+
+				// We also have to apply some extra transparency.
+				if(part.transparent && !wholeicontransparent)
+					if((istype(part, /obj/item/organ/external/leg) && apply_extra_transparency_leg) \
+						|| (istype(part, /obj/item/organ/external/foot) && apply_extra_transparency_foot))
+						part_MA_lower.alpha = 30
+
+				for(var/mutable_appearance/mark_MA as anything in part_appearance["markings"])
+					mark_MA.filters += filter(arglist(alpha_mask_filter(0, 0, null, generate_body_blocker_render_target(), MASK_INVERSE)))
+					part_MA.overlays += mark_MA
+					// Do not render emissive markings to part_MA_lower or they will clip
+					if(mark_MA.plane == FLOAT_PLANE)
+						part_MA_lower.overlays += mark_MA
+
+				for(var/mutable_appearance/extra_MA as anything in part_appearance["extra"])
+					part_MA.overlays += extra_MA
+					part_MA_lower.overlays += extra_MA
+
+				// Apply masking
+				// We cannot use alpha mask filters here because they don't work on directional sprites :)
+				// - If we're on the left leg, we mask the upper layer to only show on dir = NORTH|WEST|SOUTH
+				//   and mask the lower layer to only show on dir = EAST
+				// - If we're on the right leg, we mask the upper layer to only show on dir = NORTH|EAST|SOUTH
+				//   and mask the lower layer to only show on dir = WEST
+				var/icon/leg_crop_mask = icon('icons/mob/leg_masks.dmi', (part.icon_position & LEFT) ? "left_leg" : "right_leg")
+				var/icon/leg_crop_mask_lower = icon('icons/mob/leg_masks.dmi', (part.icon_position & LEFT) ? "left_leg_lower" : "right_leg_lower")
+
+				var/icon/upper = getCompoundIcon(part_MA)
+				var/icon/lower = getCompoundIcon(part_MA_lower)
+
+				upper.Blend(leg_crop_mask, ICON_MULTIPLY)
+				lower.Blend(leg_crop_mask_lower, ICON_MULTIPLY)
+
+				part_MA.icon = upper
+				part_MA_lower.icon = lower
+
+				// this is important for actually applying the masks....
+				part_MA.overlays.Cut()
+				part_MA_lower.overlays.Cut()
+
+				body.overlays += part_MA
+				body.overlays += part_MA_lower
 			else
-				base_icon.Blend(temp, ICON_OVERLAY)
+				for(var/mutable_appearance/mark_MA as anything in part_appearance["markings"])
+					mark_MA.filters += filter(arglist(alpha_mask_filter(0, 0, null, generate_body_blocker_render_target(), MASK_INVERSE)))
+					part_MA.overlays += mark_MA
 
-		if (wholeicontransparent) //because, I mean. It's basically never gonna happen that you'll have just one non-transparent limb but if you do your icon will look meh. Still good but meh, will have some areas with higher transparencies unless you're literally just a torso and a head
-			base_icon += rgb(,,,180)
+				for(var/extra_MA in part_appearance["extra"])
+					part_MA.overlays += extra_MA
 
+				body.overlays += part_MA
+
+		// Apply transparency to the whole icon if needed.
+		if(wholeicontransparent)
+			body.appearance_flags = KEEP_TOGETHER
+			body.alpha = 200
+
+		// Apply color mods
 		if(!skeleton)
 			if(husk)
-				base_icon.ColorTone(husk_color_mod)
+				body.color = husk_color_mod
 			else if(hulk)
-				var/list/tone = rgb2num(hulk_color_mod)
-				base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
+				body.color = hulk_color_mod
 
 		//Handle husk overlay.
 		if(husk && icon_exists(species.icobase, "overlay_husk"))
-			var/icon/mask = new(base_icon)
-			var/icon/husk_over = new(species.icobase,"overlay_husk")
-			mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
-			husk_over.Blend(mask, ICON_ADD)
-			base_icon.Blend(husk_over, ICON_OVERLAY)
+			var/mutable_appearance/husk_over = mutable_appearance(species.icobase, "overlay_husk")
+			husk_over.filters += filter(arglist(alpha_mask_filter(0, 0, getCompoundIcon(body))))
+			body.overlays += husk_over
 
-		GLOB.human_icon_cache[icon_key] = base_icon
+		GLOB.human_icon_cache[icon_key] = body
 
-	//END CACHED ICON GENERATION.
-	stand_icon.Blend(base_icon,ICON_OVERLAY)
-
-	var/image/body = image(stand_icon)
-	if (body)
-		body.layer = BODY_LAYER + BODYPARTS_LAYER
-		overlays_standing[BODYPARTS_LAYER] = body
-		apply_layer(BODYPARTS_LAYER)
-
-	icon = stand_icon
+	// technically this can go at the top but it's more readable here
+	overlays_standing[BODYPARTS_LAYER] = body
+	apply_layer(BODYPARTS_LAYER)
 
 	//tail
 	update_tail_showing()
@@ -411,7 +465,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		both.add_overlay(bloodsies)
 
 	overlays_standing[BLOOD_LAYER] = both
-
 	apply_layer(BLOOD_LAYER)
 
 //UNDERWEAR OVERLAY
@@ -652,7 +705,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/obj/item/clothing/suit/S = wear_suit
 		if((wear_suit?.flags_inv & HIDETAIL) || (istype(S) && S.taurized)) // Reasons to not mask: 1. If you're wearing a suit that hides the tail or if you're wearing a taurized suit.
 			c_mask = null
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	var/image/worn_icon = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	overlays_standing[UNIFORM_LAYER] = worn_icon
+
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -681,7 +736,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!gloves)
 		return //No gloves, no reason to be here.
 
-	overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_GLOVES_DEF_ICON, default_layer = GLOVES_LAYER)
+	var/image/worn_icon = gloves.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_GLOVES_DEF_ICON, default_layer = GLOVES_LAYER)
+	overlays_standing[GLOVES_LAYER]	= worn_icon
 
 	apply_layer(GLOVES_LAYER)
 
@@ -701,7 +757,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(our_glasses.glasses_layer_above)
 			glasses_layer = GLASSES_LAYER_ALT
 
-	overlays_standing[glasses_layer] = glasses.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_EYES_DEF_ICON, default_layer = glasses_layer)
+	var/image/worn_icon = glasses.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_EYES_DEF_ICON, default_layer = glasses_layer)
+	overlays_standing[glasses_layer] = worn_icon
 
 	apply_layer(glasses_layer)
 
@@ -780,7 +837,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			shoe_layer = SHOES_LAYER_ALT
 
 	//NB: the use of a var for the layer on this one
-	overlays_standing[shoe_layer] = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
+	var/image/worn_icon = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
+	overlays_standing[shoe_layer] = worn_icon
 
 	apply_layer(SHOES_LAYER)
 	apply_layer(SHOES_LAYER_ALT)
@@ -812,7 +870,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!head)
 		return //No head item, why bother.
 
-	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+	var/image/worn_icon = head.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+	overlays_standing[HEAD_LAYER] = worn_icon
 
 	apply_layer(HEAD_LAYER)
 
@@ -837,7 +896,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/icon/c_mask = tail_style?.clip_mask
 
 	//NB: this uses a var from above
-	overlays_standing[belt_layer] = belt.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_belt_str, default_icon = INV_BELT_DEF_ICON, default_layer = belt_layer, clip_mask = c_mask)
+	var/image/worn_icon = belt.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_belt_str, default_icon = INV_BELT_DEF_ICON, default_layer = belt_layer, clip_mask = c_mask)
+	overlays_standing[belt_layer] = worn_icon
 
 	apply_layer(belt_layer)
 
@@ -870,7 +930,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
 		c_mask = valid_clip_mask
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+
+	var/image/worn_icon = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+	overlays_standing[SUIT_LAYER] = worn_icon
 
 	apply_layer(SUIT_LAYER)
 
@@ -904,7 +966,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(istype(back, /obj/item/storage/backpack/saddlebag) || istype(back, /obj/item/storage/backpack/saddlebag_common))
 			c_mask = null
 
-	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER, clip_mask = c_mask)
+	var/image/worn_icon = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER, clip_mask = c_mask)
+	overlays_standing[BACK_LAYER] = worn_icon
 
 	apply_layer(BACK_LAYER)
 
@@ -966,7 +1029,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!r_hand)
 		return //No hand, no bother.
 
-	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
+	var/image/worn_icon = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
+	overlays_standing[R_HAND_LAYER] = worn_icon
 
 	apply_layer(R_HAND_LAYER)
 
@@ -979,7 +1043,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!l_hand)
 		return //No hand, no bother.
 
-	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_l_hand_str, default_icon = INV_L_HAND_DEF_ICON, default_layer = L_HAND_LAYER)
+	var/image/worn_icon = l_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_l_hand_str, default_icon = INV_L_HAND_DEF_ICON, default_layer = L_HAND_LAYER)
+	overlays_standing[L_HAND_LAYER] = worn_icon
 
 	apply_layer(L_HAND_LAYER)
 

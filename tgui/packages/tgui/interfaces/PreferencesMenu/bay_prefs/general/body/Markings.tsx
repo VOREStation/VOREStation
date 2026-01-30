@@ -12,7 +12,6 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 import {
   ColorizedImage,
@@ -20,6 +19,7 @@ import {
   getImage,
 } from '../../helper_components';
 import type {
+  BodyMarkingZone,
   GeneralData,
   GeneralDataConstant,
   GeneralDataStatic,
@@ -214,6 +214,20 @@ export const ExtraWindow = (props: {
           Change Color Of All
         </Button>
         <Button
+          onClick={() =>
+            act('toggle_all_marking_emissive', { marking: name, toggle: 1 })
+          }
+        >
+          Enable Emissive All
+        </Button>
+        <Button
+          onClick={() =>
+            act('toggle_all_marking_emissive', { marking: name, toggle: 0 })
+          }
+        >
+          Disable Emissive All
+        </Button>
+        <Button
           onClick={() => {
             act('marking_remove', { marking: name });
             setShow('');
@@ -234,30 +248,38 @@ export const ExtraWindow = (props: {
             .filter(([zone, value]) => {
               return value && typeof value === 'object';
             })
-            .map(
-              ([zone, value]: [string, { on: BooleanLike; color: string }]) => (
-                <LabeledList.Item
-                  label={capitalize(BP_TO_NAME[zone] || zone)}
-                  key={zone}
+            .map(([zone, value]: [string, BodyMarkingZone]) => (
+              <LabeledList.Item
+                label={capitalize(BP_TO_NAME[zone] || zone)}
+                key={zone}
+              >
+                <Button
+                  onClick={() =>
+                    act('zone_marking_color', { marking: name, zone })
+                  }
                 >
-                  <Button
-                    onClick={() =>
-                      act('zone_marking_color', { marking: name, zone })
-                    }
-                  >
-                    {value.color} <ColorBox color={value.color} ml={1} />{' '}
-                  </Button>
-                  <Button.Checkbox
-                    onClick={() =>
-                      act('zone_marking_toggle', { marking: name, zone })
-                    }
-                    checked={value.on}
-                    selected={value.on}
-                    tooltip={value.on ? 'Disable Part' : 'Enable Part'}
-                  />
-                </LabeledList.Item>
-              ),
-            )}
+                  {value.color} <ColorBox color={value.color} ml={1} />{' '}
+                </Button>
+                <Button.Checkbox
+                  onClick={() =>
+                    act('zone_marking_toggle', { marking: name, zone })
+                  }
+                  checked={value.on}
+                  selected={value.on}
+                  tooltip={value.on ? 'Disable Part' : 'Enable Part'}
+                />
+                <Button.Checkbox
+                  onClick={() =>
+                    act('zone_marking_emissive', { marking: name, zone })
+                  }
+                  checked={value.emissive}
+                  selected={value.emissive}
+                  tooltip={
+                    value.emissive ? 'Disable Emissive' : 'Enable Emissive'
+                  }
+                />
+              </LabeledList.Item>
+            ))}
         </LabeledList>
       </Section>
     </Dimmer>

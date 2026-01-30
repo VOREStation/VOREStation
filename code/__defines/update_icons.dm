@@ -42,9 +42,10 @@
 #define FIRE_LAYER				39		//'Mob on fire' overlay layer
 #define MOB_WATER_LAYER			40		//'Mob submerged' overlay layer
 #define TARGETED_LAYER			41		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			41		// <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+#define BODY_BLOCK_LAYER		42		// where the body_block render target is "rendered"
+#define TOTAL_LAYERS			42		// <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 
 
 //These two are only used for gargoyles currently
 #define HUMAN_BODY_LAYERS list(MUTATIONS_LAYER, TAIL_LOWER_LAYER, WING_LOWER_LAYER, BODYPARTS_LAYER, SKIN_LAYER, BLOOD_LAYER, MOB_DAM_LAYER, TAIL_UPPER_LAYER, HAIR_LAYER, HAIR_ACCESSORY_LAYER, EYES_LAYER, WING_LAYER, VORE_BELLY_LAYER, VORE_TAIL_LAYER, TAIL_UPPER_LAYER_HIGH, TAIL_UPPER_LAYER_LOW)
-#define HUMAN_OTHER_LAYERS list(MODIFIER_EFFECTS_LAYER, FIRE_LAYER, MOB_WATER_LAYER, TARGETED_LAYER)
+#define HUMAN_OTHER_LAYERS list(MODIFIER_EFFECTS_LAYER, FIRE_LAYER, MOB_WATER_LAYER, TARGETED_LAYER, BODY_BLOCK_LAYER)

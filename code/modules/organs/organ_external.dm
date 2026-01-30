@@ -19,6 +19,10 @@
 	dir = SOUTH
 	organ_tag = "limb"
 
+	icon = 'icons/obj/surgery.dmi'
+	// deliberately no icon because we render with overlays now
+	icon_state = "nothing"
+
 	// Strings
 	var/broken_description             // fracture string if any.
 	var/damage_state = "00"            // Modifier used for generating the on-mob damage overlay for this limb.
@@ -47,7 +51,6 @@
 	var/body_hair                      // Icon blend for body hair if any.
 	var/mob/living/applied_pressure
 	var/list/markings = list()         // Markings (body_markings) to apply to the icon
-	var/skip_robo_icon = FALSE 			//to force it to use the normal species icon
 	var/digi_prosthetic = FALSE 		//is it a prosthetic that can be digitigrade
 
 	// Wound and structural data.
@@ -262,7 +265,7 @@
 
 /obj/item/organ/external/LateInitialize()
 	if(!QDELETED(src))
-		get_icon()
+		update_dropped_icon()
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
@@ -1012,7 +1015,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			appearance_flags &= ~PIXEL_SCALE
-			compile_icon()
+			update_dropped_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
 			M.Turn(rand(180))
@@ -1053,7 +1056,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if(DROPLIMB_ACID)
 			appearance_flags &= ~PIXEL_SCALE
-			compile_icon()
+			update_dropped_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
 			M.Turn(rand(180))
@@ -1246,7 +1249,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	cannot_break = 1
 	min_broken_damage = ROBOLIMB_REPAIR_CAP //VOREStation Addition - Makes robotic limb damage scalable
 	remove_splint()
-	get_icon()
+	update_dropped_icon()
 	unmutate()
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'

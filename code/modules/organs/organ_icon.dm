@@ -3,14 +3,26 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 /obj/item/organ/external/set_dir()
 	return
 
-/obj/item/organ/external/proc/compile_icon()
+// Compile the primary mutable_appearance for this organ with no control over markings and extras
+/obj/item/organ/external/proc/simple_compile_ma(skeletal, can_apply_transparency = TRUE, skip_extra = FALSE, markings_filter)
+	var/list/appearances = get_appearance(skeletal, can_apply_transparency)
+
+	var/mutable_appearance/MA = appearances["base"]
+	for(var/mutable_appearance/M as anything in appearances["markings"])
+		if(markings_filter)
+			M.filters += markings_filter
+		MA.overlays += M
+
+	if(!skip_extra)
+		for(var/extra_MA in appearances["extra"])
+			MA.overlays += extra_MA
+
+	return MA
+
+/obj/item/organ/external/proc/update_dropped_icon(skeletal, can_apply_transparency = TRUE)
 	cut_overlays()
-	// This is a kludge, only one icon has more than one generation of children though.
-	for(var/obj/item/organ/external/organ in contents)
-		if(organ.children && organ.children.len)
-			for(var/obj/item/organ/external/child in organ.children)
-				add_overlay(child.mob_icon)
-		add_overlay(organ.mob_icon)
+	add_overlay(simple_compile_ma(skeletal, can_apply_transparency))
+	dir = SOUTH
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
 	s_tone = null
@@ -54,7 +66,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 /obj/item/organ/external/head/proc/get_hair_icon()
 	var/image/res = image('icons/mob/human_face.dmi',"bald_s")
 	//Facial hair
-	if(owner.f_style)
+	if(owner?.f_style)
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[owner.f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (data.get_species_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -63,7 +75,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 			res.add_overlay(facial_s)
 
 	//Head hair
-	if(owner.h_style)
+	if(owner?.h_style)
 		var/style = owner.h_style
 		var/datum/sprite_accessory/hair/hair_style = GLOB.hair_styles_list[style]
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
@@ -79,109 +91,177 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 
 	return res
 
-/obj/item/organ/external/proc/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
-	var/digitigrade = 0
-
-	cut_overlays()
-	// preferentially take digitigrade value from owner if available, THEN DNA.
-	// this allows limbs to be set properly when being printed in the bioprinter without an owner
-	// this also allows the preview mannequin to update properly because customisation topic calls don't call a DNA check
+/obj/item/organ/external/proc/get_check_digi()
+	var/digitigrade = FALSE
 	var/check_digi = istype(src,/obj/item/organ/external/leg) || istype(src,/obj/item/organ/external/foot)
 	if(owner)
 		digitigrade = check_digi && owner.digitigrade
 	else if(data)
 		digitigrade = check_digi && data.digitigrade
 
-	var/should_apply_transparency = FALSE
+	return list("digitigrade" = digitigrade, "check_digi" = check_digi)
 
+/obj/item/organ/external/proc/get_base_appearance(skeletal, can_apply_transparency)
 	var/gender = "m"
-	var/skip_forced_icon = skip_robo_icon || (digi_prosthetic && digitigrade)
 	if(owner && owner.gender == FEMALE)
 		gender = "f"
 
-	icon_cache_key = "[icon_name]_[data.get_species_bodytype(owner)]"
-
-	if(force_icon && !skip_forced_icon)
-		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
-	else
-		if(!data)
-			mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][gendered_icon ? "_[gender]" : ""]")
+	if(data)
+		if(data.body_gender)
+			gender = "f"
 		else
+			gender = "m"
 
-			if(!gendered_icon)
-				gender = null
-			else
-				if(data.body_gender)
-					gender = "f"
-				else
-					gender = "m"
+	var/base_icon = 'icons/mob/human_races/r_human.dmi'
 
-			if(skeletal)
-				mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-			else if (robotic >= ORGAN_ROBOT && !skip_forced_icon)
-				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-				should_apply_transparency = TRUE
-				apply_colouration(mob_icon)
-			else
-				if(is_hidden_by_markings())
-					mob_icon = new /icon('icons/mob/human_races/r_blank.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-					should_apply_transparency = TRUE
-				else
-					//Use digi icon if digitigrade, otherwise use regular icon. Ternary operator is based.
-					mob_icon = new /icon(digitigrade ? data.get_species_icodigi() : data.get_species_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
-					should_apply_transparency = TRUE
-					apply_colouration(mob_icon)
+	var/list/digi = get_check_digi()
+	var/digitigrade = digi["digitigrade"]
 
-	if (model && !skip_forced_icon)
-		icon_cache_key += "_model_[model]"
+	var/should_colour = FALSE
+	var/should_apply_transparency = FALSE
+	var/skip_forced_icon = (digi_prosthetic && digitigrade)
+	if(force_icon && !skip_forced_icon)
+		base_icon = force_icon
+	else if(skeletal)
+		base_icon = 'icons/mob/human_races/r_skeleton.dmi'
+	else if(is_hidden_by_markings())
+		base_icon = 'icons/mob/human_races/r_blank.dmi'
 		should_apply_transparency = TRUE
-		apply_colouration(mob_icon)
+	else if(robotic >= ORGAN_ROBOT && !skip_forced_icon)
+		base_icon = 'icons/mob/human_races/robotic.dmi'
+		should_apply_transparency = TRUE
+		should_colour = TRUE
+	else if(data)
+		//Use digi icon if digitigrade, otherwise use regular icon. Ternary operator is based.
+		base_icon = digitigrade ? data.get_species_icodigi() : data.get_species_icobase(owner, (status & ORGAN_MUTATED))
+		should_apply_transparency = TRUE
+		should_colour = TRUE
+	// else
+		// use default
 
-	//Body markings, actually does not include head this time. Done separately above.
-	if((!istype(src,/obj/item/organ/external/head) && !(force_icon && !skip_forced_icon)) || (model && owner && owner.synth_markings))
+	if(model)
+		should_apply_transparency = TRUE
+		should_colour = TRUE
+
+	var/mutable_appearance/MA = mutable_appearance(base_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
+	if(should_colour)
+		apply_colouration_ma(MA)
+
+	if(transparent && can_apply_transparency && should_apply_transparency)
+		MA.alpha = 180
+
+	return MA
+
+/obj/item/organ/external/head/proc/get_eyecon()
+	var/should_have_eyes = owner.should_have_organ(O_EYES)
+	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
+
+	var/icon/eyes_icon
+	if((should_have_eyes || has_eye_color) && eye_icon)
+		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
+		eyes_icon = new /icon(eye_icon_location, eye_icon)
+		//Do we have a special eye icon with its own coloration? Remove
+		if(!findtext(eye_icon, regex("-colored")))
+			//Should have eyes
+			if(should_have_eyes)
+				//And we have them
+				if(eyes)
+					if(has_eye_color)
+						eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				//They're gone!
+				else
+					eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+			//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
+			else
+				eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
+
+	return eyes_icon
+
+/obj/item/organ/external/head/get_base_appearance(skeletal, can_apply_transparency)
+	var/mutable_appearance/MA = ..()
+
+	// We require all of this information to successfully apply head extras
+	if(!owner || !owner.species || !data)
+		return MA
+
+	if(!eyes_over_markings)
+		MA.overlays += new /mutable_appearance(get_eyecon())
+
+	//Lip color/icon
+	if(owner.lip_style && (data.get_species_appearance_flags() & HAS_LIPS))
+		MA.overlays += mutable_appearance('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
+
+	return MA
+
+// Applied after markings.
+/obj/item/organ/external/proc/get_extra_appearances()
+	. = list()
+
+	if(body_hair && LAZYLEN(h_col) >= 3)
+		// TODO: verify this branch (teshari)
+		var/icon/I = icon(data.get_species_icobase(owner), "[icon_name]_[body_hair]")
+		I.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_MULTIPLY)
+		. += new /mutable_appearance(I)
+
+	var/list/digi = get_check_digi()
+	var/digitigrade = digi["digitigrade"]
+	var/skip_forced_icon = (digi_prosthetic && digitigrade)
+
+	if(nail_polish && !(force_icon && !skip_forced_icon))
+		// TODO: verify this branch
+		var/icon/I = new(nail_polish.icon, nail_polish.icon_state)
+		I.Blend(nail_polish.color, ICON_MULTIPLY)
+		. += new /mutable_appearance(I)
+
+/obj/item/organ/external/head/get_extra_appearances()
+	. = ..()
+
+	if(eyes_over_markings)
+		. += new /mutable_appearance(get_eyecon())
+
+	. += new /mutable_appearance(get_hair_icon())
+
+// Returns: list("base" = mutable_appearance, "markings" = list(mutable_appearance))
+/obj/item/organ/external/proc/get_appearance(skeletal, can_apply_transparency = TRUE)
+	var/mutable_appearance/MA = get_base_appearance(skeletal, can_apply_transparency)
+
+	var/list/digi = get_check_digi()
+	var/digitigrade = digi["digitigrade"]
+	var/check_digi = digi["check_digi"]
+	var/skip_forced_icon = (digi_prosthetic && digitigrade)
+
+	var/list/marking_appearances = list()
+	if(!(force_icon && !skip_forced_icon) || (model && owner && owner.synth_markings))
 		for(var/M in markings)
-			if (!markings[M]["on"])
+			if(!markings[M]["on"])
 				continue
 			var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 			var/isdigitype = mark_style.digitigrade_acceptance
 			if(check_digi)
-				if (!(isdigitype & (digitigrade ? MARKING_DIGITIGRADE_ONLY : MARKING_NONDIGI_ONLY))) //checks flags based on which digitigrade type the limb is
+				//checks flags based on which digitigrade type the limb is
+				if(!(isdigitype & (digitigrade ? MARKING_DIGITIGRADE_ONLY : MARKING_NONDIGI_ONLY)))
 					continue
 			var/icon/mark_s = new/icon("icon" = digitigrade ? mark_style.digitigrade_icon : mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 			mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)
-			add_overlay(mark_s) //So when it's not on your body, it has icons
-			mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
-			icon_cache_key += "[M][markings[M]["color"]]"
-	if(body_hair && islist(h_col) && h_col.len >= 3)
-		var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-		if(!GLOB.limb_icon_cache[cache_key])
-			var/icon/I = icon(data.get_species_icobase(owner), "[icon_name]_[body_hair]")
-			I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY)
-			GLOB.limb_icon_cache[cache_key] = I
-		mob_icon.Blend(GLOB.limb_icon_cache[cache_key], ICON_OVERLAY)
+			var/mutable_appearance/mark_MA = new /mutable_appearance(mark_s)
+			if(markings[M]["emissive"])
+				mark_MA.appearance_flags |= KEEP_APART
+				mark_MA.plane = PLANE_LIGHTING_ABOVE
+			marking_appearances += mark_MA
 
-	if(nail_polish && !(force_icon && !skip_forced_icon))
-		var/icon/I = new(nail_polish.icon, nail_polish.icon_state)
-		I.Blend(nail_polish.color, ICON_MULTIPLY)
-		add_overlay(I)
-		mob_icon.Blend(I, ICON_OVERLAY)
-		icon_cache_key += "_[nail_polish.icon]_[nail_polish.icon_state]_[nail_polish.color]"
+	var/list/extra = get_extra_appearances()
 
-	if (transparent && !istype(src,/obj/item/organ/external/head) && can_apply_transparency && should_apply_transparency) //VORESTATION EDIT: transparent instead of nonsolid
-		mob_icon += rgb(,,,180) //do it here so any markings become transparent as well
+	return list("base" = MA, "markings" = marking_appearances, "extra" = extra)
 
-	dir = SOUTH
-	icon = mob_icon
-	return mob_icon
+/obj/item/organ/external/proc/apply_colouration_ma(mutable_appearance/MA)
+	var/icon/applying = icon(MA.icon, MA.icon_state)
 
-/obj/item/organ/external/proc/apply_colouration(var/icon/applying)
-
+	// TODO: Rewrite this using filters
 	if(transparent)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
 		applying.SetIntensity(1)
 
 	else if(status & ORGAN_DEAD)
-		icon_cache_key += "_dead"
 		applying.ColorTone(rgb(10,50,0))
 		applying.SetIntensity(0.7)
 
@@ -190,18 +270,13 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 			applying.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 		else
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-		icon_cache_key += "_tone_[s_tone]"
 	else if(s_col && s_col.len >= 3)
 		if(data.get_species_color_mult())
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
-			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_MULTIPLY]"
 		else
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
-			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_ADD]"
 
-	return applying
-
-/obj/item/organ/external/var/icon_cache_key
+	MA.icon = applying
 
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)
@@ -222,15 +297,11 @@ GLOBAL_LIST_INIT(flesh_hud_colours, list("#02BA08","#9ECF19","#DEDE10","#FFAA00"
 GLOBAL_LIST_INIT(robot_hud_colours, list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F4F","#2F2F2F","#000000"))
 
 /obj/item/organ/external/proc/get_damage_hud_image(var/min_dam_state)
-
 	// Generate the greyscale base icon and cache it for later.
 	// icon_cache_key is set by any get_icon() calls that are made.
 	// This looks convoluted, but it's this way to avoid icon proc calls.
 	if(!hud_damage_image)
-		var/cache_key = "dambase-[icon_cache_key]"
-		if(!icon_cache_key || !GLOB.limb_icon_cache[cache_key])
-			GLOB.limb_icon_cache[cache_key] = icon(get_icon(), null, SOUTH)
-		var/image/temp = image(GLOB.limb_icon_cache[cache_key])
+		var/mutable_appearance/temp = simple_compile_ma(skip_extra = TRUE)
 		if((robotic < ORGAN_ROBOT))
 			// Calculate the required colour matrix.
 			var/int = data.get_species_health_hud_intensity()
