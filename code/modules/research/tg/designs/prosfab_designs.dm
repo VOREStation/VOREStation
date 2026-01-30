@@ -484,7 +484,7 @@
 	name = "Ore Scanning Upgrade"
 	desc = "An upgrade module to improve the potency of the integrated ore scanner."
 	id = "borg_adv_scanner_module"
-	// req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
+	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1500, MAT_DIAMOND = 350)
 	build_path = /obj/item/borg/upgrade/restricted/adv_scanner
 
