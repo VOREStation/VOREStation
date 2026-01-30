@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Makes the pet rat undevourable and undigestable, like most other pets."

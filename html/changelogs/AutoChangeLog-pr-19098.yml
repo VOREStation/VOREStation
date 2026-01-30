@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "converts the next set of globals to GLOBs"
