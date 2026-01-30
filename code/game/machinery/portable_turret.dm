@@ -32,6 +32,10 @@
 #define TURRET_SECONDARY_TARGET 1
 #define TURRET_NOT_TARGET 0
 
+#define TURRET_RETALIATION_TIME 3 SECONDS
+#define TURRET_EMAG_FIRERATE 0.6 SECONDS
+#define TURRET_POPCOOLDOWN 1 SECOND
+
 /obj/machinery/porta_turret
 	name = "turret"
 	catalogue_data = list(/datum/category_item/catalogue/technology/turret)
@@ -46,6 +50,8 @@
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
 	req_one_access = list(ACCESS_SECURITY, ACCESS_HEADS)
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+
+	var/last_process_time = 0	// Prevents turrets in fast processing mode from healing and popping down faster.
 
 	var/raised = FALSE			//if the turret cover is "open" and the turret is raised
 	var/raising= FALSE			//if the turret is currently opening or closing its cover
@@ -93,7 +99,7 @@
 
 	var/wrenching = FALSE
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
-	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
+	var/timeout = TURRET_POPCOOLDOWN // When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
 
 /obj/machinery/porta_turret/crescent
@@ -561,14 +567,28 @@
 	else
 		//if the turret was attacked with the intention of harming it:
 		user.setClickCooldown(user.get_attack_speed(I))
-		take_damage(I.force * 0.5)
-		if(I.force * 0.5 > 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
-			if(!attacked && !emagged)
-				attacked = 1
-				spawn()
-					sleep(60)
-					attacked = 0
+		var/dam = I.force * 0.5
+		take_damage(dam)
+		attempt_retaliate(dam)
 		..()
+
+/obj/machinery/porta_turret/proc/attempt_retaliate(incoming_damage)
+	if(attacked || !enabled || emagged || incoming_damage < 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
+		return
+	if(stat & (NOPOWER|BROKEN))
+		return
+	attacked = TRUE
+	addtimer(CALLBACK(src, PROC_REF(retaliate_end)), TURRET_RETALIATION_TIME, TIMER_DELETE_ME)
+	playsound(src, 'sound/machines/terminal_alert.ogg', 150)
+
+/obj/machinery/porta_turret/proc/retaliate_end()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	attacked = FALSE
+	if(stat & (NOPOWER|BROKEN))
+		return
+	playsound(src, 'sound/machines/buzzbeep.ogg', 150)
 
 /obj/machinery/porta_turret/attack_generic(mob/living/L, damage)
 	if(isanimal(L))
@@ -578,6 +598,7 @@
 			visible_message(span_danger("\The [S] [pick(S.attacktext)] \the [src]!"))
 			take_damage(incoming_damage)
 			S.do_attack_animation(src)
+			attempt_retaliate(incoming_damage)
 			return 1
 		visible_message(span_infoplain(span_bold("\The [L]") + " bonks \the [src]'s casing!"))
 	return ..()
@@ -591,8 +612,8 @@
 		emagged = TRUE
 		controllock = TRUE
 		enabled = FALSE //turns off the turret temporarily
-		sleep(60) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
-		enabled = TRUE //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
+		// 6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit.
+		VARSET_IN(src, enabled, TRUE, 6 SECONDS) // Turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 
 /obj/machinery/porta_turret/take_damage(var/force)
@@ -613,16 +634,10 @@
 	if(!damage)
 		return
 
-	if(enabled)
-		if(!attacked && !emagged)
-			attacked = 1
-			spawn()
-				sleep(60)
-				attacked = FALSE
-
 	..()
 
 	take_damage(damage)
+	attempt_retaliate(damage)
 
 /obj/machinery/porta_turret/emp_act(severity, recursive)
 	if(enabled)
@@ -673,10 +688,10 @@
 	stat |= BROKEN	//enables the BROKEN bit
 	spark_system?.start()	//creates some sparks because they look cool
 	update_icon()
+	set_processing_speed(FALSE) // Drop back to slow machine processing
 
 /obj/machinery/porta_turret/process()
 	//the main machinery process
-
 	if(stat & (NOPOWER|BROKEN))
 		//if the turret has no power or is broken, make the turret pop down if it hasn't already
 		popDown()
@@ -687,18 +702,48 @@
 		popDown()
 		return
 
-	var/list/targets = list()			//list of primary targets
-	var/list/secondarytargets = list()	//targets that are least important
+	var/shot_targets = FALSE
+	if(!last_fired) // We cannot fire anyway until our cooldown ends, don't bother checking for targets while in fast mode every 2 frames.
+		var/list/targets = list()			//list of primary targets
+		var/list/secondarytargets = list()	//targets that are least important
 
-	for(var/mob/M in mobs_in_view(world.view, src))
-		assess_and_assign(M, targets, secondarytargets)
+		for(var/mob/M in mobs_in_view(world.view, src))
+			assess_and_assign(M, targets, secondarytargets)
 
-	if(!tryToShootAt(targets) && !tryToShootAt(secondarytargets) && --timeout <= 0)
+		shot_targets = tryToShootAt(targets) || tryToShootAt(secondarytargets)
+
+	slow_process(shot_targets)
+
+/obj/machinery/porta_turret/proc/slow_process(var/shot_targets)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	if(speed_process) // Even while in fast processing mode we want to popdown and heal at the tickrate of the standard machine loop.
+		if(world.time < (last_process_time + SSmachines.wait))
+			return
+		last_process_time = world.time
+
+	if(!shot_targets && --timeout <= 0)
 		popDown() // no valid targets, close the cover
 
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
+
+/obj/machinery/porta_turret/proc/set_processing_speed(var/fast)
+	if(fast == speed_process)
+		return
+	speed_process = fast
+
+	// high gear
+	if(speed_process)
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+		return
+
+	// low gear
+	STOP_PROCESSING(SSfastprocess, src)
+	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/porta_turret/proc/assess_and_assign(mob/living/L, list/targets, list/secondarytargets)
 	switch(assess_living(L))
@@ -775,17 +820,19 @@
 
 /obj/machinery/porta_turret/proc/tryToShootAt(var/list/mob/living/targets)
 	if(targets.len && last_target && (last_target in targets) && target(last_target))
-		return 1
+		return TRUE
 
 	while(targets.len > 0)
 		var/mob/living/M = pick(targets)
 		targets -= M
 		if(target(M))
-			return 1
+			return TRUE
 
+	return FALSE
 
 /obj/machinery/porta_turret/proc/popUp()	//pops the turret up
 	set waitfor = FALSE
+
 	if(disabled)
 		return
 	if(raising || raised)
@@ -799,15 +846,25 @@
 	flick_holder.layer = layer + 0.1
 	flick("popup_[turret_type]", flick_holder)
 	playsound(src, 'sound/machines/turrets/turret_deploy.ogg', 100, 1)
-	sleep(10)
-	qdel(flick_holder)
+	addtimer(CALLBACK(src, PROC_REF(popup_finish), flick_holder), 1 SECOND, TIMER_DELETE_ME)
 
+/obj/machinery/porta_turret/proc/popup_finish(flick_holder)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	qdel(flick_holder)
 	set_raised_raising(1, 0)
 	update_icon()
-	timeout = 10
+
+	set_processing_speed(TRUE)
+	timeout = TURRET_POPCOOLDOWN
 
 /obj/machinery/porta_turret/proc/popDown()	//pops the turret down
 	set waitfor = FALSE
+
+	set_processing_speed(FALSE)
+	timeout = TURRET_POPCOOLDOWN
+
 	last_target = null
 	if(disabled)
 		return
@@ -815,6 +872,7 @@
 		return
 	if(stat & BROKEN)
 		return
+
 	set_raised_raising(raised, 1)
 	update_icon()
 
@@ -822,12 +880,15 @@
 	flick_holder.layer = layer + 0.1
 	flick("popdown_[turret_type]", flick_holder)
 	playsound(src, 'sound/machines/turrets/turret_retract.ogg', 100, 1)
-	sleep(10)
-	qdel(flick_holder)
+	addtimer(CALLBACK(src, PROC_REF(popdown_finish), flick_holder), 1 SECOND, TIMER_DELETE_ME)
 
+/obj/machinery/porta_turret/proc/popdown_finish(flick_holder)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	qdel(flick_holder)
 	set_raised_raising(0, 0)
 	update_icon()
-	timeout = 10
 
 /obj/machinery/porta_turret/proc/set_raised_raising(var/incoming_raised, var/incoming_raising)
 	raised = incoming_raised
@@ -840,9 +901,14 @@
 	if(target)
 		if(target in check_trajectory(target, src))	//Finally, check if we can actually hit the target
 			last_target = target
-			popUp()				//pop the turret up if it's not already up.
+			//pop the turret up if it's not already up.
+			popUp()
+			if(raising || !raised)
+				return TRUE // We were delayed, but we really wanted to, so lets not count this as a failure
+			var/old_dir = dir
 			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
-			playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
+			if(dir != old_dir) // Play rotating sound, but only if we actually rotated
+				playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1)
 			spawn()
 				shootAt(target)
 			return TRUE
@@ -850,13 +916,15 @@
 
 /obj/machinery/porta_turret/proc/shootAt(var/mob/living/target)
 	//any emagged turrets will shoot extremely fast! This not only is deadly, but drains a lot power!
-	if(!(emagged || attacked))		//if it hasn't been emagged or attacked, it has to obey a cooldown rate
-		if(last_fired || !raised)	//prevents rapid-fire shooting, unless it's been emagged
-			return
-		last_fired = TRUE
-		spawn()
-			sleep(shot_delay)
-			last_fired = FALSE
+	var/current_delay = shot_delay
+	if(emagged || attacked)	//prevents rapid-fire shooting, unless it's been emagged
+		current_delay = min(shot_delay,TURRET_EMAG_FIRERATE) // Emag fire rate
+
+	// Can't fire until our reload finishes, AND we have fully raised up.
+	if(last_fired || !raised)
+		return
+	last_fired = TRUE
+	addtimer(CALLBACK(src, PROC_REF(shot_reload)), current_delay, TIMER_DELETE_ME)
 
 	if(!isturf(get_turf(src)) || !isturf(get_turf(target)))
 		return
@@ -895,7 +963,13 @@
 	A.launch_projectile_from_turf(target, def_zone, src)
 
 	// Reset the time needed to go back down, since we just tried to shoot at someone.
-	timeout = 10
+	timeout = TURRET_POPCOOLDOWN
+
+/obj/machinery/porta_turret/proc/shot_reload()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	last_fired = FALSE
 
 /datum/turret_checks
 	var/enabled
@@ -1081,7 +1155,7 @@
 					Turret.name = finish_name
 					Turret.installation = installation
 					Turret.gun_charge = gun_charge
-					Turret.enabled = 0
+					Turret.enabled = FALSE
 					Turret.setup()
 
 					qdel(src) // qdel
@@ -1133,3 +1207,6 @@
 #undef TURRET_PRIORITY_TARGET
 #undef TURRET_SECONDARY_TARGET
 #undef TURRET_NOT_TARGET
+#undef TURRET_RETALIATION_TIME
+#undef TURRET_EMAG_FIRERATE
+#undef TURRET_POPCOOLDOWN
