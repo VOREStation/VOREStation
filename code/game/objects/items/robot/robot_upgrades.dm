@@ -447,6 +447,36 @@
 	R.module.modules += new/obj/item/gun/energy/kinetic_accelerator/cyborg(R.module)
 	return 1
 
+/obj/item/borg/upgrade/restricted/adv_scanner
+	name = "robotic Ore Scanning Upgrade Module"
+	desc = "Used to improve the integrated robot scanning module, allowing for larger more fine-tuned scan ranges."
+	icon_state = "cyborg_upgrade3"
+	item_state = "cyborg_upgrade"
+	module_flags = BORG_MODULE_MINER
+	require_module = 1
+
+
+/obj/item/borg/upgrade/restricted/adv_scanner/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	if(!R.supports_upgrade(type))
+		generic_error(R, type)
+		return 0
+
+	var/obj/target_module = R.has_upgrade_module(/obj/item/mining_scanner/robot)
+	if(!T)
+		to_chat(usr, span_warning("This robot has had its scanner removed!"))
+		return 0
+
+	if(R.has_restricted_upgrade(type))
+		to_chat(R, "Scanner was already upgraded!")
+		to_chat(usr, "There's no room for another scanning upgrade!")
+		return 0
+
+	var/obj/item/mining_scanner/robot/robot_scanner = T
+	robot_scanner.upgrade()
+	return 1
+
 /*	###############################################
 	# Unsorted section. All cargo modules go here.#
 	###############################################*/
