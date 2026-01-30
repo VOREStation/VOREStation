@@ -455,7 +455,6 @@
 	module_flags = BORG_MODULE_MINER
 	require_module = 1
 
-
 /obj/item/borg/upgrade/restricted/adv_scanner/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
