@@ -193,14 +193,14 @@ GLOBAL_DATUM_INIT(gear_tweak_free_matrix_recolor, /datum/gear_tweak/matrix_recol
 	I.reagents.add_reagent(., I.reagents.get_free_space())
 
 //Custom name and desciption code
-//note to devs downstream: where 'gear_tweaks = list(gear_tweak_free_color_choice)' was used before for color selection
-//in the loadout, now 'gear_tweaks += gear_tweak_free_color_choice' will need to be used, otherwise the item will not
+//note to devs downstream: where 'gear_tweaks = list(GLOB.gear_tweak_free_color_choice)' was used before for color selection
+//in the loadout, now 'gear_tweaks += GLOB.gear_tweak_free_color_choice' will need to be used, otherwise the item will not
 // be able to be given a custom name or description
 /*
 Custom Name
 */
 
-var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
+GLOBAL_DATUM_INIT(gear_tweak_free_name, /datum/gear_tweak/custom_name, new)
 
 /datum/gear_tweak/custom_name
 	var/list/valid_custom_names
@@ -220,8 +220,13 @@ var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
 		to_chat(user, span_warning("You are banned from using custom loadout names/descriptions."))
 		return
 	if(valid_custom_names)
-		return tgui_input_list(user, "Choose an item name.", "Character Preference", valid_custom_names, metadata)
+		var/list_input = tgui_input_list(user, "Choose an item name.", "Character Preference", valid_custom_names, metadata)
+		if(isnull(list_input))
+			return metadata
+		return list_input ? list_input : get_default()
 	var/san_input = tgui_input_text(user, "Choose the item's name. Leave it blank to use the default name.", "Item Name", metadata, MAX_LNAME_LEN)
+	if(isnull(san_input))
+		return metadata
 	return san_input ? san_input : get_default()
 
 /datum/gear_tweak/custom_name/tweak_item(var/obj/item/I, var/metadata)
@@ -232,7 +237,7 @@ var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
 /*
 Custom Description
 */
-var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
+GLOBAL_DATUM_INIT(gear_tweak_free_desc, /datum/gear_tweak/custom_desc, new)
 
 /datum/gear_tweak/custom_desc
 	var/list/valid_custom_desc
@@ -252,14 +257,47 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 		to_chat(user, span_warning("You are banned from using custom loadout names/descriptions."))
 		return
 	if(valid_custom_desc)
-		return tgui_input_list(user, "Choose an item description.", "Character Preference",valid_custom_desc, metadata)
+		var/list_input = tgui_input_list(user, "Choose an item description.", "Character Preference",valid_custom_desc, metadata)
+		if(isnull(list_input))
+			return metadata
+		return list_input ? list_input : get_default()
 	var/san_input = tgui_input_text(user, "Choose the item's description. Leave it blank to use the default description.", "Item Description", metadata, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+	if(isnull(san_input))
+		return metadata
 	return san_input ? san_input : get_default()
 
 /datum/gear_tweak/custom_desc/tweak_item(var/obj/item/I, var/metadata)
 	if(!metadata)
 		return I.desc
 	I.desc = metadata
+
+/*
+Toggle Digestable
+*/
+
+GLOBAL_DATUM_INIT(gear_tweak_free_digestable, /datum/gear_tweak/toggle_digestable, new)
+
+/datum/gear_tweak/toggle_digestable
+
+/datum/gear_tweak/toggle_digestable/get_contents(var/metadata)
+	return "Digestable: [metadata ? "Yes" : "No"]"
+
+/datum/gear_tweak/toggle_digestable/get_default()
+	return TRUE
+
+/datum/gear_tweak/toggle_digestable/get_metadata(var/user, var/metadata)
+	var/san_input = tgui_alert(user, "Turn digestable on or off", "Toggle Digestable", list("Enable", "Disable", "Cancel"))
+	switch(san_input)
+		if("Enable")
+			return TRUE
+		if("Disable")
+			return FALSE
+	return metadata
+
+/datum/gear_tweak/toggle_digestable/tweak_item(var/obj/item/I, var/metadata)
+	if(isnull(metadata))
+		return I.digestable
+	I.digestable = metadata
 
 //end of custom description
 
@@ -600,7 +638,10 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 	return "Location: [metadata]"
 
 /datum/gear_tweak/implant_location/get_metadata(var/user, var/metadata)
-	return (tgui_input_list(user, "Select a bodypart for the implant to be implanted inside.", "Implant Location", bodypart_names_to_tokens || bodypart_tokens_to_names[BP_TORSO]))
+	var/list_input = tgui_input_list(user, "Select a bodypart for the implant to be implanted inside.", "Implant Location", bodypart_names_to_tokens || bodypart_tokens_to_names[BP_TORSO])
+	if(isnull(list_input))
+		return metadata
+	return list_input
 
 /datum/gear_tweak/collar_tag/get_contents(var/metadata)
 	return "Tag: [metadata]"
@@ -609,7 +650,10 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 	return ""
 
 /datum/gear_tweak/collar_tag/get_metadata(var/user, var/metadata)
-	return tgui_input_text(user, "Choose the tag text", "Character Preference", metadata, MAX_NAME_LEN)
+	var/text_input = tgui_input_text(user, "Choose the tag text.", "Character Preference", metadata, MAX_NAME_LEN)
+	if(isnull(text_input))
+		return metadata
+	return text_input
 
 /datum/gear_tweak/collar_tag/tweak_item(var/obj/item/clothing/accessory/collar/C, var/metadata)
 	if(metadata == "")
