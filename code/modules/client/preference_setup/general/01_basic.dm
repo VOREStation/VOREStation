@@ -32,16 +32,16 @@
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
-	// Sanitize real_name - is this step necessary in this case?
+	// Sanitize real_name - is this step necessary anymore?
 	var/current_name = pref.read_preference(/datum/preference/text/human/real_name)
 	current_name = sanitize_name(current_name, pref.species, is_FBP())
 	if(!current_name)
 		current_name = random_name(pref.identifying_gender, pref.species)
-	pref.update_preference_by_type(/datum/preference/text/human/real_name, current_name)
-	// Sanitize nickname - is this step necessary in this case?
+	pref.write_preference(GLOB.preference_entries[/datum/preference/text/human/real_name], current_name)
+	// Sanitize nickname - is this step necessary anymore?
 	var/current_nickname = pref.read_preference(/datum/preference/text/human/nickname)
 	current_nickname = sanitize_name(current_nickname)
-	pref.update_preference_by_type(/datum/preference/text/human/nickname, current_nickname)
+	pref.write_preference(GLOB.preference_entries[/datum/preference/text/human/nickname], current_nickname)
 	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, GLOB.global_vore_egg_types, initial(pref.vore_egg_type))
 	pref.autohiss = sanitize_inlist(pref.autohiss, list("Off", "Basic", "Full"), initial(pref.autohiss))
 

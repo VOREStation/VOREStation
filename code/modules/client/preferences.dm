@@ -175,7 +175,8 @@ var/list/preferences_datums = list()
 	return ..()
 
 /datum/preferences/proc/ShowChoices(mob/user)
-	if(!user || !user.client)	return
+	if(!user || !user.client)
+		return
 
 	if(!get_mob_by_key(client_ckey))
 		to_chat(user, span_danger("No mob exists for the given client!"))
