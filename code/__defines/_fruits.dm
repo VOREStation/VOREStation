@@ -88,6 +88,7 @@
 #define PLANT_PINEAPPLE "pineapple"
 #define PLANT_BLOODROSE "bloodrose"
 #define PLANT_GNOMES "gnomes"
+#define PLANT_SMOLES "smoles"
 #define PLANT_SIFBULB "sifbulb"
 #define PLANT_WURMWOAD "wurmwoad"
 #define PLANT_MICROM "microm"
