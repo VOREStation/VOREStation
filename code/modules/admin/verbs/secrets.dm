@@ -1,4 +1,4 @@
-ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before with this handy dandy semi-misc stuff menu.", "Admin.Secrets")
+ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before with this handy dandy semi-misc stuff menu.", ADMIN_CATEGORY_SECRETS)
 	var/datum/secrets_menu/tgui = new(user)
 	tgui.tgui_interact(user.mob)
 	//BLACKBOX_LOG_ADMIN_VERB("Secrets Panel")
@@ -154,10 +154,10 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 					SSnightshift.update_nightshift(active = FALSE, announce = TRUE, forced = TRUE)
 
 		if("trigger_xenomorph_infestation")
-			xenomorphs.attempt_random_spawn()
+			GLOB.xenomorphs.attempt_random_spawn()
 
 		if("trigger_cortical_borer_infestation")
-			borers.attempt_random_spawn()
+			GLOB.borers.attempt_random_spawn()
 
 		if("jump_shuttle")
 			var/shuttle_tag = tgui_input_list(holder, "Which shuttle do you want to jump?", "Shuttle Choice", SSshuttles.shuttles)
@@ -392,10 +392,10 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			var/choice = tgui_alert(holder, "How do you wish for Nar-Sie to interact with its surroundings?","NarChoice",list("CultStation13", "Nar-Singulo"))
 			if(choice == "CultStation13")
 				log_and_message_admins("has set narsie's behaviour to \"CultStation13\".", holder)
-				narsie_behaviour = choice
+				GLOB.narsie_behaviour = choice
 			if(choice == "Nar-Singulo")
 				log_and_message_admins("has set narsie's behaviour to \"Nar-Singulo\".", holder)
-				narsie_behaviour = choice
+				GLOB.narsie_behaviour = choice
 
 		if("remove_all_clothing")
 			for(var/obj/item/clothing/O in world)

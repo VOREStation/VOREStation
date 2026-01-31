@@ -16,7 +16,7 @@ export const VoreSelectedBellyLiquidOptions = (props: {
   const { act } = useBackend();
 
   const { editMode, bellyLiquidData, presets } = props;
-  const { show_liq, liq_interacts } = bellyLiquidData;
+  const { show_liq, liq_gen_resources, liq_interacts } = bellyLiquidData;
 
   return (
     <Stack vertical fill>
@@ -90,7 +90,16 @@ export const VoreSelectedBellyLiquidOptions = (props: {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Current Liquids">
+        <Section
+          buttons={
+            <Stack>
+              <Stack.Item>
+                <Box color="label">{`Nutrition / Power: ${liq_gen_resources.toFixed()} %`}</Box>
+              </Stack.Item>
+            </Stack>
+          }
+          title="Current Liquids"
+        >
           <LabeledList>
             {liq_interacts.current_reagents
               .sort((a, b) => a.volume - b.volume)

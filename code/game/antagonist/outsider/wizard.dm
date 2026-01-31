@@ -1,4 +1,4 @@
-var/datum/antagonist/wizard/wizards
+GLOBAL_DATUM(wizards, /datum/antagonist/wizard)
 
 /datum/antagonist/wizard
 	id = MODE_WIZARD
@@ -19,7 +19,7 @@ var/datum/antagonist/wizard/wizards
 
 /datum/antagonist/wizard/New()
 	..()
-	wizards = src
+	GLOB.wizards = src
 
 /datum/antagonist/wizard/create_objectives(var/datum/mind/wizard)
 

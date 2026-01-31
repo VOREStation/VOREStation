@@ -42,10 +42,11 @@
 #define R_EVENT (1<<14)
 #define R_HOST (1<<15) //higher than this will overflow
 #define R_MENTOR (1<<16)
+#define R_DBRANKS (1<<17)
 
 #define R_DEFAULT R_NONE
 
-#define R_EVERYTHING (1<<17)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING (1<<18)-1 //the sum of all other rank permissions, used for +EVERYTHING
 #define R_HOLDER ((R_EVERYTHING) & (~(R_MENTOR | R_STEALTH)))
 
 #define SMITE_BREAKLEGS				"Break Legs"
@@ -106,6 +107,28 @@
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
+
+// Page numbers for the Permission Panel
+#define PERMISSIONS_PAGE_PERMISSIONS 1
+#define PERMISSIONS_PAGE_RANKS 2
+#define PERMISSIONS_PAGE_LOGGING 3
+#define PERMISSIONS_PAGE_HOUSEKEEPING 4
+
+// Actions that can be logged in the admin_log table, excepting NONE
+#define PERMISSIONS_ACTION_ADMIN_ADDED "add admin"
+#define PERMISSIONS_ACTION_ADMIN_REMOVED "remove admin"
+#define PERMISSIONS_ACTION_ADMIN_RANK_CHANGED "change admin rank"
+#define PERMISSIONS_ACTION_RANK_ADDED "add rank"
+#define PERMISSIONS_ACTION_RANK_REMOVED "remove rank"
+#define PERMISSIONS_ACTION_RANK_CHANGED "change rank flags"
+#define PERMISSIONS_ACTION_NONE "none"
+
+// The types of ranks you can have
+#define RANK_SOURCE_LOCAL "rank_local"
+#define RANK_SOURCE_TXT "rank_txt"
+#define RANK_SOURCE_DB "rank_db"
+#define RANK_SOURCE_BACKUP "rank_backup"
+#define RANK_SOURCE_TEMPORARY "rank_temp"
 
 // LOG BROWSE TYPES
 #define BROWSE_ROOT_ALL_LOGS 1

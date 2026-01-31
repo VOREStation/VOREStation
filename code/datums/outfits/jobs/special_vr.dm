@@ -20,7 +20,7 @@
 	gloves = /obj/item/clothing/gloves/swat
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/storage/backpack/satchel
-	id_type = /obj/item/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ert
 	pda_type = /obj/item/pda/centcom
 	flags = OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
@@ -30,7 +30,7 @@
 
 /decl/hierarchy/outfit/job/emergency_responder/post_equip(var/mob/living/carbon/human/H)
 	..()
-	ert.add_antagonist(H.mind)
+	GLOB.ert.add_antagonist(H.mind)
 
 /decl/hierarchy/outfit/job/clown
 	name = OUTFIT_JOB_NAME(JOB_CLOWN)

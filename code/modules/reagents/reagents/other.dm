@@ -411,8 +411,8 @@
 /datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(ishuman(M)) // Any location
-		if(M.mind && cult.is_antagonist(M.mind) && prob(10))
-			cult.remove_antagonist(M.mind)
+		if(M.mind && GLOB.cult.is_antagonist(M.mind) && prob(10))
+			GLOB.cult.remove_antagonist(M.mind)
 		if(prob(2)) //Get an ACTUAL chaplain for your stuff
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
 				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)
@@ -431,8 +431,8 @@
 /datum/reagent/water/holywater/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(ishuman(M)) // Any location
-		if(M.mind && cult.is_antagonist(M.mind) && prob(5))
-			cult.remove_antagonist(M.mind)
+		if(M.mind && GLOB.cult.is_antagonist(M.mind) && prob(5))
+			GLOB.cult.remove_antagonist(M.mind)
 		if(prob(1)) //injecting holy water makes it weaker because that's sinful
 			if(M.has_modifier_of_type(/datum/modifier/redspace_corruption))
 				M.remove_modifiers_of_type(/datum/modifier/redspace_corruption)

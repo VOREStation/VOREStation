@@ -193,9 +193,119 @@
       bubble trait
   tacoguy7765093:
   - image: Janitor catborg
-2026-01-19:
+2026-01-21:
+  Diana:
+  - bugfix: Collars, when worn in the 'suit' slot, now properly show.
+  - bugfix: Translocators work when clicked vs having to press Z
+  Guti:
+  - bugfix: Fixed being able to contract the same disease multiple times.
+  - bugfix: Fixed viruses not removing their mob reference when the mob was deleted.
+  ItsSelis:
+  - admin: added new dbranks permission
+  - admin: updated permissions panel
+  - admin: ranks with no permission will now be displayed with the "NONE" permission
   Kashargul:
+  - bugfix: runtime on 0 permeability
   - bugfix: detailed subsystem stat view crashing
+  - code_imp: moves the loading for the browser to promiseAll, similar to chat data
+      loading
+  - bugfix: disable capture prefs should not hardfail on nif soulcatcher transfers
+  - bugfix: some missing vanity copy traits
+  - qol: reduce protean tab flicker
+  - bugfix: some casino vendor runtimes
+  - bugfix: belch chance not being properly accounted for on intent based struggling
+  - bugfix: crashes in the station disposals system
+  - bugfix: stale settings in rare cases
   SatinIsle:
+  - maptweak: Removes the window from the door to the security processing room on
+      the SD, and adds a lock to it.
   - bugfix: Fixed a handful of big strong mobs that have leap attacks literally throwing
       themselves into spont vore bellies.
+  Will:
+  - bugfix: Disposal expel runtime fixed
+2026-01-22:
+  Azzy.Dreemurr:
+  - qol: Added buttons for Staff chats Easy -> F10; Msay -> F9
+  - bugfix: MentorSay now F11 and the button works
+  Cameron-The-Raven:
+  - bugfix: Non-revivable entities can no longer be revived via CPR
+  - bugfix: Synthetics can no longer be revived via CPR
+  - bugfix: You will no longer gasp after being revived via CPR if you have no lungs
+  Kashargul:
+  - bugfix: empty to chat runtime for digestive turfs
+  - bugfix: janicart examine dupe
+2026-01-23:
+  Kashargul:
+  - qol: adds spoiler to character directory
+  - bugfix: a crash case in the character editor
+  - code_imp: tgui dependency up
+  SatinIsle:
+  - rscadd: Added a new preference that allows you to drop all of your items and possibly
+      underwear upon being suddenly resized by more than 30%.
+  - bugfix: Fixed temperature damage toggle saving.
+  - bugfix: Bluespace collars changing into shock collar sprites on toggling power.
+2026-01-24:
+  Guti:
+  - bugfix: Fixed mlemington activating the mlem spree at any time
+  - bugfix: Fixed narcolepsy missing a description
+  - bugfix: Fixed Pandemic UI not showing the severity of a virus
+  - bugfix: Fixed viruses changing cures when taking it out of a mob
+  - bugfix: Fixed the PanDEMIC showing the ID for the reagent instead of the name
+      as the cure
+  - spellcheck: Removed "the" when Biometallic Replication symptom picked any organ
+  - code_imp: Added IMMUTABLE flag for viruses, to not allow them to change
+  SatinIsle:
+  - qol: Made unlucky trigger toe stubbing one tenth as often.
+2026-01-26:
+  Diana:
+  - code_imp: Adds more framework for radiation component to do more fancy things.
+  - bugfix: Shadekin no longer have an unusable radiation-glow subpanel.
+  - rscadd: Shadekin now gain nutrition (which can be converted to energy) via radiation
+  - rscadd: BESK no longer die from radiation, but rather gain halloss via radiation.
+  - qol: Nutrition gain from radiation gains can be toggled on/off
+  Kashargul:
+  - rscdel: no longer existing config entry
+  - bugfix: another bad object spawn in xenoarch
+  - qol: allows to lower limit liquid gen %
+  - bugfix: empty lists for auto transfer
+  - bugfix: ghost leaving VR not getting ghostized before qdel
+  - bugfix: flip no longer restores any flags badly
+  - code_imp: converts a bunch of variables to GLOB
+  - bugfix: a few runtimes
+  SatinIsle:
+  - rscadd: 'Added a new Skin Reagent trait, that allows you to pick one of six reagents
+      that coat your skin and are applied to people when they lick you. These include:
+      Ethanol, Capsaicin, Sleep Toxin, Rainbow Toxin, Paralysis Toxin and Pain Enzyme.'
+  - code_imp: Also added a new option to traits to allow you to use a single list
+      for them to select preferences, using a list variable called "multiple_choice".
+2026-01-30:
+  Diana:
+  - bugfix: Tsci can no longer be spam-failed
+  - bugfix: Tsci can no longer cause a failure while an active teleport is ongoing.
+  Kashargul:
+  - code_imp: converts the next set of globals to GLOBs
+  - bugfix: casino pet vending
+  ReoDaProtovali:
+  - bugfix: Fixes an uncleared hardref on disposal pipe trunks when deleting their
+      linked object
+  - qol: Showers now instantly run a wash call on things that go under them while
+      active
+  - code_imp: Removed a fair few unnecessary variables on showers and replaced it
+      with better code.
+  - code_imp: Showers can have their output reagent overridden, either by adminbus
+      or subtypes.
+  - code_imp: Showers no longer run process() calls while inactive. This should free
+      up a fair few SSmachines process calls that did literally nothing
+  SatinIsle:
+  - bugfix: Makes the pet rat undevourable and undigestable, like most other pets.
+  Will:
+  - qol: Methane canisters can now be ordered from cargo, like all other gasses.
+  - bugfix: plastique explosive explosion reduced, seismic charge unchanged
+2026-01-31:
+  Kashargul:
+  - code_imp: move gear tweaks to managed GLOB
+  - bugfix: name and description gear tweak can be cleared again
+  - qol: items can have digestion toggled in the loadout
+  - code_imp: bans start_with from map edited closets
+  - code_imp: dependency up
+  - code_imp: converts the next set of globals to GLOBs

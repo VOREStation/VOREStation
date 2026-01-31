@@ -1,4 +1,4 @@
-var/list/sacrificed = list()
+GLOBAL_LIST_EMPTY(sacrificed)
 
 /obj/effect/rune/cultify()
 	return
@@ -165,7 +165,7 @@ var/list/sacrificed = list()
 		if(!waiting_for_input[target]) //so we don't spam them with dialogs if they hesitate
 			waiting_for_input[target] = 1
 
-			if(!cult.can_become_antag(target.mind) || jobban_isbanned(target, JOB_CULTIST))//putting jobban check here because is_convertable uses mind as argument
+			if(!GLOB.cult.can_become_antag(target.mind) || jobban_isbanned(target, JOB_CULTIST))//putting jobban check here because is_convertable uses mind as argument
 				//waiting_for_input ensures this is only shown once, so they basically auto-resist from here on out. They still need to find a way to get off the freaking rune if they don't want to burn to death, though.
 				to_chat(target, span_cult("Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root."))
 				to_chat(target, span_danger("And you were able to force it out of your mind. You now know the truth, there's something horrible out there, stop it and its minions at all costs."))
@@ -174,7 +174,7 @@ var/list/sacrificed = list()
 				var/choice = tgui_alert(target,"Do you want to join the cult?","Submit to Nar'Sie",list("Resist","Submit"))
 				waiting_for_input[target] = 0
 				if(choice == "Submit") //choosing 'Resist' does nothing of course.
-					cult.add_antagonist(target.mind)
+					GLOB.cult.add_antagonist(target.mind)
 					converting -= target
 					target.hallucination = 0 //sudden clarity
 
@@ -184,7 +184,7 @@ var/list/sacrificed = list()
 /////////////////////////////////////////FOURTH RUNE
 
 /obj/effect/rune/proc/tearreality()
-	if(!cult.allow_narsie)
+	if(!GLOB.cult.allow_narsie)
 		return fizzle()
 
 	var/list/cultists = new()
@@ -195,12 +195,12 @@ var/list/sacrificed = list()
 				continue
 			cultists.Add(M)
 	if(cultists.len >= 9)
-		if(!narsie_cometh)//so we don't initiate Hell more than one time.
+		if(!GLOB.narsie_cometh)//so we don't initiate Hell more than one time.
 			to_chat(world, span_world(span_narsie(span_red("THE VEIL HAS BEEN SHATTERED!"))))
 			world << sound('sound/effects/weather/wind/wind_5_1.ogg')
 
 			SetUniversalState(/datum/universal_state/hell)
-			narsie_cometh = 1
+			GLOB.narsie_cometh = 1
 
 			spawn(10 SECONDS)
 				if(emergency_shuttle)
@@ -319,7 +319,7 @@ var/list/sacrificed = list()
 	var/is_sacrifice_target = 0
 	for(var/mob/living/carbon/human/M in src.loc)
 		if(M.stat == DEAD)
-			if(cult && M.mind == cult.sacrifice_target)
+			if(GLOB.cult && M.mind == GLOB.cult.sacrifice_target)
 				is_sacrifice_target = 1
 			else
 				corpse_to_raise = M
@@ -336,7 +336,7 @@ var/list/sacrificed = list()
 		for(var/obj/effect/rune/R in GLOB.rune_list)
 			if(R.word1==GLOB.cultwords["blood"] && R.word2==GLOB.cultwords["join"] && R.word3==GLOB.cultwords["hell"])
 				for(var/mob/living/carbon/human/N in R.loc)
-					if(cult && N.mind && N.mind == cult.sacrifice_target)
+					if(GLOB.cult && N.mind && N.mind == GLOB.cult.sacrifice_target)
 						is_sacrifice_target = 1
 					else
 						if(N.stat!= DEAD)
@@ -350,7 +350,7 @@ var/list/sacrificed = list()
 			to_chat(usr, span_warning("The sacrifical corpse is not dead. You must free it from this world of illusions before it may be used."))
 		return fizzle()
 
-	if(!cult.can_become_antag(corpse_to_raise.mind) || jobban_isbanned(corpse_to_raise, JOB_CULTIST))
+	if(!GLOB.cult.can_become_antag(corpse_to_raise.mind) || jobban_isbanned(corpse_to_raise, JOB_CULTIST))
 		to_chat(usr, span_warning("The Geometer of Blood refuses to touch this one."))
 		return fizzle()
 	else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
@@ -365,7 +365,7 @@ var/list/sacrificed = list()
 
 	if(corpse_to_raise.client)
 
-		cult.add_antagonist(corpse_to_raise.mind)
+		GLOB.cult.add_antagonist(corpse_to_raise.mind)
 		corpse_to_raise.revive()
 
 		usr.say("Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!")
@@ -477,7 +477,7 @@ var/list/sacrificed = list()
 	D.update_eyes()
 	D.all_underwear.Cut()
 	D.key = ghost.key
-	cult.add_antagonist(D.mind)
+	GLOB.cult.add_antagonist(D.mind)
 
 	if(!chose_name)
 		D.real_name = pick("Anguished", "Blasphemous", "Corrupt", "Cruel", "Depraved", "Despicable", "Disturbed", "Exacerbated", "Foul", "Hateful", "Inexorable", "Implacable", "Impure", "Malevolent", "Malignant", "Malicious", "Pained", "Profane", "Profligate", "Relentless", "Resentful", "Restless", "Spiteful", "Tormented", "Unclean", "Unforgiving", "Vengeful", "Vindictive", "Wicked", "Wronged")
@@ -619,7 +619,7 @@ var/list/sacrificed = list()
 		usr.whisper("O bidai nabora se[pick("'","`")]sma!")
 
 	log_and_message_admins("used a communicate rune to say '[input]'")
-	for(var/datum/mind/H in cult.current_antagonists)
+	for(var/datum/mind/H in GLOB.cult.current_antagonists)
 		if (H.current)
 			to_chat(H.current, span_cult("[input]"))
 	for(var/mob/observer/dead/O in GLOB.player_list)
@@ -660,9 +660,9 @@ var/list/sacrificed = list()
 				worth = 1
 
 		if (SSticker.mode.name == "cult")
-			if(H.mind == cult.sacrifice_target)
+			if(H.mind == GLOB.cult.sacrifice_target)
 				if(cultsinrange.len >= 3)
-					sacrificed += H.mind
+					GLOB.sacrificed += H.mind
 					if(isrobot(H))
 						H.dust()//To prevent the MMI from remaining
 					else
@@ -675,7 +675,7 @@ var/list/sacrificed = list()
 					if(H.stat !=2)
 						if(prob(80) || worth)
 							to_chat(usr, span_cult("The Geometer of Blood accepts this [worth ? "exotic " : ""]sacrifice."))
-							cult.grant_runeword(usr)
+							GLOB.cult.grant_runeword(usr)
 						else
 							to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
 							to_chat(usr, span_warning("However, this soul was not enough to gain His favor."))
@@ -686,7 +686,7 @@ var/list/sacrificed = list()
 					else
 						if(prob(40) || worth)
 							to_chat(usr, span_cult("The Geometer of Blood accepts this [worth ? "exotic " : ""]sacrifice."))
-							cult.grant_runeword(usr)
+							GLOB.cult.grant_runeword(usr)
 						else
 							to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
 							to_chat(usr, span_warning("However, a mere dead body is not enough to satisfy Him."))
@@ -701,7 +701,7 @@ var/list/sacrificed = list()
 						if(prob(40))
 
 							to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
-							cult.grant_runeword(usr)
+							GLOB.cult.grant_runeword(usr)
 						else
 							to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
 							to_chat(usr, span_warning("However, a mere dead body is not enough to satisfy Him."))
@@ -714,7 +714,7 @@ var/list/sacrificed = list()
 				if(H.stat !=2)
 					if(prob(80))
 						to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
-						cult.grant_runeword(usr)
+						GLOB.cult.grant_runeword(usr)
 					else
 						to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
 						to_chat(usr, span_warning("However, this soul was not enough to gain His favor."))
@@ -725,7 +725,7 @@ var/list/sacrificed = list()
 				else
 					if(prob(40))
 						to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
-						cult.grant_runeword(usr)
+						GLOB.cult.grant_runeword(usr)
 					else
 						to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
 						to_chat(usr, span_warning("However, a mere dead body is not enough to satisfy Him."))
@@ -739,7 +739,7 @@ var/list/sacrificed = list()
 				else
 					if(prob(40))
 						to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
-						cult.grant_runeword(usr)
+						GLOB.cult.grant_runeword(usr)
 					else
 						to_chat(usr, span_cult("The Geometer of Blood accepts this sacrifice."))
 						to_chat(usr, span_warning("However, a mere dead body is not enough to satisfy Him."))
@@ -810,7 +810,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/freedom()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in cult.current_antagonists)
+	for(var/datum/mind/H in GLOB.cult.current_antagonists)
 		if (istype(H.current,/mob/living/carbon))
 			cultists+=H.current
 	var/list/mob/living/carbon/users = new
@@ -857,7 +857,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/cultsummon()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in cult.current_antagonists)
+	for(var/datum/mind/H in GLOB.cult.current_antagonists)
 		if (istype(H.current,/mob/living/carbon))
 			cultists+=H.current
 	var/list/mob/living/carbon/users = new
