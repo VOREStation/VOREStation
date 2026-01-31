@@ -16,6 +16,8 @@
 
 /obj/effect/anomaly/grav/anomalyEffect(seconds_per_tick)
 	..()
+	if(stats)
+		return
 	boing = TRUE
 	for(var/obj/O in orange(4, src))
 		if(!O.anchored)

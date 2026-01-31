@@ -19,6 +19,8 @@
 	var/immortal = FALSE
 	var/move_chance = ANOMALY_MOVECHANCE
 
+	var/datum/anomaly_stats/stats
+
 /obj/effect/anomaly/Initialize(mapload, new_lifespan, drops_core = TRUE)
 	. = ..()
 
@@ -51,6 +53,7 @@
 
 /obj/effect/anomaly/process(seconds_per_tick)
 	anomalyEffect(seconds_per_tick)
+	anomalyPulse()
 	if(death_time < world.time && !immortal)
 		if(loc)
 			detonate()
@@ -60,11 +63,23 @@
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(countdown)
 	QDEL_NULL(anomaly_core)
+	QDEL_NULL(stats)
 	return ..()
 
 /obj/effect/anomaly/proc/anomalyEffect(seconds_per_tick)
 	if(prob(move_chance))
 		move_anomaly()
+
+// Used in anomaly harvesting - Normal anomalies shouldn't pulse
+/obj/effect/anomaly/proc/anomalyPulse()
+	if(!stats)
+		return FALSE
+	if(world.time < stats.next_activation)
+		return FALSE
+	else
+		balloon_alert_visible("I'm pulsing it")
+		stats.pulse_effect()
+		stats.next_activation = world.time + rand(45 SECONDS, 90 SECONDS)
 
 /obj/effect/anomaly/proc/move_anomaly()
 	step(src, pick(GLOB.alldirs))
@@ -85,18 +100,29 @@
 		anomaly_core = null
 	qdel(src)
 
-/obj/effect/anomaly/proc/stabilize(anchor = FALSE, has_core = TRUE)
+/obj/effect/anomaly/proc/stabilize(anchor = FALSE, has_core = TRUE, add_stats = FALSE)
 	immortal = TRUE
 	name = (has_core ? "stable " : "hollow ") + name
 	if(!has_core)
 		QDEL_NULL(anomaly_core)
 	if(anchor)
 		move_chance = 0
+	if(!stats && add_stats)
+		stats = new /datum/anomaly_stats
+		stats.attached_anomaly = src
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/analyzer))
 		if(anomaly_core)
 			to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(anomaly_core.frequency)], code [anomaly_core.code]."))
+			return TRUE
+	if(istype(I, /obj/item/anomaly_scanner))
+		var/obj/item/anomaly_scanner/scanner = I
+		if(stats)
+			if(!do_after(user, 1 SECOND, src))
+				return
+			scanner.buffered_anomaly = src
+			scanner.tgui_interact(user)
 			return TRUE
 	return ..()
 

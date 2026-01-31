@@ -61,6 +61,10 @@
 
 /obj/effect/anomaly/weather/anomalyEffect(seconds_per_tick)
 	..()
+	if(stats)
+		is_raining = FALSE
+		return
+
 	if(!is_raining)
 		return
 

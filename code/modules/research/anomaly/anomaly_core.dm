@@ -44,12 +44,12 @@
 			return FALSE
 
 		var/obj/effect/anomaly/anomaly = new core.anomaly_type(get_turf(core))
-		anomaly.stabilize()
+		anomaly.stabilize(releaser.will_anchor, releaser.has_core, releaser.gives_stats)
 
 		if(!releaser.infinite)
 			releaser.icon_state = releaser.used_icon_state
 			releaser.used = TRUE
-			releaser.name = "used " + name
+			releaser.name = "used " + releaser.name
 			qdel(src)
 	return ..()
 

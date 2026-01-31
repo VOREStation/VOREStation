@@ -23,6 +23,8 @@
 
 /obj/effect/anomaly/hallucination/anomalyEffect(seconds_per_tick)
 	. = ..()
+	if(stats)
+		return
 	ticks += seconds_per_tick
 	if(ticks < release_delay)
 		return

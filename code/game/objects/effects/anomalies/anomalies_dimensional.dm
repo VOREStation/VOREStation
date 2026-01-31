@@ -40,6 +40,8 @@
 /obj/effect/anomaly/dimensional/proc/transmute_area()
 	if(!theme)
 		prepare_area()
+	if(stats)
+		return
 	if(!target_turfs.len)
 		if(teleports_left <= 0 && !immortal)
 			detonate()
