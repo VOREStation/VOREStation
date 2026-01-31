@@ -301,3 +301,11 @@
   Will:
   - qol: Methane canisters can now be ordered from cargo, like all other gasses.
   - bugfix: plastique explosive explosion reduced, seismic charge unchanged
+2026-01-31:
+  Kashargul:
+  - code_imp: move gear tweaks to managed GLOB
+  - bugfix: name and description gear tweak can be cleared again
+  - qol: items can have digestion toggled in the loadout
+  - code_imp: bans start_with from map edited closets
+  - code_imp: dependency up
+  - code_imp: converts the next set of globals to GLOBs

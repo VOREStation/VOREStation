@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "move gear tweaks to managed GLOB"
-  - bugfix: "name and description gear tweak can be cleared again"
-  - qol: "items can have digestion toggled in the loadout"
