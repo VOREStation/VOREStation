@@ -109,10 +109,10 @@ SUBSYSTEM_DEF(persist)
 	if(R) // We found someone with a record.
 		var/recorded_rank = R.fields["real_rank"]
 		if(recorded_rank)
-			. = job_master.GetJob(recorded_rank)
+			. = GLOB.job_master.GetJob(recorded_rank)
 			if(.) return
 
 	// They have a custom title, aren't crew, or someone deleted their record, so we need a fallback method.
 	// Let's check the mind.
 	if(M.mind && M.mind.assigned_role)
-		. = job_master.GetJob(M.mind.assigned_role)
+		. = GLOB.job_master.GetJob(M.mind.assigned_role)

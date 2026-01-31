@@ -270,9 +270,42 @@
   - bugfix: empty lists for auto transfer
   - bugfix: ghost leaving VR not getting ghostized before qdel
   - bugfix: flip no longer restores any flags badly
+  - code_imp: converts a bunch of variables to GLOB
+  - bugfix: a few runtimes
   SatinIsle:
   - rscadd: 'Added a new Skin Reagent trait, that allows you to pick one of six reagents
       that coat your skin and are applied to people when they lick you. These include:
       Ethanol, Capsaicin, Sleep Toxin, Rainbow Toxin, Paralysis Toxin and Pain Enzyme.'
   - code_imp: Also added a new option to traits to allow you to use a single list
       for them to select preferences, using a list variable called "multiple_choice".
+2026-01-30:
+  Diana:
+  - bugfix: Tsci can no longer be spam-failed
+  - bugfix: Tsci can no longer cause a failure while an active teleport is ongoing.
+  Kashargul:
+  - code_imp: converts the next set of globals to GLOBs
+  - bugfix: casino pet vending
+  ReoDaProtovali:
+  - bugfix: Fixes an uncleared hardref on disposal pipe trunks when deleting their
+      linked object
+  - qol: Showers now instantly run a wash call on things that go under them while
+      active
+  - code_imp: Removed a fair few unnecessary variables on showers and replaced it
+      with better code.
+  - code_imp: Showers can have their output reagent overridden, either by adminbus
+      or subtypes.
+  - code_imp: Showers no longer run process() calls while inactive. This should free
+      up a fair few SSmachines process calls that did literally nothing
+  SatinIsle:
+  - bugfix: Makes the pet rat undevourable and undigestable, like most other pets.
+  Will:
+  - qol: Methane canisters can now be ordered from cargo, like all other gasses.
+  - bugfix: plastique explosive explosion reduced, seismic charge unchanged
+2026-01-31:
+  Kashargul:
+  - code_imp: move gear tweaks to managed GLOB
+  - bugfix: name and description gear tweak can be cleared again
+  - qol: items can have digestion toggled in the loadout
+  - code_imp: bans start_with from map edited closets
+  - code_imp: dependency up
+  - code_imp: converts the next set of globals to GLOBs

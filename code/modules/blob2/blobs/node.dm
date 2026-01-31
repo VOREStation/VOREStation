@@ -1,4 +1,4 @@
-var/list/blob_nodes = list()
+GLOBAL_LIST_EMPTY(blob_nodes)
 
 /obj/structure/blob/node
 	name = "blob node"
@@ -11,12 +11,12 @@ var/list/blob_nodes = list()
 
 /obj/structure/blob/node/Initialize(mapload, new_overmind)
 	. = ..()
-	blob_nodes += src
+	GLOB.blob_nodes += src
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/structure/blob/node/Destroy()
-	blob_nodes -= src
+	GLOB.blob_nodes -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

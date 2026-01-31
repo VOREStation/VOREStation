@@ -1,6 +1,6 @@
-var/datum/antagonist/stowaway/stowaways
+GLOBAL_DATUM(stowaways, /datum/antagonist/stowaway)
 
-/datum/antagonist/STOWAWAY
+/datum/antagonist/stowaway
 	id = MODE_STOWAWAY
 	role_type = BE_RENEGADE
 	role_text = "Stowaway"
@@ -16,3 +16,7 @@ var/datum/antagonist/stowaway/stowaways
 		rules aside from those with explicit exceptions apply to antagonists.</b>"
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	can_speak_aooc = FALSE
+
+/datum/antagonist/stowaway/New()
+	..()
+	GLOB.stowaways = src

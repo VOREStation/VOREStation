@@ -388,7 +388,7 @@
 		to_chat(user, span_notice("Cannot establish a bluespace connection."))
 		return
 
-	if(deathsquad.deployed)
+	if(GLOB.deathsquad.deployed)
 		to_chat(user, "[using_map.boss_short] will not allow the shuttle to be called. Consider all contracts terminated.")
 		return
 
@@ -437,7 +437,7 @@
 			to_chat(user, "[using_map.boss_short] does not currently have a shuttle available in your sector. Please try again later.")
 			return
 
-		if(deathsquad.deployed == 1)
+		if(GLOB.deathsquad.deployed == 1)
 			to_chat(user, "[using_map.boss_short] will not allow the shuttle to be called. Consider all contracts terminated.")
 			return
 

@@ -129,7 +129,7 @@
 
 /datum/gear/utility/umbrella/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/utility/wheelchair
 	display_name = "wheelchair selection"
@@ -138,7 +138,7 @@
 
 /datum/gear/utility/wheelchair/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 	var/list/wheelchairs = list(
 		"wheelchair" = /obj/item/wheelchair,
 		"motorized wheelchair" = /obj/item/wheelchair/motor

@@ -173,7 +173,7 @@ var/list/gear_datums = list()
 /datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
 	var/list/metadata = get_gear_metadata(G)
 	. = metadata["[tweak]"]
-	if(!.)
+	if(isnull(.))
 		. = tweak.get_default()
 		metadata["[tweak]"] = .
 
@@ -250,7 +250,7 @@ var/list/gear_datums = list()
 				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak), gear)
 			else
 				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
-			if(!metadata)
+			if(isnull(metadata))
 				return TOPIC_HANDLED
 			set_tweak_metadata(gear, tweak, metadata)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -276,7 +276,7 @@ var/list/gear_datums = list()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)
-	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc, GLOB.gear_tweak_item_tf_spawn, GLOB.gear_tweak_free_matrix_recolor)
+	gear_tweaks = list(GLOB.gear_tweak_free_name, GLOB.gear_tweak_free_desc, GLOB.gear_tweak_item_tf_spawn, GLOB.gear_tweak_free_matrix_recolor, GLOB.gear_tweak_free_digestable)
 
 /datum/gear_data
 	var/path

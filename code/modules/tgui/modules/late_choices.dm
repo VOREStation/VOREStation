@@ -74,7 +74,7 @@
 
 	var/list/jobs = list()
 
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in GLOB.job_master.occupations)
 		if(job && user.IsJobAvailable(job.title))
 			// Check for jobs with minimum age requirements
 			if(!character_old_enough_for_job(user.client.prefs, job))

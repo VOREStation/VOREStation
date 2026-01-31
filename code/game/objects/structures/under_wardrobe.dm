@@ -83,7 +83,7 @@
 		if(!gt)
 			return
 		var/new_metadata = gt.get_metadata(usr, get_metadata(H, underwear, gt), "Wardrobe Underwear Selection")
-		if(new_metadata)
+		if(!isnull(new_metadata))
 			set_metadata(H, underwear, gt, new_metadata)
 			H.hide_underwear[underwear] = FALSE
 			. = TRUE

@@ -482,7 +482,7 @@
 
 		//Handle job slot/tater cleanup.
 		var/job = to_despawn.mind.assigned_role
-		job_master.FreeRole(job)
+		GLOB.job_master.FreeRole(job)
 		to_despawn.mind.assigned_role = null
 
 		if(to_despawn.mind.objectives.len)

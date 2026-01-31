@@ -359,12 +359,14 @@
 		C.swap_hand()
 	else
 		var/list/P = params2list(params)
-		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
+		var/turf/T = get_turf(usr)
 		if(T)
-			if(LAZYACCESS(modifiers, SHIFT_CLICK))
-				usr.face_atom(T)
-				return 1
-			T.Click(location, control, params)
+			T = screen_loc2turf(P["screen-loc"], T)
+			if(T)
+				if(LAZYACCESS(modifiers, SHIFT_CLICK))
+					usr.face_atom(T)
+					return 1
+				T.Click(location, control, params)
 	return 1
 
 /// MouseWheelOn

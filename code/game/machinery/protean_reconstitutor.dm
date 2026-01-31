@@ -254,7 +254,7 @@
 						antag_data.add_antagonist(P.mind)
 						antag_data.place_mob(P)
 					P.mind.assigned_role = charjob
-					P.mind.role_alt_title = job_master.GetPlayerAltTitle(P, charjob)
+					P.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(P, charjob)
 
 				//no need to be particularly thorough about language handover, we can safely assume that they were allowed to have it if they had it to begin with
 				P.languages.Cut()
