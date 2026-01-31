@@ -97,7 +97,7 @@
 	data["anomaly_name"] = buffered_anomaly.name
 	data["severity"] = stats.severity
 	data["stability"] = stats.stability
-	data["point_output"] = stats.points_mult
+	data["point_output"] = stats.points
 	data["danger_type"] = stats.danger_type
 	data["unstable_type"] = stats.unstable_type
 	data["containment_type"] = stats.containment_type

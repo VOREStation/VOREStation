@@ -2,7 +2,6 @@
 	var/severity = 1.0
 	var/stability
 	var/max_health
-	var/base_mult = 1
 
 	var/danger_type
 	var/unstable_type
@@ -15,7 +14,7 @@
 
 	var/next_activation
 	// Total of points we'll get once the anomaly does a pulse
-	var/points_mult
+	var/points
 	// Should give a pulse and do things every minute or so
 	var/last_pulse
 	var/curr_health
@@ -23,11 +22,10 @@
 
 /datum/anomaly_stats/New()
 	randomize_particle_types()
-	points_mult = base_mult
 	severity = rand(5.0, 15.0)
 	max_health = rand(50, 150)
 	curr_health = max_health
-	calc_points_mult()
+	points = calculate_points()
 	stability = ANOMALY_STABLE
 
 /datum/anomaly_stats/proc/randomize_particle_types()
@@ -38,20 +36,16 @@
 	containment_type = particles[3]
 	transformation_type = particles[4]
 
-/datum/anomaly_stats/proc/calc_points_mult()
+/datum/anomaly_stats/proc/calculate_points()
 	var/total = 0
 
-	if(modifier)
-		total += modifier.get_value()
 	total += severity/100
 	total *= curr_health/max_health
 
-	points_mult = total*10
+	if(modifier)
+		total += modifier.get_value()
 
-	return
-
-/datum/anomaly_stats/proc/get_points_multiplier()
-	return "[round(points_mult * 100)]%"
+	return total*10
 
 /datum/anomaly_stats/proc/particle_hit(particle)
 	// I don't really like this, but switch() expects a constant expression
@@ -85,7 +79,7 @@
 	animate(attached_anomaly, transform = M, time = 1 SECOND)
 	apply_wibbly_filters(attached_anomaly)
 
-	calc_points_mult()
+	calculate_points()
 	return
 
 /datum/anomaly_stats/proc/update_health(lower, upper)
@@ -96,7 +90,7 @@
 		kill_anomaly(FALSE)
 		return
 
-	calc_points_mult()
+	calculate_points()
 	return
 
 /datum/anomaly_stats/proc/kill_anomaly(critical)
@@ -141,7 +135,7 @@
 
 	modifier = new picked_mod
 	modifier.on_add(src)
-	calc_points_mult()
+	calculate_points()
 	return
 
 /datum/anomaly_stats/proc/get_activation_countdown()
