@@ -26,7 +26,8 @@ SUBSYSTEM_DEF(asset_loading)
 	// We just emptied the queue
 	if(last_queue_len && !length(generate_queue) && !assets_generating)
 		// Clean up cached icons, freeing memory.
-		rustg_iconforge_cleanup()
+		// rustg_iconforge_cleanup() // Disabaled for now
+		pass()
 
 /datum/controller/subsystem/asset_loading/proc/queue_asset(datum/asset/queue)
 #ifdef DO_NOT_DEFER_ASSETS
