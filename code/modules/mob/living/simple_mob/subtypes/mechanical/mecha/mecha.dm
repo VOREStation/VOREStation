@@ -66,7 +66,7 @@
 	..(0,"explodes!") // Do everything else first.
 
 	// Make the exploding more convincing with an actual explosion and some sparks.
-	sparks.start()
+	sparks?.start()
 	explosion(get_turf(src), 0, 0, 1, 3)
 
 	// 'Eject' our pilot, if one exists.
