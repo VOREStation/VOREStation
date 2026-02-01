@@ -26,6 +26,8 @@
 /obj/item/mining_scanner/verb/toggle_sediment_scan()
 	set name = "Toggle Sediment Scan"
 	set category = "Object"
+	set src in view(1)
+
 	if(sediment_scan)
 		to_chat(usr, span_notice("\The [src] will no longer scan for reagents."))
 		sediment_scan = FALSE
