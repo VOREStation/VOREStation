@@ -152,8 +152,8 @@
 	var/list/data = list()
 
 	var/list/geneMasks[0]
-	for(var/gene_tag in xenobio_controller.gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = xenobio_controller.gene_tag_masks[gene_tag])))
+	for(var/gene_tag in GLOB.xenobio_controller.gene_tag_masks)
+		geneMasks.Add(list(list("tag" = gene_tag, "mask" = GLOB.xenobio_controller.gene_tag_masks[gene_tag])))
 	data["geneMasks"] = geneMasks
 
 	data["activity"] = active
@@ -231,8 +231,8 @@
 
 		loaded_disk.genesource = "[genetics.source]"
 
-		loaded_disk.name += " ([xenobio_controller.gene_tag_masks[href_list["get_gene"]]], [genetics.source])"
-		loaded_disk.desc += " The label reads \'gene [xenobio_controller.gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.source]\'."
+		loaded_disk.name += " ([GLOB.xenobio_controller.gene_tag_masks[href_list["get_gene"]]], [genetics.source])"
+		loaded_disk.desc += " The label reads \'gene [GLOB.xenobio_controller.gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.source]\'."
 		eject_disk = 1
 
 		degradation += rand(20,60)
@@ -306,7 +306,7 @@
 
 		for(var/datum/xeno/genes/X in loaded_disk.genes)
 			if(data["locus"] != "") data["locus"] += ", "
-			data["locus"] += "[xenobio_controller.gene_tag_masks[X.genetype]]"
+			data["locus"] += "[GLOB.xenobio_controller.gene_tag_masks[X.genetype]]"
 
 	else
 		data["disk"] = 0

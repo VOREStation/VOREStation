@@ -1,20 +1,19 @@
-import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack } from 'tgui-core/components';
+import { Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-import { capitalize } from 'tgui-core/string';
+import { selectiveModeModel } from '../constants';
 
-import type { LocalPrefs } from '../types';
-import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
+import type { DropdownPrefernces, LocalPrefs } from '../types';
+import {
+  VoreUserPreferenceDropdown,
+  VoreUserPreferenceItem,
+} from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesDevouring = (props: {
   devourable: BooleanLike;
-  digestModeToColor: Record<string, string | undefined>;
-  selective_active: string;
   preferences: LocalPrefs;
+  dropdownPreferences: DropdownPrefernces;
 }) => {
-  const { act } = useBackend();
-  const { devourable, digestModeToColor, selective_active, preferences } =
-    props;
+  const { devourable, dropdownPreferences, preferences } = props;
 
   return (
     <Section
@@ -47,15 +46,11 @@ export const VoreUserPreferencesDevouring = (props: {
             />
           </Stack.Item>
           <Stack.Item basis="32%">
-            <Button
-              fluid
-              backgroundColor={digestModeToColor[selective_active]}
-              tooltip="Allows to set the personal belly mode preference for selective bellies."
+            <VoreUserPreferenceDropdown
+              spec={selectiveModeModel}
+              currentActive={dropdownPreferences.selective_active}
               tooltipPosition="right"
-              onClick={() => act('switch_selective_mode_pref')}
-            >
-              {`Selective Mode Preference: ${capitalize(selective_active)}`}
-            </Button>
+            />
           </Stack.Item>
           <Stack.Item basis="32%" grow>
             <VoreUserPreferenceItem

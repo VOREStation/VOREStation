@@ -1,4 +1,4 @@
-var/list/_cat_default_emotes = list(
+GLOBAL_LIST_INIT(cat_default_emotes, list(
 	/decl/emote/visible,
 	/decl/emote/visible/scratch,
 	/decl/emote/visible/drool,
@@ -25,7 +25,7 @@ var/list/_cat_default_emotes = list(
 	/decl/emote/audible/gnarl,
 	/decl/emote/audible/purr,
 	/decl/emote/audible/purrlong
-)
+))
 
 /mob/living/simple_mob/animal/passive/cat
 	name = "cat"
@@ -60,7 +60,7 @@ var/list/_cat_default_emotes = list(
 	return ..()
 
 /mob/living/simple_mob/animal/passive/cat/get_available_emotes()
-	return global._cat_default_emotes.Copy()
+	return GLOB.cat_default_emotes.Copy()
 
 /mob/living/simple_mob/animal/passive/cat/handle_special()
 	if(!stat && prob(2)) // spooky

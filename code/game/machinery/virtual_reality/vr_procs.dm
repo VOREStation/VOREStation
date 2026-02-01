@@ -48,11 +48,15 @@
 	set name = "Log Out Of Virtual Reality"
 	set category = "Abilities.VR"
 
-	if(tgui_alert(usr, "Would you like to log out of virtual reality?", "Log out?", list("Yes", "No")) == "Yes")
-		release_vore_contents(TRUE)
-		for(var/obj/item/I in src)
-			drop_from_inventory(I)
-		qdel(src)
+	if(tgui_alert(src, "Would you like to log out of virtual reality?", "Log out?", list("Yes", "No")) != "Yes")
+		return
+
+	release_vore_contents(TRUE)
+	for(var/obj/item/I in src)
+		drop_from_inventory(I)
+
+	ghostize(src)
+	qdel(src)
 
 /mob/observer/dead/proc/fake_enter_vr(landmark)
 	if(!landmark)
@@ -77,7 +81,7 @@
 
 	avatar.regenerate_icons()
 	avatar.update_transform()
-	job_master.EquipRank(avatar,JOB_VR, 1, FALSE)
+	GLOB.job_master.EquipRank(avatar,JOB_VR, 1, FALSE)
 	add_verb(avatar,/mob/living/carbon/human/proc/fake_exit_vr)
 	add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 	add_verb(avatar,/mob/living/proc/set_size)

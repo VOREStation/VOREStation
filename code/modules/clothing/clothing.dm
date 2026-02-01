@@ -57,7 +57,7 @@
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
-	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
+	if(("[slot]" in GLOB.slot_flags_enumeration) && (slot_flags & GLOB.slot_flags_enumeration["[slot]"]))
 		for(var/trait in clothing_traits)
 			ADD_CLOTHING_TRAIT(user, trait)
 
@@ -741,7 +741,7 @@
 	if(holding)
 		add_overlay("[icon_state]_knife")
 	if(contaminated)
-		add_overlay(contamination_overlay)
+		add_overlay(GLOB.contamination_overlay)
 	if(gurgled) //VOREStation Edit Start
 		wash(CLEAN_ALL)
 		gurgle_contaminate() //VOREStation Edit End

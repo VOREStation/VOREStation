@@ -432,3 +432,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 		. += l_hand
 	if(r_hand)
 		. += r_hand
+
+/mob/living/carbon/human/proc/drop_all_clothing(var/remove_underwear = FALSE)
+	for(var/obj/item/equipped_thing in worn_clothing)
+		if(istype(equipped_thing,/obj/item/clothing/accessory/collar/shock/bluespace))
+			continue
+		drop_from_inventory(equipped_thing)
+	if(remove_underwear)
+		for(var/datum/category_group/underwear/UWC in global_underwear.categories)
+			hide_underwear[UWC.name] = TRUE
+		update_underwear(1)

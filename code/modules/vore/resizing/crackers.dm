@@ -100,7 +100,7 @@
 	winner.visible_message(span_notice("\The [winner] wins the cracker prize!"),span_notice("You win the cracker prize!"))
 	switch(prize)
 		if(SHRINKING_CRACKER)
-			winner.resize(0.25)
+			winner.resize(0.25, allow_stripping = TRUE)
 			winner.visible_message(span_bold("\The [winner]") + " shrinks suddenly!")
 		if(GROWING_CRACKER)
 			winner.resize(2)

@@ -20,7 +20,7 @@
 				UWI = undergarment_class.items_by_name[new_fullness[undergarment_class.name + "-ifnone"]]
 				all_underwear[undergarment_class.name] = UWI
 		if(UWI && UWI.has_color && new_fullness[undergarment_class.name + "-color"])
-			all_underwear_metadata[undergarment_class.name]["[gear_tweak_free_color_choice]"] = new_fullness[undergarment_class.name + "-color"]
+			all_underwear_metadata[undergarment_class.name]["[GLOB.gear_tweak_free_color_choice]"] = new_fullness[undergarment_class.name + "-color"]
 		if(UWI && UWI.name != "None" && hide_underwear[undergarment_class.name] != new_fullness[undergarment_class.name])
 			hide_underwear[undergarment_class.name] = new_fullness[undergarment_class.name]
 			update_underwear(1)

@@ -1,12 +1,5 @@
 // Pilots
 
-var/const/SAR 				=(1<<11)
-var/const/PILOT 			=(1<<13)
-var/const/EXPLORER 			=(1<<14)
-
-var/const/ACCESS_PILOT = 67
-var/const/ACCESS_EXPLORER = 43
-
 /datum/access/pilot
 	id = ACCESS_PILOT
 	desc = "Pilot"

@@ -572,10 +572,10 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	//If desired, apply equipment.
 	if(equipment)
 		if(charjob)
-			job_master.EquipRank(new_character, charjob, 1)
+			GLOB.job_master.EquipRank(new_character, charjob, 1)
 			if(new_character.mind)
 				new_character.mind.assigned_role = charjob
-				new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
+				new_character.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(new_character, charjob)
 
 	//If customised job title, modify here.
 	if(custom_job && custom_job_title)
@@ -733,8 +733,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if (!check_rights_for(src, R_HOLDER))
 		return
 
-	if(job_master)
-		for(var/datum/job/job in job_master.occupations)
+	if(GLOB.job_master)
+		for(var/datum/job/job in GLOB.job_master.occupations)
 			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

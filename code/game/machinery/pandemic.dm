@@ -236,7 +236,7 @@
 			traits["stealth"] = adv_disease.stealth
 			traits["stage_speed"] = adv_disease.stage_rate
 			traits["transmission"] = adv_disease.transmission
-			traits["symptom_severity"] = adv_disease.severity
+			traits["severity"] = adv_disease.severity
 
 		traits["index"] = index++
 		traits["agent"] = disease.agent
