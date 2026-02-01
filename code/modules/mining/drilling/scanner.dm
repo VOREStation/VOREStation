@@ -31,9 +31,9 @@
 	if(sediment_scan)
 		to_chat(usr, span_notice("\The [src] will no longer scan for reagents."))
 		sediment_scan = FALSE
-	else
-		to_chat(usr, span_notice("\The [src] will now scan for reagents."))
-		sediment_scan = TRUE
+		return
+	to_chat(usr, span_notice("\The [src] will now scan for reagents."))
+	sediment_scan = TRUE
 
 /obj/item/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user)
 	var/list/metals = list(
