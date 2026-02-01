@@ -188,11 +188,11 @@ GLOBAL_VAR(restart_counter)
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
-	master_controller = new /datum/controller/game_controller()
+	GLOB.master_controller = new /datum/controller/game_controller()
 	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit
 
 	spawn(1)
-		master_controller.setup()
+		GLOB.master_controller.setup()
 
 	RunUnattendedFunctions()
 
@@ -219,13 +219,6 @@ GLOBAL_VAR(restart_counter)
 	SetupLogs()
 
 	load_admins(initial = TRUE)
-
-	//apply a default value to config.python_path, if needed
-	if (!CONFIG_GET(string/python_path))
-		if(world.system_type == UNIX)
-			CONFIG_SET(string/python_path, "/usr/bin/env python2")
-		else //probably windows, if not this should work anyway
-			CONFIG_SET(string/python_path, "python")
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -447,61 +440,6 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 			return list2params(list(testmerge = GLOB.revdata.testmerge, date = GLOB.revdata.date, commit = GLOB.revdata.commit, originmastercommit = GLOB.revdata.originmastercommit))
 		else
 			return "unknown"
-
-	else if(copytext(T,1,9) == "adminmsg")
-		/*
-			We got an adminmsg from IRC bot lets split the input then validate the input.
-			expected output:
-				1. adminmsg = ckey of person the message is to
-				2. msg = contents of message, parems2list requires
-				3. validatationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
-				4. sender = the ircnick that send the message.
-		*/
-
-
-		var/input[] = params2list(T)
-		var/password = CONFIG_GET(string/comms_password)
-		if(!password || input["key"] != password)
-			if(GLOB.world_topic_spam_protect_ip == addr && abs(GLOB.world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					GLOB.world_topic_spam_protect_time = world.time
-					return
-
-			GLOB.world_topic_spam_protect_time = world.time
-			GLOB.world_topic_spam_protect_ip = addr
-
-			return "Bad Key"
-
-		var/client/C
-		var/req_ckey = ckey(input["adminmsg"])
-
-		for(var/client/K in GLOB.clients)
-			if(K.ckey == req_ckey)
-				C = K
-				break
-		if(!C)
-			return "No client with that name on server"
-
-		var/rank = input["rank"]
-		if(!rank)
-			rank = "Admin"
-
-		var/message =	span_red("IRC-[rank] PM from <b><a href='byond://?irc_msg=[input["sender"]]'>IRC-[input["sender"]]</a></b>: [input["msg"]]")
-		var/amessage =  span_blue("IRC-[rank] PM from <a href='byond://?irc_msg=[input["sender"]]'>IRC-[input["sender"]]</a> to <b>[key_name(C)]</b> : [input["msg"]]")
-
-		C.received_irc_pm = world.time
-		C.irc_admin = input["sender"]
-
-		C << 'sound/effects/adminhelp.ogg'
-		to_chat(C,message)
-
-
-		for(var/client/A in GLOB.admins)
-			if(A != C)
-				to_chat(A,amessage)
-
-		return "Message Successful"
 
 /// Returns TRUE if the world should do a TGS hard reboot.
 /world/proc/check_hard_reboot()
@@ -792,15 +730,6 @@ GLOBAL_VAR_INIT(failed_db_connections, 0)
 	SStimer?.reset_buckets()
 
 #undef FAILED_DB_CONNECTION_CUTOFF
-
-/proc/get_world_url()
-	. = "byond://"
-	if(CONFIG_GET(string/serverurl))
-		. += CONFIG_GET(string/serverurl)
-	else if(CONFIG_GET(string/server))
-		. += CONFIG_GET(string/server)
-	else
-		. += "[world.address]:[world.port]"
 
 /proc/auxtools_stack_trace(msg)
 	CRASH(msg)

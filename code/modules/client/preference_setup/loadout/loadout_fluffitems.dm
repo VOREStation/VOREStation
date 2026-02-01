@@ -1505,7 +1505,7 @@
 
 /datum/gear/fluff/dessa_hat/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/fluff/casey_glasses
 	path = /obj/item/clothing/glasses/big_round

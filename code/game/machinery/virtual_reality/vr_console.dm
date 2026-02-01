@@ -293,7 +293,7 @@
 
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
-			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+			GLOB.job_master.EquipRank(avatar,"Visitor", 1, FALSE)
 		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 		add_verb(avatar,/mob/living/proc/set_size)
