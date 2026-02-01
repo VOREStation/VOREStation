@@ -438,14 +438,6 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 		summary = copytext(summary, 1, webhook_length_limit + 1)
 		summary += "\n\[Truncated\]"
 
-	SSwebhooks.send(
-		WEBHOOK_FAX_SENT,
-		list(
-			"name" = "[faxname] '[sent.name]' sent from [key_name(sender)]",
-			"body" = summary
-		)
-	)
-
 /*
 								#####						####
 								##### Webhook Functionality ####

@@ -27,8 +27,10 @@ var/list/holder_mob_icon_cache = list()
 	var/original_vis_flags = NONE
 
 /obj/item/holder/Initialize(mapload, mob/held)
-	ASSERT(ismob(held))
 	. = ..()
+	if(!ismob(held))
+		stack_trace("Holder was not passed a mob.")
+		return INITIALIZE_HINT_QDEL
 	held.forceMove(src)
 	START_PROCESSING(SSobj, src)
 

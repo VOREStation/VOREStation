@@ -1003,6 +1003,10 @@
 			if(new_show_liquids == 1)
 				new_belly.show_liquids = TRUE
 
+		if(isnum(belly_data["reagent_gen_cost_limit"]))
+			var/new_reagent_gen_cost_limit = belly_data["reagent_gen_cost_limit"]
+			new_belly.reagent_gen_cost_limit = sanitize_integer(new_reagent_gen_cost_limit, 0, 100, initial(new_belly.reagent_gen_cost_limit))
+
 		if(isnum(belly_data["reagentbellymode"]))
 			var/new_reagentbellymode = belly_data["reagentbellymode"]
 			if(new_reagentbellymode == 0)

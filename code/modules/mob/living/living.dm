@@ -1414,6 +1414,9 @@
 /mob/living/proc/adjust_nutrition(amount)
 	nutrition = between(0, nutrition + amount, max_nutrition)
 
+/mob/living/proc/nutrition_percent()
+	return 100 * nutrition / max_nutrition
+
 /mob/living/vv_get_header()
 	. = ..()
 	var/refid = REF(src)

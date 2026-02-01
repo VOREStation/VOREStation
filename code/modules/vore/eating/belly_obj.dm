@@ -162,6 +162,7 @@
 	var/belly_fullscreen_alpha = 255
 
 	// Liquid belly vars
+	var/reagent_gen_cost_limit = 10			//Our lower percentage limit of nutrition / charge until which we produce liquids
 	var/reagentbellymode = FALSE			// Belly has abilities to make liquids from digested/absorbed/drained prey and/or nutrition
 	var/reagent_mode_flags = 0
 
@@ -378,6 +379,7 @@
 	"colorization_enabled",
 	"show_liquids",
 	"reagentbellymode",
+	"reagent_gen_cost_limit",
 	"liquid_fullness1_messages",
 	"liquid_fullness2_messages",
 	"liquid_fullness3_messages",
@@ -653,12 +655,12 @@
 			owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 		var/obj/item/I = thing
 		if(I.gurgled)
-			I.cut_overlay(gurgled_overlays[I.gurgled_color]) //No double-overlay for worn items.
-			I.add_overlay(gurgled_overlays[I.gurgled_color])
+			I.cut_overlay(GLOB.gurgled_overlays[I.gurgled_color]) //No double-overlay for worn items.
+			I.add_overlay(GLOB.gurgled_overlays[I.gurgled_color])
 		if(I.d_mult < 1)
 			if(I.d_stage_overlay)
 				I.cut_overlay(I.d_stage_overlay)
-			var/image/temp = new /image(gurgled_overlays[I.gurgled_color ? I.gurgled_color : "green"])
+			var/image/temp = new /image(GLOB.gurgled_overlays[I.gurgled_color ? I.gurgled_color : "green"])
 			temp.filters += filter(type = "alpha", icon = icon(I.icon, I.icon_state))
 			I.d_stage_overlay = temp
 			for(var/count in I.d_mult to 1 step 0.25)
@@ -1146,6 +1148,9 @@
 		if(B.name in secondary_locations)
 			secondary_bellies += B
 
+	if(!length(primary_bellies) && !length(secondary_bellies))
+		return null
+
 	return list("primary" = primary_bellies, "secondary" = secondary_bellies)
 
 //Autotransfer callback
@@ -1153,16 +1158,18 @@
 	if(!(prey in contents) || !prey.autotransferable)
 		return FALSE
 	var/obj/belly/dest_belly
-	if(autotransferlocation_secondary && prob(autotransferchance_secondary))
-		if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
-			dest_belly = pick(transfer_locations["secondary"])
-		if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
-			dest_belly = pick(transfer_locations["secondary"])
-	if(autotransferlocation && prob(autotransferchance))
-		if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
-			dest_belly = pick(transfer_locations["primary"])
-		if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
-			dest_belly = pick(transfer_locations["primary"])
+	if(length(transfer_locations["secondary"]))
+		if(autotransferlocation_secondary && prob(autotransferchance_secondary))
+			if(ismob(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist))
+				dest_belly = pick(transfer_locations["secondary"])
+			if(isitem(prey) && autotransfer_filter(prey, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items))
+				dest_belly = pick(transfer_locations["secondary"])
+	if(length(transfer_locations["primary"]))
+		if(autotransferlocation && prob(autotransferchance))
+			if(ismob(prey) && autotransfer_filter(prey, autotransfer_whitelist, autotransfer_blacklist))
+				dest_belly = pick(transfer_locations["primary"])
+			if(isitem(prey) && autotransfer_filter(prey, autotransfer_whitelist_items, autotransfer_blacklist_items))
+				dest_belly = pick(transfer_locations["primary"])
 	if(!dest_belly) // Didn't transfer, so wait before retrying
 		prey.belly_cycles = 0
 		return FALSE
@@ -1352,6 +1359,7 @@
 	dupe.belly_fullscreen_color4 = belly_fullscreen_color4
 	dupe.belly_fullscreen_alpha = belly_fullscreen_alpha
 	dupe.show_liquids = show_liquids
+	dupe.reagent_gen_cost_limit = reagent_gen_cost_limit
 	dupe.reagentbellymode = reagentbellymode
 	dupe.vorefootsteps_sounds = vorefootsteps_sounds
 	dupe.liquid_fullness1_messages = liquid_fullness1_messages

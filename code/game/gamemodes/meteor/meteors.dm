@@ -4,33 +4,38 @@ GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths o
 //Meteors probability of spawning during a given wave
 
 //for space dust event
-/var/list/meteors_dust = list(/obj/effect/meteor/dust)
+/* Not in use
+GLOBAL_LIST_INIT(meteors_dust, list(/obj/effect/meteor/dust))
+*/
 
 //for normal meteor event
-/var/list/meteors_normal = list(
+GLOBAL_LIST_INIT(meteors_normal, list(
 	/obj/effect/meteor/dust=3,
 	/obj/effect/meteor/medium=8,
 	/obj/effect/meteor/big=3,
 	/obj/effect/meteor/flaming=1,
 	/obj/effect/meteor/irradiated=3
-	)
+	))
 
 //for threatening meteor event
-/var/list/meteors_threatening = list(
+GLOBAL_LIST_INIT(meteors_threatening, list(
 	/obj/effect/meteor/medium=5,
 	/obj/effect/meteor/big=10,
 	/obj/effect/meteor/flaming=3,
 	/obj/effect/meteor/irradiated=3,
-	/obj/effect/meteor/emp=3)
+	/obj/effect/meteor/emp=3
+	))
 
+/* Not in use
 //for catastrophic meteor event
-/var/list/meteors_catastrophic = list(
+GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	/obj/effect/meteor/medium=5,
 	/obj/effect/meteor/big=75,
 	/obj/effect/meteor/flaming=10,
 	/obj/effect/meteor/irradiated=10,
-	/obj/effect/meteor/emp=10)
-
+	/obj/effect/meteor/emp=10
+	))
+*/
 
 
 ///////////////////////////////

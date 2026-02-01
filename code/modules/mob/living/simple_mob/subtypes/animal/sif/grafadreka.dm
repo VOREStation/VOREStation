@@ -89,7 +89,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 		to_chat(target, span_notice("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
 
 /mob/living/simple_mob/animal/sif/grafadreka/get_available_emotes()
-	. = global._default_mob_emotes.Copy()
+	. = GLOB.default_mob_emotes.Copy()
 	if(!is_baby)
 		. |= /decl/emote/audible/drake_howl
 	return

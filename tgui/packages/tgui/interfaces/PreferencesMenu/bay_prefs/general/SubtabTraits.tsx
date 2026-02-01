@@ -263,5 +263,18 @@ export const TraitSubprefSelector = (props: {
           {`${data}`}
         </Button>
       );
+    case TraitPrefType.TRAIT_PREF_TYPE_LIST:
+      return (
+        <Button
+          onClick={() =>
+            act('clicked_trait_pref', {
+              clicked_trait_pref: trait,
+              pref: prefKey,
+            })
+          }
+        >
+          {`${data}`}
+        </Button>
+      );
   }
 };

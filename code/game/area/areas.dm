@@ -368,8 +368,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	return (actual_static_equip == static_equip && actual_static_light == static_light && actual_static_environ == static_environ)
 
 //////////////////////////////////////////////////////////////////
-
-var/list/mob/living/forced_ambiance_list = list()
+GLOBAL_LIST_EMPTY(forced_ambiance_list)
 
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)
@@ -406,15 +405,15 @@ var/list/mob/living/forced_ambiance_list = list()
 	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
 
 	// If we previously were in an area with force-played ambiance, stop it.
-	if((L in forced_ambiance_list) && initial)
+	if((L in GLOB.forced_ambiance_list) && initial)
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
-		forced_ambiance_list -= L
+		GLOB.forced_ambiance_list -= L
 
 	if(forced_ambience)
-		if(L in forced_ambiance_list)
+		if(L in GLOB.forced_ambiance_list)
 			return
 		if(forced_ambience.len)
-			forced_ambiance_list |= L
+			GLOB.forced_ambiance_list |= L
 			var/sound/chosen_ambiance = pick(forced_ambience)
 			if(!istype(chosen_ambiance))
 				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE_FORCED)

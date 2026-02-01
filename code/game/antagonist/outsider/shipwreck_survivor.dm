@@ -1,9 +1,9 @@
-var/datum/antagonist/shipwreck_survivor/survivors
+GLOBAL_DATUM(survivors, /datum/antagonist/shipwreck_survivor)
 
 //Shipwreck survivors can only spawn from ghost_pods at time of this commit.
 //These are NOT meant to be real antagonists
 //They are, at best, comparable to ERT.
-/datum/antagonist/SURVIVOR
+/datum/antagonist/shipwreck_survivor
 	id = MODE_SURVIVOR
 	role_type = BE_SURVIVOR
 	role_text = "Shipwreck Survivor"
@@ -29,7 +29,11 @@ var/datum/antagonist/shipwreck_survivor/survivors
 	can_speak_aooc = FALSE
 	can_hear_aooc = FALSE
 
-/datum/antagonist/SURVIVOR/greet(var/datum/mind/player)
+/datum/antagonist/shipwreck_survivor/New()
+	..()
+	GLOB.survivors = src
+
+/datum/antagonist/survivor/greet(var/datum/mind/player)
 	to_chat(player.current, span_warning("You are a <b>NOT</b> an antagonist! All rules apply to you as well. Your job is to help make the world seem more alive. \n \
 	You are not an existing station character, but some average person who has suffered a terrible accident. \
 	Feel free to make up what happened to the ship you awakened on as you please, \
