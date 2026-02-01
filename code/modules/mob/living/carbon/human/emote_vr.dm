@@ -13,7 +13,7 @@
 
 /mob/living/carbon/human/proc/handle_flip_vr()
 	var/original_density = density
-	var/original_passflags = pass_flags
+	var/added_passtable = FALSE
 
 	//Briefly un-dense to dodge projectiles
 	density = FALSE
@@ -23,7 +23,9 @@
 	if(species)
 		parkour_chance = species.agility
 	if(prob(parkour_chance))
-		pass_flags |= PASSTABLE
+		if(!(pass_flags & PASSTABLE))
+			pass_flags |= PASSTABLE
+			added_passtable = TRUE
 	else
 		Confuse(1) //Thud
 
@@ -51,8 +53,10 @@
 			break // Only fall down the first stairs in the turf... If somehow more than one exists
 
 	spawn(7)
-		density = original_density
-		pass_flags = original_passflags
+		if(!lying)
+			density = original_density
+		if(added_passtable)
+			pass_flags &= ~PASSTABLE
 
 /mob/living/carbon/human/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"

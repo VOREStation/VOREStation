@@ -7,7 +7,7 @@
 	var/shockdamage = 20
 	var/emp_zap = FLUX_EMP
 
-/obj/effect/anomaly/flux/Initialize(mapload, new_lifespan, emp_zap = FLUX_EMP)
+/obj/effect/anomaly/flux/Initialize(mapload, new_lifespan, drops_core, emp_zap = FLUX_EMP)
 	. = ..()
 	src.emp_zap = emp_zap
 	var/static/list/loc_connections = list(

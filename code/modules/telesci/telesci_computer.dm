@@ -20,7 +20,7 @@
 	var/distance = 5
 
 	// Based on the distance used
-	var/teleport_cooldown = 0
+	COOLDOWN_DECLARE(teleport_cooldown)
 	var/teleporting = 0
 	var/starting_crystals = 0
 	var/max_crystals = 4
@@ -101,7 +101,7 @@
 		data["insertedGps"] = inserted_gps
 		data["rotation"] = rotation
 		data["currentZ"] = z_co
-		data["cooldown"] = max(0, min(100, round(teleport_cooldown - world.time) / 10))
+		data["cooldown"] = max(0, min(100, COOLDOWN_TIMELEFT(src, teleport_cooldown) / 10))
 		data["crystalCount"] = crystals.len
 		data["maxCrystals"] = max_crystals
 		data["maxPossibleDistance"] = FLOOR((max_crystals * powerCoefficient * 6), 1); // max efficiency is 6
@@ -154,9 +154,9 @@
 			if(last_target && inserted_gps)
 				// TODO - What was this even supposed to do??
 				//inserted_gps.locked_location = last_target
-				temp_msg = "Location saved."
+				temp_msg = "Function Deprecated. No action taken."
 			else
-				temp_msg = "ERROR! No data was stored."
+				temp_msg = "Function Deprecated. No action taken."
 
 		if("send")
 			sending = 1
@@ -188,6 +188,7 @@
 		return
 
 /obj/machinery/computer/telescience/proc/telefail()
+	COOLDOWN_START(src, teleport_cooldown, (2 SECONDS))
 	switch(rand(99))
 		if(0 to 80)
 			sparks()
@@ -195,7 +196,7 @@
 			return
 		if(81 to 85)
 			sparks()
-			var/anomaly = pick(FLUX_ANOMALY, GRAVITATIONAL_ANOMALY, PYRO_ANOMALY, HALLUCINATION_ANOMALY, BIOSCRAMBLER_ANOMALY, DIMENSIONAL_ANOMALY)
+			var/anomaly = pick(FLUX_ANOMALY, GRAVITATIONAL_ANOMALY, PYRO_ANOMALY, HALLUCINATION_ANOMALY, BIOSCRAMBLER_ANOMALY, DIMENSIONAL_ANOMALY, WEATHER_ANOMALY)
 			generate_anomaly(get_turf(telepad), anomaly, 1, FALSE)
 			for(var/mob/living/carbon/human/human in viewers(telepad, null))
 				to_chat(human, span_warning("The telepad crackles with energy, as a tear in reality is created!"))
@@ -214,7 +215,7 @@
 			sparks()
 			if(telepad)
 				var/L = get_turf(telepad)
-				var/blocked = list(/mob/living/simple_mob/vore)
+				var/blocked = list(/mob/living/simple_mob/vore, /mob/living/simple_mob/vore/ddraig) + typesof(/mob/living/simple_mob/vore/woof) + typesof(/mob/living/simple_mob/vore/overmap)
 				var/list/hostiles = typesof(/mob/living/simple_mob/vore) - blocked
 				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
 				for(var/i in 1 to rand(1,4))
@@ -232,9 +233,7 @@
 
 /obj/machinery/computer/telescience/proc/doteleport(mob/user)
 
-	if(teleport_cooldown > world.time)
-		return
-	if(teleporting)
+	if(!COOLDOWN_FINISHED(src, teleport_cooldown))
 		return
 
 	if(telepad)
@@ -270,7 +269,7 @@
 			if(telepad.inoperable())
 				return
 			teleporting = 0
-			teleport_cooldown = world.time + (spawn_time * 2)
+			COOLDOWN_START(src, teleport_cooldown, (spawn_time * 2))
 			teles_left -= 1
 
 			// use a lot of power
@@ -348,6 +347,12 @@
 			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
+	if(!COOLDOWN_FINISHED(src, teleport_cooldown))
+		temp_msg = "ERROR! Teleportation console is cooling down. Please wait."
+		return
+	if(teleporting)
+		temp_msg = "ERROR! Teleportation in progress. Please wait."
+		return
 	distance = CLAMP(distance, 0, get_max_allowed_distance())
 	if(rotation == null || distance == null || z_co == null)
 		temp_msg = "ERROR! Set a distance, rotation and sector."

@@ -2404,9 +2404,6 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/boatdeck)
 "yK" = (
-/obj/structure/closet/secure_closet/freezer/fridge{
-	starts_with = null
-	},
 /obj/item/reagent_containers/food/snacks/generalschicken,
 /obj/item/storage/box/wings,
 /obj/item/reagent_containers/food/snacks/kitsuneudon,
@@ -2414,6 +2411,7 @@
 /obj/item/reagent_containers/food/snacks/grilledcheese,
 /obj/item/reagent_containers/food/snacks/jellysandwich,
 /obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/structure/closet/secure_closet/freezer/fridge/empty,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/dining)
 "yY" = (

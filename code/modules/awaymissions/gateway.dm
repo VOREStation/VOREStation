@@ -209,6 +209,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 						MI.forceMove(finaldest.loc)
 						sleep(1)
 						MI.Paralyse(10)
+						MI.Sleeping(10)
 						MI << 'sound/effects/bamf.ogg'
 						to_chat(MI,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 					for(var/obj/item/I in L)
@@ -219,6 +220,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 				L.forceMove(finaldest.loc)
 				sleep(1)
 				L.Paralyse(10)
+				L.Sleeping(10)
 				L << 'sound/effects/bamf.ogg'
 				to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 			//VOREStation Addition End

@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 	var/disk_rescued = 1
 	for(var/obj/item/disk/nuclear/D in GLOB.nuke_disks)
 		var/disk_area = get_area(D)
-		if(!is_type_in_list(disk_area, centcom_areas))
+		if(!is_type_in_list(disk_area, GLOB.centcom_areas))
 			disk_rescued = 0
 			break
 	var/crew_evacuated = (emergency_shuttle.returned())
@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 		to_chat(world, span_filter_system(span_large(span_bold("[syndicate_name()] operatives have earned Darwin Award!"))))
 		to_chat(world, span_filter_system(span_bold("[syndicate_name()] operatives blew up something that wasn't [station_name()] and got caught in the explosion.") + " Next time, don't lose the disk!"))
 
-	else if (disk_rescued && mercs.antags_are_dead())
+	else if (disk_rescued && GLOB.mercs.antags_are_dead())
 		feedback_set_details("round_end_result","loss - evacuation - disk secured - syndi team dead")
 		to_chat(world, span_filter_system(span_large(span_bold("Crew Major Victory!"))))
 		to_chat(world, span_filter_system(span_bold("The Research Staff has saved the disc and killed the [syndicate_name()] Operatives")))
@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 		to_chat(world, span_filter_system(span_large(span_bold("Crew Major Victory"))))
 		to_chat(world, span_filter_system(span_bold("The Research Staff has saved the disc and stopped the [syndicate_name()] Operatives!")))
 
-	else if (!disk_rescued && mercs.antags_are_dead())
+	else if (!disk_rescued && GLOB.mercs.antags_are_dead())
 		feedback_set_details("round_end_result","loss - evacuation - disk not secured")
 		to_chat(world, span_filter_system(span_large(span_bold("Mercenary Minor Victory!"))))
 		to_chat(world, span_filter_system(span_bold("The Research Staff failed to secure the authentication disk but did manage to kill most of the [syndicate_name()] Operatives!")))

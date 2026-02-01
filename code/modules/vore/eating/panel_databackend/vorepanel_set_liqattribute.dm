@@ -14,6 +14,12 @@
 				host.vore_selected.show_liquids = 0
 				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] no longer has liquid options."))
 			. = TRUE
+		if("b_liq_reagent_gen_cost_limit")
+			var/new_limit = text2num(params["val"])
+			if(!isnum(new_limit))
+				return FALSE
+			host.vore_selected.reagent_gen_cost_limit = CLAMP(new_limit, 0, 100)
+			. = TRUE
 		if("b_liq_reagent_gen")
 			if(!host.vore_selected.reagentbellymode) //liquid container adjustments and interactions.
 				host.vore_selected.reagentbellymode = 1
@@ -102,7 +108,7 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_reagentcolor")
-			var/newcolor = tgui_color_picker(user, "Choose custom color for liquid overlay. Cancel for normal reagent color.", "", host.vore_selected.custom_reagentcolor)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.custom_reagentcolor = newcolor
 			else
@@ -137,7 +143,7 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_mush_color")
-			var/newcolor = tgui_color_picker(user, "Choose custom color for mush overlay.", "", host.vore_selected.mush_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.mush_color = newcolor
 				host.vore_selected.update_internal_overlay()
@@ -194,7 +200,7 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_ingested_color")
-			var/newcolor = tgui_color_picker(user, "Choose custom color for ingested metabolism overlay. Cancel for reagent-based dynamic blend.", "", host.vore_selected.custom_ingested_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.custom_ingested_color = newcolor
 			else

@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Button,
   Collapsible,
@@ -8,12 +7,10 @@ import {
 } from 'tgui-core/components';
 
 import { MESSAGE_TYPES } from '../../chat/constants';
-import { toggleTTSSetting, updateSettings } from '../actions';
-import { selectSettings } from '../selectors';
+import { useSettings } from '../use-settings';
 
 export const TTSSettings = (props) => {
-  const dispatch = useDispatch();
-  const { ttsCategories, ttsVoice } = useSelector(selectSettings);
+  const { settings, updateSettings, toggleInObject } = useSettings();
 
   const voices = window.speechSynthesis.getVoices();
 
@@ -25,13 +22,11 @@ export const TTSSettings = (props) => {
             <Dropdown
               options={voices.map((voice) => voice.name)}
               onSelected={(option) => {
-                dispatch(
-                  updateSettings({
-                    ttsVoice: option,
-                  }),
-                );
+                updateSettings({
+                  ttsVoice: option,
+                });
               }}
-              selected={ttsVoice}
+              selected={settings.ttsVoice}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -40,8 +35,15 @@ export const TTSSettings = (props) => {
         {MESSAGE_TYPES.filter((typeDef) => !typeDef.admin).map((typeDef) => (
           <Button.Checkbox
             key={typeDef.type}
-            checked={ttsCategories[typeDef.type]}
-            onClick={() => dispatch(toggleTTSSetting({ type: typeDef.type }))}
+            checked={settings.ttsCategories[typeDef.type]}
+            onClick={() =>
+              updateSettings({
+                ttsCategories: toggleInObject(
+                  settings.ttsCategories,
+                  typeDef.type,
+                ),
+              })
+            }
           >
             {typeDef.name}
           </Button.Checkbox>
@@ -52,8 +54,15 @@ export const TTSSettings = (props) => {
           ).map((typeDef) => (
             <Button.Checkbox
               key={typeDef.type}
-              checked={ttsCategories[typeDef.type]}
-              onClick={() => dispatch(toggleTTSSetting({ type: typeDef.type }))}
+              checked={settings.ttsCategories[typeDef.type]}
+              onClick={() =>
+                updateSettings({
+                  ttsCategories: toggleInObject(
+                    settings.ttsCategories,
+                    typeDef.type,
+                  ),
+                })
+              }
             >
               {typeDef.name}
             </Button.Checkbox>

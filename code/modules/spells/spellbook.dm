@@ -22,7 +22,7 @@
 		return FALSE
 	if(!user)
 		return
-	if((user.mind && !wizards.is_antagonist(user.mind)))
+	if((user.mind && !GLOB.wizards.is_antagonist(user.mind)))
 		to_chat(user, span_warning("You stare at the book but cannot make sense of the markings!"))
 		return
 

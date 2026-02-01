@@ -107,6 +107,7 @@ the artifact triggers the rage.
 		if(prob(last_shock_stage))
 			to_chat(holder, span_warning("You pass out from the pain you were suppressing."))
 			holder.Paralyse(5)
+			holder.Sleeping(5)
 
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder

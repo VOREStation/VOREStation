@@ -159,7 +159,7 @@
 
 /datum/gear/towel/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/cahwhite
 	display_name = "Cards Against The Galaxy (white deck)"
@@ -312,7 +312,7 @@
 	toytype["Bone"] = /obj/item/toy/chewtoy/poly
 	toytype["Classic"] = /obj/item/toy/chewtoy/tall/poly
 	gear_tweaks += new/datum/gear_tweak/path(toytype)
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/ducky
 	display_name = "rubber ducky"

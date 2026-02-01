@@ -137,14 +137,14 @@
 		if(istype(new_object, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/airlock = object
 			var/obj/machinery/door/airlock/new_airlock = new_object
-			new_airlock.req_access = airlock.req_one_access?.Copy()
+			new_airlock.req_one_access = airlock.req_one_access?.Copy()
 			new_airlock.locked = airlock.locked
 			if(istype(object, /obj/machinery/door/airlock/multi_tile))
 				for(var/turf/location in object.locs)
 					if(location == object.loc)
 						continue
 					var/obj/machinery/door/airlock/long_airlock = new replace_path(location)
-					long_airlock.req_access = airlock.req_one_access?.Copy()
+					long_airlock.req_one_access = airlock.req_one_access?.Copy()
 					long_airlock.locked = airlock.locked
 					long_airlock.name = airlock.name
 		new_object.name = object.name
@@ -253,7 +253,7 @@
 		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/glass = 1),
 		/obj/structure/table = list(/obj/structure/table/glass = 1)
 	)
-	replace_walls = /obj/structure/window/basic/full
+	replace_walls = /turf/simulated/wall/glass
 
 /datum/dimension_theme/snow
 	name = "Snow"

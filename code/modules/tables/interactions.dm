@@ -1,6 +1,8 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
+	if(mover.z > z)
+		return TRUE //This allows mobs to drop down onto tables from above
 	if(flipped == 1)
 		if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 			return !density

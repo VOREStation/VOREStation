@@ -7,7 +7,6 @@ import {
   LabeledList,
   Stack,
 } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 
 import {
   type GeneralData,
@@ -232,7 +231,7 @@ export const TraitSubprefSelector = (props: {
           }
           selected={!!data}
         >
-          {(!!data as BooleanLike) ? 'Enabled' : 'Disabled'}
+          {!data ? 'Disabled' : 'Enabled'}
         </Button>
       );
     case TraitPrefType.TRAIT_PREF_TYPE_COLOR:
@@ -252,6 +251,19 @@ export const TraitSubprefSelector = (props: {
         </>
       );
     case TraitPrefType.TRAIT_PREF_TYPE_STRING:
+      return (
+        <Button
+          onClick={() =>
+            act('clicked_trait_pref', {
+              clicked_trait_pref: trait,
+              pref: prefKey,
+            })
+          }
+        >
+          {`${data}`}
+        </Button>
+      );
+    case TraitPrefType.TRAIT_PREF_TYPE_LIST:
       return (
         <Button
           onClick={() =>

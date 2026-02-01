@@ -32,6 +32,7 @@
 
 	var/rest_dir = 0					//To lay down in a specific direction
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
+	var/last_chew = 0
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
@@ -210,6 +211,7 @@
 				// deaf_loop.start() // Used downstream
 			if (prob(70) && !shielded)
 				Paralyse(10)
+				Sleeping(10)
 
 		if(3.0)
 			b_loss += 30
@@ -221,6 +223,7 @@
 				// deaf_loop.start() // Used downstream
 			if (prob(50) && !shielded)
 				Paralyse(10)
+				Sleeping(10)
 
 	var/update = 0
 
@@ -1007,7 +1010,7 @@
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
 	if(target)
-		AddComponent(/datum/component/remote_view/mremote_mutation, focused_on = target, vconfig_path = null)
+		AddComponent(/datum/component/remote_view/mremote_mutation, focused_on = target, viewsize = null, vconfig_path = null)
 		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)

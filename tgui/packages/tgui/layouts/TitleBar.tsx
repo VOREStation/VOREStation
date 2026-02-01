@@ -1,10 +1,10 @@
+import { useSetAtom } from 'jotai';
 import type { PropsWithChildren } from 'react';
-import { globalStore } from 'tgui/backend';
-import { toggleKitchenSink } from 'tgui/debug/actions';
 import { Button, Icon } from 'tgui-core/components';
 import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui-core/constants';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
+import { kitchenSinkAtom } from '../events/store';
 
 type TitleBarProps = Partial<{
   className: string;
@@ -39,7 +39,8 @@ export function TitleBar(props: TitleBarProps) {
     onClose,
     children,
   } = props;
-  const dispatch = globalStore.dispatch;
+
+  const setKitchenSink = useSetAtom(kitchenSinkAtom);
 
   const finalTitle =
     (typeof title === 'string' &&
@@ -68,7 +69,7 @@ export function TitleBar(props: TitleBarProps) {
         <Button
           className="TitleBar__buttons TitleBar__KitchenSink"
           icon="bug"
-          onClick={() => dispatch(toggleKitchenSink())}
+          onClick={() => setKitchenSink((prev) => !prev)}
         />
       )}
       {Boolean(fancy && canClose) && (

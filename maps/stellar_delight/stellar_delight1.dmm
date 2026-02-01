@@ -6768,11 +6768,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	door_color = "#8c1d11";
-	name = "Security Processing";
+/obj/machinery/door/airlock/angled_bay/standard/color/security{
 	req_access = list(63);
-	stripe_color = "#d27428"
+	name = "Security Processing";
+	id_tag = "sec_processing"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/security/security_processing)
@@ -12838,6 +12837,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/security,
+/obj/machinery/button/remote/airlock{
+	pixel_y = 32;
+	pixel_x = 36;
+	id = "sec_processing";
+	specialfunctions = 4;
+	name = "Door Control"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
 "Ax" = (

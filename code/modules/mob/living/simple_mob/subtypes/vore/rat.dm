@@ -256,6 +256,8 @@
 /mob/living/simple_mob/vore/aggressive/rat/pet
 	name = "Giant Rat Siblings"
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	devourable = 0
+	digestable = 0
 
 /mob/living/simple_mob/vore/aggressive/rat/pet/Initialize(mapload)
 	.=..()

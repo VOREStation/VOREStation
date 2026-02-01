@@ -2,11 +2,14 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-export const VorePanelColorBox = (props: {
-  back_color: string;
-  pixelSize?: number;
-  alpha?: number;
-}) => {
+export const VorePanelColorBox = (
+  props: {
+    back_color: string;
+  } & Partial<{
+    pixelSize: number;
+    alpha: number;
+  }>,
+) => {
   const { back_color, pixelSize = 20, alpha = 255 } = props;
 
   const parentSize = `${pixelSize}px`;

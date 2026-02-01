@@ -35,7 +35,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/N = M
 			to_chat(N, span_infoplain(span_bold("Access granted, here are the supplies!")))
-			traitors.spawn_uplink(N)
+			GLOB.traitors.spawn_uplink(N)
 			N.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 			N.mind.accept_tcrystals = 1
 			message_admins("[N]/([N.ckey]) has received an uplink and telecrystals from the syndicate beacon.")

@@ -1303,7 +1303,7 @@
 	icon_state = "shadowlaptop-open"
 	icon_state_closed = "shadowlaptop-closed"
 
-//Rboys2 - Clara Mali
+//claracow - Clara Mali
 /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
 	name = "Clara's Vacuum Flask"
 	desc = "A rose gold vacuum flask."

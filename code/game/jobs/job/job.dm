@@ -173,7 +173,7 @@
 	return message
 
 /datum/job/proc/get_job_icon()
-	if(!job_master.job_icons[title])
+	if(!GLOB.job_master.job_icons[title])
 		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
 		dress_mannequin(mannequin)
 		mannequin.dir = SOUTH
@@ -181,9 +181,9 @@
 		var/icon/preview_icon = getFlatIcon(mannequin)
 
 		preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
-		job_master.job_icons[title] = preview_icon
+		GLOB.job_master.job_icons[title] = preview_icon
 
-	return job_master.job_icons[title]
+	return GLOB.job_master.job_icons[title]
 
 /datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)

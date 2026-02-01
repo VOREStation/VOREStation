@@ -71,18 +71,17 @@
 	if(!avail_reagents)
 		return FALSE
 
-	. = TRUE
 	for(var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
-		if(aval_r_amnt - reagents[r_r] >= 0)
-			if(aval_r_amnt>(reagents[r_r]) && exact)
-				. = FALSE
-		else
+		if(aval_r_amnt - reagents[r_r] < 0)
 			return FALSE
 
-	if((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
+		if(aval_r_amnt > (reagents[r_r]) && exact)
+			return FALSE
+
+	if(LAZYLEN(reagents) < avail_reagents.reagent_list.len)
 		return FALSE
-	return .
+	return TRUE
 
 /datum/recipe/proc/check_fruit(var/obj/container, var/exact = FALSE)
 	if (!fruit || !fruit.len)
