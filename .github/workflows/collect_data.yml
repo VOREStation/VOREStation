@@ -25,3 +25,8 @@ jobs:
             **/*.md
             html/**
             tgui/**
+
+      - name: Debug changed files
+        run: |
+          echo "All changed files:"
+          echo "${{ steps.find_game_changes.outputs.all_changed_files }}"
