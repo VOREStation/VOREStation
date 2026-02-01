@@ -5,7 +5,7 @@
 #define RMS_STONE 5
 #define RMS_RAND 6
 
-var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
+GLOBAL_LIST_INIT(RMS_random_malfunction, list(/obj/item/fbp_backup_cell,
 									/obj/item/trash/rkibble,
 									/obj/item/clothing/gloves/bluespace/deluxe,
 									/obj/item/flame/lighter/supermatter/syndismzippo,
@@ -20,7 +20,8 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 									/obj/item/clothing/shoes/clown_shoes,
 									/obj/item/clothing/mask/gas/clown_hat,
 									/obj/item/pda/clown,
-									/mob/living/simple_mob/vore/catgirl)
+									/mob/living/simple_mob/vore/catgirl
+	))
 
 /obj/item/rms
 	name = "Rapid Material Synthesizer"
@@ -135,7 +136,7 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 	if(do_after(user, 5, target = A))
 		if(overcharge)
 			if(prob(5)) //5% chance for malfunction
-				var/thing_to_spawn = pick(RMS_random_malfunction)
+				var/thing_to_spawn = pick(GLOB.RMS_random_malfunction)
 				product = new thing_to_spawn
 			else
 				product = choose_overcharge(user)

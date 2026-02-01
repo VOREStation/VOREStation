@@ -44,7 +44,7 @@
 
 /datum/gear/gloves/evening/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/gloves/duty
 	display_name = "gloves, work"
@@ -74,7 +74,7 @@
 		"recolourable, long"=/obj/item/clothing/gloves/fingerless_recolourable/long
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/gloves/ring
 	display_name = "ring selection"
@@ -136,7 +136,7 @@
 
 /datum/gear/gloves/colored/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/gloves/latex/colorable
 	display_name = "gloves, latex, colorable"
@@ -144,7 +144,7 @@
 
 /datum/gear/gloves/latex/colorable/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/gloves/siren
 	display_name = "gloves, Siren"

@@ -202,7 +202,7 @@
 	return timer - world.time
 
 /mob/new_player/proc/IsJobAvailable(rank)
-	var/datum/job/job = job_master.GetJob(rank)
+	var/datum/job/job = GLOB.job_master.GetJob(rank)
 	if(!job)
 		return 0
 	if(!job.is_position_available())
@@ -237,7 +237,7 @@
 		return 0
 
 	//Find our spawning point.
-	var/list/join_props = job_master.LateSpawn(client, rank)
+	var/list/join_props = GLOB.job_master.LateSpawn(client, rank)
 
 	if(!join_props)
 		return
@@ -276,10 +276,10 @@
 			qdel(src)
 			return
 
-	job_master.AssignRole(src, rank, 1)
+	GLOB.job_master.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
-	character = job_master.EquipRank(character, rank, 1)					//equips the human
+	character = GLOB.job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
 
 	var/datum/job/J = SSjob.get_job(rank)

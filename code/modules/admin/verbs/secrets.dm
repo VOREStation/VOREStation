@@ -392,10 +392,10 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			var/choice = tgui_alert(holder, "How do you wish for Nar-Sie to interact with its surroundings?","NarChoice",list("CultStation13", "Nar-Singulo"))
 			if(choice == "CultStation13")
 				log_and_message_admins("has set narsie's behaviour to \"CultStation13\".", holder)
-				narsie_behaviour = choice
+				GLOB.narsie_behaviour = choice
 			if(choice == "Nar-Singulo")
 				log_and_message_admins("has set narsie's behaviour to \"Nar-Singulo\".", holder)
-				narsie_behaviour = choice
+				GLOB.narsie_behaviour = choice
 
 		if("remove_all_clothing")
 			for(var/obj/item/clothing/O in world)
