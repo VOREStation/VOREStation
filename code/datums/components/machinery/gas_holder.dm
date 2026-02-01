@@ -61,12 +61,12 @@
 			connect(possible_port)
 
 /datum/component/gas_holder/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(handle_attack))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(handle_attack))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(handle_unbuckle))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(handle_attack_self))
 
 /datum/component/gas_holder/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY, COMSIG_MOVABLE_UNBUCKLE))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOVABLE_UNBUCKLE, COMSIG_ITEM_ATTACK_SELF))
 
 ///Handles when we are 'used' in hand. TODO
 /datum/component/gas_holder/proc/handle_attack_self()
