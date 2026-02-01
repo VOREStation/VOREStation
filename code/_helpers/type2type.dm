@@ -97,29 +97,43 @@
 		dirs += "DOWN"
 	return dirs.Join(" ")
 
-// Converts an angle (degrees) into an ss13 direction
-/proc/angle2dir(var/degree)
-	degree = (degree + 22.5) % 365 // 22.5 = 45 / 2
-	if (degree < 45)  return NORTH
-	if (degree < 90)  return NORTHEAST
-	if (degree < 135) return EAST
-	if (degree < 180) return SOUTHEAST
-	if (degree < 225) return SOUTH
-	if (degree < 270) return SOUTHWEST
-	if (degree < 315) return WEST
-	return NORTH|WEST
+//Converts an angle (degrees) into a ss13 direction
+GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST))
+#define angle2dir(X) (GLOB.modulo_angle_to_dir[round((((X%360)+382.5)%360)/45)+1])
 
-// Returns the north-zero clockwise angle in degrees, given a direction
-/proc/dir2angle(var/D)
-	switch (D)
-		if (NORTH)     return 0
-		if (SOUTH)     return 180
-		if (EAST)      return 90
-		if (WEST)      return 270
-		if (NORTHEAST) return 45
-		if (SOUTHEAST) return 135
-		if (NORTHWEST) return 315
-		if (SOUTHWEST) return 225
+/proc/angle2dir_cardinal(degree)
+	degree = SIMPLIFY_DEGREES(degree)
+	switch(round(degree, 0.1))
+		if(315.5 to 360, 0 to 45.5)
+			return NORTH
+		if(45.6 to 135.5)
+			return EAST
+		if(135.6 to 225.5)
+			return SOUTH
+		if(225.6 to 315.5)
+			return WEST
+
+//returns the north-zero clockwise angle in degrees, given a direction
+/proc/dir2angle(D)
+	switch(D)
+		if(NORTH)
+			return 0
+		if(SOUTH)
+			return 180
+		if(EAST)
+			return 90
+		if(WEST)
+			return 270
+		if(NORTHEAST)
+			return 45
+		if(SOUTHEAST)
+			return 135
+		if(NORTHWEST)
+			return 315
+		if(SOUTHWEST)
+			return 225
+		else
+			return null
 
 /// Returns a list(x, y), being the change in position required to step in the passed in direction
 /proc/dir2offset(dir)
@@ -152,23 +166,44 @@
 		else                return ICON_OVERLAY
 
 // Converts a rights bitfield into a string
-/proc/rights2text(rights,seperator="")
-	if (rights & R_BUILDMODE)   . += "[seperator]+BUILDMODE"
-	if (rights & R_ADMIN)       . += "[seperator]+ADMIN"
-	if (rights & R_BAN)         . += "[seperator]+BAN"
-	if (rights & R_FUN)         . += "[seperator]+FUN"
-	if (rights & R_SERVER)      . += "[seperator]+SERVER"
-	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
-	if (rights & R_POSSESS)     . += "[seperator]+POSSESS"
-	if (rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
-	if (rights & R_STEALTH)     . += "[seperator]+STEALTH"
-	if (rights & R_REJUVINATE)  . += "[seperator]+REJUVINATE"
-	if (rights & R_VAREDIT)     . += "[seperator]+VAREDIT"
-	if (rights & R_SOUNDS)      . += "[seperator]+SOUND"
-	if (rights & R_SPAWN)       . += "[seperator]+SPAWN"
-	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
-	if (rights & R_EVENT)       . += "[seperator]+EVENT"
-	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
+/proc/rights2text(rights, seperator="", prefix = "+")
+	seperator += prefix
+	if(rights & R_BUILDMODE)
+		. += "[seperator]BUILDMODE"
+	if(rights & R_ADMIN)
+		. += "[seperator]ADMIN"
+	if(rights & R_BAN)
+		. += "[seperator]BAN"
+	if(rights & R_FUN)
+		. += "[seperator]FUN"
+	if(rights & R_SERVER)
+		. += "[seperator]SERVER"
+	if(rights & R_DEBUG)
+		. += "[seperator]DEBUG"
+	if(rights & R_POSSESS)
+		. += "[seperator]POSSESS"
+	if(rights & R_PERMISSIONS)
+		. += "[seperator]PERMISSIONS"
+	if(rights & R_STEALTH)
+		. += "[seperator]STEALTH"
+	if(rights & R_REJUVINATE)
+		. += "[seperator]REJUVINATE"
+	if(rights & R_VAREDIT)
+		. += "[seperator]VAREDIT"
+	if(rights & R_SOUNDS)
+		. += "[seperator]SOUND"
+	if(rights & R_SPAWN)
+		. += "[seperator]SPAWN"
+	if (rights & R_MOD)
+		. += "[seperator]MODERATOR"
+	if (rights & R_EVENT)
+		. += "[seperator]EVENT"
+	if (rights & R_MENTOR)
+		. += "[seperator]MENTOR"
+	if(rights & R_DBRANKS)
+		. += "[seperator]DBRANKS"
+	if(!.)
+		. = "NONE"
 	return .
 
 // Converts a hexadecimal color (e.g. #FF0050) to a list of numbers for red, green, and blue (e.g. list(255,0,80) ).

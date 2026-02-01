@@ -33,7 +33,7 @@
 	healthcheck()
 	return
 
-/obj/structure/alien/hitby(atom/movable/source)
+/obj/structure/alien/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	visible_message(span_danger("\The [src] was hit by \the [source]."))
 	var/tforce

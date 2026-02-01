@@ -27,8 +27,10 @@ var/list/holder_mob_icon_cache = list()
 	var/original_vis_flags = NONE
 
 /obj/item/holder/Initialize(mapload, mob/held)
-	ASSERT(ismob(held))
 	. = ..()
+	if(!ismob(held))
+		stack_trace("Holder was not passed a mob.")
+		return INITIALIZE_HINT_QDEL
 	held.forceMove(src)
 	START_PROCESSING(SSobj, src)
 
@@ -356,6 +358,12 @@ var/list/holder_mob_icon_cache = list()
 /mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
 
 	if(!holder_type || buckled || pinned.len)
+		return
+
+	// Dodge pickup if enabled by personal space bubble.
+	if(!self_grab && (touch_reaction_flags & SPECIES_TRAIT_PICKUP_DODGE))
+		grabber.visible_message(span_notice("[src] deftly evades [grabber]'s attempt to pick them up!"))
+		to_chat(grabber, span_notice("[src] evaded your pickup attempt!"))
 		return
 
 	if(self_grab)

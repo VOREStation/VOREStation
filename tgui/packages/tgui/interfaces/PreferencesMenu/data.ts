@@ -1,4 +1,4 @@
-import type { sendAct } from 'tgui/backend';
+import type { sendAct } from 'tgui/events/act';
 
 import type { LegacyConstant } from './bay_prefs/data';
 

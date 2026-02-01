@@ -41,6 +41,8 @@
 			var/datum/wound/W = new /datum/wound/internal_bleeding(20)
 			owner.adjustToxLoss(25)
 			groin.wounds += W
+			groin.update_damages()
+			owner.handle_organs(TRUE) //Force an update so we start processing the internal bleeding.
 			inflamed = 1
 */
 /obj/item/organ/internal/appendix/removed()

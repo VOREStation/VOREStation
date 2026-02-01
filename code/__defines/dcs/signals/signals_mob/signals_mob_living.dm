@@ -449,3 +449,7 @@
 #define COMSIG_VENT_CRAWLER_ENTERED "ventcrawl_entered_vent"
 ///called when a ventcrawling mob leaves a vent : (mob/exiting_mob)
 #define COMSIG_VENT_CRAWLER_EXITED "ventcrawl_exit_vent"
+
+///called when a living mob collides with a dense turf : /mob/living/proc/turf_collision(var/turf/T, var/speed)
+#define COMSIG_LIVING_TURF_COLLISION "living_turf_collision"
+	#define COMPONENT_LIVING_BLOCK_TURF_COLLISION (1<<0)

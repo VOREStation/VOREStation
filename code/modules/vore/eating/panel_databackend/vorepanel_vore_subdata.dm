@@ -149,7 +149,7 @@
 		if(selected.message_mode || selected.escapechance)
 			tab_data["subtypes"] += SUCCESS_MESSAGE
 		if(!message_subtab)
-			message_subtab = ATTEMPT_MESSAGE
+			message_subtab = ITEM_MESSAGE
 		if(message_subtab == ATTEMPT_MESSAGE)
 			tab_data["possible_messages"] = list(TO_PREY, TO_YOU)
 			if(!selected_message)
@@ -717,6 +717,7 @@
 			"liq_reagent_transfer_verb" = selected.reagent_transfer_verb,
 			"liq_reagent_nutri_rate" = selected.gen_time,
 			"liq_reagent_capacity" = selected.custom_max_volume,
+			"liq_gen_cost_limit" = selected.reagent_gen_cost_limit,
 			"liq_sloshing" = selected.vorefootsteps_sounds,
 			"liq_reagent_addons" = liquid_addon_list,
 			"custom_reagentcolor" = (selected.custom_reagentcolor ? selected.custom_reagentcolor : selected.reagentcolor),

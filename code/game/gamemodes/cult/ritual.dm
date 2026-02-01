@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(engwords, list("travel", "blood", "join", "hell", "destroy", "t
 GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri"))
 
 /client/proc/check_words() // -- Urist
-	set category = "Admin.Secrets"
+	set category = ADMIN_CATEGORY_SECRETS
 	set name = "Check Rune Words"
 	set desc = "Check the rune-word meaning"
 	if(!GLOB.cultwords["travel"])
@@ -334,7 +334,7 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 			to_chat(user, span_warning("You do not have enough space to write a proper rune."))
 			return
 
-		if (C>=26 + GLOB.runedec + cult.current_antagonists.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
+		if (C>=26 + GLOB.runedec + GLOB.cult.current_antagonists.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
 			tgui_alert_async(user, "The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else

@@ -6,7 +6,7 @@
 /datum/disease/advance/random/minor
 	max_symptoms_override = 4
 
-/datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom, var/atom/infected)
+/datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom, var/atom/infected, mute = TRUE)
 	if(!max_symptoms)
 		max_symptoms = (2 + rand(1, (VIRUS_SYMPTOM_LIMIT - 2)))
 	if(max_symptoms_override)
@@ -33,6 +33,8 @@
 			symptoms += new chosen_symptom
 	for(var/guaranteed_symptom in guaranteed_symptoms)
 		symptoms += new guaranteed_symptom
+	if(!mute)
+		virus_modifiers |= IMMUTABLE
 	Finalize()
 
 	if(randomname)

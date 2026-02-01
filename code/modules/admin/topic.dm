@@ -48,19 +48,28 @@
 	// mentor_commands(href, href_list, src) - Skip because client is already admin & contents handled above
 
 	else if(href_list["editrightsbrowser"])
-		edit_admin_permissions(0)
+		edit_admin_permissions(PERMISSIONS_PAGE_PERMISSIONS)
 
-	else if(href_list["editrightsbrowserlog"])
-		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+	else if(href_list["editrightsbrowserranks"])
+		if(href_list["editrightsaddrank"])
+			add_rank()
+		else if(href_list["editrightsremoverank"])
+			remove_rank(href_list["editrightsremoverank"])
+		else if(href_list["editrightseditrank"])
+			change_rank(href_list["editrightseditrank"])
+		edit_admin_permissions(PERMISSIONS_PAGE_RANKS)
 
-	if(href_list["editrightsbrowsermanage"])
+	else if(href_list["editrightsbrowserlogging"])
+		edit_admin_permissions(PERMISSIONS_PAGE_LOGGING, href_list["editrightslogtarget"], href_list["editrightslogactor"], href_list["editrightslogoperation"], href_list["editrightslogpage"])
+
+	if(href_list["editrightsbrowserhousekeep"])
 		if(href_list["editrightschange"])
 			change_admin_rank(ckey(href_list["editrightschange"]), href_list["editrightschange"], TRUE)
 		else if(href_list["editrightsremove"])
 			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
 		else if(href_list["editrightsremoverank"])
 			remove_rank(href_list["editrightsremoverank"])
-		edit_admin_permissions(2)
+		edit_admin_permissions(PERMISSIONS_PAGE_HOUSEKEEPING)
 
 	else if(href_list["editrights"])
 		edit_rights_topic(href_list)
@@ -246,7 +255,7 @@
 		if(!M.ckey)	//sanity
 			to_chat(usr, span_filter_adminlog("This mob has no ckey"))
 			return
-		if(!job_master)
+		if(!GLOB.job_master)
 			to_chat(usr, span_filter_adminlog("Job Master has not been setup!"))
 			return
 
@@ -267,7 +276,7 @@
 		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -287,7 +296,7 @@
 		jobs += "<tr bgcolor='ffddf0'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=securitydept;jobban4=\ref[M]'>Security Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -307,7 +316,7 @@
 		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -327,7 +336,7 @@
 		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=cargodept;jobban4=\ref[M]'>Cargo Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -347,7 +356,7 @@
 		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -367,7 +376,7 @@
 		jobs += "<tr bgcolor='e79fff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -387,7 +396,7 @@
 		jobs += "<tr bgcolor='ebb8fc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=explorationdept;jobban4=\ref[M]'>Exploration Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -411,7 +420,7 @@
 		jobs += "<tr bgcolor='00ffff'><th colspan='[length(offmap_jobs)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=offmapdept;jobban4=\ref[M]'>Offmap Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in offmap_jobs)
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -431,7 +440,7 @@
 		jobs += "<tr bgcolor='dddddd'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=civiliandept;jobban4=\ref[M]'>Civilian Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -456,7 +465,7 @@
 		jobs += "<tr bgcolor='ccffcc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=nonhumandept;jobban4=\ref[M]'>Synthetic Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -536,7 +545,7 @@
 				tgui_alert_async(usr, "You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-		if(!job_master)
+		if(!GLOB.job_master)
 			to_chat(usr, span_filter_adminlog("Job Master has not been setup!"))
 			return
 
@@ -546,63 +555,63 @@
 			if("commanddept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("securitydept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("cargodept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("sciencedept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("explorationdept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("offmapdept")
 				for(var/dept in GLOB.offmap_departments)
 					for(var/jobPos in SSjob.get_job_titles_in_department(dept))
 						if(!jobPos)	continue
-						var/datum/job/temp = job_master.GetJob(jobPos)
+						var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 						if(!temp) continue
 						joblist += temp.title
 			if("civiliandept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("nonhumandept")
 				joblist += "pAI"
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			else
@@ -949,6 +958,7 @@
 
 		//so they black out before warping
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		if(!M)	return
 
@@ -1003,6 +1013,7 @@
 			M.drop_from_inventory(I)
 
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdome1)
 		spawn(50)
@@ -1028,6 +1039,7 @@
 			M.drop_from_inventory(I)
 
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdome2)
 		spawn(50)
@@ -1050,6 +1062,7 @@
 			return
 
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdomeadmin)
 		spawn(50)
@@ -1079,6 +1092,7 @@
 			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
+		M.Sleeping(5)
 		sleep(5)
 		M.loc = pick(GLOB.tdomeobserve)
 		spawn(50)

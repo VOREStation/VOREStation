@@ -1,4 +1,4 @@
-var/datum/antagonist/rogue_ai/malf
+GLOBAL_DATUM(malf, /datum/antagonist/rogue_ai)
 
 /datum/antagonist/rogue_ai
 	id = MODE_MALFUNCTION
@@ -20,7 +20,7 @@ var/datum/antagonist/rogue_ai/malf
 
 /datum/antagonist/rogue_ai/New()
 	..()
-	malf = src
+	GLOB.malf = src
 
 
 /datum/antagonist/rogue_ai/get_candidates()

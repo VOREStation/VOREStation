@@ -628,7 +628,7 @@
 		show_radial_occupant(user)
 		return
 	if(state)
-		occupant_message(span_red("Maintenance protocols in effect"))
+		occupant_message(span_warning("Maintenance protocols in effect"))
 		return
 
 	if(phasing)//Phazon and other mechs with phasing.
@@ -705,7 +705,9 @@
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		if(istype(user,/mob/living/carbon/brain))
-			to_chat(user, span_warning("You try to move, but you are not the pilot! The exosuit doesn't respond."))
+			if(world.time - last_message > 20)
+				to_chat(user, span_warning("You try to move, but you are not the pilot! The exosuit doesn't respond."))
+				last_message = world.time
 			return 0
 		user.forceMove(get_turf(src))
 		to_chat(user, "You climb out from [src]")
@@ -713,7 +715,9 @@
 
 	var/obj/item/mecha_parts/component/hull/HC = internal_components[MECH_HULL]
 	if(!HC)
-		occupant_message(span_notice("You can't operate an exosuit that doesn't have a hull!"))
+		if(world.time - last_message > 20)
+			occupant_message(span_notice("You can't operate an exosuit that doesn't have a hull!"))
+			last_message = world.time
 		return
 
 	if(connected_port)
@@ -722,8 +726,10 @@
 			last_message = world.time
 		return 0
 	if(state)
-		occupant_message(span_warning("Maintenance protocols in effect"))
-		return
+		if(world.time - last_message > 20)
+			occupant_message(span_warning("Unable to move whilst in maintenance mode"))
+			last_message = world.time
+		return 0
 /*
 	if(zoom)
 		if(world.time - last_message > 20)
@@ -1109,7 +1115,7 @@
 		src.log_append_to_last("Armor saved.")
 	return
 
-/obj/mecha/hitby(atom/movable/source) //wrapper
+/obj/mecha/hitby(atom/movable/source, datum/thrownthing/throwingdatum) //wrapper
 	..()
 	src.mecha_log_message("Hit by [source].",1)
 	call((proc_res["dynhitby"]||src), "dynhitby")(source)
@@ -2549,7 +2555,7 @@
 	if(href_list["toggle_maint_access"])
 		if(usr != src.occupant)	return
 		if(state)
-			occupant_message(span_red("Maintenance protocols in effect"))
+			occupant_message(span_warning("Maintenance protocols in effect"))
 			return
 		maint_access = !maint_access
 		send_byjax(src.occupant,"exosuit.browser","t_maint_access","[maint_access?"Forbid":"Permit"] maintenance protocols")

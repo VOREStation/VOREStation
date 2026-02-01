@@ -94,7 +94,7 @@
 		if(overmind)
 			blob_head_overlay.color = overmind.blob_type.complementary_color
 		color = initial(color)//looks better.
-		add_overlay(blob_head_overlay, TRUE)
+		add_overlay(blob_head_overlay)
 
 /mob/living/simple_mob/blob/spore/handle_special()
 	..()

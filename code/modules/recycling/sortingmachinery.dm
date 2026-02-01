@@ -9,7 +9,10 @@
 /obj/machinery/disposal/deliveryChute/interact()
 	return
 
-/obj/machinery/disposal/deliveryChute/update()
+/obj/machinery/disposal/deliveryChute/update_icon()
+	return
+
+/obj/machinery/disposal/deliveryChute/click_alt(mob/user) //No flushing the chute
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
@@ -28,7 +31,7 @@
 		AM.forceMove(src)
 	flush()
 
-/obj/machinery/disposal/deliveryChute/hitby(atom/movable/source)
+/obj/machinery/disposal/deliveryChute/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(!QDELETED(source) || (isitem(source) || isliving(source)) && !istype(source, /obj/item/projectile))
 		switch(dir)
 			if(NORTH)

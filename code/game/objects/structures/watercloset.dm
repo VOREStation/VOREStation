@@ -1,5 +1,12 @@
 //todo: toothbrushes, and some sort of "toilet-filthinator" for the hos
 
+#define SHOWER_FREEZING "freezing"
+#define SHOWER_TEMP_FREEZING T0C
+#define SHOWER_NORMAL "normal"
+#define SHOWER_TEMP_NORMAL 293
+#define SHOWER_BOILING "boiling"
+#define SHOWER_TEMP_BOILING T0C + 100
+
 /obj/structure/toilet
 	name = "toilet"
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
@@ -81,10 +88,10 @@
 				to_chat(user, span_notice("You need a tighter grip."))
 
 	if(cistern && !istype(user,/mob/living/silicon/robot)) //STOP PUTTING YOUR MODULES IN THE TOILET.
-		if(I.w_class > 3)
+		if(I.w_class > ITEMSIZE_NORMAL) //3
 			to_chat(user, span_notice("\The [I] does not fit."))
 			return
-		if(w_items + I.w_class > 5)
+		if(w_items + I.w_class > ITEMSIZE_HUGE) //5
 			to_chat(user, span_notice("The cistern is full."))
 			return
 		user.drop_item()
@@ -159,23 +166,166 @@
 	anchored = TRUE
 	use_power = USE_POWER_OFF
 	var/on = 0
-	var/obj/effect/mist/mymist = null
-	var/ismist = 0				//needs a var so we can make it linger~
-	var/watertemp = "normal"	//freezing, normal, or boiling
-	var/is_washing = 0
-	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
+	var/current_temperature = SHOWER_NORMAL		//SHOWER_FREEZING, SHOWER_NORMAL, or SHOWER_BOILING
 	var/datum/looping_sound/showering/soundloop
+	var/reagent_id = REAGENT_ID_WATER
+	var/reaction_volume = 200
 
 /obj/machinery/shower/Initialize(mapload)
-	create_reagents(50)
+	. = ..()
+	create_reagents(reaction_volume)
+	reagents.add_reagent(reagent_id, reaction_volume)
 	soundloop = new(list(src), FALSE)
-	return ..()
 
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
+	QDEL_NULL(reagents)
+	STOP_MACHINE_PROCESSING(src)
 	return ..()
 
 //add heat controls? when emagged, you can freeze to death in it?
+
+/obj/machinery/shower/attack_hand(mob/M as mob)
+	on = !on
+	update_icon()
+	handle_mist()
+	add_fingerprint(M)
+	if(on)
+		START_MACHINE_PROCESSING(src)
+		process()
+		soundloop.start()
+	else
+		soundloop.stop()
+
+/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/analyzer)) //Lol? Why...
+		to_chat(user, span_notice("The water temperature seems to be [current_temperature]."))
+
+/obj/machinery/shower/click_alt(mob/user)
+	..()
+	var/list/temperature_settings = list(SHOWER_NORMAL, SHOWER_BOILING, SHOWER_FREEZING)
+	var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
+	to_chat(user, span_notice("You begin to adjust the temperature..."))
+	if(do_after(user, 5 SECONDS, src))
+		current_temperature = newtemp
+		user.visible_message(span_notice("[user] adjusts the shower."), span_notice("You adjust the shower to [current_temperature] temperature."))
+		add_fingerprint(user)
+	handle_mist()
+
+/obj/machinery/shower/examine(mob/user)
+	. = ..()
+	. += span_notice("You can <b>alt-click</b> to change the temperature.")
+
+/obj/machinery/shower/update_icon()
+	cut_overlays()
+	if(on)
+		if(reagent_id == REAGENT_ID_WATER)
+			add_overlay(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
+		else
+			var/mutable_appearance/colorful_shower = image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+			colorful_shower.color = reagents.get_color() //Whatever the fuck happens to be spewing out of here.
+			add_overlay(colorful_shower)
+
+/obj/machinery/shower/proc/handle_mist()
+	// If there is no mist, and the shower was turned on (on a non-freezing temp): make mist in 5 seconds
+	// If there was already mist, and the shower was turned off (or made cold): remove the existing mist in 25 sec
+	var/obj/effect/mist/mist = locate() in loc
+	if(!mist && on && current_temperature != SHOWER_FREEZING)
+		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS, TIMER_DELETE_ME)
+
+	if(mist && (!on || current_temperature == SHOWER_FREEZING))
+		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS, TIMER_DELETE_ME)
+
+/obj/machinery/shower/proc/make_mist()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/obj/effect/mist/mist = locate() in loc
+	if(!mist && on && current_temperature != SHOWER_FREEZING)
+		new /obj/effect/mist(loc)
+
+/obj/machinery/shower/proc/clear_mist()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/obj/effect/mist/mist = locate() in loc
+	if(mist && (!on || current_temperature == SHOWER_FREEZING))
+		qdel(mist)
+
+
+/obj/machinery/shower/Crossed(atom/movable/AM)
+	..()
+	if(on)
+		wash_atom(AM)
+
+//Yes, showers are super powerful as far as washing goes.
+/obj/machinery/shower/proc/wash_atom(atom/A)
+	/* //TG cleans rads and only does CLEAN_WASH, not sure if that's wanted here.
+	A.wash(CLEAN_RAD | CLEAN_TYPE_WEAK) // Clean radiation non-instantly
+	A.wash(CLEAN_WASH)
+	*/
+	A.wash(CLEAN_SCRUB)
+	reagents.splash(A, reaction_volume / 20, 1, TRUE, min_spill = 0, max_spill = 0) //Reaction volume needs to be divided by 20 due to a larger internal volume
+
+	if(!isliving(A))
+		return
+	var/mob/living/L = A
+	check_heat(L)
+	L.extinguish_mob()
+	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
+
+	if(!iscarbon(A))
+		return
+	//flush away reagents on the skin
+	var/mob/living/carbon/C = A
+	if(C.touching)
+		var/remove_amount = C.touching.maximum_volume * C.reagent_permeability() //take off your suit first
+		C.touching.remove_any(remove_amount)
+
+/obj/machinery/shower/process()
+	if(on)
+		if(isturf(loc)) //Wash the turf.
+			wash_atom(loc)
+		for(var/AM in loc) //Wash everything in the same loc (technically doesnt need to be a turf.)
+			wash_atom(AM)
+	else
+		return PROCESS_KILL
+
+/obj/machinery/shower/proc/check_heat(mob/living/L)
+	var/list/temperature_settings = list(SHOWER_FREEZING = SHOWER_TEMP_FREEZING, SHOWER_NORMAL = SHOWER_TEMP_NORMAL, SHOWER_BOILING = SHOWER_TEMP_BOILING)
+	var/temperature = temperature_settings[current_temperature]
+	switch(current_temperature)
+		if(SHOWER_FREEZING)
+			/* // We dont have adjust_bodytemperature()
+			if(iscarbon(L))
+				L.adjust_bodytemperature(-80, temperature)
+			*/
+			L.bodytemperature = max(L.bodytemperature - 80, temperature)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(temperature <= H.species.cold_level_1)
+					to_chat(L, span_warning("The water is freezing cold!"))
+			else
+				to_chat(L, span_warning("The water is freezing cold!"))
+		if(SHOWER_BOILING)
+			/* // We dont have adjust_bodytemperature()
+			if(iscarbon(L))
+				L.adjust_bodytemperature(35, 0, temperature)
+			*/
+			L.bodytemperature = min(L.bodytemperature + 35, temperature)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(temperature >= H.species.heat_level_1)
+					to_chat(L, span_danger("The water is searing hot!"))
+					L.adjustFireLoss(5)
+			else //Sorry, simplemobs just get Burnt
+				to_chat(L, span_danger("The water is searing hot!"))
+				L.adjustFireLoss(5)
+		else
+			if(L.bodytemperature < 288) // 15C
+				L.bodytemperature = min(L.bodytemperature + 10, SHOWER_TEMP_NORMAL)
+				//L.adjust_bodytemperature(10)
+			if(L.bodytemperature > 298) // 25C
+				L.bodytemperature = max(L.bodytemperature - 10, SHOWER_TEMP_NORMAL)
+				//L.adjust_bodytemperature(-10)
 
 /obj/effect/mist
 	name = "mist"
@@ -185,120 +335,6 @@
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
 	mouse_opacity = 0
-
-/obj/machinery/shower/attack_hand(mob/M as mob)
-	on = !on
-	update_icon()
-	if(on)
-		soundloop.start()
-		if (M.loc == loc)
-			do_wash(M)
-			process_heat(M)
-		for (var/atom/movable/G in src.loc)
-			G.wash(CLEAN_SCRUB)
-	else
-		soundloop.stop()
-
-/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/analyzer)
-		to_chat(user, span_notice("The water temperature seems to be [watertemp]."))
-	if(I.has_tool_quality(TOOL_WRENCH))
-		var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
-		to_chat(user, span_notice("You begin to adjust the temperature valve with \the [I]."))
-		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 5 SECONDS * I.toolspeed, target = src))
-			watertemp = newtemp
-			user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
-			add_fingerprint(user)
-
-/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
-	cut_overlays()					//once it's been on for a while, in addition to handling the water overlay.
-	if(mymist)
-		qdel(mymist)
-		mymist = null
-
-	if(on)
-		add_overlay(image('icons/obj/watercloset.dmi', src, REAGENT_ID_WATER, MOB_LAYER + 1, dir))
-		if(temperature_settings[watertemp] < T20C)
-			return //no mist for cold water
-		if(!ismist)
-			addtimer(CALLBACK(src, PROC_REF(spawn_mist)), 50, TIMER_DELETE_ME)
-		else
-			ismist = 1
-			mymist = new /obj/effect/mist(loc)
-	else if(ismist)
-		ismist = 1
-		mymist = new /obj/effect/mist(loc)
-		addtimer(CALLBACK(src, PROC_REF(remove_mist)), 250, TIMER_DELETE_ME)
-
-/obj/machinery/shower/proc/spawn_mist()
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	if(on)
-		ismist = 1
-		mymist = new /obj/effect/mist(loc)
-
-/obj/machinery/shower/proc/remove_mist()
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!on)
-		qdel(mymist)
-		mymist = null
-		ismist = 0
-
-
-//Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/do_wash(atom/movable/O as obj|mob)
-	if(!on) return
-
-	if(isliving(O))
-		var/mob/living/L = O
-		L.extinguish_mob()
-		L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
-
-	if(iscarbon(O))
-		//flush away reagents on the skin
-		var/mob/living/carbon/M = O
-		if(M.touching)
-			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
-			M.touching.remove_any(remove_amount)
-
-	O.wash(CLEAN_SCRUB)
-
-	reagents.splash(O, 10, min_spill = 0, max_spill = 0)
-
-/obj/machinery/shower/process()
-	if(!on) return
-	for(var/atom/movable/AM in loc)
-		if(AM.simulated)
-			do_wash(AM)
-			if(isliving(AM))
-				var/mob/living/L = AM
-				process_heat(L)
-	wash_floor()
-	reagents.add_reagent(REAGENT_ID_WATER, reagents.get_free_space())
-
-/obj/machinery/shower/proc/wash_floor()
-	if(is_washing)
-		return
-	is_washing = 1
-	var/turf/T = get_turf(src)
-	T.wash(CLEAN_SCRUB)
-	addtimer(VARSET_CALLBACK(src, is_washing, 0), 100, TIMER_DELETE_ME)
-
-/obj/machinery/shower/proc/process_heat(mob/living/M)
-	if(!on || !istype(M)) return
-
-	var/temperature = temperature_settings[watertemp]
-	var/temp_adj = between(BODYTEMP_COOLING_MAX, temperature - M.bodytemperature, BODYTEMP_HEATING_MAX)
-	M.bodytemperature += temp_adj
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(temperature >= H.species.heat_level_1)
-			to_chat(H, span_danger("The water is searing hot!"))
-		else if(temperature <= H.species.cold_level_1)
-			to_chat(H, span_warning("The water is freezing cold!"))
 
 ////////////////////////RUBBER DUCKIES//////////////////////////////
 
@@ -743,3 +779,10 @@
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"
+
+#undef SHOWER_FREEZING
+#undef SHOWER_TEMP_FREEZING
+#undef SHOWER_NORMAL
+#undef SHOWER_TEMP_NORMAL
+#undef SHOWER_BOILING
+#undef SHOWER_TEMP_BOILING

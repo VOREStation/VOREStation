@@ -200,7 +200,7 @@
 
 /obj/vehicle/train/engine/examine(mob/user)
 	. = ..()
-	if(ishuman(user) && Adjacent(user))
+	if(Adjacent(user))
 		. += "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
 		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 

@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(alphabet_upper, list("A","B","C","D","E","F","G","H","I","J","K
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources
 //	to always create it and then throw it out.
-/var/icon/text_tag_icons = 'icons/chattags.dmi'
+GLOBAL_VAR_INIT(text_tag_icons, 'icons/chattags.dmi')
 GLOBAL_LIST_EMPTY(text_tag_cache)
 
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
@@ -372,13 +372,13 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 		var/datum/asset/spritesheet_batched/chatassets = get_asset_datum(/datum/asset/spritesheet_batched/chat)
 		GLOB.text_tag_cache[tagname] = chatassets.icon_tag(tagname)
 	if(!C.tgui_panel.is_ready() || C.tgui_panel.oldchat)
-		return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
+		return "<IMG src='\ref[GLOB.text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 	return GLOB.text_tag_cache[tagname]
 
 /proc/create_text_tag_old(var/tagname, var/tagdesc = tagname, var/client/C = null)
 	if(!(C && C.prefs?.read_preference(/datum/preference/toggle/chat_tags)))
 		return tagdesc
-	return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
+	return "<IMG src='\ref[GLOB.text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 
 /proc/contains_az09(var/input)
 	for(var/i=1, i<=length(input), i++)

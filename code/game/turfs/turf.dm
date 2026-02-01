@@ -335,7 +335,7 @@
 	return
 
 // Called when turf is hit by a thrown object
-/turf/hitby(atom/movable/source, var/speed)
+/turf/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(!density)
 		return
 
@@ -344,7 +344,7 @@
 			step(source, turn(source.last_move, 180)) //This makes it float away after hitting a wall in 0G
 	if(isliving(source))
 		var/mob/living/M = source
-		M.turf_collision(src, speed)
+		M.turf_collision(src, throwingdatum?.speed)
 
 /turf/AllowDrop()
 	return TRUE

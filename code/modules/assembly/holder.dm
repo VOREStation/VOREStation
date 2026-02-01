@@ -223,12 +223,12 @@
 		if(tmr.timing)
 			to_chat(usr, span_notice("Clock is ticking already."))
 		else
-			var/ntime = tgui_input_number(usr, "Enter desired time in seconds", "Time", "5", 1000, 0)
-			if (ntime>0 && ntime<1000)
+			var/ntime = tgui_input_number(usr, "Enter desired time in seconds", "Time", 5, 1000, 0)
+			if (ntime > 0 && ntime < 1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"
 				to_chat(usr, span_notice("Timer set to [tmr.time] seconds."))
 			else
-				to_chat(usr, span_notice("Timer can't be [ntime<=0?"negative":"more than 1000 seconds"]."))
+				to_chat(usr, span_notice("Timer can't be [ntime <= 0 ? "negative" : "more than 1000 seconds"]."))
 	else
-		to_chat(usr, span_notice("You cannot do this while [usr.stat?"unconscious/dead":"restrained"]."))
+		to_chat(usr, span_notice("You cannot do this while [usr.stat ? "unconscious/dead" : "restrained"]."))

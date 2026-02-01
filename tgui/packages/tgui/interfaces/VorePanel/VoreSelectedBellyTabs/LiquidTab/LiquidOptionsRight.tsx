@@ -1,7 +1,7 @@
 import { LabeledList } from 'tgui-core/components';
 
 import { nutriTimeToText } from '../../constants';
-import type { liqInteractData } from '../../types';
+import type { LiqInteractData } from '../../types';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
@@ -9,13 +9,14 @@ import { VorePanelEditText } from '../../VorePanelElements/VorePanelEditText';
 
 export const LiquidOptionsRight = (props: {
   editMode: boolean;
-  liquidInteract: liqInteractData;
+  liquidInteract: LiqInteractData;
 }) => {
   const { editMode, liquidInteract } = props;
   const {
     liq_reagent_transfer_verb,
     liq_reagent_nutri_rate,
     liq_reagent_capacity,
+    liq_gen_cost_limit,
     liq_custom_name_max,
     liq_custom_name_min,
     max_liquid_level,
@@ -37,6 +38,18 @@ export const LiquidOptionsRight = (props: {
           maxValue={300}
           unit="u"
           tooltip="Choose the amount of liquid the belly can contain at most. Ranges from 10 to 300."
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Generation Cost Limit">
+        <VorePanelEditNumber
+          action="liq_set_attribute"
+          subAction="b_liq_reagent_gen_cost_limit"
+          editMode={editMode}
+          value={liq_gen_cost_limit}
+          minValue={0}
+          maxValue={100}
+          unit="%"
+          tooltip={`Choose the minimum amount of nutrition or power liquid generation should use. Ranges from 0 to 100.`}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Generation Time">

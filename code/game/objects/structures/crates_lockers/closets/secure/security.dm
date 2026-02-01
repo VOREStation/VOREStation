@@ -218,6 +218,7 @@
 		/obj/item/cell/device/weapon,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
 		/obj/item/clothing/shoes/boots/winter/security,
+		/obj/item/clothing/mask/gas/sechailer,
 		/obj/item/flashlight/maglight)
 
 /obj/structure/closet/secure_closet/security/Initialize(mapload)

@@ -45,3 +45,4 @@
 #define BIOSCRAMBLER_ANOMALY "bioscrambler_anomaly"
 #define HALLUCINATION_ANOMALY "hallucination_anomaly"
 #define DIMENSIONAL_ANOMALY "dimensional_anomaly"
+#define WEATHER_ANOMALY "weather_anomaly"

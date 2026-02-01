@@ -312,3 +312,35 @@
   - code_imp: rust-g 5.0.1
   - bugfix: xenoarch runtime properly
   - bugfix: whitelist help command
+2025-12-30:
+  Diana:
+  - refactor: All of attack_self now uses signals!
+  - bugfix: Fixes jackets not showing proper unbutton sprite
+  Kashargul:
+  - bugfix: ghosts and shadekin messing with production directions
+  zeskorion:
+  - bugfix: non-greyscale monitor icons now show the correct color, regardless of
+      your eye color
+  - bugfix: hephaestus alt monitor icons should work now
+2025-12-31:
+  Diana:
+  - bugfix: Medical implant will no longer become infected
+  - qol: Having a spleen will no longer cause you to suffer infinite organ damage
+      while damaged by toxins. Instead, it'll convert that toxin damage into organ
+      damage.
+  - bugfix: Having your spleen rupture will now cause real internal bleeding instead
+      of fake internal bleeding
+  KillianKirilenko:
+  - rscadd: Added two sets of black and recolourable long fingerless glove variants;
+      mid-forearm and elbow-length
+  - image: Fixed some stray pixels on two of the standard fingerless glove variants
+  - qol: (mapping) broken floors can now be done via a landmark rather than a subtype
+      of that specific floor
+  Nova:
+  - rscadd: '"Colour changing eyes" trait'
+  - qol: Add spice crate option to be requested from cargo.
+  Wide Eyes, Kashargul:
+  - rscadd: '"Absorbed prey can devour" addon, which gives absorbed prey a verb in
+      the abilities tab to devour adjacent creatures into that belly!
+
+      fix:complete absorb and muffling belly addons now affect simplemobs'

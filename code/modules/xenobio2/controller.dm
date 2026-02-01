@@ -7,24 +7,24 @@
 
 	if(!holder)	return
 
-	if(!xenobio_controller || !xenobio_controller.gene_tag_masks)
+	if(!GLOB.xenobio_controller || !GLOB.xenobio_controller.gene_tag_masks)
 		to_chat(usr, "Gene masks not set.")
 		return
 
-	for(var/mask in xenobio_controller.gene_tag_masks)
-		to_chat(usr, "[mask]: [xenobio_controller.gene_tag_masks[mask]]")
+	for(var/mask in GLOB.xenobio_controller.gene_tag_masks)
+		to_chat(usr, "[mask]: [GLOB.xenobio_controller.gene_tag_masks[mask]]")
 
-var/global/datum/controller/xenobio/xenobio_controller // Set in New().
+GLOBAL_DATUM(xenobio_controller, /datum/controller/xenobio)
 
 /datum/controller/xenobio
 
 	var/list/gene_tag_masks = list()        // Gene obfuscation for delicious trial and error goodness.
 
 /datum/controller/xenobio/New()
-	if(xenobio_controller && xenobio_controller != src)
+	if(GLOB.xenobio_controller && GLOB.xenobio_controller != src)
 		log_runtime("Rebuilding xenobio controller.")
-		qdel(xenobio_controller)
-	xenobio_controller = src
+		qdel(GLOB.xenobio_controller)
+	GLOB.xenobio_controller = src
 	setup()
 
 
