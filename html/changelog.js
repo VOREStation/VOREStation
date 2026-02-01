@@ -55,24 +55,24 @@ function filterchanges(type){
 }
 */
 function dropdowns() {
-  var drops = $("div.drop");
-  var indrops = $("div.indrop");
-  if (drops.length != indrops.length) {
-    alert("Some coder fucked up with dropdowns");
+  const drops = $('div.drop');
+  const indrops = $('div.indrop');
+  if (drops.length !== indrops.length) {
+    alert('Some coder fucked up with dropdowns');
   }
   drops.each(function (index) {
-    $(this).toggleClass("closed");
+    $(this).toggleClass('closed');
     $(indrops[index]).hide();
     $(this).click(function () {
-      $(this).toggleClass("closed");
-      $(this).toggleClass("open");
+      $(this).toggleClass('closed');
+      $(this).toggleClass('open');
       $(indrops[index]).toggle();
     });
   });
 }
 
 function filterchanges(type) {
-  $("ul.changes li").each(function () {
+  $('ul.changes li').each(function () {
     if (!type || $(this).hasClass(type)) {
       $(this).show();
     } else {
@@ -81,6 +81,6 @@ function filterchanges(type) {
   });
 }
 
-$(document).ready(function () {
+$(document).ready(() => {
   dropdowns();
 });
