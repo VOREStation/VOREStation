@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(turf_cascade)
 			return
 		last_group_time = world.time
 
-		if(!length(currentrun) && length(remaining_turf) && !turf_iterations)
+		if(!length(currentrun) && length(remaining_turf) && turf_iterations <= 0)
 			// Create a random list of tiles to expand with instead of doing it in order
 			var/subtractive_rand_max = conversion_rate * (1 - (conversion_probability / 100))
 			var/i = 10 // Always do at least a handful of the oldest, to avoid spots that linger unfilled
