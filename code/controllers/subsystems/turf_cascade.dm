@@ -20,40 +20,40 @@ SUBSYSTEM_DEF(turf_cascade)
 	VAR_PRIVATE/conversion_rate = DEFAULT_CONVERSION_RATE // Maximum number of turfs converted in each batch
 
 /datum/controller/subsystem/turf_cascade/stat_entry(msg)
-	msg = "C: [currentrun.len] | R: [remaining_turf.len] | R: [conversion_rate] | P: [turf_replace_type]"
+	msg = "C: [length(currentrun)] | R: [length(remaining_turf)] | R: [conversion_rate] | P: [turf_replace_type]"
 	. = ..()
 
 /datum/controller/subsystem/turf_cascade/fire(resumed = FALSE)
 	if(!resumed)
 		if(world.time < (last_group_time + next_group_delay)) // Wait for next expansion
 			return
-		if(!turf_replace_type || (!remaining_turf.len && !currentrun.len))
+		if(!turf_replace_type || (!length(remaining_turf) && !length(currentrun)))
 			stop_cascade()
 			return
 		last_group_time = world.time
 
 	// Create a random list of tiles to expand with instead of doing it in order
-	if(!currentrun.len && remaining_turf.len)
+	if(!length(currentrun) && length(remaining_turf))
 		var/subtractive_rand_max = conversion_rate * (1 - (conversion_probability / 100))
 		var/i = 10 // Always do at least a handful of the oldest, to avoid spots that linger unfilled
 		while(i-- > 0)
 			var/turf/next = remaining_turf[1]
 			remaining_turf -= next
 			currentrun += next
-			if(!remaining_turf.len)
+			if(!length(remaining_turf))
 				break
 
 		// Now for randomized growth. If we still have any left to grow into!
-		if(remaining_turf.len)
+		if(length(remaining_turf))
 			i = max(1, conversion_rate - rand(0, subtractive_rand_max)) // Allows for slower rates and more messy growth, min 1, max conversion_rate
 			while(i-- > 0)
 				var/turf/next = pick(remaining_turf)
 				remaining_turf -= next
 				currentrun += next
-				if(!remaining_turf.len)
+				if(!length(remaining_turf))
 					break
 
-	while(currentrun.len)
+	while(length(currentrun))
 		var/turf/changing = currentrun[1]
 		currentrun -= changing
 
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(turf_cascade)
 			remaining_turf += changing.conversion_cascade_act(remaining_turf)
 
 		// Done, exit before doing a checktick, we don't want to resume with an empty currentrun
-		if(!currentrun.len)
+		if(!length(currentrun))
 			return
 		if(MC_TICK_CHECK)
 			return
