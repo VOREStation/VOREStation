@@ -1,5 +1,0 @@
-author: "zeskorion"
-delete-after: True
-changes:
-  - bugfix: "non-greyscale monitor icons now show the correct color, regardless of your eye color"
-  - bugfix: "hephaestus alt monitor icons should work now"

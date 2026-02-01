@@ -26,8 +26,13 @@
 		return INITIALIZE_HINT_QDEL
 
 
-var/list/image/hazard_overlays
-var/list/tape_roll_applications = list()
+GLOBAL_LIST_INIT_TYPED(hazard_overlays, /image, list(
+		"[NORTH]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "N"),
+		"[EAST]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E"),
+		"[SOUTH]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S"),
+		"[WEST]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
+	))
+GLOBAL_LIST_EMPTY(tape_roll_applications)
 
 /obj/item/tape
 	name = "tape"
@@ -55,12 +60,6 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape/Initialize(mapload)
 	. = ..()
-	if(!hazard_overlays)
-		hazard_overlays = list()
-		hazard_overlays["[NORTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "N")
-		hazard_overlays["[EAST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E")
-		hazard_overlays["[SOUTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S")
-		hazard_overlays["[WEST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
 	update_icon()
 
 /obj/item/taperoll/medical
@@ -301,18 +300,18 @@ var/list/tape_roll_applications = list()
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
 		var/turf/F = A
 		var/direction = user.loc == F ? user.dir : turn(user.dir, 180)
-		var/icon/hazard_overlay = hazard_overlays["[direction]"]
-		if(tape_roll_applications[F] == null)
-			tape_roll_applications[F] = 0
+		var/icon/hazard_overlay = GLOB.hazard_overlays["[direction]"]
+		if(GLOB.tape_roll_applications[F] == null)
+			GLOB.tape_roll_applications[F] = 0
 
-		if(tape_roll_applications[F] & direction) // hazard_overlay in F.overlays wouldn't work.
+		if(GLOB.tape_roll_applications[F] & direction) // hazard_overlay in F.overlays wouldn't work.
 			user.visible_message("\The [user] uses the adhesive of \the [src] to remove area markings from \the [F].", "You use the adhesive of \the [src] to remove area markings from \the [F].")
 			F.cut_overlay(hazard_overlay)
-			tape_roll_applications[F] &= ~direction
+			GLOB.tape_roll_applications[F] &= ~direction
 		else
 			user.visible_message("\The [user] applied \the [src] on \the [F] to create area markings.", "You apply \the [src] on \the [F] to create area markings.")
 			F.add_overlay(hazard_overlay)
-			tape_roll_applications[F] |= direction
+			GLOB.tape_roll_applications[F] |= direction
 		return
 
 /obj/item/tape/proc/crumple()

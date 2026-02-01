@@ -192,11 +192,11 @@
 	var/datum/job/previewJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		previewJob = job_master.GetJob(JOB_ALT_VISITOR)
+		previewJob = GLOB.job_master.GetJob(JOB_ALT_VISITOR)
 	else if(client && ispAI(client.mob))
 		pass() //Don't do anything!
 	else
-		for(var/datum/job/job in job_master.occupations)
+		for(var/datum/job/job in GLOB.job_master.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
@@ -257,9 +257,9 @@
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		highJob = job_master.GetJob(JOB_ALT_ASSISTANT)
+		highJob = GLOB.job_master.GetJob(JOB_ALT_ASSISTANT)
 	else
-		for(var/datum/job/job in job_master.occupations)
+		for(var/datum/job/job in GLOB.job_master.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)

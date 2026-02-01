@@ -354,7 +354,6 @@
 			return
 
 	src.pickup(user)
-	src.throwing = 0
 	if (src.loc == user)
 		if(!user.unEquip(src))
 			return
@@ -414,7 +413,7 @@
 	else
 		return 0
 
-/obj/item/throw_impact(atom/hit_atom, var/speed)
+/obj/item/throw_impact(atom/hit_atom)
 	..()
 	if(isliving(hit_atom) && !hit_atom.is_incorporeal()) //Living mobs handle hit sounds differently.
 		var/volume = get_volume_by_throwforce_and_or_w_class()
@@ -480,7 +479,7 @@
 	user.position_hud_item(src,slot)
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
-	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
+	if(("[slot]" in GLOB.slot_flags_enumeration) && (slot_flags & GLOB.slot_flags_enumeration["[slot]"]))
 		if(equip_sound && !muffled_by_belly(user))
 			playsound(src, equip_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 		else if(!muffled_by_belly(user))
@@ -518,7 +517,7 @@
 	return
 
 //Defines which slots correspond to which slot flags
-var/list/global/slot_flags_enumeration = list(
+GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 	"[slot_wear_mask]" = SLOT_MASK,
 	"[slot_back]" = SLOT_BACK,
 	"[slot_wear_suit]" = SLOT_OCLOTHING,
@@ -532,7 +531,7 @@ var/list/global/slot_flags_enumeration = list(
 	"[slot_w_uniform]" = SLOT_ICLOTHING,
 	"[slot_wear_id]" = SLOT_ID,
 	"[slot_tie]" = SLOT_TIE,
-	)
+	))
 
 //the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
@@ -553,8 +552,8 @@ var/list/global/slot_flags_enumeration = list(
 		return 0
 
 	//First check if the item can be equipped to the desired slot.
-	if("[slot]" in slot_flags_enumeration)
-		var/req_flags = slot_flags_enumeration["[slot]"]
+	if("[slot]" in GLOB.slot_flags_enumeration)
+		var/req_flags = GLOB.slot_flags_enumeration["[slot]"]
 		if(!(req_flags & slot_flags))
 			return 0
 
@@ -864,7 +863,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		can_zoom = FALSE
 
 	if(!zoom && can_zoom)
-		M.AddComponent(/datum/component/remote_view/item_zoom, focused_on = M, vconfig_path = /datum/remote_view_config/allow_movement, our_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		M.AddComponent(/datum/component/remote_view/item_zoom, focused_on = M, vconfig_path = /datum/remote_view_config/zoomed_item, our_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
 		return
 	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 

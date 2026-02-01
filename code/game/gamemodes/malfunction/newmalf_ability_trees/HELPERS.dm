@@ -64,9 +64,9 @@
 	set desc = "Opens help window with overview of available hardware, software and other important information."
 	var/mob/living/silicon/ai/user = usr
 
-	var/help = file2text('ingame_manuals/malf_ai.html')
+	var/help = file2text('html/malf_ai.html')
 	if(!help)
-		help = "Error loading help (file /ingame_manuals/malf_ai.html is probably missing). Please report this to server administration staff."
+		help = "Error loading help (file /html/malf_ai.html is probably missing). Please report this to server administration staff."
 
 	var/datum/browser/popup = new(user, "malf_ai_help", "Malf AI Help", 600, 500)
 	popup.set_content(help)

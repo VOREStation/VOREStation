@@ -1,4 +1,4 @@
-var/global/datum/controller/occupations/job_master
+GLOBAL_DATUM(job_master, /datum/controller/occupations)
 
 /datum/controller/occupations
 		//List of all jobs
@@ -473,7 +473,7 @@ var/global/datum/controller/occupations/job_master
 					spawn_in_storage += thing
 
 		//Give new players a welcome guide!
-		if(isnum(H.client.player_age) && H.client.player_age < 10)
+		if(isnum(H.client?.player_age) && H.client.player_age < 10)
 			H.equip_to_slot_or_del(new /obj/item/book/manual/virgo_pamphlet(H), slot_r_hand)
 	else
 		to_chat(H, span_filter_notice("Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."))

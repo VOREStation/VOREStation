@@ -220,4 +220,5 @@
 
 /datum/tgui_module/law_manager/admin/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)

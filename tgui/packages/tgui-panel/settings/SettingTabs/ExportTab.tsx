@@ -1,5 +1,5 @@
+import { useAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -11,40 +11,34 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-
 import {
-  clearChat,
-  purgeChatMessageArchive,
-  saveChatToDisk,
-} from '../../chat/actions';
+  exportEndAtom,
+  exportStartAtom,
+  storedLinesAtom,
+  storedRoundsAtom,
+} from '../../chat/atoms';
 import { MESSAGE_TYPES } from '../../chat/constants';
-import { useGame } from '../../game';
-import { exportSettings, updateSettings, updateToggle } from '../actions';
-import { selectSettings } from '../selectors';
-import { importChatSettings } from '../settingsImExport';
+import { purgeMessageArchive } from '../../chat/helpers';
+import { chatRenderer } from '../../chat/renderer';
+import { gameAtom } from '../../game/atoms';
+import { exportChatSettings, importChatSettings } from '../settingsImExport';
+import { useSettings } from '../use-settings';
 
 export const ExportTab = (props) => {
-  const dispatch = useDispatch();
-  const game = useGame();
-  const {
-    storedRounds,
-    exportStart,
-    exportEnd,
-    logRetainRounds,
-    logEnable,
-    logLineCount,
-    logLimit,
-    totalStoredMessages,
-    storedTypes,
-  } = useSelector(selectSettings);
+  const game = useAtomValue(gameAtom);
+  const { settings, updateSettings, toggleInObject } = useSettings();
   const [purgeButtonText, setPurgeButtonText] = useState(
     'Purge message archive',
   );
+  const storedLines = useAtomValue(storedLinesAtom);
+  const storedRounds = useAtomValue(storedRoundsAtom);
+  const [exportStart, setExportStart] = useAtom(exportStartAtom);
+  const [exportEnd, setExportEnd] = useAtom(exportEndAtom);
   return (
     <Section>
       <Stack align="baseline">
         {!game.databaseBackendEnabled &&
-          (logEnable ? (
+          (settings.logEnable ? (
             <Button.Confirm
               tooltip="Disable local chat logging"
               icon="ban"
@@ -52,13 +46,11 @@ export const ExportTab = (props) => {
               confirmIcon="ban"
               confirmColor="red"
               confirmContent="Disable?"
-              onClick={() => {
-                dispatch(
-                  updateSettings({
-                    logEnable: false,
-                  }),
-                );
-              }}
+              onClick={() =>
+                updateSettings({
+                  logEnable: false,
+                })
+              }
             >
               Disable logging
             </Button.Confirm>
@@ -67,13 +59,11 @@ export const ExportTab = (props) => {
               tooltip="Enable local chat logging"
               icon="download"
               color="green"
-              onClick={() => {
-                dispatch(
-                  updateSettings({
-                    logEnable: true,
-                  }),
-                );
-              }}
+              onClick={() =>
+                updateSettings({
+                  logEnable: true,
+                })
+              }
             >
               Enable logging
             </Button>
@@ -88,7 +78,7 @@ export const ExportTab = (props) => {
           {game.databaseBackendEnabled ? 'Enabled' : 'Disabled'}
         </Stack.Item>
       </Stack>
-      {logEnable && !game.databaseBackendEnabled && (
+      {settings.logEnable && !game.databaseBackendEnabled && (
         <>
           <LabeledList>
             <LabeledList.Item label="Amount of rounds to log (1 to 8)">
@@ -99,18 +89,16 @@ export const ExportTab = (props) => {
                 stepPixelSize={10}
                 minValue={1}
                 maxValue={8}
-                value={logRetainRounds}
+                value={settings.logRetainRounds}
                 format={(value) => value.toFixed()}
                 onChange={(value) =>
-                  dispatch(
-                    updateSettings({
-                      logRetainRounds: value,
-                    }),
-                  )
+                  updateSettings({
+                    logRetainRounds: value,
+                  })
                 }
               />
               &nbsp;
-              {logRetainRounds > 3 && (
+              {settings.logRetainRounds > 3 && (
                 <Box inline fontSize="0.9em" color="red">
                   Warning, might crash!
                 </Box>
@@ -124,24 +112,22 @@ export const ExportTab = (props) => {
                 stepPixelSize={10}
                 minValue={0}
                 maxValue={50000}
-                value={logLimit}
+                value={settings.logLimit}
                 format={(value) => value.toFixed()}
                 onChange={(value) =>
-                  dispatch(
-                    updateSettings({
-                      logLimit: value,
-                    }),
-                  )
+                  updateSettings({
+                    logLimit: value,
+                  })
                 }
               />
               &nbsp;
-              {logLimit > 0 && (
+              {settings.logLimit > 0 && (
                 <Box
                   inline
                   fontSize="0.9em"
-                  color={logLimit > 10000 ? 'red' : 'label'}
+                  color={settings.logLimit > 10000 ? 'red' : 'label'}
                 >
-                  {logLimit > 15000
+                  {settings.logLimit > 15000
                     ? 'Warning, might crash! Takes priority above round retention.'
                     : 'Takes priority above round retention.'}
                 </Box>
@@ -153,13 +139,14 @@ export const ExportTab = (props) => {
               {MESSAGE_TYPES.map((typeDef) => (
                 <Button.Checkbox
                   key={typeDef.type}
-                  checked={storedTypes[typeDef.type]}
+                  checked={settings.storedTypes[typeDef.type]}
                   onClick={() =>
-                    dispatch(
-                      updateToggle({
-                        type: typeDef.type,
-                      }),
-                    )
+                    updateSettings({
+                      storedTypes: toggleInObject(
+                        settings.storedTypes,
+                        typeDef.type,
+                      ),
+                    })
                   }
                 >
                   {typeDef.name}
@@ -176,28 +163,16 @@ export const ExportTab = (props) => {
               <>
                 <Stack.Item>
                   <Dropdown
-                    onSelected={(value) =>
-                      dispatch(
-                        updateSettings({
-                          exportStart: value,
-                        }),
-                      )
-                    }
+                    onSelected={(value) => setExportStart(value)}
                     options={game.databaseStoredRounds}
-                    selected={exportStart}
+                    selected={exportStart.toString()}
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <Dropdown
-                    onSelected={(value) =>
-                      dispatch(
-                        updateSettings({
-                          exportEnd: value,
-                        }),
-                      )
-                    }
+                    onSelected={(value) => setExportEnd(value)}
                     options={game.databaseStoredRounds}
-                    selected={exportEnd}
+                    selected={exportEnd.toString()}
                   />
                 </Stack.Item>
               </>
@@ -213,13 +188,7 @@ export const ExportTab = (props) => {
                     maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
                     value={exportStart}
                     format={(value) => value.toFixed()}
-                    onChange={(value) =>
-                      dispatch(
-                        updateSettings({
-                          exportStart: value,
-                        }),
-                      )
-                    }
+                    onChange={(value) => setExportStart(value)}
                   />
                 </Stack.Item>
                 <Stack.Item>
@@ -232,13 +201,7 @@ export const ExportTab = (props) => {
                     maxValue={storedRounds}
                     value={exportEnd}
                     format={(value) => value.toFixed()}
-                    onChange={(value) =>
-                      dispatch(
-                        updateSettings({
-                          exportEnd: value,
-                        }),
-                      )
-                    }
+                    onChange={(value) => setExportEnd(value)}
                   />
                 </Stack.Item>
               </>
@@ -265,20 +228,18 @@ export const ExportTab = (props) => {
             stepPixelSize={10}
             minValue={0}
             maxValue={50000}
-            value={logLineCount}
+            value={settings.logLineCount}
             format={(value) => value.toFixed()}
             onChange={(value) =>
-              dispatch(
-                updateSettings({
-                  logLineCount: value,
-                }),
-              )
+              updateSettings({
+                logLineCount: value,
+              })
             }
           />
         </LabeledList.Item>
         {!game.databaseBackendEnabled && (
           <LabeledList.Item label="Totally stored messages">
-            <Box>{totalStoredMessages}</Box>
+            <Box>{chatRenderer.getStoredMessages()}</Box>
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -288,7 +249,7 @@ export const ExportTab = (props) => {
           <Button
             icon="compact-disc"
             tooltip="Export chat settings"
-            onClick={() => dispatch(exportSettings())}
+            onClick={() => exportChatSettings()}
           >
             Export settings
           </Button>
@@ -298,7 +259,7 @@ export const ExportTab = (props) => {
             accept=".json"
             tooltip="Import chat settings"
             icon="arrow-up-from-bracket"
-            onSelectFiles={(files) => importChatSettings(files)}
+            onSelectFiles={importChatSettings}
           >
             Import settings
           </Button.File>
@@ -307,7 +268,15 @@ export const ExportTab = (props) => {
           <Button
             icon="save"
             tooltip="Export current tab history into HTML file"
-            onClick={() => dispatch(saveChatToDisk())}
+            onClick={() =>
+              chatRenderer.saveToDisk(
+                settings.logLineCount,
+                storedLines[storedLines.length - exportEnd],
+                storedLines[storedLines.length - exportStart],
+                exportEnd,
+                exportStart,
+              )
+            }
           >
             Save chat log
           </Button>
@@ -316,7 +285,7 @@ export const ExportTab = (props) => {
           <Button.Confirm
             icon="trash"
             tooltip="Erase current tab history"
-            onClick={() => dispatch(clearChat())}
+            onClick={() => chatRenderer.clearChat()}
           >
             Clear chat
           </Button.Confirm>
@@ -332,7 +301,7 @@ export const ExportTab = (props) => {
               confirmColor="red"
               confirmContent="Are you sure?"
               onClick={() => {
-                dispatch(purgeChatMessageArchive());
+                purgeMessageArchive();
                 setPurgeButtonText('Purged!');
                 setTimeout(() => {
                   setPurgeButtonText('Purge message archive');

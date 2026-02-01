@@ -149,7 +149,9 @@
 	if(.)
 		return TRUE
 	var/turf/T = get_turf(user)
-	var/outdoors = T.is_outdoors()
+	if(!T)
+		to_chat(user, span_warning("You must be standing on solid ground to deploy an extraction beacon!"))
+		return
 	if(do_after(user, 1.5 SECONDS, target = user) && !QDELETED(src))
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)

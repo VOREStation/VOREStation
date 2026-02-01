@@ -199,7 +199,7 @@
 			if(!gt)
 				return TOPIC_NOACTION
 			var/new_metadata = gt.get_metadata(user, get_metadata(underwear, gt))
-			if(new_metadata)
+			if(!isnull(new_metadata))
 				set_metadata(underwear, gt, new_metadata)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 

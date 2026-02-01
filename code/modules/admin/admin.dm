@@ -702,9 +702,6 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-//VOREStation Edit to this verb for the purpose of making it compliant with the annunciator system
-var/datum/announcement/priority/admin_pri_announcer = new
-var/datum/announcement/minor/admin_min_announcer = new
 /datum/admins/proc/intercom()
 	set category = "Fun.Event Kit"
 	set name = "Intercom Msg"
@@ -722,13 +719,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/msgverb = tgui_input_text(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says")
 			if(message) //They put a message
 				message = sanitize(message, 500, extra = 0)
-				//VOREStation Edit Start
 				if(msgverb)
 					msgverb = sanitize(msgverb, 50, extra = 0)
 				else
 					msgverb = "states"
 				GLOB.global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
-				//VOREStation Edit End
 				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
 
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -817,7 +812,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/this_sender = decomposed[i]
 			var/this_message = decomposed[++i]
 			var/this_wait = decomposed[++i]
-			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
+			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
 			sleep(this_wait SECONDS)
 
 /datum/admins/proc/toggleooc()
@@ -1479,7 +1474,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Debug.Game"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
+	set popup_menu = FALSE
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
@@ -1495,7 +1490,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Debug.Game"
 	set name = "Add Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user by addition."
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
+	set popup_menu = FALSE
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
@@ -1593,14 +1588,6 @@ var/datum/announcement/minor/admin_min_announcer = new
 		log_game(plaintext_title)
 		log_game(fax_text)
 
-		SSwebhooks.send(
-			WEBHOOK_FAX_SENT,
-			list(
-				"name" = "[key_name(owner)] [plaintext_title].",
-				"body" = fax_text
-			)
-		)
-
 	else
 		to_chat(src.owner, span_warning("Message reply failed."))
 
@@ -1616,7 +1603,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set popup_menu = FALSE
 
 	if(check_rights(R_ADMIN|R_DEBUG))
-		traitors.spawn_uplink(H)
+		GLOB.traitors.spawn_uplink(H)
 		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 		H.mind.accept_tcrystals = 1
 		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."

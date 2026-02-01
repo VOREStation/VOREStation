@@ -64,7 +64,7 @@
 	fluff.desc = "You find yourself sinking deeper and deeper into the fluff around you, steadily it wraps around your entire body, binding you up. It seems to grow tighter and tigher forever, although never to the point of discomfort. Before long, the tightness goes beyond a physical sensation, it starts to feel like it buries into you, becoming part of you. It is becoming hard to discern yourself from the fluff, you feel floaty, wavy and soft yourself. Eventually, you can't feel yourself at all, there's nothing but fur. Every movement you make feels pointless, simply causing the slightest rustling of fluff as though the hair was moving on its own."
 	fluff.digest_mode = DM_HOLD // like, shes got you already, doesn't need to get you more
 	fluff.mode_flags = DM_FLAG_FORCEPSAY
-	fluff.escapable = TRUE // good luck
+	fluff.escapable = B_ESCAPABLE_DEFAULT // good luck
 	fluff.escapechance = 40 // high chance of STARTING a successful escape attempt
 	fluff.escapechance_absorbed = 5 // m i n e
 	fluff.vore_verb = "soak"

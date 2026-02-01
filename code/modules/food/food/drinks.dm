@@ -101,9 +101,6 @@
 			if(!can_food_vore(eater, micro))
 				continue
 
-			if(!can_animal_vore(eater, micro)) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
-				continue
-
 			var/do_nom = FALSE
 
 			if(!reagents.total_volume)
@@ -114,7 +111,7 @@
 					do_nom = TRUE
 
 			if(do_nom)
-				micro.forceMove(eater.vore_selected)
+				eater.vore_selected.nom_atom(micro)
 				food_inserted_micros -= micro
 
 	if(!reagents.total_volume && changed)

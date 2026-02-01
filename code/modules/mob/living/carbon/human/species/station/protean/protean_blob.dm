@@ -386,7 +386,7 @@
 				if(can_spontaneous_vore(src, target))
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
-					target.forceMove(vore_selected)
+					vore_selected.nom_atom(target)
 					to_chat(target,span_warning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.get_belly_name()]!"))
 	update_canmove()
 

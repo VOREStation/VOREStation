@@ -77,7 +77,7 @@
 					do_nom = TRUE
 
 			if(do_nom)
-				micro.forceMove(eater.vore_selected)
+				eater.vore_selected.nom_atom(micro)
 				food_inserted_micros -= micro
 
 	if(!reagents.total_volume)
@@ -2013,7 +2013,7 @@
 
 	var/mob/living/Pred = M
 	if(Pred.can_be_drop_pred && Pred.food_vore && Pred.vore_selected)
-		Prey.forceMove(Pred.vore_selected)
+		Pred.vore_selected.nom_atom(Prey)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent(REAGENT_ID_WATER))

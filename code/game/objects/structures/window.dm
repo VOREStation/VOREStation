@@ -159,7 +159,7 @@
 		return !anchored // If it's anchored, it'll block air.
 	return TRUE // Don't stop airflow from the other sides.
 
-/obj/structure/window/hitby(atom/movable/source)
+/obj/structure/window/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	visible_message(span_danger("[src] was hit by [source]."))
 	var/tforce = 0
