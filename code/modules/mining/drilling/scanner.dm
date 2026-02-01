@@ -28,12 +28,8 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(sediment_scan)
-		to_chat(usr, span_notice("\The [src] will no longer scan for reagents."))
-		sediment_scan = FALSE
-		return
-	to_chat(usr, span_notice("\The [src] will now scan for reagents."))
-	sediment_scan = TRUE
+	to_chat(usr, span_notice("\The [src] will [sediment_scan ? "no longer" : "now"] scan for reagents."))
+	sediment_scan = !sediment_scan
 
 /obj/item/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user)
 	var/list/metals = list(
