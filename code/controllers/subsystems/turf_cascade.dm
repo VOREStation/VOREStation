@@ -28,6 +28,8 @@ SUBSYSTEM_DEF(turf_cascade)
 	if(!resumed)
 		if(world.time < (last_group_time + next_group_delay)) // Wait for next expansion
 			return
+		if(!length(remaining_turf))
+			return
 		if(!turf_replace_type || (!length(remaining_turf) && !length(currentrun)))
 			stop_cascade()
 			return
