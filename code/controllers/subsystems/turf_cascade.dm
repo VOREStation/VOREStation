@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(turf_cascade)
 
 	VAR_PRIVATE/list/currentrun = list()
 	VAR_PRIVATE/list/remaining_turf = list()
-	VAR_PRIVATE/turf_iterations
+	VAR_PRIVATE/turf_iterations = 0
 
 	VAR_PRIVATE/turf_replace_type = null // Turf path that turfs will be replaced with
 	VAR_PRIVATE/conversion_probability = DEFAULT_CONVERSION_PROB // Randomized rate of conversion, 0 to 100
