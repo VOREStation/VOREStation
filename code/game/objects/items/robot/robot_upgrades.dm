@@ -20,13 +20,13 @@
 
 /obj/item/borg/upgrade/proc/generic_error(var/mob/living/silicon/robot/R, var/obj/item/borg/type)
 	type = lowertext(initial(type.name))
-	to_chat(R, "Upgrade mounting error! No suitable hardpoint for \the \"[type]\" detected!")
-	to_chat(usr, "There's no mounting point for \the \"[type]\" module!")
+	to_chat(R, span_warning("Upgrade mounting error! No suitable hardpoint for \the \"[type]\" detected!"))
+	to_chat(usr, span_warning("There's no mounting point for \the \"[type]\" module!"))
 
 /obj/item/borg/upgrade/proc/software_error(var/mob/living/silicon/robot/R, var/obj/item/borg/type)
 	type = lowertext(initial(type.name))
-	to_chat(R, "Upgrade installation error! Incompatibility with \the \"[type]\" detected!")
-	to_chat(usr, "\The \"[type]\" upgrade is not compatibile!")
+	to_chat(R, span_warning("Upgrade installation error! Incompatibility with \the \"[type]\" detected!"))
+	to_chat(usr, span_warning("\The \"[type]\" upgrade is not compatibile!"))
 
 /*	######################################################################################################
 	# Utility section. All reusable upgrades without lasting effects, like renaming, reset, etc. go here.#
@@ -85,7 +85,7 @@
 		return 0
 
 	if(R.health < 0)
-		to_chat(usr, "You have to repair the robot before using this module!")
+		to_chat(usr, span_warning("You have to repair the robot before using this module!"))
 		return 0
 
 	if(!R.key)
@@ -118,13 +118,14 @@
 	if(..()) return 0
 
 	if(R.has_basic_upgrade(type))
-		to_chat(R, "Actuator already running on overdrive mode!")
-		to_chat(usr, "It'd be unwise to plug another vtec module in!")
+		to_chat(R,span_warning("Actuator already running on overdrive mode!"))
+		to_chat(usr, span_warning("It'd be unwise to plug another vtec module in!"))
 		return 0
 
 	add_verb(R, /mob/living/silicon/robot/proc/toggle_vtec)
 	R.vtec_active = TRUE
 	R.hud_used.toggle_vtec_control()
+	to_chat(R, span_notice("Actuator overdrive enabled!"))
 	return 1
 
 /obj/item/borg/upgrade/basic/sizeshift
@@ -138,11 +139,12 @@
 	if(..()) return 0
 
 	if(R.has_basic_upgrade(type))
-		to_chat(R, "Size alteration module already applied!")
-		to_chat(usr, "There's no space for another size alteration module!")
+		to_chat(R, span_warning("Size alteration module already applied!"))
+		to_chat(usr, span_warning("There's no space for another size alteration module!"))
 		return 0
 
 	add_verb(R, /mob/living/proc/set_size)
+	to_chat(R, span_notice("Size adjustments active!"))
 	return 1
 
 /obj/item/borg/upgrade/basic/syndicate
@@ -156,8 +158,8 @@
 	if(..()) return 0
 
 	if(R.has_basic_upgrade(type))
-		to_chat(R, "Secret modules already unlocked!")
-		to_chat(usr, "Plugging another scambled module would be useless!")
+		to_chat(R, span_warning("Secret modules already unlocked!"))
+		to_chat(usr, span_warning("Plugging another scambled module would be useless!"))
 		return 0
 
 	R.emag_items = 1
@@ -174,8 +176,8 @@
 	if(..()) return 0
 
 	if(R.has_basic_upgrade(type))
-		to_chat(R, "All possible languages already uploaded!")
-		to_chat(usr, "The language database is up to date!")
+		to_chat(R, span_warning("All possible languages already uploaded!"))
+		to_chat(usr, span_warning("The language database is up to date!"))
 		return 0
 
 	R.add_language(LANGUAGE_SOL_COMMON, 	1)
@@ -219,6 +221,7 @@
 	R.add_language(LANGUAGE_SHADEKIN, 		1)
 	*/
 
+	to_chat(R, span_notice("Language database updated!"))
 	return 1
 
 /*	###########################################################################
@@ -244,15 +247,15 @@
 		return 0
 
 	if(R.has_advanced_upgrade(type))
-		to_chat(R, "Maximum capacity achieved for this hardpoint!")
-		to_chat(usr, "There's no room for another capacity upgrade!")
+		to_chat(R, span_warning("Maximum capacity achieved for this hardpoint!"))
+		to_chat(usr, span_warning("There's no room for another capacity upgrade!"))
 		return 0
 
 	var/obj/item/dogborg/sleeper/B = T
 	var/X = B.max_item_count*2
 	B.max_item_count = X	//I couldn't do T = maxitem*2 for some reason.
-	to_chat(R, "Internal capacity doubled.")
-	to_chat(usr, "Internal capacity doubled.")
+	to_chat(R, span_notice("Internal capacity doubled."))
+	to_chat(usr, span_notice("Internal capacity doubled."))
 	B.upgraded_capacity = TRUE
 	return 1
 
@@ -290,6 +293,7 @@
 		return 0
 
 	R.module.modules += new/obj/item/healthanalyzer/advanced(R.module)
+	to_chat(R, span_notice("Advanced health analyzer initialized!"))
 	return 1
 
 //Robot size gun
@@ -336,15 +340,15 @@
 		return 0
 
 	if(R.has_restricted_upgrade(type))
-		to_chat(R, "Maximum capability achieved for this hardpoint!")
-		to_chat(usr, "There's no room for another capability upgrade!")
+		to_chat(R, span_warning("Maximum capability achieved for this hardpoint!"))
+		to_chat(usr, span_warning("There's no room for another capability upgrade!"))
 		return 0
 
 	var/obj/item/dogborg/sleeper/B = T
 	var/X = B.max_item_count*2 //double the capacity from 1 to 2 to allow sleepers to store some items, at most 4 with both upgrades
 	B.max_item_count = X	//I couldn't do T = maxitem*2 for some reason.
-	to_chat(R, "Internal capability upgraded.")
-	to_chat(usr, "Internal capability upgraded.")
+	to_chat(R, span_notice("Internal capability upgraded."))
+	to_chat(usr, span_notice("Internal capability upgraded."))
 	B.compactor = TRUE
 	return 1
 
@@ -370,12 +374,13 @@
 		return 0
 
 	if(R.has_restricted_upgrade(type))
-		to_chat(R, "Maximum cooling achieved for this hardpoint!")
-		to_chat(usr, "There's no room for another cooling unit!")
+		to_chat(R, span_warning("Maximum cooling achieved for this hardpoint!"))
+		to_chat(usr, span_warning("There's no room for another cooling unit!"))
 		return 0
 
 	var/obj/item/gun/energy/robotic/taser/B = T
 	B.recharge_time = max(2 , B.recharge_time - 4)
+	to_chat(R, span_notice("Taser cooling upgraded!"))
 	return 1
 
 //Advanced RPED
@@ -468,12 +473,13 @@
 		return 0
 
 	if(R.has_restricted_upgrade(type))
-		to_chat(R, "Scanner was already upgraded!")
-		to_chat(usr, "There's no room for another scanning upgrade!")
+		to_chat(R, span_warning("Scanner was already upgraded!"))
+		to_chat(usr, span_warning("There's no room for another scanning upgrade!"))
 		return 0
 
 	var/obj/item/mining_scanner/robot/robot_scanner = target_module
 	robot_scanner.upgrade()
+	to_chat(R, span_notice("Mining scanner upgraded!"))
 	return 1
 
 /*	###############################################
