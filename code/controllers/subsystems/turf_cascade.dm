@@ -33,19 +33,20 @@ SUBSYSTEM_DEF(turf_cascade)
 			return
 		last_group_time = world.time
 
-		// Create a random list of tiles to expand with instead of doing it in order
-		var/subtractive_rand_max = conversion_rate * (1 - (conversion_probability / 100))
-		var/i = 10 // Always do at least a handful of the oldest, to avoid spots that linger unfilled
-		while(i-- > 0)
-			var/turf/next = remaining_turf[1]
-			remaining_turf -= next
-			currentrun += next
-			if(!length(remaining_turf))
-				break
+		if(!length(currentrun) && length(remaining_turf))
+			// Create a random list of tiles to expand with instead of doing it in order
+			var/subtractive_rand_max = conversion_rate * (1 - (conversion_probability / 100))
+			var/i = 10 // Always do at least a handful of the oldest, to avoid spots that linger unfilled
+			while(i-- > 0)
+				var/turf/next = remaining_turf[1]
+				remaining_turf -= next
+				currentrun += next
+				if(!length(remaining_turf))
+					break
 
-		// Now for randomized growth. If we still have any left to grow into!
-		if(length(remaining_turf))
-			turf_iterations = max(1, conversion_rate - rand(0, subtractive_rand_max)) // Allows for slower rates and more messy growth, min 1, max conversion_rate
+			// Now for randomized growth. If we still have any left to grow into!
+			if(length(remaining_turf))
+				turf_iterations = max(1, conversion_rate - rand(0, subtractive_rand_max)) // Allows for slower rates and more messy growth, min 1, max conversion_rate
 
 	while(turf_iterations-- > 0)
 		var/turf/next = pick(remaining_turf)
