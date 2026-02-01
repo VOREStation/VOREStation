@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(turf_cascade)
 
 	VAR_PRIVATE/list/currentrun = list()
 	VAR_PRIVATE/list/remaining_turf = list()
+	VAR_PRIVATE/turf_iterations
 
 	VAR_PRIVATE/turf_replace_type = null // Turf path that turfs will be replaced with
 	VAR_PRIVATE/conversion_probability = DEFAULT_CONVERSION_PROB // Randomized rate of conversion, 0 to 100
@@ -32,8 +33,7 @@ SUBSYSTEM_DEF(turf_cascade)
 			return
 		last_group_time = world.time
 
-	// Create a random list of tiles to expand with instead of doing it in order
-	if(!length(currentrun) && length(remaining_turf))
+		// Create a random list of tiles to expand with instead of doing it in order
 		var/subtractive_rand_max = conversion_rate * (1 - (conversion_probability / 100))
 		var/i = 10 // Always do at least a handful of the oldest, to avoid spots that linger unfilled
 		while(i-- > 0)
@@ -45,13 +45,16 @@ SUBSYSTEM_DEF(turf_cascade)
 
 		// Now for randomized growth. If we still have any left to grow into!
 		if(length(remaining_turf))
-			i = max(1, conversion_rate - rand(0, subtractive_rand_max)) // Allows for slower rates and more messy growth, min 1, max conversion_rate
-			while(i-- > 0)
-				var/turf/next = pick(remaining_turf)
-				remaining_turf -= next
-				currentrun += next
-				if(!length(remaining_turf))
-					break
+			turf_iterations = max(1, conversion_rate - rand(0, subtractive_rand_max)) // Allows for slower rates and more messy growth, min 1, max conversion_rate
+
+	while(turf_iterations-- > 0)
+		var/turf/next = pick(remaining_turf)
+		remaining_turf -= next
+		currentrun += next
+		if(!length(remaining_turf))
+			break
+		if(MC_TICK_CHECK)
+			return
 
 	while(length(currentrun))
 		var/turf/changing = currentrun[1]
@@ -62,9 +65,6 @@ SUBSYSTEM_DEF(turf_cascade)
 			changing.ChangeTurf(turf_replace_type)
 			remaining_turf += changing.conversion_cascade_act(remaining_turf)
 
-		// Done, exit before doing a checktick, we don't want to resume with an empty currentrun
-		if(!length(currentrun))
-			return
 		if(MC_TICK_CHECK)
 			return
 
