@@ -55,6 +55,7 @@ export const SubtabSettings = (props: {
     syndicate_ban,
     special_roles,
     custom_footstep,
+    ignore_shoes,
     custom_species_sound,
     custom_speech_bubble,
     persistence_settings,
@@ -136,6 +137,15 @@ export const SubtabSettings = (props: {
                   <LabeledList.Item label="Custom Footstep Sounds">
                     <Button onClick={() => act('customize_footsteps')}>
                       {custom_footstep}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Ignore Shoes">
+                    <Button
+                      onClick={() => act('toggle_ignore_shoes')}
+                      selected={ignore_shoes}
+                      tooltip="Allow footstep sounds to pass through shoes."
+                    >
+                      {ignore_shoes ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item label="Custom Species Sounds">
@@ -281,8 +291,8 @@ export const SubtabSettings = (props: {
                           {role.banned
                             ? 'BANNED'
                             : role.selected
-                              ? 'Yes'
-                              : 'No'}
+                            ? 'Yes'
+                            : 'No'}
                         </Button>
                       </LabeledList.Item>
                     ))}

@@ -171,3 +171,4 @@
 	var/redgate_restricted = FALSE
 	var/hide_headset = FALSE
 	var/hide_glasses = FALSE
+	var/ignore_shoes = FALSE

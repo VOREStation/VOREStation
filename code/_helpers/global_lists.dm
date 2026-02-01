@@ -361,6 +361,8 @@ GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Claw" = FOOTSTEP_MOB_CLAW,
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
+	"Mech" = FOOTSTEP_MOB_MECHY,
+	"Heavy" = FOOTSTEP_MOB_HEAVY_ALT
 ))
 
 // Put any artifact effects that are duplicates, unique, or otherwise unwated in here! This prevents them from spawning via RNG.
