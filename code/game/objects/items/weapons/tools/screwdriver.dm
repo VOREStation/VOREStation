@@ -60,7 +60,7 @@
 		return ..()
 	if(user.zone_sel.selecting != O_EYES && user.zone_sel.selecting != BP_HEAD)
 		return ..()
-	if((CLUMSY in user.mutations) && prob(CLUMSY_FAIL_CHANCE))
+	if((CLUMSY in user.mutations) && prob(CLUMSY_HARM_CHANCE))
 		M = user
 	return eyestab(M,user)
 

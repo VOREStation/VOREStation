@@ -99,7 +99,7 @@
 		return
 
 	if(user.a_intent == I_HURT && ismob(target))
-		if((CLUMSY in user.mutations) && prob(CLUMSY_FAIL_CHANCE))
+		if((CLUMSY in user.mutations) && prob(CLUMSY_HARM_CHANCE))
 			target = user
 		syringestab(target, user)
 		return
