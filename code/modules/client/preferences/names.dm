@@ -15,9 +15,6 @@
 		return FALSE
 	if(length(value) > maximum_value_length)
 		return FALSE
-	var/sanitized = sanitize_name(value, default_species, allow_numbers)
-	if(!sanitized)
-		return FALSE
 	return TRUE
 
 /datum/preference/name/pref_deserialize(input, datum/preferences/preferences)
