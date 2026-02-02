@@ -373,17 +373,6 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	if(escaped_on_pod_5 > 0)
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
-	// send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
-	SSwebhooks.send(
-		WEBHOOK_ROUNDEND,
-		list(
-			"survivors" = surviving_total,
-			"escaped" = escaped_total,
-			"ghosts" = ghosts,
-			"clients" = clients
-		)
-	)
-
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
 

@@ -24,13 +24,6 @@
 	to_chat(world, span_filter_system(span_alert("[GLOB.custom_event_msg]")))
 	to_chat(world, span_filter_system("<br>"))
 
-	SSwebhooks.send(
-		WEBHOOK_CUSTOM_EVENT,
-		list(
-			"text" = GLOB.custom_event_msg,
-		)
-	)
-
 // normal verb for players to view info
 /client/verb/cmd_view_custom_event()
 	set category = "OOC.Game"

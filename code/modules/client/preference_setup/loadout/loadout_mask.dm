@@ -82,7 +82,7 @@
 	path = /obj/item/clothing/mask/lacemask
 
 /datum/gear/mask/lace/New()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/mask/half
 	display_name = "black half-mask"
@@ -93,7 +93,7 @@
 	path = /obj/item/clothing/mask/luchador/colorable
 
 /datum/gear/mask/wrestling/New()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/mask/masquerade
 	display_name = "masquerade mask selection"

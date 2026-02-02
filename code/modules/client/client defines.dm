@@ -46,7 +46,6 @@
 	var/last_message	= ""
 	///contins a number of how many times a message identical to last_message was sent.
 	var/last_message_count = 0
-	var/ircreplyamount = 0
 	var/entity_narrate_holder //Holds /datum/entity_narrate when using the relevant admin verbs.
 	var/fakeConversations //Holds fake PDA conversations for event set-up
 
@@ -63,8 +62,6 @@
 	var/datum/volume_panel/volume_panel = null // Initialized by /client/verb/volume_panel()
 	var/seen_news = 0
 
-	var/adminhelped = 0
-
 		///////////////
 		//SOUND STUFF//
 		///////////////
@@ -75,10 +72,6 @@
 		////////////
 	// comment out the line below when debugging locally to enable the options & messages menu
 	//control_freak = 1
-
-	var/received_irc_pm = -99999
-	var/irc_admin			//IRC admin that spoke with them last.
-	var/mute_irc = 0
 	var/ip_reputation = 0 //Do we think they're using a proxy/vpn? Only if IP Reputation checking is enabled in config.
 
 	///Used for limiting the rate of topic sends by the client to avoid abuse
