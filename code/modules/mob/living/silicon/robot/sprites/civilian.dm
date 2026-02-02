@@ -352,6 +352,8 @@
 	has_eye_light_sprites = TRUE
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 64
 	pixel_x = -16
@@ -360,6 +362,11 @@
 	name = "Dullahan v3 matcha"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/barista.dmi'
 	sprite_icon_state = "dullahanbarista"
+	has_rest_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16
