@@ -8,7 +8,7 @@
 	//update_vore_belly_sprite()
 	var/list/new_fullness = ..(TRUE)
 	. = new_fullness
-	for(var/datum/category_group/underwear/undergarment_class in global_underwear.categories)
+	for(var/datum/category_group/underwear/undergarment_class in GLOB.global_underwear.categories)
 		if(!new_fullness[undergarment_class.name])
 			continue
 		new_fullness[undergarment_class.name] = -1 * round(-1 * new_fullness[undergarment_class.name]) // Doing a ceiling the only way BYOND knows how I guess
