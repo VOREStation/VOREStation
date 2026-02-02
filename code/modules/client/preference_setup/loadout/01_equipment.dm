@@ -39,7 +39,7 @@
 	character.all_underwear_metadata.Cut()
 
 	for(var/underwear_category_name in pref.all_underwear)
-		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
+		var/datum/category_group/underwear/underwear_category = GLOB.global_underwear.categories_by_name[underwear_category_name]
 		if(underwear_category)
 			var/underwear_item_name = pref.all_underwear[underwear_category_name]
 			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
@@ -65,7 +65,7 @@
 	if(!istype(pref.all_underwear))
 		pref.all_underwear = list()
 
-		for(var/datum/category_group/underwear/WRC in global_underwear.categories)
+		for(var/datum/category_group/underwear/WRC in GLOB.global_underwear.categories)
 			for(var/datum/category_item/underwear/WRI in WRC.items)
 				if(WRI.is_default(pref.identifying_gender ? pref.identifying_gender : MALE))
 					pref.all_underwear[WRC.name] = WRI.name
@@ -75,7 +75,7 @@
 		pref.all_underwear_metadata = list()
 
 	for(var/underwear_category in pref.all_underwear)
-		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[underwear_category]
+		var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[underwear_category]
 		if(!UWC)
 			pref.all_underwear -= underwear_category
 		else
@@ -95,7 +95,7 @@
 	var/list/data = ..()
 
 	var/list/underwear_data = list()
-	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
+	for(var/datum/category_group/underwear/UWC in GLOB.global_underwear.categories)
 		var/item_name = LAZYACCESS(pref.all_underwear, UWC.name) || "None"
 
 		var/list/tweaks = list()
@@ -183,7 +183,7 @@
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("change_underwear")
-			var/datum/category_group/underwear/UWC = LAZYACCESS(global_underwear.categories_by_name, params["underwear"])
+			var/datum/category_group/underwear/UWC = LAZYACCESS(GLOB.global_underwear.categories_by_name, params["underwear"])
 			if(!UWC)
 				return
 			var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
