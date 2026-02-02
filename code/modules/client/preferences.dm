@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Didn't load a character, so let's randomize
 	set_biological_gender(pick(MALE, FEMALE))
-	update_preference_by_type(/datum/preference/text/human/real_name, random_name(identifying_gender, species))
+	update_preference_by_type(/datum/preference/name/real_name, random_name(identifying_gender, species))
 	b_type = RANDOM_BLOOD_TYPE
 
 	if(client)
@@ -259,7 +259,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(href_list["save"])
 		if(save_character())
-			to_chat(usr,span_notice("Character [player_setup?.preferences?.read_preference(/datum/preference/text/human/real_name)] saved!"))
+			to_chat(usr,span_notice("Character [player_setup?.preferences?.read_preference(/datum/preference/name/real_name)] saved!"))
 		save_preferences()
 	else if(href_list["reload"])
 		load_preferences(TRUE)
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.set_species(species)
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		update_preference_by_type(/datum/preference/text/human/real_name, random_name(identifying_gender, species))
+		update_preference_by_type(/datum/preference/name/real_name, random_name(identifying_gender, species))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	blood color
 	*/
 	if (copy_name)
-		var/char_real_name = read_preference(/datum/preference/text/human/real_name)
+		var/char_real_name = read_preference(/datum/preference/name/real_name)
 		if(CONFIG_GET(flag/humans_need_surnames))
 			var/firstspace = findtext(char_real_name, " ")
 			var/name_length = length(char_real_name)
@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.name = character.real_name
 		if(character.dna)
 			character.dna.real_name = character.real_name
-		character.nickname = read_preference(/datum/preference/text/human/nickname)
+		character.nickname = read_preference(/datum/preference/name/nickname)
 	character.gender = biological_gender
 	character.identifying_gender = identifying_gender
 

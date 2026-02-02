@@ -3,7 +3,7 @@
 		return
 
 	// Are we cool with this prey spawning in at all?
-	var/prey_name = potential_prey.prefs.read_preference(/datum/preference/text/human/real_name)
+	var/prey_name = potential_prey.prefs.read_preference(/datum/preference/name/real_name)
 	var/answer = tgui_alert(src, "[prey_name] wants to spawn in one of your bellies. Do you accept?", "Inbelly Spawning", list("Yes", "No"))
 	if(answer != "Yes")
 		to_chat(potential_prey, span_notice("Your request was turned down."))

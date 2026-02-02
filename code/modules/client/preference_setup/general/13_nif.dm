@@ -35,7 +35,7 @@
 	savefile.save()
 
 /datum/category_item/player_setup_item/general/nif/sanitize_character()
-	var/char_name = pref.read_preference(/datum/preference/text/human/real_name) || "-name not yet loaded-"
+	var/char_name = pref.read_preference(/datum/preference/name/real_name) || "-name not yet loaded-"
 	if(pref.nif_path && !ispath(pref.nif_path))		//We have at least a text string that should be a path.
 		pref.nif_path = text2path(pref.nif_path) 	//Try to convert it to a hard path.
 		if(!pref.nif_path)							//If we couldn't, kill it.

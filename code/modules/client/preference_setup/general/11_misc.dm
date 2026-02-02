@@ -247,25 +247,25 @@
 				pref.vantag_preference = names_list[selection]
 			return TOPIC_REFRESH
 		if("custom_say")
-			var/char_name = pref.read_preference(/datum/preference/text/human/real_name)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
 			var/say_choice = tgui_input_text(user, "This word or phrase will appear instead of 'says': [char_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12)
 			if(say_choice)
 				pref.custom_say = say_choice
 			return TOPIC_REFRESH
 		if("custom_whisper")
-			var/char_name = pref.read_preference(/datum/preference/text/human/real_name)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
 			var/whisper_choice = tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [char_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12)
 			if(whisper_choice)
 				pref.custom_whisper = whisper_choice
 			return TOPIC_REFRESH
 		if("custom_ask")
-			var/char_name = pref.read_preference(/datum/preference/text/human/real_name)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
 			var/ask_choice = tgui_input_text(user, "This word or phrase will appear instead of 'asks': [char_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12)
 			if(ask_choice)
 				pref.custom_ask = ask_choice
 			return TOPIC_REFRESH
 		if("custom_exclaim")
-			var/char_name = pref.read_preference(/datum/preference/text/human/real_name)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
 			var/exclaim_choice = tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [char_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12)
 			if(exclaim_choice)
 				pref.custom_exclaim = exclaim_choice

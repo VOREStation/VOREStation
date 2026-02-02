@@ -3,7 +3,7 @@
 	var/bday_day = read_preference(/datum/preference/numeric/human/bday_day)
 	if(!bday_month || !bday_day)	//If we don't have one of these set, don't worry about it
 		return
-	if(real_name != client.prefs.read_preference(/datum/preference/text/human/real_name))	//let's not celebrate the birthday of that weird mob we got dropped into
+	if(real_name != client.prefs.read_preference(/datum/preference/name/real_name))	//let's not celebrate the birthday of that weird mob we got dropped into
 		return
 
 	if(!(read_preference(/datum/preference/numeric/human/last_bday_note) < GLOB.world_time_year))	//you only get notified once a year

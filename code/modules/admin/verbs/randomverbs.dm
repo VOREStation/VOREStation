@@ -419,7 +419,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	var/charjob
 	var/records
 	var/datum/data/record/record_found
-	var/char_real_name = picked_client.prefs.read_preference(/datum/preference/text/human/real_name)
+	var/char_real_name = picked_client.prefs.read_preference(/datum/preference/name/real_name)
 	record_found = find_general_record("name", char_real_name)
 
 	//Found their record, they were spawned previously

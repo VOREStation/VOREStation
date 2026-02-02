@@ -60,7 +60,7 @@
 			return // Failed to load character
 
 		// For now as a safety measure we will only save if the name matches.
-		var/prefs_real_name = prefs.read_preference(/datum/preference/text/human/real_name)
+		var/prefs_real_name = prefs.read_preference(/datum/preference/name/real_name)
 		if(prefs_real_name != persister.real_name)
 			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs_real_name].")
 			return

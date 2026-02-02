@@ -286,7 +286,7 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	var/prefs_name = src.client.prefs.read_preference(/datum/preference/text/human/real_name)
+	var/prefs_name = src.client.prefs.read_preference(/datum/preference/name/real_name)
 	var/confirm = tgui_alert(src, "Would you like to talk as [prefs_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
 	if(confirm != "Yes")
 		return
