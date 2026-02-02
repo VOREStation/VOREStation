@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Adds a verb to deep scan devices that allows them to turn off the sediment scan info, as this pastes a lot of text."

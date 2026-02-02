@@ -12,7 +12,7 @@
 	var/list/crossed_dirs = list()
 
 /turf/snow/Entered(atom/A)
-	if(ismob(A))
+	if(ismob(A) && !A.is_incorporeal())
 		var/mdir = "[A.dir]"
 		if(crossed_dirs[mdir])
 			crossed_dirs[mdir] = min(crossed_dirs[mdir] + 1, FOOTSTEP_SPRITE_AMT)
