@@ -614,6 +614,7 @@
 #include "code\controllers\subsystems\time_track.dm"
 #include "code\controllers\subsystems\timer.dm"
 #include "code\controllers\subsystems\transcore_vr.dm"
+#include "code\controllers\subsystems\turf_cascade.dm"
 #include "code\controllers\subsystems\verb_manager.dm"
 #include "code\controllers\subsystems\vis_overlays.dm"
 #include "code\controllers\subsystems\vote.dm"
