@@ -796,7 +796,7 @@
 			I = image(icon, "[S.dullahan_overlays[7]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
 			I.color = S.dullahan_overlays[S.dullahan_overlays[7]]
 			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
-			I.plane = MOB_PLANE
+			I.plane = PLANE_CH_STOMACH
 			I.layer = MOB_LAYER
 			add_overlay(I)
 			qdel(I)
