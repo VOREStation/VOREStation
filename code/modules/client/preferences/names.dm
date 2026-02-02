@@ -7,8 +7,13 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_NAMES
 	var/maximum_value_length = MAX_NAME_LEN
-	var/allow_numbers = FALSE
 	var/default_species = SPECIES_HUMAN
+
+/// Check if the character is a Full Body Prosthetic (allows numbers in name)
+/datum/preference/name/proc/is_fbp(datum/preferences/preferences)
+	if(!preferences?.organ_data)
+		return FALSE
+	return preferences.organ_data[BP_TORSO] == "cyborg"
 
 /datum/preference/name/is_valid(value)
 	if(!istext(value))
@@ -23,19 +28,19 @@
 	var/species = default_species
 	if(preferences?.species)
 		species = preferences.species
+	var/allow_numbers = is_fbp(preferences)
 	var/sanitized = sanitize_name(input, species, allow_numbers)
 	if(!sanitized)
 		return create_default_value()
 	return sanitized
 
-/datum/preference/name/pref_serialize(value, datum/preferences/preferences)
-	if(!istext(value))
+// Note: pref_serialize intentionally does NOT re-sanitize the value.
+// The base proc doesn't pass preferences, so we can't check is_fbp().
+// Sanitization happens on read via pref_deserialize which DOES have access to preferences.
+/datum/preference/name/pref_serialize(input)
+	if(!istext(input))
 		return create_default_value()
-	var/species = default_species
-	if(preferences?.species)
-		species = preferences.species
-	var/sanitized = sanitize_name(value, species, allow_numbers)
-	return sanitized || create_default_value()
+	return input
 
 /datum/preference/name/apply_to_human(mob/living/carbon/human/target, value)
 	return // Handled in copy_to_mob

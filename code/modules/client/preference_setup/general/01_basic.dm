@@ -38,6 +38,11 @@
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
 	var/char_real_name = pref.read_preference(/datum/preference/name/real_name)
+	// Re-sanitize name on join.
+	// Fixes being able to swap from FBP to organic before round join to be organic with numbers in name.
+	char_real_name = sanitize_name(char_real_name, pref.species, is_FBP())
+	if(!char_real_name)
+		char_real_name = random_name(pref.identifying_gender, pref.species)
 	if(CONFIG_GET(flag/humans_need_surnames))
 		var/firstspace = findtext(char_real_name, " ")
 		var/name_length = length(char_real_name)
