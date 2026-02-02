@@ -1,4 +1,4 @@
-var/list/overminds = list()
+GLOBAL_LIST_EMPTY(overminds)
 
 /mob/observer/blob
 	name = "Blob Overmind"
@@ -36,7 +36,7 @@ var/list/overminds = list()
 	if(pre_placed) //we already have a core!
 		placed = 1
 
-	overminds += src
+	GLOB.overminds += src
 	var/new_name = "[initial(name)] ([rand(1, 999)])"
 	name = new_name
 	real_name = new_name
@@ -67,7 +67,7 @@ var/list/overminds = list()
 			BM.overmind = null
 			BM.update_icons()
 
-	overminds -= src
+	GLOB.overminds -= src
 	return ..()
 
 /mob/observer/blob/get_status_tab_items()

@@ -744,12 +744,12 @@
 		if(istext(belly_data["undergarment_chosen"]))
 			var/new_undergarment_chosen = sanitize(belly_data["undergarment_chosen"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_undergarment_chosen)
-				for(var/datum/category_group/underwear/U in global_underwear.categories)
+				for(var/datum/category_group/underwear/U in GLOB.global_underwear.categories)
 					if(lowertext(U.name) == lowertext(new_undergarment_chosen))
 						new_belly.undergarment_chosen = U.name
 						break
 
-		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[new_belly.undergarment_chosen]
+		var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[new_belly.undergarment_chosen]
 		var/invalid_if_none = TRUE
 		for(var/datum/category_item/underwear/U in UWC.items)
 			if(lowertext(U.name) == lowertext(new_belly.undergarment_if_none))

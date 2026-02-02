@@ -282,14 +282,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.tickets.ClientLogin(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = preferences_datums[ckey]
+	prefs = GLOB.preferences_datums[ckey]
 	if(prefs)
 		prefs.client = src
 		prefs.load_savefile() // just to make sure we have the latest data
 		prefs.apply_all_client_preferences()
 	else
 		prefs = new /datum/preferences(src)
-		preferences_datums[ckey] = prefs
+		GLOB.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
@@ -458,7 +458,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/sql_ckey = sql_sanitize_text(src.ckey)
 
 	var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
-	query.Execute()
+	if(!query.Execute())
+		qdel(query)
+		return
 	var/sql_id = 0
 	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
 	while(query.NextRow())
@@ -470,11 +472,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	account_join_date = sanitizeSQL(findJoinDate())
 	if(account_join_date && SSdbcore.IsConnected())
 		var/datum/db_query/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),'[account_join_date]')")
-		if(query_datediff.Execute() && query_datediff.NextRow())
+		if(!query_datediff.Execute())
+			qdel(query)
+			return
+		if(query_datediff.NextRow())
 			account_age = text2num(query_datediff.item[1])
 		qdel(query_datediff)
 
 	var/datum/db_query/query_ip = SSdbcore.NewQuery("SELECT ckey FROM erro_player WHERE ip = '[address]'")
+	if(!query_ip.Execute())
+		qdel(query)
+		return
 	query_ip.Execute()
 	related_accounts_ip = ""
 	while(query_ip.NextRow())
@@ -483,6 +491,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	qdel(query_ip)
 
 	var/datum/db_query/query_cid = SSdbcore.NewQuery("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]'")
+	if(!query_cid.Execute())
+		qdel(query)
+		return
 	query_cid.Execute()
 	related_accounts_cid = ""
 	while(query_cid.NextRow())

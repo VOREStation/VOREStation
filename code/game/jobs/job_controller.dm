@@ -1,4 +1,4 @@
-var/global/datum/controller/occupations/job_master
+GLOBAL_DATUM(job_master, /datum/controller/occupations)
 
 /datum/controller/occupations
 		//List of all jobs

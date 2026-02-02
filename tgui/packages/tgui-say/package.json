@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"common": "workspace:*",
-		"react": "^19.2.3",
-		"react-dom": "^19.2.3",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4",
 		"tgui": "workspace:*",
 		"tgui-core": "^5.9.0"
 	},

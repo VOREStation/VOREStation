@@ -1,0 +1,17 @@
+2026-02-02:
+  Guti:
+  - bugfix: Fixed supermatter flux anomalies exploding violently
+  Kashargul:
+  - qol: the indexed DB should no longer be automatically cleared
+  - bugfix: some more runtimes
+  - bugfix: phased entities should no longer leave footprints in snow
+  - bugfix: mining vendor should no longer call forceMove multiple times on powerChange
+  - bugfix: underwear colors
+  SatinIsle:
+  - qol: Adds a verb to deep scan devices that allows them to turn off the sediment
+      scan info, as this pastes a lot of text.
+  Will:
+  - refactor: Bluespace cascade moved to subsystem
+  - bugfix: Turrets are no longer limited to 2 second tickrate when in combat
+  - bugfix: Turret retaliation behavior is actually functional, and makes sounds when
+      they enter and leave it.

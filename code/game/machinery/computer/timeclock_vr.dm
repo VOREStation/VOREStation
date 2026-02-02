@@ -91,7 +91,7 @@
 		data["card"] = "[card]"
 		data["assignment"] = card.assignment
 		data["card_cooldown"] = getCooldown()
-		var/datum/job/job = job_master.GetJob(card.rank)
+		var/datum/job/job = GLOB.job_master.GetJob(card.rank)
 		if(job)
 			data["job_datum"] = list(
 				"title" = job.title,
@@ -145,7 +145,7 @@
 
 /obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
 	var/list/available_jobs = list()
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in GLOB.job_master.occupations)
 		if(isOpenOnDutyJob(user, department, job))
 			available_jobs[job.title] = list(job.title)
 			if(job.alt_titles)
@@ -166,8 +166,8 @@
 		&& job.timeoff_factor > 0
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment, var/mob/user)
-	var/datum/job/oldjob = job_master.GetJob(card.rank)
-	var/datum/job/newjob = job_master.GetJob(newrank)
+	var/datum/job/oldjob = GLOB.job_master.GetJob(card.rank)
+	var/datum/job/newjob = GLOB.job_master.GetJob(newrank)
 	if(!oldjob || !isOpenOnDutyJob(user, oldjob.pto_type, newjob))
 		return
 	if(newassignment != newjob.title && !(newassignment in newjob.alt_titles))
@@ -188,12 +188,12 @@
 	return
 
 /obj/machinery/computer/timeclock/proc/makeOffDuty(var/mob/user)
-	var/datum/job/foundjob = job_master.GetJob(card.rank)
+	var/datum/job/foundjob = GLOB.job_master.GetJob(card.rank)
 	if(!foundjob)
 		return
 	var/new_dept = foundjob.pto_type || PTO_CIVILIAN
 	var/datum/job/ptojob = null
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in GLOB.job_master.occupations)
 		if(job.pto_type == new_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
