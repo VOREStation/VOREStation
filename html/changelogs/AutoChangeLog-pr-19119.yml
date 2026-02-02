@@ -1,0 +1,7 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "some more runtimes"
+  - bugfix: "phased entities should no longer leave footprints in snow"
+  - bugfix: "mining vendor should no longer call forceMove multiple times on powerChange"
+  - bugfix: "underwear colors"
