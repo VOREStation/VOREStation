@@ -63,8 +63,6 @@ GLOBAL_LIST_EMPTY(tail_styles_list)	// Stores /datum/sprite_accessory/tail index
 GLOBAL_LIST_EMPTY(wing_styles_list)	// Stores /datum/sprite_accessory/wing indexed by type
 
 GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
-	//Underwear
-var/datum/category_collection/underwear/global_underwear = new()
 
 	//Customizables
 GLOBAL_LIST_INIT(headsetlist, list("Standard","Bowman","Earbud"))
