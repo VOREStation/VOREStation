@@ -145,3 +145,4 @@
 // Misc
 #define TK_DENIED_MESSAGE span_warning("You are too distracted to focus your telekinesis.")
 #define TK_OUTRANGED_MESSAGE span_notice("Your telekinesis won't reach that far.")
+#define CLUMSY_FAIL_CHANCE 10
