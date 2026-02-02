@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "the indexed DB should no longer be automatically cleared"
