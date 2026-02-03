@@ -316,7 +316,7 @@
 		comp.dark_energy_infinite = TRUE
 
 /mob/living/simple_mob/shadekin/red/rakshasa/get_available_emotes()
-	. = global._simple_mob_default_emotes.Copy()
+	. = GLOB.simple_mob_default_emotes.Copy()
 	. += /decl/emote/audible/evil_laugh
 	. += /decl/emote/audible/evil_no
 	. += /decl/emote/audible/evil_breathing

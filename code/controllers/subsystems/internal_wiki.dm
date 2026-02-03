@@ -469,8 +469,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// assemble material wiki
-	for(var/mat in name_to_material)
-		var/datum/material/M = name_to_material[mat]
+	for(var/mat, value in GLOB.name_to_material)
+		var/datum/material/M = value
 		if(M.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(M.type)
 			continue

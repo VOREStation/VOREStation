@@ -36,7 +36,7 @@
 */
 
 // Assoc list containing all material datums indexed by name.
-var/list/name_to_material
+GLOBAL_LIST_EMPTY(name_to_material)
 
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.
@@ -95,21 +95,17 @@ var/list/name_to_material
 
 
 // Builds the datum list above.
-/proc/populate_material_list(force_remake=0)
-	if(name_to_material && !force_remake) return // Already set up!
-	name_to_material = list()
+/proc/populate_material_list()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/new_mineral = new type
 		if(!new_mineral.name)
 			continue
-		name_to_material[lowertext(new_mineral.name)] = new_mineral
+		GLOB.name_to_material[lowertext(new_mineral.name)] = new_mineral
 	return 1
 
 // Safety proc to make sure the material list exists before trying to grab from it.
 /proc/get_material_by_name(name)
-	if(!name_to_material)
-		populate_material_list()
-	return name_to_material[name]
+	return GLOB.name_to_material[name]
 
 /proc/material_display_name(name)
 	if(istype(name, /datum/material)) //We were fed a datum.
@@ -133,15 +129,12 @@ var/list/name_to_material
  *   - The following elements are used to generate bespoke IDs
  */
 /proc/_GetMaterialRef(list/arguments)
-	if(!name_to_material)
-		populate_material_list()
-
 	var/datum/material/key = arguments[1]
 	if(istype(key))
 		return key // we want to convert anything we're given to a material
 
 	if(istext(key))	// text ID
-		. = name_to_material[key]
+		. = GLOB.name_to_material[key]
 		if(!.)
 			WARNING("Attempted to fetch material ref with invalid text id '[key]'")
 		return
@@ -150,7 +143,7 @@ var/list/name_to_material
 		CRASH("Attempted to fetch material ref with invalid key [key]")
 
 	key = GetIdFromArguments(arguments)
-	. = name_to_material[key]
+	. = GLOB.name_to_material[key]
 	if(!.)
 		WARNING("Attempted to fetch nonexistent material with key [key]")
 
