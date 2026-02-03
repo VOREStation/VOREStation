@@ -1,0 +1,4 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixed viruses not being mutable"
