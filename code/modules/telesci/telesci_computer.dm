@@ -190,7 +190,7 @@
 /obj/machinery/computer/telescience/proc/telefail()
 	COOLDOWN_START(src, teleport_cooldown, (2 SECONDS))
 	switch(rand(99))
-		if(0 to 80)
+		if(0 to 85)
 			sparks()
 			visible_message(span_warning("The telepad weakly fizzles."))
 			return
