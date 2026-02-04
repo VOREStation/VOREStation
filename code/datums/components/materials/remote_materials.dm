@@ -161,6 +161,8 @@ handles linking back and forth.
 	SIGNAL_HANDLER
 	if(istype(target, /obj/item/multitool))
 		return OnMultitool(source, user, target)
+	if(istype(target, /obj/item/forensics))
+		return
 
 	if(mat_container_flags & MATCONTAINER_NO_INSERT)
 		return
