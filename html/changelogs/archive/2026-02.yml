@@ -15,3 +15,11 @@
   - bugfix: Turrets are no longer limited to 2 second tickrate when in combat
   - bugfix: Turret retaliation behavior is actually functional, and makes sounds when
       they enter and leave it.
+2026-02-04:
+  Guti:
+  - bugfix: Fixed viruses not being mutable
+  Will:
+  - bugfix: Attaching a limb while in a dirty environment no longer makes additional
+      surgeries on that limb impossible
+  - bugfix: Bows can be drawn again
+  - qol: drawing a hardlight bow spawns the projectile in the same action
