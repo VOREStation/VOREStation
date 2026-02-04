@@ -28,7 +28,7 @@
 	var/i = 0
 	while(i++ < 4) // Do this a few times
 		var/turf/simulated/mineral/M = pick(orange(5,src))
-		if(!istype(M) && M.resources)
+		if(!istype(M) || !M.resources)
 			return
 		for(var/metal in GLOB.deepore_fracking_reagents)
 			if(!(metal in M.resources))
