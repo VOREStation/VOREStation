@@ -916,7 +916,7 @@
 							return
 				if(I_HURT)
 					H.do_attack_animation(src)
-					var/shreddamage = H.species.can_shred(H, FALSE, 10) //20% chance for a character with base 5 unarmed to damage.
+					var/shreddamage = H.species.can_shred(H, FALSE, 15)
 					if(shreddamage)
 						attack_generic(H, shreddamage, "attacked")
 						return

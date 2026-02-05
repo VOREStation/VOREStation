@@ -647,13 +647,11 @@
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
 		if(!attack.is_usable(H))
 			continue
-		damage = max(damage, attack.get_unarmed_damage(H))
+		damage = max(damage, attack.get_unarmed_damage(H) + 5)
 		if(attack.shredding)
 			shreds = 5
-	damage += rand (1,5)
 	if((checkhighdamage && damage >= checkhighdamage) || shreds)
 		shreds += damage
-
 	return shreds
 
 // Called in life() when the mob has no client.

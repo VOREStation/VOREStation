@@ -24,7 +24,7 @@
 			attack_generic(user,1,"smashes")
 		else if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			var/shreddamage = H.species.can_shred(user, FALSE, 10)//20% chance for base 5 unarmed to damage
+			var/shreddamage = H.species.can_shred(user, FALSE, 11)
 			if(shreddamage)
 				attack_generic(user, shreddamage, "attacks")
 	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, user)

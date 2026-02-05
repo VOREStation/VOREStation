@@ -159,7 +159,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H, FALSE, 14))//40% chance for a character with base 10 unarmed to damage
+		if(H.species.can_shred(H, FALSE, 15))
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 			visible_message(span_danger("[user] smashes against the [src.name]."), 1)
 			user.do_attack_animation(src)

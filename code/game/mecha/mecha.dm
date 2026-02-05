@@ -1087,7 +1087,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/shreddamage = H.species.can_shred(user, FALSE, 13)//returns an unarmed damage value if the user's unarmed attack would deal at least 13 damage, 60% of attacks at base 10 unarmed
+		var/shreddamage = H.species.can_shred(user, FALSE, 13)
 		if(shreddamage)
 			if(!prob(temp_deflect_chance))
 				src.take_damage(shreddamage)	//The take_damage() proc handles armor values
