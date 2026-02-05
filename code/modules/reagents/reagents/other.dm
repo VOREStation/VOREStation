@@ -898,7 +898,7 @@
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/nutriment/pitcher_nectar //Pitcher plant reagent, doubles plant growth speed.
-	name = REAGENT_ID_PITCHERNECTAR
+	name = REAGENT_PITCHERNECTAR
 	id = REAGENT_ID_PITCHERNECTAR
 	description = "An odd, sticky slurry which promotes rapid plant growth."
 	taste_description = "pineapple"
