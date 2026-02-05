@@ -1455,3 +1455,7 @@
 	loaf_offset = 4
 	fullness_icons = 1
 	vore_tail_sprite_variant = "Tesh"
+
+/datum/sprite_accessory/tail/taur/teshari/alt
+	name = "Teshari dual-color Alt (Taur)"
+	extra_overlay = "tesh_markings_alt"
