@@ -23,3 +23,18 @@
       surgeries on that limb impossible
   - bugfix: Bows can be drawn again
   - qol: drawing a hardlight bow spawns the projectile in the same action
+2026-02-05:
+  Diana:
+  - qol: Unlucky vending interactions more clear
+  - qol: Allows vox to be revived via defibs & CPR
+  MeepleMuncher:
+  - bugfix: Fixed microwaves not being able to accept reagents
+  Will:
+  - code_imp: fear strings are no longer copypaste unique lists on every mob in the
+      game, and are now static shared lists.
+  - bugfix: Forensics items are no longer recycled in the lathe when trying to get
+      samples
+  - rscadd: Floodlights can be rotated using the rotatable element verbs
+  - bugfix: Runtime when a fluidpump tries to extract from an empty resource list
+      turf
+  - bugfix: concealed sword cane runtime during init
