@@ -1,0 +1,5 @@
+author: "zeskorion"
+delete-after: True
+changes:
+  - balance: "shredding interactions, with the exception of escaping restraints, are now also based on punch damage. Characters with sufficient punch damage can sometimes harm machinery, structures, borgs, etc, when attacking on harm intent. This does not take equipment damage, like from brass knuckles, into account"
+  - balance: "xenochimera ferality bonus to punch damage is now capped at 40"
