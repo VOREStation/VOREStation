@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Allows vox to be revived via defibs & CPR"
