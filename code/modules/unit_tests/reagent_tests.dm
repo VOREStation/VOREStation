@@ -10,8 +10,8 @@
 /datum/unit_test/reagent_shall_have_unique_name_and_id/Run()
 	var/collection_name = list()
 	var/collection_id = list()
-	var/regex/name_legal = regex(@"_\t\r\n")
-	var/regex/id_legal = regex(@"\s\t\r\n")
+	var/regex/name_legal = regex(@"[_\t\r\n]")
+	var/regex/id_legal = regex(@"[\s\t\r\n]")
 
 	for(var/Rpath in subtypesof(/datum/reagent))
 		var/datum/reagent/R = new Rpath()
