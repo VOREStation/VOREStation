@@ -174,7 +174,7 @@ This device records all warnings given and teleport events for admin review in c
 		rebuild_radial_images()
 
 /obj/item/perfect_tele/attackby(obj/W, mob/user)
-	if(istype(W,cell_type) && !power_source)
+	if(istype(W, /obj/item/cell/device) && !power_source)
 		power_source = W
 		power_source.update_icon() //Why doesn't a cell do this already? :|
 		user.unEquip(power_source)
