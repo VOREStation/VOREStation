@@ -23,7 +23,7 @@
 		TEST_ASSERT_NOTEQUAL(R.id, REAGENT_ID_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent ID not set.")
 		TEST_ASSERT_NOTEQUAL(R.description, REAGENT_DESC_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent description unset.")
 
-		TEST_ASSERT(!name_legality.Find(R.name), "[Rpath]: Reagents - reagent name contains illegal characters: [R.name].")
+		TEST_ASSERT(!name_legal.Find(R.name), "[Rpath]: Reagents - reagent name contains illegal characters: [R.name].")
 		TEST_ASSERT(!id_legal.Find(R.id), "[Rpath]: Reagents - reagent id contains illegal characters or spaces: [R.id].")
 
 		TEST_ASSERT(R.id != "", "[Rpath]: Reagents - reagent ID blank.")
