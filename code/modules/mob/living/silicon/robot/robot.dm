@@ -1570,6 +1570,14 @@
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
 		else
 			return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_scanner)
+		var/obj/item/mining_scanner/robot/robot_scanner = has_upgrade_module(/obj/item/mining_scanner/robot)
+		if(robot_scanner && robot_scanner.exact)
+			return robot_scanner
+		else if(!robot_scanner)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		else
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
