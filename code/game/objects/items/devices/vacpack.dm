@@ -25,7 +25,6 @@
 	var/sucksound = 'sound/machines/kitchen/candymaker/candymaker-mid1.ogg'
 	var/suckverb = "vacuum"
 	var/suckanim = TRUE
-	var/adminsizebypass = FALSE
 	var/pull_range = 1
 	var/max_items = 20
 	flags = NOBLUDGEON
