@@ -41,9 +41,9 @@ SUBSYSTEM_DEF(chemistry)
 		chemical_reactions += D
 
 		var/list/scan_list = list()
-		if(D.required_reagents?.len)
+		if(length(D.required_reagents))
 			scan_list += D.required_reagents
-		if(D.catalysts?.len)
+		if(length(D.catalysts))
 			scan_list += D.catalysts
 
 		for(var/i in 1 to scan_list.len)
