@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Unlucky vending interactions more clear"
