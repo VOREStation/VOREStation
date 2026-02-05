@@ -10,6 +10,7 @@
 /datum/unit_test/reagent_shall_have_unique_name_and_id/Run()
 	var/collection_name = list()
 	var/collection_id = list()
+	var/regex/forbid_underscores = regex(@"_")
 
 	for(var/Rpath in subtypesof(/datum/reagent))
 		var/datum/reagent/R = new Rpath()
@@ -20,6 +21,8 @@
 		TEST_ASSERT(R.name != "", "[Rpath]: Reagents - reagent name blank.")
 		TEST_ASSERT_NOTEQUAL(R.id, REAGENT_ID_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent ID not set.")
 		TEST_ASSERT_NOTEQUAL(R.description, REAGENT_DESC_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent description unset.")
+
+		TEST_ASSERT(!forbid_underscores.Find(R.name), "[Rpath]: Reagents - reagent name appears to be an ID, and contains underscores: [R.name].")
 
 		TEST_ASSERT(R.id != "", "[Rpath]: Reagents - reagent ID blank.")
 		TEST_ASSERT_EQUAL(R.id, lowertext(R.id), "[Rpath]: Reagents - Reagent ID must be all lowercase.")
