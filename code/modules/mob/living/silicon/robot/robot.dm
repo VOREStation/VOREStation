@@ -916,8 +916,9 @@
 							return
 				if(I_HURT)
 					H.do_attack_animation(src)
-					if(H.species.can_shred(H))
-						attack_generic(H, rand(30,50), "slashed")
+					var/shreddamage = H.species.can_shred(H, FALSE, 15)
+					if(shreddamage)
+						attack_generic(H, shreddamage, "attacked")
 						return
 					else
 						playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
