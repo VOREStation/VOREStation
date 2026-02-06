@@ -1521,7 +1521,6 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
 	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
 	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
-	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
 	. += new /atom/movable/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
 	. += new /atom/movable/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
 	//VOREStation Add End
