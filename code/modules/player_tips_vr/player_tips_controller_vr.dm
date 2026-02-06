@@ -13,6 +13,7 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 	var/last_tip = null
 	var/list/HasReceived = list() //Tracking who received tips. We let them know how to turn them off if they're not on this list. Stores CKeys until round-end.
 
+//Called every 5 minutes as defined in the subsystem.
 /datum/player_tips/proc/check_next_tip()
 	if(world.time <= last_tip_time + tip_delay)
 		return FALSE
@@ -21,7 +22,6 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 	tip_delay = rand(min_tip_delay, max_tip_delay)
 	return TRUE
 
-//Called every 5 minutes as defined in the subsystem.
 /datum/player_tips/proc/set_current_tip()
 	var/tip = pick_tip("none") //"none" picks a random topic of advice.
 	var/stopWhile = 0
