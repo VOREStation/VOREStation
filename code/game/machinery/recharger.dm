@@ -152,6 +152,9 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 	else if(default_deconstruction_screwdriver(user, G))
 		return
 	else if(default_deconstruction_crowbar(user, G))
+		if(charging)
+			to_chat(user, span_warning("Remove [charging] first!"))
+			return
 		return
 	else if(default_part_replacement(user, G))
 		return
