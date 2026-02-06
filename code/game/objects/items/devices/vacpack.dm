@@ -120,7 +120,10 @@
 			return
 	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
 		target = get_turf(target) // Windows can be clicked to clean their turf
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)//this is a mop, cart, and trash bag in one. Halving its speed should keep it somewhat more in-line with other cleaning equipment.
+	if(issilicon(user))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	else
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)//this is a mop, cart, and trash bag in one. Halving its speed should keep it somewhat more in-line with other cleaning equipment.
 	var/auto_setting = 1
 	if(isturf(target))
 		user.visible_message(span_filter_notice("[user] begins [suckverb]ing the mess off \the [target.name]..."), span_notice("You begin [suckverb]ing the mess off \the [target.name]..."))
@@ -128,7 +131,7 @@
 		if(vac_power == 8)
 			playsound(src, 'sound/machines/hiss.ogg', 100, 1, -1)
 			for(var/obj/item/I in oview(pull_range, target))
-				if(I.anchored)
+				if(I.anchored || !is_allowed_suck(I, user))
 					continue
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
@@ -285,17 +288,17 @@
 /obj/item/vac_attachment/proc/is_allowed_suck(atom/movable/target, mob/user) //a ray of light in this inscrutible file. Check if we *can* fit what we want to fit, where we want to fit it. This does NOT check all the sanity checks n stuff
 	if(isitem(target))
 		var/obj/item/target_item = target
-		if(isbelly(output_dest))//if it's a belly, can we trasheat?
+		if(istype(output_dest, /obj/item/storage))//if it's storage, does it fit?
+			var/obj/item/storage/target_storage = output_dest
+			if(target_storage.can_be_inserted(target_item, TRUE))
+				return TRUE
+		else//if it's not a trash bag, it's a vorebelly or borg belly. Check trash eat
 			if(is_type_in_list(target_item, GLOB.edible_trash) && target_item.trash_eatable && !is_type_in_list(target_item, GLOB.item_vore_blacklist))
 				return TRUE
 			if(isliving(user))
 				var/mob/living/trashcheck = user
 				if(trashcheck.adminbus_trash)
 					return TRUE
-		if(istype(output_dest, /obj/item/storage))//if it's storage, does it fit?
-			var/obj/item/storage/target_storage = output_dest
-			if(target_storage.can_be_inserted(target_item, TRUE))
-				return TRUE
 	if(isliving(target)) //quick prefs test. Better safe than sorry
 		var/mob/living/caneat = target
 		if(caneat.devourable && caneat.can_be_drop_prey)
