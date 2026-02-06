@@ -66,6 +66,7 @@
 		"borg_pka_module",
 		"pka_mineaoe",
 		"borg_adv_scanner_module",
+		"borg_adv_snatcher_module",
 		// "damagemod",
 		// "cooldownmod",
 		// "triggermod",
