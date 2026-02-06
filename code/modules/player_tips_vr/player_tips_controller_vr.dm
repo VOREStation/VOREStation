@@ -31,7 +31,6 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 		if(stopWhile >= 10)
 			break
 	last_tip = tip
-	return tip
 
 /datum/player_tips/proc/send_tip(mob/target_mob, active_tip)
 	if(!(target_mob.client?.prefs?.read_preference(/datum/preference/toggle/player_tips)))
