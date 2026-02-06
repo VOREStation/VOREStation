@@ -32,13 +32,13 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 			break
 	last_tip = tip
 
-/datum/player_tips/proc/send_tip(mob/target_mob, active_tip)
+/datum/player_tips/proc/send_tip(mob/target_mob)
 	if(!(target_mob.client?.prefs?.read_preference(/datum/preference/toggle/player_tips)))
 		return
 	if(!target_mob.key && !(target_mob.key in HasReceived))
 		to_chat(target_mob, span_warning("You have periodic player tips enabled. You may turn them off at any time with the Toggle Receiving Player Tips verb in Preferences, or in character set up under the OOC tab!\n Player tips appear every 45-75 minutes."))
 		HasReceived.Add(target_mob.key)
-	to_chat(target_mob, span_notice("[GLOB.is_valid_url.Replace(active_tip, span_linkify("$1"))]"))
+	to_chat(target_mob, span_notice("[GLOB.is_valid_url.Replace(last_tip, span_linkify("$1"))]"))
 
 /mob/living/verb/request_automated_advice()
 	set name = "Request Automated Advice"
