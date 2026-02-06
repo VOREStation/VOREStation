@@ -122,10 +122,6 @@
 	if(!is_browser)
 		winset(client, id, "on-close=\"uiclose [id]\"")
 
-/datum/tgui_window/Destroy(force)
-	unsubscribe()
-	. = ..()
-
 /**
  * public
  *

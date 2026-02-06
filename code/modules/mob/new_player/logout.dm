@@ -2,7 +2,8 @@
 	ready = 0
 
 	GLOB.new_player_list -= src
-	QDEL_NULL(lobby_window)
+	lobby_window.unsubscribe()
+	lobby_window = null
 	disable_lobby_browser()
 
 	..()
