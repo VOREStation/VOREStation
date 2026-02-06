@@ -488,7 +488,7 @@
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1500, MAT_DIAMOND = 350)
 	build_path = /obj/item/borg/upgrade/restricted/adv_scanner
 
-/datum/design_techweb/prosfab/robot_upgrade/restricted/adv_scanner
+/datum/design_techweb/prosfab/robot_upgrade/restricted/adv_snatcher
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESTRICTED + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
 	)
