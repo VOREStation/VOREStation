@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(player_tips)
 		if(!player_tips.check_next_tip())
 			return
 		player_tips.set_current_tip()
-		current_run = GLOB.player_list
+		current_run = GLOB.player_list.Copy()
 
 	for(var/mob/target_mob in current_run)
 		current_run -= target_mob
