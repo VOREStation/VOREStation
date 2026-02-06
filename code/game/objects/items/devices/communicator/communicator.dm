@@ -314,7 +314,6 @@
 	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	QDEL_NULL(cam_background)
-	QDEL_NULL(local_skybox)
 
 	return ..()
 
