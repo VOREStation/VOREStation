@@ -6,7 +6,6 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 */
 
 /datum/player_tips
-
 	var/min_tip_delay = 45 MINUTES
 	var/max_tip_delay = 75 MINUTES
 	var/tip_delay = 5 MINUTES //10 minute initial delay for first tip of the day. Timer starts 5 minutes after game starts, plus 5 minutes here. Gets overwritten afterwards
