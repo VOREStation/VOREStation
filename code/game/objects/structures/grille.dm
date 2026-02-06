@@ -34,7 +34,7 @@
 	var/attack_message = "kicks"
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H))
+		if(H.species.can_shred(H, FALSE, 10))
 			attack_message = "mangles"
 			damage_dealt = 5
 

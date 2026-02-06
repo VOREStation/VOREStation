@@ -18,7 +18,7 @@
 	return seen_turfs_in_range(src, 3)
 
 /mob/living/carbon/human/seen_cult_turfs()
-	if(mind in cult.current_antagonists)
+	if(mind in GLOB.cult.current_antagonists)
 		return seen_turfs_in_range(src, world.view)
 	return ..()
 

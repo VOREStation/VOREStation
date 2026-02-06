@@ -54,7 +54,7 @@
 			update_inv_w_uniform()
 			return
 		if("underwear")
-			var/datum/category_group/underwear/UWC = tgui_input_list(user, "Choose underwear. (Do not do this without OOC permission from the other player)", "Show/hide underwear", global_underwear.categories)
+			var/datum/category_group/underwear/UWC = tgui_input_list(user, "Choose underwear. (Do not do this without OOC permission from the other player)", "Show/hide underwear", GLOB.global_underwear.categories)
 			if(!UWC) return
 			var/datum/category_item/underwear/UWI = all_underwear[UWC.name]
 			if(!UWI || UWI.name == "None")

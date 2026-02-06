@@ -745,6 +745,7 @@
 	id = REAGENT_ID_FIREPUNCH
 	result = REAGENT_ID_FIREPUNCH
 	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_RUM = 2)
+	inhibitors = list(REAGENT_ID_LIMEJUICE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/kiraspecial

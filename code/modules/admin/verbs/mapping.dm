@@ -69,7 +69,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Camera Report"
 
-	if(!master_controller)
+	if(!GLOB.master_controller)
 		tgui_alert_async(usr,"Master_controller not found.","Sec Camera Report")
 		return 0
 

@@ -248,6 +248,8 @@
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/science.dmi'
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	has_eye_light_sprites = TRUE
 	sprite_icon_state = "dullahanscience"
 	rest_sprite_options = list("Default", "Sit")

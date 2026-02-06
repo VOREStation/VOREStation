@@ -81,7 +81,7 @@
 
 	avatar.regenerate_icons()
 	avatar.update_transform()
-	job_master.EquipRank(avatar,JOB_VR, 1, FALSE)
+	GLOB.job_master.EquipRank(avatar,JOB_VR, 1, FALSE)
 	add_verb(avatar,/mob/living/carbon/human/proc/fake_exit_vr)
 	add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 	add_verb(avatar,/mob/living/proc/set_size)

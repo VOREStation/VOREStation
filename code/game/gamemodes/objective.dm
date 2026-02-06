@@ -803,9 +803,9 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/cult/survive/check_completion()
 	var/acolytes_survived = 0
-	if(!cult)
+	if(!GLOB.cult)
 		return 0
-	for(var/datum/mind/cult_mind in cult.current_antagonists)
+	for(var/datum/mind/cult_mind in GLOB.cult.current_antagonists)
 		if (cult_mind.current && cult_mind.current.stat!=2)
 			var/area/A = get_area(cult_mind.current )
 			if ( is_type_in_list(A, GLOB.centcom_areas))
@@ -828,14 +828,14 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	var/list/possible_targets = list()
 	if(!possible_targets.len)
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
-			if(player.mind && !(player.mind in cult))
+			if(player.mind && !(player.mind in GLOB.cult))
 				possible_targets += player.mind
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 	if(target) explanation_text = "Sacrifice [target.name], the [target.assigned_role]. You will need the sacrifice rune (Hell blood join) and three acolytes to do so."
 
 /datum/objective/cult/sacrifice/check_completion()
-	return (target && cult && !cult.sacrificed.Find(target))
+	return (target && GLOB.cult && !GLOB.cult.sacrificed.Find(target))
 
 /datum/objective/rev/find_target()
 	..()
