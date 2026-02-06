@@ -54,13 +54,12 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 		trait_names += T.name
 		trait_desc[T.name] = T.desc
 		trait_tutorial[T.name] = T.tutorial
-		switch(T.category)
-			if(TRAIT_TYPE_NEGATIVE)
-				trait_category[T.name] = "Negative Trait"
-			if(TRAIT_TYPE_NEUTRAL)
-				trait_category[T.name] = "Neutral Trait"
-			if(TRAIT_TYPE_POSITIVE)
-				trait_category[T.name] = "Positive Trait"
+		if(T.category & TRAIT_TYPE_NEGATIVE)
+			trait_category[T.name] = "Negative Trait"
+		if(T.category & TRAIT_TYPE_NEUTRAL)
+			trait_category[T.name] = "Neutral Trait"
+		if(T.category & TRAIT_TYPE_POSITIVE)
+			trait_category[T.name] = "Positive Trait"
 
 
 	if(UI_choice == "To Chat")

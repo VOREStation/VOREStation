@@ -583,18 +583,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.voice_freq		= voice_freq
 	character.resize(size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
-	var/list/traits_to_copy = list(/datum/trait/neutral/tall,
-									/datum/trait/neutral/taller,
-									/datum/trait/neutral/tallest,
-									/datum/trait/neutral/short,
-									/datum/trait/neutral/shorter,
-									/datum/trait/neutral/shortest,
-									/datum/trait/neutral/obese,
-									/datum/trait/neutral/fat,
-									/datum/trait/neutral/thin,
-									/datum/trait/neutral/thinner,
-									/datum/trait/neutral/micro_size_down,
-									/datum/trait/neutral/micro_size_up)
+	var/list/traits_to_copy = list(/datum/trait/tall,
+									/datum/trait/taller,
+									/datum/trait/tallest,
+									/datum/trait/short,
+									/datum/trait/shorter,
+									/datum/trait/shortest,
+									/datum/trait/obese,
+									/datum/trait/fat,
+									/datum/trait/thin,
+									/datum/trait/thinner,
+									/datum/trait/micro_size_down,
+									/datum/trait/micro_size_up)
 	//reset all the above trait vars
 	if (character.species)
 		character.species.micro_size_mod = 0

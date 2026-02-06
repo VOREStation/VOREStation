@@ -632,12 +632,14 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
 		GLOB.hair_accesories_list[path] = instance
 
-	// Custom species traits
-	paths = typesof(/datum/trait) - /datum/trait - /datum/trait/negative - /datum/trait/neutral - /datum/trait/positive
+	// Custom traits
+	paths = subtypesof(/datum/trait)
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)
 			continue //A prototype or something
+		if(isnull(instance.category))
+			continue //Someone forgot to set a trait category.
 		var/cost = instance.cost
 		GLOB.traits_costs[path] = cost
 		GLOB.all_traits[path] = instance
@@ -653,19 +655,18 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 		var/datum/trait/T = GLOB.all_traits[traitpath]
 		var/category = T.category
 		if(!T.hidden) // Traitgenes forbid hidden traits from showing, done to hide genetics only traits
-			switch(category)
-				if(-INFINITY to -0.1)
-					GLOB.negative_traits[traitpath] = T
-					if(!(T.custom_only))
-						GLOB.everyone_traits_negative[traitpath] = T
-				if(0)
-					GLOB.neutral_traits[traitpath] = T
-					if(!(T.custom_only))
-						GLOB.everyone_traits_neutral[traitpath] = T
-				if(0.1 to INFINITY)
-					GLOB.positive_traits[traitpath] = T
-					if(!(T.custom_only))
-						GLOB.everyone_traits_positive[traitpath] = T
+			if(category & TRAIT_TYPE_NEGATIVE)
+				GLOB.negative_traits[traitpath] = T
+				if(!(T.custom_only))
+					GLOB.everyone_traits_negative[traitpath] = T
+			else if(category & TRAIT_TYPE_NEUTRAL)
+				GLOB.neutral_traits[traitpath] = T
+				if(!(T.custom_only))
+					GLOB.everyone_traits_neutral[traitpath] = T
+			else if(category & TRAIT_TYPE_POSITIVE)
+				GLOB.positive_traits[traitpath] = T
+				if(!(T.custom_only))
+					GLOB.everyone_traits_positive[traitpath] = T
 
 
 	// Weaver recipe stuff
