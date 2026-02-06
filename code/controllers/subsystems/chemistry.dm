@@ -39,8 +39,15 @@ SUBSYSTEM_DEF(chemistry)
 	for(var/path in paths)
 		var/decl/chemical_reaction/D = paths[path]
 		chemical_reactions += D
-		if(D.required_reagents && D.required_reagents.len)
-			var/reagent_id = D.required_reagents[1]
+
+		var/list/scan_list = list()
+		if(length(D.required_reagents))
+			scan_list += D.required_reagents
+		if(length(D.catalysts))
+			scan_list += D.catalysts
+
+		for(var/i in 1 to scan_list.len)
+			var/reagent_id = scan_list[i]
 
 			var/list/add_to = instant_reactions_by_reagent // Default to instant reactions list, if something's gone wrong
 //			if(istype(D, /decl/chemical_reaction/fusion)) // TODO: fusion reactions as chemical reactions
@@ -48,15 +55,16 @@ SUBSYSTEM_DEF(chemistry)
 			if(istype(D, /decl/chemical_reaction/distilling))
 				add_to = distilled_reactions_by_reagent
 
-			if(istype(D, /decl/chemical_reaction/distilling))
-				LAZYINITLIST(distilled_reactions_by_product[D.result])
-				distilled_reactions_by_product[D.result] += D // for reverse lookup
-			else
-				LAZYINITLIST(chemical_reactions_by_product[D.result])
-				chemical_reactions_by_product[D.result] += D // for reverse lookup
+			if(D.result)
+				if(istype(D, /decl/chemical_reaction/distilling))
+					LAZYINITLIST(distilled_reactions_by_product[D.result])
+					distilled_reactions_by_product[D.result] |= D // for reverse lookup
+				else
+					LAZYINITLIST(chemical_reactions_by_product[D.result])
+					chemical_reactions_by_product[D.result] |= D // for reverse lookup
 
 			LAZYINITLIST(add_to[reagent_id])
-			add_to[reagent_id] += D
+			add_to[reagent_id] |= D
 
 //Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 /datum/controller/subsystem/chemistry/proc/initialize_chemical_reagents()
