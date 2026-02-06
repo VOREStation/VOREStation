@@ -6,9 +6,10 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 */
 
 /datum/player_tips
-	var/min_tip_delay = 4 SECONDS
-	var/max_tip_delay = 7 SECONDS
-	var/tip_delay = 5 SECONDS //10 minute initial delay for first tip of the day. Timer starts 5 minutes after game starts, plus 5 minutes here. Gets overwritten afterwards
+
+	var/min_tip_delay = 45 MINUTES
+	var/max_tip_delay = 75 MINUTES
+	var/tip_delay = 5 MINUTES //10 minute initial delay for first tip of the day. Timer starts 5 minutes after game starts, plus 5 minutes here. Gets overwritten afterwards
 	var/last_tip_time = 0
 	var/last_tip = null
 	var/list/HasReceived = list() //Tracking who received tips. We let them know how to turn them off if they're not on this list. Stores CKeys until round-end.
