@@ -195,8 +195,9 @@
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.species.can_shred(H))
-				attack_generic(H,25)
+			var/shreddamage = H.species.can_shred(H, FALSE, 15)
+			if(shreddamage)
+				attack_generic(H, shreddamage + 5, "attacks")
 				return
 
 		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)

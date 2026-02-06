@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - refactor: "bapi-dmm has been replaced by /tg/'s dmm_suite, any maploading differences are considered bugs"
