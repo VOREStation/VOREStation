@@ -8,14 +8,12 @@ SUBSYSTEM_DEF(player_tips)
 
 	var/static/datum/player_tips/player_tips = new
 	var/list/current_run = list()
-	var/active_tip
 
 /datum/controller/subsystem/player_tips/fire(resumed)
 	if(!resumed)
 		if(!player_tips.check_next_tip())
 			return
 		current_run = GLOB.player_list
-		active_tip = player_tips.set_current_tip()
 
 	for(var/mob/target_mob in current_run)
 		current_run -= target_mob
