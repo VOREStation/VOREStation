@@ -449,7 +449,7 @@
 		icon_state = "[basestate]"
 		return
 	else
-		flags = NONE // Removes ON_BORDER and OPPOSITE_OPACITY
+		flags &= ~ON_BORDER // Removes ON_BORDER
 	var/list/dirs = list()
 	if(anchored)
 		for(var/obj/structure/window/W in orange(src,1))
