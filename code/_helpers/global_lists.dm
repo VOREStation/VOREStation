@@ -1602,6 +1602,9 @@ GLOBAL_LIST_INIT(global_ammo_types, list(
 //Rad collectors in the world
 GLOBAL_LIST_EMPTY(rad_collectors)
 
+//READING RAINBOOOWWWWW
+GLOBAL_LIST_EMPTY(all_books)
+
 //NIF
 GLOBAL_LIST_INIT(nif_look_messages, list(
 			"flicks their eyes around",
