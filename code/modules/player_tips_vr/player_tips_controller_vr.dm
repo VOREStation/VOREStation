@@ -6,9 +6,9 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 */
 
 /datum/player_tips
-	var/min_tip_delay = 45 MINUTES
-	var/max_tip_delay = 75 MINUTES
-	var/tip_delay = 5 MINUTES //10 minute initial delay for first tip of the day. Timer starts 5 minutes after game starts, plus 5 minutes here. Gets overwritten afterwards
+	var/min_tip_delay = 4 SECONDS
+	var/max_tip_delay = 7 SECONDS
+	var/tip_delay = 5 SECONDS //10 minute initial delay for first tip of the day. Timer starts 5 minutes after game starts, plus 5 minutes here. Gets overwritten afterwards
 	var/last_tip_time = 0
 	var/last_tip = null
 	var/list/HasReceived = list() //Tracking who received tips. We let them know how to turn them off if they're not on this list. Stores CKeys until round-end.
@@ -35,7 +35,7 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 /datum/player_tips/proc/send_tip(mob/target_mob)
 	if(!(target_mob.client?.prefs?.read_preference(/datum/preference/toggle/player_tips)))
 		return
-	if(!target_mob.key && !(target_mob.key in HasReceived))
+	if(target_mob.key && !(target_mob.key in HasReceived))
 		to_chat(target_mob, span_warning("You have periodic player tips enabled. You may turn them off at any time with the Toggle Receiving Player Tips verb in Preferences, or in character set up under the OOC tab!\n Player tips appear every 45-75 minutes."))
 		HasReceived.Add(target_mob.key)
 	to_chat(target_mob, span_notice("[GLOB.is_valid_url.Replace(last_tip, span_linkify("$1"))]"))
