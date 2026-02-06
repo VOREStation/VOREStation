@@ -234,7 +234,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	return TRUE
 
 /**
- * Destroys an item by going through all its contents (including itself) and calling handle_destroyed_item
+ * Destroys an item by going through all its contents (including itself) and calling destroy_item_individual
  * Args:
  * gain_research_points - Whether deconstructing each individual item should check for research points to boost.
  */
@@ -250,9 +250,10 @@ It is used to destroy hand-held objects and advance technological research. Used
 	var/list/destructing = list()
 	destructing += current_item
 	for(var/atom/movable/AM in current_item.contents)
+		AM.forceMove(get_turf(src))
 		destructing += AM
 	for(var/atom/thing_destroying in destructing) // For all contents and itself
-		handle_destroyed_item(thing_destroying, gain_research_points)
+		destroy_item_individual(thing_destroying, gain_research_points)
 	loaded_item = null
 	// feedback
 	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
@@ -265,7 +266,7 @@ It is used to destroy hand-held objects and advance technological research. Used
  * thing - The thing being destroyed. Generally an object, but it can be a mob too, such as intellicards and pAIs.
  * gain_research_points - Whether deconstructing this should give research points to the stored techweb, if applicable.
  */
-/obj/machinery/rnd/destructive_analyzer/proc/handle_destroyed_item(obj/item/thing, gain_research_points = FALSE)
+/obj/machinery/rnd/destructive_analyzer/proc/destroy_item_individual(obj/item/thing, gain_research_points = FALSE)
 	if(isliving(thing))
 		var/mob/living/mob_thing = thing
 		var/turf/turf_to_dump_to = get_turf(src)
