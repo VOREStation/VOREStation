@@ -482,7 +482,6 @@
 	to_chat(R, span_notice("Mining scanner upgraded!"))
 	return TRUE
 
-
 /obj/item/borg/upgrade/restricted/adv_snatcher
 	name = "robotic Sheet Capacity Module"
 	desc = "Used to expand the robot sheet storage."
