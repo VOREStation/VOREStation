@@ -234,7 +234,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	return TRUE
 
 /**
- * Destroys an item by dropping all its contents and calling handle_destroyed_item
+ * Destroys an item by going through all its contents (including itself) and calling handle_destroyed_item
  * Args:
  * gain_research_points - Whether deconstructing each individual item should check for research points to boost.
  */
@@ -246,12 +246,16 @@ It is used to destroy hand-held objects and advance technological research. Used
 	busy = TRUE
 	addtimer(CALLBACK(src, PROC_REF(reset_busy)), 2.4 SECONDS)
 	use_power(active_power_usage)
-	//Failsafe.
+	// Destroy items inside
+	var/list/destructing = list()
+	destructing += current_item
 	for(var/atom/movable/AM in current_item.contents)
-		AM.forceMove(get_turf(src))
-	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-	handle_destroyed_item(current_item, gain_research_points)
+		destructing += AM
+	for(var/atom/thing_destroying in destructing) // For all contents and itself
+		handle_destroyed_item(thing_destroying, gain_research_points)
 	loaded_item = null
+	// feedback
+	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 	update_icon()
 	return TRUE
 
