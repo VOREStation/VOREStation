@@ -160,6 +160,9 @@
 	if(handle_afterattack_special(target, user))
 		return
 
+	if(!wrapped)
+		select_next_item()
+
 /obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped)
 	if(!wrapped)
 		return FALSE
@@ -317,10 +320,23 @@
 	update_ref(null)
 	select_empty_pocket()
 
+/// Clears the currently wrapped item and selects next item
+/obj/item/gripper/proc/clear_and_select_item()
+	update_ref(null)
+	select_next_item()
+
 /// Selects the first empty pocket, or a random one
 /obj/item/gripper/proc/select_empty_pocket()
 	var/obj/item/storage/internal/gripper/P = find_empty_pocket()
 	select_pocket(P)
+
+/obj/item/gripper/proc/select_next_item()
+	for(var/obj/item/storage/internal/gripper/P in pockets)
+		if(!LAZYLEN(P.contents))
+			continue
+		var/obj/item/next_item = P.contents[1]
+		update_ref(WEAKREF(next_item))
+		return
 
 /obj/item/gripper/proc/drop_item(mob/user)
 	var/obj/item/wrapped = get_wrapped_item()
