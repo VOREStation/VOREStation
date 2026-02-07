@@ -222,7 +222,7 @@
 		for(var/obj/machinery/vending/darth_vendor in the_turf)
 			if(darth_vendor.stat & (BROKEN|NOPOWER))
 				continue
-			to_chat(living_guy, span_warning("The delivery chute of [darth_vendor] raises up..."))
+			darth_vendor.visible_message(span_warning("[darth_vendor] suddenly clunks and the delivery chute raises up!"))
 			darth_vendor.throw_item(living_guy)
 			consume_omen()
 			return

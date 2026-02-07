@@ -218,9 +218,12 @@
 			to_chat(user, span_warning("You must remain close to and keep focused on your patient to conduct surgery."))
 			user.balloon_alert(user, "you must stay focused on your patient!")
 
+	if(!affected) // If the limb was just attached, get it to adjust germ levels
+		affected = M.get_organ(zone)
+
 	if(success)
 		selected_surgery.end_step(user, M, zone, src)
-		if(prob(100-cleanliness)) //Infection chance based on cleanliness.
+		if(affected && prob(100-cleanliness)) //Infection chance based on cleanliness.
 			affected.adjust_germ_level(rand(10,20))
 	else
 		selected_surgery.fail_step(user, M, zone, src)

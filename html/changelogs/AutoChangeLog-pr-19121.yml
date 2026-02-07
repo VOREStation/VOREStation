@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed supermatter flux anomalies exploding violently"

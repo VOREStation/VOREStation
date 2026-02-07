@@ -477,6 +477,17 @@
 	materials = list(MAT_PLASTEEL = 5000, MAT_GLASS = 1000, MAT_URANIUM = 500, MAT_PLATINUM = 350)
 	build_path = /obj/item/borg/upgrade/restricted/pka
 
+/datum/design_techweb/prosfab/robot_upgrade/restricted/adv_scanner
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESTRICTED + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+	name = "Ore Scanning Upgrade"
+	desc = "An upgrade module to improve the potency of the integrated ore scanner."
+	id = "borg_adv_scanner_module"
+	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1500, MAT_DIAMOND = 350)
+	build_path = /obj/item/borg/upgrade/restricted/adv_scanner
+
 /datum/design_techweb/prosfab/robot_upgrade/restricted/tasercooler
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESTRICTED + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SECURITY
