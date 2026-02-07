@@ -139,21 +139,21 @@
 		var/obj/item/wrapped = B.get_wrapped_item()
 		if(!wrapped)
 			to_chat(user, span_filter_notice("\The [B] is not holding anything."))
-			return
+			return TRUE
 		else
 			to_chat(user, span_filter_notice("You use \the [B] to put \the [wrapped] into \the [src]."))
-		return
+		return FALSE
 
 	else
 		to_chat(user, span_notice("\The [src] smartly refuses [O]."))
-		return 1
+		return TRUE
 
 /obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
 		locked = -1
 		to_chat(user, span_filter_notice("You short out the product lock on [src]."))
-		return 1
+		return TRUE
 
 /obj/machinery/smartfridge/proc/find_record(var/obj/item/O)
 	for(var/datum/stored_item/I as anything in item_records)
