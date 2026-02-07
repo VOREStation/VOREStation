@@ -2,9 +2,10 @@
 	ready = 0
 
 	GLOB.new_player_list -= src
-	lobby_window.release_lock()
-	lobby_window.unsubscribe(src)
-	lobby_window = null
+	if(lobby_window)
+		lobby_window.release_lock()
+		lobby_window.unsubscribe(src)
+		lobby_window = null
 	disable_lobby_browser()
 
 	..()
