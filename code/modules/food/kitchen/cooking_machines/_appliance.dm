@@ -271,7 +271,7 @@
 
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		var/obj/item/wrap = GR.get_current_pocket()
+		var/obj/item/wrap = GR.get_wrapped_item()
 		if(wrap)
 			wrap.loc = get_turf(src)
 			var/result = can_insert(wrap, user)

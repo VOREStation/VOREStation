@@ -72,7 +72,7 @@
 		stripping = TRUE
 		if(is_robot_module(held) && istype(held, /obj/item/gripper))
 			var/obj/item/gripper/G = held
-			var/obj/item/wrapped = G.get_current_pocket()
+			var/obj/item/wrapped = G.get_wrapped_item()
 			if(istype(wrapped))
 				stripping = FALSE
 	else
@@ -98,7 +98,7 @@
 			visible_message(span_danger("\The [user] is trying to put \a [held] on \the [src]!"))
 	else
 		var/obj/item/gripper/G = held
-		var/obj/item/wrapped = G.get_current_pocket()
+		var/obj/item/wrapped = G.get_wrapped_item()
 		if(slot_to_strip == slot_wear_mask && istype(wrapped, /obj/item/grenade))
 			visible_message(span_danger("\The [user] is trying to put \a [wrapped] in \the [src]'s mouth!"))
 		else
@@ -120,7 +120,7 @@
 		unEquip(target_slot)
 	else if(is_robot_module(held) && istype(held, /obj/item/gripper))
 		var/obj/item/gripper/G = held
-		var/obj/item/wrapped = G.get_current_pocket()
+		var/obj/item/wrapped = G.get_wrapped_item()
 		if(istype(wrapped))
 			if(equip_to_slot_if_possible(wrapped, text2num(slot_to_strip), 0, 1, 1))
 				wrapped = null
