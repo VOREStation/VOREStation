@@ -123,9 +123,9 @@
 		var/obj/item/wrapped = G.get_wrapped_item()
 		if(istype(wrapped))
 			if(equip_to_slot_if_possible(wrapped, text2num(slot_to_strip), 0, 1, 1))
-				wrapped = null
-				G.generate_icons()
-				G.current_pocket = pick(G.pockets)
+				if(wrapped.loc != src)
+					return
+				G.clear_and_select_item()
 	else if(user.unEquip(held))
 		equip_to_slot_if_possible(held, text2num(slot_to_strip), 0, 1, 1)
 		if(held.loc != src)
