@@ -258,7 +258,6 @@ export type SizeData = {
   custom_speech_bubble: string;
   custom_species_sound: string;
   custom_footstep: string;
-  ignore_shoes: BooleanLike;
   weight_vr: number;
   weight_gain: number;
   weight_loss: number;
@@ -285,6 +284,7 @@ export type MiscData = {
   nif: BooleanLike;
 
   custom_species: string;
+  ignore_shoes: BooleanLike;
   pos_traits: string[] | Record<string, Record<string, any> | null>;
   neu_traits: string[] | Record<string, Record<string, any> | null>;
   neg_traits: string[] | Record<string, Record<string, any> | null>;
