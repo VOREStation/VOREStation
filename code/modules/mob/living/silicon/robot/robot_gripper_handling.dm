@@ -160,7 +160,7 @@
 	if(handle_afterattack_special(target, user))
 		return
 
-	if(!wrapped)
+	if(item_left_gripper(wrapped))
 		select_next_item()
 
 /obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped)
