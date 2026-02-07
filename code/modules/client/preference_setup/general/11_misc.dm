@@ -154,6 +154,8 @@
 	data["auto_backup_implant"] = pref.auto_backup_implant
 	data["borg_petting"] = pref.borg_petting
 
+	data["ignore_shoes"] = pref.read_preference(/datum/preference/toggle/human/ignore_shoes)
+
 	data["resleeve_lock"] = pref.resleeve_lock
 	data["resleeve_scan"] = pref.resleeve_scan
 	data["mind_scan"] = pref.mind_scan
@@ -213,6 +215,9 @@
 				return TOPIC_REFRESH
 		if("toggle_capture_crystal")
 			pref.capture_crystal = pref.capture_crystal ? 0 : 1;
+			return TOPIC_REFRESH
+		if("toggle_ignore_shoes")
+			pref.update_preference_by_type(/datum/preference/toggle/human/ignore_shoes, !pref.read_preference(/datum/preference/toggle/human/ignore_shoes))
 			return TOPIC_REFRESH
 		if("toggle_implant")
 			pref.auto_backup_implant = pref.auto_backup_implant ? 0 : 1;

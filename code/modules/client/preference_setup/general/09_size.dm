@@ -15,7 +15,6 @@
 	var/voice_sound = "beep-boop"
 	var/custom_speech_bubble = "default"
 	var/custom_footstep = "Default"
-	var/ignore_shoes = FALSE
 	var/species_sound = "Unset"
 
 // Definition of the stuff for Sizing
@@ -34,7 +33,6 @@
 	pref.voice_sound		= save_data["voice_sound"]
 	pref.custom_speech_bubble	= save_data["custom_speech_bubble"]
 	pref.custom_footstep	= save_data["custom_footstep"]
-	pref.ignore_shoes 		= save_data["ignore_shoes"]
 	pref.species_sound		= save_data["species_sound"]
 
 /datum/category_item/player_setup_item/general/size/save_character(list/save_data)
@@ -48,7 +46,6 @@
 	save_data["voice_sound"]		= pref.voice_sound
 	save_data["custom_speech_bubble"]		= pref.custom_speech_bubble
 	save_data["custom_footstep"]	= pref.custom_footstep
-	save_data["ignore_shoes"] 		= pref.ignore_shoes
 	save_data["species_sound"]		= pref.species_sound
 
 /datum/category_item/player_setup_item/general/size/sanitize_character()
@@ -65,8 +62,6 @@
 		pref.custom_speech_bubble = "default"
 	if(!(pref.custom_footstep))
 		pref.custom_footstep = "Default"
-	if(!(pref.ignore_shoes))
-		pref.ignore_shoes = FALSE
 	if(!(pref.species_sound))
 		pref.species_sound = "Unset"
 
@@ -84,7 +79,6 @@
 		character.voice_sounds_list = get_talk_sound(pref.voice_sound)
 	character.custom_speech_bubble = pref.custom_speech_bubble
 	character.custom_footstep = pref.custom_footstep
-	character.ignore_shoes = pref.ignore_shoes
 
 /datum/category_item/player_setup_item/general/size/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -96,7 +90,6 @@
 	data["voice_sound"] = pref.voice_sound
 	data["custom_speech_bubble"] = pref.custom_speech_bubble
 	data["custom_footstep"] = pref.custom_footstep
-	data["ignore_shoes"] = pref.ignore_shoes
 	data["custom_species_sound"] = pref.species_sound
 	data["weight_vr"] = pref.weight_vr
 	data["weight_gain"] = pref.weight_gain
@@ -203,10 +196,6 @@
 			if(choice)
 				pref.custom_footstep = footstep_choice[choice]
 				return TOPIC_REFRESH
-
-		if("toggle_ignore_shoes")
-			pref.ignore_shoes = pref.ignore_shoes ? 0 : 1;
-			return TOPIC_REFRESH
 
 		if("voice_test")
 			var/sound/S = sound(pick(SSsounds.talk_sound_map[pref.voice_sound])) // talk_sound_map returns a list of sounds

@@ -62,7 +62,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	var/list/custom_cold = list()
 	var/digitigrade = 0 //0, Not FALSE, for future use as indicator for digitigrade types
 	var/custom_footstep = FOOTSTEP_MOB_SHOE
-	var/ignore_shoes = FALSE
 
 	// New stuff
 	var/species = SPECIES_HUMAN
@@ -189,7 +188,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	src.custom_cold = character.custom_cold
 	src.digitigrade = character.digitigrade
 	src.custom_footstep = character.custom_footstep
-	src.ignore_shoes = character.ignore_shoes
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               GLOB.ear_styles_list.len  + 1,  1)
@@ -432,7 +430,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	H.custom_heat = custom_heat
 	H.custom_cold = custom_cold
 	H.custom_footstep = custom_footstep
-	H.ignore_shoes = ignore_shoes
 	H.digitigrade = digitigrade
 
 	// If synths have character markings

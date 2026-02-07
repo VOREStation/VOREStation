@@ -145,7 +145,7 @@
 	if(isnull(prepared_steps))
 		return
 
-	if (source.ignore_shoes)
+	if (source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
 		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 		return
 
