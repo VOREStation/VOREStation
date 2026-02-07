@@ -738,10 +738,11 @@ GLOBAL_LIST_EMPTY(apcs)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
-		if(H.species.can_shred(H))
+		if(H.species.can_shred(H, FALSE, 14))
 			user.setClickCooldown(user.get_attack_speed())
 			user.visible_message(span_warning("[user.name] slashes at the [name]!"), span_notice("You slash at the [name]!"))
 			playsound(src, 'sound/weapons/slash.ogg', 100, 1)
+			add_hiddenprint(H)
 
 			var/allcut = wires.is_all_cut()
 

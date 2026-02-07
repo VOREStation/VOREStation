@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Turrets are no longer limited to 2 second tickrate when in combat"
-  - bugfix: "Turret retaliation behavior is actually functional, and makes sounds when they enter and leave it."

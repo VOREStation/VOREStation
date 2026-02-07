@@ -1,0 +1,91 @@
+2026-02-02:
+  Guti:
+  - bugfix: Fixed supermatter flux anomalies exploding violently
+  Kashargul:
+  - qol: the indexed DB should no longer be automatically cleared
+  - bugfix: some more runtimes
+  - bugfix: phased entities should no longer leave footprints in snow
+  - bugfix: mining vendor should no longer call forceMove multiple times on powerChange
+  - bugfix: underwear colors
+  SatinIsle:
+  - qol: Adds a verb to deep scan devices that allows them to turn off the sediment
+      scan info, as this pastes a lot of text.
+  Will:
+  - refactor: Bluespace cascade moved to subsystem
+  - bugfix: Turrets are no longer limited to 2 second tickrate when in combat
+  - bugfix: Turret retaliation behavior is actually functional, and makes sounds when
+      they enter and leave it.
+2026-02-04:
+  Guti:
+  - bugfix: Fixed viruses not being mutable
+  Will:
+  - bugfix: Attaching a limb while in a dirty environment no longer makes additional
+      surgeries on that limb impossible
+  - bugfix: Bows can be drawn again
+  - qol: drawing a hardlight bow spawns the projectile in the same action
+2026-02-05:
+  Diana:
+  - qol: Unlucky vending interactions more clear
+  - qol: Allows vox to be revived via defibs & CPR
+  MeepleMuncher:
+  - bugfix: Fixed microwaves not being able to accept reagents
+  Will:
+  - code_imp: fear strings are no longer copypaste unique lists on every mob in the
+      game, and are now static shared lists.
+  - bugfix: Forensics items are no longer recycled in the lathe when trying to get
+      samples
+  - rscadd: Floodlights can be rotated using the rotatable element verbs
+  - bugfix: Runtime when a fluidpump tries to extract from an empty resource list
+      turf
+  - bugfix: concealed sword cane runtime during init
+2026-02-06:
+  Kashargul:
+  - qol: move the borg mining scanner upgrade to science
+  - bugfix: color gear tweak preview circle
+  zeskorion:
+  - balance: shredding interactions, with the exception of escaping restraints, are
+      now also based on punch damage. Characters with sufficient punch damage can
+      sometimes harm machinery, structures, borgs, etc, when attacking on harm intent.
+      This does not take equipment damage, like from brass knuckles, into account
+  - balance: xenochimera ferality bonus to punch damage is now capped at 40
+2026-02-07:
+  Asher-42:
+  - rscadd: added three bellies to the dullahan Version 3 model
+  Diana:
+  - qol: Heavily reworks human movement code, making things such as halloss affected
+      by species pain tolerance, making injury slowdown based on health % instead
+      of a hardcoded 40 damage, making traumatic shock gradually apply slowdown instead
+      of all at once.
+  - qol: Removes 5 slowdown penalty when using AIM MODE
+  - bugfix: force_max_speed will now properly apply the HUMAN MAX SPEED instead of
+      allowing things to slow you down.
+  - bugfix: Modifiers with haste now apply HUMAN MAX SPEED instead of allowing things
+      to slow you down.
+  - code_imp: Makes Unusual Movement a TRAIT() instead of a species var.
+  - balance: Oxycodone now fully ignores slowdown from halloss and injury. (It still
+      applies 1 slowdown and multiplies all slowdown you're taking by 1.25x however)
+  - balance: The max slowdown from injury / halloss is now 4.
+  - bugfix: pain_mod now affects pain.
+  - bugfix: Fixes destructive analyzer duplicating matter
+  Guti:
+  - bugfix: Fixed teshari not being able to be holstered
+  Kashargul:
+  - bugfix: windows resetting their initialized flag mit Initialize
+  ShadowLarkens:
+  - refactor: bapi-dmm has been replaced by /tg/'s dmm_suite, any maploading differences
+      are considered bugs
+  Will:
+  - bugfix: Things inside device rechargers will be dropped on qdel
+  - code_imp: reagent IDs used as reagent names are now forbidden by unit testing
+  - bugfix: pitcher nectar reagent no longer uses it's ID as it's name
+  - qol: locator device no longer needs to be dropped to the ground after activation
+      to sync to a nearby beacon
+  - rscadd: Teshari taur tail
+  - rscadd: Teshari taur tail alt
+  - bugfix: Disposal flush lever can no longer be pulled from inside the bin by using
+      alt click
+  - bugfix: SSchemistry reverse lookup data is correctly init. Meaning Bingle and
+      the chem analyzer now properly list all reagents a chemical can actually produce,
+      and not just the first recipe.
+  - bugfix: Daiquiri is now possible to drinkmix and is no longer blocked by fire
+      punch (add limejuice first)

@@ -24,8 +24,9 @@
 			attack_generic(user,1,"smashes")
 		else if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.species.can_shred(user))
-				attack_generic(user,1,"slices")
+			var/shreddamage = H.species.can_shred(user, FALSE, 11)
+			if(shreddamage)
+				attack_generic(user, shreddamage, "attacks")
 	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, user)
 	return ..()
 
