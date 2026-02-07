@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "SSchemistry reverse lookup data is correctly init. Meaning Bingle and the chem analyzer now properly list all reagents a chemical can actually produce, and not just the first recipe."
-  - bugfix: "Daiquiri is now possible to drinkmix and is no longer blocked by fire punch (add limejuice first)"
