@@ -150,6 +150,10 @@
 		return
 
 	var/obj/item/wrapped = get_wrapped_item()
+	if(wrapped && item_left_gripper(wrapped)) // This is used for items that are moved out during other attack chains
+		clear_and_select_item()
+		return
+
 	if(use_item(target, user, wrapped)) //Already have an item.
 		return
 	update_ref(WEAKREF(wrapped))
@@ -161,7 +165,7 @@
 		return
 
 	if(item_left_gripper(wrapped))
-		select_next_item()
+		clear_and_select_item()
 
 /obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped)
 	if(!wrapped)
