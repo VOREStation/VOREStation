@@ -1457,6 +1457,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_MODIFIER, "Give Modifier")
 	VV_DROPDOWN_OPTION(VV_HK_ADDLANGUAGE, "Add Language")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVELANGUAGE, "Remove Language")
 	VV_DROPDOWN_OPTION(VV_HK_ADDVERB, "Add Verb")
@@ -1696,6 +1697,9 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 
 	if(href_list[VV_HK_REMOVE_SPELL])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/remove_spell, src)
+
+	if(href_list[VV_HK_GIVE_MODIFIER])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/admin_give_modifier, src)
 
 	//if(href_list[VV_HK_GIVE_DISEASE])
 	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_disease, src)
