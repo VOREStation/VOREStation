@@ -221,6 +221,11 @@
  */
 /datum/tgui_window/proc/close(can_be_suspended = TRUE)
 	if(!client)
+		if(can_be_suspended && can_be_suspended())
+			return
+		release_lock()
+		status = TGUI_WINDOW_CLOSED
+		message_queue = null
 		return
 	if(can_be_suspended && can_be_suspended())
 		#ifdef TGUI_DEBUGGING
