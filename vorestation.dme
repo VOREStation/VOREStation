@@ -2475,6 +2475,7 @@
 #include "code\modules\client\preferences\types\character\general\01_basic.dm"
 #include "code\modules\client\preferences\types\character\general\03_body.dm"
 #include "code\modules\client\preferences\types\character\general\06_special.dm"
+#include "code\modules\client\preferences\types\character\general\11_misc.dm"
 #include "code\modules\client\preferences\types\game\admin.dm"
 #include "code\modules\client\preferences\types\game\adult.dm"
 #include "code\modules\client\preferences\types\game\auto_fit_viewport.dm"
