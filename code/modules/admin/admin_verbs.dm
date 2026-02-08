@@ -527,7 +527,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
 ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
-	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
+	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", typesof(/spell))
 	if(!S)
 		return
 	spell_recipient.spell_list += new S

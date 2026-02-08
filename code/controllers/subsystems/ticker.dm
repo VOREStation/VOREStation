@@ -158,10 +158,10 @@ SUBSYSTEM_DEF(ticker)
 				var/game_finished = FALSE
 				var/mode_finished = FALSE
 				if (CONFIG_GET(flag/continuous_rounds)) // Game keeps going after mode ends.
-					game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
+					game_finished = (GLOB.emergency_shuttle.returned() || mode.station_was_nuked)
 					mode_finished = ((end_game_state >= END_GAME_MODE_FINISHED) || mode.check_finished()) // Short circuit if already finished.
 				else // Game ends when mode does
-					game_finished = (mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac == 1)) || GLOB.universe_has_ended
+					game_finished = (mode.check_finished() || (GLOB.emergency_shuttle.returned() && GLOB.emergency_shuttle.evac == 1)) || GLOB.universe_has_ended
 					mode_finished = game_finished
 
 				if(game_finished && mode_finished)

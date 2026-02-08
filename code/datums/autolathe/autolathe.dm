@@ -42,8 +42,8 @@
 /datum/category_group/autolathe/all/New()
 	..()
 
-	for(var/Name in name_to_material)
-		var/datum/material/M = name_to_material[Name]
+	for(var/mame, value in GLOB.name_to_material)
+		var/datum/material/M = value
 
 		if(!M.stack_type)	// Shouldn't happen, but might. Never know.
 			continue
@@ -93,8 +93,8 @@
 /datum/category_group/autolathe/materials/New()
 	..()
 
-	for(var/Name in name_to_material)
-		var/datum/material/M = name_to_material[Name]
+	for(var/name, value in GLOB.name_to_material)
+		var/datum/material/M = value
 
 		if(!M.stack_type)	// Shouldn't happen, but might. Never know.
 			continue
