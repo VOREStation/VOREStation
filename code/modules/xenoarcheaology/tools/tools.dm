@@ -265,16 +265,16 @@
 					set background = 1
 					if(datum_flags & DF_ISPROCESSING)
 						//scan radios in the world to try and find one
+						var/turf/T = get_turf(src)
 						var/cur_dist = 999
 						for(var/obj/item/radio/beacon/R in GLOB.all_beacons)
-							if(R.z == src.z && R.frequency == src.frequency)
-								var/check_dist = get_dist(src,R)
+							if(R.z == T.z && R.frequency == src.frequency)
+								var/check_dist = get_dist(T,R)
 								if(check_dist < cur_dist)
 									cur_dist = check_dist
 									target_radio = R
 
 						scan_ticks = 0
-						var/turf/T = get_turf(src)
 						if(target_radio)
 							T.visible_message("[icon2html(src,viewers(src))] [src] [pick("chirps","chirrups","cheeps")] happily.")
 						else

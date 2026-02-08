@@ -419,11 +419,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	var/charjob
 	var/records
 	var/datum/data/record/record_found
-	record_found = find_general_record("name",picked_client.prefs.real_name)
+	var/char_real_name = picked_client.prefs.read_preference(/datum/preference/name/real_name)
+	record_found = find_general_record("name", char_real_name)
 
 	//Found their record, they were spawned previously
 	if(record_found)
-		var/samejob = tgui_alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
+		var/samejob = tgui_alert(src,"Found [char_real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
 		if(!samejob)
 			return
 		if(samejob == "Yes")

@@ -57,7 +57,7 @@
 /datum/tgui_module/late_choices/tgui_data(mob/new_player/user)
 	var/list/data = ..()
 
-	var/name = user.client.prefs.read_preference(/datum/preference/toggle/human/name_is_always_random) ? "friend" : user.client.prefs.real_name
+	var/name = user.client.prefs.read_preference(/datum/preference/toggle/human/name_is_always_random) ? "friend" : user.client.prefs.read_preference(/datum/preference/name/real_name)
 
 	data["name"] = name
 	data["duration"] = roundduration2text()

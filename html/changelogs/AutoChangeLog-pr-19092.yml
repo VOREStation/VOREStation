@@ -1,0 +1,5 @@
+author: "MeepleMuncher"
+delete-after: True
+changes:
+  - rscadd: "Pref to ignore shoes when walking, preserving footsteppy sounds"
+  - rscadd: "More footsteppy sounds"

@@ -584,7 +584,7 @@ This function completely restores a damaged organ to perfect condition.
 		owner.clear_alert("embeddedobject")
 
 	if(owner && !ignore_prosthetic_prefs)
-		if(owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
+		if(owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
 			var/status = owner.client.prefs.organ_data[organ_tag]
 			if(status == "amputated")
 				remove_rejuv()

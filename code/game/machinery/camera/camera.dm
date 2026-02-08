@@ -138,7 +138,7 @@
 	if(!istype(user))
 		return
 
-	if(user.species.can_shred(user))
+	if(user.species.can_shred(user, FALSE, 11))
 		set_status(0)
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())

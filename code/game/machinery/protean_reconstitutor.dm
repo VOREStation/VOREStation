@@ -235,7 +235,7 @@
 				var/picked_slot = posibrain_client.prefs.default_slot
 				var/charjob
 				var/datum/data/record/record_found
-				record_found = find_general_record("name",posibrain_client.prefs.real_name)
+				record_found = find_general_record("name", posibrain_client.prefs.read_preference(/datum/preference/name/real_name))
 				if(record_found)
 					charjob = record_found.fields["real_rank"]
 				else
