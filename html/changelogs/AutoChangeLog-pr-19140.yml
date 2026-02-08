@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed teshari not being able to be holstered"

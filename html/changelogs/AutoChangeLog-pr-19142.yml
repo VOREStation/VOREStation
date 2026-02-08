@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - qol: "locator device no longer needs to be dropped to the ground after activation to sync to a nearby beacon"
