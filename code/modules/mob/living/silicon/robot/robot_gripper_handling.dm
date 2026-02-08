@@ -351,31 +351,30 @@
 	if(is_in_use(user))
 		return
 
-	if((wrapped == current_pocket && !isgripperpocket(wrapped.loc))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
+	if((item_left_gripper(wrapped)))
 		clear_and_select_pocket()
 		generate_icons()
 		return
 
 	to_chat(user, span_notice("You drop \the [wrapped]."))
-	wrapped.loc = get_turf(user)
+	wrapped.forceMove(get_turf(user))
 	clear_and_select_pocket()
 	generate_icons()
 
 //FORCES the item onto the ground and resets.
-/obj/item/gripper/proc/drop_item_nm()
+/obj/item/gripper/proc/drop_item_nm(atom/taget)
 	var/obj/item/wrapped = get_wrapped_item()
 	if(!wrapped)
 		return
 
-	if((wrapped == current_pocket && !isgripperpocket(wrapped.loc))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
+	if((item_left_gripper(wrapped)))
 		clear_and_select_pocket()
+		generate_icons()
 		return
 
-	wrapped.forceMove(get_turf(src))
-	update_ref(null)
-
-	//Reselect our pocket.
-	select_empty_pocket()
+	wrapped.forceMove(taget ? taget : get_turf(src))
+	clear_and_select_pocket()
+	generate_icons()
 
 /obj/item/gripper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(is_in_use(user))
