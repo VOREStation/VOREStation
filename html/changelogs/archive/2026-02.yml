@@ -89,3 +89,6 @@
       and not just the first recipe.
   - bugfix: Daiquiri is now possible to drinkmix and is no longer blocked by fire
       punch (add limejuice first)
+2026-02-08:
+  Will:
+  - bugfix: sheetsnatcher properly calls oresilo storage proc
