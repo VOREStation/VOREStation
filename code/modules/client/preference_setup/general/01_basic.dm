@@ -18,16 +18,12 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/general/basic/load_character(list/save_data)
-	pref.real_name			= save_data["real_name"]
-	pref.nickname			= save_data["nickname"]
 	pref.biological_gender	= save_data["gender"]
 	pref.identifying_gender	= save_data["id_gender"]
 	pref.vore_egg_type		= save_data["vore_egg_type"]
 	pref.autohiss			= save_data["autohiss"]
 
 /datum/category_item/player_setup_item/general/basic/save_character(list/save_data)
-	save_data["real_name"]				= pref.real_name
-	save_data["nickname"]				= pref.nickname
 	save_data["gender"]					= pref.biological_gender
 	save_data["id_gender"]				= pref.identifying_gender
 	save_data["vore_egg_type"]			= pref.vore_egg_type
@@ -36,29 +32,31 @@
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
-	pref.real_name		= sanitize_name(pref.real_name, pref.species, is_FBP())
-	if(!pref.real_name)
-		pref.real_name      = random_name(pref.identifying_gender, pref.species)
-	pref.nickname		= sanitize_name(pref.nickname)
 	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, GLOB.global_vore_egg_types, initial(pref.vore_egg_type))
 	pref.autohiss = sanitize_inlist(pref.autohiss, list("Off", "Basic", "Full"), initial(pref.autohiss))
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
+	var/char_real_name = pref.read_preference(/datum/preference/name/real_name)
+	// Re-sanitize name on join.
+	// Fixes being able to swap from FBP to organic before round join to be organic with numbers in name.
+	char_real_name = sanitize_name(char_real_name, pref.species, is_FBP())
+	if(!char_real_name)
+		char_real_name = random_name(pref.identifying_gender, pref.species)
 	if(CONFIG_GET(flag/humans_need_surnames))
-		var/firstspace = findtext(pref.real_name, " ")
-		var/name_length = length(pref.real_name)
+		var/firstspace = findtext(char_real_name, " ")
+		var/name_length = length(char_real_name)
 		if(!firstspace)	//we need a surname
-			pref.real_name += " [pick(GLOB.last_names)]"
+			char_real_name += " [pick(GLOB.last_names)]"
 		else if(firstspace == name_length)
-			pref.real_name += "[pick(GLOB.last_names)]"
+			char_real_name += "[pick(GLOB.last_names)]"
 
-	character.real_name = pref.real_name
+	character.real_name = char_real_name
 	character.name = character.real_name
 	if(character.dna)
 		character.dna.real_name = character.real_name
 
-	character.nickname = pref.nickname
+	character.nickname = pref.read_preference(/datum/preference/name/nickname)
 
 	character.gender = pref.biological_gender
 	character.identifying_gender = pref.identifying_gender
@@ -80,9 +78,9 @@
 /datum/category_item/player_setup_item/general/basic/tgui_data(mob/user)
 	var/list/data = ..()
 
-	data["real_name"] = pref.real_name
+	data["real_name"] = pref.read_preference(/datum/preference/name/real_name)
 	data["be_random_name"] = pref.read_preference(/datum/preference/toggle/human/name_is_always_random)
-	data["nickname"] = pref.nickname
+	data["nickname"] = pref.read_preference(/datum/preference/name/nickname)
 	data["biological_sex"] = gender2text(pref.biological_gender)
 	data["identifying_gender"] = gender2text(pref.identifying_gender)
 	data["age"] = pref.read_preference(/datum/preference/numeric/human/age)
@@ -201,18 +199,19 @@
 
 	switch(action)
 		if("rename")
-			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", pref.real_name, encode = FALSE)
+			var/current_name = pref.read_preference(/datum/preference/name/real_name)
+			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", current_name, encode = FALSE)
 			if(!isnull(raw_name))
 				var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
 				if(new_name)
-					pref.real_name = new_name
+					pref.update_preference_by_type(/datum/preference/name/real_name, new_name)
 					return TOPIC_REFRESH
 				else
 					to_chat(user, span_warning("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 					return TOPIC_NOACTION
 
 		if("random_name")
-			pref.real_name = random_name(pref.identifying_gender, pref.species)
+			pref.update_preference_by_type(/datum/preference/name/real_name, random_name(pref.identifying_gender, pref.species))
 			return TOPIC_REFRESH
 
 		if("always_random_name")
@@ -220,11 +219,12 @@
 			return TOPIC_REFRESH
 
 		if("nickname")
-			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", pref.nickname, encode = FALSE)
+			var/current_nickname = pref.read_preference(/datum/preference/name/nickname)
+			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", current_nickname, encode = FALSE)
 			if(!isnull(raw_nickname))
 				var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
 				if(new_nickname)
-					pref.nickname = new_nickname
+					pref.update_preference_by_type(/datum/preference/name/nickname, new_nickname)
 					return TOPIC_REFRESH
 				else
 					to_chat(user, span_warning("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
@@ -233,7 +233,7 @@
 		if("reset_nickname")
 			var/nick_choice = tgui_alert(user, "Wipe your Nickname? This will completely remove any chosen nickname(s).","Wipe Nickname",list("Yes","No"))
 			if(nick_choice == "Yes")
-				pref.nickname = null
+				pref.update_preference_by_type(/datum/preference/name/nickname, null)
 			return TOPIC_REFRESH
 
 		if("bio_gender")

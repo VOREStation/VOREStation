@@ -261,7 +261,7 @@
 	. = ..()
 	exonet = new(src)
 	if(client)
-		exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
+		exonet.make_address("communicator-[src.client]-[src.client.prefs.read_preference(/datum/preference/name/real_name)]")
 	else
 		exonet.make_address("communicator-[key]-[src.real_name]")
 
