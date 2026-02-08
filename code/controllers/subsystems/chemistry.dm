@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(chemistry)
 					LAZYINITLIST(chemical_reactions_by_product[D.result])
 					chemical_reactions_by_product[D.result] |= D // for reverse lookup
 
-			// we want to maintain original chemistry behavior, but still document all reactions above, only add to this list with the first reactions
+			// we want to maintain original chemistry behavior, but still document all reactions above, only add to this list with the first reagent
 			if(i > 1)
 				continue
 			LAZYINITLIST(add_to[reagent_id])
