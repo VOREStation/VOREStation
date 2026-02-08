@@ -231,19 +231,13 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	to_chat(M, span_alert("You have been [muteunmute] from [mute_string]."))
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_add_random_ai_law()
-	set category = "Fun.Silicon"
-	set name = "Add Random AI Law"
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
+ADMIN_VERB(cmd_admin_add_random_ai_law, R_ADMIN|R_FUN, "Add Random AI Law", "Adds a random law to the station ai.", ADMIN_CATEGORY_FUN_SILICON)
+	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
-	log_admin("[key_name(src)] has added a random AI law.")
-	message_admins("[key_name_admin(src)] has added a random AI law.", 1)
+	log_admin("[key_name(user)] has added a random AI law.")
+	message_admins("[key_name_admin(user)] has added a random AI law.")
 
-	var/show_log = tgui_alert(src, "Show ion message?", "Message", list("Yes", "No"))
+	var/show_log = tgui_alert(user, "Show ion message?", "Message", list("Yes", "No"))
 	if(!show_log)
 		return
 	if(show_log == "Yes")
@@ -274,116 +268,89 @@ Ccomp's first proc.
 		ghosts[name] = M                                        //get the name of the mob for the popup list
 	if(what==1)
 		return ghosts
-	else
-		return mobs
+	return mobs
 
-
-/client/proc/allow_character_respawn()
-	set category = "Admin.Game"
-	set name = "Allow player to respawn"
-	set desc = "Let a player bypass the wait to respawn or allow them to re-enter their corpse."
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/target = tgui_input_list(usr, "Select a ckey to allow to rejoin", "Allow Respawn Selector", GLOB.respawn_timers)
+ADMIN_VERB(allow_character_respawn, R_ADMIN|R_MOD|R_FUN, "Allow player to respawn", "Let a player bypass the wait to respawn or allow them to re-enter their corpse.", ADMIN_CATEGORY_GAME)
+	var/target = tgui_input_list(user, "Select a ckey to allow to rejoin", "Allow Respawn Selector", GLOB.respawn_timers)
 	if(!target)
 		return
 
 	if(GLOB.respawn_timers[target] == -1) // Their respawn timer is set to -1, which is 'not allowed to respawn'
-		var/response = tgui_alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?",list("No","Yes"))
+		var/response = tgui_alert(user, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.", "Allow impossible respawn?", list("No","Yes"))
 		if(response != "Yes")
 			return
 
 	GLOB.respawn_timers -= target
 
 	var/found_client = FALSE
-	for(var/client/C as anything in GLOB.clients)
-		if(C.ckey == target)
-			found_client = C
-			to_chat(C, span_boldnotice("You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead."))
-			if(isobserver(C.mob))
-				var/mob/observer/dead/G = C.mob
-				G.can_reenter_corpse = 1
-				to_chat(C, span_boldnotice("You can also re-enter your corpse, if you still have one!"))
+	for(var/client/current_client as anything in GLOB.clients)
+		if(current_client.ckey == target)
+			found_client = current_client
+			to_chat(current_client, span_boldnotice("You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead."))
+			if(isobserver(current_client.mob))
+				var/mob/observer/dead/dead_mob = current_client.mob
+				dead_mob.can_reenter_corpse = 1
+				to_chat(current_client, span_boldnotice("You can also re-enter your corpse, if you still have one!"))
 			break
 
 	if(!found_client)
-		to_chat(src, span_notice("The associated client didn't appear to be connected, so they couldn't be notified, but they can now respawn if they reconnect."))
+		to_chat(user, span_notice("The associated client didn't appear to be connected, so they couldn't be notified, but they can now respawn if they reconnect."))
 
-	log_admin("[key_name(usr)] allowed [found_client ? key_name(found_client) : target] to bypass the respawn time limit")
-	message_admins("Admin [key_name_admin(usr)] allowed [found_client ? key_name_admin(found_client) : target] to bypass the respawn time limit", 1)
+	log_admin("[key_name(user)] allowed [found_client ? key_name(found_client) : target] to bypass the respawn time limit")
+	message_admins("Admin [key_name_admin(user)] allowed [found_client ? key_name_admin(found_client) : target] to bypass the respawn time limit")
 
-
-/client/proc/toggle_antagHUD_use()
-	set category = "Server.Game"
-	set name = "Toggle antagHUD usage"
-	set desc = "Toggles antagHUD usage for observers"
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
+ADMIN_VERB(toggle_antagHUD_use, R_ADMIN, "Toggle antagHUD usage", "Toggles antagHUD usage for observers.", ADMIN_CATEGORY_SERVER_GAME)
 	var/action=""
 	if(CONFIG_GET(flag/antag_hud_allowed))
-		for(var/mob/observer/dead/g in get_ghosts())
-			if(!check_rights_for(g.client, R_HOLDER))						//Remove the verb from non-admin ghosts
-				remove_verb(g, /mob/observer/dead/verb/toggle_antagHUD)
-			if(g.antagHUD)
-				g.antagHUD = 0						// Disable it on those that have it enabled
-				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
-				to_chat(g, span_boldwarning("The Administrator has disabled AntagHUD "))
+		for(var/mob/observer/dead/dead_mob in user.get_ghosts())
+			if(!check_rights_for(dead_mob.client, R_HOLDER))						//Remove the verb from non-admin ghosts
+				remove_verb(dead_mob, /mob/observer/dead/verb/toggle_antagHUD)
+			if(dead_mob.antagHUD)
+				dead_mob.antagHUD = 0						// Disable it on those that have it enabled
+				dead_mob.has_enabled_antagHUD = 2				// We'll allow them to respawn
+				to_chat(dead_mob, span_boldwarning("The Administrator has disabled AntagHUD "))
 		CONFIG_SET(flag/antag_hud_allowed, FALSE)
-		to_chat(src, span_boldwarning("AntagHUD usage has been disabled"))
+		to_chat(user, span_boldwarning("AntagHUD usage has been disabled"))
 		action = "disabled"
 	else
-		for(var/mob/observer/dead/g in get_ghosts())
-			if(!check_rights_for(g.client, R_HOLDER))						// Add the verb back for all non-admin ghosts
-				add_verb(g, /mob/observer/dead/verb/toggle_antagHUD)
-			to_chat(g, span_boldnotice("The Administrator has enabled AntagHUD"))	// Notify all observers they can now use AntagHUD
+		for(var/mob/observer/dead/dead_mob in user.get_ghosts())
+			if(!check_rights_for(dead_mob.client, R_HOLDER))						// Add the verb back for all non-admin ghosts
+				add_verb(dead_mob, /mob/observer/dead/verb/toggle_antagHUD)
+			to_chat(dead_mob, span_boldnotice("The Administrator has enabled AntagHUD"))	// Notify all observers they can now use AntagHUD
 		CONFIG_SET(flag/antag_hud_allowed, TRUE)
 		action = "enabled"
-		to_chat(src, span_boldnotice("AntagHUD usage has been enabled"))
+		to_chat(user, span_boldnotice("AntagHUD usage has been enabled"))
 
+	log_admin("[key_name(user)] has [action] antagHUD usage for observers")
+	message_admins("Admin [key_name_admin(user)] has [action] antagHUD usage for observers")
 
-	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
-	message_admins("Admin [key_name_admin(usr)] has [action] antagHUD usage for observers", 1)
-
-
-
-/client/proc/toggle_antagHUD_restrictions()
-	set category = "Server.Game"
-	set name = "Toggle antagHUD Restrictions"
-	set desc = "Restricts players that have used antagHUD from being able to join this round."
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
+ADMIN_VERB(toggle_antagHUD_restrictions, R_ADMIN, "Toggle antagHUD Restrictions", "Restricts players that have used antagHUD from being able to join this round.", ADMIN_CATEGORY_SERVER_GAME)
 	var/action=""
 	if(CONFIG_GET(flag/antag_hud_restricted))
-		for(var/mob/observer/dead/g in get_ghosts())
-			to_chat(g, span_boldnotice("The administrator has lifted restrictions on joining the round if you use AntagHUD"))
+		for(var/mob/observer/dead/dead_mob in user.get_ghosts())
+			to_chat(dead_mob, span_boldnotice("The administrator has lifted restrictions on joining the round if you use AntagHUD"))
 		action = "lifted restrictions"
 		CONFIG_SET(flag/antag_hud_restricted, FALSE)
-		to_chat(src, span_boldnotice("AntagHUD restrictions have been lifted"))
+		to_chat(user, span_boldnotice("AntagHUD restrictions have been lifted"))
 	else
-		for(var/mob/observer/dead/g in get_ghosts())
-			to_chat(g, span_boldwarning("The administrator has placed restrictions on joining the round if you use AntagHUD"))
-			to_chat(g, span_boldwarning("Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions "))
-			g.antagHUD = 0
-			g.has_enabled_antagHUD = 0
+		for(var/mob/observer/dead/dead_mob in user.get_ghosts())
+			to_chat(dead_mob, span_boldwarning("The administrator has placed restrictions on joining the round if you use AntagHUD"))
+			to_chat(dead_mob, span_boldwarning("Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions "))
+			dead_mob.antagHUD = 0
+			dead_mob.has_enabled_antagHUD = 0
 		action = "placed restrictions"
 		CONFIG_SET(flag/antag_hud_restricted, TRUE)
-		to_chat(src, span_boldwarning("AntagHUD restrictions have been enabled"))
+		to_chat(user, span_boldwarning("AntagHUD restrictions have been enabled"))
 
-	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
-	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
+	log_admin("[key_name(user)] has [action] on joining the round if they use AntagHUD")
+	message_admins("Admin [key_name_admin(user)] has [action] on joining the round if they use AntagHUD")
 
 /*
 If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
-ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Spawn a client's loaded character.", "Fun.Event Kit")
+ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Spawn a client's loaded character.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/client/picked_client = tgui_input_list(user, "Please specify which client's character to spawn.", "Client", GLOB.clients)
 	if(!picked_client)
 		return
@@ -399,7 +366,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(location == "Cancel" || !location)
 		return
 
-	var/announce = tgui_alert(src,"Announce as if they had just arrived?", "Announce", list("No", "Yes", "Cancel"))
+	var/announce = tgui_alert(src, "Announce as if they had just arrived?", "Announce", list("No", "Yes", "Cancel"))
 	if(!announce || announce == "Cancel")
 		return
 	else if(announce == "Yes") //Too bad buttons can't just have 1/0 values and different display strings
@@ -407,7 +374,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	else
 		announce = 0
 
-	var/inhabit = tgui_alert(src,"Put the person into the spawned mob?", "Inhabit", list("Yes", "No", "Cancel"))
+	var/inhabit = tgui_alert(src, "Put the person into the spawned mob?", "Inhabit", list("Yes", "No", "Cancel"))
 	if(!inhabit || inhabit == "Cancel")
 		return
 	else if(inhabit == "Yes")
@@ -441,7 +408,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", GLOB.joblist + "-No Job-", "-No Job-")
+		var/pickjob = tgui_input_list(src, "Pick a job to assign them (or none).","Job Select", GLOB.joblist.Copy() + "-No Job-", "-No Job-")
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")
@@ -450,7 +417,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	//If you've picked a job by now, you can equip them.
 	var/equipment
 	if(charjob)
-		equipment = tgui_alert(src,"Spawn them with equipment?", "Equipment", list("Yes", "No", "Cancel"))
+		equipment = tgui_alert(src, "Spawn them with equipment?", "Equipment", list("Yes", "No", "Cancel"))
 		if(!equipment || equipment == "Cancel")
 			return
 		else if(equipment == "Yes")
@@ -461,12 +428,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	var/custom_job
 	var/custom_job_title
 	if(charjob)
-		custom_job = tgui_alert(src,"Customise Job Title?", "Custom Job", list("No", "Yes", "Cancel"))
+		custom_job = tgui_alert(src, "Customise Job Title?", "Custom Job", list("No", "Yes", "Cancel"))
 		if(!custom_job || equipment == "Cancel")
 			return
 		else if(custom_job == "Yes")
 			custom_job = 1
-			custom_job_title = tgui_input_text(src,"Choose a Job Title for the character.","Job Title")
+			custom_job_title = tgui_input_text(src, "Choose a Job Title for the character.","Job Title")
 		else
 			custom_job = 0
 
@@ -484,11 +451,11 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	switch(location)
 		if("Right Here") //Spawn them on your turf
 			spawnloc = get_turf(src.mob)
-			showy = tgui_input_list(src,"Showy entrance?", "Showy", list("No", "Telesparks", "Drop Pod", "Fall", "Cancel"))
+			showy = tgui_input_list(src, "Showy entrance?", "Showy", list("No", "Telesparks", "Drop Pod", "Fall", "Cancel"))
 			if(showy == "Cancel")
 				return
 			if(showy == "Drop Pod")
-				showy = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel")) // reusing var
+				showy = tgui_alert(src, "Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel")) // reusing var
 				if(!showy || showy == "Cancel")
 					return
 
@@ -580,12 +547,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	//If customised job title, modify here.
 	if(custom_job && custom_job_title)
 		var/character_name = new_character.name
-		for(var/obj/item/card/id/I in new_character.contents)
-			I.name = "[character_name]'s ID Card ([custom_job_title])"
-			I.assignment = custom_job_title
-		for(var/obj/item/pda/P in new_character.contents)
-			P.name = "PDA-[character_name] ([custom_job_title])"
-			P.ownjob = custom_job_title
+		for(var/obj/item/card/id/player_id in new_character.contents)
+			player_id.name = "[character_name]'s ID Card ([custom_job_title])"
+			player_id.assignment = custom_job_title
+		for(var/obj/item/pda/player_pda in new_character.contents)
+			player_pda.name = "PDA-[character_name] ([custom_job_title])"
+			player_pda.ownjob = custom_job_title
 		new_character.mind.assigned_role = custom_job_title
 		new_character.mind.role_alt_title = custom_job_title
 		to_chat(new_character, "Your job title has been changed to [custom_job_title].")
@@ -604,7 +571,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		AnnounceArrival(new_character, new_character.mind.assigned_role, "Common", new_character.z)
 
 	log_admin("[admin] has spawned [player_key]'s character [new_character.real_name].")
-	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].", 1)
+	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].")
 
 
 
@@ -612,13 +579,13 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	// Drop pods and fall
 	if(showy == "Polite")
-		var/turf/T = get_turf(new_character)
-		new /obj/structure/drop_pod/polite(T, new_character)
-		to_chat(new_character, "Please wait for your arrival.")
+		var/turf/target_turf = get_turf(new_character)
+		new /obj/structure/drop_pod/polite(target_turf, new_character)
+		to_chat(new_character, span_boldnotice("Please wait for your arrival."))
 	else if(showy == "Destructive")
-		var/turf/T = get_turf(new_character)
-		new /obj/structure/drop_pod(T, new_character)
-		to_chat(new_character, "Please wait for your arrival.")
+		var/turf/target_turf = get_turf(new_character)
+		new /obj/structure/drop_pod(target_turf, new_character)
+		to_chat(new_character, span_boldnotice("Please wait for your arrival."))
 	else if(showy == "Fall")
 		spawn(1)
 			var/initial_x = new_character.pixel_x
@@ -631,71 +598,53 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			animate(new_character, pixel_y = initial_y, pixel_x = initial_x , time = 7)
 			spawn(7)
 				new_character.end_fall()
-		to_chat(new_character, "You have been fully spawned. Enjoy the game.")
+		to_chat(new_character, span_boldnotice("You have been fully spawned. Enjoy the game."))
 
 	return new_character
 
-/client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun.Silicon"
-	set name = "Add Custom AI law"
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/input = tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN)
+ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_FUN, "Add Custom AI law", "Adds a custom law to a silicon.", ADMIN_CATEGORY_FUN_SILICON)
+	var/input = tgui_input_text(user, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
-	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
-		if (M.stat == 2)
-			to_chat(usr, "Upload failed. No signal is being detected from the AI.")
-		else if (M.see_in_dark == 0)
-			to_chat(usr, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
+	for(var/mob/living/silicon/ai/target_ai in GLOB.mob_list)
+		if (target_ai.stat == 2)
+			to_chat(user, "Upload failed. No signal is being detected from the AI.")
+		else if (target_ai.see_in_dark == 0)
+			to_chat(user, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
 		else
-			M.add_ion_law(input)
-			for(var/mob/living/silicon/ai/O in GLOB.mob_list)
-				to_chat(O,input + span_red("... LAWS UPDATED!"))
-				O.show_laws()
+			target_ai.add_ion_law(input)
+			for(var/mob/living/silicon/ai/found_ai in GLOB.mob_list)
+				to_chat(found_ai, span_warning("... LAWS UPDATED!") + "\n" + input)
+				found_ai.show_laws()
 
-	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
-	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]", 1)
+	log_admin("Admin [key_name(user)] has added a new AI law - [input]")
+	message_admins("Admin [key_name_admin(user)] has added a new AI law - [input]", 1)
 
-	var/show_log = tgui_alert(src, "Show ion message?", "Message", list("Yes", "No"))
+	var/show_log = tgui_alert(user, "Show ion message?", "Message", list("Yes", "No"))
 	if(show_log == "Yes")
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in GLOB.mob_list)
-	set category = "Admin.Game"
-	set name = "Rejuvenate"
-
-	if(!check_rights_for(src, R_HOLDER))
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN|R_FUN|R_MOD, "Rejuvenate", "Fully restores the target mob.", ADMIN_CATEGORY_GAME, mob/living/traget_mob as mob in GLOB.mob_list)
+	if(!traget_mob)
 		return
-
-	if(!mob)
-		return
-	if(!istype(M))
-		tgui_alert_async(usr, "Cannot revive a ghost")
+	if(!istype(traget_mob))
+		tgui_alert_async(user, "Cannot revive a ghost")
 		return
 	if(CONFIG_GET(flag/allow_admin_rev))
-		M.revive()
+		traget_mob.revive()
 
-		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-		var/msg = span_danger("Admin [key_name_admin(usr)] healed / revived [ADMIN_LOOKUPFLW(M)]!")
+		log_admin("[key_name(user)] healed / revived [key_name(traget_mob)]")
+		var/msg = span_danger("Admin [key_name_admin(user)] healed / revived [ADMIN_LOOKUPFLW(traget_mob)]!")
 		message_admins(msg)
-		admin_ticket_log(M, msg)
+		admin_ticket_log(traget_mob, msg)
 	else
-		tgui_alert_async(usr, "Admin revive disabled")
+		tgui_alert_async(user, "Admin revive disabled")
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_create_centcom_report()
-	set category = "Fun.Event Kit"
-	set name = "Create Command Report"
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
-	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title", encode = FALSE))
+ADMIN_VERB(cmd_admin_create_centcom_report, R_ADMIN|R_SERVER|R_FUN, "Create Command Report", "Creates a centcom report and sends it globally.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/input = tgui_input_text(user, "Please enter anything you want. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+	var/customname = sanitizeSafe(tgui_input_text(user, "Pick a title for the report.", "Title", encode = FALSE))
 	if(!input)
 		return
 	if(!customname)
@@ -704,187 +653,63 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	//New message handling
 	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
 
-	var/confirm = tgui_alert(usr, "Should this be announced to the general population?","Show world?",list("Yes","No"))
+	var/confirm = tgui_alert(user, "Should this be announced to the general population?","Show world?", list("Yes","No"))
 	if(!confirm)
 		return
 	if(confirm == "Yes")
 		command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 	else
-		to_chat(world, span_red("New [using_map.company_name] Update available at all communication consoles."))
-		world << sound('sound/AI/commandreport.ogg')
+		to_chat(world, span_boldannounce("New [using_map.company_name] Update available at all communication consoles."))
+		SEND_SOUND(world, sound('sound/AI/commandreport.ogg'))
 
-	log_admin("[key_name(src)] has created a command report: [input]")
-	message_admins("[key_name_admin(src)] has created a command report", 1)
+	log_admin("[key_name(user)] has created a command report: [input]")
+	message_admins("[key_name_admin(user)] has created a command report")
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_delete(atom/O as obj|mob|turf in _validate_atom(O)) // I don't understand precisely how this fixes the string matching against a substring, but it does - Ater
-	set category = "Admin.Game"
-	set name = "Delete"
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_delete, R_FUN|R_ADMIN, "Delete", "Delete the selected atom.", ADMIN_CATEGORY_GAME, atom/atom_target as obj|mob|turf in _validate_atom(atom_target)) // I don't understand precisely how this fixes the string matching against a substring, but it does - Ater
+	user.admin_delete(atom_target)
 
-	if (!check_rights_for(src, R_HOLDER))
-		return
-
-	admin_delete(O)
-
-/client/proc/cmd_admin_list_open_jobs()
-	set category = "Admin.Investigate"
-	set name = "List free slots"
-
-	if (!check_rights_for(src, R_HOLDER))
-		return
-
+ADMIN_VERB(cmd_admin_list_open_jobs, R_HOLDER, "List free slots", "Show available job slots.", ADMIN_CATEGORY_INVESTIGATE)
 	if(GLOB.job_master)
 		for(var/datum/job/job in GLOB.job_master.occupations)
-			to_chat(src, "[job.title]: [job.total_positions]")
+			to_chat(user, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/*
-/client/proc/cmd_manual_ban()
-	set name = "Manual Ban"
-	set category = "Admin.Moderation"
-	if(!authenticated || !check_rights_for(src, R_HOLDER))
-		to_chat(src, "Only administrators may use this command.")
-		return
-	var/mob/M = null
-	switch(tgui_alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
-		if("Key List")
-			var/list/keys = list()
-			for(var/mob/M in GLOB.player_list)
-				keys += M.client
-			var/selection = tgui_input_list(usr, "Please, select a player!", "Admin Jumping", keys)
-			if(!selection)
-				return
-			M = selection:mob
-			if ((M.client && check_rights_for(M.client, R_HOLDER) && (M.client.holder.level >= holder.level)))
-				tgui_alert_async(usr, "You cannot perform this action. You must be of a higher administrative rank!")
-				return
-
-	switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No")))
-	if("Yes")
-		var/mins = tgui_input_number(usr,"How long (in minutes)?","Ban time",1440) as num
-		if(!mins)
-			return
-		if(mins >= 525600) mins = 525599
-		var/reason = tgui_input_text(usr,"Reason?","reason","Griefer")
-		if(!reason)
-			return
-		if(M)
-			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-			to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
-			to_chat(M, span_red("This is a temporary ban, it will be removed in [mins] minutes."))
-			to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
-			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
-			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
-			del(M.client)
-			qdel(M)
-		else
-
-	if("No")
-		var/reason = tgui_input_text(usr,"Reason?","reason","Griefer")
-		if(!reason)
-			return
-		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-		to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
-		to_chat(M, span_red("This is a permanent ban."))
-		to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
-		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban."))
-		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
-		del(M.client)
-		qdel(M)
-*/
-
-/client/proc/update_world()
-	// If I see anyone granting powers to specific keys like the code that was here,
-	// I will both remove their SVN access and permanently ban them from my servers.
-	return
-
-/client/proc/cmd_admin_check_contents(mob/living/M as mob in GLOB.mob_list)
-	set category = "Admin.Investigate"
-	set name = "Check Contents"
-	set popup_menu = FALSE
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/list/L = M.get_contents()
-	for(var/t in L)
-		to_chat(usr, "[t]")
+ADMIN_VERB(cmd_admin_check_contents, R_HOLDER, "Check Contents", "Check the contents of the mob.", ADMIN_CATEGORY_INVESTIGATE, mob/living/living_target as mob in GLOB.mob_list)
+	var/list/content_list = living_target.get_contents()
+	for(var/target in content_list)
+		to_chat(user, "[target]")
 	feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/* This proc is DEFERRED. Does not do anything.
-/client/proc/cmd_admin_remove_phoron()
-	set category = "Debug.Game"
-	set name = "Stabilize Atmos."
-	if(!check_rights_for(src, R_HOLDER))
-		to_chat(src, "Only administrators may use this command.")
-		return
-	feedback_add_details("admin_verb","STATM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-// DEFERRED
-	spawn(0)
-		for(var/turf/T in view())
-			T.poison = 0
-			T.oldpoison = 0
-			T.tmppoison = 0
-			T.oxygen = 755985
-			T.oldoxy = 755985
-			T.tmpoxy = 755985
-			T.co2 = 14.8176
-			T.oldco2 = 14.8176
-			T.tmpco2 = 14.8176
-			T.n2 = 2.844e+006
-			T.on2 = 2.844e+006
-			T.tn2 = 2.844e+006
-			T.tsl_gas = 0
-			T.osl_gas = 0
-			T.sl_gas = 0
-			T.temp = 293.15
-			T.otemp = 293.15
-			T.ttemp = 293.15
-*/
-
-/client/proc/toggle_view_range()
-	set category = "Admin.Game"
-	set name = "Change View Range"
-	set desc = "switches between 1x and custom views"
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/view = src.view
+ADMIN_VERB(toggle_view_range, R_HOLDER, "Change View Range", "Switches between 1x and custom views.", ADMIN_CATEGORY_GAME)
+	var/view = user.view
 	if(view == world.view)
-		view = tgui_input_list(usr, "Select view range:", "FUCK YE", list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
+		view = tgui_input_list(user, "Select view range:", "FUCK YE", list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
 	else
 		view = world.view
-	mob.set_viewsize(view)
+	user.mob.set_viewsize(view)
 
-	log_admin("[key_name(usr)] changed their view range to [view].")
-	message_admins(span_blue("[key_name_admin(usr)] changed their view range to [view]."), 1)
+	log_admin("[key_name(user)] changed their view range to [view].")
+	message_admins(span_blue("[key_name_admin(user)] changed their view range to [view]."))
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
-	set category = "Admin.Events"
-	set name = "Call Shuttle"
-
+ADMIN_VERB(admin_call_shuttle, R_ADMIN|R_SERVER, "Call Shuttle", "Calls the emergency shuttel.", ADMIN_CATEGORY_EVENTS)
 	if ((!( SSticker ) || !emergency_shuttle.location()))
 		return
 
-	if(!check_rights(R_ADMIN))	return
-
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
+	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
 
 	var/choice
 	if(SSticker.mode.auto_recall_shuttle)
-		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
+		choice = tgui_input_list(user, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
 
-	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", "Shuttle Call", list("Emergency", "Crew Transfer"))
+	choice = tgui_input_list(user, "Is this an emergency evacuation or a crew transfer?", "Shuttle Call", list("Emergency", "Crew Transfer"))
 	if (choice == "Emergency")
 		emergency_shuttle.call_evac()
 	else
@@ -892,173 +717,122 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins(span_blue("[key_name_admin(usr)] admin-called the emergency shuttle."), 1)
-	return
+	log_admin("[key_name(user)] admin-called the emergency shuttle.")
+	message_admins(span_blue("[key_name_admin(user)] admin-called the emergency shuttle."))
 
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin.Events"
-	set name = "Cancel Shuttle"
-
-	if(!check_rights(R_ADMIN|R_FUN))	return
-
-	if(tgui_alert(src, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
+ADMIN_VERB(admin_cancel_shuttle, R_ADMIN|R_FUN, "Cancel Shuttle", "Cancels the emergency shuttel.", ADMIN_CATEGORY_EVENTS)
+	if(tgui_alert(user, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
 	if(!SSticker || !emergency_shuttle.can_recall())
 		return
 
 	emergency_shuttle.recall()
 	feedback_add_details("admin_verb","CCSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins(span_blue("[key_name_admin(usr)] admin-recalled the emergency shuttle."), 1)
+	log_admin("[key_name(user)] admin-recalled the emergency shuttle.")
+	message_admins(span_blue("[key_name_admin(user)] admin-recalled the emergency shuttle."))
 
-	return
-
-/client/proc/admin_deny_shuttle()
-	set category = "Admin.Events"
-	set name = "Toggle Deny Shuttle"
-
+ADMIN_VERB(admin_deny_shuttle, R_ADMIN, "Toggle Deny Shuttle", "Prevents the shuttle from being called.", ADMIN_CATEGORY_EVENTS)
 	if (!SSticker)
 		return
 
-	if(!check_rights(R_ADMIN))	return
-
 	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
 
-	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	log_admin("[key_name(user)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	message_admins("[key_name_admin(user)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
-/client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
-	set category = "Admin.Logs"
-	set name = "Attack Log"
-
-	to_chat(usr, span_red(span_bold("Attack Log for [mob]")))
-	for(var/t in M.attack_log)
-		to_chat(usr,t)
-	feedback_add_details("admin_verb","ATTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-/client/proc/everyone_random()
-	set category = "Fun.Do Not"
-	set name = "Make Everyone Random"
-	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
-
-	if(!check_rights(R_FUN))	return
-
+ADMIN_VERB(everyone_random, R_FUN, "Make Everyone Random", "Make everyone have a random appearance. You can only use this before rounds!", ADMIN_CATEGORY_FUN_DO_NOT)
 	if (SSticker && SSticker.mode)
-		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
+		to_chat(user, "Nope you can't do this, the game's already started. This only works before rounds!")
 		return
 
 	if(CONFIG_GET(flag/force_random_names))
 		CONFIG_SET(flag/force_random_names, FALSE)
-		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
-		to_chat(usr, "Disabled.")
+		message_admins("Admin [key_name_admin(user)] has disabled \"Everyone is Special\" mode.")
+		to_chat(user, span_userdanger("Disabled."))
 		return
 
 
-	var/notifyplayers = tgui_alert(src, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
+	var/notifyplayers = tgui_alert(user, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
 	if(!notifyplayers || notifyplayers == "Cancel")
 		return
 
-	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
-	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", 1)
+	log_admin("Admin [key_name(user)] has forced the players to have random appearances.")
+	message_admins("Admin [key_name_admin(user)] has forced the players to have random appearances.")
 
 	if(notifyplayers == "Yes")
-		to_chat(world, span_boldannounce(span_blue("Admin [usr.key] has forced the players to have completely random identities!")))
+		to_chat(world, span_boldannounce(span_blue("Admin [user.key] has forced the players to have completely random identities!")))
 
-	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
+	to_chat(user, span_userdanger(span_italics("Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet.")))
 
 	CONFIG_SET(flag/force_random_names, TRUE)
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/toggle_random_events()
-	set category = "Server.Game"
-	set name = "Toggle random events on/off"
-	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
-
-	if(!check_rights(R_SERVER))	return
-
+ADMIN_VERB(toggle_random_events, R_SERVER, "Toggle random events on/off", "Toggles random events such as meteors, black holes, blob (but not space dust) on/off", ADMIN_CATEGORY_SERVER_GAME)
 	if(!CONFIG_GET(flag/allow_random_events))
 		CONFIG_SET(flag/allow_random_events, TRUE)
-		to_chat(usr, "Random events enabled")
-		message_admins("Admin [key_name_admin(usr)] has enabled random events.", 1)
+		to_chat(user, "Random events enabled")
+		message_admins("Admin [key_name_admin(user)] has enabled random events.")
 	else
 		CONFIG_SET(flag/allow_random_events, FALSE)
-		to_chat(usr, "Random events disabled")
-		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
+		to_chat(user, "Random events disabled")
+		message_admins("Admin [key_name_admin(user)] has disabled random events.")
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/despawn_player(var/mob/M in GLOB.living_mob_list)
-	set name = "Cryo Player"
-	set category = "Admin.Game"
-	set desc = "Removes a player from the round as if they'd cryo'd."
-	set popup_menu = FALSE
-
-	if(!check_rights(R_ADMIN|R_EVENT))
+ADMIN_VERB(despawn_player, R_ADMIN|R_EVENT, "Cryo Player", "Removes a player from the round as if they'd cryo'd.", ADMIN_CATEGORY_GAME, mob/target_mob in GLOB.living_mob_list)
+	if(!target_mob)
 		return
 
-	if(!M)
-		return
-
-	var/confirm = tgui_alert(usr, "Are you sure you want to cryo [M]?","Confirmation",list("No","Yes"))
+	var/confirm = tgui_alert(user, "Are you sure you want to cryo [target_mob]?","Confirmation",list("No","Yes"))
 	if(confirm != "Yes")
 		return
 
 	var/list/human_cryopods = list()
 	var/list/robot_cryopods = list()
 
-	for(var/obj/machinery/cryopod/CP in GLOB.machines)
-		if(!CP.control_computer)
+	for(var/obj/machinery/cryopod/selected_cryopod in GLOB.machines)
+		if(!selected_cryopod.control_computer)
 			continue //Broken pod w/o computer, move on.
 
-		var/listname = "[CP.name] ([CP.x],[CP.y],[CP.z])"
-		if(istype(CP,/obj/machinery/cryopod/robot))
-			robot_cryopods[listname] = CP
+		var/listname = "[selected_cryopod.name] ([selected_cryopod.x],[selected_cryopod.y],[selected_cryopod.z])"
+		if(istype(selected_cryopod,/obj/machinery/cryopod/robot))
+			robot_cryopods[listname] = selected_cryopod
 		else
-			human_cryopods[listname] = CP
+			human_cryopods[listname] = selected_cryopod
 
 	//Gotta log this up here before they get ghostized and lose their key or anything.
-	log_and_message_admins("admin cryo'd [key_name(M)].", src)
+	log_and_message_admins("admin cryo'd [key_name(target_mob)].", user)
 	feedback_add_details("admin_verb","ACRYO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	if(ishuman(M))
-		var/choice = tgui_input_list(usr,"Select a cryopod to use","Cryopod Choice", human_cryopods)
-		var/obj/machinery/cryopod/CP = human_cryopods[choice]
-		if(!CP)
+	if(ishuman(target_mob))
+		var/choice = tgui_input_list(user, "Select a cryopod to use","Cryopod Choice", human_cryopods)
+		var/obj/machinery/cryopod/selected_cryopod = human_cryopods[choice]
+		if(!selected_cryopod)
 			return
-		M.ghostize()
-		CP.despawn_occupant(M)
+		target_mob.ghostize()
+		selected_cryopod.despawn_occupant(target_mob)
 		return
 
-	else if(issilicon(M))
-		if(isAI(M))
-			var/mob/living/silicon/ai/ai = M
+	else if(issilicon(target_mob))
+		if(isAI(target_mob))
+			var/mob/living/silicon/ai/ai = target_mob
 			GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(ai.loc)
 			GLOB.global_announcer.autosay("[ai] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 			ai.clear_client()
 			return
 		else
-			var/choice = tgui_input_list(usr,"Select a cryopod to use","Cryopod Choice", robot_cryopods)
-			var/obj/machinery/cryopod/robot/CP = robot_cryopods[choice]
-			if(!CP)
+			var/choice = tgui_input_list(user, "Select a cryopod to use","Cryopod Choice", robot_cryopods)
+			var/obj/machinery/cryopod/robot/selected_cryopod = robot_cryopods[choice]
+			if(!selected_cryopod)
 				return
-			M.ghostize()
-			CP.despawn_occupant(M)
+			target_mob.ghostize()
+			selected_cryopod.despawn_occupant(target_mob)
 			return
 
-	else if(isliving(M))
-		M.ghostize()
-		qdel(M) //Bye
+	else if(isliving(target_mob))
+		target_mob.ghostize()
+		qdel(target_mob) //Bye
 
-/client/proc/cmd_admin_droppod_spawn(var/object as text)
-	set name = "Drop Pod Atom"
-	set desc = "Spawn a new atom/movable in a drop pod where you are."
-	set category = "Fun.Drop Pod"
-
-	if(!check_rights(R_SPAWN))
-		return
-
+ADMIN_VERB(cmd_admin_droppod_spawn, R_SPAWN, "Drop Pod Atom", "Spawn a new atom/movable in a drop pod where you are.", ADMIN_CATEGORY_FUN_DROP_POD, object as text)
 	var/list/types = typesof(/atom/movable)
 	var/list/matches = new()
 
@@ -1073,64 +847,53 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select a movable type:", "Spawn in Drop Pod", matches)
+		chosen = tgui_input_list(user, "Select a movable type:", "Spawn in Drop Pod", matches)
 		if(!chosen)
 			return
 
-	var/podtype = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
+	var/podtype = tgui_alert(user, "Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
 	if(!podtype || podtype == "Cancel")
 		return
-	var/autoopen = tgui_alert(src,"Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
+	var/autoopen = tgui_alert(user, "Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
 	if(!autoopen || autoopen == "Cancel")
 		return
 	switch(podtype)
 		if("Destructive")
-			var/atom/movable/AM = new chosen(usr.loc)
-			new /obj/structure/drop_pod(get_turf(usr), AM, autoopen == "Yes" ? TRUE : FALSE)
+			var/atom/movable/AM = new chosen(user.mob.loc)
+			new /obj/structure/drop_pod(get_turf(user.mob), AM, autoopen == "Yes" ? TRUE : FALSE)
 		if("Polite")
-			var/atom/movable/AM = new chosen(usr.loc)
-			new /obj/structure/drop_pod/polite(get_turf(usr), AM, autoopen == "Yes" ? TRUE : FALSE)
+			var/atom/movable/AM = new chosen(user.mob.loc)
+			new /obj/structure/drop_pod/polite(get_turf(user.mob), AM, autoopen == "Yes" ? TRUE : FALSE)
 
 	feedback_add_details("admin_verb","DPA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_droppod_deploy()
-	set name = "Drop Pod Deploy"
-	set desc = "Drop an existing mob where you are in a drop pod."
-	set category = "Fun.Drop Pod"
-
-	if(!check_rights(R_SPAWN))
+ADMIN_VERB(cmd_admin_droppod_deploy, R_SPAWN, "Drop Pod Deploy", "Drop an existing mob where you are in a drop pod.", ADMIN_CATEGORY_FUN_DROP_POD, object as text)
+	var/mob/living/living_target = tgui_input_list(user, "Select the mob to drop:", "Mob Picker", GLOB.living_mob_list)
+	if(!living_target)
 		return
 
-	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", GLOB.living_mob_list)
-	if(!L)
-		return
-
-	var/podtype = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
+	var/podtype = tgui_alert(user, "Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
 	if(!podtype || podtype == "Cancel")
 		return
-	var/autoopen = tgui_alert(src,"Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
+	var/autoopen = tgui_alert(user, "Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
 	if(!autoopen || autoopen == "Cancel")
 		return
-	if(!L || QDELETED(L))
+	if(QDELETED(living_target))
 		return
 	switch(podtype)
 		if("Destructive")
-			new /obj/structure/drop_pod(get_turf(usr), L, autoopen == "Yes" ? TRUE : FALSE)
+			new /obj/structure/drop_pod(get_turf(user.mob), living_target, autoopen == "Yes" ? TRUE : FALSE)
 		if("Polite")
-			new /obj/structure/drop_pod/polite(get_turf(usr), L, autoopen == "Yes" ? TRUE : FALSE)
+			new /obj/structure/drop_pod/polite(get_turf(user.mob), living_target, autoopen == "Yes" ? TRUE : FALSE)
 
 	feedback_add_details("admin_verb","DPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggle_vantag_hud_global(mob/target as mob)
-	set category = "Fun.Event Kit"
-	set name = "Toggle Global Event HUD"
-	set desc = "Give everyone the Event HUD."
-
+ADMIN_VERB(toggle_vantag_hud_global, R_EVENT|R_SERVER|R_ADMIN, "Toggle Global Event HUD", "Give everyone the Event HUD.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	GLOB.global_vantag_hud = !GLOB.global_vantag_hud
 	if(GLOB.global_vantag_hud)
-		for(var/mob/living/L in GLOB.living_mob_list)
-			if(L.ckey)
-				L.vantag_hud = TRUE
-				L.recalculate_vis()
+		for(var/mob/living/living_target in GLOB.living_mob_list)
+			if(living_target.ckey)
+				living_target.vantag_hud = TRUE
+				living_target.recalculate_vis()
 
-	to_chat(src, span_warning("Global Event HUD has been turned [GLOB.global_vantag_hud ? "on" : "off"]."))
+	to_chat(user, span_warning("Global Event HUD has been turned [GLOB.global_vantag_hud ? "on" : "off"]."))
