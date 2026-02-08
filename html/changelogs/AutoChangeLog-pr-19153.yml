@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - refactor: "cleans up robot gripper code"
+  - bugfix: "items getting stuck in the robot when using the gripper"
+  - qol: "grippers can place items on tables"
