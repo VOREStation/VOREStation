@@ -191,9 +191,10 @@
 	if(item_left_gripper(wrapped))
 		clear_and_select_pocket()
 		return TRUE
+
 	if(istype(wrapped, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/wrapped_container = wrapped
-		if(wrapped_container.reagents?.total_volume != original_amount || (!original_amount && istype(target, /obj/item/reagent_containers)))
+		if(wrapped_container.reagents?.total_volume != original_amount || (istype(target, /obj/item/reagent_containers)))
 			wrapped.loc = previous_pocket
 			update_ref(WEAKREF(wrapped))
 			return TRUE
