@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(chemistry)
 					chemical_reactions_by_product[D.result] |= D // for reverse lookup
 
 			LAZYINITLIST(add_to[reagent_id])
-			add_to[reagent_id] |= D
+			add_to[reagent_id] += D
 
 //Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 /datum/controller/subsystem/chemistry/proc/initialize_chemical_reagents()
