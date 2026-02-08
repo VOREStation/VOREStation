@@ -248,7 +248,8 @@
 			context = context)
 	// Reload all tgui windows
 	if(type == "cacheReloaded")
-		if(!check_rights(R_ADMIN) || usr.client.tgui_cache_reloaded)
+		// Debugging should work, it can be bypassed anyway
+		if(/*!check_rights(R_ADMIN) ||*/ usr.client.tgui_cache_reloaded)
 			return TRUE
 		// Mark as reloaded
 		usr.client.tgui_cache_reloaded = TRUE
