@@ -325,7 +325,7 @@
 	select_pocket(P)
 
 /obj/item/gripper/proc/select_next_item()
-	for(var/obj/item/storage/internal/gripper/P in pockets)
+	for(var/obj/item/storage/internal/gripper/P in reverseList(pockets))
 		if(!LAZYLEN(P.contents))
 			continue
 		var/obj/item/next_item = P.contents[1]
