@@ -724,7 +724,7 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 	user.do_attack_animation(M)
 
 	src.add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(CLUMSY_HARM_CHANCE))
+	//if(CLUMSY_HARM_CHANCE(user))
 	//	M = user
 		/*
 		to_chat(M, span_warning("You stab yourself in the eye."))
