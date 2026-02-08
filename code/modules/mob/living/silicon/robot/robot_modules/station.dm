@@ -622,7 +622,7 @@
 	name = "miner robot module"
 	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
-	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher)
 	pto_type = PTO_CARGO
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
