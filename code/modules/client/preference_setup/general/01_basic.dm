@@ -294,8 +294,10 @@
 					max_days = 30
 				if(12)
 					max_days = 31
-
-			var/new_day = tgui_input_number(user, "Choose your character's birth day (number, 1-[max_days])", "Birthday Day", pref.read_preference(/datum/preference/numeric/human/bday_day), max_days, 0)
+			var/old_days = pref.read_preference(/datum/preference/numeric/human/bday_day)
+			if(old_days > max_days)
+				old_days = max_days
+			var/new_day = tgui_input_number(user, "Choose your character's birth day (number, 1-[max_days])", "Birthday Day", old_days, max_days, 0)
 			if(new_day)
 				pref.update_preference_by_type(/datum/preference/numeric/human/bday_day, new_day)
 			else if((tgui_alert(user, "Would you like to clear the birthday entry?","Clear?",list("No","Yes")) == "Yes"))

@@ -135,7 +135,7 @@
 		if(istype(user,/mob/living/silicon/robot))
 			if(istype(tool, /obj/item/gripper))
 				var/obj/item/gripper/gripper = tool
-				var/obj/item/wrapped = gripper.get_current_pocket()
+				var/obj/item/wrapped = gripper.get_wrapped_item()
 				if(wrapped)
 					tool = wrapped
 				else
@@ -154,7 +154,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(isrobot(user) && istype(tool, /obj/item/gripper))
 		var/obj/item/gripper/G = tool
-		tool = G.get_current_pocket()
+		tool = G.get_wrapped_item()
 	user.visible_message(span_notice("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
 	span_notice("You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.") ) //Nobody will probably ever see this, but I made these two blue. ~CK
 	user.balloon_alert_visible("starts putting \the [tool] inside [target]'s [get_cavity(affected)]", "putting \the [tool] inside \the [get_cavity(affected)]")
@@ -165,7 +165,7 @@
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	if(isrobot(user) && istype(tool, /obj/item/gripper))
 		var/obj/item/gripper/G = tool
-		tool = G.get_current_pocket()
+		tool = G.get_wrapped_item()
 		G.drop_item_nm()
 	else
 		user.drop_item()

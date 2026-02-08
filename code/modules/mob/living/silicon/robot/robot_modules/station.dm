@@ -676,6 +676,9 @@
 	src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src)
 	src.modules += new /obj/item/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/pickaxe/excavationdrill(src)
+	// Anomaly handling
+	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/assembly/signaler(src)
 
 	src.emag += new /obj/item/hand_tele(src)
 
