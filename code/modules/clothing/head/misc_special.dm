@@ -273,7 +273,8 @@
 
 /obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
 	cooldown = world.time + cooldown_duration
-	to_chat(wearer, flavor_activate)
+	if(flavor_activate)
+		to_chat(wearer, flavor_activate)
 	to_chat(wearer, span_danger("The inside of your head hurts..."))
 	wearer.adjustBrainLoss(brainloss_cost)
 
