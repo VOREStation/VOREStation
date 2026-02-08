@@ -66,7 +66,7 @@
 	if(!choice || choice == "Cancel")
 		return ..()
 	if(choice == "Recruit")
-		paiController.recruitWindow(user)
+		SSpai.recruitWindow(user)
 		return ..()
 	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
 	var/actual_pai_name
@@ -344,7 +344,7 @@
 			to_chat(pai, span_red("<h3>You have been bound to a new master.</h3>"))
 	if(href_list["request"])
 		src.looking_for_personality = 1
-		paiController.findPAI(src, usr)
+		SSpai.findPAI(src, usr)
 	if(href_list["wipe"])
 		var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
 		if(confirm == "Yes")

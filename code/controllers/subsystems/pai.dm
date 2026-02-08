@@ -1,34 +1,19 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+////////////////////////////////
+//// Pai join and management subsystem
+////////////////////////////////
+SUBSYSTEM_DEF(pai)
+	name = "Pai"
+	flags = SS_NO_FIRE
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
 
-// Recruiting observers to play as pAIs
-
-var/datum/paiController/paiController			// Global handler for pAI candidates
-
-/datum/paiCandidate
-	var/name
-	var/key
-	var/description
-	var/role
-	var/comments
-	var/ready = 0
-	var/chassis
-	var/ouremotion
-	var/eye_color
-	var/gender
-
-/hook/startup/proc/paiControllerSetup()
-	paiController = new /datum/paiController()
-	return 1
-
-
-/datum/paiController
 	var/inquirer = null
 	var/list/pai_candidates = list()
 	var/list/asked = list()
+	var/askDelay = 1 MINUTE
 
-	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
-
-/datum/paiController/Topic(href, href_list[])
+/datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
 		var/obj/item/paicard/card = locate(href_list["device"])
@@ -110,7 +95,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 		recruitWindow(usr, href_list["allow_submit"] != "0")
 
-/datum/paiController/proc/recruitWindow(var/mob/M as mob, allowSubmit = 1)
+/datum/controller/subsystem/pai/proc/recruitWindow(var/mob/M as mob, allowSubmit = 1)
 	var/datum/paiCandidate/candidate
 	for(var/datum/paiCandidate/c in pai_candidates)
 		if(!istype(c) || !istype(M))
@@ -242,10 +227,10 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 	M << browse("<html>[dat]</html>", "window=paiRecruit;size=580x580;")
 
-/datum/paiController/proc/findPAI(var/obj/item/paicard/p, var/mob/user)
+/datum/controller/subsystem/pai/proc/findPAI(var/obj/item/paicard/p, var/mob/user)
 	requestRecruits(user)
 	var/list/available = list()
-	for(var/datum/paiCandidate/c in paiController.pai_candidates)
+	for(var/datum/paiCandidate/c in pai_candidates)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/observer/dead/o in GLOB.player_list)
@@ -359,7 +344,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 	user << browse(dat, "window=findPai")
 
 
-/datum/paiController/proc/requestRecruits(var/mob/user)
+/datum/controller/subsystem/pai/proc/requestRecruits(var/mob/user)
 	inquirer = user
 	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
@@ -375,7 +360,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
 
-/datum/paiController/proc/question(var/client/C)
+/datum/controller/subsystem/pai/proc/question(var/client/C)
 	spawn(0)
 		if(!C)	return
 		asked.Add(C.key)
@@ -396,3 +381,16 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 			recruitWindow(C.mob)
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
+
+
+/datum/paiCandidate
+	var/name
+	var/key
+	var/description
+	var/role
+	var/comments
+	var/ready = 0
+	var/chassis
+	var/ouremotion
+	var/eye_color
+	var/gender
