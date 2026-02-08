@@ -281,15 +281,18 @@
 	..()
 	if(istype(H) && H.head == src && H.is_sentient())
 		START_PROCESSING(SSobj, src)
-		to_chat(H, flavor_equip)
+		if(flavor_equip)
+			to_chat(H, flavor_equip)
 
 /obj/item/clothing/head/psy_crown/dropped(var/mob/living/carbon/human/H)
 	..()
 	STOP_PROCESSING(SSobj, src)
 	if(H.is_sentient())
 		if(loc == H) // Still inhand.
-			to_chat(H, flavor_unequip)
-		else
+			if(flavor_unequip)
+				to_chat(H, flavor_unequip)
+				return
+		if(flavor_drop)
 			to_chat(H, flavor_drop)
 
 /obj/item/clothing/head/psy_crown/Destroy()
