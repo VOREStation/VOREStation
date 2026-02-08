@@ -52,6 +52,7 @@
 
 	activation_message="You feel lightheaded."
 	primitive_expression_messages=list("trips.")
+	mutation = CLUMSY
 
 /datum/trait/negative/disability_coprolalia
 	name = "Coprolalia"
