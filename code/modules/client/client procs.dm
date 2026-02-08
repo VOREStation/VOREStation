@@ -420,6 +420,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
+	if(skybox)
+		QDEL_NULL(skybox)
 
 	QDEL_NULL(loot_panel)
 	..()

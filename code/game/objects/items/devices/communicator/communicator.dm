@@ -311,9 +311,9 @@
 	QDEL_NULL(exonet)
 
 	last_camera_turf = null
-	qdel(cam_screen)
+	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
+	QDEL_NULL(cam_background)
 
 	return ..()
 
