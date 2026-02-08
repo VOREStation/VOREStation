@@ -184,6 +184,7 @@
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power(mob/user)
 	active = !active
 	investigate_log("turned [active? span_red("ON") : span_green("OFF")] by [user ? user.key : "outside forces"]","singulo")
+	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [user ? key_name(user, user.client) : "outside forces"][ADMIN_QUE(user)] in [ADMIN_COORDJMP(src)]")
 
 	log_game("PACCEL([x],[y],[z]) [user ? key_name(user, user.client) : "outside forces"] turned [active?"ON":"OFF"].")
 	if(active)
