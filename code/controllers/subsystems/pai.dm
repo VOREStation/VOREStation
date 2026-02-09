@@ -57,6 +57,7 @@ SUBSYSTEM_DEF(pai)
 	return FALSE
 
 /datum/controller/subsystem/pai/proc/get_pai_candidates()
+	RETURN_TYPE(/list)
 	var/list/return_data = list()
 	for(var/datum/weakref/WF in pai_ghosts)
 		var/mob/observer/ghost = WF?.resolve()
