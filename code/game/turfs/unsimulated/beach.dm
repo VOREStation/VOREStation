@@ -24,17 +24,17 @@
 /turf/simulated/floor/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
-	initial_flooring = /decl/flooring/sand
+	initial_flooring = /datum/decl/flooring/sand
 
 /turf/simulated/floor/beach/sand
 	name = "Sand"
 	icon_state = "sand"
-	initial_flooring = /decl/flooring/sand
+	initial_flooring = /datum/decl/flooring/sand
 
 /turf/simulated/floor/beach/sand/desert
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
-	initial_flooring = /decl/flooring/sand/desert
+	initial_flooring = /datum/decl/flooring/sand/desert
 
 /turf/simulated/floor/beach/sand/desert/Initialize(mapload)
 	. = ..()
@@ -50,18 +50,18 @@
 	name = "Water"
 	icon_state = "water"
 	movement_cost = 4 // Water should slow you down, just like the original simulated turf.
-	initial_flooring = /decl/flooring/water
+	initial_flooring = /datum/decl/flooring/water
 
 /turf/simulated/floor/beach/water/ocean
 	icon_state = "seadeep"
 	movement_cost = 8 // Deep water should be difficult to wade through.
-	initial_flooring = /decl/flooring/water/beach/deep
+	initial_flooring = /datum/decl/flooring/water/beach/deep
 
 /turf/simulated/floor/beach/water/Initialize(mapload)
 	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1))
 
-/decl/flooring/water/beach/deep // We're custom-defining a 'deep' water turf for the beach.
+/datum/decl/flooring/water/beach/deep // We're custom-defining a 'deep' water turf for the beach.
 	name = "deep water"
 	desc = "Deep Ocean Water"
 	icon = 'icons/misc/beach.dmi'

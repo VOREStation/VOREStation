@@ -81,7 +81,7 @@
 				H.universal_speak = 1
 
 		if(new_mob)
-			for (var/spell/S in M.spell_list)
+			for (var/datum/spell/S in M.spell_list)
 				new_mob.add_spell(new S.type)
 
 			new_mob.a_intent = "hurt"

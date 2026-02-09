@@ -40,7 +40,7 @@
 				var/list/usable_emotes = list()
 				next_emote_refresh = world.time + EMOTE_REFRESH_SPAM_COOLDOWN
 				for(var/emote in get_available_emotes())
-					var/decl/emote/emote_datum = decls_repository.get_decl(emote)
+					var/datum/decl/emote/emote_datum = GLOB.decls_repository.get_decl(emote)
 					if(emote_datum.mob_can_use(src))
 						usable_emotes[emote_datum.key] = emote_datum
 				last_emote_summary = english_list(sortAssoc(usable_emotes))
@@ -80,7 +80,7 @@
 		return nme(message)
 	//VOREStation Add End
 
-	var/decl/emote/use_emote = get_emote_by_key(act)
+	var/datum/decl/emote/use_emote = get_emote_by_key(act)
 	if(!istype(use_emote))
 		to_chat(src, span_warning("Unknown emote '[act]'. Type " + span_bold("say *help") + " for a list of usable emotes. ([act] [message])")) // Add full message in the event you used * instead of ! or something like that
 		return

@@ -19,7 +19,7 @@
 	attack_armor_pen = 100	//It's a ghost/horror from beyond, I ain't gotta explain 100 AP
 	attacktext = list("drained the life from")
 
-	organ_names = /decl/mob_organ_names/shade
+	organ_names = /datum/decl/mob_organ_names/shade
 
 	minbodytemp = 0
 	maxbodytemp = 4000
@@ -48,5 +48,5 @@
 	qdel(src)
 	return
 
-/decl/mob_organ_names/shade
+/datum/decl/mob_organ_names/shade
 	hit_zones = list("spectral robe", "featureless visage", "haunting glow")

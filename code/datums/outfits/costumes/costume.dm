@@ -1,2 +1,2 @@
-/decl/hierarchy/outfit/costume
+/datum/decl/hierarchy/outfit/costume
 	undress = 0

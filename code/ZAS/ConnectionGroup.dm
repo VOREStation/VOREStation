@@ -4,7 +4,7 @@ Overview:
 	These are what handle gas transfers between zones and into space.
 	They are found in a zone's edges list and in SSair.edges.
 	Each edge updates every air tick due to their role in gas transfer.
-	They come in two flavors, /connection_edge/zone and /connection_edge/unsimulated.
+	They come in two flavors, /datum/connection_edge/zone and /datum/connection_edge/unsimulated.
 	As the type names might suggest, they handle inter-zone and spacelike connections respectively.
 
 Class Vars:
@@ -53,52 +53,52 @@ Class Procs:
 
 	get_connected_zone(zone/from)
 		Helper proc that allows getting the other zone of an edge given one of them.
-		Only on /connection_edge/zone, otherwise use A.
+		Only on /datum/connection_edge/zone, otherwise use A.
 
 */
 
-/connection_edge
-	var/zone/A
+/datum/connection_edge
+	var/datum/zone/A
 	var/list/connecting_turfs = list()
 	var/direct = 0
 	var/sleeping = 1
 	var/coefficient = 0
 
-/connection_edge/New()
+/datum/connection_edge/New()
 	CRASH("Cannot make connection edge without specifications.")
 
-/connection_edge/proc/add_connection(connection/c)
+/datum/connection_edge/proc/add_connection(datum/connection/c)
 	coefficient++
 	if(c.direct()) direct++
 	//to_world("Connection added: [type] Coefficient: [coefficient]")
 
-/connection_edge/proc/remove_connection(connection/c)
+/datum/connection_edge/proc/remove_connection(datum/connection/c)
 	//to_world("Connection removed: [type] Coefficient: [coefficient-1]")
 	coefficient--
 	if(coefficient <= 0)
 		erase()
 	if(c.direct()) direct--
 
-/connection_edge/proc/contains_zone(zone/Z)
+/datum/connection_edge/proc/contains_zone(datum/zone/Z)
 
-/connection_edge/proc/erase()
+/datum/connection_edge/proc/erase()
 	SSair.remove_edge(src)
 	//to_world("[type] Erased.")
 
-/connection_edge/proc/tick()
+/datum/connection_edge/proc/tick()
 
-/connection_edge/proc/recheck()
+/datum/connection_edge/proc/recheck()
 
-/connection_edge/proc/flow(list/movable, differential, repelled)
+/datum/connection_edge/proc/flow(list/movable, differential, repelled)
 	for(var/i = 1; i <= movable.len; i++)
 		var/atom/movable/M = movable[i]
 
 		//If they're already being tossed, don't do it again.
-		if(M.last_airflow > world.time - vsc.airflow_delay) continue
+		if(M.last_airflow > world.time - GLOB.vsc.airflow_delay) continue
 		if(M.airflow_speed) continue
 
 		//Check for knocking people over
-		if(ismob(M) && differential > vsc.airflow_stun_pressure)
+		if(ismob(M) && differential > GLOB.vsc.airflow_stun_pressure)
 			var/mob/target = M
 			if(SEND_SIGNAL(target, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 				continue
@@ -118,10 +118,10 @@ Class Procs:
 
 
 
-/connection_edge/zone
-	var/zone/B
+/datum/connection_edge/zone
+	var/datum/zone/B
 
-/connection_edge/zone/New(zone/A, zone/B)
+/datum/connection_edge/zone/New(datum/zone/A, datum/zone/B)
 
 	src.A = A
 	src.B = B
@@ -130,23 +130,23 @@ Class Procs:
 	//id = edge_id(A,B)
 	//to_world("New edge between [A] and [B]")
 
-/connection_edge/zone/add_connection(connection/c)
+/datum/connection_edge/zone/add_connection(datum/connection/c)
 	. = ..()
 	connecting_turfs.Add(c.A)
 
-/connection_edge/zone/remove_connection(connection/c)
+/datum/connection_edge/zone/remove_connection(datum/connection/c)
 	connecting_turfs.Remove(c.A)
 	. = ..()
 
-/connection_edge/zone/contains_zone(zone/Z)
+/datum/connection_edge/zone/contains_zone(datum/zone/Z)
 	return A == Z || B == Z
 
-/connection_edge/zone/erase()
+/datum/connection_edge/zone/erase()
 	A.edges.Remove(src)
 	B.edges.Remove(src)
 	. = ..()
 
-/connection_edge/zone/tick()
+/datum/connection_edge/zone/tick()
 	if(A.invalid || B.invalid)
 		erase()
 		return
@@ -154,7 +154,7 @@ Class Procs:
 	var/equiv = A.air.share_ratio(B.air, coefficient)
 
 	var/differential = A.air.return_pressure() - B.air.return_pressure()
-	if(abs(differential) >= vsc.airflow_lightest_pressure)
+	if(abs(differential) >= GLOB.vsc.airflow_lightest_pressure)
 		var/list/attracted
 		var/list/repelled
 		if(differential > 0)
@@ -179,23 +179,23 @@ Class Procs:
 	SSair.mark_zone_update(A)
 	SSair.mark_zone_update(B)
 
-/connection_edge/zone/recheck()
+/datum/connection_edge/zone/recheck()
 	// Edges with only one side being vacuum need processing no matter how close.
 	if(!A.air.compare(B.air, vacuum_exception = 1))
 		SSair.mark_edge_active(src)
 
 //Helper proc to get connections for a zone.
-/connection_edge/zone/proc/get_connected_zone(zone/from)
+/datum/connection_edge/zone/proc/get_connected_zone(datum/zone/from)
 	if(A == from) return B
 	else return A
 
-/connection_edge/unsimulated
+/datum/connection_edge/unsimulated
 	var/turf/B
 
-/connection_edge/unsimulated
+/datum/connection_edge/unsimulated
 	var/datum/gas_mixture/air
 
-/connection_edge/unsimulated/New(zone/A, turf/B)
+/datum/connection_edge/unsimulated/New(datum/zone/A, turf/B)
 	src.A = A
 	src.B = B
 	A.edges.Add(src)
@@ -203,24 +203,24 @@ Class Procs:
 	//id = 52*A.id
 	//to_world("New edge from [A] to [B].")
 
-/connection_edge/unsimulated/add_connection(connection/c)
+/datum/connection_edge/unsimulated/add_connection(datum/connection/c)
 	. = ..()
 	connecting_turfs.Add(c.B)
 	air.group_multiplier = coefficient
 
-/connection_edge/unsimulated/remove_connection(connection/c)
+/datum/connection_edge/unsimulated/remove_connection(datum/connection/c)
 	connecting_turfs.Remove(c.B)
 	air.group_multiplier = coefficient
 	. = ..()
 
-/connection_edge/unsimulated/erase()
+/datum/connection_edge/unsimulated/erase()
 	A.edges.Remove(src)
 	. = ..()
 
-/connection_edge/unsimulated/contains_zone(zone/Z)
+/datum/connection_edge/unsimulated/contains_zone(datum/zone/Z)
 	return A == Z
 
-/connection_edge/unsimulated/tick()
+/datum/connection_edge/unsimulated/tick()
 	if(A.invalid)
 		erase()
 		return
@@ -228,7 +228,7 @@ Class Procs:
 	var/equiv = A.air.share_space(air)
 
 	var/differential = A.air.return_pressure() - air.return_pressure()
-	if(abs(differential) >= vsc.airflow_lightest_pressure)
+	if(abs(differential) >= GLOB.vsc.airflow_lightest_pressure)
 		var/list/attracted = A.movables()
 		flow(attracted, abs(differential), differential < 0)
 
@@ -238,7 +238,7 @@ Class Procs:
 
 	SSair.mark_zone_update(A)
 
-/connection_edge/unsimulated/recheck()
+/datum/connection_edge/unsimulated/recheck()
 	// Edges with only one side being vacuum need processing no matter how close.
 	// Note: This handles the glaring flaw of a room holding pressure while exposed to space, but
 	// does not specially handle the less common case of a simulated room exposed to an unsimulated pressurized turf.

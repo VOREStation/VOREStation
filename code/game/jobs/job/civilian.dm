@@ -18,7 +18,7 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN)
 	minimal_access = list(ACCESS_BAR)
 
-	outfit_type = /decl/hierarchy/outfit/job/service/bartender
+	outfit_type = /datum/decl/hierarchy/outfit/job/service/bartender
 	job_description = "A " + JOB_BARTENDER + " mixes drinks for the crew. They generally have permission to charge for drinks or deny service to unruly patrons."
 	alt_titles = list(JOB_ALT_BARKEEPR = /datum/alt_title/barkeeper, JOB_ALT_BARMAID = /datum/alt_title/barmaid, JOB_ALT_BARISTA = /datum/alt_title/barista, JOB_ALT_MIXOLOGIST = /datum/alt_title/mixologist)
 
@@ -27,7 +27,7 @@
 	title = JOB_ALT_BARISTA
 	title_blurb = "A " + JOB_ALT_BARISTA + " mans the Cafe, serving primarily non-alcoholic drinks to the crew. They generally have permission to charge for drinks \
 					or deny service to unruly patrons."
-	title_outfit = /decl/hierarchy/outfit/job/service/bartender/barista
+	title_outfit = /datum/decl/hierarchy/outfit/job/service/bartender/barista
 
 /datum/alt_title/barkeeper
 	title = JOB_ALT_BARKEEPR
@@ -56,7 +56,7 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN)
 	minimal_access = list(ACCESS_KITCHEN)
 
-	outfit_type = /decl/hierarchy/outfit/job/service/chef
+	outfit_type = /datum/decl/hierarchy/outfit/job/service/chef
 	job_description = "A " + JOB_CHEF + " cooks food for the crew. They generally have permission to charge for food or deny service to unruly diners."
 	alt_titles = list(JOB_ALT_SOUSCHEF = /datum/alt_title/souschef, JOB_ALT_COOK = /datum/alt_title/cook, JOB_ALT_KITCHEN_WORKER = /datum/alt_title/kitchen_worker)
 
@@ -90,7 +90,7 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN)
 	minimal_access = list(ACCESS_HYDROPONICS)
 
-	outfit_type = /decl/hierarchy/outfit/job/service/gardener
+	outfit_type = /datum/decl/hierarchy/outfit/job/service/gardener
 	job_description = "A " + JOB_BOTANIST+ " grows plants for the " + JOB_CHEF + " and " + JOB_BARTENDER + "."
 	alt_titles = list(JOB_ALT_HYDROPONICIST = /datum/alt_title/hydroponicist, JOB_ALT_CULTIVATOR = /datum/alt_title/cultivator, JOB_ALT_FARMER = /datum/alt_title/farmer,
 						JOB_ALT_GARDENER = /datum/alt_title/gardener, JOB_ALT_FLORIST = /datum/alt_title/florsit, JOB_ALT_RANCHER = /datum/alt_title/rancher)
@@ -135,7 +135,7 @@
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 
-	outfit_type = /decl/hierarchy/outfit/job/service/janitor
+	outfit_type = /datum/decl/hierarchy/outfit/job/service/janitor
 	job_description = "A " + JOB_JANITOR + " keeps the station clean, as long as it doesn't interfere with active crime scenes."
 	alt_titles = list(JOB_ALT_CUSTODIAN = /datum/alt_title/custodian, JOB_ALT_SANITATION_TECHNICIAN = /datum/alt_title/sanitation_tech,
 					JOB_ALT_MAID = /datum/alt_title/maid, JOB_ALT_GARBAGE_COLLECTOR = /datum/alt_title/garbage_collector)
@@ -172,7 +172,7 @@
 	access = list(ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_LIBRARY)
 
-	outfit_type = /decl/hierarchy/outfit/job/librarian
+	outfit_type = /datum/decl/hierarchy/outfit/job/librarian
 	job_description = "The " + JOB_LIBRARIAN + " curates the book selection in the Library, so the crew might enjoy it."
 	alt_titles = list(JOB_ALT_JOURNALIST = /datum/alt_title/journalist, JOB_ALT_REPORTER =  /datum/alt_title/reporter, JOB_ALT_WRITER = /datum/alt_title/writer,
 						JOB_ALT_HISTORIAN = /datum/alt_title/historian, JOB_ALT_ARCHIVIST = /datum/alt_title/archivist, JOB_ALT_PROFESSOR = /datum/alt_title/professor,
@@ -181,7 +181,7 @@
 // Librarian Alt Titles
 /datum/alt_title/journalist
 	title = JOB_ALT_JOURNALIST
-	title_outfit = /decl/hierarchy/outfit/job/librarian/journalist
+	title_outfit = /datum/decl/hierarchy/outfit/job/librarian/journalist
 	title_blurb = "The " + JOB_ALT_JOURNALIST + " uses the Library as a base of operations, from which they can report the news and goings-on on the station with their camera."
 
 /datum/alt_title/writer
@@ -239,7 +239,7 @@
 	minimal_player_age = 7
 	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_ZADDAT, FBP_DIGITAL)
 
-	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
+	outfit_type = /datum/decl/hierarchy/outfit/job/internal_affairs_agent
 	job_description = "An " + JOB_INTERNAL_AFFAIRS_AGENT + " makes sure that the crew is following Standard Operating Procedure. They also \
 						handle complaints against crew members, and can have issues brought to the attention of Central Command, \
 						assuming their paperwork is in order."
@@ -274,7 +274,7 @@
 	pto_type = PTO_CIVILIAN
 	access = list(ACCESS_EVA, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PILOT)
 	minimal_access = list(ACCESS_EVA, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PILOT)
-	outfit_type = /decl/hierarchy/outfit/job/pilot
+	outfit_type = /datum/decl/hierarchy/outfit/job/pilot
 	job_description = "A " + JOB_PILOT + " flies the various shuttles in the Virgo-Erigone System."
 	alt_titles = list(JOB_ALT_COPILOT = /datum/alt_title/co_pilot, JOB_ALT_NAVIGATOR = /datum/alt_title/navigator, JOB_ALT_HELMSMAN = /datum/alt_title/helmsman)
 
@@ -309,7 +309,7 @@
 	minimal_access = list(ACCESS_ENTERTAINMENT)
 	pto_type = PTO_CIVILIAN
 
-	outfit_type = /decl/hierarchy/outfit/job/assistant/entertainer
+	outfit_type = /datum/decl/hierarchy/outfit/job/assistant/entertainer
 	job_description = "An " + JOB_ENTERTAINER + " does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list(JOB_ALT_PERFORMER = /datum/alt_title/performer, JOB_ALT_MUSICIAN = /datum/alt_title/musician, JOB_ALT_STAGEHAND = /datum/alt_title/stagehand,
 						JOB_ALT_ACTOR = /datum/alt_title/actor, JOB_ALT_DANCER = /datum/alt_title/dancer, JOB_ALT_SINGER = /datum/alt_title/singer,
@@ -379,7 +379,7 @@
 	minimal_access = list()
 	pto_type = PTO_CIVILIAN
 
-	outfit_type = /decl/hierarchy/outfit/job/assistant/entrepreneur
+	outfit_type = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur
 	job_description = "An " + JOB_ENTREPRENEUR + " is basically a visitor that obtained special permission to offer personal services to people on station. \
 						They will offer people these services and, potentially, even demand payment!"
 	alt_titles = list(JOB_ALT_LAWYER = /datum/alt_title/lawyer, JOB_ALT_PRIVATE_EYE = /datum/alt_title/private_eye, JOB_ALT_BODYGUARD = /datum/alt_title/bodyguard,
@@ -393,94 +393,94 @@
 /datum/alt_title/lawyer
 	title = JOB_ALT_LAWYER
 	title_blurb = "A " + JOB_ALT_LAWYER + " is knowledgable in various legal systems, including station's operations. They can try to offer their legal counsel, although nobody is really obliged to listen."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
 
 /datum/alt_title/private_eye
 	title = JOB_ALT_PRIVATE_EYE
 	title_blurb = "A " + JOB_ALT_PRIVATE_EYE + " is a detective that has no credentials or equipment. But if someone wants something found without security's knowledge, they are the one to go to."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/private_eye
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/private_eye
 
 /datum/alt_title/bodyguard
 	title = JOB_ALT_BODYGUARD
 	title_blurb = "A " + JOB_ALT_BODYGUARD + " offers service of personal protection. They may not be allowed any weapons, but their own body is weapon enough."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/bodyguard
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/bodyguard
 
 /datum/alt_title/personal_physician
 	title = JOB_ALT_PERSONAL_PHYSICIAN
 	title_blurb = "A " + JOB_ALT_PERSONAL_PHYSICIAN + " is a doctor dedicated less to Hippocratic Oath and more to the moneymaking grind. Their license may be expired, but the grindset never will be."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/personal_physician
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/personal_physician
 
 /datum/alt_title/dentist
 	title = JOB_ALT_DENTIST
 	title_blurb = "A " + JOB_ALT_DENTIST + " is a doctor that specializes in oral care. Company may not recognize them as a proper doctor, but surely their customers will."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/dentist
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/dentist
 
 /datum/alt_title/fitness_instructor
 	title = JOB_ALT_FITNESS_INSTRUCTOR
 	title_blurb = "A " + JOB_ALT_FITNESS_INSTRUCTOR + " dedicates themselves to improving the health of the crew through physical activity, and boy, do they need the help."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/fitness_instructor
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/fitness_instructor
 
 /datum/alt_title/yoga_teacher
 	title = JOB_ALT_YOGA_TEACHER
 	title_blurb = "A " + JOB_ALT_YOGA_TEACHER + " is similar to a fitness instructor, but rather than turning the round bodies into firm ones, they focus on helping people find balance and harmony."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/yoga_teacher
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/yoga_teacher
 
 /datum/alt_title/masseuse
 	title = JOB_ALT_MASSEUSE
 	title_blurb = "A " + JOB_ALT_MASSEUSE + " is master of physical therapy and working others' bodies with their hands."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/masseuse
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/masseuse
 
 /datum/alt_title/tradesperson
 	title = JOB_ALT_TRADESPERSON
 	title_blurb = "A " + JOB_ALT_TRADESPERSON + " is someone attempting to make money via the most obvious act of all - buying and selling. Now if only customs allowed you to bring your goods along..."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/tradesperson
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/tradesperson
 
 /datum/alt_title/streamer
 	title = JOB_ALT_STREAMER
 	title_blurb = "A " + JOB_ALT_STREAMER + " is here to entertain. Not the crew! Their audience across exonet!"
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/streamer
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/streamer
 
 /datum/alt_title/influencer
 	title = JOB_ALT_INFLUENCER
 	title_blurb = "An " + JOB_ALT_INFLUENCER + " has lucked out with some exonet following, and was given permission to go onstation to provide free exposure. Don't let it go to your head."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/influencer
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/influencer
 
 /datum/alt_title/paranormal_investigator
 	title = JOB_ALT_PARANORMAL_INVESTIGATOR
 	title_blurb = "A " + JOB_ALT_PARANORMAL_INVESTIGATOR + " looks beyond what is accepted by modern science, and searches for the true unknown. Aliens, alternate dimensions, ghosts... The truth is out there!"
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/paranormal_investigator
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/paranormal_investigator
 
 /datum/alt_title/personal_secretary
 	title = JOB_ALT_PERSONAL_SECRETARY
 	title_blurb = "A " + JOB_ALT_PERSONAL_SECRETARY + " offers services of general assistance. Although it's doubtful anyone will ever actually need those."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
 
 /datum/alt_title/stylist
 	title = JOB_ALT_STYLIST
 	title_blurb = "A " + JOB_ALT_STYLIST + " offers fashion advice, as well as helps with adjusting appearance of the crew to better suit their beauty standards."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/stylist
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/stylist
 
 /datum/alt_title/fisher
 	title = JOB_ALT_FISHER
 	title_blurb = "A " + JOB_ALT_FISHER + " is a capable angler, who is good at obtaining large amounts of marine goods. Whether you generously give them to station or attempt to make a quick thaler by selling, it's up to you!"
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/fisher
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/fisher
 
 /datum/alt_title/fortune_teller
 	title = JOB_ALT_FORTUNE_TELLER
 	title_blurb = "A " + JOB_ALT_FORTUNE_TELLER + " peers into the future, and offers these visions to others. Occasionally those visions may even come true!"
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/fortune_teller
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/fortune_teller
 
 /datum/alt_title/spirit_healer
 	title = JOB_ALT_SPIRIT_HEALER
 	title_blurb = "A " + JOB_ALT_SPIRIT_HEALER + " offers alternative forms of medicine. Rituals, magic rocks, seances... It totally works. What's that about placebo?"
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/spirit_healer
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/spirit_healer
 
 /datum/alt_title/educator
 	title = JOB_ALT_EDUCATOR
 	title_blurb = "A " + JOB_ALT_EDUCATOR + " provides an education of some sort to the crew. Perhaps somebody coming in to teach a health and safety course, or teach about cultures?"
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/educator
 
 /datum/alt_title/instructor
 	title = JOB_ALT_INSTRUCTOR
 	title_blurb = "A " + JOB_ALT_INSTRUCTOR + " provides instructions on how to perform certain tasks, providing training for crew members in new skills."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/educator

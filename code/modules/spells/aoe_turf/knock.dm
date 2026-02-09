@@ -1,4 +1,4 @@
-/spell/aoe_turf/knock
+/datum/spell/aoe_turf/knock
 	name = "Knock"
 	desc = "This spell opens nearby doors and does not require wizard garb."
 
@@ -12,7 +12,7 @@
 
 	hud_state = "wiz_knock"
 
-/spell/aoe_turf/knock/cast(list/targets)
+/datum/spell/aoe_turf/knock/cast(list/targets)
 	for(var/turf/T in targets)
 		for(var/obj/machinery/door/door in T.contents)
 			spawn(1)
@@ -24,7 +24,7 @@
 
 /* Moved to game/gamemodes/cult/construct_spells.dm.
 //Construct version
-/spell/aoe_turf/knock/harvester
+/datum/spell/aoe_turf/knock/harvester
 	name = "Disintegrate Doors"
 	desc = "No door shall stop you."
 
@@ -37,7 +37,7 @@
 
 	hud_state = "const_knock"
 
-/spell/aoe_turf/knock/harvester/cast(list/targets)
+/datum/spell/aoe_turf/knock/harvester/cast(list/targets)
 	for(var/turf/T in targets)
 		for(var/obj/machinery/door/door in T.contents)
 			spawn door.cultify()

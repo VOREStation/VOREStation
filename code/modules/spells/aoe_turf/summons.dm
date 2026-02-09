@@ -1,4 +1,4 @@
-/spell/aoe_turf/conjure/summonEdSwarm //test purposes
+/datum/spell/aoe_turf/conjure/summonEdSwarm //test purposes
 	name = "Dispense Wizard Justice"
 	desc = "This spell dispenses wizard justice."
 
@@ -9,7 +9,7 @@
 
 	hud_state = "wiz_ed"
 
-/spell/aoe_turf/conjure/carp
+/datum/spell/aoe_turf/conjure/carp
 	name = "Summon Carp"
 	desc = "This spell conjures a simple carp."
 
@@ -24,7 +24,7 @@
 
 	hud_state = "wiz_carp"
 
-/spell/aoe_turf/conjure/creature
+/datum/spell/aoe_turf/conjure/creature
 	name = "Summon Creature Swarm"
 	desc = "This spell tears the fabric of reality, allowing horrific daemons to spill forth"
 

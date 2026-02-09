@@ -32,7 +32,7 @@
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
 	response_harm   = "swats"
-	organ_names = /decl/mob_organ_names/bird
+	organ_names = /datum/decl/mob_organ_names/bird
 
 	say_list_type = /datum/say_list/bird
 	holder_type = /obj/item/holder/bird
@@ -89,7 +89,7 @@
 	icon_scale_x = 0.5
 	icon_scale_y = 0.5
 
-/decl/mob_organ_names/bird
+/datum/decl/mob_organ_names/bird
 	hit_zones = list("head", "chest", "left leg", "right leg", "left wing", "right wing")
 
 /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode

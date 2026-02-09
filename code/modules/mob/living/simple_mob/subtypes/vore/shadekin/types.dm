@@ -317,11 +317,11 @@
 
 /mob/living/simple_mob/shadekin/red/rakshasa/get_available_emotes()
 	. = GLOB.simple_mob_default_emotes.Copy()
-	. += /decl/emote/audible/evil_laugh
-	. += /decl/emote/audible/evil_no
-	. += /decl/emote/audible/evil_breathing
-	. += /decl/emote/audible/evil_breathing_2
-	. += /decl/emote/audible/goodripsound
+	. += /datum/decl/emote/audible/evil_laugh
+	. += /datum/decl/emote/audible/evil_no
+	. += /datum/decl/emote/audible/evil_breathing
+	. += /datum/decl/emote/audible/evil_breathing_2
+	. += /datum/decl/emote/audible/goodripsound
 
 /mob/living/simple_mob/shadekin/blue/luna
 	name = "Luna"

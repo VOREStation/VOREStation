@@ -9,7 +9,7 @@
 				return 1
 	return 0
 
-/spell/aoe_turf/conjure/construct
+/datum/spell/aoe_turf/conjure/construct
 	name = "Artificer"
 	desc = "This spell conjures a construct which may be controlled by Shades"
 
@@ -24,13 +24,13 @@
 
 	hud_state = "artificer"
 
-/spell/aoe_turf/conjure/construct/lesser
+/datum/spell/aoe_turf/conjure/construct/lesser
 	charge_max = 1800
 	summon_type = list(/obj/structure/constructshell/cult)
 	hud_state = "const_shell"
 	override_base = "const"
 
-/spell/aoe_turf/conjure/floor
+/datum/spell/aoe_turf/conjure/floor
 	name = "Floor Construction"
 	desc = "This spell constructs a cult floor"
 
@@ -43,12 +43,12 @@
 
 	hud_state = "const_floor"
 
-/spell/aoe_turf/conjure/floor/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+/datum/spell/aoe_turf/conjure/floor/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "cultfloor"
 	flick("cultfloor",animation)
 	QDEL_IN(animation, 1 SECOND)
 
-/spell/aoe_turf/conjure/wall
+/datum/spell/aoe_turf/conjure/wall
 	name = "Lesser Construction"
 	desc = "This spell constructs a cult wall"
 
@@ -61,12 +61,12 @@
 
 	hud_state = "const_wall"
 
-/spell/aoe_turf/conjure/wall/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+/datum/spell/aoe_turf/conjure/wall/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "cultwall"
 	flick("cultwall",animation)
 	QDEL_IN(animation, 1 SECOND)
 
-/spell/aoe_turf/conjure/wall/reinforced
+/datum/spell/aoe_turf/conjure/wall/reinforced
 	name = "Greater Construction"
 	desc = "This spell constructs a reinforced metal wall"
 
@@ -79,7 +79,7 @@
 
 	summon_type = list(/turf/simulated/wall/r_wall)
 
-/spell/aoe_turf/conjure/soulstone
+/datum/spell/aoe_turf/conjure/soulstone
 	name = "Summon Soulstone"
 	desc = "This spell reaches into Nar-Sie's realm, summoning one of the legendary fragments across time and space"
 
@@ -94,7 +94,7 @@
 	hud_state = "const_stone"
 	override_base = "const"
 
-/spell/aoe_turf/conjure/pylon
+/datum/spell/aoe_turf/conjure/pylon
 	name = "Red Pylon"
 	desc = "This spell conjures a fragile crystal from Nar-Sie's realm. Makes for a convenient light source."
 
@@ -108,7 +108,7 @@
 
 	hud_state = "const_pylon"
 
-/spell/aoe_turf/conjure/pylon/cast(list/targets)
+/datum/spell/aoe_turf/conjure/pylon/cast(list/targets)
 	..()
 	var/turf/spawn_place = pick(targets)
 	for(var/obj/structure/cult/pylon/P in spawn_place.contents)
@@ -117,7 +117,7 @@
 		continue
 	return
 
-/spell/aoe_turf/conjure/door
+/datum/spell/aoe_turf/conjure/door
 	name = "Stone Door"
 	desc = "This spell conjures a massive stone door."
 
@@ -131,7 +131,7 @@
 
 	hud_state = "const_door"
 
-/spell/aoe_turf/conjure/grille
+/datum/spell/aoe_turf/conjure/grille
 	name = "Arcane Grille"
 	desc = "This spell conjures an airtight grille."
 
@@ -145,7 +145,7 @@
 
 	hud_state = "const_grille"
 
-/spell/aoe_turf/conjure/forcewall/lesser
+/datum/spell/aoe_turf/conjure/forcewall/lesser
 	name = "Shield"
 	desc = "Allows you to pull up a shield to protect yourself and allies from incoming threats"
 
@@ -172,7 +172,7 @@
 /obj/effect/forcefield/cult/cultify()
 	return
 
-/spell/aoe_turf/knock/harvester
+/datum/spell/aoe_turf/knock/harvester
 	name = "Force Doors"
 	desc = "Mortal portals are no match for your occult might."
 
@@ -185,7 +185,7 @@
 
 	hud_state = "const_knock"
 
-/spell/aoe_turf/knock/harvester/cast(list/targets)
+/datum/spell/aoe_turf/knock/harvester/cast(list/targets)
 /*	for(var/turf/T in targets) //Disintigrating doors is bad, okay.
 		for(var/obj/machinery/door/door in T.contents)
 			spawn door.cultify()
@@ -208,7 +208,7 @@
  *
  */
 
-/spell/targeted/ethereal_jaunt/shift
+/datum/spell/targeted/ethereal_jaunt/shift
 	name = "Phase Shift"
 	desc = "This spell allows you to pass through walls"
 
@@ -220,17 +220,17 @@
 
 	hud_state = "const_shift"
 
-/spell/targeted/ethereal_jaunt/shift/jaunt_disappear(var/atom/movable/overlay/animation, var/mob/living/target)
+/datum/spell/targeted/ethereal_jaunt/shift/jaunt_disappear(var/atom/movable/overlay/animation, var/mob/living/target)
 	animation.icon_state = "phase_shift"
 	animation.dir = target.dir
 	flick("phase_shift",animation)
 
-/spell/targeted/ethereal_jaunt/shift/jaunt_reappear(var/atom/movable/overlay/animation, var/mob/living/target)
+/datum/spell/targeted/ethereal_jaunt/shift/jaunt_reappear(var/atom/movable/overlay/animation, var/mob/living/target)
 	animation.icon_state = "phase_shift2"
 	animation.dir = target.dir
 	flick("phase_shift2",animation)
 
-/spell/targeted/ethereal_jaunt/shift/jaunt_steam(var/mobloc)
+/datum/spell/targeted/ethereal_jaunt/shift/jaunt_steam(var/mobloc)
 	return
 
 /*
@@ -238,7 +238,7 @@
  */
 
 /*
-/spell/targeted/harvest
+/datum/spell/targeted/harvest
 	name = "Harvest"
 	desc = "Back to where I come from, and you're coming with me."
 
@@ -257,7 +257,7 @@
 
 	hud_state = "const_harvest"
 
-/spell/targeted/harvest/cast(list/targets, mob/user)//because harvest is already a proc
+/datum/spell/targeted/harvest/cast(list/targets, mob/user)//because harvest is already a proc
 	..()
 
 	var/destination = null
@@ -276,7 +276,7 @@
 		to_chat(user, span_danger("...something's wrong!")) //There shouldn't be an instance of Harvesters when Nar-Sie isn't in the world.
 */
 
-/spell/targeted/fortify
+/datum/spell/targeted/fortify
 	name = "Fortify Shell"
 	desc = "Emit a field of energy around your shell to reduce incoming damage incredibly, while decreasing your mobility."
 
@@ -292,13 +292,13 @@
 
 	charge_max = 600
 
-/spell/targeted/fortify/cast(list/targets, mob/living/user)
+/datum/spell/targeted/fortify/cast(list/targets, mob/living/user)
 	if(findNullRod(user) || user.has_modifier_of_type(/datum/modifier/fortify))
 		charge_counter = 400
 		return
 	user.add_modifier(/datum/modifier/fortify, 1 MINUTES)
 
-/spell/targeted/occult_repair_aura
+/datum/spell/targeted/occult_repair_aura
 	name = "Repair Aura"
 	desc = "Emit a field of energy around your shell to repair nearby constructs at range."
 
@@ -314,13 +314,13 @@
 
 	charge_max = 600
 
-/spell/targeted/occult_repair_aura/cast(list/targets, mob/living/user)
+/datum/spell/targeted/occult_repair_aura/cast(list/targets, mob/living/user)
 	if(findNullRod(user) || user.has_modifier_of_type(/datum/modifier/repair_aura))
 		charge_counter = 300
 		return
 	user.add_modifier(/datum/modifier/repair_aura, 30 SECONDS)
 
-/spell/targeted/ambush_mode
+/datum/spell/targeted/ambush_mode
 	name = "Toggle Ambush"
 	desc = "Phase yourself mostly out of this reality, minimizing your combat ability, but allowing for employance of ambush tactics."
 
@@ -336,7 +336,7 @@
 
 	charge_max = 100
 
-/spell/targeted/ambush_mode/cast(list/targets, mob/living/user)
+/datum/spell/targeted/ambush_mode/cast(list/targets, mob/living/user)
 	if(findNullRod(user))
 		charge_counter = 50
 		return
@@ -351,7 +351,7 @@
  *
  */
 
-/spell/targeted/construct_advanced
+/datum/spell/targeted/construct_advanced
 	name = "Base Construct Spell"
 	desc = "If you see this, please tell a developer!"
 
@@ -369,18 +369,18 @@
 
 	var/obj/item/spell/construct/spell_obj = null //This is the var that determines what Technomancer-style spell is put into their hands.
 
-/spell/targeted/construct_advanced/cast(list/targets, mob/living/user)
+/datum/spell/targeted/construct_advanced/cast(list/targets, mob/living/user)
 	if(!findNullRod(user))
 		user.place_spell_in_hand(spell_obj)
 
-/spell/targeted/construct_advanced/inversion_beam
+/datum/spell/targeted/construct_advanced/inversion_beam
 	name = "Inversion Beam"
 	desc = "Fire a searing beam of darkness at your foes."
 
 	hud_state = "const_beam"
 	spell_obj = /obj/item/spell/construct/projectile/inverted_beam
 
-/spell/targeted/construct_advanced/mend_acolyte
+/datum/spell/targeted/construct_advanced/mend_acolyte
 	name = "Mend Acolyte"
 	desc = "Mend a target acolyte or construct over time."
 
@@ -389,7 +389,7 @@
 	hud_state = "const_mend"
 	spell_obj = /obj/item/spell/construct/mend_occult
 
-/spell/targeted/construct_advanced/agonizing_sphere
+/datum/spell/targeted/construct_advanced/agonizing_sphere
 	name = "Sphere of Agony"
 	desc = "Rend a portal into a plane of naught but pain at the target location."
 
@@ -398,7 +398,7 @@
 	hud_state = "const_harvest"
 	spell_obj = /obj/item/spell/construct/spawner/agonizing_sphere
 
-/spell/targeted/construct_advanced/slam
+/datum/spell/targeted/construct_advanced/slam
 	name = "Slam"
 	desc = "Empower your FIST."
 
@@ -689,7 +689,7 @@
 //	Purity Construct - Bishop - Spells
 ////////////////////////////
 
-/spell/targeted/construct_advanced/crippling_beam
+/datum/spell/targeted/construct_advanced/crippling_beam
 	name = "Crippling Beam"
 	desc = "Fire a crippling beam to hold down your enemies or prey."
 
@@ -752,7 +752,7 @@
 	bang(target)
 	. = ..()
 
-/spell/targeted/construct_advanced/banishment
+/datum/spell/targeted/construct_advanced/banishment
 	name = "banishment"
 	desc = "Fire a searing beam of light, banishing unholy foes."
 
@@ -802,7 +802,7 @@
 ////////////////////////////
 
 ///Deacon Laser
-/spell/targeted/construct_advanced/force_beam
+/datum/spell/targeted/construct_advanced/force_beam
 	name = "Force Beam"
 	desc = "Fire a beam of kinetic energy to force back troublemakers."
 
@@ -844,7 +844,7 @@
 
 
 ///Deacon Healing Sphere
-/spell/targeted/construct_advanced/soothing_sphere
+/datum/spell/targeted/construct_advanced/soothing_sphere
 	name = "Sphere of soothing"
 	desc = "Rend a portal into a plane of sothing energy at the target location."
 
@@ -912,7 +912,7 @@
 //	Purity Construct - Priest - Spells
 ////////////////////////////
 
-/spell/targeted/construct_advanced/mend_purity
+/datum/spell/targeted/construct_advanced/mend_purity
 	name = "Mend Purity"
 	desc = "Mend a target living being or construct over time."
 
@@ -988,7 +988,7 @@
 					to_chat(H, span_danger("It feels as though your body is being torn apart!"))
 			L.updatehealth()
 
-/spell/targeted/purity_repair_aura
+/datum/spell/targeted/purity_repair_aura
 	name = "Repair Aura"
 	desc = "Emit a field of energy around your shell to repair nearby constructs at range."
 
@@ -1004,7 +1004,7 @@
 
 	charge_max = 600
 
-/spell/targeted/purity_repair_aura/cast(list/targets, mob/living/user)
+/datum/spell/targeted/purity_repair_aura/cast(list/targets, mob/living/user)
 	if(findNullRod(user) || user.has_modifier_of_type(/datum/modifier/repair_aura))
 		charge_counter = 300
 		return

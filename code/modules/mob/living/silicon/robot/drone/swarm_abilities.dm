@@ -1,5 +1,5 @@
 
-/spell/aoe_turf/conjure/swarmer
+/datum/spell/aoe_turf/conjure/swarmer
 	name = "Self Replication"
 	desc = "This ability constructs a standard swarmer shell that may activate at some point."
 
@@ -14,13 +14,13 @@
 
 	hud_state = "swarm_replicate"
 
-/spell/aoe_turf/conjure/swarmer/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+/datum/spell/aoe_turf/conjure/swarmer/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "deflect_static"
 	flick("shield2",animation)
 	spawn(1 SECOND)
 		qdel(animation)
 
-/spell/aoe_turf/conjure/forcewall/swarm
+/datum/spell/aoe_turf/conjure/forcewall/swarm
 	name = "Null-Field"
 	desc = "Create a bubble of null-point energy."
 	summon_type = list(/obj/effect/forcefield/swarm)
@@ -41,7 +41,7 @@
 	icon_state = "shield-old"
 	invisibility = INVISIBILITY_NONE
 
-/spell/aoe_turf/conjure/zeropointwell
+/datum/spell/aoe_turf/conjure/zeropointwell
 	name = "Zero-Point Well"
 	desc = "This ability constructs a standard zero-point energy well, capable of charging nearby swarmers."
 
@@ -56,7 +56,7 @@
 
 	hud_state = "swarm_zeropoint"
 
-/spell/aoe_turf/conjure/zeropointbarricade
+/datum/spell/aoe_turf/conjure/zeropointbarricade
 	name = "Zero-Point Barricade"
 	desc = "This ability constructs a standard zero-point energy wall, used to create a secure passageway for allies, and a bastion for defense."
 
@@ -71,7 +71,7 @@
 
 	hud_state = "swarm_barricade"
 
-/spell/aoe_turf/blink/swarm
+/datum/spell/aoe_turf/blink/swarm
 	name = "Warp"
 	desc = "Your null-point drive jaunts you to a new location."
 
@@ -84,7 +84,7 @@
 	inner_radius = 5
 	hud_state = "swarm_warp"
 
-/spell/aoe_turf/conjure/swarmer/gunner
+/datum/spell/aoe_turf/conjure/swarmer/gunner
 	name = "Generate Gunner"
 	desc = "This spell constructs a gunner swarmer shell that may activate at some point."
 
@@ -100,7 +100,7 @@
 
 	hud_state = "swarm_replicate"
 
-/spell/aoe_turf/conjure/swarmer/melee
+/datum/spell/aoe_turf/conjure/swarmer/melee
 	name = "Generate Impaler"
 	desc = "This spell constructs an impaler swarmer shell that may activate at some point."
 

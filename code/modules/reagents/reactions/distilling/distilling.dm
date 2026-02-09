@@ -1,4 +1,4 @@
-/decl/chemical_reaction/distilling
+/datum/decl/chemical_reaction/distilling
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 //	id = null
 //	result = null
@@ -32,7 +32,7 @@
 	var/minimum_xgm_pressure = null
 	var/consumes_xgm_gas = 0 // Mols of gas consumed during reaction
 
-/decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
 	if(!istype(holder, /datum/reagents/distilling))
 		return FALSE
 
@@ -68,7 +68,7 @@
 
 	return ..()
 
-/decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
 	// Handle gas consumption
 	var/datum/gas_mixture/GM = holder.my_atom.return_air()
 	if(consumes_xgm_gas != 0 && GM)
@@ -91,7 +91,7 @@
 // Subtypes //
 
 // Biomass
-/decl/chemical_reaction/distilling/biomass
+/datum/decl/chemical_reaction/distilling/biomass
 	name = "Distilling Biomass"
 	id = "distill_biomass"
 	result = REAGENT_ID_BIOMASS
@@ -102,7 +102,7 @@
 	temp_shift = -2
 
 // Medicinal
-/decl/chemical_reaction/distilling/inaprovalaze
+/datum/decl/chemical_reaction/distilling/inaprovalaze
 	name = "Distilling Inaprovalaze"
 	id = "distill_inaprovalaze"
 	result = REAGENT_ID_INAPROVALAZE
@@ -113,7 +113,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/decl/chemical_reaction/distilling/bicaridaze
+/datum/decl/chemical_reaction/distilling/bicaridaze
 	name = "Distilling Bicaridaze"
 	id = "distill_bicaridaze"
 	result = REAGENT_ID_BICARIDAZE
@@ -124,7 +124,7 @@
 
 	temp_range = list(T0C + 110, T0C + 130)
 
-/decl/chemical_reaction/distilling/dermalaze
+/datum/decl/chemical_reaction/distilling/dermalaze
 	name = "Distilling Dermalaze"
 	id = "distill_dermalaze"
 	result = REAGENT_ID_DERMALAZE
@@ -135,7 +135,7 @@
 
 	temp_range = list(T0C + 115, T0C + 130)
 
-/decl/chemical_reaction/distilling/spacomycaze
+/datum/decl/chemical_reaction/distilling/spacomycaze
 	name = "Distilling Spacomycaze"
 	id = "distill_spacomycaze"
 	result = REAGENT_ID_SPACOMYCAZE
@@ -146,7 +146,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/decl/chemical_reaction/distilling/tricorlidaze
+/datum/decl/chemical_reaction/distilling/tricorlidaze
 	name = "Distilling Tricorlidaze"
 	id = "distill_tricorlidaze"
 	result = REAGENT_ID_TRICORLIDAZE
@@ -157,7 +157,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/decl/chemical_reaction/distilling/synthplas
+/datum/decl/chemical_reaction/distilling/synthplas
 	name = "Distilling Synthplas"
 	id = "distill_synthplas"
 	result = REAGENT_ID_SYNTHBLOOD_DILUTE
@@ -169,7 +169,7 @@
 	temp_range = list(T0C + 110, T0C + 130)
 
 // Alcohol
-/decl/chemical_reaction/distilling/beer
+/datum/decl/chemical_reaction/distilling/beer
 	name = "Distilling Beer"
 	id = "distill_beer"
 	result = REAGENT_ID_BEER
@@ -180,7 +180,7 @@
 
 	temp_range = list(T20C, T20C + 2)
 
-/decl/chemical_reaction/distilling/ale
+/datum/decl/chemical_reaction/distilling/ale
 	name = "Distilling Ale"
 	id = "distill_ale"
 	result = REAGENT_ID_ALE
@@ -193,7 +193,7 @@
 	temp_shift = 0.5
 	temp_range = list(T0C + 7, T0C + 13)
 
-/decl/chemical_reaction/distilling/ethanol
+/datum/decl/chemical_reaction/distilling/ethanol
 	name = "Distilling Ethanol"
 	id = "distill_ethanol"
 	result = REAGENT_ID_ETHANOL
@@ -205,7 +205,7 @@
 	temp_range = list(T20C+30, T20C + 40)
 
 // Unique
-/decl/chemical_reaction/distilling/berserkjuice
+/datum/decl/chemical_reaction/distilling/berserkjuice
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
 	result = REAGENT_ID_BERSERKMED
@@ -215,7 +215,7 @@
 	temp_range = list(T0C + 600, T0C + 700)
 	temp_shift = 4
 
-/decl/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 
 	if(prob(1))
@@ -223,7 +223,7 @@
 		explosion(T, -1, rand(-1, 1), rand(1,2), rand(3,5))
 	return
 
-/decl/chemical_reaction/distilling/cryogel
+/datum/decl/chemical_reaction/distilling/cryogel
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
 	result = REAGENT_ID_CRYOSLURRY
@@ -234,7 +234,7 @@
 	temp_range = list(0, 15)
 	temp_shift = 20
 
-/decl/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 
 	if(prob(1))
@@ -244,7 +244,7 @@
 		F.start()
 	return
 
-/decl/chemical_reaction/distilling/lichpowder
+/datum/decl/chemical_reaction/distilling/lichpowder
 	name = "Distilling Lichpowder"
 	id = "distill_lichpowder"
 	result = REAGENT_ID_LICHPOWDER
@@ -255,7 +255,7 @@
 
 	temp_range = list(T0C + 100, T0C + 150)
 
-/decl/chemical_reaction/distilling/necroxadone
+/datum/decl/chemical_reaction/distilling/necroxadone
 	name = "Distilling Necroxadone"
 	id = "distill_necroxadone"
 	result = REAGENT_ID_NECROXADONE
@@ -268,7 +268,7 @@
 
 	temp_range = list(T0C + 90, T0C + 95)
 
-/decl/chemical_reaction/distilling/hydrogen
+/datum/decl/chemical_reaction/distilling/hydrogen
 	name = "Distilling Hydrogen"
 	id = "distill_hydrogen"
 	result = REAGENT_ID_HYDROGEN
@@ -283,7 +283,7 @@
 	require_xgm_gas = GAS_N2
 	rejects_xgm_gas = GAS_O2
 
-/decl/chemical_reaction/distilling/oxygen
+/datum/decl/chemical_reaction/distilling/oxygen
 	name = "Distilling Oxygen"
 	id = "distill_oxygen"
 	result = REAGENT_ID_OXYGEN
@@ -298,7 +298,7 @@
 	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_O2
 
-/decl/chemical_reaction/distilling/mineralized_sodium
+/datum/decl/chemical_reaction/distilling/mineralized_sodium
 	name = "Distilling Sodium"
 	id = "distill_sodium"
 	result = REAGENT_ID_SODIUM
@@ -311,7 +311,7 @@
 	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_O2
 
-/decl/chemical_reaction/distilling/mineralized_carbon
+/datum/decl/chemical_reaction/distilling/mineralized_carbon
 	name = "Distilling Carbon"
 	id = "distill_carbon"
 	result = REAGENT_ID_CARBON
@@ -324,7 +324,7 @@
 	require_xgm_gas = GAS_O2
 	rejects_xgm_gas = GAS_PHORON
 
-/decl/chemical_reaction/distilling/reduce_salt
+/datum/decl/chemical_reaction/distilling/reduce_salt
 	name = "Distilling Sodium"
 	id = "distill_reduce_tablesalt"
 	result = REAGENT_ID_SODIUM

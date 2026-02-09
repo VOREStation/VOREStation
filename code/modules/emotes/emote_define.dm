@@ -6,10 +6,10 @@
 
 /proc/get_emote_by_key(var/key)
 	if(!LAZYLEN(GLOB.emotes_by_key))
-		decls_repository.get_decls_of_type(/decl/emote) // GLOB.emotes_by_key will be updated in emote Initialize()
+		GLOB.decls_repository.get_decls_of_type(/datum/decl/emote) // GLOB.emotes_by_key will be updated in emote Initialize()
 	return GLOB.emotes_by_key[key]
 
-/decl/emote
+/datum/decl/emote
 	var/key                                             // Command to use emote ie. '*[key]'
 	var/emote_message_1p                                // First person message ('You do a flip!')
 	var/emote_message_3p                                // Third person message ('Urist McBackflip does a flip!')
@@ -44,12 +44,12 @@
 	var/sound_preferences = list(/datum/preference/toggle/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = FALSE
 
-/decl/emote/Initialize(mapload)
+/datum/decl/emote/Initialize()
 	. = ..()
 	if(key)
 		LAZYSET(GLOB.emotes_by_key, key, src)
 
-/decl/emote/proc/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/proc/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
 	if(target)
 		if(emote_message_synthetic_1p_target && check_synthetic(user))
 			return emote_message_synthetic_1p_target
@@ -58,7 +58,7 @@
 		return emote_message_synthetic_1p
 	return emote_message_1p
 
-/decl/emote/proc/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/proc/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
 	if(target)
 		if(emote_message_synthetic_3p_target && check_synthetic(user))
 			return emote_message_synthetic_3p_target
@@ -67,7 +67,7 @@
 		return emote_message_synthetic_3p
 	return emote_message_3p
 
-/decl/emote/proc/get_emote_sound(var/atom/user)
+/datum/decl/emote/proc/get_emote_sound(var/atom/user)
 	if(check_synthetic(user) && emote_sound_synthetic)
 		return list(
 			"sound" = emote_sound_synthetic,
@@ -79,7 +79,7 @@
 			"vol" =   emote_volume
 		)
 
-/decl/emote/proc/do_emote(var/atom/user, var/extra_params)
+/datum/decl/emote/proc/do_emote(var/atom/user, var/extra_params)
 	if(ismob(user) && check_restraints)
 		var/mob/M = user
 		if(M.transforming) //Transforming acts as a stasis.
@@ -149,7 +149,7 @@
 	do_sound(user)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EMOTE_PERFORMED, user, extra_params)
 
-/decl/emote/proc/replace_target_tokens(var/msg, var/atom/target)
+/datum/decl/emote/proc/replace_target_tokens(var/msg, var/atom/target)
 	. = msg
 	if(istype(target))
 		. = replacetext(., "TARGET_THEM",  target.p_them())
@@ -157,7 +157,7 @@
 		. = replacetext(., "TARGET_SELF",  target.p_themselves())
 		. = replacetext(., "TARGET",       span_bold("\the [target]"))
 
-/decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
+/datum/decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
 	. = msg
 	if(istype(user))
 		. = replacetext(., "USER_THEM",  user.p_them())
@@ -165,15 +165,15 @@
 		. = replacetext(., "USER_SELF",  user.p_themselves())
 		. = replacetext(., "USER",       span_bold("\the [user]"))
 
-/decl/emote/proc/get_radio_message(var/atom/user)
+/datum/decl/emote/proc/get_radio_message(var/atom/user)
 	if(emote_message_radio_synthetic && check_synthetic(user))
 		return emote_message_radio_synthetic
 	return emote_message_radio
 
-/decl/emote/proc/do_extra(var/atom/user, var/atom/target)
+/datum/decl/emote/proc/do_extra(var/atom/user, var/atom/target)
 	return
 
-/decl/emote/proc/do_sound(var/atom/user)
+/datum/decl/emote/proc/do_sound(var/atom/user)
 	var/list/use_sound = get_emote_sound(user)
 	if(!islist(use_sound) || length(use_sound) < 2)
 		return
@@ -195,16 +195,16 @@
 		else
 			playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, extrarange = use_sound["exr"], frequency = null, preference = sound_preferences, volume_channel = use_sound["volchannel"])
 
-/decl/emote/proc/mob_can_use(var/mob/user)
+/datum/decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())
 
-/decl/emote/proc/can_target()
+/datum/decl/emote/proc/can_target()
 	return (emote_message_1p_target || emote_message_3p_target)
 
-/decl/emote/dd_SortValue()
+/datum/decl/emote/dd_SortValue()
 	return key
 
-/decl/emote/proc/check_synthetic(var/mob/living/user)
+/datum/decl/emote/proc/check_synthetic(var/mob/living/user)
 	. = istype(user) && user.isSynthetic()
 	if(!. && ishuman(user) && message_type == AUDIBLE_MESSAGE)
 		var/mob/living/carbon/human/H = user

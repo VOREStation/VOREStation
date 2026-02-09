@@ -362,7 +362,7 @@
 /obj/effect/floor_decal/corner/brown/border,
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_35
+	poster_decl = /datum/decl/poster/bay_35
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)

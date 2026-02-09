@@ -27,17 +27,17 @@ SUBSYSTEM_DEF(chemistry)
 	msg = "C: [chemical_reagents.len] | R: [chemical_reactions.len]"
 	return ..()
 
-//Chemical Reactions - Initialises all /decl/chemical_reaction into a list
+//Chemical Reactions - Initialises all /datum/decl/chemical_reaction into a list
 // It is filtered into multiple lists within a list.
 // For example:
 // chemical_reactions_by_reagent[REAGENT_ID_PHORON] is a list of all reactions relating to phoron
 // Note that entries in the list are NOT duplicated. So if a reaction pertains to
 // more than one chemical it will still only appear in only one of the sublists.
 /datum/controller/subsystem/chemistry/proc/initialize_chemical_reactions()
-	var/list/paths = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
+	var/list/paths = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/chemical_reaction)
 
 	for(var/path in paths)
-		var/decl/chemical_reaction/D = paths[path]
+		var/datum/decl/chemical_reaction/D = paths[path]
 		chemical_reactions += D
 
 		var/list/scan_list = list()
@@ -50,13 +50,13 @@ SUBSYSTEM_DEF(chemistry)
 			var/reagent_id = scan_list[i]
 
 			var/list/add_to = instant_reactions_by_reagent // Default to instant reactions list, if something's gone wrong
-//			if(istype(D, /decl/chemical_reaction/fusion)) // TODO: fusion reactions as chemical reactions
+//			if(istype(D, /datum/decl/chemical_reaction/fusion)) // TODO: fusion reactions as chemical reactions
 //				add_to = fusion_reactions_by_reagent
-			if(istype(D, /decl/chemical_reaction/distilling))
+			if(istype(D, /datum/decl/chemical_reaction/distilling))
 				add_to = distilled_reactions_by_reagent
 
 			if(D.result)
-				if(istype(D, /decl/chemical_reaction/distilling))
+				if(istype(D, /datum/decl/chemical_reaction/distilling))
 					LAZYINITLIST(distilled_reactions_by_product[D.result])
 					distilled_reactions_by_product[D.result] |= D // for reverse lookup
 				else

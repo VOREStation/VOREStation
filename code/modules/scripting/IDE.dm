@@ -45,7 +45,7 @@
 
 				if(compileerrors.len)
 					src << output(span_bold("Compile Errors"), "tcserror")
-					for(var/scriptError/e in compileerrors)
+					for(var/datum/scriptError/e in compileerrors)
 						src << output(span_red("\t>[e.message]"), "tcserror")
 					src << output("([compileerrors.len] errors)", "tcserror")
 
@@ -54,7 +54,7 @@
 						if(M.client)
 							M << output(null, "tcserror")
 							M << output(span_bold("Compile Errors"), "tcserror")
-							for(var/scriptError/e in compileerrors)
+							for(var/datum/scriptError/e in compileerrors)
 								M << output(span_red("\t>[e.message]"), "tcserror")
 							M << output("([compileerrors.len] errors)", "tcserror")
 
@@ -97,7 +97,7 @@
 
 				if(compileerrors.len)
 					src << output(span_bold("Compile Errors"), "tcserror")
-					for(var/scriptError/e in compileerrors)
+					for(var/datum/scriptError/e in compileerrors)
 						src << output(span_red("\t>[e.message]"), "tcserror")
 					src << output("([compileerrors.len] errors)", "tcserror")
 
@@ -106,7 +106,7 @@
 						if(M.client)
 							M << output(null, "tcserror")
 							M << output(span_bold("Compile Errors"), "tcserror")
-							for(var/scriptError/e in compileerrors)
+							for(var/datum/scriptError/e in compileerrors)
 								M << output(span_red("\t>[e.message]"), "tcserror")
 							M << output("([compileerrors.len] errors)", "tcserror")
 

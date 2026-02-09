@@ -15,7 +15,7 @@
 	health = 150			// Point of human crit, as of commenting
 	maxHealth = 150
 
-	organ_names = /decl/mob_organ_names/humanoid
+	organ_names = /datum/decl/mob_organ_names/humanoid
 
 	// Most humans leave a corpse
 	var/corpse = null
@@ -35,5 +35,5 @@
 	qdel(src)
 	return
 
-/decl/mob_organ_names/humanoid
+/datum/decl/mob_organ_names/humanoid
 	hit_zones = list("head", "torso", "left leg", "right leg", "left arm", "right arm", "left hand", "right hand", "left foot", "right foot") //Same as real people!

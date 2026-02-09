@@ -3,7 +3,7 @@
 /// ERIS FLOOR DECLS ///////
 ////////////////////////////
 
-/decl/flooring/tiling/eris
+/datum/decl/flooring/tiling/eris
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/eris/tiles.dmi'
@@ -14,11 +14,11 @@
 	build_type = /obj/item/stack/tile/floor/eris
 	can_paint = 1
 
-	plating_type = /decl/flooring/eris_plating/under
+	plating_type = /datum/decl/flooring/eris_plating/under
 
 	floor_smooth = SMOOTH_WHITELIST
 	flooring_whitelist = list(
-		/decl/flooring/eris_plating/under
+		/datum/decl/flooring/eris_plating/under
 	)
 
 	smooth_movable_atom = SMOOTH_GREYLIST
@@ -30,229 +30,229 @@
 		list(/obj/structure/window, list("anchored" = TRUE, "fulltile" = TRUE), 2) // Don't blend under full windows
 	)
 
-/decl/flooring/tiling/eris/steel
+/datum/decl/flooring/tiling/eris/steel
 	name = "steel floor"
 	icon_base = "tiles"
 	icon = 'icons/turf/flooring/eris/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/steel
 
-/decl/flooring/tiling/eris/steel/panels
+/datum/decl/flooring/tiling/eris/steel/panels
 	icon_base = "panels"
 	build_type = /obj/item/stack/tile/floor/eris/steel/panels
 
-/decl/flooring/tiling/eris/steel/techfloor
+/datum/decl/flooring/tiling/eris/steel/techfloor
 	icon_base = "techfloor"
 	build_type = /obj/item/stack/tile/floor/eris/steel/techfloor
 
-/decl/flooring/tiling/eris/steel/techfloor_grid
+/datum/decl/flooring/tiling/eris/steel/techfloor_grid
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/floor/eris/steel/techfloor_grid
 
-/decl/flooring/tiling/eris/steel/brown_perforated
+/datum/decl/flooring/tiling/eris/steel/brown_perforated
 	icon_base = "brown_perforated"
 	build_type = /obj/item/stack/tile/floor/eris/steel/brown_perforated
 
-/decl/flooring/tiling/eris/steel/gray_perforated
+/datum/decl/flooring/tiling/eris/steel/gray_perforated
 	icon_base = "gray_perforated"
 	build_type = /obj/item/stack/tile/floor/eris/steel/gray_perforated
 
-/decl/flooring/tiling/eris/steel/cargo
+/datum/decl/flooring/tiling/eris/steel/cargo
 	icon_base = "cargo"
 	build_type = /obj/item/stack/tile/floor/eris/steel/cargo
 
-/decl/flooring/tiling/eris/steel/brown_platform
+/datum/decl/flooring/tiling/eris/steel/brown_platform
 	icon_base = "brown_platform"
 	build_type = /obj/item/stack/tile/floor/eris/steel/brown_platform
 
-/decl/flooring/tiling/eris/steel/gray_platform
+/datum/decl/flooring/tiling/eris/steel/gray_platform
 	icon_base = "gray_platform"
 	build_type = /obj/item/stack/tile/floor/eris/steel/gray_platform
 
-/decl/flooring/tiling/eris/steel/danger
+/datum/decl/flooring/tiling/eris/steel/danger
 	icon_base = "danger"
 	build_type = /obj/item/stack/tile/floor/eris/steel/danger
 
-/decl/flooring/tiling/eris/steel/golden
+/datum/decl/flooring/tiling/eris/steel/golden
 	icon_base = "golden"
 	build_type = /obj/item/stack/tile/floor/eris/steel/golden
 
-/decl/flooring/tiling/eris/steel/bluecorner
+/datum/decl/flooring/tiling/eris/steel/bluecorner
 	icon_base = "bluecorner"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bluecorner
 
-/decl/flooring/tiling/eris/steel/orangecorner
+/datum/decl/flooring/tiling/eris/steel/orangecorner
 	icon_base = "orangecorner"
 	build_type = /obj/item/stack/tile/floor/eris/steel/orangecorner
 
-/decl/flooring/tiling/eris/steel/cyancorner
+/datum/decl/flooring/tiling/eris/steel/cyancorner
 	icon_base = "cyancorner"
 	build_type = /obj/item/stack/tile/floor/eris/steel/cyancorner
 
-/decl/flooring/tiling/eris/steel/violetcorener
+/datum/decl/flooring/tiling/eris/steel/violetcorener
 	icon_base = "violetcorener"
 	build_type = /obj/item/stack/tile/floor/eris/steel/violetcorener
 
-/decl/flooring/tiling/eris/steel/monofloor
+/datum/decl/flooring/tiling/eris/steel/monofloor
 	icon_base = "monofloor"
 	build_type = /obj/item/stack/tile/floor/eris/steel/monofloor
 	has_base_range = 15
 
-/decl/flooring/tiling/eris/steel/bar_flat
+/datum/decl/flooring/tiling/eris/steel/bar_flat
 	name = "flat bar floor"
 	icon_base = "bar_flat"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_flat
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/steel/bar_dance
+/datum/decl/flooring/tiling/eris/steel/bar_dance
 	name = "dancefloor"
 	icon_base = "bar_dance"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_dance
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/steel/bar_light
+/datum/decl/flooring/tiling/eris/steel/bar_light
 	name = "lit bar floor"
 	icon_base = "bar_light"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_light
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/white
+/datum/decl/flooring/tiling/eris/white
 	name = "white floor"
 	icon_base = "tiles"
 	icon = 'icons/turf/flooring/eris/tiles_white.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/white
 
-/decl/flooring/tiling/eris/white/panels
+/datum/decl/flooring/tiling/eris/white/panels
 	icon_base = "panels"
 	build_type = /obj/item/stack/tile/floor/eris/white/panels
 
-/decl/flooring/tiling/eris/white/techfloor
+/datum/decl/flooring/tiling/eris/white/techfloor
 	icon_base = "techfloor"
 	build_type = /obj/item/stack/tile/floor/eris/white/techfloor
 
-/decl/flooring/tiling/eris/white/techfloor_grid
+/datum/decl/flooring/tiling/eris/white/techfloor_grid
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/floor/eris/white/techfloor_grid
 
-/decl/flooring/tiling/eris/white/brown_perforated
+/datum/decl/flooring/tiling/eris/white/brown_perforated
 	icon_base = "brown_perforated"
 	build_type = /obj/item/stack/tile/floor/eris/white/brown_perforated
 
-/decl/flooring/tiling/eris/white/gray_perforated
+/datum/decl/flooring/tiling/eris/white/gray_perforated
 	icon_base = "gray_perforated"
 	build_type = /obj/item/stack/tile/floor/eris/white/gray_perforated
 
-/decl/flooring/tiling/eris/white/cargo
+/datum/decl/flooring/tiling/eris/white/cargo
 	icon_base = "cargo"
 	build_type = /obj/item/stack/tile/floor/eris/white/cargo
 
-/decl/flooring/tiling/eris/white/brown_platform
+/datum/decl/flooring/tiling/eris/white/brown_platform
 	icon_base = "brown_platform"
 	build_type = /obj/item/stack/tile/floor/eris/white/brown_platform
 
-/decl/flooring/tiling/eris/white/gray_platform
+/datum/decl/flooring/tiling/eris/white/gray_platform
 	icon_base = "gray_platform"
 	build_type = /obj/item/stack/tile/floor/eris/white/gray_platform
 
-/decl/flooring/tiling/eris/white/danger
+/datum/decl/flooring/tiling/eris/white/danger
 	icon_base = "danger"
 	build_type = /obj/item/stack/tile/floor/eris/white/danger
 
-/decl/flooring/tiling/eris/white/golden
+/datum/decl/flooring/tiling/eris/white/golden
 	icon_base = "golden"
 	build_type = /obj/item/stack/tile/floor/eris/white/golden
 
-/decl/flooring/tiling/eris/white/bluecorner
+/datum/decl/flooring/tiling/eris/white/bluecorner
 	icon_base = "bluecorner"
 	build_type = /obj/item/stack/tile/floor/eris/white/bluecorner
 
-/decl/flooring/tiling/eris/white/orangecorner
+/datum/decl/flooring/tiling/eris/white/orangecorner
 	icon_base = "orangecorner"
 	build_type = /obj/item/stack/tile/floor/eris/white/orangecorner
 
-/decl/flooring/tiling/eris/white/cyancorner
+/datum/decl/flooring/tiling/eris/white/cyancorner
 	icon_base = "cyancorner"
 	build_type = /obj/item/stack/tile/floor/eris/white/cyancorner
 
-/decl/flooring/tiling/eris/white/violetcorener
+/datum/decl/flooring/tiling/eris/white/violetcorener
 	icon_base = "violetcorener"
 	build_type = /obj/item/stack/tile/floor/eris/white/violetcorener
 
-/decl/flooring/tiling/eris/white/monofloor
+/datum/decl/flooring/tiling/eris/white/monofloor
 	icon_base = "monofloor"
 	build_type = /obj/item/stack/tile/floor/eris/white/monofloor
 	has_base_range = 15
 
-/decl/flooring/tiling/eris/dark
+/datum/decl/flooring/tiling/eris/dark
 	name = "dark floor"
 	icon_base = "tiles"
 	icon = 'icons/turf/flooring/eris/tiles_dark.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/dark
 
-/decl/flooring/tiling/eris/dark/panels
+/datum/decl/flooring/tiling/eris/dark/panels
 	icon_base = "panels"
 	build_type = /obj/item/stack/tile/floor/eris/dark/panels
 
-/decl/flooring/tiling/eris/dark/techfloor
+/datum/decl/flooring/tiling/eris/dark/techfloor
 	icon_base = "techfloor"
 	build_type = /obj/item/stack/tile/floor/eris/dark/techfloor
 
-/decl/flooring/tiling/eris/dark/techfloor_grid
+/datum/decl/flooring/tiling/eris/dark/techfloor_grid
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/floor/eris/dark/techfloor_grid
 
-/decl/flooring/tiling/eris/dark/brown_perforated
+/datum/decl/flooring/tiling/eris/dark/brown_perforated
 	icon_base = "brown_perforated"
 	build_type = /obj/item/stack/tile/floor/eris/dark/brown_perforated
 
-/decl/flooring/tiling/eris/dark/gray_perforated
+/datum/decl/flooring/tiling/eris/dark/gray_perforated
 	icon_base = "gray_perforated"
 	build_type = /obj/item/stack/tile/floor/eris/dark/gray_perforated
 
-/decl/flooring/tiling/eris/dark/cargo
+/datum/decl/flooring/tiling/eris/dark/cargo
 	icon_base = "cargo"
 	build_type = /obj/item/stack/tile/floor/eris/dark/cargo
 
-/decl/flooring/tiling/eris/dark/brown_platform
+/datum/decl/flooring/tiling/eris/dark/brown_platform
 	icon_base = "brown_platform"
 	build_type = /obj/item/stack/tile/floor/eris/dark/brown_platform
 
-/decl/flooring/tiling/eris/dark/gray_platform
+/datum/decl/flooring/tiling/eris/dark/gray_platform
 	icon_base = "gray_platform"
 	build_type = /obj/item/stack/tile/floor/eris/dark/gray_platform
 
-/decl/flooring/tiling/eris/dark/danger
+/datum/decl/flooring/tiling/eris/dark/danger
 	icon_base = "danger"
 	build_type = /obj/item/stack/tile/floor/eris/dark/danger
 
-/decl/flooring/tiling/eris/dark/golden
+/datum/decl/flooring/tiling/eris/dark/golden
 	icon_base = "golden"
 	build_type = /obj/item/stack/tile/floor/eris/dark/golden
 
-/decl/flooring/tiling/eris/dark/bluecorner
+/datum/decl/flooring/tiling/eris/dark/bluecorner
 	icon_base = "bluecorner"
 	build_type = /obj/item/stack/tile/floor/eris/dark/bluecorner
 
-/decl/flooring/tiling/eris/dark/orangecorner
+/datum/decl/flooring/tiling/eris/dark/orangecorner
 	icon_base = "orangecorner"
 	build_type = /obj/item/stack/tile/floor/eris/dark/orangecorner
 
-/decl/flooring/tiling/eris/dark/cyancorner
+/datum/decl/flooring/tiling/eris/dark/cyancorner
 	icon_base = "cyancorner"
 	build_type = /obj/item/stack/tile/floor/eris/dark/cyancorner
 
-/decl/flooring/tiling/eris/dark/violetcorener
+/datum/decl/flooring/tiling/eris/dark/violetcorener
 	icon_base = "violetcorener"
 	build_type = /obj/item/stack/tile/floor/eris/dark/violetcorener
 
-/decl/flooring/tiling/eris/dark/monofloor
+/datum/decl/flooring/tiling/eris/dark/monofloor
 	icon_base = "monofloor"
 	build_type = /obj/item/stack/tile/floor/eris/dark/monofloor
 	has_base_range = 15
 
-/decl/flooring/tiling/eris/cafe
+/datum/decl/flooring/tiling/eris/cafe
 	name = "linoleum floor"
 	icon_base = "cafe"
 	icon = 'icons/turf/flooring/eris/tiles.dmi'
@@ -260,7 +260,7 @@
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/bcircuit
+/datum/decl/flooring/tiling/eris/bcircuit
 	name = "circuit substrate"
 	icon_base = "bcircuit"
 	icon = 'icons/turf/flooring/eris/circuit.dmi'
@@ -269,7 +269,7 @@
 	smooth_movable_atom = SMOOTH_NONE
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_CAN_BREAK
 
-/decl/flooring/tiling/eris/derelict1
+/datum/decl/flooring/tiling/eris/derelict1
 	name = "derelict floor"
 	icon_base = "derelict1"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
@@ -278,7 +278,7 @@
 	smooth_movable_atom = SMOOTH_NONE
 	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
 
-/decl/flooring/tiling/eris/derelict2
+/datum/decl/flooring/tiling/eris/derelict2
 	name = "derelict floor"
 	icon_base = "derelict2"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
@@ -287,7 +287,7 @@
 	smooth_movable_atom = SMOOTH_NONE
 	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
 
-/decl/flooring/tiling/eris/derelict3
+/datum/decl/flooring/tiling/eris/derelict3
 	name = "derelict floor"
 	icon_base = "derelict3"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
@@ -296,7 +296,7 @@
 	smooth_movable_atom = SMOOTH_NONE
 	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
 
-/decl/flooring/tiling/eris/derelict4
+/datum/decl/flooring/tiling/eris/derelict4
 	name = "derelict floor"
 	icon_base = "derelict4"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
@@ -305,7 +305,7 @@
 	smooth_movable_atom = SMOOTH_NONE
 	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
 
-/decl/flooring/tiling/eris/techmaint
+/datum/decl/flooring/tiling/eris/techmaint
 	name = "techmaint floor"
 	icon_base = "techmaint"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
@@ -313,7 +313,7 @@
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/techmaint_perforated
+/datum/decl/flooring/tiling/eris/techmaint_perforated
 	name = "techmaint floor"
 	icon_base = "techmaint_perforated"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
@@ -321,7 +321,7 @@
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/techmaint_panels
+/datum/decl/flooring/tiling/eris/techmaint_panels
 	name = "techmaint floor"
 	icon_base = "techmaint_panels"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
@@ -329,7 +329,7 @@
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-/decl/flooring/tiling/eris/techmaint_cargo
+/datum/decl/flooring/tiling/eris/techmaint_cargo
 	name = "techmaint floor"
 	icon_base = "techmaint_cargo"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
@@ -681,7 +681,7 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles.dmi'
 	icon_state = "tiles"
-	initial_flooring = /decl/flooring/tiling/eris
+	initial_flooring = /datum/decl/flooring/tiling/eris
 
 
 
@@ -690,79 +690,79 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_steel.dmi'
 	icon_state = "tiles"
-	initial_flooring = /decl/flooring/tiling/eris/steel
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel
 
 /turf/simulated/floor/tiled/eris/steel/panels
 	icon_state = "panels"
-	initial_flooring = /decl/flooring/tiling/eris/steel/panels
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/panels
 
 /turf/simulated/floor/tiled/eris/steel/techfloor
 	icon_state = "techfloor"
-	initial_flooring = /decl/flooring/tiling/eris/steel/techfloor
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/techfloor
 
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid
 	icon_state = "techfloor_grid"
-	initial_flooring = /decl/flooring/tiling/eris/steel/techfloor_grid
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/techfloor_grid
 
 /turf/simulated/floor/tiled/eris/steel/brown_perforated
 	icon_state = "brown_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/steel/brown_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/brown_perforated
 
 /turf/simulated/floor/tiled/eris/steel/gray_perforated
 	icon_state = "gray_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/steel/gray_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/gray_perforated
 
 /turf/simulated/floor/tiled/eris/steel/cargo
 	icon_state = "cargo"
-	initial_flooring = /decl/flooring/tiling/eris/steel/cargo
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/cargo
 
 /turf/simulated/floor/tiled/eris/steel/brown_platform
 	icon_state = "brown_platform"
-	initial_flooring = /decl/flooring/tiling/eris/steel/brown_platform
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/brown_platform
 
 /turf/simulated/floor/tiled/eris/steel/gray_platform
 	icon_state = "gray_platform"
-	initial_flooring = /decl/flooring/tiling/eris/steel/gray_platform
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/gray_platform
 
 /turf/simulated/floor/tiled/eris/steel/danger
 	icon_state = "danger"
-	initial_flooring = /decl/flooring/tiling/eris/steel/danger
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/danger
 
 /turf/simulated/floor/tiled/eris/steel/golden
 	icon_state = "golden"
-	initial_flooring = /decl/flooring/tiling/eris/steel/golden
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/golden
 
 /turf/simulated/floor/tiled/eris/steel/bluecorner
 	icon_state = "bluecorner"
-	initial_flooring = /decl/flooring/tiling/eris/steel/bluecorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/bluecorner
 
 /turf/simulated/floor/tiled/eris/steel/orangecorner
 	icon_state = "orangecorner"
-	initial_flooring = /decl/flooring/tiling/eris/steel/orangecorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/orangecorner
 
 /turf/simulated/floor/tiled/eris/steel/cyancorner
 	icon_state = "cyancorner"
-	initial_flooring = /decl/flooring/tiling/eris/steel/cyancorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/cyancorner
 
 /turf/simulated/floor/tiled/eris/steel/violetcorener
 	icon_state = "violetcorener"
-	initial_flooring = /decl/flooring/tiling/eris/steel/violetcorener
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/violetcorener
 
 /turf/simulated/floor/tiled/eris/steel/monofloor
 	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/eris/steel/monofloor
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/monofloor
 
 /turf/simulated/floor/tiled/eris/steel/bar_flat
 	icon_state = "bar_flat"
-	initial_flooring = /decl/flooring/tiling/eris/steel/bar_flat
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/bar_flat
 
 /turf/simulated/floor/tiled/eris/steel/bar_dance
 	icon_state = "bar_dance"
-	initial_flooring = /decl/flooring/tiling/eris/steel/bar_dance
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/bar_dance
 
 /turf/simulated/floor/tiled/eris/steel/bar_light
 	icon_state = "bar_light"
-	initial_flooring = /decl/flooring/tiling/eris/steel/bar_light
+	initial_flooring = /datum/decl/flooring/tiling/eris/steel/bar_light
 
 /turf/simulated/floor/tiled/eris/steel/bar_light/Initialize(mapload)
 	. = ..()
@@ -775,67 +775,67 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_white.dmi'
 	icon_state = "tiles"
-	initial_flooring = /decl/flooring/tiling/eris/white
+	initial_flooring = /datum/decl/flooring/tiling/eris/white
 
 /turf/simulated/floor/tiled/eris/white/panels
 	icon_state = "panels"
-	initial_flooring = /decl/flooring/tiling/eris/white/panels
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/panels
 
 /turf/simulated/floor/tiled/eris/white/techfloor
 	icon_state = "techfloor"
-	initial_flooring = /decl/flooring/tiling/eris/white/techfloor
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/techfloor
 
 /turf/simulated/floor/tiled/eris/white/techfloor_grid
 	icon_state = "techfloor_grid"
-	initial_flooring = /decl/flooring/tiling/eris/white/techfloor_grid
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/techfloor_grid
 
 /turf/simulated/floor/tiled/eris/white/brown_perforated
 	icon_state = "brown_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/white/brown_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/brown_perforated
 
 /turf/simulated/floor/tiled/eris/white/gray_perforated
 	icon_state = "gray_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/white/gray_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/gray_perforated
 
 /turf/simulated/floor/tiled/eris/white/cargo
 	icon_state = "cargo"
-	initial_flooring = /decl/flooring/tiling/eris/white/cargo
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/cargo
 
 /turf/simulated/floor/tiled/eris/white/brown_platform
 	icon_state = "brown_platform"
-	initial_flooring = /decl/flooring/tiling/eris/white/brown_platform
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/brown_platform
 
 /turf/simulated/floor/tiled/eris/white/gray_platform
 	icon_state = "gray_platform"
-	initial_flooring = /decl/flooring/tiling/eris/white/gray_platform
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/gray_platform
 
 /turf/simulated/floor/tiled/eris/white/danger
 	icon_state = "danger"
-	initial_flooring = /decl/flooring/tiling/eris/white/danger
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/danger
 
 /turf/simulated/floor/tiled/eris/white/golden
 	icon_state = "golden"
-	initial_flooring = /decl/flooring/tiling/eris/white/golden
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/golden
 
 /turf/simulated/floor/tiled/eris/white/bluecorner
 	icon_state = "bluecorner"
-	initial_flooring = /decl/flooring/tiling/eris/white/bluecorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/bluecorner
 
 /turf/simulated/floor/tiled/eris/white/orangecorner
 	icon_state = "orangecorner"
-	initial_flooring = /decl/flooring/tiling/eris/white/orangecorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/orangecorner
 
 /turf/simulated/floor/tiled/eris/white/cyancorner
 	icon_state = "cyancorner"
-	initial_flooring = /decl/flooring/tiling/eris/white/cyancorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/cyancorner
 
 /turf/simulated/floor/tiled/eris/white/violetcorener
 	icon_state = "violetcorener"
-	initial_flooring = /decl/flooring/tiling/eris/white/violetcorener
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/violetcorener
 
 /turf/simulated/floor/tiled/eris/white/monofloor
 	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/eris/white/monofloor
+	initial_flooring = /datum/decl/flooring/tiling/eris/white/monofloor
 
 
 
@@ -844,67 +844,67 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_dark.dmi'
 	icon_state = "tiles"
-	initial_flooring = /decl/flooring/tiling/eris/dark
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark
 
 /turf/simulated/floor/tiled/eris/dark/panels
 	icon_state = "panels"
-	initial_flooring = /decl/flooring/tiling/eris/dark/panels
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/panels
 
 /turf/simulated/floor/tiled/eris/dark/techfloor
 	icon_state = "techfloor"
-	initial_flooring = /decl/flooring/tiling/eris/dark/techfloor
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/techfloor
 
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid
 	icon_state = "techfloor_grid"
-	initial_flooring = /decl/flooring/tiling/eris/dark/techfloor_grid
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/techfloor_grid
 
 /turf/simulated/floor/tiled/eris/dark/brown_perforated
 	icon_state = "brown_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/dark/brown_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/brown_perforated
 
 /turf/simulated/floor/tiled/eris/dark/gray_perforated
 	icon_state = "gray_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/dark/gray_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/gray_perforated
 
 /turf/simulated/floor/tiled/eris/dark/cargo
 	icon_state = "cargo"
-	initial_flooring = /decl/flooring/tiling/eris/dark/cargo
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/cargo
 
 /turf/simulated/floor/tiled/eris/dark/brown_platform
 	icon_state = "brown_platform"
-	initial_flooring = /decl/flooring/tiling/eris/dark/brown_platform
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/brown_platform
 
 /turf/simulated/floor/tiled/eris/dark/gray_platform
 	icon_state = "gray_platform"
-	initial_flooring = /decl/flooring/tiling/eris/dark/gray_platform
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/gray_platform
 
 /turf/simulated/floor/tiled/eris/dark/danger
 	icon_state = "danger"
-	initial_flooring = /decl/flooring/tiling/eris/dark/danger
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/danger
 
 /turf/simulated/floor/tiled/eris/dark/golden
 	icon_state = "golden"
-	initial_flooring = /decl/flooring/tiling/eris/dark/golden
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/golden
 
 /turf/simulated/floor/tiled/eris/dark/bluecorner
 	icon_state = "bluecorner"
-	initial_flooring = /decl/flooring/tiling/eris/dark/bluecorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/bluecorner
 
 /turf/simulated/floor/tiled/eris/dark/orangecorner
 	icon_state = "orangecorner"
-	initial_flooring = /decl/flooring/tiling/eris/dark/orangecorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/orangecorner
 
 /turf/simulated/floor/tiled/eris/dark/cyancorner
 	icon_state = "cyancorner"
-	initial_flooring = /decl/flooring/tiling/eris/dark/cyancorner
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/cyancorner
 
 /turf/simulated/floor/tiled/eris/dark/violetcorener
 	icon_state = "violetcorener"
-	initial_flooring = /decl/flooring/tiling/eris/dark/violetcorener
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/violetcorener
 
 /turf/simulated/floor/tiled/eris/dark/monofloor
 	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/eris/dark/monofloor
+	initial_flooring = /datum/decl/flooring/tiling/eris/dark/monofloor
 
 
 
@@ -913,64 +913,64 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles.dmi'
 	icon_state = "cafe"
-	initial_flooring = /decl/flooring/tiling/eris/cafe
+	initial_flooring = /datum/decl/flooring/tiling/eris/cafe
 
 /turf/simulated/floor/tiled/eris/bcircuit
 	name = "substrate"
 	icon = 'icons/turf/flooring/eris/circuit.dmi'
 	icon_state = "bcircuit"
-	initial_flooring = /decl/flooring/tiling/eris/bcircuit
+	initial_flooring = /datum/decl/flooring/tiling/eris/bcircuit
 
 /turf/simulated/floor/tiled/eris/derelict1
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
 	icon_state = "derelict1"
-	initial_flooring = /decl/flooring/tiling/eris/derelict1
+	initial_flooring = /datum/decl/flooring/tiling/eris/derelict1
 
 /turf/simulated/floor/tiled/eris/derelict2
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
 	icon_state = "derelict2"
-	initial_flooring = /decl/flooring/tiling/eris/derelict2
+	initial_flooring = /datum/decl/flooring/tiling/eris/derelict2
 
 /turf/simulated/floor/tiled/eris/derelict3
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
 	icon_state = "derelict3"
-	initial_flooring = /decl/flooring/tiling/eris/derelict3
+	initial_flooring = /datum/decl/flooring/tiling/eris/derelict3
 
 /turf/simulated/floor/tiled/eris/derelict4
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/derelict.dmi'
 	icon_state = "derelict4"
-	initial_flooring = /decl/flooring/tiling/eris/derelict4
+	initial_flooring = /datum/decl/flooring/tiling/eris/derelict4
 
 /turf/simulated/floor/tiled/eris/techmaint
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	icon_state = "techmaint"
-	initial_flooring = /decl/flooring/tiling/eris/techmaint
+	initial_flooring = /datum/decl/flooring/tiling/eris/techmaint
 
 /turf/simulated/floor/tiled/eris/techmaint_perforated
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	icon_state = "techmaint_perforated"
-	initial_flooring = /decl/flooring/tiling/eris/techmaint_perforated
+	initial_flooring = /datum/decl/flooring/tiling/eris/techmaint_perforated
 
 /turf/simulated/floor/tiled/eris/techmaint_panels
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	icon_state = "techmaint_panels"
-	initial_flooring = /decl/flooring/tiling/eris/techmaint_panels
+	initial_flooring = /datum/decl/flooring/tiling/eris/techmaint_panels
 
 /turf/simulated/floor/tiled/eris/techmaint_cargo
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	icon_state = "techmaint_cargo"
-	initial_flooring = /decl/flooring/tiling/eris/techmaint_cargo
+	initial_flooring = /datum/decl/flooring/tiling/eris/techmaint_cargo
 
 //=========ERIS GRASS==========\\
-/decl/flooring/grass/heavy
+/datum/decl/flooring/grass/heavy
 	name = "heavy grass"
 	desc = "A dense ground coating of grass"
 	flags = TURF_REMOVE_SHOVEL
@@ -982,7 +982,7 @@
 	name = "heavy grass"
 	icon_state = "grass-heavy0"
 	edge_blending_priority = 4
-	initial_flooring = /decl/flooring/grass/heavy
+	initial_flooring = /datum/decl/flooring/grass/heavy
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
 		/turf/simulated/floor/outdoors/dirt
@@ -996,7 +996,7 @@
 
 //=========Eris Plating==========\\
 // This is the light grey tiles with random geometric shapes extruded
-/decl/flooring/eris_plating
+/datum/decl/flooring/eris_plating
 	name = "reinforced plating"
 	descriptor = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
@@ -1008,7 +1008,7 @@
 
 	build_type = null
 
-	plating_type = /decl/flooring/eris_plating/under
+	plating_type = /datum/decl/flooring/eris_plating/under
 
 	/*
 	footstep_sound = "plating"
@@ -1026,7 +1026,7 @@
 	name = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	icon_state = "plating"
-	initial_flooring = /decl/flooring/eris_plating
+	initial_flooring = /datum/decl/flooring/eris_plating
 
 /turf/simulated/floor/plating/eris/airless
 	oxygen = 0
@@ -1035,7 +1035,7 @@
 
 //==========Eris Underplating==============\\
 // This looks similar to normal plating, but with edges
-/decl/flooring/eris_plating/under
+/datum/decl/flooring/eris_plating/under
 	name = "underplating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	descriptor = "support beams"
@@ -1046,7 +1046,7 @@
 
 	floor_smooth = SMOOTH_WHITELIST
 	flooring_whitelist = list(
-		/decl/flooring/tiling/eris
+		/datum/decl/flooring/tiling/eris
 	)
 
 	plating_type = null
@@ -1066,7 +1066,7 @@
 /turf/simulated/floor/plating/eris/under
 	name = "underplating"
 	icon_state = "under"
-	initial_flooring = /decl/flooring/eris_plating/under
+	initial_flooring = /datum/decl/flooring/eris_plating/under
 
 /turf/simulated/floor/plating/eris/under/airless
 	oxygen = 0
@@ -1075,7 +1075,7 @@
 
 //============Eris Hull Plating=========\\
 // This is 'spaceship outside' plating, black with random rounded rectangles.
-/decl/flooring/eris_plating/hull
+/datum/decl/flooring/eris_plating/hull
 	name = "hull"
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/eris/hull.dmi'
@@ -1099,14 +1099,14 @@
 
 /* Eris features we lack on flooring decls
 //Hull can upgrade to underplating
-/decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
+/datum/decl/flooring/reinforced/plating/hull/can_build_floor(var/datum/decl/flooring/newfloor)
 	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
 
-/decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
+/datum/decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return null
 	else if (turf_is_upper_hull(location))
-		return /decl/flooring/reinforced/plating/under
+		return /datum/decl/flooring/reinforced/plating/under
 	else
 		return null //This should never happen, hull plawell,ting should only be on the exterior
 */
@@ -1114,7 +1114,7 @@
 	name = "hull"
 	icon = 'icons/turf/flooring/eris/hull.dmi'
 	icon_state = "hullcenter0"
-	initial_flooring = /decl/flooring/eris_plating/hull
+	initial_flooring = /datum/decl/flooring/eris_plating/hull
 
 /turf/simulated/floor/hull/airless
 	oxygen = 0

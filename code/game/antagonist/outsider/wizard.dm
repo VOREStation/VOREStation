@@ -108,7 +108,7 @@ GLOBAL_DATUM(wizards, /datum/antagonist/wizard)
 
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()
-	for(var/spell/spell_to_remove in src.spell_list)
+	for(var/datum/spell/spell_to_remove in src.spell_list)
 		remove_spell(spell_to_remove)
 
 /obj/item/clothing

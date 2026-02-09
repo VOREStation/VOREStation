@@ -137,7 +137,7 @@
 /// payment account status changed /obj/machinery/account_database/tgui_act() : (datum/money_account/account)
 #define COMSIG_GLOB_PAYMENT_ACCOUNT_REVOKE "!payment_account_revoke_payroll"
 
-// base /decl/emote/proc/do_emote() : (mob/user, extra_params)
+// base /datum/decl/emote/proc/do_emote() : (mob/user, extra_params)
 #define COMSIG_GLOB_EMOTE_PERFORMED "!emote_performed"
 // base /proc/say_dead_direct() : (message)
 #define COMSIG_GLOB_DEAD_SAY "!dead_say"

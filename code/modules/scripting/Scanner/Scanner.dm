@@ -5,7 +5,7 @@
 	Class: n_Scanner
 	An object responsible for breaking up source code into tokens for use by the parser.
 */
-/n_Scanner
+/datum/n_Scanner
 	var/code
 /*
 	Var: errors
@@ -25,27 +25,27 @@
 	Proc: LoadCode
 	Loads source code.
 */
-/n_Scanner/proc/LoadCode(c)
+/datum/n_Scanner/proc/LoadCode(c)
 			code=c
 
 /*
 	Proc: LoadCodeFromFile
 	Gets the code from a file and calls <LoadCode()>.
 */
-/n_Scanner/proc/LoadCodeFromFile(f)
+/datum/n_Scanner/proc/LoadCodeFromFile(f)
 			LoadCode(file2text(f))
 
 /*
 	Proc: Scan
 	Runs the scanner and returns the resulting list of tokens. Ensure that <LoadCode()> has been called first.
 */
-/n_Scanner/proc/Scan()
+/datum/n_Scanner/proc/Scan()
 
 /*
 	Class: nS_Scanner
 	A scanner implementation for n_Script.
 */
-/n_Scanner/nS_Scanner
+/datum/n_Scanner/nS_Scanner
 
 /*
 	Variable: codepos
@@ -54,7 +54,7 @@
 	var/codepos = 1
 	var/line = 1
 	var/linepos = 0 //column=codepos-linepos
-	var/n_scriptOptions/nS_Options/options
+	var/datum/n_scriptOptions/nS_Options/options
 	var/commenting = 0 /// 1 is a single-line comment, 2 is a multi-line comment
 /*
 	Variable: ignore
@@ -98,14 +98,14 @@
 	code	 	- The source code to tokenize.
 	options - An <nS_Options> object used to configure the scanner.
 */
-/n_Scanner/nS_Scanner/New(code, n_scriptOptions/nS_Options/options)
+/datum/n_Scanner/nS_Scanner/New(code, datum/n_scriptOptions/nS_Options/options)
 	.=..()
 	ignore+= ascii2text(13) //Carriage return
 	delim += ignore + options.symbols + end_stmt + string_delim
 	src.options=options
 	LoadCode(code)
 
-/n_Scanner/nS_Scanner/Scan() //Creates a list of tokens from source code
+/datum/n_Scanner/nS_Scanner/Scan() //Creates a list of tokens from source code
 	var/list/tokens=new
 	for(, src.codepos<=length(code), src.codepos++)
 
@@ -119,7 +119,7 @@
 		else if(char == "/")
 			ReadComment()
 		else if(end_stmt.Find(char))
-			tokens+=new /token/end(char, line, COL)
+			tokens+=new /datum/token/end(char, line, COL)
 		else if(string_delim.Find(char))
 			codepos++ //skip string delimiter
 			tokens+=ReadString(char)
@@ -143,7 +143,7 @@
 	Parameters:
 	start - The character used to start the string.
 */
-/n_Scanner/nS_Scanner/proc/ReadString(start)
+/datum/n_Scanner/nS_Scanner/proc/ReadString(start)
 	var/buf
 	for(, codepos <= length(code), codepos++)//codepos to length(code))
 		var/char=copytext(code, codepos, codepos+1)
@@ -162,8 +162,8 @@
 						else				//Unknown escaped text
 							buf+=char
 			if("\n")
-				. = new/token/string(buf, line, COL)
-				errors+=new/scriptError("Unterminated string. Newline reached.", .)
+				. = new/datum/token/string(buf, line, COL)
+				errors+=new/datum/scriptError("Unterminated string. Newline reached.", .)
 				line++
 				linepos=codepos
 				break
@@ -172,13 +172,13 @@
 					break
 				else
 					buf+=char     //Just a normal character in a string
-	if(!.) return new/token/string(buf, line, COL)
+	if(!.) return new/datum/token/string(buf, line, COL)
 
 /*
 Proc: ReadWord
 Reads characters separated by an item in <delim> into a token.
 */
-/n_Scanner/nS_Scanner/proc/ReadWord()
+/datum/n_Scanner/nS_Scanner/proc/ReadWord()
 	var/char=copytext(code, codepos, codepos+1)
 	var/buf
 	while(!delim.Find(char) && codepos<=length(code))
@@ -186,15 +186,15 @@ Reads characters separated by an item in <delim> into a token.
 		char=copytext(code, ++codepos, codepos+1)
 	codepos-- //allow main Scan() proc to read the delimiter
 	if(options.keywords.Find(buf))
-		return new /token/keyword(buf, line, COL)
+		return new /datum/token/keyword(buf, line, COL)
 	else
-		return new /token/word(buf, line, COL)
+		return new /datum/token/word(buf, line, COL)
 
 /*
 Proc: ReadSymbol
 Reads a symbol into a token.
 */
-/n_Scanner/nS_Scanner/proc/ReadSymbol()
+/datum/n_Scanner/nS_Scanner/proc/ReadSymbol()
 	var/char=copytext(code, codepos, codepos+1)
 	var/buf
 
@@ -204,13 +204,13 @@ Reads a symbol into a token.
 		char=copytext(code, codepos, codepos+1)
 
 	codepos-- //allow main Scan() proc to read the next character
-	return new /token/symbol(buf, line, COL)
+	return new /datum/token/symbol(buf, line, COL)
 
 /*
 Proc: ReadNumber
 Reads a number into a token.
 */
-/n_Scanner/nS_Scanner/proc/ReadNumber()
+/datum/n_Scanner/nS_Scanner/proc/ReadNumber()
 	var/char=copytext(code, codepos, codepos+1)
 	var/buf
 	var/dec=0
@@ -220,9 +220,9 @@ Reads a number into a token.
 		buf+=char
 		codepos++
 		char=copytext(code, codepos, codepos+1)
-	var/token/number/T=new(buf, line, COL)
+	var/datum/token/number/T=new(buf, line, COL)
 	if(isnull(text2num(buf)))
-		errors+=new/scriptError("Bad number: ", T)
+		errors+=new/datum/scriptError("Bad number: ", T)
 		T.value=0
 	codepos-- //allow main Scan() proc to read the next character
 	return T
@@ -232,7 +232,7 @@ Proc: ReadComment
 Reads a comment and outputs the type of comment
 */
 
-/n_Scanner/nS_Scanner/proc/ReadComment()
+/datum/n_Scanner/nS_Scanner/proc/ReadComment()
 	var/char=copytext(code, codepos, codepos+1)
 	var/nextchar=copytext(code, codepos+1, codepos+2)
 	var/charstring = char+nextchar
@@ -269,6 +269,6 @@ Reads a comment and outputs the type of comment
 			if(expectedend) expectedend = 0
 
 		if(comm == 2)
-			errors+=new/scriptError/UnterminatedComment()
+			errors+=new/datum/scriptError/UnterminatedComment()
 
 #undef COL

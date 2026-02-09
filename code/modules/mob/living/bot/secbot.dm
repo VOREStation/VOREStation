@@ -20,7 +20,7 @@
 	var/check_records = FALSE // If true, arrests people without a record.
 	var/check_arrest = TRUE // If true, arrests people who are set to arrest.
 	var/arrest_type = FALSE // If true, doesn't handcuff. You monster.
-	var/declare_arrests = FALSE // If true, announces arrests over sechuds.
+	var/datum/declare_arrests = FALSE // If true, announces arrests over sechuds.
 	var/threat = 0 // How much of a threat something is. Set upon acquiring a target.
 	var/attacked = FALSE // If true, gives the bot enough threat assessment to attack immediately.
 	var/retaliates = TRUE //If this type of secbot should retaliate at all - so that slime securitrons don't go ballistic the second they get glomped.

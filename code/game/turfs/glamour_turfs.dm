@@ -18,9 +18,9 @@
 	name = "wooden floor"
 	icon = 'icons/turf/flooring/glamour.dmi'
 	icon_state = "wood"
-	initial_flooring = /decl/flooring/wood/glamour
+	initial_flooring = /datum/decl/flooring/wood/glamour
 
-/decl/flooring/wood/glamour
+/datum/decl/flooring/wood/glamour
 	name = "wooden glamour"
 	desc = "Polished glamourwood planks."
 	icon = 'icons/turf/flooring/glamour.dmi'

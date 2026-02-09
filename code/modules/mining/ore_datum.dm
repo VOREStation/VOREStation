@@ -1,4 +1,4 @@
-/ore
+/datum/ore
 	var/name
 	var/display_name
 	var/alloy
@@ -7,7 +7,7 @@
 	var/result_amount     // How much ore?
 	var/spread = 1	      // Does this type of deposit spread?
 	var/spread_chance     // Chance of spreading in any direction
-	var/ore	              // Path to the ore produced when tile is mined.
+	var/datum/ore	              // Path to the ore produced when tile is mined.
 	var/scan_icon         // Overlay for ore scanners.
 	// Xenoarch stuff. No idea what it's for, just refactored it to be less awful.
 	var/list/xarch_ages = list(
@@ -18,12 +18,12 @@
 	var/reagent = REAGENT_ID_SILICATE
 	var/wiki_flag = 0
 
-/ore/New()
+/datum/ore/New()
 	. = ..()
 	if(!display_name)
 		display_name = name
 
-/ore/uranium
+/datum/ore/uranium
 	name = ORE_URANIUM
 	display_name = "pitchblende"
 	smelts_to = MAT_URANIUM
@@ -38,7 +38,7 @@
 	xarch_source_mineral = REAGENT_ID_POTASSIUM
 	reagent = REAGENT_ID_RADIUM // Otherwise it emp pulses constantly with iron
 
-/ore/hematite
+/datum/ore/hematite
 	name = ORE_HEMATITE
 	display_name = ORE_HEMATITE
 	smelts_to = MAT_IRON
@@ -49,7 +49,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_IRON
 
-/ore/coal
+/datum/ore/coal
 	name = ORE_CARBON
 	display_name = "raw carbon"
 	smelts_to = MAT_PLASTIC
@@ -61,7 +61,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_CARBON
 
-/ore/glass
+/datum/ore/glass
 	name = ORE_SAND
 	display_name = ORE_SAND
 	smelts_to = MAT_GLASS
@@ -69,7 +69,7 @@
 	ore = /obj/item/ore/glass
 	compresses_to = MAT_SANDSTONE
 
-/ore/phoron
+/datum/ore/phoron
 	name = ORE_PHORON
 	display_name = "phoron crystals"
 	compresses_to = MAT_PHORON
@@ -87,7 +87,7 @@
 	xarch_source_mineral = REAGENT_ID_PHORON
 	reagent = REAGENT_ID_PHORON
 
-/ore/silver
+/datum/ore/silver
 	name = ORE_SILVER
 	display_name = "native silver"
 	smelts_to = MAT_SILVER
@@ -97,7 +97,7 @@
 	scan_icon = "mineral_uncommon"
 	reagent = REAGENT_ID_SILVER
 
-/ore/gold
+/datum/ore/gold
 	name = ORE_GOLD
 	smelts_to = MAT_GOLD
 	display_name = "native gold"
@@ -113,7 +113,7 @@
 		)
 	reagent = REAGENT_ID_GOLD
 
-/ore/diamond
+/datum/ore/diamond
 	name = ORE_DIAMOND
 	display_name = ORE_DIAMOND
 	alloy = 1
@@ -125,7 +125,7 @@
 	xarch_source_mineral = REAGENT_ID_NITROGEN
 	reagent = REAGENT_ID_CARBON
 
-/ore/platinum
+/datum/ore/platinum
 	name = ORE_PLATINUM
 	display_name = "raw platinum"
 	smelts_to = MAT_PLATINUM
@@ -137,7 +137,7 @@
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_PLATINUM
 
-/ore/hydrogen
+/datum/ore/hydrogen
 	name = ORE_MHYDROGEN
 	display_name = "metallic hydrogen"
 	smelts_to = MAT_TRITIUM
@@ -146,7 +146,7 @@
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_HYDROGEN
 
-/ore/verdantium
+/datum/ore/verdantium
 	name = ORE_VERDANTIUM
 	display_name = "crystalline verdantite"
 	compresses_to = MAT_VERDANTIUM
@@ -160,7 +160,7 @@
 		)
 	reagent = REAGENT_ID_PHOSPHORUS
 
-/ore/marble
+/datum/ore/marble
 	name = ORE_MARBLE
 	display_name = "recrystallized carbonate"
 	compresses_to = MAT_MARBLE
@@ -170,7 +170,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_CALCIUMCARBONATE
 
-/ore/lead
+/datum/ore/lead
 	name = ORE_LEAD
 	display_name = "lead glance"
 	smelts_to = MAT_LEAD
@@ -180,7 +180,7 @@
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_LEAD
 
-/ore/copper
+/datum/ore/copper
 	name = ORE_COPPER
 	display_name = ORE_COPPER
 	smelts_to = MAT_COPPER
@@ -191,7 +191,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_COPPER
 
-/ore/tin
+/datum/ore/tin
 	name = ORE_TIN
 	display_name = ORE_TIN
 	smelts_to = MAT_TIN
@@ -202,7 +202,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_TIN
 
-/ore/quartz
+/datum/ore/quartz
 	name = ORE_QUARTZ
 	display_name = "unrefined quartz"
 	compresses_to = MAT_QUARTZ
@@ -212,7 +212,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_SILICON
 
-/ore/bauxite
+/datum/ore/bauxite
 	name = ORE_BAUXITE
 	display_name = ORE_BAUXITE
 	smelts_to = MAT_ALUMINIUM
@@ -222,7 +222,7 @@
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_ALUMINIUM
 
-/ore/rutile
+/datum/ore/rutile
 	name = ORE_RUTILE
 	display_name = ORE_RUTILE
 	smelts_to = MAT_TITANIUM
@@ -233,7 +233,7 @@
 	scan_icon = "mineral_uncommon"
 	reagent = REAGENT_ID_TITANIUMDIOX
 
-/ore/painite
+/datum/ore/painite
 	name = ORE_PAINITE
 	display_name = "rough painite"
 	compresses_to = MAT_PAINITE
@@ -243,7 +243,7 @@
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_CALCIUM
 
-/ore/void_opal
+/datum/ore/void_opal
 	name = ORE_VOPAL
 	display_name = "rough void opal"
 	compresses_to = MAT_VOPAL

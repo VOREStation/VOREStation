@@ -34,7 +34,7 @@
 	pto_type = PTO_SCIENCE
 	dept_time_required = 60
 
-	outfit_type = /decl/hierarchy/outfit/job/science/rd
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/rd
 	job_description = "The " + JOB_RESEARCH_DIRECTOR + " manages and maintains the Research department. They are required to ensure the safety of the entire crew, \
 						at least with regards to anything occurring in the Research department, and to inform the crew of any disruptions that \
 						might originate from Research. The " + JOB_RESEARCH_DIRECTOR + " often has at least passing knowledge of most of the Research department, but \
@@ -80,7 +80,7 @@
 
 	minimal_player_age = 14
 
-	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/scientist
 	job_description = "A " + JOB_SCIENTIST + " is a generalist working in the Research department, with general knowledge of the scientific process, as well as \
 						the principles and requirements of Research and Development. They may also formulate experiments of their own devising, if \
 						they find an appropriate topic."
@@ -159,7 +159,7 @@
 	minimal_player_age = 14
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
-	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A " + JOB_XENOBIOLOGIST + " studies esoteric lifeforms, usually in the relative safety of their lab. They attempt to find ways to benefit \
 						from the byproducts of these lifeforms, and their main subject at present is the Giant Slime."
 
@@ -199,7 +199,7 @@
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 	banned_job_species = list(FBP_DIGITAL)
 
-	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/roboticist
 	job_description = "A " + JOB_ROBOTICIST + " maintains and repairs the station's synthetics, including crew with prosthetic limbs. \
 						They can also assist the station by producing simple robots and even pilotable exosuits."
 	alt_titles = list(
@@ -249,7 +249,7 @@
 
 	minimal_player_age = 14
 
-	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A " + JOB_XENOBOTANIST + " grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					are both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
 	alt_titles = list(JOB_ALT_XENOHYDROPONICIST = /datum/alt_title/xenohydroponicist, JOB_ALT_XENOFLORIST = /datum/alt_title/xenoflorist)

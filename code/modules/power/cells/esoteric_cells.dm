@@ -37,7 +37,7 @@
 
 			if(istype(T, /turf/simulated/floor))
 				var/turf/simulated/floor/F = T
-				if(istype(F.flooring, /decl/flooring/reinforced))
+				if(istype(F.flooring, /datum/decl/flooring/reinforced))
 					conductive = TRUE
 
 			if(conductive)

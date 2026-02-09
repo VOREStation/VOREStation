@@ -251,9 +251,9 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.suit_cycler_emagged += new SCC()
 
 	//Ores
-	paths = subtypesof(/ore)
+	paths = subtypesof(/datum/ore)
 	for(var/oretype in paths)
-		var/ore/OD = new oretype()
+		var/datum/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
 
 	paths = subtypesof(/datum/alloy)
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.alloy_data += new alloytype()
 
 	//Closet appearances
-	GLOB.closet_appearances = decls_repository.get_decls_of_type(/decl/closet_appearance)
+	GLOB.closet_appearances = GLOB.decls_repository.get_decls_of_type(/datum/decl/closet_appearance)
 
 	paths = subtypesof(/datum/sprite_accessory/ears)
 	for(var/path in paths)

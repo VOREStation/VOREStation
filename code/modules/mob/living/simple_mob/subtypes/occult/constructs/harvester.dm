@@ -14,7 +14,7 @@
 	attack_sharp = TRUE
 	attacktext = list("violently stabbed")
 	friendly = list("caresses")
-	organ_names = /decl/mob_organ_names/harvester
+	organ_names = /datum/decl/mob_organ_names/harvester
 	movement_cooldown = -1
 
 	//	environment_smash = 1	// Whatever this gets renamed to, Harvesters need to break things
@@ -31,15 +31,15 @@
 				"rad" = 100)
 
 	construct_spells = list(
-			/spell/aoe_turf/knock/harvester,
-			/spell/targeted/construct_advanced/inversion_beam,
-			/spell/targeted/construct_advanced/agonizing_sphere,
-			/spell/rune_write
+			/datum/spell/aoe_turf/knock/harvester,
+			/datum/spell/targeted/construct_advanced/inversion_beam,
+			/datum/spell/targeted/construct_advanced/agonizing_sphere,
+			/datum/spell/rune_write
 		)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 	attack_edge = TRUE
 
-/decl/mob_organ_names/harvester
+/datum/decl/mob_organ_names/harvester
 	hit_zones = list("cephalothorax", "eye", "carapace", "energy crystal", "mandible")
 
 ////////////////////////////

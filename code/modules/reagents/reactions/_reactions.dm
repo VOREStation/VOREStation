@@ -10,7 +10,7 @@
 //HALF_LIFE(3) -> Half of the reagents are consumed after 3 chemistry ticks.
 #define HALF_LIFE(ticks) (ticks? 1.0 - (0.5)**(1.0/(ticks*PROCESS_REACTION_ITER)) : 1.0)
 
-/decl/chemical_reaction
+/datum/decl/chemical_reaction
 	var/name = null
 	var/id = null
 	var/result = null
@@ -36,7 +36,7 @@
 	var/log_is_important = 0 // If this reaction should be considered important for logging. Important recipes message admins when mixed, non-important ones just log to file.
 	var/wiki_flag = 0
 
-/decl/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
 	//check that all the required reagents are present
 	if(!holder.has_all_reagents(required_reagents))
 		return FALSE
@@ -51,7 +51,7 @@
 
 	return TRUE
 
-/decl/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
+/datum/decl/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
 	var/progress = reaction_limit * reaction_rate //simple exponential progression
 
 	//calculate yield
@@ -79,7 +79,7 @@
 
 	return progress
 
-/decl/chemical_reaction/process(var/datum/reagents/holder, var/belly_reagent)
+/datum/decl/chemical_reaction/process(var/datum/reagents/holder, var/belly_reagent)
 	//determine how far the reaction can proceed
 	var/list/reaction_limits = list()
 	for(var/reactant in required_reagents)
@@ -112,11 +112,11 @@
 	return reaction_progress
 
 //called when a reaction processes
-/decl/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume)
 	return
 
 //called after processing reactions, if they occurred
-/decl/chemical_reaction/proc/post_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/proc/post_reaction(var/datum/reagents/holder)
 	var/atom/container = holder.my_atom
 	if(mix_message && container && !ismob(container))
 		var/turf/T = get_turf(container)
@@ -128,5 +128,5 @@
 
 //obtains any special data that will be provided to the reaction products
 //this is called just before reactants are removed.
-/decl/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
+/datum/decl/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
 	return null

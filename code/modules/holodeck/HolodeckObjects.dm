@@ -19,36 +19,36 @@
 	name = "carpet"
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
-	initial_flooring = /decl/flooring/carpet
+	initial_flooring = /datum/decl/flooring/carpet
 
 /turf/simulated/floor/holofloor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
-	initial_flooring = /decl/flooring/tiling
+	initial_flooring = /datum/decl/flooring/tiling
 
 /turf/simulated/floor/holofloor/tiled/dark
 	name = "dark floor"
 	icon_state = "dark"
-	initial_flooring = /decl/flooring/tiling/dark
+	initial_flooring = /datum/decl/flooring/tiling/dark
 
 /turf/simulated/floor/holofloor/lino
 	name = "lino"
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_state = "lino"
-	initial_flooring = /decl/flooring/linoleum
+	initial_flooring = /datum/decl/flooring/linoleum
 
 /turf/simulated/floor/holofloor/wood
 	name = "wooden floor"
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
-	initial_flooring = /decl/flooring/wood
+	initial_flooring = /datum/decl/flooring/wood
 
 /turf/simulated/floor/holofloor/grass
 	name = "lush grass"
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_state = "grass0"
-	initial_flooring = /decl/flooring/grass
+	initial_flooring = /datum/decl/flooring/grass
 
 /turf/simulated/floor/holofloor/grass/jungle
 	icon = 'icons/jungle.dmi'
@@ -83,7 +83,7 @@
 
 /turf/simulated/floor/holofloor/reinforced
 	icon = 'icons/turf/flooring/tiles.dmi'
-	initial_flooring = /decl/flooring/reinforced
+	initial_flooring = /datum/decl/flooring/reinforced
 	name = "reinforced holofloor"
 	icon_state = "reinforced"
 
@@ -130,13 +130,13 @@
 	name = "marble"
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "darkmarble"
-	initial_flooring = /decl/flooring/bmarble
+	initial_flooring = /datum/decl/flooring/bmarble
 
 /turf/simulated/floor/holofloor/wmarble
 	name = "marble"
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "lightmarble"
-	initial_flooring = /decl/flooring/wmarble
+	initial_flooring = /datum/decl/flooring/wmarble
 
 /obj/structure/holostool
 	name = "stool"

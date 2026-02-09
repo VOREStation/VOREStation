@@ -3,7 +3,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/nanotrasen/pol_6
+	poster_decl = /datum/decl/poster/nanotrasen/pol_6
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -249,7 +249,7 @@
 /obj/structure/sign/poster/nanotrasen{
 	dir = 8;
 	pixel_x = -32;
-	poster_decl = /decl/poster/nanotrasen/pol_7
+	poster_decl = /datum/decl/poster/nanotrasen/pol_7
 	},
 /obj/machinery/power/apc{
 	name = "south bump";

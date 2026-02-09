@@ -29,7 +29,7 @@
 	response_disarm = "rolls over"
 	response_harm   = "stomps on"
 
-	organ_names = /decl/mob_organ_names/pillbug
+	organ_names = /datum/decl/mob_organ_names/pillbug
 
 	armor = list(
 		"melee" = 30,
@@ -41,5 +41,5 @@
 		"rad" = 100
 		)
 
-/decl/mob_organ_names/pillbug
+/datum/decl/mob_organ_names/pillbug
 	hit_zones = list("cephalon", "pereon", "pleon", "left forelegs", "right forelegs", "left hind legs", "right hind legs")

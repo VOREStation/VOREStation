@@ -48,9 +48,9 @@
 /datum/unit_test/chemical_reactions_shall_use_and_produce_valid_reagents/Run()
 	var/list/collection_id = list()
 
-	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
+	var/list/all_reactions = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
-		var/decl/chemical_reaction/CR = all_reactions[rtype]
+		var/datum/decl/chemical_reaction/CR = all_reactions[rtype]
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
@@ -123,9 +123,9 @@
 	RegisterSignal(instant_beaker.reagents, COMSIG_REAGENTS_HOLDER_REACTED, PROC_REF(get_signal_data))
 
 	//actual test
-	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
+	var/list/all_reactions = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
-		var/decl/chemical_reaction/CR = all_reactions[rtype]
+		var/datum/decl/chemical_reaction/CR = all_reactions[rtype]
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
@@ -136,15 +136,15 @@
 		if(!CR.result) // Cannot check for this
 			continue
 
-		if(istype(CR, /decl/chemical_reaction/instant/slime))
+		if(istype(CR, /datum/decl/chemical_reaction/instant/slime))
 		// slime time
-			var/decl/chemical_reaction/instant/slime/SR = CR
+			var/datum/decl/chemical_reaction/instant/slime/SR = CR
 			if(!SR.required)
 				continue
 			var/obj/item/slime_extract/E = new SR.required()
 			QDEL_SWAP(fake_beaker, E)
 			fake_beaker.reagents.maximum_volume = 5000
-		else if(istype(CR, /decl/chemical_reaction/distilling))
+		else if(istype(CR, /datum/decl/chemical_reaction/distilling))
 			// distilling
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
@@ -169,9 +169,9 @@
 	QDEL_NULL(instant_beaker)
 
 	if(failed)
-		TEST_FAIL("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
+		TEST_FAIL("One or more /datum/decl/chemical_reaction subtypes conflict with another reaction.")
 
-/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/datum/decl/chemical_reaction/CR, var/list/inhib = list())
 	var/scale = 10
 	if(CR.result_amount < 1)
 		scale = 1 / CR.result_amount // Create at least 1 unit
@@ -195,7 +195,7 @@
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
-		if(!istype(CR, /decl/chemical_reaction/distilling))
+		if(!istype(CR, /datum/decl/chemical_reaction/distilling))
 			fake_beaker.reagents.handle_reactions()
 			break // Skip the next section if we're not distilling
 
@@ -222,11 +222,11 @@
 
 	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
-		for(var/decl/chemical_reaction/test_react in result_reactions)
+		for(var/datum/decl/chemical_reaction/test_react in result_reactions)
 		return RESULT_REACTION_FAILED
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
-	for(var/decl/chemical_reaction/test_react in result_reactions)
+	for(var/datum/decl/chemical_reaction/test_react in result_reactions)
 		if(!test_react)
 			continue
 		if(!test_react.inhibitors.len)
@@ -240,7 +240,7 @@
 			return RESULT_REACTION_SUCCESS // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
-	for(var/decl/chemical_reaction/test_react in result_reactions)
+	for(var/datum/decl/chemical_reaction/test_react in result_reactions)
 		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitor for: [test_react]")
 	return RESULT_REACTION_FAILED
 

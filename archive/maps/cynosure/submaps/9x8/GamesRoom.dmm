@@ -85,7 +85,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/pol_15
+	poster_decl = /datum/decl/poster/pol_15
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)
@@ -113,7 +113,7 @@
 "A" = (
 /obj/structure/sign/poster{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_13
+	poster_decl = /datum/decl/poster/bay_13
 	},
 /turf/simulated/floor/plating,
 /area/template_noop)

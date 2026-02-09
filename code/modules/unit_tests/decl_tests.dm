@@ -4,9 +4,9 @@
 	var/list/keys = list()
 	var/list/duplicates = list()
 
-	var/list/all_emotes = decls_repository.get_decls_of_subtype(/decl/emote)
+	var/list/all_emotes = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/emote)
 	for(var/etype in all_emotes)
-		var/decl/emote/emote = all_emotes[etype]
+		var/datum/decl/emote/emote = all_emotes[etype]
 		if(!emote.key)
 			continue
 		if(emote.key in keys)

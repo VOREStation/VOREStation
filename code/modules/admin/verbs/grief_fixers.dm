@@ -23,7 +23,7 @@ ADMIN_VERB(fix_atmos, (R_ADMIN|R_DEBUG|R_EVENT), "Fix Atmospherics Grief", "View
 	to_chat(user, "\[2/5\] - All pipenets purged of gas.")
 
 	// Delete all zones.
-	for(var/zone/Z in world)
+	for(var/datum/zone/Z in world)
 		Z.c_invalidate()
 
 	to_chat(user, "\[3/5\] - All ZAS Zones removed.")

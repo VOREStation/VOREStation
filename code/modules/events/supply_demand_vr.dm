@@ -270,7 +270,7 @@
 /datum/event/supply_demand/proc/choose_chemistry_items(var/differentTypes)
 	// Checking if they show up in health analyzer is good huristic for it being a drug
 	var/list/medicineReagents = list()
-	for(var/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
+	for(var/datum/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
 		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
 		if(R && R.scannable)
 			medicineReagents += R
@@ -283,7 +283,7 @@
 
 /datum/event/supply_demand/proc/choose_bar_items(var/differentTypes)
 	var/list/drinkReagents = list()
-	for(var/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
+	for(var/datum/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
 		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
 		if(istype(R, /datum/reagent/drink) || istype(R, /datum/reagent/ethanol))
 			drinkReagents += R

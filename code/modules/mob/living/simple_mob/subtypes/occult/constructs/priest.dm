@@ -17,14 +17,14 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10 //It's not the strongest of the bunch, but that doesn't mean it can't hurt you.
 	melee_damage_upper = 15
-	organ_names = /decl/mob_organ_names/artificer
+	organ_names = /datum/decl/mob_organ_names/artificer
 	attacktext = list("rammed")
 	attack_sound = 'sound/weapons/rapidslice.ogg'
-	construct_spells = list(/spell/targeted/purity_repair_aura,
-							/spell/targeted/construct_advanced/mend_purity
+	construct_spells = list(/datum/spell/targeted/purity_repair_aura,
+							/datum/spell/targeted/construct_advanced/mend_purity
 							)
 
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
-/decl/mob_organ_names/artificer
+/datum/decl/mob_organ_names/artificer
 	hit_zones = list("body", "carapace", "right manipulator", "left manipulator", "upper left appendage", "upper right appendage", "eye")

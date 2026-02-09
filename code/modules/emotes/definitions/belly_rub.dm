@@ -1,4 +1,4 @@
-/decl/emote/visible/bellyrub
+/datum/decl/emote/visible/bellyrub
 	key = "bellyrub"
 	check_restraints = TRUE
 	check_range = 1
@@ -8,7 +8,7 @@
 	emote_message_3p = "rubs their belly!"
 	emote_message_3p_target = "rubs TARGET's belly!"
 
-/decl/emote/visible/bellyrub/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/visible/bellyrub/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
 	if(!target && isliving(user)) //We shouldn't NEED an isliving check here but...Whatever, safety first.
 		var/mob/living/U = user
 		U.vore_bellyrub(U)
@@ -23,5 +23,5 @@
 		to_chat(user, "You can not rub [target]'s belly.")
 	return
 
-/decl/emote/visible/bellyrub/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/visible/bellyrub/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
 	return

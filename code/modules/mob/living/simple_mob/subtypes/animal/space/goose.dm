@@ -21,7 +21,7 @@
 	attacktext = list("pecked")
 	attack_sound = 'sound/weapons/bite.ogg'
 
-	organ_names = /decl/mob_organ_names/goose
+	organ_names = /datum/decl/mob_organ_names/goose
 
 	has_langs = list(LANGUAGE_ANIMAL)
 
@@ -48,7 +48,7 @@
 
 	add_modifier(/datum/modifier/berserk, 30 SECONDS)
 
-/decl/mob_organ_names/goose
+/datum/decl/mob_organ_names/goose
 	hit_zones = list("head", "chest", "left leg", "right leg", "left wing", "right wing", "neck")
 
 /mob/living/simple_mob/animal/space/goose/white

@@ -20,11 +20,11 @@
 	attack_edge = 1
 	attacktext = list("slashed")
 	friendly = list("pinches")
-	organ_names = /decl/mob_organ_names/wraith
+	organ_names = /datum/decl/mob_organ_names/wraith
 	movement_cooldown = -1
 	attack_sound = 'sound/weapons/rapidslice.ogg'
-	construct_spells = list(/spell/targeted/construct_advanced/crippling_beam,
-							/spell/targeted/construct_advanced/banishment
+	construct_spells = list(/datum/spell/targeted/construct_advanced/crippling_beam,
+							/datum/spell/targeted/construct_advanced/banishment
 							)
 
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
@@ -36,7 +36,7 @@
 		var/mob/living/L = A
 		L.add_modifier(/datum/modifier/deep_wounds, 30 SECONDS)
 
-/decl/mob_organ_names/wraith
+/datum/decl/mob_organ_names/wraith
 	hit_zones = list("body", "eye", "crystaline spike", "left claw", "right claw")
 
 ////////////////////////////
@@ -61,7 +61,7 @@
 	attack_edge = 1
 	attacktext = list("violently stabbed")
 	friendly = list("caresses")
-	organ_names = /decl/mob_organ_names/wraith
+	organ_names = /datum/decl/mob_organ_names/wraith
 	movement_cooldown = 0
 
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
@@ -70,5 +70,5 @@
 
 	attack_sound = 'sound/weapons/pierce.ogg'
 
-/decl/mob_organ_names/wraith
+/datum/decl/mob_organ_names/wraith
 	hit_zones = list("body", "eye", "crystaline spike", "left claw", "right claw")

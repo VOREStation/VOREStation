@@ -96,7 +96,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/bay_11
+	poster_decl = /datum/decl/poster/bay_11
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/template_noop)
