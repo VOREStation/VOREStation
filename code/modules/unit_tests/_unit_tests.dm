@@ -107,6 +107,7 @@
 #include "material_tests.dm"
 // #include "nuke_cinematic.dm" // TODO: This is probably fixed later on
 #include "poster_tests.dm"
+#include "special_roles.dm"
 // #include "preferences.dm" // This unit test is missing some other stuff
 #include "reagent_tests.dm"
 #include "recipe_tests.dm"
