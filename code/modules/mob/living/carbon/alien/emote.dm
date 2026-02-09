@@ -1,4 +1,4 @@
-var/list/_alien_default_emotes = list(
+GLOBAL_LIST_INIT(alien_default_emotes, list(
 	/decl/emote/visible,
 	/decl/emote/visible/scratch,
 	/decl/emote/visible/drool,
@@ -25,7 +25,7 @@ var/list/_alien_default_emotes = list(
 	/decl/emote/audible/moan,
 	/decl/emote/audible/gnarl,
 	/decl/emote/audible/chirp
-)
+))
 
 /mob/living/carbon/alien/get_available_emotes()
-	. = global._alien_default_emotes.Copy()
+	. = GLOB.alien_default_emotes.Copy()

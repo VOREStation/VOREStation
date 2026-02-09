@@ -573,7 +573,7 @@
 		..()
 
 /obj/machinery/porta_turret/proc/attempt_retaliate(incoming_damage)
-	if(attacked || !enabled || emagged || incoming_damage < 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
+	if(QDELETED(src) || attacked || !enabled || emagged || incoming_damage < 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
 		return
 	if(stat & (NOPOWER|BROKEN))
 		return

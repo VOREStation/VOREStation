@@ -94,8 +94,8 @@
 		add_overlay(image(icon = 'icons/mecha/mecha_equipment.dmi', icon_state = "repair_droid"))
 
 /mob/living/simple_mob/mechanical/mecha/bullet_act()
-	. = ..()
 	sparks.start()
+	. = ..()
 
 /mob/living/simple_mob/mechanical/mecha/speech_bubble_appearance()
 	return pilot_type ? "" : ..()

@@ -26,7 +26,9 @@
 	save_data["runechat_color"]			= pref.runechat_color
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
+	#ifdef TESTING
 	var/char_name = pref.read_preference(/datum/preference/name/real_name) || "-name not yet loaded-"
+	#endif
 	if(!islist(pref.alternate_languages))
 		testing("LANGSANI: Sanitizing languages on [pref.client]'s character [char_name] because their character has no languages list")
 		pref.alternate_languages = list()
