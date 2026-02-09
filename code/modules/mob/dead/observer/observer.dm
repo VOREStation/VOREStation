@@ -967,12 +967,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(src.client.prefs?.be_special & BE_PAI)
 		var/choice = tgui_alert(src, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
-		if(!choice)
+		if(!choice || choice == "No")
 			return
-		if(choice == "Yes")
 
 
-
+		//if(choice == "Yes")
 			// TODO
 			//SSpai.recruitWindow(src)
 

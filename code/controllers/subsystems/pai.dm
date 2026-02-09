@@ -4,6 +4,7 @@
 SUBSYSTEM_DEF(pai)
 	name = "Pai"
 	flags = SS_NO_INIT
+	wait = 4 SECONDS
 	dependencies = list(
 		/datum/controller/subsystem/atoms
 	)
@@ -15,7 +16,6 @@ SUBSYSTEM_DEF(pai)
 	return ..()
 
 /datum/controller/subsystem/pai/fire(resumed)
-	. = ..()
 	if(!resumed)
 		pai_ghosts.Cut()
 		current_run = GLOB.observer_mob_list.Copy()
@@ -49,22 +49,40 @@ SUBSYSTEM_DEF(pai)
 		if(!istype(ghost) || !ghost.client)
 			continue
 
-		return_data += ghost.client.prefs.
+		// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
+		// THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE
+		// REPLACE ME WITH TG PREFS. TEMP UNTIL REFACTOR. IF YOU MERGE THIS INTO MASTER I WILL DIE
+		var/datum/paiCandidate/candidate = new()
+		if(candidate.savefile_load(ghost))
+			return_data += candidate
+		else
+			qdel(candidate)
+		// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
 
 	return return_data
 
 /datum/controller/subsystem/pai/proc/get_tgui_data()
 	RETURN_TYPE(/list)
+	var/list/candidate_datums = get_pai_candidates()
+
 	var/list/data = list()
-	for(var/datum/paiCandidate/candidate in get_pai_candidates())
+	for(var/datum/paiCandidate/candidate in candidate_datums)
 		data += list(
 			list(
-				"name" = "test"
+				"key" = candidate.key,
+				"name" = candidate.name,
+				"description" = candidate.description,
+				"eyecolor" = candidate.eye_color,
+				"chassis" = candidate.chassis,
+				"emotion" = candidate.ouremotion,
+				"gender" = candidate.gender
 			)
 		)
 
-
-
+	// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
+	QDEL_LIST(candidate_datums) // TEMP, Remove when these are read from player prefs DO NOT MERGE ME INTO MASTER OR DEATH WILL COME TO YOU SWIFTLY
+	// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
+	return data
 
 
 

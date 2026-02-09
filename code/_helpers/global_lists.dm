@@ -975,23 +975,20 @@ GLOBAL_LIST_INIT(special_roles, list(
 	"wizard" = 0,										// 3
 	"malf AI" = 0,										// 4
 	"revolutionary" = 0,								// 5
-	"alien candidate" = 0,								// 6
+	"genaprawn" = 0,									// 6
 	"positronic brain" = 1,								// 7
 	"cultist" = 0,										// 8
 	"renegade" = 0,										// 9
 	"ninja" = 0,										// 10
 	"raider" = 0,										// 11
 	"diona" = 0,										// 12
-	"mutineer" = 0,										// 13
-	"loyalist" = 0,										// 14
-	"pAI candidate" = 1,								// 15
-	"lost drone" = 1,									// 16
-	"maint pred" = 1,									// 17
-	"maint lurker" = 1,									// 18
-	"morph" = 1,										// 19
-	"corgi" = 1,										// 20
-	"cursed sword" = 1,									// 21
-	"Ship Survivor" = 1,								// 22
+	"loyalist" = 0,										// 13
+	"pAI" = 1,											// 14
+	"lost drone" = 1,									// 15
+	"maint critter" = 1,								// 16
+	"corgi" = 1,										// 17
+	"cursed sword" = 1,									// 18
+	"ship survivor" = 1,								// 19
 ))
 
 GLOBAL_LIST_INIT(maint_mob_pred_options, list(

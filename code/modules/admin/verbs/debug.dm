@@ -154,9 +154,6 @@
 	else
 		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
 		card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in SSpai.pai_candidates)
-		if(candidate.key == choice.key)
-			SSpai.pai_candidates.Remove(candidate)
 	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
