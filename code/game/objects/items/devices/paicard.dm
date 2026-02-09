@@ -106,7 +106,7 @@
 		"law_zero" = null,
 		"law_extra" = null,
 		"master_name" = null,
-		"master_dna" = null
+		"master_dna" = null,
 		"radio" = null,
 		"radio_transmit" = null,
 		"radio_recieve" = null,
@@ -123,7 +123,7 @@
 		data["master_name"] = pai.master;
 		data["master_dna"] = pai.master_dna;
 		data["radio"] = !isnull(radio);
-		data["screen_msg"] = pai.screen_msg;
+		data["screen_msg"] = screen_msg;
 		if(radio)
 			data["radio_transmit"] = radio.broadcasting
 			data["radio_recieve"] = radio.listening
