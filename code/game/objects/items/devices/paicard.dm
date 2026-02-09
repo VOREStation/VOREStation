@@ -71,6 +71,8 @@
 	return ..() // TEMP, REMOVE ME
 
 /obj/item/paicard/proc/ghost_inhabit(mob/user, load_slot)
+	RETURN_TYPE(/mob/living/silicon/pai)
+
 	var/turf/location = get_turf(src)
 	var/obj/item/paicard/card = new type(location)
 	// Setup pai
@@ -83,6 +85,8 @@
 		if(!isnull(pai_name))
 			new_pai.SetName(pai_name)
 	qdel(src) // We make our own fresh card above
+
+	return new_pai
 
 /obj/item/paicard/tgui_interact(mob/user, datum/tgui/ui)
 	if(is_damage_critical())
@@ -98,6 +102,7 @@
 	var/data = list(
 		"has_pai" = !isnull(pai),
 		"available_pais" = null,
+		"waiting_for_response" = in_use,
 		"name" = null,
 		"color" = null,
 		"chassis" = null,
@@ -221,7 +226,9 @@
 				return FALSE
 			if(in_use)
 				return FALSE
+			in_use = TRUE
 			SSpai.invite_ghost(ui.user, params["key"], src)
+			in_use = FALSE
 			return TRUE
 
 

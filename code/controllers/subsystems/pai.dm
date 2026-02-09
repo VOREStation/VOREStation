@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(pai)
 /datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, find_ckey, obj/item/paicard/card)
 	// Is our card legal to inhabit?
 	if(QDELETED(card) || card.pai || card.is_damage_critical())
-		to_chat(inquirer, span_warning("This [card] can no longer be used to house a new pAI."))
+		to_chat(inquirer, span_warning("This [card] can no longer be used to house a pAI."))
 		return
 
 	// Check if the ghost stopped existing
@@ -124,9 +124,8 @@ SUBSYSTEM_DEF(pai)
 
 	// Time delay if the ghost cancels your invite.
 	if(check_is_delayed(ghost.ckey))
-		to_chat(inquirer, span_notice("This pAI has denied a previous request and will become available again shortly..."))
+		to_chat(inquirer, span_notice("This pAI is responding to a request, but may become available again shortly..."))
 		return
-	asked.Add(ghost.ckey)
 	asked[ghost.ckey] = world.time
 
 	// Can't play, still respawning
@@ -142,15 +141,21 @@ SUBSYSTEM_DEF(pai)
 	if(!response || !target || !isobserver(target.mob) || ghost != target.mob)
 		return // Nice try smartass
 	if(check_is_already_pai(target.ckey))
+		to_chat(inquirer, span_warning("This pAI has already been downloaded."))
 		return
 	if(QDELETED(card) || card.pai)
+		to_chat(inquirer, span_warning("This [card] can no longer be used to house a pAI."))
 		return
 
 	switch(response)
 		if("Yes")
-			card.ghost_inhabit(target.mob, TRUE)
+			var/new_pai = card.ghost_inhabit(target.mob, TRUE)
+			to_chat(inquirer, span_info("[new_pai] has accepted your pAI request!"))
+			return
 
 		if("Never for this round") // Can this even be done in tg prefs??? - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 			target.prefs.be_special ^= BE_PAI
+
+	to_chat(inquirer, span_warning("The pAI denied the request."))
 
 #undef PAI_DELAY_TIME

@@ -17,6 +17,7 @@ type PAIRequest = {
 type Data = {
   has_pai: BooleanLike;
   available_pais: PAIRequest[];
+  waiting_for_response: BooleanLike;
   name: string;
   color: string;
   chassis: string;
@@ -36,6 +37,7 @@ export const pAICard = (props) => {
 
   const {
     has_pai,
+    waiting_for_response,
     name,
     health,
     law_zero,
@@ -93,32 +95,35 @@ export const pAICard = (props) => {
           </Box>
         )) || (
           <Section title="Find Companion">
-            <LabeledList>
-              {available_pais.map((data) => (
-                <LabeledList.Item
-                  key={data.key}
-                  label={data.name}
-                  buttons={
-                    <Button
-                      icon="lightbulb-o"
-                      onClick={() => act('select_pai', { key: data.key })}
-                    >
-                      Invite
-                    </Button>
-                  }
-                >
-                  INFO:
-                  {data.key}
-                  {data.name}
-                  {data.ad}
-                  {data.description}
-                  {data.eyecolor}
-                  {data.chassis}
-                  {data.emotion}
-                  {data.gender}
-                </LabeledList.Item>
-              ))}
-            </LabeledList>
+            {(!waiting_for_response && (
+              <LabeledList>
+                {available_pais.map((data) => (
+                  <LabeledList.Item
+                    key={data.key}
+                    label={data.name}
+                    buttons={
+                      <Button
+                        icon="lightbulb-o"
+                        onClick={() => act('select_pai', { key: data.key })}
+                      >
+                        Invite
+                      </Button>
+                    }
+                  >
+                    INFO:
+                    {data.key}
+                    {data.name}
+                    {data.ad}
+                    {data.description}
+                    {data.eyecolor}
+                    {data.chassis}
+                    {data.emotion}
+                    {data.gender}
+                  </LabeledList.Item>
+                ))}
+              </LabeledList>
+            )) ||
+              'Awaiting Response...'}
           </Section>
         )}
       </Window.Content>
