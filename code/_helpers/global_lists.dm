@@ -1126,6 +1126,9 @@ GLOBAL_LIST_INIT(flying_chassis, list(
 	"cyberelf"
 	))
 
+GLOBAL_LIST_EMPTY(pai_software_by_key)
+GLOBAL_LIST_EMPTY(default_pai_software)
+
 //Sure I could spend all day making wacky overlays for all of the different forms
 //but quite simply most of these sprites aren't made for that, and I'd rather just make new ones
 //the birds especially! Just naw. If someone else wants to mess with 12x4 frames of animation where

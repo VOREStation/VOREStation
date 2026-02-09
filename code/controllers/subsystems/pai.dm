@@ -5,7 +5,6 @@
 ////////////////////////////////
 SUBSYSTEM_DEF(pai)
 	name = "Pai"
-	flags = SS_NO_INIT
 	wait = 4 SECONDS
 	dependencies = list(
 		/datum/controller/subsystem/atoms
@@ -13,6 +12,15 @@ SUBSYSTEM_DEF(pai)
 	VAR_PRIVATE/list/current_run = list()
 	VAR_PRIVATE/list/pai_ghosts = list()
 	VAR_PRIVATE/list/asked = list()
+
+/datum/controller/subsystem/pai/Initialize()
+	for(var/type in subtypesof(/datum/pai_software))
+		var/datum/pai_software/P = new type()
+		GLOB.pai_software_by_key[P.id] = P
+		if(P.default)
+			GLOB.default_pai_software[P.id] = P
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/pai/stat_entry(msg)
 	msg = "C:[pai_ghosts.len]"
