@@ -284,7 +284,7 @@
 
 /obj/item/flashlight/proc/finish_flicker(var/original_color, var/original_on, var/datum/component/overlay_lighting/OL)
 	set_light_color(original_color)
-	OL.directional_atom.color = original_color
+	OL.directional_atom?.color = original_color
 	on = original_on
 	flickering = FALSE
 	update_brightness()
