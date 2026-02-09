@@ -88,7 +88,7 @@
 /datum/pai_software/radio_config
 	name = "Radio Configuration"
 	ram_cost = 0
-	id = "manifest"
+	id = "radio"
 	toggle = 0
 	default = 1
 
