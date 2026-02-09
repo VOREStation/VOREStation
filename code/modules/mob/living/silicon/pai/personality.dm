@@ -10,6 +10,7 @@
 	var/name
 	var/key
 	var/description
+	var/advertisement
 	var/role
 	var/comments
 	var/ready = 0

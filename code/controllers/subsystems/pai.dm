@@ -1,3 +1,5 @@
+#define PAI_DELAY_TIME 1 MINUTE
+
 ////////////////////////////////
 //// Pai join and management subsystem
 ////////////////////////////////
@@ -10,6 +12,7 @@ SUBSYSTEM_DEF(pai)
 	)
 	VAR_PRIVATE/list/current_run = list()
 	VAR_PRIVATE/list/pai_ghosts = list()
+	VAR_PRIVATE/list/asked = list()
 
 /datum/controller/subsystem/pai/stat_entry(msg)
 	msg = "C:[pai_ghosts.len]"
@@ -34,12 +37,24 @@ SUBSYSTEM_DEF(pai)
 			continue
 		if(!(ghost.client.prefs.be_special & BE_PAI))
 			continue
-		for(var/ourkey in GLOB.paikeys)
-			if(ourkey == ghost.ckey)
-				continue
-
+		if(check_is_delayed(ghost.ckey))
+			continue
+		if(check_is_already_pai(ghost.ckey))
+			continue
 		// Create candidate
 		pai_ghosts.Add(WEAKREF(ghost))
+
+/datum/controller/subsystem/pai/proc/check_is_delayed(var/key)
+	if(key in asked)
+		if(world.time < asked[key] + PAI_DELAY_TIME)
+			return TRUE
+	return FALSE
+
+/datum/controller/subsystem/pai/proc/check_is_already_pai(var/key)
+	for(var/ourkey in GLOB.paikeys)
+		if(ourkey == key)
+			return TRUE
+	return FALSE
 
 /datum/controller/subsystem/pai/proc/get_pai_candidates()
 	var/list/return_data = list()
@@ -72,6 +87,7 @@ SUBSYSTEM_DEF(pai)
 				"key" = candidate.key,
 				"name" = candidate.name,
 				"description" = candidate.description,
+				"ad" = candidate.advertisement,
 				"eyecolor" = candidate.eye_color,
 				"chassis" = candidate.chassis,
 				"emotion" = candidate.ouremotion,
@@ -84,12 +100,41 @@ SUBSYSTEM_DEF(pai)
 	// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
 	return data
 
+/datum/controller/subsystem/pai/proc/invite_candidate(datum/paiCandidate/candidate)
+	var/key = candidate.key
+	var/mob/observer/ghost = get_mob_by_key(key)
+	if(!istype(ghost))
+		return FALSE
 
+/datum/controller/subsystem/pai/proc/question(mob/inquirer, client/target, obj/item/paicard/card)
+	if(check_is_delayed(target.ckey))
+		return
+	asked.Add(target.ckey)
+	asked[target.ckey] = world.time
 
+	var/mob/ourmob = target.mob
+	if(!isobserver(ourmob))
+		return
+	var/time_till_respawn = ourmob.time_till_respawn()
+	if(time_till_respawn == -1 || time_till_respawn)
+		return
+	if(check_is_already_pai(target.ckey))
+		return
 
+	var/response = tgui_alert(target, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", list("Yes", "No", "Never for this round"))
+	if(!response || !target || !isobserver(ourmob) || ourmob != target.mob)
+		return // Nice try smartass
+	if(check_is_already_pai(target.ckey))
+		return
+	if(!card || QDELETED(card) || card.pai)
+		return
 
+	switch(response)
+		if("Yes")
+			card.ghost_inhabit(ourmob, TRUE)
 
-
+		if("Never for this round") // Can this even be done in tg prefs??? - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+			target.prefs.be_special ^= BE_PAI
 
 
 /*
@@ -438,26 +483,6 @@ SUBSYSTEM_DEF(pai)
 		if(O.client)
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
-
-/datum/controller/subsystem/pai/proc/question(var/client/C)
-	spawn(0)
-		if(!C)	return
-		asked.Add(C.key)
-		asked[C.key] = world.time
-
-		var/mob/ourmob = C.mob
-		if(ourmob)
-			var/time_till_respawn = ourmob.time_till_respawn()
-			if(time_till_respawn == -1 || time_till_respawn)
-				return
-		for(var/ourkey in GLOB.paikeys)
-			if(ourkey == ourmob.ckey)
-				return
-
-		var/response = tgui_alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", list("Yes", "No", "Never for this round"))
-		if(!C)	return		//handle logouts that happen whilst the alert is waiting for a response.
-		if(response == "Yes")
-			recruitWindow(C.mob)
-		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_PAI
 */
+
+#undef PAI_DELAY_TIME

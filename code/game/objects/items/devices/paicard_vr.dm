@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(paikeys)
 	if(special_handling && !callback)
 		return FALSE
 	if(!panel_open)
-		access_screen(user)
+		tgui_interact(user)
 		return
 	var/list/parts = list()
 	if(cell != PP_MISSING)

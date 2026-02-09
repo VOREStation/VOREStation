@@ -10,7 +10,6 @@
 	preserve_item = 1
 
 	var/obj/item/radio/borg/pai/radio
-	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 	var/image/screen_layer
 	var/screen_color = "#00ff0d"
@@ -40,7 +39,6 @@
 	QDEL_NULL(radio)
 	return ..()
 
-// VOREStation Edit - Allow everyone to become a pAI
 /obj/item/paicard/attack_ghost(mob/user as mob)
 	if(pai != null) //Have a person in them already?
 		return ..()
@@ -62,334 +60,162 @@
 			to_chat(user, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
 			return
 
-	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI, or submit yourself to being recruited?", "Confirmation", list("Inhabit", "Recruit", "Cancel"))
-	if(!choice || choice == "Cancel")
-		return ..()
-	if(choice == "Recruit")
+	var/choice = tgui_alert(user, "Do you want to inhabit this pAI?", "Load", list("Load PAI Data", "Fresh Data", "Cancel"))
+	switch(choice)
+		if("Fresh Data")
+			ghost_inhabit(user, FALSE)
 
+		if("Load PAI Data")
+			ghost_inhabit(user, TRUE)
 
-
-		// TODO
-		//SSpai.recruitWindow(user)
-
-
-
-		return ..()
-	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
-	var/actual_pai_name
-	var/turf/location = get_turf(src)
-	if(choice == "No")
-		var/pai_name = tgui_input_text(user, "Choose your character's name", "Character Name")
-		actual_pai_name = sanitize_name(pai_name, ,1)
-		if(isnull(actual_pai_name))
-			return ..()
-		if(istype(src , /obj/item/paicard/typeb))
-			var/obj/item/paicard/typeb/card = new(location)
-			var/mob/living/silicon/pai/new_pai = new(card)
-			new_pai.key = user.key
-			GLOB.paikeys |= new_pai.ckey
-			card.setPersonality(new_pai)
-			new_pai.SetName(actual_pai_name)
-		else
-			var/obj/item/paicard/card = new(location)
-			var/mob/living/silicon/pai/new_pai = new(card)
-			new_pai.key = user.key
-			GLOB.paikeys |= new_pai.ckey
-			card.setPersonality(new_pai)
-			new_pai.SetName(actual_pai_name)
-
-	if(choice == "Yes")
-		if(istype(src , /obj/item/paicard/typeb))
-			var/obj/item/paicard/typeb/card = new(location)
-			var/mob/living/silicon/pai/new_pai = new(card)
-			new_pai.key = user.key
-			GLOB.paikeys |= new_pai.ckey
-			card.setPersonality(new_pai)
-			if(!new_pai.savefile_load(new_pai))
-				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
-				actual_pai_name = sanitize_name(pai_name, ,1)
-				if(isnull(actual_pai_name))
-					return ..()
-		else
-			var/obj/item/paicard/card = new(location)
-			var/mob/living/silicon/pai/new_pai = new(card)
-			new_pai.key = user.key
-			GLOB.paikeys |= new_pai.ckey
-			card.setPersonality(new_pai)
-			if(!new_pai.savefile_load(new_pai))
-				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
-				actual_pai_name = sanitize_name(pai_name, ,1)
-				if(isnull(actual_pai_name))
-					return ..()
-
-	qdel(src)
+	// Default is to do rest of ghost proc
 	return ..()
 
-// VOREStation Edit End
+/obj/item/paicard/proc/ghost_inhabit(mob/user, load_slot)
+	var/turf/location = get_turf(src)
+	var/obj/item/paicard/card = new type(location)
+	// Setup pai
+	var/mob/living/silicon/pai/new_pai = new(card)
+	new_pai.key = user.key
+	GLOB.paikeys |= new_pai.ckey
+	card.setPersonality(new_pai)
+	if(!load_slot || !new_pai.savefile_load(new_pai))
+		var/pai_name = sanitize_name(tgui_input_text(new_pai, "Choose your character's name", "Character Name"), ,1)
+		if(!isnull(pai_name))
+			new_pai.SetName(pai_name)
+	qdel(src) // We make our own fresh card above
 
-/obj/item/paicard/proc/access_screen(mob/user)
+/obj/item/paicard/tgui_interact(mob/user, datum/tgui/ui)
 	if(is_damage_critical())
 		to_chat(user, span_warning("WARNING: CRITICAL HARDWARE FAILURE, SERVICE DEVICE IMMEDIATELY"))
 		return
-	if (!in_range(src, user))
-		return
-	user.set_machine(src)
-	var/dat = {"
-		<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
-		<html>
-			<head>
-				<style>
-					body {
-						margin-top:5px;
-						font-family:Verdana;
-						color:white;
-						font-size:13px;
-						background-image:url('uiBackground.png');
-						background-repeat:repeat-x;
-						background-color:#272727;
-						background-position:center top;
-					}
-					table {
-						font-size:13px;
-						margin-left:-2px;
-					}
-					table.request {
-						border-collapse:collapse;
-					}
-					table.desc {
-						border-collapse:collapse;
-						font-size:13px;
-						border: 1px solid #161616;
-						width:100%;
-					}
-					table.download {
-						border-collapse:collapse;
-						font-size:13px;
-						border: 1px solid #161616;
-						width:100%;
-					}
-					tr.d0 td, tr.d0 th {
-						background-color: #506070;
-						color: white;
-					}
-					tr.d1 td, tr.d1 th {
-						background-color: #708090;
-						color: white;
-					}
-					tr.d2 td {
-						background-color: #00FF00;
-						color: white;
-						text-align:center;
-					}
-					td.button {
-						border: 1px solid #161616;
-						background-color: #40628a;
-					}
-					td.button {
-						border: 1px solid #161616;
-						background-color: #40628a;
-						text-align: center;
-					}
-					td.button_red {
-						border: 1px solid #161616;
-						background-color: #B04040;
-						text-align: center;
-					}
-					td.download {
-						border: 1px solid #161616;
-						background-color: #40628a;
-						text-align: center;
-					}
-					th {
-						text-align:left;
-						width:125px;
-					}
-					td.request {
-						width:140px;
-						vertical-align:top;
-					}
-					td.radio {
-						width:90px;
-						vertical-align:top;
-					}
-					td.request {
-						vertical-align:top;
-					}
-					a {
-						color:#4477E0;
-					}
-					a.button {
-						color:white;
-						text-decoration: none;
-					}
-					h2 {
-						font-size:15px;
-					}
-				</style>
-			</head>
-			<body>
-	"}
 
-	if(pai)
-		dat += {"
-			"} + span_bold("<font size='3px'>Personal AI Device</font>") + {"<br><br>
-			<table class="request">
-				<tr>
-					<td><font size='5px'; color=[screen_color]>"} + span_bold("[pai.name]") + {"</font></td>
-				</tr>
-				<tr>
-					<td class="request">Integrity: [pai.health]</td>
-				</tr>
-				<tr>
-					<td class="request">Prime directive:</td>
-					<td>[pai.pai_law0]</td>
-				</tr>
-				<tr>
-					<td class="request">Additional directives:</td>
-					<td>[pai.pai_laws]</td>
-				</tr>
-			</table>
-			<br>
-		"}
-		dat += {"
-			<table>
-				<td class="button">
-					<a href='byond://?src=\ref[src];setlaws=1' class='button'>Configure Directives</a>
-				</td>
-			</table>
-		"}
-		if(pai && (!pai.master_dna || !pai.master))
-			dat += {"
-				<table>
-					<td class="button">
-						<a href='byond://?src=\ref[src];setdna=1' class='button'>Imprint Master DNA</a>
-					</td>
-				</table>
-			"}
-		dat += "<br>"
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "pAICard", "Personal AI Device")
+		ui.open()
+
+/obj/item/paicard/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/data = list(
+		"has_pai" = !isnull(pai),
+		"available_pais" = null,
+		"name" = null,
+		"color" = null,
+		"chassis" = null,
+		"health" = null,
+		"law_zero" = null,
+		"law_extra" = null,
+		"master_name" = null,
+		"master_dna" = null
+		"radio" = null,
+		"radio_transmit" = null,
+		"radio_recieve" = null,
+		"screen_msg" = null
+	)
+
+	if(pai) // Only set pai data if we have one
+		data["name"] = pai.name;
+		data["color"] = screen_color;
+		data["chassis"] = pai.chassis;
+		data["health"] = pai.health;
+		data["law_zero"] = pai.pai_law0;
+		data["law_extra"] = pai.pai_laws;
+		data["master_name"] = pai.master;
+		data["master_dna"] = pai.master_dna;
+		data["radio"] = !isnull(radio);
+		data["screen_msg"] = pai.screen_msg;
 		if(radio)
-			dat += span_bold("Radio Uplink")
-			dat += {"
-				<table class="request">
-					<tr>
-						<td class="radio">Transmit:</td>
-						<td><a href='byond://?src=\ref[src];wires=4'>[radio.broadcasting ? "<font color=#55FF55>En" : "<font color=#FF5555>Dis" ]abled</font></a>
+			data["radio_transmit"] = radio.broadcasting
+			data["radio_recieve"] = radio.listening
 
-						</td>
-					</tr>
-					<tr>
-						<td class="radio">Receive:</td>
-						<td><a href='byond://?src=\ref[src];wires=2'>[radio.listening ? "<font color=#55FF55>En" : "<font color=#FF5555>Dis" ]abled</font></a>
+	else // Only get the invite list if we can browse for them
+		data["available_pais"] += SSpai.get_tgui_data()
+	return data
 
-						</td>
-					</tr>
-				</table>
-				<br>
-			"}
-		else //</font></font>
-			dat += span_bold("Radio Uplink") + "<br>"
-			dat += span_red(span_italics("Radio firmware not loaded. Please install a pAI personality to load firmware.")) + "<br>"
-		/* - //A button for instantly deleting people from the game is lame, especially considering that pAIs on our server tend to activate without a master.
-		dat += {"
-			<table>
-				<td class="button_red"><a href='byond://?src=\ref[src];wipe=1' class='button'>Wipe current pAI personality</a>
+/obj/item/paicard/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(is_damage_critical())
+		return FALSE
+	if(..())
+		return TRUE
+	add_fingerprint(ui.user)
 
-				</td>
-			</table>
-		"}
+	switch(action)
+		if("setdna")
+			if(!pai)
+				return FALSE
+			if(pai.master_dna)
+				return
+
+			var/mob/M = ui.user
+			var/has_dna = FALSE
+			if(istype(M, /mob/living/carbon))
+				var/mob/living/carbon/carby = M
+				var/datum/species/spec = carby.species
+				has_dna = TRUE
+				if(spec.flags & NO_DNA)
+					has_dna = FALSE
+
+			if(has_dna)
+				var/datum/dna/dna = M.dna
+				pai.master = M.real_name
+				pai.master_dna = dna.unique_enzymes
+				to_chat(pai, span_red("<h3>You have been bound to a new master.</h3>"))
+				return TRUE
+			to_chat(ui.user, span_blue("You don't have any DNA, or your DNA is incompatible with this device."))
+			return FALSE
+
+		/*
+		if("wipe")
+			if(!pai)
+				return FALSE
+			if(in_use)
+				return FALSE
+			in_use = TRUE
+			var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
+			in_use = FALSE
+			if(!confirm)
+				return FALSE
+			if(confirm == "Yes")
+				for(var/mob/M in src)
+					to_chat(M, span_red("<h2>You feel yourself slipping away from reality.</h2>"))
+					to_chat(M, "<font color = #ff4d4d><h3>Byte by byte you lose your sense of self.</h3></font>")
+					to_chat(M, "<font color = #ff8787><h4>Your mental faculties leave you.</h4></font>")
+					to_chat(M, "<font color = #ffc4c4><h5>oblivion... </h5></font>")
+					M.death(0)
+				removePersonality()
+			return TRUE
 		*/
-		if(screen_msg)
-			dat += span_bold("Message from [pai.name]") + "<br>[screen_msg]"
-	else
-		if(looking_for_personality)
-			dat += {"
-				"} + span_bold("<font size='3px'>pAI Request Module</font>") + {"<br><br>
-				<p>Requesting AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>
-				<img src='loading.gif' /> Searching for personalities<br><br>
 
-				<table>
-					<tr>
-						<td class="button">
-							<a href='byond://?src=\ref[src];request=1' class="button">Refresh available personalities</a>
-						</td>
-					</tr>
-				</table><br>
-			"}
-		else
-			dat += {"
-				"} + span_bold("<font size='3px'>pAI Request Module</font>") + {"<br><br>
-				<p>No personality is installed.</p>
-				<table>
-					<tr>
-						<td class="button"><a href='byond://?src=\ref[src];request=1' class="button">Request personality</a>
-						</td>
-					</tr>
-				</table>
-				<br>
-				<p>Each time this button is pressed, a request will be sent out to any available personalities. Check back often give plenty of time for personalities to respond. This process could take anywhere from 15 seconds to several minutes, depending on the available personalities' timeliness.</p>
-			"}
-	dat += "</html>"
-	user << browse(dat, "window=paicard")
-	onclose(user, "paicard")
-	return
+		if("wires")
+			if(!pai)
+				return FALSE
+			// WIRE_SIGNAL = 1
+			// WIRE_RECEIVE = 2
+			// WIRE_TRANSMIT = 4
+			switch(text2num(params["wires"]))
+				if(4)
+					radio.ToggleBroadcast()
+					return TRUE
+				if(2)
+					radio.ToggleReception()
+					return TRUE
+			return FALSE
 
-/obj/item/paicard/Topic(href, href_list)
+		if("setlaws")
+			if(!pai)
+				return FALSE
+			if(in_use)
+				return FALSE
+			in_use = TRUE
+			var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, MAX_MESSAGE_LEN, encode = FALSE, multiline = TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
+			in_use = FALSE
 
-	if(!usr || usr.stat)
-		return
-
-	if(href_list["setdna"])
-		if(pai.master_dna)
-			return
-		var/mob/M = usr
-		if(!istype(M, /mob/living/carbon))
-			to_chat(usr, span_blue("You don't have any DNA, or your DNA is incompatible with this device."))
-		else
-			var/datum/dna/dna = usr.dna
-			pai.master = M.real_name
-			pai.master_dna = dna.unique_enzymes
-			to_chat(pai, span_red("<h3>You have been bound to a new master.</h3>"))
-	if(href_list["request"])
-		src.looking_for_personality = 1
-
-
-
-
-		// TODO
-		//SSpai.findPAI(src, usr)
-
-
-
-
-	if(href_list["wipe"])
-		var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
-		if(confirm == "Yes")
-			for(var/mob/M in src)
-				to_chat(M, span_red("<h2>You feel yourself slipping away from reality.</h2>"))
-				to_chat(M, "<font color = #ff4d4d><h3>Byte by byte you lose your sense of self.</h3></font>")
-				to_chat(M, "<font color = #ff8787><h4>Your mental faculties leave you.</h4></font>")
-				to_chat(M, "<font color = #ffc4c4><h5>oblivion... </h5></font>")
-				M.death(0)
-			removePersonality()
-	if(href_list["wires"])
-		var/t1 = text2num(href_list["wires"])
-		switch(t1)
-			if(4)
-				radio.ToggleBroadcast()
-			if(2)
-				radio.ToggleReception()
-	if(href_list["setlaws"])
-		var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, MAX_MESSAGE_LEN, encode = FALSE, multiline = TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
-		if(newlaws)
-			pai.pai_laws = newlaws
-			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
-			to_chat(pai, "Prime Directive: <br>[pai.pai_law0]")
-			to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
-	attack_self(usr)
-
-// 		WIRE_SIGNAL = 1
-//		WIRE_RECEIVE = 2
-//		WIRE_TRANSMIT = 4
+			if(newlaws)
+				pai.pai_laws = newlaws
+				to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
+				to_chat(pai, "Prime Directive: <br>[pai.pai_law0]")
+				to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
+			return TRUE
 
 /obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
