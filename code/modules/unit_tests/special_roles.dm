@@ -7,6 +7,6 @@
 	// These get out of order way too often.
 	var/index = 0
 	for(var/key in GLOB.special_roles)
-		var/check_key = be_special_flags[index]
+		var/check_key = GLOB.be_special_flags[index]
 		if(lowertext(check_key) != lowertext(key))
 			TEST_FAIL("Special role flag misalignment index: [index],  be_special_flags: [check_key],  special_roles: [key]")
