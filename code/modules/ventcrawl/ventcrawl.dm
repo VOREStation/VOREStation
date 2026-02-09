@@ -1,8 +1,3 @@
-var/list/ventcrawl_machinery = list(
-	/obj/machinery/atmospherics/unary/vent_pump,
-	/obj/machinery/atmospherics/unary/vent_scrubber
-	)
-
 /mob/living/var/list/icon/pipes_shown = list()
 /mob/living/var/last_played_vent
 /mob/living/var/is_ventcrawling = FALSE
@@ -126,7 +121,7 @@ var/list/ventcrawl_machinery = list(
 	return ..()
 
 /mob/living/AltClickOn(var/atom/A)
-	if(is_type_in_list(A,ventcrawl_machinery))
+	if(is_type_in_list(A, GLOB.ventcrawl_machinery))
 		handle_ventcrawl(A)
 		return 1
 	return ..()
@@ -135,7 +130,7 @@ var/list/ventcrawl_machinery = list(
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/unary/U in range(1))
-		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U) && !U.welded)
+		if(is_type_in_list(U, GLOB.ventcrawl_machinery) && Adjacent(U) && !U.welded)
 			pipes |= U
 	if(!pipes || !pipes.len)
 		to_chat(src, "There are no pipes that you can ventcrawl into within range!")
@@ -164,7 +159,7 @@ var/list/ventcrawl_machinery = list(
 
 	if(!vent_found)
 		for(var/obj/machinery/atmospherics/machine in range(1,src))
-			if(is_type_in_list(machine, ventcrawl_machinery))
+			if(is_type_in_list(machine, GLOB.ventcrawl_machinery))
 				vent_found = machine
 
 			if(!vent_found || !vent_found.can_crawl_through())

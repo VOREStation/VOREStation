@@ -36,8 +36,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
 
-		if(emergency_shuttle.evac)
-			var/ETA = emergency_shuttle.get_status_panel_eta()
+		if(GLOB.emergency_shuttle.evac)
+			var/ETA = GLOB.emergency_shuttle.get_status_panel_eta()
 			if(ETA)
 				global_data += "[ETA]"
 

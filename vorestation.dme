@@ -373,7 +373,6 @@
 #include "code\_global_vars\lists\species.dm"
 #include "code\_global_vars\traits\_traits.dm"
 #include "code\_helpers\_global_objects.dm"
-#include "code\_helpers\_global_objects_vr.dm"
 #include "code\_helpers\_lists.dm"
 #include "code\_helpers\admin.dm"
 #include "code\_helpers\announcements.dm"

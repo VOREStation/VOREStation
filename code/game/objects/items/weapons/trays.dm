@@ -31,7 +31,7 @@
 						sleep(rand(2,4))
 
 
-	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
+	if(CLUMSY_FAIL_CHANCE(user))              //What if he's a clown?
 		to_chat(M, span_warning("You accidentally slam yourself with the [src]!"))
 		M.Weaken(1)
 		user.take_organ_damage(2)

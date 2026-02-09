@@ -1,22 +1,22 @@
 /*
 File: Options
 */
-var/const  //Ascii values of characters
-	ascii_A  =65
-	ascii_Z  =90
-	ascii_a  =97
-	ascii_z  =122
-	ascii_DOLLAR = 36 // $
-	ascii_ZERO=48
-	ascii_NINE=57
-	ascii_UNDERSCORE=95	// _
+//Ascii values of characters
+#define ASCII_A 65
+#define ASCII_Z 90
+#define ASCII_LOWER_A 97
+#define ASCII_LOWER_Z 122
+#define ASCII_DOLLAR 36 // $
+#define ASCII_ZERO 48
+#define ASCII_NINE 57
+#define ASCII_UNDERSCORE 95	// _
 
 /*
 	Class: n_scriptOptions
 */
 /n_scriptOptions/proc/CanStartID(char) //returns true if the character can start a variable, function, or keyword name (by default letters or an underscore)
 	if(!isnum(char))char=text2ascii(char)
-	return (char in ascii_A to ascii_Z) || (char in ascii_a to ascii_z) || char==ascii_UNDERSCORE || char==ascii_DOLLAR
+	return (char in ASCII_A to ASCII_Z) || (char in ASCII_LOWER_A to ASCII_LOWER_Z) || char==ASCII_UNDERSCORE || char==ASCII_DOLLAR
 
 /n_scriptOptions/proc/IsValidIDChar(char) //returns true if the character can be in the body of a variable, function, or keyword name (by default letters, numbers, and underscore)
 	if(!isnum(char))char=text2ascii(char)
@@ -24,7 +24,7 @@ var/const  //Ascii values of characters
 
 /n_scriptOptions/proc/IsDigit(char)
 	if(!isnum(char))char=text2ascii(char)
-	return char in ascii_ZERO to ascii_NINE
+	return char in ASCII_ZERO to ASCII_NINE
 
 /n_scriptOptions/proc/IsValidID(id)    //returns true if all the characters in the string are okay to be in an identifier name
 	if(!CanStartID(id)) //don't need to grab first char in id, since text2ascii does it automatically
@@ -98,3 +98,12 @@ associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc w
 	.=..()
 	for(var/O in assign_operators+binary_operators+unary_operators)
 		if(!symbols.Find(O)) symbols+=O
+
+#undef ASCII_A
+#undef ASCII_Z
+#undef ASCII_LOWER_A
+#undef ASCII_LOWER_Z
+#undef ASCII_DOLLAR
+#undef ASCII_ZERO
+#undef ASCII_NINE
+#undef ASCII_UNDERSCORE

@@ -395,7 +395,7 @@
 
 /datum/gear/collar/New()
 	..()
-	gear_tweaks += gear_tweak_collar_tag
+	gear_tweaks += GLOB.gear_tweak_collar_tag
 
 /datum/gear/collar/golden
 	display_name = "collar, golden"
