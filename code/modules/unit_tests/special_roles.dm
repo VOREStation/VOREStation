@@ -5,8 +5,9 @@
 		TEST_FAIL("GLOB.special_roles and GLOB.be_special_flags lengths do not match. [GLOB.special_roles] vs [GLOB.be_special_flags].")
 
 	// These get out of order way too often.
-	var/index = 0
+	var/index = 1
 	for(var/key in GLOB.special_roles)
 		var/check_key = GLOB.be_special_flags[index]
 		if(lowertext(check_key) != lowertext(key))
-			TEST_FAIL("Special role flag misalignment index: [index],  be_special_flags: [check_key],  special_roles: [key]")
+			TEST_FAIL("Special role flag misalignment index: [index], be_special_flags: [check_key], special_roles: [key]. Keys must also match when caste to lowercase.")
+		index++
