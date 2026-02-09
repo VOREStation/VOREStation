@@ -970,7 +970,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!choice)
 			return
 		if(choice == "Yes")
-			SSpai.recruitWindow(src)
+
+
+
+			// TODO
+			//SSpai.recruitWindow(src)
+
+
+
+
 		var/count = 0
 		for(var/obj/item/paicard/p in GLOB.all_pai_cards)
 			var/obj/item/paicard/PP = p

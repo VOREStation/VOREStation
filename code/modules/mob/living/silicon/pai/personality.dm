@@ -6,6 +6,17 @@
 		comments
 		ready = 0
 */
+/datum/paiCandidate
+	var/name
+	var/key
+	var/description
+	var/role
+	var/comments
+	var/ready = 0
+	var/chassis
+	var/ouremotion
+	var/eye_color
+	var/gender
 
 /datum/paiCandidate/proc/savefile_path(mob/user)
 	return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey]/pai.sav"

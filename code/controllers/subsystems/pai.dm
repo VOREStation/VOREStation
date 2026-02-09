@@ -3,16 +3,78 @@
 ////////////////////////////////
 SUBSYSTEM_DEF(pai)
 	name = "Pai"
-	flags = SS_NO_FIRE
+	flags = SS_NO_INIT
 	dependencies = list(
 		/datum/controller/subsystem/atoms
 	)
+	VAR_PRIVATE/list/current_run = list()
+	VAR_PRIVATE/list/pai_ghosts = list()
 
-	var/inquirer = null
-	var/list/pai_candidates = list()
-	var/list/asked = list()
-	var/askDelay = 1 MINUTE
+/datum/controller/subsystem/pai/stat_entry(msg)
+	msg = "C:[pai_ghosts.len]"
+	return ..()
 
+/datum/controller/subsystem/pai/fire(resumed)
+	. = ..()
+	if(!resumed)
+		pai_ghosts.Cut()
+		current_run = GLOB.observer_mob_list.Copy()
+
+	while(current_run.len)
+		if(MC_TICK_CHECK)
+			return
+
+		var/mob/observer/ghost = current_run[current_run.len]
+		current_run.len--
+		if(!ghost.client)
+			continue
+		if(!ghost.MayRespawn())
+			continue
+		if(jobban_isbanned(ghost, "pAI"))
+			continue
+		if(!(ghost.client.prefs.be_special & BE_PAI))
+			continue
+		for(var/ourkey in GLOB.paikeys)
+			if(ourkey == ghost.ckey)
+				continue
+
+		// Create candidate
+		pai_ghosts.Add(WEAKREF(ghost))
+
+/datum/controller/subsystem/pai/proc/get_pai_candidates()
+	var/list/return_data = list()
+	for(var/datum/weakref/WF in pai_ghosts)
+		var/mob/observer/ghost = WF?.resolve()
+
+		if(!istype(ghost) || !ghost.client)
+			continue
+
+		return_data += ghost.client.prefs.
+
+	return return_data
+
+/datum/controller/subsystem/pai/proc/get_tgui_data()
+	RETURN_TYPE(/list)
+	var/list/data = list()
+	for(var/datum/paiCandidate/candidate in get_pai_candidates())
+		data += list(
+			list(
+				"name" = "test"
+			)
+		)
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 /datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
@@ -343,7 +405,6 @@ SUBSYSTEM_DEF(pai)
 
 	user << browse(dat, "window=findPai")
 
-
 /datum/controller/subsystem/pai/proc/requestRecruits(var/mob/user)
 	inquirer = user
 	for(var/mob/observer/dead/O in GLOB.player_list)
@@ -381,16 +442,4 @@ SUBSYSTEM_DEF(pai)
 			recruitWindow(C.mob)
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
-
-
-/datum/paiCandidate
-	var/name
-	var/key
-	var/description
-	var/role
-	var/comments
-	var/ready = 0
-	var/chassis
-	var/ouremotion
-	var/eye_color
-	var/gender
+*/
