@@ -94,30 +94,30 @@ export const pAICard = (props) => {
         )) || (
           <Section title="Find Companion">
             <LabeledList>
-              {available_pais.map(
-                (data) =>
-                  data.name ?? (
-                    <LabeledList.Item
-                      key={data.key}
-                      label={data.name}
-                      buttons={
-                        <Button
-                          icon="lightbulb-o"
-                          onClick={() => act('select_pai', { key: data.key })}
-                        >
-                          Configure
-                        </Button>
-                      }
+              {available_pais.map((data) => (
+                <LabeledList.Item
+                  key={data.key}
+                  label={data.name}
+                  buttons={
+                    <Button
+                      icon="lightbulb-o"
+                      onClick={() => act('select_pai', { key: data.key })}
                     >
-                      {data.ad}
-                      {data.description}
-                      {data.eyecolor}
-                      {data.chassis}
-                      {data.emotion}
-                      {data.gender}
-                    </LabeledList.Item>
-                  ),
-              )}
+                      Invite
+                    </Button>
+                  }
+                >
+                  INFO:
+                  {data.key}
+                  {data.name}
+                  {data.ad}
+                  {data.description}
+                  {data.eyecolor}
+                  {data.chassis}
+                  {data.emotion}
+                  {data.gender}
+                </LabeledList.Item>
+              ))}
             </LabeledList>
           </Section>
         )}

@@ -70,6 +70,7 @@ SUBSYSTEM_DEF(pai)
 		// REPLACE ME WITH TG PREFS. TEMP UNTIL REFACTOR. IF YOU MERGE THIS INTO MASTER I WILL DIE
 		var/datum/paiCandidate/candidate = new()
 		if(candidate.savefile_load(ghost))
+			candidate.key = ghost.ckey
 			return_data += candidate
 		else
 			qdel(candidate)
