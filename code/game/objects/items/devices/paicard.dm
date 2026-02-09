@@ -40,7 +40,7 @@
 	return ..()
 
 /obj/item/paicard/attack_ghost(mob/user as mob)
-	if(pai != null) //Have a person in them already?
+	if(pai) //Have a person in them already?
 		return ..()
 	if(is_damage_critical())
 		to_chat(user, span_warning("That card is too damaged to activate!"))
@@ -68,8 +68,7 @@
 		if("Load PAI Data")
 			ghost_inhabit(user, TRUE)
 
-	// Default is to do rest of ghost proc
-	return ..()
+	return ..() // TEMP, REMOVE ME
 
 /obj/item/paicard/proc/ghost_inhabit(mob/user, load_slot)
 	var/turf/location = get_turf(src)
@@ -216,6 +215,15 @@
 				to_chat(pai, "Prime Directive: <br>[pai.pai_law0]")
 				to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
 			return TRUE
+
+		if("select_pai")
+			if(pai)
+				return FALSE
+			if(in_use)
+				return FALSE
+			SSpai.invite_ghost(ui.user, params["key"], src)
+			return TRUE
+
 
 /obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality

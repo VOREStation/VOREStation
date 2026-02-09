@@ -1,13 +1,13 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 type PAIRequest = {
   key: string;
-  name: string;
-  description: string;
-  ad: string;
+  name: string | null;
+  description: string | null;
+  ad: string | null;
   eyecolor: string;
   chassis: string;
   emotion: string;
@@ -91,7 +91,36 @@ export const pAICard = (props) => {
               }
             </Section>
           </Box>
-        )) || <Section title="Find Companion">TEMP TEMP TEMP</Section>}
+        )) || (
+          <Section title="Find Companion">
+            <LabeledList>
+              {available_pais.map(
+                (data) =>
+                  data.name ?? (
+                    <LabeledList.Item
+                      key={data.key}
+                      label={data.name}
+                      buttons={
+                        <Button
+                          icon="lightbulb-o"
+                          onClick={() => act('select_pai', { key: data.key })}
+                        >
+                          Configure
+                        </Button>
+                      }
+                    >
+                      {data.ad}
+                      {data.description}
+                      {data.eyecolor}
+                      {data.chassis}
+                      {data.emotion}
+                      {data.gender}
+                    </LabeledList.Item>
+                  ),
+              )}
+            </LabeledList>
+          </Section>
+        )}
       </Window.Content>
     </Window>
   );
