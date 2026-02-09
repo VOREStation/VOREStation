@@ -14,8 +14,6 @@
 //     III. Thou shalt not write a decl that relies on arguments supplied to New().
 //     IV.  Thou shalt not call Initialize() on a /datum/decl.
 
-GLOBAL_DATUM_INIT(decls_repository, /datum/repository/decls, new) // Initialiozed in /datum/global_init/New()
-
 /datum/repository/decls
 	var/list/fetched_decls
 	var/list/fetched_decl_types
@@ -40,12 +38,12 @@ GLOBAL_DATUM_INIT(decls_repository, /datum/repository/decls, new) // Initialioze
 
 /datum/repository/decls/proc/get_decls(var/list/decl_types)
 	. = list()
-	for(var/datum/decl_type in decl_types)
+	for(var/decl_type in decl_types)
 		.[decl_type] = get_decl(decl_type)
 
 /datum/repository/decls/proc/get_decls_unassociated(var/list/decl_types)
 	. = list()
-	for(var/datum/decl_type in decl_types)
+	for(var/decl_type in decl_types)
 		. += get_decl(decl_type)
 
 /datum/repository/decls/proc/get_decls_of_type(var/decl_prototype)
