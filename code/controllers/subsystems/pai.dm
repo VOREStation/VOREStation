@@ -64,50 +64,32 @@ SUBSYSTEM_DEF(pai)
 			return TRUE
 	return FALSE
 
-/datum/controller/subsystem/pai/proc/get_pai_candidates()
-	RETURN_TYPE(/list)
-	var/list/return_data = list()
-	for(var/datum/weakref/WF in pai_ghosts)
-		var/mob/observer/ghost = WF?.resolve()
-
-		if(!istype(ghost) || !ghost.client)
-			continue
-
-		// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
-		// THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE THIS CANNOT CONTINUE
-		// REPLACE ME WITH TG PREFS. TEMP UNTIL REFACTOR. IF YOU MERGE THIS INTO MASTER I WILL DIE
-		var/datum/paiCandidate/candidate = new()
-		if(candidate.savefile_load(ghost))
-			candidate.key = ghost.ckey
-			return_data += candidate
-		else
-			qdel(candidate)
-		// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
-
-	return return_data
-
 /datum/controller/subsystem/pai/proc/get_tgui_data()
 	RETURN_TYPE(/list)
-	var/list/candidate_datums = get_pai_candidates()
 
 	var/list/data = list()
-	for(var/datum/paiCandidate/candidate in candidate_datums)
+	for(var/datum/weakref/WF in pai_ghosts)
+		var/mob/observer/ghost = WF?.resolve()
+		if(!istype(ghost) || !ghost.client?.prefs)
+			continue
+
+		var/datum/preferences/pref = ghost.client.prefs
 		data += list(
 			list(
-				"key" = candidate.key,
-				"name" = candidate.name,
-				"description" = candidate.description,
-				"ad" = candidate.advertisement,
-				"eyecolor" = candidate.eye_color,
-				"chassis" = candidate.chassis,
-				"emotion" = candidate.ouremotion,
-				"gender" = candidate.gender
+				"key" = ghost.ckey,
+				"name" = pref.read_preference(/datum/preference/text/pai_name),
+				"gender" = pref.identifying_gender,
+				// Description
+				"description" = pref.read_preference(/datum/preference/text/pai_description),
+				"role" = pref.read_preference(/datum/preference/text/pai_role),
+				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
+				// Appearance
+				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
+				"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
+				"emotion" = pref.read_preference(/datum/preference/text/pai_emotion),
 			)
 		)
 
-	// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
-	QDEL_LIST(candidate_datums) // TEMP, Remove when these are read from player prefs DO NOT MERGE ME INTO MASTER OR DEATH WILL COME TO YOU SWIFTLY
-	// TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
 	return data
 
 /datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, find_ckey, obj/item/paicard/card)

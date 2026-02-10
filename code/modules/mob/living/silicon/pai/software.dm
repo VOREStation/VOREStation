@@ -1,22 +1,3 @@
-var/list/pai_emotions = list(
-		"Neutral" = 1,
-		"What" = 2,
-		"Happy" = 3,
-		"Cat" = 4,
-		"Extremely Happy" = 5,
-		"Face" = 6,
-		"Laugh" = 7,
-		"Sad" = 8,
-		"Angry" = 9,
-		"Silly" = 10,
-		"Nose" = 11,
-		"Smirk" = 12,
-		"Exclamation Points" = 13,
-		"Question Mark" = 14,
-		"Blank" = 15,
-		"Off" = 16
-	)
-
 /mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
 	software = GLOB.default_pai_software.Copy()
@@ -62,10 +43,10 @@ var/list/pai_emotions = list(
 
 	// Emotions
 	var/list/emotions = list()
-	for(var/name in pai_emotions)
+	for(var/name in GLOB.pai_emotions)
 		var/list/emote = list()
 		emote["name"] = name
-		emote["id"] = pai_emotions[name]
+		emote["id"] = GLOB.pai_emotions[name]
 		emotions.Add(list(emote))
 
 	data["emotions"] = emotions
@@ -97,6 +78,6 @@ var/list/pai_emotions = list(
 
 		if("image")
 			var/img = text2num(params["image"])
-			if(1 <= img && img <= (pai_emotions.len))
+			if(1 <= img && img <= (GLOB.pai_emotions.len))
 				card.setEmotion(img)
 			return TRUE

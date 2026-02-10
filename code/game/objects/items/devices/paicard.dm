@@ -34,7 +34,7 @@
 
 /obj/item/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
-	if(!isnull(pai))
+	if(!QDELETED(pai)) // Either the pai or card could be deleted first, prevent a loop
 		pai.death(0)
 	QDEL_NULL(radio)
 	return ..()
@@ -72,20 +72,15 @@
 
 /obj/item/paicard/proc/ghost_inhabit(mob/user, load_slot)
 	RETURN_TYPE(/mob/living/silicon/pai)
-
-	var/turf/location = get_turf(src)
-	var/obj/item/paicard/card = new type(location)
 	// Setup pai
-	var/mob/living/silicon/pai/new_pai = new(card)
+	var/mob/living/silicon/pai/new_pai = new(src)
 	new_pai.key = user.key
 	GLOB.paikeys |= new_pai.ckey
-	card.setPersonality(new_pai)
-	if(!load_slot || !new_pai.savefile_load(new_pai))
+	setPersonality(new_pai)
+	if(!load_slot || !new_pai.apply_preferences(new_pai))
 		var/pai_name = sanitize_name(tgui_input_text(new_pai, "Choose your character's name", "Character Name"), ,1)
 		if(!isnull(pai_name))
 			new_pai.SetName(pai_name)
-	qdel(src) // We make our own fresh card above
-
 	return new_pai
 
 /obj/item/paicard/tgui_interact(mob/user, datum/tgui/ui)

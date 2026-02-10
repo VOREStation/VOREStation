@@ -311,81 +311,21 @@
 						span_notice("You hug [target] to make [t_him] feel better!"))
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
-/mob/living/silicon/pai/proc/savefile_path(mob/user)
-	return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey]/pai.sav"
+/mob/living/silicon/pai/proc/apply_preferences(mob/user, var/silent = 1)
+	if(!user.client?.prefs)
+		return FALSE
+	var/datum/preferences/pref = user.client.prefs
 
-/mob/living/silicon/pai/proc/savefile_save(mob/user)
-	if(IsGuestKey(user.key))
-		return 0
-
-	var/savefile/F = new /savefile(src.savefile_path(user))
-
-
-	F["name"] << src.name
-	F["description"] << src.flavor_text
-	F["eyecolor"] << src.eye_color
-	F["chassis"] << src.chassis
-	F["emotion"] << src.card.current_emotion
-	F["gender"] << src.gender
-	F["version"] << 1
-
-	return 1
-
-/mob/living/silicon/pai/proc/savefile_load(mob/user, var/silent = 1)
-	if (IsGuestKey(user.key))
-		return 0
-
-	var/path = savefile_path(user)
-
-	if (!fexists(path))
-		return 0
-
-	var/savefile/F = new /savefile(path)
-
-	if(!F) return //Not everyone has a pai savefile.
-
-	var/version = null
-	F["version"] >> version
-
-	if (isnull(version) || version != 1)
-		fdel(path)
-		if (!silent)
-			tgui_alert_async(user, "Your savefile was incompatible with this version and was deleted.")
-		return 0
-	var/ourname
-	var/ouremotion
-	var/ourdesc
-	var/oureyes
-	var/ourchassis
-	var/ourgender
-	F["name"] >> ourname
-	F["description"] >> ourdesc
-	F["eyecolor"] >> oureyes
-	F["chassis"] >> ourchassis
-	F["emotion"] >> ouremotion
-	F["gender"] >> ourgender
-	if(ourname)
-		SetName(ourname)
-	if(ourdesc)
-		flavor_text = ourdesc
-	if(ourchassis)
-		chassis = ourchassis
-	if(ourgender)
-		gender = ourgender
-	if(oureyes)
-		card.screen_color = oureyes
-		eye_color = oureyes
-	if(ouremotion)
-		card.setEmotion(ouremotion)
+	SetName(pref.read_preference(/datum/preference/text/pai_name))
+	flavor_text = pref.read_preference(/datum/preference/text/pai_description)
+	chassis = GLOB.possible_chassis[pref.read_preference(/datum/preference/text/pai_chassis)]
+	gender = pref.identifying_gender
+	eye_color = pref.read_preference(/datum/preference/color/pai_eye_color)
+	card.screen_color = eye_color
+	card.setEmotion(GLOB.pai_emotions[pref.read_preference(/datum/preference/text/pai_emotion)])
 
 	update_icon()
-	return 1
-
-/mob/living/silicon/pai/verb/save_pai_to_slot()
-	set category = "Abilities.pAI Commands"
-	set name = "Save Configuration"
-	savefile_save(src)
-	to_chat(src, span_filter_notice("[name] configuration saved to global pAI settings."))
+	return TRUE
 
 /mob/living/silicon/pai/a_intent_change(input as text)
 	. = ..()

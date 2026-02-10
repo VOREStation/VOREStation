@@ -150,10 +150,9 @@
 	pai.key = choice.key
 	card.setPersonality(pai)
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
-		pai.savefile_load(pai)
+		pai.apply_preferences(pai)
 	else
 		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
-		card.setPersonality(pai)
 	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

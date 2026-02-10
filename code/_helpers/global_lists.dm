@@ -1128,6 +1128,24 @@ GLOBAL_LIST_INIT(flying_chassis, list(
 
 GLOBAL_LIST_EMPTY(pai_software_by_key)
 GLOBAL_LIST_EMPTY(default_pai_software)
+GLOBAL_LIST_INIT(pai_emotions, list(
+		"Neutral" = 1,
+		"What" = 2,
+		"Happy" = 3,
+		"Cat" = 4,
+		"Extremely Happy" = 5,
+		"Face" = 6,
+		"Laugh" = 7,
+		"Sad" = 8,
+		"Angry" = 9,
+		"Silly" = 10,
+		"Nose" = 11,
+		"Smirk" = 12,
+		"Exclamation Points" = 13,
+		"Question Mark" = 14,
+		"Blank" = 15,
+		"Off" = 16
+	))
 
 //Sure I could spend all day making wacky overlays for all of the different forms
 //but quite simply most of these sprites aren't made for that, and I'd rather just make new ones
