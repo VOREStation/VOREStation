@@ -71,14 +71,13 @@
 		obscured += t.obfuscations[obfuscation.type]
 
 /datum/chunk/ghost/update()
-	set background = 1
 
-	if(!visible || !LAZYLEN(seenby))
-		return
+	set background = 1
 
 	var/list/newInvisibleTurfs = list()
 	acquireVisibleTurfs(newInvisibleTurfs)
 
+	// Removes turf that isn't in turfs.
 	newInvisibleTurfs &= turfs
 
 	var/list/visAdded = obscuredTurfs - newInvisibleTurfs

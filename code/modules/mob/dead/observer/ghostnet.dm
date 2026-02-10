@@ -20,8 +20,8 @@
 	var/list/chunks_post_seen = list()
 
 	for(var/mob/observer/dead/ghost as anything in moved_eyes)
+		// 0xf = 15
 		var/static_range = ghost.static_visibility_range
-
 		var/x1 = max(0, ghost.x - static_range) & ~(CHUNK_SIZE - 1)
 		var/y1 = max(0, ghost.y - static_range) & ~(CHUNK_SIZE - 1)
 		var/x2 = min(world.maxx, ghost.x + static_range) & ~(CHUNK_SIZE - 1)
