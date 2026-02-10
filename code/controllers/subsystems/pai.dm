@@ -37,20 +37,28 @@ SUBSYSTEM_DEF(pai)
 
 		var/mob/observer/ghost = current_run[current_run.len]
 		current_run.len--
-		if(!ghost.client)
+		if(!invite_valid(ghost))
 			continue
-		if(!ghost.MayRespawn())
-			continue
-		if(jobban_isbanned(ghost, "pAI"))
-			continue
-		if(!(ghost.client.prefs.be_special & BE_PAI))
-			continue
-		if(check_is_delayed(ghost.ckey))
-			continue
-		if(check_is_already_pai(ghost.ckey))
-			continue
+
 		// Create candidate
 		pai_ghosts.Add(WEAKREF(ghost))
+
+/datum/controller/subsystem/pai/proc/invite_valid(mob/user)
+	if(!user.client?.prefs)
+		return FALSE
+	if(!user.MayRespawn())
+		return FALSE
+	if(jobban_isbanned(user, "pAI"))
+		return FALSE
+	if(!(user.client.prefs.be_special & BE_PAI))
+		return FALSE
+	if(check_is_delayed(user.ckey))
+		return FALSE
+	if(check_is_already_pai(user.ckey))
+		return FALSE
+	if(user.client.prefs.read_preference(/datum/preference/text/pai_name) == PAI_UNSET) // Forbid unset name
+		return FALSE
+	return TRUE
 
 /datum/controller/subsystem/pai/proc/check_is_delayed(var/key)
 	if(key in asked)

@@ -77,7 +77,7 @@
 	new_pai.key = user.key
 	GLOB.paikeys |= new_pai.ckey
 	setPersonality(new_pai)
-	if(!load_slot || !new_pai.apply_preferences(new_pai))
+	if(!load_slot || !new_pai.apply_preferences(new_pai.client))
 		var/pai_name = sanitize_name(tgui_input_text(new_pai, "Choose your character's name", "Character Name"), ,1)
 		if(!isnull(pai_name))
 			new_pai.SetName(pai_name)
@@ -294,6 +294,12 @@
 		pai.show_message(rendered, type)
 	..()
 
+/obj/item/paicard/proc/clear_invite_overlay()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(pai) // DOn't wipe emotion if a pai was invited
+		return
+	cut_overlay()
 
 // VoreEdit: Living Machine Stuff after this.
 // This adds a var and proc for all machines to take a pAI. (The pAI can't control anything, it's just for RP.)

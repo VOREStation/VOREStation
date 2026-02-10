@@ -311,10 +311,10 @@
 						span_notice("You hug [target] to make [t_him] feel better!"))
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
-/mob/living/silicon/pai/proc/apply_preferences(mob/user, var/silent = 1)
-	if(!user.client?.prefs)
+/mob/living/silicon/pai/proc/apply_preferences(client/cli, var/silent = 1)
+	if(!cli?.prefs)
 		return FALSE
-	var/datum/preferences/pref = user.client.prefs
+	var/datum/preferences/pref = cli.prefs
 
 	SetName(pref.read_preference(/datum/preference/text/pai_name))
 	flavor_text = pref.read_preference(/datum/preference/text/pai_description)

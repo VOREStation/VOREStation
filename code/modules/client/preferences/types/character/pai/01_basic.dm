@@ -6,7 +6,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/pai_name/create_default_value()
-	return "None Set"
+	return PAI_UNSET
 
 /datum/preference/text/pai_name/apply_pref_to(mob/living, value)
 	return
@@ -20,7 +20,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/pai_description/create_default_value()
-	return "None Set"
+	return PAI_UNSET
 
 /datum/preference/text/pai_description/apply_pref_to(mob/living, value)
 	return
@@ -34,7 +34,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/pai_role/create_default_value()
-	return "None Set"
+	return PAI_UNSET
 
 /datum/preference/text/pai_role/apply_pref_to(mob/living, value)
 	return
@@ -48,7 +48,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/pai_ad/create_default_value()
-	return "None Set"
+	return PAI_UNSET
 
 /datum/preference/text/pai_ad/apply_pref_to(mob/living, value)
 	return
@@ -62,7 +62,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/pai_comments/create_default_value()
-	return "None Set"
+	return PAI_UNSET
 
 /datum/preference/text/pai_comments/apply_pref_to(mob/living, value)
 	return
