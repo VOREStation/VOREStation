@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(pai)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/pai/stat_entry(msg)
-	msg = "C:[pai_ghosts.len]"
+	msg = "C:[length(pai_ghosts)]"
 	return ..()
 
 /datum/controller/subsystem/pai/fire(resumed)
