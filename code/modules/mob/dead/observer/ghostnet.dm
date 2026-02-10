@@ -79,7 +79,6 @@
 		onMajorChunkChange(A, choice, gchunk)
 		gchunk.hasChanged(TRUE)
 
-
 /datum/visualnet/ghost/onMajorChunkChange(atom/c, var/choice, var/datum/chunk/ghost/chunk)
 // Only add actual areas to the list of areas
 	if(istype(c, /area))
