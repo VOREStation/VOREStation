@@ -27,11 +27,16 @@
 		var/x2 = min(world.maxx, ghost.x + static_range) & ~(CHUNK_SIZE - 1)
 		var/y2 = min(world.maxy, ghost.y + static_range) & ~(CHUNK_SIZE - 1)
 
+		var/list/visibleChunks = list()
+
 		for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 			for(var/y = y1; y <= y2; y += CHUNK_SIZE)
-				var/datum/chunk/ghost/c = getChunk(x, y, ghost.z)
-				if(!ghost.visibleChunks[c])
-					c.add(ghost, FALSE)
+				visibleChunks |= getChunk(x, y, ghost.z)
+
+		var/list/add = visibleChunks - ghost.visibleChunks
+
+		for(var/datum/chunk/ghost/c as anything in add)
+			c.add(ghost, FALSE)
 
 		if(C)
 			chunks_post_seen |= ghost.visibleChunks
