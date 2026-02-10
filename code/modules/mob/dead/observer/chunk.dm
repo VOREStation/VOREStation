@@ -40,6 +40,9 @@
 		if(A.flag_check(AREA_BLOCK_GHOST_SIGHT))
 			hidden_areas += A
 
+		LAZYINITLIST(A.ghost_chunks)
+		A.ghost_chunks |= src
+
 	// 0xf = 15
 	x &= ~0xf
 	y &= ~0xf
@@ -68,13 +71,14 @@
 		obscured += t.obfuscations[obfuscation.type]
 
 /datum/chunk/ghost/update()
-
 	set background = 1
 
-	var/list/newInvisibleTurfs = new()
+	if(!visible || !LAZYLEN(seenby))
+		return
+
+	var/list/newInvisibleTurfs = list()
 	acquireVisibleTurfs(newInvisibleTurfs)
 
-	// Removes turf that isn't in turfs.
 	newInvisibleTurfs &= turfs
 
 	var/list/visAdded = obscuredTurfs - newInvisibleTurfs
@@ -87,9 +91,7 @@
 		if(LAZYLEN(t.obfuscations) && t.obfuscations[obfuscation.type])
 			obscured -= t.obfuscations[obfuscation.type]
 			for(var/mob/observer/dead/m as anything in seenby)
-				if(!m)
-					continue
-				var/client/client = m.client
+				var/client/client = m?.client
 				if(client)
 					client.images -= t.obfuscations[obfuscation.type]
 
@@ -103,10 +105,7 @@
 
 			obscured += t.obfuscations[obfuscation.type]
 			for(var/mob/observer/dead/m as anything in seenby)
-				if(!m)
-					seenby -= m
-					continue
-				if(!m.checkStatic())
+				if(!m || !m.checkStatic())
 					continue
 				var/client/client = m.client
 				if(client)
