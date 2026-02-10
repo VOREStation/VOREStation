@@ -557,7 +557,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		ghost_chunks.remove(src)
 	if(key)
 		key = null
-
 	return ..()
 
 /mob/Moved(atom/old_loc, direction, forced = FALSE)
