@@ -9,8 +9,16 @@
 	if(!islist(moved_eyes))
 		moved_eyes = moved_eyes ? list(moved_eyes) : list()
 
+	if(!C)
+		return
+
+	var/list/chunks_pre_seen = list()
+
 	for(var/mob/observer/dead/ghost as anything in moved_eyes)
-		for(var/datum/chunk/ghost/c as anything in ghost.visibleChunks)
+		chunks_pre_seen |= ghost.visibleChunks
+
+	for(var/datum/chunk/ghost/c as anything in chunks_pre_seen)
+		for(var/mob/observer/dead/ghost as anything in moved_eyes)
 			c.remove(ghost)
 
 /datum/visualnet/ghost/proc/removeVisibility(list/moved_eyes, client/C)
