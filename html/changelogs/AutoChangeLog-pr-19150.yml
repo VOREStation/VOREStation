@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - refactor: "changes playertips subsystem to no longer overtime"
-  - bugfix: "initial player tips reminder not being shown"
-  - bugfix: "multiple hard dels"

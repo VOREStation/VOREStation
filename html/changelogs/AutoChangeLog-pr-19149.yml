@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "robot sheet snatchers can be upgraded to be on par with the non robot ones"
-  - code_imp: "change the robot upgrade code to rid of usr"
