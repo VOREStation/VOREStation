@@ -62,101 +62,27 @@
 		return
 	return feed_grabbed_to_self(src,T)
 
-/mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
-	..()
-	if(chassis == "13")
-		icon = holo_icon
-		add_eyes()
-		return
+/mob/living/silicon/pai/proc/change_chassis(new_chassis)
+	if(!(new_chassis in SSpai.pai_chassis_sprites))
+		new_chassis = PAI_DEFAULT_CHASSIS
+	chassis_name = new_chassis
 
-	update_fullness()
-
-	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
-	var/fullness_extension = ""
-	if(vore_capacity > 1 && vore_fullness > 1)
-		fullness_extension = "_[vore_fullness]"
-
-	if(!vore_fullness && !resting)
-		icon_state = "[chassis]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
-	else if(!vore_fullness && resting)
-		icon_state = "[chassis]_rest"
-
-	// Unfortunately not all these states exist, ugh.
-	else if(vore_fullness && !resting)
-		if(icon_exists(icon, "[chassis]_full[fullness_extension]"))
-			icon_state = "[chassis]_full[fullness_extension]"
-		else
-			icon_state = "[chassis]"
-	else if(vore_fullness && resting)
-		if(icon_exists(icon, "[chassis]_rest_full[fullness_extension]"))
-			icon_state = "[chassis]_rest_full[fullness_extension]"
-		else
-			icon_state = "[chassis]_rest"
-	if(chassis in GLOB.wide_chassis)
-		pixel_x = -16
-		default_pixel_x = -16
-	else
-		pixel_x = 0
-		default_pixel_x = 0
-	add_eyes()
-
-/mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
-	..()
-	if(chassis == "13")
-		icon = holo_icon
-		add_eyes()
-		return
-	update_fullness()
-	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
-	var/fullness_extension = ""
-	if(vore_capacity > 1 && vore_fullness > 1)
-		fullness_extension = "_[vore_fullness]"
-	if(!vore_fullness && !resting)
-		icon_state = "[chassis]"
-	else if(!vore_fullness && resting)
-		icon_state = "[chassis]_rest"
-	else if(vore_fullness && !resting)
-		icon_state = "[chassis]_full[fullness_extension]"
-	else if(vore_fullness && resting)
-		icon_state = "[chassis]_rest_full[fullness_extension]"
-	if(chassis in GLOB.wide_chassis)
-		pixel_x = -16
-		default_pixel_x = -16
-	else
-		pixel_x = 0
-		default_pixel_x = 0
-	add_eyes()
-
-//proc override to avoid pAI players being invisible while the chassis selection window is open
-/mob/living/silicon/pai/proc/choose_chassis()
-	set category = "Abilities.pAI Commands"
-	set name = "Choose Chassis"
-	var/choice
-
-	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", GLOB.possible_chassis)
-	if(!choice) return
-	var/oursize = size_multiplier
-	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
-	chassis = GLOB.possible_chassis[choice]
-
-	vore_capacity = 1
-	vore_capacity_ex = list("stomach" = 1)
-
-	if(chassis == "13")
+	// Get icon data setup
+	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+		// Rebuild holosprite from character
 		if(!holo_icon)
-			if(!get_character_icon())
-				return
-		icon_state = null
-		icon = holo_icon
-	else if(chassis in GLOB.wide_chassis)
-		icon = 'icons/mob/pai_vr64x64.dmi'
-		vis_height = 64
+			get_character_icon()
 	else
-		icon = 'icons/mob/pai_vr.dmi'
-		vis_height = 32
-	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+		// Get data from our sprite datum
+		icon = SSpai.pai_chassis_sprites[chassis_name].sprite_icon
+		pixel_x = SSpai.pai_chassis_sprites[chassis_name].pixel_x
+		default_pixel_x = pixel_x
+		pixel_y = SSpai.pai_chassis_sprites[chassis_name].pixel_y
+		default_pixel_y = pixel_y
+		vis_height = SSpai.pai_chassis_sprites[chassis_name].vis_height
 
-	if(chassis in GLOB.flying_chassis)
+	// Drops you if you change to a non-flying chassis
+	if(SSpai.pai_chassis_sprites[chassis_name].flying)
 		hovering = TRUE
 	else
 		hovering = FALSE
@@ -165,27 +91,83 @@
 
 	update_icon()
 
+/mob/living/silicon/pai/update_icon()
+	. = ..()
+
+	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+		icon_state = null
+		icon = holo_icon
+		add_eyes()
+		return
+
+	update_fullness()
+
+	var/sprite_state = SSpai.pai_chassis_sprites[chassis_name].sprite_icon_state
+
+	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
+	var/fullness_extension = ""
+	if(vore_capacity > 1 && vore_fullness > 1)
+		fullness_extension = "_[vore_fullness]"
+
+	if(!vore_fullness && !resting)
+		icon_state = "[sprite_state]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
+	else if(!vore_fullness && resting)
+		icon_state = "[sprite_state]_rest"
+
+	// Unfortunately not all these states exist, ugh.
+	else if(vore_fullness && !resting)
+		if(icon_exists(icon, "[sprite_state]_full[fullness_extension]"))
+			icon_state = "[sprite_state]_full[fullness_extension]"
+		else
+			icon_state = "[sprite_state]"
+	else if(vore_fullness && resting)
+		if(icon_exists(icon, "[sprite_state]_rest_full[fullness_extension]"))
+			icon_state = "[sprite_state]_rest_full[fullness_extension]"
+		else
+			icon_state = "[sprite_state]_rest"
+
+	add_eyes()
+
+//proc override to avoid pAI players being invisible while the chassis selection window is open
+/mob/living/silicon/pai/proc/choose_chassis()
+	set category = "Abilities.pAI Commands"
+	set name = "Choose Chassis"
+	var/choice
+
+	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", SSpai.pai_chassis_sprites)
+	if(!choice) return
+	var/oursize = size_multiplier
+	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
+	change_chassis(choice)
+
+	vore_capacity = 1
+	vore_capacity_ex = list("stomach" = 1)
+
+	update_icon()
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+
 /mob/living/silicon/pai/verb/toggle_eyeglow()
 	set category = "Abilities.pAI Commands"
 	set name = "Toggle Eye Glow"
 
-	if(chassis in GLOB.allows_eye_color)
-		if(eye_glow && !hide_glow)
-			eye_glow = FALSE
-		else
-			eye_glow = TRUE
-			hide_glow = FALSE
-		update_icon()
-	else
+	if(!SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
 		to_chat(src, span_filter_notice("Your selected chassis cannot modify its eye glow!"))
 		return
 
+	if(eye_glow && !hide_glow)
+		eye_glow = FALSE
+	else
+		eye_glow = TRUE
+		hide_glow = FALSE
+	update_icon()
 
 /mob/living/silicon/pai/verb/pick_eye_color()
 	set category = "Abilities.pAI Commands"
 	set name = "Pick Eye Color"
-	if(!(chassis in GLOB.allows_eye_color))
+
+	if(!SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
 		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
+		return
 
 	var/new_eye_color = tgui_color_picker(src, "Choose your character's eye color:", "Eye Color")
 	if(new_eye_color)
@@ -207,7 +189,9 @@
 
 /mob/living/silicon/pai/proc/add_eyes()
 	remove_eyes()
-	if(chassis == "13")
+
+	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+		// Special eyes that are based on holoprojector of your character
 		if(holo_icon.Width() > 32)
 			holo_icon_dimension_X = 64
 			pixel_x = -16
@@ -222,9 +206,12 @@
 			eye_layer = image('icons/mob/pai_vr64x32.dmi', "type13-eyes")
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
 			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
-	else if(chassis in GLOB.allows_eye_color)
+	else if(SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
+		// Default eye handling
 		eye_layer = image(icon, "[icon_state]-eyes")
-	else return
+	else
+		// No eyes, so don't bother setting icon stuff
+		return
 	eye_layer.appearance_flags = appearance_flags
 	eye_layer.color = eye_color
 	if(eye_glow && !hide_glow)
@@ -232,6 +219,8 @@
 	add_overlay(eye_layer)
 
 /mob/living/silicon/pai/proc/remove_eyes()
+	if(!eye_layer)
+		return
 	cut_overlay(eye_layer)
 	qdel(eye_layer)
 	eye_layer = null
@@ -318,7 +307,7 @@
 
 	SetName(pref.read_preference(/datum/preference/text/pai_name))
 	flavor_text = pref.read_preference(/datum/preference/text/pai_description)
-	chassis = GLOB.possible_chassis[pref.read_preference(/datum/preference/text/pai_chassis)]
+	change_chassis(pref.read_preference(/datum/preference/text/pai_chassis))
 	gender = pref.identifying_gender
 	eye_color = pref.read_preference(/datum/preference/color/pai_eye_color)
 	card.screen_color = eye_color
@@ -579,7 +568,7 @@
 
 /mob/living/silicon/pai/set_dir(var/new_dir)
 	. = ..()
-	if(. && (chassis == "13"))
+	if(. && SSpai.pai_chassis_sprites[chassis_name].holo_projector)
 		switch(dir)
 			if(SOUTH)
 				icon = holo_icon

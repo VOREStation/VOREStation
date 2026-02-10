@@ -86,10 +86,10 @@
 	can_randomize = FALSE
 
 /datum/preference/text/pai_chassis/create_default_value()
-	return GLOB.possible_chassis[1]
+	return PAI_DEFAULT_CHASSIS
 
 /datum/preference/text/pai_chassis/is_valid(value)
-	if(!(value in GLOB.possible_chassis))
+	if(!(value in SSpai.pai_chassis_sprites))
 		return FALSE
 	. = ..()
 

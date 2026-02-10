@@ -3560,6 +3560,7 @@
 #include "code\modules\mob\living\silicon\pai\say.dm"
 #include "code\modules\mob\living\silicon\pai\software.dm"
 #include "code\modules\mob\living\silicon\pai\software_modules.dm"
+#include "code\modules\mob\living\silicon\pai\sprites\_sprite_datum.dm"
 #include "code\modules\mob\living\silicon\robot\analyzer.dm"
 #include "code\modules\mob\living\silicon\robot\cloak.dm"
 #include "code\modules\mob\living\silicon\robot\component.dm"

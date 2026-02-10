@@ -9,16 +9,25 @@ SUBSYSTEM_DEF(pai)
 	dependencies = list(
 		/datum/controller/subsystem/atoms
 	)
+	var/list/datum/pai_sprite/pai_chassis_sprites = list()
+
 	VAR_PRIVATE/list/current_run = list()
 	VAR_PRIVATE/list/pai_ghosts = list()
 	VAR_PRIVATE/list/asked = list()
 
 /datum/controller/subsystem/pai/Initialize()
+	// Get all software setup
 	for(var/type in subtypesof(/datum/pai_software))
 		var/datum/pai_software/P = new type()
 		GLOB.pai_software_by_key[P.id] = P
 		if(P.default)
 			GLOB.default_pai_software[P.id] = P
+
+	// Get all valid chassis types
+	for(var/datum/pai_sprite/sprite as anything in subtypesof(/datum/pai_sprite))
+		if(initial(sprite.sprite_icon) == null && !initial(sprite.hidden))
+			continue
+		pai_chassis_sprites[initial(sprite.name)] = new sprite()
 
 	return SS_INIT_SUCCESS
 

@@ -114,7 +114,7 @@
 	if(pai) // Only set pai data if we have one
 		data["name"] = pai.name;
 		data["color"] = screen_color;
-		data["chassis"] = pai.chassis;
+		data["chassis"] = pai.chassis_name;
 		data["health"] = pai.health;
 		data["law_zero"] = pai.pai_law0;
 		data["law_extra"] = pai.pai_laws;

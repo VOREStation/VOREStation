@@ -1107,25 +1107,6 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	"huge scorched area"
 	))
 
-GLOBAL_LIST_INIT(wide_chassis, list(
-	"rat",
-	"panther",
-	"teppi",
-	"pai-diredog",
-	"pai-horse_lune",
-	"pai-horse_soleil",
-	"pai-pdragon",
-	"pai-protodog"
-	))
-
-GLOBAL_LIST_INIT(flying_chassis, list(
-	"pai-parrot",
-	"pai-bat",
-	"pai-butterfly",
-	"pai-hawk",
-	"cyberelf"
-	))
-
 GLOBAL_LIST_EMPTY(pai_software_by_key)
 GLOBAL_LIST_EMPTY(default_pai_software)
 GLOBAL_LIST_INIT(pai_emotions, list(
@@ -1335,41 +1316,6 @@ GLOBAL_LIST_INIT(possible_ghost_sprites, list(
 GLOBAL_LIST_EMPTY(sparring_attack_cache)
 
 GLOBAL_LIST_EMPTY(protean_abilities)
-
-//PAI stuff
-GLOBAL_LIST_INIT(possible_chassis, list(
-	"Drone" = "pai-repairbot",
-	"Cat" = "pai-cat",
-	"Mouse" = "pai-mouse",
-	"Monkey" = "pai-monkey",
-	"Borgi" = "pai-borgi",
-	"Fox" = "pai-fox",
-	"Parrot" = "pai-parrot",
-	"Rabbit" = "pai-rabbit",
-	"Dire wolf" = "pai-diredog",
-	"Horse (Lune)" = "pai-horse_lune",
-	"Horse (Soleil)" = "pai-horse_soleil",
-	"Dragon" = "pai-pdragon",
-	"Bear" = "pai-bear",
-	"Fennec" = "pai-fen",
-	"Type Zero" = "pai-typezero",
-	"Raccoon" = "pai-raccoon",
-	"Raptor" = "pai-raptor",
-	"Corgi" = "pai-corgi",
-	"Bat" = "pai-bat",
-	"Butterfly" = "pai-butterfly",
-	"Hawk" = "pai-hawk",
-	"Duffel" = "pai-duffel",
-	"Rat" = "rat",
-	"Panther" = "panther",
-	"Cyber Elf" = "cyberelf",
-	"Teppi" = "teppi",
-	"Catslug" = "catslug",
-	"Car" = "car",
-	"Type One" = "typeone",
-	"Type Thirteen" = "13",
-	"Protogen Dog" = "pai-protodog"
-	))
 
 //PAI stuff
 GLOBAL_LIST_INIT(possible_say_verbs, list(

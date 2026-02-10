@@ -25,7 +25,7 @@
 	var/obj/item/radio/borg/pai/radio		// Our primary radio
 	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
 
-	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
+	var/chassis_name = PAI_DEFAULT_CHASSIS	// A record of your chosen chassis.
 
 	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
@@ -102,6 +102,7 @@
 	var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 	if(M)
 		M.toff = FALSE
+
 
 /mob/living/silicon/pai/Login()
 	..()
@@ -320,53 +321,13 @@
 		if(istype(rig))
 			rig.force_rest(src)
 			return
-	else if(chassis == "13")
-		resting = !resting
-		//update_transform()	I want this to make you ROTATE like normal HUMANS do! But! There's lots of problems and I don't know how to fix them!
 	else
 		resting = !resting
-		icon_state = resting ? "[chassis]_rest" : "[chassis]"
-		update_icon() //VOREStation edit
+		update_icon()
 	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 
 	canmove = !resting
 
-/*
-/mob/living/silicon/pai/update_transform()
-
-	var/desired_scale_x = size_multiplier * icon_scale_x
-	var/desired_scale_y = size_multiplier * icon_scale_y
-
-	// Now for the regular stuff.
-	var/matrix/M = matrix()
-	M.Scale(desired_scale_x, desired_scale_y)
-	M.Translate(0, (vis_height/2)*(desired_scale_y-1))
-
-	if(chassis != "13")
-		appearance_flags |= PIXEL_SCALE
-
-		var/anim_time = 3
-
-		if(resting)
-			M.Turn(90)
-			M.Scale(desired_scale_y, desired_scale_x)
-			if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
-				M.Translate(13,-22)
-			else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
-				M.Translate(1,-22)
-			else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
-				M.Translate(13,-6)
-			else
-				M.Translate(1,-6)
-			layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
-		else
-			M.Scale(desired_scale_x, desired_scale_y)
-			M.Translate(0, (vis_height/2)*(desired_scale_y-1))
-			layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
-		animate(src, transform = M, time = anim_time)
-	src.transform = M
-	handle_status_indicators()
-*/
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
@@ -376,7 +337,7 @@
 	else
 		visible_message(span_warning("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
-		if(stat != 2) close_up()
+		if(stat != DEAD) close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
@@ -435,7 +396,7 @@
 
 	canmove = 1
 	resting = 0
-	icon_state = "[chassis]"
+	icon_state = SSpai.pai_chassis_sprites[chassis_name]
 	if(isopenspace(card.loc))
 		fall()
 	remove_verb(src, /mob/living/silicon/pai/proc/pai_nom)
@@ -454,7 +415,7 @@
 	if(!istype(H))
 		return
 
-	H.icon_state = "[chassis]"
+	H.icon_state = SSpai.pai_chassis_sprites[chassis_name]
 	grabber.update_inv_l_hand()
 	grabber.update_inv_r_hand()
 	return H
