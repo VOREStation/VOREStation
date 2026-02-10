@@ -977,7 +977,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	"wizard" = 0,										// 3
 	"malf AI" = 0,										// 4
 	"revolutionary" = 0,								// 5
-	"genaprawn" = 0,									// 6
+	"alien candidate" = 0,								// 6
 	"positronic brain" = 1,								// 7
 	"cultist" = 0,										// 8
 	"renegade" = 0,										// 9

@@ -55,10 +55,9 @@
 		to_chat(user,span_warning("You cannot join a pAI card when you are banned from playing as a pAI."))
 		return
 
-	for(var/ourkey in GLOB.paikeys)
-		if(ourkey == user.ckey)
-			to_chat(user, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
-			return
+	if(SSpai.check_is_already_pai(user.ckey))
+		to_chat(user, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
+		return
 
 	var/choice = tgui_alert(user, "Do you want to inhabit this pAI?", "Load", list("Load PAI Data", "Fresh Data", "Cancel"))
 	switch(choice)

@@ -67,10 +67,7 @@ SUBSYSTEM_DEF(pai)
 	return FALSE
 
 /datum/controller/subsystem/pai/proc/check_is_already_pai(var/key)
-	for(var/ourkey in GLOB.paikeys)
-		if(ourkey == key)
-			return TRUE
-	return FALSE
+	return (key in GLOB.paikeys)
 
 /datum/controller/subsystem/pai/proc/get_tgui_data()
 	RETURN_TYPE(/list)

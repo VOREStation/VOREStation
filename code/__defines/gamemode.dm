@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 	"Wizard"           = BE_WIZARD,
 	"Malf AI"          = BE_MALF,
 	"Revolutionary"    = BE_REV,
-	"Genaprawn"        = BE_ALIEN,
+	"Alien Candidate"  = BE_ALIEN,
 	"Positronic Brain" = BE_AI,
 	"Cultist"          = BE_CULTIST,
 	"Renegade"         = BE_RENEGADE,
