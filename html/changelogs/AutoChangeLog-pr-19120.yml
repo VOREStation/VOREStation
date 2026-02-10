@@ -1,4 +1,0 @@
-author: "Nova"
-delete-after: True
-changes:
-  - refactor: "converted name and nickname prefs from bay to TG"

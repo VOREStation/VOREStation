@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "SSchemistry indexing order reverted to be based on first reagent in recipe (Recipes fixed to be match old recipe priorities)"

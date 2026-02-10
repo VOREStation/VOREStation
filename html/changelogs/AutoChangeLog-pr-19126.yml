@@ -1,8 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "clumsy trait/gene not being applied to characters"
-  - balance: "Clumsy gene failure chance reduced from 50% to 15%"
-  - balance: "Clumsy gene failures that are potentially lethal moved from 50% to 10%"
-  - code_imp: "Clumsy failure chance moved to a define"
-  - code_imp: "Added separate define for harmful clumsy chance"

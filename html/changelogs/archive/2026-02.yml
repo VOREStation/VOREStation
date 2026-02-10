@@ -92,3 +92,37 @@
 2026-02-08:
   Will:
   - bugfix: sheetsnatcher properly calls oresilo storage proc
+2026-02-10:
+  Kashargul:
+  - refactor: cleans up robot gripper code
+  - bugfix: items getting stuck in the robot when using the gripper
+  - qol: grippers can place items on tables
+  - refactor: changes playertips subsystem to no longer overtime
+  - bugfix: initial player tips reminder not being shown
+  - bugfix: multiple hard dels
+  - bugfix: wrong sql table name in admin sync calls
+  - qol: robot sheet snatchers can be upgraded to be on par with the non robot ones
+  - code_imp: change the robot upgrade code to rid of usr
+  - admin: fix give modifier missing in admin verbs
+  - code_imp: updates some tgui devs and code
+  - code_imp: converts more globals to GLOBs
+  KillianKirilenko:
+  - bugfix: non-station personnel (talon, lurkers, etc.) should no longer receive
+      mail in cargo shipments
+  MeepleMuncher:
+  - rscadd: Pref to ignore shoes when walking, preserving footsteppy sounds
+  - rscadd: More footsteppy sounds
+  Nova:
+  - refactor: converted name and nickname prefs from bay to TG
+  Wide Eyes:
+  - balance: vac pack now cleans half as fast
+  - bugfix: vac pack no longer bypasses trash eating restrictions
+  - bugfix: vac pack no longer bypasses container size restrictions
+  Will:
+  - bugfix: clumsy trait/gene not being applied to characters
+  - balance: Clumsy gene failure chance reduced from 50% to 15%
+  - balance: Clumsy gene failures that are potentially lethal moved from 50% to 10%
+  - code_imp: Clumsy failure chance moved to a define
+  - code_imp: Added separate define for harmful clumsy chance
+  - bugfix: SSchemistry indexing order reverted to be based on first reagent in recipe
+      (Recipes fixed to be match old recipe priorities)
