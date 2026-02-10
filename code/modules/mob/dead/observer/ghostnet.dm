@@ -27,15 +27,6 @@
 		var/x2 = min(world.maxx, ghost.x + static_range) & ~(CHUNK_SIZE - 1)
 		var/y2 = min(world.maxy, ghost.y + static_range) & ~(CHUNK_SIZE - 1)
 
-		if(x1 == ghost.last_chunk_x1 && y1 == ghost.last_chunk_y1 && \
-			x2 == ghost.last_chunk_x2 && y2 == ghost.last_chunk_y2)
-			continue
-
-		ghost.last_chunk_x1 = x1
-		ghost.last_chunk_y1 = y1
-		ghost.last_chunk_x2 = x2
-		ghost.last_chunk_y2 = y2
-
 		for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 			for(var/y = y1; y <= y2; y += CHUNK_SIZE)
 				var/datum/chunk/ghost/c = getChunk(x, y, ghost.z)

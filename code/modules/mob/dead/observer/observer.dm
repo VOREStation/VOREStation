@@ -49,10 +49,6 @@
 	alpha = 127
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
-	var/last_chunk_x1
-	var/last_chunk_y1
-	var/last_chunk_x2
-	var/last_chunk_y2
 
 /mob/observer/dead/Initialize(mapload, aghost = FALSE)
 
@@ -106,7 +102,6 @@
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	GLOB.observer_mob_list += src
 	. = ..()
-	RegisterSignal(src, COMSIG_OBSERVER_Z_MOVED, PROC_REF(clear_old_net))
 	visualnet = ghostnet
 
 /mob/observer/dead/proc/checkStatic()
@@ -563,8 +558,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(key)
 		key = null
 
-	clear_old_net()
-	UnregisterSignal(COMSIG_OBSERVER_Z_MOVED)
 	return ..()
 
 /mob/Moved(atom/old_loc, direction, forced = FALSE)
@@ -895,12 +888,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if((!target) || (!ghost)) return
 	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>follow</a>"
 	. += target.extra_ghost_link(ghost)
-
-/mob/observer/dead/proc/clear_old_net(mob/our_ghost)
-	last_chunk_x1 = null
-	last_chunk_y1 = null
-	last_chunk_x2 = null
-	last_chunk_y2 = null
 
 //Culted Ghosts
 
