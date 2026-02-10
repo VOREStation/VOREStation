@@ -970,7 +970,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/choice = tgui_alert(src, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
-	if(!choice || choice == "No")
+	if(!choice || choice != "Yes")
 		return
 
 	to_chat(src,span_notice("Flashing the displays of [pai_card_ping()] unoccupied PAIs."))
