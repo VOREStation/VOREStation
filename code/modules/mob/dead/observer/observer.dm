@@ -54,7 +54,6 @@
 	var/last_chunk_x2
 	var/last_chunk_y2
 
-
 /mob/observer/dead/Initialize(mapload, aghost = FALSE)
 
 	appearance = loc
