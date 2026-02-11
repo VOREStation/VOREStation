@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 /////Initial Building/////
 //////////////////////////
 
-/proc/makeDatumRefLists()
+/proc/make_datum_reference_lists()
 	var/list/paths
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
@@ -326,7 +326,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
-	return 1 // Hooks must return 1
 
 
 /// Inits the crafting recipe list, sorting crafting recipe requirements in the process.
