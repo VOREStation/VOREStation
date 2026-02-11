@@ -56,8 +56,8 @@
 						failed = TRUE
 		else
 			// Instead, hologprojectors use a custom eye layer!
-			var/holo_icon_dimension_X = holo_icon_south.Width() == 32 ? 32 : 65
-			var/holo_icon_dimension_Y = holo_icon_south.Height() == 32 ? 32 : 65
+			var/holo_icon_dimension_X = sprite.sprite_icon.Width() == 32 ? 32 : 65
+			var/holo_icon_dimension_Y = sprite.sprite_icon.Height() == 32 ? 32 : 65
 			// Set eyes, they use a specific icon file for each
 			if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
 				if(!icon_exists('icons/mob/pai_vr.dmi', sprite.holo_eyes_icon_state))
