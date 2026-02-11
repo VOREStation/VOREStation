@@ -65,26 +65,27 @@
 	return feed_grabbed_to_self(src,T)
 
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)
-	if(!(new_chassis in SSpai.pai_chassis_sprites))
+	if(!(new_chassis in SSpai.get_chassis_list()))
 		new_chassis = PAI_DEFAULT_CHASSIS
 	chassis_name = new_chassis
 
 	// Get icon data setup
-	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	if(chassis_data.holo_projector)
 		// Rebuild holosprite from character
 		if(!holo_icon_south)
 			get_character_icon()
 	else
 		// Get data from our sprite datum
-		icon = SSpai.pai_chassis_sprites[chassis_name].sprite_icon
-		pixel_x = SSpai.pai_chassis_sprites[chassis_name].pixel_x
+		icon = chassis_data.sprite_icon
+		pixel_x = chassis_data.pixel_x
 		default_pixel_x = pixel_x
-		pixel_y = SSpai.pai_chassis_sprites[chassis_name].pixel_y
+		pixel_y = chassis_data.pixel_y
 		default_pixel_y = pixel_y
-		vis_height = SSpai.pai_chassis_sprites[chassis_name].vis_height
+		vis_height = chassis_data.vis_height
 
 	// Drops you if you change to a non-flying chassis
-	if(SSpai.pai_chassis_sprites[chassis_name].flying)
+	if(chassis_data.flying)
 		hovering = TRUE
 	else
 		hovering = FALSE
@@ -96,7 +97,8 @@
 /mob/living/silicon/pai/update_icon()
 	. = ..()
 
-	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	if(chassis_data.holo_projector)
 		icon_state = null
 		icon = holo_icon_south
 		add_eyes()
@@ -104,7 +106,7 @@
 
 	update_fullness()
 
-	var/sprite_state = SSpai.pai_chassis_sprites[chassis_name].sprite_icon_state
+	var/sprite_state = chassis_data.sprite_icon_state
 
 	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
 	var/fullness_extension = ""
@@ -136,7 +138,7 @@
 	set name = "Choose Chassis"
 	var/choice
 
-	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", SSpai.pai_chassis_sprites)
+	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", SSpai.get_chassis_list())
 	if(!choice) return
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
@@ -152,7 +154,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Toggle Eye Glow"
 
-	if(!SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
+	if(!SSpai.chassis_data(chassis_name).has_eye_color)
 		to_chat(src, span_filter_notice("Your selected chassis cannot modify its eye glow!"))
 		return
 
@@ -167,7 +169,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Pick Eye Color"
 
-	if(!SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
+	if(!SSpai.chassis_data(chassis_name).has_eye_color)
 		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
 		return
 
@@ -192,7 +194,8 @@
 /mob/living/silicon/pai/proc/add_eyes()
 	remove_eyes()
 
-	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	if(chassis_data.holo_projector)
 		// Special eyes that are based on holoprojection of your character's icon size
 		if(holo_icon_south.Width() > 32)
 			holo_icon_dimension_X = 64
@@ -204,14 +207,14 @@
 			vis_height = 64
 		// Set eyes
 		if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
-			eye_layer = image('icons/mob/pai_vr.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai_vr.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
-			eye_layer = image('icons/mob/pai_vr32x64.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai_vr32x64.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
-			eye_layer = image('icons/mob/pai_vr64x32.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai_vr64x32.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
-			eye_layer = image('icons/mob/pai_vr64x64.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
-	else if(SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
+			eye_layer = image('icons/mob/pai_vr64x64.dmi', chassis_data.holo_eyes_icon_state)
+	else if(chassis_data.has_eye_color)
 		// Default eye handling
 		eye_layer = image(icon, "[icon_state]-eyes")
 	else
@@ -581,7 +584,7 @@
 
 /mob/living/silicon/pai/set_dir(var/new_dir)
 	. = ..()
-	if(. && SSpai.pai_chassis_sprites[chassis_name].holo_projector)
+	if(. && SSpai.chassis_data(chassis_name).holo_projector)
 		switch(dir)
 			if(SOUTH)
 				icon = holo_icon_south

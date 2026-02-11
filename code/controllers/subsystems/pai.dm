@@ -9,8 +9,7 @@ SUBSYSTEM_DEF(pai)
 	dependencies = list(
 		/datum/controller/subsystem/atoms
 	)
-	var/list/datum/pai_sprite/pai_chassis_sprites = list()
-
+	VAR_PRIVATE/list/datum/pai_sprite/pai_chassis_sprites = list()
 	VAR_PRIVATE/list/current_run = list()
 	VAR_PRIVATE/list/pai_ghosts = list()
 	VAR_PRIVATE/list/asked = list()
@@ -51,6 +50,16 @@ SUBSYSTEM_DEF(pai)
 
 		// Create candidate
 		pai_ghosts.Add(WEAKREF(ghost))
+
+/datum/controller/subsystem/pai/proc/get_chassis_list()
+	RETURN_TYPE(/list/datum/pai_sprite)
+	return pai_chassis_sprites
+
+/datum/controller/subsystem/pai/proc/chassis_data(id_name)
+	RETURN_TYPE(/datum/pai_sprite)
+	if(!(id_name in pai_chassis_sprites))
+		return pai_chassis_sprites[PAI_DEFAULT_CHASSIS]
+	return pai_chassis_sprites[id_name]
 
 /datum/controller/subsystem/pai/proc/invite_valid(mob/user)
 	if(!user.client?.prefs)

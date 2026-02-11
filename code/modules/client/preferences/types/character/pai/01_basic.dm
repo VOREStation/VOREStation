@@ -89,7 +89,7 @@
 	return PAI_DEFAULT_CHASSIS
 
 /datum/preference/text/pai_chassis/is_valid(value)
-	if(!(value in SSpai.pai_chassis_sprites))
+	if(!(value in SSpai.get_chassis_list()))
 		return FALSE
 	. = ..()
 
