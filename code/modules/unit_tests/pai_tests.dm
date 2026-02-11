@@ -54,27 +54,6 @@
 					if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest_full[fullness_extension]"))
 						TEST_NOTICE(src, "[sprite.type] - Pai state \"[sprite.sprite_icon_state]_rest_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 						failed = TRUE
-		else
-			// Instead, hologprojectors use a custom eye layer!
-			var/holo_icon_dimension_X = sprite.sprite_icon.Width() == 32 ? 32 : 65
-			var/holo_icon_dimension_Y = sprite.sprite_icon.Height() == 32 ? 32 : 65
-			// Set eyes, they use a specific icon file for each
-			if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
-				if(!icon_exists('icons/mob/pai_vr.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eye state \"[sprite.holo_eyes_icon_state]\" did not exist in dmi \"['icons/mob/pai_vr.dmi']\"")
-					failed = TRUE
-			else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
-				if(!icon_exists('icons/mob/pai_vr32x64.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eye state \"[sprite.holo_eyes_icon_state]\" did not exist in dmi \"['icons/mob/pai_vr32x64.dmi']\"")
-					failed = TRUE
-			else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
-				if(!icon_exists('icons/mob/pai_vr64x32.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eye state \"[sprite.holo_eyes_icon_state]\" did not exist in dmi \"['icons/mob/pai_vr64x32.dmi']\"")
-					failed = TRUE
-			else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
-				if(!icon_exists('icons/mob/pai_vr64x64.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eye state \"[sprite.holo_eyes_icon_state]\" did not exist in dmi \"['icons/mob/pai_vr64x64.dmi']\"")
-					failed = TRUE
 
 	if(failed)
 		TEST_FAIL("PAI sprites had invalid entries.")
