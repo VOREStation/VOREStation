@@ -13,6 +13,7 @@ GLOBAL_DATUM_INIT(emergency_shuttle, /datum/emergency_shuttle_controller, new)
 
 GLOBAL_LIST_EMPTY(comm_message_listeners) //We first have to initialize list then we can use it.
 GLOBAL_DATUM_INIT(global_message_listener, /datum/comm_message_listener, new) //May be used by admins
+GLOBAL_DATUM_INIT(ntnet_global, /datum/ntnet, new)
 GLOBAL_VAR_INIT(last_message_id, 0)
 
 // We manually initialize the alarm handlers instead of looping over all existing types

@@ -41,7 +41,7 @@
 	..(forced)
 
 /datum/computer_file/program/ntnet_dos/tgui_data(mob/user)
-	if(!ntnet_global)
+	if(!GLOB.ntnet_global)
 		return
 
 	var/list/data = get_header_data()
@@ -56,7 +56,7 @@
 	else
 		data["target"] = FALSE
 		data["relays"] = list()
-		for(var/obj/machinery/ntnet_relay/R in ntnet_global.relays)
+		for(var/obj/machinery/ntnet_relay/R in GLOB.ntnet_global.relays)
 			data["relays"] += list(list("id" = R.uid))
 		data["focus"] = target ? target.uid : null
 
@@ -67,7 +67,7 @@
 		return TRUE
 	switch(action)
 		if("PRG_target_relay")
-			for(var/obj/machinery/ntnet_relay/R in ntnet_global.relays)
+			for(var/obj/machinery/ntnet_relay/R in GLOB.ntnet_global.relays)
 				if(R.uid == text2num(params["targid"]))
 					target = R
 					break
@@ -83,8 +83,8 @@
 			if(target)
 				executed = TRUE
 				target.dos_sources.Add(src)
-				if(ntnet_global.intrusion_detection_enabled)
+				if(GLOB.ntnet_global.intrusion_detection_enabled)
 					var/obj/item/computer_hardware/network_card/network_card = computer.network_card
-					ntnet_global.add_log("IDS WARNING - Excess traffic flood targeting relay [target.uid] detected from device: [network_card.get_network_tag()]")
-					ntnet_global.intrusion_detection_alarm = TRUE
+					GLOB.ntnet_global.add_log("IDS WARNING - Excess traffic flood targeting relay [target.uid] detected from device: [network_card.get_network_tag()]")
+					GLOB.ntnet_global.intrusion_detection_alarm = TRUE
 			return TRUE

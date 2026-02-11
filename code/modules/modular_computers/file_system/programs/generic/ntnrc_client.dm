@@ -30,7 +30,7 @@
 	if(..())
 		return
 
-	var/datum/ntnet_conversation/channel = ntnet_global.get_chat_channel_by_id(active_channel)
+	var/datum/ntnet_conversation/channel = GLOB.ntnet_global.get_chat_channel_by_id(active_channel)
 	var/authed = FALSE
 	if(channel && ((channel.operator == src) || netadmin_mode))
 		authed = TRUE
@@ -59,7 +59,7 @@
 				return TRUE
 
 			active_channel =  new_target
-			channel = ntnet_global.get_chat_channel_by_id(new_target)
+			channel = GLOB.ntnet_global.get_chat_channel_by_id(new_target)
 			if(!(src in channel.clients) && !channel.password)
 				channel.add_client(src)
 			return TRUE
@@ -85,7 +85,7 @@
 					channel.remove_client(src) // We shouldn't be in channel's user list, but just in case...
 				return TRUE
 			if(isliving(ui.user) && can_run(ui.user, TRUE, ACCESS_NETWORK))
-				for(var/datum/ntnet_conversation/chan as anything in ntnet_global.chat_channels)
+				for(var/datum/ntnet_conversation/chan as anything in GLOB.ntnet_global.chat_channels)
 					chan.remove_client(src)
 				netadmin_mode = TRUE
 				return TRUE
@@ -93,7 +93,7 @@
 			var/newname = sanitize(params["new_name"])
 			if(!newname)
 				return
-			for(var/datum/ntnet_conversation/chan as anything in ntnet_global.chat_channels)
+			for(var/datum/ntnet_conversation/chan as anything in GLOB.ntnet_global.chat_channels)
 				if(src in chan.clients)
 					chan.add_status_message("[username] is now known as [newname].")
 			username = newname
@@ -148,7 +148,7 @@
 
 /datum/computer_file/program/chatclient/process_tick()
 	..()
-	var/datum/ntnet_conversation/channel = ntnet_global.get_chat_channel_by_id(active_channel)
+	var/datum/ntnet_conversation/channel = GLOB.ntnet_global.get_chat_channel_by_id(active_channel)
 	if(program_state != PROGRAM_STATE_KILLED)
 		ui_header = "ntnrc_idle.gif"
 		if(channel)
@@ -163,7 +163,7 @@
 		ui_header = "ntnrc_idle.gif"
 
 /datum/computer_file/program/chatclient/kill_program(forced = FALSE)
-	for(var/datum/ntnet_conversation/channel as anything in ntnet_global.chat_channels)
+	for(var/datum/ntnet_conversation/channel as anything in GLOB.ntnet_global.chat_channels)
 		channel.remove_client(src)
 	..()
 
@@ -173,13 +173,13 @@
 	return data
 
 /datum/computer_file/program/chatclient/tgui_data(mob/user)
-	if(!ntnet_global || !ntnet_global.chat_channels)
+	if(!GLOB.ntnet_global || !GLOB.ntnet_global.chat_channels)
 		return list()
 
 	var/list/data = get_header_data()
 
 	var/list/all_channels = list()
-	for(var/datum/ntnet_conversation/conv as anything in ntnet_global.chat_channels)
+	for(var/datum/ntnet_conversation/conv as anything in GLOB.ntnet_global.chat_channels)
 		if(conv && conv.title)
 			all_channels.Add(list(list(
 				"chan" = conv.title,
@@ -190,7 +190,7 @@
 	data["active_channel"] = active_channel
 	data["username"] = username
 	data["adminmode"] = netadmin_mode
-	var/datum/ntnet_conversation/channel = ntnet_global.get_chat_channel_by_id(active_channel)
+	var/datum/ntnet_conversation/channel = GLOB.ntnet_global.get_chat_channel_by_id(active_channel)
 	if(channel)
 		data["title"] = channel.title
 		var/authed = FALSE
