@@ -158,6 +158,7 @@ SUBSYSTEM_DEF(pai)
 			to_chat(inquirer, span_info("[new_pai] has accepted your pAI request!"))
 			return
 
+		#warn Remove the following line
 		if("Never for this round") // Can this even be done in tg prefs??? - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 			target.prefs.be_special ^= BE_PAI
 

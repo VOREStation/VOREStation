@@ -1107,6 +1107,8 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	"huge scorched area"
 	))
 
+GLOBAL_LIST_EMPTY(paikeys)
+
 GLOBAL_LIST_EMPTY(pai_software_by_key)
 GLOBAL_LIST_EMPTY(default_pai_software)
 GLOBAL_LIST_INIT(pai_emotions, list(
