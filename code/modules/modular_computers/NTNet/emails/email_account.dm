@@ -1,4 +1,4 @@
-/datum/computer_file/data/email_account/
+/datum/computer_file/data/email_account
 	var/list/inbox = list()
 	var/list/outbox = list()
 	var/list/spam = list()
@@ -24,12 +24,13 @@
 		stored_message.calculate_size()
 		size += stored_message.size
 
-/datum/computer_file/data/email_account/New()
-	GLOB.ntnet_global.email_accounts.Add(src)
+/datum/computer_file/data/email_account/New(glob_load)
+	if(!glob_load)
+		GLOB.ntnet_global.email_accounts += src
 	..()
 
 /datum/computer_file/data/email_account/Destroy()
-	GLOB.ntnet_global.email_accounts.Remove(src)
+	GLOB.ntnet_global.email_accounts -= src
 	. = ..()
 
 /datum/computer_file/data/email_account/proc/all_emails()
@@ -70,10 +71,10 @@
 	return 1
 
 // Address namespace (@internal-services.nt) for email addresses with special purpose only!.
-/datum/computer_file/data/email_account/service/
+/datum/computer_file/data/email_account/service
 	can_login = FALSE
 
-/datum/computer_file/data/email_account/service/broadcaster/
+/datum/computer_file/data/email_account/service/broadcaster
 	login = EMAIL_BROADCAST
 
 /datum/computer_file/data/email_account/service/broadcaster/receive_mail(var/datum/computer_file/data/email_message/received_message, var/relayed)

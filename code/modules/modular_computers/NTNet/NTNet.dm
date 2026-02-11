@@ -2,7 +2,7 @@
 
 
 // This is the NTNet datum. There can be only one NTNet datum in game at once. Modular computers read data from this.
-/datum/ntnet/
+/datum/ntnet
 	var/list/relays = list()
 	var/list/logs = list()
 	var/list/available_station_software = list()
@@ -139,7 +139,7 @@
 // Generates service email list. Currently only used by broadcaster service
 /datum/ntnet/proc/build_emails_list()
 	for(var/F in subtypesof(/datum/computer_file/data/email_account/service))
-		new F()
+		email_accounts += new F(TRUE)
 
 // Attempts to find a downloadable file according to filename var
 /datum/ntnet/proc/find_ntnet_file_by_name(var/filename)
