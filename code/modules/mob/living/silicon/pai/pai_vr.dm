@@ -239,8 +239,8 @@
 		return
 
 	// We don't want to pick these up, just toggle them
-	if(istype(A,/obj/item/flashlight))
-		var/obj/item/flashlight/L = A
+	if(istype(A,/obj/item/flashlight/lamp))
+		var/obj/item/flashlight/lamp/L = A
 		L.toggle_light()
 		return
 
