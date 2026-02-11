@@ -111,6 +111,7 @@
 	name = "Duffel"
 	sprite_icon = 'icons/mob/pai_vr.dmi'
 	sprite_icon_state = "pai-duffel"
+	belly_states = 2
 
 /datum/pai_sprite/cyber_elf
 	name = "Cyber Elf"
