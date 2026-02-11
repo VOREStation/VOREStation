@@ -14,7 +14,7 @@
 /datum/unit_test/pai_sprites_shall_be_valid/Run()
 	var/failed = FALSE
 	var/list/used_names = list()
-	for(var/datum/pai_sprite/sprite in SSpai.get_chassis_list)
+	for(var/datum/pai_sprite/sprite in SSpai.get_chassis_list())
 		if(sprite.sprite_icon == null)
 			continue
 
