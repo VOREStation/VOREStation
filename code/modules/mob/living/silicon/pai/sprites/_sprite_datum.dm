@@ -23,98 +23,97 @@
 // PAI sprites
 /datum/pai_sprite/drone
 	name = PAI_DEFAULT_CHASSIS
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-repairbot"
 
 /datum/pai_sprite/cat
 	name = "Cat"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-cat"
 
 /datum/pai_sprite/mouse
 	name = "Mouse"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-mouse"
 
 /datum/pai_sprite/monkey
 	name = "Monkey"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-monkey"
 
 /datum/pai_sprite/borgi
 	name = "Borgi"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-borgi"
 	has_eye_color = FALSE
 
 /datum/pai_sprite/fox
 	name = "Fox"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-fox"
 	has_eye_color = FALSE
 
 /datum/pai_sprite/parrot
 	name = "Parrot"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-parrot"
 	has_eye_color = FALSE
 	flying = TRUE
-	resting_belly = FALSE
 
 /datum/pai_sprite/rabbit
 	name = "Rabbit"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-rabbit"
 	has_eye_color = FALSE
 
 /datum/pai_sprite/bear
 	name = "Bear"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-bear"
 
 /datum/pai_sprite/fennec
 	name = "Fennec"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-fen"
 	belly_states = 0
 
 /datum/pai_sprite/type_zero
 	name = "Type Zero"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-typezero"
 
 /datum/pai_sprite/raccoon
 	name = "Raccoon"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-raccoon"
 
 /datum/pai_sprite/raptor
 	name = "Raptor"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-raptor"
 
 /datum/pai_sprite/corgi
 	name = "Corgi"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-corgi"
 	has_eye_color = FALSE
 
 /datum/pai_sprite/bat
 	name = "Bat"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-bat"
 	flying = TRUE
 
 /datum/pai_sprite/butterfly
 	name = "Butterfly"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-butterfly"
 	flying = TRUE
 	belly_states = 0
 
 /datum/pai_sprite/hawk
 	name = "Hawk"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-hawk"
 	has_eye_color = FALSE
 	flying = TRUE
@@ -122,36 +121,36 @@
 
 /datum/pai_sprite/duffel
 	name = "Duffel"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-duffel"
 	has_eye_color = FALSE
 
 /datum/pai_sprite/cyber_elf
 	name = "Cyber Elf"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "cyberelf"
 	flying = TRUE
 	resting_belly = FALSE
 
 /datum/pai_sprite/catslug
 	name = "Catslug"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "catslug"
 	resting_belly = FALSE
 
 /datum/pai_sprite/car
 	name = "Car"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "car"
 
 /datum/pai_sprite/type_one
 	name = "Type One"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "typeone"
 
 /datum/pai_sprite/type_thirteen
 	name = "Type Thirteen"
-	sprite_icon = 'icons/mob/pai_vr.dmi'
+	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "13"
 	holo_projector = TRUE
 	holo_eyes_icon_state = "type13-eyes"

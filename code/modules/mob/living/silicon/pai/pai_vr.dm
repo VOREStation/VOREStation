@@ -1,5 +1,5 @@
 /mob/living/silicon/pai
-	icon = 'icons/mob/pai_vr.dmi'
+	icon = 'icons/mob/pai.dmi'
 	softfall = TRUE
 	var/eye_glow = TRUE
 	var/hide_glow = FALSE
@@ -197,13 +197,13 @@
 			vis_height = 64
 		// Set eyes
 		if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
-			eye_layer = image('icons/mob/pai_vr.dmi', chassis_data.holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
-			eye_layer = image('icons/mob/pai_vr32x64.dmi', chassis_data.holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai32x64.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
-			eye_layer = image('icons/mob/pai_vr64x32.dmi', chassis_data.holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai64x32.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
-			eye_layer = image('icons/mob/pai_vr64x64.dmi', chassis_data.holo_eyes_icon_state)
+			eye_layer = image('icons/mob/pai64x64.dmi', chassis_data.holo_eyes_icon_state)
 	else if(chassis_data.has_eye_color)
 		// Default eye handling
 		eye_layer = image(icon, "[icon_state]-eyes")

@@ -78,17 +78,17 @@
 		else // Holoprojector uses ai holo instead of a sprite
 			// Holoprojectil eyes need to exist at all sizes for the state provided
 			if(sprite.holo_eyes_icon_state)
-				if(!icon_exists('icons/mob/pai_vr.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai_vr.dmi']\"")
+				if(!icon_exists('icons/mob/pai.dmi', sprite.holo_eyes_icon_state))
+					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai.dmi']\"")
 					failed = TRUE
-				if(!icon_exists('icons/mob/pai_vr32x64.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai_vr32x64.dmi']\"")
+				if(!icon_exists('icons/mob/pai32x64.dmi', sprite.holo_eyes_icon_state))
+					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai32x64.dmi']\"")
 					failed = TRUE
-				if(!icon_exists('icons/mob/pai_vr64x32.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai_vr64x32.dmi']\"")
+				if(!icon_exists('icons/mob/pai64x32.dmi', sprite.holo_eyes_icon_state))
+					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai64x32.dmi']\"")
 					failed = TRUE
-				if(!icon_exists('icons/mob/pai_vr64x64.dmi', sprite.holo_eyes_icon_state))
-					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai_vr64x64.dmi']\"")
+				if(!icon_exists('icons/mob/pai64x64.dmi', sprite.holo_eyes_icon_state))
+					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai64x64.dmi']\"")
 					failed = TRUE
 
 	if(failed)
