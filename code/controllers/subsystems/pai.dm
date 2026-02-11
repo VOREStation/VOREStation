@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(pai)
 
 	// Get all valid chassis types
 	for(var/datum/pai_sprite/sprite as anything in subtypesof(/datum/pai_sprite))
-		if(initial(sprite.sprite_icon) == null && !initial(sprite.hidden))
+		if(!initial(sprite.sprite_icon) || initial(sprite.hidden))
 			continue
 		pai_chassis_sprites[initial(sprite.name)] = new sprite()
 
