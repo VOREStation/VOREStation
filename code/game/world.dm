@@ -175,11 +175,6 @@ GLOBAL_VAR(restart_counter)
 	log_test("Unit Tests Enabled. This will destroy the world when testing is complete.")
 	log_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
 #endif
-	// Create frame types.
-	populate_frame_types()
-
-	// Create robolimbs for chargen.
-	populate_robolimb_list()
 
 	GLOB.master_controller = new /datum/controller/game_controller()
 	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit

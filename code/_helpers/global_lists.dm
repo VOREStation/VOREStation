@@ -320,6 +320,12 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/species_name in whitelisted_icons)
 		GLOB.custom_species_bases += species_name
 
+	// Create frame types.
+	populate_frame_types()
+
+	// Create robolimbs for chargen.
+	populate_robolimb_list()
+
 	return 1 // Hooks must return 1
 
 
