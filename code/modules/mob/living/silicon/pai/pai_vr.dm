@@ -114,8 +114,6 @@
 
 	update_fullness()
 
-	var/sprite_state = chassis_data.sprite_icon_state
-
 	// Don't get a vore belly size if we have no belly size set!
 	var/belly_size = CLAMP(vore_fullness, 0, chassis_data.belly_states)
 	if(resting && !chassis_data.resting_belly) // check if we have a belly while resting
@@ -123,7 +121,8 @@
 	var/fullness_extension = ""
 	if(belly_size > 1) // Multibelly support
 		fullness_extension = "_[belly_size]"
-	icon_state = "[sprite_state][resting ? "_rest" : ""][belly_size ? "_full[fullness_extension]" : ""]"
+	icon_state = "[chassis_data.sprite_icon_state][resting ? "_rest" : ""][belly_size ? "_full[fullness_extension]" : ""]"
+
 	add_eyes()
 
 //proc override to avoid pAI players being invisible while the chassis selection window is open
