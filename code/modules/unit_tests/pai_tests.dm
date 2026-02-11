@@ -54,10 +54,11 @@
 					if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_full[fullness_extension]"))
 						TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 						failed = TRUE
-					// resting bellies
-					if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest_full[fullness_extension]"))
-						TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
-						failed = TRUE
+					if(sprite.resting_belly)
+						// resting bellies
+						if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest_full[fullness_extension]"))
+							TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
+							failed = TRUE
 
 			// Does it have colorable eyes?
 			if(sprite.has_eye_color)

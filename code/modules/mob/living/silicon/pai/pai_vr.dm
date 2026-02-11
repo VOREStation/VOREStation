@@ -93,7 +93,7 @@
 			fall()
 
 	// Set vore size.
-	vore_capacity = chassis_data.belly_states
+	vore_capacity = MAX(1, chassis_data.belly_states) // Minimum of 1
 	vore_capacity_ex = list("stomach" = chassis_data.belly_states)
 
 	// Emergency eject if you change to a smaller belly
@@ -118,8 +118,10 @@
 
 	// Don't get a vore belly size if we have no belly size set!
 	var/belly_size = CLAMP(vore_fullness, 0, chassis_data.belly_states)
+	if(resting && !chassis_data.resting_belly) // check if we have a belly while resting
+		belly_size = 0
 	var/fullness_extension = ""
-	if(belly_size > 1)
+	if(belly_size > 1) // Multibelly support
 		fullness_extension = "_[belly_size]"
 	icon_state = "[sprite_state][resting ? "_rest" : ""][belly_size ? "_full[fullness_extension]" : ""]"
 	add_eyes()
