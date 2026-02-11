@@ -1,6 +1,0 @@
-author: "Wide Eyes"
-delete-after: True
-changes:
-  - balance: "vac pack now cleans half as fast"
-  - bugfix: "vac pack no longer bypasses trash eating restrictions"
-  - bugfix: "vac pack no longer bypasses container size restrictions"

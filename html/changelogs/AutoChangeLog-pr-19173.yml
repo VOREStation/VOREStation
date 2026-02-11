@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - code_imp: "updates some tgui devs and code"
+  - code_imp: "updates python dependencies"

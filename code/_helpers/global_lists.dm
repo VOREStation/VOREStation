@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 /////Initial Building/////
 //////////////////////////
 
-/proc/makeDatumRefLists()
+/proc/make_datum_reference_lists()
 	var/list/paths
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
@@ -320,8 +320,11 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/species_name in whitelisted_icons)
 		GLOB.custom_species_bases += species_name
 
-	return 1 // Hooks must return 1
+	// Create frame types.
+	populate_frame_types()
 
+	// Create robolimbs for chargen.
+	populate_robolimb_list()
 
 /// Inits the crafting recipe list, sorting crafting recipe requirements in the process.
 /proc/init_crafting_recipes(list/crafting_recipes)
