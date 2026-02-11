@@ -51,8 +51,8 @@
 	var/company = "*ERROR*"
 	// First, get a list of TSCs in our lore.
 	var/list/candidates = list()
-	for(var/path in loremaster.organizations)
-		var/datum/lore/organization/O = loremaster.organizations[path]
+	for(var/path in GLOB.loremaster.organizations)
+		var/datum/lore/organization/O = GLOB.loremaster.organizations[path]
 		if(!istype(O, /datum/lore/organization/tsc))
 			continue
 		if(O.short_name == using_map.company_name || O.name == using_map.company_name)

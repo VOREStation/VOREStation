@@ -6,7 +6,7 @@
 // Description - Returns the list of newsfeeds, compiled for template processing
 /obj/item/communicator/proc/compile_news()
 	var/list/feeds = list()
-	for(var/datum/feed_channel/channel in news_network.network_channels)
+	for(var/datum/feed_channel/channel in GLOB.news_network.network_channels)
 		var/list/messages = list()
 		if(!channel.censored && channel.channel_name != "Vir News Network") //Do not load the 'IC news' channel as it is simply too long.
 			var/index = 0
@@ -41,7 +41,7 @@
 	var/list/news = list()
 
 	// Compile all the newscasts
-	for(var/datum/feed_channel/channel in news_network.network_channels)
+	for(var/datum/feed_channel/channel in GLOB.news_network.network_channels)
 		if(!channel.censored)
 			for(var/datum/feed_message/FM in channel.messages)
 				var/body = replacetext(FM.body, "\n", "<br>")

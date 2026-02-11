@@ -102,7 +102,7 @@
 
 /area/submap/debrisfield/phoron_tanker/Initialize(mapload)
 	. = ..()
-	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/tsc/nanotrasen]
+	var/datum/lore/organization/O = GLOB.loremaster.organizations[/datum/lore/organization/tsc/nanotrasen]
 	ic_name = pick(O.ship_names)
 	name = "NTV [ic_name]"
 	if(!tag)
@@ -165,7 +165,7 @@
 
 /obj/effect/overmap/visitable/ship/landable/luxury_boat/Initialize(mapload)
 	. = ..()
-	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/gov/elysia]
+	var/datum/lore/organization/O = GLOB.loremaster.organizations[/datum/lore/organization/gov/elysia]
 	var/newname = "ECS-T [pick(O.ship_names)]"
 	name = newname
 	scanner_desc = {"\[i\]Registration\[/i\]: [newname]
@@ -256,7 +256,7 @@
 
 /obj/effect/overmap/visitable/ship/landable/tinycarrier/Initialize(mapload)
 	. = ..()
-	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/other/sysdef]
+	var/datum/lore/organization/O = GLOB.loremaster.organizations[/datum/lore/organization/other/sysdef]
 	var/newname = "SDV [pick(O.ship_names)]"
 	name = newname
 	scanner_desc = {"\[i\]Registration\[/i\]: [newname]

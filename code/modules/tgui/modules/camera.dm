@@ -257,7 +257,7 @@
 		all_networks += additional_networks
 
 	var/list/D = list()
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		if(!C.network)
 			stack_trace("Camera in a cameranet has no camera network")
 			continue

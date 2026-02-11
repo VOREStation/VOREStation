@@ -1,12 +1,8 @@
-var/image/no_ceiling_image = null
-
-/hook/startup/proc/setup_no_ceiling_image()
-	cache_no_ceiling_image()
-	return TRUE
+GLOBAL_DATUM_INIT(no_ceiling_image, /image, new)
 
 /proc/cache_no_ceiling_image()
-	no_ceiling_image = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling")
-	no_ceiling_image.plane = PLANE_MESONS
+	GLOB.no_ceiling_image = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling")
+	GLOB.no_ceiling_image.plane = PLANE_MESONS
 
 /turf/simulated/floor/update_icon(var/update_neighbors)
 	cut_overlays()
@@ -92,7 +88,7 @@ var/image/no_ceiling_image = null
 	// Show 'ceilingless' overlay.
 	var/turf/above = GetAbove(src)
 	if(!is_outdoors() && above && isopenspace(above)) // This won't apply to outdoor turfs since its assumed they don't have a ceiling anyways.
-		add_overlay(no_ceiling_image)
+		add_overlay(GLOB.no_ceiling_image)
 
 	// Update our 'them-to-us' edges, aka edges from external turfs we feel should spill onto us
 	if(edge_blending_priority && !forbid_turf_edge())

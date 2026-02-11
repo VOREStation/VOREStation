@@ -42,7 +42,7 @@
 
 /obj/effect/overmap/visitable/ship/landable/event_autonomous_drone/Initialize(mapload)
 	. = ..()
-	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/tsc/nanotrasen]
+	var/datum/lore/organization/O = GLOB.loremaster.organizations[/datum/lore/organization/tsc/nanotrasen]
 	var/newname = "NTV [pick(O.ship_names)]"
 	name = newname
 	scanner_desc = {"\[i\]Registration\[/i\]: [newname]

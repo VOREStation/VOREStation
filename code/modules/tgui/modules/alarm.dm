@@ -107,7 +107,7 @@
 
 	switch(action)
 		if("switchTo")
-			var/obj/machinery/camera/C = locate(params["camera"]) in cameranet.cameras
+			var/obj/machinery/camera/C = locate(params["camera"]) in GLOB.cameranet.cameras
 			if(!C)
 				return
 

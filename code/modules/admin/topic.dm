@@ -1687,7 +1687,7 @@
 
 	else if(href_list["ac_submit_new_channel"])
 		var/check = 0
-		for(var/datum/feed_channel/FC in news_network.network_channels)
+		for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 			if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 				check = 1
 				break
@@ -1696,7 +1696,7 @@
 		else
 			var/choice = tgui_alert(usr, "Please confirm Feed channel creation","Network Channel Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
-				news_network.CreateFeedChannel(admincaster_feed_channel.channel_name, admincaster_signature, admincaster_feed_channel.locked, 1)
+				GLOB.news_network.CreateFeedChannel(admincaster_feed_channel.channel_name, admincaster_signature, admincaster_feed_channel.locked, 1)
 				feedback_inc("newscaster_channels",1)                  //Adding channel to the global network
 				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
 				src.admincaster_screen=5
@@ -1704,7 +1704,7 @@
 
 	else if(href_list["ac_set_channel_receiving"])
 		var/list/available_channels = list()
-		for(var/datum/feed_channel/F in news_network.network_channels)
+		for(var/datum/feed_channel/F in GLOB.news_network.network_channels)
 			available_channels += F.channel_name
 		src.admincaster_feed_channel.channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
 		src.access_news_network()
@@ -1722,7 +1722,7 @@
 			src.admincaster_screen = 6
 		else
 			feedback_inc("newscaster_stories",1)
-			news_network.SubmitArticle(admincaster_feed_message.body, admincaster_signature, admincaster_feed_channel.channel_name, null, 1, "", admincaster_feed_message.title)
+			GLOB.news_network.SubmitArticle(admincaster_feed_message.body, admincaster_signature, admincaster_feed_channel.channel_name, null, 1, "", admincaster_feed_message.title)
 			src.admincaster_screen=4
 
 		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
@@ -1746,12 +1746,12 @@
 
 	else if(href_list["ac_menu_wanted"])
 		var/already_wanted = 0
-		if(news_network.wanted_issue)
+		if(GLOB.news_network.wanted_issue)
 			already_wanted = 1
 
 		if(already_wanted)
-			src.admincaster_feed_message.author = news_network.wanted_issue.author
-			src.admincaster_feed_message.body = news_network.wanted_issue.body
+			src.admincaster_feed_message.author = GLOB.news_network.wanted_issue.author
+			src.admincaster_feed_message.body = GLOB.news_network.wanted_issue.body
 		src.admincaster_screen = 14
 		src.access_news_network()
 
@@ -1776,15 +1776,15 @@
 					WANTED.body = src.admincaster_feed_message.body                   //Wanted desc
 					WANTED.backup_author = src.admincaster_signature                  //Submitted by
 					WANTED.is_admin_message = 1
-					news_network.wanted_issue = WANTED
+					GLOB.news_network.wanted_issue = WANTED
 					for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 						NEWSCASTER.newsAlert()
 						NEWSCASTER.update_icon()
 					src.admincaster_screen = 15
 				else
-					news_network.wanted_issue.author = src.admincaster_feed_message.author
-					news_network.wanted_issue.body = src.admincaster_feed_message.body
-					news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
+					GLOB.news_network.wanted_issue.author = src.admincaster_feed_message.author
+					GLOB.news_network.wanted_issue.body = src.admincaster_feed_message.body
+					GLOB.news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
 					src.admincaster_screen = 19
 				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
 		src.access_news_network()
@@ -1792,7 +1792,7 @@
 	else if(href_list["ac_cancel_wanted"])
 		var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 		if(choice=="Confirm")
-			news_network.wanted_issue = null
+			GLOB.news_network.wanted_issue = null
 			for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 				NEWSCASTER.update_icon()
 			src.admincaster_screen=17

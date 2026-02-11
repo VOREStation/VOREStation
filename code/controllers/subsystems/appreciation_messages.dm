@@ -67,21 +67,21 @@ SUBSYSTEM_DEF(appreciation)
 
 /datum/controller/subsystem/appreciation/proc/build_appreciation()
 	if(human_list.len < required_humans)
-		appreciated = pick(loremaster.appreciation_targets)
+		appreciated = pick(GLOB.loremaster.appreciation_targets)
 		return
 
 	if(prob(50))
-		appreciated = pick(loremaster.appreciation_targets)
+		appreciated = pick(GLOB.loremaster.appreciation_targets)
 		return
 
 	var/mob/living/carbon/human/H = pick(human_list)
 
 	if(!istype(H))
-		appreciated = pick(loremaster.appreciation_targets)
+		appreciated = pick(GLOB.loremaster.appreciation_targets)
 		return
 
 	if(H.absorbed)
-		appreciated = pick(loremaster.appreciation_targets)
+		appreciated = pick(GLOB.loremaster.appreciation_targets)
 		return
 
 	if(H.custom_species)
@@ -92,8 +92,8 @@ SUBSYSTEM_DEF(appreciation)
 
 
 /datum/controller/subsystem/appreciation/proc/do_appreciate()
-	var/appreciation_message = pick(loremaster.appreciation_messages)
-	var/terrible_factoid = pick(loremaster.terrible_factoids)
+	var/appreciation_message = pick(GLOB.loremaster.appreciation_messages)
+	var/terrible_factoid = pick(GLOB.loremaster.terrible_factoids)
 	msg("Today is [appreciated] appreciation day! [terrible_factoid] [appreciation_message]")
 
 /datum/controller/subsystem/appreciation/proc/msg(var/message,var/sender)

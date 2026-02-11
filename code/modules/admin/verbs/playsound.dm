@@ -3,7 +3,7 @@
 #define SHELLEO_STDOUT 2
 #define SHELLEO_STDERR 3
 
-var/list/sounds_cache = list()
+GLOBAL_LIST_EMPTY(sounds_cache)
 
 /client/proc/play_sound(S as sound)
 	set category = "Fun.Sounds"
@@ -27,7 +27,7 @@ var/list/sounds_cache = list()
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	sounds_cache += S
+	GLOB.sounds_cache += S
 
 	var/res = tgui_alert(usr, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
 	if(!res)
@@ -83,7 +83,7 @@ var/list/sounds_cache = list()
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
-	sounds_cache += S
+	GLOB.sounds_cache += S
 
 	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
 		return
@@ -105,7 +105,7 @@ var/list/sounds_cache = list()
 
 	var/list/sounds = world.file2list("sound/serversound_list.txt");
 	sounds += "--CANCEL--"
-	sounds += sounds_cache
+	sounds += GLOB.sounds_cache
 
 	var/melody = tgui_input_list(usr, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
 
