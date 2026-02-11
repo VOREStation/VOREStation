@@ -94,7 +94,7 @@
 
 	// Set vore size.
 	vore_capacity = max(1, chassis_data.belly_states) // Minimum of 1
-	vore_capacity_ex = list("stomach" = chassis_data.belly_states)
+	vore_capacity_ex = list("stomach" = vore_capacity)
 
 	// Emergency eject if you change to a smaller belly
 	if(vore_fullness > vore_capacity && vore_selected)
