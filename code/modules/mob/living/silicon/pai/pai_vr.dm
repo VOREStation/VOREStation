@@ -121,7 +121,7 @@
 	var/fullness_extension = ""
 	if(belly_size > 1) // Multibelly support
 		fullness_extension = "_[belly_size]"
-	icon_state = "[chassis_data.sprite_icon_state][resting ? "_rest" : ""][belly_size ? "_full[fullness_extension]" : ""]"
+	icon_state = "[chassis_data.sprite_icon_state][resting && chassis_data.can_rest ? "_rest" : ""][belly_size ? "_full[fullness_extension]" : ""]"
 
 	add_eyes()
 

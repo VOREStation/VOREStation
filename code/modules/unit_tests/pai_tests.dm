@@ -39,10 +39,10 @@
 				TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 				failed = TRUE
 
-			// Resting sprites must exist
-			if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest"))
-				TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
-				failed = TRUE
+			if(sprite.can_rest)
+				if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest"))
+					TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
+					failed = TRUE
 
 			// Check for vore stuff
 			if(sprite.belly_states > 0)
@@ -54,7 +54,7 @@
 					if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_full[fullness_extension]"))
 						TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 						failed = TRUE
-					if(sprite.resting_belly)
+					if(sprite.can_rest && sprite.resting_belly)
 						// resting bellies
 						if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest_full[fullness_extension]"))
 							TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
@@ -65,9 +65,10 @@
 				if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]-eyes"))
 					TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]-eyes\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 					failed = TRUE
-				if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest-eyes"))
-					TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest-eyes\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
-					failed = TRUE
+				if(sprite.can_rest)
+					if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest-eyes"))
+						TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest-eyes\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
+						failed = TRUE
 
 			// Death
 			if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_dead"))
