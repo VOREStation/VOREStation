@@ -130,7 +130,7 @@
 	set name = "Choose Chassis"
 	var/choice
 
-	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", SSpai.get_chassis_list())
+	choice = tgui_input_list(src, "What would you like to use for your mobile chassis' appearance?", "Chassis Choice", SSpai.get_chassis_list())
 	if(!choice) return
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset

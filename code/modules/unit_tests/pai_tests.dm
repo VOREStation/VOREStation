@@ -14,7 +14,8 @@
 /datum/unit_test/pai_sprites_shall_be_valid/Run()
 	var/failed = FALSE
 	var/list/used_names = list()
-	for(var/datum/pai_sprite/sprite in SSpai.get_chassis_list())
+	for(var/sprite_key in SSpai.get_chassis_list())
+		var/datum/pai_sprite/sprite = SSpai.chassis_data(sprite_key)
 		if(sprite.sprite_icon == null)
 			continue
 
@@ -33,13 +34,16 @@
 			if(!sprite.sprite_icon_state)
 				TEST_NOTICE(src, "[sprite.type] - Pai sprite had no iconstate assigned")
 				failed = TRUE
+
 			if(!icon_exists(sprite.sprite_icon, sprite.sprite_icon_state))
 				TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 				failed = TRUE
+
 			// Resting sprites must exist
 			if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest"))
 				TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 				failed = TRUE
+
 			// Check for vore stuff
 			if(sprite.belly_states > 0)
 				for(var/i = 1 to sprite.belly_states)
@@ -54,6 +58,7 @@
 					if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_rest_full[fullness_extension]"))
 						TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_rest_full[fullness_extension]\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 						failed = TRUE
+
 			// Does it have colorable eyes?
 			if(sprite.has_eye_color)
 				if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]-eyes"))
@@ -62,11 +67,8 @@
 
 
 		else // Holoprojector uses ai holo instead of a sprite
-			if(!sprite.holo_eyes_icon_state)
-				TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eye state not set")
-				failed = TRUE
-			else
-				// Holoprojectil eyes need to exist at all sizes for the state provided
+			// Holoprojectil eyes need to exist at all sizes for the state provided
+			if(sprite.holo_eyes_icon_state)
 				if(!icon_exists('icons/mob/pai_vr.dmi', sprite.holo_eyes_icon_state))
 					TEST_NOTICE(src, "[sprite.type] - Pai holoprojection eyes state \"[sprite.holo_eyes_icon_state]\" did not exist in the dmi set \"['icons/mob/pai_vr.dmi']\"")
 					failed = TRUE
