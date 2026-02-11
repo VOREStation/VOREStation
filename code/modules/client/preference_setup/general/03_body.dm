@@ -196,7 +196,7 @@
 	var/list/wing_styles = pref.get_available_styles(GLOB.wing_styles_list)
 	character.wing_style = wing_styles[pref.wing_style]
 
-	character.set_gender(pref.biological_gender)
+	character.set_gender(pref.read_preference(/datum/preference/choiced/gender/biological))
 
 	character.synthetic = pref.species == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
 	var/list/organs_to_edit = list()
@@ -271,7 +271,7 @@
 	var/current_name = pref.read_preference(/datum/preference/name/real_name)
 	current_name = sanitize_name(current_name, pref.species)
 	if(!current_name)
-		current_name = random_name(pref.identifying_gender, pref.species)
+		current_name = random_name(pref.read_preference(/datum/preference/choiced/gender/identifying), pref.species)
 	pref.update_preference_by_type(/datum/preference/name/real_name, current_name)
 
 /datum/category_item/player_setup_item/general/body/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -756,7 +756,7 @@
 			var/prev_species = pref.species
 			pref.species = params["species"]
 			if(prev_species != pref.species)
-				if(!(pref.biological_gender in mob_species.genders))
+				if(!(pref.read_preference(/datum/preference/choiced/gender/biological) in mob_species.genders))
 					pref.set_biological_gender(mob_species.genders[1])
 				pref.custom_species = null
 				//grab one of the valid hair styles for the newly chosen species

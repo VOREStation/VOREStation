@@ -62,12 +62,12 @@
 	return "Character"
 
 /datum/preference/name/real_name/create_informed_default_value(datum/preferences/preferences)
-	var/gender = preferences?.identifying_gender || MALE
+	var/gender = preferences?.read_preference(/datum/preference/choiced/gender/identifying) || MALE
 	var/species = preferences?.species || SPECIES_HUMAN
 	return random_name(gender, species)
 
 /datum/preference/name/real_name/create_random_value(datum/preferences/preferences, datum/species/current_species)
-	var/gender = preferences?.identifying_gender || MALE
+	var/gender = preferences?.read_preference(/datum/preference/choiced/gender/identifying) || MALE
 	var/species_name = current_species?.name || SPECIES_HUMAN
 	return random_name(gender, species_name)
 

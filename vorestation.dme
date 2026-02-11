@@ -2460,6 +2460,7 @@
 #include "code\modules\client\preference_setup\loadout\loadout_xeno.dm"
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
 #include "code\modules\client\preferences\_preference.dm"
+#include "code\modules\client\preferences\gender.dm"
 #include "code\modules\client\preferences\names.dm"
 #include "code\modules\client\preferences\preferences_tg.dm"
 #include "code\modules\client\preferences\middleware\_middleware.dm"

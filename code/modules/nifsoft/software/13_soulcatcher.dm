@@ -306,7 +306,7 @@
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
 	plane_holder.set_vis(VIS_SOULCATCHER, TRUE)
-	identifying_gender = client.prefs.identifying_gender
+	identifying_gender = client.prefs.read_preference(/datum/preference/choiced/gender/identifying)
 
 /mob/living/carbon/brain/caught_soul/Destroy()
 	if(soulcatcher)
