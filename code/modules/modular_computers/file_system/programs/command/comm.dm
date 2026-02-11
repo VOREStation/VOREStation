@@ -27,9 +27,6 @@
 /*
 General message handling stuff
 */
-GLOBAL_LIST_EMPTY(comm_message_listeners) //We first have to initialize list then we can use it.
-GLOBAL_DATUM_INIT(global_message_listener, /datum/comm_message_listener, new) //May be used by admins
-GLOBAL_VAR_INIT(last_message_id, 0)
 
 /proc/get_comm_message_id()
 	GLOB.last_message_id = GLOB.last_message_id + 1

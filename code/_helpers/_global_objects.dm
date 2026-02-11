@@ -11,6 +11,10 @@ GLOBAL_LIST_INIT(pipe_colors, list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 GLOBAL_DATUM_INIT(icon_manager, /datum/pipe_icon_manager, new)
 GLOBAL_DATUM_INIT(emergency_shuttle, /datum/emergency_shuttle_controller, new)
 
+GLOBAL_LIST_EMPTY(comm_message_listeners) //We first have to initialize list then we can use it.
+GLOBAL_DATUM_INIT(global_message_listener, /datum/comm_message_listener, new) //May be used by admins
+GLOBAL_VAR_INIT(last_message_id, 0)
+
 // We manually initialize the alarm handlers instead of looping over all existing types
 // to make it possible to write: camera_alarm.triggerAlarm() rather than SSalarm.managers[datum/alarm_handler/camera].triggerAlarm() or a variant thereof.
 GLOBAL_DATUM_INIT(atmosphere_alarm, /datum/alarm_handler/atmosphere, new)
