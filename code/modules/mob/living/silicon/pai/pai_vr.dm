@@ -92,6 +92,14 @@
 		if(isopenspace(loc))
 			fall()
 
+	// Set vore size.
+	vore_capacity = chassis_data.belly_states
+	vore_capacity_ex = list("stomach" = chassis_data.belly_states)
+
+	// Emergency eject if you change to a smaller belly
+	if(vore_fullness > vore_capacity && vore_selected)
+		vore_selected.release_all_contents(TRUE)
+
 	update_icon()
 
 /mob/living/silicon/pai/update_icon()
@@ -108,28 +116,12 @@
 
 	var/sprite_state = chassis_data.sprite_icon_state
 
-	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
+	// Don't get a vore belly size if we have no belly size set!
+	var/belly_size = CLAMP(vore_fullness, 0, chassis_data.belly_states)
 	var/fullness_extension = ""
-	if(vore_capacity > 1 && vore_fullness > 1)
-		fullness_extension = "_[vore_fullness]"
-
-	if(!vore_fullness && !resting)
-		icon_state = "[sprite_state]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
-	else if(!vore_fullness && resting)
-		icon_state = "[sprite_state]_rest"
-
-	// Unfortunately not all these states exist, ugh.
-	else if(vore_fullness && !resting)
-		if(icon_exists(icon, "[sprite_state]_full[fullness_extension]"))
-			icon_state = "[sprite_state]_full[fullness_extension]"
-		else
-			icon_state = "[sprite_state]"
-	else if(vore_fullness && resting)
-		if(icon_exists(icon, "[sprite_state]_rest_full[fullness_extension]"))
-			icon_state = "[sprite_state]_rest_full[fullness_extension]"
-		else
-			icon_state = "[sprite_state]_rest"
-
+	if(belly_size > 1)
+		fullness_extension = "_[belly_size]"
+	icon_state = "[sprite_state][resting ? "_rest" : ""][belly_size ? "_full[fullness_extension]" : ""]"
 	add_eyes()
 
 //proc override to avoid pAI players being invisible while the chassis selection window is open
@@ -143,9 +135,6 @@
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
 	change_chassis(choice)
-
-	vore_capacity = 1
-	vore_capacity_ex = list("stomach" = 1)
 
 	update_icon()
 	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
