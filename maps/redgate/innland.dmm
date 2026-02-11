@@ -3,6 +3,26 @@
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
+"ab" = (
+/obj/structure/table/marble,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/matches,
+/turf/simulated/floor/lino,
+/area/redgate/structure/powered)
+"ac" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/redgate/structure/powered)
+"ad" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
 "ae" = (
 /turf/simulated/floor/beach/sand{
 	outdoors = 1
@@ -11,26 +31,93 @@
 "af" = (
 /turf/simulated/wall/wood,
 /area/redgate/structure/powered)
+"ag" = (
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/whitecandle_box,
+/obj/item/storage/fancy/blackcandle_box,
+/obj/item/storage/box/matches,
+/obj/item/storage/box/matches,
+/obj/structure/closet/walllocker_double/kitchen/east{
+	name = "Candles"
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"ah" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"ai" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/seasonal{
+	base_desc = "Soft, plush green grass. It feels nice under your feet~"
+	},
+/area/redgate/structure/powered)
 "aj" = (
 /obj/structure/table/woodentable,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
+"ak" = (
+/obj/machinery/light/small,
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"al" = (
+/obj/structure/sink/kitchen{
+	name = "sink";
+	pixel_y = -9;
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/redgate/structure/powered)
 "am" = (
 /turf/simulated/floor/carpet/bcarpet,
+/area/redgate/structure/powered)
+"an" = (
+/obj/structure/dummystairs{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"ao" = (
+/obj/structure/dummystairs{
+	dir = 1
+	},
+/obj/effect/map_effect/portal/master/side_a{
+	portal_id = "bedrooms";
+	name = "main_to_bedrooms"
+	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ap" = (
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "aq" = (
-/obj/machinery/door/airlock{
-	name = "Bedroom";
-	id_tag = "bedroom2"
+/obj/effect/map_effect/portal/master/side_b{
+	name = "bedrooms_to_main";
+	portal_id = "bedrooms";
+	dir = 1
+	},
+/obj/structure/dummystairs{
+	dir = 1
 	},
 /turf/unsimulated/floor/wood,
-/area/redgate/structure/powered/bed2)
+/area/redgate/structure/powered)
 "ar" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"as" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/dummystairs{
+	dir = 1
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
@@ -42,10 +129,88 @@
 /obj/effect/fake_sun,
 /turf/simulated/mineral/ignore_cavegen,
 /area/redgate/wilds)
+"av" = (
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed2)
+"aw" = (
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"ax" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"ay" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"az" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"aA" = (
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed1)
+"aB" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aC" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aD" = (
+/obj/machinery/light/small,
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aE" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aF" = (
+/obj/structure/bed/double/padded{
+	dir = 1
+	},
+/obj/item/bedsheet/bluedouble{
+	dir = 1
+	},
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
 "aG" = (
 /obj/structure/flora/pottedplant/fern,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
+"aH" = (
+/obj/machinery/door/airlock{
+	name = "Bedroom";
+	id_tag = "bedroom1"
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered/bed1)
+"aI" = (
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay foyer.";
+	dir = 4;
+	id = "bedroom1";
+	name = "Door Control";
+	pixel_x = -27;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aJ" = (
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
 "aK" = (
 /obj/structure/flora/pottedplant/minitree,
 /turf/unsimulated/floor/wood,
@@ -53,34 +218,196 @@
 "aL" = (
 /turf/simulated/floor/reinforced,
 /area/redgate/wilds)
-"aM" = (
+"aN" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/outdoors/grass/seasonal,
+/area/redgate/wilds)
+"aO" = (
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay foyer.";
+	dir = 8;
+	id = "bedroom2";
+	name = "Door Control";
+	pixel_x = 27;
+	pixel_y = -25;
+	specialfunctions = 4
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_y = -34;
+	pixel_x = 27
+	},
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"aP" = (
+/obj/machinery/door/airlock{
+	name = "Bedroom";
+	id_tag = "bedroom2"
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered/bed2)
+"aQ" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/simulated/floor/outdoors/grass/seasonal,
+/area/redgate/wilds)
+"aR" = (
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_y = 5;
+	pixel_x = -27
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aS" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/reddouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aT" = (
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/matches,
+/obj/structure/closet/walllocker_double/kitchen/north{
+	name = "Candles"
+	},
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"aU" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"aV" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/blue,
+/area/redgate/structure/powered/bed2)
+"aW" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/blue,
 /area/redgate/structure/powered/bed2)
-"aN" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/outdoors/grass/seasonal,
-/area/redgate/wilds)
-"aQ" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/outdoors/grass/seasonal,
-/area/redgate/wilds)
+"aX" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aY" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"aZ" = (
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/matches,
+/obj/structure/closet/walllocker_double/kitchen/north{
+	name = "Candles"
+	},
+/turf/simulated/floor/carpet,
+/area/redgate/structure/powered/bed1)
+"ba" = (
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed4)
+"bb" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bc" = (
+/obj/machinery/light/small,
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bd" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"be" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bf" = (
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed3)
+"bg" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
 "bh" = (
 /turf/simulated/floor/reinforced,
 /area/redgate/structure/powered)
-"bo" = (
-/obj/effect/map_effect/portal/master/side_b{
-	name = "bedrooms_to_main";
-	portal_id = "bedrooms";
-	dir = 1
+"bi" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
 	},
-/obj/structure/dummystairs{
-	dir = 1
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bj" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bk" = (
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bl" = (
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bm" = (
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay foyer.";
+	dir = 4;
+	id = "bedroom4";
+	name = "Door Control";
+	pixel_x = 27;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_y = 35;
+	pixel_x = 27
+	},
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bn" = (
+/obj/machinery/door/airlock{
+	name = "Bedroom";
+	id_tag = "bedroom4"
 	},
 /turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/structure/powered/bed4)
+"bo" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/purpledouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bp" = (
+/obj/structure/bed/double/padded{
+	dir = 1
+	},
+/obj/item/bedsheet/browndouble{
+	dir = 1
+	},
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bq" = (
+/obj/machinery/door/airlock{
+	name = "Bedroom";
+	id_tag = "bedroom3"
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered/bed3)
 "br" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/reinforced,
@@ -118,6 +445,37 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/redgate/structure/powered)
+"bv" = (
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay foyer.";
+	dir = 4;
+	id = "bedroom3";
+	name = "Door Control";
+	pixel_x = -27;
+	pixel_y = -25;
+	specialfunctions = 4
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_y = -34;
+	pixel_x = -27
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bw" = (
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/matches,
+/obj/structure/closet/walllocker_double/kitchen/north{
+	name = "Candles"
+	},
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
+"bx" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
 "by" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -125,12 +483,35 @@
 /obj/machinery/light/small,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
+"bz" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/carpet/brown,
+/area/redgate/structure/powered/bed4)
 "bA" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"bB" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bC" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bD" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
 "bE" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -151,6 +532,14 @@
 	base_desc = "Thick, green grass... who knows what's hiding in it!"
 	},
 /area/redgate/structure/powered)
+"bH" = (
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/matches,
+/obj/structure/closet/walllocker_double/kitchen/north{
+	name = "Candles"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
 "bO" = (
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
@@ -470,13 +859,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/redgate/structure/powered)
-"dP" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
 "dQ" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/outdoors/grass/seasonal{
@@ -812,13 +1194,6 @@
 	icon_state = "white"
 	},
 /area/redgate/structure/powered)
-"fd" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
 "fe" = (
 /obj/machinery/door/airlock{
 	name = "Tavern"
@@ -881,72 +1256,14 @@
 	base_desc = "Thick, green grass... who knows what's hiding in it!"
 	},
 /area/redgate/wilds)
-"fs" = (
-/obj/machinery/light/small,
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
 "ge" = (
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
-"gy" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
-"hb" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
-"hr" = (
-/turf/simulated/wall/wood,
-/area/redgate/structure/powered/bed1)
-"hB" = (
-/turf/simulated/wall/wood,
-/area/redgate/structure/powered/bed2)
-"hY" = (
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/box/matches,
-/obj/structure/closet/walllocker_double/kitchen/north{
-	name = "Candles"
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
-"ik" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"iA" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"iR" = (
-/obj/structure/table/marble,
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/box/matches,
-/turf/simulated/floor/lino,
-/area/redgate/structure/powered)
-"jp" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
 "kw" = (
 /turf/unsimulated/wall/planetary/normal/virgo4{
 	name = "the end"
 	},
 /area/redgate/wilds)
-"kH" = (
-/turf/simulated/wall/wood,
-/area/redgate/structure/powered/bed3)
-"kP" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
-"la" = (
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
 "lb" = (
 /turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
@@ -963,12 +1280,6 @@
 	name = "dirt"
 	},
 /area/redgate/wilds)
-"ln" = (
-/obj/structure/closet/crate/bin{
-	anchored = 1
-	},
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
 "lo" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -987,157 +1298,21 @@
 	icon_state = "white"
 	},
 /area/redgate/structure/powered)
-"lV" = (
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
-	dir = 4;
-	id = "bedroom3";
-	name = "Door Control";
-	pixel_x = -27;
-	pixel_y = -25;
-	specialfunctions = 4
-	},
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_y = -34;
-	pixel_x = -27
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
 "mB" = (
 /obj/structure/bonfire/permanent,
 /turf/simulated/floor/reinforced,
 /area/redgate/structure/powered)
-"nZ" = (
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_y = 5;
-	pixel_x = -27
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"pK" = (
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/fancy/whitecandle_box,
-/obj/item/storage/fancy/blackcandle_box,
-/obj/item/storage/box/matches,
-/obj/item/storage/box/matches,
-/obj/structure/closet/walllocker_double/kitchen/east{
-	name = "Candles"
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"pX" = (
-/turf/simulated/wall/wood,
-/area/redgate/structure/powered/bed4)
-"qy" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/dummystairs{
-	dir = 1
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"rl" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/grass/seasonal{
-	base_desc = "Soft, plush green grass. It feels nice under your feet~"
-	},
-/area/redgate/structure/powered)
-"rs" = (
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
-"rw" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/purpledouble,
-/obj/structure/curtain/black,
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
 "ub" = (
 /turf/simulated/floor/water,
 /area/redgate/wilds)
-"ue" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/reddouble,
-/obj/structure/curtain/black,
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"uh" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
-"uU" = (
-/obj/structure/sink/kitchen{
-	name = "sink";
-	pixel_y = -9;
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/redgate/structure/powered)
-"uW" = (
-/obj/structure/bed/double/padded{
-	dir = 1
-	},
-/obj/item/bedsheet/bluedouble{
-	dir = 1
-	},
-/obj/structure/curtain/black,
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
 "ve" = (
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/structure/powered)
-"vR" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"wc" = (
-/obj/structure/dummystairs{
-	dir = 1
-	},
-/obj/effect/map_effect/portal/master/side_a{
-	portal_id = "bedrooms";
-	name = "main_to_bedrooms"
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"wR" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
-"xL" = (
-/obj/structure/closet/crate/bin{
-	anchored = 1
-	},
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
 "xW" = (
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
 /area/redgate/structure/powered)
-"yg" = (
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/box/matches,
-/obj/structure/closet/walllocker_double/kitchen/north{
-	name = "Candles"
-	},
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"AY" = (
-/obj/structure/closet/crate/bin{
-	anchored = 1
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure/powered/bed3)
 "Bs" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1147,158 +1322,12 @@
 	name = "dirt"
 	},
 /area/redgate/structure/powered)
-"CR" = (
-/obj/machinery/door/airlock{
-	name = "Bedroom";
-	id_tag = "bedroom3"
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered/bed3)
-"DQ" = (
-/obj/machinery/light/small,
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"Em" = (
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"Ez" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"EX" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"Ft" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"GG" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"GY" = (
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
 "Ha" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/structure/powered)
-"HK" = (
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
-	dir = 4;
-	id = "bedroom4";
-	name = "Door Control";
-	pixel_x = 27;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_y = 35;
-	pixel_x = 27
-	},
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"IN" = (
-/obj/machinery/door/airlock{
-	name = "Bedroom";
-	id_tag = "bedroom1"
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered/bed1)
-"IT" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"KE" = (
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
-	dir = 4;
-	id = "bedroom1";
-	name = "Door Control";
-	pixel_x = -27;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"Nn" = (
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
-	dir = 8;
-	id = "bedroom2";
-	name = "Door Control";
-	pixel_x = 27;
-	pixel_y = -25;
-	specialfunctions = 4
-	},
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_y = -34;
-	pixel_x = 27
-	},
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
-"Ob" = (
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/box/matches,
-/obj/structure/closet/walllocker_double/kitchen/north{
-	name = "Candles"
-	},
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
-"Pm" = (
-/obj/structure/dummystairs{
-	dir = 1
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"Pv" = (
-/obj/structure/closet/crate/bin{
-	anchored = 1
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"PL" = (
-/obj/machinery/door/airlock{
-	name = "Bedroom";
-	id_tag = "bedroom4"
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered/bed4)
-"Sz" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/unsimulated/floor/steel{
-	icon_state = "white"
-	},
-/area/redgate/structure/powered)
-"Tl" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/carpet/blue,
-/area/redgate/structure/powered/bed2)
-"TD" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
 "Ug" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -1309,35 +1338,6 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure/powered)
-"Vs" = (
-/obj/structure/bed/double/padded{
-	dir = 1
-	},
-/obj/item/bedsheet/browndouble{
-	dir = 1
-	},
-/obj/structure/curtain/black,
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"Wd" = (
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/box/matches,
-/obj/structure/closet/walllocker_double/kitchen/north{
-	name = "Candles"
-	},
-/turf/simulated/floor/carpet,
-/area/redgate/structure/powered/bed1)
-"Wh" = (
-/obj/machinery/light/small,
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/brown,
-/area/redgate/structure/powered/bed4)
-"YB" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 
 (1,1,1) = {"
@@ -1485,15 +1485,15 @@ kw
 (2,1,1) = {"
 kw
 af
-pX
-pX
-pX
-pX
+ba
+ba
+ba
+ba
 af
-hB
-hB
-hB
-hB
+av
+av
+av
+av
 af
 kw
 lb
@@ -1627,15 +1627,15 @@ kw
 (3,1,1) = {"
 kw
 af
-Em
-Vs
-Em
-iA
+bl
+bp
+bl
+bb
 af
-Ob
-rs
-uW
-rs
+aT
+aw
+aF
+aw
 af
 kw
 lb
@@ -1769,15 +1769,15 @@ kw
 (4,1,1) = {"
 kw
 af
-yg
-Em
-Em
-Wh
+bw
+bl
+bl
+bc
 af
-bA
-rs
-rs
-Tl
+aU
+aw
+aw
+ax
 af
 kw
 lb
@@ -1911,15 +1911,15 @@ kw
 (5,1,1) = {"
 kw
 af
-vR
-Em
-Em
-EX
+bx
+bl
+bl
+bd
 af
-fd
-rs
-rs
-ln
+aV
+aw
+aw
+ay
 af
 kw
 lb
@@ -2053,15 +2053,15 @@ kw
 (6,1,1) = {"
 kw
 af
-jp
-Em
-HK
-xL
+bz
+bl
+bm
+be
 af
-aM
-Nn
-rs
-gy
+aW
+aO
+aw
+az
 af
 kw
 kw
@@ -2195,15 +2195,15 @@ kw
 (7,1,1) = {"
 kw
 af
-pX
-pX
-PL
-pX
+ba
+ba
+bn
+ba
 af
-hB
-aq
-hB
-hB
+av
+aP
+av
+av
 af
 af
 af
@@ -2337,17 +2337,17 @@ kw
 (8,1,1) = {"
 kw
 af
-Ft
+bA
 ap
 ap
 ap
-Ez
+ah
 ap
 ap
 ap
 ap
-qy
-bo
+as
+aq
 af
 kw
 lb
@@ -2479,15 +2479,15 @@ kw
 (9,1,1) = {"
 kw
 af
-kH
-CR
-kH
-kH
+bf
+bq
+bf
+bf
 af
-hr
-hr
-IN
-hr
+aA
+aA
+aH
+aA
 af
 af
 af
@@ -2621,15 +2621,15 @@ kw
 (10,1,1) = {"
 kw
 af
-kP
-lV
-la
-hb
+bB
+bv
+bk
+bg
 af
-ik
-nZ
-KE
-Pv
+aX
+aR
+aI
+aB
 af
 kw
 kw
@@ -2763,15 +2763,15 @@ kw
 (11,1,1) = {"
 kw
 af
-dP
-la
-la
-AY
+bC
+bk
+bk
+bi
 af
-GG
-GY
-GY
-TD
+aY
+aJ
+aJ
+aC
 af
 kw
 lb
@@ -2905,15 +2905,15 @@ kw
 (12,1,1) = {"
 kw
 af
-uh
-la
-la
-wR
+bD
+bk
+bk
+bj
 af
-Wd
-GY
-GY
-DQ
+aZ
+aJ
+aJ
+aD
 af
 kw
 lb
@@ -3047,15 +3047,15 @@ kw
 (13,1,1) = {"
 kw
 af
-hY
-la
-rw
-la
+bH
+bk
+bo
+bk
 af
-GY
-ue
-GY
-IT
+aJ
+aS
+aJ
+aE
 af
 kw
 lb
@@ -3189,15 +3189,15 @@ kw
 (14,1,1) = {"
 kw
 af
-kH
-kH
-kH
-kH
+bf
+bf
+bf
+bf
 af
-hr
-hr
-hr
-hr
+aA
+aA
+aA
+aA
 af
 kw
 lb
@@ -3946,7 +3946,7 @@ ge
 cQ
 xW
 cR
-YB
+ad
 ap
 ap
 ap
@@ -4228,7 +4228,7 @@ dd
 ge
 dd
 cQ
-rl
+ai
 cR
 ap
 ap
@@ -5081,13 +5081,13 @@ am
 af
 dn
 ap
-Ez
-pK
+ah
+ag
 ap
 ar
 aG
 ep
-iR
+ab
 dE
 eF
 eT
@@ -5648,7 +5648,7 @@ dc
 Ha
 df
 ap
-fs
+ak
 af
 Ug
 dT
@@ -5928,9 +5928,9 @@ ge
 cQ
 cQ
 af
-wc
-Pm
-Ez
+ao
+an
+ah
 ap
 ap
 dl
@@ -6358,7 +6358,7 @@ cQ
 af
 dh
 cy
-uU
+al
 dl
 dK
 dV
@@ -6503,7 +6503,7 @@ dp
 dv
 dl
 dL
-Sz
+ac
 ed
 dl
 dM
