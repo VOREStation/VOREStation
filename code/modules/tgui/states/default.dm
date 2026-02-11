@@ -72,7 +72,11 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 		. = min(., shared_living_tgui_distance(src_object)) //simple animals can only use things they're near.
 
 /mob/living/silicon/pai/default_can_use_tgui_topic(src_object)
-	// pAIs can only use themselves and the owner's radio.
+	// Allows few objects...
+	var/obj/check_obj = src_object
+	if(!stat && istype(check_obj) && check_obj.allow_pai_interaction(get_dist(check_obj, src) <= 1))
+		return STATUS_INTERACTIVE
+	// ...otherwise pAIs can only use themselves and the owner's radio.
 	if((src_object == src || src_object == radio || src_object == communicator) && !stat)
 		return STATUS_INTERACTIVE
 	else

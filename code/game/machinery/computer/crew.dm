@@ -28,6 +28,9 @@
 		return
 	tgui_interact(user)
 
+/obj/machinery/computer/crew/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /obj/machinery/computer/crew/tgui_interact(mob/user, datum/tgui/ui = null)
 	crew_monitor.tgui_interact(user, ui)
 

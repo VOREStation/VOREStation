@@ -226,10 +226,27 @@
 /mob/living/silicon/pai/UnarmedAttack(atom/A, proximity_flag)
 	. = ..()
 
+	// Some restricted objects to interact with
+	var/obj/O = A
+	if(istype(O) && O.allow_pai_interaction(proximity_flag))
+		O.attack_hand(src)
+		return
+
+	// Zmovement already allows these to be used with the verbs anyway
 	if(istype(A,/obj/structure/ladder))
-		// Zmovement already allows these to be used with the verbs anyway
 		var/obj/structure/ladder/L = A
 		L.attack_hand(src)
+		return
+
+	// We don't want to pick these up, just toggle them
+	if(istype(A,/obj/item/flashlight))
+		var/obj/item/flashlight/L = A
+		L.toggle_light()
+		return
+
+	// All other computers explain why it's not accessible by showing a firewall warning
+	if(istype(A,/obj/machinery/computer))
+		to_chat(src,span_warning("A firewall prevents you from interfacing with this device!"))
 		return
 
 	if(!ismob(A) || A == src)

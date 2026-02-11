@@ -254,6 +254,9 @@
 /obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
 	interact(user)
 
+/obj/machinery/media/jukebox/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
 	src.visible_message(span_danger("\The [src] blows apart!"), 1)
