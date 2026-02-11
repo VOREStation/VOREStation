@@ -198,7 +198,6 @@
 /area/redgate/structure/powered/bed1)
 "aI" = (
 /obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
 	dir = 4;
 	id = "bedroom1";
 	name = "Door Control";
@@ -224,7 +223,6 @@
 /area/redgate/wilds)
 "aO" = (
 /obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
 	dir = 8;
 	id = "bedroom2";
 	name = "Door Control";
@@ -363,8 +361,7 @@
 /area/redgate/structure/powered/bed4)
 "bm" = (
 /obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
-	dir = 4;
+	dir = 8;
 	id = "bedroom4";
 	name = "Door Control";
 	pixel_x = 27;
@@ -447,7 +444,6 @@
 /area/redgate/structure/powered)
 "bv" = (
 /obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
 	dir = 4;
 	id = "bedroom3";
 	name = "Door Control";
