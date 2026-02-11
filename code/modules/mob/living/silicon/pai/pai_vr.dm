@@ -193,21 +193,24 @@
 	remove_eyes()
 
 	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
-		// Special eyes that are based on holoprojector of your character
+		// Special eyes that are based on holoprojection of your character's icon size
 		if(holo_icon_south.Width() > 32)
 			holo_icon_dimension_X = 64
 			pixel_x = -16
 			default_pixel_x = -16
+		// Get height too
 		if(holo_icon_south.Height() > 32)
 			holo_icon_dimension_Y = 64
+			vis_height = 64
+		// Set eyes
 		if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
-			eye_layer = image('icons/mob/pai_vr.dmi', "type13-eyes")
+			eye_layer = image('icons/mob/pai_vr.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
-			eye_layer = image('icons/mob/pai_vr32x64.dmi', "type13-eyes")
+			eye_layer = image('icons/mob/pai_vr32x64.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
-			eye_layer = image('icons/mob/pai_vr64x32.dmi', "type13-eyes")
+			eye_layer = image('icons/mob/pai_vr64x32.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
-			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
+			eye_layer = image('icons/mob/pai_vr64x64.dmi', SSpai.pai_chassis_sprites[chassis_name].holo_eyes_icon_state)
 	else if(SSpai.pai_chassis_sprites[chassis_name].has_eye_color)
 		// Default eye handling
 		eye_layer = image(icon, "[icon_state]-eyes")

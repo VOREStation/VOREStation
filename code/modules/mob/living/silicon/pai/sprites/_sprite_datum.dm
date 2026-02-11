@@ -7,7 +7,9 @@
 	var/has_eye_color = TRUE
 	var/flying = FALSE
 	var/belly_states = 1
+
 	var/holo_projector = FALSE // Special AI hologram-like handling
+	var/holo_eyes_icon_state = null
 
 	var/pixel_x = 0
 	var/pixel_y = 0
@@ -136,6 +138,7 @@
 	sprite_icon = 'icons/mob/pai_vr.dmi'
 	sprite_icon_state = "13"
 	holo_projector = TRUE
+	holo_eyes_icon_state = "type13-eyes"
 
 // Large pai sprites
 /datum/pai_sprite/large
