@@ -142,6 +142,7 @@
 				qdel(src)
 
 				// pAI notify if we have be pAI invite on
+				SSpai.clear_pai_block_delay(observer.ckey) // Reset invite cooldown if we cancelled all invites for the round
 				if(SSpai.invite_valid(observer))
 					observer.pai_card_ping()
 

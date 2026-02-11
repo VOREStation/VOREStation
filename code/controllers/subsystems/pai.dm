@@ -78,13 +78,13 @@ SUBSYSTEM_DEF(pai)
 		return FALSE
 	return TRUE
 
-/datum/controller/subsystem/pai/proc/check_is_delayed(var/key)
+/datum/controller/subsystem/pai/proc/check_is_delayed(key)
 	if(key in asked)
 		if(world.time < asked[key] + PAI_DELAY_TIME)
 			return TRUE
 	return FALSE
 
-/datum/controller/subsystem/pai/proc/check_is_already_pai(var/key)
+/datum/controller/subsystem/pai/proc/check_is_already_pai(key)
 	return (key in GLOB.paikeys)
 
 /datum/controller/subsystem/pai/proc/get_tgui_data()
@@ -157,11 +157,15 @@ SUBSYSTEM_DEF(pai)
 			var/new_pai = card.ghost_inhabit(target.mob, TRUE)
 			to_chat(inquirer, span_info("[new_pai] has accepted your pAI request!"))
 			return
-
-		#warn Remove the following line
-		if("Never for this round") // Can this even be done in tg prefs??? - TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-			target.prefs.be_special ^= BE_PAI
+		if("Never for this round")
+			SSpai.block_pai_invites(ghost.ckey)
 
 	to_chat(inquirer, span_warning("The pAI denied the request."))
+
+/datum/controller/subsystem/pai/proc/block_pai_invites(key)
+	asked[key] = world.time + 99 HOURS // We never want to be asked again
+
+/datum/controller/subsystem/pai/proc/clear_pai_block_delay(key)
+	asked -= key
 
 #undef PAI_DELAY_TIME
