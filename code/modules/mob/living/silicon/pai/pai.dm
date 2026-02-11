@@ -542,7 +542,6 @@
 			else
 				icon = holo_icon_north
 
-/*
 /mob/living/silicon/pai/a_intent_change(input as text)
 	. = ..()
 
@@ -570,4 +569,3 @@
 			hud_used.disarm_intent.icon_state = "intent_disarm-n"
 			hud_used.grab_intent.icon_state = "intent_grab-n"
 			hud_used.hurt_intent.icon_state = "intent_harm-s"
-*/
