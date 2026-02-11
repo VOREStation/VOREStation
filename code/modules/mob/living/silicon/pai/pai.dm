@@ -156,6 +156,7 @@
 
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add
 
+/// Load pref save data from client and apply it to the pai.
 /mob/living/silicon/pai/proc/apply_preferences(client/cli, var/silent = 1)
 	if(!cli?.prefs)
 		return FALSE
@@ -187,7 +188,7 @@
 /mob/living/silicon/pai/binarycheck()
 	return 0
 
-//proc override to avoid pAI players being invisible while the chassis selection window is open
+/// Verb used to select a chassis from the list of available chassis
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "Abilities.pAI Commands"
 	set name = "Choose Chassis"
@@ -202,6 +203,7 @@
 	update_icon()
 	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
 
+/// Change pai sprite and offsets based upon the selected chassis id
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)
 	if(!(new_chassis in SSpai.get_chassis_list()))
 		new_chassis = PAI_DEFAULT_CHASSIS
@@ -407,13 +409,14 @@
 		if(3)
 			to_chat(src, span_infoplain(span_green("You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.")))
 
-// this function shows the information about being silenced as a pAI in the Status panel
+/// this function shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
 	. = ""
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
 		. += "Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
+/// Fully heals a pai, used when a pai is repaired
 /mob/living/silicon/pai/proc/full_restore() //This is using do_after all kinds of weird...
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
@@ -428,6 +431,24 @@
 	card.setEmotion(15)
 	playsound(card, 'sound/effects/pai-restore.ogg', 50, FALSE)
 	card.visible_message(span_filter_notice("\The [card] chimes."), runemessage = "chime")
+
+/mob/living/silicon/pai/lay_down()
+	set name = "Rest"
+	set category = "IC.Game"
+
+	// Pass lying down or getting up to our pet human, if we're in a rig.
+	if(istype(src.loc,/obj/item/paicard))
+		resting = 0
+		var/obj/item/rig/rig = src.get_rig()
+		if(istype(rig))
+			rig.force_rest(src)
+			return
+	else
+		resting = !resting
+		update_icon()
+	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
+
+	canmove = !resting
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Update icons
@@ -456,6 +477,7 @@
 
 	add_eyes()
 
+/// Applies the eye overlay if the chassis has it
 /mob/living/silicon/pai/proc/add_eyes()
 	remove_eyes()
 
@@ -491,6 +513,7 @@
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
 	add_overlay(eye_layer)
 
+/// Removes the eye overlay if it has one
 /mob/living/silicon/pai/proc/remove_eyes()
 	if(!eye_layer)
 		return
@@ -498,6 +521,7 @@
 	qdel(eye_layer)
 	eye_layer = null
 
+/// Gets icons for all four directions based on the character slot currently loaded
 /mob/living/silicon/pai/proc/get_character_icon()
 	if(!client || !client.prefs) return FALSE
 	var/mob/living/carbon/human/dummy/dummy = new ()

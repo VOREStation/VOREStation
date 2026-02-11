@@ -1,3 +1,4 @@
+/// Change currently viewed camera
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.reset_perspective()
@@ -43,24 +44,6 @@
 	speak_exclamation = sayverbs[(sayverbs.len>1 ? 2 : sayverbs.len)]
 	speak_query = sayverbs[(sayverbs.len>2 ? 3 : sayverbs.len)]
 
-/mob/living/silicon/pai/lay_down()
-	set name = "Rest"
-	set category = "IC.Game"
-
-	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/paicard))
-		resting = 0
-		var/obj/item/rig/rig = src.get_rig()
-		if(istype(rig))
-			rig.force_rest(src)
-			return
-	else
-		resting = !resting
-		update_icon()
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-
-	canmove = !resting
-
 /mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Access Modifcation Permission"
 	set category = "Abilities.pAI Commands"
@@ -72,20 +55,6 @@
 	else
 		idaccessible = 0
 		visible_message(span_notice("\The [src] clicks as their access modification slot closes."),span_notice("You block access modfications."), runemessage = "click")
-
-/mob/living/silicon/pai/verb/wipe_software()
-	set name = "Enter Storage"
-	set category = "Abilities.pAI Commands"
-	set desc = "Upload your personality to the cloud and wipe your software from the card. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
-
-	// Make sure people don't kill themselves accidentally
-	if(tgui_alert(src, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Wipe Software", list("No", "Yes")) != "Yes")
-		return
-
-	close_up()
-	visible_message(span_filter_notice(span_bold("[src]") + " fades away from the screen, the pAI device goes silent."))
-	card.removePersonality()
-	clear_client()
 
 /mob/living/silicon/pai/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"

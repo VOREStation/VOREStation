@@ -59,6 +59,20 @@
 			else
 				button.icon_state = "[button.base_state]_o"
 
+/mob/living/silicon/pai/verb/wipe_software()
+	set name = "Enter Storage"
+	set category = "Abilities.pAI Commands"
+	set desc = "Upload your personality to the cloud and wipe your software from the card. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
+
+	// Make sure people don't kill themselves accidentally
+	if(tgui_alert(src, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Wipe Software", list("No", "Yes")) != "Yes")
+		return
+
+	close_up()
+	visible_message(span_filter_notice(span_bold("[src]") + " fades away from the screen, the pAI device goes silent."))
+	card.removePersonality()
+	clear_client()
+
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows
 	if(stat != CONSCIOUS)								//so we can access our software without having to open up the software interface TGUI window
 		to_chat(src, span_warning("You can't do that right now."))
