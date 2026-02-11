@@ -66,6 +66,10 @@
 					TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]-eyes\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 					failed = TRUE
 
+			// Death
+			if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]_dead"))
+				TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]_dead\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
+				failed = TRUE
 
 		else // Holoprojector uses ai holo instead of a sprite
 			// Holoprojectil eyes need to exist at all sizes for the state provided

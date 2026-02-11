@@ -57,6 +57,7 @@
 	sprite_icon_state = "pai-parrot"
 	has_eye_color = FALSE
 	flying = TRUE
+	resting_belly = FALSE
 
 /datum/pai_sprite/rabbit
 	name = "Rabbit"
@@ -134,6 +135,7 @@
 	name = "Catslug"
 	sprite_icon = 'icons/mob/pai_vr.dmi'
 	sprite_icon_state = "catslug"
+	resting_belly = FALSE
 
 /datum/pai_sprite/car
 	name = "Car"
@@ -168,16 +170,19 @@
 	name = "Horse (Lune)"
 	sprite_icon = 'icons/mob/pai_vr64x64.dmi'
 	sprite_icon_state = "pai-horse_lune"
+	resting_belly = FALSE
 
 /datum/pai_sprite/large/horse_soleil
 	name = "Horse (Soleil)"
 	sprite_icon = 'icons/mob/pai_vr64x64.dmi'
 	sprite_icon_state = "pai-horse_soleil"
+	resting_belly = FALSE
 
 /datum/pai_sprite/large/dragon
 	name = "Dragon"
 	sprite_icon = 'icons/mob/pai_vr64x64.dmi'
 	sprite_icon_state = "pai-pdragon"
+	resting_belly = FALSE
 
 /datum/pai_sprite/large/rat
 	name = "Rat"
