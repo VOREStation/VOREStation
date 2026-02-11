@@ -135,6 +135,7 @@
 	name = "Type Thirteen"
 	sprite_icon = 'icons/mob/pai_vr.dmi'
 	sprite_icon_state = "13"
+	holo_projector = TRUE
 
 // Large pai sprites
 /datum/pai_sprite/large

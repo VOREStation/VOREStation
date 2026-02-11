@@ -5,8 +5,10 @@
 	var/hide_glow = FALSE
 	var/image/eye_layer = null		// Holds the eye overlay.
 	var/eye_color = "#00ff0d"
-	var/icon/holo_icon
+	var/icon/holo_icon_south
 	var/icon/holo_icon_north
+	var/icon/holo_icon_east
+	var/icon/holo_icon_west
 	var/holo_icon_dimension_X = 32
 	var/holo_icon_dimension_Y = 32
 	//These vars keep track of whether you have the related software, used for easily updating the UI
@@ -32,7 +34,7 @@
 
 /mob/living/silicon/pai/Login()
 	. = ..()
-	if(!holo_icon)
+	if(!holo_icon_south)
 		last_special = world.time + 100		//Let's give get_character_icon time to work
 		get_character_icon()
 	if(stat == DEAD)
@@ -70,7 +72,7 @@
 	// Get icon data setup
 	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
 		// Rebuild holosprite from character
-		if(!holo_icon)
+		if(!holo_icon_south)
 			get_character_icon()
 	else
 		// Get data from our sprite datum
@@ -96,7 +98,7 @@
 
 	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
 		icon_state = null
-		icon = holo_icon
+		icon = holo_icon_south
 		add_eyes()
 		return
 
@@ -192,11 +194,11 @@
 
 	if(SSpai.pai_chassis_sprites[chassis_name].holo_projector)
 		// Special eyes that are based on holoprojector of your character
-		if(holo_icon.Width() > 32)
+		if(holo_icon_south.Width() > 32)
 			holo_icon_dimension_X = 64
 			pixel_x = -16
 			default_pixel_x = -16
-		if(holo_icon.Height() > 32)
+		if(holo_icon_south.Height() > 32)
 			holo_icon_dimension_Y = 64
 		if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
 			eye_layer = image('icons/mob/pai_vr.dmi', "type13-eyes")
@@ -558,12 +560,20 @@
 	dummy.tail_layering = TRUE
 	dummy.set_dir(NORTH)
 	var/icon/new_holo_north = getCompoundIcon(dummy)
+	dummy.set_dir(EAST)
+	var/icon/new_holo_east = getCompoundIcon(dummy)
+	dummy.set_dir(WEST)
+	var/icon/new_holo_west = getCompoundIcon(dummy)
 
-	qdel(holo_icon)
+	qdel(holo_icon_south)
 	qdel(holo_icon_north)
+	qdel(holo_icon_east)
+	qdel(holo_icon_west)
 	qdel(dummy)
-	holo_icon = new_holo
+	holo_icon_south = new_holo
 	holo_icon_north = new_holo_north
+	holo_icon_east = new_holo_east
+	holo_icon_west = new_holo_west
 	return TRUE
 
 /mob/living/silicon/pai/set_dir(var/new_dir)
@@ -571,7 +581,13 @@
 	if(. && SSpai.pai_chassis_sprites[chassis_name].holo_projector)
 		switch(dir)
 			if(SOUTH)
-				icon = holo_icon
+				icon = holo_icon_south
+			if(NORTH)
+				icon = holo_icon_north
+			if(EAST)
+				icon = holo_icon_east
+			if(WEST)
+				icon = holo_icon_west
 			else
 				icon = holo_icon_north
 
