@@ -164,46 +164,46 @@
 
 /datum/pai_sprite/large/dire_wolf
 	name = "Dire wolf"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "pai-diredog"
 
 /datum/pai_sprite/large/horse_lune
 	name = "Horse (Lune)"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "pai-horse_lune"
 	can_rest = FALSE // FIX ME!
 	resting_belly = FALSE
 
 /datum/pai_sprite/large/horse_soleil
 	name = "Horse (Soleil)"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "pai-horse_soleil"
 	can_rest = FALSE // FIX ME!
 	resting_belly = FALSE
 
 /datum/pai_sprite/large/dragon
 	name = "Dragon"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "pai-pdragon"
 	can_rest = FALSE // FIX ME!
 	resting_belly = FALSE
 
 /datum/pai_sprite/large/rat
 	name = "Rat"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "rat"
 
 /datum/pai_sprite/large/panther
 	name = "Panther"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "panther"
 
 /datum/pai_sprite/large/teppi
 	name = "Teppi"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "teppi"
 
 /datum/pai_sprite/large/protogen_dog
 	name = "Protogen Dog"
-	sprite_icon = 'icons/mob/pai_64x64.dmi'
+	sprite_icon = 'icons/mob/pai64x64.dmi'
 	sprite_icon_state = "pai-protodog"
