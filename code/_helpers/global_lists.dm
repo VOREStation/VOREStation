@@ -326,8 +326,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
-
-
 /// Inits the crafting recipe list, sorting crafting recipe requirements in the process.
 /proc/init_crafting_recipes(list/crafting_recipes)
 	for(var/path in subtypesof(/datum/crafting_recipe))
