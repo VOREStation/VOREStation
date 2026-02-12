@@ -1621,7 +1621,7 @@
 	cost = 0
 	custom_only = FALSE
 	has_preferences = list("bubble_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge physical contact on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE),
-						  "pickup_dodge_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge pickup attempts on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
+						"pickup_dodge_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge pickup attempts on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
 
 /datum/trait/neutral/personal_space/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
@@ -1631,6 +1631,19 @@
 		H.touch_reaction_flags |= SPECIES_TRAIT_PICKUP_DODGE
 	add_verb(H, /mob/living/proc/toggle_personal_space)
 	add_verb(H, /mob/living/proc/toggle_pickup_dodge)
+
+/datum/trait/neutral/skin_reagents
+	name = "Skin Reagents"
+	desc = "You secret some sort of reagent across your skin that can poison those who dare to lick you."
+	cost = 0
+	custom_only = FALSE
+	multiple_choice = list(REAGENT_ID_ETHANOL, REAGENT_ID_CAPSAICIN, REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_STOXIN, REAGENT_ID_RAINBOWTOXIN, REAGENT_ID_PARALYSISTOXIN, REAGENT_ID_PAINENZYME)
+	has_preferences = list("Reagent" = list(TRAIT_PREF_TYPE_LIST, "Skin Reagent", TRAIT_NO_VAREDIT_TARGET, REAGENT_ID_ETHANOL))
+
+/datum/trait/neutral/skin_reagents/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	if(trait_prefs && trait_prefs["Reagent"])
+		H.skin_reagent = trait_prefs["Reagent"]
 
 /datum/trait/neutral/colour_changing_eyes
 	name = "Colour changing eyes"

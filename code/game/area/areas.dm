@@ -109,13 +109,13 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
 	if (danger_level == 0)
-		atmosphere_alarm.clearAlarm(src, alarm_source)
+		GLOB.atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
 		var/obj/machinery/alarm/atmosalarm = alarm_source //maybe other things can trigger these, who knows
 		if(istype(atmosalarm))
-			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
+			GLOB.atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
 		else
-			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
+			GLOB.atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
@@ -368,8 +368,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	return (actual_static_equip == static_equip && actual_static_light == static_light && actual_static_environ == static_environ)
 
 //////////////////////////////////////////////////////////////////
-
-var/list/mob/living/forced_ambiance_list = list()
+GLOBAL_LIST_EMPTY(forced_ambiance_list)
 
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)
@@ -406,15 +405,15 @@ var/list/mob/living/forced_ambiance_list = list()
 	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
 
 	// If we previously were in an area with force-played ambiance, stop it.
-	if((L in forced_ambiance_list) && initial)
+	if((L in GLOB.forced_ambiance_list) && initial)
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
-		forced_ambiance_list -= L
+		GLOB.forced_ambiance_list -= L
 
 	if(forced_ambience)
-		if(L in forced_ambiance_list)
+		if(L in GLOB.forced_ambiance_list)
 			return
 		if(forced_ambience.len)
-			forced_ambiance_list |= L
+			GLOB.forced_ambiance_list |= L
 			var/sound/chosen_ambiance = pick(forced_ambience)
 			if(!istype(chosen_ambiance))
 				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE_FORCED)

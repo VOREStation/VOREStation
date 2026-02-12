@@ -7,7 +7,7 @@
 
 #define DS2NEARESTTICK(DS) TICKS2DS(-round(-(DS2TICKS(DS))))
 
-var/world_startup_time
+GLOBAL_VAR(world_startup_time)
 
 /proc/get_game_time()
 	var/global/time_offset = 0
@@ -26,8 +26,8 @@ var/world_startup_time
 	return wtime + (time_offset + wusage) * world.tick_lag
 
 GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
-var/station_date = ""
-var/next_station_date_change = 1 DAY
+GLOBAL_VAR(station_date)
+GLOBAL_VAR_INIT(next_station_date_change, 1 DAY)
 
 #define duration2stationtime(time) time2text(station_time_in_ds + time, "hh:mm")
 #define roundstart_delay_time (world.time - round_duration_in_ds)
@@ -43,12 +43,12 @@ var/next_station_date_change = 1 DAY
 
 /proc/stationdate2text()
 	var/update_time = FALSE
-	if(station_time_in_ds > next_station_date_change)
-		next_station_date_change += 1 DAY
+	if(station_time_in_ds > GLOB.next_station_date_change)
+		GLOB.next_station_date_change += 1 DAY
 		update_time = TRUE
-	if(!station_date || update_time)
-		station_date = num2text((text2num(time2text(REALTIMEOFDAY, "YYYY"))+300)) + "-" + time2text(REALTIMEOFDAY, "MM-DD") //VOREStation Edit
-	return station_date
+	if(!GLOB.station_date || update_time)
+		GLOB.station_date = num2text((text2num(time2text(REALTIMEOFDAY, "YYYY"))+300)) + "-" + time2text(REALTIMEOFDAY, "MM-DD") //VOREStation Edit
+	return GLOB.station_date
 
 /// Returns UTC timestamp with the specifified format and optionally deciseconds
 /proc/time_stamp(format = "hh:mm:ss", show_ds)
@@ -79,15 +79,15 @@ var/next_station_date_change = 1 DAY
 		//else
 			//return 1
 
-var/next_duration_update = 0
-var/last_round_duration = 0
+GLOBAL_VAR_INIT(next_duration_update, 0)
+GLOBAL_VAR_INIT(last_round_duration, 0)
 GLOBAL_VAR_INIT(round_start_time, 0)
 
 /proc/roundduration2text()
 	if(!GLOB.round_start_time)
 		return "00:00"
-	if(last_round_duration && world.time < next_duration_update)
-		return last_round_duration
+	if(GLOB.last_round_duration && world.time < GLOB.next_duration_update)
+		return GLOB.last_round_duration
 
 	var/mills = round_duration_in_ds // 1/10 of a second, not real milliseconds but whatever
 	//var/secs = ((mills % 36000) % 600) / 10 //Not really needed, but I'll leave it here for refrence.. or something
@@ -97,24 +97,24 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 	mins = mins < 10 ? add_zero(mins, 1) : mins
 	hours = hours < 10 ? add_zero(hours, 1) : hours
 
-	last_round_duration = "[hours]:[mins]"
-	next_duration_update = world.time + 1 MINUTES
-	return last_round_duration
+	GLOB.last_round_duration = "[hours]:[mins]"
+	GLOB.next_duration_update = world.time + 1 MINUTES
+	return GLOB.last_round_duration
 
-/var/midnight_rollovers = 0
-/var/rollovercheck_last_timeofday = 0
-/var/rollover_safety_date = 0 // set in world/New to the server startup day-of-month
+GLOBAL_VAR_INIT(midnight_rollovers, 0)
+GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
+GLOBAL_VAR_INIT(rollover_safety_date, 0) // set in world/New to the server startup day-of-month
 /proc/update_midnight_rollover()
 	// Day has wrapped (world.timeofday drops to 0 at the start of each real day)
-	if (world.timeofday < rollovercheck_last_timeofday)
+	if (world.timeofday < GLOB.rollovercheck_last_timeofday)
 		// If the day started/last wrap was < 12 hours ago, this is spurious
-		if(rollover_safety_date < world.realtime - (12 HOURS))
-			midnight_rollovers++
-			rollover_safety_date = world.realtime
+		if(GLOB.rollover_safety_date < world.realtime - (12 HOURS))
+			GLOB.midnight_rollovers++
+			GLOB.rollover_safety_date = world.realtime
 		else
 			warning("Time rollover error: world.timeofday decreased from previous check, but the day or last rollover is less than 12 hours old. System clock?")
-	rollovercheck_last_timeofday = world.timeofday
-	return midnight_rollovers
+	GLOB.rollovercheck_last_timeofday = world.timeofday
+	return GLOB.midnight_rollovers
 
 ///Increases delay as the server gets more overloaded, as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
 #define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)

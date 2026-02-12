@@ -102,7 +102,7 @@
 /obj/item/cell/proc/percent()		// return % charge of cell
 	var/charge_percent = 0
 	if(maxcharge > 0)
-		charge_percent = 100.0*charge/maxcharge
+		charge_percent = 100.0 * charge / maxcharge
 	return charge_percent
 
 /obj/item/cell/proc/fully_charged()
@@ -176,6 +176,13 @@
 	if(Adjacent(user))
 		. += "It has a power rating of [maxcharge]."
 		. += "The charge meter reads [round(src.percent() )]%."
+
+/obj/item/cell/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+	if(isrobot(M))
+		var/mob/living/silicon/robot/target = M
+		if(target.opened)
+			return FALSE
+	..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
 	..()

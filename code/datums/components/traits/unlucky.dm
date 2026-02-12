@@ -222,7 +222,7 @@
 		for(var/obj/machinery/vending/darth_vendor in the_turf)
 			if(darth_vendor.stat & (BROKEN|NOPOWER))
 				continue
-			to_chat(living_guy, span_warning("The delivery chute of [darth_vendor] raises up..."))
+			darth_vendor.visible_message(span_warning("[darth_vendor] suddenly clunks and the delivery chute raises up!"))
 			darth_vendor.throw_item(living_guy)
 			consume_omen()
 			return
@@ -278,6 +278,8 @@
 
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
+				continue
+			if(!prob(10)) //Reduce the chance further, due to the number of tables that are passed in normal play.
 				continue
 			living_guy.visible_message(span_danger("[living_guy] stubs [living_guy.p_their()] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")

@@ -66,7 +66,7 @@ export function useChatPersistence() {
 
       initChatState();
     }
-  }, [loaded, settingsLoaded, setLoaded]);
+  }, [loaded, settings, settingsLoaded]);
 
   /** Apply user settings */
   useEffect(() => {

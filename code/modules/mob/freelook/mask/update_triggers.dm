@@ -36,10 +36,10 @@
 
 /datum/antagonist/add_antagonist(var/datum/mind/player)
 	. = ..()
-	if(src == cult)
+	if(src == GLOB.cult)
 		cultnet.updateVisibility(player.current, 0)
 
 /datum/antagonist/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
 	..()
-	if(src == cult)
+	if(src == GLOB.cult)
 		cultnet.updateVisibility(player.current, 0)

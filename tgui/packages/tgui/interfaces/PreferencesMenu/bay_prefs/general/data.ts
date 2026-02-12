@@ -284,6 +284,7 @@ export type MiscData = {
   nif: BooleanLike;
 
   custom_species: string;
+  ignore_shoes: BooleanLike;
   pos_traits: string[] | Record<string, Record<string, any> | null>;
   neu_traits: string[] | Record<string, Record<string, any> | null>;
   neg_traits: string[] | Record<string, Record<string, any> | null>;
@@ -394,6 +395,7 @@ export enum TraitPrefType {
   TRAIT_PREF_TYPE_BOOLEAN = 1,
   TRAIT_PREF_TYPE_COLOR = 2,
   TRAIT_PREF_TYPE_STRING = 3,
+  TRAIT_PREF_TYPE_LIST = 4,
 }
 
 export enum TraitVareditTarget {

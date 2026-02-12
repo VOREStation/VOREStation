@@ -1,7 +1,3 @@
-var/list/grass_types = list(
-
-)
-
 /turf/simulated/floor/outdoors/grass
 	name = "grass"
 	icon_state = "grass0"

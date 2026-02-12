@@ -13,7 +13,7 @@
 	var/atom/target = null
 	var/open_panel = 0
 	var/image_overlay = null
-	var/blast_dev = 3
+	var/blast_dev = 0
 	var/blast_heavy = 1
 	var/blast_light = 2
 	var/blast_flash = 3
@@ -65,7 +65,7 @@
 			add_attack_logs(user, target, "planted [name] on with [timer] second fuse")
 			user.visible_message(span_danger("[user.name] finished planting an explosive on [target.name]!"))
 		else
-			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
+			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse")
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
 		target.add_overlay(image_overlay)
@@ -100,6 +100,7 @@
 	name = "seismic charge"
 	desc = "Used to dig holes in specific areas without too much extra hole."
 
+	blast_dev = 3
 	blast_heavy = 2
 	blast_light = 4
 	blast_flash = 7

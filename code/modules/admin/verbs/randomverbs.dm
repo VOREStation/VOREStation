@@ -419,11 +419,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	var/charjob
 	var/records
 	var/datum/data/record/record_found
-	record_found = find_general_record("name",picked_client.prefs.real_name)
+	var/char_real_name = picked_client.prefs.read_preference(/datum/preference/name/real_name)
+	record_found = find_general_record("name", char_real_name)
 
 	//Found their record, they were spawned previously
 	if(record_found)
-		var/samejob = tgui_alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
+		var/samejob = tgui_alert(src,"Found [char_real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
 		if(!samejob)
 			return
 		if(samejob == "Yes")
@@ -572,10 +573,10 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	//If desired, apply equipment.
 	if(equipment)
 		if(charjob)
-			job_master.EquipRank(new_character, charjob, 1)
+			GLOB.job_master.EquipRank(new_character, charjob, 1)
 			if(new_character.mind)
 				new_character.mind.assigned_role = charjob
-				new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
+				new_character.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(new_character, charjob)
 
 	//If customised job title, modify here.
 	if(custom_job && custom_job_title)
@@ -733,8 +734,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if (!check_rights_for(src, R_HOLDER))
 		return
 
-	if(job_master)
-		for(var/datum/job/job in job_master.occupations)
+	if(GLOB.job_master)
+		for(var/datum/job/job in GLOB.job_master.occupations)
 			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -868,7 +869,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Events"
 	set name = "Call Shuttle"
 
-	if ((!( SSticker ) || !emergency_shuttle.location()))
+	if ((!( SSticker ) || !GLOB.emergency_shuttle.location()))
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -880,15 +881,15 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(SSticker.mode.auto_recall_shuttle)
 		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
-			emergency_shuttle.auto_recall = 1	//enable auto-recall
+			GLOB.emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
 
 	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", "Shuttle Call", list("Emergency", "Crew Transfer"))
 	if (choice == "Emergency")
-		emergency_shuttle.call_evac()
+		GLOB.emergency_shuttle.call_evac()
 	else
-		emergency_shuttle.call_transfer()
+		GLOB.emergency_shuttle.call_transfer()
 
 
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -904,10 +905,10 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	if(tgui_alert(src, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
-	if(!SSticker || !emergency_shuttle.can_recall())
+	if(!SSticker || !GLOB.emergency_shuttle.can_recall())
 		return
 
-	emergency_shuttle.recall()
+	GLOB.emergency_shuttle.recall()
 	feedback_add_details("admin_verb","CCSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
 	message_admins(span_blue("[key_name_admin(usr)] admin-recalled the emergency shuttle."), 1)
@@ -923,10 +924,10 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	if(!check_rights(R_ADMIN))	return
 
-	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
+	GLOB.emergency_shuttle.deny_shuttle = !GLOB.emergency_shuttle.deny_shuttle
 
-	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	log_admin("[key_name(src)] has [GLOB.emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	message_admins("[key_name_admin(usr)] has [GLOB.emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Logs"

@@ -744,12 +744,12 @@
 		if(istext(belly_data["undergarment_chosen"]))
 			var/new_undergarment_chosen = sanitize(belly_data["undergarment_chosen"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_undergarment_chosen)
-				for(var/datum/category_group/underwear/U in global_underwear.categories)
+				for(var/datum/category_group/underwear/U in GLOB.global_underwear.categories)
 					if(lowertext(U.name) == lowertext(new_undergarment_chosen))
 						new_belly.undergarment_chosen = U.name
 						break
 
-		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[new_belly.undergarment_chosen]
+		var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[new_belly.undergarment_chosen]
 		var/invalid_if_none = TRUE
 		for(var/datum/category_item/underwear/U in UWC.items)
 			if(lowertext(U.name) == lowertext(new_belly.undergarment_if_none))
@@ -1002,6 +1002,10 @@
 				new_belly.show_liquids = FALSE
 			if(new_show_liquids == 1)
 				new_belly.show_liquids = TRUE
+
+		if(isnum(belly_data["reagent_gen_cost_limit"]))
+			var/new_reagent_gen_cost_limit = belly_data["reagent_gen_cost_limit"]
+			new_belly.reagent_gen_cost_limit = sanitize_integer(new_reagent_gen_cost_limit, 0, 100, initial(new_belly.reagent_gen_cost_limit))
 
 		if(isnum(belly_data["reagentbellymode"]))
 			var/new_reagentbellymode = belly_data["reagentbellymode"]

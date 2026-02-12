@@ -2,7 +2,7 @@
 	set category = "Debug.Investigate"
 	set name = "Show Air Report"
 
-	if(!master_controller || !SSair)
+	if(!GLOB.master_controller || !SSair)
 		tgui_alert_async(usr,"Master_controller or SSair not found.","Air Report")
 		return
 

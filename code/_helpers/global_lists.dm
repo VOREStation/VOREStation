@@ -22,6 +22,8 @@ GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs ta
 var/global/list/obj/item/pda/PDAs = list()
 var/global/list/obj/item/communicator/all_communicators = list()
 
+// Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
+GLOBAL_LIST_INIT(restricted_camera_networks, list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS))
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM)
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm")
@@ -62,9 +64,7 @@ GLOBAL_LIST_EMPTY(ear_styles_list)	// Stores /datum/sprite_accessory/ears indexe
 GLOBAL_LIST_EMPTY(tail_styles_list)	// Stores /datum/sprite_accessory/tail indexed by type
 GLOBAL_LIST_EMPTY(wing_styles_list)	// Stores /datum/sprite_accessory/wing indexed by type
 
-GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
-	//Underwear
-var/datum/category_collection/underwear/global_underwear = new()
+GLOBAL_LIST_EMPTY(custom_species_bases) // Species that can be used for a Custom Species icon base
 
 	//Customizables
 GLOBAL_LIST_INIT(headsetlist, list("Standard","Bowman","Earbud"))
@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 /////Initial Building/////
 //////////////////////////
 
-/proc/makeDatumRefLists()
+/proc/make_datum_reference_lists()
 	var/list/paths
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
@@ -320,8 +320,11 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/species_name in whitelisted_icons)
 		GLOB.custom_species_bases += species_name
 
-	return 1 // Hooks must return 1
+	// Create frame types.
+	populate_frame_types()
 
+	// Create robolimbs for chargen.
+	populate_robolimb_list()
 
 /// Inits the crafting recipe list, sorting crafting recipe requirements in the process.
 /proc/init_crafting_recipes(list/crafting_recipes)
@@ -361,6 +364,8 @@ GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Claw" = FOOTSTEP_MOB_CLAW,
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
+	"Mech" = FOOTSTEP_MOB_MECHY,
+	"Heavy" = FOOTSTEP_MOB_HEAVY_ALT
 ))
 
 // Put any artifact effects that are duplicates, unique, or otherwise unwated in here! This prevents them from spawning via RNG.
@@ -631,7 +636,7 @@ var/global/list/assigned_blocks[DNA_SE_LENGTH]
 GLOBAL_LIST_EMPTY(gear_distributed_to)
 GLOBAL_LIST_EMPTY(overlay_cache) //cache recent overlays
 
-var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list(
+GLOBAL_LIST_INIT(all_technomancer_gambit_spells, typesof(/obj/item/spell) - list(
 	/obj/item/spell,
 	/obj/item/spell/gambit,
 	/obj/item/spell/projectile,
@@ -639,7 +644,7 @@ var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list
 //	/obj/item/spell/insert,
 	/obj/item/spell/spawner,
 	/obj/item/spell/summon,
-	/obj/item/spell/modifier)
+	/obj/item/spell/modifier))
 
 var/global/list/image/splatter_cache=list()
 var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective. Clumsy, rewrite sometime.
@@ -1170,8 +1175,7 @@ GLOBAL_LIST_EMPTY(available_recipes) // List of the recipes you can use
 GLOBAL_LIST_EMPTY(acceptable_reagents) // List of the reagents you can put in
 
 
-
-/var/all_ui_styles = list(
+GLOBAL_LIST_INIT(all_ui_styles, list(
 	"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',
 	"old"          = 'icons/mob/screen/old.dmi',
@@ -1179,9 +1183,9 @@ GLOBAL_LIST_EMPTY(acceptable_reagents) // List of the reagents you can put in
 	"old-noborder" = 'icons/mob/screen/old-noborder.dmi',
 	"minimalist"   = 'icons/mob/screen/minimalist.dmi',
 	"Hologram"     = 'icons/mob/screen/holo.dmi'
-	)
+	))
 
-/var/all_ui_styles_robot = list(
+GLOBAL_LIST_INIT(all_ui_styles_robot, list(
 	"Midnight"     = 'icons/mob/screen1_robot.dmi',
 	"Orange"       = 'icons/mob/screen1_robot.dmi',
 	"old"          = 'icons/mob/screen1_robot.dmi',
@@ -1189,7 +1193,7 @@ GLOBAL_LIST_EMPTY(acceptable_reagents) // List of the reagents you can put in
 	"old-noborder" = 'icons/mob/screen1_robot.dmi',
 	"minimalist"   = 'icons/mob/screen1_robot_minimalist.dmi',
 	"Hologram"     = 'icons/mob/screen1_robot_minimalist.dmi'
-	)
+	))
 
 GLOBAL_LIST_INIT(all_tooltip_styles, list(
 	"Midnight",		//Default for everyone is the first one,
@@ -1199,18 +1203,6 @@ GLOBAL_LIST_INIT(all_tooltip_styles, list(
 	"Operative",
 	"Clockwork"
 	))
-
-//Global Datums
-var/global/datum/pipe_icon_manager/icon_manager
-var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
-
-// We manually initialize the alarm handlers instead of looping over all existing types
-// to make it possible to write: camera_alarm.triggerAlarm() rather than SSalarm.managers[datum/alarm_handler/camera].triggerAlarm() or a variant thereof.
-/var/global/datum/alarm_handler/atmosphere/atmosphere_alarm	= new()
-/var/global/datum/alarm_handler/camera/camera_alarm			= new()
-/var/global/datum/alarm_handler/fire/fire_alarm				= new()
-/var/global/datum/alarm_handler/motion/motion_alarm			= new()
-/var/global/datum/alarm_handler/power/power_alarm			= new()
 
 GLOBAL_LIST_EMPTY(gun_choices)
 
@@ -1624,6 +1616,11 @@ GLOBAL_LIST_INIT(suitable_fish_turf_types,  list(
 	/turf/simulated/floor/holofloor/beach/coastline,
 	/turf/simulated/floor/water
 ))
+
+GLOBAL_LIST_INIT(ventcrawl_machinery, list(
+	/obj/machinery/atmospherics/unary/vent_pump,
+	/obj/machinery/atmospherics/unary/vent_scrubber
+	))
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
 

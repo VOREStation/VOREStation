@@ -230,10 +230,3 @@ SUBSYSTEM_DEF(mapping)
 	if (!GLOB.Debug2)
 		return // Only show up in stat panel if debugging is enabled.
 	. = ..()
-
-// VOREStation Edit: BAPI-dmm
-/datum/controller/subsystem/mapping/Shutdown()
-	// Force bapi to drop it's cached maps on server shutdown.
-	_bapidmm_clear_map_data()
-	fdel("data/baked_dmm_files/")
-// VOREStation Edit End

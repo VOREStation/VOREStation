@@ -3,14 +3,14 @@
 	var/rights = holder.rank_flags()
 	if(rights & R_HOLDER)
 		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
-		if(rights & R_ADMIN)		add_verb(src, admin_verbs_admin)
-		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
-		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(rights & R_DEBUG)		add_verb(src, admin_verbs_debug)
-		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(rights & R_SPAWN)		add_verb(src, admin_verbs_spawn)
-		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(rights & R_EVENT)		add_verb(src, admin_verbs_event_manager)
+		if(rights & R_ADMIN)		add_verb(src, GLOB.admin_verbs_admin)
+		if(rights & R_FUN)			add_verb(src, GLOB.admin_verbs_fun)
+		if(rights & R_SERVER)		add_verb(src, GLOB.admin_verbs_server)
+		if(rights & R_DEBUG)		add_verb(src, GLOB.admin_verbs_debug)
+		if(rights & R_SOUNDS)		add_verb(src, GLOB.admin_verbs_sounds)
+		if(rights & R_SPAWN)		add_verb(src, GLOB.admin_verbs_spawn)
+		if(rights & R_MOD)			add_verb(src, GLOB.admin_verbs_mod)
+		if(rights & R_EVENT)		add_verb(src, GLOB.admin_verbs_event_manager)
 
 	// NEW ADMIN VERBS SYSTEM
 	SSadmin_verbs.assosciate_admin(src)
@@ -19,13 +19,13 @@
 	// OLD ADMIN VERB SYSTEM
 	remove_verb(src, list(
 		/client/proc/togglebuildmodeself,
-		admin_verbs_admin,
-		admin_verbs_fun,
-		admin_verbs_server,
-		admin_verbs_debug,
-		admin_verbs_sounds,
-		admin_verbs_spawn,
-		debug_verbs
+		GLOB.admin_verbs_admin,
+		GLOB.admin_verbs_fun,
+		GLOB.admin_verbs_server,
+		GLOB.admin_verbs_debug,
+		GLOB.admin_verbs_sounds,
+		GLOB.admin_verbs_spawn,
+		GLOB.debug_verbs
 		))
 
 	// NEW ADMIN VERBS SYSTEM
@@ -35,7 +35,7 @@
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin.Misc"
 
-	remove_verb(src, list(/client/proc/hide_most_verbs, admin_verbs_hideable))
+	remove_verb(src, list(/client/proc/hide_most_verbs, GLOB.admin_verbs_hideable))
 	add_verb(src, /client/proc/show_verbs)
 
 	to_chat(src, span_filter_system(span_interface("Most of your adminverbs have been hidden.")))
@@ -246,7 +246,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	var/datum/preferences/D
 	var/client/C = GLOB.directory[warned_ckey]
 	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
+	else	D = GLOB.preferences_datums[warned_ckey]
 
 	if(!D)
 		to_chat(src, span_warning("Error: warn(): No such ckey found."))
@@ -306,29 +306,25 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	message_admins(span_blue("[ckey] creating an admin explosion at [epicenter.loc]."))
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_give_modifier(var/mob/living/L)
-	set category = "Debug.Game"
-	set name = "Give Modifier"
-	set desc = "Makes a mob weaker or stronger by adding a specific modifier to them."
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
-	if(!L)
-		to_chat(usr, span_warning("Looks like you didn't select a mob."))
+ADMIN_VERB(admin_give_modifier, R_EVENT, "Give Modifier", "Makes a mob weaker or stronger by adding a specific modifier to them.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/living_target)
+	if(!living_target)
+		to_chat(user, span_warning("Looks like you didn't select a mob."))
 		return
 
 	var/list/possible_modifiers = subtypesof(/datum/modifier)
 
-	var/new_modifier_type = tgui_input_list(usr, "What modifier should we add to [L]?", "Modifier Type", possible_modifiers)
+	var/new_modifier_type = tgui_input_list(user, "What modifier should we add to [living_target]?", "Modifier Type", possible_modifiers)
 	if(!new_modifier_type)
 		return
-	var/duration = tgui_input_number(usr, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration")
+	var/duration = tgui_input_number(user, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration")
 	if(duration == 0)
 		duration = null
 	else
 		duration = duration SECONDS
 
-	L.add_modifier(new_modifier_type, duration)
-	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].")
+	living_target.add_modifier(new_modifier_type, duration)
+	log_and_message_admins("has given [key_name(living_target)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].", user)
 
 /client/proc/make_sound(var/obj/O in world) // -- TLE
 	set category = "Fun.Sounds"
@@ -474,7 +470,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	set category = "Admin.Game"
 	if(check_rights(R_HOLDER))
 		var/list/jobs = list()
-		for (var/datum/job/J in job_master.occupations)
+		for (var/datum/job/J in GLOB.job_master.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if (!jobs.len)
@@ -482,7 +478,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 			return
 		var/job = tgui_input_list(usr, "Please select job slot to free", "Free job slot", jobs)
 		if (job)
-			job_master.FreeRole(job)
+			GLOB.job_master.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
 
@@ -531,7 +527,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
 ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
-	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
+	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", typesof(/spell))
 	if(!S)
 		return
 	spell_recipient.spell_list += new S
@@ -757,4 +753,4 @@ ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tic
 			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
 
 ADMIN_VERB(modify_shift_end, (R_ADMIN|R_EVENT|R_SERVER), "Modify Shift End", "Modifies the hard shift end time.", "Server.Game")
-	transfer_controller.modify_hard_end(user)
+	GLOB.transfer_controller.modify_hard_end(user)

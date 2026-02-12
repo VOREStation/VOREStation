@@ -1,4 +1,4 @@
-var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
+GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 
 //SleeveMate!
 /obj/item/sleevemate
@@ -23,6 +23,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	var/ooc_notes_maybes = null
 	var/ooc_notes_dislikes = null
 	var/ooc_notes_style = FALSE
+	var/soulcatcher_pref_flags = NONE
 
 	// Resleeving database this machine interacts with. Blank for default database
 	// Needs a matching /datum/transcore_db with key defined in code
@@ -52,6 +53,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	ooc_notes_maybes = M.ooc_notes_maybes
 	ooc_notes_style = M.ooc_notes_style
 	stored_mind = M.mind
+	soulcatcher_pref_flags = M.soulcatcher_pref_flags
 	M.ghostize()
 	stored_mind.current = null
 	update_icon()
@@ -65,6 +67,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	M.ooc_notes_favs = ooc_notes_favs
 	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_style = ooc_notes_style
+	M.soulcatcher_pref_flags = soulcatcher_pref_flags
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()
 
@@ -287,11 +290,15 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			return //Uninstalled it?
 
 		//Lazzzyyy.
-		if(!sleevemate_mob)
-			sleevemate_mob = new()
+		if(!GLOB.sleevemate_mob)
+			GLOB.sleevemate_mob = new()
 
-		put_mind(sleevemate_mob)
-		SC.catch_mob(sleevemate_mob)
+		if(!(soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE))
+			to_chat(usr,span_notice("[GLOB.sleevemate_mob] can't be transferred!"))
+			return
+
+		put_mind(GLOB.sleevemate_mob)
+		SC.catch_mob(GLOB.sleevemate_mob)
 		to_chat(usr,span_notice("Mind transferred into Soulcatcher!"))
 
 	if(href_list["mindupload"])

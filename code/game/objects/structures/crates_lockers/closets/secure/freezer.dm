@@ -43,6 +43,8 @@
 		/obj/item/storage/fancy/egg_box = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose = 2)
 
+/obj/structure/closet/secure_closet/freezer/fridge/empty
+	starts_with = null
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"

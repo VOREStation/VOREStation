@@ -1414,6 +1414,9 @@
 /mob/living/proc/adjust_nutrition(amount)
 	nutrition = between(0, nutrition + amount, max_nutrition)
 
+/mob/living/proc/nutrition_percent()
+	return 100 * nutrition / max_nutrition
+
 /mob/living/vv_get_header()
 	. = ..()
 	var/refid = REF(src)
@@ -1466,6 +1469,8 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
+		var/datum/hud/HUD = owner?.hud_used
+		LAZYREMOVE(HUD?.other_important, screen_icon)
 		QDEL_NULL(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)

@@ -101,7 +101,7 @@
 	..()
 	var/mob/observer/dead/G = usr
 	var/datum/data/record/record_found
-	record_found = find_general_record("name", G.client.prefs.real_name)
+	record_found = find_general_record("name", G.client.prefs.read_preference(/datum/preference/name/real_name))
 	// Found their record, they were spawned previously. Remind them corpses cannot play games.
 	if(record_found)
 		var/answer = tgui_alert(G, "You seem to have previously joined this round. If you are currently dead, you should not enter VR as this character. Would you still like to proceed?", "Previously spawned",list("Yes", "No"))

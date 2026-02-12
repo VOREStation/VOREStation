@@ -48,9 +48,13 @@
 		if(FOOTSTEP_MOB_SHOE)
 			footstep_ret = GLOB.footstep
 		if(FOOTSTEP_MOB_SLIME)
-			footstep_ret = 'sound/effects/footstep/slime1.ogg'
+			footstep_ret = GLOB.slimefootstep
 		if(FOOTSTEP_MOB_SLITHER)
-			footstep_ret = 'sound/effects/footstep/crawl1.ogg'
+			footstep_ret = GLOB.slitherfootstep
+		if(FOOTSTEP_MOB_HEAVY_ALT)
+			footstep_ret = GLOB.heavyaltfootstep
+		if(FOOTSTEP_MOB_MECHY)
+			footstep_ret = GLOB.mechfootstep
 		else
 			footstep_ret = GLOB.barefootstep
 	return footstep_ret
@@ -134,15 +138,15 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
-		playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
-		return
-
 	var/volume_multiplier = 0.3
 	var/range_adjustment = 0
 
 	var/list/prepared_steps = prepare_step(source)
 	if(isnull(prepared_steps))
+		return
+
+	if (source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
+		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 		return
 
 	//cache for sanic speed (lists are references anyways)
@@ -161,8 +165,6 @@
 					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 				return
 
-		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
-		return
 	// we are barefoot
 	play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 
@@ -170,10 +172,6 @@
 
 	if(source.species.special_step_sounds)
 		playsound(source.loc, pick(source.species.special_step_sounds), volume, TRUE, falloff = 1, vary = sound_vary)
-		return
-
-	if (istype(source.species, /datum/species/shapeshifter/promethean))
-		playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff = 1, vary = sound_vary)
 		return
 
 	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]

@@ -1,4 +1,4 @@
-var/datum/antagonist/traitor/traitors
+GLOBAL_DATUM(traitors, /datum/antagonist/traitor)
 
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
@@ -16,7 +16,7 @@ var/datum/antagonist/traitor/traitors
 
 /datum/antagonist/traitor/New()
 	..()
-	traitors = src
+	GLOB.traitors = src
 
 /datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='byond://?src=\ref[player];[HrefToken()];common=crystals'>\[set crystals\]</a><a href='byond://?src=\ref[src];[HrefToken()];spawn_uplink=\ref[player.current]'>\[spawn uplink\]</a>"

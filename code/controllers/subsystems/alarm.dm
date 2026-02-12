@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(alarm)
 	var/static/list/active_alarm_cache = list()
 
 /datum/controller/subsystem/alarm/Initialize()
-	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
+	all_handlers = list(GLOB.atmosphere_alarm, GLOB.camera_alarm, GLOB.fire_alarm, GLOB.motion_alarm, GLOB.power_alarm)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/alarm/fire(resumed = FALSE)

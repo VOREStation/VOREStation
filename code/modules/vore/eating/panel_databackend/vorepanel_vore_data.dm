@@ -269,7 +269,7 @@
 				for(var/flag_name in selected.vore_sprite_flag_list)
 					UNTYPED_LIST_ADD(vs_flags, list("label" = flag_name, "selection" = selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name]))
 
-				var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+				var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
 				var/list/undergarments
 				if(UWC)
 					undergarments = UWC.items
@@ -299,7 +299,7 @@
 				"belly_sprite_options" = host.vore_icon_bellies,
 				"undergarment_chosen" = selected.undergarment_chosen,
 				"undergarment_if_none" = selected.undergarment_if_none || "None",
-				"undergarment_options" = global_underwear.categories,
+				"undergarment_options" = GLOB.global_underwear.categories,
 				"undergarment_options_if_none" = undergarments,
 				"undergarment_color" = selected.undergarment_color,
 				"tail_option_shown" = ishuman(owner),
@@ -368,9 +368,18 @@
 				selected_list["contents"] = selected_contents
 
 			if(LIQUID_OPTIONS_TAB)
+				var/liq_gen_resources = 0
+				if(isrobot(owner))
+					var/mob/living/silicon/robot/robot_owner = owner
+					if(robot_owner.cell)
+						liq_gen_resources = robot_owner.cell.percent()
+				else if(isliving(owner))
+					var/mob/living/living_owner = owner
+					liq_gen_resources = living_owner.nutrition_percent()
 				// liquid belly options
 				var/list/belly_liquid_data = list(
 					"show_liq" = selected.show_liquids,
+					"liq_gen_resources" = liq_gen_resources,
 					"liq_interacts" = compile_liquid_interact_data(selected)
 				)
 				selected_list["belly_liquid_data"] = belly_liquid_data

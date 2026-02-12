@@ -102,9 +102,9 @@
 		cut_data()
 
 /datum/tgui_module/appearance_changer/Destroy()
-	qdel(cam_screen)
+	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
+	QDEL_NULL(cam_background)
 	return ..()
 
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -551,7 +551,7 @@
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
 		if("species_sound")
-			var/list/possible_species_sound_types = species_sound_map
+			var/list/possible_species_sound_types = GLOB.species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
 			if(choice && can_change(owner, APPEARANCE_MISC))
 				owner.species.species_sounds = choice
@@ -1028,7 +1028,8 @@
 
 /datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
 	cam_screen.vis_contents = list(owner)
@@ -1038,7 +1039,8 @@
 
 /datum/tgui_module/appearance_changer/vore/tgui_close(mob/user)
 	. = ..()
-	QDEL_IN(src, 1)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/vore/changed_hook(flag)
 	var/mob/living/carbon/human/M = owner
@@ -1074,7 +1076,8 @@
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	if(!istype(owner.loc, /obj/item/holder/micro))
@@ -1091,7 +1094,8 @@
 
 /datum/tgui_module/appearance_changer/superpower/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
 	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
@@ -1109,7 +1113,8 @@
 
 /datum/tgui_module/appearance_changer/innate/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/appearance_changer/innate/tgui_status(mob/user, datum/tgui_state/state)
 	if(owner.stat != CONSCIOUS)
@@ -1170,4 +1175,5 @@
 /datum/tgui_module/appearance_changer/self_deleting
 /datum/tgui_module/appearance_changer/self_deleting/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)

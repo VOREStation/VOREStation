@@ -47,6 +47,7 @@
 	permit_healbelly = client.prefs_vr.permit_healbelly
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
+	size_strip_preference = client.prefs_vr.size_strip_preference
 	eating_privacy_global = client.prefs_vr.eating_privacy_global
 	allow_mimicry = client.prefs_vr.allow_mimicry
 	allowtemp = client.prefs_vr.allowtemp
