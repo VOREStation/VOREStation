@@ -126,3 +126,9 @@
   - code_imp: Added separate define for harmful clumsy chance
   - bugfix: SSchemistry indexing order reverted to be based on first reagent in recipe
       (Recipes fixed to be match old recipe priorities)
+2026-02-12:
+  Kashargul:
+  - code_imp: updates python dependencies
+  - bugfix: mat ejection for algae farm
+  - code_imp: moves two list pops right to GLOB handling
+  - bugfix: two missing wing overlays that got somehow lost during transit
