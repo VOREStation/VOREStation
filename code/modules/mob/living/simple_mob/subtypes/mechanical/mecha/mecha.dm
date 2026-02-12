@@ -66,7 +66,7 @@
 	..(0,"explodes!") // Do everything else first.
 
 	// Make the exploding more convincing with an actual explosion and some sparks.
-	sparks.start()
+	sparks?.start()
 	explosion(get_turf(src), 0, 0, 1, 3)
 
 	// 'Eject' our pilot, if one exists.
@@ -94,8 +94,8 @@
 		add_overlay(image(icon = 'icons/mecha/mecha_equipment.dmi', icon_state = "repair_droid"))
 
 /mob/living/simple_mob/mechanical/mecha/bullet_act()
-	. = ..()
 	sparks.start()
+	. = ..()
 
 /mob/living/simple_mob/mechanical/mecha/speech_bubble_appearance()
 	return pilot_type ? "" : ..()

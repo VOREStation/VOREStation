@@ -58,8 +58,9 @@
 	new_mob.ai_holder_type = /datum/ai_holder/simple_mob/inert //Dont want the mob AI to activate if the client dc's or anything
 
 	if(name)
-		new_mob.real_name = picked_client.prefs.real_name
-		new_mob.name = picked_client.prefs.real_name
+		var/spawner_name = picked_client.prefs.read_preference(/datum/preference/name/real_name)
+		new_mob.real_name = spawner_name
+		new_mob.name = spawner_name
 
 
 	new_mob.key = picked_client.key //Finally put them in the mob

@@ -64,9 +64,6 @@
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_icon(var/safety = 0)
-	if(!check_icon_cache())
-		return
-
 	cut_overlays()
 
 	var/vent_icon = "vent"
@@ -83,25 +80,25 @@
 	else
 		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
 
-	add_overlay(icon_manager.get_atmos_icon("device", , , vent_icon))
+	add_overlay(GLOB.icon_manager.get_atmos_icon("device", , , vent_icon))
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		if(!T.is_plating() && node1 && node2 && node1.level == 1 && node2.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
-			return
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	if(!T.is_plating() && node1 && node2 && node1.level == 1 && node2.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
+		return
+	else
+		if (node1)
+			add_underlay(T, node1, turn(dir, -180), node1.icon_connect_type)
 		else
-			if (node1)
-				add_underlay(T, node1, turn(dir, -180), node1.icon_connect_type)
-			else
-				add_underlay(T, node1, turn(dir, -180))
-			if (node2)
-				add_underlay(T, node2, dir, node2.icon_connect_type)
-			else
-				add_underlay(T, node2, dir)
+			add_underlay(T, node1, turn(dir, -180))
+		if (node2)
+			add_underlay(T, node2, dir, node2.icon_connect_type)
+		else
+			add_underlay(T, node2, dir)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/hide(var/i)
 	update_icon()

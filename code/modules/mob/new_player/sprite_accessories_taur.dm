@@ -1442,3 +1442,20 @@
 /datum/sprite_accessory/tail/longtail/scug/dots
 	name = "Catslug Tail Dotted"
 	extra_overlay =  "scug_markings"
+
+/datum/sprite_accessory/tail/taur/teshari // chickenbutt
+	name = "Teshari dual-color (Taur)"
+	icon = 'icons/mob/human_races/sprite_accessories/taurs_teshari.dmi'
+	icon_loaf = 'icons/mob/vore/taurs_teshari_loaf.dmi'
+	icon_state = "tesh"
+	icon_sprite_tag = "tesh"
+	extra_overlay = "tesh_markings"
+	can_loaf = TRUE
+	belly_variant_when_loaf = TRUE
+	loaf_offset = 4
+	fullness_icons = 1
+	vore_tail_sprite_variant = "Tesh"
+
+/datum/sprite_accessory/tail/taur/teshari/alt
+	name = "Teshari dual-color Alt (Taur)"
+	extra_overlay = "tesh_markings_alt"

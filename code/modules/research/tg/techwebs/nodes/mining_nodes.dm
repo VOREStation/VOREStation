@@ -101,6 +101,8 @@
 		"recycler_crusher",
 		"recycler_sorter",
 		"recycler_stamper",
+		"borg_adv_scanner_module",
+		"borg_adv_snatcher_module",
 		// "mech_diamond_drill",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)

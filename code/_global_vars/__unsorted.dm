@@ -75,3 +75,6 @@ GLOBAL_DATUM_INIT(buildmode_hud, /icon, icon('icons/misc/buildmode.dmi'))
 GLOBAL_LIST_EMPTY(cached_character_icons)
 
 GLOBAL_VAR_INIT(triai, FALSE)
+
+// Pipe colors, needs to be inited before our pipe icon_manager
+GLOBAL_LIST_INIT(pipe_colors, list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_RED, "blue" = PIPE_COLOR_BLUE, "cyan" = PIPE_COLOR_CYAN, "green" = PIPE_COLOR_GREEN, "yellow" = PIPE_COLOR_YELLOW, "black" = PIPE_COLOR_BLACK, "orange" = PIPE_COLOR_ORANGE, "white" = PIPE_COLOR_WHITE, "purple" = PIPE_COLOR_PURPLE))

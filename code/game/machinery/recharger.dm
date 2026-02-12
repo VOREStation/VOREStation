@@ -60,6 +60,13 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 	. = ..()
 	default_apply_parts()
 
+/obj/machinery/recharger/Destroy()
+	if(charging)
+		charging.update_icon()
+		charging.forceMove(src.loc)
+		charging = null
+	. = ..()
+
 /obj/machinery/recharger/examine(mob/user)
 	. = ..()
 

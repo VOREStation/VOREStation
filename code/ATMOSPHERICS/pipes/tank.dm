@@ -37,12 +37,12 @@
 	return list(node1)
 
 /obj/machinery/atmospherics/pipe/tank/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		add_underlay(T, node1, dir)
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	add_underlay(T, node1, dir)
 
 /obj/machinery/atmospherics/pipe/tank/hide()
 	update_underlays()

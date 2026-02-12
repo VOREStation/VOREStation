@@ -401,7 +401,7 @@
 		if(slot_is_synth && !isSynthetic()) // Prevents some pretty weird situations
 			to_chat(src,span_warning("Cannot apply character appearance. [slot_is_synth ? "The slot's character is synthetic." : "The slot's character is organic."] Slot must match the current body's synthetic state. Please try another character."))
 			return
-		from_slot = "You'll hatch using [client.prefs.real_name]'s appearance"
+		from_slot = "You'll hatch using [client.prefs.read_preference(/datum/preference/name/real_name)]'s appearance"
 
 	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view. [from_slot]! Are you sure?", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")

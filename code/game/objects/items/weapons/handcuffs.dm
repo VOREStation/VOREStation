@@ -34,7 +34,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		attempt_to_cuff(user, user)
 		return
@@ -227,7 +227,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		place_legcuffs(user, user)
 		return

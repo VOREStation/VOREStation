@@ -804,7 +804,7 @@
 		else if(U.locked)
 			to_chat(user, span_filter_notice("The upgrade is locked and cannot be used yet!"))
 		else
-			if(U.action(src))
+			if(U.action(user, src))
 				to_chat(user, span_filter_notice("You apply the upgrade to [src]!"))
 				user.drop_item()
 				U.loc = src
@@ -916,8 +916,9 @@
 							return
 				if(I_HURT)
 					H.do_attack_animation(src)
-					if(H.species.can_shred(H))
-						attack_generic(H, rand(30,50), "slashed")
+					var/shreddamage = H.species.can_shred(H, FALSE, 15)
+					if(shreddamage)
+						attack_generic(H, shreddamage, "attacked")
 						return
 					else
 						playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
@@ -1346,8 +1347,8 @@
 
 /mob/living/silicon/robot/drop_item(var/atom/Target)
 	if(module_active && istype(module_active,/obj/item/gripper))
-		var/obj/item/gripper/G = module_active
-		G.drop_item_nm()
+		var/obj/item/gripper/robot_gripper = module_active
+		robot_gripper.drop_item_nm()
 
 /mob/living/silicon/robot/disable_spoiler_vision()
 	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY|BORGANOMALOUS)) // Whyyyyyyyy have seperate defines.
@@ -1538,8 +1539,7 @@
 			return T
 		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
-		else
-			return FALSE
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/advanced/jetpack)
 		return has_upgrade_module(/obj/item/tank/jetpack/carbondioxide)
 	if(given_type == /obj/item/borg/upgrade/advanced/advhealth)
@@ -1560,16 +1560,28 @@
 			return T
 		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
-		else
-			return FALSE
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
 		var/obj/item/gun/energy/robotic/taser/T = has_upgrade_module(/obj/item/gun/energy/robotic/taser)
-		if(T && T.recharge_time <= 2)
+		if(T && T.recharge_time < T::recharge_time)
 			return T
 		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
-		else
-			return FALSE
+		return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_scanner)
+		var/obj/item/mining_scanner/robot/robot_scanner = has_upgrade_module(/obj/item/mining_scanner/robot)
+		if(robot_scanner && robot_scanner.exact)
+			return robot_scanner
+		else if(!robot_scanner)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_snatcher)
+		var/obj/item/storage/bag/sheetsnatcher/borg/robot_snatcher = has_upgrade_module(/obj/item/storage/bag/sheetsnatcher/borg)
+		if(robot_snatcher && robot_snatcher.capacity > robot_snatcher::capacity)
+			return robot_snatcher
+		else if(!robot_snatcher)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
