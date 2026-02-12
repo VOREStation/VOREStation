@@ -58,6 +58,9 @@
 @include meta.load-css('./interfaces/Wires.scss');
 @include meta.load-css('./interfaces/PlushEditor.scss');
 @include meta.load-css('./interfaces/ColorMatrixEditor.scss');
+@include meta.load-css('./interfaces/FourInARow.scss');
+@include meta.load-css('./interfaces/RpgDice.scss');
+@include meta.load-css('./interfaces/NineMen.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
