@@ -29,7 +29,7 @@
 		alpha = 127 //Maybe we'll have hologram calls later.
 		if(speaker.client && speaker.client.prefs)
 			var/datum/preferences/p = speaker.client.prefs
-			name = p.real_name
+			name = p.read_preference(/datum/preference/name/real_name)
 			real_name = name
 			gender = p.identifying_gender
 
@@ -81,7 +81,7 @@
 	set desc = "Changes your name."
 	set src = usr
 
-	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.read_preference(/datum/preference/name/real_name), MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(new_name)
 		if(comm)
 			comm.visible_message(span_notice("[icon2html(comm,viewers(comm))] [src.name] has left, and now you see [new_name]."))

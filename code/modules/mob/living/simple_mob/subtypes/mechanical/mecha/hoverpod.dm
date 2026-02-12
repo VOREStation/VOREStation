@@ -41,6 +41,10 @@
 	ion_trail.start()
 	return ..()
 
+/mob/living/simple_mob/mechanical/mecha/hoverpod/Destroy()
+	QDEL_NULL(ion_trail)
+	. = ..()
+
 /mob/living/simple_mob/mechanical/mecha/hoverpod/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 

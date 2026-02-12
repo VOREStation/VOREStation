@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 
 	// Tgui Topic middleware
-	if(!tgui_Topic(href_list))
+	if(tgui_Topic(href_list))
 		return
 
 	//Admin PM
@@ -420,6 +420,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
+	if(skybox)
+		QDEL_NULL(skybox)
 
 	QDEL_NULL(loot_panel)
 	..()

@@ -80,9 +80,6 @@
 #define NETWORK_OUTSIDE "Outside"
 #define NETWORK_HALLS "Halls"
 
-// Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
-var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS)
-
 #define TRANSMISSION_WIRE		0 //Is this ever used? I don't think it is.
 #define TRANSMISSION_RADIO		1 //Radio transmissions (like airlock controller to pump)
 #define TRANSMISSION_SUBSPACE	2 //Like headsets

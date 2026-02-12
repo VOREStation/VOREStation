@@ -146,7 +146,7 @@
 	spawnpoint_type = /datum/spawnpoint/tram
 
 /obj/machinery/cryopod/robot/door/tram/process()
-	if(emergency_shuttle.online() || emergency_shuttle.returned())
+	if(GLOB.emergency_shuttle.online() || GLOB.emergency_shuttle.returned())
 		// Transform into a door!  But first despawn anyone inside
 		time_till_despawn = 0
 		..()

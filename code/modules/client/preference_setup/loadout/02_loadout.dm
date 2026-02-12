@@ -80,7 +80,7 @@ var/list/gear_datums = list()
 	if(pref.client)
 		if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
 			return FALSE
-		if(G.character_name && !(pref.real_name in G.character_name))
+		if(G.character_name && !(pref.read_preference(/datum/preference/name/real_name) in G.character_name))
 			return FALSE
 	return TRUE
 

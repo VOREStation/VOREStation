@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	//Name matching is ugly but mind doesn't persist to look at.
 	var/charjob
 	var/datum/data/record/record_found
-	record_found = find_general_record("name",ghost_client.prefs.real_name)
+	record_found = find_general_record("name", ghost_client.prefs.read_preference(/datum/preference/name/real_name))
 
 	//Found their record, they were spawned previously
 	if(record_found)
