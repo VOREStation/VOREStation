@@ -93,9 +93,12 @@
 			to_chat(user, span_warning("Trash bag not found. Shutting down."))
 			return
 		var/obj/item/storage/bag/trash/B = output_dest
-		if(LAZYLEN(B.contents) >= B.max_storage_space) //A bit more lenient than the w_class system to avoid complicated spaghetti.
-			to_chat(user, span_warning("Trash bag full. Empty trash bag contents to continue."))
-			return
+		var/total_storage_space = 0
+		for(var/obj/item/thing in B.contents)//no more leniency on this one. We check it all. B
+			total_storage_space += thing.get_storage_cost()
+			if(total_storage_space >= B.max_storage_space)
+				to_chat(user, span_warning("Trash bag full. Empty trash bag contents to continue."))
+				return
 	if(istype(output_dest,/obj/item/dogborg/sleeper))
 		var/obj/item/dogborg/sleeper/B = output_dest
 		if(LAZYLEN(B.contents) >= B.max_item_count)
@@ -117,7 +120,10 @@
 			return
 	if(istype(target,/obj/structure/window) || istype(target,/obj/structure/grille))
 		target = get_turf(target) // Windows can be clicked to clean their turf
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(issilicon(user))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	else
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)//this is a mop, cart, and trash bag in one. Halving its speed should keep it somewhat more in-line with other cleaning equipment.
 	var/auto_setting = 1
 	if(isturf(target))
 		user.visible_message(span_filter_notice("[user] begins [suckverb]ing the mess off \the [target.name]..."), span_notice("You begin [suckverb]ing the mess off \the [target.name]..."))
@@ -125,7 +131,7 @@
 		if(vac_power == 8)
 			playsound(src, 'sound/machines/hiss.ogg', 100, 1, -1)
 			for(var/obj/item/I in oview(pull_range, target))
-				if(I.anchored)
+				if(I.anchored || !is_allowed_suck(I, user))
 					continue
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
@@ -193,7 +199,7 @@
 					if(vac_conga < 100)
 						vac_conga += 3
 					addtimer(CALLBACK(src, PROC_REF(prepare_sucking), F, user, auto_setting, target), 0.3 SECONDS + vac_conga)
-				else
+				else if(is_allowed_suck(target, user))
 					handle_consumption(F, user, auto_setting)
 			if(vac_conga > 0)
 				var/obj/effect/vac_visual/V = new(target)
@@ -213,6 +219,8 @@
 	if(isitem(target))
 		var/obj/item/I = target
 		if(is_type_in_list(I, GLOB.item_vore_blacklist) || I.w_class >= ITEMSIZE_HUGE)
+			return
+		if(!is_allowed_suck(target, user)) //cancel if you're not allowed
 			return
 		if(vac_power > I.w_class)
 			if(vac_power == 7)
@@ -244,7 +252,7 @@
 		if(vac_power >= 6)
 			valid_to_suck = TRUE
 			auto_setting = 6
-		if(valid_to_suck)
+		if(valid_to_suck && is_allowed_suck(target, user))
 			playsound(src, sucksound, auto_setting * 20, 1, -1)
 			user.visible_message(span_filter_notice("[user] [suckverb]s up \the [target.name]."), span_notice("You [suckverb] up \the [target.name]..."))
 			if(suckanim)
@@ -254,6 +262,8 @@
 /obj/item/vac_attachment/proc/prepare_sucking(atom/movable/target, mob/user, turf/target_turf)
 	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_dest) //Cancel if moved/unpowered/dropped
 		return
+	if(!is_allowed_suck(target, user)) //cancel if you're not allowed
+		return
 	target.SpinAnimation(5,1)
 	addtimer(CALLBACK(src, PROC_REF(handle_consumption), target, user, target_turf), 0.5 SECONDS)
 
@@ -261,6 +271,8 @@
 	if(target_turf && target.loc != target_turf)
 		return
 	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_dest) //Cancel if moved/unpowered/dropped
+		return
+	if(!is_allowed_suck(target, user)) //Does it obey restrictions on what the target could otherwise consume?
 		return
 	if(isitem(target))
 		var/obj/item/target_item = target
@@ -272,6 +284,33 @@
 		output_belly.nom_atom(target)
 		return
 	target.forceMove(output_dest)
+
+/obj/item/vac_attachment/proc/is_allowed_suck(atom/movable/target, mob/user) //a ray of light in this inscrutible file. Check if we *can* fit what we want to fit, where we want to fit it. This does NOT check all the sanity checks n stuff
+	if(isitem(target))
+		var/obj/item/target_item = target
+		if(istype(output_dest, /obj/item/storage))//if it's storage, does it fit?
+			var/obj/item/storage/target_storage = output_dest
+			if(target_storage.can_be_inserted(target_item, TRUE))
+				return TRUE
+		else//if it's not a trash bag, it's a vorebelly or borg belly. Check trash eat
+			if(is_type_in_list(target_item, GLOB.edible_trash) && target_item.trash_eatable && !is_type_in_list(target_item, GLOB.item_vore_blacklist))
+				return TRUE
+			if(isliving(user))
+				var/mob/living/trashcheck = user
+				if(trashcheck.adminbus_trash)
+					return TRUE
+	if(isliving(target)) //quick prefs test. Better safe than sorry
+		var/mob/living/caneat = target
+		if(caneat.devourable && caneat.can_be_drop_prey)
+			if(istype(output_dest, /obj/item/storage))//check if a mob holder's gonna fit there!
+				var/obj/item/storage/target_storage = output_dest
+				var/total_storage_space = ITEMSIZE_COST_SMALL
+				for(var/obj/item/thing in target_storage.contents)
+					total_storage_space += thing.get_storage_cost()
+				if(total_storage_space > target_storage.max_storage_space)
+					return FALSE
+			return TRUE
+	return FALSE
 
 /obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
 	if(istype(A,/obj/structure) && vac_power > 0)

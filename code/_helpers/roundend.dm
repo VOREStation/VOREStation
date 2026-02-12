@@ -15,7 +15,7 @@
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
-				if(emergency_shuttle.departed && emergency_shuttle.evac)
+				if(GLOB.emergency_shuttle.departed && GLOB.emergency_shuttle.evac)
 					if(isNotAdminLevel(playerTurf.z))
 						to_chat(Player, span_filter_system(span_blue(span_bold("You survived the round, but remained on [station_name()] as [Player.real_name]."))))
 					else

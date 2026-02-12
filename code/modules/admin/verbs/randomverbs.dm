@@ -386,11 +386,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	var/charjob
 	var/records
 	var/datum/data/record/record_found
-	record_found = find_general_record("name",picked_client.prefs.real_name)
+	var/char_real_name = picked_client.prefs.read_preference(/datum/preference/name/real_name)
+	record_found = find_general_record("name", char_real_name)
 
 	//Found their record, they were spawned previously
 	if(record_found)
-		var/samejob = tgui_alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
+		var/samejob = tgui_alert(src,"Found [char_real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
 		if(!samejob)
 			return
 		if(samejob == "Yes")
@@ -695,7 +696,7 @@ ADMIN_VERB(toggle_view_range, R_HOLDER, "Change View Range", "Switches between 1
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(admin_call_shuttle, R_ADMIN|R_SERVER, "Call Shuttle", "Calls the emergency shuttel.", ADMIN_CATEGORY_EVENTS)
-	if ((!( SSticker ) || !emergency_shuttle.location()))
+	if ((!( SSticker ) || !GLOB.emergency_shuttle.location()))
 		return
 
 	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
@@ -705,15 +706,15 @@ ADMIN_VERB(admin_call_shuttle, R_ADMIN|R_SERVER, "Call Shuttle", "Calls the emer
 	if(SSticker.mode.auto_recall_shuttle)
 		choice = tgui_input_list(user, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
-			emergency_shuttle.auto_recall = 1	//enable auto-recall
+			GLOB.emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
 
 	choice = tgui_input_list(user, "Is this an emergency evacuation or a crew transfer?", "Shuttle Call", list("Emergency", "Crew Transfer"))
 	if (choice == "Emergency")
-		emergency_shuttle.call_evac()
+		GLOB.emergency_shuttle.call_evac()
 	else
-		emergency_shuttle.call_transfer()
+		GLOB.emergency_shuttle.call_transfer()
 
 
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -723,10 +724,10 @@ ADMIN_VERB(admin_call_shuttle, R_ADMIN|R_SERVER, "Call Shuttle", "Calls the emer
 ADMIN_VERB(admin_cancel_shuttle, R_ADMIN|R_FUN, "Cancel Shuttle", "Cancels the emergency shuttel.", ADMIN_CATEGORY_EVENTS)
 	if(tgui_alert(user, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
-	if(!SSticker || !emergency_shuttle.can_recall())
+	if(!SSticker || !GLOB.emergency_shuttle.can_recall())
 		return
 
-	emergency_shuttle.recall()
+	GLOB.emergency_shuttle.recall()
 	feedback_add_details("admin_verb","CCSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(user)] admin-recalled the emergency shuttle.")
 	message_admins(span_blue("[key_name_admin(user)] admin-recalled the emergency shuttle."))
@@ -735,10 +736,10 @@ ADMIN_VERB(admin_deny_shuttle, R_ADMIN, "Toggle Deny Shuttle", "Prevents the shu
 	if (!SSticker)
 		return
 
-	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
+	GLOB.emergency_shuttle.deny_shuttle = !GLOB.emergency_shuttle.deny_shuttle
 
 	log_admin("[key_name(user)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(user)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	message_admins("[key_name_admin(user)] has [GLOB.emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 ADMIN_VERB(everyone_random, R_FUN, "Make Everyone Random", "Make everyone have a random appearance. You can only use this before rounds!", ADMIN_CATEGORY_FUN_DO_NOT)
 	if (SSticker && SSticker.mode)

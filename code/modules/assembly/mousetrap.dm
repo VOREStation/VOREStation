@@ -57,7 +57,7 @@
 	if(!armed)
 		to_chat(user, span_notice("You arm [src]."))
 	else
-		if((CLUMSY in user.mutations) && prob(50))
+		if(CLUMSY_FAIL_CHANCE(user))
 			var/which_hand = BP_L_HAND
 			if(!user.hand)
 				which_hand = BP_R_HAND
@@ -73,7 +73,7 @@
 
 /obj/item/assembly/mousetrap/attack_hand(var/mob/living/user)
 	if(armed)
-		if((CLUMSY in user.mutations) && prob(50))
+		if(CLUMSY_FAIL_CHANCE(user))
 			var/which_hand = BP_L_HAND
 			if(!user.hand)
 				which_hand = BP_R_HAND

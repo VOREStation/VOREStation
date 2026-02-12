@@ -284,6 +284,7 @@ export type MiscData = {
   nif: BooleanLike;
 
   custom_species: string;
+  ignore_shoes: BooleanLike;
   pos_traits: string[] | Record<string, Record<string, any> | null>;
   neu_traits: string[] | Record<string, Record<string, any> | null>;
   neg_traits: string[] | Record<string, Record<string, any> | null>;
