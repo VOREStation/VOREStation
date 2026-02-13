@@ -292,6 +292,12 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering)
+"aF" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 2
+	},
+/turf/simulated/wall/shull,
+/area/talon_v2/gen_store)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -597,6 +603,24 @@
 /obj/item/gun/energy/gun,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
+"bk" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 2
+	},
+/turf/simulated/wall/shull,
+/area/talon_v2/workroom)
+"bl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/closet/walllocker_double/emergency_engi/west,
+/turf/simulated/floor/tiled/techmaint,
+/area/talon_v2/central_hallway)
+"bm" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 1
+	},
+/turf/simulated/wall/shull,
+/area/talon_v2/crew_quarters/med_room)
 "bn" = (
 /obj/structure/hull_corner{
 	dir = 4
@@ -629,6 +653,12 @@
 /obj/item/bedsheet/red,
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/sec_room)
+"bq" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 4
+	},
+/turf/simulated/wall/rshull,
+/area/talon_v2/crew_quarters/bar)
 "br" = (
 /obj/structure/flora/pottedplant/fern,
 /obj/machinery/holoposter{
@@ -3354,12 +3384,6 @@
 /obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/starboard)
-"kU" = (
-/obj/structure/closet/walllocker_double/emergency_engi/west{
-	dir = 4
-	},
-/turf/simulated/wall/rshull,
-/area/talon_v2/crew_quarters/bar)
 "kV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -6469,12 +6493,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/space)
-"vN" = (
-/obj/structure/closet/walllocker_double/emergency_engi/west{
-	dir = 1
-	},
-/turf/simulated/wall/shull,
-/area/talon_v2/crew_quarters/med_room)
 "vO" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -8071,12 +8089,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/hangar)
-"BL" = (
-/obj/structure/closet/walllocker_double/emergency_engi/west{
-	dir = 2
-	},
-/turf/simulated/wall/shull,
-/area/talon_v2/workroom)
 "BO" = (
 /obj/machinery/power/apc/talon{
 	dir = 8;
@@ -10458,12 +10470,6 @@
 	req_one_access = list(302,307)
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/central_hallway)
-"JD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/closet/walllocker_double/emergency_engi/west,
-/turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
 "JI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -15261,12 +15267,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/talonboat)
-"Zt" = (
-/obj/structure/closet/walllocker_double/emergency_engi/west{
-	dir = 2
-	},
-/turf/simulated/wall/shull,
-/area/talon_v2/gen_store)
 "Zv" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -22053,7 +22053,7 @@ OQ
 GH
 uS
 AE
-Zt
+aF
 OR
 xd
 Nl
@@ -24320,7 +24320,7 @@ QS
 Uu
 QS
 wv
-JD
+bl
 xf
 PP
 QS
@@ -25715,7 +25715,7 @@ XB
 XB
 iz
 kD
-kU
+bq
 Ff
 NI
 hu
@@ -26010,7 +26010,7 @@ tb
 tb
 tb
 cf
-vN
+bm
 no
 nN
 op
@@ -28727,7 +28727,7 @@ Bw
 cH
 Aq
 CV
-BL
+bk
 hi
 GU
 HS
