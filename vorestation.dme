@@ -3020,6 +3020,7 @@
 #include "code\modules\hydroponics\seedtypes\rhubarb.dm"
 #include "code\modules\hydroponics\seedtypes\rice.dm"
 #include "code\modules\hydroponics\seedtypes\selemhand.dm"
+#include "code\modules\hydroponics\seedtypes\smoles.dm"
 #include "code\modules\hydroponics\seedtypes\soybean.dm"
 #include "code\modules\hydroponics\seedtypes\sugarcane.dm"
 #include "code\modules\hydroponics\seedtypes\surik.dm"
