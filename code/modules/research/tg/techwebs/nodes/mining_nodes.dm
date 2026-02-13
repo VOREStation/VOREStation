@@ -107,3 +107,17 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SUPPLY)
+
+/datum/techweb_node/mining_lights
+	id = TECHWEB_NODE_MINELIGHTS
+	display_name = "Mine Lighting"
+	description = "Development of lights and other tools for illuminating the underground."
+	prereq_ids = list(TECHWEB_NODE_MATERIAL_PROC)
+	design_ids = list(
+		"marker_beacon",
+		"trailblazer_red",
+		"trailblazer_yellow",
+		"trailblazer_blue",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SUPPLY)

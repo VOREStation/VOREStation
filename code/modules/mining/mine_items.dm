@@ -311,17 +311,17 @@
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(!do_after(user, 8 SECONDS, target = src))
-		return TRUE
 
 	var/turf/T = get_turf(user)
-	if(!T || (!istype(T,/turf/simulated/floor/outdoors/snow) && !istype(T,/turf/simulated/floor/snow) && !istype(T,/turf/snow)))
+	if(!T || (!istype(T,/turf/simulated/mineral/floor) && !istype(T,/turf/simulated/floor/outdoors) && !istype(T,/turf/simulated/floor/snow) && !istype(T,/turf/snow)))
 		to_chat(user, span_warning("The light won't stand up in this terrain."))
-		return
+		return TRUE
 	var/obj/structure/trailblazer/F = locate() in get_turf(src)
 	if(F)
 		to_chat(user, span_warning("There is already a light here."))
-		return
+		return TRUE
+	if(!do_after(user, 8 SECONDS, target = src))
+		return TRUE
 
 	var/obj/structure/trailblazer/newlightpole = new blazer_type(T)
 	newlightpole.visible_message("\The [user] plants \the [newlightpole] firmly in the ground.")
@@ -331,8 +331,7 @@
 
 /datum/category_item/catalogue/material/trail_blazer
 	name = "Ice Colony Equipment - Trailblazer"
-	desc = "This is a glowing stick embedded in the ground with a light on top, commonly used in snowy installations \
-	and in tundra conditions."
+	desc = "This is a glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions."
 	value = CATALOGUER_REWARD_EASY
 
 /obj/structure/trailblazer

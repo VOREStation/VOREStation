@@ -945,3 +945,51 @@
 		RND_CATEGORY_TOOLS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/marker_beacon
+	name = "Marker Beacons"
+	desc = "Prismatic path illumination devices. Used by explorers and miners to mark paths and warn of danger."
+	id = "marker_beacon"
+	build_type = PROTOLATHE | AUTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 2000)
+	build_path = /obj/item/stack/marker_beacon/ten
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/trailblazer_red
+	name = "Trailblazer Red"
+	desc = "A glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions. This one is red."
+	id = "trailblazer_red"
+	build_type = PROTOLATHE | AUTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 3000)
+	build_path = /obj/item/stack/lightpole/red
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/trailblazer_blue
+	name = "Trailblazer Blue"
+	desc = "A glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions. This one is blue."
+	id = "trailblazer_blue"
+	build_type = PROTOLATHE | AUTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 3000)
+	build_path = /obj/item/stack/lightpole/blue
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/trailblazer_yellow
+	name = "Trailblazer Yellow"
+	desc = "A glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions. This one is yellow."
+	id = "trailblazer_yellow"
+	build_type = PROTOLATHE | AUTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 3000)
+	build_path = /obj/item/stack/lightpole/yellow
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
