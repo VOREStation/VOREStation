@@ -998,7 +998,7 @@
 	name = "Shovel"
 	id = "shovel"
 	materials = list(MAT_STEEL = 50)
-	build_path = /obj/item/ice_pick
+	build_path = /obj/item/shovel
 	build_type = PROTOLATHE | AUTOLATHE
 	category = list(
 		RND_CATEGORY_TOOLS
@@ -1009,7 +1009,7 @@
 	name = "Ice Axe"
 	id = "iceaxe"
 	materials = list(MAT_STEEL = 12000)
-	build_path = /obj/item/shovel
+	build_path = /obj/item/ice_pick
 	build_type = PROTOLATHE | AUTOLATHE
 	category = list(
 		RND_CATEGORY_TOOLS
