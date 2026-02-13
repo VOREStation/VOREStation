@@ -282,7 +282,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
-	access = list(ACCESS_TALON,ACCESS_TALON_ENGINEER,ACCESS_TALON_SECURITY, ACCESS_TALON_BRIDGE, ACCESS_TALON_CARGO, ACCESS_TALON_PILOT,ACCESS_TALON_MEDICAL, ACCESS_SYNTH)
+	access = list(ACCESS_TALON, ACCESS_TALON_ENGINEER, ACCESS_TALON_SECURITY, ACCESS_TALON_BRIDGE, ACCESS_TALON_CARGO, ACCESS_TALON_PILOT, ACCESS_TALON_MEDICAL, ACCESS_SYNTH)
 
 /obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload)
 	. = ..()
