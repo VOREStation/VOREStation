@@ -345,18 +345,14 @@
 	var/stack_type = /obj/item/stack/lightpole/red
 	catalogue_data = list(/datum/category_item/catalogue/material/trail_blazer)
 
-/obj/structure/trailblazer/Initialize()
-	randomize_color()
+/obj/structure/trailblazer/Initialize(mapload)
 	. = ..()
+	set_color()
 	AddElement(/datum/element/climbable)
 
-/obj/structure/trailblazer/proc/randomize_color()
-	if(prob(30))
-		icon_state = "redtrail_light_on"
-		set_light(2, 2, "#FF0000")
-	else
-		icon_state = "yellowtrail_light_on"
-		set_light(2, 2, "#ffea00")
+/obj/structure/trailblazer/proc/set_color()
+	icon_state = "redtrail_light_on"
+	set_light(2, 2, "#FF0000")
 
 /obj/structure/trailblazer/attack_hand(mob/user)
 	if(do_after(user, 8 SECONDS, target = src))
@@ -371,17 +367,13 @@
 	icon_state = "redtrail_light_on"
 	stack_type = /obj/item/stack/lightpole/red
 
-/obj/structure/trailblazer/red/randomize_color()
-	icon_state = "redtrail_light_on"
-	set_light(2, 2, "#FF0000")
-
 /obj/structure/trailblazer/blue
 	name = "trail blazer"
 	desc = "A glowing stick- light. This one is glowing blue."
 	icon_state = "bluetrail_light_on"
 	stack_type = /obj/item/stack/lightpole/blue
 
-/obj/structure/trailblazer/blue/randomize_color()
+/obj/structure/trailblazer/blue/set_color()
 	icon_state = "bluetrail_light_on"
 	set_light(2, 2, "#C4FFFF")
 
@@ -391,6 +383,6 @@
 	icon_state = "yellowtrail_light_on"
 	stack_type = /obj/item/stack/lightpole/yellow
 
-/obj/structure/trailblazer/yellow/randomize_color()
+/obj/structure/trailblazer/yellow/set_color()
 	icon_state = "yellowtrail_light_on"
 	set_light(2, 2, "#ffea00")
