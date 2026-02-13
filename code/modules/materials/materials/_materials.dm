@@ -36,7 +36,7 @@
 */
 
 // Assoc list containing all material datums indexed by name.
-GLOBAL_LIST_EMPTY(name_to_material)
+GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.
@@ -96,12 +96,13 @@ GLOBAL_LIST_EMPTY(name_to_material)
 
 // Builds the datum list above.
 /proc/populate_material_list()
+	var/list/materia_list = list()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/new_mineral = new type
 		if(!new_mineral.name)
 			continue
-		GLOB.name_to_material[lowertext(new_mineral.name)] = new_mineral
-	return 1
+		materia_list[lowertext(new_mineral.name)] = new_mineral
+	return materia_list
 
 // Safety proc to make sure the material list exists before trying to grab from it.
 /proc/get_material_by_name(name)
