@@ -313,7 +313,7 @@
 		return TRUE
 
 	var/turf/T = get_turf(user)
-	if(!T || (!istype(T,/turf/simulated/mineral/floor) && !istype(T,/turf/simulated/floor/outdoors) && !istype(T,/turf/simulated/floor/snow) && !istype(T,/turf/snow)))
+	if(!T || (!istype(T,/turf/simulated/mineral) && !istype(T,/turf/simulated/floor/outdoors) && !istype(T,/turf/simulated/floor/snow) && !istype(T,/turf/snow)))
 		to_chat(user, span_warning("The light won't stand up in this terrain."))
 		return TRUE
 	var/obj/structure/trailblazer/F = locate() in get_turf(src)
