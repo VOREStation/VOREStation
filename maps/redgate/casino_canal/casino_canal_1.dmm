@@ -1370,9 +1370,6 @@
 	dir = 1
 	},
 /obj/random/maintenance/morestuff,
-/obj/random/chips{
-	pixel_x = 4
-	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/lower/maintenance)
 "dt" = (
@@ -2508,9 +2505,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/random/chips{
-	pixel_x = -9
-	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/lower/maintenance)
 "ge" = (
@@ -2527,9 +2521,6 @@
 /area/redgate/underwater_casino/indoors/lower/dorms/dorm3)
 "gf" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
-/obj/random/chips{
-	pixel_y = 13
-	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/lower/maintenance)
 "gg" = (
@@ -3082,14 +3073,6 @@
 	desc = "The clean waters bubble gently."
 	},
 /area/redgate/underwater_casino/indoors/lower/dorms/vip/bath)
-"hW" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/random/trash_pile,
-/obj/random/chips,
-/turf/simulated/floor/plating,
-/area/redgate/underwater_casino/indoors/lower/maintenance)
 "hX" = (
 /obj/structure/table/standard,
 /obj/random/nukies_can_legal,
@@ -3147,12 +3130,6 @@
 /obj/item/clothing/suit/hgpirate,
 /turf/simulated/floor/wood/alt,
 /area/redgate/underwater_casino/indoors/lower/secret/piratebasetunnel)
-"id" = (
-/obj/random/chips{
-	pixel_y = 10
-	},
-/turf/simulated/floor/plating,
-/area/redgate/underwater_casino/indoors/lower/maintenance)
 "ie" = (
 /obj/random/roguemineloot,
 /turf/simulated/floor/outdoors/rocks/caves,
@@ -5011,7 +4988,6 @@
 	dir = 4
 	},
 /obj/random/maintenance/morestuff,
-/obj/random/chips,
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/lower/maintenance)
 "Bd" = (
@@ -5280,9 +5256,6 @@
 /obj/structure/railing,
 /obj/structure/railing{
 	dir = 8
-	},
-/obj/random/chips{
-	pixel_x = 4
 	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/lower/maintenance)
@@ -5836,14 +5809,6 @@
 	},
 /obj/item/multitool{
 	pixel_x = -8
-	},
-/obj/random/chips{
-	pixel_y = 2;
-	pixel_x = 8
-	},
-/obj/random/chips{
-	pixel_y = 8;
-	pixel_x = 17
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/redgate/underwater_casino/indoors/lower/boxing)
@@ -6506,9 +6471,6 @@
 	},
 /obj/random/mainttoyloot,
 /obj/effect/floor_decal/rust,
-/obj/random/chips{
-	pixel_x = -5
-	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/lower/maintenance)
 "Ua" = (
@@ -17713,7 +17675,7 @@ hC
 cI
 cI
 jg
-id
+dB
 aA
 Ei
 ly
@@ -18148,7 +18110,7 @@ cR
 ly
 pn
 cR
-hW
+HQ
 cI
 cQ
 nv

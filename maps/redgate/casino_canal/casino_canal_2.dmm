@@ -183,7 +183,7 @@
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "at" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/simulated/wall/solidrock,
 /area/redgate/underwater_casino)
 "au" = (
 /obj/effect/floor_decal/borderfloor/purple{
@@ -2497,10 +2497,6 @@
 "gf" = (
 /turf/simulated/floor/grass,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
-"gg" = (
-/obj/random/chips,
-/turf/simulated/floor/water/underwater,
-/area/redgate/underwater_casino/outdoors)
 "gh" = (
 /turf/simulated/floor/water/underwater/indoors,
 /area/redgate/underwater_casino/outdoors)
@@ -2908,10 +2904,6 @@
 "hC" = (
 /turf/simulated/floor/outdoors/newdirt_nograss/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
-"hD" = (
-/obj/random/chips,
-/turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "hJ" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker_double/casino/north,
@@ -3001,10 +2993,6 @@
 	pixel_y = 6;
 	pixel_x = 13
 	},
-/obj/random/chips{
-	pixel_y = 3;
-	pixel_x = -3
-	},
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "jg" = (
@@ -3081,18 +3069,11 @@
 "js" = (
 /turf/simulated/wall/tgmc/window/redstripe_r,
 /area/redgate/underwater_casino/indoors)
-"jt" = (
-/obj/random/chips{
-	pixel_y = 13
-	},
-/turf/simulated/floor/water/underwater/indoors/sand,
-/area/redgate/underwater_casino/outdoors)
 "jv" = (
 /obj/item/spacecasinocash/c10{
 	pixel_y = 4;
 	pixel_x = -5
 	},
-/obj/random/chips,
 /turf/simulated/floor/water/underwater/indoors/rocks,
 /area/redgate/underwater_casino/outdoors)
 "jw" = (
@@ -3210,10 +3191,6 @@
 /obj/structure/sign/painting/public/east,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/redgate/underwater_casino/indoors/upper/bar)
-"jR" = (
-/obj/random/chips,
-/turf/simulated/floor/water/underwater/indoors,
-/area/redgate/underwater_casino/outdoors)
 "jS" = (
 /obj/random/forgotten_tram,
 /turf/simulated/floor/water/underwater,
@@ -3297,26 +3274,11 @@
 	},
 /turf/simulated/floor/grass,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
-"kg" = (
-/obj/random/chips{
-	pixel_x = -5
-	},
-/turf/simulated/floor/grass,
-/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "kh" = (
 /obj/random/plushielarge,
 /turf/simulated/floor/grass,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
-"ki" = (
-/obj/random/chips{
-	pixel_x = -9
-	},
-/turf/simulated/floor/grass,
-/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "kj" = (
-/obj/random/chips{
-	pixel_y = 5
-	},
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -4015,7 +3977,7 @@
 "py" = (
 /obj/effect/fake_sun/underwater/lighter,
 /obj/effect/landmark/map_data/underwater_casino,
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/simulated/wall/solidrock,
 /area/redgate/underwater_casino)
 "pz" = (
 /obj/structure/dummystairs,
@@ -4858,7 +4820,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/bar)
 "Dm" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/simulated/wall/solidrock,
 /area/redgate/underwater_casino/outdoors)
 "Dn" = (
 /obj/effect/floor_decal/borderfloor/purple{
@@ -5354,15 +5316,6 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "JS" = (
 /obj/structure/table/reinforced,
-/obj/random/chips{
-	pixel_y = 5;
-	pixel_x = 4
-	},
-/obj/random/chips,
-/obj/random/chips{
-	pixel_y = 3;
-	pixel_x = -5
-	},
 /obj/machinery/light/small,
 /turf/simulated/floor/wood/broken,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
@@ -6400,7 +6353,6 @@
 /area/redgate/underwater_casino/indoors/upper/casino/back)
 "Zj" = (
 /obj/structure/table/reinforced,
-/obj/random/chips,
 /obj/item/spacecasinocash/c10{
 	pixel_y = 4;
 	pixel_x = -5
@@ -7460,7 +7412,7 @@ tT
 tT
 tT
 tT
-gg
+tT
 tT
 tT
 tT
@@ -9051,7 +9003,7 @@ tT
 tT
 Dm
 Dm
-hD
+gD
 gD
 hC
 gD
@@ -9760,7 +9712,7 @@ fZ
 tT
 tT
 Dm
-ki
+jZ
 kf
 ka
 jZ
@@ -9903,7 +9855,7 @@ tT
 Dm
 Dm
 kj
-kg
+jZ
 kd
 jZ
 hC
@@ -13974,7 +13926,7 @@ gi
 gh
 gh
 gh
-jt
+jh
 Dm
 Dm
 Dm
@@ -16916,7 +16868,7 @@ tT
 fR
 tT
 tT
-gg
+tT
 fR
 fR
 fR
@@ -17066,7 +17018,7 @@ tT
 tT
 tT
 fR
-gg
+tT
 tT
 tT
 tT
@@ -17630,7 +17582,7 @@ fV
 fZ
 fR
 fR
-gg
+tT
 fR
 fR
 fV
@@ -21321,7 +21273,7 @@ tT
 Dm
 Dm
 Dm
-gg
+tT
 fW
 Dm
 tT
@@ -21623,7 +21575,7 @@ Dm
 Dm
 Dm
 tT
-gg
+tT
 Dm
 Dm
 at
@@ -24717,7 +24669,7 @@ Dm
 Dm
 Dm
 Dm
-jR
+gh
 gh
 gL
 gh
