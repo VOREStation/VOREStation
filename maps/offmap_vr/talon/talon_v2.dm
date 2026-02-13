@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/machinery/computer/shuttle_control/explore/talon_escape
 	name = "shuttle control console"
 	shuttle_tag = "Talon's Escape Pod"
-	req_one_access = list(ACCESS_TALON_PILOT)
+	req_one_access = list(ACCESS_TALON, ACCESS_TALON_PILOT)
 
 /obj/effect/overmap/visitable/ship/landable/talon_pod
 	name = "ITV Talon Escape Pod"
