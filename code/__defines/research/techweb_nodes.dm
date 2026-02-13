@@ -89,7 +89,7 @@
 #define TECHWEB_NODE_MINING "mining"
 #define TECHWEB_NODE_MINING_ADV "mining_adv"
 #define TECHWEB_NODE_MINELIGHTS "mine_lighting"
-#define TECHWEB_NODE_SNOWREMOVAL "snow_removal"
+#define TECHWEB_NODE_DEBRISREMOVAL "debris_removal"
 #define TECHWEB_NODE_MOD_ANOMALY "mod_anomaly"
 #define TECHWEB_NODE_MOD_SUPPLY "mod_supply"
 #define TECHWEB_NODE_MOD_ENGI "mod_engi"
