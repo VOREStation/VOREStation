@@ -276,3 +276,121 @@
 	newflag.icon_state = "[newflag.base_state]_open"
 	newflag.visible_message(span_infoplain(span_bold("[user]") + " plants [newflag] firmly in the ground."))
 	src.use(1)
+
+/*****************************Trailblazer item********************************/
+
+/obj/item/stack/lightpole
+	name = "Trailblazers"
+	desc = "Some colourful trail lights."
+	singular_name = "trailblazer"
+	amount = 10
+	max_amount = 10
+	icon = 'icons/obj/mining.dmi'
+	custom_handling = TRUE
+	var/blazer_type = /obj/structure/trailblazer
+
+/obj/item/stack/lightpole/red
+	name = "red flags"
+	singular_name = "red trail blazer"
+	icon_state = "redtrail_light"
+	blazer_type = /obj/structure/trailblazer/red
+
+/obj/item/stack/lightpole/blue
+	name = "blue trail blazers"
+	singular_name = "blue trail blazer"
+	icon_state = "bluetrail_light"
+	blazer_type = /obj/structure/trailblazer/blue
+
+/obj/item/stack/lightpole/yellow
+	name = "red flags"
+	singular_name = "red trail blazer"
+	icon_state = "yellowtrail_light"
+	blazer_type = /obj/structure/trailblazer/yellow
+
+/obj/item/stack/lightpole/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(!do_after(user, 8 SECONDS, target = src))
+		return TRUE
+
+	var/turf/T = get_turf(user)
+	if(!T || (!istype(T,/turf/simulated/floor/outdoors/snow) && !istype(T,/turf/simulated/floor/snow) && !istype(T,/turf/snow)))
+		to_chat(user, span_warning("The light won't stand up in this terrain."))
+		return
+	var/obj/structure/trailblazer/F = locate() in get_turf(src)
+	if(F)
+		to_chat(user, span_warning("There is already a light here."))
+		return
+
+	var/obj/structure/trailblazer/newlightpole = new blazer_type(T)
+	newlightpole.visible_message("\The [user] plants \the [newlightpole] firmly in the ground.")
+	use(1)
+
+/*****************************Trailblazer structure********************************/
+
+/datum/category_item/catalogue/material/trail_blazer
+	name = "Ice Colony Equipment - Trailblazer"
+	desc = "This is a glowing stick embedded in the ground with a light on top, commonly used in snowy installations \
+	and in tundra conditions."
+	value = CATALOGUER_REWARD_EASY
+
+/obj/structure/trailblazer
+	name = "trail blazer"
+	desc = "A glowing stick- light."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "redtrail_light_on"
+	density = TRUE
+	anchored = TRUE
+	var/stack_type = /obj/item/stack/lightpole/red
+	catalogue_data = list(/datum/category_item/catalogue/material/trail_blazer)
+
+/obj/structure/trailblazer/Initialize()
+	randomize_color()
+	. = ..()
+	AddElement(/datum/element/climbable)
+
+/obj/structure/trailblazer/proc/randomize_color()
+	if(prob(30))
+		icon_state = "redtrail_light_on"
+		set_light(2, 2, "#FF0000")
+	else
+		icon_state = "yellowtrail_light_on"
+		set_light(2, 2, "#ffea00")
+
+/obj/structure/trailblazer/attack_hand(mob/user)
+	if(do_after(user, 8 SECONDS, target = src))
+		visible_message("\The [user] knocks down \the [src].")
+		new stack_type(get_turf(src), 1)
+		qdel(src)
+		return
+
+/obj/structure/trailblazer/red
+	name = "trail blazer"
+	desc = "A glowing stick- light.This one is glowing red."
+	icon_state = "redtrail_light_on"
+	stack_type = /obj/item/stack/lightpole/red
+
+/obj/structure/trailblazer/red/randomize_color()
+	icon_state = "redtrail_light_on"
+	set_light(2, 2, "#FF0000")
+
+/obj/structure/trailblazer/blue
+	name = "trail blazer"
+	desc = "A glowing stick- light. This one is glowing blue."
+	icon_state = "bluetrail_light_on"
+	stack_type = /obj/item/stack/lightpole/blue
+
+/obj/structure/trailblazer/blue/randomize_color()
+	icon_state = "bluetrail_light_on"
+	set_light(2, 2, "#C4FFFF")
+
+/obj/structure/trailblazer/yellow
+	name = "trail blazer"
+	desc = "A glowing stick- light. This one is glowing yellow."
+	icon_state = "yellowtrail_light_on"
+	stack_type = /obj/item/stack/lightpole/yellow
+
+/obj/structure/trailblazer/yellow/randomize_color()
+	icon_state = "yellowtrail_light_on"
+	set_light(2, 2, "#ffea00")
