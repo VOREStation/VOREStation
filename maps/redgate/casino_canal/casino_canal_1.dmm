@@ -98,8 +98,15 @@
 /turf/simulated/floor/wood/sif,
 /area/redgate/underwater_casino/indoors/lower/dorms/vip)
 "as" = (
-/obj/machinery/door/window/brigdoor/eastright,
+/obj/machinery/door/window/brigdoor/eastright{
+	req_access = list(101)
+	},
 /obj/effect/floor_decal/milspec/color/orange,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter2";
+	name = "Privacy Shutter"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/redgate/underwater_casino/indoors/lower/security)
 "at" = (
@@ -119,9 +126,17 @@
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/lower/hall)
 "au" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino/indoors/lower/hall)
+/obj/effect/floor_decal/milspec/color/orange/half{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "casinocellshutter2";
+	name = "Shutter Control";
+	pixel_x = 10;
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/dark,
+/area/redgate/underwater_casino/indoors/lower/security)
 "av" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/underwater_casino/indoors/lower/dorms/dorm3)
@@ -2249,6 +2264,11 @@
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/lower/dorms/secret)
 "fx" = (
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter3";
+	name = "Privacy Shutter"
+	},
 /turf/simulated/wall/tgmc/window/redstripe_r,
 /area/redgate/underwater_casino/indoors/lower/security)
 "fy" = (
@@ -2329,7 +2349,8 @@
 "fH" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/machinery/door/airlock/angled_bay/vault{
-	dir = 4
+	dir = 4;
+	req_access = list(101)
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/underwater_casino/indoors/lower/security/armory)
@@ -2557,9 +2578,17 @@
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/lower/secret/piratebase)
 "gm" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/wood,
-/area/redgate/underwater_casino/indoors/lower/secret/piratebase)
+/obj/effect/floor_decal/milspec/color/orange/half{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "casinocellshutter4";
+	name = "Shutter Control";
+	pixel_x = 10;
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/dark,
+/area/redgate/underwater_casino/indoors/lower/security)
 "gn" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -3045,9 +3074,13 @@
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/underwater_casino/indoors/lower/secret/piratebasetunnel)
 "hR" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino/indoors/lower/secret/piratebasetunnel)
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter4";
+	name = "Privacy Shutter"
+	},
+/turf/simulated/wall/tgmc/window/redstripe_r,
+/area/redgate/underwater_casino/indoors/lower/security)
 "hS" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
@@ -3904,8 +3937,15 @@
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/underwater_casino/indoors/lower/dorms/vip)
 "pR" = (
-/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/window/brigdoor/westleft{
+	req_access = list(101)
+	},
 /obj/effect/floor_decal/milspec/color/orange,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter3";
+	name = "Privacy Shutter"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/redgate/underwater_casino/indoors/lower/security)
 "qc" = (
@@ -3987,6 +4027,12 @@
 "re" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "casinocellshutter1";
+	name = "Shutter Control";
+	pixel_x = 10;
+	pixel_y = 23
 	},
 /turf/simulated/floor/tiled/dark,
 /area/redgate/underwater_casino/indoors/lower/security)
@@ -4598,11 +4644,12 @@
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/lower/hall)
 "xa" = (
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 4
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter2";
+	name = "Privacy Shutter"
 	},
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/bmarble,
+/turf/simulated/wall/tgmc/window/redstripe_r,
 /area/redgate/underwater_casino/indoors/lower/security)
 "xf" = (
 /turf/simulated/floor/wood/broken,
@@ -5279,6 +5326,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/redgate/underwater_casino/indoors/lower/security)
+"Fj" = (
+/obj/machinery/door/window/brigdoor/eastright{
+	req_access = list(101)
+	},
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter1";
+	name = "Privacy Shutter"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/redgate/underwater_casino/indoors/lower/security)
 "Fq" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
@@ -5461,6 +5520,14 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/lower/hall)
+"Ie" = (
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter1";
+	name = "Privacy Shutter"
+	},
+/turf/simulated/wall/tgmc/window/redstripe_r,
+/area/redgate/underwater_casino/indoors/lower/security)
 "If" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 6
@@ -6377,6 +6444,18 @@
 "Ts" = (
 /turf/simulated/floor/tiled/dark,
 /area/redgate/underwater_casino/indoors/lower/security)
+"Ty" = (
+/obj/effect/floor_decal/milspec/color/orange/half{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "casinocellshutter3";
+	name = "Shutter Control";
+	pixel_x = 10;
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/dark,
+/area/redgate/underwater_casino/indoors/lower/security)
 "TA" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light,
@@ -6709,6 +6788,18 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
 /area/redgate/underwater_casino/indoors/lower/dorms/secret)
+"Xz" = (
+/obj/machinery/door/window/brigdoor/westleft{
+	req_access = list(101)
+	},
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "casinocellshutter4";
+	name = "Privacy Shutter"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/redgate/underwater_casino/indoors/lower/security)
 "XA" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 5
@@ -6918,7 +7009,7 @@
 /area/redgate/underwater_casino/indoors/lower/hall)
 "ZV" = (
 /obj/machinery/door/blast/angled,
-/turf/simulated/floor/tiled/milspec,
+/turf/simulated/wall/tgmc/plain_redstripe_r,
 /area/redgate/underwater_casino/indoors/lower/security/armory)
 
 (1,1,1) = {"
@@ -13127,7 +13218,7 @@ re
 Ts
 EB
 ab
-re
+au
 Ts
 EB
 ab
@@ -13407,12 +13498,12 @@ zB
 FS
 KE
 ab
-fx
-fx
-as
+Ie
+Ie
+Fj
 ab
-fx
-fx
+xa
+xa
 as
 ab
 hC
@@ -13690,7 +13781,7 @@ ag
 qD
 qp
 qp
-xa
+nh
 nh
 nh
 nh
@@ -13837,9 +13928,9 @@ fx
 fx
 pR
 ab
-fx
-fx
-pR
+hR
+hR
+Xz
 ab
 hC
 hC
@@ -14117,11 +14208,11 @@ qD
 qp
 Ez
 ab
-re
+Ty
 Ts
 EB
 ab
-re
+gm
 Ts
 EB
 ab
@@ -17070,7 +17161,7 @@ Ph
 Ph
 CA
 gK
-au
+Hm
 Hm
 Hm
 Hm
@@ -22142,7 +22233,7 @@ gO
 iw
 gl
 gl
-gm
+gl
 gl
 ih
 gs
@@ -23029,7 +23120,7 @@ gM
 hQ
 hQ
 hQ
-hR
+hQ
 hK
 gM
 hB
