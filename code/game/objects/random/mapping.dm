@@ -1999,3 +1999,15 @@
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
 			),
 		)
+
+/obj/random/multiple/legtrap
+	name = "random legtraps"
+	desc = "Random legtraps (beartraps and mousetraps)."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "x3"
+
+/obj/random/multiple/legtrap/item_to_spawn()
+	return pick(
+				prob(67);list(/obj/item/assembly/mousetrap/armed),
+				prob(33);list(/obj/item/beartrap/start_active),
+				)
