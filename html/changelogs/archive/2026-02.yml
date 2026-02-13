@@ -132,3 +132,6 @@
   - bugfix: mat ejection for algae farm
   - code_imp: moves two list pops right to GLOB handling
   - bugfix: two missing wing overlays that got somehow lost during transit
+2026-02-13:
+  ReoDaProtovali:
+  - rscadd: Adds a new, recolorable "Backwards Headspikes" ear/horn marking
