@@ -437,7 +437,7 @@
 
 /datum/access/talon
 	id = ACCESS_TALON
-	desc = "Talon Geniral"
+	desc = "Talon General"
 	access_type = ACCESS_TYPE_PRIVATE
 
 /datum/access/talon_bridge
