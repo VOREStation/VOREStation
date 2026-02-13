@@ -542,7 +542,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	extended_desc = "This program allows remote access to the Talon's camera system."
 	size = 10 //Smaller because limited scope
 	tguimodule_path = /datum/tgui_module/camera/ntos/talon_ship
-	required_access = ACCESS_TALON_SECURITY, ACCESS_TALON_BRIDGE
+	required_access = ACCESS_TALON_SECURITY
 
 /datum/tgui_module/camera/ntos/talon_ship
 	name = "Talon Ship Camera Monitor"
