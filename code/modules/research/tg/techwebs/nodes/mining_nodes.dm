@@ -121,3 +121,15 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SUPPLY)
+
+/datum/techweb_node/snow_clearing
+	id = TECHWEB_NODE_SNOWREMOVAL
+	display_name = "Snow Clearing"
+	description = "Development of tools for removing snow and ice."
+	prereq_ids = list(TECHWEB_NODE_MATERIAL_PROC)
+	design_ids = list(
+		"shovel",
+		"iceaxe",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SUPPLY)

@@ -993,3 +993,25 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shovel
+	name = "Shovel"
+	id = "shovel"
+	materials = list(MAT_STEEL = 50)
+	build_path = /obj/item/shovel
+	build_type = PROTOLATHE | AUTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/iceaxe
+	name = "Ice Axe"
+	id = "iceaxe"
+	materials = list(MAT_STEEL = 12000)
+	build_path = /obj/item/shovel
+	build_type = PROTOLATHE | AUTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
