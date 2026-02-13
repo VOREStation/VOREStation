@@ -465,7 +465,7 @@
 	desc = "Talon security"
 	access_type = ACCESS_TYPE_PRIVATE
 
-/datum/access/talon_security
+/datum/access/talon_pilot
 	id = ACCESS_TALON_PILOT
 	desc = "Talon pilot shuttles"
 	access_type = ACCESS_TYPE_PRIVATE
