@@ -10,7 +10,8 @@
 
 	var/datum/anomaly_modifiers/modifier
 
-	var/obj/effect/anomaly/attached_anomaly
+	var/datum/weakref/attached_anomaly
+	var/datum/weakref/attached_harvester
 
 	var/next_activation
 	// Total of points we'll get once the anomaly does a pulse
@@ -27,6 +28,10 @@
 	curr_health = max_health
 	points = calculate_points()
 	stability = ANOMALY_STABLE
+
+/datum/anomaly_stats/Destroy(force)
+	QDEL_NULL(modifier)
+	return ..()
 
 /datum/anomaly_stats/proc/randomize_particle_types()
 	var/list/particles = list(ANOMALY_PARTICLE_SIGMA, ANOMALY_PARTICLE_DELTA, ANOMALY_PARTICLE_ZETA, ANOMALY_PARTICLE_EPSILON)
@@ -45,7 +50,9 @@
 	if(modifier)
 		total += modifier.get_value()
 
-	return total*10
+	points = total*10
+
+	return points
 
 /datum/anomaly_stats/proc/particle_hit(particle)
 	// I don't really like this, but switch() expects a constant expression
@@ -62,10 +69,13 @@
 	else if(particle == transformation_type)
 		update_modifiers()
 		return
-	to_chat(world, "Hit by [particle]")
 	return
 
 /datum/anomaly_stats/proc/update_severity(lower, upper)
+	var/obj/effect/anomaly/anom = attached_anomaly.resolve()
+	if(!istype(anom))
+		attached_anomaly = null
+		return
 	var/sev_change = rand(lower, upper)
 	severity += sev_change
 
@@ -76,8 +86,8 @@
 	var/scale_factor = 1.0+(severity/100)
 	var/matrix/M = matrix()
 	M.Scale(scale_factor, scale_factor)
-	animate(attached_anomaly, transform = M, time = 1 SECOND)
-	apply_wibbly_filters(attached_anomaly)
+	animate(anom, transform = M, time = 1 SECOND)
+	apply_wibbly_filters(anom)
 
 	calculate_points()
 	return
@@ -94,12 +104,16 @@
 	return
 
 /datum/anomaly_stats/proc/kill_anomaly(critical)
+	var/obj/effect/anomaly/anom = attached_anomaly.resolve()
+	if(!istype(anom))
+		attached_anomaly = null
+		return
 	if(critical)
-		attached_anomaly.detonate()
+		anom.detonate()
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
-	qdel(attached_anomaly)
+	QDEL_NULL(anom)
 	return
 
 /datum/anomaly_stats/proc/update_state(unstable)
@@ -124,7 +138,7 @@
 /datum/anomaly_stats/proc/update_modifiers()
 	// High chance of simply swapping the modifier
 	if(prob(80) && modifier)
-		modifier.on_remove(src)
+		modifier.on_remove(attached_anomaly)
 		modifier = null
 
 	// Small chance of not getting anything at all
@@ -134,7 +148,7 @@
 	var/picked_mod = pick(subtypesof(/datum/anomaly_modifiers))
 
 	modifier = new picked_mod
-	modifier.on_add(src)
+	modifier.on_add(attached_anomaly)
 	calculate_points()
 	return
 
@@ -152,3 +166,10 @@
 			stability = pick(ANOMALY_DECAYING, ANOMALY_GROWING)
 		else
 			stability = ANOMALY_STABLE
+
+	if(attached_harvester)
+		var/obj/machinery/anomaly_harvester/harvester = attached_harvester.resolve()
+		if(!istype(harvester))
+			return
+
+		harvester.points += points

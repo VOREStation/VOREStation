@@ -76,7 +76,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-	var/obj/effect/anomaly/buffered_anomaly = null
+	var/datum/weakref/buffered_anomaly = null
 
 /obj/item/anomaly_scanner/attack_self(mob/living/user)
 	if(loc == user)
@@ -92,9 +92,14 @@
 
 /obj/item/anomaly_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
-	var/datum/anomaly_stats/stats = buffered_anomaly.stats
+	var/obj/effect/anomaly/anom = buffered_anomaly.resolve()
 
-	data["anomaly_name"] = buffered_anomaly.name
+	if(!istype(anom))
+		return data
+
+	var/datum/anomaly_stats/stats = anom.stats
+
+	data["anomaly_name"] = anom.name
 	data["severity"] = stats.severity
 	data["stability"] = stats.stability
 	data["point_output"] = stats.points

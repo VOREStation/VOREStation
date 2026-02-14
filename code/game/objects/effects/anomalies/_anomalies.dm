@@ -109,7 +109,7 @@
 		move_chance = 0
 	if(!stats && add_stats)
 		stats = new /datum/anomaly_stats
-		stats.attached_anomaly = src
+		stats.attached_anomaly = WEAKREF(src)
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/analyzer))
@@ -121,7 +121,7 @@
 		if(stats)
 			if(!do_after(user, 1 SECOND, src))
 				return
-			scanner.buffered_anomaly = src
+			scanner.buffered_anomaly = WEAKREF(src)
 			scanner.tgui_interact(user)
 			return TRUE
 	return ..()
