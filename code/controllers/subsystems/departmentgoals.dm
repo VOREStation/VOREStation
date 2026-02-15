@@ -42,19 +42,19 @@ SUBSYSTEM_DEF(departmentgoals)
 	. = ..()
 
 /datum/controller/subsystem/departmentgoals/stat_entry(msg)
-	msg = "G: [active_department_goals.len] | F: [completed_goals] | Cr: [currentrun.len]"
+	msg = "G: [length(active_department_goals)] | F: [completed_goals] | Cr: [length(currentrun)]"
 	return ..()
 
 /datum/controller/subsystem/departmentgoals/fire()
 	// If no queue exists, make one and start it
-	if(!currentrun.len)
+	if(!length(currentrun))
 		for(var/category in active_department_goals)
 			var/list/dept_goals = active_department_goals[category]
 			for(var/datum/goal/dept_goal in dept_goals)
 				currentrun += dept_goal
 			completed_goals = 0
 	// Solve the current queue until empty, over multiple ticks if needed
-	while(currentrun.len)
+	while(length(currentrun))
 		var/datum/goal/dept_goal = currentrun[1]
 		completed_goals += dept_goal.check_completion()
 		currentrun -= dept_goal
@@ -73,18 +73,18 @@ SUBSYSTEM_DEF(departmentgoals)
 	var/list/all_goals = list()
 	for(var/category in active_department_goals)
 		var/list/cat_goals = active_department_goals[category]
-		if(!cat_goals.len)
+		if(!length(cat_goals))
 			continue
 		all_goals += cat_goals
 
-	if(!all_goals.len)
+	if(!length(all_goals))
 		command_announcement.Announce("There are no department goals for this shift.", "Station Resource Department")
 		return
 	command_announcement.Announce("Department goals have been updated for this shift. (Check your IC tab's \"Check Round Goals\" for details!)", "Station Resource Department")
 
 /datum/controller/subsystem/departmentgoals/proc/handle_round_end()
 	SIGNAL_HANDLER
-	if(!active_department_goals.len)
+	if(!length(active_department_goals))
 		return
 	show_goal_status_to(world)
 
@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(departmentgoals)
 	var/any_goals = FALSE
 	for(var/category in active_department_goals)
 		var/list/cat_goals = active_department_goals[category]
-		if(!cat_goals.len)
+		if(!length(cat_goals))
 			continue
 
 		to_chat(user, span_filter_system(span_bold("[category]:")))
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(departmentgoals)
 	var/list/all_goals = list()
 	for(var/category in SSdepartmentgoals.active_department_goals)
 		all_goals += SSdepartmentgoals.active_department_goals[category]
-	if(!all_goals.len)
+	if(!length(all_goals))
 		to_chat(usr, span_warning("There are no station goals."))
 		return
 
