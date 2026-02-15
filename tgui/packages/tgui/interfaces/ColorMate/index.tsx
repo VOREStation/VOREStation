@@ -20,7 +20,7 @@ export const ColorMate = (props) => {
   const { act, data } = useBackend<Data>();
 
   const [colorPairs, setColorPairs] = useState([
-    { input: '#ffffff', output: '#000000' },
+    { input: '#ffffff', output: '#ffffff' },
   ]);
 
   const [activeID, setActiveId] = useState({ id: null, type: null });

@@ -149,7 +149,7 @@ export const ColorMateMatrixSolver = (props: {
                         onClick={() =>
                           onColorPairs([
                             ...colorPairs,
-                            { input: '#ffffff', output: '#000000' },
+                            { input: '#ffffff', output: '#ffffff' },
                           ])
                         }
                       >
