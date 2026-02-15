@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixes anomaly weather doing effects in open turfs"
+  - code_imp: "Added various weather anomaly subtypes for easier way to spawn a specific weather"
