@@ -240,7 +240,7 @@
 		return FALSE
 
 	var/turf/exit = get_step(src, drop_direction)
-	if (exit.density)
+	if(exit.density)
 		if(verbose)
 			atom_say("Warning. Exit port obstructed. Please clear obstructions or reorient machine, then retry.")
 		return FALSE
