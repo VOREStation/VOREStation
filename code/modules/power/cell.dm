@@ -177,6 +177,13 @@
 		. += "It has a power rating of [maxcharge]."
 		. += "The charge meter reads [round(src.percent() )]%."
 
+/obj/item/cell/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+	if(isrobot(M))
+		var/mob/living/silicon/robot/target = M
+		if(target.opened)
+			return FALSE
+	..()
+
 /obj/item/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/reagent_containers/syringe))

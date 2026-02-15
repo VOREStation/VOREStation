@@ -114,12 +114,12 @@ SUBSYSTEM_DEF(machines)
 	msg += "PN:[round(cost_powernets,1)]|"
 	msg += "PO:[round(cost_power_objects,1)]"
 	msg += "} "
-	msg += "PI:[SSmachines.networks.len]|"
-	msg += "MC:[SSmachines.processing_machines.len]|"
-	msg += "PN:[SSmachines.powernets.len][defering_powernets ? " - !!DEFER!!" : ""]|"
-	msg += "PO:[SSmachines.powerobjs.len]|"
-	msg += "HV:[SSmachines.hibernating_vents.len]|"
-	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
+	msg += "PI:[length(SSmachines.networks)]|"
+	msg += "MC:[length(SSmachines.processing_machines)]|"
+	msg += "PN:[length(SSmachines.powernets)][defering_powernets ? " - !!DEFER!!" : ""]|"
+	msg += "PO:[length(SSmachines.powerobjs)]|"
+	msg += "HV:[length(SSmachines.hibernating_vents)]|"
+	msg += "MC/MS:[round((cost ? length(SSmachines.processing_machines)/cost_machinery : 0),0.1)]"
 	return ..()
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
@@ -128,8 +128,8 @@ SUBSYSTEM_DEF(machines)
 	//cache for sanic speed (lists are references anyways)
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/pipe_network/PN = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/pipe_network/PN = current_run[length(current_run)]
 		current_run.len--
 		if(!PN || QDELETED(PN))
 			networks.Remove(PN)
@@ -146,8 +146,8 @@ SUBSYSTEM_DEF(machines)
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/obj/machinery/M = current_run[current_run.len]
+	while(length(current_run))
+		var/obj/machinery/M = current_run[length(current_run)]
 		current_run.len--
 		if(!istype(M) || QDELETED(M) || (M.process(wait) == PROCESS_KILL))
 			processing_machines.Remove(M)
@@ -161,8 +161,8 @@ SUBSYSTEM_DEF(machines)
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/powernet/PN = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/powernet/PN = current_run[length(current_run)]
 		current_run.len--
 		if(!PN)
 			powernets.Remove(PN)
@@ -180,8 +180,8 @@ SUBSYSTEM_DEF(machines)
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/obj/item/I = current_run[current_run.len]
+	while(length(current_run))
+		var/obj/item/I = current_run[length(current_run)]
 		current_run.len--
 		if(!I || (I.pwr_drain(wait) == PROCESS_KILL))
 			powerobjs.Remove(I)
@@ -217,13 +217,13 @@ SUBSYSTEM_DEF(machines)
 	// pick at random
 	var/i = rand(20,40)
 	while(i-- > 0)
-		if(!hibernating_vents.len)
+		if(!length(hibernating_vents))
 			break
 		wake_vent(hibernating_vents[pick(hibernating_vents)])
 	// do first 10 entries
 	i = 10
 	for(var/key in hibernating_vents)
-		if(i <= 0 || !hibernating_vents.len)
+		if(i <= 0 || !length(hibernating_vents))
 			break
 		wake_vent(hibernating_vents[key])
 		i--

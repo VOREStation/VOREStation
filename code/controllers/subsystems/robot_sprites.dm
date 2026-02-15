@@ -85,13 +85,13 @@ SUBSYSTEM_DEF(robot_sprites)
 	if(!islist(sprite_list))
 		return 0
 
-	return sprite_list.len
+	return length(sprite_list)
 
 /datum/controller/subsystem/robot_sprites/proc/get_default_module_sprite(var/module)
 
 	var/list/module_sprites = get_module_sprites(module)
 
-	if(!module_sprites || !module_sprites.len)
+	if(!module_sprites || !length(module_sprites))
 		return
 
 	var/chosen_sprite

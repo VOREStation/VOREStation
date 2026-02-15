@@ -1,4 +1,0 @@
-author: "MeepleMuncher"
-delete-after: True
-changes:
-  - bugfix: "Fixed microwaves not being able to accept reagents"

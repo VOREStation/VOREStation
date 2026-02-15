@@ -1,5 +1,3 @@
-var/list/spells = typesof(/spell) //needed for the badmin verb for now
-
 /spell
 	var/name = "Spell"
 	var/desc = "A spell"

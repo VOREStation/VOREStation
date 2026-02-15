@@ -8,6 +8,7 @@ SUBSYSTEM_DEF(mail)
 	var/mail_waiting = 0					// Pending mail
 	var/mail_per_process = 0.55				// Mail to be generated
 	var/admin_mail = list()					// Mail added by Spawn Mail
+	var/list/banned_jobs = list(JOB_OUTSIDER,JOB_ANOMALY,JOB_VR,JOB_MAINT_LURKER,JOB_TALON_CAPTAIN,JOB_TALON_DOCTOR,JOB_TALON_ENGINEER,JOB_TALON_GUARD,JOB_TALON_PILOT,JOB_TALON_MINER) // Jobs that can't receive mail
 
 /datum/controller/subsystem/mail/fire()
 	mail_waiting += mail_per_process
@@ -24,12 +25,12 @@ SUBSYSTEM_DEF(mail)
 	// Collect recipients
 	var/list/mail_recipients = list()
 	for(var/mob/living/carbon/human/player_human in GLOB.player_list)
-		if(player_human.stat != DEAD && player_human.client && player_human.client.inactivity <= 10 MINUTES && player_human.job != JOB_OUTSIDER && player_human.job != JOB_ANOMALY && player_human.job != JOB_VR && !player_is_antag(player_human.mind) && !isbelly(player_human.loc)) // Only alive, active and NT employeers should be getting mail.
+		if(player_human.stat != DEAD && player_human.client && player_human.client.inactivity <= 10 MINUTES && !(player_human.job in banned_jobs) && !player_is_antag(player_human.mind) && !isbelly(player_human.loc)) // Only alive, active and NT employeers should be getting mail.
 			mail_recipients += player_human
 
 	// Creates mail for all the mail waiting to arrive, if there's nobody to receive it, it will be a chance of junk mail.
 	for(var/mail_iterator in 1 to mail_waiting)
-		if(!mail_recipients.len && prob(60)) // Oh, no mail for our Employees? Well don't just sent them all the junk.
+		if(!length(mail_recipients) && prob(60)) // Oh, no mail for our Employees? Well don't just sent them all the junk.
 			continue
 		var/obj/item/mail/new_mail
 		if(prob(70))
@@ -37,7 +38,7 @@ SUBSYSTEM_DEF(mail)
 		else
 			new_mail = new /obj/item/mail/envelope(mailcrate)
 		var/mob/living/carbon/human/mail_to
-		if(mail_recipients.len)
+		if(length(mail_recipients))
 			mail_to = pick(mail_recipients)
 			new_mail.initialize_for_recipient(mail_to.mind)
 			mail_recipients -= mail_to

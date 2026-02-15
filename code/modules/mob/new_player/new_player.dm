@@ -21,10 +21,6 @@
 
 	var/created_for
 
-/mob/new_player/Initialize(mapload)
-	. = ..()
-	add_verb(src, /mob/proc/insidePanel)
-
 /mob/new_player/Destroy()
 	GLOB.new_player_list -= src
 	if(manifest_dialog)
@@ -400,7 +396,7 @@
 
 	if(CONFIG_GET(flag/force_random_names))
 		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
+		client.prefs.update_preference_by_type(/datum/preference/name/real_name, random_name(new_character.gender))
 	else
 		client.prefs.copy_to(new_character, icon_updates = TRUE)
 

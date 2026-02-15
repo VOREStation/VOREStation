@@ -2,7 +2,6 @@
 	ready = 0
 
 	GLOB.new_player_list -= src
-	QDEL_NULL(lobby_window)
 	disable_lobby_browser()
 
 	..()
@@ -17,6 +16,10 @@
 	return
 
 /mob/new_player/proc/disable_lobby_browser()
+	if(lobby_window)
+		lobby_window.unsubscribe(src)
+		lobby_window.close()
+		lobby_window = null
 	var/client/exiting_client = persistent_client.client
 	if(exiting_client)
 		winset(exiting_client, "lobby_browser", "is-disabled=true;is-visible=false")
