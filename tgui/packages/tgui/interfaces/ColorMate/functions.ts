@@ -15,10 +15,10 @@ export function computeMatrixFromPairs(
   const matrix: number[][] = [];
 
   for (let channel = 0; channel < 3; channel++) {
-    const A = rgbIn.map((rgb) => [rgb[0], rgb[1], rgb[2], 1]);
+    const a = rgbIn.map((rgb) => [rgb[0], rgb[1], rgb[2], 1]);
     const b = rgbOut.map((rgb) => rgb[channel]);
 
-    const weights = leastSquares(A, b);
+    const weights = leastSquares(a, b);
 
     if (weights.length !== 4) {
       throw new Error(`Matrix computation failed for channel ${channel}`);
