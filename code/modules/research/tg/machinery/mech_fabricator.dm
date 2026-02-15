@@ -155,7 +155,7 @@
 	if(isobserver(user) || user.is_incorporeal())
 		return
 	if(being_built)
-		balloon_alert(user, "printing started!")
+		balloon_alert(user, "cannot reorient whilst printing!")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
@@ -239,6 +239,12 @@
 	if(!D || length(D.reagents_list))
 		return FALSE
 
+	var/turf/exit = get_step(src, drop_direction)
+	if(exit.density)
+		if(verbose)
+			atom_say("Warning. Exit port obstructed. Please clear obstructions or reorient machine, then retry.")
+		return FALSE
+
 	var/datum/component/material_container/materials = rmat.mat_container
 	if (!materials)
 		if(verbose)
@@ -262,9 +268,9 @@
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator_tg/process()
+	var/turf/exit = get_step(src, drop_direction)
 	// If there's a stored part to dispense due to an obstruction, try to dispense it.
 	if(stored_part)
-		var/turf/exit = get_step(src, drop_direction)
 		if(exit.density)
 			return TRUE
 
@@ -277,6 +283,11 @@
 
 	// If there's nothing being built, try to build something
 	if(!being_built)
+		// First, check if it's safe to actually print anything; if not, abort now!
+		if(exit.density)
+			atom_say("Warning. Exit port obstructed. Please clear obstructions or reorient machine, then retry.")
+			process_queue = FALSE
+			return
 		// If we're not processing the queue anymore or there's nothing to build, end processing.
 		if(!process_queue || !build_next_in_queue())
 			on_finish_printing()
