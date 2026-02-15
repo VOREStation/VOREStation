@@ -47,6 +47,7 @@
 		handle_privacy_poll()
 		client.playtitlemusic()
 		version_warnings()
+		add_verb(src, /mob/proc/insidePanel)
 
 /mob/new_player/proc/version_warnings()
 	var/problems // string to store message to present to player as a problem
