@@ -1584,7 +1584,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
-			body += " <b>-Temperature: </b> [react["xgm_min"]]K - [react["xgm_max"]]K | ([react["xgm_min"] - T0C]C - [react["xgm_max"] - T0C]C)<br>"
+			body += " <b>-Temperature: </b> [react["temp_min"]]K to [react["temp_max"]]K | ([react["temp_min"] - T0C]C to [react["temp_max"] - T0C]C)<br>"
+			if(react["xgm_min"] || react["xgm_max"])
+				body += " <b>-Pressure: </b> [react["xgm_min"]]kpa - [react["xgm_max"]]kpa<br>"
 			if(react["require_xgm_gas"])
 				body += " <b>-Requires Gas: </b> [react["require_xgm_gas"]]<br>"
 			if(react["rejects_xgm_gas"])
