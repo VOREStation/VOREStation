@@ -34,7 +34,7 @@
 
 /datum/preference/choiced/gender/biological/init_possible_values()
 	// Actual validation happens in pref_deserialize
-	return list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	return list(MALE, FEMALE, PLURAL, NEUTER)
 
 /datum/preference/choiced/gender/biological/create_default_value()
 	return MALE
