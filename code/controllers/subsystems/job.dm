@@ -14,16 +14,16 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/Initialize()
-	if(!department_datums.len)
+	if(!length(department_datums))
 		setup_departments()
-	if(!occupations.len)
+	if(!length(occupations))
 		setup_occupations()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/job/proc/setup_occupations(faction = FACTION_STATION)
 	occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
-	if(!all_jobs.len)
+	if(!length(all_jobs))
 		to_chat(world, span_warning("Error setting up jobs, no job datums found"))
 		return FALSE
 
@@ -80,13 +80,9 @@ SUBSYSTEM_DEF(job)
 	return dept_datums
 
 /datum/controller/subsystem/job/proc/get_job(rank)
-	if(!occupations.len)
-		setup_occupations()
 	return name_occupations[rank]
 
 /datum/controller/subsystem/job/proc/get_job_type(jobtype)
-	if(!occupations.len)
-		setup_occupations()
 	return type_occupations[jobtype]
 
 // Determines if a job title is inside of a specific department.

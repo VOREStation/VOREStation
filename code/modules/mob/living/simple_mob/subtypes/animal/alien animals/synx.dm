@@ -151,7 +151,7 @@
 
 /mob/living/simple_mob/animal/synx/get_available_emotes()
 	. = ..()
-	. |= _human_default_emotes //Synx are great at mimicking
+	. |= GLOB.human_default_emotes //Synx are great at mimicking
 
 /mob/living/simple_mob/animal/synx/ai //AI controlled variant
 

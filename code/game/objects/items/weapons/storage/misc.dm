@@ -2,7 +2,7 @@
  * Donut Box
  */
 
-var/list/random_weighted_donuts = list(
+GLOBAL_LIST_INIT(random_weighted_donuts, list(
 	/obj/item/reagent_containers/food/snacks/donut/plain = 5,
 	/obj/item/reagent_containers/food/snacks/donut/plain/jelly = 5,
 	/obj/item/reagent_containers/food/snacks/donut/pink = 4,
@@ -26,7 +26,7 @@ var/list/random_weighted_donuts = list(
 	/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles = 3,
 	/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly = 3,
 	/obj/item/reagent_containers/food/snacks/donut/chaos = 1
-)
+))
 
 /obj/item/storage/box/donut
 	icon = 'icons/obj/food_donuts.dmi'
@@ -43,7 +43,7 @@ var/list/random_weighted_donuts = list(
 /obj/item/storage/box/donut/Initialize(mapload)
 	if(!empty)
 		for(var/i in 1 to 6)
-			var/type_to_spawn = pickweight(random_weighted_donuts)
+			var/type_to_spawn = pickweight(GLOB.random_weighted_donuts)
 			new type_to_spawn(src)
 	. = ..()
 	update_icon()

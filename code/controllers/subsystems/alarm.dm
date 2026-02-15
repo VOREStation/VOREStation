@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(alarm)
 	var/static/list/active_alarm_cache = list()
 
 /datum/controller/subsystem/alarm/Initialize()
-	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
+	all_handlers = list(GLOB.atmosphere_alarm, GLOB.camera_alarm, GLOB.fire_alarm, GLOB.motion_alarm, GLOB.power_alarm)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/alarm/fire(resumed = FALSE)
@@ -19,8 +19,8 @@ SUBSYSTEM_DEF(alarm)
 		active_alarm_cache.Cut()
 
 	var/list/currentrun = src.currentrun // Cache for sanic speed
-	while (currentrun.len)
-		var/datum/alarm_handler/AH = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/datum/alarm_handler/AH = currentrun[length(currentrun)]
 		currentrun.len--
 		AH.process()
 		active_alarm_cache += AH.alarms
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(alarm)
 	return active_alarm_cache.Copy()
 
 /datum/controller/subsystem/alarm/proc/number_of_active_alarms()
-	return active_alarm_cache.len
+	return length(active_alarm_cache)
 
 /datum/controller/subsystem/alarm/stat_entry(msg)
 	msg = "[number_of_active_alarms()] alarm\s"

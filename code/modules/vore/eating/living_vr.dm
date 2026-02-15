@@ -924,7 +924,7 @@
 		)
 		if(O.material in rock_munch)
 			nom	= rock_munch[O.material]
-			M 	= name_to_material[O.material]
+			M 	= GLOB.name_to_material[O.material]
 		else if(istype(O, /obj/item/ore/slag))
 			nom	= list("nutrition" = 15, "remark" = "You taste dusty, crunchy mistakes. This is a travesty... but at least it is an edible one.",  "WTF" = FALSE)
 		else //Random rock.
@@ -965,7 +965,7 @@
 			var/obj/item/stack/material/stack = O.split(1) //A little off the top.
 			I	= stack
 			nom	= refined_taste[O.default_type]
-			M	= name_to_material[O.default_type]
+			M	= GLOB.name_to_material[O.default_type]
 	else if(istype(I, /obj/item/entrepreneur/crystal))
 		nom = list("nutrition" = 100,  "remark" = "The crytal was particularly brittle and not difficult to break apart, but the inside was incredibly flavoursome. Though devoid of any actual healing power, it seems to be very nutritious!", "WTF" = FALSE)
 
@@ -1307,6 +1307,8 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
+		var/datum/hud/HUD = owner?.hud_used
+		LAZYREMOVE(HUD?.other_important, screen_icon)
 		QDEL_NULL(screen_icon)
 	remove_verb(owner, /mob/proc/insidePanel)
 	QDEL_NULL(owner.vorePanel)

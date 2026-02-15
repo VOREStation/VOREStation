@@ -330,7 +330,7 @@
 				U = UN
 			if(istype(U, /obj/item/borg/upgrade/restricted))
 				target.module.supported_upgrades |= new_upgrade
-			if(!U.action(target))
+			if(!U.action(ui.user, target))
 				return FALSE
 			U.loc = target
 			target.hud_used?.update_robot_modules_display()

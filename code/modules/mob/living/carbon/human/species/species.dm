@@ -221,7 +221,6 @@
 	var/spawn_flags = 0										// Flags that specify who can spawn as this species
 
 	var/slowdown = 0										// Passive movement speed malus (or boost, if negative)
-	var/unusual_running = 0									// Trait var to change movement speed in human_movement.dm when nothing in hands
 	var/obj/effect/decal/cleanable/blood/tracks/move_trail = /obj/effect/decal/cleanable/blood/tracks/footprints // What marks are left when walking
 	var/list/skin_overlays = list()
 	var/has_floating_eyes = 0								// Whether the eyes can be shown above other icons
@@ -634,20 +633,25 @@
 /datum/species/proc/can_understand(var/mob/other)
 	return
 
-// Called when using the shredding behavior.
-/datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)
+// Called when using the shredding behavior, returning unarmed damage value
+//CheckHighDamage returns the damage value of the attack if it meets at least the noted value
+/datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent, var/checkhighdamage = 0)
 
 	if(!ignore_intent && H.a_intent != I_HURT)
 		return 0
-	if(shredding)
-		return 1
+
+	var/damage = 0
+	var/shreds = (shredding * 5)
+
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
 		if(!attack.is_usable(H))
 			continue
+		damage = max(damage, attack.get_unarmed_damage(H) + 5)
 		if(attack.shredding)
-			return 1
-
-	return 0
+			shreds = 5
+	if((checkhighdamage && damage >= checkhighdamage) || shreds)
+		shreds += damage
+	return shreds
 
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)

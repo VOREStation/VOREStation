@@ -300,7 +300,7 @@ var/list/organ_cache = list()
 	germ_level = 0
 	if(owner)
 		handle_organ_mod_special()
-	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
+	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
 		if(status == FBP_ASSISTED)
 			mechassist()

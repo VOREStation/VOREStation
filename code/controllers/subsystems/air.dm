@@ -117,15 +117,15 @@ SUBSYSTEM_DEF(air)
 	admin_notice(span_danger("Geometry initialized in [round(0.1*(REALTIMEOFDAY-start_timeofday),0.1)] seconds.") + \
 span_info("<br>\
 Total Simulated Turfs: [simulated_turf_count]<br>\
-Total Zones: [zones.len]<br>\
-Total Edges: [edges.len]<br>\
-Total Active Edges: [active_edges.len ? span_danger("[active_edges.len]") : "None"]<br>\
+Total Zones: [length(zones)]<br>\
+Total Edges: [length(edges)]<br>\
+Total Active Edges: [length(active_edges) ? span_danger("[length(active_edges)]") : "None"]<br>\
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]\
 "), R_DEBUG)
 
 	// Note - Baystation settles the air by running for one tick.  We prefer to not have active edges.
 	// Maps should not have active edges on boot.  If we've got some, log it so it can get fixed.
-	if(active_edges.len)
+	if(length(active_edges))
 		var/list/edge_log = list()
 		for(var/connection_edge/E in active_edges)
 
@@ -177,7 +177,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		// Santity checks to make sure we don't somehow have items left over from last cycle
 		// Or somehow didn't finish all the steps from last cycle
 		if(LAZYLEN(currentrun) || current_step)
-			log_and_message_admins("SSair: Was told to start a new run, but the previous run wasn't finished! currentrun.len=[currentrun.len], current_step=[current_step]")
+			log_and_message_admins("SSair: Was told to start a new run, but the previous run wasn't finished! currentrun.len=[length(currentrun)], current_step=[current_step]")
 			resumed = TRUE
 		else
 			current_cycle++ // Begin a new SSair cycle!
@@ -216,8 +216,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	var/list/selfblock_deferred = src.selfblock_deferred
 
 	// Run thru the list, processing non-self-zone-blocked and deferring self-zone-blocked
-	while(currentrun.len)
-		var/turf/T = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/turf/T = currentrun[length(currentrun)]
 		currentrun.len--
 		//check if the turf is self-zone-blocked
 		if(T.self_airblock() & ZONE_BLOCKED)
@@ -238,8 +238,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	ASSERT(LAZYLEN(currentrun) == 0)
 
 	// Run thru the deferred list and processing them
-	while(selfblock_deferred.len)
-		var/turf/T = selfblock_deferred[selfblock_deferred.len]
+	while(length(selfblock_deferred))
+		var/turf/T = selfblock_deferred[length(selfblock_deferred)]
 		selfblock_deferred.len--
 		T.update_air_properties()
 		T.post_update_air_properties()
@@ -258,8 +258,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		src.currentrun = active_edges.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/connection_edge/edge = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/connection_edge/edge = currentrun[length(currentrun)]
 		currentrun.len--
 		if(edge) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			edge.tick()
@@ -271,8 +271,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		src.currentrun = active_fire_zones.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/zone/Z = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/zone/Z = currentrun[length(currentrun)]
 		currentrun.len--
 		if(Z) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			Z.process_fire()
@@ -284,8 +284,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		src.currentrun = active_hotspots.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/obj/fire/fire = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/obj/fire/fire = currentrun[length(currentrun)]
 		currentrun.len--
 		if(fire) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			fire.process()
@@ -294,8 +294,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 /datum/controller/subsystem/air/proc/process_zones_to_update(resumed = 0)
 	if (!resumed)
-		active_zones = zones_to_update.len // Save how many zones there were to update this cycle (used by some debugging stuff)
-		if(!zones_to_update.len)
+		active_zones = length(zones_to_update) // Save how many zones there were to update this cycle (used by some debugging stuff)
+		if(!length(zones_to_update))
 			return // Nothing to do here this cycle!
 		// NOT a copy, because we are supposed to drain active turfs each cycle anyway, so just replace with empty list.
 		// Blanking the public list means we actually are removing processed ones from the list! Maybe we could we use zones_for_update directly?
@@ -306,8 +306,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/zone/zone = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/zone/zone = currentrun[length(currentrun)]
 		currentrun.len--
 		if(zone) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			zone.tick()
@@ -324,14 +324,14 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	msg += "H [round(cost_hotspots, 1)] | "
 	msg += "Z [round(cost_zones, 1)] "
 	msg += "}"
-	msg += "Z: [zones.len] "
-	msg += "E: [edges.len] "
+	msg += "Z: [length(zones)] "
+	msg += "E: [length(edges)] "
 	msg += "Cycle: [current_cycle] {"
-	msg += "T [tiles_to_update.len] | "
-	msg += "E [active_edges.len] | "
-	msg += "F [active_fire_zones.len] | "
-	msg += "H [active_hotspots.len] | "
-	msg += "Z [zones_to_update.len] "
+	msg += "T [length(tiles_to_update)] | "
+	msg += "E [length(active_edges)] | "
+	msg += "F [length(active_fire_zones)] | "
+	msg += "H [length(active_hotspots)] | "
+	msg += "Z [length(zones_to_update)] "
 	msg += "}"
 	return ..()
 
@@ -403,7 +403,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	ASSERT(!B.invalid)
 	ASSERT(A != B)
 	#endif
-	if(A.contents.len < B.contents.len)
+	if(length(A.contents) < length(B.contents))
 		A.c_merge(B)
 		mark_zone_update(B)
 	else
@@ -427,7 +427,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	var/space = !istype(B)
 
 	if(!space)
-		if(min(A.zone.contents.len, B.zone.contents.len) < ZONE_MIN_SIZE || (direct && (equivalent_pressure(A.zone,B.zone) || current_cycle == 0)))
+		if(min(length(A.zone.contents), length(B.zone.contents)) < ZONE_MIN_SIZE || (direct && (equivalent_pressure(A.zone,B.zone) || current_cycle == 0)))
 			merge(A.zone,B.zone)
 			return
 
