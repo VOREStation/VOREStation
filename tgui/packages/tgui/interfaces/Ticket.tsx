@@ -60,6 +60,7 @@ export const Ticket = (props) => {
   const [ticketChat, setTicketChat] = useState('');
 
   const messagesEndRef: RefObject<HTMLDivElement | null> = useRef(null);
+  const inputRef: RefObject<HTMLInputElement | null> = useRef(null);
 
   const {
     id,
@@ -203,6 +204,7 @@ export const Ticket = (props) => {
                           ticket_ref: ticket_ref,
                         });
                         setTicketChat('');
+                        requestAnimationFrame(() => inputRef.current?.focus());
                       }
                     }}
                   />
@@ -215,6 +217,7 @@ export const Ticket = (props) => {
                         ticket_ref: ticket_ref,
                       });
                       setTicketChat('');
+                      requestAnimationFrame(() => inputRef.current?.focus());
                     }}
                   >
                     Send

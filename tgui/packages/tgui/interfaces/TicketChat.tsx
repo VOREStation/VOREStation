@@ -47,6 +47,7 @@ export const TicketChat = (props) => {
   const { id, level, handler, log } = data;
 
   const messagesEndRef: RefObject<HTMLDivElement | null> = useRef(null);
+  const inputRef: RefObject<HTMLInputElement | null> = useRef(null);
 
   useEffect(() => {
     const scroll = messagesEndRef.current;
@@ -114,6 +115,7 @@ export const TicketChat = (props) => {
                     autoFocus
                     autoSelect
                     fluid
+                    ref={inputRef}
                     placeholder="Enter a message..."
                     value={ticketChat}
                     onChange={(value: string) => setTicketChat(value)}
@@ -121,6 +123,7 @@ export const TicketChat = (props) => {
                       if (KEY.Enter === e.key) {
                         act('send_msg', { msg: ticketChat });
                         setTicketChat('');
+                        requestAnimationFrame(() => inputRef.current?.focus());
                       }
                     }}
                   />
@@ -130,6 +133,7 @@ export const TicketChat = (props) => {
                     onClick={() => {
                       act('send_msg', { msg: ticketChat });
                       setTicketChat('');
+                      requestAnimationFrame(() => inputRef.current?.focus());
                     }}
                   >
                     Send
