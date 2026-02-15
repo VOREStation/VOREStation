@@ -30,8 +30,8 @@ SUBSYSTEM_DEF(airflow)
 
 	var/mywait = wait
 	var/list/curr = currentrun // Cache for sanic speed
-	while (curr.len)
-		var/atom/movable/target = curr[curr.len]
+	while (length(curr))
+		var/atom/movable/target = curr[length(curr)]
 		curr.len--
 		if(QDELETED(target))
 			processing -= target
