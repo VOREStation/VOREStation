@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
-	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] | V: [viruses.len] | G: [genes.len] "
+	msg = "P: [length(pages)] | O: [length(ores)] | M: [length(materials)] | S: [length(smashers)] | F: [length(foodrecipe)]  | D: [length(drinkreact)]  | C: [length(chemreact)]  | B: [length(botseeds)] | V: [length(viruses)] | G: [length(genes)] "
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
@@ -218,7 +218,7 @@ SUBSYSTEM_DEF(internal_wiki)
 // Donating
 /datum/controller/subsystem/internal_wiki/proc/get_donor_value(var/key)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!dono_list.len || isnull(dono_list[key]))
+	if(!length(dono_list) || isnull(dono_list[key]))
 		return 0
 	return dono_list[key]
 /datum/controller/subsystem/internal_wiki/proc/get_donation_current()
@@ -241,7 +241,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
 
 	data["instant_reactions"] = null
-	if(reaction_list != null && reaction_list.len > 0)
+	if(reaction_list != null && length(reaction_list) > 0)
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/CR in reaction_list)
 			if(CR.wiki_flag & WIKI_SPOILER)
@@ -281,11 +281,11 @@ SUBSYSTEM_DEF(internal_wiki)
 				var/obj/item/slime_extract/slime_path = CRS.required
 				assemble_reaction["is_slime"] = initial(slime_path.name)
 			reactions += list(assemble_reaction)
-		if(display_reactions.len)
+		if(length(display_reactions))
 			data["instant_reactions"] = reactions
 
 	data["distilled_reactions"] = null
-	if(distilled_list != null && distilled_list.len > 0)
+	if(distilled_list != null && length(distilled_list) > 0)
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
 			if(CR.wiki_flag & WIKI_SPOILER)
@@ -327,7 +327,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["catalysts"] = catal
 			assemble_reaction["is_slime"] = null
 			reactions += list(assemble_reaction)
-		if(display_reactions.len)
+		if(length(display_reactions))
 			data["distilled_reactions"] = reactions
 
 	var/grind_list = list()
@@ -337,7 +337,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(R.id in GLOB.ore_reagents[ore_type])
 			display_reactions.Add(initial(O.name))
 	grind_list["ore"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		grind_list["ore"] = display_reactions
 
 	display_reactions = list()
@@ -346,7 +346,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(R.id in GLOB.sheet_reagents[sheet_type])
 			display_reactions.Add(initial(M.name))
 	grind_list["material"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		grind_list["material"] = display_reactions
 
 	display_reactions = list()
@@ -355,13 +355,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(S && S.roundstart && !S.mysterious)
 			if(S.wiki_flag & WIKI_SPOILER)
 				continue
-			if(!S.chems || !S.chems.len)
+			if(!S.chems || !length(S.chems))
 				continue
 			if(!(R.id in S.chems))
 				continue
 			display_reactions.Add(S.display_name)
 	grind_list["plant"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		grind_list["plant"] = display_reactions
 
 	data["grinding"] = grind_list
@@ -372,24 +372,24 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(OR.reagent == R.id)
 			display_reactions.Add(OR.name)
 	data["fluid"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		data["fluid"] = display_reactions
 
 	display_reactions = list()
 	var/list/instant_by_reagent = SSchemistry.instant_reactions_by_reagent["[R.id]"]
-	if(instant_by_reagent && instant_by_reagent.len)
-		for(var/i = 1, i <= instant_by_reagent.len, i++)
+	if(instant_by_reagent && length(instant_by_reagent))
+		for(var/i = 1, i <= length(instant_by_reagent), i++)
 			var/decl/chemical_reaction/OR = instant_by_reagent[i]
 			if(istype(OR,/decl/chemical_reaction/instant/slime)) // very bloated and meant to be a mystery
 				continue
 			display_reactions.Add(OR.name)
 	var/list/distilled_by_reagent = SSchemistry.distilled_reactions_by_reagent["[R.id]"]
-	if(distilled_by_reagent && distilled_by_reagent.len)
-		for(var/i = 1, i <= distilled_by_reagent.len, i++)
+	if(distilled_by_reagent && length(distilled_by_reagent))
+		for(var/i = 1, i <= length(distilled_by_reagent), i++)
 			var/decl/chemical_reaction/OR = distilled_by_reagent[i]
 			display_reactions.Add(OR.name)
 	data["produces"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
 
 /datum/controller/subsystem/internal_wiki/proc/assemble_allergens(var/allergens)
@@ -884,7 +884,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["grind_reagents"] = null
 	if(GLOB.sheet_reagents[M.stack_type])
 		var/list/output = GLOB.sheet_reagents[M.stack_type]
-		if(output && output.len > 0)
+		if(output && length(output) > 0)
 			var/list/collect = list()
 			var/total_parts = 0
 			for(var/Rid in output)
@@ -905,7 +905,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	data["recipies"] = null
 	M.get_recipes() // generate if not already
-	if(M.recipes != null && M.recipes.len > 0)
+	if(M.recipes != null && length(M.recipes) > 0)
 		var/list/recipie_list = list()
 		for(var/datum/stack_recipe/R in M.recipes)
 			recipie_list.Add(R.title)
@@ -941,7 +941,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["grind_reagents"])
 		body += "<br>"
 		var/list/grind_list = data["grind_reagents"]
-		if(grind_list && grind_list.len > 0)
+		if(grind_list && length(grind_list) > 0)
 			body += "<b>Sheet Grind Results: </b><br>"
 			for(var/N in grind_list)
 				body += "<b>-[N]: [grind_list[N]]u</b><br>"
@@ -996,13 +996,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		traits.Add("Spreading")
 	if(S.get_trait(TRAIT_EXPLOSIVE))
 		traits.Add("Explosive")
-	if(!traits.len)
+	if(!length(traits))
 		traits.Add("None")
 	data["traits"] = traits
 	data["mob_product"] = S.has_mob_product
 
 	data["chem_breakdown"] = null
-	if(S.chems && S.chems.len > 0)
+	if(S.chems && length(S.chems) > 0)
 		var/list/chems = list()
 		for(var/CB in S.chems)
 			var/datum/reagent/CBR = SSchemistry.chemical_reagents[CB]
@@ -1013,21 +1013,21 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["chem_breakdown"] = chems
 
 	data["gas_consumed"] = null
-	if(S.consume_gasses && S.consume_gasses.len > 0)
+	if(S.consume_gasses && length(S.consume_gasses) > 0)
 		var/list/consumed = list()
 		for(var/CG in S.consume_gasses)
 			consumed["[GLOB.gas_data.name[CG]]"] = S.consume_gasses[CG]
 		data["gas_consumed"] = consumed
 
 	data["gas_exuded"] = null
-	if(S.exude_gasses && S.exude_gasses.len > 0)
+	if(S.exude_gasses && length(S.exude_gasses) > 0)
 		var/list/exude = list()
 		for(var/EG in S.exude_gasses)
 			exude["[GLOB.gas_data.name[EG]]"] = S.exude_gasses[EG]
 		data["gas_exuded"] = exude
 
 	data["mutations"] = null
-	if(S.mutants && S.mutants.len > 0)
+	if(S.mutants && length(S.mutants) > 0)
 		var/list/mutations = list()
 		for(var/MS in S.mutants)
 			var/datum/seed/mut = SSplants.seeds[MS]
@@ -1052,13 +1052,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>DANGER - MAY BE MOBILE</b><br>"
 	body  += "<br>"
 	var/list/chem_list = data["chem_breakdown"]
-	if(chem_list && chem_list.len > 0)
+	if(chem_list && length(chem_list) > 0)
 		body  += "<b>Chemical Breakdown: </b><br>"
 		for(var/CB in chem_list)
 			body  += "<b>-[CB]</b><br>"
 		body  += "<br>"
 	var/list/consumed_list = data["gas_consumed"]
-	if(consumed_list && consumed_list.len > 0)
+	if(consumed_list && length(consumed_list) > 0)
 		body  += "<b>Gasses Consumed: </b><br>"
 		for(var/CG in consumed_list)
 			var/amount = "[consumed_list[CG]]"
@@ -1067,7 +1067,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body  += "<b>-[amount]</b><br>"
 		body  += "<br>"
 	var/list/exuded_list = data["gas_exuded"]
-	if(exuded_list && exuded_list.len > 0)
+	if(exuded_list && length(exuded_list) > 0)
 		body  += "<b>Gasses Produced: </b><br>"
 		for(var/EG in exuded_list)
 			var/amount = "[exuded_list[EG]]"
@@ -1076,7 +1076,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body  += "<b>-[amount]</b><br>"
 		body  += "<br>"
 	var/list/mutations = data["mutations"]
-	if(mutations && mutations.len > 0)
+	if(mutations && length(mutations) > 0)
 		body += "<b>Mutant Strains: </b><br>"
 		for(var/MS in mutations)
 			body  += "<b>-[MS]</b><br>"
@@ -1097,7 +1097,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["req_mat"] = initial(req_mat.name)
 
 	data["target_items"] = null
-	if(M.items && M.items.len > 0)
+	if(M.items && length(M.items) > 0)
 		var/list/targs = list()
 		for(var/obj/Ir as anything in M.items)
 			targs.Add(initial(Ir.name))
@@ -1109,7 +1109,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["required_atmos_temp_max"] = M.required_atmos_temp_max
 
 	data["inducers"] = null
-	if(M.reagents != null && M.reagents.len > 0)
+	if(M.reagents != null && length(M.reagents) > 0)
 		var/list/inducers = list()
 		for(var/R in M.reagents)
 			var/amnt = M.reagents[R]
@@ -1127,13 +1127,13 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["req_mat"] != null)
 		body += "<b>Target Sheet: [data["req_mat"]]</b><br>"
 	var/list/targ_items = data["target_items"]
-	if(targ_items && targ_items.len > 0)
+	if(targ_items && length(targ_items) > 0)
 		for(var/Ir in targ_items)
 			body += "<b>-[Ir]</b><br>"
 	body += "<b>Threshold Energy: [data["required_energy_min"]] - [data["required_energy_max"]]</b><br>"
 	body += "<b>Threshold Temp: [data["required_atmos_temp_min"]]k - [data["required_atmos_temp_max"]]k | ([data["required_atmos_temp_min"] - T0C]C - [data["required_atmos_temp_max"] - T0C]C)</b><br>"
 	var/list/inducers = data["inducers"]
-	if(inducers && inducers.len > 0)
+	if(inducers && length(inducers) > 0)
 		body += "<br>"
 		body += "<b>Inducers: </b><br>"
 		for(var/R in inducers)
@@ -1282,19 +1282,19 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/ingred = list()
 	for(var/ing in recipe["Ingredients"])
 		ingred["[ing]"] = recipe["Ingredients"][ing]
-	recipe_data["ingredients"] = ingred.len ? ingred : null
+	recipe_data["ingredients"] = length(ingred) ? ingred : null
 	var/list/fruits = list()
 	for(var/fru in recipe["Fruit"])
 		fruits["[fru]"] = recipe["Fruit"][fru]
-	recipe_data["fruits"] = fruits.len ? fruits : null
+	recipe_data["fruits"] = length(fruits) ? fruits : null
 	var/list/reagents = list()
 	for(var/rea in recipe["Reagents"])
 		reagents["[rea]"] = recipe["Reagents"][rea]
-	recipe_data["reagents"] = reagents.len ? reagents : null
+	recipe_data["reagents"] = length(reagents) ? reagents : null
 	var/list/catalysts = list()
 	for(var/cat in recipe["Catalysts"])
 		catalysts["[cat]"] = recipe["Catalysts"][cat]
-	recipe_data["catalysts"] = catalysts.len ? catalysts : null
+	recipe_data["catalysts"] = length(catalysts) ? catalysts : null
 	data["recipe"] = recipe_data
 
 /datum/internal_wiki/page/recipe/get_print()
@@ -1313,7 +1313,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Appliance: </b>[data["recipe"]["appliance"]]<br><br>"
 	// ingredients
 	var/list/ingreds = data["recipe"]["ingredients"]
-	if(ingreds && ingreds.len)
+	if(ingreds && length(ingreds))
 		var/count = 0
 		var/pretty_ing = ""
 		for(var/ing in ingreds)
@@ -1332,7 +1332,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Coating: </b> [data["recipe"]["coating"]]<br>"
 	// Fruits/Veggis
 	var/list/fruits = data["recipe"]["fruits"]
-	if(fruits && fruits.len) // Can't use lazylen, assoc list
+	if(fruits && length(fruits)) // Can't use lazylen, assoc list
 		var/count = 0
 		var/pretty_fru = ""
 		for(var/fru in fruits)
@@ -1342,7 +1342,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Components: </b> [pretty_fru]<br>"
 	//For each reagent
 	var/list/reags = data["recipe"]["reagents"]
-	if(reags && reags.len) // Can't use lazylen, assoc list
+	if(reags && length(reags)) // Can't use lazylen, assoc list
 		var/count = 0
 		var/pretty_rea = ""
 		for(var/reg in reags)
@@ -1352,7 +1352,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Mix in: </b> [pretty_rea]<br>"
 	//For each catalyst
 	var/list/catalis = data["recipe"]["catalysts"]
-	if(catalis && catalis.len) // Can't use lazylen, assoc list
+	if(catalis && length(catalis)) // Can't use lazylen, assoc list
 		var/count = 0
 		var/pretty_cat = ""
 		for(var/cat in catalis)
@@ -1501,7 +1501,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/path in blockers)
 			var/datum/trait/TG = GLOB.all_traits[path]
 			output_blockers.Add(TG.name)
-		if(output_blockers.len)
+		if(length(output_blockers))
 			data["blockers"] = output_blockers
 	else
 		// Old style gene
@@ -1536,7 +1536,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/proc/print_allergens(var/list/allergens)
 	PROTECTED_PROC(TRUE)
 	var/AG = ""
-	if(allergens && allergens.len > 0)
+	if(allergens && length(allergens) > 0)
 		AG += "<b>Allergens: </b><br>"
 		for(var/ALGY in allergens)
 			AG += "-[ALGY]<br>"
@@ -1546,10 +1546,10 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/proc/print_reaction_data(var/list/data)
 	var/body = ""
 	var/list/instant = data["instant_reactions"]
-	if(instant && instant.len > 0)
+	if(instant && length(instant) > 0)
 		var/segment = 1
 		for(var/list/react in instant)
-			if(instant.len == 1)
+			if(length(instant) == 1)
 				body += "<b>Potential Chemical breakdown: </b><br>"
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
@@ -1568,10 +1568,10 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Potential Chemical breakdown: </b><br>UNKNOWN OR BASE-REAGENT<br>"
 
 	var/list/distilled = data["distilled_reactions"]
-	if(distilled && distilled.len > 0)
+	if(distilled && length(distilled) > 0)
 		var/segment = 1
 		for(var/list/react in distilled)
-			if(distilled.len == 1)
+			if(length(distilled) == 1)
 				body += "<b>Potential Chemical breakdown: </b><br>"
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
@@ -1589,28 +1589,28 @@ SUBSYSTEM_DEF(internal_wiki)
 				body += " <b>-Catalyst: </b>[CL]<br>"
 
 	var/list/grind_ore = data["grinding"]["ore"]
-	if(grind_ore && grind_ore.len)
+	if(grind_ore && length(grind_ore))
 		body += "<br>"
 		body += "<b>Ore processing results: </b><br>"
 		for(var/PL in grind_ore)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	var/list/grind_mats = data["grinding"]["material"]
-	if(grind_mats && grind_mats.len)
+	if(grind_mats && length(grind_mats))
 		body += "<br>"
 		body += "<b>Material processing results: </b><br>"
 		for(var/PL in grind_mats)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	var/list/grind_plants = data["grinding"]["plant"]
-	if(grind_plants && grind_plants.len)
+	if(grind_plants && length(grind_plants))
 		body += "<br>"
 		body += "<b>Organic processing results: </b><br>"
 		for(var/PL in grind_plants)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	var/list/fluid_pumping = data["fluid"]
-	if(fluid_pumping && fluid_pumping.len)
+	if(fluid_pumping && length(fluid_pumping))
 		body += "<br>"
 		body += "<b>Fluid pump results: </b><br>"
 		for(var/PL in fluid_pumping)
@@ -1618,7 +1618,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	body += "<br>"
 	var/list/produces = data["produces"]
-	if(produces && produces.len)
+	if(produces && length(produces))
 		body += "<b>Is a component of: </b><br>"
 		for(var/PL in produces)
 			body += "-[PL]<br>"

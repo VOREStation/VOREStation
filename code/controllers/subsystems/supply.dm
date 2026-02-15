@@ -135,19 +135,20 @@ SUBSYSTEM_DEF(supply)
 		if(SO.status == SUP_ORDER_APPROVED)
 			shoppinglist += SO
 
-	if(!shoppinglist.len)
+	var/orderedamount = length(shoppinglist)
+
+	if(!orderedamount)
 		return
-	var/orderedamount = shoppinglist.len
 
 	var/list/clear_turfs = get_clear_turfs()
 
 	var/shopping_log = "SUPPLY_BUY: "
 
 	for(var/datum/supply_order/SO in shoppinglist)
-		if(!clear_turfs.len)
+		if(!length(clear_turfs))
 			break
 
-		var/i = rand(1,clear_turfs.len)
+		var/i = rand(1,length(clear_turfs))
 		var/turf/pickedloc = clear_turfs[i]
 		clear_turfs.Cut(i,i+1)
 
@@ -191,7 +192,7 @@ SUBSYSTEM_DEF(supply)
 		if(istype(SP,/datum/supply_pack/randomised))
 			var/datum/supply_pack/randomised/SPR = SP
 			contains = list()
-			if(SPR.contains.len)
+			if(length(SPR.contains))
 				for(var/j=1,j<=SPR.num_contained,j++)
 					contains += pick(SPR.contains)
 		else
