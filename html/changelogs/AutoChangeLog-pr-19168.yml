@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "considering length is faster than .len, this moves subsystems where possible to length"
