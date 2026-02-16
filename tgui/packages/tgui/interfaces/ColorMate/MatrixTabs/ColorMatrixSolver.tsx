@@ -115,7 +115,7 @@ export const ColorMateMatrixSolver = (props: {
                 />
               </Stack.Item>
               <Stack.Item>
-                <Box color="label">{`=`}</Box>
+                <Box color="label">{`==`}</Box>
               </Stack.Item>
               <Stack.Item>
                 <Button
@@ -127,7 +127,7 @@ export const ColorMateMatrixSolver = (props: {
                 />
               </Stack.Item>
               <Stack.Item>
-                <Box color="label">{`>`}</Box>
+                <Box color="label">{`=>`}</Box>
               </Stack.Item>
               <Stack.Item>
                 <Button
