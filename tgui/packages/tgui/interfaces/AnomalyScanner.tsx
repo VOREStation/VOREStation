@@ -54,7 +54,7 @@ export const AnomalyScanner = (props) => {
     <Window width={400} height={325}>
       <Window.Content>
         {anomaly_name ? (
-          <Stack vertical fill>
+          <Stack vertical fill scrollable>
             <Stack.Item>
               <Section title={capitalizeAll(anomaly_name)}>
                 <LabeledList>
@@ -68,7 +68,7 @@ export const AnomalyScanner = (props) => {
                     {stability}
                   </LabeledList.Item>
                   <LabeledList.Item label="Point output">
-                    {point_output}
+                    {round(point_output, 0)}
                   </LabeledList.Item>
                   <LabeledList.Item label="Time until next pulse">
                     {round(countdown, 0)} seconds

@@ -37,7 +37,7 @@ export const SampleDisplay = (props) => {
                       <Button
                         onClick={() =>
                           act('release_sample', {
-                            index: index,
+                            ref: sample.ref,
                           })
                         }
                       >

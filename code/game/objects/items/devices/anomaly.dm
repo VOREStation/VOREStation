@@ -112,3 +112,28 @@
 	data["countdown"] = stats.get_activation_countdown()
 
 	return data
+
+/obj/item/gun/energy/anomaly
+	name = "anomalous particle gun"
+	desc = "A handheld particle emitter, used to safely release a specific particle frequency."
+	icon_state = "taserblue"
+	charge_cost = 160
+	fire_delay = 4
+	projectile_type = /obj/item/projectile/energy/anomaly
+	var/particle = ANOMALY_PARTICLE_SIGMA
+
+/obj/item/gun/energy/anomaly/attack_self(mob/user)
+	var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)
+	if(!chosen_particle)
+		return
+
+	particle = chosen_particle
+	balloon_alert_visible("changed to [chosen_particle]")
+	..()
+
+/obj/item/gun/energy/anomaly/consume_next_projectile()
+	. = ..()
+	var/obj/item/projectile/energy/anomaly/projectile = new projectile_type
+	if(particle)
+		projectile.particle_type = particle
+	return projectile

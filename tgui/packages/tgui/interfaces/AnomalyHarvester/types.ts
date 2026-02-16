@@ -11,4 +11,5 @@ type Sample = {
   icon_state: string;
   width: number;
   height: number;
+  ref: string;
 };

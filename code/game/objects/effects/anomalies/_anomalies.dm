@@ -79,7 +79,7 @@
 	else
 		balloon_alert_visible("I'm pulsing it")
 		stats.pulse_effect()
-		stats.next_activation = world.time + rand(45 SECONDS, 90 SECONDS)
+		stats.next_activation = world.time + rand(stats.min_activation, stats.max_activation)
 
 /obj/effect/anomaly/proc/move_anomaly()
 	step(src, pick(GLOB.alldirs))

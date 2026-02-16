@@ -14,6 +14,11 @@
 	var/datum/weakref/harvested
 	var/list/obj/item/research_sample/samples
 
+/obj/machinery/anomaly_harvester/advanced
+	name = "advanced anomaly harvester"
+	desc = "A strange device that condenses anomalous energy into tangible material. This one seems to be an upgrade."
+	points_to_create = 75
+
 /obj/machinery/anomaly_harvester/process()
 	..()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
@@ -53,12 +58,19 @@
 	if(default_unfasten_wrench(user, W, 2 SECONDS))
 		return
 	if(istype(W, /obj/item/anomaly_scanner))
+		if(!anchored)
+			to_chat(user, span_danger("The [src] is not anchored!"))
+			return
 		var/obj/item/anomaly_scanner/scanner = W
 		if(scanner.buffered_anomaly && do_after(user, 2 SECONDS, src))
 			attach_anomaly(scanner.buffered_anomaly)
 		return
 
 	return ..()
+
+/obj/machinery/anomaly_harvester/default_unfasten_wrench(mob/user, obj/item/W, time)
+	. = ..()
+	harvested = null
 
 /obj/machinery/anomaly_harvester/proc/attach_anomaly(datum/weakref/anomaly)
 	harvested = anomaly
@@ -141,7 +153,20 @@
 			"icon" = sample.icon,
 			"icon_state" = sample.icon_state,
 			"width" = "32px",
-			"height" = "32px"
+			"height" = "32px",
+			"ref" = REF(sample)
 		))
 
 	return data
+
+/obj/machinery/anomaly_harvester/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("release_sample")
+			var/obj/item/research_sample/sample = locate(params["ref"]) in src
+			if(istype(sample) && (sample.loc == src) && usr.Adjacent(src))
+				sample.forceMove(get_turf(src))
+				SStgui.update_uis(src)

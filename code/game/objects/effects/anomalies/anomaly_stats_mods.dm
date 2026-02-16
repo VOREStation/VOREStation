@@ -25,7 +25,7 @@
 /datum/anomaly_modifiers/reflective
 	name = "Reflective"
 	description = "A protective coating was detected."
-	value = 0.1
+	value = 1.2
 
 /datum/anomaly_modifiers/reflective/on_add(datum/weakref/anomaly)
 	var/datum/anomaly_stats/stats = attached_anomaly.stats
@@ -38,17 +38,17 @@
 /datum/anomaly_modifiers/invisible
 	name = "Invisible"
 	description = "Light wave distortion was detected."
-	value = 0.6
+	value = 1.5
 
 /datum/anomaly_modifiers/invisible/on_add(datum/weakref/anomaly)
 	if(!..())
 		return
-	attached_anomaly.cloak()
+	addtimer(CALLBACK(attached_anomaly, TYPE_PROC_REF(/atom/movable/, cloak)), 2 SECONDS)
 
 /datum/anomaly_modifiers/invisible/on_remove(datum/weakref/anomaly)
 	if(!..())
 		return
-	attached_anomaly.uncloak()
+	addtimer(CALLBACK(attached_anomaly, TYPE_PROC_REF(/atom/movable/, uncloak)), 2 SECONDS)
 
 /*
 /datum/anomaly_modifiers/hidden
@@ -60,7 +60,7 @@
 /datum/anomaly_modifiers/move
 	name = "Move"
 	description = "Anomalous anchoring could not be detected."
-	value = 0.2
+	value = 1.4
 
 /datum/anomaly_modifiers/move/on_add(datum/weakref/anomaly)
 	if(!..())
@@ -71,3 +71,25 @@
 	if(!..())
 		return
 	attached_anomaly.move_chance = 0
+
+/datum/anomaly_modifiers/fast
+	name = "Faster Pulses"
+	description = "Anomalous pulses are more common."
+	value = 0.9
+
+/datum/anomaly_modifiers/fast/on_add(datum/weakref/anomaly)
+	if(!..())
+		return
+
+	var/datum/anomaly_stats/stats = attached_anomaly.stats
+	stats.min_activation = 25 SECONDS
+	stats.max_activation = 45 SECONDS
+
+/datum/anomaly_modifiers/fast/on_remove(datum/weakref/anomaly)
+	if(!..())
+		return
+
+	var/datum/anomaly_stats/stats = attached_anomaly.stats
+
+	stats.min_activation = initial(stats.min_activation)
+	stats.max_activation = initial(stats.max_activation)

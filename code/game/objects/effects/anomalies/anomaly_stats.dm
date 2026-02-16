@@ -1,5 +1,5 @@
 /datum/anomaly_stats
-	var/severity = 1.0
+	var/severity = 1
 	var/stability
 	var/max_health
 
@@ -16,14 +16,15 @@
 	var/next_activation
 	// Total of points we'll get once the anomaly does a pulse
 	var/points
-	// Should give a pulse and do things every minute or so
-	var/last_pulse
 	var/curr_health
 	var/flags
 
+	var/min_activation = 45 SECONDS
+	var/max_activation = 90 SECONDS
+
 /datum/anomaly_stats/New()
 	randomize_particle_types()
-	severity = rand(5.0, 15.0)
+	severity = rand(5, 15)
 	max_health = rand(50, 150)
 	curr_health = max_health
 	points = calculate_points()
@@ -42,15 +43,15 @@
 	transformation_type = particles[4]
 
 /datum/anomaly_stats/proc/calculate_points()
-	var/total = 0
+	var/total = 10
 
-	total += severity/100
+	total += severity/5
 	total *= curr_health/max_health
 
 	if(modifier)
-		total += modifier.get_value()
+		total *= modifier.get_value()
 
-	points = total*10
+	points = total
 
 	return points
 
