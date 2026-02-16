@@ -15,10 +15,10 @@ export function computeMatrixFromPairs(
   const matrix: number[][] = [];
 
   for (let channel = 0; channel < 3; channel++) {
-    const A = rgbIn.map((rgb) => [rgb[0], rgb[1], rgb[2], 1]);
+    const a = rgbIn.map((rgb) => [rgb[0], rgb[1], rgb[2], 1]);
     const b = rgbOut.map((rgb) => rgb[channel]);
 
-    const weights = leastSquares(A, b);
+    const weights = leastSquares(a, b);
 
     if (weights.length !== 4) {
       throw new Error(`Matrix computation failed for channel ${channel}`);
@@ -38,10 +38,10 @@ function hexToRgb255(hex: string): number[] {
   return [r, g, b];
 }
 
-function gaussElim(A: number[][], b: number[]): number[] {
-  const n = A.length;
-  const m = A[0].length;
-  const aug = A.map((row, i) => [...row, b[i]]);
+function gaussElim(a: number[][], b: number[]): number[] {
+  const n = a.length;
+  const m = a[0].length;
+  const aug = a.map((row, i) => [...row, b[i]]);
 
   let rank = 0;
   for (let col = 0; col < m && rank < n; col++) {
@@ -81,11 +81,11 @@ function gaussElim(A: number[][], b: number[]): number[] {
   return x;
 }
 
-function leastSquares(A: number[][], b: number[]): number[] {
-  const rows = A.length;
-  const cols = A[0].length;
+function leastSquares(a: number[][], b: number[]): number[] {
+  const rows = a.length;
+  const cols = a[0].length;
 
-  const ATA: number[][] = Array.from({ length: cols }, () =>
+  const ATa: number[][] = Array.from({ length: cols }, () =>
     new Array(cols).fill(0),
   );
   const ATb = new Array(cols).fill(0);
@@ -93,15 +93,15 @@ function leastSquares(A: number[][], b: number[]): number[] {
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < cols; j++) {
       for (let k = 0; k < rows; k++) {
-        ATA[i][j] += A[k][i] * A[k][j];
+        ATa[i][j] += a[k][i] * a[k][j];
       }
     }
     for (let k = 0; k < rows; k++) {
-      ATb[i] += A[k][i] * b[k];
+      ATb[i] += a[k][i] * b[k];
     }
   }
 
-  return gaussElim(ATA, ATb);
+  return gaussElim(ATa, ATb);
 }
 
 export function transformColor(
