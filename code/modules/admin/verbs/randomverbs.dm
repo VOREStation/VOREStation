@@ -738,7 +738,7 @@ ADMIN_VERB(admin_deny_shuttle, R_ADMIN, "Toggle Deny Shuttle", "Prevents the shu
 
 	GLOB.emergency_shuttle.deny_shuttle = !GLOB.emergency_shuttle.deny_shuttle
 
-	log_admin("[key_name(user)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	log_admin("[key_name(user)] has [GLOB.emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 	message_admins("[key_name_admin(user)] has [GLOB.emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 ADMIN_VERB(everyone_random, R_FUN, "Make Everyone Random", "Make everyone have a random appearance. You can only use this before rounds!", ADMIN_CATEGORY_FUN_DO_NOT)
