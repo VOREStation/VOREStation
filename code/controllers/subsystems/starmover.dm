@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(starmover)
 /datum/controller/subsystem/starmover/fire(resumed)
 	// Get next in queue or dropout
 	if(!resumed && !current_movement)
-		if(!zqueue.len)
+		if(!length(zqueue))
 			return
 		current_movement = zqueue[1]
 		zqueue[1] = null
@@ -34,15 +34,15 @@ SUBSYSTEM_DEF(starmover)
 		var/zlevel = current_movement[CR_ZLEVEL]
 		var/new_dir = current_movement[CR_DIRECTION]
 		var/list/turf_list = current_movement[CR_TURFS]
-		if(!turf_list.len || moving_levels["[zlevel]"] == new_dir)
+		if(!length(turf_list) || moving_levels["[zlevel]"] == new_dir)
 			clear_movement_run()
 			return
 		moving_levels["[zlevel]"] = new_dir
 		currentrun = turf_list
 
 	// Has a movement queued, process all turfs
-	while(currentrun.len)
-		var/turf/space/T = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/turf/space/T = currentrun[length(currentrun)]
 		currentrun.len--
 		if(istype(T))
 			T.toggle_transit(current_movement[CR_DIRECTION])
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(starmover)
 	currentrun = null
 
 /datum/controller/subsystem/starmover/stat_entry(msg)
-	msg = "Q:[zqueue.len] C:[currentrun ? currentrun.len : "-"]"
+	msg = "Q:[length(zqueue)] C:[currentrun ? length(currentrun) : "-"]"
 	return ..()
 
 /// Used to 'move' stars in spess. null direction stops movement

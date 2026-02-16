@@ -135,3 +135,28 @@
 2026-02-13:
   ReoDaProtovali:
   - rscadd: Adds a new, recolorable "Backwards Headspikes" ear/horn marking
+2026-02-16:
+  Azzy.Dreemurr:
+  - rscadd: Added separate access to the Talon (but the crew still has full access)
+  - maptweak: Added lockers containing inflatable walls on Talon
+  Guti:
+  - bugfix: Fixes anomaly weather doing effects in open turfs
+  - code_imp: Added various weather anomaly subtypes for easier way to spawn a specific
+      weather
+  Kashargul:
+  - code_imp: considering length is faster than .len, this moves subsystems where
+      possible to length
+  - bugfix: Vore Panel verb going missing
+  KillianKirilenko:
+  - bugfix: fixed a missing sprite used by the 'smooth lizard tail, dual color'
+  - qol: mech part fabricator now has a clearer message when you try to change its
+      output direction whilst it's printing
+  - bugfix: mech part fabricator now completely refuses to start printing a part if
+      its output direction is invalid; ongoing queues should be frozen until the output
+      is reoriented
+  - qol: innland redgate; kitchen cabinets and dispensers now have no access restrictions
+  - qol: innland redgate; added a couple of extra lights and some candles/matches
+  - maptweak: innland redgate; added path leading directly from gate, added door to
+      north side of building
+  - maptweak: innland redgate; added four bedrooms linked via portal 'stairway'; moved
+      tcomm unit into janitor closet
