@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(orbit)
 	var/list/processing = list()
 
 /datum/controller/subsystem/orbit/stat_entry(msg)
-	msg = "P:[processing.len]"
+	msg = "P:[length(processing)]"
 	return ..()
 
 
@@ -19,8 +19,8 @@ SUBSYSTEM_DEF(orbit)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
-	while (currentrun.len)
-		var/datum/orbit/O = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/datum/orbit/O = currentrun[length(currentrun)]
 		currentrun.len--
 		if (!O)
 			processing -= O

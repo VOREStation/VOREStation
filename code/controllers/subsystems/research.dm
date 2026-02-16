@@ -331,7 +331,7 @@ SUBSYSTEM_DEF(research)
 
 // 	for(var/partner_path in subtypesof(/datum/scientific_partner))
 // 		var/datum/scientific_partner/partner = new partner_path
-// 		if(!partner.accepted_experiments.len)
+// 		if(!length(partner.accepted_experiments))
 // 			for (var/datum/experiment/ordnance/ordnance_experiment as anything in ordnance_experiments)
 // 				partner.accepted_experiments += ordnance_experiment.type
 // 		scientific_partners += partner

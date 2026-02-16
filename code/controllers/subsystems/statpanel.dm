@@ -114,11 +114,11 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/update_misc_tabs(var/client/target,var/mob/target_mob)
 	target_mob.update_misc_tabs()
 	for(var/tab in target_mob.misc_tabs)
-		if(target_mob.misc_tabs[tab].len == 0 && (tab in target.misc_tabs))
+		if(length(target_mob.misc_tabs[tab]) == 0 && (tab in target.misc_tabs))
 			target.misc_tabs -= tab
 			target.stat_panel.send_message("remove_misc",tab)
 
-		if(target_mob.misc_tabs[tab].len > 0)
+		if(length(target_mob.misc_tabs[tab]) > 0)
 			if(!(tab in target.misc_tabs))
 				target.misc_tabs += tab
 				target.stat_panel.send_message("create_misc",tab)
@@ -211,7 +211,7 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/generate_mc_data()
 	mc_data = list(
 		list("CPU:", world.cpu),
-		list("Instances:", "[num2text(world.contents.len, 10)]"),
+		list("Instances:", "[num2text(length(world.contents), 10)]"),
 		list("World Time:", "[world.time]"),
 		list("Globals:", GLOB.stat_entry(), text_ref(GLOB)),
 		list("[config]:", config.stat_entry(), text_ref(config)),
@@ -240,7 +240,7 @@ SUBSYSTEM_DEF(statpanels)
 #endif
 	for(var/datum/controller/subsystem/sub_system as anything in Master.subsystems)
 		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
-	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [global.cameranet.cameras.len] | Chunks: [global.cameranet.chunks.len]", "\ref[global.cameranet]")
+	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [length(global.cameranet.cameras)] | Chunks: [length(global.cameranet.chunks)]", "\ref[global.cameranet]")
 
 ///immediately update the active statpanel tab of the target client
 /datum/controller/subsystem/statpanels/proc/immediate_send_stat_data(client/target)

@@ -43,8 +43,8 @@ SUBSYSTEM_DEF(appreciation)
 
 		current_player_list = GLOB.player_list.Copy()
 
-	while(current_player_list.len)
-		var/mob/M = current_player_list[current_player_list.len]
+	while(length(current_player_list))
+		var/mob/M = current_player_list[length(current_player_list)]
 		current_player_list.len--
 
 		if(ishuman(M))
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(appreciation)
 
 
 /datum/controller/subsystem/appreciation/proc/build_appreciation()
-	if(human_list.len < required_humans)
+	if(length(human_list) < required_humans)
 		appreciated = pick(loremaster.appreciation_targets)
 		return
 

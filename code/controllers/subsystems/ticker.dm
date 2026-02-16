@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/adm = get_admin_counts()
 	var/list/allmins = adm["present"]
-	send2adminchat("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]" : ""] has started[allmins.len ? ".":" with no active admins online!"]")
+	send2adminchat("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]" : ""] has started[length(allmins) ? ".":" with no active admins online!"]")
 
 	setup_done = TRUE
 	// TODO START
@@ -295,7 +295,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/runnable_modes = config.get_runnable_modes()
 	if((GLOB.master_mode == "random") || (GLOB.master_mode == "secret"))
-		if(!runnable_modes.len)
+		if(!length(runnable_modes))
 			to_chat(world, span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
 			return 0
 		if(GLOB.secret_force_mode != "secret")
@@ -326,12 +326,12 @@ SUBSYSTEM_DEF(ticker)
 
 	if(hide_mode)
 		to_chat(world, span_world(span_notice("The current game mode is - Secret!")))
-		if(runnable_modes.len)
+		if(length(runnable_modes))
 			var/list/tmpmodes = list()
 			for (var/datum/game_mode/M in runnable_modes)
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
-			if(tmpmodes.len)
+			if(length(tmpmodes))
 				to_chat(world, span_filter_system(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
 	else
 		src.mode.announce()

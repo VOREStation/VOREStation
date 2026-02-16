@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - code_imp: "updates python dependencies"
+  - bugfix: "Vore Panel verb going missing"
