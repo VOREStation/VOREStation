@@ -307,7 +307,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(length(currentrun))
-		var/datumzone/zone = currentrun[length(currentrun)]
+		var/datum/zone/zone = currentrun[length(currentrun)]
 		currentrun.len--
 		if(zone) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			zone.tick()

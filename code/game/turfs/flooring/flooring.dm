@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 
 /proc/populate_flooring_types()
 	var/list/floor_types = list()
-	for (var/flooring_path in typesof(/decl/flooring))
+	for (var/flooring_path in typesof(/datum/decl/flooring))
 		floor_types["[flooring_path]"] = new flooring_path
 	return floor_types
 
