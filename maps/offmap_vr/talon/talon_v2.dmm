@@ -12,7 +12,7 @@
 /area/talon_v2/brig)
 "ac" = (
 /obj/machinery/computer/ship/helm{
-	req_one_access = list(301)
+	req_one_access = list(302)
 	},
 /obj/machinery/light{
 	dir = 1
@@ -292,6 +292,12 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering)
+"aF" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 2
+	},
+/turf/simulated/wall/shull,
+/area/talon_v2/gen_store)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -325,7 +331,7 @@
 	},
 /obj/machinery/door/airlock/engineeringatmos{
 	name = "Talon Atmospherics";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/sign/directions/engineering/atmospherics{
 	dir = 8;
@@ -411,7 +417,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/command{
 	name = "Bridge";
-	req_one_access = list(301)
+	req_one_access = list(302)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/bridge)
@@ -430,7 +436,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/command{
 	name = "Bridge";
-	req_one_access = list(301)
+	req_one_access = list(302)
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -568,7 +574,7 @@
 /obj/machinery/door/airlock/medical{
 	id_tag = "talon_meddoor";
 	name = "Doctor's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(303)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/crew_quarters/med_room)
@@ -597,6 +603,24 @@
 /obj/item/gun/energy/gun,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
+"bk" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 2
+	},
+/turf/simulated/wall/shull,
+/area/talon_v2/workroom)
+"bl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/closet/walllocker_double/emergency_engi/west,
+/turf/simulated/floor/tiled/techmaint,
+/area/talon_v2/central_hallway)
+"bm" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 1
+	},
+/turf/simulated/wall/shull,
+/area/talon_v2/crew_quarters/med_room)
 "bn" = (
 /obj/structure/hull_corner{
 	dir = 4
@@ -629,6 +653,12 @@
 /obj/item/bedsheet/red,
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/sec_room)
+"bq" = (
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 4
+	},
+/turf/simulated/wall/rshull,
+/area/talon_v2/crew_quarters/bar)
 "br" = (
 /obj/structure/flora/pottedplant/fern,
 /obj/machinery/holoposter{
@@ -916,7 +946,7 @@
 /obj/machinery/door/airlock/engineering{
 	id_tag = "talon_engdoor";
 	name = "Engineer's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering/star_store)
@@ -984,7 +1014,7 @@
 /obj/machinery/door/airlock/security{
 	id_tag = "talon_secdoor";
 	name = "Guard's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(306)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/crew_quarters/sec_room)
@@ -1023,7 +1053,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/sec{
 	id_tag = "talon_secdoor";
-	req_one_access = list(301)
+	req_one_access = list(306)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/crew_quarters/sec_room)
@@ -1138,7 +1168,7 @@
 /obj/machinery/door/airlock/command{
 	id_tag = "talon_capdoor";
 	name = "Captain's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(302)
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -1623,7 +1653,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/hatch{
 	name = "Generator Room";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -1814,7 +1844,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/structure/closet/walllocker_double/east,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering/star_store)
 "fj" = (
@@ -2566,7 +2595,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/glass_security{
 	name = "Talon Armory";
-	req_one_access = list(301)
+	req_one_access = list(302,306)
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -2636,7 +2665,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineering{
 	name = "Talon Engineering";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/sign/warning/nosmoking_1{
 	pixel_x = -26
@@ -2652,8 +2681,8 @@
 "ii" = (
 /obj/machinery/vending/engivend{
 	products = list(/obj/item/geiger = 4, /obj/item/clothing/glasses/meson = 2, /obj/item/multitool = 4, /obj/item/cell/high = 10, /obj/item/airlock_electronics = 10, /obj/item/module/power_control = 10, /obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/firealarm = 10, /obj/item/circuitboard/status_display = 2, /obj/item/circuitboard/ai_status_display = 2, /obj/item/circuitboard/newscaster = 2, /obj/item/circuitboard/holopad = 2, /obj/item/circuitboard/intercom = 4, /obj/item/circuitboard/security/telescreen/entertainment = 4, /obj/item/stock_parts/motor = 2, /obj/item/stock_parts/spring = 2, /obj/item/stock_parts/gear = 2, /obj/item/circuitboard/atm, /obj/item/circuitboard/guestpass, /obj/item/circuitboard/keycard_auth, /obj/item/circuitboard/photocopier, /obj/item/circuitboard/fax, /obj/item/circuitboard/request, /obj/item/circuitboard/microwave, /obj/item/circuitboard/washing, /obj/item/circuitboard/scanner_console, /obj/item/circuitboard/sleeper_console, /obj/item/circuitboard/body_scanner, /obj/item/circuitboard/sleeper, /obj/item/circuitboard/dna_analyzer, /obj/item/circuitboard/partslathe);
-	req_access = list(301);
-	req_log_access = 301
+	req_access = list(304);
+	req_log_access = 304
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering/star_store)
@@ -2708,7 +2737,9 @@
 "ir" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	req_access = list(304)
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/wing_port)
 "is" = (
@@ -3390,7 +3421,7 @@
 	},
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Engine Crawlway Access";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/starboard)
@@ -3439,7 +3470,7 @@
 /area/talon_v2/engineering/starboard)
 "lm" = (
 /obj/machinery/computer/ship/helm{
-	req_one_access = list(301)
+	req_one_access = list(307)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
@@ -3637,7 +3668,7 @@
 "lR" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/medical{
-	req_one_access = list(301)
+	req_one_access = list(303)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -3787,6 +3818,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/catwalk,
+/obj/structure/closet/walllocker_double/emergency_engi/west{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/aft_starboard)
 "mr" = (
@@ -3941,7 +3975,7 @@
 /obj/machinery/door/airlock/medical{
 	id_tag = "talon_meddoor";
 	name = "Doctor's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(303)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/crew_quarters/med_room)
@@ -4570,7 +4604,7 @@
 /obj/machinery/door/airlock/security{
 	id_tag = "talon_secdoor";
 	name = "Guard's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(306)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/crew_quarters/sec_room)
@@ -4862,21 +4896,21 @@
 	name = "Cell 2 Shutters";
 	pixel_x = 7;
 	pixel_y = 28;
-	req_one_access = list(301)
+	req_one_access = list(302,306)
 	},
 /obj/machinery/button/remote/blast_door{
 	id = "talon_brig1";
 	name = "Cell 1 Shutters";
 	pixel_x = -8;
 	pixel_y = 28;
-	req_one_access = list(301)
+	req_one_access = list(302,306)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/brig)
 "qm" = (
 /obj/machinery/vending/security{
-	req_access = list(301);
-	req_log_access = 301
+	req_access = list(302, 306);
+	req_log_access = 306
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/brig)
@@ -4971,7 +5005,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineeringatmos{
 	name = "Talon Atmospherics";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -5376,7 +5410,7 @@
 /obj/machinery/door/airlock{
 	id_tag = "talon_pilotdoor";
 	name = "Pilot's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(307)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/crew_quarters/pilot_room)
@@ -5426,7 +5460,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/glass_security{
 	name = "Talon Brig/Sec";
-	req_one_access = list(301)
+	req_one_access = list(302,306)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5623,7 +5657,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Port Eng. Storage";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -5802,7 +5836,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/medical{
 	id_tag = "talon_meddoor";
-	req_one_access = list(301)
+	req_one_access = list(303)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/crew_quarters/med_room)
@@ -6084,11 +6118,11 @@
 "uF" = (
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 1;
-	req_access = list(301)
+	req_access = list(302,306)
 	},
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 2;
-	req_access = list(301)
+	req_access = list(302,306)
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6493,13 +6527,14 @@
 "vU" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/sec{
-	req_one_access = list(301)
+	req_one_access = list(302,306)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/brig)
 "vV" = (
 /obj/machinery/computer/shuttle_control/explore/talonboat{
-	dir = 4
+	dir = 4;
+	req_one_access = list(307)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
@@ -6738,7 +6773,7 @@
 "wN" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/medical{
-	req_one_access = list(301)
+	req_one_access = list(303)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -6859,7 +6894,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "talon_cargo_star";
 	name = "Cargo Loading Hatches";
-	pixel_y = -28
+	pixel_y = -28;
+	req_access = list(305)
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -6883,8 +6919,8 @@
 "xj" = (
 /obj/machinery/vending/engineering{
 	products = list(/obj/item/clothing/under/rank/chief_engineer = 4, /obj/item/clothing/under/rank/engineer = 4, /obj/item/clothing/shoes/orange = 4, /obj/item/clothing/head/hardhat = 4, /obj/item/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4, /obj/item/clothing/gloves/yellow = 4, /obj/item/tool/screwdriver = 12, /obj/item/tool/crowbar = 12, /obj/item/tool/wirecutters = 12, /obj/item/multitool = 12, /obj/item/tool/wrench = 12, /obj/item/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8, /obj/item/cell = 8, /obj/item/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/light/tube = 10, /obj/item/clothing/head/hardhat/red = 4, /obj/item/clothing/suit/fire = 4, /obj/item/stock_parts/scanning_module = 5, /obj/item/stock_parts/micro_laser = 5, /obj/item/stock_parts/matter_bin = 5, /obj/item/stock_parts/manipulator = 5, /obj/item/stock_parts/console_screen = 5);
-	req_access = list(301);
-	req_log_access = 301;
+	req_access = list(304);
+	req_log_access = 304;
 	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -7023,7 +7059,9 @@
 /area/talon_v2/crew_quarters/meditation)
 "xN" = (
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	req_access = list(305)
+	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
@@ -7074,7 +7112,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineering{
 	name = "Talon Starboard Engines";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/starboard)
@@ -7833,7 +7871,9 @@
 "AU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	req_access = list(304)
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/wing_starboard)
 "AV" = (
@@ -8019,7 +8059,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Talon Atmospherics Maintenance Access";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -8602,7 +8642,7 @@
 "Ec" = (
 /obj/machinery/door/airlock/maintenance/cargo{
 	id_tag = "talon_minerdoor";
-	req_one_access = list(301)
+	req_one_access = list(305)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/crew_quarters/mine_room)
@@ -8756,11 +8796,11 @@
 "ED" = (
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 1;
-	req_access = list(301)
+	req_access = list(302,306)
 	},
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 2;
-	req_access = list(301)
+	req_access = list(302,306)
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -8841,7 +8881,7 @@
 /obj/machinery/door/airlock/command{
 	id_tag = "talon_capdoor";
 	name = "Captain's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(302)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/bridge)
@@ -9080,7 +9120,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/voidcraft{
 	name = "Cabin Access";
-	req_one_access = list(301)
+	req_one_access = list(307)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
@@ -9877,7 +9917,7 @@
 	},
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Engine Crawlway Access";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
@@ -10358,7 +10398,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineeringatmos{
 	name = "Talon Atmospherics";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/sign/warning/nosmoking_1{
 	pixel_x = 26
@@ -10426,7 +10466,8 @@
 	},
 /obj/machinery/computer/shuttle_control/explore/talonboat{
 	dir = 4;
-	name = "boat remote control console"
+	name = "boat remote control console";
+	req_one_access = list(302,307)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway)
@@ -10543,7 +10584,7 @@
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
 	name = "Cargo Bay";
-	req_one_access = list(301)
+	req_one_access = list(305)
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -10842,6 +10883,9 @@
 	dir = 1
 	},
 /obj/item/paper/talon_power,
+/obj/item/storage/briefcase/inflatable{
+	pixel_x = -3
+	},
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/eng_room)
 "Ln" = (
@@ -10904,7 +10948,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Starboard Eng. Storage";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11048,7 +11092,7 @@
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
 	name = "Cargo Bay";
-	req_one_access = list(301)
+	req_one_access = list(305)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/star)
@@ -11254,6 +11298,9 @@
 "Ml" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/vending/medical_talon{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/emergency_engi/west{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -11466,7 +11513,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/engineering{
 	name = "Talon Starboard Engines";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/starboard)
@@ -11668,7 +11715,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Port Eng. Storage";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11822,7 +11869,7 @@
 	},
 /obj/machinery/door/airlock/mining{
 	name = "Refinery";
-	req_one_access = list(301)
+	req_one_access = list(305)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -12133,7 +12180,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineering{
 	name = "Talon Port Engines";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
@@ -12700,7 +12747,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineering{
 	name = "Talon Port Engines & Spare Fuel";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/sign/warning/nosmoking_1{
 	pixel_x = -26
@@ -12874,7 +12921,7 @@
 /area/talon_v2/crew_quarters/eng_room)
 "RI" = (
 /obj/machinery/vending/tool{
-	req_log_access = 301
+	req_log_access = 304
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering/star_store)
@@ -13005,7 +13052,7 @@
 "Sj" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/medical{
-	req_one_access = list(301)
+	req_one_access = list(303)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/medical)
@@ -13181,7 +13228,7 @@
 /obj/machinery/door/airlock{
 	id_tag = "talon_pilotdoor";
 	name = "Pilot's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(307)
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -13329,7 +13376,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Starboard Eng. Storage";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -13446,7 +13493,7 @@
 "TJ" = (
 /obj/machinery/mineral/stacking_unit_console{
 	pixel_y = -6;
-	req_one_access = list(301)
+	req_one_access = list(305)
 	},
 /obj/structure/girder,
 /obj/structure/railing/grey{
@@ -14900,7 +14947,7 @@
 /area/talon_v2/engineering/port)
 "Yx" = (
 /obj/machinery/mineral/processing_unit_console{
-	req_one_access = list(301)
+	req_one_access = list(305)
 	},
 /obj/structure/girder,
 /obj/structure/railing/grey{
@@ -15067,7 +15114,7 @@
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/engineering{
 	name = "Talon Starboard Engines & Trash Management";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /obj/structure/sign/warning/nosmoking_1{
 	pixel_x = 26
@@ -15243,7 +15290,7 @@
 /obj/machinery/door/airlock/engineering{
 	id_tag = "talon_engdoor";
 	name = "Engineer's Cabin";
-	req_one_access = list(301)
+	req_one_access = list(304)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/crew_quarters/eng_room)
@@ -22006,7 +22053,7 @@ OQ
 GH
 uS
 AE
-OQ
+aF
 OR
 xd
 Nl
@@ -24273,7 +24320,7 @@ QS
 Uu
 QS
 wv
-QS
+bl
 xf
 PP
 QS
@@ -25668,7 +25715,7 @@ XB
 XB
 iz
 kD
-QU
+bq
 Ff
 NI
 hu
@@ -25963,7 +26010,7 @@ tb
 tb
 tb
 cf
-qr
+bm
 no
 nN
 op
@@ -28680,7 +28727,7 @@ Bw
 cH
 Aq
 CV
-Bw
+bk
 hi
 GU
 HS

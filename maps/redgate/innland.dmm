@@ -80,6 +80,24 @@
 /obj/effect/step_trigger/teleporter/innland_to_bedrooms{
 	dir = 1
 	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/dummystairs{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"ao" = (
+/obj/structure/dummystairs{
+	dir = 1
+	},
+/obj/effect/map_effect/portal/master/side_a{
+	portal_id = "bedrooms";
+	name = "main_to_bedrooms"
+	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ap" = (
@@ -87,11 +105,33 @@
 /area/redgate/structure/powered)
 "aq" = (
 /obj/effect/step_trigger/teleporter/innland_to_lower,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/effect/map_effect/portal/master/side_b{
+	name = "bedrooms_to_main";
+	portal_id = "bedrooms";
+	dir = 1
+	},
+/obj/structure/dummystairs{
+	dir = 1
+	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ar" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"as" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/dummystairs{
+	dir = 1
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
@@ -543,6 +583,14 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	pixel_x = -30
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
@@ -2366,7 +2414,7 @@ ap
 ap
 ap
 bI
-ap
+as
 aq
 af
 kw
@@ -5948,7 +5996,7 @@ ge
 cQ
 cQ
 af
-ap
+ao
 an
 ah
 ap
