@@ -4964,6 +4964,7 @@
 #include "maps\offmap_vr\common_offmaps.dm"
 #include "maps\redgate\facility_items.dm"
 #include "maps\redgate\fantasy_items.dm"
+#include "maps\redgate\innland.dm"
 #include "maps\redgate\casino_canal\casino_canal.dm"
 #include "maps\redgate\casino_canal\casino_canal_floodecals.dm"
 #include "maps\redgate\falls\atoll_decals.dm"
