@@ -82,13 +82,6 @@
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
-"ao" = (
-/obj/structure/sign/directions/roomnum{
-	dir = 1;
-	pixel_y = -8
-	},
-/turf/simulated/wall/wood,
-/area/redgate/structure/powered/bed2)
 "ap" = (
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
@@ -102,13 +95,6 @@
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
-"as" = (
-/obj/structure/sign/directions/roomnum{
-	dir = 8;
-	pixel_y = 8
-	},
-/turf/simulated/wall/wood,
-/area/redgate/structure/powered/bed4)
 "at" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
 /turf/simulated/floor/outdoors/grass/seasonal,
@@ -543,6 +529,13 @@
 	},
 /turf/simulated/wall/wood,
 /area/redgate/structure/powered/bed1)
+"bK" = (
+/obj/structure/sign/directions/roomnum{
+	dir = 1;
+	pixel_y = -8
+	},
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed2)
 "bL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -553,6 +546,13 @@
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
+"bM" = (
+/obj/structure/sign/directions/roomnum{
+	dir = 8;
+	pixel_y = 8
+	},
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed4)
 "bN" = (
 /obj/structure/sign/directions/roomnum{
 	dir = 4;
@@ -2218,9 +2218,9 @@ af
 ba
 ba
 bn
-as
+bM
 af
-ao
+bK
 aP
 av
 av
