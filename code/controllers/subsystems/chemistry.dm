@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(chemistry)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/chemistry/stat_entry(msg)
-	msg = "C: [chemical_reagents.len] | R: [chemical_reactions.len]"
+	msg = "C: [length(chemical_reagents)] | R: [length(chemical_reactions)]"
 	return ..()
 
 //Chemical Reactions - Initialises all /decl/chemical_reaction into a list
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(chemistry)
 		if(length(D.catalysts))
 			scan_list += D.catalysts
 
-		for(var/i in 1 to scan_list.len)
+		for(var/i in 1 to length(scan_list))
 			var/reagent_id = scan_list[i]
 
 			var/list/add_to = instant_reactions_by_reagent // Default to instant reactions list, if something's gone wrong

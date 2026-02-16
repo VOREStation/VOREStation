@@ -17,7 +17,9 @@
 
 	affected_areas.Add(impact_area)
 
-	if(!selected_weather)
+	if(selected_weather)
+		selected_weather = new selected_weather
+	else
 		pick_weather()
 
 	var/telegraph = lifespan / telegraph_percent
@@ -34,6 +36,8 @@
 		for(var/mob/mob in area)
 			to_chat(mob, span_notice(selected_weather.telegraph_message))
 		for(var/turf/turf in area)
+			if(isopenturf(turf))
+				affected_turfs.Add(GetBelow(turf))
 			affected_turfs.Add(turf)
 
 	apply_wibbly_filters(src)
@@ -65,6 +69,8 @@
 		return
 
 	for(var/turf/turf in affected_turfs)
+		if(isopenturf(turf))
+			turf = GetBelow(turf)
 		selected_weather.affect_turf(turf)
 
 	for(var/mob/mob as anything in GLOB.player_list)
@@ -99,10 +105,11 @@
 		selected_weather.loop_sounds.stop()
 
 	for(var/area in affected_areas)
-		for(var/turf/area_turf in area)
-			selected_weather.remove_from_turf(area_turf)
 		for(var/mob/mob in area)
 			selected_weather.hear_sounds(mob, FALSE)
+
+	for(var/turf/turf in affected_turfs)
+		selected_weather.remove_from_turf(turf)
 
 /obj/effect/anomaly/weather/Destroy()
 	clear_weather()
@@ -110,3 +117,21 @@
 
 /obj/effect/anomaly/weather/proc/update_reagent(reagent)
 	selected_weather.update_reagent(reagent)
+
+/obj/effect/anomaly/weather/rain
+	selected_weather = /datum/anomalous_weather/rain
+
+/obj/effect/anomaly/weather/acidrain
+	selected_weather = /datum/anomalous_weather/rain/acid
+
+/obj/effect/anomaly/weather/storm
+	selected_weather = /datum/anomalous_weather/rain/storm
+
+/obj/effect/anomaly/weather/bloodrain
+	selected_weather = /datum/anomalous_weather/rain/blood
+
+/obj/effect/anomaly/weather/ashstorm
+	selected_weather = /datum/anomalous_weather/ash_storm
+
+/obj/effect/anomaly/weather/hail
+	selected_weather = /datum/anomalous_weather/hail

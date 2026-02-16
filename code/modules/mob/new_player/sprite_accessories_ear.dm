@@ -1235,6 +1235,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+//'Experimental' headspikes...
+/datum/sprite_accessory/ears/backwards_headspikes
+	name = "backwards headspikes"
+	icon_state = "backwards_headspikes"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/kara //SatinIsle Fluff Item
