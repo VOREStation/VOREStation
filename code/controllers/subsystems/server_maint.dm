@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(server_maint)
 
 	var/max_pop = CONFIG_GET(number/max_hub_pop)
 
-	if(GLOB.clients.len > max_pop)
+	if(length(GLOB.clients) > max_pop)
 		world.update_hub_visibility(FALSE)
 	else
 		world.update_hub_visibility(TRUE)
