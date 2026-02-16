@@ -107,7 +107,35 @@ export const ColorMateMatrixSolver = (props: {
                 />
               </Stack.Item>
               <Stack.Item>
-                <Box color="label">{`==>`}</Box>
+                <Button
+                  icon="arrow-right"
+                  onClick={() =>
+                    handleColorUpdate(colorPair.input, 'output', index)
+                  }
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Box color="label">{`=`}</Box>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="arrow-right-arrow-left"
+                  onClick={() => {
+                    handleColorUpdate(colorPair.input, 'output', index);
+                    handleColorUpdate(colorPair.output, 'input', index);
+                  }}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Box color="label">{`>`}</Box>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="arrow-left"
+                  onClick={() =>
+                    handleColorUpdate(colorPair.output, 'input', index)
+                  }
+                />
               </Stack.Item>
               <Stack.Item>
                 <Box>Target</Box>
