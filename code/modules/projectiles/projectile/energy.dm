@@ -344,23 +344,3 @@
 	. = ..()
 	if(particle)
 		particle_type = particle
-
-/obj/item/projectile/energy/anomaly/on_hit(atom/target, blocked, def_zone)
-	if(istype(target, /obj/effect/anomaly))
-		var/obj/effect/anomaly/target_anomaly = target
-		if(target_anomaly.stats)
-			var/datum/anomaly_stats/anom_stats = target_anomaly.stats
-			if(global_flag_check(anom_stats.flags, ANOMALY_MOD_REFLECTIVE) && prob(anom_stats.severity/1.5))
-				target.balloon_alert_visible("reflected!")
-
-				var/new_x = x = pick(0, 0, 0, -1, 1, -2, 2)
-				var/new_y = y = pick(0, 0, 0, -1, 1, -2, 2)
-
-				var/turf/curloc = get_step(src, get_dir(src, starting))
-
-				penetrating += 1
-
-				redirect(new_x, new_y, curloc, null)
-				return
-			target_anomaly.stats.particle_hit(particle_type)
-	return

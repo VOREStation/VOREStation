@@ -128,6 +128,27 @@
 			return TRUE
 	return ..()
 
+/obj/effect/anomaly/bullet_act(obj/item/projectile/proj)
+	if(stats && global_flag_check(stats.flags, ANOMALY_MOD_REFLECTIVE) && prob(stats.severity/1.5))
+		balloon_alert_visible("reflected!")
+
+		var/new_x = x = pick(0, 0, 0, -1, 1, -2, 2)
+		var/new_y = y = pick(0, 0, 0, -1, 1, -2, 2)
+
+		var/turf/curloc = get_step(proj, get_dir(proj, proj.starting))
+
+		proj.penetrating += 1
+
+		proj.redirect(new_x, new_y, curloc, null)
+		return
+
+	if(istype(proj, /obj/item/projectile/energy/anomaly))
+		var/obj/item/projectile/energy/anomaly/anom_proj = proj
+		if(stats)
+			stats.particle_hit(anom_proj.particle_type)
+
+	return FALSE
+
 /proc/generate_anomaly(turf/anomalycenter, type = FLUX_ANOMALY, anomalyrange = 5, has_changed_lifespan = TRUE, drops_core = TRUE)
 	var/turf/local_turf = pick(RANGE_TURFS(anomalyrange, anomalycenter))
 	if(!local_turf)

@@ -3,6 +3,7 @@
 	var/description
 	var/value
 	var/obj/effect/anomaly/attached_anomaly = null
+	var/flags
 
 /datum/anomaly_modifiers/proc/get_description()
 	return description
@@ -28,11 +29,9 @@
 	value = 1.2
 
 /datum/anomaly_modifiers/reflective/on_add(datum/weakref/anomaly)
-	var/datum/anomaly_stats/stats = attached_anomaly.stats
 	stats.flags |= ANOMALY_MOD_REFLECTIVE
 
 /datum/anomaly_modifiers/reflective/on_remove(datum/weakref/anomaly)
-	var/datum/anomaly_stats/stats = attached_anomaly.stats
 	stats.flags &= ~ANOMALY_MOD_REFLECTIVE
 
 /datum/anomaly_modifiers/invisible

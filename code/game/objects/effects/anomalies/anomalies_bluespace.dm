@@ -98,7 +98,21 @@
 	if(!..())
 		return
 
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		if(16 to 33)
+			pulse_teleport(4, 1)
+		if(34 to 65)
+			pulse_teleport(5, 2)
+		else
+			pulse_teleport(6, 3)
+
+/obj/effect/anomaly/bluespace/proc/pulse_teleport(range, count)
 	var/list/possible = list()
+
 	for(var/obj/item/radio/beacon in GLOB.all_beacons)
 		var/turf/turf = get_turf(beacon)
 		if(!turf)
@@ -109,18 +123,13 @@
 
 	var/chosen = pick(possible)
 
-	switch(stats.severity)
-		if(0 to 15)
-			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
-			sparks.set_up(3, 1, src)
-			sparks.start()
-		if(16 to 33)
-			var/list/things = list()
-			for(var/atom/movable/thing in orange(3))
-				if(istype(thing, /obj/item/radio/beacon) || iseffect(thing) || isEye(thing))
-					continue
-				if(thing.anchored)
-					continue
-				things += thing
+	var/list/things = list()
+	for(var/atom/movable/thing in orange(3))
+		if(istype(thing, /obj/item/radio/beacon) || iseffect(thing) || isEye(thing))
+			continue
+		if(thing.anchored)
+			continue
+		things += thing
 
-			do_teleport(pick(things), get_turf(chosen))
+	for(var/i in 1 to count)
+		do_teleport(pick(things), get_turf(chosen))
