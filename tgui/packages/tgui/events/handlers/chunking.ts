@@ -23,29 +23,18 @@ export function oversizePayloadResponse(payload: OversizePayload): void {
 export function acknowledgePayloadChunk(payload: OversizePayload): void {
   const { id } = payload;
 
-  const queues = store.get(chunkingAtom);
-  const queue = queues[id];
+  store.set(chunkingAtom, (prev) => {
+    const { [id]: targetQueue, ...otherQueues } = prev;
+    const [_, ...rest] = targetQueue || [];
 
-  if (!queue || queue.length === 0) return;
-
-  const [, ...rest] = queue;
-
-  if (rest.length === 0) {
-    store.set(chunkingAtom, (prev) => {
-      const { [id]: _, ...others } = prev;
-      return others;
-    });
-    return;
-  }
-
-  store.set(chunkingAtom, (prev) => ({
-    ...prev,
-    [id]: rest,
-  }));
-  Byond.sendMessage('payloadChunk', {
-    id,
-    chunk: rest[0],
+    return rest.length
+      ? {
+          ...otherQueues,
+          [id]: rest,
+        }
+      : otherQueues;
   });
+  nextChunk(id);
 }
 
 /// --------- Helpers -------------------------------------------------------///
