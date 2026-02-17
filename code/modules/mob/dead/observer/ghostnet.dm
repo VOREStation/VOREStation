@@ -71,7 +71,7 @@
 		majorChunkChange(A, 0)
 
 /datum/visualnet/ghost/majorChunkChange(area/A, var/choice)
-	if(choice == 2 || !A.ghost_chunks)
+	if(choice == 2)
 		return
 
 	for(var/datum/chunk/ghost/gchunk as anything in chunks)
