@@ -40,9 +40,6 @@
 		if(A.flag_check(AREA_BLOCK_GHOST_SIGHT))
 			hidden_areas += A
 
-		LAZYINITLIST(A.ghost_chunks)
-		A.ghost_chunks |= src
-
 	// 0xf = 15
 	x &= ~0xf
 	y &= ~0xf
