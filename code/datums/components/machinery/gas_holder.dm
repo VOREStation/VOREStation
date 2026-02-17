@@ -105,10 +105,10 @@
 		if(ismob(our_parent)) //If we're a mob, make our gas assume the temp of our owner. Up to a 5K difference.
 			var/mob/our_mob = parent
 			//Our contents is hotter than our vessel, cool it down.
-			if(air_contents.temperature+5 > our_mob.bodytemperature)
+			if(air_contents.temperature + 5 > our_mob.bodytemperature)
 				air_contents.add_thermal_energy(-our_mob.bodytemperature)
 			//Our contents is colder than our vessel, heat it up.
-			if(air_contents.temperature-5 < our_mob.bodytemperature)
+			if(air_contents.temperature - 5 < our_mob.bodytemperature)
 				air_contents.add_thermal_energy(our_mob.bodytemperature)
 		air_contents.react()
 		check_status(air_contents, our_parent, integrity, max_integrity, leaking, release_plugged, failure_temp) //We ONLY go kaboom when we're off of a pipeline.
