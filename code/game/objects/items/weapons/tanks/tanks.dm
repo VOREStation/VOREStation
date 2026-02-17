@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 /obj/item/tank/assume_air(datum/gas_mixture/giver)
 	air_contents.merge(giver)
 
-	check_status()
+	check_status(air_contents, src, integrity, maxintegrity, leaking, valve_welded, failure_temp)
 	return 1
 
 /obj/item/tank/proc/remove_air_volume(volume_to_return)
@@ -348,7 +348,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	air_contents.react() //cooking up air tanks - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)
 		update_gauge()
-	check_status()
+	check_status(air_contents, src, integrity, maxintegrity, leaking, valve_welded, failure_temp)
 
 
 /obj/item/tank/proc/add_bomb_overlay()
@@ -383,23 +383,34 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 
 
 
-
-
-
-/obj/item/tank/proc/check_status()
+/* Proc that checks the status of an any air container (tanks, canisters, anything with a gas_component, etc)
+ * And handles the explosions, leaks, and rupturing of it.
+ * Has a few different arguments:
+ * air_conents: Can be any gas_mixture we want to check
+ * source: The thing that is holding said air contents
+ * integrity: What the 'integrity' of the container we are in is.
+ * max_integrity: Same as above, but our maximum.
+ * leaking: If we are currently mixing our gas contents with the outside air.
+ * valve_welded: If our 'safety release' is enabled or not. Will cause integrity to go down by 3 instead of 5 and cause us to leak to prevent a catastrophic meltdown.
+ * failure_temp: What temperature the tank will begin to leak at.
+ *
+*/
+/proc/check_status(var/datum/gas_mixture/air_contents, var/atom/movable/source, var/integrity, var/max_integrity, var/leaking, var/valve_welded, var/failure_temp)
 	//Handle exploding, leaking, and rupturing of the tank
 
-	if(!air_contents)
-		return 0
+	if(!air_contents || !istype(air_contents))
+		return FALSE
+	if(!source)
+		return FALSE
 
 	var/pressure = air_contents.return_pressure()
 
 
 	if(pressure > TANK_FRAGMENT_PRESSURE)
 		if(integrity <= 7)
-			if(!istype(src.loc,/obj/item/transfer_valve))
-				message_admins("Explosive tank rupture! last key to touch the tank was [forensic_data?.get_lastprint()].")
-				log_game("Explosive tank rupture! last key to touch the tank was [forensic_data?.get_lastprint()].")
+			if(!istype(source.loc,/obj/item/transfer_valve))
+				message_admins("Explosive tank rupture! last key to touch the tank was [source.forensic_data?.get_lastprint()].")
+				log_game("Explosive tank rupture! last key to touch the tank was [source.forensic_data?.get_lastprint()].")
 
 			//Give the gas a chance to build up more pressure through reacting
 			air_contents.react()
@@ -409,90 +420,93 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 			pressure = air_contents.return_pressure()
 			var/strength = ((pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE)
 
-			var/mult = ((src.air_contents.volume/140)**(1/2)) * (air_contents.total_moles**(2/3))/((29*0.64) **(2/3)) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
+			var/mult = ((air_contents.volume/140)**(1/2)) * (air_contents.total_moles**(2/3))/((29*0.64) **(2/3)) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
 			//tanks appear to be experiencing a reduction on scale of about 0.64 total moles
 
 
 
-			var/turf/simulated/T = get_turf(src)
-			T.hotspot_expose(src.air_contents.temperature, 70, 1)
+			var/turf/simulated/T = get_turf(source)
+			T.hotspot_expose(air_contents.temperature, 70, 1)
 			if(!T)
 				return
 
 			T.assume_air(air_contents)
 			explosion(
-				get_turf(loc),
+				get_turf(source.loc),
 				round(min(BOMBCAP_DVSTN_RADIUS, ((mult)*strength)*0.15)),
 				round(min(BOMBCAP_HEAVY_RADIUS, ((mult)*strength)*0.35)),
 				round(min(BOMBCAP_LIGHT_RADIUS, ((mult)*strength)*0.80)),
 				round(min(BOMBCAP_FLASH_RADIUS, ((mult)*strength)*1.20)),
 				)
 
+			if(isobj(source))
+				var/obj/obj_source = source
+				var/num_fragments = round(rand(8,10) * sqrt(strength * mult))
+				obj_source.fragmentate(T, num_fragments, rand(5) + 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 7,/obj/item/projectile/bullet/pellet/fragment/tank = 2,/obj/item/projectile/bullet/pellet/fragment/strong = 1))
 
-			var/num_fragments = round(rand(8,10) * sqrt(strength * mult))
-			src.fragmentate(T, num_fragments, rand(5) + 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 7,/obj/item/projectile/bullet/pellet/fragment/tank = 2,/obj/item/projectile/bullet/pellet/fragment/strong = 1))
-
-			if(istype(loc, /obj/item/transfer_valve))
-				var/obj/item/transfer_valve/TTV = loc
-				TTV.remove_tank(src)
+			if(istype(source.loc, /obj/item/transfer_valve))
+				var/obj/item/transfer_valve/TTV = source.loc
+				TTV.remove_tank(source)
 				qdel(TTV)
 
 
-			if(src)
-				qdel(src)
+			if(source && !ismob(source))
+				qdel(source)
+				return
 
 		else
-			integrity -=7
+			integrity -= 7
 
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		#ifdef FIREDBG
-		log_world(span_warning("[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
+		log_world(span_warning("[source.x],[source.y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
 		#endif
 
 		air_contents.react()
 
 		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/simulated/T = get_turf(source)
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(src, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
-			visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [src] flies apart!"), span_warning("You hear a bang!"))
+			playsound(source, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
+			source.visible_message("[icon2html(source,viewers(source))] " + span_danger("\The [source] flies apart!"), span_warning("You hear a bang!"))
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
 
 			var/strength = 1+((pressure-TANK_LEAK_PRESSURE)/TANK_FRAGMENT_SCALE)
 
 			var/mult = (air_contents.total_moles**2/3)/((29*0.64) **2/3) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
+			if(isobj(source))
+				var/obj/obj_source = source
+				var/num_fragments = round(rand(6,8) * sqrt(strength * mult)) //Less chunks, but bigger
+				obj_source.fragmentate(T, num_fragments, 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 1,/obj/item/projectile/bullet/pellet/fragment/tank = 5,/obj/item/projectile/bullet/pellet/fragment/strong = 4))
 
-			var/num_fragments = round(rand(6,8) * sqrt(strength * mult)) //Less chunks, but bigger
-			src.fragmentate(T, num_fragments, 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 1,/obj/item/projectile/bullet/pellet/fragment/tank = 5,/obj/item/projectile/bullet/pellet/fragment/strong = 4))
+			if(istype(source.loc, /obj/item/transfer_valve))
+				var/obj/item/transfer_valve/TTV = source.loc
+				TTV.remove_tank(source)
 
-			if(istype(loc, /obj/item/transfer_valve))
-				var/obj/item/transfer_valve/TTV = loc
-				TTV.remove_tank(src)
-
-
-			qdel(src)
+			if(!ismob(source))
+				qdel(source)
 
 		else
 			if(!valve_welded)
-				integrity-= 3
-				src.leaking = 1
+				integrity -= 3
+				leaking = TRUE
 			else
-				integrity-= 5
+				integrity -= 5
 
 
 	else if(pressure > TANK_LEAK_PRESSURE || air_contents.temperature - T0C > failure_temp)
 
-		if((integrity <= 17 || src.leaking) && !valve_welded)
-			var/turf/simulated/T = get_turf(src)
+		if((integrity <= 17 || leaking) && !valve_welded)
+			var/turf/simulated/T = get_turf(source)
 			if(!T)
 				return
-			var/datum/gas_mixture/environment = loc.return_air()
+			var/datum/gas_mixture/environment = source.return_air()
 			var/env_pressure = environment.return_pressure()
-			var/tank_pressure = src.air_contents.return_pressure()
+			var/tank_pressure = air_contents.return_pressure()
 
 			var/release_ratio = 0.002
 			if(tank_pressure)
@@ -503,25 +517,36 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 
 			T.assume_air(leaked_gas)
 			if(!leaking)
-				visible_message("[icon2html(src,viewers(src))] " + span_warning("\The [src] relief valve flips open with a hiss!"), "You hear hissing.")
-				playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
-				leaking = 1
+				source.visible_message("[icon2html(source,viewers(source))] " + span_warning("\The [source] relief valve flips open with a hiss!"), "You hear hissing.")
+				playsound(source, 'sound/effects/spray.ogg', 10, 1, -3)
+				leaking = TRUE
 				#ifdef FIREDBG
 				log_world(span_warning("[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"))
 				#endif
 
 
 		else
-			integrity-= 1
+			integrity -= 1
 
 
 	else
-		if(integrity < maxintegrity)
+		if(integrity < max_integrity)
 			integrity++
 			if(leaking)
 				integrity++
-			if(integrity == maxintegrity)
-				leaking = 0
+			if(integrity == max_integrity)
+				leaking = FALSE
+	if(!source)
+		return
+	if(istype(source, /obj/item/tank))
+		var/obj/item/tank/our_tank = source
+		our_tank.integrity = integrity
+		our_tank.leaking = leaking
+		return
+	var/datum/component/gas_holder/gas_component = source.GetComponent(/datum/component/gas_holder)
+	if(gas_component)
+		gas_component.integrity = integrity
+		gas_component.leaking = leaking
 
 /////////////////////////////////
 ///Prewelded tanks
