@@ -29,6 +29,18 @@
 	possible_genders |= NEUTER
 	return possible_genders
 
+/datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/choiced/gender/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/choiced/gender/apply_to_silicon(mob/living/silicon/target, value)
+	return
+
+/datum/preference/choiced/gender/apply_to_animal(mob/living/simple_mob/target, value)
+	return
+
 /datum/preference/choiced/gender/biological
 	savefile_key = "gender"
 
@@ -42,9 +54,6 @@
 /datum/preference/choiced/gender/biological/pref_deserialize(input, datum/preferences/preferences)
 	var/list/valid_genders = get_valid_biological_genders(preferences)
 	return sanitize_inlist(input, valid_genders, pick(valid_genders))
-
-/datum/preference/choiced/gender/biological/apply_to_human(mob/living/carbon/human/target, value)
-	return // Handled in copy_to_mob
 
 /datum/preference/choiced/gender/identifying
 	savefile_key = "id_gender"
@@ -62,6 +71,3 @@
 	if(bio_gender)
 		return bio_gender
 	return MALE
-
-/datum/preference/choiced/gender/identifying/apply_to_human(mob/living/carbon/human/target, value)
-	return // Handled in copy_to_mob
