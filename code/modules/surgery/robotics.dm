@@ -75,9 +75,9 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/insertion_preparation
-	surgery_name = "Rewire Internals"
+	surgery_name = "Open Augment Port"
 	allowed_tools = list(
-		/obj/item/multitool = 100
+		/obj/item/crowbar = 100
 	)
 
 	min_duration = 30
@@ -86,24 +86,24 @@
 /datum/surgery_step/robotics/insertion_preparation/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 1
+		return affected && affected.open == FLESH_RETRACTED
 
 /datum/surgery_step/robotics/insertion_preparation/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message(span_filter_notice("[user] starts to modify the wiring in [target]'s [affected.name] with \the [tool]."),
-		span_filter_notice("You start to modify the wiring in [target]'s [affected.name] with \the [tool]."))
+	user.visible_message(span_filter_notice("[user] starts to open the augment port on [target]'s [affected.name] with \the [tool]."),
+		span_filter_notice("You start to open the augment port on [target]'s [affected.name] with \the [tool]."))
 	..()
 
 /datum/surgery_step/robotics/insertion_preparation/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message(span_notice("[user] modifies the wiring in [target]'s [affected.name] with \the [tool]."), \
-		span_notice("You modify the wiring in [target]'s [affected.name] with \the [tool]."))
-	affected.open = 2
+	user.visible_message(span_notice("[user] opens the augment port on [target]'s [affected.name] with \the [tool]."), \
+		span_notice("You open the augment port on [target]'s [affected.name] with \the [tool]."))
+	affected.open = FLESH_RETRACTED
 
 /datum/surgery_step/robotics/insertion_preparation/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to modify the wiring in [target]'s [affected.name]."),
-		span_warning("Your [tool] slips, failing to modify the wiring in [target]'s [affected.name]."))
+	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to open the augment port on [target]'s [affected.name]."),
+		span_warning("Your [tool] slips, failing to open the augment port on [target]'s [affected.name]."))
 
 ///////////////////////////////////////////////////////////////
 // Open Hatch Surgery
@@ -124,7 +124,7 @@
 /datum/surgery_step/robotics/open_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == 1
+		return affected && (affected.open == INCISION_MADE || affected.open == FLESH_RETRACTED)
 
 /datum/surgery_step/robotics/open_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -138,7 +138,7 @@
 	user.visible_message(span_notice("[user] opens the maintenance hatch on [target]'s [affected.name] with \the [tool]."), \
 										span_notice("You open the maintenance hatch on [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("opens the maintenance hatch on [target]'s [affected.name]", "maintenance hatch on \the [affected.name] open")
-	affected.open = 3
+	affected.open = BONE_CUT
 
 /datum/surgery_step/robotics/open_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -179,7 +179,7 @@
 	user.visible_message(span_notice("[user] closes and secures the hatch on [target]'s [affected.name] with \the [tool]."), \
 	span_notice("You close and secure the hatch on [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("closes and secures the hatch on [target]'s [affected.name]", "closed and secured the hatch on \the [affected.name]")
-	affected.open = 0
+	affected.open = FALSE
 	affected.germ_level = 0
 
 /datum/surgery_step/robotics/close_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
