@@ -74,7 +74,7 @@
 	if(choice == 2 || !A.ghost_chunks)
 		return
 
-	for(var/datum/chunk/ghost/gchunk as anything in A.ghost_chunks)
+	for(var/datum/chunk/ghost/gchunk as anything in chunks)
 		if(choice == 1 && gchunk.hidden_areas[A])
 			continue
 		if(choice == 0 && !gchunk.hidden_areas[A])
