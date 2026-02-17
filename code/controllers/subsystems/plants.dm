@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(plants)
 	var/list/currentrun = list()
 
 /datum/controller/subsystem/plants/stat_entry(msg)
-	msg = "P:[processing.len]|S:[seeds.len]"
+	msg = "P:[length(processing)]|S:[length(seeds)]"
 	return ..()
 
 /datum/controller/subsystem/plants/Initialize()
@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(plants)
 	for(var/type in subtypesof(/datum/seed))
 		var/datum/seed/S = new type
 		seeds[S.name] = S
-		S.uid = "[seeds.len]"
+		S.uid = "[length(seeds)]"
 		S.roundstart = 1
 
 	// Make sure any seed packets that were mapped in are updated
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(plants)
 	var/list/gene_datums = decls_repository.get_decls_of_subtype(/decl/plantgene)
 	var/list/used_masks = list()
 	var/list/plant_traits = ALL_GENES
-	while(plant_traits && plant_traits.len)
+	while(plant_traits && length(plant_traits))
 		var/gene_tag = pick(plant_traits)
 		var/gene_mask = "[uppertext(num2hex(rand(0,255), 2))]"
 
@@ -131,8 +131,8 @@ SUBSYSTEM_DEF(plants)
 	// Caching
 	var/list/currentrun = src.currentrun
 
-	while(currentrun.len)
-		var/obj/effect/plant/P = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/obj/effect/plant/P = currentrun[length(currentrun)]
 		--currentrun.len
 		if(!P || QDELETED(P))
 			continue
