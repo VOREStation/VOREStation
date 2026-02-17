@@ -220,12 +220,12 @@
 				if(org.dislocated == 1)
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
-					status += "[can_feel_pain(org) ? "hurting and " : ""]abnormally bent."
+					status += "[can_feel_pain(org) ? "hurting and " : ""]abnormally bent"
 				//infection stuff
 				if(org.status & ORGAN_DEAD)
 					status += "necrotic"
 				else if(org.germ_level > INFECTION_LEVEL_TWO)
-					status += "burning and feels like it's on fire!"
+					status += "burning and feels like it's on fire"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
 				if(LAZYLEN(org.wounds))
