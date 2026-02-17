@@ -264,9 +264,10 @@
 							span_warning("You successfully pat out [src]'s flames."))
 							src.extinguish_mob()
 		else
-			if (ishuman(src) && src:w_uniform)
+			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				H.w_uniform.add_fingerprint(M)
+				if(H.w_uniform)
+					H.w_uniform.add_fingerprint(M)
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
