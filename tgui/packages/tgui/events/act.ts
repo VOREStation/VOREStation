@@ -32,7 +32,7 @@ export function sendAct(
 
   if (urlSize > 1024) {
     const chunks: string[] = stringifiedPayload.split(chunkSplitter);
-    const id = crypto.randomUUID();
+    const id = `${Date.now()}`;
     createQueue({ id, chunks });
     Byond.sendMessage('oversizedPayloadRequest', {
       type: `act/${action}`,
