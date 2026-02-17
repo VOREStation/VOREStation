@@ -1,5 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "corrected bingle chemistry documentation, it is no longer missing \"used to produce\" recipes."
-  - bugfix: "Bingle printed chemistry documentation no longer uses pressure requirements as the temperature range values"
