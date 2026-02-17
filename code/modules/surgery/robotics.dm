@@ -77,7 +77,7 @@
 /datum/surgery_step/robotics/insertion_preparation
 	surgery_name = "Open Augment Port"
 	allowed_tools = list(
-		/obj/item/crowbar = 100
+		/obj/item/tool/crowbar = 100
 	)
 
 	min_duration = 30

@@ -274,6 +274,7 @@
 	target.brainloss = 0 //The cycle begins anew.
 	for(var/obj/item/organ/internal/brain/sponge in target.internal_organs) //in case they have multiple brains. weirdo.
 		sponge.status = 0
+		sponge.damage = 0
 
 
 /datum/surgery_step/brainstem/realign_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
