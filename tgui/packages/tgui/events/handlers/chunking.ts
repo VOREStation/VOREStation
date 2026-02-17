@@ -27,14 +27,20 @@ export function acknowledgePayloadChunk(payload: OversizePayload): void {
     const { [id]: targetQueue, ...otherQueues } = prev;
     const [_, ...rest] = targetQueue || [];
 
-    return rest.length
-      ? {
-          ...otherQueues,
-          [id]: rest,
-        }
-      : otherQueues;
+    if (rest.length) {
+      Byond.sendMessage('payloadChunk', {
+        id,
+        chunk: rest[0],
+      });
+
+      return {
+        ...otherQueues,
+        [id]: rest,
+      };
+    } else {
+      return otherQueues;
+    }
   });
-  nextChunk(id);
 }
 
 /// --------- Helpers -------------------------------------------------------///

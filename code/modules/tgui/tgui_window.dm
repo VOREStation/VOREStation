@@ -421,6 +421,9 @@
 		var/message_type = payload["type"]
 		var/final_payload = chunks.Join()
 		remove_oversized_payload(payload_id)
+		if (!rustg_json_is_valid(final_payload))
+			log_tgui(usr, "Error: Invalid JSON")
+			return
 		on_message(message_type, json_decode(final_payload), list("type" = message_type, "payload" = final_payload, "tgui" = TRUE, "window_id" = id))
 	else
 		payload["timeout"] = addtimer(CALLBACK(src, PROC_REF(remove_oversized_payload), payload_id), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
