@@ -119,7 +119,6 @@
 	user.visible_message(span_notice("[user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool]."), \
 		span_notice("You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("cuts away necrotic tissue in [target]'s [affected.name]", "cut away necrotic tissue in \the [affected.name]")
-	affected.open = 3
 	affected.remove_necrosis = 1
 
 /datum/surgery_step/necrotic/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -156,7 +155,7 @@
 		return FALSE
 	if(!container.reagents.has_reagent(REAGENT_ID_PERIDAXON))
 		return FALSE
-	return ..() && affected.open >= BONE_RETRACTED && affected.remove_necrosis >= 1
+	return ..() && affected.remove_necrosis >= 1
 
 /datum/surgery_step/necrotic/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -215,7 +214,7 @@
 
 /datum/surgery_step/necrotic/rejuvenate_dead_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected.open >= BONE_RETRACTED && affected.remove_necrosis == 1
+	return ..() && affected.remove_necrosis == 1
 
 /datum/surgery_step/necrotic/rejuvenate_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -255,7 +254,7 @@
 
 /datum/surgery_step/necrotic/rearrange_dead_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected.open >= BONE_RETRACTED && affected.remove_necrosis == 2
+	return ..() && affected.remove_necrosis == 2
 
 /datum/surgery_step/necrotic/rearrange_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -296,7 +295,7 @@
 
 /datum/surgery_step/necrotic/fix_necrotic_vessel/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected.open >= BONE_RETRACTED && affected.remove_necrosis == 3
+	return ..() && affected.remove_necrosis == 3
 
 /datum/surgery_step/necrotic/fix_necrotic_vessel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
