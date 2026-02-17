@@ -626,19 +626,19 @@ ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_FUN, "Add Custom AI law", "Adds a cu
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN|R_FUN|R_MOD, "Rejuvenate", "Fully restores the target mob.", ADMIN_CATEGORY_GAME, mob/living/traget_mob as mob in GLOB.mob_list)
-	if(!traget_mob)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN|R_FUN|R_MOD, "Rejuvenate", "Fully restores the target mob.", ADMIN_CATEGORY_GAME, mob/living/target_mob as mob in GLOB.mob_list)
+	if(!target_mob)
 		return
-	if(!istype(traget_mob))
+	if(!istype(target_mob))
 		tgui_alert_async(user, "Cannot revive a ghost")
 		return
 	if(CONFIG_GET(flag/allow_admin_rev))
-		traget_mob.revive()
+		target_mob.revive()
 
-		log_admin("[key_name(user)] healed / revived [key_name(traget_mob)]")
-		var/msg = span_danger("Admin [key_name_admin(user)] healed / revived [ADMIN_LOOKUPFLW(traget_mob)]!")
+		log_admin("[key_name(user)] healed / revived [key_name(target_mob)]")
+		var/msg = span_danger("Admin [key_name_admin(user)] healed / revived [ADMIN_LOOKUPFLW(target_mob)]!")
 		message_admins(msg)
-		admin_ticket_log(traget_mob, msg)
+		admin_ticket_log(target_mob, msg)
 	else
 		tgui_alert_async(user, "Admin revive disabled")
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
