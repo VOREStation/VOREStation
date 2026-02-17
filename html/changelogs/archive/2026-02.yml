@@ -160,3 +160,20 @@
       north side of building
   - maptweak: innland redgate; added four bedrooms linked via portal 'stairway'; moved
       tcomm unit into janitor closet
+2026-02-17:
+  Kashargul:
+  - code_imp: migrates some more admin verbs to the subsystem
+  ShadowLarkens:
+  - rscadd: Vac-packs are now obtainable in the janitor's closet and janitor crate
+      in cargo! This is a very powerful vacuum cleaner that slurps up ~~crew mates~~
+      all sorts of trash :), and spits it out in a trash bag or vore belly~
+  - bugfix: Manifest being requested during the small time the server is restarting
+      could return weird results
+  Will:
+  - bugfix: Electric guitar note files use correct path, electric guitar actually
+      plays notes now
+  Willburd:
+  - bugfix: corrected bingle chemistry documentation, it is no longer missing "used
+      to produce" recipes.
+  - bugfix: Bingle printed chemistry documentation no longer uses pressure requirements
+      as the temperature range values
