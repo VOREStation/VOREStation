@@ -198,7 +198,7 @@
 					return COMPONENT_CANCEL_ATTACK_CHAIN
 				else
 					to_chat(user, span_notice("\The [parent] failed to connect to the port."))
-					return FALSE
+					return COMPONENT_CANCEL_ATTACK_CHAIN //We still made an attempt, let's not hit them.
 	return FALSE
 
 /* //reminder to make this a trait
