@@ -120,7 +120,7 @@
 ///Disconnect from our connected port when we unbuckle.
 /datum/component/gas_holder/proc/handle_unbuckle(atom/movable/parent, force)
 	SIGNAL_HANDLER
-	disconnect()
+	disconnect(buckle_signal = TRUE)
 	return
 
 ///When we are connected to a port.
@@ -155,7 +155,8 @@
 	return TRUE
 
 ///Disconnect from our connected port if possible.
-/datum/component/gas_holder/proc/disconnect()
+///buckle_signal variable keeps from infinite loops.
+/datum/component/gas_holder/proc/disconnect(buckle_signal = FALSE)
 	var/obj/machinery/atmospherics/portables_connector/connected_port = portables_connector?.resolve()
 
 	if(!connected_port)
@@ -167,11 +168,12 @@
 
 	var/atom/movable/our_parent = parent
 	our_parent.anchored = FALSE
-	if(ismob(our_parent))
+	if(ismob(our_parent) && !buckle_signal)
 		connected_port.unbuckle_mob(our_parent, TRUE)
 
 	connected_port.connected_device = null
 	connected_port = null
+	portables_connector = null
 
 	return TRUE
 
