@@ -229,7 +229,6 @@
 	user.visible_message(span_notice("[user] has rejuvenated necrotic tissue in [target]'s [affected.name] with \the [tool]."), \
 		span_notice("You have rejuvenated necrotic tissue in [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("rejuvenated necrotic tissue in [target]'s [affected.name]", "rejuvenated necrotic tissue in \the [affected.name]")
-	affected.open = 3
 	affected.remove_necrosis = 2
 
 /datum/surgery_step/necrotic/rejuvenate_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -269,7 +268,6 @@
 	user.visible_message(span_notice("[user] has rearranging rejuvinated tissue in [target]'s [affected.name] with \the [tool]."), \
 		span_notice("You have rearranging rejuvinated tissue in [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("rearranging rejuvinated tissue in [target]'s [affected.name]", "rearranging rejuvinated tissue in \the [affected.name]")
-	affected.open = 3
 	affected.remove_necrosis = 3
 
 /datum/surgery_step/necrotic/rearrange_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
