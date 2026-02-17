@@ -61,3 +61,19 @@
 
 /obj/effect/anomaly/flux/minor/Initialize(mapload, new_lifespan, emp_zap = FLUX_NO_EMP)
 	return ..()
+
+/obj/effect/anomaly/flux/anomalyPulse()
+	if(!..())
+		return
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		if(16 to 33)
+			tesla_zap(src, 2, 1000, FALSE, FALSE)
+		if(34 to 65)
+			tesla_zap(src, 3, 1500, FALSE, FALSE)
+		else
+			tesla_zap(src, 4, 1500, FALSE, TRUE)
+			tesla_zap(src, 4, 1500, FALSE, FALSE)

@@ -4,6 +4,7 @@
 	anomaly_core = /obj/item/assembly/signaler/anomaly/dimensional
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 20
 	move_chance = 0
+	danger_mult = 0.8
 	/// Range of effect, if left alone anomaly will convert a 2(range)+1 squared area.
 	var/range = 3
 	/// List of turfs this anomaly will try to transform before relocating

@@ -5,6 +5,7 @@
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	layer = ABOVE_MOB_LAYER
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 2
+	danger_mult = 1.1
 
 	/// Who are we moving towards?
 	var/datum/weakref/pursuit_target

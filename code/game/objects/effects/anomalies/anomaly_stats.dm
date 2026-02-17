@@ -45,8 +45,14 @@
 /datum/anomaly_stats/proc/calculate_points()
 	var/total = 10
 
+	var/obj/effect/anomaly/anomaly = attached_anomaly.resolve()
+
+	if(!anomaly)
+		return
+
 	total += severity/5
 	total *= curr_health/max_health
+	total *= anomaly.danger_mult
 
 	if(modifier)
 		total *= modifier.get_value()
@@ -130,7 +136,7 @@
 				stability = ANOMALY_STABLE
 			return
 		if(ANOMALY_DECAYING)
-			if(!unstable && prob(15))
+			if(unstable && prob(15))
 				stability = ANOMALY_STABLE
 		else
 			return
@@ -173,4 +179,4 @@
 		if(!istype(harvester))
 			return
 
-		harvester.points += points
+		harvester.add_points(points)

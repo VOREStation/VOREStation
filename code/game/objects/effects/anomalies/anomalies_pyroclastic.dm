@@ -1,6 +1,7 @@
 /obj/effect/anomaly/pyro
 	name = "pyroclastic anomaly"
 	icon_state = "pyroclastic"
+	danger_mult = 1.3
 	var/ticks = 0
 	/// How many seconds between each gas release
 	var/releasedelay = 15 SECONDS

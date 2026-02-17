@@ -10,14 +10,21 @@
 
 	var/points = 0
 	var/points_to_create = 100
+	var/efficiency = 1
 
 	var/datum/weakref/harvested
 	var/list/obj/item/research_sample/samples
 
-/obj/machinery/anomaly_harvester/advanced
-	name = "advanced anomaly harvester"
-	desc = "A strange device that condenses anomalous energy into tangible material. This one seems to be an upgrade."
-	points_to_create = 75
+/obj/machinery/anomaly_harvester/RefreshParts()
+	var/efficient = 0
+	var/rating = 0
+	for(var/obj/item/stock_parts/manipulator/manipulator in component_parts)
+		efficient += manipulator.rating - 2
+	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
+		rating += laser.rating - 2
+
+	efficiency = efficient/10+1
+	points_to_create = 100 - (rating * 5)
 
 /obj/machinery/anomaly_harvester/process()
 	..()
@@ -30,6 +37,11 @@
 			points -= points_to_create
 			generate_sample()
 	update_icon()
+
+/obj/machinery/anomaly_harvester/proc/add_points(add_points)
+	add_points *= efficiency
+	points += add_points
+	return
 
 /obj/machinery/anomaly_harvester/proc/harvest_anomaly()
 	if(!harvested)

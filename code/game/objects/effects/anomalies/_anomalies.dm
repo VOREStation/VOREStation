@@ -19,7 +19,9 @@
 	var/immortal = FALSE
 	var/move_chance = ANOMALY_MOVECHANCE
 
+	// Anomaly harvesting stuff
 	var/datum/anomaly_stats/stats
+	var/danger_mult = 1
 
 /obj/effect/anomaly/Initialize(mapload, new_lifespan, drops_core = TRUE)
 	. = ..()
@@ -77,9 +79,9 @@
 	if(world.time < stats.next_activation)
 		return FALSE
 	else
-		balloon_alert_visible("I'm pulsing it")
 		stats.pulse_effect()
 		stats.next_activation = world.time + rand(stats.min_activation, stats.max_activation)
+		return TRUE
 
 /obj/effect/anomaly/proc/move_anomaly()
 	step(src, pick(GLOB.alldirs))
