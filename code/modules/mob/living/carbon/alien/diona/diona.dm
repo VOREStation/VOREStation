@@ -1,4 +1,4 @@
-var/list/_nymph_default_emotes = list(
+GLOBAL_LIST_INIT(nymph_default_emotes, list(
 	/decl/emote/visible,
 	/decl/emote/visible/scratch,
 	/decl/emote/visible/drool,
@@ -22,7 +22,7 @@ var/list/_nymph_default_emotes = list(
 	/decl/emote/audible/bug_hiss,
 	/decl/emote/audible/bug_chitter,
 	/decl/emote/audible/chirp
-)
+))
 
 /mob/living/carbon/alien/diona
 	name = "diona nymph"
@@ -47,7 +47,7 @@ var/list/_nymph_default_emotes = list(
 	var/obj/item/hat
 
 /mob/living/carbon/alien/diona/get_available_emotes()
-	return global._nymph_default_emotes.Copy()
+	return GLOB.nymph_default_emotes.Copy()
 
 /mob/living/carbon/alien/diona/Initialize(mapload)
 	. = ..()

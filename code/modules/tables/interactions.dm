@@ -84,7 +84,7 @@
 	return ..()
 
 
-/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob, var/hit_modifier, var/click_parameters)
+/obj/structure/table/attackby(obj/item/W, mob/user, hit_modifier, click_parameters)
 	if (!W) return
 
 	// Handle harm intent grabbing/tabling.
@@ -128,7 +128,13 @@
 
 	// Handle dismantling or placing things on the table from here on.
 	if(isrobot(user))
-		return
+		if(istype(W, /obj/item/gripper))
+			var/obj/item/gripper/robot_gripper = W
+			var/obj/item/item_to_drop = robot_gripper.get_wrapped_item()
+			robot_gripper.drop_item_nm(loc)
+			item_to_drop.do_drop_animation(user)
+			auto_align(item_to_drop, click_parameters)
+		return FALSE
 
 	if(W.loc != user) // This should stop mounted modules ending up outside the module.
 		return

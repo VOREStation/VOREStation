@@ -54,8 +54,8 @@ SUBSYSTEM_DEF(shuttles)
 		src.current_run = process_shuttles.Copy()
 
 	var/list/working_shuttles = src.current_run // Cache for sanic speed
-	while(working_shuttles.len)
-		var/datum/shuttle/S = working_shuttles[working_shuttles.len]
+	while(length(working_shuttles))
+		var/datum/shuttle/S = working_shuttles[length(working_shuttles)]
 		working_shuttles.len--
 		if(!istype(S) || QDELETED(S))
 			log_world("## ERROR Bad entry in SSshuttles.process_shuttles - [log_info_line(S)] ")
@@ -177,5 +177,5 @@ SUBSYSTEM_DEF(shuttles)
 		overmap_halted ? ship_effect.halt() : ship_effect.unhalt()
 
 /datum/controller/subsystem/shuttles/stat_entry(msg)
-	msg = "Shuttles:[process_shuttles.len]/[shuttles.len], Ships:[ships.len], L:[registered_shuttle_landmarks.len][overmap_halted ? ", HALT" : ""]"
+	msg = "Shuttles:[length(process_shuttles)]/[length(shuttles)], Ships:[length(ships)], L:[length(registered_shuttle_landmarks)][overmap_halted ? ", HALT" : ""]"
 	return ..()

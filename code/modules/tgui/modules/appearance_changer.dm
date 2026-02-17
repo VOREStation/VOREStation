@@ -102,9 +102,9 @@
 		cut_data()
 
 /datum/tgui_module/appearance_changer/Destroy()
-	qdel(cam_screen)
+	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
+	QDEL_NULL(cam_background)
 	return ..()
 
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

@@ -5,7 +5,7 @@
 		"common": "workspace:*",
 		"dompurify": "^3.3.1",
 		"es-toolkit": "^1.44.0",
-		"jotai": "^2.17.0",
+		"jotai": "^2.17.1",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"tgui": "workspace:*",
