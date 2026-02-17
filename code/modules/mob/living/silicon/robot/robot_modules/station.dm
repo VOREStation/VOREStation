@@ -351,6 +351,7 @@
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/t_scanner(src)
 	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/assembly/signaler(src) // Anomaly handling
 	src.modules += new /obj/item/geiger(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/gripper/engineering(src)
@@ -364,9 +365,6 @@
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/dogborg/stasis_clamp(src)
 	src.modules += new /obj/item/storage/pouch/eng_parts/borg(src)
-	// Anomaly handling
-	src.modules += new /obj/item/analyzer(src)
-	src.modules += new /obj/item/assembly/signaler(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
