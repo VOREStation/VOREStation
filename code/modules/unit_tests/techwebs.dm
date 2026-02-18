@@ -151,7 +151,12 @@
 		failed += 1
 
 	for(var/auto_path in auto_recipies)
-		TEST_NOTICE(src, "TECHWEB DESIGN - [auto_path] missing from techweb still.")
+		var/expected_mats = auto_recipies[design.build_path]
+		var/materialdat = ""
+		for(var/mat in expected_mats)
+			materialdat += ", [mat] = [expected_mats[mat]]"
+
+		TEST_NOTICE(src, "TECHWEB DESIGN - [auto_path] missing from techweb still[materialdat]")
 		failed += 1
 
 	if(failed)
