@@ -594,7 +594,10 @@
 									plastic.add_charge(total_material)
 								if(material == MAT_WOOD && wood)
 									wood.add_charge(total_material)
-					SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, T)
+					var/datum/component/experiment_handler/handler = get_experiment_handler()
+					if(analyzer && handler)
+						techweb_item_generate_points(T, handler.linked_web)
+						SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, T)
 					if(is_trash)
 						hound.adjust_nutrition(digested)
 					else
