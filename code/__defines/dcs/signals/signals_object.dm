@@ -34,6 +34,8 @@
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
 ///from /obj/machinery/computer/arcade/victory_tickets(tickets, sound = TRUE)
 #define COMSIG_ARCADE_VICTORY "arcade_victory"
+///from /obj/machinery/computer/telescience/proc/doteleport(mob/user): (list/atom/movable/teleported_things, turf/target_turf, sending )
+#define COMSIG_TELESCI_TELEPORT "telesci_teleport"
 ///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
 #define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
 ///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()

@@ -13,6 +13,10 @@
 /// Detail stages, only provide more textual information and have no inherent progress
 #define EXPERIMENT_DETAIL_STAGE "detail"
 
+#define EXPERIMENT_TAG_BASE "Base"
+#define EXPERIMENT_TAG_SCAN "Scan"
+#define EXPERIMENT_TAG_PHYSICAL "Physical Experiment"
+
 /// Macro for defining a progress stage
 #define EXPERIMENT_PROGRESS(type, desc, values...) list(list(type, desc, values))
 /// Macro for boolean stages

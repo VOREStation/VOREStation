@@ -177,3 +177,7 @@
       to produce" recipes.
   - bugfix: Bingle printed chemistry documentation no longer uses pressure requirements
       as the temperature range values
+2026-02-18:
+  Kashargul:
+  - qol: rework the color matrix solver
+  - qol: ticket chat auto focusses again after message send
