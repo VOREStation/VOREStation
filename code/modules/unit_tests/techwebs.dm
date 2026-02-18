@@ -112,3 +112,40 @@
 
 	if(failed)
 		TEST_FAIL("All techweb entries must be valid")
+
+
+// Sanity check for recipies during port, remove me at end of porting
+/datum/unit_test/techwebs_migrate_autolathe_recipies
+
+/datum/unit_test/techwebs_migrate_autolathe_recipies/Run()
+	var/list/auto_recipies = list()
+
+	var/failed = 0
+
+	for(var/auto_path in subtypesof(/datum/category_item/autolathe))
+		var/datum/category_item/autolathe/dat = new auto_path()
+		var/results_path = dat.path
+		auto_recipies[results_path] = dat.resources.Copy()
+		qdel(dat)
+
+	for(var/design_id in SSresearch.techweb_designs)
+		var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
+		if(design.id == DESIGN_ID_IGNORE)
+			continue
+		if(!(design.build_path in auto_recipies))
+			continue
+
+		var/expected_mats = auto_recipies[design.build_path]
+		auto_recipies -= design.build_path
+		if(compare_list(expected_mats, design.materials))
+			continue
+
+		TEST_NOTICE(src, "TECHWEB DESIGN - [design.build_path] was present in techweb, but had mismatched materials.")
+		failed += 1
+
+	for(var/auto_path in auto_recipies)
+		TEST_NOTICE(src, "TECHWEB DESIGN - [auto_path] missing from techweb still.")
+		failed += 1
+
+	if(failed)
+		TEST_FAIL("Autolathe recipies not fully migrated to techweb. [failed] remain.")
