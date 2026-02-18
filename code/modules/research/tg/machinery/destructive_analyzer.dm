@@ -31,6 +31,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	)
 
 	AddComponent(/datum/component/experiment_handler, \
+		config_mode = EXPERIMENT_CONFIG_ALTCLICK, \
 		allowed_experiments = list(/datum/experiment/scanning),\
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
 		experiment_signals = destructive_signals, \
