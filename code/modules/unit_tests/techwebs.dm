@@ -151,7 +151,7 @@
 		failed += 1
 
 	for(var/auto_path in auto_recipies)
-		var/expected_mats = auto_recipies[design.build_path]
+		var/expected_mats = auto_recipies[auto_path]
 		var/materialdat = ""
 		for(var/mat in expected_mats)
 			materialdat += ", [mat] = [expected_mats[mat]]"
