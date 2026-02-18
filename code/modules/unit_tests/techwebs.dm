@@ -143,7 +143,11 @@
 		if(compare_list(expected_mats, design.materials))
 			continue
 
-		TEST_NOTICE(src, "TECHWEB DESIGN - [design.build_path] was present in techweb, but had mismatched materials.")
+		var/materialdat = ""
+		for(var/mat in expected_mats)
+			materialdat += ", [mat] = [expected_mats[mat]]"
+
+		TEST_NOTICE(src, "TECHWEB DESIGN - [design.build_path] was present in techweb but had mismatched materials[materialdat]")
 		failed += 1
 
 	for(var/auto_path in auto_recipies)

@@ -6,10 +6,6 @@
 	name = "ID restoration console electronics"
 	path =/obj/item/circuitboard/id_restorer
 
-/datum/category_item/autolathe/engineering/oven
-	name = "oven electronics"
-	path =/obj/item/circuitboard/oven
-
 /datum/category_item/autolathe/engineering/fryer
 	name = "fryer electronics"
 	path =/obj/item/circuitboard/fryer

@@ -66,10 +66,6 @@
 	name = "paper shredder electronics"
 	path =/obj/item/circuitboard/papershredder
 
-/datum/category_item/autolathe/engineering/microwave
-	name = "microwave electronics"
-	path =/obj/item/circuitboard/microwave
-
 /datum/category_item/autolathe/engineering/washing
 	name = "washing machine electronics"
 	path =/obj/item/circuitboard/washing
