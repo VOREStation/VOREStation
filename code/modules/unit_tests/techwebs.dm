@@ -125,7 +125,10 @@
 	for(var/auto_path in subtypesof(/datum/category_item/autolathe))
 		var/datum/category_item/autolathe/dat = new auto_path()
 		var/results_path = dat.path
-		auto_recipies[results_path] = dat.resources.Copy()
+		if(islist(dat.resources))
+			auto_recipies[results_path] = dat.resources.Copy()
+		else
+			auto_recipies[results_path] = list("what" = 1)
 		qdel(dat)
 
 	for(var/design_id in SSresearch.techweb_designs)
