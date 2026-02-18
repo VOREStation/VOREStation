@@ -1,0 +1,4 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - bugfix: "innland redgate; fixed stairwell to/from bedrooms, now uses basic step teleporters"
