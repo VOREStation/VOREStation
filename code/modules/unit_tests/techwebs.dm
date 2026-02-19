@@ -147,7 +147,7 @@
 		for(var/mat in expected_mats)
 			materialdat += ", [mat] = [expected_mats[mat]]"
 
-		TEST_NOTICE(src, "TECHWEB DESIGN - [design.build_path] was present in techweb but had mismatched materials[materialdat]")
+		TEST_NOTICE(src, "AUTOLATHE MIGRATION - [design.build_path] was present in techweb but had mismatched materials[materialdat]")
 		failed += 1
 
 	for(var/auto_path in auto_recipies)
@@ -156,8 +156,8 @@
 		for(var/mat in expected_mats)
 			materialdat += ", [mat] = [expected_mats[mat]]"
 
-		TEST_NOTICE(src, "TECHWEB DESIGN - [auto_path] missing from techweb still[materialdat]")
+		TEST_NOTICE(src, "AUTOLATHE MIGRATION - [auto_path] missing from techweb still[materialdat]")
 		failed += 1
 
 	if(failed)
-		TEST_FAIL("Autolathe recipies not fully migrated to techweb. [failed] remain.")
+		TEST_FAIL("AUTOLATHE MIGRATION - Autolathe recipies not fully migrated to techweb. [failed] remain.")
