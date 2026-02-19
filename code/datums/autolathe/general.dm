@@ -83,14 +83,6 @@
 	path =/obj/item/light/bulb
 	is_stack = TRUE
 
-/datum/category_item/autolathe/general/ashtray_glass
-	name = "glass ashtray"
-	path =/obj/item/material/ashtray/glass
-
-/datum/category_item/autolathe/general/weldinggoggles
-	name = "welding goggles"
-	path =/obj/item/clothing/glasses/welding
-
 /datum/category_item/autolathe/general/idcard
 	name = "ID Card"
 	path = /obj/item/card/id
