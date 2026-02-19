@@ -147,11 +147,7 @@ export const ModifyRobot = (props) => {
   );
 
   return (
-    <Window
-      width={target?.module ? 900 : 400}
-      height={700}
-      theme={theme || 'ntos'}
-    >
+    <Window width={target?.module ? 900 : 400} height={700} theme={theme}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>

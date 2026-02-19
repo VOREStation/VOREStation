@@ -11,11 +11,7 @@ export const BorgHypo = (props) => {
   const { data } = useBackend<Data>();
   const { isDispensingDrinks, theme } = data;
   return (
-    <Window
-      width={680}
-      height={isDispensingDrinks ? 610 : 540}
-      theme={theme || 'ntos'}
-    >
+    <Window width={680} height={isDispensingDrinks ? 610 : 540} theme={theme}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>

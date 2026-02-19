@@ -2,7 +2,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   name?: string;
-  theme: string | null;
+  theme: string;
   chems?: RobotChem[];
 
   our_patient: Patient | null;

@@ -11,7 +11,7 @@ export const RobotSleeper = (props) => {
 
   const { theme, chems, delivery, name } = data;
   return (
-    <Window width={450} height={500} theme={theme || 'ntos'}>
+    <Window width={450} height={500} theme={theme}>
       <Window.Content>
         <Stack vertical fill>
           {!!chems && (
