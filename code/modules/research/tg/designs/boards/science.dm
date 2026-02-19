@@ -69,7 +69,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/autolathe
-	name = "autolathe board circuit"
+	name = "autolathe circuit"
 	id = "autolathe"
 	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/autolathe

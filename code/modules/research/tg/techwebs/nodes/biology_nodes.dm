@@ -8,7 +8,7 @@
 		// "healthanalyzer",
 		// "autopsyscanner",
 		// "genescanner",
-		// "medical_kiosk",
+		"medical_kiosk",
 		// "chem_master",
 		// "ph_meter",
 		// "scigoggles",

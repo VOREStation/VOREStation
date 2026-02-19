@@ -315,12 +315,154 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/grounding_rod
-	name = "Machine Design (Grounding Rod)"
-	desc = "Keeps an area from being fried from Edison's Bane."
+	name = "grounding rod circuit"
+	desc = "The circuit board for a grounding rod."
 	id = "grounding_rod"
 	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/grounding_rod
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/airlock_electronics
+	name = "airlock electronics circuit"
+	desc = "The circuit board for a airlock."
+	id = "airlock_board"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/airlock_electronics
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/airalarm
+	name = "air alarm circuit"
+	desc = "The circuit board for a air alarm."
+	id = "airalarm_electronics"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/circuitboard/airalarm
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/firealarm
+	name = "fire alarm circuit"
+	desc = "The circuit board for a fire alarm."
+	id = "firealarm_electronics"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/circuitboard/firealarm
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/power_control
+	name = "power control module"
+	desc = "The circuit board for an area power controller(APC)."
+	id = "power_control"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/module/power_control
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/holopad
+	name = "holopad circuit"
+	desc = "The circuit board for an AI holopad."
+	id = "holopad"
+	build_path = /obj/item/circuitboard/holopad
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/atm
+	name = "atm circuit"
+	desc = "The circuit board for a ATM."
+	id = "bankmachine"
+	build_path = /obj/item/circuitboard/atm
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/board/id_restorer
+	name = "ID restoration console circuit"
+	desc = "The circuit board for a ID restoration console."
+	id = "idrestore_console"
+	build_path = /obj/item/circuitboard/id_restorer
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_COMPUTER_COMMAND
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/fax
+	name = "fax machine circuit"
+	desc = "The circuit board for a fax machine."
+	id = "fax"
+	build_path = /obj/item/circuitboard/fax
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/board/photocopier
+	name = "photocopier circuit"
+	desc = "The circuit board for a photocopier."
+	id = "photocopier"
+	build_path = /obj/item/circuitboard/photocopier
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design/board/medical_kiosk
+	name = "Medical Kiosk Board"
+	desc = "The circuit board for a Medical Kiosk."
+	id = "medical_kiosk"
+	build_path = /obj/item/circuitboard/medical_kiosk
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/board/medical_kiosk
+	name = "guestpass console Board"
+	desc = "The circuit board for a guest pass console."
+	id = "guestpass"
+	build_path = /obj/item/circuitboard/guestpass
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+
+
+
+
+/* WIP
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/status_display missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/ai_status_display missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/newscaster missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/intercom missing from techweb still, steel = 62.5, glass = 62.5
+
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/security/telescreen/entertainment missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/keycard_auth missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/geiger missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/papershredder missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/washing missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/request missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/electrochromic missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/pipelayer missing from techweb still, steel = 62.5, glass = 62.5
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/timeclock missing from techweb still, steel = 62.5, glass = 62.5
+
+  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/honey_extractor missing from techweb still, glass = 50
+*/
