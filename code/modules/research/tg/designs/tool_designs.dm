@@ -97,7 +97,7 @@
 /datum/design_techweb/minihoe
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
-	id = "minihoe"
+	id = "spade"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_STEEL = 625)
 	build_path = /obj/item/material/minihoe
@@ -113,18 +113,6 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_STEEL = 120)
 	build_path = /obj/item/extinguisher
-	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
-	)
-	departmental_flags = ALL
-
-/datum/design_techweb/radio_headset
-	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
-	id = "radio_headset"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 120)
-	build_path = /obj/item/radio/headset
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
 	)
@@ -214,6 +202,17 @@
 	)
 	departmental_flags = ALL
 
+/datum/design_techweb/hatchet
+	name = "hatchet"
+	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	id = "hatchet"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 500)
+	build_path = /obj/item/material/knife/machete/hatchet
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_BOTANY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 
 
@@ -272,8 +271,8 @@
 	name = "spray bottle"
 	desc = "A spray bottle, with an unscrewable top."
 	id = "spraybottle"
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 300, MAT_GLASS = 300)
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_PLASTIC = 2000)
 	build_path = /obj/item/reagent_containers/spray
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL

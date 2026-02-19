@@ -313,3 +313,14 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/grounding_rod
+	name = "Machine Design (Grounding Rod)"
+	desc = "Keeps an area from being fried from Edison's Bane."
+	id = "grounding_rod"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/circuitboard/grounding_rod
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

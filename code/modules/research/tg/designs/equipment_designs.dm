@@ -388,3 +388,26 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/radio_headset
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	id = "radio_headset"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 120)
+	build_path = /obj/item/radio/headset
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/welding_goggles
+	name = "Protects the eyes from welders, approved by the mad scientist association."
+	id = "welding_goggles"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1500)
+	build_path = /obj/item/clothing/glasses/welding
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

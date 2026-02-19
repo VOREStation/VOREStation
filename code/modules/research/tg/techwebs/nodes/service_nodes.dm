@@ -19,7 +19,7 @@
 		// "universal_scanner",
 		"desttagger",
 		// "packagewrap",
-		// "sticky_tape",
+		"sticky_tape",
 		// "toner_large",
 		// "toner",
 		// "boxcutter",
@@ -46,6 +46,8 @@
 		// "ticket_machine",
 		// "radio_entertainment",
 		// "photocopier",
+		"ashtray",
+		"glasstray"
 	)
 
 /datum/techweb_node/sanitation

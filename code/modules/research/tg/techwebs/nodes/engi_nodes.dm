@@ -220,10 +220,10 @@
 		// "portable_smes",
 		// "power_connector",
 		// "emitter",
-		// "grounding_rod",
+		"grounding_rod",
 		// "cell_charger",
 		// "recharger",
-		// "welding_goggles",
+		"welding_goggles",
 		// "tray_goggles",
 		// "geigercounter",
 	)

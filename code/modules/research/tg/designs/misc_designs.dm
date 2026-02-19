@@ -318,3 +318,39 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/ashtray
+	name = "ashtray"
+	desc = "An ashtray."
+	id = "ashtray"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 250)
+	build_path = /obj/item/material/ashtray
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/glasstray
+	name = "glass ashtray"
+	desc = "An shinier ashtray."
+	id = "glasstray"
+	build_type = PROTOLATHE
+	materials = list(MAT_GLASS = 250)
+	build_path = /obj/item/material/ashtray/glass
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/sticky_tape
+	name = "tape role"
+	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
+	id = "sticky_tape"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_PLASTIC = 500)
+	build_path = /obj/item/tape_roll
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
