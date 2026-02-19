@@ -103,10 +103,8 @@
 	desc = "Allows for the construction of circuit boards used to build a breaker box."
 	id = "breakerbox"
 	// req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/breakerbox
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
@@ -320,10 +318,8 @@
 	name = "grounding rod circuit"
 	desc = "The circuit board for a grounding rod."
 	id = "grounding_rod"
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/grounding_rod
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

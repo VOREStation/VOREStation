@@ -1,7 +1,6 @@
 
 /datum/techweb_node/augmentation
 	id = TECHWEB_NODE_AUGMENTATION
-	starting_node = TRUE
 	display_name = "Augmentation"
 	description = "For those who prefer shiny metal over squishy flesh."
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)

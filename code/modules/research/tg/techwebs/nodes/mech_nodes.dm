@@ -1,7 +1,6 @@
 // Main Mecha Tree
 /datum/techweb_node/mech_assembly
 	id = TECHWEB_NODE_MECH_ASSEMBLY
-	starting_node = TRUE
 	display_name = "Exosuit Assembly"
 	description = "Development of mechanical exosuits designed to contend with artificial gravity while transporting cargo."
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)

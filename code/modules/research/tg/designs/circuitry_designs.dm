@@ -7,6 +7,7 @@
 	materials = list(MAT_STEEL = 10000)
 	build_path = /obj/item/integrated_circuit_printer
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_CIRCUITRY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
