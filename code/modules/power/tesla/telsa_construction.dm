@@ -19,10 +19,6 @@
 	origin_tech = list(TECH_MAGNET = 1, TECH_POWER = 2)
 	req_components = list()
 
-/datum/category_item/autolathe/engineering/grounding_rod
-	name = "grounding rod electronics"
-	path = /obj/item/circuitboard/grounding_rod
-
 // SPECIAL BOARDS BELOW
 
 /obj/item/circuitboard/tesla_coil/attackby(obj/item/I as obj, mob/user as mob)
