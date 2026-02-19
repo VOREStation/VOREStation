@@ -181,3 +181,23 @@
   Kashargul:
   - qol: rework the color matrix solver
   - qol: ticket chat auto focusses again after message send
+2026-02-19:
+  KillianKirilenko:
+  - qol: Examining a Honey Extractor when you're next to it will now tell you how
+      much honey it contains (if any)
+  - bugfix: innland redgate; fixed stairwell to/from bedrooms, now uses basic step
+      teleporters
+  SatinIsle:
+  - bugfix: Fixes the meowl attempting to check a null target
+  Will, Diana:
+  - rscadd: telescience experiments
+  - rscadd: destructive analyzer experiments
+  - rscadd: slimecores can now be destructively analyzed for research points
+  - rscadd: beakers and basic medical tools added to starting medical techweb
+  - rscadd: sciborg belly has destructive analyzer function restored (altclick belly
+      to set techweb settings and see experiments)
+  - qol: adds basic powercells to all dept lathes
+  - qol: engineering borgs get signalers to deal with anomalies
+  - bugfix: circuitboards no longer give steel on recycling in the DA
+  - code_imp: circuitboard materials and recycling amounts moved to a define for easier
+      editing downstream
