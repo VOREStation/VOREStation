@@ -16,7 +16,7 @@ export const SleeperButtons = (props) => {
 
   return (
     <>
-      {has_destructive_analyzer && (
+      {!!has_destructive_analyzer && (
         <Stack.Item>
           <Box color="label">Tech Web: {techweb_name}</Box>
         </Stack.Item>
