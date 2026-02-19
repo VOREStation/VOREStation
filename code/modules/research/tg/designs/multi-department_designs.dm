@@ -4,6 +4,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_GLASS = 500)
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
 	build_path = /obj/item/reagent_containers/glass/beaker
@@ -15,6 +16,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_GLASS = 1000)
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
 	build_path = /obj/item/reagent_containers/glass/beaker/large
@@ -26,6 +28,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_GLASS = 100)
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
 	build_path = /obj/item/reagent_containers/glass/beaker/vial

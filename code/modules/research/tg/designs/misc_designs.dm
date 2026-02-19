@@ -420,3 +420,17 @@
 		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+// Pai card
+/datum/design_techweb/sleevecard
+	name = "sleevecard"
+	desc = "This upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "sleevecard"
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	build_path = /obj/item/paicard/sleevecard
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL

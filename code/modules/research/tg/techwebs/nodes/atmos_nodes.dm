@@ -48,7 +48,7 @@
 		// "turbine_stator",
 		// "atmos_thermal",
 		// "pneumatic_seal",
-		// "large_welding_tool",
+		"large_welding_tool",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)

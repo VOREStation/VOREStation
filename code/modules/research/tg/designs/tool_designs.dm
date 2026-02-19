@@ -63,6 +63,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
+/datum/design_techweb/large_welding_tool
+	name = "industrial welding tool"
+	desc = "A slightly larger welder with a larger tank."
+	id = "large_welding_tool"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 250)
+	build_path = /obj/item/weldingtool/largetank
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design_techweb/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -293,6 +305,7 @@
 	materials = list(MAT_STEEL = 18750)
 	build_path = /obj/item/beartrap
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
 
