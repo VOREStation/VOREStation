@@ -139,10 +139,12 @@
 			continue
 
 		var/expected_mats = auto_recipies[design.build_path]
+		auto_recipies -= design.build_path
 		if(compare_list(expected_mats, design.materials))
+			TEST_NOTICE(src, "AUTOLATHE MIGRATION - [design.build_path] was present in techweb with correct materials[materialdat]")
+			failed += 1
 			continue
 
-		auto_recipies -= design.build_path
 		var/materialdat = ""
 		for(var/mat in expected_mats)
 			materialdat += ", [mat] = [expected_mats[mat]]"
