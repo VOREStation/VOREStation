@@ -4475,6 +4475,7 @@
 #include "code\modules\research\tg\server.dm"
 #include "code\modules\research\tg\server_control.dm"
 #include "code\modules\research\tg\designs\ai_designs.dm"
+#include "code\modules\research\tg\designs\ammunition_designs.dm"
 #include "code\modules\research\tg\designs\circuitry_designs.dm"
 #include "code\modules\research\tg\designs\construction_designs.dm"
 #include "code\modules\research\tg\designs\cybernetic_designs.dm"
