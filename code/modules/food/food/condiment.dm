@@ -240,7 +240,7 @@
 
 /obj/item/reagent_containers/food/condiment/barbeque/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_BARBEQUE, 50)
+	reagents.add_reagent(REAGENT_ID_BARBECUE, 50)
 
 /obj/item/reagent_containers/food/condiment/small
 	max_transfer_amount = 20
