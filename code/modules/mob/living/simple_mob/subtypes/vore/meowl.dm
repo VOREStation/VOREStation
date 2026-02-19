@@ -156,29 +156,30 @@
 	last_conflict_time = world.time
 
 	// Check if there is more than one person nearby and if they allow eating them
-	if(!check_attacker(target)) //Only act friendly if you haven't been attacked yet
-		var/list/crowd = list_targets()
+	if(target)
+		if(!check_attacker(target)) //Only act friendly if you haven't been attacked yet
+			var/list/crowd = list_targets()
 
-		var/mob/living/L = target
-		if(istype(L))
-			if(!L.allowmobvore && vore_hostile && distance <= 8)
+			var/mob/living/L = target
+			if(istype(L))
+				if(!L.allowmobvore && vore_hostile && distance <= 8)
+					play_friend(target)
+					set_stance(STANCE_APPROACH)
+					return
+
+			if(crowd.len > 1 && distance <= 8)
 				play_friend(target)
 				set_stance(STANCE_APPROACH)
 				return
 
-		if(crowd.len > 1 && distance <= 8)
-			play_friend(target)
-			set_stance(STANCE_APPROACH)
-			return
+		// Don't attack if you're well fed!
 
-	// Don't attack if you're well fed!
+			var/mob/living/simple_mob/vore/meowl/M = holder
 
-		var/mob/living/simple_mob/vore/meowl/M = holder
-
-		if(istype(M))
-			if(M.well_fed + 10 MINUTES > world.time)
-				set_stance(STANCE_APPROACH)
-				return
+			if(istype(M))
+				if(M.well_fed + 10 MINUTES > world.time)
+					set_stance(STANCE_APPROACH)
+					return
 
 
 	// Do a 'special' attack, if one is allowed.

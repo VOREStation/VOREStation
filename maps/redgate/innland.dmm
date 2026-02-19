@@ -77,18 +77,8 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/structure/powered)
 "an" = (
-/obj/structure/dummystairs{
+/obj/effect/step_trigger/teleporter/innland_to_bedrooms{
 	dir = 1
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"ao" = (
-/obj/structure/dummystairs{
-	dir = 1
-	},
-/obj/effect/map_effect/portal/master/side_a{
-	portal_id = "bedrooms";
-	name = "main_to_bedrooms"
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
@@ -96,28 +86,12 @@
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "aq" = (
-/obj/effect/map_effect/portal/master/side_b{
-	name = "bedrooms_to_main";
-	portal_id = "bedrooms";
-	dir = 1
-	},
-/obj/structure/dummystairs{
-	dir = 1
-	},
+/obj/effect/step_trigger/teleporter/innland_to_lower,
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ar" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
-	},
-/turf/unsimulated/floor/wood,
-/area/redgate/structure/powered)
-"as" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/dummystairs{
-	dir = 1
 	},
 /turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
@@ -217,6 +191,13 @@
 "aL" = (
 /turf/simulated/floor/reinforced,
 /area/redgate/wilds)
+"aM" = (
+/obj/structure/sign/directions/dorms{
+	dir = 1;
+	pixel_y = 25
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
 "aN" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/outdoors/grass/seasonal,
@@ -535,6 +516,49 @@
 	name = "Candles"
 	},
 /turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered/bed3)
+"bI" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"bJ" = (
+/obj/structure/sign/directions/roomnum{
+	pixel_y = 8
+	},
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed1)
+"bK" = (
+/obj/structure/sign/directions/roomnum{
+	dir = 1;
+	pixel_y = -8
+	},
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed2)
+"bL" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/unsimulated/floor/wood,
+/area/redgate/structure/powered)
+"bM" = (
+/obj/structure/sign/directions/roomnum{
+	dir = 8;
+	pixel_y = 8
+	},
+/turf/simulated/wall/wood,
+/area/redgate/structure/powered/bed4)
+"bN" = (
+/obj/structure/sign/directions/roomnum{
+	dir = 4;
+	pixel_y = -8
+	},
+/turf/simulated/wall/wood,
 /area/redgate/structure/powered/bed3)
 "bO" = (
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
@@ -2194,9 +2218,9 @@ af
 ba
 ba
 bn
-ba
+bM
 af
-av
+bK
 aP
 av
 av
@@ -2337,12 +2361,12 @@ bA
 ap
 ap
 ap
-ah
+bL
 ap
 ap
 ap
+bI
 ap
-as
 aq
 af
 kw
@@ -2475,7 +2499,7 @@ kw
 (9,1,1) = {"
 kw
 af
-bf
+bN
 bq
 bf
 bf
@@ -2483,7 +2507,7 @@ af
 aA
 aA
 aH
-aA
+bJ
 af
 af
 af
@@ -5785,7 +5809,7 @@ af
 af
 af
 af
-ap
+aM
 ap
 af
 dT
@@ -5924,7 +5948,7 @@ ge
 cQ
 cQ
 af
-ao
+ap
 an
 ah
 ap
