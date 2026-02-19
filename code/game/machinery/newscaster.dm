@@ -275,6 +275,9 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 	tgui_interact(user)
 
+/obj/machinery/newscaster/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /**
  * Sets a temporary message to display to the user
  *

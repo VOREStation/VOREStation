@@ -238,10 +238,14 @@ export type AntagonismData = {
   uplink_type: string;
   record_banned: BooleanLike;
   exploitable_record?: string;
-  pai_name?: string;
-  pai_desc?: string;
-  pai_role?: string;
-  pai_comments?: string;
+  pai_name: string;
+  pai_desc: string;
+  pai_role: string;
+  pai_ad: string;
+  pai_comments: string;
+  pai_eyecolor: string;
+  pai_chassis: string;
+  pai_emotion: string;
   syndicate_ban: BooleanLike;
   special_roles: SpecialRole[];
 };

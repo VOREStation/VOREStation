@@ -2,12 +2,6 @@
 	name = "Basic"
 	sort_order = 7
 
-	var/datum/paiCandidate/candidate
-
-/datum/category_item/player_setup_item/general/basic_antagonism/New()
-	. = ..()
-	candidate = new()
-
 /datum/category_item/player_setup_item/general/basic_antagonism/load_character(list/save_data)
 	pref.exploit_record = save_data["exploit_record"]
 	pref.antag_faction  = save_data["antag_faction"]
@@ -19,28 +13,17 @@
 	save_data["antag_vis"]      = pref.antag_vis
 
 /datum/category_item/player_setup_item/general/basic_antagonism/load_preferences(datum/json_savefile/savefile)
-	if(!candidate)
-		candidate = new()
-
 	var/preference_mob = preference_mob()
 	if(!preference_mob)// No preference mob - this happens when we're called from client/New() before it calls ..()  (via datum/preferences/New())
 		spawn()
 			preference_mob = preference_mob()
 			if(!preference_mob)
 				return
-			candidate.savefile_load(preference_mob)
 		return
-
-	candidate.savefile_load(preference_mob)
 
 /datum/category_item/player_setup_item/general/basic_antagonism/save_preferences(datum/json_savefile/savefile)
-	if(!candidate)
-		return
-
 	if(!preference_mob())
 		return
-
-	candidate.savefile_save(preference_mob())
 
 /datum/category_item/player_setup_item/general/basic_antagonism/sanitize_character()
 	if(!pref.antag_faction) pref.antag_faction = "None"
@@ -62,13 +45,13 @@
 	if(!jobban_isbanned(user, "Records"))
 		data["exploitable_record"] = TextPreview(pref.exploit_record, 40)
 
-	if(!candidate)
-		CRASH("[user] pAI prefs have a null candidate var.")
-
-	data["pai_name"] = candidate.name ? candidate.name : "None Set"
-	data["pai_desc"] = candidate.description ? TextPreview(candidate.description, 40) : "None Set"
-	data["pai_role"] = candidate.role ? TextPreview(candidate.role, 40) : "None Set"
-	data["pai_comments"] = candidate.comments ? TextPreview(candidate.comments, 40) : "None Set"
+	data["pai_name"] = pref.read_preference(/datum/preference/text/pai_name)
+	data["pai_desc"] = pref.read_preference(/datum/preference/text/pai_description)
+	data["pai_role"] = pref.read_preference(/datum/preference/text/pai_role)
+	data["pai_comments"] = pref.read_preference(/datum/preference/text/pai_comments)
+	data["pai_eyecolor"] = pref.read_preference(/datum/preference/color/pai_eye_color)
+	data["pai_chassis"] = pref.read_preference(/datum/preference/text/pai_chassis)
+	data["pai_emotion"] = pref.read_preference(/datum/preference/text/pai_emotion)
 
 	return data
 
@@ -111,23 +94,39 @@
 				pref.antag_vis = choice
 			return TOPIC_REFRESH
 
-		if("option")
+		if("pai_option")
 			var/t
-			switch(params["option"])
+			switch(params["pai_option"])
 				if("name")
-					t = sanitizeName(tgui_input_text(user, "Enter a name for your pAI", "Global Preference", candidate.name, MAX_NAME_LEN), MAX_NAME_LEN, 1)
+					t = sanitizeName(tgui_input_text(user, "What you plan to call yourself. Suggestions: Any character name you would choose for a station character OR an AI.", "pAI Name", pref.read_preference(/datum/preference/text/pai_name), MAX_NAME_LEN), MAX_NAME_LEN, 1)
 					if(t && CanUseTopic(user))
-						candidate.name = t
+						pref.update_preference_by_type(/datum/preference/text/pai_name, t)
 				if("desc")
-					t = tgui_input_text(user, "Enter a description for your pAI", "Global Preference", html_decode(candidate.description), multiline = TRUE, prevent_enter = TRUE)
+					t = tgui_input_text(user, "What sort of pAI you typically play; your mannerisms, your quirks, etc. This can be as sparse or as detailed as you like.", "pAI Description", pref.read_preference(/datum/preference/text/pai_description), multiline = TRUE, prevent_enter = TRUE)
 					if(!isnull(t) && CanUseTopic(user))
-						candidate.description = sanitize(t)
+						pref.update_preference_by_type(/datum/preference/text/pai_description, sanitize(t))
+				if("ad")
+					t = tgui_input_text(user, "Enter an advertisement for your pAI", "pAI Preference", pref.read_preference(/datum/preference/text/pai_ad))
+					if(!isnull(t) && CanUseTopic(user))
+						pref.update_preference_by_type(/datum/preference/text/pai_ad, sanitize(t))
 				if("role")
-					t = tgui_input_text(user, "Enter a role for your pAI", "Global Preference", html_decode(candidate.role))
+					t = tgui_input_text(user, "Do you like to partner with sneaky social ninjas? Like to help security hunt down thugs? Enjoy watching an engineer's back while he saves the station yet again? This doesn't have to be limited to just station jobs. Pretty much any general descriptor for what you'd like to be doing works here.", "Preferred Role", pref.read_preference(/datum/preference/text/pai_role))
 					if(!isnull(t) && CanUseTopic(user))
-						candidate.role = sanitize(t)
+						pref.update_preference_by_type(/datum/preference/text/pai_role, sanitize(t))
 				if("ooc")
-					t = tgui_input_text(user, "Enter any OOC comments", "Global Preference", html_decode(candidate.comments), multiline = TRUE, prevent_enter = TRUE)
+					t = tgui_input_text(user, "Anything you'd like to address specifically to the player reading this in an OOC manner. \"I prefer more serious RP.\", \"I'm still learning the interface!\", etc. Feel free to leave this blank if you want.", "OOC Comments", pref.read_preference(/datum/preference/text/pai_comments), multiline = TRUE, prevent_enter = TRUE)
 					if(!isnull(t) && CanUseTopic(user))
-						candidate.comments = sanitize(t)
+						pref.update_preference_by_type(/datum/preference/text/pai_comments, sanitize(t))
+				if("color")
+					var/new_color = tgui_color_picker(user, "Choose your pAI's default glow colour.", "pAI Glow Color", pref.read_preference(/datum/preference/color/pai_eye_color))
+					if(new_color && CanUseTopic(user))
+						pref.update_preference_by_type(/datum/preference/color/pai_eye_color, new_color)
+				if("chassis")
+					var/new_chassis = tgui_input_list(user, "Choose your pAI's default chassis.", "pAI Chassis", SSpai.get_chassis_list(), PAI_DEFAULT_CHASSIS)
+					if(new_chassis && CanUseTopic(user) && (new_chassis in SSpai.get_chassis_list()))
+						pref.update_preference_by_type(/datum/preference/text/pai_chassis, new_chassis)
+				if("emotion")
+					var/new_emotion = tgui_input_list(user, "Choose your pAI's default emotion.", "pAI Emotion", GLOB.pai_emotions, GLOB.pai_emotions[1])
+					if(new_emotion && CanUseTopic(user) && (new_emotion in GLOB.pai_emotions))
+						pref.update_preference_by_type(/datum/preference/text/pai_emotion, new_emotion)
 			return TOPIC_REFRESH

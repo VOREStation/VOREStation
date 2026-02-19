@@ -17,6 +17,9 @@
 /obj/machinery/computer/atmos_alert/attack_hand(mob/user)
 	tgui_interact(user)
 
+/obj/machinery/computer/atmos_alert/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /obj/machinery/computer/atmos_alert/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

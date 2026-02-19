@@ -1,0 +1,171 @@
+#define PAI_DELAY_TIME 1 MINUTE
+
+////////////////////////////////
+//// Pai join and management subsystem
+////////////////////////////////
+SUBSYSTEM_DEF(pai)
+	name = "Pai"
+	wait = 4 SECONDS
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
+	VAR_PRIVATE/list/datum/pai_sprite/pai_chassis_sprites = list()
+	VAR_PRIVATE/list/current_run = list()
+	VAR_PRIVATE/list/pai_ghosts = list()
+	VAR_PRIVATE/list/asked = list()
+
+/datum/controller/subsystem/pai/Initialize()
+	// Get all software setup
+	for(var/type in subtypesof(/datum/pai_software))
+		var/datum/pai_software/P = new type()
+		GLOB.pai_software_by_key[P.id] = P
+		if(P.default)
+			GLOB.default_pai_software[P.id] = P
+
+	// Get all valid chassis types
+	for(var/datum/pai_sprite/sprite as anything in subtypesof(/datum/pai_sprite))
+		if(!initial(sprite.sprite_icon) || initial(sprite.hidden))
+			continue
+		pai_chassis_sprites[initial(sprite.name)] = new sprite()
+
+	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/pai/stat_entry(msg)
+	msg = "C:[length(pai_ghosts)]"
+	return ..()
+
+/datum/controller/subsystem/pai/fire(resumed)
+	if(!resumed)
+		pai_ghosts.Cut()
+		current_run = GLOB.observer_mob_list.Copy()
+
+	while(current_run.len)
+		if(MC_TICK_CHECK)
+			return
+
+		var/mob/observer/ghost = current_run[current_run.len]
+		current_run.len--
+		if(!invite_valid(ghost))
+			continue
+
+		// Create candidate
+		pai_ghosts.Add(WEAKREF(ghost))
+
+/datum/controller/subsystem/pai/proc/get_chassis_list()
+	RETURN_TYPE(/list/datum/pai_sprite)
+	return pai_chassis_sprites
+
+/datum/controller/subsystem/pai/proc/chassis_data(id_name)
+	RETURN_TYPE(/datum/pai_sprite)
+	if(!(id_name in pai_chassis_sprites))
+		return pai_chassis_sprites[PAI_DEFAULT_CHASSIS]
+	return pai_chassis_sprites[id_name]
+
+/datum/controller/subsystem/pai/proc/invite_valid(mob/user)
+	if(!user.client?.prefs)
+		return FALSE
+	if(!user.MayRespawn())
+		return FALSE
+	if(jobban_isbanned(user, "pAI"))
+		return FALSE
+	if(!(user.client.prefs.be_special & BE_PAI))
+		return FALSE
+	if(check_is_delayed(user.ckey))
+		return FALSE
+	if(check_is_already_pai(user.ckey))
+		return FALSE
+	if(user.client.prefs.read_preference(/datum/preference/text/pai_name) == PAI_UNSET) // Forbid unset name
+		return FALSE
+	return TRUE
+
+/datum/controller/subsystem/pai/proc/check_is_delayed(key)
+	if(key in asked)
+		if(world.time < asked[key] + PAI_DELAY_TIME)
+			return TRUE
+	return FALSE
+
+/datum/controller/subsystem/pai/proc/check_is_already_pai(key)
+	return (key in GLOB.paikeys)
+
+/datum/controller/subsystem/pai/proc/get_tgui_data()
+	RETURN_TYPE(/list)
+
+	var/list/data = list()
+	for(var/datum/weakref/WF in pai_ghosts)
+		var/mob/observer/ghost = WF?.resolve()
+		if(!istype(ghost) || !ghost.client?.prefs)
+			continue
+
+		var/datum/preferences/pref = ghost.client.prefs
+		data += list(
+			list(
+				"key" = ghost.ckey,
+				"name" = pref.read_preference(/datum/preference/text/pai_name),
+				"gender" = pref.identifying_gender,
+				// Description
+				"description" = pref.read_preference(/datum/preference/text/pai_description),
+				"role" = pref.read_preference(/datum/preference/text/pai_role),
+				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
+				// Appearance
+				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
+				"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
+				"emotion" = pref.read_preference(/datum/preference/text/pai_emotion),
+			)
+		)
+
+	return data
+
+/datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, find_ckey, obj/item/paicard/card)
+	// Is our card legal to inhabit?
+	if(QDELETED(card) || card.pai || card.is_damage_critical())
+		to_chat(inquirer, span_warning("This [card] can no longer be used to house a pAI."))
+		return
+
+	// Check if the ghost stopped existing
+	var/mob/observer/ghost = get_mob_by_key(find_ckey)
+	if(!find_ckey || !isobserver(ghost) || !ghost.client)
+		to_chat(inquirer, span_warning("This pAI is has gone offline."))
+		return
+
+	// Time delay if the ghost cancels your invite.
+	if(check_is_delayed(ghost.ckey))
+		to_chat(inquirer, span_notice("This pAI is responding to a request, but may become available again shortly..."))
+		return
+	asked[ghost.ckey] = world.time
+
+	// Can't play, still respawning
+	var/time_till_respawn = ghost.time_till_respawn()
+	if(time_till_respawn == -1 || time_till_respawn)
+		to_chat(inquirer, span_warning("This pAI is still downloading..."))
+		return
+
+	// Send it!
+	to_chat(inquirer, span_info("A request has been sent!"))
+	var/client/target = ghost.client
+	var/response = tgui_alert(target, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", list("Yes", "No", "Never for this round"))
+	if(!response || !target || !isobserver(target.mob) || ghost != target.mob)
+		return // Nice try smartass
+	if(check_is_already_pai(target.ckey))
+		to_chat(inquirer, span_warning("This pAI has already been downloaded."))
+		return
+	if(QDELETED(card) || card.pai)
+		to_chat(inquirer, span_warning("This [card] can no longer be used to house a pAI."))
+		return
+
+	switch(response)
+		if("Yes")
+			var/new_pai = card.ghost_inhabit(target.mob, TRUE)
+			to_chat(inquirer, span_info("[new_pai] has accepted your pAI request!"))
+			return
+		if("Never for this round")
+			SSpai.block_pai_invites(ghost.ckey)
+
+	to_chat(inquirer, span_warning("The pAI denied the request."))
+
+/datum/controller/subsystem/pai/proc/block_pai_invites(key)
+	asked[key] = world.time + 99 HOURS // We never want to be asked again
+
+/datum/controller/subsystem/pai/proc/clear_pai_block_delay(key)
+	asked -= key
+
+#undef PAI_DELAY_TIME

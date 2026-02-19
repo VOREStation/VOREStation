@@ -19,7 +19,8 @@
 		card.damage_random_component()
 
 		if(gibbed)
-			qdel(card)
+			if(!QDELETED(card)) // Either the pai or card could be deleted first, prevent a loop
+				qdel(card)
 			..(gibbed)
 		else
 			card.add_overlay("pai-dead")
