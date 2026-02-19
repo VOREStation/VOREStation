@@ -30,8 +30,8 @@ export const SleeperStatusPanel = (props: { name: string }) => {
               <Box color="label" inline>
                 Tech Web:
               </Box>
-              <Box inline preserveWhitespace>
-                {` ${techweb_name}`}
+              <Box inline preserveWhitespace color={!techweb_name && 'red'}>
+                {` ${techweb_name || 'Disconnected'}`}
               </Box>
             </Stack.Item>
             <Stack.Divider />
