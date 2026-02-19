@@ -401,8 +401,22 @@
 	)
 	departmental_flags = ALL
 
+/datum/design_techweb/welding_helmet
+	name = "welding helmet"
+	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
+	id = "welding_helmet"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 3750, MAT_GLASS = 1250)
+	build_path = /obj/item/clothing/head/welding
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design_techweb/welding_goggles
-	name = "Protects the eyes from welders, approved by the mad scientist association."
+	name = "welding goggles"
+	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	id = "welding_goggles"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1500)
