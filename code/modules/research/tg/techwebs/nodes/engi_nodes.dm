@@ -27,6 +27,10 @@
 		// "voice_analyzer",
 		// "health_sensor",
 		// "sflash",
+		"console_screen",
+		"motor",
+		"gear",
+
 	)
 
 /datum/techweb_node/parts_upg

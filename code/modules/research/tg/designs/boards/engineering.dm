@@ -103,8 +103,10 @@
 	desc = "Allows for the construction of circuit boards used to build a breaker box."
 	id = "breakerbox"
 	// req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/breakerbox
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
@@ -424,6 +426,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
+/datum/design_techweb/board/papershredder
+	name = "papershredder circuit"
+	desc = "The circuit board for a papershredder."
+	id = "papershredder"
+	build_path = /obj/item/circuitboard/papershredder
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
+
 /datum/design_techweb/board/medical_kiosk
 	name = "Medical Kiosk Board"
 	desc = "The circuit board for a Medical Kiosk."
@@ -444,25 +456,14 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-
-
-
-
-/* WIP
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/status_display missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/ai_status_display missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/newscaster missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/intercom missing from techweb still, steel = 62.5, glass = 62.5
-
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/security/telescreen/entertainment missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/keycard_auth missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/geiger missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/papershredder missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/washing missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/request missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/electrochromic missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/pipelayer missing from techweb still, steel = 62.5, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/timeclock missing from techweb still, steel = 62.5, glass = 62.5
-
-  Notice: AUTOLATHE MIGRATION - /obj/item/circuitboard/honey_extractor missing from techweb still, glass = 50
-*/
+/datum/design_techweb/board/intercom
+	name = "intercom circuit"
+	desc = "The circuit board for a radio intercom."
+	id = "intercom"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/circuitboard/intercom
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO

@@ -1,7 +1,3 @@
-/datum/category_item/autolathe/devices/consolescreen
-	name = "console screen"
-	path =/obj/item/stock_parts/console_screen
-
 /datum/category_item/autolathe/devices/barbedwire
 	name = "barbed wire"
 	path = /obj/item/material/barbedwire

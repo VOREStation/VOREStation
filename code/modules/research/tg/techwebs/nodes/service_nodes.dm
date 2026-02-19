@@ -25,6 +25,7 @@
 		// "boxcutter",
 		"bounced_radio",
 		"radio_headset",
+		"intercom",
 		// "earmuffs",
 		"taperecorder",
 		"recordingcassette",
@@ -46,6 +47,7 @@
 		// "ticket_machine",
 		// "radio_entertainment",
 		"photocopier",
+		"papershredder",
 		"ashtray",
 		"glasstray"
 	)

@@ -3,10 +3,6 @@
 	path =/obj/item/weldingtool/electric/unloaded
 	hidden = 1
 
-/datum/category_item/autolathe/tools/welder_industrial
-	name = "industrial welding tool"
-	path =/obj/item/weldingtool/largetank
-
 /datum/category_item/autolathe/devices/slowwire
 	name = "snare wire"
 	path = /obj/item/material/barbedwire/plastic

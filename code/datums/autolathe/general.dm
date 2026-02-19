@@ -65,10 +65,6 @@
 	name = "suit cooling unit"
 	path =/obj/item/suit_cooling_unit
 
-/datum/category_item/autolathe/general/weldermask
-	name = "welding mask"
-	path =/obj/item/clothing/head/welding
-
 /datum/category_item/autolathe/general/knife
 	name = "kitchen knife"
 	path =/obj/item/material/knife

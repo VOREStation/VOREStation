@@ -10,10 +10,6 @@
 	name = "newscaster electronics"
 	path =/obj/item/circuitboard/newscaster
 
-/datum/category_item/autolathe/engineering/intercom
-	name = "intercom electronics"
-	path =/obj/item/circuitboard/intercom
-
 /datum/category_item/autolathe/engineering/entertainment
 	name = "entertainment camera electronics"
 	path =/obj/item/circuitboard/security/telescreen/entertainment
@@ -45,18 +41,6 @@
 /datum/category_item/autolathe/engineering/pipelayer
 	name = "pipe layer electronics"
 	path =/obj/item/circuitboard/pipelayer
-
-/datum/category_item/autolathe/engineering/motor
-	name = "motor"
-	path =/obj/item/stock_parts/motor
-
-/datum/category_item/autolathe/engineering/gear
-	name = "gear"
-	path =/obj/item/stock_parts/gear
-
-/datum/category_item/autolathe/engineering/spring
-	name = "spring"
-	path =/obj/item/stock_parts/spring
 
 /datum/category_item/autolathe/engineering/rcd_ammo
 	name = "matter cartridge"
