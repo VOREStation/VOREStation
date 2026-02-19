@@ -184,7 +184,6 @@
 		"crowbar",
 		"screwdriver",
 		"wirecutters",
-		"trayscanner",
 		// "light_bulb",
 		// "light_tube",
 		// "crossing_signal",

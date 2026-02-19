@@ -130,18 +130,6 @@
 	)
 	departmental_flags = ALL
 
-/datum/design_techweb/trayscanner
-	name = "T-ray scanner"
-	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
-	id = "trayscanner"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 40)
-	build_path = /obj/item/t_scanner
-	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
-
 /datum/design_techweb/destination_tagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
