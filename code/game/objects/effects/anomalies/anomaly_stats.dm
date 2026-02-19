@@ -22,7 +22,8 @@
 	var/min_activation = 45 SECONDS
 	var/max_activation = 90 SECONDS
 
-/datum/anomaly_stats/New()
+/datum/anomaly_stats/New(var/obj/effect/anomaly/anomaly)
+	attached_anomaly = WEAKREF(anomaly)
 	randomize_particle_types()
 	severity = rand(5, 15)
 	max_health = rand(50, 150)
@@ -94,7 +95,10 @@
 	var/matrix/M = matrix()
 	M.Scale(scale_factor, scale_factor)
 	animate(anom, transform = M, time = 1 SECOND)
-	apply_wibbly_filters(anom)
+
+	// These don't have the wibbly filter
+	if(!istype(anom, /obj/effect/anomaly/bioscrambler) && !istype(anom, /obj/effect/anomaly/dimensional))
+		apply_wibbly_filters(anom)
 
 	calculate_points()
 	return
@@ -124,6 +128,14 @@
 	return
 
 /datum/anomaly_stats/proc/update_state(unstable)
+	var/obj/effect/anomaly/anom = attached_anomaly.resolve()
+
+	if(!istype(anom))
+		return
+
+	if(locate(/obj/effect/suspension_field) in get_turf(anom))
+		return
+
 	switch(stability)
 		if(ANOMALY_STABLE)
 			if(unstable && prob(15))
@@ -143,16 +155,15 @@
 	return
 
 /datum/anomaly_stats/proc/update_modifiers()
-	// High chance of simply swapping the modifier
-	if(prob(80) && modifier)
-		modifier.on_remove(attached_anomaly)
-		modifier = null
+	var/picked_mod = pick(subtypesof(/datum/anomaly_modifiers))
 
-	// Small chance of not getting anything at all
-	if(prob(10))
+	// Tough luck. No mod for you.
+	if(istype(modifier, picked_mod))
 		return
 
-	var/picked_mod = pick(subtypesof(/datum/anomaly_modifiers))
+	if(modifier)
+		modifier.on_remove(attached_anomaly)
+		modifier = null
 
 	modifier = new picked_mod
 	modifier.on_add(attached_anomaly)

@@ -69,7 +69,7 @@
 	return ..()
 
 /obj/effect/anomaly/proc/anomalyEffect(seconds_per_tick)
-	if(prob(move_chance))
+	if(prob(move_chance) && !locate(/obj/effect/suspension_field) in get_turf(src))
 		move_anomaly()
 
 // Used in anomaly harvesting - Normal anomalies shouldn't pulse
@@ -110,8 +110,7 @@
 	if(anchor)
 		move_chance = 0
 	if(!stats && add_stats)
-		stats = new /datum/anomaly_stats
-		stats.attached_anomaly = WEAKREF(src)
+		stats = new /datum/anomaly_stats(src)
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/analyzer))
@@ -129,18 +128,18 @@
 	return ..()
 
 /obj/effect/anomaly/bullet_act(obj/item/projectile/proj)
-	if(stats && global_flag_check(stats.flags, ANOMALY_MOD_REFLECTIVE) && prob(stats.severity/1.5))
+	if(stats && istype(stats.modifier, /datum/anomaly_modifiers/reflective) && prob(stats.severity/1.5))
 		balloon_alert_visible("reflected!")
 
-		var/new_x = x = pick(0, 0, 0, -1, 1, -2, 2)
-		var/new_y = y = pick(0, 0, 0, -1, 1, -2, 2)
+		var/new_x = proj.x = pick(0, 0, 0, -1, 1, -2, 2)
+		var/new_y = proj.y = pick(0, 0, 0, -1, 1, -2, 2)
 
 		var/turf/curloc = get_step(proj, get_dir(proj, proj.starting))
 
 		proj.penetrating += 1
 
 		proj.redirect(new_x, new_y, curloc, null)
-		return
+		return FALSE
 
 	if(istype(proj, /obj/item/projectile/energy/anomaly))
 		var/obj/item/projectile/energy/anomaly/anom_proj = proj

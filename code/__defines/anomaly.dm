@@ -62,5 +62,3 @@
 #define ANOMALY_DECAYING	"Decaying"
 #define ANOMALY_STABLE		"Stable"
 #define ANOMALY_GROWING		"Growing"
-
-#define ANOMALY_MOD_REFLECTIVE 		0x1

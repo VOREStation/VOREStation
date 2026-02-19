@@ -117,9 +117,12 @@
 	name = "anomalous particle gun"
 	desc = "A handheld particle emitter, used to safely release a specific particle frequency."
 	icon_state = "taserblue"
-	charge_cost = 160
 	fire_delay = 4
 	projectile_type = /obj/item/projectile/energy/anomaly
+	fire_sound = 'sound/weapons/taser2.ogg'
+	recoil_mode = 0
+	accuracy = 30
+
 	var/particle = ANOMALY_PARTICLE_SIGMA
 
 /obj/item/gun/energy/anomaly/attack_self(mob/user)
@@ -133,7 +136,7 @@
 
 /obj/item/gun/energy/anomaly/consume_next_projectile()
 	. = ..()
-	var/obj/item/projectile/energy/anomaly/projectile = new projectile_type
+	var/obj/item/projectile/energy/anomaly/projectile = .
 	if(particle)
 		projectile.particle_type = particle
 	return projectile

@@ -124,7 +124,7 @@
 	var/chosen = pick(possible)
 
 	var/list/things = list()
-	for(var/atom/movable/thing in orange(3))
+	for(var/atom/movable/thing in orange(range, get_turf(src)))
 		if(istype(thing, /obj/item/radio/beacon) || iseffect(thing) || isEye(thing))
 			continue
 		if(thing.anchored)

@@ -28,12 +28,6 @@
 	description = "A protective coating was detected."
 	value = 1.2
 
-/datum/anomaly_modifiers/reflective/on_add(datum/weakref/anomaly)
-	stats.flags |= ANOMALY_MOD_REFLECTIVE
-
-/datum/anomaly_modifiers/reflective/on_remove(datum/weakref/anomaly)
-	stats.flags &= ~ANOMALY_MOD_REFLECTIVE
-
 /datum/anomaly_modifiers/invisible
 	name = "Invisible"
 	description = "Light wave distortion was detected."
