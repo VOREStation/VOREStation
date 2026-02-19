@@ -81,6 +81,13 @@
 						if(prereq_currentcost > current_cost)
 							TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive. ours lowest is \[[current_cost]\], prereq lowest is \[[prereq_currentcost]\]. Lesser costs than the previous node is only allowed if the node has a required experiment.")
 							failed = TRUE
+
+					// forbid designs with RND_CATEGORY_INITIAL in non-starting nodes
+					for(var/design_id in node.design_ids)
+						var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
+						if((RND_CATEGORY_INITIAL in design.category))
+							TEST_NOTICE(src, "TECHWEB NODE - [node.type]'s [design_id] is flagged as RND_CATEGORY_INITIAL in a non-starting techweb node.")
+							failed = TRUE
 				else
 					// if we have prereqs we did something wrong
 					if(length(node.prereq_ids))
