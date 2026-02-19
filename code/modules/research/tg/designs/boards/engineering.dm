@@ -424,7 +424,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
-/datum/design/board/medical_kiosk
+/datum/design_techweb/board/medical_kiosk
 	name = "Medical Kiosk Board"
 	desc = "The circuit board for a Medical Kiosk."
 	id = "medical_kiosk"
@@ -434,7 +434,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/design/board/medical_kiosk
+/datum/design_techweb/board/guest_pass
 	name = "guestpass console Board"
 	desc = "The circuit board for a guest pass console."
 	id = "guestpass"
