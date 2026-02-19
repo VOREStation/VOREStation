@@ -1,19 +1,3 @@
-/datum/category_item/autolathe/engineering/airlockmodule
-	name = "airlock electronics"
-	path =/obj/item/airlock_electronics
-
-/datum/category_item/autolathe/engineering/airalarm
-	name = "air alarm electronics"
-	path =/obj/item/circuitboard/airalarm
-
-/datum/category_item/autolathe/engineering/firealarm
-	name = "fire alarm electronics"
-	path =/obj/item/circuitboard/firealarm
-
-/datum/category_item/autolathe/engineering/powermodule
-	name = "power control module"
-	path =/obj/item/module/power_control
-
 /datum/category_item/autolathe/engineering/statusdisplay
 	name = "status display electronics"
 	path =/obj/item/circuitboard/status_display
@@ -26,21 +10,9 @@
 	name = "newscaster electronics"
 	path =/obj/item/circuitboard/newscaster
 
-/datum/category_item/autolathe/engineering/atm
-	name = "atm electronics"
-	path =/obj/item/circuitboard/atm
-
 /datum/category_item/autolathe/engineering/intercom
 	name = "intercom electronics"
 	path =/obj/item/circuitboard/intercom
-
-/datum/category_item/autolathe/engineering/holopad
-	name = "holopad electronics"
-	path =/obj/item/circuitboard/holopad
-
-/datum/category_item/autolathe/engineering/guestpass
-	name = "guestpass console electronics"
-	path =/obj/item/circuitboard/guestpass
 
 /datum/category_item/autolathe/engineering/entertainment
 	name = "entertainment camera electronics"
@@ -53,14 +25,6 @@
 /datum/category_item/autolathe/engineering/geiger_wall
 	name = "wall-mounted geiger counter electronics"
 	path =/obj/item/circuitboard/geiger
-
-/datum/category_item/autolathe/engineering/photocopier
-	name = "photocopier electronics"
-	path =/obj/item/circuitboard/photocopier
-
-/datum/category_item/autolathe/engineering/fax
-	name = "fax machine electronics"
-	path =/obj/item/circuitboard/fax
 
 /datum/category_item/autolathe/engineering/papershredder
 	name = "paper shredder electronics"

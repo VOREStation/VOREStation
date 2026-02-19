@@ -139,10 +139,10 @@
 			continue
 
 		var/expected_mats = auto_recipies[design.build_path]
-		auto_recipies -= design.build_path
 		if(compare_list(expected_mats, design.materials))
 			continue
 
+		auto_recipies -= design.build_path
 		var/materialdat = ""
 		for(var/mat in expected_mats)
 			materialdat += ", [mat] = [expected_mats[mat]]"
