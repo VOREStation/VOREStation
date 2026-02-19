@@ -10165,6 +10165,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall/west)
+"aqH" = (
+/mob/living/simple_mob/animal/goat{
+	name = "Spike"
+	},
+/turf/simulated/floor/grass,
+/area/hydroponics/cafegarden)
 "aqI" = (
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall/nwest)
@@ -25923,9 +25929,6 @@
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/mob/living/simple_mob/animal/goat{
-	name = "Spike"
-	},
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aTm" = (
@@ -30920,11 +30923,6 @@
 "bcf" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/standard,
-/obj/item/paper{
-	desc = "";
-	info = "Yes hello, the goat in the freezer is named 'Spike'. Please do not fuck with Spike. He doesn't have the best temper.";
-	name = "Important notice from Rancher Jim"
-	},
 /obj/item/book/manual/chef_recipes,
 /obj/structure/noticeboard{
 	pixel_x = 32
@@ -63049,7 +63047,7 @@ aop
 asN
 awq
 aJw
-asu
+aqH
 aoJ
 aHi
 aTl

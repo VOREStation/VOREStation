@@ -206,13 +206,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
-"av" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/mob/living/simple_mob/animal/goat{
-	name = "Ted"
-	},
-/turf/simulated/floor/tiled/freezer/cold,
-/area/crew_quarters/kitchen)
 "aw" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -4989,6 +4982,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftstarboard)
+"kw" = (
+/mob/living/simple_mob/animal/goat{
+	name = "Ted"
+	},
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "kx" = (
 /obj/structure/disposalpipe/sortjunction/wildcard/flipped{
 	dir = 1
@@ -30972,7 +30971,7 @@ Gi
 wL
 ch
 DD
-av
+AC
 AC
 DP
 BF
@@ -30989,7 +30988,7 @@ iZ
 ej
 WN
 ok
-dP
+kw
 AR
 KK
 si
