@@ -354,3 +354,69 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
 	)
 	departmental_flags = ALL
+
+// Assemblies
+/datum/design_techweb/assembly_igniter
+	name = "igniter"
+	desc = "A small electronic device able to ignite combustable substances."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "igniter"
+	materials = list(MAT_STEEL = 625, MAT_GLASS = 60)
+	build_path = /obj/item/assembly/igniter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_infrared_emitter
+	name = "infrared emitter"
+	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "infrared_emitter"
+	materials = list(MAT_STEEL = 1250, MAT_GLASS = 625)
+	build_path = /obj/item/assembly/infra
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_prox_sensor
+	name = "proximity sensor"
+	desc = "Used for scanning and alerting when someone enters a certain proximity."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "prox_sensor"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 250)
+	build_path = /obj/item/assembly/prox_sensor
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_signaler
+	name = "remote signaling device"
+	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "signaler"
+	materials = list(MAT_STEEL = 1250, MAT_GLASS = 250)
+	build_path = /obj/item/assembly/signaler
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_timer
+	name = "timer"
+	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "timer"
+	materials = list(MAT_STEEL = 625, MAT_GLASS = 60)
+	build_path = /obj/item/assembly/timer
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
