@@ -34,10 +34,6 @@
 	name = "glass vial"
 	path =/obj/item/reagent_containers/glass/beaker/vial
 
-/datum/category_item/autolathe/medical/syringe
-	name = "syringe"
-	path =/obj/item/reagent_containers/syringe
-
 /datum/category_item/autolathe/medical/implanter
 	name = "implanter"
 	path =/obj/item/implanter

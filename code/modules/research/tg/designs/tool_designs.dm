@@ -1,3 +1,249 @@
+/datum/design_techweb/prybar
+	name = "prybar"
+	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency."
+	id = "prybar"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 40)
+	build_path = /obj/item/tool/prybar
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/crowbar
+	name = "crowbar"
+	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency."
+	id = "crowbar"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 60)
+	build_path = /obj/item/tool/crowbar
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/multitool
+	name = "multitool"
+	desc = "Used for pulsing wires to test which to cut."
+	id = "multitool"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 60, MAT_GLASS = 25)
+	build_path = /obj/item/multitool
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/mini_welding_tool
+	name = "emergency welding tool"
+	desc = "A miniature welder used during emergencies."
+	id = "mini_welding_tool"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 50, MAT_GLASS = 30)
+	build_path = /obj/item/weldingtool/mini
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/welding_tool
+	name = "welding tool"
+	desc = "Used to repair machinery, or cut through plating."
+	id = "welding_tool"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 90, MAT_GLASS = 40)
+	build_path = /obj/item/weldingtool
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/screwdriver
+	name = "screwdriver"
+	desc = "You can be totally screwwy with this."
+	id = "screwdriver"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 90)
+	build_path = /obj/item/tool/screwdriver
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/wirecutters
+	name = "wirecutters"
+	desc = "This cuts wires."
+	id = "wirecutters"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 100)
+	build_path = /obj/item/tool/wirecutters
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/wrench
+	name = "wrench"
+	desc = "A wrench with many common uses."
+	id = "wrench"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 200)
+	build_path = /obj/item/tool/wrench
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/minihoe
+	name = "mini hoe"
+	desc = "It's used for removing weeds or scratching your back."
+	id = "minihoe"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/material/minihoe
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_BOTANY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/extinguisher
+	name = "fire extinguisher"
+	desc = "A traditional red fire extinguisher."
+	id = "fire_extinguisher"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 120)
+	build_path = /obj/item/extinguisher
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/radio_headset
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	id = "radio_headset"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 120)
+	build_path = /obj/item/radio/headset
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/bounced_radio
+	name = "station bounced radio"
+	desc = "Used to talk to people when headsets don't function. Range is limited."
+	id = "bounced_radio"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 90, MAT_GLASS = 30)
+	build_path = /obj/item/radio/off
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/trayscanner
+	name = "T-ray scanner"
+	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	id = "trayscanner"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 100, MAT_GLASS = 40)
+	build_path = /obj/item/t_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/destination_tagger
+	name = "destination tagger"
+	desc = "Used to set the destination of properly wrapped packages."
+	id = "desttagger"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 250, MAT_GLASS = 125)
+	build_path = /obj/item/destTagger
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/flashlight
+	name = "flashlight"
+	desc = "A hand-held emergency light."
+	id = "flashlight"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 60, MAT_GLASS = 25)
+	build_path = /obj/item/flashlight
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/flashlight
+	name = "maglight"
+	desc = "A very, very heavy duty flashlight."
+	id = "maglight"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 250, MAT_GLASS = 60)
+	build_path = /obj/item/flashlight/maglight
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/taperecorder
+	name = "tape recorder"
+	desc = "A device that can record to cassette tapes, and play them. It automatically translates the content in playback."
+	id = "taperecorder"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 75, MAT_GLASS = 40)
+	build_path = /obj/item/taperecorder
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/recordingtape
+	name = "recorder cassette tape"
+	desc = "A magnetic tape that can hold up to ten minutes of content."
+	id = "recordingcassette"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 25, MAT_GLASS = 15)
+	build_path = /obj/item/rectape/random
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /datum/design_techweb/advmop
 	name = "advanced mop"
 	desc = "An advanced mop with pressured water jets that break away the toughest stains."

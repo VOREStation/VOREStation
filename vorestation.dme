@@ -681,7 +681,6 @@
 #include "code\datums\autolathe\medical.dm"
 #include "code\datums\autolathe\medical_vr.dm"
 #include "code\datums\autolathe\tools.dm"
-#include "code\datums\autolathe\tools_vr.dm"
 #include "code\datums\changelog\changelog.dm"
 #include "code\datums\cinematics\_cinematic.dm"
 #include "code\datums\cinematics\malf_doomsday.dm"

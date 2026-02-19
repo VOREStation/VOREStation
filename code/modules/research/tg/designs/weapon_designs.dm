@@ -204,7 +204,7 @@
 	id = "chemsprayer"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = 5000, MAT_STEEL = 2000)
 	build_path = /obj/item/reagent_containers/spray/chemsprayer
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED

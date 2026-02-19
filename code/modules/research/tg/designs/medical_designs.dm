@@ -14,7 +14,7 @@
 	name = "Syringe"
 	id = "syringe"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 500)
+	materials = list(MAT_GLASS = 190)
 	build_path = /obj/item/reagent_containers/syringe
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,

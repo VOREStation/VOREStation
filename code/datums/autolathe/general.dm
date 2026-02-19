@@ -49,17 +49,9 @@
 	name = "metamorphic pint glass"
 	path =/obj/item/reagent_containers/food/drinks/metaglass/metapint
 
-/datum/category_item/autolathe/general/flashlight
-	name = "flashlight"
-	path =/obj/item/flashlight
-
 /datum/category_item/autolathe/general/floor_light
 	name = "floor light"
 	path =/obj/item/floor_light
-
-/datum/category_item/autolathe/general/extinguisher
-	name = "extinguisher"
-	path =/obj/item/extinguisher
 
 /datum/category_item/autolathe/general/jar
 	name = "jar"
@@ -69,14 +61,6 @@
 	name = "fish tank"
 	path =/obj/item/glass_jar
 
-/datum/category_item/autolathe/general/radio_headset
-	name = "radio headset"
-	path =/obj/item/radio/headset
-
-/datum/category_item/autolathe/general/radio_bounced
-	name = "station bounced radio"
-	path =/obj/item/radio/off
-
 /datum/category_item/autolathe/general/suit_cooler
 	name = "suit cooling unit"
 	path =/obj/item/suit_cooling_unit
@@ -85,17 +69,9 @@
 	name = "welding mask"
 	path =/obj/item/clothing/head/welding
 
-/datum/category_item/autolathe/general/spraybottle
-	name = "spray bottle"
-	path = /obj/item/reagent_containers/spray
-
 /datum/category_item/autolathe/general/knife
 	name = "kitchen knife"
 	path =/obj/item/material/knife
-
-/datum/category_item/autolathe/general/taperecorder
-	name = "tape recorder"
-	path =/obj/item/taperecorder
 
 /datum/category_item/autolathe/general/tube
 	name = "light tube"
@@ -114,10 +90,6 @@
 /datum/category_item/autolathe/general/weldinggoggles
 	name = "welding goggles"
 	path =/obj/item/clothing/glasses/welding
-
-/datum/category_item/autolathe/general/maglight
-	name = "maglight"
-	path =/obj/item/flashlight/maglight
 
 /datum/category_item/autolathe/general/idcard
 	name = "ID Card"

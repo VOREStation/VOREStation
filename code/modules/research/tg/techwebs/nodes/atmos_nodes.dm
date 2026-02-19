@@ -18,7 +18,7 @@
 		// "plasma_tank",
 		// "plasmaman_tank_belt",
 		// "plasmarefiller",
-		// "extinguisher",
+		"fire_extinguisher",
 		// "pocketfireextinguisher",
 		// "gas_filter",
 		// "plasmaman_gas_filter",
