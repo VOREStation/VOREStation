@@ -16,12 +16,27 @@ export const SleeperStatusPanel = (props: { name: string }) => {
     ore_storage,
     current_capacity,
     max_ore_storage,
+    has_destructive_analyzer,
+    techweb_name,
   } = data;
   const { name } = props;
 
   return (
     <Section fill scrollable>
       <Stack fill vertical>
+        {!!has_destructive_analyzer && (
+          <>
+            <Stack.Item>
+              <Box color="label" inline>
+                Tech Web:
+              </Box>
+              <Box inline preserveWhitespace>
+                {` ${techweb_name}`}
+              </Box>
+            </Stack.Item>
+            <Stack.Divider />
+          </>
+        )}
         {(!!delivery || !!compactor) && !!contents.length && (
           <>
             <Stack.Item>

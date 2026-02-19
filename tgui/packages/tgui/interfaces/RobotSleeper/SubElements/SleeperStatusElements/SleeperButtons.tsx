@@ -5,22 +5,10 @@ import type { Data } from '../../types';
 
 export const SleeperButtons = (props) => {
   const { act, data } = useBackend<Data>();
-  const {
-    eject_port,
-    cleaning,
-    medsensor,
-    name,
-    has_destructive_analyzer,
-    techweb_name,
-  } = data;
+  const { eject_port, cleaning, medsensor, name } = data;
 
   return (
     <>
-      {!!has_destructive_analyzer && (
-        <Stack.Item>
-          <Box color="label">Tech Web: {techweb_name}</Box>
-        </Stack.Item>
-      )}
       <Stack.Item>
         <Stack align="center">
           <Stack.Item>
