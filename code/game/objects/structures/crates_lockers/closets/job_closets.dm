@@ -86,6 +86,7 @@
 		/obj/item/lightreplacer,
 		/obj/item/storage/bag/trash,
 		/obj/item/storage/belt/janitor,
+		/obj/item/vac_attachment,
 		/obj/item/clothing/shoes/galoshes,
 		/obj/item/clothing/glasses/hud/janitor
 		)

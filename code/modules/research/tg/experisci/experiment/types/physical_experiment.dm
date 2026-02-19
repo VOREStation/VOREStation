@@ -1,7 +1,7 @@
 /datum/experiment/physical
 	name = "Physical Experiment"
 	description = "An experiment requiring a physical reaction to continue"
-	exp_tag = "Physical Experiment"
+	exp_tag = EXPERIMENT_TAG_PHYSICAL
 	performance_hint = "To perform physical experiments you must use a hand-held scanner unit to track objects in our world relevant to \
 		your experiment. Activate the experiment on your scanner, scan the object to track, and then complete the objective."
 	/// The atom that is currently being watched by this experiment

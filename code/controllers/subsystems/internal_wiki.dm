@@ -376,18 +376,26 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["fluid"] = display_reactions
 
 	display_reactions = list()
-	var/list/instant_by_reagent = SSchemistry.instant_reactions_by_reagent["[R.id]"]
-	if(instant_by_reagent && length(instant_by_reagent))
-		for(var/i = 1, i <= length(instant_by_reagent), i++)
-			var/decl/chemical_reaction/OR = instant_by_reagent[i]
-			if(istype(OR,/decl/chemical_reaction/instant/slime)) // very bloated and meant to be a mystery
-				continue
-			display_reactions.Add(OR.name)
-	var/list/distilled_by_reagent = SSchemistry.distilled_reactions_by_reagent["[R.id]"]
-	if(distilled_by_reagent && length(distilled_by_reagent))
-		for(var/i = 1, i <= length(distilled_by_reagent), i++)
-			var/decl/chemical_reaction/OR = distilled_by_reagent[i]
-			display_reactions.Add(OR.name)
+
+	// We need to do this instead of using distilled_reactions_by_reagent, because SSchem was built around unique logic that only uses the first reagent key found.
+	// So if we collected them all, chemistry as players know it will explode. So we recheck all reagent datums directly instead and see if we're used by them.
+	var/list/paths = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
+	for(var/path in paths)
+		var/decl/chemical_reaction/D = paths[path]
+		if(istype(D,/decl/chemical_reaction/instant/slime))
+			continue
+		if(!D.result)
+			continue
+
+		var/list/scan_list = list()
+		if(length(D.required_reagents))
+			scan_list += D.required_reagents
+		if(length(D.catalysts))
+			scan_list += D.catalysts
+
+		if(R.id in scan_list)
+			display_reactions.Add(D.name)
+
 	data["produces"] = null
 	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
@@ -1576,7 +1584,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
-			body += " <b>-Temperature: </b> [react["xgm_min"]]K - [react["xgm_max"]]K | ([react["xgm_min"] - T0C]C - [react["xgm_max"] - T0C]C)<br>"
+			body += " <b>-Temperature: </b> [react["temp_min"]]K to [react["temp_max"]]K | ([react["temp_min"] - T0C]C to [react["temp_max"] - T0C]C)<br>"
+			if(react["xgm_min"] || react["xgm_max"])
+				body += " <b>-Pressure: </b> [react["xgm_min"]]kpa - [react["xgm_max"]]kpa<br>"
 			if(react["require_xgm_gas"])
 				body += " <b>-Requires Gas: </b> [react["require_xgm_gas"]]<br>"
 			if(react["rejects_xgm_gas"])
