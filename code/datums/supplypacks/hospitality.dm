@@ -234,3 +234,20 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sweets crate"
+
+/datum/supply_pack/hospitality/condiments
+	contains = list(
+			/obj/item/reagent_containers/food/condiment/soysauce,
+			/obj/item/reagent_containers/food/condiment/ketchup,
+			/obj/item/reagent_containers/food/condiment/mustard,
+			/obj/item/reagent_containers/food/condiment/hotsauce,
+			/obj/item/reagent_containers/food/condiment/coldsauce,
+			/obj/item/reagent_containers/food/condiment/barbeque,
+			/obj/item/reagent_containers/food/condiment/small/saltshaker,
+			/obj/item/reagent_containers/food/condiment/small/peppermill
+			)
+	name = "Condiments crate"
+	desc = "A selection of condiment bottles for catering purposes, including a few that are hard to get."
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Condiments crate"
