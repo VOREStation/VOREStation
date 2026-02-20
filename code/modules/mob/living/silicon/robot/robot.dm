@@ -50,7 +50,7 @@
 	var/shown_robot_modules = 0 //Used to determine whether they have the module menu shown or not
 	var/atom/movable/screen/robot_modules_background
 
-	var/ui_theme
+	var/ui_theme = "ntos"
 	var/selecting_module = FALSE
 
 //3 Modules can be activated at any one time.
