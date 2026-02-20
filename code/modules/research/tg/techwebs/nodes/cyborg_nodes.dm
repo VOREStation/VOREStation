@@ -49,6 +49,7 @@
 		"platform_armour",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/cybernetics
 	id = TECHWEB_NODE_CYBERNETICS
