@@ -185,9 +185,7 @@ var/list/organ_cache = list()
 		if(CONFIG_GET(flag/organs_decay) && decays) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
-		adjust_germ_level(rand(2,6))
-		if(germ_level >= INFECTION_LEVEL_TWO)
-			adjust_germ_level(rand(2,6))
+		adjust_germ_level(2) //If something knocked a limb off, usually it'll have 100ish germs. This means you have ~15 minutes to get it back on before it becomes necrotic.
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
 
@@ -218,6 +216,18 @@ var/list/organ_cache = list()
 			. += span_boldwarning("Signs of a moderate infection are apparent.")
 		if(INFECTION_LEVEL_THREE to INFINITY)
 			. += span_bolddanger("Necrosis has set in.")
+
+/obj/item/organ/get_description_info(list/additional_information)
+	if(!additional_information)
+		additional_information = list()
+	if(butcherable && meat_type)
+		additional_information += "Can be butchered with use of any sharp and edged object."
+	if(germ_level)
+		additional_information += "Can have five units of spaceacillin applied to cure infection."
+	if(status & ORGAN_DEAD)
+		additional_information += "Can have five units of peridaxon applied to bring the organ back from death. This will not cure any infection, however."
+	. = ..(additional_information)
+	return .
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
@@ -515,12 +525,31 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/organ/attackby(obj/item/W, mob/user)
 	if(can_butcher(W, user))
 		butcher(W, user)
 		return
 
+	var/obj/item/reagent_containers/container = W
+	if(istype(container))
+		if(container.reagents.has_reagent(REAGENT_ID_SPACEACILLIN, 5))
+			germ_level = 0
+			container.reagents.remove_reagent(REAGENT_ID_SPACEACILLIN, 5)
+			to_chat(user, "You use the [container] to cure the infection in \the [src]")
+			return
+		if(container.reagents.has_reagent(REAGENT_ID_PERIDAXON, 5))
+			status &= ~ORGAN_DEAD
+			START_PROCESSING(SSobj, src) //When an organ dies, it stops processing. This restarts it.
+			container.reagents.remove_reagent(REAGENT_ID_PERIDAXON, 5)
+			to_chat(user, "You use the [container] to revive \the [src]")
+			return
 	return ..()
+
+///Washing your organs doesn't clean them.
+/obj/item/organ/wash(clean_types)
+	var/old_germs = germ_level
+	. = ..()
+	germ_level = old_germs
 
 /obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
 	if(butcherable && meat_type)

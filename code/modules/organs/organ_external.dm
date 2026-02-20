@@ -172,6 +172,19 @@
 		return //no eating the limb until everything's been removed
 	return ..(user, TRUE)
 
+/obj/item/organ/external/get_description_info(list/additional_information)
+	if(!additional_information)
+		additional_information = list()
+	switch(stage)
+		if(0)
+			additional_information += "Can be cut open via a scalpel to perform procedures on it."
+		if(1)
+			additional_information += "The [name] is cut open and can be opened further with a retractor or closed with a cautery."
+		if(2)
+			additional_information += "The [name] is fully open, allowing for removal of anything within or attached via a hemostat. It can also be partially closed with fix-o-vein"
+	. = ..(additional_information)
+	return .
+
 /obj/item/organ/external/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
@@ -180,6 +193,7 @@
 			//Handling attached limbs, like the foot on a leg.
 			if(istype(I, /obj/item/organ/external))
 				var/obj/item/organ/external/child_organ = I
+				. += span_notice("There is [child_organ.name] attached to it.")
 
 				//Handling status on attached limbs.
 				if(child_organ.status & ORGAN_DEAD) //Can happen for other reasons than infection.
@@ -205,6 +219,12 @@
 			if(istype(I, /obj/item/organ)) //We can't see inside the organ if it has an organ in it.
 				continue
 			. += span_danger("There is \a [I] sticking out of it.")
+		if(stage)
+			switch(stage)
+				if(1)
+					. += span_danger("The [name] is surgically cut open.")
+				if(2)
+					. += span_danger("The [name] is cut open and the skin retracted.")
 
 /obj/item/organ/external/attackby(obj/item/W, mob/living/user)
 	switch(stage)
@@ -218,15 +238,26 @@
 				user.visible_message(span_danger(span_bold("[user]") + " cracks [src] open like an egg with [W]!"))
 				stage++
 				return
+			if(istype(W,/obj/item/surgical/cautery))
+				user.visible_message(span_danger(span_bold("[user]") + " closes [src] with [W]!"))
+				stage--
+				return
 		if(2)
 			if(istype(W,/obj/item/surgical/hemostat))
-				if(contents.len)
-					var/obj/item/removing = pick(contents)
+				if(LAZYLEN(contents))
+					var/obj/item/removing = tgui_input_list(user, "What would you like to remove?", "Extraction", contents, timeout = 20 SECONDS)
+					if(!removing || removing.loc != src || !Adjacent(user)) //Didn't select anything or selected something that was already removed OR we walked away.
+						user.visible_message(span_danger(span_bold("[user]") + " decides against removing anything from [src]"))
+						return
 					removing.loc = get_turf(user.loc)
 					user.put_in_hands(removing)
 					user.visible_message(span_danger(span_bold("[user]") + " extracts [removing] from [src] with [W]!"))
 				else
 					user.visible_message(span_danger(span_bold("[user]") + " fishes around fruitlessly in [src] with [W]."))
+				return
+			if(istype(W,/obj/item/surgical/FixOVein))
+				user.visible_message(span_danger(span_bold("[user]") + " partially closes [src] with [W]!"))
+				stage--
 				return
 	..()
 
