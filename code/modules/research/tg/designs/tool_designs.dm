@@ -1130,3 +1130,29 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barbedwire
+	name = "barbedwire"
+	desc = "A coil of wire."
+	id = "barbedwire"
+	materials = list(MAT_STEEL = 10000)
+	build_path = /obj/item/material/barbedwire
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/snarewire
+	name = "snare wire"
+	desc = "A coil of plastic snares."
+	id = "snarewire"
+	materials = list(MAT_PLASTIC = 10000)
+	build_path = /obj/item/material/barbedwire/plastic
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE

@@ -62,6 +62,8 @@
 		"light_replacer",
 		"spraybottle",
 		"beartrap",
+		"barbedwire",
+		"snarewire",
 		// "buffer",
 		// "vacuum",
 	)
