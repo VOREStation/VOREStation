@@ -30,7 +30,7 @@
 		"console_screen",
 		"motor",
 		"gear",
-
+		"spring"
 	)
 
 /datum/techweb_node/parts_upg

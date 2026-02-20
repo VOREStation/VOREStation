@@ -60,6 +60,9 @@
 		"weasel_right_leg",
 		"weasel_head",
 	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/random/destruct_ripley_parts = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/mech_equipment
 	id = TECHWEB_NODE_MECH_EQUIPMENT

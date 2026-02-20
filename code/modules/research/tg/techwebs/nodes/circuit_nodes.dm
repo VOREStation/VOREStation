@@ -13,6 +13,9 @@
 		"assembly-device",
 		"circuit-bug",
 	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/destruct_circuitboard = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/circuit_shells
 	id = TECHWEB_NODE_CIRCUIT_SHELLS
