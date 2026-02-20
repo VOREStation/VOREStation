@@ -206,7 +206,7 @@
 				continue
 			. += span_danger("There is \a [I] sticking out of it.")
 
-/obj/item/organ/external/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/organ/external/attackby(obj/item/W, mob/living/user)
 	switch(stage)
 		if(0)
 			if(istype(W,/obj/item/surgical/scalpel))

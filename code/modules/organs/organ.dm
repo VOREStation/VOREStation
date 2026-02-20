@@ -539,11 +539,20 @@ var/list/organ_cache = list()
 	return FALSE
 
 /obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
-	if(robotic >= ORGAN_ROBOT)
-		user?.visible_message(span_notice("[user] disassembles \the [src]."))
 
-	else
-		user?.visible_message(span_notice("[user] butchers \the [src]."))
+	if(user)
+		to_chat(user, span_danger("You are preparing to butcher \the [src]!"))
+		user.visible_message(span_danger("prepares to butcher \the [src]!"))
+		if(!do_after(user, 10 SECONDS, target = src)) //They can queue this up on multiple organs.
+			to_chat(user, span_notice("You reconsider butchering \the [src]..."))
+			user.visible_message(span_notice("reconsiders butchering \the [src]!"))
+			return FALSE
+
+		if(robotic >= ORGAN_ROBOT)
+			user?.visible_message(span_warning("[user] disassembles \the [src]."))
+
+		else
+			user?.visible_message(span_warning("[user] butchers \the [src]."))
 
 	if(!newtarget)
 		newtarget = get_turf(src)
