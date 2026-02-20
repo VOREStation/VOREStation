@@ -289,7 +289,6 @@
 	materials = list(MAT_PLASTIC = 2000)
 	build_path = /obj/item/reagent_containers/spray
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
@@ -302,7 +301,6 @@
 	materials = list(MAT_STEEL = 18750)
 	build_path = /obj/item/beartrap
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
 
