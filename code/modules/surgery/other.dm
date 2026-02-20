@@ -527,7 +527,7 @@
 	max_duration = 120
 
 /datum/surgery_step/internal/detoxify/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_TORSO && (target.toxloss || target.oxyloss)
+	return ..() && target_zone == BP_TORSO && (target.toxloss || target.oxyloss || target.cloneloss)
 
 /datum/surgery_step/internal/detoxify/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] begins to pull toxins from, and restore oxygen to [target]'s musculature and organs with \the [tool]."), \
@@ -541,6 +541,7 @@
 	user.balloon_alert_visible("finishes pulling toxins and restoring oxygen to [target]'s organs", "pulled toxins from and restored oxygen to the organs")
 	target.adjustToxLoss(-20)
 	target.adjustOxyLoss(-20)
+	target.adjustCloneLoss(-20)
 	..()
 
 /datum/surgery_step/internal/detoxify/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
