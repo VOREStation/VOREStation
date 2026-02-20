@@ -111,6 +111,8 @@
 		move_chance = 0
 	if(!stats && add_stats)
 		stats = new /datum/anomaly_stats(src)
+		density = TRUE
+	return
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/analyzer))

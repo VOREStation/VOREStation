@@ -111,6 +111,8 @@
 					sleep(rand(3,5))
 					if(!length(neighbors))
 						break
+					if(QDELETED(src)) // we sleep, might get deleted!
+						return
 					spread_to(pick(neighbors))
 
 	// We shouldn't have spawned if the controller doesn't exist.
