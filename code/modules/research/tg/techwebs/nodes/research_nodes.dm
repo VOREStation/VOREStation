@@ -49,7 +49,6 @@
 		"belt_holding_utility",
 		"bluespacebeaker",
 		"bsflare",
-		"bluespace_crystal",
 		"beacon",
 		"beacon_locator",
 		"chameleon",

@@ -268,6 +268,7 @@
 		"fryer_board",
 		"cerealmaker_board",
 		"candymachine_board",
+		"honey_extractor",
 		// "food_replicator",
 		"borgos1",
 		"range",

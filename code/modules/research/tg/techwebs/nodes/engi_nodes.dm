@@ -65,7 +65,6 @@
 		"super_cell",
 		"super_mech_cell",
 		"super_device",
-		"hyper_device",
 		"arped",
 		"smes_cap_ultra",
 		"smes_trans_ultra",

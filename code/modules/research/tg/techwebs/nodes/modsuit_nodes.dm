@@ -35,7 +35,6 @@
 		"rig_device_plasmacutter",
 		"rig_device_healthanalyzer",
 		"rig_gun_sizegun",
-		"rig_siphon",
 		"rig_component_datajack",
 		// "modlink_scryer",
 		// "mod_clamp",
