@@ -1055,13 +1055,77 @@
 
 /datum/design_techweb/kitchen_knife
 	name = "kitchen knife"
-	desc = "A general purpose " + JOB_CHEF + "'s Knife."
+	desc = "A general purpose " + JOB_CHEF + "'s knife."
 	id = "kitchen_knife"
 	materials = list(MAT_STEEL = 375)
 	build_path = /obj/item/material/knife
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
-		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/fork
+	name = "fork"
+	desc = "It's a fork. Sure is pointy."
+	id = "fork"
+	materials = list(MAT_STEEL = 75)
+	build_path = /obj/item/material/kitchen/utensil/fork
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/spoon
+	name = "spoon"
+	desc = "It's a spoon."
+	id = "spoon"
+	materials = list(MAT_STEEL = 75)
+	build_path = /obj/item/material/kitchen/utensil/spoon
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/plastic_knife
+	name = "plastic knife"
+	desc = "A simple plastic knife."
+	id = "plastic_knife"
+	materials = list(MAT_PLASTIC = 375)
+	build_path = /obj/item/material/knife/plastic
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/fork
+	name = "plastic fork"
+	desc = "It's a plastic fork. Sure is pointy."
+	id = "plastic_fork"
+	materials = list(MAT_PLASTIC = 75)
+	build_path = /obj/item/material/kitchen/utensil/fork/plastic
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/spoon
+	name = "plastic spoon"
+	desc = "It's a plastic spoon."
+	id = "plastic_spoon"
+	materials = list(MAT_PLASTIC = 75)
+	build_path = /obj/item/material/kitchen/utensil/spoon/plastic
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
