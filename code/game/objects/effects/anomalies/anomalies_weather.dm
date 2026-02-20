@@ -61,15 +61,14 @@
 
 /obj/effect/anomaly/weather/anomalyEffect(seconds_per_tick)
 	..()
-	if(stats)
-		is_raining = FALSE
-		return
-
 	if(!is_raining)
 		return
 
 	for(var/turf/turf in affected_turfs)
 		selected_weather.affect_turf(turf)
+
+	if(stats)
+		return
 
 	for(var/mob/mob as anything in GLOB.player_list)
 		if(get_area(mob) in affected_areas)
@@ -102,9 +101,10 @@
 	if(selected_weather.sounds)
 		selected_weather.loop_sounds.stop()
 
+	for(var/turf/turf in affected_turfs)
+		selected_weather.remove_from_turf(turf)
+
 	for(var/area in affected_areas)
-		for(var/turf/area_turf in area)
-			selected_weather.remove_from_turf(area_turf)
 		for(var/mob/mob in area)
 			selected_weather.hear_sounds(mob, FALSE)
 
@@ -114,3 +114,44 @@
 
 /obj/effect/anomaly/weather/proc/update_reagent(reagent)
 	selected_weather.update_reagent(reagent)
+
+/obj/effect/anomaly/weather/anomalyPulse()
+	if(!..())
+		return
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+			affected_areas.Cut()
+			affected_turfs.Cut()
+		if(16 to 33)
+			clear_weather()
+			affected_turfs.Cut()
+			if(!istype(selected_weather, /datum/anomalous_weather/rain))
+				selected_weather = new /datum/anomalous_weather/rain
+			update_reagent(REAGENT_ID_WATER)
+			affected_turfs.Add(circleviewturfs(src, 3))
+			start_weather()
+		if(34 to 65)
+			clear_weather()
+			affected_turfs.Cut()
+			if(!istype(selected_weather, /datum/anomalous_weather/rain))
+				selected_weather = new /datum/anomalous_weather/rain
+			update_reagent(pick(REAGENT_ID_WATER, REAGENT_ID_ICE, REAGENT_ID_ORANGEJUICE))
+			affected_turfs.Add(circlerangeturfs(src, 4))
+			start_weather()
+		else
+			clear_weather()
+			affected_turfs.Cut()
+			if(!istype(selected_weather, /datum/anomalous_weather/rain/storm))
+				selected_weather = new /datum/anomalous_weather/rain/storm
+
+			var/reagent_id = pick(SSchemistry.chemical_reagents)
+			if(reagent_id in GLOB.obtainable_chemical_blacklist)
+				update_reagent(REAGENT_ID_WATER) // You get WATER.
+			else
+				update_reagent(reagent_id)
+
+			affected_turfs.Add(circlerangeturfs(src, 5))
+			start_weather()

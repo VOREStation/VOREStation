@@ -73,7 +73,9 @@
 		if(16 to 33)
 			tesla_zap(src, 2, 1000, FALSE, FALSE)
 		if(34 to 65)
-			tesla_zap(src, 3, 1500, FALSE, FALSE)
+			tesla_zap(src, 3, 1000, FALSE, FALSE)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1500, FALSE, FALSE), 3 SECONDS)
 		else
-			tesla_zap(src, 4, 1500, FALSE, TRUE)
-			tesla_zap(src, 4, 1500, FALSE, FALSE)
+			tesla_zap(src, 4, 1000, FALSE, TRUE)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1250, FALSE, FALSE), 3 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1500, FALSE, FALSE), 6 SECONDS)
