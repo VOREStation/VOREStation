@@ -347,3 +347,27 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/syringe_gun
+	name = "syringe gun"
+	desc = "A spring loaded rifle designed to fit syringes, designed to incapacitate unruly patients from a distance."
+	id = "syringe_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000)
+	build_path = /obj/item/gun/launcher/syringe
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/syringe_cartridge
+	name = "syringe gun cartridge"
+	desc = "An impact-triggered compressed gas cartridge that can be fitted to a syringe for rapid injection."
+	id = "syringe_cartridge"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 150, MAT_GLASS = 500)
+	build_path = /obj/item/syringe_cartridge
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE

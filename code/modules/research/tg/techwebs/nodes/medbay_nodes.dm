@@ -108,6 +108,8 @@
 		// "defibmount",
 		// "medicalbed_emergency",
 		// "piercesyringe",
+		"syringe_gun",
+		"syringe_cartridge"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/easy_cytology)

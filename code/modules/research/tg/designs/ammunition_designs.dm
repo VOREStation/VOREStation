@@ -1,12 +1,6 @@
 
 // TODO - Move to techwebs
 
-
-
-/datum/category_item/autolathe/arms/syringegun_ammo
-	name = "syringe gun cartridge"
-	path =/obj/item/syringe_cartridge
-
 ////////////////
 /*Ammo casings*/
 ////////////////
