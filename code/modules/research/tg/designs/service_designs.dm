@@ -91,18 +91,3 @@
 
 
 // glasses
-
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/glass/bucket missing from techweb still, steel = 250
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/glass/cooler_bottle missing from techweb still, plastic = 2500
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/square missing from techweb still, glass = 75
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/rocks missing from techweb still, glass = 50
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/shake missing from techweb still, glass = 37.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/cocktail missing from techweb still, glass = 37.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/shot missing from techweb still, glass = 12.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/pint missing from techweb still, glass = 150
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/mug missing from techweb still, glass = 100
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/wine missing from techweb still, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/metaglass missing from techweb still, glass = 625
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/metaglass/metapint missing from techweb still, glass = 625
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/carafe missing from techweb still, glass = 62.5
-  Notice: AUTOLATHE MIGRATION - /obj/item/reagent_containers/food/drinks/glass2/pitcher missing from techweb still, plastic = 62.5
