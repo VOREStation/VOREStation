@@ -231,34 +231,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/datum/design_techweb/mop
+	name = "mop"
+	desc = "The world of janitalia wouldn't be complete without a mop."
+	id = "mop"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 250)
+	build_path = /obj/item/mop
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/advmop
 	name = "advanced mop"

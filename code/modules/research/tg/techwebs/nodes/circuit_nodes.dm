@@ -25,7 +25,7 @@
 	design_ids = list(
 		"assembly-implant",
 		"ic_printer_upgrade_adv",
-		"ic_printer_upgrade_clone",
+		"ic_printer_upgrade_clone"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)

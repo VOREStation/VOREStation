@@ -37,7 +37,7 @@
 		// "camera",
 		// "razor",
 		// "bucket",
-		// "mop",
+		"mop",
 		// "pushbroom",
 		// "normtrash",
 		// "wirebrush",

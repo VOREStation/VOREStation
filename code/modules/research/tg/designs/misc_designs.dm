@@ -57,11 +57,6 @@
 	build_path = /obj/item/cartridge/security
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/pda_cartridge/janitor
-	id = "cart_janitor"
-	build_path = /obj/item/cartridge/janitor
-	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/pda_cartridge/science
 	id = "cart_science"
 	build_path = /obj/item/cartridge/signal/science
@@ -318,30 +313,6 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/ashtray
-	name = "ashtray"
-	desc = "An ashtray."
-	id = "ashtray"
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 250)
-	build_path = /obj/item/material/ashtray
-	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
-
-/datum/design_techweb/glasstray
-	name = "glass ashtray"
-	desc = "An shinier ashtray."
-	id = "glasstray"
-	build_type = PROTOLATHE
-	materials = list(MAT_GLASS = 250)
-	build_path = /obj/item/material/ashtray/glass
-	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/sticky_tape
 	name = "tape role"

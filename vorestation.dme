@@ -4492,6 +4492,7 @@
 #include "code\modules\research\tg\designs\modular_computer_designs.dm"
 #include "code\modules\research\tg\designs\multi-department_designs.dm"
 #include "code\modules\research\tg\designs\prosfab_designs.dm"
+#include "code\modules\research\tg\designs\service_designs.dm"
 #include "code\modules\research\tg\designs\stock_part_designs.dm"
 #include "code\modules\research\tg\designs\tool_designs.dm"
 #include "code\modules\research\tg\designs\weapon_designs.dm"
