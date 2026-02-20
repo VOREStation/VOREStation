@@ -176,7 +176,33 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		for(var/obj/item/I in contents)
-			if(istype(I, /obj/item/organ))
+
+			//Handling attached limbs, like the foot on a leg.
+			if(istype(I, /obj/item/organ/external))
+				var/obj/item/organ/external/child_organ = I
+
+				//Handling status on attached limbs.
+				if(child_organ.status & ORGAN_DEAD) //Can happen for other reasons than infection.
+					. += span_bolddanger("The attached [child_organ.name] is dead.")
+				if(child_organ.status & ORGAN_MUTATED)
+					. += span_danger("The attached [child_organ.name] is mutated and deformed.")
+				if(child_organ.status & ORGAN_BROKEN)
+					. += span_danger("The attached [child_organ.name] is broken.")
+
+				//Handling infections on attached limbs.
+				if(child_organ.germ_level < INFECTION_LEVEL_ONE)
+					continue
+
+				switch(child_organ.germ_level)
+					if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO - 1)
+						. += span_warning("The attached [child_organ.name] has signs of a minor infection.")
+					if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE - 1)
+						. += span_boldwarning("The attached [child_organ.name] has signs of a moderate infection.")
+					if(INFECTION_LEVEL_THREE to INFINITY)
+						. += span_bolddanger("The attached [child_organ.name] is necrotic.")
+				continue
+
+			if(istype(I, /obj/item/organ)) //We can't see inside the organ if it has an organ in it.
 				continue
 			. += span_danger("There is \a [I] sticking out of it.")
 

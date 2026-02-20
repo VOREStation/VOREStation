@@ -199,8 +199,25 @@ var/list/organ_cache = list()
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
-	if(status & ORGAN_DEAD)
-		. += span_notice("Decay appears to have set in.")
+
+	//Descriptors for 'status of the limb'
+	if(status & ORGAN_DEAD) //Can happen for other reasons than infection.
+		. += span_bolddanger("The [name] is dead.")
+	if(status & ORGAN_MUTATED)
+		. += span_danger("The [name] is mutated and deformed.")
+	if(status & ORGAN_BROKEN)
+		. += span_danger("The [name] is broken.")
+
+	//Descriptors for 'how infected is this organ'
+	if(germ_level < INFECTION_LEVEL_ONE)
+		return
+	switch(germ_level)
+		if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO - 1)
+			. += span_warning("Signs of a minor infection are apparent.")
+		if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE - 1)
+			. += span_boldwarning("Signs of a moderate infection are apparent.")
+		if(INFECTION_LEVEL_THREE to INFINITY)
+			. += span_bolddanger("Necrosis has set in.")
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
