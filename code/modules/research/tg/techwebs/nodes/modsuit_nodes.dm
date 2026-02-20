@@ -2,6 +2,7 @@
 	id = TECHWEB_NODE_MOD_SUIT
 	display_name = "RIG Suit"
 	description = "Specialized back mounted power suits with various different modules."
+	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"rigmodule_belt_basic",
 		"zero_rig_module",
