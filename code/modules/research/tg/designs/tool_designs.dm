@@ -1096,7 +1096,7 @@
 	name = "plastic knife"
 	desc = "A simple plastic knife."
 	id = "plastic_knife"
-	materials = list(MAT_PLASTIC = 375)
+	materials = list(MAT_PLASTIC = 75)
 	build_path = /obj/item/material/knife/plastic
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
