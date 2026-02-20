@@ -22,10 +22,6 @@
 	name = "wall-mounted geiger counter electronics"
 	path =/obj/item/circuitboard/geiger
 
-/datum/category_item/autolathe/engineering/papershredder
-	name = "paper shredder electronics"
-	path =/obj/item/circuitboard/papershredder
-
 /datum/category_item/autolathe/engineering/washing
 	name = "washing machine electronics"
 	path =/obj/item/circuitboard/washing
@@ -50,7 +46,3 @@
 /datum/category_item/autolathe/engineering/rcd
 	name = "rapid construction device"
 	path =/obj/item/rcd
-
-/datum/category_item/autolathe/engineering/camera_assembly
-	name = "camera assembly"
-	path =/obj/item/camera_assembly

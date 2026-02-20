@@ -434,3 +434,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/camera_assembly
+	name = "camera assembly"
+	desc = "A pre-fabricated security camera kit, ready to be assembled and mounted to a surface."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "camera_assembly"
+	materials = list(MAT_STEEL = 875, MAT_GLASS = 375)
+	build_path = /obj/item/camera_assembly
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

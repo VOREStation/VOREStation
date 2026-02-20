@@ -169,6 +169,7 @@
 		"airalarm_electronics",
 		"airlock_board",
 		"firealarm_electronics",
+		"camera_assembly",
 		// "firelock_board",
 		// "trapdoor_electronics",
 		// "blast",
