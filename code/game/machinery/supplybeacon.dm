@@ -41,7 +41,7 @@
 
 /obj/machinery/power/supply_beacon/Initialize(mapload)
 	. = ..()
-	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
+	if(!drop_type) drop_type = pick(GLOB.supply_drop)
 
 /obj/machinery/power/supply_beacon/supermatter
 	name = "supermatter supply beacon"

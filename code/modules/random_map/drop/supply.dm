@@ -11,7 +11,7 @@
 // supplied_drop_types is a list of types to spawn in the pod.
 /datum/random_map/droppod/supply/get_spawned_drop(var/turf/T)
 
-	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
+	if(!drop_type) drop_type = pick(GLOB.supply_drop)
 
 	if(drop_type == "custom")
 		if(supplied_drop_types.len)
@@ -23,7 +23,7 @@
 					C.contents |= A
 			return
 		else
-			drop_type = pick(supply_drop_random_loot_types())
+			drop_type = pick(GLOB.supply_drop)
 
 	if(istype(drop_type, /datum/supply_drop_loot))
 		var/datum/supply_drop_loot/SDL = drop_type
@@ -88,7 +88,7 @@
 		if(!choice)
 			return
 		if(choice == "Yes")
-			chosen_loot_type = tgui_input_list(usr, "Select a loot type.", "Loot Selection", supply_drop_random_loot_types())
+			chosen_loot_type = tgui_input_list(usr, "Select a loot type.", "Loot Selection", GLOB.supply_drop)
 
 	choice = tgui_alert(usr, "Are you SURE you wish to deploy this supply drop? It will cause a sizable explosion and gib anyone underneath it.","Supply Drop",list("No","Yes"))
 	if(choice != "Yes")

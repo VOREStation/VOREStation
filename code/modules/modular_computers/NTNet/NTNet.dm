@@ -1,8 +1,8 @@
-var/global/datum/ntnet/ntnet_global = new()
+
 
 
 // This is the NTNet datum. There can be only one NTNet datum in game at once. Modular computers read data from this.
-/datum/ntnet/
+/datum/ntnet
 	var/list/relays = list()
 	var/list/logs = list()
 	var/list/available_station_software = list()
@@ -38,8 +38,8 @@ var/global/datum/ntnet/ntnet_global = new()
 
 // If new NTNet datum is spawned, it replaces the old one.
 /datum/ntnet/New()
-	if(ntnet_global && (ntnet_global != src))
-		ntnet_global = src // There can be only one.
+	if(GLOB.ntnet_global && (GLOB.ntnet_global != src))
+		GLOB.ntnet_global = src // There can be only one.
 	if (SSatoms && SSatoms.initialized > INITIALIZATION_INSSATOMS)
 		for(var/obj/machinery/ntnet_relay/R in GLOB.machines)
 			relays.Add(R)
@@ -139,7 +139,7 @@ var/global/datum/ntnet/ntnet_global = new()
 // Generates service email list. Currently only used by broadcaster service
 /datum/ntnet/proc/build_emails_list()
 	for(var/F in subtypesof(/datum/computer_file/data/email_account/service))
-		new F()
+		email_accounts += new F(TRUE)
 
 // Attempts to find a downloadable file according to filename var
 /datum/ntnet/proc/find_ntnet_file_by_name(var/filename)
@@ -193,7 +193,7 @@ var/global/datum/ntnet/ntnet_global = new()
 			add_log("Configuration Updated. Wireless network firewall now [setting_systemcontrol ? "allows" : "disallows"] remote control of station's systems.")
 
 /datum/ntnet/proc/does_email_exist(var/login)
-	for(var/datum/computer_file/data/email_account/A in ntnet_global.email_accounts)
+	for(var/datum/computer_file/data/email_account/A in GLOB.ntnet_global.email_accounts)
 		if(A.login == login)
 			return 1
 	return 0

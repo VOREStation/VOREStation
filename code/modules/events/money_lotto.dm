@@ -30,4 +30,4 @@
 	if(!deposit_success)
 		body += "<br>Unfortunately, we were unable to verify the account details provided, so we were unable to transfer the money. Send a cheque containing the sum of 5000 Thalers to ND 'Stellar Slam' office on the The [using_map.starsys_name] Times gateway containing updated details, and your winnings'll be re-sent within the month."
 
-	news_network.SubmitArticle(body, author, channel, null, 1)
+	GLOB.news_network.SubmitArticle(body, author, channel, null, 1)

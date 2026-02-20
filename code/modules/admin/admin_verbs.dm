@@ -588,7 +588,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	if(!A)
 		return
 	A.flags |= AREA_BLOCK_GHOST_SIGHT
-	ghostnet.addArea(A)
+	GLOB.ghostnet.addArea(A)
 
 /client/proc/remove_hidden_area()
 	set name = "Remove Ghostsight Block Area"
@@ -604,7 +604,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	if(!A)
 		return
 	A.flags &= ~(AREA_BLOCK_GHOST_SIGHT)
-	ghostnet.removeArea(A)
+	GLOB.ghostnet.removeArea(A)
 
 /client/proc/hide_motion_tracker_feedback()
 	set name = "Toggle Motion Echos"

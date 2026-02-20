@@ -63,7 +63,7 @@ var/global/ntnet_card_uid = 1
 	if(!enabled)
 		return 0
 
-	if(!check_functionality() || !ntnet_global || is_banned())
+	if(!check_functionality() || !GLOB.ntnet_global || is_banned())
 		return 0
 
 	return 2
@@ -88,7 +88,7 @@ var/global/ntnet_card_uid = 1
 	return "[identification_string] (NID [identification_id])"
 
 /obj/item/computer_hardware/network_card/proc/is_banned()
-	return ntnet_global.check_banned(identification_id)
+	return GLOB.ntnet_global.check_banned(identification_id)
 
 // 0 - No signal, 1 - Low signal, 2 - High signal. 3 - Wired Connection
 /obj/item/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
@@ -98,13 +98,13 @@ var/global/ntnet_card_uid = 1
 	if(!enabled)
 		return 0
 
-	if(!check_functionality() || !ntnet_global || is_banned())
+	if(!check_functionality() || !GLOB.ntnet_global || is_banned())
 		return 0
 
 	if(ethernet) // Computer is connected via wired connection.
 		return 3
 
-	if(!ntnet_global.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
+	if(!GLOB.ntnet_global.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
 		return 0
 
 	if(holder2)
@@ -114,7 +114,7 @@ var/global/ntnet_card_uid = 1
 		var/list/zlevels_in_range = using_map.get_map_levels(holderz, FALSE)// VOREStation Edit - , om_range = DEFAULT_OVERMAP_RANGE)
 		var/list/zlevels_in_long_range = using_map.get_map_levels(holderz, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
 		var/best = 0
-		for(var/obj/machinery/ntnet_relay/R as anything in ntnet_global.relays)
+		for(var/obj/machinery/ntnet_relay/R as anything in GLOB.ntnet_global.relays)
 			//Relay is down
 			if(!R.operable())
 				continue

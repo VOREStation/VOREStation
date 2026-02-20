@@ -137,7 +137,7 @@
 
 	var/datum/comm_message_listener/l = obtain_message_listener()
 	data["messages"] = l.messages
-	data["message_deletion_allowed"] = l != global_message_listener
+	data["message_deletion_allowed"] = l != GLOB.global_message_listener
 	data["message_current_id"] = current_viewing_message_id
 	data["message_current"] = current_viewing_message
 
@@ -172,7 +172,7 @@
 	if(istype(host, /datum/computer_file/program/comm))
 		var/datum/computer_file/program/comm/P = host
 		return P.message_core
-	return global_message_listener
+	return GLOB.global_message_listener
 
 /proc/post_status(atom/source, command, data1, data2, mob/user = null)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
@@ -302,7 +302,7 @@
 			var/response = tgui_alert(ui.user, "Are you sure you wish to delete this message?", "Confirm", list("Yes", "No"))
 			if(response == "Yes")
 				if(current_viewing_message)
-					if(l != global_message_listener)
+					if(l != GLOB.global_message_listener)
 						l.Remove(current_viewing_message)
 					current_viewing_message = null
 				setMenuState(ui.user, COMM_SCREEN_MESSAGES)

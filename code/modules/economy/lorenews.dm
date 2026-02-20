@@ -107,4 +107,4 @@
 	"Unusual stellar phenomena was detected on [pick(allloc)], sparking concerns about the colonies in the system.",
 	)
 
-	news_network.SubmitArticle(body, author, channel, null, 1)
+	GLOB.news_network.SubmitArticle(body, author, channel, null, 1)

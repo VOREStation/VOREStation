@@ -1,7 +1,5 @@
 //I AM THE LOREMASTER, ARE YOU THE GATEKEEPER?
 
-var/datum/lore/loremaster/loremaster = new/datum/lore/loremaster
-
 /datum/lore/loremaster
 	var/list/organizations = list()
 
