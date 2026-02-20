@@ -1105,7 +1105,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
-/datum/design_techweb/fork
+/datum/design_techweb/plastic_fork
 	name = "plastic fork"
 	desc = "It's a plastic fork. Sure is pointy."
 	id = "plastic_fork"
@@ -1118,7 +1118,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
-/datum/design_techweb/spoon
+/datum/design_techweb/plastic_spoon
 	name = "plastic spoon"
 	desc = "It's a plastic spoon."
 	id = "plastic_spoon"
