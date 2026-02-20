@@ -66,10 +66,6 @@
 	name = "Arms and Ammunition"
 	category_item_type = /datum/category_item/autolathe/arms
 
-/datum/category_group/autolathe/devices
-	name = "Devices and Components"
-	category_item_type = /datum/category_item/autolathe/devices
-
 /datum/category_group/autolathe/engineering
 	name = "Engineering"
 	category_item_type = /datum/category_item/autolathe/engineering
