@@ -74,10 +74,6 @@
 	name = "General"
 	category_item_type = /datum/category_item/autolathe/general
 
-/datum/category_group/autolathe/medical
-	name = "Medical"
-	category_item_type = /datum/category_item/autolathe/medical
-
 /datum/category_group/autolathe/tools
 	name = "Tools"
 	category_item_type = /datum/category_item/autolathe/tools

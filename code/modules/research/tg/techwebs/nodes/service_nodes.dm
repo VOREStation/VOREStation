@@ -282,7 +282,7 @@
 		// "sheetifier",
 		// "fat_sucker",
 		// "dish_drive",
-		// "roastingstick",
+		// "roastingstick"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)
@@ -294,6 +294,17 @@
 	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
 	design_ids = list(
 		"confetti_cannon",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
+
+/datum/techweb_node/rapid_service_fabricator
+	id = TECHWEB_NODE_RSF
+	display_name = "rapid service fabricator"
+	description = "A device used to rapidly deploy service items."
+	prereq_ids = list(TECHWEB_NODE_CAFETERIA_EQUIP)
+	design_ids = list(
+		"rsf",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)

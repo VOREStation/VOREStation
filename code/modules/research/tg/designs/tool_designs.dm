@@ -1177,3 +1177,15 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/rsf
+	name = "Rapid-Service-Fabricator"
+	desc = "A device used to rapidly deploy service items."
+	id = "rsf"
+	materials = list(MAT_STEEL = 31250)
+	build_path = /obj/item/rsf
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
