@@ -185,7 +185,7 @@ var/list/organ_cache = list()
 		if(CONFIG_GET(flag/organs_decay) && decays) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
-		adjust_germ_level(2) //If something knocked a limb off, usually it'll have 100ish germs. This means you have ~15 minutes to get it back on before it becomes necrotic.
+		adjust_germ_level(1) //If something knocked a limb off, usually it'll have 100ish germs. This means you have ~30 minutes to get it back on before it becomes necrotic.
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
 
