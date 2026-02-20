@@ -16,6 +16,10 @@
 	id = "rigmodule_belt_basic"
 	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000)
 	build_path = /obj/item/rig/robotics
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 // Station Suits
 /datum/design_techweb/mechfab/modsuit/eva_controller
@@ -24,6 +28,9 @@
 	id = "eva_rig_module"
 	materials = list(MAT_PLASTEEL = 16000, MAT_GOLD = 3000, MAT_GRAPHITE = 4500, MAT_OSMIUM = 1000, MAT_PLASTIC = 4500, MAT_LEAD = 2000, MAT_STEEL = 2000)
 	build_path = /obj/item/rig/eva
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 /datum/design_techweb/mechfab/modsuit/eva_ce_controller
 	name = "Advanced EVA Suit Control Module"
@@ -31,6 +38,9 @@
 	id = "advanced_eva_rig_module"
 	materials = list(MAT_PLASTEEL = 16000, MAT_GOLD = 6000, MAT_GRAPHITE = 4500, MAT_OSMIUM = 4000, MAT_PLASTIC = 8000, MAT_LEAD = 2000, MAT_PHORON = 6000, MAT_STEEL = 3000, MAT_TITANIUM = 2000)
 	build_path = /obj/item/rig/ce
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 /datum/design_techweb/mechfab/modsuit/ami_controller
 	name = "AMI Suit Control Module"
@@ -38,6 +48,9 @@
 	id = "ami_rig_module"
 	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 2000, MAT_PLASTIC = 6000, MAT_LEAD = 2000, MAT_PHORON = 12000)
 	build_path = /obj/item/rig/hazmat
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 /datum/design_techweb/mechfab/modsuit/industrial_controller
 	name = "Industrial Suit Control Module"
@@ -45,6 +58,9 @@
 	id = "industrial_rig_module"
 	materials = list(MAT_PLASTEEL = 14000, MAT_GOLD = 4000, MAT_GRAPHITE = 5000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000, MAT_STEEL = 10000, MAT_TITANIUM = 2000)
 	build_path = /obj/item/rig/industrial
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 /datum/design_techweb/mechfab/modsuit/hazard_controller
 	name = "Hazard Suit Control Module"
@@ -52,6 +68,9 @@
 	id = "hazard_rig_module"
 	materials = list(MAT_PLASTEEL = 14000, MAT_GOLD = 4000, MAT_GRAPHITE = 5000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000, MAT_STEEL = 10000, MAT_TITANIUM = 2000)
 	build_path = /obj/item/rig/hazard
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 /datum/design_techweb/mechfab/modsuit/rescue_controller
 	name = "Rescue Suit Control Module"
@@ -59,6 +78,9 @@
 	id = "medical_rig_module"
 	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 6000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 4000, MAT_PLASTIC = 10000, MAT_LEAD = 2000)
 	build_path = /obj/item/rig/medical
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 /datum/design_techweb/mechfab/modsuit/zero_controller
 	name = "Zero Suit Control Module"
@@ -66,6 +88,10 @@
 	id = "zero_rig_module"
 	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000)
 	build_path =/obj/item/rig/zero
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MODSUIT_MODULES
+	)
 
 ///Modsuit Modules
 /datum/design_techweb/mechfab/modsuit/modules
@@ -231,6 +257,7 @@
 	materials = list(MAT_PLASTEEL = 1000, MAT_PLASTIC = 500, MAT_PHORON = 500, MAT_GRAPHITE = 100)
 	build_path = /obj/item/rig_module/device/paperdispenser
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
@@ -243,6 +270,7 @@
 	materials = list(MAT_PLASTEEL = 1000, MAT_PLASTIC = 500, MAT_PHORON = 500, MAT_GRAPHITE = 100)
 	build_path = /obj/item/rig_module/device/pen
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE

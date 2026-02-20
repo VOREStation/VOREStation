@@ -35,6 +35,11 @@
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have any research_costs set.")
 			failed = TRUE
 
+		// Must have category set
+		if(!length(node.category))
+			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have a category set.")
+			failed = TRUE
+
 		// Must have valid designs
 		if(!node.design_ids)
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] does not have any design_ids.")

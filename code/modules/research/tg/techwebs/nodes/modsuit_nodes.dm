@@ -2,12 +2,13 @@
 	id = TECHWEB_NODE_MOD_SUIT
 	display_name = "RIG Suit"
 	description = "Specialized back mounted power suits with various different modules."
-	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
+	starting_node = TRUE
 	design_ids = list(
 		"rigmodule_belt_basic",
 		"zero_rig_module",
 		"rig_device_pen",
 		"rig_device_paperdispenser",
+		"suit_cooling_unit",
 		// "suit_storage_unit",
 		// "mod_shell",
 		// "mod_chestplate",
@@ -21,8 +22,6 @@
 		// "mod_plasma",
 		// "mod_flashlight",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/mod_equip
 	id = TECHWEB_NODE_MOD_EQUIP

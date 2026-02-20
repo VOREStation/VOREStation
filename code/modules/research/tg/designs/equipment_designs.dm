@@ -425,3 +425,16 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/suit_cooling_unit
+	name = "portable suit cooling unit"
+	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
+	id = "suit_cooling_unit"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 18000, MAT_GLASS = 4400)
+	build_path = /obj/item/suit_cooling_unit
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
