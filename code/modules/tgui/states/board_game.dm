@@ -1,7 +1,7 @@
 /**
  * tgui state: board_game_state
  *
- * Checks that the user is an mentor.
+ * Checks that the default living handling or if the user or the object are inside a belly
  **/
 
 GLOBAL_DATUM_INIT(tgui_board_game_state, /datum/tgui_state/board_game_state, new)
@@ -18,6 +18,8 @@ GLOBAL_DATUM_INIT(tgui_board_game_state, /datum/tgui_state/board_game_state, new
 	return STATUS_CLOSE
 
 /mob/living/board_game_can_use_tgui_topic(atom/src_object)
+	if(is_incorporeal())
+		return STATUS_CLOSE
 	var/dist = get_dist(get_turf(src_object), get_turf(src))
 	if(dist <= 1)
 		return STATUS_INTERACTIVE
