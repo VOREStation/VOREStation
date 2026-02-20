@@ -41,6 +41,10 @@
 			failed = TRUE
 		else
 			for(var/design in node.design_ids)
+				if(design in used_designs)
+					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has an already in use design_id: \"[design]\"")
+					failed = TRUE
+
 				used_designs += design
 				if(!(design in SSresearch.techweb_designs))
 					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant design_id: \"[design]\"")

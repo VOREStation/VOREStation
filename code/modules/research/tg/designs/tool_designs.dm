@@ -1153,3 +1153,27 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/rcd_loaded
+	name = "rapid construction device"
+	desc = "A device used to rapidly build and deconstruct. Reload with compressed matter cartridges."
+	id = "rcd_loaded"
+	materials = list(MAT_STEEL = 62500)
+	build_path = /obj/item/rcd
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/rcd_ammo
+	name = "compressed matter cartridge"
+	desc = "Highly compressed matter for the RCD."
+	id = "rcd_ammo"
+	materials = list(MAT_STEEL = 30000, MAT_GLASS = 15000)
+	build_path = /obj/item/rcd_ammo
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

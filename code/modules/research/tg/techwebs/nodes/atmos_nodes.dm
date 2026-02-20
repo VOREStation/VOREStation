@@ -83,10 +83,8 @@
 		"gyrotron_control",
 		"fusion_core",
 		"fusion_injector",
-		"rapidpipedispenser",
 		// "adv_fire_extinguisher",
 		// "bolter_wrench",
-		// "rpd_loaded",
 		// "engine_goggles",
 		// "crystallizer",
 	)
