@@ -193,6 +193,7 @@
 		"light_tube",
 		"large_light_bulb",
 		"large_light_tube",
+		"floor_light",
 		// "crossing_signal",
 		// "guideway_sensor",
 		// "manuunloader",

@@ -225,8 +225,8 @@
 		// "servingtray",
 		// "tongs",
 		// "spoon",
-		// "fork",
-		// "kitchen_knife",
+		"fork",
+		"kitchen_knife",
 		// "plastic_spoon",
 		// "plastic_fork",
 		// "plastic_knife",
@@ -250,7 +250,8 @@
 		"barglass_metapint",
 		"barglass_carafe",
 		"barglass_pitcher",
-		"barglass_coffeemug"
+		"barglass_coffeemug",
+		"barglass_jar"
 	)
 
 /datum/techweb_node/food_proc

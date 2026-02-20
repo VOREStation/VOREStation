@@ -271,54 +271,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
-// Lights
-/datum/design_techweb/light_bulb
-	name = "light bulb"
-	id = "light_bulb"
+/datum/design_techweb/barglass_jar
+	name = "glass jar"
+	desc = "A small empty jar."
+	id = "barglass_jar"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 125)
-	build_path = /obj/item/light/bulb
+	materials = list(MAT_GLASS = 250)
+	build_path = /obj/item/glass_jar
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
-
-/datum/design_techweb/large_light_bulb
-	name = "large light bulb"
-	id = "large_light_bulb"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 200)
-	build_path = /obj/item/light/bulb/large
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
-
-/datum/design_techweb/light_tube
-	name = "light tube"
-	id = "light_tube"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 125)
-	build_path = /obj/item/light/tube
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
-
-/datum/design_techweb/large_light_tube
-	name = "large light tube"
-	id = "large_light_tube"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 200)
-	build_path = /obj/item/light/tube/large
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/idcard
 	name = "ID Card"
@@ -327,7 +291,6 @@
 	materials = list(MAT_STEEL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
 	build_path = /obj/item/card/id
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_COMMAND

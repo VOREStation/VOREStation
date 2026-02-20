@@ -324,64 +324,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/airlock_electronics
-	name = "airlock electronics circuit"
-	desc = "The circuit board for a airlock."
-	id = "airlock_board"
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
-	build_path = /obj/item/airlock_electronics
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/airalarm
-	name = "air alarm circuit"
-	desc = "The circuit board for a air alarm."
-	id = "airalarm_electronics"
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
-	build_path = /obj/item/circuitboard/airalarm
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/firealarm
-	name = "fire alarm circuit"
-	desc = "The circuit board for a fire alarm."
-	id = "firealarm_electronics"
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
-	build_path = /obj/item/circuitboard/firealarm
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/power_control
-	name = "power control module"
-	desc = "The circuit board for an area power controller(APC)."
-	id = "power_control"
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
-	build_path = /obj/item/module/power_control
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/holopad
-	name = "holopad circuit"
-	desc = "The circuit board for an AI holopad."
-	id = "holopad"
-	build_path = /obj/item/circuitboard/holopad
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/board/id_restorer
 	name = "ID restoration console circuit"
 	desc = "The circuit board for a ID restoration console."

@@ -963,7 +963,7 @@
 	build_path = /obj/item/mail_scanner
 	build_type = PROTOLATHE
 	category = list(
-		RND_CATEGORY_TOOLS
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
@@ -974,7 +974,7 @@
 	build_path = /obj/item/holosign_creator/combifan
 	build_type = PROTOLATHE
 	category = list(
-		RND_CATEGORY_TOOLS
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ATMOSPHERICS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
@@ -1009,6 +1009,60 @@
 	build_path = /obj/item/holosign_creator/medical
 	build_type = PROTOLATHE
 	category = list(
-		RND_CATEGORY_TOOLS
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/handcuffs
+	name = "handcuffs"
+	desc = "Use this to keep prisoners in line."
+	id = "handcuffs"
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/handcuffs
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/legcuffs
+	name = "legcuffs"
+	desc = "Use this to keep prisoners in line."
+	id = "legcuffs"
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/handcuffs/legcuffs
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/legcuffs_fuzzy
+	name = "fuzzy legcuffs"
+	desc = "Use this to keep... 'prisoners' in line."
+	id = "legcuffs_fuzzy"
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/handcuffs/legcuffs/fuzzy
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/kitchen_knife
+	name = "kitchen knife"
+	desc = "A general purpose " + JOB_CHEF + "'s Knife."
+	id = "kitchen_knife"
+	materials = list(MAT_STEEL = 375)
+	build_path = /obj/item/material/knife
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
