@@ -1,7 +1,7 @@
 
 GLOBAL_LIST_EMPTY(chemical_reaction_logs)
 
-/proc/log_chemical_reaction(atom/A, decl/chemical_reaction/R, multiplier)
+/proc/log_chemical_reaction(atom/A, datum/decl/chemical_reaction/R, multiplier)
 	if(!A || !R)
 		return
 

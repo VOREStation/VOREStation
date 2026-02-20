@@ -46,7 +46,7 @@
 	attack_edge = TRUE
 	attacktext = list("gouged")
 
-	organ_names = /decl/mob_organ_names/shantak
+	organ_names = /datum/decl/mob_organ_names/shantak
 
 	say_list_type = /datum/say_list/shantak
 
@@ -101,5 +101,5 @@
 	makes_dirt = 0
 	faction = FACTION_NEUTRAL
 
-/decl/mob_organ_names/shantak
+/datum/decl/mob_organ_names/shantak
 	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "mane", "snout")

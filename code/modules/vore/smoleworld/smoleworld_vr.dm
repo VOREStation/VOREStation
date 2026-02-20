@@ -40,12 +40,12 @@
 	icon = 'icons/turf/outdoors.dmi'
 	name = "grass"
 	icon_state = "grass0"
-	initial_flooring = /decl/flooring/grass/outdoors
+	initial_flooring = /datum/decl/flooring/grass/outdoors
 
 /turf/simulated/floor/smole/desert
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
-	initial_flooring = /decl/flooring/sand/desert
+	initial_flooring = /datum/decl/flooring/sand/desert
 
 /turf/simulated/floor/smole/megablocks
 	name = "block floor"

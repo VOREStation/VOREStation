@@ -372,7 +372,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
 	req_access = list(ACCESS_TALON_BRIDGE)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/captain
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/captain
 
 	starts_with = list(
 		/obj/item/storage/backpack/dufflebag/captain,
@@ -390,7 +390,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
 	req_access = list(ACCESS_TALON_SECURITY)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/guard
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/guard
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/pcarrier/light,
@@ -417,7 +417,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
 	req_access = list(ACCESS_TALON_MEDICAL)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/doctor
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
@@ -437,7 +437,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
 	req_access = list(ACCESS_TALON_ENGINEER)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/engineer
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/engineer
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -459,7 +459,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/structure/closet/secure_closet/talon_pilot
 	name = "talon pilot's locker"
 	req_access = list(ACCESS_TALON_PILOT)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/pilot
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/pilot
 
 	starts_with = list(
 		/obj/item/material/knife/tacknife/survival,
@@ -486,7 +486,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/structure/closet/secure_closet/talon_miner
 	name = "talon miner's locker"
 	req_access = list(ACCESS_TALON_CARGO)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/miner
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/miner
 
 	starts_with = list(
 		/obj/item/radio/headset/talon,

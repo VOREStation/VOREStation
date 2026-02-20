@@ -58,7 +58,7 @@
 
 	var/list/crewmembers = list()
 	for(var/zlevel in map_levels)
-		crewmembers += crew_repository.health_data(zlevel)
+		crewmembers += GLOB.crew_repository.health_data(zlevel)
 
 	// This is apparently necessary, because the above loop produces an emergent behavior
 	// of telling you what coordinates someone is at even without sensors on,

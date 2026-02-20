@@ -1,4 +1,4 @@
-/spell
+/datum/spell
 	var/name = "Spell"
 	var/desc = "A spell"
 	parent_type = /datum
@@ -17,7 +17,7 @@
 	var/holder_var_type = "bruteloss" //only used if charge_type equals to "holder_var"
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
 
-	var/spell_flags = NEEDSCLOTHES
+	var/datum/spell_flags = NEEDSCLOTHES
 	var/invocation = "HURP DURP"	//what is uttered when the wizard casts the spell
 	var/invocation_type = SpI_NONE	//can be none, whisper, shout, and emote
 	var/range = 7					//the range of the spell; outer radius for aoe spells
@@ -56,13 +56,13 @@
 ///SETUP AND PROCESS///
 ///////////////////////
 
-/spell/New()
+/datum/spell/New()
 	..()
 
 	//still_recharging_msg = span_notice("[name] is still recharging.")
 	charge_counter = charge_max
 
-/spell/process()
+/datum/spell/process()
 	spawn while(charge_counter < charge_max)
 		charge_counter++
 		sleep(1)
@@ -72,10 +72,10 @@
 /////CASTING/////
 /////////////////
 
-/spell/proc/choose_targets(mob/user = usr) //depends on subtype - see targeted.dm, aoe_turf.dm, dumbfire.dm, or code in general folder
+/datum/spell/proc/choose_targets(mob/user = usr) //depends on subtype - see targeted.dm, aoe_turf.dm, dumbfire.dm, or code in general folder
 	return
 
-/spell/proc/perform(mob/user = usr, skipcharge = 0) //if recharge is started is important for the trigger spells
+/datum/spell/proc/perform(mob/user = usr, skipcharge = 0) //if recharge is started is important for the trigger spells
 	if(!holder)
 		holder = user //just in case
 	if(!cast_check(skipcharge, user))
@@ -96,13 +96,13 @@
 		after_cast(targets) //generates the sparks, smoke, target messages etc.
 
 
-/spell/proc/cast(list/targets, mob/user) //the actual meat of the spell
+/datum/spell/proc/cast(list/targets, mob/user) //the actual meat of the spell
 	return
 
-/spell/proc/critfail(list/targets, mob/user) //the wizman has fucked up somehow
+/datum/spell/proc/critfail(list/targets, mob/user) //the wizman has fucked up somehow
 	return
 
-/spell/proc/adjust_var(mob/living/target = usr, type, amount) //handles the adjustment of the var when the spell is used. has some hardcoded types
+/datum/spell/proc/adjust_var(mob/living/target = usr, type, amount) //handles the adjustment of the var when the spell is used. has some hardcoded types
 	switch(type)
 		if("bruteloss")
 			target.adjustBruteLoss(amount)
@@ -126,7 +126,7 @@
 /////CASTING WRAPPERS//////
 ///////////////////////////
 
-/spell/proc/before_cast(list/targets)
+/datum/spell/proc/before_cast(list/targets)
 	var/valid_targets[0]
 	for(var/atom/target in targets)
 		// Check range again (fixes long-range EI NATH)
@@ -150,7 +150,7 @@
 				qdel(spell)
 	return valid_targets
 
-/spell/proc/after_cast(list/targets)
+/datum/spell/proc/after_cast(list/targets)
 	for(var/atom/target in targets)
 		var/location = get_turf(target)
 		if(isliving(target) && message)
@@ -174,7 +174,7 @@
 /////////////////////
 /*Checkers, cost takers, message makers, etc*/
 
-/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
+/datum/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 
 	if(!(src in user.spell_list) && holder == user)
 		log_world("## ERROR [user] utilized the spell '[src]' without having it.")
@@ -215,14 +215,14 @@
 				to_chat(user, "Mmmf mrrfff!")
 				return 0
 
-	var/spell/noclothes/spell = locate() in user.spell_list
+	var/datum/spell/noclothes/spell = locate() in user.spell_list
 	if((spell_flags & NEEDSCLOTHES) && !(spell && istype(spell)) && holder == user)//clothes check
 		if(!user.wearing_wiz_garb())
 			return 0
 
 	return 1
 
-/spell/proc/check_charge(var/skipcharge, mob/user)
+/datum/spell/proc/check_charge(var/skipcharge, mob/user)
 	if(!skipcharge)
 		switch(charge_type)
 			if(Sp_RECHARGE)
@@ -235,7 +235,7 @@
 					return 0
 	return 1
 
-/spell/proc/take_charge(mob/user = user, var/skipcharge)
+/datum/spell/proc/take_charge(mob/user = user, var/skipcharge)
 	if(!skipcharge)
 		switch(charge_type)
 			if(Sp_RECHARGE)
@@ -251,7 +251,7 @@
 		return 0
 	return 1
 
-/spell/proc/invocation(mob/user = usr, var/list/targets) //spelling the spell out and setting it on recharge/reducing charges amount
+/datum/spell/proc/invocation(mob/user = usr, var/list/targets) //datum/spelling the spell out and setting it on recharge/reducing charges amount
 
 	switch(invocation_type)
 		if(SpI_SHOUT)
@@ -271,7 +271,7 @@
 ///UPGRADING PROCS///
 /////////////////////
 
-/spell/proc/can_improve(var/upgrade_type)
+/datum/spell/proc/can_improve(var/upgrade_type)
 	if(level_max[Sp_TOTAL] <= ( spell_levels[Sp_SPEED] + spell_levels[Sp_POWER] )) //too many levels, can't do it
 		return 0
 
@@ -281,10 +281,10 @@
 
 	return 1
 
-/spell/proc/empower_spell()
+/datum/spell/proc/empower_spell()
 	return
 
-/spell/proc/quicken_spell()
+/datum/spell/proc/quicken_spell()
 	if(!can_improve(Sp_SPEED))
 		return 0
 
@@ -321,7 +321,7 @@
 
 	return temp
 
-/spell/proc/spell_do_after(var/mob/user as mob, delay as num, var/numticks = 5)
+/datum/spell/proc/spell_do_after(var/mob/user as mob, delay as num, var/numticks = 5)
 	if(!user || isnull(user))
 		return 0
 	if(numticks == 0)

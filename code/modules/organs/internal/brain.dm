@@ -300,19 +300,19 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	qdel(src)
 	return 1
 
-/decl/chemical_reaction/instant/promethean_brain_revival
+/datum/decl/chemical_reaction/instant/promethean_brain_revival
 	name = "Promethean Revival"
 	id = "prom_revival"
 	result = null
 	required_reagents = list(REAGENT_ID_PHORON = 40)
 	result_amount = 1
 
-/decl/chemical_reaction/instant/promethean_brain_revival/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/promethean_brain_revival/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/organ/internal/brain/slime))
 		return ..()
 	return FALSE
 
-/decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
 	var/obj/item/organ/internal/brain/slime/brain = holder.my_atom
 	if(brain.reviveBody())
 		brain.visible_message(span_notice("[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!"))

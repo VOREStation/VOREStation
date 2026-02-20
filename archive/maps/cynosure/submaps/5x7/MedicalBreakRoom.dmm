@@ -84,7 +84,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/nanotrasen/bay_25
+	poster_decl = /datum/decl/poster/nanotrasen/bay_25
 	},
 /turf/simulated/floor/carpet/tealcarpet,
 /area/template_noop)

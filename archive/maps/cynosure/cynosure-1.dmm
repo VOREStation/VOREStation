@@ -467,7 +467,7 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/hallway/bmt)
@@ -710,7 +710,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/hallway/bmt)
@@ -733,7 +733,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/medical/hallway/bmt)
@@ -1153,7 +1153,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -1190,7 +1190,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/maintenance/medical/west)
@@ -1439,7 +1439,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -1464,7 +1464,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/maintenance/medical/west)
@@ -1591,7 +1591,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -1603,7 +1603,7 @@
 /obj/structure/ore_box,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -1796,7 +1796,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -1910,7 +1910,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/exp_prep)
@@ -2334,7 +2334,7 @@
 /obj/item/tool/crowbar,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -2420,7 +2420,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/entrance)
@@ -2779,7 +2779,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -2978,7 +2978,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/reactor_room)
@@ -3060,7 +3060,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -3424,7 +3424,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -3530,7 +3530,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -3815,7 +3815,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology)
@@ -4022,7 +4022,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -4135,7 +4135,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -4167,7 +4167,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -4339,7 +4339,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -4565,7 +4565,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/medical/hallway/bmt)
@@ -4815,7 +4815,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -4937,7 +4937,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -5883,7 +5883,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -6116,7 +6116,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -6316,7 +6316,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main)
@@ -6444,7 +6444,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/medical/hallway/bmt)
@@ -6542,7 +6542,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -6909,7 +6909,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/entrance)
@@ -7265,7 +7265,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -7861,7 +7861,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main)
@@ -7931,7 +7931,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -7955,7 +7955,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -8861,7 +8861,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/hallway/bmt)
@@ -9247,7 +9247,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/medical/hallway/bmt)
@@ -9307,7 +9307,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -9318,7 +9318,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -9390,7 +9390,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -9646,7 +9646,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/bmt/south)
@@ -9973,7 +9973,7 @@
 /obj/machinery/mining/brace,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -10243,7 +10243,7 @@
 /obj/machinery/light/spot,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -10294,7 +10294,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -10344,7 +10344,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -10370,7 +10370,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -11397,7 +11397,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -11773,7 +11773,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -12038,7 +12038,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -12251,7 +12251,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -12294,7 +12294,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/bmt/south)
@@ -12438,7 +12438,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/bmt/south)
@@ -12640,7 +12640,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -12802,7 +12802,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/hallway/bmt)
@@ -13059,7 +13059,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -13326,7 +13326,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -13366,7 +13366,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -13406,7 +13406,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology)
@@ -13481,7 +13481,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -13564,7 +13564,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -13847,7 +13847,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -14269,7 +14269,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/reactor_room)
@@ -14486,7 +14486,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/reactor_room)
@@ -14603,7 +14603,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -14716,7 +14716,7 @@
 /obj/effect/wingrille_spawn/reinforced,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -14792,7 +14792,7 @@
 "HP" = (
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -15965,7 +15965,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/longtermstorage)
@@ -16015,7 +16015,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -16475,7 +16475,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main)
@@ -16521,7 +16521,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -16563,7 +16563,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -16763,7 +16763,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/longtermstorage)
@@ -16777,7 +16777,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -17187,7 +17187,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -17278,7 +17278,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -17611,7 +17611,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -17677,7 +17677,7 @@
 "Os" = (
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
@@ -17992,7 +17992,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/engineering/hallway/bmt)
@@ -18985,7 +18985,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/entrance)
@@ -19249,7 +19249,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -19873,7 +19873,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology/exp_prep)
@@ -20661,7 +20661,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology)
@@ -20948,7 +20948,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -21016,7 +21016,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
@@ -21301,7 +21301,7 @@
 /obj/machinery/mining/drill,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -21522,7 +21522,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/bmt/south)
@@ -22104,7 +22104,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -22163,7 +22163,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/hallway/bmt)
@@ -22302,7 +22302,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/mining_main/exterior)
@@ -22464,7 +22464,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/outpost/research/xenoarcheology)
@@ -22481,7 +22481,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/station/rnd/hallway/bmt)
@@ -22764,7 +22764,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor;
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor;
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)

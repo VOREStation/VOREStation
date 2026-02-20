@@ -1,4 +1,4 @@
-/decl/hierarchy/outfit/job/captain
+/datum/decl/hierarchy/outfit/job/captain
 	name = OUTFIT_JOB_NAME(JOB_ALT_CAPTAIN) // Keep Captain for now, not JOB_SITE_MANAGER
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/rank/captain
@@ -14,7 +14,7 @@
 	headset_alt = /obj/item/radio/headset/alt/heads/captain
 	headset_earbud = /obj/item/radio/headset/earbud/heads/captain
 
-/decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
 	..()
 	if(H.age>49)
 		// Since we can have something other than the default uniform at this
@@ -27,7 +27,7 @@
 			else
 				qdel(medal)
 
-/decl/hierarchy/outfit/job/hop
+/datum/decl/hierarchy/outfit/job/hop
 	name = OUTFIT_JOB_NAME(JOB_HEAD_OF_PERSONNEL)
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	shoes = /obj/item/clothing/shoes/brown
@@ -38,7 +38,7 @@
 	headset_alt = /obj/item/radio/headset/alt/heads/hop
 	headset_earbud = /obj/item/radio/headset/earbud/heads/hop
 
-/decl/hierarchy/outfit/job/secretary
+/datum/decl/hierarchy/outfit/job/secretary
 	name = OUTFIT_JOB_NAME(JOB_COMMAND_SECRETARY)
 	shoes = /obj/item/clothing/shoes/brown
 	id_type = /obj/item/card/id/silver/secretary
@@ -49,7 +49,7 @@
 	headset_alt = /obj/item/radio/headset/alt/headset_com
 	headset_earbud = /obj/item/radio/headset/earbud/headset_com
 
-/decl/hierarchy/outfit/job/secretary/pre_equip(mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/secretary/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.gender == FEMALE)
 		uniform = /obj/item/clothing/under/suit_jacket/female/skirt

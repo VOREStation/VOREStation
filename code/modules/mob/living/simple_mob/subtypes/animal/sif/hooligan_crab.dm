@@ -73,7 +73,7 @@
 	attacktext = list("clawed", "pinched", "crushed")
 	speak_emote = list("clicks")
 
-	organ_names = /decl/mob_organ_names/crab
+	organ_names = /datum/decl/mob_organ_names/crab
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hooligan
 	say_list_type = /datum/say_list/crab

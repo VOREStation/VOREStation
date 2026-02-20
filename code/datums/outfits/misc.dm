@@ -1,4 +1,4 @@
-/decl/hierarchy/outfit/standard_space_gear
+/datum/decl/hierarchy/outfit/standard_space_gear
 	name = "Standard space gear"
 	shoes = /obj/item/clothing/shoes/black
 	head = /obj/item/clothing/head/helmet/space
@@ -8,7 +8,7 @@
 	mask = /obj/item/clothing/mask/breath
 	flags = OUTFIT_HAS_JETPACK
 
-/decl/hierarchy/outfit/emergency_space_gear
+/datum/decl/hierarchy/outfit/emergency_space_gear
 	name = "Emergency space gear"
 	shoes = /obj/item/clothing/shoes/black
 	head = /obj/item/clothing/head/helmet/space/emergency
@@ -17,7 +17,7 @@
 	back = /obj/item/tank/oxygen
 	mask = /obj/item/clothing/mask/breath
 
-/decl/hierarchy/outfit/soviet_soldier
+/datum/decl/hierarchy/outfit/soviet_soldier
 	name = "Soviet soldier"
 	uniform = /obj/item/clothing/under/soviet
 	shoes = /obj/item/clothing/shoes/boots/combat
@@ -26,7 +26,7 @@
 	back = /obj/item/storage/backpack/satchel
 	belt = /obj/item/gun/projectile/revolver/mateba
 
-/decl/hierarchy/outfit/soviet_soldier/admiral
+/datum/decl/hierarchy/outfit/soviet_soldier/admiral
 	name = "Soviet admiral"
 	head = /obj/item/clothing/head/hgpiratecap
 	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
@@ -40,7 +40,7 @@
 	headset_alt = /obj/item/radio/headset/heads/captain
 	headset_earbud = /obj/item/radio/headset/heads/captain
 
-/decl/hierarchy/outfit/merchant
+/datum/decl/hierarchy/outfit/merchant
 	name = "Merchant"
 	shoes = /obj/item/clothing/shoes/black
 	uniform = /obj/item/clothing/under/color/grey
@@ -54,18 +54,18 @@
 	headset_alt = /obj/item/radio/headset
 	headset_earbud = /obj/item/radio/headset
 
-/decl/hierarchy/outfit/merchant/vox
+/datum/decl/hierarchy/outfit/merchant/vox
 	name = "Merchant - Vox"
 	shoes = /obj/item/clothing/shoes/boots/jackboots/toeless
 	uniform = /obj/item/clothing/under/vox/vox_robes
 	suit = /obj/item/clothing/suit/armor/vox_scrap
 
-/decl/hierarchy/outfit/zaddat
+/datum/decl/hierarchy/outfit/zaddat
 	name = "Zaddat Suit"
 	suit = /obj/item/clothing/suit/space/void/zaddat/
 	mask = /obj/item/clothing/mask/gas/zaddat
 
-/decl/hierarchy/outfit/maint_lurker
+/datum/decl/hierarchy/outfit/maint_lurker
 	name = "Maintenance Lurker Outfit"
 	id_slot = slot_wear_id
 	id_type = /obj/item/card/id/civilian/lurker
@@ -87,7 +87,7 @@
 
 	backpack_contents = list(/obj/item/spacecash/c200 = 1)
 
-/decl/hierarchy/outfit/maint_lurker/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/maint_lurker/post_equip(var/mob/living/carbon/human/H)
 	..()
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/spacecash/c200(H), slot_l_hand)

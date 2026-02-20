@@ -16,7 +16,7 @@
 	attacktext = list("nipped")
 	friendly = list("prods")
 
-	organ_names = /decl/mob_organ_names/borer
+	organ_names = /datum/decl/mob_organ_names/borer
 
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
@@ -387,5 +387,5 @@
 			to_chat(M, "[src.true_name] whispers to [host], \"[message]\"")
 
 
-/decl/mob_organ_names/borer
+/datum/decl/mob_organ_names/borer
 	hit_zones = list("head", "central segment", "tail segment")

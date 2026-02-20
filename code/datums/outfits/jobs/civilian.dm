@@ -1,49 +1,49 @@
-/decl/hierarchy/outfit/job/assistant
+/datum/decl/hierarchy/outfit/job/assistant
 	name = OUTFIT_JOB_NAME(JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 	id_type = /obj/item/card/id/generic	//VOREStation Edit
 
-/decl/hierarchy/outfit/job/assistant/visitor
+/datum/decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME(JOB_ALT_VISITOR)
 	id_pda_assignment = JOB_ALT_VISITOR
 	uniform = /obj/item/clothing/under/assistantformal
 
 //VOREStation Add - Interns
-/decl/hierarchy/outfit/job/assistant/intern
+/datum/decl/hierarchy/outfit/job/assistant/intern
 	name = OUTFIT_JOB_NAME(JOB_INTERN)
 	id_type = /obj/item/card/id/civilian
 //VOREStation Add End - Interns
 
-/decl/hierarchy/outfit/job/assistant/resident
+/datum/decl/hierarchy/outfit/job/assistant/resident
 	name = OUTFIT_JOB_NAME(JOB_ALT_RESIDENT)
 	id_pda_assignment = JOB_ALT_RESIDENT
 	uniform = /obj/item/clothing/under/color/white
 
-/decl/hierarchy/outfit/job/service
-	hierarchy_type = /decl/hierarchy/outfit/job/service
+/datum/decl/hierarchy/outfit/job/service
+	hierarchy_type = /datum/decl/hierarchy/outfit/job/service
 
 	headset = /obj/item/radio/headset/service
 	headset_alt = /obj/item/radio/headset/alt/service
 	headset_earbud = /obj/item/radio/headset/earbud/service
 
-/decl/hierarchy/outfit/job/service/bartender
+/datum/decl/hierarchy/outfit/job/service/bartender
 	name = OUTFIT_JOB_NAME(JOB_BARTENDER)
 	uniform = /obj/item/clothing/under/rank/bartender
 	id_type = /obj/item/card/id/civilian/service/bartender		//VOREStation Edit
 	pda_type = /obj/item/pda/bar
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/bar = 1)
 
-/decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.back)
 		for(var/obj/item/clothing/accessory/permit/gun/bar/permit in H.back.contents)
 			permit.set_name(H.real_name)
 
-/decl/hierarchy/outfit/job/service/bartender/barista
+/datum/decl/hierarchy/outfit/job/service/bartender/barista
 	name = OUTFIT_JOB_NAME(JOB_ALT_BARISTA)
 	id_pda_assignment = JOB_ALT_BARISTA
 	backpack_contents = null
 
-/decl/hierarchy/outfit/job/service/chef
+/datum/decl/hierarchy/outfit/job/service/chef
 	name = OUTFIT_JOB_NAME(JOB_CHEF)
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
@@ -51,19 +51,19 @@
 	id_type = /obj/item/card/id/civilian/service/chef		//VOREStation Edit
 	pda_type = /obj/item/pda/chef
 
-/decl/hierarchy/outfit/job/service/chef/cook
+/datum/decl/hierarchy/outfit/job/service/chef/cook
 	name = OUTFIT_JOB_NAME(JOB_ALT_COOK)
 	id_pda_assignment = JOB_ALT_COOK
 
 // Rykka adds Server Outfit
 
-/decl/hierarchy/outfit/job/service/server
+/datum/decl/hierarchy/outfit/job/service/server
 	name = OUTFIT_JOB_NAME(JOB_ALT_SERVER)
 	uniform = /obj/item/clothing/under/waiter
 
 // End Outfit addition
 
-/decl/hierarchy/outfit/job/service/gardener
+/datum/decl/hierarchy/outfit/job/service/gardener
 	name = OUTFIT_JOB_NAME(JOB_ALT_GARDENER)
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	suit = /obj/item/clothing/suit/storage/apron
@@ -76,23 +76,23 @@
 	id_type = /obj/item/card/id/civilian/service/botanist	//VOREStation Edit
 	pda_type = /obj/item/pda/botanist
 
-/decl/hierarchy/outfit/job/service/janitor
+/datum/decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME(JOB_JANITOR)
 	uniform = /obj/item/clothing/under/rank/janitor
 	id_type = /obj/item/card/id/civilian/service/janitor		//VOREStation Edit
 	pda_type = /obj/item/pda/janitor
 
-/decl/hierarchy/outfit/job/librarian
+/datum/decl/hierarchy/outfit/job/librarian
 	name = OUTFIT_JOB_NAME(JOB_LIBRARIAN)
 	uniform = /obj/item/clothing/under/suit_jacket/red
 	l_hand = /obj/item/barcodescanner
 	id_type = /obj/item/card/id/civilian
 	pda_type = /obj/item/pda/librarian
 
-/decl/hierarchy/outfit/job/librarian/journalist
+/datum/decl/hierarchy/outfit/job/librarian/journalist
 	id_type = /obj/item/card/id/civilian/journalist
 
-/decl/hierarchy/outfit/job/internal_affairs_agent
+/datum/decl/hierarchy/outfit/job/internal_affairs_agent
 	name = OUTFIT_JOB_NAME("Internal affairs agent")
 	uniform = /obj/item/clothing/under/rank/internalaffairs
 	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
@@ -106,14 +106,14 @@
 	headset_alt = /obj/item/radio/headset/alt/ia
 	headset_earbud = /obj/item/radio/headset/earbud/ia
 
-/decl/hierarchy/outfit/job/chaplain
+/datum/decl/hierarchy/outfit/job/chaplain
 	name = OUTFIT_JOB_NAME(JOB_CHAPLAIN)
 	uniform = /obj/item/clothing/under/rank/chaplain
 	l_hand = /obj/item/storage/bible
 	id_type = /obj/item/card/id/civilian/chaplain
 	pda_type = /obj/item/pda/chaplain
 
-/decl/hierarchy/outfit/job/explorer
+/datum/decl/hierarchy/outfit/job/explorer
 	name = OUTFIT_JOB_NAME(JOB_EXPLORER)
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer

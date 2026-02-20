@@ -1,4 +1,4 @@
-/decl/hierarchy/outfit/job/centcom_officer
+/datum/decl/hierarchy/outfit/job/centcom_officer
 	name = OUTFIT_JOB_NAME("CentCom Officer")
 	uniform = /obj/item/clothing/under/rank/centcom
 	gloves = /obj/item/clothing/gloves/white
@@ -13,7 +13,7 @@
 	headset_alt = /obj/item/radio/headset/centcom
 	headset_earbud = /obj/item/radio/headset/centcom
 
-/decl/hierarchy/outfit/job/emergency_responder
+/datum/decl/hierarchy/outfit/job/emergency_responder
 	name = OUTFIT_JOB_NAME("Emergency Responder")
 	uniform = /obj/item/clothing/under/ert
 	shoes = /obj/item/clothing/shoes/boots/swat
@@ -28,11 +28,11 @@
 	headset_alt = /obj/item/radio/headset/ert
 	headset_earbud = /obj/item/radio/headset/ert
 
-/decl/hierarchy/outfit/job/emergency_responder/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/emergency_responder/post_equip(var/mob/living/carbon/human/H)
 	..()
 	GLOB.ert.add_antagonist(H.mind)
 
-/decl/hierarchy/outfit/job/clown
+/datum/decl/hierarchy/outfit/job/clown
 	name = OUTFIT_JOB_NAME(JOB_CLOWN)
 	uniform = /obj/item/clothing/under/rank/clown
 	back = /obj/item/storage/backpack/clown
@@ -43,7 +43,7 @@
 	pda_type = /obj/item/pda/clown
 	flags = NONE
 
-/decl/hierarchy/outfit/job/mime
+/datum/decl/hierarchy/outfit/job/mime
 	name = OUTFIT_JOB_NAME(JOB_MIME)
 	uniform = /obj/item/clothing/under/mime
 	shoes = /obj/item/clothing/shoes/mime
@@ -53,7 +53,7 @@
 	id_type = /obj/item/card/id/civilian/mime
 	pda_type = /obj/item/pda/mime
 
-/decl/hierarchy/outfit/job/mime/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/mime/post_equip(var/mob/living/carbon/human/H)
 	..()
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/pen/crayon/mime(H), slot_l_hand)

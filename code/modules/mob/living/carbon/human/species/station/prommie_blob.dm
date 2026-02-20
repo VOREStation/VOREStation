@@ -33,15 +33,15 @@
 	var/rad_glow = 0
 
 	var/list/default_emotes = list(
-		/decl/emote/audible/squish,
-		/decl/emote/audible/chirp,
-		/decl/emote/visible/bounce,
-		/decl/emote/visible/jiggle,
-		/decl/emote/visible/lightup,
-		/decl/emote/visible/vibrate,
-		/decl/emote/visible/flip,
-		/decl/emote/visible/spin,
-		/decl/emote/visible/floorspin
+		/datum/decl/emote/audible/squish,
+		/datum/decl/emote/audible/chirp,
+		/datum/decl/emote/visible/bounce,
+		/datum/decl/emote/visible/jiggle,
+		/datum/decl/emote/visible/lightup,
+		/datum/decl/emote/visible/vibrate,
+		/datum/decl/emote/visible/flip,
+		/datum/decl/emote/visible/spin,
+		/datum/decl/emote/visible/floorspin
 	)
 /mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
 	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_blobform)

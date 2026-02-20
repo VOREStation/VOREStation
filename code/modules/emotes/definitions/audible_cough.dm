@@ -1,4 +1,4 @@
-/decl/emote/audible/cough
+/datum/decl/emote/audible/cough
 	key = "cough"
 	emote_message_1p = "You cough!"
 	emote_message_1p_target = "You cough on TARGET!"
@@ -14,7 +14,7 @@
 	conscious = FALSE
 	// emote_sound_synthetic = list()
 
-/decl/emote/audible/cough/get_emote_sound(var/atom/user)
+/datum/decl/emote/audible/cough/get_emote_sound(var/atom/user)
 	if(ishuman(user) && !check_synthetic(user))
 		var/mob/living/carbon/human/H = user
 		var/vol = H.species.cough_volume

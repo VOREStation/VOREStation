@@ -5,7 +5,7 @@
 #define CONDENSING_HEAT 2
 #define COOLANT_CONSUMPTION_RATE 0.01
 
-/decl/chemical_reaction/distilling/condense_oxygen
+/datum/decl/chemical_reaction/distilling/condense_oxygen
 	name = "Condensing Oxygen"
 	id = "condense_oxygen"
 	result = REAGENT_ID_OXYGEN
@@ -20,7 +20,7 @@
 	rejects_xgm_gas = GAS_PHORON
 	consumes_xgm_gas = CONDENSING_RATE
 
-/decl/chemical_reaction/distilling/condense_nitrogen
+/datum/decl/chemical_reaction/distilling/condense_nitrogen
 	name = "Condensing Nitrogen"
 	id = "condense_nitrogen"
 	result = REAGENT_ID_NITROGEN
@@ -35,7 +35,7 @@
 	rejects_xgm_gas = GAS_PHORON
 	consumes_xgm_gas = CONDENSING_RATE
 
-/decl/chemical_reaction/distilling/condense_nitrox
+/datum/decl/chemical_reaction/distilling/condense_nitrox
 	name = "Condensing Nitrous Oxide"
 	id = "condense_nitro"
 	result = REAGENT_ID_NITROGEN // Figure out something better
@@ -50,7 +50,7 @@
 	rejects_xgm_gas = GAS_PHORON
 	consumes_xgm_gas = CONDENSING_RATE
 
-/decl/chemical_reaction/distilling/condense_carbon
+/datum/decl/chemical_reaction/distilling/condense_carbon
 	name = "Condensing Carbon Dioxide"
 	id = "condense_carbon"
 	result = REAGENT_ID_CARBON
@@ -65,7 +65,7 @@
 	rejects_xgm_gas = GAS_PHORON
 	consumes_xgm_gas = CONDENSING_RATE
 
-/decl/chemical_reaction/distilling/condense_phoron
+/datum/decl/chemical_reaction/distilling/condense_phoron
 	name = "Condensing Phoron"
 	id = "condense_phoron"
 	result = REAGENT_ID_PHORON
@@ -80,7 +80,7 @@
 	rejects_xgm_gas = GAS_O2
 	consumes_xgm_gas = CONDENSING_RATE
 
-/decl/chemical_reaction/distilling/condense_fuel
+/datum/decl/chemical_reaction/distilling/condense_fuel
 	name = "Condensing Volatiles"
 	id = "condense_fuel"
 	result = REAGENT_ID_FUEL
@@ -95,7 +95,7 @@
 	rejects_xgm_gas = GAS_O2
 	consumes_xgm_gas = CONDENSING_RATE
 
-/decl/chemical_reaction/distilling/condense_methane
+/datum/decl/chemical_reaction/distilling/condense_methane
 	name = "Condensing Methane"
 	id = "condense_methane"
 	result = REAGENT_ID_TOXIN

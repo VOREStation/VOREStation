@@ -19,7 +19,7 @@
 /obj/structure/closet/gmcloset
 	name = "formal closet"
 	desc = "It's a storage unit for formal clothing."
-	closet_appearance = /decl/closet_appearance/wardrobe/suit
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/suit
 
 	starts_with = list(
 		/obj/item/clothing/head/that = 2,
@@ -48,7 +48,7 @@
 /obj/structure/closet/chefcloset
 	name = "chef's closet"
 	desc = "It's a storage unit for foodservice garments."
-	closet_appearance = /decl/closet_appearance/wardrobe/white
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/white
 
 	starts_with = list(
 		/obj/item/clothing/under/sundress,
@@ -68,7 +68,7 @@
 /obj/structure/closet/jcloset
 	name = "custodial closet"
 	desc = "It's a storage unit for janitorial clothes and gear."
-	closet_appearance = /decl/closet_appearance/wardrobe/janitor
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/janitor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/janitor,
@@ -97,7 +97,7 @@
 /obj/structure/closet/lawcloset
 	name = "legal closet"
 	desc = "It's a storage unit for courtroom apparel and items."
-	closet_appearance = /decl/closet_appearance/wardrobe/suit
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/suit
 
 	starts_with = list(
 		/obj/item/clothing/under/lawyer/female = 2,
@@ -127,7 +127,7 @@
 /obj/structure/closet/jequipcloset
 	name = "custodial equipment closet"
 	desc = "It's a storage unit for janitorial clothes and gear."
-	closet_appearance = /decl/closet_appearance/wardrobe/janitor
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/janitor
 
 	starts_with = list(
 		/obj/item/flashlight = 5,

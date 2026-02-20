@@ -5,15 +5,15 @@
 	Class: statement
 	An object representing a single instruction run by an interpreter.
 */
-/node/statement
+/datum/node/statement
 /*
 	Class: FunctionCall
 	Represents a call to a function.
 */
 //
-/node/statement/FunctionCall
+/datum/node/statement/FunctionCall
 	var/func_name
-	var/node/identifier/object
+	var/datum/node/identifier/object
 	var/list/parameters=list()
 
 /*
@@ -21,10 +21,10 @@
 	Defines a function.
 */
 //
-/node/statement/FunctionDefinition
+/datum/node/statement/FunctionDefinition
 	var/func_name
 	var/list/parameters=list()
-	var/node/BlockDefinition/FunctionBlock/block
+	var/datum/node/BlockDefinition/FunctionBlock/block
 
 /*
 	Class: VariableAssignment
@@ -38,10 +38,10 @@
 	- <VariableDeclaration>
 */
 //
-/node/statement/VariableAssignment
-	var/node/identifier/object
-	var/node/identifier/var_name
-	var/node/expression/value
+/datum/node/statement/VariableAssignment
+	var/datum/node/identifier/object
+	var/datum/node/identifier/var_name
+	var/datum/node/expression/value
 
 /*
 	Class: VariableDeclaration
@@ -51,56 +51,56 @@
 	- <VariableAssignment>
 */
 //
-/node/statement/VariableDeclaration
-	var/node/identifier/object
-	var/node/identifier/var_name
+/datum/node/statement/VariableDeclaration
+	var/datum/node/identifier/object
+	var/datum/node/identifier/var_name
 
 /*
 	Class: IfStatement
 */
 //
-/node/statement/IfStatement
-	var/node/BlockDefinition/block
-	var/node/BlockDefinition/else_block // may be null
-	var/node/expression/cond
+/datum/node/statement/IfStatement
+	var/datum/node/BlockDefinition/block
+	var/datum/node/BlockDefinition/else_block // may be null
+	var/datum/node/expression/cond
 
 /*
 	Class: WhileLoop
 	Loops while a given condition is true.
 */
 //
-/node/statement/WhileLoop
-	var/node/BlockDefinition/block
-	var/node/expression/cond
+/datum/node/statement/WhileLoop
+	var/datum/node/BlockDefinition/block
+	var/datum/node/expression/cond
 
 /*
 	Class: ForLoop
 	Loops while test is true, initializing a variable, increasing the variable
 */
-/node/statement/ForLoop
-	var/node/BlockDefinition/block
-	var/node/expression/test
-	var/node/expression/init
-	var/node/expression/increment
+/datum/node/statement/ForLoop
+	var/datum/node/BlockDefinition/block
+	var/datum/node/expression/test
+	var/datum/node/expression/init
+	var/datum/node/expression/increment
 
 /*
 	Class: BreakStatement
 	Ends a loop.
 */
 //
-/node/statement/BreakStatement
+/datum/node/statement/BreakStatement
 
 /*
 	Class: ContinueStatement
 	Skips to the next iteration of a loop.
 */
 //
-/node/statement/ContinueStatement
+/datum/node/statement/ContinueStatement
 
 /*
 	Class: ReturnStatement
 	Ends the function and returns a value.
 */
 //
-/node/statement/ReturnStatement
-	var/node/expression/value
+/datum/node/statement/ReturnStatement
+	var/datum/node/expression/value

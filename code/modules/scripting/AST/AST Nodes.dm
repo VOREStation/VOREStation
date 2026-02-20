@@ -30,88 +30,88 @@
 /*
 	Class: node
 */
-/node/proc/ToString()
+/datum/node/proc/ToString()
 	return "[src.type]"
 /*
 	Class: identifier
 */
-/node/identifier
+/datum/node/identifier
 	var/id_name
 
-/node/identifier/New(id)
+/datum/node/identifier/New(id)
 	.=..()
 	src.id_name=id
 
-/node/identifier/ToString()
+/datum/node/identifier/ToString()
 	return id_name
 
 /*
 	Class: expression
 */
-/node/expression
+/datum/node/expression
 /*
 	Class: operator
 	See <Binary Operators> and <Unary Operators> for subtypes.
 */
-/node/expression/op
-	var/node/expression/exp
+/datum/node/expression/op
+	var/datum/node/expression/exp
 	var/tmp/name
 	var/tmp/precedence
 
-/node/expression/op/New()
+/datum/node/expression/op/New()
 	.=..()
 	if(!src.name) src.name="[src.type]"
 
-/node/expression/op/ToString()
+/datum/node/expression/op/ToString()
 	return "operator: [name]"
 
 /*
 	Class: FunctionCall
 */
-/node/expression/FunctionCall
+/datum/node/expression/FunctionCall
 	//Function calls can also be expressions or statements.
 	var/func_name
-	var/node/identifier/object
+	var/datum/node/identifier/object
 	var/list/parameters = list()
 
 /*
 	Class: literal
 */
-/node/expression/value/literal
+/datum/node/expression/value/literal
 	var/value
 
-/node/expression/value/literal/New(value)
+/datum/node/expression/value/literal/New(value)
 	.=..()
 	src.value=value
 
-/node/expression/value/literal/ToString()
+/datum/node/expression/value/literal/ToString()
 	return src.value
 
 /*
 	Class: variable
 */
-/node/expression/value/variable
-	var/node/object		//Either a node/identifier or another node/expression/value/variable which points to the object
-	var/node/identifier/id
+/datum/node/expression/value/variable
+	var/datum/node/object		//Either a node/identifier or another node/expression/value/variable which points to the object
+	var/datum/node/identifier/id
 
 
-/node/expression/value/variable/New(ident)
+/datum/node/expression/value/variable/New(ident)
 	.=..()
 	id=ident
 	if(istext(id))id=new(id)
 
-/node/expression/value/variable/ToString()
+/datum/node/expression/value/variable/ToString()
 	return src.id.ToString()
 
 /*
 	Class: reference
 */
-/node/expression/value/reference
+/datum/node/expression/value/reference
 	var/datum/value
 
-/node/expression/value/reference/New(value)
+/datum/node/expression/value/reference/New(value)
 	.=..()
 	src.value=value
 
-/node/expression/value/reference/ToString()
+/datum/node/expression/value/reference/ToString()
 	return "ref: [src.value] ([src.value.type])"

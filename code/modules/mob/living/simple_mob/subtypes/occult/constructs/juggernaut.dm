@@ -19,7 +19,7 @@
 	attack_armor_pen = 60 //Being punched by a living, floating statue.
 	attacktext = list("smashed their armoured gauntlet into")
 	friendly = list("pats")
-	organ_names = /decl/mob_organ_names/juggernaut
+	organ_names = /datum/decl/mob_organ_names/juggernaut
 	mob_size = MOB_HUGE
 
 
@@ -31,9 +31,9 @@
 	attack_sound = 'sound/weapons/heavysmash.ogg'
 	status_flags = 0
 	resistance = 10
-	construct_spells = list(/spell/aoe_turf/conjure/forcewall/lesser,
-							/spell/targeted/fortify,
-							/spell/targeted/construct_advanced/slam
+	construct_spells = list(/datum/spell/aoe_turf/conjure/forcewall/lesser,
+							/datum/spell/targeted/fortify,
+							/datum/spell/targeted/construct_advanced/slam
 							)
 
 	armor = list(
@@ -119,9 +119,9 @@
 				"bomb" = 10,
 				"bio" = 100,
 				"rad" = 100)
-	construct_spells = list(/spell/aoe_turf/conjure/forcewall/lesser,
-							/spell/targeted/fortify,
-							/spell/targeted/construct_advanced/slam
+	construct_spells = list(/datum/spell/aoe_turf/conjure/forcewall/lesser,
+							/datum/spell/targeted/fortify,
+							/datum/spell/targeted/construct_advanced/slam
 							)
 
 /mob/living/simple_mob/construct/juggernaut/behemoth/bullet_act(var/obj/item/projectile/P)
@@ -144,7 +144,7 @@
 
 	return (..(P))
 
-/decl/mob_organ_names/juggernaut
+/datum/decl/mob_organ_names/juggernaut
 	hit_zones = list("body", "left pauldron", "right pauldron", "left arm", "right arm", "eye", "head", "crystaline spike")
 
 /mob/living/simple_mob/construct/juggernaut/behemoth/unstoppable

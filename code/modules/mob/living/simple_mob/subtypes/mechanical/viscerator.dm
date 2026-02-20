@@ -46,7 +46,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attacktext = list("cut", "sliced")
 
-	organ_names = /decl/mob_organ_names/viscerator
+	organ_names = /datum/decl/mob_organ_names/viscerator
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
@@ -101,5 +101,5 @@
 	base_attack_cooldown = 10 // One attack a second or so.
 	movement_cooldown = -1
 
-/decl/mob_organ_names/viscerator
+/datum/decl/mob_organ_names/viscerator
 	hit_zones = list("chassis", "rotor blades", "sensor array")

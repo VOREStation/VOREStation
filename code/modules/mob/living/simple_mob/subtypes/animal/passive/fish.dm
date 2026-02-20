@@ -18,7 +18,7 @@
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
-	organ_names = /decl/mob_organ_names/fish
+	organ_names = /datum/decl/mob_organ_names/fish
 
 	holder_type = /obj/item/holder/fish
 
@@ -315,5 +315,5 @@
 
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/sif/murkfish
 
-/decl/mob_organ_names/fish
+/datum/decl/mob_organ_names/fish
 	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

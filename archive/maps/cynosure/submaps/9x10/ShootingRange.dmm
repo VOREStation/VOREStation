@@ -103,7 +103,7 @@
 	},
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/vore_37
+	poster_decl = /datum/decl/poster/vore_37
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)

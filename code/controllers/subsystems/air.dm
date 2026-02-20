@@ -127,7 +127,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	// Maps should not have active edges on boot.  If we've got some, log it so it can get fixed.
 	if(length(active_edges))
 		var/list/edge_log = list()
-		for(var/connection_edge/E in active_edges)
+		for(var/datum/connection_edge/E in active_edges)
 
 			var/a_temp = E.A.air.temperature
 			var/a_moles = E.A.air.total_moles
@@ -142,8 +142,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			var/b_gas = ""
 
 			// Two zones mixing
-			if(istype(E, /connection_edge/zone))
-				var/connection_edge/zone/Z = E
+			if(istype(E, /datum/connection_edge/zone))
+				var/datum/connection_edge/zone/Z = E
 				b_temp = Z.B.air.temperature
 				b_moles = Z.B.air.total_moles
 				b_vol = Z.B.air.volume
@@ -151,8 +151,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 					b_gas += "[gas]=[Z.B.air.gas[gas]]"
 
 			// Zone and unsimulated turfs mixing
-			if(istype(E, /connection_edge/unsimulated))
-				var/connection_edge/unsimulated/U = E
+			if(istype(E, /datum/connection_edge/unsimulated))
+				var/datum/connection_edge/unsimulated/U = E
 				b_temp = U.B.temperature
 				b_moles = "Unsim"
 				b_vol = "Unsim"
@@ -259,7 +259,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(length(currentrun))
-		var/connection_edge/edge = currentrun[length(currentrun)]
+		var/datum/connection_edge/edge = currentrun[length(currentrun)]
 		currentrun.len--
 		if(edge) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			edge.tick()
@@ -272,7 +272,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(length(currentrun))
-		var/zone/Z = currentrun[length(currentrun)]
+		var/datum/zone/Z = currentrun[length(currentrun)]
 		currentrun.len--
 		if(Z) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			Z.process_fire()
@@ -307,7 +307,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(length(currentrun))
-		var/zone/zone = currentrun[length(currentrun)]
+		var/datum/zone/zone = currentrun[length(currentrun)]
 		currentrun.len--
 		if(zone) // TODO - Do we need to check this? Old one didn't, but old one was single-threaded.
 			zone.tick()
@@ -357,7 +357,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			stoplag()
 
 	// Invalidate all zones
-	for(var/zone/zone in zones)
+	for(var/datum/zone/zone in zones)
 		zone.c_invalidate()
 
 	// Reset all the lists
@@ -376,12 +376,12 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	next_fire = world.time + wait
 	can_fire = TRUE // Unpause
 
-/datum/controller/subsystem/air/proc/add_zone(zone/z)
+/datum/controller/subsystem/air/proc/add_zone(datum/zone/z)
 	zones.Add(z)
 	z.name = "Zone [next_id++]"
 	mark_zone_update(z)
 
-/datum/controller/subsystem/air/proc/remove_zone(zone/z)
+/datum/controller/subsystem/air/proc/remove_zone(datum/zone/z)
 	zones.Remove(z)
 	zones_to_update.Remove(z)
 
@@ -395,7 +395,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		return BLOCKED
 	return ablock | B.c_airblock(A)
 
-/datum/controller/subsystem/air/proc/merge(zone/A, zone/B)
+/datum/controller/subsystem/air/proc/merge(datum/zone/A, datum/zone/B)
 	#ifdef ZASDBG
 	ASSERT(istype(A))
 	ASSERT(istype(B))
@@ -448,7 +448,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			return
 
 
-	var/connection/c = new /connection(A,B)
+	var/datum/connection/c = new /datum/connection(A,B)
 
 	A.connections.place(c, a_to_b)
 	B.connections.place(c, b_to_a)
@@ -467,7 +467,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	#endif
 	T.needs_air_update = 1
 
-/datum/controller/subsystem/air/proc/mark_zone_update(zone/Z)
+/datum/controller/subsystem/air/proc/mark_zone_update(datum/zone/Z)
 	#ifdef ZASDBG
 	ASSERT(istype(Z))
 	#endif
@@ -476,7 +476,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	zones_to_update.Add(Z)
 	Z.needs_update = 1
 
-/datum/controller/subsystem/air/proc/mark_edge_sleeping(connection_edge/E)
+/datum/controller/subsystem/air/proc/mark_edge_sleeping(datum/connection_edge/E)
 	#ifdef ZASDBG
 	ASSERT(istype(E))
 	#endif
@@ -485,7 +485,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	active_edges.Remove(E)
 	E.sleeping = 1
 
-/datum/controller/subsystem/air/proc/mark_edge_active(connection_edge/E)
+/datum/controller/subsystem/air/proc/mark_edge_active(datum/connection_edge/E)
 	#ifdef ZASDBG
 	ASSERT(istype(E))
 	#endif
@@ -494,23 +494,23 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	active_edges.Add(E)
 	E.sleeping = 0
 
-/datum/controller/subsystem/air/proc/equivalent_pressure(zone/A, zone/B)
+/datum/controller/subsystem/air/proc/equivalent_pressure(datum/zone/A, datum/zone/B)
 	return A.air.compare(B.air)
 
-/datum/controller/subsystem/air/proc/get_edge(zone/A, zone/B)
+/datum/controller/subsystem/air/proc/get_edge(datum/zone/A, datum/zone/B)
 	if(istype(B))
-		for(var/connection_edge/zone/edge in A.edges)
+		for(var/datum/connection_edge/zone/edge in A.edges)
 			if(edge.contains_zone(B))
 				return edge
-		var/connection_edge/edge = new /connection_edge/zone(A,B)
+		var/datum/connection_edge/edge = new /datum/connection_edge/zone(A,B)
 		edges.Add(edge)
 		edge.recheck()
 		return edge
 	else
-		for(var/connection_edge/unsimulated/edge in A.edges)
+		for(var/datum/connection_edge/unsimulated/edge in A.edges)
 			if(has_same_air(edge.B,B))
 				return edge
-		var/connection_edge/edge = new /connection_edge/unsimulated(A,B)
+		var/datum/connection_edge/edge = new /datum/connection_edge/unsimulated(A,B)
 		edges.Add(edge)
 		edge.recheck()
 		return edge
@@ -532,7 +532,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		return FALSE
 	return TRUE
 
-/datum/controller/subsystem/air/proc/remove_edge(connection_edge/E)
+/datum/controller/subsystem/air/proc/remove_edge(datum/connection_edge/E)
 	edges.Remove(E)
 	if(!E.sleeping)
 		active_edges.Remove(E)

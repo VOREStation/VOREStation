@@ -15,7 +15,7 @@
 /obj/structure/closet/emcloset
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and O2 tanks."
-	closet_appearance = /decl/closet_appearance/oxygen
+	closet_appearance = /datum/decl/closet_appearance/oxygen
 
 /obj/structure/closet/emcloset/Initialize(mapload)
 	switch (pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
@@ -62,7 +62,7 @@
 /obj/structure/closet/firecloset
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
-	closet_appearance = /decl/closet_appearance/oxygen/fire
+	closet_appearance = /datum/decl/closet_appearance/oxygen/fire
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
@@ -92,7 +92,7 @@
 /obj/structure/closet/firecloset/full/atmos
 	name = "atmos fire-safety closet"
 	desc = "It's a storage unit for atmospheric fire-fighting supplies."
-	closet_appearance = /decl/closet_appearance/oxygen/fire/atmos
+	closet_appearance = /datum/decl/closet_appearance/oxygen/fire/atmos
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/heavy,
@@ -107,7 +107,7 @@
 /obj/structure/closet/toolcloset
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/tools
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/tools
 
 /obj/structure/closet/toolcloset/Initialize(mapload)
 	starts_with = list()
@@ -151,7 +151,7 @@
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/tools/radiation
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/tools/radiation
 
 	starts_with = list(
 		/obj/item/clothing/suit/radiation = 2,
@@ -164,7 +164,7 @@
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
-	closet_appearance = /decl/closet_appearance/bomb
+	closet_appearance = /datum/decl/closet_appearance/bomb
 
 	starts_with = list(
 		/obj/item/clothing/suit/bomb_suit,
@@ -182,7 +182,7 @@
 /obj/structure/closet/bombclosetsecurity
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
-	closet_appearance = /decl/closet_appearance/bomb/security
+	closet_appearance = /datum/decl/closet_appearance/bomb/security
 
 	starts_with = list(
 		/obj/item/clothing/suit/bomb_suit/security,
@@ -197,7 +197,7 @@
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon = 'icons/obj/closets/bases/wall.dmi'
-	closet_appearance = /decl/closet_appearance/wall/hydrant
+	closet_appearance = /datum/decl/closet_appearance/wall/hydrant
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
@@ -220,7 +220,7 @@
 	name = "first-aid closet"
 	desc = "It's wall-mounted storage unit for first aid supplies."
 	icon = 'icons/obj/closets/bases/wall.dmi'
-	closet_appearance = /decl/closet_appearance/wall/medical
+	closet_appearance = /datum/decl/closet_appearance/wall/medical
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE

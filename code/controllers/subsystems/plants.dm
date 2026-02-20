@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(plants)
 		S.update_seed()
 
 	//Might as well mask the gene types while we're at it.
-	var/list/gene_datums = decls_repository.get_decls_of_subtype(/decl/plantgene)
+	var/list/gene_datums = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/plantgene)
 	var/list/used_masks = list()
 	var/list/plant_traits = ALL_GENES
 	while(plant_traits && length(plant_traits))
@@ -87,10 +87,10 @@ SUBSYSTEM_DEF(plants)
 		while(gene_mask in used_masks)
 			gene_mask = "[uppertext(num2hex(rand(0,255), 2))]"
 
-		var/decl/plantgene/G
+		var/datum/decl/plantgene/G
 
 		for(var/D in gene_datums)
-			var/decl/plantgene/P = gene_datums[D]
+			var/datum/decl/plantgene/P = gene_datums[D]
 			if(gene_tag == P.gene_tag)
 				G = P
 				gene_datums -= D

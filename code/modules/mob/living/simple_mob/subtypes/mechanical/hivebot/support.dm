@@ -8,7 +8,7 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 2
 
-	organ_names = /decl/mob_organ_names/hivebotsupport
+	organ_names = /datum/decl/mob_organ_names/hivebotsupport
 
 // This hivebot supplies a general buff to nearby hivebots that improve their performance.
 // Note that the commander itself does not receive the buff.
@@ -87,7 +87,7 @@
 				last_resupply = world.time
 				break // Only one resupply per pulse.
 
-/decl/mob_organ_names/hivebotsupport
+/datum/decl/mob_organ_names/hivebotsupport
 	hit_zones = list("central chassis", "positioning servo", "head", "sensor suite", "manipulator arm", "battle analytics mount", "weapons array", "front right leg", "front left leg", "rear left leg", "rear right leg")
 
 /mob/living/simple_mob/mechanical/hivebot/support/harry

@@ -18,7 +18,7 @@
 	description_info = "Fluid pumps can be used to frack for reagents in nearby ores, and a mining drill can also bore through trapped gas deposits beneath it."
 	name = "cracked sand"
 	icon_state = "asteroid_cracked"
-	initial_flooring = /decl/flooring/rock
+	initial_flooring = /datum/decl/flooring/rock
 	var/list/gas_type = null
 	oxygen = 0
 	nitrogen = 0

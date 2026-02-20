@@ -77,7 +77,7 @@
 	name = "search and rescue locker"
 	desc = "Supplies for a wilderness first responder."
 	req_access = list(ACCESS_MEDICAL_EQUIP)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
 		/obj/item/storage/backpack/dufflebag/emt,

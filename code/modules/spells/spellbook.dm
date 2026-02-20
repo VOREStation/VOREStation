@@ -125,7 +125,7 @@
 			*/
 				var/list/available_spells = list(magicmissile = "Magic Missile", fireball = "Fireball", disabletech = "Disable Tech", smoke = "Smoke", blind = "Blind", subjugation = "Subjugation", mindswap = "Mind Transfer", forcewall = "Forcewall", blink = "Blink", teleport = "Teleport", mutate = "Mutate", etherealjaunt = "Ethereal Jaunt", knock = "Knock", horseman = "Curse of the Horseman", staffchange = "Staff of Change", mentalfocus = "Mental Focus", soulstone = "Six Soul Stone Shards and the spell Artificer", armor = "Mastercrafted Armor Set", staffanimate = "Staff of Animation", noclothes = "No Clothes")
 				var/already_knows = 0
-				for(var/spell/aspell in H.spell_list)
+				for(var/datum/spell/aspell in H.spell_list)
 					if(available_spells[href_list["spell_choice"]] == initial(aspell.name))
 						already_knows = 1
 						if(!aspell.can_improve())
@@ -152,64 +152,64 @@
 					switch(href_list["spell_choice"])
 						if("noclothes")
 							feedback_add_details("wizard_spell_learned","NC")
-							H.add_spell(new/spell/noclothes)
+							H.add_spell(new/datum/spell/noclothes)
 							temp = "This teaches you how to use your spells without your magical garb, truely you are the wizardest."
 							uses--
 						if("magicmissile")
 							feedback_add_details("wizard_spell_learned","MM") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/projectile/magic_missile)
+							H.add_spell(new/datum/spell/targeted/projectile/magic_missile)
 							temp = "You have learned magic missile."
 						if("fireball")
 							feedback_add_details("wizard_spell_learned","FB") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/projectile/dumbfire/fireball)
+							H.add_spell(new/datum/spell/targeted/projectile/dumbfire/fireball)
 							temp = "You have learned fireball."
 						if("disabletech")
 							feedback_add_details("wizard_spell_learned","DT") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/aoe_turf/disable_tech)
+							H.add_spell(new/datum/spell/aoe_turf/disable_tech)
 							temp = "You have learned disable technology."
 						if("smoke")
 							feedback_add_details("wizard_spell_learned","SM") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/aoe_turf/smoke)
+							H.add_spell(new/datum/spell/aoe_turf/smoke)
 							temp = "You have learned smoke."
 						if("blind")
 							feedback_add_details("wizard_spell_learned","BD") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/genetic/blind)
+							H.add_spell(new/datum/spell/targeted/genetic/blind)
 							temp = "You have learned blind."
 						if("subjugation")
 							feedback_add_details("wizard_spell_learned","SJ") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/subjugation)
+							H.add_spell(new/datum/spell/targeted/subjugation)
 							temp = "You have learned subjugate."
 //						if("mindswap")
 //							feedback_add_details("wizard_spell_learned","MT") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-//							H.add_spell(new/spell/targeted/mind_transfer)
+//							H.add_spell(new/datum/spell/targeted/mind_transfer)
 //							temp = "You have learned mindswap."
 						if("forcewall")
 							feedback_add_details("wizard_spell_learned","FW") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/aoe_turf/conjure/forcewall)
+							H.add_spell(new/datum/spell/aoe_turf/conjure/forcewall)
 							temp = "You have learned forcewall."
 						if("blink")
 							feedback_add_details("wizard_spell_learned","BL") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/aoe_turf/blink)
+							H.add_spell(new/datum/spell/aoe_turf/blink)
 							temp = "You have learned blink."
 						if("teleport")
 							feedback_add_details("wizard_spell_learned","TP") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/area_teleport)
+							H.add_spell(new/datum/spell/area_teleport)
 							temp = "You have learned teleport."
 						if("mutate")
 							feedback_add_details("wizard_spell_learned","MU") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/genetic/mutate)
+							H.add_spell(new/datum/spell/targeted/genetic/mutate)
 							temp = "You have learned mutate."
 						if("etherealjaunt")
 							feedback_add_details("wizard_spell_learned","EJ") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/ethereal_jaunt)
+							H.add_spell(new/datum/spell/targeted/ethereal_jaunt)
 							temp = "You have learned ethereal jaunt."
 						if("knock")
 							feedback_add_details("wizard_spell_learned","KN") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/aoe_turf/knock)
+							H.add_spell(new/datum/spell/aoe_turf/knock)
 							temp = "You have learned knock."
 //						if("horseman")
 //							feedback_add_details("wizard_spell_learned","HH") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-//							H.add_spell(new/spell/targeted/equip_item/horsemask)
+//							H.add_spell(new/datum/spell/targeted/equip_item/horsemask)
 //							temp = "You have learned curse of the horseman."
 						if("mentalfocus")
 							feedback_add_details("wizard_spell_learned","MF") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
@@ -219,7 +219,7 @@
 						if("soulstone")
 							feedback_add_details("wizard_spell_learned","SS") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							new /obj/item/storage/belt/soulstone/full(get_turf(H))
-							H.add_spell(new/spell/aoe_turf/conjure/construct)
+							H.add_spell(new/datum/spell/aoe_turf/conjure/construct)
 							temp = "You have purchased a belt full of soulstones and have learned the artificer spell."
 							max_uses--
 						if("armor")
@@ -251,7 +251,7 @@
 //Single Use Spellbooks//
 
 /obj/item/spellbook/oneuse
-	var/spell = /spell/targeted/projectile/magic_missile //just a placeholder to avoid runtimes if someone spawned the generic
+	var/spell = /datum/spell/targeted/projectile/magic_missile //just a placeholder to avoid runtimes if someone spawned the generic
 	var/spellname = "sandbox"
 	var/used = 0
 	name = "spellbook of "
@@ -268,8 +268,8 @@
 	. = ..(user)
 	if(.)
 		return TRUE
-	var/spell/S = new spell(user)
-	for(var/spell/knownspell in user.spell_list)
+	var/datum/spell/S = new spell(user)
+	for(var/datum/spell/knownspell in user.spell_list)
 		if(knownspell.type == S.type)
 			if(user.mind)
 				// TODO: Update to new antagonist system.
@@ -297,7 +297,7 @@
 	return
 
 /obj/item/spellbook/oneuse/fireball
-	spell = /spell/targeted/projectile/dumbfire/fireball
+	spell = /datum/spell/targeted/projectile/dumbfire/fireball
 	spellname = "fireball"
 	icon_state ="bookfireball"
 	desc = "This book feels warm to the touch."
@@ -308,7 +308,7 @@
 	qdel(src)
 
 /obj/item/spellbook/oneuse/smoke
-	spell = /spell/aoe_turf/smoke
+	spell = /datum/spell/aoe_turf/smoke
 	spellname = "smoke"
 	icon_state ="booksmoke"
 	desc = "This book is overflowing with the dank arts."
@@ -320,7 +320,7 @@
 		user.adjust_nutrition(-200)
 
 /obj/item/spellbook/oneuse/blind
-	spell = /spell/targeted/genetic/blind
+	spell = /datum/spell/targeted/genetic/blind
 	spellname = "blind"
 	icon_state ="bookblind"
 	desc = "This book looks blurry, no matter how you look at it."
@@ -331,7 +331,7 @@
 	user.Blind(10)
 
 /obj/item/spellbook/oneuse/mindswap
-	spell = /spell/targeted/mind_transfer
+	spell = /datum/spell/targeted/mind_transfer
 	spellname = "mindswap"
 	icon_state ="bookmindswap"
 	desc = "This book's cover is pristine, though its pages look ragged and torn."
@@ -386,7 +386,7 @@
 	stored_swap = null
 
 /obj/item/spellbook/oneuse/forcewall
-	spell = /spell/aoe_turf/conjure/forcewall
+	spell = /datum/spell/aoe_turf/conjure/forcewall
 	spellname = "forcewall"
 	icon_state ="bookforcewall"
 	desc = "This book has a dedication to mimes everywhere inside the front cover."
@@ -400,7 +400,7 @@
 
 
 /obj/item/spellbook/oneuse/knock
-	spell = /spell/aoe_turf/knock
+	spell = /datum/spell/aoe_turf/knock
 	spellname = "knock"
 	icon_state ="bookknock"
 	desc = "This book is hard to hold closed properly."
@@ -411,7 +411,7 @@
 	user.Weaken(20)
 
 /obj/item/spellbook/oneuse/horsemask
-	spell = /spell/targeted/equip_item/horsemask
+	spell = /datum/spell/targeted/equip_item/horsemask
 	spellname = "horses"
 	icon_state ="bookhorses"
 	desc = "This book is more horse than your mind has room for."
@@ -430,7 +430,7 @@
 		to_chat(user, span_notice("I say thee neigh"))
 
 /obj/item/spellbook/oneuse/charge
-	spell = /spell/aoe_turf/charge
+	spell = /datum/spell/aoe_turf/charge
 	spellname = "charging"
 	icon_state ="bookcharge"
 	desc = "This book is made of 100% post-consumer wizard."

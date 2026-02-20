@@ -116,7 +116,7 @@
 	icon_state = "red"
 	icon_living = "red"
 
-	organ_names = /decl/mob_organ_names/hivebotsiege
+	organ_names = /datum/decl/mob_organ_names/hivebotsiege
 
 	player_msg = "You are capable of firing <b>very long range bombardment attacks</b>.<br>\
 	To use, click on a tile or enemy at a long range. Note that the projectile arcs in the air, \
@@ -155,5 +155,5 @@
 	desc = "A large robot capable of delivering fragmentation shells to rip apart their fleshy enemies."
 	projectiletype = /obj/item/projectile/arc/fragmentation
 
-/decl/mob_organ_names/hivebotsiege
+/datum/decl/mob_organ_names/hivebotsiege
 	hit_zones = list("central chassis", "armor plating", "reinforced positioning servo", "head", "sensor suite", "manipulator arm", "heavy weapons mount", "advanced weapons array", "front right leg", "front left leg", "rear left leg", "rear right leg")

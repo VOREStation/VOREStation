@@ -9,14 +9,14 @@
 // 			/atom/old_loc / /atom/new_loc: The previous/new loc of the mover
 
 /*
-GLOBAL_DATUM_INIT(turf_entered_event, /decl/observ/turf_entered, new)
-GLOBAL_DATUM_INIT(turf_exited_event, /decl/observ/turf_exited, new)
+GLOBAL_DATUM_INIT(turf_entered_event, /datum/decl/observ/turf_entered, new)
+GLOBAL_DATUM_INIT(turf_exited_event, /datum/decl/observ/turf_exited, new)
 
-/decl/observ/turf_entered
+/datum/decl/observ/turf_entered
 	name = "Turf Entered"
 	expected_type = /turf
 
-/decl/observ/turf_exited
+/datum/decl/observ/turf_exited
 	name = "Turf Exited"
 	expected_type = /turf
 

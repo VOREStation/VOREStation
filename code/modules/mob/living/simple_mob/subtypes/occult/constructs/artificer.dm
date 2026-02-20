@@ -15,22 +15,22 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15 //It's not the strongest of the bunch, but that doesn't mean it can't hurt you.
 	melee_damage_upper = 20
-	organ_names = /decl/mob_organ_names/artificer
+	organ_names = /datum/decl/mob_organ_names/artificer
 	attacktext = list("rammed")
 	attack_sound = 'sound/weapons/rapidslice.ogg'
-	construct_spells = list(/spell/aoe_turf/conjure/construct/lesser,
-							/spell/aoe_turf/conjure/wall,
-							/spell/aoe_turf/conjure/floor,
-							/spell/aoe_turf/conjure/soulstone,
-							/spell/aoe_turf/conjure/pylon,
-							/spell/aoe_turf/conjure/door,
-							/spell/aoe_turf/conjure/grille,
-							/spell/targeted/occult_repair_aura,
-							/spell/targeted/construct_advanced/mend_acolyte
+	construct_spells = list(/datum/spell/aoe_turf/conjure/construct/lesser,
+							/datum/spell/aoe_turf/conjure/wall,
+							/datum/spell/aoe_turf/conjure/floor,
+							/datum/spell/aoe_turf/conjure/soulstone,
+							/datum/spell/aoe_turf/conjure/pylon,
+							/datum/spell/aoe_turf/conjure/door,
+							/datum/spell/aoe_turf/conjure/grille,
+							/datum/spell/targeted/occult_repair_aura,
+							/datum/spell/targeted/construct_advanced/mend_acolyte
 							)
 	ai_holder_type = /datum/ai_holder/mimic
 
-/decl/mob_organ_names/artificer
+/datum/decl/mob_organ_names/artificer
 	hit_zones = list("body", "carapace", "right manipulator", "left manipulator", "upper left appendage", "upper right appendage", "eye")
 
 ////////////////////////////

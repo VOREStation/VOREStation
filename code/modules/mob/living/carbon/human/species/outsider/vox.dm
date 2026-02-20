@@ -86,7 +86,7 @@
 	genders = list(NEUTER)
 
 	default_emotes = list(
-		/decl/emote/audible/vox_shriek
+		/datum/decl/emote/audible/vox_shriek
 	)
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //Get ya quills done did
 

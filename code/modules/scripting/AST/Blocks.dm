@@ -8,7 +8,7 @@
 	it is possible to have a function definition inside of any type of block (such as in an if statement or another function),
 	and not just in the global scope as in many languages.
 */
-/node/BlockDefinition
+/datum/node/BlockDefinition
 	var/list/statements = list()
 	var/list/functions  = list()
 	var/list/initial_variables = list()
@@ -24,7 +24,7 @@
 	See Also:
 	- <n_Interpreter.SetVar()>
 */
-/node/BlockDefinition/proc/SetVar(name, value)
+/datum/node/BlockDefinition/proc/SetVar(name, value)
 	initial_variables[name]=value
 
 
@@ -33,7 +33,7 @@
 	A block object representing the global scope.
 */
 //
-/node/BlockDefinition/GlobalBlock/New()
+/datum/node/BlockDefinition/GlobalBlock/New()
 	initial_variables["null"]=null
 	return ..()
 
@@ -42,4 +42,4 @@
 	A block representing a function body.
 */
 //
-/node/BlockDefinition/FunctionBlock
+/datum/node/BlockDefinition/FunctionBlock

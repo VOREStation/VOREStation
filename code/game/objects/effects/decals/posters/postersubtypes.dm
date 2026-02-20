@@ -5,9 +5,9 @@
 	icon_state = "rolled_poster_nt"
 	poster_type = /obj/structure/sign/poster/nanotrasen
 
-/obj/item/poster/nanotrasen/Initialize(mapload, var/decl/poster/P = null)
+/obj/item/poster/nanotrasen/Initialize(mapload, var/datum/decl/poster/P = null)
 	if(!ispath(poster_decl) && !ispath(P) && !istype(P))
-		poster_decl = get_poster_decl(/decl/poster/nanotrasen, FALSE, null)
+		poster_decl = get_poster_decl(/datum/decl/poster/nanotrasen, FALSE, null)
 	return ..()
 
 /obj/structure/sign/poster/nanotrasen // placed wall object
@@ -32,7 +32,7 @@
 
 	var/mob/M = usr
 	var/list/options = list()
-	var/list/decl/poster/posters = decls_repository.get_decls_of_type(/decl/poster)
+	var/list/datum/decl/poster/posters = GLOB.decls_repository.get_decls_of_type(/datum/decl/poster)
 	for(var/option in posters)
 		options[posters[option].name] = posters[option]
 

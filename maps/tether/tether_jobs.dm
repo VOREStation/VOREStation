@@ -15,7 +15,7 @@
 	departments_managed = list(DEPARTMENT_TALON)
 	job_description = "The captain's job is to generate profit through trade or other means such as salvage or even privateering."
 	supervisors = "yourself"
-	outfit_type = /decl/hierarchy/outfit/job/talon_captain
+	outfit_type = /datum/decl/hierarchy/outfit/job/talon_captain
 
 	offmap_spawn = TRUE
 	faction = FACTION_STATION //Required for SSjob to allow people to join as it
@@ -42,7 +42,7 @@
 	department_flag = TALON
 	job_description = "The doctor's job is to make sure the crew of the ITV Talon remain in good health and to monitor them when away from the ship."
 	supervisors = "the ITV Talon's captain"
-	outfit_type = /decl/hierarchy/outfit/job/talon_doctor
+	outfit_type = /datum/decl/hierarchy/outfit/job/talon_doctor
 
 	offmap_spawn = TRUE
 	faction = FACTION_STATION //Required for SSjob to allow people to join as it
@@ -69,7 +69,7 @@
 	department_flag = TALON
 	job_description = "The engineer's job is to ensure the ITV Talon remains in tip-top shape and to repair any damage as well as manage the shields."
 	supervisors = "the ITV Talon's captain"
-	outfit_type = /decl/hierarchy/outfit/job/talon_engineer
+	outfit_type = /datum/decl/hierarchy/outfit/job/talon_engineer
 
 	offmap_spawn = TRUE
 	faction = FACTION_STATION //Required for SSjob to allow people to join as it
@@ -96,7 +96,7 @@
 	department_flag = TALON
 	job_description = "The pilot's job is to fly the ITV Talon in the most efficient and profitable way possible."
 	supervisors = "the ITV Talon's captain"
-	outfit_type = /decl/hierarchy/outfit/job/talon_pilot
+	outfit_type = /datum/decl/hierarchy/outfit/job/talon_pilot
 
 	offmap_spawn = TRUE
 	faction = FACTION_STATION //Required for SSjob to allow people to join as it
@@ -123,7 +123,7 @@
 	department_flag = TALON
 	job_description = "The guard's job is to keep the crew of the ITV Talon safe and ensure the captain's wishes are carried out."
 	supervisors = "the ITV Talon's captain"
-	outfit_type = /decl/hierarchy/outfit/job/talon_security
+	outfit_type = /datum/decl/hierarchy/outfit/job/talon_security
 
 	offmap_spawn = TRUE
 	faction = FACTION_STATION //Required for SSjob to allow people to join as it
@@ -149,7 +149,7 @@
 	department_flag = TALON
 	job_description = "The miner's job is to excavate ores and refine them for the Talon's use, as well as for trading."
 	supervisors = "the ITV Talon's captain"
-	outfit_type = /decl/hierarchy/outfit/job/talon_miner
+	outfit_type = /datum/decl/hierarchy/outfit/job/talon_miner
 
 	offmap_spawn = TRUE
 	faction = FACTION_STATION //Required for SSjob to allow people to join as it
@@ -171,7 +171,7 @@
 
 //////////////////////TALON OUTFITS//////////////////////
 
-/decl/hierarchy/outfit/job/talon_captain
+/datum/decl/hierarchy/outfit/job/talon_captain
 	name = OUTFIT_JOB_NAME(JOB_TALON_CAPTAIN)
 
 	id_type = /obj/item/card/id/talon/captain
@@ -188,7 +188,7 @@
 	headset_alt = /obj/item/radio/headset/talon
 	headset_earbud = /obj/item/radio/headset/talon
 
-/decl/hierarchy/outfit/job/talon_pilot
+/datum/decl/hierarchy/outfit/job/talon_pilot
 	name = OUTFIT_JOB_NAME(JOB_TALON_PILOT)
 
 	id_type = /obj/item/card/id/talon/pilot
@@ -211,9 +211,9 @@
 	headset_alt = /obj/item/radio/headset/talon
 	headset_earbud = /obj/item/radio/headset/talon
 
-/decl/hierarchy/outfit/job/talon_doctor
+/datum/decl/hierarchy/outfit/job/talon_doctor
 	name = OUTFIT_JOB_NAME(JOB_TALON_DOCTOR)
-	hierarchy_type = /decl/hierarchy/outfit/job
+	hierarchy_type = /datum/decl/hierarchy/outfit/job
 
 	id_type = /obj/item/card/id/talon/doctor
 	id_slot = slot_wear_id
@@ -235,9 +235,9 @@
 	headset_alt = /obj/item/radio/headset/talon
 	headset_earbud = /obj/item/radio/headset/talon
 
-/decl/hierarchy/outfit/job/talon_security
+/datum/decl/hierarchy/outfit/job/talon_security
 	name = OUTFIT_JOB_NAME(JOB_ALT_TALON_SECURITY)
-	hierarchy_type = /decl/hierarchy/outfit/job
+	hierarchy_type = /datum/decl/hierarchy/outfit/job
 
 	id_type = /obj/item/card/id/talon/officer
 	id_slot = slot_wear_id
@@ -259,9 +259,9 @@
 	headset_alt = /obj/item/radio/headset/talon
 	headset_earbud = /obj/item/radio/headset/talon
 
-/decl/hierarchy/outfit/job/talon_engineer
+/datum/decl/hierarchy/outfit/job/talon_engineer
 	name = OUTFIT_JOB_NAME(JOB_TALON_ENGINEER)
-	hierarchy_type = /decl/hierarchy/outfit/job
+	hierarchy_type = /datum/decl/hierarchy/outfit/job
 
 	id_type = /obj/item/card/id/talon/engineer
 	id_slot = slot_wear_id
@@ -284,9 +284,9 @@
 	headset_alt = /obj/item/radio/headset/talon
 	headset_earbud = /obj/item/radio/headset/talon
 
-/decl/hierarchy/outfit/job/talon_miner
+/datum/decl/hierarchy/outfit/job/talon_miner
 	name = OUTFIT_JOB_NAME(JOB_TALON_MINER)
-	hierarchy_type = /decl/hierarchy/outfit/job
+	hierarchy_type = /datum/decl/hierarchy/outfit/job
 
 	id_type = /obj/item/card/id/talon/miner
 	id_slot = slot_wear_id

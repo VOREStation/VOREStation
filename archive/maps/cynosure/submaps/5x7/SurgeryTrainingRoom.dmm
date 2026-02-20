@@ -87,7 +87,7 @@
 	},
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/pol_4
+	poster_decl = /datum/decl/poster/pol_4
 	},
 /obj/structure/sink/generic{
 	dir = 8;

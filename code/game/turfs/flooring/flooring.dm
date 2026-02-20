@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 
 /proc/populate_flooring_types()
 	var/list/floor_types = list()
-	for (var/flooring_path in typesof(/decl/flooring))
+	for (var/flooring_path in typesof(/datum/decl/flooring))
 		floor_types["[flooring_path]"] = new flooring_path
 	return floor_types
 
@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 // [icon_base]_edges: directional overlays for edges.
 // [icon_base]_corners: directional overlays for non-edge corners.
 
-/decl/flooring
+/datum/decl/flooring
 	var/name = "floor"
 	var/desc
 	var/icon
@@ -112,17 +112,17 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 
 	var/check_season = FALSE	//VOREStation Addition
 
-/decl/flooring/proc/get_plating_type(var/turf/T)
+/datum/decl/flooring/proc/get_plating_type(var/turf/T)
 	return plating_type
 
-/decl/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = BUILTIN_DECAL_LAYER)
+/datum/decl/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = BUILTIN_DECAL_LAYER)
 	if(!LAZYACCESS(flooring_cache, cache_key))
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
 		LAZYSET(flooring_cache, cache_key, I)
 	return LAZYACCESS(flooring_cache, cache_key)
 
-/decl/flooring/grass
+/datum/decl/flooring/grass
 	name = "grass"
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
 	icon = 'icons/turf/flooring/grass.dmi'
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
 
-/decl/flooring/grass/sif // Subtype for Sif's grass.
+/datum/decl/flooring/grass/sif // Subtype for Sif's grass.
 	name = "growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
 	flags = NONE
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = null
 	has_base_range = 1
 
-/decl/flooring/grass/sif/forest
+/datum/decl/flooring/grass/sif/forest
 	name = "thick growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
 	flags = NONE
@@ -149,37 +149,37 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	icon_base = "grass_sif_dark"
 	has_base_range = 1
 
-/decl/flooring/water
+/datum/decl/flooring/water
 	name = "water"
 	desc = "Water is wet, gosh, who knew!"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "seashallow"
 
-/decl/flooring/sand
+/datum/decl/flooring/sand
 	name = "sand"
 	desc = "I don't like sand. It's coarse and rough and irritating and it gets everywhere."
 	icon = 'icons/misc/beach.dmi'
 	icon_base = "sand"
 
-/decl/flooring/sand/desert // Subtype of sand, desert.
+/datum/decl/flooring/sand/desert // Subtype of sand, desert.
 	name = "desert"
 	desc = "I don't like sand. It's coarse and rough and irritating and it gets everywhere."
 	icon = 'icons/turf/desert.dmi'
 	icon_base = "desert"
 
-/decl/flooring/mud
+/datum/decl/flooring/mud
 	name = "mud"
 	desc = "Wet and fragrant mud, bane of the freshly mopped floor."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "mud_dark"
 
-/decl/flooring/rock
+/datum/decl/flooring/rock
 	name = "rocks"
 	desc = "Hard as a rock."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "rock"
 
-/decl/flooring/asteroid
+/datum/decl/flooring/asteroid
 	name = "coarse sand"
 	desc = "You got a pebble in your shoe just looking at it."
 	icon = 'icons/turf/flooring/asteroid.dmi'
@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	flags = TURF_REMOVE_SHOVEL | TURF_ACID_IMMUNE
 	build_type = null
 
-/decl/flooring/dirt
+/datum/decl/flooring/dirt
 	name = "soil"
 	desc = "Widely considered to be some of the planet's top soil."
 	icon = 'icons/turf/outdoors.dmi'
@@ -195,44 +195,44 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	flags = TURF_REMOVE_SHOVEL
 	build_type = null
 
-/decl/flooring/snow
+/datum/decl/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "snow"
 
-/decl/flooring/snow/fake
+/datum/decl/flooring/snow/fake
 		desc = "A coating of fake snow, looks surprisingly realistic, though not as cold as the real thing."
 		icon = 'icons/turf/flooring/fakesnow.dmi'
 		icon_base = "snow"
 		flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_SHOVEL
 
-/decl/flooring/snow/snow2
+/datum/decl/flooring/snow/snow2
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
 	icon = 'icons/turf/snow.dmi'
 	icon_base = "snow"
 	flags = TURF_HAS_EDGES
 
-/decl/flooring/snow/gravsnow
+/datum/decl/flooring/snow/gravsnow
 	name = "snow"
 	icon_base = "gravsnow"
 
-/decl/flooring/snow/plating
+/datum/decl/flooring/snow/plating
 	name = "snowy plating"
 	desc = "Steel plating coated with a light layer of snow."
 	icon_base = "snowyplating"
 	flags = NONE
 
-/decl/flooring/snow/ice
+/datum/decl/flooring/snow/ice
 	name = "ice"
 	desc = "Looks slippery."
 	icon_base = "ice"
 
-/decl/flooring/snow/plating/drift
+/datum/decl/flooring/snow/plating/drift
 	icon_base = "snowyplayingdrift"
 
-/decl/flooring/carpet
+/datum/decl/flooring/carpet
 	name = "carpet"
 	desc = "Lush synthetic carpeting, perfectly engineered for easy cleaning."
 	icon = 'icons/turf/flooring/carpet.dmi'
@@ -241,91 +241,91 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/bcarpet
+/datum/decl/flooring/carpet/bcarpet
 	name = "black carpet"
 	icon_base = "bcarpet"
 	build_type = /obj/item/stack/tile/carpet/bcarpet
 
-/decl/flooring/carpet/blucarpet
+/datum/decl/flooring/carpet/blucarpet
 	name = "blue carpet"
 	icon_base = "blucarpet"
 	build_type = /obj/item/stack/tile/carpet/blucarpet
 
-/decl/flooring/carpet/turcarpet
+/datum/decl/flooring/carpet/turcarpet
 	name = "turquoise carpet"
 	icon_base = "turcarpet"
 	build_type = /obj/item/stack/tile/carpet/turcarpet
 
-/decl/flooring/carpet/sblucarpet
+/datum/decl/flooring/carpet/sblucarpet
 	name = "silver blue carpet"
 	icon_base = "sblucarpet"
 	build_type = /obj/item/stack/tile/carpet/sblucarpet
 
-/decl/flooring/carpet/gaycarpet
+/datum/decl/flooring/carpet/gaycarpet
 	name = "pink carpet"
 	icon_base = "gaycarpet"
 	build_type = /obj/item/stack/tile/carpet/gaycarpet
 
-/decl/flooring/carpet/purcarpet
+/datum/decl/flooring/carpet/purcarpet
 	name = "purple carpet"
 	icon_base = "purcarpet"
 	build_type = /obj/item/stack/tile/carpet/purcarpet
 
-/decl/flooring/carpet/oracarpet
+/datum/decl/flooring/carpet/oracarpet
 	name = "orange carpet"
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
-/decl/flooring/carpet/tealcarpet
+/datum/decl/flooring/carpet/tealcarpet
 	name = "teal carpet"
 	icon_base = "tealcarpet"
 	build_type = /obj/item/stack/tile/carpet/teal
 
-/decl/flooring/carpet/browncarpet
+/datum/decl/flooring/carpet/browncarpet
 	name = "brown carpet"
 	icon_base = "brncarpet"
 	build_type = /obj/item/stack/tile/carpet/brncarpet
 
-/decl/flooring/carpet/blucarpet2
+/datum/decl/flooring/carpet/blucarpet2
 	name = "blue carpet"
 	icon_base = "blue1"
 	build_type = /obj/item/stack/tile/carpet/blucarpet2
 
-/decl/flooring/carpet/greencarpet
+/datum/decl/flooring/carpet/greencarpet
 	name = "green carpet"
 	icon_base = "green"
 	build_type = /obj/item/stack/tile/carpet/greencarpet
 
-/decl/flooring/carpet/purplecarpet
+/datum/decl/flooring/carpet/purplecarpet
 	name = "purple carpet"
 	icon_base = "purple"
 	build_type = /obj/item/stack/tile/carpet/purplecarpet
 
-/decl/flooring/carpet/geo
+/datum/decl/flooring/carpet/geo
 	name = "geometric carpet"
 	icon_base = "geocarpet"
 	build_type = /obj/item/stack/tile/carpet/geo
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/retro
+/datum/decl/flooring/carpet/retro
 	name = "blue retro carpet"
 	icon_base = "retrocarpet"
 	build_type = /obj/item/stack/tile/carpet/retro
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/retro_red
+/datum/decl/flooring/carpet/retro_red
 	name = "red retro carpet"
 	icon_base = "retrocarpet_red"
 	build_type = /obj/item/stack/tile/carpet/retro_red
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/happy
+/datum/decl/flooring/carpet/happy
 	name = "happy carpet"
 	icon_base = "happycarpet"
 	build_type = /obj/item/stack/tile/carpet/happy
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/tiling
+/datum/decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles_vr.dmi' // VOREStation Edit - Eris floors. Polaris still hasn't added all of them properly. See: steel_ridged
@@ -337,54 +337,54 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	can_paint = 1
 	can_engrave = TRUE
 
-/decl/flooring/tiling/tech
+/datum/decl/flooring/tiling/tech
 	desc = "Metal floor tiles with a corrugated anti-slip texture."
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
 	build_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null
 
-/decl/flooring/tiling/tech/grid
+/datum/decl/flooring/tiling/tech/grid
 	desc = "Metal floor tiles with a barred anti-slip construction. Don't skin your knee!"
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/floor/techgrid
 
-/decl/flooring/tiling/new_tile
+/datum/decl/flooring/tiling/new_tile
 	desc = "Metal floor tiles with a corrugated anti-slip texture."
 	icon_base = "tile_full"
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
 	build_type = null
 
-/decl/flooring/tiling/new_tile/cargo_one
+/datum/decl/flooring/tiling/new_tile/cargo_one
 	icon_base = "cargo_one_full"
 
-/decl/flooring/tiling/new_tile/kafel
+/datum/decl/flooring/tiling/new_tile/kafel
 	icon_base = "kafel_full"
 
-/decl/flooring/tiling/new_tile/techmaint
+/datum/decl/flooring/tiling/new_tile/techmaint
 	icon_base = "techmaint"
 	build_type = /obj/item/stack/tile/floor/techmaint
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 
-/decl/flooring/tiling/new_tile/monofloor
+/datum/decl/flooring/tiling/new_tile/monofloor
 	icon_base = "monofloor"
 
-/decl/flooring/tiling/new_tile/monotile
+/datum/decl/flooring/tiling/new_tile/monotile
 	icon_base = "monotile"
 
-/decl/flooring/tiling/new_tile/monotile/purple
+/datum/decl/flooring/tiling/new_tile/monotile/purple
 	icon_base = "monotile-purple"
 	build_type = /obj/item/stack/tile/floor/purple
 
-/decl/flooring/tiling/new_tile/steel_grid
+/datum/decl/flooring/tiling/new_tile/steel_grid
 	icon_base = "steel_grid"
 	build_type = /obj/item/stack/tile/floor/steelgrip
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 
-/decl/flooring/tiling/new_tile/steel_ridged
+/datum/decl/flooring/tiling/new_tile/steel_ridged
 	icon_base = "steel_ridged"
 
-/decl/flooring/linoleum
+/datum/decl/flooring/linoleum
 	name = "linoleum"
 	desc = "It's like the 2090's all over again."
 	icon = 'icons/turf/flooring/linoleum.dmi'
@@ -393,71 +393,71 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/linoleum
 	flags = TURF_REMOVE_SCREWDRIVER | TURF_CAN_BREAK | TURF_CAN_BURN
 
-/decl/flooring/tiling/red
+/datum/decl/flooring/tiling/red
 	name = "floor"
 	icon_base = "white"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor/red
 
-/decl/flooring/tiling/steel
+/datum/decl/flooring/tiling/steel
 	name = "floor"
 	icon_base = "steel"
 	build_type = /obj/item/stack/tile/floor/steel
 
-/decl/flooring/tiling/steel_dirty
+/datum/decl/flooring/tiling/steel_dirty
 	name = "floor"
 	icon_base = "steel_dirty"
 	build_type = /obj/item/stack/tile/floor/steel_dirty
 
-/decl/flooring/tiling/asteroidfloor
+/datum/decl/flooring/tiling/asteroidfloor
 	name = "floor"
 	icon_base = "asteroidfloor"
 	has_damage_range = null
 	build_type = /obj/item/stack/tile/floor/steel
 
-/decl/flooring/tiling/white
+/datum/decl/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
 	build_type = /obj/item/stack/tile/floor/white
 
-/decl/flooring/tiling/yellow
+/datum/decl/flooring/tiling/yellow
 	name = "floor"
 	icon_base = "white"
 	has_damage_range = null
 	build_type = /obj/item/stack/tile/floor/yellow
 
-/decl/flooring/tiling/purple
+/datum/decl/flooring/tiling/purple
 	name = "floor"
 	icon_base = "purple"
 	has_damage_range = null
 	build_type = /obj/item/stack/tile/floor/purple
 
-/decl/flooring/tiling/dark
+/datum/decl/flooring/tiling/dark
 	name = "floor"
 	desc = "How ominous."
 	icon_base = "dark"
 	has_damage_range = null
 	build_type = /obj/item/stack/tile/floor/dark
 
-/decl/flooring/tiling/hydro
+/datum/decl/flooring/tiling/hydro
 	name = "floor"
 	icon_base = "hydrofloor"
 	build_type = /obj/item/stack/tile/floor/steel
 
-/decl/flooring/tiling/neutral
+/datum/decl/flooring/tiling/neutral
 	name = "floor"
 	icon_base = "neutral"
 	build_type = /obj/item/stack/tile/floor/steel
 
-/decl/flooring/tiling/freezer
+/datum/decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
 	build_type = /obj/item/stack/tile/floor/freezer
 
-/decl/flooring/wmarble
+/datum/decl/flooring/wmarble
 	name = "marble floor"
 	desc = "Very regal white marble flooring."
 	icon = 'icons/turf/flooring/misc.dmi'
@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wmarble
 	flags = TURF_REMOVE_CROWBAR
 
-/decl/flooring/bmarble
+/datum/decl/flooring/bmarble
 	name = "marble floor"
 	desc = "Very regal black marble flooring."
 	icon = 'icons/turf/flooring/misc.dmi'
@@ -473,7 +473,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/bmarble
 	flags = TURF_REMOVE_CROWBAR
 
-/decl/flooring/wood
+/datum/decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
 	icon = 'icons/turf/flooring/wood_vr.dmi'
@@ -484,63 +484,63 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/sif
+/datum/decl/flooring/wood/sif
 	desc = "Polished wood planks made from sivian wood."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood"
 	build_type = /obj/item/stack/tile/wood/sif
 
-/decl/flooring/wood/sif/panel
+/datum/decl/flooring/wood/sif/panel
 	icon_base = "sif_panel"
 	build_type = /obj/item/stack/tile/wood/sif/panel
 
-/decl/flooring/wood/sif/parquet
+/datum/decl/flooring/wood/sif/parquet
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/sif/parquet
 
-/decl/flooring/wood/sif/tile
+/datum/decl/flooring/wood/sif/tile
 	icon_base = "wood_tile"
 	build_type = /obj/item/stack/tile/wood/sif/tile
 
-/decl/flooring/wood/sif/vert
+/datum/decl/flooring/wood/sif/vert
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/sif/vert
 
-/decl/flooring/wood/sif/vert_panel
+/datum/decl/flooring/wood/sif/vert_panel
 	icon_base = "wood_vert_panel"
 	build_type = /obj/item/stack/tile/wood/sif/vert_panel
 
-/decl/flooring/wood/alt
+/datum/decl/flooring/wood/alt
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "wood"
 	build_type = /obj/item/stack/tile/wood/alt
 
-/decl/flooring/wood/alt/panel
+/datum/decl/flooring/wood/alt/panel
 	desc = "Polished wooden panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/panel
 
-/decl/flooring/wood/alt/parquet
+/datum/decl/flooring/wood/alt/parquet
 	desc = "Polished wooden tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/parquet
 
-/decl/flooring/wood/alt/vert
+/datum/decl/flooring/wood/alt/vert
 	desc = "Polished wooden planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/vert
 
-/decl/flooring/wood/alt/vert_panel
+/datum/decl/flooring/wood/alt/vert_panel
 	desc = "Polished wooden panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
 	build_type = /obj/item/stack/tile/wood/vert_panel
 
-/decl/flooring/wood/alt/tile
+/datum/decl/flooring/wood/alt/tile
 	desc = "Polished wooden tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
@@ -548,7 +548,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/tile
 
 //New Wood
-/decl/flooring/wood/acacia
+/datum/decl/flooring/wood/acacia
 	name = "wooden floor"
 	desc = "Polished acacia planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -559,40 +559,40 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/acacia
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/acacia/panel
+/datum/decl/flooring/wood/acacia/panel
 	desc = "Polished acacia panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/acacia/panel
 
-/decl/flooring/wood/acacia/parquet
+/datum/decl/flooring/wood/acacia/parquet
 	desc = "Polished acacia parquet."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/acacia/parquet
 
-/decl/flooring/wood/acacia/tile
+/datum/decl/flooring/wood/acacia/tile
 	desc = "Polished acacia tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/acacia/tile
 
-/decl/flooring/wood/acacia/vert
+/datum/decl/flooring/wood/acacia/vert
 	desc = "Polished acacia planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/acacia/vert
 
-/decl/flooring/wood/acacia/vert_panel
+/datum/decl/flooring/wood/acacia/vert_panel
 	desc = "Polished acacia panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/acacia/vert_panel
 
-/decl/flooring/wood/birch
+/datum/decl/flooring/wood/birch
 	name = "wooden floor"
 	desc = "Polished birch planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -603,40 +603,40 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/birch
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/birch/panel
+/datum/decl/flooring/wood/birch/panel
 	desc = "Polished birch panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/birch/panel
 
-/decl/flooring/wood/birch/parquet
+/datum/decl/flooring/wood/birch/parquet
 	desc = "Polished birch tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/birch/parquet
 
-/decl/flooring/wood/birch/tile
+/datum/decl/flooring/wood/birch/tile
 	desc = "Polished birch tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/birch/tile
 
-/decl/flooring/wood/birch/vert
+/datum/decl/flooring/wood/birch/vert
 	desc = "Polished birch planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/birch/vert
 
-/decl/flooring/wood/birch/vert_panel
+/datum/decl/flooring/wood/birch/vert_panel
 	desc = "Polished birch panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/birch/vert_panel
 
-/decl/flooring/wood/hardwood
+/datum/decl/flooring/wood/hardwood
 	name = "wooden floor"
 	desc = "Polished hardwood planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -647,40 +647,40 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/hardwood
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/hardwood/panel
+/datum/decl/flooring/wood/hardwood/panel
 	desc = "Polished hardwood panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/hardwood/panel
 
-/decl/flooring/wood/hardwood/parquet
+/datum/decl/flooring/wood/hardwood/parquet
 	desc = "Polished hardwood tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/hardwood/parquet
 
-/decl/flooring/wood/hardwood/tile
+/datum/decl/flooring/wood/hardwood/tile
 	desc = "Polished hardwood tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/hardwood/tile
 
-/decl/flooring/wood/hardwood/vert
+/datum/decl/flooring/wood/hardwood/vert
 	desc = "Polished hardwood planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/hardwood/vert
 
-/decl/flooring/wood/hardwood/vert_panel
+/datum/decl/flooring/wood/hardwood/vert_panel
 	desc = "Polished hardwood panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/hardwood/vert_panel
 
-/decl/flooring/wood/oak
+/datum/decl/flooring/wood/oak
 	name = "wooden floor"
 	desc = "Polished oak planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -691,40 +691,40 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/oak
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/oak/panel
+/datum/decl/flooring/wood/oak/panel
 	desc = "Polished oak panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/oak/panel
 
-/decl/flooring/wood/oak/parquet
+/datum/decl/flooring/wood/oak/parquet
 	desc = "Polished oak tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/oak/parquet
 
-/decl/flooring/wood/oak/tile
+/datum/decl/flooring/wood/oak/tile
 	desc = "Polished oak tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/oak/tile
 
-/decl/flooring/wood/oak/vert
+/datum/decl/flooring/wood/oak/vert
 	desc = "Polished oak planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/oak/vert
 
-/decl/flooring/wood/oak/vert_panel
+/datum/decl/flooring/wood/oak/vert_panel
 	desc = "Polished oak panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/oak/vert_panel
 
-/decl/flooring/wood/pine
+/datum/decl/flooring/wood/pine
 	name = "wooden floor"
 	desc = "Polished pine planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -735,40 +735,40 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/pine
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/pine/panel
+/datum/decl/flooring/wood/pine/panel
 	desc = "Polished pine panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/pine/panel
 
-/decl/flooring/wood/pine/parquet
+/datum/decl/flooring/wood/pine/parquet
 	desc = "Polished pine tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/pine/parquet
 
-/decl/flooring/wood/pine/tile
+/datum/decl/flooring/wood/pine/tile
 	desc = "Polished pine tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/pine/tile
 
-/decl/flooring/wood/pine/vert
+/datum/decl/flooring/wood/pine/vert
 	desc = "Polished pine planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/pine/vert
 
-/decl/flooring/wood/pine/vert_panel
+/datum/decl/flooring/wood/pine/vert_panel
 	desc = "Polished pine panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/pine/vert_panel
 
-/decl/flooring/wood/redwood
+/datum/decl/flooring/wood/redwood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
@@ -779,33 +779,33 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	build_type = /obj/item/stack/tile/wood/redwood
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
 
-/decl/flooring/wood/redwood/panel
+/datum/decl/flooring/wood/redwood/panel
 	desc = "Polished redwood panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_panel"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/redwood/panel
 
-/decl/flooring/wood/redwood/parquet
+/datum/decl/flooring/wood/redwood/parquet
 	desc = "Polished redwood tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_parquet"
 	build_type = /obj/item/stack/tile/wood/redwood/parquet
 
-/decl/flooring/wood/redwood/tile
+/datum/decl/flooring/wood/redwood/tile
 	desc = "Polished redwood tiles."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_tile"
 	has_damage_range = 2
 	build_type = /obj/item/stack/tile/wood/redwood/tile
 
-/decl/flooring/wood/redwood/vert
+/datum/decl/flooring/wood/redwood/vert
 	desc = "Polished redwood planks."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert"
 	build_type = /obj/item/stack/tile/wood/redwood/vert
 
-/decl/flooring/wood/redwood/vert_panel
+/datum/decl/flooring/wood/redwood/vert_panel
 	desc = "Polished redwood panels."
 	icon = 'icons/turf/flooring/wood_greyscale.dmi'
 	icon_base = "wood_vert_panel"
@@ -814,7 +814,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 
 // no more wood
 
-/decl/flooring/reinforced
+/datum/decl/flooring/reinforced
 	name = "reinforced floor"
 	desc = "Heavily reinforced with steel rods."
 	icon = 'icons/turf/flooring/tiles.dmi'
@@ -827,7 +827,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	apply_heat_capacity = 325000
 	can_paint = 1
 
-/decl/flooring/reinforced/circuit
+/datum/decl/flooring/reinforced/circuit
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
@@ -835,11 +835,11 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_REMOVE_CROWBAR
 	can_paint = 1
 
-/decl/flooring/reinforced/circuit/green
+/datum/decl/flooring/reinforced/circuit/green
 	name = "processing strata"
 	icon_base = "gcircuit"
 
-/decl/flooring/reinforced/cult
+/datum/decl/flooring/reinforced/cult
 	name = "engraved floor"
 	desc = "Unsettling whispers waver from the surface..."
 	icon = 'icons/turf/flooring/cult.dmi'
@@ -849,7 +849,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
 	can_paint = null
 
-/decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+/datum/decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 	name = "lava"
 	desc = "It may look inviting, but it will kill you, painfully."
 	icon = 'icons/turf/outdoors.dmi'
@@ -857,7 +857,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	is_plating = TRUE
 	flags = TURF_ACID_IMMUNE
 
-/decl/flooring/concrete
+/datum/decl/flooring/concrete
 	name = "concrete"
 	desc = "A flat area of poured concrete flooring."
 	icon = 'icons/turf/concrete.dmi'
@@ -868,12 +868,12 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
 
 ///// Season Time! ///// VOREStation Addition Start
-/decl/flooring/grass/seasonal_grass
+/datum/decl/flooring/grass/seasonal_grass
 	desc = "It's grass!"
 	icon = 'icons/seasonal/turf.dmi'
 	check_season = TRUE
 	has_base_range = 11
 
-/decl/flooring/grass/seasonal_grass/dark
+/datum/decl/flooring/grass/seasonal_grass/dark
 	name = "grass"
 	icon_base = "darkgrass"

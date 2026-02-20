@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's attire"
 	req_access = list(ACCESS_HOS)
-	closet_appearance = /decl/closet_appearance/secure_closet/security/hos
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/security/hos
 	storage_capacity = 2.5 * MOB_MEDIUM
 
 	starts_with = list(
@@ -47,7 +47,7 @@
 /obj/structure/closet/secure_closet/hos2
 	name = "head of security's gear"
 	req_access = list(ACCESS_HOS)
-	closet_appearance = /decl/closet_appearance/secure_closet/security/hos
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/security/hos
 	storage_capacity = 2.5 * MOB_MEDIUM
 
 	starts_with = list(
@@ -73,7 +73,7 @@
 /obj/structure/closet/secure_closet/nanotrasen_security
 	name = "NanoTrasen security officer's locker"
 	req_access = list(ACCESS_BRIG)
-	closet_appearance = /decl/closet_appearance/secure_closet/nanotrasen/security
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/nanotrasen/security
 	storage_capacity = 3.5 * MOB_MEDIUM
 
 	starts_with = list(
@@ -115,7 +115,7 @@
 /obj/structure/closet/secure_closet/nanotrasen_commander
 	name = "NanoTrasen commander's locker"
 	req_access = list(ACCESS_BRIG)
-	closet_appearance = /decl/closet_appearance/secure_closet/nanotrasen/commander
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/nanotrasen/commander
 	storage_capacity = 3.5 * MOB_MEDIUM
 
 	starts_with = list(
@@ -165,7 +165,7 @@
 /obj/structure/closet/secure_closet/nanotrasen_warden
 	name = "NanoTrasen warden's locker"
 	req_access = list(ACCESS_BRIG)
-	closet_appearance = /decl/closet_appearance/secure_closet/nanotrasen/warden
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/nanotrasen/warden
 	storage_capacity = 3.5 * MOB_MEDIUM
 
 	starts_with = list(
