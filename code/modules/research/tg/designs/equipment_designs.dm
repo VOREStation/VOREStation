@@ -438,3 +438,29 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = ALL
+
+/datum/design_techweb/holocollar
+	name = "Holo-collar"
+	desc = "An expensive holo-collar for the modern day pet."
+	id = "holocollar"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 60)
+	build_path = /obj/item/clothing/accessory/collar/holo
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/leash
+	name = "leash"
+	desc = "A simple tether that can easily be hooked onto a collar. Usually used to keep pets nearby."
+	id = "leash"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 50)
+	build_path = /obj/item/leash
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL

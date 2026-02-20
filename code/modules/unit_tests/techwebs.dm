@@ -41,7 +41,7 @@
 			failed = TRUE
 
 		// Must have valid designs
-		if(!node.design_ids)
+		if(!length(node.design_ids))
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] does not have any design_ids.")
 			failed = TRUE
 		else

@@ -236,6 +236,7 @@
 		// "cell_charger",
 		// "recharger",
 		"welding_goggles",
+		"electric_welding_tool",
 		// "tray_goggles",
 		// "geigercounter",
 	)

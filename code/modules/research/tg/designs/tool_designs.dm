@@ -1189,3 +1189,15 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/electric_welding_tool
+	name = "electric welding tool"
+	desc = "A welder which runs off of electricity."
+	id = "electric_welding_tool"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 90, MAT_GLASS = 40)
+	build_path = /obj/item/weldingtool/electric/unloaded
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
