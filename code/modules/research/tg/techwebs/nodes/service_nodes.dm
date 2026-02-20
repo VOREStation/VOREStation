@@ -66,6 +66,7 @@
 		"snarewire",
 		// "buffer",
 		// "vacuum",
+		"washing"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/janitor_trash = TECHWEB_TIER_2_POINTS)
@@ -85,6 +86,7 @@
 		"comconsole",
 		"idcardconsole",
 		"jukebox",
+		"request",
 		// PDAs
 		"pda",
 		"cart_basic",
@@ -132,7 +134,7 @@
 		// "telescreen_interrogation",
 		// "telescreen_prison",
 		// "telescreen_bar",
-		// "telescreen_entertainment",
+		"telescreen_entertainment",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)

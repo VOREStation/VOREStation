@@ -901,7 +901,6 @@
 	id = "riflescope"
 	// req_tech = list(TECH_ILLEGAL = 2, TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 	build_path = /obj/item/binoculars/scope
 	category = list(
@@ -914,7 +913,6 @@
 	id = "slimebaton"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_POWER = 3, TECH_COMBAT = 3)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 5000)
 	build_path = /obj/item/melee/baton/slime
 	category = list(
@@ -926,7 +924,6 @@
 	name = "Slime Taser"
 	id = "slimetaser"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 3, TECH_POWER = 4, TECH_COMBAT = 4)
-	build_type = PROTOLATHE
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 5000)
 	build_path = /obj/item/gun/energy/taser/xeno
@@ -941,10 +938,37 @@
 	id = "monkey_gun"
 	// req_tech = list(TECH_BIO = 6, TECH_BLUESPACE = 5)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 3500, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500)
 	build_path = /obj/item/xenobio/monkey_gun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/knuckledusters
+	name = "knuckle dusters"
+	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
+	id = "knuckledusters"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/clothing/accessory/knuckledusters
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/tacknife
+	name = "tactical knife"
+	desc = "A steel knife made for combat."
+	id = "tacknife"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/material/knife/tacknife
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY

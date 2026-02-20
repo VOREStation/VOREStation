@@ -324,22 +324,32 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/id_restorer
-	name = "ID restoration console circuit"
-	desc = "The circuit board for a ID restoration console."
-	id = "idrestore_console"
-	build_path = /obj/item/circuitboard/id_restorer
+/datum/design_techweb/board/electrochromic
+	name = "electrochromic button circuit"
+	desc = "The circuit board for an electrochromic button."
+	id = "electrochromic"
+	build_path = /obj/item/circuitboard/electrochromic
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_COMPUTER_COMMAND
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/medical_kiosk
-	name = "Medical Kiosk Board"
-	desc = "The circuit board for a Medical Kiosk."
-	id = "medical_kiosk"
-	build_path = /obj/item/circuitboard/medical_kiosk
+/datum/design_techweb/board/automatic_pipe_layer
+	name = "automatic pipe layer circuit"
+	desc = "The circuit board for an automatic pipe layer."
+	id = "automatic_pipe_layer"
+	build_path = /obj/item/circuitboard/pipelayer
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/geiger
+	name = "geiger counter circuit"
+	desc = "The circuit board for a geiger counter."
+	id = "geiger"
+	build_path = /obj/item/circuitboard/geiger
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

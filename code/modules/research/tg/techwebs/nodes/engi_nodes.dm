@@ -168,8 +168,14 @@
 		"power_control",
 		"airalarm_electronics",
 		"airlock_board",
+		"geiger",
 		"firealarm_electronics",
 		"camera_assembly",
+		"status_display",
+		"ai_status_display",
+		"newscaster",
+		"timeclock",
+		"keycard_auth",
 		// "firelock_board",
 		// "trapdoor_electronics",
 		// "blast",
@@ -194,6 +200,7 @@
 		"large_light_bulb",
 		"large_light_tube",
 		"floor_light",
+		"electrochromic",
 		// "crossing_signal",
 		// "guideway_sensor",
 		// "manuunloader",
@@ -204,6 +211,7 @@
 		// "manusorter",
 		// "manurouter",
 		// "mailsorter",
+		"automatic_pipe_layer"
 	)
 
 /datum/techweb_node/energy_manipulation

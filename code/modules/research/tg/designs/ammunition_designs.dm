@@ -267,16 +267,6 @@
 	name = "ammo clip (7.62mm practice)"
 	path =/obj/item/ammo_magazine/clip/c762/practice
 
-/datum/category_item/autolathe/arms/knuckledusters
-	name = "knuckle dusters"
-	path =/obj/item/clothing/accessory/knuckledusters
-	hidden = 1
-
-/datum/category_item/autolathe/arms/tacknife
-	name = "tactical knife"
-	path =/obj/item/material/knife/tacknife
-	hidden = 1
-
 /datum/category_item/autolathe/arms/speedloader_357_flash
 	name = "speedloader (.357 flash)"
 	path =/obj/item/ammo_magazine/s357/flash

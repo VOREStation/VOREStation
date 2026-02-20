@@ -166,3 +166,83 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_COMMAND
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/id_restorer
+	name = "ID restoration console circuit"
+	desc = "The circuit board for a ID restoration console."
+	id = "idrestore_console"
+	build_path = /obj/item/circuitboard/id_restorer
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_COMPUTER_COMMAND
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/keycard_auth
+	name = "keycard authenticator circuit"
+	desc = "The circuit board for a keycard authenticator."
+	id = "keycard_auth"
+	build_path = /obj/item/circuitboard/keycard_auth
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_COMPUTER_COMMAND
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/status_display
+	name = "status display circuit"
+	desc = "The circuit board for a status display."
+	id = "status_display"
+	build_path = /obj/item/circuitboard/status_display
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/ai_status_display
+	name = "AI status display circuit"
+	desc = "The circuit board for a AI status display."
+	id = "ai_status_display"
+	build_path = /obj/item/circuitboard/ai_status_display
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/newscaster
+	name = "newscaster circuit"
+	desc = "The circuit board for a newscaster."
+	id = "newscaster"
+	build_path = /obj/item/circuitboard/newscaster
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/telescreen_entertainment
+	name = "entertainment camera monitor circuit"
+	desc = "The circuit board for a entertainment camera monitor."
+	id = "telescreen_entertainment"
+	build_path = /obj/item/circuitboard/security/telescreen/entertainment
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/washing
+	name = "washing machine circuit"
+	desc = "The circuit board for a washing machine."
+	id = "washing"
+	build_path = /obj/item/circuitboard/washing
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/timeclock
+	name = "timeclock circuit"
+	desc = "The circuit board for a timeclock."
+	id = "timeclock"
+	build_path = /obj/item/circuitboard/timeclock
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

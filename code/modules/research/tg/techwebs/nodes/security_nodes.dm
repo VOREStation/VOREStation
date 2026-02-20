@@ -21,6 +21,8 @@
 		// "sec_dart",
 		// "sec_Islug",
 		// "sec_rshot",
+		"knuckledusters",
+		"tacknife"
 	)
 
 /datum/techweb_node/sec_equip
