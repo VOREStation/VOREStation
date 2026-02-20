@@ -1,5 +1,0 @@
-author: "Azzy.Dreemurr"
-delete-after: True
-changes:
-  - rscadd: "Added separate access to the Talon (but the crew still has full access)"
-  - maptweak: "Added lockers containing inflatable walls on Talon"

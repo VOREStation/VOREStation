@@ -1,5 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - qol: "mech part fabricator now has a clearer message when you try to change its output direction whilst it's printing"
-  - bugfix: "mech part fabricator now completely refuses to start printing a part if its output direction is invalid; ongoing queues should be frozen until the output is reoriented"

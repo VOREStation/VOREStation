@@ -4,7 +4,7 @@
 /datum/experiment/scanning/points/machinery_tiered_scan
 	name = "Upgraded Machinery Scanning Experiment"
 	description = "Base experiment for scanning machinery with upgraded parts"
-	exp_tag = "Scan"
+	exp_tag = EXPERIMENT_TAG_SCAN
 	///What tier of parts is required for the experiment
 	var/required_tier = 1
 
@@ -29,7 +29,7 @@
 /datum/experiment/scanning/points/machinery_pinpoint_scan
 	name = "Machinery Pinpoint Stock Parts Scanning Experiment"
 	description = "Base experiment for scanning machinery with specific parts"
-	exp_tag = "Scan"
+	exp_tag = EXPERIMENT_TAG_SCAN
 	///Which stock part are we looking for in the machine.
 	///We use obj instead of datum here, as some stock parts aren't datumised, and in datumised ones
 	///we can just look for the physical_object_reference to match up the requirement.

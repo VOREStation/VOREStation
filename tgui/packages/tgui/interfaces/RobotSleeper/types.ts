@@ -22,6 +22,8 @@ export type Data = {
   deliveryslot_2: string[];
   deliveryslot_3: string[];
   items_preserved: string[];
+  has_destructive_analyzer: BooleanLike;
+  techweb_name: string;
 };
 
 export type RobotChem = { id: string; name: string };

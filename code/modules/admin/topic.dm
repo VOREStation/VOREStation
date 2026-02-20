@@ -1902,13 +1902,12 @@
 	else if(href_list["cryoplayer"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		var/mob/living/carbon/M = locate(href_list["cryoplayer"])
-		if(!istype(M))
+		var/mob/living/carbon/carbon_target = locate(href_list["cryoplayer"])
+		if(!istype(carbon_target))
 			to_chat(usr, span_warning("Mob doesn't exist!"))
 			return
 
-		var/client/C = usr.client
-		C.despawn_player(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/despawn_player, carbon_target)
 
 	// player info stuff
 

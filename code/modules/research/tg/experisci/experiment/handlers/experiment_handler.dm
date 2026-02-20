@@ -136,7 +136,7 @@
 /**
  * Hooks on destructive scans to try and run an experiment (When using a handheld handler)
  */
-/datum/component/experiment_handler/proc/try_run_destructive_experiment(datum/source, list/scanned_atoms)
+/datum/component/experiment_handler/proc/try_run_destructive_experiment(datum/source, atom/scan_target)
 	SIGNAL_HANDLER
 	var/atom/movable/our_scanner = parent
 	if (selected_experiment == null && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE) )
@@ -144,11 +144,7 @@
 			playsound(our_scanner, 'sound/machines/buzz-sigh.ogg', 25)
 			to_chat(our_scanner, span_notice("No experiment selected!"))
 		return
-	var/successful_scan
-	for(var/scan_target in scanned_atoms)
-		if(action_experiment(source, scan_target))
-			successful_scan = TRUE
-	if(successful_scan)
+	if(action_experiment(source, scan_target))
 		playsound(our_scanner, 'sound/machines/ping.ogg', 25)
 		to_chat(our_scanner, span_notice("The scan succeeds."))
 	else if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
