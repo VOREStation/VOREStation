@@ -66,14 +66,6 @@
 	name = "Arms and Ammunition"
 	category_item_type = /datum/category_item/autolathe/arms
 
-/datum/category_group/autolathe/general
-	name = "General"
-	category_item_type = /datum/category_item/autolathe/general
-
-/datum/category_group/autolathe/tools
-	name = "Tools"
-	category_item_type = /datum/category_item/autolathe/tools
-
 /datum/category_group/autolathe/materials
 	name = "Materials"
 	category_item_type = /datum/category_item/autolathe/materials
