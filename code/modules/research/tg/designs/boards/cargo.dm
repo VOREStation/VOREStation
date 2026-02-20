@@ -47,7 +47,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/ore_silo
+/datum/design_techweb/board/request_console
 	name = "request console Board"
 	desc = "The circuit board for a request console."
 	id = "request"
