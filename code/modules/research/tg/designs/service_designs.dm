@@ -73,7 +73,7 @@
 	materials = list(MAT_STEEL = 250)
 	build_path = /obj/item/material/ashtray
 	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
@@ -85,9 +85,188 @@
 	materials = list(MAT_GLASS = 250)
 	build_path = /obj/item/material/ashtray/glass
 	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 
 // glasses
+/datum/design_techweb/watercooler_bottle
+	name = "water-cooler bottle"
+	desc = "A bottle for a water-cooler."
+	id = "watercooler_bottle"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_PLASTIC = 2500)
+	build_path = /obj/item/reagent_containers/glass/cooler_bottle
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_square
+	name = "half-pint glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_square"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 75)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/square
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_rocks
+	name = "rocks glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_rocks"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 50)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/rocks
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_milkshake
+	name = "milkshake glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_milkshake"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 40)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/shake
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_cocktail
+	name = "cocktail glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_cocktail"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 40)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/cocktail
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_shot
+	name = "shot glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_shot"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 15)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/shot
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_pint
+	name = "pint glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_pint"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 150)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/pint
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_mug
+	name = "glass mug"
+	desc = "Your standard drinking glass."
+	id = "barglass_mug"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 100)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/mug
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_wine
+	name = "wine glass"
+	desc = "Your standard drinking glass."
+	id = "barglass_wine"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 60)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/wine
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_metaglass
+	name = "metamorphic glass"
+	desc = "This glass changes shape and form depending on the drink inside... fancy!"
+	id = "barglass_metaglass"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 625)
+	build_path = /obj/item/reagent_containers/food/drinks/metaglass
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_metapint
+	name = "metamorphic pint glass"
+	desc = "This glass changes shape and form depending on the drink inside... fancy!"
+	id = "barglass_metapint"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 625)
+	build_path = /obj/item/reagent_containers/food/drinks/metaglass/metapint
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_carafe
+	name = "glass carafe"
+	desc = "Your standard drinking glass."
+	id = "barglass_carafe"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 60)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/carafe
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_pitcher
+	name = "plastic pitcher"
+	id = "barglass_pitcher"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_PLASTIC = 60)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/pitcher
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/barglass_coffeemug
+	name = "coffee mug"
+	id = "barglass_coffeemug"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_GLASS = 50)
+	build_path = /obj/item/reagent_containers/food/drinks/glass2/coffeemug
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE

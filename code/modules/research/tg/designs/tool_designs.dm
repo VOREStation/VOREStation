@@ -231,6 +231,19 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
+/datum/design_techweb/bucket
+	name = "bucket"
+	desc = "It's a bucket."
+	id = "bucket"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 250)
+	build_path = /obj/item/reagent_containers/glass/bucket
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
 /datum/design_techweb/mop
 	name = "mop"
 	desc = "The world of janitalia wouldn't be complete without a mop."
