@@ -669,7 +669,6 @@
 #include "code\datums\verb_callbacks.dm"
 #include "code\datums\weakrefs.dm"
 #include "code\datums\autolathe\autolathe.dm"
-#include "code\datums\autolathe\engineering.dm"
 #include "code\datums\autolathe\general.dm"
 #include "code\datums\autolathe\general_vr.dm"
 #include "code\datums\autolathe\materials.dm"
