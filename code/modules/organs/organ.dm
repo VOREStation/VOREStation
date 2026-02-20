@@ -543,7 +543,7 @@ var/list/organ_cache = list()
 	if(user)
 		to_chat(user, span_danger("You are preparing to butcher \the [src]!"))
 		user.visible_message(span_danger("prepares to butcher \the [src]!"))
-		if(!do_after(user, 10 SECONDS, target = src)) //They can queue this up on multiple organs.
+		if(!do_after(user, 10 SECONDS * O.toolspeed, target = src)) //They can queue this up on multiple organs.
 			to_chat(user, span_notice("You reconsider butchering \the [src]..."))
 			user.visible_message(span_notice("reconsiders butchering \the [src]!"))
 			return FALSE
