@@ -1,6 +1,5 @@
 /datum/techweb_node/mod_suit
 	id = TECHWEB_NODE_MOD_SUIT
-	starting_node = TRUE
 	display_name = "RIG Suit"
 	description = "Specialized back mounted power suits with various different modules."
 	design_ids = list(
