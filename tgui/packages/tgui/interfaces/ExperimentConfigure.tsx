@@ -33,11 +33,11 @@ type ExperimentData = {
 type Stage = [string, string, number, number];
 
 type Data = {
+  theme?: string;
   always_active: boolean;
   experiments: ExperimentData[];
   has_start_callback: boolean;
   techwebs: Techweb[];
-  theme?: string;
 };
 
 type ExperimentStageRowProps = {
