@@ -333,3 +333,10 @@
 		/obj/item/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/reagent_containers/food/snacks/chickenfillet
+
+/datum/recipe/burgerpatty
+	appliance = GRILL
+	items = list(
+		/obj/item/reagent_containers/food/snacks/rawcutlet
+	)
+	result = /obj/item/reagent_containers/food/snacks/burgerpatty

@@ -4403,6 +4403,13 @@
 		qdel(W)
 		qdel(src)
 
+	// Bun + burgerpatty = beefburger
+	else if(istype(W,/obj/item/reagent_containers/food/snacks/burgerpatty))
+		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
+		to_chat(user, "You make a burger.")
+		qdel(W)
+		qdel(src)
+
 	// Bun + sausage = hotdog
 	else if(istype(W,/obj/item/reagent_containers/food/snacks/sausage))
 		new /obj/item/reagent_containers/food/snacks/hotdog(src)
@@ -4481,6 +4488,19 @@
 /obj/item/reagent_containers/food/snacks/cutlet/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 2)
+
+/obj/item/reagent_containers/food/snacks/burgerpatty
+	name = "burger patty"
+	desc = "A perfectly grilled quarter-pounder burger patty. It's probably beef."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "burgerpatty"
+	bitesize = 3
+	center_of_mass_x = 17
+	center_of_mass_y = 20
+
+/obj/item/reagent_containers/food/snacks/burgerpatty/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 3)
 
 /obj/item/reagent_containers/food/snacks/rawmeatball
 	name = "raw meatball"
