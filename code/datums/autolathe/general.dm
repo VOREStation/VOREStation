@@ -18,22 +18,6 @@
 	name = "kitchen knife"
 	path =/obj/item/material/knife
 
-/datum/category_item/autolathe/general/tube
-	name = "light tube"
-	path =/obj/item/light/tube
-	is_stack = TRUE
-
-/datum/category_item/autolathe/general/bulb
-	name = "light bulb"
-	path =/obj/item/light/bulb
-	is_stack = TRUE
-
-/datum/category_item/autolathe/general/idcard
-	name = "ID Card"
-	path = /obj/item/card/id
-	resources = list(MAT_STEEL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
-	man_rating = 2
-
 /datum/category_item/autolathe/general/handcuffs
 	name = "handcuffs"
 	path =/obj/item/handcuffs

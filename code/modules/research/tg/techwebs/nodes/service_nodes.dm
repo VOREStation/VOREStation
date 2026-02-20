@@ -112,7 +112,7 @@
 		// "automated_announcement",
 		"bankmachine",
 		// "account_console",
-		// "idcard",
+		"idcard",
 		"idrestore_console",
 		"guestpass",
 		// "c-reader",
