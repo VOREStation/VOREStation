@@ -223,7 +223,7 @@ var/list/organ_cache = list()
 	if(butcherable && meat_type)
 		additional_information += "Can be butchered with use of any sharp and edged object."
 	if(germ_level)
-		additional_information += "Can have five units of spaceacillin applied to cure infection."
+		additional_information += "Can be washed in a sink, shower, or sprayed with space cleaner to clean infection. This will not bring it back from death, however."
 	if(status & ORGAN_DEAD)
 		additional_information += "Can have five units of peridaxon applied to bring the organ back from death. This will not cure any infection, however."
 	. = ..(additional_information)
@@ -532,11 +532,6 @@ var/list/organ_cache = list()
 
 	var/obj/item/reagent_containers/container = W
 	if(istype(container))
-		if(container.reagents.has_reagent(REAGENT_ID_SPACEACILLIN, 5))
-			germ_level = 0
-			container.reagents.remove_reagent(REAGENT_ID_SPACEACILLIN, 5)
-			to_chat(user, "You use the [container] to cure the infection in \the [src]")
-			return
 		if(container.reagents.has_reagent(REAGENT_ID_PERIDAXON, 5))
 			status &= ~ORGAN_DEAD
 			START_PROCESSING(SSobj, src) //When an organ dies, it stops processing. This restarts it.
@@ -544,12 +539,6 @@ var/list/organ_cache = list()
 			to_chat(user, "You use the [container] to revive \the [src]")
 			return
 	return ..()
-
-///Washing your organs doesn't clean them.
-/obj/item/organ/wash(clean_types)
-	var/old_germs = germ_level
-	. = ..()
-	germ_level = old_germs
 
 /obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
 	if(butcherable && meat_type)
