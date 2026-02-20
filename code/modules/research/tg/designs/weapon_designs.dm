@@ -207,6 +207,7 @@
 	materials = list(MAT_STEEL = 5000, MAT_STEEL = 2000)
 	build_path = /obj/item/reagent_containers/spray/chemsprayer
 	category = list(
+		RND_CATEGORY_HACKED,
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
