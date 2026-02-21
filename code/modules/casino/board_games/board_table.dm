@@ -20,8 +20,8 @@
 		game_ui = new game_ui(src)
 
 /obj/structure/casino_table/board_game/Destroy()
-	game_ui.parent = null
 	if(game_ui)
+		game_ui.parent = null
 		QDEL_NULL(game_ui)
 	. = ..()
 
