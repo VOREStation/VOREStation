@@ -24,5 +24,9 @@ export const textToCheckers = {
 
 export const possiblePromotions = ['Q', 'R', 'B', 'N'] as const;
 
-export const gameTooltip =
-  "To play, the player's pick their side, white or black and then play in turns. Common chess / checkers (depending on selected game) rules apply.";
+export const gameTooltip = {
+  chess:
+    "To play, the player's pick their side, white or black and then play in turns. Common chess rules apply.",
+  checkers:
+    "To play, the player's pick their side, white or black and then play in turns. Common checkers rules apply.",
+};

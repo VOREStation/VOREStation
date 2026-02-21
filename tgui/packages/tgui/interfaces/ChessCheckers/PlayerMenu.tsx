@@ -10,6 +10,7 @@ export const PlayerMenu = (props) => {
   const { act, data } = useBackend<Data>();
 
   const {
+    game_type,
     game_state,
     player_one,
     player_two,
@@ -84,7 +85,10 @@ export const PlayerMenu = (props) => {
             <Button onClick={() => act('invite_player')}>Invite Player</Button>
           </Stack.Item>
           <Stack.Item>
-            <VorePanelTooltip tooltip={gameTooltip} displayText="?" />
+            <VorePanelTooltip
+              tooltip={gameTooltip[game_type]}
+              displayText="?"
+            />
           </Stack.Item>
         </Stack>
       }
