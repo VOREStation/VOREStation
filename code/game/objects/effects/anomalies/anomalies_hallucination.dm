@@ -2,6 +2,7 @@
 	name = "hallucination anomaly"
 	icon_state = "hallucination"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/hallucination
+	danger_mult = 0.9
 	/// Time passed since the last effect, increased by seconds_per_tick of the SSobj
 	var/ticks = 0
 	/// How many seconds between each small hallucination pulses
@@ -23,6 +24,8 @@
 
 /obj/effect/anomaly/hallucination/anomalyEffect(seconds_per_tick)
 	. = ..()
+	if(stats)
+		return
 	ticks += seconds_per_tick
 	if(ticks < release_delay)
 		return
@@ -109,3 +112,14 @@
 ///Subtype for the SM that doesn't spawn decoys, because otherwise the whole area gets flooded with dummies.
 /obj/effect/anomaly/hallucination/supermatter
 	spawn_decoys = FALSE
+
+/obj/effect/anomaly/hallucination/anomalyPulse()
+	if(!..())
+		return
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		else
+			anomalyEffect()

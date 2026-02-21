@@ -1,6 +1,6 @@
 /obj/machinery/suspension_gen
 	name = "suspension field generator"
-	desc = "It has stubby bolts up against it's treads for stabilising. Used to be required for artifact removal but now merely works as a monster deterrant."
+	desc = "It has stubby bolts up against it's treads for stabilising. Used to hold anomalies stable in place."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "suspension"
 	density = 1
@@ -8,7 +8,7 @@
 	var/obj/item/cell/cell
 	var/obj/item/card/id/auth_card
 	var/locked = 1
-	var/power_use = 5
+	var/power_use = 15
 	var/obj/effect/suspension_field/suspension_field
 
 /obj/machinery/suspension_gen/Initialize(mapload)
@@ -153,6 +153,12 @@
 		M.Weaken(5)
 		M.visible_message(span_blue("[icon2html(M,viewers(M))] [M] begins to float in the air!"),"You feel tingly and light, but it is difficult to move.")
 
+	for(var/obj/effect/anomaly/anom in T)
+		anom.immortal = TRUE
+		anom.move_chance = 0
+		if(!anom.stats)
+			anom.stats = new /datum/anomaly_stats(anom)
+
 	suspension_field = new(T)
 	visible_message(span_blue("[icon2html(src,viewers(src))] [src] activates with a low hum."))
 	icon_state = "suspension_on"
@@ -180,6 +186,9 @@
 	for(var/mob/living/M in T)
 		to_chat(M, span_info("You no longer feel like floating."))
 		M.Weaken(3)
+
+	for(var/obj/effect/anomaly/anom in T)
+		anom.move_chance = initial(anom.move_chance)
 
 	visible_message(span_blue("[icon2html(src,viewers(src))] [src] deactivates with a gentle shudder."))
 	qdel(suspension_field)

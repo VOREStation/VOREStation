@@ -19,6 +19,10 @@
 	var/immortal = FALSE
 	var/move_chance = ANOMALY_MOVECHANCE
 
+	// Anomaly harvesting stuff
+	var/datum/anomaly_stats/stats
+	var/danger_mult = 1
+
 /obj/effect/anomaly/Initialize(mapload, new_lifespan, drops_core = TRUE)
 	. = ..()
 
@@ -51,6 +55,7 @@
 
 /obj/effect/anomaly/process(seconds_per_tick)
 	anomalyEffect(seconds_per_tick)
+	anomalyPulse()
 	if(death_time < world.time && !immortal)
 		if(loc)
 			detonate()
@@ -60,11 +65,23 @@
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(countdown)
 	QDEL_NULL(anomaly_core)
+	QDEL_NULL(stats)
 	return ..()
 
 /obj/effect/anomaly/proc/anomalyEffect(seconds_per_tick)
-	if(prob(move_chance))
+	if(prob(move_chance) && !locate(/obj/effect/suspension_field) in get_turf(src))
 		move_anomaly()
+
+// Used in anomaly harvesting - Normal anomalies shouldn't pulse
+/obj/effect/anomaly/proc/anomalyPulse()
+	if(!stats)
+		return FALSE
+	if(world.time < stats.next_activation)
+		return FALSE
+	else
+		stats.pulse_effect()
+		stats.next_activation = world.time + rand(stats.min_activation, stats.max_activation)
+		return TRUE
 
 /obj/effect/anomaly/proc/move_anomaly()
 	step(src, pick(GLOB.alldirs))
@@ -85,20 +102,53 @@
 		anomaly_core = null
 	qdel(src)
 
-/obj/effect/anomaly/proc/stabilize(anchor = FALSE, has_core = TRUE)
+/obj/effect/anomaly/proc/stabilize(anchor = FALSE, has_core = TRUE, add_stats = FALSE)
 	immortal = TRUE
 	name = (has_core ? "stable " : "hollow ") + name
 	if(!has_core)
 		QDEL_NULL(anomaly_core)
 	if(anchor)
 		move_chance = 0
+	if(!stats && add_stats)
+		stats = new /datum/anomaly_stats(src)
+		density = TRUE
+	return
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/analyzer))
 		if(anomaly_core)
 			to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(anomaly_core.frequency)], code [anomaly_core.code]."))
 			return TRUE
+	if(istype(I, /obj/item/anomaly_scanner))
+		var/obj/item/anomaly_scanner/scanner = I
+		if(stats)
+			if(!do_after(user, 1 SECOND, src))
+				return
+			scanner.buffered_anomaly = WEAKREF(src)
+			scanner.tgui_interact(user)
+			return TRUE
 	return ..()
+
+/obj/effect/anomaly/bullet_act(obj/item/projectile/proj)
+	if(stats && istype(stats.modifier, /datum/anomaly_modifiers/reflective) && prob(stats.severity/1.5))
+		balloon_alert_visible("reflected!")
+
+		var/new_x = proj.x = pick(0, 0, 0, -1, 1, -2, 2)
+		var/new_y = proj.y = pick(0, 0, 0, -1, 1, -2, 2)
+
+		var/turf/curloc = get_step(proj, get_dir(proj, proj.starting))
+
+		proj.penetrating += 1
+
+		proj.redirect(new_x, new_y, curloc, null)
+		return FALSE
+
+	if(istype(proj, /obj/item/projectile/energy/anomaly))
+		var/obj/item/projectile/energy/anomaly/anom_proj = proj
+		if(stats)
+			stats.particle_hit(anom_proj.particle_type)
+
+	return FALSE
 
 /proc/generate_anomaly(turf/anomalycenter, type = FLUX_ANOMALY, anomalyrange = 5, has_changed_lifespan = TRUE, drops_core = TRUE)
 	var/turf/local_turf = pick(RANGE_TURFS(anomalyrange, anomalycenter))

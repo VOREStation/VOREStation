@@ -16,6 +16,8 @@
 
 /obj/effect/anomaly/grav/anomalyEffect(seconds_per_tick)
 	..()
+	if(stats)
+		return
 	boing = TRUE
 	for(var/obj/O in orange(4, src))
 		if(!O.anchored)
@@ -93,3 +95,14 @@
 */
 /obj/effect/temp_visual/circle_wave/gravity
 	color = COLOR_NAVY
+
+/obj/effect/anomaly/grav/anomalyPulse()
+	if(!..())
+		return
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		else
+			anomalyEffect()

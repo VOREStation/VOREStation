@@ -86,7 +86,9 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/geiger,
 		/obj/item/reagent_scanner,
-		/obj/item/lightpainter
+		/obj/item/lightpainter,
+		/obj/item/anomaly_releaser,
+		/obj/item/anomaly_scanner
 		)
 
 /obj/item/storage/belt/utility/full

@@ -331,3 +331,16 @@
 /obj/item/projectile/energy/flash/flare
 	flash_range = 2
 	hud_state = "grenade_dummy"
+
+/obj/item/projectile/energy/anomaly
+	name = "anomaly emitter projectile"
+	light_color = "#be008f"
+	icon_state = "purple_laser"
+	damage = 5
+	speed = 1.6
+	var/particle_type
+
+/obj/item/projectile/energy/anomaly/Initialize(mapload, particle)
+	. = ..()
+	if(particle)
+		particle_type = particle
