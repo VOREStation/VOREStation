@@ -84,9 +84,6 @@
 			power_change()
 			update_icon()
 
-	//src.update_icon()
-	src.updateDialog()
-
 /obj/machinery/portable_atmospherics/powered/scrubber/return_air()
 	return air_contents
 

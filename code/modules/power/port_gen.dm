@@ -236,7 +236,6 @@
 		var/temp_loss = (temperature - cooling_temperature)/TEMPERATURE_DIVISOR
 		temp_loss = between(2, round(temp_loss, 1), TEMPERATURE_CHANGE_MAX)
 		temperature = max(temperature - temp_loss, cooling_temperature)
-		updateDialog()
 
 	if(overheating)
 		overheating--

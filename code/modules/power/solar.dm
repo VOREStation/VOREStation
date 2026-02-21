@@ -362,7 +362,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 				connected_tracker.set_angle(SSsun.sun.angle)
 
 	set_panels(cdir)
-	updateDialog()
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)
@@ -457,8 +456,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 				S.unset_control()
 	if(powernet)
 		add_avail(connected_power)
-
-	updateDialog()
 
 /obj/machinery/power/solar_control/tgui_act(action, params)
 	if(..())

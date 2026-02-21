@@ -110,7 +110,6 @@
 /obj/machinery/artifact_analyser/process()
 	if(scan_in_progress && world.time > scan_completion_time)
 		scan_in_progress = 0
-		updateDialog()
 
 		var/results = ""
 		if(!owned_scanner)
