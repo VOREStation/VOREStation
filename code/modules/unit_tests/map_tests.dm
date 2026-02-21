@@ -200,6 +200,7 @@
 			TEST_NOTICE(src, "[unit.x].[unit.y].[unit.z]: Map - Smes has an already used rcon name_tag: \"[unit.name_tag]\"")
 			failed = TRUE
 			continue
+		used_tags += unit.name_tag
 
 	if(failed)
 		TEST_FAIL("Map has smes with duplicated rcon name_tag")
