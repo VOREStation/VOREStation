@@ -181,7 +181,13 @@
 		if(1)
 			additional_information += "The [name] is cut open and can be opened further with a retractor or closed with a cautery."
 		if(2)
-			additional_information += "The [name] is fully open, allowing for removal of anything within or attached via a hemostat. It can also be partially closed with fix-o-vein"
+			additional_information += "The [name] is fully open, allowing for removal of anything within or attached via a hemostat. It can also be partially closed with fix-o-vein."
+			if(status & ORGAN_DEAD)
+				additional_information += "Can have necrosis partially removed by use of a scalpel."
+		if(3) //Status only happens if we used a scalpel on stage 2.
+			additional_information += "The [name] is fully open with some necrotic tissue removed. The use of a bioregenerator can fully remove infection and necrosis from the limb."
+	if(status & ORGAN_DEAD)
+		additional_information += "Can have necrosis and infection surgically removed."
 	. = ..(additional_information)
 	return .
 
@@ -258,6 +264,23 @@
 			if(istype(W,/obj/item/surgical/FixOVein))
 				user.visible_message(span_danger(span_bold("[user]") + " partially closes [src] with [W]!"))
 				stage--
+				return
+			//Begin necrosis surgery
+			if(istype(W,/obj/item/surgical/scalpel))
+				if(!(status & ORGAN_DEAD))
+					to_chat(user, span_notice("The limb isn't necrotic, there's no need to fix it!"))
+					return
+				user.visible_message(span_danger(span_bold("[user]") + " cuts necrotic tissue off [src] with [W]!"))
+				stage++
+				return
+		if(3)
+			if(istype(W,/obj/item/surgical/bioregen))
+				user.visible_message(span_danger(span_bold("[user]") + " rejuvinates formerly necrotic tissue on [src] with [W]!"))
+				germ_level = 0
+				status &= ~ORGAN_DEAD
+				damage = 0 //Fix the damage on it as well.
+				START_PROCESSING(SSobj, src) //Dead limbs stop processing, so we restart the process.
+				stage-- //Go back to stage 2
 				return
 	..()
 

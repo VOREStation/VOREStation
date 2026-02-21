@@ -229,6 +229,12 @@ var/list/organ_cache = list()
 	. = ..(additional_information)
 	return .
 
+/obj/item/organ/get_description_antag()
+	. = ..()
+	if(butcherable && meat_type)
+		. += "Can be butchered with use of any sharp and edged object, allowing for quick disposal of evidence."
+	return .
+
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
@@ -534,6 +540,7 @@ var/list/organ_cache = list()
 	if(istype(container))
 		if(container.reagents.has_reagent(REAGENT_ID_PERIDAXON, 5))
 			status &= ~ORGAN_DEAD
+			damage-- //Fix JUST enough damage so it doesn't immediately die again. For full repair, use denec removal surgery.
 			START_PROCESSING(SSobj, src) //When an organ dies, it stops processing. This restarts it.
 			container.reagents.remove_reagent(REAGENT_ID_PERIDAXON, 5)
 			to_chat(user, "You use the [container] to revive \the [src]")
@@ -579,6 +586,10 @@ var/list/organ_cache = list()
 
 	if(istype(newmeat, /obj/item/reagent_containers/food/snacks/meat))
 		newmeat.name = "[src.name] [newmeat.name]"	// "liver meat" "heart meat", etc.
+
+	if(LAZYLEN(contents)) //You can't shove the nuke disk into a leg and then butcher the leg to delete the nuke disk.
+		for(var/obj/contained_object in contents)
+			contained_object.forceMove(newtarget)
 
 	qdel(src)
 

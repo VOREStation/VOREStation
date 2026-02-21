@@ -251,10 +251,11 @@
 				GLOB.surgery_steps.Swap(i, gap + i)
 				swapped = 1
 
-/datum/surgery_status/
+/datum/surgery_status
 	var/eyes = 0
 	var/face = 0
 	var/brainstem = 0
 	var/head_reattach = 0
+	var/nerves = 0
 	var/current_organ = "organ"
 	var/list/in_progress = list()
