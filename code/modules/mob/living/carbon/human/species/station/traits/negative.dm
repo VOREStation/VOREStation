@@ -138,7 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
-	excludes = list(/datum/trait/negative/boneless,datum/trait/negative/boneless/major, /datum/trait/positive/densebones) //Vorestation Edit
+	excludes = list(/datum/trait/negative/boneless,/datum/trait/negative/boneless/major, /datum/trait/positive/densebones) //Vorestation Edit
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
