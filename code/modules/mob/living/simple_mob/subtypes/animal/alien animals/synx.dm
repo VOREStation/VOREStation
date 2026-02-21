@@ -526,7 +526,7 @@
 	if(is_deaf() || is_below_sound_pressure(get_turf(src)))
 		to_chat(src, span_warning("You are for all intents and purposes currently deaf!"))
 		return
-	next_sonar_ping += 10 SECONDS
+	next_sonar_ping = world.time + 10 SECONDS
 	var/heard_something = FALSE
 	to_chat(src, span_notice("You take a moment to listen in to your environment..."))
 	for(var/mob/living/L in range(client.view, src))
