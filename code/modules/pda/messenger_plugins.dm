@@ -1,13 +1,13 @@
 /datum/data/pda/messenger_plugin
 	var/datum/data/pda/app/messenger/messenger
 
-/datum/data/pda/messenger_plugin/proc/user_act(mob/user as mob, obj/item/pda/P)
+/datum/data/pda/messenger_plugin/proc/user_act(mob/user, obj/item/pda/P)
 
 
 /datum/data/pda/messenger_plugin/virus
 	name = "*Send Virus*"
 
-/datum/data/pda/messenger_plugin/virus/user_act(mob/user as mob, obj/item/pda/P)
+/datum/data/pda/messenger_plugin/virus/user_act(mob/user, obj/item/pda/P)
 	var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
 
 	if(M && !M.toff && pda.cartridge.charges > 0)
@@ -19,7 +19,7 @@
 /datum/data/pda/messenger_plugin/virus/clown
 	icon = "star"
 
-/datum/data/pda/messenger_plugin/virus/clown/user_act(mob/user as mob, obj/item/pda/P)
+/datum/data/pda/messenger_plugin/virus/clown/user_act(mob/user, obj/item/pda/P)
 	. = ..(user, P)
 	if(.)
 		user.show_message(span_notice("Virus sent!"), 1)
@@ -30,7 +30,7 @@
 /datum/data/pda/messenger_plugin/virus/mime
 	icon = "arrow-circle-down"
 
-/datum/data/pda/messenger_plugin/virus/mime/user_act(mob/user as mob, obj/item/pda/P)
+/datum/data/pda/messenger_plugin/virus/mime/user_act(mob/user, obj/item/pda/P)
 	. = ..(user, P)
 	if(.)
 		user.show_message(span_notice("Virus sent!"), 1)
@@ -44,7 +44,7 @@
 	name = "*Detonate*"
 	icon = "exclamation-circle"
 
-/datum/data/pda/messenger_plugin/virus/detonate/user_act(mob/user as mob, obj/item/pda/P)
+/datum/data/pda/messenger_plugin/virus/detonate/user_act(mob/user, obj/item/pda/P)
 	. = ..(user, P)
 	if(.)
 		var/difficulty = 0
