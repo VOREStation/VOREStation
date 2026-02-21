@@ -187,3 +187,19 @@
 			TEST_ASSERT(L.target_down, "[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
 
 		TEST_ASSERT(!T.density, "[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
+
+/// Test the smes on the map
+/datum/unit_test/smes_validity
+
+/datum/unit_test/smes_validity/Run()
+	var/failed = FALSE
+	var/list/used_tags = list()
+
+	for(var/obj/machinery/power/smes/unit in world)
+		if(unit.name_tag in used_tags)
+			TEST_NOTICE(src, "[unit.x].[unit.y].[unit.z]: Map - Smes has an already used rcon name_tag: \"[unit.name_tag]\"")
+			failed = TRUE
+			continue
+
+	if(failed)
+		TEST_FAIL("Map has smes with duplicated rcon name_tag")
