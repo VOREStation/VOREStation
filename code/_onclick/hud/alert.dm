@@ -377,6 +377,18 @@ so as to remain in compliance with the most up-to-date laws."
 	timeout = 300
 	no_underlay = TRUE
 
+/atom/movable/screen/alert/vote
+	name = "Vote"
+	desc = "A vote has been called. \
+	Click here to cast your vote."
+	timeout = 60 SECONDS
+
+/atom/movable/screen/alert/vote/Click()
+	if(!usr || !usr.client)
+		return
+	var/client/client = usr.client
+	return client.vote()
+
 //MECHS
 
 /atom/movable/screen/alert/low_mech_integrity

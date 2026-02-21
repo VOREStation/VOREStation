@@ -121,6 +121,8 @@
 	to_chat(world, span_lightpurple("Type <b>vote</b> or click <a href='byond://?src=\ref[src];[HrefToken()];vote=open'>here</a> to place your vote. \
 		You have [time/10] seconds to vote."))
 	world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+	for(var/mob/mob in GLOB.player_list)
+		mob.throw_alert("vote", /atom/movable/screen/alert/vote)
 
 /datum/vote/Topic(href, list/href_list)
 	if(href_list["vote"] == "open")
