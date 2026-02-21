@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "borg sleepers showing a 0 where they shouldn't"
-  - qol: "gives multiple robot UIs robot themes"
