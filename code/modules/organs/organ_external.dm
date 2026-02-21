@@ -322,7 +322,8 @@
 
 	dislocated = 0
 	if(istype(owner))
-		owner.shock_stage += 20
+		if(!organ_can_feel_pain())
+			owner.shock_stage += 20
 
 		//check to see if we still need the verb
 		for(var/obj/item/organ/external/limb in owner.organs)
