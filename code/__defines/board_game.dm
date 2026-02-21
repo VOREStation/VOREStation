@@ -5,6 +5,6 @@
 #define GAME_SPACE_BATTLE "SpaceBattle"
 #define GAME_RGP_DICE "RPG dice"
 #define GAME_CHESS "Chess"
-#define GAME_CHECKERS "Chekers"
+#define GAME_CHECKERS "Checkers"
 #define GAME_NINE_MENS_MORRIS "Nine men's morris"
 #define GAME_TIC_TAC_TOE "Tic-Tac-Toe"

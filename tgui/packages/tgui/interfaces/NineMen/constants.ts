@@ -4,7 +4,7 @@ export const textToNine = {
 } as const;
 
 export const gameTooltip =
-  'To play the game, players place their pieces in turns. When one player maanges to place three pieces in a row, they remove an opponent piece. A player loses as soon as less than three pieces are left.';
+  'To play the game, players place their pieces in turns. When one player manages to place three pieces in a row, they remove an opponent piece. After a player places 9 pieces, they must move their pieces to open, adjacent positions. If a player only has 3 pieces, they can jump any piece to any open space. A player loses as soon as less than three pieces are left.';
 
 export const phastToText = ['Place', 'Move', 'Remove', ''] as const;
 
