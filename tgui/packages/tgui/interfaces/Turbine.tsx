@@ -22,7 +22,7 @@ export const Turbine = (props) => {
 
   return (
     <Window width={280} height={150}>
-      <Window.Content scrollable>
+      <Window.Content>
         <Section
           fill
           title="Turbine Settings"
