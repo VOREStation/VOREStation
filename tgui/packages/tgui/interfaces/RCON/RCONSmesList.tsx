@@ -25,11 +25,10 @@ export const RCONSmesList = () => {
         <Stack.Item>
           <Stack>
             {Array.from({ length: pages }, (_, i) => (
-              <Stack.Item key={i + 1}>
+              <Stack.Item key={i}>
                 <Button
                   selected={current_page === i + 1}
                   onClick={() => act('set_smes_page', { index: i + 1 })}
-                  style={{ marginRight: '0.25em' }}
                 >
                   {i + 1}
                 </Button>
