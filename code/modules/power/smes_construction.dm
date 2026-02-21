@@ -342,7 +342,7 @@
 			var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system", "", MAX_NAME_LEN)
 			if(!newtag)
 				return
-			for(var/obj/machinery/power/smes/smes in GLOB.smeses)
+			for(var/obj/machinery/power/smes/buildable/smes in GLOB.smeses)
 				if(smes.RCon_tag == newtag)
 					to_chat(user, span_warning("The entered RCON tag [newtag] already exists. Aborting."))
 					return
