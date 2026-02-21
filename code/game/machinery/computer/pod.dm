@@ -8,7 +8,7 @@
 	circuit = /obj/item/circuitboard/pod
 	var/id = 1.0
 	var/obj/machinery/mass_driver/connected = null
-	var/timing = 0.0
+	var/timing = FALSE
 	var/time = 30.0
 	var/title = "Mass Driver Controls"
 
@@ -110,36 +110,64 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/pod/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
+		return
+	if(!Adjacent(user) && !issilicon(user))
+		return
+	tgui_interact(user)
+
+/obj/machinery/computer/pod/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	. = ..()
+
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PodComputer", title)
+		ui.open()
+
+/obj/machinery/computer/pod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+
+	return list(
+		"connected" = connected,
+		"timing" = timing,
+		"time" = time,
+		"power_level" = connected?.power
+	)
+
+/obj/machinery/computer/pod/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
 		return
 
-	var/dat = "<TT><B>[title]</B>"
-	user.set_machine(src)
-	if(connected)
-		var/d2
-		if(timing)	//door controls do not need timers.
-			d2 = "<A href='byond://?src=\ref[src];time=0'>Stop Time Launch</A>"
-		else
-			d2 = "<A href='byond://?src=\ref[src];time=1'>Initiate Time Launch</A>"
-		var/second = time % 60
-		var/minute = (time - second) / 60
-		dat += "<HR>\nTimer System: [d2]\nTime Left: [minute ? "[minute]:" : null][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>"
-		var/temp = ""
-		var/list/L = list( 0.25, 0.5, 1, 2, 4, 8, 16 )
-		for(var/t in L)
-			if(t == connected.power)
-				temp += "[t] "
-			else
-				temp += "<A href = 'byond://?src=\ref[src];power=[t]'>[t]</A> "
-		dat += "<HR>\nPower Level: [temp]<BR>\n<A href = 'byond://?src=\ref[src];alarm=1'>Firing Sequence</A><BR>\n<A href = 'byond://?src=\ref[src];drive=1'>Test Fire Driver</A><BR>\n<A href = 'byond://?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
-	else
-		dat += "<BR>\n<A href = 'byond://?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
-	dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=computer'>Close</A></TT>"
-	add_fingerprint(user)
-	var/datum/browser/popup = new(user, "pod_computer", "Pod Computer", 400, 500)
-	popup.set_content(dat)
-	popup.open()
-
+	switch(action)
+		if("toggle_door")
+			for(var/obj/machinery/door/blast/M in GLOB.machines)
+				if(M.id == id)
+					if(M.density)
+						M.open()
+					else
+						M.close()
+			return TRUE
+		if("start_stop")
+			timing = !timing
+			return TRUE
+		if("test_alarm")
+			alarm()
+			return TRUE
+		if("test_drive")
+			for(var/obj/machinery/mass_driver/M in GLOB.machines)
+				if(M.id == id)
+					M.power = connected.power
+					M.drive()
+			return TRUE
+		if("adjust_power")
+			if(!connected)
+				return FALSE
+			connected.power = CLAMP(text2num(params["value"]), 0.25, 16)
+			return TRUE
+		if("adjust_time")
+			time = CLAMP(round(text2num(params["value"])), 0, 120)
+			return TRUE
 
 /obj/machinery/computer/pod/process()
 	if(!..())
@@ -150,46 +178,8 @@
 		else
 			alarm()
 			time = 0
-			timing = 0
-		updateDialog()
+			timing = FALSE
 	return
-
-
-/obj/machinery/computer/pod/Topic(href, href_list)
-	if(..())
-		return 1
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
-		if(href_list["power"])
-			var/t = text2num(href_list["power"])
-			t = min(max(0.25, t), 16)
-			if(connected)
-				connected.power = t
-		if(href_list["alarm"])
-			alarm()
-		if(href_list["drive"])
-			for(var/obj/machinery/mass_driver/M in GLOB.machines)
-				if(M.id == id)
-					M.power = connected.power
-					M.drive()
-
-		if(href_list["time"])
-			timing = text2num(href_list["time"])
-		if(href_list["tp"])
-			var/tp = text2num(href_list["tp"])
-			time += tp
-			time = min(max(round(time), 0), 120)
-		if(href_list["door"])
-			for(var/obj/machinery/door/blast/M in GLOB.machines)
-				if(M.id == id)
-					if(M.density)
-						M.open()
-					else
-						M.close()
-		updateUsrDialog(usr)
-	return
-
-
 
 /obj/machinery/computer/pod/old
 	icon_state = "oldcomp"
@@ -197,8 +187,6 @@
 	icon_screen = "library"
 	name = "DoorMex Control Computer"
 	title = "Door Controls"
-
-
 
 /obj/machinery/computer/pod/old/syndicate
 	name = "ProComp Executive IIc"
