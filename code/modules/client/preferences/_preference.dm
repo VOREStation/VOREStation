@@ -245,7 +245,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/proc/apply_to_silicon(mob/living/silicon/target, value)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(FALSE)
-	CRASH("`apply_to_human()` was not implemented for [type]!")
+	CRASH("`apply_to_silicon()` was not implemented for [type]!")
 
 /// Apply this preference onto the given animal.
 /// Must be overriden by subtypes.
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/proc/apply_to_animal(mob/living/simple_mob/target, value)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(FALSE)
-	CRASH("`apply_to_human()` was not implemented for [type]!")
+	CRASH("`apply_to_animal()` was not implemented for [type]!")
 
 /// Apply this preference onto the given living.
 /// Must be overriden by subtypes.
@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/proc/apply_to_living(mob/living/target, value)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(FALSE)
-	CRASH("`apply_to_human()` was not implemented for [type]!")
+	CRASH("`apply_to_living()` was not implemented for [type]!")
 
 /// Returns which savefile to use for a given savefile identifier
 /datum/preferences/proc/get_save_data_for_savefile_identifier(savefile_identifier)
