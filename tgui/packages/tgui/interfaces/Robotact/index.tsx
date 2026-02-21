@@ -18,7 +18,7 @@ export const Robotact = (props) => {
   }
 
   return (
-    <Window width={800} height={600} theme={data.theme || 'ntos'}>
+    <Window width={800} height={600} theme={data.theme}>
       <Window.Content>{content}</Window.Content>
     </Window>
   );

@@ -33,6 +33,7 @@ type ExperimentData = {
 type Stage = [string, string, number, number];
 
 type Data = {
+  theme?: string;
   always_active: boolean;
   experiments: ExperimentData[];
   has_start_callback: boolean;
@@ -175,7 +176,7 @@ export function Experiment(props) {
 
 export function ExperimentConfigure(props) {
   const { act, data } = useBackend<Data>();
-  const { always_active, has_start_callback } = data;
+  const { theme, always_active, has_start_callback } = data;
 
   const techwebs = data.techwebs ?? [];
 
@@ -205,7 +206,7 @@ export function ExperimentConfigure(props) {
   }
 
   return (
-    <Window width={600} height={735}>
+    <Window width={600} height={735} theme={theme}>
       <Window.Content scrollable>
         <Section title="Servers">
           <Box color="label">

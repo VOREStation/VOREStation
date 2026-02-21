@@ -5,7 +5,7 @@ import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
-  theme: string | null;
+  theme: string;
   all_decals?: string[] | null;
   all_animations?: string[] | null;
   active_decals: string[];
@@ -28,7 +28,7 @@ export const RobotDecals = () => {
   const filteredAnimations = all_animations?.filter(animationSearcher) ?? [];
 
   return (
-    <Window width={350} height={400} theme={theme || 'ntos'}>
+    <Window width={350} height={400} theme={theme}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>
