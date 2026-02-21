@@ -119,6 +119,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/bioregen
+	name="bioregenerator"
+	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."
+	id = "bioregen"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 1500, MAT_GLASS = 1000, MAT_SILVER = 500)
+	build_path = /obj/item/surgical/bioregen
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/defibrillator
 	name = "Defibrillator"
 	desc = "A portable defibrillator, used for resuscitating recently deceased crew."
