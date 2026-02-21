@@ -195,12 +195,14 @@
 	var/failed = FALSE
 	var/list/used_tags = list()
 
-	for(var/obj/machinery/power/smes/unit in world)
-		if(unit.name_tag in used_tags)
-			TEST_NOTICE(src, "[unit.x].[unit.y].[unit.z]: Map - Smes has an already used rcon name_tag: \"[unit.name_tag]\"")
+	for(var/obj/machinery/power/smes/buildable/unit in world)
+		if(unit.RCon_tag == initial(unit.RCon_tag))
+			continue
+		if(unit.RCon_tag in used_tags)
+			TEST_NOTICE(src, "[unit.x].[unit.y].[unit.z]: Map - Smes has an already used RCon_tag: \"[unit.RCon_tag]\"")
 			failed = TRUE
 			continue
-		used_tags += unit.name_tag
+		used_tags += unit.RCon_tag
 
 	if(failed)
-		TEST_FAIL("Map has smes with duplicated rcon name_tag")
+		TEST_FAIL("Map has smes with duplicated RCon_tag")
