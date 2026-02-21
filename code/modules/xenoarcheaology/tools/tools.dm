@@ -172,6 +172,12 @@
 		ui = new(user, src, "XenoarchDepthScanner", name)
 		ui.open()
 
+/obj/item/depth_scanner/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
+
 /obj/item/depth_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 

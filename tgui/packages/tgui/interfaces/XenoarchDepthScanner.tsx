@@ -3,6 +3,7 @@ import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 type Data = {
+  theme?: string;
   current: {
     index: string;
     time: string;
@@ -16,10 +17,10 @@ type Data = {
 export const XenoarchDepthScanner = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { current, positive_locations } = data;
+  const { theme, current, positive_locations } = data;
 
   return (
-    <Window width={300} height={500}>
+    <Window width={300} height={500} theme={theme}>
       <Window.Content scrollable>
         {(Object.keys(current).length && (
           <Section
