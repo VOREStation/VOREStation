@@ -198,8 +198,7 @@
 	if(!allowed(user))
 		to_chat(user, span_warning("Access Denied"))
 		return
-	else
-		..()
+	..()
 
 /obj/machinery/computer/pod/old/swf
 	name = "Magix System IV"
