@@ -226,12 +226,36 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
+/datum/design_techweb/tommy_mag_45_pierce
+	name = "Tommy Gun magazine (.45 armor piercing)"
+	id = "tommy_mag_45_pierce"
+	materials = list(MAT_STEEL = 1875, MAT_PLASTEEL = 1600)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m45tommy/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
 /datum/design_techweb/tommy_drum_45
 	name = "Tommy Gun drum magazine (.45)"
 	id = "tommy_drum_45"
 	materials = list(MAT_STEEL = 4680)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m45tommydrum
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/tommy_drum_45_pierce
+	name = "Tommy Gun drum magazine (.45 piercing)"
+	id = "tommy_drum_45_pierce"
+	materials = list(MAT_STEEL = 4680, MAT_PLASTEEL = 3200)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m45tommydrum/ap
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
@@ -422,6 +446,52 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
+/datum/design_techweb/smg_mag_10m_practice
+	name = "SMG magazine (10mm practice)"
+	id = "smg_mag_10m_practice"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_casing/a10mm/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/smg_mag_10m_rubber
+	name = "SMG magazine (10mm rubber)"
+	id = "smg_mag_10m_rubber"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_casing/a10mm/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/smg_mag_10m_rubber
+	name = "SMG magazine (10mm rubber)"
+	id = "smg_mag_10m_rubber"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_casing/a10mm/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/smg_mag_10m_emp
+	name = "SMG magazine (10mm haywire)"
+	id = "smg_mag_10m_emp"
+	materials = list(MAT_STEEL = 1800, MAT_URANIUM = 2400)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_casing/a10mm/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+
+
 /////// 5.45mm
 
 /datum/design_techweb/rifle_mag_545
@@ -447,12 +517,72 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
+/datum/design_techweb/rifle_mag_545_pierce
+	name = "Rifle Magazine (5.45mm AP)"
+	id = "rifle_mag_545_pierce"
+	materials = list(MAT_STEEL = 2250, MAT_PLASTEEL = 1200)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m545/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
 /datum/design_techweb/machinegun_box_545
 	name = "machinegun box magazine (5.45)"
 	id = "machinegun_box_545"
 	materials = list(MAT_STEEL = 12500)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m545saw
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/machinegun_box_545_pierce
+	name = "machinegun box magazine (5.45mm armor-piercing)"
+	id = "machinegun_box_545_pierce"
+	materials = list(MAT_STEEL = 12500)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_casing/a545/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/machinegun_box_545_hunting
+	name = "machinegun box magazine (5.45mm hunting)"
+	id = "machinegun_box_545_hunting"
+	materials = list(MAT_STEEL = 12500)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m545saw/hunter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/machinegun_box_545_pierce
+	name = "Machinegun box magazine (5.45mm AP)"
+	id = "machinegun_box_545_pierce"
+	materials = list(MAT_STEEL = 12500, MAT_PLASTEEL = 15000)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m545saw/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_mag_545_hunting
+	name = "Rifle Magazine (5.45mm AP Hunting)"
+	id = "rifle_mag_545_hunting"
+	materials = list(MAT_STEEL = 3375)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m545/hunter
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
@@ -471,6 +601,116 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_mag_762_pierce
+	name = "rifle magazine (7.62mm AP)"
+	id = "rifle_mag_762_pierce"
+	materials = list(MAT_STEEL = 2500, MAT_PLASTEEL = 1200)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_enblock_762
+	name = "enbloc (7.62mm)"
+	id = "rifle_enblock_762"
+	materials = list(MAT_STEEL = 2500)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762enbloc
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_enblock_762_pierce
+	name = "enbloc (7.62mm AP)"
+	id = "rifle_enblock_762_pierce"
+	materials = list(MAT_STEEL = 2500, MAT_PLASTEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762enbloc/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_svd_762
+	name = "SVD magazine (7.62mm)"
+	id = "rifle_svd_762"
+	materials = list(MAT_STEEL = 2500)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762svd
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_svd_762_pierce
+	name = "SVD magazine (7.62mm AP)"
+	id = "rifle_svd_762_pierce"
+	materials = list(MAT_STEEL = 2500)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762svd/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+// 12guage auto-shotgun
+
+/datum/design_techweb/shotgun_mag_12g_drum
+	name = "drum magazine (12 gauge)"
+	id = "shotgun_mag_12g_drum"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m12gdrum
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/shotgun_mag_12g_drum_beanbag
+	name = "drum magazine (12 gauge beanbag)"
+	id = "shotgun_mag_12g_drum_beanbag"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m12gdrum/beanbag
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/shotgun_mag_12g_drum_pellet
+	name = "drum magazine (12 gauge pellet)"
+	id = "shotgun_mag_12g_drum_pellet"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m12gdrum/pellet
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/shotgun_mag_12g_drum_flash
+	name = "drum magazine (12 gauge flash)"
+	id = "shotgun_mag_12g_drum_flash"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m12gdrum/flash
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
 	)
 
 ///////////////////////////////

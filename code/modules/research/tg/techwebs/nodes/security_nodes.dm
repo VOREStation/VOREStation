@@ -62,11 +62,22 @@
 	display_name = "Rifle Ammunition"
 	description = "Shoot for the moon, even if you miss you'll probably hit the intern anyway."
 	design_ids = list(
+		// military
 		"rifle_mag_545",
+		"rifle_mag_545_pierce",
 		"rifle_mag_545_practice",
+		"rifle_mag_545_hunting",
 		"rifle_mag_762",
+		"rifle_mag_762_pierce",
+		// M1
+		"rifle_enblock_762",
+		"rifle_enblock_762_pierce",
+		// SMG
 		"smg_mag_9mm",
 		"smg_mag_10m",
+		"smg_mag_10m_practice",
+		"smg_mag_10m_rubber",
+		"smg_mag_10m_emp",
 	)
 
 // Only works with a few specific guns
@@ -79,10 +90,17 @@
 		// Rattle em boys!
 		"uzi_mag_45",
 		"tommy_mag_45",
+		"tommy_mag_45_pierce",
 		"tommy_drum_45",
+		"tommy_drum_45_pierce",
 		// big guns
 		"machinegun_box_545",
+		"machinegun_box_545_pierce",
+		"machinegun_box_545_hunting",
 		"rifle_145_sabot",
+		// SVD
+		"rifle_svd_762",
+		"rifle_svd_762_pierce",
 		// P90
 		"pistol_mag_topmount_9mm",
 		"pistol_mag_topmount_9mm_rubber",
@@ -105,6 +123,11 @@
 		"ammo_12g_pellet",
 		"ammo_12g_stun",
 		"ammo_12g_flechette",
+		// Auto shotgun drums
+		"shotgun_mag_12g_drum",
+		"shotgun_mag_12g_drum_beanbag",
+		"shotgun_mag_12g_drum_pellet",
+		"shotgun_mag_12g_drum_flash",
 	)
 
 // Faster reloading
