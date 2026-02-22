@@ -98,9 +98,6 @@
 		"machinegun_box_545_pierce",
 		"machinegun_box_545_hunting",
 		"rifle_145_sabot",
-		// SVD
-		"rifle_svd_762",
-		"rifle_svd_762_pierce",
 		// P90
 		"pistol_mag_topmount_9mm",
 		"pistol_mag_topmount_9mm_rubber",

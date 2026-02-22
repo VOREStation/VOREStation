@@ -639,30 +639,6 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
-/datum/design_techweb/rifle_svd_762
-	name = "SVD magazine (7.62mm)"
-	id = "rifle_svd_762"
-	materials = list(MAT_STEEL = 2500)
-	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_magazine/m762svd
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
-	)
-
-/datum/design_techweb/rifle_svd_762_pierce
-	name = "SVD magazine (7.62mm AP)"
-	id = "rifle_svd_762_pierce"
-	materials = list(MAT_STEEL = 2500)
-	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_magazine/m762svd/ap
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
-	)
-
 // 12guage auto-shotgun
 
 /datum/design_techweb/shotgun_mag_12g_drum
