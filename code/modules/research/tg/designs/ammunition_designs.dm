@@ -396,18 +396,6 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/pistol_mag_44
-	name = "pistol magazine (.44)"
-	id = "pistol_mag_44"
-	materials = list(MAT_STEEL = 1500)
-	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_magazine/m44
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-
 /////// 5.45mm
 
 /datum/design_techweb/mechfab/rifle_mag_545
@@ -677,10 +665,10 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/rifle_magazine_44
-	name = "magazine (.44)"
-	id = "rifle_magazine_44"
-	materials = list(MAT_STEEL = 1575)
+/datum/design_techweb/mechfab/rifle_mag_44
+	name = "rifle magazine (.44)"
+	id = "rifle_mag_44"
+	materials = list(MAT_STEEL = 1500)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m44
 	category = list(
@@ -691,7 +679,7 @@
 
 /datum/design_techweb/mechfab/rifle_magazine_44_rubber
 	name = "magazine (.44 rubber)"
-	id = "rifle_magazine_44_rubber"
+	id = "rifle_mag_44_rubber"
 	materials = list(MAT_STEEL = 2200)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m44/rubber

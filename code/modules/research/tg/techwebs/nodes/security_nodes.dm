@@ -36,8 +36,7 @@
 		"pistol_mag_9mm_practice",
 		"pistol_mag_9mm_flash",
 		// Others
-		"pistol_mag_10m",
-		"pistol_mag_44"
+		"pistol_mag_10m"
 	)
 
 /datum/techweb_node/pistol_special
@@ -67,14 +66,14 @@
 	display_name = "Rifle Ammunition"
 	description = "Shoot for the moon, even if you miss you'll probably hit the intern anyway."
 	design_ids = list(
+		"rifle_mag_44",
+		"rifle_mag_44_rubber",
 		"rifle_mag_545",
 		"rifle_mag_545_practice",
-		"rifle_magazine_44",
-		"rifle_magazine_44_rubber",
 		"rifle_mag_762"
 	)
 
-/datum/techweb_node/rifle_ammo
+/datum/techweb_node/rifle_ammo_special
 	id = TECHWEB_NODE_RIFLE_SPECIAL
 	starting_node = TRUE
 	display_name = "Specialty Rifle Ammunition"
