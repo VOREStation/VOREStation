@@ -2,13 +2,13 @@
 /proc/get_poster_decl(var/path = null, var/exact = TRUE, var/forbid_types)
 	if(ispath(path))
 		if(exact)
-			return decls_repository.get_decl(path)
+			return GLOB.decls_repository.get_decl(path)
 		else
 			// Get the list of decals and Remove some forbidden types. These two base types don't have proper icon_states so they're illegal.
-			var/list/L = decls_repository.get_decls_of_type(path)
-			L -= decls_repository.get_decl(/decl/poster/lewd)
+			var/list/L = GLOB.decls_repository.get_decls_of_type(path)
+			L -= GLOB.decls_repository.get_decl(/datum/decl/poster/lewd)
 			if(forbid_types)
-				L -= decls_repository.get_decls_of_type(forbid_types)
+				L -= GLOB.decls_repository.get_decls_of_type(forbid_types)
 			return L[pick(L)]
 	return null
 
@@ -20,10 +20,10 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 	force = 0
-	VAR_PROTECTED/decl/poster/poster_decl = null
+	VAR_PROTECTED/datum/decl/poster/poster_decl = null
 	VAR_PROTECTED/poster_type = /obj/structure/sign/poster
 
-/obj/item/poster/Initialize(mapload, var/decl/poster/P = null)
+/obj/item/poster/Initialize(mapload, datum/decl/poster/P = null)
 	if(ispath(poster_decl))
 		poster_decl = get_poster_decl(poster_decl, TRUE, null)
 	else if(istype(P))
@@ -31,14 +31,14 @@
 	else if(ispath(P))
 		poster_decl = get_poster_decl(P, TRUE, null)
 	else
-		poster_decl = get_poster_decl(/decl/poster, FALSE, /decl/poster/lewd)
+		poster_decl = get_poster_decl(/datum/decl/poster, FALSE, /datum/decl/poster/lewd)
 
 	name += " - [poster_decl.name]"
 	return ..()
 
 /// Get the current poster_decl
 /obj/item/poster/proc/get_decl()
-	RETURN_TYPE(/decl/poster)
+	RETURN_TYPE(/datum/decl/poster)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return poster_decl
 
@@ -95,7 +95,7 @@
 	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
 	icon_state = "poster" //VOREStation Edit
 	anchored = TRUE
-	VAR_PROTECTED/decl/poster/poster_decl = null // Assigned by Initialize() to a random poster decl. If this is mapset to a path, it will be used to locate the decl specified by that path.
+	VAR_PROTECTED/datum/decl/poster/poster_decl = null // Assigned by Initialize() to a random poster decl. If this is mapset to a path, it will be used to locate the decl specified by that path.
 	VAR_PROTECTED/roll_type = /obj/item/poster
 	VAR_PRIVATE/ruined = FALSE
 
@@ -110,7 +110,7 @@
 	else if(ispath(P))
 		poster_decl = get_poster_decl(P, TRUE, null)
 	else
-		poster_decl = get_poster_decl(/decl/poster, FALSE, /decl/poster/lewd)
+		poster_decl = get_poster_decl(/datum/decl/poster, FALSE, /datum/decl/poster/lewd)
 
 	name = "[initial(name)] - [poster_decl.name]"
 	desc = "[initial(desc)] [poster_decl.desc]"

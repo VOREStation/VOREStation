@@ -14,7 +14,7 @@
 	response_disarm = "pushes aside"
 	response_harm   = "hits"
 
-	organ_names = /decl/mob_organ_names/penguin
+	organ_names = /datum/decl/mob_organ_names/penguin
 
 	meat_amount = 3
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
@@ -31,5 +31,5 @@
 	desc = "A penguin that has been known to associate with gnus."
 	speak_emote = list("interjects")
 
-/decl/mob_organ_names/penguin
+/datum/decl/mob_organ_names/penguin
 	hit_zones = list("chest", "left leg", "right leg", "left flipper", "right flipper", "head")

@@ -1,4 +1,4 @@
-/spell/aoe_turf/charge
+/datum/spell/aoe_turf/charge
 	name = "Charge"
 	desc = "This spell can be used to charge up spent magical artifacts, among other things."
 
@@ -12,27 +12,27 @@
 
 	hud_state = "wiz_charge"
 
-/spell/aoe_turf/charge/cast(var/list/targets, mob/user)
+/datum/spell/aoe_turf/charge/cast(var/list/targets, mob/user)
 	for(var/turf/T in targets)
 		depth_cast(T)
 
-/spell/aoe_turf/charge/proc/depth_cast(var/list/targets)
+/datum/spell/aoe_turf/charge/proc/depth_cast(var/list/targets)
 	for(var/atom/A in targets)
 		if(A.contents.len)
 			depth_cast(A.contents)
 		cast_charge(A)
 
-/spell/aoe_turf/charge/proc/mob_charge(var/mob/living/M)
+/datum/spell/aoe_turf/charge/proc/mob_charge(var/mob/living/M)
 	if(M.spell_list.len != 0)
-		for(var/spell/S in M.spell_list)
-			if(!istype(S, /spell/aoe_turf/charge))
+		for(var/datum/spell/S in M.spell_list)
+			if(!istype(S, /datum/spell/aoe_turf/charge))
 				S.charge_counter = S.charge_max
 		to_chat(M, span_notice("You feel raw magic flowing through you, it feels good!"))
 	else
 		to_chat(M, span_notice("You feel very strange for a moment, but then it passes."))
 	return M
 
-/spell/aoe_turf/charge/proc/cast_charge(var/atom/target)
+/datum/spell/aoe_turf/charge/proc/cast_charge(var/atom/target)
 	var/atom/charged_item
 
 	if(isliving(target))

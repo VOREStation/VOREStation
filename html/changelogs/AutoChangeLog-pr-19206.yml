@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - spellcheck: "fixes the spelling in the not implemented pref messages"

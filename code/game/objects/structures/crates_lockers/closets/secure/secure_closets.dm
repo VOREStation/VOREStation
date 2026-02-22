@@ -11,7 +11,7 @@
 	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 200
 
-	closet_appearance = /decl/closet_appearance/secure_closet
+	closet_appearance = /datum/decl/closet_appearance/secure_closet
 
 /obj/structure/closet/secure_closet/can_open()
 	if(locked)

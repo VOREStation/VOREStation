@@ -24,7 +24,7 @@
 	attack_sound = 'sound/effects/slime_squish.ogg'
 	say_list_type = /datum/say_list/spore
 
-	organ_names = /decl/mob_organ_names/spore
+	organ_names = /datum/decl/mob_organ_names/spore
 
 	var/mob/living/carbon/human/infested = null // The human this thing is totally not making into a zombie.
 	var/can_infest = FALSE
@@ -155,5 +155,5 @@
 		to_chat(src, span_notice("Your attack is assisted by [helpers] other spore\s."))
 	return damage_to_do
 
-/decl/mob_organ_names/spore
+/datum/decl/mob_organ_names/spore
 	hit_zones = list("sporangium", "stolon", "sporangiophore")

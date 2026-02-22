@@ -205,3 +205,12 @@
   Kashargul:
   - bugfix: borg sleepers showing a 0 where they shouldn't
   - qol: gives multiple robot UIs robot themes
+2026-02-22:
+  Cameron-The-Raven:
+  - bugfix: Fixes synx sonar ping to a working cooldown
+  Kashargul:
+  - rscadd: adds a game collection table and pda app
+  Sharkmare:
+  - bugfix: Bone related traits now properly exclude each other.
+  Will:
+  - bugfix: Catslug belly markings can be colored

@@ -27,7 +27,7 @@
 /obj/machinery/light/flamp,
 /obj/structure/sign/poster{
 	pixel_y = -32;
-	poster_decl = /decl/poster/pol_9
+	poster_decl = /datum/decl/poster/pol_9
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)
@@ -79,7 +79,7 @@
 /obj/structure/sign/poster{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/nanotrasen/pol_10
+	poster_decl = /datum/decl/poster/nanotrasen/pol_10
 	},
 /turf/simulated/floor/carpet,
 /area/template_noop)
@@ -100,7 +100,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 8;
 	pixel_x = -32;
-	poster_decl = /decl/poster/vore_43
+	poster_decl = /datum/decl/poster/vore_43
 	},
 /turf/simulated/floor/wood/broken,
 /area/template_noop)

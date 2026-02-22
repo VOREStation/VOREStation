@@ -57,7 +57,7 @@
 
 // Prevents singularities and pretty much everything else from moving the field segments away.
 // The only thing that is allowed to move us is the Destroy() proc.
-/obj/effect/shield/forceMove()
+/obj/effect/shield/forceMove(atom/destination, direction, movetime)
 	if(QDELING(src))
 		return ..()
 	return 0
