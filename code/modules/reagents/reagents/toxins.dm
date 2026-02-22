@@ -217,10 +217,10 @@
 	T.assume_gas(GAS_VOLATILE_FUEL, amount, T20C)
 	remove_self(amount)
 
-/datum/reagent/toxin/cyanide //Fast and Lethal
+/datum/reagent/toxin/cyanide //Fast and Lethal //Fast and lethal my ASS. This shit takes 20 seconds to deal 15 toxins. Eating crayons kills you faster.
 	name = REAGENT_CYANIDE
 	id = REAGENT_ID_CYANIDE
-	description = "A highly toxic chemical."
+	description = "A highly toxic chemical. Prevents cellular respiration, causing moderate amounts of toxins from cell death, the inability to breathe, and eventual loss of consciousness."
 	taste_description = "almond"
 	dermal_absorption = 0 //Splash someone and insta-KO them? No. Make zombie/lich powder for that.
 	taste_mult = 0.6
@@ -234,7 +234,9 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(10 * removed)
-	M.Sleeping(1)
+	M.AdjustLosebreath(5) //Adjusting oxyloss with no losebreath adjustment is useless.
+	if(dose > 5) //Puts you to sleep if its in your system for too long. This is equivalent to 100 seconds (50 ticks). By this point, you have 75 toxins, ~100 oxyloss, and are good as dead w/o treatment.
+		M.Sleeping(1)
 
 /datum/reagent/toxin/mold
 	name = REAGENT_MOLD
