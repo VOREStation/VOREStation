@@ -143,6 +143,12 @@
 		ui = new(user, src, "Radio", name, parent_ui)
 		ui.open()
 
+/obj/item/radio/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
+
 /obj/item/radio/tgui_data(mob/user)
 	var/data = list()
 
@@ -163,9 +169,9 @@
 		data["chan_list"] = null
 
 	if(syndie)
-		data["useSyndMode"] = 1
+		data["useSyndMode"] = TRUE
 	else
-		data["useSyndMode"] = 0
+		data["useSyndMode"] = FALSE
 
 
 	data["minFrequency"] = PUBLIC_LOW_FREQ

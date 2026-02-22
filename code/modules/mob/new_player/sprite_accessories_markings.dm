@@ -3040,13 +3040,16 @@ includes scars and tattoos
 	name = "Catslug Belly Mark, Shelter"
 	icon_state = "scug_shelter"
 	body_parts = list(BP_GROIN)
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/marking/scug_gate
 	name = "Catslug Belly Mark, Gate"
 	icon_state = "scug_gate"
 	body_parts = list(BP_GROIN)
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/marking/scug_door
 	name = "Catslug Belly Mark, Door"
 	icon_state = "scug_door"
 	body_parts = list(BP_GROIN)
+	color_blend_mode = ICON_MULTIPLY
