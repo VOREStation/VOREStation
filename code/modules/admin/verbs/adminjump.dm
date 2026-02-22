@@ -124,11 +124,14 @@
 		if(!selection)
 			return
 		var/mob/M = selection:mob
+		var/turf/target_turf = get_turf(M)
+		if(!target_turf)
+			return
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		usr.on_mob_jump()
 		usr.reset_perspective(usr)
-		usr.forceMove(get_turf(M))
+		usr.forceMove(target_turf)
 		feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		tgui_alert_async(usr, "Admin jumping disabled")

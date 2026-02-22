@@ -614,7 +614,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 			user.show_message(span_notice("\The [src] can now be attached and modified!"))
 		else
 			user.show_message(span_notice("\The [src] can no longer be modified or attached!"))
-		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)
 		return

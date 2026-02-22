@@ -4212,8 +4212,6 @@
 #include "code\modules\power\tracker.dm"
 #include "code\modules\power\turbine.dm"
 #include "code\modules\power\antimatter\containment_jar.dm"
-#include "code\modules\power\antimatter\control.dm"
-#include "code\modules\power\antimatter\shielding.dm"
 #include "code\modules\power\cells\device_cells.dm"
 #include "code\modules\power\cells\esoteric_cells.dm"
 #include "code\modules\power\cells\power_cells.dm"

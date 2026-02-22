@@ -96,8 +96,6 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		stored_energy = 0
 		return
 
-	updateDialog()
-
 	var/datum/gas_mixture/air1 = circ1.return_transfer_air()
 	var/datum/gas_mixture/air2 = circ2.return_transfer_air()
 
