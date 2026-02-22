@@ -2,6 +2,18 @@
 /*Shotgun rounds*/
 //////////////////
 
+/datum/design_techweb/mechfab/ammo_12g_slug
+	name = "ammunition (12g, slug)"
+	id = "ammo_12g_slug"
+	materials = list(MAT_STEEL = 450)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_casing/a12g
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+
 /datum/design_techweb/mechfab/ammo_12g_blank
 	name = "ammunition (12g, blank)"
 	id = "ammo_12g_blank"
@@ -32,18 +44,6 @@
 	build_path = /obj/item/ammo_casing/a12g/flash
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-
-/datum/design_techweb/mechfab/ammo_12g_slug
-	name = "ammunition (12g, slug)"
-	id = "ammo_12g_slug"
-	materials = list(MAT_STEEL = 450)
-	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_casing/a12g
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
@@ -465,9 +465,9 @@
 
 /////// Shotgun
 
-/datum/design_techweb/mechfab/clip_12g_beanbag
+/datum/design_techweb/mechfab/loader_12g_beanbag
 	name = "2-round 12g speedloader (beanbag)"
-	id = "clip_12g_beanbag"
+	id = "loader_12g_beanbag"
 	materials = list(MAT_STEEL = 900)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c12g/beanbag
@@ -476,9 +476,9 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/clip_12g_slug
+/datum/design_techweb/mechfab/loader_12g_slug
 	name = "2-round 12g speedloader (slug)"
-	id = "clip_12g_slug"
+	id = "loader_12g_slug"
 	materials = list(MAT_STEEL = 1350)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c12g
@@ -488,9 +488,9 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/clip_12g_buck
+/datum/design_techweb/mechfab/loader_12g_buck
 	name = "2-round 12g speedloader (buckshot)"
-	id = "clip_12g_buck"
+	id = "loader_12g_buck"
 	materials = list(MAT_STEEL = 1350)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c12g/pellet
@@ -552,9 +552,9 @@
 
 /////// 5.48
 
-/datum/design_techweb/mechfab/clip_45
+/datum/design_techweb/mechfab/loader_45
 	name = "ammo clip (5.45mm)"
-	id = "clip_45"
+	id = "loader_45"
 	materials = list(MAT_STEEL = 560)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c545
@@ -564,9 +564,9 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/clip_45_practice
+/datum/design_techweb/mechfab/loader_45_practice
 	name = "ammo clip (5.45mm practice)"
-	id = "clip_45_practice"
+	id = "loader_45_practice"
 	materials = list(MAT_STEEL = 560)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c545/practice
@@ -577,9 +577,9 @@
 
 /////// 762
 
-/datum/design_techweb/mechfab/clip_762
+/datum/design_techweb/mechfab/loader_762
 	name = "ammo clip (7.62mm)"
-	id = "clip_762"
+	id = "loader_762"
 	materials = list(MAT_STEEL = 1250)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c545
@@ -589,9 +589,9 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/clip_762
+/datum/design_techweb/mechfab/loader_762
 	name = "ammo clip (7.62mm practice)"
-	id = "clip_762"
+	id = "loader_762"
 	materials = list(MAT_STEEL = 1250)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c762/practice
