@@ -38,7 +38,7 @@ export const IcecreamVat = (props) => {
               <Table>
                 <Table.Row>
                   <Table.Cell color="label" collapsing>
-                    Select Ice Type
+                    Select Ice
                   </Table.Cell>
                   <Table.Cell color="label" textAlign="center">
                     Scoops Left
@@ -64,7 +64,7 @@ export const IcecreamVat = (props) => {
               <Table>
                 <Table.Row>
                   <Table.Cell color="label" collapsing>
-                    Dispense Cone Type
+                    Dispense Cone
                   </Table.Cell>
                   <Table.Cell color="label" textAlign="center">
                     Cones Left
