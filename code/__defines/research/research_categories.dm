@@ -1,11 +1,17 @@
 // Weapon Categories
 #define RND_CATEGORY_WEAPONS "/Weaponry"
 #define RND_SUBCATEGORY_WEAPONS_FIRING_PINS "/Firing Pins"
-#define RND_SUBCATEGORY_WEAPONS_AMMO "/Ammunition"
 #define RND_SUBCATEGORY_WEAPONS_PARTS "/Weapon Parts"
 #define RND_SUBCATEGORY_WEAPONS_RANGED "/Ranged Weapons"
 #define RND_SUBCATEGORY_WEAPONS_MELEE "/Melee Weapons"
 #define RND_SUBCATEGORY_WEAPONS_KITS "/Weapon Fabrication Kits"
+
+// Ammo
+#define RND_SUBCATEGORY_WEAPONS_AMMO "/Ammunition"
+#define RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL "/Pistol"
+#define RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE "/Rifle"
+#define RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN "/Shotgun"
+#define RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS "/Loaders"
 
 // Wiremod Categories
 #define RND_CATEGORY_CIRCUITRY "/Circuitry"

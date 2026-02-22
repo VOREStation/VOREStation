@@ -18,6 +18,7 @@
 		// "portadrive_basic",
 		// "portadrive_advanced",
 		// "portadrive_super",
+		"electropack"
 	)
 
 /datum/techweb_node/bluespace_theory
@@ -48,7 +49,6 @@
 		"belt_holding_utility",
 		"bluespacebeaker",
 		"bsflare",
-		"bluespace_crystal",
 		"beacon",
 		"beacon_locator",
 		"chameleon",
@@ -63,7 +63,6 @@
 		"shelter_capsule_kitchen",
 		"shelter_capsule_pocketdorm",
 		"shelter_capsule_luxuryrecroom",
-		// "ore_silo",
 		// "plumbing_receiver",
 		// "adv_watering_can",
 		// "bluespace_coffeepot",

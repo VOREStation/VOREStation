@@ -382,21 +382,21 @@
 	)
 
 /datum/design_techweb/mechfab/pinnace/pinnace_main
-	name = "Pinnace central control board circuit"
+	name = "Pinnace central control circuit"
 	id = "pinnace_main"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/main
 	materials = DEFAULT_CIRCUIT_MATERIALS
 
 /datum/design_techweb/mechfab/pinnace/pinnace_flight
-	name = "Pinnace flight control board circuit"
+	name = "Pinnace flight control circuit"
 	id = "pinnace_flight"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/flight
 	materials = DEFAULT_CIRCUIT_MATERIALS
 
 /datum/design_techweb/mechfab/pinnace/pinnace_targeting
-	name = "Pinnace weapon control and targeting board circuit"
+	name = "Pinnace weapon control and targeting circuit"
 	id = "pinnace_targeting"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/targeting
@@ -466,21 +466,21 @@
 	)
 
 /datum/design_techweb/mechfab/baron/baron_main
-	name = "Baron central control board circuit"
+	name = "Baron central control circuit"
 	id = "baron_main"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/main
 	materials = DEFAULT_CIRCUIT_MATERIALS
 
 /datum/design_techweb/mechfab/baron/baron_flight
-	name = "Baron flight control board circuit"
+	name = "Baron flight control circuit"
 	id = "baron_flight"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/flight
 	materials = DEFAULT_CIRCUIT_MATERIALS
 
 /datum/design_techweb/mechfab/baron/baron_targeting
-	name = "Baron weapon control and targeting board circuit"
+	name = "Baron weapon control and targeting circuit"
 	id = "baron_targeting"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4, TECH_COMBAT = 3)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/targeting

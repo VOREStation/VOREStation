@@ -35,21 +35,30 @@
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have any research_costs set.")
 			failed = TRUE
 
+		// Must have category set
+		if(!length(node.category))
+			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have a category set.")
+			failed = TRUE
+
 		// Must have valid designs
-		if(!node.design_ids)
+		if(!length(node.design_ids))
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] does not have any design_ids.")
 			failed = TRUE
 		else
 			for(var/design in node.design_ids)
+				if(design in used_designs)
+					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has an already in use design_id: \"[design]\"")
+					failed = TRUE
+
 				used_designs += design
-				if(!SSresearch.techweb_designs[design])
+				if(!(design in SSresearch.techweb_designs))
 					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant design_id: \"[design]\"")
 					failed = TRUE
 
 		// Must have valid prereqs
 		if(node.prereq_ids.len)
 			for(var/req in node.prereq_ids)
-				if(!SSresearch.techweb_nodes[req])
+				if(!(req in SSresearch.techweb_nodes))
 					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant prereq_id: \"[req]\"")
 					failed = TRUE
 
@@ -80,6 +89,25 @@
 
 						if(prereq_currentcost > current_cost)
 							TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive. ours lowest is \[[current_cost]\], prereq lowest is \[[prereq_currentcost]\]. Lesser costs than the previous node is only allowed if the node has a required experiment.")
+							failed = TRUE
+
+					// forbid designs with RND_CATEGORY_INITIAL in non-starting nodes
+					for(var/design_id in node.design_ids)
+						var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
+						if((RND_CATEGORY_INITIAL in design.category))
+							TEST_NOTICE(src, "TECHWEB NODE - [node.type]'s [design_id] is flagged as RND_CATEGORY_INITIAL in a non-starting techweb node.")
+							failed = TRUE
+				else
+					// if we have prereqs we did something wrong
+					if(length(node.prereq_ids))
+						TEST_NOTICE(src, "TECHWEB NODE - [node.type] is a starting node, but has prereq_ids assigned.")
+						failed = TRUE
+
+					// starting nodes need to have all design inside it flagged with RND_CATEGORY_INITIAL
+					for(var/design_id in node.design_ids)
+						var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
+						if(!(RND_CATEGORY_INITIAL in design.category))
+							TEST_NOTICE(src, "TECHWEB NODE - [node.type]'s [design_id] was part of a starting node, but is not category tagged RND_CATEGORY_INITIAL.")
 							failed = TRUE
 
 	// Each design

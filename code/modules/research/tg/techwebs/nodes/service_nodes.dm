@@ -12,22 +12,23 @@
 		"juke_remote",
 		"mail_scanner",
 		"floor_painter",
-		// "fax",
+		"fax",
 		// "sec_pen",
 		// "handlabel",
 		// "roll",
 		// "universal_scanner",
-		// "desttagger",
+		"desttagger",
 		// "packagewrap",
-		// "sticky_tape",
+		"sticky_tape",
 		// "toner_large",
 		// "toner",
 		// "boxcutter",
-		// "bounced_radio",
-		// "radio_headset",
+		"bounced_radio",
+		"radio_headset",
+		"intercom",
 		// "earmuffs",
-		// "recorder",
-		// "tape",
+		"taperecorder",
+		"recordingcassette",
 		// "toy_balloon",
 		// "pet_carrier",
 		// "chisel",
@@ -35,16 +36,20 @@
 		// "camera_film",
 		// "camera",
 		// "razor",
-		// "bucket",
-		// "mop",
+		"bucket",
+		"mop",
 		// "pushbroom",
 		// "normtrash",
 		// "wirebrush",
-		// "flashlight",
+		"flashlight",
+		"maglight",
 		// "water_balloon",
 		// "ticket_machine",
 		// "radio_entertainment",
-		// "photocopier",
+		"photocopier",
+		"papershredder",
+		"ashtray",
+		"glasstray"
 	)
 
 /datum/techweb_node/sanitation
@@ -57,8 +62,11 @@
 		"light_replacer",
 		"spraybottle",
 		"beartrap",
+		"barbedwire",
+		"snarewire",
 		// "buffer",
 		// "vacuum",
+		"washing"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/janitor_trash = TECHWEB_TIER_2_POINTS)
@@ -78,6 +86,7 @@
 		"comconsole",
 		"idcardconsole",
 		"jukebox",
+		"request",
 		// PDAs
 		"pda",
 		"cart_basic",
@@ -105,9 +114,11 @@
 		"gps_sci",
 		"gps_exp",
 		// "automated_announcement",
-		// "bankmachine",
+		"bankmachine",
 		// "account_console",
-		// "idcard",
+		"idcard",
+		"idrestore_console",
+		"guestpass",
 		// "c-reader",
 		// "libraryconsole",
 		// "libraryscanner",
@@ -123,7 +134,7 @@
 		// "telescreen_interrogation",
 		// "telescreen_prison",
 		// "telescreen_bar",
-		// "telescreen_entertainment",
+		"telescreen_entertainment",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)
@@ -217,21 +228,34 @@
 		// "oven_tray",
 		// "servingtray",
 		// "tongs",
-		// "spoon",
-		// "fork",
-		// "kitchen_knife",
-		// "plastic_spoon",
-		// "plastic_fork",
-		// "plastic_knife",
+		"spoon",
+		"fork",
+		"kitchen_knife",
+		"plastic_spoon",
+		"plastic_fork",
+		"plastic_knife",
 		// "shaker",
-		// "drinking_glass",
-		// "shot_glass",
 		// "coffee_cartridge",
 		// "coffeemaker",
 		// "coffeepot",
 		// "syrup_bottle",
 		// "foodtray",
 		// "restaurant_portal",
+		"watercooler_bottle",
+		"barglass_square",
+		"barglass_rocks",
+		"barglass_milkshake",
+		"barglass_cocktail",
+		"barglass_shot",
+		"barglass_pint",
+		"barglass_mug",
+		"barglass_wine",
+		"barglass_metaglass",
+		"barglass_metapint",
+		"barglass_carafe",
+		"barglass_pitcher",
+		"barglass_coffeemug",
+		"barglass_jar"
 	)
 
 /datum/techweb_node/food_proc
@@ -244,9 +268,10 @@
 		"fryer_board",
 		"cerealmaker_board",
 		"candymachine_board",
+		"honey_extractor",
 		// "food_replicator",
 		"borgos1",
-		// "range",
+		"range",
 		// "souppot",
 		// "processor",
 		// "gibber",
@@ -258,7 +283,7 @@
 		// "sheetifier",
 		// "fat_sucker",
 		// "dish_drive",
-		// "roastingstick",
+		// "roastingstick"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)
@@ -270,6 +295,17 @@
 	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
 	design_ids = list(
 		"confetti_cannon",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
+
+/datum/techweb_node/rapid_service_fabricator
+	id = TECHWEB_NODE_RSF
+	display_name = "rapid service fabricator"
+	description = "A device used to rapidly deploy service items."
+	prereq_ids = list(TECHWEB_NODE_CAFETERIA_EQUIP)
+	design_ids = list(
+		"rsf",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)

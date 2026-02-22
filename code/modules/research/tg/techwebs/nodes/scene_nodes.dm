@@ -4,7 +4,8 @@
 	display_name = "Potential Recreational Applications"
 	description = "Devices made for rest and recreation purposes."
 	design_ids = list(
-		// TODO: Leash & Collar
+		"holocollar",
+		"leash",
 		// Compliance
 		// Mouse Ray
 	)

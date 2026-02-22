@@ -388,3 +388,79 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/radio_headset
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	id = "radio_headset"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 120)
+	build_path = /obj/item/radio/headset
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/welding_helmet
+	name = "welding helmet"
+	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
+	id = "welding_helmet"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 3750, MAT_GLASS = 1250)
+	build_path = /obj/item/clothing/head/welding
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/welding_goggles
+	name = "welding goggles"
+	desc = "Protects the eyes from welders, approved by the mad scientist association."
+	id = "welding_goggles"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1500)
+	build_path = /obj/item/clothing/glasses/welding
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/suit_cooling_unit
+	name = "portable suit cooling unit"
+	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
+	id = "suit_cooling_unit"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 18000, MAT_GLASS = 4400)
+	build_path = /obj/item/suit_cooling_unit
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/holocollar
+	name = "Holo-collar"
+	desc = "An expensive holo-collar for the modern day pet."
+	id = "holocollar"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 60)
+	build_path = /obj/item/clothing/accessory/collar/holo
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
+
+/datum/design_techweb/leash
+	name = "leash"
+	desc = "A simple tether that can easily be hooked onto a collar. Usually used to keep pets nearby."
+	id = "leash"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 50)
+	build_path = /obj/item/leash
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = ALL
