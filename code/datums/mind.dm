@@ -63,9 +63,6 @@
 	//used for optional self-objectives that antagonists can give themselves, which are displayed at the end of the round.
 	var/ambitions
 
-	//used to store what traits the player had picked out in their preferences before joining, in text form.
-	var/list/traits = list()
-
 	var/datum/religion/my_religion
 
 /datum/mind/New(var/key)
