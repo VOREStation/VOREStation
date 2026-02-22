@@ -410,9 +410,9 @@
 
 /////// 10mm
 
-/datum/design_techweb/pistol_mag_10m
+/datum/design_techweb/smg_mag_10m
 	name = "SMG magazine (10mm)"
-	id = "pistol_mag_10m"
+	id = "smg_mag_10m"
 	materials = list(MAT_STEEL = 1800)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m10mm
