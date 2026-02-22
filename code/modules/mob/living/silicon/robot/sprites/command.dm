@@ -52,6 +52,7 @@
 	..()
 
 /datum/robot_sprite/dogborg/command
+	sprite_hud_icon_state = "clerical"
 	name = "Commandhound V2"
 	sprite_icon_state = "kcom"
 	has_eye_light_sprites = TRUE

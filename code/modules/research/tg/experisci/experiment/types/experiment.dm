@@ -12,7 +12,7 @@
 	/// A brief description of the experiment to be shown as details
 	var/description = "Base experiment"
 	/// A descriptive tag used on UI elements to denote 'types' of experiments
-	var/exp_tag = "Base"
+	var/exp_tag = EXPERIMENT_TAG_BASE
 	/// A list of types that are allowed to experiment with this dastum
 	var/list/allowed_experimentors
 	/// Whether the experiment has been completed

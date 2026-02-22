@@ -14,5 +14,5 @@ export type Data = {
   selectedRecipeId: string;
   uiChemicalSearch: string;
   isDispensingDrinks: BooleanLike;
-  theme: string | null;
+  theme: string;
 };

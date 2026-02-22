@@ -16,7 +16,7 @@
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /datum/decl/hierarchy/outfit/job/assistant
 	job_description = "An Assistant does whatever is requested of them. Though they are part of the crew, they have no real authority."
 /*	alt_titles = list(JOB_ALT_TECHNICAL_ASSISTANT = /datum/alt_title/tech_assist,
 						JOB_ALT_MEDICAL_INTERN= /datum/alt_title/med_intern, JOB_ALT_RESEARCH_ASSISTANT = /datum/alt_title/research_assist,
@@ -50,13 +50,13 @@
 	title_blurb = "A " + JOB_ALT_VISITOR + " is anyone who has arrived on the station but does not have a specific job to do. Many off-duty crewmembers \
 					who care to make use of the station's facilities arrive as Visitors. Properly registered Vistors are considered \
 					to be part of the crew for most if not all purposes, but they have no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/visitor
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/visitor
 
 /datum/alt_title/resident		// Just in case it makes a comeback
 	title = JOB_ALT_RESIDENT
 	title_blurb = "A " + JOB_ALT_RESIDENT + " is an individual who resides on the station, frequently in a different part of the station than what is seen. \
 					They are considered to be part of the crew for most purposes, but have no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/resident
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/resident
 
 //////////////////////////////////
 //		Intern
@@ -75,7 +75,7 @@
 	economic_modifier = 2
 	access = list()			//See /datum/job/intern/get_access()
 	minimal_access = list()	//See /datum/job/intern/get_access()
-	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
+	outfit_type = /datum/decl/hierarchy/outfit/job/assistant/intern
 	alt_titles = list(JOB_ALT_APPRENTICE_ENGINEER = /datum/alt_title/intern_eng,
 					  JOB_ALT_MEDICAL_INTERN = /datum/alt_title/intern_med,
 					  JOB_ALT_RESEARCH_INTERN = /datum/alt_title/intern_sci,
@@ -92,47 +92,47 @@
 	title = JOB_ALT_APPRENTICE_ENGINEER
 	title_blurb = "An " + JOB_ALT_APPRENTICE_ENGINEER + " attempts to provide whatever the Engineering department needs. They are not proper Engineers, and are \
 					often in training to become an Engineer. An " + JOB_ALT_APPRENTICE_ENGINEER + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/engineer
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/engineer
 
 /datum/alt_title/intern_med
 	title = JOB_ALT_MEDICAL_INTERN
 	title_blurb = "A " + JOB_ALT_MEDICAL_INTERN + " attempts to provide whatever the Medical department needs. They are not proper Doctors, and are \
 					often in training to become a Doctor. A " + JOB_ALT_MEDICAL_INTERN + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/medic
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/medic
 
 /datum/alt_title/intern_sci
 	title = JOB_ALT_RESEARCH_INTERN
 	title_blurb = "A " + JOB_ALT_RESEARCH_INTERN + " attempts to provide whatever the Research department needs. They are not proper " + JOB_SCIENTIST + "s, and are \
 					often in training to become a " + JOB_SCIENTIST + ". A " + JOB_ALT_RESEARCH_INTERN + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/scientist
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/scientist
 
 /datum/alt_title/intern_sec
 	title = JOB_ALT_SECURITY_CADET
 	title_blurb = "A " + JOB_ALT_SECURITY_CADET + " attempts to provide whatever the Security department needs. They are not proper Officers, and are \
 					often in training to become an Officer. A " + JOB_ALT_SECURITY_CADET + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/officer
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/officer
 
 /datum/alt_title/intern_crg
 	title = JOB_ALT_JR_CARGO_TECH
 	title_blurb = "A " + JOB_ALT_JR_CARGO_TECH + " attempts to provide whatever the Cargo department needs. They are not proper Cargo Technicians, and are \
 					often in training to become a " + JOB_CARGO_TECHNICIAN + ". A " + JOB_ALT_JR_CARGO_TECH + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/cargo
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/cargo
 /*
 /datum/alt_title/intern_exp
 	title = "Jr. " + JOB_EXPLORER + ""
 	title_blurb = "A Jr. " + JOB_EXPLORER + " attempts to provide whatever the Exploration department needs. They are not proper " + JOB_EXPLORER + "s, and are \
 					often in training to become an " + JOB_EXPLORER + ". A Jr. " + JOB_EXPLORER + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/assistant/explorer
+	title_outfit = /datum/decl/hierarchy/outfit/job/assistant/explorer
 */
 /datum/alt_title/server
 	title = JOB_ALT_SERVER
 	title_blurb = "A " + JOB_ALT_SERVER + " helps out kitchen and diner staff with various tasks, primarily food delivery. A " + JOB_ALT_SERVER + " has no real authority."
-	title_outfit = /decl/hierarchy/outfit/job/service/server
+	title_outfit = /datum/decl/hierarchy/outfit/job/service/server
 
 /datum/alt_title/assistant
 	title = JOB_ALT_ASSISTANT
 	title_blurb = "An " + JOB_ALT_ASSISTANT + " helps out wherever they might be needed. They have no authority, but can volunteer to help if help is needed."
-	title_outfit = /decl/hierarchy/outfit/job/service/server
+	title_outfit = /datum/decl/hierarchy/outfit/job/service/server
 
 /datum/job/intern/New()
 	..()
