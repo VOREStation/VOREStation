@@ -766,6 +766,7 @@
 #include "code\datums\components\disabilities\rotting.dm"
 #include "code\datums\components\disabilities\tourettes.dm"
 #include "code\datums\components\machinery\disposal_connection.dm"
+#include "code\datums\components\machinery\gas_holder.dm"
 #include "code\datums\components\materials\machine_shim.dm"
 #include "code\datums\components\materials\material_container.dm"
 #include "code\datums\components\materials\remote_materials.dm"
