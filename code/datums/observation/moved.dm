@@ -9,14 +9,14 @@
 //			/atom/new_loc: The loc after the move.
 
 /*
-GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
+GLOBAL_DATUM_INIT(moved_event, /datum/decl/observ/moved, new)
 
 
-/decl/observ/moved
+/datum/decl/observ/moved
 	name = "Moved"
 	expected_type = /atom/movable
 
-/decl/observ/moved/register(var/atom/movable/mover, var/datum/listener, var/proc_call)
+/datum/decl/observ/moved/register(var/atom/movable/mover, var/datum/listener, var/proc_call)
 	. = ..()
 
 	// Listen to the parent if possible.

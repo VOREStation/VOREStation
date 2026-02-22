@@ -20,7 +20,7 @@ export const ColorMate = (props) => {
   const { act, data } = useBackend<Data>();
 
   const [colorPairs, setColorPairs] = useState([
-    { input: '#ffffff', output: '#000000' },
+    { input: '#ffffff', output: '#ffffff' },
   ]);
 
   const [activeID, setActiveId] = useState({ id: null, type: null });
@@ -190,7 +190,7 @@ export const ColorMate = (props) => {
                   <Stack.Item align="center">Coloring: {item_name}</Stack.Item>
                   <Stack.Item grow>
                     <Stack fill mt={1}>
-                      <Stack.Item width="33%">
+                      <Stack.Item width="25%">
                         <Stack vertical>
                           <Stack.Item>
                             <Button.Confirm
@@ -227,7 +227,7 @@ export const ColorMate = (props) => {
                           </Stack.Item>
                         </Stack>
                       </Stack.Item>
-                      <Stack.Item width="66%">
+                      <Stack.Item grow>
                         {tab[activemode] || <Box textColor="red">Error</Box>}
                       </Stack.Item>
                     </Stack>

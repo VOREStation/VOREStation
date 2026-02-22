@@ -1,4 +1,4 @@
-/spell/aoe_turf/conjure/forcewall
+/datum/spell/aoe_turf/conjure/forcewall
 	name = "Forcewall"
 	desc = "Create a wall of pure energy at your location."
 	summon_type = list(/obj/effect/forcefield)
@@ -10,7 +10,7 @@
 
 	hud_state = "wiz_shield"
 
-/spell/aoe_turf/conjure/forcewall/mime
+/datum/spell/aoe_turf/conjure/forcewall/mime
 	name = "Invisible wall"
 	desc = "Create an invisible wall on your location."
 	school = "mime"

@@ -303,7 +303,7 @@
 /turf/simulated/floor/tiled/material
 	icon = 'icons/turf/floors.dmi'
 
-/decl/flooring/tiling/material
+/datum/decl/flooring/tiling/material
 	name = "material floor"
 	icon_base = "steel"
 	icon = 'icons/turf/floors.dmi'
@@ -311,45 +311,45 @@
 
 /turf/simulated/floor/tiled/material/uranium
 	icon_state = "uranium"
-	initial_flooring = /decl/flooring/tiling/material/uranium
+	initial_flooring = /datum/decl/flooring/tiling/material/uranium
 
-/decl/flooring/tiling/material/uranium
+/datum/decl/flooring/tiling/material/uranium
 	name = "uranium floor"
 	icon_base = "uranium"
 	build_type = /obj/item/stack/tile/floor/uranium
 
 /turf/simulated/floor/tiled/material/phoron
 	icon_state = "phoron"
-	initial_flooring = /decl/flooring/tiling/material/phoron
+	initial_flooring = /datum/decl/flooring/tiling/material/phoron
 
-/decl/flooring/tiling/material/phoron
+/datum/decl/flooring/tiling/material/phoron
 	name = "phoron floor"
 	icon_base = "phoron"
 	build_type = /obj/item/stack/tile/floor/phoron
 
 /turf/simulated/floor/tiled/material/gold
 	icon_state = "gold"
-	initial_flooring = /decl/flooring/tiling/material/gold
+	initial_flooring = /datum/decl/flooring/tiling/material/gold
 
-/decl/flooring/tiling/material/gold
+/datum/decl/flooring/tiling/material/gold
 	name = "gold floor"
 	icon_base = "gold"
 	build_type = /obj/item/stack/tile/floor/gold
 
 /turf/simulated/floor/tiled/material/silver
 	icon_state = "silver"
-	initial_flooring = /decl/flooring/tiling/material/silver
+	initial_flooring = /datum/decl/flooring/tiling/material/silver
 
-/decl/flooring/tiling/material/silver
+/datum/decl/flooring/tiling/material/silver
 	name = "silver floor"
 	icon_base = "silver"
 	build_type = /obj/item/stack/tile/floor/silver
 
 /turf/simulated/floor/tiled/material/diamond
 	icon_state = "diamond"
-	initial_flooring = /decl/flooring/tiling/material/diamond
+	initial_flooring = /datum/decl/flooring/tiling/material/diamond
 
-/decl/flooring/tiling/material/diamond
+/datum/decl/flooring/tiling/material/diamond
 	name = "diamond floor"
 	icon_base = "diamond"
 	build_type = /obj/item/stack/tile/floor/diamond

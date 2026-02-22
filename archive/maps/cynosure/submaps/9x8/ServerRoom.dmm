@@ -137,7 +137,7 @@
 /obj/random/maintenance,
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_38
+	poster_decl = /datum/decl/poster/bay_38
 	},
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -164,7 +164,7 @@
 /obj/structure/sign/poster{
 	dir = 8;
 	pixel_x = -32;
-	poster_decl = /decl/poster/bay_3
+	poster_decl = /datum/decl/poster/bay_3
 	},
 /obj/item/radio/intercom{
 	dir = 1;

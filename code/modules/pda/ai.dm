@@ -34,6 +34,12 @@
 /obj/item/pda/ai/can_use()
 	return 1
 
+/obj/item/pda/ai/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
+
 /obj/item/pda/ai/attack_self(mob/user)
 	. = ..(user)
 	if(.)
