@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - refactor: "moves a lot of non static datum paths explicitly to /datum/"
