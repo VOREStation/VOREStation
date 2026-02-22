@@ -74,9 +74,6 @@
 		"rifle_mag_545_hunting",
 		"rifle_mag_762",
 		"rifle_mag_762_pierce",
-		// M1
-		"rifle_enblock_762",
-		"rifle_enblock_762_pierce",
 		// SMG
 		"smg_mag_9mm",
 		"smg_mag_10m",
@@ -109,6 +106,9 @@
 		"pistol_mag_topmount_9mm_practice",
 		"pistol_mag_topmount_9mm_flash",
 		"pistol_mag_topmount_9mm_piercing",
+		// M1
+		"rifle_enblock_762",
+		"rifle_enblock_762_pierce",
 	)
 
 // Shotgun shells
