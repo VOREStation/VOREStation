@@ -18,6 +18,7 @@
 #define PLANT_LEMON "lemon"
 #define PLANT_LETTUCE "lettuce"
 #define PLANT_LIME "lime"
+#define PLANT_MUSTARD "mustard"
 #define PLANT_ONION "onion"
 #define PLANT_ORANGE "orange"
 #define PLANT_PEANUT "peanut"

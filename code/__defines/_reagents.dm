@@ -722,6 +722,8 @@
 #define REAGENT_ID_CONDENSEDCAPSAICIN "condensedcapsaicin"
 #define REAGENT_GELATIN "Gelatin"
 #define REAGENT_ID_GELATIN "gelatin"
+#define REAGENT_MUSTARDPODS "Mustard Pods"
+#define REAGENT_ID_MUSTARDPODS "mustardpods"
 
 #define REAGENT_DRINK "Drink"
 #define REAGENT_ID_DRINK "drink"
