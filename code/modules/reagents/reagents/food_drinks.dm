@@ -722,7 +722,7 @@
 /datum/reagent/mustardpods
 	name = REAGENT_MUSTARDPODS
 	id = REAGENT_ID_MUSTARDPODS
-	description = "Mustard seed pods."
+	description = "Densely-packed seed pods from a mustard plant. Good for making mustard. Not much use for anything else."
 	taste_description = "sharp, bitter, dry mustard"
 	reagent_state = SOLID
 	ingest_met = REM
