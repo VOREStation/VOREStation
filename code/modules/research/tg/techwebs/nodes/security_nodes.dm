@@ -23,14 +23,17 @@
 	display_name = "Pistol Ammunition"
 	description = "The smallest of small arms come in a variety of flavors!"
 	design_ids = list(
-		// 45 revolvers
+		// 44
+		"pistol_mag_44",
+		"pistol_mag_44_rubber",
+		// 45
 		"pistol_mag_45",
 		"pistol_mag_45_practice",
 		"pistol_mag_45_rubber",
 		"pistol_mag_45_flash",
 		"pistol_mag_45_piercing",
 		"pistol_mag_45_hollow",
-		// 9mm pistols
+		// 9mm
 		"pistol_mag_9mm",
 		"pistol_mag_9mm_rubber",
 		"pistol_mag_9mm_practice",
@@ -66,8 +69,6 @@
 	display_name = "Rifle Ammunition"
 	description = "Shoot for the moon, even if you miss you'll probably hit the intern anyway."
 	design_ids = list(
-		"rifle_mag_44",
-		"rifle_mag_44_rubber",
 		"rifle_mag_545",
 		"rifle_mag_545_practice",
 		"rifle_mag_762"
