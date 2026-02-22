@@ -62,14 +62,6 @@
 
 ///datum/category_group/autolathe/all/New()
 
-/datum/category_group/autolathe/arms
-	name = "Arms and Ammunition"
-	category_item_type = /datum/category_item/autolathe/arms
-
-/datum/category_group/autolathe/materials
-	name = "Materials"
-	category_item_type = /datum/category_item/autolathe/materials
-
 /datum/category_group/autolathe/materials/New()
 	..()
 
