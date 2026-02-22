@@ -90,9 +90,12 @@
 /area/talon_v2/armory
 	name = "\improper Talon - Armory"
 	icon_state = "red"
-/area/talon_v2/secure_storage
-	name = "\improper Talon - Secure Storage"
+/area/talon_v2/eva_storage
+	name = "\improper Talon - EVA Storage"
 	icon_state = "red"
+/area/talon_v2/secure_storage
+	name = "\improper Talon - Cryogenic Storage"
+	icon_state = "gray"
 /area/talon_v2/ofd_ops
 	name = "\improper Talon - OFD Ops"
 	icon_state = "red"
