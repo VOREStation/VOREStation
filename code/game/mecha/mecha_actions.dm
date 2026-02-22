@@ -314,7 +314,7 @@
 		overload = 1
 		step_energy_drain = step_energy_drain*overload_coeff
 		src.occupant_message(span_red("You enable leg actuators overload."))
-	src.log_message("Toggled leg actuators overload.")
+	src.log_message("Toggled leg actuators overload.", LOG_GAME)
 	playsound(src, 'sound/mecha/mechanical_toggle.ogg', 50, 1)
 	return
 
