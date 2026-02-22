@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Didn't load a character, so let's randomize
 	set_biological_gender(pick(MALE, FEMALE))
-	update_preference_by_type(/datum/preference/name/real_name, random_name(identifying_gender, species))
+	update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), species))
 	b_type = RANDOM_BLOOD_TYPE
 
 	if(client)
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.set_species(species)
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		update_preference_by_type(/datum/preference/name/real_name, random_name(identifying_gender, species))
+		update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), species))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
@@ -436,8 +436,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(character.dna)
 			character.dna.real_name = character.real_name
 		character.nickname = read_preference(/datum/preference/name/nickname)
-	character.gender = biological_gender
-	character.identifying_gender = identifying_gender
+	character.gender = read_preference(/datum/preference/choiced/gender/biological)
+	character.identifying_gender = read_preference(/datum/preference/choiced/gender/identifying)
 
 	character.h_style	= h_style
 
@@ -507,7 +507,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
 	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
 
-	character.set_gender(biological_gender)
+	character.set_gender(read_preference(/datum/preference/choiced/gender/biological))
 
 	// Destroy/cyborgize organs and limbs.
 	if (convert_to_prosthetics) //should only really be run for proteans
