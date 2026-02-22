@@ -506,7 +506,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 /mob/living/silicon/ai/proc/camera_visibility(mob/observer/eye/aiEye/moved_eye)
 	cameranet.visibility(moved_eye, client, all_eyes)
 
-/mob/living/silicon/ai/forceMove(atom/destination)
+/mob/living/silicon/ai/forceMove(atom/destination, direction, movetime)
 	. = ..()
 	if(.)
 		end_multicam()

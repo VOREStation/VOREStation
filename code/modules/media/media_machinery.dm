@@ -58,9 +58,9 @@
 	if(anchored)
 		update_music()
 
-/obj/machinery/media/forceMove(var/atom/destination)
+/obj/machinery/media/forceMove(atom/destination, direction, movetime)
 	disconnect_media_source()
-	. = ..()
+	. = ..(destination, direction, movetime)
 	if(anchored)
 		update_music()
 
