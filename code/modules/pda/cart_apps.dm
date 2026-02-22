@@ -7,7 +7,7 @@
 	var/message1	// used for status_displays
 	var/message2
 
-/datum/data/pda/app/status_display/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/status_display/update_ui(mob/user, list/data)
 	data["records"] = list(
 		"message1" = message1 ? message1 : "(none)",
 		"message2" = message2 ? message2 : "(none)")
@@ -63,7 +63,7 @@
 	template = "pda_signaller"
 	category = "Utilities"
 
-/datum/data/pda/app/signaller/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/signaller/update_ui(mob/user, list/data)
 	if(pda.cartridge && istype(pda.cartridge.radio, /obj/item/radio/integrated/signal))
 		var/obj/item/radio/integrated/signal/R = pda.cartridge.radio
 		data["frequency"] = R.frequency
@@ -112,7 +112,7 @@
 	QDEL_NULL(power_monitor)
 	return ..()
 
-/datum/data/pda/app/power/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/power/update_ui(mob/user, list/data)
 	data.Add(power_monitor.tgui_data(user))
 
 /datum/data/pda/app/power/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -128,7 +128,7 @@
 /datum/data/pda/app/crew_records
 	var/datum/data/record/general_records = null
 
-/datum/data/pda/app/crew_records/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/crew_records/update_ui(mob/user, list/data)
 	var/list/records[0]
 
 	if(general_records && (general_records in GLOB.data_core.general))
@@ -169,7 +169,7 @@
 
 	var/datum/data/record/medical_records = null
 
-/datum/data/pda/app/crew_records/medical/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/crew_records/medical/update_ui(mob/user, list/data)
 	var/list/records = ..()
 	if(!records)
 		return
@@ -194,7 +194,7 @@
 
 	var/datum/data/record/security_records = null
 
-/datum/data/pda/app/crew_records/security/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/crew_records/security/update_ui(mob/user, list/data)
 	var/list/records = ..()
 	if(!records)
 		return
@@ -217,7 +217,7 @@
 	template = "pda_supply"
 	category = "Quartermaster"
 
-/datum/data/pda/app/supply/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/supply/update_ui(mob/user, list/data)
 	var/supplyData[0]
 	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if (shuttle)
@@ -254,7 +254,7 @@
 	template = "pda_janitor"
 	category = "Utilities"
 
-/datum/data/pda/app/janitor/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/janitor/update_ui(mob/user, list/data)
 	var/JaniData[0]
 	var/turf/cl = get_turf(pda)
 

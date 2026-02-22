@@ -24,7 +24,7 @@ export const RobotChoose = (props) => {
   } = data;
 
   return (
-    <Window width={800} height={605} theme={theme || 'ntos'}>
+    <Window width={800} height={605} theme={theme}>
       <Window.Content>
         <Stack fill>
           <Stack.Item basis="30%">

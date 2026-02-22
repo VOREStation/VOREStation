@@ -89,7 +89,7 @@
 
 	LAZYADD(serialized_guesses, list(out)) // Wrap it in a list so it stays a list
 
-/datum/data/pda/app/nerdle/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/nerdle/update_ui(mob/user, list/data)
 	data["guesses"] = serialized_guesses
 	data["guesses_raw"] = guesses
 	data["max"] = max_guesses

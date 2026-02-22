@@ -30,3 +30,9 @@
 		return
 
 	src.attack_self(usr)
+
+/obj/item/communicator/integrated/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()

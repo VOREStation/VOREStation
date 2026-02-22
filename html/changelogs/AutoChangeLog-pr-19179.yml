@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - rscadd: "adds a game collection table and pda app"
