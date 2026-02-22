@@ -12,7 +12,7 @@
 	filtered_organs = list(O_LIVER, O_KIDNEYS)
 	scannable = SCANNABLE_DIFFICULT
 	var/strength = 4 // How much damage it deals per unit
-	dermal_absorption = 0.2 // The multiplier for how effective the toxin is when making skin contact.
+	dermal_absorption = 0
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
@@ -281,6 +281,7 @@
 	description = "A homemade stimulant with some serious side-effects."
 	taste_description = "sweetness"
 	taste_mult = 1.8
+	dermal_absorption = 0.2 //Made with fertilizer, so some penetration ala organophosphate.
 	color = "#d0583a"
 	metabolism = REM * 3
 	overdose = 10
@@ -642,6 +643,7 @@
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	taste_description = "acid"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2 //Causes tissue damage, so can be presumed to penetrate through the skin somewhat.
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED

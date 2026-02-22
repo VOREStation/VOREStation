@@ -111,7 +111,7 @@
 	description = "Prussian Blue is a medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."
 	taste_description = "salt"
 	reagent_state = SOLID
-	dermal_absorption = 0.2
+	dermal_absorption = 0.2 //While it /is/ a solid, it's a beneficial medical reagent that should have some use if put into a patch.
 	color = "#003153" //Blue!
 	metabolism = REM * 0.25//20 ticks to do things per unit injected. This means injecting 30u will give you 10 minutes to do what you need.
 	overdose = REAGENTS_OVERDOSE
