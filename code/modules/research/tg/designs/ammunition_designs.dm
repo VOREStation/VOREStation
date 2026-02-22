@@ -465,17 +465,7 @@
 	build_path = /obj/item/ammo_casing/a10mm/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
-	)
-
-/datum/design_techweb/smg_mag_10m_rubber
-	name = "SMG magazine (10mm rubber)"
-	id = "smg_mag_10m_rubber"
-	materials = list(MAT_STEEL = 1800)
-	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_casing/a10mm/rubber
-	category = list(
-		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
@@ -487,10 +477,56 @@
 	build_path = /obj/item/ammo_casing/a10mm/emp
 	category = list(
 		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
+/datum/design_techweb/pistol_mag_10m
+	name = "pistol magazine (10mm)"
+	id = "pistol_mag_10m"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m10mm/pistol
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
 
+/datum/design_techweb/pistol_mag_10m_rubber
+	name = "pistol magazine (10mm rubber)"
+	id = "pistol_mag_10m_rubber"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m10mm/pistol/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/pistol_mag_10m_emp
+	name = "pistol magazine (10mm haywire)"
+	id = "pistol_mag_10m_emp"
+	materials = list(MAT_STEEL = 1800, MAT_URANIUM = 2400)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m10mm/pistol/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/pistol_mag_10m_practice
+	name = "pistol magazine (10mm practice)"
+	id = "pistol_mag_10m_practice"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m10mm/pistol/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
 
 /////// 5.45mm
 

@@ -39,6 +39,11 @@
 		"pistol_mag_9mm_rubber",
 		"pistol_mag_9mm_practice",
 		"pistol_mag_9mm_flash",
+		// 10mm
+		"pistol_mag_10m",
+		"pistol_mag_10m_rubber",
+		"pistol_mag_10m_emp",
+		"pistol_mag_10m_practice",
 	)
 
 // Only works with a few pistols
