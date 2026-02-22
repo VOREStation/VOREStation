@@ -191,7 +191,7 @@
 /datum/design_techweb/pistol_mag_45_hollow
 	name = "pistol magazine (.45 hollowpoint)"
 	id = "pistol_mag_45_hollow"
-	materials = list(MAT_STEEL = 500, MAT_PLASTIC = 200)
+	materials = list(MAT_STEEL = 500, MAT_PLASTEEL = 200)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m45/hp
 	category = list(
