@@ -365,6 +365,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	log_client_to_db()
+	load_play_hours()
 
 	send_resources()
 
@@ -450,7 +451,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/log_client_to_db()
 
-	if ( IsGuestKey(src.key) )
+	if(IsGuestKey(src.key))
 		return
 
 	establish_db_connection()
@@ -521,7 +522,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// If you're about to disconnect the player, you have to use to_chat_immediate otherwise they won't get the message (SSchat will queue it)
 
 	//Panic bunker code
-	if (isnum(player_age) && player_age == 0) //first connection
+	if(isnum(player_age) && player_age == 0) //first connection
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[key])
 			log_admin_private("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
@@ -551,17 +552,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
-	var/datum/db_query/query_hours = SSdbcore.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
-	if(query_hours.Execute())
-		while(query_hours.NextRow())
-			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
-			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
-	else
-		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
-		log_sql("Error loading play hours for [ckey]: [error_message]")
-		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
-	qdel(query_hours)
-
 	if(sql_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		var/datum/db_query/query_update = SSdbcore.NewQuery("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
@@ -581,6 +571,27 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
+
+/client/proc/load_play_hours()
+	if(IsGuestKey(src.key))
+		return
+
+	establish_db_connection()
+	if(!SSdbcore.IsConnected())
+		return
+
+	var/sql_ckey = sql_sanitize_text(src.ckey)
+
+	var/datum/db_query/query_hours = SSdbcore.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
+	if(query_hours.Execute())
+		while(query_hours.NextRow())
+			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
+			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
+	else
+		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
+		log_sql("Error loading play hours for [ckey]: [error_message]")
+		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
+	qdel(query_hours)
 
 //checks if a client is afk
 //3000 frames = 5 minutes
