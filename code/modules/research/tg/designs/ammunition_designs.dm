@@ -451,7 +451,7 @@
 	id = "smg_mag_10m_practice"
 	materials = list(MAT_STEEL = 1800)
 	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_casing/a10mm/practice
+	build_path = /obj/item/ammo_magazine/m10mm/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
@@ -462,7 +462,7 @@
 	id = "smg_mag_10m_rubber"
 	materials = list(MAT_STEEL = 1800)
 	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_casing/a10mm/rubber
+	build_path = /obj/item/ammo_magazine/m10mm/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
@@ -474,7 +474,7 @@
 	id = "smg_mag_10m_emp"
 	materials = list(MAT_STEEL = 1800, MAT_URANIUM = 2400)
 	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_casing/a10mm/emp
+	build_path = /obj/item/ammo_magazine/m10mm/emp
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
