@@ -21,6 +21,7 @@
 	reagent_state = LIQUID
 	metabolism = REM * 0.5
 	ingest_met = REM * 1.5 /// Be very careful with this, ingestion is weird and will spam high/sober messages horribly!
+	dermal_absorption = 0.1
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 

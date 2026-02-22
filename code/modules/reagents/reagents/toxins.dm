@@ -12,7 +12,7 @@
 	filtered_organs = list(O_LIVER, O_KIDNEYS)
 	scannable = SCANNABLE_DIFFICULT
 	var/strength = 4 // How much damage it deals per unit
-	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
+	dermal_absorption = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
@@ -28,13 +28,11 @@
 				M.heal_organ_damage((10/poison_strength) * removed, (10/poison_strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
 		M.adjustToxLoss(poison_strength * removed)
 
-/datum/reagent/toxin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed * 0.2)
-
 /datum/reagent/toxin/plasticide
 	name = REAGENT_PLASTICIDE
 	id = REAGENT_ID_PLASTICIDE
 	description = "Liquid plastic, do not eat."
+	dermal_absorption = 0
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -65,6 +63,7 @@
 	description = "A deadly neurotoxin produced by the dreaded space carp."
 	taste_description = "fish"
 	reagent_state = LIQUID
+	dermal_absorption = 0.4
 	color = "#003333"
 	strength = 10
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
@@ -82,7 +81,7 @@
 	reagent_state = LIQUID
 	color = "#005555"
 	strength = 8
-	skin_danger = 0.4
+	dermal_absorption = 0.4
 	wiki_flag = WIKI_SPOILER
 	supply_conversion_value = REFINERYEXPORT_VALUE_NO
 	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
@@ -105,6 +104,7 @@
 	name = REAGENT_HYDROPHORON
 	id = REAGENT_ID_HYDROPHORON
 	description = "An exceptionally flammable molecule formed from deuterium synthesis."
+	dermal_absorption = 1 //same as phoron
 	strength = 80
 	var/fire_mult = 30
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
@@ -119,6 +119,7 @@
 	M.take_organ_damage(0, removed * 0.1) //being splashed directly with hydrophoron causes minor chemical burns
 	if(prob(10 * fire_mult))
 		M.pl_effects()
+	..()
 
 /datum/reagent/toxin/hydrophoron/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
@@ -144,6 +145,7 @@
 	id = REAGENT_ID_LEAD
 	description = "Elemental Lead."
 	color = "#273956"
+	dermal_absorption = 0 //It's lead.
 	strength = 4
 	supply_conversion_value = 0.5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
@@ -181,7 +183,7 @@
 	color = "#9D14DB"
 	strength = 30
 	touch_met = 5
-	skin_danger = 1
+	dermal_absorption = 1
 	supply_conversion_value = 5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PHORON
 	coolant_modifier = 0.85
@@ -220,6 +222,7 @@
 	id = REAGENT_ID_CYANIDE
 	description = "A highly toxic chemical."
 	taste_description = "almond"
+	dermal_absorption = 0 //Splash someone and insta-KO them? No. Make zombie/lich powder for that.
 	taste_mult = 0.6
 	reagent_state = LIQUID
 	color = "#CF3600"
@@ -238,6 +241,7 @@
 	id = REAGENT_ID_MOLD
 	description = "A mold is a fungus that causes biodegradation of natural materials. This variant contains mycotoxins, and is dangerous to humans."
 	taste_description = "mold"
+	dermal_absorption = 0
 	reagent_state = SOLID
 	strength = 5
 	wiki_flag = WIKI_SPOILER
@@ -254,6 +258,7 @@
 	id = REAGENT_ID_EXPIREDMEDICINE
 	description = "Some form of liquid medicine that is well beyond its shelf date. Administering it now would cause illness."
 	taste_description = "bitterness"
+	dermal_absorption = 0
 	reagent_state = LIQUID
 	strength = 5
 	filtered_organs = list(O_SPLEEN)
@@ -308,6 +313,7 @@
 	id = REAGENT_ID_POTASSIUMCHLORIDE
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
 	taste_description = "salt"
+	dermal_absorption = 0 //it's salt.
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	strength = 0
@@ -336,6 +342,7 @@
 	id = REAGENT_ID_POTASSIUMCHLOROPHORIDE
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	taste_description = "salt"
+	dermal_absorption = 0 //again, it's salt.
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	strength = 10
@@ -362,6 +369,7 @@
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	taste_description = "numbness"
 	reagent_state = SOLID
+	dermal_absorption = 0 //No splashing someone to isnta KO them.
 	color = "#669900"
 	metabolism = REM
 	strength = 3
@@ -395,6 +403,7 @@
 	description = "A stablized nerve agent that puts the subject into a strange state of un-death."
 	reagent_state = SOLID
 	color = "#666666"
+	dermal_absorption = 0 //Has its own custom affect_touch effect. The parent has this set to 0, but this is just here for the comment.
 	metabolism = REM * 0.75
 	mrate_static = TRUE
 	scannable = SCANNABLE_SECRETIVE
@@ -428,6 +437,7 @@
 	description = "A chemical mix good for growing plants with."
 	taste_description = "plant food"
 	taste_mult = 0.5
+	dermal_absorption = 0.4 //Organo-phosphate poison... Give them a unique effect someday?
 	reagent_state = LIQUID
 	strength = 0.5 // It's not THAT poisonous.
 	color = "#664330"
@@ -467,6 +477,7 @@
 	name = REAGENT_PLANTBGONE
 	id = REAGENT_ID_PLANTBGONE
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
+	dermal_absorption = 0.1 //Very weak.
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
@@ -505,6 +516,7 @@
 	id = REAGENT_ID_SIFSAP
 	description = "A natural slurry comprised of fluorescent bacteria native to Sif, in the Vir system."
 	taste_description = "sour"
+	dermal_absorption = 0 //Bacteria.
 	reagent_state = LIQUID
 	color = "#C6E2FF"
 	strength = 2
@@ -577,6 +589,7 @@
 	id = REAGENT_ID_THERMITEV
 	description = "A biologically produced compound capable of melting steel or other metals, similarly to thermite."
 	taste_description = "sweet chalk"
+	dermal_absorption = 0 //It's a powder/solid.
 	reagent_state = SOLID
 	color = "#673910"
 	touch_met = 50
