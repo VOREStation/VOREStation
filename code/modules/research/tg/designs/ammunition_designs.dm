@@ -539,7 +539,7 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/loader_45
+/datum/design_techweb/mechfab/loader_45_rubber
 	name = "speedloader (.45 rubber)"
 	id = "loader_45_rubber"
 	materials = list(MAT_STEEL = 660)
@@ -552,9 +552,9 @@
 
 /////// 5.48
 
-/datum/design_techweb/mechfab/loader_45
+/datum/design_techweb/mechfab/loader_545
 	name = "ammo clip (5.45mm)"
-	id = "loader_45"
+	id = "loader_545"
 	materials = list(MAT_STEEL = 560)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c545
@@ -564,9 +564,9 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 
-/datum/design_techweb/mechfab/loader_45_practice
+/datum/design_techweb/mechfab/loader_545_practice
 	name = "ammo clip (5.45mm practice)"
-	id = "loader_45_practice"
+	id = "loader_545_practice"
 	materials = list(MAT_STEEL = 560)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c545/practice

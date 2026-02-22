@@ -23,16 +23,19 @@
 	display_name = "Pistol Ammunition"
 	description = "The smallest of small arms come in a variety of flavors!"
 	design_ids = list(
+		// 45 revolvers
 		"pistol_mag_45",
 		"pistol_mag_45_practice",
 		"pistol_mag_45_rubber",
 		"pistol_mag_45_flash",
 		"pistol_mag_45_piercing",
 		"pistol_mag_45_hollow",
+		// 9mm pistols
 		"pistol_mag_9mm",
 		"pistol_mag_9mm_rubber",
 		"pistol_mag_9mm_practice",
 		"pistol_mag_9mm_flash",
+		// Others
 		"pistol_mag_10m",
 		"pistol_mag_44"
 	)
@@ -43,16 +46,19 @@
 	display_name = "Specialty Pistol Ammunition"
 	description = "Special bangs for those special bucks."
 	design_ids = list(
+		// concealable
 		"pistol_mag_compact_9mm",
 		"pistol_mag_compact_9mm_rubber",
 		"pistol_mag_compact_9mm_practice",
 		"pistol_mag_compact_9mm_flash",
-		"pistol_mag_smg_9mm",
+		// P90
 		"pistol_mag_topmount_9mm",
 		"pistol_mag_topmount_9mm_rubber",
 		"pistol_mag_topmount_9mm_practice",
 		"pistol_mag_topmount_9mm_flash",
-		"pistol_mag_topmount_9mm_piercing"
+		"pistol_mag_topmount_9mm_piercing",
+		// SMG
+		"pistol_mag_smg_9mm"
 	)
 
 /datum/techweb_node/rifle_ammo
@@ -61,16 +67,24 @@
 	display_name = "Rifle Ammunition"
 	description = "Shoot for the moon, even if you miss you'll probably hit the intern anyway."
 	design_ids = list(
-		"rifle_145_sabot",
+		"rifle_mag_545",
+		"rifle_mag_545_practice",
+		"rifle_magazine_44",
+		"rifle_magazine_44_rubber",
+		"rifle_mag_762"
+	)
+
+/datum/techweb_node/rifle_ammo
+	id = TECHWEB_NODE_RIFLE_SPECIAL
+	starting_node = TRUE
+	display_name = "Specialty Rifle Ammunition"
+	description = "Sometimes you just need more gun."
+	design_ids = list(
 		"uzi_mag_45",
 		"tommy_mag_45",
 		"tommy_drum_45",
-		"rifle_mag_545",
-		"rifle_mag_545_practice",
-		"machinegun_box_545",
-		"rifle_mag_762",
-		"rifle_magazine_44",
-		"rifle_magazine_44_rubber"
+		"machinegun_box_545"
+		"rifle_145_sabot",
 	)
 
 /datum/techweb_node/shotgun_ammo
@@ -94,23 +108,26 @@
 	display_name = "Speedloaders"
 	description = "Trying to reload bullet by bullet in the middle of a gunfight is probably a bad idea."
 	design_ids = list(
-		"loader_12g_beanbag",
-		"loader_12g_slug",
-		"loader_12g_buck",
-		"loader_38",
-		"loader_38_rubber",
-		"loader_45",
-		"loader_45_rubber",
-		"loader_45",
-		"loader_45_practice",
-		"loader_762",
-		"loader_762",
+		// Revolvers
 		"loader_357",
 		"loader_357_flash",
 		"loader_357_stun",
 		"loader_357_rubber",
+		"loader_45",
+		"loader_45_rubber",
+		"loader_38",
+		"loader_38_rubber",
 		"loader_44",
-		"loader_44_rubber"
+		"loader_44_rubber",
+		// Shotty
+		"loader_12g_beanbag",
+		"loader_12g_slug",
+		"loader_12g_buck",
+		// Stripperclips
+		"loader_545",
+		"loader_545_practice",
+		"loader_762",
+		"loader_762"
 	)
 
 /datum/techweb_node/sec_equip

@@ -14,6 +14,7 @@
 #define TECHWEB_NODE_PISTOL_AMMO "pistol_ammo"
 #define TECHWEB_NODE_PISTOL_SPECIAL "pistol_special"
 #define TECHWEB_NODE_RIFLE_AMMO "rifle_ammo"
+#define TECHWEB_NODE_RIFLE_SPECIAL "rifle_special"
 #define TECHWEB_NODE_SHOTGUN_AMMO "shotgun_ammo"
 #define TECHWEB_NODE_SPEEDLOADERS "speedloaders"
 #define TECHWEB_NODE_BCI "bci"
