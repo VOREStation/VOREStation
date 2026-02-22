@@ -185,9 +185,7 @@ var/list/organ_cache = list()
 		if(CONFIG_GET(flag/organs_decay) && decays) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
-		adjust_germ_level(rand(2,6))
-		if(germ_level >= INFECTION_LEVEL_TWO)
-			adjust_germ_level(rand(2,6))
+		adjust_germ_level(1) //If something knocked a limb off, usually it'll have 100ish germs. This means you have ~30 minutes to get it back on before it becomes necrotic.
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
 
@@ -199,8 +197,43 @@ var/list/organ_cache = list()
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
+
+	//Descriptors for 'status of the limb'
+	if(status & ORGAN_DEAD) //Can happen for other reasons than infection.
+		. += span_bolddanger("The [name] is dead.")
+	if(status & ORGAN_MUTATED)
+		. += span_danger("The [name] is mutated and deformed.")
+	if(status & ORGAN_BROKEN)
+		. += span_danger("The [name] is broken.")
+
+	//Descriptors for 'how infected is this organ'
+	if(germ_level < INFECTION_LEVEL_ONE)
+		return
+	switch(germ_level)
+		if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO - 1)
+			. += span_warning("Signs of a minor infection are apparent.")
+		if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE - 1)
+			. += span_boldwarning("Signs of a moderate infection are apparent.")
+		if(INFECTION_LEVEL_THREE to INFINITY)
+			. += span_bolddanger("Necrosis has set in.")
+
+/obj/item/organ/get_description_info(list/additional_information)
+	if(!additional_information)
+		additional_information = list()
+	if(butcherable && meat_type)
+		additional_information += "Can be butchered with use of any sharp and edged object."
+	if(germ_level)
+		additional_information += "Can be washed in a sink, shower, or sprayed with space cleaner to clean infection. This will not bring it back from death, however."
 	if(status & ORGAN_DEAD)
-		. += span_notice("Decay appears to have set in.")
+		additional_information += "Can have five units of peridaxon applied to bring the organ back from death. This will not cure any infection, however."
+	. = ..(additional_information)
+	return .
+
+/obj/item/organ/get_description_antag()
+	. = ..()
+	if(butcherable && meat_type)
+		. += "Can be butchered with use of any sharp and edged object, allowing for quick disposal of evidence."
+	return .
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
@@ -498,11 +531,20 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/organ/attackby(obj/item/W, mob/user)
 	if(can_butcher(W, user))
 		butcher(W, user)
 		return
 
+	var/obj/item/reagent_containers/container = W
+	if(istype(container))
+		if(container.reagents.has_reagent(REAGENT_ID_PERIDAXON, 5))
+			status &= ~ORGAN_DEAD
+			damage-- //Fix JUST enough damage so it doesn't immediately die again. For full repair, use denec removal surgery.
+			START_PROCESSING(SSobj, src) //When an organ dies, it stops processing. This restarts it.
+			container.reagents.remove_reagent(REAGENT_ID_PERIDAXON, 5)
+			to_chat(user, "You use the [container] to revive \the [src]")
+			return
 	return ..()
 
 /obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
@@ -522,11 +564,20 @@ var/list/organ_cache = list()
 	return FALSE
 
 /obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
-	if(robotic >= ORGAN_ROBOT)
-		user?.visible_message(span_notice("[user] disassembles \the [src]."))
 
-	else
-		user?.visible_message(span_notice("[user] butchers \the [src]."))
+	if(user)
+		to_chat(user, span_danger("You are preparing to butcher \the [src]!"))
+		user.visible_message(span_danger("[user] prepares to butcher \the [src]!"))
+		if(!do_after(user, 10 SECONDS * O.toolspeed, target = src)) //They can queue this up on multiple organs.
+			to_chat(user, span_notice("You reconsider butchering \the [src]..."))
+			user.visible_message(span_notice("[user] reconsiders butchering \the [src]!"))
+			return FALSE
+
+		if(robotic >= ORGAN_ROBOT)
+			user?.visible_message(span_warning("[user] disassembles \the [src]."))
+
+		else
+			user?.visible_message(span_warning("[user] butchers \the [src]."))
 
 	if(!newtarget)
 		newtarget = get_turf(src)
@@ -535,6 +586,10 @@ var/list/organ_cache = list()
 
 	if(istype(newmeat, /obj/item/reagent_containers/food/snacks/meat))
 		newmeat.name = "[src.name] [newmeat.name]"	// "liver meat" "heart meat", etc.
+
+	if(LAZYLEN(contents)) //You can't shove the nuke disk into a leg and then butcher the leg to delete the nuke disk.
+		for(var/obj/contained_object in contents)
+			contained_object.forceMove(newtarget)
 
 	qdel(src)
 

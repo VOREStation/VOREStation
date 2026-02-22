@@ -195,6 +195,8 @@
 					if(prob(30))
 						burndamage += halloss
 				*/
+				//For reference, these will show up in game as:
+				//"My X is: [DESCRIPTOR]"
 				switch(brutedamage)
 					if(1 to 20)
 						status += "bruised"
@@ -218,18 +220,18 @@
 				if(org.dislocated == 1)
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
-					status += "hurts when touched"
+					status += "[can_feel_pain(org) ? "hurting and " : ""]abnormally bent"
 				//infection stuff
 				if(org.status & ORGAN_DEAD)
 					status += "necrotic"
 				else if(org.germ_level > INFECTION_LEVEL_TWO)
-					status += "feels like it's on fire!"
+					status += "burning and feels like it's on fire"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
 				if(LAZYLEN(org.wounds))
 					for(var/datum/wound/W in org.wounds)
 						if(W.internal)
-							status += "hurting with a slowly growing bruise"
+							status += "[can_feel_pain(org) ? "hurting and " : ""]showing a slowly growing bruise"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
@@ -262,9 +264,10 @@
 							span_warning("You successfully pat out [src]'s flames."))
 							src.extinguish_mob()
 		else
-			if (ishuman(src) && src:w_uniform)
+			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				H.w_uniform.add_fingerprint(M)
+				if(H.w_uniform)
+					H.w_uniform.add_fingerprint(M)
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src

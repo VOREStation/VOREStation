@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	else
 		. += overmind.blob_type.desc
 
-/obj/structure/blob/get_description_info()
+/obj/structure/blob/get_description_info(list/additional_information)
 	if(overmind)
 		return overmind.blob_type.effect_desc
 	return ..()

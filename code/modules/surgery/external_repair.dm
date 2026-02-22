@@ -89,7 +89,7 @@
 	surgery_name = "Repair Burns"
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/ointment = 100,
-	/obj/item/stack/medical/ointment = 50,
+	/obj/item/stack/medical/ointment = 100,
 	/obj/item/tape_roll = 30,
 	/obj/item/taperoll = 10
 	)
@@ -131,7 +131,10 @@
 	span_notice("You finish taping up [target]'s [affected] with \the [tool]."))
 		user.balloon_alert_visible("tapes up \the [affected]", "taped up \the [affected]")
 		affected.createwound(BRUISE, 10)
-	affected.heal_damage(0, 25, 0, 0)
+	var/heal_efficiency = 25
+	if(istype(tool, /obj/item/stack/medical/advanced/ointment))
+		heal_efficiency = 50
+	affected.heal_damage(0, heal_efficiency, 0, 0)
 	if(!(affected.burn_dam))
 		affected.burn_stage = 0
 	if(istype(tool, /obj/item/stack))
@@ -158,7 +161,7 @@
 	surgery_name = "Repair Brute"
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack = 100,
-	/obj/item/stack/medical/bruise_pack = 50,
+	/obj/item/stack/medical/bruise_pack = 100,
 	/obj/item/tape_roll = 40,
 	/obj/item/taperoll = 10
 	)
@@ -200,7 +203,10 @@
 	span_notice("You finish taping up [target]'s [affected] with \the [tool]."))
 		user.balloon_alert_visible("tapes up \the [affected]", "taped up \the [affected]")
 		affected.createwound(BRUISE, 10)
-	affected.heal_damage(25, 0, 0, 0)
+	var/heal_efficiency = 25
+	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
+		heal_efficiency = 50
+	affected.heal_damage(heal_efficiency, 0, 0, 0)
 	if(!(affected.brute_dam))
 		affected.brute_stage = 0
 	if(istype(tool, /obj/item/stack))

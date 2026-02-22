@@ -167,7 +167,7 @@
 	examine_icon.MapColors(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	return examine_icon
 
-/obj/structure/gargoyle/get_description_info()
+/obj/structure/gargoyle/get_description_info(list/additional_information)
 	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(gargoyle)
 		if(isspace(loc) || isopenspace(loc))

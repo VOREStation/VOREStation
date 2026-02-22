@@ -53,7 +53,7 @@
 				H.losebreath = 10
 				H.adjustOxyLoss(5)
 		if(prob(2))
-			to_chat(H,span_warning("You feel a dull pain behind your eyes and at thee back of your head..."))
+			to_chat(H,span_warning("You feel a dull pain behind your eyes and at the back of your head..."))
 			H.hallucination += 20 //It messes with your mind for some reason.
 			H.eye_blurry += 20 //Groggy vision for a small bit.
 		if(prob(3))
