@@ -17,6 +17,7 @@
 		"tacknife"
 	)
 
+// Basic pistol rounds
 /datum/techweb_node/pistol_ammo
 	id = TECHWEB_NODE_PISTOL_AMMO
 	starting_node = TRUE
@@ -39,9 +40,10 @@
 		"pistol_mag_9mm_practice",
 		"pistol_mag_9mm_flash",
 		// Others
-		"pistol_mag_10m"
+		"pistol_mag_10m",
 	)
 
+// Only works with a few pistols
 /datum/techweb_node/pistol_special
 	id = TECHWEB_NODE_PISTOL_SPECIAL
 	starting_node = TRUE
@@ -53,16 +55,9 @@
 		"pistol_mag_compact_9mm_rubber",
 		"pistol_mag_compact_9mm_practice",
 		"pistol_mag_compact_9mm_flash",
-		// P90
-		"pistol_mag_topmount_9mm",
-		"pistol_mag_topmount_9mm_rubber",
-		"pistol_mag_topmount_9mm_practice",
-		"pistol_mag_topmount_9mm_flash",
-		"pistol_mag_topmount_9mm_piercing",
-		// SMG
-		"pistol_mag_smg_9mm"
 	)
 
+// Basic rifles
 /datum/techweb_node/rifle_ammo
 	id = TECHWEB_NODE_RIFLE_AMMO
 	starting_node = TRUE
@@ -71,22 +66,33 @@
 	design_ids = list(
 		"rifle_mag_545",
 		"rifle_mag_545_practice",
-		"rifle_mag_762"
+		"rifle_mag_762",
+		"smg_mag_9mm",
 	)
 
+// Only works with a few specific guns
 /datum/techweb_node/rifle_ammo_special
 	id = TECHWEB_NODE_RIFLE_SPECIAL
 	starting_node = TRUE
 	display_name = "Specialty Rifle Ammunition"
 	description = "Sometimes you just need more gun."
 	design_ids = list(
+		// Rattle em boys!
 		"uzi_mag_45",
 		"tommy_mag_45",
 		"tommy_drum_45",
+		// big guns
 		"machinegun_box_545",
-		"rifle_145_sabot"
+		"rifle_145_sabot",
+		// P90
+		"pistol_mag_topmount_9mm",
+		"pistol_mag_topmount_9mm_rubber",
+		"pistol_mag_topmount_9mm_practice",
+		"pistol_mag_topmount_9mm_flash",
+		"pistol_mag_topmount_9mm_piercing",
 	)
 
+// Shotgun shells
 /datum/techweb_node/shotgun_ammo
 	id = TECHWEB_NODE_SHOTGUN_AMMO
 	starting_node = TRUE
@@ -99,9 +105,10 @@
 		"ammo_12g_flash",
 		"ammo_12g_pellet",
 		"ammo_12g_stun",
-		"ammo_12g_flechette"
+		"ammo_12g_flechette",
 	)
 
+// Faster reloading
 /datum/techweb_node/speedloaders
 	id = TECHWEB_NODE_SPEEDLOADERS
 	starting_node = TRUE
@@ -127,7 +134,7 @@
 		"loader_545",
 		"loader_545_practice",
 		"loader_762",
-		"loader_762"
+		"loader_762_practice",
 	)
 
 /datum/techweb_node/sec_equip

@@ -339,9 +339,9 @@
 
 // SMG mags
 
-/datum/design_techweb/pistol_mag_smg_9mm
+/datum/design_techweb/smg_mag_9mm
 	name = "SMG magazine (9mm)"
-	id = "pistol_mag_smg_9mm"
+	id = "smg_mag_9mm"
 	materials = list(MAT_STEEL = 1500)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m9mml
@@ -603,9 +603,9 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
 	)
 
-/datum/design_techweb/loader_762
+/datum/design_techweb/loader_762_practice
 	name = "ammo clip (7.62mm practice)"
-	id = "loader_762"
+	id = "loader_762_practice"
 	materials = list(MAT_STEEL = 1250)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/clip/c762/practice
