@@ -32,7 +32,7 @@
 /obj/random/drinkbottle,
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_37
+	poster_decl = /datum/decl/poster/bay_37
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)
@@ -51,7 +51,7 @@
 /obj/structure/sign/poster{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/bay_36
+	poster_decl = /datum/decl/poster/bay_36
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)

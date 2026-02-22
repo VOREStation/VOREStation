@@ -723,7 +723,7 @@
 	var/impacted_organ = parse_zone(def_zone)
 	if(isanimal(target_mob))
 		var/mob/living/simple_mob/SM = target_mob
-		var/decl/mob_organ_names/organ_plan = SM.organ_names
+		var/datum/decl/mob_organ_names/organ_plan = SM.organ_names
 		impacted_organ = pick(organ_plan.hit_zones)
 
 	//hit messages

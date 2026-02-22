@@ -24,7 +24,6 @@
 #include "code\_compile_options.dm"
 #include "code\_macros.dm"
 #include "code\coalesce.dm"
-#include "code\global_init.dm"
 #include "code\world.dm"
 #include "code\__defines\__globals.dm"
 #include "code\__defines\_ast.dm"

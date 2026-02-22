@@ -2,7 +2,7 @@
 	name = "medicine closet"
 	desc = "Filled with medical junk."
 	req_access = list(ACCESS_MEDICAL)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/medical/alt
 
 	starts_with = list(
 		/obj/item/storage/box/autoinjectors,
@@ -17,7 +17,7 @@
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	req_access = list(ACCESS_SURGERY)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
 		/obj/item/tank/anesthetic = 3,
@@ -27,7 +27,7 @@
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
 	req_access = list(ACCESS_MEDICAL_EQUIP)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical/doctor
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/medical/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
@@ -95,7 +95,7 @@
 	name = "paramedic locker"
 	desc = "Supplies for a first responder."
 	req_access = list(ACCESS_MEDICAL_EQUIP)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical/paramedic
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/medical/paramedic
 
 	starts_with = list(
 		/obj/item/storage/backpack/dufflebag/emt,
@@ -129,7 +129,7 @@
 /obj/structure/closet/secure_closet/chief_medical_officer
 	name = "chief medical officer's locker"
 	req_access = list(ACCESS_CMO)
-	closet_appearance = /decl/closet_appearance/secure_closet/cmo
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/cmo
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/chief_medical_officer,
@@ -204,7 +204,7 @@
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
 	req_access = list(ACCESS_CHEMISTRY)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical/chemistry
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/medical/chemistry
 
 	starts_with = list(
 		/obj/item/storage/box/pillbottles = 2,
@@ -221,7 +221,7 @@
 	name = "psychiatric cabinet"
 	desc = "Store psychology tools and medicines in here."
 	req_access = list(ACCESS_PSYCHIATRIST)
-	closet_appearance = /decl/closet_appearance/cabinet/secure
+	closet_appearance = /datum/decl/closet_appearance/cabinet/secure
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
@@ -252,7 +252,7 @@
 	wall_mounted = 1
 	store_mobs = 0
 	req_access = list(ACCESS_MEDICAL_EQUIP)
-	closet_appearance = /decl/closet_appearance/wall/medical
+	closet_appearance = /datum/decl/closet_appearance/wall/medical
 
 /obj/structure/closet/secure_closet/medical_wall/pills
 	name = "pill cabinet"

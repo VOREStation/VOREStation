@@ -5,7 +5,7 @@
 	desc = "A wall mounted storage locker."
 	name = "wall locker"
 	icon = 'icons/obj/closets/bases/wall.dmi'
-	closet_appearance = /decl/closet_appearance/wall
+	closet_appearance = /datum/decl/closet_appearance/wall
 	density = FALSE
 	anchored = TRUE
 	store_mobs = 0
@@ -21,7 +21,7 @@
 	desc = "A wall mounted locker with emergency supplies."
 	var/list/spawnitems = list(/obj/item/tank/emergency/oxygen,/obj/item/clothing/mask/breath,/obj/item/tool/crowbar/red)
 	var/amount = 2 // spawns each items X times.
-	closet_appearance = /decl/closet_appearance/wall/emergency
+	closet_appearance = /datum/decl/closet_appearance/wall/emergency
 
 /obj/structure/closet/walllocker/emerglocker/toggle(mob/user as mob)
 	src.attack_hand(user)
@@ -63,7 +63,7 @@
 /obj/structure/closet/walllocker/medical
 	name = "first-aid closet"
 	desc = "It's a wall-mounted storage unit for first aid supplies."
-	closet_appearance = /decl/closet_appearance/wall/medical
+	closet_appearance = /datum/decl/closet_appearance/wall/medical
 
 /obj/structure/closet/walllocker/medical/north
 	pixel_y = 32
@@ -84,7 +84,7 @@
 /obj/structure/closet/walllocker/wooden
 	name = "wooden cabinet"
 	desc = "A wall mounted storage cabinet."
-	closet_appearance = /decl/closet_appearance/wall_double/wooden
+	closet_appearance = /datum/decl/closet_appearance/wall_double/wooden
 
 /obj/structure/closet/walllocker/wooden/north
 	pixel_y = 32
@@ -108,7 +108,7 @@
 	desc = "A wall mounted storage cabinet."
 	name = "wall cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
-	closet_appearance = /decl/closet_appearance/wall_double
+	closet_appearance = /datum/decl/closet_appearance/wall_double
 	density = FALSE
 	anchored = TRUE
 	store_mobs = 0
@@ -139,7 +139,7 @@
 	desc = "A wall mounted storage cabinet, for the kitchen. Now where's the flour gone..?"
 	name = "kitchen cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
-	closet_appearance = /decl/closet_appearance/wall_double/kitchen
+	closet_appearance = /datum/decl/closet_appearance/wall_double/kitchen
 	density = FALSE
 	anchored = TRUE
 
@@ -162,7 +162,7 @@
 /obj/structure/closet/walllocker_double/medical
 	name = "medical cabinet"
 	desc = "A wall mounted medical supply cabinet. Probably full of drugs!"	//not actually full of drugs, sorry!
-	closet_appearance = /decl/closet_appearance/wall_double/medical
+	closet_appearance = /datum/decl/closet_appearance/wall_double/medical
 
 /obj/structure/closet/walllocker_double/medical/north
 	pixel_y = 32
@@ -183,7 +183,7 @@
 /obj/structure/closet/walllocker_double/emergency_engi
 	name = "emergency supplies cabinet"
 	desc = "A wall mounted cabinet. Seemingly has cool stuff for 'emergency use only'."
-	closet_appearance = /decl/closet_appearance/wall_double/emergency_engi
+	closet_appearance = /datum/decl/closet_appearance/wall_double/emergency_engi
 
 	starts_with = list(
 		/obj/item/clothing/mask/breath = 2,
@@ -210,7 +210,7 @@
 /obj/structure/closet/walllocker_double/hydrant
 	name = "fire-safety closet"
 	desc = "It's a storage cabinet packed with fire-fighting supplies."
-	closet_appearance = /decl/closet_appearance/wall_double/fire_safety
+	closet_appearance = /datum/decl/closet_appearance/wall_double/fire_safety
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
@@ -240,7 +240,7 @@
 	desc = "A wall mounted storage cabinet. It contains a small amount of emergency supplies for wilderness survival, but they probably won't last very long."
 	name = "emergency survival wall cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
-	closet_appearance = /decl/closet_appearance/wall_double/survival
+	closet_appearance = /datum/decl/closet_appearance/wall_double/survival
 	density = FALSE
 	anchored = TRUE
 	store_mobs = 0
@@ -280,7 +280,7 @@
 /obj/structure/closet/walllocker_double/security
 	name = "security cabinet"
 	desc = "A wall mounted cabinet. This one is suspiciously red."
-	closet_appearance = /decl/closet_appearance/wall_double/security
+	closet_appearance = /datum/decl/closet_appearance/wall_double/security
 
 /obj/structure/closet/walllocker_double/security/north
 	pixel_y = 32
@@ -299,7 +299,7 @@
 	dir = EAST
 
 /obj/structure/closet/walllocker_double/misc_civ
-	closet_appearance = /decl/closet_appearance/wall_double/gaming
+	closet_appearance = /datum/decl/closet_appearance/wall_double/gaming
 
 /obj/structure/closet/walllocker_double/misc_civ/north
 	pixel_y = 32
@@ -318,7 +318,7 @@
 	dir = EAST
 
 /obj/structure/closet/walllocker_double/generic_civ
-	closet_appearance = /decl/closet_appearance/wall_double/generic_civ
+	closet_appearance = /datum/decl/closet_appearance/wall_double/generic_civ
 
 /obj/structure/closet/walllocker_double/generic_civ/north
 	pixel_y = 32
@@ -337,7 +337,7 @@
 	dir = EAST
 
 /obj/structure/closet/walllocker_double/casino
-	closet_appearance = /decl/closet_appearance/wall_double/casino
+	closet_appearance = /datum/decl/closet_appearance/wall_double/casino
 
 /obj/structure/closet/walllocker_double/casino/north
 	pixel_y = 32
@@ -357,7 +357,7 @@
 
 /obj/structure/closet/walllocker_double/cargo
 	desc = "A wall mounted cabinet. This one is in cargo colors."
-	closet_appearance = /decl/closet_appearance/wall_double/cargo
+	closet_appearance = /datum/decl/closet_appearance/wall_double/cargo
 
 /obj/structure/closet/walllocker_double/cargo/north
 	pixel_y = 32
@@ -377,7 +377,7 @@
 
 /obj/structure/closet/walllocker_double/science
 	desc = "A wall mounted cabinet. This one is in research colors."
-	closet_appearance = /decl/closet_appearance/wall_double/science
+	closet_appearance = /datum/decl/closet_appearance/wall_double/science
 
 /obj/structure/closet/walllocker_double/science/north
 	pixel_y = 32
@@ -397,7 +397,7 @@
 
 /obj/structure/closet/walllocker_double/command
 	desc = "A wall mounted cabinet. This one is in command colors."
-	closet_appearance = /decl/closet_appearance/wall_double/command
+	closet_appearance = /datum/decl/closet_appearance/wall_double/command
 
 /obj/structure/closet/walllocker_double/command/north
 	pixel_y = 32
@@ -416,23 +416,23 @@
 	dir = EAST
 
 /obj/structure/closet/walllocker_double/command/ce
-	closet_appearance = /decl/closet_appearance/wall_double/ce
+	closet_appearance = /datum/decl/closet_appearance/wall_double/ce
 
 /obj/structure/closet/walllocker_double/command/cmo
-	closet_appearance = /decl/closet_appearance/wall_double/cmo
+	closet_appearance = /datum/decl/closet_appearance/wall_double/cmo
 
 /obj/structure/closet/walllocker_double/command/rd
-	closet_appearance = /decl/closet_appearance/wall_double/rd
+	closet_appearance = /datum/decl/closet_appearance/wall_double/rd
 
 /obj/structure/closet/walllocker_double/command/hos
-	closet_appearance = /decl/closet_appearance/wall_double/hos
+	closet_appearance = /datum/decl/closet_appearance/wall_double/hos
 
 /obj/structure/closet/walllocker_double/command/iaa
-	closet_appearance = /decl/closet_appearance/wall_double/iaa
+	closet_appearance = /datum/decl/closet_appearance/wall_double/iaa
 
 /obj/structure/closet/walllocker_double/engineering
 	desc = "A wall mounted cabinet. This one is in engineering colors."
-	closet_appearance = /decl/closet_appearance/wall_double/engineering
+	closet_appearance = /datum/decl/closet_appearance/wall_double/engineering
 
 /obj/structure/closet/walllocker_double/engineering/north
 	pixel_y = 32
