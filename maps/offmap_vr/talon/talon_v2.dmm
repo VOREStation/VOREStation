@@ -8539,13 +8539,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/hangar)
 "Dk" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/holoposter{
-	dir = 1;
-	pixel_y = 32
-	},
+/obj/structure/closet/walllocker_double/north,
+/obj/item/instrument/guitar,
+/obj/item/instrument/piano_synth,
+/obj/item/instrument/eguitar,
+/obj/item/instrument/violin,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/bar)
 "Dl" = (
@@ -14867,6 +14865,7 @@
 /obj/structure/bed/chair/bay/chair{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/bar)
 "XW" = (
