@@ -21,7 +21,7 @@ export const AncientDroneFab = (props) => {
   const { operating, metal_amount } = data;
 
   return (
-    <Window width={400} height={270}>
+    <Window width={400} height={270} theme="malfunction">
       <Window.Content>
         <Stack fill vertical>
           {operating ? (
