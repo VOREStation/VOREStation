@@ -83,8 +83,8 @@
 		"uzi_mag_45",
 		"tommy_mag_45",
 		"tommy_drum_45",
-		"machinegun_box_545"
-		"rifle_145_sabot",
+		"machinegun_box_545",
+		"rifle_145_sabot"
 	)
 
 /datum/techweb_node/shotgun_ammo
