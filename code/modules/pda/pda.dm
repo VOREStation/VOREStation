@@ -47,6 +47,7 @@
 		new/datum/data/pda/app/manifest,
 		new/datum/data/pda/app/atmos_scanner,
 		new/datum/data/pda/app/nerdle,
+		new/datum/data/pda/app/game_launcher,
 		new/datum/data/pda/utility/scanmode/notes,
 		new/datum/data/pda/utility/flashlight)
 	var/list/shortcut_cache = list()
@@ -177,7 +178,7 @@
 /obj/item/pda/GetID()
 	return id
 
-/obj/item/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
+/obj/item/pda/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
 	if((!istype(over_object, /atom/movable/screen)) && can_use(usr))
 		return attack_self(M)
@@ -389,7 +390,7 @@
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
 
-/obj/item/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
+/obj/item/pda/proc/id_check(mob/user, choice)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
 	if(choice == 1)
 		if (id)
 			remove_id()
@@ -411,7 +412,7 @@
 	return 0
 
 // access to status display signals
-/obj/item/pda/attackby(obj/item/C as obj, mob/user)
+/obj/item/pda/attackby(obj/item/C, mob/user)
 	..()
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
@@ -456,11 +457,11 @@
 			add_overlay("pda-pen")
 	return
 
-/obj/item/pda/attack(mob/living/C as mob, mob/living/user as mob)
+/obj/item/pda/attack(mob/living/C, mob/living/user)
 	if (istype(C, /mob/living/carbon) && scanmode)
 		scanmode.scan_mob(C, user)
 
-/obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/pda/afterattack(atom/A, mob/user, proximity)
 	if(proximity && scanmode)
 		scanmode.scan_atom(A, user)
 

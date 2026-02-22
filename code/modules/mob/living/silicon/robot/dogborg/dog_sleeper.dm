@@ -310,7 +310,7 @@
 		"deliveryslot_3" = deliveryslot_3,
 		"items_preserved" = items_preserved,
 		"has_destructive_analyzer" = analyzer,
-		"techweb_name" = handler?.linked_web ? "[handler.linked_web.id] / [handler.linked_web.organization]" : "Disconnected",
+		"techweb_name" = handler?.linked_web ? "[handler.linked_web.id] / [handler.linked_web.organization]" : null
 	)
 	return data
 /obj/item/dogborg/sleeper/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

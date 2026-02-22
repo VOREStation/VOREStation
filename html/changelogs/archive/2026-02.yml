@@ -201,3 +201,7 @@
   - bugfix: circuitboards no longer give steel on recycling in the DA
   - code_imp: circuitboard materials and recycling amounts moved to a define for easier
       editing downstream
+2026-02-21:
+  Kashargul:
+  - bugfix: borg sleepers showing a 0 where they shouldn't
+  - qol: gives multiple robot UIs robot themes

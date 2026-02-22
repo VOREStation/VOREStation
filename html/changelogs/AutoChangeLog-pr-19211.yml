@@ -1,0 +1,4 @@
+author: "Sharkmare"
+delete-after: True
+changes:
+  - bugfix: "Bone related traits now properly exclude each other."

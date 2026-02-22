@@ -14,6 +14,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
+  theme?: string;
   owner: string;
   ownjob: string;
   idInserted: BooleanLike;
@@ -57,13 +58,13 @@ function getPdaApp(name: string): () => React.JSX.Element {
 export const Pda = (props) => {
   const { data } = useBackend<Data>();
 
-  const { app, owner, useRetro } = data;
+  const { theme, app, owner, useRetro } = data;
 
   const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 
   if (!owner) {
     return (
-      <Window>
+      <Window theme={theme}>
         <Window.Content>
           <Section stretchContents>
             Warning: No ID information found! Please swipe ID!
@@ -76,7 +77,7 @@ export const Pda = (props) => {
   const App = getPdaApp(app.template);
 
   return (
-    <Window width={580} height={670} theme={useRetro ? 'pda_retro' : undefined}>
+    <Window width={580} height={670} theme={useRetro ? 'pda_retro' : theme}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}

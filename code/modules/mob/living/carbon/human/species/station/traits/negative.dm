@@ -138,7 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
-	excludes = list(/datum/trait/negative/boneless, /datum/trait/positive/densebones)
+	excludes = list(/datum/trait/negative/boneless, /datum/trait/negative/boneless/major, /datum/trait/positive/densebones)
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -634,13 +634,14 @@
 	hidden = FALSE
 	///How much our limbs max_damage is multiplied by.
 	var/limb_health = 1
-	excludes = list(/datum/trait/negative/hollow)
+	excludes = list(/datum/trait/negative/hollow, /datum/trait/positive/densebones, /datum/trait/negative/boneless/major)
 
 /datum/trait/negative/boneless/major
 	name = "Boneless, Major"
 	desc = "You have no bones! Your limbs are also much, much easier to gib in exchange. (Seriously this can result in one shot deaths and similar)"
 	cost = -6 //For reference, getting hit in the head with a welder 3 times kills you. Head has 37.5 HP. Reaching that cap = instant death
 	limb_health = 0.5
+	excludes = list(/datum/trait/negative/hollow, /datum/trait/positive/densebones, /datum/trait/negative/boneless)
 
 /datum/trait/negative/boneless/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
