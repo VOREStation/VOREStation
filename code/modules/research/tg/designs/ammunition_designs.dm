@@ -614,7 +614,7 @@
 	)
 
 /datum/design_techweb/rifle_mag_545_hunting
-	name = "Rifle Magazine (5.45mm AP Hunting)"
+	name = "Rifle Magazine (5.45mm Hunting)"
 	id = "rifle_mag_545_hunting"
 	materials = list(MAT_STEEL = 3375)
 	build_type = AUTOLATHE | PROTOLATHE
