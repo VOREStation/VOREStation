@@ -348,7 +348,7 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /datum/design_techweb/pistol_mag_topmount_9mm
@@ -360,7 +360,7 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /datum/design_techweb/pistol_mag_topmount_9mm_rubber
@@ -371,7 +371,7 @@
 	build_path = /obj/item/ammo_magazine/m9mmt/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /datum/design_techweb/pistol_mag_topmount_9mm_practice
@@ -382,7 +382,7 @@
 	build_path = /obj/item/ammo_magazine/m9mmt/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /datum/design_techweb/pistol_mag_topmount_9mm_flash
@@ -393,7 +393,7 @@
 	build_path = /obj/item/ammo_magazine/m9mmt/flash
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /datum/design_techweb/pistol_mag_topmount_9mm_piercing
@@ -405,7 +405,7 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /////// 10mm
@@ -419,7 +419,7 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
 /////// 5.45mm
@@ -596,7 +596,7 @@
 	id = "loader_762"
 	materials = list(MAT_STEEL = 1250)
 	build_type = AUTOLATHE | PROTOLATHE
-	build_path = /obj/item/ammo_magazine/clip/c545
+	build_path = /obj/item/ammo_magazine/clip/c762
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
