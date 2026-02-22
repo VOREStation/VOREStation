@@ -801,8 +801,8 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 				continue
 	broadcast_tiles = output
 
-/obj/item/radio/intercom/forceMove(atom/destination)
-	. = ..()
+/obj/item/radio/intercom/forceMove(atom/destination, direction, movetime)
+	. = ..(destination, direction, movetime)
 	update_broadcast_tiles()
 
 /obj/item/radio/intercom/Initialize(mapload)

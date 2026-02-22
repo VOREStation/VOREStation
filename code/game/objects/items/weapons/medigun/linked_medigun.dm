@@ -14,7 +14,7 @@
 		medigun_base_unit = null
 	return ..()
 
-/obj/item/bork_medigun/linked/forceMove(atom/destination) //Forcemove override, ugh
+/obj/item/bork_medigun/linked/forceMove(atom/destination, direction, movetime) //Forcemove override, ugh
 	if(destination == medigun_base_unit || destination == medigun_base_unit.loc || isturf(destination))
 		. = doMove(destination, 0, 0)
 		if(isturf(destination))
