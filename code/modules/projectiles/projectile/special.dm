@@ -289,6 +289,11 @@
 				qdel(B)
 	..()
 
+/obj/item/projectile/bola/energy
+	name = "energy_bola"
+	icon_state = "bola_energy"
+	damage = 0
+
 /obj/item/projectile/webball
 	name = "ball of web"
 	icon_state = "bola"
