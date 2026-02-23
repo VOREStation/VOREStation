@@ -41,7 +41,7 @@ export const NavBeacon = (props) => {
                   <UserAccessButton
                     icon="pen"
                     accessible={!locked && open}
-                    value={location || '(unset)'}
+                    value={location}
                     onCommit={(value) => act('loc_edit', { new_loc: value })}
                   />
                 </LabeledList.Item>
@@ -57,7 +57,7 @@ export const NavBeacon = (props) => {
                           <UserAccessButton
                             icon="pen"
                             accessible={!locked && open}
-                            value={code || '(unset)'}
+                            value={code}
                             onCommit={(value) =>
                               act('trans_edit_key', {
                                 code: code,
@@ -72,7 +72,7 @@ export const NavBeacon = (props) => {
                               <UserAccessButton
                                 icon="pen"
                                 accessible={!locked && open}
-                                value={codes[code] || '(unset)'}
+                                value={codes[code]}
                                 onCommit={(value) =>
                                   act('trans_edit_code', {
                                     code: code,
