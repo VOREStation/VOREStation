@@ -106,7 +106,7 @@ export const NavBeacon = (props) => {
                               color={codes[newKey] ? 'red' : undefined}
                               disabled={locked || !open}
                               value={newKey}
-                              buttonText={newKey || '(new val)'}
+                              buttonText={newKey ?? '(new val)'}
                               onCommit={setNewKey}
                             />
                           </Table.Cell>
@@ -117,7 +117,7 @@ export const NavBeacon = (props) => {
                                   fluid
                                   disabled={locked || !open}
                                   value={newVal}
-                                  buttonText={newVal || '(new val)'}
+                                  buttonText={newVal ?? '(new val)'}
                                   onCommit={setNewVal}
                                 />
                               </Stack.Item>
@@ -176,11 +176,11 @@ const UserAccessButton = (props: {
       fluid
       icon={icon}
       disabled={!accessible}
-      buttonText={value || '(unset)'}
+      buttonText={value ?? '(unset)'}
       value={value}
       onCommit={onCommit}
     />
   ) : (
-    value || '(unset)'
+    (value ?? '(unset)')
   );
 };
