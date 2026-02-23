@@ -39,6 +39,7 @@ export const NavBeacon = (props) => {
               <LabeledList>
                 <LabeledList.Item label="Location">
                   <UserAccessButton
+                    icon="pen"
                     accessible={!locked && open}
                     value={location || '(unset)'}
                     onCommit={(value) => act('loc_edit', { new_loc: value })}
@@ -54,6 +55,7 @@ export const NavBeacon = (props) => {
                       <Table.Row key={code}>
                         <Table.Cell>
                           <UserAccessButton
+                            icon="pen"
                             accessible={!locked && open}
                             value={code || '(unset)'}
                             onCommit={(value) =>
@@ -68,6 +70,7 @@ export const NavBeacon = (props) => {
                           <Stack>
                             <Stack.Item grow>
                               <UserAccessButton
+                                icon="pen"
                                 accessible={!locked && open}
                                 value={codes[code] || '(unset)'}
                                 onCommit={(value) =>
@@ -164,12 +167,14 @@ const UserAccessButton = (props: {
   accessible: BooleanLike;
   value: string;
   onCommit: ((value: string) => void) | undefined;
+  icon?: string;
 }) => {
-  const { accessible, value, onCommit } = props;
+  const { accessible, value, onCommit, icon } = props;
 
   return accessible ? (
     <Button.Input
       fluid
+      icon={icon}
       disabled={!accessible}
       buttonText={value || '(unset)'}
       value={value}
