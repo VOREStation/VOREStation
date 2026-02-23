@@ -191,7 +191,7 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
-	var/decl/plantgene/gene = null
+	var/datum/decl/plantgene/gene = null
 	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/florayield

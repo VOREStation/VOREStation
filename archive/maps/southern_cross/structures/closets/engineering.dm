@@ -6,7 +6,7 @@
 /obj/structure/closet/secure_closet/engineering_chief_wardrobe
 	name = "chief engineer's wardrobe"
 	req_access = list(ACCESS_CE)
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/ce
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/ce
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/chief_engineer,

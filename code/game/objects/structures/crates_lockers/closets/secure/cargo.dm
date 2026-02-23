@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/cargotech
 	name = "cargo technician's locker"
 	req_access = list(ACCESS_CARGO)
-	closet_appearance = /decl/closet_appearance/secure_closet/cargo
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/cargo
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargotech,
@@ -30,7 +30,7 @@
 /obj/structure/closet/secure_closet/quartermaster
 	name = "quartermaster's locker"
 	req_access = list(ACCESS_QM)
-	closet_appearance = /decl/closet_appearance/secure_closet/cargo/qm
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/cargo/qm
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargo,
@@ -72,7 +72,7 @@
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
 	req_access = list(ACCESS_MINING)
-	closet_appearance = /decl/closet_appearance/secure_closet/mining
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/mining
 
 	starts_with = list(
 		/obj/item/radio/headset/miner,

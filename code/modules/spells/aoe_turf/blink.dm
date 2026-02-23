@@ -1,4 +1,4 @@
-/spell/aoe_turf/blink
+/datum/spell/aoe_turf/blink
 	name = "Blink"
 	desc = "This spell randomly teleports you a short distance."
 
@@ -12,7 +12,7 @@
 	cooldown_min = 5 //4 deciseconds reduction per rank
 	hud_state = "wiz_blink"
 
-/spell/aoe_turf/blink/cast(var/list/targets, mob/user)
+/datum/spell/aoe_turf/blink/cast(var/list/targets, mob/user)
 	if(!targets.len)
 		return
 

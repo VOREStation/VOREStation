@@ -4,9 +4,9 @@
 	icon = 'icons/turf/flooring/ironsand_vr.dmi'
 	icon_state = "ironsand1"
 	edge_blending_priority = 1
-	initial_flooring = /decl/flooring/outdoors/ironsand
+	initial_flooring = /datum/decl/flooring/outdoors/ironsand
 
-/decl/flooring/outdoors/ironsand
+/datum/decl/flooring/outdoors/ironsand
 	name = "iron sand"
 	desc = "Red and gritty."
 	icon = 'icons/turf/flooring/ironsand_vr.dmi'

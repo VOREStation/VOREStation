@@ -92,6 +92,7 @@
 
 	is_genetrait = TRUE
 	hidden = FALSE
+	excludes = list(/datum/trait/negative/disability_wingdings)
 
 	sdisability=MUTE
 	activation_message="Your throat feels strange..."
@@ -152,6 +153,7 @@
 
 	is_genetrait = TRUE
 	hidden = FALSE
+	excludes = list(/datum/trait/negative/disability_mute)
 
 	disability=WINGDINGS
 	activation_message="You feel a little... Ga-hoo!"

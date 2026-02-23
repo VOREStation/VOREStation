@@ -2,13 +2,13 @@
 	Class: scope
 	A runtime instance of a block. Used internally by the interpreter.
 */
-/scope/
-	var/scope/parent = null
-	var/node/BlockDefinition/block
+/datum/scope
+	var/datum/scope/parent = null
+	var/datum/node/BlockDefinition/block
 	var/list/functions
 	var/list/variables
 
-/scope/New(node/BlockDefinition/B, scope/parent)
+/datum/scope/New(datum/node/BlockDefinition/B, datum/scope/parent)
 	src.block = B
 	src.parent = parent
 	src.variables = B.initial_variables.Copy()

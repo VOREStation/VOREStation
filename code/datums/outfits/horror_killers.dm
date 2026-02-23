@@ -1,4 +1,4 @@
-/decl/hierarchy/outfit/tunnel_clown
+/datum/decl/hierarchy/outfit/tunnel_clown
 	name = "Tunnel Clown"
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -18,7 +18,7 @@
 	headset_alt = /obj/item/radio/headset/alt
 	headset_earbud = /obj/item/radio/headset/earbud
 
-/decl/hierarchy/outfit/masked_killer
+/datum/decl/hierarchy/outfit/masked_killer
 	name = "Masked Killer"
 	uniform = /obj/item/clothing/under/overalls
 	shoes = /obj/item/clothing/shoes/white
@@ -35,12 +35,12 @@
 	headset_alt = /obj/item/radio/headset/alt
 	headset_earbud = /obj/item/radio/headset/earbud
 
-/decl/hierarchy/outfit/masked_killer/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/masked_killer/post_equip(var/mob/living/carbon/human/H)
 	var/victim = get_mannequin(H.ckey)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
 		carried_item.add_blood(victim) //Oh yes, there will be blood.. just not blood from the killer because that's odd
 
-/decl/hierarchy/outfit/professional
+/datum/decl/hierarchy/outfit/professional
 	name = "Professional"
 	uniform = /obj/item/clothing/under/suit_jacket{ starting_accessories=list(/obj/item/clothing/accessory/wcoat) }
 	shoes = /obj/item/clothing/shoes/black
@@ -58,7 +58,7 @@
 	headset_alt = /obj/item/radio/headset/alt
 	headset_earbud = /obj/item/radio/headset/earbud
 
-/decl/hierarchy/outfit/professional/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/professional/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/storage/secure/briefcase/sec_briefcase = new(H)
 	for(var/obj/item/briefcase_item in sec_briefcase)
 		qdel(briefcase_item)
