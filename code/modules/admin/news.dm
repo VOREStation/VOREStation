@@ -78,6 +78,7 @@
 	text = replacetext(text, "\[row\]", "</td><tr>")
 	text = replacetext(text, "\[cell\]", "<td>")
 	text = replacetext(text, "\[logo\]", "<img src=\ref['html/images/ntlogo.png']>") // Not sure if these would get used but why not
+	text = replacetext(text, "\[talogo\]", "<img src=\ref['html/images/talonlogo.png']>")
 	text = replacetext(text, "\[sglogo\]", "<img src=\ref['html/images/sglogo.png']>")
 	return text
 
@@ -115,6 +116,7 @@
 	text = replacetext(text, "</td><tr>", "\[row\]")
 	text = replacetext(text, "<td>", "\[cell\]")
 	text = replacetext(text, "<img src=\ref['html/images/ntlogo.png']>", "\[logo\]") // Not sure if these would get used but why not
+	text = replacetext(text, "<img src=\ref['html/images/talonlogo.png']>", "\[talogo\]")
 	text = replacetext(text, "<img src=\ref['html/images/sglogo.png']>", "\[sglogo\]")
 	return text
 
