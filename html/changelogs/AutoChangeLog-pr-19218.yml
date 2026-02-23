@@ -1,4 +1,0 @@
-author: "Cerami"
-delete-after: True
-changes:
-  - bugfix: "Disables the AFK prey preference from functioning while someone is dead"
