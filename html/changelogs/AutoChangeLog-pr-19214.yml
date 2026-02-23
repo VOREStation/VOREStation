@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - code_imp: "adds smes rcon name_tag unit test"

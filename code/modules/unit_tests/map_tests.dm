@@ -129,7 +129,7 @@
 	var/list/edge_log = list()
 
 	if(active_edges)
-		for(var/connection_edge/E in SSair.active_edges)
+		for(var/datum/connection_edge/E in SSair.active_edges)
 			var/a_temp = E.A.air.temperature
 			var/a_moles = E.A.air.total_moles
 			var/a_vol = E.A.air.volume
@@ -143,8 +143,8 @@
 			var/b_gas = ""
 
 			// Two zones mixing
-			if(istype(E, /connection_edge/zone))
-				var/connection_edge/zone/Z = E
+			if(istype(E, /datum/connection_edge/zone))
+				var/datum/connection_edge/zone/Z = E
 				b_temp = Z.B.air.temperature
 				b_moles = Z.B.air.total_moles
 				b_vol = Z.B.air.volume
@@ -152,8 +152,8 @@
 					b_gas += "[gas]=[Z.B.air.gas[gas]]"
 
 			// Zone and unsimulated turfs mixing
-			if(istype(E, /connection_edge/unsimulated))
-				var/connection_edge/unsimulated/U = E
+			if(istype(E, /datum/connection_edge/unsimulated))
+				var/datum/connection_edge/unsimulated/U = E
 				b_temp = U.B.temperature
 				b_moles = "Unsim"
 				b_vol = "Unsim"

@@ -96,7 +96,7 @@
 		new_character.make_changeling()
 
 	if(learned_spells)
-		for(var/spell/spell_to_add in learned_spells)
+		for(var/datum/spell/spell_to_add in learned_spells)
 			new_character.add_spell(spell_to_add)
 
 	if(active || force)
