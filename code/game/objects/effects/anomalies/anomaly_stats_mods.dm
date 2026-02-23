@@ -3,7 +3,6 @@
 	var/description
 	var/value
 	var/obj/effect/anomaly/attached_anomaly = null
-	var/flags
 
 /datum/anomaly_modifiers/proc/get_description()
 	return description

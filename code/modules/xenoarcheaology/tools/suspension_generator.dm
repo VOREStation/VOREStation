@@ -188,7 +188,13 @@
 		M.Weaken(3)
 
 	for(var/obj/effect/anomaly/anom in T)
-		anom.move_chance = initial(anom.move_chance)
+		if(anom.stats)
+			var/datum/anomaly_stats/anom_stats = anom.stats
+			if(istype(anom_stats.modifier, /datum/anomaly_modifiers/move))
+				anom.move_chance = initial(anom.move_chance)
+			continue
+		else
+			anom.move_chance = initial(anom.move_chance)
 
 	visible_message(span_blue("[icon2html(src,viewers(src))] [src] deactivates with a gentle shudder."))
 	qdel(suspension_field)

@@ -3101,6 +3101,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "afh" = (
@@ -8602,6 +8603,7 @@
 /area/tether/surfacebase/surface_one_hall)
 "aoR" = (
 /obj/machinery/light/small,
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "aoS" = (
@@ -31615,6 +31617,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
+"eCx" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/anomaly_scanner{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "eDh" = (
 /obj/machinery/door/airlock{
 	name = "Brig Restroom"
@@ -32849,6 +32863,14 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/lowernortheva)
+"hZr" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/assembly/signaler/anomaly/flux{
+	pixel_y = 13;
+	pixel_x = 7
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "iaI" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -35061,6 +35083,18 @@
 /mob/living/simple_mob/animal/passive/mouse/white/virology,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"nLD" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/anomaly_releaser/science{
+	pixel_y = 2;
+	pixel_x = 3
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = 1;
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "nMH" = (
 /obj/structure/closet{
 	desc = "Dents and old flaky paint blanket this old storage unit.";
@@ -45942,8 +45976,8 @@ auK
 avh
 abm
 abw
-abw
-abw
+eCx
+hZr
 abv
 afA
 abv
@@ -46227,7 +46261,7 @@ avh
 abm
 abw
 abw
-abw
+nLD
 adM
 afU
 abI

@@ -6,7 +6,7 @@
 	density = TRUE
 	circuit = /obj/item/circuitboard/anomaly_harvester
 	active_power_usage = 40000
-	idle_power_usage = 500
+	idle_power_usage = 1000
 
 	var/points = 0
 	var/points_to_create = 100
@@ -14,6 +14,14 @@
 
 	var/datum/weakref/harvested
 	var/list/obj/item/research_sample/samples
+
+/obj/machinery/anomaly_harvester/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+
+/obj/machinery/anomaly_harvester/Destroy()
+	harvested = null
+	return ..()
 
 /obj/machinery/anomaly_harvester/RefreshParts()
 	var/efficient = 0
@@ -68,6 +76,8 @@
 	if(default_part_replacement(user, W))
 		return
 	if(default_unfasten_wrench(user, W, 2 SECONDS))
+		return
+	if(default_part_replacement(user, W))
 		return
 	if(istype(W, /obj/item/anomaly_scanner))
 		if(!anchored)
