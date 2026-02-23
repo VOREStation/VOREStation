@@ -146,7 +146,7 @@
 
 /obj/item/clothing/head/caphat/talon/pilot
 	name = "Talon pilot's cap"
-	desc = "It's a formal cap worn usually by ITV Talon's piloting personnel, embezzled with the ITV Talon's logo on the front of the cap."
+	desc = "It's a formal cap worn usually by ITV Talon's piloting personnel, emblazoned with the ITV Talon's logo on the front of the cap."
 	icon = 'icons/inventory/head/item.dmi'
 	icon_override = 'icons/inventory/head/mob.dmi'
 	icon_state = "talon_pilothat"

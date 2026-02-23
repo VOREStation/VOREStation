@@ -553,8 +553,9 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/machinery/vending/talondrobe
 	name = "Talon Uniforms official"
 	desc = "Created for those who want to look the latest in Talon fashion!"
+	product_slogans = "TALON - Trading Any Location On Navigation"
 	description_fluff = "The vending machine is designed to store and dispense various types of uniforms for the crew of Talon ships."
-	product_ads = "Let's make Talon great again!;It's time to try something new or take a proven old one!;The seller should always look beautiful.;Did you feel cold? Don't forget to take a bomber jacket for yourself!"
+	product_ads = "It's time to try something new or take a proven old one!;The seller should always look beautiful.;Did you feel cold? Don't forget to take a bomber jacket for yourself!"
 	icon_state = "talondrobe"
 	req_access = list(ACCESS_TALON)
 	products = list(/obj/item/clothing/head/soft/talon = 10,

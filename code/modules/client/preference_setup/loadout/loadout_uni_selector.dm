@@ -713,7 +713,7 @@
 
 /datum/gear/uniform/talon
 	display_name = "Talon's Uniforms"
-	description = "Select from a range of outfits available to all Talon crew's."
+	description = "Select from a range of outfits available to all Talon crew."
 	allowed_roles = list(JOB_TALON_CAPTAIN, JOB_TALON_DOCTOR, JOB_TALON_ENGINEER, JOB_TALON_PILOT, JOB_TALON_GUARD, JOB_TALON_MINER)
 	path = /obj/item/clothing/under/rank/talon/basic/refreshed
 	sort_category = "Uniforms"
@@ -729,7 +729,7 @@
 
 /datum/gear/uniform/talon_captain
 	display_name = "Talon - Captain's Uniforms"
-	description = "Select from a range of outfits available to all Talon Captain's."
+	description = "Select from a range of outfits available to all Talon Captain."
 	allowed_roles = list(JOB_TALON_CAPTAIN)
 	path = /obj/item/clothing/under/rank/talon/command/refreshed
 	sort_category = "Uniforms"
@@ -745,7 +745,7 @@
 
 /datum/gear/uniform/talon_pilot
 	display_name = "Talon - Pilot's Uniforms"
-	description = "Select from a range of outfits available to all Talon Pilot's."
+	description = "Select from a range of outfits available to all Talon Pilot."
 	allowed_roles = list(JOB_TALON_PILOT)
 	path = /obj/item/clothing/under/rank/talon/pilot/refreshed
 	sort_category = "Uniforms"
@@ -761,7 +761,7 @@
 
 /datum/gear/uniform/talon_security
 	display_name = "Talon - Guard's Uniforms"
-	description = "Select from a range of outfits available to all Talon Guard's."
+	description = "Select from a range of outfits available to all Talon Guard."
 	allowed_roles = list(JOB_TALON_GUARD)
 	path = /obj/item/clothing/under/rank/talon/security/refreshed
 	sort_category = "Uniforms"
@@ -777,7 +777,7 @@
 
 /datum/gear/uniform/talon_medical
 	display_name = "Talon - Doctor's Uniforms"
-	description = "Select from a range of outfits available to all Talon Doctor's."
+	description = "Select from a range of outfits available to all Talon Doctor."
 	allowed_roles = list(JOB_TALON_DOCTOR)
 	path = /obj/item/clothing/under/rank/talon/proper/refreshed
 	sort_category = "Uniforms"
