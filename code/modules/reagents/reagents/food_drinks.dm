@@ -50,7 +50,7 @@
 	affect_ingest(M, alien, removed)
 	//VOREStation Edits Start
 	if(M.isSynthetic())
-		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+		M.adjust_nutrition((nutriment_factor * removed) * M.species?.synthetic_food_coeff)
 	//VOREStation Edits End
 	..()
 
