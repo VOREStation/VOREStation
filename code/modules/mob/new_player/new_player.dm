@@ -478,7 +478,7 @@
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()
-	return client.prefs.biological_gender
+	return client.prefs.read_preference(/datum/preference/choiced/gender/biological)
 
 /mob/new_player/is_ready()
 	return ready && ..()

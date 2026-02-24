@@ -2479,6 +2479,7 @@
 #include "code\modules\client\preferences\migrations\16_colors.dm"
 #include "code\modules\client\preferences\migrations\17_tails.dm"
 #include "code\modules\client\preferences\migrations\18_jukebox.dm"
+#include "code\modules\client\preferences\types\character\gender.dm"
 #include "code\modules\client\preferences\types\character\names.dm"
 #include "code\modules\client\preferences\types\character\antagonism\01_basic.dm"
 #include "code\modules\client\preferences\types\character\general\01_basic.dm"
