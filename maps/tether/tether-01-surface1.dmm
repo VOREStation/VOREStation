@@ -28633,6 +28633,14 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"aYy" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/assembly/signaler/anomaly/flux{
+	pixel_y = 13;
+	pixel_x = 7
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYz" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -28642,6 +28650,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"aYA" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/anomaly_releaser/science{
+	pixel_y = 2;
+	pixel_x = 3
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = 1;
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYB" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -28649,6 +28669,18 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
+"aYC" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/anomaly_scanner{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYE" = (
 /obj/structure/toilet{
 	pixel_y = 10
@@ -31617,18 +31649,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
-"eCx" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/anomaly_scanner{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/anomaly_scanner{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
 "eDh" = (
 /obj/machinery/door/airlock{
 	name = "Brig Restroom"
@@ -32863,14 +32883,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/lowernortheva)
-"hZr" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/assembly/signaler/anomaly/flux{
-	pixel_y = 13;
-	pixel_x = 7
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
 "iaI" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -35083,18 +35095,6 @@
 /mob/living/simple_mob/animal/passive/mouse/white/virology,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
-"nLD" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/anomaly_releaser/science{
-	pixel_y = 2;
-	pixel_x = 3
-	},
-/obj/item/anomaly_releaser/science{
-	pixel_y = 1;
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
 "nMH" = (
 /obj/structure/closet{
 	desc = "Dents and old flaky paint blanket this old storage unit.";
@@ -45976,8 +45976,8 @@ auK
 avh
 abm
 abw
-eCx
-hZr
+aYC
+aYy
 abv
 afA
 abv
@@ -46261,7 +46261,7 @@ avh
 abm
 abw
 abw
-nLD
+aYA
 adM
 afU
 abI
