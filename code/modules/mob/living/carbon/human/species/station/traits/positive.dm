@@ -471,6 +471,8 @@
 	cost = 2
 	custom_only = TRUE
 	var_changes = list("flags" = NO_DNA)
+	excludes = list(/datum/trait/negative/disability_deteriorating)
+	banned_species	= list(/datum/species/protean, /datum/species/shapeshifter/promethean)
 
 /datum/trait/positive/weaver/xenochimera
 	sort = TRAIT_SORT_SPECIES
