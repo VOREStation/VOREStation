@@ -12,6 +12,7 @@
 	icon_state = "emptycondiment"
 	flags = OPENCONTAINER
 	min_transfer_amount = 1
+	amount_per_transfer_from_this = 2
 	max_transfer_amount = 10
 	center_of_mass_x = 16
 	center_of_mass_y = 6
