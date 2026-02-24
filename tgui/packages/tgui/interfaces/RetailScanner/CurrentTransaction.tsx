@@ -16,24 +16,31 @@ export const CurrentTransaction = (model) => {
   const { items, prices } = current_transactioon;
 
   return (
-    <Section fill scrollable title="Active Transaction">
+    <Section
+      fill
+      scrollable
+      title="Active Transaction"
+      buttons={
+        !!Object.keys(current_transactioon).length && (
+          <Button.Confirm
+            disabled={locked}
+            color="red"
+            onClick={() => act('clear_entry')}
+          >
+            Clear Entry
+          </Button.Confirm>
+        )
+      }
+    >
       <Table>
-        <Table.Row>
-          <Table.Cell header>New Transaction</Table.Cell>
-          <Table.Cell collapsing>
-            <Button.Confirm
-              disabled={locked}
-              color="red"
-              onClick={() => act('clear_entry')}
-            >
-              Clear Entry
-            </Button.Confirm>
-          </Table.Cell>
-        </Table.Row>
-        <Divider />
         {items && prices && (
           <>
-            {' '}
+            <Table.Row>
+              <Table.Cell header colSpan={2}>
+                New Transaction
+              </Table.Cell>
+            </Table.Row>
+            <Divider />
             {Object.keys(items).map((item) => (
               <Table.Row key={item}>
                 <Table.Cell>

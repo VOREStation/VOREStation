@@ -13,13 +13,15 @@ export const TransactionLog = (model) => {
       fill
       scrollable
       buttons={
-        <Button.Confirm
-          color="red"
-          disabled={locked}
-          onClick={() => act('reset_log')}
-        >
-          Clear Logs
-        </Button.Confirm>
+        !!transaction_logs.length && (
+          <Button.Confirm
+            color="red"
+            disabled={locked}
+            onClick={() => act('reset_log')}
+          >
+            Clear Logs
+          </Button.Confirm>
+        )
       }
     >
       <Stack vertical>
