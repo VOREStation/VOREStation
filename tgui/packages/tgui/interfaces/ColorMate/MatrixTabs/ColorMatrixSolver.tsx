@@ -2,13 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
 import { computeMatrixFromPairs, isValidHex } from '../functions';
 import { ColorMatrixColorBox } from '../Helpers/MatrixColorBox';
-import type {
-  ColorPair,
-  ColorUpdate,
-  Data,
-  MatrixColors,
-  SelectedId,
-} from '../types';
+import type { ColorPair, ColorUpdate, Data, SelectedId } from '../types';
 
 export const ColorMateMatrixSolver = (props: {
   activeID: SelectedId;
@@ -51,28 +45,19 @@ export const ColorMateMatrixSolver = (props: {
     try {
       const matrix = computeMatrixFromPairs(colorPairs);
 
-      const newMatrixcolors: MatrixColors = {
-        rr: matrix[0][0],
-        rg: matrix[0][1],
-        rb: matrix[0][2],
+      const parts: number[] = [];
 
-        gr: matrix[1][0],
-        gg: matrix[1][1],
-        gb: matrix[1][2],
+      for (let col = 0; col < 3; col++) {
+        for (let row = 0; row < 3; row++) {
+          parts.push(Math.round(matrix[row][col] * 100) / 100);
+        }
+      }
 
-        br: matrix[2][0],
-        bg: matrix[2][1],
-        bb: matrix[2][2],
+      for (let row = 0; row < 3; row++) {
+        parts.push(Math.round(matrix[row][3] * 100) / 100);
+      }
 
-        cr: matrix[0][3],
-        cg: matrix[1][3],
-        cb: matrix[2][3],
-      };
-
-      const ourMatrix = Object.values(newMatrixcolors)
-        .map((v) => v.toFixed(2))
-        .toString();
-
+      const ourMatrix = parts.toString();
       act('set_matrix_string', { value: ourMatrix });
     } catch (err) {
       console.log(`Matrix computation failed: ${err.message}`);
@@ -122,7 +107,35 @@ export const ColorMateMatrixSolver = (props: {
                 />
               </Stack.Item>
               <Stack.Item>
-                <Box color="label">{`==>`}</Box>
+                <Button
+                  icon="arrow-right"
+                  onClick={() =>
+                    handleColorUpdate(colorPair.input, 'output', index)
+                  }
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Box color="label">{`==`}</Box>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="arrow-right-arrow-left"
+                  onClick={() => {
+                    handleColorUpdate(colorPair.input, 'output', index);
+                    handleColorUpdate(colorPair.output, 'input', index);
+                  }}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Box color="label">{`=>`}</Box>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="arrow-left"
+                  onClick={() =>
+                    handleColorUpdate(colorPair.output, 'input', index)
+                  }
+                />
               </Stack.Item>
               <Stack.Item>
                 <Box>Target</Box>
@@ -164,7 +177,7 @@ export const ColorMateMatrixSolver = (props: {
                         onClick={() =>
                           onColorPairs([
                             ...colorPairs,
-                            { input: '#ffffff', output: '#000000' },
+                            { input: '#ffffff', output: '#ffffff' },
                           ])
                         }
                       >

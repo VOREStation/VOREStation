@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "tg tgui chunking failing on certain messages above 1080 characters"

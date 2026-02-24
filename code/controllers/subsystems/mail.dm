@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(mail)
 
 	// Creates mail for all the mail waiting to arrive, if there's nobody to receive it, it will be a chance of junk mail.
 	for(var/mail_iterator in 1 to mail_waiting)
-		if(!mail_recipients.len && prob(60)) // Oh, no mail for our Employees? Well don't just sent them all the junk.
+		if(!length(mail_recipients) && prob(60)) // Oh, no mail for our Employees? Well don't just sent them all the junk.
 			continue
 		var/obj/item/mail/new_mail
 		if(prob(70))
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(mail)
 		else
 			new_mail = new /obj/item/mail/envelope(mailcrate)
 		var/mob/living/carbon/human/mail_to
-		if(mail_recipients.len)
+		if(length(mail_recipients))
 			mail_to = pick(mail_recipients)
 			new_mail.initialize_for_recipient(mail_to.mind)
 			mail_recipients -= mail_to

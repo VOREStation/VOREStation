@@ -13,13 +13,13 @@
 #define RETURNING  1
 #define BREAKING   2
 #define CONTINUING 4
-/n_Interpreter
-	var/scope/curScope
-	var/scope/globalScope
-	var/node/BlockDefinition/program
-	var/node/statement/FunctionDefinition/curFunction
-	var/stack/scopes	= new()
-	var/stack/functions	= new()
+/datum/n_Interpreter
+	var/datum/scope/curScope
+	var/datum/scope/globalScope
+	var/datum/node/BlockDefinition/program
+	var/datum/node/statement/FunctionDefinition/curFunction
+	var/datum/stack/scopes	= new()
+	var/datum/stack/functions	= new()
 
 	var/datum/container // associated container for interpeter
 /*
@@ -46,7 +46,7 @@
 	Constructor: New
 	Calls <Load()> with the given parameters.
 */
-/n_Interpreter/New(node/BlockDefinition/GlobalBlock/program=null)
+/datum/n_Interpreter/New(datum/node/BlockDefinition/GlobalBlock/program=null)
 	.=..()
 	if(program)Load(program)
 
@@ -54,20 +54,20 @@
 	Proc: RaiseError
 	Raises a runtime error.
 */
-/n_Interpreter/proc/RaiseError(runtimeError/e)
+/datum/n_Interpreter/proc/RaiseError(datum/runtimeError/e)
 	e.stack=functions.Copy()
 	e.stack.Push(curFunction)
 	src.HandleError(e)
 
-/n_Interpreter/proc/CreateScope(node/BlockDefinition/B)
-	var/scope/S = new(B, curScope)
+/datum/n_Interpreter/proc/CreateScope(datum/node/BlockDefinition/B)
+	var/datum/scope/S = new(B, curScope)
 	scopes.Push(curScope)
 	curScope = S
 	return S
 
-/n_Interpreter/proc/CreateGlobalScope()
+/datum/n_Interpreter/proc/CreateGlobalScope()
 	scopes.Clear()
-	var/scope/S = new(program, null)
+	var/datum/scope/S = new(program, null)
 	globalScope = S
 	return S
 
@@ -75,8 +75,8 @@
 Proc: RunBlock
 Runs each statement in a block of code.
 */
-/n_Interpreter/proc/RunBlock(node/BlockDefinition/Block, scope/scope = null)
-	var/is_global = istype(Block, /node/BlockDefinition/GlobalBlock)
+/datum/n_Interpreter/proc/RunBlock(datum/node/BlockDefinition/Block, datum/scope/scope = null)
+	var/is_global = istype(Block, /datum/node/BlockDefinition/GlobalBlock)
 	if(!is_global)
 		if(scope)
 			curScope = scope
@@ -89,12 +89,12 @@ Runs each statement in a block of code.
 
 	if(cur_statements < max_statements)
 
-		for(var/node/statement/S in Block.statements)
+		for(var/datum/node/statement/S in Block.statements)
 			while(paused) sleep(10)
 
 			cur_statements++
 			if(cur_statements >= max_statements)
-				RaiseError(new/runtimeError/MaxCPU())
+				RaiseError(new/datum/runtimeError/MaxCPU())
 
 				if(container && !alertadmins)
 					if(istype(container, /datum/TCS_Compiler))
@@ -106,8 +106,8 @@ Runs each statement in a block of code.
 						message_admins(message, 1)
 				break
 
-			if(istype(S, /node/statement/VariableAssignment))
-				var/node/statement/VariableAssignment/stmt = S
+			if(istype(S, /datum/node/statement/VariableAssignment))
+				var/datum/node/statement/VariableAssignment/stmt = S
 				var/name = stmt.var_name.id_name
 				if(!stmt.object)
 					// Below we assign the variable first to null if it doesn't already exist.
@@ -120,38 +120,38 @@ Runs each statement in a block of code.
 					var/datum/D = Eval(GetVariable(stmt.object.id_name))
 					if(!D) return
 					D.vars[stmt.var_name.id_name] = Eval(stmt.value)
-			else if(istype(S, /node/statement/VariableDeclaration))
+			else if(istype(S, /datum/node/statement/VariableDeclaration))
 				//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
-				var/node/statement/VariableDeclaration/dec=S
+				var/datum/node/statement/VariableDeclaration/dec=S
 				if(!dec.object)
 					AssignVariable(dec.var_name.id_name, null, curScope)
 				else
 					var/datum/D = Eval(GetVariable(dec.object.id_name))
 					if(!D) return
 					D.vars[dec.var_name.id_name] = null
-			else if(istype(S, /node/statement/FunctionCall))
+			else if(istype(S, /datum/node/statement/FunctionCall))
 				RunFunction(S)
-			else if(istype(S, /node/statement/FunctionDefinition))
+			else if(istype(S, /datum/node/statement/FunctionDefinition))
 				pass() //do nothing
-			else if(istype(S, /node/statement/WhileLoop))
+			else if(istype(S, /datum/node/statement/WhileLoop))
 				RunWhile(S)
-			else if(istype(S, /node/statement/IfStatement))
+			else if(istype(S, /datum/node/statement/IfStatement))
 				RunIf(S)
-			else if(istype(S, /node/statement/ReturnStatement))
+			else if(istype(S, /datum/node/statement/ReturnStatement))
 				if(!curFunction)
-					RaiseError(new/runtimeError/UnexpectedReturn())
+					RaiseError(new/datum/runtimeError/UnexpectedReturn())
 					continue
 				status |= RETURNING
 				returnVal=Eval(S:value)
 				break
-			else if(istype(S, /node/statement/BreakStatement))
+			else if(istype(S, /datum/node/statement/BreakStatement))
 				status |= BREAKING
 				break
-			else if(istype(S, /node/statement/ContinueStatement))
+			else if(istype(S, /datum/node/statement/ContinueStatement))
 				status |= CONTINUING
 				break
 			else
-				RaiseError(new/runtimeError/UnknownInstruction())
+				RaiseError(new/datum/runtimeError/UnknownInstruction())
 			if(status)
 				break
 
@@ -161,15 +161,15 @@ Runs each statement in a block of code.
 Proc: RunFunction
 Runs a function block or a proc with the arguments specified in the script.
 */
-/n_Interpreter/proc/RunFunction(node/statement/FunctionCall/stmt)
+/datum/n_Interpreter/proc/RunFunction(datum/node/statement/FunctionCall/stmt)
 	//Note that anywhere /node/statement/FunctionCall/stmt is used so may /node/expression/FunctionCall
 
 	// If recursion gets too high (max 50 nested functions) throw an error
 	if(cur_recursion >= max_recursion)
-		RaiseError(new/runtimeError/RecursionLimitReached())
+		RaiseError(new/datum/runtimeError/RecursionLimitReached())
 		return 0
 
-	var/node/statement/FunctionDefinition/def
+	var/datum/node/statement/FunctionDefinition/def
 	if(!stmt.object)							//A scope's function is being called, stmt.object is null
 		def = GetFunction(stmt.func_name)
 	else if(istype(stmt.object))				//A method of an object exposed as a variable is being called, stmt.object is a /node/identifier
@@ -182,14 +182,14 @@ Runs a function block or a proc with the arguments specified in the script.
 	cur_recursion++ // add recursion
 	if(istype(def))
 		if(curFunction) functions.Push(curFunction)
-		var/scope/S = CreateScope(def.block)
+		var/datum/scope/S = CreateScope(def.block)
 		for(var/i=1 to def.parameters.len)
 			var/val
 			if(stmt.parameters.len>=i)
 				val = stmt.parameters[i]
 			//else
 			//	unspecified param
-			AssignVariable(def.parameters[i], new/node/expression/value/literal(Eval(val)), S)
+			AssignVariable(def.parameters[i], new/datum/node/expression/value/literal(Eval(val)), S)
 		curFunction=stmt
 		RunBlock(def.block, S)
 		//Handle return value
@@ -201,11 +201,11 @@ Runs a function block or a proc with the arguments specified in the script.
 	else
 		cur_recursion--
 		var/list/params=new
-		for(var/node/expression/P in stmt.parameters)
+		for(var/datum/node/expression/P in stmt.parameters)
 			params+=list(Eval(P))
 		if(isobject(def))	//def is an object which is the target of a function call
 			if( !hascall(def, stmt.func_name) )
-				RaiseError(new/runtimeError/UndefinedFunction("[stmt.object.id_name].[stmt.func_name]"))
+				RaiseError(new/datum/runtimeError/UndefinedFunction("[stmt.object.id_name].[stmt.func_name]"))
 				return
 			return call(def, stmt.func_name)(arglist(params))
 		else										//def is a path to a global proc
@@ -217,7 +217,7 @@ Runs a function block or a proc with the arguments specified in the script.
 Proc: RunIf
 Checks a condition and runs either the if block or else block.
 */
-/n_Interpreter/proc/RunIf(node/statement/IfStatement/stmt)
+/datum/n_Interpreter/proc/RunIf(datum/node/statement/IfStatement/stmt)
 	if(Eval(stmt.cond))
 		RunBlock(stmt.block)
 	else if(stmt.else_block)
@@ -227,7 +227,7 @@ Checks a condition and runs either the if block or else block.
 Proc: RunWhile
 Runs a while loop.
 */
-/n_Interpreter/proc/RunWhile(node/statement/WhileLoop/stmt)
+/datum/n_Interpreter/proc/RunWhile(datum/node/statement/WhileLoop/stmt)
 	var/i=1
 	while(Eval(stmt.cond) && Iterate(stmt.block, i++))
 		continue
@@ -237,10 +237,10 @@ Runs a while loop.
 Proc:Iterate
 Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
 */
-/n_Interpreter/proc/Iterate(node/BlockDefinition/block, count)
+/datum/n_Interpreter/proc/Iterate(datum/node/BlockDefinition/block, count)
 	RunBlock(block)
 	if(max_iterations > 0 && count >= max_iterations)
-		RaiseError(new/runtimeError/IterationLimitReached())
+		RaiseError(new/datum/runtimeError/IterationLimitReached())
 		return 0
 	if(status & (BREAKING|RETURNING))
 		return 0
@@ -251,36 +251,36 @@ Runs a single iteration of a loop. Returns a value indicating whether or not to 
 Proc: GetFunction
 Finds a function in an accessible scope with the given name. Returns a <FunctionDefinition>.
 */
-/n_Interpreter/proc/GetFunction(name)
-	var/scope/S = curScope
+/datum/n_Interpreter/proc/GetFunction(name)
+	var/datum/scope/S = curScope
 	while(S)
 		if(S.functions.Find(name))
 			return S.functions[name]
 		S = S.parent
-	RaiseError(new/runtimeError/UndefinedFunction(name))
+	RaiseError(new/datum/runtimeError/UndefinedFunction(name))
 
 /*
 Proc: GetVariable
 Finds a variable in an accessible scope and returns its value.
 */
-/n_Interpreter/proc/GetVariable(name)
-	var/scope/S = curScope
+/datum/n_Interpreter/proc/GetVariable(name)
+	var/datum/scope/S = curScope
 	while(S)
 		if(S.variables.Find(name))
 			return S.variables[name]
 		S = S.parent
-	RaiseError(new/runtimeError/UndefinedVariable(name))
+	RaiseError(new/datum/runtimeError/UndefinedVariable(name))
 
-/n_Interpreter/proc/GetVariableScope(name) //needed for when you reassign a variable in a higher scope
-	var/scope/S = curScope
+/datum/n_Interpreter/proc/GetVariableScope(name) //needed for when you reassign a variable in a higher scope
+	var/datum/scope/S = curScope
 	while(S)
 		if(S.variables.Find(name))
 			return S
 		S = S.parent
 
 
-/n_Interpreter/proc/IsVariableAccessible(name)
-	var/scope/S = curScope
+/datum/n_Interpreter/proc/IsVariableAccessible(name)
+	var/datum/scope/S = curScope
 	while(S)
 		if(S.variables.Find(name))
 			return TRUE
@@ -297,13 +297,13 @@ name  - The name of the variable to assign.
 value - The value to assign to it.
 S     - The scope the variable resides in. If it is null, a scope with the variable already existing is found. If no scopes have a variable of the given name, the current scope is used.
 */
-/n_Interpreter/proc/AssignVariable(name, node/expression/value, scope/S=null)
+/datum/n_Interpreter/proc/AssignVariable(name, datum/node/expression/value, datum/scope/S=null)
 	if(!S) S = GetVariableScope(name)
 	if(!S) S = curScope
 	if(!S) S = globalScope
 	ASSERT(istype(S))
-	if(istext(value) || isnum(value) || isnull(value))	value = new/node/expression/value/literal(value)
-	else if(!istype(value) && isobject(value))			value = new/node/expression/value/reference(value)
+	if(istext(value) || isnum(value) || isnull(value))	value = new/datum/node/expression/value/literal(value)
+	else if(!istype(value) && isobject(value))			value = new/datum/node/expression/value/reference(value)
 	//TODO: check for invalid name
 	S.variables["[name]"] = value
 

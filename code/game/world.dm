@@ -362,6 +362,9 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 		return list2params(s)
 
 	else if(T == "manifest")
+		if(!SSjob.initialized)
+			return null
+
 		var/list/positions = list()
 		var/list/set_names = list(
 				"heads" = SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND),

@@ -133,7 +133,7 @@
 /obj/structure/sign/poster/nanotrasen{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/nanotrasen/bay_21
+	poster_decl = /datum/decl/poster/nanotrasen/bay_21
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
@@ -276,7 +276,7 @@
 	},
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/vore_29
+	poster_decl = /datum/decl/poster/vore_29
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)

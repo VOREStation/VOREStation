@@ -3,26 +3,26 @@
 	desc = "This slick flesh ripples and squishes under your touch"
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_state = "flesh_floor"
-	initial_flooring = /decl/flooring/flesh
+	initial_flooring = /datum/decl/flooring/flesh
 
 /turf/simulated/floor/flesh/colour
 	icon_state = "c_flesh_floor"
-	initial_flooring = /decl/flooring/flesh
+	initial_flooring = /datum/decl/flooring/flesh
 
 /turf/simulated/floor/flesh/attackby()
 	return
 
-/decl/flooring/flesh
+/datum/decl/flooring/flesh
 	name = "flesh"
 	desc = "This slick flesh ripples and squishes under your touch"
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_base = "flesh_floor"
 
-/decl/flooring/grass/outdoors
+/datum/decl/flooring/grass/outdoors
 	flags = NONE
 	build_type = null
 
-/decl/flooring/grass/outdoors/forest
+/datum/decl/flooring/grass/outdoors/forest
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass-dark"
 
@@ -33,9 +33,9 @@
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_state = "rcircuit"
-	initial_flooring = /decl/flooring/reinforced/circuit/red
+	initial_flooring = /datum/decl/flooring/reinforced/circuit/red
 
-/decl/flooring/reinforced/circuit/red
+/datum/decl/flooring/reinforced/circuit/red
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_base = "rcircuit"
@@ -44,9 +44,9 @@
 	name = "pulsing pattern"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_state = "rcircuitanim"
-	initial_flooring = /decl/flooring/reinforced/circuit/red/animated
+	initial_flooring = /datum/decl/flooring/reinforced/circuit/red/animated
 
-/decl/flooring/reinforced/circuit/red/animated
+/datum/decl/flooring/reinforced/circuit/red/animated
 	name = "pulsing pattern"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_base = "rcircuitanim"
@@ -55,14 +55,14 @@
 	name = "dark pattern"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_state = "rcircuitanim_broken"
-	initial_flooring = /decl/flooring/reinforced/circuit/red/off
+	initial_flooring = /datum/decl/flooring/reinforced/circuit/red/off
 
-/decl/flooring/reinforced/circuit/red/off
+/datum/decl/flooring/reinforced/circuit/red/off
 	name = "dark pattern"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_base = "rcircuitanim_broken"
 
-/decl/flooring/tiling/milspec
+/datum/decl/flooring/tiling/milspec
 	name = "milspec floor"
 	desc = "Scuffed from the passage of countless ground pounders."
 	icon = 'icons/turf/flooring/tiles_vr.dmi'
@@ -71,7 +71,7 @@
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor/milspec
-	plating_type = /decl/flooring/eris_plating/under
+	plating_type = /datum/decl/flooring/eris_plating/under
 	can_paint = 1
 	can_engrave = TRUE
 
@@ -80,12 +80,12 @@
 	desc = "Scuffed from the passage of countless ground pounders."
 	icon = 'icons/turf/flooring/tiles_vr.dmi'
 	icon_state = "milspec"
-	initial_flooring = /decl/flooring/tiling/milspec
+	initial_flooring = /datum/decl/flooring/tiling/milspec
 
 /obj/item/stack/tile/floor/milspec
 	name = "milspec floor tile"
 
-/decl/flooring/tiling/milspec/sterile
+/datum/decl/flooring/tiling/milspec/sterile
 	name = "sterile milspec floor"
 	icon_base = "dark_sterile"
 	build_type = /obj/item/stack/tile/floor/milspec/sterile
@@ -93,12 +93,12 @@
 /turf/simulated/floor/tiled/milspec/sterile
 	name = "sterile milspec floor"
 	icon_state = "dark_sterile"
-	initial_flooring = /decl/flooring/tiling/milspec/sterile
+	initial_flooring = /datum/decl/flooring/tiling/milspec/sterile
 
 /obj/item/stack/tile/floor/milspec/sterile
 	name = "sterile milspec floor tile"
 
-/decl/flooring/tiling/milspec/raised
+/datum/decl/flooring/tiling/milspec/raised
 	name = "raised milspec floor"
 	icon_base = "milspec_tcomms"
 	build_type = /obj/item/stack/tile/floor/milspec/raised
@@ -106,7 +106,7 @@
 /turf/simulated/floor/tiled/milspec/raised
 	name = "raised milspec floor"
 	icon_state = "milspec_tcomms"
-	initial_flooring = /decl/flooring/tiling/milspec/raised
+	initial_flooring = /datum/decl/flooring/tiling/milspec/raised
 
 /obj/item/stack/tile/floor/milspec/raised
 	name = "raised milspec floor tile"

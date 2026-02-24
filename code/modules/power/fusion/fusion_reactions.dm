@@ -1,6 +1,6 @@
 GLOBAL_LIST(fusion_reactions)
 
-/decl/fusion_reaction
+/datum/decl/fusion_reaction
 	var/p_react = "" // Primary reactant.
 	var/s_react = "" // Secondary reactant.
 	var/minimum_energy_level = 1
@@ -11,14 +11,14 @@ GLOBAL_LIST(fusion_reactions)
 	var/list/products = list()
 	var/minimum_reaction_temperature = 100
 
-/decl/fusion_reaction/proc/handle_reaction_special(var/obj/effect/fusion_em_field/holder)
+/datum/decl/fusion_reaction/proc/handle_reaction_special(var/obj/effect/fusion_em_field/holder)
 	return 0
 
 /proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	if(!GLOB.fusion_reactions)
 		GLOB.fusion_reactions = list()
-		for(var/rtype in subtypesof(/decl/fusion_reaction))
-			var/decl/fusion_reaction/cur_reaction = new rtype()
+		for(var/rtype in subtypesof(/datum/decl/fusion_reaction))
+			var/datum/decl/fusion_reaction/cur_reaction = new rtype()
 			if(!GLOB.fusion_reactions[cur_reaction.p_react])
 				GLOB.fusion_reactions[cur_reaction.p_react] = list()
 			GLOB.fusion_reactions[cur_reaction.p_react][cur_reaction.s_react] = cur_reaction
@@ -43,20 +43,20 @@ GLOBAL_LIST(fusion_reactions)
 //  boron-11
 
 // Basic power production reactions.
-/decl/fusion_reaction/deuterium_deuterium
+/datum/decl/fusion_reaction/deuterium_deuterium
 	p_react = REAGENT_ID_DEUTERIUM
 	s_react = REAGENT_ID_DEUTERIUM
 	energy_consumption = 1
 	energy_production = 2
 // Advanced production reactions (todo)
 
-/decl/fusion_reaction/deuterium_helium
+/datum/decl/fusion_reaction/deuterium_helium
 	p_react = REAGENT_ID_DEUTERIUM
 	s_react = REAGENT_ID_HELIUM3
 	energy_consumption = 1
 	energy_production = 5
 
-/decl/fusion_reaction/deuterium_tritium
+/datum/decl/fusion_reaction/deuterium_tritium
 	p_react = REAGENT_ID_DEUTERIUM
 	s_react = REAGENT_ID_SLIMEJELLY
 	energy_consumption = 1
@@ -64,7 +64,7 @@ GLOBAL_LIST(fusion_reactions)
 	products = list(REAGENT_ID_HELIUM3 = 1)
 	instability = 0.5
 
-/decl/fusion_reaction/deuterium_lithium
+/datum/decl/fusion_reaction/deuterium_lithium
 	p_react = REAGENT_ID_DEUTERIUM
 	s_react = REAGENT_ID_LITHIUM
 	energy_consumption = 2
@@ -74,7 +74,7 @@ GLOBAL_LIST(fusion_reactions)
 	instability = 1
 
 // Unideal/material production reactions
-/decl/fusion_reaction/oxygen_oxygen
+/datum/decl/fusion_reaction/oxygen_oxygen
 	p_react = REAGENT_ID_OXYGEN
 	s_react = REAGENT_ID_OXYGEN
 	energy_consumption = 10
@@ -83,7 +83,7 @@ GLOBAL_LIST(fusion_reactions)
 	radiation = 5
 	products = list(REAGENT_ID_SILICON= 1)
 
-/decl/fusion_reaction/iron_iron
+/datum/decl/fusion_reaction/iron_iron
 	p_react = REAGENT_ID_IRON
 	s_react = REAGENT_ID_IRON
 	products = list(REAGENT_ID_SILVER = 1, REAGENT_ID_GOLD = 1, REAGENT_ID_PLATINUM = 1) // Not realistic but w/e
@@ -92,7 +92,7 @@ GLOBAL_LIST(fusion_reactions)
 	instability = 2
 	minimum_reaction_temperature = 10000
 
-/decl/fusion_reaction/phoron_hydrogen
+/datum/decl/fusion_reaction/phoron_hydrogen
 	p_react = REAGENT_ID_HYDROGEN
 	s_react = REAGENT_ID_PHORON
 	energy_consumption = 10
@@ -102,7 +102,7 @@ GLOBAL_LIST(fusion_reactions)
 	minimum_reaction_temperature = 8000
 
 // VERY UNIDEAL REACTIONS.
-/decl/fusion_reaction/phoron_supermatter
+/datum/decl/fusion_reaction/phoron_supermatter
 	p_react = REAGENT_ID_SUPERMATTER
 	s_react = REAGENT_ID_PHORON
 	energy_consumption = 0
@@ -110,7 +110,7 @@ GLOBAL_LIST(fusion_reactions)
 	radiation = 20
 	instability = 20
 
-/decl/fusion_reaction/phoron_supermatter/handle_reaction_special(var/obj/effect/fusion_em_field/holder)
+/datum/decl/fusion_reaction/phoron_supermatter/handle_reaction_special(var/obj/effect/fusion_em_field/holder)
 
 	wormhole_event()
 
@@ -142,7 +142,7 @@ GLOBAL_LIST(fusion_reactions)
 	return 1
 
 // High end reactions.
-/decl/fusion_reaction/boron_hydrogen
+/datum/decl/fusion_reaction/boron_hydrogen
 	p_react = REAGENT_ID_BORON11
 	s_react = REAGENT_ID_HYDROGEN
 	minimum_energy_level = FUSION_HEAT_CAP * 0.5
@@ -151,7 +151,7 @@ GLOBAL_LIST(fusion_reactions)
 	radiation = 3
 	instability = 3
 
-/decl/fusion_reaction/hydrogen_hydrogen
+/datum/decl/fusion_reaction/hydrogen_hydrogen
 	p_react = REAGENT_ID_HYDROGEN
 	s_react = REAGENT_ID_HYDROGEN
 	minimum_energy_level = FUSION_HEAT_CAP * 0.75

@@ -6,7 +6,7 @@
 	Class: n_Interpreter
 	Procedures allowing for interaction with the script that is being run by the interpreter object.
 */
-/n_Interpreter
+/datum/n_Interpreter
 
 /*
 	Proc: Load
@@ -15,7 +15,7 @@
 	Parameters:
 	program - A <GlobalBlock> object which represents the script's global scope.
 */
-/n_Interpreter/proc/Load(node/BlockDefinition/GlobalBlock/program)
+/datum/n_Interpreter/proc/Load(datum/node/BlockDefinition/GlobalBlock/program)
 	ASSERT(program)
 	src.program 	= program
 	CreateGlobalScope()
@@ -24,7 +24,7 @@
 	Proc: Run
 	Runs the script.
 */
-/n_Interpreter/proc/Run()
+/datum/n_Interpreter/proc/Run()
 	cur_recursion = 0 // reset recursion
 	cur_statements = 0 // reset CPU tracking
 	alertadmins = 0
@@ -43,7 +43,7 @@
 	See Also:
 	- <Block.SetVar()>
 */
-/n_Interpreter/proc/SetVar(name, value)
+/datum/n_Interpreter/proc/SetVar(name, value)
 	if(!istext(name))
 		//CRASH("Invalid variable name")
 		return
@@ -59,24 +59,24 @@
 	object	- (Optional) An object which will the be target of a function call.
 	params 	- Only required if object is not null, a list of the names of parameters the proc takes.
 */
-/n_Interpreter/proc/SetProc(name, path, object=null, list/params=null)
+/datum/n_Interpreter/proc/SetProc(name, path, object=null, list/params=null)
 	if(!istext(name))
 		//CRASH("Invalid function name")
 		return
 	if(!object)
 		globalScope.functions[name] = path
 		return
-	var/node/statement/FunctionDefinition/S = new()
+	var/datum/node/statement/FunctionDefinition/S = new()
 	S.func_name		= name
 	S.parameters	= params
 	S.block			= new()
 	S.block.SetVar("src", object)
-	var/node/expression/FunctionCall/C = new()
+	var/datum/node/expression/FunctionCall/C = new()
 	C.func_name	= path
 	C.object		= new("src")
 	for(var/p in params)
-		C.parameters += new/node/expression/value/variable(p)
-	var/node/statement/ReturnStatement/R=new()
+		C.parameters += new/datum/node/expression/value/variable(p)
+	var/datum/node/statement/ReturnStatement/R=new()
 	R.value=C
 	S.block.statements += R
 	globalScope.functions[name] = S
@@ -84,14 +84,14 @@
 	Proc: VarExists
 	Checks whether a global variable with the specified name exists.
 */
-/n_Interpreter/proc/VarExists(name)
+/datum/n_Interpreter/proc/VarExists(name)
 	return globalScope.variables.Find(name) //convert to 1/0 first?
 
 /*
 	Proc: ProcExists
 	Checks whether a global function with the specified name exists.
 */
-/n_Interpreter/proc/ProcExists(name)
+/datum/n_Interpreter/proc/ProcExists(name)
 	return globalScope.functions.Find(name)
 
 /*
@@ -101,7 +101,7 @@
 	See Also:
 	- <VarExists()>
 */
-/n_Interpreter/proc/GetVar(name)
+/datum/n_Interpreter/proc/GetVar(name)
 	if(!VarExists(name))
 		//CRASH("No variable named '[name]'.")
 		return
@@ -116,13 +116,13 @@
 	See Also:
 	- <ProcExists()>
 */
-/n_Interpreter/proc/CallProc(name, params[]=null)
+/datum/n_Interpreter/proc/CallProc(name, params[]=null)
 	if(!ProcExists(name))
 		//CRASH("No function named '[name]'.")
 		return
-	var/node/statement/FunctionDefinition/func = globalScope.functions[name]
+	var/datum/node/statement/FunctionDefinition/func = globalScope.functions[name]
 	if(istype(func))
-		var/node/statement/FunctionCall/stmt = new
+		var/datum/node/statement/FunctionCall/stmt = new
 		stmt.func_name  = func.func_name
 		stmt.parameters = params
 		return RunFunction(stmt)
@@ -137,4 +137,4 @@
 	See Also:
 	- <runtimeError>
 */
-/n_Interpreter/proc/HandleError(runtimeError/e)
+/datum/n_Interpreter/proc/HandleError(datum/runtimeError/e)

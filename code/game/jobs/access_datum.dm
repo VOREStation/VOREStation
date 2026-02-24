@@ -437,7 +437,37 @@
 
 /datum/access/talon
 	id = ACCESS_TALON
-	desc = "Talon"
+	desc = "Talon General"
+	access_type = ACCESS_TYPE_PRIVATE
+
+/datum/access/talon_bridge
+	id = ACCESS_TALON_BRIDGE
+	desc = "Talon bridge"
+	access_type = ACCESS_TYPE_PRIVATE
+
+/datum/access/talon_medical
+	id = ACCESS_TALON_MEDICAL
+	desc = "Talon medical"
+	access_type = ACCESS_TYPE_PRIVATE
+
+/datum/access/talon_engineer
+	id = ACCESS_TALON_ENGINEER
+	desc = "Talon engineer"
+	access_type = ACCESS_TYPE_PRIVATE
+
+/datum/access/talon_cargo
+	id = ACCESS_TALON_CARGO
+	desc = "Talon cargo"
+	access_type = ACCESS_TYPE_PRIVATE
+
+/datum/access/talon_security
+	id = ACCESS_TALON_SECURITY
+	desc = "Talon security"
+	access_type = ACCESS_TYPE_PRIVATE
+
+/datum/access/talon_pilot
+	id = ACCESS_TALON_PILOT
+	desc = "Talon pilot shuttles"
 	access_type = ACCESS_TYPE_PRIVATE
 
 /datum/access/lost

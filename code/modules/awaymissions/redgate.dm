@@ -185,6 +185,22 @@
 /area/redgate/structure/powered
 	requires_power = 0
 
+/area/redgate/structure/powered/bed1
+	name = "Bedroom 1"
+	requires_power = 0
+
+/area/redgate/structure/powered/bed2
+	name = "Bedroom 2"
+	requires_power = 0
+
+/area/redgate/structure/powered/bed3
+	name = "Bedroom 3"
+	requires_power = 0
+
+/area/redgate/structure/powered/bed4
+	name = "Bedroom 4"
+	requires_power = 0
+
 /area/redgate/lit
 	dynamic_lighting = 0
 

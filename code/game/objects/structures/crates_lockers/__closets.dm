@@ -35,7 +35,7 @@
 
 	var/list/starts_with // List of type = count (or just type for 1)
 
-	var/decl/closet_appearance/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
+	var/datum/decl/closet_appearance/closet_appearance = /datum/decl/closet_appearance // The /datum/decl that defines what decals we end up with, that makes our look unique
 
 	/// Currently animating the door transform
 	var/is_animating_door = FALSE

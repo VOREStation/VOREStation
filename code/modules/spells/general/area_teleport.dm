@@ -1,4 +1,4 @@
-/spell/area_teleport
+/datum/spell/area_teleport
 	name = "Teleport"
 	desc = "This spell teleports you to a type of area of your selection."
 
@@ -19,10 +19,10 @@
 
 	hud_state = "wiz_tele"
 
-/spell/area_teleport/before_cast()
+/datum/spell/area_teleport/before_cast()
 	return
 
-/spell/area_teleport/choose_targets(mob/user)
+/datum/spell/area_teleport/choose_targets(mob/user)
 	var/A = null
 
 	if(!randomise_selection)
@@ -34,7 +34,7 @@
 
 	return list(thearea)
 
-/spell/area_teleport/cast(area/thearea, mob/user)
+/datum/spell/area_teleport/cast(area/thearea, mob/user)
 	if(!istype(thearea))
 		if(istype(thearea, /list))
 			var/list/area_list = thearea
@@ -73,10 +73,10 @@
 
 	return
 
-/spell/area_teleport/after_cast()
+/datum/spell/area_teleport/after_cast()
 	return
 
-/spell/area_teleport/invocation(mob/user, area/chosenarea)
+/datum/spell/area_teleport/invocation(mob/user, area/chosenarea)
 	if(!istype(chosenarea))
 		return //can't have that, can we
 	if(!invocation_area || !chosenarea)

@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(explosions)
 		return
 
 	// The heavy lifting part...
-	while(currentrun.len)
+	while(length(currentrun))
 		// Lets handle list management here instead of in each proc
 		// get the first key of the current run, use the key to get the
 		// data, use the data, than discard it from the list using the key!
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(explosions)
 		currentrun.Remove(key)
 
 		// Check if we move on to final resolution
-		if(!currentrun.len)
+		if(!length(currentrun))
 			if(!resolve_explosions)
 				start_resolve()
 				currentrun = resolving_explosions.Copy()
@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(explosions)
 
 	// return to setup mode... Unless...
 	end_resolve()
-	if(!pending_explosions.len)
+	if(!length(pending_explosions))
 		suspend_and_invoke_deferred_subsystems()
 
 /datum/controller/subsystem/explosions/proc/fire_prepare_explosions(var/list/data)

@@ -1,4 +1,4 @@
-/decl/emote/audible/slap
+/datum/decl/emote/audible/slap
 	key = "slap"
 	emote_message_1p_target = "You slap TARGET across the face. Ouch!"
 	emote_message_1p = "You slap yourself across the face!"
@@ -8,14 +8,14 @@
 	check_restraints = TRUE
 	check_range = 1
 
-/decl/emote/audible/slap/New()
+/datum/decl/emote/audible/slap/New()
 	..()
 	emote_message_1p_target = span_danger(emote_message_1p_target)
 	emote_message_1p =        span_danger(emote_message_1p)
 	emote_message_3p_target = span_danger(emote_message_3p_target)
 	emote_message_3p =        span_danger(emote_message_3p)
 
-/decl/emote/audible/slap/do_extra(var/atom/user, var/atom/target)
+/datum/decl/emote/audible/slap/do_extra(var/atom/user, var/atom/target)
 	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target

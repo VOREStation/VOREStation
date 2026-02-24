@@ -31,8 +31,8 @@ SUBSYSTEM_DEF(persist)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	var/list/query_stack = src.query_stack
-	while (currentrun.len)
-		var/mob/M = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/mob/M = currentrun[length(currentrun)]
 		currentrun.len--
 		if (QDELETED(M) || !istype(M) || !M.mind || !M.client || TICKS2DS(M.client.inactivity) > wait)
 			continue
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(persist)
 		if (MC_TICK_CHECK)
 			return
 
-	if(query_stack.len)
+	if(length(query_stack))
 		SSdbcore.MassInsert(format_table_name("vr_player_hours"), query_stack, duplicate_key = "ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
 		query_stack.Cut()
 

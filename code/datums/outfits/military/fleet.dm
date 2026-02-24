@@ -1,19 +1,19 @@
-/decl/hierarchy/outfit/military/fleet/pt
+/datum/decl/hierarchy/outfit/military/fleet/pt
 	name = OUTFIT_MILITARY("Fleet PT")
 	uniform = /obj/item/clothing/under/solgov/pt/fleet
 	shoes = /obj/item/clothing/shoes/black
 
-/decl/hierarchy/outfit/military/fleet/utility
+/datum/decl/hierarchy/outfit/military/fleet/utility
 	name = OUTFIT_MILITARY("Fleet Utility")
 	uniform = /obj/item/clothing/under/solgov/utility/fleet
 	shoes = /obj/item/clothing/shoes/boots/duty
 
-/decl/hierarchy/outfit/military/fleet/service
+/datum/decl/hierarchy/outfit/military/fleet/service
 	name = OUTFIT_MILITARY("Fleet Service")
 	uniform = /obj/item/clothing/under/solgov/service/fleet
 	shoes = /obj/item/clothing/shoes/dress/white
 
-/decl/hierarchy/outfit/military/fleet/dress
+/datum/decl/hierarchy/outfit/military/fleet/dress
 	name = OUTFIT_MILITARY("Fleet Dress")
 	uniform = /obj/item/clothing/under/solgov/service/fleet
 	shoes = /obj/item/clothing/shoes/dress/white
