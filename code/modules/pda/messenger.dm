@@ -18,7 +18,7 @@
 	. = ..()
 	unnotify()
 
-/datum/data/pda/app/messenger/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/messenger/update_ui(mob/user, list/data)
 	data["silent"] = notify_silent						// does the pda make noise when it receives a message?
 	data["toff"] = toff									// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?

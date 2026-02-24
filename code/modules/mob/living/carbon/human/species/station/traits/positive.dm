@@ -471,6 +471,8 @@
 	cost = 2
 	custom_only = TRUE
 	var_changes = list("flags" = NO_DNA)
+	excludes = list(/datum/trait/negative/disability_deteriorating)
+	banned_species	= list(/datum/species/protean, /datum/species/shapeshifter/promethean)
 
 /datum/trait/positive/weaver/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -556,7 +558,7 @@
 	name = "Dense Bones"
 	desc = "Your bones (or robotic limbs) are more dense or stronger then what is considered normal. It is much harder to fracture your bones, yet pain from fractures is much more intense. Bones require 50% more damage to break, and deal 2x pain on break."
 	cost = 3
-	excludes = list(/datum/trait/negative/hollow)
+	excludes = list(/datum/trait/negative/hollow, /datum/trait/negative/boneless, /datum/trait/negative/boneless/major)
 
 /datum/trait/positive/densebones/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()

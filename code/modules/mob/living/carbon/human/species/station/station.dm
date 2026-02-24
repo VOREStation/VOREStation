@@ -187,13 +187,13 @@
 		)
 
 	default_emotes = list(
-		/decl/emote/human/swish,
-		/decl/emote/human/wag,
-		/decl/emote/human/sway,
-		/decl/emote/human/qwag,
-		/decl/emote/human/fastsway,
-		/decl/emote/human/swag,
-		/decl/emote/human/stopsway
+		/datum/decl/emote/human/swish,
+		/datum/decl/emote/human/wag,
+		/datum/decl/emote/human/sway,
+		/datum/decl/emote/human/qwag,
+		/datum/decl/emote/human/fastsway,
+		/datum/decl/emote/human/swag,
+		/datum/decl/emote/human/stopsway
 	)
 
 	footstep = FOOTSTEP_MOB_CLAW
@@ -307,17 +307,17 @@
 
 	default_emotes = list(
 		//VOREStation Add
-		/decl/emote/audible/gnarl,
-		/decl/emote/audible/purr,
-		/decl/emote/audible/purrlong,
+		/datum/decl/emote/audible/gnarl,
+		/datum/decl/emote/audible/purr,
+		/datum/decl/emote/audible/purrlong,
 		//VOREStation Add End
-		/decl/emote/human/swish,
-		/decl/emote/human/wag,
-		/decl/emote/human/sway,
-		/decl/emote/human/qwag,
-		/decl/emote/human/fastsway,
-		/decl/emote/human/swag,
-		/decl/emote/human/stopsway
+		/datum/decl/emote/human/swish,
+		/datum/decl/emote/human/wag,
+		/datum/decl/emote/human/sway,
+		/datum/decl/emote/human/qwag,
+		/datum/decl/emote/human/fastsway,
+		/datum/decl/emote/human/swag,
+		/datum/decl/emote/human/stopsway
 	)
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds, /mob/living/carbon/human/proc/tie_hair)
 
@@ -424,10 +424,10 @@
 		)
 
 	default_emotes = list(
-		/decl/emote/audible/warble,
-		/decl/emote/audible/lwarble,
-		/decl/emote/audible/croon,
-		/decl/emote/audible/croak
+		/datum/decl/emote/audible/warble,
+		/datum/decl/emote/audible/lwarble,
+		/datum/decl/emote/audible/croon,
+		/datum/decl/emote/audible/croak
 	)
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/carbon/human/proc/water_stealth, /mob/living/carbon/human/proc/underwater_devour)
 
@@ -519,7 +519,7 @@
 
 
 	default_emotes = list(
-		/decl/emote/audible/chirp
+		/datum/decl/emote/audible/chirp
 	)
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
 
@@ -632,8 +632,8 @@
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	default_emotes = list(
-		/decl/emote/audible/chirp,
-		/decl/emote/audible/multichirp
+		/datum/decl/emote/audible/chirp,
+		/datum/decl/emote/audible/multichirp
 	)
 
 /datum/species/diona/can_understand(var/mob/other)
@@ -1226,9 +1226,9 @@
 		)
 
 	default_emotes = list(
-		/decl/emote/audible/teshsqueak,
-		/decl/emote/audible/teshchirp,
-		/decl/emote/audible/teshtrill
+		/datum/decl/emote/audible/teshsqueak,
+		/datum/decl/emote/audible/teshchirp,
+		/datum/decl/emote/audible/teshtrill
 	)
 
 	footstep = FOOTSTEP_MOB_TESHARI

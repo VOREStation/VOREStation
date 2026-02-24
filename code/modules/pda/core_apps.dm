@@ -3,7 +3,7 @@
 	template = "pda_main_menu"
 	hidden = 1
 
-/datum/data/pda/app/main_menu/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/main_menu/update_ui(mob/user, list/data)
 	title = pda.name
 
 	data["app"]["is_home"] = 1
@@ -63,7 +63,7 @@
 		note = "Thank you for choosing the [pda.model_name]!"
 		notetitle = "Congratulations!"
 
-/datum/data/pda/app/notekeeper/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/notekeeper/update_ui(mob/user, list/data)
 	data["note"] = note									// current pda notes
 	data["notename"] = "Note [GLOB.alphabet_upper[currentnote]] : [notetitle]"
 
@@ -206,7 +206,7 @@
 	icon = "user"
 	template = "pda_manifest"
 
-/datum/data/pda/app/manifest/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/manifest/update_ui(mob/user, list/data)
 	if(GLOB.data_core)
 		GLOB.data_core.get_manifest_list()
 	data["manifest"] = GLOB.PDA_Manifest
@@ -221,7 +221,7 @@
 	template = "pda_atmos_scan"
 	category = "Utilities"
 
-/datum/data/pda/app/atmos_scanner/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/atmos_scanner/update_ui(mob/user, list/data)
 	data["aircontents"] = get_gas_mixture_default_scan_data(get_turf(user))
 
 /datum/data/pda/app/news
@@ -231,7 +231,7 @@
 
 	var/newsfeed_channel
 
-/datum/data/pda/app/news/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/news/update_ui(mob/user, list/data)
 	data["feeds"] = compile_news()
 	data["latest_news"] = get_recent_news()
 	if(newsfeed_channel)

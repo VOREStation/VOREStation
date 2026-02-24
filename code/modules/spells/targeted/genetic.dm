@@ -4,7 +4,7 @@ code\game\dna\genes\vg_powers.dm //hulk is in this file
 code\game\dna\genes\goon_disabilities.dm
 code\game\dna\genes\goon_powers.dm
 */
-/spell/targeted/genetic
+/datum/spell/targeted/genetic
 	name = "Genetic modifier"
 	desc = "This spell inflicts a set of mutations and disabilities upon the target."
 
@@ -13,7 +13,7 @@ code\game\dna\genes\goon_powers.dm
 	duration = 100 //deciseconds
 
 
-/spell/targeted/genetic/cast(list/targets)
+/datum/spell/targeted/genetic/cast(list/targets)
 	..()
 	for(var/mob/living/target in targets)
 		for(var/x in mutations)
@@ -27,7 +27,7 @@ code\game\dna\genes\goon_powers.dm
 			target.update_mutations()
 	return
 
-/spell/targeted/genetic/blind
+/datum/spell/targeted/genetic/blind
 	name = "Blind"
 	disabilities = 1
 	duration = 300
@@ -48,7 +48,7 @@ code\game\dna\genes\goon_powers.dm
 
 	hud_state = "wiz_blind"
 
-/spell/targeted/genetic/mutate
+/datum/spell/targeted/genetic/mutate
 	name = "Mutate"
 	desc = "This spell causes you to turn into a hulk and gain laser vision for a short while."
 

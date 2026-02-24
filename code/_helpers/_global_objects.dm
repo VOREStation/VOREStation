@@ -24,6 +24,8 @@ GLOBAL_DATUM_INIT(fire_alarm, /datum/alarm_handler/fire, new)
 GLOBAL_DATUM_INIT(motion_alarm, /datum/alarm_handler/motion, new)
 GLOBAL_DATUM_INIT(power_alarm, /datum/alarm_handler/power, new)
 
+GLOBAL_DATUM_INIT(decls_repository, /datum/repository/decls, new)
+
 // Visual nets
 GLOBAL_LIST_EMPTY_TYPED(visual_nets, /datum/visualnet)
 GLOBAL_DATUM_INIT(cameranet, /datum/visualnet/camera, new)

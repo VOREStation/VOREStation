@@ -17,9 +17,9 @@
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
-#define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
+#define sequential_id(key) GLOB.uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
-#define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
+#define random_id(key,min_id,max_id) GLOB.uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
 

@@ -1,7 +1,7 @@
-/decl/hierarchy/outfit/job/science/xenobiologist
+/datum/decl/hierarchy/outfit/job/science/xenobiologist
 	id_type = /obj/item/card/id/science/xenobiologist
 
-/decl/hierarchy/outfit/job/science/xenobotanist
+/datum/decl/hierarchy/outfit/job/science/xenobotanist
 	name = OUTFIT_JOB_NAME(JOB_XENOBOTANIST)
 	uniform = /obj/item/clothing/under/rank/scientist
 	id_type = /obj/item/card/id/science/xenobotanist

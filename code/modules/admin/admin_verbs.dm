@@ -527,7 +527,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
 ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
-	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", typesof(/spell))
+	var/datum/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", typesof(/datum/spell))
 	if(!S)
 		return
 	spell_recipient.spell_list += new S
@@ -537,7 +537,7 @@ ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CAT
 
 ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
 	var/list/target_spell_list = list()
-	for(var/spell/spell in removal_target.spell_list)
+	for(var/datum/spell/spell in removal_target.spell_list)
 		target_spell_list[spell.name] = spell
 
 	if(!length(target_spell_list))
@@ -546,7 +546,7 @@ ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	var/chosen_spell = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
 	if(isnull(chosen_spell))
 		return
-	var/spell/to_remove = target_spell_list[chosen_spell]
+	var/datum/spell/to_remove = target_spell_list[chosen_spell]
 	if(!istype(to_remove))
 		return
 

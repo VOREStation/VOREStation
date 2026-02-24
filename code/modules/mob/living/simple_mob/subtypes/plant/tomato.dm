@@ -17,7 +17,7 @@
 	response_disarm = "pushes aside"
 	response_harm   = "smacks"
 
-	organ_names = /decl/mob_organ_names/tomato
+	organ_names = /datum/decl/mob_organ_names/tomato
 
 	harm_intent_damage = 5
 	melee_damage_upper = 15
@@ -32,5 +32,5 @@
 	can_be_drop_prey = FALSE
 	can_pain_emote = FALSE
 
-/decl/mob_organ_names/tomato
+/datum/decl/mob_organ_names/tomato
 	hit_zones = list("flesh", "leaf", "mouth")

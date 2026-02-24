@@ -1,5 +1,5 @@
 // Crystalizing (temps under 0)
-/decl/chemical_reaction/distilling/sugar
+/datum/decl/chemical_reaction/distilling/sugar
 	name = "Crystalizing Sugar"
 	id = "distill_sugar"
 	result = REAGENT_ID_SUGAR
@@ -13,7 +13,7 @@
 	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_O2
 
-/decl/chemical_reaction/distilling/fuel_phoron
+/datum/decl/chemical_reaction/distilling/fuel_phoron
 	name = "Crystalizing Phoron"
 	id = "distill_phoron_fuel"
 	result = REAGENT_ID_PHORON

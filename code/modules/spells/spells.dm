@@ -29,7 +29,7 @@
 // 				if(Sp_HOLDVAR)
 // 					statpanel(S.panel,"[S.holder_var_type] [S.holder_var_amount]",S.connected_button)
 
-/mob/proc/add_spell(var/spell/spell_to_add, var/spell_base = "wiz_spell_ready", var/master_type = /atom/movable/screen/movable/spell_master)
+/mob/proc/add_spell(var/datum/spell/spell_to_add, var/spell_base = "wiz_spell_ready", var/master_type = /atom/movable/screen/movable/spell_master)
 	if(!spell_masters)
 		spell_masters = list()
 
@@ -60,7 +60,7 @@
 
 	return 1
 
-/mob/proc/remove_spell(var/spell/spell_to_remove)
+/mob/proc/remove_spell(var/datum/spell/spell_to_remove)
 	if(!spell_to_remove || !istype(spell_to_remove))
 		return
 
