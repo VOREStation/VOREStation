@@ -101,7 +101,7 @@
 	title = JOB_ALT_ANOMALIST
 	title_blurb = "An " + JOB_ALT_ANOMALIST + " is a " + JOB_SCIENTIST + " whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
 					function. They work closely with " + JOB_ALT_XENOARCHAEOLOGIST + "s, or Miners, if either role is present."
-	title_outfit = /decl/hierarchy/outfit/job/science/anomalist
+	title_outfit = /decl/hierarchy/outfit/job/science/scientist/anomalist
 
 /datum/alt_title/phoron_research
 	title = JOB_ALT_PHORON_RESEARCHER

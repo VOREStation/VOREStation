@@ -51,7 +51,7 @@
 	satchel_one = /obj/item/storage/backpack/satchel/norm
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/roboticist
 
-/decl/hierarchy/outfit/job/science/anomalist
+/decl/hierarchy/outfit/job/science/scientist/anomalist
 	name = OUTFIT_JOB_NAME(JOB_ALT_ANOMALIST)
 	l_pocket = /obj/item/anomaly_scanner
 	r_pocket = /obj/item/anomaly_releaser/science
