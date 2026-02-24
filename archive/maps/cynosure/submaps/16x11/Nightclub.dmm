@@ -16,7 +16,7 @@
 "bB" = (
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/pol_13
+	poster_decl = /datum/decl/poster/pol_13
 	},
 /obj/structure/table,
 /turf/simulated/floor/tiled/dark,
@@ -92,7 +92,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 4;
 	pixel_x = 32;
-	poster_decl = /decl/poster/nanotrasen/bay_52
+	poster_decl = /datum/decl/poster/nanotrasen/bay_52
 	},
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
@@ -419,7 +419,7 @@
 /obj/structure/sign/poster/nanotrasen{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/bay_44
+	poster_decl = /datum/decl/poster/bay_44
 	},
 /obj/machinery/reagentgrinder,
 /turf/simulated/floor/lino,
@@ -490,7 +490,7 @@
 /obj/structure/table/glass,
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_27
+	poster_decl = /datum/decl/poster/bay_27
 	},
 /obj/random/drinkbottle,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{

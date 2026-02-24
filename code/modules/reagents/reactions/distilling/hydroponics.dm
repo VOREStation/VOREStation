@@ -1,5 +1,5 @@
 // Hydroponics refinery fun
-/decl/chemical_reaction/distilling/fertilizer
+/datum/decl/chemical_reaction/distilling/fertilizer
 	name = REAGENT_FERTILIZER
 	id = "distill_fertilizer"
 	result = REAGENT_ID_FERTILIZER
@@ -12,7 +12,7 @@
 	require_xgm_gas = GAS_CO2
 	rejects_xgm_gas = GAS_N2
 
-/decl/chemical_reaction/distilling/eznutrient
+/datum/decl/chemical_reaction/distilling/eznutrient
 	name = REAGENT_EZNUTRIENT
 	id = "distill_eznutriment"
 	result = REAGENT_ID_EZNUTRIENT
@@ -25,7 +25,7 @@
 	require_xgm_gas = GAS_O2
 	rejects_xgm_gas = GAS_PHORON
 
-/decl/chemical_reaction/distilling/leftforzed
+/datum/decl/chemical_reaction/distilling/leftforzed
 	name = REAGENT_LEFT4ZED
 	id = "distill_leftforzed"
 	result = REAGENT_ID_LEFT4ZED
@@ -38,7 +38,7 @@
 	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_N2
 
-/decl/chemical_reaction/distilling/robustharvest
+/datum/decl/chemical_reaction/distilling/robustharvest
 	name = REAGENT_ROBUSTHARVEST
 	id = "distill_robustharvest"
 	result = REAGENT_ID_ROBUSTHARVEST

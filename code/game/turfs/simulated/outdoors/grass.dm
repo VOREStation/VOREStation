@@ -2,7 +2,7 @@
 	name = "grass"
 	icon_state = "grass0"
 	edge_blending_priority = 4
-	initial_flooring = /decl/flooring/grass/outdoors // VOREStation Edit
+	initial_flooring = /datum/decl/flooring/grass/outdoors // VOREStation Edit
 	can_dig = TRUE
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
@@ -33,7 +33,7 @@
 /turf/simulated/floor/outdoors/grass/sif
 	name = "growth"
 	icon_state = "grass_sif0"
-	initial_flooring = /decl/flooring/grass/sif
+	initial_flooring = /datum/decl/flooring/grass/sif
 	edge_blending_priority = 4
 	grass_chance = 5
 	var/tree_chance = 2
@@ -77,12 +77,12 @@
 	grass_chance = 80
 	//tree_chance = 20
 	edge_blending_priority = 5
-	initial_flooring = /decl/flooring/grass/outdoors/forest // VOREStation Edit
+	initial_flooring = /datum/decl/flooring/grass/outdoors/forest // VOREStation Edit
 
 /turf/simulated/floor/outdoors/grass/sif/forest
 	name = "thick growth"
 	icon_state = "grass_sif_dark0"
-	initial_flooring = /decl/flooring/grass/sif/forest
+	initial_flooring = /datum/decl/flooring/grass/sif/forest
 	edge_blending_priority = 5
 	tree_chance = 10
 	grass_chance = 1

@@ -138,7 +138,7 @@
 /obj/structure/sign/poster/custom{
 	dir = 8;
 	pixel_x = -32;
-	poster_decl = /decl/poster/bay_39
+	poster_decl = /datum/decl/poster/bay_39
 	},
 /turf/simulated/floor/tiled/old_tile/white,
 /area/template_noop)

@@ -767,19 +767,26 @@ var/global/image/backplane
 	return TRUE
 
 
-/atom/proc/living_mobs_in_view(var/range = world.view, var/count_held = FALSE)
+/atom/proc/living_mobs_in_view(var/range = world.view, var/count_held = FALSE, var/needs_client = FALSE)
 	var/list/viewers = oviewers(src, range)
 	if(count_held)
 		viewers = viewers(src,range)
 	var/list/living = list()
-	for(var/mob/living/L in viewers)
-		if(L.is_incorporeal())
+	for(var/mob/living/living_in_view in viewers)
+		if(living_in_view.is_incorporeal())
 			continue
-		living += L
-		if(count_held)
-			for(var/obj/item/holder/H in L.contents)
-				if(istype(H.held_mob, /mob/living))
-					living += H.held_mob
+		if(needs_client && !living_in_view.client)
+			continue
+		living += living_in_view
+		if(!count_held)
+			continue
+		for(var/obj/item/holder/mob_holder in living_in_view.contents)
+			if(!isliving(mob_holder.held_mob))
+				continue
+			var/mob/living/held_living = mob_holder.held_mob
+			if(needs_client && !held_living.client)
+				continue
+			living += held_living
 	return living
 
 /proc/censor_swears(t)

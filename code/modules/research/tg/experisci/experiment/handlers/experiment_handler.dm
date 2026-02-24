@@ -314,6 +314,13 @@
 		ui = new(user, src, "ExperimentConfigure", "[parent_atom ? "[parent_atom.name] | " : ""]Experiment Configuration")
 		ui.open()
 
+/datum/component/experiment_handler/tgui_static_data(mob/user)
+	. = ..()
+	var/atom/parent_atom = parent
+	if(isrobot(parent_atom.loc))
+		var/mob/living/silicon/robot/owner_robot = parent_atom.loc
+		.["theme"] = owner_robot.get_ui_theme()
+
 /datum/component/experiment_handler/tgui_data(mob/user)
 	. = list(
 		"always_active" = (config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE),

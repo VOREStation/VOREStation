@@ -47,7 +47,7 @@
 	base_attack_cooldown = 1.5 SECONDS
 	attacktext = list("nipped", "bit", "pinched")
 
-	organ_names = /decl/mob_organ_names/frostfly
+	organ_names = /datum/decl/mob_organ_names/frostfly
 
 	projectiletype = /obj/item/projectile/energy/blob/freezing
 
@@ -156,5 +156,5 @@
 	F.energy = max(0, F.energy - 1)	// The AI will eventually flee.
 
 
-/decl/mob_organ_names/frostfly
+/datum/decl/mob_organ_names/frostfly
 	hit_zones = list("head", "thorax", "abdomen", "left vestigal wing", "right vestigal wing", "left legs", "right legs")
