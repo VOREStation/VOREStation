@@ -93,7 +93,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 
 	if(!random_seed)
 		#ifdef UNIT_TESTS
-		random_seed = 29051994 // How about 22475?
+		random_seed = 29051995 // How about 22475?
 		#else
 		random_seed = rand(1, 1e9)
 		#endif
