@@ -190,7 +190,7 @@
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetID()
 	if(I)
-		scan_card(I, O)
+		scan_card(I, O, user)
 	else if (istype(O, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/ewallet/E = O
 		scan_wallet(E)
@@ -201,7 +201,7 @@
 		return ..()
 	// Not paying: Look up price and add it to transaction_amount
 	else
-		scan_item_price(O)
+		scan_item_price(O, user)
 
 /obj/item/retail_scanner/showoff(mob/user)
 	for (var/mob/M in view(user))
@@ -212,12 +212,12 @@
 		return 1
 	else
 		confirm_item = I
-		src.visible_message("[icon2html(src,viewers(src))]<b>Total price:</b> [transaction_amount] Thaler\s. Swipe again to confirm.")
+		src.visible_message("[icon2html(src, viewers(src))]<b>Total price:</b> [transaction_amount] Thaler\s. Swipe again to confirm.")
 		playsound(src, 'sound/machines/twobeep.ogg', 25)
 		return 0
 
 
-/obj/item/retail_scanner/proc/scan_card(obj/item/card/id/I, obj/item/ID_container)
+/obj/item/retail_scanner/proc/scan_card(obj/item/card/id/I, obj/item/ID_container, mob/user)
 	if (!transaction_amount)
 		return
 
@@ -225,7 +225,7 @@
 		return
 
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
+		user.visible_message("[icon2html(src, viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return
 
 	// Access account for transaction
@@ -233,18 +233,18 @@
 		var/datum/money_account/D = get_account(I.associated_account_number)
 		var/attempt_pin = ""
 		if(D && D.security_level)
-			attempt_pin = tgui_input_number(usr, "Enter PIN", "Transaction")
+			attempt_pin = tgui_input_number(user, "Enter PIN", "Transaction")
 			D = null
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to access account. Check security settings and try again."))
+			src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Unable to access account. Check security settings and try again."))
 		else
 			if(D.suspended)
-				src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Your account has been suspended."))
+				src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Your account has been suspended."))
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
+					src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Not enough funds."))
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -286,7 +286,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
+			src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Not enough funds."))
 		else
 			// Transfer the money
 			E.worth -= transaction_amount
@@ -311,16 +311,16 @@
 /obj/item/retail_scanner/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
 	if(length(item_list) > 10)
-		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Only up to ten different items allowed per purchase."))
+		src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Only up to ten different items allowed per purchase."))
 		return
 
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to find item in database."))
+		src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Unable to find item in database."))
 		return
 	// Call out item cost
-	src.visible_message("[icon2html(src,viewers(src))]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
+	src.visible_message("[icon2html(src, viewers(src))]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
 	// Note the transaction purpose for later use
 	if(transaction_purpose)
 		transaction_purpose += "<br>"

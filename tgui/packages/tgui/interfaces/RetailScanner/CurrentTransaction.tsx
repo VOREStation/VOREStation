@@ -11,7 +11,7 @@ import type { Data } from './types';
 
 export const CurrentTransaction = (model) => {
   const { act, data } = useBackend<Data>();
-  const { current_transactioon, locked } = data;
+  const { current_transactioon, cash_locked, locked } = data;
 
   const { items, prices } = current_transactioon;
 
@@ -21,15 +21,28 @@ export const CurrentTransaction = (model) => {
       scrollable
       title="Active Transaction"
       buttons={
-        !!Object.keys(current_transactioon).length && (
-          <Button.Confirm
-            disabled={locked}
-            color="red"
-            onClick={() => act('clear_entry')}
-          >
-            Clear Entry
-          </Button.Confirm>
-        )
+        <Stack>
+          <Stack.Item>
+            {!!Object.keys(current_transactioon).length && (
+              <Button.Confirm
+                disabled={locked}
+                color="red"
+                onClick={() => act('clear_entry')}
+              >
+                Clear Entry
+              </Button.Confirm>
+            )}
+          </Stack.Item>
+          {cash_locked !== undefined && (
+            <Stack.Item>
+              <Button
+                disabled={locked}
+                color={cash_locked ? 'red' : 'green'}
+                onClick={() => act('toggle_cash_lock')}
+              >{`Cash Register ${cash_locked ? 'L' : 'Unl'}ocked`}</Button>
+            </Stack.Item>
+          )}
+        </Stack>
       }
     >
       <Table>

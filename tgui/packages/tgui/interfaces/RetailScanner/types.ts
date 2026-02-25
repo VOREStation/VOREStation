@@ -2,6 +2,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   locked: BooleanLike;
+  cash_locked?: BooleanLike;
   linked_account: string | null;
   machine_id: string;
   transaction_logs: {

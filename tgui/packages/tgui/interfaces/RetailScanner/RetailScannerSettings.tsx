@@ -25,6 +25,7 @@ export const RetailScannerSettings = (model) => {
       fill
       buttons={
         <Button
+          color={locked ? 'red' : 'green'}
           onClick={() => act('toggle_lock')}
         >{`${locked ? 'L' : 'Unl'}ocked`}</Button>
       }
