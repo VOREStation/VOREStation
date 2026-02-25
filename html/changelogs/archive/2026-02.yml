@@ -201,3 +201,29 @@
   - bugfix: circuitboards no longer give steel on recycling in the DA
   - code_imp: circuitboard materials and recycling amounts moved to a define for easier
       editing downstream
+2026-02-21:
+  Kashargul:
+  - bugfix: borg sleepers showing a 0 where they shouldn't
+  - qol: gives multiple robot UIs robot themes
+2026-02-22:
+  Cameron-The-Raven:
+  - bugfix: Fixes synx sonar ping to a working cooldown
+  Kashargul:
+  - rscadd: adds a game collection table and pda app
+  Sharkmare:
+  - bugfix: Bone related traits now properly exclude each other.
+  Will:
+  - bugfix: Catslug belly markings can be colored
+2026-02-23:
+  Cerami:
+  - bugfix: Disables the AFK prey preference from functioning while someone is dead
+  Diana:
+  - code_imp: rubber duckies don't destroy the universe anymore
+  Kashargul:
+  - refactor: moves a lot of non static datum paths explicitly to /datum/
+  - code_imp: dependency update
+  - spellcheck: fixes the spelling in the not implemented pref messages
+  Sharkmare:
+  - bugfix: Made Bad shot and thick digits mutually exclusive
+  Will:
+  - code_imp: adds smes rcon name_tag unit test

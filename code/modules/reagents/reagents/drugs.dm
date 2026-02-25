@@ -21,6 +21,7 @@
 	reagent_state = LIQUID
 	metabolism = REM * 0.5
 	ingest_met = REM * 1.5 /// Be very careful with this, ingestion is weird and will spam high/sober messages horribly!
+	dermal_absorption = 0
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 
@@ -218,6 +219,7 @@
 /datum/reagent/drugs/nicotine
 	name = REAGENT_NICOTINE
 	id = REAGENT_ID_NICOTINE
+	dermal_absorption = 0.5 //Nicotine patches are REAL
 	description = "A highly addictive stimulant extracted from the tobacco plant."
 	taste_description = "sour staleness"
 	color = "#181818"

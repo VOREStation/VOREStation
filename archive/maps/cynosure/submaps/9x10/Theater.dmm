@@ -18,7 +18,7 @@
 	},
 /obj/structure/sign/poster{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_28
+	poster_decl = /datum/decl/poster/bay_28
 	},
 /turf/simulated/floor/plating,
 /area/template_noop)
@@ -86,7 +86,7 @@
 /obj/item/stack/tile/carpet,
 /obj/structure/sign/poster{
 	pixel_y = -32;
-	poster_decl = /decl/poster/vore_96
+	poster_decl = /datum/decl/poster/vore_96
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)
@@ -105,7 +105,7 @@
 /obj/item/frame/apc,
 /obj/structure/sign/poster{
 	pixel_y = -32;
-	poster_decl = /decl/poster/bay_6
+	poster_decl = /datum/decl/poster/bay_6
 	},
 /turf/simulated/floor/plating,
 /area/template_noop)

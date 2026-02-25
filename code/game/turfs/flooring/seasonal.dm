@@ -26,7 +26,7 @@ GLOBAL_VAR(world_time_day)
 
 	icon_edge = 'icons/seasonal/turf_edge.dmi'
 
-	initial_flooring = /decl/flooring/grass/seasonal_grass
+	initial_flooring = /datum/decl/flooring/grass/seasonal_grass
 
 	grass_types = list()
 	var/static/list/overlays_cache = list()
@@ -243,7 +243,7 @@ GLOBAL_VAR(world_time_day)
 /turf/simulated/floor/outdoors/grass/seasonal/dark
 	icon_state = "ds-grass"
 	edge_blending_priority = 4.01
-	initial_flooring = /decl/flooring/grass/seasonal_grass/dark
+	initial_flooring = /datum/decl/flooring/grass/seasonal_grass/dark
 	tree_chance = 5
 /turf/simulated/floor/outdoors/grass/seasonal/dark/notrees
 	tree_chance = 0

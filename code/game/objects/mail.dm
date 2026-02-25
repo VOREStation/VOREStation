@@ -334,7 +334,7 @@
 	name = "mail crate"
 	desc = "An official mail crate from CentCom"
 	points_per_crate = 0
-	closet_appearance = /decl/closet_appearance/crate/nanotrasen
+	closet_appearance = /datum/decl/closet_appearance/crate/nanotrasen
 
 /obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()
