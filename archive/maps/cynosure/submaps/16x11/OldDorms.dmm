@@ -131,7 +131,7 @@
 /obj/structure/sign/poster{
 	dir = 4;
 	pixel_x = 32;
-	poster_decl = /decl/poster/bay_29
+	poster_decl = /datum/decl/poster/bay_29
 	},
 /obj/item/frame/apc,
 /obj/item/frame/light,

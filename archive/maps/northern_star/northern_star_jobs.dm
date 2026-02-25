@@ -4,6 +4,6 @@
 		JOB_ALT_TECHNICAL_ASSISTANT,
 		JOB_ALT_MEDICAL_INTERN,
 		JOB_ALT_RESEARCH_ASSISTANT,
-		JOB_ALT_VISITOR = /decl/hierarchy/outfit/job/assistant/visitor,
-		JOB_ALT_RESIDENT = /decl/hierarchy/outfit/job/assistant/resident
+		JOB_ALT_VISITOR = /datum/decl/hierarchy/outfit/job/assistant/visitor,
+		JOB_ALT_RESIDENT = /datum/decl/hierarchy/outfit/job/assistant/resident
 	)

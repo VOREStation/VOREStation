@@ -8,6 +8,7 @@
 	description = "A liquid that is capable of causing a prolonged state of heightened aggression and durability."
 	taste_description = "metal"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2
 	color = "#ff5555"
 	metabolism = REM
 	scannable = SCANNABLE_SECRETIVE

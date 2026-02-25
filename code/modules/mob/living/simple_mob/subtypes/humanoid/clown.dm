@@ -22,7 +22,7 @@
 	attacktext = list("attacked")
 	attack_sound = 'sound/items/bikehorn.ogg'
 
-	organ_names = /decl/mob_organ_names/clown
+	organ_names = /datum/decl/mob_organ_names/clown
 
 	say_list_type = /datum/say_list/clown
 
@@ -30,5 +30,5 @@
 	speak = list("HONK", "Honk!", "Welcome to clown planet!")
 	emote_see = list("honks")
 
-/decl/mob_organ_names/clown
+/datum/decl/mob_organ_names/clown
 	hit_zones = list("head", "torso", "pie-hole", "honker", "left funny bone", "right funny bone", "left foot", "right foot", "unmentionables")

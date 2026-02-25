@@ -8,9 +8,9 @@
 //			/old_stat: Status before the change.
 //			/new_stat: Status after the change.
 /*
-stat_set_event, /decl/observ/stat_set, new)
+stat_set_event, /datum/decl/observ/stat_set, new)
 
-/decl/observ/stat_set
+/datum/decl/observ/stat_set
 	name = "Stat Set"
 	expected_type = /mob/living
 */

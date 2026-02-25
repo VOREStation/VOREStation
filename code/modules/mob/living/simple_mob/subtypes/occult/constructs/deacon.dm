@@ -20,7 +20,7 @@
 	attack_edge = 1
 	attacktext = list("violently stabbed")
 	friendly = list("caresses")
-	organ_names = /decl/mob_organ_names/harvester
+	organ_names = /datum/decl/mob_organ_names/harvester
 	movement_cooldown = -1
 
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
@@ -39,10 +39,10 @@
 				"rad" = 100)
 
 	construct_spells = list(
-			/spell/aoe_turf/knock/harvester,
-			/spell/targeted/construct_advanced/force_beam,
-			/spell/targeted/construct_advanced/soothing_sphere,
+			/datum/spell/aoe_turf/knock/harvester,
+			/datum/spell/targeted/construct_advanced/force_beam,
+			/datum/spell/targeted/construct_advanced/soothing_sphere,
 		)
 
-/decl/mob_organ_names/harvester
+/datum/decl/mob_organ_names/harvester
 	hit_zones = list("cephalothorax", "eye", "carapace", "energy crystal", "mandible")
