@@ -350,6 +350,9 @@
 	grabber.update_inv_r_hand()
 	return H
 
+/mob/living/silicon/pai/Moved(atom/oldloc, direct, forced, movetime)
+	. = ..()
+	check_retract_cable()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Status and damage
@@ -419,14 +422,22 @@
 		. += "Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 /// Fully heals a pai, used when a pai is repaired
-/mob/living/silicon/pai/proc/full_restore() //This is using do_after all kinds of weird...
+/mob/living/silicon/pai/proc/full_restore()
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
-	do_after(src, 1 SECONDS, target = src)
+	addtimer(CALLBACK(src, PROC_REF(restore_delay_start)), 5 SECONDS, TIMER_DELETE_ME)
+
+/mob/living/silicon/pai/proc/restore_delay_start()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	card.setEmotion(16)
 	stat = CONSCIOUS
-	do_after(src, 5 SECONDS, target = src)
-	var/mob/observer/dead/ghost = src.get_ghost()
+	addtimer(CALLBACK(src, PROC_REF(restore_delay_end)), 1 SECONDS, TIMER_DELETE_ME)
+
+/mob/living/silicon/pai/proc/restore_delay_end()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	var/mob/observer/dead/ghost = get_ghost()
 	if(ghost)
 		ghost.notify_revive("Someone is trying to revive you. Re-enter your body if you want to be revived!", 'sound/effects/pai-restore.ogg', source = card)
 	canmove = TRUE
@@ -451,6 +462,19 @@
 	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 
 	canmove = !resting
+
+/mob/living/silicon/pai/proc/check_retract_cable()
+	if(!cable)
+		return
+
+	var/turf/current = get_turf(src)
+	var/turf/cableturf = get_turf(cable)
+	if(get_dist(current, cableturf) <= 1)
+		return
+
+	cableturf.visible_message("The data cable rapidly retracts back into its spool.", "You hear a click and the sound of wire spooling rapidly.")
+	playsound(src, 'sound/machines/click.ogg', 50, 1)
+	QDEL_NULL(cable)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Update icons
