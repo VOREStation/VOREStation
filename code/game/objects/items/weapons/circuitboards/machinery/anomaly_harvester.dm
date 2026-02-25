@@ -8,9 +8,9 @@
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 1)
 	req_components = list(
-		/obj/item/stock_parts/matter_bin/adv = 2,
-		/obj/item/stock_parts/manipulator/nano = 1,
-		/obj/item/stock_parts/micro_laser/high = 1,
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stack/material/phoron = 5,
 		/obj/item/stack/material/diamond = 1

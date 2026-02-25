@@ -31,8 +31,8 @@
 	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
 		rating += laser.rating - 2
 
-	efficiency = efficient/10+1
-	points_to_create = 100 - (rating * 5)
+	efficiency = max(1, (efficient/10+1))
+	points_to_create = min(100, (100 - (rating * 5)))
 
 /obj/machinery/anomaly_harvester/process()
 	..()
@@ -76,8 +76,6 @@
 	if(default_part_replacement(user, W))
 		return
 	if(default_unfasten_wrench(user, W, 2 SECONDS))
-		return
-	if(default_part_replacement(user, W))
 		return
 	if(istype(W, /obj/item/anomaly_scanner))
 		if(!anchored)
