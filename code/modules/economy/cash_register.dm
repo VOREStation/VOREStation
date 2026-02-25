@@ -55,13 +55,13 @@
 			cash_stored = 0
 			cut_overlay("register_cash")
 			return
-		open_cash_box()
+		open_cash_box(user)
 		return
 	tgui_interact(user)
 
 /obj/machinery/cash_register/click_alt(mob/user)
 	if(Adjacent(user))
-		open_cash_box()
+		open_cash_box(user)
 
 /obj/machinery/cash_register/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
 	. = ..()
@@ -300,7 +300,6 @@
 					// Confirm and reset
 					transaction_complete()
 
-
 /obj/machinery/cash_register/proc/scan_wallet(obj/item/spacecash/ewallet/E, mob/user)
 	if (!transaction_amount)
 		return
@@ -338,7 +337,6 @@
 			// Confirm and reset
 			transaction_complete()
 
-
 /obj/machinery/cash_register/proc/scan_cash(obj/item/spacecash/SC, mob/user)
 	if (!transaction_amount)
 		return
@@ -369,7 +367,6 @@
 
 		// Confirm and reset
 		transaction_complete()
-
 
 /obj/machinery/cash_register/proc/scan_item_price(obj/O, mob/user)
 	if(!istype(O))	return
@@ -433,13 +430,12 @@
 /obj/machinery/cash_register/proc/check_account(mob/user)
 	if (!linked_account)
 		user.visible_message("[icon2html(src, viewers(src))]" + span_warning("Unable to connect to linked account."))
-		return 0
+		return FALSE
 
 	if(linked_account.suspended)
 		src.visible_message("[icon2html(src, viewers(src))]" + span_warning("Connected account has been suspended."))
-		return 0
-	return 1
-
+		return FALSE
+	return TRUE
 
 /obj/machinery/cash_register/proc/transaction_complete()
 	/// Visible confirmation
@@ -447,8 +443,6 @@
 	src.visible_message("[icon2html(src, viewers(src))]" + span_notice("Transaction complete."))
 	flick("register_approve", src)
 	reset_memory()
-	updateDialog()
-
 
 /obj/machinery/cash_register/proc/reset_memory()
 	transaction_amount = null
@@ -457,14 +451,13 @@
 	price_list.Cut()
 	confirm_item = null
 
-
-/obj/machinery/cash_register/verb/open_cash_box()
+/obj/machinery/cash_register/verb/open_cash_box(mob/user)
 	set category = "Object"
 	set name = "Open Cash Box"
 	set desc = "Open/closes the register's cash box."
 	set src in view(1)
 
-	if(usr.stat) return
+	if(user.stat) return
 
 	if(cash_open)
 		cash_open = 0
@@ -478,7 +471,7 @@
 		if(cash_stored)
 			add_overlay("register_cash")
 	else
-		to_chat(usr, span_warning("The cash box is locked."))
+		to_chat(user, span_warning("The cash box is locked."))
 
 
 /obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W, mob/user)
@@ -504,9 +497,7 @@
 	manipulating = 0
 	return
 
-
-
-/obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/cash_register/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		src.visible_message(span_danger("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
 		playsound(src, "sparks", 50, 1)
@@ -514,7 +505,7 @@
 		emagged = 1
 		locked = 0
 		cash_locked = 0
-		open_cash_box()
+		open_cash_box(user)
 
 
 //--Premades--//
