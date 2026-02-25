@@ -38,7 +38,7 @@
 	alt_titles = list(JOB_ALT_HEAD_ENGINEER = /datum/alt_title/head_engineer, JOB_ALT_FOREMAN = /datum/alt_title/foreman, JOB_ALT_MAINTENANCE_MANAGER = /datum/alt_title/maintenance_manager)
 	minimal_player_age = 7
 
-	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
+	outfit_type = /datum/decl/hierarchy/outfit/job/engineering/chief_engineer
 	job_description = "The " + JOB_CHIEF_ENGINEER + " manages the Engineering Department, ensuring that the Engineers work on what needs to be done, handling distribution \
 						of manpower as much as they handle hands-on operations and repairs. They are also expected to keep the rest of the station informed of \
 						any structural threats to the station that may be hazardous to health or disruptive to work."
@@ -85,7 +85,7 @@
 	minimal_player_age = 3
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
-	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer
+	outfit_type = /datum/decl/hierarchy/outfit/job/engineering/engineer
 	job_description = "An " + JOB_ENGINEER + " keeps the station running. They repair damages, keep the atmosphere stable, and ensure that power is being \
 						generated and distributed. On quiet shifts, they may be called upon to make cosmetic alterations to the station."
 
@@ -138,7 +138,7 @@
 /datum/alt_title/chem_tech
 	title = JOB_ALT_CHEMENGINEER
 	title_blurb = "A " + JOB_ALT_CHEMENGINEER + " specializes in industrial scale chemical production. They are responsible for planning the construction of and operating chemical refinery machines."
-	title_outfit = /decl/hierarchy/outfit/job/engineering/chems
+	title_outfit = /datum/decl/hierarchy/outfit/job/engineering/chems
 
 //////////////////////////////////
 //			Atmos Tech
@@ -164,7 +164,7 @@
 	minimal_player_age = 3
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
-	outfit_type = /decl/hierarchy/outfit/job/engineering/atmos
+	outfit_type = /datum/decl/hierarchy/outfit/job/engineering/atmos
 	job_description = "An " + JOB_ATMOSPHERIC_TECHNICIAN + " is primarily concerned with keeping the station's atmosphere breathable. They are expected to have a good \
 						understanding of the pipes, vents, and scrubbers that move gasses around the station, and to be familiar with proper firefighting procedure."
 

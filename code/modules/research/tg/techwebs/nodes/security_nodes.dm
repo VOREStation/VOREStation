@@ -58,6 +58,7 @@
 	design_ids = list(
 		"netgun",
 		"sizenetgun",
+		"bolablaster",
 		"sickshot",
 		"pummeler",
 		"protector",

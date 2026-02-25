@@ -60,6 +60,7 @@ export const Ticket = (props) => {
   const [ticketChat, setTicketChat] = useState('');
 
   const messagesEndRef: RefObject<HTMLDivElement | null> = useRef(null);
+  const inputRef: RefObject<HTMLInputElement | null> = useRef(null);
 
   const {
     id,
@@ -78,20 +79,14 @@ export const Ticket = (props) => {
 
   useEffect(() => {
     const scroll = messagesEndRef.current;
-    if (scroll) {
-      scroll.scrollTop = scroll.scrollHeight;
-    }
-  }, []);
+    if (!scroll) return;
 
-  useEffect(() => {
-    const scroll = messagesEndRef.current;
-    if (scroll) {
-      const height = scroll.scrollHeight;
-      const bottom = scroll.scrollTop + scroll.offsetHeight;
-      const scrollTracking = Math.abs(height - bottom) < 24;
-      if (scrollTracking) {
-        scroll.scrollTop = scroll.scrollHeight;
-      }
+    const isAtBottom =
+      Math.abs(scroll.scrollHeight - scroll.scrollTop - scroll.offsetHeight) <
+      24;
+
+    if (isAtBottom) {
+      scroll.scrollTop = scroll.scrollHeight;
     }
   }, [log]);
 
@@ -203,6 +198,7 @@ export const Ticket = (props) => {
                           ticket_ref: ticket_ref,
                         });
                         setTicketChat('');
+                        requestAnimationFrame(() => inputRef.current?.focus());
                       }
                     }}
                   />
@@ -215,6 +211,7 @@ export const Ticket = (props) => {
                         ticket_ref: ticket_ref,
                       });
                       setTicketChat('');
+                      requestAnimationFrame(() => inputRef.current?.focus());
                     }}
                   >
                     Send

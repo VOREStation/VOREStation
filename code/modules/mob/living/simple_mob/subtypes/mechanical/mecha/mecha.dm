@@ -15,7 +15,7 @@
 	mob_size = MOB_LARGE
 	damage_threshold = 5 //Anything that's 5 or less damage will not do damage.
 
-	organ_names = /decl/mob_organ_names/mecha
+	organ_names = /datum/decl/mob_organ_names/mecha
 
 	armor = list(
 				"melee"		= 20,
@@ -143,5 +143,5 @@
 		deflect_sprite()
 	..(severity)
 
-/decl/mob_organ_names/mecha
+/datum/decl/mob_organ_names/mecha
 	hit_zones = list("central chassis", "control module", "hydraulics", "left arm", "right arm", "left leg", "right leg", "sensor suite", "radiator", "power supply", "left equipment mount", "right equipment mount")

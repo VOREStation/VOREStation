@@ -10,6 +10,7 @@
 	reagent_state = LIQUID
 	color = "#FFFF00" // rgb: 255, 255, 0
 	metabolism = 0.01
+	dermal_absorption = 1 //Grow patches.
 	scannable = SCANNABLE_BENEFICIAL
 	mrate_static = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
@@ -28,6 +29,7 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	metabolism = 0.01
+	dermal_absorption = 1 //Shrink patches
 	mrate_static = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
@@ -46,6 +48,7 @@
 	reagent_state = LIQUID
 	color = "#00FFFF"
 	metabolism = 0.01 //One unit will be just enough to bring someone from 200% to 100%
+	dermal_absorption = 1
 	mrate_static = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
@@ -253,10 +256,11 @@
 	description = "A potent toxin commonly found in a plethora of species. When exposed to the toxin, causes extreme, paralysis for a prolonged period, with only essential functions of the body being unhindered. Commonly used by covert operatives and used as a crowd control tool."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
+	dermal_absorption = 0 //Too strong.
 	color = "#37007f"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
-	scannable = 0 //YOU ARE NOT SCANNING THE FUNNY PARALYSIS TOXIN. NO. BAD. STAY AWAY.
+	scannable = 1 //As I found out, this only means if you can detect it or not. Sad.
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
@@ -275,7 +279,7 @@
 	metabolism = 0.1 //Lasts up to 50 seconds if you give 5 units.
 	mrate_static = TRUE
 	overdose = 100 //There is no OD. You already are taking the worst of it.
-	scannable = 0 //Let's not have medical mechs able to make an extremely strong 'I hit you you fall down in agony' chem.
+	scannable = 1
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 

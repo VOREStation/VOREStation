@@ -191,7 +191,7 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
-	var/decl/plantgene/gene = null
+	var/datum/decl/plantgene/gene = null
 	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/florayield
@@ -282,12 +282,21 @@
 
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/carbon/human/human_target = target
 		var/obj/item/handcuffs/legcuffs/bola/B = new(src.loc)
-		if(!B.place_legcuffs(M,firer))
+		for(var/obj/item/clothing/cloth in list(human_target.wear_suit, human_target.w_uniform, human_target.shoes)) //Check if we have a thick material covering our feet.
+			if((cloth.body_parts_covered & FEET) && (cloth.item_flags & THICKMATERIAL))
+				..()
+				return
+		if(!B.place_legcuffs(human_target,firer))
 			if(B)
 				qdel(B)
 	..()
+
+/obj/item/projectile/bola/energy
+	name = "energy_bola"
+	icon_state = "bola_energy"
+	damage = 0
 
 /obj/item/projectile/webball
 	name = "ball of web"

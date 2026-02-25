@@ -1,4 +1,4 @@
-/turf/simulated/var/zone/zone
+/turf/simulated/var/datum/zone/zone
 /turf/simulated/var/open_directions
 
 /turf/var/needs_air_update = 0
@@ -102,7 +102,7 @@
 		//dbg(blocked)
 		#endif
 		if(zone)
-			var/zone/z = zone
+			var/datum/zone/z = zone
 
 			if(can_safely_remove_from_zone()) //Helps normal airlocks avoid rebuilding zones all the time
 				z.remove(src)
@@ -210,7 +210,7 @@
 			postponed.Add(unsim)
 
 	if(!HAS_VALID_ZONE(src)) //Still no zone, make a new one.
-		var/zone/newzone = new/zone()
+		var/datum/zone/newzone = new/datum/zone()
 		newzone.add(src)
 
 	#ifdef ZASDBG

@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds the Bola Blaster - A new gun that applies legcuffs to whatever it hits!"
+  - qol: "Thick material that covers your feet blocks bolas."
+  - code_imp: "Gets rid of the _vr suffix on the netgun file"
+  - image: "Adds a new energy bola sprite."

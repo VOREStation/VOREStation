@@ -243,17 +243,17 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["instant_reactions"] = null
 	if(reaction_list != null && length(reaction_list) > 0)
 		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/CR in reaction_list)
+		for(var/datum/decl/chemical_reaction/CR in reaction_list)
 			if(CR.wiki_flag & WIKI_SPOILER)
 				continue
 			display_reactions.Add(CR)
 
 		var/reactions = list()
-		for(var/decl/chemical_reaction/CR in display_reactions)
+		for(var/datum/decl/chemical_reaction/CR in display_reactions)
 			var/list/assemble_reaction = list()
 			var/list/reqs = list()
 			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				var/datum/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 				if(!r_RQ)
 					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
 					continue
@@ -261,7 +261,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["required"] = reqs
 			var/list/inhib = list()
 			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				var/datum/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 				if(!r_IH)
 					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
 					continue
@@ -269,15 +269,15 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["inhibitor"] = inhib
 			var/list/catal = list()
 			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				var/datum/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 				if(!r_CL)
 					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
 			assemble_reaction["is_slime"] = null
-			if(istype(CR,/decl/chemical_reaction/instant/slime))
-				var/decl/chemical_reaction/instant/slime/CRS = CR
+			if(istype(CR, /datum/decl/chemical_reaction/instant/slime))
+				var/datum/decl/chemical_reaction/instant/slime/CRS = CR
 				var/obj/item/slime_extract/slime_path = CRS.required
 				assemble_reaction["is_slime"] = initial(slime_path.name)
 			reactions += list(assemble_reaction)
@@ -287,13 +287,13 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["distilled_reactions"] = null
 	if(distilled_list != null && length(distilled_list) > 0)
 		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
+		for(var/datum/decl/chemical_reaction/distilling/CR in distilled_list)
 			if(CR.wiki_flag & WIKI_SPOILER)
 				continue
 			display_reactions.Add(CR)
 
 		var/reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
+		for(var/datum/decl/chemical_reaction/distilling/CR in display_reactions)
 			var/list/assemble_reaction = list()
 			assemble_reaction["temp_min"] = CR.temp_range[1]
 			assemble_reaction["temp_max"] = CR.temp_range[2]
@@ -303,7 +303,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["rejects_xgm_gas"] = CR.rejects_xgm_gas ? GLOB.gas_data.name[CR.rejects_xgm_gas] : null
 			var/list/reqs = list()
 			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				var/datum/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 				if(!r_RQ)
 					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
 					continue
@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["required"] = reqs
 			var/list/inhib = list()
 			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				var/datum/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 				if(!r_IH)
 					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
 					continue
@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["inhibitor"] = inhib
 			var/list/catal = list()
 			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				var/datum/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 				if(!r_CL)
 					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
 					continue
@@ -368,7 +368,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	display_reactions = list()
 	for(var/O in GLOB.ore_data)
-		var/ore/OR = GLOB.ore_data[O]
+		var/datum/ore/OR = GLOB.ore_data[O]
 		if(OR.reagent == R.id)
 			display_reactions.Add(OR.name)
 	data["fluid"] = null
@@ -376,18 +376,26 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["fluid"] = display_reactions
 
 	display_reactions = list()
-	var/list/instant_by_reagent = SSchemistry.instant_reactions_by_reagent["[R.id]"]
-	if(instant_by_reagent && length(instant_by_reagent))
-		for(var/i = 1, i <= length(instant_by_reagent), i++)
-			var/decl/chemical_reaction/OR = instant_by_reagent[i]
-			if(istype(OR,/decl/chemical_reaction/instant/slime)) // very bloated and meant to be a mystery
-				continue
-			display_reactions.Add(OR.name)
-	var/list/distilled_by_reagent = SSchemistry.distilled_reactions_by_reagent["[R.id]"]
-	if(distilled_by_reagent && length(distilled_by_reagent))
-		for(var/i = 1, i <= length(distilled_by_reagent), i++)
-			var/decl/chemical_reaction/OR = distilled_by_reagent[i]
-			display_reactions.Add(OR.name)
+
+	// We need to do this instead of using distilled_reactions_by_reagent, because SSchem was built around unique logic that only uses the first reagent key found.
+	// So if we collected them all, chemistry as players know it will explode. So we recheck all reagent datums directly instead and see if we're used by them.
+	var/list/paths = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/chemical_reaction)
+	for(var/path in paths)
+		var/datum/decl/chemical_reaction/D = paths[path]
+		if(istype(D, /datum/decl/chemical_reaction/instant/slime))
+			continue
+		if(!D.result)
+			continue
+
+		var/list/scan_list = list()
+		if(length(D.required_reagents))
+			scan_list += D.required_reagents
+		if(length(D.catalysts))
+			scan_list += D.catalysts
+
+		if(R.id in scan_list)
+			display_reactions.Add(D.name)
+
 	data["produces"] = null
 	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
@@ -455,7 +463,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	PRIVATE_PROC(TRUE)
 	// assemble ore wiki
 	for(var/N in GLOB.ore_data)
-		var/ore/OR = GLOB.ore_data[N]
+		var/datum/ore/OR = GLOB.ore_data[N]
 		if(OR.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(OR.type)
 			continue
@@ -599,7 +607,7 @@ SUBSYSTEM_DEF(internal_wiki)
 						)
 		qdel(R)
 	// basically condiments, tofu, cheese, soysauce, etc
-	for(var/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
+	for(var/datum/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
 		if(!allow_reagent(CR.result))
 			continue
 		if(CR.wiki_flag & WIKI_SPOILER)
@@ -777,7 +785,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // ORES
 ////////////////////////////////////////////
-/datum/internal_wiki/page/ore/assemble(var/ore/O)
+/datum/internal_wiki/page/ore/assemble(var/datum/ore/O)
 	title = O.display_name
 	data["title"] = title
 	var/obj/item/ore/ore_path = O.ore
@@ -1576,7 +1584,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
-			body += " <b>-Temperature: </b> [react["xgm_min"]]K - [react["xgm_max"]]K | ([react["xgm_min"] - T0C]C - [react["xgm_max"] - T0C]C)<br>"
+			body += " <b>-Temperature: </b> [react["temp_min"]]K to [react["temp_max"]]K | ([react["temp_min"] - T0C]C to [react["temp_max"] - T0C]C)<br>"
+			if(react["xgm_min"] || react["xgm_max"])
+				body += " <b>-Pressure: </b> [react["xgm_min"]]kpa - [react["xgm_max"]]kpa<br>"
 			if(react["require_xgm_gas"])
 				body += " <b>-Requires Gas: </b> [react["require_xgm_gas"]]<br>"
 			if(react["rejects_xgm_gas"])
