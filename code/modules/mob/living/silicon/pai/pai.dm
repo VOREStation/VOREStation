@@ -128,6 +128,8 @@
 	add_verb(src, /mob/living/proc/set_size)
 	add_verb(src, /mob/living/proc/shred_limb)
 
+	remove_verb(src, /mob/verb/toggle_gun_mode) // Pai doesn't have support for this and shouldn't be able to use guns anyway
+
 	//PDA
 	pda = new(src)
 	pda.ownjob = "Personal Assistant"
