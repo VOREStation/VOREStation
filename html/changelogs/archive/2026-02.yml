@@ -227,3 +227,25 @@
   - bugfix: Made Bad shot and thick digits mutually exclusive
   Will:
   - code_imp: adds smes rcon name_tag unit test
+2026-02-25:
+  Cameron-The-Raven:
+  - bugfix: Prometheans and proteans can no longer take Rotting Genetics
+  - bugfix: Stable Genetics and Rotting Genetics can no longer be taken together.
+  Diana:
+  - rscadd: Adds the Bola Blaster - A new gun that applies legcuffs to whatever it
+      hits!
+  - qol: Thick material that covers your feet blocks bolas.
+  - code_imp: Gets rid of the _vr suffix on the netgun file
+  - image: Adds a new energy bola sprite.
+  - server: Tracy updateed to 1678.
+  - bugfix: Being splashed with ice (and various other substances) will no longer
+      kill you.
+  - bugfix: Distillery machine now works properly when connected to a gas pipeline.
+  - bugfix: Syringe gun darts no longer accidentally delete syringes.
+  - qol: Cyanide is still not 'fast and lethal' as the coder comment implies but is
+      now more lethal than previous. It also is no longer an instant win button.
+  Kashargul:
+  - bugfix: tg tgui chunking failing on certain messages above 1080 characters
+  - bugfix: multiple runtimes
+  Nova:
+  - refactor: Convert bay gender and pronoun prefs to TG
