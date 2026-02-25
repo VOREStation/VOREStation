@@ -74,15 +74,20 @@
 	switch(choice)
 		if("Fresh Data")
 			ghost_inhabit(user, FALSE)
+			return
 
 		if("Load PAI Data")
 			ghost_inhabit(user, TRUE)
+			return
 
 	#warn Remove the following line
 	return ..() // TEMP, REMOVE ME
 
 /obj/item/paicard/proc/ghost_inhabit(mob/user, load_slot)
 	RETURN_TYPE(/mob/living/silicon/pai)
+	if(load_slot && user.client?.prefs.read_preference(/datum/preference/text/pai_name) == PAI_UNSET) // Lets avoid "None Set" pais joining
+		to_chat(user, span_danger("You have no pai name set."))
+		return
 	// Setup pai
 	var/mob/living/silicon/pai/new_pai = new(src)
 	new_pai.key = user.key
