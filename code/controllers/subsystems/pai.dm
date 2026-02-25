@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(pai)
 			list(
 				"key" = ghost.ckey,
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
-				"gender" = pref.identifying_gender,
+				"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
 				// Description
 				"description" = pref.read_preference(/datum/preference/text/pai_description),
 				"role" = pref.read_preference(/datum/preference/text/pai_role),
