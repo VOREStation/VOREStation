@@ -99,7 +99,7 @@
 
 /datum/decl/chemical_reaction/instant/food/vinegar_apple
 	name = "apple " + REAGENT_VINEGAR
-	id = "apple vinegar"
+	id = "applevinegar"
 	result = REAGENT_ID_VINEGAR
 	required_reagents = list(REAGENT_ID_APPLEJUICE = 2, REAGENT_ID_WATER = 2, REAGENT_ID_SUGAR = 2)
 	catalysts = list(REAGENT_ID_YEAST = 5)
@@ -107,7 +107,7 @@
 
 /datum/decl/chemical_reaction/instant/food/vinegar_grape
 	name = "grape " + REAGENT_VINEGAR
-	id = "grape vinegar"
+	id = "grapevinegar"
 	result = REAGENT_ID_VINEGAR
 	required_reagents = list(REAGENT_ID_GRAPEJUICE = 2, REAGENT_ID_WATER = 2, REAGENT_ID_SUGAR = 2)
 	catalysts = list(REAGENT_ID_YEAST = 5)
