@@ -94,12 +94,6 @@
 	AddComponent(/datum/component/using_machine_shim, O)
 
 /// deprecated, do not use
-/obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
-	if(istype(M) && M.client && M.check_current_machine(src))
-		src.attack_self(M)
-
-/// deprecated, do not use
 /obj/proc/updateUsrDialog(mob/user)
 	if(in_use)
 		var/is_in_use = 0
