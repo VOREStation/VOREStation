@@ -1,0 +1,4 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - image: "fixed back pieces on corner couches being set up wrong in the dmis"
