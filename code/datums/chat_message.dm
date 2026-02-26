@@ -151,8 +151,16 @@ var/list/runechat_image_cache = list()
 	// If we heard our name, it's important
 	// Differnt from our own system of name emphasis, maybe unify
 	var/list/names = splittext(owner.name, " ")
-	for (var/word in names)
-		text = replacetext(text, word, span_bold("[word]"))
+	var/list/parts = list(owner.name)
+
+	for(var/word in names)
+		if(length(word) > 3)
+			parts += word
+
+	var/regex/message_regex = new("\\b(" + parts.Join("|") + ")\\b(?!\[^<]*>)", "gi")
+
+	text = message_regex.Replace_char(text, span_bold("$1"))
+	to_chat(world, text)
 
 	var/list/prefixes
 
