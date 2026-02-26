@@ -316,14 +316,14 @@
 /obj/random/cigarettes,
 /obj/random/cigarettes,
 /turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/lobby)
+/area/redgate/laserdome/lobby/store_2)
 "aaV" = (
 /obj/structure/table/rack,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/lobby)
+/area/redgate/laserdome/lobby/store_2)
 "aaW" = (
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/milspec,
@@ -331,7 +331,7 @@
 "aaX" = (
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/lobby)
+/area/redgate/laserdome/lobby/store_2)
 "aaY" = (
 /obj/structure/table/marble,
 /obj/machinery/cash_register,
@@ -14719,8 +14719,8 @@ kUV
 abh
 xaR
 xaR
-xMG
-xMG
+xaR
+xaR
 aaU
 xLH
 xLH
@@ -14861,8 +14861,8 @@ xaR
 xaR
 xaR
 vIe
-xMG
-xMG
+xaR
+xaR
 aaU
 xLH
 xLH
@@ -15003,7 +15003,7 @@ xaR
 xaR
 xaR
 abg
-xMG
+xaR
 aaX
 aaV
 xLH
@@ -15145,8 +15145,8 @@ abl
 abi
 xaR
 vIe
-xMG
-xMG
+xaR
+xaR
 aaV
 xLH
 xLH
