@@ -2235,7 +2235,6 @@
 /area/redgate/laserdome/arena/hyperball)
 "qVN" = (
 /obj/structure/table/rack,
-/obj/structure/table/rack,
 /obj/random/nukies_can_legal,
 /obj/random/action_figure,
 /obj/random/soap_common,
