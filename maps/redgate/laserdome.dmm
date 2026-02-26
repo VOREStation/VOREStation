@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aaa" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/tiled/white,
-/area/redgate/laserdome/lobby/showers)
 "aab" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/freeforall)
@@ -22,15 +18,9 @@
 /obj/item/radio/intercom/locked/entertainment{
 	pixel_y = -23
 	},
+/obj/random/tech_supply/nofail,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
-"aag" = (
-/obj/structure/table/marble,
-/obj/item/radio/intercom/locked/entertainment{
-	pixel_y = -23
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/lobby/store_2)
 "aah" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 10
@@ -306,6 +296,141 @@
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
+"aaS" = (
+/obj/structure/table/rack,
+/obj/random/cigarettes,
+/obj/random/cigarettes,
+/obj/random/cigarettes,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"aaT" = (
+/obj/structure/table/rack,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"aaU" = (
+/obj/structure/table/rack,
+/obj/random/cigarettes,
+/obj/random/cigarettes,
+/obj/random/cigarettes,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"aaV" = (
+/obj/structure/table/rack,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"aaW" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"aaX" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"aaY" = (
+/obj/structure/table/marble,
+/obj/machinery/cash_register,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"aaZ" = (
+/obj/structure/table/marble,
+/obj/random/carp_plushie,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"aba" = (
+/obj/structure/table/marble,
+/obj/random/plushie,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"abb" = (
+/obj/structure/table/marble,
+/obj/random/carp_plushie,
+/obj/random/tech_supply/nofail,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"abc" = (
+/obj/structure/table/marble,
+/obj/random/plushie,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abd" = (
+/obj/structure/table/marble,
+/obj/random/carp_plushie,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abe" = (
+/obj/structure/table/marble,
+/obj/random/tech_supply/nofail,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abf" = (
+/obj/structure/table/marble,
+/obj/item/radio/intercom/locked/entertainment{
+	pixel_y = -23
+	},
+/obj/random/plushie,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abg" = (
+/obj/structure/table/marble,
+/obj/machinery/cash_register,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abh" = (
+/obj/structure/table/rack,
+/obj/random/flashlight,
+/obj/random/action_figure,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abi" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/nukies_can_legal,
+/obj/random/snack,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abj" = (
+/obj/structure/table/rack,
+/obj/random/flashlight,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"abk" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/soap_common,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"abl" = (
+/obj/structure/table/rack,
+/obj/random/desatti_snacks,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abm" = (
+/obj/structure/table/rack,
+/obj/random/nukies_can_legal,
+/obj/random/plushie,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"abn" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/mech_toy,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"abo" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/action_figure,
+/obj/random/snack,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
 "aeW" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
@@ -356,6 +481,7 @@
 /obj/structure/table/rack,
 /obj/random/drinksoft,
 /obj/random/desatti_snacks,
+/obj/random/snack,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "awn" = (
@@ -905,7 +1031,7 @@
 /area/redgate/laserdome/lobby)
 "geF" = (
 /obj/structure/table/rack,
-/obj/random/cigarettes,
+/obj/random/mech_toy,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "ggB" = (
@@ -970,6 +1096,7 @@
 "gKd" = (
 /obj/structure/table/rack,
 /obj/random/drinksoft,
+/obj/random/snack,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "gKy" = (
@@ -1373,6 +1500,7 @@
 "kms" = (
 /obj/structure/table/rack,
 /obj/random/drinksoft,
+/obj/random/soap_common,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
 "kqL" = (
@@ -1388,6 +1516,7 @@
 "krQ" = (
 /obj/structure/table/rack,
 /obj/random/nukies_can_legal,
+/obj/random/mech_toy,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "ktn" = (
@@ -1476,8 +1605,8 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "kUV" = (
 /obj/structure/table/rack,
-/obj/random/cigarettes,
 /obj/random/desatti_snacks,
+/obj/random/mech_toy,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
 "kYn" = (
@@ -1612,6 +1741,7 @@
 /obj/structure/table/rack,
 /obj/random/drinksoft,
 /obj/random/desatti_snacks,
+/obj/random/snack,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
 "mmm" = (
@@ -1973,8 +2103,9 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "pyU" = (
 /obj/structure/table/rack,
-/obj/random/cigarettes,
 /obj/random/nukies_can_legal,
+/obj/random/plushie,
+/obj/random/action_figure,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "pAB" = (
@@ -2021,6 +2152,7 @@
 "pXq" = (
 /obj/structure/table/rack,
 /obj/random/flashlight,
+/obj/random/soap_common,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "pYa" = (
@@ -2103,8 +2235,10 @@
 /area/redgate/laserdome/arena/hyperball)
 "qVN" = (
 /obj/structure/table/rack,
-/obj/random/cigarettes,
+/obj/structure/table/rack,
 /obj/random/nukies_can_legal,
+/obj/random/action_figure,
+/obj/random/soap_common,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
 "qWQ" = (
@@ -2258,6 +2392,7 @@
 /obj/random/drinksoft,
 /obj/random/drinksoft,
 /obj/random/desatti_snacks,
+/obj/random/action_figure,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "soY" = (
@@ -9472,9 +9607,9 @@ pXq
 pyU
 mmw
 eCL
-xLH
-xLH
-xLH
+mmw
+mmw
+aaS
 xLH
 xLH
 xLH
@@ -9613,10 +9748,10 @@ mmw
 mmw
 mmw
 mmw
-eCL
-xLH
-xLH
-xLH
+aaY
+mmw
+aaW
+aaS
 xLH
 xLH
 xLH
@@ -9756,9 +9891,9 @@ mmw
 mmw
 mmw
 eCL
-xLH
-xLH
-xLH
+mmw
+mmw
+aaT
 xLH
 xLH
 xLH
@@ -9897,10 +10032,10 @@ awb
 geF
 bVo
 mmw
-eCL
-xLH
-xLH
-xLH
+mmw
+mmw
+mmw
+aaT
 xLH
 xLH
 xLH
@@ -10035,8 +10170,8 @@ xMG
 xMG
 eCL
 mmw
-pyU
-pXq
+abm
+abj
 gKd
 mmw
 aaf
@@ -10181,7 +10316,7 @@ mmw
 mmw
 mmw
 mmw
-eCL
+aaZ
 xLH
 xLH
 xLH
@@ -10323,7 +10458,7 @@ mmw
 mmw
 mmw
 mmw
-eCL
+aba
 xLH
 xLH
 xLH
@@ -10462,10 +10597,10 @@ jZT
 giO
 mmw
 krQ
-gKd
+abk
 awb
 mmw
-eCL
+abb
 xLH
 xLH
 xLH
@@ -14015,7 +14150,7 @@ qVN
 mib
 lEw
 xaR
-vIe
+abc
 vDA
 vDA
 vDA
@@ -14157,7 +14292,7 @@ xaR
 xaR
 xaR
 xaR
-vIe
+abd
 xLH
 xLH
 xLH
@@ -14299,7 +14434,7 @@ xaR
 xaR
 xaR
 xaR
-vIe
+abe
 xLH
 xLH
 xLH
@@ -14441,7 +14576,7 @@ mBZ
 vid
 kms
 xaR
-vIe
+abf
 xLH
 xLH
 xLH
@@ -14579,14 +14714,14 @@ xMG
 xMG
 vIe
 xaR
-kms
+abn
 kUV
-lEw
+abh
 xaR
-aag
-xLH
-xLH
-xLH
+xaR
+xMG
+xMG
+aaU
 xLH
 xLH
 xLH
@@ -14726,9 +14861,9 @@ xaR
 xaR
 xaR
 vIe
-xLH
-xLH
-xLH
+xMG
+xMG
+aaU
 xLH
 xLH
 xLH
@@ -14867,10 +15002,10 @@ xaR
 xaR
 xaR
 xaR
-vIe
-xLH
-xLH
-xLH
+abg
+xMG
+aaX
+aaV
 xLH
 xLH
 xLH
@@ -14990,7 +15125,7 @@ xLH
 xLH
 yjF
 lcP
-aaa
+lcP
 lcP
 lcP
 jho
@@ -15005,14 +15140,14 @@ xMG
 ont
 mhi
 xaR
-kms
-kUV
-vid
+abo
+abl
+abi
 xaR
 vIe
-xLH
-xLH
-xLH
+xMG
+xMG
+aaV
 xLH
 xLH
 xLH
