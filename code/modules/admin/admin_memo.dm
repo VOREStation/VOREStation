@@ -2,17 +2,22 @@
 #define ENABLE_MEMOS // this is so stupid
 
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
-/client/proc/admin_memo(task in list("write","show","delete"))
-	set name = "Memo"
-	set category = "Server.Admin"
+ADMIN_VERB(admin_memo, R_ADMIN|R_MOD|R_EVENT, "Memo", "Manage admin memos.", ADMIN_CATEGORY_SERVER_ADMIN)
 	#ifndef ENABLE_MEMOS
 	return
 	#endif
-	if(!check_rights(0))	return
+
+	var/task = tgui_input_list(user, "Select Action", "Select the Memo Action.", list("write","show","delete"))
+	if(!task)
+		return
+
 	switch(task)
-		if("write")		admin_memo_write()
-		if("show")		admin_memo_show()
-		if("delete")	admin_memo_delete()
+		if("write")
+			user.admin_memo_write()
+		if("show")
+			user.admin_memo_show()
+		if("delete")
+			user.admin_memo_delete()
 
 //write a message
 /client/proc/admin_memo_write()

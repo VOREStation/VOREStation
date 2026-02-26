@@ -100,12 +100,14 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 // Server Categories
 #define ADMIN_CATEGORY_SERVER "Server"
 #define ADMIN_CATEGORY_SERVER_GAME "Server.Game"
+#define ADMIN_CATEGORY_SERVER_ADMIN "Server.Admin"
 
 // Fun categories
 #define ADMIN_CATEGORY_FUN_EVENT_KIT "Fun.Event Kit"
 #define ADMIN_CATEGORY_FUN_DROP_POD "Fun.Drop Pod"
 #define ADMIN_CATEGORY_FUN_DO_NOT "Fun.Do Not"
 #define ADMIN_CATEGORY_FUN_SILICON "Fun.Silicon"
+#define ADMIN_CATEGORY_FUN_SOUNDS "Fun.Sounds"
 
 // Visibility flags
 #define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Map-Debug"

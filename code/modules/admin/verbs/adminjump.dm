@@ -36,21 +36,16 @@
 	message_admins("[key_name_admin(src)] jumped to [target_area]")
 	feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/jumptoturf(var/turf/T in world)
-	set name = "Jump to Turf"
-	set category = "Admin.Game"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
-		return
+ADMIN_VERB(jumptoturf, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to Turf", "Jump to a specific turf in the game.", ADMIN_CATEGORY_GAME, turf/T in world)
 	if(CONFIG_GET(flag/allow_admin_jump))
-		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
-		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
-		usr.on_mob_jump()
-		usr.reset_perspective(usr)
-		usr.forceMove(T)
+		log_admin("[key_name(user)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
+		message_admins("[key_name_admin(user)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
+		user.mob.on_mob_jump()
+		user.mob.reset_perspective(user)
+		user.mob.forceMove(T)
 		feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		tgui_alert_async(usr, "Admin jumping disabled")
-	return
+		return
+	tgui_alert_async(user, "Admin jumping disabled")
 
 /// Verb wrapper around do_jumptomob()
 /client/proc/jumptomob(mob as null|anything in GLOB.mob_list)

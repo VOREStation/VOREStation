@@ -7,7 +7,6 @@
 		if(rights & R_FUN)			add_verb(src, GLOB.admin_verbs_fun)
 		if(rights & R_SERVER)		add_verb(src, GLOB.admin_verbs_server)
 		if(rights & R_DEBUG)		add_verb(src, GLOB.admin_verbs_debug)
-		if(rights & R_SOUNDS)		add_verb(src, GLOB.admin_verbs_sounds)
 		if(rights & R_SPAWN)		add_verb(src, GLOB.admin_verbs_spawn)
 		if(rights & R_MOD)			add_verb(src, GLOB.admin_verbs_mod)
 		if(rights & R_EVENT)		add_verb(src, GLOB.admin_verbs_event_manager)
@@ -23,7 +22,6 @@
 		GLOB.admin_verbs_fun,
 		GLOB.admin_verbs_server,
 		GLOB.admin_verbs_debug,
-		GLOB.admin_verbs_sounds,
 		GLOB.admin_verbs_spawn,
 		GLOB.debug_verbs
 		))
@@ -64,17 +62,14 @@
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/admin_ghost()
-	set category = "Admin.Game"
-	set name = "Aghost"
-	if(!check_rights_for(src, R_HOLDER))	return
-
+ADMIN_VERB(admin_ghost, R_HOLDER, "Aghost", "Ghost out of your body with the option to return at any time.", ADMIN_CATEGORY_GAME)
 	var/build_mode
-	if(src.buildmode)
-		build_mode = tgui_alert(src, "You appear to be currently in buildmode. Do you want to re-enter buildmode after aghosting?", "Buildmode", list("Yes", "No"))
+	if(user.buildmode)
+		build_mode = tgui_alert(user, "You appear to be currently in buildmode. Do you want to re-enter buildmode after aghosting?", "Buildmode", list("Yes", "No"))
 		if(build_mode != "Yes")
-			to_chat(src, "Will not re-enter buildmode after switch.")
+			to_chat(user, "Will not re-enter buildmode after switch.")
 
+	var/mob/mob = user.mob
 	if(isobserver(mob))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
@@ -93,7 +88,7 @@
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(isnewplayer(mob))
-		to_chat(src, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
+		to_chat(user, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
 	else
 		//ghostize
 		var/mob/body = mob
@@ -105,32 +100,28 @@
 				togglebuildmode(ghost)
 		else
 			ghost = body.ghostize(1, TRUE)
-		init_verbs()
+		user.init_verbs()
 		if(body)
 			body.teleop = ghost
 			if(!body.key)
-				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
+				body.key = "@[user.key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/invisimin()
-	set name = "Invisimin"
-	set category = "Admin.Game"
-	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
+ADMIN_VERB(invisimin, R_ADMIN|R_MOD|R_EVENT, "Invisimin", "Toggles ghost-like invisibility (Don't abuse this).", ADMIN_CATEGORY_GAME)
+	var/mob/mob = user.mob
+	if(mob.invisibility > INVISIBILITY_OBSERVER)
+		to_chat(user, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
+		return
 
-	if(check_rights(R_HOLDER) && mob)
-		if(mob.invisibility > INVISIBILITY_OBSERVER)
-			to_chat(mob, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
-			return
+	if(mob.invisibility == INVISIBILITY_OBSERVER)
+		mob.invisibility = initial(mob.invisibility)
+		to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
+		mob.alpha = max(mob.alpha + 100, 255)
+		return
 
-		if(mob.invisibility == INVISIBILITY_OBSERVER)
-			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
-			mob.alpha = max(mob.alpha + 100, 255)
-			return
-
-		mob.invisibility = INVISIBILITY_OBSERVER
-		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
-		mob.alpha = max(mob.alpha - 100, 0)
+	mob.invisibility = INVISIBILITY_OBSERVER
+	to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
+	mob.alpha = max(mob.alpha - 100, 0)
 
 ADMIN_VERB(list_bombers, R_ADMIN, "List Bombers", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
 	user.holder.list_bombers()
