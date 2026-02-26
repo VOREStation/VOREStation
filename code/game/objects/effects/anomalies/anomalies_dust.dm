@@ -65,6 +65,9 @@
 		if(prob(1))
 			new /obj/random/mob/vermin(ground)
 
+		if(prob(2))
+			new /obj/effect/decal/cleanable/filth(ground)
+
 /obj/effect/anomaly/dust/detonate()
 	COOLDOWN_RESET(src, pulse_cooldown)
 	anomalyEffect()
