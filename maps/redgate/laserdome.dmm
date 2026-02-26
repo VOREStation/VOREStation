@@ -1,4 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/effect/floor_decal/corner/red/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
 "aab" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/freeforall)
@@ -213,15 +219,15 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aaO" = (
-/obj/effect/floor_decal/corner/yellow,
 /obj/structure/table/bench/steel,
+/obj/effect/floor_decal/corner/red,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aaP" = (
-/obj/effect/floor_decal/corner/yellow/full{
+/obj/structure/closet/lasertag/blue/laserdome,
+/obj/effect/floor_decal/corner/red/full{
 	dir = 4
 	},
-/obj/structure/closet/lasertag/omni/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aaQ" = (
@@ -245,10 +251,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aaS" = (
-/obj/effect/floor_decal/corner/yellow{
+/obj/structure/closet/lasertag/blue/laserdome,
+/obj/effect/floor_decal/corner/red{
 	dir = 6
 	},
-/obj/structure/closet/lasertag/omni/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aaT" = (
@@ -365,17 +371,17 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "abg" = (
-/obj/effect/floor_decal/corner/yellow{
+/obj/structure/table/bench/steel,
+/obj/effect/floor_decal/corner/blue{
 	dir = 4
 	},
-/obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "abh" = (
-/obj/effect/floor_decal/corner/yellow/full{
+/obj/structure/closet/lasertag/red/laserdome,
+/obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
-/obj/structure/closet/lasertag/omni/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "abi" = (
@@ -431,6 +437,39 @@
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
+"abo" = (
+/obj/structure/flag_decor/red,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/arena/ffa_prep)
+"abp" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"abq" = (
+/obj/structure/closet/lasertag/red/laserdome,
+/obj/effect/floor_decal/corner/blue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"abr" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"abs" = (
+/obj/effect/floor_decal/corner/blue/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"abt" = (
+/obj/structure/flag_decor/blue,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/arena/ffa_prep)
 "aeW" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
@@ -7883,8 +7922,8 @@ aab
 aab
 aad
 aad
-aaX
-aaA
+abs
+abr
 abg
 aaR
 aaR
@@ -7896,8 +7935,8 @@ aaR
 aaR
 aaR
 aaO
-aaA
-aaw
+abp
+aaa
 aad
 aad
 aab
@@ -8025,12 +8064,12 @@ aab
 aab
 aab
 aab
-ikl
+abt
 aaL
 abh
-aaS
-aaS
-aaS
+abq
+abq
+abq
 wPX
 aaD
 aaH
@@ -8039,7 +8078,7 @@ aaS
 aaS
 aaP
 aaL
-ikl
+abo
 aab
 aab
 aab

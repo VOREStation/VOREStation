@@ -1850,10 +1850,10 @@
 /obj/structure/prop/machine/biosyphon/laserdome/freeforall
 	name = "Laserdome Free-For-All Orientation Holo"
 	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
-	THIS ARENA IS FOR FREE-FOR-ALL MODE!
-	PROVIDED EQUIPMENT IS HAVING NO TEAM ALLEGIANCE!
+	THIS ARENA IS FOR FREE-FOR-ALL AND TEAM-FOR-ALL MODES!
+	PURPLED EQUIPMENT IS HAVING NO TEAM ALLEGIANCE!
 	RECOMMENDED RULINGS AS FOLLOWS:
-	LAST MAN STANDING: WHEN PLAYER HIT, PERMANENTLY ELIMINATED, RETURN TO SPAWN! LAST PLAYER \'ALIVE\' IS WINNING!
-	FIRST TO SCORE: WHEN PLAYER HIT, RETURN TO SPAWN! FIRST PLAYER TO ELIMINATE AGREED NUMBER OF OTHERS IS WINNING!
+	LAST MAN STANDING: WHEN PLAYER HIT, PERMANENTLY ELIMINATED, RETURN TO SPAWN! LAST PLAYER \'ALIVE\' IS WINNING! IN TEAM MODE, LAST TEAM WITH LIVE PLAYERS IS WIN!
+	FIRST TO SCORE: WHEN PLAYER HIT, RETURN TO SPAWN! FIRST PLAYER (OR TEAM) TO ELIMINATE AGREED NUMBER OF OTHERS IS WINNING!
 	OR, PLAY HOWEVER MOST ENJOYED!
 	GOOD LUCK!!!"}
