@@ -1,0 +1,7 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "runechat bold not working"
+  - bugfix: "runechat bold formatting breaking spans"
+  - bugfix: "robots not being able to play PDA games"
+  - bugfix: "item autotransfer flags not getting imported"
