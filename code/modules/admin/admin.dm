@@ -862,7 +862,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	else
 		to_chat(world, span_world("Deadchat has been globally disabled!"))
 	log_admin("[key_name(usr)] toggled deadchat.")
-	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
+	message_admins("[key_name_admin(usr)] toggled deadchat.")
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggleoocdead()
@@ -875,7 +875,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 
 	CONFIG_SET(flag/dooc_allowed, !CONFIG_GET(flag/dooc_allowed))
 	log_admin("[key_name(usr)] toggled Dead OOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
+	message_admins("[key_name_admin(usr)] toggled Dead OOC.")
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglehubvisibility()
@@ -888,7 +888,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 
 	world.visibility = !(world.visibility)
 	log_admin("[key_name(usr)] toggled hub visibility.")
-	message_admins("[key_name_admin(usr)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).", 1)
+	message_admins("[key_name_admin(usr)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).")
 	feedback_add_details("admin_verb","THUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggletraitorscaling()
@@ -897,7 +897,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	set name="Toggle Traitor Scaling"
 	CONFIG_SET(flag/traitor_scaling, !CONFIG_GET(flag/traitor_scaling))
 	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].", 1)
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
@@ -933,7 +933,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	else
 		to_chat(world, span_world("New players may now enter the game."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."), 1)
+	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."))
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -959,7 +959,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 		to_chat(world, span_world("You may now respawn."))
 	else
 		to_chat(world, span_world("You may no longer respawn :("))
-	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."), 1)
+	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."))
 	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -969,7 +969,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	set desc="Whether persistent data will be saved from now on."
 	set name="Toggle Persistent Data"
 	CONFIG_SET(flag/persistence_disabled, !CONFIG_GET(flag/persistence_disabled))
-	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."), 1)
+	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."))
 	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -983,27 +983,21 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 		to_chat(world, span_world("Persistence is now enabled."))
 	else
 		to_chat(world, span_world("Persistence is no longer enabled."))
-	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"]."), 1)
+	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"]."))
 	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TMPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggle_aliens()
-	set category = "Server.Game"
-	set desc="Toggle alien mobs"
-	set name="Toggle Aliens"
+ADMIN_VERB(toggle_aliens, R_FUN|R_SERVER, "Toggle Aliens", "Toggle alien mobs.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
-	log_admin("[key_name(usr)] toggled Aliens to [CONFIG_GET(flag/aliens_allowed)].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 1)
+	log_admin("[key_name(user)] toggled Aliens to [CONFIG_GET(flag/aliens_allowed)].")
+	message_admins("[key_name_admin(user)] toggled Aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggle_space_ninja()
-	set category = "Server.Game"
-	set desc="Toggle space ninjas spawning."
-	set name="Toggle Space Ninjas"
+ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle space ninjas spawning.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/ninjas_allowed, !CONFIG_GET(flag/ninjas_allowed))
-	log_admin("[key_name(usr)] toggled Space Ninjas to [CONFIG_GET(flag/ninjas_allowed)].")
-	message_admins("[key_name_admin(usr)] toggled Space Ninjas [CONFIG_GET(flag/ninjas_allowed) ? "on" : "off"].", 1)
+	log_admin("[key_name(user)] toggled Space Ninjas to [CONFIG_GET(flag/ninjas_allowed)].")
+	message_admins("[key_name_admin(user)] toggled Space Ninjas [CONFIG_GET(flag/ninjas_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay()
@@ -1017,7 +1011,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 		SSticker.toggle_delay()
 
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
+		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."))
 		return
 	GLOB.round_progressing = !GLOB.round_progressing
 	if (!GLOB.round_progressing)
@@ -1308,7 +1302,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	else
 		to_chat(world, span_world("Guests may now enter the game."))
 	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
+	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."))
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)

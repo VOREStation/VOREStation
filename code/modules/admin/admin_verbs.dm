@@ -265,19 +265,15 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 #undef MAX_WARNS
 #undef AUTOBANTIME
 
-/client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Fun.Do Not"
-	set name = "Drop Bomb"
-	set desc = "Cause an explosion of varying strength at your location."
-
-	var/turf/epicenter = mob.loc
+ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN_DO_NOT) // Some admin dickery that can probably be done better -- TLE
+	var/turf/epicenter = user.mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap Bomb", "SM Blast", "Custom Bomb", "Cancel")
-	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Explosion Choice", choices)
+	var/choice = tgui_input_list(user, "What size explosion would you like to produce?", "Explosion Choice", choices)
 	switch(choice)
 		if(null)
-			return 0
+			return FALSE
 		if("Cancel")
-			return 0
+			return FALSE
 		if("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
 		if("Medium Bomb")
@@ -289,14 +285,13 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 		if("SM Blast")
 			explosion(epicenter, 8, 16, 24, 32)
 		if("Custom Bomb")
-			var/devastation_range = tgui_input_number(usr, "Devastation range (in tiles):")
-			var/heavy_impact_range = tgui_input_number(usr, "Heavy impact range (in tiles):")
-			var/light_impact_range = tgui_input_number(usr, "Light impact range (in tiles):")
-			var/flash_range = tgui_input_number(usr, "Flash range (in tiles):")
+			var/devastation_range = tgui_input_number(user, "Devastation range (in tiles):")
+			var/heavy_impact_range = tgui_input_number(user, "Heavy impact range (in tiles):")
+			var/light_impact_range = tgui_input_number(user, "Light impact range (in tiles):")
+			var/flash_range = tgui_input_number(user, "Flash range (in tiles):")
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins(span_blue("[ckey] creating an admin explosion at [epicenter.loc]."))
+	message_admins(span_blue("[user.ckey] creating an admin explosion at [epicenter.loc]."))
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 ADMIN_VERB(admin_give_modifier, R_EVENT, "Give Modifier", "Makes a mob weaker or stronger by adding a specific modifier to them.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/living_target)
 	if(!living_target)
@@ -317,19 +312,17 @@ ADMIN_VERB(admin_give_modifier, R_EVENT, "Give Modifier", "Makes a mob weaker or
 	living_target.add_modifier(new_modifier_type, duration)
 	log_and_message_admins("has given [key_name(living_target)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].", user)
 
-/client/proc/make_sound(var/obj/O in world) // -- TLE
-	set category = "Fun.Sounds"
-	set name = "Make Sound"
-	set desc = "Display a message to everyone who can hear the target"
-	if(O)
-		var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", "", MAX_MESSAGE_LEN)
-		if(!message)
-			return
-		O.audible_message(message)
-		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
-		message_admins(span_blue("[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound."), 1)
-		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+ADMIN_VERB(make_sound, R_FUN, "Make Sound", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_SOUNDS, obj/target_object in world)
+	if(!target_object)
+		return
 
+	var/message = tgui_input_text(user, "What do you want the message to be?", "Make Sound", "", MAX_MESSAGE_LEN)
+	if(!message)
+		return
+	target_object.audible_message(message)
+	log_admin("[key_name(user)] made [target_object] at [target_object.x], [target_object.y], [target_object.z]. make a sound")
+	message_admins(span_blue("[key_name_admin(user)] made [target_object] at [target_object.x], [target_object.y], [target_object.z]. make a sound."))
+	feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
