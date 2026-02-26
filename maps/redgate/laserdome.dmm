@@ -1,10 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aaa" = (
-/obj/effect/floor_decal/corner/red/full{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/arena/ffa_prep)
 "aab" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/freeforall)
@@ -185,52 +179,58 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aaI" = (
+/obj/effect/floor_decal/corner/red/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"aaJ" = (
 /obj/structure/table/rack,
 /obj/random/nukies_can_legal,
 /obj/random/plushie,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
-"aaJ" = (
+"aaK" = (
 /obj/structure/table/rack,
 /obj/random/drinksoft,
 /obj/random/mech_toy,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
-"aaK" = (
+"aaL" = (
 /obj/structure/table/rack,
 /obj/random/drinksoft,
 /obj/random/action_figure,
 /obj/random/snack,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
-"aaL" = (
+"aaM" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaM" = (
+"aaN" = (
 /obj/effect/floor_decal/corner/yellow/full,
 /obj/structure/closet/lasertag/omni/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaN" = (
+"aaO" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 8
 	},
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaO" = (
+"aaP" = (
 /obj/structure/table/bench/steel,
 /obj/effect/floor_decal/corner/red,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaP" = (
+"aaQ" = (
 /obj/structure/closet/lasertag/blue/laserdome,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaQ" = (
+"aaR" = (
 /mob/living/carbon/human/dummy/mannequin/autoequip{
 	autorotate = 0;
 	name = "Laserdome Mannequin";
@@ -246,18 +246,18 @@
 /obj/item/clothing/head/omnitag,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaR" = (
+"aaS" = (
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaS" = (
+"aaT" = (
 /obj/structure/closet/lasertag/blue/laserdome,
 /obj/effect/floor_decal/corner/red{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaT" = (
+"aaU" = (
 /mob/living/carbon/human/dummy/mannequin/autoequip{
 	autorotate = 0;
 	name = "Laserdome Mannequin";
@@ -270,13 +270,13 @@
 /obj/item/clothing/head/omnitag,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaU" = (
+"aaV" = (
 /obj/item/radio/intercom/locked/entertainment{
 	pixel_y = -23
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
-"aaV" = (
+"aaW" = (
 /mob/living/carbon/human/dummy/mannequin/autoequip{
 	autorotate = 0;
 	name = "Laserdome Mannequin";
@@ -292,32 +292,45 @@
 /obj/item/clothing/head/omnitag,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaW" = (
+"aaX" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 5
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaX" = (
+"aaY" = (
 /obj/effect/floor_decal/corner/yellow/full{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaY" = (
+"aaZ" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/laserdome/arena/ffa_prep)
-"aaZ" = (
+"aba" = (
+/obj/effect/floor_decal/arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"abb" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"aba" = (
+"abc" = (
 /obj/effect/floor_decal/arrow,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abb" = (
+"abd" = (
+/obj/structure/closet/lasertag/red/laserdome,
+/obj/effect/floor_decal/corner/blue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
+"abe" = (
 /mob/living/carbon/human/dummy/mannequin/autoequip{
 	autorotate = 0;
 	name = "Laserdome Mannequin";
@@ -333,7 +346,7 @@
 /obj/item/clothing/head/omnitag,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abc" = (
+"abf" = (
 /mob/living/carbon/human/dummy/mannequin/autoequip{
 	autorotate = 0;
 	name = "Laserdome Mannequin";
@@ -349,42 +362,42 @@
 /obj/item/clothing/head/omnitag,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abd" = (
+"abg" = (
 /obj/item/radio/intercom/locked/entertainment{
 	dir = 1;
 	pixel_y = 29
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
-"abe" = (
+"abh" = (
 /obj/effect/floor_decal/corner/yellow/full{
 	dir = 8
 	},
 /obj/structure/closet/lasertag/omni/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abf" = (
+"abi" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 1
 	},
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abg" = (
+"abj" = (
 /obj/structure/table/bench/steel,
 /obj/effect/floor_decal/corner/blue{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abh" = (
+"abk" = (
 /obj/structure/closet/lasertag/red/laserdome,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abi" = (
+"abl" = (
 /mob/living/carbon/human/dummy/mannequin/autoequip{
 	autorotate = 0;
 	name = "Laserdome Mannequin";
@@ -400,14 +413,14 @@
 /obj/item/clothing/head/omnitag,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abj" = (
+"abm" = (
 /obj/item/radio/intercom/locked/entertainment{
 	dir = 1;
 	pixel_y = 29
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
-"abk" = (
+"abn" = (
 /obj/structure/table/marble,
 /obj/item/reagent_containers/food/condiment/ketchup{
 	pixel_x = -6
@@ -417,7 +430,7 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
-"abl" = (
+"abo" = (
 /obj/structure/table/marble,
 /obj/item/reagent_containers/food/condiment/mustard{
 	pixel_x = 7
@@ -427,49 +440,26 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
-"abm" = (
+"abp" = (
 /obj/item/radio/intercom/locked/entertainment{
 	pixel_y = -23
 	},
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
-"abn" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/laserdome/lobby/restaurant)
-"abo" = (
-/obj/structure/flag_decor/red,
-/turf/simulated/wall/tgmc/darkwall,
-/area/redgate/laserdome/arena/ffa_prep)
-"abp" = (
-/obj/effect/floor_decal/corner/red{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/arena/ffa_prep)
 "abq" = (
-/obj/structure/closet/lasertag/red/laserdome,
-/obj/effect/floor_decal/corner/blue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/arena/ffa_prep)
-"abr" = (
-/obj/effect/floor_decal/corner/blue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/redgate/laserdome/arena/ffa_prep)
-"abs" = (
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
-"abt" = (
+"abr" = (
 /obj/structure/flag_decor/blue,
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/ffa_prep)
+"abs" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/redgate/laserdome/lobby/restaurant)
 "aeW" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
@@ -715,6 +705,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
+"cRZ" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
 "cSX" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/laserdome/arena/capture_the_flag)
@@ -804,10 +800,8 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena)
 "dJu" = (
-/obj/effect/floor_decal/arrow{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/flag_decor/red,
+/turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/ffa_prep)
 "dLr" = (
 /obj/structure/table/marble,
@@ -1452,6 +1446,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"jti" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ffa_prep)
 "jCB" = (
 /obj/effect/floor_decal/corner/yellow/full,
 /turf/simulated/floor/tiled/milspec,
@@ -7076,8 +7076,8 @@ aab
 aab
 aab
 aad
-aaW
-dJu
+aaX
+aba
 aav
 aad
 aab
@@ -7213,19 +7213,19 @@ aab
 aab
 aab
 ikl
-aaL
-abe
+aaM
+abh
 obC
 obC
 obC
-aaZ
+abb
 aaD
 eAj
 obC
 obC
 obC
+aaN
 aaM
-aaL
 ikl
 aab
 aab
@@ -7356,17 +7356,17 @@ aad
 aad
 jbM
 aay
-abf
-aaR
-aaR
-aaR
+abi
+aaS
+aaS
+aaS
 aaD
-dJu
+aba
 aaD
-aaR
-aaR
-aaR
-aaN
+aaS
+aaS
+aaS
+aaO
 aay
 jCB
 aad
@@ -7496,7 +7496,7 @@ aab
 jbM
 aay
 aay
-aaZ
+abb
 aaD
 aaD
 aaD
@@ -7635,16 +7635,16 @@ aab
 aae
 aae
 aae
-aaW
-aba
+aaX
+abc
 aaD
-aba
+abc
 aaD
-aba
+abc
 aaD
-aba
+abc
 aaD
-aba
+abc
 kKQ
 aaz
 aaD
@@ -7777,7 +7777,7 @@ aae
 aae
 aae
 aab
-aaX
+aaY
 aaA
 aaA
 wPX
@@ -7922,21 +7922,21 @@ aab
 aab
 aad
 aad
-abs
-abr
-abg
-aaR
-aaR
-aaR
+abq
+cRZ
+abj
+aaS
+aaS
+aaS
 aaD
-dJu
+aba
 aaD
-aaR
-aaR
-aaR
-aaO
-abp
-aaa
+aaS
+aaS
+aaS
+aaP
+jti
+aaI
 aad
 aad
 aab
@@ -8064,21 +8064,21 @@ aab
 aab
 aab
 aab
-abt
-aaL
-abh
-abq
-abq
-abq
+abr
+aaM
+abk
+abd
+abd
+abd
 wPX
 aaD
 aaH
-aaS
-aaS
-aaS
-aaP
-aaL
-abo
+aaT
+aaT
+aaT
+aaQ
+aaM
+dJu
 aab
 aab
 aab
@@ -8207,19 +8207,19 @@ vHZ
 vHZ
 vHZ
 vHZ
-aaL
-aaL
-aaL
-aaL
-aaL
-aaW
-dJu
+aaM
+aaM
+aaM
+aaM
+aaM
+aaX
+aba
 aav
-aaL
-aaL
-aaL
-aaL
-aaL
+aaM
+aaM
+aaM
+aaM
+aaM
 aab
 aab
 aab
@@ -8349,19 +8349,19 @@ vHZ
 vHZ
 vHZ
 vHZ
-aaL
-aaL
-aaL
-aaL
-aaL
-aaW
+aaM
+aaM
+aaM
+aaM
+aaM
+aaX
 aaD
 aav
-aaL
-aaL
-aaL
-aaL
-aaL
+aaM
+aaM
+aaM
+aaM
+aaM
 vHZ
 vHZ
 vHZ
@@ -8495,12 +8495,12 @@ ikl
 jbM
 aay
 jCB
-aaY
-aaW
-dJu
+aaZ
+aaX
+aba
 aav
-aaY
-aaV
+aaZ
+aaW
 aay
 jCB
 ikl
@@ -8633,19 +8633,19 @@ vHZ
 vHZ
 vHZ
 vHZ
-aaL
-aaW
+aaM
+aaX
 aaD
-abb
-aaY
-aaW
-aaD
-aav
-aaY
-aaW
+abe
+aaZ
+aaX
 aaD
 aav
-aaL
+aaZ
+aaX
+aaD
+aav
+aaM
 vHZ
 vHZ
 vHZ
@@ -8775,19 +8775,19 @@ vHZ
 vHZ
 vHZ
 vHZ
-aaL
-abi
+aaM
+abl
 aaD
 aav
-aaY
-aaW
-dJu
+aaZ
+aaX
+aba
 aav
-aaY
-aaW
-aaT
+aaZ
+aaX
+aaU
 aav
-aaL
+aaM
 vHZ
 vHZ
 vHZ
@@ -8917,19 +8917,19 @@ vHZ
 vHZ
 vHZ
 vHZ
-aaL
-aaW
+aaM
+aaX
 aaD
 aav
-aaY
-aaW
+aaZ
+aaX
 aaD
 aav
-aaY
-aaW
+aaZ
+aaX
 aaD
 aav
-aaL
+aaM
 vHZ
 vHZ
 vHZ
@@ -9060,17 +9060,17 @@ vHZ
 vHZ
 vHZ
 ikl
-aaX
-abc
+aaY
+abf
 aaw
-aaY
-aaW
-dJu
-aav
-aaY
+aaZ
 aaX
+aba
+aav
+aaZ
+aaY
 aaA
-aaQ
+aaR
 ikl
 vHZ
 vHZ
@@ -9201,19 +9201,19 @@ vHZ
 vHZ
 vHZ
 vHZ
-aaL
-aaL
-aaL
-aaL
-aaL
-aaX
+aaM
+aaM
+aaM
+aaM
+aaM
+aaY
 aaA
 aaw
-aaL
-aaL
-aaL
-aaL
-aaL
+aaM
+aaM
+aaM
+aaM
+aaM
 vHZ
 vHZ
 vHZ
@@ -9771,7 +9771,7 @@ xLH
 xLH
 xLH
 xLH
-abd
+abg
 xMG
 xMG
 xMG
@@ -10208,7 +10208,7 @@ xMG
 xMG
 eCL
 mmw
-aaI
+aaJ
 aaE
 gKd
 mmw
@@ -10764,7 +10764,7 @@ pPz
 pPz
 nVx
 uab
-abj
+abm
 pPz
 bFV
 hfU
@@ -11047,7 +11047,7 @@ qAM
 pPz
 pPz
 pPz
-abk
+abn
 pPz
 pPz
 bFV
@@ -11182,7 +11182,7 @@ xLH
 xLH
 uab
 dLr
-abn
+abs
 pPz
 uab
 qBt
@@ -11473,7 +11473,7 @@ gTS
 pPz
 pPz
 pPz
-abl
+abo
 pPz
 pPz
 bFV
@@ -12895,7 +12895,7 @@ pvv
 pvv
 pvv
 ymc
-abd
+abg
 kEA
 bwE
 xMG
@@ -12903,7 +12903,7 @@ xMG
 xMG
 kEA
 bwE
-aaU
+aaV
 vDA
 qnI
 qnI
@@ -14741,7 +14741,7 @@ vqS
 nXQ
 nXQ
 nXQ
-abd
+abg
 xMG
 xMG
 xMG
@@ -14752,7 +14752,7 @@ xMG
 xMG
 vIe
 xaR
-aaJ
+aaK
 kUV
 aaB
 xaR
@@ -15023,7 +15023,7 @@ yjF
 lcP
 lcP
 lcP
-abm
+abp
 nXQ
 hGF
 xMG
@@ -15178,7 +15178,7 @@ xMG
 ont
 mhi
 xaR
-aaK
+aaL
 aaG
 aaC
 xaR
@@ -15459,7 +15459,7 @@ xMG
 xMG
 xMG
 xMG
-aaU
+aaV
 xLH
 xLH
 xLH
@@ -18155,7 +18155,7 @@ kiJ
 pVQ
 xMG
 cIU
-aaU
+aaV
 xLH
 xLH
 xLH
