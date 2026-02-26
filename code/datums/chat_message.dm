@@ -160,7 +160,6 @@ var/list/runechat_image_cache = list()
 	var/regex/message_regex = new("\\b(" + parts.Join("|") + ")\\b(?!\[^<]*>)", "gi")
 
 	text = message_regex.Replace_char(text, span_bold("$1"))
-	to_chat(world, text)
 
 	var/list/prefixes
 
