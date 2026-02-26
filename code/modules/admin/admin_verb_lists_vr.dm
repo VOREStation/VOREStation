@@ -73,8 +73,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	))
 
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
-	/client/proc/object_talk,
-	/datum/admins/proc/cmd_admin_dress,
 	/client/proc/drop_bomb,
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
@@ -195,8 +193,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/datum/admins/proc/access_news_network,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/object_talk,
-	/datum/admins/proc/cmd_admin_dress,
 	/client/proc/drop_bomb,
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
@@ -282,7 +278,6 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/datum/admins/proc/delay,
 	/client/proc/Set_Holiday,
 	/client/proc/make_sound,
-	/datum/admins/proc/cmd_admin_dress,
 	/client/proc/drop_bomb,
 	/client/proc/make_sound,
 	/client/proc/editappear,
@@ -295,7 +290,6 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/client/proc/cmd_regenerate_asset_cache,
 	/client/proc/cmd_clear_smart_asset_cache,
 	/client/proc/cmd_reload_robot_sprite_test,
-	/datum/admins/proc/cmd_admin_dress,
 	/datum/admins/proc/set_tcrystals,
 	/datum/admins/proc/add_tcrystals,
 	/datum/admins/proc/show_traitor_panel,  //interface which shows a mob's mind.,

@@ -108,6 +108,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_FUN_DO_NOT "Fun.Do Not"
 #define ADMIN_CATEGORY_FUN_SILICON "Fun.Silicon"
 #define ADMIN_CATEGORY_FUN_SOUNDS "Fun.Sounds"
+#define ADMIN_CATEGORY_FUN_NARRATE "Fun.Narrate"
 
 // Visibility flags
 #define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Map-Debug"
