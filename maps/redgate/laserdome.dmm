@@ -90,7 +90,6 @@
 "aas" = (
 /obj/effect/floor_decal/corner/yellow,
 /obj/structure/table/bench/steel,
-/obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ffa_prep)
 "aat" = (
