@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "vorepanel export showing null while used in the lobby menu for the name"
