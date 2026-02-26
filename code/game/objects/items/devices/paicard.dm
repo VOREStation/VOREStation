@@ -174,9 +174,9 @@
 				var/datum/dna/dna = M.dna
 				pai.master = M.real_name
 				pai.master_dna = dna.unique_enzymes
-				to_chat(pai, span_red("<h3>You have been bound to a new master.</h3>"))
+				to_chat(pai, span_warning(span_large("You have been bound to a new master.")))
 				return TRUE
-			to_chat(ui.user, span_blue("You don't have any DNA, or your DNA is incompatible with this device."))
+			to_chat(ui.user, span_notice("You don't have any DNA, or your DNA is incompatible with this device."))
 			return FALSE
 
 		/*
@@ -227,9 +227,7 @@
 
 			if(newlaws)
 				pai.pai_laws = newlaws
-				to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
-				to_chat(pai, "Prime Directive: <br>[pai.pai_law0]")
-				to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
+				show_laws(TRUE)
 			return TRUE
 
 		if("select_pai")
@@ -241,6 +239,9 @@
 			SSpai.invite_ghost(ui.user, params["key"], src)
 			in_use = FALSE
 			return TRUE
+
+/obj/item/paicard/proc/show_laws(updated = FALSE)
+	to_chat(pai, examine_block(span_notice((updated ? "Your supplemental directives have been updated. Your new" : "Your") + " directives are:") + "<br>" + "Prime Directive: [span_info(pai.pai_law0)]<br>Supplemental Directives: [span_info(pai.pai_laws)]"))
 
 /obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	pai = personality

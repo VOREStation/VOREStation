@@ -39,11 +39,11 @@ SUBSYSTEM_DEF(pai)
 		pai_ghosts.Cut()
 		current_run = GLOB.observer_mob_list.Copy()
 
-	while(current_run.len)
+	while(length(current_run))
 		if(MC_TICK_CHECK)
 			return
 
-		var/mob/observer/ghost = current_run[current_run.len]
+		var/mob/observer/ghost = current_run[length(current_run)]
 		current_run.len--
 		if(!invite_valid(ghost))
 			continue
