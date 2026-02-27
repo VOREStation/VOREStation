@@ -76,7 +76,7 @@
 		return
 
 	var/choice = tgui_alert(user, "Do you want to inhabit this pAI using \"[pai_name]\"?", "Load pAI", list("Load pAI Data", "Cancel"))
-	if(choice == "Load PAI Data")
+	if(choice == "Load pAI Data")
 		ghost_inhabit(user)
 		return
 
