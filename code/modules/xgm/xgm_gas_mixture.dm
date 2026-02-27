@@ -19,18 +19,6 @@
 	volume = vol
 	gas = list()
 
-/datum/gas_mixture/get_temp()
-	return temperature
-
-/datum/gas_mixture/set_temp(new_value)
-	if(new_value < TCMB)
-		if(new_value <= 0)
-			stack_trace("!!!!!!CRITICAL!!!!!!! a temperature of 0 or under was set to a gas mixture: [new_value]")
-		else
-			stack_trace("a temperature under TCMB was set to a gas mixture: [new_value]")
-		new_value = TCMB
-	temperature = new_value
-
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
 	if(moles == 0)
@@ -142,6 +130,19 @@
 		. += GLOB.gas_data.specific_heat[g] * gas[g]
 	. *= group_multiplier
 
+/// Gets the temperature of the gas mixture
+/datum/gas_mixture/proc/get_temp()
+	return temperature
+
+/// Sets the temperature of the gas mixture
+/datum/gas_mixture/proc/set_temp(new_value)
+	if(new_value < TCMB)
+		if(new_value <= 0)
+			stack_trace("!!!!!!CRITICAL!!!!!!! a temperature of 0 or under was set to a gas mixture: [new_value]")
+		else
+			stack_trace("a temperature under TCMB was set to a gas mixture: [new_value]")
+		new_value = TCMB
+	temperature = new_value
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
 /datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
