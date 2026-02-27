@@ -658,17 +658,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway)
-"bs" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 5;
-	pixel_y = 24
-	},
-/obj/item/storage/backpack/satchel/talon,
-/obj/item/storage/backpack/satchel/talon,
-/obj/item/storage/backpack/satchel/talon,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "bt" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -7859,26 +7848,27 @@
 /area/talon_v2/crew_quarters/mine_room)
 "Az" = (
 /obj/structure/table/steel,
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_x = -6;
-	pixel_y = 4
+/obj/machinery/light_switch{
+	pixel_x = -5;
+	pixel_y = 26
+	},
+/obj/item/bluespaceradio/talon_prelinked{
+	pixel_y = 10
 	},
 /obj/item/radio/off{
 	channels = list("Talon" = 1);
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_y = 6
+	pixel_x = -6
 	},
 /obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
-/obj/machinery/light_switch{
-	pixel_x = -5;
-	pixel_y = 26
+/obj/item/radio/off{
+	channels = list("Talon" = 1);
+	pixel_x = 5
+	},
+/obj/item/radio/off{
+	channels = list("Talon" = 1);
+	pixel_x = 10
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/eva_storage)
@@ -10796,7 +10786,7 @@
 /obj/structure/table/rack/shelf/steel,
 /obj/item/radio/off{
 	channels = list("Talon" = 1);
-	pixel_y = 6
+	pixel_x = 10
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
@@ -12419,20 +12409,6 @@
 	pixel_x = 5;
 	pixel_y = 24
 	},
-/obj/item/storage/backpack/dufflebag/talon,
-/obj/item/storage/backpack/dufflebag/talon,
-/obj/item/storage/backpack/dufflebag/talon,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
-"PC" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 5;
-	pixel_y = 24
-	},
-/obj/item/storage/backpack/messenger/talon,
-/obj/item/storage/backpack/messenger/talon,
-/obj/item/storage/backpack/messenger/talon,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "PD" = (
@@ -23313,7 +23289,7 @@ bw
 So
 bv
 Oj
-PC
+PB
 OP
 Qu
 OP
@@ -23455,7 +23431,7 @@ Dd
 FO
 Si
 Oj
-bs
+PB
 OP
 OP
 OP
