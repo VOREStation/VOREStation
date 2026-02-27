@@ -61,7 +61,7 @@
 							failed = TRUE
 
 			// Does it have colorable eyes?
-			if(sprite.has_eye_color)
+			if(sprite.has_eye_sprites)
 				if(!icon_exists(sprite.sprite_icon, "[sprite.sprite_icon_state]-eyes"))
 					TEST_NOTICE(src, "[sprite.type] - Pai sprite state \"[sprite.sprite_icon_state]-eyes\" did not exist in the dmi set \"[sprite.sprite_icon]\"")
 					failed = TRUE
