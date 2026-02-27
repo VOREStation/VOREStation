@@ -372,6 +372,7 @@
 		t = replacetext(t, "\[/cell\]", "")
 		t = replacetext(t, "\[/row\]", "")
 		t = replacetext(t, "\[logo\]", "")
+		t = replacetext(t, "\[talogo\]", "")
 		t = replacetext(t, "\[sglogo\]", "")
 
 		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"

@@ -28,7 +28,7 @@
 		var/new_body = tgui_input_text(src,"Write the body of the news update here. Note: HTML is NOT supported, however paper markup is supported.  \n\
 		Hitting enter will automatically add a line break.  \n\
 		Valid markup includes: \[b\], \[i\], \[u\], \[large\], \[h1\], \[h2\], \[h3\]\ \[*\], \[hr\], \[small\], \[list\], \[table\], \[grid\], \
-		\[row\], \[cell\], \[logo\], \[sglogo\].","Write News", body, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+		\[row\], \[cell\], \[logo\], \[talogo\], \[sglogo\].","Write News", body, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 
 		new_body = paper_markup2html(new_body)
 
