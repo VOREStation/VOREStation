@@ -1,0 +1,6 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Added the dust anomaly"
+  - code_imp: "Added random vermin object for mapping"
+  - code_imp: "Added a has_lungs helper proc"
