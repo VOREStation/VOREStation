@@ -572,7 +572,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/item/storage/backpack/talon = 10,
 				/obj/item/storage/backpack/satchel/talon = 10,
 				/obj/item/storage/backpack/dufflebag/talon = 10,
-				/obj/item/radio/headset/talon = 10)
+				/obj/item/radio/headset/talon = 10,
+				/obj/item/radio/headset/alt/talon = 10)
 	contraband = list(/obj/item/paper/secret_vendornote = 1,
 				/obj/item/clothing/accessory/holster/machete = 1,
 				/obj/item/material/knife/machete = 1)
