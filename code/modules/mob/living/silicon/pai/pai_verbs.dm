@@ -147,7 +147,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Toggle Eye Glow"
 
-	if(!SSpai.chassis_data(chassis_name).has_eye_color)
+	if(!SSpai.chassis_data(chassis_name).has_eye_icon)
 		to_chat(src, span_filter_notice("Your selected chassis cannot modify its eye glow!"))
 		return
 
@@ -162,7 +162,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Pick Eye Color"
 
-	if(!SSpai.chassis_data(chassis_name).has_eye_color)
+	if(!SSpai.chassis_data(chassis_name).has_eye_icon)
 		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
 		return
 
