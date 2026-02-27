@@ -249,3 +249,13 @@
   - bugfix: multiple runtimes
   Nova:
   - refactor: Convert bay gender and pronoun prefs to TG
+2026-02-27:
+  Kashargul:
+  - code_imp: cleans up some typescript types
+  - bugfix: runechat bold not working
+  - bugfix: runechat bold formatting breaking spans
+  - bugfix: robots not being able to play PDA games
+  - bugfix: item autotransfer flags not getting imported
+  - bugfix: vorepanel export showing null while used in the lobby menu for the name
+  KillianKirilenko:
+  - image: fixed back pieces on corner couches being set up wrong in the dmis
