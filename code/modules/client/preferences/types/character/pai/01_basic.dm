@@ -30,7 +30,7 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "Pai_Role"
-	maximum_value_length = MAX_MESSAGE_LEN * 4
+	maximum_value_length = MAX_MESSAGE_LEN
 	can_randomize = FALSE
 
 /datum/preference/text/pai_role/create_default_value()
@@ -44,7 +44,7 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "Pai_Ad"
-	maximum_value_length = MAX_MESSAGE_LEN * 4
+	maximum_value_length = MAX_MESSAGE_LEN
 	can_randomize = FALSE
 
 /datum/preference/text/pai_ad/create_default_value()
@@ -58,7 +58,7 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "Pai_Comments"
-	maximum_value_length = MAX_MESSAGE_LEN * 4
+	maximum_value_length = MAX_MESSAGE_LEN
 	can_randomize = FALSE
 
 /datum/preference/text/pai_comments/create_default_value()

@@ -245,9 +245,13 @@ export type AntagonismData = {
   pai_comments: string;
   pai_eyecolor: string;
   pai_chassis: string;
+  pai_chassises: Record<string, string>[];
   pai_emotion: string;
+  pai_emotions: Record<string, number>[];
   syndicate_ban: BooleanLike;
   special_roles: SpecialRole[];
+  pai_sprite_datum_class?: string;
+  pai_sprite_datum_size?: string;
 };
 
 export const REQUIRED_FLAVOR_TEXT_LENGTH = 30;

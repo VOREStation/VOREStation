@@ -92,6 +92,8 @@
 	var/soft_ar = FALSE	//ar hud
 	var/soft_da = FALSE //death alarm
 
+	var/datum/tgui_module/pai_chassis/pai_ui_chassis
+
 	vore_capacity = 1
 	vore_capacity_ex = list("stomach" = 1)
 
@@ -108,6 +110,7 @@
 
 	sradio = new(src)
 	communicator = new(src)
+	pai_ui_chassis = new(src)
 	if(card)
 		if(!card.radio)
 			card.radio = new /obj/item/radio/borg/pai(src.card)
@@ -177,6 +180,18 @@
 
 /mob/living/silicon/pai/Destroy()
 	release_vore_contents()
+	check_retract_cable()
+	card = null
+	QDEL_NULL(pai_ui_chassis)
+	QDEL_NULL(sradio)
+	QDEL_NULL(communicator)
+	QDEL_NULL(pda)
+	if(pai_fold_display)
+		QDEL_NULL(pai_fold_display)
+	securityActive1 = null
+	securityActive2 = null
+	hackdoor = null
+	current = null
 	if(ckey)
 		GLOB.paikeys -= ckey
 	return ..()
@@ -194,16 +209,8 @@
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "Abilities.pAI Commands"
 	set name = "Choose Chassis"
-	var/choice
 
-	choice = tgui_input_list(src, "What would you like to use for your mobile chassis' appearance?", "Chassis Choice", SSpai.get_chassis_list())
-	if(!choice) return
-	var/oursize = size_multiplier
-	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
-	change_chassis(choice)
-
-	update_icon()
-	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+	pai_ui_chassis.tgui_interact(src)
 
 /// Change pai sprite and offsets based upon the selected chassis id
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)

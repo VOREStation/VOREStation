@@ -7,33 +7,21 @@ import {
 } from 'react';
 import { useBackend } from 'tgui/backend';
 import { ColorSelector } from 'tgui/interfaces/ColorPickerModal';
+import { VorePanelTooltip } from 'tgui/interfaces/VorePanel/VorePanelElements/VorePanelTooltip';
 import { type HsvaColor, hexToHsva, hsvaToHex } from 'tgui-core/color';
 import { Box, Floating, Stack } from 'tgui-core/components';
-import { VorePanelColorBox } from './VorePanelCommonElements';
-import { VorePanelEditNumber } from './VorePanelEditNumber';
-import { VorePanelTooltip } from './VorePanelTooltip';
 
-export const VorePanelEditColor = (
+export const PreferenceEditColor = (
   props: {
-    /** Switch between Element editing and display */
-    editMode: boolean;
-    /** Our backend action on click */
-    action: string;
+    /** Our action when closing the floating */
+    onClose: (value: string) => void;
     /** The displayed color of the color box */
     back_color: string;
   } & Partial<{
-    /** Our secondary backend action on click */
-    subAction: string;
-    /** A number representing the alpha value for alpha inputs */
-    alpha: number;
-    /** Optional label to show before the color box */
-    name_of: string;
     /** Our displayed tooltip behind the input element */
     tooltip: ReactNode;
     /** The position of the tooltip if static */
     tooltipPosition: ComponentProps<typeof Floating>['placement'];
-    /** Removes the spacing behind the color box */
-    removePlaceholder: boolean;
     /** User preset colors */
     presets: string;
     /**The set action on color changes */
@@ -42,16 +30,11 @@ export const VorePanelEditColor = (
 ) => {
   const { act } = useBackend();
   const {
-    editMode,
-    action,
-    subAction = '',
+    onClose,
     back_color,
     presets,
-    alpha,
-    name_of,
     tooltip,
     tooltipPosition,
-    removePlaceholder,
     onRealtimeValue,
   } = props;
 
@@ -151,78 +134,54 @@ export const VorePanelEditColor = (
     if (!newState) {
       const newHexColor = hsvaToHex(currentColor).toLowerCase();
       if (back_color.toLowerCase() !== newHexColor) {
-        act(action, { attribute: subAction, val: newHexColor });
+        onClose(newHexColor);
       }
     }
   }
 
   return (
-    <>
-      {!!name_of && (
-        <Stack.Item>
-          <Box color="label">{name_of}</Box>
-        </Stack.Item>
-      )}
+    <Stack>
       <Stack.Item shrink>
-        {editMode && alpha === undefined ? (
-          <Floating
-            onOpenChange={handleIsOpen}
-            placement="top-end"
-            contentClasses="VorePanel__Floating"
-            content={
-              <ColorSelector
-                color={currentColor}
-                setColor={handleSetColor}
-                presetList={presetList}
-                defaultColor={initialColor}
-                selectedPreset={selectedPreset}
-                onSelectedPreset={setSelectedPreset}
-                allowEditing={allowEditing}
-                onAllowEditing={setAllowEditing}
-              />
-            }
+        <Floating
+          onOpenChange={handleIsOpen}
+          placement="top-end"
+          contentClasses="VorePanel__Floating"
+          content={
+            <ColorSelector
+              color={currentColor}
+              setColor={handleSetColor}
+              presetList={presetList}
+              defaultColor={initialColor}
+              selectedPreset={selectedPreset}
+              onSelectedPreset={setSelectedPreset}
+              allowEditing={allowEditing}
+              onAllowEditing={setAllowEditing}
+            />
+          }
+        >
+          <Box
+            style={{
+              border: '2px solid white',
+              cursor: 'pointer',
+            }}
+            width={parentSize}
+            height={parentSize}
           >
             <Box
-              style={{
-                border: '2px solid white',
-                cursor: 'pointer',
-              }}
-              width={parentSize}
-              height={parentSize}
-            >
-              <Box
-                backgroundColor={hsvaToHex(currentColor) ?? back_color}
-                width={childSize}
-                height={childSize}
-              />
-            </Box>
-          </Floating>
-        ) : (
-          <VorePanelColorBox back_color={back_color} alpha={alpha} />
-        )}
+              backgroundColor={hsvaToHex(currentColor) ?? back_color}
+              width={childSize}
+              height={childSize}
+            />
+          </Box>
+        </Floating>
       </Stack.Item>
-      {editMode && (
-        <Stack.Item basis={alpha !== undefined ? '65px' : undefined}>
-          {alpha !== undefined ? (
-            <VorePanelEditNumber
-              action={action}
-              subAction={subAction}
-              editMode={editMode}
-              value={alpha}
-              minValue={0}
-              maxValue={255}
-              tooltip={tooltip}
-            />
-          ) : (
-            <VorePanelTooltip
-              tooltip={tooltip}
-              tooltipPosition={tooltipPosition}
-              displayText="?"
-            />
-          )}
-        </Stack.Item>
-      )}
-      {!removePlaceholder && <Stack.Item grow />}
-    </>
+      <Stack.Item>
+        <VorePanelTooltip
+          tooltip={tooltip}
+          tooltipPosition={tooltipPosition}
+          displayText="?"
+        />
+      </Stack.Item>
+    </Stack>
   );
 };

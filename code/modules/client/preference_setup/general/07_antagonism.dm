@@ -48,10 +48,20 @@
 	data["pai_name"] = pref.read_preference(/datum/preference/text/pai_name)
 	data["pai_desc"] = pref.read_preference(/datum/preference/text/pai_description)
 	data["pai_role"] = pref.read_preference(/datum/preference/text/pai_role)
+	data["pai_ad"] = pref.read_preference(/datum/preference/text/pai_ad)
 	data["pai_comments"] = pref.read_preference(/datum/preference/text/pai_comments)
 	data["pai_eyecolor"] = pref.read_preference(/datum/preference/color/pai_eye_color)
-	data["pai_chassis"] = pref.read_preference(/datum/preference/text/pai_chassis)
+	var/pai_chassis = pref.read_preference(/datum/preference/text/pai_chassis)
+	data["pai_chassis"] = pai_chassis
+	data["pai_chassises"] = SSpai.get_chassis_list()
 	data["pai_emotion"] = pref.read_preference(/datum/preference/text/pai_emotion)
+	data["pai_emotions"] = GLOB.pai_emotions
+
+	var/datum/pai_sprite/sprite_datum = SSpai.chassis_data(pai_chassis)
+	if(sprite_datum)
+		var/datum/asset/spritesheet_batched/pai_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
+		data["pai_sprite_datum_class"] = sanitize_css_class_name("[sprite_datum.type]")
+		data["pai_sprite_datum_size"] = spritesheet.icon_size_id(data["pai_sprite_datum_class"] + "S") // just get the south icon's size, the rest will be the same
 
 	return data
 
@@ -98,35 +108,35 @@
 			var/t
 			switch(params["pai_option"])
 				if("name")
-					t = sanitizeName(tgui_input_text(user, "What you plan to call yourself. Suggestions: Any character name you would choose for a station character OR an AI.", "pAI Name", pref.read_preference(/datum/preference/text/pai_name), MAX_NAME_LEN), MAX_NAME_LEN, 1)
+					t = sanitizeName(params["name"], MAX_NAME_LEN, TRUE)
 					if(t && CanUseTopic(user))
 						pref.update_preference_by_type(/datum/preference/text/pai_name, t)
 				if("desc")
-					t = tgui_input_text(user, "What sort of pAI you typically play; your mannerisms, your quirks, etc. This can be as sparse or as detailed as you like.", "pAI Description", pref.read_preference(/datum/preference/text/pai_description), multiline = TRUE, prevent_enter = TRUE)
+					t = sanitize(params["desc"], MAX_MESSAGE_LEN * 4)
 					if(!isnull(t) && CanUseTopic(user))
 						pref.update_preference_by_type(/datum/preference/text/pai_description, sanitize(t))
 				if("ad")
-					t = tgui_input_text(user, "Enter an advertisement for your pAI", "pAI Preference", pref.read_preference(/datum/preference/text/pai_ad))
+					t = sanitize(params["ad"])
 					if(!isnull(t) && CanUseTopic(user))
 						pref.update_preference_by_type(/datum/preference/text/pai_ad, sanitize(t))
 				if("role")
-					t = tgui_input_text(user, "Do you like to partner with sneaky social ninjas? Like to help security hunt down thugs? Enjoy watching an engineer's back while he saves the station yet again? This doesn't have to be limited to just station jobs. Pretty much any general descriptor for what you'd like to be doing works here.", "Preferred Role", pref.read_preference(/datum/preference/text/pai_role))
+					t = sanitize(params["role"])
 					if(!isnull(t) && CanUseTopic(user))
 						pref.update_preference_by_type(/datum/preference/text/pai_role, sanitize(t))
 				if("ooc")
-					t = tgui_input_text(user, "Anything you'd like to address specifically to the player reading this in an OOC manner. \"I prefer more serious RP.\", \"I'm still learning the interface!\", etc. Feel free to leave this blank if you want.", "OOC Comments", pref.read_preference(/datum/preference/text/pai_comments), multiline = TRUE, prevent_enter = TRUE)
+					t = sanitize(params["ooc"])
 					if(!isnull(t) && CanUseTopic(user))
 						pref.update_preference_by_type(/datum/preference/text/pai_comments, sanitize(t))
 				if("color")
-					var/new_color = tgui_color_picker(user, "Choose your pAI's default glow colour.", "pAI Glow Color", pref.read_preference(/datum/preference/color/pai_eye_color))
+					var/new_color = sanitize_hexcolor(params["color"])
 					if(new_color && CanUseTopic(user))
 						pref.update_preference_by_type(/datum/preference/color/pai_eye_color, new_color)
 				if("chassis")
-					var/new_chassis = tgui_input_list(user, "Choose your pAI's default chassis.", "pAI Chassis", SSpai.get_chassis_list(), PAI_DEFAULT_CHASSIS)
+					var/new_chassis = params["chassis"]
 					if(new_chassis && CanUseTopic(user) && (new_chassis in SSpai.get_chassis_list()))
 						pref.update_preference_by_type(/datum/preference/text/pai_chassis, new_chassis)
 				if("emotion")
-					var/new_emotion = tgui_input_list(user, "Choose your pAI's default emotion.", "pAI Emotion", GLOB.pai_emotions, GLOB.pai_emotions[1])
+					var/new_emotion = params["emotion"]
 					if(new_emotion && CanUseTopic(user) && (new_emotion in GLOB.pai_emotions))
 						pref.update_preference_by_type(/datum/preference/text/pai_emotion, new_emotion)
 			return TOPIC_REFRESH

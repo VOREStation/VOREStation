@@ -151,7 +151,6 @@
 /datum/pai_sprite/type_thirteen
 	name = "Type Thirteen"
 	sprite_icon = 'icons/mob/pai.dmi'
-	sprite_icon_state = null
 	holo_projector = TRUE
 	sprite_icon_state = "type13"
 	holo_eyes_icon_state = "type13-eyes"

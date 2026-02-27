@@ -48,14 +48,6 @@ export const SubtabSettings = (props: {
     uplink_type,
     record_banned,
     exploitable_record,
-    pai_name,
-    pai_desc,
-    pai_role,
-    pai_ad,
-    pai_comments,
-    pai_eyecolor,
-    pai_chassis,
-    pai_emotion,
     syndicate_ban,
     special_roles,
     custom_footstep,
@@ -408,71 +400,6 @@ export const SubtabSettings = (props: {
                     </Button>
                     <Button fluid onClick={() => act('reset_cold')}>
                       Reset
-                    </Button>
-                  </LabeledList.Item>
-                </LabeledList>
-              </Stack.Item>
-              <Stack.Item>
-                <Box bold>pAI Settings</Box>
-                <LabeledList>
-                  <LabeledList.Item label="Name">
-                    <Button
-                      onClick={() => act('pai_option', { pai_option: 'name' })}
-                    >
-                      {pai_name}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Role">
-                    <Button
-                      onClick={() => act('pai_option', { pai_option: 'role' })}
-                    >
-                      {pai_role}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Description">
-                    <Button
-                      onClick={() => act('pai_option', { pai_option: 'desc' })}
-                    >
-                      Edit
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Ad">
-                    <Button
-                      onClick={() => act('pai_option', { pai_option: 'ad' })}
-                    >
-                      Edit
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="OOC Comments">
-                    <Button
-                      onClick={() => act('pai_option', { pai_option: 'ooc' })}
-                    >
-                      Edit
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Color">
-                    <Button
-                      onClick={() => act('pai_option', { pai_option: 'color' })}
-                    >
-                      {pai_eyecolor}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Chassis">
-                    <Button
-                      onClick={() =>
-                        act('pai_option', { pai_option: 'chassis' })
-                      }
-                    >
-                      {pai_chassis}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Emotion">
-                    <Button
-                      onClick={() =>
-                        act('pai_option', { pai_option: 'emotion' })
-                      }
-                    >
-                      {pai_emotion}
                     </Button>
                   </LabeledList.Item>
                 </LabeledList>

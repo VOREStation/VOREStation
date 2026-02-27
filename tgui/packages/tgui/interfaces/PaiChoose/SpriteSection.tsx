@@ -1,32 +1,27 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Button, Input, Section, Stack } from 'tgui-core/components';
+import { SelectorElement } from '../RobotChoose/SelectorElement';
+import { paiSpriteSearcher } from './functions';
+import type { Data } from './types';
 
-import { robotSpriteSearcher } from './functions';
-import { SelectorElement } from './SelectorElement';
-import type { spriteOption } from './types';
-
-export const SpriteSection = (props: {
-  title: string;
-  selected?: string | null;
-  sortable?: spriteOption[];
-}) => {
-  const { title, sortable, selected } = props;
+export const SpriteSection = (props) => {
+  const { data } = useBackend<Data>();
+  const { pai_chassises, pai_chassis, selected_chassis } = data;
 
   const [searchText, setSearchText] = useState<string>('');
   const [includeDefault, setIncludeDefault] = useState<boolean>(false);
-  const [includeWide, setIncludeWide] = useState<boolean>(false);
-  const [includeTall, setIncludeTall] = useState<boolean>(false);
+  const [includeBig, setIncludeBig] = useState<boolean>(false);
 
-  const filtered = robotSpriteSearcher(
+  const filtered = paiSpriteSearcher(
     searchText,
     includeDefault,
-    includeWide,
-    includeTall,
-    sortable,
+    includeBig,
+    pai_chassises,
   );
   return (
     <Section
-      title={title}
+      title="Sprites"
       fill
       buttons={
         <Stack g={0.2}>
@@ -40,18 +35,10 @@ export const SpriteSection = (props: {
           </Stack.Item>
           <Stack.Item>
             <Button.Checkbox
-              checked={includeWide}
-              onClick={() => setIncludeWide(!includeWide)}
+              checked={includeBig}
+              onClick={() => setIncludeBig(!includeBig)}
             >
-              Wide
-            </Button.Checkbox>
-          </Stack.Item>
-          <Stack.Item>
-            <Button.Checkbox
-              checked={includeTall}
-              onClick={() => setIncludeTall(!includeTall)}
-            >
-              Tall
+              Big
             </Button.Checkbox>
           </Stack.Item>
         </Stack>
@@ -76,7 +63,7 @@ export const SpriteSection = (props: {
                     key={filter.sprite}
                     option={filter.sprite}
                     action="pick_icon"
-                    selected={selected}
+                    selected={selected_chassis ?? pai_chassis}
                     belly={filter.belly}
                   />
                 ))}
