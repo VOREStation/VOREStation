@@ -54,6 +54,10 @@
 	var/glass_center_of_mass_x = 0
 	var/glass_center_of_mass_y = 0
 
+	///How much (if any) of this reagent penetrates through skin and into the bloodstream. Ranges from 0 (none at all) to 1 (100% transfer from skin to blood).
+	///This is for chemicals that don't have any special touch effects.
+	var/dermal_absorption = 0
+
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)
@@ -200,7 +204,7 @@
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	M.bloodstr.add_reagent(id, removed * 0.25) //Medications that are dermal compatible use affect_touch. Those that aren't apply the reagent to the bloodstream at 25% efficiency.
+	M.bloodstr.add_reagent(id, removed * dermal_absorption)
 	return
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.

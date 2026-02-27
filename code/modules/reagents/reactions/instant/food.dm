@@ -90,6 +90,29 @@
 	required_reagents = list(REAGENT_ID_TOMATOJUICE = 2, REAGENT_ID_APPLEJUICE = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_SPACESPICE = 1)
 	result_amount = 4
 
+/datum/decl/chemical_reaction/instant/food/mustard
+	name = REAGENT_MUSTARD
+	id = REAGENT_ID_MUSTARD
+	result = REAGENT_ID_MUSTARD
+	required_reagents = list(REAGENT_ID_MUSTARDPODS = 2, REAGENT_ID_WATER = 2, REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_HONEY = 1)
+	result_amount = 4
+
+/datum/decl/chemical_reaction/instant/food/vinegar_apple
+	name = "apple " + REAGENT_VINEGAR
+	id = "applevinegar"
+	result = REAGENT_ID_VINEGAR
+	required_reagents = list(REAGENT_ID_APPLEJUICE = 2, REAGENT_ID_WATER = 2, REAGENT_ID_SUGAR = 2)
+	catalysts = list(REAGENT_ID_YEAST = 5)
+	result_amount = 4
+
+/datum/decl/chemical_reaction/instant/food/vinegar_grape
+	name = "grape " + REAGENT_VINEGAR
+	id = "grapevinegar"
+	result = REAGENT_ID_VINEGAR
+	required_reagents = list(REAGENT_ID_GRAPEJUICE = 2, REAGENT_ID_WATER = 2, REAGENT_ID_SUGAR = 2)
+	catalysts = list(REAGENT_ID_YEAST = 5)
+	result_amount = 4
+
 /datum/decl/chemical_reaction/instant/food/peanutbutter
 	name = REAGENT_PEANUTBUTTER
 	id = REAGENT_ID_PEANUTBUTTER

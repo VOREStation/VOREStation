@@ -535,10 +535,12 @@
 				src.update_inv_wear_mask(0)
 
 /mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+	if(!species) // carbon/brains have no species
+		return FALSE
 
 	if(allergen_type in species.food_preference)
 		return species.food_preference_bonus
-	return 0
+	return FALSE
 
 /mob/living/carbon/handle_diseases()
 	for(var/thing in GetViruses())

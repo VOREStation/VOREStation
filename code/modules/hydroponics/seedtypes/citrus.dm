@@ -42,5 +42,6 @@
 
 /datum/seed/citrus/orange/New()
 	..()
-	set_trait(TRAIT_PRODUCT_COLOUR,"#FFC20A")
-	set_trait(TRAIT_FLESH_COLOUR,"#FFC20A")
+	set_trait(TRAIT_PRODUCT_ICON,"lemon")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#FF7B0A")
+	set_trait(TRAIT_FLESH_COLOUR,"#FF7B0A")

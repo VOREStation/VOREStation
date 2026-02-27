@@ -416,6 +416,10 @@
 	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
 		return
 
+	var/obj/item/current_item = get_wrapped_item()
+	if(current_item?.type == stack_to_consolidate.type)
+		return
+
 	for(var/obj/item/storage/internal/gripper/pocket in pockets)
 		if(!LAZYLEN(pocket.contents))
 			continue
