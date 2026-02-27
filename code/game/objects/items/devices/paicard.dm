@@ -70,22 +70,23 @@
 		to_chat(user, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
 		return
 
-	var/choice = tgui_alert(user, "Do you want to inhabit this pAI?", "Load", list("Load PAI Data", "Fresh Data", "Cancel"))
-	switch(choice)
-		if("Fresh Data")
-			ghost_inhabit(user, FALSE)
-			return
+	var/pai_name = user.client?.prefs.read_preference(/datum/preference/text/pai_name)
+	if(!pai_name || pai_name == PAI_UNSET)
+		to_chat(user, span_danger("You have no pai name set."))
+		return
 
-		if("Load PAI Data")
-			ghost_inhabit(user, TRUE)
-			return
+	var/choice = tgui_alert(user, "Do you want to inhabit this pAI using \"[pai_name]\"?", "Load pAI", list("Load pAI Data", "Cancel"))
+	if(choice == "Load PAI Data")
+		ghost_inhabit(user)
+		return
 
 	#warn Remove the following line
 	return ..() // TEMP, REMOVE ME
 
-/obj/item/paicard/proc/ghost_inhabit(mob/user, load_slot)
+/obj/item/paicard/proc/ghost_inhabit(mob/user)
 	RETURN_TYPE(/mob/living/silicon/pai)
-	if(load_slot && user.client?.prefs.read_preference(/datum/preference/text/pai_name) == PAI_UNSET) // Lets avoid "None Set" pais joining
+	var/pai_name = user.client?.prefs.read_preference(/datum/preference/text/pai_name)
+	if(!pai_name || pai_name == PAI_UNSET) // Lets avoid "None Set" pais joining
 		to_chat(user, span_danger("You have no pai name set."))
 		return
 	// Setup pai
@@ -93,10 +94,6 @@
 	new_pai.key = user.key
 	GLOB.paikeys |= new_pai.ckey
 	setPersonality(new_pai)
-	if(!load_slot || !new_pai.apply_preferences(new_pai.client))
-		var/pai_name = sanitize_name(tgui_input_text(new_pai, "Choose your character's name", "Character Name"), ,1)
-		if(!isnull(pai_name))
-			new_pai.SetName(pai_name)
 	return new_pai
 
 /obj/item/paicard/tgui_interact(mob/user, datum/tgui/ui)
