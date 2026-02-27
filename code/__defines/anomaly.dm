@@ -46,6 +46,7 @@
 #define HALLUCINATION_ANOMALY "hallucination_anomaly"
 #define DIMENSIONAL_ANOMALY "dimensional_anomaly"
 #define WEATHER_ANOMALY "weather_anomaly"
+#define DUST_ANOMALY "dust_anomaly"
 
 #define ANOMALY_PARTICLE_SIGMA		"Sigma particles"
 #define ANOMALY_PARTICLE_DELTA		"Delta particles"

@@ -19,6 +19,9 @@
 
 /obj/item/syringe_cartridge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/syringe))
+		if(syringe)
+			to_chat(user, span_warning("[src] already has a syringe loaded!"))
+			return
 		syringe = I
 		to_chat(user, span_notice("You carefully insert [syringe] into [src]."))
 		user.remove_from_mob(syringe)

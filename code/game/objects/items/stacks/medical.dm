@@ -215,9 +215,9 @@
 			affecting.update_damages()
 			if(used == amount)
 				if(affecting.is_bandaged())
-					balloon_alert(user, "\the [src] is used up.")
+					user.balloon_alert(user, "\the [src] is used up.")
 				else
-					balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
+					user.balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 			use(used)
 
 /obj/item/stack/medical/ointment

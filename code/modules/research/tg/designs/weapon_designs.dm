@@ -381,6 +381,19 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/bola_gun
+	name = "Bola Blaster"
+	desc  = "The \"Bola Blaster\" is an energy net projector designed to immobilize humanoid creatures."
+	id = "bolablaster"
+	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
+	build_path = /obj/item/gun/energy/bolagun
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+
 // Misc weapons
 
 /datum/design_techweb/pummeler
