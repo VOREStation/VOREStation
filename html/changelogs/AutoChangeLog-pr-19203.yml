@@ -1,0 +1,15 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - maptweak: "moved the kitchen goats out of the freezers and over to the animal pens"
+  - maptweak: "moved the beehives and honey machine on the tether to a better spot where the hives can 'see' the hydroponics plots better"
+  - qol: "added a condiments crate to cargo, as a means to acquire premade bottles of sauces"
+  - qol: "added meat resupply crates to cargo, allowing you to order fresh (non-synthetic) meat (for flavour) and fish/poultry, without having to butcher animals"
+  - qol: "condiment bottles now transfer 2u base rather than 5u, and have a minimum transfer value of 1u"
+  - rscadd: "added mustard plants (which contain a new \"mustard pods\" reagent, used to make mustard by mixing them with salt, water, and honey in a 2:2:1:1 ratio to make 4 mustard)"
+  - rscadd: "raw cutlets can be grilled into burger patties on the grill for making custom burgs instead of just making a \"grilled raw cutlet\", or requiring you to microwave the cutlet and then grill it"
+  - rscadd: "can now make vinegar using apple *or* grape juice *plus* water *and* sugar, with yeast as a catalyst (2u of each + 5 yeast = 4 vinegar + 5 yeast). try it on your fish and chips today! or don't."
+  - code_imp: "added bbq sauce preset for map-placeable condiment bottles"
+  - bugfix: "fixed the mothroach and catslug crates sharing datum names"
+  - bugfix: "fixed duplicate def init for pillbug shell ingredients that was supposed to go with the empty version"
+  - image: "brightened the default carrot produce sprite and changed the produce colours for carrots and oranges"
