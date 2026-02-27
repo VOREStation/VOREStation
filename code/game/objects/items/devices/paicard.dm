@@ -94,6 +94,7 @@
 	new_pai.key = user.key
 	GLOB.paikeys |= new_pai.ckey
 	setPersonality(new_pai)
+	new_pai.apply_preferences(new_pai.client)
 	return new_pai
 
 /obj/item/paicard/tgui_interact(mob/user, datum/tgui/ui)
