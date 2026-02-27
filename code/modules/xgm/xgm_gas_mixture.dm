@@ -481,8 +481,7 @@
 		combined.gas = total_gas
 
 		//Calculate temperature
-		if(total_heat_capacity > 0)
-			combined.set_temp(total_thermal_energy / total_heat_capacity)
+		combined.set_temp(total_heat_capacity ? (total_thermal_energy / total_heat_capacity) : TCMB)
 		combined.update_values()
 
 		//Allow for reactions
