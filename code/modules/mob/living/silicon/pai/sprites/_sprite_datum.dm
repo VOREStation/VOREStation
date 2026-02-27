@@ -20,8 +20,6 @@
 	var/icon_y = 32
 	var/vis_height = 32
 
-	var/no_direction_sprites = FALSE
-
 // PAI sprites
 /datum/pai_sprite/drone
 	name = PAI_DEFAULT_CHASSIS
@@ -133,7 +131,6 @@
 	sprite_icon_state = "cyberelf"
 	flying = TRUE
 	resting_belly = FALSE
-	no_direction_sprites = TRUE
 
 /datum/pai_sprite/catslug
 	name = "Catslug"
