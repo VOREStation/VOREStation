@@ -8500,10 +8500,17 @@
 	pixel_y = -24
 	},
 /obj/structure/table/standard,
-/obj/item/paper_bin,
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 2
+	},
 /obj/item/pen,
 /obj/structure/cable/green{
 	icon_state = "0-8"
+	},
+/obj/item/stamp/talon{
+	pixel_x = -6;
+	pixel_y = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
