@@ -24,7 +24,7 @@
 
 /obj/effect/anomaly/dust/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-	if(isfloor(AM))
+	if(istype(AM, /turf/simulated/floor))
 		var/turf/simulated/floor/floor = AM
 		if(floor.can_dirty)
 			floor.dirt += 50
