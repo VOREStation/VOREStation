@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Being splashed with ice (and various other substances) will no longer kill you."
-  - bugfix: "Distillery machine now works properly when connected to a gas pipeline."
-  - bugfix: "Syringe gun darts no longer accidentally delete syringes."
-  - qol: "Cyanide is still not 'fast and lethal' as the coder comment implies but is now more lethal than previous. It also is no longer an instant win button."

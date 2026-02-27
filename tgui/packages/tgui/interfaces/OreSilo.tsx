@@ -47,7 +47,7 @@ type Data = {
   logs: Log[];
 };
 
-export const OreSilo = (props: any) => {
+export const OreSilo = (props) => {
   const { act, data } = useBackend<Data>();
   const { SHEET_MATERIAL_AMOUNT, machines, logs } = data;
 
