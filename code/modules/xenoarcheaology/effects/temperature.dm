@@ -16,7 +16,7 @@
 	if(temp_change == HOT)
 		target_temp = rand(300, 3000)
 	else
-		target_temp = rand (0, 150)
+		target_temp = rand (TCMB, 150)
 	effect_type = EFFECT_TEMPERATURE
 
 /datum/artifact_effect/temperature/DoEffectTouch(var/mob/user) //This still exists in case you VV it.
@@ -28,10 +28,10 @@
 			var/temp_coef = 1 //The closer they are, the harder it is to cause a change.
 			if(temp_change == HOT && env.temperature < target_temp)
 				temp_coef = ((target_temp)/(env.temperature+1)) //TT = 300. ET = 250. TC = ~1 || TT = 3000. ET = 300 TT = 10. We multiply by 10 below to speed it up.
-				env.temperature = max(env.temperature + temp_coef*10, 0)
+				env.temperature = max(env.temperature + temp_coef*10, TCMB)
 			else if(temp_change == COLD && env.temperature > target_temp)
 				temp_coef = (env.temperature/(target_temp+1)) //ET = 300, TT = 25. TC = 12. Next: ET=288 TT = 25, TC = 11.52. ETC.
-				env.temperature = max(env.temperature - temp_coef, 0)
+				env.temperature = max(env.temperature - temp_coef, TCMB)
 
 /datum/artifact_effect/temperature/DoEffectAura()
 	var/atom/holder = get_master_holder()
@@ -41,10 +41,10 @@
 			var/temp_coef = 1 //The closer they are, the harder it is to cause a change.
 			if(temp_change == HOT && env.temperature < target_temp)
 				temp_coef = ((target_temp)/(env.temperature+1)) //TT = 300. ET = 250. TC = ~1 || TT = 3000. ET = 300 TT = 10. We multiply by 10 below to speed it up.
-				env.temperature = max(env.temperature + temp_coef*10, 0)
+				env.temperature = max(env.temperature + temp_coef*10, TCMB)
 			else if(temp_change == COLD && env.temperature > target_temp)
 				temp_coef = (env.temperature/(target_temp+1)) //ET = 300, TT = 25. TC = 12. Next: ET=288 TT = 25, TC = 11.52. ETC.
-				env.temperature = max(env.temperature - temp_coef, 0)
+				env.temperature = max(env.temperature - temp_coef, TCMB)
 
 /datum/artifact_effect/temperature/DoEffectPulse() //Same as aura. Could probably be increased to be stronger with effect_range but eh, we don't want people to insta freeze/fry theirselves.
 	var/atom/holder = get_master_holder()
@@ -54,10 +54,10 @@
 			var/temp_coef = 1 //The closer they are, the harder it is to cause a change.
 			if(temp_change == HOT && env.temperature < target_temp)
 				temp_coef = ((target_temp)/(env.temperature+1)) //TT = 300. ET = 250. TC = ~1 || TT = 3000. ET = 300 TT = 10. We multiply by 10 below to speed it up.
-				env.temperature = max(env.temperature + temp_coef*10, 0)
+				env.temperature = max(env.temperature + temp_coef*10, TCMB)
 			else if(temp_change == COLD && env.temperature > target_temp)
 				temp_coef = (env.temperature/(target_temp+1)) //ET = 300, TT = 25. TC = 12. Next: ET=288 TT = 25, TC = 11.52. ETC.
-				env.temperature = max(env.temperature - temp_coef, 0)
+				env.temperature = max(env.temperature - temp_coef, TCMB)
 
 #undef COLD
 #undef HOT
