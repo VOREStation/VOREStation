@@ -199,7 +199,7 @@
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 	shoes = /obj/item/clothing/shoes/black
-	head = /obj/item/clothing/head/caphat/talon/refreshed
+	head = /obj/item/clothing/head/caphat/talon/pilot
 	uniform = /obj/item/clothing/under/rank/talon/pilot/refreshed
 	suit = /obj/item/clothing/suit/storage/talonbomberjacket
 	gloves = /obj/item/clothing/gloves/fingerless
