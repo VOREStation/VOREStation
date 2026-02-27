@@ -527,7 +527,7 @@
 			eye_layer = image('icons/mob/pai64x32.dmi', chassis_data.holo_eyes_icon_state)
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
 			eye_layer = image('icons/mob/pai64x64.dmi', chassis_data.holo_eyes_icon_state)
-	else if(chassis_data.has_eye_icon)
+	else if(chassis_data.has_eye_sprites)
 		// Default eye handling
 		eye_layer = image(icon, "[icon_state]-eyes")
 	else

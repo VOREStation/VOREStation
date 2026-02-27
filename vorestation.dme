@@ -2321,6 +2321,7 @@
 #include "code\modules\asset_cache\assets\spritesheets\chat.dm"
 #include "code\modules\asset_cache\assets\spritesheets\chem_master.dm"
 #include "code\modules\asset_cache\assets\spritesheets\kitchen_recipes.dm"
+#include "code\modules\asset_cache\assets\spritesheets\pai_icons.dm"
 #include "code\modules\asset_cache\assets\spritesheets\pipes.dm"
 #include "code\modules\asset_cache\assets\spritesheets\robot_icons.dm"
 #include "code\modules\asset_cache\assets\spritesheets\stacks.dm"

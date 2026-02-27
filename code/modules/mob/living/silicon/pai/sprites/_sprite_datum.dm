@@ -4,7 +4,7 @@
 
 	var/sprite_icon = null
 	var/sprite_icon_state = null
-	var/has_eye_icon = TRUE
+	var/has_eye_sprites = TRUE
 	var/flying = FALSE
 	var/belly_states = 1
 
@@ -45,26 +45,26 @@
 	name = "Borgi"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-borgi"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 
 /datum/pai_sprite/fox
 	name = "Fox"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-fox"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 
 /datum/pai_sprite/parrot
 	name = "Parrot"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-parrot"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 	flying = TRUE
 
 /datum/pai_sprite/rabbit
 	name = "Rabbit"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-rabbit"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 
 /datum/pai_sprite/bear
 	name = "Bear"
@@ -96,7 +96,7 @@
 	name = "Corgi"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-corgi"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 
 /datum/pai_sprite/bat
 	name = "Bat"
@@ -115,7 +115,7 @@
 	name = "Hawk"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-hawk"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 	flying = TRUE
 	belly_states = 0
 
@@ -123,7 +123,7 @@
 	name = "Duffel"
 	sprite_icon = 'icons/mob/pai.dmi'
 	sprite_icon_state = "pai-duffel"
-	has_eye_icon = FALSE
+	has_eye_sprites = FALSE
 
 /datum/pai_sprite/cyber_elf
 	name = "Cyber Elf"
@@ -151,7 +151,7 @@
 /datum/pai_sprite/type_thirteen
 	name = "Type Thirteen"
 	sprite_icon = 'icons/mob/pai.dmi'
-	sprite_icon_state = "13"
+	sprite_icon_state = null
 	holo_projector = TRUE
 	holo_eyes_icon_state = "type13-eyes"
 
