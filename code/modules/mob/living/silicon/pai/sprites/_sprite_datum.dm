@@ -157,7 +157,6 @@
 	sprite_icon_state = null
 	holo_projector = TRUE
 	holo_eyes_icon_state = "type13-eyes"
-	no_direction_sprites = TRUE
 
 // Large pai sprites
 /datum/pai_sprite/large
