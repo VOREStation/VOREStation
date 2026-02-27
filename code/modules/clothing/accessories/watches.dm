@@ -56,7 +56,7 @@
 		if(istype(TB, /turf/simulated))	//no point returning atmospheric data from unsimulated tiles (they don't track pressure anyway, only temperature)
 			var/turf/simulated/T = TB
 			var/datum/gas_mixture/env = T.return_air()
-			. += span_notice("Pressure: [env.return_pressure()]kPa / Temperature: [env.temperature]K ")
+			. += span_notice("Pressure: [env.return_pressure()]kPa / Temperature: [env.get_temp()]K ")
 
 /obj/item/clothing/accessory/watch/survival/Initialize(mapload)
 	. = ..()

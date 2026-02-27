@@ -257,7 +257,7 @@
 	add_avail(lastgen)
 
 	// Weird function but it works. Should be something else...
-	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles)/4
+	var/newrpm = ((compressor.gas_contained.get_temp()) * compressor.gas_contained.total_moles)/4
 
 	newrpm = max(0, newrpm)
 
@@ -370,7 +370,7 @@
 		data["online"] = compressor.starter
 		data["power"] = compressor.turbine.lastgen // DisplayPower
 		data["rpm"] = compressor.rpm
-		data["temp"] = compressor.gas_contained.temperature
+		data["temp"] = compressor.gas_contained.get_temp()
 
 	return data
 

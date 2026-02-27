@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	src.init_proxy()
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
-	src.air_contents.temperature = T20C
+	src.air_contents.set_temp(T20C)
 	update_gauge()
 
 /obj/item/tank/Destroy()
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 /obj/item/tank/examine(mob/user)
 	. = ..()
 	if(loc == user)
-		var/celsius_temperature = air_contents.temperature - T0C
+		var/celsius_temperature = air_contents.get_temp() - T0C
 		var/descriptive
 		switch(celsius_temperature)
 			if(300 to INFINITY)
@@ -176,8 +176,8 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 			to_chat(user, span_notice("You begin attaching the assembly to \the [src]."))
 			if(do_after(user, 5 SECONDS, target = src))
 				to_chat(user, span_notice("You finish attaching the assembly to \the [src]."))
-				GLOB.bombers += "[key_name(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.temperature-T0C]"
-				message_admins("[key_name_admin(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.temperature-T0C]")
+				GLOB.bombers += "[key_name(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.get_temp()-T0C]"
+				message_admins("[key_name_admin(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.get_temp()-T0C]")
 				assemble_bomb(W,user)
 			else
 				to_chat(user, span_notice("You stop attaching the assembly."))
@@ -195,8 +195,8 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 					src.valve_welded = 1
 					src.leaking = 0
 				else
-					GLOB.bombers += "[key_name(user)] attempted to weld a [src]. [src.air_contents.temperature-T0C]"
-					message_admins("[key_name_admin(user)] attempted to weld a [src]. [src.air_contents.temperature-T0C]")
+					GLOB.bombers += "[key_name(user)] attempted to weld a [src]. [src.air_contents.get_temp()-T0C]"
+					message_admins("[key_name_admin(user)] attempted to weld a [src]. [src.air_contents.get_temp()-T0C]")
 					if(WT.welding)
 						to_chat(user, span_danger("You accidentally rake \the [W] across \the [src]!"))
 						maxintegrity -= rand(2,6)
@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	if(tank_pressure < distribute_pressure)
 		distribute_pressure = tank_pressure
 
-	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.get_temp())
 
 	return remove_air(moles_needed)
 
@@ -415,7 +415,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 
 
 			var/turf/simulated/T = get_turf(src)
-			T.hotspot_expose(src.air_contents.temperature, 70, 1)
+			T.hotspot_expose(src.air_contents.get_temp(), 70, 1)
 			if(!T)
 				return
 
@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 			T.assume_air(air_contents)
 			playsound(src, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
 			visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [src] flies apart!"), span_warning("You hear a bang!"))
-			T.hotspot_expose(air_contents.temperature, 70, 1)
+			T.hotspot_expose(air_contents.get_temp(), 70, 1)
 
 
 			var/strength = 1+((pressure-TANK_LEAK_PRESSURE)/TANK_FRAGMENT_SCALE)
@@ -484,7 +484,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 				integrity-= 5
 
 
-	else if(pressure > TANK_LEAK_PRESSURE || air_contents.temperature - T0C > failure_temp)
+	else if(pressure > TANK_LEAK_PRESSURE || air_contents.get_temp() - T0C > failure_temp)
 
 		if((integrity <= 17 || src.leaking) && !valve_welded)
 			var/turf/simulated/T = get_turf(src)
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	src.air_contents.gas[GAS_O2] = oxygen_amt
 	src.air_contents.update_values()
 	src.valve_welded = 1
-	src.air_contents.temperature = PHORON_MINIMUM_BURN_TEMPERATURE-1
+	src.air_contents.set_temp(PHORON_MINIMUM_BURN_TEMPERATURE-1)
 
 	src.wired = 1
 

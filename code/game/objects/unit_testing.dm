@@ -26,7 +26,7 @@
 		else
 			GM.gas[GAS_N2] = 100
 	if(D.minimum_xgm_pressure)
-		GM.temperature = (D.minimum_xgm_pressure * CELL_VOLUME) / (GM.gas[D.require_xgm_gas] * R_IDEAL_GAS_EQUATION)
+		GM.set_temp((D.minimum_xgm_pressure * CELL_VOLUME) / (GM.gas[D.require_xgm_gas] * R_IDEAL_GAS_EQUATION))
 
 	// Try this 10 times, We need to know if something is blocking at multiple temps.
 	// If it passes unit test, it might still be awful to make though, gotta find the right gas mix!

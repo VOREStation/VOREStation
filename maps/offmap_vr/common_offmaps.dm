@@ -543,10 +543,10 @@
 			var/turf/T = get_turf(src)
 			var/datum/gas_mixture/env = T.return_air()
 			if(env)
-				if(my_mob.minbodytemp > env.temperature)
-					my_mob.minbodytemp = env.temperature * 0.8
-				if(my_mob.maxbodytemp < env.temperature)
-					my_mob.maxbodytemp = env.temperature * 1.2
+				if(my_mob.minbodytemp > env.get_temp())
+					my_mob.minbodytemp = env.get_temp() * 0.8
+				if(my_mob.maxbodytemp < env.get_temp())
+					my_mob.maxbodytemp = env.get_temp() * 1.2
 
 				var/list/gaslist = env.gas
 				if(my_mob.min_oxy)

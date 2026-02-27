@@ -76,7 +76,7 @@
 	var/data[0]
 	data["on"] = use_power ? 1 : 0
 	data["gasPressure"] = round(air_contents.return_pressure())
-	data["gasTemperature"] = round(air_contents.temperature)
+	data["gasTemperature"] = round(air_contents.get_temp())
 	data["minGasTemperature"] = 0
 	data["maxGasTemperature"] = round(T20C+500)
 	data["targetGasTemperature"] = round(set_temperature)
@@ -87,9 +87,9 @@
 	data["reagentPower"] = reagent_cooling
 
 	var/temp_class = "good"
-	if(air_contents.temperature > (T0C - 20))
+	if(air_contents.get_temp() > (T0C - 20))
 		temp_class = "bad"
-	else if(air_contents.temperature < (T0C - 20) && air_contents.temperature > (T0C - 100))
+	else if(air_contents.get_temp() < (T0C - 20) && air_contents.get_temp() > (T0C - 100))
 		temp_class = "average"
 	data["gasTemperatureClass"] = temp_class
 
@@ -125,14 +125,14 @@
 		update_icon()
 		return
 
-	if(network && air_contents.temperature > set_temperature)
+	if(network && air_contents.get_temp() > set_temperature)
 		cooling = 1
 
 		var/heat_transfer = max( -air_contents.get_thermal_energy_change(set_temperature - 5), 0 )
 
 		//Assume the heat is being pumped into the hull which is fixed at heatsink_temperature
 		//not /really/ proper thermodynamics but whatever
-		var/cop = FREEZER_PERF_MULT * air_contents.temperature/heatsink_temperature	//heatpump coefficient of performance from thermodynamics -> power used = heat_transfer/cop
+		var/cop = FREEZER_PERF_MULT * air_contents.get_temp()/heatsink_temperature	//heatpump coefficient of performance from thermodynamics -> power used = heat_transfer/cop
 		heat_transfer = min(heat_transfer, cop * power_rating)	//limit heat transfer by available power
 
 		// Process coolant

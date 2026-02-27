@@ -72,7 +72,7 @@
 		update_icon()
 		return
 
-	if(network && air_contents.total_moles && air_contents.temperature < set_temperature)
+	if(network && air_contents.total_moles && air_contents.get_temp() < set_temperature)
 		air_contents.add_thermal_energy(power_rating * CLAMP(reagent_cooling,REAGENT_COOLING_MINMOD,REAGENT_COOLING_MAXMOD) * HEATER_PERF_MULT * heating_efficiency)
 		use_power(power_rating)
 
@@ -103,7 +103,7 @@
 	var/data[0]
 	data["on"] = use_power ? 1 : 0
 	data["gasPressure"] = round(air_contents.return_pressure())
-	data["gasTemperature"] = round(air_contents.temperature)
+	data["gasTemperature"] = round(air_contents.get_temp())
 	data["minGasTemperature"] = 0
 	data["maxGasTemperature"] = round(max_temperature)
 	data["targetGasTemperature"] = round(set_temperature)
@@ -114,7 +114,7 @@
 	data["reagentPower"] = reagent_cooling
 
 	var/temp_class = "average"
-	if(air_contents.temperature > (T20C+40))
+	if(air_contents.get_temp() > (T20C+40))
 		temp_class = "bad"
 	data["gasTemperatureClass"] = temp_class
 

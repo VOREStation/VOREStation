@@ -17,7 +17,7 @@
 	..()
 	air_contents = new
 	air_contents.volume = volume
-	air_contents.temperature = T20C
+	air_contents.set_temp(T20C)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/LateInitialize()
@@ -47,7 +47,7 @@
 		GAS_N2 = N2STANDARD *  MolesForPressure())
 
 /obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
-	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.get_temp())
 
 /obj/machinery/portable_atmospherics/update_icon()
 	return null

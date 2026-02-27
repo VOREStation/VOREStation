@@ -191,7 +191,7 @@
 	R.add_reagent(REAGENT_ID_WATER, round(volume, 0.1))
 
 	var/datum/gas_mixture/air = return_air() // v
-	if(air.temperature <= T0C) // Uses the current air temp, instead of the turf starting temp
+	if(air.get_temp() <= T0C) // Uses the current air temp, instead of the turf starting temp
 		R.add_reagent(REAGENT_ID_ICE, round(volume / 2, 0.1))
 
 	for(var/turf/simulated/mineral/M in orange(5,src))

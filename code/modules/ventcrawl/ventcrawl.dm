@@ -178,7 +178,7 @@
 			to_chat(src, "You begin climbing into the ventilation system...")
 			if(vent_found.air_contents && !issilicon(src))
 
-				switch(vent_found.air_contents.temperature)
+				switch(vent_found.air_contents.get_temp())
 					if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
 						to_chat(src, span_danger("You feel a painful freeze coming from the vent!"))
 					if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)

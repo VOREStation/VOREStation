@@ -164,7 +164,7 @@
 			var/datum/gas_mixture/GM = new
 			for(var/gas in gas_field)
 				GM.adjust_multi(gas, drill_moles_per_tick)
-			GM.temperature = 423  // ~150C
+			GM.set_temp(423)  // ~150C
 			var/atom/location = src.loc
 			location.assume_air(GM)
 	else if(istype(get_turf(src), /turf/simulated))

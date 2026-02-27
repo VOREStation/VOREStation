@@ -226,15 +226,15 @@
 	LOAD_TLV_VALUES(TLV["temperature"], target_temperature)
 	if(!regulating_temperature)
 		//check for when we should start adjusting temperature
-		if(!TEST_TLV_VALUES && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
+		if(!TEST_TLV_VALUES && abs(environment.get_temp() - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
-			regulating_temperature = (environment.temperature > target_temperature ? 1 : 2)
+			regulating_temperature = (environment.get_temp() > target_temperature ? 1 : 2)
 			audible_message("\The [src] clicks as it starts [regulating_temperature == 1 ? "cooling" : "heating"] the room.",\
 			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
-		if(TEST_TLV_VALUES || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
+		if(TEST_TLV_VALUES || abs(environment.get_temp() - target_temperature) <= 0.5 || environment.return_pressure() < 1)
 			update_use_power(USE_POWER_IDLE)
 			audible_message("\The [src] clicks quietly as it stops [regulating_temperature == 1 ? "cooling" : "heating"] the room.",\
 			"You hear a click as a faint electronic humming stops.", runemessage = "* click *")
@@ -252,7 +252,7 @@
 		gas = environment.remove(0.25 * environment.total_moles)
 		if(gas)
 
-			if(gas.temperature <= target_temperature)	//gas heating
+			if(gas.get_temp() <= target_temperature)	//gas heating
 				var/energy_used = min(gas.get_thermal_energy_change(target_temperature) , active_power_usage)
 
 				gas.add_thermal_energy(energy_used)
@@ -263,7 +263,7 @@
 				//Assume the heat is being pumped into the hull which is fixed at 20 C
 				//none of this is really proper thermodynamics but whatever
 
-				var/cop = gas.temperature / T20C	//coefficient of performance -> power used = heat_transfer/cop
+				var/cop = gas.get_temp() / T20C	//coefficient of performance -> power used = heat_transfer/cop
 
 				heat_transfer = min(heat_transfer, cop * active_power_usage)	//this ensures that we don't use more than active_power_usage amount of power
 
@@ -274,7 +274,7 @@
 			environment.merge(gas)
 
 /obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
-	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature/environment.volume
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.get_temp()/environment.volume
 	var/environment_pressure = environment.return_pressure()
 
 	var/other_moles = 0
@@ -292,7 +292,7 @@
 	var/phoron_dangerlevel = TEST_TLV_VALUES
 	LOAD_TLV_VALUES(TLV[GAS_CH4], environment.gas[GAS_CH4]*partial_pressure)
 	var/methane_dangerlevel = TEST_TLV_VALUES
-	LOAD_TLV_VALUES(TLV["temperature"], environment.temperature)
+	LOAD_TLV_VALUES(TLV["temperature"], environment.get_temp())
 	var/temperature_dangerlevel = TEST_TLV_VALUES
 	LOAD_TLV_VALUES(TLV["other"], other_moles*partial_pressure)
 	var/other_dangerlevel = TEST_TLV_VALUES
@@ -579,7 +579,7 @@
 		"danger_level" = TEST_TLV_VALUES
 	)))
 
-	var/temperature = environment.temperature
+	var/temperature = environment.get_temp()
 	LOAD_TLV_VALUES(TLV["temperature"], temperature)
 	environment_data.Add(list(list(
 		"name" = "Temperature",
@@ -589,7 +589,7 @@
 	)))
 
 	var/total_moles = environment.total_moles
-	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.get_temp() / environment.volume
 	for(var/gas_id in environment.gas)
 		if(!(gas_id in TLV))
 			continue
