@@ -197,19 +197,19 @@
 	var/choice
 
 	choice = tgui_input_list(src, "What would you like to use for your mobile chassis' appearance?", "Chassis Choice", SSpai.get_chassis_list())
-	if(!choice) return
-	var/oursize = size_multiplier
-	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
+	if(!choice)
+		return
 	change_chassis(choice)
-
-	update_icon()
-	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
 
 /// Change pai sprite and offsets based upon the selected chassis id
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)
 	if(!(new_chassis in SSpai.get_chassis_list()))
 		new_chassis = PAI_DEFAULT_CHASSIS
 	chassis_name = new_chassis
+
+	//We resize ourselves to normal here for a moment to let the vis_height get reset
+	var/oursize = size_multiplier
+	resize(1, FALSE, TRUE, TRUE, FALSE)
 
 	// Get icon data setup
 	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
@@ -243,6 +243,7 @@
 		vore_selected.release_all_contents(TRUE)
 
 	update_icon()
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
