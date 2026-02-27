@@ -285,9 +285,9 @@ export type MiscData = {
 
   custom_species: string;
   ignore_shoes: BooleanLike;
-  pos_traits: string[] | Record<string, Record<string, any> | null>;
-  neu_traits: string[] | Record<string, Record<string, any> | null>;
-  neg_traits: string[] | Record<string, Record<string, any> | null>;
+  pos_traits: string[] | Record<string, Record<string, unknown> | null>;
+  neu_traits: string[] | Record<string, Record<string, unknown> | null>;
+  neg_traits: string[] | Record<string, Record<string, unknown> | null>;
   traits_cheating: BooleanLike;
   max_traits: number;
   trait_points: number;

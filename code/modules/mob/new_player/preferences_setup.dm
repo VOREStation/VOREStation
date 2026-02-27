@@ -292,13 +292,14 @@
 
 /datum/preferences/proc/get_valid_facialhairstyles()
 	var/list/valid_facialhairstyles = list()
+	var/bio_gender = read_preference(/datum/preference/choiced/gender/biological)
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(S.name == DEVELOPER_WARNING_NAME)
 			continue
-		if(biological_gender == MALE && S.gender == FEMALE)
+		if(bio_gender == MALE && S.gender == FEMALE)
 			continue
-		if(biological_gender == FEMALE && S.gender == MALE)
+		if(bio_gender == FEMALE && S.gender == MALE)
 			continue
 		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue

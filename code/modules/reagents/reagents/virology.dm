@@ -4,6 +4,7 @@
 	description = "Liquid vaccine against some type of virus."
 	color = "#C81040"
 	scannable = SCANNABLE_BENEFICIAL
+	dermal_absorption = 0.25 //Give virology the ability to make vaccine patches.
 	taste_description = "antibodies"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI

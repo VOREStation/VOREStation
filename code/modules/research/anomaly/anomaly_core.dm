@@ -100,3 +100,9 @@
 	desc = "The neutralized core of a weather anomaly. The sound of thunder can be heard in the distance. It'd probably be valuable for research."
 	icon_state = "weather_core"
 	anomaly_type = /obj/effect/anomaly/weather
+
+/obj/item/assembly/signaler/anomaly/dust
+	name = "\improper dust anomaly core"
+	desc = "The neutralized core of a dust anomaly. It seems to leave some dirt on touch. It'd probably be valuable for research."
+	icon_state = "dust_core"
+	anomaly_type = /obj/effect/anomaly/dust
