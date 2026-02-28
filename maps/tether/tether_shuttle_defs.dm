@@ -39,12 +39,12 @@
 ////////////////////////////////////////
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/excursion
-	name = "Excursion Shuttle"
-	desc = "The traditional Excursion Shuttle. NT Approved!"
-	icon_state = "htu_destroyer_g"
-	vessel_mass = 8000
-	vessel_size = SHIP_SIZE_SMALL
+	name = "NTV Stardriver"
+	desc = "A downscaled shuttle, based off the shuttle utilized on the Stellar Delight."
+	vessel_mass = 2500
+	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Excursion Shuttle"
+	known = TRUE
 
 /obj/machinery/computer/shuttle_control/explore/excursion
 	name = "short jump console"
