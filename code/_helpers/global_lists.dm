@@ -991,12 +991,10 @@ GLOBAL_LIST_INIT(special_roles, list(
 	"loyalist" = 0,										// 14
 	"pAI candidate" = 1,								// 15
 	"lost drone" = 1,									// 16
-	"maint pred" = 1,									// 17
-	"maint lurker" = 1,									// 18
-	"morph" = 1,										// 19
-	"corgi" = 1,										// 20
-	"cursed sword" = 1,									// 21
-	"Ship Survivor" = 1,								// 22
+	"maint critter" = 1,								// 17
+	"corgi" = 1,										// 18
+	"cursed sword" = 1,									// 19
+	"Ship Survivor" = 1,								// 20
 ))
 
 GLOBAL_LIST_INIT(maint_mob_pred_options, list(

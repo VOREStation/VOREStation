@@ -45,6 +45,7 @@
 			create_lurker(user)
 	used = TRUE
 	icon_state = icon_state_opened
+	update_icon()
 	GLOB.active_ghost_pods -= src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(var/mob/M)
@@ -158,6 +159,20 @@
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Initialize(mapload)
 	. = ..()
 	GLOB.active_ghost_pods += src
+
+	update_icon()
+
+/obj/structure/ghost_pod/ghost_activated/unified_hole/update_icon()
+	cut_overlays()
+
+	. = list()
+
+	if(!used)
+		. += mutable_appearance(icon, "rift")
+		. += emissive_appearance(icon, "rift")
+		return add_overlay(.)
+	else
+		return
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
 	GLOB.active_ghost_pods -= src
