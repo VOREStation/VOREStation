@@ -70,11 +70,6 @@ export const SkipIconCutter = new Juke.Parameter({
   name: 'skip-icon-cutter',
 });
 
-export const SkipRscInvalidate = new Juke.Parameter({
-  type: 'boolean',
-  name: 'skip-rsc-invalidate',
-});
-
 export const WarningParameter = new Juke.Parameter({
   type: 'string[]',
   alias: 'W',
@@ -160,16 +155,6 @@ export const DmMapsIncludeTarget = new Juke.Target({
   },
 });
 
-export const RscInvalidateTarget = new Juke.Target({
-  inputs: ['icons/**'],
-  outputs: ['.rsc-invalidate'],
-  executes: async () => {
-    Juke.rm(`${DME_NAME}.rsc`);
-
-    fs.writeFileSync('.rsc-invalidate', Date.now().toString());
-  },
-});
-
 export const DmTarget = new Juke.Target({
   parameters: [
     DefineParameter,
@@ -181,7 +166,6 @@ export const DmTarget = new Juke.Target({
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
     !get(SkipIconCutter) && IconCutterTarget,
-    !get(SkipRscInvalidate) && RscInvalidateTarget,
   ],
   inputs: [
     '_maps/map_files/generic/**',
