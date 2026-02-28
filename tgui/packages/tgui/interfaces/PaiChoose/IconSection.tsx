@@ -15,7 +15,7 @@ export const IconSection = (props) => {
       fill
       buttons={
         <Button disabled={!selected_chassis} onClick={() => act('confirm')}>
-          Confirm
+          Apply
         </Button>
       }
     >
