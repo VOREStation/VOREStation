@@ -3459,6 +3459,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "agg" = (
@@ -3584,6 +3585,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/tether/exploration)
 "agt" = (
@@ -4009,6 +4011,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/tether/exploration)
 "ahf" = (
@@ -29333,6 +29336,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/tether/exploration)
 "sVp" = (
@@ -29567,6 +29571,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/tether/exploration)
 "tiN" = (
