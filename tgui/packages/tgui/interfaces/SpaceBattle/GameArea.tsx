@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { numToLetter } from './constants';
-import { generateShipCoordinates } from './functions';
+import { generateShipCoordinates, mapDisabled } from './functions';
 import type { Data, Ship } from './types';
 
 export const GameArea = (props: {
@@ -45,7 +45,7 @@ export const GameArea = (props: {
         <Stack.Item>
           <Playfield
             player={1}
-            isOponent={current_player === player_two}
+            isOpponent={current_player === player_two}
             isSelf={current_player === player_one}
             shotsFired={shots_fired_ptwo}
             destroyedShips={destroyed_ships_ptwo}
@@ -58,7 +58,7 @@ export const GameArea = (props: {
         <Stack.Item>
           <Playfield
             player={2}
-            isOponent={current_player === player_one}
+            isOpponent={current_player === player_one}
             isSelf={current_player === player_two}
             shotsFired={shots_fired_pone}
             destroyedShips={destroyed_ships_pone}
@@ -74,7 +74,7 @@ export const GameArea = (props: {
 
 const Playfield = (props: {
   player: number;
-  isOponent: boolean;
+  isOpponent: boolean;
   isSelf: boolean;
   shotsFired: Record<string, BooleanLike>;
   destroyedShips: Ship[];
@@ -86,7 +86,7 @@ const Playfield = (props: {
   const { game_state, ship_sizes, visible_ships } = data;
   const {
     player,
-    isOponent,
+    isOpponent,
     isSelf,
     shotsFired,
     destroyedShips,
@@ -227,12 +227,7 @@ const Playfield = (props: {
                   ) : (
                     <div onMouseEnter={() => handleButtonHover(x, y)}>
                       <Button
-                        disabled={
-                          ((game_state === 2 && isOponent) ||
-                            isSelf ||
-                            game_state === 4) &&
-                          !(isSelf && isOponent)
-                        }
+                        disabled={mapDisabled(game_state, isSelf, isOpponent)}
                         onClick={(_) => {
                           if (game_state === 1) {
                             handlePlacement(x, y);
