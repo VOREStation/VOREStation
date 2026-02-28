@@ -40,8 +40,12 @@ export function fixCorruptedData(
   const isNumeric = (v: string) => /^\d+$/.test(v);
 
   const clearedData = Object.entries(toSanitize).map(([key, value]) => {
-    if (!isNumeric(value.toString())) return value.toString();
-    if (!isNumeric(key)) return key;
+    if (!isNumeric(value.toString())) {
+      return value.toString();
+    }
+    if (!isNumeric(key)) {
+      return key;
+    }
     return '';
   });
 
