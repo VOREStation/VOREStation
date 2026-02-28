@@ -70,7 +70,7 @@ export const SubtabPai = (props: {
                       </Stack.Item>
                     </Stack>
                   </LabeledList.Item>
-                  <LabeledList.Item label="Role">
+                  <LabeledList.Item verticalAlign="top" label="Role">
                     <Stack>
                       <Stack.Item>
                         <TextArea
@@ -94,7 +94,7 @@ export const SubtabPai = (props: {
                       </Stack.Item>
                     </Stack>
                   </LabeledList.Item>
-                  <LabeledList.Item label="Description">
+                  <LabeledList.Item verticalAlign="top" label="Description">
                     <Stack>
                       <Stack.Item>
                         <TextArea
@@ -118,7 +118,7 @@ export const SubtabPai = (props: {
                       </Stack.Item>
                     </Stack>
                   </LabeledList.Item>
-                  <LabeledList.Item label="Ad">
+                  <LabeledList.Item verticalAlign="top" label="Ad">
                     <Stack>
                       <Stack.Item>
                         <TextArea
@@ -142,7 +142,7 @@ export const SubtabPai = (props: {
                       </Stack.Item>
                     </Stack>
                   </LabeledList.Item>
-                  <LabeledList.Item label="OOC Comments">
+                  <LabeledList.Item verticalAlign="top" label="OOC Comments">
                     <Stack>
                       <Stack.Item>
                         <TextArea
