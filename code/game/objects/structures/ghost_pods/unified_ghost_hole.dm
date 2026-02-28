@@ -5,7 +5,7 @@
 	icon_state = "rift"
 	icon_state_opened = "tendril_dead"
 	density = FALSE
-	ghost_query_type = /datum/ghost_query/maints_spawner
+	ghost_query_type = /datum/ghost_query/maints_critter
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
