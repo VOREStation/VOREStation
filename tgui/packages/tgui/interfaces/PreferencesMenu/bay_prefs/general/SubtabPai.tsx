@@ -1,4 +1,5 @@
 import { useBackend } from 'tgui/backend';
+import { PaiPreview } from 'tgui/interfaces/PaiChoose/PaiPreview';
 import { VorePanelTooltip } from 'tgui/interfaces/VorePanel/VorePanelElements/VorePanelTooltip';
 import {
   Box,
@@ -8,7 +9,6 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
 import { PreferenceEditColor } from '../../elements/ColorInput';
 import type {
   GeneralData,
@@ -233,67 +233,11 @@ export const SubtabPai = (props: {
             <Stack fill vertical align="center">
               <Stack.Item>
                 <Box bold>Sprite Preview</Box>
-                {!!pai_sprite_datum_class && !!pai_sprite_datum_size && (
-                  <>
-                    <Stack.Item>
-                      <Stack>
-                        <Stack.Item grow />
-                        <Stack.Item>
-                          <Box
-                            className={classes([
-                              pai_sprite_datum_size,
-                              `${pai_sprite_datum_class}N`,
-                            ])}
-                          />
-                        </Stack.Item>
-                        <Stack.Item grow />
-                      </Stack>
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Stack>
-                        <Stack.Item grow />
-                        <Stack.Item>
-                          <Box
-                            color="red"
-                            className={classes([
-                              pai_sprite_datum_size,
-                              `${pai_sprite_datum_class}S`,
-                            ])}
-                          />
-                        </Stack.Item>
-                        <Stack.Item grow />
-                      </Stack>
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Stack>
-                        <Stack.Item grow />
-                        <Stack.Item>
-                          <Box
-                            className={classes([
-                              pai_sprite_datum_size,
-                              `${pai_sprite_datum_class}W`,
-                            ])}
-                          />
-                        </Stack.Item>
-                        <Stack.Item grow />
-                      </Stack>
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Stack>
-                        <Stack.Item grow />
-                        <Stack.Item>
-                          <Box
-                            className={classes([
-                              pai_sprite_datum_size,
-                              `${pai_sprite_datum_class}E`,
-                            ])}
-                          />
-                        </Stack.Item>
-                        <Stack.Item grow />
-                      </Stack>
-                    </Stack.Item>
-                  </>
-                )}
+                <PaiPreview
+                  icon={pai_sprite_datum_class}
+                  size={pai_sprite_datum_size}
+                  color={pai_eyecolor}
+                />
               </Stack.Item>
             </Stack>
           </Stack.Item>

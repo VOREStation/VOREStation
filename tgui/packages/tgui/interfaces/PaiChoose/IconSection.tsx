@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Divider, Section, Stack } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
+import { Button, Divider, Section, Stack } from 'tgui-core/components';
 import { PreferenceEditColor } from '../PreferencesMenu/elements/ColorInput';
+import { PaiPreview } from './PaiPreview';
 import type { Data } from './types';
 
 export const IconSection = (props) => {
@@ -32,66 +32,11 @@ export const IconSection = (props) => {
         </Stack>
       </Stack.Item>
       <Divider />
-      {!!sprite_datum_class && !!sprite_datum_size && (
-        <>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item grow />
-              <Stack.Item>
-                <Box
-                  className={classes([
-                    sprite_datum_size,
-                    `${sprite_datum_class}N`,
-                  ])}
-                />
-              </Stack.Item>
-              <Stack.Item grow />
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item grow />
-              <Stack.Item>
-                <Box
-                  className={classes([
-                    sprite_datum_size,
-                    `${sprite_datum_class}S`,
-                  ])}
-                />
-              </Stack.Item>
-              <Stack.Item grow />
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item grow />
-              <Stack.Item>
-                <Box
-                  className={classes([
-                    sprite_datum_size,
-                    `${sprite_datum_class}W`,
-                  ])}
-                />
-              </Stack.Item>
-              <Stack.Item grow />
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item grow />
-              <Stack.Item>
-                <Box
-                  className={classes([
-                    sprite_datum_size,
-                    `${sprite_datum_class}E`,
-                  ])}
-                />
-              </Stack.Item>
-              <Stack.Item grow />
-            </Stack>
-          </Stack.Item>
-        </>
-      )}
+      <PaiPreview
+        icon={sprite_datum_class}
+        size={sprite_datum_size}
+        color={pai_color}
+      />
     </Section>
   );
 };
