@@ -19,24 +19,26 @@ export const IconSection = (props) => {
         </Button>
       }
     >
-      <Stack.Item>
-        <Stack>
-          <Stack.Item color="label">Color:</Stack.Item>
-          <Stack.Item>
-            <PreferenceEditColor
-              onClose={(value) => act('change_color', { color: value })}
-              tooltip="Choose your pAI's default glow colour."
-              back_color={pai_color}
-            />
-          </Stack.Item>
-        </Stack>
-      </Stack.Item>
-      <Divider />
-      <PaiPreview
-        icon={sprite_datum_class}
-        size={sprite_datum_size}
-        color={pai_color}
-      />
+      <Stack vertical fill>
+        <Stack.Item>
+          <Stack>
+            <Stack.Item color="label">Color:</Stack.Item>
+            <Stack.Item>
+              <PreferenceEditColor
+                onClose={(value) => act('change_color', { color: value })}
+                tooltip="Choose your pAI's default glow colour."
+                back_color={pai_color}
+              />
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+        <Divider />
+        <PaiPreview
+          icon={sprite_datum_class}
+          size={sprite_datum_size}
+          color={pai_color}
+        />
+      </Stack>
     </Section>
   );
 };

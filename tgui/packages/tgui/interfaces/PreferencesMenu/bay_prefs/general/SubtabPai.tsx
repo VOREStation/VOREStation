@@ -233,12 +233,12 @@ export const SubtabPai = (props: {
             <Stack fill vertical align="center">
               <Stack.Item>
                 <Box bold>Sprite Preview</Box>
-                <PaiPreview
-                  icon={pai_sprite_datum_class}
-                  size={pai_sprite_datum_size}
-                  color={pai_eyecolor}
-                />
               </Stack.Item>
+              <PaiPreview
+                icon={pai_sprite_datum_class}
+                size={pai_sprite_datum_size}
+                color={pai_eyecolor}
+              />
             </Stack>
           </Stack.Item>
         </Stack>

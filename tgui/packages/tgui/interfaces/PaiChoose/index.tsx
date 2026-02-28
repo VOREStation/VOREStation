@@ -5,7 +5,7 @@ import { SpriteSection } from './SpriteSection';
 
 export const PaiChoose = () => {
   return (
-    <Window width={600} height={650}>
+    <Window width={600} height={670}>
       <Window.Content>
         <Stack fill>
           <Stack.Item basis="50%">
