@@ -170,3 +170,27 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/cryogun
+	id = TECHWEB_NODE_CRYOGUN
+	display_name = "Cryogenic Gun"
+	description = "Specialized gun that allows for cooling down a target."
+	prereq_ids = list(TECHWEB_NODE_EXPLOSIVES)
+	design_ids = list(
+		"cryogun",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS) //It's actually laughably weak.
+	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/caseless_rifle
+	id = TECHWEB_NODE_CASELESS_RIFLE
+	display_name = "Caseless rifle"
+	description = "A Specialized gun that allows for covert operations, leaving no shells behind."
+	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"caselessrifle",
+		"caselessrifle_ammo",
+		"caselessrifle_ammo_stun",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_SECURITY)

@@ -106,6 +106,8 @@
 #define TECHWEB_NODE_GRAVITON_VISION "graviton_vision"
 #define TECHWEB_NODE_ADVANCED_VISORS "advanced_visors"
 #define TECHWEB_NODE_NSFW "nsfwgun"
+#define TECHWEB_NODE_CRYOGUN "cryogun"
+#define TECHWEB_NODE_CASELESS_RIFLE "caseless_rifle"
 #define TECHWEB_NODE_OFFICE_EQUIP "office_equip"
 #define TECHWEB_NODE_OLDSTATION_SURGERY "oldstation_surgery"
 #define TECHWEB_NODE_PARTS "parts"
