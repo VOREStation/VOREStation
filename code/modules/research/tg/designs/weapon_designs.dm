@@ -102,6 +102,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
+/*
 /datum/design_techweb/cyrogun
 	name = "Cryo Gun"
 	desc = "An improperly researched and poorly built weapon, specialized in utlizing frost offensively.."
@@ -113,6 +114,7 @@
 		RND_CATEGORY_WEAPONS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
 
 /datum/design_techweb/decloner
 	name = "Decloner"

@@ -170,7 +170,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)
-
+/*
 /datum/techweb_node/cryogun
 	id = TECHWEB_NODE_CRYOGUN
 	display_name = "Cryogenic Gun"
@@ -181,7 +181,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS) //It's actually laughably weak.
 	announce_channels = list(CHANNEL_SECURITY)
-
+*/
 /datum/techweb_node/caseless_rifle
 	id = TECHWEB_NODE_CASELESS_RIFLE
 	display_name = "Caseless rifle"
