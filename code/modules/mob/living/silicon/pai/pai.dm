@@ -181,7 +181,8 @@
 /mob/living/silicon/pai/Destroy()
 	release_vore_contents()
 	check_retract_cable()
-	card = null
+	if(!QDELETED(card))
+		QDEL_NULL(card)
 	QDEL_NULL(pai_ui_chassis)
 	QDEL_NULL(sradio)
 	QDEL_NULL(communicator)
