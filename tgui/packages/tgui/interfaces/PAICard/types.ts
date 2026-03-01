@@ -10,13 +10,13 @@ export type Data = {
 export type DetailedInvitePAIData = {
   gender: string;
   description: string;
-  role: string;
   emotion: string;
 } & Required<InvitePAIData>;
 
 export type InvitePAIData = {
   ref: string;
   name: string;
+  role: string;
   ad: string;
   eyecolor: string;
   chassis: string;

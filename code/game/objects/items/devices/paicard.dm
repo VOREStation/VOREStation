@@ -129,7 +129,7 @@
 	if(selected_pai)
 		data["selected_pai_data"] = SSpai.get_detailed_invite_data(selected_pai)
 	 // Only get the invite list if we can browse for them
-	data["available_pais"] += SSpai.get_invite_list_data()
+	data["available_pais"] = SSpai.get_invite_list_data()
 	return data
 
 /obj/item/paicard/proc/get_active_data()

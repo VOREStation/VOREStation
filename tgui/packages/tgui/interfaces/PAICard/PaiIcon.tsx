@@ -9,8 +9,9 @@ export const PaiIcon = (props: {
   size?: string;
   color: string;
   chassis: string;
+  label?: boolean;
 }) => {
-  const { icon, size, color, chassis } = props;
+  const { icon, size, color, chassis, label } = props;
   const [iconPositions, setIconPositions] = useState<Record<string, string>>(
     {},
   );
@@ -53,7 +54,7 @@ export const PaiIcon = (props: {
           )}
         </Box>
       </Stack.Item>
-      <Stack.Item>{chassis}</Stack.Item>
+      {label && <Stack.Item>{chassis}</Stack.Item>}
     </Stack>
   );
 };

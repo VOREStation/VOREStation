@@ -81,6 +81,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
               <LabeledList.Divider />
               <LabeledList.Item verticalAlign="top" label="Chassis">
                 <PaiIcon
+                  label
                   color={color}
                   icon={sprite_datum_class}
                   size={sprite_datum_size}

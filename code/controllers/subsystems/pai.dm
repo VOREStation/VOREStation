@@ -105,6 +105,7 @@ SUBSYSTEM_DEF(pai)
 		UNTYPED_LIST_ADD(data, list(
 				"ref" = REF(ghost),
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
+				"role" = pref.read_preference(/datum/preference/text/pai_role),
 				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
 				"chassis" = chassis,
@@ -134,7 +135,6 @@ SUBSYSTEM_DEF(pai)
 			"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
 			// Description
 			"description" = pref.read_preference(/datum/preference/text/pai_description),
-			"role" = pref.read_preference(/datum/preference/text/pai_role),
 			"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 			// Appearance
 			"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
