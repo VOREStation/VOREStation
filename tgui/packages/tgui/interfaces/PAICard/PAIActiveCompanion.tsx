@@ -123,7 +123,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
         </Stack.Item>
         <Stack.Item>
           <Section
-            title="Manage Additional directives:"
+            title="Manage Additional Directives:"
             buttons={
               <Stack>
                 <Stack.Item>
