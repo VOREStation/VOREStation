@@ -135,6 +135,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
                 <Stack.Item>
                   <Button
                     icon="lightbulb-o"
+                    disabled={!newDirective}
                     onClick={() => {
                       act('setlaws', { directive: newDirective });
                       setNewDirective('');
