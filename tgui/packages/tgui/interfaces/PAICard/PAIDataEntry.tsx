@@ -1,6 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
-import { genderToColor, genderToIcon } from './constants';
+import { gender2icon } from '../PreferencesMenu/bay_prefs/general/functions';
+import { genderToColor } from './constants';
 import { PaiIcon } from './PaiIcon';
 import type { Data, DetailedInvitePAIData } from './types';
 
@@ -34,7 +35,7 @@ export const PAIDataEntry = (props: {
           </Stack.Item>
           <Stack.Item grow bold color={genderToColor[gender]}>
             <Tooltip content={gender}>
-              <Icon name={genderToIcon[gender]} />
+              <Icon name={gender2icon[gender]} />
             </Tooltip>
           </Stack.Item>
           <Stack.Item>
