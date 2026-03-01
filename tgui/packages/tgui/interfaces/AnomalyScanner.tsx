@@ -48,10 +48,11 @@ export const AnomalyScanner = (props) => {
     transformation_type,
     modifier,
     countdown,
+    theme,
   } = data;
 
   return (
-    <Window width={400} height={325}>
+    <Window width={400} height={325} theme={theme}>
       <Window.Content>
         {anomaly_name ? (
           <Stack vertical fill scrollable>

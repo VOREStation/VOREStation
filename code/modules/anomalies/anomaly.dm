@@ -79,10 +79,16 @@
 	var/datum/weakref/buffered_anomaly = null
 
 /obj/item/anomaly_scanner/attack_self(mob/living/user)
-	if(loc == user)
-		tgui_interact(user)
-	else
-		..()
+	. = ..(user)
+	if(.)
+		return TRUE
+	tgui_interact(user)
+
+/obj/item/anomaly_scanner/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
 
 /obj/item/anomaly_scanner/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -125,6 +131,11 @@
 
 	var/particle = ANOMALY_PARTICLE_SIGMA
 
+/obj/item/gun/energy/anomaly/mounted
+	name = "mounted particle gun"
+	self_recharge = 1
+	use_external_power = 1
+
 /obj/item/gun/energy/anomaly/attack_self(mob/user)
 	var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)
 	if(!chosen_particle)
@@ -135,7 +146,12 @@
 	..()
 
 /obj/item/gun/energy/anomaly/consume_next_projectile()
-	if(!power_supply || !power_supply.checked_use(charge_cost))
+	var/obj/item/cell/battery = power_supply
+
+	if(use_external_power)
+		battery = get_external_power_supply()
+
+	if(!battery || !battery.checked_use(charge_cost))
 		return null
 	var/mob/living/M = loc
 	if(istype(M))

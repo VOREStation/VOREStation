@@ -145,9 +145,11 @@
 	design_ids = list(
 		"anomaly_releaser",
 		"anom_gun",
+		"borg_anomgun_module"
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
+	discount_experiments = list(/datum/experiment/scanning/points/anomaly = TECHWEB_TIER_3_POINTS)
 
 /* Decided that we were not keen on this being able to be printed freely as we immediately saw undesirable behaviour
 /datum/techweb_node/telekinetics

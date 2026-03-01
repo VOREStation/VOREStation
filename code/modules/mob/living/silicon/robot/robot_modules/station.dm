@@ -654,7 +654,7 @@
 /obj/item/robot_module/robot/research
 	name = "research module"
 	channels = list(CHANNEL_SCIENCE = 1)
-	supported_upgrades = list(/obj/item/borg/upgrade/restricted/advrped)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/advrped, /obj/item/borg/upgrade/restricted/anomalygun)
 	pto_type = PTO_SCIENCE
 
 /obj/item/robot_module/robot/research/create_equipment(var/mob/living/silicon/robot/robot)
