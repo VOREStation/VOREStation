@@ -19,6 +19,8 @@ export type InvitePAIData = {
   ad: string;
   eyecolor: string;
   chassis: string;
+  sprite_datum_class: string;
+  sprite_datum_size: string;
 };
 
 export type ActivePAIData = {
@@ -35,4 +37,6 @@ export type ActivePAIData = {
     radio_transmit: BooleanLike;
     radio_recieve: BooleanLike;
   } | null;
+  sprite_datum_class: string;
+  sprite_datum_size: string;
 };

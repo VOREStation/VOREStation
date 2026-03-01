@@ -108,6 +108,11 @@
 		ui = new(user, src, "PAICard", "Personal AI Device")
 		ui.open()
 
+/obj/item/paicard/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet_batched/pai_icons),
+	)
+
 /obj/item/paicard/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list(
 		"active_pai_data" = null,
@@ -134,6 +139,9 @@
 			"radio_recieve" = radio.listening,
 		)
 
+	var/datum/asset/spritesheet_batched/pai_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
+	var/datum/pai_sprite/sprite_datum = SSpai.chassis_data(pai.chassis_name)
+	var/css_class = sanitize_css_class_name("[sprite_datum.type]")
 	return list(
 		"name" = pai.name,
 		"color" = screen_color,
@@ -145,6 +153,8 @@
 		"master_dna" = pai.master_dna,
 		"screen_msg" = screen_msg,
 		"radio_data" = radio_data,
+		"sprite_datum_class" = css_class,
+		"sprite_datum_size" = spritesheet.icon_size_id(css_class + "S"), // just get the south icon's size, the rest will be the same
 	)
 
 /obj/item/paicard/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

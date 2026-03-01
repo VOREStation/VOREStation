@@ -1,11 +1,21 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
-import type { Data } from './types';
+import type { Data, InvitePAIData } from './types';
 
-export const PAIFindCompanion = (props) => {
-  const { act, data } = useBackend<Data>();
+export const PAIFindCompanion = (props: { availablePais: InvitePAIData }) => {
+  const { act } = useBackend<Data>();
 
-  const { waiting_for_response, available_pais } = data;
+  const { availablePais } = props;
+
+  const {
+    ref,
+    name,
+    ad,
+    eyecolor,
+    chassis,
+    sprite_datum_class,
+    sprite_datum_size,
+  } = availablePais;
 
   return (
     <Section title="Find Companion">

@@ -1,4 +1,5 @@
 import { flow } from 'tgui-core/fp';
+import { fetchRetry } from 'tgui-core/http';
 import { createSearch } from 'tgui-core/string';
 import type { spriteOption } from './types';
 
@@ -38,4 +39,27 @@ export function paiSpriteSearcher(
       }
     },
   ])(sprites);
+}
+
+export async function fetchSpritePositions(assetCssUrl: string) {
+  const response = await fetchRetry(assetCssUrl);
+  const cssText = await response.text();
+
+  const spritePositions: Record<string, string> = {};
+  const regex =
+    /.*(datumpaisprite[A-Za-z0-9]+)\s*\{\s*background-position:\s*([^;]+);/g;
+
+  let match = regex.exec(cssText);
+  while (match !== null) {
+    const spriteName = match[1];
+    const position = match[2];
+    if (!spriteName || !position) {
+      match = regex.exec(cssText);
+      continue;
+    }
+    spritePositions[spriteName] = position;
+    match = regex.exec(cssText);
+  }
+
+  return spritePositions;
 }

@@ -10,6 +10,7 @@ import {
 } from 'tgui-core/components';
 import { VorePanelTooltip } from '../VorePanel/VorePanelElements/VorePanelTooltip';
 import { healthToColor } from './functions';
+import { PaiIcon } from './PaiIcon';
 import type { ActivePAIData } from './types';
 
 export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
@@ -19,6 +20,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
   const { activeData } = props;
   const {
     name,
+    color,
     health,
     chassis,
     law_zero,
@@ -27,6 +29,8 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
     master_dna,
     screen_msg,
     radio_data,
+    sprite_datum_class,
+    sprite_datum_size,
   } = activeData;
 
   return (
@@ -74,7 +78,18 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
                 )}
               </LabeledList.Item>
               <LabeledList.Divider />
-              <LabeledList.Item label="Chassis">{chassis}</LabeledList.Item>
+              <LabeledList.Item verticalAlign="top" label="Chassis">
+                <Stack align="center">
+                  <Stack.Item width="60px" height="60px">
+                    <PaiIcon
+                      color={color}
+                      icon={sprite_datum_class}
+                      size={sprite_datum_size}
+                    />
+                  </Stack.Item>
+                  <Stack.Item>{chassis}</Stack.Item>
+                </Stack>
+              </LabeledList.Item>
               <LabeledList.Divider />
               <LabeledList.Item label="Integrity">
                 <Box color={healthToColor(health)}>{health}</Box>

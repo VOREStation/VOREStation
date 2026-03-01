@@ -98,12 +98,18 @@ SUBSYSTEM_DEF(pai)
 			continue
 
 		var/datum/preferences/pref = ghost.client.prefs
+		var/datum/asset/spritesheet_batched/pai_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
+		var/chassis = pref.read_preference(/datum/preference/text/pai_chassis)
+		var/datum/pai_sprite/sprite_datum = SSpai.chassis_data(chassis)
+		var/css_class = sanitize_css_class_name("[sprite_datum.type]")
 		UNTYPED_LIST_ADD(data, list(
 				"ref" = REF(ghost),
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
 				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
-				"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
+				"chassis" = chassis,
+				"sprite_datum_class" = css_class,
+				"sprite_datum_size" = spritesheet.icon_size_id(css_class + "S"), // just get the south icon's size, the rest will be the same
 			))
 	return data
 
@@ -118,6 +124,10 @@ SUBSYSTEM_DEF(pai)
 		return null
 
 	var/datum/preferences/pref = ghost.client.prefs
+	var/datum/asset/spritesheet_batched/pai_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
+	var/chassis = pref.read_preference(/datum/preference/text/pai_chassis)
+	var/datum/pai_sprite/sprite_datum = SSpai.chassis_data(chassis)
+	var/css_class = sanitize_css_class_name("[sprite_datum.type]")
 	return list(
 			"ref" = ghost_ref,
 			"name" = pref.read_preference(/datum/preference/text/pai_name),
@@ -128,8 +138,11 @@ SUBSYSTEM_DEF(pai)
 			"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 			// Appearance
 			"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
-			"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
+			"chassis" = chassis,
 			"emotion" = pref.read_preference(/datum/preference/text/pai_emotion),
+			// Sprites
+			"sprite_datum_class" = css_class,
+			"sprite_datum_size" = spritesheet.icon_size_id(css_class + "S"), // just get the south icon's size, the rest will be the same
 		)
 
 /datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, find_ckey, obj/item/paicard/card)
