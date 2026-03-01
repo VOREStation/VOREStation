@@ -118,6 +118,7 @@
 		"active_pai_data" = null,
 		"selected_pai_data" = null,
 		"available_pais" = null,
+		"waiting_for_response" = in_use,
 	)
 
 

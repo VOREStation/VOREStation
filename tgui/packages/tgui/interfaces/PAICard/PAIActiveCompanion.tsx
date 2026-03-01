@@ -79,16 +79,12 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
               </LabeledList.Item>
               <LabeledList.Divider />
               <LabeledList.Item verticalAlign="top" label="Chassis">
-                <Stack align="center">
-                  <Stack.Item width="60px" height="60px">
-                    <PaiIcon
-                      color={color}
-                      icon={sprite_datum_class}
-                      size={sprite_datum_size}
-                    />
-                  </Stack.Item>
-                  <Stack.Item>{chassis}</Stack.Item>
-                </Stack>
+                <PaiIcon
+                  color={color}
+                  icon={sprite_datum_class}
+                  size={sprite_datum_size}
+                  chassis={chassis}
+                />
               </LabeledList.Item>
               <LabeledList.Divider />
               <LabeledList.Item label="Integrity">

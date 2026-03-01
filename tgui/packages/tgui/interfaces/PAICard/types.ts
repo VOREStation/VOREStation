@@ -4,6 +4,7 @@ export type Data = {
   active_pai_data: ActivePAIData | null;
   selected_pai_data: DetailedInvitePAIData | null;
   available_pais: InvitePAIData[] | null;
+  waiting_for_response: BooleanLike;
 };
 
 export type DetailedInvitePAIData = {

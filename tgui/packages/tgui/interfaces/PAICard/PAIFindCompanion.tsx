@@ -2,9 +2,10 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 import type { Data, InvitePAIData } from './types';
 
-export const PAIFindCompanion = (props: { availablePais: InvitePAIData }) => {
-  const { act } = useBackend<Data>();
+export const PAIFindCompanion = (props: { availablePais: InvitePAIData[] }) => {
+  const { data, act } = useBackend<Data>();
 
+  const { waiting_for_response } = data;
   const { availablePais } = props;
 
   const {
@@ -18,10 +19,10 @@ export const PAIFindCompanion = (props: { availablePais: InvitePAIData }) => {
   } = availablePais;
 
   return (
-    <Section title="Find Companion">
+    <Section fill scrollable title="Find Companion">
       {(!waiting_for_response && (
         <LabeledList>
-          {available_pais?.map((data) => (
+          {availablePais.map((data) => (
             <LabeledList.Item
               key={data.key}
               label={data.name}
