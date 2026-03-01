@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(pai)
 			continue
 
 		// Create candidate
-		pai_ghosts[ghost.key] = WEAKREF(ghost)
+		pai_ghosts[REF(ghost)] = WEAKREF(ghost)
 
 /datum/controller/subsystem/pai/proc/get_chassis_list()
 	RETURN_TYPE(/list/datum/pai_sprite)
@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(pai)
 	return pai_chassis_sprites[id_name]
 
 /datum/controller/subsystem/pai/proc/invite_valid(mob/user)
-	if(!user.client?.prefs || !user.key)
+	if(!user.client?.prefs || !user.ckey)
 		return FALSE
 	if(!user.MayRespawn())
 		return FALSE
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(pai)
 		return FALSE
 	if(!(user.client.prefs.be_special & BE_PAI))
 		return FALSE
-	if(check_is_delayed(user.ckey))
+	if(check_is_delayed(REF(user)))
 		return FALSE
 	if(check_is_already_pai(user.ckey))
 		return FALSE
@@ -78,21 +78,21 @@ SUBSYSTEM_DEF(pai)
 		return FALSE
 	return TRUE
 
-/datum/controller/subsystem/pai/proc/check_is_delayed(key)
-	if(key in asked)
-		if(world.time < asked[key] + PAI_DELAY_TIME)
+/datum/controller/subsystem/pai/proc/check_is_delayed(ghost_ref)
+	if(ghost_ref in asked)
+		if(world.time < asked[ghost_ref] + PAI_DELAY_TIME)
 			return TRUE
 	return FALSE
 
-/datum/controller/subsystem/pai/proc/check_is_already_pai(key)
-	return (key in GLOB.paikeys)
+/datum/controller/subsystem/pai/proc/check_is_already_pai(check_ckey)
+	return (check_ckey in GLOB.paikeys)
 
 /datum/controller/subsystem/pai/proc/get_invite_list_data()
 	RETURN_TYPE(/list)
 
 	var/list/data = list()
-	for(var/ghost_key in pai_ghosts)
-		var/datum/weakref/WF = pai_ghosts[ghost_key]
+	for(var/ghost_ref in pai_ghosts)
+		var/datum/weakref/WF = pai_ghosts[ghost_ref]
 		var/mob/observer/ghost = WF?.resolve()
 		if(!istype(ghost) || !ghost.client?.prefs)
 			continue
@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(pai)
 		var/datum/preferences/pref = ghost.client.prefs
 		data += list(
 			list(
-				"key" = ghost.key,
+				"ref" = REF(ghost),
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
 				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
@@ -109,19 +109,19 @@ SUBSYSTEM_DEF(pai)
 		)
 	return data
 
-/datum/controller/subsystem/pai/proc/get_detailed_invite_data(var/ghost_key)
+/datum/controller/subsystem/pai/proc/get_detailed_invite_data(var/ghost_ref)
 	RETURN_TYPE(/list)
-	if(!(ghost_key in pai_ghosts))
+	if(!(ghost_ref in pai_ghosts))
 		return null
 
-	var/datum/weakref/WF = pai_ghosts[ghost_key]
+	var/datum/weakref/WF = pai_ghosts[ghost_ref]
 	var/mob/observer/ghost = WF?.resolve()
 	if(!istype(ghost) || !ghost.client?.prefs)
 		return null
 
 	var/datum/preferences/pref = ghost.client.prefs
 	return list(
-			"key" = ghost.key,
+			"ref" = ghost_ref,
 			"name" = pref.read_preference(/datum/preference/text/pai_name),
 			"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
 			// Description
@@ -147,10 +147,10 @@ SUBSYSTEM_DEF(pai)
 		return
 
 	// Time delay if the ghost cancels your invite.
-	if(check_is_delayed(ghost.ckey))
+	if(check_is_delayed(REF(ghost)))
 		to_chat(inquirer, span_notice("This pAI is responding to a request, but may become available again shortly..."))
 		return
-	asked[ghost.ckey] = world.time
+	asked[REF(ghost)] = world.time
 
 	// Can't play, still respawning
 	var/time_till_respawn = ghost.time_till_respawn()
@@ -177,14 +177,14 @@ SUBSYSTEM_DEF(pai)
 			to_chat(inquirer, span_info("[new_pai] has accepted your pAI request!"))
 			return
 		if("Never for this round")
-			SSpai.block_pai_invites(ghost.ckey)
+			SSpai.block_pai_invites(REF(ghost))
 
 	to_chat(inquirer, span_warning("The pAI denied the request."))
 
-/datum/controller/subsystem/pai/proc/block_pai_invites(key)
-	asked[key] = world.time + 99 HOURS // We never want to be asked again
+/datum/controller/subsystem/pai/proc/block_pai_invites(ghost_ref)
+	asked[ghost_ref] = world.time + 99 HOURS // We never want to be asked again
 
-/datum/controller/subsystem/pai/proc/clear_pai_block_delay(key)
-	asked -= key
+/datum/controller/subsystem/pai/proc/clear_pai_block_delay(ghost_ref)
+	asked -= ghost_ref
 
 #undef PAI_DELAY_TIME
