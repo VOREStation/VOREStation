@@ -22,13 +22,11 @@
 	var/min_activation = 45 SECONDS
 	var/max_activation = 90 SECONDS
 
-/datum/anomaly_stats/New(var/obj/effect/anomaly/anomaly)
-	attached_anomaly = WEAKREF(anomaly)
+/datum/anomaly_stats/New()
 	randomize_particle_types()
 	severity = rand(5, 15)
 	max_health = rand(50, 150)
 	curr_health = max_health
-	points = calculate_points()
 	stability = ANOMALY_STABLE
 
 /datum/anomaly_stats/Destroy(force)

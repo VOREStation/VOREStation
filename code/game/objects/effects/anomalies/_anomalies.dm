@@ -110,7 +110,9 @@
 	if(anchor)
 		move_chance = 0
 	if(!stats && add_stats)
-		stats = new /datum/anomaly_stats(src)
+		stats = new /datum/anomaly_stats
+		stats.attached_anomaly = WEAKREF(src)
+		stats.calculate_points()
 		density = TRUE
 	return
 

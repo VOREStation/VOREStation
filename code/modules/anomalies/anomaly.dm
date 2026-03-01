@@ -135,8 +135,12 @@
 	..()
 
 /obj/item/gun/energy/anomaly/consume_next_projectile()
-	. = ..()
-	var/obj/item/projectile/energy/anomaly/projectile = .
+	if(!power_supply || !power_supply.checked_use(charge_cost))
+		return null
+	var/mob/living/M = loc
+	if(istype(M))
+		M.hud_used.update_ammo_hud(M, src)
+	var/obj/item/projectile/energy/anomaly/projectile = new
 	if(particle)
 		projectile.particle_type = particle
 	return projectile

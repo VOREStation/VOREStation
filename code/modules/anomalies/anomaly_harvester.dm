@@ -100,6 +100,11 @@
 		return
 
 	var/datum/anomaly_stats/stats = anom.stats
+	if(stats.attached_harvester)
+		var/obj/machinery/anomaly_harvester/harvester = stats.attached_harvester.resolve()
+		harvester.harvested = null
+		harvester.update_icon()
+		stats.attached_harvester = null
 	stats.attached_harvester = WEAKREF(src)
 	playsound(src, 'sound/machines/boobeebeep.ogg', 75, TRUE)
 	return TRUE
