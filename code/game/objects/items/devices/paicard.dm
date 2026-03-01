@@ -142,7 +142,7 @@
 			data["radio_recieve"] = radio.listening
 
 	else // Only get the invite list if we can browse for them
-		data["available_pais"] += SSpai.get_tgui_data()
+		data["available_pais"] += SSpai.get_invite_list_data()
 	return data
 
 /obj/item/paicard/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

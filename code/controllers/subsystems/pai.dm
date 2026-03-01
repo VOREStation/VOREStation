@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(pai)
 			continue
 
 		// Create candidate
-		pai_ghosts.Add(WEAKREF(ghost))
+		pai_ghosts[ghost.key] = WEAKREF(ghost)
 
 /datum/controller/subsystem/pai/proc/get_chassis_list()
 	RETURN_TYPE(/list/datum/pai_sprite)
@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(pai)
 	return pai_chassis_sprites[id_name]
 
 /datum/controller/subsystem/pai/proc/invite_valid(mob/user)
-	if(!user.client?.prefs)
+	if(!user.client?.prefs || !user.key)
 		return FALSE
 	if(!user.MayRespawn())
 		return FALSE
@@ -87,11 +87,12 @@ SUBSYSTEM_DEF(pai)
 /datum/controller/subsystem/pai/proc/check_is_already_pai(key)
 	return (key in GLOB.paikeys)
 
-/datum/controller/subsystem/pai/proc/get_tgui_data()
+/datum/controller/subsystem/pai/proc/get_invite_list_data()
 	RETURN_TYPE(/list)
 
 	var/list/data = list()
-	for(var/datum/weakref/WF in pai_ghosts)
+	for(var/ghost_key in pai_ghosts)
+		var/datum/weakref/WF = pai_ghosts[ghost_key]
 		var/mob/observer/ghost = WF?.resolve()
 		if(!istype(ghost) || !ghost.client?.prefs)
 			continue
@@ -99,21 +100,39 @@ SUBSYSTEM_DEF(pai)
 		var/datum/preferences/pref = ghost.client.prefs
 		data += list(
 			list(
-				"key" = ghost.ckey,
+				"key" = ghost.key,
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
-				"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
-				// Description
-				"description" = pref.read_preference(/datum/preference/text/pai_description),
-				"role" = pref.read_preference(/datum/preference/text/pai_role),
 				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
-				// Appearance
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
 				"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
-				"emotion" = pref.read_preference(/datum/preference/text/pai_emotion),
 			)
 		)
-
 	return data
+
+/datum/controller/subsystem/pai/proc/get_detailed_invite_data(var/ghost_key)
+	RETURN_TYPE(/list)
+	if(!(ghost_key in pai_ghosts))
+		return null
+
+	var/datum/weakref/WF = pai_ghosts[ghost_key]
+	var/mob/observer/ghost = WF?.resolve()
+	if(!istype(ghost) || !ghost.client?.prefs)
+		return null
+
+	var/datum/preferences/pref = ghost.client.prefs
+	return list(
+			"key" = ghost.key,
+			"name" = pref.read_preference(/datum/preference/text/pai_name),
+			"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
+			// Description
+			"description" = pref.read_preference(/datum/preference/text/pai_description),
+			"role" = pref.read_preference(/datum/preference/text/pai_role),
+			"ad" = pref.read_preference(/datum/preference/text/pai_ad),
+			// Appearance
+			"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
+			"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
+			"emotion" = pref.read_preference(/datum/preference/text/pai_emotion),
+		)
 
 /datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, find_ckey, obj/item/paicard/card)
 	// Is our card legal to inhabit?
