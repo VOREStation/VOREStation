@@ -15,7 +15,7 @@ export const PAIFindCompanion = (props: { availablePais: InvitePAIData[] }) => {
         !selected_pai_data ? (
           <Stack>
             {availablePais.map((paiEntry) => (
-              <Stack.Item grow key={paiEntry.ref} height="200px">
+              <Stack.Item grow key={paiEntry.ref} height="180px">
                 <PAIDataEntry paiEntry={paiEntry} />
               </Stack.Item>
             ))}

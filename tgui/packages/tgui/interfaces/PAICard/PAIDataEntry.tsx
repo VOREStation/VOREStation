@@ -79,7 +79,7 @@ export const PAIDataEntry = (props: {
           />
           <Stack.Divider />
           <Stack.Item grow>
-            <Section scrollable fill>
+            <Section scrollable={detailed} fill>
               <Stack vertical>
                 <Stack.Item>
                   <Box inline preserveWhitespace color="label">
@@ -102,10 +102,12 @@ export const PAIDataEntry = (props: {
       <Stack.Divider />
       {detailed && (
         <Stack.Item grow>
-          <Box inline preserveWhitespace color="label">
-            {'Description: '}
-          </Box>
-          {description}
+          <Section scrollable fill>
+            <Box inline preserveWhitespace color="label">
+              {'Description: '}
+            </Box>
+            {description}
+          </Section>
         </Stack.Item>
       )}
     </Stack>
