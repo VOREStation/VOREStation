@@ -125,6 +125,7 @@
 #define TECHWEB_NODE_PROGRAMMED_SERVER "programmed_server"
 #define TECHWEB_NODE_PROGRAMMING "programming"
 #define TECHWEB_NODE_PROTEAN "protean"
+#define TECHWEB_NODE_PROTOLATHE_BOARDS "protolathe_boards"
 #define TECHWEB_NODE_RCD_UPGRADE "rcd_upgrade"
 #define TECHWEB_NODE_RIOT_SUPRESSION "riot_supression"
 #define TECHWEB_NODE_ROBOTICS "robotics"
