@@ -98,15 +98,13 @@ SUBSYSTEM_DEF(pai)
 			continue
 
 		var/datum/preferences/pref = ghost.client.prefs
-		data += list(
-			list(
+		UNTYPED_LIST_ADD(data, list(
 				"ref" = REF(ghost),
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
 				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
 				"chassis" = pref.read_preference(/datum/preference/text/pai_chassis),
-			)
-		)
+			))
 	return data
 
 /datum/controller/subsystem/pai/proc/get_detailed_invite_data(var/ghost_ref)

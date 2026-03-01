@@ -31,6 +31,7 @@
 
 	///Var for attack_self chain
 	var/special_handling = FALSE
+	var/selected_pai
 
 /obj/item/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -109,41 +110,42 @@
 
 /obj/item/paicard/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/data = list(
-		"has_pai" = !isnull(pai),
+		"active_pai_data" = null,
+		"selected_pai_data" = null,
 		"available_pais" = null,
-		"waiting_for_response" = in_use,
-		"name" = null,
-		"color" = null,
-		"chassis" = null,
-		"health" = null,
-		"law_zero" = null,
-		"law_extra" = null,
-		"master_name" = null,
-		"master_dna" = null,
-		"radio" = null,
-		"radio_transmit" = null,
-		"radio_recieve" = null,
-		"screen_msg" = null
 	)
 
-	if(pai) // Only set pai data if we have one
-		data["name"] = pai.name;
-		data["color"] = screen_color;
-		data["chassis"] = pai.chassis_name;
-		data["health"] = pai.health;
-		data["law_zero"] = pai.pai_law0;
-		data["law_extra"] = pai.pai_laws;
-		data["master_name"] = pai.master;
-		data["master_dna"] = pai.master_dna;
-		data["radio"] = !isnull(radio);
-		data["screen_msg"] = screen_msg;
-		if(radio)
-			data["radio_transmit"] = radio.broadcasting
-			data["radio_recieve"] = radio.listening
 
-	else // Only get the invite list if we can browse for them
-		data["available_pais"] += SSpai.get_invite_list_data()
+	if(pai) // Only set pai data if we have one
+		data["active_pai_data"] = get_active_data()
+		return data
+
+	if(selected_pai)
+		data["selected_pai_data"] = SSpai.get_detailed_invite_data(selected_pai)
+	 // Only get the invite list if we can browse for them
+	data["available_pais"] += SSpai.get_invite_list_data()
 	return data
+
+/obj/item/paicard/proc/get_active_data()
+	var/list/radio_data
+	if(radio)
+		radio_data = list(
+			"radio_transmit" = radio.broadcasting,
+			"radio_recieve" = radio.listening,
+		)
+
+	return list(
+		"name" = pai.name,
+		"color" = screen_color,
+		"chassis" = pai.chassis_name,
+		"health" = pai.health,
+		"law_zero" = pai.pai_law0,
+		"law_extra" = pai.pai_laws,
+		"master_name" = pai.master,
+		"master_dna" = pai.master_dna,
+		"screen_msg" = screen_msg,
+		"radio_data" = radio_data,
+	)
 
 /obj/item/paicard/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(is_damage_critical())
@@ -153,11 +155,17 @@
 	add_fingerprint(ui.user)
 
 	switch(action)
+		if("preview")
+			var/new_selection = params["red"]
+			if(!istext(new_selection))
+				return FALSE
+			selected_pai = new_selection
+			return TRUE
 		if("setdna")
 			if(!pai)
 				return FALSE
 			if(pai.master_dna)
-				return
+				return FALSE
 
 			var/mob/M = ui.user
 			var/has_dna = FALSE
@@ -236,6 +244,7 @@
 			in_use = TRUE
 			SSpai.invite_ghost(ui.user, params["key"], src)
 			in_use = FALSE
+			selected_pai = null
 			return TRUE
 
 /obj/item/paicard/proc/show_laws(updated = FALSE)

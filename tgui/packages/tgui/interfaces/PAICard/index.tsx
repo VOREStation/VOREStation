@@ -5,28 +5,16 @@ import { PAIFindCompanion } from './PAIFindCompanion';
 import type { Data } from './types';
 
 export const PAICard = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
 
-  const {
-    has_pai,
-    waiting_for_response,
-    name,
-    health,
-    law_zero,
-    law_extra,
-    master_name,
-    master_dna,
-    available_pais,
-    radio,
-    radio_transmit,
-    radio_recieve,
-    screen_msg,
-  } = data;
+  const { active_pai_data } = data;
 
   return (
     <Window width={450} height={600}>
       <Window.Content>
-        {(has_pai && <PAIActiveCompanion />) || <PAIFindCompanion />}
+        {(!!active_pai_data && (
+          <PAIActiveCompanion activeData={active_pai_data} />
+        )) || <PAIFindCompanion />}
       </Window.Content>
     </Window>
   );
