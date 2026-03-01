@@ -45,6 +45,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
               <Stack>
                 <Stack.Item>
                   <Button.Confirm
+                    color="red"
                     icon="ban"
                     disabled={!master_name || !master_dna}
                     onClick={() => act('cleardna')}
@@ -127,7 +128,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
             buttons={
               <Stack>
                 <Stack.Item>
-                  <Button.Confirm disabled={!law_extra} icon="ban">
+                  <Button.Confirm color="red" disabled={!law_extra} icon="ban">
                     Clear
                   </Button.Confirm>
                 </Stack.Item>
