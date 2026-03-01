@@ -53,15 +53,18 @@ SUBSYSTEM_DEF(pai)
 
 /datum/controller/subsystem/pai/proc/get_chassis_list()
 	RETURN_TYPE(/list/datum/pai_sprite)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return pai_chassis_sprites
 
 /datum/controller/subsystem/pai/proc/chassis_data(id_name)
 	RETURN_TYPE(/datum/pai_sprite)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!(id_name in pai_chassis_sprites))
 		return pai_chassis_sprites[PAI_DEFAULT_CHASSIS]
 	return pai_chassis_sprites[id_name]
 
 /datum/controller/subsystem/pai/proc/invite_valid(mob/user)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!user.client?.prefs || !user.ckey)
 		return FALSE
 	if(!user.MayRespawn())
@@ -79,21 +82,32 @@ SUBSYSTEM_DEF(pai)
 	return TRUE
 
 /datum/controller/subsystem/pai/proc/check_is_delayed(ghost_ref)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ghost_ref in asked)
 		if(world.time < asked[ghost_ref] + PAI_DELAY_TIME)
 			return TRUE
 	return FALSE
 
 /datum/controller/subsystem/pai/proc/check_is_already_pai(check_ckey)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return (check_ckey in GLOB.paikeys)
+
+/datum/controller/subsystem/pai/proc/get_ghost_from_ref(ghost_ref)
+	RETURN_TYPE(/mob/observer)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(!ghost_ref)
+		return null
+	var/datum/weakref/WF = pai_ghosts[ghost_ref]
+	return WF?.resolve()
 
 /datum/controller/subsystem/pai/proc/get_invite_list_data()
 	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
 
 	var/list/data = list()
 	for(var/ghost_ref in pai_ghosts)
-		var/datum/weakref/WF = pai_ghosts[ghost_ref]
-		var/mob/observer/ghost = WF?.resolve()
+		var/mob/observer/ghost = get_ghost_from_ref(ghost_ref)
 		if(!istype(ghost) || !ghost.client?.prefs)
 			continue
 
@@ -118,6 +132,8 @@ SUBSYSTEM_DEF(pai)
 
 /datum/controller/subsystem/pai/proc/get_detailed_invite_data(var/ghost_ref)
 	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(!(ghost_ref in pai_ghosts))
 		return null
 
@@ -148,15 +164,16 @@ SUBSYSTEM_DEF(pai)
 			"sprite_datum_size" = spritesheet.icon_size_id(css_class + "S"), // just get the south icon's size, the rest will be the same
 		)
 
-/datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, find_ckey, obj/item/paicard/card)
+/datum/controller/subsystem/pai/proc/invite_ghost(mob/inquirer, ghost_ref, obj/item/paicard/card)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	// Is our card legal to inhabit?
 	if(QDELETED(card) || card.pai || card.is_damage_critical())
 		to_chat(inquirer, span_warning("This [card] can no longer be used to house a pAI."))
 		return
 
 	// Check if the ghost stopped existing
-	var/mob/observer/ghost = get_mob_by_key(find_ckey)
-	if(!find_ckey || !isobserver(ghost) || !ghost.client)
+	var/mob/observer/ghost = get_ghost_from_ref(ghost_ref)
+	if(!isobserver(ghost) || !ghost.client)
 		to_chat(inquirer, span_warning("This pAI has gone offline."))
 		return
 
@@ -196,9 +213,11 @@ SUBSYSTEM_DEF(pai)
 	to_chat(inquirer, span_warning("The pAI denied the request."))
 
 /datum/controller/subsystem/pai/proc/block_pai_invites(ghost_ref)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	asked[ghost_ref] = world.time + 99 HOURS // We never want to be asked again
 
 /datum/controller/subsystem/pai/proc/clear_pai_block_delay(ghost_ref)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	asked -= ghost_ref
 
 #undef PAI_DELAY_TIME
