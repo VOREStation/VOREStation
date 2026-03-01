@@ -104,7 +104,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "pAICard", "Personal AI Device")
+		ui = new(user, src, "PAICard", "Personal AI Device")
 		ui.open()
 
 /obj/item/paicard/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
