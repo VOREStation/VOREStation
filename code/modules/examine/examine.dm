@@ -12,7 +12,9 @@
 	var/description_antag = null //Malicious red text, for the antags.
 
 //Override these if you need special behaviour for a specific type.
-/atom/proc/get_description_info()
+///What is shown to the user when something is examined. This can be overridden for specific uses.
+///The 'additional_information' list var requires creation in the proc itself. It should check to seee if(additional_information) before trying to do additional_information = list() and adding to it.
+/atom/proc/get_description_info(list/additional_information)
 	if(description_info)
 		return description_info
 	return
