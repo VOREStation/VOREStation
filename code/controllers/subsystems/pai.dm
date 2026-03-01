@@ -105,10 +105,12 @@ SUBSYSTEM_DEF(pai)
 		UNTYPED_LIST_ADD(data, list(
 				"ref" = REF(ghost),
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
+				"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
 				"role" = pref.read_preference(/datum/preference/text/pai_role),
 				"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
 				"chassis" = chassis,
+				"emotion" = pref.read_preference(/datum/preference/text/pai_emotion),
 				"sprite_datum_class" = css_class,
 				"sprite_datum_size" = spritesheet.icon_size_id(css_class + "S"), // just get the south icon's size, the rest will be the same
 			))
@@ -134,6 +136,7 @@ SUBSYSTEM_DEF(pai)
 			"name" = pref.read_preference(/datum/preference/text/pai_name),
 			"gender" = pref.read_preference(/datum/preference/choiced/gender/identifying),
 			// Description
+			"role" = pref.read_preference(/datum/preference/text/pai_role),
 			"description" = pref.read_preference(/datum/preference/text/pai_description),
 			"ad" = pref.read_preference(/datum/preference/text/pai_ad),
 			// Appearance

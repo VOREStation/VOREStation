@@ -167,10 +167,21 @@
 
 	switch(action)
 		if("preview")
-			var/new_selection = params["red"]
+			if(pai)
+				return FALSE
+			if(in_use)
+				return FALSE
+			var/new_selection = params["ref"]
 			if(!istext(new_selection))
 				return FALSE
 			selected_pai = new_selection
+			return TRUE
+		if("clear_preview")
+			if(pai)
+				return FALSE
+			if(in_use)
+				return FALSE
+			selected_pai = null
 			return TRUE
 		if("setdna")
 			if(!pai)
@@ -262,7 +273,7 @@
 			if(in_use)
 				return FALSE
 			in_use = TRUE
-			SSpai.invite_ghost(ui.user, params["key"], src)
+			SSpai.invite_ghost(ui.user, params["ref"], src)
 			in_use = FALSE
 			selected_pai = null
 			return TRUE

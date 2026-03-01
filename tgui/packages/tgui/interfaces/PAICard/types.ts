@@ -8,18 +8,18 @@ export type Data = {
 };
 
 export type DetailedInvitePAIData = {
-  gender: string;
-  description: string;
-  emotion: string;
+  description?: string;
 } & Required<InvitePAIData>;
 
 export type InvitePAIData = {
   ref: string;
   name: string;
+  gender: string;
   role: string;
   ad: string;
   eyecolor: string;
   chassis: string;
+  emotion: string;
   sprite_datum_class: string;
   sprite_datum_size: string;
 };
