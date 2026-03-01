@@ -72,17 +72,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/hide_motion_tracker_feedback
 	))
 
-GLOBAL_LIST_INIT(admin_verbs_fun, list(
-	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod,
-	/client/proc/player_effects,
-	/client/proc/admin_lightning_strike,
-	/client/proc/adminorbit,
-	/client/proc/getPlayerStatus,
-	/client/proc/manage_event_triggers,
-	/client/proc/fake_pdaconvos
-	))
-
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(
 	/datum/admins/proc/spawn_fruit,
 	/datum/admins/proc/spawn_custom_item,
@@ -264,8 +253,6 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/client/proc/jumptocoord,
 	/datum/admins/proc/delay,
 	/client/proc/Set_Holiday,
-	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod,
 	/datum/admins/proc/PlayerNotes,
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,

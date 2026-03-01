@@ -4,7 +4,6 @@
 	if(rights & R_HOLDER)
 		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)		add_verb(src, GLOB.admin_verbs_admin)
-		if(rights & R_FUN)			add_verb(src, GLOB.admin_verbs_fun)
 		if(rights & R_SERVER)		add_verb(src, GLOB.admin_verbs_server)
 		if(rights & R_DEBUG)		add_verb(src, GLOB.admin_verbs_debug)
 		if(rights & R_SPAWN)		add_verb(src, GLOB.admin_verbs_spawn)
@@ -19,7 +18,6 @@
 	remove_verb(src, list(
 		/client/proc/togglebuildmodeself,
 		GLOB.admin_verbs_admin,
-		GLOB.admin_verbs_fun,
 		GLOB.admin_verbs_server,
 		GLOB.admin_verbs_debug,
 		GLOB.admin_verbs_spawn,
@@ -603,50 +601,43 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	SSmotiontracker.hide_all = !SSmotiontracker.hide_all
 	log_admin("[key_name(usr)] changed the motion echo visibility to [SSmotiontracker.hide_all ? "hidden" : "visible"].")
 
-/client/proc/adminorbit()
-	set category = "Fun.Event Kit"
-	set name = "Orbit Things"
-	set desc = "Makes something orbit around something else."
-	set popup_menu = FALSE
-
-	if(!check_rights(R_FUN))
-		return
-
+ADMIN_VERB(adminorbit, R_FUN, "Orbit Things", "Makes something orbit around something else.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/center
 	var/atom/movable/orbiter
 	var/input
 
-	if(check_rights(R_HOLDER) && holder.marked_datum)
-		input = tgui_alert(usr, "You have \n[holder.marked_datum] marked, should this be the center of the orbit, or the orbiter?", "Orbit", list("Center", "Orbiter", "Neither"))
+	var/datum/marked_datum = user.holder.marked_datum
+	if(marked_datum)
+		input = tgui_alert(user, "You have \n[marked_datum] marked, should this be the center of the orbit, or the orbiter?", "Orbit", list("Center", "Orbiter", "Neither"))
 		switch(input)
 			if("Center")
-				center = holder.marked_datum
+				center = marked_datum
 			if("Orbiter")
-				orbiter = holder.marked_datum
+				orbiter = marked_datum
 	var/list/possible_things = list()
-	for(var/T as mob in view(view))	//Let's do mobs before objects
+	for(var/T as mob in view(user.view))	//Let's do mobs before objects
 		if(ismob(T))
 			possible_things |= T
-	for(var/T as obj in view(view))
+	for(var/T as obj in view(user.view))
 		if(isobj(T))
 			possible_things |= T
 	if(!center)
-		center = tgui_input_list(src, "What should act as the center of the orbit?", "Center", possible_things)
+		center = tgui_input_list(user, "What should act as the center of the orbit?", "Center", possible_things)
 		possible_things -= center
 	if(!orbiter)
-		orbiter = tgui_input_list(src, "What should act as the orbiter of the orbit?", "Orbiter", possible_things)
+		orbiter = tgui_input_list(user, "What should act as the orbiter of the orbit?", "Orbiter", possible_things)
 	if(!center || !orbiter)
-		to_chat(usr, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
+		to_chat(user, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
 		return
 	if(center == orbiter)
-		to_chat(usr, span_warning("The center of the orbit cannot also be the orbiter."))
+		to_chat(user, span_warning("The center of the orbit cannot also be the orbiter."))
 		return
 	if(isturf(orbiter))
-		to_chat(usr, span_warning("The orbiter cannot be a turf. It can only be used as a center."))
+		to_chat(user, span_warning("The orbiter cannot be a turf. It can only be used as a center."))
 		return
-	var/distance = tgui_input_number(usr, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
-	var/speed = tgui_input_number(usr, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
-	var/segments = tgui_input_number(usr, "How many segments will they have in their orbit? (3 is a triangle, 36 is a circle, etc)", "Orbit Segments", 36)
+	var/distance = tgui_input_number(user, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
+	var/speed = tgui_input_number(user, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
+	var/segments = tgui_input_number(user, "How many segments will they have in their orbit? (3 is a triangle, 36 is a circle, etc)", "Orbit Segments", 36)
 	var/clock = FALSE
 	if(!distance)
 		distance = 32
@@ -657,7 +648,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 		speed *= -1
 	if(!segments)
 		segments = 36
-	if(tgui_alert(usr, "\The [orbiter] will orbit around [center]. Is this okay?", "Confirm Orbit", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, "\The [orbiter] will orbit around [center]. Is this okay?", "Confirm Orbit", list("Yes", "No")) == "Yes")
 		orbiter.orbit(center, distance, clock, speed, segments)
 
 ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tickets from the global list.", "Admin.Investigate")
