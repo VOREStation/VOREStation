@@ -1,12 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import {
-  Box,
-  Button,
-  Icon,
-  Section,
-  Stack,
-  Tooltip,
-} from 'tgui-core/components';
+import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
 import { genderToColor, genderToIcon } from './constants';
 import { PaiIcon } from './PaiIcon';
 import type { Data, DetailedInvitePAIData } from './types';
@@ -79,33 +72,25 @@ export const PAIDataEntry = (props: {
           />
           <Stack.Divider />
           <Stack.Item grow>
-            <Section scrollable={detailed} fill>
-              <Stack vertical>
-                <Stack.Item>
-                  <Box inline preserveWhitespace color="label">
-                    {'Role: '}
-                  </Box>
+            <Stack fill vertical>
+              <Stack.Item grow>
+                <Section scrollable={detailed} fill title="Role">
                   {role}
-                </Stack.Item>
-                <Stack.Divider />
-                <Stack.Item>
-                  <Box inline preserveWhitespace color="label">
-                    {'Ad: '}
-                  </Box>
+                </Section>
+              </Stack.Item>
+              <Stack.Item grow>
+                <Section scrollable={detailed} fill title="Ad">
                   {ad}
-                </Stack.Item>
-              </Stack>
-            </Section>
+                </Section>
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Divider />
       {detailed && (
         <Stack.Item grow>
-          <Section scrollable fill>
-            <Box inline preserveWhitespace color="label">
-              {'Description: '}
-            </Box>
+          <Section scrollable fill title="Description">
             {description}
           </Section>
         </Stack.Item>
