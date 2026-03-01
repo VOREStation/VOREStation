@@ -680,6 +680,7 @@
 	// Anomaly handling
 	src.modules += new /obj/item/analyzer(src)
 	src.modules += new /obj/item/assembly/signaler(src)
+	src.modules += new /obj/item/anomaly_scanner(src)
 
 	src.emag += new /obj/item/hand_tele(src)
 
