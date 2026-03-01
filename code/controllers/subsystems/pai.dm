@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(pai)
 	// Check if the ghost stopped existing
 	var/mob/observer/ghost = get_mob_by_key(find_ckey)
 	if(!find_ckey || !isobserver(ghost) || !ghost.client)
-		to_chat(inquirer, span_warning("This pAI is has gone offline."))
+		to_chat(inquirer, span_warning("This pAI has gone offline."))
 		return
 
 	// Time delay if the ghost cancels your invite.
