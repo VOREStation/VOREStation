@@ -109,7 +109,7 @@
 		ui.open()
 
 /obj/item/paicard/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/data = list(
+	var/list/data = list(
 		"active_pai_data" = null,
 		"selected_pai_data" = null,
 		"available_pais" = null,
@@ -185,6 +185,12 @@
 			to_chat(ui.user, span_notice("You don't have any DNA, or your DNA is incompatible with this device."))
 			return FALSE
 
+		if("cleardna")
+			if(!pai)
+				return FALSE
+			pai.master = null
+			pai.master_dna = null
+			return TRUE
 		/*
 		if("wipe")
 			if(!pai)
@@ -227,13 +233,16 @@
 				return FALSE
 			if(in_use)
 				return FALSE
-			in_use = TRUE
-			var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, MAX_MESSAGE_LEN, encode = FALSE, multiline = TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
-			in_use = FALSE
-
+			var/newlaws = sanitize(params["directive"], MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
 			if(newlaws)
 				pai.pai_laws = newlaws
 				show_laws(TRUE)
+			return TRUE
+
+		if("clearlaws")
+			if(!pai)
+				return FALSE
+			pai.pai_laws = null
 			return TRUE
 
 		if("select_pai")
