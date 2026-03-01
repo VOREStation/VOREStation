@@ -2699,6 +2699,9 @@
 /obj/item/personal_shield_generator/belt/mining/loaded,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
+"aeJ" = (
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
 "aeK" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -3511,6 +3514,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"agi" = (
+/obj/machinery/door/blast/regular{
+	dir = 4;
+	id = "donotlink";
+	layer = 3.3;
+	name = "Hangar"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
 "agj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3562,61 +3574,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
-"agq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/wall/r_wall,
-/area/ai_monitored/storage/eva)
-"agr" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
-"ags" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/tether/exploration)
-"agt" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "agu" = (
 /obj/structure/sign/deck1,
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
 /area/tether/elevator)
-"agv" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "agw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4007,13 +3970,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_airlock)
-"ahe" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/tether/exploration)
 "ahf" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4094,13 +4050,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
-"ahm" = (
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "ahn" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
@@ -4153,53 +4102,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/engine_airlock)
-"aht" = (
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/machinery/airlock_sensor{
-	frequency = 1381;
-	pixel_y = -25
-	},
-/obj/machinery/light/floortube{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
-"ahu" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1381;
-	locked = 1
-	},
-/obj/effect/map_helper/airlock/door/int_door,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	dir = 4;
-	frequency = 1381;
-	master_tag = "expshuttle_dock";
-	pixel_y = 32;
-	req_one_access = list(13)
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
-"ahv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "ahw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
 	frequency = 1381;
 	id_tag = "expshuttle_dock";
-	dir = 8;
-	pixel_x = 32
+	pixel_x = 24;
+	req_one_access = list(19,43,67)
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
@@ -4766,8 +4677,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
@@ -14258,7 +14169,6 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "bxo" = (
@@ -14281,22 +14191,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
-"byv" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1381;
-	locked = 1
-	},
-/obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	dir = 8;
-	frequency = 1381;
-	master_tag = "expshuttle_dock";
-	pixel_y = 32;
-	req_one_access = list(13)
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "byy" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/gravity_lobby)
@@ -17191,7 +17085,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1381;
-	id_tag = "expshuttle_docker";
+	id_tag = "expshuttle_dock";
 	pixel_x = 5;
 	pixel_y = 25
 	},
@@ -17507,7 +17401,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "fgh" = (
@@ -19336,7 +19229,6 @@
 /obj/effect/floor_decal/industrial/danger/corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "htA" = (
@@ -20105,7 +19997,6 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "hYK" = (
@@ -26869,7 +26760,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "qad" = (
@@ -29330,15 +29220,6 @@
 	oxygen = 0
 	},
 /area/shuttle/medivac/engines)
-"sUY" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/tether/exploration)
 "sVp" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -29565,15 +29446,6 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"tiw" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/tether/exploration)
 "tiN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 8
@@ -43044,7 +42916,7 @@ aaa
 aaa
 aaa
 aaa
-aac
+aam
 pny
 aOH
 aML
@@ -43186,7 +43058,7 @@ aaa
 aaa
 aaa
 aaa
-aac
+aam
 pny
 aTO
 aph
@@ -43328,29 +43200,29 @@ aaa
 aaa
 aaa
 aab
-aac
-pny
+aam
+agi
 aTO
 dJL
-pny
-sUY
-sUY
-sUY
-sUY
-sUY
-sUY
-sUY
-sUY
-sUY
-sUY
-pny
-sUY
-pny
-sUY
-sUY
-sUY
-sUY
-pny
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 eWv
 bYt
 pny
@@ -43470,29 +43342,29 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tiw
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 eWv
 bYt
 pny
@@ -43612,19 +43484,19 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 ahz
 ghQ
 ghQ
@@ -43633,8 +43505,8 @@ agA
 agA
 aak
 fGW
-aaa
-tiw
+aeJ
+aeJ
 eWv
 bYt
 pny
@@ -43754,13 +43626,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 ahN
 cIa
 cIa
@@ -43775,8 +43647,8 @@ wZB
 fiK
 agy
 xwI
-aaa
-tiw
+aeJ
+aeJ
 eWv
 bYt
 pny
@@ -43896,13 +43768,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 cIa
 cIa
 cwR
@@ -43917,8 +43789,8 @@ mZB
 ghQ
 ghQ
 ghQ
-aaa
-tiw
+aeJ
+aeJ
 eWv
 ebG
 pny
@@ -44038,13 +43910,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 ahQ
 ahM
 cHP
@@ -44058,9 +43930,9 @@ xXm
 agD
 ghQ
 fMh
-aaa
-aaa
-tiw
+aeJ
+aeJ
+aeJ
 eWv
 imG
 hLI
@@ -44180,13 +44052,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 bLO
 emi
-ahe
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 ahQ
 bZF
 cys
@@ -44200,9 +44072,9 @@ gkB
 agG
 gLG
 agz
-aaa
-aaa
-tiw
+aeJ
+aeJ
+aeJ
 eWv
 aeL
 hNs
@@ -44322,13 +44194,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-pny
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 ahQ
 bZH
 cCr
@@ -44342,9 +44214,9 @@ eIJ
 ghQ
 flS
 fMh
-aaa
-aaa
-pny
+aeJ
+aeJ
+aeJ
 qaA
 ops
 pny
@@ -44464,13 +44336,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 bPE
 emN
-ahe
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 cIa
 cIa
 cCJ
@@ -44485,8 +44357,8 @@ agQ
 frS
 ghQ
 ghQ
-aaa
-tiw
+aeJ
+aeJ
 eWv
 nDX
 tal
@@ -44606,13 +44478,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
+aeJ
+aeJ
+aeJ
 ahX
 cIa
 cIa
@@ -44627,8 +44499,8 @@ agX
 ruq
 fNO
 xwI
-aaa
-tiw
+aeJ
+aeJ
 eWv
 hxD
 tal
@@ -44748,19 +44620,19 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 ahz
 ghQ
 ghQ
@@ -44769,8 +44641,8 @@ agA
 agA
 fOn
 ghQ
-aaa
-tiw
+aeJ
+aeJ
 eWv
 ops
 tal
@@ -44890,29 +44762,29 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-pny
-byv
-pny
-aaa
-aaa
-aaa
-aaa
-tiw
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 eWv
 ops
 tal
@@ -45032,29 +44904,29 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tiw
-ahm
-ahe
-aaa
-aaa
-aaa
-aaa
-tiw
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 eWv
 hBS
 tal
@@ -45174,29 +45046,29 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-ahe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tiw
-aht
-ahe
-aaa
-aaa
-aaa
-aaa
-tiw
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 eWv
 hBS
 tal
@@ -45316,29 +45188,29 @@ aaa
 aaa
 aaa
 aaa
-aac
-pny
+aam
+agi
 aTO
 dJL
-pny
-ags
-ags
-ags
-ags
-ags
-ags
-ags
-ags
-ags
-ags
-pny
-ahu
-pny
-ags
-ags
-ags
-ags
-pny
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
+aeJ
 eWv
 hCJ
 tal
@@ -45458,7 +45330,7 @@ aaa
 aaa
 aaa
 aaa
-aac
+aam
 pny
 aTO
 fCh
@@ -45474,16 +45346,16 @@ bQx
 ali
 bQx
 bQx
-ahv
+bQx
 fdw
-agv
+bQx
 hYI
-agv
-agt
-agr
+bQx
+bPD
+ali
 hss
 pXr
-agq
+tal
 bxi
 aiJ
 kpK
@@ -45600,7 +45472,7 @@ aaa
 aaa
 aaa
 aaa
-aac
+aam
 pny
 bYN
 kRk

@@ -1334,7 +1334,7 @@
 /area/shuttle/excursion
 	requires_power = 1
 	icon_state = "shuttle2"
-	base_turf = /turf/space
+	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/excursion/general
 	name = "\improper Excursion Shuttle"
