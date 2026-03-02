@@ -53,6 +53,7 @@ SUBSYSTEM_DEF(research)
 		/obj/item/assembly/signaler/anomaly/hallucination = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
 		/obj/item/assembly/signaler/anomaly/pyro = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
 		/obj/item/assembly/signaler/anomaly/weather = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
+		/obj/item/assembly/signaler/anomaly/dust = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS),
 		/obj/item/slime_extract/grey = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.1),
 		/obj/item/slime_extract/purple = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.1),
 		/obj/item/slime_extract/orange = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.1),

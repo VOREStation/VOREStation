@@ -205,7 +205,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("crunchy shell bits" = 5)
 
-/obj/item/reagent_containers/food/snacks/pillbug/Initialize(mapload)
+/obj/item/reagent_containers/food/snacks/pillbugempty/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
 	reagents.add_reagent(REAGENT_ID_CARBON, 5)

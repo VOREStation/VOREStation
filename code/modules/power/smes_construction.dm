@@ -340,9 +340,14 @@
 		// Multitool - change RCON tag
 		if(istype(W, /obj/item/multitool))
 			var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system", "", MAX_NAME_LEN)
-			if(newtag)
-				RCon_tag = newtag
-				to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
+			if(!newtag)
+				return
+			for(var/obj/machinery/power/smes/buildable/smes in GLOB.smeses)
+				if(smes.RCon_tag == newtag)
+					to_chat(user, span_warning("The entered RCON tag [newtag] already exists. Aborting."))
+					return
+			RCon_tag = newtag
+			to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
 			return
 		// Charged above 1% and safeties are enabled.
 		if((charge > (capacity/100)) && safeties_enabled)
