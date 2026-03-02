@@ -110,8 +110,6 @@
 			power_change()
 			update_icon()
 
-	src.updateDialog()
-
 /obj/machinery/portable_atmospherics/powered/pump/return_air()
 	return air_contents
 

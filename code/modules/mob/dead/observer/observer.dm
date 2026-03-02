@@ -223,7 +223,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(response == "Admin Ghost")
 				if(!src.client)
 					return
-				src.client.admin_ghost()
+				SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/admin_ghost)
 		else
 			response = tgui_alert(src, "Are you -sure- you want to ghost?\n(You are alive, or otherwise have the potential to become alive. Don't abuse ghost unless you are inside a cryopod or equivalent! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", list("Stay in body", "Ghost"))
 		if(response != "Ghost")

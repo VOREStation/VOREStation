@@ -905,6 +905,9 @@
 /mob/living/proc/has_eyes()
 	return 1
 
+/mob/living/proc/has_lungs()
+	return TRUE
+
 /mob/living/proc/get_restraining_bolt()
 	var/obj/item/implant/restrainingbolt/RB = locate() in src
 	if(RB)

@@ -26,27 +26,28 @@
 	to_file(F, span_filter_adminlog("<small>[time2text(world.timeofday,"hh:mm")] \ref[src] ([x],[y],[z])</small> || [src] [message]<br>"))
 
 //ADMINVERBS
-/client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
-	set name = "Investigate"
-	set category = "Admin.Investigate"
-	if(!check_rights_for(src, R_HOLDER))	return
+ADMIN_VERB(investigate_show, R_ADMIN|R_MOD|R_SERVER, "Investigate", "Check hrefs, notes or singulo and telesci logs.", ADMIN_CATEGORY_INVESTIGATE)
+	var/subject = tgui_input_list(user, "Select Subject", "Select the subject to investigate.", list("hrefs","notes","singulo","telesci"))
+	if(!subject)
+		return
+
 	switch(subject)
 		if("singulo", "telesci")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)
 			if(!F)
-				to_chat(src, span_filter_adminlog(span_warning("Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.")))
+				to_chat(user, span_filter_adminlog(span_warning("Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.")))
 				return
-			src << browse("<html>[F]</html>","window=investigate[subject];size=800x300")
+			user << browse("<html>[F]</html>","window=investigate[subject];size=800x300")
 
 		if("hrefs")				//persistant logs and stuff
 			if(config && CONFIG_GET(flag/log_hrefs))
 				if(GLOB.href_logfile)
-					src << browse("<html>[GLOB.href_logfile]</html>","window=investigate[subject];size=800x300")
+					user << browse("<html>[GLOB.href_logfile]</html>","window=investigate[subject];size=800x300")
 				else
-					to_chat(src, span_filter_adminlog(span_warning("Error: admin_investigate: No href logfile found.")))
+					to_chat(user, span_filter_adminlog(span_warning("Error: admin_investigate: No href logfile found.")))
 					return
 			else
-				to_chat(src, span_filter_adminlog(span_warning("Error: admin_investigate: Href Logging is not on.")))
+				to_chat(user, span_filter_adminlog(span_warning("Error: admin_investigate: Href Logging is not on.")))
 				return
 
 #undef INVESTIGATE_DIR

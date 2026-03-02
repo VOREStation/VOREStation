@@ -398,7 +398,7 @@
 	user.visible_message(span_notice("[user] amputates [target]'s [affected.name] at the [affected.amputation_point] with \the [tool]."), \
 	span_notice("You amputate [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("amputates [target]'s [affected.name] at the [affected.amputation_point]", "amputated \the [affected.name]")
-	affected.droplimb(1,DROPLIMB_EDGE)
+	affected.droplimb(TRUE,DROPLIMB_EDGE)
 
 /datum/surgery_step/generic/amputate/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

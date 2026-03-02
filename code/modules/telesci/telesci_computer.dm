@@ -58,7 +58,6 @@
 		crystals += W
 		W.forceMove(src)
 		user.visible_message("[user] inserts [W] into \the [src]'s crystal slot.", span_notice("You insert [W] into \the [src]'s crystal slot."))
-		updateDialog()
 	else if(istype(W, /obj/item/gps))
 		if(!inserted_gps)
 			inserted_gps = W
@@ -349,7 +348,6 @@
 				log_msg += "nothing"
 			log_msg += " [sending ? "to" : "from"] [trueX], [trueY], [z_co] ([A ? A.name : "null area"])"
 			investigate_log(log_msg, "telesci")
-			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
 	if(!COOLDOWN_FINISHED(src, teleport_cooldown))

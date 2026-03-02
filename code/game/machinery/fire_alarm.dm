@@ -147,7 +147,6 @@ FIRE ALARM
 			time = 0
 			timing = 0
 			STOP_PROCESSING(SSobj, src)
-		updateDialog()
 	last_process = world.timeofday
 
 	if(detecting && (locate(/obj/fire) in loc))

@@ -115,7 +115,7 @@
 	if (lights_glowing)
 		add_overlay(emissive_appearance(icon, "[icon_state]-lights"))
 
-/obj/item/toy/plushie/borgplushie/drake/get_description_info()
+/obj/item/toy/plushie/borgplushie/drake/get_description_info(list/additional_information)
 	return "The lights on the plushie can be toggled [lights_glowing ? "off" : "on"] by alt-clicking on it."
 
 /obj/item/toy/plushie/borgplushie/drake/sec
