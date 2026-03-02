@@ -23,15 +23,13 @@ type Data = {
   countdown: number;
 };
 
+const map: Record<string, string> = {
+  Decaying: 'yellow',
+  Stable: 'green',
+};
+
 function getColor(stability: string): string {
-  switch (true) {
-    case stability === 'Decaying':
-      return 'yellow';
-    case stability === 'Stable':
-      return 'green';
-    default:
-      return 'bad';
-  }
+  return map[stability] ?? 'bad';
 }
 
 export const AnomalyScanner = (props) => {
@@ -55,9 +53,9 @@ export const AnomalyScanner = (props) => {
     <Window width={400} height={325} theme={theme}>
       <Window.Content>
         {anomaly_name ? (
-          <Stack vertical fill scrollable>
-            <Stack.Item>
-              <Section title={capitalizeAll(anomaly_name)}>
+          <Stack vertical fill>
+            <Stack.Item grow>
+              <Section title={capitalizeAll(anomaly_name)} fill>
                 <LabeledList>
                   <LabeledList.Item label="Current severity">
                     {severity}%
@@ -78,7 +76,7 @@ export const AnomalyScanner = (props) => {
               </Section>
             </Stack.Item>
             <Stack.Item grow>
-              <Section title="Particle Reaction Analysis">
+              <Section title="Particle Reaction Analysis" fill>
                 <LabeledList>
                   <LabeledList.Item label="Danger Type" color="red">
                     {danger_type}
@@ -97,7 +95,7 @@ export const AnomalyScanner = (props) => {
             </Stack.Item>
             {modifier && (
               <Stack.Item grow>
-                <Section title="Behavior Deviation Analysis">
+                <Section title="Behavior Deviation Analysis" fill scrollable>
                   <Box>{modifier}</Box>
                 </Section>
               </Stack.Item>
