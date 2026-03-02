@@ -44,10 +44,11 @@
 	// Emotions
 	var/list/emotions = list()
 	for(var/name in GLOB.pai_emotions)
-		var/list/emote = list()
-		emote["name"] = name
-		emote["id"] = GLOB.pai_emotions[name]
-		emotions.Add(list(emote))
+		var/list/emote = list(
+			"displayText" = name,
+			"value" = GLOB.pai_emotions[name]
+		)
+		UNTYPED_LIST_ADD(emotions, emote)
 
 	data["emotions"] = emotions
 	data["current_emotion"] = card.current_emotion
