@@ -307,7 +307,7 @@
 	return
 
 
-/mob/living/simple_mob/slime/promethean/get_description_info()
+/mob/living/simple_mob/slime/promethean/get_description_info(list/additional_information)
 	return
 
 /mob/living/simple_mob/slime/promethean/init_vore(force)

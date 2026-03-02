@@ -905,6 +905,16 @@
 			for(var/at_flag in belly_data["autotransfer_blacklist"])
 				new_belly.autotransfer_blacklist += new_belly.autotransfer_flags_list[at_flag]
 
+		if(islist(belly_data["autotransfer_whitelist_items"]))
+			new_belly.autotransfer_whitelist_items = 0
+			for(var/at_flag in belly_data["autotransfer_whitelist_items"])
+				new_belly.autotransfer_whitelist_items += new_belly.autotransfer_flags_list_items[at_flag]
+
+		if(islist(belly_data["autotransfer_blacklist_items"]))
+			new_belly.autotransfer_blacklist_items = 0
+			for(var/at_flag in belly_data["autotransfer_blacklist_items"])
+				new_belly.autotransfer_blacklist_items += new_belly.autotransfer_flags_list_items[at_flag]
+
 		if(islist(belly_data["autotransfer_secondary_whitelist"]))
 			new_belly.autotransfer_secondary_whitelist = 0
 			for(var/at_flag in belly_data["autotransfer_secondary_whitelist"])
@@ -914,6 +924,16 @@
 			new_belly.autotransfer_secondary_blacklist = 0
 			for(var/at_flag in belly_data["autotransfer_secondary_blacklist"])
 				new_belly.autotransfer_secondary_blacklist += new_belly.autotransfer_flags_list[at_flag]
+
+		if(islist(belly_data["autotransfer_secondary_whitelist_items"]))
+			new_belly.autotransfer_secondary_whitelist_items = 0
+			for(var/at_flag in belly_data["autotransfer_secondary_whitelist_items"])
+				new_belly.autotransfer_secondary_whitelist_items += new_belly.autotransfer_flags_list_items[at_flag]
+
+		if(islist(belly_data["autotransfer_secondary_blacklist_items"]))
+			new_belly.autotransfer_secondary_blacklist_items = 0
+			for(var/at_flag in belly_data["autotransfer_secondary_blacklist_items"])
+				new_belly.autotransfer_secondary_blacklist_items += new_belly.autotransfer_flags_list_items[at_flag]
 
 		if(isnum(belly_data["absorbchance"]))
 			var/new_absorbchance = belly_data["absorbchance"]

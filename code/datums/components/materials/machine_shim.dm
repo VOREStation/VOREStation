@@ -94,12 +94,6 @@
 	AddComponent(/datum/component/using_machine_shim, O)
 
 /// deprecated, do not use
-/obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
-	if(istype(M) && M.client && M.check_current_machine(src))
-		src.attack_self(M)
-
-/// deprecated, do not use
 /obj/proc/updateUsrDialog(mob/user)
 	if(in_use)
 		var/is_in_use = 0
@@ -124,21 +118,6 @@
 						is_in_use = 1
 						src.attack_hand(H)
 		in_use = is_in_use
-
-/// deprecated, do not use
-/obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
-	if(in_use)
-		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
-		for(var/mob/M in nearby)
-			if ((M.client && M.check_current_machine(src)))
-				is_in_use = 1
-				src.interact(M)
-		var/ai_in_use = AutoUpdateAI(src)
-
-		if(!ai_in_use && !is_in_use)
-			in_use = 0
 
 /// deprecated, do not use
 /obj/machinery/CouldUseTopic(var/mob/user)

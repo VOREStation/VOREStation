@@ -719,6 +719,19 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_FOOD
 
+/datum/reagent/mustardpods
+	name = REAGENT_MUSTARDPODS
+	id = REAGENT_ID_MUSTARDPODS
+	description = "Densely-packed seed pods from a mustard plant. Good for making mustard. Not much use for anything else."
+	taste_description = "sharp, bitter, dry mustard"
+	reagent_state = SOLID
+	ingest_met = REM
+	color = "#B2A00D"
+	cup_prefix = "mustardy"
+	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
+
 /datum/reagent/enzyme
 	name = REAGENT_ENZYME
 	id = REAGENT_ID_ENZYME
