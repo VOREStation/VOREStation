@@ -106,7 +106,8 @@
 
 	card = loc
 	if(!istype(card))
-		return INITIALIZE_HINT_QDEL
+		card = new(src)
+		card.pai = src
 
 	sradio = new(src)
 	communicator = new(src)
