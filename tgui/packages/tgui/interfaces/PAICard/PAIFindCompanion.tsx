@@ -13,7 +13,7 @@ export const PAIFindCompanion = (props: { availablePais: InvitePAIData[] }) => {
     <Section fill scrollable title="Find Companion">
       {!waiting_for_response ? (
         !selected_pai_data ? (
-          <Stack>
+          <Stack vertical>
             {availablePais.map((paiEntry) => (
               <Stack.Item grow key={paiEntry.ref}>
                 <PAIDataEntry paiEntry={paiEntry} />

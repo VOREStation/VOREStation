@@ -34,7 +34,7 @@ export const CharacterPreferenceWindow = (props) => {
 
   return (
     <Window
-      width={1000}
+      width={1065}
       height={800}
       buttons={
         <Button
