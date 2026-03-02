@@ -1,12 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import {
-  Box,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { LabeledList, NoticeBox, Section, Stack } from 'tgui-core/components';
 import { round } from 'tgui-core/math';
 import { capitalizeAll } from 'tgui-core/string';
 
@@ -96,7 +90,7 @@ export const AnomalyScanner = (props) => {
             {modifier && (
               <Stack.Item grow>
                 <Section title="Behavior Deviation Analysis" fill scrollable>
-                  <Box>{modifier}</Box>
+                  {modifier}
                 </Section>
               </Stack.Item>
             )}
