@@ -9,6 +9,7 @@ export type Data = {
 
 export type DetailedInvitePAIData = {
   description?: string;
+  comments?: string;
 } & Required<InvitePAIData>;
 
 export type InvitePAIData = {
