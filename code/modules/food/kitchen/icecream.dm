@@ -62,7 +62,6 @@
 	reagents.add_reagent(REAGENT_ID_ICE, 5)
 
 /obj/machinery/icecream_vat/attack_hand(mob/user)
-	user.set_machine(src)
 	tgui_interact(user)
 
 /obj/machinery/icecream_vat/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
