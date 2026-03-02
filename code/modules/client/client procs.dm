@@ -422,7 +422,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		GLOB.admins -= src
 	if(skybox)
 		QDEL_NULL(skybox)
-
+	if(fakeConversations)
+		QDEL_NULL(fakeConversations)
 	QDEL_NULL(loot_panel)
 	..()
 	return QDEL_HINT_HARDDEL_NOW

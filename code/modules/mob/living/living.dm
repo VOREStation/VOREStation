@@ -102,7 +102,7 @@
 			if(isobj(OR))
 				qdel(OR)
 
-	cultnet.updateVisibility(src, 0)
+	GLOB.cultnet.updateVisibility(src, 0)
 
 	if(aiming)
 		qdel(aiming)
@@ -904,6 +904,9 @@
 
 /mob/living/proc/has_eyes()
 	return 1
+
+/mob/living/proc/has_lungs()
+	return TRUE
 
 /mob/living/proc/get_restraining_bolt()
 	var/obj/item/implant/restrainingbolt/RB = locate() in src

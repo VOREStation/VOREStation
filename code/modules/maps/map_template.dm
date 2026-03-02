@@ -177,7 +177,7 @@
 	var/deleted_atoms = 0
 	admin_notice(span_danger("Annihilating objects in submap loading locatation."), R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered)
-	if(turfs_to_clean.len)
+	if(length(turfs_to_clean))
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
 				++deleted_atoms
@@ -215,7 +215,7 @@
 /proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
 	set background = TRUE
 
-	if(!z_levels || !z_levels.len)
+	if(!z_levels || !length(z_levels))
 		admin_notice("seed_submaps() was not given any Z-levels.", R_DEBUG)
 		return
 
@@ -253,8 +253,8 @@
 		overall_sanity--
 		var/datum/map_template/chosen_template = null
 
-		if(potential_submaps.len)
-			if(priority_submaps.len) // Do these first.
+		if(length(potential_submaps))
+			if(length(priority_submaps)) // Do these first.
 				chosen_template = pick(priority_submaps)
 			else
 				chosen_template = pick(potential_submaps)

@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(pai)
 		UNTYPED_LIST_ADD(data, list(
 				"ref" = REF(ghost),
 				"name" = pref.read_preference(/datum/preference/text/pai_name),
-				"gender" = pref.read_preference(/datum/preference/choiced/gender), // Cannot use identifying yet due to byond limits
+				"gender" = pref.read_preference(/datum/preference/choiced/gender/biological), // Cannot use identifying yet due to byond limits
 				"role" = TextPreview(pref.read_preference(/datum/preference/text/pai_role), 152),
 				"ad" = TextPreview(pref.read_preference(/datum/preference/text/pai_ad), 244),
 				"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(pai)
 	return list(
 			"ref" = ghost_ref,
 			"name" = pref.read_preference(/datum/preference/text/pai_name),
-			"gender" = pref.read_preference(/datum/preference/choiced/gender), // Cannot use identifying yet due to byond limits
+			"gender" = pref.read_preference(/datum/preference/choiced/gender/biological), // Cannot use identifying yet due to byond limits
 			// Description
 			"role" = pref.read_preference(/datum/preference/text/pai_role),
 			"description" = pref.read_preference(/datum/preference/text/pai_description),

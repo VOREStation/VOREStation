@@ -145,3 +145,6 @@
 
 /obj/effect/temp_visual/circle_wave/star_blast
 	color = COLOR_VOID_PURPLE
+
+/obj/effect/temp_visual/circle_wave/dirt
+	color = COLOR_ASTEROID_ROCK

@@ -97,12 +97,13 @@
 		/obj/item/mine/lasertag/blue = 5)
 
 /obj/structure/closet/lasertag/omni
-	name = "unniversal laser tag equipment"
+	name = "universal laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	closet_appearance = /datum/decl/closet_appearance/wardrobe/purple
 
 	starts_with = list(
 		/obj/item/gun/energy/lasertag/omni = 5,
+		/obj/item/clothing/head/omnitag = 5,
 		/obj/item/clothing/suit/lasertag/omni = 5,
 		/obj/item/lasertagknife = 5,
 		/obj/item/mine/lasertag/all = 5,
@@ -135,3 +136,17 @@
 		/obj/item/clothing/head/bluetag = 3,
 		/obj/item/clothing/suit/lasertag/bluetag = 3,
 		/obj/item/lasertagknife/blue = 3)
+
+/obj/structure/closet/lasertag/omni/laserdome
+	name = "universal laser tag equipment"
+	desc = "It's a storage unit for laser tag equipment."
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/purple
+
+	starts_with = list(
+		/obj/item/encryptionkey/ent = 3,
+		/obj/item/gun/energy/lasertag/omni = 5,
+		/obj/item/clothing/head/omnitag = 5,
+		/obj/item/clothing/suit/lasertag/omni = 5,
+		/obj/item/lasertagknife = 5,
+		/obj/item/mine/lasertag/all = 5,
+		/obj/item/mine/lasertag/omni = 5)
