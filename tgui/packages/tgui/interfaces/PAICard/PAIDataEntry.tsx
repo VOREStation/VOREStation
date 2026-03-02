@@ -24,6 +24,7 @@ export const PAIDataEntry = (props: {
     sprite_datum_class,
     sprite_datum_size,
     description,
+    comments,
   } = paiEntry;
 
   return (
@@ -90,11 +91,18 @@ export const PAIDataEntry = (props: {
       </Stack.Item>
       <Stack.Divider />
       {detailed && (
-        <Stack.Item grow>
-          <Section scrollable fill title="Description">
-            {description}
-          </Section>
-        </Stack.Item>
+        <>
+          <Stack.Item grow>
+            <Section scrollable fill title="Description">
+              {description}
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section scrollable fill title="OOC Notes">
+              {comments}
+            </Section>
+          </Stack.Item>
+        </>
       )}
     </Stack>
   );
