@@ -81,9 +81,6 @@
 		ghost_inhabit(user)
 		return
 
-	#warn Remove the following line
-	return ..() // TEMP, REMOVE ME
-
 /obj/item/paicard/proc/ghost_inhabit(mob/user)
 	RETURN_TYPE(/mob/living/silicon/pai)
 	var/pai_name = user.client?.prefs.read_preference(/datum/preference/text/pai_name)
