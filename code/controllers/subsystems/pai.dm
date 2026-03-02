@@ -155,6 +155,7 @@ SUBSYSTEM_DEF(pai)
 			"role" = pref.read_preference(/datum/preference/text/pai_role),
 			"description" = pref.read_preference(/datum/preference/text/pai_description),
 			"ad" = pref.read_preference(/datum/preference/text/pai_ad),
+			"comments" = pref.read_preference(/datum/preference/text/pai_comments),
 			// Appearance
 			"eyecolor" = pref.read_preference(/datum/preference/color/pai_eye_color),
 			"chassis" = chassis,
