@@ -65,7 +65,7 @@ export const PAIDataEntry = (props: {
         </Stack>
       </Stack.Item>
       <Stack.Divider />
-      <Stack.Item grow>
+      <Stack.Item grow={2}>
         <Stack fill>
           <PaiIcon
             color={eyecolor}
