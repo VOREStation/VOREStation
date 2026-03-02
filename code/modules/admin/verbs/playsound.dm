@@ -3,7 +3,7 @@
 #define SHELLEO_STDOUT 2
 #define SHELLEO_STDERR 3
 
-var/list/sounds_cache = list()
+GLOBAL_LIST_EMPTY(sounds_cache)
 
 ADMIN_VERB(play_sound, R_SOUNDS, "Play Global Sound", "Plays a sound to all players.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
 	var/freq = 1
@@ -22,7 +22,7 @@ ADMIN_VERB(play_sound, R_SOUNDS, "Play Global Sound", "Plays a sound to all play
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	sounds_cache += S
+	GLOB.sounds_cache += S
 
 	var/res = tgui_alert(user, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
 	if(!res)
@@ -64,7 +64,7 @@ ADMIN_VERB(play_z_sound, R_SOUNDS, "Play Z Sound", "Plays a sound to a single z-
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
-	sounds_cache += S
+	GLOB.sounds_cache += S
 
 	if(tgui_alert(user, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
 		return
@@ -80,7 +80,7 @@ ADMIN_VERB(play_z_sound, R_SOUNDS, "Play Z Sound", "Plays a sound to a single z-
 ADMIN_VERB(play_server_sound, R_SOUNDS, "Play Server Sound", "Plays a sound from the server to play.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
 	var/list/sounds = world.file2list("sound/serversound_list.txt");
 	sounds += "--CANCEL--"
-	sounds += sounds_cache
+	sounds += GLOB.sounds_cache
 
 	var/melody = tgui_input_list(user, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
 

@@ -16,7 +16,7 @@
 
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
-			log_mapping("Found multiple lattices at '[log_info_line(loc)]'") //VOREStation Edit, why was this a runtime, it's harmless
+			// log_mapping("Found multiple lattices at '[log_info_line(loc)]'") // We do this on map lint level. This messes with random seed genned maps where such can happen in rare cases
 			return INITIALIZE_HINT_QDEL
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"

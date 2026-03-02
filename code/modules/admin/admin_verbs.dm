@@ -330,15 +330,13 @@ ADMIN_VERB(make_sound, R_FUN, "Make Sound", "Display a message to everyone who c
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-ADMIN_VERB(object_talk, R_FUN, "oSay", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_NARRATE, msg)
+ADMIN_VERB(object_talk, R_FUN, "oSay", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_NARRATE, msg as text)
 	var/mob/user_mob = user.mob
 	if(!user_mob.control_object)
 		return
 
 	if(!msg)
-		msg = tgui_input_text(user, "oSay", "Object text to say.", "")
-		if(!msg)
-			return
+		return
 	for(var/mob/V in hearers(user_mob.control_object))
 		V.show_message(span_filter_say(span_bold("[user_mob.control_object.name]") + " says: \"[msg]\""), 2)
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -573,7 +571,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	if(!A)
 		return
 	A.flags |= AREA_BLOCK_GHOST_SIGHT
-	ghostnet.addArea(A)
+	GLOB.ghostnet.addArea(A)
 
 /client/proc/remove_hidden_area()
 	set name = "Remove Ghostsight Block Area"
@@ -589,7 +587,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	if(!A)
 		return
 	A.flags &= ~(AREA_BLOCK_GHOST_SIGHT)
-	ghostnet.removeArea(A)
+	GLOB.ghostnet.removeArea(A)
 
 /client/proc/hide_motion_tracker_feedback()
 	set name = "Toggle Motion Echos"
