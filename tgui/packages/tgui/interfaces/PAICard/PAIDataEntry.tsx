@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 import { gender2icon } from '../PreferencesMenu/bay_prefs/general/functions';
 import { genderToColor } from './constants';
 import { PaiIcon } from './PaiIcon';
@@ -36,7 +37,7 @@ export const PAIDataEntry = (props: {
           </Stack.Item>
           <Stack.Item grow bold color={genderToColor[gender]}>
             <Tooltip content={gender}>
-              <Icon name={gender2icon[gender]} />
+              <Icon name={gender2icon(capitalize(gender))} />
             </Tooltip>
           </Stack.Item>
           <Stack.Item>

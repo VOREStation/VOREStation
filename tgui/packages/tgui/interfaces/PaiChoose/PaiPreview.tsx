@@ -43,7 +43,7 @@ export const PaiPreview = (props: {
                   left="0"
                   className={size}
                   style={{
-                    WebkitMaskImage: `url(${resolveAsset(`${size}.png`)})`,
+                    WebkitMaskImage: `url(${resolveAsset('pai_icons_120x120.png')})`,
                     WebkitMaskRepeat: 'no-repeat',
                     WebkitMaskPosition: `${iconPositions[`${icon}NE`]}`,
                     backgroundColor: `${color}`,

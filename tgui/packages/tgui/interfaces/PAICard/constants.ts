@@ -1,6 +1,7 @@
 export const genderToColor = {
   female: 'pink',
-  male: 'cyan',
+  male: 'blue',
   plural: 'purple',
   neuter: 'gray',
+  herm: 'teal',
 } as const;

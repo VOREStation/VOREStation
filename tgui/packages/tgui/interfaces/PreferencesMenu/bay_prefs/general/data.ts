@@ -15,7 +15,15 @@ export enum Gender {
   Female = 'Female',
   Neuter = 'Neuter',
   Plural = 'Plural',
+  Herm = 'Herm',
 }
+
+export const byondGenders: Gender[] = [
+  Gender.Male,
+  Gender.Female,
+  Gender.Neuter,
+  Gender.Plural,
+];
 
 export enum PersistanceEnum {
   PERSIST_SPAWN = 0x01,

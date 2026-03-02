@@ -8,7 +8,6 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
-import { VorePanelTooltip } from '../VorePanel/VorePanelElements/VorePanelTooltip';
 import { healthToColor } from './functions';
 import { PaiIcon } from './PaiIcon';
 import type { ActivePAIData } from './types';
@@ -136,6 +135,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
                 <Stack.Item>
                   <Button
                     icon="lightbulb-o"
+                    tooltip="Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored."
                     disabled={!newDirective}
                     onClick={() => {
                       act('setlaws', { directive: newDirective });
@@ -144,12 +144,6 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
                   >
                     Apply
                   </Button>
-                </Stack.Item>
-                <Stack.Item>
-                  <VorePanelTooltip
-                    tooltip="Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored."
-                    displayText="?"
-                  />
                 </Stack.Item>
               </Stack>
             }
