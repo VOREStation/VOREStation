@@ -1,4 +1,4 @@
-var/list/pai_emotions = list(
+GLOBAL_LIST_INIT(pai_emotions, list(
 		"Neutral" = 1,
 		"What" = 2,
 		"Happy" = 3,
@@ -15,7 +15,7 @@ var/list/pai_emotions = list(
 		"Question Mark" = 14,
 		"Blank" = 15,
 		"Off" = 16
-	)
+	))
 
 
 GLOBAL_LIST_EMPTY(pai_software_by_key)
@@ -79,11 +79,11 @@ GLOBAL_LIST_EMPTY(default_pai_software)
 
 	// Emotions
 	var/list/emotions = list()
-	for(var/name in pai_emotions)
+	for(var/name in GLOB.pai_emotions)
 		var/list/emote = list()
 		emote["name"] = name
-		emote["id"] = pai_emotions[name]
-		emotions.Add(list(emote))
+		emote["id"] = GLOB.pai_emotions[name]
+		UNTYPED_LIST_ADD(emotions, emote)
 
 	data["emotions"] = emotions
 	data["current_emotion"] = card.current_emotion
@@ -114,6 +114,6 @@ GLOBAL_LIST_EMPTY(default_pai_software)
 
 		if("image")
 			var/img = text2num(params["image"])
-			if(1 <= img && img <= (pai_emotions.len))
+			if(1 <= img && img <= length(GLOB.pai_emotions))
 				card.setEmotion(img)
 			return TRUE

@@ -6,6 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
 	anchored = TRUE
+	flags = WALL_ITEM
 	var/list/notices
 	var/base_icon_state = "nboard0"
 	var/const/max_notices = 5

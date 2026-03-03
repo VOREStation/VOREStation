@@ -67,6 +67,7 @@
 	network = list(NETWORK_THUNDER)
 	density = FALSE
 	circuit = null
+	flags = WALL_ITEM
 
 GLOBAL_LIST_EMPTY(entertainment_screens)
 /obj/machinery/computer/security/telescreen/entertainment

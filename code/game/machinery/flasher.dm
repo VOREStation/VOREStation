@@ -5,6 +5,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
 	layer = ABOVE_WINDOW_LAYER
+	flags = WALL_ITEM
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/disable = 0

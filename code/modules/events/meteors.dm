@@ -28,9 +28,9 @@
 	if(!victim)
 		switch(severity)
 			if(EVENT_LEVEL_MAJOR)
-				command_announcement.Announce("Meteors have been detected on collision course with \the [location_name()].", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+				GLOB.command_announcement.Announce("Meteors have been detected on collision course with \the [location_name()].", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
 			else
-				command_announcement.Announce("\The [location_name()] is now in a meteor shower.", "Meteor Alert")
+				GLOB.command_announcement.Announce("\The [location_name()] is now in a meteor shower.", "Meteor Alert")
 
 /datum/event/meteor_wave/tick()
 	// Begin sending the alarm signals to shield diffusers so the field is already regenerated (if it exists) by the time actual meteors start flying around.
@@ -63,9 +63,9 @@
 	if(!victim)
 		switch(severity)
 			if(EVENT_LEVEL_MAJOR)
-				command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")
+				GLOB.command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")
 			else
-				command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
+				GLOB.command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
