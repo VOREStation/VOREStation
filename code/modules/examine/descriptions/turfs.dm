@@ -32,7 +32,7 @@
 				results += "[desc_panel_image("crowbar")]to finish deconstruction."
 	return results
 
-/turf/simulated/floor/get_description_info()
+/turf/simulated/floor/get_description_info(list/additional_information)
 	. = ..()
 	if(broken || burnt)
 		. += "It is broken."

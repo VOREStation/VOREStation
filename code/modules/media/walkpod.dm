@@ -115,7 +115,6 @@
 			current_track = null
 			playing = 0
 			update_icon()
-	updateDialog()
 	start_stop_song()
 
 // Track/music internals
@@ -138,7 +137,6 @@
 		return
 	playing = 1
 	start_stop_song()
-	updateDialog()
 
 // Advance to the next track - Don't start playing it unless we were already playing
 /obj/item/walkpod/proc/NextTrack()
@@ -149,7 +147,6 @@
 	current_track = tracks[newTrackIndex]
 	if(playing)
 		start_stop_song()
-	updateDialog()
 
 // Unadvance to the notnext track - Don't start playing it unless we were already playing
 /obj/item/walkpod/proc/PrevTrack()
@@ -160,7 +157,6 @@
 	current_track = tracks[newTrackIndex]
 	if(playing)
 		start_stop_song()
-	updateDialog()
 
 // UI
 /obj/item/walkpod/proc/getTracksList()
