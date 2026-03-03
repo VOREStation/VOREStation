@@ -69,3 +69,9 @@
       to go with the empty version
   - image: brightened the default carrot produce sprite and changed the produce colours
       for carrots and oranges
+2026-03-03:
+  Kashargul:
+  - code_imp: migrates some more globals to GLOBs
+  - code_imp: migrates more admin verbs to the subsystem
+  - code_imp: cleans up some more updateDialog
+  - refactor: replaces many old browser UIs with tgui
