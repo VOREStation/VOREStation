@@ -129,13 +129,7 @@ SUBSYSTEM_DEF(departmentgoals)
 
 	SSdepartmentgoals.show_goal_status_to(usr)
 
-/datum/admins/proc/add_department_goal()
-	set category = "Debug.Events"
-	set name = "Add Department Goal"
-	set desc = "Adds a goal for the station to reach."
-
-	if(!check_rights(R_EVENT))
-		return
+ADMIN_VERB(add_department_goal, R_EVENT, "Add Department Goal", "Adds a goal for the station to reach.", ADMIN_CATEGORY_EVENTS)
 	var/choice = tgui_input_list(usr,"Choose goal to add:","New Goal", subtypesof(/datum/goal))
 	if(!choice)
 		return
@@ -145,14 +139,7 @@ SUBSYSTEM_DEF(departmentgoals)
 	dept_goals += new template()
 	log_admin("[key_name(usr)] has added a department goal: [template.name].")
 
-/datum/admins/proc/remove_department_goal()
-	set category = "Debug.Events"
-	set name = "Remove Department Goal"
-	set desc = "Remove a goal from the station's current department goals."
-
-	if(!check_rights(R_EVENT))
-		return
-
+ADMIN_VERB(remove_department_goal, R_EVENT, "Remove Department Goal", "Remove a goal from the station's current department goals.", ADMIN_CATEGORY_EVENTS)
 	var/list/all_goals = list()
 	for(var/category in SSdepartmentgoals.active_department_goals)
 		all_goals += SSdepartmentgoals.active_department_goals[category]
