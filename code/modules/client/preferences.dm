@@ -556,7 +556,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
-				if(!islist(body_markings[M][BP])) continue
+				if(!islist(body_markings[M][BP]))
+					continue
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
 
