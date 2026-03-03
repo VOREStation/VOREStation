@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	18
+#define SAVEFILE_VERSION_MAX	19
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -98,6 +98,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 		log_world("[client_ckey] preferences successfully migrated from [current_version] to v18.")
 		to_chat(client, span_danger("v18 savefile migration complete."))
+
+	// Migration for pai to tg pregs
+	if(current_version < 19)
+		log_world("[client_ckey] preferences migrating from [current_version] to v19....")
+		to_chat(client, span_danger("Migrating savefile from version [current_version] to v19..."))
+
+		migration_19_paifile(S)
+
+		log_world("[client_ckey] preferences successfully migrated from [current_version] to v19.")
+		to_chat(client, span_danger("v19 savefile migration complete."))
 /datum/preferences/proc/update_character(current_version, list/save_data)
 	// Migration from BYOND savefiles to JSON: Important milemark.
 	if(current_version == -3)
