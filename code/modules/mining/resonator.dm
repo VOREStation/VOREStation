@@ -140,7 +140,7 @@
 		return
 	// Otherwise we damage mobs!  Boost damage if low tempreature
 	var/datum/gas_mixture/environment = T.return_air()
-	if(environment.temperature < 250)
+	if(environment.get_temp() < 250)
 		name = "strong resonance field"
 		resonance_damage = 50
 

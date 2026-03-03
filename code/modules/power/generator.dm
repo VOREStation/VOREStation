@@ -108,19 +108,19 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	if(air1 && air2)
 		var/air1_heat_capacity = air1.heat_capacity()
 		var/air2_heat_capacity = air2.heat_capacity()
-		var/delta_temperature = abs(air2.temperature - air1.temperature)
+		var/delta_temperature = abs(air2.get_temp() - air1.get_temp())
 
 		if(delta_temperature > 0 && air1_heat_capacity > 0 && air2_heat_capacity > 0)
 			var/energy_transfer = delta_temperature*air2_heat_capacity*air1_heat_capacity/(air2_heat_capacity+air1_heat_capacity)
 			var/heat = energy_transfer*(1-thermal_efficiency)
 			last_thermal_gen = energy_transfer*thermal_efficiency
 
-			if(air2.temperature > air1.temperature)
-				air2.temperature = air2.temperature - energy_transfer/air2_heat_capacity
-				air1.temperature = air1.temperature + heat/air1_heat_capacity
+			if(air2.get_temp() > air1.get_temp())
+				air2.set_temp(air2.get_temp() - energy_transfer/air2_heat_capacity)
+				air1.set_temp(air1.get_temp() + heat/air1_heat_capacity)
 			else
-				air2.temperature = air2.temperature + heat/air2_heat_capacity
-				air1.temperature = air1.temperature - energy_transfer/air1_heat_capacity
+				air2.set_temp(air2.get_temp() + heat/air2_heat_capacity)
+				air1.set_temp(air1.get_temp() - energy_transfer/air1_heat_capacity)
 
 	//Transfer the air
 	if (air1)
@@ -218,9 +218,9 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["primary"]["output"] = last_circ1_gen
 		data["primary"]["flowCapacity"] = circ1.volume_capacity_used*100
 		data["primary"]["inletPressure"] = circ1.air1.return_pressure()
-		data["primary"]["inletTemperature"] = circ1.air1.temperature
+		data["primary"]["inletTemperature"] = circ1.air1.get_temp()
 		data["primary"]["outletPressure"] = circ1.air2.return_pressure()
-		data["primary"]["outletTemperature"] = circ1.air2.temperature
+		data["primary"]["outletTemperature"] = circ1.air2.get_temp()
 
 	data["secondary"] = list()
 	if(circ2)
@@ -229,9 +229,9 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["secondary"]["output"] = last_circ2_gen
 		data["secondary"]["flowCapacity"] = circ2.volume_capacity_used*100
 		data["secondary"]["inletPressure"] = circ2.air1.return_pressure()
-		data["secondary"]["inletTemperature"] = circ2.air1.temperature
+		data["secondary"]["inletTemperature"] = circ2.air1.get_temp()
 		data["secondary"]["outletPressure"] = circ2.air2.return_pressure()
-		data["secondary"]["outletTemperature"] = circ2.air2.temperature
+		data["secondary"]["outletTemperature"] = circ2.air2.get_temp()
 
 	return data
 

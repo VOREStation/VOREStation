@@ -473,7 +473,7 @@
 			GAS_PHORON = "[round(phoron_level*100, 0.01)]",\
 			GAS_CH4 = "[round(methane_level*100, 0.01)]",\
 			"other" = "[round(unknown_level, 0.01)]",\
-			"temp" = "[round(environment.temperature-T0C, 0.1)]",\
+			"temp" = "[round(environment.get_temp()-T0C, 0.1)]",\
 			"reading" = TRUE\
 			)
 

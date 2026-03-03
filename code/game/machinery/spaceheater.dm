@@ -203,7 +203,7 @@
 
 	if(cell && cell.charge)
 		var/datum/gas_mixture/env = loc.return_air()
-		if(env && abs(env.temperature - set_temperature) > 0.1)
+		if(env && abs(env.get_temp() - set_temperature) > 0.1)
 			var/transfer_moles = 0.25 * env.total_moles
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 			if(removed)
@@ -223,7 +223,7 @@
 					heat_transfer = abs(heat_transfer)
 
 					//Assume the heat is being pumped into the hull which is fixed at 20 C
-					var/cop = removed.temperature/T20C	//coefficient of performance from thermodynamics -> power used = heat_transfer/cop
+					var/cop = removed.get_temp()/T20C	//coefficient of performance from thermodynamics -> power used = heat_transfer/cop
 					heat_transfer = min(heat_transfer, cop * heating_power)	//limit heat transfer by available power
 					heat_transfer = removed.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 

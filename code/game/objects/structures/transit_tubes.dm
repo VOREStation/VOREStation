@@ -75,7 +75,7 @@
 	. = ..()
 	air_contents = new()
 	air_contents.adjust_multi(GAS_O2, MOLES_O2STANDARD * 2, GAS_N2, MOLES_N2STANDARD)
-	air_contents.temperature = T20C
+	air_contents.set_temp(T20C)
 
 	// Give auto tubes time to align before trying to start moving
 	follow_tube()

@@ -105,7 +105,7 @@
 
 	// STEP 5 - Output the converted oxygen. Fow now we output for free!
 	internal.adjust_gas(input_gas, -converted_moles)
-	air2.adjust_gas_temp(output_gas, converted_moles, internal.temperature)
+	air2.adjust_gas_temp(output_gas, converted_moles, internal.get_temp())
 	if(network2)
 		network2.update = 1
 	recent_moles_transferred = converted_moles

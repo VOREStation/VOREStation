@@ -57,7 +57,7 @@ Class Procs:
 
 /datum/zone/New()
 	SSair.add_zone(src)
-	air.temperature = TCMB
+	air.set_temp(TCMB)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 
@@ -152,7 +152,7 @@ Class Procs:
 	air.group_multiplier = contents.len+1
 
 /datum/zone/proc/tick()
-	if(air.temperature >= PHORON_FLASHPOINT && !(src in SSair.active_fire_zones) && air.check_combustability() && contents.len)
+	if(air.get_temp() >= PHORON_FLASHPOINT && !(src in SSair.active_fire_zones) && air.check_combustability() && contents.len)
 		var/turf/T = pick(contents)
 		if(istype(T))
 			T.create_fire(GLOB.vsc.fire_firelevel_multiplier)
@@ -171,7 +171,7 @@ Class Procs:
 	to_chat(M,name)
 	for(var/g in air.gas)
 		to_chat(M, "[GLOB.gas_data.name[g]]: [air.gas[g]]")
-	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]°K ([air.temperature - T0C]°C)")
+	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.get_temp()]°K ([air.get_temp() - T0C]°C)")
 	to_chat(M, "O2 per N2: [(air.gas[GAS_N2] ? air.gas[GAS_O2]/air.gas[GAS_N2] : "N/A")] Moles: [air.total_moles]")
 	to_chat(M, "Simulated: [contents.len] ([air.group_multiplier])")
 	//to_chat(M, "Unsimulated: [unsimulated_contents.len]")

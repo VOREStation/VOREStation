@@ -24,7 +24,7 @@
 /obj/machinery/artifact/process() //Air too hot! We break!
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/env = T.return_air()
-	if(env && env.temperature > ARTIFACT_HEAT_BREAK)
+	if(env && env.get_temp() > ARTIFACT_HEAT_BREAK)
 		qdel(src)
 
 /obj/machinery/artifact/Destroy()

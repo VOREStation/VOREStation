@@ -63,7 +63,7 @@
 			return FALSE
 	else if(istype(holder.my_atom, /obj/machinery/reagent_refinery/reactor))
 		// Check gas temp for refinery
-		if(!GM || GM.temperature < temp_range[1] || GM.temperature > temp_range[2])
+		if(!GM || GM.get_temp() < temp_range[1] || GM.get_temp() > temp_range[2])
 			return FALSE
 
 	return ..()

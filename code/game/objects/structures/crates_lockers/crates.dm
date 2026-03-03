@@ -314,12 +314,12 @@
 	if(!gas)	return null
 	var/datum/gas_mixture/newgas = new/datum/gas_mixture()
 	newgas.copy_from(gas)
-	if(newgas.temperature <= target_temp)	return
+	if(newgas.get_temp() <= target_temp)	return
 
-	if((newgas.temperature - cooling_power) > target_temp)
-		newgas.temperature -= cooling_power
+	if((newgas.get_temp() - cooling_power) > target_temp)
+		newgas.set_temp(newgas.get_temp() - cooling_power)
 	else
-		newgas.temperature = target_temp
+		newgas.set_temp(target_temp)
 	return newgas
 
 /obj/structure/closet/crate/freezer/Entered(var/atom/movable/AM)

@@ -90,7 +90,7 @@
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	var/datum/gas_mixture/GM = internal_tank.return_air()
-	. += "The internal temperature is [GM.temperature]k at [GM.return_pressure()]kpa. It is currently in a [toggle_mode ? "pumping cycle, outputting stored chemicals" : "distilling cycle, accepting input chemicals"]."
+	. += "The internal temperature is [GM.get_temp()]k at [GM.return_pressure()]kpa. It is currently in a [toggle_mode ? "pumping cycle, outputting stored chemicals" : "distilling cycle, accepting input chemicals"]."
 	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT, .)
 
 /obj/machinery/reagent_refinery/reactor/attackby(var/obj/item/O as obj, var/mob/user as mob)
