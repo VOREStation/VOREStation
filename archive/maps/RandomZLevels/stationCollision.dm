@@ -103,57 +103,6 @@ obj/item/gun/energy/laser/retro/sc_retro
 	clumsy_check = 0
 
 /*
- * Safe code hints
- */
-
-//These vars hold the code itself, they'll be generated at round-start
-var/sc_safecode1 = "[rand(0,9)]"
-var/sc_safecode2 = "[rand(0,9)]"
-var/sc_safecode3 = "[rand(0,9)]"
-var/sc_safecode4 = "[rand(0,9)]"
-var/sc_safecode5 = "[rand(0,9)]"
-
-//Pieces of paper actually containing the hints
-/obj/item/paper/sc_safehint_paper_prison
-	name = "smudged paper"
-
-/obj/item/paper/sc_safehint_paper_prison/Initialize(mapload, text, title)
-	. = ..()
-	info = span_italics("The ink is smudged, you can only make out a couple numbers:") + " '[sc_safecode1]**[sc_safecode4]*'"
-
-/obj/item/paper/sc_safehint_paper_hydro
-	name = "shredded paper"
-/obj/item/paper/sc_safehint_paper_hydro/Initialize(mapload, text, title)
-	. = ..()
-	info = span_italics("Although the paper is shredded, you can clearly see the number:") + " '[sc_safecode2]'"
-
-/obj/item/paper/sc_safehint_paper_caf
-	name = "blood-soaked paper"
-	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
-	info = span_red(span_italics("This paper is soaked in blood, it is impossible to read any text."))
-
-/obj/item/paper/sc_safehint_paper_bible
-	name = "hidden paper"
-
-/obj/item/paper/sc_safehint_paper_bible/Initialize(mapload, text, title)
-	. = ..()
-	info = span_italics("It would appear that the pen hidden with the paper had leaked ink over the paper. \
-			However you can make out the last three digits:") + "' [sc_safecode3][sc_safecode4][sc_safecode5]'"
-
-/obj/item/paper/sc_safehint_paper_shuttle
-	info = span_bold("Target:") + " Research-station Epsilon<br> " + span_bold("Objective:")\ +
-			{" Prototype weaponry. The captain likely keeps them locked in her safe.<br>
-			<br>
-			Our on-board spy has learned the code and has hidden away a few copies of the code around the station. Unfortunatly he has been captured by security
-			Your objective is to split up, locate any of the papers containing the captain's safe code, open the safe and
-			secure anything found inside. If possible, recover the imprisioned syndicate operative and recieve the code from him.<br>
-			<br>
-			<u>As always, eliminate anyone who gets in the way.</u><br>
-			<br>
-			Your assigned ship is designed specifically for penetrating the hull of another station or ship with minimal damage to operatives.
-			It is completely fly-by-wire meaning you have just have to enjoy the ride and when the red light comes on... find something to hold onto!
-			"}
-/*
  * Captain's safe
  */
 /obj/item/storage/secure/safe/sc_ssafe

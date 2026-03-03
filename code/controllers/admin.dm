@@ -81,7 +81,7 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 	options["LEGACY: job_master"] = GLOB.job_master
 	options["LEGACY: emergency_shuttle"] = GLOB.emergency_shuttle
 	options["LEGACY: paiController"] = paiController
-	options["LEGACY: cameranet"] = cameranet
+	options["LEGACY: cameranet"] = GLOB.cameranet
 	options["LEGACY: transfer_controller"] = GLOB.transfer_controller
 
 	var/pick = tgui_input_list(user, "Choose a controller to debug/view variables of.", "VV controller:", options)

@@ -42,8 +42,8 @@
 	var/list/receiver_reception = list()
 
 /proc/get_message_server()
-	if(message_servers)
-		for (var/obj/machinery/message_server/MS in message_servers)
+	if(GLOB.message_servers)
+		for (var/obj/machinery/message_server/MS in GLOB.message_servers)
 			if(MS.active)
 				return MS
 	return null

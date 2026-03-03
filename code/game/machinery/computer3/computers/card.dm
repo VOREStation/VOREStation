@@ -322,7 +322,6 @@
 			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, writer)
 
-	computer.updateUsrDialog(usr)
 	return
 
 /datum/file/program/card_comp/centcom
