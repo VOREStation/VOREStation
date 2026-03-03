@@ -6,7 +6,7 @@
 	var/author = "Editor Mike Hammers"
 	var/channel = "The Gibson Gazette"
 
-	var/datum/trade_destination/affected_dest = pick(weighted_mundaneevent_locations)
+	var/datum/trade_destination/affected_dest = pick(GLOB.weighted_mundaneevent_locations)
 	var/body = pick(
 	"Tree stuck in tajaran; firefighters baffled.",\
 	"Armadillos want aardvarks removed from dictionary claims 'here first'.",\
@@ -92,4 +92,4 @@
 	"Broccoli discovered to be colonies of tiny aliens with murder on their minds"\
 	)
 
-	news_network.SubmitArticle(body, author, channel, null, 1)
+	GLOB.news_network.SubmitArticle(body, author, channel, null, 1)

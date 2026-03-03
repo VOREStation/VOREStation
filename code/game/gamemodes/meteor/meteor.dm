@@ -13,7 +13,7 @@
 /datum/game_mode/meteor/process()
 	if(world.time >= next_wave)
 		next_wave = world.time + GLOB.meteor_wave_delay
-		spawn() spawn_meteors(6, meteors_normal)
+		spawn() spawn_meteors(6, GLOB.meteors_normal)
 
 /datum/game_mode/meteor/declare_completion()
 	var/text

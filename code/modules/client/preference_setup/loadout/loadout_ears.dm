@@ -54,4 +54,4 @@
 	earringscolour["dangle"] = /obj/item/clothing/ears/earring/dangle
 
 	gear_tweaks += new/datum/gear_tweak/path(earringscolour)
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice

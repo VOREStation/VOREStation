@@ -34,7 +34,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		attempt_to_cuff(user, user)
 		return
@@ -117,7 +117,6 @@
 		user.drop_l_hand()
 		user.stop_pulling()
 
-var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return
@@ -228,7 +227,7 @@ var/last_chew = 0
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		place_legcuffs(user, user)
 		return

@@ -112,16 +112,6 @@ fi;
 
 section "code issues"
 
-# No longer in use, see below
-#part "indentation"
-##check for weird indentation in any .dm files
-#awk -f tools/indentation.awk $code_files
-#retVal=$?
-#if [ $retVal -ne 0 ]; then
-#	echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
-#	FAILED=1
-#fi
-
 part "space indentation"
 if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
 	echo

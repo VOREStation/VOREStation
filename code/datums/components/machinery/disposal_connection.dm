@@ -59,6 +59,7 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(connected_trunk)
+		connected_trunk.linked = null
 		UnregisterSignal(connected_trunk, COMSIG_DISPOSAL_SEND)
 		connected_trunk = null
 

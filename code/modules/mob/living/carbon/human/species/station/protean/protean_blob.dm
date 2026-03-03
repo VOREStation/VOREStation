@@ -188,8 +188,8 @@
 	return TRUE // yup
 
 /mob/living/simple_mob/protean_blob/get_available_emotes()
-	var/list/fulllist = global._robot_default_emotes.Copy()
-	fulllist |= global._human_default_emotes //they're living nanites, they can make whatever sounds they want
+	var/list/fulllist = GLOB.robot_default_emotes.Copy()
+	fulllist |= GLOB.human_default_emotes //they're living nanites, they can make whatever sounds they want
 	return fulllist
 
 /mob/living/simple_mob/protean_blob/update_misc_tabs()

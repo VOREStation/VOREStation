@@ -1,4 +1,4 @@
-var/list/preferences_datums = list()
+GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences
 	/// The path to the general savefile for this datum
@@ -19,8 +19,6 @@ var/list/preferences_datums = list()
 	var/be_special = 0					//Special role selection
 
 	//character preferences
-	var/real_name						//our character's name
-	var/nickname						//our character's nickname
 	var/b_type = DEFAULT_BLOOD_TYPE		//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
 	var/headset = 1						//headset type
@@ -160,7 +158,7 @@ var/list/preferences_datums = list()
 
 	// Didn't load a character, so let's randomize
 	set_biological_gender(pick(MALE, FEMALE))
-	real_name = random_name(identifying_gender,species)
+	update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), species))
 	b_type = RANDOM_BLOOD_TYPE
 
 	if(client)
@@ -177,7 +175,8 @@ var/list/preferences_datums = list()
 	return ..()
 
 /datum/preferences/proc/ShowChoices(mob/user)
-	if(!user || !user.client)	return
+	if(!user || !user.client)
+		return
 
 	if(!get_mob_by_key(client_ckey))
 		to_chat(user, span_danger("No mob exists for the given client!"))
@@ -260,7 +259,7 @@ var/list/preferences_datums = list()
 
 	if(href_list["save"])
 		if(save_character())
-			to_chat(usr,span_notice("Character [player_setup?.preferences?.real_name] saved!"))
+			to_chat(usr,span_notice("Character [player_setup?.preferences?.read_preference(/datum/preference/name/real_name)] saved!"))
 		save_preferences()
 	else if(href_list["reload"])
 		load_preferences(TRUE)
@@ -301,7 +300,7 @@ var/list/preferences_datums = list()
 	character.set_species(species)
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		real_name = random_name(identifying_gender,species)
+		update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), species))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
@@ -424,20 +423,21 @@ var/list/preferences_datums = list()
 	blood color
 	*/
 	if (copy_name)
+		var/char_real_name = read_preference(/datum/preference/name/real_name)
 		if(CONFIG_GET(flag/humans_need_surnames))
-			var/firstspace = findtext(real_name, " ")
-			var/name_length = length(real_name)
+			var/firstspace = findtext(char_real_name, " ")
+			var/name_length = length(char_real_name)
 			if(!firstspace)	//we need a surname
-				real_name += " [pick(GLOB.last_names)]"
+				char_real_name += " [pick(GLOB.last_names)]"
 			else if(firstspace == name_length)
-				real_name += "[pick(GLOB.last_names)]"
-		character.real_name = real_name
+				char_real_name += "[pick(GLOB.last_names)]"
+		character.real_name = char_real_name
 		character.name = character.real_name
 		if(character.dna)
 			character.dna.real_name = character.real_name
-		character.nickname = nickname
-	character.gender = biological_gender
-	character.identifying_gender = identifying_gender
+		character.nickname = read_preference(/datum/preference/name/nickname)
+	character.gender = read_preference(/datum/preference/choiced/gender/biological)
+	character.identifying_gender = read_preference(/datum/preference/choiced/gender/identifying)
 
 	character.h_style	= h_style
 
@@ -507,7 +507,7 @@ var/list/preferences_datums = list()
 	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
 	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
 
-	character.set_gender(biological_gender)
+	character.set_gender(read_preference(/datum/preference/choiced/gender/biological))
 
 	// Destroy/cyborgize organs and limbs.
 	if (convert_to_prosthetics) //should only really be run for proteans

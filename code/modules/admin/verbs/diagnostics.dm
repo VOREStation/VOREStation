@@ -2,7 +2,7 @@
 	set category = "Debug.Investigate"
 	set name = "Show Air Report"
 
-	if(!master_controller || !SSair)
+	if(!GLOB.master_controller || !SSair)
 		tgui_alert_async(usr,"Master_controller or SSair not found.","Air Report")
 		return
 
@@ -15,7 +15,7 @@
 
 	var/active_on_main_station = 0
 	var/inactive_on_main_station = 0
-	for(var/zone/zone in SSair.zones)
+	for(var/datum/zone/zone in SSair.zones)
 		var/turf/simulated/turf = locate() in zone.contents
 		if(turf?.z in using_map.station_levels)
 			if(zone.needs_update)

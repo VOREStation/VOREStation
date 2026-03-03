@@ -3,7 +3,7 @@
 	set category = "Abilities.Antag"
 	if(!M.mind)
 		return
-	convert_to_faction(M.mind, revs)
+	convert_to_faction(M.mind, GLOB.revs)
 
 /mob/living/proc/convert_to_faction(var/datum/mind/player, var/datum/antagonist/faction)
 

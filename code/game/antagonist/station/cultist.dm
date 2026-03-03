@@ -1,9 +1,9 @@
-var/datum/antagonist/cultist/cult
+GLOBAL_DATUM(cult, /datum/antagonist/cultist)
 
 /proc/iscultist(var/mob/player)
-	if(!cult || !player.mind)
+	if(!GLOB.cult || !player.mind)
 		return 0
-	if(player.mind in cult.current_antagonists)
+	if(player.mind in GLOB.cult.current_antagonists)
 		return 1
 
 /datum/antagonist/cultist
@@ -40,7 +40,7 @@ var/datum/antagonist/cultist/cult
 
 /datum/antagonist/cultist/New()
 	..()
-	cult = src
+	GLOB.cult = src
 
 /datum/antagonist/cultist/create_global_objectives()
 

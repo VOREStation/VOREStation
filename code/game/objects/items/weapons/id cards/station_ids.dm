@@ -142,7 +142,7 @@
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
-	var/datum/job/J = job_master.GetJob(rank)
+	var/datum/job/J = GLOB.job_master.GetJob(rank)
 	if(J)
 		access = J.get_access()
 

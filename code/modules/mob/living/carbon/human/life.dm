@@ -1175,15 +1175,15 @@
 					if(src.species && src.species.get_bodytype() != "Vox" && src.species.get_bodytype() != "Shadekin")
 						// This is hacky, I'm so sorry.
 						if(I != l_hand && I != r_hand)	//If the item isn't in your hands, you're probably wearing it. Full damage for you.
-							total_phoronloss += vsc.plc.CONTAMINATION_LOSS
+							total_phoronloss += GLOB.vsc.plc.CONTAMINATION_LOSS
 						else if(I == l_hand)	//If the item is in your hands, but you're wearing protection, you might be alright.
 							var/l_hand_blocked = 0
 							l_hand_blocked = 1-(100-getarmor(BP_L_HAND, "bio"))/100	//This should get a number between 0 and 1
-							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * l_hand_blocked
+							total_phoronloss += GLOB.vsc.plc.CONTAMINATION_LOSS * l_hand_blocked
 						else if(I == r_hand)	//If the item is in your hands, but you're wearing protection, you might be alright.
 							var/r_hand_blocked = 0
 							r_hand_blocked = 1-(100-getarmor(BP_R_HAND, "bio"))/100	//This should get a number between 0 and 1
-							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
+							total_phoronloss += GLOB.vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
 			if(total_phoronloss)
 				adjustToxLoss(total_phoronloss)
 
@@ -1908,7 +1908,7 @@
 		shock_stage = max(shock_stage-1, 0)
 	if(!can_feel_pain()) return
 
-	if(health < (CONFIG_GET(number/health_threshold_softcrit) * species.crit_mod))
+	if(health < (CONFIG_GET(number/health_threshold_softcrit) * species.crit_mod) && !chem_effects[CE_NARCOTICS])
 		shock_stage = max(shock_stage, 61)
 	if(stat)
 		return 0

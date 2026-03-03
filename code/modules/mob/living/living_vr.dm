@@ -81,7 +81,7 @@
 /mob/living/proc/save_ooc_panel(mob/user)
 	if(user != src)
 		return
-	if(client.prefs.real_name != real_name)
+	if(client.prefs.read_preference(/datum/preference/name/real_name) != real_name)
 		to_chat(src, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
 		return
 	if(client.prefs.save_character())
@@ -186,7 +186,7 @@
 /mob/living/proc/save_private_notes(mob/user)
 	if(user != src)
 		return
-	if(client.prefs.real_name != real_name)
+	if(client.prefs.read_preference(/datum/preference/name/real_name) != real_name)
 		to_chat(src, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
 		return
 	if(client.prefs.save_character())

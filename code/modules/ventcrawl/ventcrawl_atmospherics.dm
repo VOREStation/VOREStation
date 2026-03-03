@@ -32,7 +32,7 @@
 
 /obj/machinery/atmospherics/proc/ventcrawl_to(var/mob/living/user, var/obj/machinery/atmospherics/target_move, var/direction)
 	if(target_move)
-		if(is_type_in_list(target_move, ventcrawl_machinery) && target_move.can_crawl_through())
+		if(is_type_in_list(target_move, GLOB.ventcrawl_machinery) && target_move.can_crawl_through())
 			user.remove_ventcrawl()
 			user.forceMove(target_move.loc) //handles entering and so on
 			user.visible_message("You hear something squeezing through the ducts.", "You climb out the ventilation system.")
@@ -56,7 +56,7 @@
 				T.runechat_message(message)
 
 	else
-		if((direction & initialize_directions) || is_type_in_list(src, ventcrawl_machinery) && src.can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
+		if((direction & initialize_directions) || is_type_in_list(src, GLOB.ventcrawl_machinery) && src.can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 			user.remove_ventcrawl()
 			user.forceMove(src.loc)
 			SEND_SIGNAL(user,COMSIG_MOB_VENTCRAWL_END,src)

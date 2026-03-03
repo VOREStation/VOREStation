@@ -42,12 +42,12 @@
 	icon_state = "connector"
 
 /obj/machinery/atmospherics/portables_connector/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		add_underlay(T, node, dir, node?.icon_connect_type)
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	add_underlay(T, node, dir, node?.icon_connect_type)
 
 /obj/machinery/atmospherics/portables_connector/hide(var/i)
 	update_underlays()

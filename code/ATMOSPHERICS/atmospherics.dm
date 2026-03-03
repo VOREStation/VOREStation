@@ -38,8 +38,6 @@ Pipelines + Other Objects -> Pipe network
 
 /obj/machinery/atmospherics/Initialize(mapload, newdir)
 	. = ..()
-	if(!icon_manager)
-		icon_manager = new()
 	if(!isnull(newdir))
 		set_dir(newdir)
 	if(!pipe_color)
@@ -91,28 +89,16 @@ Pipelines + Other Objects -> Pipe network
 	if(node)
 		if(!T.is_plating() && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			//underlays += icon_manager.get_atmos_icon("underlay_down", direction, color_cache_name(node))
-			underlays += icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "down" + icon_connect_type)
+			underlays += GLOB.icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "down" + icon_connect_type)
 		else
 			//underlays += icon_manager.get_atmos_icon("underlay_intact", direction, color_cache_name(node))
-			underlays += icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "intact" + icon_connect_type)
+			underlays += GLOB.icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "intact" + icon_connect_type)
 	else
 		//underlays += icon_manager.get_atmos_icon("underlay_exposed", direction, pipe_color)
-		underlays += icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "exposed" + icon_connect_type)
+		underlays += GLOB.icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "exposed" + icon_connect_type)
 
 /obj/machinery/atmospherics/proc/update_underlays()
-	if(check_icon_cache())
-		return 1
-	else
-		return 0
-
-/obj/machinery/atmospherics/proc/check_icon_cache(var/safety = 0)
-	if(!istype(icon_manager))
-		if(!safety) //to prevent infinite loops
-			icon_manager = new()
-			check_icon_cache(1)
-		return 0
-
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/proc/color_cache_name(var/obj/machinery/atmospherics/node)
 	//Don't use this for standard pipes

@@ -195,7 +195,7 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 
 /proc/is_job_whitelisted(mob/M, var/rank)
 	// Check if the job actually requires a whitelist
-	var/datum/job/job = job_master.GetJob(rank)
+	var/datum/job/job = GLOB.job_master.GetJob(rank)
 	if(!job.whitelist_only)
 		return TRUE
 

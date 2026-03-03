@@ -269,7 +269,7 @@
 				for(var/flag_name in selected.vore_sprite_flag_list)
 					UNTYPED_LIST_ADD(vs_flags, list("label" = flag_name, "selection" = selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name]))
 
-				var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+				var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
 				var/list/undergarments
 				if(UWC)
 					undergarments = UWC.items
@@ -299,7 +299,7 @@
 				"belly_sprite_options" = host.vore_icon_bellies,
 				"undergarment_chosen" = selected.undergarment_chosen,
 				"undergarment_if_none" = selected.undergarment_if_none || "None",
-				"undergarment_options" = global_underwear.categories,
+				"undergarment_options" = GLOB.global_underwear.categories,
 				"undergarment_options_if_none" = undergarments,
 				"undergarment_color" = selected.undergarment_color,
 				"tail_option_shown" = ishuman(owner),

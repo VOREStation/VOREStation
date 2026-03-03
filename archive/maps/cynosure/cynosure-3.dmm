@@ -19877,7 +19877,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -32723,7 +32723,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/secondfloor/east)

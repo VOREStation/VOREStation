@@ -192,7 +192,7 @@
 			var/mob/living/simple_mob/construct/juggernaut/Z = new /mob/living/simple_mob/construct/juggernaut (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -202,7 +202,7 @@
 			var/mob/living/simple_mob/construct/wraith/Z = new /mob/living/simple_mob/construct/wraith (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -212,7 +212,7 @@
 			var/mob/living/simple_mob/construct/artificer/Z = new /mob/living/simple_mob/construct/artificer (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -222,7 +222,7 @@
 			var/mob/living/simple_mob/construct/harvester/Z = new /mob/living/simple_mob/construct/harvester (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Harvester. You are relatively weak, but your physical frailty is made up for by your ranged abilities.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -232,7 +232,7 @@
 			var/mob/living/simple_mob/construct/juggernaut/behemoth/Z = new /mob/living/simple_mob/construct/juggernaut/behemoth (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Behemoth. You are incredibly slow, though your slowness is made up for by the fact your shell is far larger than any of your bretheren. You are the Unstoppable Force, and Immovable Object.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))

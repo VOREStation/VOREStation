@@ -337,4 +337,5 @@
 		"titan_armour",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	discount_experiments = list(/datum/experiment/physical/teleporting = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)

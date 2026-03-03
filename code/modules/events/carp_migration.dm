@@ -70,10 +70,10 @@
 
 // Spawn a single carp at given location.
 /datum/event/carp_migration/proc/spawn_one_carp(var/loc)
-	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/carp/event(loc)
-	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_carp_destruction))
-	spawned_carp.Add(M)
-	return M
+	var/mob/living/simple_mob/animal/carp_to_spawn = new /mob/living/simple_mob/animal/space/carp/event(loc)
+	RegisterSignal(carp_to_spawn, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_carp_destruction))
+	spawned_carp.Add(carp_to_spawn)
+	return carp_to_spawn
 
 // Counts living carp spawned by this event.
 /datum/event/carp_migration/proc/count_spawned_carps()
@@ -83,10 +83,10 @@
 			. += 1
 
 // If carp is bomphed, remove it from the list.
-/datum/event/carp_migration/proc/on_carp_destruction(var/mob/M)
+/datum/event/carp_migration/proc/on_carp_destruction(datum/source, mob/carp_to_remove)
 	SIGNAL_HANDLER
-	spawned_carp -= M
-	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
+	spawned_carp -= carp_to_remove
+	UnregisterSignal(carp_to_remove, COMSIG_OBSERVER_DESTROYED)
 
 /datum/event/carp_migration/end()
 	. = ..()

@@ -18,20 +18,20 @@ SUBSYSTEM_DEF(motiontracker)
 	if(_listen_lookup)
 		var/list/track_list = _listen_lookup[COMSIG_MOVABLE_MOTIONTRACKER]
 		if(islist(track_list))
-			count = track_list.len
+			count = length(track_list)
 		else
 			count = 1 // listen_lookup optimizes single entries into just returning the only thing
 	if(hide_all)
 		msg = "HIDE AND SEEK"
 	else
-		msg = "L: [count] | Q: [queued_echo_turfs.len] | A: [all_echos_round]/[all_pings_round]"
+		msg = "L: [count] | Q: [length(queued_echo_turfs)] | A: [all_echos_round]/[all_pings_round]"
 	return ..()
 
 /datum/controller/subsystem/motiontracker/fire(resumed = 0)
 	if(!resumed)
 		src.currentrun = queued_echo_turfs.Copy()
 		expended_echos.Cut()
-	while(currentrun.len)
+	while(length(currentrun))
 		var/key = currentrun[1] // Because using an index into an associative array gets the key at that index... I hate you byond.
 		var/list/data = currentrun[key]
 		var/datum/weakref/AF= data[1]

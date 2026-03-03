@@ -9,9 +9,9 @@ type Data = {
   categories: string[];
   selected_category: {
     name: string;
-    items: any;
+    items: Record<string, unknown>;
   };
-  selected_category_static: any;
+  selected_category_static: Record<string, unknown>;
 
   saved_notification: BooleanLike;
   preview_loadout: BooleanLike;

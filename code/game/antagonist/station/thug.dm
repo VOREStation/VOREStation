@@ -1,6 +1,6 @@
-var/datum/antagonist/thug/thugs
+GLOBAL_DATUM(thugs, /datum/antagonist/thug)
 
-/datum/antagonist/THUG
+/datum/antagonist/thug
 	id = MODE_THUG
 	role_type = BE_RENEGADE
 	role_text = "Thug"
@@ -16,3 +16,7 @@ var/datum/antagonist/thug/thugs
 		rules aside from those with explicit exceptions apply to antagonists.</b>"
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	can_speak_aooc = FALSE
+
+/datum/antagonist/thug/New()
+	..()
+	GLOB.thugs = src

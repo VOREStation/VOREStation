@@ -170,12 +170,12 @@
 /datum/unarmed_attack/claws/chimera/get_unarmed_damage(var/mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_NONLETHAL_BLOWS) && !user.get_feralness())//don't add extra species strength when pulling punches, but can't pull punches when feral
 		return damage
-	return user.species.unarmed_bonus + (user.get_feralness()/5)
+	return user.species.unarmed_bonus + damage + min(user.get_feralness()/5, 40)
 
 /datum/unarmed_attack/claws/chimera/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 	..()
 	if(user.get_feralness() && !(target == user))
-		var/selfdamage = ((user.get_feralness()/10)-7.5)
+		var/selfdamage = (min((user.get_feralness()/10), 20)-7.5)
 		if(selfdamage > 0)
 			var/selfdamagezone = null
 			if (user.hand)

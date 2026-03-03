@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(overlays)
 
 	var/list/cached_other = other.overlays.Copy()
 	if(cached_other)
-		if(cut_old || !overlays.len)
+		if(cut_old || !length(overlays))
 			overlays = cached_other
 		else
 			overlays |= cached_other

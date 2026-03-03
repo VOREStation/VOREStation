@@ -351,6 +351,7 @@
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/t_scanner(src)
 	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/assembly/signaler(src) // Anomaly handling
 	src.modules += new /obj/item/geiger(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/gripper/engineering(src)
@@ -622,7 +623,7 @@
 	name = "miner robot module"
 	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
-	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher)
 	pto_type = PTO_CARGO
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
@@ -676,6 +677,9 @@
 	src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src)
 	src.modules += new /obj/item/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/pickaxe/excavationdrill(src)
+	// Anomaly handling
+	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/assembly/signaler(src)
 
 	src.emag += new /obj/item/hand_tele(src)
 

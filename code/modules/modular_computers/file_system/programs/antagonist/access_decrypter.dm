@@ -44,9 +44,9 @@
 	if(progress >= target_progress)
 		reset()
 		RFID.stored_card.access |= target_access.id
-		if(ntnet_global.intrusion_detection_enabled)
-			ntnet_global.add_log("IDS WARNING - Unauthorised access to primary keycode database from device: [computer.network_card.get_network_tag()]  - downloaded access codes for: [target_access.desc].")
-			ntnet_global.intrusion_detection_alarm = 1
+		if(GLOB.ntnet_global.intrusion_detection_enabled)
+			GLOB.ntnet_global.add_log("IDS WARNING - Unauthorised access to primary keycode database from device: [computer.network_card.get_network_tag()]  - downloaded access codes for: [target_access.desc].")
+			GLOB.ntnet_global.intrusion_detection_alarm = 1
 		message = "Successfully decrypted and saved operational key codes. Downloaded access codes for: [target_access.desc]"
 		target_access = null
 
@@ -72,13 +72,13 @@
 				return
 			running = TRUE
 			target_access = get_access_by_id("[params["access_target"]]")
-			if(ntnet_global.intrusion_detection_enabled)
-				ntnet_global.add_log("IDS WARNING - Unauthorised access attempt to primary keycode database from device: [computer.network_card.get_network_tag()]")
-				ntnet_global.intrusion_detection_alarm = TRUE
+			if(GLOB.ntnet_global.intrusion_detection_enabled)
+				GLOB.ntnet_global.add_log("IDS WARNING - Unauthorised access attempt to primary keycode database from device: [computer.network_card.get_network_tag()]")
+				GLOB.ntnet_global.intrusion_detection_alarm = TRUE
 			return TRUE
 
 /datum/computer_file/program/access_decrypter/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	if(!ntnet_global)
+	if(!GLOB.ntnet_global)
 		return
 	var/list/data = get_header_data()
 

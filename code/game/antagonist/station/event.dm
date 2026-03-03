@@ -1,4 +1,4 @@
-var/datum/antagonist/event/event
+GLOBAL_DATUM(event, /datum/antagonist/event)
 
 // Inherits most of its vars from the base datum.
 /datum/antagonist/event
@@ -13,3 +13,7 @@ var/datum/antagonist/event/event
 	antag_text = "You are have been selected as an event character, this gives you \
 		access to the AOOC chat channel to organise with other event characters. <b>Please remember all \
 		rules aside from those with explicit exceptions apply to event characters.</b>"
+
+/datum/antagonist/event/New()
+	..()
+	GLOB.event = src

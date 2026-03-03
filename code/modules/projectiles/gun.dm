@@ -216,7 +216,7 @@
 	if(HULK in M.mutations)
 		to_chat(M, span_danger("Your fingers are much too large for the trigger guard!"))
 		return FALSE
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
+	if(CLUMSY_HARM_CHANCE(M)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
 			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))

@@ -105,7 +105,7 @@
 		qdel(src)
 		return
 
-	if(!aiming_at)
+	if(QDELETED(aiming_at))
 		cancel_aiming()
 		return
 

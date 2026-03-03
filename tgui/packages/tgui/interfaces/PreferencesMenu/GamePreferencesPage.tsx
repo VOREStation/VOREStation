@@ -110,20 +110,19 @@ export const GamePreferencesPage = (props) => {
   const [searchVisible, setSearchVisible] = useState(false);
 
   // For some reason, typescript thinks that this call to filter() can change the shape of the array
-  const gamePreferenceEntries: any = sortByName(Object.entries(gamePreferences))
-    .map(([category, preferences]) => {
-      return [
-        category,
-        preferences
-          .filter(
-            (entry) =>
-              !search ||
-              entry.name.toLowerCase().includes(search.toLowerCase()),
-          )
-          .map((entry) => entry.children),
-      ];
-    })
-    .filter(([category, prefs]) => prefs.length !== 0);
+  const gamePreferenceEntries: [string, ReactNode[]][] = sortByName(
+    Object.entries(gamePreferences),
+  )
+    .map(([category, preferences]): [string, ReactNode[]] => [
+      category,
+      preferences
+        .filter(
+          (entry) =>
+            !search || entry.name.toLowerCase().includes(search.toLowerCase()),
+        )
+        .map((entry) => entry.children),
+    ])
+    .filter((item): item is [string, ReactNode[]] => item[1].length !== 0);
 
   return (
     <>

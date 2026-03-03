@@ -56,8 +56,8 @@ SUBSYSTEM_DEF(transcore)
 				src.current_run[imp] = db
 
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/obj/item/implant/backup/imp = current_run[current_run.len]
+	while(length(current_run))
+		var/obj/item/implant/backup/imp = current_run[length(current_run)]
 		var/datum/transcore_db/db = current_run[imp]
 		current_run.len--
 
@@ -93,8 +93,8 @@ SUBSYSTEM_DEF(transcore)
 				src.current_run[mr] = db
 
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/transhuman/mind_record/curr_MR = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/transhuman/mind_record/curr_MR = current_run[length(current_run)]
 		var/datum/transcore_db/db = current_run[curr_MR]
 		current_run.len--
 
@@ -129,13 +129,13 @@ SUBSYSTEM_DEF(transcore)
 	msg += "BK:[round(cost_backups,1)]"
 	msg += "} "
 	msg += "#:{"
-	msg += "DB:[databases.len]|"
+	msg += "DB:[length(databases)]|"
 	if(!default_db)
 		msg += "DEFAULT DB MISSING"
 	else
-		msg += "DFM:[default_db.backed_up.len]|"
-		msg += "DFB:[default_db.body_scans.len]|"
-		msg += "DFI:[default_db.implants.len]"
+		msg += "DFM:[length(default_db.backed_up)]|"
+		msg += "DFB:[length(default_db.body_scans)]|"
+		msg += "DFI:[length(default_db.implants)]"
 	msg += "} "
 	return ..()
 
@@ -296,7 +296,7 @@ SUBSYSTEM_DEF(transcore)
 	disk.stored += backed_up
 	backed_up.Cut()
 	core_dumped = TRUE
-	return disk.stored.len
+	return length(disk.stored)
 
 #undef SSTRANSCORE_BACKUPS
 #undef SSTRANSCORE_IMPLANTS

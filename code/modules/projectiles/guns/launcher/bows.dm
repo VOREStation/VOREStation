@@ -131,6 +131,7 @@
 	icon_state = "bow_hardlight"
 	item_state = "bow_hardlight"
 	desc = "An energy bow, capable of producing arrows from an internal power supply."
+	hardlight = TRUE
 
 /obj/item/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
 	QDEL_NULL(bolt)
@@ -144,12 +145,13 @@
 		user.visible_message(span_infoplain(span_bold("[user]") + " relaxes the tension on [src]'s string."),span_infoplain("You relax the tension on [src]'s string."))
 		drawn = FALSE
 		update_icon()
-	else if(!bolt)
+		return
+	// Automatically knock the arrow as it forms
+	if(!bolt)
 		user.visible_message(span_infoplain(span_bold("[user]") + " fabricates a new hardlight projectile with [src]."),span_infoplain("You fabricate a new hardlight projectile with [src]."))
 		bolt = new /obj/item/arrow/energy(src)
 		update_icon()
-	else
-		draw(user)
+	draw(user)
 
 /obj/item/gun/launcher/crossbow/bow/glamour
 	name = "glamour bow"

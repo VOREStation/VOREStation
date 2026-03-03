@@ -166,7 +166,7 @@
 	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 6
 
-var/static/list/worm_meat_spawns = list (
+GLOBAL_LIST_INIT(worm_meat_spawns, list (
 		/obj/random/junk = 30,
 		/obj/random/trash = 30,
 		/obj/random/maintenance/clean = 15,
@@ -180,7 +180,7 @@ var/static/list/worm_meat_spawns = list (
 		/obj/random/handgun = 1,
 		/obj/random/toolbox = 4,
 		/obj/random/drinkbottle = 5
-)
+))
 
 /obj/item/reagent_containers/food/snacks/meat/worm
 	name = "weird meat"
@@ -200,7 +200,7 @@ var/static/list/worm_meat_spawns = list (
 
 /obj/item/reagent_containers/food/snacks/meat/worm/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/material/knife))
-		var/to_spawn = pickweight(worm_meat_spawns)
+		var/to_spawn = pickweight(GLOB.worm_meat_spawns)
 
 		new to_spawn(get_turf(src))
 

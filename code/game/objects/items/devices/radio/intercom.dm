@@ -233,3 +233,8 @@
 /obj/item/radio/intercom/locked/confessional
 	name = "confessional intercom"
 	frequency = LOCKED_COM_FREQ
+
+/obj/item/radio/intercom/locked/entertainment
+	name = "entertainment PA"
+	frequency = ENT_FREQ
+	broadcasting = TRUE

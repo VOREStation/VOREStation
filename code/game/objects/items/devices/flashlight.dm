@@ -122,7 +122,7 @@
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
 
-		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
+		if(CLUMSY_FAIL_CHANCE(user))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
@@ -284,7 +284,7 @@
 
 /obj/item/flashlight/proc/finish_flicker(var/original_color, var/original_on, var/datum/component/overlay_lighting/OL)
 	set_light_color(original_color)
-	OL.directional_atom.color = original_color
+	OL.directional_atom?.color = original_color
 	on = original_on
 	flickering = FALSE
 	update_brightness()

@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(prevent_respawns)
 
 	//Job slot cleanup
 	var/job = src.mind.assigned_role
-	job_master.FreeRole(job)
+	GLOB.job_master.FreeRole(job)
 
 	//Their objectives cleanup
 	if(src.mind.objectives.len)

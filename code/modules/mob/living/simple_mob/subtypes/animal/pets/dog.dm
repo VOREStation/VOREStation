@@ -91,7 +91,7 @@
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
 	holder_type = /obj/item/holder/corgi
-	organ_names = /decl/mob_organ_names/corgi
+	organ_names = /datum/decl/mob_organ_names/corgi
 
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy
 	name = "corgi puppy"
@@ -263,5 +263,5 @@
 	icon_living = "brittany"
 	icon_dead = "brittany_dead"
 
-/decl/mob_organ_names/corgi
+/datum/decl/mob_organ_names/corgi
 	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "heart") //You monster.

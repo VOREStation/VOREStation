@@ -68,3 +68,22 @@
 #define MODULAR_BODYPART_INVALID    0 // Cannot be detached or reattached.
 #define MODULAR_BODYPART_PROSTHETIC 1 // Can be detached or reattached freely.
 #define MODULAR_BODYPART_CYBERNETIC 2 // Can be detached or reattached to compatible parent organs.
+
+//CitRP Port
+#define CYBERBEAST_MONITOR_STYLES "blank=cyber_blank;\
+	default=cyber_default;\
+	eyes=eyes;\
+	static=cyber_static;\
+	alert=cyber_alert;\
+	happy=cyber_happ;\
+	unhappy=cyber_unhapp;\
+	flat=cyber_flat;\
+	sad=cyber_sad;\
+	heart=cyber_heart;\
+	cross=cyber_cross;\
+	wave=cyber_wave;\
+	uwu=cyber_uwu;\
+	question=cyber_question;\
+	lowpower=cyber_lowpower;\
+	idle=cyber_idle;\
+	nwn=cyber_nwn"

@@ -532,7 +532,7 @@
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
 	if(annoy_admins)
-		message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+		message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)")
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 	if(AO && istype(AO,/obj/item/areaeditor))
 		if(AO.uses_charges)
@@ -658,7 +658,7 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
-	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)")
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 	charges -= 5
 
@@ -935,7 +935,7 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
-	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)")
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 
 	var/list/zLevels = using_map.station_levels.Copy()

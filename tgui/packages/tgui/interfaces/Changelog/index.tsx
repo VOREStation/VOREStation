@@ -5,6 +5,7 @@ import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
+import { fetchRetry } from 'tgui-core/http';
 import { Changes } from './Changes';
 import { DateDropdown } from './DateDropdown';
 import { Footer } from './Resources/Footer';
@@ -38,7 +39,7 @@ export const Changelog = (props) => {
 
     act('get_month', { date });
 
-    fetch(resolveAsset(`${date}.yml`)).then(async (changelogData) => {
+    fetchRetry(resolveAsset(`${date}.yml`)).then(async (changelogData) => {
       const result = await changelogData.text();
       const errorRegex = /^Cannot find/;
 

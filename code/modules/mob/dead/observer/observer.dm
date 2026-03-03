@@ -102,7 +102,7 @@
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	GLOB.observer_mob_list += src
 	. = ..()
-	visualnet = ghostnet
+	visualnet = GLOB.ghostnet
 
 /mob/observer/dead/proc/checkStatic()
 	return !(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT|R_SERVER) || (client && client.buildmode) || isbelly(loc))
@@ -223,7 +223,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(response == "Admin Ghost")
 				if(!src.client)
 					return
-				src.client.admin_ghost()
+				SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/admin_ghost)
 		else
 			response = tgui_alert(src, "Are you -sure- you want to ghost?\n(You are alive, or otherwise have the potential to become alive. Don't abuse ghost unless you are inside a cryopod or equivalent! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", list("Stay in body", "Ghost"))
 		if(response != "Ghost")
@@ -246,8 +246,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/dead/get_status_tab_items()
 	. = ..()
-	if(emergency_shuttle)
-		var/eta_status = emergency_shuttle.get_status_panel_eta()
+	if(GLOB.emergency_shuttle)
+		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. += ""
 			. += "[eta_status]"
@@ -575,7 +575,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT))
 		return 0
 
-	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
+	return (T && T.holy) && (is_manifest || (mind in GLOB.cult.current_antagonists))
 
 /mob/observer/dead/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost.Game"
@@ -687,7 +687,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/ghosts_can_write
 	if(SSticker.mode.name == "cult")
-		if(cult.current_antagonists.len > CONFIG_GET(number/cult_ghostwriter_req_cultists))
+		if(GLOB.cult.current_antagonists.len > CONFIG_GET(number/cult_ghostwriter_req_cultists))
 			ghosts_can_write = 1
 
 	if(!ghosts_can_write && !check_rights(R_ADMIN|R_EVENT|R_FUN, 0)) //Let's allow for admins to write in blood for events and the such.

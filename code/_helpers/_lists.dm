@@ -345,14 +345,6 @@ Checks if a list has the same entries and values as an element of big.
  * Sorting
  */
 
-//Reverses the order of items in the list
-/proc/reverselist(list/L)
-	var/list/output = list()
-	if(L)
-		for(var/i = L.len; i >= 1; i--)
-			output += L[i]
-	return output
-
 //Randomize: Return the list in a random order
 /proc/shuffle(var/list/L)
 	if(!L)
@@ -608,7 +600,7 @@ Checks if a list has the same entries and values as an element of big.
 	//to_world_log("descending len input: [L.len]")
 	var/list/out = insertion_sort_numeric_list_ascending(L)
 	//to_world_log("	output: [out.len]")
-	return reverselist(out)
+	return reverseList(out)
 
 /proc/dd_sortedObjectList(var/list/L, var/cache=list())
 	if(L.len < 2)

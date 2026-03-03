@@ -52,6 +52,7 @@
 
 	activation_message="You feel lightheaded."
 	primitive_expression_messages=list("trips.")
+	mutation = CLUMSY
 
 /datum/trait/negative/disability_coprolalia
 	name = "Coprolalia"
@@ -91,6 +92,7 @@
 
 	is_genetrait = TRUE
 	hidden = FALSE
+	excludes = list(/datum/trait/negative/disability_wingdings)
 
 	sdisability=MUTE
 	activation_message="Your throat feels strange..."
@@ -151,6 +153,7 @@
 
 	is_genetrait = TRUE
 	hidden = FALSE
+	excludes = list(/datum/trait/negative/disability_mute)
 
 	disability=WINGDINGS
 	activation_message="You feel a little... Ga-hoo!"
@@ -168,6 +171,8 @@
 	activation_message="You feel sore..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
 	added_component_path = /datum/component/rotting_disability
+	excludes = list(/datum/trait/positive/stable_genetics)
+	banned_species	= list(/datum/species/protean, /datum/species/shapeshifter/promethean)
 
 
 /datum/trait/negative/disability_gibbing

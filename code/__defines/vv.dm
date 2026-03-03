@@ -123,6 +123,7 @@
 #define VV_HK_REMOVE_MOB_ACTION "remove_mob_action"
 #define VV_HK_GIVE_SPELL "give_spell"
 #define VV_HK_REMOVE_SPELL "remove_spell"
+#define VV_HK_GIVE_MODIFIER "give_modifier"
 #define VV_HK_GIVE_DISEASE "give_disease"
 #define VV_HK_GODMODE "toggle_godmode"
 #define VV_HK_DROP_ALL "dropall"

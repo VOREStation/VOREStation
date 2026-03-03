@@ -1087,19 +1087,20 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(user))
+		var/shreddamage = H.species.can_shred(user, FALSE, 13)
+		if(shreddamage)
 			if(!prob(temp_deflect_chance))
-				src.take_damage(15)	//The take_damage() proc handles armor values
-				if(prob(25))	//Why would they get free internal damage. At least make it a bit RNG.
+				src.take_damage(shreddamage)	//The take_damage() proc handles armor values
+				if(prob(shreddamage))	//Why would they get free internal damage. At least make it a bit RNG.
 					src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
-				to_chat(user, span_danger("You slash at the armored suit!"))
-				visible_message(span_danger("\The [user] slashes at [src.name]'s armor!"))
+				to_chat(user, span_danger("You attack the armored suit!"))
+				visible_message(span_danger("\The [user] attacks [src.name]'s armor!"))
 			else
 				src.log_append_to_last("Armor saved.")
 				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
-				to_chat(user, span_danger("Your claws had no effect!"))
-				src.occupant_message(span_notice("\The [user]'s claws are stopped by the armor."))
+				to_chat(user, span_danger("Your attack had no effect!"))
+				src.occupant_message(span_notice("\The [user]'s attack is stopped by the armor."))
 				visible_message(span_warning("\The [user] rebounds off [src.name]'s armor!"))
 		else
 			user.visible_message(span_danger("\The [user] hits \the [src]. Nothing happens."),span_danger("You hit \the [src] with no visible effect."))

@@ -237,7 +237,7 @@
 /obj/machinery/power/solar,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/northeastsolar)
 "ajl" = (
@@ -331,7 +331,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "amF" = (
@@ -413,7 +413,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/south)
 "apd" = (
@@ -773,7 +773,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "axV" = (
@@ -1579,7 +1579,7 @@
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "aQi" = (
@@ -2832,7 +2832,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "bsn" = (
@@ -2851,7 +2851,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/south)
 "bsq" = (
@@ -4216,7 +4216,7 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "cai" = (
@@ -4364,7 +4364,7 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "cen" = (
@@ -4434,7 +4434,7 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/station/arrivals/cynosure)
 "chf" = (
@@ -4622,7 +4622,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "cmZ" = (
@@ -4945,7 +4945,7 @@
 "cxc" = (
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "cxl" = (
@@ -5172,7 +5172,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "cFz" = (
@@ -5360,7 +5360,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "cJA" = (
@@ -6342,7 +6342,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -7072,7 +7072,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "dtt" = (
@@ -7146,7 +7146,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/station/arrivals/cynosure)
 "dvT" = (
@@ -7542,7 +7542,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/north)
 "dGb" = (
@@ -7717,7 +7717,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -7748,7 +7748,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/station/arrivals/cynosure)
 "dML" = (
@@ -9791,7 +9791,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "eJC" = (
@@ -9937,7 +9937,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "eNq" = (
@@ -10210,7 +10210,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "eSr" = (
@@ -10690,7 +10690,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "fcm" = (
@@ -10870,7 +10870,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "fin" = (
@@ -10966,7 +10966,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "fja" = (
@@ -11082,7 +11082,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "flZ" = (
@@ -11308,7 +11308,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "fqU" = (
@@ -15506,7 +15506,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/station/arrivals/cynosure)
 "hwa" = (
@@ -16733,7 +16733,7 @@
 /obj/effect/overlay/snow/floor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -16782,7 +16782,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "iex" = (
@@ -16971,7 +16971,7 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "ils" = (
@@ -17405,7 +17405,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "iwy" = (
@@ -17447,7 +17447,7 @@
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/arrivals/cynosure)
 "ixa" = (
@@ -17541,7 +17541,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "iBd" = (
@@ -17641,7 +17641,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "iFl" = (
@@ -17675,7 +17675,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "iFX" = (
@@ -18612,7 +18612,7 @@
 /obj/machinery/power/solar,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/westsolar)
 "jfk" = (
@@ -18853,7 +18853,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "jlB" = (
@@ -18871,7 +18871,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "jlF" = (
@@ -19036,7 +19036,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/station/arrivals/cynosure)
 "jrG" = (
@@ -19208,7 +19208,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "jvp" = (
@@ -19653,7 +19653,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/maintenance/east/gnd)
 "jFP" = (
@@ -19766,7 +19766,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/garage)
 "jJq" = (
@@ -19912,7 +19912,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/south)
 "jNy" = (
@@ -20208,7 +20208,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "jRD" = (
@@ -20394,7 +20394,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/space)
 "jUQ" = (
@@ -20481,7 +20481,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "jWt" = (
@@ -20953,7 +20953,7 @@
 /obj/machinery/power/solar,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/westsolar)
 "kgK" = (
@@ -20996,7 +20996,7 @@
 "kgZ" = (
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "khd" = (
@@ -21165,7 +21165,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "kko" = (
@@ -21289,7 +21289,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "knh" = (
@@ -22104,7 +22104,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "kHo" = (
@@ -22178,7 +22178,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/garage)
 "kIW" = (
@@ -23826,7 +23826,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "lAd" = (
@@ -24423,7 +24423,7 @@
 /obj/structure/ladder,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "lPl" = (
@@ -24689,7 +24689,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "lVq" = (
@@ -27067,7 +27067,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "mUb" = (
@@ -29798,7 +29798,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "oki" = (
@@ -29890,7 +29890,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/maintenance/east/gnd)
 "ons" = (
@@ -29948,7 +29948,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "ooa" = (
@@ -30348,7 +30348,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "oum" = (
@@ -30457,7 +30457,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/north)
 "owp" = (
@@ -30747,7 +30747,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/maintenance/east/gnd)
 "oCZ" = (
@@ -31093,7 +31093,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "oNb" = (
@@ -32621,7 +32621,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "pqY" = (
@@ -32744,7 +32744,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "pts" = (
@@ -32891,7 +32891,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -32956,7 +32956,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -34576,7 +34576,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/maintenance/east/gnd)
 "qnU" = (
@@ -35101,7 +35101,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "qxG" = (
@@ -35652,7 +35652,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/arrivals/cynosure)
 "qIj" = (
@@ -35789,7 +35789,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "qLe" = (
@@ -35845,7 +35845,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "qOg" = (
@@ -36775,7 +36775,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "rlb" = (
@@ -36978,7 +36978,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/westsolar)
 "roq" = (
@@ -37624,7 +37624,7 @@
 /obj/effect/floor_decal/industrial/danger/corner,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "rGF" = (
@@ -38343,7 +38343,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/garage)
 "rYh" = (
@@ -38376,7 +38376,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty;
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -38938,7 +38938,7 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "sqN" = (
@@ -39107,7 +39107,7 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/westsolar)
 "svE" = (
@@ -39735,7 +39735,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outside/plains/station)
 "sJl" = (
@@ -39994,7 +39994,7 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/north)
 "sQa" = (
@@ -40749,7 +40749,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "tlJ" = (
@@ -40905,7 +40905,7 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/arrivals/cynosure)
 "tof" = (
@@ -41745,7 +41745,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "tIM" = (
@@ -43181,7 +43181,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/garage)
 "utE" = (
@@ -43297,7 +43297,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/arrivals/cynosure)
 "uwn" = (
@@ -45443,7 +45443,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/north)
 "vwm" = (
@@ -45741,7 +45741,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "vDZ" = (
@@ -45852,7 +45852,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/outpost/research/xenoarcheology/surface)
 "vGx" = (
@@ -46691,7 +46691,7 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/northeastsolar)
 "wdw" = (
@@ -46860,7 +46860,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "wiA" = (
@@ -48167,7 +48167,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
-	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	initial_flooring = /datum/decl/flooring/tiling/asteroidfloor
 	},
 /area/surface/station/hallway/primary/groundfloor/south)
 "wQu" = (
@@ -48793,7 +48793,7 @@
 /obj/machinery/power/solar,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/station/solar/northeastsolar)
 "xej" = (
@@ -49794,7 +49794,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "xFu" = (
@@ -50368,7 +50368,7 @@
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
-	initial_flooring = /decl/flooring/tiling/steel_dirty
+	initial_flooring = /datum/decl/flooring/tiling/steel_dirty
 	},
 /area/surface/outside/plains/station)
 "xSt" = (

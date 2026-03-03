@@ -990,13 +990,13 @@
 			. = TRUE
 		if("b_undergarment_choice")
 			var/new_undergarment = params["val"]
-			if(!(global_underwear.categories_by_name[new_undergarment]))
+			if(!(GLOB.global_underwear.categories_by_name[new_undergarment]))
 				return FALSE
 			host.vore_selected.undergarment_chosen = new_undergarment
 			host.handle_belly_update()
 			. = TRUE
 		if("b_undergarment_if_none")
-			var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+			var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
 			var/selected_underwear = UWC.items_by_name[params["val"]]
 			if(!selected_underwear) //They cancelled, no changes
 				return FALSE

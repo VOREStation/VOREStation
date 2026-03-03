@@ -1,0 +1,34 @@
+.FourInARow__Tile {
+  border: 2px solid gray;
+  background: black;
+  box-shadow: 0 0 5px white;
+  transform: scale(0.75);
+
+  &.winning-tile {
+    border: 3px solid gold;
+    box-shadow: 0 0 15px 5px gold;
+    transform: scale(0.9);
+  }
+
+  &.placed {
+    border: 2px solid black;
+    box-shadow:
+      inset 0 2px 5px rgba(255, 255, 255, 0.6),
+      0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.TicTacToe__Tile {
+  border: 2px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+
+  &.winning-tile {
+    text-shadow:
+      0 0 5px gold,
+      0 0 10px gold,
+      0 0 15px gold;
+  }
+}

@@ -1,9 +1,9 @@
 #define ALL_SPELLS "All"
 
-var/list/all_technomancer_spells = subtypesof(/datum/technomancer/spell)
-var/list/all_technomancer_equipment = subtypesof(/datum/technomancer/equipment)
-var/list/all_technomancer_consumables = subtypesof(/datum/technomancer/consumable)
-var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance)
+GLOBAL_LIST_INIT(all_technomancer_spells, subtypesof(/datum/technomancer/spell))
+GLOBAL_LIST_INIT(all_technomancer_equipment, subtypesof(/datum/technomancer/equipment))
+GLOBAL_LIST_INIT(all_technomancer_consumables, subtypesof(/datum/technomancer/consumable))
+GLOBAL_LIST_INIT(all_technomancer_assistance, subtypesof(/datum/technomancer/assistance))
 
 /datum/technomancer
 	var/name = "technomancer thing"
@@ -78,16 +78,16 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 // Description: Instantiates all the catalog datums for everything that can be bought.
 /obj/item/technomancer_catalog/proc/set_up()
 	if(!spell_instances.len)
-		for(var/S in all_technomancer_spells)
+		for(var/S in GLOB.all_technomancer_spells)
 			spell_instances += new S()
 	if(!equipment_instances.len)
-		for(var/E in all_technomancer_equipment)
+		for(var/E in GLOB.all_technomancer_equipment)
 			equipment_instances += new E()
 	if(!consumable_instances.len)
-		for(var/C in all_technomancer_consumables)
+		for(var/C in GLOB.all_technomancer_consumables)
 			consumable_instances += new C()
 	if(!assistance_instances.len)
-		for(var/A in all_technomancer_assistance)
+		for(var/A in GLOB.all_technomancer_assistance)
 			assistance_instances += new A()
 
 /obj/item/technomancer_catalog/apprentice/set_up()
@@ -333,7 +333,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 					budget -= desired_object.cost
 					to_chat(H, span_notice("You have just bought \a [desired_object.name]."))
 					var/obj/O = new desired_object.obj_path(get_turf(H))
-					technomancer_belongings.Add(O) // Used for the Track spell.
+					GLOB.technomancer_belongings.Add(O) // Used for the Track spell.
 
 				else //Can't afford.
 					to_chat(H, span_danger("You can't afford that!"))

@@ -102,7 +102,7 @@
 			if(isobj(OR))
 				qdel(OR)
 
-	cultnet.updateVisibility(src, 0)
+	GLOB.cultnet.updateVisibility(src, 0)
 
 	if(aiming)
 		qdel(aiming)
@@ -905,6 +905,9 @@
 /mob/living/proc/has_eyes()
 	return 1
 
+/mob/living/proc/has_lungs()
+	return TRUE
+
 /mob/living/proc/get_restraining_bolt()
 	var/obj/item/implant/restrainingbolt/RB = locate() in src
 	if(RB)
@@ -1469,6 +1472,8 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
+		var/datum/hud/HUD = owner?.hud_used
+		LAZYREMOVE(HUD?.other_important, screen_icon)
 		QDEL_NULL(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)

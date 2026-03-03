@@ -80,7 +80,7 @@
 			to_chat(user, "No input found please hang up and try your call again.")
 			return
 		var/list/tempnetwork = splittext(input, ",")
-		tempnetwork = difflist(tempnetwork,restricted_camera_networks,1)
+		tempnetwork = difflist(tempnetwork, GLOB.restricted_camera_networks, 1)
 		if(tempnetwork.len < 1)
 			to_chat(user, "No network found please hang up and try your call again.")
 			return

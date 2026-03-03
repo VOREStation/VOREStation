@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(event_last_fired)
 	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role[JOB_JANITOR] + 5 * active_with_role[DEPARTMENT_ENGINEERING]
 	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[DEPARTMENT_ENGINEERING] + 50 * active_with_role[JOB_ALT_GARDENER]
 
-	if(!spacevines_spawned)
+	if(!GLOB.spacevines_spawned)
 		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role[DEPARTMENT_ENGINEERING]
 	if(minutes_passed >= 30) // Give engineers time to set up engine
 		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role[DEPARTMENT_ENGINEERING]
@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(event_last_fired)
 
 	possibleEvents[/datum/event/prison_break] = active_with_role[DEPARTMENT_SECURITY] * 50
 	if(active_with_role[DEPARTMENT_SECURITY] > 0)
-		if(!sent_spiders_to_station)
+		if(!GLOB.sent_spiders_to_station)
 			possibleEvents[/datum/event/spider_infestation] = max(active_with_role[DEPARTMENT_SECURITY], 5) + 5
 		possibleEvents[/datum/event/random_antag] = max(active_with_role[DEPARTMENT_SECURITY], 5) + 2.5
 

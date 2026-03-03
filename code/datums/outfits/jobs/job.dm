@@ -1,6 +1,6 @@
-/decl/hierarchy/outfit/job
+/datum/decl/hierarchy/outfit/job
 	name = "Standard Gear"
-	hierarchy_type = /decl/hierarchy/outfit/job
+	hierarchy_type = /datum/decl/hierarchy/outfit/job
 
 	uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/black
@@ -16,11 +16,11 @@
 	headset_alt = /obj/item/radio/headset/alt
 	headset_earbud = /obj/item/radio/headset/earbud
 
-/decl/hierarchy/outfit/job/equip_id(mob/living/carbon/human/H, rank, assignment)
+/datum/decl/hierarchy/outfit/job/equip_id(mob/living/carbon/human/H, rank, assignment)
 	var/obj/item/card/id/C = ..()
 	if(!C)
 		return
-	var/datum/job/J = job_master.GetJob(rank)
+	var/datum/job/J = GLOB.job_master.GetJob(rank)
 	if(J)
 		C.access = J.get_access()
 	if(H.mind)

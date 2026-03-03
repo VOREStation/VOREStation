@@ -408,7 +408,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	if(action == "help")
 		var/list/whitelist_jobs = list()
-		for(var/datum/job/our_job in job_master.occupations)
+		for(var/datum/job/our_job in GLOB.job_master.occupations)
 			if(our_job.whitelist_only)
 				whitelist_jobs += our_job.title
 		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]"
@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	switch(action)
 		if("add")
 			if(kind == "job")
-				var/datum/job/job = job_master.GetJob(role)
+				var/datum/job/job = GLOB.job_master.GetJob(role)
 				if(!job)
 					message.text = "Error, invalid job entered. Check spelling and capitalization."
 					return message
@@ -472,6 +472,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			if(!command_add.Execute())
 				log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
 				message.text = "Error while trying to add [ckey] to the [role] [kind] whitelist. Please review SQL logs."
+				qdel(command_add)
 				return message
 			qdel(command_add)
 
@@ -499,6 +500,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			if(!command_remove.Execute())
 				log_sql("Error while trying to remove [ckey] from the [role] [kind] whitelist.")
 				message.text = "Error while trying to remove [ckey] from the [role] [kind] whitelist. Please review SQL logs."
+				qdel(command_remove)
 				return message
 			qdel(command_remove)
 
@@ -535,14 +537,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				log_sql("Error while trying to query whitelists for [ckey].")
 				embed.description = "Error while trying to query whitelists for [ckey]. Please review SQL logs."
 				embed.colour = "#FF0000"
+				qdel(query_list)
 				return message
-			else
-				while(query_list.NextRow())
-					var/kind_query_result = query_list.item[1]
-					var/entry_query_result = query_list.item[2]
+			while(query_list.NextRow())
+				var/kind_query_result = query_list.item[1]
+				var/entry_query_result = query_list.item[2]
 
-					embed.description += "- [kind_query_result] - [entry_query_result]\n"
-					found = TRUE
+				embed.description += "- [kind_query_result] - [entry_query_result]\n"
+				found = TRUE
 			qdel(query_list)
 
 			if(!found)
