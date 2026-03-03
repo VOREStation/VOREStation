@@ -5,6 +5,7 @@ import {
   Dropdown,
   Icon,
   LabeledList,
+  ProgressBar,
   Section,
   Stack,
 } from 'tgui-core/components';
@@ -48,7 +49,27 @@ export const pAIInterface = (props) => {
           <Stack.Item grow>
             <Section
               fill
-              title={`Software (Available RAM: ${available_ram})`}
+              title="Software"
+              buttons={
+                <Stack align="baseline">
+                  <Stack.Item color="label">Available RAM:</Stack.Item>
+                  <Stack.Item>
+                    <ProgressBar
+                      width="150px"
+                      value={available_ram}
+                      minValue={0}
+                      maxValue={100}
+                      ranges={{
+                        good: [60, Infinity],
+                        average: [20, 60],
+                        bad: [-Infinity, 20],
+                      }}
+                    >
+                      {available_ram}
+                    </ProgressBar>
+                  </Stack.Item>
+                </Stack>
+              }
               scrollable
             >
               <Stack fill>
