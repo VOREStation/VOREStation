@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "cleans up some more updateDialog"
+  - refactor: "replaces many old browser UIs with tgui"

@@ -236,7 +236,7 @@
 /obj/random/maintenance/cargo,
 /obj/structure/sign/poster/custom{
 	pixel_y = -32;
-	poster_decl = /decl/poster/vore_75
+	poster_decl = /datum/decl/poster/vore_75
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
@@ -347,7 +347,7 @@
 /obj/structure/sign/poster/nanotrasen{
 	dir = 1;
 	pixel_y = 32;
-	poster_decl = /decl/poster/pol_12
+	poster_decl = /datum/decl/poster/pol_12
 	},
 /turf/simulated/floor/tiled,
 /area/template_noop)

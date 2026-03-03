@@ -1,13 +1,13 @@
 GLOBAL_LIST_INIT(brain_default_emotes, list(
-	/decl/emote/audible/alarm,
-	/decl/emote/audible/alert,
-	/decl/emote/audible/notice,
-	/decl/emote/audible/whistle,
-	/decl/emote/audible/synth,
-	/decl/emote/audible/beep,
-	/decl/emote/audible/boop,
-	/decl/emote/visible/blink,
-	/decl/emote/visible/flash
+	/datum/decl/emote/audible/alarm,
+	/datum/decl/emote/audible/alert,
+	/datum/decl/emote/audible/notice,
+	/datum/decl/emote/audible/whistle,
+	/datum/decl/emote/audible/synth,
+	/datum/decl/emote/audible/beep,
+	/datum/decl/emote/audible/boop,
+	/datum/decl/emote/visible/blink,
+	/datum/decl/emote/visible/flash
 ))
 
 /mob/living/carbon/brain/can_emote()

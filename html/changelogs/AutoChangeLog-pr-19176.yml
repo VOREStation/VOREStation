@@ -1,7 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - qol: "innland redgate; kitchen cabinets and dispensers now have no access restrictions"
-  - qol: "innland redgate; added a couple of extra lights and some candles/matches"
-  - maptweak: "innland redgate; added path leading directly from gate, added door to north side of building"
-  - maptweak: "innland redgate; added four bedrooms linked via portal 'stairway'; moved tcomm unit into janitor closet"

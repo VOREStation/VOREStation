@@ -26,7 +26,8 @@
 			inserted_id = null
 		else
 			QDEL_NULL(inserted_id)
-	QDEL_NULL_LIST(prize_list)
+	for(var/key, value in prize_list)
+		QDEL_NULL_LIST(value)
 	. = ..()
 
 /datum/data/mining_equipment
@@ -275,7 +276,8 @@
 
 			remove_points(inserted_id, prize.cost)
 			var/obj/item/I = new prize.equipment_path(loc)
-			I.persist_storable = FALSE
+			if(isitem(I))
+				I.persist_storable = FALSE
 			flick(icon_vend, src)
 		else
 			flick(icon_deny, src)

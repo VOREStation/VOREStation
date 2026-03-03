@@ -25,15 +25,15 @@
  */
 
 // Cached runechat icon
-var/list/runechat_image_cache = list()
+GLOBAL_LIST_EMPTY(runechat_image_cache)
 
 
 /hook/startup/proc/runechat_images()
 	var/image/radio_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
-	runechat_image_cache["radio"] = radio_image
+	GLOB.runechat_image_cache["radio"] = radio_image
 
 	var/image/emote_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
-	runechat_image_cache["emote"] = emote_image
+	GLOB.runechat_image_cache["emote"] = emote_image
 
 	return TRUE
 
@@ -151,21 +151,28 @@ var/list/runechat_image_cache = list()
 	// If we heard our name, it's important
 	// Differnt from our own system of name emphasis, maybe unify
 	var/list/names = splittext(owner.name, " ")
-	for (var/word in names)
-		text = replacetext(text, word, span_bold("[word]"))
+	var/list/parts = list(owner.name)
+
+	for(var/word in names)
+		if(length(word) > 3)
+			parts += word
+
+	var/regex/message_regex = new("\\b(" + parts.Join("|") + ")\\b(?!\[^<]*>)", "gi")
+
+	text = message_regex.Replace_char(text, span_bold("$1"))
 
 	var/list/prefixes
 
 	// Append prefixes
 	if(extra_classes.Find("virtual-speaker"))
-		LAZYADD(prefixes, "[icon2html(runechat_image_cache["radio"],owner.client)]")
+		LAZYADD(prefixes, "[icon2html(GLOB.runechat_image_cache["radio"],owner.client)]")
 	if(extra_classes.Find("emote"))
 		// Icon on both ends?
-		//var/image/I = runechat_image_cache["emote"]
+		//var/image/I = GLOB.runechat_image_cache["emote"]
 		//text = "icon2html(I)[text]icon2html(I)"
 
 		// Icon on one end?
-		//LAZYADD(prefixes, "icon2html(runechat_image_cache["emote")]")
+		//LAZYADD(prefixes, "icon2html(GLOB.runechat_image_cache["emote")]")
 
 		// Asterisks instead?
 		text = "*&nbsp;[text]&nbsp;*"

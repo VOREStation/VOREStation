@@ -20,7 +20,7 @@ import {
 
 function ensureRecord<T>(
   trait: string[] | Record<string, T>,
-): Record<string, any> {
+): Record<string, unknown> {
   if (Array.isArray(trait)) {
     const new_obj: Record<string, null> = {};
     for (let i = 0; i < trait.length; i++) {
@@ -161,7 +161,7 @@ export const SubtabTraits = (props: {
 export const TraitComponent = (props: {
   traitPath: string;
   trait: Trait;
-  data: any;
+  data: unknown;
 }) => {
   const { act } = useBackend();
   const { traitPath, trait, data } = props;
@@ -208,7 +208,7 @@ export const TraitSubprefSelector = (props: {
   trait: string;
   prefKey: string;
   prefData: TraitSubpref;
-  data: any;
+  data: unknown;
 }) => {
   const { act } = useBackend();
   const { trait, prefKey, prefData, data } = props;

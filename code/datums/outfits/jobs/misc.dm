@@ -1,12 +1,12 @@
-/decl/hierarchy/outfit/job/silicon
+/datum/decl/hierarchy/outfit/job/silicon
 	head = /obj/item/clothing/head/cardborg
-	hierarchy_type = /decl/hierarchy/outfit/job/silicon
+	hierarchy_type = /datum/decl/hierarchy/outfit/job/silicon
 
-/decl/hierarchy/outfit/job/silicon/ai
+/datum/decl/hierarchy/outfit/job/silicon/ai
 	name = OUTFIT_JOB_NAME(JOB_AI)
 	suit = /obj/item/clothing/suit/straight_jacket
 
-/decl/hierarchy/outfit/job/silicon/cyborg
+/datum/decl/hierarchy/outfit/job/silicon/cyborg
 	name = OUTFIT_JOB_NAME(JOB_CYBORG)
 	suit = /obj/item/clothing/suit/cardborg
 
@@ -25,9 +25,9 @@
 	assignable = FALSE
 	account_allowed = 0
 	offmap_spawn = TRUE
-	outfit_type = /decl/hierarchy/outfit/noncrew/vr_avatar
+	outfit_type = /datum/decl/hierarchy/outfit/noncrew/vr_avatar
 
-/decl/hierarchy/outfit/noncrew/vr_avatar
+/datum/decl/hierarchy/outfit/noncrew/vr_avatar
 	pda_slot = null
 	id_slot = null
 	r_pocket = null

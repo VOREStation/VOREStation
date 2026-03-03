@@ -148,26 +148,20 @@
 				drop.buckled = null
 			drop.forceMove(T)
 
-/datum/admins/proc/call_drop_pod()
-	set category = "Fun.Drop Pod"
-	set desc = "Call an immediate drop pod on your location."
-	set name = "Call Drop Pod"
-
-	if(!check_rights(R_FUN)) return
-
+ADMIN_VERB(call_drop_pod, R_FUN, "Call Drop Pod", "Call an immediate drop pod on your location.", ADMIN_CATEGORY_FUN_DROP_POD)
 	var/client/selected_player
 	var/mob/living/spawned_mob
 	var/list/spawned_mobs = list()
 
-	var/spawn_path = tgui_input_list(usr, "Select a mob type.", "Drop Pod Selection", subtypesof(/mob/living))
+	var/spawn_path = tgui_input_list(user, "Select a mob type.", "Drop Pod Selection", subtypesof(/mob/living))
 	if(!spawn_path)
 		return
 
-	var/input = tgui_alert(usr, "Do you wish the mob to have a player?","Assign Player?",list("No","Yes"))
+	var/input = tgui_alert(user, "Do you wish the mob to have a player?","Assign Player?",list("No","Yes"))
 	if(!input)
 		return
 	if(input == "No")
-		var/spawn_count = tgui_input_number(usr, "How many mobs do you wish the pod to contain?", "Drop Pod Selection", null, min_value=1)
+		var/spawn_count = tgui_input_number(user, "How many mobs do you wish the pod to contain?", "Drop Pod Selection", null, min_value=1)
 		if(spawn_count <= 0)
 			return
 		for(var/i=0;i<spawn_count;i++)
@@ -181,11 +175,11 @@
 				candidates |= player
 
 		if(!candidates.len)
-			to_chat(usr, "There are no candidates for a drop pod launch.")
+			to_chat(user, "There are no candidates for a drop pod launch.")
 			return
 
 		// Get a player and a mob type.
-		selected_player = tgui_input_list(usr, "Select a player.", "Drop Pod Selection", candidates)
+		selected_player = tgui_input_list(user, "Select a player.", "Drop Pod Selection", candidates)
 		if(!selected_player)
 			return
 
@@ -195,12 +189,12 @@
 
 		// Equip them, if they are human and it is desirable.
 		if(ishuman(spawned_mob))
-			var/antag_type = tgui_input_list(usr, "Select an equipment template to use or cancel for nude.", GLOB.all_antag_types)
+			var/antag_type = tgui_input_list(user, "Select an equipment template to use or cancel for nude.", GLOB.all_antag_types)
 			if(antag_type)
 				var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
 				A.equip(spawned_mob)
 
-	if(tgui_alert(usr, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) != "Yes")
+	if(tgui_alert(user, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) != "Yes")
 		if(spawned_mob)
 			qdel(spawned_mob)
 		if(spawned_mobs.len)
@@ -213,22 +207,23 @@
 
 	// Chuck them into the pod.
 	var/automatic_pod
+	var/mob/user_mob = user.mob
 	if(spawned_mob && selected_player)
 		if(selected_player.mob.mind)
 			selected_player.mob.mind.transfer_to(spawned_mob)
 		else
 			spawned_mob.ckey = selected_player.mob.ckey
 		spawned_mobs = list(spawned_mob)
-		message_admins("[key_name(usr)] dropped a pod containing \the [spawned_mob] ([spawned_mob.key]) at ([usr.x],[usr.y],[usr.z])")
-		log_admin("[key_name(usr)] dropped a pod containing \the [spawned_mob] ([spawned_mob.key]) at ([usr.x],[usr.y],[usr.z])")
+		message_admins("[key_name(user)] dropped a pod containing \the [spawned_mob] ([spawned_mob.key]) at ([user_mob.x],[user_mob.y],[user_mob.z])")
+		log_admin("[key_name(user)] dropped a pod containing \the [spawned_mob] ([spawned_mob.key]) at ([user_mob.x],[user_mob.y],[user_mob.z])")
 	else if(spawned_mobs.len)
 		automatic_pod = 1
-		message_admins("[key_name(usr)] dropped a pod containing [spawned_mobs.len] [spawned_mobs[1]] at ([usr.x],[usr.y],[usr.z])")
-		log_admin("[key_name(usr)] dropped a pod containing [spawned_mobs.len] [spawned_mobs[1]] at ([usr.x],[usr.y],[usr.z])")
+		message_admins("[key_name(user)] dropped a pod containing [spawned_mobs.len] [spawned_mobs[1]] at ([user_mob.x],[user_mob.y],[user_mob.z])")
+		log_admin("[key_name(user)] dropped a pod containing [spawned_mobs.len] [spawned_mobs[1]] at ([user_mob.x],[user_mob.y],[user_mob.z])")
 	else
 		return
 
-	new /datum/random_map/droppod(null, usr.x-1, usr.y-1, usr.z, supplied_drops = spawned_mobs, automated = automatic_pod)
+	new /datum/random_map/droppod(null, user_mob.x-1, user_mob.y-1, user_mob.z, supplied_drops = spawned_mobs, automated = automatic_pod)
 
 #undef SD_FLOOR_TILE
 #undef SD_WALL_TILE

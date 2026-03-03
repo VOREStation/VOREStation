@@ -8,16 +8,16 @@ export BYOND_MAJOR=516
 export BYOND_MINOR=1677
 
 # Macro Count
-export MACRO_COUNT=6
+export MACRO_COUNT=7
 
 #rust_g git tag
-export RUST_G_VERSION=6.0.0
+export RUST_G_VERSION=6.0.1
 
 # node version
 export NODE_VERSION_LTS=22.14.0
 
 # Bun version
-export BUN_VERSION=1.3.8
+export BUN_VERSION=1.3.9
 
 # SpacemanDMM git tag
 export SPACEMAN_DMM_VERSION=suite-1.11

@@ -29,7 +29,7 @@
 
 	data["db_version"] = "0.3"
 	data["db_repo"] = "vorestation"
-	data["mob_name"] = host.real_name
+	data["mob_name"] = host.read_preference(/datum/preference/name/real_name)
 
 	for(var/belly in host.vore_organs)
 		if(isbelly(belly))

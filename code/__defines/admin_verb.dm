@@ -84,6 +84,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_LOGS "Admin.Logs"
 #define ADMIN_CATEGORY_MISC "Admin.Misc"
 #define ADMIN_CATEGORY_SECRETS "Admin.Secrets"
+#define ADMIN_CATEGORY_INVESTIGATE "Admin.Investigate"
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Debug"
@@ -91,16 +92,23 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_DEBUG_DANGEROUS "Debug.Dangerous"
 #define ADMIN_CATEGORY_DEBUG_GAME "Debug.Game"
 #define ADMIN_CATEGORY_DEBUG_SERVER "Debug.Server"
-#define ADMIN_CATEGORY_SERVER "Server"
 #define ADMIN_CATEGORY_OBJECT "Object"
 #define ADMIN_CATEGORY_MAPPING "Mapping"
 #define ADMIN_CATEGORY_PROFILE "Profile"
 #define ADMIN_CATEGORY_IPINTEL "Admin.IPIntel"
 
+// Server Categories
+#define ADMIN_CATEGORY_SERVER "Server"
+#define ADMIN_CATEGORY_SERVER_GAME "Server.Game"
+#define ADMIN_CATEGORY_SERVER_ADMIN "Server.Admin"
+
+// Fun categories
+#define ADMIN_CATEGORY_FUN_EVENT_KIT "Fun.Event Kit"
+#define ADMIN_CATEGORY_FUN_DROP_POD "Fun.Drop Pod"
+#define ADMIN_CATEGORY_FUN_DO_NOT "Fun.Do Not"
+#define ADMIN_CATEGORY_FUN_SILICON "Fun.Silicon"
+#define ADMIN_CATEGORY_FUN_SOUNDS "Fun.Sounds"
+#define ADMIN_CATEGORY_FUN_NARRATE "Fun.Narrate"
+
 // Visibility flags
 #define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Map-Debug"
-
-// Tgui input list options
-#define TGUI_VIEW_ATTACK_LOGS	"Check Player Attack Logs"
-#define TGUI_VIEW_DIALOG_LOGS	"Check Player Dialogue Logs"
-#define TGUI_RESIZE				"Resize player"

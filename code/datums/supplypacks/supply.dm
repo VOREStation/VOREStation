@@ -74,6 +74,7 @@
 			/obj/item/reagent_containers/spray/cleaner,
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/grenade/chem_grenade/cleaner = 3,
+			/obj/item/vac_attachment,
 			/obj/item/clothing/glasses/hud/janitor,
 			/obj/structure/mopbucket
 			)
