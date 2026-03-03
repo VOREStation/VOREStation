@@ -502,10 +502,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
 
 	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
-	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
+	wing_alpha.apply_pref_to(character, read_preference(/datum/preference/numeric/human/wing_alpha))
 
 	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
-	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
+	skin_color.apply_pref_to(character, read_preference(/datum/preference/color/human/skin_color))
+
+	var/datum/preference/color/human/eyes_color = GLOB.preference_entries[/datum/preference/color/human/eyes_color]
+	eyes_color.apply_pref_to(character, read_preference(/datum/preference/color/human/eyes_color))
 
 	character.set_gender(read_preference(/datum/preference/choiced/gender/biological))
 
