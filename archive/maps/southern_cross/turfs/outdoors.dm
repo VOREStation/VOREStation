@@ -162,4 +162,4 @@
 
 // Step trigger to fall down to planet Sif
 /obj/effect/step_trigger/teleporter/planetary_fall/sif/find_planet()
-	planet = planet_sif
+	planet = GLOB.planet_sif

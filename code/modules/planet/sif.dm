@@ -103,8 +103,8 @@ GLOBAL_DATUM(planet_sif, /datum/planet/sif)
 
 // Returns the time datum of Sif.
 /proc/get_sif_time()
-	if(planet_sif)
-		return planet_sif.current_time
+	if(GLOB.planet_sif)
+		return GLOB.planet_sif.current_time
 
 //Weather definitions
 /datum/weather_holder/sif
