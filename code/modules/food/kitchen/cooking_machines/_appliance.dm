@@ -36,7 +36,6 @@
 	// If the machine has multiple output modes, define them here.
 	var/selected_option
 	var/list/output_options = list()
-	var/list/datum/recipe/appliance_available_recipes = list()
 
 	var/container_type = null
 
@@ -55,11 +54,6 @@
 
 	if(output_options.len)
 		verbs += /obj/machinery/appliance/proc/choose_output
-
-	if(!LAZYLEN(appliance_available_recipes))
-		for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
-			if((appliancetype & initial(test.appliance)))
-				appliance_available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
 	for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -431,7 +425,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(appliance_available_recipes, C)
+	recipe = select_recipe(GLOB.available_recipes[appliancetype], C)
 
 	var/list/results = list()
 	if(recipe)
@@ -486,7 +480,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(appliance_available_recipes,C)
+	recipe = select_recipe(GLOB.available_recipes[appliancetype],C)
 
 	if (recipe)
 		CI.result_type = 4//Recipe type, a specific recipe will transform the ingredients into a new food
@@ -498,7 +492,7 @@
 			AM.forceMove(temp)
 
 		//making multiple copies of a recipe from one container. For example, tons of fries
-		while (select_recipe(appliance_available_recipes,C) == recipe)
+		while (select_recipe(GLOB.available_recipes[appliancetype],C) == recipe)
 			var/list/TR = list()
 			TR += recipe.make_food(C)
 			for (var/atom/movable/AM in TR) //Move results to buffer
@@ -711,6 +705,7 @@
 	var/obj/item/thing
 	var/delete = 1
 	var/status = CI.container.check_contents()
+	var/obj/item/reagent_containers/cooking_container/cook_container
 
 	if (status == 1)//If theres only one object in a container then we extract that
 		thing = locate(/obj/item) in CI.container
@@ -722,8 +717,8 @@
 		if(!user.put_in_hands(thing))
 			thing.forceMove(get_turf(src))
 	else if(istype(thing, /obj/item/reagent_containers/cooking_container))
-		var/obj/item/reagent_containers/cooking_container/cc = thing
-		cc.do_empty()
+		cook_container = thing
+		cook_container.do_empty()
 		delete = 0
 	else
 		thing.forceMove(get_turf(src))
@@ -735,7 +730,10 @@
 		CI.reset()//reset instead of deleting if the container is left inside
 
 	if(user)
-		user.visible_message(span_notice("\The [user] remove \the [thing] from \the [src]."))
+		user.visible_message(span_notice("\The [user] removes \the [thing] from \the [src]."))
+		if(cook_container)
+			cook_container.food_items--
+			cook_container.update_icon()
 	else
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " pings as it automatically ejects its contents!"))
 		if(cooked_sound)

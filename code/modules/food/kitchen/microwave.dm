@@ -90,24 +90,6 @@
 
 	default_apply_parts()
 
-	if(!LAZYLEN(GLOB.available_recipes))
-		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
-			if((initial(typepath.appliance) & appliancetype))
-				GLOB.available_recipes += new typepath
-
-		for (var/datum/recipe/recipe in GLOB.available_recipes)
-			for (var/item in recipe.items)
-				GLOB.acceptable_items |= item
-			for (var/reagent in recipe.reagents)
-				GLOB.acceptable_reagents |= reagent
-		// This will do until I can think of a fun recipe to use dionaea in -
-		// will also allow anything using the holder item to be microwaved into
-		// impure carbon. ~Z
-		GLOB.acceptable_items |= /obj/item/holder
-		GLOB.acceptable_items |= /obj/item/reagent_containers/food/snacks/grown
-		GLOB.acceptable_items |= /obj/item/soulstone
-		GLOB.acceptable_items |= /obj/item/fuel_assembly/supermatter
-
 	soundloop = new(list(src), FALSE)
 	update_icon()
 
@@ -334,7 +316,7 @@
 /obj/machinery/microwave/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes, src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes[appliancetype], src)
 	data["recipe"] = recipe ? sanitize_css_class_name("[recipe.type]") : null
 	data["recipe_name"] = recipe ? initial(recipe.result:name) : null
 
@@ -466,7 +448,7 @@
 		dispose(FALSE)
 
 /obj/machinery/microwave/proc/loop_finish()
-	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes, src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes[appliancetype], src)
 	if(!recipe)
 		if(length(cookingContents()) >= 1)
 			dirty += 1
@@ -493,7 +475,7 @@
 
 		valid = FALSE
 		recipe.after_cook(src)
-		recipe = select_recipe(GLOB.available_recipes, src)
+		recipe = select_recipe(GLOB.available_recipes[appliancetype], src)
 		if(recipe && recipe.result == result)
 			valid = TRUE
 
