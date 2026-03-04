@@ -170,6 +170,7 @@ const Playfield = (props: {
     let cellStyle: {
       backgroundColor?: string;
       icon?: string;
+      disabled?: boolean;
       classes: string[];
     } = { classes: [] };
 
@@ -189,9 +190,11 @@ const Playfield = (props: {
       if (shot === 1) {
         cellStyle.backgroundColor = 'red';
         cellStyle.icon = 'explosion';
+        cellStyle.disabled = true;
       } else if (shot === 0) {
         cellStyle.backgroundColor = 'white';
         cellStyle.icon = 'water';
+        cellStyle.disabled = true;
       }
     }
 
@@ -200,6 +203,7 @@ const Playfield = (props: {
         cellStyle = {
           icon: 'burst',
           classes: ['SpaceBattle__ShipSunk'],
+          disabled: true,
         };
       }
     }
@@ -234,7 +238,10 @@ const Playfield = (props: {
                     <div onMouseEnter={() => handleButtonHover(x, y)}>
                       <Button
                         className={classes(getCellStyle(x, y).classes)}
-                        disabled={mapDisabled(game_state, isSelf, isOpponent)}
+                        disabled={
+                          mapDisabled(game_state, isSelf, isOpponent) ||
+                          getCellStyle(x, y).disabled
+                        }
                         onClick={(_) => {
                           if (game_state === 1) {
                             handlePlacement(x, y);
