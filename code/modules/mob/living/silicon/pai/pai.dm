@@ -328,17 +328,20 @@
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
 	if(user.a_intent == I_HELP)
-		visible_message(span_notice("[user.name] pats [src]."))
-	else
-		visible_message(span_danger("[user.name] boops [src] on the head."))
+		visible_message(span_notice("\The [user] pats \the [src]."))
+		return
+	if(user.a_intent == I_DISARM)
+		visible_message(span_danger("\The [user] boops \the [src] on the head."))
 		close_up()
+		return
+	. = ..()
 
 /mob/living/silicon/pai/UnarmedAttack(atom/A, proximity_flag)
 	. = ..()
 
 	// Some restricted objects to interact with
 	var/obj/O = A
-	if(istype(O) && O.allow_pai_interaction(proximity_flag))
+	if(istype(O) && O.allow_pai_interaction(src, proximity_flag))
 		O.attack_hand(src)
 		return
 
@@ -357,6 +360,10 @@
 	// All other computers explain why it's not accessible by showing a firewall warning
 	if(istype(A,/obj/machinery/computer))
 		to_chat(src,span_warning("A firewall prevents you from interfacing with this device!"))
+		return
+
+	if(istype(A,/obj/item/modular_computer))
+		to_chat(src,span_warning("Anti-tamper locks prevents you from interfacing with this device! You need your master's permission before going online!"))
 		return
 
 	if(!ismob(A) || A == src)

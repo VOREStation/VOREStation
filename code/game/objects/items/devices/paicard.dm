@@ -319,7 +319,7 @@
 		switch(selected_system)
 			if("Emag")
 				if(istype(A,/obj/machinery/door))
-					return //for doors use the doorjack
+					return TRUE //for doors use the doorjack
 				return A.emag_act(1,user,src)
 			if("MultiTool")
 				A.attackby(multitool,user)

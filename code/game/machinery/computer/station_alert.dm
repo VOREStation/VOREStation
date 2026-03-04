@@ -41,7 +41,7 @@
 	tgui_interact(user)
 	return
 
-/obj/machinery/computer/station_alert/allow_pai_interaction(proximity_flag)
+/obj/machinery/computer/station_alert/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/machinery/computer/station_alert/tgui_interact(mob/user)
