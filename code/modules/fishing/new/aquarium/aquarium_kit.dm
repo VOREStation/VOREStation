@@ -30,7 +30,8 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_righthand.dmi',
 		)
-	storage_type = /datum/storage/fish_case/adjust_size
+	//storage_type = /datum/storage/fish_case/adjust_size
+	max_w_class = ITEMSIZE_GIGANTIC
 
 /obj/item/storage/fish_case/Initialize(mapload)
 	. = ..()
@@ -115,7 +116,8 @@
 	icon_state = "fishbox_bluespace"
 	desc = "An improved fish case to keep large fish in stasis in a compact little space."
 	w_class = ITEMSIZE_NORMAL
-	storage_type = /datum/storage/fish_case
+	max_w_class = ITEMSIZE_GIGANTIC
+	//storage_type = /datum/storage/fish_case
 
 /obj/item/aquarium_kit
 	name = "DIY Aquarium Construction Kit"
@@ -127,7 +129,7 @@
 /obj/item/aquarium_kit/Initialize(mapload)
 	. = ..()
 	var/static/list/recipes = list(/datum/crafting_recipe/aquarium, /datum/crafting_recipe/fish_tank)
-	AddElement(/datum/element/slapcrafting, recipes)
+	//AddElement(/datum/element/slapcrafting, recipes)
 
 /obj/item/aquarium_prop
 	name = "generic aquarium prop"

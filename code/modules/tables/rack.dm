@@ -16,6 +16,7 @@
 	return
 
 /obj/structure/table/rack/update_desc()
+	. = ..()
 	return
 
 /obj/structure/table/rack/update_icon()

@@ -48,10 +48,13 @@
 	ADD_TRAIT(src, TRAIT_BIOELECTRIC_GENERATOR, INNATE_TRAIT)
 
 /obj/structure/aquarium/bioelec_gen/zap_act(power, zap_flags)
+	return
+	/*
 	var/explosive = zap_flags & ZAP_MACHINE_EXPLOSIVE
 	if(!explosive)
 		return //immune to all other shocks to make sure power can be generated without breaking the generator itself
 	return ..()
+	*/
 
 /obj/structure/aquarium/bioelec_gen/examine(mob/user)
 	. = ..()

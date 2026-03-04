@@ -9,7 +9,7 @@
 	item_state = "aquarium"
 
 	integrity_failure = 0.3
-	matter = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 10)
+	//matter = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 10)
 
 	//This is the area where fish can swim
 	var/aquarium_zone_min_pw = 2
@@ -56,12 +56,13 @@
 	. += mutable_appearance(icon, initial(icon_state) + "_glass_[icon_suffix]", layer = layer + AQUARIUM_GLASS_LAYER)
 	. += mutable_appearance(icon, initial(icon_state) + "_borders", layer = layer + AQUARIUM_BORDERS_LAYER)
 
-/obj/structure/aquarium/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/aquarium/attackby(obj/item/tool, mob/user, attack_modifier, click_parameters)
 	. = ..()
-	default_unfasten_wrench(user, tool)
-	return ITEM_INTERACT_SUCCESS
+	if(default_unfasten_wrench(user, tool))
+		return ITEM_INTERACT_SUCCESS
+	item_interaction(user, tool, attack_modifier)
 
-/obj/structure/aquarium/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/structure/aquarium/proc/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stack/material/glass))
 		return
 	if(!broken)
@@ -117,7 +118,7 @@
 	new /obj/item/fish/guppy(src)
 
 	//They'll be alive for about 30 minutes with this amount.
-	reagents.add_reagent(/datum/reagent/consumable/nutriment, 3)
+	reagents.add_reagent(/datum/reagent/nutriment, 3)
 
 /obj/item/fish_tank
 	name = "fish tank"
@@ -128,8 +129,8 @@
 	force = 5
 	throwforce = 5
 	throw_range = 3
-	w_class = WEIGHT_CLASS_BULKY
-	item_flags = SLOWS_WHILE_IN_HAND
+	w_class = ITEMSIZE_HUGE
+	slowdown = 1
 	matter = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
 
 	custom_price = PAYCHECK_CREW * 9
@@ -173,7 +174,7 @@
 		max_fluid_temp = src.max_fluid_temp,\
 		init_mode = init_mode,\
 	)
-	AddComponent(/datum/component/plumbing/aquarium)
+	//AddComponent(/datum/component/plumbing/aquarium)
 	RegisterSignal(src, COMSIG_AQUARIUM_FLUID_CHANGED, PROC_REF(on_aquarium_liquid_changed))
 	RegisterSignal(src, COMSIG_AQUARIUM_CAN_INSERT, PROC_REF(can_insert))
 	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_new_fish))
@@ -190,9 +191,9 @@
 
 /obj/item/fish_tank/update_overlays()
 	. = ..()
-	. += "[base_icon_state]_panel[HAS_TRAIT(src, TRAIT_AQUARIUM_PANEL_OPEN) ? "_open" : ""]"
-	. += mutable_appearance(icon, "[base_icon_state]_[fluid_type == AQUARIUM_FLUID_AIR ? "air" : "water"]", layer = layer + AQUARIUM_GLASS_LAYER)
-	. += mutable_appearance(icon, "[base_icon_state]_borders", layer = layer + AQUARIUM_BORDERS_LAYER)
+	. += "[initial(icon_state)]_panel[HAS_TRAIT(src, TRAIT_AQUARIUM_PANEL_OPEN) ? "_open" : ""]"
+	. += mutable_appearance(icon, "[initial(icon_state)]_[fluid_type == AQUARIUM_FLUID_AIR ? "air" : "water"]", layer = layer + AQUARIUM_GLASS_LAYER)
+	. += mutable_appearance(icon, "[initial(icon_state)]_borders", layer = layer + AQUARIUM_BORDERS_LAYER)
 
 /obj/item/fish_tank/proc/can_insert(atom/movable/source, obj/item/item, mob/living/user)
 	SIGNAL_HANDLER
@@ -271,3 +272,26 @@
 	else
 		new /obj/item/fish/goldfish/three_eyes/gill(src)
 		reagents.add_reagent(/datum/reagent/toxin/mutagen, 3) //three eyes goldfish feed on mutagen.
+
+
+//Stuff that would either reequire 50 freaking new files and refactors, or we just do this.
+
+/obj/structure/aquarium/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
+	if(!W.has_tool_quality(TOOL_WRENCH))
+		return FALSE
+	if(panel_open)
+		return FALSE // Close panel first!
+	playsound(src, W.usesound, 50, 1)
+	var/actual_time = W.toolspeed * time
+	if(actual_time != 0)
+		user.visible_message( \
+			span_warning("\The [user] begins [anchored ? "un" : ""]securing \the [src]."), \
+			span_notice("You start [anchored ? "un" : ""]securing \the [src]."))
+	if(actual_time == 0 || do_after(user, actual_time, target = src))
+		user.visible_message( \
+			span_warning("\The [user] has [anchored ? "un" : ""]secured \the [src]."), \
+			span_notice("You [anchored ? "un" : ""]secure \the [src]."))
+		anchored = !anchored
+		power_change() //Turn on or off the machine depending on the status of power in the new area.
+		update_icon()
+	return TRUE
