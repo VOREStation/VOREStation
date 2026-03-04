@@ -143,8 +143,8 @@ GLOBAL_LIST_INIT(RMS_random_malfunction, list(/obj/item/fbp_backup_cell,
 		else
 			product = choose_normal(user)
 
-	spark_system.start()
-	product.loc = get_turf(A)
+		spark_system.start()
+		product.loc = get_turf(A)
 
 /obj/item/rms/proc/choose_overcharge(mob/living/user)
 	var/final_product

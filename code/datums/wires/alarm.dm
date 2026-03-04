@@ -65,7 +65,6 @@
 		if(WIRE_AI_CONTROL)
 			if(!A.aidisabled)
 				A.aidisabled = TRUE
-			A.updateDialog()
 			addtimer(VARSET_CALLBACK(A, aidisabled, FALSE), 10 SECONDS, TIMER_DELETE_ME)
 
 		if(WIRE_SYPHON)

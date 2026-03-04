@@ -56,13 +56,13 @@
 	if(!T)
 		return PROXIMITY_OFF_CAMERANET
 
-	// Now for the somewhat harder AI cameranet checks.
+	// Now for the somewhat harder AI GLOB.cameranet checks.
 
-	// Check if we are even on the cameranet.
-	if(!cameranet.checkVis(T))
+	// Check if we are even on the GLOB.cameranet.
+	if(!GLOB.cameranet.checkVis(T))
 		return PROXIMITY_OFF_CAMERANET
 
-	var/datum/chunk/chunk = cameranet.getChunk(T.x, T.y, T.z)
+	var/datum/chunk/chunk = GLOB.cameranet.getChunk(T.x, T.y, T.z)
 	if(!chunk)
 		return PROXIMITY_OFF_CAMERANET
 
