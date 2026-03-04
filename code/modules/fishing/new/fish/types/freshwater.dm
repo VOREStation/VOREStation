@@ -132,7 +132,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = JUNKFOOD
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//JUNKFOOD
 		)
 	)
 	required_temperature_min = MIN_AQUARIUM_TEMP+12
@@ -254,7 +254,7 @@
 	if(QDELETED(user) || QDELETED(src))
 		return
 	user.visible_message(span_suicide("A live frog bursts out of [user]!"))
-	new /obj/effect/spawner/random/frog(user.drop_location())
+	new /mob/living/simple_mob/animal/frog(user.drop_location())
 
 	var/obj/item/bodypart/chest = user.get_bodypart(BODY_ZONE_CHEST)
 
@@ -283,7 +283,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = BUGS,
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//BUGS,
 		),
 	/obj/item/fish,
 	/obj/item/fishing_lure, //they love lures in general.

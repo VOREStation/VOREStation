@@ -20,7 +20,7 @@
 /datum/fish_source/portal/beach
 	fish_table = list(
 		FISHING_DUD = 7,
-		/obj/effect/spawner/message_in_a_bottle = 3,
+//		/obj/effect/spawner/message_in_a_bottle = 3,
 		/obj/item/fish/clownfish = 10,
 		/obj/item/fish/pufferfish = 10,
 		/obj/item/fish/cardinal = 10,
@@ -50,7 +50,7 @@
 		FISHING_DUD = 5,
 		/obj/item/fish/chasm_crab = 10,
 		/obj/item/fish/boned = 5,
-		/obj/item/stack/sheet/bone = 5,
+		/obj/item/stack/material/chitin = 5,
 	)
 	catalog_description = "Chasm dimension (Fishing portal generator)"
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20
@@ -61,7 +61,7 @@
 /datum/fish_source/portal/ocean
 	fish_table = list(
 		FISHING_DUD = 3,
-		/obj/effect/spawner/message_in_a_bottle = 2,
+//		/obj/effect/spawner/message_in_a_bottle = 2,
 		/obj/item/fish/lanternfish = 5,
 		/obj/item/fish/firefish = 5,
 		/obj/item/fish/gunner_jellyfish = 5,
@@ -99,11 +99,11 @@
 		FISHING_DUD = 5,
 		/obj/item/fish/starfish = 6,
 		/obj/item/fish/baby_carp = 6,
-		/obj/item/stack/ore/bluespace_crystal = 2,
+		/obj/item/bluespace_crystal = 2,
 		/mob/living/basic/carp = 2,
 	)
 	fish_counts = list(
-		/obj/item/stack/ore/bluespace_crystal = 10,
+		/obj/item/bluespace_crystal = 10,
 	)
 	catalog_description = "Hyperspace dimension (Fishing portal generator)"
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20

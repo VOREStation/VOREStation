@@ -177,7 +177,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = SEAFOOD,
+			FISH_BAIT_VALUE = ALLERGEN_FISH,
 		),
 		/obj/item/fish,
 	)
@@ -302,7 +302,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = SEAFOOD|BUGS,
+			FISH_BAIT_VALUE = ALLERGEN_FISH,//|BUGS,
 		),
 	)
 
@@ -327,6 +327,6 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = SEAFOOD|BUGS,
+			FISH_BAIT_VALUE = ALLERGEN_FISH,//|BUGS,
 		),
 	)

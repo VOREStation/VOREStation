@@ -38,7 +38,8 @@
 	chosen.Remove(chosen.owner)
 	chosen.forceMove(spawn_location)
 	return chosen
-
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/surgery/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/list/data = list()
 
@@ -50,3 +51,4 @@
 	))
 
 	return data
+*/

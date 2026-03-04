@@ -12,15 +12,16 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 
 /proc/generate_specific_fish_icons()
 	var/list/return_list = zebra_typecacheof(list(
-		/datum/data/vending_product = FISH_ICON_COIN,
-		/mob/living/basic/axolotl = FISH_ICON_CRITTER,
-		/obj/effect/spawner/random/frog = FISH_ICON_CRITTER,
-		/mob/living/basic/carp = FISH_ICON_DEF,
-		/mob/living/basic/mining = FISH_ICON_HOSTILE,
-		/mob/living/basic/skeleton = FISH_ICON_BONE,
-		/mob/living/basic/stickman = FISH_ICON_HOSTILE,
+//		/datum/data/vending_product = FISH_ICON_COIN,
+//		/mob/living/basic/axolotl = FISH_ICON_CRITTER,
+		/mob/living/simple_mob/vore/aggressive/frog = FISH_ICON_CRITTER,
+		/mob/living/simple_mob/animal/space/carp = FISH_ICON_DEF,
+//		/mob/living/basic/mining = FISH_ICON_HOSTILE,
+//		/mob/living/basic/skeleton = FISH_ICON_BONE,
+//		/mob/living/basic/stickman = FISH_ICON_HOSTILE,
 		/obj/effect/decal/remains = FISH_ICON_BONE,
-		/obj/effect/mob_spawn/corpse = FISH_ICON_BONE,
+//		/obj/effect/mob_spawn/corpse = FISH_ICON_BONE,
+		/obj/effect/landmark/mobcorpse = FISH_ICON_BONE,
 		/obj/effect/spawner/message_in_a_bottle = FISH_ICON_BOTTLE,
 		/obj/item/coin = FISH_ICON_COIN,
 		/obj/item/fish = FISH_ICON_DEF,
@@ -48,16 +49,16 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		/obj/item/instrument/trumpet/spectral = FISH_ICON_BONE,
 		/obj/item/instrument/saxophone/spectral = FISH_ICON_BONE,
 		/obj/item/instrument/trombone/spectral = FISH_ICON_BONE,
-		/obj/item/knife/carp = FISH_ICON_WEAPON,
-		/obj/item/seeds/grass = FISH_ICON_SEED,
+//		/obj/item/knife/carp = FISH_ICON_WEAPON,
+		/obj/item/seeds/grassseed = FISH_ICON_SEED,
 		/obj/item/seeds/random = FISH_ICON_SEED,
 		/obj/item/storage/wallet = FISH_ICON_COIN,
-		/obj/item/stack/sheet/bone = FISH_ICON_BONE,
-		/obj/item/stack/sheet/mineral = FISH_ICON_GEM,
-		/obj/item/stack/ore = FISH_ICON_GEM,
+		/obj/item/stack/material/chitin = FISH_ICON_BONE,
+		/obj/item/stack/material = FISH_ICON_GEM,
+		/obj/item/ore = FISH_ICON_GEM,
 		/obj/item/survivalcapsule/fishing = FISH_ICON_COIN,
 		/obj/structure/closet/crate = FISH_ICON_COIN,
-		/obj/structure/mystery_box = FISH_ICON_COIN,
+//		/obj/structure/mystery_box = FISH_ICON_COIN,
 	))
 
 	return_list[FISHING_RANDOM_SEED] = FISH_ICON_SEED
@@ -101,7 +102,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 
 	/// Mindless mobs that can fish will never pull up items on this list
 	var/static/list/profound_fisher_blacklist = typecacheof(list(
-		/mob/living/basic/mining/lobstrosity,
+//		/mob/living/basic/mining/lobstrosity,
 		/obj/structure/closet/crate/necropolis/tendril,
 	))
 
@@ -173,8 +174,10 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	. += calculate_difficulty(reward_path, rod, fisherman)
 
 	// Difficulty modifier added by the fisher's skill level
+	/* //NYI - FISHING UPDATE
 	if(!(challenge.special_effects & FISHING_MINIGAME_RULE_NO_EXP))
 		. += fisherman.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)
+		*/
 
 	if(challenge.special_effects & FISHING_MINIGAME_RULE_KILL)
 		challenge.RegisterSignal(src, COMSIG_FISH_SOURCE_REWARD_DISPENSED, TYPE_PROC_REF(/datum/fishing_challenge, hurt_fish))
@@ -281,8 +284,8 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	if(!success)
 		return
 	var/atom/movable/reward = dispense_reward(challenge.reward_path, user, challenge.location, challenge.used_rod)
-	if(reward)
-		user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward.name)
+//	if(reward)
+//		user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward.name)
 	SEND_SIGNAL(challenge.used_rod, COMSIG_FISHING_ROD_CAUGHT_FISH, reward, user)
 	challenge.used_rod.on_reward_caught(reward, user)
 	REMOVE_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED, TRAIT_GENERIC)
@@ -299,13 +302,14 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		fisherman.balloon_alert(fisherman, "caught something!")
 		return
 	fisherman.balloon_alert(fisherman, "caught [reward]!")
-
+/*
 	var/list/fishing_data
 	if (isfish(reward))
 		ADD_TRAIT(reward, TRAIT_NO_FISHING_ACHIEVEMENT, TRAIT_GENERIC)
 		var/obj/item/fish/caught_fish = reward
-		fishing_data = list(caught_fish.size, caught_fish.weight, caught_fish.custom_materials)
+		fishing_data = list(caught_fish.size, caught_fish.weight, caught_fish.matter)
 	log_fish("[fisherman] has caught a [reward] at [fishing_spot] using [rod].", fishing_data)
+*/
 	return reward
 
 ///Simplified version of dispense_reward that doesn't need a fisherman.
@@ -313,7 +317,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	if(isnull(reward_path))
 		return null
 	var/area/area = get_area(fishing_spot)
-	if(!(area.area_flags & UNLIMITED_FISHING) && !isnull(fish_counts[reward_path])) // This is limited count result
+	if(!(area.flag_check(UNLIMITED_FISHING)) && !isnull(fish_counts[reward_path])) // This is limited count result
 		//Somehow, we're trying to spawn an expended reward.
 		if(fish_counts[reward_path] <= 0)
 			return null
@@ -474,7 +478,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	var/list/known_fishes = list()
 	var/show_anyway = fish_source_flags & FISH_SOURCE_FLAG_IGNORE_HIDDEN_ON_CATALOG
 
-	var/obj/item/fishing_rod/rod = user.get_active_held_item()
+	var/obj/item/fishing_rod/rod = user.get_active_hand()
 	var/list/final_table
 	if(!istype(rod) || !rod.hook)
 		rod = null
@@ -525,7 +529,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	var/info = "You can catch the following fish here"
 
 	if(rod)
-		info = span_tooltip("In bold are fish you're more likely to catch with the current setup. The opposite is true for the smaller font", info)
+		info = "In bold are fish you're more likely to catch with the current setup. The opposite is true for the smaller font"
 	examine_text += span_info("[info]: [english_list(known_fishes)].")
 
 ///How much the explosive_fishing_score impacts explosive fishing. The higher the value, the stronger the malus for repeated calls
@@ -559,8 +563,8 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		if(isitem(reward))
 			reward.pixel_x = rand(-9, 9)
 			reward.pixel_y = rand(-9, 9)
-		if(severity >= EXPLODE_DEVASTATE)
-			reward.ex_act(EXPLODE_LIGHT)
+		if(severity >= 1)
+			reward.ex_act(3)
 
 /datum/fish_source/process(seconds_per_tick)
 	explosive_fishing_score -= EXPLOSIVE_FISHING_RECOVERY_RATE * seconds_per_tick
@@ -573,6 +577,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 
 ///Called when releasing a fish in a fishing spot with the TRAIT_CATCH_AND_RELEASE trait.
 /datum/fish_source/proc/readd_fish(atom/location, obj/item/fish/fish, mob/living/releaser)
+	/*
 	if(releaser)
 		var/is_morbid = HAS_MIND_TRAIT(releaser, TRAIT_MORBID)
 		var/is_naive = HAS_MIND_TRAIT(releaser, TRAIT_NAIVE)
@@ -582,11 +587,12 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		if(((fish.type in fish_table) != is_morbid) || is_naive)
 			releaser.add_mood_event("fish_released", /datum/mood_event/fish_released, is_morbid && !is_naive, fish)
 	//don't do anything if the fish is dead, not native to this fish source or has no limited amount.
+	*/
 	if(fish.status == FISH_DEAD || isnull(fish_table[fish.type]) || isnull(fish_counts[fish.type]))
 		return
 	//ditto if no restrictions apply
 	var/area/area = get_area(location)
-	if(area.area_flags & UNLIMITED_FISHING)
+	if(area.flag_check(UNLIMITED_FISHING))
 		return
 	//If this fish population isn't recovering from recent losses, we just increase it.
 	if(!LAZYACCESS(currently_on_regen, fish.type))
@@ -599,6 +605,8 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
  * It should Return a list of entries with keys named "name", "icon", "weight" and "notes"
  * detailing the contents of this fish source.
  */
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/proc/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/list/data = list()
 	var/list/only_fish = list()
@@ -691,3 +699,4 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		))
 
 	return data
+*/

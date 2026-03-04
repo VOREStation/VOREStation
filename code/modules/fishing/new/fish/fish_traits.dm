@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 		return
 	var/list/bait_identifier = list(
 		FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-		FISH_BAIT_VALUE = MEAT|SEAFOOD|BUGS,
+		FISH_BAIT_VALUE = ALLERGEN_MEAT|ALLERGEN_FISH,//|BUGS,
 	)
 	if(!is_matching_bait(rod.bait, bait_identifier))
 		.[MULTIPLICATIVE_FISHING_MOD] = 0
@@ -299,11 +299,11 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 		return
 	var/list/bait_liked_identifier = list(
 		FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-		FISH_BAIT_VALUE = VEGETABLES|FRUIT,
+		FISH_BAIT_VALUE = ALLERGEN_VEGETABLE|ALLERGEN_FRUIT,
 	)
 	var/list/bait_hated_identifier = list(
 		FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-		FISH_BAIT_VALUE = MEAT|SEAFOOD|GORE|BUGS|DAIRY,
+		FISH_BAIT_VALUE = ALLERGEN_MEAT|ALLERGEN_FISH|ALLERGEN_DAIRY,//|GORE|BUGS,
 	)
 	if(!is_matching_bait(rod.bait, bait_liked_identifier) || is_matching_bait(rod.bait, bait_hated_identifier))
 		.[MULTIPLICATIVE_FISHING_MOD] = 0

@@ -31,7 +31,7 @@
 	max_integrity = 100
 	death_text = "%SRC splinters apart into shards!"
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
-	fillet_type = /obj/item/stack/ore/bluespace_crystal
+	fillet_type = /obj/item/bluespace_crystal
 	num_fillets = 3
 	stable_population = 3
 	compatible_types = list(/obj/item/fish/starfish)
@@ -39,7 +39,7 @@
 	beauty = FISH_BEAUTY_EXCELLENT
 	fish_movement_type = /datum/fish_movement/accelerando
 	fishing_difficulty_modifier = 15
-	favorite_bait = list(/obj/item/stack/ore/bluespace_crystal)
+	favorite_bait = list(/obj/item/bluespace_crystal)
 	// something something bluespace
 	electrogenesis_power = 9 MEGA JOULES
 
@@ -371,13 +371,13 @@
 	max_integrity = 320
 	death_text = "%SRC calcifies."
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
-	fillet_type = /obj/item/stack/sheet/mineral/diamond
+	fillet_type = /obj/item/stack/material/diamond
 	num_fillets = 2
 	stable_population = 3
 	fish_traits = list(/datum/fish_trait/heavy, /datum/fish_trait/parthenogenesis) // this thing is a diamond farm
 	beauty = FISH_BEAUTY_EXCELLENT
 	fish_movement_type = /datum/fish_movement/slow
-	favorite_bait = list(/obj/item/stack/sheet/mineral/diamond)
+	favorite_bait = list(/obj/item/stack/material/diamond)
 	fishing_difficulty_modifier = 22
 	average_size = 30
 	average_weight = 2000

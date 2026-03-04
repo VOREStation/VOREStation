@@ -186,3 +186,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION "message_in_a_bottle_location"
 /// Stops other objects of the same type from being inserted inside the same aquarium it's in.
 #define TRAIT_UNIQUE_AQUARIUM_CONTENT "unique_aquarium_content"
+
+#define TRAIT_EXPERT_FISHER "expert_fisher" // fishing is easier
+#define TRAIT_NAIVE "naive"

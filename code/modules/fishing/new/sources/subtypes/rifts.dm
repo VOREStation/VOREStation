@@ -14,7 +14,7 @@
 		/obj/item/clothing/head/fedora/carpskin = 1,
 		/obj/item/toy/plush/carpplushie = 1,
 		/obj/item/toy/plush/carpplushie/dehy_carp/peaceful = 1,
-		/obj/item/knife/carp = 1,
+//		/obj/item/knife/carp = 1,
 	)
 	fish_counts = list(
 		/mob/living/basic/carp/mega = 2,

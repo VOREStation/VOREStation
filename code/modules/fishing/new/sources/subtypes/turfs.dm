@@ -5,7 +5,7 @@
 	overlay_state = "portal_ocean"
 	fish_table = list(
 		FISHING_DUD = 10,
-		/obj/effect/spawner/message_in_a_bottle = 4,
+//		/obj/effect/spawner/message_in_a_bottle = 4,
 		/obj/item/coin/gold = 6,
 		/obj/item/fish/clownfish = 11,
 		/obj/item/fish/pufferfish = 11,
@@ -19,17 +19,17 @@
 		/obj/item/fish/zipzap = 7,
 		/obj/item/fish/clownfish/lube = 5,
 		/obj/item/fish/swordfish = 5,
-		/obj/structure/mystery_box/fishing = 2,
+//		/obj/structure/mystery_box/fishing = 2,
 	)
 	fish_counts = list(
 		/obj/item/fish/clownfish/lube = 2,
 		/obj/item/fish/swordfish = 2,
-		/obj/structure/mystery_box/fishing = 1,
+//		/obj/structure/mystery_box/fishing = 1,
 	)
 	fish_count_regen = list(
 		/obj/item/fish/clownfish/lube = 3 MINUTES,
 		/obj/item/fish/swordfish = 5 MINUTES,
-		/obj/structure/mystery_box/fishing = 32 MINUTES,
+//		/obj/structure/mystery_box/fishing = 32 MINUTES,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
 	fish_source_flags = FISH_SOURCE_FLAG_EXPLOSIVE_MALUS
@@ -107,7 +107,7 @@
 		FISHING_DUD = 20,
 		/obj/item/fish/bumpy = 10,
 		/obj/item/fish/sacabambaspis = 10,
-		/obj/effect/spawner/random/frog = 2,
+//		/mob/living/simple_mob/vore/aggressive/frog = 2,
 		/obj/item/fishing_rod/telescopic/master = 1,
 	)
 	fish_counts = list(

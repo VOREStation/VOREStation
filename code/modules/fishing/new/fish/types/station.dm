@@ -16,7 +16,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = DAIRY
+			FISH_BAIT_VALUE = ALLERGEN_DAIRY
 		)
 	)
 	beauty = FISH_BEAUTY_DISGUSTING
@@ -88,7 +88,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = TOXIC,
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//TOXIC,
 		),
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_REAGENT,
@@ -127,13 +127,13 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = FRIED,
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//FRIED,
 		)
 	)
 	disliked_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = GROSS|RAW,
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//GROSS|RAW,
 		)
 	)
 	beauty = FISH_BEAUTY_GOOD

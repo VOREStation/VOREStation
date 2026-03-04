@@ -63,6 +63,18 @@
 #define ALLERGEN_POLLEN		0x4000  // Teshari sneezes! Grasses and plants make you have a reaction.
 #define ALLERGEN_SALT 		0x8000  // Chefs beware, can't have fast food!
 
+//For fishing
+DEFINE_BITFIELD(foodtypes, list(
+	"MEAT" = ALLERGEN_MEAT,
+	"VEGETABLES" = ALLERGEN_VEGETABLE,
+	"SALT" = ALLERGEN_SALT,
+	"GRAIN" = ALLERGEN_GRAINS,
+	"FRUIT" = ALLERGEN_FRUIT,
+	"DAIRY" = ALLERGEN_DAIRY,
+	"ALCOHOL" = ALCOHOL,
+	"SEAFOOD" = ALLERGEN_FISH,
+))
+
 // Allergen reactions
 #define AG_PHYS_DMG	0x1	// brute
 #define AG_BURN_DMG	0x2	// burns

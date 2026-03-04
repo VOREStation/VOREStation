@@ -16,7 +16,7 @@
 	min_pressure = HAZARD_LOW_PRESSURE
 	max_integrity = 600
 	stable_population = 2
-	fillet_type = /obj/item/stack/sheet/bone
+	fillet_type = /obj/item/stack/material/chitin
 	num_fillets = 2
 	feeding_frequency = 2 MINUTES
 	breeding_timeout = 5 MINUTES
@@ -78,7 +78,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = JUNKFOOD|FRIED,
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//JUNKFOOD|FRIED,
 		),
 	)
 	fillet_type = /obj/item/food/meat/cutlet/plain/human
@@ -144,7 +144,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = JUNKFOOD|FRIED
+			FISH_BAIT_VALUE = ALLERGEN_SALT,//JUNKFOOD|FRIED
 		),
 	)
 	fillet_type = /obj/item/food/meat/slab/rawcrab

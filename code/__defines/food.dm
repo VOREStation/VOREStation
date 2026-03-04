@@ -20,6 +20,7 @@
 #define GORE (1<<19)
 #define STONE (1<<20)
 
+/*
 DEFINE_BITFIELD(foodtypes, list(
 	"MEAT" = MEAT,
 	"VEGETABLES" = VEGETABLES,
@@ -43,6 +44,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"GORE" = GORE,
 	"STONE" = STONE,
 ))
+*/
 
 /// A list of food type names, in order of their flags
 #define FOOD_FLAGS list( \

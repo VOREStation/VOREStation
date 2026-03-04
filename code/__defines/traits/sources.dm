@@ -14,3 +14,6 @@
 
 /// From the aquarium component
 #define AQUARIUM_TRAIT "aquarium"
+
+// common trait sources
+#define TRAIT_GENERIC "generic"

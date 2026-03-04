@@ -182,14 +182,21 @@
 				my_atom.on_reagent_change()
 			return 0
 
-/datum/reagents/proc/has_reagent(var/id, var/amount = 0)
+/datum/reagents/proc/has_reagent(id, amount = 0, check_subtypes = FALSE)
 	for(var/datum/reagent/current in reagent_list)
-		if(current.id == id)
+		if(!check_subtypes)
+			if(current.type != id)
+				continue
 			if(current.volume >= amount)
-				return 1
+				return TRUE
 			else
-				return 0
-	return 0
+				return FALSE
+		else if(!istype(current, id))
+			if(current.volume >= amount)
+				return TRUE
+			else
+				return FALSE
+	return FALSE
 
 /datum/reagents/proc/has_any_reagent(var/list/check_reagents)
 	for(var/datum/reagent/current in reagent_list)

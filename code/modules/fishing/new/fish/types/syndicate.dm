@@ -113,7 +113,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = GORE,
+			FISH_BAIT_VALUE = ALLERGEN_MEAT,//GORE,
 		),
 	)
 	fish_traits = list(/datum/fish_trait/territorial, /datum/fish_trait/carnivore, /datum/fish_trait/predator, /datum/fish_trait/stinger)
@@ -246,7 +246,7 @@
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
-			FISH_BAIT_VALUE = SEAFOOD,
+			FISH_BAIT_VALUE = ALLERGEN_FISH,
 		),
 		/obj/item/fish,
 	)

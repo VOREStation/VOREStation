@@ -51,22 +51,23 @@
 	overlay_state = "portal_lava"
 	fish_table = list(
 		FISHING_DUD = 5,
-		/obj/item/stack/ore/slag = 15,
+		/obj/item/ore/slag = 15,
 		/obj/item/fish/lavaloop = 15,
 		/obj/structure/closet/crate/necropolis/tendril = 1,
 		/obj/item/skeleton_key = 1,
-		/obj/item/stack/sheet/mineral/runite = 1,
-		/obj/effect/mob_spawn/corpse/human/charredskeleton = 1,
+//		/obj/item/stack/sheet/mineral/runite = 1,
+//		/obj/effect/mob_spawn/corpse/human/charredskeleton = 1,
+		/obj/effect/landmark/mobcorpse/clown = 1,
 	)
 	fish_counts = list(
-		/obj/structure/closet/crate/necropolis/tendril = 1,
-		/obj/item/skeleton_key = 1,
-		/obj/item/stack/sheet/mineral/runite = 2,
+//		/obj/structure/closet/crate/necropolis/tendril = 1,
+//		/obj/item/skeleton_key = 1,
+//		/obj/item/stack/sheet/mineral/runite = 2,
 	)
 	fish_count_regen = list(
-		/obj/structure/closet/crate/necropolis/tendril = 27 MINUTES,
-		/obj/item/skeleton_key = 13 MINUTES,
-		/obj/item/stack/sheet/mineral/runite = 15 MINUTES,
+//		/obj/structure/closet/crate/necropolis/tendril = 27 MINUTES,
+//		/obj/item/skeleton_key = 13 MINUTES,
+//		/obj/item/stack/sheet/mineral/runite = 15 MINUTES,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20
 	fish_source_flags = FISH_SOURCE_FLAG_EXPLOSIVE_MALUS
@@ -86,27 +87,28 @@
 		FISHING_DUD = 5,
 		/obj/item/fish/chasm_crab/ice = 30,
 		/obj/item/fish/lavaloop/plasma_river = 30,
-		/obj/item/coin/plasma = 6,
-		/obj/item/stack/ore/plasma = 6,
-		/obj/effect/decal/remains/plasma = 2,
-		/obj/item/stack/sheet/mineral/runite = 2,
-		/obj/item/stack/sheet/mineral/adamantine = 2,
-		/obj/item/skeleton_key = 1,
-		/obj/structure/closet/crate/necropolis/tendril = 1,
-		/mob/living/basic/mining/lobstrosity = 1,
-		/mob/living/basic/mining/lobstrosity/juvenile = 1,
+		/obj/item/coin/phoron = 6,
+		/obj/item/ore/phoron = 6,
+		/obj/effect/decal/remains/xeno = 2,
+//		/obj/item/stack/sheet/mineral/runite = 2,
+//		/obj/item/stack/sheet/mineral/adamantine = 2,
+//		/obj/item/skeleton_key = 1,
+//		/obj/structure/closet/crate/necropolis/tendril = 1,
+//		/mob/living/basic/mining/lobstrosity = 1,
+//		/mob/living/basic/mining/lobstrosity/juvenile = 1,
 	)
 	fish_counts = list(
-		/obj/item/stack/sheet/mineral/adamantine = 3,
-		/obj/item/stack/sheet/mineral/runite = 2,
-		/obj/item/skeleton_key = 1,
-		/obj/structure/closet/crate/necropolis/tendril = 1,
+		/obj/item/slime_extract/adamantine = 3 ///obj/item/stack/sheet/mineral/adamantine = 3,
+//		/obj/item/stack/sheet/mineral/runite = 2,
+//		/obj/item/skeleton_key = 1,
+//		/obj/structure/closet/crate/necropolis/tendril = 1,
 	)
 	fish_count_regen = list(
-		/obj/item/stack/sheet/mineral/adamantine = 8 MINUTES,
-		/obj/item/stack/sheet/mineral/runite = 10 MINUTES,
-		/obj/item/skeleton_key = 15 MINUTES,
-		/obj/structure/closet/crate/necropolis/tendril = 30 MINUTES,
+		/obj/item/slime_extract/adamantine = 8 MINUTES,
+	//	/obj/item/stack/sheet/mineral/adamantine = 8 MINUTES,
+	//	/obj/item/stack/sheet/mineral/runite = 10 MINUTES,
+	//	/obj/item/skeleton_key = 15 MINUTES,
+	//	/obj/structure/closet/crate/necropolis/tendril = 30 MINUTES,
 	)
 	overlay_state = "portal_plasma"
 	associated_safe_turfs = list(/turf/open/lava/plasma)
@@ -119,7 +121,7 @@
 	fish_table = list(
 		FISHING_DUD = 5,
 		/obj/item/fish/boned = 10,
-		/obj/item/stack/sheet/bone = 2,
+		/obj/item/stack/material/chitin = 2,
 		/obj/item/clothing/gloves/bracer = 2,
 		/obj/effect/decal/remains/human = 2,
 		/obj/item/fish/mastodon = 1,

@@ -51,7 +51,8 @@
 
 /datum/fish_source/holographic/on_fishing_spot_del(datum/component/fishing_spot/spot)
 	REMOVE_TRAIT(spot.parent, TRAIT_UNLINKABLE_FISHING_SPOT, REF(src))
-
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/holographic/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/obj/item/fish/prototype = /obj/item/fish/holo/checkered
 	return LIST_VALUE_WRAP_LISTS(list(
@@ -60,7 +61,7 @@
 		FISH_SOURCE_AUTOWIKI_WEIGHT = 100,
 		FISH_SOURCE_AUTOWIKI_NOTES = "Holographic fish disappears outside the Holodeck",
 	))
-
+*/
 /datum/fish_source/holographic/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(!istype(get_area(fisherman), /area/station/holodeck))
@@ -87,22 +88,23 @@
 		FISHING_DUD = 25,
 		/obj/item/food/grown/grass = 25,
 		FISHING_RANDOM_SEED = 16,
-		/obj/item/seeds/grass = 6,
+		/obj/item/seeds/grassseed = 6,
 		/obj/item/seeds/random = 1,
-		/obj/effect/spawner/random/frog = 1,
-		/mob/living/basic/axolotl = 1,
+//		/mob/living/simple_mob/vore/aggressive/frog = 1,
+//		/mob/living/basic/axolotl = 1,
 		/mob/living/basic/turtle = 2,
 	)
 	fish_counts = list(
 		/obj/item/food/grown/grass = 10,
-		/obj/item/seeds/grass = 4,
+		/obj/item/seeds/grassseed = 4,
 		FISHING_RANDOM_SEED = 4,
 		/obj/item/seeds/random = 1,
-		/obj/effect/spawner/random/frog = 1,
-		/mob/living/basic/axolotl = 1,
+//		/mob/living/simple_mob/vore/aggressive/frog = 1,
+//		/mob/living/basic/axolotl = 1,
 	)
 	fishing_difficulty = FISHING_EASY_DIFFICULTY + 5
-
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/hydro_tray/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/list/data = list()
 	var/total_weight = 0
@@ -144,7 +146,7 @@
 		))
 
 	return data
-
+*/
 /datum/fish_source/hydro_tray/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	if(!istype(parent, /obj/machinery/hydroponics/constructable))
 		return ..()
@@ -179,7 +181,7 @@
 		seeds_to_draw_from = subtypesof(/obj/item/seeds)
 		// These two are already covered innately
 		seeds_to_draw_from -= /obj/item/seeds/random
-		seeds_to_draw_from -= /obj/item/seeds/grass
+		seeds_to_draw_from -= /obj/item/seeds/grassseed
 		// -1 yield are unharvestable plants so we don't care
 		// 20 rarirty is where most of the wacky plants are so let's ignore them
 		for(var/obj/item/seeds/seed_path as anything in seeds_to_draw_from)
@@ -238,7 +240,8 @@
 	if(!length(table))
 		return fish_table.Copy()
 	return table
-
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/aquarium/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/list/data = list()
 
@@ -250,7 +253,9 @@
 	))
 
 	return data
-
+*/
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/vending
 	background = "background_chasm"
 	catalog_description = "Vending Machines"
@@ -261,7 +266,8 @@
 	)
 	fish_source_flags = FISH_SOURCE_FLAG_NO_BLUESPACE_ROD|FISH_SOURCE_FLAG_EXPLOSIVE_NONE
 	fishing_difficulty = FISHING_EASY_DIFFICULTY //with some equipment and just enough dosh, you should be able to skip the minigame
-
+//TBI - FISHING UPDATE
+/*
 /datum/fish_source/vending/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/list/data = list()
 
@@ -273,7 +279,7 @@
 	))
 
 	return data
-
+*/
 /datum/fish_source/vending/get_modified_fish_table(obj/item/fishing_rod/rod, mob/fisherman, atom/location)
 	if(istype(location, /obj/machinery/fishing_portal_generator))
 		var/obj/machinery/fishing_portal_generator/portal = location
@@ -426,3 +432,4 @@
 		return null
 	reward.forceMove(spawn_location)
 	return reward
+*/

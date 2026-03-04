@@ -29,12 +29,12 @@
 	///This value represents how much the crab needs aren't being met. Higher values translate to a more likely hostile lobstrosity.
 	var/anger = 0
 	///The lobstrosity type this matures into
-	var/lob_type = /mob/living/basic/mining/lobstrosity/juvenile/lava
+//	var/lob_type = /mob/living/basic/mining/lobstrosity/juvenile/lava
 
 /obj/item/fish/chasm_crab/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(growth_checks))
-	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
+//	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
 
 /obj/item/fish/chasm_crab/get_fish_taste()
 	return list("raw crab" = 2)
@@ -61,7 +61,7 @@
 		multiplier -= 0.1 * round((average_weight - weight) / 200)
 	else if(weight >= (average_weight + 500))
 		multiplier += min(0.1 * round((weight - average_weight) / 500), 2)
-	AddComponent(/datum/component/fish_growth, lob_type, 10 MINUTES * multiplier)
+//	AddComponent(/datum/component/fish_growth, lob_type, 10 MINUTES * multiplier)
 
 /obj/item/fish/chasm_crab/pet_fish(mob/living/user)
 	. = ..()
@@ -90,7 +90,7 @@
 		anger += growth * 0.3
 	if(fish_count > AQUARIUM_MAX_BREEDING_POPULATION * 0.5) //check if there's enough room to maturate.
 		return COMPONENT_DONT_GROW
-
+/*
 /obj/item/fish/chasm_crab/proc/on_growth(datum/source, mob/living/basic/mining/lobstrosity/juvenile/result)
 	SIGNAL_HANDLER
 	if(!prob(anger))
@@ -100,6 +100,7 @@
 	else if(anger < 30) //not really that mad, just a bit unstable.
 		qdel(result.ai_controller)
 		result.ai_controller = new /datum/ai_controller/basic_controller/lobstrosity/juvenile/capricious(result)
+*/
 
 /obj/item/fish/chasm_crab/ice
 	name = "arctic chrab"
@@ -111,7 +112,7 @@
 	evolution_types = list(/datum/fish_evolution/chasm_chrab)
 	compatible_types = list(/obj/item/fish/chasm_crab)
 	beauty = FISH_BEAUTY_GREAT
-	lob_type = /mob/living/basic/mining/lobstrosity/juvenile
+//	lob_type = /mob/living/basic/mining/lobstrosity/juvenile
 
 /obj/item/fish/boned
 	name = "unmarine bonemass"
@@ -126,7 +127,7 @@
 	min_pressure = HAZARD_LOW_PRESSURE
 	max_integrity = 300
 	stable_population = 3
-	fillet_type = /obj/item/stack/sheet/bone
+	fillet_type = /obj/item/stack/material/chitin
 	num_fillets = 2
 	fish_traits = list(/datum/fish_trait/revival, /datum/fish_trait/carnivore)
 	average_size = 70

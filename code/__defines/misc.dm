@@ -104,27 +104,28 @@
 #define DEFAULT_JOB_TYPE /datum/job/assistant
 
 //Area flags, possibly more to come
-#define RAD_SHIELDED 				0x1		//shielded from radiation, clearly
-#define BLUE_SHIELDED				0x2		// Shield from bluespace teleportation (telescience)
-#define AREA_SECRET_NAME			0x4		// This tells certain things that display areas' names that they shouldn't display this area's name.
-#define AREA_FLAG_IS_NOT_PERSISTENT 0x8		// SSpersistence will not track values from this area.
-#define AREA_FORBID_EVENTS			0x10	// random events will not start inside this area.
-#define AREA_FORBID_SINGULO			0x20	// singulo will not move in.
-#define AREA_NO_SPOILERS			0x40	// makes it much more difficult to see what is inside an area with things like mesons.
-#define AREA_SOUNDPROOF				0x80	// blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
-#define AREA_BLOCK_PHASE_SHIFT		0x100	// Stops phase shifted mobs from entering
-#define AREA_BLOCK_GHOSTS			0x200	// Stops ghosts from entering
-#define AREA_ALLOW_LARGE_SIZE		0x400	// If mob size is limited in the area.
-#define AREA_BLOCK_SUIT_SENSORS		0x800	// If suit sensors are blocked in the area.
-#define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
-#define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
-#define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
-#define AREA_ALWAYS_HAS_GRAVITY		0x8000	// If an area should always have gravity, even during events that would otherwise remove it.
-// The 0x800000 is blocked by INITIALIZED, do NOT use it!
+#define RAD_SHIELDED 				(1<<0)		//shielded from radiation, clearly
+#define BLUE_SHIELDED				(1<<1)		// Shield from bluespace teleportation (telescience)
+#define AREA_SECRET_NAME			(1<<2)		// This tells certain things that display areas' names that they shouldn't display this area's name.
+#define AREA_FLAG_IS_NOT_PERSISTENT (1<<3)		// SSpersistence will not track values from this area.
+#define AREA_FORBID_EVENTS			(1<<4)	// random events will not start inside this area.
+#define AREA_FORBID_SINGULO			(1<<5)	// singulo will not move in.
+#define AREA_NO_SPOILERS			(1<<6)	// makes it much more difficult to see what is inside an area with things like mesons.
+#define AREA_SOUNDPROOF				(1<<7)	// blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
+#define AREA_BLOCK_PHASE_SHIFT		(1<<8)	// Stops phase shifted mobs from entering
+#define AREA_BLOCK_GHOSTS			(1<<9)	// Stops ghosts from entering
+#define AREA_ALLOW_LARGE_SIZE		(1<<10)	// If mob size is limited in the area.
+#define AREA_BLOCK_SUIT_SENSORS		(1<<11)	// If suit sensors are blocked in the area.
+#define AREA_BLOCK_TRACKING			(1<<12)	// If camera tracking is blocked in the area.
+#define AREA_BLOCK_GHOST_SIGHT		(1<<13)	// If an area blocks sight for ghosts
+#define AREA_BLOCK_INSTANT_BUILDING	(1<<14)	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
+#define AREA_ALWAYS_HAS_GRAVITY		(1<<15)	// If an area should always have gravity, even during events that would otherwise remove it.
+#define PHASE_SHIELDED				(1<<16) // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
+#define AREA_LIMIT_DARK_RESPITE		(1<<17) // Shadekin will die normally in those areas //VOREStation Note: Not implemented on VS. Used downstream.
+#define AREA_ALLOW_CLOCKOUT			(1<<18) // The PDA timeclock app can only be used in these areas //VOREStation Note: Not implemented on VS. Used downstream.
+// The (1<<19) 0x800000 is blocked by INITIALIZED, do NOT use it!
+#define UNLIMITED_FISHING			(1<<20) /// This area prevents fishing from removing unique/limited loot from sources that're also used outside of it.
 
-#define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
-#define AREA_LIMIT_DARK_RESPITE		0x200000 // Shadekin will die normally in those areas //VOREStation Note: Not implemented on VS. Used downstream.
-#define AREA_ALLOW_CLOCKOUT			0x400000 // The PDA timeclock app can only be used in these areas //VOREStation Note: Not implemented on VS. Used downstream.
 
 // OnTopic return values
 #define TOPIC_NOACTION 0
