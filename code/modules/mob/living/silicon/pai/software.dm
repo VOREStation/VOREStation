@@ -79,6 +79,6 @@
 
 		if("image")
 			var/img = text2num(params["image"])
-			if(1 <= img && img <= (GLOB.pai_emotions.len))
+			if(1 <= img && img <= length(GLOB.pai_emotions))
 				card.setEmotion(img)
 			return TRUE

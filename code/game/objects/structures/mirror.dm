@@ -7,6 +7,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
 	anchored = TRUE
+	flags = WALL_ITEM
 	var/shattered = 0
 	var/glass = 1
 	var/datum/tgui_module/appearance_changer/mirror/M

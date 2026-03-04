@@ -20,7 +20,7 @@
 #define VIRGO3C_TURF_CREATE(x)	x/virgo3c/nitrogen=VIRGO3C_MOL_N2;x/virgo3c/oxygen=VIRGO3C_MOL_O2;x/virgo3c/carbon_dioxide=VIRGO3C_MOL_CO2;x/virgo3c/phoron=VIRGO3C_MOL_PHORON;x/virgo3c/temperature=VIRGO3C_AVG_TEMP;x/virgo3c/outdoors=TRUE;x/virgo3c/update_graphic(list/graphic_add = null, list/graphic_remove = null) return 0
 #define VIRGO3C_TURF_CREATE_UN(x)	x/virgo3c/nitrogen=VIRGO3C_MOL_N2;x/virgo3c/oxygen=VIRGO3C_MOL_O2;x/virgo3c/carbon_dioxide=VIRGO3C_MOL_CO2;x/virgo3c/phoron=VIRGO3C_MOL_PHORON;x/virgo3c/temperature=VIRGO3C_AVG_TEMP
 
-var/datum/planet/virgo3c/planet_virgo3c = null
+GLOBAL_DATUM(planet_virgo3c, /datum/planet/virgo3c)
 
 /datum/time/virgo3c
 	seconds_in_day = 6 HOURS
@@ -33,7 +33,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/planet/virgo3c/New()
 	..()
-	planet_virgo3c = src
+	GLOB.planet_virgo3c = src
 	weather_holder = new /datum/weather_holder/virgo3c(src)
 
 /datum/planet/virgo3c/update_sun()

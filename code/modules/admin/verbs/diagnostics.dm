@@ -173,7 +173,7 @@
 	set category = "Debug.Investigate"
 
 	to_chat(usr, span_bold("Jobbans active in this round."))
-	for(var/t in jobban_keylist)
+	for(var/t in GLOB.jobban_keylist)
 		to_chat(usr, "[t]")
 
 /client/proc/print_jobban_old_filter()
@@ -186,6 +186,6 @@
 		return
 
 	to_chat(usr, span_bold("Jobbans active in this round."))
-	for(var/t in jobban_keylist)
+	for(var/t in GLOB.jobban_keylist)
 		if(findtext(t, job_filter))
 			to_chat(usr, "[t]")

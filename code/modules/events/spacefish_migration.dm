@@ -35,7 +35,7 @@
 		announcement = "Massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
 	else
 		announcement = "Unknown biological [spawned_fish.len == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert")
 
 /datum/event/spacefish_migration/tick()
 	if(activeFor % 5 != 0)

@@ -554,7 +554,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	if(!check_rights(R_BAN))	return
 
 	var/dat = span_bold("Job Bans!") + "<HR><table>"
-	for(var/t in jobban_keylist)
+	for(var/t in GLOB.jobban_keylist)
 		var/r = t
 		if( findtext(r,"##") )
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
@@ -647,8 +647,8 @@ ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.",
 		return
 
 	feedback_add_details("admin_verb","R")
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
+	if(GLOB.blackbox)
+		GLOB.blackbox.save_all_data_to_sql()
 
 	var/init_by = "Initiated by [user.holder.fakekey ? "Admin" : user.key]."
 	switch(result)
@@ -1109,11 +1109,11 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 
 	if(!check_rights(R_SPAWN))	return
 
-	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", custom_items)
-	if(!owner|| !custom_items[owner])
+	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", GLOB.custom_items)
+	if(!owner|| !GLOB.custom_items[owner])
 		return
 
-	var/list/possible_items = custom_items[owner]
+	var/list/possible_items = GLOB.custom_items[owner]
 	var/datum/custom_item/item_to_spawn = tgui_input_list(usr, "Select an item to spawn.", "Spawn Custom Item", possible_items)
 	if(!item_to_spawn)
 		return
@@ -1127,17 +1127,17 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 
 	if(!check_rights(R_SPAWN))	return
 
-	if(!custom_items)
+	if(!GLOB.custom_items)
 		to_chat(usr, "Custom item list is null.")
 		return
 
-	if(!custom_items.len)
+	if(!length(GLOB.custom_items))
 		to_chat(usr, "Custom item list not populated.")
 		return
 
-	for(var/assoc_key in custom_items)
+	for(var/assoc_key in GLOB.custom_items)
 		to_chat(usr, "[assoc_key] has:")
-		var/list/current_items = custom_items[assoc_key]
+		var/list/current_items = GLOB.custom_items[assoc_key]
 		for(var/datum/custom_item/item in current_items)
 			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 

@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		found_grid_checker = TRUE
 	if(!found_grid_checker) // Otherwise lets break some stuff.
 		spawn(1)
-			command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
+			GLOB.command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
 			for electrical damage.",
 			"Critical Power Overload")
 			var/i = 0

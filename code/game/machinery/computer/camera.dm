@@ -67,6 +67,7 @@
 	network = list(NETWORK_THUNDER)
 	density = FALSE
 	circuit = null
+	flags = WALL_ITEM
 
 /obj/machinery/computer/security/telescreen/allow_pai_interaction(proximity_flag)
 	return proximity_flag

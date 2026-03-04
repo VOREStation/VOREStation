@@ -46,11 +46,12 @@
 
 // All accessed vars need to be cached during read.
 // Get data from species, if this fails use cached data
-#define SETUP_SPECIES_CHECK(p,x)\
-var/datum/species/SP = species?.resolve();\
-if(SP)\
-	cached_species_vars[p] = x;\
-return cached_species_vars[p];
+#define SETUP_SPECIES_CHECK(p, x) \
+	var/datum/species/SP = species?.resolve(); \
+	if (SP) { \
+		cached_species_vars[p] = x; \
+	} \
+	return cached_species_vars[p];
 
 
 /datum/organ_data/proc/get_species_name()

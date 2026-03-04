@@ -1,6 +1,6 @@
 //Engine component object
 
-var/list/ship_engines = list()
+GLOBAL_LIST_EMPTY(ship_engines)
 /datum/ship_engine
 	var/name = "ship engine"
 	var/obj/machinery/holder	//actual engine object
@@ -8,7 +8,7 @@ var/list/ship_engines = list()
 /datum/ship_engine/New(var/obj/machinery/_holder)
 	..()
 	holder = _holder
-	ship_engines += src
+	GLOB.ship_engines += src
 
 /datum/ship_engine/proc/can_burn()
 	return 0
@@ -38,7 +38,7 @@ var/list/ship_engines = list()
 	return 1
 
 /datum/ship_engine/Destroy()
-	ship_engines -= src
+	GLOB.ship_engines -= src
 	for(var/obj/effect/overmap/visitable/ship/S in SSshuttles.ships)
 		S.engines -= src
 	holder = null

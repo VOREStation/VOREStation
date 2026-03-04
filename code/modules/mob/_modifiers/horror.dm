@@ -10,11 +10,11 @@
 // This list needs expansion...  Currently, we have very few proper redspace areas.
 // Tossing /area/redgate in here as well. Entering one of these areas (unless coded to do such) doesn't apply
 // the modifier, but if you're in one of these areas, you'll keep the modifier until you leave.
-var/static/list/redspace_areas = list (
+GLOBAL_LIST_INIT(redspace_areas, list(
 	/area/redspace_abduction,
 	/area/redgate,
 	/area/survivalpod/redspace // Redspace shelters effectively pull a bit of redspace into realspace, so
-)
+))
 
 /datum/modifier/redspace_drain
 	name = "redspace warp"
@@ -29,7 +29,7 @@ var/static/list/redspace_areas = list (
 	var/mob/living/carbon/human/unfortunate_soul //The human target of our modifier.
 
 /datum/modifier/redspace_drain/can_apply(mob/living/L, suppress_output = TRUE)
-	if(ishuman(L) && !L.isSynthetic() && L.lastarea && is_type_in_list(L.lastarea, redspace_areas))
+	if(ishuman(L) && !L.isSynthetic() && L.lastarea && is_type_in_list(L.lastarea, GLOB.redspace_areas))
 		return TRUE
 	return FALSE
 
@@ -62,7 +62,7 @@ var/static/list/redspace_areas = list (
 /datum/modifier/redspace_drain/check_if_valid() //We don't call parent. This doesn't wear off without set conditions.
 	if(holder.stat == DEAD)
 		expire(silent = TRUE)
-	else if(holder.lastarea && !is_type_in_list(holder.lastarea, redspace_areas))
+	else if(holder.lastarea && !is_type_in_list(holder.lastarea, GLOB.redspace_areas))
 		expire(silent = TRUE)
 
 /datum/modifier/redspace_drain/tick()

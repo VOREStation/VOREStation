@@ -2,7 +2,8 @@
 	var/datum/unarmed_attack/default_attack
 
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
-	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
+	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT))
+		return GLOB.unarmed_hardclaws
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
 		if(HAS_TRAIT(src, TRAIT_NONLETHAL_BLOWS))
 			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
