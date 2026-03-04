@@ -13,7 +13,7 @@ export type Data = {
   total_ships: Record<string, number>;
   player_one: string;
   player_two: string;
-  ships_have_been_placed: BooleanLike;
+  all_placed: number;
   shots_fired_pone: Record<string, number>;
   shots_fired_ptwo: Record<string, number>;
   destroyed_ships_pone: Ship[];
