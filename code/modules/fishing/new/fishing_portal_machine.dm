@@ -29,7 +29,7 @@
 			SCREENTIP_CONTEXT_RMB = "Unlink fishing spots"
 		),
 	)
-	AddElement(/datum/element/contextual_screentip_tools, tool_screentips)
+//	AddElement(/datum/element/contextual_screentip_tools, tool_screentips)
 	ADD_TRAIT(src, TRAIT_UNLINKABLE_FISHING_SPOT, INNATE_TRAIT)
 
 /obj/machinery/fishing_portal_generator/Destroy()
@@ -42,11 +42,11 @@
 	. = ..()
 	max_fishing_spots = 0
 	long_range_link = FALSE
-	for(var/datum/stock_part/matter_bin/matter_bin in component_parts)
-		max_fishing_spots += matter_bin.tier * 0.5
+	for(var/obj/item/stock_parts/matter_bin/matter_bin in component_parts)
+		max_fishing_spots += matter_bin.rating * 0.5
 	max_fishing_spots = ROUND_UP(max_fishing_spots)
-	for(var/datum/stock_part/capacitor/capacitor in component_parts)
-		if(capacitor.tier >= 3)
+	for(var/obj/item/stock_parts/capacitor/capacitor in component_parts)
+		if(capacitor.rating >= 3)
 			long_range_link = TRUE
 	if(!long_range_link)
 		check_fishing_spot_z()

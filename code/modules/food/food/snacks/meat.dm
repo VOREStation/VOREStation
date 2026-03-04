@@ -210,3 +210,16 @@ GLOBAL_LIST_INIT(worm_meat_spawns, list (
 		to_chat(user, span_alien("You cut the tissue holding the chunks together."))
 
 	..()
+
+/obj/item/reagent_containers/food/snacks/moonfish_eggs
+	name = "moonfish eggs"
+	gender = PLURAL
+	desc = "The moonfish lays large, translucent blue eggs which are prized in lizard cooking. Their flavour is similar to caviar, but generally is described as deeper and more complex."
+	icon = 'icons/obj/food/lizard.dmi'
+	icon_state = "moonfish_eggs"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/reagent_containers/food/snacks/moonfish_eggs/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SEAFOOD, 5)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3)
