@@ -1,6 +1,3 @@
-/mob/living/silicon/pai
-	var/atom/movable/screen/pai/pai_fold_display = null
-
 /atom/movable/screen/pai
 	icon = 'icons/mob/pai_hud.dmi'
 	var/base_state

@@ -24,6 +24,7 @@
 		get_asset_datum(/datum/asset/simple/preferences),
 		get_asset_datum(/datum/asset/spritesheet/preferences),
 		get_asset_datum(/datum/asset/json/preferences),
+		get_asset_datum(/datum/asset/spritesheet_batched/pai_icons),
 	)
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)

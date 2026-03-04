@@ -14,7 +14,7 @@ export const SpriteSection = (props: {
 
   const [searchText, setSearchText] = useState<string>('');
   const [includeDefault, setIncludeDefault] = useState<boolean>(false);
-  const [includeWide, setInclideDog] = useState<boolean>(false);
+  const [includeWide, setIncludeWide] = useState<boolean>(false);
   const [includeTall, setIncludeTall] = useState<boolean>(false);
 
   const filtered = robotSpriteSearcher(
@@ -41,7 +41,7 @@ export const SpriteSection = (props: {
           <Stack.Item>
             <Button.Checkbox
               checked={includeWide}
-              onClick={() => setInclideDog(!includeWide)}
+              onClick={() => setIncludeWide(!includeWide)}
             >
               Wide
             </Button.Checkbox>
