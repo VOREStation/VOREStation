@@ -736,9 +736,13 @@
 
 /obj/item/paicard/emag_act(remaining_charges, mob/user, emag_source)
 	. = ..()
+	if(!pai)
+		if(!emagged)
+			to_chat(user, span_warning("Without a pAI inhabiting \the [src] nothing happens."))
+		return
 	if(!emagged)
 		if(user)
-			to_chat(user, span_notice("The [src] buzzes and beeps."))
+			to_chat(user, span_notice("\The [src] buzzes and beeps."))
 			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		emagged = TRUE
 		// Add tools
