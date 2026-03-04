@@ -3,8 +3,8 @@
 	name = "Fish Encyclopedia"
 	desc = "Indexes all fish known to mankind (and related species)."
 	icon_state = "fishbook"
-	custom_price = PAYCHECK_CREW * 2
-	starting_content = "Lot of fish stuff" //book wrappers could use cleaning so this is not necessary
+//	custom_price = PAYCHECK_CREW * 2
+//	starting_content = "Lot of fish stuff" //book wrappers could use cleaning so this is not necessary
 
 /obj/item/book/manual/fish_catalog/Initialize(mapload)
 	. = ..()

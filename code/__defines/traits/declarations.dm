@@ -189,3 +189,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 #define TRAIT_EXPERT_FISHER "expert_fisher" // fishing is easier
 #define TRAIT_NAIVE "naive"
+/// This object has been slathered with a speed potion
+#define TRAIT_SPEED_POTIONED "speed_potioned"

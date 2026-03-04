@@ -1,3 +1,6 @@
+//NYI - FISHING UPDATE
+//This relies on organ code which I don't really want to even focus on while working on fishing.
+
 //Quirky fish source for surgery, an overcomplicated joke.
 
 /datum/fish_source/surgery

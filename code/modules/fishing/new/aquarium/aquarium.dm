@@ -91,7 +91,8 @@
 	var/possible_destinations_for_fish = list()
 	var/droploc = drop_location()
 	if(isturf(droploc))
-		possible_destinations_for_fish = get_adjacent_open_turfs(droploc)
+		var/turf/drop_turf = droploc
+		possible_destinations_for_fish = drop_turf.AdjacentTurfs()
 	else
 		possible_destinations_for_fish = list(droploc)
 	playsound(src, 'sound/effects/glass/glassbr3.ogg', 100, TRUE)
@@ -100,7 +101,7 @@
 	if(fluid_type != AQUARIUM_FLUID_AIR)
 		var/datum/reagents/reagent_splash = new()
 		reagent_splash.add_reagent(/datum/reagent/water, 30)
-		chem_splash(droploc, null, 3, list(reagent_splash))
+		reagent_splash.splash(droploc, reagent_splash.total_volume, 3)
 	update_appearance()
 
 /obj/structure/aquarium/prefilled
@@ -133,7 +134,7 @@
 	slowdown = 1
 	matter = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
 
-	custom_price = PAYCHECK_CREW * 9
+//	custom_price = PAYCHECK_CREW * 9
 
 	///Tracks the fluid type of our aquarium component. Used for overlays
 	var/fluid_type = AQUARIUM_FLUID_FRESHWATER
@@ -182,7 +183,7 @@
 /obj/item/fish_tank/update_icon()
 	. = ..()
 	///"aquarium_map" is used for mapping, so mappers can tell what it's.
-	icon_state = base_icon_state
+	icon_state = initial(icon_state)
 
 /obj/item/fish_tank/proc/on_aquarium_liquid_changed(datum/source, fluid_type)
 	SIGNAL_HANDLER
@@ -240,13 +241,13 @@
 		REMOVE_TRAIT(src, TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH, INNATE_TRAIT)
 	if(HAS_TRAIT(src, TRAIT_SPEED_POTIONED) || current_summed_weight < FISH_WEIGHT_SLOWDOWN)
 		slowdown = 0
-		drag_slowdown = 0
+		//drag_slowdown = 0
 	else
 		slowdown = GET_FISH_SLOWDOWN(current_summed_weight) * slowdown_coeff
-		drag_slowdown = slowdown * 0.5
-	if(ismob(loc))
+		//drag_slowdown = slowdown * 0.5
+/*	if(ismob(loc))
 		var/mob/mob = loc
-		mob.update_equipment_speed_mods()
+		mob.update_equipment_speed_mods()*/
 
 	force = min(2 + (GET_FISH_WEIGHT_RANK(current_summed_weight) * 3), 21)
 	throwforce = force
@@ -268,10 +269,10 @@
 
 	if(prob(85))
 		new /obj/item/fish/goldfish/gill(src)
-		reagents.add_reagent(/datum/reagent/consumable/nutriment, 3)
+		reagents.add_reagent(/datum/reagent/nutriment, 3)
 	else
 		new /obj/item/fish/goldfish/three_eyes/gill(src)
-		reagents.add_reagent(/datum/reagent/toxin/mutagen, 3) //three eyes goldfish feed on mutagen.
+		reagents.add_reagent(/datum/reagent/mutagen, 3) //three eyes goldfish feed on mutagen.
 
 
 //Stuff that would either reequire 50 freaking new files and refactors, or we just do this.
@@ -279,7 +280,7 @@
 /obj/structure/aquarium/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
 	if(!W.has_tool_quality(TOOL_WRENCH))
 		return FALSE
-	if(panel_open)
+	if(HAS_TRAIT(src, TRAIT_AQUARIUM_PANEL_OPEN))
 		return FALSE // Close panel first!
 	playsound(src, W.usesound, 50, 1)
 	var/actual_time = W.toolspeed * time
@@ -292,6 +293,7 @@
 			span_warning("\The [user] has [anchored ? "un" : ""]secured \the [src]."), \
 			span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
-		power_change() //Turn on or off the machine depending on the status of power in the new area.
+		var/area/our_area = get_area(src)
+		our_area.power_change() //Turn on or off the machine depending on the status of power in the new area.
 		update_icon()
 	return TRUE

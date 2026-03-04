@@ -224,6 +224,26 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	return 1
 
+///Use this proc if you want to check if we currently have an item in a certain slot.
+///Returns TRUE if its in that slot. FALSE if not.
+/mob/living/proc/slot_check(obj/item/item_to_check)
+	if((item_to_check.slot_flags & SLOT_BACK) && get_equipped_item(slot_back) == item_to_check)
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_BELT) && get_equipped_item(slot_belt) == item_to_check)
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_ID) && get_equipped_item(slot_wear_id) == item_to_check)
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_OCLOTHING) && get_equipped_item(slot_wear_suit) == item_to_check)
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_ICLOTHING) && get_equipped_item(slot_w_uniform) == item_to_check)
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_GLOVES) && get_equipped_item(slot_gloves) == item_to_check)
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_EARS) && ((get_equipped_item(slot_l_ear) == item_to_check) || (get_equipped_item(slot_r_ear) == item_to_check)))
+		return TRUE
+	if((item_to_check.slot_flags & SLOT_FEET) && get_equipped_item(slot_shoes) == item_to_check)
+		return TRUE
+	return FALSE
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()

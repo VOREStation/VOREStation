@@ -64,7 +64,7 @@
 */
 /datum/fish_source/holographic/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
-	if(!istype(get_area(fisherman), /area/station/holodeck))
+	if(!istype(get_area(fisherman), /area/holodeck))
 		return "You need to be inside the Holodeck to catch holographic fish."
 
 /datum/fish_source/holographic/pre_challenge_started(obj/item/fishing_rod/rod, mob/user, datum/fishing_challenge/challenge)
@@ -72,7 +72,7 @@
 
 /datum/fish_source/holographic/proc/check_area(mob/user)
 	SIGNAL_HANDLER
-	if(!istype(get_area(user), /area/station/holodeck))
+	if(!istype(get_area(user), /area/holodeck))
 		interrupt_challenge("exited holodeck")
 
 /datum/fish_source/holographic/on_challenge_completed(datum/fishing_challenge/source, mob/user, success)
