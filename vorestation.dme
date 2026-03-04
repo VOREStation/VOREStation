@@ -98,6 +98,7 @@
 #include "code\__defines\flags.dm"
 #include "code\__defines\font_awesome_icons.dm"
 #include "code\__defines\fonts.dm"
+#include "code\__defines\food.dm"
 #include "code\__defines\footsteps.dm"
 #include "code\__defines\gamemode.dm"
 #include "code\__defines\generators.dm"

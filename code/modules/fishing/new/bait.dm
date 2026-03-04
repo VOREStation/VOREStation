@@ -26,7 +26,7 @@
 
 /obj/item/bait_can/update_icon_state()
 	. = ..()
-	icon_state = base_icon_state
+	icon_state = initial(icon_state)
 	if(uses_left <= initial(uses_left))
 		if(!uses_left)
 			icon_state = "[icon_state]_empty"
@@ -94,11 +94,12 @@
 /obj/item/fishing_lure/examine(mob/user)
 	. = ..()
 	. += span_info("It has to be spun with a frequency of [spin_frequency[1] * 0.1] to [spin_frequency[2] * 0.1] seconds while fishing.")
-	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISHING_SPOT))
-		. += span_tinynotice("Thanks to your experience, you can examine it again to get a list of fish you can catch with it.")
-
+	/*if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISHING_SPOT))
+		. += span_notice("Thanks to your experience, you can examine it again to get a list of fish you can catch with it.")*/
+/*
 /obj/item/fishing_lure/examine_more(mob/user)
 	. = ..()
+*/
 	if(!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISHING_SPOT))
 		return
 
