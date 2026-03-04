@@ -5,20 +5,20 @@
 	icon_state = "fish_analyzer_map"
 	item_state = "fish_analyzer"
 	item_state = "fish_analyzer"
-	worn_icon_state = "fish_analyzer"
+//	worn_icon_state = "fish_analyzer"
 	desc = "A fish-shaped scanner used to monitor fish's status and evolutionary traits."
-	obj_flags = CONDUCTS_ELECTRICITY
-	custom_price = PAYCHECK_CREW * 3
+//	obj_flags = CONDUCTS_ELECTRICITY
+//	custom_price = PAYCHECK_CREW * 3
 	item_flags = NOBLUDGEON
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_TINY
 	throw_speed = 3
 	throw_range = 7
 	matter = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT *2)
-	greyscale_config_inhand_left = /datum/greyscale_config/fish_analyzer_inhand_left
-	greyscale_config_inhand_right = /datum/greyscale_config/fish_analyzer_inhand_right
-	greyscale_config_worn = /datum/greyscale_config/fish_analyzer_worn
+//	greyscale_config_inhand_left = /datum/greyscale_config/fish_analyzer_inhand_left
+//	greyscale_config_inhand_right = /datum/greyscale_config/fish_analyzer_inhand_right
+//	greyscale_config_worn = /datum/greyscale_config/fish_analyzer_worn
 	///The color of the case. Used by grayscale configs and update_overlays()
 	var/case_color
 	///the atom (aquarium or fish) we have scanned
@@ -26,7 +26,7 @@
 
 /obj/item/fish_analyzer/Initialize(mapload)
 	case_color = rgb(rand(16, 255), rand(16, 255), rand(16, 255))
-	set_greyscale(colors = list(case_color))
+//	set_greyscale(colors = list(case_color))
 	. = ..()
 
 	var/static/list/fishe_signals = list(
@@ -39,9 +39,9 @@
 		experiment_signals = fishe_signals, \
 	)
 
-	register_item_context()
+//	register_item_context()
 	update_appearance()
-	AddElement(/datum/element/adjust_fishing_difficulty, -3, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/adjust_fishing_difficulty, -3, SLOT_BELT, TRUE)
 
 /obj/item/fish_analyzer/Destroy()
 	scanned_object = null
@@ -53,7 +53,7 @@
 
 /obj/item/fish_analyzer/update_icon_state()
 	. = ..()
-	icon_state = base_icon_state
+	icon_state = initial(icon_state)
 
 /obj/item/fish_analyzer/update_overlays()
 	. = ..()
@@ -65,7 +65,7 @@
 /obj/item/fish_analyzer/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(!isfish(target) && !HAS_TRAIT(target, TRAIT_IS_AQUARIUM))
 		return NONE
-	if(!user.can_read(src) || user.is_blind())
+	if(user.is_blind()) //!user.can_read(src))
 		return ITEM_INTERACT_BLOCKING
 
 	SEND_SIGNAL(src, COMSIG_FISH_ANALYZER_ANALYZE_STATUS, target, user)
@@ -93,7 +93,7 @@
 	if(isnull(scanned_object))
 		balloon_alert(user, "no specimen data!")
 		return TRUE
-	if(istype(user) && !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
+	if(istype(user) && !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items())))
 		balloon_alert(user, "specimen data lost!")
 		unregister_scanned()
 		return TRUE
@@ -103,13 +103,13 @@
 		ui = new(user, src, "FishAnalyzer")
 		ui.open()
 
-/obj/item/fish_analyzer/ui_status(mob/living/user, datum/ui_state/state)
+/obj/item/fish_analyzer/tgui_status(mob/living/user, datum/tgui_state/state)
 	if(!istype(user)) //observers shouldn't disrupt things.
 		return ..()
-	if(!scanned_object || !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
+	if(!scanned_object || !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items())))
 		balloon_alert(user, "specimen data lost!")
 		unregister_scanned()
-		return UI_CLOSE
+		return STATUS_CLOSE
 	return ..()
 
 /obj/item/fish_analyzer/tgui_data(mob/user)
@@ -148,7 +148,7 @@
 	data["fish_list"] += list(list(
 		"fish_name" = fishie.name,
 		"fish_icon" = fishie.icon,
-		"fish_icon_state" = fishie.base_icon_state,
+		"fish_icon_state" = fishie.initial(icon_state),
 		"fish_food" = fishie.food.name,
 		"fish_food_color" = fishie.food::color,
 		"fish_min_temp" = fishie.required_temperature_min,

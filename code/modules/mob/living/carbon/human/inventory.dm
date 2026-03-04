@@ -226,7 +226,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 ///Use this proc if you want to check if we currently have an item in a certain slot.
 ///Returns TRUE if its in that slot. FALSE if not.
-/mob/living/proc/slot_check(obj/item/item_to_check)
+/mob/living/proc/slot_check(obj/item/item_to_check, check_hands = FALSE)
+	if(check_hands && ((item_to_check == l_hand) || (item_to_check == r_hand)))
+		return TRUE
 	if((item_to_check.slot_flags & SLOT_BACK) && get_equipped_item(slot_back) == item_to_check)
 		return TRUE
 	if((item_to_check.slot_flags & SLOT_BELT) && get_equipped_item(slot_belt) == item_to_check)

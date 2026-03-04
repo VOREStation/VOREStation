@@ -7,7 +7,10 @@
 	///For items, in which slot it has to be worn to influence the difficulty of the minigame
 	var/slots
 
-/datum/element/adjust_fishing_difficulty/Attach(datum/target, modifier, slots = NONE)
+	///If it works in our hands or not.
+	var/works_in_hands = FALSE
+
+/datum/element/adjust_fishing_difficulty/Attach(datum/target, modifier, slots = NONE, works_in_hands = FALSE)
 	. = ..()
 	if(!ismovable(target) || !modifier)
 		return COMPONENT_INCOMPATIBLE
@@ -28,6 +31,7 @@
 
 	src.modifier = modifier
 	src.slots = slots
+	src.works_in_hands = works_in_hands
 
 	update_check(target)
 
@@ -50,7 +54,7 @@
 		return
 	var/mob/living/holder = movable_source.loc
 	var/obj/item/item = movable_source
-	if(holder.slot_check(movable_source))
+	if(holder.slot_check(item, works_in_hands))
 		update_user(holder, movable_source, removing)
 
 /datum/element/adjust_fishing_difficulty/proc/on_item_examine(obj/item/item, mob/user, list/examine_text)
