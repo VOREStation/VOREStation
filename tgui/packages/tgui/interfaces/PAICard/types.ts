@@ -41,4 +41,6 @@ export type ActivePAIData = {
   } | null;
   sprite_datum_class: string;
   sprite_datum_size: string;
+  emag_systems: string[] | null;
+  selected_system: string | null;
 };
