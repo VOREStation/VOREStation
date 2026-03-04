@@ -13,3 +13,6 @@
 #define CLICK_CD_RESIST 20
 #define CLICK_CD_GRABBING 10
 #define CLICK_CD_LOOK_UP 5
+
+//We will round to this value in damage calculations.
+#define DAMAGE_PRECISION 0.1

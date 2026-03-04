@@ -1,10 +1,15 @@
 /atom
-	//Integrity
+	///any atom that uses integrity and can be damaged must set this to true, otherwise the integrity procs will throw an error
 	var/uses_integrity = FALSE
+
+	//VAR_PROTECTED/datum/armor/armor_type = /datum/armor/none
+	//VAR_PRIVATE/datum/armor/armor
+
 	VAR_PRIVATE/atom_integrity //defaults to max_integrity
 	var/max_integrity = 500
 	var/integrity_failure = 0 //0 if we have no special broken behavior, otherwise is a percentage of at what point the atom breaks. 0.5 being 50%
 	///Damage under this value will be completely ignored
+	var/damage_deflection = 0
 
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 
@@ -83,6 +88,38 @@
 	SHOULD_BE_PURE(TRUE)
 	return round(atom_integrity / max_integrity, 0.01)
 
+///returns the damage value of the attack after processing the atom's various armor protections
+/atom/proc/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
+	if(!uses_integrity)
+		CRASH("/atom/proc/run_atom_armor was called on [src] without being implemented as a type that uses integrity!")
+	if(damage_flag == MELEE && damage_amount < damage_deflection)
+		return 0
+	if(damage_type != BRUTE && damage_type != BURN)
+		return 0
+	var/armor_protection = 0
+	/*
+	if(damage_flag)
+		armor_protection = get_armor_rating(damage_flag)
+	if(armor_protection) //Only apply weak-against-armor/hollowpoint effects if there actually IS armor.
+		armor_protection = clamp(PENETRATE_ARMOUR(armor_protection, armour_penetration), min(armor_protection, 0), 100)
+	*/
+	return round(damage_amount * (100 - armor_protection) * 0.01, DAMAGE_PRECISION)
+
+///the sound played when the atom is damaged.
+/atom/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	switch(damage_type)
+		if(BRUTE)
+			if(damage_amount)
+				playsound(src, 'sound/items/weapons/smash.ogg', 50, TRUE)
+			else
+				playsound(src, 'sound/items/weapons/tap.ogg', 50, TRUE)
+		if(BURN)
+			playsound(src.loc, 'sound/items/tools/welder.ogg', 100, TRUE)
+
+///Called to get the damage that hulks will deal to the atom.
+/atom/proc/hulk_damage()
+	return 150 //the damage hulks do on punches to this atom, is affected by melee armor
+
 /atom/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal
 	if(!uses_integrity)
 		CRASH("unimplemented /atom/proc/attack_generic()!")
@@ -123,7 +160,6 @@
 		atom_break(damage_type)
 		return TRUE
 	return FALSE
-
 /*
 /// A cut-out proc for [/atom/proc/bullet_act] so living mobs can have their own armor behavior checks without causing issues with needing their own on_hit call
 /atom/proc/check_projectile_armor(def_zone, obj/projectile/impacting_projectile, is_silent)

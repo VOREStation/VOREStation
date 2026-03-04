@@ -112,7 +112,7 @@
 		return UI_CLOSE
 	return ..()
 
-/obj/item/fish_analyzer/ui_data(mob/user)
+/obj/item/fish_analyzer/tgui_data(mob/user)
 	var/list/data = list()
 	data["fish_list"] = list()
 	data["fish_scanned"] = FALSE

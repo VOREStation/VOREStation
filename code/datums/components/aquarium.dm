@@ -113,7 +113,7 @@
 
 	if(reagents_size > 0)
 		if(!movable.reagents)
-			movable.create_reagents(reagents_size, SEALED_CONTAINER)
+			movable.create_reagents(reagents_size)//, SEALED_CONTAINER)
 		if(movable.reagents.total_volume)
 			start_autofeed(movable.reagents)
 		else
@@ -131,16 +131,18 @@
 	else
 		RegisterSignal(movable, COMSIG_ATOM_UI_INTERACT, PROC_REF(interact))
 
-	movable.AddElement(/datum/element/relay_attackers)
+	//movable.AddElement(/datum/element/relay_attackers)
 	movable.AddComponent(/datum/component/fishing_spot, /datum/fish_source/aquarium)
 
 
-	movable.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
+	//movable.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
 	RegisterSignal(movable, COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM, PROC_REF(on_requesting_context_from_item))
 
+	/*
 	for(var/atom/movable/content as anything in movable.contents)
 		if(content.flags_1 & INITIALIZED_1)
 			on_entered(movable, content)
+	*/
 
 	movable.add_traits(list(TRAIT_IS_AQUARIUM, TRAIT_STOP_FISH_FLOPPING), AQUARIUM_TRAIT)
 
@@ -189,7 +191,7 @@
 	current_mode = old_mode
 	if(reagents_size)
 		if(!new_parent.reagents)
-			new_parent.create_reagents(reagents_size, SEALED_CONTAINER)
+			new_parent.create_reagents(reagents_size)//, SEALED_CONTAINER)
 		movable.reagents.trans_to(new_parent, movable.reagents.total_volume)
 
 /datum/component/aquarium/PostTransfer(datum/new_parent)
@@ -206,16 +208,20 @@
 
 /datum/component/aquarium/proc/on_click_alt(atom/movable/source, mob/living/user)
 	SIGNAL_HANDLER
+	/*
 	if(!user.can_perform_action(source))
+		return
+	*/
+	if(!user.incapacitated())
 		return
 	var/closing = HAS_TRAIT(parent, TRAIT_AQUARIUM_PANEL_OPEN)
 	if(closing)
 		REMOVE_TRAIT(parent, TRAIT_AQUARIUM_PANEL_OPEN, AQUARIUM_TRAIT)
-		source.reagents.flags &= ~(TRANSPARENT|REFILLABLE)
+		//source.reagents.flags &= ~(TRANSPARENT|REFILLABLE)
 		SStgui.close_uis(src)
 	else
 		ADD_TRAIT(parent, TRAIT_AQUARIUM_PANEL_OPEN, AQUARIUM_TRAIT)
-		source.reagents.flags |= TRANSPARENT|REFILLABLE
+		//source.reagents.flags |= TRANSPARENT|REFILLABLE
 
 	source.balloon_alert(user, "panel [closing ? "closed" : "open"]")
 	source.update_appearance()
@@ -239,7 +245,7 @@
 		source.balloon_alert(user, "fed the fish")
 		return ITEM_INTERACT_SUCCESS
 
-	if(!HAS_TRAIT(item, TRAIT_AQUARIUM_CONTENT) || (!isitem(parent) && user.combat_mode))
+	if(!HAS_TRAIT(item, TRAIT_AQUARIUM_CONTENT) || (!isitem(parent) && user.a_intent != I_HURT))
 		return //proceed with normal interactions
 
 	var/broken = source.get_integrity_percentage() <= source.integrity_failure
@@ -248,7 +254,7 @@
 	if(broken)
 		source.balloon_alert(user, "aquarium is broken!")
 		return ITEM_INTERACT_BLOCKING
-	if(!user.transferItemToLoc(item, source))
+	if(!item.Move(src))
 		user.balloon_alert(user, "stuck to your hand!")
 		return ITEM_INTERACT_BLOCKING
 	source.balloon_alert(user, "added to aquarium")
@@ -283,6 +289,7 @@
 	if(current_mode == AQUARIUM_MODE_AUTO && is_fish_population_safe())
 		REMOVE_TRAIT(parent, TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH, AQUARIUM_TRAIT)
 
+//We're just going to make
 /datum/component/aquarium/proc/on_plunger_act(atom/movable/source, obj/item/plunger/plunger, mob/living/user, reinforced)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(source, TRAIT_AQUARIUM_PANEL_OPEN))
@@ -292,17 +299,17 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/aquarium/proc/do_plunging(atom/movable/source, mob/living/user)
-	user.balloon_alert_to_viewers("plunging...")
+	user.balloon_alert("plunging...")
 	if(do_after(user, 3 SECONDS, target = source))
-		user.balloon_alert_to_viewers("finished plunging")
-		source.reagents.expose(get_turf(source), TOUCH) //splash on the floor
+		user.balloon_alert("finished plunging")
+		source.reagents.splash(get_turf(source), source.reagents.total_volume) //splash on the floor
 		source.reagents.clear_reagents()
 
 /datum/component/aquarium/proc/on_examine(atom/movable/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("Its temperature and fluid are currently set to [EXAMINE_HINT("[fluid_temp] K")] and [EXAMINE_HINT(fluid_type)].")
+	examine_list += span_notice("Its temperature and fluid are currently set to [span_bold("[fluid_temp] K")] and [span_bold(fluid_type)].")
 	var/panel_open = HAS_TRAIT(source, TRAIT_AQUARIUM_PANEL_OPEN)
-	examine_list += span_notice("[EXAMINE_HINT("Alt-click")] to [panel_open ? "close" : "open"] the control and feed panel.")
+	examine_list += span_notice("[span_bold("Alt-click")] to [panel_open ? "close" : "open"] the control and feed panel.")
 	if(panel_open && source.reagents.total_volume)
 		examine_list += span_notice("You can use a plunger to empty the feed storage.")
 
@@ -426,6 +433,8 @@
 		get_optimal_aquarium_settings()
 
 /datum/component/aquarium/proc/update_aquarium_beauty(old_beauty)
+	return //We don't care about beauty for now.
+	/*
 	if(QDELETED(parent))
 		return
 	old_beauty = clamp(old_beauty, MIN_AQUARIUM_BEAUTY, MAX_AQUARIUM_BEAUTY)
@@ -438,7 +447,7 @@
 	if(old_beauty)
 		parent.RemoveElement(/datum/element/beauty, old_beauty)
 	if(new_beauty)
-		parent.AddElement(/datum/element/beauty, new_beauty)
+		parent.AddElement(/datum/element/beauty, new_beauty)*/
 
 ///Remove a visual overlay from an aquarium_content comp
 /datum/component/aquarium/proc/remove_visual(atom/movable/source, obj/effect/aquarium/visual)
@@ -597,7 +606,7 @@
 		ui = new(user, src, "Aquarium", movable.name)
 		ui.open()
 
-/datum/component/aquarium/ui_data(mob/user)
+/datum/component/aquarium/tgui_data(mob/user)
 	. = ..()
 	var/atom/movable/aquarium = parent
 	.["fluidType"] = fluid_type
@@ -627,7 +636,7 @@
 			"prop_icon_state" = item::icon_state,
 		))
 
-/datum/component/aquarium/ui_static_data(mob/user)
+/datum/component/aquarium/tgui_static_data(mob/user)
 	. = ..()
 	//I guess these should depend on the fluid so lava critters can get high or stuff below water freezing point but let's keep it simple for now.
 	.["minTemperature"] = min_fluid_temp
@@ -639,7 +648,7 @@
 		modes_no_assoc += mode
 	.["aquariumModes"] = modes_no_assoc
 
-/datum/component/aquarium/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/component/aquarium/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -714,10 +723,10 @@
 	//Check if there are live fish - good mood
 	//All fish dead - bad mood.
 	//No fish - nothing.
-	if(alive_fish > 0)
+	/*if(alive_fish > 0)
 		user.add_mood_event("aquarium", morb ? /datum/mood_event/morbid_aquarium_bad : /datum/mood_event/aquarium_positive)
 	else if(dead_fish > 0)
-		user.add_mood_event("aquarium", morb ? /datum/mood_event/morbid_aquarium_good : /datum/mood_event/aquarium_negative)
+		user.add_mood_event("aquarium", morb ? /datum/mood_event/morbid_aquarium_good : /datum/mood_event/aquarium_negative)*/
 
 /datum/component/aquarium/proc/on_requesting_context_from_item(atom/source, list/context, obj/item/held_item, mob/user)
 	SIGNAL_HANDLER

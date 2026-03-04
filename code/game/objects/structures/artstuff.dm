@@ -163,7 +163,8 @@
 	generate_proper_overlay()
 	try_rename(user)
 
-/obj/item/canvas/proc/update_appearance()
+/obj/item/canvas/update_appearance()
+	. = ..()
 	cut_overlays()
 	if(icon_generated)
 		var/mutable_appearance/detail = mutable_appearance(generated_icon)
@@ -460,7 +461,8 @@
 	if(current_canvas.painting_name == initial(current_canvas.painting_name))
 		current_canvas.try_rename(user)
 
-/obj/structure/sign/painting/proc/update_appearance()
+/obj/structure/sign/painting/update_appearance()
+	. = ..()
 	name = current_canvas ? "painting - [current_canvas.painting_name]" : initial(name)
 	desc = current_canvas ? desc_with_canvas : initial(desc)
 	icon_state = "[base_icon_state]-[current_canvas?.generated_icon ? "hidden" : "empty"]"

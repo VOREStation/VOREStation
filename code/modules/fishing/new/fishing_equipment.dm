@@ -394,7 +394,7 @@
 
 /obj/item/survivalcapsule/fishing/examine(mob/user)
 	. = ..()
-	. += span_info("[EXAMINE_HINT("Right-Click")] to change the selected fishing spot when held.")
+	. += span_info("[span_bold("Right-Click")] to change the selected fishing spot when held.")
 
 /obj/item/survivalcapsule/fishing/examine_more(mob/user)
 	. = ..()
@@ -525,9 +525,9 @@
 		return
 	var/info =  span_info("It's currently loaded with [loaded_injector]. Use it to ")
 	if(istype(loaded_injector, /obj/item/reagent_containers/syringe))
-		info += span_info("[EXAMINE_HINT("extract")] a gene from a fish or aquatic lifeform.")
+		info += span_info("[span_bold("extract")] a gene from a fish or aquatic lifeform.")
 	else
-		info += span_info("[EXAMINE_HINT("inject")] the gene in a fish or aquatic lifeform.")
+		info += span_info("[span_bold("inject")] the gene in a fish or aquatic lifeform.")
 	. += info
 
 /obj/item/fish_genegun/update_icon_state()

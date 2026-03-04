@@ -563,7 +563,7 @@
 		return TRUE
 	. = ..()
 
-/obj/item/fishing_rod/ui_data(mob/user)
+/obj/item/fishing_rod/tgui_data(mob/user)
 	. = ..()
 	var/list/data = list()
 

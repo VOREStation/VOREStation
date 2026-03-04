@@ -60,6 +60,15 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 //From TG:
 
+/// Mobs with this trait do care about a few grisly things, such as digging up graves. They also really do not like bringing people back to life or tending wounds, but love autopsies and amputations.
+#define TRAIT_MORBID "morbid"
+
+/// Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.
+#define TRAIT_WAS_RENAMED "was_renamed"
+
+///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
+#define TRAIT_KEEP_TOGETHER "keep-together"
+
 /// Trait that is added to fishes that someone already caught, be it in-game or just theoretically, such as when they're bought
 /// Prevents fishing achievement from being granted by catching one of these
 #define TRAIT_NO_FISHING_ACHIEVEMENT "no_fishing_achievement"

@@ -6,7 +6,6 @@
 	density = TRUE
 	opened = 0
 	var/locked = 1
-	var/broken = 0
 	var/large = 1
 	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 200

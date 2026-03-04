@@ -24,7 +24,7 @@ ADMIN_VERB(fishing_calculator, R_DEBUG, "Fishing Calculator", "A calculator... f
 	.["line_types"] = typesof(/obj/item/fishing_line)
 	.["spot_types"] = subtypesof(/datum/fish_source)
 
-/datum/fishing_calculator/ui_data(mob/user)
+/datum/fishing_calculator/tgui_data(mob/user)
 	return list("info" = current_table)
 
 /datum/fishing_calculator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

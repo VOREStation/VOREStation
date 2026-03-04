@@ -151,3 +151,36 @@
 	QDEL_NULL(light_spot)
 
 	return ..()
+
+///A wearable tool that lets you empty plumbing machinery and some other stuff
+/obj/item/plunger
+	name = "plunger"
+	desc = "It's a plunger for plunging."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "plunger"
+	item_state = "plunger"
+	//icon_angle = 90
+
+	slot_flags = SLOT_MASK
+
+	///time*plunge_mod = total time we take to plunge an object
+	var/plunge_mod = 1
+	///whether we do heavy duty stuff like geysers
+	var/reinforced = TRUE
+	/*
+	///alt sprite for the toggleable layer change mode
+	var/layer_mode_sprite = "plunger_layer"
+	///Wheter we're in layer mode
+	var/layer_mode = FALSE
+	///What layer we set it to
+	var/target_layer = 1 //DUCT_LAYER_DEFAULT
+	*/
+
+/obj/item/plunger/attack_atom(obj/attacked_obj, mob/living/user, list/modifiers, list/attack_modifiers)
+	/*
+	if(layer_mode)
+		SEND_SIGNAL(attacked_obj, COMSIG_MOVABLE_CHANGE_DUCT_LAYER, attacked_obj, target_layer)
+		return ..()
+	else*/
+	attacked_obj.plunger_act(src, user, reinforced)
+		//return ..()
