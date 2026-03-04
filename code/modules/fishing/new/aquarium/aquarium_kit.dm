@@ -4,14 +4,15 @@
 	desc = "A refillable can that dispenses nutritious fish feed."
 	icon = 'icons/obj/aquarium/supplies.dmi'
 	icon_state = "fish_feed"
-	w_class = WEIGHT_CLASS_TINY
+	w_class = ITEMSIZE_TINY
 	volume = 5
 	amount_per_transfer_from_this = 2.5
-	has_variable_transfer_amount = FALSE
-	initial_reagent_flags = TRANSPARENT
-	reagent_container_liquid_sound = null
-	list_reagents = list(/obj/item/fish::food = 2.5) //Default fish diet
-	gulp_size = 1
+//	has_variable_transfer_amount = FALSE
+//	initial_reagent_flags = TRANSPARENT
+//	reagent_container_liquid_sound = null
+	starts_with = list(/obj/item/fish::food = 2.5) //Default fish diet
+	max_transfer_amount = 0 //Make it so you can't adjust the transfer size.
+	amount_per_transfer_from_this = 1
 
 /**
  * Stasis fish case container for moving fish between aquariums safely.
@@ -23,7 +24,7 @@
 	desc = "A resizable case keeping the fish inside in stasis."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "fishbox"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = ITEMSIZE_SMALL
 	inhand_icon_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
