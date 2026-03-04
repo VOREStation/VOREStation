@@ -21,20 +21,20 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	desc = "very bland"
 	abstract_type = /obj/item/fish
 	icon = 'icons/obj/aquarium/fish.dmi'
-	lefthand_file = 'icons/mob/inhands/fish_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/fish_righthand.dmi'
-	icon_angle = 180
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/inhands/fish_lefthand.dmi',
+			slot_r_hand_str = 'icons/mob/inhands/fish_righthand.dmi'
+			)
 	force = 6
 	throwforce = 6
 	throw_range = 8
-	attack_verb_continuous = list("slaps", "whacks")
-	attack_verb_simple = list("slap", "whack")
-	hitsound = SFX_DEFAULT_FISH_SLAP
+	attack_verb = list("slaps", "whacks")
+	hitsound = 'sound/mobs/non-humanoids/fish/fish_slap1.ogg'
 	drop_sound = 'sound/mobs/non-humanoids/fish/fish_drop1.ogg'
-	pickup_sound = SFX_FISH_PICKUP
-	sound_vary = TRUE
-	obj_flags = UNIQUE_RENAME
-	item_flags = SLOWS_WHILE_IN_HAND
+	pickup_sound = 'sound/mobs/non-humanoids/fish/fish_pickup1.ogg'
+//	sound_vary = TRUE
+//	obj_flags = UNIQUE_RENAME
+//	item_flags = SLOWS_WHILE_IN_HAND
 	//we handle slowdowns internally, and the fish weight modifier from materials already contributes to it.
 	material_flags = MATERIAL_EFFECTS|MATERIAL_AFFECT_STATISTICS|MATERIAL_COLOR|MATERIAL_ADD_PREFIX|MATERIAL_NO_SLOWDOWN|MATERIAL_NO_EDIBILITY
 
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	var/required_temperature_max = MAX_AQUARIUM_TEMP
 
 	/// What type of reagent this fish needs to be fed.
-	var/datum/reagent/food = /datum/reagent/consumable/nutriment
+	var/datum/reagent/food = /datum/reagent/nutriment
 	/// How often the fish needs to be fed
 	var/feeding_frequency = 5 MINUTES
 	/// Time of last the fish was fed
@@ -207,19 +207,19 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	AddComponent(/datum/component/aquarium_content, list(COMSIG_ATOM_WAS_ATTACKED))
 
 	RegisterSignal(src, COMSIG_MOVABLE_GET_AQUARIUM_BEAUTY, PROC_REF(get_aquarium_beauty))
-	RegisterSignal(src, COMSIG_ATOM_ON_LAZARUS_INJECTOR, PROC_REF(use_lazarus))
+//	RegisterSignal(src, COMSIG_ATOM_ON_LAZARUS_INJECTOR, PROC_REF(use_lazarus))
 	if(fish_flags & FISH_DO_FLOP_ANIM)
 		RegisterSignal(src, COMSIG_ATOM_TEMPORARY_ANIMATION_START, PROC_REF(on_temp_animation))
 		check_flopping()
 	if(status != FISH_DEAD)
-		ADD_TRAIT(src, TRAIT_UNCOMPOSTABLE, REF(src)) //Compost fish only when it's dead.
+//		ADD_TRAIT(src, TRAIT_UNCOMPOSTABLE, REF(src)) //Compost fish only when it's dead.
 		START_PROCESSING(SSobj, src)
 
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_FISH_STASIS), PROC_REF(enter_stasis))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_FISH_STASIS), PROC_REF(exit_stasis))
 
 	//Adding this because not all fish have the gore foodtype that makes them automatically eligible for dna infusion.
-	add_traits(list(TRAIT_DUCT_TAPE_UNREPAIRABLE, TRAIT_VALID_DNA_INFUSION), INNATE_TRAIT)
+//	add_traits(list(TRAIT_DUCT_TAPE_UNREPAIRABLE, TRAIT_VALID_DNA_INFUSION), INNATE_TRAIT)
 
 	//new fish should be modestly hungry and cannot reproduce right away.
 	breeding_wait = world.time + (breeding_timeout * NEW_FISH_BREEDING_TIMEOUT_MULT)
@@ -229,8 +229,8 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		apply_traits() //Make sure traits are applied before size and weight.
 		update_size_and_weight()
 
-	register_context()
-	register_item_context()
+//	register_context()
+//	register_item_context()
 
 	if(!apply_qualities || !PERFORM_ALL_TESTS(focus_only/fish_population) || type == abstract_type || stable_population > 1)
 		return
@@ -263,6 +263,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	return list()
 
+/*
 /obj/item/fish/suicide_act(mob/living/user)
 	if(force == 0)
 		user.visible_message(span_suicide("[user] slaps [user.p_them()]self with [src], but nothing happens!"))
@@ -282,11 +283,12 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	stoplag(0.1 SECONDS)
 	user.visible_message(span_bolddanger(suicide_slap_text))
 	user.attackby(src, user)
-	if(user.stat > SOFT_CRIT || (iteration > 100))
+	if(user.stat != CONSCIOUS || (iteration > 100))
 		REMOVE_TRAIT(user, TRAIT_COMBAT_MODE_LOCK, REF(src))
-		user.gib(DROP_ORGANS|DROP_BODYPARTS|DROP_ITEMS)
+		user.gib()
 		return
 	slapperoni(user, iteration++)
+*/
 
 /obj/item/fish/add_item_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(HAS_TRAIT(source, TRAIT_CATCH_AND_RELEASE))
@@ -304,15 +306,15 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	if(istype(held_item, /obj/item/fish_analyzer))
 		context[SCREENTIP_CONTEXT_LMB] = "Scan"
 		return CONTEXTUAL_SCREENTIP_SET
-	if(istype(held_item, /obj/item/clothing/neck/stethoscope))
+	if(istype(held_item, /obj/item/clothing/accessory/stethoscope))
 		context[SCREENTIP_CONTEXT_LMB] = "Check Pulse"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
 /obj/item/fish/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/clothing/neck/stethoscope))
+	if(!istype(tool, /obj/item/clothing/accessory/stethoscope))
 		return NONE
-	user.balloon_alert_to_viewers("checking pulse")
+	user.balloon_alert("checking pulse")
 	if(!do_after(user, 2.5 SECONDS, src))
 		return ITEM_INTERACT_FAILURE
 	// Sir... I'm afraid your fish is dying.
@@ -347,7 +349,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	playsound(location, 'sound/effects/splash.ogg', 50)
 	SEND_SIGNAL(location, COMSIG_FISH_RELEASED_INTO, src, user)
 	qdel(src)
-
+/*
 ///Main proc that makes the fish edible.
 /obj/item/fish/proc/make_edible()
 	var/foodtypes = get_food_types()
@@ -372,10 +374,11 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		reagent_purity = 1, \
 	)
 	RegisterSignals(src, list(COMSIG_ITEM_FRIED, COMSIG_ITEM_BARBEQUE_GRILLED), PROC_REF(on_fish_cooked))
+*/
 
 ///A proc that returns the food types the edible component has when initialized.
 /obj/item/fish/proc/get_food_types()
-	return SEAFOOD|MEAT|RAW|GORE
+	return ALLERGEN_FISH|ALLERGEN_MEAT//|RAW|GORE
 
 ///Kill the fish, remove the raw and gore food types, and the infectiveness too if not under-cooked.
 /obj/item/fish/proc/on_fish_cooked(datum/source, cooking_time)
@@ -384,7 +387,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	damage_fish(max_integrity)
 
 	//Remove the blood from the reagents holder and reward the player with some extra nutriment added to the fish.
-	var/datum/reagent/consumable/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/consumable/nutriment/protein, check_subtypes = TRUE)
+	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
 	var/datum/reagent/blood/blood = reagents.has_reagent(/datum/reagent/blood)
 	var/old_blood_volume = blood ? blood.volume : 0 //we can't use the ?. operator since the above proc doesn't return null but 0
 	reagents.del_reagent(/datum/reagent/blood)
@@ -400,7 +403,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		adjust_reagents_capacity((protein_volume - old_blood_volume) * volume_mult)
 		///Add the extra nutriment
 		if(protein)
-			reagents.multiply(2, /datum/reagent/consumable/nutriment/protein)
+			reagents.multiply(2, /datum/reagent/nutriment/protein)
 
 	//Remove the raw and gore foodtypes from the edible component
 	AddComponentFrom(SOURCE_EDIBLE_INNATE, /datum/component/edible, foodtypes = get_food_types() & ~(RAW|GORE))
@@ -423,7 +426,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	qdel(GetComponent(/datum/component/infective))
 	AddComponent(/datum/component/germ_sensitive)
 	ADD_TRAIT(src, TRAIT_FISH_WELL_COOKED, INNATE_TRAIT)
-	var/datum/reagent/consumable/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/consumable/nutriment/protein, check_subtypes = TRUE)
+	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
 	if(protein)
 		protein.data = get_fish_taste_cooked()
 
@@ -465,7 +468,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		for(var/reagent in reagents_to_add)
 			reagents_to_add[reagent] *= multiplier
 	reagents.add_reagent_list(reagents_to_add, added_purity = 1)
-	var/datum/reagent/consumable/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/consumable/nutriment/protein, check_subtypes = TRUE)
+	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
 	if(protein)
 		protein.data = HAS_TRAIT(src, TRAIT_FISH_WELL_COOKED) ? get_fish_taste_cooked() : get_fish_taste()
 
@@ -478,12 +481,12 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 ///The proc that adds in the main reagents this fish has when eaten (without accounting for traits)
 /obj/item/fish/proc/get_base_edible_reagents_to_add()
 	var/return_list = list(
-		/datum/reagent/consumable/nutriment/protein = 2,
+		/datum/reagent/nutriment/protein = 2,
 		/datum/reagent/blood = 1,
 	)
 	//It has been at the very least under-cooked.
 	if(HAS_TRAIT(src, TRAIT_FOOD_FRIED) || HAS_TRAIT(src, TRAIT_FOOD_BBQ_GRILLED))
-		return_list[/datum/reagent/consumable/nutriment/protein] *= 2
+		return_list[/datum/reagent/nutriment/protein] *= 2
 		return_list -= /datum/reagent/blood
 	if(required_fluid_type == AQUARIUM_FLUID_SALTWATER)
 		return_list[/datum/reagent/consumable/salt] = 0.4
@@ -504,8 +507,8 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	. = ..()
 	if(!reagents)
 		return
-	reagents.convert_reagent(/datum/reagent/consumable/nutriment/protein, /datum/reagent/consumable/liquidgibs, multiplier = 0.4, include_source_subtypes = TRUE)
-	reagents.convert_reagent(/datum/reagent/consumable/nutriment/protein, /datum/reagent/blood, multiplier = 0.2, include_source_subtypes = TRUE)
+	reagents.convert_reagent(/datum/reagent/nutriment/protein, /datum/reagent/consumable/liquidgibs, multiplier = 0.4, include_source_subtypes = TRUE)
+	reagents.convert_reagent(/datum/reagent/nutriment/protein, /datum/reagent/blood, multiplier = 0.2, include_source_subtypes = TRUE)
 
 ///When processed, the reagents inside this fish will be passed to the created atoms.
 /obj/item/fish/UsedforProcessing(mob/living/user, obj/item/used_item, list/chosen_option, list/created_atoms)
@@ -1104,6 +1107,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		animate(src, pixel_x = 1, time = 0.1 SECONDS, loop = 2, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
 		animate(pixel_x = -1, flags = ANIMATION_RELATIVE)
 
+/*
 /obj/item/fish/proc/use_lazarus(datum/source, obj/item/lazarus_injector/injector, mob/user)
 	SIGNAL_HANDLER
 	if(injector.revive_type != SENTIENCE_ORGANIC)
@@ -1114,7 +1118,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		return
 	set_status(FISH_ALIVE)
 	injector.expend(src, user)
-	return LAZARUS_INJECTOR_USED
+	return LAZARUS_INJECTOR_USED*/
 
 /obj/item/fish/proc/update_aquarium_appearance(datum/source, obj/effect/aquarium/visual)
 	SIGNAL_HANDLER

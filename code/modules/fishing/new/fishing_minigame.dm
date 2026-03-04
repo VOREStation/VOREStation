@@ -162,8 +162,8 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 			special_effects |= FISHING_MINIGAME_RULE_KILL
 
 	//Finish the minigame faster at higher skill. The value modifiers for fishing are negative values btw.
-	completion_loss += user.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)/5
-	completion_gain -= user.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)/7.5
+//	completion_loss += user.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)/5
+//	completion_gain -= user.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)/7.5
 
 	reeling_velocity *= rod.bait_speed_mult
 	completion_gain *= rod.completion_speed_mult
@@ -231,12 +231,12 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	else //if the rod doesnt have a fishing line, then it ends when they move away
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_float_or_user_move))
 		RegisterSignal(float, COMSIG_MOVABLE_MOVED, PROC_REF(on_float_or_user_move))
-		RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_HANDS_BLOCKED), PROC_REF(on_hands_blocked))
+//		RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_HANDS_BLOCKED), PROC_REF(on_hands_blocked))
 	RegisterSignal(user, SIGNAL_REMOVETRAIT(TRAIT_PROFOUND_FISHER), PROC_REF(no_longer_fishing))
 	active_effects = bitfield_to_list(special_effects & FISHING_MINIGAME_ACTIVE_EFFECTS)
 	// If fishing line breaks los / rod gets dropped / deleted
 	RegisterSignal(used_rod, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
-	user.add_mood_event("fishing", /datum/mood_event/fishing)
+//	user.add_mood_event("fishing", /datum/mood_event/fishing)
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	start_baiting_phase()
 	to_chat(user, span_notice("You start fishing..."))
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	float.update_appearance(UPDATE_OVERLAYS)
 	if(special_effects & FISHING_MINIGAME_AUTOREEL)
 		addtimer(CALLBACK(src, PROC_REF(auto_spin)), 0.2 SECONDS)
-	playsound(float, 'sound/machines/ping.ogg', 20, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
+	playsound(float, 'sound/machines/ping.ogg', 20, TRUE, 3)
 
 /datum/fishing_challenge/proc/auto_spin()
 	if(phase != WAIT_PHASE || !float.spin_ready)
@@ -276,15 +276,21 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	SIGNAL_HANDLER
 	fishing_line = null
 	///The float may be out of sight if the user has moed around a corner, so the message should be displayed over him instead.
-	user.balloon_alert(user, user.is_holding(used_rod) ? "line snapped" : "rod dropped")
+	user.balloon_alert(user, user.item_is_in_hands(used_rod) ? "line snapped" : "rod dropped")
 	interrupt()
 
 /datum/fishing_challenge/proc/on_float_or_user_move(datum/source)
 	SIGNAL_HANDLER
 
+	//Just using the /attack_can_reach code here.
+	if(AStar(get_turf(location), get_turf(user), /turf/proc/AdjacentTurfsRangedSting, /turf/proc/Distance, max_nodes=25, max_node_depth=7))
+		user.balloon_alert(user, "too far!")
+		interrupt()
+	/*
 	if(!location.IsReachableBy(user))
 		user.balloon_alert(user, "too far!")
 		interrupt()
+	*/
 
 /datum/fishing_challenge/proc/on_hands_blocked(datum/source)
 	SIGNAL_HANDLER
@@ -308,7 +314,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK))
 		return
 	//You need to be actively holding on the fishing rod to use it, unless you've the profound_fisher trait.
-	if(!HAS_TRAIT(source, TRAIT_PROFOUND_FISHER) && source.get_active_held_item() != used_rod)
+	if(!HAS_TRAIT(source, TRAIT_PROFOUND_FISHER) && source.item_is_in_hands() != used_rod)
 		return
 	if(phase == WAIT_PHASE)
 		if(world.time < last_baiting_click + 0.25 SECONDS)
@@ -356,6 +362,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	if(phase == MINIGAME_PHASE)
 		remove_minigame_hud()
 
+/* //NYI - Fishing Update
 	if(!QDELETED(user) && user.mind && start_time && !(special_effects & FISHING_MINIGAME_RULE_NO_EXP))
 		var/seconds_spent = (world.time - start_time) * 0.1
 		var/extra_exp_malus = user.mind.get_skill_level(/datum/skill/fishing) - difficulty * 0.1
@@ -365,6 +372,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 		user.mind.adjust_experience(/datum/skill/fishing, round(seconds_spent * FISHING_SKILL_EXP_PER_SECOND * experience_multiplier))
 		if(user.mind.get_skill_level(/datum/skill/fishing) >= SKILL_LEVEL_LEGENDARY)
 			user.client?.give_award(/datum/award/achievement/skill/legendary_fisher, user)
+*/
 
 	if(!win)
 		SEND_SIGNAL(user, COMSIG_MOB_COMPLETE_FISHING, src, FALSE)
@@ -374,7 +382,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 
 	if(reward_path != FISHING_DUD)
 		playsound(location, 'sound/effects/bigsplash.ogg', 100)
-
+/*
 	var/valid_achievement_catch = FALSE
 	if(ispath(reward_path, /obj/item/fish))
 		valid_achievement_catch = TRUE
@@ -393,6 +401,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	SEND_SIGNAL(user, COMSIG_MOB_COMPLETE_FISHING, src, TRUE)
 	if(!QDELETED(src))
 		qdel(src)
+*/
 
 #undef EXPERIENCE_MALUS_MULT
 
@@ -821,15 +830,16 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	vis_contents += list(hud_bait, hud_fish, hud_completion)
 	challenge.user.client.screen += src
 	challenge.update_visuals(0) // Set all states to their initial positions so they don't jump around when the game starts
-	master_ref = WEAKREF(challenge)
+	master = challenge
 
 /atom/movable/screen/fishing_hud/Destroy()
-	var/datum/fishing_challenge/challenge = master_ref?.resolve()
+	var/datum/fishing_challenge/challenge = master
 	if(!isnull(challenge))
 		challenge.user.client.screen -= src
 	QDEL_NULL(hud_fish)
 	QDEL_NULL(hud_bait)
 	QDEL_NULL(hud_completion)
+	QDEL_NULL(master)
 	return ..()
 
 /atom/movable/screen/hud_bait
@@ -908,8 +918,9 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	if(spot.plane < plane)
 		return
 	if(spot.plane > plane) //We want this to render above the fishing spot.
-		var/turf/turf = get_turf(spot)
-		SET_PLANE_EXPLICIT(src, PLANE_TO_TRUE(spot.plane), turf)
+		plane = spot.plane
+		//var/turf/turf = get_turf(spot)
+		//SET_PLANE_EXPLICIT(src, PLANE_TO_TRUE(spot.plane), turf)
 	if(spot.layer > layer) //Ditto. New stuff renders above old stuff if the layer is the same iirc (with some caveats).
 		layer = spot.layer
 
@@ -926,7 +937,7 @@ GLOBAL_LIST_EMPTY(fishing_challenges_by_user)
 	var/mutable_appearance/overlay = mutable_appearance(icon, "lure_light")
 	overlay.color = spin_ready ? COLOR_GREEN : COLOR_RED
 	. += overlay
-	. += emissive_appearance(icon, "lure_light_emissive", src, alpha = src.alpha, effect_type = EMISSIVE_NO_BLOOM)
+	. += emissive_appearance(icon, "lure_light_emissive", src, alpha = src.alpha)//, appearance_flags = EMISSIVE_NO_BLOOM)
 
 #undef WAIT_PHASE
 #undef BITING_PHASE

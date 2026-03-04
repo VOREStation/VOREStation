@@ -282,7 +282,7 @@
 	required_fluid_type = AQUARIUM_FLUID_AIR
 	required_temperature_min = 0
 	required_temperature_max = INFINITY
-	food = /datum/reagent/consumable/nutriment/fat
+	food = /datum/reagent/nutriment/fat
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	fillet_type = /obj/item/food/meat/slab/human/mutant/slime
 	num_fillets = 2

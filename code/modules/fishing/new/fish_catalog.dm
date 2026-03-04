@@ -8,7 +8,7 @@
 
 /obj/item/book/manual/fish_catalog/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -7, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/adjust_fishing_difficulty, -7, works_in_hands = TRUE)
 
 /obj/item/book/manual/fish_catalog/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -16,7 +16,7 @@
 		ui = new(user, src, "FishCatalog", name)
 		ui.open()
 
-/obj/item/book/manual/fish_catalogtgui_static_data(mob/user)
+/obj/item/book/manual/fish_catalog/tgui_static_data(mob/user)
 	. = ..()
 	var/static/fish_info
 	if(!fish_info)
@@ -36,7 +36,7 @@
 			fish_data["size"] = initial(fish.average_size)
 			fish_data["weight"] = initial(fish.average_weight)
 			var/datum/reagent/food_type = initial(fish.food)
-			if(food_type != /datum/reagent/consumable/nutriment)
+			if(food_type != /datum/reagent/nutriment)
 				fish_data["feed"] = initial(food_type.name)
 			else
 				fish_data["feed"] = "[AQUARIUM_COMPANY] Fish Feed"

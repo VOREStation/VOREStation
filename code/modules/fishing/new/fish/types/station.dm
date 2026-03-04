@@ -176,8 +176,8 @@
 
 /obj/item/fish/fryish/get_base_edible_reagents_to_add()
 	var/list/return_list = list(
-		/datum/reagent/consumable/nutriment/protein = 2,
-		/datum/reagent/consumable/nutriment/fat = 1.5,
+		/datum/reagent/nutriment/protein = 2,
+		/datum/reagent/nutriment/fat = 1.5,
 	)
 	return return_list
 

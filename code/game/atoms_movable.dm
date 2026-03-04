@@ -408,6 +408,15 @@
 	else
 		glide_size = initial(glide_size)
 
+/atom/movable/proc/set_glide_size(target = 8)
+	if (HAS_TRAIT(src, TRAIT_NO_GLIDE))
+		return
+	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
+	glide_size = target
+
+	for(var/mob/buckled_mob as anything in buckled_mobs)
+		buckled_mob.set_glide_size(target)
+
 /////////////////////////////////////////////////////////////////
 
 //called when src is thrown into hit_atom

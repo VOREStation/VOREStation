@@ -24,6 +24,11 @@ GLOBAL_LIST_INIT(alphabet_upper, list("A","B","C","D","E","F","G","H","I","J","K
 	//return CONFIG_GET(string/feedback_tableprefix) + table
 	return table // We don't implement tableprefix
 
+///Returns a string with the first letter of each word capitialized
+/proc/full_capitalize(input)
+	var/regex/first_letter = new(@"[^A-z]*?([A-z]*)", "g")
+	return replacetext(input, first_letter, /proc/capitalize)
+
 /*
  * Text sanitization
  */
