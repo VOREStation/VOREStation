@@ -315,9 +315,6 @@
 		else if (istype(W, /obj/item/card/id) && idaccessible == 0)
 			to_chat(user, span_notice("[src] is not accepting access modifcations at this time."))
 			return
-
-//Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
 		visible_message(span_danger("[user.name] attacks [src] with [W]!"))
 		src.adjustBruteLoss(W.force)
@@ -325,7 +322,8 @@
 	else
 		visible_message(span_warning("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
-		if(stat != DEAD) close_up()
+		if(stat != DEAD)
+			close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
