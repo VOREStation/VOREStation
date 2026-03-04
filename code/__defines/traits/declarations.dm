@@ -57,3 +57,101 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ELECTROVORE_OBLIGATE "electrovore_obligate"
 // adds wet stacks when licking someone
 #define TRAIT_SLOBBER "slobber"
+
+//From TG:
+
+/// Trait that is added to fishes that someone already caught, be it in-game or just theoretically, such as when they're bought
+/// Prevents fishing achievement from being granted by catching one of these
+#define TRAIT_NO_FISHING_ACHIEVEMENT "no_fishing_achievement"
+
+///fish traits
+#define TRAIT_FISH_STASIS "fish_stasis"
+#define TRAIT_FISH_FLOPPING "fish_flopping"
+#define TRAIT_RESIST_PSYCHIC "resist_psychic"
+#define TRAIT_RESIST_EMULSIFY "resist_emulsify"
+#define TRAIT_FISH_SELF_REPRODUCE "fish_self_reproduce"
+#define TRAIT_FISH_NO_MATING "fish_no_mating"
+#define TRAIT_YUCKY_FISH "yucky_fish"
+#define TRAIT_FISH_TOXIN_IMMUNE "fish_toxin_immune"
+#define TRAIT_FISH_CROSSBREEDER "fish_crossbreeder"
+#define TRAIT_FISH_AMPHIBIOUS "fish_amphibious"
+///Trait needed for the lubefish evolution
+#define TRAIT_FISH_FED_LUBE "fish_fed_lube"
+#define TRAIT_FISH_WELL_COOKED "fish_well_cooked"
+#define TRAIT_FISH_NO_HUNGER "fish_no_hunger"
+///Fish with this trait only sell for 1/20 of the original price when exported. For fish cases and trophy mounts.
+#define TRAIT_FISH_LOW_PRICE "fish_from_case"
+///Fish will also occasionally fire weak tesla zaps
+#define TRAIT_FISH_ELECTROGENESIS "fish_electrogenesis"
+///Offsprings from this fish will never be of its same type (unless it's self-reproducing).
+#define TRAIT_FISH_RECESSIVE "fish_recessive"
+///This fish comes equipped with a stinger (increased damage and potentially venomous if also toxic)
+#define TRAIT_FISH_STINGER "fish_stinger"
+///This fish is currently on cooldown and cannot splash ink unto people's faces
+#define TRAIT_FISH_INK_ON_COOLDOWN "fish_ink_on_cooldown"
+///This fish requires two hands to carry even if smaller than FISH_SIZE_TWO_HANDS_REQUIRED, as long as it's bulky-sized.
+#define TRAIT_FISH_SHOULD_TWOHANDED "fish_should_twohanded"
+///This fish won't be killed when cooked.
+#define TRAIT_FISH_SURVIVE_COOKING "fish_survive_cooking"
+///This fish is healed by milk and hurt by bone hurting juice
+#define TRAIT_FISH_MADE_OF_BONE "fish_made_of_bone"
+///The traits of this fish have been edited by a fish gene-gun at least once. It'll die the next time the fish genegun is used on them.
+#define TRAIT_FISH_GENEGUNNED "fish_genegunned"
+/**
+ * This fish has been fed teslium without the electrogenesis having trait.
+ * Gives the electrogenesis, but at halved output, and it hurts the fish over time.
+ */
+#define TRAIT_FISH_ON_TESLIUM "fish_on_teslium"
+/// This fish has been fed growth serum or something and will grow 5 times faster, up to 50% weight and size gain when fed.
+#define TRAIT_FISH_QUICK_GROWTH "fish_quick_growth"
+/// This fish has been fed mutagen or something. Evolutions will have more than twice the probability
+#define TRAIT_FISH_MUTAGENIC "fish_mutagenic"
+/// This fish has just been spawned as a result of the fishing minigame - Check for this trait when doing anything that shouldn't be done when catching the fish from an aquarium.
+#define TRAIT_FISH_JUST_SPAWNED "fish_just_spawned"
+
+/// Stops other objects of the same type from being inserted inside the same aquarium it's in.
+#define TRAIT_UNIQUE_AQUARIUM_CONTENT "unique_aquarium_content"
+
+
+/// You won't catch duds while fishing with this rod.
+#define TRAIT_ROD_REMOVE_FISHING_DUD "rod_remove_fishing_dud"
+/// This rod ignores environmental conditions for fishing (like low light for nocturnal fish)
+#define TRAIT_ROD_IGNORE_ENVIRONMENT "rod_ignore_environment"
+/// This rod attracts fish with the shiny lover fish trait
+#define TRAIT_ROD_ATTRACT_SHINY_LOVERS "rod_attract_shiny_lovers"
+/// This rod can be used to fish on lava
+#define TRAIT_ROD_LAVA_USABLE "rod_lava_usable"
+/// Stuff that can go inside fish cases and aquariums
+#define TRAIT_AQUARIUM_CONTENT "aquarium_content"
+/// If the item can be used as a bit.
+#define TRAIT_FISHING_BAIT "fishing_bait"
+/// This bait will kill any fish that doesn't have it on its favorite_bait list
+#define TRAIT_POISONOUS_BAIT "poisonous_bait"
+/// The quality of the bait. It influences odds of catching fish
+#define TRAIT_BASIC_QUALITY_BAIT "baic_quality_bait"
+#define TRAIT_GOOD_QUALITY_BAIT "good_quality_bait"
+#define TRAIT_GREAT_QUALITY_BAIT "great_quality_bait"
+/// Baits with this trait will ignore bait preferences and related fish traits.
+#define TRAIT_OMNI_BAIT "omni_bait"
+/// The bait won't be consumed when used
+#define TRAIT_BAIT_UNCONSUMABLE "bait_unconsumable"
+/**
+ * This bait won't apply TRAIT_ROD_REMOVE_FISHING_DUD to the rod it's attached on,
+ * instead, it'll allow the fishing dud to be there unless there's at least one fish that likes the bait
+ */
+#define TRAIT_BAIT_ALLOW_FISHING_DUD "bait_dont_affect_fishing_dud"
+/**
+ * This location has the aquarium component. Not much different than a GetComponent()
+ * disguised as an 'is_x' macro, but I don't have to hide anything here.
+ * I just don't want a confusing 'is_aquarium(A)' macro which people think it's interchangable with
+ * an 'istype(A, /obj/structure/aquarium)' when it's the component what truly matters.
+ */
+#define TRAIT_IS_AQUARIUM "is_aquarium"
+/// A location (probably aquarium) that amplifies the zaps of electricity-generating fish.
+#define TRAIT_BIOELECTRIC_GENERATOR "bioelectric_generator"
+/// A location (likely aquarium) that doesn't allow fish to growth and reproduce
+#define TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH "stop_fish_reproduction_and_growth"
+/// This is an aquarium with an open panel
+#define TRAIT_AQUARIUM_PANEL_OPEN "aquarium_panel_open"
+/// For locations that prevent fish flopping animation, namely aquariums
+#define TRAIT_STOP_FISH_FLOPPING "stop_fish_flopping"

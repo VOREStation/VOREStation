@@ -3,8 +3,8 @@
 	desc = "there's a lot of them in there, getting them out takes a while though."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "bait_can"
-	base_icon_state =  "bait_can"
-	w_class = WEIGHT_CLASS_SMALL
+	item_state =  "bait_can"
+	w_class = ITEMSIZE_SMALL
 	/// Tracking until we can take out another bait item
 	COOLDOWN_DECLARE(bait_removal_cooldown)
 	/// What bait item it produces
@@ -66,7 +66,7 @@
 	desc = "It's just that, a plastic piece of fishing equipment, yet fish yearn with every last molecule of their bodies to take a bite of it."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "minnow"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = ITEMSIZE_SMALL
 	/**
 	 * A list with two keys delimiting the spinning interval in which a mouse click has to be pressed while fishing.
 	 * This is passed down to the fishing rod, and then to the lure during the minigame.

@@ -6,11 +6,11 @@
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi'
-	inhand_icon_state = "rod"
+	item_state = "rod"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 8
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = ITEMSIZE_HUGE
 
 	/// How far can you cast this
 	var/cast_range = 3
@@ -598,7 +598,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/fishing_rod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/item/fishing_rod/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return .
@@ -718,16 +718,16 @@
 	frame_state = "frame_bone"
 	line = null //sinew line (usable to fish in lava) not included
 	hook = /obj/item/fishing_hook/bone
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
+	matter = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/fishing_rod/telescopic
 	name = "telescopic fishing rod"
 	icon_state = "fishing_rod_telescopic"
 	desc = "A lightweight, ergonomic, easy to store telescopic fishing rod. "
-	inhand_icon_state = null
+	item_state = null
 	custom_price = PAYCHECK_CREW * 9
 	force = 0
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = ITEMSIZE_NORMAL
 	ui_description = "A collapsible fishing rod that can fit within a backpack."
 	wiki_description = "<b>It has to be bought from Cargo</b>."
 	reel_overlay = "reel_telescopic"
@@ -742,7 +742,7 @@
 
 /obj/item/fishing_rod/telescopic/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/transforming, force_on = 8, hitsound_on = hitsound, w_class_on = WEIGHT_CLASS_HUGE, clumsy_check = FALSE)
+	AddComponent(/datum/component/transforming, force_on = 8, hitsound_on = hitsound, w_class_on = ITEMSIZE_HUGE, clumsy_check = FALSE)
 	RegisterSignal(src, COMSIG_TRANSFORMING_PRE_TRANSFORM, PROC_REF(pre_transform))
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
@@ -781,7 +781,7 @@
 /obj/item/fishing_rod/telescopic/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
-	inhand_icon_state = active ? "rod" : null // When inactive, there is no inhand icon_state.
+	item_state = active ? "rod" : null // When inactive, there is no inhand icon_state.
 	if(user)
 		balloon_alert(user, active ? "extended" : "collapsed")
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)

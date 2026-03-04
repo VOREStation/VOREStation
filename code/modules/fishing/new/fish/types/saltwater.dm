@@ -145,7 +145,7 @@
 	desc = "A large billfish, most famous for its elongated bill, while also fairly popular for cooking, and as a fearsome weapon in the hands of a veteran spess-fisherman."
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "swordfish"
-	inhand_icon_state = "swordfish"
+	item_state = "swordfish"
 	force = 18
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("slashes", "cuts", "pierces")
@@ -185,21 +185,21 @@
 
 /obj/item/fish/swordfish/get_force_rank()
 	switch(w_class)
-		if(WEIGHT_CLASS_TINY)
+		if(ITEMSIZE_TINY)
 			force -= 11
 			attack_speed -= 0.4 SECONDS
 			block_chance -= 45
 			armour_penetration -= 20
 			wound_bonus -= 15
 			exposed_wound_bonus -= 20
-		if(WEIGHT_CLASS_SMALL)
+		if(ITEMSIZE_SMALL)
 			force -= 8
 			attack_speed -= 0.3 SECONDS
 			block_chance -= 30
 			armour_penetration -= 15
 			wound_bonus -= 10
 			exposed_wound_bonus -= 20
-		if(WEIGHT_CLASS_NORMAL)
+		if(ITEMSIZE_NORMAL)
 			force -= 5
 			attack_speed -= 0.2 SECONDS
 			block_chance -= 20
@@ -213,7 +213,7 @@
 			armour_penetration -= 5
 			wound_bonus -= 5
 			exposed_wound_bonus -= 10
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			force += 5
 			attack_speed += 0.2 SECONDS
 			demolition_mod += 0.15
@@ -330,4 +330,3 @@
 			FISH_BAIT_VALUE = SEAFOOD|BUGS,
 		),
 	)
-

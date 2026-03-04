@@ -84,7 +84,7 @@
 	desc = "A very, very angry bioweapon, whose sole purpose is to rip and tear."
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "chainsawfish"
-	inhand_icon_state = "chainsawfish"
+	item_state = "chainsawfish"
 	icon_state_dead = "chainsawfish_dead"
 	force = 22
 	demolition_mod = 1.5
@@ -129,16 +129,16 @@
 
 /obj/item/fish/chainsawfish/update_icon_state()
 	if(status == FISH_DEAD)
-		inhand_icon_state = "chainsawfish_dead"
+		item_state = "chainsawfish_dead"
 	else
-		inhand_icon_state = "chainsawfish"
+		item_state = "chainsawfish"
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		inhand_icon_state = "[inhand_icon_state]_wielded"
+		item_state = "[item_state]_wielded"
 	return ..()
 
 /obj/item/fish/chainsawfish/get_force_rank()
 	switch(w_class)
-		if(WEIGHT_CLASS_TINY)
+		if(ITEMSIZE_TINY)
 			force -= 10
 			attack_speed -= 0.2 SECONDS
 			demolition_mod -= 0.4
@@ -147,7 +147,7 @@
 			wound_bonus -= 10
 			exposed_wound_bonus -= 10
 			toolspeed += 0.6
-		if(WEIGHT_CLASS_SMALL)
+		if(ITEMSIZE_SMALL)
 			force -= 8
 			attack_speed -= 0.1 SECONDS
 			demolition_mod -= 0.3
@@ -156,7 +156,7 @@
 			wound_bonus -= 10
 			exposed_wound_bonus -= 10
 			toolspeed += 0.4
-		if(WEIGHT_CLASS_NORMAL)
+		if(ITEMSIZE_NORMAL)
 			force -= 5
 			demolition_mod -= 0.15
 			block_chance -= 5
@@ -164,7 +164,7 @@
 			wound_bonus -= 5
 			exposed_wound_bonus -= 5
 			toolspeed += 0.2
-		if(WEIGHT_CLASS_HUGE)
+		if(ITEMSIZE_HUGE)
 			force += 2
 			attack_speed += 0.2 SECONDS
 			demolition_mod += 0.15
@@ -172,7 +172,7 @@
 			block_chance += 10
 			wound_bonus += 10
 			exposed_wound_bonus += 5
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			force += 4
 			attack_speed += 0.4 SECONDS
 			demolition_mod += 0.3
@@ -219,7 +219,7 @@
 	fish_id = "armored_pike"
 	desc = "A long-bodied, metal-clad predator with a snout that almost looks like a halberd. Definitely a weapon to swing around."
 	icon_state = "armored_pike"
-	inhand_icon_state = "armored_pike"
+	item_state = "armored_pike"
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
@@ -259,28 +259,28 @@
 
 /obj/item/fish/pike/armored/get_force_rank()
 	switch(w_class)
-		if(WEIGHT_CLASS_TINY)
+		if(ITEMSIZE_TINY)
 			force -= 11
 			attack_speed -= 0.4 SECONDS
 			block_chance -= 25
 			armour_penetration -= 15
 			wound_bonus -= 15
 			exposed_wound_bonus -= 30
-		if(WEIGHT_CLASS_SMALL)
+		if(ITEMSIZE_SMALL)
 			force -= 6
 			attack_speed -= 0.3 SECONDS
 			block_chance -= 20
 			armour_penetration -= 10
 			wound_bonus -= 10
 			exposed_wound_bonus -= 25
-		if(WEIGHT_CLASS_NORMAL)
+		if(ITEMSIZE_NORMAL)
 			force -= 4
 			attack_speed -= 0.2 SECONDS
 			block_chance -= 20
 			armour_penetration -= 5
 			wound_bonus -= 10
 			exposed_wound_bonus -= 15
-		if(WEIGHT_CLASS_HUGE)
+		if(ITEMSIZE_HUGE)
 			force += 3
 			attack_speed += 0.2 SECONDS
 			block_chance += 10
@@ -288,7 +288,7 @@
 			armour_penetration += 5
 			wound_bonus += 10
 			exposed_wound_bonus += 5
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			force += 7
 			attack_speed += 0.3 SECONDS
 			demolition_mod += 0.2

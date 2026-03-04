@@ -353,7 +353,7 @@
 /// From /datum/status_effect/proc/Destroy() : (datum/status_effect/effect)
 #define COMSIG_LIVING_STATUS_REMOVED "living_status_removed"
 
-/// From /datum/spawners_menu/ui_static_data(mob/user) : (list/string_info)
+/// From /datum/spawners_menutgui_static_data(mob/user) : (list/string_info)
 #define COMSIG_LIVING_GHOSTROLE_INFO "living_ghostrole_info"
 
 ///from mob/living/befriend()

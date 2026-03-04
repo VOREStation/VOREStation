@@ -11,7 +11,7 @@
 	desc = "A fishing line. In spite of its simplicity, the added length will make fishing a speck easier."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "reel_blue"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = ITEMSIZE_SMALL
 	///A bitfield of traits that this fishing line has, checked by fish traits and the minigame.
 	var/fishing_line_traits = NONE
 	/// Color of the fishing line
@@ -161,7 +161,7 @@
 	desc = "A simple fishing hook. Don't expect to hook onto anything without one."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "hook"
-	w_class = WEIGHT_CLASS_TINY
+	w_class = ITEMSIZE_TINY
 
 	/// A bitfield of traits that this fishing hook has, checked by fish traits and the minigame
 	var/fishing_hook_traits
@@ -304,7 +304,7 @@
 	desc = "A simple hook carved from sharpened bone"
 	icon_state = "hook_bone"
 	wiki_desc = "A generic fishing hook carved out of sharpened bone. Bone fishing rods come pre-equipped with it."
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	matter = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/fishing_hook/stabilized
 	name = "gyro-stabilized hook"
@@ -323,7 +323,7 @@
 	name = "jawed hook"
 	desc = "Despite hints of rust, this gritty beartrap-looking hook looks even more threatening than the real thing. May neptune have mercy of whatever gets caught in its jaws."
 	icon_state = "jaws"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = ITEMSIZE_NORMAL
 	fishing_hook_traits = FISHING_HOOK_NO_ESCAPE|FISHING_HOOK_NO_ESCAPE|FISHING_HOOK_KILL
 	rod_overlay_icon_state = "hook_jaws_overlay"
 	wiki_desc = "A beartrap-looking hook that makes losing the fishing minigame impossible (Unless you drop the rod or get stunned). However it'll hurt the fish and eventually kill it. \
@@ -498,13 +498,13 @@
 	name = "fish gene-gun"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fish_gun"
-	base_icon_state = "fish_gun"
-	inhand_icon_state = "gun" //Oh, the laziness
+	item_state = "fish_gun"
+	item_state = "gun" //Oh, the laziness
 	worn_icon_state = "gun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	desc = "A device designed to inject or extract traits to and from fish. It takes an empty syringe, which is converted into a fish gene injector once the trait is extracted. Repeated applications may kill the fish."
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = ITEMSIZE_SMALL
 	force = 7
 	throwforce = 5
 	attack_verb_continuous = list("pricked", "stabbed", "poked")
@@ -632,8 +632,8 @@
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fish_trait_injector"
 	desc = "A single-use injector containing a specific trait that can be used on any (living) fish compatible with it."
-	w_class = WEIGHT_CLASS_TINY
-	inhand_icon_state = "dnainjector"
+	w_class = ITEMSIZE_TINY
+	item_state = "dnainjector"
 	worn_icon_state = "pen"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'

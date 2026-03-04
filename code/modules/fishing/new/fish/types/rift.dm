@@ -168,16 +168,16 @@
 /obj/item/fish/dolphish/get_force_rank()
 	var/multiplier = 1
 	switch(w_class)
-		if(WEIGHT_CLASS_TINY)
+		if(ITEMSIZE_TINY)
 			multiplier = 0.35
-		if(WEIGHT_CLASS_SMALL)
+		if(ITEMSIZE_SMALL)
 			multiplier = 0.5
-		if(WEIGHT_CLASS_NORMAL)
+		if(ITEMSIZE_NORMAL)
 			multiplier = 0.75
 		// bulky is avergae
-		if(WEIGHT_CLASS_HUGE)
+		if(ITEMSIZE_HUGE)
 			multiplier = 1.15
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			multiplier = 1.35
 
 	if(status == FISH_DEAD)
@@ -481,16 +481,16 @@
 /obj/item/fish/mossglob/get_force_rank()
 	var/multiplier = 1
 	switch(w_class)
-		if(WEIGHT_CLASS_TINY)
+		if(ITEMSIZE_TINY)
 			multiplier = 0.35
-		if(WEIGHT_CLASS_SMALL)
+		if(ITEMSIZE_SMALL)
 			multiplier = 0.5
-		if(WEIGHT_CLASS_NORMAL)
+		if(ITEMSIZE_NORMAL)
 			multiplier = 0.75
 		if(WEIGHT_CLASS_BULKY)
 			multiplier = 0.85
 		// huge is avergae
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			multiplier = 1.15
 
 	if(status == FISH_DEAD)

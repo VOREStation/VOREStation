@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 /obj/item/fish/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
-	base_icon_state = icon_state
+	item_state = icon_state
 	//It's important that we register the signals before the component is attached.
 	RegisterSignal(src, COMSIG_AQUARIUM_CONTENT_DO_ANIMATION, PROC_REF(update_aquarium_animation))
 	RegisterSignal(src, COMSIG_AQUARIUM_CONTENT_RANDOMIZE_POSITION, PROC_REF(randomize_aquarium_position))
@@ -629,35 +629,35 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	size = new_size
 
-	var/init_icon_state = initial(inhand_icon_state)
+	var/init_icon_state = initial(item_state)
 	switch(size)
 		if(0 to FISH_SIZE_TINY_MAX)
-			update_weight_class(WEIGHT_CLASS_TINY)
+			update_weight_class(ITEMSIZE_TINY)
 			if(!init_icon_state)
-				inhand_icon_state = "fish_small"
+				item_state = "fish_small"
 		if(FISH_SIZE_TINY_MAX to FISH_SIZE_SMALL_MAX)
 			if(!init_icon_state)
-				inhand_icon_state = "fish_small"
-			update_weight_class(WEIGHT_CLASS_SMALL)
+				item_state = "fish_small"
+			update_weight_class(ITEMSIZE_SMALL)
 		if(FISH_SIZE_SMALL_MAX to FISH_SIZE_NORMAL_MAX)
 			if(!init_icon_state)
-				inhand_icon_state = "fish_normal"
-			update_weight_class(WEIGHT_CLASS_NORMAL)
+				item_state = "fish_normal"
+			update_weight_class(ITEMSIZE_NORMAL)
 		if(FISH_SIZE_NORMAL_MAX to FISH_SIZE_BULKY_MAX)
 			if(!init_icon_state)
-				inhand_icon_state = "fish_bulky"
+				item_state = "fish_bulky"
 			update_weight_class(WEIGHT_CLASS_BULKY)
 		if(FISH_SIZE_BULKY_MAX to FISH_SIZE_HUGE_MAX)
 			if(!init_icon_state)
-				inhand_icon_state = "fish_huge"
-			update_weight_class(WEIGHT_CLASS_HUGE)
+				item_state = "fish_huge"
+			update_weight_class(ITEMSIZE_HUGE)
 		if(FISH_SIZE_HUGE_MAX to INFINITY)
 			if(!init_icon_state)
-				inhand_icon_state = "fish_huge"
-			update_weight_class(WEIGHT_CLASS_GIGANTIC)
+				item_state = "fish_huge"
+			update_weight_class(ITEMSIZE_GIGANTIC)
 
 	if(size > FISH_SIZE_TWO_HANDS_REQUIRED || (HAS_TRAIT(src, TRAIT_FISH_SHOULD_TWOHANDED) && w_class >= WEIGHT_CLASS_BULKY))
-		inhand_icon_state = "[inhand_icon_state]_wielded"
+		item_state = "[item_state]_wielded"
 		AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
 	if(!is_mount)
@@ -785,19 +785,19 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 /obj/item/fish/proc/get_force_rank()
 	switch(w_class)
-		if(WEIGHT_CLASS_TINY)
+		if(ITEMSIZE_TINY)
 			force -= 3
 			attack_speed -= 0.1 SECONDS
-		if(WEIGHT_CLASS_NORMAL)
+		if(ITEMSIZE_NORMAL)
 			force += 2
 		if(WEIGHT_CLASS_BULKY)
 			force += 5
 			attack_speed += 0.1 SECONDS
-		if(WEIGHT_CLASS_HUGE)
+		if(ITEMSIZE_HUGE)
 			force += 9
 			attack_speed += 0.2 SECONDS
 			demolition_mod += 0.2
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			force += 13
 			attack_speed += 0.4 SECONDS
 			demolition_mod += 0.4

@@ -25,9 +25,11 @@
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "fishbox"
 	w_class = ITEMSIZE_SMALL
-	inhand_icon_state = "syringe_kit"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "syringe_kit"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_righthand.dmi',
+		)
 	storage_type = /datum/storage/fish_case/adjust_size
 
 /obj/item/storage/fish_case/Initialize(mapload)
@@ -112,7 +114,7 @@
 	name = "bluespace fish case"
 	icon_state = "fishbox_bluespace"
 	desc = "An improved fish case to keep large fish in stasis in a compact little space."
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = ITEMSIZE_NORMAL
 	storage_type = /datum/storage/fish_case
 
 /obj/item/aquarium_kit
@@ -120,7 +122,7 @@
 	desc = "Everything you need to build your own aquarium or fish tank. Raw materials sold separately."
 	icon = 'icons/obj/aquarium/supplies.dmi'
 	icon_state = "construction_kit"
-	w_class = WEIGHT_CLASS_TINY
+	w_class = ITEMSIZE_TINY
 
 /obj/item/aquarium_kit/Initialize(mapload)
 	. = ..()
@@ -132,8 +134,8 @@
 	desc = "very boring"
 	icon = 'icons/obj/aquarium/tanks.dmi'
 
-	w_class = WEIGHT_CLASS_TINY
-	custom_materials = list(/datum/material/plastic = COIN_MATERIAL_AMOUNT)
+	w_class = ITEMSIZE_TINY
+	matter = list(/datum/material/plastic = COIN_MATERIAL_AMOUNT)
 	var/layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
 	var/beauty = 150
 

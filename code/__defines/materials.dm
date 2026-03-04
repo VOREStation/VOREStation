@@ -147,3 +147,13 @@
 /// Default circuitboard material list
 #define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 2000)
 #define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = 40)
+
+//Defines for amount of material retrieved from sheets & other items
+/// The amount of materials you get from a sheet of mineral like iron/diamond/glass etc. 2000 Units.
+#define SHEET_MATERIAL_AMOUNT 2000
+/// The amount of materials you get from half a sheet. Used in standard object quantities. 50 units.
+#define HALF_SHEET_MATERIAL_AMOUNT (SHEET_MATERIAL_AMOUNT / 2)
+/// The amount of materials used in the smallest of objects, like pens and screwdrivers. 10 units.
+#define SMALL_MATERIAL_AMOUNT (HALF_SHEET_MATERIAL_AMOUNT / 5)
+/// The amount of material that goes into a coin, which determines the value of the coin.
+#define COIN_MATERIAL_AMOUNT (HALF_SHEET_MATERIAL_AMOUNT * 0.4)

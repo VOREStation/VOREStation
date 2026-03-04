@@ -333,7 +333,7 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "frame-empty"
 	var/base_icon_state = "frame"
-	//custom_materials = list(/datum/material/wood = 2000)
+	//matter = list(/datum/material/wood = 2000)
 	//buildable_sign = FALSE
 	///Canvas we're currently displaying.
 	var/obj/item/canvas/current_canvas

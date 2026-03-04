@@ -6,10 +6,10 @@
 
 	icon = 'icons/obj/aquarium/tanks.dmi'
 	icon_state = "aquarium_map"
-	base_icon_state = "aquarium"
+	item_state = "aquarium"
 
 	integrity_failure = 0.3
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 10)
+	matter = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 10)
 
 	//This is the area where fish can swim
 	var/aquarium_zone_min_pw = 2
@@ -29,14 +29,14 @@
 /obj/structure/aquarium/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/aquarium, aquarium_zone_min_pw, aquarium_zone_max_pw, aquarium_zone_min_pz, aquarium_zone_max_pz, default_beauty, init_mode = init_mode)
-	AddComponent(/datum/component/plumbing/aquarium)
+	//AddComponent(/datum/component/plumbing/aquarium) //Disable plumbing.
 	RegisterSignal(src, COMSIG_AQUARIUM_FLUID_CHANGED, PROC_REF(on_aquarium_liquid_changed))
 	update_appearance()
 
 /obj/structure/aquarium/update_icon()
 	. = ..()
 	///"aquarium_map" is used for mapping, so mappers can tell what it's.
-	icon_state = base_icon_state + "_base"
+	icon_state = initial(icon_state) + "_base"
 
 /obj/structure/aquarium/proc/on_aquarium_liquid_changed(datum/source, fluid_type)
 	SIGNAL_HANDLER
@@ -46,15 +46,15 @@
 /obj/structure/aquarium/update_overlays()
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_AQUARIUM_PANEL_OPEN))
-		. += base_icon_state + "_panel"
+		. += initial(icon_state) + "_panel"
 
 	var/icon_suffix = fluid_type == AQUARIUM_FLUID_AIR ? "air" : "water"
 	///The glass overlay
 	if(broken)
 		icon_suffix += "_broken"
-		. += mutable_appearance(icon, base_icon_state + "_glass_cracks", layer = layer + AQUARIUM_BORDERS_LAYER)
-	. += mutable_appearance(icon, base_icon_state + "_glass_[icon_suffix]", layer = layer + AQUARIUM_GLASS_LAYER)
-	. += mutable_appearance(icon, base_icon_state + "_borders", layer = layer + AQUARIUM_BORDERS_LAYER)
+		. += mutable_appearance(icon, initial(icon_state) + "_glass_cracks", layer = layer + AQUARIUM_BORDERS_LAYER)
+	. += mutable_appearance(icon, initial(icon_state) + "_glass_[icon_suffix]", layer = layer + AQUARIUM_GLASS_LAYER)
+	. += mutable_appearance(icon, initial(icon_state) + "_borders", layer = layer + AQUARIUM_BORDERS_LAYER)
 
 /obj/structure/aquarium/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -62,12 +62,12 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/aquarium/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/stack/sheet/glass))
+	if(!istype(tool, /obj/item/stack/material/glass))
 		return
 	if(!broken)
 		balloon_alert(user, "aquarium not broken!")
 		return ITEM_INTERACT_BLOCKING
-	var/obj/item/stack/sheet/glass/glass = tool
+	var/obj/item/stack/material/glass/glass = tool
 	if(glass.get_amount() < 2)
 		balloon_alert(user, "it needs two sheets!")
 		return ITEM_INTERACT_BLOCKING
@@ -124,13 +124,13 @@
 	desc = "A more portable sort of aquarium to store various fishes in, unless they're too big or there're too many of them."
 	icon = 'icons/obj/aquarium/tanks.dmi'
 	icon_state = "fish_tank_map"
-	base_icon_state = "fish_tank"
+	item_state = "fish_tank"
 	force = 5
 	throwforce = 5
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
 	item_flags = SLOWS_WHILE_IN_HAND
-	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
+	matter = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
 
 	custom_price = PAYCHECK_CREW * 9
 

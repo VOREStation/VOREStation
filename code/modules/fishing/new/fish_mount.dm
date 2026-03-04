@@ -4,7 +4,7 @@
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fish_mount_item"
 	result_path = /obj/structure/fish_mount
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
+	matter = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
 	pixel_shift = 31
 	///Reference to the persistent_id of the mount this was spawned from.
 	var/persistence_id
@@ -24,7 +24,7 @@
 	density = FALSE
 	layer = SIGN_LAYER
 	max_integrity = 100
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
+	matter = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	armor_type = /datum/armor/structure_sign
 	resistance_flags = FLAMMABLE
 	/// The instance of the fish mounted on this.

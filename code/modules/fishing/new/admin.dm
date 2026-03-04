@@ -17,7 +17,7 @@ ADMIN_VERB(fishing_calculator, R_DEBUG, "Fishing Calculator", "A calculator... f
 /datum/fishing_calculator/ui_close(mob/user)
 	qdel(src)
 
-/datum/fishing_calculator/ui_static_data(mob/user)
+/datum/fishing_calculator/tgui_static_data(mob/user)
 	. = ..()
 	.["rod_types"] = typesof(/obj/item/fishing_rod)
 	.["hook_types"] = typesof(/obj/item/fishing_hook)
@@ -27,7 +27,7 @@ ADMIN_VERB(fishing_calculator, R_DEBUG, "Fishing Calculator", "A calculator... f
 /datum/fishing_calculator/ui_data(mob/user)
 	return list("info" = current_table)
 
-/datum/fishing_calculator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/fishing_calculator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	var/mob/user = usr
 	switch(action)

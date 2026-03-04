@@ -3,8 +3,8 @@
 	name = "fish analyzer"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "fish_analyzer_map"
-	base_icon_state = "fish_analyzer"
-	inhand_icon_state = "fish_analyzer"
+	item_state = "fish_analyzer"
+	item_state = "fish_analyzer"
 	worn_icon_state = "fish_analyzer"
 	desc = "A fish-shaped scanner used to monitor fish's status and evolutionary traits."
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -12,10 +12,10 @@
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 3
-	w_class = WEIGHT_CLASS_TINY
+	w_class = ITEMSIZE_TINY
 	throw_speed = 3
 	throw_range = 7
-	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT *2)
+	matter = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT *2)
 	greyscale_config_inhand_left = /datum/greyscale_config/fish_analyzer_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/fish_analyzer_inhand_right
 	greyscale_config_worn = /datum/greyscale_config/fish_analyzer_worn

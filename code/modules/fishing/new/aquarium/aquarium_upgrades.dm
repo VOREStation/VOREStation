@@ -39,7 +39,7 @@
 	desc = "An unconventional type of generator that boosts and harvests the energy produced by bioelectric fish."
 
 	icon_state = "bioelec_map"
-	base_icon_state = "bioelec"
+	item_state = "bioelec"
 
 	default_beauty = 0
 
@@ -70,8 +70,8 @@
 	name = "bluespace fish tank"
 	desc = "All the capacity of a bulky room aquarium, squeezed in a bag-sized rectangular cuboid."
 	icon_state = "fish_tank_bluespace_map"
-	base_icon_state = "fish_tank_bluespace"
-	w_class = WEIGHT_CLASS_NORMAL
+	item_state = "fish_tank_bluespace"
+	w_class = ITEMSIZE_NORMAL
 	maximum_relative_size = INFINITY
 	max_total_size = 2000
 	slowdown_coeff = 0.15
