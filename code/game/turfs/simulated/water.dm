@@ -31,7 +31,7 @@
 /turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()
-	handle_fish()
+//	handle_fish()
 
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.
