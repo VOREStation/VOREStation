@@ -22,6 +22,8 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
+
+	var/default_pai_card_path = /obj/item/paicard // Used when the pai is spawned directly by mapping or admin
 	var/obj/item/paicard/card	// The card we inhabit
 	var/obj/item/radio/borg/pai/radio		// Our primary radio
 	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
@@ -106,7 +108,7 @@
 
 	card = loc
 	if(!istype(card))
-		card = new(src)
+		card = new default_pai_card_path(src)
 		card.pai = src
 
 	sradio = new(src)
@@ -143,6 +145,9 @@
 	var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 	if(M)
 		M.toff = FALSE
+
+	if(chassis_name != PAI_DEFAULT_CHASSIS) // For subtypes that override base chassis( like the syndi pet pai )
+		change_chassis(chassis_name)
 
 /mob/living/silicon/pai/Login()
 	. = ..()

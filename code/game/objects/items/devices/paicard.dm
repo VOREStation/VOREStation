@@ -33,6 +33,16 @@
 	var/special_handling = FALSE
 	var/selected_pai
 
+	// Special modules
+	var/emagged = FALSE
+	var/has_emag_toolkit = TRUE
+	var/obj/item/multitool/multitool
+	var/obj/item/assembly/signaler/signaler
+
+	//Currently selected SubSystem
+	var/static/list/systems_list = list("pAI","MultiTool","Emag","Signaler")
+	var/selected_system = "pAI"
+
 /obj/item/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return
@@ -49,6 +59,8 @@
 	if(!QDELETED(pai)) // Either the pai or card could be deleted first, prevent a loop
 		pai.death(0)
 	QDEL_NULL(radio)
+	QDEL_NULL(multitool)
+	QDEL_NULL(signaler)
 	return ..()
 
 /obj/item/paicard/attack_ghost(mob/user as mob)
@@ -116,8 +128,13 @@
 		"selected_pai_data" = null,
 		"available_pais" = null,
 		"waiting_for_response" = in_use,
+		"emag_systems" = null,
+		"selected_system" = null,
 	)
 
+	if(emagged && has_emag_toolkit) // Special pAI tools
+		data["emag_systems"] = systems_list
+		data["selected_system"] = selected_system
 
 	if(pai) // Only set pai data if we have one
 		data["active_pai_data"] = get_active_data()
@@ -274,6 +291,43 @@
 			in_use = FALSE
 			selected_pai = null
 			return TRUE
+
+		if("select_tool") // Emag tools
+			if(!emagged || !has_emag_toolkit)
+				return FALSE
+			var/new_tool = params["tool"]
+			if(!(new_tool in systems_list))
+				selected_system = initial(selected_system)
+				return FALSE
+			selected_system = new_tool
+
+		if("activate_tool") // Emag tools
+			if(!emagged || !has_emag_toolkit || !selected_system)
+				return FALSE
+			switch(selected_system)
+				if("MultiTool")
+					multitool.attack_self(ui.user)
+					return TRUE
+				if("Signaler")
+					signaler.attack_self(ui.user)
+					return TRUE
+			return FALSE
+
+/obj/item/paicard/pre_attack(atom/A, mob/user, params)
+	if(emagged && has_emag_toolkit)
+		// Perform builtin tool actions if we have a emag system selected
+		switch(selected_system)
+			if("Emag")
+				if(istype(A,/obj/machinery/door))
+					return //for doors use the doorjack
+				return A.emag_act(1,user,src)
+			if("MultiTool")
+				A.attackby(multitool,user)
+				return TRUE
+			if("Signaler")
+				A.attackby(signaler,user)
+				return TRUE
+	. = ..()
 
 /obj/item/paicard/proc/show_laws(updated = FALSE)
 	to_chat(pai, examine_block(span_notice((updated ? "Your supplemental directives have been updated. Your new" : "Your") + " directives are:") + "<br>" + "Prime Directive: [span_info(pai.pai_law0)]<br>Supplemental Directives: [span_info(pai.pai_laws)]"))
@@ -679,6 +733,19 @@
 	if(cell != PP_FUNCTIONAL || processor != PP_FUNCTIONAL || board != PP_FUNCTIONAL || capacitor != PP_FUNCTIONAL)
 		return TRUE
 	return FALSE
+
+/obj/item/paicard/emag_act(remaining_charges, mob/user, emag_source)
+	. = ..()
+	if(!emagged)
+		if(user)
+			to_chat(user, span_notice("The [src] buzzes and beeps."))
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
+		emagged = TRUE
+		// Add tools
+		if(has_emag_toolkit)
+			multitool = new /obj/item/multitool(src)
+			signaler = new /obj/item/assembly/signaler(src)
+		return 1
 
 ///////////////////////////////
 //////////pAI Parts  //////////
