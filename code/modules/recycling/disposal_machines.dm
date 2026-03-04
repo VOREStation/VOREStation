@@ -170,6 +170,9 @@
 	user.visible_message("[user] places \the [I] into the [src].",  "You place \the [I] into the [src].","Ca-Clunk")
 	update_icon()
 
+/obj/machinery/disposal/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 // Transform into next machine type
 /obj/machinery/disposal/proc/alter_bin_type(mob/user)
 	if(contents.len > 0)

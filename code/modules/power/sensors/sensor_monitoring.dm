@@ -49,6 +49,9 @@
 		return
 	tgui_interact(user)
 
+/obj/machinery/computer/power_monitor/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 // Uses dark magic to operate the NanoUI of this computer.
 /obj/machinery/computer/power_monitor/tgui_interact(mob/user, var/datum/tgui/ui = null)
 	power_monitor.tgui_interact(user, ui)

@@ -72,3 +72,6 @@
 #define WRITE_PREF_NORMAL 1
 #define WRITE_PREF_INSTANT 2
 #define WRITE_PREF_MANUAL 3
+
+#define PAI_UNSET "None Set"
+#define PAI_DEFAULT_CHASSIS "Drone"

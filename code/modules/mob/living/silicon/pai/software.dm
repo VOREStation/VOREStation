@@ -1,39 +1,3 @@
-GLOBAL_LIST_INIT(pai_emotions, list(
-		"Neutral" = 1,
-		"What" = 2,
-		"Happy" = 3,
-		"Cat" = 4,
-		"Extremely Happy" = 5,
-		"Face" = 6,
-		"Laugh" = 7,
-		"Sad" = 8,
-		"Angry" = 9,
-		"Silly" = 10,
-		"Nose" = 11,
-		"Smirk" = 12,
-		"Exclamation Points" = 13,
-		"Question Mark" = 14,
-		"Blank" = 15,
-		"Off" = 16
-	))
-
-
-GLOBAL_LIST_EMPTY(pai_software_by_key)
-GLOBAL_LIST_EMPTY(default_pai_software)
-/hook/startup/proc/populate_pai_software_list()
-	var/r = 1 // I would use ., but it'd sacrifice runtime detection
-	for(var/type in subtypesof(/datum/pai_software))
-		var/datum/pai_software/P = new type()
-		if(GLOB.pai_software_by_key[P.id])
-			var/datum/pai_software/O = GLOB.pai_software_by_key[P.id]
-			to_chat(world, span_warning("pAI software module [P.name] has the same key as [O.name]!"))
-			r = 0
-			continue
-		GLOB.pai_software_by_key[P.id] = P
-		if(P.default)
-			GLOB.default_pai_software[P.id] = P
-	return r
-
 /mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
 	software = GLOB.default_pai_software.Copy()
@@ -80,9 +44,10 @@ GLOBAL_LIST_EMPTY(default_pai_software)
 	// Emotions
 	var/list/emotions = list()
 	for(var/name in GLOB.pai_emotions)
-		var/list/emote = list()
-		emote["name"] = name
-		emote["id"] = GLOB.pai_emotions[name]
+		var/list/emote = list(
+			"displayText" = name,
+			"value" = GLOB.pai_emotions[name]
+		)
 		UNTYPED_LIST_ADD(emotions, emote)
 
 	data["emotions"] = emotions
