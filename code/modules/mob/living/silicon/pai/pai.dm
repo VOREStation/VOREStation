@@ -147,7 +147,7 @@
 		M.toff = FALSE
 
 	if(chassis_name != PAI_DEFAULT_CHASSIS) // For subtypes that override base chassis( like the syndi pet pai )
-		change_chassis(chassis_name)
+		internal_set_chassis( SSpai.chassis_data(chassis_name))
 
 /mob/living/silicon/pai/Login()
 	. = ..()
@@ -225,24 +225,51 @@
 		new_chassis = PAI_DEFAULT_CHASSIS
 	chassis_name = new_chassis
 
+	// Get icon data setup
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	if(chassis_data.holo_projector)
+		internal_set_holoprojection(chassis_data)
+	else
+		internal_set_chassis(chassis_data)
+
+/// Rebuild holosprite from character save slot
+/mob/living/silicon/pai/proc/internal_set_holoprojection(datum/pai_sprite/chassis_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	//We resize ourselves to normal here for a moment to let the vis_height get reset
+	var/oursize = size_multiplier
+	resize(1, FALSE, TRUE, TRUE, FALSE)
+	if(!holo_icon_south)
+		get_character_icon()
+
+	update_icon()
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+	post_chassis_change(chassis_data)
+
+/// Use data from our sprite datum to set icon
+/mob/living/silicon/pai/proc/internal_set_chassis(datum/pai_sprite/chassis_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
 	//We resize ourselves to normal here for a moment to let the vis_height get reset
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)
 
-	// Get icon data setup
-	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
-	if(chassis_data.holo_projector)
-		// Rebuild holosprite from character
-		if(!holo_icon_south)
-			get_character_icon()
-	else
-		// Get data from our sprite datum
-		icon = chassis_data.sprite_icon
-		pixel_x = chassis_data.pixel_x
-		default_pixel_x = pixel_x
-		pixel_y = chassis_data.pixel_y
-		default_pixel_y = pixel_y
-		vis_height = chassis_data.vis_height
+	icon = chassis_data.sprite_icon
+	pixel_x = chassis_data.pixel_x
+	default_pixel_x = pixel_x
+	pixel_y = chassis_data.pixel_y
+	default_pixel_y = pixel_y
+	vis_height = chassis_data.vis_height
+
+	update_icon()
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+	post_chassis_change(chassis_data)
+
+/mob/living/silicon/pai/proc/post_chassis_change(datum/pai_sprite/chassis_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 
 	// Drops you if you change to a non-flying chassis
 	if(chassis_data.flying)
@@ -259,10 +286,6 @@
 	// Emergency eject if you change to a smaller belly
 	if(vore_fullness > vore_capacity && vore_selected)
 		vore_selected.release_all_contents(TRUE)
-
-	update_icon()
-	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Click interactions
