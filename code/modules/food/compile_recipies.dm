@@ -3,7 +3,7 @@
 	var/alist/recipes = alist()
 	for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
 		var/datum/recipe/new_recipe = new typepath
-		LAZYADDASSOC(recipes, new_recipe.appliance, new_recipe)
+		LAZYADD(recipes[new_recipe.appliance], new_recipe)
 	return recipes
 
 ///Builds the list for acceptable reagents and items.
