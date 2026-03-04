@@ -54,11 +54,11 @@ export function mapDisabled(
       return true;
 
     case 1:
-      return opponent;
+      return opponent && self ? false : opponent;
 
     case 2:
     case 3:
-      return self;
+      return opponent && self ? false : self;
 
     default:
       return false;

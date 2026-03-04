@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { type BooleanLike, classes } from 'tgui-core/react';
 import { numToLetter } from './constants';
 import { generateShipCoordinates, mapDisabled } from './functions';
 import type { Data, Ship } from './types';
@@ -167,7 +167,11 @@ const Playfield = (props: {
 
   function getCellStyle(x: number, y: number) {
     const key = `${x},${y}`;
-    let cellStyle: React.CSSProperties = {};
+    let cellStyle: {
+      backgroundColor?: string;
+      icon?: string;
+      classes: string[];
+    } = { classes: [] };
 
     if (visible_ships) {
       for (const ship of visible_ships) {
@@ -184,16 +188,18 @@ const Playfield = (props: {
       const shot = shotsFired[key];
       if (shot === 1) {
         cellStyle.backgroundColor = 'red';
+        cellStyle.icon = 'explosion';
       } else if (shot === 0) {
         cellStyle.backgroundColor = 'white';
+        cellStyle.icon = 'water';
       }
     }
 
     for (const ship of destroyedShips) {
       if (ship.coords?.some((coord) => coord[0] === x && coord[1] === y)) {
         cellStyle = {
-          border: '2px solid gold',
-          backgroundColor: 'maroon',
+          icon: 'burst',
+          classes: ['SpaceBattle__ShipSunk'],
         };
       }
     }
@@ -227,6 +233,7 @@ const Playfield = (props: {
                   ) : (
                     <div onMouseEnter={() => handleButtonHover(x, y)}>
                       <Button
+                        className={classes(getCellStyle(x, y).classes)}
                         disabled={mapDisabled(game_state, isSelf, isOpponent)}
                         onClick={(_) => {
                           if (game_state === 1) {
@@ -248,14 +255,20 @@ const Playfield = (props: {
                             });
                           }
                         }}
+                        icon={getCellStyle(x, y).icon}
+                        color={
+                          !isHighlighted && getCellStyle(x, y).backgroundColor
+                        }
                         style={{
                           backgroundColor: isHighlighted
                             ? invalidCells
                               ? 'rgba(255, 0, 0, 0.5)'
                               : 'rgba(76, 175, 80, 0.5)'
-                            : getCellStyle(x, y).backgroundColor,
-                          border: getCellStyle(x, y).border,
+                            : undefined,
                         }}
+                        lineHeight="75px"
+                        iconColor="black"
+                        iconSize={2.5}
                         width={5}
                         height={5}
                       />
