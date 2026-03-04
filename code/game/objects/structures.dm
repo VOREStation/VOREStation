@@ -11,6 +11,7 @@
 	var/list/other_connections
 	var/list/blend_objects = newlist() // Objects which to blend with
 	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
+	var/broken = FALSE
 
 /obj/structure/Destroy()
 	if(parts)

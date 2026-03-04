@@ -11,3 +11,6 @@
 #define UNHOLY_TRAIT "unholy"
 
 #define INNATE_TRAIT "innate"
+
+/// From the aquarium component
+#define AQUARIUM_TRAIT "aquarium"

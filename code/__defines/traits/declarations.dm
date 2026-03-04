@@ -109,9 +109,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// This fish has just been spawned as a result of the fishing minigame - Check for this trait when doing anything that shouldn't be done when catching the fish from an aquarium.
 #define TRAIT_FISH_JUST_SPAWNED "fish_just_spawned"
 
-/// Stops other objects of the same type from being inserted inside the same aquarium it's in.
-#define TRAIT_UNIQUE_AQUARIUM_CONTENT "unique_aquarium_content"
-
 
 /// You won't catch duds while fishing with this rod.
 #define TRAIT_ROD_REMOVE_FISHING_DUD "rod_remove_fishing_dud"
@@ -155,3 +152,28 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_AQUARIUM_PANEL_OPEN "aquarium_panel_open"
 /// For locations that prevent fish flopping animation, namely aquariums
 #define TRAIT_STOP_FISH_FLOPPING "stop_fish_flopping"
+
+/// This mob likes to eat fish. Raw, uncut fish.
+#define TRAIT_FISH_EATER "fish_eater"
+///Added to mob or mind, changes the icons of the fish shown in the minigame UI depending on the possible reward.
+#define TRAIT_REVEAL_FISH "reveal_fish"
+///This trait gets you a list of fishes that can be caught when examining a fishing spot.
+#define TRAIT_EXAMINE_FISHING_SPOT "examine_fishing_spot"
+///lobstrosities and carps will prioritize/flee from those that have this trait (given by the skill-locked hat)
+#define TRAIT_SCARY_FISHERMAN "scary_fisherman"
+/// Atoms with this trait can be right-clicked with a fish to release them, presumably back in the fishing spot they were caught from.
+#define TRAIT_CATCH_AND_RELEASE "catch_and_release"
+///This trait lets you get the size and weight of the fish by examining them
+#define TRAIT_EXAMINE_FISH "examine_fish"
+///This trait lets you roughly know if the fish is dead, starving, drowning or sick by examining them
+#define TRAIT_EXAMINE_DEEPER_FISH "examine_deeper_fish"
+///Trait given to turfs or objects that can be fished from
+#define TRAIT_FISHING_SPOT "fishing_spot"
+///This trait prevents the fishing spot from being linked to the fish-porter when a multitool is being used.
+#define TRAIT_UNLINKABLE_FISHING_SPOT "unlinkable_fishing_spot"
+///Trait given to mobs that can fish without a rod
+#define TRAIT_PROFOUND_FISHER "profound_fisher"
+/// If an atom has this trait, then you can toss a bottle with a message in it.
+#define TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION "message_in_a_bottle_location"
+/// Stops other objects of the same type from being inserted inside the same aquarium it's in.
+#define TRAIT_UNIQUE_AQUARIUM_CONTENT "unique_aquarium_content"
