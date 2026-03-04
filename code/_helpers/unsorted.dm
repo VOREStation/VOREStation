@@ -1636,6 +1636,3 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 			final_material_list[mat] = mat_per_item[index]
 		object.set_custom_materials(final_material_list, multiplier)
 		index += 1
-
-/proc/cmp_list_len_dsc(list/a, list/b)
-	return length(b) - length(a)
