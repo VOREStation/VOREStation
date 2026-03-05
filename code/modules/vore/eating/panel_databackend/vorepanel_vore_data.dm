@@ -93,20 +93,27 @@
 	inside["contents"] = inside_contents
 	return inside
 
-/datum/vore_look/proc/get_prey_abilities(mob/owner)
-	var/atom/hostloc = owner.loc
-	// Allow VorePanel to show pred belly details even while indirectly inside
-	if(isliving(owner))
-		var/mob/living/H = owner
-		hostloc = H.surrounding_belly()
-	if(!isbelly(hostloc))
-		return list()
+/datum/vore_look/proc/get_prey_abilities(mob/owner, obj/belly/inside_belly)
+	if(!istype(inside_belly))
+		return null
 
-	var/obj/belly/inside_belly = hostloc
 	var/list/abilities = list()
 	if(inside_belly.mode_flags & DM_FLAG_ABSORBEDVORE)
 		UNTYPED_LIST_ADD(abilities, list("name" = "devour_as_absorbed", "available" = owner.absorbed))
 	return abilities
+
+/datum/vore_look/proc/get_intent_data(mob/owner, obj/belly/inside_belly)
+	if(!isbelly(inside_belly))
+		return null
+
+	return list(
+		"active" = inside_belly.escapable == B_ESCAPABLE_INTENT,
+		"current_intent" = owner.a_intent,
+		"help" = !!inside_belly.belchchance,
+		"disarm" = (inside_belly.transferchance && inside_belly.transferlocation) || (inside_belly.transferchance_secondary && inside_belly.transferlocation_secondary),
+		"grab" = (inside_belly.absorbchance && inside_belly.digest_mode != DM_ABSORB) || (inside_belly.digestchance && inside_belly.digest_mode != DM_DIGEST) || (inside_belly.selectchance && inside_belly.digest_mode != DM_SELECT),
+		"harm" = !!inside_belly.escapechance
+	)
 
 /datum/vore_look/proc/get_host_mobtype(mob/owner)
 	var/list/host_mobtype = list("is_cyborg" = FALSE, "is_vore_simple_mob" = FALSE)
@@ -262,7 +269,7 @@
 				for(var/flag_name in selected.vore_sprite_flag_list)
 					UNTYPED_LIST_ADD(vs_flags, list("label" = flag_name, "selection" = selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name]))
 
-				var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+				var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
 				var/list/undergarments
 				if(UWC)
 					undergarments = UWC.items
@@ -292,7 +299,7 @@
 				"belly_sprite_options" = host.vore_icon_bellies,
 				"undergarment_chosen" = selected.undergarment_chosen,
 				"undergarment_if_none" = selected.undergarment_if_none || "None",
-				"undergarment_options" = global_underwear.categories,
+				"undergarment_options" = GLOB.global_underwear.categories,
 				"undergarment_options_if_none" = undergarments,
 				"undergarment_color" = selected.undergarment_color,
 				"tail_option_shown" = ishuman(owner),
@@ -361,9 +368,18 @@
 				selected_list["contents"] = selected_contents
 
 			if(LIQUID_OPTIONS_TAB)
+				var/liq_gen_resources = 0
+				if(isrobot(owner))
+					var/mob/living/silicon/robot/robot_owner = owner
+					if(robot_owner.cell)
+						liq_gen_resources = robot_owner.cell.percent()
+				else if(isliving(owner))
+					var/mob/living/living_owner = owner
+					liq_gen_resources = living_owner.nutrition_percent()
 				// liquid belly options
 				var/list/belly_liquid_data = list(
 					"show_liq" = selected.show_liquids,
+					"liq_gen_resources" = liq_gen_resources,
 					"liq_interacts" = compile_liquid_interact_data(selected)
 				)
 				selected_list["belly_liquid_data"] = belly_liquid_data

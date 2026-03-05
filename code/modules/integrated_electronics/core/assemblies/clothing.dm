@@ -53,7 +53,7 @@
 		var/mob/living/silicon/robot/robot = user
 		if(istype(robot.module_active, /obj/item/gripper))
 			var/obj/item/gripper/gripper = robot.module_active
-			I = gripper.get_current_pocket()
+			I = gripper.get_wrapped_item()
 
 	else if(!I)
 		return FALSE

@@ -148,7 +148,7 @@
 	icon = 'icons/obj/directional_test.dmi'
 
 /obj/item/tool/screwdriver/test_driver/Initialize(mapload)
-	..()
+	. = ..()
 	icon_state = "screwdriver"
 	AddComponent(/datum/component/reactive_icon_update, directions = list(NORTH, EAST, SOUTH, WEST, SOUTHWEST, SOUTHEAST, NORTHEAST, NORTHWEST), range = 3)
 

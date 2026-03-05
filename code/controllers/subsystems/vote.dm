@@ -79,8 +79,8 @@ SUBSYSTEM_DEF(vote)
 		if(votes > greatest_votes)
 			greatest_votes = votes
 
-	if(!config.vote_no_default && choices.len) // Default-vote for everyone who didn't vote
-		var/non_voters = (GLOB.clients.len - total_votes)
+	if(!config.vote_no_default && length(choices)) // Default-vote for everyone who didn't vote
+		var/non_voters = (length(GLOB.clients) - total_votes)
 		if(non_voters > 0)
 			if(mode == VOTE_RESTART)
 				choices["Continue Playing"] += non_voters
@@ -117,8 +117,8 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
-	if(winners.len > 0)
-		if(winners.len > 1)
+	if(length(winners) > 0)
+		if(length(winners) > 1)
 			if(mode != VOTE_GAMEMODE || ticker.hide_mode == 0) // Here we are making sure we don't announce potential game modes
 				text = span_bold("Vote Tied Between:") + "\n"
 				for(var/option in winners)
@@ -184,7 +184,7 @@ SUBSYSTEM_DEF(vote)
 			return
 		if(current_votes[ckey])
 			choices[choices[current_votes[ckey]]]--
-		if(newVote && newVote >= 1 && newVote <= choices.len)
+		if(newVote && newVote >= 1 && newVote <= length(choices))
 			choices[choices[newVote]]++
 			current_votes[ckey] = newVote
 		else
@@ -285,7 +285,7 @@ SUBSYSTEM_DEF(vote)
 		if(mode == VOTE_GAMEMODE)
 			.+= "<td align = 'center'><b>Minimum Players</b></td></tr>"
 
-		for(var/i = 1 to choices.len)
+		for(var/i = 1 to length(choices))
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0
@@ -295,7 +295,7 @@ SUBSYSTEM_DEF(vote)
 				. += "<td>[thisVote ? "<b>" : ""]<a href='byond://?src=\ref[src];vote=[i]'>[gamemode_names[choices[i]]]</a>[thisVote ? "</b>" : ""]</td><td align = 'center'>[votes]</td>"
 			else
 				. += "<td>[thisVote ? "<b>" : ""]<a href='byond://?src=\ref[src];vote=[i]'>[choices[i]]</a>[thisVote ? "</b>" : ""]</td><td align = 'center'>[votes]</td>"
-			if (additional_text.len >= i)
+			if (length(additional_text) >= i)
 				. += additional_text[i]
 			. += "</tr>"
 
@@ -363,12 +363,8 @@ SUBSYSTEM_DEF(vote)
 
 		if(VOTE_RESTART)
 			if(config.allow_vote_restart || usr.client.holder)
-				var/admin_number_present = send2irc_adminless_only(usr.ckey, usr)
-				if(admin_number_present <= 0 || usr.client.holder)
-					if(tgui_alert(usr, "Are you sure you want to start a RESTART VOTE? You should only do this if the server is dying and no staff are around to investigate.", "RESTART VOTE", list("No", "Yes I want to start a RESTART VOTE")) == "Yes I want to start a RESTART VOTE")
-						initiate_vote(VOTE_RESTART, usr.key)
-				else
-					to_chat(usr, span_warning("You can't start a RESTART VOTE while there are staff around. If you are having an issue with the round, please ahelp it."))
+				if(tgui_alert(usr, "Are you sure you want to start a RESTART VOTE? You should only do this if the server is dying and no staff are around to investigate.", "RESTART VOTE", list("No", "Yes I want to start a RESTART VOTE")) == "Yes I want to start a RESTART VOTE")
+					initiate_vote(VOTE_RESTART, usr.key)
 		if(VOTE_GAMEMODE)
 			if(config.allow_vote_mode || usr.client.holder)
 				initiate_vote(VOTE_GAMEMODE, usr.key)
@@ -396,5 +392,5 @@ SUBSYSTEM_DEF(vote)
 	set name = "Vote"
 
 	if(SSvote)
-		src << browse(SSvote.interface(src), "window=vote;size=500x[300 + SSvote.choices.len * 25]")
+		src << browse(SSvote.interface(src), "window=vote;size=500x[300 + length(SSvote.choices) * 25]")
 */

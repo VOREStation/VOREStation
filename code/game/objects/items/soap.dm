@@ -64,7 +64,7 @@
 	else if(istype(target,/obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to scrub \the [target] out with [src].", span_warning("You begin to scrub \the [target] out with [src]..."))
 		if(do_after(user, src.cleanspeed, target = target))
-			to_chat(user, span_notice("You scrub \the [target] out."))
+			user.balloon_alert(user, "you scrub \the [target] out.")
 			qdel(target)
 	else
 		if(istype(target,/turf))
@@ -76,7 +76,7 @@
 				return
 			user.visible_message("[user] begins to scrub \the [target] out with [src].", span_warning("You begin to scrub \the [target] out with [src]..."))
 			if(do_after(user, src.cleanspeed, target = target))
-				to_chat(user, span_notice("You scrub \the [target] clean."))
+				user.balloon_alert(user, "you scrub \the [target] clean.")
 				var/turf/T = target
 				T.wash(CLEAN_SCRUB)
 				reagents.trans_to_turf(T, 1, 10)

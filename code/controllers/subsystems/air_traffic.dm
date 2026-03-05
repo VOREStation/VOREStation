@@ -56,10 +56,10 @@ SUBSYSTEM_DEF(atc)
 
 /datum/controller/subsystem/atc/proc/random_convo()
 	// Pick from the organizations in the LOREMASTER, so we can find out what these ships are doing
-	var/one = pick(loremaster.organizations) //These will pick an index, not an instance
-	var/two = pick(loremaster.organizations)
-	var/datum/lore/organization/source = loremaster.organizations[one] //Resolve to the instances
-	var/datum/lore/organization/secondary = loremaster.organizations[two] //repurposed for new fun stuff
+	var/one = pick(GLOB.loremaster.organizations) //These will pick an index, not an instance
+	var/two = pick(GLOB.loremaster.organizations)
+	var/datum/lore/organization/source = GLOB.loremaster.organizations[one] //Resolve to the instances
+	var/datum/lore/organization/secondary = GLOB.loremaster.organizations[two] //repurposed for new fun stuff
 
 	//Random chance things for variety
 	var/path = chatter_datum.chatter_box(source.org_type,secondary.org_type)

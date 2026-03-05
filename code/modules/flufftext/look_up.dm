@@ -12,8 +12,18 @@
 		to_chat(usr, span_warning("You appear to be in a place without any sort of concept of direction. You have bigger problems to worry about."))
 		return
 
+	var/show_nothing = TRUE
+	var/turf/above_turf = GetAbove(src)
+	if(istype(above_turf, /turf/simulated/open) || istype(above_turf, /turf/space) || istype(above_turf, /turf/simulated/floor/glass)) // Typecheck because CanZPass() doesn't work right, because our actual loc is at the destination so it always returns true if on a floor.
+		if(is_remote_viewing())
+			reset_perspective()
+			return
+		AddComponent(/datum/component/remote_view, focused_on = above_turf, viewsize = 5, vconfig_path = /datum/remote_view_config/looking_up)
+		show_nothing = FALSE
+
 	if(!T.is_outdoors()) // They're inside.
-		to_chat(usr, "You see nothing interesting.")
+		if(show_nothing)
+			to_chat(usr, "You see nothing interesting.")
 		return
 
 	else // They're outside and hopefully on a planet.

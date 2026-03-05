@@ -91,7 +91,7 @@
 	if(.)
 		return TRUE
 	if(is_bow)
-		return TRUE
+		return FALSE
 	if(tension)
 		if(bolt)
 			user.visible_message("[user] relaxes the tension on [src]'s string and removes [bolt].","You relax the tension on [src]'s string and remove [bolt].")

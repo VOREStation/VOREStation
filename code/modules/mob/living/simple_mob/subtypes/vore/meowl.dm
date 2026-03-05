@@ -62,7 +62,7 @@
 	chub.desc = "Your body quickly begins to feel very... different? In fact, you can't really feel your body much at all any more, but you certainly still feel something. The pressure of the gut that was practically crushing you before is relieved, but somehow still present as though you were now on the other side of the interaction. Your being feels much more spread out and practically intertwined with the world around, that world being the meowl itself. The strange cat-owl's purring feels like it's reverberating throughout your entire form, whatever that might be. Every time the critter shakes to ruffle its feathers, you feel yourself shake with it. Even the creatures emotions feel tangible to you, as though you share themselves, and mostly they are ones of fullness and content."
 	chub.digest_mode = DM_HOLD // like, its got you already, doesn't need to get you more
 	chub.mode_flags = DM_FLAG_FORCEPSAY
-	chub.escapable = TRUE // good luck
+	chub.escapable = B_ESCAPABLE_DEFAULT // good luck
 	chub.escapechance = 40 // high chance of STARTING a successful escape attempt
 	chub.escapechance_absorbed = 5 // m i n e
 	chub.vore_verb = "soak"
@@ -156,29 +156,30 @@
 	last_conflict_time = world.time
 
 	// Check if there is more than one person nearby and if they allow eating them
-	if(!check_attacker(target)) //Only act friendly if you haven't been attacked yet
-		var/list/crowd = list_targets()
+	if(target)
+		if(!check_attacker(target)) //Only act friendly if you haven't been attacked yet
+			var/list/crowd = list_targets()
 
-		var/mob/living/L = target
-		if(istype(L))
-			if(!L.allowmobvore && vore_hostile && distance <= 8)
+			var/mob/living/L = target
+			if(istype(L))
+				if(!L.allowmobvore && vore_hostile && distance <= 8)
+					play_friend(target)
+					set_stance(STANCE_APPROACH)
+					return
+
+			if(crowd.len > 1 && distance <= 8)
 				play_friend(target)
 				set_stance(STANCE_APPROACH)
 				return
 
-		if(crowd.len > 1 && distance <= 8)
-			play_friend(target)
-			set_stance(STANCE_APPROACH)
-			return
+		// Don't attack if you're well fed!
 
-	// Don't attack if you're well fed!
+			var/mob/living/simple_mob/vore/meowl/M = holder
 
-		var/mob/living/simple_mob/vore/meowl/M = holder
-
-		if(istype(M))
-			if(M.well_fed + 10 MINUTES > world.time)
-				set_stance(STANCE_APPROACH)
-				return
+			if(istype(M))
+				if(M.well_fed + 10 MINUTES > world.time)
+					set_stance(STANCE_APPROACH)
+					return
 
 
 	// Do a 'special' attack, if one is allowed.

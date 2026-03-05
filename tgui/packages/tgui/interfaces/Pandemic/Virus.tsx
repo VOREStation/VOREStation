@@ -68,12 +68,17 @@ const Info = (props) => {
 
 const Traits = (props) => {
   const {
-    virus: { resistance, stage_speed, stealth, transmission },
+    virus: { resistance, stage_speed, stealth, transmission, severity },
   } = props;
 
   return (
     <Section title="Statistics">
       <LabeledList>
+        <Tooltip content="Decides the slot where it is placed.">
+          <LabeledList.Item color={getColor(severity)} label="Severity">
+            {severity}
+          </LabeledList.Item>
+        </Tooltip>
         <Tooltip content="Decides the cure complexity.">
           <LabeledList.Item color={getColor(resistance)} label="Resistance">
             {resistance}

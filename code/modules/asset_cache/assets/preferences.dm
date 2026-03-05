@@ -1,4 +1,5 @@
 /datum/asset/simple/preferences
+	var/preview_icons = 'icons/mob/human_races/preview.dmi'
 	assets = list(
 		"preview_protean_animation.gif" = 'icons/mob/human_races/preview_protean_animation.gif',
 		"preview_custom_animation.gif" = 'icons/mob/human_races/preview_custom_animation.gif',

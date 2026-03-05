@@ -132,7 +132,7 @@
 
 // Sets how much energy is drained to make each bullet
 /obj/item/ammo_magazine/smart/proc/set_production_cost(var/obj/item/ammo_casing/A)
-	var/list/matters = ammo_repository.get_materials_from_object(A)
+	var/list/matters = GLOB.ammo_repository.get_materials_from_object(A)
 	var/tempcost
 	for(var/key in matters)
 		var/value = matters[key]

@@ -1,6 +1,6 @@
 /obj/machinery/power/tesla_coil
 	name = "tesla coil"
-	desc = "For the union!"
+	desc = "Balanced power generation and zapping."
 	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
 	icon_state = "coil0"
 	var/icontype = "coil"
@@ -106,7 +106,7 @@
 
 /obj/machinery/power/tesla_coil/relay
 	name = "tesla relay coil"
-	desc = "For the union!"
+	desc = "Designed to move power around rather than just consuming it."
 	icon_state = "relay0"
 	icontype = "relay"
 
@@ -132,7 +132,7 @@
 
 /obj/machinery/power/tesla_coil/splitter
 	name = "tesla prism coil"
-	desc = "For the union!"
+	desc = "Acts as a multi-target distributor."
 	icon_state = "prism0"
 	icontype = "prism"
 
@@ -157,7 +157,7 @@
 
 /obj/machinery/power/tesla_coil/amplifier
 	name = "tesla amplifier coil"
-	desc = "For the union!"
+	desc = "Designed to amplify power moving through it rather than collecting it."
 	icon_state = "amp0"
 	icontype = "amp"
 
@@ -180,7 +180,7 @@
 
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
-	desc = "For the union!"
+	desc = "Extends the reach of the bolts."
 	icon_state = "recaster0"
 	icontype = "recaster"
 
@@ -204,7 +204,7 @@
 
 /obj/machinery/power/tesla_coil/collector
 	name = "tesla collector coil"
-	desc = "For the union!"
+	desc = "Highly efficient power collection. Does not arc."
 	icon_state = "collector0"
 	icontype = "collector"
 

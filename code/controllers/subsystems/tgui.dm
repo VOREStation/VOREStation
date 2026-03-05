@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(tgui)
 	ntos_error = "<style type='text/css'>\n[ntos_error]\n</style>"
 	basehtml = replacetextEx(basehtml, "<!-- tgui:ntos-error -->", ntos_error)
 
-	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[text2num(time2text(world.realtime,"YYYY")) + STATION_YEAR_OFFSET]")
+	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[text2num(UTC_YEAR) + STATION_YEAR_OFFSET]") // This can't use the GLOB as it runs before those are populated
 
 /datum/controller/subsystem/tgui/OnConfigLoad()
 	var/storage_iframe = CONFIG_GET(string/storage_cdn_iframe)
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(tgui)
 	close_all_uis()
 
 /datum/controller/subsystem/tgui/stat_entry(msg)
-	msg = "P:[all_uis.len]"
+	msg = "P:[length(all_uis)]"
 	return ..()
 
 /datum/controller/subsystem/tgui/fire(resumed = FALSE)
@@ -74,8 +74,8 @@ SUBSYSTEM_DEF(tgui)
 		src.current_run = all_uis.Copy()
 	// Cache for sanic speed (lists are references anyways)
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/tgui/ui = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/tgui/ui = current_run[length(current_run)]
 		current_run.len--
 		// TODO: Move user/src_object check to process()
 		if(ui?.user && ui.src_object)

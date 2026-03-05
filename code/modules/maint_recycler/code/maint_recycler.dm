@@ -244,7 +244,7 @@
 
 
 
-/obj/machinery/maint_recycler/hitby(atom/movable/source)
+/obj/machinery/maint_recycler/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(!isitem(source) || istype(source, /obj/item/projectile)) //no mob throwing.
 		return

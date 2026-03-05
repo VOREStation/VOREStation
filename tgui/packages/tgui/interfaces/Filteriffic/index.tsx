@@ -13,7 +13,7 @@ import {
 import { FilterEntry } from './FilterEntry';
 import type { Data } from './types';
 
-export const Filteriffic = (props: any) => {
+export const Filteriffic = (props) => {
   const { act, data } = useBackend<Data>();
   const name = data.target_name || 'Unknown Object';
   const filters = data.target_filter_data || {};

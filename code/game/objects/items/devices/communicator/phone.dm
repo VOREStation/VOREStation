@@ -286,7 +286,8 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	var/confirm = tgui_alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
+	var/prefs_name = src.client.prefs.read_preference(/datum/preference/name/real_name)
+	var/confirm = tgui_alert(src, "Would you like to talk as [prefs_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
 	if(confirm != "Yes")
 		return
 
@@ -295,7 +296,7 @@
 		return
 
 	for(var/mob/living/L in GLOB.mob_list) //Simple check so you don't have dead people calling.
-		if(src.client.prefs.real_name == L.real_name)
+		if(prefs_name == L.real_name)
 			to_chat(src, span_danger("Your identity is already present in the game world.  Please load in a different character first."))
 			return
 

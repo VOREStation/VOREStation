@@ -184,7 +184,7 @@
 		return
 	if(operating)
 		return
-	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
+	if(user.last_airflow > world.time - GLOB.vsc.airflow_delay) //Fakkit
 		return
 	if(SEND_SIGNAL(user, COMSIG_MOB_BUMPED_DOOR_OPEN, src) & DOOR_STOP_BUMP)
 		return
@@ -220,9 +220,10 @@
 
 
 
-/obj/machinery/door/hitby(atom/movable/source, var/speed=5)
+/obj/machinery/door/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	visible_message(span_danger("[name] was hit by [source]."))
+	var/speed = throwingdatum?.speed || THROWFORCE_SPEED_DIVISOR
 	var/tforce = 0
 	if(ismob(source))
 		tforce = 15 * (speed/THROWFORCE_SPEED_DIVISOR)

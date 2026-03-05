@@ -1,25 +1,29 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Floating, Stack, Tooltip } from 'tgui-core/components';
+import { Box, Button, Floating, Stack } from 'tgui-core/components';
 
 import type { CheckBoxEntry } from '../types';
+import { VorePanelTooltip } from './VorePanelTooltip';
 
-export const VorePanelEditCheckboxes = (props: {
-  /** Switch between Element editing and display */
-  editMode: boolean;
-  /** Our option entry checboxes with labels and actiondata */
-  options: CheckBoxEntry[];
-  /** Our backend action on text area blur */
-  action: string;
-  /** Our secondary backend action on text area blur */
-  subAction?: string;
-  /** Our tooltips associated to the checkbox actions as Record mapping our options to a tooltip */
-  tooltipList?: Record<string, string>;
-  /** Our displayed tooltip behind the input element */
-  tooltip?: string;
-  /** The position of the tooltip if static */
-  tooltipPosition?: ComponentProps<typeof Floating>['placement'];
-}) => {
+export const VorePanelEditCheckboxes = (
+  props: {
+    /** Switch between Element editing and display */
+    editMode: boolean;
+    /** Our option entry checboxes with labels and actiondata */
+    options: CheckBoxEntry[];
+    /** Our backend action on text area blur */
+    action: string;
+  } & Partial<{
+    /** Our secondary backend action on text area blur */
+    subAction: string;
+    /** Our tooltips associated to the checkbox actions as Record mapping our options to a tooltip */
+    tooltipList: Record<string, string>;
+    /** Our displayed tooltip behind the input element */
+    tooltip: ReactNode;
+    /** The position of the tooltip if static */
+    tooltipPosition: ComponentProps<typeof Floating>['placement'];
+  }>,
+) => {
   const { act } = useBackend();
 
   const {
@@ -65,9 +69,11 @@ export const VorePanelEditCheckboxes = (props: {
             </Floating>
           </Stack.Item>
           <Stack.Item>
-            <Tooltip content={tooltip} position={tooltipPosition}>
-              <Box className="VorePanel__floatingButton">?</Box>
-            </Tooltip>
+            <VorePanelTooltip
+              tooltip={tooltip}
+              tooltipPosition={tooltipPosition}
+              displayText="?"
+            />
           </Stack.Item>
         </>
       )}

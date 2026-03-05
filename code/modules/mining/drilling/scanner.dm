@@ -9,6 +9,7 @@
 	var/scan_time = 2 SECONDS
 	var/range = 2
 	var/exact = FALSE
+	var/sediment_scan = TRUE
 
 /obj/item/mining_scanner/attack_self(mob/user)
 	. = ..(user)
@@ -21,6 +22,14 @@
 		return
 
 	ScanTurf(get_turf(user), user)
+
+/obj/item/mining_scanner/verb/toggle_sediment_scan()
+	set name = "Toggle Sediment Scan"
+	set category = "Object"
+	set src in view(1)
+
+	to_chat(usr, span_notice("\The [src] will [sediment_scan ? "no longer" : "now"] scan for reagents."))
+	sediment_scan = !sediment_scan
 
 /obj/item/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user)
 	var/list/metals = list(
@@ -75,7 +84,7 @@
 
 		message += "<br>" + span_notice("- [result] of [ore_type].")
 
-	if(reagents_found.len)
+	if(sediment_scan && reagents_found.len)
 		message += "<br>" + span_infoplain("Sediment sample contains: ")
 		for(var/reg_id in reagents_found)
 			var/amnt = reagents_found[reg_id]

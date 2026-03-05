@@ -143,8 +143,14 @@
 		ui = new(user, src, "Radio", name, parent_ui)
 		ui.open()
 
+/obj/item/radio/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
+
 /obj/item/radio/tgui_data(mob/user)
-	var/data[0]
+	var/data = list()
 
 	data["rawfreq"] = frequency
 	data["listening"] = listening
@@ -163,7 +169,10 @@
 		data["chan_list"] = null
 
 	if(syndie)
-		data["useSyndMode"] = 1
+		data["useSyndMode"] = TRUE
+	else
+		data["useSyndMode"] = FALSE
+
 
 	data["minFrequency"] = PUBLIC_LOW_FREQ
 	data["maxFrequency"] = PUBLIC_HIGH_FREQ
@@ -557,10 +566,10 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		var/pos_z = get_z(src)
 		if(!(pos_z in level))
 			return -1
-	if(freq in ANTAG_FREQS)
+	if(freq in GLOB.antag_frequencies)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
-	if(freq in CENT_FREQS)
+	if(freq in GLOB.cent_frequencies)
 		if(!(src.centComm))//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
 	if (!on)
@@ -605,7 +614,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 			user.show_message(span_notice("\The [src] can now be attached and modified!"))
 		else
 			user.show_message(span_notice("\The [src] can no longer be modified or attached!"))
-		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)
 		return
@@ -792,8 +800,8 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 				continue
 	broadcast_tiles = output
 
-/obj/item/radio/intercom/forceMove(atom/destination)
-	. = ..()
+/obj/item/radio/intercom/forceMove(atom/destination, direction, movetime)
+	. = ..(destination, direction, movetime)
 	update_broadcast_tiles()
 
 /obj/item/radio/intercom/Initialize(mapload)

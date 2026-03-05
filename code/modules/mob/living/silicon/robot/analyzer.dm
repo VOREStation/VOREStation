@@ -27,7 +27,7 @@
 	user.show_message(span_blue("[mode ? "Toggled to cyborg analyzing mode." : "Toggled to cyborg upgrade scan mode."]"), 1)
 
 /obj/item/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
-	if((CLUMSY in user.mutations) && prob(50))
+	if(CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_red("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
 			O.show_message(span_red(text("[user] has analyzed the floor's vitals!")), 1)

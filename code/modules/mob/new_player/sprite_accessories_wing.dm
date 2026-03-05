@@ -645,6 +645,13 @@
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
+/datum/sprite_accessory/wing/xeno_queen_new
+	name = "xenomorph backplate (queen, new)"
+	desc = ""
+	icon_state = "xeno_queen_new"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //exclusive wings
 /datum/sprite_accessory/wing/kara
 	name = "Pterokara wings"

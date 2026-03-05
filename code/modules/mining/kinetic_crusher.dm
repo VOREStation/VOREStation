@@ -136,13 +136,13 @@
 		else
 			L.apply_damage(detonation_damage + thrown_bonus, BRUTE, blocked = def_check)
 
-/obj/item/kinetic_crusher/throw_impact(atom/hit_atom, speed)
+/obj/item/kinetic_crusher/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatumd)
 	. = ..()
 	if(!isliving(hit_atom))
 		return
 	var/mob/living/L = hit_atom
 	if(L.has_modifier_of_type(/datum/modifier/crusher_mark))
-		detonate(L, thrower, TRUE)
+		detonate(L, throwingdatumd?.get_thrower(), TRUE)
 
 /obj/item/kinetic_crusher/proc/Recharge()
 	if(!charged)

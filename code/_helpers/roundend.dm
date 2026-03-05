@@ -5,12 +5,17 @@
 		roundend_callbacks.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
-	to_chat(world, span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
+	to_chat(world, span_filter_system("<BR><BR><BR><H1>The round has ended.</H1>"))
+	log_game("The round has ended.")
+	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
+		send2chat(new /datum/tgs_message_content("[GLOB.round_id ? "Round [GLOB.round_id]" : "The round has"] just ended."), channel_tag)
+	send2adminchat("Server", "Round just ended.")
+
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
-				if(emergency_shuttle.departed && emergency_shuttle.evac)
+				if(GLOB.emergency_shuttle.departed && GLOB.emergency_shuttle.evac)
 					if(isNotAdminLevel(playerTurf.z))
 						to_chat(Player, span_filter_system(span_blue(span_bold("You survived the round, but remained on [station_name()] as [Player.real_name]."))))
 					else

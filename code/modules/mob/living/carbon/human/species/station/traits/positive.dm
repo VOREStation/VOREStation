@@ -21,11 +21,14 @@
 	name = "Unusual Gait"
 	desc = "Your method of running is unorthodox, you move faster when not holding things in your hands."
 	cost = 2
-	var_changes = list("unusual_running" = 1)
 
 	custom_only = FALSE //I think this is probably fine since it's half RP trait and half mechanical trait. also you can't have speed and use your hands so this is kinda niche outside of travel time reduction.
 	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI, SPECIES_VASILISSAN, SPECIES_XENOCHIMERA, SPECIES_VOX) //i assume if a dev made your base slowdown different then you shouldn't have this.
 	excludes = list(/datum/trait/positive/speed_fast) // olympic sprinters don't naruto run
+
+/datum/trait/positive/unusual_running/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, UNUSUAL_RUNNING, ROUNDSTART_TRAIT)
 
 /datum/trait/positive/punchdamage
 	name = "Strong Attacks"
@@ -468,6 +471,8 @@
 	cost = 2
 	custom_only = TRUE
 	var_changes = list("flags" = NO_DNA)
+	excludes = list(/datum/trait/negative/disability_deteriorating)
+	banned_species	= list(/datum/species/protean, /datum/species/shapeshifter/promethean)
 
 /datum/trait/positive/weaver/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -553,7 +558,7 @@
 	name = "Dense Bones"
 	desc = "Your bones (or robotic limbs) are more dense or stronger then what is considered normal. It is much harder to fracture your bones, yet pain from fractures is much more intense. Bones require 50% more damage to break, and deal 2x pain on break."
 	cost = 3
-	excludes = list(/datum/trait/negative/hollow)
+	excludes = list(/datum/trait/negative/hollow, /datum/trait/negative/boneless, /datum/trait/negative/boneless/major)
 
 /datum/trait/positive/densebones/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -922,6 +927,7 @@
 		G.radiation_color = trait_prefs["glow_color"]
 		G.glows = trait_prefs["glow_enabled"]
 	G.radiation_healing = TRUE
+	G.radiation_nutrition = TRUE
 
 /datum/trait/positive/radioactive_heal/unapply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..() //Does all the removal stuff
@@ -930,3 +936,4 @@
 	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
 	if(G)
 		G.radiation_healing = initial(G.radiation_healing)
+		G.radiation_nutrition = initial(G.radiation_nutrition)

@@ -1,4 +1,4 @@
-/spell/aoe_turf/disable_tech
+/datum/spell/aoe_turf/disable_tech
 	name = "Disable Tech"
 	desc = "This spell disables all weapons, cameras and most other technology in range."
 	charge_max = 400
@@ -18,7 +18,7 @@
 
 	hud_state = "wiz_tech"
 
-/spell/aoe_turf/disable_tech/cast(list/targets)
+/datum/spell/aoe_turf/disable_tech/cast(list/targets)
 
 	for(var/turf/target in targets)
 		empulse(get_turf(target), emp_heavy, emp_med, emp_light, emp_long)

@@ -192,11 +192,11 @@
 	var/datum/job/previewJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		previewJob = job_master.GetJob(JOB_ALT_VISITOR)
+		previewJob = GLOB.job_master.GetJob(JOB_ALT_VISITOR)
 	else if(client && ispAI(client.mob))
 		pass() //Don't do anything!
 	else
-		for(var/datum/job/job in job_master.occupations)
+		for(var/datum/job/job in GLOB.job_master.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
@@ -257,9 +257,9 @@
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		highJob = job_master.GetJob(JOB_ALT_ASSISTANT)
+		highJob = GLOB.job_master.GetJob(JOB_ALT_ASSISTANT)
 	else
-		for(var/datum/job/job in job_master.occupations)
+		for(var/datum/job/job in GLOB.job_master.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
@@ -292,13 +292,14 @@
 
 /datum/preferences/proc/get_valid_facialhairstyles()
 	var/list/valid_facialhairstyles = list()
+	var/bio_gender = read_preference(/datum/preference/choiced/gender/biological)
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(S.name == DEVELOPER_WARNING_NAME)
 			continue
-		if(biological_gender == MALE && S.gender == FEMALE)
+		if(bio_gender == MALE && S.gender == FEMALE)
 			continue
-		if(biological_gender == FEMALE && S.gender == MALE)
+		if(bio_gender == FEMALE && S.gender == MALE)
 			continue
 		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue

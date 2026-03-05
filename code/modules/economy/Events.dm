@@ -8,7 +8,7 @@
 	var/datum/trade_destination/affected_dest
 
 /datum/event/economic_event/start()
-	affected_dest = pickweight(weighted_randomevent_locations)
+	affected_dest = pickweight(GLOB.weighted_randomevent_locations)
 	if(affected_dest.viable_random_events.len)
 		endWhen = rand(60,300)
 		event_type = pick(affected_dest.viable_random_events)
@@ -89,7 +89,7 @@
 			if(FESTIVAL)
 				body = "A [pick("festival","week long celebration","day of revelry","planet-wide holiday")] has been declared on [affected_dest.name] by [pick("Governor","Commissioner","General","Commandant","Administrator")] [random_name(pick(MALE,FEMALE))] to celebrate [pick("the birth of their [pick("son","daughter","child")]","coming of age of their [pick("son","daughter","child")]","the pacification of rogue military cell","the apprehension of a violent criminal who had been terrorising the planet")]. Massive stocks of food and meat have been bought driving up prices across the planet."
 
-	news_network.SubmitArticle(body, author, channel, null, 1)
+	GLOB.news_network.SubmitArticle(body, author, channel, null, 1)
 
 /datum/event/economic_event/end()
 	for(var/good_type in dearer_goods)

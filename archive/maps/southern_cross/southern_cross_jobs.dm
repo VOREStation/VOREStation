@@ -1,12 +1,5 @@
 // Pilots
 
-var/const/SAR 				=(1<<11)
-var/const/PILOT 			=(1<<13)
-var/const/EXPLORER 			=(1<<14)
-
-var/const/ACCESS_PILOT = 67
-var/const/ACCESS_EXPLORER = 43
-
 /datum/access/pilot
 	id = ACCESS_PILOT
 	desc = "Pilot"
@@ -43,7 +36,7 @@ var/const/ACCESS_EXPLORER = 43
 	minimum_character_age = 25
 	ideal_character_age = 50 // Because 70 is a tad on the old side
 
-	outfit_type = /decl/hierarchy/outfit/job/captain
+	outfit_type = /datum/decl/hierarchy/outfit/job/captain
 	alt_titles = list("Site Manager", "Overseer")
 
 /datum/job/captain/get_access()
@@ -69,7 +62,7 @@ var/const/ACCESS_EXPLORER = 43
 	access = list(ACCESS_PILOT, ACCESS_CARGO, ACCESS_MINING, ACCESS_MINING_STATION)
 	minimal_access = list(ACCESS_PILOT, ACCESS_CARGO, ACCESS_MINING, ACCESS_MINING_STATION)
 
-	outfit_type = /decl/hierarchy/outfit/job/pilot
+	outfit_type = /datum/decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies one of the shuttles between the Southern Cross and the outpost on Sif."
 
 /datum/job/explorer
@@ -87,13 +80,13 @@ var/const/ACCESS_EXPLORER = 43
 	minimal_access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
 	banned_job_species = list(SPECIES_ZADDAT)
 
-	outfit_type = /decl/hierarchy/outfit/job/explorer2
+	outfit_type = /datum/decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."
 
 /*
 	alt_titles = list(
-		JOB_ALT_EXPLORERE_TECHNICIAN = /decl/hierarchy/outfit/job/explorer2/technician,
-		JOB_ALT_EXPLORER_MEDIC = /decl/hierarchy/outfit/job/explorer2/medic)
+		JOB_ALT_EXPLORERE_TECHNICIAN = /datum/decl/hierarchy/outfit/job/explorer2/technician,
+		JOB_ALT_EXPLORER_MEDIC = /datum/decl/hierarchy/outfit/job/explorer2/medic)
 */
 
 /datum/job/sar
@@ -111,5 +104,5 @@ var/const/ACCESS_EXPLORER = 43
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MEDICAL_EQUIP, ACCESS_MORGUE, ACCESS_EXPLORER)
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
-	outfit_type = /decl/hierarchy/outfit/job/medical/sar
+	outfit_type = /datum/decl/hierarchy/outfit/job/medical/sar
 	job_description = "A Search and Rescue operative recovers individuals who are injured or dead on the surface of Sif."

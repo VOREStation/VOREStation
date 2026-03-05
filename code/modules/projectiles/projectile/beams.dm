@@ -484,7 +484,7 @@
 
 /obj/item/projectile/beam/energy_net/proc/do_net(var/mob/M)
 	var/obj/item/energy_net/net = new net_type(get_turf(M))
-	net.throw_impact(M)
+	net.throw_impact(M, throwing)
 
 //
 // Shrinking Energy Net

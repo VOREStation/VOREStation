@@ -5,7 +5,8 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { type sendAct, useBackend } from 'tgui/backend';
+import { useBackend } from 'tgui/backend';
+import type { sendAct } from 'tgui/events/act';
 import {
   Box,
   Button,

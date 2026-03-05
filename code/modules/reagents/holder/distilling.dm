@@ -12,13 +12,13 @@
 			if(SSchemistry.distilled_reactions_by_reagent[R.id])
 				eligible_reactions |= SSchemistry.distilled_reactions_by_reagent[R.id]
 
-		for(var/decl/chemical_reaction/C as anything in eligible_reactions)
+		for(var/datum/decl/chemical_reaction/C as anything in eligible_reactions)
 			if(C.can_happen(src) && C.process(src))
 				effect_reactions |= C
 				reaction_occurred = TRUE
 		eligible_reactions.len = 0
 	while(reaction_occurred)
-	for(var/decl/chemical_reaction/C as anything in effect_reactions)
+	for(var/datum/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
 	update_total()
 	return TRUE

@@ -11,6 +11,8 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "emptycondiment"
 	flags = OPENCONTAINER
+	min_transfer_amount = 1
+	amount_per_transfer_from_this = 2
 	max_transfer_amount = 10
 	center_of_mass_x = 16
 	center_of_mass_y = 6
@@ -236,6 +238,10 @@
 /obj/item/reagent_containers/food/condiment/sprinkles/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPRINKLES, 50)
+
+/obj/item/reagent_containers/food/condiment/barbeque/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_BARBECUE, 50)
 
 /obj/item/reagent_containers/food/condiment/small
 	max_transfer_amount = 20
@@ -491,6 +497,7 @@
 	volume = 220
 	center_of_mass_x = 16
 	center_of_mass_y = 8
+	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_containers/food/condiment/carton/flour/on_reagent_change()
 	update_icon()
@@ -523,6 +530,7 @@
 	volume = 120
 	center_of_mass_x = 16
 	center_of_mass_y = 8
+	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_containers/food/condiment/carton/sugar/on_reagent_change()
 	update_icon()

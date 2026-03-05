@@ -1,4 +1,4 @@
-var/datum/antagonist/wizard/wizards
+GLOBAL_DATUM(wizards, /datum/antagonist/wizard)
 
 /datum/antagonist/wizard
 	id = MODE_WIZARD
@@ -19,7 +19,7 @@ var/datum/antagonist/wizard/wizards
 
 /datum/antagonist/wizard/New()
 	..()
-	wizards = src
+	GLOB.wizards = src
 
 /datum/antagonist/wizard/create_objectives(var/datum/mind/wizard)
 
@@ -108,7 +108,7 @@ var/datum/antagonist/wizard/wizards
 
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()
-	for(var/spell/spell_to_remove in src.spell_list)
+	for(var/datum/spell/spell_to_remove in src.spell_list)
 		remove_spell(spell_to_remove)
 
 /obj/item/clothing

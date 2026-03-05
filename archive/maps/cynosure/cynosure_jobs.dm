@@ -26,11 +26,11 @@
 	access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
 	minimal_access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
 
-	outfit_type = /decl/hierarchy/outfit/job/explorer2
+	outfit_type = /datum/decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."
 
 	alt_titles = list(
-		JOB_PILOT = /decl/hierarchy/outfit/job/pilot)
+		JOB_PILOT = /datum/decl/hierarchy/outfit/job/pilot)
 
 /datum/job/rd
 	access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
@@ -46,6 +46,6 @@
 
 /*
 	alt_titles = list(
-		JOB_ALT_EXPLORERE_TECHNICIAN = /decl/hierarchy/outfit/job/explorer2/technician,
-		JOB_ALT_EXPLORER_MEDIC = /decl/hierarchy/outfit/job/explorer2/medic)
+		JOB_ALT_EXPLORERE_TECHNICIAN = /datum/decl/hierarchy/outfit/job/explorer2/technician,
+		JOB_ALT_EXPLORER_MEDIC = /datum/decl/hierarchy/outfit/job/explorer2/medic)
 */

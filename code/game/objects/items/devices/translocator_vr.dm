@@ -117,7 +117,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/perfect_tele/attack_self(mob/user, var/radial_menu_anchor = src)
+/obj/item/perfect_tele/attack_self(mob/user, list/modifiers, var/radial_menu_anchor = src)
 	. = ..(user)
 	if(.)
 		return TRUE

@@ -144,6 +144,10 @@
 /obj/proc/container_resist(var/mob/living)
 	return
 
+// If returns true, pai can interact with the object with a click
+/obj/proc/allow_pai_interaction(proximity_flag)
+	return FALSE
+
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)
@@ -168,10 +172,10 @@
 		overlays.Remove(blood_overlay)
 	if(gurgled && clean_types & CLEAN_WASH)
 		gurgled = FALSE
-		cut_overlay(gurgled_overlays[gurgled_color])
+		cut_overlay(GLOB.gurgled_overlays[gurgled_color])
 	if(contaminated && clean_types & CLEAN_RAD) // Phoron and stuff, washing machine needed
 		contaminated = FALSE
-		cut_overlay(contamination_overlay)
+		cut_overlay(GLOB.contamination_overlay)
 
 /obj/vv_get_dropdown()
 	. = ..()

@@ -16,6 +16,7 @@ export const LiquidOptionsRight = (props: {
     liq_reagent_transfer_verb,
     liq_reagent_nutri_rate,
     liq_reagent_capacity,
+    liq_gen_cost_limit,
     liq_custom_name_max,
     liq_custom_name_min,
     max_liquid_level,
@@ -37,6 +38,18 @@ export const LiquidOptionsRight = (props: {
           maxValue={300}
           unit="u"
           tooltip="Choose the amount of liquid the belly can contain at most. Ranges from 10 to 300."
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Generation Cost Limit">
+        <VorePanelEditNumber
+          action="liq_set_attribute"
+          subAction="b_liq_reagent_gen_cost_limit"
+          editMode={editMode}
+          value={liq_gen_cost_limit}
+          minValue={0}
+          maxValue={100}
+          unit="%"
+          tooltip={`Choose the minimum amount of nutrition or power liquid generation should use. Ranges from 0 to 100.`}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Generation Time">

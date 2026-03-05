@@ -67,7 +67,7 @@ Bonus
 			if(prob(power) && H.stat)
 				H.make_jittery(2 * power)
 				H.emote("twitch")
-				to_chat(H, span_notice("[pick("you feel energetic!", "You feel well-rested.", "You feel great!")]"))
+				to_chat(H, span_notice("[pick("You feel energetic!", "You feel well-rested.", "You feel great!")]"))
 		if(4 to 5)
 			H.drowsyness = max(0, H.drowsyness - 10 * power)
 			H.AdjustSleeping(-10 * power)

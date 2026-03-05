@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
@@ -7,8 +8,10 @@ export type Data = {
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
   prey_abilities: PreyAbilityData[] | null;
+  intent_data: IntentData | null;
   active_tab: number;
   persist_edit_mode: BooleanLike;
+  presets: string;
   host_mobtype: HostMob | null;
   our_bellies?: BellyData[] | null;
   min_belly_name: number;
@@ -192,7 +195,7 @@ export type BellyVisualData = {
 };
 
 export type BellyInteractionData = {
-  escapable: BooleanLike;
+  escapable: number;
   interacts: interactData;
   autotransfer_enabled: BooleanLike;
   autotransfer: AutotransferData;
@@ -210,6 +213,7 @@ export type ContentData = {
 
 export type BellyLiquidData = {
   show_liq: BooleanLike;
+  liq_gen_resources: number;
   liq_interacts: LiqInteractData;
 };
 
@@ -276,6 +280,7 @@ export type LiqInteractData = {
   liq_reagent_transfer_verb: string;
   liq_reagent_nutri_rate: number;
   liq_reagent_capacity: number;
+  liq_gen_cost_limit: number;
   liq_sloshing: BooleanLike;
   liq_reagent_addons: CheckBoxEntry[];
   custom_reagentcolor: string;
@@ -333,7 +338,7 @@ export type PrefData = {
   consume_liquid_belly: BooleanLike;
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
-  selective_active: string;
+  dropdown_preferences: DropdownPrefernces;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;
@@ -350,6 +355,11 @@ export type PrefData = {
   soulcatcher_allow_deletion: BooleanLike;
   soulcatcher_allow_takeover: BooleanLike;
   max_voreoverlay_alpha: number;
+};
+
+export type DropdownPrefernces = {
+  strip_active: number;
+  selective_active: string;
 };
 
 export type ScMessageData = {
@@ -399,6 +409,10 @@ export type GeneralPrefData = {
   vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
+  spont_rear: string | null;
+  spont_front: string | null;
+  spont_left: string | null;
+  spont_right: string | null;
 };
 
 export type AestMessageData = {
@@ -478,7 +492,7 @@ export type PreferenceData = {
 
 export type ActionButtonData = {
   name: string;
-  tooltip: string;
+  tooltip: ReactNode;
   disabled?: boolean;
   color?: string;
   needsConfirm?: boolean;
@@ -493,4 +507,23 @@ export type Overlay = {
   icon: string;
   iconState: string;
   color?: string;
+};
+
+export type IntentData = {
+  active: BooleanLike;
+  current_intent: string;
+  help: BooleanLike;
+  disarm: BooleanLike;
+  grab: BooleanLike;
+  harm: BooleanLike;
+};
+
+export type PreferenceDropdown = {
+  action: string;
+  prefix: string;
+  tooltip: string;
+  data: Record<
+    string,
+    { displayText: string; color?: string; enabled?: boolean }
+  >;
 };

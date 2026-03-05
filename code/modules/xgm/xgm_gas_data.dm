@@ -18,8 +18,8 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 
 /datum/xgm_gas_data/New()
 	. = ..()
-	for(var/p in subtypesof(/decl/xgm_gas))
-		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
+	for(var/p in subtypesof(/datum/decl/xgm_gas))
+		var/datum/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
 
 		if(gas.id in gases)
 			log_world("## ERROR Duplicate gas id `[gas.id]` in `[p]`")
@@ -38,7 +38,7 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 
 	return 1
 
-/decl/xgm_gas
+/datum/decl/xgm_gas
 	var/id = ""
 	var/name = "Unnamed Gas"
 	var/specific_heat = 20	// J/(mol*K)

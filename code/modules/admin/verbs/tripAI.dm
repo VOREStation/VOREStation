@@ -6,8 +6,8 @@
 		to_chat(usr, "This option is currently only usable during pregame. This may change at a later date.")
 		return
 
-	if(job_master && SSticker)
-		var/datum/job/job = job_master.GetJob(JOB_AI)
+	if(GLOB.job_master && SSticker)
+		var/datum/job/job = GLOB.job_master.GetJob(JOB_AI)
 		if(!job)
 			to_chat(usr, "Unable to locate the AI job")
 			return

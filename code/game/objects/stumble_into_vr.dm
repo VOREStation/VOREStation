@@ -28,7 +28,7 @@
 	M.Weaken(2)
 	M.forceMove(src)
 	M.stop_flying()
-	update()
+	update_icon()
 
 /obj/structure/inflatable/stumble_into(mob/living/M)
 	playsound(src, "sound/effects/Glasshit.ogg", 25, 1, -1)

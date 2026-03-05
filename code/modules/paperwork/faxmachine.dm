@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY_TYPED(allfaxes, /obj/machinery/photocopier/faxmachine)
-var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply")
+var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply", "Talon Headquarters")
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_VAR(last_fax_role_request)
 
@@ -388,6 +388,8 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
 	else if(destination == "Supply")
 		message_admins(sender, "[uppertext(using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
+	else if(destination == "Talon Headquarters")
+		message_admins(sender, "TALON HEADQUARTERS FAX", rcvdcopy, "CentComFaxReply", "#e96046")
 	else
 		message_admins(sender, "[uppertext(destination)] FAX", rcvdcopy, "UNKNOWN")
 
@@ -437,14 +439,6 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	if(length(summary) > webhook_length_limit)
 		summary = copytext(summary, 1, webhook_length_limit + 1)
 		summary += "\n\[Truncated\]"
-
-	SSwebhooks.send(
-		WEBHOOK_FAX_SENT,
-		list(
-			"name" = "[faxname] '[sent.name]' sent from [key_name(sender)]",
-			"body" = summary
-		)
-	)
 
 /*
 								#####						####

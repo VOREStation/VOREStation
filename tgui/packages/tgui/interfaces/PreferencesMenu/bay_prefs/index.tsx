@@ -31,8 +31,8 @@ enum Tabs {
 
 export const BayPrefsEntryPoint = (props: {
   type: string;
-  data: any;
-  staticData: any;
+  data: Record<string, unknown>;
+  staticData?: Record<string, unknown>;
 }) => {
   const { type, data, staticData } = props;
 

@@ -4,7 +4,7 @@
 
 	nodamage = 1 //Most of the time, anyways
 
-	var/spell/targeted/projectile/carried
+	var/datum/spell/targeted/projectile/carried
 
 	penetrating = 0
 	range = 10 //set by the duration of the spell

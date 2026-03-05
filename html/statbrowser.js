@@ -1014,10 +1014,12 @@ Byond.subscribeTo('update_listedturf', (TC) => {
 });
 
 Byond.subscribeTo('update_misc', (payload) => {
-  const TN = payload.TN;
-  const TC = payload.TC;
+  const { TN, TC } = payload;
+  const old = misc.get(TN);
+
   misc.set(TN, TC);
-  if (current_tab === TN) {
+
+  if (current_tab === TN && JSON.stringify(old) !== JSON.stringify(TC)) {
     draw_misc(TN);
   }
 });

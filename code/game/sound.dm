@@ -373,7 +373,7 @@ GLOBAL_LIST_INIT(wf_speak_vomva_sound, list ('sound/talksounds/wf/vomva_1.ogg', 
 // var/list/species_sounds = list()
 
 // Global list containing all of our sound options.
-var/list/species_sound_map = list(
+GLOBAL_LIST_INIT(species_sound_map, list(
 	"Canine" = canine_sounds,
 	"Cervine" = cervine_sounds,
 	"Feline" = feline_sounds,
@@ -392,7 +392,7 @@ var/list/species_sound_map = list(
 	"Xeno" = xeno_sounds,
 	"None" = no_sounds,
 	"Unset" = use_default
-)
+))
 
 /*
  * Call this for when you need a sound from an already-identified list - IE, "Canine". pick() cannot parse procs.
@@ -406,9 +406,9 @@ var/list/species_sound_map = list(
  * get_species_sound(H.species.species_sounds_male)["emote"] // If we're male, and want an emote sound gendered correctly.
 */
 /proc/get_species_sound(var/sounds)
-	if(!islist(species_sound_map[sounds])) // We check here if this list actually has anything in it, or if we're about to return a null index
+	if(!islist(GLOB.species_sound_map[sounds])) // We check here if this list actually has anything in it, or if we're about to return a null index
 		return null // Shitty failsafe but better than rewriting an entire litany of procs rn when I'm low on time - Rykka // list('sound/voice/silence.ogg')
-	return species_sound_map[sounds] // Otherwise, successfully return our sound
+	return GLOB.species_sound_map[sounds] // Otherwise, successfully return our sound
 
 /*
  * The following helper proc will select a species' default sounds - useful for if we're set to "Unset"
@@ -420,10 +420,11 @@ var/list/species_sound_map = list(
 	if(valid.selects_bodytype == (SELECTS_BODYTYPE_CUSTOM || SELECTS_BODYTYPE_SHAPESHIFTER)) // Custom species or xenochimera handling here
 		valid = coalesce(GLOB.all_species[pref.custom_base], GLOB.all_species[pref.species])
 	// Now we start getting our sounds.
+	var/id_gender = pref.read_preference(/datum/preference/choiced/gender/identifying)
 	if(valid.gender_specific_species_sounds) // Do we have gender-specific sounds?
-		if(pref.identifying_gender == FEMALE && valid.species_sounds_female)
+		if(id_gender == FEMALE && valid.species_sounds_female)
 			return valid.species_sounds_female
-		else if(pref.identifying_gender == MALE && valid.species_sounds_male)
+		else if(id_gender == MALE && valid.species_sounds_male)
 			return valid.species_sounds_male
 		else // Failsafe. Update if there's ever gendered sounds for HERM/Neuter/etc
 			return valid.species_sounds

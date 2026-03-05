@@ -17,10 +17,10 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/Initialize()
 	allEvents = subtypesof(/datum/event)
-	event_containers = alist(
-			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
-			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
-			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major
+	event_containers = list(
+			/*EVENT_LEVEL_MUNDANE 	= */ new/datum/event_container/mundane,
+			/*EVENT_LEVEL_MODERATE	= */ new/datum/event_container/moderate,
+			/*EVENT_LEVEL_MAJOR 	= */ new/datum/event_container/major
 		)
 	if(global.using_map.use_overmap)
 		GLOB.overmap_event_handler.create_events(global.using_map.overmap_z, global.using_map.overmap_size, global.using_map.overmap_event_areas)
@@ -32,8 +32,8 @@ SUBSYSTEM_DEF(events)
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while (currentrun.len)
-		var/datum/event/E = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/datum/event/E = currentrun[length(currentrun)]
 		currentrun.len--
 		if(E.processing_active)
 			E.process()
@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(events)
 		EC.process()
 
 /datum/controller/subsystem/events/stat_entry(msg)
-	msg = "E:[active_events.len]"
+	msg = "E:[length(active_events)]"
 	return ..()
 
 /datum/controller/subsystem/events/Recover()

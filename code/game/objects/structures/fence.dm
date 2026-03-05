@@ -211,6 +211,9 @@
 		if(get_dist(user,src) <= 1) //not remotely though
 			return attack_hand(user)
 
+/obj/structure/fence/door/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /obj/structure/fence/door/proc/toggle(mob/user)
 	switch(open)
 		if(FALSE)

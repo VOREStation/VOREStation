@@ -17,7 +17,7 @@
 	var/freq_text
 
 	// the name of the channel
-	if(display_freq in ANTAG_FREQS)
+	if(display_freq in GLOB.antag_frequencies)
 		freq_text = "#unkn"
 	else
 		for(var/channel in GLOB.radiochannels)
@@ -42,8 +42,8 @@
 	var/list/receiver_reception = list()
 
 /proc/get_message_server()
-	if(message_servers)
-		for (var/obj/machinery/message_server/MS in message_servers)
+	if(GLOB.message_servers)
+		for (var/obj/machinery/message_server/MS in GLOB.message_servers)
 			if(MS.active)
 				return MS
 	return null

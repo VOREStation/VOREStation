@@ -42,7 +42,6 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt update || true
           sudo apt install zlib1g-dev:i386
-          ldd libbapi_dmm_reader.so
           ldd libverdigris.so
       - name: Install rust-g
         run: |

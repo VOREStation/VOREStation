@@ -826,7 +826,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 		var/datum/universal_icon/u_icon = file
 		file = u_icon.icon_file
 	var/file_string = "[file]"
-	if(!istext(file) && !(isfile(file) && length(file_string)))
+	if(!istext(file) && !(isfile(file) && length(file_string)) || findtext(file_string, ".png"))
 		return null
 	var/list/cached_metadata = icon_metadata_cache[file_string]
 	if(islist(cached_metadata))

@@ -1,6 +1,3 @@
-// Not actually used; just forces this into the RSC for TGUI.
-var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
-
 /datum/preferences
 	var/equip_preview_mob = EQUIP_PREVIEW_ALL
 	var/animations_toggle = FALSE
@@ -199,7 +196,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	var/list/wing_styles = pref.get_available_styles(GLOB.wing_styles_list)
 	character.wing_style = wing_styles[pref.wing_style]
 
-	character.set_gender(pref.biological_gender)
+	character.set_gender(pref.read_preference(/datum/preference/choiced/gender/biological))
 
 	character.synthetic = pref.species == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
 	var/list/organs_to_edit = list()
@@ -270,9 +267,12 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		pref.rlimb_data -= null
 
 	// Sanitize the name so that there aren't any numbers sticking around.
-	pref.real_name          = sanitize_name(pref.real_name, pref.species)
-	if(!pref.real_name)
-		pref.real_name      = random_name(pref.identifying_gender, pref.species)
+	// Is this still necessary with TG conversation?
+	var/current_name = pref.read_preference(/datum/preference/name/real_name)
+	current_name = sanitize_name(current_name, pref.species)
+	if(!current_name)
+		current_name = random_name(pref.read_preference(/datum/preference/choiced/gender/identifying), pref.species)
+	pref.update_preference_by_type(/datum/preference/name/real_name, current_name)
 
 /datum/category_item/player_setup_item/general/body/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -756,7 +756,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			var/prev_species = pref.species
 			pref.species = params["species"]
 			if(prev_species != pref.species)
-				if(!(pref.biological_gender in mob_species.genders))
+				if(!(pref.read_preference(/datum/preference/choiced/gender/biological) in mob_species.genders))
 					pref.set_biological_gender(mob_species.genders[1])
 				pref.custom_species = null
 				//grab one of the valid hair styles for the newly chosen species

@@ -67,6 +67,6 @@ Bonus
 
 /datum/symptom/shivering/proc/set_body_temp(var/mob/living/carbon/H, datum/disease/advance/A)
 	if(!unsafe)
-		H.bodytemperature = max(-((3 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT +1))
+		H.bodytemperature = max(-((3 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT + 1))
 	else
 		H.bodytemperature = max(-((3 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT - 20))

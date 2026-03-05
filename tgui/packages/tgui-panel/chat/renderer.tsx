@@ -5,13 +5,12 @@
  */
 
 import { createRoot } from 'react-dom/client';
-import { useSelector } from 'tgui/backend';
 import { createLogger } from 'tgui/logging';
 import { Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
 import { classes } from 'tgui-core/react';
-
-import { selectSettings } from '../settings/selectors';
+import { store } from '../events/store';
+import { scrollTrackingAtom } from './atoms';
 import { exportToDisk } from './chatExport';
 import {
   IMAGE_RETRY_DELAY,
@@ -22,6 +21,7 @@ import {
   MESSAGE_TYPE_UNKNOWN,
   MESSAGE_TYPES,
 } from './constants';
+import { createMessageNode } from './messageNode';
 import {
   adminPageOnly,
   canPageAcceptType,
@@ -32,7 +32,7 @@ import {
   typeIsImportant,
 } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
-import type { message, Page } from './types';
+import type { Page, SerializedMessage } from './types';
 
 const logger = createLogger('chatRenderer');
 
@@ -52,40 +52,19 @@ export const TGUI_CHAT_ATTRIBUTES_TO_PROPS = {
   content: 'content',
 };
 
-const findNearestScrollableParent = (startingNode: HTMLElement) => {
-  const body = document.body;
-  let node = startingNode;
-  while (node && node !== body) {
-    // This definitely has a vertical scrollbar, because it reduces
-    // scrollWidth of the element. Might not work if element uses
-    // overflow: hidden.
-    if (node.scrollWidth < node.offsetWidth) {
-      return node;
-    }
-    node = node.parentNode as HTMLElement;
-  }
-  return window;
-};
-
-const createHighlightNode = (text: string, color: string): HTMLElement => {
+function createHighlightNode(text: string, color: string): HTMLElement {
   const node = document.createElement('span');
   node.className = 'Chat__highlight';
   node.setAttribute('style', `background-color:${color}`);
   node.textContent = text;
   return node;
-};
+}
 
-export const createMessageNode = (): HTMLElement => {
-  const node = document.createElement('div');
-  node.className = 'ChatMessage';
-  return node;
-};
-
-const interleaveMessage = (
+function interleaveMessage(
   node: HTMLElement,
   interleave: boolean,
   color: string,
-): HTMLElement => {
+): HTMLElement {
   if (interleave) {
     node.setAttribute('style', `background-color:${color}`);
     node.setAttribute('display', 'block');
@@ -94,20 +73,20 @@ const interleaveMessage = (
     node.removeAttribute('display');
   }
   return node;
-};
+}
 
-const stripNewLineFlood = (text: string): string => {
+function stripNewLineFlood(text: string): string {
   text = text.replace(/((\n)\2{2})\2+/g, '$1');
   return text;
-};
+}
 
-const createReconnectedNode = (): HTMLElement => {
+function createReconnectedNode(): HTMLElement {
   const node = document.createElement('div');
   node.className = 'Chat__reconnected';
   return node;
-};
+}
 
-const getChatTimestamp = (message: message): string => {
+function getChatTimestamp(message: SerializedMessage): string {
   let stamp = '';
   if (message.createdAt) {
     const dateTime = new Date(message.createdAt);
@@ -120,9 +99,9 @@ const getChatTimestamp = (message: message): string => {
       ']&nbsp;';
   }
   return stamp;
-};
+}
 
-const handleImageError = (e: ErrorEvent) => {
+function handleImageError(e: ErrorEvent) {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
     const node = e.target as HTMLImageElement;
@@ -140,12 +119,12 @@ const handleImageError = (e: ErrorEvent) => {
     node.src = `${src}#${attempts}`;
     node.setAttribute('data-reload-n', (attempts + 1).toString());
   }, IMAGE_RETRY_DELAY);
-};
+}
 
 /**
  * Assigns a "times-repeated" badge to the message.
  */
-const updateMessageBadge = (message: message) => {
+function updateMessageBadge(message: SerializedMessage) {
   const { node, times } = message;
   if (!node || !times || typeof node === 'string') {
     // Nothing to update
@@ -161,15 +140,15 @@ const updateMessageBadge = (message: message) => {
   if (!foundBadge) {
     node.appendChild(badge);
   }
-};
+}
 
 class ChatRenderer {
   loaded: boolean;
   rootNode: HTMLElement | null;
-  queue: message[];
-  messages: message[];
-  archivedMessages: message[];
-  visibleMessages: message[];
+  queue: SerializedMessage[];
+  messages: SerializedMessage[];
+  archivedMessages: SerializedMessage[];
+  visibleMessages: SerializedMessage[];
   page: Page | null;
   events: EventEmitter;
   prependTimestamps: boolean;
@@ -180,7 +159,7 @@ class ChatRenderer {
   logLimit: number;
   logEnable: boolean;
   roundId: null | number;
-  storedTypes: Record<string, string>;
+  storedTypes: Record<string, boolean>;
   interleave: boolean;
   interleaveEnabled: boolean;
   interleaveColor: string;
@@ -205,9 +184,7 @@ class ChatRenderer {
   ttsCategories: Record<string, boolean>;
 
   constructor() {
-    /** @type {HTMLElement} */
     this.loaded = false;
-    /** @type {HTMLElement} */
     this.rootNode = null;
     this.queue = [];
     this.messages = [];
@@ -230,11 +207,10 @@ class ChatRenderer {
     this.hideImportantInAdminTab = false;
     this.databaseBackendEnabled = false;
     // Scroll handler
-    /** @type {HTMLElement} */
     this.scrollNode = null;
     this.scrollTracking = true;
     this.lastScrollHeight = 0;
-    this.handleScroll = (type) => {
+    this.handleScroll = (evt) => {
       const node = this.scrollNode;
       if (!node) {
         return;
@@ -246,13 +222,8 @@ class ChatRenderer {
         this.lastScrollHeight === 0;
       if (scrollTracking !== this.scrollTracking) {
         this.scrollTracking = scrollTracking;
-        this.events.emit('scrollTrackingChanged', scrollTracking);
+        store.set(scrollTrackingAtom, scrollTracking);
         logger.debug('tracking', this.scrollTracking);
-      }
-    };
-    this.ensureScrollTracking = () => {
-      if (this.scrollTracking) {
-        this.scrollToBottom();
       }
     };
     // Periodic message pruning
@@ -288,8 +259,8 @@ class ChatRenderer {
       this.processBatch(this.queue, { doArchive: doArchive });
       this.queue = [];
       // In case we had no vaclid scroll node before
+      this.tryFindScrollable();
       setTimeout(() => {
-        this.tryFindScrollable();
         this.scrollToBottom();
       });
     }
@@ -308,7 +279,7 @@ class ChatRenderer {
     if (!highlightSettings) {
       return;
     }
-    highlightSettings.map((id) => {
+    highlightSettings.forEach((id) => {
       const setting = highlightSettingById[id];
       const text = setting.highlightText;
       const blacklist = setting.blacklistText;
@@ -336,7 +307,7 @@ class ChatRenderer {
       let highlightRegex;
       // Nothing to match, reset highlighting
       if (lines.length === 0) {
-        return undefined;
+        return;
       }
       // Reset lastIndex so it does not mess up the next word
       allowedRegex.lastIndex = 0;
@@ -433,7 +404,6 @@ class ChatRenderer {
         highlightBlacklist,
         blacklistregex,
       });
-      return undefined;
     });
   }
 
@@ -447,16 +417,8 @@ class ChatRenderer {
 
   tryFindScrollable() {
     // Find scrollable parent
-    if (this.rootNode) {
-      if (!this.scrollNode || this.scrollNode.scrollHeight === undefined) {
-        this.scrollNode = findNearestScrollableParent(
-          this.rootNode,
-        ) as HTMLElement;
-        if (this.scrollNode) {
-          this.scrollNode.addEventListener('scroll', this.handleScroll);
-        }
-      }
-    }
+    this.scrollNode = document.getElementById('chat-pane');
+    this.scrollNode?.addEventListener('scroll', this.handleScroll);
   }
 
   setVisualChatLimits(
@@ -465,7 +427,7 @@ class ChatRenderer {
     combineIntervalLimit: number,
     logEnable: boolean,
     logLimit: number,
-    storedTypes: Record<string, string>,
+    storedTypes: Record<string, boolean>,
     roundId: number | null,
     prependTimestamps: boolean,
     hideImportantInAdminTab: boolean,
@@ -532,7 +494,7 @@ class ChatRenderer {
     }
   }
 
-  getCombinableMessage(predicate: message) {
+  getCombinableMessage(predicate: SerializedMessage) {
     const now = Date.now();
     const len = this.visibleMessages.length;
     const from = len - 1;
@@ -554,7 +516,7 @@ class ChatRenderer {
     return null;
   }
 
-  tryTTS(message: message, node: HTMLElement) {
+  tryTTS(message: SerializedMessage, node: HTMLElement) {
     if (this.ttsCategories[message.type]) {
       const utterance = new SpeechSynthesisUtterance(node.innerText);
 
@@ -569,14 +531,13 @@ class ChatRenderer {
 
   // eslint-disable-next-line complexity
   processBatch(
-    batch: message[],
+    batch: SerializedMessage[],
     options: {
       prepend?: boolean;
       notifyListeners?: boolean;
       doArchive?: boolean;
     } = {},
   ) {
-    const settings = useSelector(selectSettings);
     const { prepend, notifyListeners = true, doArchive = false } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
@@ -670,13 +631,10 @@ class ChatRenderer {
           const reactRoot = createRoot(childNode);
 
           reactRoot.render(
-            <>
-              <Element {...outputProps}>
-                {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Chat rendere */}
-                <span dangerouslySetInnerHTML={oldHtml} />
-              </Element>
-              {childNode}
-            </>,
+            <Element {...outputProps}>
+              {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Chat rendere */}
+              <span dangerouslySetInnerHTML={oldHtml} />
+            </Element>,
           );
         }
 
@@ -930,7 +888,7 @@ class ChatRenderer {
     } else {
       // Fetch from chat storage
       let messagesHtml = '';
-      let tmpMsgArray: message[] = [];
+      let tmpMsgArray: SerializedMessage[] = [];
       if (startLine || endLine) {
         if (!endLine) {
           tmpMsgArray = this.archivedMessages.slice(startLine);
@@ -993,18 +951,11 @@ class ChatRenderer {
   }
 }
 
-type ChatWindow = Window &
-  typeof globalThis & {
-    __chatRenderer__: ChatRenderer;
-  };
-
 // Make chat renderer global so that we can continue using the same
 // instance after hot code replacement.
 
-const chatWindow = window as ChatWindow;
-if (!chatWindow.__chatRenderer__) {
-  chatWindow.__chatRenderer__ = new ChatRenderer();
+if (!window.__chatRenderer__) {
+  window.__chatRenderer__ = new ChatRenderer();
 }
 
-/** @type {ChatRenderer} */
-export const chatRenderer = chatWindow.__chatRenderer__;
+export const chatRenderer: ChatRenderer = window.__chatRenderer__;

@@ -31,6 +31,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	)
 
 	AddComponent(/datum/component/experiment_handler, \
+		config_mode = EXPERIMENT_CONFIG_ALTCLICK, \
 		allowed_experiments = list(/datum/experiment/scanning),\
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
 		experiment_signals = destructive_signals, \
@@ -246,13 +247,17 @@ It is used to destroy hand-held objects and advance technological research. Used
 	busy = TRUE
 	addtimer(CALLBACK(src, PROC_REF(reset_busy)), 2.4 SECONDS)
 	use_power(active_power_usage)
-	//Failsafe.
+	// Destroy items inside
+	var/list/destructing = list()
+	destructing += current_item
 	for(var/atom/movable/AM in current_item.contents)
 		AM.forceMove(get_turf(src))
-	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, current_item)
-	destroy_item_individual(current_item, gain_research_points)
+		destructing += AM
+	for(var/atom/thing_destroying in destructing) // For all contents and itself
+		destroy_item_individual(thing_destroying, gain_research_points)
 	loaded_item = null
+	// feedback
+	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 	update_icon()
 	return TRUE
 
@@ -277,12 +282,10 @@ It is used to destroy hand-held objects and advance technological research. Used
 		visible_message(span_warning("A loud buzz sounds out from \the [src] as it rejects and spits out \the [thing]!"))
 		thing.forceMove(turf_to_dump_to)
 		return
-	var/list/point_value = techweb_item_point_check(thing)
-	//If it has a point value and we haven't deconstructed it OR we've deconstructed it but it's a repeatable.
-	if(point_value && (!stored_research.deconstructed_items[thing.type] || (stored_research.deconstructed_items[thing.type] && (thing.type in SSresearch.techweb_repeatable_items))))
-		if(SSresearch.techweb_point_items[thing.type]) //Don't add things that have the deconstructable_research component
-			stored_research.deconstructed_items[thing.type] = TRUE
-		stored_research.add_point_list(point_value)
+
+	//Perform experiment
+	techweb_item_generate_points(thing, stored_research)
+	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, thing)
 
 	//Finally, let's add it to the material silo, if applicable.
 	var/datum/component/material_container/materials = get_silo_material_container_datum(FALSE)

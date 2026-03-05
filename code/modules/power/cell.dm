@@ -26,9 +26,11 @@
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
 	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
-	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	var/charge_delay = 0  // How long it takes for the cell to start recharging after last use
 	var/robot_durability = 50
+
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
+
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
@@ -38,6 +40,7 @@
 
 /obj/item/cell/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/electrovoreable)
 	c_uid = cell_uid++
 	update_icon()
 	if(self_recharge)
@@ -99,7 +102,7 @@
 /obj/item/cell/proc/percent()		// return % charge of cell
 	var/charge_percent = 0
 	if(maxcharge > 0)
-		charge_percent = 100.0*charge/maxcharge
+		charge_percent = 100.0 * charge / maxcharge
 	return charge_percent
 
 /obj/item/cell/proc/fully_charged()
@@ -173,6 +176,13 @@
 	if(Adjacent(user))
 		. += "It has a power rating of [maxcharge]."
 		. += "The charge meter reads [round(src.percent() )]%."
+
+/obj/item/cell/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+	if(isrobot(M))
+		var/mob/living/silicon/robot/target = M
+		if(target.opened)
+			return FALSE
+	..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
 	..()

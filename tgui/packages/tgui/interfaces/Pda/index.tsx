@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
+import { RoutingErrorWindow } from 'tgui/routes';
 /* This is all basically stolen from routes.js. */
-import { routingError } from 'tgui/routes';
 import {
   Box,
   Button,
@@ -14,6 +14,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
+  theme?: string;
   owner: string;
   ownjob: string;
   idInserted: BooleanLike;
@@ -33,33 +34,37 @@ type Data = {
 
 const requirePdaInterface = require.context('./pda_screens', false, /\.tsx$/);
 
-function getPdaApp(name: string) {
+function getPdaApp(name: string): () => React.JSX.Element {
   let appModule: __WebpackModuleApi.RequireContext;
+
   try {
     appModule = requirePdaInterface(`./${name}.tsx`);
-  } catch (err) {
+  } catch (err: any) {
     if (err.code === 'MODULE_NOT_FOUND') {
-      return routingError('notFound', name);
+      return () => <RoutingErrorWindow type="notFound" name={name} />;
     }
     throw err;
   }
-  const Component: () => React.JSX.Element = appModule[name];
+
+  const Component = appModule[name] as (() => React.JSX.Element) | undefined;
+
   if (!Component) {
-    return routingError('missingExport', name);
+    return () => <RoutingErrorWindow type="missingExport" name={name} />;
   }
+
   return Component;
 }
 
 export const Pda = (props) => {
   const { data } = useBackend<Data>();
 
-  const { app, owner, useRetro } = data;
+  const { theme, app, owner, useRetro } = data;
 
   const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 
   if (!owner) {
     return (
-      <Window>
+      <Window theme={theme}>
         <Window.Content>
           <Section stretchContents>
             Warning: No ID information found! Please swipe ID!
@@ -72,7 +77,7 @@ export const Pda = (props) => {
   const App = getPdaApp(app.template);
 
   return (
-    <Window width={580} height={670} theme={useRetro ? 'pda_retro' : undefined}>
+    <Window width={580} height={670} theme={useRetro ? 'pda_retro' : theme}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}

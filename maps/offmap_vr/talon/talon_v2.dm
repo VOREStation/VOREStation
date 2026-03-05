@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/machinery/computer/shuttle_control/explore/talonboat
 	name = "shuttle control console"
 	shuttle_tag = "Talon's Shuttle"
-	req_one_access = list(ACCESS_TALON)
+	req_one_access = list(ACCESS_TALON_BRIDGE)
 
 /obj/effect/overmap/visitable/ship/landable/talon_boat
 	name = "ITV Talon Shuttle"
@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/machinery/computer/shuttle_control/explore/talon_escape
 	name = "shuttle control console"
 	shuttle_tag = "Talon's Escape Pod"
-	req_one_access = list(ACCESS_TALON)
+	req_one_access = list(ACCESS_TALON, ACCESS_TALON_PILOT)
 
 /obj/effect/overmap/visitable/ship/landable/talon_pod
 	name = "ITV Talon Escape Pod"
@@ -143,6 +143,17 @@ GLOBAL_LIST_EMPTY(latejoin_talon)
 //// The Various Machines
 /obj/machinery/telecomms/allinone/talon
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
+
+/obj/item/paper/secret_vendornote
+	name = "secret note"
+	info = {"well, if you're reading this note, then I've managed to install, a couple of funny things inside the vending machine.<br>\
+these things are there as a funny reminder that ITV Talon was once a more weaponized ship. <br>\
+to be honest, looking at the previous concept of the ship, it looks funny and more dangerous for those who want to fight with it.<br>\
+<b>however</b>, now it has lost that belligerence and has become a merchant ship.<br>\
+it's not bad and cool, but it's a pity that there's almost nothing left about the memories of the last ship, but I hope to fix it by adding this machete, which the crew used to have by default as a sign of recognition and a small reminder of the last ship.<br>\
+so... Use it wisely and good luck!<br>\
+<br>\
+<i>mysterious creator of the vending machine</i>"}
 
 /obj/item/paper/talon_shields
 	name = "to whatever asshole"
@@ -282,7 +293,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
-	access = list(ACCESS_TALON, ACCESS_SYNTH)
+	access = list(ACCESS_TALON, ACCESS_TALON_ENGINEER, ACCESS_TALON_SECURITY, ACCESS_TALON_BRIDGE, ACCESS_TALON_CARGO, ACCESS_TALON_PILOT, ACCESS_TALON_MEDICAL, ACCESS_SYNTH)
 
 /obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload)
 	. = ..()
@@ -294,18 +305,18 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/machinery/power/apc/talon
 	req_access = list()
-	req_one_access = list(ACCESS_TALON)
+	req_one_access = list(ACCESS_TALON_ENGINEER)
 
 /obj/machinery/power/apc/talon/hyper
 	cell_type = /obj/item/cell/hyper
 
 /obj/machinery/alarm/talon
 	req_access = list()
-	req_one_access = list(ACCESS_TALON)
+	req_one_access = list(ACCESS_TALON_ENGINEER)
 
 /obj/machinery/door/firedoor/glass/talon
 	req_access = list()
-	req_one_access = list(ACCESS_TALON)
+	req_one_access = list(ACCESS_TALON_ENGINEER)
 
 /obj/machinery/door/firedoor/glass/talon/hidden
 	name = "\improper Emergency Shutter System"
@@ -371,12 +382,17 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
-	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/captain
+	req_access = list(ACCESS_TALON_BRIDGE)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/captain
 
 	starts_with = list(
 		/obj/item/storage/backpack/dufflebag/captain,
+		/obj/item/clothing/head/beret/talon/command,
+		/obj/item/clothing/head/beret/talon/command/refreshed,
 		/obj/item/clothing/suit/storage/vest,
+		/obj/item/clothing/head/helmet,
+		/obj/item/clothing/accessory/solgov/department/command/army,
+		/obj/item/clothing/glasses/omnihud/all,
 		/obj/item/melee/telebaton,
 		/obj/item/flash,
 		/obj/item/radio/headset/talon,
@@ -389,12 +405,14 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
-	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/guard
+	req_access = list(ACCESS_TALON_SECURITY)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/guard
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/pcarrier/light,
+		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/under/utility,
+		/obj/item/clothing/head/soft/talon,
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
 		/obj/item/handcuffs = 2,
@@ -403,8 +421,10 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/flash,
 		/obj/item/flashlight/maglight,
 		/obj/item/clothing/glasses/sunglasses,
+		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/storage/belt/security,
 		/obj/item/radio/headset/talon,
+		/obj/item/clothing/head/beret/talon/refreshed,
 		/obj/item/clothing/accessory/solgov/department/security/army,
 		/obj/item/clothing/head/helmet/space/void/refurb/marine/talon,
 		/obj/item/clothing/suit/space/void/refurb/marine/talon,
@@ -416,13 +436,15 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
-	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/doctor
+	req_access = list(ACCESS_TALON_MEDICAL)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
 		/obj/item/clothing/under/rank/nurse,
+		/obj/item/clothing/head/soft/talon,
 		/obj/item/clothing/under/rank/orderly,
+		/obj/item/clothing/accessory/solgov/department/medical/army,
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/shoes/white,
@@ -436,11 +458,13 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
-	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/engineer
+	req_access = list(ACCESS_TALON_ENGINEER)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/engineer
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
+		/obj/item/clothing/accessory/solgov/department/engineering/army,
+		/obj/item/clothing/glasses/omnihud/eng/meson,
 		/obj/item/flashlight,
 		/obj/item/extinguisher,
 		/obj/item/clamp,
@@ -458,11 +482,12 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/structure/closet/secure_closet/talon_pilot
 	name = "talon pilot's locker"
-	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/pilot
+	req_access = list(ACCESS_TALON_PILOT)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/pilot
 
 	starts_with = list(
 		/obj/item/material/knife/tacknife/survival,
+		/obj/item/clothing/accessory/solgov/department/service/army,
 		/obj/item/clothing/head/pilot,
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
@@ -485,11 +510,12 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/structure/closet/secure_closet/talon_miner
 	name = "talon miner's locker"
-	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/miner
+	req_access = list(ACCESS_TALON_CARGO)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/miner
 
 	starts_with = list(
 		/obj/item/radio/headset/talon,
+		/obj/item/clothing/accessory/solgov/department/supply/army,
 		/obj/item/clothing/head/helmet/space/void/refurb/mining/talon,
 		/obj/item/clothing/suit/space/void/refurb/mining/talon,
 		/obj/item/tank/oxygen,
@@ -511,7 +537,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	desc = "Medical drug dispenser."
 	icon_state = "med"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access = list(ACCESS_TALON)
+	req_access = list(ACCESS_TALON_MEDICAL)
 	products = list(/obj/item/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
 					/obj/item/reagent_containers/glass/bottle/stoxin = 4,/obj/item/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/reagent_containers/syringe/antiviral = 4,/obj/item/reagent_containers/syringe = 12,
@@ -521,8 +547,39 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 					/obj/item/glasses_kit = 1,  /obj/item/storage/quickdraw/syringe_case = 4)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,/obj/item/reagent_containers/pill/stox = 4,/obj/item/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	req_log_access = ACCESS_TALON_MEDICAL
+	has_logs = 1
+
+/obj/machinery/vending/talondrobe
+	name = "Talon Uniforms official"
+	desc = "Created for those who want to look the latest in Talon fashion!"
+	product_slogans = "TALON - Trading Any Location On Navigation"
+	description_fluff = "The vending machine is designed to store and dispense various types of uniforms for the crew of Talon ships."
+	product_ads = "It's time to try something new or take a proven old one!;The seller should always look beautiful.;Did you feel cold? Don't forget to take a bomber jacket for yourself!"
+	icon_state = "talondrobe"
+	req_access = list(ACCESS_TALON)
+	products = list(/obj/item/clothing/head/soft/talon = 10,
+				/obj/item/clothing/head/soft/talon/refreshed = 10,
+				/obj/item/clothing/suit/storage/hooded/wintercoat/talon = 10,
+				/obj/item/clothing/suit/storage/hooded/wintercoat/talon/refreshed = 10,
+				/obj/item/clothing/head/beret/talon = 10,
+				/obj/item/clothing/head/beret/talon/refreshed = 10,
+				/obj/item/clothing/suit/storage/toggle/hoodie/talon = 10,
+				/obj/item/clothing/under/rank/talon/basic = 10,
+				/obj/item/clothing/under/rank/talon/basic/refreshed = 10,
+				/obj/item/clothing/suit/storage/toggle/labcoat/talon = 10,
+				/obj/item/storage/backpack/messenger/talon = 10,
+				/obj/item/storage/backpack/talon = 10,
+				/obj/item/storage/backpack/satchel/talon = 10,
+				/obj/item/storage/backpack/dufflebag/talon = 10,
+				/obj/item/radio/headset/talon = 10,
+				/obj/item/radio/headset/alt/talon = 10)
+	contraband = list(/obj/item/paper/secret_vendornote = 1,
+				/obj/item/clothing/accessory/holster/machete = 1,
+				/obj/item/material/knife/machete = 1)
 	req_log_access = ACCESS_TALON
 	has_logs = 1
+	can_rotate = 0
 
 ///////////////////////////
 //// Computers
@@ -542,7 +599,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	extended_desc = "This program allows remote access to the Talon's camera system."
 	size = 10 //Smaller because limited scope
 	tguimodule_path = /datum/tgui_module/camera/ntos/talon_ship
-	required_access = ACCESS_TALON
+	required_access = ACCESS_TALON_SECURITY
 
 /datum/tgui_module/camera/ntos/talon_ship
 	name = "Talon Ship Camera Monitor"
@@ -557,23 +614,23 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /datum/computer_file/program/power_monitor/talon
 	filename = "tpowermonitor"
 	filedesc = "Power Monitoring (Talon)"
-	required_access = ACCESS_TALON
+	required_access = ACCESS_TALON_ENGINEER
 /datum/computer_file/program/alarm_monitor/talon
 	filename = "talarmmonitoreng"
 	filedesc = "Alarm Monitoring (Talon)"
-	required_access = ACCESS_TALON
+	required_access = ACCESS_TALON_ENGINEER
 /datum/computer_file/program/rcon_console/talon
 	filename = "trconconsole"
 	filedesc = "RCON Remote Control (Talon)"
-	required_access = ACCESS_TALON
+	required_access = ACCESS_TALON_ENGINEER
 /datum/computer_file/program/atmos_control/talon
 	filename = "tatmoscontrol"
 	filedesc = "Atmosphere Control (Talon)"
-	required_access = ACCESS_TALON
+	required_access = ACCESS_TALON_ENGINEER
 /datum/computer_file/program/suit_sensors/talon
 	filename = "tsensormonitor"
 	filedesc = "Suit Sensors Monitoring (Talon)"
-	required_access = ACCESS_TALON
+	required_access = ACCESS_TALON_MEDICAL
 
 // Modular computer/console presets
 /obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/pilot

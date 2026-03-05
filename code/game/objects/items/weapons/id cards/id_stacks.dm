@@ -29,23 +29,23 @@
 
 //ERT
 
-/obj/item/card/id/centcom/ERT
+/obj/item/card/id/centcom/ert
 	name = "Emergency Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-red", "stripe-red")
 
-/obj/item/card/id/centcom/ERT/medic
+/obj/item/card/id/centcom/ert/medic
 	name = "Emergency Medical Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-medblu", "stripe-medblu")
 
-/obj/item/card/id/centcom/ERT/commander
+/obj/item/card/id/centcom/ert/commander
 	name = "Emergency Response Commander ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-gold", "stripe-gold")
 
-/obj/item/card/id/centcom/ERT/engineer
+/obj/item/card/id/centcom/ert/engineer
 	name = "Emergency Engineering Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-orange", "stripe-orange")
 
-/obj/item/card/id/centcom/ERT/janitor
+/obj/item/card/id/centcom/ert/janitor
 	name = "Emergency Cleanup Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-purple", "stripe-purple")
 

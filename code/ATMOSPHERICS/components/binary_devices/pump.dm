@@ -80,13 +80,13 @@ Thus, the two variables affect pump operation are set in New():
 		icon_state = "[use_power ? "[base_icon]-on" : "[base_icon]-off"]"
 
 /obj/machinery/atmospherics/binary/pump/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
-		add_underlay(T, node2, dir, node2?.icon_connect_type)
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
+	add_underlay(T, node2, dir, node2?.icon_connect_type)
 
 /obj/machinery/atmospherics/binary/pump/hide(var/i)
 	update_underlays()

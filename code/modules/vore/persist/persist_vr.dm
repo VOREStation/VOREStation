@@ -49,7 +49,7 @@
 	// Find out of this mob is a proper mob!
 	if (persister.mind && persister.mind.loaded_from_ckey)
 		// Okay this mob has a real loaded-from-savefile mind in it!
-		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
+		var/datum/preferences/prefs = GLOB.preferences_datums[persister.mind.loaded_from_ckey]
 		if(!prefs)
 			WARNING("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
 			return
@@ -60,8 +60,9 @@
 			return // Failed to load character
 
 		// For now as a safety measure we will only save if the name matches.
-		if(prefs.real_name != persister.real_name)
-			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
+		var/prefs_real_name = prefs.read_preference(/datum/preference/name/real_name)
+		if(prefs_real_name != persister.real_name)
+			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs_real_name].")
 			return
 
 		return prefs

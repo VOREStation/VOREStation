@@ -41,7 +41,7 @@
 		violent_throw = TRUE
 		throw_source = get_turf(thrower)
 
-/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
+/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom)
 	..()
 
 	if(isGlass && violent_throw)

@@ -26,7 +26,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
  * returns TRUE if the attack was handled by a signal handler and no further processing should occur.
  * returns FALSE if a signal handler did NOT handle it, resulting in the normal chain.
 */
-/obj/item/proc/attack_self(mob/user)
+/obj/item/proc/attack_self(mob/user, modifiers)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!user)
 		CRASH("attack_self was called without a user!")
@@ -64,7 +64,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return A.attackby(src, user, attack_modifier, click_parameters)
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user, var/attack_modifier, var/click_parameters)
+/atom/proc/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, W, user, click_parameters) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
 	return FALSE

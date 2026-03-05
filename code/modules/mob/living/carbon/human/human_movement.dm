@@ -4,40 +4,58 @@
 
 	. = 0
 
-	if (istype(loc, /turf/space))
-		return ..() - 1
-
-	if(species.slowdown)
-		. += species.slowdown
-
 	if(force_max_speed)
-		return ..() + HUMAN_LOWEST_SLOWDOWN
+		return HUMAN_LOWEST_SLOWDOWN
 
-	for(var/datum/modifier/M in modifiers)
-		if(!isnull(M.haste) && M.haste == TRUE)
-			return ..() + HUMAN_LOWEST_SLOWDOWN // Returning -1 will actually result in a slowdown for Teshari.
+	for(var/datum/modifier/M in modifiers) //Do this before space check in case we're hasted (and use max speed)
+		if(M.haste)
+			return HUMAN_LOWEST_SLOWDOWN // Per haste documentation 'ignore slowdown and move really fast'. Calling ..() here adds slowdown.
 		if(!isnull(M.slowdown))
 			. += M.slowdown
 
-	var/health_deficiency = (getMaxHealth() - health)
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		health_deficiency *= H.species.trauma_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
-	if(health_deficiency >= 40)
-		if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
-			health_deficiency = max(0, health_deficiency - src.chem_effects[CE_PAINKILLER])
-		if(health_deficiency >= 40) //Still in enough pain for it to be significant?
-			. += (health_deficiency / 25)
+	if(istype(loc, /turf/space))
+		return ..() - 1
 
-	if(can_feel_pain())
-		if(halloss >= 10) . += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+	. += species.slowdown
+
+	//Quick math:
+	//100 max hp w/ 0 damage = 100/100 * 100 = 100HP
+	//100 max hp w/ 50 damage = (50/100) * 100 = 50HP
+	//100 max hp w/ 50 halloss = (50/100) * 100 = 50HP
+	//100 max hp w/ 75 damage = (25/100) * 100 = 75HP
+	//200 max hp w/ 50 damage = (50/200) * 100 = 75HP
+	if(species.pain_mod)
+		var/health_percent = ((health / getMaxHealth()) * 100) / species.pain_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
+
+		var/hal_pain = getHalLoss() * species.pain_mod //trauma_mod is something entirely differently
+		//var/hal_pain = can_feel_pain() ? (getHalLoss() * 2) * species.pain_mod : 0 //Variant for if you want pain immune people to not be affected by halloss slowdown.
+
+		if((health_percent <= 60 || hal_pain >= 25) && !chem_effects[CE_NARCOTICS]) //Have taken 40% of our max health in damage OR we have >=25 halloss pain
+
+			if(health_percent < 0)
+				health_percent = 0 //Crit already has its own negative effects, so
+
+			var/amount_damaged = 100 - health_percent //Get the percent.
+
+			if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
+				var/painkiller_strength = chem_effects[CE_PAINKILLER]
+				if(hal_pain > 25)
+					hal_pain = max(0, max(25, hal_pain - (painkiller_strength * 0.33))) //Painkillers are only 33% effective against halloss pain and can never lower your hal_pain below 25. It makes it less noticible at high levels, but it can't completely nullify it (unless on narcotics)
+				amount_damaged = max(0, amount_damaged - painkiller_strength)
+			amount_damaged += hal_pain
+
+			if(amount_damaged >= 25) //Still in enough pain for it to be significant?
+				. += CLAMP((amount_damaged / 25), 0, 4) //Max of 4 slowdown from pain.
 
 	var/hungry = (500 - nutrition) / 5 //Fixed 500 here instead of our huge MAX_NUTRITION
-	if (hungry >= 70) . += hungry/50
+	if(hungry >= 70)
+		. += hungry/50
 
-	if (get_feralness() >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
+	if(get_feralness() >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
 		. = max(species.slowdown, species.slowdown+((.-species.slowdown)/(get_feralness()/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
-		if(shock_stage >= 10) . -= 1.5 //this gets a +3 later, feral critters take reduced penalty
+		if(shock_stage >= 10)
+			. -= CLAMP((shock_stage / 40), 0.25, 1.5) //Feral creatures get halved shock penalty.
+
 	if(riding_datum) //Bit of slowdown for taur rides if rider is bigger or fatter than mount.
 		var/datum/riding/R = riding_datum
 		var/mob/living/L = R.ridden
@@ -46,8 +64,6 @@
 				var/mob/living/carbon/human/H = M
 				if(H.size_multiplier > L.size_multiplier)
 					. += 1
-				//if(H.weight > L.weight) weight should not have mechanical impact
-					//. += 1
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
@@ -59,29 +75,16 @@
 			else if(E.status & ORGAN_BROKEN)
 				. += 1.5
 	else
-		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
-			var/obj/item/organ/external/E = get_organ(organ_name)
-			if(!E || E.is_stump())
-				. += 4
-			else if(E.splinted && E.splinted.loc != E)
-				. += 0.5
-			else if(E.status & ORGAN_BROKEN)
-				. += 1.5
+		. += max(2 * stance_damage, 0) //Handles missing feet/legs
 
-	if(shock_stage >= 10) . += 3
+	if(shock_stage >= 10)
+		. += CLAMP((shock_stage / 20), 0.5, 3) //Slowly become slower the longer you're in traumatic shock. Simulates adrenaline wearing off. Entering soft crit immediately sets shock_stage to 61.
 
-	if(aiming && aiming.aiming_at) . += 5 // Iron sights make you slower, it's a well-known fact.
-
-	if(FAT in src.mutations)
+	if(FAT in mutations)
 		. += 1.5
 
 	if (bodytemperature < species.cold_level_1)
 		. += (species.cold_level_1 - bodytemperature) / 10 * 1.75
-
-	. += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
-
-	if(mRun in mutations)
-		. = 0
 
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
@@ -106,22 +109,21 @@
 	. += item_tally
 
 	if(CE_SLOWDOWN in chem_effects)
-		if (. >= 0 )
+		if(. >= 0 )
 			. *= 1.25 //Add a quarter of penalties on top.
 		. += chem_effects[CE_SLOWDOWN]
+
+	//mRun means we don't get slowdown, so we axe the slowdown after all the slowdown stuff has been accounted for, but before speed buffs are applied.
+	if(mRun in mutations)
+		. = 0
 
 	if(CE_SPEEDBOOST in chem_effects)
 		if (. >= 0)	// cut any penalties in half
 			. *= 0.5
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	if(ishuman(src)) //r u human
-		var/mob/living/carbon/human/H = src //wowie you are, take this badge
-		if(species.unusual_running == 1) // do you have the trait
-			var/obj/item/I = H.get_active_hand() // checking their hand
-			var/obj/item/OH = H.get_inactive_hand() // and their other hand
-			if(!istype(I,/obj/item) && !istype(OH,/obj/item)) //better not have any items on you mfer
-				. -= 0.5 // ok vibe check passed, take this small movement buff and leave
+	if(HAS_TRAIT(src, UNUSUAL_RUNNING) && !get_active_hand() && !get_inactive_hand()) //better not have any items on you mfer
+		. -= 0.5 // ok vibe check passed, take this small movement buff and leave
 
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()

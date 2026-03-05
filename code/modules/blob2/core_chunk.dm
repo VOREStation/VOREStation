@@ -121,19 +121,19 @@
 
 	return FALSE
 
-/decl/chemical_reaction/instant/blob_reconstitution
+/datum/decl/chemical_reaction/instant/blob_reconstitution
 	name = "Hostile Blob Revival"
 	id = "blob_revival"
 	result = null
 	required_reagents = list(REAGENT_ID_PHORON = 60)
 	result_amount = 1
 
-/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/blobcore_chunk))
 		return ..()
 	return FALSE
 
-/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen())
 		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
@@ -141,14 +141,14 @@
 	else
 		chunk.visible_message(span_warning("[chunk] shifts strangely, but falls still."))
 
-/decl/chemical_reaction/instant/blob_reconstitution/domination
+/datum/decl/chemical_reaction/instant/blob_reconstitution/domination
 	name = "Allied Blob Revival"
 	id = "blob_friend"
 	result = null
 	required_reagents = list(REAGENT_ID_HYDROPHORON = 40, REAGENT_ID_PERIDAXON = 20, REAGENT_ID_MUTAGEN = 20)
 	result_amount = 1
 
-/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen("neutral"))
 		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))

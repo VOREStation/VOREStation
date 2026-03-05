@@ -32,6 +32,30 @@
 	if(weather_colour)
 		visuals.color = weather_colour
 
+/datum/anomalous_weather/proc/update_reagent(reagent)
+	if(!reagent)
+		return FALSE
+
+	if(!reagent_holder)
+		reagent_holder = new(10000, null)
+
+	reagent_id = reagent
+	reagent_holder.clear_reagents()
+	reagent_holder.add_reagent(reagent_id, 10000)
+	visuals.color = reagent_holder.get_color()
+
+/datum/anomalous_weather/proc/apply_to_turf(turf/T)
+	if(visuals in T.vis_contents)
+		WARNING("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
+		return
+	T.vis_contents += visuals
+
+/datum/anomalous_weather/proc/remove_from_turf(turf/T)
+	if(!(visuals in T.vis_contents))
+		WARNING("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
+		return
+	T.vis_contents -= visuals
+
 /datum/anomalous_weather/proc/affect_turf(turf/to_affect)
 	if(iswall(to_affect))
 		return

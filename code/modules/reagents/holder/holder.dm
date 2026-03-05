@@ -93,13 +93,13 @@
 				if(!from_belly)
 					from_belly = R.from_belly
 
-		for(var/decl/chemical_reaction/C as anything in eligible_reactions)
+		for(var/datum/decl/chemical_reaction/C as anything in eligible_reactions)
 			if(C.can_happen(src) && C.process(src, from_belly))
 				effect_reactions |= C
 				reaction_occurred = TRUE
 		eligible_reactions.len = 0
 	while(reaction_occurred)
-	for(var/decl/chemical_reaction/C as anything in effect_reactions)
+	for(var/datum/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
 	update_total()
 	SEND_SIGNAL(src, COMSIG_REAGENTS_HOLDER_REACTED, effect_reactions)
@@ -254,7 +254,10 @@
 	if(!target || !istype(target))
 		return
 
-	amount = max(0, min(amount, total_volume, target.get_free_space() / multiplier))
+	if(multiplier)
+		amount = max(0, min(amount, total_volume, target.get_free_space() / multiplier))
+	else
+		amount = max(0, min(amount, total_volume))
 
 	if(!amount)
 		return

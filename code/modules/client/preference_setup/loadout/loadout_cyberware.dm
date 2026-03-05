@@ -27,7 +27,7 @@
 
 /datum/gear/utility/implant/generic/New()
 	..()
-	gear_tweaks += global.gear_tweak_implant_location
+	gear_tweaks += GLOB.gear_tweak_implant_location
 
 /datum/gear/utility/implant/eal
 	display_name = "vocal synthesizer, EAL"

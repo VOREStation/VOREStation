@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	//Name matching is ugly but mind doesn't persist to look at.
 	var/charjob
 	var/datum/data/record/record_found
-	record_found = find_general_record("name",ghost_client.prefs.real_name)
+	record_found = find_general_record("name", ghost_client.prefs.read_preference(/datum/preference/name/real_name))
 
 	//Found their record, they were spawned previously
 	if(record_found)
@@ -208,9 +208,9 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	//If desired, apply equipment.
 	if(equip_body)
 		if(charjob)
-			job_master.EquipRank(new_character, charjob, 1)
+			GLOB.job_master.EquipRank(new_character, charjob, 1)
 			new_character.mind.assigned_role = charjob
-			new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
+			new_character.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(new_character, charjob)
 
 	//A redraw for good measure
 	new_character.regenerate_icons()

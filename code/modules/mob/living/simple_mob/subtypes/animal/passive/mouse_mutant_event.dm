@@ -22,7 +22,7 @@
 		B.owner.visible_message(span_boldwarning("Something grows inside [B.owner]'s [lowertext(B.name)]!"))
 		to_chat(B.owner, span_warning("\The [src] suddenly evolves inside your [lowertext(B.name)]!"))
 		B.release_specific_contents(src, TRUE)
-		B.nom_mob(bigger, null)
+		B.nom_atom(bigger, null)
 		qdel(src)
 	else
 		visible_message(span_warning("\The [src] suddenly evolves!"))

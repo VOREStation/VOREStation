@@ -99,10 +99,18 @@
 	B.digest_burn = 3
 	B.fancy_vore = 1
 	B.vore_sound = "Stomach Move"
-	B.belly_fullscreen = "VBO_belly9"
-	B.belly_fullscreen_color = "#555B34"
+	B.belly_fullscreen = "VBOanim_belly9"
+	B.belly_fullscreen_color = "#202020"
 	B.sound_volume = 25
 	B.count_items_for_sprite = TRUE
+	B.show_liquids = TRUE
+	B.reagentbellymode = TRUE
+	B.reagent_mode_flags = DM_FLAG_REAGENTSDIGEST
+	B.reagentid = "biomass"
+	B.reagent_chosen = "Biomass"
+	B.reagent_name = "caustic trash-sludge"
+	B.custom_reagentcolor = "#3c3030"
+	B.reagent_touches = FALSE
 
 	B = new /obj/belly/longneck(src)
 	B.affects_vore_sprites = FALSE
@@ -123,7 +131,7 @@
 	B.affects_vore_sprites = TRUE
 	B.belly_sprite_to_affect = "neck1"
 	B.name = "vacuum hose"
-	B.autotransferlocation = "vacuum hose 2"
+	B.autotransferlocation = "upper vacuum hose"
 	B.fancy_vore = 1
 	B.vore_sound = "Stomach Move"
 	B.sound_volume = 100
@@ -131,8 +139,8 @@
 	B = new /obj/belly/longneck(src)
 	B.affects_vore_sprites = TRUE
 	B.belly_sprite_to_affect = "neck2"
-	B.name = "vacuum hose 2"
-	B.autotransferlocation = "vacuum hose 3"
+	B.name = "upper vacuum hose"
+	B.autotransferlocation = "midway vacuum hose"
 	B.desc = "It feels very tight in here..."
 	B.fancy_vore = 1
 	B.vore_sound = "Stomach Move"
@@ -141,8 +149,8 @@
 	B = new /obj/belly/longneck(src)
 	B.affects_vore_sprites = TRUE
 	B.belly_sprite_to_affect = "neck3"
-	B.name = "vacuum hose 3"
-	B.autotransferlocation = "vacuum hose 4"
+	B.name = "midway vacuum hose"
+	B.autotransferlocation = "lower vacuum hose"
 	B.desc = "Looks like it's gonna be all downhill from here..."
 	B.fancy_vore = 1
 	B.vore_sound = "Stomach Move"
@@ -151,7 +159,7 @@
 	B = new /obj/belly/longneck(src)
 	B.affects_vore_sprites = TRUE
 	B.belly_sprite_to_affect = "neck4"
-	B.name = "vacuum hose 4"
+	B.name = "lower vacuum hose"
 	B.autotransferlocation = "Churno-Vac"
 	B.desc = "Thank you for your biofuel contribution~"
 	B.fancy_vore = 1
@@ -173,7 +181,7 @@
 	autotransferlocation = "Churno-Vac"
 	vore_verb = "suck"
 	belly_fullscreen_color = "#4d4d4d"
-	belly_fullscreen = "a_tumby"
+	belly_fullscreen = "VBOanim_gullet1"
 	human_prey_swallow_time = 1
 	nonhuman_prey_swallow_time = 1
 	autotransfer_max_amount = 2

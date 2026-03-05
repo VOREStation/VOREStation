@@ -142,7 +142,7 @@
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
-	var/datum/job/J = job_master.GetJob(rank)
+	var/datum/job/J = GLOB.job_master.GetJob(rank)
 	if(J)
 		access = J.get_access()
 
@@ -220,13 +220,13 @@
 	. = ..()
 	access |= get_all_station_access()
 
-/obj/item/card/id/centcom/ERT
+/obj/item/card/id/centcom/ert
 	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
 	assignment = JOB_EMERGENCY_RESPONSE_TEAM
 	icon_state = "ert-id"
 	rank = JOB_EMERGENCY_RESPONSE_TEAM
 
-/obj/item/card/id/centcom/ERT/Initialize(mapload)
+/obj/item/card/id/centcom/ert/Initialize(mapload)
 	. = ..()
 	access |= get_all_station_access()
 

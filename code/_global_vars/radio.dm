@@ -52,22 +52,22 @@ GLOBAL_LIST_INIT(radiochannels, list(
 
 
 // central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
+GLOBAL_LIST_INIT(cent_frequencies, list(ERT_FREQ, DTH_FREQ))
 
 // Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
+GLOBAL_LIST_INIT(antag_frequencies, list(SYND_FREQ, RAID_FREQ))
 
 //Department channels, arranged lexically
-var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
+GLOBAL_LIST_INIT(department_frequencies, list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ))
 
-var/list/OFFMAP_FREQS = list(TALON_FREQ, CSN_FREQ) //VOREStation Add
+GLOBAL_LIST_INIT(offmap_frequencies, list(TALON_FREQ, CSN_FREQ))
 
 /proc/frequency_span_class(var/frequency)
 	// Antags!
-	if (frequency in ANTAG_FREQS)
+	if (frequency in GLOB.antag_frequencies)
 		return "syndradio"
 	// CentCom channels (deathsquid and ert)
-	if(frequency in CENT_FREQS)
+	if(frequency in GLOB.cent_frequencies)
 		return "centradio"
 	// command channel
 	if(frequency == COMM_FREQ)
@@ -92,10 +92,8 @@ var/list/OFFMAP_FREQS = list(TALON_FREQ, CSN_FREQ) //VOREStation Add
 		return "expradio"
 	if(frequency == ENT_FREQ) // entertainment
 		return "entradio"
-	if(frequency in DEPT_FREQS)
+	if(frequency in GLOB.department_frequencies)
 		return "deptradio"
-	//VOREStation Add
-	if(frequency in OFFMAP_FREQS)
+	if(frequency in GLOB.offmap_frequencies)
 		return "expradio"
-	//VOREStation Add End
 	return "radio"

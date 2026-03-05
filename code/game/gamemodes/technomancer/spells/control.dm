@@ -41,6 +41,7 @@
 		var/mob/living/simple_mob/SM = L
 		SM.friends |= src.owner
 
+	// Note, this should be refactored to drop priority overlays
 	L.add_overlay(control_overlay, TRUE)
 	controlled_mobs |= L
 

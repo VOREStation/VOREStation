@@ -75,8 +75,11 @@
 	else
 		return "an average attack speed"
 
-/obj/item/get_description_info()
+/obj/item/get_description_info(list/additional_information)
 	var/list/weapon_stats = list()
+
+	if(LAZYLEN(additional_information))
+		weapon_stats += additional_information
 
 	if(description_info)
 		weapon_stats += description_info

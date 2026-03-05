@@ -205,7 +205,7 @@
 				SEND_SOUND(user, S)
 
 		if("customize_species_sounds") // You shouldn't be able to see this option if you don't have the option to select a custom icon base, so we don't need to re-check for safety here.
-			var/list/possible_species_sound_types = species_sound_map
+			var/list/possible_species_sound_types = GLOB.species_sound_map
 			var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's species sounds? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
 			if(choice)
 				pref.species_sound = choice

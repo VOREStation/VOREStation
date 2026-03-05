@@ -103,14 +103,14 @@
 /// This condenses them and makes it less of a cluster.
 
 ///Help Intent
-/mob/living/carbon/human/proc/attack_hand_help_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_help_intent(var/mob/living/carbon/human/H, var/mob/living/M, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't help them. If you want to add snowflake stuff that you can do while restrained, add it here.
 		return FALSE
 	if(!has_hands) //This is here so if you WANT to do special code for 'if we don't have hands, do stuff' it can be done here!
 		return FALSE
-	if(istype(M) && attempt_to_scoop(M) && !on_fire)
+	if(istype(M) && attempt_to_scoop(M, H) && !on_fire)
 		return FALSE;
 
 	//todo: make this whole CPR check into it's own individual proc instead of hogging up attack_hand_help_intent
@@ -566,6 +566,10 @@
 	// Check for sanity
 	if(!istype(reviver,/mob/living/carbon/human))
 		return
+	if(isSynthetic(src))
+		to_chat(reviver, span_danger("You push on [src]'s chest and realize you're shoving down on metal! This isn't going to work!"))
+		return //Lets you know IMMEDIATELY that this is a robot. Do not pass go. Don't do damage or pump blood.
+
 	//The below is what actually allows metabolism.
 	add_modifier(/datum/modifier/bloodpump_corpse/cpr, 2 SECONDS)
 
@@ -583,6 +587,9 @@
 
 	// standard CPR ahead, adjust oxy and refresh health
 	if(health > get_crit_point() && prob(10))
+		if(species.flags & NO_DEFIB) //TODO: Changee the NO_DEFIB species flag into a HAS_TRAIT() sometime.
+			to_chat(reviver, span_danger("You get the feeling [src] can't be revived by CPR alone."))
+			return // Handle no-defib species flag.
 		if(get_xenochimera_component())
 			visible_message(span_danger("\The [src]'s body twitches and gurgles a bit."))
 			to_chat(reviver, span_danger("You get the feeling [src] can't be revived by CPR alone."))
@@ -618,7 +625,9 @@
 		failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 		reload_fullscreen()
 
-		emote("gasp")
+		var/obj/item/organ/internal/lungs/lungs = internal_organs_by_name[O_LUNGS]
+		if(lungs)
+			emote("gasp")
 		Weaken(rand(10,25))
 		updatehealth()
 		//SShaunting.influence(HAUNTING_RESLEEVE) // Used for the Haunting module downstream. Not implemented upstream.
@@ -637,4 +646,3 @@
 	else if(health > -getMaxHealth())
 		adjustOxyLoss(-(min(getOxyLoss(), 5)))
 		updatehealth()
-		to_chat(src, span_notice("You feel a breath of fresh air enter your lungs. It feels good."))

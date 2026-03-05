@@ -34,27 +34,27 @@ export const SleeperPatient = (props: { name: string }) => {
       </Stack.Item>
       <Stack.Item>
         <Box color={our_patient.health > 0 ? undefined : 'red'}>
-          {`- Overall Health: ${((100 * our_patient.health) / our_patient.max_health).toFixed(0)}`}
+          {`- Overall Health: ${((100 * our_patient.health) / our_patient.max_health).toFixed()}`}
         </Box>
       </Stack.Item>
       <Stack.Item>
         <Box color={our_patient.brute < 60 ? 'label' : 'red'}>
-          {`- Brute Damage: ${our_patient.brute.toFixed(0)}`}
+          {`- Brute Damage: ${our_patient.brute.toFixed()}`}
         </Box>
       </Stack.Item>
       <Stack.Item>
         <Box color={our_patient.oxy < 60 ? 'label' : 'red'}>
-          {`- Respiratory Damage: ${our_patient.oxy.toFixed(0)}`}
+          {`- Respiratory Damage: ${our_patient.oxy.toFixed()}`}
         </Box>
       </Stack.Item>
       <Stack.Item>
         <Box color={our_patient.tox < 60 ? 'label' : 'red'}>
-          {`- Toxin Content: ${our_patient.tox.toFixed(0)}`}
+          {`- Toxin Content: ${our_patient.tox.toFixed()}`}
         </Box>
       </Stack.Item>
       <Stack.Item>
         <Box color={our_patient.burn < 60 ? 'label' : 'red'}>
-          {`- Burn Severity: ${our_patient.burn.toFixed(0)}`}
+          {`- Burn Severity: ${our_patient.burn.toFixed()}`}
         </Box>
       </Stack.Item>
       {(isParalysed ||

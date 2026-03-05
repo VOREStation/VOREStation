@@ -73,7 +73,7 @@
 		// "gigabeacon",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
-	// discount_experiments = list(/datum/experiment/scanning/points/bluespace_crystal = TECHWEB_TIER_2_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/bluespace_crystal = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL, CHANNEL_SERVICE, CHANNEL_SUPPLY)
 
 /datum/techweb_node/bluespace_travel
@@ -110,6 +110,7 @@
 		"ano_scanner",
 		//"anomaly_refinery",
 		"anomaly_neutralizer",
+		"anomaly_releaser",
 		"reactive_armour",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)

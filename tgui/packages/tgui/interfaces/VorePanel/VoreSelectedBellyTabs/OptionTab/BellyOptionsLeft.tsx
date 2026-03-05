@@ -1,5 +1,5 @@
 import { LabeledList, Stack } from 'tgui-core/components';
-
+import { capitalize } from 'tgui-core/string';
 import { eatingMessagePrivacy } from '../../constants';
 import { sanitize_color } from '../../functions';
 import type { BellyOptionData } from '../../types';
@@ -148,7 +148,7 @@ export const BellyOptionsLeft = (props: {
           <VorePanelEditDropdown
             editMode={editMode}
             options={Object.keys(eatingMessagePrivacy)}
-            entry={eating_privacy_local}
+            entry={capitalize(eating_privacy_local)}
             action="set_attribute"
             subAction="b_eating_privacy"
             color={eatingMessagePrivacy[eating_privacy_local]}

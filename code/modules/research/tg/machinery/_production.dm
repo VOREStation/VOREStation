@@ -281,7 +281,7 @@
 
 	switch(action)
 		if("remove_mat")
-			var/datum/material/material = name_to_material[params["id"]]
+			var/datum/material/material = GLOB.name_to_material[params["id"]]
 			if(!istype(material))
 				return
 

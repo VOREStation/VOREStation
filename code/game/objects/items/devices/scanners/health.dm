@@ -44,7 +44,7 @@
 
 /obj/item/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
 	var/dat = ""
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_FAIL_CHANCE(user))
 		user.visible_message(span_warning("\The [user] has analyzed the floor's vitals!"), span_warning("You try to analyze the floor's vitals!"))
 		dat += "Analyzing Results for the floor:<br>"
 		dat += "Overall Status: Healthy<br>"

@@ -169,7 +169,7 @@
 		if(will_eat(L))
 			var/obj/belly/B = vore_organs[1]
 			automatic_custom_emote(message = "snatches and devours [L]!")
-			B.nom_mob(L)
+			B.nom_atom(L)
 			ai_holder.find_target()
 			return
 		else if(L.size_multiplier <= 0.5 && L.step_mechanics_pref)

@@ -236,15 +236,15 @@
 //Synth emotes for the (broken) synth hounds.
 /mob/living/simple_mob/vore/aggressive/corrupthound/get_available_emotes()
 	. = ..()
-	. += /decl/emote/audible/synth
-	. += /decl/emote/audible/synth/beep
-	. += /decl/emote/audible/synth/buzz
-	. += /decl/emote/audible/synth/confirm
-	. += /decl/emote/audible/synth/deny
-	. += /decl/emote/audible/synth/scary
-	. += /decl/emote/audible/synth/dwoop
-	. += /decl/emote/audible/synth/boop
-	. += /decl/emote/audible/synth/robochirp
+	. += /datum/decl/emote/audible/synth
+	. += /datum/decl/emote/audible/synth/beep
+	. += /datum/decl/emote/audible/synth/buzz
+	. += /datum/decl/emote/audible/synth/confirm
+	. += /datum/decl/emote/audible/synth/deny
+	. += /datum/decl/emote/audible/synth/scary
+	. += /datum/decl/emote/audible/synth/dwoop
+	. += /datum/decl/emote/audible/synth/boop
+	. += /datum/decl/emote/audible/synth/robochirp
 
 /datum/category_item/catalogue/technology/drone/corrupt_hound/janihound
 	name = "Drone - Corrupt Hound"

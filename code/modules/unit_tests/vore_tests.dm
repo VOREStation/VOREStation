@@ -25,7 +25,7 @@
 	pred.init_vore(TRUE)
 	TEST_ASSERT(pred.vore_selected, "[pred] has no vore_selected")
 
-	pred.vore_selected.nom_mob(prey)
+	pred.vore_selected.nom_atom(prey)
 
 	TEST_ASSERT(prey.loc == pred.vore_selected, "Prey not inside predator belly")
 
@@ -50,7 +50,7 @@
 	pred.init_vore(TRUE)
 	TEST_ASSERT(pred.vore_selected, "[pred] has no vore_selected")
 
-	pred.vore_selected.nom_mob(prey)
+	pred.vore_selected.nom_atom(prey)
 
 	TEST_ASSERT(prey.loc == pred.vore_selected, "Prey not inside predator belly")
 
@@ -88,7 +88,7 @@
 	pred.init_vore(TRUE)
 	TEST_ASSERT(pred.vore_selected, "[pred] has no vore_selected")
 
-	pred.vore_selected.nom_mob(prey)
+	pred.vore_selected.nom_atom(prey)
 
 	TEST_ASSERT(prey.loc == pred.vore_selected, "Prey not inside predator belly")
 

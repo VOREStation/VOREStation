@@ -147,7 +147,6 @@ FIRE ALARM
 			time = 0
 			timing = 0
 			STOP_PROCESSING(SSobj, src)
-		updateDialog()
 	last_process = world.timeofday
 
 	if(detecting && (locate(/obj/fire) in loc))
@@ -176,7 +175,7 @@ FIRE ALARM
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
-		fire_alarm.clearAlarm(src.loc, FA)
+		GLOB.fire_alarm.clearAlarm(src.loc, FA)
 	update_icon()
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
@@ -186,7 +185,7 @@ FIRE ALARM
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
-		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
+		GLOB.fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 	update_icon()
 	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 	if(user)

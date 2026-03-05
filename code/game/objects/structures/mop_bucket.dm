@@ -24,8 +24,8 @@ GLOBAL_LIST_BOILERPLATE(all_mopbuckets, /obj/structure/mopbucket)
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)) //VOREStation Edit - "Allows soap and rags to be used on mopbuckets"
 		if(reagents.total_volume < 1)
-			to_chat(user, span_warning("\The [src] is out of water!"))
+			user.balloon_alert(user, "\the [src] is out of water!")
 		else
 			reagents.trans_to_obj(I, 5)
-			to_chat(user, span_notice("You wet \the [I] in \the [src]."))
+			user.balloon_alert(user, "you wet \the [I] in \the [src].")
 			playsound(src, 'sound/effects/slosh.ogg', 25, 1)

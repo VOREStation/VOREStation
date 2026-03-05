@@ -170,7 +170,7 @@
 			return -1
 	if (!src.listening)
 		return -1
-	if(freq in ANTAG_FREQS)
+	if(freq in GLOB.antag_frequencies)
 		if(!(src.syndie))
 			return -1//Prevents broadcast of messages over devices lacking the encryption
 
@@ -233,3 +233,8 @@
 /obj/item/radio/intercom/locked/confessional
 	name = "confessional intercom"
 	frequency = LOCKED_COM_FREQ
+
+/obj/item/radio/intercom/locked/entertainment
+	name = "entertainment PA"
+	frequency = ENT_FREQ
+	broadcasting = TRUE
