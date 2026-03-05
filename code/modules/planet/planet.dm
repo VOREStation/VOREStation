@@ -66,3 +66,6 @@
 	sun["brightness"] = CLAMP01(new_brightness)
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
+
+/datum/planet/proc/get_sun_solar_position()
+	return sun_position * 360

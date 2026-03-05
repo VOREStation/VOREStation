@@ -89,4 +89,6 @@ SUBSYSTEM_DEF(solars)
 
 	// On planets, use the daynight cycle
 	var/datum/planet/our_planet = SSplanets.z_to_planet["[our_t.z]"]
-	return SSsun.sun.angle // TODO - Use the planet's sun angle...
+	if(!our_planet)
+		return SSsun.sun.angle
+	return our_planet.get_sun_solar_position()

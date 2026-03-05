@@ -107,15 +107,24 @@ GLOBAL_LIST_EMPTY(solars_list)
 		sunfrac = 0
 		return
 
-	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
-	var/p_angle = min(abs(adir - SSsun.sun.angle), 360 - abs(adir - SSsun.sun.angle))
 
+	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
+	var/source_angle = get_solar_angle()
+	var/p_angle = min(abs(adir - source_angle), 360 - abs(adir - source_angle))
 	if(p_angle > 90) // if facing more than 90deg from sun, zero output
 		sunfrac = 0
 		return
 
 	sunfrac = cos(p_angle) ** 2
 	//isn't the power recieved from the incoming light proportionnal to cos(p_angle) (Lambert's cosine law) rather than cos(p_angle)^2 ?
+
+/// Get the planet if it has one, otherwise we use the global sun
+/obj/machinery/power/solar/proc/get_solar_angle()
+	var/turf/our_t = get_turf(src)
+	if(our_t && ("[our_t.z]" in SSplanets.z_to_planet))
+		var/datum/planet/orb = SSplanets.z_to_planet["[our_t.z]"]
+		return orb.get_sun_solar_position()
+	return SSsun.sun.angle
 
 /obj/machinery/power/solar/proc/get_power_supplied()
 	if(stat & BROKEN)
@@ -318,7 +327,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		track = 2 // Auto tracking mode.
 		search_for_connected()
 		if(connected_tracker)
-			connected_tracker.set_angle(SSsun.sun.angle)
+			connected_tracker.set_angle(SSsolars.get_angle(src))
 		set_panels(cdir)
 
 /obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
@@ -410,7 +419,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	data["generated"] = round(connected_power)
 	data["generated_ratio"] = data["generated"] / round(max(connected_panels.len, 1) * GLOB.solar_gen_rate)
 
-	data["sun_angle"] = SSsun.sun.angle
+	data["sun_angle"] = SSsolars.get_angle(src)
 	data["array_angle"] = cdir
 	data["rotation_rate"] = trackrate
 	data["max_rotation_rate"] = 7200
@@ -503,7 +512,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			track = mode
 			if(track == 2)
 				if(connected_tracker)
-					connected_tracker.set_angle(SSsun.sun.angle)
+					connected_tracker.set_angle(SSsolars.get_angle(src))
 					set_panels(cdir)
 			else if(track == 1) //begin manual tracking
 				targetdir = cdir
