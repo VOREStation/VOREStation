@@ -309,8 +309,8 @@
 	src.loc = T
 
 // See inventory_sizes.dm for the defines.
-/obj/item/examine(mob/user)
-	var/size
+/obj/item/examine(mob/user, infix, suffix)
+	var/size = "giant"
 	switch(src.w_class)
 		if(ITEMSIZE_TINY)
 			size = "tiny"
