@@ -744,7 +744,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	damtype = initial(damtype)
 	attack_speed = initial(attack_speed)
 	block_chance = initial(block_chance)
-	armour_penetration = initial(armour_penetration)
+	armor_penetration = initial(armor_penetration)
 	wound_bonus = initial(wound_bonus)
 	exposed_wound_bonus = initial(exposed_wound_bonus)
 	toolspeed = initial(toolspeed)
@@ -1265,7 +1265,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	if(status == FISH_DEAD || amount <= 0)
 		return
 	var/current_integrity = get_integrity()
-	take_damage(min(amount, current_integrity - max_integrity * integrity_failure), sound_effect = FALSE, armour_penetration = 100)
+	take_damage(min(amount, current_integrity - max_integrity * integrity_failure), sound_effect = FALSE, armor_penetration = 100)
 
 /// fish dies when its integrity reaches 50%
 /obj/item/fish/atom_break(damage_flag)

@@ -199,3 +199,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Does this item bypass ranged armor checks?
 #define TRAIT_BYPASS_RANGED_ARMOR "bypass_ranged_armor"
 #define TRAIT_DEAF "deaf"
+/// Properly wielded two handed item
+#define TRAIT_WIELDED "wielded"

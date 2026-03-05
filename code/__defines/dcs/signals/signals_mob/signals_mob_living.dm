@@ -256,7 +256,7 @@
 /// From /datum/ai/behavior/climb_tree/perform() : (mob/living/basic/living_pawn)
 #define COMSIG_LIVING_CLIMB_TREE "living_climb_tree"
 
-///from /mob/living/proc/check_block(): (atom/hit_by, damage, attack_text, attack_type, armour_penetration, damage_type)
+///from /mob/living/proc/check_block(): (atom/hit_by, damage, attack_text, attack_type, armor_penetration, damage_type)
 #define COMSIG_LIVING_CHECK_BLOCK "living_check_block"
 	#define FAILED_BLOCK NONE
 	#define SUCCESSFUL_BLOCK (1<<0)
