@@ -3,6 +3,7 @@ import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Button,
+  Dropdown,
   LabeledList,
   ProgressBar,
   Section,
@@ -14,7 +15,7 @@ export type Data = {
   on: BooleanLike;
   safety: BooleanLike;
   selected_option: string | null;
-  show_selected_option: BooleanLike;
+  output_options: Record<string, string>;
   temperature: number;
   optimalTemp: number;
   temperatureEnough: BooleanLike;
@@ -27,6 +28,7 @@ export type Data = {
     prediction: string;
     container: string | null;
   }[];
+  is_open?: BooleanLike;
 };
 
 export const CookingApplianceStatus = (props) => {
@@ -35,7 +37,7 @@ export const CookingApplianceStatus = (props) => {
     on,
     safety,
     selected_option,
-    show_selected_option,
+    output_options,
     temperature,
     optimalTemp,
     temperatureEnough,
@@ -68,16 +70,15 @@ export const CookingApplianceStatus = (props) => {
             {safety ? 'On' : 'Off'}
           </Button>
         </LabeledList.Item>
-        {!!show_selected_option && (
+        {!!output_options && Object.keys(output_options).length && (
           <LabeledList.Item label="Selected Output">
-            <Button
-              icon="pencil"
+            <Dropdown
               fluid
-              onClick={() => act('change_output')}
-              tooltip="Change Output"
-            >
-              {selected_option || 'Default'}
-            </Button>
+              icon="pencil"
+              selected={selected_option || 'Default'}
+              onSelected={(value) => act('change_output', { value })}
+              options={Object.keys(output_options)}
+            />
           </LabeledList.Item>
         )}
         <LabeledList.Item label="Temperature">

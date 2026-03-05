@@ -52,9 +52,6 @@
 
 	default_apply_parts()
 
-	if(output_options.len)
-		verbs += /obj/machinery/appliance/proc/choose_output
-
 /obj/machinery/appliance/Destroy()
 	for(var/datum/cooking_item/CI as anything in cooking_objs)
 		qdel(CI.container)//Food is fragile, it probably doesnt survive the destruction of the machine
@@ -169,35 +166,25 @@
 /obj/machinery/appliance/ctrl_click_ai(mob/user)
 	attempt_toggle_power(user)
 
-/obj/machinery/appliance/proc/choose_output()
-	set src in view()
-	set name = "Choose output"
-	set category = "Object"
-
-	if (!isliving(usr))
+/obj/machinery/appliance/proc/choose_output(mob/user, new_output)
+	if (!user.IsAdvancedToolUser())
+		to_chat(user, span_filter_notice("You lack the dexterity to do that!"))
 		return
 
-	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, span_filter_notice("You lack the dexterity to do that!"))
+	if (!Adjacent(user) && !issilicon(user))
+		to_chat(user, span_filter_notice("You can't adjust the [src] from this distance, get closer!"))
 		return
 
-	if (usr.stat || usr.restrained() || usr.incapacitated())
+	if(!output_options[new_output])
 		return
 
-	if (!Adjacent(usr) && !issilicon(usr))
-		to_chat(usr, span_filter_notice("You can't adjust the [src] from this distance, get closer!"))
+	if(new_output == "Default")
+		selected_option = null
+		to_chat(user, span_notice("You decide not to make anything specific with \the [src]."))
 		return
 
-	if(output_options.len)
-		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options+"Default")
-		if(!choice)
-			return
-		if(choice == "Default")
-			selected_option = null
-			to_chat(usr, span_notice("You decide not to make anything specific with \the [src]."))
-		else
-			selected_option = choice
-			to_chat(usr, span_notice("You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!"))
+	selected_option = new_output
+	to_chat(user, span_notice("You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!"))
 
 //Handles all validity checking and error messages for inserting things
 /obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
@@ -675,7 +662,7 @@
 		if("remove")
 			removal_menu(user)
 		if("select_output")
-			choose_output()
+			choose_output(user)
 
 /obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))

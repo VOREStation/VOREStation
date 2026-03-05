@@ -36,7 +36,7 @@
 	data["efficiency"] = round(get_efficiency(), 0.1)
 	data["containersRemovable"] = can_remove_items(user, show_warning = FALSE)
 	data["selected_option"] = selected_option
-	data["show_selected_option"] = LAZYLEN(output_options)
+	data["output_options"] = output_options
 
 	var/list/our_contents = list()
 	for(var/i in 1 to max_contents)
@@ -70,7 +70,7 @@
 			toggle_safety()
 			return TRUE
 		if("change_output")
-			choose_output()
+			choose_output(ui.user, params["value"])
 			return TRUE
 		if("slot")
 			var/slot = params["slot"]
