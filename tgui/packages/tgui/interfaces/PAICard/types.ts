@@ -35,10 +35,16 @@ export type ActivePAIData = {
   master_name: string | null;
   master_dna: string | null;
   screen_msg: string | null;
-  radio_data: {
-    radio_transmit: BooleanLike;
-    radio_recieve: BooleanLike;
-  } | null;
+  radio_data: RadioData;
   sprite_datum_class: string;
   sprite_datum_size: string;
+  emag_data: {
+    emag_systems: string[];
+    selected_system: string;
+  } | null;
 };
+
+export type RadioData = {
+  radio_transmit: BooleanLike;
+  radio_recieve: BooleanLike;
+} | null;
