@@ -148,23 +148,23 @@
 	return data
 */
 /datum/fish_source/hydro_tray/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
-	if(!istype(parent, /obj/machinery/hydroponics/constructable))
+	if(!istype(parent, /obj/machinery/portable_atmospherics/hydroponics))
 		return ..()
 
-	var/obj/machinery/hydroponics/constructable/basin = parent
+	var/obj/machinery/portable_atmospherics/hydroponics/basin = parent
 	if(basin.waterlevel <= 0)
 		return "There's no water in [parent] to fish in."
-	if(basin.myseed)
+	if(basin.seed)
 		return "There's a plant growing in [parent]."
 
 	return ..()
 
 /datum/fish_source/hydro_tray/spawn_reward_from_explosion(atom/location, severity)
-	if(!istype(location, /obj/machinery/hydroponics/constructable))
+	if(!istype(location, /obj/machinery/portable_atmospherics/hydroponics))
 		return ..()
 
-	var/obj/machinery/hydroponics/constructable/basin = location
-	if(basin.myseed || basin.waterlevel <= 0)
+	var/obj/machinery/portable_atmospherics/hydroponics/basin = location
+	if(basin.seed || basin.waterlevel <= 0)
 		return
 	return ..()
 
@@ -179,6 +179,7 @@
 	var/static/list/seeds_to_draw_from
 	if(isnull(seeds_to_draw_from))
 		seeds_to_draw_from = subtypesof(/obj/item/seeds)
+		/*
 		// These two are already covered innately
 		seeds_to_draw_from -= /obj/item/seeds/random
 		seeds_to_draw_from -= /obj/item/seeds/grassseed
@@ -187,6 +188,7 @@
 		for(var/obj/item/seeds/seed_path as anything in seeds_to_draw_from)
 			if(initial(seed_path.yield) == -1 || initial(seed_path.rarity) >= PLANT_MODERATELY_RARE)
 				seeds_to_draw_from -= seed_path
+		*/
 
 	var/picked_path = pick(seeds_to_draw_from)
 	return new picked_path(spawn_location)

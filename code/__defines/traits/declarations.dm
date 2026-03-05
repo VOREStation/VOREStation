@@ -201,3 +201,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DEAF "deaf"
 /// Properly wielded two handed item
 #define TRAIT_WIELDED "wielded"
+/// This rod was infused by a heretic, making it awesome and improving influence gain
+#define TRAIT_ROD_MANSUS_INFUSED "rod_infused"

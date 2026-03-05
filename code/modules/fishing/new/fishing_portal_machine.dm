@@ -4,6 +4,7 @@
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "portal"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2
+	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION
 	anchored = FALSE
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/fishing_portal_generator
@@ -54,57 +55,59 @@
 		if(active)
 			deactivate()
 		linked_fishing_spots.len = max_fishing_spots
-
+/*
 /obj/machinery/fishing_portal_generator/on_set_panel_open()
 	update_appearance()
 	return ..()
+*/
 
-/obj/machinery/fishing_portal_generator/wrench_act(mob/living/user, obj/item/tool)
-	. = ..()
-	default_unfasten_wrench(user, tool)
-	return ITEM_INTERACT_SUCCESS
+/obj/machinery/fishing_portal_generator/attackby(obj/item/O as obj, mob/user as mob)
+	if(default_unfasten_wrench(user, O, 40))
+		return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/fishing_portal_generator/multitool_act(mob/living/user, obj/item/multitool/tool)
-	if(machine_stat & NOPOWER)
-		balloon_alert(user, "no power!")
-		return ITEM_INTERACT_BLOCKING
-	var/unlink = tool.buffer == src
-	tool.set_buffer(unlink ? null : src)
-	balloon_alert(user, "fish-porter [unlink ? "un" : ""]linked")
-	if(!unlink)
-		tool.item_flags |= ITEM_HAS_CONTEXTUAL_SCREENTIPS
-		RegisterSignal(tool, COMSIG_ITEM_REQUESTING_CONTEXT_FOR_TARGET, PROC_REF(multitool_context))
-		RegisterSignal(tool, COMSIG_MULTITOOL_REMOVE_BUFFER, PROC_REF(multitool_unbuffered))
-	return ITEM_INTERACT_SUCCESS
+	if(panel_open && (O?.has_tool_quality(TOOL_MULTITOOL) || O?.has_tool_quality(TOOL_WIRECUTTER)))
+		var/obj/item/multitool/tool = O
+		//Multitool linking/unlinking code
+		if(!tool.connectable)
+			if(stat & NOPOWER)
+				balloon_alert(user, "no power!")
+				return ITEM_INTERACT_BLOCKING
+			tool.connectable = src
+			balloon_alert(user, "fish-porter linked")
+//			if(tool.connectable == src)
+//				tool.item_flags |= ITEM_HAS_CONTEXTUAL_SCREENTIPS
+//				RegisterSignal(tool, COMSIG_ITEM_REQUESTING_CONTEXT_FOR_TARGET, PROC_REF(multitool_context))
+//				RegisterSignal(tool, COMSIG_MULTITOOL_REMOVE_BUFFER, PROC_REF(multitool_unbuffered))
 
-/obj/machinery/fishing_portal_generator/multitool_act_secondary(mob/living/user, obj/item/tool)
-	if(machine_stat & NOPOWER)
-		balloon_alert(user, "no power!")
-		return ITEM_INTERACT_BLOCKING
-	if(!length(linked_fishing_spots))
-		balloon_alert(user, "nothing to unlink!")
-		return ITEM_INTERACT_BLOCKING
-	var/list/fishing_list = list()
-	var/id = 1
-	for(var/atom/spot as anything in linked_fishing_spots)
-		var/choice_name = "[spot.name] ([id])"
-		fishing_list[choice_name] = spot
-		id++
-	var/list/choices = list()
-	for(var/radial_name in fishing_list)
-		var/datum/fish_source/source = fishing_list[radial_name]
-		var/mutable_appearance/appearance = mutable_appearance('icons/hud/radial_fishing.dmi', source.radial_state)
-		appearance.add_overlay('icons/hud/radial_fishing.dmi', "minus_sign")
-		choices[radial_name] = appearance
 
-	var/choice = show_radial_menu(user, src, choices, radius = 38, custom_check = CALLBACK(src, TYPE_PROC_REF(/atom, can_interact), user), tooltips = TRUE)
-	if(!choice)
-		return
-	var/atom/spot = fishing_list[choice]
-	if(QDELETED(spot) || !(spot in linked_fishing_spots) || !can_interact(user))
-		return
-	unlink_fishing_spot(spot)
-	balloon_alert(user, "fishing spot unlinked")
+		if(stat & NOPOWER)
+			balloon_alert(user, "no power!")
+			return ITEM_INTERACT_BLOCKING
+		if(!length(linked_fishing_spots))
+			balloon_alert(user, "nothing to unlink!")
+			return ITEM_INTERACT_BLOCKING
+		var/list/fishing_list = list()
+		var/id = 1
+		for(var/atom/spot as anything in linked_fishing_spots)
+			var/choice_name = "[spot.name] ([id])"
+			fishing_list[choice_name] = spot
+			id++
+		var/list/choices = list()
+		for(var/radial_name in fishing_list)
+			var/datum/fish_source/source = fishing_list[radial_name]
+			var/mutable_appearance/appearance = mutable_appearance('icons/hud/radial_fishing.dmi', source.radial_state)
+			appearance.add_overlay('icons/hud/radial_fishing.dmi', "minus_sign")
+			choices[radial_name] = appearance
+
+		var/choice = show_radial_menu(user, src, choices, radius = 38, tooltips = TRUE)
+		if(!choice)
+			return
+		var/atom/spot = fishing_list[choice]
+		if(QDELETED(spot) || !(spot in linked_fishing_spots) || !user.incapacitated())
+			return
+		unlink_fishing_spot(spot)
+		balloon_alert(user, "fishing spot unlinked")
+		return TRUE
 
 /obj/machinery/fishing_portal_generator/proc/multitool_context(obj/item/source, list/context, atom/target, mob/living/user)
 	SIGNAL_HANDLER
@@ -128,16 +131,16 @@
 		var/datum/fish_source/stored = linked_fishing_spots[other_spot]
 		if(stored == source)
 			spot.balloon_alert(user, "already linked!")
-			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 15, FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 15, FALSE, extrarange = 3)
 			return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(spot, TRAIT_UNLINKABLE_FISHING_SPOT))
 		spot.balloon_alert(user, "unlinkable fishing spot!")
-		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 15, FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 15, FALSE, extrarange = 3)
 		return ITEM_INTERACT_BLOCKING
 	LAZYSET(linked_fishing_spots, spot, source)
 	RegisterSignal(spot, SIGNAL_REMOVETRAIT(TRAIT_FISHING_SPOT), PROC_REF(unlink_fishing_spot))
 	spot.balloon_alert(user, "fishing spot linked")
-	playsound(spot, 'sound/machines/ping.ogg', 15, TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(spot, 'sound/machines/ping.ogg', 15, TRUE, extrarange = 3)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/fishing_portal_generator/proc/unlink_fishing_spot(atom/spot)
@@ -154,11 +157,11 @@
 		or by connecting it to other fishing spots with a multitool.")
 
 /obj/machinery/fishing_portal_generator/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(obj_flags & EMAGGED)
+	if(emagged)
 		return FALSE
-	obj_flags |= EMAGGED
+	emagged = TRUE
 	balloon_alert(user, "syndicate setting loaded")
-	playsound(src, SFX_SPARKS, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/effects/sparks6.ogg', 25, TRUE, 3)
 	return TRUE
 
 /obj/machinery/fishing_portal_generator/interact(mob/user)
@@ -178,11 +181,11 @@
 	var/datum/fish_source/portal = active.fish_source
 	. += portal.overlay_state
 	. += emissive_appearance(icon, "portal_emissive", src)
-
+/*
 /obj/machinery/fishing_portal_generator/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	. = ..()
 	check_fishing_spot_z()
-
+*/
 /obj/machinery/fishing_portal_generator/proc/check_fishing_spot_z()
 	if(!active || long_range_link || istype(active.fish_source, /datum/fish_source/portal))
 		return
@@ -194,13 +197,13 @@
 		if(linked_fishing_spots[spot] != active.fish_source)
 			continue
 		var/turf/turf = get_turf(spot)
-		if(turf.z != new_turf.z && !(is_station_level(turf.z) && is_station_level(new_turf.z)))
+		if(turf.z != new_turf.z && !((z in using_map.station_levels) && (new_turf.z in using_map.station_levels)))
 			deactivate()
 
 /obj/machinery/fishing_portal_generator/proc/activate(datum/fish_source/selected_source, mob/user)
 	if(QDELETED(selected_source))
 		return
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		balloon_alert(user, "no power!")
 		return ITEM_INTERACT_BLOCKING
 	if(!all_destinations && !istype(selected_source, /datum/fish_source/portal)) //likely from a linked fishing spot
@@ -212,7 +215,7 @@
 				abort = FALSE
 			var/turf/spot_turf = get_turf(spot)
 			var/turf/turf = get_turf(src)
-			if(turf.z == spot_turf.z || (is_station_level(turf.z) && is_station_level(spot_turf.z)))
+			if(turf.z == spot_turf.z || ((z in using_map.station_levels) && (spot_turf.z in using_map.station_levels)))
 				abort = FALSE
 			if(!abort)
 				RegisterSignal(spot, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_fishing_spot_z_level_changed))
@@ -224,7 +227,7 @@
 
 	active = AddComponent(/datum/component/fishing_spot, selected_source)
 	ADD_TRAIT(src, TRAIT_CATCH_AND_RELEASE, INNATE_TRAIT)
-	update_use_power(ACTIVE_POWER_USE)
+	update_use_power(active_power_usage)
 	update_icon()
 
 /obj/machinery/fishing_portal_generator/proc/deactivate()
@@ -239,13 +242,13 @@
 
 	REMOVE_TRAIT(src, TRAIT_CATCH_AND_RELEASE, INNATE_TRAIT)
 	if(!QDELETED(src))
-		update_use_power(IDLE_POWER_USE)
+		update_use_power(idle_power_usage)
 		update_icon()
 
 /obj/machinery/fishing_portal_generator/proc/on_fishing_spot_z_level_changed(atom/spot, turf/old_turf, turf/new_turf, same_z_layer)
 	SIGNAL_HANDLER
 	var/turf/turf = get_turf(src)
-	if(turf.z != new_turf.z && !(is_station_level(turf.z) && is_station_level(new_turf.z)))
+	if(turf.z != new_turf.z && !((z in using_map.station_levels) && (new_turf.z in using_map.station_levels)))
 		deactivate()
 
 /obj/machinery/fishing_portal_generator/on_set_is_operational(old_value)
@@ -256,7 +259,7 @@
 /obj/machinery/fishing_portal_generator/proc/select_fish_source(mob/user)
 	var/datum/fish_source/portal/default = GLOB.preset_fish_sources[/datum/fish_source/portal]
 	var/list/available_fish_sources = list(default.radial_name = default)
-	if(obj_flags & EMAGGED)
+	if(emagged)
 		var/datum/fish_source/portal/syndicate = GLOB.preset_fish_sources[/datum/fish_source/portal/syndicate]
 		available_fish_sources[syndicate.radial_name] = syndicate
 	if(all_destinations)
@@ -295,13 +298,13 @@
 			radial_icon.add_overlay('icons/hud/radial_fishing.dmi', "linked_source")
 		choices[radial_name] = radial_icon
 
-	var/choice = show_radial_menu(user, src, choices, radius = 38, custom_check = CALLBACK(src, TYPE_PROC_REF(/atom, can_interact), user), tooltips = TRUE)
-	if(!choice || !can_interact(user))
+	var/choice = show_radial_menu(user, src, choices, radius = 38, require_near = TRUE, tooltips = TRUE)
+	if(!choice || !user.incapacitated())
 		return
 	activate(available_fish_sources[choice], user)
 
 /obj/machinery/fishing_portal_generator/emagged
-	obj_flags = parent_type::obj_flags | EMAGGED
+	emagged = TRUE
 	circuit = /obj/item/circuitboard/machine/fishing_portal_generator/emagged
 
 /obj/machinery/fishing_portal_generator/full

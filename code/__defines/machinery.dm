@@ -193,3 +193,8 @@ if (!(DATUM.datum_flags & DF_ISPROCESSING)) {\
 //#define  PART_AI  		/obj/item/computer_hardware/ai_slot						// AI slot, an intellicard housing that allows modifications of AIs.
 #define  PART_TESLA  	/obj/item/computer_hardware/tesla_link					// Tesla Link, Allows remote charging from nearest APC.
 //#define  PART_SCANNER  	/obj/item/computer_hardware/scanner						// One of several optional scanner attachments.
+
+///Base global power consumption for idling machines
+#define BASE_MACHINE_IDLE_CONSUMPTION (100 WATTS)
+///Base global power consumption for active machines. The unit is ambiguous (joules or watts) depending on the use case for dynamic users.
+#define BASE_MACHINE_ACTIVE_CONSUMPTION (BASE_MACHINE_IDLE_CONSUMPTION * 10)
