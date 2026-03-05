@@ -70,7 +70,7 @@ export const CookingApplianceStatus = (props) => {
             {safety ? 'On' : 'Off'}
           </Button>
         </LabeledList.Item>
-        {!!output_options && Object.keys(output_options).length && (
+        {!!output_options && !!Object.keys(output_options).length && (
           <LabeledList.Item label="Selected Output">
             <Dropdown
               fluid
