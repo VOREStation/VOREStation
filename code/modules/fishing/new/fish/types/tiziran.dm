@@ -30,17 +30,17 @@
 
 /obj/item/fish/moonfish/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
-	AddComponent(/datum/component/fish_growth, /obj/item/food/moonfish_eggs, egg_laying_time, use_drop_loc = FALSE, del_on_grow = FALSE, inherit_name = FALSE)
+	AddComponent(/datum/component/fish_growth, /obj/item/reagent_containers/food/snacks/moonfish_eggs, egg_laying_time, use_drop_loc = FALSE, del_on_grow = FALSE, inherit_name = FALSE)
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(egg_checks))
 
 ///Stop laying eggs if we're in an unsafe environment, starving of if there are simply too many eggs already.
 /obj/item/fish/moonfish/proc/egg_checks(datum/source, seconds_per_tick, growth, result_path)
-	if(result_path != /obj/item/food/moonfish_eggs) //Don't stop the growth of the dwarf subtype.
+	if(result_path != /obj/item/reagent_containers/food/snacks/moonfish_eggs) //Don't stop the growth of the dwarf subtype.
 		return
 	if(!proper_environment() || get_starvation_mult())
 		return COMPONENT_DONT_GROW
 	var/count = 0
-	for(var/obj/item/food/moonfish_eggs/egg in loc)
+	for(var/obj/item/reagent_containers/food/snacks/moonfish_eggs/egg in loc)
 		count ++
 		if(count > 10)
 			return COMPONENT_DONT_GROW
@@ -88,7 +88,7 @@
 
 /obj/item/fish/gunner_jellyfish/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
-	AddElement(/datum/element/quality_food_ingredient, FOOD_COMPLEXITY_2)
+//	AddElement(/datum/element/quality_food_ingredient, FOOD_COMPLEXITY_2)
 
 /obj/item/fish/gunner_jellyfish/get_fish_taste()
 	return list("cold jelly" = 2)

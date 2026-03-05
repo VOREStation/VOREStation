@@ -221,5 +221,30 @@ GLOBAL_LIST_INIT(worm_meat_spawns, list (
 
 /obj/item/reagent_containers/food/snacks/moonfish_eggs/Initialize(mapload)
 	. = ..()
+	RegisterSignal(src, COMSIG_AQUARIUM_CONTENT_GENERATE_APPEARANCE, PROC_REF(generate_aquarium_appearance))
+	RegisterSignal(src, COMSIG_AQUARIUM_CONTENT_RANDOMIZE_POSITION, PROC_REF(randomize_aquarium_position))
+	AddComponent(/datum/component/aquarium_content)
+	RegisterSignal(src, COMSIG_MOVABLE_GET_AQUARIUM_BEAUTY, PROC_REF(get_aquarium_beauty))
 	reagents.add_reagent(REAGENT_ID_SEAFOOD, 5)
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3)
+
+/obj/item/reagent_containers/food/snacks/moonfish_eggs/proc/generate_aquarium_appearance(datum/source, obj/effect/aquarium/visual)
+	SIGNAL_HANDLER
+	visual.icon = icon
+	visual.icon_state = "moonfish_eggs_aquarium"
+	visual.layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
+
+/obj/item/reagent_containers/food/snacks/moonfish_eggs/proc/randomize_aquarium_position(datum/source, obj/structure/aquarium/current_aquarium, obj/effect/aquarium/visual)
+	SIGNAL_HANDLER
+	var/sprite_width = 5
+	var/sprite_height = 4
+	var/pw_min = visual.aquarium_zone_min_pw
+	var/pw_max = visual.aquarium_zone_max_pw - sprite_width
+	var/pz_min = visual.aquarium_zone_min_pz - sprite_height
+
+	visual.pixel_w = rand(pw_min, pw_max)
+	visual.pixel_z = pz_min + rand(-1, 1)
+
+/obj/item/reagent_containers/food/snacks/moonfish_eggs/proc/get_aquarium_beauty(datum/source, list/beauty_holder)
+	SIGNAL_HANDLER
+	beauty_holder += 100 //moonfish eggs are kinda eye candy

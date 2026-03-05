@@ -7,7 +7,7 @@
 	sprite_height = 5
 	random_case_rarity = FISH_RARITY_RARE
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
-	stable_population = /datum/config_entry/number/mice_roundstart::default //set by New, but this is the default config value
+	stable_population = 10 ///datum/config_entry/number/mice_roundstart::default //set by New, but this is the default config value
 	fillet_type = /obj/item/food/meat/slab/human/mutant/zombie //eww...
 	fish_traits = list(/datum/fish_trait/necrophage)
 	required_temperature_min = MIN_AQUARIUM_TEMP+15
@@ -32,13 +32,13 @@
 
 /obj/item/fish/ratfish/get_base_edible_reagents_to_add()
 	var/list/return_list = ..()
-	return_list[/datum/reagent/rat_spit] = 1
+	return_list[/datum/reagent/water] = 1
 	return return_list
 
 /obj/item/fish/ratfish/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
 	//stable pop reflects the config for how many mice migrate. powerful...
-	stable_population = CONFIG_GET(number/mice_roundstart)
+	stable_population = 10 //CONFIG_GET(number/mice_roundstart)
 
 /obj/item/fish/sludgefish
 	name = "sludgefish"
@@ -103,7 +103,7 @@
 	return SEAFOOD|TOXIC
 
 /obj/item/fish/slimefish/get_base_edible_reagents_to_add()
-	return list(/datum/reagent/toxin/slimejelly = 5)
+	return list(/datum/reagent/slimejelly = 5)
 
 /obj/item/fish/fryish
 	name = "fryish"
@@ -150,13 +150,13 @@
 	if(is_bait)
 		add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GREAT_QUALITY_BAIT), INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_FISH_SURVIVE_COOKING, INNATE_TRAIT)
-
+/*
 /obj/item/fish/fryish/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.say("Mmmm! Delicious!", forced = "fryfish suicide")
 	qdel(src)
 	return OXYLOSS
-
+*/
 /obj/item/fish/fryish/update_size_and_weight(new_size = average_size, new_weight = average_weight, update_materials = TRUE)
 	. = ..()
 	if(!next_type)
@@ -177,7 +177,7 @@
 /obj/item/fish/fryish/get_base_edible_reagents_to_add()
 	var/list/return_list = list(
 		/datum/reagent/nutriment/protein = 2,
-		/datum/reagent/nutriment/fat = 1.5,
+		/datum/reagent/nutriment/triglyceride = 1.5,
 	)
 	return return_list
 
