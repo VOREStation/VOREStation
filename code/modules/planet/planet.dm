@@ -67,5 +67,6 @@
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
 
+/// Override for unique sun angle handling for stuff like northern/southern hemisphere sun angles during the day cycle
 /datum/planet/proc/get_sun_solar_position()
-	return sun_position * 360
+	return 220 - (sun_position * 80) // this base version doesn't know how long a planet's day is, so just goes back and forth facing south-eastish based on midnight to noon intensity
