@@ -42,6 +42,8 @@
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
 	var/food_safety = FALSE	// If true, the appliance automatically ejects food instead of burning it
 
+	var/tgui_id
+
 	var/static/radial_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
 	var/static/radial_power = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_power")
 	var/static/radial_safety = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_safety")
@@ -169,10 +171,6 @@
 /obj/machinery/appliance/proc/choose_output(mob/user, new_output)
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, span_filter_notice("You lack the dexterity to do that!"))
-		return
-
-	if (!Adjacent(user) && !issilicon(user))
-		to_chat(user, span_filter_notice("You can't adjust the [src] from this distance, get closer!"))
 		return
 
 	if(!output_options[new_output])
@@ -634,37 +632,80 @@
 			FA.alarm()
 			break
 
-/obj/machinery/appliance/attack_hand(var/mob/user)
+/obj/machinery/appliance/attack_hand(mob/user)
 	if(..())
 		return
+	if(tgui_id)
+		tgui_interact(user)
 
-	interact(user)
+/obj/machinery/appliance/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, tgui_id, name)
+		ui.open()
 
-/obj/machinery/appliance/interact(mob/user)
-	var/list/options = list(
-		"power" = radial_power,
-		"safety" = radial_safety,
-	)
+/obj/machinery/appliance/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
-	if(LAZYLEN(cooking_objs))
-		options["remove"] = radial_eject
+	data["on"] = !(stat & POWEROFF)
+	data["safety"] = food_safety
+	data["containersRemovable"] = can_remove_items(user, show_warning = FALSE)
+	data["selected_option"] = selected_option
+	data["output_options"] = output_options
 
-	if(LAZYLEN(output_options))
-		options["select_output"] = radial_output
+	var/list/our_contents = list()
+	for(var/i in 1 to max_contents)
+		UNTYPED_LIST_ADD(our_contents, list("empty" = TRUE))
+		if(i <= LAZYLEN(cooking_objs))
+			var/datum/cooking_item/CI = cooking_objs[i]
+			if(istype(CI))
+				our_contents[i] = list()
+				our_contents[i]["progress"] = 0
+				our_contents[i]["progressText"] = report_progress_tgui(CI)
+				our_contents[i]["prediction"] = predict_cooking(CI)
+				if(CI.max_cookwork)
+					our_contents[i]["progress"] = CI.cookwork / CI.max_cookwork
+				if(CI.container)
+					our_contents[i]["container"] = CI.container.label(i)
+				else
+					our_contents[i]["container"] = null
+	data["our_contents"] = our_contents
 
-	var/choice = show_radial_menu(user, src, options, require_near = !issilicon(user))
+	return data
 
-	switch(choice)
-		if("power")
-			toggle_power()
-		if("safety")
-			toggle_safety()
-		if("remove")
-			removal_menu(user)
-		if("select_output")
-			choose_output(user)
+/obj/machinery/appliance/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-/obj/machinery/appliance/proc/removal_menu(var/mob/user)
+	switch(action)
+		if("toggle_power")
+			attempt_toggle_power(ui.user)
+			return TRUE
+		if("toggle_safety")
+			toggle_safety(ui.user)
+			return TRUE
+		if("change_output")
+			choose_output(ui.user, params["value"])
+			return TRUE
+		if("slot")
+			var/slot = params["slot"]
+			var/obj/item/I = ui.user.get_active_hand()
+			if(slot <= LAZYLEN(cooking_objs)) // Inserting
+				var/datum/cooking_item/CI = cooking_objs[slot]
+
+				if(istype(I) && can_insert(I)) // Why do hard work when we can just make them smack us?
+					attackby(I, ui.user)
+				else if(istype(CI) && can_remove_items(ui.user))
+					eject(CI, ui.user)
+				return TRUE
+			if(istype(I)) // Why do hard work when we can just make them smack us?
+				attackby(I, ui.user)
+			return TRUE
+		if("remove_menu")
+			removal_menu(ui.user)
+			return TRUE
+
+/obj/machinery/appliance/proc/removal_menu(mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -856,14 +897,6 @@
 	// to_world("RefreshParts returned cooking power of [cooking_power] during this step.") // Debug lines, uncomment if you need to test.
 
 
-/obj/machinery/appliance/verb/toggle_safety()
-	set name = "Toggle Safety"
-	set desc = "Toggles whether the appliance automatically ejects food when it starts to burn."
-	set category = "Object"
-	set src in view(1)
-
-	if(!isliving(usr))
-		return
-
+/obj/machinery/appliance/proc/toggle_safety(mob/user)
 	food_safety = !food_safety
-	to_chat(usr, span_notice("You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"]."))
+	to_chat(user, span_notice("You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"]."))

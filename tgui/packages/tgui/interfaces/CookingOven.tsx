@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 
-import { CookingApplianceStatus, type Data } from './CookingAppliance';
+import { ApplianceStatus, type Data } from './Appliance';
 
 export const CookingOven = (props) => {
   const { act, data } = useBackend<Data>();
@@ -20,7 +20,7 @@ export const CookingOven = (props) => {
   return (
     <Window width={600} height={600}>
       <Window.Content scrollable>
-        <CookingApplianceStatus />
+        <ApplianceStatus />
         <Section title="Containers">
           <Stack align="center" justify="center">
             <Stack.Item position="relative">

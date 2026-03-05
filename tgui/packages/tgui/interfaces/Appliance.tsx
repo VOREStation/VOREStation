@@ -16,10 +16,10 @@ export type Data = {
   safety: BooleanLike;
   selected_option: string | null;
   output_options: Record<string, string>;
-  temperature: number;
-  optimalTemp: number;
-  temperatureEnough: BooleanLike;
-  efficiency: number;
+  temperature?: number;
+  optimalTemp?: number;
+  temperatureEnough?: BooleanLike;
+  efficiency?: number;
   containersRemovable: BooleanLike;
   our_contents: {
     empty: BooleanLike;
@@ -29,9 +29,10 @@ export type Data = {
     container: string | null;
   }[];
   is_open?: BooleanLike;
+  icon_used?: string;
 };
 
-export const CookingApplianceStatus = (props) => {
+export const ApplianceStatus = (props) => {
   const { act, data } = useBackend<Data>();
   const {
     on,
@@ -81,25 +82,29 @@ export const CookingApplianceStatus = (props) => {
             />
           </LabeledList.Item>
         )}
-        <LabeledList.Item label="Temperature">
-          <ProgressBar
-            color={temperatureEnough ? 'good' : 'blue'}
-            value={temperature}
-            maxValue={optimalTemp}
-          >
-            <AnimatedNumber value={temperature} />
-            &deg;C / {optimalTemp}&deg;C
-          </ProgressBar>
-        </LabeledList.Item>
-        <LabeledList.Item label="Efficiency">
-          <AnimatedNumber value={efficiency} />%
-        </LabeledList.Item>
+        {!!temperature && (
+          <LabeledList.Item label="Temperature">
+            <ProgressBar
+              color={temperatureEnough ? 'good' : 'blue'}
+              value={temperature}
+              maxValue={optimalTemp}
+            >
+              <AnimatedNumber value={temperature} />
+              &deg;C / {optimalTemp}&deg;C
+            </ProgressBar>
+          </LabeledList.Item>
+        )}
+        {!!efficiency && (
+          <LabeledList.Item label="Efficiency">
+            <AnimatedNumber value={efficiency} />%
+          </LabeledList.Item>
+        )}
       </LabeledList>
     </Section>
   );
 };
 
-export const CookingAppliance = (props) => {
+export const Appliance = (props) => {
   const { act, data } = useBackend<Data>();
 
   const { containersRemovable, our_contents } = data;
@@ -107,7 +112,7 @@ export const CookingAppliance = (props) => {
   return (
     <Window width={600} height={600}>
       <Window.Content scrollable>
-        <CookingApplianceStatus />
+        <ApplianceStatus />
         <Section title="Containers">
           <LabeledList>
             {our_contents.map((content, i) => {

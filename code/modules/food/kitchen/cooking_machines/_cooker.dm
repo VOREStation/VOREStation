@@ -14,78 +14,18 @@
 	mobdamagetype = BURN
 	can_burn_food = TRUE
 
-	var/tgui_id = "CookingAppliance"
-
-/obj/machinery/appliance/cooker/attack_hand(mob/user)
-	tgui_interact(user)
-
-/obj/machinery/appliance/cooker/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, tgui_id, name)
-		ui.open()
+	tgui_id = "CookingAppliance"
 
 /obj/machinery/appliance/cooker/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
-	data["on"] = !(stat & POWEROFF)
-	data["safety"] = food_safety
 	data["temperature"] = round(temperature - T0C, 0.1)
 	data["optimalTemp"] = round(optimal_temp - T0C, 0.1)
 	data["temperatureEnough"] = temperature >= min_temp
 	data["efficiency"] = round(get_efficiency(), 0.1)
-	data["containersRemovable"] = can_remove_items(user, show_warning = FALSE)
-	data["selected_option"] = selected_option
-	data["output_options"] = output_options
-
-	var/list/our_contents = list()
-	for(var/i in 1 to max_contents)
-		UNTYPED_LIST_ADD(our_contents, list("empty" = TRUE))
-		if(i <= LAZYLEN(cooking_objs))
-			var/datum/cooking_item/CI = cooking_objs[i]
-			if(istype(CI))
-				our_contents[i] = list()
-				our_contents[i]["progress"] = 0
-				our_contents[i]["progressText"] = report_progress_tgui(CI)
-				our_contents[i]["prediction"] = predict_cooking(CI)
-				if(CI.max_cookwork)
-					our_contents[i]["progress"] = CI.cookwork / CI.max_cookwork
-				if(CI.container)
-					our_contents[i]["container"] = CI.container.label(i)
-				else
-					our_contents[i]["container"] = null
-	data["our_contents"] = our_contents
 
 	return data
 
-/obj/machinery/appliance/cooker/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	if(..())
-		return TRUE
-
-	switch(action)
-		if("toggle_power")
-			attempt_toggle_power(ui.user)
-			return TRUE
-		if("toggle_safety")
-			toggle_safety()
-			return TRUE
-		if("change_output")
-			choose_output(ui.user, params["value"])
-			return TRUE
-		if("slot")
-			var/slot = params["slot"]
-			var/obj/item/I = ui.user.get_active_hand()
-			if(slot <= LAZYLEN(cooking_objs)) // Inserting
-				var/datum/cooking_item/CI = cooking_objs[slot]
-
-				if(istype(I) && can_insert(I)) // Why do hard work when we can just make them smack us?
-					attackby(I, ui.user)
-				else if(istype(CI) && can_remove_items(ui.user))
-					eject(CI, ui.user)
-				return TRUE
-			if(istype(I)) // Why do hard work when we can just make them smack us?
-				attackby(I, ui.user)
-			return TRUE
 
 /obj/machinery/appliance/cooker/examine(var/mob/user)
 	. = ..()
