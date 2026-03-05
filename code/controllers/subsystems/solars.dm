@@ -1,8 +1,8 @@
 SUBSYSTEM_DEF(solars)
 	name = "Solars"
 	priority = FIRE_PRIORITY_SOLARS
-	wait = 20 SECONDS
-	flags = SS_BACKGROUND
+	wait = 1 MINUTE
+	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	dependencies = list(
 		/datum/controller/subsystem/planets,
@@ -16,9 +16,6 @@ SUBSYSTEM_DEF(solars)
 	var/list/controller_run = list()
 	var/list/panel_run = list()
 	var/list/panel_sum = list()
-
-/datum/controller/subsystem/solars/Initialize()
-	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/solars/fire(resumed)
 	if(!resumed)
@@ -72,6 +69,7 @@ SUBSYSTEM_DEF(solars)
 		while(length(handling_panels))
 			var/obj/machinery/power/solar/S = handling_panels[length(handling_panels)]
 			panel_sum[conkey] += S.update_power_generation(SC)
+			handling_panels.len--
 
 			if(MC_TICK_CHECK)
 				return
@@ -79,7 +77,8 @@ SUBSYSTEM_DEF(solars)
 		// Update the controller
 		SC.connected_power = panel_sum[conkey]
 		SC.update_icon()
-		controller_run -= conkey
+		controller_run.len--
+
 		if(MC_TICK_CHECK)
 			return
 
