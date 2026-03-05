@@ -181,10 +181,23 @@ GLOBAL_LIST_EMPTY(solars_list)
 	obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
 
+/// Updates the power generation of a solar panel.
+/obj/machinery/power/solar/proc/update_power_generation(obj/machinery/power/solar_control/SC)
+	adir = SC.cdir //instantly rotates the panel
+	occlusion()//and
+	update_icon() //update it
+	var/sgen = get_power_supplied()
+	var/list/panel_list = SC.get_connected_panels()
+	panel_list[src] = sgen
+	return sgen
+
 /// Looks nice but doesn't generate power.
 /obj/machinery/power/solar/fake
 
 /obj/machinery/power/solar/fake/get_power_supplied()
+	return 0
+
+/obj/machinery/power/solar/fake/update_power_generation()
 	return 0
 
 //
@@ -318,6 +331,10 @@ GLOBAL_LIST_EMPTY(solars_list)
 	connected_power -= connected_panels[P]
 	connected_panels.Remove(P)
 
+/obj/machinery/power/solar_control/proc/get_connected_panels()
+	RETURN_TYPE(/list)
+	return connected_panels
+
 /obj/machinery/power/solar_control/drain_power()
 	return -1
 
@@ -359,9 +376,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				cdir = targetdir //...the current direction is the targetted one (and rotates panels to it)
 		if(2) // auto-tracking
 			if(connected_tracker)
-				connected_tracker.set_angle(SSsun.sun.angle)
-
-	set_panels(cdir)
+				connected_tracker.set_angle(SSsolars.get_angle(src))
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)
@@ -501,16 +516,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 			search_for_connected()
 			return TRUE
 
-//rotates the panel to the passed angle
+/// rotates all connected panels to the passed angle, very expensive as it does them all at once in a single frame. This is what SSsolars does, but much more rude about it.
 /obj/machinery/power/solar_control/proc/set_panels(var/cdir)
 	var/sum = 0
 	for(var/obj/machinery/power/solar/S in connected_panels)
-		S.adir = cdir //instantly rotates the panel
-		S.occlusion()//and
-		S.update_icon() //update it
-		var/sgen = S.get_power_supplied()
-		connected_panels[S] = sgen
-		sum += sgen
+		sum += S.update_power_generation(src)
 	connected_power = sum
 	update_icon()
 
