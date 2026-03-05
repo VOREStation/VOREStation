@@ -223,10 +223,12 @@
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)
 	if(!(new_chassis in SSpai.get_chassis_list()))
 		new_chassis = PAI_DEFAULT_CHASSIS
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	if(chassis_data.emagged && !src.card.emagged)
+		return
 	chassis_name = new_chassis
 
 	// Get icon data setup
-	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
 	if(chassis_data.holo_projector)
 		internal_set_holoprojection(chassis_data)
 	else

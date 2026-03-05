@@ -16,7 +16,7 @@
 /datum/tgui_module/pai_chassis/tgui_static_data(mob/user)
 	var/list/data = ..()
 	var/list/available_sprites = list()
-	var/mob/living/silicon/pai/pai_user = user
+	var/mob/living/silicon/pai/pai_host = host
 	for(var/key, value in SSpai.get_chassis_list())
 		var/datum/pai_sprite/current_sprite = value
 		var/model_type = "def"
@@ -29,7 +29,7 @@
 
 	return data
 
-/datum/tgui_module/pai_chassis/tgui_data()
+/datum/tgui_module/pai_chassis/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	var/mob/living/silicon/pai/pai_host = host
