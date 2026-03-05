@@ -98,3 +98,17 @@
   - bugfix: parrot pai resting belly sprite has proper name
   - bugfix: runtime when attempting to toggle non-existent gun aiming mode as a pai
   - bugfix: herm is no longer missing from identifying gender in character prefs menu
+2026-03-05:
+  Azzy.Dreemurr:
+  - rscadd: Added new vending machine with Talon uniforms + for paperwork added [talogo]
+      which Talon logo displays
+  - balance: Talon armory got more holsters itself, added a helmet for Captain Talon
+      for their armor in locker
+  - bugfix: fixed locations of engineering lockers on Talon
+  - maptweak: small remap EVA room on Talon. A locker with musical instruments added
+      in Talon Bar
+  - image: New uniform for Talon Crew + Talon seal
+  - admin: A new option for sending a fax has been introduced -> Talon Headquarters.
+      And also the ability to answer.
+  KillianKirilenko:
+  - qol: restores default transfer values for flour and sugar
