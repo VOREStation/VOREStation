@@ -71,7 +71,7 @@ fundamental differences
 		return 0
 
 //Container is not removable
-/obj/machinery/appliance/mixer/removal_menu(var/mob/user)
+/obj/machinery/appliance/mixer/removal_menu(mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for(var/datum/cooking_item/CI as anything in cooking_objs)
