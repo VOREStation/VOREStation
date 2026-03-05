@@ -160,26 +160,36 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 //trace towards sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
+	var/turf/our_t = get_turf(src)
+	var/datum/planet/our_planet
+	if(!our_t || our_t.z > length(SSplanets.z_to_planet) || !SSplanets.z_to_planet[our_t.z])
+		// If we are NOT on a planet, we check toward the edge of the map, otherwise we're going to assume the sun is above us on a planet
+		var/ax = x		// start at the solar panel
+		var/ay = y
+		var/turf/T = null
 
-	var/ax = x		// start at the solar panel
-	var/ay = y
-	var/turf/T = null
+		for(var/i = 1 to 20)		// 20 steps is enough
+			ax += SSsun.sun.dx	// do step
+			ay += SSsun.sun.dy
 
-	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += SSsun.sun.dx	// do step
-		ay += SSsun.sun.dy
+			T = locate( round(ax,0.5),round(ay,0.5),z)
 
-		T = locate( round(ax,0.5),round(ay,0.5),z)
+			if(!T || T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
+				break
 
-		if(!T || T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
-			break
-
-		if(T.opacity)			// if we hit a solid turf, panel is obscured
-			obscured = 1
-			return
+			if(T.opacity)			// if we hit a solid turf, panel is obscured
+				obscured = 1
+				return
+	else
+		// If we are on a planet, get it for later so we can change the intensity of the light we recieve
+		our_planet = SSplanets.z_to_planet[our_t.z]
 
 	obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
+
+	// Use the actual brightness of time and weather if we are on a planet
+	if(our_planet)
+		sunfrac *= our_planet.sun["brightness"]
 
 /// Updates the power generation of a solar panel.
 /obj/machinery/power/solar/proc/update_power_generation(obj/machinery/power/solar_control/SC)
