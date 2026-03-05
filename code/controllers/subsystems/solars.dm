@@ -8,9 +8,13 @@ SUBSYSTEM_DEF(solars)
 		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/sun
 	)
+
+	// List of solar controllers that need to be prepared for the second half of processing
 	var/list/current_run
+
+	// Each list has a key of its controller, for each subrun of the subsystem
 	var/list/controller_run = list()
-	var/list/panel_run = list() // This is a horror show! Contains multiple sublists, one for each controller
+	var/list/panel_run = list()
 	var/list/panel_sum = list()
 
 /datum/controller/subsystem/solars/Initialize()
@@ -18,12 +22,16 @@ SUBSYSTEM_DEF(solars)
 
 /datum/controller/subsystem/solars/fire(resumed)
 	if(!resumed)
+		// Get the list of controllers we need to process
+		current_run = GLOB.solars_list.Copy()
+		// Clear secondary process lists so they're fresh for the impending run ahead
 		controller_run.Cut()
 		panel_run.Cut()
 		panel_sum.Cut()
-		current_run = GLOB.solars_list.Copy()
 
-	//now tell the solar control computers to update their status and linked devices
+	////////////////////////////////////////////////////////////////////////////////
+	// First processing cycle collects the controllers we'll be processing
+	////////////////////////////////////////////////////////////////////////////////
 	while(length(current_run))
 		var/obj/machinery/power/solar_control/SC = current_run[length(current_run)]
 		current_run.len--
@@ -31,6 +39,8 @@ SUBSYSTEM_DEF(solars)
 		// Controllers with no network are ignored
 		if(!SC.powernet)
 			GLOB.solars_list.Remove(SC)
+			if(MC_TICK_CHECK)
+				return
 			continue
 
 		// Update the controller and prepare each of the solar array lists it needs
@@ -42,7 +52,9 @@ SUBSYSTEM_DEF(solars)
 		if(MC_TICK_CHECK)
 			return
 
-	// For all controllers remaining...
+	////////////////////////////////////////////////////////////////////////////////
+	// Second processing cycle handles all of the panels for each controller!
+	////////////////////////////////////////////////////////////////////////////////
 	while(length(controller_run))
 		var/conkey = controller_run[length(controller_run)]
 		var/datum/weakref/conref= controller_run[conkey]
