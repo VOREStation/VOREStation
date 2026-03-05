@@ -30,7 +30,7 @@
 	food = /datum/reagent/lube
 	fishing_difficulty_modifier = 5
 	beauty = FISH_BEAUTY_GREAT
-
+/*
 // become lubeman. but you suicide
 /obj/item/fish/clownfish/lube/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] covers themselves in [src]'s residue, then swallows it whole! It looks like [user.p_theyre()] trying to commit lubide!"))
@@ -38,7 +38,7 @@
 	user.AddElement(/datum/element/lube_walking)
 	qdel(src)
 	return OXYLOSS
-
+*/
 /obj/item/fish/cardinal
 	name = "cardinalfish"
 	fish_id = "cardinal"
@@ -147,17 +147,17 @@
 	icon_state = "swordfish"
 	item_state = "swordfish"
 	force = 18
-	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("slashes", "cuts", "pierces")
-	attack_verb_simple = list("slash", "cut", "pierce")
-	block_sound = 'sound/items/weapons/parry.ogg'
+	sharp = TRUE
+	attack_verb = list("slashes", "cuts", "pierces")
+//	attack_verb_simple = list("slash", "cut", "pierce")
+//	block_sound = 'sound/items/weapons/parry.ogg'
 	hitsound = 'sound/items/weapons/rapierhit.ogg'
-	demolition_mod = 0.75
-	attack_speed = 1 SECONDS
-	block_chance = 50
-	wound_bonus = 10
-	exposed_wound_bonus = 20
-	armour_penetration = 75
+//	demolition_mod = 0.75
+	attackspeed = 1 SECONDS
+//	block_chance = 50
+//	wound_bonus = 10
+//	exposed_wound_bonus = 20
+	armor_penetration = 75
 	base_pixel_w = -18
 	pixel_w = -18
 	sprite_width = 13
@@ -187,54 +187,54 @@
 	switch(w_class)
 		if(ITEMSIZE_TINY)
 			force -= 11
-			attack_speed -= 0.4 SECONDS
-			block_chance -= 45
-			armour_penetration -= 20
-			wound_bonus -= 15
-			exposed_wound_bonus -= 20
+			attackspeed -= 0.4 SECONDS
+//			block_chance -= 45
+			armor_penetration -= 20
+//			wound_bonus -= 15
+//			exposed_wound_bonus -= 20
 		if(ITEMSIZE_SMALL)
 			force -= 8
-			attack_speed -= 0.3 SECONDS
-			block_chance -= 30
-			armour_penetration -= 15
-			wound_bonus -= 10
-			exposed_wound_bonus -= 20
+			attackspeed -= 0.3 SECONDS
+//			block_chance -= 30
+			armor_penetration -= 15
+//			wound_bonus -= 10
+//			exposed_wound_bonus -= 20
 		if(ITEMSIZE_NORMAL)
 			force -= 5
-			attack_speed -= 0.2 SECONDS
-			block_chance -= 20
-			armour_penetration -= 10
-			wound_bonus -= 10
-			exposed_wound_bonus -= 15
-		if(WEIGHT_CLASS_BULKY)
+			attackspeed -= 0.2 SECONDS
+//			block_chance -= 20
+			armor_penetration -= 10
+//			wound_bonus -= 10
+//			exposed_wound_bonus -= 15
+		if(ITEMSIZE_LARGE)
 			force -= 3
-			attack_speed -= 0.1 SECONDS
-			block_chance -= 10
-			armour_penetration -= 5
-			wound_bonus -= 5
-			exposed_wound_bonus -= 10
-		if(ITEMSIZE_GIGANTIC)
+			attackspeed -= 0.1 SECONDS
+//			block_chance -= 10
+			armor_penetration -= 5
+//			wound_bonus -= 5
+//			exposed_wound_bonus -= 10
+		if(ITEMSIZE_HUGE)
 			force += 5
-			attack_speed += 0.2 SECONDS
-			demolition_mod += 0.15
-			block_chance += 10
-			armour_penetration += 5
-			wound_bonus += 5
-			exposed_wound_bonus += 10
+			attackspeed += 0.2 SECONDS
+//			demolition_mod += 0.15
+//			block_chance += 10
+			armor_penetration += 5
+//			wound_bonus += 5
+//			exposed_wound_bonus += 10
 
 	if(status == FISH_DEAD)
 		force -= 4 + w_class
-		block_chance -= 25
-		armour_penetration -= 30
-		wound_bonus -= 10
-		exposed_wound_bonus -= 10
+//		block_chance -= 25
+		armor_penetration -= 30
+//		wound_bonus -= 10
+//		exposed_wound_bonus -= 10
 
 /obj/item/fish/swordfish/calculate_fish_force_bonus(bonus_malus)
 	. = ..()
-	armour_penetration += bonus_malus * 5
-	wound_bonus += bonus_malus * 3
-	exposed_wound_bonus += bonus_malus * 5
-	block_chance += bonus_malus * 7
+	armor_penetration += bonus_malus * 5
+//	wound_bonus += bonus_malus * 3
+//	exposed_wound_bonus += bonus_malus * 5
+//	block_chance += bonus_malus * 7
 
 /obj/item/fish/squid
 	name = "squid"
@@ -251,7 +251,7 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+5
 	required_temperature_max = MIN_AQUARIUM_TEMP+26
 	fish_traits = list(/datum/fish_trait/heavy, /datum/fish_trait/carnivore, /datum/fish_trait/predator, /datum/fish_trait/ink, /datum/fish_trait/camouflage, /datum/fish_trait/wary)
-
+/*
 /obj/item/fish/squid/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] points [src]'s ink glands at their face and presses INCREDIBLY hard! It looks like [user.p_theyre()] trying to commit squidcide!"))
 
@@ -276,7 +276,7 @@
 	head.dismember(silent = FALSE)
 	user.visible_message(span_suicide("[user]'s head goes FLYING OFF from the overpressurized ink jet!"))
 	return MANUAL_SUICIDE
-
+*/
 /obj/item/fish/squid/get_fish_taste()
 	return list("raw mollusk" = 2)
 
