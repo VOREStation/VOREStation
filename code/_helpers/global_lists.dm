@@ -1614,3 +1614,21 @@ GLOBAL_LIST_INIT(tail_layer_options, list("Lower layer" = TAIL_UPPER_LAYER_LOW ,
 	for(var/path in valid_subtypesof(prototype))
 		L[path] = new path()
 	return L
+
+GLOBAL_LIST_INIT(carp_colors, list(
+	COLOR_CARP_PURPLE = 7,
+	COLOR_CARP_PINK = 7,
+	COLOR_CARP_GREEN = 7,
+	COLOR_CARP_GRAPE = 7,
+	COLOR_CARP_SWAMP = 7,
+	COLOR_CARP_TURQUOISE = 7,
+	COLOR_CARP_BROWN = 7,
+	COLOR_CARP_TEAL = 7,
+	COLOR_CARP_LIGHT_BLUE = 7,
+	COLOR_CARP_RUSTY = 7,
+	COLOR_CARP_RED = 7,
+	COLOR_CARP_YELLOW = 7,
+	COLOR_CARP_BLUE = 7,
+	COLOR_CARP_PALE_GREEN = 7,
+	COLOR_CARP_SILVER = 1, // The rare silver carp
+))

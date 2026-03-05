@@ -167,7 +167,7 @@
 
 /obj/item/fish/zipzap/get_fish_taste()
 	return list("raw fish" = 2, "anxiety" = 1)
-
+/*
 /obj/item/fish/zipzap/suicide_act(mob/living/user)
 	if(!electrocute_mob(user, power_source = get_area(src), source = src, siemens_coeff = 1, dist_check = FALSE))
 		user.visible_message(span_suicide("[user] tries to slap [user.p_them()]self with [src], but they're immune to electricity!"))
@@ -178,7 +178,7 @@
 /obj/item/fish/zipzap/slapperoni(mob/living/user, iteration)
 	electrocute_mob(user, power_source = get_area(src), source = src, siemens_coeff = 1, dist_check = FALSE) // how do i make this use electrogenesis_power
 	return ..()
-
+*/
 /obj/item/fish/tadpole
 	name = "tadpole"
 	fish_id = "tadpole"
@@ -201,7 +201,7 @@
 
 /obj/item/fish/tadpole/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
-	var/output_path = prob(99) ? /mob/living/basic/frog : /mob/living/basic/frog/rare
+	var/output_path = prob(99) ? /mob/living/simple_mob/vore/aggressive/frog : /mob/living/simple_mob/vore/aggressive/frog/space //1% chance for mutant space frog. Rare pepes are already a 1 in a million.
 	AddComponent(/datum/component/fish_growth, output_path, rand(2 MINUTES, 3 MINUTES))
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(growth_checks))
 	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
@@ -231,13 +231,13 @@
 	if(HAS_TRAIT(loc, TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH)) //the aquarium has breeding disabled
 		return COMPONENT_DONT_GROW
 
-/obj/item/fish/tadpole/proc/on_growth(datum/source, mob/living/basic/frog/result)
+/obj/item/fish/tadpole/proc/on_growth(datum/source, mob/living/simple_mob/vore/aggressive/frog/result)
 	SIGNAL_HANDLER
 	playsound(result, result.attack_sound, 50, TRUE) // reeeeeeeeeeeeeee...
 
 /obj/item/fish/tadpole/get_export_price(price, elasticity_percent)
 	return 2 //two credits. Tadpoles aren't really that valueable.
-
+/*
 /obj/item/fish/tadpole/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src] whole!"))
 	src.forceMove(user)
@@ -265,7 +265,7 @@
 		user.gib(DROP_ALL_REMAINS)
 
 	qdel(src)
-
+*/
 /obj/item/fish/perch
 	name = "perch"
 	fish_id = "perch"

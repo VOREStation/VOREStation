@@ -97,7 +97,7 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/fish/starfish/fish_grind_results()
-	return list(/datum/reagent/bluespace = 10)
+	return list(/datum/reagent/ethanol/singulo = 10)
 
 /obj/item/fish/starfish/update_overlays()
 	. = ..()
@@ -105,12 +105,12 @@
 
 /obj/item/fish/starfish/proc/add_emissive()
 	if(status == FISH_ALIVE)
-		return emissive_appearance(icon, "starfish_emissive", src, effect_type = EMISSIVE_NO_BLOOM)
+		return emissive_appearance(icon, "starfish_emissive")//, src, effect_type = EMISSIVE_NO_BLOOM)
 
 ///It spins, and dimly glows in the dark.
 /obj/item/fish/starfish/flop_animation()
 	DO_FLOATING_ANIM(src)
-
+/*
 /obj/item/fish/starfish/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src], and looks upwards..."))
 	if (prob(20))
@@ -124,7 +124,7 @@
 	user.add_filter("space", 1, layering_filter(icon = icon('icons/mob/human/textures.dmi', "spacey"), blend_mode = BLEND_INSET_OVERLAY))
 	user.apply_status_effect(/datum/status_effect/go_away/deletes_mob)
 	qdel(src)
-
+*/
 /obj/item/fish/baby_carp
 	name = "baby space carp"
 	fish_id = "baby_carp"
@@ -169,7 +169,7 @@
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(growth_checks))
 	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
 	update_appearance(UPDATE_OVERLAYS)
-
+/*
 /obj/item/fish/baby_carp/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src] whole!"))
 	src.forceMove(user)
@@ -200,7 +200,7 @@
 
 	user.gib(DROP_ALL_REMAINS)
 	qdel(src)
-
+*/
 /obj/item/fish/baby_carp/update_overlays()
 	. = ..()
 	var/mutable_appearance/eyes = mutable_appearance(icon, "baby_carp_eyes")
@@ -217,7 +217,7 @@
 	growth_rate *= clamp(size/average_size, 0.5, 2)
 	growth_rate *= clamp(weight/average_weight, 0.5, 2)
 
-	AddComponent(/datum/component/fish_growth, /mob/living/basic/carp/advanced, growth_rate)
+	AddComponent(/datum/component/fish_growth, /mob/living/simple_mob/animal/space/carp/large, growth_rate)
 
 /obj/item/fish/baby_carp/proc/growth_checks(datum/source, seconds_per_tick, growth, result_path)
 	SIGNAL_HANDLER
@@ -233,10 +233,10 @@
 	if(length(get_aquarium_fishes()) > AQUARIUM_MAX_BREEDING_POPULATION * 0.5) //check if there's enough room to maturate.
 		return COMPONENT_DONT_GROW
 
-/obj/item/fish/baby_carp/proc/on_growth(datum/source, mob/living/basic/carp/result)
+/obj/item/fish/baby_carp/proc/on_growth(datum/source, /mob/living/simple_mob/animal/space/carp/result)
 	SIGNAL_HANDLER
 	//yes, this means that if we use a spraycan on the fish, the resulting space carp will be of spraycan color
-	result.set_greyscale(colors = list(color))
+	//result.set_greyscale(colors = list(color))
 
 #define PERSISTENCE_FISH_CARP_COLOR "carp_color"
 

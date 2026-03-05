@@ -21,11 +21,12 @@
 
 /obj/item/fish/holo/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
-	var/area/station/holodeck/holo_area = get_area(src)
+	var/area/holodeck/holo_area = get_area(src)
 	if(!istype(holo_area))
 		addtimer(CALLBACK(src, PROC_REF(set_status), FISH_DEAD), 1 MINUTES)
 		return
-	holo_area.linked.add_to_spawned(src)
+	var/obj/machinery/computer/HolodeckControl/deck_control = holo_area.contents.Find(/obj/machinery/computer/HolodeckControl)
+	deck_control.holographic_mobs += src
 
 /obj/item/fish/holo/make_edible(weight_val)
 	return
@@ -35,7 +36,7 @@
 	if(status == FISH_DEAD)
 		animate(src, alpha = 0, 3 SECONDS, easing = SINE_EASING)
 		QDEL_IN(src, 3 SECONDS)
-
+/*
 /obj/item/fish/holo/suicide_act(mob/living/user)
 	visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to derez [user.p_them()]selves!"))
 	var/area/station/holodeck/holo_area = get_area(src)
@@ -44,7 +45,7 @@
 		return MANUAL_SUICIDE
 	holo_area.linked.add_to_spawned(user) // oh no
 	return MANUAL_SUICIDE_NONLETHAL
-
+*/
 /obj/item/fish/holo/crab
 	name = "holographic crab"
 	fish_id = "holocrab"
@@ -110,7 +111,7 @@
 	sprite_width = 4
 	sprite_height = 3
 	beauty = FISH_BEAUTY_NULL
-
+/*
 /obj/item/fish/holo/checkered/suicide_act(mob/living/carbon/user)
 	if(!iscarbon(user))
 		return ..()
@@ -124,7 +125,7 @@
 		head.head_flags &= ~HEAD_EYESPRITES
 	user.update_body()
 	return ..()
-
+*/
 /obj/item/fish/holo/halffish
 	name = "holographic half-fish"
 	fish_id = "halffish"

@@ -1,18 +1,19 @@
+//TBI - FISHING UPDATE
 /obj/item/wallframe/fish
 	name = "fish mount"
 	desc = "The frame of a mount for trophy fish, to show off your proudest catch."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fish_mount_item"
-	result_path = /obj/structure/fish_mount
+//	result_path = /obj/structure/fish_mount
 	matter = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
-	pixel_shift = 31
+//	pixel_shift = 31
 	///Reference to the persistent_id of the mount this was spawned from.
 	var/persistence_id
-
+/*
 /obj/item/wallframe/fish/after_attach(obj/structure/fish_mount/mount)
 	. = ..()
 	mount.persistence_id = persistence_id
-
+*/
 ///A wallmounted structure on which a fish can be attached to be used as room decoration.
 /obj/structure/fish_mount
 	name = "fish mount"
@@ -22,10 +23,10 @@
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
-	layer = SIGN_LAYER
+	layer = OBJ_LAYER + 0.4
 	max_integrity = 100
-	matter = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
-	armor_type = /datum/armor/structure_sign
+//	matter = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
+//	armor_type = /datum/armor/structure_sign
 	resistance_flags = FLAMMABLE
 	/// The instance of the fish mounted on this.
 	var/obj/item/fish/mounted_fish
@@ -33,7 +34,7 @@
 	var/persistence_id
 	/// Trophies from persistence have a good chance to be dusted if removal is attempted, though rarely it pays off.
 	var/persistence_loaded_fish = FALSE
-
+/*
 /obj/structure/fish_mount/Initialize(mapload)
 	. = ..()
 	//Mounted fish shouldn't flop. It should also show size and weight to everyone.
@@ -209,3 +210,4 @@
 	persistence_id = "Bar"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fish_mount/bar, /obj/item/wallframe/fish::pixel_shift)
+*/
