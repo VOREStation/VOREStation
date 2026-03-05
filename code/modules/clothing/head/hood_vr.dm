@@ -39,6 +39,13 @@
 	desc = "A cozy winter hood attached to a heavy winter jacket."
 	icon_state = "winterhood_talon"
 
+/obj/item/clothing/head/hood/winter/talon/refreshed
+	name = "Refreshed Talon winter hood"
+	desc = "A cozy winter hood attached to a heavy winter jacket."
+	icon = 'icons/inventory/head/item.dmi'
+	default_worn_icon = 'icons/inventory/head/mob.dmi'
+	icon_state = "winterhoodr_talon"
+
 // Centcom Winter Hood
 /obj/item/clothing/head/hood/winter/centcom
 	name = "centcom winter hood"

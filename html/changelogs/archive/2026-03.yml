@@ -69,3 +69,46 @@
       to go with the empty version
   - image: brightened the default carrot produce sprite and changed the produce colours
       for carrots and oranges
+2026-03-03:
+  Kashargul:
+  - code_imp: migrates some more globals to GLOBs
+  - code_imp: migrates more admin verbs to the subsystem
+  - code_imp: cleans up some more updateDialog
+  - refactor: replaces many old browser UIs with tgui
+2026-03-04:
+  Will, Kash:
+  - rscadd: observing the round from the main menu, while having pai candidate enabled(and
+      a set pai name) will automatically send out a pai notice about a new personality
+      being available
+  - rscadd: pai may have multiple levels of belly size per pai sprite type
+  - rscadd: type 13 pai hologram now uses all four directions for the AI hologram
+      sprite made of your character
+  - balance: pais now have an extremely limited selection of objects and computers
+      they can interact with
+  - refactor: pai controller ported to subsystem
+  - refactor: pai card menu updated to tgui
+  - refactor: pai sprites moved to datums
+  - refactor: pai saving uses TGprefs instead of it's own separate save file (each
+      save slot now has it's own pai config now)
+  - refactor: pai vr override icons collapsed into base file
+  - refactor: multiple pai related tgui menus updated to modern standards
+  - code_imp: special roles order unit test
+  - code_imp: pai software unit test
+  - code_imp: pai sprite unit test
+  - bugfix: parrot pai resting belly sprite has proper name
+  - bugfix: runtime when attempting to toggle non-existent gun aiming mode as a pai
+  - bugfix: herm is no longer missing from identifying gender in character prefs menu
+2026-03-05:
+  Azzy.Dreemurr:
+  - rscadd: Added new vending machine with Talon uniforms + for paperwork added [talogo]
+      which Talon logo displays
+  - balance: Talon armory got more holsters itself, added a helmet for Captain Talon
+      for their armor in locker
+  - bugfix: fixed locations of engineering lockers on Talon
+  - maptweak: small remap EVA room on Talon. A locker with musical instruments added
+      in Talon Bar
+  - image: New uniform for Talon Crew + Talon seal
+  - admin: A new option for sending a fax has been introduced -> Talon Headquarters.
+      And also the ability to answer.
+  KillianKirilenko:
+  - qol: restores default transfer values for flour and sugar

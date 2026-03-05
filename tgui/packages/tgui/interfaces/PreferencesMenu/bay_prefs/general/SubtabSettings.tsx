@@ -48,10 +48,6 @@ export const SubtabSettings = (props: {
     uplink_type,
     record_banned,
     exploitable_record,
-    pai_name,
-    pai_desc,
-    pai_role,
-    pai_comments,
     syndicate_ban,
     special_roles,
     custom_footstep,
@@ -291,8 +287,8 @@ export const SubtabSettings = (props: {
                           {role.banned
                             ? 'BANNED'
                             : role.selected
-                            ? 'Yes'
-                            : 'No'}
+                              ? 'Yes'
+                              : 'No'}
                         </Button>
                       </LabeledList.Item>
                     ))}
@@ -404,31 +400,6 @@ export const SubtabSettings = (props: {
                     </Button>
                     <Button fluid onClick={() => act('reset_cold')}>
                       Reset
-                    </Button>
-                  </LabeledList.Item>
-                </LabeledList>
-              </Stack.Item>
-              <Stack.Item>
-                <Box bold>pAI Settings</Box>
-                <LabeledList>
-                  <LabeledList.Item label="Name">
-                    <Button onClick={() => act('option', { option: 'name' })}>
-                      {pai_name || 'None Set'}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Description">
-                    <Button onClick={() => act('option', { option: 'desc' })}>
-                      {pai_desc || 'None Set'}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Role">
-                    <Button onClick={() => act('option', { option: 'role' })}>
-                      {pai_role || 'None Set'}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="OOC Comments">
-                    <Button onClick={() => act('option', { option: 'ooc' })}>
-                      {pai_comments || 'None Set'}
                     </Button>
                   </LabeledList.Item>
                 </LabeledList>
