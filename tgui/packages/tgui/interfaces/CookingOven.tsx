@@ -1,6 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
+  Box,
   Button,
   DmIcon,
   ProgressBar,
@@ -32,56 +33,19 @@ export const CookingOven = (props) => {
                 wrap="wrap"
                 width="90%"
               >
-                {!!is_open &&
-                  our_contents.map((content, i) => {
-                    if (content.empty) {
-                      return (
-                        <Stack.Item key={i}>
-                          <Stack align="center" justify="center" fill vertical>
-                            <Stack.Item>
-                              <ProgressBar
-                                value={0}
-                                maxValue={1}
-                                backgroundColor="black"
-                                width={8}
-                              >
-                                N/A
-                              </ProgressBar>
-                            </Stack.Item>
-                            <Stack.Item
-                              backgroundColor="black"
-                              width={3}
-                              height={3}
-                              style={{
-                                border: '2px solid #48739e',
-                                cursor: 'pointer',
-                              }}
-                              onClick={() => act('slot', { slot: i + 1 })}
-                            />
-                            <Stack.Item
-                              backgroundColor="black"
-                              style={{ borderRadius: '4px' }}
-                              p={1}
-                            >
-                              Slot #{i + 1}
-                            </Stack.Item>
-                          </Stack>
-                        </Stack.Item>
-                      );
-                    }
-
+                {our_contents.map((content, i) => {
+                  if (content.empty) {
                     return (
                       <Stack.Item key={i}>
                         <Stack align="center" justify="center" fill vertical>
                           <Stack.Item>
                             <ProgressBar
-                              color={content.progressText[0]}
-                              value={content.progress}
+                              value={0}
                               maxValue={1}
                               backgroundColor="black"
                               width={8}
                             >
-                              {content.progressText[1]}
+                              N/A
                             </ProgressBar>
                           </Stack.Item>
                           <Stack.Item
@@ -93,51 +57,115 @@ export const CookingOven = (props) => {
                               cursor: 'pointer',
                             }}
                             onClick={() => act('slot', { slot: i + 1 })}
+                          />
+                          <Stack.Item
+                            backgroundColor="black"
+                            style={{ borderRadius: '4px' }}
+                            p={1}
                           >
-                            {content.empty ? (
-                              'Empty'
-                            ) : (
-                              <DmIcon
-                                icon="icons/obj/cooking_machines.dmi"
-                                icon_state="ovendish"
-                                width="32px"
-                                height="32px"
-                              />
-                            )}
+                            Slot #{i + 1}
                           </Stack.Item>
-                          <Tooltip
-                            content={
-                              content.prediction
-                                ? `Predicted Output: ${content.prediction}`
-                                : undefined
-                            }
-                          >
-                            <Stack.Item
-                              backgroundColor="black"
-                              style={{
-                                borderRadius: '4px',
-                                textDecoration: content.prediction
-                                  ? 'underline'
-                                  : undefined,
-                              }}
-                              p={1}
-                            >
-                              Slot #{i + 1}
-                            </Stack.Item>
-                          </Tooltip>
                         </Stack>
                       </Stack.Item>
                     );
-                  })}
+                  }
+
+                  return (
+                    <Stack.Item key={i}>
+                      <Stack align="center" justify="center" fill vertical>
+                        <Stack.Item>
+                          <ProgressBar
+                            color={content.progressText[0]}
+                            value={content.progress}
+                            maxValue={1}
+                            backgroundColor="black"
+                            width={8}
+                          >
+                            {content.progressText[1]}
+                          </ProgressBar>
+                        </Stack.Item>
+                        <Stack.Item
+                          backgroundColor="black"
+                          width={3}
+                          height={3}
+                          style={{
+                            border: '2px solid #48739e',
+                            cursor: 'pointer',
+                          }}
+                          onClick={() => act('slot', { slot: i + 1 })}
+                        >
+                          {content.empty ? (
+                            'Empty'
+                          ) : (
+                            <DmIcon
+                              icon="icons/obj/cooking_machines.dmi"
+                              icon_state="ovendish"
+                              width="32px"
+                              height="32px"
+                            />
+                          )}
+                        </Stack.Item>
+                        <Tooltip
+                          content={
+                            content.prediction
+                              ? `Predicted Output: ${content.prediction}`
+                              : undefined
+                          }
+                        >
+                          <Stack.Item
+                            backgroundColor="black"
+                            style={{
+                              borderRadius: '4px',
+                              textDecoration: content.prediction
+                                ? 'underline'
+                                : undefined,
+                            }}
+                            p={1}
+                          >
+                            Slot #{i + 1}
+                          </Stack.Item>
+                        </Tooltip>
+                      </Stack>
+                    </Stack.Item>
+                  );
+                })}
                 <Stack.Item>
                   <Button
-                    left={is_open ? '30px' : '-15px'}
-                    height={is_open ? '150px' : '210px'}
+                    left="30px"
+                    height="150px"
                     tooltip={`Click to ${is_open ? 'close' : 'open'}.`}
                     width="50px"
                     color="transparent"
                     onClick={() => act('toggle_door')}
-                  />
+                    textColor="white"
+                  >
+                    <Box backgroundColor="black">
+                      <Stack
+                        mt="20px"
+                        fill
+                        vertical
+                        align="center"
+                        verticalAlign="center"
+                      >
+                        {is_open ? (
+                          <>
+                            <Stack.Item bold>C</Stack.Item>
+                            <Stack.Item bold>L</Stack.Item>
+                            <Stack.Item bold>O</Stack.Item>
+                            <Stack.Item bold>S</Stack.Item>
+                            <Stack.Item bold>E</Stack.Item>
+                          </>
+                        ) : (
+                          <>
+                            <Stack.Item bold>O</Stack.Item>
+                            <Stack.Item bold>P</Stack.Item>
+                            <Stack.Item bold>E</Stack.Item>
+                            <Stack.Item bold>N</Stack.Item>
+                          </>
+                        )}
+                      </Stack>
+                    </Box>
+                  </Button>
                 </Stack.Item>
               </Stack>
               <DmIcon

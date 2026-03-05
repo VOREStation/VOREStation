@@ -40,7 +40,7 @@
 
 	var/list/our_contents = list()
 	for(var/i in 1 to max_contents)
-		our_contents += list(list("empty" = TRUE))
+		UNTYPED_LIST_ADD(our_contents, list("empty" = TRUE))
 		if(i <= LAZYLEN(cooking_objs))
 			var/datum/cooking_item/CI = cooking_objs[i]
 			if(istype(CI))
