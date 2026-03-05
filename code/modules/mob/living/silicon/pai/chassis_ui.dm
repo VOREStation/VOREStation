@@ -13,14 +13,17 @@
 		get_asset_datum(/datum/asset/spritesheet_batched/pai_icons),
 	)
 
-/datum/tgui_module/pai_chassis/tgui_static_data()
+/datum/tgui_module/pai_chassis/tgui_static_data(mob/user)
 	var/list/data = ..()
 	var/list/available_sprites = list()
+	var/mob/living/silicon/pai/pai_user = user
 	for(var/key, value in SSpai.get_chassis_list())
 		var/datum/pai_sprite/current_sprite = value
 		var/model_type = "def"
 		if(istype(current_sprite, /datum/pai_sprite/large))
 			model_type = "big"
+		if(current_sprite.emagged && !pai_user.card.emagged)
+			continue
 		UNTYPED_LIST_ADD(available_sprites, list("sprite" = current_sprite.name, "belly" = current_sprite.belly_states, "type" = model_type))
 	data["pai_chassises"] = available_sprites
 
