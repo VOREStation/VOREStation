@@ -9,8 +9,8 @@
 ///Builds the list for acceptable reagents and items.
 /proc/build_kitchen_items()
 	var/list/acceptable_items = list()
-	for(var/list/list_to_check as anything in GLOB.available_recipes)
-		for(var/datum/recipe/recipe as anything in list_to_check)
+	for(var/key, value in GLOB.available_recipes)
+		for(var/datum/recipe/recipe as anything in value)
 			for(var/item in recipe.items)
 				acceptable_items |= item
 	acceptable_items |= /obj/item/holder
@@ -22,8 +22,8 @@
 ///Builds the list for acceptable reagents and items.
 /proc/build_kitchen_reagents()
 	var/list/acceptable_reagents = list()
-	for(var/list/list_to_check as anything in GLOB.available_recipes)
-		for(var/datum/recipe/recipe as anything in list_to_check)
+	for(var/key, value in GLOB.available_recipes)
+		for(var/datum/recipe/recipe as anything in value)
 			for(var/reagent in recipe.reagents)
 				acceptable_reagents |= reagent
 	return acceptable_reagents
