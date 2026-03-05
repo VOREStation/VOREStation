@@ -328,8 +328,8 @@
 			if(w_class > ITEMSIZE_HUGE && w_class < ITEMSIZE_NO_CONTAINER)
 				size = "giant"
 			else if (w_class > ITEMSIZE_NO_CONTAINER)
-				sizw = "enormous"
-	return ..(user, "", "It is a [size] item.")
+				size = "enormous"
+	return ..(user, "", "It is \a [size] item.")
 
 /obj/item/attack_hand(mob/living/user as mob)
 	if (!user) return
