@@ -22,7 +22,7 @@
 		var/model_type = "def"
 		if(istype(current_sprite, /datum/pai_sprite/large))
 			model_type = "big"
-		if(current_sprite.emagged && !pai_host.card.emagged)
+		if(current_sprite.emagged && (!pai_host.card.emagged || !pai_host.card.has_emag_toolkit))
 			continue
 		UNTYPED_LIST_ADD(available_sprites, list("sprite" = current_sprite.name, "belly" = current_sprite.belly_states, "type" = model_type))
 	data["pai_chassises"] = available_sprites
