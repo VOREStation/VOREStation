@@ -82,13 +82,10 @@ SUBSYSTEM_DEF(solars)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/solars/proc/get_angle(obj/machinery/power/solar_control/controller)
-	var/turf/our_t = get_turf(controller)
-	if(!our_t || !("[our_t.z]" in SSplanets.z_to_planet))
+/datum/controller/subsystem/solars/proc/get_solar_angle(turf/our_t)
+	if(!our_t || our_t.z > length(SSplanets.z_to_planet) || !SSplanets.z_to_planet[our_t.z])
 		return SSsun.sun.angle // standard in space solar panels use the global SSsun angle
 
 	// On planets, use the daynight cycle
-	var/datum/planet/our_planet = SSplanets.z_to_planet["[our_t.z]"]
-	if(!our_planet)
-		return SSsun.sun.angle
+	var/datum/planet/our_planet = SSplanets.z_to_planet[our_t.z]
 	return our_planet.get_sun_solar_position()
