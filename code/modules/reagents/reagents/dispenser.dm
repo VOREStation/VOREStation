@@ -22,7 +22,6 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
 
-//VOREStation Edit
 /datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M) && rand(1,10000) == 1)
 		var/mob/living/carbon/human/H = M
@@ -32,7 +31,6 @@
 				H.custom_pain("You feel the agonizing power of calcium mending your bones!",60)
 				H.AdjustWeakened(1)
 				break // Only mend one bone, whichever comes first in the list
-//VOREStation Edit End
 
 /datum/reagent/carbon
 	name = REAGENT_CARBON

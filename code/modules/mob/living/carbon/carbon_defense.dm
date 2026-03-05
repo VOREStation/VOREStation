@@ -1,3 +1,5 @@
+#define SHAKE_ANIMATION_OFFSET 4
+
 //Called when the mob is hit with an item in combat.
 /mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	if(check_neckgrab_attack(I, user, hit_zone))
@@ -149,3 +151,11 @@
 	damage = damage * damage_mod
 
 	return damage
+
+/mob/proc/shake_up_animation()
+	var/direction = prob(50) ? -1 : 1
+	animate(src, pixel_w = SHAKE_ANIMATION_OFFSET * direction, time = 0.1 SECONDS, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
+	animate(pixel_w = SHAKE_ANIMATION_OFFSET * -2 * direction, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
+	animate(pixel_w = SHAKE_ANIMATION_OFFSET * direction, time = 0.1 SECONDS, easing = QUAD_EASING | EASE_IN, flags = ANIMATION_RELATIVE)
+
+#undef SHAKE_ANIMATION_OFFSET

@@ -153,12 +153,12 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	var/weight_size_deviation = 0.2
 
 	/// When outside of an aquarium, these gases that are checked (as well as pressure and temp) to assert if the environment is safe or not.
-	var/list/safe_air_limits = list(
-		/datum/gas/oxygen = list(12, 100),
-		/datum/gas/nitrogen,
-		/datum/gas/carbon_dioxide = list(0, 10),
-		/datum/gas/water_vapor,
-	)
+//	var/list/safe_air_limits = list(
+//		/datum/gas/oxygen = list(12, 100),
+//		/datum/gas/nitrogen,
+//		/datum/gas/carbon_dioxide = list(0, 10),
+//		/datum/gas/water_vapor,
+//	)
 	/// Outside of an aquarium, the pressure needs to be within these two variables for the environment to be safe.
 	var/min_pressure = WARNING_LOW_PRESSURE
 	var/max_pressure = HAZARD_HIGH_PRESSURE
@@ -1230,8 +1230,8 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	var/datum/gas_mixture/mixture = loc.return_air()
 	if(!mixture)
 		return FALSE
-	if(safe_air_limits && !check_gases(mixture.gases, safe_air_limits))
-		return FALSE
+//	if(safe_air_limits && !check_gases(mixture.gases, safe_air_limits)) //NYI - Fishing Update
+//		return FALSE
 	if(!ISINRANGE(mixture.temperature, required_temperature_min, required_temperature_max))
 		return FALSE
 	var/pressure = mixture.return_pressure()

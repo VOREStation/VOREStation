@@ -6,18 +6,18 @@
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "chrystarfish"
 	force = 12
-	sharpness = SHARP_POINTY
-	wound_bonus = -10
-	exposed_wound_bonus = 15
-	armour_penetration = 6
-	demolition_mod = 1.2
+	sharp = TRUE
+//	wound_bonus = -10
+//	exposed_wound_bonus = 15
+	armor_penetration = 6
+//	demolition_mod = 1.2
 	throwforce = 11
 	throw_range = 8
 	throw_speed = 4
-	embed_type = /datum/embedding/chrystarfish
-	attack_verb_continuous = list("stabs", "jabs")
-	attack_verb_simple = list("stab", "jab")
-	hitsound = SFX_SHATTER
+//	embed_type = /datum/embedding/chrystarfish
+	attack_verb = list("stabs", "jabs")
+//	attack_verb_simple = list("stab", "jab")
+	hitsound = 'sound/effects/Glasshit.ogg'
 	pickup_sound = 'sound/items/handling/materials/glass_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/glass_drop.ogg'
 
@@ -43,6 +43,7 @@
 	// something something bluespace
 	electrogenesis_power = 9 MEGA JOULES
 
+/*
 // Basically a ninja star that's highly likely to embed and teleports you around if you don't stop to remove it. However it doesn't deal that much damage!
 /datum/embedding/chrystarfish
 	pain_mult = 1
@@ -67,13 +68,13 @@
 			new fillet_type(get_turf(src))
 		playsound(src, SFX_SHATTER, 50)
 		qdel(src)
-
+*/
 /obj/item/fish/starfish/chrystarfish/add_emissive()
 	return
 
 /obj/item/fish/starfish/chrystarfish/get_base_edible_reagents_to_add()
 	var/list/return_list = ..()
-	return_list[/datum/reagent/bluespace] = 5
+	return_list[/datum/reagent/ethanol/singulo] = 5
 	return return_list
 
 /obj/item/fish/starfish/chrystarfish/flinch_on_eat(mob/living/eater, mob/living/feeder)
@@ -84,7 +85,7 @@
 	var/tp_range = 6 * clamp(weight/average_weight, 3, 9) // usually 6, plus or minus fish weight
 	// teleports itself if on a turf otherwise its container - whatever it is
 	do_teleport(isturf(loc) ? src : loc, get_turf(feeder), tp_range, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
-
+/*
 /obj/item/fish/starfish/chrystarfish/suicide_act(mob/living/user)
 	visible_message(span_suicide("[user] swallows [src] whole! It looks like they're trying to commit suicide!"))
 	forceMove(user)
@@ -97,7 +98,7 @@
 		do_teleport(thing, get_turf(user), 2, asoundin = null, channel = TELEPORT_CHANNEL_BLUESPACE)
 	qdel(src)
 	return MANUAL_SUICIDE
-
+*/
 // Prevents the first 2 messages from spamming on each patience update.
 #define PATIENCE_FLINCH "PATIENCE_FLINCH"
 #define PATIENCE_UNCOMFY "PATIENCE_UNCOMFY"
@@ -109,23 +110,25 @@
 	icon = 'icons/obj/aquarium/wide.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "dolphish"
-	lefthand_file = 'icons/mob/inhands/fish_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/fish_righthand.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/fish_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/fish_righthand.dmi',
+		)
 	force = 19
-	sharpness = SHARP_POINTY
-	wound_bonus = -5
-	exposed_wound_bonus = 20
-	armour_penetration = 12
-	block_chance = 33
+	sharp = TRUE
+//	wound_bonus = -5
+//	exposed_wound_bonus = 20
+	armor_penetration = 12
+//	block_chance = 33
 	throwforce = 7
 	throw_range = 4
-	attack_verb_continuous = list("bites", "impales", "rams")
-	attack_verb_simple = list("bite", "impale", "ram")
+	attack_verb = list("bites", "impales", "rams")
+//	attack_verb_simple = list("bite", "impale", "ram")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	block_sound = 'sound/items/weapons/parry.ogg'
+//	block_sound = 'sound/items/weapons/parry.ogg'
 	drop_sound = 'sound/mobs/non-humanoids/fish/fish_drop1.ogg'
-	pickup_sound = SFX_FISH_PICKUP
-	sound_vary = TRUE
+//	pickup_sound = SFX_FISH_PICKUP
+//	sound_vary = TRUE
 
 	base_pixel_w = -16
 	pixel_w = -16
@@ -150,11 +153,11 @@
 	average_size = 150
 	average_weight = 2750
 	weight_size_deviation = 0.5
-	safe_air_limits = list(
-		/datum/gas/oxygen = list(12, 100),
-		/datum/gas/nitrogen,
-		/datum/gas/carbon_dioxide = list(0, 10),
-	)
+//	safe_air_limits = list(
+//		/datum/gas/oxygen = list(12, 100),
+//		/datum/gas/nitrogen,
+//		/datum/gas/carbon_dioxide = list(0, 10),
+//	)
 	min_pressure = HAZARD_LOW_PRESSURE
 	max_pressure = HAZARD_HIGH_PRESSURE
 	beauty = FISH_BEAUTY_GREAT
@@ -184,12 +187,12 @@
 		multiplier -= 0.35 // huge nerf if dead
 
 	force *= multiplier
-	attack_speed *= multiplier
-	demolition_mod *= multiplier
-	block_chance *= multiplier
-	armour_penetration *= multiplier
-	wound_bonus *= multiplier
-	exposed_wound_bonus *= multiplier
+	attackspeed *= multiplier
+//	demolition_mod *= multiplier
+//	block_chance *= multiplier
+	armor_penetration *= multiplier
+//	wound_bonus *= multiplier
+//	exposed_wound_bonus *= multiplier
 
 /obj/item/fish/dolphish/do_fish_process(seconds_per_tick)
 	. = ..()
@@ -202,13 +205,14 @@
 	//gas check
 	var/datum/gas_mixture/turf_gasmix = onturf.return_air()
 	// likes water, gets sleepy, gets very sleepy
+/*
 	if(turf_gasmix.gases[/datum/gas/water_vapor] && turf_gasmix.gases[/datum/gas/water_vapor][MOLES] >= 5)
 		patience_reduction *= 0.5
 	if(turf_gasmix.gases[/datum/gas/nitrous_oxide] && turf_gasmix.gases[/datum/gas/nitrous_oxide][MOLES] >= 5)
 		patience_reduction *= 0.25
 	if(turf_gasmix.gases[/datum/gas/healium] && turf_gasmix.gases[/datum/gas/healium][MOLES] >= 5)
 		patience_reduction *= 0.1
-
+*/
 	if(!ismob(loc))
 		// dividing by the multiplier nets us an increasing value. happy dolphish gain patience quicker
 		var/patience_bonus = (1 / patience_reduction)
@@ -216,8 +220,10 @@
 		return
 
 	var/mob/living/moc = loc
-	if(moc.mob_biotypes & MOB_AQUATIC)
-		patience_reduction *= 0.6
+	if(ishuman(moc))
+		var/mob/living/carbon/human/human_moc = moc
+		if(human_moc.species.water_breather) //Only way we can really check to see if someone is 'aquatic' or not here.
+			patience_reduction *= 0.6
 	if(HAS_TRAIT(moc, TRAIT_IS_WET))
 		patience_reduction *= 0.6
 
@@ -227,9 +233,9 @@
 		if(0)
 			// No check, we always want sharky to bite jerky on 0
 			moc.visible_message(span_bolddanger("[src] bites directly into [moc] and squirms away from [moc.p_their()] grasp!"), span_userdanger("[src] sinks its fangs into you!!"))
-			moc.apply_damage(force, BRUTE, moc.get_active_hand(), wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, sharpness = sharpness, attacking_item = src)
+			moc.apply_damage(force, BRUTE, moc.get_active_hand(), sharp = sharp, used_weapon = src)
 			forceMove(moc.drop_location())
-			moc.painful_scream()
+			moc.emote("scream")
 			patience = max_patience
 			playsound(src, hitsound, 45)
 		if(1 to 10)
@@ -257,12 +263,12 @@
 	user.visible_message(
 		span_warning("[user] tries to pet [src], but it sinks its fangs into [user.p_their()] hand!"),
 		span_warning("You try to pet [src], but it sinks its fangs into your hand!"),
-		vision_distance = DEFAULT_MESSAGE_RANGE - 3,
+		range = 4,
 		)
-	user.apply_damage(force, BRUTE, user.get_active_hand(), wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, sharpness = sharpness, attacking_item = src)
+	user.apply_damage(force, BRUTE, user.get_active_hand(), sharp = sharp, used_weapon = src)
 	if(!in_aquarium)
 		forceMove(user.drop_location())
-	user.painful_scream()
+	user.emote("scream")
 
 /obj/item/fish/flumpulus
 	name = "flumpulus"
@@ -271,10 +277,12 @@
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "flumpulus"
-	lefthand_file = 'icons/mob/inhands/fish_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/fish_righthand.dmi'
-	attack_verb_continuous = list("splats", "splorts")
-	attack_verb_simple = list("splat", "splort")
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/fish_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/fish_righthand.dmi',
+		)
+	attack_verb = list("splats", "splorts")
+//	attack_verb_simple = list("splat", "splort")
 
 	sprite_width = 10
 	sprite_height = 9
@@ -297,13 +305,14 @@
 	average_weight = 500
 	material_weight_mult = 1
 	weight_size_deviation = 0.6
-	safe_air_limits = list(
-		/datum/gas/nitrogen = list(0, 100),
-	)
+//	safe_air_limits = list(
+//		/datum/gas/nitrogen = list(0, 100),
+//	)
 	min_pressure = 0
 	max_pressure = HAZARD_HIGH_PRESSURE
 	beauty = FISH_BEAUTY_UGLY
 
+/*
 /obj/item/fish/flumpulus/suicide_act(mob/living/user)
 	visible_message(span_suicide("[user] swallows [src] whole! It looks like they're trying to commit suicide!"))
 	forceMove(user)
@@ -326,13 +335,15 @@
 		if(!QDELETED(eyes))
 			eyes.visible_message(span_danger("[eyes] rapidly turn to dust."))
 			eyes.dust()
+*/
 
 /obj/item/fish/flumpulus/get_base_edible_reagents_to_add()
 	var/list/return_list = ..()
 	//return_list[/datum/reagent/flumpulus_extract] = 10
-	return_list[/datum/reagent/medicine/oculine/flumpuline] = 10
+	return_list[/datum/reagent/imidazoline] = 10
 	return return_list
 
+/*
 /obj/item/fish/flumpulus/intercept_zImpact(list/falling_movables, levels)
 	. = ..()
 	if(status == FISH_DEAD)
@@ -346,6 +357,7 @@
 		playsound(src, 'sound/effects/cartoon_sfx/cartoon_splat.ogg', 75)
 
 	return FALL_INTERCEPTED | FALL_NO_MESSAGE
+*/
 
 /obj/item/fish/gullion
 	name = "gullion"
@@ -356,11 +368,13 @@
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "gullion"
-	lefthand_file = 'icons/mob/inhands/fish_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/fish_righthand.dmi'
-	attack_verb_continuous = list("stabs", "jabs")
-	attack_verb_simple = list("stab", "jab")
-	hitsound = SFX_DEFAULT_FISH_SLAP
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/fish_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/fish_righthand.dmi',
+		)
+	attack_verb = list("stabs", "jabs")
+//	attack_verb_simple = list("stab", "jab")
+//	hitsound = SFX_DEFAULT_FISH_SLAP
 	pickup_sound = 'sound/items/handling/materials/glass_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/glass_drop.ogg'
 	sprite_width = 7
@@ -382,16 +396,16 @@
 	average_size = 30
 	average_weight = 2000
 	weight_size_deviation = 0.3
-	safe_air_limits = list(
-		/datum/gas/oxygen = list(0, 2), // does NOT like oxygen
-		/datum/gas/water_vapor,
-	)
+//	safe_air_limits = list(
+//		/datum/gas/oxygen = list(0, 2), // does NOT like oxygen
+//		/datum/gas/water_vapor,
+//	)
 	required_fluid_type = AQUARIUM_FLUID_SULPHWATEVER
 	required_temperature_min = 0
 	required_temperature_max = BODYTEMP_HEAT_DAMAGE_LIMIT
 	min_pressure = HAZARD_LOW_PRESSURE
 	max_pressure = WARNING_HIGH_PRESSURE
-
+/*
 /obj/item/fish/gullion/suicide_act(mob/living/user)
 	visible_message(span_suicide("[user] swallows [src] whole! It looks like they're trying to commit suicide!"))
 	forceMove(user)
@@ -406,6 +420,7 @@
 	visible_message(span_suicide("[user]'s skin turns into quartz upon contact with the oxygen in the air!'"))
 	qdel(src)
 	return MANUAL_SUICIDE
+*/
 
 // The (other) reason you DON'T fish in rifts.
 // This thing is a plague - throws itself around and envenoms those it hits.
@@ -417,16 +432,18 @@
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "mossglob"
-	lefthand_file = 'icons/mob/inhands/fish_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/fish_righthand.dmi'
-	attack_verb_continuous = list("stings", "pricks")
-	attack_verb_simple = list("sting", "prick")
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/fish_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/fish_righthand.dmi',
+		)
+	attack_verb = list("stings", "pricks")
+//	attack_verb_simple = list("sting", "prick")
 	force = 11
 	damtype = TOX
-	sharpness = SHARP_POINTY
+	sharp = TRUE
 	throwforce = 9
 	throw_range = 7
-	hitsound = SFX_ALT_FISH_SLAP
+//	hitsound = SFX_ALT_FISH_SLAP
 
 	sprite_width = 12
 	sprite_height = 13
@@ -453,21 +470,23 @@
 	required_temperature_max = INFINITY
 	min_pressure = 0
 	max_pressure = INFINITY
-	safe_air_limits = list()
+//	safe_air_limits = list()
 	fillet_type = /obj/item/food/badrecipe/moldy/bacteria
 	stable_population = 2
 
 /obj/item/fish/mossglob/Initialize(mapload, apply_qualities)
 	. = ..()
-	AddElement(/datum/element/haunted, COLOR_GREEN)
+//	AddElement(/datum/element/haunted, COLOR_GREEN)
 
 /obj/item/fish/mossglob/set_status(new_status, silent)
 	. = ..()
+/*
 	if(new_status == FISH_DEAD)
 		RemoveElement(/datum/element/haunted, COLOR_GREEN)
 	else if(new_status == FISH_ALIVE)
 		AddElement(/datum/element/haunted, COLOR_GREEN)
-
+*/
+/*
 /obj/item/fish/mossglob/suicide_act(mob/living/user)
 	visible_message(span_suicide("[user] sticks [user.p_their()] arm deep into [src]! It looks like they're trying to offer themselves to it!"))
 	user.drop_everything()
@@ -477,7 +496,7 @@
 	visible_message(span_suicide("[user] is absorbed into [src]!"))
 	objectify(user, src)
 	return MANUAL_SUICIDE_NONLETHAL
-
+*/
 /obj/item/fish/mossglob/get_force_rank()
 	var/multiplier = 1
 	switch(w_class)
@@ -487,20 +506,22 @@
 			multiplier = 0.5
 		if(ITEMSIZE_NORMAL)
 			multiplier = 0.75
-		if(WEIGHT_CLASS_BULKY)
+		if(ITEMSIZE_LARGE)
 			multiplier = 0.85
 		// huge is avergae
-		if(ITEMSIZE_GIGANTIC)
+		if(ITEMSIZE_HUGE)
 			multiplier = 1.15
+		if(ITEMSIZE_GIGANTIC)
+			multiplier = 1.25
 
 	if(status == FISH_DEAD)
 		multiplier -= 0.35 // huge nerf if dead
 
 	force *= multiplier
-	attack_speed *= multiplier
-	demolition_mod *= multiplier
-	block_chance *= multiplier
-	armour_penetration *= multiplier
+	attackspeed *= multiplier
+//	demolition_mod *= multiplier
+//	block_chance *= multiplier
+	armor_penetration *= multiplier
 
 // Babbelfish are psychic 'predators' that don't physically attack their prey, but emit a psychic aura that kills them, eating their corpses.
 // When they die they emit a horrendous wail that deafens and debilitates people nearby - let alone fish.
@@ -513,16 +534,16 @@
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "babbelfish"
 	force = 7
-	damtype = BRAIN
-	attack_verb_continuous = list("screeches", "shrieks")
-	attack_verb_simple = list("screech", "shriek")
-	hitsound = SFX_DEFAULT_FISH_SLAP // todo shriek
-	sound_vary = TRUE
+//	damtype = BRAIN
+	attack_verb = list("screeches", "shrieks")
+//	attack_verb_simple = list("screech", "shriek")
+//	hitsound = SFX_DEFAULT_FISH_SLAP // todo shriek
+//	sound_vary = TRUE
 
 	sprite_width = 11
 	sprite_height = 13
 
-	death_text = span_big(span_alertalien("%SRC emits a horrendous wailing as it perishes!"))
+//	death_text = span_big(span_alertalien("%SRC emits a horrendous wailing as it perishes!"))
 	random_case_rarity = FISH_RARITY_NOPE
 	max_integrity = 500
 	average_size = 30
@@ -541,7 +562,7 @@
 	var/mob/living/moron_inside
 
 // When someone refactors demoralizers to not be omega hardcoded for syndicate this fish should get it
-
+/*
 /obj/item/fish/babbelfish/examine_more(mob/user)
 	. = ..()
 	. += span_smallnoticeital(
@@ -555,7 +576,7 @@
 		I looked down at the fish. “Uh,” I said. “I guess … it would help to keep me from hearing things I didn't want to hear?”\n\
 		They burst into applause, which in this case was a bunch of tentacles wetly slapping against equally wet flesh. “Very good! I hadn't thought of that.”\n\
 		“But then why,” I began, then thought better of it. “Alright, I''ll buy one. <i>But</i>, you need to explain to me how you speak Anglish.”")
-
+*/
 /**
  * In the suicide:
  * - If the fish is dead:
@@ -565,6 +586,7 @@
  * - If the fish is alive:
  * the idiot uses the babbelfish as a vuvuzela and becomes a god for half a second before their brain is imploded.
  */
+/*
 /obj/item/fish/babbelfish/suicide_act(mob/living/user)
 	if(status == FISH_DEAD)
 		if(moron_inside)
@@ -592,7 +614,7 @@
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, INFINITY, INFINITY, ORGAN_SLOT_BRAIN)
 	user.death()
 	return MANUAL_SUICIDE
-
+*/
 /**
  * When the fish dies you die in real life.
  * Consequently, when the fish is magically resuscitated the bound mob is revived as well.
@@ -603,7 +625,7 @@
 	if(status == FISH_DEAD)
 		moron_inside.death()
 	if(status == FISH_ALIVE)
-		moron_inside.revive(HEAL_ALL)
+		moron_inside.revive()
 
 /**
  * If they somehow escaped null the variable.
@@ -618,7 +640,7 @@
 	. = ..()
 	// Death message plays here
 	if(new_status != FISH_DEAD)
-		damtype = BRAIN
+		damtype = BRUTE //BRAIN
 		return
 	psy_wail()
 	damtype = BRUTE
@@ -628,32 +650,32 @@
  * This is punishment for neglecting your catches.
  */
 /obj/item/fish/babbelfish/proc/psy_wail()
-	manual_emote("wails!")
+	atom_say("wails!")
 	playsound(src, 'sound/mobs/non-humanoids/fish/fish_psyblast.ogg', 100)
-	var/list/mob/living/mobs_in_range = get_hearers_in_range(7, src)
+	var/list/mob/living/mobs_in_range = mobs_in_view(7, src)
 	for(var/mob/living/screeched in mobs_in_range)
-		if(screeched.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 1))
-			to_chat(screeched, span_notice("You resist the psychic wail!"))
-			continue
+//		if(screeched.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 1))
+//			to_chat(screeched, span_notice("You resist the psychic wail!"))
+//			continue
 		var/power = 1
 		if(HAS_TRAIT(screeched, TRAIT_DEAF)) // bit weaker if deaf. but its still psychic
 			power *= 0.5
 		var/affect_time = 15 SECONDS * power
 		// it really fucks you up
-		screeched.Knockdown(affect_time * 0.1)
-		screeched.adjust_disgust(affect_time)
-		screeched.adjust_stutter(affect_time)
-		screeched.adjust_slurring(affect_time)
-		screeched.adjust_dizzy(affect_time)
-		screeched.adjust_staggered(affect_time)
-		screeched.adjust_jitter(affect_time)
-		screeched.adjust_confusion(affect_time)
-		screeched.adjust_hallucinations(affect_time)
-		screeched.adjust_eye_blur(affect_time)
+		screeched.Weaken(affect_time * 0.1)
+//		screeched.adjust_disgust(affect_time)
+		screeched.stuttering += affect_time
+		screeched.slurring += affect_time
+		screeched.make_dizzy(affect_time)
+//		screeched.adjust_staggered(affect_time)
+		screeched.make_jittery(affect_time)
+		screeched.SetConfused(affect_time)
+		screeched.hallucination = (min(screeched.hallucination, affect_time))
+		screeched.eye_blurry += affect_time
 		if(iscarbon(screeched))
 			var/mob/living/carbon/carbon_screeched = screeched
-			carbon_screeched.vomit(MOB_VOMIT_MESSAGE)
-			carbon_screeched.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50)
+			carbon_screeched.vomit()
+			carbon_screeched.adjustBrainLoss(50)
 
 	var/affected = 0
 	for(var/obj/item/fish/fishie in range(7, src))
@@ -671,9 +693,11 @@
 	if(!locate(src) in user)
 		return ..()
 
-	if((user.usable_hands < 2) && !HAS_TRAIT(user, TRAIT_STRENGTH))
+/*
+	if((user.hands_are_full() < 2) && !HAS_TRAIT(user, TRAIT_STRENGTH))
 		to_chat(user, span_notice("[src] is too dense to twist apart with only one hand."))
 		return
+*/
 
 	to_chat(user, span_danger("You start pulling and twisting [src], trying to split it down the middle..."))
 	if(!do_after(user, 5 SECONDS, src))
@@ -681,8 +705,10 @@
 
 	playsound(get_turf(user), 'sound/effects/wounds/crack1.ogg', 60)
 	set_status(FISH_DEAD)
+	/*
 	var/cracked = new /obj/item/organ/ears/babbelfish(user)
 	user.put_in_hands(cracked)
+	*/
 	qdel(src)
 
 /** These ears grant amazing and supernatural hearing, but they also screw over your knowledge of language.
@@ -692,6 +718,8 @@
  * The user is able to understand and speak all languages. Rare.
  * All this to be a curator, this is silly.
 */
+//NYI :(
+/*
 /obj/item/organ/ears/babbelfish
 	name = "split babbelfish halves"
 	icon_state = "babbearfish"
@@ -821,3 +849,4 @@
 /obj/item/organ/ears/babbelfish/proc/on_expire(mob/user)
 	to_chat(user, span_noticealien("Your [src] suddenly burst apart!"))
 	apply_organ_damage(maxHealth, maxHealth)
+*/

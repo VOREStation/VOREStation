@@ -84,7 +84,7 @@
 	random_case_rarity = FISH_RARITY_NOPE
 	required_temperature_min = 0
 	required_temperature_max = INFINITY
-	safe_air_limits = null
+//	safe_air_limits = null
 	min_pressure = 0
 	max_pressure = INFINITY
 	fillet_type = null
@@ -139,7 +139,7 @@
 	random_case_rarity = FISH_RARITY_VERY_RARE
 	required_temperature_min = 0
 	required_temperature_max = MIN_AQUARIUM_TEMP+200
-	safe_air_limits = null
+//	safe_air_limits = null
 	fillet_type = /obj/item/food/fishmeat/carp/no_tox
 	fish_traits = list(
 		/datum/fish_trait/carnivore,

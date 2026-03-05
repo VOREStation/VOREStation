@@ -31,7 +31,7 @@
 	ADD_TRAIT(src, TRAIT_FISH_MADE_OF_BONE, INNATE_TRAIT)
 
 /obj/item/fish/mastodon/fish_grind_results()
-	return list(/datum/reagent/bone_dust = 5, /datum/reagent/consumable/liquidgibs = 5)
+	return list(/datum/reagent/calcium = 5, /datum/reagent/blood = 5)
 
 /obj/item/fish/mastodon/make_edible(weight_val)
 	return //it's all bones and gibs.
@@ -41,7 +41,7 @@
 
 /obj/item/fish/mastodon/get_health_warnings(mob/user, always_deep = FALSE)
 	return list(span_deadsay("It's bones."))
-
+/*
 /obj/item/fish/mastodon/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src] whole (somehow)! It looks like user.p_theyre()] trying to commit suicide!"))
 	forceMove(user)
@@ -60,6 +60,7 @@
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, death)), 3 SECONDS)
 		user.set_suicide(TRUE)
 	qdel(src)
+*/
 
 ///From the cursed spring
 /obj/item/fish/soul
@@ -94,7 +95,7 @@
 
 /obj/item/fish/soul/get_fish_taste_cooked()
 	return list("cooked meat" = 2)
-
+/*
 /obj/item/fish/soul/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit soulcide!"))
 	src.forceMove(user)
@@ -127,7 +128,7 @@
 	soulbox.AddElement(/datum/element/haunted, haunt_color = "#124CD5")
 	if(prob(86)) // 1 in 7 chance to stay
 		soulbox.fade_into_nothing(1 SECONDS * iteration, 0.5 SECONDS)
-
+*/
 ///From the cursed spring
 /obj/item/fish/skin_crab
 	name = "skin crab"
@@ -155,7 +156,7 @@
 
 /obj/item/fish/skin_crab/get_fish_taste_cooked()
 	return list("cooked crab" = 2)
-
+/*
 /obj/item/fish/skin_crab/suicide_act(mob/living/carbon/human/user)
 	user.visible_message(span_suicide("[user] puts [user.p_their()] hand on [src] and focuses intently! It looks like [user.p_theyre()] trying to transfer [user.p_their()] skin to [src]!"))
 	if(!ishuman(user) || HAS_TRAIT(user, TRAIT_UNHUSKABLE))
@@ -182,3 +183,4 @@
 	AddElement(/datum/element/haunted, haunt_color = skin_tone)
 
 	return BRUTELOSS
+*/

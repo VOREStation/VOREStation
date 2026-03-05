@@ -11,17 +11,17 @@
 	random_case_rarity = FISH_RARITY_RARE
 	fillet_type = /obj/item/food/meat/slab/rawcrab
 	required_temperature_min = MIN_AQUARIUM_TEMP+9
-	required_temperature_max = LAVALAND_MAX_TEMPERATURE+50
+	required_temperature_max = 400
 	min_pressure = HAZARD_LOW_PRESSURE
-	safe_air_limits = list(
-		/datum/gas/oxygen = list(2, 100),
-		/datum/gas/nitrogen,
-		/datum/gas/carbon_dioxide = list(0, 20),
-		/datum/gas/water_vapor,
-		/datum/gas/plasma = list(0, 5),
-		/datum/gas/bz = list(0, 5),
-		/datum/gas/miasma = list(0, 5),
-	)
+//	safe_air_limits = list(
+//		/datum/gas/oxygen = list(2, 100),
+//		/datum/gas/nitrogen,
+//		/datum/gas/carbon_dioxide = list(0, 20),
+//		/datum/gas/water_vapor,
+//		/datum/gas/phoron = list(0, 5),
+//		/datum/gas/bz = list(0, 5),
+//		/datum/gas/miasma = list(0, 5),
+//	)
 	evolution_types = list(/datum/fish_evolution/ice_chrab)
 	compatible_types = list(/obj/item/fish/chasm_crab/ice)
 	beauty = FISH_BEAUTY_GOOD
@@ -107,7 +107,7 @@
 	fish_id = "arctic_crab"
 	desc = "A subspecies of chasm chrabs that has adapted to the cold climate and lack of abysmal holes of the icemoon."
 	icon_state = "arctic_chrab"
-	required_temperature_min = ICEBOX_MIN_TEMPERATURE-20
+	required_temperature_min = 160
 	required_temperature_max = MIN_AQUARIUM_TEMP+15
 	evolution_types = list(/datum/fish_evolution/chasm_chrab)
 	compatible_types = list(/obj/item/fish/chasm_crab)
@@ -141,14 +141,14 @@
 	ADD_TRAIT(src, TRAIT_FISH_MADE_OF_BONE, INNATE_TRAIT)
 
 /obj/item/fish/boned/fish_grind_results()
-	return list(/datum/reagent/bone_dust = 10)
+	return list(/datum/reagent/calcium = 10)
 
 /obj/item/fish/boned/make_edible(weight_val)
 	return //it's all bones and no meat.
 
 /obj/item/fish/boned/get_health_warnings(mob/user, always_deep = FALSE)
 	return list(span_deadsay("It's bones."))
-
+/*
 /obj/item/fish/boned/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit suicide!"))
 	forceMove(user)
@@ -165,7 +165,7 @@
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, death)), 3 SECONDS)
 		user.set_suicide(TRUE)
 	qdel(src)
-
+*/
 /obj/item/fish/lavaloop
 	name = "lavaloop"
 	fish_id = "lavaloop"
@@ -197,6 +197,7 @@
 /obj/item/fish/lavaloop/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
 	add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GOOD_QUALITY_BAIT, TRAIT_BYPASS_RANGED_ARMOR), INNATE_TRAIT)
+/*
 	AddComponent(/datum/component/boomerang, throw_range, TRUE)
 	AddComponent(\
 		/datum/component/throwbonus_on_windup,\
@@ -209,6 +210,7 @@
 		effect_on_success = /obj/effect/temp_visual/guardian/phase,\
 	)
 	AddElement(/datum/element/raptor_food, attack_modifier = 1.5, growth_modifier = -0.075)
+*/
 
 /obj/item/fish/lavaloop/get_fish_taste()
 	return list("chewy fish" = 2)
@@ -217,17 +219,17 @@
 	return SEAFOOD|MEAT|GORE //Well-cooked in lava/plasma
 
 /obj/item/fish/lavaloop/proc/explode_on_user(mob/living/user)
-	var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
-	active_arm?.dismember()
+	var/obj/item/organ/external/arm/active_arm = user.get_active_hand()
+	active_arm?.droplimb(FALSE, DROPLIMB_EDGE)
 	to_chat(user, span_warning("[src] explodes!"))
 	playsound(src, 'sound/effects/explosion/explosion1.ogg', 40, TRUE)
-	user.flash_act(1, 1)
+	user.flash_eyes(FLASH_PROTECTION_MODERATE, FALSE)
 	qdel(src)
 
 /obj/item/fish/lavaloop/proc/on_fish_land(mob/living/target, bonus_value)
 	if(!istype(target))
 		return FALSE
-	return (target.mob_size >= MOB_SIZE_LARGE)
+	return (target.mob_size >= MOB_LARGE)
 
 /obj/item/fish/lavaloop/plasma_river
 	name = "plasmaloop"
@@ -243,17 +245,17 @@
 
 /obj/item/fish/lavaloop/plasma_river/explode_on_user(mob/living/user)
 	playsound(src, 'sound/effects/explosion/explosion1.ogg', 40, TRUE)
-	user.flash_act(1, 1)
-	user.apply_status_effect(/datum/status_effect/ice_block_talisman, 5 SECONDS)
+	user.flash_eyes(FLASH_PROTECTION_MODERATE, FALSE)
+//	user.apply_status_effect(/datum/status_effect/ice_block_talisman, 5 SECONDS)
 	qdel(src)
 
 /obj/item/fish/lavaloop/plasma_river/on_fish_land(mob/living/target, bonus_value)
 	if(!istype(target))
 		return FALSE
-	if(target.mob_size < MOB_SIZE_LARGE)
+	if(target.mob_size < MOB_LARGE)
 		return FALSE
 	var/freeze_timer = (bonus_value * 0.1)
 	if(freeze_timer <= 0)
 		return FALSE
-	target.apply_status_effect(/datum/status_effect/ice_block_talisman, freeze_timer SECONDS)
+//	target.apply_status_effect(/datum/status_effect/ice_block_talisman, freeze_timer SECONDS)
 	return FALSE
