@@ -133,6 +133,7 @@ export const CookingOven = (props) => {
                   <Button
                     left={is_open ? '30px' : '-15px'}
                     height={is_open ? '150px' : '210px'}
+                    tooltip={`Click to ${is_open ? 'close' : 'open'}.`}
                     width="50px"
                     color="transparent"
                     onClick={() => act('toggle_door')}
