@@ -1,5 +1,5 @@
 
-ADMIN_VERB(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in GLOB.mob_list)
 	var/datum/eventkit/player_effects/spawner = new()
 	spawner.target = target
 	spawner.tgui_interact(user.mob)
