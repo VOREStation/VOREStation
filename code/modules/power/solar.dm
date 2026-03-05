@@ -187,9 +187,9 @@ GLOBAL_LIST_EMPTY(solars_list)
 	obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
 
-	// Use the actual brightness of time and weather if we are on a planet
+	// Use the actual brightness of time and weather if we are on a planet, check if we're not blocked above by seeing what our outdoors status is
 	if(our_planet)
-		sunfrac *= our_planet.sun["brightness"]
+		sunfrac *= out_t.is_outdoors() ? our_planet.sun["brightness"] : 0
 
 /// Updates the power generation of a solar panel.
 /obj/machinery/power/solar/proc/update_power_generation(obj/machinery/power/solar_control/SC)
