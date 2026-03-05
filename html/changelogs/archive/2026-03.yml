@@ -1,0 +1,114 @@
+2026-03-01:
+  Diana:
+  - qol: Organs don't go from 'cut off' to 'necrotic' in (with bad RNG) ~215 seconds.
+      Now takes ~30 minutes.
+  - qol: Organs can be repaired from necrosis while removed/amputated with peridaxon,
+      just as if they were attached!
+  - qol: External Organs can be repaired from necrosis while removed/amputated with
+      a new amputation specific surgery. (Scalpel->Retractor->Scalpel->Bioregen)
+  - qol: Organs will inform you of what special interactions you can perform via the
+      big blue [I] button!
+  - qol: Clicking an organ no longer insta-butchers it. Instead, it has a 10 second
+      timer to prevent instagibbing.
+  - qol: Examining amputated limbs gives more info about itself and any children it
+      may have.
+  - qol: Robot augment surgery now uses crowbar instead of multitool.
+  - qol: Bruise packs and ointment no longer have a 50% chance to fail during external
+      repair surgery
+  - balance: Advanced bruise packs & Advanced burn packs heal 2x damage
+  - balance: Detoxify step heals cloneloss now.
+  - bugfix: Cutting necrosis will no longer cut the bone.
+  - bugfix: Painful injury descriptors will not longer note pain if you have pain
+      inhibitors.
+  - bugfix: Brain surgery properly sets brain damage to 0
+  - bugfix: Washing a colored object will no longer not get rid of the germs the first
+      wash.
+  - bugfix: Amputating a limb will no longer immdiately fracture the parent organ.
+  - bugfix: Limbs that are pain immune don't add their damage to the pain calculation.
+  - code_imp: Gets rid of a typecast
+  - code_imp: Puts some surgeries into their own files.
+  Guti:
+  - rscadd: Added the dust anomaly
+  - code_imp: Added random vermin object for mapping
+  - code_imp: Added a has_lungs helper proc
+  Kashargul:
+  - bugfix: plushie vending
+  - bugfix: bad deletes of equipment vendors
+  KillianKirilenko:
+  - image: added digitigrade states for signalis-inspired replikant and sleek uniforms
+  - rscadd: Added omni lasertag helmet that uses the doomguy sprite for giggles, and
+      added intercoms that are locked to the Entertainment Frequency
+  - maptweak: Replaced the Starview Lounge in the Laserdome with an all-new FFA Arena!
+      Also has red/blue kit lockers for doing team deathmatch.
+  - maptweak: Added a couple more redgate inhabitant spawners to the Laserdome. The
+      fast food venue also has ketchup and mustard bottles now, and the two shops
+      have gained cash registers and had their inventories shuffled around a bit.
+  - spellcheck: fixed the name of the universal lasertag gear locker because it had
+      an extra n in it
+  - maptweak: moved the kitchen goats out of the freezers and over to the animal pens
+  - maptweak: moved the beehives and honey machine on the tether to a better spot
+      where the hives can 'see' the hydroponics plots better
+  - qol: added a condiments crate to cargo, as a means to acquire premade bottles
+      of sauces
+  - qol: added meat resupply crates to cargo, allowing you to order fresh (non-synthetic)
+      meat (for flavour) and fish/poultry, without having to butcher animals
+  - qol: condiment bottles now transfer 2u base rather than 5u, and have a minimum
+      transfer value of 1u
+  - rscadd: added mustard plants (which contain a new "mustard pods" reagent, used
+      to make mustard by mixing them with salt, water, and honey in a 2:2:1:1 ratio
+      to make 4 mustard)
+  - rscadd: raw cutlets can be grilled into burger patties on the grill for making
+      custom burgs instead of just making a "grilled raw cutlet", or requiring you
+      to microwave the cutlet and then grill it
+  - rscadd: can now make vinegar using apple *or* grape juice *plus* water *and* sugar,
+      with yeast as a catalyst (2u of each + 5 yeast = 4 vinegar + 5 yeast). try it
+      on your fish and chips today! or don't.
+  - code_imp: added bbq sauce preset for map-placeable condiment bottles
+  - bugfix: fixed the mothroach and catslug crates sharing datum names
+  - bugfix: fixed duplicate def init for pillbug shell ingredients that was supposed
+      to go with the empty version
+  - image: brightened the default carrot produce sprite and changed the produce colours
+      for carrots and oranges
+2026-03-03:
+  Kashargul:
+  - code_imp: migrates some more globals to GLOBs
+  - code_imp: migrates more admin verbs to the subsystem
+  - code_imp: cleans up some more updateDialog
+  - refactor: replaces many old browser UIs with tgui
+2026-03-04:
+  Will, Kash:
+  - rscadd: observing the round from the main menu, while having pai candidate enabled(and
+      a set pai name) will automatically send out a pai notice about a new personality
+      being available
+  - rscadd: pai may have multiple levels of belly size per pai sprite type
+  - rscadd: type 13 pai hologram now uses all four directions for the AI hologram
+      sprite made of your character
+  - balance: pais now have an extremely limited selection of objects and computers
+      they can interact with
+  - refactor: pai controller ported to subsystem
+  - refactor: pai card menu updated to tgui
+  - refactor: pai sprites moved to datums
+  - refactor: pai saving uses TGprefs instead of it's own separate save file (each
+      save slot now has it's own pai config now)
+  - refactor: pai vr override icons collapsed into base file
+  - refactor: multiple pai related tgui menus updated to modern standards
+  - code_imp: special roles order unit test
+  - code_imp: pai software unit test
+  - code_imp: pai sprite unit test
+  - bugfix: parrot pai resting belly sprite has proper name
+  - bugfix: runtime when attempting to toggle non-existent gun aiming mode as a pai
+  - bugfix: herm is no longer missing from identifying gender in character prefs menu
+2026-03-05:
+  Azzy.Dreemurr:
+  - rscadd: Added new vending machine with Talon uniforms + for paperwork added [talogo]
+      which Talon logo displays
+  - balance: Talon armory got more holsters itself, added a helmet for Captain Talon
+      for their armor in locker
+  - bugfix: fixed locations of engineering lockers on Talon
+  - maptweak: small remap EVA room on Talon. A locker with musical instruments added
+      in Talon Bar
+  - image: New uniform for Talon Crew + Talon seal
+  - admin: A new option for sending a fax has been introduced -> Talon Headquarters.
+      And also the ability to answer.
+  KillianKirilenko:
+  - qol: restores default transfer values for flour and sugar

@@ -41,6 +41,9 @@
 	tgui_interact(user)
 	return
 
+/obj/machinery/computer/station_alert/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /obj/machinery/computer/station_alert/tgui_interact(mob/user)
 	alarm_monitor.tgui_interact(user)
 

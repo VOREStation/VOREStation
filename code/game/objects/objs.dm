@@ -144,6 +144,10 @@
 /obj/proc/container_resist(var/mob/living)
 	return
 
+// If returns true, pai can interact with the object with a click
+/obj/proc/allow_pai_interaction(proximity_flag)
+	return FALSE
+
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)

@@ -186,6 +186,9 @@
 
 	. = ..(W, user)
 
+/obj/machinery/computer/general_air_control/allow_pai_interaction(proximity_flag)
+	return proximity_flag
+
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption) return
 
