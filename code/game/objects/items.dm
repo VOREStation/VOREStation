@@ -310,8 +310,8 @@
 
 // See inventory_sizes.dm for the defines.
 /obj/item/examine(mob/user, infix, suffix)
-	var/size = "giant"
-	switch(src.w_class)
+	var/size = "unknown"
+	switch(w_class)
 		if(ITEMSIZE_TINY)
 			size = "tiny"
 		if(ITEMSIZE_SMALL)
@@ -324,6 +324,11 @@
 			size = "huge"
 		if(ITEMSIZE_NO_CONTAINER)
 			size = "massive"
+		else
+			if(w_class > ITEMSIZE_HUGE && w_class < ITEMSIZE_NO_CONTAINER)
+				size = "giant"
+			else if (w_class > ITEMSIZE_NO_CONTAINER)
+				sizw = "enormous"
 	return ..(user, "", "It is a [size] item.")
 
 /obj/item/attack_hand(mob/living/user as mob)
