@@ -111,13 +111,13 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
         </Stack.Item>
         <Stack.Item>
           <Stack>
-            <Stack.Item grow={!emag_data} basis={emag_data ? '50%' : undefined}>
+            <Stack.Item grow>
               <RadioSection radioData={radio_data} />
             </Stack.Item>
             {!!emag_data && (
               <>
                 <Stack.Divider />
-                <Stack.Item basis="50%">
+                <Stack.Item>
                   <Section
                     title="Illegal Data Access"
                     buttons={
