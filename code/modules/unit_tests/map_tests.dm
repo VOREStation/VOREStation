@@ -206,3 +206,9 @@
 
 	if(failed)
 		TEST_FAIL("Map has smes with duplicated RCon_tag")
+
+/datum/unit_tests/default_map
+
+/datum/unit_tests/default_map/Run()
+	if(LAZYLEN(GLOB.latejoin_gateway) == 0)
+		TEST_FAIL("Map does not define the default map location")
