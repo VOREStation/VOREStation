@@ -114,6 +114,7 @@
 	set desc = "Shift out of reality temporarily"
 	set category = "Abilities.Demon"
 
+
 	var/turf/T = get_turf(src)
 
 	if(shift_state && shift_state == AB_SHIFT_PASSIVE)
