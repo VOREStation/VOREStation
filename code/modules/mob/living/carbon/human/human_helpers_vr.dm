@@ -137,7 +137,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 		name = character.name
 		nickname = character.nickname
 	gender = character.gender
-	identifying_gender = character.identifying_gender
+	character.exchange_gender(src)
 
 	r_eyes = character.r_eyes
 	g_eyes = character.g_eyes

@@ -106,7 +106,7 @@
 	var/t_His 	= "Its"
 	var/t_appear 	= "appears"
 	var/t_has 	= "has"
-	switch(identifying_gender) //Gender is their "real" gender. Identifying_gender is their "chosen" gender.
+	switch(get_gender_identity()) //Gender is their "real" gender. Identifying_gender is their "chosen" gender.
 		if(MALE)
 			t_He 	= "He"
 			t_His 	= "His"

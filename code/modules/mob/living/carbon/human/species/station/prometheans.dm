@@ -169,7 +169,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
-		switch(T.identifying_gender)
+		switch(T.get_gender_identity())
 			if(MALE)
 				t_him = "him"
 			if(FEMALE)
@@ -362,13 +362,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 		return
 
 	var/t_she = "She is"
-	if(H.identifying_gender == MALE)
+	if(H.get_gender_identity() == MALE)
 		t_she = "He is"
-	else if(H.identifying_gender == PLURAL)
+	else if(H.get_gender_identity() == PLURAL)
 		t_she = "They are"
-	else if(H.identifying_gender == NEUTER)
+	else if(H.get_gender_identity() == NEUTER)
 		t_she = "It is"
-	else if(H.identifying_gender == HERM) //VOREStation Edit
+	else if(H.get_gender_identity() == HERM) //VOREStation Edit
 		t_she = "Shi is"
 
 	switch(stored_shock_by_ref["\ref[H]"])

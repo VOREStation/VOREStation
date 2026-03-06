@@ -756,9 +756,6 @@
 /mob/proc/is_ready()
 	return client && !!mind
 
-/mob/proc/get_gender()
-	return gender
-
 /mob/proc/name_gender()
 	return gender
 

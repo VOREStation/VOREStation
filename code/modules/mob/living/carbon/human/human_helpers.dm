@@ -94,16 +94,13 @@
 		sum += H.ear_protection
 	return sum
 
-/mob/living/carbon/human/get_gender()
-	return identifying_gender ? identifying_gender : gender
-
 /mob/living/carbon/human/name_gender() /// Returns proper names for gender identites
-	if(identifying_gender == "plural")
+	if(get_gender_identity() == PLURAL)
 		return "other"
-	if(identifying_gender == "neuter")
+	if(get_gender_identity() == NEUTER)
 		return "none"
 	else
-		return get_gender()
+		return get_gender_identity()
 
 // This is the 'mechanical' check for synthetic-ness, not appearance
 // Returns the company that made the synthetic

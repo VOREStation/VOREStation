@@ -56,16 +56,6 @@
 		idaccessible = 0
 		visible_message(span_notice("\The [src] clicks as their access modification slot closes."),span_notice("You block access modfications."), runemessage = "click")
 
-/mob/living/silicon/pai/verb/toggle_gender_identity_vr()
-	set name = "Set Gender Identity"
-	set desc = "Sets the pronouns when examined and performing an emote."
-	set category = "IC.Settings"
-	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity:", "Set Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM))
-	if(!new_gender_identity)
-		return 0
-	gender = new_gender_identity
-	return 1
-
 /mob/living/silicon/pai/verb/pai_hide()
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
@@ -177,7 +167,7 @@
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
-		switch(T.identifying_gender)
+		switch(T.get_gender_identity())
 			if(MALE)
 				t_him = "him"
 			if(FEMALE)

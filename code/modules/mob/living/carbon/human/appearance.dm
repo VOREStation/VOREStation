@@ -32,13 +32,6 @@
 	update_icons_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_gender_identity(var/identifying_gender)
-	if(src.identifying_gender == identifying_gender)
-		return
-
-	src.identifying_gender = identifying_gender
-	return 1
-
 /mob/living/carbon/human/proc/change_hair(var/hair_style)
 	if(!hair_style)
 		return

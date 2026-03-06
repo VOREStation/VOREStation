@@ -505,7 +505,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
 		if(!T.species.ambiguous_genders || (T.species.ambiguous_genders && H.species == T.species))
-			switch(T.identifying_gender)
+			switch(T.get_gender_identity())
 				if(MALE)
 					t_him = "him"
 				if(FEMALE)
