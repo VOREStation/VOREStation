@@ -105,18 +105,13 @@
 	if(!xc)
 		return
 
-	var/t_appear 	= "appears"
-	var/t_has 	= "has"
-	if(get_gender_identity() == PLURAL)
-		t_appear 	= "appear"
-		t_has		= "have"
 	if((xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
 		if(stat == DEAD)
 			return span_warning("[p_Their()] body is twitching subtly.")
 		else
-			return span_notice("[p_They()] [t_appear] to be in some sort of torpor.")
+			return span_notice("[p_They()] appear[L.p_s()] to be in some sort of torpor.")
 	else if(xc.feral)
-		return span_warning("[p_They()] [t_has] a crazed, wild look in [p_their()] eyes!")
+		return span_warning("[p_They()] [p_have()] a crazed, wild look in [p_their()] eyes!")
 
 /mob/living/carbon/human/proc/examine_body_writing(list/hidden)
 	. = list()
