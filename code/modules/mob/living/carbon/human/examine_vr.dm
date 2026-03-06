@@ -109,7 +109,7 @@
 		if(stat == DEAD)
 			return span_warning("[p_Their()] body is twitching subtly.")
 		else
-			return span_notice("[p_They()] appear[L.p_s()] to be in some sort of torpor.")
+			return span_notice("[p_They()] appear[p_s()] to be in some sort of torpor.")
 	else if(xc.feral)
 		return span_warning("[p_They()] [p_have()] a crazed, wild look in [p_their()] eyes!")
 
