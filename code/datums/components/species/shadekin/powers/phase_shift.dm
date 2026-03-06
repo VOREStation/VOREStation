@@ -27,8 +27,6 @@
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(!SK)
 		return FALSE
-	if(last_special > world.time) // We only want this to stop phasing out mid emote
-		return FALSE
 	if(SK.special_considerations())
 		return FALSE
 	if(stat)
