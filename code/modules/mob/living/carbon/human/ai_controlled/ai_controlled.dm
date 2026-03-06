@@ -35,10 +35,10 @@
 
 /mob/living/carbon/human/ai_controlled/Initialize(mapload)
 	if(generate_gender)
-		gender = pick(list(MALE, FEMALE, PLURAL, NEUTER))
+		gender = pick(byond_genders_define_list)
 
 	if(generate_id_gender)
-		change_gender_identity(pick(list(MALE, FEMALE, PLURAL, NEUTER)))
+		change_gender_identity(pick(all_genders_define_list))
 
 	. = ..(mapload, generate_species)
 
