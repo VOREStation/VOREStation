@@ -3,6 +3,9 @@
 	set desc = "Shift out of reality using blood as your gateway"
 	set category = "Abilities.Demon"
 
+	if(last_special > world.time) // We only want this to stop phasing out mid emote
+		return FALSE
+
 	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,span_warning("You can't use that here!"))
@@ -114,6 +117,8 @@
 	set desc = "Shift out of reality temporarily"
 	set category = "Abilities.Demon"
 
+	if(last_special > world.time) // We only want this to stop phasing out mid emote
+		return FALSE
 
 	var/turf/T = get_turf(src)
 

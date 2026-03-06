@@ -28,11 +28,10 @@
 
 /datum/decl/emote/visible/flip/do_extra(mob/user)
 	. = ..()
-	// VOREStation Add - Fancy flips
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+		H.last_special = max(H.last_special, world.time + 1.6 SECONDS) // prevent some actions during flips
 		H.handle_flip_vr()
-	// VOREStation Add End
 	else if(istype(user))
 		user.SpinAnimation(7,1)
 
