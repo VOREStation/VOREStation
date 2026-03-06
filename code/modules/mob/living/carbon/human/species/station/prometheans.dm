@@ -361,25 +361,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(!stored_shock_by_ref["\ref[H]"])
 		return
 
-	var/t_she = "She is"
-	if(H.get_gender_identity() == MALE)
-		t_she = "He is"
-	else if(H.get_gender_identity() == PLURAL)
-		t_she = "They are"
-	else if(H.get_gender_identity() == NEUTER)
-		t_she = "It is"
-	else if(H.get_gender_identity() == HERM) //VOREStation Edit
-		t_she = "Shi is"
-
 	switch(stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)
-			return "[t_she] flickering gently with a little electrical activity."
+			return "[p_They()] [p_are()] flickering gently with a little electrical activity."
 		if(11 to 20)
-			return "[t_she] glowing gently with moderate levels of electrical activity.\n"
+			return "[p_They()] [p_are()] glowing gently with moderate levels of electrical activity.\n"
 		if(21 to 35)
-			return span_warning("[t_she] glowing brightly with high levels of electrical activity.")
+			return span_warning("[p_They()] [p_are()] glowing brightly with high levels of electrical activity.")
 		if(35 to INFINITY)
-			return span_danger("[t_she] radiating massive levels of electrical activity!")
+			return span_danger("[p_They()] [p_are()] radiating massive levels of electrical activity!")
 
 /mob/living/carbon/human/proc/prommie_blobform()
 	set name = "Toggle Blobform"
