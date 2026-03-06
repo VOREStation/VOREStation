@@ -101,43 +101,22 @@
 		return span_notice("[nif.examine_msg]")
 
 /mob/living/carbon/human/proc/examine_chimera(mob/living/carbon/human/H)
-	var/t_He 	= "It" //capitalised for use at the start of each line.
-	var/t_his 	= "its"
-	var/t_His 	= "Its"
+	var/datum/component/xenochimera/xc = get_xenochimera_component()
+	if(!xc)
+		return
+
 	var/t_appear 	= "appears"
 	var/t_has 	= "has"
-	switch(get_gender_identity()) //Gender is their "real" gender. Identifying_gender is their "chosen" gender.
-		if(MALE)
-			t_He 	= "He"
-			t_His 	= "His"
-			t_his 	= "his"
-		if(FEMALE)
-			t_He 	= "She"
-			t_His 	= "Her"
-			t_his 	= "her"
-		if(PLURAL)
-			t_He	= "They"
-			t_His 	= "Their"
-			t_his 	= "their"
-			t_appear 	= "appear"
-			t_has 	= "have"
-		if(NEUTER)
-			t_He 	= "It"
-			t_His 	= "Its"
-			t_his 	= "its"
-		if(HERM)
-			t_He 	= "Shi"
-			t_His 	= "Hir"
-			t_his 	= "hir"
-	var/datum/component/xenochimera/xc = get_xenochimera_component()
-	if(xc)
-		if((xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
-			if(stat == DEAD)
-				return span_warning("[t_His] body is twitching subtly.")
-			else
-				return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
-		else if(xc.feral)
-			return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
+	if(get_gender_identity() == PLURAL)
+		t_appear 	= "appear"
+		t_has		= "have"
+	if((xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+		if(stat == DEAD)
+			return span_warning("[p_Their()] body is twitching subtly.")
+		else
+			return span_notice("[p_They()] [t_appear] to be in some sort of torpor.")
+	else if(xc.feral)
+		return span_warning("[p_They()] [t_has] a crazed, wild look in [p_their()] eyes!")
 
 /mob/living/carbon/human/proc/examine_body_writing(list/hidden)
 	. = list()
