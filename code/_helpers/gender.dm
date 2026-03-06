@@ -82,7 +82,7 @@
 	/// otherwise we go off the gender of our object
 	var/gender
 	if(targeted_gender)
-		if(!istext(targeted_gender) || !(targeted_gender in list(MALE, FEMALE, PLURAL, NEUTER, HERM)))
+		if(!istext(targeted_gender) || !(targeted_gender in all_genders_define_list))
 			stack_trace("REPLACE_PRONOUNS called with improper parameters.")
 			return
 		gender = targeted_gender

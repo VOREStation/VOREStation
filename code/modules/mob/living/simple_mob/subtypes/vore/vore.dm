@@ -109,12 +109,13 @@
 	if(newdesc)
 		desc = newdesc
 
+/// TODO - Should this be merged into /mob/proc/toggle_gender_identity_vr() ?
 /mob/living/simple_mob/proc/set_gender()
 	set name = "Set Gender"
 	set desc = "Set your gender."
 	set category = "Abilities.Settings"
 	var/newgender
-	newgender = tgui_input_list(src, "Please select a gender:", "Set Gender", list(FEMALE, MALE, NEUTER, PLURAL))
+	newgender = tgui_input_list(src, "Please select a gender:", "Set Gender", byond_genders_define_list)
 	if(newgender)
 		gender = newgender
 

@@ -40,7 +40,7 @@
 		return TRUE
 	// Our destination doesn't support complex genders...
 	if(comp && !destcomp)
-		if(!(comp.identifying_gender in list(NEUTER,MALE,FEMALE,PLURAL)))
+		if(!(comp.identifying_gender in byond_genders_define_list))
 			if(force_complex_gender)
 				// ... give em the component and assign it!
 				destination.AddComponent(/datum/component/gender_identity, comp.identifying_gender)
@@ -57,12 +57,12 @@
 	// Otherwise we failed somehow?
 	return FALSE
 
-/// Allows gender identity to be assigned at player's discretion
+/// Allows gender identity to be assigned at player's discretion, added as a verb when the /datum/component/gender_identity is added to a mob
 /mob/proc/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"
 	set desc = "Sets the pronouns when examined and performing an emote."
 	set category = "IC.Settings"
-	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity:", "Set Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM))
+	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity:", "Set Gender Identity", all_genders_define_list)
 	if(!new_gender_identity)
 		return FALSE
 	change_gender_identity(new_gender_identity)

@@ -25,23 +25,6 @@ var/global/list/obj/item/communicator/all_communicators = list()
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 GLOBAL_LIST_INIT(restricted_camera_networks, list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS))
 
-#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM)
-#define all_genders_text_list list("Male","Female","Plural","Neuter","Herm")
-#define pronoun_set_to_genders list(\
-			"He/Him" = MALE,\
-			"She/Her" = FEMALE,\
-			"It/Its" = NEUTER,\
-			"They/Them" = PLURAL,\
-			"Shi/Hir" = HERM\
-			)
-#define genders_to_pronoun_set list(\
-			MALE = "He/Him",\
-			FEMALE = "She/Her",\
-			NEUTER = "It/Its",\
-			PLURAL = "They/Them",\
-			HERM = "Shi/Hir"\
-			)
-
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
