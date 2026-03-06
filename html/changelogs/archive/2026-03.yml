@@ -112,3 +112,12 @@
       And also the ability to answer.
   KillianKirilenko:
   - qol: restores default transfer values for flour and sugar
+2026-03-06:
+  Azzy.Dreemurr:
+  - image: Altavians is now available use Talon space suits (new sprites)
+  Will, Kash:
+  - rscadd: Vix/Flipper pai syndicate pet
+  - rscadd: Paicard emag behavior
+  - rscadd: pAI can use bingle wiki computer
+  - qol: pAI counts for social traits (lonely/agoraphobia)
+  - qol: pAI can use modular computers if their master's ID is in it

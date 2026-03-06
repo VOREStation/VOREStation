@@ -1,8 +1,0 @@
-author: "Will, Kash"
-delete-after: True
-changes:
-  - rscadd: "Vix/Flipper pai syndicate pet"
-  - rscadd: "Paicard emag behavior"
-  - rscadd: "pAI can use bingle wiki computer"
-  - qol: "pAI counts for social traits (lonely/agoraphobia)"
-  - qol: "pAI can use modular computers if their master's ID is in it"
