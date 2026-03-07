@@ -635,7 +635,6 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 	// Basically "if has washable coloration"
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		return TRUE
 
 	forensic_data?.wash(clean_types)
 	blood_color = null

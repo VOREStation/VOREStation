@@ -150,13 +150,9 @@
 	pai.key = choice.key
 	card.setPersonality(pai)
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
-		pai.savefile_load(pai)
+		pai.apply_preferences(pai.client)
 	else
 		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
-		card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
-		if(candidate.key == choice.key)
-			paiController.pai_candidates.Remove(candidate)
 	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -421,28 +417,25 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 	for(var/areatype in areas_without_camera)
 		to_chat(world, "* [areatype]")
 
-/datum/admins/proc/cmd_admin_dress(input in getmobs())
-	set category = "Fun.Event Kit"
-	set name = "Select equipment"
-
-	if(!check_rights(R_FUN))
-		return
+ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mob.", ADMIN_CATEGORY_FUN_EVENT_KIT, input)
+	if(!input)
+		input = tgui_input_list(user, "Pick Target", "Select the target to dress.", getmobs())
+		if(!input)
+			return
 
 	var/target = getmobs()[input]
-	if(!target)
-		return
 
 	if(!ishuman(target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/target_human = target
 
-	var/datum/decl/hierarchy/outfit/outfit = tgui_input_list(usr, "Select outfit.", "Select equipment.", outfits())
+	var/datum/decl/hierarchy/outfit/outfit = tgui_input_list(user, "Select outfit.", "Select equipment.", outfits())
 	if(!outfit)
 		return
 
 	feedback_add_details("admin_verb","SEQ")
-	dressup_human(H, outfit, 1)
+	dressup_human(target_human, outfit, 1)
 
 /proc/dressup_human(var/mob/living/carbon/human/H, var/datum/decl/hierarchy/outfit/outfit)
 	if(!H || !outfit)

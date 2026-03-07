@@ -566,11 +566,11 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 
 	// It is VERY unlikely that we'll have two players, in the same round, with the same name and branch, but still, this is here.
 	// If such conflict is encountered, a random number will be appended to the email address. If this fails too, no email account will be created.
-	if(ntnet_global.does_email_exist(complete_login))
+	if(GLOB.ntnet_global.does_email_exist(complete_login))
 		complete_login = "[sanitized_name][random_id(/datum/computer_file/data/email_account/, 100, 999)]@[domain]"
 
 	// If even fallback login generation failed, just don't give them an email. The chance of this happening is astronomically low.
-	if(ntnet_global.does_email_exist(complete_login))
+	if(GLOB.ntnet_global.does_email_exist(complete_login))
 		to_chat(H, span_filter_notice("You were not assigned an email address."))
 		H.mind.store_memory("You were not assigned an email address.")
 	else

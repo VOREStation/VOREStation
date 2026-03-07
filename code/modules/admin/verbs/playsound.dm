@@ -3,16 +3,11 @@
 #define SHELLEO_STDOUT 2
 #define SHELLEO_STDERR 3
 
-var/list/sounds_cache = list()
+GLOBAL_LIST_EMPTY(sounds_cache)
 
-/client/proc/play_sound(S as sound)
-	set category = "Fun.Sounds"
-	set name = "Play Global Sound"
-	if(!check_rights(R_SOUNDS))
-		return
-
+ADMIN_VERB(play_sound, R_SOUNDS, "Play Global Sound", "Plays a sound to all players.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
 	var/freq = 1
-	var/vol = tgui_input_number(usr, "What volume would you like the sound to play at?",, 100, 100, 1)
+	var/vol = tgui_input_number(user, "What volume would you like the sound to play at?",, 100, 100, 1)
 	if(!vol)
 		return
 	vol = clamp(vol, 1, 100)
@@ -27,9 +22,9 @@ var/list/sounds_cache = list()
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	sounds_cache += S
+	GLOB.sounds_cache += S
 
-	var/res = tgui_alert(usr, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
+	var/res = tgui_alert(user, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
 	if(!res)
 		return
 	switch(res)
@@ -38,8 +33,8 @@ var/list/sounds_cache = list()
 		if("Cancel")
 			return
 
-	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]", 1)
+	log_admin("[key_name(user)] played sound [S]")
+	message_admins("[key_name_admin(user)] played sound [S]", 1)
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.read_preference(/datum/preference/toggle/play_admin_midis))
@@ -49,70 +44,50 @@ var/list/sounds_cache = list()
 
 	feedback_add_details("admin_verb", "Play Global Sound")
 
-/client/proc/play_local_sound(S as sound)
-	set category = "Fun.Sounds"
-	set name = "Play Local Sound"
-	if(!check_rights(R_SOUNDS))
-		return
-
-	log_admin("[key_name(src)] played a local sound [S]")
-	message_admins("[key_name_admin(src)] played a local sound [S]", 1)
-	playsound(src.mob, S, 50, 0, 0)
+ADMIN_VERB(play_local_sound, R_SOUNDS, "Play Local Sound", "Plays a sound around your own mob.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
+	log_admin("[key_name(user)] played a local sound [S]")
+	message_admins("[key_name_admin(user)] played a local sound [S]", 1)
+	playsound(user.mob, S, 50, 0, 0)
 	feedback_add_details("admin_verb", "Play Local Sound")
 
-/client/proc/play_direct_mob_sound(S as sound, mob/M)
-	set category = "Fun.Sounds"
-	set name = "Play Direct Mob Sound"
-	if(!check_rights(R_SOUNDS))
+ADMIN_VERB(play_direct_mob_sound, R_SOUNDS, "Play Direct Mob Sound", "Plays a sound to a single mob.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
+	var/mob/target_mob = tgui_input_list(user, "Choose a mob to play the sound to. Only they will hear it.", "Play Mob Sound", sortNames(GLOB.player_list))
+	if(QDELETED(target_mob))
 		return
-
-	if(!M)
-		M = tgui_input_list(usr, "Choose a mob to play the sound to. Only they will hear it.", "Play Mob Sound", sortNames(GLOB.player_list))
-	if(!M || QDELETED(M))
-		return
-	log_admin("[key_name(src)] played a direct mob sound [S] to [M].")
-	message_admins("[key_name_admin(src)] played a direct mob sound [S] to [ADMIN_LOOKUPFLW(M)].")
-	SEND_SOUND(M, S)
+	log_admin("[key_name(user)] played a direct mob sound [S] to [target_mob].")
+	message_admins("[key_name_admin(user)] played a direct mob sound [S] to [ADMIN_LOOKUPFLW(target_mob)].")
+	SEND_SOUND(target_mob, S)
 	feedback_add_details("admin_verb", "Play Direct Mob Sound")
 
-/client/proc/play_z_sound(S as sound)
-	set category = "Fun.Sounds"
-	set name = "Play Z Sound"
-	if(!check_rights(R_SOUNDS))	return
-	var/target_z = mob.z
+ADMIN_VERB(play_z_sound, R_SOUNDS, "Play Z Sound", "Plays a sound to a single z-level.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
+	var/target_z = user.mob.z
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
-	sounds_cache += S
+	GLOB.sounds_cache += S
 
-	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
+	if(tgui_alert(user, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
 		return
 
-	log_admin("[key_name(src)] played sound [S] on Z[target_z]")
-	message_admins("[key_name_admin(src)] played sound [S] on Z[target_z]", 1)
+	log_admin("[key_name(user)] played sound [S] on Z[target_z]")
+	message_admins("[key_name_admin(user)] played sound [S] on Z[target_z]", 1)
 	for(var/mob/M in GLOB.player_list)
 		if(M.read_preference(/datum/preference/toggle/play_admin_midis) && M.z == target_z)
 			M << uploaded_sound
 
 	feedback_add_details("admin_verb", "Play Z Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/play_server_sound()
-	set category = "Fun.Sounds"
-	set name = "Play Server Sound"
-	if(!check_rights(R_SOUNDS))
-		return
-
+ADMIN_VERB(play_server_sound, R_SOUNDS, "Play Server Sound", "Plays a sound from the server to play.", ADMIN_CATEGORY_FUN_SOUNDS, S as sound)
 	var/list/sounds = world.file2list("sound/serversound_list.txt");
 	sounds += "--CANCEL--"
-	sounds += sounds_cache
+	sounds += GLOB.sounds_cache
 
-	var/melody = tgui_input_list(usr, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
+	var/melody = tgui_input_list(user, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
 
-	if(melody == "--CANCEL--")
+	if(!melody || melody == "--CANCEL--")
 		return
 
-	play_sound(melody)
+	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/play_sound, melody)
 	feedback_add_details("admin_verb", "Play Server Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ///Takes an input from either proc/play_web_sound or the request manager and runs it through youtube-dl and prompts the user before playing it to the server.
@@ -214,33 +189,28 @@ var/list/sounds_cache = list()
 
 	feedback_add_details("admin_verb", "Play Internet Sound")
 
-/client/proc/play_web_sound()
-	set category = "Fun.Sounds"
-	set name = "Play Internet Sound"
-	if(!check_rights(R_SOUNDS))
-		return
-
+ADMIN_VERB(play_web_sound, R_SOUNDS, "Play Internet Sound", "Plays a sound from the internet to all players.", ADMIN_CATEGORY_FUN_SOUNDS)
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(src, span_boldwarning("Youtube-dl was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(user, span_boldwarning("Youtube-dl was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 
 	if(S_TIMER_COOLDOWN_TIMELEFT(SStimer, COOLDOWN_INTERNET_SOUND))
-		if(tgui_alert(usr, "Someone else is already playing an Internet sound! It has [DisplayTimeText(S_TIMER_COOLDOWN_TIMELEFT(SStimer, COOLDOWN_INTERNET_SOUND), 1)] remaining. \
+		if(tgui_alert(user, "Someone else is already playing an Internet sound! It has [DisplayTimeText(S_TIMER_COOLDOWN_TIMELEFT(SStimer, COOLDOWN_INTERNET_SOUND), 1)] remaining. \
 		Would you like to override?", "Musicalis Interruptus", list("No","Yes")) != "Yes")
 			return
 
-	var/web_sound_input = tgui_input_text(usr, "Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound", null)
+	var/web_sound_input = tgui_input_text(user, "Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound", null)
 
 	if(length(web_sound_input))
 		web_sound_input = trim(web_sound_input)
 		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(src, span_boldwarning("Non-http(s) URIs are not allowed."), confidential = TRUE)
-			to_chat(src, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website."), confidential = TRUE)
+			to_chat(user, span_boldwarning("Non-http(s) URIs are not allowed."), confidential = TRUE)
+			to_chat(user, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website."), confidential = TRUE)
 			return
-		web_sound(usr, web_sound_input)
+		web_sound(user.mob, web_sound_input)
 	else
-		web_sound(usr, null)
+		web_sound(user.mob, null)
 
 /client/proc/stop_sounds()
 	set category = "Debug.Dangerous"

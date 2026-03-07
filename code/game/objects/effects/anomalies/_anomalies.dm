@@ -120,3 +120,5 @@
 			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)
 		if(WEATHER_ANOMALY)
 			new /obj/effect/anomaly/weather(local_turf, null, drops_core)
+		if(DUST_ANOMALY)
+			new /obj/effect/anomaly/dust(local_turf, null, drops_core)

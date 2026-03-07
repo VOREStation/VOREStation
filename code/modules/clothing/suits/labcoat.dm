@@ -121,3 +121,11 @@
 	name = "golden plague doctor suit"
 	desc = "If it worked then, it works now. This classic design comes in gold."
 	icon_state = "plaguedoctor2"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/talon
+	name = "Talon labcoat"
+	desc = "A large, and extremely sterile labcoat that protects the wearer from chemical spills. This one has ITV Talon colored patterns along the labcoat, the designated shapes list it as a medical officer's labcoat."
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
+	icon_state = "talon_labcoat"
+	item_state_slots = list(slot_r_hand_str = "talon_labcoat", slot_l_hand_str = "talon_labcoat")
