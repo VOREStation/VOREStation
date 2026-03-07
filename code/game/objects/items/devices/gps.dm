@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return PROCESS_KILL
 	update_holder()
 	if(holder)
-		update_compass(TRUE)
+		update_compass(src, TRUE)
 
 /obj/item/gps/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	reachable_z_levels = reachable_z_levels || using_map.get_map_levels(origin.z, long_range)
 	return (target.z in reachable_z_levels)
 
-/obj/item/gps/proc/update_compass(var/update_compass_icon)
+/obj/item/gps/proc/update_compass(atom/movable/source, var/update_compass_icon)
 	SIGNAL_HANDLER
 	compass.hide_waypoints(FALSE)
 	var/turf/my_turf = get_turf(src)
@@ -158,10 +158,11 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		if(!is_in_processing_list)
 			is_in_processing_list = TRUE
 			START_PROCESSING(SSobj, src)
+			update_compass(src, TRUE)
 	else
 		is_in_processing_list = FALSE
 		STOP_PROCESSING(SSobj, src)
-	update_compass()
+		update_compass(src)
 	update_holder()
 	update_icon()
 
@@ -308,7 +309,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 			compass.clear_waypoint(gps_ref)
 			LAZYREMOVE(tracking_devices, gps_ref)
 			LAZYREMOVE(showing_tracked_names, gps_ref)
-			update_compass()
+			update_compass(src, TRUE)
 			return TRUE
 		if("startTrack")
 			var/gps_ref = params["ref"]
@@ -319,7 +320,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 				return FALSE
 			LAZYSET(tracking_devices, gps_ref, "#00ffff")
 			LAZYSET(showing_tracked_names, gps_ref, TRUE)
-			update_compass()
+			update_compass(src, TRUE)
 			return TRUE
 		if("trackColor")
 			var/gps_ref = params["ref"]
@@ -332,7 +333,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 			if(!new_colour)
 				return FALSE
 			LAZYSET(tracking_devices, gps_ref, new_colour)
-			update_compass()
+			update_compass(src, TRUE)
 			return TRUE
 
 /obj/item/gps/on // Defaults to off to avoid polluting the signal list with a bunch of GPSes without owners. If you need to spawn active ones, use these.
