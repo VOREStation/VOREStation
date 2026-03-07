@@ -667,7 +667,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	if(!is_mount)
 		add_fillet_type()
 
-	var/make_edible = !weight
+//	var/make_edible = !weight
 	if(weight)
 		if(reagents) //This fish has reagents. Adjust the maximum volume of the reagent holder and do some math to adjut the reagents too.
 			var/new_weight_ratio = new_weight / weight
