@@ -33,7 +33,7 @@
 	var/obj/item/material/knife/blade = allocate(/obj/item/material/knife)
 	var/fish_fillet_type = fish.fillet_type
 	var/expected_num_fillets = fish.expected_num_fillets
-	blade.melee_attack_chain(chef, fish)
+	fish.attackby(blade, chef)
 	var/counted_fillets = 0
 	for(var/atom/movable/content as anything in table.loc.contents)
 		if(istype(content, fish_fillet_type))
