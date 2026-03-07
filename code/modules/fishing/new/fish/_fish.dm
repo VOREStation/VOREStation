@@ -76,6 +76,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	/// Fish status
 	var/status = FISH_ALIVE
+	initial(icon_state)
 	///icon used when the fish is dead, ifset.
 	var/icon_state_dead
 

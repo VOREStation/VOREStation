@@ -43,8 +43,9 @@
 //	illustration = "fish"
 
 	starts_with = list(
-	/obj/item/lazarus_injector,
-	/obj/item/reagent_containers/cup/bottle/fishy_reagent,
+//	/obj/item/lazarus_injector,
+	/obj/item/denecrotizer,
+//	/obj/item/reagent_containers/cup/bottle/fishy_reagent,
 	/obj/item/reagent_containers/cup, //to splash the reagents on the fish.
 	/obj/item/storage/fish_case,
 	/obj/item/storage/fish_case,

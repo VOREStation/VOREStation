@@ -251,16 +251,16 @@
 	///How much holding this affects fishing difficulty
 	var/fishing_modifier = -4
 
+	starts_with = list(
+	/obj/item/bait_can/worm,
+	/obj/item/fishing_rod/unslotted,
+	/obj/item/fishing_hook,
+	/obj/item/fishing_line,
+	/obj/item/paper/paperslip/fishing_tip,
+	)
 /obj/item/storage/toolbox/fishing/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier, works_in_hands = TRUE)
-
-/obj/item/storage/toolbox/fishing/PopulateContents()
-	new /obj/item/bait_can/worm(src)
-	new /obj/item/fishing_rod/unslotted(src)
-	new /obj/item/fishing_hook(src)
-	new /obj/item/fishing_line(src)
-	new /obj/item/paper/paperslip/fishing_tip(src)
 
 /obj/item/storage/toolbox/fishing/small
 	name = "compact fishing toolbox"
