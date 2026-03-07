@@ -11,21 +11,15 @@
 			return TRUE
 	return FALSE
 
-/client/proc/modify_server_news()
-	set name = "Modify Public News"
-	set category = "Server.Game"
-
-	if(!check_rights(0))
-		return
-
+ADMIN_VERB(modify_server_news, R_SERVER|R_EVENT, "Modify Public News", "Modify the public news message.", ADMIN_CATEGORY_SERVER_GAME)
 	var/savefile/F = new(NEWSFILE)
 	if(F)
 		var/title = F["title"]
 		var/body = html2paper_markup(F["body"])
-		var/new_title = tgui_input_text(src,"Write a good title for the news update.  Note: HTML is NOT supported.","Write News", title, MAX_MESSAGE_LEN)
+		var/new_title = tgui_input_text(user, "Write a good title for the news update. Note: HTML is NOT supported.", "Write News", title, MAX_MESSAGE_LEN)
 		if(!new_title)
 			return
-		var/new_body = tgui_input_text(src,"Write the body of the news update here. Note: HTML is NOT supported, however paper markup is supported.  \n\
+		var/new_body = tgui_input_text(user, "Write the body of the news update here. Note: HTML is NOT supported, however paper markup is supported.  \n\
 		Hitting enter will automatically add a line break.  \n\
 		Valid markup includes: \[b\], \[i\], \[u\], \[large\], \[h1\], \[h2\], \[h3\]\ \[*\], \[hr\], \[small\], \[list\], \[table\], \[grid\], \
 		\[row\], \[cell\], \[logo\], \[talogo\], \[sglogo\].","Write News", body, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)

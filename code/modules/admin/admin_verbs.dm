@@ -4,9 +4,7 @@
 	if(rights & R_HOLDER)
 		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)		add_verb(src, GLOB.admin_verbs_admin)
-		if(rights & R_SERVER)		add_verb(src, GLOB.admin_verbs_server)
 		if(rights & R_DEBUG)		add_verb(src, GLOB.admin_verbs_debug)
-		if(rights & R_SPAWN)		add_verb(src, GLOB.admin_verbs_spawn)
 		if(rights & R_MOD)			add_verb(src, GLOB.admin_verbs_mod)
 		if(rights & R_EVENT)		add_verb(src, GLOB.admin_verbs_event_manager)
 
@@ -18,9 +16,7 @@
 	remove_verb(src, list(
 		/client/proc/togglebuildmodeself,
 		GLOB.admin_verbs_admin,
-		GLOB.admin_verbs_server,
 		GLOB.admin_verbs_debug,
-		GLOB.admin_verbs_spawn,
 		GLOB.debug_verbs
 		))
 
@@ -162,7 +158,7 @@ ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest."
 	feedback_add_details("admin_verb","CHA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-ADMIN_VERB(jobbans, R_BAN, "Display Job bans", "View job bans here.", "Admin.Investigate")
+ADMIN_VERB(jobbans, R_BAN, "Display Job bans", "View job bans here.", ADMIN_CATEGORY_INVESTIGATE)
 	if(CONFIG_GET(flag/ban_legacy_system))
 		user.holder.Jobbans()
 	else
@@ -203,7 +199,7 @@ ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state 
 				i = 0
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
-ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
+ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", ADMIN_CATEGORY_GAME)
 	if(user.holder.fakekey)
 		user.holder.fakekey = null
 		if(isnewplayer(user.mob))
@@ -363,13 +359,11 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 		var/mob/observer/dead/our_mob = user.mob
 		our_mob.visualnet?.removeVisibility(our_mob, user)
 
-/client/proc/toggle_log_hrefs()
-	set name = "Toggle href logging"
-	set category = "Server.Config"
-	if(!holder)	return
-	if(config)
-		CONFIG_SET(flag/log_hrefs, !CONFIG_GET(flag/log_hrefs))
-		message_admins(span_bold("[key_name_admin(usr)] [CONFIG_GET(flag/log_hrefs) ? "started" : "stopped"] logging hrefs"))
+ADMIN_VERB(toggle_log_hrefs, R_SERVER, "Toggle href logging", "Allows to toggle the logging of used hrefs.", ADMIN_CATEGORY_SERVER_CONFIG)
+	if(!config)
+		return
+	CONFIG_SET(flag/log_hrefs, !CONFIG_GET(flag/log_hrefs))
+	message_admins(span_bold("[key_name_admin(user)] [CONFIG_GET(flag/log_hrefs) ? "started" : "stopped"] logging hrefs"))
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
@@ -539,23 +533,20 @@ ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	feedback_add_details("admin_verb","RS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	//BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
 
-ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel", "Debug.Misc")
+ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel.", ADMIN_CATEGORY_DEBUG_MISC)
 	user.stat_panel.send_message("create_debug")
 
-/client/proc/spawn_reagent()
-	set name = "Spawn Reagent"
-	set category = "Debug.Game"
-
-	if(!check_rights(R_ADMIN|R_EVENT))	return
-	var/datum/reagent/R = tgui_input_list(usr, "Select a reagent to spawn", "Reagent Spawner", subtypesof(/datum/reagent))
-	if(!R)
+ADMIN_VERB(spawn_reagent, R_DEBUG|R_EVENT, "Spawn Reagent", "Spawn any reagent.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/datum/reagent/new_reagent = tgui_input_list(user, "Select a reagent to spawn", "Reagent Spawner", subtypesof(/datum/reagent))
+	if(!new_reagent)
 		return
 
-	var/obj/item/reagent_containers/glass/bottle/B = new(usr.loc)
+	var/mob/user_mob = user.mob
+	var/obj/item/reagent_containers/glass/bottle/new_bottle = new(user_mob.loc)
 
-	B.icon_state = "bottle-1"
-	B.reagents.add_reagent(R.id, 60)
-	B.name = "[B.name] of [R.name]"
+	new_bottle.icon_state = "bottle-1"
+	new_bottle.reagents.add_reagent(new_reagent.id, 60)
+	new_bottle.name = "[new_bottle.name] of [new_reagent.name]"
 
 /client/proc/add_hidden_area()
 	set name = "Add Ghostsight Block Area"
@@ -649,7 +640,7 @@ ADMIN_VERB(adminorbit, R_FUN, "Orbit Things", "Makes something orbit around some
 	if(tgui_alert(user, "\The [orbiter] will orbit around [center]. Is this okay?", "Confirm Orbit", list("Yes", "No")) == "Yes")
 		orbiter.orbit(center, distance, clock, speed, segments)
 
-ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tickets from the global list.", "Admin.Investigate")
+ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tickets from the global list.", ADMIN_CATEGORY_INVESTIGATE)
 	if(GLOB.security_printer_tickets.len >= 1)
 		var/input = tgui_input_list(user, "Which message?", "Security Tickets", GLOB.security_printer_tickets)
 		if(!input)
@@ -728,5 +719,5 @@ ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tic
 			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
 			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
 
-ADMIN_VERB(modify_shift_end, (R_ADMIN|R_EVENT|R_SERVER), "Modify Shift End", "Modifies the hard shift end time.", "Server.Game")
+ADMIN_VERB(modify_shift_end, (R_ADMIN|R_EVENT|R_SERVER), "Modify Shift End", "Modifies the hard shift end time.", ADMIN_CATEGORY_SERVER_GAME)
 	GLOB.transfer_controller.modify_hard_end(user)

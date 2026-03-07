@@ -41,7 +41,7 @@
 	new /datum/ticket(msg, src, FALSE, 0)
 
 //admin proc
-ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor Ticket List", "Opens the list of mentor tickets", "Admin.Misc")
+ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor Ticket List", "Opens the list of mentor tickets", ADMIN_CATEGORY_MISC)
 	var/browse_to
 
 	switch(tgui_input_list(user, "Display which ticket list?", "List Choice", list("Active Tickets", "Resolved Tickets")))

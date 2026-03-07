@@ -1,13 +1,11 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 GLOBAL_LIST_INIT(admin_verbs_admin, list(
-	/client/proc/toggle_vantag_hud,
 	/datum/admins/proc/set_tcrystals,
 	/datum/admins/proc/add_tcrystals,
 	/datum/admins/proc/show_traitor_panel,	//interface which shows a mob's mind.,
 	/datum/admins/proc/show_game_mode,  //Configuration window for the current game mode.,
 	/datum/admins/proc/force_mode_latespawn, //Force the mode to try a latespawn proc,
 	/datum/admins/proc/force_antag_latespawn, //Force a specific template to try a latespawn proc,
-	/datum/admins/proc/toggleenter,		//toggles whether people can join the current game,
 	/datum/admins/proc/toggleguests,	//toggles whether guests can join the current game,
 	/datum/admins/proc/announce,		//priority announce something to all clients.,
 	/datum/admins/proc/intercom,		//send a fake intercom message, like an arrivals announcement,
@@ -48,7 +46,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
-	/client/proc/check_customitem_activity,
 	/client/proc/man_up,
 	/client/proc/global_man_up,
 	/client/proc/response_team, // Response Teams admin verb,
@@ -72,50 +69,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/hide_motion_tracker_feedback
 	))
 
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(
-	/datum/admins/proc/spawn_fruit,
-	/datum/admins/proc/spawn_custom_item,
-	/datum/admins/proc/check_custom_items,
-	/datum/admins/proc/spawn_plant,
-	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
-	/datum/admins/proc/spawn_mail,
-	/client/proc/spawn_character_mob,
-	/client/proc/spawn_chemdisp_cartridge,
-	/client/proc/map_template_load,
-	/client/proc/map_template_upload,
-	/client/proc/map_template_load_on_new_z,
-	/client/proc/eventkit_open_mob_spawner,
-	/client/proc/generic_structure,
-	/client/proc/generic_item,
-	/client/proc/create_gm_message,
-	/client/proc/remove_gm_message,
-	/client/proc/AdminCreateVirus,
-	/client/proc/ReleaseVirus,
-	/client/proc/spawn_reagent
-	))
-
-GLOBAL_LIST_INIT(admin_verbs_server, list(
-	/datum/admins/proc/capture_map,
-	/client/proc/Set_Holiday,
-	/client/proc/ToRban,
-	/datum/admins/proc/startnow,
-	/datum/admins/proc/delay,
-	/datum/admins/proc/toggleaban,
-	/datum/admins/proc/togglepersistence,
-	/client/proc/toggle_log_hrefs,
-	/datum/admins/proc/toggleAI,
-	/client/proc/cmd_debug_del_all,
-	/datum/admins/proc/adrev,
-	/datum/admins/proc/adspawn,
-	/datum/admins/proc/adjump,
-	/client/proc/check_customitem_activity,
-	/client/proc/modify_server_news,
-	/client/proc/recipe_dump,
-	/client/proc/panicbunker,
-	/client/proc/paranoia_logging,
-	/client/proc/ip_reputation
-	))
-
 GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/Debug2,
 	/client/proc/kill_air,
@@ -124,7 +77,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/kill_airgroup,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_using_map,
-	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/cmd_display_del_log,
 	/client/proc/cmd_display_init_log,
@@ -158,14 +110,12 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/simple_DPS,
 	/datum/admins/proc/view_feedback,
 	/client/proc/stop_sounds,
-	/client/proc/spawn_reagent
 	))
 
 //verbs which can be hidden - needs work
 GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 //	/client/proc/deadchat,
 	/datum/admins/proc/show_traitor_panel,
-	/datum/admins/proc/toggleenter,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
 	/client/proc/cmd_admin_subtle_message,
@@ -174,16 +124,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/datum/admins/proc/access_news_network,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/Set_Holiday,
-	/client/proc/ToRban,
-	/datum/admins/proc/startnow,
-	/datum/admins/proc/delay,
-	/datum/admins/proc/toggleaban,
-	/client/proc/toggle_log_hrefs,
-	/datum/admins/proc/toggleAI,
-	/datum/admins/proc/adrev,
-	/datum/admins/proc/adspawn,
-	/datum/admins/proc/adjump,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
@@ -193,7 +133,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/simple_DPS,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_using_map,
-	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/cmd_display_del_log,
 	/client/proc/air_report,
@@ -227,7 +166,6 @@ GLOBAL_LIST_INIT(admin_verbs_mod, list(
 ))
 
 GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
-	/client/proc/toggle_vantag_hud,
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels,
@@ -251,8 +189,6 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
-	/datum/admins/proc/delay,
-	/client/proc/Set_Holiday,
 	/datum/admins/proc/PlayerNotes,
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
@@ -305,16 +241,8 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/datum/admins/proc/paralyze_mob,
 	/datum/admins/proc/sendFax,
 	/datum/admins/proc/view_feedback,
-	/datum/admins/proc/capture_map,
-	/client/proc/Set_Holiday,
-	/datum/admins/proc/startnow,
-	/datum/admins/proc/delay,
-	/client/proc/cmd_debug_del_all,
-	/client/proc/modify_server_news,
 	/client/proc/toggle_spawning_with_recolour,
 	/client/proc/start_vote,
-	/client/proc/AdminCreateVirus,
-	/client/proc/ReleaseVirus,
 	/client/proc/add_hidden_area,
 	/client/proc/remove_hidden_area,
 	/client/proc/hide_motion_tracker_feedback,

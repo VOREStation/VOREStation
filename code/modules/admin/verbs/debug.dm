@@ -175,19 +175,16 @@
 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
-/client/proc/cmd_debug_del_all()
-	set category = "Debug.Dangerous"
-	set name = "Del-All"
-
+ADMIN_VERB(cmd_debug_del_all, R_SERVER, "Del-All", "DANGER: Deletes all instances of a type.", ADMIN_CATEGORY_DEBUG_DANGEROUS)
 	// to prevent REALLY stupid deletions
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer/dead, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
-	var/hsbitem = tgui_input_list(usr, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
+	var/hsbitem = tgui_input_list(user, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
 	if(hsbitem)
 		for(var/atom/O in world)
 			if(istype(O, hsbitem))
 				qdel(O)
-		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
-		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+		log_admin("[key_name(user)] has deleted all instances of [hsbitem].")
+		message_admins("[key_name_admin(user)] has deleted all instances of [hsbitem].", 0)
 	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_debug_make_powernets()
@@ -732,7 +729,7 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 
 	SSrobot_sprites.reload_test_sprites()
 
-ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
+ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", ADMIN_CATEGORY_FUN_ADD_NIF)
 	var/input_NIF
 	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 
