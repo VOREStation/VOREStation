@@ -7,7 +7,7 @@
 	icon_state = "tizira_moonfish"
 	sprite_height = 7
 	sprite_width = 7
-	fillet_type = /obj/item/food/fishmeat/moonfish
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/moonfish
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	stable_population = 2
 	average_size = 95
@@ -76,7 +76,7 @@
 	sprite_width = 5
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	stable_population = 4
-	fillet_type = /obj/item/food/fishmeat/gunner_jellyfish
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/gunner_jellyfish
 	fish_traits = list(/datum/fish_trait/hallucinogenic)
 	required_temperature_min = MIN_AQUARIUM_TEMP+24
 	required_temperature_max = MIN_AQUARIUM_TEMP+32
@@ -129,7 +129,7 @@
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	stable_population = 10
 	breeding_timeout = 1.25 MINUTES
-	fillet_type = /obj/item/food/fishmeat/armorfish
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/armorfish
 	fish_movement_type = /datum/fish_movement/slow
 	required_temperature_min = MIN_AQUARIUM_TEMP+10
 	required_temperature_max = MIN_AQUARIUM_TEMP+32

@@ -82,7 +82,7 @@
 			FISH_BAIT_VALUE = ALLERGEN_SALT,//JUNKFOOD|FRIED,
 		),
 	)
-	fillet_type = /obj/item/food/meat/cutlet/plain/human
+	fillet_type = /obj/item/reagent_containers/food/snacks/meat/human
 	required_temperature_min = MIN_AQUARIUM_TEMP+3
 	required_temperature_max = MIN_AQUARIUM_TEMP+38
 	random_case_rarity = FISH_RARITY_NOPE
@@ -148,7 +148,7 @@
 			FISH_BAIT_VALUE = ALLERGEN_SALT,//JUNKFOOD|FRIED
 		),
 	)
-	fillet_type = /obj/item/food/meat/slab/rawcrab
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/meat/slab/rawcrab
 	random_case_rarity = FISH_RARITY_NOPE
 
 /obj/item/fish/skin_crab/get_fish_taste()

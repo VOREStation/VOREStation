@@ -562,7 +562,7 @@
 		loaded_injector = null
 		update_appearance(UPDATE_ICON)
 
-/obj/item/fish_genegun/item_interaction(mob/living/user, obj/item/item, list/modifiers)
+/obj/item/fish_genegun/attackby(mob/living/user, obj/item/item, list/modifiers)
 	var/is_syringe = istype(item, /obj/item/reagent_containers/syringe)
 	if(!is_syringe && istype(item, /obj/item/fish_gene))
 		return NONE
@@ -581,7 +581,7 @@
 	playsound(src, 'sound/items/weapons/gun/general/magazine_insert_full.ogg', 30, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/fish_genegun/interact_with_atom(obj/interacting_with, mob/living/user, list/modifiers)
+/obj/item/fish_genegun/afterattack(obj/interacting_with, mob/living/user, list/modifiers)
 	if(!isfish(interacting_with))
 		return NONE
 	if(!loaded_injector)
@@ -664,7 +664,7 @@
 	. = ..()
 	name = "fish trait injector ([trait_type::name])"
 
-/obj/item/fish_gene/interact_with_atom(obj/interacting_with, mob/living/user, list/modifiers)
+/obj/item/fish_gene/afterattack(obj/interacting_with, mob/living/user, list/modifiers)
 	if(!isfish(interacting_with))
 		return NONE
 	/*

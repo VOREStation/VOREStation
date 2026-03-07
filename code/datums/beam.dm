@@ -126,10 +126,6 @@
 
 	var/matrix/rot_matrix = matrix()
 	rot_matrix.Turn(Angle)
-
-	var/turf/T_target = get_turf(target)	//Turfs are referenced instead of the objects directly so that beams will link between 2 objects inside other objects.
-	var/turf/T_origin = get_turf(origin)
-
 	//Translation vector for origin and target
 	var/DX = (32*target.x+target_px)-(32*origin.x+origin_px)
 	var/DY = (32*target.y+target_py)-(32*origin.y+origin_py)

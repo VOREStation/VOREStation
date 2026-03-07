@@ -426,6 +426,7 @@
 		return ..()
 	return ranged_interact_with_atom(interacting_with, user, modifiers)
 */
+/*
 /obj/item/fishing_rod/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!hook)
 		balloon_alert(user, "install a hook first!")
@@ -438,6 +439,7 @@
 
 	cast_line(interacting_with, user)
 	return ITEM_INTERACT_SUCCESS
+*/
 /*
 /obj/item/fishing_rod/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	return ranged_interact_with_atom_secondary(interacting_with, user, modifiers)
@@ -493,7 +495,7 @@
 	/// If you can't fish in it, try hooking it
 	hook_item(user, atom_hit_by_hook_projectile)
 
-/obj/item/fishing_rod/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/fishing_rod/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "FishingRod", name)
@@ -907,7 +909,7 @@
 	if(owner.line?.fishing_line_traits & FISHING_LINE_PHASE)
 		return
 	return ..()
-
+/*
 ///Override of the generic scan_moved_turf so we don't scan for mobs when we move. Also cannot phase through r-walls for balance reasons (stealing from the armory *wink wink*)
 /obj/item/projectile/fishing_cast/scan_moved_turf()
 	if(can_hit_target(original, TRUE, FALSE))
@@ -915,7 +917,7 @@
 		return
 	if(istype(loc, /turf/unsimulated))
 		qdel(src)
-
+*/
 /obj/item/projectile/fishing_cast/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
 	QDEL_NULL(owner.fishing_line) //we need to delete the old beam datum, otherwise it won't let you fish.

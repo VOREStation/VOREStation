@@ -76,7 +76,6 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	/// Fish status
 	var/status = FISH_ALIVE
-	initial(icon_state)
 	///icon used when the fish is dead, ifset.
 	var/icon_state_dead
 
@@ -249,7 +248,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		)
 		stack_trace("[type] has a stable_population of [stable_population] but has neither of these traits: [english_list(pick_one)]. \
 			Either increase its stable population or add one of these traits to it.")
-
+/*
 /obj/item/fish/grind_results()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -258,7 +257,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		grind_results[reagent_type] *= max(FLOOR(weight/FISH_GRIND_RESULTS_WEIGHT_DIVISOR, 0.1), 0.1)
 
 	return grind_results
-
+*/
 /obj/item/fish/proc/fish_grind_results()
 	RETURN_TYPE(/list/datum/reagent)
 
@@ -312,7 +311,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
-/obj/item/fish/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/item/fish/attackby(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/clothing/accessory/stethoscope))
 		return NONE
 	user.balloon_alert("checking pulse")

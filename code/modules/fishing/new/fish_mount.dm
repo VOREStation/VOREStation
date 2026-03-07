@@ -87,7 +87,7 @@
 		frame.persistence_id = persistence_id
 	mounted_fish?.forceMove(loc)
 
-/obj/structure/fish_mount/item_interaction(mob/living/user, obj/item/item, list/modifiers)
+/obj/structure/fish_mount/attackby(mob/living/user, obj/item/item, list/modifiers)
 	if(!isfish(item) || user.combat_mode)
 		return ..()
 	if(mounted_fish)

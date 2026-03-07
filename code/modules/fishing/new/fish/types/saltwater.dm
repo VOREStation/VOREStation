@@ -99,14 +99,14 @@
 	stable_population = 3
 	required_temperature_min = MIN_AQUARIUM_TEMP+23
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
-	fillet_type = /obj/item/food/fishmeat/quality //Too bad they're poisonous
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish //Too bad they're poisonous
 	fish_traits = list(/datum/fish_trait/heavy, /datum/fish_trait/toxic)
 	beauty = FISH_BEAUTY_GOOD
-
+/*
 /obj/item/fish/pufferfish/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] bites into [src] and starts sucking on it! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return TOXLOSS
-
+*/
 /obj/item/fish/lanternfish
 	name = "lanternfish"
 	fish_id = "lanternfish"
@@ -173,7 +173,7 @@
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_movement_type = /datum/fish_movement/plunger
 	fishing_difficulty_modifier = 25
-	fillet_type = /obj/item/food/fishmeat/quality
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,
@@ -298,7 +298,7 @@
 	average_weight = 1400
 	stable_population = 4
 	fish_traits = list(/datum/fish_trait/heavy)
-	fillet_type = /obj/item/food/fishmeat/quality
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 	favorite_bait = list(
 		list(
 			FISH_BAIT_TYPE = FISH_BAIT_FOODTYPE,

@@ -201,9 +201,9 @@
 
 	var/patience_reduction = 1
 
-	var/turf/onturf = get_turf(loc)
+//	var/turf/onturf = get_turf(loc)
 	//gas check
-	var/datum/gas_mixture/turf_gasmix = onturf.return_air()
+//	var/datum/gas_mixture/turf_gasmix = onturf.return_air()
 	// likes water, gets sleepy, gets very sleepy
 /*
 	if(turf_gasmix.gases[/datum/gas/water_vapor] && turf_gasmix.gases[/datum/gas/water_vapor][MOLES] >= 5)
@@ -548,7 +548,7 @@
 	max_integrity = 500
 	average_size = 30
 	average_weight = 2000
-	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/quality
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/reagent_containers/food/snacks/carpmeat/fish
 	num_fillets = 2
 	stable_population = 3
 	fish_traits = list(

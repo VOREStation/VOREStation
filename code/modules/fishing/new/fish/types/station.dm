@@ -8,7 +8,7 @@
 	random_case_rarity = FISH_RARITY_RARE
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
 	stable_population = 10 ///datum/config_entry/number/mice_roundstart::default //set by New, but this is the default config value
-	fillet_type = /obj/item/food/meat/slab/human/mutant/zombie //eww...
+	fillet_type = /obj/item/reagent_containers/food/snacks/meat/human ///obj/item/food/meat/slab/human/mutant/zombie //eww...
 	fish_traits = list(/datum/fish_trait/necrophage)
 	required_temperature_min = MIN_AQUARIUM_TEMP+15
 	required_temperature_max = MIN_AQUARIUM_TEMP+35
@@ -117,7 +117,7 @@
 	random_case_rarity = FISH_RARITY_VERY_RARE
 	required_fluid_type = AQUARIUM_FLUID_ANY_WATER
 	stable_population = 8
-	fillet_type = /obj/item/food/nugget/fish
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/nugget/fish
 	fish_traits = list(/datum/fish_trait/picky_eater, /datum/fish_trait/no_mating)
 	compatible_types = list(/obj/item/fish/fryish/fritterish, /obj/item/fish/fryish/nessie)
 	spawn_types = list(/obj/item/fish/fryish)

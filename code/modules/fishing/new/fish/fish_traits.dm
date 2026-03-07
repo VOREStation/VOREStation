@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 
 	RegisterSignal(mob, COMSIG_LIVING_HANDLE_BREATHING, PROC_REF(on_non_stasis_life))
 
-/datum/fish_trait/nocturnal/proc/on_non_stasis_life(mob/living/mob, seconds_per_tick = SSMOBS_DT)
+/datum/fish_trait/nocturnal/proc/on_non_stasis_life(mob/living/mob)//, seconds_per_tick = SSMOBS_DT)
 	SIGNAL_HANDLER
 	var/turf/our_turf = mob.loc
 	if(!isturf(our_turf))
@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	. = ..()
 	RegisterSignal(mob, COMSIG_LIVING_HANDLE_BREATHING, PROC_REF(on_non_stasis_life))
 
-/datum/fish_trait/emulsijack/proc/on_non_stasis_life(mob/living/simple_mob/mob, seconds_per_tick = SSMOBS_DT)
+/datum/fish_trait/emulsijack/proc/on_non_stasis_life(mob/living/simple_mob/mob)//, seconds_per_tick = SSMOBS_DT)
 	SIGNAL_HANDLER
 	var/turf/simulated/our_turf = get_turf(mob)
 	if(our_turf)
