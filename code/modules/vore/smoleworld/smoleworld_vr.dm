@@ -119,7 +119,7 @@
 
 /obj/structure/smoletrack/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -136,7 +136,7 @@
 	set name = "Use Color Pieces"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	var/new_color = tgui_color_picker(usr, "Please select color.", "Paint Color", color)
 	color = new_color
@@ -148,7 +148,7 @@
 	set name = "Take Road Apart"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	var/turf/simulated/floor/F = get_turf(src)
@@ -202,7 +202,7 @@
 //makes it so buildings can be dismaintaled or GodZilla style attacked
 /obj/structure/smolebuilding/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -213,7 +213,7 @@
 
 	else if (user.a_intent == I_HURT)
 
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 
 		take_damage()
@@ -265,7 +265,7 @@
 //get material from ruins
 /obj/structure/smoleruins/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolelargeunbuild.ogg', 50, 1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -296,7 +296,7 @@
 	set name = "Use Color Pieces"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	var/new_color = tgui_color_picker(usr, "Please select color.", "Paint Color", color)
 	color = new_color
@@ -307,7 +307,7 @@
 	set name = "Take Building Apart"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	if(!isnull(loc))

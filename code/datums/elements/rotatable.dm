@@ -30,7 +30,7 @@
 	else
 		if(usr.incapacitated())
 			return FALSE
-		if(ismouse(usr))
+		if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB))
 			to_chat(usr, span_notice("You are too tiny to do that!"))
 			return FALSE
 
