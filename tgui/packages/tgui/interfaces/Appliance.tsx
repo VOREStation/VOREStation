@@ -3,6 +3,7 @@ import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Button,
+  Dropdown,
   LabeledList,
   ProgressBar,
   Section,
@@ -14,11 +15,11 @@ export type Data = {
   on: BooleanLike;
   safety: BooleanLike;
   selected_option: string | null;
-  show_selected_option: BooleanLike;
-  temperature: number;
-  optimalTemp: number;
-  temperatureEnough: BooleanLike;
-  efficiency: number;
+  output_options: Record<string, string>;
+  temperature?: number;
+  optimalTemp?: number;
+  temperatureEnough?: BooleanLike;
+  efficiency?: number;
   containersRemovable: BooleanLike;
   our_contents: {
     empty: BooleanLike;
@@ -27,15 +28,17 @@ export type Data = {
     prediction: string;
     container: string | null;
   }[];
+  is_open?: BooleanLike;
+  icon_used?: string;
 };
 
-export const CookingApplianceStatus = (props) => {
+export const ApplianceStatus = (props) => {
   const { act, data } = useBackend<Data>();
   const {
     on,
     safety,
     selected_option,
-    show_selected_option,
+    output_options,
     temperature,
     optimalTemp,
     temperatureEnough,
@@ -68,37 +71,40 @@ export const CookingApplianceStatus = (props) => {
             {safety ? 'On' : 'Off'}
           </Button>
         </LabeledList.Item>
-        {!!show_selected_option && (
+        {!!output_options && !!Object.keys(output_options).length && (
           <LabeledList.Item label="Selected Output">
-            <Button
-              icon="pencil"
+            <Dropdown
               fluid
-              onClick={() => act('change_output')}
-              tooltip="Change Output"
-            >
-              {selected_option || 'Default'}
-            </Button>
+              icon="pencil"
+              selected={selected_option || 'Default'}
+              onSelected={(value) => act('change_output', { value })}
+              options={Object.keys(output_options)}
+            />
           </LabeledList.Item>
         )}
-        <LabeledList.Item label="Temperature">
-          <ProgressBar
-            color={temperatureEnough ? 'good' : 'blue'}
-            value={temperature}
-            maxValue={optimalTemp}
-          >
-            <AnimatedNumber value={temperature} />
-            &deg;C / {optimalTemp}&deg;C
-          </ProgressBar>
-        </LabeledList.Item>
-        <LabeledList.Item label="Efficiency">
-          <AnimatedNumber value={efficiency} />%
-        </LabeledList.Item>
+        {!!temperature && (
+          <LabeledList.Item label="Temperature">
+            <ProgressBar
+              color={temperatureEnough ? 'good' : 'blue'}
+              value={temperature}
+              maxValue={optimalTemp}
+            >
+              <AnimatedNumber value={temperature} />
+              &deg;C / {optimalTemp}&deg;C
+            </ProgressBar>
+          </LabeledList.Item>
+        )}
+        {!!efficiency && (
+          <LabeledList.Item label="Efficiency">
+            <AnimatedNumber value={efficiency} />%
+          </LabeledList.Item>
+        )}
       </LabeledList>
     </Section>
   );
 };
 
-export const CookingAppliance = (props) => {
+export const Appliance = (props) => {
   const { act, data } = useBackend<Data>();
 
   const { containersRemovable, our_contents } = data;
@@ -106,7 +112,7 @@ export const CookingAppliance = (props) => {
   return (
     <Window width={600} height={600}>
       <Window.Content scrollable>
-        <CookingApplianceStatus />
+        <ApplianceStatus />
         <Section title="Containers">
           <LabeledList>
             {our_contents.map((content, i) => {
