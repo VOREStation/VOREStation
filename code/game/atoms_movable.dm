@@ -437,7 +437,7 @@
 		var/turf/T = hit_atom
 		T.hitby(src, throwingdatum)
 
-/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback) //If this returns FALSE then callback will not be called.
+/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback, gentle = FALSE) //If this returns FALSE then callback will not be called.
 	. = TRUE
 	if (!target || speed <= 0 || QDELETED(src) || (target.z != src.z))
 		return FALSE
@@ -450,7 +450,7 @@
 		var/obj/item/thrown_item = src
 		real_force = thrown_item.throwforce
 
-	var/datum/thrownthing/TT = new(src, target, dir, range, speed, thrower, FALSE, real_force, FALSE, callback)
+	var/datum/thrownthing/TT = new(src, target, dir, range, speed, thrower, FALSE, real_force, gentle, callback)
 	throwing = TT
 
 	pixel_z = 0

@@ -112,7 +112,7 @@
 /obj/item/fishing_line/auto_reel/proc/on_hooked_item(obj/item/fishing_rod/source, atom/movable/target, mob/living/user)
 	SIGNAL_HANDLER
 
-	if(!istype(target) || target.anchored || target.move_resist >= MOVE_FORCE_STRONG)
+	if(!istype(target) || target.anchored))// || target.move_resist >= MOVE_FORCE_STRONG)
 		return
 	var/please_be_gentle = FALSE
 	var/atom/destination
@@ -125,7 +125,7 @@
 		throw_callback = CALLBACK(src, PROC_REF(clear_hitby_signal), target)
 		RegisterSignal(target, COMSIG_MOVABLE_PRE_IMPACT, PROC_REF(catch_it_chucklenut))
 
-	if(!target.safe_throw_at(destination, source.cast_range, 2, callback = throw_callback, gentle = please_be_gentle))
+	if(!target.throw_at(destination, source.cast_range, 2, callback = throw_callback, gentle = please_be_gentle))
 		UnregisterSignal(target, COMSIG_MOVABLE_PRE_IMPACT)
 	else
 		playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
