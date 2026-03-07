@@ -86,7 +86,7 @@
 	overlay_state = "portal_tray"
 	fish_table = list(
 		FISHING_DUD = 25,
-		/obj/item/food/grown/grass = 25,
+		/obj/item/reagent_containers/food/snacks/grown/grass = 25,
 		FISHING_RANDOM_SEED = 16,
 		/obj/item/seeds/grassseed = 6,
 		/obj/item/seeds/random = 1,
@@ -95,7 +95,7 @@
 		/mob/living/basic/turtle = 2,
 	)
 	fish_counts = list(
-		/obj/item/food/grown/grass = 10,
+		/obj/item/reagent_containers/food/snacks/grown/grass = 10,
 		/obj/item/seeds/grassseed = 4,
 		FISHING_RANDOM_SEED = 4,
 		/obj/item/seeds/random = 1,
@@ -117,7 +117,7 @@
 		total_weight += weight
 		if(ispath(content, /mob/living))
 			critter_weight += weight
-		else if(ispath(content, /obj/item/food/grown) || ispath(content, /obj/item/seeds) || content == FISHING_RANDOM_SEED)
+		else if(ispath(content, /obj/item/reagent_containers/food/snacks/grown) || ispath(content, /obj/item/seeds) || content == FISHING_RANDOM_SEED)
 			seed_weight += weight
 		else if(content != FISHING_DUD)
 			other_weight += weight

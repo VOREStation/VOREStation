@@ -88,6 +88,7 @@
 	handle_vr_derez()
 
 /mob/living/proc/handle_breathing()
+	SEND_SIGNAL(src, COMSIG_LIVING_HANDLE_BREATHING, seconds_per_tick)
 	return
 
 /mob/living/proc/handle_mutations()

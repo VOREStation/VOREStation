@@ -24,7 +24,7 @@
 	desc = "A clownfish exposed to cherry-flavored lube for far too long. First discovered the days following a cargo incident around the seas of Europa, when thousands of thousands of thousands..."
 	icon_state = "lubefish"
 	random_case_rarity = FISH_RARITY_VERY_RARE
-	fish_traits = list(/datum/fish_trait/picky_eater, /datum/fish_trait/lubed)
+	fish_traits = list(/datum/fish_trait/picky_eater) // /datum/fish_trait/lubed NYI
 	evolution_types = null
 	compatible_types = list(/obj/item/fish/clownfish)
 	food = /datum/reagent/lube
@@ -268,7 +268,7 @@
 		memory_type = /datum/memory/witnessed_inking, \
 		mood_event_type = /datum/mood_event/inked, \
 	)
-	playsound(user, SFX_DESECRATION, 50, TRUE)
+	playsound(user, pick(SFX_DESECRATION), 50, TRUE)
 
 	if(!HAS_TRAIT(user, TRAIT_STRENGTH) && !HAS_TRAIT(user, TRAIT_HULK))
 		return OXYLOSS

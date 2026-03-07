@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 	if(conditions_note)
 		. += " [conditions_note]"
 	return .
-
+/*
 /datum/fish_evolution/lubefish
 	probability = 25
 	new_fish_type = /obj/item/fish/clownfish/lube
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 	if(!HAS_TRAIT(source, TRAIT_FISH_FED_LUBE))
 		return FALSE
 	return ..()
-
+*/
 /datum/fish_evolution/purple_sludgefish
 	probability = 5
 	new_fish_type = /obj/item/fish/sludgefish/purple

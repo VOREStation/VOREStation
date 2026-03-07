@@ -766,7 +766,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 			for(var/current_material in custom_materials)
 				var/datum/material/material = GET_MATERIAL_REF(current_material)
 				force *= GET_MATERIAL_MODIFIER(material.strength_modifier, multiplier)
-		var/datum/material/master = get_master_material()
+		var/datum/material/master = get_primary_material()
 		if(master?.item_sound_override)
 			hitsound = master.item_sound_override
 			usesound = master.item_sound_override

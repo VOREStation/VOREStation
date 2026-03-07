@@ -163,7 +163,7 @@
 	if(get_percent && (material_flags & MATERIAL_EFFECTS) && length(custom_materials))
 		block = list()
 		block += span_info("Right now, fish caught by this fishing rod have a [get_material_fish_chance(user)]% of being made of its same materials.")
-		var/datum/material/material = get_master_material()
+		var/datum/material/material = get_primary_material()
 		if(material.fish_weight_modifier != 1)
 			var/heavier = material.fish_weight_modifier > 1 ? "heavier" : "lighter"
 			block += span_info("Fish made of the same material as this rod tend to be [abs(material.fish_weight_modifier - 1) * 100]% [heavier].")
@@ -241,7 +241,7 @@
 	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials) && HAS_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED))
 		if(prob(get_material_fish_chance(user)))
 			var/obj/item/fish/fish = reward
-			var/datum/material/material = get_master_material()
+			var/datum/material/material = get_primary_material()
 			fish.set_custom_materials(list(material.type = fish.weight))
 	// catching things that aren't fish or alive mobs doesn't consume baits.
 	if(isnull(bait) || HAS_TRAIT(bait, TRAIT_BAIT_UNCONSUMABLE))

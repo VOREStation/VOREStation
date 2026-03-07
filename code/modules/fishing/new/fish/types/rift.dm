@@ -455,10 +455,10 @@
 	// hand-tuned to be a your worst enemy
 	fish_traits = list(
 		/datum/fish_trait/wary, /datum/fish_trait/nocturnal, /datum/fish_trait/emulsijack,
-		/datum/fish_trait/yucky, /datum/fish_trait/lubed, /datum/fish_trait/revival,
+		/datum/fish_trait/yucky,
 		/datum/fish_trait/toxin_immunity, /datum/fish_trait/hallucinogenic,
 		/datum/fish_trait/stinger, /datum/fish_trait/toxic_barbs,
-	)
+	) ///datum/fish_trait/revival, /datum/fish_trait/lubed NYI
 	beauty = FISH_BEAUTY_DISGUSTING
 	fish_movement_type = /datum/fish_movement/slow // a very easy catch!
 	fishing_difficulty_modifier = -35

@@ -17,3 +17,8 @@
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
+
+///coming from a fish trait datum.
+#define FISH_TRAIT_DATUM "fish_trait_datum"
+///coming from a fish evolution datum
+#define FISH_EVOLUTION "fish_evolution"

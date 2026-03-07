@@ -13,6 +13,7 @@
 	conductivity = 13 // For the purposes of balance.
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	supply_conversion_value = 6
+	fish_weight_modifier = 1.75
 
 /datum/material/plasteel/generate_recipes()
 	..()

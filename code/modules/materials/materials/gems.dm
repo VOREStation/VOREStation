@@ -12,7 +12,7 @@
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
 	supply_conversion_value = 5
-
+	fish_weight_modifier = 1.3
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
 /datum/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
@@ -47,6 +47,7 @@
 	supply_conversion_value = 8
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.4
 
 /datum/material/quartz
 	name = MAT_QUARTZ
@@ -95,6 +96,7 @@
 	supply_conversion_value = 30	// These are hilariously rare.
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.7
 
 // Particle Smasher and other exotic materials.
 /datum/material/valhollide
@@ -119,6 +121,7 @@
 	sheet_plural_name = "gems"
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.9
 
 /datum/material/verdantium
 	name = MAT_VERDANTIUM
@@ -142,6 +145,7 @@
 	supply_conversion_value = 8
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.8
 
 /datum/material/morphium
 	name = MAT_MORPHIUM
@@ -165,6 +169,7 @@
 	supply_conversion_value = 13
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 2.0
 
 /datum/material/glamour
 	name = MAT_GLAMOUR
@@ -188,6 +193,7 @@
 	supply_conversion_value = 15
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 2.5
 
 /datum/material/glamour/generate_recipes()
 	..()

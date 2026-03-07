@@ -129,7 +129,7 @@
 	stable_population = 3
 	fillet_type = /obj/item/stack/material/chitin
 	num_fillets = 2
-	fish_traits = list(/datum/fish_trait/revival, /datum/fish_trait/carnivore)
+	fish_traits = list(/datum/fish_trait/carnivore) ///datum/fish_trait/revival, NYI
 	average_size = 70
 	average_weight = 2000
 	death_text = "%SRC stops moving." //It's dead... or is it?

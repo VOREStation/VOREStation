@@ -139,7 +139,7 @@
 
 /obj/structure/fish_mount/proc/get_fish_beauty()
 	var/beauty = 100 + mounted_fish.beauty * 1.2
-	var/datum/material/main_material = mounted_fish.get_master_material()
+	var/datum/material/main_material = mounted_fish.get_primary_material()
 	if(main_material)
 		beauty += main_material.beauty_modifier * mounted_fish.weight
 	return round(beauty)

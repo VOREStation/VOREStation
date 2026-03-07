@@ -78,6 +78,22 @@ GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 			else
 				.[M] = matter[mat]
 
+/**
+ * Geets the primary material of the object and returns that material.
+ */
+/obj/item/proc/get_primary_material()
+	var/list/item_materials = get_material_composition()
+	var/list/mats_consumed = list()
+	for(var/MAT in item_materials)
+		if(!can_hold_material(MAT))
+			continue
+		var/mat_amount = OPTIMAL_COST(item_materials[MAT] * multiplier)
+		materials[MAT] += mat_amount
+		if(item_materials[MAT] > max_mat_value)
+			max_mat_value = item_materials[MAT]
+			primary_mat = MAT
+	return primary_mat
+
 /obj/item/proc/set_custom_materials(list/materials, multiplier = 1)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -249,6 +265,9 @@ GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 	var/rotting_touch_message = "crumbles under your touch"
 
 	var/wiki_flag = 0
+
+	/// Fish made of or infused with this material have their weight multiplied by this value.
+	var/fish_weight_modifier = 1
 
 // Placeholders for light tiles and rglass.
 /datum/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
