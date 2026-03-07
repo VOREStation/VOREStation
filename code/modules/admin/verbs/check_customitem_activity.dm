@@ -83,4 +83,4 @@ ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of
 
 	checked_for_inactives = 1
 	if(C)
-		C.check_customitem_activity()
+		SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/check_customitem_activity) //Recursively calling ourselves until cancelled or a unique name is given.
