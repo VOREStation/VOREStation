@@ -344,15 +344,15 @@
 	desc = "A slip of paper containing a pearl of wisdom about fishing within it, though you wish it were an actual pearl."
 
 /obj/item/paper/paperslip/fishing_tip/Initialize(mapload)
-	default_raw_text = pick(GLOB.fishing_tips)
+	info = pick(GLOB.fishing_tips)
 	return ..()
 
 /obj/item/paper/lures_instructions
 	name = "instructions paper"
 	icon_state = "slipfull"
-	show_written_words = FALSE
+//	show_written_words = FALSE
 	desc = "A piece of grey paper with a how-to for dummies about fishing lures printed on it. Smells cheap."
-	default_raw_text =  "<b>Thank you for buying this set.</b><br>\
+	info =  "<b>Thank you for buying this set.</b><br>\
 		This a simple non-exhaustive set of instructions on how to use fishing lures, some information may \
 		be slightly incorrect or oversimplified.<br><br>\
 
@@ -368,24 +368,25 @@
 		That's all, best of luck to your angling journey."
 
 ///A modified mining capsule from the black market and sometimes random loot.
+/*
 /obj/item/survivalcapsule/fishing
 	name = "fishing spot capsule"
 	desc = "An illegally modified mining capsule containing a small fishing spot connected to some faraway place."
 	icon_state = "capsule_fishing"
-	initial_language_holder = /datum/language_holder/speaking_machine
-	verb_say = "beeps"
-	verb_yell = "blares"
-	voice_filter = "alimiter=0.9,acompressor=threshold=0.3:ratio=40:attack=15:release=350:makeup=1.5,highpass=f=1000,rubberband=pitch=1.5"
+//	initial_language_holder = /datum/language_holder/speaking_machine
+//	verb_say = "beeps"
+//	verb_yell = "blares"
+//	voice_filter = "alimiter=0.9,acompressor=threshold=0.3:ratio=40:attack=15:release=350:makeup=1.5,highpass=f=1000,rubberband=pitch=1.5"
 	template_id = "fishing_default"
-	yeet_back = FALSE
+//	yeet_back = FALSE
 
 /obj/item/survivalcapsule/fishing/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 	register_context()
 
-	if(SStts.tts_enabled) //This capsule informs you on why it cannot be deployed in a sliiiiightly different way.
-		voice = pick(SStts.available_speakers)
+//	if(SStts.tts_enabled) //This capsule informs you on why it cannot be deployed in a sliiiiightly different way.
+//		voice = pick(SStts.available_speakers)
 
 /obj/item/survivalcapsule/fishing/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(!held_item || held_item == src)
@@ -462,7 +463,7 @@
 
 /obj/item/survivalcapsule/fishing/hacked
 	obj_flags = parent_type::obj_flags | EMAGGED
-
+*/
 #undef MAGNET_HOOK_BONUS_MULTIPLIER
 #undef RESCUE_HOOK_FISH_MULTIPLIER
 
@@ -471,10 +472,10 @@
 	desc = "A vibrant bag for storing caught fish."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fishing_bag"
-	worn_icon_state = "fishing_bag"
+	item_state = "fishing_bag"
 	resistance_flags = FLAMMABLE
-	custom_price = PAYCHECK_CREW * 3
-	storage_type = /datum/storage/bag/fishing
+//	custom_price = PAYCHECK_CREW * 3
+//	storage_type = /datum/storage/bag/fishing
 
 	///How much holding this affects fishing difficulty
 	var/fishing_modifier = -2
@@ -482,15 +483,15 @@
 /obj/item/storage/bag/fishing/Initialize(mapload)
 	. = ..()
 
-	AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier, works_in_hands = TRUE)
 
 /obj/item/storage/bag/fishing/carpskin
 	name = "carpskin fishing bag"
 	desc = "A dapper fishing bag made from carpskin. You can store quite a lot of fishing gear in the small pockets formed by larger scales."
 	icon_state = "fishing_bag_carpskin"
-	worn_icon_state = "fishing_bag_carpskin"
+	item_state = "fishing_bag_carpskin"
 	resistance_flags = ACID_PROOF
-	storage_type = /datum/storage/carpskin_bag
+//	storage_type = /datum/storage/carpskin_bag
 	fishing_modifier = -4
 
 ///An item that allows the user to add and remove traits from a fish at their own discretion.
@@ -500,22 +501,26 @@
 	icon_state = "fish_gun"
 	item_state = "fish_gun"
 	item_state = "gun" //Oh, the laziness
-	worn_icon_state = "gun"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+//	worn_icon_state = "gun"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/guns_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/guns_righthand.dmi',
+		)
 	desc = "A device designed to inject or extract traits to and from fish. It takes an empty syringe, which is converted into a fish gene injector once the trait is extracted. Repeated applications may kill the fish."
 	w_class = ITEMSIZE_SMALL
 	force = 7
 	throwforce = 5
-	attack_verb_continuous = list("pricked", "stabbed", "poked")
-	attack_verb_simple = list("prick", "stab", "poke")
+	attack_verb = list("pricked", "stabbed", "poked")
+//	attack_verb_simple = list("prick", "stab", "poke")
 	hitsound = 'sound/items/hypospray.ogg'
 	//This can be an empty syringe or a gene injector
 	var/obj/item/loaded_injector
 
+/*
 /obj/item/fish_genegun/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/eyestab)
+*/
 
 /obj/item/fish_genegun/examine(mob/user)
 	. = ..()
@@ -532,18 +537,21 @@
 
 /obj/item/fish_genegun/update_icon_state()
 	. = ..()
-	icon_state = base_icon_state
+	icon_state = initial(icon_state)
 	if(!loaded_injector)
 		return
 	icon_state += istype(loaded_injector, /obj/item/reagent_containers/syringe) ? "_extract" : "_inject"
 
 /obj/item/fish_genegun/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!loaded_injector)
 		balloon_alert(user, "gene-gun is empty!")
 		return
 	var/obj/item/loaded = loaded_injector
 	loaded.forceMove(drop_location()) //this will unset the loaded_injector variable
-	if(IsReachableBy(user)) //check that the user can actually reach the loaded injector (telekinesis yadda yadda)
+	if(Adjacent(user)) //check that the user can actually reach the loaded injector (telekinesis yadda yadda)
 		user.put_in_hands(loaded)
 	balloon_alert(user, "gene-gun unloaded")
 	playsound(src, 'sound/items/weapons/gun/general/magazine_remove_full.ogg', 30, TRUE)
@@ -564,7 +572,7 @@
 	if(is_syringe && item.reagents.total_volume)
 		to_chat(user, span_warning("[src] cannot accept a syringe that isn't empty. Empty it first."))
 		return ITEM_INTERACT_BLOCKING
-	if(!user.transferItemToLoc(item, src))
+	if(user.unEquip(item))
 		to_chat(user, span_warning("[item] is stuck to your hands."))
 		return ITEM_INTERACT_BLOCKING
 	to_chat(user, span_info("You load [item] into [src]."))
@@ -579,9 +587,11 @@
 	if(!loaded_injector)
 		balloon_alert(user, "gene-gun is empty!")
 		return ITEM_INTERACT_BLOCKING
+	/*
 	if(interacting_with.flags_1 & HOLOGRAM_1)
 		to_chat(user, span_warning("[interacting_with] is incompatible with [src]"))
 		return ITEM_INTERACT_BLOCKING
+	*/
 	var/obj/item/fish/fish = interacting_with
 	var/is_syringe = istype(loaded_injector, /obj/item/reagent_containers/syringe)
 	if(fish.status == FISH_DEAD)
@@ -599,7 +609,7 @@
 	for(var/datum/fish_trait/trait_type as anything in fish.fish_traits)
 		choices[trait_type::name] = trait_type
 	var/choice = tgui_input_list(user, "Choose a trait to extract", "Fish Trait Extraction", choices)
-	if(!choice || QDELETED(fish) || !user.is_holding(src) || !fish.IsReachableBy(user))
+	if(!choice || QDELETED(fish) || !user.item_is_in_hands(src) || !fish.Adjacent(user))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!istype(loaded_injector, /obj/item/reagent_containers/syringe)) //The syringe was taken out
@@ -634,9 +644,11 @@
 	desc = "A single-use injector containing a specific trait that can be used on any (living) fish compatible with it."
 	w_class = ITEMSIZE_TINY
 	item_state = "dnainjector"
-	worn_icon_state = "pen"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_lefthand.dmi',
+		)
+	item_state = "pen"
 	throw_speed = 3
 	throw_range = 5
 	var/datum/fish_trait/trait_type
@@ -655,9 +667,11 @@
 /obj/item/fish_gene/interact_with_atom(obj/interacting_with, mob/living/user, list/modifiers)
 	if(!isfish(interacting_with))
 		return NONE
+	/*
 	if(interacting_with.flags_1 & HOLOGRAM_1)
 		to_chat(user, span_warning("[interacting_with] is incompatible with [src]"))
 		return ITEM_INTERACT_BLOCKING
+	*/
 	var/obj/item/fish/fish = interacting_with
 	if(fish.status == FISH_DEAD)
 		to_chat(user, span_warning("[src] cannot inject traits into the deceased [fish.name]."))
