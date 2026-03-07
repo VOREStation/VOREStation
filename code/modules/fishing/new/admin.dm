@@ -1,20 +1,20 @@
 ADMIN_VERB(fishing_calculator, R_DEBUG, "Fishing Calculator", "A calculator... for fishes?", ADMIN_CATEGORY_DEBUG)
 	var/datum/fishing_calculator/ui = new
-	ui.ui_interact(user.mob)
+	ui.tgui_interact(user.mob)
 
 /datum/fishing_calculator
 	var/list/current_table
 
-/datum/fishing_calculator/ui_interact(mob/user, datum/tgui/ui)
+/datum/fishing_calculator/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "FishingCalculator")
 		ui.open()
 
-/datum/fishing_calculator/ui_state(mob/user)
+/datum/fishing_calculator/tgui_state(mob/user)
 	return ADMIN_STATE(R_DEBUG)
 
-/datum/fishing_calculator/ui_close(mob/user)
+/datum/fishing_calculator/tgui_close(mob/user)
 	qdel(src)
 
 /datum/fishing_calculator/tgui_static_data(mob/user)
