@@ -437,7 +437,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			character.dna.real_name = character.real_name
 		character.nickname = read_preference(/datum/preference/name/nickname)
 	character.gender = read_preference(/datum/preference/choiced/gender/biological)
-	character.identifying_gender = read_preference(/datum/preference/choiced/gender/identifying)
+	character.change_gender_identity(read_preference(/datum/preference/choiced/gender/identifying))
 
 	character.h_style	= h_style
 

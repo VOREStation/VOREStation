@@ -51,7 +51,7 @@
 
 	//Mental stuff the game doesn't keep mentally
 	if(istype(M) || istype(M,/mob/living/carbon/brain/caught_soul))
-		id_gender = M.identifying_gender
+		id_gender = M.get_gender_identity()
 		languages = M.languages.Copy()
 		mind_oocnotes = M.ooc_notes
 		if(M.nif)

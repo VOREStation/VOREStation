@@ -166,23 +166,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(H.zone_sel.selecting in parent_handles)
 		return ..()
 
-	var/t_him = "them"
-	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
-		switch(T.identifying_gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-	else
-		switch(target.gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-
-	H.visible_message(span_infoplain(span_bold("\The [H]") + " glomps [target] to make [t_him] feel better!"), \
-					span_notice("You glomp [target] to make [t_him] feel better!"))
+	H.visible_message(span_infoplain(span_bold("\The [H]") + " glomps [target] to make [target.p_them()] feel better!"), \
+					span_notice("You glomp [target] to make [target.p_them()] feel better!"))
 	H.apply_stored_shock_to(target)
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
@@ -361,25 +346,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(!stored_shock_by_ref["\ref[H]"])
 		return
 
-	var/t_she = "She is"
-	if(H.identifying_gender == MALE)
-		t_she = "He is"
-	else if(H.identifying_gender == PLURAL)
-		t_she = "They are"
-	else if(H.identifying_gender == NEUTER)
-		t_she = "It is"
-	else if(H.identifying_gender == HERM) //VOREStation Edit
-		t_she = "Shi is"
-
 	switch(stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)
-			return "[t_she] flickering gently with a little electrical activity."
+			return "[p_They()] [p_are()] flickering gently with a little electrical activity."
 		if(11 to 20)
-			return "[t_she] glowing gently with moderate levels of electrical activity.\n"
+			return "[p_They()] [p_are()] glowing gently with moderate levels of electrical activity.\n"
 		if(21 to 35)
-			return span_warning("[t_she] glowing brightly with high levels of electrical activity.")
+			return span_warning("[p_They()] [p_are()] glowing brightly with high levels of electrical activity.")
 		if(35 to INFINITY)
-			return span_danger("[t_she] radiating massive levels of electrical activity!")
+			return span_danger("[p_They()] [p_are()] radiating massive levels of electrical activity!")
 
 /mob/living/carbon/human/proc/prommie_blobform()
 	set name = "Toggle Blobform"

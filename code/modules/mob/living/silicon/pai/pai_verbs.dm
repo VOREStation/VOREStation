@@ -56,16 +56,6 @@
 		idaccessible = 0
 		visible_message(span_notice("\The [src] clicks as their access modification slot closes."),span_notice("You block access modfications."), runemessage = "click")
 
-/mob/living/silicon/pai/verb/toggle_gender_identity_vr()
-	set name = "Set Gender Identity"
-	set desc = "Sets the pronouns when examined and performing an emote."
-	set category = "IC.Settings"
-	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity:", "Set Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM))
-	if(!new_gender_identity)
-		return 0
-	gender = new_gender_identity
-	return 1
-
 /mob/living/silicon/pai/verb/pai_hide()
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
@@ -173,34 +163,6 @@
 		card.setEmotion(card.current_emotion)
 
 /mob/living/silicon/pai/proc/hug(var/mob/living/silicon/pai/H, var/mob/living/target)
-
-	var/t_him = "them"
-	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
-		switch(T.identifying_gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-			if(NEUTER)
-				t_him = "it"
-			if(HERM)
-				t_him = "hir"
-			else
-				t_him = "them"
-	else
-		switch(target.gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-			if(NEUTER)
-				t_him = "it"
-			if(HERM)
-				t_him = "hir"
-			else
-				t_him = "them"
-
 	if(H.zone_sel.selecting == BP_HEAD)
 		H.visible_message( \
 			span_notice("[H] pats [target] on the head."), \
@@ -214,6 +176,6 @@
 			span_notice("[H] boops [target]'s nose."), \
 			span_notice("You boop [target] on the nose."), )
 	else
-		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
-						span_notice("You hug [target] to make [t_him] feel better!"))
+		H.visible_message(span_notice("\The [H] hugs \the [target] to make [target.p_them()] feel better!"), \
+						span_notice("You hug \the [target] to make [target.p_them()] feel better!"))
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

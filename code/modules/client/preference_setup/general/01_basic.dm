@@ -52,7 +52,7 @@
 	character.nickname = pref.read_preference(/datum/preference/name/nickname)
 
 	character.gender = char_bio_gender
-	character.identifying_gender = char_id_gender
+	character.change_gender_identity(char_id_gender)
 
 	character.vore_egg_type	= pref.vore_egg_type
 	// VOREStation Add

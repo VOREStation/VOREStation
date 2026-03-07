@@ -161,7 +161,7 @@
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_back)
 		temp.disguise(c_type.type)
 		temp.canremove = FALSE
-	corpse.identifying_gender = H.identifying_gender
+	H.exchange_gender(corpse)
 	corpse.flavor_texts = H.flavor_texts.Copy()
 	corpse.real_name = H.real_name
 	corpse.name = H.name

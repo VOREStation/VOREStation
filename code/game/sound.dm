@@ -435,9 +435,9 @@ GLOBAL_LIST_INIT(species_sound_map, list(
 	var/mob/living/carbon/human/H = user
 	if(ishuman(H))
 		if(H.species.gender_specific_species_sounds) // Do we have gender-specific sounds?
-			if(H.identifying_gender == FEMALE && H.species.species_sounds_female)
+			if(H.get_gender_identity() == FEMALE && H.species.species_sounds_female)
 				return H.species.species_sounds_female
-			else if(H.identifying_gender == MALE && H.species.species_sounds_male)
+			else if(H.get_gender_identity() == MALE && H.species.species_sounds_male)
 				return H.species.species_sounds_male
 			else // Failsafe. Update if there's ever gendered sounds for HERM/Neuter/etc
 				return H.species.species_sounds

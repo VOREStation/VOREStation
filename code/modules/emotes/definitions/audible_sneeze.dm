@@ -13,7 +13,7 @@
 		var/vol = H.species.sneeze_volume
 		var/s = get_species_sound(get_gendered_sound(H))["sneeze"]
 		if(!s && !(get_species_sound(H.species.species_sounds) == "None")) // Failsafe, so we always use the default sneeze/etc sounds. None will cancel out anyways.
-			if(H.identifying_gender == FEMALE)
+			if(H.get_gender_identity() == FEMALE)
 				s = get_species_sound("Human Female")["sneeze"]
 			else // Update this if we ever get herm/etc sounds.
 				s = get_species_sound("Human Male")["sneeze"]

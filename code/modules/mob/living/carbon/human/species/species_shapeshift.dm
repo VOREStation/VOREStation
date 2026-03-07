@@ -133,11 +133,11 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_gender = tgui_input_list(src, "Please select a gender.", "Shapeshifter Gender", list(FEMALE, MALE, NEUTER, PLURAL))
+	var/new_gender = tgui_input_list(src, "Please select a gender.", "Shapeshifter Gender", byond_genders_define_list)
 	if(!new_gender)
 		return
 
-	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity.", "Shapeshifter Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM)) //VOREStation Edit
+	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity.", "Shapeshifter Gender Identity", all_genders_define_list)
 	if(!new_gender_identity)
 		return
 

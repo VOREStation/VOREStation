@@ -476,7 +476,7 @@
 
 	return SPECIES_HUMAN
 
-/mob/new_player/get_gender()
+/mob/new_player/get_gender_identity()
 	if(!client || !client.prefs) ..()
 	return client.prefs.read_preference(/datum/preference/choiced/gender/biological)
 

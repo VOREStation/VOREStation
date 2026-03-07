@@ -142,7 +142,7 @@
 					return 1
 		if("gender_id")
 			if(can_change(owner, APPEARANCE_GENDER) && (params["gender_id"] in all_genders_define_list))
-				owner.identifying_gender = params["gender_id"]
+				owner.change_gender_identity(params["gender_id"])
 				changed_hook(APPEARANCECHANGER_CHANGED_GENDER_ID)
 				return 1
 		if("skin_tone")
@@ -811,7 +811,7 @@
 	data["name"] = owner.name
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
-	data["gender_id"] = owner.identifying_gender //This is saved to your MIND.
+	data["gender_id"] = owner.get_gender_identity() //This is saved to your MIND.
 	data["change_race"] = can_change(owner, APPEARANCE_RACE)
 	data["saveslot_load"] = can_change(owner, APPEARANCE_ALL_COSMETIC)
 	data["change_misc"] = can_change(owner, APPEARANCE_MISC)

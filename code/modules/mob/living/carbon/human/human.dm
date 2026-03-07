@@ -69,6 +69,7 @@
 	initialize_vessel()
 	regenerate_icons()
 
+	AddComponent(/datum/component/gender_identity) // Byond doesn't have support for all our options
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/hose_connector/inflation) // Comment out to disable all human mob inflation mechanics
 
@@ -1018,7 +1019,7 @@
 		if(VISIBLE_GENDER_FORCE_PLURAL)
 			return PLURAL
 		if(VISIBLE_GENDER_FORCE_IDENTIFYING)
-			return get_gender()
+			return get_gender_identity()
 		if(VISIBLE_GENDER_FORCE_BIOLOGICAL)
 			return gender
 		else
@@ -1031,7 +1032,7 @@
 						return PLURAL
 				else if(!isobserver(user) && !issilicon(user))
 					return PLURAL
-			return get_gender()
+			return get_gender_identity()
 
 /mob/living/carbon/human/proc/increase_germ_level(n)
 	if(gloves)

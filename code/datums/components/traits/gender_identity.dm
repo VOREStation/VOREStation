@@ -1,0 +1,90 @@
+/datum/component/gender_identity
+	var/identifying_gender = NEUTER
+	dupe_mode = COMPONENT_DUPE_UNIQUE // If we are given, do not replace us, we've already been set by the player...
+
+/datum/component/gender_identity/Initialize(set_gender)
+	identifying_gender = set_gender
+	if(ismob(parent)) // Allow mobs to change this as desired
+		var/mob/our_mob = parent
+		add_verb(our_mob,/mob/proc/verb_assign_gender_identity)
+
+/// Sets the gender identity of an atom to a specific gender key, such as PLURAL, MALE, FEMALE, PLURAL, or any extended gender that byond does not regularly support. If this is done without a /datum/component/gender_identity component, only the base byond genders will be applied. Returns TRUE if the gender assigned is different to what it was previously.
+/atom/proc/change_gender_identity(new_gender, force_complex_gender = FALSE)
+	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
+	if(comp)
+		if(comp.identifying_gender != new_gender)
+			comp.identifying_gender = new_gender
+			return TRUE
+		return FALSE
+
+	// If the assigning gender is not complex, then try to only change byond gender.
+	var/old_gender = gender
+	var/is_byond_safe = (new_gender in byond_genders_define_list)
+	if(!comp && force_complex_gender) // We want to force them to get the component
+		AddComponent(/datum/component/gender_identity, new_gender)
+	gender = PLURAL
+	if(is_byond_safe)
+		gender = new_gender
+	return old_gender != get_gender_identity()
+
+/// Used to get the gender identity of an atom. Byond does not support gender keys other than PLURAL, MALE, FEMALE, PLURAL. So it must have a /datum/component/gender_identity component if extended genders are going to be used.
+/atom/proc/get_gender_identity()
+	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
+	if(comp) // We use complex genders
+		return comp.identifying_gender
+	return gender // Assume byond genders
+
+// Safely applies a gender identity component's gender to byond gender, if the gender isn't supported by byond, use plural.
+#define APPLY_COMPONENT_TO_BYOND_GENDER destination.gender = PLURAL;\
+if((comp.identifying_gender in byond_genders_define_list))\
+{\
+	destination.gender = comp.identifying_gender;\
+}
+/// Transfers the gender identity of one atom to another. By default, if the destination does not support complex genders(and a complex gender is in use!), it will be given the component to do so.
+/atom/proc/exchange_gender(atom/destination, force_complex_gender = TRUE)
+	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
+	var/datum/component/gender_identity/destcomp = destination.GetComponent(/datum/component/gender_identity)
+
+	// Force complex gender! Give the other object the component. Only if our source is also complex...
+	if(comp && !destcomp && force_complex_gender)
+		destination.AddComponent(/datum/component/gender_identity, comp.identifying_gender)
+		APPLY_COMPONENT_TO_BYOND_GENDER
+		return TRUE
+
+	// If neither of us support, just exchange byond gender
+	if(!comp && !destcomp)
+		destination.gender = gender
+		return TRUE
+
+	// Both support, easy!
+	if(comp && destcomp)
+		destcomp.identifying_gender = comp.identifying_gender
+		APPLY_COMPONENT_TO_BYOND_GENDER
+		return TRUE
+
+	// Our destination doesn't support complex genders...
+	if(comp && !destcomp)
+		APPLY_COMPONENT_TO_BYOND_GENDER
+		return TRUE
+
+	// We don't support complex genders, use our base gender when setting theirs! No safety here as we can only have byond safe genders anyway
+	if(destcomp && !comp)
+		destcomp.identifying_gender = gender
+		destination.gender = gender
+		return TRUE
+
+	// Otherwise we failed somehow?
+	return FALSE
+#undef APPLY_COMPONENT_TO_BYOND_GENDER
+
+/// Allows gender identity to be assigned at player's discretion.
+/mob/proc/verb_assign_gender_identity()
+	set name = "Set Gender Identity"
+	set desc = "Sets the pronouns when examined and performing an emote."
+	set category = "IC.Settings"
+
+	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity:", "Set Gender Identity", all_genders_define_list)
+	if(!new_gender_identity)
+		return FALSE
+	change_gender_identity(new_gender_identity, TRUE)
+	return TRUE
