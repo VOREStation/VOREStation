@@ -165,14 +165,12 @@
 /obj/structure/ghost_pod/ghost_activated/unified_hole/update_icon()
 	cut_overlays()
 
-	. = list()
+	var/list/glows = list()
 
 	if(!used)
-		. += mutable_appearance(icon, "rift")
-		. += emissive_appearance(icon, "rift")
-		return add_overlay(.)
-	else
-		return
+		glows += mutable_appearance(icon, "rift")
+		glows += emissive_appearance(icon, "rift")
+		return add_overlay(glows)
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
 	GLOB.active_ghost_pods -= src
