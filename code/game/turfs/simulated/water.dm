@@ -23,6 +23,9 @@
 
 	var/watercolor = null
 
+	/// Fishing element for this specific water tile
+	var/datum/fish_source/fishing_datum = /datum/fish_source/river
+
 /turf/simulated/floor/water/proc/handle_water_icons()
 	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
 	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
@@ -31,7 +34,8 @@
 /turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()
-//	handle_fish()
+	if(!isnull(fishing_datum))
+		add_lazy_fishing(fishing_datum)
 
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.

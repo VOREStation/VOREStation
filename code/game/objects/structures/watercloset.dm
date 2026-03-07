@@ -24,6 +24,8 @@
 	open = round(rand(0, 1))
 	update_icon()
 	AddComponent(/datum/component/hose_connector/endless_drain) // Cannot suck from toilet... for obvious reasons.
+	if(mapload && z in using_map.station_levels)
+		AddComponent(/datum/component/fishing_spot, GLOB.preset_fish_sources[/datum/fish_source/toilet])
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
