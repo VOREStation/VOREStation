@@ -1241,7 +1241,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/disposable_teleporter/slime, \
 	/obj/item/slimepotion, \
 	/obj/item/slime_extract, \
-	/obj/item/reagent_containers/food/snacks/monkeycube
+	/obj/item/reagent_containers/food/snacks/monkeycube, \
+	/obj/item/anomaly_releaser
 
 #define CIRCUIT_GRIPPER \
 	/obj/item/cell/device, \

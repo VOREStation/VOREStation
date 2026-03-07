@@ -3101,6 +3101,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "afh" = (
@@ -8602,6 +8603,7 @@
 /area/tether/surfacebase/surface_one_hall)
 "aoR" = (
 /obj/machinery/light/small,
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "aoS" = (
@@ -28631,6 +28633,14 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"aYy" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/assembly/signaler/anomaly/flux{
+	pixel_y = 13;
+	pixel_x = 7
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYz" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -28640,6 +28650,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"aYA" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/anomaly_releaser/science{
+	pixel_y = 2;
+	pixel_x = 3
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = 1;
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYB" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -28647,6 +28669,18 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
+"aYC" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/anomaly_scanner{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYE" = (
 /obj/structure/toilet{
 	pixel_y = 10
@@ -45942,8 +45976,8 @@ auK
 avh
 abm
 abw
-abw
-abw
+aYC
+aYy
 abv
 afA
 abv
@@ -46227,7 +46261,7 @@ avh
 abm
 abw
 abw
-abw
+aYA
 adM
 afU
 abI
