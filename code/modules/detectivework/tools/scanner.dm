@@ -68,7 +68,7 @@
 		return 0
 
 	//General
-	if (!A.forensic_data?.has_prints() && !A.forensic_data?.has_fibres() && !A.forensic_data.has_blooddna())
+	if (!A.forensic_data?.has_prints() && !A.forensic_data?.has_fibres() && !A.forensic_data?.has_blooddna())
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 		span_warning("Unable to locate any fingerprints, materials, fibers, or blood on [A]!"),\
 		"You hear a faint hum of electrical equipment.")
