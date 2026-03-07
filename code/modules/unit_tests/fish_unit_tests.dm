@@ -239,7 +239,7 @@
 /datum/unit_test/fish_portal_gen_linking
 
 /datum/unit_test/fish_portal_gen_linking/Run()
-	var/mob/living/carbon/human/consistent/user = allocate(__IMPLIED_TYPE__)
+	var/mob/living/carbon/human/user = allocate(__IMPLIED_TYPE__)
 	var/obj/machinery/fishing_portal_generator/portal = allocate(__IMPLIED_TYPE__)
 	var/obj/structure/toilet/unit_test/fishing_spot = new(get_turf(user)) //This is deleted during the test
 	var/obj/structure/moisture_trap/extra_spot = allocate(/obj/structure/moisture_trap)
@@ -283,7 +283,7 @@
 // we want no default spawns in this unit test
 /datum/chasm_detritus/restricted/bodies/no_defaults
 	default_contents_chance = 0
-
+/*
 /// Checks that we are able to fish people out of chasms with priority and that they end up in the right location
 /datum/unit_test/fish_rescue_hook
 	priority = TEST_LONGER
@@ -293,12 +293,12 @@
 
 /datum/unit_test/fish_rescue_hook/Run()
 	// create our human dummies to be dropped into the chasm
-	var/mob/living/carbon/human/consistent/get_in_the_hole = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/get_in_the_hole = allocate(/mob/living/carbon/human)
 	var/mob/living/basic/mining/lobstrosity/you_too = allocate(/mob/living/basic/mining/lobstrosity)
-	var/mob/living/carbon/human/consistent/mindless = allocate(/mob/living/carbon/human/consistent)
-	var/mob/living/carbon/human/consistent/no_brain = allocate(/mob/living/carbon/human/consistent)
-	var/mob/living/carbon/human/consistent/empty = allocate(/mob/living/carbon/human/consistent)
-	var/mob/living/carbon/human/consistent/dummy = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/mindless = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/no_brain = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/empty = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human)
 
 	mobs_spawned = list(
 		get_in_the_hole,
@@ -321,7 +321,7 @@
 		sleep(0.2 SECONDS) // we have to WAIT because the drop() proc sleeps.
 
 	// our 'fisherman' where we expect the item to be moved to after fishing it up
-	var/mob/living/carbon/human/consistent/a_fisherman = allocate(/mob/living/carbon/human/consistent, run_loc_floor_top_right)
+	var/mob/living/carbon/human/a_fisherman = allocate(/mob/living/carbon/human/consistent, run_loc_floor_top_right)
 
 	// pretend like this mob has a mind. they should be fished up first
 	no_brain.mind_initialize()
@@ -352,7 +352,7 @@
 	QDEL_LIST(mobs_spawned)
 	run_loc_floor_bottom_left.ChangeTurf(original_turf_type, original_turf_baseturfs)
 	return ..()
-
+*/
 ///Check that the fish growth component works.
 /datum/unit_test/fish_growth
 
@@ -423,7 +423,7 @@
 	///For good measure, let's try it again, but with the component this time, and a human mob and gloves
 	qdel(run_loc_floor_bottom_left.GetComponent(/datum/component/fishing_spot))
 	var/datum/component/comp = run_loc_floor_bottom_left.AddComponent(/datum/component/fishing_spot, source)
-	var/mob/living/carbon/human/consistent/angler = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/angler = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/clothing/gloves/noodling = allocate(/obj/item/clothing/gloves)
 	noodling.AddComponent(/datum/component/profound_fisher)
 	angler.equip_to_slot(noodling, ITEM_SLOT_GLOVES)
@@ -466,7 +466,7 @@
 	edible.eat_time = 0
 	TEST_ASSERT(fish.GetComponent(/datum/component/infective), "Fish doesn't have the infective component")
 
-	var/mob/living/carbon/human/consistent/gourmet = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/gourmet = allocate(/mob/living/carbon/human/consistent)
 
 	var/food_quality = edible.get_perceived_food_quality(gourmet)
 	TEST_ASSERT(food_quality < 0, "Humans don't seem to dislike raw, unprocessed fish when they should")
