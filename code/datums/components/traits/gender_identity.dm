@@ -30,14 +30,20 @@
 /atom/proc/exchange_gender(atom/destination, force_complex_gender = TRUE)
 	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
 	var/datum/component/gender_identity/destcomp = destination.GetComponent(/datum/component/gender_identity)
+
 	// If neither of us support, just exchange byond gender
 	if(!comp && !destcomp)
 		destination.gender = gender
 		return TRUE
+
 	// Both support, easy!
 	if(comp && destcomp)
 		destcomp.identifying_gender = comp.identifying_gender
+		destination.gender = PLURAL // make sure the complex gender can be assigned to the byond gender, if not assume plural
+		if((comp.identifying_gender in byond_genders_define_list))
+			destination.gender = comp.identifying_gender
 		return TRUE
+
 	// Our destination doesn't support complex genders...
 	if(comp && !destcomp)
 		if(!(comp.identifying_gender in byond_genders_define_list))
@@ -50,10 +56,13 @@
 			return TRUE
 		destination.gender = comp.identifying_gender
 		return TRUE
+
 	// We don't support complex genders, use our base gender when setting theirs! No safety here as we can only have byond safe genders anyway
 	if(destcomp && !comp)
 		destcomp.identifying_gender = gender
+		destcomp.gender = gender
 		return TRUE
+
 	// Otherwise we failed somehow?
 	return FALSE
 

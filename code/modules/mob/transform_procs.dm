@@ -153,7 +153,7 @@
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
 
-	O.gender = gender
+	exchange_gender(O)
 	O.invisibility = INVISIBILITY_NONE
 
 	if(mind)		//TODO
