@@ -246,26 +246,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 /datum/player_info/var/content // text content of the information
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
-/datum/admins/proc/PlayerNotes()
-	set category = "Admin.Logs"
-	set name = "Player Notes"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	PlayerNotesPage(1)
+ADMIN_VERB(PlayerNotes, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Player Notes", "Access the player notes.", ADMIN_CATEGORY_INVESTIGATE)
+	user.holder.PlayerNotesPage(user, 1)
 
-/datum/admins/proc/PlayerNotesFilter()
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
-	PlayerNotesPage(1, filter)
-
-/datum/admins/proc/PlayerNotesPage(page, filter)
+/datum/admins/proc/PlayerNotesPage(client/user, page)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -275,7 +259,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 	var/datum/tgui_module/player_notes/A = new(src)
 	A.ckeys = note_keys
-	A.tgui_interact(usr)
+	A.tgui_interact(user)
 
 
 /datum/admins/proc/player_has_info(var/key as text)
@@ -285,20 +269,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	if(!infos || !infos.len) return 0
 	else return 1
 
-
-/datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin.Investigate"
-	set name = "Show Player Info"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", "Access the player info.", ADMIN_CATEGORY_INVESTIGATE)
 	var/datum/tgui_module/player_notes_info/A = new(src)
-	A.key = key
-	A.tgui_interact(usr)
-
+	A.tgui_interact(user)
 
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun.Event Kit"
@@ -1131,20 +1104,15 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATE
 	log_and_message_admins("spawned [chosen] at ([user_mob.x],[user_mob.y],[user_mob.z])")
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
-	set category = "Admin.Events"
-	set desc = "Edit mobs's memory and role"
-	set name = "Show Traitor Panel"
-
+ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
 	if(!istype(M))
-		to_chat(usr, "This can only be used on instances of type /mob")
+		to_chat(user, "This can only be used on instances of type /mob")
 		return
 	if(!M.mind)
-		to_chat(usr, "This mob has no mind!")
+		to_chat(user, "This mob has no mind!")
 		return
 
-	M.mind.edit_memory()
+	M.mind.edit_memory(user.mob)
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/show_game_mode()

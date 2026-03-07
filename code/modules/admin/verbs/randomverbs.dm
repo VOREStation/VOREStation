@@ -46,13 +46,8 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Allows staff to determine who the newer players are.
-/client/proc/cmd_check_new_players()
-	set category = "Admin.Investigate"
-	set name = "Check new Players"
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/age = tgui_alert(src, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
+ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the account age.", ADMIN_CATEGORY_INVESTIGATE)
+	var/age = tgui_alert(user, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
 	if(!age)
 		return
 	if(age == "All")
@@ -65,22 +60,22 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 
 	var/highlight_special_characters = 1
 
-	for(var/client/C in GLOB.clients)
-		if(C.player_age == "Requires database")
+	for(var/client/current_client in GLOB.clients)
+		if(current_client.player_age == "Requires database")
 			missing_ages = 1
 			continue
-		if(C.player_age < age)
-			msg += "[key_name(C, 1, 1, highlight_special_characters)]: account is [C.player_age] days old<br>"
+		if(current_client.player_age < age)
+			msg += "[key_name(current_client, 1, 1, highlight_special_characters)]: account is [current_client.player_age] days old<br>"
 
 	if(missing_ages)
-		to_chat(src, "Some accounts did not have proper ages set in their clients.  This function requires database to be present.")
+		to_chat(user, "Some accounts did not have proper ages set in their clients. This function requires database to be present.")
 
 	if(msg != "")
-		var/datum/browser/popup = new(src, "Player_age_check", "Player Age Check")
+		var/datum/browser/popup = new(user, "Player_age_check", "Player Age Check")
 		popup.set_content(msg)
 		popup.open()
-	else
-		to_chat(src, "No matches for that age range found.")
+		return
+	to_chat(user, "No matches for that age range found.")
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
 	set category = "Admin"

@@ -423,13 +423,6 @@ ADMIN_VERB(toggle_log_hrefs, R_SERVER, "Toggle href logging", "Allows to toggle 
 //	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/playernotes()
-	set name = "Show Player Info"
-	set category = "Admin.Moderation"
-	if(check_rights(R_HOLDER))
-		holder.PlayerNotes()
-	return
-
 /client/proc/free_slot()
 	set name = "Free Job Slot"
 	set category = "Admin.Game"
