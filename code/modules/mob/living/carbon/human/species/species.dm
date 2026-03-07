@@ -500,25 +500,6 @@
 		O.set_initial_meat()
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
-
-	var/t_him = "them"
-	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
-		if(!T.species.ambiguous_genders || (T.species.ambiguous_genders && H.species == T.species))
-			switch(T.get_gender_identity())
-				if(MALE)
-					t_him = "him"
-				if(FEMALE)
-					t_him = "her"
-		else
-			t_him = "them"
-	else
-		switch(target.gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-
 	if(target.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE)
 		H.visible_message( \
 			span_notice("[target] moves to avoid being touched by [H]!"), \
@@ -570,8 +551,8 @@
 	/*else if(H.zone_sel.selecting == BP_GROIN) //Disabled on Virgo. Used downstream.
 		H.vore_bellyrub(target)*/ //Disabled on Virgo. Used downstream.
 	else
-		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
-						span_notice("You hug [target] to make [t_him] feel better!"))
+		H.visible_message(span_notice("[H] hugs [target] to make [target.p_them()] feel better!"), \
+						span_notice("You hug [target] to make [target.p_them()] feel better!"))
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)
