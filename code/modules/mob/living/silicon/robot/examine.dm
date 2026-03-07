@@ -4,14 +4,14 @@
 
 	if (src.getBruteLoss())
 		if (src.getBruteLoss() < 75)
-			. += span_warning("[p_They()] looks slightly dented.")
+			. += span_warning("[p_They()] look[p_s()] slightly dented.")
 		else
-			. += span_boldwarning("[p_They()] looks severely dented!")
+			. += span_boldwarning("[p_They()] look[p_s()] severely dented!")
 	if (src.getFireLoss())
 		if (src.getFireLoss() < 75)
-			. += span_warning("[p_They()] looks slightly charred.")
+			. += span_warning("[p_They()] look[p_s()] slightly charred.")
 		else
-			. += span_boldwarning("[p_They()] looks severely burnt and heat-warped!")
+			. += span_boldwarning("[p_They()] look[p_s()] severely burnt and heat-warped!")
 
 	if(opened)
 		. += span_warning("[p_Their()] cover is open and the power cell is [cell ? "installed" : "missing"].")
@@ -28,7 +28,7 @@
 			else if(!src.client)
 				. += "[p_They()] appear[p_s()] to be in stand-by mode." //afk
 		if(UNCONSCIOUS)		. += span_warning("[p_They()] [p_do()]n't seem to be responding.")
-		if(DEAD)			. += span_deadsay("[p_They()] looks completely unsalvageable.")
+		if(DEAD)			. += span_deadsay("[p_They()] look[p_s()] completely unsalvageable.")
 
 	. += formatted_vore_examine()
 
