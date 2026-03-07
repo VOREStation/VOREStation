@@ -12,6 +12,7 @@
 	w_class = ITEMSIZE_SMALL
 	matter = list(MAT_GLASS = 200)
 	flags = NOBLUDGEON
+	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse, /mob/living/simple_mob/animal/sif/leech, /mob/living/simple_mob/animal/sif/frostfly, /mob/living/simple_mob/animal/sif/glitterfly)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
@@ -39,7 +40,11 @@
 			update_icon()
 			return
 	if(istype(A, /mob))
-		if(!HAS_TRAIT(A, TRAIT_AMBIENT_PEST_MOB))
+		var/accept = 0
+		for(var/D in accept_mobs)
+			if(istype(A, D))
+				accept = 1
+		if(!accept)
 			to_chat(user, "[A] doesn't fit into \the [src].")
 			return
 		var/mob/L = A
