@@ -30,9 +30,9 @@ ADMIN_VERB(modify_server_news, R_SERVER|R_EVENT, "Modify Public News", "Modify t
 			return
 		F["title"] << new_title
 		F["body"] << new_body
-		F["author"] << key
+		F["author"] << user.key
 		F["timestamp"] << time2text(world.realtime, "DDD, MMM DD YYYY")
-		message_admins("[key] modified the news to read:<br>[new_title]<br>[new_body]")
+		message_admins("[user.key] modified the news to read:<br>[new_title]<br>[new_body]")
 
 /proc/get_server_news()
 	var/savefile/F = new(NEWSFILE)
