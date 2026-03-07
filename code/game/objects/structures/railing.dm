@@ -148,7 +148,7 @@
 	if(usr.incapacitated())
 		return 0
 
-	if (!can_touch(usr) || ismouse(usr))
+	if (!can_touch(usr) || HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB))
 		return
 
 	if(anchored)
