@@ -36,6 +36,11 @@
 	src.modules += new /obj/item/dogborg/sleeper/lost(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
 
+/obj/item/robot_module/robot/lost/adjust_gps(obj/item/gps/robot/robot_gps)
+	robot_gps.long_range = TRUE
+	robot_gps.hide_signal = TRUE
+	robot_gps.can_hide_signal = TRUE
+
 /obj/item/robot_module/robot/gravekeeper
 	name = "gravekeeper robot module"
 	hide_on_manifest = TRUE
