@@ -500,7 +500,7 @@
 	return ..()
 
 //We got thrown! Let's figure out what to do
-/obj/item/capture_crystal/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback)
+/obj/item/capture_crystal/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback, gentle = FALSE)
 	. = ..()
 	if(target == bound_mob && thrower != bound_mob)		//We got thrown at our bound mob (and weren't thrown by the bound mob) let's ignore the cooldown and just put them back in
 		recall(thrower)

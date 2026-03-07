@@ -118,7 +118,7 @@ var/list/holder_mob_icon_cache = list()
 	if (held_mob.loc == src || isnull(held_mob.loc))
 		held_mob.forceMove(loc)
 
-/obj/item/holder/throw_at(atom/target, range, speed, thrower)
+/obj/item/holder/throw_at(atom/target, range, speed, thrower, callback, gentle = FALSE)
 	if(held_mob)
 		var/mob/localref = held_mob
 		dump_mob()

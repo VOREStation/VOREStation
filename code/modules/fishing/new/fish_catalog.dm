@@ -10,7 +10,7 @@
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, -7, works_in_hands = TRUE)
 
-/obj/item/book/manual/fish_catalog/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/book/manual/fish_catalog/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "FishCatalog", name)

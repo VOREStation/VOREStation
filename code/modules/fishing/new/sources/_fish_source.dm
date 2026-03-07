@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		/obj/item/stack/material/chitin = FISH_ICON_BONE,
 		/obj/item/stack/material = FISH_ICON_GEM,
 		/obj/item/ore = FISH_ICON_GEM,
-		/obj/item/survivalcapsule/fishing = FISH_ICON_COIN,
+//		/obj/item/survivalcapsule/fishing = FISH_ICON_COIN,
 		/obj/structure/closet/crate = FISH_ICON_COIN,
 //		/obj/structure/mystery_box = FISH_ICON_COIN,
 	))
