@@ -42,6 +42,9 @@
 	var/heavyfootstep
 	var/clawfootstep
 
+	///The typepath we use for lazy fishing on turfs, to save on world init time.
+	var/fish_source
+
 /turf/simulated/floor
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -560,3 +563,35 @@
 	var/datum/component/fishing_spot/spot = source.AddComponent(/datum/component/fishing_spot, GLOB.preset_fish_sources[fish_source])
 	remove_lazy_fishing()
 	return spot.handle_cast(arglist(args))
+
+/turf/proc/on_npc_fishing(datum/source, list/fish_spot_container)
+	SIGNAL_HANDLER
+	fish_spot_container[NPC_FISHING_SPOT] = GLOB.preset_fish_sources[fish_source]
+
+/turf/proc/on_fish_release_into(datum/source, obj/item/fish/fish, mob/living/releaser)
+	SIGNAL_HANDLER
+	GLOB.preset_fish_sources[fish_source].readd_fish(src, fish, releaser)
+
+/turf/examine(mob/user)
+	. = ..()
+	if(!fish_source || !HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISHING_SPOT))
+		return
+	if(!GLOB.preset_fish_sources[fish_source].has_known_fishes(src))
+		return
+	. += span_notice("This is a fishing spot. You can look again to list its fishes...")
+	GLOB.preset_fish_sources[fish_source].get_catchable_fish_names(user, src, .)
+
+/turf/ex_act(severity, target)
+	. = ..()
+	if(!fish_source)
+		return
+	GLOB.preset_fish_sources[fish_source].spawn_reward_from_explosion(src, severity)
+
+/turf/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
+	if(istype(W, /obj/item/multitool))
+		var/obj/item/multitool/multitool = W
+		if(!fish_source || !istype(multitool.buffer, /obj/machinery/fishing_portal_generator))
+			return ..()
+		var/obj/machinery/fishing_portal_generator/portal = multitool.buffer
+		return portal.link_fishing_spot(GLOB.preset_fish_sources[fish_source], src, user)
+	return ..()

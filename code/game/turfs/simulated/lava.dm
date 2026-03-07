@@ -50,7 +50,9 @@
 	return
 
 /turf/simulated/floor/lava/ex_act(severity)
-	return
+	if(fish_source)
+		GLOB.preset_fish_sources[fish_source].spawn_reward_from_explosion(src, severity)
+	return FALSE
 
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))
