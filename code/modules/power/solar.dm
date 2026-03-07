@@ -340,6 +340,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/proc/remove_panel(var/obj/machinery/power/solar/P)
 	connected_power -= connected_panels[P]
 	connected_panels.Remove(P)
+	SSsolars.panel_run[REF(src)] -= P // clear hardref in subsystem
 
 /obj/machinery/power/solar_control/proc/get_connected_panels()
 	RETURN_TYPE(/list)
