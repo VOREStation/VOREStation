@@ -33,7 +33,7 @@
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	required_temperature_min = MIN_AQUARIUM_TEMP+20
 	required_temperature_max = MIN_AQUARIUM_TEMP+40
-	fillet_type = /obj/item/food/meat/slab/rawcrab
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/meat/slab/rawcrab
 	fish_traits = list(/datum/fish_trait/amphibious, /datum/fish_trait/shiny_lover, /datum/fish_trait/carnivore)
 	fish_movement_type = /datum/fish_movement/slow
 	favorite_bait = list(
@@ -140,7 +140,7 @@
 	required_temperature_min = 0
 	required_temperature_max = MIN_AQUARIUM_TEMP+200
 //	safe_air_limits = null
-	fillet_type = /obj/item/food/fishmeat/carp/no_tox
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 	fish_traits = list(
 		/datum/fish_trait/carnivore,
 		/datum/fish_trait/territorial,

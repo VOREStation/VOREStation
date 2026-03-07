@@ -72,7 +72,7 @@
 	if(target != scanned_object)
 		unregister_scanned()
 		register_scanned(target)
-	ui_interact(user)
+	tgui_interact(user)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/fish_analyzer/proc/register_scanned(atom/target)
@@ -89,7 +89,7 @@
 	SIGNAL_HANDLER
 	unregister_scanned()
 
-/obj/item/fish_analyzer/ui_interact(mob/living/user, datum/tgui/ui)
+/obj/item/fish_analyzer/tgui_interact(mob/living/user, datum/tgui/ui)
 	if(isnull(scanned_object))
 		balloon_alert(user, "no specimen data!")
 		return TRUE
@@ -145,10 +145,12 @@
 		var/datum/fish_trait/trait = GLOB.fish_traits[trait_type]
 		fish_traits += list(list("trait_name" = trait.name, "trait_desc" = trait.catalog_description, "trait_inherit" = trait.inheritability))
 
+	var/fishie_icon_state = fishie.initial(icon_state)
+
 	data["fish_list"] += list(list(
 		"fish_name" = fishie.name,
 		"fish_icon" = fishie.icon,
-		"fish_icon_state" = fishie.initial(icon_state),
+		"fish_icon_state" = fishie_icon_state,
 		"fish_food" = fishie.food.name,
 		"fish_food_color" = fishie.food::color,
 		"fish_min_temp" = fishie.required_temperature_min,

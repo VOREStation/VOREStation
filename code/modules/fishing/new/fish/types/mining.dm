@@ -9,7 +9,7 @@
 	stable_population = 4
 	feeding_frequency = 10 MINUTES
 	random_case_rarity = FISH_RARITY_RARE
-	fillet_type = /obj/item/food/meat/slab/rawcrab
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/meat/slab/rawcrab
 	required_temperature_min = MIN_AQUARIUM_TEMP+9
 	required_temperature_max = 400
 	min_pressure = HAZARD_LOW_PRESSURE
@@ -143,8 +143,10 @@
 /obj/item/fish/boned/fish_grind_results()
 	return list(/datum/reagent/calcium = 10)
 
+/*
 /obj/item/fish/boned/make_edible(weight_val)
 	return //it's all bones and no meat.
+*/
 
 /obj/item/fish/boned/get_health_warnings(mob/user, always_deep = FALSE)
 	return list(span_deadsay("It's bones."))

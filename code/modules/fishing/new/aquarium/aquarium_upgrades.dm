@@ -47,7 +47,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_BIOELECTRIC_GENERATOR, INNATE_TRAIT)
 
-/obj/structure/aquarium/bioelec_gen/zap_act(power, zap_flags)
+/obj/structure/aquarium/bioelec_gen/tesla_act(power, zap_flags)
 	return
 	/*
 	var/explosive = zap_flags & ZAP_MACHINE_EXPLOSIVE

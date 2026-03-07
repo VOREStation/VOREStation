@@ -33,11 +33,10 @@
 	//storage_type = /datum/storage/fish_case/adjust_size
 	max_w_class = ITEMSIZE_GIGANTIC
 
+
 /obj/item/storage/fish_case/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/fish_safe_storage)
-
-/obj/item/storage/fish_case/PopulateContents()
 	var/fish_type = get_fish_type()
 	if(fish_type)
 		var/obj/item/fish/spawned_fish = new fish_type(null)

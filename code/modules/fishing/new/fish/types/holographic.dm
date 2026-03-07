@@ -28,8 +28,10 @@
 	var/obj/machinery/computer/HolodeckControl/deck_control = holo_area.contents.Find(/obj/machinery/computer/HolodeckControl)
 	deck_control.holographic_mobs += src
 
+/*
 /obj/item/fish/holo/make_edible(weight_val)
 	return
+*/
 
 /obj/item/fish/holo/set_status(new_status, silent = FALSE)
 	. = ..()

@@ -9,7 +9,7 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+3
 	required_temperature_max = MIN_AQUARIUM_TEMP+19
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
-	fillet_type = /obj/item/food/fishmeat/salmon
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/salmon
 	beauty = FISH_BEAUTY_GOOD
 
 /obj/item/fish/sockeye_salmon/get_base_edible_reagents_to_add()

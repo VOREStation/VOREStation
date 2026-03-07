@@ -26,7 +26,7 @@
 
 	average_size = 40
 	average_weight = 1500
-	food = /datum/reagent/bluespace
+	food = /datum/reagent/glamour
 	feeding_frequency = 10 MINUTES
 	max_integrity = 100
 	death_text = "%SRC splinters apart into shards!"
@@ -142,7 +142,7 @@
 	max_integrity = 800 // apex predator
 	integrity_failure = 0.25
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
-	fillet_type = /obj/item/food/fishmeat/fish_tail
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/fish_tail
 	num_fillets = 1
 	stable_population = 3
 	fish_traits = list(/datum/fish_trait/wary, /datum/fish_trait/carnivore, /datum/fish_trait/necrophage, /datum/fish_trait/predator, /datum/fish_trait/territorial, /datum/fish_trait/stinger)
@@ -290,9 +290,9 @@
 	required_fluid_type = AQUARIUM_FLUID_AIR
 	required_temperature_min = 0
 	required_temperature_max = INFINITY
-	food = /datum/reagent/nutriment/fat
+	food = /datum/reagent/nutriment/triglyceride
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
-	fillet_type = /obj/item/food/meat/slab/human/mutant/slime
+	fillet_type = /obj/item/reagent_containers/food/snacks/meat/human ///obj/item/food/meat/slab/human/mutant/slime
 	num_fillets = 2
 	stable_population = 2
 	fish_traits = list()
@@ -462,7 +462,7 @@
 	beauty = FISH_BEAUTY_DISGUSTING
 	fish_movement_type = /datum/fish_movement/slow // a very easy catch!
 	fishing_difficulty_modifier = -35
-	favorite_bait = list(/obj/item/food/badrecipe)
+	favorite_bait = list(/obj/item/reagent_containers/food/snacks/badrecipe)
 	average_size = 150
 	average_weight = 5000
 	required_fluid_type = AQUARIUM_FLUID_ANY_WATER
@@ -471,7 +471,7 @@
 	min_pressure = 0
 	max_pressure = INFINITY
 //	safe_air_limits = list()
-	fillet_type = /obj/item/food/badrecipe/moldy/bacteria
+	fillet_type = /obj/item/reagent_containers/food/snacks/badrecipe
 	stable_population = 2
 
 /obj/item/fish/mossglob/Initialize(mapload, apply_qualities)
@@ -548,7 +548,7 @@
 	max_integrity = 500
 	average_size = 30
 	average_weight = 2000
-	fillet_type = /obj/item/food/fishmeat/quality
+	fillet_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish ///obj/item/food/fishmeat/quality
 	num_fillets = 2
 	stable_population = 3
 	fish_traits = list(
@@ -558,7 +558,7 @@
 	beauty = FISH_BEAUTY_NULL // unsettling yet also awing
 	fish_movement_type = /datum/fish_movement/slow
 	fishing_difficulty_modifier = 15
-	favorite_bait = list(/obj/item/organ/ears)
+	favorite_bait = list(/obj/item/organ)
 	var/mob/living/moron_inside
 
 // When someone refactors demoralizers to not be omega hardcoded for syndicate this fish should get it

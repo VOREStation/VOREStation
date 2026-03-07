@@ -47,11 +47,11 @@
 	beauty = FISH_BEAUTY_GOOD
 	fishing_difficulty_modifier = 10
 	random_case_rarity = FISH_RARITY_VERY_RARE
-	food = /datum/reagent/toxin/mutagen
+	food = /datum/reagent/mutagen
 	favorite_bait = list(
 		list(
 			"Type" = "Reagent",
-			"Value" = /datum/reagent/toxin/mutagen,
+			"Value" = /datum/reagent/mutagen,
 			"Amount" = 3,
 		),
 	)
@@ -151,7 +151,7 @@
 	average_size = 30
 	average_weight = 500
 	random_case_rarity = FISH_RARITY_VERY_RARE
-	favorite_bait = list(/obj/item/stock_parts/power_store/cell/lead)
+	favorite_bait = list(/obj/item/cell/device/crap)
 	required_temperature_min = MIN_AQUARIUM_TEMP+18
 	required_temperature_max = MIN_AQUARIUM_TEMP+26
 	fish_traits = list(
@@ -206,8 +206,10 @@
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(growth_checks))
 	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
 
+/*
 /obj/item/fish/tadpole/make_edible()
-	return
+	return'
+*/
 
 /obj/item/fish/tadpole/set_status(new_status, silent = FALSE)
 	. = ..()
