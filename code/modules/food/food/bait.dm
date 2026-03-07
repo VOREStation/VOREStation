@@ -10,23 +10,25 @@
 	/// Is this included in the autowiki?
 	var/show_on_wiki = TRUE
 
-/obj/item/reagent_containers/food/Initialize(mapload)
+
+/obj/item/reagent_containers/food/bait/Initialize(mapload)
 	. = ..()
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 1)
 	ADD_TRAIT(src, bait_quality, INNATE_TRAIT)
 
-/obj/item/reagent_containers/food/worm
+/obj/item/reagent_containers/food/bait/worm
 	name = "worm"
 	desc = "It's a wriggling worm from a can of fishing bait. You're not going to eat it, are you?"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "worm"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
-	tastes = list("meat" = 1, "worms" = 1)
-	foodtypes = GROSS | MEAT | BUGS
+//	tastes = list("meat" = 1, "worms" = 1)
+//	foodtypes = GROSS | MEAT | BUGS
 	w_class = ITEMSIZE_TINY
 	bait_quality = TRAIT_BASIC_QUALITY_BAIT
 	rod_overlay_icon_state = "worm_overlay"
 
-/obj/item/reagent_containers/food/worm/premium
+/obj/item/reagent_containers/food/bait/worm/premium
 	name = "extra slimy worm"
 	desc = "This worm looks very sophisticated."
 	bait_quality = TRAIT_GOOD_QUALITY_BAIT
