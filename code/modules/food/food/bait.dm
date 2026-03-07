@@ -21,12 +21,15 @@
 	desc = "It's a wriggling worm from a can of fishing bait. You're not going to eat it, are you?"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "worm"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
 //	tastes = list("meat" = 1, "worms" = 1)
 //	foodtypes = GROSS | MEAT | BUGS
 	w_class = ITEMSIZE_TINY
 	bait_quality = TRAIT_BASIC_QUALITY_BAIT
 	rod_overlay_icon_state = "worm_overlay"
+
+/obj/item/reagent_containers/food/bait/worm/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
 
 /obj/item/reagent_containers/food/bait/worm/premium
 	name = "extra slimy worm"
@@ -38,35 +41,41 @@
 	desc = "Fish can't seem to get enough of this!"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pill9"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	inhand_icon_state = "pen"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/inhands/items_lefthand.dmi',
+			slot_r_hand_str = 'icons/mob/inhands/items_righthand.dmi',
+			)
+	item_state = "pen"
 	bait_quality = TRAIT_GREAT_QUALITY_BAIT //this is only here for autowiki purposes, it's removed on init.
-	food_reagents = list(/datum/reagent/drug/kronkaine = 2) //The kronkaine is the thing that makes this a great bait.
-	tastes = list("hypocrisy" = 1)
+//	tastes = list("hypocrisy" = 1)
 
 /obj/item/reagent_containers/food/bait/natural/Initialize(mapload)
 	. = ..()
 	REMOVE_TRAIT(src, bait_quality, INNATE_TRAIT)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 1)
 
 /obj/item/reagent_containers/food/bait/doughball
 	name = "doughball"
 	desc = "Small piece of dough. Simple but effective fishing bait."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "doughball"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
-	tastes = list("dough" = 1)
-	foodtypes = GRAIN
+//	food_reagents = list(/datum/reagent/nutriment/protein = 1)
+//	tastes = list("dough" = 1)
+//	foodtypes = GRAIN
 	w_class = ITEMSIZE_TINY
 	bait_quality = TRAIT_BASIC_QUALITY_BAIT
 	rod_overlay_icon_state = "dough_overlay"
+
+/obj/item/reagent_containers/food/bait/doughball/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
 
 ///The abstract synthetic doughball type.
 /obj/item/reagent_containers/food/bait/doughball/synthetic
 	name = "synthetic doughball"
 	icon_state = "doughball_blue"
 	rod_overlay_icon_state = "dough_blue_overlay"
-	preserved_food = TRUE
+//	preserved_food = TRUE
 	show_on_wiki = FALSE //It's an abstract item.
 
 /obj/item/reagent_containers/food/bait/doughball/synthetic/Initialize(mapload)

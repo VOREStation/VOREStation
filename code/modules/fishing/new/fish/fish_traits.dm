@@ -345,8 +345,10 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/emulsijack/proc/on_non_stasis_life(mob/living/simple_mob/mob, seconds_per_tick = SSMOBS_DT)
 	SIGNAL_HANDLER
 	var/turf/simulated/our_turf = get_turf(mob)
-	if(our_turf.return_air().return_pressure() > ONE_ATMOSPHERE * 1.5) //put a cap otherwise closed spaces may overpressurize
-		return
+	if(our_turf)
+		var/datum/gas_mixture/air = our_turf.return_air()
+		if(air.return_pressure() > ONE_ATMOSPHERE * 1.5) //put a cap otherwise closed spaces may overpressurize
+			return
 /*
 	var/datum/gas_mixture/stench = new
 	ADD_GAS(/datum/gas/miasma, stench.gases)
