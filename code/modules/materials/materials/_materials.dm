@@ -79,19 +79,21 @@ GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 				.[M] = matter[mat]
 
 /**
- * Geets the primary material of the object and returns that material.
+ * Gets the primary material of the object and returns that material.
  */
 /obj/item/proc/get_primary_material()
+	var/primary_mat
+	var/max_mat_value = 0
+	var/material_amount = 0
+
 	var/list/item_materials = get_material_composition()
-	var/list/mats_consumed = list()
 	for(var/MAT in item_materials)
-		if(!can_hold_material(MAT))
-			continue
-		var/mat_amount = OPTIMAL_COST(item_materials[MAT] * multiplier)
-		materials[MAT] += mat_amount
+		var/mat_amount = OPTIMAL_COST(item_materials[MAT])
 		if(item_materials[MAT] > max_mat_value)
 			max_mat_value = item_materials[MAT]
 			primary_mat = MAT
+		material_amount += mat_amount
+
 	return primary_mat
 
 /obj/item/proc/set_custom_materials(list/materials, multiplier = 1)
