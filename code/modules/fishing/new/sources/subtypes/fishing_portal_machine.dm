@@ -12,8 +12,8 @@
 	)
 	catalog_description = "Aquarium dimension (Fishing portal generator)"
 	radial_state = "fish_tank"
-	associated_safe_turfs = list(/turf/open/water)
-	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach)
+	associated_safe_turfs = list(/turf/simulated/floor/water)
+	safe_turfs_blacklist = list(/turf/simulated/floor/water/beach)
 	///The name of this option shown in the radial menu on the fishing portal generator
 	var/radial_name = "Aquarium"
 
@@ -27,16 +27,16 @@
 		/obj/item/fish/greenchromis = 10,
 		/obj/item/fish/squid = 8,
 		/obj/item/fish/plaice = 8,
-		/obj/item/survivalcapsule/fishing = 1,
+//		/obj/item/survivalcapsule/fishing = 1,
 	)
 	fish_counts = list(
-		/obj/item/survivalcapsule/fishing = 1,
+//		/obj/item/survivalcapsule/fishing = 1,
 	)
 	catalog_description = "Beach dimension (Fishing portal generator)"
 	radial_name = "Beach"
 	radial_state = "palm_beach"
 	overlay_state = "portal_beach"
-	associated_safe_turfs = list(/turf/open/water/beach)
+	associated_safe_turfs = list(/turf/simulated/floor/water/beach)
 
 /datum/fish_source/portal/beach/on_fishing_spot_init(datum/component/fishing_spot/spot)
 	ADD_TRAIT(spot.parent, TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION, INNATE_TRAIT)
@@ -85,7 +85,7 @@
 	radial_name = "Ocean"
 	overlay_state = "portal_ocean"
 	radial_state = "seaboat"
-	associated_safe_turfs = list(/turf/open/water/beach)
+	associated_safe_turfs = list(/turf/simulated/floor/water/beach)
 
 /datum/fish_source/portal/ocean/on_fishing_spot_init(datum/component/fishing_spot/spot)
 	ADD_TRAIT(spot.parent, TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION, INNATE_TRAIT)
@@ -136,8 +136,8 @@
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 25
 	overlay_state = "portal_syndicate"
 	radial_state = "syndi_snake"
-	associated_safe_turfs = list(/turf/open/water)
-	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach)
+	associated_safe_turfs = list(/turf/simulated/floor/water)
+	safe_turfs_blacklist = list(/turf/simulated/floor/water/beach)
 
 /**
  * A special portal fish source which fish table is populated on init with the contents of all

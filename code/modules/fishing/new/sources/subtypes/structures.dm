@@ -22,12 +22,12 @@
 		FISHING_DUD = 18,
 		/obj/item/fish/sludgefish = 18,
 		/obj/item/fish/slimefish = 4,
-		/obj/item/storage/wallet/money = 2,
-		/obj/item/survivalcapsule/fishing = 1,
+		/obj/item/storage/wallet = 2,
+//		/obj/item/survivalcapsule/fishing = 1,
 	)
 	fish_counts = list(
-		/obj/item/storage/wallet/money = 2,
-		/obj/item/survivalcapsule/fishing = 1,
+		/obj/item/storage/wallet = 2,
+//		/obj/item/survivalcapsule/fishing = 1,
 	)
 	fishing_difficulty = FISHING_EASY_DIFFICULTY + 10
 

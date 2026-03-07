@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	/// Mindless mobs that can fish will never pull up items on this list
 	var/static/list/profound_fisher_blacklist = typecacheof(list(
 //		/mob/living/basic/mining/lobstrosity,
-		/obj/structure/closet/crate/necropolis/tendril,
+//		/obj/structure/closet/crate/necropolis/tendril,
 	))
 
 	///List of multipliers used to make fishes more common compared to everything else depending on bait quality, indexed from best to worst.

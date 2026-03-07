@@ -203,7 +203,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WIELDED "wielded"
 /// This rod was infused by a heretic, making it awesome and improving influence gain
 #define TRAIT_ROD_MANSUS_INFUSED "rod_infused"
-/// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
-#define TRAIT_HANDS_BLOCKED "handsblocked"
 /// Can't be catched when thrown
 #define TRAIT_UNCATCHABLE "uncatchable"

@@ -1845,6 +1845,7 @@
 #include "code\game\objects\items\weapons\circuitboards\machinery\biogenerator.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\cloning.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\engineering.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\fishing_portal.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\fluidpump.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\jukebox.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\kitchen_appliances.dm"

@@ -14,7 +14,7 @@
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 35
 	fish_source_flags = FISH_SOURCE_FLAG_EXPLOSIVE_MALUS
-	associated_safe_turfs = list(/turf/open/water/hot_spring)
+	associated_safe_turfs = list(/turf/simulated/floor/water)
 
 /datum/fish_source/chasm
 	catalog_description = "Chasm depths"
@@ -53,8 +53,8 @@
 		FISHING_DUD = 5,
 		/obj/item/ore/slag = 15,
 		/obj/item/fish/lavaloop = 15,
-		/obj/structure/closet/crate/necropolis/tendril = 1,
-		/obj/item/skeleton_key = 1,
+//		/obj/structure/closet/crate/necropolis/tendril = 1,
+//		/obj/item/skeleton_key = 1,
 //		/obj/item/stack/sheet/mineral/runite = 1,
 //		/obj/effect/mob_spawn/corpse/human/charredskeleton = 1,
 		/obj/effect/landmark/mobcorpse/clown = 1,
@@ -71,8 +71,8 @@
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20
 	fish_source_flags = FISH_SOURCE_FLAG_EXPLOSIVE_MALUS
-	associated_safe_turfs = list(/turf/open/lava)
-	safe_turfs_blacklist = list(/turf/open/lava/plasma)
+	associated_safe_turfs = list(/turf/simulated/floor/lava)
+	//safe_turfs_blacklist = list(/turf/open/lava/plasma)
 
 /datum/fish_source/lavaland/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
@@ -98,20 +98,20 @@
 //		/mob/living/basic/mining/lobstrosity/juvenile = 1,
 	)
 	fish_counts = list(
-		/obj/item/slime_extract/adamantine = 3 ///obj/item/stack/sheet/mineral/adamantine = 3,
+		/obj/item/slime_extract/emerald = 3 ///obj/item/stack/sheet/mineral/adamantine = 3,
 //		/obj/item/stack/sheet/mineral/runite = 2,
 //		/obj/item/skeleton_key = 1,
 //		/obj/structure/closet/crate/necropolis/tendril = 1,
 	)
 	fish_count_regen = list(
-		/obj/item/slime_extract/adamantine = 8 MINUTES,
+		/obj/item/slime_extract/emerald = 8 MINUTES,
 	//	/obj/item/stack/sheet/mineral/adamantine = 8 MINUTES,
 	//	/obj/item/stack/sheet/mineral/runite = 10 MINUTES,
 	//	/obj/item/skeleton_key = 15 MINUTES,
 	//	/obj/structure/closet/crate/necropolis/tendril = 30 MINUTES,
 	)
 	overlay_state = "portal_plasma"
-	associated_safe_turfs = list(/turf/open/lava/plasma)
+	associated_safe_turfs = list(/turf/simulated/floor/lava)
 
 /datum/fish_source/oil_well
 	background = "background_oil_well"
@@ -122,13 +122,13 @@
 		FISHING_DUD = 5,
 		/obj/item/fish/boned = 10,
 		/obj/item/stack/material/chitin = 2,
-		/obj/item/clothing/gloves/bracer = 2,
+//		/obj/item/clothing/gloves/bracer = 2,
 		/obj/effect/decal/remains/human = 2,
 		/obj/item/fish/mastodon = 1,
 		/obj/item/fishing_rod/telescopic/master = 1,
 	)
 	fish_counts = list(
-		/obj/item/clothing/gloves/bracer = 1,
+//		/obj/item/clothing/gloves/bracer = 1,
 		/obj/effect/decal/remains/human = 1,
 		/obj/item/fish/mastodon = 1,
 		/obj/item/fishing_rod/telescopic/master = 1,

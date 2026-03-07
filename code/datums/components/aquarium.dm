@@ -584,7 +584,7 @@
 /datum/component/aquarium/proc/interact(atom/movable/source, mob/user)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(source, TRAIT_AQUARIUM_PANEL_OPEN))
-		INVOKE_ASYNC(src, PROC_REF(ui_interact), user)
+		INVOKE_ASYNC(src, PROC_REF(tgui_interact), user)
 		return
 	INVOKE_ASYNC(src, PROC_REF(admire), source, user)
 
