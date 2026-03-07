@@ -539,7 +539,7 @@
 	M.Translate(closet_appearance.door_hinge, 0)
 	return M
 
-/obj/structure/closet/allow_pai_interaction(proximity_flag)
+/obj/structure/closet/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 //verb to eat people in the same closet as yourself

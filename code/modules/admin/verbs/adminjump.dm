@@ -36,7 +36,7 @@
 	message_admins("[key_name_admin(src)] jumped to [target_area]")
 	feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(jumptoturf, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to Turf", "Jump to a specific turf in the game.", ADMIN_CATEGORY_GAME, turf/T in world)
+ADMIN_VERB_AND_CONTEXT_MENU(jumptoturf, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to Turf", "Jump to a specific turf in the game.", ADMIN_CATEGORY_GAME, turf/T in world)
 	if(CONFIG_GET(flag/allow_admin_jump))
 		log_admin("[key_name(user)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(user)] jumped to [T.x],[T.y],[T.z] in [T.loc]")

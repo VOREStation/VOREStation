@@ -49,7 +49,7 @@
 		return
 	tgui_interact(user)
 
-/obj/machinery/computer/power_monitor/allow_pai_interaction(proximity_flag)
+/obj/machinery/computer/power_monitor/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 // Uses dark magic to operate the NanoUI of this computer.
