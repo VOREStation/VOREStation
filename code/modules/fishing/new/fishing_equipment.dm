@@ -192,7 +192,7 @@
 /obj/item/fishing_hook/proc/can_be_hooked(atom/target)
 	if(isliving(target))
 		var/mob/living/mob = target
-		return (mob.mob_biotypes & MOB_AQUATIC)
+		return mob.can_breathe_water() //(mob.mob_biotypes & MOB_AQUATIC)
 	return isitem(target)
 
 ///Any special effect when hooking a target that's not managed by the fishing rod.

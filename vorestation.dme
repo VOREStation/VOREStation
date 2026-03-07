@@ -970,6 +970,7 @@
 #include "code\datums\status_effects\_status_effect_helpers.dm"
 #include "code\datums\status_effects\grouped_effect.dm"
 #include "code\datums\status_effects\debuffs\fire_stacks.dm"
+#include "code\datums\status_effects\debuffs\hooked.dm"
 #include "code\datums\supplypacks\atmospherics.dm"
 #include "code\datums\supplypacks\contraband.dm"
 #include "code\datums\supplypacks\costumes.dm"
