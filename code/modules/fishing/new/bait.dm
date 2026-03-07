@@ -8,7 +8,7 @@
 	/// Tracking until we can take out another bait item
 	COOLDOWN_DECLARE(bait_removal_cooldown)
 	/// What bait item it produces
-	var/obj/item/bait_type = /obj/item/food/bait
+	var/obj/item/reagent_containers/food/bait/bait_type = /obj/item/reagent_containers/food/bait
 	/// Time between bait retrievals
 	var/cooldown_time = 5 SECONDS
 	/// How many uses does it have left.
@@ -48,17 +48,17 @@
 /obj/item/bait_can/worm
 	name = "can o' worm"
 	desc = "This can got worms."
-	bait_type = /obj/item/food/bait/worm
+	bait_type = /obj/item/reagent_containers/food/bait/worm
 
 /obj/item/bait_can/worm/premium
 	name = "can o' worm deluxe"
 	desc = "This can got fancy worms."
-	bait_type = /obj/item/food/bait/worm/premium
+	bait_type = /obj/item/reagent_containers/food/bait/worm/premium
 
 /obj/item/bait_can/super_baits
 	name = "can o' super-baits"
 	desc = "This can got the nectar of god."
-	bait_type = /obj/item/food/bait/doughball/synthetic/super
+	bait_type = /obj/item/reagent_containers/food/bait/doughball/synthetic/super
 	uses_left = 12
 
 /obj/item/fishing_lure

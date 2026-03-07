@@ -524,8 +524,8 @@
 
 	if(bait)
 		var/bait_state = "worm_overlay" //default to worm overlay for anything without specific one
-		if(istype(bait, /obj/item/food/bait))
-			var/obj/item/food/bait/real_bait = bait
+		if(istype(bait, /obj/item/reagent_containers/food/bait))
+			var/obj/item/reagent_containers/food/bait/real_bait = bait
 			bait_state = real_bait.rod_overlay_icon_state
 		if(istype(bait, /obj/item/stock_parts/power_store/cell/lead))
 			bait_state = "battery_overlay"
@@ -822,7 +822,7 @@
 	icon_state = "fishing_rod_science"
 	reel_overlay = "reel_science"
 	frame_state = "frame_science"
-	bait = /obj/item/food/bait/doughball/synthetic/unconsumable
+	bait = /obj/item/reagent_containers/food/bait/doughball/synthetic/unconsumable
 	completion_speed_mult = 1.1
 	bait_speed_mult = 1.1
 	deceleration_mult = 1.1

@@ -12,7 +12,7 @@
 	average_size = 20
 	average_weight = 200
 	weight_size_deviation = 0.35
-	favorite_bait = list(/obj/item/food/bait/worm)
+	favorite_bait = list(/obj/item/reagent_containers/food/bait/worm)
 	required_temperature_min = MIN_AQUARIUM_TEMP+18
 	required_temperature_max = MIN_AQUARIUM_TEMP+26
 	evolution_types = list(/datum/fish_evolution/three_eyes, /datum/fish_evolution/chainsawfish)

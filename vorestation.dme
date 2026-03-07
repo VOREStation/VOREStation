@@ -2937,6 +2937,7 @@
 #include "code\modules\food\drinkingglass\serving_glasses.dm"
 #include "code\modules\food\drinkingglass\shaker.dm"
 #include "code\modules\food\drinkingglass\shaker_vr.dm"
+#include "code\modules\food\food\bait.dm"
 #include "code\modules\food\food\cans.dm"
 #include "code\modules\food\food\condiment.dm"
 #include "code\modules\food\food\drinks.dm"

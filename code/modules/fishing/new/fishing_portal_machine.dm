@@ -251,8 +251,9 @@
 	if(turf.z != new_turf.z && !((z in using_map.station_levels) && (new_turf.z in using_map.station_levels)))
 		deactivate()
 
-/obj/machinery/fishing_portal_generator/on_set_is_operational(old_value)
-	if(old_value)
+/obj/machinery/fishing_portal_generator/power_change(old_value)
+	. = ..()
+	if(. && active && (stat & NOPOWER))
 		deactivate()
 
 ///Create a radial menu from a list of available fish sources. If only the default is available, activate it right away.
@@ -304,8 +305,11 @@
 	activate(available_fish_sources[choice], user)
 
 /obj/machinery/fishing_portal_generator/emagged
-	emagged = TRUE
 	circuit = /obj/item/circuitboard/machine/fishing_portal_generator/emagged
+
+/obj/machinery/fishing_portal_generator/emagged/Initialize(mapload)
+	emagged = TRUE
+	. = ..()
 
 /obj/machinery/fishing_portal_generator/full
 	name = "fish-porter 4000 deluxe"

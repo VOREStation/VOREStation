@@ -21,7 +21,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,
 		/obj/item/clothing/shoes/boots/winter/hydro,
 		/obj/item/storage/belt/hydro,
-		/obj/item/material/fishing_net/butterfly_net)
+		/obj/item/storage/toolbox/fishing)
 
 /obj/structure/closet/secure_closet/hydroponics/Initialize(mapload)
 	if(prob(50))
@@ -44,3 +44,11 @@
 		starts_with += /obj/item/chainsaw
 
 	return ..()
+
+/obj/structure/closet/secure_closet/hydroponics/fishing
+	name = "fishing locker"
+
+	starts_with = list(
+		/obj/item/storage/toolbox/fishing = 2,
+		/obj/item/storage/toolbox/fishing/small = 2,
+		/obj/item/clothing/head/fishing = 4)

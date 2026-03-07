@@ -81,7 +81,7 @@
 	average_size = 30
 	average_weight = 500
 	stable_population = 3
-	disliked_bait = list(/obj/item/food/bait/worm, /obj/item/food/bait/doughball)
+	disliked_bait = list(/obj/item/reagent_containers/food/bait/worm, /obj/item/reagent_containers/food/bait/doughball)
 	fish_movement_type = /datum/fish_movement/zippy
 	required_temperature_min = MIN_AQUARIUM_TEMP+23
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
