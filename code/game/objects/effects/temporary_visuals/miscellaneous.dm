@@ -148,3 +148,15 @@
 
 /obj/effect/temp_visual/circle_wave/dirt
 	color = COLOR_ASTEROID_ROCK
+
+/obj/effect/temp_visual/heart
+	name = "heart"
+	icon = 'icons/mob/simple/animal.dmi'
+	icon_state = "heart"
+	duration = 25
+
+/obj/effect/temp_visual/heart/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-4,4)
+	pixel_y = rand(-4,4)
+	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = 25)

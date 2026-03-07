@@ -40,7 +40,7 @@
 /obj/item/storage/box/fish_revival_kit
 	name = "fish revival kit"
 	desc = "Become a fish doctor today. A label on the side indicates that fish require two to ten reagent units to be splashed onto them for revival, depending on size."
-	illustration = "fish"
+//	illustration = "fish"
 
 	starts_with = list(
 	/obj/item/lazarus_injector,
@@ -54,10 +54,10 @@
 	name = "fishing lures set"
 	desc = "A small tackle box containing all the fishing lures you will ever need to curb randomness."
 	icon_state = "plasticbox"
-	foldable_result = null
-	illustration = "fish"
-	custom_price = PAYCHECK_CREW * 9
-	storage_type = /datum/storage/box/fishing_lures
+//	foldable_result = null
+//	illustration = "fish"
+//	custom_price = PAYCHECK_CREW * 9
+//	storage_type = /datum/storage/box/fishing_lures
 
 /obj/item/storage/box/fishing_lures/Initialize(mapload)
 	. = ..()
@@ -69,8 +69,8 @@
 /obj/item/storage/box/aquarium_props
 	name = "aquarium props box"
 	desc = "All you need to make your aquarium look good."
-	illustration = "fish"
-	custom_price = PAYCHECK_LOWER
+//	illustration = "fish"
+//	custom_price = PAYCHECK_LOWER
 
 /obj/item/storage/box/aquarium_props/Initialize(mapload)
 	. = ..()

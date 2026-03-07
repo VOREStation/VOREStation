@@ -205,3 +205,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ROD_MANSUS_INFUSED "rod_infused"
 /// Can't be catched when thrown
 #define TRAIT_UNCATCHABLE "uncatchable"
+#define TRAIT_PACIFISM "pacifism"
+#define TRAIT_AGEUSIA "ageusia"
+/// This mob likes to eat fish. Raw, uncut fish.
+#define TRAIT_VEGETARIAN "trait_vegetarian"
+/// If this item's been fried
+#define TRAIT_FOOD_FRIED "food_fried"
+/// If this item's been bbq grilled
+#define TRAIT_FOOD_BBQ_GRILLED "food_bbq_grilled"
+/// For edible items that cannot be composted inside hydro trays
+#define TRAIT_UNCOMPOSTABLE "uncompostable"

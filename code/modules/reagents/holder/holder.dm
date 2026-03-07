@@ -152,6 +152,11 @@
 		stack_trace("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
 	return 0
 
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data = null, safety, was_from_belly = FALSE, can_dialysis = TRUE)
+	for(var/r_id in list_reagents)
+		var/amt = list_reagents[r_id]
+		add_reagent(r_id, amt, data, safety, was_from_belly, can_dialysis)
+
 /datum/reagents/proc/isolate_reagent(reagent)
 	for(var/datum/reagent/R as anything in reagent_list)
 		if(R.id != reagent)
