@@ -28,7 +28,7 @@
 		return
 
 	if(SSticker.mode && SSticker.mode.check_antagonists_topic(href, href_list))
-		check_antagonists()
+		check_antagonists(usr.client)
 		return
 
 	if(href_list["ticket"])
@@ -1204,7 +1204,7 @@
 		G.ManualFollow(M)
 
 	else if(href_list["check_antagonist"])
-		check_antagonists()
+		check_antagonists(usr.client)
 
 	else if(href_list["take_question"])
 

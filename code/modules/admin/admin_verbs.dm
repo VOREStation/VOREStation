@@ -133,30 +133,18 @@ ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest."
 	user.holder.show_manifest()
 	//BLACKBOX_LOG_ADMIN_VERB("Show Manifest")
 
-/client/proc/player_panel()
-	set name = "Player Panel"
-	set category = "Admin.Game"
-	if(check_rights(R_HOLDER))
-		holder.player_panel_old()
+ADMIN_VERB(player_panel, R_HOLDER, "Player Panel", "Open the player panel.", ADMIN_CATEGORY_GAME)
+	user.holder.player_panel_old(user)
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
-/client/proc/player_panel_new()
-	set name = "Player Panel New"
-	set category = "Admin.Game"
-	if(check_rights(R_HOLDER))
-		holder.player_panel_new()
+ADMIN_VERB(player_panel_new, R_HOLDER, "Player Panel New", "Open the player panel.", ADMIN_CATEGORY_GAME)
+	user.holder.player_panel_new(user)
 	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
-/client/proc/check_antagonists()
-	set name = "Check Antagonists"
-	set category = "Admin.Investigate"
-	if(check_rights(R_HOLDER))
-		holder.check_antagonists()
-		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
+ADMIN_VERB(check_antagonists, R_HOLDER, "Check Antagonists", "Open the antagonist panel.", ADMIN_CATEGORY_INVESTIGATE)
+	user.holder.check_antagonists(user)
+	log_admin("[key_name(user)] checked antagonists.")	//for tsar~
 	feedback_add_details("admin_verb","CHA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
 ADMIN_VERB(jobbans, R_BAN, "Display Job bans", "View job bans here.", ADMIN_CATEGORY_INVESTIGATE)
 	if(CONFIG_GET(flag/ban_legacy_system))

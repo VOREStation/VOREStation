@@ -1408,59 +1408,31 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATE
 				msg = "has unparalyzed [key_name(H)]."
 				log_and_message_admins(msg)
 
-/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug.Game"
-	set name = "Set Telecrystals"
-	set desc = "Allows admins to change telecrystals of a user."
-	set popup_menu = FALSE
-	var/crystals
+ADMIN_VERB(set_tcrystals, R_ADMIN|R_EVENT, "Set Telecrystals", "Allows admins to change telecrystals of a user.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
+	var/crystals = tgui_input_number(user, "Amount of telecrystals for [human_mob.ckey], currently [human_mob.mind.tcrystals].")
+	if (!isnull(crystals))
+		human_mob.mind.tcrystals = crystals
+		var/msg = "[key_name(user)] has modified [human_mob.ckey]'s telecrystals to [crystals]."
+		message_admins(msg)
 
-	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = tgui_input_number(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals)
-		if (!isnull(crystals))
-			H.mind.tcrystals = crystals
-			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
-			message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
-
-/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug.Game"
-	set name = "Add Telecrystals"
-	set desc = "Allows admins to change telecrystals of a user by addition."
-	set popup_menu = FALSE
-	var/crystals
-
-	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = tgui_input_number(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals)
-		if (!isnull(crystals))
-			H.mind.tcrystals += crystals
-			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
-			message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
+ADMIN_VERB(add_tcrystals, R_ADMIN|R_EVENT, "Add Telecrystals", "Allows admins to change telecrystals of a user by addition.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
+	var/crystals = tgui_input_number(user, "Amount of telecrystals to give to [human_mob.ckey], currently [human_mob.mind.tcrystals].")
+	if (!isnull(crystals))
+		human_mob.mind.tcrystals += crystals
+		var/msg = "[key_name(user)] has added [crystals] to [human_mob.ckey]'s telecrystals."
+		message_admins(msg)
 
 
-/datum/admins/proc/sendFax()
-	set category = "Fun.Event Kit"
-	set name = "Send Fax"
-	set desc = "Sends a fax to this machine"
-	var/department = tgui_input_list(usr, "Choose a fax", "Fax", GLOB.alldepartments)
+ADMIN_VERB(sendFax, R_ADMIN|R_MOD|R_EVENT, "Send Fax", "Sends a fax to this machine.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/department = tgui_input_list(user, "Choose a fax", "Fax", GLOB.alldepartments)
 	for(var/obj/machinery/photocopier/faxmachine/sendto in GLOB.allfaxes)
 		if(sendto.department == department)
+			var/replyorigin = tgui_input_text(user, "Please specify who the fax is coming from", "Origin")
 
-			if (!istype(src,/datum/admins))
-				src = usr.client.holder
-			if (!istype(src,/datum/admins))
-				to_chat(usr, "Error: you are not an admin!")
-				return
+			var/obj/item/paper/admin/P = new /obj/item/paper/admin(null) //hopefully the null loc won't cause trouble for us
+			user.holder.faxreply = P
 
-			var/replyorigin = tgui_input_text(src.owner, "Please specify who the fax is coming from", "Origin")
-
-			var/obj/item/paper/admin/P = new /obj/item/paper/admin( null ) //hopefully the null loc won't cause trouble for us
-			faxreply = P
-
-			P.admindatum = src
+			P.admindatum = user.holder
 			P.origin = replyorigin
 			P.destination = sendto
 
@@ -1534,17 +1506,17 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATE
 		faxreply = null
 	return
 
-/datum/admins/proc/set_uplink(mob/living/carbon/human/H as mob)
+/datum/admins/proc/set_uplink(mob/living/carbon/human/human_mob)
 	set category = "Debug.Events"
 	set name = "Set Uplink"
 	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
 	set popup_menu = FALSE
 
 	if(check_rights(R_ADMIN|R_DEBUG))
-		GLOB.traitors.spawn_uplink(H)
-		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
-		H.mind.accept_tcrystals = 1
-		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."
+		GLOB.traitors.spawn_uplink(human_mob)
+		human_mob.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+		human_mob.mind.accept_tcrystals = 1
+		var/msg = "[key_name(usr)] has given [human_mob.ckey] an uplink."
 		message_admins(msg)
 	else
 		to_chat(usr, "You do not have access to this command.")
