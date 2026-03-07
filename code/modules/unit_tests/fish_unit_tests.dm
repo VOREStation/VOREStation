@@ -415,9 +415,9 @@
 	source = GLOB.preset_fish_sources[/datum/fish_source/unit_test_profound_fisher]
 
 	run_loc_floor_bottom_left.AddComponent(/datum/component/fishing_spot, source)
-	var/mob/living/basic/fisher = allocate(/mob/living/basic)
+	var/mob/living/simple_mob/fisher = allocate(/mob/living/basic)
 	fisher.AddComponent(/datum/component/profound_fisher)
-	fisher.set_combat_mode(FALSE)
+	fisher.a_intent = I_HURT
 	fisher.melee_attack(run_loc_floor_bottom_left, ignore_cooldown = TRUE)
 
 	///For good measure, let's try it again, but with the component this time, and a human mob and gloves
