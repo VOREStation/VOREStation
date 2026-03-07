@@ -9,3 +9,6 @@
 							/obj/item/stock_parts/capacitor = 1,
 							/obj/item/stock_parts/console_screen = 1,
 							/obj/item/stack/cable_coil = 5)
+
+//Same as above, but emagged by default.
+/obj/item/circuitboard/machine/fishing_portal_generator/emagged

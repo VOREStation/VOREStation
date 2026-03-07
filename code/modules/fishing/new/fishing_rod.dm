@@ -342,7 +342,7 @@
 
 /obj/item/fishing_rod/attack_self_secondary(mob/user, modifiers)
 	. = ..()
-	ui_interact(user)
+	tgui_interact(user)
 
 /// Generates the fishing line visual from the current user to the target and updates inhands
 /obj/item/fishing_rod/proc/create_fishing_line(atom/movable/target, mob/living/firer, target_py = null)
@@ -724,7 +724,7 @@
 	frame_state = "frame_bone"
 	line = null //sinew line (usable to fish in lava) not included
 	hook = /obj/item/fishing_hook/bone
-	matter = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
+	matter = list(/datum/material/chitin = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/fishing_rod/telescopic
 	name = "telescopic fishing rod"
