@@ -99,7 +99,7 @@
 //	AddElement(/datum/element/bane, target_type = /mob/living, damage_multiplier = 1.25)
 	RegisterSignal(src, COMSIG_OBJECT_PRE_BANING, PROC_REF(attempt_bane))
 	RegisterSignal(src, COMSIG_OBJECT_ON_BANING, PROC_REF(bane_effects))
-
+/*
 /obj/item/fishing_rod/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(src == held_item)
 		if(currently_hooked)
@@ -107,6 +107,7 @@
 		context[SCREENTIP_CONTEXT_RMB] = "Modify"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
+*/
 /*
 /obj/item/fishing_rod/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	. = ..()

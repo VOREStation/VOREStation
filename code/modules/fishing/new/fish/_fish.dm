@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		return
 	slapperoni(user, iteration++)
 */
-
+/*
 /obj/item/fish/add_item_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(HAS_TRAIT(source, TRAIT_CATCH_AND_RELEASE))
 		context[SCREENTIP_CONTEXT_RMB] = "Release"
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		context[SCREENTIP_CONTEXT_LMB] = "Check Pulse"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
-
+*/
 /obj/item/fish/attackby(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/clothing/accessory/stethoscope))
 		return NONE
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		return ITEM_INTERACT_SUCCESS
 	to_chat(user, warns)
 	return ITEM_INTERACT_SUCCESS
-
+/*
 /obj/item/fish/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(interacting_with, TRAIT_CATCH_AND_RELEASE))
 		return NONE
@@ -344,7 +344,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		span_notice("You hear a splash."))
 	released(interacting_with, user)
 	return ITEM_INTERACT_SUCCESS
-
+*/
 /obj/item/fish/proc/released(atom/location, mob/living/user)
 	playsound(location, 'sound/effects/splash.ogg', 50)
 	SEND_SIGNAL(location, COMSIG_FISH_RELEASED_INTO, src, user)
@@ -720,15 +720,15 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 /obj/item/fish/proc/remove_fillet_type()
 	if(!fillet_type)
 		return
-	var/amount = max(round(num_fillets * size / FISH_FILLET_NUMBER_SIZE_DIVISOR, 1), 1)
-	var/time = PERFORM_ALL_TESTS(fish_size_weight) ? 0 : 0.5 SECONDS * amount
+//	var/amount = max(round(num_fillets * size / FISH_FILLET_NUMBER_SIZE_DIVISOR, 1), 1)
+//	var/time = PERFORM_ALL_TESTS(fish_size_weight) ? 0 : 0.5 SECONDS * amount
 //	RemoveElement(/datum/element/processable, TOOL_KNIFE, fillet_type, amount, time, screentip_verb = "Cut")
 
 /obj/item/fish/proc/add_fillet_type()
 	if(!fillet_type)
 		return
 	var/amount = max(round(num_fillets * size / FISH_FILLET_NUMBER_SIZE_DIVISOR, 1), 1)
-	var/time = PERFORM_ALL_TESTS(fish_size_weight) ? 0 : 0.5 SECONDS * amount
+//	var/time = PERFORM_ALL_TESTS(fish_size_weight) ? 0 : 0.5 SECONDS * amount
 //	AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, amount, time, screentip_verb = "Cut")
 	return amount //checked by a unit test
 
@@ -1425,7 +1425,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		new_fish.update_size_and_weight(new_fish.temp_size, new_fish.temp_weight)
 
 
-	var/list/fishing_data = list(new_fish.size, new_fish.weight, new_fish.matter)
+//	var/list/fishing_data = list(new_fish.size, new_fish.weight, new_fish.matter)
 //	log_fish("[new_fish] has been bred at [new_fish.drop_location()] from [partner].", fishing_data)
 
 	breeding_wait = world.time + breeding_timeout

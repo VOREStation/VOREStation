@@ -44,7 +44,7 @@
 	)
 	fishing_difficulty = FISHING_EASY_DIFFICULTY + 10
 	fish_source_flags = FISH_SOURCE_FLAG_NO_BLUESPACE_ROD
-	associated_safe_turfs = list(/turf/open/floor/holofloor/beach/water)
+	associated_safe_turfs = list(/turf/simulated/floor/holofloor/beach/water)
 
 /datum/fish_source/holographic/on_fishing_spot_init(datum/component/fishing_spot/spot)
 	ADD_TRAIT(spot.parent, TRAIT_UNLINKABLE_FISHING_SPOT, REF(src)) //You would have to be inside the holodeck anyway...
@@ -86,16 +86,16 @@
 	overlay_state = "portal_tray"
 	fish_table = list(
 		FISHING_DUD = 25,
-		/obj/item/reagent_containers/food/snacks/grown/grass = 25,
+		/obj/item/stack/tile/grass = 25,
 		FISHING_RANDOM_SEED = 16,
 		/obj/item/seeds/grassseed = 6,
 		/obj/item/seeds/random = 1,
 //		/mob/living/simple_mob/vore/aggressive/frog = 1,
 //		/mob/living/basic/axolotl = 1,
-		/mob/living/basic/turtle = 2,
+//		/mob/living/basic/turtle = 2,
 	)
 	fish_counts = list(
-		/obj/item/reagent_containers/food/snacks/grown/grass = 10,
+		/obj/item/stack/tile/grass = 10,
 		/obj/item/seeds/grassseed = 4,
 		FISHING_RANDOM_SEED = 4,
 		/obj/item/seeds/random = 1,

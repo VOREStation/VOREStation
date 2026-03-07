@@ -483,14 +483,14 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/yucky
 	name = "Yucky"
 	catalog_description = "This fish tastes so repulsive, other fishes won't try to eat it."
-	reagents_to_add = list(/datum/reagent/yuck = 1.2)
+	reagents_to_add = list(/datum/reagent/toxin = 1.2)
 	traits_to_add = list(TRAIT_YUCKY_FISH)
 
 /datum/fish_trait/toxic
 	name = "Toxic"
 	catalog_description = "This fish contains toxins. Feeding it to predatory fishes or people is not recommended."
-	reagents_to_add = list(/datum/reagent/toxin/tetrodotoxin = 1)
-	infusion_entry = /datum/infuser_entry/ttx_healing
+	reagents_to_add = list(/datum/reagent/toxin/carpotoxin = 1)
+//	infusion_entry = /datum/infuser_entry/ttx_healing
 	///The amount of venom injected if the fish has a stinger is multiplied by this value.
 	var/venom_mult = 1
 
@@ -615,7 +615,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/amphibious
 	name = "Amphibious"
 	catalog_description = "This fish has developed a primitive adaptation to life on both land and water."
-	infusion_entry = /datum/infuser_entry/amphibious
+//	infusion_entry = /datum/infuser_entry/amphibious
 	traits_to_add = list(TRAIT_FISH_AMPHIBIOUS)
 
 /datum/fish_trait/amphibious/apply_to_fish(obj/item/fish/fish, initial = TRUE)
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	name = "Anti-Gravity"
 	catalog_description = "This fish will invert the gravity of the bait at random. May fall upward outside after being caught."
 	added_difficulty = 20
-	reagents_to_add = list(/datum/reagent/gravitum = 2.3)
+	reagents_to_add = list(/datum/reagent/water = 2.3) ///datum/reagent/gravitum water placeholder
 
 /datum/fish_trait/antigrav/minigame_mod(obj/item/fishing_rod/rod, mob/fisherman, datum/fishing_challenge/minigame)
 	minigame.special_effects |= FISHING_MINIGAME_RULE_ANTIGRAV
@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/electrogenesis
 	name = "Electrogenesis"
 	catalog_description = "This fish is electroreceptive, and will generate electric fields. Can be harnessed inside a bioelectric generator."
-	reagents_to_add = list(/datum/reagent/consumable/liquidelectricity = 1.5)
+	reagents_to_add = list(/datum/reagent/grubshock = 1.5)
 	traits_to_add = list(TRAIT_FISH_ELECTROGENESIS)
 
 /datum/fish_trait/electrogenesis/apply_to_fish(obj/item/fish/fish, initial = TRUE)
@@ -812,7 +812,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/hallucinogenic
 	name = "Hallucinogenic"
 	catalog_description = "This fish is coated with hallucinogenic neurotoxin. We advise cooking it before consumption."
-	reagents_to_add = list(/datum/reagent/toxin/mindbreaker/fish = 1)
+	reagents_to_add = list(/datum/reagent/mindbreaker = 1)
 
 /datum/fish_trait/hallucinogenic/add_reagents(obj/item/fish/fish, list/reagents)
 	if(!HAS_TRAIT(src, TRAIT_FOOD_FRIED) && !HAS_TRAIT(src, TRAIT_FOOD_BBQ_GRILLED))
@@ -849,7 +849,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	name = "Ink Production"
 	catalog_description = "This fish possess a sac that produces ink."
 	spontaneous_manifest_types = list(/obj/item/fish/squid = 35)
-	infusion_entry = /datum/infuser_entry/squid
+//	infusion_entry = /datum/infuser_entry/squid
 
 /datum/fish_trait/ink/apply_to_fish(obj/item/fish/fish, initial = TRUE)
 	. = ..()

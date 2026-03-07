@@ -32,10 +32,10 @@
 
 /obj/item/fish/mastodon/fish_grind_results()
 	return list(/datum/reagent/calcium = 5, /datum/reagent/blood = 5)
-
+/*
 /obj/item/fish/mastodon/make_edible(weight_val)
 	return //it's all bones and gibs.
-
+*/
 /obj/item/fish/mastodon/get_export_price(price, elasticity_percent)
 	return ..() * 1.2 //This should push its soft-capped (it's pretty big) price a bit above the rest
 

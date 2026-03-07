@@ -100,7 +100,7 @@
 		/obj/item/fish/starfish = 6,
 		/obj/item/fish/baby_carp = 6,
 		/obj/item/bluespace_crystal = 2,
-		/mob/living/basic/carp = 2,
+		/mob/living/simple_mob/animal/space/carp = 2,
 	)
 	fish_counts = list(
 		/obj/item/bluespace_crystal = 10,
@@ -110,7 +110,7 @@
 	radial_name = "Hyperspace"
 	overlay_state = "portal_hyperspace"
 	radial_state = "space_rocket"
-	associated_safe_turfs = list(/turf/open/space)
+	associated_safe_turfs = list(/turf/space)
 
 ///Unlocked by emagging the fishing portal generator with an emag.
 /datum/fish_source/portal/syndicate

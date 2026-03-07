@@ -191,7 +191,7 @@
 	if(QDELETED(user) || QDELETED(src))
 		return
 	// carp grow big and strong inside the nutritious innards of the human
-	var/mob/living/basic/carp/mega/babby = new(get_turf(user))
+	var/mob/living/simple_mob/animal/space/carp/large/huge/babby = new(get_turf(user))
 	babby.name = user.name + " Jr."
 
 	var/obj/item/bodypart/chest = user.get_bodypart(BODY_ZONE_CHEST)

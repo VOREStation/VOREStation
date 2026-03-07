@@ -8,22 +8,22 @@
 	fish_table = list(
 		FISHING_DUD = 3,
 		/obj/item/fish/baby_carp = 5,
-		/mob/living/basic/carp = 1,
-		/mob/living/basic/carp/passive = 1,
-		/mob/living/basic/carp/mega = 1,
-		/obj/item/clothing/head/fedora/carpskin = 1,
-		/obj/item/toy/plush/carpplushie = 1,
-		/obj/item/toy/plush/carpplushie/dehy_carp/peaceful = 1,
+		/mob/living/simple_mob/animal/space/carp = 1,
+		/mob/living/simple_mob/animal/space/carp/friendly = 1,
+		/mob/living/simple_mob/animal/space/carp/large/huge/vorny = 1,
+		/obj/item/clothing/head/fedora = 1, ///carpskin = 1,
+		/obj/item/toy/plushie/carp = 1,
+		/obj/item/toy/plushie/carp/ice = 1, ///obj/item/toy/plush/carpplushie/dehy_carp/peaceful = 1,
 //		/obj/item/knife/carp = 1,
 	)
 	fish_counts = list(
-		/mob/living/basic/carp/mega = 2,
+		/mob/living/simple_mob/animal/space/carp/large/huge/vorny = 2,
 	)
 	fish_count_regen = list(
-		/mob/living/basic/carp/mega = 9 MINUTES,
+		/mob/living/simple_mob/animal/space/carp/large/huge/vorny = 9 MINUTES,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 28
-	associated_safe_turfs = list(/turf/open/space)
+	associated_safe_turfs = list(/turf/space)
 
 /datum/fish_source/dimensional_rift
 	background = "background_mansus"
@@ -39,29 +39,29 @@
 		/obj/item/fish/gullion = 7,
 		/obj/item/fish/mossglob = 3,
 		/obj/item/fish/babbelfish = 1,
-		/mob/living/basic/heretic_summon/fire_shark/wild = 3,
-		/obj/item/eldritch_potion/crucible_soul = 1,
-		/obj/item/eldritch_potion/duskndawn = 1,
-		/obj/item/eldritch_potion/wounded = 1,
-		/obj/item/reagent_containers/cup/beaker/eldritch = 2,
+//		/mob/living/basic/heretic_summon/fire_shark/wild = 3,
+//		/obj/item/eldritch_potion/crucible_soul = 1,
+//		/obj/item/eldritch_potion/duskndawn = 1,
+//		/obj/item/eldritch_potion/wounded = 1,
+//		/obj/item/reagent_containers/cup/beaker/eldritch = 2,
 	)
 	fish_counts = list(
 		/obj/item/fish/mossglob = 3,
 		/obj/item/fish/babbelfish = 1,
-		/mob/living/basic/heretic_summon/fire_shark/wild = 3,
-		/obj/item/eldritch_potion/crucible_soul = 1,
-		/obj/item/eldritch_potion/duskndawn = 1,
-		/obj/item/eldritch_potion/wounded = 1,
-		/obj/item/reagent_containers/cup/beaker/eldritch = 2,
+//		/mob/living/basic/heretic_summon/fire_shark/wild = 3,
+//		/obj/item/eldritch_potion/crucible_soul = 1,
+//		/obj/item/eldritch_potion/duskndawn = 1,
+//		/obj/item/eldritch_potion/wounded = 1,
+//		/obj/item/reagent_containers/cup/beaker/eldritch = 2,
 	)
 	fish_count_regen = list(
 		/obj/item/fish/mossglob = 3 MINUTES,
 		/obj/item/fish/babbelfish = 5 MINUTES,
-		/mob/living/basic/heretic_summon/fire_shark/wild = 6 MINUTES,
-		/obj/item/eldritch_potion/crucible_soul = 5 MINUTES,
-		/obj/item/eldritch_potion/duskndawn = 5 MINUTES,
-		/obj/item/eldritch_potion/wounded = 5 MINUTES,
-		/obj/item/reagent_containers/cup/beaker/eldritch = 2.5 MINUTES,
+//		/mob/living/basic/heretic_summon/fire_shark/wild = 6 MINUTES,
+//		/obj/item/eldritch_potion/crucible_soul = 5 MINUTES,
+//		/obj/item/eldritch_potion/duskndawn = 5 MINUTES,
+//		/obj/item/eldritch_potion/wounded = 5 MINUTES,
+//		/obj/item/reagent_containers/cup/beaker/eldritch = 2.5 MINUTES,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 35
 	fish_source_flags = FISH_SOURCE_FLAG_EXPLOSIVE_NONE
