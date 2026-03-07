@@ -150,6 +150,8 @@
 	if(chassis_name != PAI_DEFAULT_CHASSIS) // For subtypes that override base chassis( like the syndi pet pai )
 		internal_set_chassis( SSpai.chassis_data(chassis_name))
 
+	AddComponent(/datum/component/gender_identity)
+
 /mob/living/silicon/pai/Login()
 	. = ..()
 	if(!holo_icon_south)
@@ -177,7 +179,7 @@
 	SetName(pref.read_preference(/datum/preference/text/pai_name))
 	flavor_text = pref.read_preference(/datum/preference/text/pai_description)
 	change_chassis(pref.read_preference(/datum/preference/text/pai_chassis))
-	gender = pref.read_preference(/datum/preference/choiced/gender/biological) // Cannot use identifying yet due to byond limits
+	change_gender_identity(pref.read_preference(/datum/preference/choiced/gender/identifying))
 	eye_color = pref.read_preference(/datum/preference/color/pai_eye_color)
 	card.screen_color = eye_color
 	card.setEmotion(GLOB.pai_emotions[pref.read_preference(/datum/preference/text/pai_emotion)])
