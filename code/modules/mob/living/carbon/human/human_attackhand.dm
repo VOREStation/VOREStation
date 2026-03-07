@@ -261,7 +261,7 @@
 
 	M.do_attack_animation(src)
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-	visible_message(span_warning("[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!"))
+	visible_message(span_warning("[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [p_their()] hands": "passively"]!"))
 //Harm Intent
 /mob/living/carbon/human/proc/attack_hand_harm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
 	PRIVATE_PROC(TRUE)
