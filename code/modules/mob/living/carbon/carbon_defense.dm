@@ -159,3 +159,8 @@
 	animate(pixel_w = SHAKE_ANIMATION_OFFSET * direction, time = 0.1 SECONDS, easing = QUAD_EASING | EASE_IN, flags = ANIMATION_RELATIVE)
 
 #undef SHAKE_ANIMATION_OFFSET
+
+/mob/living/carbon/can_catch_item(skip_throw_mode_check = FALSE, try_offhand = FALSE)
+	if(!skip_throw_mode_check && !in_throw_mode)
+		return FALSE
+	return ..()
