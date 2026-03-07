@@ -40,6 +40,9 @@
 /obj/structure/musician/tgui_interact(mob/user)
 	return song.tgui_interact(user)
 
+/obj/structure/musician/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /* FIXME
 /obj/structure/musician/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()

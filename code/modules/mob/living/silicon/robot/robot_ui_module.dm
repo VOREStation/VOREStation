@@ -84,7 +84,7 @@
 				model_type = "wide"
 			if(istype(S, /datum/robot_sprite/dogborg/tall))
 				model_type = "tall"
-			available_sprites += list(list("sprite" = S.name, "belly" = S.has_vore_belly_sprites, "type" = model_type))
+			UNTYPED_LIST_ADD(available_sprites, list("sprite" = S.name, "belly" = S.has_vore_belly_sprites, "type" = model_type))
 
 		data["possible_sprites"] = available_sprites
 		data["sprite_datum"] = sprite_datum

@@ -148,12 +148,11 @@
 	// check if telecomms I/O route 1459 is stable
 	//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 	var/obj/machinery/message_server/useMS = null
-	if(message_servers)
-		for(var/obj/machinery/message_server/MS as anything in message_servers)
-		//PDAs are now dependent on the Message Server.
-			if(MS.active)
-				useMS = MS
-				break
+	for(var/obj/machinery/message_server/MS as anything in GLOB.message_servers)
+	//PDAs are now dependent on the Message Server.
+		if(MS.active)
+			useMS = MS
+			break
 
 	var/datum/signal/signal = pda.telecomms_process()
 
