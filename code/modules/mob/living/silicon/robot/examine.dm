@@ -4,31 +4,31 @@
 
 	if (src.getBruteLoss())
 		if (src.getBruteLoss() < 75)
-			. += span_warning("It looks slightly dented.")
+			. += span_warning("[p_They()] looks slightly dented.")
 		else
-			. += span_boldwarning("It looks severely dented!")
+			. += span_boldwarning("[p_They()] looks severely dented!")
 	if (src.getFireLoss())
 		if (src.getFireLoss() < 75)
-			. += span_warning("It looks slightly charred.")
+			. += span_warning("[p_They()] looks slightly charred.")
 		else
-			. += span_boldwarning("It looks severely burnt and heat-warped!")
+			. += span_boldwarning("[p_They()] looks severely burnt and heat-warped!")
 
 	if(opened)
-		. += span_warning("Its cover is open and the power cell is [cell ? "installed" : "missing"].")
+		. += span_warning("[p_Their()] cover is open and the power cell is [cell ? "installed" : "missing"].")
 	else
-		. += "Its cover is closed."
+		. += "[p_Their()] cover is closed."
 
 	if(!has_power)
-		. += span_warning("It appears to be running on backup power.")
+		. += span_warning("[p_They()] appear[p_s()] to be running on backup power.")
 
 	switch(src.stat)
 		if(CONSCIOUS)
 			if(shell)
-				. += "It appears to be an [deployed ? "active" : "empty"] AI shell."
+				. += "[p_They()] appear[p_s()] to be an [deployed ? "active" : "empty"] AI shell."
 			else if(!src.client)
-				. += "It appears to be in stand-by mode." //afk
-		if(UNCONSCIOUS)		. += span_warning("It doesn't seem to be responding.")
-		if(DEAD)			. += span_deadsay("It looks completely unsalvageable.")
+				. += "[p_They()] appear[p_s()] to be in stand-by mode." //afk
+		if(UNCONSCIOUS)		. += span_warning("[p_They()] [p_do()]n't seem to be responding.")
+		if(DEAD)			. += span_deadsay("[p_They()] looks completely unsalvageable.")
 
 	. += formatted_vore_examine()
 
@@ -39,6 +39,6 @@
 	if (pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		. += "<br>It is [pose]" //Extra <br> intentional
+		. += "<br>[p_They()] [p_are()] [pose]" //Extra <br> intentional
 
 	user.showLaws(src)

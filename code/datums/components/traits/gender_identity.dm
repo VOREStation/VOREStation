@@ -26,10 +26,22 @@
 		return comp.identifying_gender
 	return gender // Assume byond genders
 
+// Safely applies a gender identity component's gender to byond gender, if the gender isn't supported by byond, use plural.
+#define APPLY_COMPONENT_TO_BYOND_GENDER destination.gender = PLURAL;\
+if((comp.identifying_gender in byond_genders_define_list))\
+{\
+	destination.gender = comp.identifying_gender;\
+}
 /// Transfers the gender identity of one atom to another. By default, if the destination does not support complex genders(and a complex gender is in use!), it will be given the component to do so.
 /atom/proc/exchange_gender(atom/destination, force_complex_gender = TRUE)
 	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
 	var/datum/component/gender_identity/destcomp = destination.GetComponent(/datum/component/gender_identity)
+
+	// Force complex gender! Give the other object the component. Only if our source is also complex...
+	if(comp && !destcomp && force_complex_gender)
+		destination.AddComponent(/datum/component/gender_identity, comp.identifying_gender)
+		APPLY_COMPONENT_TO_BYOND_GENDER
+		return TRUE
 
 	// If neither of us support, just exchange byond gender
 	if(!comp && !destcomp)
@@ -39,32 +51,23 @@
 	// Both support, easy!
 	if(comp && destcomp)
 		destcomp.identifying_gender = comp.identifying_gender
-		destination.gender = PLURAL // make sure the complex gender can be assigned to the byond gender, if not assume plural
-		if((comp.identifying_gender in byond_genders_define_list))
-			destination.gender = comp.identifying_gender
+		APPLY_COMPONENT_TO_BYOND_GENDER
 		return TRUE
 
 	// Our destination doesn't support complex genders...
 	if(comp && !destcomp)
-		if(!(comp.identifying_gender in byond_genders_define_list))
-			if(force_complex_gender)
-				// ... give em the component and assign it!
-				destination.AddComponent(/datum/component/gender_identity, comp.identifying_gender)
-			else
-				// ... fallback to plural if we need to
-				destination.gender = PLURAL
-			return TRUE
-		destination.gender = comp.identifying_gender
+		APPLY_COMPONENT_TO_BYOND_GENDER
 		return TRUE
 
 	// We don't support complex genders, use our base gender when setting theirs! No safety here as we can only have byond safe genders anyway
 	if(destcomp && !comp)
 		destcomp.identifying_gender = gender
-		destcomp.gender = gender
+		destination.gender = gender
 		return TRUE
 
 	// Otherwise we failed somehow?
 	return FALSE
+#undef APPLY_COMPONENT_TO_BYOND_GENDER
 
 /// Allows gender identity to be assigned at player's discretion, added as a verb when the /datum/component/gender_identity is added to a mob
 /mob/proc/toggle_gender_identity_vr()
