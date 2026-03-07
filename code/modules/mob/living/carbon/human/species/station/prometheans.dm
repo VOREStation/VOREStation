@@ -166,8 +166,23 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(H.zone_sel.selecting in parent_handles)
 		return ..()
 
-	H.visible_message(span_infoplain(span_bold("\The [H]") + " glomps \the [target] to make [target.p_them()] feel better!"), \
-					span_notice("You glomp \the [target] to make [target.p_them()] feel better!"))
+	var/t_him = "them"
+	if(ishuman(target))
+		var/mob/living/carbon/human/T = target
+		switch(T.identifying_gender)
+			if(MALE)
+				t_him = "him"
+			if(FEMALE)
+				t_him = "her"
+	else
+		switch(target.gender)
+			if(MALE)
+				t_him = "him"
+			if(FEMALE)
+				t_him = "her"
+
+	H.visible_message(span_infoplain(span_bold("\The [H]") + " glomps [target] to make [t_him] feel better!"), \
+					span_notice("You glomp [target] to make [t_him] feel better!"))
 	H.apply_stored_shock_to(target)
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)

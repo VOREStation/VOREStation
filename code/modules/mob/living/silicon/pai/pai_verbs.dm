@@ -173,19 +173,47 @@
 		card.setEmotion(card.current_emotion)
 
 /mob/living/silicon/pai/proc/hug(var/mob/living/silicon/pai/H, var/mob/living/target)
+
+	var/t_him = "them"
+	if(ishuman(target))
+		var/mob/living/carbon/human/T = target
+		switch(T.identifying_gender)
+			if(MALE)
+				t_him = "him"
+			if(FEMALE)
+				t_him = "her"
+			if(NEUTER)
+				t_him = "it"
+			if(HERM)
+				t_him = "hir"
+			else
+				t_him = "them"
+	else
+		switch(target.gender)
+			if(MALE)
+				t_him = "him"
+			if(FEMALE)
+				t_him = "her"
+			if(NEUTER)
+				t_him = "it"
+			if(HERM)
+				t_him = "hir"
+			else
+				t_him = "them"
+
 	if(H.zone_sel.selecting == BP_HEAD)
 		H.visible_message( \
-			span_notice("\The [H] pats \the [target] on the head."), \
-			span_notice("You pat \the [target] on the head."), )
+			span_notice("[H] pats [target] on the head."), \
+			span_notice("You pat [target] on the head."), )
 	else if(H.zone_sel.selecting == BP_R_HAND || H.zone_sel.selecting == BP_L_HAND)
 		H.visible_message( \
-			span_notice("\The [H] shakes \the [target]'s hand."), \
-			span_notice("You shake \the [target]'s hand."), )
+			span_notice("[H] shakes [target]'s hand."), \
+			span_notice("You shake [target]'s hand."), )
 	else if(H.zone_sel.selecting == "mouth")
 		H.visible_message( \
-			span_notice("\The [H] boops \the [target]'s nose."), \
-			span_notice("You boop \the [target] on the nose."), )
+			span_notice("[H] boops [target]'s nose."), \
+			span_notice("You boop [target] on the nose."), )
 	else
-		H.visible_message(span_notice("\The [H] hugs \the [target] to make [target.p_them()] feel better!"), \
-						span_notice("You hug \the [target] to make [target.p_them()] feel better!"))
+		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
+						span_notice("You hug [target] to make [t_him] feel better!"))
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
