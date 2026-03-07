@@ -711,22 +711,24 @@
 	source.balloon_alert(user, "admiring aquarium...")
 	if(!do_after(user, 5 SECONDS, target = source))
 		return
-//	var/alive_fish = 0
-//	var/dead_fish = 0
+/*
+	var/alive_fish = 0
+	var/dead_fish = 0
 	for(var/obj/item/fish/fish as anything in get_fishes())
 		if(fish.status == FISH_ALIVE)
 			alive_fish++
 		else
 			dead_fish++
 
-//	var/morb = HAS_MIND_TRAIT(user, TRAIT_MORBID)
+	var/morb = HAS_MIND_TRAIT(user, TRAIT_MORBID)
 	//Check if there are live fish - good mood
 	//All fish dead - bad mood.
 	//No fish - nothing.
-	/*if(alive_fish > 0)
+	if(alive_fish > 0)
 		user.add_mood_event("aquarium", morb ? /datum/mood_event/morbid_aquarium_bad : /datum/mood_event/aquarium_positive)
 	else if(dead_fish > 0)
-		user.add_mood_event("aquarium", morb ? /datum/mood_event/morbid_aquarium_good : /datum/mood_event/aquarium_negative)*/
+		user.add_mood_event("aquarium", morb ? /datum/mood_event/morbid_aquarium_good : /datum/mood_event/aquarium_negative)
+*/
 
 /datum/component/aquarium/proc/on_requesting_context_from_item(atom/source, list/context, obj/item/held_item, mob/user)
 	SIGNAL_HANDLER
