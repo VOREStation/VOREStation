@@ -599,7 +599,7 @@
 	INVOKE_ASYNC(src, PROC_REF(admire), source, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
-/datum/component/aquarium/ui_interact(mob/user, datum/tgui/ui)
+/datum/component/aquarium/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		var/atom/movable/movable = parent
@@ -711,15 +711,15 @@
 	source.balloon_alert(user, "admiring aquarium...")
 	if(!do_after(user, 5 SECONDS, target = source))
 		return
-	var/alive_fish = 0
-	var/dead_fish = 0
+//	var/alive_fish = 0
+//	var/dead_fish = 0
 	for(var/obj/item/fish/fish as anything in get_fishes())
 		if(fish.status == FISH_ALIVE)
 			alive_fish++
 		else
 			dead_fish++
 
-	var/morb = HAS_MIND_TRAIT(user, TRAIT_MORBID)
+//	var/morb = HAS_MIND_TRAIT(user, TRAIT_MORBID)
 	//Check if there are live fish - good mood
 	//All fish dead - bad mood.
 	//No fish - nothing.

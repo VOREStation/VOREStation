@@ -89,7 +89,7 @@
 	result = /obj/structure/aquarium
 	time = 10 SECONDS
 	reqs = list(
-		/obj/item/stack/sheet/iron = 10,
+		/obj/item/stack/material/steel = 10,
 		/obj/item/stack/material/glass = 10,
 		/obj/item/aquarium_kit = 1,
 	)
@@ -100,7 +100,7 @@
 	result = /obj/item/fish_tank
 	time = 10 SECONDS
 	reqs = list(
-		/obj/item/stack/sheet/plastic = 5,
+		/obj/item/stack/material/plastic = 5,
 		/obj/item/aquarium_kit = 1,
 	)
 	category = CAT_FURNITURE
