@@ -572,7 +572,7 @@
 	if(is_syringe && item.reagents.total_volume)
 		to_chat(user, span_warning("[src] cannot accept a syringe that isn't empty. Empty it first."))
 		return ITEM_INTERACT_BLOCKING
-	if(user.unEquip(item))
+	if(user.unEquip(item, target = src))
 		to_chat(user, span_warning("[item] is stuck to your hands."))
 		return ITEM_INTERACT_BLOCKING
 	to_chat(user, span_info("You load [item] into [src]."))

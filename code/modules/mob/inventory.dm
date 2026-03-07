@@ -212,6 +212,18 @@ var/list/slot_equipment_priority = list( \
 	drop_from_inventory(I, target)
 	return TRUE
 
+/mob/proc/get_held_index_of_item(obj/item/I)
+	return contents.Find(I)
+
+/// Returns what body zone is holding the passed item
+/mob/proc/get_hand_zone_of_item(obj/item/I)
+	var/hand_index = get_held_index_of_item(I)
+	if(!hand_index)
+		return null
+	if(IS_RIGHT_INDEX(hand_index))
+		return BP_R_HAND
+	return BP_L_HAND
+
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
 /mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)

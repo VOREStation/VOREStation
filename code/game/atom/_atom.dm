@@ -126,6 +126,31 @@
 		return flags & INSERT_CONTAINER
 */
 
+///Apply material effects of a single material.
+/atom/proc/apply_single_mat_effect(datum/material/material, amount, multiplier)
+	SHOULD_CALL_PARENT(TRUE)
+	return //NYI except for fishing.
+	/*
+	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !uses_integrity)
+		return
+	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+	modify_max_integrity(ceil(max_integrity * integrity_mod))
+	var/list/armor_mods = material.get_armor_modifiers(multiplier)
+	set_armor(get_armor().generate_new_with_multipliers(armor_mods))
+	*/
+
+/atom/proc/remove_single_mat_effect(datum/material/material, amount, multiplier)
+	SHOULD_CALL_PARENT(TRUE)
+	return //NYI Except for fishing.
+	/*
+	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !uses_integrity)
+		return
+	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+	modify_max_integrity(floor(max_integrity / integrity_mod))
+	var/list/armor_mods = material.get_armor_modifiers(1 / multiplier)
+	set_armor(get_armor().generate_new_with_multipliers(armor_mods))
+	*/
+
 // Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
 // all the atoms that still have the proc, but get events other ways.
 /atom/proc/HasProximity(turf/T, datum/weakref/WF, old_loc)

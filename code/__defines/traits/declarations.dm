@@ -227,3 +227,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MOVE_FLYING "move_flying"
 /// Are we immune to shocks?
 #define TRAIT_SHOCKIMMUNE "shock_immunity"
+/// A transforming item that is actively extended / transformed
+#define TRAIT_TRANSFORM_ACTIVE "active_transform"
+/// Improved boons from showers and some features centered around water, should also suppress TRAIT_WATER_HATER
+#define TRAIT_WATER_ADAPTATION "water_adaptation"

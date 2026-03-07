@@ -268,8 +268,28 @@ GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 
 	var/wiki_flag = 0
 
+	///This is a modifier for force, and resembles the strength of the material
+	var/strength_modifier = 1
+
 	/// Fish made of or infused with this material have their weight multiplied by this value.
 	var/fish_weight_modifier = 1
+
+	/// Additive bonus/malus to the fishing difficulty modifier of any rod made of this item. Negative is good, positive bad
+	var/fishing_difficulty_modifier = 0
+	/// Additive bonus/malus to the cast range of the fishing rod
+	var/fishing_cast_range = 0
+	/// The multiplier of how much experience is gained when using a fishing rod made of this material
+	var/fishing_experience_multiplier = 1
+	/// The multiplier to the completion gain of the fishing rod made of this material
+	var/fishing_completion_speed = 1
+	/// The multiplier of the bait/bobber speed of the fishing challenge for fishing rods made of this material
+	var/fishing_bait_speed_mult = 1
+	/// The multiplier of the deceleration/friction for fishing rods made of this material
+	var/fishing_deceleration_mult = 1
+	/// The multiplier of the bounciness of the bait/bobber upon hitting the edges of the minigame area
+	var/fishing_bounciness_mult = 1
+	/// The multiplier of negative velocity that pulls the bait/bobber of a fishing rod down when not holding the click
+	var/fishing_gravity_mult = 1
 
 // Placeholders for light tiles and rglass.
 /datum/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)

@@ -239,3 +239,11 @@
 	'sound/effects/desecration/desecration-02.ogg',\
 	'sound/effects/desecration/desecration-03.ogg'\
 	)
+
+#define SFX_REEL list(\
+	'sound/items/reel/reel1.ogg',\
+	'sound/items/reel/reel2.ogg',\
+	'sound/items/reel/reel3.ogg',\
+	'sound/items/reel/reel4.ogg',\
+	'sound/items/reel/reel5.ogg'\
+	)

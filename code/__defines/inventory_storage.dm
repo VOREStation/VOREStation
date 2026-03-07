@@ -27,3 +27,8 @@
 
 //this all needs a refactor to tg storage but for now...
 #define MAX_STORAGE_REACH 2		//maximum you can reach down to grab things from storage.
+
+/// Checks if the value is "right" - same as ISEVEN, but used primarily for hand or foot index contexts
+#define IS_RIGHT_INDEX(value) (value % 2 == 0)
+/// Checks if the value is "left" - same as ISODD, but used primarily for hand or foot index contexts
+#define IS_LEFT_INDEX(value) (value % 2 != 0)

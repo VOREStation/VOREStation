@@ -3,12 +3,14 @@
 	desc = "You can fish with this."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fishing_rod"
-	icon_angle = -45
-	lefthand_file = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi'
+//	icon_angle = -45
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi',
+			slot_r_hand_str = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi',
+			)
 	item_state = "rod"
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+//	inhand_x_dimension = 64
+//	inhand_y_dimension = 64
 	force = 8
 	w_class = ITEMSIZE_HUGE
 
@@ -81,8 +83,8 @@
 
 /obj/item/fishing_rod/Initialize(mapload)
 	. = ..()
-	register_context()
-	register_item_context()
+//	register_context()
+//	register_item_context()
 
 	if(ispath(bait))
 		set_slot(new bait(src), ROD_SLOT_BAIT)
@@ -94,7 +96,7 @@
 	update_appearance()
 
 	//Bane effect that make it extra-effective against mobs with water adaptation (read: fish infusion)
-	AddElement(/datum/element/bane, target_type = /mob/living, damage_multiplier = 1.25)
+//	AddElement(/datum/element/bane, target_type = /mob/living, damage_multiplier = 1.25)
 	RegisterSignal(src, COMSIG_OBJECT_PRE_BANING, PROC_REF(attempt_bane))
 	RegisterSignal(src, COMSIG_OBJECT_ON_BANING, PROC_REF(bane_effects))
 
@@ -105,7 +107,7 @@
 		context[SCREENTIP_CONTEXT_RMB] = "Modify"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
-
+/*
 /obj/item/fishing_rod/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	. = ..()
 	var/gone_fishing = GLOB.fishing_challenges_by_user[user]
@@ -115,7 +117,7 @@
 			context[SCREENTIP_CONTEXT_RMB] = "Unhook"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
-
+*/
 /obj/item/fishing_rod/examine(mob/user)
 	. = ..()
 	var/list/equipped_stuff = list()
@@ -134,18 +136,18 @@
 		. += span_notice("Thanks to your fishing skills, you can examine it again for more in-depth information.")
 		return
 	if(HAS_TRAIT(src, TRAIT_ROD_MANSUS_INFUSED))
-		if(IS_HERETIC(user))
+		if(iscultist(user))
 			. += span_purple("This rod has been <b>infused</b> by a heretic, improving its ability to catch glimpses of the Mansus. And fish.")
 		else
 			. += span_purple("It's glowing an eerie purple...")
-	else if(IS_HERETIC(user))
+	else if(iscultist(user))
 		. += span_purple("As a Heretic, you can infuse this fishing rod with your <b>Mansus Grasp</b> by activating the spell while wielding it, to enhance its fishing power.")
-
+/*
 /obj/item/fishing_rod/examine_more(mob/user)
 	. = ..()
 	if(!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))
 		return
-
+*/
 	var/list/block = list()
 	var/get_percent = HAS_MIND_TRAIT(user, TRAIT_EXAMINE_DEEPER_FISH)
 	block += span_info("You think you can cast it up to [get_cast_range()] tiles away.")
@@ -160,7 +162,7 @@
 	list_clear_nulls(block)
 	. += boxed_message(block.Join("\n"))
 
-	if(get_percent && (material_flags & MATERIAL_EFFECTS) && length(custom_materials))
+	if(get_percent && length(matter))
 		block = list()
 		block += span_info("Right now, fish caught by this fishing rod have a [get_material_fish_chance(user)]% of being made of its same materials.")
 		var/datum/material/material = get_primary_material()
@@ -191,7 +193,7 @@
 	if(span_info)
 		return span_info(.)
 	if(less_is_better ? value < 0 : value > 0)
-		return span_nicegreen(.)
+		return span_green(.)
 	return span_danger(.)
 
 /obj/item/fishing_rod/apply_single_mat_effect(datum/material/custom_material, amount, multiplier)
@@ -238,11 +240,13 @@
 	if(isnull(reward))
 		return
 	var/isfish = isfish(reward)
-	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials) && HAS_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED))
+	/*
+	if((material_flags & MATERIAL_EFFECTS) && isfish && length(matter) && HAS_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED))
 		if(prob(get_material_fish_chance(user)))
 			var/obj/item/fish/fish = reward
 			var/datum/material/material = get_primary_material()
 			fish.set_custom_materials(list(material.type = fish.weight))
+	*/
 	// catching things that aren't fish or alive mobs doesn't consume baits.
 	if(isnull(bait) || HAS_TRAIT(bait, TRAIT_BAIT_UNCONSUMABLE))
 		return
@@ -276,7 +280,7 @@
 			material_chance += 8
 		else if(HAS_TRAIT(bait, TRAIT_BASIC_QUALITY_BAIT))
 			material_chance += 4
-	material_chance += user.mind?.get_skill_level(/datum/skill/fishing) * 1.5
+//	material_chance += user.mind?.get_skill_level(/datum/skill/fishing) * 1.5
 	return material_chance
 
 ///Fishing rodss should only bane fish DNA-infused spessman
@@ -288,8 +292,7 @@
 ///Fishing rods should hard-counter fish DNA-infused spessman
 /obj/item/fishing_rod/proc/bane_effects(datum/source, mob/living/fish)
 	SIGNAL_HANDLER
-	fish.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 4 SECONDS)
-	fish.adjust_confusion_up_to(1.5 SECONDS, 3 SECONDS)
+	fish.AdjustConfused(rand(1, 2))
 	fish.adjust_wet_stacks(-4)
 
 /obj/item/fishing_rod/interact(mob/user)
@@ -300,17 +303,18 @@
 	if(DOING_INTERACTION_WITH_TARGET(user, currently_hooked))
 		return
 
-	playsound(src, SFX_REEL, 50, vary = FALSE)
-	var/time = (0.8 - round(user.mind?.get_skill_level(/datum/skill/fishing) * 0.04, 0.1)) SECONDS * bait_speed_mult
+	playsound(src, pick(SFX_REEL), 50, vary = FALSE)
+//	var/time = (0.8 - round(user.mind?.get_skill_level(/datum/skill/fishing) * 0.04, 0.1)) SECONDS * bait_speed_mult
+	var/time = 0.7 SECONDS * bait_speed_mult
 	if(!do_after(user, time, currently_hooked, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(fishing_line_check))))
 		return
 
-	if(currently_hooked.anchored || currently_hooked.move_resist >= MOVE_FORCE_STRONG)
+	if(currently_hooked.anchored) // || currently_hooked.move_resist >= MOVE_FORCE_STRONG)
 		balloon_alert(user, "[currently_hooked.p_they()] won't budge!")
 		return
 
 	//About thirty minutes of non-stop reeling to get from zero to master... not worth it but hey, you do what you do.
-	user.mind?.adjust_experience(/datum/skill/fishing, time * 0.13 * experience_multiplier)
+//	user.mind?.adjust_experience(/datum/skill/fishing, time * 0.13 * experience_multiplier)
 
 	//Try to move it 'till it's under the user's feet, then try to pick it up
 	//Not an item, so just delete the line if it's adjacent to the user.
@@ -329,7 +333,7 @@
 		return
 
 	var/obj/item/item = currently_hooked
-	if(item.loc == user.loc && (item.interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))
+	if(item.loc == user.loc) // && (item.interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))
 		user.put_in_inactive_hand(item)
 		QDEL_NULL(fishing_line)
 
@@ -347,7 +351,7 @@
 	if(fishing_line)
 		QDEL_NULL(fishing_line)
 	var/beam_color = line?.line_color || default_line_color
-	fishing_line = new(firer, target, icon_state = "fishing_line", beam_color = beam_color, emissive = FALSE, override_target_pixel_y = target_py)
+	fishing_line = new(firer, target, beam_icon_state = "fishing_line", new_beam_color = beam_color)//, emissive = FALSE, override_target_pixel_y = target_py)
 	fishing_line.lefthand = IS_LEFT_INDEX(firer.get_held_index_of_item(src))
 	RegisterSignal(fishing_line, COMSIG_BEAM_BEFORE_DRAW, PROC_REF(check_los))
 	RegisterSignal(fishing_line, COMSIG_QDELETING, PROC_REF(clear_line))
@@ -368,9 +372,9 @@
 /obj/item/fishing_rod/proc/get_cast_range(mob/living/user)
 	. = max(cast_range + line?.cast_range, 1)
 	user = user || loc
-	if (!isliving(user) || !user.mind || !user.is_holding(src))
+	if (!isliving(user) || !user.mind || !user.get_type_in_hands(src))
 		return
-	. += round(user.mind.get_skill_level(/datum/skill/fishing) * 0.3)
+//	. += round(user.mind.get_skill_level(/datum/skill/fishing) * 0.3)
 	return max(., 1)
 
 /obj/item/fishing_rod/dropped(mob/user, silent)
@@ -395,7 +399,7 @@
 
 	var/cast_range = get_cast_range()
 	if(!(line?.fishing_line_traits & FISHING_LINE_PHASE))
-		if(!CheckToolReach(src, source.target, cast_range))
+		if(!get_dist(src, source.target) > cast_range)//CheckToolReach(src, source.target, cast_range))
 			qdel(source)
 			return BEAM_CANCEL_DRAW
 		return NONE
@@ -411,17 +415,17 @@
 	bresenham_line -= get_turf(source.target) //We don't check if the target is on a r-wall already, just the turfs separating us from it.
 	bresenham_line -= get_turf(loc) //ditto with our own turf.
 	for(var/turf/turf as anything in bresenham_line)
-		if(isindestructiblewall(turf) || istype(turf, /turf/closed/wall/r_wall))
+		if(istype(loc, /turf/unsimulated))
 			qdel(source)
 			return BEAM_CANCEL_DRAW
 	return NONE
-
+/*
 /obj/item/fishing_rod/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	//this prevent trying to use telekinesis to fish (which would be broken anyway), also whacking people with a rod.
-	if(!user.contains(src) || (user.combat_mode && !isturf(interacting_with)) ||HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
+	if(!user.contains(src) || (user.a_intent == I_HURT && !isturf(interacting_with))) // || HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
 		return ..()
 	return ranged_interact_with_atom(interacting_with, user, modifiers)
-
+*/
 /obj/item/fishing_rod/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!hook)
 		balloon_alert(user, "install a hook first!")
@@ -434,7 +438,7 @@
 
 	cast_line(interacting_with, user)
 	return ITEM_INTERACT_SUCCESS
-
+/*
 /obj/item/fishing_rod/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	return ranged_interact_with_atom_secondary(interacting_with, user, modifiers)
 
@@ -444,7 +448,7 @@
 		QDEL_NULL(fishing_line)
 		return ITEM_INTERACT_BLOCKING
 	return ..()
-
+*/
 /// If the line to whatever that is is clear and we're not already busy, try fishing in it
 /obj/item/fishing_rod/proc/cast_line(atom/target, mob/user)
 	if(casting || currently_hooked)
@@ -467,17 +471,17 @@
 		hook_hit(target, user)
 		return
 	casting = TRUE
-	var/obj/projectile/fishing_cast/cast_projectile = new(get_turf(src))
+	var/obj/item/projectile/fishing_cast/cast_projectile = new(get_turf(src))
 	cast_projectile.range = get_cast_range(user)
-	cast_projectile.maximum_range = get_cast_range(user)
+//	cast_projectile.maximum_range = get_cast_range(user)
 	cast_projectile.owner = src
 	cast_projectile.original = target
-	cast_projectile.fired_from = src
+	cast_projectile.firer = src
 	cast_projectile.firer = user
-	cast_projectile.impacted = list(WEAKREF(user) = TRUE)
+//	cast_projectile.impacted = list(WEAKREF(user) = TRUE)
 	if(line?.fishing_line_traits & FISHING_LINE_PHASE)
 		cast_projectile.pass_flags = ALL
-	cast_projectile.aim_projectile(target, user)
+//	cast_projectile.aim_projectile(target, user)
 	cast_projectile.fire()
 
 /// Called by hook projectile when hitting things
@@ -496,11 +500,11 @@
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/item/fishing_rod/ui_state()
+/obj/item/fishing_rod/tgui_state()
 	if(internal)
-		return GLOB.deep_inventory_state
+		return GLOB.tgui_deep_inventory_state
 	else
-		return GLOB.default_state
+		return GLOB.tgui_default_state
 
 /obj/item/fishing_rod/update_overlays()
 	. = ..()
@@ -527,14 +531,14 @@
 		if(istype(bait, /obj/item/reagent_containers/food/bait))
 			var/obj/item/reagent_containers/food/bait/real_bait = bait
 			bait_state = real_bait.rod_overlay_icon_state
-		if(istype(bait, /obj/item/stock_parts/power_store/cell/lead))
+		if(istype(/obj/item/cell/crap))
 			bait_state = "battery_overlay"
 		. += bait_state
-
+/*
 /obj/item/fishing_rod/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
 	. = ..()
 	. += get_fishing_worn_overlays(standing, isinhands, icon_file)
-
+*/
 /obj/item/fishing_rod/proc/get_fishing_worn_overlays(mutable_appearance/standing, isinhands, icon_file)
 	. = list()
 	var/line_color = line?.line_color || default_line_color
@@ -598,7 +602,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/fishing_rod/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/item/fishing_rod/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	if(.)
 		return .
@@ -606,7 +610,7 @@
 	switch(action)
 		if("slot_action")
 			// Simple click with empty hand to remove, click with item to insert/switch
-			var/obj/item/held_item = user.get_active_held_item()
+			var/obj/item/held_item = user.get_active_hand()
 			use_slot(params["slot"], user, held_item == src ? null : held_item)
 			return TRUE
 
@@ -639,7 +643,7 @@
 	else if(new_item && !current_item)
 		if(!slot_check(new_item, slot))
 			return
-		if(user.transferItemToLoc(new_item,src))
+		if(user.unEquip(new_item, target = src))
 			set_slot(new_item, slot)
 			balloon_alert(user, "[slot] installed")
 		else
@@ -649,7 +653,7 @@
 	else if(new_item && current_item)
 		if(!slot_check(new_item,slot))
 			return
-		if(user.transferItemToLoc(new_item, src))
+		if(user.unEquip(new_item, target = src))
 			user.put_in_hands(current_item)
 			set_slot(new_item, slot)
 			balloon_alert(user, "[slot] swapped")
@@ -725,7 +729,7 @@
 	icon_state = "fishing_rod_telescopic"
 	desc = "A lightweight, ergonomic, easy to store telescopic fishing rod. "
 	item_state = null
-	custom_price = PAYCHECK_CREW * 9
+//	custom_price = PAYCHECK_CREW * 9
 	force = 0
 	w_class = ITEMSIZE_NORMAL
 	ui_description = "A collapsible fishing rod that can fit within a backpack."
@@ -742,7 +746,7 @@
 
 /obj/item/fishing_rod/telescopic/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/transforming, force_on = 8, hitsound_on = hitsound, w_class_on = ITEMSIZE_HUGE, clumsy_check = FALSE)
+//	AddComponent(/datum/component/transforming, force_on = 8, hitsound_on = hitsound, w_class_on = ITEMSIZE_HUGE, clumsy_check = FALSE)
 	RegisterSignal(src, COMSIG_TRANSFORMING_PRE_TRANSFORM, PROC_REF(pre_transform))
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
@@ -852,7 +856,7 @@
 	if(slot == ROD_SLOT_BAIT)
 		return
 	return ..()
-
+/*
 /obj/item/fishing_rod/material
 	name = "material fishing rod" //name shown on the autowiki.
 	desc = "A custom fishing rod from your local autolathe."
@@ -870,7 +874,7 @@
 /obj/item/fishing_rod/material/finalize_remove_material_effects(list/materials)
 	. = ..()
 	name = "fishing rod" //so it doesn't reset to "material fishing rod"
-
+*/
 /obj/item/fishing_rod/material/get_frame(datum/fishing_challenge/challenge)
 	var/mutable_appearance/frame = ..()
 	frame.color = color
@@ -880,18 +884,18 @@
 #undef ROD_SLOT_LINE
 #undef ROD_SLOT_HOOK
 
-/obj/projectile/fishing_cast
+/obj/item/projectile/fishing_cast
 	name = "fishing hook"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "hook"
 	damage = 0
 	range = 5
-	suppressed =  SUPPRESSED_VERY
-	can_hit_turfs = TRUE
-	projectile_angle = 180
+	silenced = TRUE
+//	can_hit_turfs = TRUE
+//	projectile_angle = 180
 	var/obj/item/fishing_rod/owner
 
-/obj/projectile/fishing_cast/fire(angle, atom/direct_target)
+/obj/item/projectile/fishing_cast/fire(angle, atom/direct_target)
 	if(owner.hook)
 		icon_state = owner.hook.icon_state
 	. = ..()
@@ -899,20 +903,20 @@
 		owner.create_fishing_line(src, firer)
 
 ///If the fishing line is phasing, we don't care about anything entering our turf
-/obj/projectile/fishing_cast/on_entered(datum/source, atom/movable/entered_atom)
+/obj/item/projectile/fishing_cast/Crossed(atom/movable/AM)
 	if(owner.line?.fishing_line_traits & FISHING_LINE_PHASE)
 		return
 	return ..()
 
 ///Override of the generic scan_moved_turf so we don't scan for mobs when we move. Also cannot phase through r-walls for balance reasons (stealing from the armory *wink wink*)
-/obj/projectile/fishing_cast/scan_moved_turf()
+/obj/item/projectile/fishing_cast/scan_moved_turf()
 	if(can_hit_target(original, TRUE, FALSE))
-		impact(original)
+		Bump(original)
 		return
-	if(isindestructiblewall(loc) || istype(loc, /turf/closed/wall/r_wall))
+	if(istype(loc, /turf/unsimulated))
 		qdel(src)
 
-/obj/projectile/fishing_cast/on_hit(atom/target, blocked = 0, pierce_hit)
+/obj/item/projectile/fishing_cast/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
 	QDEL_NULL(owner.fishing_line) //we need to delete the old beam datum, otherwise it won't let you fish.
 	owner.casting = FALSE //set the casting value to false so we don't delete the new fishing line (different target) on Destroy()
@@ -931,10 +935,10 @@
 		if(can_hit_target(movable, direct_target = TRUE, ignore_loc = TRUE))
 			possible_picks += movable
 	if(length(possible_picks))
-		impact(pick(possible_picks))
+		Bump(pick(possible_picks))
 		return
 
-/obj/projectile/fishing_cast/Destroy()
+/obj/item/projectile/fishing_cast/Destroy()
 	if(owner?.casting)
 		owner.casting = FALSE
 		QDEL_NULL(owner.fishing_line)
