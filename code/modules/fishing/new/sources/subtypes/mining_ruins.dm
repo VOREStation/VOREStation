@@ -90,6 +90,7 @@
 		/obj/item/coin/phoron = 6,
 		/obj/item/ore/phoron = 6,
 		/obj/effect/decal/remains/xeno = 2,
+		/obj/item/slime_extract/emerald = 2
 //		/obj/item/stack/sheet/mineral/runite = 2,
 //		/obj/item/stack/sheet/mineral/adamantine = 2,
 //		/obj/item/skeleton_key = 1,
