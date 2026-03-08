@@ -4709,7 +4709,6 @@
 #include "code\modules\tables\tables.dm"
 #include "code\modules\telesci\bscyrstal.dm"
 #include "code\modules\telesci\construction.dm"
-#include "code\modules\telesci\gps_advanced.dm"
 #include "code\modules\telesci\quantum_pad.dm"
 #include "code\modules\telesci\telepad.dm"
 #include "code\modules\telesci\telesci_computer.dm"
