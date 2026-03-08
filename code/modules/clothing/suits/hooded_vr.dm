@@ -93,6 +93,14 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	hoodtype = /obj/item/clothing/head/hood/winter/talon
 
+/obj/item/clothing/suit/storage/hooded/wintercoat/talon/refreshed
+	name = "Refreshed Talon winter coat"
+	desc = "A refreshed cozy winter coat, covered in thick fur and baring the colors of ITV Talon."
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
+	icon_state = "taloncoatr"
+	hoodtype = /obj/item/clothing/head/hood/winter/talon/refreshed
+
 // Food costumes
 /obj/item/clothing/suit/storage/hooded/foodcostume	//Separate type of costume that does not cover arms and legs. Similar to a cheap mascot costume. <Guy>
 	name = DEVELOPER_WARNING_NAME

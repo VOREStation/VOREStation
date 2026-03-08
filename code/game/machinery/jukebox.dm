@@ -252,7 +252,7 @@
 /obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
 	interact(user)
 
-/obj/machinery/media/jukebox/allow_pai_interaction(proximity_flag)
+/obj/machinery/media/jukebox/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/machinery/media/jukebox/proc/explode()

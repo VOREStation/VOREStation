@@ -310,7 +310,7 @@ ADMIN_VERB(admin_give_modifier, R_EVENT, "Give Modifier", "Makes a mob weaker or
 	living_target.add_modifier(new_modifier_type, duration)
 	log_and_message_admins("has given [key_name(living_target)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].", user)
 
-ADMIN_VERB(make_sound, R_FUN, "Make Sound", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_SOUNDS, obj/target_object in world)
+ADMIN_VERB_AND_CONTEXT_MENU(make_sound, R_FUN, "Make Sound", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_SOUNDS, obj/target_object in world)
 	if(!target_object)
 		return
 
