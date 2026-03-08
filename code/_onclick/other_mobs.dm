@@ -2,8 +2,39 @@
 /atom/proc/attack_generic(mob/user as mob)
 	return 0
 
-/atom/proc/take_damage(var/damage)
-	return 0
+/// The essential proc to call when an atom must receive damage of any kind.
+/atom/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+	if(!uses_integrity)
+		CRASH("[src] had /atom/proc/take_damage() called on it without it being a type that has uses_integrity = TRUE!")
+	if(QDELETED(src))
+		CRASH("[src] taking damage after deletion")
+	if(atom_integrity <= 0)
+		CRASH("[src] taking damage while having <= 0 integrity")
+	if(sound_effect)
+		play_attack_sound(damage_amount, damage_type, damage_flag)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
+	damage_amount = run_atom_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
+	if(damage_amount < DAMAGE_PRECISION)
+		return
+	if(SEND_SIGNAL(src, COMSIG_ATOM_TAKE_DAMAGE, damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration) & COMPONENT_NO_TAKE_DAMAGE)
+		return
+
+	. = damage_amount
+
+	var/previous_atom_integrity = atom_integrity
+
+	update_integrity(atom_integrity - damage_amount)
+
+	var/integrity_failure_amount = integrity_failure * max_integrity
+
+	//BREAKING FIRST
+	if(integrity_failure && previous_atom_integrity > integrity_failure_amount && atom_integrity <= integrity_failure_amount)
+		atom_break(damage_flag)
+
+	//DESTROYING SECOND
+	if(atom_integrity <= 0 && previous_atom_integrity > 0)
+		atom_destruction(damage_flag)
 
 /*
 	Humans:
@@ -47,7 +78,7 @@
 	if(!gloves && !mutations.len && !spitting)
 		return
 	var/obj/item/clothing/gloves/G = gloves
-	if((LASER in mutations) && a_intent == I_HURT)
+	if((LASER_EYES in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 
 	else if(istype(G) && G.Touch(A,0)) // for magic gloves

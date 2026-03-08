@@ -19,6 +19,13 @@
 	var/micro_target = FALSE
 	var/explosion_resistance
 
+	/// Cached custom fire overlay
+	var/custom_fire_overlay
+	/// Particles this obj uses when burning, if any
+	var/burning_particles
+
+	uses_integrity = TRUE
+
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
 

@@ -57,3 +57,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ELECTROVORE_OBLIGATE "electrovore_obligate"
 // adds wet stacks when licking someone
 #define TRAIT_SLOBBER "slobber"
+/// Trait from being under the floor in some manner
+#define TRAIT_UNDERFLOOR "underfloor"
+#define TRAIT_RESISTHEAT "resist_heat"
+/// For when you want to be able to touch hot things, but still want fire to be an issue.
+#define TRAIT_RESISTHEATHANDS "resist_heat_handsonly"

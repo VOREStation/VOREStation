@@ -13,7 +13,7 @@
 	var/flapping
 	var/obj_integrity = 100
 	var/original_int = 100
-	var/max_integrity = 100
+	max_integrity = 100
 	var/stored_examine
 	var/identifier = "statue"
 	var/material = "stone"
