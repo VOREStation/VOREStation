@@ -257,7 +257,7 @@
 /datum/robot_sprite/dogborg/command/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
-	//sprite_hud_icon_state = "service"
+	//sprite_hud_icon_state = "clerical"
 	has_eye_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
