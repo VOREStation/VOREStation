@@ -5,7 +5,7 @@
 	origin_tech = list(TECH_BLUESPACE = 2, TECH_MAGNET = 3)
 	equip_cooldown = 10
 	energy_drain = 100
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	var/atom/movable/locked
 	var/mode = 1 //1 - gravsling 2 - gravpush
 
