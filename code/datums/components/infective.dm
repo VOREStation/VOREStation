@@ -64,7 +64,7 @@
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(try_infect_equipped))
 		RegisterSignal(parent, COMSIG_FOOD_EATEN, PROC_REF(try_infect_eat))
 		RegisterSignal(parent, COMSIG_PILL_CONSUMED, PROC_REF(try_infect_eat))
-		if(istype(parent, /obj/item/reagent_containers/cup))
+		if(istype(parent, /obj/item/reagent_containers/glass))
 			RegisterSignal(parent, COMSIG_GLASS_DRANK, PROC_REF(try_infect_drink))
 		if(isorgan(parent))
 			RegisterSignal(parent, COMSIG_ORGAN_IMPLANTED, PROC_REF(on_organ_insertion))
@@ -120,9 +120,14 @@
 		return
 
 	if(!is_weak)
-		var/appendage_zone = feeder.get_held_index_of_item(source)
-		appendage_zone = appendage_zone == 0 ? BP_TORSO : (IS_RIGHT_INDEX(appendage_zone) ? BP_R_ARM : BP_L_ARM)
-		try_infect(feeder, appendage_zone)
+		var/bodypart_type
+		if(feeder.l_hand == source)
+			bodypart_type = BP_R_ARM
+		else if(feeder.r_hand == source)
+			bodypart_type = BP_L_ARM
+		else
+			bodypart_type = BP_TORSO
+		try_infect(feeder, bodypart_type)
 
 	for(var/datum/disease/disease as anything in diseases)
 		if(is_weak && !prob(weak_infection_chance))

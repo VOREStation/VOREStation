@@ -57,3 +57,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ELECTROVORE_OBLIGATE "electrovore_obligate"
 // adds wet stacks when licking someone
 #define TRAIT_SLOBBER "slobber"
+///Trait given by /datum/component/germ_sensitive
+#define TRAIT_GERM_SENSITIVE "germ_sensitive"
+#define TRAIT_STRONG_STOMACH "strong_stomach"
