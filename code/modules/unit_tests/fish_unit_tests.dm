@@ -415,7 +415,7 @@
 	source = GLOB.preset_fish_sources[/datum/fish_source/unit_test_profound_fisher]
 
 	run_loc_floor_bottom_left.AddComponent(/datum/component/fishing_spot, source)
-	var/mob/living/simple_mob/fisher = allocate(/mob/living/basic)
+	var/mob/living/simple_mob/fisher = allocate(/mob/living/simple_mob)
 	fisher.AddComponent(/datum/component/profound_fisher)
 	fisher.a_intent = I_HURT
 	fisher.UnarmedAttack(run_loc_floor_bottom_left, ignore_cooldown = TRUE)
