@@ -110,6 +110,10 @@
 	icon_state = "seashallow"
 	base_icon_state = "seashallow"
 
+/turf/simulated/floor/holofloor/beach/water/Initialize(mapload)
+	. = ..()
+	add_lazy_fishing(/datum/fish_source/holographic)
+
 /turf/simulated/floor/holofloor/desert
 	name = "desert sand"
 	base_name = "desert sand"

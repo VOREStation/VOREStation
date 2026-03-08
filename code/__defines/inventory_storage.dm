@@ -6,6 +6,7 @@
 #define ITEMSIZE_NORMAL				3
 #define ITEMSIZE_LARGE				4
 #define ITEMSIZE_HUGE				5
+#define ITEMSIZE_GIGANTIC			6
 #define ITEMSIZE_NO_CONTAINER		100 // Use this to forbid item from being placed in a container.
 
 // Tweak these to determine how much space an item takes in a container.
@@ -26,3 +27,8 @@
 
 //this all needs a refactor to tg storage but for now...
 #define MAX_STORAGE_REACH 2		//maximum you can reach down to grab things from storage.
+
+/// Checks if the value is "right" - same as ISEVEN, but used primarily for hand or foot index contexts
+#define IS_RIGHT_INDEX(value) (value % 2 == 0)
+/// Checks if the value is "left" - same as ISODD, but used primarily for hand or foot index contexts
+#define IS_LEFT_INDEX(value) (value % 2 != 0)

@@ -50,7 +50,7 @@
 
 		data["active"] = 1
 		data["SM_area"] = get_area(active)
-		data["SM_integrity"] = active.get_integrity()
+		data["SM_integrity"] = active.get_supermatter_integrity()
 		data["SM_power"] = active.power
 		data["SM_ambienttemp"] = air.temperature
 		data["SM_ambientpressure"] = air.return_pressure()
@@ -79,7 +79,7 @@
 
 			SMS.Add(list(list(
 			"area_name" = A.name,
-			"integrity" = S.get_integrity(),
+			"integrity" = S.get_supermatter_integrity(),
 			"uid" = S.uid
 			)))
 

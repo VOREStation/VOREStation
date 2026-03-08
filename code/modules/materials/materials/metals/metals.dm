@@ -48,6 +48,7 @@
 	conductivity = 10
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	fish_weight_modifier = 1.3
 
 /datum/material/lead
 	name = MAT_LEAD
@@ -83,6 +84,7 @@
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	supply_conversion_value = 2
+	fish_weight_modifier = 1.35
 
 /datum/material/platinum
 	name = MAT_PLATINUM

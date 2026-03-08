@@ -216,7 +216,8 @@ var/list/table_icon_cache = list()
 		update_icon()
 		update_material()
 
-/obj/structure/table/proc/update_desc()
+/obj/structure/table/update_desc()
+	. = ..()
 	if(material)
 		name = "[material.display_name] table"
 	else

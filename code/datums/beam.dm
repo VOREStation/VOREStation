@@ -15,22 +15,57 @@
 	var/origin_oldloc = null
 	var/static_beam = 0
 	var/beam_type = /obj/effect/ebeam //must be subtype
+	/// If set will be used instead of origin's pixel_x in offset calculations
+	var/override_origin_pixel_x = null
+	/// If set will be used instead of origin's pixel_y in offset calculations
+	var/override_origin_pixel_y = null
+	/// If set will be used instead of targets's pixel_x in offset calculations
+	var/override_target_pixel_x = null
+	/// If set will be used instead of targets's pixel_y in offset calculations
+	var/override_target_pixel_y = null
 
-/datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=50,maxdistance=10,btype = /obj/effect/ebeam,beam_sleep_time=3,new_beam_color = null)
-	endtime = world.time+time
+/datum/beam/New(
+	beam_origin,
+	beam_target,
+	beam_icon='icons/effects/beam.dmi',
+	beam_icon_state="b_beam",
+	time=50,
+	maxdistance=10,
+	btype = /obj/effect/ebeam,
+	beam_sleep_time=3,
+	new_beam_color = null,
+	override_origin_pixel_x = null,
+	override_origin_pixel_y = null,
+	override_target_pixel_x = null,
+	override_target_pixel_y = null,
+	)
 	origin = beam_origin
-	origin_oldloc =	get_turf(origin)
 	target = beam_target
-	target_oldloc = get_turf(target)
-	sleep_time = beam_sleep_time
-	if(origin_oldloc == origin && target_oldloc == target)
-		static_beam = 1
-	max_distance = maxdistance
-	base_icon = new(beam_icon,beam_icon_state)
 	icon = beam_icon
 	icon_state = beam_icon_state
+	base_icon = new(beam_icon,beam_icon_state)
+	endtime = world.time+time
+	max_distance = maxdistance
+	sleep_time = beam_sleep_time
 	if(new_beam_color)
 		beam_color = new_beam_color
+	src.override_origin_pixel_x = override_origin_pixel_x
+	src.override_origin_pixel_y = override_origin_pixel_y
+	src.override_target_pixel_x = override_target_pixel_x
+	src.override_target_pixel_y = override_target_pixel_y
+
+
+	origin_oldloc =	get_turf(origin)
+
+	target_oldloc = get_turf(target)
+
+	if(origin_oldloc == origin && target_oldloc == target)
+		static_beam = 1
+
+
+
+
+
 	beam_type = btype
 
 /datum/beam/proc/Start()
@@ -61,22 +96,39 @@
 	origin = null
 	return ..()
 
+/**
+ * Triggered by signals set up when the beam is set up. If it's still sane to create a beam, it removes the old beam, creates a new one. Otherwise it kills the beam.
+ *
+ * Arguments:
+ * mover: either the origin of the beam or the target of the beam that moved.
+ * oldloc: from where mover moved.
+ * direction: in what direction mover moved from.
+ */
+/datum/beam/proc/redrawing(atom/movable/mover, atom/oldloc, direction)
+	SIGNAL_HANDLER
+	if(QDELING(src))
+		return
+	if(!QDELETED(origin) && !QDELETED(target) && get_dist(origin,target)<max_distance && origin.z == target.z)
+		QDEL_LIST(elements)
+		INVOKE_ASYNC(src, PROC_REF(Draw))
+	else
+		qdel(src)
+
 /datum/beam/proc/Draw()
 	if(QDELETED(target) || QDELETED(origin))
 		qdel(src)
 		return
-
-	var/Angle = round(Get_Angle(origin,target))
+	var/origin_px = (isnull(override_origin_pixel_x) ? origin.pixel_x : override_origin_pixel_x) + origin.pixel_w
+	var/origin_py = (isnull(override_origin_pixel_y) ? origin.pixel_y : override_origin_pixel_y) + origin.pixel_z
+	var/target_px = (isnull(override_target_pixel_x) ? target.pixel_x : override_target_pixel_x) + target.pixel_w
+	var/target_py = (isnull(override_target_pixel_y) ? target.pixel_y : override_target_pixel_y) + target.pixel_z
+	var/Angle = get_angle_raw(origin.x, origin.y, origin_px, origin_py, target.x , target.y, target_px, target_py)
 
 	var/matrix/rot_matrix = matrix()
 	rot_matrix.Turn(Angle)
-
-	var/turf/T_target = get_turf(target)	//Turfs are referenced instead of the objects directly so that beams will link between 2 objects inside other objects.
-	var/turf/T_origin = get_turf(origin)
-
 	//Translation vector for origin and target
-	var/DX = (32*T_target.x+target.pixel_x)-(32*T_origin.x+origin.pixel_x)
-	var/DY = (32*T_target.y+target.pixel_y)-(32*T_origin.y+origin.pixel_y)
+	var/DX = (32*target.x+target_px)-(32*origin.x+origin_px)
+	var/DY = (32*target.y+target_py)-(32*origin.y+origin_py)
 	var/N = 0
 	var/length = round(sqrt((DX)**2+(DY)**2)) //hypotenuse of the triangle formed by target and origin's displacement
 

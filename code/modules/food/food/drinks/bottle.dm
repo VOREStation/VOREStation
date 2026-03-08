@@ -35,7 +35,7 @@
 	return ..()
 
 //when thrown on impact, bottles smash and spill their contents
-/obj/item/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback)
+/obj/item/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback, gentle = FALSE)
 	. = ..()
 	if(istype(thrower) && thrower.a_intent == I_HURT)
 		violent_throw = TRUE

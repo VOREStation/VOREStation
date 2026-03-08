@@ -1,10 +1,3 @@
-// Generic damage proc (slimes and monkeys).
-/atom/proc/attack_generic(mob/user as mob)
-	return 0
-
-/atom/proc/take_damage(var/damage)
-	return 0
-
 /*
 	Humans:
 	Adds an exception for gloves, to allow special glove types like the ninja ones.

@@ -97,6 +97,7 @@
 #include "dcs_get_id_from_elements.dm"
 #include "decl_tests.dm"
 #include "disease_tests.dm"
+#include "fish_unit_tests.dm"
 #include "focus_only_tests.dm"
 #include "font_awesome_icons.dm"
 #include "genetics_tests.dm"

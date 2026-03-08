@@ -1,7 +1,7 @@
 /datum/component/burninlight
 	// This is a merge of the old shadow species light burning life code, and Zaddat's handle_environment_special() proc.
 	// It handles both cases, but shadows behave more like Zaddat do now. By default this code follows Zaddat damage with no healing.
-	var/threshold = 0.2 // percent from 0 to 1
+	var/threshold = SHADOW_SPECIES_LIGHT_THRESHOLD // percent from 0 to 1
 	// Damage or healing per life tick
 	var/damage_rate = 1.25
 	var/heal_rate = 0

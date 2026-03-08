@@ -256,7 +256,7 @@
 /// From /datum/ai/behavior/climb_tree/perform() : (mob/living/basic/living_pawn)
 #define COMSIG_LIVING_CLIMB_TREE "living_climb_tree"
 
-///from /mob/living/proc/check_block(): (atom/hit_by, damage, attack_text, attack_type, armour_penetration, damage_type)
+///from /mob/living/proc/check_block(): (atom/hit_by, damage, attack_text, attack_type, armor_penetration, damage_type)
 #define COMSIG_LIVING_CHECK_BLOCK "living_check_block"
 	#define FAILED_BLOCK NONE
 	#define SUCCESSFUL_BLOCK (1<<0)
@@ -353,7 +353,7 @@
 /// From /datum/status_effect/proc/Destroy() : (datum/status_effect/effect)
 #define COMSIG_LIVING_STATUS_REMOVED "living_status_removed"
 
-/// From /datum/spawners_menu/ui_static_data(mob/user) : (list/string_info)
+/// From /datum/spawners_menu/tgui_static_data(mob/user) : (list/string_info)
 #define COMSIG_LIVING_GHOSTROLE_INFO "living_ghostrole_info"
 
 ///from mob/living/befriend()

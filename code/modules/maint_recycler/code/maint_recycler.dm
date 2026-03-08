@@ -86,7 +86,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_high = 15,
 		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink = 15,
 		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow = 15, //nukies is epic but rare enough to warrant being recyclable.
-		/obj/item/material/fishing_net/butterfly_net = 10
+//		/obj/item/material/fishing_net/butterfly_net = 10
 	)
 
 	var/list/item_blacklist_general = list(

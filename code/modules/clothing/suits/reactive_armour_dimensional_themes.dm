@@ -52,17 +52,17 @@
 		target_area -= check_turf
 
 	var/to_place = rand(MIN_BARRIERS, MAX_BARRIERS)
-	var/list/custom_materials = list()
+	var/list/matter = list()
 	if(material)
-		custom_materials = list(GET_MATERIAL_REF(material) = SHEET_MATERIAL_AMOUNT)
+		matter = list(GET_MATERIAL_REF(material) = SHEET_MATERIAL_AMOUNT)
 
 	while(target_area.len > 0 && to_place > 0)
 		var/turf/place_turf = pick(target_area)
-		place_barrier(place_turf, custom_materials)
+		place_barrier(place_turf, matter)
 		target_area -= place_turf
 		to_place--
 
-/datum/armour_dimensional_theme/proc/place_barrier(turf/source)
+/datum/armour_dimensional_theme/proc/place_barrier(turf/source, list/matter)
 	var/obj/structure/barricade/placed_barricade = new barricade(source, material.name)
 	if(!barricade_anchored)
 		placed_barricade.anchored = FALSE

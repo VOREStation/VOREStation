@@ -7,6 +7,13 @@
 /proc/cmp_numeric_asc(a,b)
 	return a - b
 
+
+/proc/cmp_list_len_dsc(list/a, list/b)
+	return length(b) - length(a)
+
+/proc/cmp_init_name_asc(atom/a, atom/b)
+	return sorttext(initial(b.name), initial(a.name))
+
 // Sorts subsystems alphabetically
 /proc/cmp_subsystem_display(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return sorttext(b.name, a.name)

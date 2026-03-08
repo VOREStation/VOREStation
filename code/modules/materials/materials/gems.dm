@@ -12,7 +12,7 @@
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
 	supply_conversion_value = 5
-
+	fish_weight_modifier = 1.3
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
 /datum/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
@@ -47,6 +47,7 @@
 	supply_conversion_value = 8
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.4
 
 /datum/material/quartz
 	name = MAT_QUARTZ
@@ -95,6 +96,7 @@
 	supply_conversion_value = 30	// These are hilariously rare.
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.7
 
 // Particle Smasher and other exotic materials.
 /datum/material/valhollide
@@ -119,6 +121,7 @@
 	sheet_plural_name = "gems"
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.9
 
 /datum/material/verdantium
 	name = MAT_VERDANTIUM
@@ -142,6 +145,7 @@
 	supply_conversion_value = 8
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 1.8
 
 /datum/material/morphium
 	name = MAT_MORPHIUM
@@ -165,6 +169,7 @@
 	supply_conversion_value = 13
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 2.0
 
 /datum/material/glamour
 	name = MAT_GLAMOUR
@@ -188,6 +193,7 @@
 	supply_conversion_value = 15
 	icon_base = "stone"
 	table_icon_base = "stone"
+	fish_weight_modifier = 2.5
 
 /datum/material/glamour/generate_recipes()
 	..()
@@ -214,7 +220,7 @@
 		new /datum/stack_recipe("scarf", /obj/item/clothing/accessory/scarf/white, 4, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("baggy pants", /obj/item/clothing/under/pants/baggy/white, 8, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("belt pouch", /obj/item/storage/belt/fannypack/white, 25, time = 1 MINUTE, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("glamour net", /obj/item/material/fishing_net, 10, time = 5 SECONDS, supplied_material = "[name]", pass_stack_color = TRUE),
+//		new /datum/stack_recipe("glamour net", /obj/item/material/fishing_net, 10, time = 5 SECONDS, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("glamour ring", /obj/item/clothing/accessory/ring/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("glamour bracelet", /obj/item/clothing/accessory/bracelet/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("glamour armor plate", /obj/item/material/armor_plating, 1, time = 20, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),

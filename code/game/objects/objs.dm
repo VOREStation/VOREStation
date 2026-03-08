@@ -240,3 +240,6 @@
 			return
 
 		P.createPropFakeConversation_admin(usr)
+
+/obj/proc/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
+	return SEND_SIGNAL(src, COMSIG_PLUNGER_ACT, attacking_plunger, user, reinforced)

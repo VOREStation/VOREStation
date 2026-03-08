@@ -273,8 +273,8 @@
 	refresh_owner()
 
 // /atom/movable/screen/button_palette/update_name(updates)
-/atom/movable/screen/button_palette/proc/update_name()
-	// . = ..()
+/atom/movable/screen/button_palette/update_name()
+	. = ..()
 	if(expanded)
 		name = "Hide Buttons"
 	else

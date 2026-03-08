@@ -17,3 +17,5 @@ GLOBAL_LIST_EMPTY(crafting_recipes) //list of all table craft recipes
 GLOBAL_LIST_INIT(uplink_locations, list("PDA", "Headset", "None"))
 
 GLOBAL_LIST_EMPTY(experiment_handlers)
+
+GLOBAL_LIST_INIT(fishing_tips, world.file2list("strings/fishing_tips.txt"))

@@ -1,4 +1,4 @@
-#define SHEET_MATERIAL_AMOUNT 2000
+//#define SHEET_MATERIAL_AMOUNT 2000 //See code\__defines\materials.dm
 #define MAX_STACK_SIZE 50
 
 #define TECH_MATERIAL "materials"

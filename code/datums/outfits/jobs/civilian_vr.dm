@@ -75,8 +75,7 @@
 	l_hand = /obj/item/storage/box/stylist
 
 /datum/decl/hierarchy/outfit/job/assistant/entrepreneur/fisher
-	r_hand = /obj/item/material/fishing_rod/modern
-	l_pocket = /obj/item/material/fishing_net
+	r_hand = /obj/item/storage/toolbox/fishing
 	head = /obj/item/clothing/head/fishing
 	r_pocket = /obj/item/storage/box/wormcan
 

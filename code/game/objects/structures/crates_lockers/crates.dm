@@ -139,7 +139,6 @@
 	desc = "A secure crate."
 	name = "Secure crate"
 	closet_appearance = /datum/decl/closet_appearance/crate/secure
-	var/broken = 0
 	var/locked = 1
 
 /obj/structure/closet/crate/secure/req_breakout()

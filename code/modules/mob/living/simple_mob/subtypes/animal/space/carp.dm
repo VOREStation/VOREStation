@@ -195,6 +195,8 @@
 /mob/living/simple_mob/animal/space/carp/event
 	ai_holder_type = /datum/ai_holder/simple_mob/event
 
+/mob/living/simple_mob/animal/space/carp/friendly
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 /mob/living/simple_mob/animal/space/carp/large
 	name = "elder carp"
