@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 /obj/item/fish/attackby(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/clothing/accessory/stethoscope))
 		return NONE
-	user.balloon_alert("checking pulse")
+	user.balloon_alert(user, "checking pulse")
 	if(!do_after(user, 2.5 SECONDS, src))
 		return ITEM_INTERACT_FAILURE
 	// Sir... I'm afraid your fish is dying.
