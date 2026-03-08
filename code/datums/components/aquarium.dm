@@ -299,9 +299,9 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/aquarium/proc/do_plunging(atom/movable/source, mob/living/user)
-	user.balloon_alert("plunging...")
+	user.balloon_alert(user, "plunging...")
 	if(do_after(user, 3 SECONDS, target = source))
-		user.balloon_alert("finished plunging")
+		user.balloon_alert(user, "finished plunging")
 		source.reagents.splash(get_turf(source), source.reagents.total_volume) //splash on the floor
 		source.reagents.clear_reagents()
 
