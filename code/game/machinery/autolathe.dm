@@ -159,7 +159,7 @@
 		var/list/cost = list()
 		for(var/id in design.materials)
 			var/datum/material/mat = get_material_by_name(id)
-			cost[mat.name] = OPTIMAL_COST(design.materials[mat] * coeff)
+			cost[mat.name] = OPTIMAL_COST(design.materials[id] * coeff)
 
 		//create & send ui data
 		var/icon_size = spritesheet.icon_size_id(design.id)
