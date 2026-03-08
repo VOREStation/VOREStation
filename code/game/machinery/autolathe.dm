@@ -74,6 +74,34 @@
 		. += span_notice("Drag towards a direction (while next to it) to change drop direction.")
 	. += span_notice("Its maintenance panel is [!panel_open ? "closed" : "open"].")
 
+/*
+/obj/machinery/autolathe/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(drop_direction)
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "Reset Drop"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(isnull(held_item))
+		return NONE
+
+	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
+		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		return CONTEXTUAL_SCREENTIP_SET
+
+/obj/machinery/autolathe/crowbar_act(mob/living/user, obj/item/tool)
+	. = NONE
+	if(default_deconstruction_crowbar(tool))
+		return ITEM_INTERACT_SUCCESS
+
+/obj/machinery/autolathe/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ITEM_INTERACT_BLOCKING
+	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", tool))
+		return ITEM_INTERACT_SUCCESS
+*/
+
 /obj/machinery/autolathe/tgui_status(mob/user)
 	if(disabled)
 		return STATUS_CLOSE
@@ -369,6 +397,9 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(is_robot_module(O))
+		return
+
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		return
@@ -384,49 +415,50 @@
 	if(stat)
 		return
 
-	if(istype(O, /obj/item/disk/design_disk))
-		user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."),
-			balloon_alert(user, "uploading design..."),
-			span_hear("You hear the chatter of a floppy drive."))
-		busy = TRUE
-
-		if(!do_after(user, 1.5 SECONDS, target = src))
-			busy = FALSE
-			update_static_data_for_all_viewers()
-			balloon_alert(user, "interrupted!")
-			return
-
-		var/obj/item/disk/design_disk/disky = O
-		var/list/not_imported
-		for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
-			if(!blueprint)
-				continue
-			if(blueprint.build_type & AUTOLATHE)
-				imported_designs[blueprint.id] = TRUE
-			else
-				LAZYADD(not_imported, blueprint.name)
-
-		if(not_imported)
-			to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
-
-		busy = FALSE
-		update_static_data_for_all_viewers()
-		return
-
 	if(panel_open)
 		//Don't eat multitools or wirecutters used on an open lathe.
 		if(O.has_tool_quality(TOOL_MULTITOOL) || O.has_tool_quality(TOOL_WIRECUTTER))
 			wires.Interact(user)
 			return
-
-	if(is_robot_module(O))
-		return 0
+	else
+		to_chat(user "close the panel first!")
+		return
 
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
 		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
 		return
 
-	return ..()
+	if(!istype(O, /obj/item/disk/design_disk))
+		return ..()
+
+	// The rest has to do with loading from design disks
+	user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."),
+		balloon_alert(user, "uploading design..."),
+		span_hear("You hear the chatter of a floppy drive."))
+	busy = TRUE
+
+	if(!do_after(user, 1.5 SECONDS, target = src))
+		busy = FALSE
+		update_static_data_for_all_viewers()
+		balloon_alert(user, "interrupted!")
+		return
+
+	var/obj/item/disk/design_disk/disky = O
+	var/list/not_imported
+	for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
+		if(!blueprint)
+			continue
+		if(blueprint.build_type & AUTOLATHE)
+			imported_designs[blueprint.id] = TRUE
+		else
+			LAZYADD(not_imported, blueprint.name)
+
+	if(not_imported)
+		to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
+
+	busy = FALSE
+	update_static_data_for_all_viewers()
+	return TRUE
 
 /obj/machinery/autolathe/RefreshParts()
 	. = ..()
