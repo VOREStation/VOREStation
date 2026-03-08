@@ -1,6 +1,6 @@
 /obj/machinery/autolathe
 	name = "autolathe"
-	desc = "It produces items using metal and glass."
+	desc = "It produces items using steel, glass, plastic and maybe some more."
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
@@ -14,25 +14,34 @@
 
 	var/static/datum/category_collection/autolathe/autolathe_recipes
 
-	var/hacked = 0
-	var/disabled = 0
-	var/shocked = 0
-	var/busy = 0
+	///Is the autolathe hacked via wiring
+	var/hacked = FALSE
+	///Is the autolathe disabled via wiring
+	var/disabled = FALSE
+	///Did we recently shock a mob who medled with the wiring
+	var/shocked = FALSE
+	///Are we currently printing something
+	var/busy = FALSE
 
+	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
 	var/mat_efficiency = 1
+	var/mb_rating = 0
+	var/man_rating = 0
 	var/build_time = 50
 
 	var/datum/wires/autolathe/wires = null
 
-	var/mb_rating = 0
-	var/man_rating = 0
-
-	var/filtertext
-
+	///Designs related to the autolathe
+	var/datum/techweb/autounlocking/stored_research
+	///Designs imported from technology disks that we can print.
+	var/list/imported_designs = list()
 	/// Reference to a remote material inventory, such as an ore silo.
 	var/datum/component/remote_materials/rmat
+	//looping sound for printing items
+	var/datum/looping_sound/lathe_print/print_sound
 
 /obj/machinery/autolathe/Initialize(mapload)
+	print_sound = new(src,  FALSE)
 	rmat = AddComponent( \
 		/datum/component/remote_materials, \
 		mapload, \
@@ -40,16 +49,19 @@
 			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/autolathe, AfterMaterialInsert) \
 		))
 	. = ..()
-	if(!autolathe_recipes)
-		autolathe_recipes = new()
 	wires = new(src)
+	/*
+	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
+		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
+	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe]
+	*/
 
 	default_apply_parts()
 	RefreshParts()
 
 /obj/machinery/autolathe/Destroy()
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
+	QDEL_NULL(print_sound)
 	return ..()
 
 /obj/machinery/autolathe/tgui_interact(mob/user, datum/tgui/ui)
@@ -201,50 +213,58 @@
 				rmat.use_materials(making.resources, coeff, multiplier)
 
 			busy = making.name
-			update_use_power(USE_POWER_ACTIVE)
+			print_sound.start()
 
+			update_use_power(USE_POWER_ACTIVE)
 			update_icon() // So lid closes
 
-			sleep(build_time)
+			addtimer(CALLBACK(src, PROC_REF(finalize_build), making, multiplier), build_time, TIMER_DELETE_ME)
 
-			busy = 0
-			update_use_power(USE_POWER_IDLE)
-			update_icon() // So lid opens
-
-			//Sanity check.
-			if(!making || !src)
-				return
-
-			//Create the desired item.
-			var/obj/item/I = new making.path(src.loc)
-
-			if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
-				I.matter.Cut()
-			else
-				I.matter = list()
-
-			for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
-				I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
-
-			flick("[initial(icon_state)]_finish", src)
-			if(multiplier > 1)
-				if(istype(I, /obj/item/stack))
-					var/obj/item/stack/S = I
-					S.set_amount(multiplier)
-				else
-					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-						I = new making.path(src.loc)
-						// We've already deducted the cost of multiple items. Process the matter the same.
-						if(LAZYLEN(I.matter))
-							I.matter.Cut()
-
-						else
-							I.matter = list()
-
-						for(var/material in making.resources)
-							I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
 			return TRUE
 	return FALSE
+
+/obj/machinery/autolathe/proc/finalize_build(var/datum/category_item/autolathe/making, multiplier)
+	PROTECTED_PROC(TRUE)
+
+	busy = FALSE
+	print_sound.stop()
+
+	update_use_power(USE_POWER_IDLE)
+	update_icon() // So lid opens
+
+	//Sanity check.
+	if(!making || !src)
+		return
+
+	//Create the desired item.
+	var/obj/item/I = new making.path(src.loc)
+
+	if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
+		I.matter.Cut()
+	else
+		I.matter = list()
+
+	for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
+		I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+
+	flick("[initial(icon_state)]_finish", src)
+	if(multiplier > 1)
+		if(istype(I, /obj/item/stack))
+			var/obj/item/stack/S = I
+			S.set_amount(multiplier)
+		else
+			for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
+				I = new making.path(src.loc)
+				// We've already deducted the cost of multiple items. Process the matter the same.
+				if(LAZYLEN(I.matter))
+					I.matter.Cut()
+
+				else
+					I.matter = list()
+
+				for(var/material in making.resources)
+					I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+
 
 /obj/machinery/autolathe/update_icon()
 	cut_overlays()
@@ -274,7 +294,8 @@
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
 	update_tgui_static_data(usr)
 
-/obj/machinery/autolathe/proc/AfterMaterialInsert(obj/item/item_inserted, id_inserted, amount_inserted)
+/obj/machinery/autolathe/proc/AfterMaterialInsert(datum/source, obj/item/item_inserted, id_inserted, amount_inserted)
+	SIGNAL_HANDLER
 	flick("autolathe_loading", src)//plays metal insertion animation
 	// use_power(min(1000, amount_inserted / 100))
 	SStgui.update_uis(src)
