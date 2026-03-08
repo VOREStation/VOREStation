@@ -363,8 +363,8 @@
 
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
-	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
-	if((should_have_eyes || has_eye_color) && eye_icon)
+	var/has_eye_sprites = owner.species.appearance_flags & HAS_EYE_COLOR
+	if((should_have_eyes || has_eye_sprites) && eye_icon)
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
 		//Do we have a special eye icon with its own coloration? Remove
@@ -373,7 +373,7 @@
 			if(should_have_eyes)
 				//And we have them
 				if(eyes)
-					if(has_eye_color)
+					if(has_eye_sprites)
 						eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 				//They're gone!
 				else

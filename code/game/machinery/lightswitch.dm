@@ -71,6 +71,9 @@
 	area.power_change()
 	GLOB.lights_switched_on_roundstat++
 
+/obj/machinery/light_switch/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/machinery/light_switch/power_change()
 
 	if(!otherarea)
