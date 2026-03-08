@@ -149,6 +149,35 @@
 	if(stat)
 		return
 
+	if(istype(O, /obj/item/disk/design_disk))
+		user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."),
+			balloon_alert(user, "uploading design..."),
+			span_hear("You hear the chatter of a floppy drive."))
+		busy = TRUE
+
+		if(!do_after(user, 1.5 SECONDS, target = src))
+			busy = FALSE
+			update_static_data_for_all_viewers()
+			balloon_alert(user, "interrupted!")
+			return
+
+		var/obj/item/disk/design_disk/disky = O
+		var/list/not_imported
+		for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
+			if(!blueprint)
+				continue
+			if(blueprint.build_type & AUTOLATHE)
+				imported_designs[blueprint.id] = TRUE
+			else
+				LAZYADD(not_imported, blueprint.name)
+
+		if(not_imported)
+			to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
+
+		busy = FALSE
+		update_static_data_for_all_viewers()
+		return
+
 	if(panel_open)
 		//Don't eat multitools or wirecutters used on an open lathe.
 		if(O.has_tool_quality(TOOL_MULTITOOL) || O.has_tool_quality(TOOL_WIRECUTTER))
