@@ -267,12 +267,12 @@
 	fishing_spot.forceMove(other_z_turf)
 	portal.forceMove(get_turf(user))
 	TEST_ASSERT(portal.active?.fish_source == fish_source, "[portal] (upgraded) deactivated while changing z-level")
-	tool.melee_attack_chain(user, extra_spot)
+	tool.attackby(user, extra_spot)
 	TEST_ASSERT_EQUAL(length(portal.linked_fishing_spots), 1, "We managed to link to another fishing spot when there's only space for one")
 	TEST_ASSERT_EQUAL(LAZYACCESS(portal.linked_fishing_spots, fishing_spot), fish_source, "linking to another fishing spot fouled up the other linked spots")
 	QDEL_NULL(fishing_spot)
 	TEST_ASSERT(!portal.active, "[portal] is still linked to the fish source of the deleted fishing spot it's associated to")
-	tool.melee_attack_chain(user, inaccessible)
+	tool.attackby(user, inaccessible)
 	TEST_ASSERT(!length(portal.linked_fishing_spots), "We managed to link to an unlinkable fishing spot")
 
 /obj/structure/toilet/unit_test/Initialize(mapload)
@@ -363,7 +363,7 @@
 
 	crab_growth.on_fish_life(aquarium.crabbie, seconds_per_tick = 1) //give the fish growth component a small push.
 
-	var/mob/living/basic/mining/lobstrosity/juvenile/lobster = locate() in aquarium.loc
+	var/mob/living/simple_mob/animal/passive/crab/lobster = locate() in aquarium.loc
 	TEST_ASSERT(lobster, "The lobstrosity didn't spawn at all. chasm crab maturation: [crab_growth.maturation]%.")
 	TEST_ASSERT_EQUAL(lobster.loc, get_turf(aquarium), "The lobstrosity didn't spawn on the aquarium's turf")
 	TEST_ASSERT(QDELETED(aquarium.crabbie), "The test aquarium's chasm crab didn't delete itself.")
@@ -418,7 +418,7 @@
 	var/mob/living/simple_mob/fisher = allocate(/mob/living/basic)
 	fisher.AddComponent(/datum/component/profound_fisher)
 	fisher.a_intent = I_HURT
-	fisher.melee_attack(run_loc_floor_bottom_left, ignore_cooldown = TRUE)
+	fisher.UnarmedAttack(run_loc_floor_bottom_left, ignore_cooldown = TRUE)
 
 	///For good measure, let's try it again, but with the component this time, and a human mob and gloves
 	qdel(run_loc_floor_bottom_left.GetComponent(/datum/component/fishing_spot))
@@ -426,14 +426,14 @@
 	var/mob/living/carbon/human/angler = allocate(/mob/living/carbon/human)
 	var/obj/item/clothing/gloves/noodling = allocate(/obj/item/clothing/gloves)
 	noodling.AddComponent(/datum/component/profound_fisher)
-	angler.equip_to_slot(noodling, ITEM_SLOT_GLOVES)
+	angler.equip_to_slot(noodling, SLOT_GLOVES)
 
 	angler.UnarmedAttack(run_loc_floor_bottom_left, proximity_flag = TRUE)
 	qdel(comp)
 
 	///As a final test, let's see how it goes with a fish source containing every single fish subtype.
 	comp = run_loc_floor_bottom_left.AddComponent(/datum/component/fishing_spot, GLOB.preset_fish_sources[/datum/fish_source/unit_test_all_fish])
-	fisher.melee_attack(run_loc_floor_bottom_left, ignore_cooldown = TRUE)
+	fisher.UnarmedAttack(run_loc_floor_bottom_left)//, ignore_cooldown = TRUE)
 	qdel(comp)
 
 /datum/fish_source/unit_test_explosive
@@ -534,7 +534,7 @@
 	var/type_to_check = upgrade::upgrade_to_type
 	var/turf/aquarium_loc = aquarium.loc
 	user.put_in_hands(upgrade)
-	upgrade.melee_attack_chain(user, aquarium)
+	upgrade.attackby(user, aquarium)
 	TEST_ASSERT(QDELETED(aquarium), "Old [aquarium.type] was not deleted after upgrade")
 
 	var/obj/structure/aquarium/upgraded_aquarium = locate(type_to_check) in aquarium_loc

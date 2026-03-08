@@ -29,12 +29,12 @@
 	///This value represents how much the crab needs aren't being met. Higher values translate to a more likely hostile lobstrosity.
 	var/anger = 0
 	///The lobstrosity type this matures into
-//	var/lob_type = /mob/living/basic/mining/lobstrosity/juvenile/lava
+	var/lob_type = /mob/living/simple_mob/animal/passive/crab ///mob/living/basic/mining/lobstrosity/juvenile/lava
 
 /obj/item/fish/chasm_crab/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(growth_checks))
-//	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
+	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
 
 /obj/item/fish/chasm_crab/get_fish_taste()
 	return list("raw crab" = 2)
