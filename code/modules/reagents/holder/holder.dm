@@ -190,13 +190,13 @@
 /datum/reagents/proc/has_reagent(id, amount = 0, check_subtypes = FALSE)
 	for(var/datum/reagent/current in reagent_list)
 		if(!check_subtypes)
-			if(current.type != id)
+			if(current.id != id)
 				continue
 			if(current.volume >= amount)
 				return TRUE
 			else
 				return FALSE
-		else if(!istype(current, id))
+		else if(istype(current, id))
 			if(current.volume >= amount)
 				return TRUE
 			else

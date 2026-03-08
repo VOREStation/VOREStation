@@ -167,6 +167,7 @@
 /datum/reagent/fishdummy
 	name = REAGENT_FISHDUMMY
 	id = REAGENT_ID_FISHDUMMY
+	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
 	description = "It smells fishy."
 
 /obj/structure/aquarium/traits
