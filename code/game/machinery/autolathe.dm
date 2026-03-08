@@ -39,7 +39,7 @@
 	var/datum/looping_sound/lathe_print/print_sound
 
 /obj/machinery/autolathe/Initialize(mapload)
-	print_sound = new(src,  FALSE)
+	print_sound = new(list(src), FALSE, TRUE)
 	materials = AddComponent( \
 		/datum/component/material_container, \
 		subtypesof(/datum/material), \
@@ -210,6 +210,7 @@
 
 	add_fingerprint(ui.user)
 
+	//sanity checks to start printing
 	if(action != "make")
 		stack_trace("unknown autolathe ui_act: [action]")
 		return
@@ -220,10 +221,6 @@
 
 	if(busy)
 		atom_say("The autolathe is busy. Please wait for completion of previous operation.")
-		return
-
-	var/datum/design_techweb/making = locate(params["make"])
-	if(!istype(making))
 		return
 
 	//validate design
@@ -254,7 +251,8 @@
 
 	// Check for materials required. For custom material items decode their required materials
 	var/list/materials_needed = list()
-	for(var/material, amount_needed in design.materials)
+	for(var/id, amount_needed in design.materials)
+		var/datum/material = get_material_by_name(id)
 		if(!istype(material, /datum/material))
 			CRASH("Autolathe ui_act got passed an invalid material id: [material]")
 		materials_needed[material] += amount_needed
@@ -347,7 +345,7 @@
 
 		created = new stack_item(null, number_to_make)
 	else
-		created = design.create_item(null)
+		created = design.create_item(target)
 		split_materials_uniformly(materials_needed, material_cost_coefficient, created)
 
 	if(isitem(created))
@@ -375,17 +373,17 @@
 	busy = FALSE
 	SStgui.update_uis(src)
 
-/obj/machinery/autolathe/MouseDrop_T(atom/movable/over_location, mob/living/user)
-	if(isobserver(user) || !Adjacent(user))
+/obj/machinery/autolathe/MouseDrop(over_object, src_location, over_location)
+	if(isobserver(usr) || !Adjacent(usr))
 		return
 	if(busy)
-		balloon_alert(user, "printing started!")
+		balloon_alert(usr, "printing started!")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(usr, "dropping [dir2text(drop_direction)]")
 
 /obj/machinery/autolathe/click_alt(mob/user)
 	if(!drop_direction)
@@ -422,10 +420,6 @@
 			wires.Interact(user)
 		else
 			to_chat(user, "close the panel first!")
-		return
-
-	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
-		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
 		return
 
 	if(!istype(O, /obj/item/disk/design_disk))

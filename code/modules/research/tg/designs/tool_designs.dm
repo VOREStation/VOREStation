@@ -223,7 +223,7 @@
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	id = "hatchet"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500)
+	materials = list(MAT_PLASTEEL = 500)
 	build_path = /obj/item/material/knife/machete/hatchet
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -236,7 +236,7 @@
 	desc = "It's a bucket."
 	id = "bucket"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 250)
+	materials = list(MAT_STEEL = 200)
 	build_path = /obj/item/reagent_containers/glass/bucket
 	category = list(
 		RND_CATEGORY_INITIAL,
