@@ -164,10 +164,10 @@
 
 #define REAGENT_FISHDUMMY "fish test reagent"
 /datum/reagent/fishdummy
-	name = REAGENT_FISHDUMMY
+	name = REAGENT_DEVELOPER_WARNING
 	id = REAGENT_ID_DEVELOPER_WARNING
+	description = REAGENT_DESC_DEVELOPER_WARNING
 	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
-	description = "It smells fishy."
 
 /obj/structure/aquarium/traits
 	var/obj/item/fish/testdummy/crossbreeder/crossbreeder
