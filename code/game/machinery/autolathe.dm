@@ -420,9 +420,8 @@
 		//Don't eat multitools or wirecutters used on an open lathe.
 		if(O.has_tool_quality(TOOL_MULTITOOL) || O.has_tool_quality(TOOL_WIRECUTTER))
 			wires.Interact(user)
-			return
-	else
-		to_chat(user, "close the panel first!")
+		else
+			to_chat(user, "close the panel first!")
 		return
 
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
