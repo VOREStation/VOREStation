@@ -169,8 +169,8 @@
 		return
 
 	var/list/glows = list()
-	glows += mutable_appearance(icon, "rift")
-	glows += emissive_appearance(icon, "rift")
+	glows += mutable_appearance(icon, "rift_glow")
+	glows += emissive_appearance(icon, "rift_glow")
 	add_overlay(glows)
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
