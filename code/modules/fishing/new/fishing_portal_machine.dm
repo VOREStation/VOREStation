@@ -61,23 +61,29 @@
 	return ..()
 */
 
-/obj/machinery/fishing_portal_generator/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/fishing_portal_generator/attackby(obj/item/O, mob/user, attack_modifier, click_parameters)
 	if(default_unfasten_wrench(user, O, 40))
 		return ITEM_INTERACT_SUCCESS
 
-	if(panel_open && (O?.has_tool_quality(TOOL_MULTITOOL)))
-		var/obj/item/multitool/tool = O
+	if(O.has_tool_quality(TOOL_SCREWDRIVER))
+		panel_open = !panel_open
+		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+		playsound(src, O.usesound, 50, 1)
+		return ITEM_INTERACT_SUCCESS
+
+	if(panel_open && (O.has_tool_quality(TOOL_MULTITOOL)))
+		var/obj/item/multitool/multitool = O
 		//Multitool linking/unlinking code
-		if(!tool.connectable)
-			if(stat & NOPOWER)
-				balloon_alert(user, "no power!")
-				return ITEM_INTERACT_BLOCKING
-			tool.connectable = src
-			balloon_alert(user, "fish-porter linked")
+		if(stat & NOPOWER)
+			balloon_alert(user, "no power!")
+			return ITEM_INTERACT_BLOCKING
+		multitool.connectable = src
+		balloon_alert(user, "fish-porter linked")
 //			if(tool.connectable == src)
 //				tool.item_flags |= ITEM_HAS_CONTEXTUAL_SCREENTIPS
 //				RegisterSignal(tool, COMSIG_ITEM_REQUESTING_CONTEXT_FOR_TARGET, PROC_REF(multitool_context))
 //				RegisterSignal(tool, COMSIG_MULTITOOL_REMOVE_BUFFER, PROC_REF(multitool_unbuffered))
+		return ITEM_INTERACT_SUCCESS
 
 
 		if(stat & NOPOWER)

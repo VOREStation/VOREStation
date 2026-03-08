@@ -483,13 +483,13 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/yucky
 	name = "Yucky"
 	catalog_description = "This fish tastes so repulsive, other fishes won't try to eat it."
-	reagents_to_add = list(/datum/reagent/toxin = 1.2)
+	reagents_to_add = list(REAGENT_ID_TOXIN = 1.2)
 	traits_to_add = list(TRAIT_YUCKY_FISH)
 
 /datum/fish_trait/toxic
 	name = "Toxic"
 	catalog_description = "This fish contains toxins. Feeding it to predatory fishes or people is not recommended."
-	reagents_to_add = list(/datum/reagent/toxin/carpotoxin = 1)
+	reagents_to_add = list(REAGENT_ID_CARPOTOXIN = 1)
 //	infusion_entry = /datum/infuser_entry/ttx_healing
 	///The amount of venom injected if the fish has a stinger is multiplied by this value.
 	var/venom_mult = 1
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/toxic/carpotoxin
 	name = "Carpotoxic"
 	catalog_description = "This fish contains carpotoxin. Definitely not safe for consumption."
-	reagents_to_add = list(/datum/reagent/toxin/carpotoxin = 4)
+	reagents_to_add = list(REAGENT_ID_CARPOTOXIN = 4)
 	infusion_entry = null
 	venom_mult = 6
 
@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	spontaneous_manifest_types = list(/obj/item/fish/clownfish/lube = 100)
 	catalog_description = "This fish exudes a viscous, slippery lubrificant. It's recommended not to step on it."
 	added_difficulty = 5
-	reagents_to_add = list(/datum/reagent/lube = 1.2)
+	reagents_to_add = list(REAGENT_ID_LUBE = 1.2)
 
 /datum/fish_trait/lubed/catch_weight_mod(obj/item/fishing_rod/rod, mob/fisherman, atom/location, obj/item/fish/fish_type)
 	. = ..()
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	name = "Anti-Gravity"
 	catalog_description = "This fish will invert the gravity of the bait at random. May fall upward outside after being caught."
 	added_difficulty = 20
-	reagents_to_add = list(/datum/reagent/water = 2.3) ///datum/reagent/gravitum water placeholder
+	reagents_to_add = list(REAGENT_ID_WATER = 2.3) ///datum/reagent/gravitum water placeholder
 
 /datum/fish_trait/antigrav/minigame_mod(obj/item/fishing_rod/rod, mob/fisherman, datum/fishing_challenge/minigame)
 	minigame.special_effects |= FISHING_MINIGAME_RULE_ANTIGRAV
@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/electrogenesis
 	name = "Electrogenesis"
 	catalog_description = "This fish is electroreceptive, and will generate electric fields. Can be harnessed inside a bioelectric generator."
-	reagents_to_add = list(/datum/reagent/grubshock = 1.5)
+	reagents_to_add = list(REAGENT_ID_SHOCKCHEM = 1.5)
 	traits_to_add = list(TRAIT_FISH_ELECTROGENESIS)
 
 /datum/fish_trait/electrogenesis/apply_to_fish(obj/item/fish/fish, initial = TRUE)
@@ -713,19 +713,19 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/electrogenesis/proc/on_fish_cooked(obj/item/fish/fish, cooked_time)
 	SIGNAL_HANDLER
 	if(cooked_time >= FISH_SAFE_COOKING_DURATION)
-		fish.reagents.del_reagent(/datum/reagent/grubshock)
+		fish.reagents.del_reagent(REAGENT_ID_SHOCKCHEM)
 	else
-		fish.reagents.add_reagent(6, /datum/reagent/grubshock)
+		fish.reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 
 /datum/fish_trait/electrogenesis/add_reagents(obj/item/fish/fish, list/reagents)
 	. = ..()
 	if(HAS_TRAIT(fish, TRAIT_FISH_WELL_COOKED)) // Cooking it well removes all liquid electricity
-		reagents -= /datum/reagent/grubshock
+		reagents -= REAGENT_ID_SHOCKCHEM
 	else
-		reagents -= /datum/reagent/blood
+		reagents -= REAGENT_ID_BLOOD
 		//Otherwise, undercooking it will remove 2/3 of it.
 		if(!HAS_TRAIT(fish, TRAIT_FOOD_FRIED) && !HAS_TRAIT(fish, TRAIT_FOOD_BBQ_GRILLED))
-			reagents[/datum/reagent/grubshock] -= 1
+			reagents[REAGENT_ID_SHOCKCHEM] -= 1
 
 /datum/fish_trait/electrogenesis/proc/on_force_updated(obj/item/fish/fish, weight_rank, bonus_or_malus)
 	SIGNAL_HANDLER
@@ -740,7 +740,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	. = ..()
 	ADD_TRAIT(mob, TRAIT_SHOCKIMMUNE, FISH_TRAIT_DATUM)
 //	mob.grant_actions_by_list(list(/datum/action/cooldown/mob_cooldown/charge_apc))
-	mob.AddElement(/datum/element/venomous, /datum/reagent/grubshock, 3 * mob.mob_size)
+	mob.AddElement(/datum/element/venomous, REAGENT_ID_SHOCKCHEM, 3 * mob.mob_size)
 /*
 /datum/fish_trait/stunted
 	name = "Stunted Growth"
@@ -793,7 +793,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/toxic_barbs/remove_from_fish(obj/item/fish/fish)
 	. = ..()
 	UnregisterSignal(fish, list(COMSIG_FISH_UPDATE_SIZE_AND_WEIGHT, COMSIG_FISH_STATUS_CHANGED))
-	change_venom(fish, /datum/reagent/condensedcapsaicin/venom, 0.7, 0.3, just_remove = TRUE)
+	change_venom(fish, REAGENT_ID_CONDENSEDCAPSAICINV, 0.7, 0.3, just_remove = TRUE)
 
 /datum/fish_trait/toxic_barbs/proc/make_venomous(obj/item/fish/source, new_size, new_weight)
 	SIGNAL_HANDLER
@@ -801,18 +801,18 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 		///Remove the trait from the fish so it doesn't show on the analyzer as it doesn't do anything on stingerless ones.
 		remove_from_fish(source)
 		return
-	add_venom(source, /datum/reagent/condensedcapsaicin/venom, new_weight, mult = source.status == FISH_DEAD ? 0.3 : 0.7)
+	add_venom(source, REAGENT_ID_CONDENSEDCAPSAICINV, new_weight, mult = source.status == FISH_DEAD ? 0.3 : 0.7)
 
 /datum/fish_trait/toxic_barbs/proc/on_status_change(obj/item/fish/source)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(source, TRAIT_FISH_STINGER))
 		return
-	change_venom(source, /datum/reagent/condensedcapsaicin/venom, 0.7, 0.3)
+	change_venom(source, REAGENT_ID_CONDENSEDCAPSAICINV, 0.7, 0.3)
 
 /datum/fish_trait/hallucinogenic
 	name = "Hallucinogenic"
 	catalog_description = "This fish is coated with hallucinogenic neurotoxin. We advise cooking it before consumption."
-	reagents_to_add = list(/datum/reagent/mindbreaker = 1)
+	reagents_to_add = list(REAGENT_ID_MINDBREAKER = 1)
 
 /datum/fish_trait/hallucinogenic/add_reagents(obj/item/fish/fish, list/reagents)
 	if(!HAS_TRAIT(src, TRAIT_FOOD_FRIED) && !HAS_TRAIT(src, TRAIT_FOOD_BBQ_GRILLED))
@@ -828,7 +828,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 /datum/fish_trait/hallucinogenic/remove_from_fish(obj/item/fish/fish)
 	. = ..()
 	UnregisterSignal(fish, list(COMSIG_FISH_UPDATE_SIZE_AND_WEIGHT, COMSIG_FISH_STATUS_CHANGED))
-	change_venom(fish, /datum/reagent/mindbreaker, 0.7, 0.3, just_remove = TRUE)
+	change_venom(fish, REAGENT_ID_MINDBREAKER, 0.7, 0.3, just_remove = TRUE)
 
 /datum/fish_trait/hallucinogenic/proc/make_venomous(obj/item/fish/source, new_size, new_weight)
 	SIGNAL_HANDLER
@@ -837,13 +837,13 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 		source.fish_traits -= type
 		UnregisterSignal(source, list(COMSIG_FISH_UPDATE_SIZE_AND_WEIGHT, COMSIG_FISH_STATUS_CHANGED))
 		return
-	add_venom(source, /datum/reagent/mindbreaker, new_weight, mult = source.status == FISH_DEAD ? 0.3 : 0.7)
+	add_venom(source, REAGENT_ID_MINDBREAKER, new_weight, mult = source.status == FISH_DEAD ? 0.3 : 0.7)
 
 /datum/fish_trait/hallucinogenic/proc/on_status_change(obj/item/fish/source)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(source, TRAIT_FISH_STINGER))
 		return
-	change_venom(source, /datum/reagent/mindbreaker, 0.7, 0.3)
+	change_venom(source, REAGENT_ID_MINDBREAKER, 0.7, 0.3)
 
 /datum/fish_trait/ink
 	name = "Ink Production"

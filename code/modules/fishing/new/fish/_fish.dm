@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	var/required_temperature_max = MAX_AQUARIUM_TEMP
 
 	/// What type of reagent this fish needs to be fed.
-	var/datum/reagent/food = /datum/reagent/nutriment
+	var/datum/reagent/food = REAGENT_ID_NUTRIMENT
 	/// How often the fish needs to be fed
 	var/feeding_frequency = 5 MINUTES
 	/// Time of last the fish was fed
@@ -388,10 +388,10 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	damage_fish(max_integrity)
 
 	//Remove the blood from the reagents holder and reward the player with some extra nutriment added to the fish.
-	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
-	var/datum/reagent/blood/blood = reagents.has_reagent(/datum/reagent/blood)
+	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(REAGENT_ID_PROTEIN, check_subtypes = TRUE)
+	var/datum/reagent/blood/blood = reagents.has_reagent(REAGENT_ID_BLOOD)
 	var/old_blood_volume = blood ? blood.volume : 0 //we can't use the ?. operator since the above proc doesn't return null but 0
-	reagents.del_reagent(/datum/reagent/blood)
+	reagents.del_reagent(REAGENT_ID_BLOOD)
 
 	///Make space for the additional nutriment
 	if(blood || protein)
@@ -404,7 +404,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		adjust_reagents_capacity((protein_volume - old_blood_volume) * volume_mult)
 		///Add the extra nutriment
 		if(protein)
-			reagents.add_reagent(2, /datum/reagent/nutriment/protein)
+			reagents.add_reagent(REAGENT_ID_PROTEIN, 2)
 
 	//Remove the raw and gore foodtypes from the edible component
 //	AddComponentFrom(SOURCE_EDIBLE_INNATE, /datum/component/edible, foodtypes = get_food_types() & ~(RAW|GORE))
@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	qdel(GetComponent(/datum/component/infective))
 	AddComponent(/datum/component/germ_sensitive)
 	ADD_TRAIT(src, TRAIT_FISH_WELL_COOKED, INNATE_TRAIT)
-	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
+	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(REAGENT_ID_PROTEIN, check_subtypes = TRUE)
 	if(protein)
 		protein.data = get_fish_taste_cooked()
 
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		for(var/reagent in reagents_to_add)
 			reagents_to_add[reagent] *= multiplier
 	reagents.add_reagent_list(reagents_to_add)
-	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
+	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(REAGENT_ID_PROTEIN, check_subtypes = TRUE)
 	if(protein)
 		protein.data = HAS_TRAIT(src, TRAIT_FISH_WELL_COOKED) ? get_fish_taste_cooked() : get_fish_taste()
 
@@ -482,15 +482,15 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 ///The proc that adds in the main reagents this fish has when eaten (without accounting for traits)
 /obj/item/fish/proc/get_base_edible_reagents_to_add()
 	var/return_list = list(
-		/datum/reagent/nutriment/protein = 2,
-		/datum/reagent/blood = 1,
+		REAGENT_ID_PROTEIN = 2,
+		REAGENT_ID_BLOOD = 1,
 	)
 	//It has been at the very least under-cooked.
 	if(HAS_TRAIT(src, TRAIT_FOOD_FRIED) || HAS_TRAIT(src, TRAIT_FOOD_BBQ_GRILLED))
-		return_list[/datum/reagent/nutriment/protein] *= 2
-		return_list -= /datum/reagent/blood
+		return_list[REAGENT_ID_PROTEIN] *= 2
+		return_list -= REAGENT_ID_BLOOD
 	if(required_fluid_type == AQUARIUM_FLUID_SALTWATER)
-		return_list[/datum/reagent/sodiumchloride] = 0.4
+		return_list[REAGENT_ID_SODIUMCHLORIDE] = 0.4
 	return return_list
 
 ///adjusts the maximum volume of the fish reagents holder and update the amount of food to bite
@@ -938,7 +938,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 //		if(!fed_reagents.has_reagent(reagent.type, 0.1) || !reagent.used_on_fish(src))
 //			continue
 		fed_reagents.remove_reagent(reagent.type, 0.1)
-		if(reagent.type == food)
+		if(reagent.id == food)
 			already_fed = TRUE
 
 	if(was_hungry && !get_hunger()) //one of the other reagents already sated its hunger.

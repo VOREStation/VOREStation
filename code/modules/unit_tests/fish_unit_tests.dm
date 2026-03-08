@@ -1,5 +1,6 @@
 #define TRAIT_FISH_TESTING "made_you_read_this"
 #define FISH_REAGENT_AMOUNT (10 * FISH_WEIGHT_GRIND_TO_BITE_MULT)
+#define REAGENT_FISHDUMMY "fish test reagent"
 
 ///Ensures that all fish have an aquarium icon state and that sprite_width and sprite_height have been set.
 /datum/unit_test/fish_aquarium_icons
@@ -24,7 +25,7 @@
 
 	var/obj/structure/table/table = allocate(/obj/structure/table)
 	var/obj/item/fish/testdummy/fish = allocate(__IMPLIED_TYPE__, table.loc)
-	var/datum/reagent/reagent = fish.reagents?.has_reagent(/datum/reagent/fishdummy)
+	var/datum/reagent/reagent = fish.reagents?.has_reagent(REAGENT_ID_DEVELOPER_WARNING)
 	TEST_ASSERT(reagent, "the test fish doesn't have the test reagent.[fish.reagents ? "" : " It doesn't even have a reagent holder."]")
 	var/expected_units = FISH_REAGENT_AMOUNT * fish.weight / FISH_WEIGHT_BITE_DIVISOR
 	TEST_ASSERT_EQUAL(reagent.volume, expected_units, "the test fish has [reagent.volume] units of the test reagent when it should have [expected_units]")
@@ -153,7 +154,7 @@
 /datum/fish_trait/dummy
 	incompatible_traits = list(/datum/fish_trait/dummy/two)
 	inheritability = 100
-	reagents_to_add = list(/datum/reagent/fishdummy = FISH_REAGENT_AMOUNT)
+	reagents_to_add = list(REAGENT_ID_DEVELOPER_WARNING = FISH_REAGENT_AMOUNT)
 
 /datum/fish_trait/dummy/apply_to_fish(obj/item/fish/fish)
 	. = ..()
@@ -162,7 +163,6 @@
 /datum/fish_trait/dummy/two
 	incompatible_traits = list(/datum/fish_trait/dummy)
 
-#define REAGENT_FISHDUMMY "fish test reagent"
 /datum/reagent/fishdummy
 	name = REAGENT_DEVELOPER_WARNING
 	id = REAGENT_ID_DEVELOPER_WARNING
@@ -248,15 +248,19 @@
 	var/obj/structure/moisture_trap/extra_spot = allocate(/obj/structure/moisture_trap)
 	var/obj/machinery/portable_atmospherics/hydroponics/inaccessible = allocate(__IMPLIED_TYPE__)
 	ADD_TRAIT(inaccessible, TRAIT_UNLINKABLE_FISHING_SPOT, INNATE_TRAIT)
-	var/obj/item/multitool/tool = allocate(__IMPLIED_TYPE__)
+	var/obj/item/multitool/multitool = allocate(__IMPLIED_TYPE__)
+	var/obj/item/tool/screwdriver/screwdriver = allocate(__IMPLIED_TYPE__)
 	var/datum/fish_source/toilet/fish_source = GLOB.preset_fish_sources[/datum/fish_source/toilet]
 
 	portal.max_fishing_spots = 1 //We've no scrying orb to know if it'll be buffed or nerfed this in the future. We only have space for one here.
 	portal.activate(fish_source, user)
 	TEST_ASSERT(!portal.active, "[portal] was activated with a fish source from an unlinked fishing spot")
-	portal.attackby(user, tool)
-	TEST_ASSERT_EQUAL(tool.connectable, portal, "[portal] wasn't set as buffer for [tool]")
-	tool.afterattack(user, fishing_spot)
+	screwdriver.resolve_attackby(portal, user)
+	TEST_ASSERT(portal.panel_open, "[portal] did not have its panel opened.")
+	user.put_in_hands(multitool)
+	multitool.resolve_attackby(portal, user)
+	TEST_ASSERT_EQUAL(multitool.connectable, portal, "[portal] wasn't set as buffer for [multitool]")
+	multitool.resolve_attackby(fishing_spot, user)
 	TEST_ASSERT_EQUAL(LAZYACCESS(portal.linked_fishing_spots, fishing_spot), fish_source, "We tried linking [portal] to the fishing spot but didn't succeed.")
 	portal.activate(fish_source, user)
 	TEST_ASSERT(portal.active?.fish_source == fish_source, "[portal] can't acces a fish source from a linked fishing spot")
@@ -270,12 +274,12 @@
 	fishing_spot.forceMove(other_z_turf)
 	portal.forceMove(get_turf(user))
 	TEST_ASSERT(portal.active?.fish_source == fish_source, "[portal] (upgraded) deactivated while changing z-level")
-	tool.attackby(user, extra_spot)
+	multitool.resolve_attackby(extra_spot, user)
 	TEST_ASSERT_EQUAL(length(portal.linked_fishing_spots), 1, "We managed to link to another fishing spot when there's only space for one")
 	TEST_ASSERT_EQUAL(LAZYACCESS(portal.linked_fishing_spots, fishing_spot), fish_source, "linking to another fishing spot fouled up the other linked spots")
 	QDEL_NULL(fishing_spot)
 	TEST_ASSERT(!portal.active, "[portal] is still linked to the fish source of the deleted fishing spot it's associated to")
-	tool.attackby(user, inaccessible)
+	multitool.resolve_attackby(inaccessible, user)
 	TEST_ASSERT(!length(portal.linked_fishing_spots), "We managed to link to an unlinkable fishing spot")
 
 /obj/structure/toilet/unit_test/Initialize(mapload)
@@ -415,7 +419,7 @@
 	var/type_to_check = upgrade::upgrade_to_type
 	var/turf/aquarium_loc = aquarium.loc
 	user.put_in_hands(upgrade)
-	upgrade.attackby(user, aquarium)
+	upgrade.afterattack(aquarium, user)
 	TEST_ASSERT(QDELETED(aquarium), "Old [aquarium.type] was not deleted after upgrade")
 
 	var/obj/structure/aquarium/upgraded_aquarium = locate(type_to_check) in aquarium_loc

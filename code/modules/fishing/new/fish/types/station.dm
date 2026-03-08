@@ -32,7 +32,7 @@
 
 /obj/item/fish/ratfish/get_base_edible_reagents_to_add()
 	var/list/return_list = ..()
-	return_list[/datum/reagent/water] = 1
+	return_list[REAGENT_ID_WATER] = 1
 	return return_list
 
 /obj/item/fish/ratfish/Initialize(mapload, apply_qualities = TRUE)
@@ -103,7 +103,7 @@
 	return SEAFOOD|TOXIC
 
 /obj/item/fish/slimefish/get_base_edible_reagents_to_add()
-	return list(/datum/reagent/slimejelly = 5)
+	return list(REAGENT_ID_SLIMEJELLY = 5)
 
 /obj/item/fish/fryish
 	name = "fryish"
@@ -176,8 +176,8 @@
 
 /obj/item/fish/fryish/get_base_edible_reagents_to_add()
 	var/list/return_list = list(
-		/datum/reagent/nutriment/protein = 2,
-		/datum/reagent/nutriment/triglyceride = 1.5,
+		REAGENT_ID_PROTEIN = 2,
+		REAGENT_ID_TRIGLYCERIDE = 1.5,
 	)
 	return return_list
 

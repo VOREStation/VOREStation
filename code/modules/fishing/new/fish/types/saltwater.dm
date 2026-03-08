@@ -27,7 +27,7 @@
 	fish_traits = list(/datum/fish_trait/picky_eater) // /datum/fish_trait/lubed NYI
 	evolution_types = null
 	compatible_types = list(/obj/item/fish/clownfish)
-	food = /datum/reagent/lube
+	food = REAGENT_ID_LUBE
 	fishing_difficulty_modifier = 5
 	beauty = FISH_BEAUTY_GREAT
 /*

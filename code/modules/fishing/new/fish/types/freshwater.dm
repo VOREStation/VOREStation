@@ -47,11 +47,11 @@
 	beauty = FISH_BEAUTY_GOOD
 	fishing_difficulty_modifier = 10
 	random_case_rarity = FISH_RARITY_VERY_RARE
-	food = /datum/reagent/mutagen
+	food = REAGENT_ID_MUTAGEN
 	favorite_bait = list(
 		list(
 			"Type" = "Reagent",
-			"Value" = /datum/reagent/mutagen,
+			"Value" = REAGENT_ID_MUTAGEN,
 			"Amount" = 3,
 		),
 	)

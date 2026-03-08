@@ -26,7 +26,7 @@
 
 	average_size = 40
 	average_weight = 1500
-	food = /datum/reagent/glamour
+	food = REAGENT_ID_GLAMOUR
 	feeding_frequency = 10 MINUTES
 	max_integrity = 100
 	death_text = "%SRC splinters apart into shards!"
@@ -74,7 +74,7 @@
 
 /obj/item/fish/starfish/chrystarfish/get_base_edible_reagents_to_add()
 	var/list/return_list = ..()
-	return_list[/datum/reagent/ethanol/singulo] = 5
+	return_list[REAGENT_ID_SINGULO] = 5
 	return return_list
 
 /obj/item/fish/starfish/chrystarfish/flinch_on_eat(mob/living/eater, mob/living/feeder)
@@ -138,7 +138,7 @@
 	required_fluid_type = AQUARIUM_FLUID_AIR
 	required_temperature_min = BODYTEMP_COLD_DAMAGE_LIMIT // you mean just like a human? that's odd...
 	required_temperature_max = BODYTEMP_HEAT_DAMAGE_LIMIT
-	food = /datum/reagent/blood
+	food = REAGENT_ID_BLOOD
 	max_integrity = 800 // apex predator
 	integrity_failure = 0.25
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
@@ -290,7 +290,7 @@
 	required_fluid_type = AQUARIUM_FLUID_AIR
 	required_temperature_min = 0
 	required_temperature_max = INFINITY
-	food = /datum/reagent/nutriment/triglyceride
+	food = REAGENT_ID_TRIGLYCERIDE
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	fillet_type = /obj/item/reagent_containers/food/snacks/meat/human ///obj/item/food/meat/slab/human/mutant/slime
 	num_fillets = 2
@@ -340,7 +340,7 @@
 /obj/item/fish/flumpulus/get_base_edible_reagents_to_add()
 	var/list/return_list = ..()
 	//return_list[/datum/reagent/flumpulus_extract] = 10
-	return_list[/datum/reagent/imidazoline] = 10
+	return_list[REAGENT_ID_IMIDAZOLINE] = 10
 	return return_list
 
 /*
@@ -380,7 +380,7 @@
 	sprite_width = 7
 	sprite_height = 5
 
-	food = /datum/reagent/silicon
+	food = REAGENT_ID_SILICON
 	feeding_frequency = 30 SECONDS
 	max_integrity = 320
 	death_text = "%SRC calcifies."

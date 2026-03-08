@@ -88,7 +88,7 @@
 	REMOVE_TRAIT(gourmet, TRAIT_FISH_EATER, TRAIT_FISH_TESTING)
 
 	fish.attack(gourmet, gourmet)
-	TEST_ASSERT(gourmet.reagents.has_reagent(/datum/reagent/nutriment/protein), "Human hasn't ingested protein when eating fish")
+	TEST_ASSERT(gourmet.reagents.has_reagent(REAGENT_ID_PROTEIN), "Human hasn't ingested protein when eating fish")
 	TEST_ASSERT(gourmet.reagents.has_reagent(/datum/reagent/blood), "Human hasn't ingested blood when eating fish")
 	TEST_ASSERT(gourmet.reagents.has_reagent(/datum/reagent/fishdummy), "Human doesn't have the reagent from /datum/fish_trait/dummy after eating fish")
 
