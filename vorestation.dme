@@ -2018,6 +2018,7 @@
 #include "code\game\objects\structures\lightpost.dm"
 #include "code\game\objects\structures\loot_piles.dm"
 #include "code\game\objects\structures\low_wall.dm"
+#include "code\game\objects\structures\maintenance.dm"
 #include "code\game\objects\structures\map_blocker_vr.dm"
 #include "code\game\objects\structures\medical_stand_vr.dm"
 #include "code\game\objects\structures\mirror.dm"
