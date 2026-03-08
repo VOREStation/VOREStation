@@ -163,10 +163,10 @@
 	incompatible_traits = list(/datum/fish_trait/dummy)
 
 #define REAGENT_FISHDUMMY "fish test reagent"
-#define REAGENT_ID_FISHDUMMY "fish_test"
 /datum/reagent/fishdummy
 	name = REAGENT_FISHDUMMY
-	id = REAGENT_ID_FISHDUMMY
+	id = REAGENT_ID_DEVELOPER_WARNING
+	desc = REAGENT_DESC_DEVELOPER_WARNING
 	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
 	description = "It smells fishy."
 
@@ -556,4 +556,3 @@
 #undef FISH_REAGENT_AMOUNT
 #undef TRAIT_FISH_TESTING
 #undef REAGENT_FISHDUMMY
-#undef REAGENT_ID_FISHDUMMY
