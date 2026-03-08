@@ -33,19 +33,20 @@
 	var/datum/techweb/autounlocking/stored_research
 	///Designs imported from technology disks that we can print.
 	var/list/imported_designs = list()
-	/// Reference to a remote material inventory, such as an ore silo.
-	var/datum/component/remote_materials/rmat
+	///The container to hold materials
+	var/datum/component/material_container/materials
 	//looping sound for printing items
 	var/datum/looping_sound/lathe_print/print_sound
 
 /obj/machinery/autolathe/Initialize(mapload)
 	print_sound = new(src,  FALSE)
-	rmat = AddComponent( \
-		/datum/component/remote_materials, \
-		mapload, \
-		mat_container_signals = list( \
-			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/autolathe, AfterMaterialInsert) \
-		))
+	materials = AddComponent( \
+		/datum/component/material_container, \
+		subtypesof(/datum/material), \
+		0, \
+		MATCONTAINER_EXAMINE, \
+		container_signals = list(COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/autolathe, AfterMaterialInsert)) \
+	)
 	. = ..()
 	wires = new(src)
 
@@ -108,7 +109,7 @@
 	return output
 
 /obj/machinery/autolathe/tgui_static_data(mob/user)
-	var/list/data = rmat.mat_container.tgui_static_data()
+	var/list/data = materials.tgui_static_data()
 
 	data["designs"] = handle_designs(stored_research.researched_designs)
 	if(imported_designs.len)
@@ -128,10 +129,10 @@
 	var/list/data = list()
 
 	data["materials"] = list()
-	data["materialtotal"] = rmat.mat_container.total_amount()
-	data["materialsmax"] = rmat.mat_container.max_amount
+	data["materialtotal"] = materials.total_amount()
+	data["materialsmax"] = materials.max_amount
 	data["active"] = busy
-	data["materials"] = rmat.mat_container.tgui_data()
+	data["materials"] = materials.tgui_data()
 
 	return data
 
@@ -231,13 +232,10 @@
 			//Check if we still have the materials.
 			var/coeff = 1
 
-			if(!rmat.can_use_resource())
-				return
-
 			if(LAZYLEN(making.materials))
-				if(!rmat.mat_container.has_materials(making.materials, coeff, multiplier))
+				if(!materials.has_materials(making.materials, coeff, multiplier))
 					return
-				rmat.use_materials(making.materials, coeff, multiplier)
+				materials.use_materials(making.materials, coeff, multiplier)
 
 			busy = making.name
 			print_sound.start()
@@ -314,8 +312,6 @@
 		mb_rating += MB.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
-
-	rmat.set_local_size(mb_rating * 75000)
 	build_time = 50 / man_rating
 
 	update_tgui_static_data(usr)
@@ -325,8 +321,3 @@
 	flick("autolathe_loading", src)//plays metal insertion animation
 	// use_power(min(1000, amount_inserted / 100))
 	SStgui.update_uis(src)
-
-/obj/machinery/autolathe/examine(mob/user)
-	. = ..()
-	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units</b>.")
