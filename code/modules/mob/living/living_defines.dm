@@ -120,3 +120,6 @@
 
 	///a list of all status effects the mob has
 	var/list/status_effects
+
+	/// Lazy assoc list of currently applied fishing difficulty modifiers keyed to their source
+	var/list/fishing_difficulty_mods_by_source

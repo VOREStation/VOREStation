@@ -726,8 +726,8 @@
 /area/redgate/jungle/aboveground)
 "hq" = (
 /obj/structure/table/woodentable,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_rod/modern/strong,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "hA" = (
@@ -1056,8 +1056,8 @@
 /area/redgate/jungle/temple)
 "lI" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;

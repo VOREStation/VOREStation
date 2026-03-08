@@ -60,6 +60,17 @@
 	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
 	var/list/image/update_on_z
 
+	// Use SET_BASE_PIXEL(x, y) to set these in typepath definitions, it'll handle pixel_x and y for you
+	///Default pixel x shifting for the atom's icon.
+	var/base_pixel_x = 0
+	///Default pixel y shifting for the atom's icon.
+	var/base_pixel_y = 0
+	// Use SET_BASE_VISUAL_PIXEL(x, y) to set these in typepath definitions, it'll handle pixel_w and z for you
+	///Default pixel w shifting for the atom's icon.
+	var/base_pixel_w = 0
+	///Default pixel z shifting for the atom's icon.
+	var/base_pixel_z = 0
+
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
@@ -114,6 +125,31 @@
 	proc/can_add_container()
 		return flags & INSERT_CONTAINER
 */
+
+///Apply material effects of a single material.
+/atom/proc/apply_single_mat_effect(datum/material/material, amount, multiplier)
+	SHOULD_CALL_PARENT(TRUE)
+	return //NYI except for fishing.
+	/*
+	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !uses_integrity)
+		return
+	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+	modify_max_integrity(ceil(max_integrity * integrity_mod))
+	var/list/armor_mods = material.get_armor_modifiers(multiplier)
+	set_armor(get_armor().generate_new_with_multipliers(armor_mods))
+	*/
+
+/atom/proc/remove_single_mat_effect(datum/material/material, amount, multiplier)
+	SHOULD_CALL_PARENT(TRUE)
+	return //NYI Except for fishing.
+	/*
+	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !uses_integrity)
+		return
+	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+	modify_max_integrity(floor(max_integrity / integrity_mod))
+	var/list/armor_mods = material.get_armor_modifiers(1 / multiplier)
+	set_armor(get_armor().generate_new_with_multipliers(armor_mods))
+	*/
 
 // Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
 // all the atoms that still have the proc, but get events other ways.

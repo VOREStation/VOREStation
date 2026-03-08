@@ -1198,3 +1198,46 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		name = cleanname
 	if(cleandesc)
 		desc = cleandesc
+
+/// Checks if the bait is liked by the fish type or not. Returns a multiplier that affects the chance of catching it.
+/obj/item/proc/check_bait(obj/item/fish/fish)
+	if(HAS_TRAIT(src, TRAIT_OMNI_BAIT))
+		return 1
+	var/catch_multiplier = 1
+
+	var/list/properties = SSfishing.fish_properties[isfish(fish) ? fish.type : fish]
+	//Bait matching likes doubles the chance
+	var/list/fav_bait = properties[FISH_PROPERTIES_FAV_BAIT]
+	for(var/bait_identifer in fav_bait)
+		if(is_matching_bait(src, bait_identifer))
+			catch_multiplier *= 2
+	//Bait matching dislikes
+	var/list/disliked_bait = properties[FISH_PROPERTIES_BAD_BAIT]
+	for(var/bait_identifer in disliked_bait)
+		if(is_matching_bait(src, bait_identifer))
+			catch_multiplier *= 0.5
+	return catch_multiplier
+
+/// Helper proc that checks if a bait matches identifier from fav/disliked bait list
+/proc/is_matching_bait(obj/item/bait, identifier)
+	if(ispath(identifier)) //Just a path
+		return istype(bait, identifier)
+	if(!islist(identifier))
+		return HAS_TRAIT(bait, identifier)
+	var/list/special_identifier = identifier
+	switch(special_identifier[FISH_BAIT_TYPE])
+		if(FISH_BAIT_FOODTYPE) //We don't have the edible component, so we go off of reagent allergens instead.
+			var/obj/item/reagent_containers/reagent_bait = bait
+			if(istype(reagent_bait))
+				for(var/datum/reagent/reagent_to_check in reagent_bait.reagents.reagent_list)
+					if(reagent_to_check.allergen_type & special_identifier[FISH_BAIT_VALUE])
+						return TRUE
+
+			/*
+			var/datum/component/edible/edible = bait.GetComponent(/datum/component/edible)
+			return edible?.foodtypes & special_identifier[FISH_BAIT_VALUE]
+			*/
+		if(FISH_BAIT_REAGENT)
+			return bait.reagents?.has_reagent(special_identifier[FISH_BAIT_VALUE], special_identifier[FISH_BAIT_AMOUNT], check_subtypes = TRUE)
+		else
+			CRASH("Unknown bait identifier in fish favourite/disliked list")

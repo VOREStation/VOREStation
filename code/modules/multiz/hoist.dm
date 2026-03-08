@@ -93,7 +93,7 @@
 /obj/structure/hoist
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_base"
-	var/broken = 0
+	broken = FALSE
 	density = TRUE
 	anchored = TRUE
 	name = "hoist"

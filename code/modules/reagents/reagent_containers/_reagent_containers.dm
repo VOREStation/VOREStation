@@ -23,15 +23,11 @@
 	if(!max_transfer_amount)
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
+	add_initial_reagents()
 
+/obj/item/reagent_containers/proc/add_initial_reagents()
 	if(starts_with)
-		var/total_so_far = 0
-		for(var/string in starts_with)
-			var/amt = starts_with[string] || 1
-			total_so_far += amt
-			reagents.add_reagent(string, amt)
-		if(total_so_far > volume)
-			WARNING("[src]([src.type]) starts with more reagents than it has total volume")
+		reagents.add_reagent_list(starts_with)
 		starts_with = null // it should gc, since it's just strings and numbers
 
 /obj/item/reagent_containers/afterattack(obj/target, mob/user, flag)

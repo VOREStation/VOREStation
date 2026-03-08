@@ -713,16 +713,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/dorm2)
-"la" = (
-/obj/structure/table/rack,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/stack/cable_coil/pink,
-/obj/item/stack/cable_coil/pink,
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/tether_away/beach/resort/janibar)
 "le" = (
 /turf/simulated/floor/water/beach{
 	dir = 5
@@ -876,10 +866,10 @@
 /area/tether_away/beach/resort)
 "pd" = (
 /obj/structure/table/rack,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /obj/item/stack/cable_coil/pink,
 /obj/item/stack/cable_coil/pink,
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -9795,7 +9785,7 @@ Nv
 li
 Nv
 sD
-la
+pd
 zw
 Nv
 Nv

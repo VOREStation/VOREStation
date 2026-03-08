@@ -1202,9 +1202,9 @@
 "ou" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/material/twohanded/spear/flint,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /obj/random/fantasy_item,
 /obj/random/potion_ingredient,
 /turf/simulated/mineral/floor/ignore_cavegen{

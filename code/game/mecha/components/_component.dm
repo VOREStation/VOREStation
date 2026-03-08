@@ -17,7 +17,7 @@
 
 	var/integrity
 	var/integrity_danger_mod = 0.5	// Multiplier for comparison to max_integrity before problems start.
-	var/max_integrity = 100
+	max_integrity = 100
 
 	var/step_delay = 0
 

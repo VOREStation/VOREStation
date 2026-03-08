@@ -866,7 +866,7 @@
 /turf/simulated/floor/cult,
 /area/redgate/fantasy/dungeon)
 "sE" = (
-/obj/item/material/fishing_rod/modern/strong,
+/obj/item/fishing_rod,
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/mines)
 "sG" = (

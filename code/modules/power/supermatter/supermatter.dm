@@ -130,13 +130,13 @@
 	if(grav_pulling || exploded)
 		return SUPERMATTER_DELAMINATING
 
-	if(get_integrity() < 25)
+	if(get_supermatter_integrity() < 25)
 		return SUPERMATTER_EMERGENCY
 
-	if(get_integrity() < 50)
+	if(get_supermatter_integrity() < 50)
 		return SUPERMATTER_DANGER
 
-	if((get_integrity() < 100) || (air.temperature > CRITICAL_TEMPERATURE))
+	if((get_supermatter_integrity() < 100) || (air.temperature > CRITICAL_TEMPERATURE))
 		return SUPERMATTER_WARNING
 
 	if(air.temperature > (CRITICAL_TEMPERATURE * 0.8))
@@ -162,7 +162,7 @@
 	set waitfor = 0
 
 	message_admins("Supermatter exploded at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
-	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
+	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_supermatter_integrity()]")
 	anchored = TRUE
 	grav_pulling = 1
 	exploded = 1
@@ -229,7 +229,7 @@
 	if(lum != light_range || clr != light_color)
 		set_light(lum, l_color = clr)
 
-/obj/machinery/power/supermatter/proc/get_integrity()
+/obj/machinery/power/supermatter/proc/get_supermatter_integrity()
 	var/integrity = damage / explosion_point
 	integrity = round(100 - integrity * 100)
 	integrity = integrity < 0 ? 0 : integrity
@@ -237,7 +237,7 @@
 
 
 /obj/machinery/power/supermatter/proc/announce_warning()
-	var/integrity = get_integrity()
+	var/integrity = get_supermatter_integrity()
 	var/alert_msg = " Integrity at [integrity]%"
 	var/message_sound = 'sound/ambience/matteralarm.ogg'
 
@@ -257,7 +257,7 @@
 		alert_msg = null
 	if(alert_msg)
 		GLOB.global_announcer.autosay(alert_msg, "Supermatter Monitor", "Engineering")
-		log_game("SUPERMATTER([x],[y],[z]) Emergency engineering announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
+		log_game("SUPERMATTER([x],[y],[z]) Emergency engineering announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_supermatter_integrity()]")
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			GLOB.global_announcer.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
@@ -266,7 +266,7 @@
 					M << message_sound // Rykka adds SM Delam alarm
 			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
 			public_alert = TRUE
-			log_game("SUPERMATTER([x],[y],[z]) Emergency PUBLIC announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
+			log_game("SUPERMATTER([x],[y],[z]) Emergency PUBLIC announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_supermatter_integrity()]")
 		else if(safe_warned && public_alert)
 			GLOB.global_announcer.autosay(alert_msg, "Supermatter Monitor")
 			public_alert = FALSE
@@ -302,13 +302,13 @@
 		supermatter_pull(src)
 
 	if(damage) // Start fucking things up
-		if(get_integrity() < 85 && prob(5))
+		if(get_supermatter_integrity() < 85 && prob(5))
 			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), FLUX_ANOMALY)
-		if(get_integrity() < 75 && prob(5))
+		if(get_supermatter_integrity() < 75 && prob(5))
 			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), HALLUCINATION_ANOMALY)
-		if(get_integrity() < 50 && prob(2))
+		if(get_supermatter_integrity() < 50 && prob(2))
 			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), GRAVITATIONAL_ANOMALY)
-		if(get_integrity() < 25 && prob(0.3))
+		if(get_supermatter_integrity() < 25 && prob(0.3))
 			generate_anomaly(get_ranged_target_turf(src, pick(GLOB.cardinal), rand(5, 10)), PYRO_ANOMALY)
 
 	// Vary volume by power produced.
@@ -451,7 +451,7 @@
 /obj/machinery/power/supermatter/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["integrity_percentage"] = round(get_integrity())
+	data["integrity_percentage"] = round(get_supermatter_integrity())
 	var/datum/gas_mixture/env = null
 	if(!istype(src.loc, /turf/space))
 		env = src.loc.return_air()

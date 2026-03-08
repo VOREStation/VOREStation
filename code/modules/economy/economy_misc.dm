@@ -104,3 +104,10 @@ GLOBAL_VAR_INIT(economy_init, 0)
 	GLOB.all_money_accounts.Add(department_account)
 
 	GLOB.department_accounts[department] = department_account
+
+/obj/item/proc/get_item_credit_value()
+	return
+/obj/item/coin/get_item_credit_value()
+	return value
+/obj/item/spacecash/get_item_credit_value()
+	return worth

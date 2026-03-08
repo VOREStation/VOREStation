@@ -911,7 +911,7 @@
 	character_name = list("Damon Bones Xrim")
 
 /datum/gear/fluff/kt_fishing_rod
-	path = /obj/item/material/fishing_rod/modern/strong
+	path = /obj/item/fishing_rod/telescopic/master
 	display_name = "K't's fishing rod"
 	ckeywhitelist = list("nerdass")
 	character_name = list("K't")

@@ -59,3 +59,10 @@
 
 /// Checks that foodtypes are the same for food whether it's spawned or crafted (with the exact required types)
 /datum/unit_test/focus_only/check_foodtypes
+
+/**
+ * This will tell us if we forgot to properly set the stable population for any fish.
+ * Fish with a stable population of one or less need to have either the mateless or crossbreeder trait, or be compatible with
+ * other fish types with a higher stable population.
+ */
+/datum/unit_test/focus_only/fish_population

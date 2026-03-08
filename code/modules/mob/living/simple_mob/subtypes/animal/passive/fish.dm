@@ -44,6 +44,7 @@
 
 // Take damage if we are not in water
 /mob/living/simple_mob/animal/passive/fish/handle_breathing()
+	..()
 	if(istype(loc, /obj/item/glass_jar/fish))
 		var/obj/item/glass_jar/fish/F = loc
 		if(F.filled)

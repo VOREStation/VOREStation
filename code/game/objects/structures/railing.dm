@@ -9,7 +9,6 @@
 	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
-	var/broken = FALSE
 	var/health = 70
 	var/maxhealth = 70
 	var/check = 0

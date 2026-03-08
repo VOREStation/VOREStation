@@ -287,7 +287,7 @@
 	/obj/item/clothing/shoes/footwraps,
 	/obj/item/storage/smolebrickcase,
 	/obj/item/lipstick,
-	/obj/item/material/fishing_rod/modern,
+	/obj/item/fishing_rod,
 	/obj/item/inflatable_duck,
 	/obj/item/toy/syndicateballoon,
 	/obj/item/towel,

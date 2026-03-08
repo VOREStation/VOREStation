@@ -278,7 +278,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		//Not meant to spawn without the machine wand
 		// NOT IMPLEMENTED: /obj/effect/bug_moving,
 		//The abstract grown item expects a seed, but doesn't have one
-		// NOT IMPLEMENTED: /obj/item/food/grown,
+		// NOT IMPLEMENTED: /obj/item/reagent_containers/food/snacks/grown,
 		///Single use case holder atom requiring a user
 		// NOT IMPLEMENTED: /atom/movable/looking_holder,
 	)

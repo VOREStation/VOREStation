@@ -42,6 +42,9 @@
 	var/heavyfootstep
 	var/clawfootstep
 
+	///The typepath we use for lazy fishing on turfs, to save on world init time.
+	var/fish_source
+
 /turf/simulated/floor
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -528,3 +531,67 @@
 			expanding_turfs += next_turf
 
 	return expanding_turfs
+
+
+/**
+ * the following are some fishing-related optimizations to shave off as much
+ * time we spend implementing the fishing as possible, even if that means
+ * hackier code, because we've hundreds of turfs like lava, water etc every round,
+ */
+/turf/proc/add_lazy_fishing(fish_source_path)
+	RegisterSignal(src, COMSIG_FISHING_ROD_CAST, PROC_REF(add_fishing_spot_comp))
+	RegisterSignal(src, COMSIG_NPC_FISHING, PROC_REF(on_npc_fishing))
+	RegisterSignal(src, COMSIG_FISH_RELEASED_INTO, PROC_REF(on_fish_release_into))
+	RegisterSignal(src, COMSIG_TURF_CHANGE, PROC_REF(remove_lazy_fishing))
+	ADD_TRAIT(src, TRAIT_FISHING_SPOT, INNATE_TRAIT)
+	fish_source = fish_source_path
+
+/turf/proc/remove_lazy_fishing()
+	SIGNAL_HANDLER
+	UnregisterSignal(src, list(
+		COMSIG_FISHING_ROD_CAST,
+		COMSIG_NPC_FISHING,
+		COMSIG_FISH_RELEASED_INTO,
+		COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL),
+		COMSIG_TURF_CHANGE,
+	))
+	REMOVE_TRAIT(src, TRAIT_FISHING_SPOT, INNATE_TRAIT)
+	fish_source = null
+
+/turf/proc/add_fishing_spot_comp(datum/source, obj/item/fishing_rod/rod, mob/user)
+	SIGNAL_HANDLER
+	var/datum/component/fishing_spot/spot = source.AddComponent(/datum/component/fishing_spot, GLOB.preset_fish_sources[fish_source])
+	remove_lazy_fishing()
+	return spot.handle_cast(arglist(args))
+
+/turf/proc/on_npc_fishing(datum/source, list/fish_spot_container)
+	SIGNAL_HANDLER
+	fish_spot_container[NPC_FISHING_SPOT] = GLOB.preset_fish_sources[fish_source]
+
+/turf/proc/on_fish_release_into(datum/source, obj/item/fish/fish, mob/living/releaser)
+	SIGNAL_HANDLER
+	GLOB.preset_fish_sources[fish_source].readd_fish(src, fish, releaser)
+
+/turf/examine(mob/user)
+	. = ..()
+	if(!fish_source || !HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISHING_SPOT))
+		return
+	if(!GLOB.preset_fish_sources[fish_source].has_known_fishes(src))
+		return
+	. += span_notice("This is a fishing spot. You can look again to list its fishes...")
+	GLOB.preset_fish_sources[fish_source].get_catchable_fish_names(user, src, .)
+
+/turf/ex_act(severity, target)
+	. = ..()
+	if(!fish_source)
+		return
+	GLOB.preset_fish_sources[fish_source].spawn_reward_from_explosion(src, severity)
+
+/turf/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
+	if(istype(W, /obj/item/multitool))
+		var/obj/item/multitool/multitool = W
+		if(!fish_source || !istype(multitool.buffer, /obj/machinery/fishing_portal_generator))
+			return ..()
+		var/obj/machinery/fishing_portal_generator/portal = multitool.buffer
+		return portal.link_fishing_spot(GLOB.preset_fish_sources[fish_source], src, user)
+	return ..()

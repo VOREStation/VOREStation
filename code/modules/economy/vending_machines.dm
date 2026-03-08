@@ -941,17 +941,18 @@
 	desc = "A special vendor for fishing equipment."
 	product_ads = "Tired of trawling across the ocean floor? Get our loot!;Chum and rods.;Don't get baited into fishing without us!;Baby is your star-sign pisces? We'd make a perfect match.;Do not fear, plenty to catch around here.;Don't get reeled in helplessly, get your own rod today!"
 	icon_state = "fishvendor"
-	products = list(/obj/item/material/fishing_rod/modern/cheap = 6,
-					/obj/item/storage/box/wormcan = 4,
-					/obj/item/storage/box/wormcan/sickly = 10,
-					/obj/item/material/fishing_net = 2,
+	products = list(/obj/item/fishing_rod/unslotted = 6,
+					/obj/item/bait_can/worm = 20,
+					/obj/item/bait_can/worm/premium = 20,
+					/obj/item/fishing_rod = 4,
+//					/obj/item/material/fishing_net = 2,
 					/obj/item/glass_jar/fish = 4,
 					/obj/item/stack/cable_coil/random = 6,
 					/obj/item/clothing/head/fishing = 5)
-	prices = list(/obj/item/material/fishing_rod/modern/cheap = 50,
-					/obj/item/storage/box/wormcan = 12,
-					/obj/item/storage/box/wormcan/sickly = 6,
-					/obj/item/material/fishing_net = 40,
+	prices = list(/obj/item/fishing_rod/unslotted = 50,
+					/obj/item/bait_can/worm = 10,
+					/obj/item/bait_can/worm/premium = 50,
+					/obj/item/fishing_rod = 40,
 					/obj/item/glass_jar/fish = 10,
 					/obj/item/stack/cable_coil/random = 4,
 					/obj/item/clothing/head/fishing = 15)

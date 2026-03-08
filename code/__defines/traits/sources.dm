@@ -9,3 +9,16 @@
 #define ACTION_TRAIT "action"
 /// Trait that is given by unholy effects or corruption. Can be dispelled by a chaplain with a nullrod.
 #define UNHOLY_TRAIT "unholy"
+
+#define INNATE_TRAIT "innate"
+
+/// From the aquarium component
+#define AQUARIUM_TRAIT "aquarium"
+
+// common trait sources
+#define TRAIT_GENERIC "generic"
+
+///coming from a fish trait datum.
+#define FISH_TRAIT_DATUM "fish_trait_datum"
+///coming from a fish evolution datum
+#define FISH_EVOLUTION "fish_evolution"

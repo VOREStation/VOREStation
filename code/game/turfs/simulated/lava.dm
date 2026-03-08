@@ -17,6 +17,8 @@
 	can_dirty = FALSE
 	initial_flooring = /datum/decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 	flags = TURF_ACID_IMMUNE
+	/// The type for the preset fishing spot of this type of turf.
+	var/fish_source_type = /datum/fish_source/lavaland
 
 /turf/simulated/floor/lava/outdoors
 	outdoors = OUTDOORS_YES
@@ -27,6 +29,8 @@
 		name = "magma"
 	update_icon()
 	update_light()
+	if(fish_source_type)
+		add_lazy_fishing(fish_source_type)
 	return ..()
 
 /turf/simulated/floor/lava/make_outdoors()
@@ -46,7 +50,9 @@
 	return
 
 /turf/simulated/floor/lava/ex_act(severity)
-	return
+	if(fish_source)
+		GLOB.preset_fish_sources[fish_source].spawn_reward_from_explosion(src, severity)
+	return FALSE
 
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))

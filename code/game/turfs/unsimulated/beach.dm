@@ -26,6 +26,11 @@
 	icon = 'icons/misc/beach.dmi'
 	initial_flooring = /datum/decl/flooring/sand
 
+/turf/simulated/floor/beach/ex_act(severity, target)
+	if(fish_source)
+		GLOB.preset_fish_sources[fish_source].spawn_reward_from_explosion(src, severity)
+	return FALSE
+
 /turf/simulated/floor/beach/sand
 	name = "Sand"
 	icon_state = "sand"

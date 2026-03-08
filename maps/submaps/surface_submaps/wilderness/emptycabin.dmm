@@ -15,7 +15,7 @@
 /area/submap/EmptyCabin)
 "d" = (
 /obj/structure/closet/wardrobe,
-/obj/item/material/fishing_rod/modern,
+/obj/item/fishing_rod,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/lunchbox/nymph/filled,
 /turf/simulated/floor/wood/sif,
