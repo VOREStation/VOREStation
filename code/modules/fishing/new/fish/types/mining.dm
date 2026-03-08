@@ -34,7 +34,7 @@
 /obj/item/fish/chasm_crab/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
 	RegisterSignal(src, COMSIG_FISH_BEFORE_GROWING, PROC_REF(growth_checks))
-	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
+//	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
 
 /obj/item/fish/chasm_crab/get_fish_taste()
 	return list("raw crab" = 2)
@@ -90,6 +90,7 @@
 		anger += growth * 0.3
 	if(fish_count > AQUARIUM_MAX_BREEDING_POPULATION * 0.5) //check if there's enough room to maturate.
 		return COMPONENT_DONT_GROW
+
 /*
 /obj/item/fish/chasm_crab/proc/on_growth(datum/source, mob/living/basic/mining/lobstrosity/juvenile/result)
 	SIGNAL_HANDLER
