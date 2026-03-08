@@ -163,7 +163,7 @@
 	incompatible_traits = list(/datum/fish_trait/dummy)
 
 #define REAGENT_FISHDUMMY "fish test reagent"
-#define REAGENT_ID_FISHDUMMY"fish_test"
+#define REAGENT_ID_FISHDUMMY "fish_test"
 /datum/reagent/fishdummy
 	name = REAGENT_FISHDUMMY
 	id = REAGENT_ID_FISHDUMMY
