@@ -502,6 +502,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	///updates how many units of reagent one bite takes if edible.
 //	if(IS_EDIBLE(src))
 //		AddComponentFrom(SOURCE_EDIBLE_INNATE, /datum/component/edible, bite_consumption = reagents.maximum_volume / bites_to_finish)
+
 /*
 ///Grinding a fish replaces some the protein it has with blood and gibs. You ain't getting a clean smoothie out of it.
 /obj/item/fish/on_grind()
@@ -511,6 +512,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	reagents.convert_reagent(/datum/reagent/nutriment/protein, /datum/reagent/consumable/liquidgibs, multiplier = 0.4, include_source_subtypes = TRUE)
 	reagents.convert_reagent(/datum/reagent/nutriment/protein, /datum/reagent/blood, multiplier = 0.2, include_source_subtypes = TRUE)
 */
+
 /*
 ///When processed, the reagents inside this fish will be passed to the created atoms.
 /obj/item/fish/UsedforProcessing(mob/living/user, obj/item/used_item, list/chosen_option, list/created_atoms)
@@ -527,6 +529,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 			created.reagents.multiply(transfer_vol / result_reagent.volume, reagent.type)
 	return ..()
 */
+
 /obj/item/fish/update_icon_state()
 	if((status == FISH_DEAD || HAS_TRAIT(src, TRAIT_FISH_STASIS)) && icon_state_dead)
 		icon_state = icon_state_dead
