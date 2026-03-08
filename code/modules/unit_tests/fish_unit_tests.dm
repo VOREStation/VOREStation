@@ -166,7 +166,6 @@
 /datum/reagent/fishdummy
 	name = REAGENT_FISHDUMMY
 	id = REAGENT_ID_DEVELOPER_WARNING
-	desc = REAGENT_DESC_DEVELOPER_WARNING
 	supply_conversion_value = REFINERYEXPORT_VALUE_GODTIER
 	description = "It smells fishy."
 
