@@ -152,6 +152,7 @@
 						I.reagents.remove_reagent(R.id, R.volume)
 					else
 						total_our_oil += R.volume
+		SEND_SIGNAL(I, COMSIG_ITEM_FRIED)
 
 
 	if (total_removed > 0 || total_oil != CI.max_oil)
