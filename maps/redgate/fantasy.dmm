@@ -1232,7 +1232,7 @@
 /area/redgate/fantasy/farmhouse)
 "ic" = (
 /obj/structure/table/woodentable,
-/obj/item/material/fishing_rod/built,
+/obj/item/fishing_rod,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "id" = (
