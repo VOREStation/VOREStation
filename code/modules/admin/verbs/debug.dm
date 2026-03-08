@@ -255,38 +255,31 @@ ADMIN_VERB(cmd_display_overlay_log, R_DEBUG, "Display overlay Log", "Display SSo
 	else
 		. = lines.Join("\n")
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
-	set category = "Admin.Events"
-	set name = "Grant Full Access"
-
+ADMIN_VERB(cmd_admin_grantfullaccess, (R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", ADMIN_CATEGORY_EVENTS, mob/living/carbon/human/H in GLOB.human_mob_list)
 	if (!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if (H.wear_id)
-			var/obj/item/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/pda))
-				var/obj/item/pda/pda = H.wear_id
-				id = pda.id
-			id.icon_state = "gold"
-			id.access = get_all_accesses().Copy()
-		else
-			var/obj/item/card/id/id = new/obj/item/card/id(M);
-			id.icon_state = "gold"
-			id.access = get_all_accesses().Copy()
-			id.registered_name = H.real_name
-			id.assignment = JOB_SITE_MANAGER
-			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, slot_wear_id)
-			H.update_inv_wear_id()
+	if (H.wear_id)
+		var/obj/item/card/id/id = H.wear_id
+		if(istype(H.wear_id, /obj/item/pda))
+			var/obj/item/pda/pda = H.wear_id
+			id = pda.id
+		id.icon_state = "gold"
+		id.access = get_all_accesses().Copy()
 	else
-		tgui_alert_async(usr, "Invalid mob")
+		var/obj/item/card/id/id = new/obj/item/card/id(H);
+		id.icon_state = "gold"
+		id.access = get_all_accesses().Copy()
+		id.registered_name = H.real_name
+		id.assignment = JOB_SITE_MANAGER
+		id.name = "[id.registered_name]'s ID Card ([id.assignment])"
+		H.equip_to_slot_or_del(id, slot_wear_id)
+		H.update_inv_wear_id()
 	feedback_add_details("admin_verb","GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."))
+	log_admin("[key_name(user)] has granted [H.key] full access.")
+	message_admins(span_blue("[key_name_admin(user)] has granted [H.key] full access."))
 
-ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", "Admin.Game", mob/M)
+ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", ADMIN_CATEGORY_GAME, mob/M)
 	if(M.ckey)
 		if(tgui_alert(user, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
 			return
@@ -431,13 +424,8 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 	outfit.equip(H)
 	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].")
 
-/client/proc/startSinglo()
-
-	set category = "Debug.Game"
-	set name = "Start Singularity"
-	set desc = "Sets up the singularity and all machines to get power flowing through the station"
-
-	if(tgui_alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Start Singularity",list("Yes","No")) != "Yes")
+ADMIN_VERB(startSinglo, R_DEBUG|R_ADMIN, "Start Singularity", "Sets up the singularity and all machines to get power flowing through the station.", ADMIN_CATEGORY_DEBUG_GAME)
+	if(tgui_alert(user, "Are you sure? This will start up the engine. Should only be used during debug!","Start Singularity",list("Yes","No")) != "Yes")
 		return
 
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
@@ -476,14 +464,11 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 			if(!Rad.active)
 				Rad.toggle_power()
 
-/client/proc/setup_supermatter_engine()
-	set category = "Debug.Game"
-	set name = "Setup supermatter"
-	set desc = "Sets up the supermatter engine"
+	log_admin("[key_name(user)] setup the singulo engine")
+	message_admins(span_blue("[key_name_admin(user)] setup the singulo engine"))
 
-	if(!check_rights(R_DEBUG|R_ADMIN))      return
-
-	var/response = tgui_alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Setup Supermatter",list("Setup Completely","Setup except coolant","No"))
+ADMIN_VERB(setup_supermatter_engine, R_DEBUG|R_ADMIN, "Setup supermatter", "Sets up the supermatter engine.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/response = tgui_alert(user, "Are you sure? This will start up the engine. Should only be used during debug!","Setup Supermatter",list("Setup Completely","Setup except coolant","No"))
 
 	if(!response || response == "No")
 		return
@@ -553,44 +538,32 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 		T.zone.air.update_values()
 
 
-	log_admin("[key_name(usr)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
-	message_admins(span_blue("[key_name_admin(usr)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]"), 1)
-	return
+	log_admin("[key_name(user)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
+	message_admins(span_blue("[key_name_admin(user)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]"))
 
 
-
-/client/proc/cmd_debug_mob_lists()
-	set category = "Debug.Investigate"
-	set name = "Debug Mob Lists"
-	set desc = "For when you just gotta know"
-
-	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
+ADMIN_VERB(cmd_debug_mob_lists, R_DEBUG, "Debug Mob Lists", "For when you just gotta know.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	switch(tgui_input_list(user, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.player_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.player_list,",")))
 		if("Admins")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
 		if("Living Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
 		if("Dead Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
 		if("Clients")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.clients,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.clients,",")))
 
-/client/proc/cmd_debug_using_map()
-	set category = "Debug.Investigate"
-	set name = "Debug Map Datum"
-	set desc = "Debug the map metadata about the currently compiled in map."
-
-	if(!check_rights(R_DEBUG))
-		return
-	debug_variables(using_map)
+ADMIN_VERB(cmd_debug_using_map, R_DEBUG, "Debug Map Datum", "Debug the map metadata about the currently compiled in map.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	user.debug_variables(using_map)
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(src, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
@@ -601,7 +574,7 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
-		tgui_alert_async(usr, "Invalid mob")
+		tgui_alert_async(src, "Invalid mob")
 
 ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	GLOB.error_cache.show_to(user)
@@ -615,67 +588,51 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
 		tgui_alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
 
-/datum/admins/proc/change_weather()
-	set category = "Debug.Events"
-	set name = "Change Weather"
-	set desc = "Changes the current weather."
-
-	if(!check_rights(R_DEBUG))
+ADMIN_VERB(change_weather, R_DEBUG|R_EVENT, "Change Weather", "Changes the current weather.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/datum/planet/planet = tgui_input_list(user, "Which planet do you want to modify the weather on?", "Change Weather", SSplanets.planets)
+	if(!istype(planet))
 		return
-
-	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify the weather on?", "Change Weather", SSplanets.planets)
-	if(istype(planet))
-		var/datum/weather/new_weather = tgui_input_list(usr, "What weather do you want to change to?", "Change Weather", planet.weather_holder.allowed_weather_types)
-		if(new_weather)
-			planet.weather_holder.change_weather(new_weather)
-			planet.weather_holder.rebuild_forecast()
-			var/log = "[key_name(src)] changed [planet.name]'s weather to [new_weather]."
-			message_admins(log)
-			log_admin(log)
-
-/datum/admins/proc/toggle_firework_override()
-	set category = "Fun.Event Kit"
-	set name = "Toggle Weather Firework Override"
-	set desc = "Toggles ability for weather fireworks to affect weather on planet of choice."
-
-	if(!check_rights(R_DEBUG))
+	var/datum/weather/new_weather = tgui_input_list(user, "What weather do you want to change to?", "Change Weather", planet.weather_holder.allowed_weather_types)
+	if(!new_weather)
 		return
+	planet.weather_holder.change_weather(new_weather)
+	planet.weather_holder.rebuild_forecast()
+	var/log = "[key_name(user)] changed [planet.name]'s weather to [new_weather]."
+	message_admins(log)
+	log_admin(log)
 
-	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to toggle firework effects on?", "Change Weather", SSplanets.planets)
+ADMIN_VERB(toggle_firework_override, R_DEBUG|R_EVENT, "Toggle Weather Firework Override", "Toggles ability for weather fireworks to affect weather on planet of choice.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/datum/planet/planet = tgui_input_list(user, "Which planet do you want to toggle firework effects on?", "Change Weather", SSplanets.planets)
 	if(istype(planet) && planet.weather_holder)
 		planet.weather_holder.firework_override = !(planet.weather_holder.firework_override)
-		var/log = "[key_name(src)] toggled [planet.name]'s firework override to [planet.weather_holder.firework_override ? "on" : "off"]."
+		var/log = "[key_name(user)] toggled [planet.name]'s firework override to [planet.weather_holder.firework_override ? "on" : "off"]."
 		message_admins(log)
 		log_admin(log)
 
-/datum/admins/proc/change_time()
-	set category = "Debug.Events"
-	set name = "Change Planet Time"
-	set desc = "Changes the time of a planet."
-
-	if(!check_rights(R_DEBUG))
+ADMIN_VERB(change_time, R_DEBUG|R_EVENT, "Change Planet Time", "Changes the time of a planet.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/datum/planet/planet = tgui_input_list(user, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
+	if(!istype(planet))
 		return
+	var/datum/time/current_time_datum = planet.current_time
+	var/planet_hours = max(round(current_time_datum.seconds_in_day / 36000) - 1, 0)
+	var/new_hour = tgui_input_number(user, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")), planet_hours)
+	if(isnull(new_hour))
+		return
+	var/planet_minutes = max(round(current_time_datum.seconds_in_hour / 600) - 1, 0)
+	var/new_minute = tgui_input_number(user, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")), planet_minutes)
+	if(isnull(new_minute))
+		return
+	var/type_needed = current_time_datum.type
+	var/datum/time/new_time = new type_needed()
+	new_time = new_time.add_hours(new_hour)
+	new_time = new_time.add_minutes(new_minute)
+	planet.current_time = new_time
+	spawn(1)
+		planet.update_sun()
 
-	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
-	if(istype(planet))
-		var/datum/time/current_time_datum = planet.current_time
-		var/planet_hours = max(round(current_time_datum.seconds_in_day / 36000) - 1, 0)
-		var/new_hour = tgui_input_number(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")), planet_hours)
-		if(!isnull(new_hour))
-			var/planet_minutes = max(round(current_time_datum.seconds_in_hour / 600) - 1, 0)
-			var/new_minute = tgui_input_number(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")), planet_minutes)
-			if(!isnull(new_minute))
-				var/type_needed = current_time_datum.type
-				var/datum/time/new_time = new type_needed()
-				new_time = new_time.add_hours(new_hour)
-				new_time = new_time.add_minutes(new_minute)
-				planet.current_time = new_time
-				spawn(1)
-					planet.update_sun()
-
-				var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
-				message_admins(log)
-				log_admin(log)
+	var/log = "[key_name(user)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
+	message_admins(log)
+	log_admin(log)
 
 ADMIN_VERB(cmd_regenerate_asset_cache, R_DEBUG|R_SERVER, "Regenerate Asset Cache", "Clears the asset cache and regenerates it immediately.", ADMIN_CATEGORY_DEBUG_ASSETS)
 	if(!CONFIG_GET(flag/cache_assets))

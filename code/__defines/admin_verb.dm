@@ -102,6 +102,8 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 
 #define ADMIN_CATEGORY_OBJECT "Object"
 #define ADMIN_CATEGORY_MAPPING "Mapping"
+#define ADMIN_CATEGORY_MAPPING_TESTS "Mapping.Testserver Only"
+#define ADMIN_CATEGORY_MAPPING_ZAS "Mapping.ZAS"
 #define ADMIN_CATEGORY_PROFILE "Profile"
 
 // Server Categories

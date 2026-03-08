@@ -652,19 +652,16 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	log_admin("[key_name(user)] cancelled the pending world reboot.")
 	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
 
-/datum/admins/proc/announce()
-	set category = "Admin.Chat"
-	set name = "Announce"
-	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+ADMIN_VERB(announce, R_SERVER|R_ADMIN|R_EVENT, "Announce", "Announce your desires to the world.", ADMIN_CATEGORY_CHAT)
+	var/message = tgui_input_text(user, "Global message to send:", "Admin Announce", multiline = TRUE, prevent_enter = TRUE)
+	if(!message)
+		return
 
-	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, prevent_enter = TRUE)
-	if(message)
-		if(!check_rights(R_SERVER,0))
-			message = sanitize(message, 500, extra = 0)
-		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
-		log_admin("Announce: [key_name(usr)] : [message]")
+	if(!check_rights_for(user, R_SERVER))
+		message = sanitize(message, 500, extra = 0)
+	message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
+	send_ooc_announcement(message, "From [user.holder.fakekey ? "Administrator" : usr.key]")
+	log_admin("Announce: [key_name(user)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/intercom()

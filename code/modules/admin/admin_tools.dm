@@ -1,9 +1,5 @@
-/client/proc/cmd_admin_check_player_logs(mob/living/M as mob in GLOB.mob_list)
-	set category = "Admin.Logs"
-	set name = "Check Player Attack Logs"
-	set desc = "Check a player's attack logs."
-
-	show_cmd_admin_check_player_logs(M)
+ADMIN_VERB(cmd_admin_check_player_logs, R_ADMIN|R_MOD|R_EVENT, "Check Player Attack Logs", "Check a player's attack logs.", ADMIN_CATEGORY_LOGS, mob/living/living_mob in GLOB.mob_list)
+	user.show_cmd_admin_check_player_logs(living_mob)
 
 //Views specific attack logs belonging to one player.
 /client/proc/show_cmd_admin_check_player_logs(mob/living/M)
@@ -24,11 +20,11 @@
 	else
 		dat += span_italics("No attack logs found for [M].")
 
-	var/datum/browser/popup = new(usr, "admin_attack_log", "[src]", 650, 650, src)
+	var/datum/browser/popup = new(src, "admin_attack_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-	onclose(usr, "admin_attack_log")
+	onclose(src, "admin_attack_log")
 
 	feedback_add_details("admin_verb","PL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
