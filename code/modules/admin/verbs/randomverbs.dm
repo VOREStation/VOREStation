@@ -77,15 +77,8 @@ ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the acco
 		return
 	to_chat(user, "No matches for that age range found.")
 
-/client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
-	set category = "Admin"
-	set name = "Subtle Message"
-
-	if(!ismob(M))	return
-	if (!check_rights_for(src, R_HOLDER))
-		return
-
-	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"), encode = FALSE)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message", mob/targat_mob in get_mob_with_client_list())
+	var/msg = tgui_input_text(user, "Message:", text("Subtle PM to [targat_mob.key]"), encode = FALSE)
 
 	if (!msg)
 		return
@@ -93,15 +86,12 @@ ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the acco
 	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
-	if(usr)
-		if (usr.client)
-			if(check_rights_for(usr.client, R_HOLDER))
-				to_chat(M, span_bold("You hear a voice in your head...") + " " + span_italics("[msg]"))
+	to_chat(targat_mob, span_bold("You hear a voice in your head...") + " " + span_italics("[msg]"))
 
-	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	msg = span_admin_pm_notice(span_bold(" SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] :") + " [msg]")
+	log_admin("SubtlePM: [key_name(user)] -> [key_name(targat_mob)] : [msg]")
+	msg = span_admin_pm_notice(span_bold(" SubtleMessage: [key_name_admin(user)] -> [key_name_admin(targat_mob)] :") + " [msg]")
 	message_admins(msg)
-	admin_ticket_log(M, msg)
+	admin_ticket_log(targat_mob, msg)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
@@ -125,31 +115,25 @@ ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the acco
 	message_admins(span_blue(span_bold(" GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>")), 1)
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
-	set category = "Fun.Narrate"
-	set name = "Direct Narrate"
+ADMIN_VERB(cmd_admin_direct_narrate, R_HOLDER, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob)
+	if(!target_mob)
+		target_mob = tgui_input_list(user, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
 
-	if(!check_rights_for(src, R_HOLDER))
+	if(!target_mob)
 		return
 
-	if(!M)
-		M = tgui_input_list(usr, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
-
-	if(!M)
-		return
-
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to your target:"), encode = FALSE)
+	var/msg = tgui_input_text(user, "Message:", text("Enter the text you wish to appear to your target:"), encode = FALSE)
 	if(msg && !(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
-	if( !msg )
+	if(!msg)
 		return
 
-	to_chat(M, msg)
-	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
-	msg = span_admin_pm_notice(span_bold(" DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]):") + " [msg]<BR>")
+	to_chat(target_mob, msg)
+	log_admin("DirectNarrate: [key_name(user)] to ([target_mob.name]/[target_mob.key]): [msg]")
+	msg = span_admin_pm_notice(span_bold(" DirectNarrate: [key_name(user)] to ([target_mob.name]/[target_mob.key]):") + " [msg]<BR>")
 	message_admins(msg)
-	admin_ticket_log(M, msg)
+	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)

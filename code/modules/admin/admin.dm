@@ -1358,23 +1358,17 @@ ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edi
 	log_and_message_admins("attempting to force mode autospawn.")
 	SSticker.mode.try_latespawn()
 
-/datum/admins/proc/paralyze_mob(mob/living/H as mob)
-	set category = "Admin.Events"
-	set name = "Toggle Paralyze"
-	set desc = "Paralyzes a player. Or unparalyses them."
-
+ADMIN_VERB_AND_CONTEXT_MENU(paralyze_mob, R_ADMIN|R_MOD|R_EVENT, "Toggle Paralyze", "Paralyzes a player. Or unparalyses them.", ADMIN_CATEGORY_EVENTS, mob/living/living_target in GLOB.mob_list)
 	var/msg
-
-	if(check_rights(R_ADMIN|R_MOD|R_EVENT))
-		if (H.paralysis == 0)
-			H.SetParalysis(8000)
-			msg = "has paralyzed [key_name(H)]."
-			log_and_message_admins(msg)
-		else
-			if(tgui_alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
-				H.SetParalysis(0)
-				msg = "has unparalyzed [key_name(H)]."
-				log_and_message_admins(msg)
+	if (living_target.paralysis == 0)
+		living_target.SetParalysis(8000)
+		msg = "has paralyzed [key_name(living_target)]."
+		log_and_message_admins(msg)
+		return
+	if(tgui_alert(user, "[key_name(living_target)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
+		living_target.SetParalysis(0)
+		msg = "has unparalyzed [key_name(living_target)]."
+		log_and_message_admins(msg)
 
 ADMIN_VERB(set_tcrystals, R_ADMIN|R_EVENT, "Set Telecrystals", "Allows admins to change telecrystals of a user.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
 	var/crystals = tgui_input_number(user, "Amount of telecrystals for [human_mob.ckey], currently [human_mob.mind.tcrystals].")

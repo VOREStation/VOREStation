@@ -1511,13 +1511,13 @@
 		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
 
 		var/mob/M = locate(href_list["narrateto"])
-		usr.client.cmd_admin_direct_narrate(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_direct_narrate, M)
 
 	else if(href_list["subtlemessage"])
 		if(!check_rights(R_MOD|R_ADMIN|R_EVENT|R_FUN,0))  return
 
 		var/mob/M = locate(href_list["subtlemessage"])
-		usr.client.cmd_admin_subtle_message(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_subtle_message, M)
 
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD|R_EVENT))	return
