@@ -18,16 +18,12 @@ import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type { Design, Material, MaterialMap } from './Fabrication/Types';
 
-type AutolatheDesign = Design & {
-  customMaterials: BooleanLike;
-};
-
 type AutolatheData = {
   materials: Material[];
   materialtotal: number;
   materialsmax: number;
   SHEET_MATERIAL_AMOUNT: number;
-  designs: AutolatheDesign[];
+  designs: Design[];
   active: BooleanLike;
 };
 
@@ -170,7 +166,7 @@ const PrintButton = (props: PrintButtonProps) => {
 };
 
 type AutolatheRecipeProps = {
-  design: AutolatheDesign;
+  design: Design;
   availableMaterials: MaterialMap;
   SHEET_MATERIAL_AMOUNT: number;
 };
@@ -180,36 +176,15 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
   const { design, availableMaterials, SHEET_MATERIAL_AMOUNT } = props;
 
   let maxmult = 0;
-  if (design.customMaterials) {
-    const largest_mat =
-      Object.entries(availableMaterials).reduce(
-        (accumulator: number, [material, amount]) => {
-          return Math.max(accumulator, amount);
-        },
-        0,
-      ) || 0;
-
-    if (largest_mat > 0) {
-      maxmult = Object.entries(design.cost).reduce(
-        (accumulator: number, [material, required]) => {
-          return Math.min(accumulator, largest_mat / required);
-        },
-        Infinity,
+  maxmult = Object.entries(design.cost).reduce(
+    (accumulator: number, [material, required]) => {
+      return Math.min(
+        accumulator,
+        (availableMaterials[material] || 0) / required,
       );
-    } else {
-      maxmult = 0;
-    }
-  } else {
-    maxmult = Object.entries(design.cost).reduce(
-      (accumulator: number, [material, required]) => {
-        return Math.min(
-          accumulator,
-          (availableMaterials[material] || 0) / required,
-        );
-      },
-      Infinity,
-    );
-  }
+    },
+    Infinity,
+  );
   maxmult = Math.min(Math.floor(maxmult), 50);
   const canPrint = maxmult > 0;
 

@@ -88,22 +88,9 @@
 		//compute cost & maximum number of printable items
 		var/coeff = (ispath(design.build_path, /obj/item/stack) ? 1 : component_coeff)
 		var/list/cost = list()
-		var/customMaterials = FALSE
-		for(var/datum/material/mat as anything in design.materials)
-			var/mat_cost = design.materials[mat]
-			var/design_cost = OPTIMAL_COST(mat_cost * coeff)
-			if(istype(mat))
-				cost[mat.name] = design_cost
-				customMaterials = FALSE
-				continue
-
-			var/datum/material/requirement = SSmaterials.requirements[mat]
-			if (!requirement)
-				stack_trace("Design [design] has an invalid material requirement [requirement]")
-				continue
-
-			cost[requirement.get_description()] = design_cost
-			customMaterials = TRUE
+		for(var/id in design.materials)
+			var/datum/material/mat = get_material_by_name(id)
+			cost[mat.name] = OPTIMAL_COST(design.materials[mat] * coeff)
 
 		//create & send ui data
 		var/icon_size = spritesheet.icon_size_id(design.id)
@@ -113,8 +100,7 @@
 			"cost" = cost,
 			"id" = design.id,
 			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]",
-			"customMaterials" = customMaterials
+			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]"
 		)
 
 		output += list(design_data)
