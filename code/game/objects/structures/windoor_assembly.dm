@@ -271,7 +271,7 @@
 			name = "near finished "
 	name += "[secure ? "secure " : ""]windoor assembly[created_name ? " ([created_name])" : ""]"
 
-/obj/structure/windoor_assembly/handle_rotation_verbs(angle)
+/obj/structure/windoor_assembly/handle_rotation_verbs(angle, mob/user)
 	if(state != "01")
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
 	. = ..()
