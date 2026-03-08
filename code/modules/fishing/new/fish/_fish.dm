@@ -705,7 +705,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		var/list/new_mats_list = matter.Copy()
 		var/multiplier = 1 / mats_len
 		var/unmodified_weight = weight
-		for(var/mat_type in matter)
+//		for(var/mat_type in matter)
 //			var/datum/material/material = GET_MATERIAL_REF(mat_type)
 //			unmodified_weight /= GET_MATERIAL_MODIFIER(material.weight, multiplier)
 		multiplier = unmodified_weight / weight
