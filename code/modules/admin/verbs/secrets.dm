@@ -77,7 +77,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 				browser.set_content(dat)
 				browser.open()
 		if("show_traitors_and_objectives") // Not implemented in the UI
-			holder.holder.check_antagonists()
+			holder.holder.check_antagonists(ui.user.client)
 		if("show_game_mode")
 			if (SSticker.mode) tgui_alert_async(holder, "The game mode is [SSticker.mode.name]")
 			else tgui_alert_async(holder, "For some reason there's a ticker, but not a game mode")

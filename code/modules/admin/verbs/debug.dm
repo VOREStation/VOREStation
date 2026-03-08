@@ -169,42 +169,34 @@
 			M:Alienize()
 			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
-		message_admins(span_notice("[key_name_admin(usr)] made [key_name(M)] into an alien."), 1)
+		message_admins(span_notice("[key_name_admin(usr)] made [key_name(M)] into an alien."))
 	else
 		tgui_alert_async(usr, "Invalid mob")
 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
-/client/proc/cmd_debug_del_all()
-	set category = "Debug.Dangerous"
-	set name = "Del-All"
-
+ADMIN_VERB(cmd_debug_del_all, R_SERVER, "Del-All", "DANGER: Deletes all instances of a type.", ADMIN_CATEGORY_DEBUG_DANGEROUS)
 	// to prevent REALLY stupid deletions
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer/dead, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
-	var/hsbitem = tgui_input_list(usr, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
+	var/hsbitem = tgui_input_list(user, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
 	if(hsbitem)
 		for(var/atom/O in world)
 			if(istype(O, hsbitem))
 				qdel(O)
-		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
-		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+		log_admin("[key_name(user)] has deleted all instances of [hsbitem].")
+		message_admins("[key_name_admin(user)] has deleted all instances of [hsbitem].", 0)
 	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_debug_make_powernets()
-	set category = "Debug.Dangerous"
-	set name = "Make Powernets"
+ADMIN_VERB(cmd_debug_make_powernets, R_DEBUG, "Make Powernets", "Rebuild all powernets.", ADMIN_CATEGORY_DEBUG_DANGEROUS)
 	SSmachines.makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. SSmachines.makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. SSmachines.makepowernets() called.", 0)
+	log_admin("[key_name(user)] has remade the powernet. SSmachines.makepowernets() called.")
+	message_admins("[key_name_admin(user)] has remade the powernets. SSmachines.makepowernets() called.")
 	feedback_add_details("admin_verb","MPWN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_debug_tog_aliens()
-	set category = "Server.Game"
-	set name = "Toggle Aliens"
-
+ADMIN_VERB(cmd_debug_tog_aliens, R_DEBUG, "Toggle Aliens", "Toggle if aliens are allowed.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
-	log_admin("[key_name(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 0)
+	log_admin("[key_name(user)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
+	message_admins("[key_name_admin(user)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_display_del_log()
@@ -246,15 +238,9 @@
 		return
 	src << browse("<html>[replacetext(SSatoms.InitLog(), "\n", "<br>")]</html>", "window=initlog")
 
-/*
-/client/proc/cmd_display_overlay_log()
-	set category = "Debug.Investigate"
-	set name = "Display overlay Log"
-	set desc = "Display SSoverlays log of everything that's passed through it."
+ADMIN_VERB(cmd_display_overlay_log, R_DEBUG, "Display overlay Log", "Display SSoverlays log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	render_stats(SSoverlays.stats, user)
 
-	if(!check_rights(R_DEBUG))	return
-	render_stats(SSoverlays.stats, src)
-*/
 // Render stats list for round-end statistics.
 /proc/render_stats(list/stats, user, sort = /proc/cmp_generic_stat_item_time)
 	sortTim(stats, sort, TRUE)
@@ -298,7 +284,7 @@
 		tgui_alert_async(usr, "Invalid mob")
 	feedback_add_details("admin_verb","GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
+	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."))
 
 ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", "Admin.Game", mob/M)
 	if(M.ckey)
@@ -311,7 +297,7 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 	var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
 	ghost.ckey = M.ckey
 
-	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."), 1)
+	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."))
 	log_admin("[key_name(user)] assumed direct control of [M].")
 	var/mob/adminmob = user.mob
 	M.ckey = user.ckey
@@ -732,7 +718,7 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 
 	SSrobot_sprites.reload_test_sprites()
 
-ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
+ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", ADMIN_CATEGORY_FUN_ADD_NIF)
 	var/input_NIF
 	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 

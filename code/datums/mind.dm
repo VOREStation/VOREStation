@@ -127,9 +127,9 @@
 	popup.set_content(output)
 	popup.open()
 
-/datum/mind/proc/edit_memory()
+/datum/mind/proc/edit_memory(mob/user)
 	if(!SSticker || !SSticker.mode)
-		tgui_alert_async(usr, "Not before round-start!", "Alert")
+		tgui_alert_async(user, "Not before round-start!", "Alert")
 		return
 
 	var/out = span_bold("[name]") + "[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
@@ -161,12 +161,13 @@
 	out += "<br><a href='byond://?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
 	out += span_bold("Ambitions:") + " [ambitions ? ambitions : "None"] <a href='byond://?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
 
-	var/datum/browser/popup = new(usr, "edit_memory[src]", "Edit Memory")
+	var/datum/browser/popup = new(user, "edit_memory[src]", "Edit Memory")
 	popup.set_content(out)
 	popup.open()
 
 /datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))
+		return
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
@@ -428,7 +429,7 @@
 		for(var/datum/objective/objective in objectives)
 			to_chat(current, span_bold("Objective #[obj_count]") + ": [objective.explanation_text]")
 			obj_count++
-	edit_memory()
+	edit_memory(usr)
 
 /datum/mind/proc/find_syndicate_uplink()
 	var/list/L = current.get_contents()

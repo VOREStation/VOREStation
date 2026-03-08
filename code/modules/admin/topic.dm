@@ -28,7 +28,7 @@
 		return
 
 	if(SSticker.mode && SSticker.mode.check_antagonists_topic(href, href_list))
-		check_antagonists()
+		check_antagonists(usr.client)
 		return
 
 	if(href_list["ticket"])
@@ -1204,7 +1204,7 @@
 		G.ManualFollow(M)
 
 	else if(href_list["check_antagonist"])
-		check_antagonists()
+		check_antagonists(usr.client)
 
 	else if(href_list["take_question"])
 
@@ -1511,13 +1511,13 @@
 		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
 
 		var/mob/M = locate(href_list["narrateto"])
-		usr.client.cmd_admin_direct_narrate(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_direct_narrate, M)
 
 	else if(href_list["subtlemessage"])
 		if(!check_rights(R_MOD|R_ADMIN|R_EVENT|R_FUN,0))  return
 
 		var/mob/M = locate(href_list["subtlemessage"])
-		usr.client.cmd_admin_subtle_message(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_subtle_message, M)
 
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD|R_EVENT))	return
@@ -1530,7 +1530,7 @@
 		if(!ismob(M))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob."))
 			return
-		show_traitor_panel(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_traitor_panel, M)
 
 	else if(href_list["create_object"])
 		if(!check_rights(R_SPAWN))	return
@@ -1908,28 +1908,6 @@
 			return
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/despawn_player, carbon_target)
-
-	// player info stuff
-
-	if(href_list["notes"])
-		var/ckey = href_list["ckey"]
-		if(!ckey)
-			var/mob/M = locate(href_list["mob"])
-			if(ismob(M))
-				ckey = M.ckey
-
-		switch(href_list["notes"])
-			if("show")
-				var/datum/tgui_module/player_notes_info/A = new(src)
-				A.key = ckey
-				A.tgui_interact(usr)
-			if("list")
-				var/filter
-				if(href_list["filter"] && href_list["filter"] != "0")
-					filter = url_decode(href_list["filter"])
-				PlayerNotesPage(text2num(href_list["index"]), filter)
-			if("filter")
-				PlayerNotesFilter()
 		return
 
 /mob/living/proc/can_centcom_reply()

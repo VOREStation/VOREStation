@@ -46,13 +46,8 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Allows staff to determine who the newer players are.
-/client/proc/cmd_check_new_players()
-	set category = "Admin.Investigate"
-	set name = "Check new Players"
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/age = tgui_alert(src, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
+ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the account age.", ADMIN_CATEGORY_INVESTIGATE)
+	var/age = tgui_alert(user, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
 	if(!age)
 		return
 	if(age == "All")
@@ -65,32 +60,25 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 
 	var/highlight_special_characters = 1
 
-	for(var/client/C in GLOB.clients)
-		if(C.player_age == "Requires database")
+	for(var/client/current_client in GLOB.clients)
+		if(current_client.player_age == "Requires database")
 			missing_ages = 1
 			continue
-		if(C.player_age < age)
-			msg += "[key_name(C, 1, 1, highlight_special_characters)]: account is [C.player_age] days old<br>"
+		if(current_client.player_age < age)
+			msg += "[key_name(current_client, 1, 1, highlight_special_characters)]: account is [current_client.player_age] days old<br>"
 
 	if(missing_ages)
-		to_chat(src, "Some accounts did not have proper ages set in their clients.  This function requires database to be present.")
+		to_chat(user, "Some accounts did not have proper ages set in their clients. This function requires database to be present.")
 
 	if(msg != "")
-		var/datum/browser/popup = new(src, "Player_age_check", "Player Age Check")
+		var/datum/browser/popup = new(user, "Player_age_check", "Player Age Check")
 		popup.set_content(msg)
 		popup.open()
-	else
-		to_chat(src, "No matches for that age range found.")
-
-/client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
-	set category = "Admin"
-	set name = "Subtle Message"
-
-	if(!ismob(M))	return
-	if (!check_rights_for(src, R_HOLDER))
 		return
+	to_chat(user, "No matches for that age range found.")
 
-	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"), encode = FALSE)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message", mob/targat_mob in get_mob_with_client_list())
+	var/msg = tgui_input_text(user, "Message:", text("Subtle PM to [targat_mob.key]"), encode = FALSE)
 
 	if (!msg)
 		return
@@ -98,15 +86,12 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
-	if(usr)
-		if (usr.client)
-			if(check_rights_for(usr.client, R_HOLDER))
-				to_chat(M, span_bold("You hear a voice in your head...") + " " + span_italics("[msg]"))
+	to_chat(targat_mob, span_bold("You hear a voice in your head...") + " " + span_italics("[msg]"))
 
-	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	msg = span_admin_pm_notice(span_bold(" SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] :") + " [msg]")
+	log_admin("SubtlePM: [key_name(user)] -> [key_name(targat_mob)] : [msg]")
+	msg = span_admin_pm_notice(span_bold(" SubtleMessage: [key_name_admin(user)] -> [key_name_admin(targat_mob)] :") + " [msg]")
 	message_admins(msg)
-	admin_ticket_log(M, msg)
+	admin_ticket_log(targat_mob, msg)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
@@ -130,31 +115,25 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	message_admins(span_blue(span_bold(" GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>")), 1)
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
-	set category = "Fun.Narrate"
-	set name = "Direct Narrate"
+ADMIN_VERB(cmd_admin_direct_narrate, R_HOLDER, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob)
+	if(!target_mob)
+		target_mob = tgui_input_list(user, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
 
-	if(!check_rights_for(src, R_HOLDER))
+	if(!target_mob)
 		return
 
-	if(!M)
-		M = tgui_input_list(usr, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
-
-	if(!M)
-		return
-
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to your target:"), encode = FALSE)
+	var/msg = tgui_input_text(user, "Message:", text("Enter the text you wish to appear to your target:"), encode = FALSE)
 	if(msg && !(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
-	if( !msg )
+	if(!msg)
 		return
 
-	to_chat(M, msg)
-	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
-	msg = span_admin_pm_notice(span_bold(" DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]):") + " [msg]<BR>")
+	to_chat(target_mob, msg)
+	log_admin("DirectNarrate: [key_name(user)] to ([target_mob.name]/[target_mob.key]): [msg]")
+	msg = span_admin_pm_notice(span_bold(" DirectNarrate: [key_name(user)] to ([target_mob.name]/[target_mob.key]):") + " [msg]<BR>")
 	message_admins(msg)
-	admin_ticket_log(M, msg)
+	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
@@ -626,7 +605,7 @@ ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_FUN, "Add Custom AI law", "Adds a cu
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN|R_FUN|R_MOD, "Rejuvenate", "Fully restores the target mob.", ADMIN_CATEGORY_GAME, mob/living/target_mob as mob in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN|R_FUN|R_MOD, "Rejuvenate", "Fully restores the target mob.", ADMIN_CATEGORY_GAME, mob/living/target_mob in GLOB.mob_list)
 	if(!target_mob)
 		return
 	if(!istype(target_mob))
@@ -676,7 +655,7 @@ ADMIN_VERB(cmd_admin_list_open_jobs, R_HOLDER, "List free slots", "Show availabl
 			to_chat(user, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(cmd_admin_check_contents, R_HOLDER, "Check Contents", "Check the contents of the mob.", ADMIN_CATEGORY_INVESTIGATE, mob/living/living_target as mob in GLOB.mob_list)
+ADMIN_VERB(cmd_admin_check_contents, R_HOLDER, "Check Contents", "Check the contents of the mob.", ADMIN_CATEGORY_INVESTIGATE, mob/living/living_target in GLOB.mob_list)
 	var/list/content_list = living_target.get_contents()
 	for(var/target in content_list)
 		to_chat(user, "[target]")

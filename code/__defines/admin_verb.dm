@@ -77,6 +77,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 
 // Admin verb categories
 #define ADMIN_CATEGORY_MAIN "Admin"
+#define ADMIN_CATEGORY_CHAT "Admin.Chat"
 #define ADMIN_CATEGORY_EVENTS "Admin.Events"
 #define ADMIN_CATEGORY_FUN "Admin.Fun"
 #define ADMIN_CATEGORY_GAME "Admin.Game"
@@ -85,24 +86,28 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_MISC "Admin.Misc"
 #define ADMIN_CATEGORY_SECRETS "Admin.Secrets"
 #define ADMIN_CATEGORY_INVESTIGATE "Admin.Investigate"
+#define ADMIN_CATEGORY_IPINTEL "Admin.IPIntel"
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Debug"
 #define ADMIN_CATEGORY_DEBUG_INVESTIGATE "Debug.Investigate"
 #define ADMIN_CATEGORY_DEBUG_DANGEROUS "Debug.Dangerous"
+#define ADMIN_CATEGORY_DEBUG_EVENTS "Debug.Evemts"
 #define ADMIN_CATEGORY_DEBUG_GAME "Debug.Game"
 #define ADMIN_CATEGORY_DEBUG_SERVER "Debug.Server"
+#define ADMIN_CATEGORY_DEBUG_MISC "Debug.Misc"
 #define ADMIN_CATEGORY_OBJECT "Object"
 #define ADMIN_CATEGORY_MAPPING "Mapping"
 #define ADMIN_CATEGORY_PROFILE "Profile"
-#define ADMIN_CATEGORY_IPINTEL "Admin.IPIntel"
 
 // Server Categories
 #define ADMIN_CATEGORY_SERVER "Server"
 #define ADMIN_CATEGORY_SERVER_GAME "Server.Game"
 #define ADMIN_CATEGORY_SERVER_ADMIN "Server.Admin"
+#define ADMIN_CATEGORY_SERVER_CONFIG "Server.Config"
 
 // Fun categories
+#define ADMIN_CATEGORY_FUN_ADD_NIF "Fun.Add Nif"
 #define ADMIN_CATEGORY_FUN_EVENT_KIT "Fun.Event Kit"
 #define ADMIN_CATEGORY_FUN_DROP_POD "Fun.Drop Pod"
 #define ADMIN_CATEGORY_FUN_DO_NOT "Fun.Do Not"

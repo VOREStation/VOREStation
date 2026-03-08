@@ -1,10 +1,7 @@
 var/checked_for_inactives = 0
 var/inactive_keys = "None<br>"
 
-/client/proc/check_customitem_activity()
-	set category = "Admin.Investigate"
-	set name = "Check activity of players with custom items"
-
+ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of players with custom items", "Allows you to investigate custom item activity.", ADMIN_CATEGORY_INVESTIGATE)
 	var/dat = span_bold("Inactive players with custom items") + "<br>"
 	dat += "<br>"
 	dat += "The list below contains players with custom items that have not logged\
@@ -19,9 +16,9 @@ var/inactive_keys = "None<br>"
 		dat += "<hr>"
 		dat += "This system was implemented on March 1 2013, and the database a few days before that. Root server access is required to add or disable access to specific custom items.<br>"
 	else
-		dat += "<a href='byond://?src=\ref[src];_src_=holder;[HrefToken()];populate_inactive_customitems=1'>Populate list (requires an active database connection)</a><br>"
+		dat += "<a href='byond://?src=\ref[user];_src_=holder;[HrefToken()];populate_inactive_customitems=1'>Populate list (requires an active database connection)</a><br>"
 
-	var/datum/browser/popup = new(src, "inactive_customitems", "Inactive Custom Items", 600, 480)
+	var/datum/browser/popup = new(user, "inactive_customitems", "Inactive Custom Items", 600, 480)
 	popup.set_content(dat)
 	popup.open()
 
@@ -86,4 +83,4 @@ var/inactive_keys = "None<br>"
 
 	checked_for_inactives = 1
 	if(C)
-		C.check_customitem_activity()
+		SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/check_customitem_activity) //Recursively calling ourselves until cancelled or a unique name is given.

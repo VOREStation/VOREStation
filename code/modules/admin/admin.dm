@@ -246,26 +246,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 /datum/player_info/var/content // text content of the information
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
-/datum/admins/proc/PlayerNotes()
-	set category = "Admin.Logs"
-	set name = "Player Notes"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	PlayerNotesPage(1)
+ADMIN_VERB(PlayerNotes, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Player Notes", "Access the player notes.", ADMIN_CATEGORY_INVESTIGATE)
+	user.holder.PlayerNotesPage(user, 1)
 
-/datum/admins/proc/PlayerNotesFilter()
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
-	PlayerNotesPage(1, filter)
-
-/datum/admins/proc/PlayerNotesPage(page, filter)
+/datum/admins/proc/PlayerNotesPage(client/user, page)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -275,7 +259,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 	var/datum/tgui_module/player_notes/A = new(src)
 	A.ckeys = note_keys
-	A.tgui_interact(usr)
+	A.tgui_interact(user)
 
 
 /datum/admins/proc/player_has_info(var/key as text)
@@ -285,20 +269,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	if(!infos || !infos.len) return 0
 	else return 1
 
-
-/datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin.Investigate"
-	set name = "Show Player Info"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", "Access the player info.", ADMIN_CATEGORY_INVESTIGATE)
 	var/datum/tgui_module/player_notes_info/A = new(src)
-	A.key = key
-	A.tgui_interact(usr)
-
+	A.tgui_interact(user)
 
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun.Event Kit"
@@ -628,7 +601,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 #define HARD_RESTART "Hard Restart (No Delay/Feedback Reason)"
 #define HARDEST_RESTART "Hardest Restart (No actions, just reboot)"
 #define TGS_RESTART "Server Restart (Kill and restart DD)"
-ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", "Server.Game")
+ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", ADMIN_CATEGORY_SERVER_GAME)
 	var/list/options = list(REGULAR_RESTART, REGULAR_RESTART_DELAYED, HARD_RESTART)
 
 	// this option runs a codepath that can leak db connections because it skips subsystem (specifically SSdbcore) shutdown
@@ -681,7 +654,7 @@ ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.",
 #undef HARDEST_RESTART
 #undef TGS_RESTART
 
-ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", "Server.Game")
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", ADMIN_CATEGORY_SERVER_GAME)
 	if(!SSticker.cancel_reboot(user))
 		return
 	log_admin("[key_name(user)] cancelled the pending world reboot.")
@@ -900,77 +873,60 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/startnow()
-	set category = "Server.Game"
-	set desc="Start the round ASAP"
-	set name="Start Now"
-
-	if(!check_rights(R_SERVER|R_EVENT))
-		return
+ADMIN_VERB(startnow, R_SERVER|R_EVENT, "Start Now", "Start the round ASAP.", ADMIN_CATEGORY_SERVER_GAME)
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, span_warning("Error: Start Now: Game has already started."))
+		to_chat(user, span_warning("Error: Start Now: Game has already started."))
 		return
 	if(!SSticker.start_immediately)
 		SSticker.start_immediately = TRUE
 		var/msg = ""
 		if(SSticker.current_state == GAME_STATE_STARTUP)
 			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
-		log_admin("[key_name(usr)] has started the game.[msg]")
-		message_admins(span_notice("[key_name_admin(usr)] has started the game.[msg]"))
-		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		SSticker.start_immediately = FALSE
-		to_chat(world, span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
-		log_and_message_admins("cancelled immediate game start.")
 
-/datum/admins/proc/toggleenter()
-	set category = "Server.Game"
-	set desc="People can't enter"
-	set name="Toggle Entering"
+		log_admin("[key_name(user)] has started the game.[msg]")
+		message_admins(span_notice("[key_name_admin(user)] has started the game.[msg]"))
+		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		return
+	SSticker.start_immediately = FALSE
+	to_chat(world, span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
+	log_and_message_admins("cancelled immediate game start.")
+
+ADMIN_VERB(toggleenter, R_SERVER|R_ADMIN, "Toggle Entering", "Toggle if people can join the round.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/enter_allowed, !CONFIG_GET(flag/enter_allowed))
 	if (!CONFIG_GET(flag/enter_allowed))
 		to_chat(world, span_world("New players may no longer enter the game."))
 	else
 		to_chat(world, span_world("New players may now enter the game."))
-	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."))
+	log_admin("[key_name(user)] toggled new player game entering.")
+	message_admins(span_blue("[key_name_admin(user)] toggled new player game entering."))
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleAI()
-	set category = "Server.Game"
-	set desc="People can't be AI"
-	set name="Toggle AI"
+ADMIN_VERB(toggleAI, R_SERVER|R_EVENT, "Toggle AI", "Toggle if people can play as AI.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_ai, !CONFIG_GET(flag/allow_ai))
 	if (!CONFIG_GET(flag/allow_ai))
 		to_chat(world, span_world("The AI job is no longer chooseable."))
 	else
 		to_chat(world, span_world("The AI job is chooseable now."))
-	log_admin("[key_name(usr)] toggled AI allowed.")
+	log_admin("[key_name(user)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleaban()
-	set category = "Server.Game"
-	set desc="Respawn basically"
-	set name="Toggle Respawn"
+ADMIN_VERB(toggleaban, R_SERVER|R_EVENT, "Toggle Respawn", "Respawn basically.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/abandon_allowed, !CONFIG_GET(flag/abandon_allowed))
 	if(CONFIG_GET(flag/abandon_allowed))
 		to_chat(world, span_world("You may now respawn."))
 	else
 		to_chat(world, span_world("You may no longer respawn :("))
-	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."))
-	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
+	message_admins(span_blue("[key_name_admin(user)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."))
+	log_admin("[key_name(user)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglepersistence()
-	set category = "Server.Config"
-	set desc="Whether persistent data will be saved from now on."
-	set name="Toggle Persistent Data"
+ADMIN_VERB(togglepersistence, R_SERVER, "Toggle Persistent Data", "Whether persistent data will be saved from now on.", ADMIN_CATEGORY_SERVER_CONFIG)
 	CONFIG_SET(flag/persistence_disabled, !CONFIG_GET(flag/persistence_disabled))
-	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."))
-	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
+	message_admins(span_blue("[key_name_admin(user)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."))
+	log_admin("[key_name(user)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -1000,48 +956,34 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 	message_admins("[key_name_admin(user)] toggled Space Ninjas [CONFIG_GET(flag/ninjas_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/delay()
-	set category = "Server.Game"
-	set desc="Delay the game start/end"
-	set name="Delay"
-
-	if(!check_rights(R_SERVER|R_EVENT|R_ADMIN|R_MOD))	return
+ADMIN_VERB(delay, R_SERVER|R_EVENT|R_ADMIN|R_MOD, "Delay", "Delay the game start/end.", ADMIN_CATEGORY_SERVER_GAME)
 	if (SSticker.current_state >= GAME_STATE_PLAYING)
 		// Tell the ticker to delay/resume
 		SSticker.toggle_delay()
 
-		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."))
+		log_admin("[key_name(user)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins(span_blue("[key_name(user)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."))
 		return
 	GLOB.round_progressing = !GLOB.round_progressing
 	if (!GLOB.round_progressing)
 		to_chat(world, span_world("The game start has been delayed."))
-		log_admin("[key_name(usr)] delayed the game.")
+		log_admin("[key_name(user)] delayed the game.")
 	else
 		to_chat(world, span_world("The game will start soon."))
-		log_admin("[key_name(usr)] removed the delay.")
+		log_admin("[key_name(user)] removed the delay.")
 	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adjump()
-	set category = "Server.Game"
-	set desc="Toggle admin jumping"
-	set name="Toggle Jump"
+ADMIN_VERB(adjump, R_SERVER, "Toggle Jump", "Toggle admin jumping.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_admin_jump, !CONFIG_GET(flag/allow_admin_jump))
 	message_admins(span_blue("Toggled admin jumping to [CONFIG_GET(flag/allow_admin_jump)]."))
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adspawn()
-	set category = "Server.Game"
-	set desc="Toggle admin spawning"
-	set name="Toggle Spawn"
+ADMIN_VERB(adspawn, R_SERVER, "Toggle Spawn", "Toggle admin spawning.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_admin_spawning, !CONFIG_GET(flag/allow_admin_spawning))
 	message_admins(span_blue("Toggled admin item spawning to [CONFIG_GET(flag/allow_admin_spawning)]."))
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adrev()
-	set category = "Server.Game"
-	set desc="Toggle admin revives"
-	set name="Toggle Revive"
+ADMIN_VERB(adrev, R_SERVER, "Toggle Revive", "Toggle admin revives.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_admin_rev, !CONFIG_GET(flag/allow_admin_rev))
 	message_admins(span_blue("Toggled reviving to [CONFIG_GET(flag/allow_admin_rev)]."))
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1087,79 +1029,53 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 
 	return 0
 
-/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
-	set category = "Debug.Game"
-	set desc = "Spawn the product of a seed."
-	set name = "Spawn Fruit"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(spawn_fruit, R_SPAWN, "Spawn Fruit", "Spawn the product of a seed.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/seedtype = tgui_input_list(user, "Select Seed.", "Seed Type", SSplants.seeds)
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/amount = tgui_input_number(usr, "Amount of fruit to spawn", "Fruit Amount", 1)
+	var/amount = tgui_input_number(user, "Amount of fruit to spawn", "Fruit Amount", 1)
+	var/mob/user_mob = user.mob
 	if(!isnull(amount))
 		var/datum/seed/S = SSplants.seeds[seedtype]
-		S.harvest(usr,0,0,amount)
-	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
+		S.harvest(user_mob,0,0,amount)
+	log_admin("[key_name(user)] spawned [seedtype] fruit at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
-/datum/admins/proc/spawn_custom_item()
-	set category = "Debug.Game"
-	set desc = "Spawn a custom item."
-	set name = "Spawn Custom Item"
-
-	if(!check_rights(R_SPAWN))	return
-
-	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", custom_items)
+ADMIN_VERB(spawn_custom_item, R_SPAWN, "Spawn Custom Item", "Spawn a custom item.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/owner = tgui_input_list(user, "Select a ckey.", "Spawn Custom Item", custom_items)
 	if(!owner|| !custom_items[owner])
 		return
 
 	var/list/possible_items = custom_items[owner]
-	var/datum/custom_item/item_to_spawn = tgui_input_list(usr, "Select an item to spawn.", "Spawn Custom Item", possible_items)
+	var/datum/custom_item/item_to_spawn = tgui_input_list(user, "Select an item to spawn.", "Spawn Custom Item", possible_items)
 	if(!item_to_spawn)
 		return
 
-	item_to_spawn.spawn_item(get_turf(usr))
+	item_to_spawn.spawn_item(get_turf(user.mob))
 
-/datum/admins/proc/check_custom_items()
-	set category = "Debug.Investigate"
-	set desc = "Check the custom item list."
-	set name = "Check Custom Items"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(check_custom_items, R_SPAWN, "Check Custom Items", "Check the custom item list.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	if(!custom_items)
-		to_chat(usr, "Custom item list is null.")
+		to_chat(user, "Custom item list is null.")
 		return
 
 	if(!custom_items.len)
-		to_chat(usr, "Custom item list not populated.")
+		to_chat(user, "Custom item list not populated.")
 		return
 
 	for(var/assoc_key in custom_items)
-		to_chat(usr, "[assoc_key] has:")
+		to_chat(user, "[assoc_key] has:")
 		var/list/current_items = custom_items[assoc_key]
 		for(var/datum/custom_item/item in current_items)
-			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
+			to_chat(user, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
-/datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
-	set category = "Debug.Game"
-	set desc = "Spawn a spreading plant effect."
-	set name = "Spawn Plant"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(spawn_plant, R_SPAWN, "Spawn Plant", "Spawn a spreading plant effect.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/seedtype = tgui_input_list(user, "Select Seed.", "Seed Type", SSplants.seeds)
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	new /obj/effect/plant(get_turf(usr), SSplants.seeds[seedtype])
-	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
+	var/mob/user_mob = user.mob
+	new /obj/effect/plant(get_turf(user_mob), SSplants.seeds[seedtype])
+	log_admin("[key_name(user)] spawned [seedtype] vines at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
-/datum/admins/proc/spawn_atom(var/object as text)
-	set name = "Spawn"
-	set category = "Debug.Game"
-	set desc = "(atom path) Spawn an atom"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATEGORY_DEBUG_GAME, object as text)
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
 
@@ -1174,33 +1090,29 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches)
+		chosen = tgui_input_list(user, "Select an atom type", "Spawn Atom", matches)
 		if(!chosen)
 			return
 
+	var/mob/user_mob = user.mob
 	if(ispath(chosen,/turf))
-		var/turf/T = get_turf(usr.loc)
+		var/turf/T = get_turf(user_mob.loc)
 		T.ChangeTurf(chosen)
 	else
-		new chosen(usr.loc)
+		new chosen(user_mob.loc)
 
-	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
+	log_and_message_admins("spawned [chosen] at ([user_mob.x],[user_mob.y],[user_mob.z])")
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
-	set category = "Admin.Events"
-	set desc = "Edit mobs's memory and role"
-	set name = "Show Traitor Panel"
-
+ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
 	if(!istype(M))
-		to_chat(usr, "This can only be used on instances of type /mob")
+		to_chat(user, "This can only be used on instances of type /mob")
 		return
 	if(!M.mind)
-		to_chat(usr, "This mob has no mind!")
+		to_chat(user, "This mob has no mind!")
 		return
 
-	M.mind.edit_memory()
+	M.mind.edit_memory(user.mob)
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/show_game_mode()
@@ -1446,77 +1358,43 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 	log_and_message_admins("attempting to force mode autospawn.")
 	SSticker.mode.try_latespawn()
 
-/datum/admins/proc/paralyze_mob(mob/living/H as mob)
-	set category = "Admin.Events"
-	set name = "Toggle Paralyze"
-	set desc = "Paralyzes a player. Or unparalyses them."
-
+ADMIN_VERB_AND_CONTEXT_MENU(paralyze_mob, R_ADMIN|R_MOD|R_EVENT, "Toggle Paralyze", "Paralyzes a player. Or unparalyses them.", ADMIN_CATEGORY_EVENTS, mob/living/living_target in GLOB.mob_list)
 	var/msg
+	if (living_target.paralysis == 0)
+		living_target.SetParalysis(8000)
+		msg = "has paralyzed [key_name(living_target)]."
+		log_and_message_admins(msg)
+		return
+	if(tgui_alert(user, "[key_name(living_target)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
+		living_target.SetParalysis(0)
+		msg = "has unparalyzed [key_name(living_target)]."
+		log_and_message_admins(msg)
 
-	if(check_rights(R_ADMIN|R_MOD|R_EVENT))
-		if (H.paralysis == 0)
-			H.SetParalysis(8000)
-			msg = "has paralyzed [key_name(H)]."
-			log_and_message_admins(msg)
-		else
-			if(tgui_alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
-				H.SetParalysis(0)
-				msg = "has unparalyzed [key_name(H)]."
-				log_and_message_admins(msg)
+ADMIN_VERB(set_tcrystals, R_ADMIN|R_EVENT, "Set Telecrystals", "Allows admins to change telecrystals of a user.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
+	var/crystals = tgui_input_number(user, "Amount of telecrystals for [human_mob.ckey], currently [human_mob.mind.tcrystals].")
+	if (!isnull(crystals))
+		human_mob.mind.tcrystals = crystals
+		var/msg = "[key_name(user)] has modified [human_mob.ckey]'s telecrystals to [crystals]."
+		message_admins(msg)
 
-/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug.Game"
-	set name = "Set Telecrystals"
-	set desc = "Allows admins to change telecrystals of a user."
-	set popup_menu = FALSE
-	var/crystals
-
-	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = tgui_input_number(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals)
-		if (!isnull(crystals))
-			H.mind.tcrystals = crystals
-			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
-			message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
-
-/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug.Game"
-	set name = "Add Telecrystals"
-	set desc = "Allows admins to change telecrystals of a user by addition."
-	set popup_menu = FALSE
-	var/crystals
-
-	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = tgui_input_number(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals)
-		if (!isnull(crystals))
-			H.mind.tcrystals += crystals
-			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
-			message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
+ADMIN_VERB(add_tcrystals, R_ADMIN|R_EVENT, "Add Telecrystals", "Allows admins to change telecrystals of a user by addition.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
+	var/crystals = tgui_input_number(user, "Amount of telecrystals to give to [human_mob.ckey], currently [human_mob.mind.tcrystals].")
+	if (!isnull(crystals))
+		human_mob.mind.tcrystals += crystals
+		var/msg = "[key_name(user)] has added [crystals] to [human_mob.ckey]'s telecrystals."
+		message_admins(msg)
 
 
-/datum/admins/proc/sendFax()
-	set category = "Fun.Event Kit"
-	set name = "Send Fax"
-	set desc = "Sends a fax to this machine"
-	var/department = tgui_input_list(usr, "Choose a fax", "Fax", GLOB.alldepartments)
+ADMIN_VERB(sendFax, R_ADMIN|R_MOD|R_EVENT, "Send Fax", "Sends a fax to this machine.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/department = tgui_input_list(user, "Choose a fax", "Fax", GLOB.alldepartments)
 	for(var/obj/machinery/photocopier/faxmachine/sendto in GLOB.allfaxes)
 		if(sendto.department == department)
+			var/replyorigin = tgui_input_text(user, "Please specify who the fax is coming from", "Origin")
 
-			if (!istype(src,/datum/admins))
-				src = usr.client.holder
-			if (!istype(src,/datum/admins))
-				to_chat(usr, "Error: you are not an admin!")
-				return
+			var/obj/item/paper/admin/P = new /obj/item/paper/admin(null) //hopefully the null loc won't cause trouble for us
+			user.holder.faxreply = P
 
-			var/replyorigin = tgui_input_text(src.owner, "Please specify who the fax is coming from", "Origin")
-
-			var/obj/item/paper/admin/P = new /obj/item/paper/admin( null ) //hopefully the null loc won't cause trouble for us
-			faxreply = P
-
-			P.admindatum = src
+			P.admindatum = user.holder
 			P.origin = replyorigin
 			P.destination = sendto
 
@@ -1590,17 +1468,17 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 		faxreply = null
 	return
 
-/datum/admins/proc/set_uplink(mob/living/carbon/human/H as mob)
+/datum/admins/proc/set_uplink(mob/living/carbon/human/human_mob)
 	set category = "Debug.Events"
 	set name = "Set Uplink"
 	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
 	set popup_menu = FALSE
 
 	if(check_rights(R_ADMIN|R_DEBUG))
-		GLOB.traitors.spawn_uplink(H)
-		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
-		H.mind.accept_tcrystals = 1
-		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."
+		GLOB.traitors.spawn_uplink(human_mob)
+		human_mob.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+		human_mob.mind.accept_tcrystals = 1
+		var/msg = "[key_name(usr)] has given [human_mob.ckey] an uplink."
 		message_admins(msg)
 	else
 		to_chat(usr, "You do not have access to this command.")
