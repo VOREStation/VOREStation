@@ -133,7 +133,7 @@
 /obj/item/fish/skin_crab
 	name = "skin crab"
 	fish_id = "skin_crab"
-	desc = "<i>\"And on the eighth day, a demential mockery of both humanity and crabity was made.\"<i> Fascinating."
+	desc = span_italics("And on the eighth day, a demential mockery of both humanity and crabity was made.") + " Fascinating."
 	icon_state = "skin_crab"
 	sprite_width = 7
 	sprite_height = 6
