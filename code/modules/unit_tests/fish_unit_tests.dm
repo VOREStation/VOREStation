@@ -2,6 +2,22 @@
 #define FISH_REAGENT_AMOUNT (10 * FISH_WEIGHT_GRIND_TO_BITE_MULT)
 #define REAGENT_FISHDUMMY "fish test reagent"
 
+/datum/unit_test/proc/create_test_fish(turf/loc = null)
+	if(!loc)
+		for(var/turf/simulated/floor/tiled/T in world)
+			if(!T.zone)
+				continue
+			var/pressure = T.zone.air.return_pressure()
+			if(90 < pressure && pressure < 120) // Find a turf between 90 and 120
+				loc = T
+				break
+
+	TEST_ASSERT(loc, "No valid turf available for test mob")
+
+	var/obj/item/fish/testdummy/fish = allocate(__IMPLIED_TYPE__, loc)
+
+	return fish
+
 ///Ensures that all fish have an aquarium icon state and that sprite_width and sprite_height have been set.
 /datum/unit_test/fish_aquarium_icons
 
@@ -24,7 +40,7 @@
 /datum/unit_test/fish_size_weight/Run()
 
 	var/obj/structure/table/table = allocate(/obj/structure/table)
-	var/obj/item/fish/testdummy/fish = allocate(__IMPLIED_TYPE__, table.loc)
+	var/obj/item/fish/testdummy/fish = create_test_fish()
 	var/datum/reagent/reagent = fish.reagents?.has_reagent(REAGENT_ID_DEVELOPER_WARNING)
 	TEST_ASSERT(reagent, "the test fish doesn't have the test reagent.[fish.reagents ? "" : " It doesn't even have a reagent holder."]")
 	var/expected_units = FISH_REAGENT_AMOUNT * fish.weight / FISH_WEIGHT_BITE_DIVISOR
@@ -46,7 +62,7 @@
 /datum/unit_test/fish_feeding
 
 /datum/unit_test/fish_feeding/Run()
-	var/obj/item/fish/testdummy/hungry = allocate(__IMPLIED_TYPE__)
+	var/obj/item/fish/testdummy/hungry = create_test_fish()
 	hungry.last_feeding = 0 //the fish should be hungry.
 	TEST_ASSERT(hungry.get_hunger(), "the fish doesn't seem to be hungry in the slightest")
 	var/obj/item/reagent_containers/cup/fish_feed/yummy = allocate(__IMPLIED_TYPE__)
