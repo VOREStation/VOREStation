@@ -66,7 +66,7 @@ will need these:
 > holding Shift** on any free space in the folder, then click on either
 > `Open command window here` or `Open PowerShell window here`.
 
-**Via Juke Build (cross-platform)**:
+**Via Juke Build (cross-platform(No))**:
 
 - `tools/build/build.sh tgui` - Build tgui in production mode.
 - `tools/build/build.sh tgui-dev` - Build tgui in production mode.
@@ -188,6 +188,12 @@ Inspection". You can then f12 to open the standard chrome dev tools.
 - `/packages/tgui/styles/layouts` - Layout-related styles.
 - `/packages/tgui/styles/themes` - Contains themes that you can use in tgui.
   Each theme must be registered in `/packages/tgui/index.ts` file.
+
+## FontAwesome Icons
+
+For a list of usable icons, see [FontAwesome website](https://fontawesome.com/v7/search?ip=classic&ic=free&o=r)
+
+For additional, check the [FontAwesome Docs](https://fontawesome.com/v7/docs/web/style/style-cheatsheet#contentHeader)
 
 ## License
 
