@@ -1914,11 +1914,6 @@
 /obj/structure/window/basic/full,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
-"ml" = (
-/obj/structure/table/woodentable,
-/obj/item/fishing_rod,
-/turf/simulated/floor/outdoors/grass/seasonal,
-/area/redgate/fantasy/streets)
 "mm" = (
 /obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/potato,
@@ -24876,7 +24871,7 @@ IJ
 IJ
 IJ
 IJ
-ml
+ic
 dL
 dL
 tU

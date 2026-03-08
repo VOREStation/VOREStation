@@ -713,16 +713,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/dorm2)
-"la" = (
-/obj/structure/table/rack,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/stack/cable_coil/pink,
-/obj/item/stack/cable_coil/pink,
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/tether_away/beach/resort/janibar)
 "le" = (
 /turf/simulated/floor/water/beach{
 	dir = 5
@@ -9795,7 +9785,7 @@ Nv
 li
 Nv
 sD
-la
+pd
 zw
 Nv
 Nv
