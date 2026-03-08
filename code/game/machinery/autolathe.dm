@@ -339,14 +339,16 @@
 		var/max_stack_amount = initial(stack_item.max_amount)
 		var/number_to_make = (initial(stack_item.amount) * items_remaining)
 		while(number_to_make > max_stack_amount)
-			created = design.create_result(target, materials_needed, amount = max_stack_amount)
+			created = new stack_item(null, max_stack_amount) //it's imporant to spawn things in nullspace, since obj's like stacks qdel when they enter a tile/merge with other stacks of the same type, resulting in runtimes.
 			if(isitem(created))
 				created.pixel_x = rand(-6, 6)
 				created.pixel_y = rand(-6, 6)
+			created.forceMove(target)
 			number_to_make -= max_stack_amount
-		created = design.create_result(target, materials_needed, amount = number_to_make)
+
+		created = new stack_item(null, number_to_make)
 	else
-		created = design.create_result(target, materials_needed)
+		created = design.create_item(null)
 		split_materials_uniformly(materials_needed, material_cost_coefficient, created)
 
 	if(isitem(created))
@@ -421,7 +423,7 @@
 			wires.Interact(user)
 			return
 	else
-		to_chat(user "close the panel first!")
+		to_chat(user, "close the panel first!")
 		return
 
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
