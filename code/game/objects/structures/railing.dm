@@ -133,8 +133,8 @@
 					if (WEST)
 						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
 
-/obj/structure/railing/handle_rotation_verbs(angle)
-	if(!can_touch(usr))
+/obj/structure/railing/handle_rotation_verbs(angle, mob/user)
+	if(!can_touch(user))
 		return FALSE
 	. = ..()
 	if(.)
