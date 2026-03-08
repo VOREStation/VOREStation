@@ -35,3 +35,16 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/electropack
+	name = "electropack"
+	desc = "Dance my monkeys! DANCE!!!"
+	id = "electropack"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 12500, MAT_GLASS = 3125)
+	build_path = /obj/item/radio/electropack
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

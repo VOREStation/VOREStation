@@ -1,7 +1,6 @@
 
 /datum/techweb_node/augmentation
 	id = TECHWEB_NODE_AUGMENTATION
-	starting_node = TRUE
 	display_name = "Augmentation"
 	description = "For those who prefer shiny metal over squishy flesh."
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
@@ -50,6 +49,7 @@
 		"platform_armour",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/cybernetics
 	id = TECHWEB_NODE_CYBERNETICS

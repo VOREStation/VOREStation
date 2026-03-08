@@ -62,34 +62,6 @@
 
 ///datum/category_group/autolathe/all/New()
 
-/datum/category_group/autolathe/arms
-	name = "Arms and Ammunition"
-	category_item_type = /datum/category_item/autolathe/arms
-
-/datum/category_group/autolathe/devices
-	name = "Devices and Components"
-	category_item_type = /datum/category_item/autolathe/devices
-
-/datum/category_group/autolathe/engineering
-	name = "Engineering"
-	category_item_type = /datum/category_item/autolathe/engineering
-
-/datum/category_group/autolathe/general
-	name = "General"
-	category_item_type = /datum/category_item/autolathe/general
-
-/datum/category_group/autolathe/medical
-	name = "Medical"
-	category_item_type = /datum/category_item/autolathe/medical
-
-/datum/category_group/autolathe/tools
-	name = "Tools"
-	category_item_type = /datum/category_item/autolathe/tools
-
-/datum/category_group/autolathe/materials
-	name = "Materials"
-	category_item_type = /datum/category_item/autolathe/materials
-
 /datum/category_group/autolathe/materials/New()
 	..()
 

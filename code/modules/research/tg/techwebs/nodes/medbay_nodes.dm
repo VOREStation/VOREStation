@@ -36,6 +36,7 @@
 		// "jerrycan",
 		// "reflex_hammer",
 		// "blood_scanner",
+		"sleevecard"
 	)
 
 /datum/techweb_node/chem_synthesis
@@ -107,6 +108,9 @@
 		// "defibmount",
 		// "medicalbed_emergency",
 		// "piercesyringe",
+		"syringe_gun",
+		"syringe_cartridge",
+		"bioregen"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/easy_cytology)

@@ -17,7 +17,3 @@
 		max_stack = initial(S.max_amount)
 		path = S
 	. = ..()
-
-/datum/category_item/autolathe/materials/rods // Not strictly a material, so they need their own define
-	name = "metal rods"
-	path =/obj/item/stack/rods

@@ -8,7 +8,7 @@
 		// "healthanalyzer",
 		// "autopsyscanner",
 		// "genescanner",
-		// "medical_kiosk",
+		"medical_kiosk",
 		// "chem_master",
 		// "ph_meter",
 		// "scigoggles",
@@ -88,10 +88,10 @@
 		"plant_analyzer",
 		// "seed_extractor",
 		// "watering_can",
-		// "spade",
+		"spade",
 		// "cultivator",
 		// "secateurs",
-		// "hatchet",
+		"hatchet",
 	)
 
 /datum/techweb_node/hydroponics

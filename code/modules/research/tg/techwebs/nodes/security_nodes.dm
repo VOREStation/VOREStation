@@ -11,16 +11,154 @@
 		"dartgun_ammo_m",
 		// "toy_armblade",
 		// "toygun",
-		// "c38_rubber",
-		// "c38_rubber_mag",
-		// "c38_sec",
-		// "c38_mag",
 		// "capbox",
 		// "foam_dart",
-		// "sec_beanbag_slug",
-		// "sec_dart",
-		// "sec_Islug",
-		// "sec_rshot",
+		"knuckledusters",
+		"tacknife"
+	)
+
+// Basic pistol rounds
+/datum/techweb_node/pistol_ammo
+	id = TECHWEB_NODE_PISTOL_AMMO
+	starting_node = TRUE
+	display_name = "Pistol Ammunition"
+	description = "The smallest of small arms come in a variety of flavors!"
+	design_ids = list(
+		// 44
+		"pistol_mag_44",
+		"pistol_mag_44_rubber",
+		// 45
+		"pistol_mag_45",
+		"pistol_mag_45_practice",
+		"pistol_mag_45_rubber",
+		"pistol_mag_45_flash",
+		"pistol_mag_45_piercing",
+		"pistol_mag_45_hollow",
+		// 9mm
+		"pistol_mag_9mm",
+		"pistol_mag_9mm_rubber",
+		"pistol_mag_9mm_practice",
+		"pistol_mag_9mm_flash",
+	)
+
+// Only works with a few pistols
+/datum/techweb_node/pistol_special
+	id = TECHWEB_NODE_PISTOL_SPECIAL
+	starting_node = TRUE
+	display_name = "Specialty Pistol Ammunition"
+	description = "Special bangs for those special bucks."
+	design_ids = list(
+		// concealable
+		"pistol_mag_compact_9mm",
+		"pistol_mag_compact_9mm_rubber",
+		"pistol_mag_compact_9mm_practice",
+		"pistol_mag_compact_9mm_flash",
+		// 10mm
+		"pistol_mag_10m",
+		"pistol_mag_10m_rubber",
+		"pistol_mag_10m_emp",
+		"pistol_mag_10m_practice",
+	)
+
+// Basic rifles
+/datum/techweb_node/rifle_ammo
+	id = TECHWEB_NODE_RIFLE_AMMO
+	starting_node = TRUE
+	display_name = "Rifle Ammunition"
+	description = "Shoot for the moon, even if you miss you'll probably hit the intern anyway."
+	design_ids = list(
+		// military
+		"rifle_mag_545",
+		"rifle_mag_545_pierce",
+		"rifle_mag_545_practice",
+		"rifle_mag_545_hunting",
+		"rifle_mag_762",
+		"rifle_mag_762_pierce",
+		// SMG
+		"smg_mag_9mm",
+		"smg_mag_10m",
+		"smg_mag_10m_practice",
+		"smg_mag_10m_rubber",
+		"smg_mag_10m_emp",
+	)
+
+// Only works with a few specific guns
+/datum/techweb_node/rifle_ammo_special
+	id = TECHWEB_NODE_RIFLE_SPECIAL
+	starting_node = TRUE
+	display_name = "Specialty Rifle Ammunition"
+	description = "Sometimes you just need more gun."
+	design_ids = list(
+		// Rattle em boys!
+		"uzi_mag_45",
+		"tommy_mag_45",
+		"tommy_mag_45_pierce",
+		"tommy_drum_45",
+		"tommy_drum_45_pierce",
+		// big guns
+		"machinegun_box_545",
+		"machinegun_box_545_pierce",
+		"machinegun_box_545_hunting",
+		"rifle_145_sabot",
+		// P90
+		"pistol_mag_topmount_9mm",
+		"pistol_mag_topmount_9mm_rubber",
+		"pistol_mag_topmount_9mm_practice",
+		"pistol_mag_topmount_9mm_flash",
+		"pistol_mag_topmount_9mm_piercing",
+		// M1
+		"rifle_enblock_762",
+		"rifle_enblock_762_pierce",
+	)
+
+// Shotgun shells
+/datum/techweb_node/shotgun_ammo
+	id = TECHWEB_NODE_SHOTGUN_AMMO
+	starting_node = TRUE
+	display_name = "Shotgun Ammunition"
+	description = "Why aim when you can just shoot more bullet per bullet?"
+	design_ids = list(
+		"ammo_12g_slug",
+		"ammo_12g_blank",
+		"ammo_12g_beanbag",
+		"ammo_12g_flash",
+		"ammo_12g_pellet",
+		"ammo_12g_stun",
+		"ammo_12g_flechette",
+		// Auto shotgun drums
+		"shotgun_mag_12g_drum",
+		"shotgun_mag_12g_drum_beanbag",
+		"shotgun_mag_12g_drum_pellet",
+		"shotgun_mag_12g_drum_flash",
+	)
+
+// Faster reloading
+/datum/techweb_node/speedloaders
+	id = TECHWEB_NODE_SPEEDLOADERS
+	starting_node = TRUE
+	display_name = "Speedloaders"
+	description = "Trying to reload bullet by bullet in the middle of a gunfight is probably a bad idea."
+	design_ids = list(
+		// Revolvers
+		"loader_357",
+		"loader_357_flash",
+		"loader_357_stun",
+		"loader_357_rubber",
+		"loader_45",
+		"loader_45_rubber",
+		"loader_38",
+		"loader_38_rubber",
+		"loader_44",
+		"loader_44_rubber",
+		// Shotty
+		"loader_12g_beanbag",
+		"loader_12g_slug",
+		"loader_12g_buck",
+		// Stripperclips
+		"loader_545",
+		"loader_545_practice",
+		"loader_762",
+		"loader_762_practice",
 	)
 
 /datum/techweb_node/sec_equip
@@ -34,6 +172,9 @@
 		"prisonmanage",
 		"pointdefense",
 		"pointdefense_control",
+		"handcuffs",
+		"legcuffs",
+		"legcuffs_fuzzy",
 		// "mining",
 		// "rdcamera",
 		// "security_photobooth",
