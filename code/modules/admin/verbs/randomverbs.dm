@@ -17,32 +17,29 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	message_admins(msg)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_prison(mob/M as mob in GLOB.mob_list)
-	set category = "Admin.Game"
-	set name = "Prison"
-	if(!check_rights_for(src, R_HOLDER))
+ADMIN_VERB(cmd_admin_prison, R_ADMIN|R_MOD, "Prison", "Send target to prison.", ADMIN_CATEGORY_GAME, mob/target_mob in GLOB.mob_list)
+	if(!length(GLOB.prisonwarp))
 		return
-
-	if (ismob(M))
-		if(isAI(M))
-			tgui_alert_async(usr, "The AI can't be sent to prison you jerk!")
+	if(ismob(target_mob))
+		if(isAI(target_mob))
+			tgui_alert_async(user, "The AI can't be sent to prison you jerk!")
 			return
 		//strip their stuff before they teleport into a cell :downs:
-		for(var/obj/item/W in M)
-			M.drop_from_inventory(W)
+		for(var/obj/item/content_item in target_mob)
+			target_mob.drop_from_inventory(content_item)
 		//teleport person to cell
-		M.Paralyse(5)
-		M.Sleeping(5)
+		target_mob.Paralyse(5)
+		target_mob.Sleeping(5)
 		sleep(5)	//so they black out before warping
-		M.loc = pick(GLOB.prisonwarp)
-		if(ishuman(M))
-			var/mob/living/carbon/human/prisoner = M
+		target_mob.forceMove(pick(GLOB.prisonwarp))
+		if(ishuman(target_mob))
+			var/mob/living/carbon/human/prisoner = target_mob
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
 		spawn(50)
-			to_chat(M, span_red("You have been sent to the prison station!"))
-		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
-		message_admins(span_blue("[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station."), 1)
+			to_chat(target_mob, span_bolddanger("You have been sent to the prison station!"))
+		log_admin("[key_name(user)] sent [key_name(target_mob)] to the prison station.")
+		message_admins(span_blue("[key_name_admin(user)] sent [key_name_admin(target_mob)] to the prison station."), 1)
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Allows staff to determine who the newer players are.
@@ -94,14 +91,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message
 	admin_ticket_log(targat_mob, msg)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
-	set category = "Fun.Narrate"
-	set name = "Global Narrate"
-
-	if (!check_rights_for(src, R_HOLDER))
-		return
-
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"), encode = FALSE)
+ADMIN_VERB(cmd_admin_world_narrate, R_FUN|R_EVENT, "Global Narrate", "Globally narrate.", ADMIN_CATEGORY_FUN_NARRATE) // Allows administrators to fluff events a little easier -- TLE
+	var/msg = tgui_input_text(user, "Message:", text("Enter the text you wish to appear to everyone:"), encode = FALSE)
 
 	if (!msg)
 		return
@@ -111,11 +102,11 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message
 		return
 
 	to_chat(world, "[msg]")
-	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
-	message_admins(span_blue(span_bold(" GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>")), 1)
+	log_admin("GlobalNarrate: [key_name(user)] : [msg]")
+	message_admins(span_blue(span_bold("GlobalNarrate: [key_name_admin(user)] : [msg]<BR>")))
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(cmd_admin_direct_narrate, R_HOLDER, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob)
+ADMIN_VERB(cmd_admin_direct_narrate, R_FUN|R_EVENT, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob)
 	if(!target_mob)
 		target_mob = tgui_input_list(user, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
 
@@ -136,44 +127,38 @@ ADMIN_VERB(cmd_admin_direct_narrate, R_HOLDER, "Direct Narrate", "Directly narra
 	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
-	set category = "Admin.Game"
-	set name = "Toggle Godmode"
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_godmode, R_HOLDER, "Toggle Godmode", "Toggle godmode on the target.", ADMIN_CATEGORY_GAME, mob/target_mob in GLOB.mob_list)
+	if(target_mob.status_flags & GODMODE)
+		target_mob.RemoveElement(/datum/element/godmode)
 
-	if(!check_rights_for(src, R_HOLDER))
-		return
+	else if(!(target_mob.status_flags & GODMODE))
+		target_mob.AddElement(/datum/element/godmode)
 
-	if(M.status_flags & GODMODE)
-		M.RemoveElement(/datum/element/godmode)
+	to_chat(user, span_notice("Toggled [(target_mob.status_flags & GODMODE) ? "ON" : "OFF"]"))
 
-	else if(!(M.status_flags & GODMODE))
-		M.AddElement(/datum/element/godmode)
-
-	to_chat(usr, span_blue("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))
-
-	log_admin("[key_name(usr)] has toggled [key_name(M)]'s godmode to [(M.status_flags & GODMODE) ? "On" : "Off"]")
-	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s godmode to [(M.status_flags & GODMODE) ? "On" : "Off"]"
+	log_admin("[key_name(user)] has toggled [key_name(target_mob)]'s godmode to [(target_mob.status_flags & GODMODE) ? "On" : "Off"]")
+	var/msg = "[key_name_admin(user)] has toggled [ADMIN_LOOKUPFLW(target_mob)]'s godmode to [(target_mob.status_flags & GODMODE) ? "On" : "Off"]"
 	message_admins(msg)
-	admin_ticket_log(M, msg)
+	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
+/proc/cmd_admin_mute(mob/target, mute_type, automute = 0, mob/user)
 	if(automute)
 		if(!CONFIG_GET(flag/automute_on))
 			return
 	else
-		if(!usr || !usr.client)
+		if(!user || !user.client)
 			return
-		if(!check_rights_for(usr.client, R_HOLDER))
-			to_chat(usr, span_red("Error: cmd_admin_mute: You don't have permission to do this."))
+		if(!check_rights_for(user.client, R_HOLDER))
+			to_chat(user, span_red("Error: cmd_admin_mute: You don't have permission to do this."))
 			return
-		if(!M.client)
-			to_chat(usr, span_red("Error: cmd_admin_mute: This mob doesn't have a client tied to it."))
-		if(check_rights_for(M.client, R_HOLDER))
-			to_chat(usr, span_red("Error: cmd_admin_mute: You cannot mute an admin/mod."))
-	if(!M.client)
+		if(!target.client)
+			to_chat(user, span_red("Error: cmd_admin_mute: This mob doesn't have a client tied to it."))
+		if(check_rights_for(target.client, R_HOLDER))
+			to_chat(user, span_red("Error: cmd_admin_mute: You cannot mute an admin/mod."))
+	if(!target.client)
 		return
-	if(check_rights_for(M.client, R_HOLDER))
+	if(check_rights_for(target.client, R_HOLDER))
 		return
 
 	var/muteunmute
@@ -191,23 +176,23 @@ ADMIN_VERB(cmd_admin_direct_narrate, R_HOLDER, "Direct Narrate", "Directly narra
 
 	if(automute)
 		muteunmute = "auto-muted"
-		M.client.prefs.muted |= mute_type
-		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(M)] from [mute_string]")
-		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-		to_chat(M, span_alert("You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin."))
+		target.client.prefs.muted |= mute_type
+		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(target)] from [mute_string]")
+		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(target)] from [mute_string].", 1)
+		to_chat(target, span_alert("You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin."))
 		feedback_add_details("admin_verb","AUTOMUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return
 
-	if(M.client.prefs.muted & mute_type)
+	if(target.client.prefs.muted & mute_type)
 		muteunmute = "unmuted"
-		M.client.prefs.muted &= ~mute_type
+		target.client.prefs.muted &= ~mute_type
 	else
 		muteunmute = "muted"
-		M.client.prefs.muted |= mute_type
+		target.client.prefs.muted |= mute_type
 
-	log_admin("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string]")
-	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-	to_chat(M, span_alert("You have been [muteunmute] from [mute_string]."))
+	log_admin("[key_name(user)] has [muteunmute] [key_name(target)] from [mute_string]")
+	message_admins("[key_name_admin(user)] has [muteunmute] [key_name_admin(target)] from [mute_string].", 1)
+	to_chat(target, span_alert("You have been [muteunmute] from [mute_string]."))
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(cmd_admin_add_random_ai_law, R_ADMIN|R_FUN, "Add Random AI Law", "Adds a random law to the station ai.", ADMIN_CATEGORY_FUN_SILICON)

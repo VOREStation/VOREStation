@@ -85,17 +85,21 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_LOGS "Admin.Logs"
 #define ADMIN_CATEGORY_MISC "Admin.Misc"
 #define ADMIN_CATEGORY_SECRETS "Admin.Secrets"
+#define ADMIN_CATEGORY_SILICON "Admin.Silicon"
 #define ADMIN_CATEGORY_INVESTIGATE "Admin.Investigate"
 #define ADMIN_CATEGORY_IPINTEL "Admin.IPIntel"
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Debug"
+#define ADMIN_CATEGORY_DEBUG_ASSETS "Debug.Assets"
 #define ADMIN_CATEGORY_DEBUG_INVESTIGATE "Debug.Investigate"
 #define ADMIN_CATEGORY_DEBUG_DANGEROUS "Debug.Dangerous"
 #define ADMIN_CATEGORY_DEBUG_EVENTS "Debug.Evemts"
 #define ADMIN_CATEGORY_DEBUG_GAME "Debug.Game"
 #define ADMIN_CATEGORY_DEBUG_SERVER "Debug.Server"
+#define ADMIN_CATEGORY_DEBUG_SPRITES "Debug.Sprites"
 #define ADMIN_CATEGORY_DEBUG_MISC "Debug.Misc"
+
 #define ADMIN_CATEGORY_OBJECT "Object"
 #define ADMIN_CATEGORY_MAPPING "Mapping"
 #define ADMIN_CATEGORY_PROFILE "Profile"

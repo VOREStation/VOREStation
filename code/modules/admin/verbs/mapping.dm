@@ -145,7 +145,6 @@ GLOBAL_LIST_INIT(debug_verbs, list(
 		,/client/proc/cmd_admin_areatest
 		,/client/proc/print_jobban_old
 		,/client/proc/print_jobban_old_filter
-		,/client/proc/forceEvent
 		,/client/proc/Zone_Info
 		,/client/proc/Test_ZAS_Connection
 		,/client/proc/ZoneTick

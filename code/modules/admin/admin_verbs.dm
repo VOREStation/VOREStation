@@ -561,15 +561,9 @@ ADMIN_VERB(spawn_reagent, R_DEBUG|R_EVENT, "Spawn Reagent", "Spawn any reagent."
 	A.flags &= ~(AREA_BLOCK_GHOST_SIGHT)
 	GLOB.ghostnet.removeArea(A)
 
-/client/proc/hide_motion_tracker_feedback()
-	set name = "Toggle Motion Echos"
-	set desc = "Hides or reveals motion tracker echos globally."
-	set category = "Admin.Events"
-
-	if(!check_rights(R_ADMIN|R_EVENT))
-		return
+ADMIN_VERB(hide_motion_tracker_feedback, R_ADMIN|R_EVENT, "Toggle Motion Echos", "Hides or reveals motion tracker echos globally.", ADMIN_CATEGORY_EVENTS)
 	SSmotiontracker.hide_all = !SSmotiontracker.hide_all
-	log_admin("[key_name(usr)] changed the motion echo visibility to [SSmotiontracker.hide_all ? "hidden" : "visible"].")
+	log_admin("[key_name(user)] changed the motion echo visibility to [SSmotiontracker.hide_all ? "hidden" : "visible"].")
 
 ADMIN_VERB(adminorbit, R_FUN, "Orbit Things", "Makes something orbit around something else.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/center
@@ -683,22 +677,15 @@ ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tic
 	popup.set_content(dat)
 	popup.open()
 
-/client/proc/toggle_spawning_with_recolour()
-	set name = "Toggle Simple/Robot recolour verb"
-	set desc = "Makes it so new robots/simple_mobs spawn with a verb to recolour themselves for this round. You must set them separately."
-	set category = "Server.Game"
-
-	if(!check_rights(R_ADMIN|R_EVENT|R_FUN))
-		return
-
-	var/which = tgui_alert(usr, "Which do you want to toggle?", "Choose Recolour Toggle", list("Robot", "Simple Mob"))
+ADMIN_VERB(toggle_spawning_with_recolour, R_ADMIN|R_EVENT|R_FUN, "Toggle Simple/Robot recolour verb", "Makes it so new robots/simple_mobs spawn with a verb to recolour themselves for this round. You must set them separately.", ADMIN_CATEGORY_SERVER_GAME)
+	var/which = tgui_alert(user, "Which do you want to toggle?", "Choose Recolour Toggle", list("Robot", "Simple Mob"))
 	switch(which)
 		if("Robot")
 			CONFIG_SET(flag/allow_robot_recolor, !CONFIG_GET(flag/allow_robot_recolor))
-			to_chat(usr, "You have [CONFIG_GET(flag/allow_robot_recolor) ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
+			to_chat(user, "You have [CONFIG_GET(flag/allow_robot_recolor) ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
 		if("Simple Mob")
 			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
-			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
+			to_chat(user, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
 
 ADMIN_VERB(modify_shift_end, (R_ADMIN|R_EVENT|R_SERVER), "Modify Shift End", "Modifies the hard shift end time.", ADMIN_CATEGORY_SERVER_GAME)
 	GLOB.transfer_controller.modify_hard_end(user)

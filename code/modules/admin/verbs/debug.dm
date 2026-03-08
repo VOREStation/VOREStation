@@ -677,45 +677,35 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 				message_admins(log)
 				log_admin(log)
 
-/client/proc/cmd_regenerate_asset_cache()
-	set category = "Debug.Assets"
-	set name = "Regenerate Asset Cache"
-	set desc = "Clears the asset cache and regenerates it immediately."
+ADMIN_VERB(cmd_regenerate_asset_cache, R_DEBUG|R_SERVER, "Regenerate Asset Cache", "Clears the asset cache and regenerates it immediately.", ADMIN_CATEGORY_DEBUG_ASSETS)
 	if(!CONFIG_GET(flag/cache_assets))
-		to_chat(usr, span_warning("Asset caching is disabled in the config!"))
+		to_chat(user, span_warning("Asset caching is disabled in the config!"))
 		return
 	var/regenerated = 0
-	for(var/datum/asset/A as() in subtypesof(/datum/asset))
-		if(!initial(A.cross_round_cachable))
+	for(var/datum/asset/current_asset as anything in subtypesof(/datum/asset))
+		if(!initial(current_asset.cross_round_cachable))
 			continue
-		if(A == initial(A._abstract))
+		if(current_asset == initial(current_asset._abstract))
 			continue
-		var/datum/asset/asset_datum = GLOB.asset_datums[A]
+		var/datum/asset/asset_datum = GLOB.asset_datums[current_asset]
 		asset_datum.regenerate()
 		regenerated++
-	to_chat(usr, span_notice("Regenerated [regenerated] asset\s."))
+	to_chat(user, span_notice("Regenerated [regenerated] asset\s."))
 
-/client/proc/cmd_clear_smart_asset_cache()
-	set category = "Debug.Assets"
-	set name = "Clear Smart Asset Cache"
-	set desc = "Clears the smart asset cache."
+ADMIN_VERB(cmd_clear_smart_asset_cache, R_DEBUG|R_SERVER, "Clear Smart Asset Cache", "Clears the smart asset cache.", ADMIN_CATEGORY_DEBUG_ASSETS)
 	if(!CONFIG_GET(flag/smart_cache_assets))
-		to_chat(usr, span_warning("Smart asset caching is disabled in the config!"))
+		to_chat(user, span_warning("Smart asset caching is disabled in the config!"))
 		return
 	var/cleared = 0
-	for(var/datum/asset/spritesheet_batched/A as() in subtypesof(/datum/asset/spritesheet_batched))
-		if(A == initial(A._abstract))
+	for(var/datum/asset/spritesheet_batched/current_asset as anything in subtypesof(/datum/asset/spritesheet_batched))
+		if(current_asset == initial(current_asset._abstract))
 			continue
-		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[initial(A.name)].json")
+		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[initial(current_asset.name)].json")
 		cleared++
-	to_chat(usr, span_notice("Cleared [cleared] asset\s."))
+	to_chat(user, span_notice("Cleared [cleared] asset\s."))
 
 // For spriters with long world loads, allows to reload test robot sprites
-/client/proc/cmd_reload_robot_sprite_test()
-	set category = "Debug.Sprites"
-	set name = "Reload Robot Test Sprites"
-	set desc = "Reloads the dmis from the test folder and creates the test datums."
-
+ADMIN_VERB(cmd_reload_robot_sprite_test, R_DEBUG|R_SERVER, "Reload Robot Test Sprites", "Reloads the dmis from the test folder and creates the test datums.", ADMIN_CATEGORY_DEBUG_SPRITES)
 	SSrobot_sprites.reload_test_sprites()
 
 ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", ADMIN_CATEGORY_FUN_ADD_NIF)

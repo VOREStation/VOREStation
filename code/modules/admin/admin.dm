@@ -1316,43 +1316,23 @@ ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edi
 	qdel(frommob)
 	return 1
 
-/datum/admins/proc/force_antag_latespawn()
-	set category = "Admin.Events"
-	set name = "Force Template Spawn"
-	set desc = "Force an antagonist template to spawn."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(force_antag_latespawn, R_ADMIN|R_EVENT|R_FUN, "Force Template Spawn", "Force an antagonist template to spawn.", ADMIN_CATEGORY_EVENTS)
 	if(!SSticker|| !SSticker.mode)
-		to_chat(usr, "Mode has not started.")
+		to_chat(user, span_warning("Mode has not started."))
 		return
 
-	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
+	var/antag_type = tgui_input_list(user, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
 	if(!antag_type || !GLOB.all_antag_types[antag_type])
-		to_chat(usr, "Aborting.")
+		to_chat(user, span_warning("Aborting."))
 		return
 
 	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
-	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
+	message_admins("[key_name(user)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 
-/datum/admins/proc/force_mode_latespawn()
-	set category = "Admin.Events"
-	set name = "Force Mode Spawn"
-	set desc = "Force autotraitor to proc."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN|R_EVENT|R_FUN))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(force_mode_latespawn, R_ADMIN|R_EVENT|R_FUN, "Force Mode Spawn", "Force autotraitor to proc.", ADMIN_CATEGORY_EVENTS)
 	if(!SSticker|| !SSticker.mode)
-		to_chat(usr, "Mode has not started.")
+		to_chat(user, span_warning("Mode has not started."))
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
