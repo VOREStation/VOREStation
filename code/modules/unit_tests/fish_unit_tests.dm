@@ -251,9 +251,9 @@
 	portal.max_fishing_spots = 1 //We've no scrying orb to know if it'll be buffed or nerfed this in the future. We only have space for one here.
 	portal.activate(fish_source, user)
 	TEST_ASSERT(!portal.active, "[portal] was activated with a fish source from an unlinked fishing spot")
-	portal.multitool_act(user, tool)
-	TEST_ASSERT_EQUAL(tool.buffer, portal, "[portal] wasn't set as buffer for [tool]")
-	tool.melee_attack_chain(user, fishing_spot)
+	portal.attackby(user, tool)
+	TEST_ASSERT_EQUAL(tool.connectable, portal, "[portal] wasn't set as buffer for [tool]")
+	tool.afterattack(user, fishing_spot)
 	TEST_ASSERT_EQUAL(LAZYACCESS(portal.linked_fishing_spots, fishing_spot), fish_source, "We tried linking [portal] to the fishing spot but didn't succeed.")
 	portal.activate(fish_source, user)
 	TEST_ASSERT(portal.active?.fish_source == fish_source, "[portal] can't acces a fish source from a linked fishing spot")
@@ -457,6 +457,8 @@
 		fish_table[fish_type] = 10
 	return ..()
 
+//We don't have edible component yet.
+/*
 /datum/unit_test/edible_fish
 
 /datum/unit_test/edible_fish/Run()
@@ -476,9 +478,9 @@
 	REMOVE_TRAIT(gourmet, TRAIT_FISH_EATER, TRAIT_FISH_TESTING)
 
 	fish.attack(gourmet, gourmet)
-	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/nutriment/protein), "Human hasn't ingested protein when eating fish")
-	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/blood), "Human hasn't ingested blood when eating fish")
-	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/fishdummy), "Human doesn't have the reagent from /datum/fish_trait/dummy after eating fish")
+	TEST_ASSERT(gourmet.reagents.has_reagent(/datum/reagent/nutriment/protein), "Human hasn't ingested protein when eating fish")
+	TEST_ASSERT(gourmet.reagents.has_reagent(/datum/reagent/blood), "Human hasn't ingested blood when eating fish")
+	TEST_ASSERT(gourmet.reagents.has_reagent(/datum/reagent/fishdummy), "Human doesn't have the reagent from /datum/fish_trait/dummy after eating fish")
 
 	TEST_ASSERT_EQUAL(fish.status, FISH_DEAD, "The fish is not dead, despite having sustained enough damage that it should. health: [PERCENT(fish.get_health_percentage())]%")
 
@@ -500,12 +502,13 @@
 	food_quality = edible.get_perceived_food_quality(gourmet)
 	TEST_ASSERT(food_quality >= 0, "Humans still dislike fish, even when it's cooked")
 	fish.attack(gourmet, gourmet)
-	TEST_ASSERT(!gourmet.has_reagent(/datum/reagent/blood), "Human has ingested blood from eating a fish when it shouldn't since the fish has been cooked")
+	TEST_ASSERT(!gourmet.reagents.has_reagent(/datum/reagent/blood), "Human has ingested blood from eating a fish when it shouldn't since the fish has been cooked")
 
 	TEST_ASSERT(QDELETED(fish), "The fish is not being deleted, despite having sustained enough bites. Reagents volume left: [fish.reagents.total_volume]")
 
 /obj/item/fish/testdummy/food
 	average_weight = FISH_WEIGHT_BITE_DIVISOR * 2 //One bite, it's death; the other, it's gone.
+*/
 
 ///Check that nothing wrong happens when randomizing size and weight of a fish
 /datum/unit_test/fish_randomize_size_weight

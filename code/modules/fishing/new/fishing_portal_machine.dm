@@ -65,7 +65,7 @@
 	if(default_unfasten_wrench(user, O, 40))
 		return ITEM_INTERACT_SUCCESS
 
-	if(panel_open && (O?.has_tool_quality(TOOL_MULTITOOL) || O?.has_tool_quality(TOOL_WIRECUTTER)))
+	if(panel_open && (O?.has_tool_quality(TOOL_MULTITOOL)))
 		var/obj/item/multitool/tool = O
 		//Multitool linking/unlinking code
 		if(!tool.connectable)
