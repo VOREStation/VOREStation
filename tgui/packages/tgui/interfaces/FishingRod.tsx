@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -29,8 +29,8 @@ const FishingRodSlot = (props: Props) => {
       <Stack>
         <Stack.Item grow>
           <Button fluid onClick={() => act('slot_action', { slot: slot })}>
-            <Flex>
-              <Flex.Item>
+            <Stack g={0}>
+              <Stack.Item>
                 {!!current_item_icon && (
                   <Image
                     width="64px" // todo come up with some way to scale this sanely
@@ -40,11 +40,11 @@ const FishingRodSlot = (props: Props) => {
                     objectFit="cover"
                   />
                 )}
-              </Flex.Item>
-              <Flex.Item grow align="center">
+              </Stack.Item>
+              <Stack.Item grow align="center">
                 <Box textAlign="center">{current_item_name ?? 'None'}</Box>
-              </Flex.Item>
-            </Flex>
+              </Stack.Item>
+            </Stack>
           </Button>
         </Stack.Item>
       </Stack>

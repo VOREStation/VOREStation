@@ -341,6 +341,7 @@
 /obj/item/fishing_rod/proc/fishing_line_check()
 	return !QDELETED(fishing_line)
 
+/// Performed when left-clicked while holding down right-click
 /obj/item/fishing_rod/attack_self_secondary(mob/user, modifiers)
 	. = ..()
 	tgui_interact(user)
@@ -427,8 +428,8 @@
 		return ..()
 	return ranged_interact_with_atom(interacting_with, user, modifiers)
 */
-/*
-/obj/item/fishing_rod/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+
+/obj/item/fishing_rod/afterattack(atom/interacting_with, mob/living/user, proximity_flag, click_parameters) //Was ranged_interact_with_atom previously.
 	if(!hook)
 		balloon_alert(user, "install a hook first!")
 		return ITEM_INTERACT_BLOCKING
@@ -440,7 +441,7 @@
 
 	cast_line(interacting_with, user)
 	return ITEM_INTERACT_SUCCESS
-*/
+
 /*
 /obj/item/fishing_rod/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	return ranged_interact_with_atom_secondary(interacting_with, user, modifiers)
