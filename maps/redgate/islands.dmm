@@ -1743,7 +1743,7 @@
 /area/redgate/islands/ocean)
 "ZR" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/material/fishing_rod/modern/strong,
+/obj/item/fishing_rod,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/livingroom)
 "ZY" = (

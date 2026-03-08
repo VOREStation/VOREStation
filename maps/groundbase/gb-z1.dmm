@@ -15188,10 +15188,10 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
 "Ie" = (
-/obj/item/material/fishing_rod/modern,
-/obj/item/material/fishing_rod/modern,
-/obj/item/material/fishing_rod/modern,
-/obj/item/material/fishing_rod/modern,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /obj/random/fishing_junk,
 /obj/item/material/fishing_net,
 /obj/item/material/fishing_net,

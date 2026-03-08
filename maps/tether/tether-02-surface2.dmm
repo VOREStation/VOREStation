@@ -15336,11 +15336,11 @@
 /area/tether/surfacebase/fish_farm)
 "aAz" = (
 /obj/structure/table/rack,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
-/obj/item/material/fishing_rod/modern/cheap,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24

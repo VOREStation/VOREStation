@@ -2882,7 +2882,7 @@
 /turf/simulated/floor/outdoors/grass/heavy,
 /area/redgate/underwater_casino/outdoors)
 "hq" = (
-/obj/item/material/fishing_rod/modern/cheap,
+/obj/item/fishing_rod,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/lower/secret/piratebasetunnel)
 "hr" = (
