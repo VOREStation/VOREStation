@@ -106,6 +106,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 
 // Server Categories
 #define ADMIN_CATEGORY_SERVER "Server"
+#define ADMIN_CATEGORY_SERVER_CHAT "Server.Chat"
 #define ADMIN_CATEGORY_SERVER_GAME "Server.Game"
 #define ADMIN_CATEGORY_SERVER_ADMIN "Server.Admin"
 #define ADMIN_CATEGORY_SERVER_CONFIG "Server.Config"

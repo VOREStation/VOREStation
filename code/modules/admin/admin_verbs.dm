@@ -374,18 +374,14 @@ ADMIN_VERB(toggle_log_hrefs, R_SERVER, "Toggle href logging", "Allows to toggle 
 		S.SetName(new_name)
 	feedback_add_details("admin_verb","RAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/manage_silicon_laws()
-	set name = "Manage Silicon Laws"
-	set category = "Admin.Silicon"
+ADMIN_VERB(manage_silicon_laws, R_ADMIN|R_EVENT, "Manage Silicon Laws", "Allows to modify silicon laws.", ADMIN_CATEGORY_SILICON)
+	var/mob/living/silicon/selected_silicon = tgui_input_list(user, "Select silicon.", "Manage Silicon Laws", GLOB.silicon_mob_list)
+	if(!selected_silicon)
+		return
 
-	if(!check_rights(R_ADMIN|R_EVENT)) return
-
-	var/mob/living/silicon/S = tgui_input_list(usr, "Select silicon.", "Manage Silicon Laws", GLOB.silicon_mob_list)
-	if(!S) return
-
-	var/datum/tgui_module/law_manager/admin/L = new(S)
-	L.tgui_interact(usr)
-	log_and_message_admins("has opened [S]'s law manager.")
+	var/datum/tgui_module/law_manager/admin/law_interface = new(selected_silicon)
+	law_interface.tgui_interact(user)
+	log_and_message_admins("has opened [selected_silicon]'s law manager.")
 	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_security_level()

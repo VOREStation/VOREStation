@@ -273,32 +273,23 @@ ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", 
 	var/datum/tgui_module/player_notes_info/A = new(src)
 	A.tgui_interact(user)
 
-/datum/admins/proc/access_news_network() //MARKER
-	set category = "Fun.Event Kit"
-	set name = "Access Newscaster Network"
-	set desc = "Allows you to view, add and edit news feeds."
+ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "Allows you to view, add and edit news feeds.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/dat = text("<H3>Admin Newscaster Unit</H3>")
 
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	var/dat
-	dat = text("<H3>Admin Newscaster Unit</H3>")
-
-	switch(admincaster_screen)
+	var/datum/admins/admin_holder = user.holder
+	switch(admin_holder.admincaster_screen)
 		if(0)
 			dat += {"Welcome to the admin newscaster.<BR> Here you can add, edit and censor every newspiece on the network.
 				<BR>Feed channels and stories entered through here will be uneditable and handled as official news by the rest of the units.
 				<BR>Note that this panel allows full freedom over the news network, there are no constrictions except the few basic ones. Don't break things!
 			"}
 			if(GLOB.news_network.wanted_issue)
-				dat+= "<HR><A href='byond://?src=\ref[src];[HrefToken()];ac_view_wanted=1'>Read Wanted Issue</A>"
+				dat+= "<HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_view_wanted=1'>Read Wanted Issue</A>"
 
-			dat+= {"<HR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_create_channel=1'>Create Feed Channel</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_view=1'>View Feed Channels</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_create_feed_story=1'>Submit new Feed story</A>
-				<BR><BR><A href='byond://?src=\ref[usr];[HrefToken()];mach_close=newscaster_main'>Exit</A>
+			dat+= {"<HR><BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_create_channel=1'>Create Feed Channel</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_view=1'>View Feed Channels</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_create_feed_story=1'>Submit new Feed story</A>
+				<BR><BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];mach_close=newscaster_main'>Exit</A>
 			"}
 
 			var/wanted_already = 0
@@ -306,95 +297,95 @@ ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", 
 				wanted_already = 1
 
 			dat+={"<HR>"} + span_bold("Feed Security functions:") + {"<BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR>"} + span_green("[src.admincaster_signature]") + {"</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
+				<BR><HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR>"} + span_green("[admin_holder.admincaster_signature]") + {"</A>
 			"}
 		if(1)
 			dat+= "Station Feed Channels<HR>"
-			if( isemptylist(GLOB.news_network.network_channels) )
+			if(isemptylist(GLOB.news_network.network_channels) )
 				dat+=span_italics("No active channels found...")
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
-						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT>") + "<BR>"
+						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT>") + "<BR>"
 					else
-						dat+=span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>")
-			dat+={"<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>
+						dat+=span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>")
+			dat+={"<BR><HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_refresh=1'>Refresh</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Back</A>
 			"}
 
 		if(2)
 			dat+={"
 				Creating new Feed Channel...
-				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>Channel Author</A>:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:") + {" [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_channel=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
+				<HR>"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:") + {" [admin_holder.admincaster_feed_channel.channel_name]<BR>
+				"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_signature=1'>Channel Author</A>:") + {" "} + span_green("[admin_holder.admincaster_signature]") + {"<BR>
+				"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:") + {" [(admin_holder.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_submit_new_channel=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(3)
 			dat+={"
 				Creating new Feed Message...
-				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
-				"} + span_bold("Message Author:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_new_message=1'>Message Body</A>:") + {" [src.admincaster_feed_message.body] <BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_message=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
+				<HR>"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:") + {" [admin_holder.admincaster_feed_channel.channel_name]<BR>
+				"} + span_bold("Message Author:") + {" "} + span_green("[admin_holder.admincaster_signature]") + {"<BR>
+				"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_new_message=1'>Message Body</A>:") + {" [admin_holder.admincaster_feed_message.body] <BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_submit_new_message=1'>Submit</A><BR><BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(4)
 			dat+={"
-					Feed story successfully submitted to [src.admincaster_feed_channel.channel_name].<BR><BR>
-					<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+					Feed story successfully submitted to [admin_holder.admincaster_feed_channel.channel_name].<BR><BR>
+					<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 				"}
 		if(5)
 			dat+={"
-				Feed Channel [src.admincaster_feed_channel.channel_name] created successfully.<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				Feed Channel [admin_holder.admincaster_feed_channel.channel_name] created successfully.<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(6)
 			dat+=span_bold(span_maroon("ERROR: Could not submit Feed story to Network.")) + "<HR><BR>"
-			if(src.admincaster_feed_channel.channel_name=="")
+			if(admin_holder.admincaster_feed_channel.channel_name=="")
 				dat+=span_maroon("Invalid receiving channel name.") + "<BR>"
-			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]" || admincaster_feed_message.title == "")
+			if(admin_holder.admincaster_feed_message.body == "" || admin_holder.admincaster_feed_message.body == "\[REDACTED\]" || admin_holder.admincaster_feed_message.title == "")
 				dat+=span_maroon("Invalid message body.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[3]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[3]'>Return</A><BR>"
 		if(7)
 			dat+=span_bold(span_maroon("ERROR: Could not submit Feed Channel to Network.")) + "<HR><BR>"
-			if(src.admincaster_feed_channel.channel_name =="" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]")
+			if(admin_holder.admincaster_feed_channel.channel_name =="" || admin_holder.admincaster_feed_channel.channel_name == "\[REDACTED\]")
 				dat+=span_maroon("Invalid channel name.") + "<BR>"
 			var/check = 0
 			for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
-				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
+				if(FC.channel_name == admin_holder.admincaster_feed_channel.channel_name)
 					check = 1
 					break
 			if(check)
 				dat+=span_maroon("Channel name already in use.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[2]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[2]'>Return</A><BR>"
 		if(9)
-			dat+=span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[created by: [span_maroon("[src.admincaster_feed_channel.author]")]\]") + "<HR>"
-			if(src.admincaster_feed_channel.censored)
+			dat+=span_bold("[admin_holder.admincaster_feed_channel.channel_name]: ") + span_small("\[created by: [span_maroon("[admin_holder.admincaster_feed_channel.author]")]\]") + "<HR>"
+			if(admin_holder.admincaster_feed_channel.censored)
 				dat+={"
 					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
-				if( isemptylist(src.admincaster_feed_channel.messages) )
+				if( isemptylist(admin_holder.admincaster_feed_channel.messages) )
 					dat+=span_italics("No feed messages found in channel...") + "<BR>"
 				else
 					var/i = 0
-					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
+					for(var/datum/feed_message/MESSAGE in admin_holder.admincaster_feed_channel.messages)
 						i++
 						//dat+="-[MESSAGE.body] <BR>"
 						var/pic_data
 						if(MESSAGE.img)
-							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
 							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
 						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
 						dat+="<BR>"
 						dat+=span_small("\[Story by [span_maroon("[MESSAGE.author] - [MESSAGE.time_stamp]")]\]") + "<BR>"
 			dat+={"
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[1]'>Back</A>
+				<BR><HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_refresh=1'>Refresh</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[1]'>Back</A>
 			"}
 		if(10)
 			dat+={"
@@ -407,8 +398,8 @@ ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", 
 				dat+=span_italics("No feed channels found active...") + "<BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
+					dat+="<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
 		if(11)
 			dat+={"
 				"} + span_bold("[using_map.company_name] D-Notice Handler") + {"<HR>
@@ -420,41 +411,41 @@ ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", 
 				dat+=span_italics("No feed channels found active...") + "<BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
+					dat+="<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
 
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Back</A>"
 		if(12)
 			dat+={"
-				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
-				"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A>") + {"<HR>
+				"} + span_bold("[admin_holder.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[admin_holder.admincaster_feed_channel.author]")] \]") + {"<BR>
+				"} + span_normal("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_censor_channel_author=\ref[admin_holder.admincaster_feed_channel]'>[(admin_holder.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A>") + {"<HR>
 			"}
-			if( isemptylist(src.admincaster_feed_channel.messages) )
+			if( isemptylist(admin_holder.admincaster_feed_channel.messages) )
 				dat+=span_italics("No feed messages found in channel...") + "<BR>"
 			else
-				for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
+				for(var/datum/feed_message/MESSAGE in admin_holder.admincaster_feed_channel.messages)
 					dat+={"
 						-[MESSAGE.body] <BR>"} + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + {"<BR>
-						"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A>") + {"<BR>
+						"} + span_normal("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A>") + {"<BR>
 					"}
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[10]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[10]'>Back</A>"
 		if(13)
 			dat+={"
-				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
-				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[src];[HrefToken()];ac_toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
+				"} + span_bold("[admin_holder.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[admin_holder.admincaster_feed_channel.author]")] \]") + {"<BR>
+				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_toggle_d_notice=\ref[admin_holder.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
 			"}
-			if(src.admincaster_feed_channel.censored)
+			if(admin_holder.admincaster_feed_channel.censored)
 				dat+={"
 					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
-				if( isemptylist(src.admincaster_feed_channel.messages) )
+				if( isemptylist(admin_holder.admincaster_feed_channel.messages) )
 					dat+=span_italics("No feed messages found in channel...") + "<BR>"
 				else
-					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
+					for(var/datum/feed_message/MESSAGE in admin_holder.admincaster_feed_channel.messages)
 						dat+="-[MESSAGE.body] <BR>" + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + "<BR>"
 
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[11]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[11]'>Back</A>"
 		if(14)
 			dat+=span_bold("Wanted Issue Handler:")
 			var/wanted_already = 0
@@ -466,33 +457,33 @@ ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", 
 				dat+=span_normal(span_italics("<BR>A wanted issue is already in Feed Circulation. You can edit or cancel it below."))
 			dat+={"
 				<HR>
-				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</A>: [src.admincaster_feed_message.author] <BR>
-				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_desc=1'>Description</A>: [src.admincaster_feed_message.body] <BR>
+				<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</A>: [admin_holder.admincaster_feed_message.author] <BR>
+				<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_wanted_desc=1'>Description</A>: [admin_holder.admincaster_feed_message.body] <BR>
 			"}
 			if(wanted_already)
 				dat+=span_bold("Wanted Issue created by:") + span_green(" [GLOB.news_network.wanted_issue.backup_author]") + "<BR>"
 			else
-				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [src.admincaster_signature]") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
+				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [admin_holder.admincaster_signature]") + "<BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
 			if(wanted_already)
-				dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</A>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
+				dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
 		if(15)
 			dat+={"
-				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.") + {"<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_green("Wanted issue for [admin_holder.admincaster_feed_message.author] is now in Network Circulation.") + {"<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(16)
 			dat+=span_bold(span_maroon("ERROR: Wanted Issue rejected by Network.")) + "<HR><BR>"
-			if(src.admincaster_feed_message.author =="" || src.admincaster_feed_message.author == "\[REDACTED\]")
+			if(admin_holder.admincaster_feed_message.author =="" || admin_holder.admincaster_feed_message.author == "\[REDACTED\]")
 				dat+=span_maroon("Invalid name for person wanted.") + "<BR>"
-			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
+			if(admin_holder.admincaster_feed_message.body == "" || admin_holder.admincaster_feed_message.body == "\[REDACTED\]")
 				dat+=span_maroon("Invalid description.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>"
 		if(17)
 			dat+={"
 				"} + span_bold("Wanted Issue successfully deleted from Circulation") + {"<BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(18)
 			dat+={"
@@ -502,29 +493,30 @@ ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", 
 				"} + span_bold("Photo:") + {":
 			"}
 			if(GLOB.news_network.wanted_issue.img)
-				usr << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
+				user << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 				dat+="<BR><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Back</A><BR>"
 		if(19)
 			dat+={"
-				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] successfully edited.") + {"<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_green("Wanted issue for [admin_holder.admincaster_feed_message.author] successfully edited.") + {"<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		else
 			dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-	//to_chat(world, "Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
-	//to_chat(world, "Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
+	//to_chat(world, "Channelname: [admin_holder.admincaster_feed_channel.channel_name] [admin_holder.admincaster_feed_channel.author]")
+	//to_chat(world, "Msg: [admin_holder.admincaster_feed_message.author] [admin_holder.admincaster_feed_message.body]")
 
-	var/datum/browser/popup = new(owner, "admincaster_main", "Admin Newscaster", 400, 600)
+	var/datum/browser/popup = new(user, "admincaster_main", "Admin Newscaster", 400, 600)
 	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
 	popup.set_content(dat)
 	popup.open()
 
 /datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))
+		return
 
 	var/dat = span_bold("Job Bans!") + "<HR><table>"
 	for(var/t in jobban_keylist)
@@ -788,14 +780,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
 			sleep(this_wait SECONDS)
 
-/datum/admins/proc/toggleooc()
-	set category = "Server.Chat"
-	set desc="Globally Toggles OOC"
-	set name="Toggle Player OOC"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(toggleooc, R_ADMIN, "Toggle Player OOC", "Globally Toggles OOC.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/ooc_allowed, !CONFIG_GET(flag/ooc_allowed))
 	if (CONFIG_GET(flag/ooc_allowed))
 		to_chat(world, span_world("The OOC channel has been globally enabled!"))
@@ -804,14 +789,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglelooc()
-	set category = "Server.Chat"
-	set desc="Globally Toggles LOOC"
-	set name="Toggle Player LOOC"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(togglelooc, R_ADMIN, "Toggle Player LOOC", "Globally Toggles LOOC.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/looc_allowed, !CONFIG_GET(flag/looc_allowed))
 	if (CONFIG_GET(flag/looc_allowed))
 		to_chat(world, span_world("The LOOC channel has been globally enabled!"))
@@ -820,57 +798,32 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	log_and_message_admins("toggled LOOC.")
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/toggledsay()
-	set category = "Server.Chat"
-	set desc="Globally Toggles DSAY"
-	set name="Toggle DSAY"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(toggledsay, R_ADMIN, "Toggle DSAY", "Globally Toggles DSAY.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/dsay_allowed, !CONFIG_GET(flag/dsay_allowed))
 	if (CONFIG_GET(flag/dsay_allowed))
 		to_chat(world, span_world("Deadchat has been globally enabled!"))
 	else
 		to_chat(world, span_world("Deadchat has been globally disabled!"))
-	log_admin("[key_name(usr)] toggled deadchat.")
-	message_admins("[key_name_admin(usr)] toggled deadchat.")
+	log_admin("[key_name(user)] toggled deadchat.")
+	message_admins("[key_name_admin(user)] toggled deadchat.")
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggleoocdead()
-	set category = "Server.Chat"
-	set desc="Toggle Dead OOC."
-	set name="Toggle Dead OOC"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(toggleoocdead, R_ADMIN, "Toggle Dead OOC", "Toggle Dead OOC.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/dooc_allowed, !CONFIG_GET(flag/dooc_allowed))
-	log_admin("[key_name(usr)] toggled Dead OOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead OOC.")
+	log_admin("[key_name(user)] toggled Dead OOC.")
+	message_admins("[key_name_admin(user)] toggled Dead OOC.")
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglehubvisibility()
-	set category = "Server.Config"
-	set desc="Globally Toggles Hub Visibility"
-	set name="Toggle Hub Visibility"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(togglehubvisibility, R_HOST, "Toggle Hub Visibility", "Globally Toggles Hub Visibility.", ADMIN_CATEGORY_SERVER_CONFIG)
 	world.visibility = !(world.visibility)
-	log_admin("[key_name(usr)] toggled hub visibility.")
-	message_admins("[key_name_admin(usr)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).")
+	log_admin("[key_name(user)] toggled hub visibility.")
+	message_admins("[key_name_admin(user)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).")
 	feedback_add_details("admin_verb","THUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggletraitorscaling()
-	set category = "Server.Game"
-	set desc="Toggle traitor scaling"
-	set name="Toggle Traitor Scaling"
+ADMIN_VERB(toggletraitorscaling, R_ADMIN, "Toggle traitor scaling", "Toggle traitor scaling.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/traitor_scaling, !CONFIG_GET(flag/traitor_scaling))
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].")
+	log_admin("[key_name(user)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
+	message_admins("[key_name_admin(user)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(startnow, R_SERVER|R_EVENT, "Start Now", "Start the round ASAP.", ADMIN_CATEGORY_SERVER_GAME)
@@ -1115,13 +1068,9 @@ ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edi
 	M.mind.edit_memory(user.mob)
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/show_game_mode()
-	set category = "Admin.Game"
-	set desc = "Show the current round configuration."
-	set name = "Show Game Mode"
-
+ADMIN_VERB(show_game_mode, R_ADMIN|R_EVENT, "Show Game Mode", "Show the current round configuration.", ADMIN_CATEGORY_GAME)
 	if(!SSticker|| !SSticker.mode)
-		tgui_alert_async(usr, "Not before roundstart!", "Alert")
+		tgui_alert_async(user, "Not before roundstart!", "Alert")
 		return
 
 	var/out = span_large(span_bold("Current mode: [SSticker.mode.name] (<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=self'>[SSticker.mode.config_tag]</a>)")) + "<br/>"
@@ -1185,36 +1134,29 @@ ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edi
 		out += " None."
 	out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
+	var/datum/browser/popup = new(user, "edit_mode[user.holder]", "Edit Game Mode")
 	popup.set_content(out)
 	popup.open()
 	feedback_add_details("admin_verb","SGM")
 
-
-/datum/admins/proc/toggletintedweldhelmets()
-	set category = "Server.Config"
-	set desc="Reduces view range when wearing welding helmets"
-	set name="Toggle tinted welding helmets."
+ADMIN_VERB(toggletintedweldhelmets, R_ADMIN, "Toggle tinted welding helmets", "Reduces view range when wearing welding helmets.", ADMIN_CATEGORY_SERVER_CONFIG)
 	CONFIG_SET(flag/welder_vision, !CONFIG_GET(flag/welder_vision))
 	if (CONFIG_GET(flag/welder_vision))
 		to_chat(world, span_world("Reduced welder vision has been enabled!"))
 	else
 		to_chat(world, span_world("Reduced welder vision has been disabled!"))
-	log_admin("[key_name(usr)] toggled welder vision.")
-	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
+	log_admin("[key_name(user)] toggled welder vision.")
+	message_admins("[key_name_admin(user)] toggled welder vision.", 1)
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleguests()
-	set category = "Server.Config"
-	set desc="Guests can't enter"
-	set name="Toggle guests"
+ADMIN_VERB(toggleguests, R_HOST, "Toggle guests", "Guests can't enter.", ADMIN_CATEGORY_SERVER_CONFIG)
 	CONFIG_SET(flag/guests_allowed, !CONFIG_GET(flag/guests_allowed))
 	if (!CONFIG_GET(flag/guests_allowed))
 		to_chat(world, span_world("Guests may no longer enter the game."))
 	else
 		to_chat(world, span_world("Guests may now enter the game."))
-	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."))
+	log_admin("[key_name(user)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
+	message_admins(span_blue("[key_name_admin(user)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."))
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)

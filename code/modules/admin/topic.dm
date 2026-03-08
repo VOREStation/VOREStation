@@ -1675,15 +1675,15 @@
 
 	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
 		src.admincaster_screen = 18                 //The ac_ prefix before the hrefs stands for AdminCaster.
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_channel_name"])
 		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", encode = FALSE))
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_channel_lock"])
 		src.admincaster_feed_channel.locked = !src.admincaster_feed_channel.locked
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_submit_new_channel"])
 		var/check = 0
@@ -1700,22 +1700,22 @@
 				feedback_inc("newscaster_channels",1)                  //Adding channel to the global network
 				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
 				src.admincaster_screen=5
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_channel_receiving"])
 		var/list/available_channels = list()
 		for(var/datum/feed_channel/F in GLOB.news_network.network_channels)
 			available_channels += F.channel_name
 		src.admincaster_feed_channel.channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_new_title"])
 		src.admincaster_feed_message.title = tgui_input_text(usr, "Enter the Feed title", "Network Channel Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_new_message"])
 		src.admincaster_feed_message.body = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_submit_new_message"])
 		if(src.admincaster_feed_message.body =="" || admincaster_feed_message.title == "" || admincaster_feed_message.body =="\[REDACTED\]" || admincaster_feed_channel.channel_name == "" )
@@ -1726,23 +1726,23 @@
 			src.admincaster_screen=4
 
 		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_create_channel"])
 		src.admincaster_screen=2
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_create_feed_story"])
 		src.admincaster_screen=3
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_menu_censor_story"])
 		src.admincaster_screen=10
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_menu_censor_channel"])
 		src.admincaster_screen=11
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_menu_wanted"])
 		var/already_wanted = 0
@@ -1753,15 +1753,15 @@
 			src.admincaster_feed_message.author = GLOB.news_network.wanted_issue.author
 			src.admincaster_feed_message.body = GLOB.news_network.wanted_issue.body
 		src.admincaster_screen = 14
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_wanted_name"])
 		src.admincaster_feed_message.author = tgui_input_text(usr, "Provide the name of the Wanted person", "Network Security Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_wanted_desc"])
 		src.admincaster_feed_message.body = tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_submit_wanted"])
 		var/input_param = text2num(href_list["ac_submit_wanted"])
@@ -1787,7 +1787,7 @@
 					GLOB.news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
 					src.admincaster_screen = 19
 				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_cancel_wanted"])
 		var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
@@ -1796,7 +1796,7 @@
 			for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 				NEWSCASTER.update_icon()
 			src.admincaster_screen=17
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_censor_channel_author"])
 		var/datum/feed_channel/FC = locate(href_list["ac_censor_channel_author"])
@@ -1805,7 +1805,7 @@
 			FC.author = span_bold("\[REDACTED\]")
 		else
 			FC.author = FC.backup_author
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_censor_channel_story_author"])
 		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_author"])
@@ -1814,7 +1814,7 @@
 			MSG.author = span_bold("\[REDACTED\]")
 		else
 			MSG.author = MSG.backup_author
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_censor_channel_story_body"])
 		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_body"])
@@ -1823,22 +1823,22 @@
 			MSG.body = span_bold("\[REDACTED\]")
 		else
 			MSG.body = MSG.backup_body
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_pick_d_notice"])
 		var/datum/feed_channel/FC = locate(href_list["ac_pick_d_notice"])
 		src.admincaster_feed_channel = FC
 		src.admincaster_screen=13
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_toggle_d_notice"])
 		var/datum/feed_channel/FC = locate(href_list["ac_toggle_d_notice"])
 		FC.censored = !FC.censored
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_view"])
 		src.admincaster_screen=1
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_setScreen"]) //Brings us to the main menu and resets all fields~
 		src.admincaster_screen = text2num(href_list["ac_setScreen"])
@@ -1847,26 +1847,26 @@
 				src.admincaster_feed_channel = new /datum/feed_channel
 			if(src.admincaster_feed_message)
 				src.admincaster_feed_message = new /datum/feed_message
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_show_channel"])
 		var/datum/feed_channel/FC = locate(href_list["ac_show_channel"])
 		src.admincaster_feed_channel = FC
 		src.admincaster_screen = 9
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_pick_censor_channel"])
 		var/datum/feed_channel/FC = locate(href_list["ac_pick_censor_channel"])
 		src.admincaster_feed_channel = FC
 		src.admincaster_screen = 12
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_refresh"])
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_signature"])
 		src.admincaster_signature = tgui_input_text(usr, "Provide your desired signature", "Network Identity Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["populate_inactive_customitems"])
 		if(check_rights(R_ADMIN|R_SERVER))
