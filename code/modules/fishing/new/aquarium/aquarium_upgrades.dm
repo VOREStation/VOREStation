@@ -11,7 +11,7 @@
 	/// typepath of the new aquarium subtype created.
 	var/upgrade_to_type = /obj/structure/aquarium
 
-/obj/item/aquarium_upgrade/attackby(atom/interacting_with, mob/living/user, list/modifiers)
+/obj/item/aquarium_upgrade/afterattack(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(interacting_with, TRAIT_IS_AQUARIUM))
 		return NONE
 	if(upgrade_from_type != interacting_with.type)
