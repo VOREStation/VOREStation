@@ -28,8 +28,8 @@
 	TEST_ASSERT(reagent, "the test fish doesn't have the test reagent.[fish.reagents ? "" : " It doesn't even have a reagent holder."]")
 	var/expected_units = FISH_REAGENT_AMOUNT * fish.weight / FISH_WEIGHT_BITE_DIVISOR
 	TEST_ASSERT_EQUAL(reagent.volume, expected_units, "the test fish has [reagent.volume] units of the test reagent when it should have [expected_units]")
-	TEST_ASSERT_EQUAL(fish.w_class, WEIGHT_CLASS_BULKY, "the test fish has w_class of [fish.w_class] when it should have been [WEIGHT_CLASS_BULKY]")
-	var/mob/living/carbon/human/chef = allocate(/mob/living/carbon/human/consistent)
+	TEST_ASSERT_EQUAL(fish.w_class, ITEMSIZE_LARGE, "the test fish has w_class of [fish.w_class] when it should have been [ITEMSIZE_LARGE]")
+	var/mob/living/carbon/human/chef = allocate(/mob/living/carbon/human)
 	var/obj/item/material/knife/blade = allocate(/obj/item/material/knife)
 	var/fish_fillet_type = fish.fillet_type
 	var/expected_num_fillets = fish.expected_num_fillets
@@ -243,7 +243,7 @@
 	var/obj/machinery/fishing_portal_generator/portal = allocate(__IMPLIED_TYPE__)
 	var/obj/structure/toilet/unit_test/fishing_spot = new(get_turf(user)) //This is deleted during the test
 	var/obj/structure/moisture_trap/extra_spot = allocate(/obj/structure/moisture_trap)
-	var/obj/machinery/hydroponics/constructable/inaccessible = allocate(__IMPLIED_TYPE__)
+	var/obj/machinery/portable_atmospherics/hydroponics/inaccessible = allocate(__IMPLIED_TYPE__)
 	ADD_TRAIT(inaccessible, TRAIT_UNLINKABLE_FISHING_SPOT, INNATE_TRAIT)
 	var/obj/item/multitool/tool = allocate(__IMPLIED_TYPE__)
 	var/datum/fish_source/toilet/fish_source = GLOB.preset_fish_sources[/datum/fish_source/toilet]
@@ -321,7 +321,7 @@
 		sleep(0.2 SECONDS) // we have to WAIT because the drop() proc sleeps.
 
 	// our 'fisherman' where we expect the item to be moved to after fishing it up
-	var/mob/living/carbon/human/a_fisherman = allocate(/mob/living/carbon/human/consistent, run_loc_floor_top_right)
+	var/mob/living/carbon/human/a_fisherman = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
 
 	// pretend like this mob has a mind. they should be fished up first
 	no_brain.mind_initialize()
@@ -423,7 +423,7 @@
 	///For good measure, let's try it again, but with the component this time, and a human mob and gloves
 	qdel(run_loc_floor_bottom_left.GetComponent(/datum/component/fishing_spot))
 	var/datum/component/comp = run_loc_floor_bottom_left.AddComponent(/datum/component/fishing_spot, source)
-	var/mob/living/carbon/human/angler = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/angler = allocate(/mob/living/carbon/human)
 	var/obj/item/clothing/gloves/noodling = allocate(/obj/item/clothing/gloves)
 	noodling.AddComponent(/datum/component/profound_fisher)
 	angler.equip_to_slot(noodling, ITEM_SLOT_GLOVES)
@@ -438,12 +438,12 @@
 
 /datum/fish_source/unit_test_explosive
 	fish_table = list(
-		/obj/item/wrench = 1,
-		/obj/item/screwdriver = INFINITY, //infinite weight, so if fish counts doesn't work as intended, this'll be always picked.
+		/obj/item/tool/wrench = 1,
+		/obj/item/tool/screwdriver = INFINITY, //infinite weight, so if fish counts doesn't work as intended, this'll be always picked.
 	)
 	fish_counts = list(
-		/obj/item/wrench = 1,
-		/obj/item/screwdriver = 0, //this should never be picked.
+		/obj/item/tool/wrench = 1,
+		/obj/item/tool/screwdriver = 0, //this should never be picked.
 	)
 
 /datum/fish_source/unit_test_profound_fisher
@@ -466,7 +466,7 @@
 	edible.eat_time = 0
 	TEST_ASSERT(fish.GetComponent(/datum/component/infective), "Fish doesn't have the infective component")
 
-	var/mob/living/carbon/human/gourmet = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/gourmet = allocate(/mob/living/carbon/human)
 
 	var/food_quality = edible.get_perceived_food_quality(gourmet)
 	TEST_ASSERT(food_quality < 0, "Humans don't seem to dislike raw, unprocessed fish when they should")
@@ -476,14 +476,14 @@
 	REMOVE_TRAIT(gourmet, TRAIT_FISH_EATER, TRAIT_FISH_TESTING)
 
 	fish.attack(gourmet, gourmet)
-	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/consumable/nutriment/protein), "Human hasn't ingested protein when eating fish")
+	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/nutriment/protein), "Human hasn't ingested protein when eating fish")
 	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/blood), "Human hasn't ingested blood when eating fish")
 	TEST_ASSERT(gourmet.has_reagent(/datum/reagent/fishdummy), "Human doesn't have the reagent from /datum/fish_trait/dummy after eating fish")
 
 	TEST_ASSERT_EQUAL(fish.status, FISH_DEAD, "The fish is not dead, despite having sustained enough damage that it should. health: [PERCENT(fish.get_health_percentage())]%")
 
-	var/obj/item/organ/stomach/belly = gourmet.get_organ_slot(ORGAN_SLOT_STOMACH)
-	belly.reagents.clear_reagents()
+//	var/obj/item/organ/stomach/belly = gourmet.get_organ_slot(ORGAN_SLOT_STOMACH)
+//	belly.reagents.clear_reagents()
 
 	fish.set_status(FISH_ALIVE)
 	TEST_ASSERT(!fish.bites_amount, "bites_amount wasn't reset after the fish revived")
