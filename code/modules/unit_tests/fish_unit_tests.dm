@@ -162,8 +162,11 @@
 /datum/fish_trait/dummy/two
 	incompatible_traits = list(/datum/fish_trait/dummy)
 
+#define REAGENT_FISHDUMMY "fish test reagent"
+#define REAGENT_ID_FISHDUMMY"fish_test"
 /datum/reagent/fishdummy
-	name = "fish test reagent"
+	name = REAGENT_FISHDUMMY
+	id = REAGENT_ID_FISHDUMMY
 	description = "It smells fishy."
 
 /obj/structure/aquarium/traits
@@ -418,7 +421,7 @@
 	var/mob/living/simple_mob/fisher = allocate(/mob/living/simple_mob)
 	fisher.AddComponent(/datum/component/profound_fisher)
 	fisher.a_intent = I_HURT
-	fisher.UnarmedAttack(run_loc_floor_bottom_left, ignore_cooldown = TRUE)
+	fisher.UnarmedAttack(run_loc_floor_bottom_left)//, ignore_cooldown = TRUE)
 
 	///For good measure, let's try it again, but with the component this time, and a human mob and gloves
 	qdel(run_loc_floor_bottom_left.GetComponent(/datum/component/fishing_spot))
@@ -428,7 +431,7 @@
 	noodling.AddComponent(/datum/component/profound_fisher)
 	angler.equip_to_slot(noodling, SLOT_GLOVES)
 
-	angler.UnarmedAttack(run_loc_floor_bottom_left, proximity_flag = TRUE)
+	angler.UnarmedAttack(run_loc_floor_bottom_left)//, proximity_flag = TRUE)
 	qdel(comp)
 
 	///As a final test, let's see how it goes with a fish source containing every single fish subtype.
@@ -551,3 +554,5 @@
 
 #undef FISH_REAGENT_AMOUNT
 #undef TRAIT_FISH_TESTING
+#undef REAGENT_FISHDUMMY
+#undef REAGENT_ID_FISHDUMMY

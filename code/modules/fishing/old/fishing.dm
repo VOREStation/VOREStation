@@ -1,7 +1,7 @@
 /*
  * Fishing! Contains normal fishing rods and nets.
  */
-
+/*
 GLOBAL_LIST_INIT(generic_fishing_rare_list, list(
 		/mob/living/simple_mob/animal/passive/fish/solarfish = 1,
 		/mob/living/simple_mob/animal/passive/fish/icebass = 5,
@@ -39,17 +39,17 @@ GLOBAL_LIST_INIT(generic_fishing_pool_list, list(
 		/obj/item/spacecash/c10 = 2,
 		/obj/item/spacecash/c100 = 1
 		))
-
+*/
 #define FISHING_RARE     "rare"
 #define FISHING_UNCOMMON "uncommon"
 #define FISHING_COMMON   "common"
 #define FISHING_JUNK     "junk"
 #define FISHING_NOTHING  "nothing"
-
+/*
 GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNCOMMON = 15, FISHING_COMMON = 30, FISHING_JUNK = 30, FISHING_NOTHING = 40))
-
+*/
 /turf/simulated/floor/water
-	var/has_fish = TRUE //If the water has fish or not.
+/*	var/has_fish = TRUE //If the water has fish or not.
 
 	var/list/rare_fish_list	// Rare list.
 
@@ -69,7 +69,8 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 	var/max_fishing_time = 90
 
 	var/being_fished = FALSE
-
+*/
+/*
 /turf/simulated/floor/water/proc/handle_fish()	// Subtypes should over-ride this, and supply their own GLOB lists for maximum Mix and Match power.
 	if(has_fish)
 		rare_fish_list = GLOB.generic_fishing_rare_list
@@ -77,13 +78,13 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 		common_fish_list = GLOB.generic_fishing_common_list
 		junk_list = GLOB.generic_fishing_junk_list
 		fishing_loot = GLOB.generic_fishing_chance_list
-
+*/
 /turf/simulated/floor/water/pool
-	has_fish = FALSE
+//	has_fish = FALSE
 
 /turf/simulated/floor/water/deep/pool
-	has_fish = TRUE
-
+//	has_fish = TRUE
+/*
 /turf/simulated/floor/water/deep/pool/handle_fish()
 	if(has_fish)
 		rare_fish_list = GLOB.generic_fishing_pool_list
@@ -162,6 +163,7 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 		R.cast = FALSE
 		being_fished = FALSE
 	else ..()
+*/
 
 /obj/random/fishing_junk
 	name = "junk"
