@@ -60,16 +60,45 @@
 	QDEL_NULL(print_sound)
 	return ..()
 
-/obj/machinery/autolathe/tgui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "Autolathe", name)
-		ui.open()
+/obj/machinery/autolathe/examine(mob/user)
+	. = ..()
+	if(!in_range(user, src) && !isobserver(user))
+		return
+	. += span_notice("Material usage cost at <b>[creation_efficiency * 100]%</b>.")
+	. += span_notice("Its maintenance panel is [!panel_open ? "closed" : "open"].")
 
 /obj/machinery/autolathe/tgui_status(mob/user)
 	if(disabled)
 		return STATUS_CLOSE
 	return ..()
+
+/obj/machinery/autolathe/attack_hand(mob/user as mob)
+	interact(user)
+
+/obj/machinery/autolathe/interact(mob/user)
+	if(panel_open)
+		return wires.Interact(user)
+
+	if(disabled)
+		to_chat(user, span_danger("\The [src] is disabled!"))
+		return
+
+	if(shocked)
+		shock(user, 50)
+
+	tgui_interact(user)
+
+/obj/machinery/autolathe/proc/AfterMaterialInsert(datum/source, obj/item/item_inserted, id_inserted, amount_inserted)
+	SIGNAL_HANDLER
+	flick("autolathe_loading", src)//plays metal insertion animation
+	// use_power(min(1000, amount_inserted / 100))
+	SStgui.update_uis(src)
+
+/obj/machinery/autolathe/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Autolathe", name)
+		ui.open()
 
 /obj/machinery/autolathe/proc/handle_designs(list/designs)
 	PRIVATE_PROC(TRUE)
@@ -133,82 +162,6 @@
 	data["materials"] = materials.tgui_data()
 
 	return data
-
-/obj/machinery/autolathe/interact(mob/user)
-	if(panel_open)
-		return wires.Interact(user)
-
-	if(disabled)
-		to_chat(user, span_danger("\The [src] is disabled!"))
-		return
-
-	if(shocked)
-		shock(user, 50)
-
-	tgui_interact(user)
-
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(busy)
-		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
-		return
-
-	if(default_deconstruction_screwdriver(user, O))
-		interact(user)
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
-		return
-
-	if(stat)
-		return
-
-	if(istype(O, /obj/item/disk/design_disk))
-		user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."),
-			balloon_alert(user, "uploading design..."),
-			span_hear("You hear the chatter of a floppy drive."))
-		busy = TRUE
-
-		if(!do_after(user, 1.5 SECONDS, target = src))
-			busy = FALSE
-			update_static_data_for_all_viewers()
-			balloon_alert(user, "interrupted!")
-			return
-
-		var/obj/item/disk/design_disk/disky = O
-		var/list/not_imported
-		for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
-			if(!blueprint)
-				continue
-			if(blueprint.build_type & AUTOLATHE)
-				imported_designs[blueprint.id] = TRUE
-			else
-				LAZYADD(not_imported, blueprint.name)
-
-		if(not_imported)
-			to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
-
-		busy = FALSE
-		update_static_data_for_all_viewers()
-		return
-
-	if(panel_open)
-		//Don't eat multitools or wirecutters used on an open lathe.
-		if(O.has_tool_quality(TOOL_MULTITOOL) || O.has_tool_quality(TOOL_WIRECUTTER))
-			wires.Interact(user)
-			return
-
-	if(is_robot_module(O))
-		return 0
-
-	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
-		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
-		return
-
-	return ..()
-
-/obj/machinery/autolathe/attack_hand(mob/user as mob)
-	interact(user)
 
 /obj/machinery/autolathe/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -290,6 +243,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(do_make_item), design, build_count, build_time_per_item, material_cost_coefficient, charge_per_item, materials_needed, target_location), build_time_per_item)
 	return TRUE
+
 /**
  * Callback for start_making, actually makes the item
  * Arguments
@@ -372,19 +326,66 @@
 	busy = FALSE
 	SStgui.update_uis(src)
 
-/obj/machinery/autolathe/update_icon()
-	cut_overlays()
+/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(busy)
+		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
+		return
 
-	icon_state = initial(icon_state)
+	if(default_deconstruction_screwdriver(user, O))
+		interact(user)
+		return
+	if(default_deconstruction_crowbar(user, O))
+		return
+	if(default_part_replacement(user, O))
+		return
+
+	if(stat)
+		return
+
+	if(istype(O, /obj/item/disk/design_disk))
+		user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."),
+			balloon_alert(user, "uploading design..."),
+			span_hear("You hear the chatter of a floppy drive."))
+		busy = TRUE
+
+		if(!do_after(user, 1.5 SECONDS, target = src))
+			busy = FALSE
+			update_static_data_for_all_viewers()
+			balloon_alert(user, "interrupted!")
+			return
+
+		var/obj/item/disk/design_disk/disky = O
+		var/list/not_imported
+		for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
+			if(!blueprint)
+				continue
+			if(blueprint.build_type & AUTOLATHE)
+				imported_designs[blueprint.id] = TRUE
+			else
+				LAZYADD(not_imported, blueprint.name)
+
+		if(not_imported)
+			to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
+
+		busy = FALSE
+		update_static_data_for_all_viewers()
+		return
 
 	if(panel_open)
-		add_overlay("[icon_state]_panel")
-	if(stat & NOPOWER)
-		return
-	if(busy)
-		icon_state = "[icon_state]_work"
+		//Don't eat multitools or wirecutters used on an open lathe.
+		if(O.has_tool_quality(TOOL_MULTITOOL) || O.has_tool_quality(TOOL_WIRECUTTER))
+			wires.Interact(user)
+			return
 
-//Updates overall lathe storage size.
+	if(is_robot_module(O))
+		return 0
+
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
+		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
+		return
+
+	return ..()
+
 /obj/machinery/autolathe/RefreshParts()
 	. = ..()
 	var/mat_capacity = 0
@@ -397,15 +398,14 @@
 		efficiency -= new_servo.rating * 0.2
 	creation_efficiency = max(1, round(efficiency, 0.1)) // creation_efficiency goes 1.6 -> 1.4 -> 1.2 -> 1 per level of servo efficiency
 
-/obj/machinery/autolathe/proc/AfterMaterialInsert(datum/source, obj/item/item_inserted, id_inserted, amount_inserted)
-	SIGNAL_HANDLER
-	flick("autolathe_loading", src)//plays metal insertion animation
-	// use_power(min(1000, amount_inserted / 100))
-	SStgui.update_uis(src)
+/obj/machinery/autolathe/update_icon()
+	cut_overlays()
 
-/obj/machinery/autolathe/examine(mob/user)
-	. = ..()
-	if(!in_range(user, src) && !isobserver(user))
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		add_overlay("[icon_state]_panel")
+	if(stat & NOPOWER)
 		return
-	. += span_notice("Material usage cost at <b>[creation_efficiency * 100]%</b>.")
-	. += span_notice("Its maintenance panel is [!panel_open ? "closed" : "open"].")
+	if(busy)
+		icon_state = "[icon_state]_work"
