@@ -1,0 +1,5 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - qol: "critter rifts are now emissive, so they can be seen in unlit areas (still only visible to ghosts)"
+  - bugfix: "fixed notification prefs for maint critter rifts (I think)"
