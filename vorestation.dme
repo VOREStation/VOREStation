@@ -2919,6 +2919,7 @@
 #include "code\modules\fishing\new\sources\subtypes\rifts.dm"
 #include "code\modules\fishing\new\sources\subtypes\structures.dm"
 #include "code\modules\fishing\new\sources\subtypes\turfs.dm"
+#include "code\modules\fishing\old\fishing.dm"
 #include "code\modules\flufftext\Dreaming.dm"
 #include "code\modules\flufftext\fake_attacker.dm"
 #include "code\modules\flufftext\Hallucination.dm"
