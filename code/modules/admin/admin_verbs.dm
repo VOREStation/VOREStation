@@ -17,7 +17,6 @@
 		/client/proc/togglebuildmodeself,
 		GLOB.admin_verbs_admin,
 		GLOB.admin_verbs_debug,
-		GLOB.debug_verbs
 		))
 
 	// NEW ADMIN VERBS SYSTEM

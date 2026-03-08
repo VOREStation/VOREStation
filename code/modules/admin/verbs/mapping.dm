@@ -111,27 +111,6 @@ ADMIN_VERB(intercom_view, R_HOST, "Intercom Range Display", "Displays the interc
 					qdel(F)
 	feedback_add_details("admin_verb","mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/enable_debug_verbs()
-	set category = "Debug.Misc"
-	set name = "Debug verbs"
-
-	if(!check_rights(R_DEBUG)) return
-
-	add_verb(src, GLOB.debug_verbs)
-
-	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/hide_debug_verbs()
-	set category = "Debug.Misc"
-	set name = "Hide Debug verbs"
-
-	if(!check_rights(R_DEBUG)) return
-
-	remove_verb(src, GLOB.debug_verbs)
-
-	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 /client/var/list/testZAScolors_turfs = list()
 /client/var/list/testZAScolors_zones = list()
 /client/var/usedZAScolors = 0

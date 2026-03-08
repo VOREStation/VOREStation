@@ -72,14 +72,10 @@
 		to_chat(user, span_warning("You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb."))
 		return
 
-/client/proc/Cell()
-	set category = "Debug.Investigate"
-	set name = "Cell"
-	if(!mob)
-		return
-	var/turf/T = mob.loc
+ADMIN_VERB(Cell, R_DEBUG, "Cell", "Display the atmos information of the current cell.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	var/turf/T = get_turf(user.mob)
 
-	if (!( istype(T, /turf) ))
+	if (!(isturf(T)))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
@@ -90,7 +86,7 @@
 	for(var/g in env.gas)
 		t += span_blue("[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n")
 
-	usr.show_message(t, 1)
+	user.mob.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
@@ -298,20 +294,10 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/take_picture(var/atom/A in world)
-	set name = "Save PNG"
-	set category = "Debug.Misc"
-	set desc = "Opens a dialog to save a PNG of any object in the game."
+ADMIN_VERB(take_picture, R_DEBUG, "Save PNG", "Opens a dialog to save a PNG of any object in the game.", ADMIN_CATEGORY_DEBUG_MISC, atom/selected_atom in world)
+	downloadImage(selected_atom)
 
-	if(!check_rights(R_DEBUG))
-		return
-
-	downloadImage(A)
-
-/client/proc/cmd_admin_areatest()
-	set category = "Mapping"
-	set name = "Test areas"
-
+ADMIN_VERB(cmd_admin_areatest, R_HOST, "Test areas", "Manually tests all areas and prints to world (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	var/list/areas_all = list()
 	var/list/areas_with_APC = list()
 	var/list/areas_with_air_alarm = list()

@@ -112,34 +112,17 @@
 	load_admins()
 	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/reload_eventMs()
-	set name = "Reload Event Managers"
-	set category = "Debug.Server"
-
-	if(!check_rights(R_SERVER)) return
-
-	message_admins("[usr] manually reloaded Event Managers")
-	world.load_mods()
-
-/client/proc/print_jobban_old()
-	set name = "Print Jobban Log"
-	set desc = "This spams all the active jobban entries for the current round to standard output."
-	set category = "Debug.Investigate"
-
-	to_chat(usr, span_bold("Jobbans active in this round."))
+ADMIN_VERB(print_jobban_old, R_ADMIN|R_MOD, "Print Jobban Log", "This spams all the active jobban entries for the current round to standard output.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	to_chat(user, span_debug_info(span_bold("Jobbans active in this round.")))
 	for(var/t in jobban_keylist)
-		to_chat(usr, "[t]")
+		to_chat(user, span_debug_info("[t]"))
 
-/client/proc/print_jobban_old_filter()
-	set name = "Search Jobban Log"
-	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
-	set category = "Debug.Investigate"
-
-	var/job_filter = tgui_input_text(usr, "Contains what?","Job Filter")
+ADMIN_VERB(print_jobban_old_filter, R_ADMIN|R_MOD, "Search Jobban Log", "This searches all the active jobban entries for the current round and outputs the results to standard output.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	var/job_filter = tgui_input_text(user, "Contains what?","Job Filter")
 	if(!job_filter)
 		return
 
-	to_chat(usr, span_bold("Jobbans active in this round."))
+	to_chat(user, span_debug_info(span_bold("Jobbans active in this round.")))
 	for(var/t in jobban_keylist)
 		if(findtext(t, job_filter))
-			to_chat(usr, "[t]")
+			to_chat(user, span_debug_info("[t]"))

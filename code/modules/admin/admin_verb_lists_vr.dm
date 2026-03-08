@@ -38,14 +38,12 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/cmd_display_init_log,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
-	/client/proc/reload_eventMs,
 	/client/proc/print_random_map,
 	/client/proc/create_random_map,
 	/client/proc/apply_random_map,
 	/client/proc/overlay_random_map,
 	/client/proc/delete_random_map,
 	/client/proc/show_plant_genes,
-	/client/proc/enable_debug_verbs,
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
@@ -66,7 +64,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/simple_DPS,
 	/client/proc/cmd_display_del_log,
 	/client/proc/air_report,
-	/client/proc/enable_debug_verbs,
 	/datum/admins/proc/set_uplink,
 	/client/proc/stop_sounds
 	))
@@ -114,14 +111,3 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/client/proc/modify_event_collector,
 	/client/proc/induce_malfunction
 ))
-
-GLOBAL_LIST_INIT(debug_verbs, list(
-		,/client/proc/Cell
-		,/client/proc/kaboom
-		,/client/proc/cmd_admin_areatest
-		,/client/proc/print_jobban_old
-		,/client/proc/print_jobban_old_filter
-		,/client/proc/hide_debug_verbs
-		,/client/proc/spawn_tanktransferbomb
-		,/client/proc/take_picture
-	))
