@@ -254,7 +254,6 @@
 
 	// Check for materials required. For custom material items decode their required materials
 	var/list/materials_needed = list()
-	var/mat_choice = FALSE
 	for(var/material, amount_needed in design.materials)
 		if(!istype(material, /datum/material))
 			CRASH("Autolathe ui_act got passed an invalid material id: [material]")
@@ -376,7 +375,7 @@
 	busy = FALSE
 	SStgui.update_uis(src)
 
-/obj/machinery/autolathe/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
+/obj/machinery/autolathe/MouseDrop_T(atom/movable/over_location, mob/living/user)
 	if(isobserver(user) || !Adjacent(user))
 		return
 	if(busy)
