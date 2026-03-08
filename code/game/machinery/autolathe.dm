@@ -24,9 +24,6 @@
 	var/busy = FALSE
 
 	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
-	var/mat_efficiency = 1
-	var/mb_rating = 0
-	var/man_rating = 0
 	var/build_time = 50
 
 	var/datum/wires/autolathe/wires = null
@@ -50,11 +47,10 @@
 		))
 	. = ..()
 	wires = new(src)
-	/*
+
 	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
 		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe]
-	*/
 
 	default_apply_parts()
 	RefreshParts()
@@ -80,22 +76,18 @@
 
 	var/list/categories = list()
 	var/list/recipes = list()
-	for(var/datum/category_group/autolathe/A in autolathe_recipes.categories)
-		categories += A.name
-		for(var/datum/category_item/autolathe/M in A.items)
-			if(M.hidden && !hacked)
-				continue
-			if(M.man_rating > man_rating)
-				continue
-			recipes.Add(list(list(
-				"category" = A.name,
-				"name" = M.name,
-				"ref" = REF(M),
-				"requirements" = M.resources,
-				"hidden" = M.hidden,
-				"coeff_applies" = !M.no_scale,
-				"is_stack" = M.is_stack,
-			)))
+	for(var/id in stored_research.researched_designs + (hacked ? stored_research.hacked_designs : list()))
+		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
+		recipes.Add(list(list(
+			"category" = design.category,
+			"name" = design.name,
+			"ref" = REF(design),
+			"requirements" = design.materials,
+			"hidden" = FALSE,
+			"coeff_applies" = FALSE,
+			"is_stack" = FALSE,
+		)))
+		categories |= design.category
 	data["recipes"] = recipes
 	data["categories"] = categories
 
@@ -117,7 +109,7 @@
 	var/list/material_data = rmat.mat_container?.tgui_data(user, TRUE)
 	if(material_data)
 		data["materials"] = material_data
-	data["mat_efficiency"] = mat_efficiency
+	data["mat_efficiency"] = 1
 	return data
 
 /obj/machinery/autolathe/interact(mob/user)
@@ -207,39 +199,22 @@
 		return
 	switch(action)
 		if("make")
-			var/datum/category_item/autolathe/making = locate(params["make"])
+			var/datum/design_techweb/making = locate(params["make"])
 			if(!istype(making))
-				return
-			if(making.hidden && !hacked)
 				return
 
 			var/multiplier = (params["multiplier"] || 1)
 
-			if(making.is_stack)
-				var/max_sheets
-				for(var/material in making.resources)
-					var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
-					var/sheets = round(rmat.mat_container.get_material_amount(material) / round(making.resources[material] * coeff))
-					if(isnull(max_sheets) || max_sheets > sheets)
-						max_sheets = sheets
-					if(!isnull(rmat.mat_container.get_material_amount(material)) && rmat.mat_container.get_material_amount(material) < round(making.resources[material] * coeff))
-						max_sheets = 0
-				//Build list of multipliers for sheets.
-				multiplier = tgui_input_number(ui.user, "How many do you want to print? (0-[max_sheets])", null, null, max_sheets, 0)
-				if(!multiplier || multiplier <= 0 || (multiplier != round(multiplier)) || multiplier > max_sheets || tgui_status(ui.user, state) != STATUS_INTERACTIVE)
-					return FALSE
-
 			//Check if we still have the materials.
-			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
+			var/coeff = 1
 
 			if(!rmat.can_use_resource())
 				return
 
-			if(LAZYLEN(making.resources))
-				if(!rmat.mat_container.has_materials(making.resources, coeff, multiplier))
+			if(LAZYLEN(making.materials))
+				if(!rmat.mat_container.has_materials(making.materials, coeff, multiplier))
 					return
-
-				rmat.use_materials(making.resources, coeff, multiplier)
+				rmat.use_materials(making.materials, coeff, multiplier)
 
 			busy = making.name
 			print_sound.start()
@@ -252,7 +227,7 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/autolathe/proc/finalize_build(var/datum/category_item/autolathe/making, multiplier)
+/obj/machinery/autolathe/proc/finalize_build(datum/design_techweb/making, multiplier)
 	PROTECTED_PROC(TRUE)
 
 	busy = FALSE
@@ -266,15 +241,15 @@
 		return
 
 	//Create the desired item.
-	var/obj/item/I = new making.path(src.loc)
+	var/obj/item/I = new making.build_path(src.loc)
 
 	if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
 		I.matter.Cut()
 	else
 		I.matter = list()
 
-	for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
-		I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+	for(var/material in making.materials)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
+		I.matter[material] = round(making.materials[material])
 
 	flick("[initial(icon_state)]_finish", src)
 	if(multiplier > 1)
@@ -283,7 +258,7 @@
 			S.set_amount(multiplier)
 		else
 			for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-				I = new making.path(src.loc)
+				I = new making.build_path(get_turf(src))
 				// We've already deducted the cost of multiple items. Process the matter the same.
 				if(LAZYLEN(I.matter))
 					I.matter.Cut()
@@ -291,8 +266,8 @@
 				else
 					I.matter = list()
 
-				for(var/material in making.resources)
-					I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+				for(var/material in making.materials)
+					I.matter[material] = round(making.materials[material])
 
 
 /obj/machinery/autolathe/update_icon()
@@ -310,17 +285,16 @@
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
 	..()
-	mb_rating = 0
-	man_rating = 0
+	var/mb_rating = 0
+	var/man_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		mb_rating += MB.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
 	rmat.set_local_size(mb_rating * 75000)
-
 	build_time = 50 / man_rating
-	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
+
 	update_tgui_static_data(usr)
 
 /obj/machinery/autolathe/proc/AfterMaterialInsert(datum/source, obj/item/item_inserted, id_inserted, amount_inserted)
@@ -332,4 +306,4 @@
 /obj/machinery/autolathe/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[mat_efficiency*100]%</b>.")
+		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units</b>.")

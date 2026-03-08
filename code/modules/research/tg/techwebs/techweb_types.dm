@@ -33,3 +33,46 @@
  */
 /datum/techweb/disk
 	id = "D1SK"
+
+GLOBAL_LIST_EMPTY(autounlock_techwebs)
+
+/**
+ * Techweb node that automatically unlocks a given buildtype.
+ * Saved in GLOB.autounlock_techwebs and used to prevent
+ * creating new ones each time it's needed.
+ */
+/datum/techweb/autounlocking
+	///The buildtype we will automatically unlock.
+	var/allowed_buildtypes = ALL
+	///Designs that are only available when the printer is hacked.
+	var/list/hacked_designs = list()
+
+/datum/techweb/autounlocking/New()
+	. = ..()
+	for(var/id in SSresearch.techweb_designs)
+		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
+		if(!(design.build_type & allowed_buildtypes))
+			continue
+		if(RND_CATEGORY_INITIAL in design.category)
+			add_design_by_id(id)
+		if(RND_CATEGORY_HACKED in design.category)
+			add_design_by_id(id, add_to = hacked_designs)
+
+/datum/techweb/autounlocking/add_design(datum/design_techweb/design, custom = FALSE, list/add_to)
+	if(!(design.build_type & allowed_buildtypes))
+		return FALSE
+	return ..()
+
+/datum/techweb/autounlocking/autolathe
+	allowed_buildtypes = AUTOLATHE
+
+/*
+/datum/techweb/autounlocking/limbgrower
+	allowed_buildtypes = LIMBGROWER
+
+/datum/techweb/autounlocking/biogenerator
+	allowed_buildtypes = BIOGENERATOR
+
+/datum/techweb/autounlocking/smelter
+	allowed_buildtypes = SMELTER
+*/
