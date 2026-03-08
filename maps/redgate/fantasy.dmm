@@ -1916,7 +1916,7 @@
 /area/redgate/fantasy/butcher)
 "ml" = (
 /obj/structure/table/woodentable,
-/obj/item/material/fishing_net,
+/obj/item/fishing_rod,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "mm" = (

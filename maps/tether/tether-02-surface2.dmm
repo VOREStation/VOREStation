@@ -15570,11 +15570,11 @@
 /area/tether/surfacebase/fish_farm)
 "aBg" = (
 /obj/structure/table/rack,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
-/obj/item/material/fishing_net,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /obj/machinery/camera/network/civilian{
 	dir = 9
 	},
