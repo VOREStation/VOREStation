@@ -3,17 +3,19 @@ import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
+  Dropdown,
   LabeledList,
   Section,
   Stack,
   TextArea,
 } from 'tgui-core/components';
+import { configTools } from './constants';
 import { healthToColor } from './functions';
 import { PaiIcon } from './PaiIcon';
-import type { ActivePAIData } from './types';
+import type { ActivePAIData, Data, RadioData } from './types';
 
 export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
-  const { act } = useBackend();
+  const { data, act } = useBackend<Data>();
   const [newDirective, setNewDirective] = useState('');
 
   const { activeData } = props;
@@ -30,6 +32,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
     radio_data,
     sprite_datum_class,
     sprite_datum_size,
+    emag_data,
   } = activeData;
 
   return (
@@ -54,7 +57,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
                 </Stack.Item>
                 <Stack.Item>
                   <Button
-                    icon="lightbulb-o"
+                    icon="dna"
                     disabled={!!master_name && !!master_dna}
                     onClick={() => act('setdna')}
                   >
@@ -107,20 +110,49 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
           </Section>
         </Stack.Item>
         <Stack.Item>
-          <Section title="Radio Uplink">
-            {radio_data ? (
-              <LabeledList>
-                <LabeledList.Item label="Receiving">
-                  <RadioBox status={!!radio_data.radio_recieve} />
-                </LabeledList.Item>
-                <LabeledList.Item label="Transmitting">
-                  <RadioBox status={!!radio_data.radio_transmit} />
-                </LabeledList.Item>
-              </LabeledList>
-            ) : (
-              'Radio firmware not loaded. Please install a pAI personality to load firmware.'
+          <Stack>
+            <Stack.Item grow>
+              <RadioSection radioData={radio_data} />
+            </Stack.Item>
+            {!!emag_data && (
+              <>
+                <Stack.Divider />
+                <Stack.Item>
+                  <Section
+                    title="Illegal Data Access"
+                    buttons={
+                      <Button
+                        icon="bolt-lightning"
+                        disabled={
+                          !configTools.includes(emag_data.selected_system)
+                        }
+                        tooltip={
+                          configTools.includes(emag_data.selected_system)
+                            ? `Activates the selected tool, currently: ${emag_data.selected_system}`
+                            : ''
+                        }
+                        onClick={() => act('activate_tool')}
+                      >
+                        Triggers
+                      </Button>
+                    }
+                  >
+                    <LabeledList>
+                      <LabeledList.Item label="Select">
+                        <Dropdown
+                          onSelected={(value) =>
+                            act('select_tool', { tool: value })
+                          }
+                          options={emag_data.emag_systems}
+                          selected={emag_data.selected_system}
+                        />
+                      </LabeledList.Item>
+                    </LabeledList>
+                  </Section>
+                </Stack.Item>
+              </>
             )}
-          </Section>
+          </Stack>
         </Stack.Item>
         <Stack.Item>
           <Section
@@ -128,13 +160,17 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
             buttons={
               <Stack>
                 <Stack.Item>
-                  <Button.Confirm color="red" disabled={!law_extra} icon="ban">
+                  <Button.Confirm
+                    color="red"
+                    disabled={!law_extra}
+                    icon="trash-can"
+                  >
                     Clear
                   </Button.Confirm>
                 </Stack.Item>
                 <Stack.Item>
                   <Button
-                    icon="lightbulb-o"
+                    icon="check"
                     tooltip="Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored."
                     disabled={!newDirective}
                     onClick={() => {
@@ -174,5 +210,26 @@ const RadioBox = (props: { status: boolean }) => {
     <Box color="red">Disabled</Box>
   ) : (
     <Box color="green">Enabled</Box>
+  );
+};
+
+const RadioSection = (props: { radioData: RadioData }) => {
+  const { radioData } = props;
+
+  return (
+    <Section title="Radio Uplink">
+      {radioData ? (
+        <LabeledList>
+          <LabeledList.Item label="Receiving">
+            <RadioBox status={!!radioData.radio_recieve} />
+          </LabeledList.Item>
+          <LabeledList.Item label="Transmitting">
+            <RadioBox status={!!radioData.radio_transmit} />
+          </LabeledList.Item>
+        </LabeledList>
+      ) : (
+        'Radio firmware not loaded. Please install a pAI personality to load firmware.'
+      )}
+    </Section>
   );
 };
