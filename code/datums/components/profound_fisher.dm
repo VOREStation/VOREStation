@@ -24,10 +24,10 @@
 		RegisterSignal(gloves, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 		RegisterSignal(gloves, COMSIG_ATOM_ATTACK_HAND_SECONDARY, PROC_REF(open_rod_menu))
 		RegisterSignal(gloves, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-		gloves.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
+//		gloves.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
 		RegisterSignal(gloves, COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM, PROC_REF(on_requesting_context_from_item))
 		var/mob/living/wearer = gloves.loc
-		if(istype(wearer) && wearer.get_item_by_slot(ITEM_SLOT_GLOVES) == gloves)
+		if(istype(wearer) && wearer.get_item_by_slot(SLOT_GLOVES) == gloves)
 			RegisterSignal(wearer, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 
 /datum/component/profound_fisher/proc/on_requesting_context_from_item(datum/source, list/context, obj/item/held_item, mob/living/user)
@@ -38,8 +38,8 @@
 
 /datum/component/profound_fisher/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info("When [EXAMINE_HINT("held")] or [EXAMINE_HINT("equipped")], [EXAMINE_HINT("right-click")] with a empty hand to open the integrated fishing rod interface.")
-	examine_list += span_tinynoticeital("To fish, you need to turn combat mode off.")
+	examine_list += span_info("When held or equipped, right-click with a empty hand to open the integrated fishing rod interface.")
+	examine_list += span_notice("To fish, you need to not be in harm intent.")
 
 ///Handles replacing the fishing rod if somehow removed from the parent movable if delete_rod_when_deleted is TRUE, otherwise delete the component.
 /datum/component/profound_fisher/proc/on_rod_moved(datum/source)
@@ -66,14 +66,14 @@
 
 /datum/component/profound_fisher/proc/on_equip(obj/item/source, atom/equipper, slot)
 	SIGNAL_HANDLER
-	if(slot != ITEM_SLOT_GLOVES)
+	if(slot != SLOT_GLOVES)
 		return
 	RegisterSignal(equipper, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	RegisterSignal(equipper, COMSIG_MOB_COMPLETE_FISHING, PROC_REF(stop_fishing))
 
 /datum/component/profound_fisher/proc/open_rod_menu(datum/source, mob/user, list/modifiers)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(our_rod, TYPE_PROC_REF(/datum, ui_interact), user)
+	INVOKE_ASYNC(our_rod, TYPE_PROC_REF(/datum, tgui_interact), user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /datum/component/profound_fisher/proc/on_drop(datum/source, atom/dropper)
@@ -105,12 +105,12 @@
 /datum/component/profound_fisher/proc/should_fish_on(mob/living/user, atom/target)
 	if(!HAS_TRAIT(target, TRAIT_FISHING_SPOT) || GLOB.fishing_challenges_by_user[user])
 		return FALSE
-	if(user.combat_mode || !target.IsReachableBy(user))
+	if(user.a_intent == I_HURT || !target.Adjacent(user))
 		return FALSE
 	return TRUE
 
 /datum/component/profound_fisher/proc/begin_fishing(mob/living/user, atom/target)
-	our_rod.melee_attack_chain(user, target)
+	our_rod.afterattack(target, user)
 	ADD_TRAIT(user, TRAIT_PROFOUND_FISHER, TRAIT_GENERIC)
 
 /datum/component/profound_fisher/proc/stop_fishing(datum/source)

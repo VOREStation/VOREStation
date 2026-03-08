@@ -231,3 +231,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_TRANSFORM_ACTIVE "active_transform"
 /// Improved boons from showers and some features centered around water, should also suppress TRAIT_WATER_HATER
 #define TRAIT_WATER_ADAPTATION "water_adaptation"
+/// Stops a movable from being removed from the mob it's in by the content_barfer component.
+#define TRAIT_NOT_BARFABLE "not_barfable"

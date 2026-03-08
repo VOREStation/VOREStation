@@ -13,7 +13,7 @@
 
 /obj/item/clothing/gloves/fishing/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_GLOVES)
+	if(slot == SLOT_GLOVES)
 		RegisterSignal(user, COMSIG_MOB_BEGIN_FISHING_MINIGAME, PROC_REF(begin_workout))
 
 /obj/item/clothing/gloves/fishing/dropped(mob/user)
@@ -75,7 +75,7 @@
 	return list()
 
 /obj/item/fishing_rod/mob_fisher/athletic/hook_hit(atom/atom_hit_by_hook_projectile, mob/user)
-	difficulty_modifier = -3 * (user.mind?.get_skill_level(/datum/skill/athletics) - 1)
+//	difficulty_modifier = -3 * (user.mind?.get_skill_level(/datum/skill/athletics) - 1)
 	return ..()
 
 /obj/item/fishing_rod/mob_fisher/athletic/proc/noodling_is_dangerous(datum/source, atom/movable/reward, mob/living/user)
@@ -85,16 +85,16 @@
 	var/damage = 0
 	var/obj/item/fish/fishe = reward
 	switch(fishe.w_class)
-		if(WEIGHT_CLASS_BULKY)
+		if(ITEMSIZE_LARGE)
 			damage = 10
-		if(WEIGHT_CLASS_HUGE)
+		if(ITEMSIZE_HUGE)
 			damage = 14
-		if(WEIGHT_CLASS_GIGANTIC)
+		if(ITEMSIZE_GIGANTIC)
 			damage = 18
 	if(!damage && fishe.weight >= 2000)
 		damage = 5
 	damage = round(damage * fishe.weight * 0.0005)
 	if(damage)
-		var/body_zone = pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
+		var/body_zone = pick(BP_R_HAND, BP_L_HAND)
 		user.apply_damage(damage, BRUTE, body_zone, user.run_armor_check(body_zone, MELEE))
 		playsound(src,'sound/items/weapons/bite.ogg', damage * 2, TRUE)
