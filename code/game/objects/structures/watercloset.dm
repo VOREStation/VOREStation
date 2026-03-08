@@ -201,7 +201,7 @@
 	if(istype(I, /obj/item/analyzer)) //Lol? Why...
 		to_chat(user, span_notice("The water temperature seems to be [current_temperature]."))
 
-/obj/machinery/shower/allow_pai_interaction(proximity_flag)
+/obj/machinery/shower/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/machinery/shower/click_alt(mob/user)

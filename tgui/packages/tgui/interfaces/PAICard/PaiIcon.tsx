@@ -43,7 +43,8 @@ export const PaiIcon = (props: {
               position="absolute"
               top="0"
               left="0"
-              className={size}
+              height="120px"
+              width="120px"
               style={{
                 WebkitMaskImage: `url(${resolveAsset('pai_icons_120x120.png')})`,
                 WebkitMaskRepeat: 'no-repeat',

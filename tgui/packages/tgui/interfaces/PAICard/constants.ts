@@ -5,3 +5,5 @@ export const genderToColor = {
   neuter: 'gray',
   herm: 'teal',
 } as const;
+
+export const configTools = ['MultiTool', 'Signaler'];

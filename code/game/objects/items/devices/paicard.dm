@@ -33,7 +33,17 @@
 	var/special_handling = FALSE
 	var/selected_pai
 
-/obj/item/paicard/relaymove(var/mob/user, var/direction)
+	// Special modules
+	var/emagged = FALSE
+	var/has_emag_toolkit = TRUE
+	var/obj/item/multitool/multitool
+	var/obj/item/assembly/signaler/signaler
+
+	//Currently selected SubSystem
+	var/static/list/systems_list = list("pAI","MultiTool","Emag","Signaler")
+	var/selected_system = "pAI"
+
+/obj/item/paicard/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()
@@ -49,9 +59,11 @@
 	if(!QDELETED(pai)) // Either the pai or card could be deleted first, prevent a loop
 		pai.death(0)
 	QDEL_NULL(radio)
+	QDEL_NULL(multitool)
+	QDEL_NULL(signaler)
 	return ..()
 
-/obj/item/paicard/attack_ghost(mob/user as mob)
+/obj/item/paicard/attack_ghost(mob/user)
 	if(pai) //Have a person in them already?
 		return ..()
 	if(is_damage_critical())
@@ -116,8 +128,8 @@
 		"selected_pai_data" = null,
 		"available_pais" = null,
 		"waiting_for_response" = in_use,
+		"emag_systems" = null,
 	)
-
 
 	if(pai) // Only set pai data if we have one
 		data["active_pai_data"] = get_active_data()
@@ -137,6 +149,13 @@
 			"radio_recieve" = radio.listening,
 		)
 
+	var/list/emag_data
+	if(emagged && has_emag_toolkit) // Special pAI tools
+		emag_data = list(
+			"emag_systems" = systems_list,
+			"selected_system" = selected_system
+		)
+
 	var/datum/asset/spritesheet_batched/pai_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
 	var/datum/pai_sprite/sprite_datum = SSpai.chassis_data(pai.chassis_name)
 	var/css_class = sanitize_css_class_name("[sprite_datum.type]")
@@ -153,6 +172,7 @@
 		"radio_data" = radio_data,
 		"sprite_datum_class" = css_class,
 		"sprite_datum_size" = spritesheet.icon_size_id(css_class + "S"), // just get the south icon's size, the rest will be the same
+		"emag_data" = emag_data,
 	)
 
 /obj/item/paicard/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -275,6 +295,43 @@
 			selected_pai = null
 			return TRUE
 
+		if("select_tool") // Emag tools
+			if(!emagged || !has_emag_toolkit)
+				return FALSE
+			var/new_tool = params["tool"]
+			if(!(new_tool in systems_list))
+				return FALSE
+			selected_system = new_tool
+			return TRUE
+
+		if("activate_tool") // Emag tools
+			if(!emagged || !has_emag_toolkit || !selected_system)
+				return FALSE
+			switch(selected_system)
+				if("MultiTool")
+					multitool.attack_self(ui.user)
+					return TRUE
+				if("Signaler")
+					signaler.attack_self(ui.user)
+					return TRUE
+			return FALSE
+
+/obj/item/paicard/pre_attack(atom/A, mob/user, params)
+	if(emagged && has_emag_toolkit)
+		// Perform builtin tool actions if we have a emag system selected
+		switch(selected_system)
+			if("Emag")
+				if(istype(A,/obj/machinery/door))
+					return TRUE //for doors use the doorjack
+				return A.emag_act(1,user,src)
+			if("MultiTool")
+				A.attackby(multitool,user)
+				return TRUE
+			if("Signaler")
+				A.attackby(signaler,user)
+				return TRUE
+	. = ..()
+
 /obj/item/paicard/proc/show_laws(updated = FALSE)
 	to_chat(pai, examine_block(span_notice((updated ? "Your supplemental directives have been updated. Your new" : "Your") + " directives are:") + "<br>" + "Prime Directive: [span_info(pai.pai_law0)]<br>Supplemental Directives: [span_info(pai.pai_laws)]"))
 
@@ -286,7 +343,7 @@
 	pai = null
 	setEmotion(16)
 
-/obj/item/paicard/proc/setEmotion(var/emotion)
+/obj/item/paicard/proc/setEmotion(emotion)
 	cut_overlays()
 	qdel(screen_layer)
 	screen_layer = null
@@ -680,6 +737,23 @@
 		return TRUE
 	return FALSE
 
+/obj/item/paicard/emag_act(remaining_charges, mob/user, emag_source)
+	. = ..()
+	if(!pai)
+		if(!emagged)
+			to_chat(user, span_warning("Without a pAI inhabiting \the [src] nothing happens."))
+		return
+	if(!emagged)
+		if(user)
+			to_chat(user, span_notice("\The [src] buzzes and beeps."))
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
+		emagged = TRUE
+		// Add tools
+		if(has_emag_toolkit)
+			multitool = new /obj/item/multitool(src)
+			signaler = new /obj/item/assembly/signaler(src)
+		return 1
+
 ///////////////////////////////
 //////////pAI Parts  //////////
 ///////////////////////////////
@@ -780,7 +854,7 @@
 	icon_state = "radio"
 	loudspeaker = FALSE
 
-/obj/item/radio/borg/pai/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/borg/pai/attackby(obj/item/W, mob/user)
 	return
 
 /obj/item/radio/borg/pai/recalculateChannels()

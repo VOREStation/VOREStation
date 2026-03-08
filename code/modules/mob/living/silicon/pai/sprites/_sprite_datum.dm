@@ -20,6 +20,8 @@
 	var/icon_y = 32
 	var/vis_height = 32
 
+	var/emagged = FALSE
+
 // PAI sprites
 /datum/pai_sprite/drone
 	name = PAI_DEFAULT_CHASSIS
@@ -154,6 +156,15 @@
 	holo_projector = TRUE
 	sprite_icon_state = "type13"
 	holo_eyes_icon_state = "type13-eyes"
+
+/datum/pai_sprite/syndi_fox
+	name = PAI_DEFAULT_EMAGGED_CHASSIS
+	sprite_icon = 'icons/mob/pai.dmi'
+	sprite_icon_state = "syndifox"
+	resting_belly = FALSE
+	has_eye_sprites = FALSE
+	belly_states = 0
+	emagged = TRUE
 
 // Large pai sprites
 /datum/pai_sprite/large

@@ -22,6 +22,8 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
+
+	var/default_pai_card_path = /obj/item/paicard // Used when the pai is spawned directly by mapping or admin
 	var/obj/item/paicard/card	// The card we inhabit
 	var/obj/item/radio/borg/pai/radio		// Our primary radio
 	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
@@ -106,7 +108,7 @@
 
 	card = loc
 	if(!istype(card))
-		card = new(src)
+		card = new default_pai_card_path(src)
 		card.pai = src
 
 	sradio = new(src)
@@ -131,6 +133,7 @@
 	add_verb(src, /mob/living/proc/dominate_prey)
 	add_verb(src, /mob/living/proc/set_size)
 	add_verb(src, /mob/living/proc/shred_limb)
+	add_verb(src, /mob/living/proc/toggle_trash_catching)
 
 	remove_verb(src, /mob/verb/toggle_gun_mode) // Pai doesn't have support for this and shouldn't be able to use guns anyway
 
@@ -143,6 +146,9 @@
 	var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 	if(M)
 		M.toff = FALSE
+
+	if(chassis_name != PAI_DEFAULT_CHASSIS) // For subtypes that override base chassis( like the syndi pet pai )
+		internal_set_chassis( SSpai.chassis_data(chassis_name))
 
 /mob/living/silicon/pai/Login()
 	. = ..()
@@ -218,26 +224,55 @@
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)
 	if(!(new_chassis in SSpai.get_chassis_list()))
 		new_chassis = PAI_DEFAULT_CHASSIS
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	if(chassis_data.emagged && !src.card.emagged)
+		return
 	chassis_name = new_chassis
+
+	// Get icon data setup
+	if(chassis_data.holo_projector)
+		internal_set_holoprojection(chassis_data)
+	else
+		internal_set_chassis(chassis_data)
+
+/// Rebuild holosprite from character save slot
+/mob/living/silicon/pai/proc/internal_set_holoprojection(datum/pai_sprite/chassis_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	//We resize ourselves to normal here for a moment to let the vis_height get reset
+	var/oursize = size_multiplier
+	resize(1, FALSE, TRUE, TRUE, FALSE)
+	if(!holo_icon_south)
+		get_character_icon()
+
+	update_icon()
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+	post_chassis_change(chassis_data)
+
+/// Use data from our sprite datum to set icon
+/mob/living/silicon/pai/proc/internal_set_chassis(datum/pai_sprite/chassis_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 
 	//We resize ourselves to normal here for a moment to let the vis_height get reset
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)
 
-	// Get icon data setup
-	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
-	if(chassis_data.holo_projector)
-		// Rebuild holosprite from character
-		if(!holo_icon_south)
-			get_character_icon()
-	else
-		// Get data from our sprite datum
-		icon = chassis_data.sprite_icon
-		pixel_x = chassis_data.pixel_x
-		default_pixel_x = pixel_x
-		pixel_y = chassis_data.pixel_y
-		default_pixel_y = pixel_y
-		vis_height = chassis_data.vis_height
+	icon = chassis_data.sprite_icon
+	pixel_x = chassis_data.pixel_x
+	default_pixel_x = pixel_x
+	pixel_y = chassis_data.pixel_y
+	default_pixel_y = pixel_y
+	vis_height = chassis_data.vis_height
+
+	update_icon()
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
+	post_chassis_change(chassis_data)
+
+/mob/living/silicon/pai/proc/post_chassis_change(datum/pai_sprite/chassis_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 
 	// Drops you if you change to a non-flying chassis
 	if(chassis_data.flying)
@@ -254,10 +289,6 @@
 	// Emergency eject if you change to a smaller belly
 	if(vore_fullness > vore_capacity && vore_selected)
 		vore_selected.release_all_contents(TRUE)
-
-	update_icon()
-	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Click interactions
@@ -287,9 +318,6 @@
 		else if (istype(W, /obj/item/card/id) && idaccessible == 0)
 			to_chat(user, span_notice("[src] is not accepting access modifcations at this time."))
 			return
-
-//Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
 		visible_message(span_danger("[user.name] attacks [src] with [W]!"))
 		src.adjustBruteLoss(W.force)
@@ -297,22 +325,26 @@
 	else
 		visible_message(span_warning("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
-		if(stat != DEAD) close_up()
+		if(stat != DEAD)
+			close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
 	if(user.a_intent == I_HELP)
-		visible_message(span_notice("[user.name] pats [src]."))
-	else
-		visible_message(span_danger("[user.name] boops [src] on the head."))
+		visible_message(span_notice("\The [user] pats \the [src]."))
+		return
+	if(user.a_intent == I_DISARM)
+		visible_message(span_danger("\The [user] boops \the [src] on the head."))
 		close_up()
+		return
+	. = ..()
 
 /mob/living/silicon/pai/UnarmedAttack(atom/A, proximity_flag)
 	. = ..()
 
 	// Some restricted objects to interact with
 	var/obj/O = A
-	if(istype(O) && O.allow_pai_interaction(proximity_flag))
+	if(istype(O) && O.allow_pai_interaction(src, proximity_flag))
 		O.attack_hand(src)
 		return
 
@@ -331,6 +363,10 @@
 	// All other computers explain why it's not accessible by showing a firewall warning
 	if(istype(A,/obj/machinery/computer))
 		to_chat(src,span_warning("A firewall prevents you from interfacing with this device!"))
+		return
+
+	if(istype(A,/obj/item/modular_computer))
+		to_chat(src,span_warning("Anti-tamper locks prevents you from interfacing with this device! You need your master's permission before going online!"))
 		return
 
 	if(!ismob(A) || A == src)

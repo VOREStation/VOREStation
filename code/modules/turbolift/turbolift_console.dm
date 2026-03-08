@@ -97,7 +97,7 @@
 		return
 	lift.queue_move_to(floor)
 
-/obj/structure/lift/button/allow_pai_interaction(proximity_flag)
+/obj/structure/lift/button/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/structure/lift/button/proc/light_up()
@@ -143,7 +143,7 @@
 /obj/structure/lift/panel/attack_ghost(var/mob/user)
 	return interact(user)
 
-/obj/structure/lift/panel/allow_pai_interaction(proximity_flag)
+/obj/structure/lift/panel/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/structure/lift/panel/interact(var/mob/user)
