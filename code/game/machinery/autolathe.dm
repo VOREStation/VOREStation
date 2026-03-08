@@ -24,6 +24,7 @@
 	var/busy = FALSE
 
 	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
+	var/component_coeff = 1
 	var/build_time = 50
 
 	var/datum/wires/autolathe/wires = null
@@ -71,45 +72,81 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/machinery/autolathe/tgui_static_data(mob/user)
-	var/list/data = ..()
+/obj/machinery/autolathe/proc/handle_designs(list/designs)
+	PRIVATE_PROC(TRUE)
 
-	var/list/categories = list()
-	var/list/recipes = list()
-	for(var/id in stored_research.researched_designs + (hacked ? stored_research.hacked_designs : list()))
-		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
-		recipes.Add(list(list(
-			"category" = design.category,
+	var/list/output = list()
+
+	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
+	var/size32x32 = "[spritesheet.name]32x32"
+
+	for(var/design_id in designs)
+		var/datum/design_techweb/design = SSresearch.techweb_design_by_id(design_id)
+		if(design.make_reagent)
+			continue
+
+		//compute cost & maximum number of printable items
+		var/coeff = (ispath(design.build_path, /obj/item/stack) ? 1 : component_coeff)
+		var/list/cost = list()
+		var/customMaterials = FALSE
+		for(var/datum/material/mat as anything in design.materials)
+			var/mat_cost = design.materials[mat]
+			var/design_cost = OPTIMAL_COST(mat_cost * coeff)
+			if(istype(mat))
+				cost[mat.name] = design_cost
+				customMaterials = FALSE
+				continue
+
+			var/datum/material/requirement = SSmaterials.requirements[mat]
+			if (!requirement)
+				stack_trace("Design [design] has an invalid material requirement [requirement]")
+				continue
+
+			cost[requirement.get_description()] = design_cost
+			customMaterials = TRUE
+
+		//create & send ui data
+		var/icon_size = spritesheet.icon_size_id(design.id)
+		var/list/design_data = list(
 			"name" = design.name,
-			"ref" = REF(design),
-			"requirements" = design.materials,
-			"hidden" = FALSE,
-			"coeff_applies" = FALSE,
-			"is_stack" = FALSE,
-		)))
-		categories |= design.category
-	data["recipes"] = recipes
-	data["categories"] = categories
+			"desc" = design.get_description(),
+			"cost" = cost,
+			"id" = design.id,
+			"categories" = design.category,
+			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]",
+			"customMaterials" = customMaterials
+		)
 
-	var/list/material_data = rmat.mat_container?.tgui_static_data(user)
-	if(material_data)
-		data += material_data
+		output += list(design_data)
+
+	return output
+
+/obj/machinery/autolathe/tgui_static_data(mob/user)
+	var/list/data = rmat.mat_container.tgui_static_data()
+
+	data["designs"] = handle_designs(stored_research.researched_designs)
+	if(imported_designs.len)
+		data["designs"] += handle_designs(imported_designs)
+	if(hacked)
+		data["designs"] += handle_designs(stored_research.hacked_designs)
 
 	return data
 
 /obj/machinery/autolathe/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials)
+		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials),
+		get_asset_datum(/datum/asset/spritesheet_batched/research_designs),
 	)
 
 /obj/machinery/autolathe/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/list/data = ..()
-	data["busy"] = busy
+	var/list/data = list()
 
-	var/list/material_data = rmat.mat_container?.tgui_data(user, TRUE)
-	if(material_data)
-		data["materials"] = material_data
-	data["mat_efficiency"] = 1
+	data["materials"] = list()
+	data["materialtotal"] = rmat.mat_container.total_amount()
+	data["materialsmax"] = rmat.mat_container.max_amount
+	data["active"] = busy
+	data["materials"] = rmat.mat_container.tgui_data()
+
 	return data
 
 /obj/machinery/autolathe/interact(mob/user)

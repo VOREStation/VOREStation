@@ -1,72 +1,128 @@
-import { useCallback, useMemo } from 'react';
-import { useBackend, useSharedState } from 'tgui/backend';
-import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
+  Collapsible,
   Icon,
-  Input,
+  LabeledList,
+  ProgressBar,
   Section,
   Stack,
-  Tabs,
-  VirtualList,
+  Tooltip,
 } from 'tgui-core/components';
-import { formatSiUnit } from 'tgui-core/format';
-import type { BooleanLike } from 'tgui-core/react';
-import { toTitleCase } from 'tgui-core/string';
-import { MaterialAccessBar } from './common/MaterialAccessBar';
-import type { Material } from './Fabrication/Types';
+import { type BooleanLike, classes } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
-type MaterialData = {
-  name: string;
-  ref: string;
-  amount: number;
-  sheets: number;
-  removable: BooleanLike;
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
+import { DesignBrowser } from './Fabrication/DesignBrowser';
+import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
+import type { Design, Material, MaterialMap } from './Fabrication/Types';
+
+type AutolatheDesign = Design & {
+  customMaterials: BooleanLike;
 };
 
-type RecipeData = {
-  category: string;
-  name: string;
-  ref: string;
-  requirements: Record<string, number>;
-  hidden: BooleanLike;
-  coeff_applies: number;
-  is_stack: BooleanLike;
-};
-
-type Data = {
-  busy: string;
-  materials?: Material[];
-  mat_efficiency: number;
-  recipes: RecipeData[];
-  SHEET_MATERIAL_AMOUNT?: number;
+type AutolatheData = {
+  materials: Material[];
+  materialtotal: number;
+  materialsmax: number;
+  SHEET_MATERIAL_AMOUNT: number;
+  designs: AutolatheDesign[];
+  active: BooleanLike;
 };
 
 export const Autolathe = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { materials = [], SHEET_MATERIAL_AMOUNT = 0 } = data;
+  const { data } = useBackend<AutolatheData>();
+  const {
+    materialtotal,
+    materialsmax,
+    materials,
+    designs,
+    active,
+    SHEET_MATERIAL_AMOUNT,
+  } = data;
+
+  const filteredMaterials = materials.filter((material) => material.amount > 0);
+
+  const availableMaterials: MaterialMap = {};
+
+  for (const material of filteredMaterials) {
+    availableMaterials[material.name] = material.amount;
+  }
 
   return (
-    <Window width={670} height={600}>
+    <Window title="Autolathe" width={670} height={600}>
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item grow>
-            <Designs />
-          </Stack.Item>
           <Stack.Item>
-            <Section>
-              <MaterialAccessBar
-                availableMaterials={materials}
-                SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
-                onEjectRequested={(mat: Material, qty: number) =>
-                  act('remove_mat', {
-                    id: mat.name,
-                    amount: qty,
-                  })
-                }
-              />
+            <Section title="Total Materials">
+              <LabeledList>
+                <LabeledList.Item label="Total Materials">
+                  <ProgressBar
+                    value={materialtotal}
+                    minValue={0}
+                    maxValue={materialsmax}
+                    ranges={{
+                      good: [materialsmax * 0.85, materialsmax],
+                      average: [materialsmax * 0.25, materialsmax * 0.85],
+                      bad: [0, materialsmax * 0.25],
+                    }}
+                  >
+                    {materialtotal / SHEET_MATERIAL_AMOUNT +
+                      '/' +
+                      materialsmax / SHEET_MATERIAL_AMOUNT +
+                      ' sheets'}
+                  </ProgressBar>
+                </LabeledList.Item>
+                <LabeledList.Item>
+                  {filteredMaterials.length > 0 && (
+                    <Collapsible title="Materials">
+                      <LabeledList>
+                        {filteredMaterials.map((material) => (
+                          <LabeledList.Item
+                            key={material.name}
+                            label={capitalize(material.name)}
+                          >
+                            <ProgressBar
+                              style={{
+                                transform: 'scaleX(-1) scaleY(1)',
+                              }}
+                              value={materialsmax - material.amount}
+                              maxValue={materialsmax}
+                              backgroundColor={material.color}
+                              color="black"
+                            >
+                              <div style={{ transform: 'scaleX(-1)' }}>
+                                {material.amount / SHEET_MATERIAL_AMOUNT +
+                                  ' sheets'}
+                              </div>
+                            </ProgressBar>
+                          </LabeledList.Item>
+                        ))}
+                      </LabeledList>
+                    </Collapsible>
+                  )}
+                </LabeledList.Item>
+              </LabeledList>
             </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <DesignBrowser
+              busy={!!active}
+              designs={designs}
+              availableMaterials={availableMaterials}
+              buildRecipeElement={(
+                design,
+                availableMaterials,
+                _onPrintDesign,
+              ) => (
+                <AutolatheRecipe
+                  design={design}
+                  SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+                  availableMaterials={availableMaterials}
+                />
+              )}
+            />
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -74,151 +130,164 @@ export const Autolathe = (props) => {
   );
 };
 
-const Designs = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { materials = [] } = data;
+type PrintButtonProps = {
+  design: Design;
+  quantity: number;
+  availableMaterials: MaterialMap;
+  SHEET_MATERIAL_AMOUNT: number;
+  maxmult: number;
+};
 
-  const [selectedCategory, setSelectedCategory] = useSharedState(
-    'selected_category',
-    'No Category Selected',
+const PrintButton = (props: PrintButtonProps) => {
+  const { act } = useBackend<AutolatheData>();
+  const { design, quantity, availableMaterials, maxmult } = props;
+
+  const canPrint = maxmult >= quantity;
+  return (
+    <Tooltip
+      content={
+        <MaterialCostSequence
+          design={design}
+          amount={quantity}
+          available={availableMaterials}
+        />
+      }
+    >
+      <div
+        className={classes([
+          'FabricatorRecipe__Button',
+          !canPrint && 'FabricatorRecipe__Button--disabled',
+        ])}
+        color={'transparent'}
+        onClick={() =>
+          canPrint && act('make', { id: design.id, multiplier: quantity })
+        }
+      >
+        &times;{quantity}
+      </div>
+    </Tooltip>
   );
-  const [searchText, setSearchText] = useSharedState('search_text', '');
+};
 
-  const materialRecord = useMemo(() => {
-    const materialRecord = {};
-    for (const material of materials) {
-      materialRecord[material.name] = material.amount;
-    }
-    return materialRecord;
-  }, [materials]);
+type AutolatheRecipeProps = {
+  design: AutolatheDesign;
+  availableMaterials: MaterialMap;
+  SHEET_MATERIAL_AMOUNT: number;
+};
 
-  const categories = {};
+const AutolatheRecipe = (props: AutolatheRecipeProps) => {
+  const { act } = useBackend<AutolatheData>();
+  const { design, availableMaterials, SHEET_MATERIAL_AMOUNT } = props;
 
-  for (const recipe of data.recipes) {
-    if (categories[recipe.category]) {
-      categories[recipe.category] += 1;
+  let maxmult = 0;
+  if (design.customMaterials) {
+    const largest_mat =
+      Object.entries(availableMaterials).reduce(
+        (accumulator: number, [material, amount]) => {
+          return Math.max(accumulator, amount);
+        },
+        0,
+      ) || 0;
+
+    if (largest_mat > 0) {
+      maxmult = Object.entries(design.cost).reduce(
+        (accumulator: number, [material, required]) => {
+          return Math.min(accumulator, largest_mat / required);
+        },
+        Infinity,
+      );
     } else {
-      categories[recipe.category] = 1;
+      maxmult = 0;
     }
-  }
-
-  let recipes: RecipeData[];
-
-  if (searchText.length > 0) {
-    recipes = data.recipes.filter(
-      (recipe) =>
-        recipe.category !== 'All' &&
-        recipe.name.toLowerCase().includes(searchText.toLowerCase()),
-    );
   } else {
-    recipes = data.recipes.filter(
-      (recipe) => recipe.category === selectedCategory,
+    maxmult = Object.entries(design.cost).reduce(
+      (accumulator: number, [material, required]) => {
+        return Math.min(
+          accumulator,
+          (availableMaterials[material] || 0) / required,
+        );
+      },
+      Infinity,
     );
   }
+  maxmult = Math.min(Math.floor(maxmult), 50);
+  const canPrint = maxmult > 0;
 
   return (
-    <Stack fill>
-      <Stack.Item width="240px">
-        <Section title="Categories" fill>
-          <Tabs vertical backgroundColor="rgba(0,0,0,0)">
-            {Object.entries(categories).map(([category, amount]) => (
-              <Tabs.Tab
-                key={category}
-                rightSlot={`(${amount})`}
-                selected={selectedCategory === category}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Tabs.Tab>
-            ))}
-          </Tabs>
-        </Section>
-      </Stack.Item>
-      <Stack.Item grow>
-        <Section title={selectedCategory} fill>
-          <Stack>
-            <Stack.Item>
-              <Icon name="magnifying-glass" />
-            </Stack.Item>
-            <Stack.Item grow>
-              <Input
-                fluid
-                placeholder="Search all designs..."
-                expensive
-                value={searchText}
-                onChange={(val) => setSearchText(val)}
-              />
-            </Stack.Item>
-          </Stack>
-          <Section fill height="94%" mt={1} scrollable>
-            <VirtualList>
-              {recipes.map((recipe) => (
-                <Recipe
-                  key={recipe.ref}
-                  recipe={recipe}
-                  materials={materialRecord}
-                  busy={data.busy}
-                />
-              ))}
-            </VirtualList>
-          </Section>
-        </Section>
-      </Stack.Item>
-    </Stack>
-  );
-};
-
-const canBeMade = (
-  required: Record<string, number>,
-  available: Record<string, number>,
-  multiplier: number = 1,
-): boolean => {
-  for (const [id, amt] of Object.entries(required)) {
-    if ((available[id] || 0) < amt * multiplier) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const Recipe = (props: {
-  recipe: RecipeData;
-  materials: Record<string, number>;
-  busy: string;
-}) => {
-  const { act } = useBackend();
-  const { recipe, materials, busy } = props;
-
-  const canBeMadeCb = useCallback(canBeMade, [recipe, materials]);
-
-  const requirementString = Object.entries(recipe.requirements)
-    .map(([name, number]) => `${toTitleCase(name)}: ${formatSiUnit(number, 0)}`)
-    .join(', ');
-
-  return (
-    <Box>
-      <Button
-        width="80%"
-        icon="hammer"
-        iconSpin={busy === recipe.name}
-        disabled={!canBeMadeCb(recipe.requirements, materials)}
-        onClick={() => act('make', { make: recipe.ref, multiplier: 1 })}
-        tooltip={requirementString}
+    <div className="FabricatorRecipe">
+      <Tooltip content={design.desc} position="right">
+        <div
+          className={classes([
+            'FabricatorRecipe__Button',
+            'FabricatorRecipe__Button--icon',
+            !canPrint && 'FabricatorRecipe__Button--disabled',
+          ])}
+        >
+          <Icon name="question-circle" />
+        </div>
+      </Tooltip>
+      <Tooltip
+        content={
+          <MaterialCostSequence
+            design={design}
+            amount={1}
+            available={availableMaterials}
+          />
+        }
       >
-        {toTitleCase(recipe.name)}
-      </Button>
-      <Button
-        disabled={!canBeMadeCb(recipe.requirements, materials, 5)}
-        onClick={() => act('make', { make: recipe.ref, multiplier: 5 })}
+        <div
+          className={classes([
+            'FabricatorRecipe__Title',
+            !canPrint && 'FabricatorRecipe__Title--disabled',
+          ])}
+          onClick={() =>
+            canPrint && act('make', { id: design.id, multiplier: 1 })
+          }
+        >
+          <div className="FabricatorRecipe__Icon">
+            <Box
+              width={'32px'}
+              height={'32px'}
+              className={classes(['design32x32', design.icon])}
+            />
+          </div>
+          <div className="FabricatorRecipe__Label">{design.name}</div>
+        </div>
+      </Tooltip>
+
+      <PrintButton
+        design={design}
+        quantity={5}
+        SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+        availableMaterials={availableMaterials}
+        maxmult={maxmult}
+      />
+
+      <PrintButton
+        design={design}
+        quantity={10}
+        SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+        availableMaterials={availableMaterials}
+        maxmult={maxmult}
+      />
+
+      <div
+        className={classes([
+          'FabricatorRecipe__Button',
+          !canPrint && 'FabricatorRecipe__Button--disabled',
+        ])}
       >
-        x5
-      </Button>
-      <Button
-        disabled={!canBeMadeCb(recipe.requirements, materials, 10)}
-        onClick={() => act('make', { make: recipe.ref, multiplier: 10 })}
-      >
-        x10
-      </Button>
-    </Box>
+        <Button.Input
+          color="transparent"
+          buttonText={`[Max: ${maxmult}]`}
+          onCommit={(value) =>
+            act('make', {
+              id: design.id,
+              multiplier: value,
+            })
+          }
+        />
+      </div>
+    </div>
   );
 };
