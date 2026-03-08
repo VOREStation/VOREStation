@@ -233,3 +233,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WATER_ADAPTATION "water_adaptation"
 /// Stops a movable from being removed from the mob it's in by the content_barfer component.
 #define TRAIT_NOT_BARFABLE "not_barfable"
+///Trait given by /datum/component/germ_sensitive
+#define TRAIT_GERM_SENSITIVE "germ_sensitive"
+#define TRAIT_STRONG_STOMACH "strong_stomach"

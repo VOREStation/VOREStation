@@ -325,8 +325,8 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		return ITEM_INTERACT_SUCCESS
 	to_chat(user, warns)
 	return ITEM_INTERACT_SUCCESS
-/*
-/obj/item/fish/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+
+/obj/item/fish/afterattack(atom/interacting_with, mob/living/user, proximity_flag, click_parameters) //Was interact_with_atom_secondary
 	if(!HAS_TRAIT(interacting_with, TRAIT_CATCH_AND_RELEASE))
 		return NONE
 	if(HAS_TRAIT(src, TRAIT_NODROP))
@@ -344,23 +344,24 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		span_notice("You hear a splash."))
 	released(interacting_with, user)
 	return ITEM_INTERACT_SUCCESS
-*/
+
 /obj/item/fish/proc/released(atom/location, mob/living/user)
 	playsound(location, 'sound/effects/splash.ogg', 50)
 	SEND_SIGNAL(location, COMSIG_FISH_RELEASED_INTO, src, user)
 	qdel(src)
-/*
+
 ///Main proc that makes the fish edible.
 /obj/item/fish/proc/make_edible()
-	var/foodtypes = get_food_types()
-	if(foodtypes & RAW)
-		AddComponent(/datum/component/infective, GLOB.floor_diseases.Copy(), weak = TRUE, weak_infection_chance = PERFORM_ALL_TESTS(edible_fish) ? 100 : 15)
-	else
-		AddComponent(/datum/component/germ_sensitive)
+//	var/foodtypes = get_food_types()
+//	if(foodtypes & RAW)
+//		AddComponent(/datum/component/infective, GLOB.floor_diseases.Copy(), weak = TRUE, weak_infection_chance = PERFORM_ALL_TESTS(edible_fish) ? 100 : 15)
+//	else
+	AddComponent(/datum/component/germ_sensitive)
 	var/bites_to_finish = weight / FISH_WEIGHT_BITE_DIVISOR
 	create_reagents(INFINITY) //We'll set this to the total volume of the reagents right after generate_fish_reagents() is over
 	generate_fish_reagents(bites_to_finish)
 	reagents.maximum_volume = round(reagents.total_volume * 1.25) //make some meager space for condiments.
+	/*
 	AddComponentFrom(
 		SOURCE_EDIBLE_INNATE, \
 		/datum/component/edible, \
@@ -373,12 +374,12 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		check_liked = CALLBACK(src, PROC_REF(check_liked)), \
 		reagent_purity = 1, \
 	)
+	*/
 	RegisterSignals(src, list(COMSIG_ITEM_FRIED, COMSIG_ITEM_BARBEQUE_GRILLED), PROC_REF(on_fish_cooked))
-*/
 
 ///A proc that returns the food types the edible component has when initialized.
 /obj/item/fish/proc/get_food_types()
-	return ALLERGEN_FISH|ALLERGEN_MEAT//|RAW|GORE
+	return ALLERGEN_FISH|ALLERGEN_MEAT //|RAW|GORE
 
 ///Kill the fish, remove the raw and gore food types, and the infectiveness too if not under-cooked.
 /obj/item/fish/proc/on_fish_cooked(datum/source, cooking_time)
@@ -424,7 +425,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 ///The fish is well cooked. Change how the fish tastes, remove the infective comp and add the relative trait.
 /obj/item/fish/proc/well_cooked()
 	qdel(GetComponent(/datum/component/infective))
-//	AddComponent(/datum/component/germ_sensitive)
+	AddComponent(/datum/component/germ_sensitive)
 	ADD_TRAIT(src, TRAIT_FISH_WELL_COOKED, INNATE_TRAIT)
 	var/datum/reagent/nutriment/protein/protein = reagents.has_reagent(/datum/reagent/nutriment/protein, check_subtypes = TRUE)
 	if(protein)
@@ -667,7 +668,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	if(!is_mount)
 		add_fillet_type()
 
-//	var/make_edible = !weight
+	var/make_edible = !weight
 	if(weight)
 		if(reagents) //This fish has reagents. Adjust the maximum volume of the reagent holder and do some math to adjut the reagents too.
 			var/new_weight_ratio = new_weight / weight
@@ -687,8 +688,8 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	weight = new_weight
 
-//	if(make_edible)
-//		make_edible()
+	if(make_edible)
+		make_edible()
 
 	if(weight >= FISH_WEIGHT_SLOWDOWN && !HAS_TRAIT(src, TRAIT_SPEED_POTIONED))
 		slowdown = GET_FISH_SLOWDOWN(weight)
