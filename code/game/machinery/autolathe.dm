@@ -33,6 +33,8 @@
 	var/list/imported_designs = list()
 	///The container to hold materials
 	var/datum/component/material_container/materials
+	///direction we output onto (if 0, on top of us)
+	var/drop_direction = 0
 	//looping sound for printing items
 	var/datum/looping_sound/lathe_print/print_sound
 
@@ -46,8 +48,8 @@
 		container_signals = list(COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/autolathe, AfterMaterialInsert)) \
 	)
 	. = ..()
-	wires = new(src)
 
+	wires = new(src)
 	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
 		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe]
@@ -65,6 +67,11 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 	. += span_notice("Material usage cost at <b>[creation_efficiency * 100]%</b>.")
+	if(drop_direction)
+		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
+		. += span_notice("Alt-click to reset.")
+	else
+		. += span_notice("Drag towards a direction (while next to it) to change drop direction.")
 	. += span_notice("Its maintenance panel is [!panel_open ? "closed" : "open"].")
 
 /obj/machinery/autolathe/tgui_status(mob/user)
@@ -79,12 +86,12 @@
 	if(panel_open)
 		return wires.Interact(user)
 
-	if(disabled)
-		to_chat(user, span_danger("\The [src] is disabled!"))
+	if(stat & (NOPOWER | EMPED))
 		return
 
-	if(shocked)
+	if(shocked && !(stat & NOPOWER))
 		shock(user, 50)
+		return
 
 	tgui_interact(user)
 
@@ -100,6 +107,12 @@
 		ui = new(user, src, "Autolathe", name)
 		ui.open()
 
+/**
+ * Converts all the designs supported by this autolathe into UI data
+ * Arguments
+ *
+ * * list/designs - the list of techweb designs we are trying to send to the UI
+ */
 /obj/machinery/autolathe/proc/handle_designs(list/designs)
 	PRIVATE_PROC(TRUE)
 
@@ -239,7 +252,14 @@
 	SStgui.update_uis(src)
 	// play this after all checks passed individually for each item.
 	print_sound.start()
-	var/turf/target_location = get_turf(src)
+	var/turf/target_location
+	if(drop_direction)
+		target_location = get_step(src, drop_direction)
+		if(target_location.density)
+			target_location = get_turf(src)
+	else
+		target_location = get_turf(src)
+
 
 	addtimer(CALLBACK(src, PROC_REF(do_make_item), design, build_count, build_time_per_item, material_cost_coefficient, charge_per_item, materials_needed, target_location), build_time_per_item)
 	return TRUE
@@ -263,7 +283,7 @@
 		finalize_build()
 		return
 
-	if(stat & NOPOWER)
+	if(stat & (NOPOWER|EMPED))
 		atom_say("Unable to continue production, power failure.")
 		finalize_build()
 		return
@@ -325,6 +345,28 @@
 	icon_state = initial(icon_state)
 	busy = FALSE
 	SStgui.update_uis(src)
+
+/obj/machinery/autolathe/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
+	if(isobserver(user) || !Adjacent(user))
+		return
+	if(busy)
+		balloon_alert(user, "printing started!")
+		return
+	var/direction = get_dir(src, over_location)
+	if(!direction)
+		return
+	drop_direction = direction
+	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+
+/obj/machinery/autolathe/click_alt(mob/user)
+	if(!drop_direction)
+		return CLICK_ACTION_BLOCKING
+	if(busy)
+		balloon_alert(user, "busy printing!")
+		return CLICK_ACTION_SUCCESS
+	balloon_alert(user, "drop direction reset")
+	drop_direction = 0
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
