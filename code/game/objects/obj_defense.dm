@@ -60,6 +60,11 @@
 	//inform objects we were deconstructed
 	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 
+	for(var/obj/item/item in contents)
+		if(item.item_flags & ABSTRACT)
+			continue
+		item.forceMove(get_turf(src))
+
 	//delete our self
 	qdel(src)
 
