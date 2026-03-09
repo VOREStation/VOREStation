@@ -149,18 +149,6 @@
 	if(scanning)
 		AddComponent(/datum/component/geiger_sound)
 
-/obj/item/geiger/wall/attack_self(mob/user)
-	. = ..(user)
-	if(.)
-		return TRUE
-	scanning = !scanning
-	if(scanning)
-		AddComponent(/datum/component/geiger_sound)
-	else
-		qdel(GetComponent(/datum/component/geiger_sound))
-	update_icon()
-	to_chat(user, span_notice("[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src]."))
-
 
 /obj/item/geiger/wall/update_icon()
 	if(!scanning)

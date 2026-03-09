@@ -36,10 +36,15 @@ SUBSYSTEM_DEF(radiation)
 	for (var/turf/turf_to_irradiate as anything in cached_turfs_to_process)
 		turfs_iterated += 1
 		for (var/atom/movable/target in turf_to_irradiate)
+			var/current_insulation = 1
+			if(istype(target, /obj/machinery/power/rad_collector))
+				SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation) //We just do it here and skip all the math to make it faster.
+				continue
+
+
 			if (!can_irradiate_basic(target))
 				continue
 
-			var/current_insulation = 1
 
 			for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
 				var/insulation = cached_rad_insulations[turf_in_between]
@@ -132,7 +137,7 @@ SUBSYSTEM_DEF(radiation)
 
 /// Returns whether or not the human is covered head to toe in rad-protected clothing.
 /datum/controller/subsystem/radiation/proc/wearing_rad_protected_clothing(mob/living/carbon/human/human)
-	for (var/obj/item/organ/external/limb as anything in human.organs_by_name[name])
+	for (var/obj/item/organ/external/limb as anything in human.organs)
 		var/protected = FALSE
 
 		for (var/obj/item/clothing as anything in human.get_clothing_on_part(limb))

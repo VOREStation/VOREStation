@@ -19,7 +19,7 @@
 	return ..()
 
 /datum/component/geiger_sound/RegisterWithParent()
-	sound = new(parent)
+	sound = new(list(parent), TRUE)
 
 	RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
@@ -43,7 +43,7 @@
 
 	sound.last_insulation_to_target = insulation_to_target
 	sound.last_radiation_pulse = pulse_information
-	sound.start()
+	sound.start(source)
 
 	addtimer(CALLBACK(sound, TYPE_PROC_REF(/datum/looping_sound,stop)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 
