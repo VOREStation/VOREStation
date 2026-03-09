@@ -1,4 +1,4 @@
-import { Section, VirtualList } from 'tgui-core/components';
+import { Box, Section, Stack, VirtualList } from 'tgui-core/components';
 
 import { useRemappedBackend } from '../helpers';
 import { TechNode } from '../nodes/TechNode';
@@ -12,20 +12,28 @@ export function TechwebDesignDisk(props) {
   const { blueprints } = d_disk;
 
   return (
-    <>
+    <Section fill scrollable>
       {blueprints.map((x, i) => (
         <Section key={i} title={`Slot ${i + 1}`}>
           {(x === null && 'Empty') || (
-            <>
-              Contains the design for <b>{design_cache[x].name}</b>:<br />
-              <span
-                className={`${design_cache[x].class} Techweb__DesignIcon`}
-              />
-            </>
+            <Stack vertical>
+              <Stack.Item>
+                {`Contains the design for `}
+                <Box bold inline>
+                  {design_cache[x].name}
+                </Box>
+                :
+              </Stack.Item>
+              <Stack.Item>
+                <Box
+                  className={`${design_cache[x].class} Techweb__DesignIcon`}
+                />
+              </Stack.Item>
+            </Stack>
           )}
         </Section>
       ))}
-    </>
+    </Section>
   );
 }
 

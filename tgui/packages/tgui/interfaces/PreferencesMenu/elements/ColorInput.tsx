@@ -145,7 +145,7 @@ export const PreferenceEditColor = (
         <Floating
           onOpenChange={handleIsOpen}
           placement="top-end"
-          contentClasses="VorePanel__Floating"
+          contentClasses="VorePanel__Floating VorePanel__noScroll"
           content={
             <ColorSelector
               color={currentColor}
@@ -175,13 +175,15 @@ export const PreferenceEditColor = (
           </Box>
         </Floating>
       </Stack.Item>
-      <Stack.Item>
-        <VorePanelTooltip
-          tooltip={tooltip}
-          tooltipPosition={tooltipPosition}
-          displayText="?"
-        />
-      </Stack.Item>
+      {!!tooltip && (
+        <Stack.Item>
+          <VorePanelTooltip
+            tooltip={tooltip}
+            tooltipPosition={tooltipPosition}
+            displayText="?"
+          />
+        </Stack.Item>
+      )}
     </Stack>
   );
 };

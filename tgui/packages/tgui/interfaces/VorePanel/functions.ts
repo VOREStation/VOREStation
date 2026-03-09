@@ -27,31 +27,32 @@ export function calcLineHeight(lim: number, height: number): string {
 }
 
 export function fixCorruptedData(
-  toSanitize:
-    | string
-    | string[]
-    | null
-    | Record<string | number, string | number>,
+  toSanitize: string | string[] | null | Record<string, string | number>,
 ): { corrupted?: boolean; data: string | string[] } {
-  if (toSanitize === null) {
+  if (toSanitize == null) {
     return { data: '' };
   }
-  if (typeof toSanitize === 'string') {
+
+  if (typeof toSanitize === 'string' || Array.isArray(toSanitize)) {
     return { data: toSanitize };
   }
-  if (Array.isArray(toSanitize)) {
-    return { data: toSanitize };
-  }
-  const clearedData = Object.entries(toSanitize).map((entry) => {
-    if (typeof entry[0] === 'string') {
-      return entry[0];
-    } else if (typeof entry[1] === 'string') {
-      return entry[1];
-    } else {
-      return '';
+
+  const isNumeric = (v: string) => /^\d+$/.test(v);
+
+  const clearedData = Object.entries(toSanitize).map(([key, value]) => {
+    if (!isNumeric(value.toString())) {
+      return value.toString();
     }
+    if (!isNumeric(key)) {
+      return key;
+    }
+    return '';
   });
-  return { corrupted: true, data: clearedData || [] };
+
+  return {
+    corrupted: true,
+    data: clearedData,
+  };
 }
 
 export function bellyTemperatureToColor(temp: number): string | undefined {

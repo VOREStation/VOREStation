@@ -65,11 +65,13 @@
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/tall/command
+	sprite_hud_icon_state = "clerical"
 	module_type = "Command"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	pixel_x = 0
 
 /datum/robot_sprite/dogborg/raptor/command
+	sprite_hud_icon_state = "clerical"
 	module_type = "Command"
 	sprite_icon = 'icons/mob/robot/raptor.dmi'
 

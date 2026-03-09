@@ -367,6 +367,8 @@
 /datum/reagents/proc/touch_mob(var/mob/target)
 	if(!target || !istype(target))
 		return
+	if(target.is_incorporeal()) // I really cannot imagine any scenario in which you would want reagent touch clouds to affect phased shadekin, so putting it here instead of higher up.
+		return
 
 	for(var/datum/reagent/current in reagent_list)
 		current.touch_mob(target, current.volume)
