@@ -18,6 +18,7 @@
 	var/upgrading = FALSE
 	var/applies_material_colour = 1
 	var/wall_type = /turf/simulated/wall
+	rad_insulation = RAD_VERY_LIGHT_INSULATION
 
 /obj/structure/girder/Initialize(mapload, var/material_key)
 	. = ..()

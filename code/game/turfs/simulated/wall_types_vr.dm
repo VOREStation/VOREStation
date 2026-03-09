@@ -215,6 +215,29 @@ GLOBAL_LIST_EMPTY(flesh_overlay_cache)
 /turf/simulated/wall/uranium
 	icon_state = "uranium"
 	icon = 'icons/turf/wall_masks_vr.dmi'
+	var/last_event = 0
+
+/turf/simulated/wall/uranium/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/turf/simulated/wall/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
 
 /turf/simulated/wall/virgo2
 	icon_state = "virgo2"

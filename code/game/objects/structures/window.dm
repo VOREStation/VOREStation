@@ -23,6 +23,7 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/fulltile = FALSE // Set to true on full-tile variants.
+	rad_insulation = RAD_VERY_LIGHT_INSULATION
 
 /obj/structure/window/examine(mob/user)
 	. = ..()
@@ -508,6 +509,7 @@
 	damage_per_fire_tick = 1.0
 	maxhealth = 40.0
 	force_threshold = 5
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/window/phoronbasic/full
 	icon_state = "phoronwindow-full"
@@ -527,6 +529,7 @@
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 	maxhealth = 80.0
 	force_threshold = 10
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/window/phoronreinforced/full
 	icon_state = "phoronrwindow-full"
@@ -578,6 +581,7 @@
 	basestate = "w"
 	dir = 5
 	force_threshold = 7
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/window/reinforced/polarized
 	name = "electrochromic window"

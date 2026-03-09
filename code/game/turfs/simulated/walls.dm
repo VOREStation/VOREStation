@@ -23,6 +23,7 @@
 
 	// There's basically always going to be wall connections, making this lazy doesn't seem like it'd help much unless you wanted to make it bitflags instead.
 	var/list/wall_connections = list("0", "0", "0", "0")
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()

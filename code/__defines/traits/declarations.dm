@@ -59,3 +59,21 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SLOBBER "slobber"
 // Owner will be considered a tiny mob for some interactions, such as airlocks not opening unless they have a client, or being vacuumed up by the vacpack
 #define TRAIT_AMBIENT_PEST_MOB "ambient_pest_mob"
+/// Marks that this object is irradiated
+#define TRAIT_IRRADIATED "iraddiated"
+/// Whether or not this item will allow the radiation SS to go through standard
+/// radiation processing as if this wasn't already irradiated.
+/// Basically, without this, COMSIG_IN_RANGE_OF_IRRADIATION won't fire once the object is irradiated.
+#define TRAIT_BYPASS_EARLY_IRRADIATED_CHECK "radiation_bypass_early_irradiated_check"
+/// Immune to being irradiated
+#define TRAIT_RADIMMUNE "rad_immunity"
+/// This clothing protects the user from radiation.
+/// This should not be used on clothing_traits, but should be applied to the clothing itself.
+#define TRAIT_RADIATION_PROTECTED_CLOTHING "radiation_protected_clothing"
+/// Trait applied by MODsuits.
+#define MOD_TRAIT "mod"
+/// The mob has the stasis effect.
+/// Does nothing on its own, applied via status effect.
+#define TRAIT_STASIS "in_stasis"
+/// Harmful radiation effects, the toxin damage and the burns, will not occur while this trait is active
+#define TRAIT_HALT_RADIATION_EFFECTS "halt_radiation_effects"

@@ -59,6 +59,7 @@
 	density = FALSE
 	layer = ABOVE_TURF_LAYER
 	can_atmos_pass = ATMOS_PASS_NO
+	rad_insulation = RAD_LIGHT_INSULATION
 	alpha = 150
 
 /obj/structure/holosign/barrier/combifan/Destroy()
@@ -75,6 +76,7 @@
 	icon_state = "holo_medical"
 	alpha = 125
 	var/buzzed = 0
+	rad_insulation = RAD_NO_INSULATION
 
 /obj/structure/holosign/barrier/medical/CanPass(atom/movable/mover, border_dir)
 	. = ..()

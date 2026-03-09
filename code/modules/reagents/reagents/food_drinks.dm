@@ -4132,6 +4132,19 @@
 
 	allergen_type = ALLERGEN_FRUIT|ALLERGEN_GRAINS //Made from vodka(grains) and orange juice(fruit)
 
+/datum/reagent/ethanol/screwdrivercocktail/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	var/obj/item/organ/internal/liver/liver = drinker.internal_organs_by_name[O_LIVER]
+	//if(HAS_TRAIT(liver, TRAIT_ENGINEER_METABOLISM))
+	ADD_TRAIT(drinker, TRAIT_HALT_RADIATION_EFFECTS, "[type]")
+	if (HAS_TRAIT(drinker, TRAIT_IRRADIATED))
+		if(drinker.adjustToxLoss(-2 * metabolization_ratio * seconds_per_tick))
+			return //UPDATE_MOB_HEALTH
+
+/datum/reagent/ethanol/screwdrivercocktail/on_mob_end_metabolize(mob/living/drinker)
+	. = ..()
+	REMOVE_TRAIT(drinker, TRAIT_HALT_RADIATION_EFFECTS, "[type]")
+
 /datum/reagent/ethanol/silencer
 	name = REAGENT_SILENCER
 	id = REAGENT_ID_SILENCER

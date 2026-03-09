@@ -1,5 +1,6 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/r_wall/Initialize(mapload)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL) //3strong
 
@@ -9,10 +10,12 @@
 	. = ..(mapload,  MAT_STEELHULL, null, MAT_STEELHULL)
 /turf/simulated/wall/rshull
 	icon_state = "hull-r_steel"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/rshull/Initialize(mapload)
 	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
 /turf/simulated/wall/pshull
 	icon_state = "hull-plasteel"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/pshull/Initialize(mapload) //Spaaaace-er ship.
 	. = ..(mapload,  MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
 /turf/simulated/wall/rpshull
@@ -21,18 +24,22 @@
 	. = ..(mapload,  MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
 /turf/simulated/wall/dshull
 	icon_state = "hull-durasteel"
+	rad_insulation = RAD_EXTREME_INSULATION
 /turf/simulated/wall/dshull/Initialize(mapload) //Spaaaace-est ship.
 	. = ..(mapload,  MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
 /turf/simulated/wall/rdshull
 	icon_state = "hull-r_durasteel"
+	rad_insulation = RAD_EXTREME_INSULATION
 /turf/simulated/wall/rdshull/Initialize(mapload)
 	. = ..(mapload,  MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
 /turf/simulated/wall/thull
 	icon_state = "hull-titanium"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/thull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
 /turf/simulated/wall/rthull
 	icon_state = "hull-r_titanium"
+	rad_insulation = RAD_EXTREME_INSULATION
 /turf/simulated/wall/rthull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
 
@@ -80,6 +87,7 @@
 
 /turf/simulated/wall/concrete
 	icon_state = "brick"
+	rad_insulation = RAD_EXTREME_INSULATION
 
 /turf/simulated/wall/concrete/Initialize(mapload)
 	. = ..(mapload, MAT_CONCRETE) //3strong

@@ -306,6 +306,10 @@
 				soundin = pick(
 					'sound/effects/mech/powerloader_step.ogg',
 					'sound/effects/mech/powerloader_step2.ogg')
+			if ("sizzle")
+				soundin = pick(
+					'sound/effects/wounds/sizzle1.ogg',
+					'sound/effects/wounds/sizzle2.ogg')
 	return soundin
 
 

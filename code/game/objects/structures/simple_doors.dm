@@ -23,6 +23,7 @@
 	var/can_pick = TRUE	//can it be picked/bypassed?
 	var/lock_difficulty = 1	//multiplier to picking/bypassing time
 	var/keysound = 'sound/items/toolbelt_equip.ogg'
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
@@ -245,14 +246,45 @@
 /obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_IRON)
 
+/obj/structure/simple_door/silver
+	rad_insulation = RAD_HEAVY_INSULATION
+
 /obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_SILVER)
+
+/obj/structure/simple_door/gold
+	rad_insulation = RAD_HEAVY_INSULATION
 
 /obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_GOLD)
 
+/obj/structure/simple_door/uranium
+	rad_insulation = RAD_NO_INSULATION
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
+
 /obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_URANIUM)
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/obj/structure/simple_door/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
 
 /obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_SANDSTONE)
@@ -260,9 +292,13 @@
 /obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_PHORON)
 
+/obj/structure/simple_door/diamond
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_DIAMOND)
 
+//I was going to give wooden doors RAD_VERY_LIGHT_INSULATION but they need a proper parent instead of this garbage.
 /obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_WOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'

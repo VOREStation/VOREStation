@@ -53,31 +53,32 @@
 
 	//No need to update all of these procs if the guy is dead.
 	fall() //Prevents people from floating
-	if(stat != DEAD && !stasis)
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
+	if(!HAS_TRAIT(src, TRAIT_STASIS))
+		if(stat != DEAD)
+			//Updates the number of stored chemicals for powers
+			handle_changeling()
 
-		//Organs and blood
-		handle_organs()
-		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain()
-		handle_shock()
+			//Organs and blood
+			handle_organs()
+			stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
+			weightgain()
+			handle_shock()
 
-		handle_pain()
+			handle_pain()
 
-		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
+			SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
-		handle_medical_side_effects()
+			handle_medical_side_effects()
 
-		handle_heartbeat()
-		handle_nif()
-		if(phobias)
-			handle_phobias()
-		if(!client)
-			species.handle_npc(src)
+			handle_heartbeat()
+			handle_nif()
+			if(phobias)
+				handle_phobias()
+			if(!client)
+				species.handle_npc(src)
 
-	else if(stat == DEAD && !stasis)
-		handle_defib_timer()
+		else if(stat == DEAD)
+			handle_defib_timer()
 
 	//Handle any species related components we may have. Ex: Shadekin, Xenochimera, etc. Not STAT checked because those do statchecks in their own code.
 	handle_species_components()
