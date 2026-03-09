@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { type BooleanLike, classes } from 'tgui-core/react';
 import { numToLetter } from './constants';
-import { generateShipCoordinates } from './functions';
+import { generateShipCoordinates, mapDisabled } from './functions';
 import type { Data, Ship } from './types';
 
 export const GameArea = (props: {
@@ -45,7 +45,7 @@ export const GameArea = (props: {
         <Stack.Item>
           <Playfield
             player={1}
-            isOponent={current_player === player_two}
+            isOpponent={current_player === player_two}
             isSelf={current_player === player_one}
             shotsFired={shots_fired_ptwo}
             destroyedShips={destroyed_ships_ptwo}
@@ -58,7 +58,7 @@ export const GameArea = (props: {
         <Stack.Item>
           <Playfield
             player={2}
-            isOponent={current_player === player_one}
+            isOpponent={current_player === player_one}
             isSelf={current_player === player_two}
             shotsFired={shots_fired_pone}
             destroyedShips={destroyed_ships_pone}
@@ -74,7 +74,7 @@ export const GameArea = (props: {
 
 const Playfield = (props: {
   player: number;
-  isOponent: boolean;
+  isOpponent: boolean;
   isSelf: boolean;
   shotsFired: Record<string, BooleanLike>;
   destroyedShips: Ship[];
@@ -86,7 +86,7 @@ const Playfield = (props: {
   const { game_state, ship_sizes, visible_ships } = data;
   const {
     player,
-    isOponent,
+    isOpponent,
     isSelf,
     shotsFired,
     destroyedShips,
@@ -167,7 +167,12 @@ const Playfield = (props: {
 
   function getCellStyle(x: number, y: number) {
     const key = `${x},${y}`;
-    let cellStyle: React.CSSProperties = {};
+    let cellStyle: {
+      backgroundColor?: string;
+      icon?: string;
+      disabled?: boolean;
+      classes: string[];
+    } = { classes: [] };
 
     if (visible_ships) {
       for (const ship of visible_ships) {
@@ -184,16 +189,21 @@ const Playfield = (props: {
       const shot = shotsFired[key];
       if (shot === 1) {
         cellStyle.backgroundColor = 'red';
+        cellStyle.icon = 'explosion';
+        cellStyle.disabled = true;
       } else if (shot === 0) {
         cellStyle.backgroundColor = 'white';
+        cellStyle.icon = 'water';
+        cellStyle.disabled = true;
       }
     }
 
     for (const ship of destroyedShips) {
       if (ship.coords?.some((coord) => coord[0] === x && coord[1] === y)) {
         cellStyle = {
-          border: '2px solid gold',
-          backgroundColor: 'maroon',
+          icon: 'burst',
+          classes: ['SpaceBattle__ShipSunk'],
+          disabled: true,
         };
       }
     }
@@ -227,11 +237,10 @@ const Playfield = (props: {
                   ) : (
                     <div onMouseEnter={() => handleButtonHover(x, y)}>
                       <Button
+                        className={classes(getCellStyle(x, y).classes)}
                         disabled={
-                          ((game_state === 2 && isOponent) ||
-                            isSelf ||
-                            game_state === 4) &&
-                          !(isSelf && isOponent)
+                          mapDisabled(game_state, isSelf, isOpponent) ||
+                          getCellStyle(x, y).disabled
                         }
                         onClick={(_) => {
                           if (game_state === 1) {
@@ -253,14 +262,20 @@ const Playfield = (props: {
                             });
                           }
                         }}
+                        icon={getCellStyle(x, y).icon}
+                        color={
+                          !isHighlighted && getCellStyle(x, y).backgroundColor
+                        }
                         style={{
                           backgroundColor: isHighlighted
                             ? invalidCells
                               ? 'rgba(255, 0, 0, 0.5)'
                               : 'rgba(76, 175, 80, 0.5)'
-                            : getCellStyle(x, y).backgroundColor,
-                          border: getCellStyle(x, y).border,
+                            : undefined,
                         }}
+                        lineHeight="75px"
+                        iconColor="black"
+                        iconSize={2.5}
                         width={5}
                         height={5}
                       />

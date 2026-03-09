@@ -14,7 +14,7 @@
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))
 		return 0
-	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
+	if (istype(M,/mob/living/silicon/robot) && can_use(1))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss())
 			if(do_after(user, 7 * toolspeed, target = R))
