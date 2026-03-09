@@ -217,7 +217,7 @@ ADMIN_VERB(cmd_display_overlay_log, R_DEBUG, "Display overlay Log", "Display SSo
 	else
 		. = lines.Join("\n")
 
-ADMIN_VERB(cmd_admin_grantfullaccess, (R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", ADMIN_CATEGORY_EVENTS, mob/living/carbon/human/H in GLOB.human_mob_list)
+ADMIN_VERB(cmd_admin_grantfullaccess, (R_ADMIN|R_EVENT), "Grant Full Access", "Grants full access to a human.", ADMIN_CATEGORY_EVENTS, mob/living/carbon/human/H in GLOB.human_mob_list)
 	if (!SSticker)
 		tgui_alert_async(user, "Wait until the game starts")
 		return
