@@ -52,6 +52,7 @@
 	var/mob/living/silicon/ai/O = ..(move)
 	if(O)
 		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
+		exchange_gender(O)
 		return O
 
 	return ..(move)
@@ -103,6 +104,7 @@
 		O.mind.original_character = WEAKREF(O)
 	else
 		O.key = key
+	exchange_gender(O)
 
 	//Languages
 	add_language(LANGUAGE_ROBOT_TALK, 1)

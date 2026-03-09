@@ -300,13 +300,16 @@
 
 	var/obj/item/nif/nif
 	var/datum/nifsoft/soulcatcher/soulcatcher
-	var/identifying_gender
+
+/mob/living/carbon/brain/caught_soul/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/gender_identity)
 
 /mob/living/carbon/brain/caught_soul/Login()
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
 	plane_holder.set_vis(VIS_SOULCATCHER, TRUE)
-	identifying_gender = client.prefs.read_preference(/datum/preference/choiced/gender/identifying)
+	change_gender_identity(client.prefs.read_preference(/datum/preference/choiced/gender/identifying))
 
 /mob/living/carbon/brain/caught_soul/Destroy()
 	if(soulcatcher)

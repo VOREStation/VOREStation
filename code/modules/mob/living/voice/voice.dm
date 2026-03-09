@@ -16,6 +16,8 @@
 		comm = loc
 	. = ..()
 
+	AddComponent(/datum/component/gender_identity)
+
 // Proc: transfer_identity()
 // Parameters: 1 (speaker - the mob (usually an observer) to copy information from)
 // Description: Copies the mob's icons, overlays, TOD, gender, currently loaded character slot, and languages, to src.
@@ -31,7 +33,7 @@
 			var/datum/preferences/p = speaker.client.prefs
 			name = p.read_preference(/datum/preference/name/real_name)
 			real_name = name
-			gender = p.read_preference(/datum/preference/choiced/gender/identifying)
+			change_gender_identity(p.read_preference(/datum/preference/choiced/gender/identifying))
 
 			for(var/language in p.alternate_languages)
 				add_language(language)

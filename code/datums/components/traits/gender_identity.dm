@@ -10,6 +10,8 @@
 
 /// Sets the gender identity of an atom to a specific gender key, such as PLURAL, MALE, FEMALE, PLURAL, or any extended gender that byond does not regularly support. If this is done without a /datum/component/gender_identity component, only the base byond genders will be applied. Returns TRUE if the gender assigned is different to what it was previously.
 /atom/proc/change_gender_identity(new_gender, force_complex_gender = FALSE)
+	if(!new_gender)
+		return
 	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
 	if(comp)
 		if(comp.identifying_gender != new_gender)
