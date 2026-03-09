@@ -77,5 +77,8 @@
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 3, 1500, FALSE, FALSE), 3 SECONDS)
 		else
 			tesla_zap(src, 4, 1000, FALSE, TRUE)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1250, FALSE, FALSE), 3 SECONDS)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1500, FALSE, FALSE), 6 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(highSevPulse)), 3 SECONDS)
+
+/obj/effect/anomaly/flux/proc/highSevPulse()
+	tesla_zap(src, 4, 1250, FALSE, FALSE)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1500, FALSE, FALSE), 3 SECONDS)
