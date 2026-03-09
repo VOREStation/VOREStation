@@ -86,8 +86,15 @@ It is used to destroy hand-held objects and advance technological research. Used
 				to_chat(user, span_notice("The machine rejects \the [O]!"))
 				return
 			if(LAZYLEN(O.contents))
-				to_chat(user, span_notice("The machine rejects \the [O]! You need to clear it of all items first!"))
-				return
+				var/bad_item = FALSE
+				for(var/obj/item/thing in O.contents)
+					if(thing.item_flags & ABSTRACT)
+						continue
+					bad_item = TRUE
+					break
+				if(bad_item)
+					to_chat(user, span_notice("The machine rejects \the [O]! You need to clear it of all items first!"))
+					return
 			busy = TRUE
 			loaded_item = WEAKREF(O)
 			user.drop_item()

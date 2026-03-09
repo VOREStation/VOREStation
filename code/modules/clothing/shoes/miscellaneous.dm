@@ -11,6 +11,7 @@
 	step_volume_mod = 0.5
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
@@ -28,6 +29,7 @@
 	species_restricted = null
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
+	resistance_flags = ACID_PROOF
 
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"

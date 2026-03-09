@@ -31,7 +31,7 @@
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/circuitboard/atom_deconstruct(disassembled = TRUE, var/obj/machinery/M)
 	if(istype(M, build_path))
 		return 1
 	return 0

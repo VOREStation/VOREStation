@@ -64,7 +64,7 @@
 /obj/machinery/disposal/singularity_pull(S, current_size)
 	..()
 	if(current_size >= STAGE_FIVE)
-		deconstruct()
+		atom_deconstruct(TRUE)
 
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user)
@@ -102,7 +102,7 @@
 				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 					if(!src || !W.isOn()) return
 					to_chat(user, "You sliced the floorweld off the disposal unit.")
-					deconstruct()
+					atom_deconstruct(TRUE)
 				return
 			else
 				to_chat(user, "You need more welding fuel to complete this task.")
@@ -584,7 +584,7 @@
 
 // Ideally, deconstruct would be a proc on /machinery, but you cant have nice things with polaris.
 // AKA: FUKKIN CHANGE THIS WHEN THAT HAPPENS!!!!!1!!   pls. -Reo
-/obj/machinery/disposal/proc/deconstruct(disassembled = TRUE)
+/obj/machinery/disposal/atom_deconstruct(disassembled = TRUE)
 	var/turf/T = loc
 	/* // More nice things... Someday we'll have flags_1 and then have proper support for anything being a hologram.
 	if(!(flags_1 & NODECONSTRUCT_1))

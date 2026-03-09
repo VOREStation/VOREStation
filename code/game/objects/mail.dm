@@ -51,6 +51,7 @@
 
 	///Var for attack_self chainn
 	var/special_handling = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return

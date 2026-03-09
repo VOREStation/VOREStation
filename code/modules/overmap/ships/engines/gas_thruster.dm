@@ -18,7 +18,7 @@
 	return nozzle.get_thrust()
 
 /datum/ship_engine/gas_thruster/burn()
-	return nozzle.burn()
+	return nozzle.thrust_burn()
 
 /datum/ship_engine/gas_thruster/set_thrust_limit(var/new_limit)
 	nozzle.thrust_limit = new_limit
@@ -145,7 +145,7 @@
 		A = get_step(A, exhaust_dir)
 	return blockage
 
-/obj/machinery/atmospherics/unary/engine/proc/burn()
+/obj/machinery/atmospherics/unary/engine/proc/thrust_burn()
 	if(!is_on())
 		return 0
 	if(!check_fuel() || (use_power_oneoff(charge_per_burn) < charge_per_burn) || check_blockage())
