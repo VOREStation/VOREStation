@@ -914,7 +914,7 @@
 	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
 
-/obj/item/slime_extract/process()
+/obj/item/slime_extract/green/process()
 	radiate()
 	..()
 
