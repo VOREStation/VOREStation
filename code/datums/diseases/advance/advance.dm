@@ -631,7 +631,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			if(H.get_species() == SPECIES_UNATHI || H.get_species() == SPECIES_TAJARAN)
 				prefixes += list("Vermin ", "Zoo", "Maintenance ")
 				bodies += list("Rat", "Maint")
-		if(ismouse(diseasesource) && !istype(diseasesource, /mob/living/simple_mob/animal/passive/mouse/white/virology))
+		if(HAS_TRAIT(diseasesource, TRAIT_AMBIENT_PEST_MOB) && !istype(diseasesource, /mob/living/simple_mob/animal/passive/mouse/white/virology))
 			prefixes += list("Vermin ", "Zoo", "Maintenance ")
 			bodies += list("Rat", "Maint")
 		else switch(diseasesource.type)

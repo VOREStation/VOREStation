@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "migrates GPS to tgui"
+  - bugfix: "bad compass_holder del"

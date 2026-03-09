@@ -224,7 +224,7 @@
 /mob/living/silicon/pai/proc/change_chassis(new_chassis)
 	if(!(new_chassis in SSpai.get_chassis_list()))
 		new_chassis = PAI_DEFAULT_CHASSIS
-	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(chassis_name)
+	var/datum/pai_sprite/chassis_data = SSpai.chassis_data(new_chassis)
 	if(chassis_data.emagged && !src.card.emagged)
 		return
 	chassis_name = new_chassis
@@ -260,6 +260,7 @@
 	resize(1, FALSE, TRUE, TRUE, FALSE)
 
 	icon = chassis_data.sprite_icon
+	icon_state = chassis_data.sprite_icon_state
 	pixel_x = chassis_data.pixel_x
 	default_pixel_x = pixel_x
 	pixel_y = chassis_data.pixel_y

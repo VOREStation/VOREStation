@@ -176,17 +176,16 @@
 	removed = min(removed, volume)
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
-	if(removed >= (metabolism * 0.1) || removed >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
-		switch(active_metab.metabolism_class)
-			if(CHEM_BLOOD)
-				affect_blood(M, alien, removed)
-			if(CHEM_INGEST)
-				if(istype(src, /datum/reagent/toxin) && HAS_TRAIT(M, INGESTED_TOXIN_IMMUNE))
-					remove_self(removed)
-					return
-				affect_ingest(M, alien, removed * ingest_abs_mult)
-			if(CHEM_TOUCH)
-				affect_touch(M, alien, removed)
+	switch(active_metab.metabolism_class)
+		if(CHEM_BLOOD)
+			affect_blood(M, alien, removed)
+		if(CHEM_INGEST)
+			if(istype(src, /datum/reagent/toxin) && HAS_TRAIT(M, INGESTED_TOXIN_IMMUNE))
+				remove_self(removed)
+				return
+			affect_ingest(M, alien, removed * ingest_abs_mult)
+		if(CHEM_TOUCH)
+			affect_touch(M, alien, removed)
 	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH || can_overdose_touch))
 		overdose(M, alien, removed)
 	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!

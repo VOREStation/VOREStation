@@ -18,8 +18,8 @@
 	cutoff_number = 1
 */
 
-/datum/ghost_query/maints_spawner
-	role_name = "Maintenance Spawner"
+/datum/ghost_query/maints_critter
+	role_name = "Maintenance Critter"
 	be_special_flag = BE_MAINTCRITTER
 	question = "An opportunity to spawn as a Maintenance Critter has appeared. You can spawn as your choice of a mob (from a fairly large list), a morph (a shapeshifting creature capable of mimicking objects or other creatures), or your currently loaded character slot in a special \'lurker\' role."
 	cutoff_number = 1

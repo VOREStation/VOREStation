@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { AnimatedArrows, AnimatedArrowsLeft } from '../common/AnimatedArrows';
 import { VorePanelTooltip } from '../VorePanel/VorePanelElements/VorePanelTooltip';
 import { gameTooltip } from './constants';
 import { gameStateToText, stateToColor } from './functions';
@@ -111,6 +112,9 @@ export const PlayerMenu = (props) => {
                 {gameStateToText(game_state, game_flags, winner)}
               </Box>
             </Stack.Item>
+            <Stack.Item>
+              <PlayerIndicator gameState={game_state} />
+            </Stack.Item>
           </Stack>
         </Stack.Item>
         <PlayerPanel
@@ -123,4 +127,15 @@ export const PlayerMenu = (props) => {
       </Stack>
     </Section>
   );
+};
+
+export const PlayerIndicator = (props: { gameState: number }) => {
+  const { gameState } = props;
+  if (gameState === 1) {
+    return <AnimatedArrowsLeft on={true} />;
+  }
+  if (gameState === 2) {
+    return <AnimatedArrows on={true} />;
+  }
+  return null;
 };

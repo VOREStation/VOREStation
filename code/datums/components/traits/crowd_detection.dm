@@ -96,10 +96,10 @@
 	var/list/in_range = list()
 	if(!istype(M))
 		return in_range
-	var/social_check = only_people && !istype(M, /mob/living/carbon) && !istype(M, /mob/living/silicon/robot) && !istype(M, /mob/living/silicon/pai)
+	var/social_check = only_people && !iscarbon(M) && !isrobot(M) && !ispAI(M)
 	var/self_invisible_check = M == human_parent || M.invisibility > human_parent.see_invisible
 	var/ckey_check = only_people && !M.ckey
-	var/overall_checks = M == human_parent || M.stat == DEAD || social_check || ckey_check
+	var/overall_checks = M == human_parent || M.stat == DEAD || social_check || ckey_check || (ispAI(M) && !M.ckey)
 	if(invis_matters && self_invisible_check)
 		return in_range
 	if((M.faction == FACTION_NEUTRAL || M.faction == human_parent.faction) && !overall_checks)
