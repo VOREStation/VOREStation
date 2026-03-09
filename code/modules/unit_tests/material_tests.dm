@@ -32,7 +32,6 @@
 	for(var/datum/material/mat in needed_materials)
 		if(!mat || !mat.stack_type)
 			continue
-		TEST_NOTICE(src, "TEST = ADDED REQUIRED MAT [mat.type] > SHEET [mat.stack_type]")
 		required_sheets |= mat.stack_type
 
 	// Get all material sheet printing recipies in the autolathe
@@ -41,16 +40,14 @@
 		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
 		if(!(design.build_type & AUTOLATHE))
 			continue
-		if(!istype(design.build_path, /obj/item/stack/material))
+		if(!(design.build_path in subtypesof(/obj/item/stack/material)))
 			continue
 		sheet_print_designs |= design.build_path
-		TEST_NOTICE(src, "TEST = LATHE DESIGN [design.build_path]")
 
 	// Check all sheets for EXISTANCE
 	var/failed = FALSE
 	for(var/sheet in required_sheets)
 		if(sheet in sheet_print_designs)
-			TEST_NOTICE(src, "TEST = [sheet] WAS CORRECTLY IN DESIGNS")
 			continue
 		failed = TRUE
 		TEST_NOTICE(src, "[sheet] - Missing an autolathe design, all material sheets must be printable, or materials can get stuck in the lathe forever")
