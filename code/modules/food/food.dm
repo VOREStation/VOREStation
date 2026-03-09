@@ -16,8 +16,6 @@
 	var/list/food_inserted_micros
 	resistance_flags = FLAMMABLE
 
-/obj/item/reagent_containers/food/atom_destruction(damage_flag)
-
 /obj/item/reagent_containers/food/verb/change_name()
 	set name = "Rename Food"
 	set category = "Object"
