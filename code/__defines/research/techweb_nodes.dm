@@ -152,3 +152,4 @@
 #define TECHWEB_NODE_TELEPORTER "teleporter"
 #define TECHWEB_NODE_CONFETTI "confetti"
 #define TECHWEB_NODE_RSF "rapid_service_fab"
+#define TECHWEB_NODE_MATERIALSHEETS "material_sheets"
