@@ -260,7 +260,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
         </Stack>
-        {!!onAllowEditing && (
+        {!!onAllowEditing && presetList?.length && (
           <Button
             color={allowEditing ? 'green' : 'red'}
             position="absolute"

@@ -62,3 +62,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_RESISTHEAT "resist_heat"
 /// For when you want to be able to touch hot things, but still want fire to be an issue.
 #define TRAIT_RESISTHEATHANDS "resist_heat_handsonly"
+// Owner will be considered a tiny mob for some interactions, such as airlocks not opening unless they have a client, or being vacuumed up by the vacpack
+#define TRAIT_AMBIENT_PEST_MOB "ambient_pest_mob"

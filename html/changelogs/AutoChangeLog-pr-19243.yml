@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Reagents will now have some effect - even if extremely small - if you have slow metabolism."
