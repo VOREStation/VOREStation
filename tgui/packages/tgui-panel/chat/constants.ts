@@ -130,7 +130,7 @@ export const MESSAGE_TYPES: MessageType[] = [
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
     selector:
-      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious, .filter_notice',
+      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious, .filter_notice, .span_hypnophrase',
   },
   {
     type: MESSAGE_TYPE_WARNING,

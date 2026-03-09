@@ -83,6 +83,7 @@
 #define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>") // Close to warning plain, maybe replace
 
 // FIltered under info
+#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
 #define span_info(str) ("<span class='info'>" + str + "</span>")
 #define span_infoplain(str) ("<span class='infoplain'>" + str + "</span>")
 #define span_suicide(str) ("<span class='suicide'>" + str + "</span>")
