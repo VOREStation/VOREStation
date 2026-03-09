@@ -21,12 +21,10 @@
 	// Get the materials all the sheets can be broken down into
 	var/list/needed_materials = list()
 	for(var/path in subtypesof(/obj/item/stack))
-		var/obj/item/stack/material/sheet = new()
+		var/obj/item/stack/material/sheet = new path()
 		var/list/get_mats = sheet.get_material_composition()
-		TEST_NOTICE(src, "TEST = ADDED MAT FOR SHEET [path]")
 		for(var/mat in get_mats)
 			needed_materials |= mat
-			TEST_NOTICE(src, "    - [mat]")
 		qdel(sheet)
 
 	// Then get the sheets those materials are represented by
