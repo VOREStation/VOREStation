@@ -29,9 +29,41 @@
 	radiate()
 
 /datum/event2/event/radiation_storm/proc/radiate()
+	//This sucks. Just mutate.
+	/*
 	var/radiation_level = rand(15, 35)
 	for(var/z in using_map.station_levels)
-		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
+		var/turf/epicentre = locate(round(world.maxx / 2), round(world.maxy / 2), z)
+		if(epicentre)
+			radiation_pulse(
+				epicentre,
+				max_range = 5,
+				threshold = RAD_MEDIUM_INSULATION,
+				chance = URANIUM_IRRADIATION_CHANCE,
+				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			)
+	*/
+
+	for(var/mob/living/carbon/C in GLOB.living_mob_list)
+		if(!(C.z in using_map.station_levels) || C.isSynthetic() || isbelly(C.loc))
+			continue
+		var/area/A = get_area(C)
+		if(!A)
+			continue
+		if(A.flag_check(RAD_SHIELDED))
+			continue
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			var/chance = 5.0
+			chance -= (chance / 100) * C.getarmor(null, "rad")
+			if(prob(chance))
+				if (prob(75))
+					randmutb(H) // Applies bad mutation
+					domutcheck(H,null,MUTCHK_FORCED)
+				else
+					randmutg(H) // Applies good mutation
+					domutcheck(H,null,MUTCHK_FORCED)
+				H.UpdateAppearance()
 
 /datum/event2/event/radiation_storm/end()
 	command_announcement.Announce("The station has passed the radiation belt. \

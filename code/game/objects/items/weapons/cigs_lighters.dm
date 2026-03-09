@@ -1100,7 +1100,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					user.drop_from_inventory(e)
 				log_and_message_admins("[user] dusted themselves and caused massive radiation with [src]!",user)
 				user.dust()
-				var/rads = 500
 				radiation_pulse(
 					src,
 					max_range = 12,

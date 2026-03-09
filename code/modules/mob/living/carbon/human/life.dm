@@ -47,13 +47,13 @@
 
 	voice = GetVoice()
 
-	var/stasis = inStasisNow()
+	var/stasis = (inStasisNow() || HAS_TRAIT(src, TRAIT_STASIS))
 	if(getStasis() > 2)
 		Sleeping(20)
 
 	//No need to update all of these procs if the guy is dead.
 	fall() //Prevents people from floating
-	if(!HAS_TRAIT(src, TRAIT_STASIS))
+	if(!stasis)
 		if(stat != DEAD)
 			//Updates the number of stored chemicals for powers
 			handle_changeling()

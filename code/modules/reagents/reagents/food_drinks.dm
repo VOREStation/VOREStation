@@ -4134,8 +4134,8 @@
 
 /datum/reagent/ethanol/screwdrivercocktail/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
-	var/obj/item/organ/internal/liver/liver = drinker.internal_organs_by_name[O_LIVER]
-	//if(HAS_TRAIT(liver, TRAIT_ENGINEER_METABOLISM))
+//	var/obj/item/organ/internal/liver/liver = drinker.internal_organs_by_name[O_LIVER]
+//	if(HAS_TRAIT(liver, TRAIT_ENGINEER_METABOLISM))
 	ADD_TRAIT(drinker, TRAIT_HALT_RADIATION_EFFECTS, "[type]")
 	if (HAS_TRAIT(drinker, TRAIT_IRRADIATED))
 		if(drinker.adjustToxLoss(-2 * metabolization_ratio * seconds_per_tick))

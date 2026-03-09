@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(flesh_overlay_cache)
 	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
 	. = ..()
 
-/turf/simulated/wall/uranium/proc/radiate()
+/turf/simulated/wall/uranium/radiate()
 	SIGNAL_HANDLER
 	if(active)
 		return

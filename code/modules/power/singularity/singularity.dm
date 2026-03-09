@@ -403,10 +403,8 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 /obj/singularity/proc/toxmob()
 	var/toxrange = 10
 	var/toxdamage = 4
-	var/radiation = 15
 	if (src.energy>200)
 		toxdamage = round(((src.energy-150)/50)*4,1)
-		radiation = round(((src.energy-150)/50)*5,1)
 	radiation_pulse(
 		src,
 		max_range = 7,

@@ -133,7 +133,7 @@
 	if (should_halt_effects(parent))
 		return
 
-	var/obj/item/organ/external/affected_limb = pick(human_parent.organs_by_name)
+	var/obj/item/organ/external/affected_limb = pick(human_parent.organs)
 	human_parent.visible_message(
 		span_boldwarning("[human_parent]'s [affected_limb.name] bubbles unnaturally, then bursts into blisters!"),
 		span_boldwarning("Your [affected_limb.name] bubbles unnaturally, then bursts into blisters!"),

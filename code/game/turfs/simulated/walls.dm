@@ -298,6 +298,7 @@
 	return
 
 /turf/simulated/wall/proc/radiate()
+	SIGNAL_HANDLER
 	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0) + (girder_material ? girder_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return

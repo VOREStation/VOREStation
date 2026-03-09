@@ -19,28 +19,31 @@
 	. = ..()
 	GLOB.rad_collectors += src
 	AddElement(/datum/element/climbable)
+	RegisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(process_rads))
 
 /obj/machinery/power/rad_collector/Destroy()
 	GLOB.rad_collectors -= src
+	UnregisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION)
 	return ..()
 
-/obj/machinery/power/rad_collector/process()
+/obj/machinery/power/rad_collector/proc/process_rads(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
+	SIGNAL_HANDLER
 	//so that we don't zero out the meter if the SM is processed first.
 	last_power = last_power_new
 	last_power_new = 0
 
 
 	if(P && active)
-		var/rads = SSradiation.get_rads_at_turf(get_turf(src))
-		if(rads)
-			receive_pulse(rads * 5) //Maths is hard
+		if(pulse_information)
+			//The higher the range, threshold, and chance, the more power is made from the pulse.
+			var/amount_of_rads = (((pulse_information.max_range * 5) + (100 / pulse_information.threshold) + (pulse_information.chance * 3)))
+			receive_pulse((amount_of_rads)) //Maths is hard
 
-	if(P)
-		if(P.air_contents.gas[GAS_PHORON] == 0)
-			investigate_log(span_red("out of fuel") + ".","singulo")
-			eject()
-		else
-			P.air_contents.adjust_gas(GAS_PHORON, -0.001*drainratio)
+			if(P.air_contents.gas[GAS_PHORON] == 0)
+				investigate_log(span_red("out of fuel") + ".","singulo")
+				eject()
+			else
+				P.air_contents.adjust_gas(GAS_PHORON, -0.0001*drainratio)
 	return
 
 

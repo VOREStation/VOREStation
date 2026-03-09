@@ -170,12 +170,25 @@
 	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, exosuit, or other container shouldn't block it's effects that way.
 	if(!istype(TS))
 		return
+	radiation_pulse(
+		TS,
+		max_range = 255,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DETONATION_RADS,
+	)
 
 	var/list/affected_z = GetConnectedZlevels(TS.z)
 
 	// Effect 1: Radiation, weakening to all mobs on Z level
-	for(var/z in affected_z)
-		SSradiation.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
+	for(var/z_to_affect in affected_z)
+		var/turf/turf_to_hit = locate(TS.x, TS.y, z_to_affect)
+		if(turf_to_hit)
+			radiation_pulse(
+				turf_to_hit,
+				max_range = 255,
+				threshold = RAD_HEAVY_INSULATION,
+				chance = DETONATION_RADS,
+			)
 
 	for(var/mob/living/mob in GLOB.living_mob_list)
 		var/turf/TM = get_turf(mob)
@@ -401,9 +414,9 @@
 	if(power)
 		radiation_pulse(
 			src,
-			max_range = CLAMP(power * 0.01, 7, 35),
+			max_range = max(round(power * 0.01),7),
 			threshold = RAD_EXTREME_INSULATION,
-			chance = CLAMP(power * 0.0075, 10, 90),
+			chance = round(power * 0.0075),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 		)
 
