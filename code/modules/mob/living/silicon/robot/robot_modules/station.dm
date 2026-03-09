@@ -623,7 +623,7 @@
 	name = "miner robot module"
 	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
-	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher, /obj/item/borg/upgrade/restricted/adv_mailbag)
 	pto_type = PTO_CARGO
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
@@ -638,7 +638,7 @@
 	src.modules += new /obj/item/mining_scanner/robot(src)
 	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
 	src.modules += new /obj/item/mail_scanner(src)
-	src.modules += new /obj/item/storage/bag/mail(src)
+	src.modules += new /obj/item/storage/bag/mail/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
 
 	var/datum/matter_synth/beacon = new /datum/matter_synth/beacon(10000)
