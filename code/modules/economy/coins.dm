@@ -97,10 +97,15 @@
 	icon_state = "coin_uranium"
 	matter = list(MAT_URANIUM = 250)
 	var/last_event = 0
+	var/active = 0
 
 /obj/item/coin/uranium/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/obj/item/coin/uranium/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	. = ..()
 
 /obj/item/coin/uranium/proc/radiate()
 	SIGNAL_HANDLER

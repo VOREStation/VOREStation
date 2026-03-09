@@ -241,7 +241,13 @@
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
-	SSradiation.radiate(src, round(material.radioactivity/3))
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = round((material.radioactivity * 0.33), 0.1),
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
 
 /obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_IRON)
@@ -267,6 +273,10 @@
 /obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_URANIUM)
 	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/obj/structure/simple_door/uranium/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	. = ..()
 
 /obj/structure/simple_door/uranium/proc/radiate()
 	SIGNAL_HANDLER

@@ -42,11 +42,9 @@
 			if(!M)	continue
 			cached_rad_resistance += (M.weight + M.radiation_resistance) / CONFIG_GET(number/radiation_material_resistance_divisor)
 	// Looks like storing the contents length is meant to be a basic check if the cache is stale due to items enter/exiting.  Better than nothing so I'm leaving it as is. ~Leshana
-	SSradiation.resistance_cache[src] = (length(contents) + 1)
 	return
 
 /turf/simulated/wall/calc_rad_resistance()
-	SSradiation.resistance_cache[src] = (length(contents) + 1)
 	var/temp_rad_resistance
 	temp_rad_resistance += material.weight + material.radiation_resistance
 	if(reinf_material)
@@ -57,7 +55,6 @@
 /turf/simulated/mineral/calc_rad_resistance()
 	if(!density)
 		return ..()
-	SSradiation.resistance_cache[src] = (length(contents) + 1)
 	cached_rad_resistance = 60 //Three times that of a steel wall. Rock is less dense than steel, but this is assuming that a normal wall isn't just solid steel all the way through like rock turfs are.
 	return
 

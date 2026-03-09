@@ -49,4 +49,9 @@
 			continue
 
 		//Todo: Apply some burn damage from the heat of the sun. Until then, enjoy some moderate radiation.
-		L.rad_act(rand(15, 30))
+		radiation_pulse(
+			L,
+			max_range = 1,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+		)

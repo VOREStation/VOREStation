@@ -385,13 +385,23 @@
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
 	if (prob(2*power_output))
-		SSradiation.radiate(src, 4)
+		radiation_pulse(
+			src,
+			max_range = 2,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = DEFAULT_RADIATION_CHANCE,
+		)
 	..()
 
 /obj/machinery/power/port_gen/pacman/super/explode()
 	//a nice burst of radiation
 	var/rads = 50 + (sheets + sheet_left)*1.5
-	SSradiation.radiate(src, (max(20, rads)))
+	radiation_pulse(
+		src,
+		max_range = (rads/5),
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DEFAULT_RADIATION_CHANCE,
+	)
 
 	explosion(src.loc, 3, 3, 5, 3)
 	qdel(src)

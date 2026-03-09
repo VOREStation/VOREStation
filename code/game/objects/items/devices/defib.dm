@@ -575,6 +575,9 @@
 /obj/item/shockpaddles/standalone
 	desc = "A pair of shockpaddles powered by an experimental miniaturized reactor" //Inspired by the advanced e-gun
 	var/fail_counter = 0
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/shockpaddles/standalone/Destroy()
 	. = ..()
@@ -585,12 +588,23 @@
 	return 1
 
 /obj/item/shockpaddles/standalone/checked_use(var/charge_amt)
-	SSradiation.radiate(src, charge_amt/12) //just a little bit of radiation. It's the price you pay for being powered by magic I guess
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+	)
 	return 1
 
 /obj/item/shockpaddles/standalone/process()
 	if(fail_counter > 0)
-		SSradiation.radiate(src, fail_counter--)
+		radiation_pulse(
+			src,
+			max_range = 5,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+		)
+		fail_counter--
 	else
 		STOP_PROCESSING(SSobj, src)
 

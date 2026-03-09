@@ -27,16 +27,34 @@
 	name = "misshapen manhole cover"
 	desc = "The top of this twisted chunk of metal is faintly stamped with a five pointed star. 'Property of US Army, Pascal B - 1957'."
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/pascalb)
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/poi/pascalb/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 
-/obj/item/poi/pascalb/process()
-	SSradiation.radiate(src, 5)
+/obj/item/poi/pascalb/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
 
 /obj/item/poi/pascalb/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
 	return ..()
 
 /datum/category_item/catalogue/information/objects/oldreactor
@@ -78,16 +96,34 @@
 	name = "ruptured fission reactor rack"
 	desc = "This broken hunk of machinery looks extremely dangerous."
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/poi/brokenoldreactor/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 
-/obj/item/poi/brokenoldreactor/process()
-	SSradiation.radiate(src, 25)
+/obj/item/poi/brokenoldreactor/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
 
 /obj/item/poi/brokenoldreactor/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
 	return ..()
 
 /datum/category_item/catalogue/information/objects/growthcanister

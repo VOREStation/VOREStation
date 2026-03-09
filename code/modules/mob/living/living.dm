@@ -32,7 +32,6 @@
 		return name
 
 /mob/living/Destroy()
-	SSradiation.listeners -= src
 	remove_all_modifiers(TRUE)
 	QDEL_NULL(say_list)
 

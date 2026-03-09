@@ -307,14 +307,6 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/rad_act(severity)
-	if(istype(loc, /obj/item/rig))
-		return	//Don't irradiate us while we're in rig mode
-	if(humanform)
-		return humanform.rad_act(severity)
-	else
-		return ..()
-
 /mob/living/simple_mob/protean_blob/bullet_act(obj/item/projectile/P)
 	if(humanform)
 		return humanform.bullet_act(P)

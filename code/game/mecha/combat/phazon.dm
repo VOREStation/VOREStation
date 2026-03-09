@@ -114,9 +114,15 @@
 	..()
 	if(phasing)
 		phasing = FALSE
-		SSradiation.radiate(get_turf(src), 30)
+		radiation_pulse(
+			src,
+			max_range = 7,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE * 5,
+		)
 		log_append_to_last("WARNING: BLUESPACE DRIVE INSTABILITY DETECTED. DISABLING DRIVE.",1)
 		visible_message(span_alien("The [src.name] appears to flicker, before its silhouette stabilizes!"))
+
 	return
 
 /obj/mecha/combat/phazon/janus/dynbulletdamage(var/obj/item/projectile/Proj)

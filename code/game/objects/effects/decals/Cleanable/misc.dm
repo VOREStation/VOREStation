@@ -23,10 +23,37 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/greenglow
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/effect/decal/cleanable/greenglow/Initialize(mapload, _age)
 	. = ..()
 	QDEL_IN(src, 2 MINUTES)
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/obj/effect/decal/cleanable/greenglow/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	. = ..()
+
+/obj/effect/decal/cleanable/greenglow/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
+
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"

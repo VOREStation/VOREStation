@@ -1101,8 +1101,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				log_and_message_admins("[user] dusted themselves and caused massive radiation with [src]!",user)
 				user.dust()
 				var/rads = 500
-				SSradiation.radiate(src, rads)
-
+				radiation_pulse(
+					src,
+					max_range = 12,
+					threshold = RAD_HEAVY_INSULATION,
+					chance = URANIUM_IRRADIATION_CHANCE * 2,
+				)
 		set_light(5)
 		START_PROCESSING(SSobj, src)
 	else

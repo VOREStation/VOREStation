@@ -142,7 +142,13 @@
 	..()
 	add_avail(power_gen)
 	if(panel_open && irradiate)
-		SSradiation.radiate(src, 60)
+		radiation_pulse(
+			src,
+			max_range = 3,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = DEFAULT_RADIATION_CHANCE,
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		)
 
 /obj/machinery/power/rtg/RefreshParts()
 	var/part_level = 0
@@ -591,9 +597,14 @@
 	var/turf/T = get_turf(src)
 	qdel(src)
 	if(T)
+		radiation_pulse(
+			T,
+			max_range = 12,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = DEFAULT_RADIATION_CHANCE * 3,
+		)
 		empulse(T, 12, 14, 16, 18)
 		explosion(T, 7, 12, 18, 20)
-		SSradiation.radiate(T, 200)
 		new /obj/effect/bhole(T)
 
 /obj/machinery/power/rtg/antimatter_core/blob_act(obj/structure/blob/B)

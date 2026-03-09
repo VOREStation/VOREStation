@@ -175,7 +175,14 @@
 	//End of the calculation.
 
 	if(contamination && living_guy.radiation > contamination_threshold)
-		SSradiation.radiate(living_guy, rads * contamination_strength * rad_removal_mod)
+		//SSradiation.radiate(living_guy, rads * contamination_strength * rad_removal_mod)
+		radiation_pulse(
+			living_guy,
+			max_range = 2,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = CLAMP(rads * contamination_strength, 0, 25),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		)
 
 	///Used for radiation nutrition and healing.
 	var/rads_to_utilize
