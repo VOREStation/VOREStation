@@ -26,6 +26,7 @@
 		TEST_NOTICE(src, "TEST = ADDED MAT FOR SHEET [path]")
 		for(var/mat in get_mats)
 			needed_materials |= mat
+			TEST_NOTICE(src, "    - [mat]")
 		qdel(sheet)
 
 	// Then get the sheets those materials are represented by
