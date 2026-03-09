@@ -35,11 +35,12 @@ SUBSYSTEM_DEF(radiation)
 	var/turfs_iterated = 0
 	for (var/turf/turf_to_irradiate as anything in cached_turfs_to_process)
 		turfs_iterated += 1
-		for (var/atom/movable/target in turf_to_irradiate)
+		for(var/obj/machinery/power/rad_collector in turf_to_irradiate)
+			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation) //We just do it here and skip all the math to make it faster.
+			continue
+
+		for(var/mob/living/target in turf_to_irradiate)
 			var/current_insulation = 1
-			if(istype(target, /obj/machinery/power/rad_collector))
-				SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation) //We just do it here and skip all the math to make it faster.
-				continue
 
 
 			if (!can_irradiate_basic(target))
@@ -96,7 +97,7 @@ SUBSYSTEM_DEF(radiation)
 			if (!prob(perceived_chance))
 				continue
 
-			if (irradiate_after_basic_checks(target))
+			if (irradiate_after_basic_checks(target, pulse_information.strength))
 				target.investigate_log("was irradiated by [source].", INVESTIGATE_RADIATION)
 
 		if(MC_TICK_CHECK)
@@ -105,20 +106,22 @@ SUBSYSTEM_DEF(radiation)
 	cached_turfs_to_process.Cut(1, turfs_iterated + 1)
 
 /// Will attempt to irradiate the given target, limited through IC means, such as radiation protected clothing.
-/datum/controller/subsystem/radiation/proc/irradiate(atom/target)
+/datum/controller/subsystem/radiation/proc/irradiate(atom/target, strength)
 	if (!can_irradiate_basic(target))
 		return FALSE
 
-	irradiate_after_basic_checks(target)
+	irradiate_after_basic_checks(target, strength)
 	return TRUE
 
-/datum/controller/subsystem/radiation/proc/irradiate_after_basic_checks(atom/target)
+/datum/controller/subsystem/radiation/proc/irradiate_after_basic_checks(mob/living/target, strength)
 	PRIVATE_PROC(TRUE)
 
-	if (ishuman(target) && wearing_rad_protected_clothing(target))
+	if(ishuman(target) && wearing_rad_protected_clothing(target))
 		return FALSE
 
-	target.AddComponent(/datum/component/irradiated)
+	target.radiation += strength
+
+//	target.AddComponent(/datum/component/irradiated)
 	return TRUE
 
 /// Returns whether or not the target can be irradiated by any means.

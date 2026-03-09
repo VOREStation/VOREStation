@@ -1,5 +1,5 @@
 /// Whether or not it's possible for this atom to be irradiated
-#define CAN_IRRADIATE(atom) (ishuman(##atom) || isitem(##atom))
+#define CAN_IRRADIATE(atom) (ishuman(##atom) || isitem(##atom) ||ismachinery(##atom))
 
 /// Calculates the max chance for a radiation_pulse via a radioactive reagent
 #define CALCULATE_RAD_MAX_CHANCE(rad_power) (20 + (15 * (rad_power - 1)))
@@ -22,12 +22,14 @@
 /// Assuming there is nothing in the way, the chance will determine what the chance is to get irradiated from half of max_range.
 /// Example: If chance is equal to 30%, and max_range is equal to 8,
 /// then the chance for a thing to get irradiated is 30% if they are 4 turfs away from the pulse source.
+/// Also, strength is how much radiation the target will get if they fail their RNG check / linger for too long.
 /proc/radiation_pulse(
 	atom/source,
 	max_range,
 	threshold,
 	chance = DEFAULT_RADIATION_CHANCE,
 	minimum_exposure_time = 0,
+	strength = 1
 )
 	if(!SSradiation.can_fire)
 		return
@@ -39,6 +41,7 @@
 	pulse_information.chance = chance
 	pulse_information.minimum_exposure_time = minimum_exposure_time
 	pulse_information.turfs_to_process = RANGE_TURFS(max_range, source)
+	pulse_information.strength = strength
 
 	SSradiation.processing += pulse_information
 
@@ -51,6 +54,7 @@
 	var/chance
 	var/minimum_exposure_time
 	var/list/turfs_to_process
+	var/strength
 
 #define MEDIUM_RADIATION_THRESHOLD_RANGE 0.5
 #define EXTREME_RADIATION_CHANCE 30

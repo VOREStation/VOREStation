@@ -29,6 +29,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isairlock(A)	istype(A, /obj/machinery/door/airlock)
 
+#define ismachinery(A)	istype(A, /obj/machinery)
+
 #define isorgan(A)		istype(A, /obj/item/organ/external)
 
 #define isstorage(A)	istype(A, /obj/item/storage)

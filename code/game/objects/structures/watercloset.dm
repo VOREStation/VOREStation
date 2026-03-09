@@ -272,6 +272,7 @@
 	check_heat(L)
 	L.extinguish_mob()
 	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
+	L.radiation = CLAMP(L.radiation - 5, 0, RADIATION_CAP)
 
 	if(!iscarbon(A))
 		return

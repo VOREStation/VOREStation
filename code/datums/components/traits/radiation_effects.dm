@@ -69,11 +69,14 @@
 	///How much the damage we take from rads is multiplied by.
 	var/damage_multiplier = 1.0
 
+	///If we use a toony glow instead of a more emmissive one.
+	var/toony = FALSE
+
 
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	dupe_type = /datum/component/radiation_effects
 
-/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation, radiation_nutrition, radiation_nutrition_cap, glow_toggle, nutrition_toggle)
+/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation, radiation_nutrition, radiation_nutrition_cap, glow_toggle, nutrition_toggle, toony)
 
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -115,6 +118,9 @@
 	if(show_panel)
 		add_verb(parent, /mob/living/proc/radiation_control_panel)
 
+	if(toony)
+		src.toony = toony
+
 /datum/component/radiation_effects/Destroy(force)
 	if(show_panel)
 		remove_verb(parent, /mob/living/proc/radiation_control_panel)
@@ -125,6 +131,7 @@
 	RegisterSignal(parent, COMSIG_HANDLE_RADIATION, PROC_REF(process_component))
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_glow))
 	RegisterSignal(parent, COMSIG_LIVING_IRRADIATE_EFFECT, PROC_REF(handle_irradiate_effect))
+	RegisterSignal(parent, COMSIG_GEIGER_COUNTER_SCAN, PROC_REF(on_geiger_counter_scan))
 
 /datum/component/radiation_effects/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_HANDLE_RADIATION, COMSIG_LIVING_LIFE, COMSIG_LIVING_IRRADIATE_EFFECT))
@@ -182,6 +189,7 @@
 			threshold = RAD_MEDIUM_INSULATION,
 			chance = CLAMP(rads * contamination_strength, 0, 25),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rads * contamination_strength
 		)
 
 	///Used for radiation nutrition and healing.
@@ -341,3 +349,12 @@
 	nutrition_toggle = TRUE
 	radiation_healing = TRUE
 	radiation_nutrition = TRUE
+
+/datum/component/radiation_effects/proc/on_geiger_counter_scan(datum/source, mob/user, obj/item/geiger/geiger_counter)
+	SIGNAL_HANDLER
+
+	if(isliving(source))
+		var/mob/living/living_source = source
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated.")) //Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current radiation levels: [living_source.radiation]."))
+	else
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Target is irradiated."))

@@ -20,7 +20,7 @@
 
 	time_added = world.time
 
-	to_chat(parent, span_userdanger("The air around you feels warm...perhaps you should go somewhere else."))
+//	to_chat(parent, span_userdanger("The air around you feels warm...perhaps you should go somewhere else.")) //Silent.
 
 	start_deletion_timer()
 
