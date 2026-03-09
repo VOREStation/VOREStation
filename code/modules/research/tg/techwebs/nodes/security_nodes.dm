@@ -89,6 +89,9 @@
 	display_name = "Specialty Rifle Ammunition"
 	description = "Sometimes you just need more gun."
 	design_ids = list(
+		// Extended
+		"rifle_mag_762_ext",
+		"rifle_mag_762_ext_pierce",
 		// Rattle em boys!
 		"uzi_mag_45",
 		"tommy_mag_45",
@@ -106,6 +109,7 @@
 		"pistol_mag_topmount_9mm_practice",
 		"pistol_mag_topmount_9mm_flash",
 		"pistol_mag_topmount_9mm_piercing",
+		"pistol_mag_ext_topmount_9mm_piercing",
 		// M1
 		"rifle_enblock_762",
 		"rifle_enblock_762_pierce",

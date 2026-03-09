@@ -432,6 +432,17 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
+/datum/design_techweb/pistol_mag_ext_topmount_9mm_piercing
+	name = "top-mounted extended SMG magazine (9mm AP)"
+	id = "pistol_mag_ext_topmount_9mm_piercing"
+	materials = list(MAT_STEEL = 3000, MAT_PLASTEEL = 1500)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m9mmp90
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
 /////// 10mm
 
 /datum/design_techweb/smg_mag_10m
@@ -645,6 +656,30 @@
 	materials = list(MAT_STEEL = 2500, MAT_PLASTEEL = 1200)
 	build_type = AUTOLATHE | PROTOLATHE
 	build_path = /obj/item/ammo_magazine/m762/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_mag_762_ext
+	name = "rifle magazine (7.62mm) extended"
+	id = "rifle_mag_762_ext"
+	materials = list(MAT_STEEL = 5000)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762/ext
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
+
+/datum/design_techweb/rifle_mag_762_ap_ext
+	name = "rifle magazine (7.62mm AP) extended"
+	id = "rifle_mag_762_ext_pierce"
+	materials = list(MAT_STEEL = 5000, MAT_PLASTEEL = 2400)
+	build_type = AUTOLATHE | PROTOLATHE
+	build_path = /obj/item/ammo_magazine/m762/ext/ap
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
