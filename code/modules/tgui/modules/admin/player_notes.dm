@@ -87,7 +87,7 @@
 			current_filter = ""
 
 		if("open_legacy_ui")
-			open_legacy()
+			open_legacy(ui.user)
 
 /datum/tgui_module/player_notes/tgui_data(mob/user)
 	var/list/data = list()
