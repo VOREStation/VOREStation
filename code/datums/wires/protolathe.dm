@@ -1,7 +1,7 @@
 /datum/wires/protolathe
 	holder_type = /obj/machinery/rnd/production/protolathe
 	wire_count = 6
-	proper_name = "Protolate"
+	proper_name = "Protolathe"
 
 /datum/wires/protolathe/New(atom/_holder)
 	wires = list(WIRE_LATHE_HACK, WIRE_LATHE_DISABLE)

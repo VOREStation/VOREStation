@@ -32,6 +32,11 @@
 	QDEL_NULL(wires)
 	return ..()
 
+/obj/machinery/rnd/tgui_status(mob/user)
+	if(disabled)
+		return STATUS_CLOSE
+	return ..()
+
 ///Called when attempting to connect the machine to a techweb, forgetting the old.
 /obj/machinery/rnd/proc/connect_techweb(datum/techweb/new_techweb)
 	if(stored_research)
@@ -54,6 +59,8 @@
 		return
 	if(wires && panel_open)
 		return wires.Interact(user)
+	if(disabled)
+		return
 	tgui_interact(user)
 
 /obj/machinery/rnd/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
