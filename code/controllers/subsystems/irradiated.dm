@@ -85,19 +85,20 @@
 		return PROCESS_KILL
 
 	var/mob/living/carbon/human/human_parent = parent
-	if (human_parent.toxloss == 0)
+	if (human_parent.radiation == 0)
 		qdel(src)
 		return PROCESS_KILL
 
 	if (should_halt_effects(parent))
 		return
 
-	if (human_parent.stat != DEAD)
-		human_parent.handle_radiation()
+
+//	if (human_parent.stat != DEAD)
+//		human_parent.handle_radiation()
 
 //		human_parent.dna?.species?.handle_radiation(human_parent, world.time - beginning_of_irradiation, seconds_per_tick)
 
-	process_tox_damage(human_parent, seconds_per_tick)
+//	process_tox_damage(human_parent, seconds_per_tick)
 
 /datum/component/irradiated/proc/should_halt_effects(mob/living/carbon/human/target)
 	if (HAS_TRAIT(target, TRAIT_STASIS))

@@ -26,7 +26,7 @@
 
 		//Mutations and radiation
 		handle_mutations()
-//		handle_radiation() //Handled by the irradiated component now!
+		handle_radiation() //Handled by the irradiated component now!
 
 
 
