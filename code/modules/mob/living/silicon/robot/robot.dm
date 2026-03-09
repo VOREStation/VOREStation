@@ -1588,6 +1588,7 @@
 			return letter_bag
 		else if(!letter_bag)
 			return ""
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
