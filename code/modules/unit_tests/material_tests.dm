@@ -33,7 +33,7 @@
 	for(var/datum/material/mat in needed_materials)
 		if(!mat || !mat.stack_type)
 			continue
-		TEST_NOTICE(src, "TEST = ADDED REQUIRED MAT [id] > SHEET [mat.stack_type]")
+		TEST_NOTICE(src, "TEST = ADDED REQUIRED MAT [mat.type] > SHEET [mat.stack_type]")
 		required_sheets |= mat.stack_type
 
 	// Get all material sheet printing recipies in the autolathe
