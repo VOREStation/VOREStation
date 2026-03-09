@@ -167,7 +167,12 @@
 	var/rad_power = 50
 
 /obj/item/projectile/arc/radioactive/on_impact(turf/T)
-	SSradiation.radiate(T, rad_power)
+	radiation_pulse(
+		T,
+		max_range = 3,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+	)
 
 // Blob mortar
 /obj/item/projectile/arc/spore

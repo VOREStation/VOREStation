@@ -407,7 +407,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	if (src.energy>200)
 		toxdamage = round(((src.energy-150)/50)*4,1)
 		radiation = round(((src.energy-150)/50)*5,1)
-	SSradiation.radiate(src, radiation) //Always radiate at max, so a decent dose of radiation is applied
+	radiation_pulse(
+		src,
+		max_range = 7,
+		threshold = RAD_EXTREME_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE + round(src.energy / 60, 1),
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+	)
 	for(var/mob/living/M in view(toxrange, src.loc))
 		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 			return 0	// Cancelled by a component
@@ -450,7 +456,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			to_chat(M, span_danger("You hear an unearthly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
 			to_chat(M, span_danger("You don't even have a moment to react as you are reduced to ashes by the intense radiation."))
 			M.dust()
-	SSradiation.radiate(src, rand(energy))
+
+	radiation_pulse(
+		src,
+		max_range = 10,
+		threshold = RAD_EXTREME_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE * 8,
+	)
 	return
 
 /obj/singularity/proc/pulse()

@@ -11,6 +11,31 @@
 	var/fuel_colour
 	var/radioactivity = 0
 	var/const/initial_amount = 3000000
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
+
+/obj/item/fuel_assembly/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = (radioactivity * 0.5),
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DEFAULT_RADIATION_CHANCE,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
+
+/obj/item/fuel_assembly/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	return ..()
+
 
 /obj/item/fuel_assembly/Initialize(mapload, var/_material, var/_colour)
 	. = ..()
@@ -25,7 +50,7 @@
 		if(material.radioactivity)
 			radioactivity = material.radioactivity
 			desc += " It is warm to the touch."
-			START_PROCESSING(SSobj, src)
+			RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 		if(material.luminescence)
 			set_light(material.luminescence, material.luminescence, material.icon_colour)
 	else
@@ -37,17 +62,6 @@
 	I.color = fuel_colour
 	add_overlay(list(I, image(icon, "fuel_assembly_bracket")))
 	rod_quantities[fuel_type] = initial_amount
-
-/obj/item/fuel_assembly/process()
-	if(!radioactivity)
-		return PROCESS_KILL
-
-	if(istype(loc, /turf))
-		SSradiation.radiate(src, max(1,CEILING(radioactivity/30, 1)))
-
-/obj/item/fuel_assembly/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
 
 // Mapper shorthand.
 /obj/item/fuel_assembly/deuterium/Initialize(mapload)
