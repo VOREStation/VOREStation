@@ -24,6 +24,8 @@
 	/// Particles this obj uses when burning, if any
 	var/burning_particles
 
+	var/obj_flags = CAN_BE_HIT
+
 	uses_integrity = TRUE
 
 /obj/Destroy()

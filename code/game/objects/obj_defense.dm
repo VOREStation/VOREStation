@@ -26,6 +26,17 @@
 	deconstruct(FALSE)
 
 /**
+ * Custom behaviour per atom subtype on how they should deconstruct themselves
+ * Arguments
+ *
+ * * disassembled - TRUE means we cleanly took this atom apart using tools. FALSE means this was destroyed in a violent way
+ */
+/obj/proc/atom_deconstruct(disassembled = TRUE)
+	PROTECTED_PROC(TRUE)
+
+	return
+
+/**
  * The interminate proc between deconstruct() & atom_deconstruct(). By default this delegates deconstruction to
  * atom_deconstruct if NO_DEBRIS_AFTER_DECONSTRUCTION is absent but subtypes can override this to handle NO_DEBRIS_AFTER_DECONSTRUCTION in their
  * own unique way. Override this if for example you want to dump out important content like mobs from the

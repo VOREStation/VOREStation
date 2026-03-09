@@ -157,7 +157,7 @@ Pipelines + Other Objects -> Pipe network
 	return TRUE
 
 // Deconstruct into a pipe item.
-/obj/machinery/atmospherics/proc/deconstruct()
+/obj/machinery/atmospherics/atom_deconstruct()
 	if(QDELETED(src))
 		return
 	if(construction_type)
@@ -258,7 +258,7 @@ Pipelines + Other Objects -> Pipe network
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = our_turf.return_air()
 	var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
-	deconstruct()
+	atom_deconstruct()
 	// Release pressure
 	playsound(our_turf, 'sound/effects/bang.ogg', 70, 0, 0)
 	playsound(our_turf, 'sound/effects/clang2.ogg', 70, 0, 0)

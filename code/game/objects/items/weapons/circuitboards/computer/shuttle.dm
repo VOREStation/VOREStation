@@ -10,7 +10,7 @@
 	var/shuttle_category = null	// Shuttle datum's category must exactly equal this to auto-detect
 	var/shuttle_tag = null		// If set, link constructed console to this shuttle. If null, auto-detect.
 
-/obj/item/circuitboard/shuttle_console/deconstruct(obj/machinery/computer/shuttle_control/M)
+/obj/item/circuitboard/shuttle_console/atom_deconstruct(disassembled = TRUE, obj/machinery/computer/shuttle_control/M)
 	shuttle_tag = M.shuttle_tag
 	if(shuttle_tag)
 		name = T_BOARD("[shuttle_tag] control console")
