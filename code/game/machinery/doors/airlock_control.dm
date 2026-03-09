@@ -270,7 +270,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/airlock_sensor/allow_pai_interaction(proximity_flag)
+/obj/machinery/airlock_sensor/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/machinery/airlock_sensor/airlock_interior
@@ -364,7 +364,7 @@
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, radio_filter = RADIO_AIRLOCK)
 	flick("access_button_cycle", src)
 
-/obj/machinery/access_button/allow_pai_interaction(proximity_flag)
+/obj/machinery/access_button/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)

@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	var/list/tracking_devices
 	var/list/showing_tracked_names
 	var/obj/compass_holder/compass
+	var/theme
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -91,7 +92,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return PROCESS_KILL
 	update_holder()
 	if(holder)
-		update_compass(TRUE)
+		update_compass(src, TRUE)
 
 /obj/item/gps/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -115,7 +116,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	reachable_z_levels = reachable_z_levels || using_map.get_map_levels(origin.z, long_range)
 	return (target.z in reachable_z_levels)
 
-/obj/item/gps/proc/update_compass(var/update_compass_icon)
+/obj/item/gps/proc/update_compass(atom/movable/source, var/update_compass_icon)
 	SIGNAL_HANDLER
 	compass.hide_waypoints(FALSE)
 	var/turf/my_turf = get_turf(src)
@@ -157,10 +158,11 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		if(!is_in_processing_list)
 			is_in_processing_list = TRUE
 			START_PROCESSING(SSobj, src)
+			update_compass(src, TRUE)
 	else
 		is_in_processing_list = FALSE
 		STOP_PROCESSING(SSobj, src)
-	update_compass()
+		update_compass(src)
 	update_holder()
 	update_icon()
 
@@ -190,173 +192,149 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return TRUE
 	if(special_handling)
 		return FALSE
-	display(user)
+
+	tgui_interact(user)
+
+/obj/item/gps/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
+
+/obj/item/gps/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Gps", name)
+		ui.open()
+
+/obj/item/gps/tgui_static_data(mob/user)
+	. = ..()
+	var/robot_theme
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		robot_theme = robot_owner.get_ui_theme()
+	.["theme"] = theme || robot_theme
 
 // Compiles all the data not available directly from the GPS
 // Like the positions and directions to all other GPS units
-/obj/item/gps/proc/display_list()
-	var/list/dat = list()
+/obj/item/gps/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 
 	var/turf/curr = get_turf(src)
 	var/area/my_area = get_area(src)
 
-	dat["my_area_name"] = strip_improper(my_area.name)
-	dat["curr_x"] = curr.x
-	dat["curr_y"] = curr.y
-	dat["curr_z"] = curr.z
-	dat["curr_z_name"] = strip_improper(using_map.get_zlevel_name(curr.z))
-	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
+	var/list/data = list(
+		"currentArea" = strip_improper(my_area.name),
+		"power" = tracking,
+		"tag" = gps_tag,
+		"localMode" = local_mode,
+		"currentCoords" = "[curr.x], [curr.y], [curr.z]",
+		"currentZName" = strip_improper(using_map.get_zlevel_name(curr.z)),
+		"canHide" = can_hide_signal,
+		"isHidden" = hide_signal
+	)
 
+	var/z_level_det = using_map.get_map_levels(curr.z, long_range)
 	var/list/gps_list = list()
-	for(var/obj/item/gps/G in GLOB.GPS_list - src)
+	for(var/obj/item/gps/current_gps in GLOB.GPS_list - src)
 
-		if(!can_track(G, dat["z_level_detection"]))
+		if(!can_track(current_gps, z_level_det))
 			continue
 
-		var/gps_data[0]
-		gps_data["ref"] = G
-		gps_data["gps_tag"] = G.gps_tag
+		var/area/gps_area = get_area(current_gps)
+		var/turf/gps_turf = get_turf(current_gps)
 
-		var/area/A = get_area(G)
-		gps_data["area_name"] = strip_improper(A.get_name())
+		var/is_local = (curr.z == gps_turf.z)
+		var/dist = get_dist(curr, gps_turf)
+		var/is_poi = istype(current_gps, /obj/item/gps/internal/poi)
 
-		var/turf/T = get_turf(G)
-		gps_data["z_name"] = strip_improper(using_map.get_zlevel_name(T.z))
-		gps_data["direction"] = get_adir(curr, T)
-		gps_data["degrees"] = round(Get_Angle(curr,T))
-		gps_data["distX"] = T.x - curr.x
-		gps_data["distY"] = T.y - curr.y
-		gps_data["distance"] = get_dist(curr, T)
-		gps_data["local"] = (curr.z == T.z)
-		gps_data["x"] = T.x
-		gps_data["y"] = T.y
+		if(is_poi && is_local)
+			dist = round(dist, 10)
 
-		gps_list[++gps_list.len] = gps_data
+		var/list/gps_data = list(
+			"ref" = "\ref[current_gps]",
+			"gpsTag" = current_gps.gps_tag,
+			"areaName" = strip_improper(gps_area.get_name()),
+			"zName" = strip_improper(using_map.get_zlevel_name(gps_turf.z)),
+			"local" = is_local,
+			"trackingColor" = LAZYACCESS(tracking_devices, "\ref[current_gps]"),
+			"trackingName" = LAZYACCESS(showing_tracked_names, "\ref[current_gps]"),
+		)
 
-	dat["gps_list"] = gps_list
+		if(!is_poi || is_local)
+			gps_data["degrees"] = round(Get_Angle(curr, gps_turf))
+			gps_data["coords"] = "[gps_turf.x], [gps_turf.y], [gps_turf.z]"
+			gps_data["dist"] = dist
 
-	return dat
+		UNTYPED_LIST_ADD(gps_list, gps_data)
 
-/obj/item/gps/proc/display(mob/user)
+	data["signals"] = gps_list
 
-	if(emped)
-		to_chat(user, span_warning("It's busted!"))
+	return data
+
+/obj/item/gps/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
 		return
 
-	var/list/dat = list()
-	var/list/gps_data = display_list()
-
-	dat += "<table width = '100%'>"
-	if(!tracking)
-		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
-	else
-		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
-		dat += "<tr><td colspan = 2><b>Current location</b></td><td colspan = 2>[gps_data["my_area_name"]]</td><td colspan = 2><b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b></td></tr>"
-		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
-		dat += "<td><a href='byond://?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='byond://?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='byond://?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
-
-		var/list/gps_list = gps_data["gps_list"]
-		if(gps_list.len)
-			dat += "<tr><td colspan = 6><b>Detected signals</b></td></tr>"
-			for(var/gps in gps_data["gps_list"])
-				dat += "<tr>"
-				var/gps_ref = "\ref[gps["ref"]]"
-				dat += "<td>[gps["gps_tag"]]</td><td>[gps["area_name"]]</td>"
-
-				if(istype(gps_data["ref"], /obj/item/gps/internal/poi))
-					dat += "<td>[gps["local"] ? "[gps["direction"]] Dist: [round(gps["distance"], 10)]m" : "[gps["z_name"]]"]</td>"
-				else
-					dat += "<td>([gps["x"]], [gps["y"]], [gps["z_name"]])</td>"
-
-				if(gps["local"])
-					dat += "<td>[gps["distance"]]m</td><td>[gps["direction"]]</td>"
-				else
-					dat += "<td colspan = 2>Non-local signal.</td>"
-
-				if(LAZYACCESS(tracking_devices, gps_ref))
-					dat += "<td><a href='byond://?src=\ref[src];stop_track=[gps_ref]'>\[Stop Tracking\]</a> <a href='byond://?src=\ref[src];track_color=[gps_ref]'>\[Colour [color_square(hex = LAZYACCESS(tracking_devices, gps_ref))]\]</a> <a href='byond://?src=\ref[src];track_label=[gps_ref]'>Show/Hide Label</a></td>"
-				else
-					dat += "<td><a href='byond://?src=\ref[src];start_track=[gps_ref]'>\[Start Tracking\]</a></td>"
-				dat += "</tr>"
-		else
-			dat += "<tr><td colspan = 5>No other signals detected.</td></tr>"
-	dat += "</table>"
-
-	var/datum/browser/popup = new(user, "gps_\ref[src]", "Global Positioning System", 700, 1000)
-	popup.set_content(dat.Join(null))
-	popup.open()
-
-/obj/item/gps/Topic(var/href, var/list/href_list)
-	if(..())
-		return TRUE
-
-	if(href_list["toggle_power"])
-		toggle_tracking()
-		. = TRUE
-
-	if(href_list["track_label"])
-		var/gps_ref = href_list["track_label"]
-		var/obj/item/gps/gps = locate(gps_ref)
-		if(istype(gps) && !QDELETED(gps) && !LAZYACCESS(showing_tracked_names, gps_ref))
-			LAZYSET(showing_tracked_names, gps_ref, TRUE)
-		else
+	switch(action)
+		if("power")
+			toggle_tracking()
+			return TRUE
+		if("rename")
+			var/new_name = sanitize(params["value"], 11)
+			if(!new_name)
+				return FALSE
+			gps_tag = uppertext(new_name)
+			name = "global positioning system ([gps_tag])"
+			return TRUE
+		if("localMode")
+			local_mode = !local_mode
+			return TRUE
+		if("hideSignal")
+			if(!can_hide_signal)
+				return FALSE
+			hide_signal = !hide_signal
+			return TRUE
+		if("trackLabel")
+			var/gps_ref = params["ref"]
+			if(!gps_ref)
+				return FALSE
+			var/obj/item/gps/gps = locate(gps_ref)
+			if(istype(gps) && !QDELETED(gps) && !LAZYACCESS(showing_tracked_names, gps_ref))
+				LAZYSET(showing_tracked_names, gps_ref, TRUE)
+			else
+				LAZYREMOVE(showing_tracked_names, gps_ref)
+			return TRUE
+		if("stopTrack")
+			var/gps_ref = params["ref"]
+			if(!gps_ref)
+				return FALSE
+			compass.clear_waypoint(gps_ref)
+			LAZYREMOVE(tracking_devices, gps_ref)
 			LAZYREMOVE(showing_tracked_names, gps_ref)
-		to_chat(usr, span_notice("\The [src] is [LAZYACCESS(showing_tracked_names, gps_ref) ? "now showing" : "no longer showing"] labels for [gps.gps_tag]."))
-
-	if(href_list["stop_track"])
-		var/gps_ref = href_list["stop_track"]
-		var/obj/item/gps/gps = locate(gps_ref)
-		compass.clear_waypoint(gps_ref)
-		LAZYREMOVE(tracking_devices, gps_ref)
-		LAZYREMOVE(showing_tracked_names, gps_ref)
-		if(istype(gps) && !QDELETED(gps))
-			to_chat(usr, span_notice("\The [src] is no longer tracking [gps.gps_tag]."))
-		update_compass()
-		. = TRUE
-
-	if(href_list["start_track"])
-		var/gps_ref = href_list["start_track"]
-		var/obj/item/gps/gps = locate(gps_ref)
-		if(istype(gps) && !QDELETED(gps))
+			update_compass(src, TRUE)
+			return TRUE
+		if("startTrack")
+			var/gps_ref = params["ref"]
+			if(!gps_ref)
+				return FALSE
+			var/obj/item/gps/gps = locate(gps_ref)
+			if(!istype(gps) || QDELETED(gps))
+				return FALSE
 			LAZYSET(tracking_devices, gps_ref, "#00ffff")
 			LAZYSET(showing_tracked_names, gps_ref, TRUE)
-			to_chat(usr, span_notice("\The [src] is now tracking [gps.gps_tag]."))
-			update_compass()
-			. = TRUE
-
-	if(href_list["track_color"])
-		var/obj/item/gps/gps = locate(href_list["track_color"])
-		if(istype(gps) && !QDELETED(gps))
-			var/new_colour = tgui_color_picker(usr, "Enter a new tracking color.", "GPS Waypoint Color")
-			if(new_colour && istype(gps) && !QDELETED(gps) && holder == usr && !usr.incapacitated())
-				to_chat(usr, span_notice("You adjust the colour \the [src] is using to highlight [gps.gps_tag]."))
-				LAZYSET(tracking_devices, href_list["track_color"], new_colour)
-				update_compass()
-				. = TRUE
-
-	if(href_list["tag"])
-		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag, 10)
-		a = uppertext(copytext(a, 1, 11))
-		if(in_range(src, usr))
-			gps_tag = a
-			name = "global positioning system ([gps_tag])"
-			to_chat(usr, "You set your GPS's tag to '[gps_tag]'.")
-			. = TRUE
-
-	if(href_list["range"])
-		local_mode = !local_mode
-		to_chat(usr, "You set the signal receiver to [local_mode ? "'NARROW'" : "'BROAD'"].")
-		. = TRUE
-
-	if(href_list["hide"])
-		if(!can_hide_signal)
-			return
-		hide_signal = !hide_signal
-		to_chat(usr, "You set the device to [hide_signal ? "not " : ""]broadcast a signal while scanning for other signals.")
-		. = TRUE
-
-	if(. && loc == usr)
-		display(usr)
+			update_compass(src, TRUE)
+			return TRUE
+		if("trackColor")
+			var/gps_ref = params["ref"]
+			if(!gps_ref)
+				return FALSE
+			var/obj/item/gps/gps = locate(gps_ref)
+			if(!istype(gps) || QDELETED(gps))
+				return FALSE
+			var/new_colour = sanitize_hexcolor(params["color"])
+			if(!new_colour)
+				return FALSE
+			LAZYSET(tracking_devices, gps_ref, new_colour)
+			update_compass(src, TRUE)
+			return TRUE
 
 /obj/item/gps/on // Defaults to off to avoid polluting the signal list with a bunch of GPSes without owners. If you need to spawn active ones, use these.
 	tracking = TRUE
@@ -478,45 +456,4 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	long_range = TRUE
 	hide_signal = TRUE
 	can_hide_signal = TRUE
-
-/obj/item/gps/syndie/display(mob/user)
-
-	if(emped)
-		to_chat(user, "It's busted!")
-		return
-
-	var/list/dat = list()
-	var/list/gps_data = display_list()
-
-	dat += "<table width = '100%'>"
-	if(!tracking)
-		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
-	else
-		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
-		dat += "<tr><td colspan = 2><b>Current location</b></td><td colspan = 2>[gps_data["my_area_name"]]</td><td colspan = 2><b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b></td></tr>"
-		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
-		dat += "<td><a href='byond://?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='byond://?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='byond://?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
-
-		var/list/gps_list = gps_data["gps_list"]
-		if(gps_list.len)
-			dat += "<tr><td colspan = 6><b>Detected signals</b></td></tr>"
-			for(var/gps in gps_data["gps_list"])
-				dat += "<tr>"
-				var/gps_ref = "\ref[gps["ref"]]"
-				dat += "<td>[gps["gps_tag"]]</td><td>[gps["area_name"]] ([gps["x"]], [gps["y"]], [gps["z_name"]])</td>"
-				if(gps["local"])
-					dat += "<td>[gps["distance"]]m</td><td>[gps["direction"]]</td>"
-				else
-					dat += "<td colspan = 2>Non-local signal.</td>"
-				if(LAZYACCESS(tracking_devices, gps_ref))
-					dat += "<td><a href='byond://?src=\ref[src];stop_track=[gps_ref]'>\[Stop Tracking\]</a> <a href='byond://?src=\ref[src];track_color=[gps_ref]'>\[Colour [color_square(hex = LAZYACCESS(tracking_devices, gps_ref))]\]</a> <a href='byond://?src=\ref[src];track_label=[gps_ref]'>Show/Hide Label</a></td>"
-				else
-					dat += "<td><a href='byond://?src=\ref[src];start_track=[gps_ref]'>\[Start Tracking\]</a></td>"
-				dat += "</tr>"
-		else
-			dat += "<tr><td colspan = 6>No other signals detected.</td></tr>"
-	dat += "</table>"
-
-	var/datum/browser/popup = new(user, "gps_\ref[src]", "Global Positioning System", 700, 1000)
-	popup.set_content(dat.Join(null))
-	popup.open()
+	theme = "syndicate"

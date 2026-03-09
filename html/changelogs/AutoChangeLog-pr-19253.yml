@@ -1,0 +1,10 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "handheld flashes no longer stun phased shadekin"
+  - bugfix: "flashbangs no longer hit phased shadekin"
+  - bugfix: "explosions no longer hit phased shadekin"
+  - bugfix: "emps no longer hit phased shadekin"
+  - bugfix: "chemical sprays no longer hit phased shadekin"
+  - bugfix: "shadekin can no longer toggle oxygen/anesthetic pumps while in phase"
+  - bugfix: "you can no longer mount phased shadekin taurs, or mount a taur while phased"

@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { AnimatedArrows, AnimatedArrowsLeft } from '../common/AnimatedArrows';
 import { VorePanelTooltip } from '../VorePanel/VorePanelElements/VorePanelTooltip';
 import { gameStateToText, gameTooltip } from './constants';
 import { stateToColor } from './functions';
@@ -83,17 +84,20 @@ export const PlayerMenu = (props: {
                 </Stack.Item>
               </>
             ))}
-          {game_state === 1 && !!player_one && !!player_two && !!all_placed && (
-            <Stack.Item>
-              <Button.Confirm
-                onClick={() => {
-                  act('start_game');
-                }}
-              >
-                Start Game
-              </Button.Confirm>
-            </Stack.Item>
-          )}
+          {game_state === 1 &&
+            !!player_one &&
+            !!player_two &&
+            all_placed === 3 && (
+              <Stack.Item>
+                <Button.Confirm
+                  onClick={() => {
+                    act('start_game');
+                  }}
+                >
+                  Start Game
+                </Button.Confirm>
+              </Stack.Item>
+            )}
           {!!player_one && !!player_two && game_state === 4 && (
             <>
               <Stack.Item>
@@ -147,6 +151,9 @@ export const PlayerMenu = (props: {
                 {gameStateToText[game_state] ?? `${winner} Won`}
               </Box>
             </Stack.Item>
+            <Stack.Item>
+              <PlayerIndicator gameState={game_state} allPlaced={all_placed} />
+            </Stack.Item>
           </Stack>
         </Stack.Item>
         <PlayerPanel
@@ -163,4 +170,31 @@ export const PlayerMenu = (props: {
       </Stack>
     </Section>
   );
+};
+
+const PlayerIndicator = (props: { gameState: number; allPlaced: number }) => {
+  const { gameState, allPlaced } = props;
+  if (gameState === 1) {
+    return (
+      <Stack justify="center">
+        {(allPlaced & 0x1) === 0 && (
+          <Stack.Item>
+            <AnimatedArrowsLeft on={true} />
+          </Stack.Item>
+        )}
+        {(allPlaced & 0x2) === 0 && (
+          <Stack.Item>
+            <AnimatedArrows on={true} />
+          </Stack.Item>
+        )}
+      </Stack>
+    );
+  }
+  if (gameState === 2) {
+    return <AnimatedArrowsLeft on={true} />;
+  }
+  if (gameState === 3) {
+    return <AnimatedArrows on={true} />;
+  }
+  return null;
 };

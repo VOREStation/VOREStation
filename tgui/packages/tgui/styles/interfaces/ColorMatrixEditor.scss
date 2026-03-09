@@ -8,7 +8,7 @@
   box-shadow: var(--shadow-glow-medium) hsla(0, 0%, 0%, 0.5);
   margin: var(--space-m);
   color: var(--color-text);
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   padding: var(--space-m);
 }
