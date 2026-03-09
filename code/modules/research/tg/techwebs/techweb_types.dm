@@ -44,17 +44,12 @@ GLOBAL_LIST_EMPTY(autounlock_techwebs)
 /datum/techweb/autounlocking
 	///The buildtype we will automatically unlock.
 	var/allowed_buildtypes = ALL
-	///Designs that are only available when the printer is hacked.
-	var/list/hacked_designs = list()
 
 /datum/techweb/autounlocking/New()
 	. = ..()
 	for(var/id in SSresearch.techweb_designs)
 		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
 		if(!(design.build_type & allowed_buildtypes))
-			continue
-		if(RND_CATEGORY_HACKED in design.category)
-			add_design_by_id(id, add_to = hacked_designs)
 			continue
 		if(RND_CATEGORY_INITIAL in design.category)
 			add_design_by_id(id)

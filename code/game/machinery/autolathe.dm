@@ -50,6 +50,9 @@
 	. = ..()
 
 	wires = new(src)
+	if(hacked) // If this isn't done, mapset hacked vars will be inconsistant with actual wire state
+		wires.cut_wires += WIRE_AUTOLATHE_HACK
+
 	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
 		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe]
@@ -144,6 +147,9 @@
 /obj/machinery/autolathe/proc/handle_designs(list/designs)
 	PRIVATE_PROC(TRUE)
 
+	if(!length(designs))
+		return list()
+
 	var/list/output = list()
 
 	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
@@ -152,6 +158,8 @@
 	for(var/design_id in designs)
 		var/datum/design_techweb/design = SSresearch.techweb_design_by_id(design_id)
 		if(design.make_reagent)
+			continue
+		if(!hacked && (RND_CATEGORY_HACKED in design.category))
 			continue
 
 		//compute cost & maximum number of printable items
@@ -180,10 +188,7 @@
 	var/list/data = materials.tgui_static_data()
 
 	data["designs"] = handle_designs(stored_research.researched_designs)
-	if(imported_designs.len)
-		data["designs"] += handle_designs(imported_designs)
-	if(hacked)
-		data["designs"] += handle_designs(stored_research.hacked_designs)
+	data["designs"] += handle_designs(imported_designs)
 
 	return data
 
@@ -227,7 +232,6 @@
 	if(!design_id)
 		return
 	var/valid_design = stored_research.researched_designs[design_id]
-	valid_design ||= stored_research.hacked_designs[design_id]
 	valid_design ||= imported_designs[design_id]
 	if(!valid_design)
 		return
