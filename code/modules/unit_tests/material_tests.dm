@@ -23,15 +23,14 @@
 	for(var/path in subtypesof(/obj/item/stack))
 		var/obj/item/stack/material/sheet = new()
 		var/list/get_mats = sheet.get_material_composition()
+		TEST_NOTICE(src, "TEST = ADDED MAT FOR SHEET [path]")
 		for(var/mat in get_mats)
 			needed_materials |= mat
-		TEST_NOTICE(src, "TEST = ADDED MAT FOR SHEET [path]")
 		qdel(sheet)
 
 	// Then get the sheets those materials are represented by
 	var/list/required_sheets = list()
-	for(var/id in needed_materials)
-		var/datum/material/mat = get_material_by_name(id)
+	for(var/datum/material/mat in needed_materials)
 		if(!mat || !mat.stack_type)
 			continue
 		TEST_NOTICE(src, "TEST = ADDED REQUIRED MAT [id] > SHEET [mat.stack_type]")
