@@ -680,4 +680,7 @@
 		return TRUE
 	if(gloves?.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE)
 		return TRUE
+	for(var/obj/item/clothing/clothing in worn_clothing)
+		if(clothing.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE && (clothing.heat_protection & HANDS) && (clothing.body_parts_covered & HANDS))
+			return TRUE
 	return FALSE

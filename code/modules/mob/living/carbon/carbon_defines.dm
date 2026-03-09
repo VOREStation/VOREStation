@@ -42,3 +42,5 @@
 	///only used by humans.
 	var/obj/item/l_ear = null
 	var/obj/item/r_ear = null
+	///Only used by humans.
+	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
