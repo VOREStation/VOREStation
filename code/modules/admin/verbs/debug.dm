@@ -1,76 +1,68 @@
-/client/proc/Debug2()
-	set category = "Debug.Investigate"
-	set name = "Debug-Game"
-	if(!check_rights(R_DEBUG))	return
 
+ADMIN_VERB(Debug2, R_DEBUG, "Debug-Game", "Toggles debug level 2, might be quite spammy.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	if(GLOB.Debug2)
 		GLOB.Debug2 = FALSE
-		message_admins("[key_name(src)] toggled debugging off.")
-		log_admin("[key_name(src)] toggled debugging off.")
+		message_admins("[key_name(user)] toggled debugging off.")
+		log_admin("[key_name(user)] toggled debugging off.")
 	else
 		GLOB.Debug2 = TRUE
-		message_admins("[key_name(src)] toggled debugging on.")
-		log_admin("[key_name(src)] toggled debugging on.")
+		message_admins("[key_name(user)] toggled debugging on.")
+		log_admin("[key_name(user)] toggled debugging on.")
 
 	feedback_add_details("admin_verb","DG2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 // callproc moved to code/modules/admin/callproc
 
-/client/proc/simple_DPS()
-	set name = "Simple DPS"
-	set category = "Debug.Investigate"
-	set desc = "Gives a really basic idea of how much hurt something in-hand does."
-
+ADMIN_VERB(simple_DPS, R_DEBUG, "Simple DPS", "Gives a really basic idea of how much hurt something in-hand does.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	var/obj/item/I = null
-	var/mob/living/user = null
-	if(isliving(usr))
-		user = usr
-		I = user.get_active_hand()
-		if(!I || !istype(I))
-			to_chat(user, span_warning("You need to have something in your active hand, to use this verb."))
-			return
-		var/weapon_attack_speed = user.get_attack_speed(I) / 10
-		var/weapon_damage = I.force
-		var/modified_damage_percent = 1
-
-		for(var/datum/modifier/M in user.modifiers)
-			if(!isnull(M.outgoing_melee_damage_percent))
-				weapon_damage *= M.outgoing_melee_damage_percent
-				modified_damage_percent *= M.outgoing_melee_damage_percent
-
-		if(istype(I, /obj/item/gun))
-			var/obj/item/gun/G = I
-			var/obj/item/projectile/P
-
-			if(istype(I, /obj/item/gun/energy))
-				var/obj/item/gun/energy/energy_gun = G
-				P = new energy_gun.projectile_type()
-
-			else if(istype(I, /obj/item/gun/projectile))
-				var/obj/item/gun/projectile/projectile_gun = G
-				var/obj/item/ammo_casing/ammo = projectile_gun.chambered
-				P = ammo.BB
-
-			else
-				to_chat(user, span_warning("DPS calculation by this verb is not supported for \the [G]'s type. Energy or Ballistic only, sorry."))
-
-			weapon_damage = P.damage
-			weapon_attack_speed = G.fire_delay / 10
-			qdel(P)
-
-		var/DPS = weapon_damage / weapon_attack_speed
-		to_chat(user, span_notice("Damage: [weapon_damage][modified_damage_percent != 1 ? " (Modified by [modified_damage_percent*100]%)":""]"))
-		to_chat(user, span_notice("Attack Speed: [weapon_attack_speed]/s"))
-		to_chat(user, span_notice("\The [I] does <b>[DPS]</b> damage per second."))
-		if(DPS > 0)
-			to_chat(user, span_notice("At your maximum health ([user.getMaxHealth()]), it would take approximately;"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - user.get_crit_point()) / DPS] seconds to hardcrit you. ([user.get_crit_point()] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - (-user.getMaxHealth())) / DPS] seconds to kill you. ([(-user.getMaxHealth())] health)"))
-
-	else
+	var/mob/living/user_mob = user.mob
+	if(!istype(user_mob))
 		to_chat(user, span_warning("You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb."))
 		return
+
+	I = user_mob.get_active_hand()
+	if(!I || !istype(I))
+		to_chat(user, span_warning("You need to have something in your active hand, to use this verb."))
+		return
+	var/weapon_attack_speed = user_mob.get_attack_speed(I) / 10
+	var/weapon_damage = I.force
+	var/modified_damage_percent = 1
+
+	for(var/datum/modifier/M in user_mob.modifiers)
+		if(!isnull(M.outgoing_melee_damage_percent))
+			weapon_damage *= M.outgoing_melee_damage_percent
+			modified_damage_percent *= M.outgoing_melee_damage_percent
+
+	if(istype(I, /obj/item/gun))
+		var/obj/item/gun/G = I
+		var/obj/item/projectile/P
+
+		if(istype(I, /obj/item/gun/energy))
+			var/obj/item/gun/energy/energy_gun = G
+			P = new energy_gun.projectile_type()
+
+		else if(istype(I, /obj/item/gun/projectile))
+			var/obj/item/gun/projectile/projectile_gun = G
+			var/obj/item/ammo_casing/ammo = projectile_gun.chambered
+			P = ammo.BB
+
+		else
+			to_chat(user, span_warning("DPS calculation by this verb is not supported for \the [G]'s type. Energy or Ballistic only, sorry."))
+
+		weapon_damage = P.damage
+		weapon_attack_speed = G.fire_delay / 10
+		qdel(P)
+
+	var/DPS = weapon_damage / weapon_attack_speed
+	to_chat(user, span_notice("Damage: [weapon_damage][modified_damage_percent != 1 ? " (Modified by [modified_damage_percent*100]%)":""]"))
+	to_chat(user, span_notice("Attack Speed: [weapon_attack_speed]/s"))
+	to_chat(user, span_notice("\The [I] does <b>[DPS]</b> damage per second."))
+	if(DPS > 0)
+		to_chat(user, span_notice("At your maximum health ([user_mob.getMaxHealth()]), it would take approximately;"))
+		to_chat(user, span_notice("[(user_mob.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
+		to_chat(user, span_notice("[(user_mob.getMaxHealth() - user_mob.get_crit_point()) / DPS] seconds to hardcrit you. ([user_mob.get_crit_point()] health)"))
+		to_chat(user, span_notice("[(user_mob.getMaxHealth() - (-user_mob.getMaxHealth())) / DPS] seconds to kill you. ([(-user_mob.getMaxHealth())] health)"))
+
 
 ADMIN_VERB(Cell, R_DEBUG, "Cell", "Display the atmos information of the current cell.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	var/turf/T = get_turf(user.mob)
@@ -89,58 +81,45 @@ ADMIN_VERB(Cell, R_DEBUG, "Cell", "Display the atmos information of the current 
 	user.mob.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
-	set category = "Fun.Event Kit"
-	set name = "Make Robot"
-
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_robotize, R_ADMIN|R_EVENT|R_DEBUG, "Make Robot", "Turns the target into a robot.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/living/carbon/human/target_human in GLOB.human_mob_list)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has robotized [M.key].")
-		spawn(10)
-			M:Robotize()
+	if(!ishuman(target_human))
+		tgui_alert_async(user, "Invalid mob")
+		return
 
-	else
-		tgui_alert_async(usr, "Invalid mob")
+	log_admin("[key_name(user)] has robotized [target_human.key].")
+	addtimer(CALLBACK(target_human, TYPE_PROC_REF(/mob/living/carbon/human, Robotize)), 1 SECOND, TIMER_DELETE_ME)
 
-/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
-	set category = "Fun.Event Kit"
-	set name = "Make Simple Animal"
-
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_animalize, R_ADMIN|R_EVENT|R_DEBUG, "Make Simple Animal", "Spawns a new player directly as animal.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target_mob in GLOB.mob_list)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
 
-	if(!M)
-		tgui_alert_async(usr, "That mob doesn't seem to exist, close the panel and try again.")
+	if(!target_mob)
+		tgui_alert_async(user, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(isnewplayer(M))
-		tgui_alert_async(usr, "The mob must not be a new_player.")
+	if(isnewplayer(target_mob))
+		tgui_alert_async(user, "The mob must not be a new_player.")
 		return
 
-	log_admin("[key_name(src)] has animalized [M.key].")
-	spawn(10)
-		M.Animalize(usr)
+	log_admin("[key_name(user)] has animalized [target_mob.key].")
+	addtimer(CALLBACK(target_mob, TYPE_PROC_REF(/mob, Animalize)), 1 SECOND, TIMER_DELETE_ME)
 
-
-/client/proc/makepAI()
-	set category = "Fun.Event Kit"
-	set name = "Make pAI"
-	set desc = "Spawn someone in as a pAI!"
-	if(!check_rights(R_ADMIN|R_EVENT|R_DEBUG))
-		return
-	var/turf/T = get_turf(mob)
+ADMIN_VERB(makepAI, R_ADMIN|R_EVENT|R_DEBUG, "Make pAI", "Spawn someone in as a pAI!", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/turf/target_turf = get_turf(user.mob)
 
 	var/list/available = list()
-	for(var/mob/C in GLOB.mob_list)
-		if(C.key && isobserver(C))
-			available.Add(C)
-	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
+	for(var/mob/current_client in GLOB.mob_list)
+		if(current_client.key && isobserver(current_client))
+			available += current_client
+	var/mob/choice = tgui_input_list(user, "Choose a player to play the pAI", "Spawn pAI", available)
 	if(!choice)
-		return 0
-	var/obj/item/paicard/typeb/card = new(T)
+		return
+
+	var/obj/item/paicard/typeb/card = new(target_turf)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.real_name = pai.name
 	pai.key = choice.key
@@ -148,27 +127,25 @@ ADMIN_VERB(Cell, R_DEBUG, "Cell", "Display the atmos information of the current 
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
 		pai.apply_preferences(pai.client)
 	else
-		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
-	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
+		var/new_name = sanitizeName(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE), allow_numbers = TRUE)
+		if(new_name)
+			pai.name = new_name
+	log_admin("made a pAI with key=[pai.key] at ([target_turf.x],[target_turf.y],[target_turf.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
-	set category = "Fun.Event Kit"
-	set name = "Make Alien"
-
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_alienize, R_ADMIN|R_EVENT|R_DEBUG, "Make Alien", "Turns the target into an alien.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/living/carbon/human/target_human in GLOB.human_mob_list)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has alienized [M.key].")
-		spawn(10)
-			M:Alienize()
-			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
-		message_admins(span_notice("[key_name_admin(usr)] made [key_name(M)] into an alien."))
-	else
-		tgui_alert_async(usr, "Invalid mob")
+	if(!ishuman(target_human))
+		tgui_alert_async(user, "Invalid mob")
+		return
 
+	log_admin("[key_name(user)] has alienized [target_human.key].")
+	addtimer(CALLBACK(target_human, TYPE_PROC_REF(/mob/living/carbon/human, Alienize)), 1 SECOND, TIMER_DELETE_ME)
+	feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(user)] made [key_name(target_human)] into an alien.")
+	message_admins(span_notice("[key_name_admin(user)] made [key_name(target_human)] into an alien."))
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 ADMIN_VERB(cmd_debug_del_all, R_SERVER, "Del-All", "DANGER: Deletes all instances of a type.", ADMIN_CATEGORY_DEBUG_DANGEROUS)
@@ -195,12 +172,7 @@ ADMIN_VERB(cmd_debug_tog_aliens, R_DEBUG, "Toggle Aliens", "Toggle if aliens are
 	message_admins("[key_name_admin(user)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_display_del_log()
-	set category = "Debug.Investigate"
-	set name = "Display del() Log"
-	set desc = "Display del's log of everything that's passed through it."
-
-	if(!check_rights(R_DEBUG))	return
+ADMIN_VERB(cmd_display_del_log, R_DEBUG, "Display del() Log", "Display del's log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	var/list/dellog = list(span_bold("List of things that have gone through qdel this round") + "<BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
@@ -223,16 +195,10 @@ ADMIN_VERB(cmd_debug_tog_aliens, R_DEBUG, "Toggle Aliens", "Toggle if aliens are
 
 	dellog += "</ol>"
 
-	usr << browse("<html>[dellog.Join()]</html>", "window=dellog")
+	user << browse("<html>[dellog.Join()]</html>", "window=dellog")
 
-/client/proc/cmd_display_init_log()
-	set category = "Debug.Investigate"
-	set name = "Display Initialize() Log"
-	set desc = "Displays a list of things that didn't handle Initialize() properly"
-
-	if(!check_rights(R_DEBUG))
-		return
-	src << browse("<html>[replacetext(SSatoms.InitLog(), "\n", "<br>")]</html>", "window=initlog")
+ADMIN_VERB(cmd_display_init_log, R_DEBUG, "Display Initialize() Log", "Displays a list of things that didn't handle Initialize() properly.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	user << browse("<html>[replacetext(SSatoms.InitLog(), "\n", "<br>")]</html>", "window=initlog")
 
 ADMIN_VERB(cmd_display_overlay_log, R_DEBUG, "Display overlay Log", "Display SSoverlays log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	render_stats(SSoverlays.stats, user)

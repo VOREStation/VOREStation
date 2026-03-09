@@ -24,17 +24,13 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/trader_ship, // Trader ship admin verb,
 	/client/proc/aooc,
 	/client/proc/change_security_level,
-	/client/proc/makepAI,
 	/datum/admins/proc/set_uplink,
 	/client/proc/delbook,
 	/client/proc/start_vote,
 	))
 
 GLOBAL_LIST_INIT(admin_verbs_debug, list(
-	/client/proc/Debug2,
 	/client/proc/kill_air,
-	/client/proc/cmd_display_del_log,
-	/client/proc/cmd_display_init_log,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/print_random_map,
@@ -49,18 +45,14 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/hide_verbs,			//hides all our adminverbs,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/datum/admins/proc/set_uplink,
-	/client/proc/simple_DPS,
 	/client/proc/stop_sounds,
 	))
 
 //verbs which can be hidden - needs work
 GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_check_dialogue_logs,
-	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
-	/client/proc/simple_DPS,
-	/client/proc/cmd_display_del_log,
 	/client/proc/air_report,
 	/datum/admins/proc/set_uplink,
 	/client/proc/stop_sounds
@@ -101,10 +93,7 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/client/proc/trader_ship, // Trader ship admin verb,
 	/client/proc/aooc,
 	/client/proc/change_security_level,
-	/client/proc/makepAI,
 	/client/proc/start_vote,
 	/client/proc/add_hidden_area,
 	/client/proc/remove_hidden_area,
-	/client/proc/modify_event_collector,
-	/client/proc/induce_malfunction
 ))

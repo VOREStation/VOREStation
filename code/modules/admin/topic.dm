@@ -874,7 +874,7 @@
 			return tgui_alert_async(usr, "The game has already started.")
 		GLOB.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [config.mode_names[GLOB.master_mode]].")
-		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[GLOB.master_mode]]."), 1)
+		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[GLOB.master_mode]]."))
 		to_chat(world, span_world(span_blue("The mode is now: [config.mode_names[GLOB.master_mode]]")))
 		Game() // updates the main game menu
 		world.save_mode(GLOB.master_mode)
@@ -889,7 +889,7 @@
 			return tgui_alert_async(usr, "The game mode has to be secret!")
 		GLOB.secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [GLOB.secret_force_mode].")
-		message_admins(span_blue("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."), 1)
+		message_admins(span_blue("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."))
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
@@ -902,7 +902,7 @@
 			return
 
 		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
-		message_admins(span_blue("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]"), 1)
+		message_admins(span_blue("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]"))
 		H.monkeyize()
 
 	else if(href_list["corgione"])
@@ -914,7 +914,7 @@
 			return
 
 		log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
-		message_admins(span_blue("[key_name_admin(usr)] attempting to corgize [key_name_admin(H)]"), 1)
+		message_admins(span_blue("[key_name_admin(usr)] attempting to corgize [key_name_admin(H)]"))
 		H.corgize()
 
 	else if(href_list["forcespeech"])
@@ -970,7 +970,7 @@
 
 		to_chat(M, span_filter_system(span_warning("You have been sent to the prison station!")))
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
-		message_admins(span_blue("[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station."), 1)
+		message_admins(span_blue("[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station."))
 
 	else if(href_list["sendbacktolobby"])
 		if(!check_rights(R_ADMIN))
@@ -1019,7 +1019,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)")
 
 	else if(href_list["tdome2"])
 		if(!check_rights(R_FUN))	return
@@ -1045,7 +1045,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)")
 
 	else if(href_list["tdomeadmin"])
 		if(!check_rights(R_FUN))	return
@@ -1068,7 +1068,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)")
 
 	else if(href_list["tdomeobserve"])
 		if(!check_rights(R_FUN))	return
@@ -1098,7 +1098,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)")
 
 	else if(href_list["revive"])
 		if(!check_rights(R_REJUVINATE))	return
@@ -1110,7 +1110,7 @@
 
 		if(CONFIG_GET(flag/allow_admin_rev))
 			L.revive()
-			message_admins(span_red("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"), 1)
+			message_admins(span_red("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"))
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else
 			to_chat(usr, span_filter_adminlog(span_filter_warning("Admin Rejuvinates have been disabled")))
@@ -1123,7 +1123,7 @@
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		message_admins(span_red("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"), 1)
+		message_admins(span_red("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"))
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
 
@@ -1135,7 +1135,7 @@
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		usr.client.cmd_admin_alienize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_alienize, H)
 
 	else if(href_list[VK_HK_TURN_ROBOT])
 		if(!check_rights(R_SPAWN))	return
@@ -1145,7 +1145,7 @@
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		usr.client.cmd_admin_robotize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
 
 	else if(href_list["makeanimal"])
 		if(!check_rights(R_SPAWN))	return
@@ -1155,7 +1155,7 @@
 			to_chat(usr, span_filter_adminlog("This cannot be used on instances of type /mob/new_player"))
 			return
 
-		usr.client.cmd_admin_animalize(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_animalize, M)
 
 	else if(href_list["respawn"])
 		if(!check_rights(R_SPAWN))
