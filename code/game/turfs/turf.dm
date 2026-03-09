@@ -109,6 +109,8 @@
 	var/turf/Be = GetBelow(src)
 	if(Be)
 		Be.multiz_turf_new(src, UP)
+	if(uses_integrity)
+		atom_integrity = max_integrity
 
 /turf/Destroy()
 	if (!changing_turf)
