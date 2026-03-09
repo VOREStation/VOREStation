@@ -383,3 +383,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/body_record_disk
+	name = "Body Design Disk"
+	desc = "Portable Body Record Storage Disk."
+	id = "body_record_disk"
+	materials = list(MAT_STEEL = 2500)
+	build_path = /obj/item/disk/body_record
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL

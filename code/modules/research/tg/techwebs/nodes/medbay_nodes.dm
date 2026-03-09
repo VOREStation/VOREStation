@@ -36,7 +36,8 @@
 		// "jerrycan",
 		// "reflex_hammer",
 		// "blood_scanner",
-		"sleevecard"
+		"sleevecard",
+		"body_record_disk",
 	)
 
 /datum/techweb_node/chem_synthesis
