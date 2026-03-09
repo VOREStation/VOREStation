@@ -1004,35 +1004,6 @@ h2.alert {
   font-style: italic;
 }
 
-.hypnophrase {
-  color: hsl(0, 0%, 5%);
-  font-weight: bold;
-  animation: hypnocolor 1500ms infinite;
-  animation-direction: alternate;
-}
-
-@keyframes hypnocolor {
-  0% {
-    color: hsl(0, 0%, 5%);
-  }
-
-  25% {
-    color: hsl(266, 99%, 29%);
-  }
-
-  50% {
-    color: hsl(272, 81%, 47%);
-  }
-
-  75% {
-    color: hsl(266, 99%, 29%);
-  }
-
-  100% {
-    color: hsl(192, 63%, 53%);
-  }
-}
-
 .phobia {
   color: hsl(0, 100%, 43%);
   font-weight: bold;

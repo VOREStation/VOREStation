@@ -982,35 +982,6 @@ img.icon.bigicon {
   font-style: italic;
 }
 
-.hypnophrase {
-  color: hsl(0, 0%, 13%);
-  font-weight: bold;
-  animation: hypnocolor 1500ms infinite;
-  animation-direction: alternate;
-}
-
-@keyframes hypnocolor {
-  0% {
-    color: hsl(0, 0%, 13%);
-  }
-
-  25% {
-    color: hsl(266, 98%, 34%);
-  }
-
-  50% {
-    color: hsl(272, 86%, 60%);
-  }
-
-  75% {
-    color: hsl(266, 70%, 36%);
-  }
-
-  100% {
-    color: hsl(192, 83%, 72%);
-  }
-}
-
 .phobia {
   color: hsl(0, 100%, 43%);
   font-weight: bold;
