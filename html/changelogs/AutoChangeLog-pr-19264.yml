@@ -1,0 +1,6 @@
+author: "Aroliacue"
+delete-after: True
+changes:
+  - rscadd: "Added new species-dependent melee attacks. Currently unused on Virgo."
+  - balance: "Reduced damage on some accidentally overtuned existing species-dependent melee attacks. Currently unused on Virgo."
+  - sound: "Added a new melee attack sound."
