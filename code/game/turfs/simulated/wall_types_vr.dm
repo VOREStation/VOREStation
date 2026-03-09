@@ -226,7 +226,6 @@ GLOBAL_LIST_EMPTY(flesh_overlay_cache)
 	. = ..()
 
 /turf/simulated/wall/uranium/radiate()
-	SIGNAL_HANDLER
 	if(active)
 		return
 	if(world.time <= last_event + 1.5 SECONDS)

@@ -101,11 +101,15 @@
 
 /obj/item/coin/uranium/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+	START_PROCESSING(SSobj, src)
 
 /obj/item/coin/uranium/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
+
+/obj/item/coin/uranium/process()
+	radiate()
+	..()
 
 /obj/item/coin/uranium/proc/radiate()
 	SIGNAL_HANDLER
@@ -121,7 +125,6 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 

@@ -15,6 +15,9 @@
 	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
 
+/obj/item/fuel_assembly/process()
+	radiate()
+
 /obj/item/fuel_assembly/proc/radiate()
 	SIGNAL_HANDLER
 	if(active)
@@ -28,12 +31,11 @@
 		threshold = RAD_HEAVY_INSULATION,
 		chance = DEFAULT_RADIATION_CHANCE,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 /obj/item/fuel_assembly/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 
@@ -50,7 +52,7 @@
 		if(material.radioactivity)
 			radioactivity = material.radioactivity
 			desc += " It is warm to the touch."
-			RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+			START_PROCESSING(SSobj, src)
 		if(material.luminescence)
 			set_light(material.luminescence, material.luminescence, material.icon_colour)
 	else

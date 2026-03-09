@@ -8,6 +8,10 @@
 	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
 
+/obj/effect/map_effect/radiation_emitter/process()
+	radiate()
+	..()
+
 /obj/effect/map_effect/radiation_emitter/proc/radiate()
 	SIGNAL_HANDLER
 	if(active)
@@ -22,17 +26,16 @@
 		chance = radiation_power,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 
 /obj/effect/map_effect/radiation_emitter/Initialize(mapload)
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/strong

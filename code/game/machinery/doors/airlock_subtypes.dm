@@ -378,14 +378,6 @@
 	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
 
-/obj/machinery/door/airlock/uranium/Initialize(mapload)
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
-	. = ..()
-
-/obj/machinery/door/airlock/uranium/Destroy()
-	. = ..()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
-
 /obj/machinery/door/airlock/uranium/proc/radiate()
 	SIGNAL_HANDLER
 	if(active)
@@ -400,7 +392,6 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 

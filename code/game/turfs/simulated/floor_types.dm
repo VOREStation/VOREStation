@@ -319,11 +319,17 @@
 
 /turf/simulated/floor/tiled/material/uranium/Initialize(mapload)
 	. = ..()
+	START_PROCESSING(SSobj, src)
 	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 
 /turf/simulated/floor/tiled/material/uranium/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
 	. = ..()
+
+/turf/simulated/floor/tiled/material/uranium/process()
+	radiate()
+	..()
 
 /turf/simulated/floor/tiled/material/uranium/proc/radiate()
 	SIGNAL_HANDLER

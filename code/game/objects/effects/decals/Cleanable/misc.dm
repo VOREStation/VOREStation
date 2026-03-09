@@ -30,11 +30,15 @@
 /obj/effect/decal/cleanable/greenglow/Initialize(mapload, _age)
 	. = ..()
 	QDEL_IN(src, 2 MINUTES)
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/greenglow/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
+
+/obj/effect/decal/cleanable/greenglow/process()
+	radiate()
+	..()
 
 /obj/effect/decal/cleanable/greenglow/proc/radiate()
 	SIGNAL_HANDLER
@@ -50,7 +54,6 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 

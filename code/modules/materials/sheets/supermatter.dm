@@ -11,7 +11,11 @@
 
 /obj/item/stack/material/supermatter/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+	START_PROCESSING(SSobj, src)
+
+/obj/item/stack/material/supermatter/process()
+	radiate()
+	..()
 
 /obj/item/stack/material/supermatter/proc/radiate()
 	SIGNAL_HANDLER
@@ -27,12 +31,11 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = NEBULA_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 /obj/item/stack/material/supermatter/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 

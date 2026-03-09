@@ -174,8 +174,11 @@
 
 /obj/item/slime_irradiator/Initialize(mapload)
 	. = ..()
+	START_PROCESSING(SSobj, src)
 	set_light(light_range, light_power, light_color)
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/obj/item/slime_irradiator/process()
+	radiate()
 
 /obj/item/slime_irradiator/proc/radiate()
 	SIGNAL_HANDLER
@@ -191,12 +194,11 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 /obj/item/slime_irradiator/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 

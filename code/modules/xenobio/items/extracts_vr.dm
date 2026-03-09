@@ -914,6 +914,10 @@
 	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
 
+/obj/item/slime_extract/process()
+	radiate()
+	..()
+
 /obj/item/slime_extract/green/proc/radiate()
 	SIGNAL_HANDLER
 	if(active)
@@ -928,12 +932,11 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 /obj/item/slime_extract/green/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /datum/decl/chemical_reaction/instant/slime/green_radpulse
@@ -949,9 +952,9 @@
 	holder.my_atom.visible_message(span_danger("\The [holder.my_atom] begins to vibrate violently!"))
 	spawn(5 SECONDS)
 		if(!QDELETED(holder.my_atom) && istype(holder.my_atom, /obj/item/slime_extract/green))
-			var/obj/item/slime_extract/green/core = holder.my_atom
-			RegisterSignal(core, COMSIG_ATOM_PROPAGATE_RAD_PULSE, TYPE_PROC_REF(/obj/item/slime_extract/green, radiate))
-	..()
+			START_PROCESSING(SSobj, src)
+
+
 
 /datum/decl/chemical_reaction/instant/slime/green_emitter
 	name = "Slime Radiation Emitter"

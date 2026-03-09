@@ -43,7 +43,7 @@
 /obj/structure/girder/proc/radiate()
 	var/total_radiation = girder_material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
 	if(!total_radiation)
-		return
+		return FALSE
 
 	radiation_pulse(
 		src,

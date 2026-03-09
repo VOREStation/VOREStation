@@ -34,6 +34,11 @@
 /obj/item/poi/pascalb/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+	START_PROCESSING(SSobj, src)
+
+/obj/item/poi/pascalb/process()
+	radiate()
+	..()
 
 /obj/item/poi/pascalb/proc/radiate()
 	SIGNAL_HANDLER
@@ -49,13 +54,30 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 /obj/item/poi/pascalb/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+/obj/item/poi/pascalb/deadly
+
+/obj/item/poi/pascalb/deadly/radiate()
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = 100,
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
 
 /datum/category_item/catalogue/information/objects/oldreactor
 	name = "Object - Zorren Fission Reactor Rack"
@@ -102,7 +124,11 @@
 
 /obj/item/poi/brokenoldreactor/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+	START_PROCESSING(SSobj, src)
+
+/obj/item/poi/brokenoldreactor/process()
+	radiate()
+	..()
 
 /obj/item/poi/brokenoldreactor/proc/radiate()
 	SIGNAL_HANDLER
@@ -118,12 +144,12 @@
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
 /obj/item/poi/brokenoldreactor/Destroy()
 	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /datum/category_item/catalogue/information/objects/growthcanister

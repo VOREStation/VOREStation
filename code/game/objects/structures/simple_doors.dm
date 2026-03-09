@@ -272,6 +272,7 @@
 
 /obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_URANIUM)
+	START_PROCESSING(SSobj, src)
 	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 
 /obj/structure/simple_door/uranium/Destroy()
