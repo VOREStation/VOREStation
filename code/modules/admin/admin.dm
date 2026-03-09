@@ -247,9 +247,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
 ADMIN_VERB(PlayerNotes, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Player Notes", "Access the player notes.", ADMIN_CATEGORY_INVESTIGATE)
-	user.holder.PlayerNotesPage(user, 1)
+	user.holder.PlayerNotesPage(user.mob, 1)
 
-/datum/admins/proc/PlayerNotesPage(client/user, page)
+/datum/admins/proc/PlayerNotesPage(mob/user, page)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
