@@ -50,8 +50,6 @@
 	. = ..()
 
 	wires = new(src)
-	if(hacked) // If this isn't done, mapset hacked vars will be inconsistant with actual wire state
-		wires.cut_wires += WIRE_AUTOLATHE_HACK
 
 	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
 		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
@@ -106,7 +104,7 @@
 */
 
 /obj/machinery/autolathe/tgui_status(mob/user)
-	if(disabled || panel_open)
+	if(disabled)
 		return STATUS_CLOSE
 	return ..()
 

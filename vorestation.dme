@@ -995,6 +995,7 @@
 #include "code\datums\wires\jukebox.dm"
 #include "code\datums\wires\mines.dm"
 #include "code\datums\wires\particle_accelerator.dm"
+#include "code\datums\wires\protolathe.dm"
 #include "code\datums\wires\radio.dm"
 #include "code\datums\wires\robot.dm"
 #include "code\datums\wires\seedstorage.dm"

@@ -210,13 +210,6 @@
 		get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	)
 
-/obj/machinery/rnd/production/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
-
-	tgui_interact(user)
-
 /obj/machinery/rnd/production/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -234,6 +227,8 @@
 	var/coefficient
 	for(var/datum/design_techweb/design in cached_designs)
 		if(!(isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)))
+			continue
+		if(!hacked && (RND_CATEGORY_HACKED in design.category))
 			continue
 
 		var/cost = list()

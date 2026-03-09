@@ -15,6 +15,8 @@
 	var/datum/techweb/stored_research
 	///The item loaded inside the machine, used by experimentors and destructive analyzers only.
 	var/datum/weakref/loaded_item
+	/// Wires for hacking, not every rnd machine has this set
+	var/datum/wires/protolathe/wires = null
 
 /obj/machinery/rnd/Initialize(mapload)
 	. = ..()
@@ -27,6 +29,7 @@
 	if(stored_research)
 		log_research("[src] disconnected from techweb [stored_research] (destroyed).")
 		stored_research = null
+	QDEL_NULL(wires)
 	return ..()
 
 ///Called when attempting to connect the machine to a techweb, forgetting the old.
@@ -45,10 +48,20 @@
 /obj/machinery/rnd/proc/reset_busy()
 	busy = FALSE
 
+/obj/machinery/rnd/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(wires && panel_open)
+		return wires.Interact(user)
+	tgui_interact(user)
+
 /obj/machinery/rnd/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
 	add_fingerprint(user)
 
 	if(default_deconstruction_screwdriver(user, W))
+		if(wires && panel_open)
+			wires.Interact(user)
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
