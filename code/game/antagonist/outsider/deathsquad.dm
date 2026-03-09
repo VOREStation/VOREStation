@@ -74,11 +74,13 @@ GLOBAL_DATUM(deathsquad, /datum/antagonist/deathsquad)
 	player.current.name = player.name
 	player.current.real_name = player.current.name
 
+	/* Players here usually have preset characters for this kind of thing, so wiping their preferences is undesired.
 	var/mob/living/carbon/human/H = player.current
 	if(istype(H))
 		H.gender = pick(MALE, FEMALE)
 		H.age = rand(25,45)
 		H.dna.ready_dna(H)
+	*/
 
 	return
 
