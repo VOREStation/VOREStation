@@ -75,3 +75,5 @@
 
 #define PAI_UNSET "None Set"
 #define PAI_DEFAULT_CHASSIS "Drone"
+
+#define DEFAULT_LATEJOIN_LOCATION /datum/spawnpoint/arrivals

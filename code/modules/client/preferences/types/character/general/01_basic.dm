@@ -174,7 +174,8 @@
 	return // handled in job_controller
 
 /datum/preference/choiced/living/spawnpoint/create_default_value()
-	return "Gateway"
+	var/datum/spawnpoint/default_spawnpoint = DEFAULT_LATEJOIN_LOCATION
+	return default_spawnpoint::display_name
 
 /datum/preference/text/living/private_notes
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED

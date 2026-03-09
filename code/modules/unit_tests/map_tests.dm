@@ -210,6 +210,5 @@
 /datum/unit_test/default_spawnpoint_exists
 
 /datum/unit_test/default_spawnpoint_exists/Run()
-	TEST_ASSERT(LAZYLEN(GLOB.latejoin_gateway), "Map does not define the default spawnpoint location (Gateway)")
-	//if(LAZYLEN(GLOB.latejoin_gateway) == 0)
-		//TEST_FAIL("Map does not define the default map location")
+	var/datum/spawnpoint/default_spawnpoint = locate(DEFAULT_LATEJOIN_LOCATION)
+	TEST_ASSERT(LAZYLEN(default_spawnpoint?.turfs), "Map does not define the default spawnpoint location ([DEFAULT_LATEJOIN_LOCATION::display_name])")
