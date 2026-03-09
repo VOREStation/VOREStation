@@ -34,7 +34,7 @@
 /datum/design_techweb/rglass
 	name = "Reinforced Glass"
 	id = "rglass"
-	build_type = AUTOLATHE | SMELTER | PROTOLATHE | AWAY_LATHE
+	build_type = AUTOLATHE
 	materials = list(MAT_STEEL = HALF_SHEET_MATERIAL_AMOUNT, MAT_GLASS = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/material/rglass
 	category = list(

@@ -28,7 +28,7 @@
 	var/list/sheet_print_designs = list()
 	for(var/id in SSresearch.techweb_designs)
 		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
-		if(!(AUTOLATHE in design.category))
+		if(!(design.build_type & AUTOLATHE))
 			continue
 		if(!istype(design.build_path, /obj/item/stack/material))
 			continue
