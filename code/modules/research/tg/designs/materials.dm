@@ -31,18 +31,6 @@
 		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
 	)
 
-/datum/design_techweb/rglass
-	name = "Reinforced Glass"
-	id = "rglass"
-	build_type = AUTOLATHE
-	materials = list(MAT_STEEL = HALF_SHEET_MATERIAL_AMOUNT, MAT_GLASS = SHEET_MATERIAL_AMOUNT)
-	build_path = /obj/item/stack/material/rglass
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/silver
 	name = "Silver"
 	id = "silver"
