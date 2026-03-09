@@ -344,7 +344,7 @@
 			created.forceMove(target)
 			number_to_make -= max_stack_amount
 
-		created = new stack_item(null, number_to_make)
+		created = new stack_item(target, number_to_make)
 	else
 		created = design.create_item(target)
 		split_materials_uniformly(materials_needed, material_cost_coefficient, created)
