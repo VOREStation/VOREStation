@@ -124,3 +124,44 @@
 2026-03-08:
   Diana:
   - bugfix: Robotics surgery works again
+2026-03-09:
+  Aroliacue:
+  - rscadd: Added new species-dependent melee attacks. Currently unused on Virgo.
+  - balance: Reduced damage on some accidentally overtuned existing species-dependent
+      melee attacks. Currently unused on Virgo.
+  - sound: Added a new melee attack sound.
+  Diana:
+  - bugfix: Reagents will now have some effect - even if extremely small - if you
+      have slow metabolism.
+  Kashargul:
+  - code_imp: update font awesome to v7
+  - code_imp: tgui dependency up
+  - code_imp: migrates GPS to tgui
+  - bugfix: bad compass_holder del
+  - bugfix: ship placement in two player mode
+  KillianKirilenko:
+  - qol: critter rifts are now emissive, so they can be seen in unlit areas (still
+      only visible to ghosts)
+  - bugfix: fixed notification prefs for maint critter rifts (I think)
+  Sharkmare:
+  - rscadd: Added a Command style Gooborg Chassis
+  Will:
+  - code_imp: added TRAIT_AMBIENT_PEST_MOB trait define
+  - refactor: 'Made pest mob interactions consistent (ex: mice couldn''t open airlocks,
+      but cockroaches could )'
+  - bugfix: forensic scanner runtime fix
+  - bugfix: handheld flashes no longer stun phased shadekin
+  - bugfix: flashbangs no longer hit phased shadekin
+  - bugfix: explosions no longer hit phased shadekin
+  - bugfix: emps no longer hit phased shadekin
+  - bugfix: chemical sprays no longer hit phased shadekin
+  - bugfix: shadekin can no longer toggle oxygen/anesthetic pumps while in phase
+  - bugfix: you can no longer mount phased shadekin taurs, or mount a taur while phased
+  - bugfix: wrapping up people in giftwrap no longer makes them invisible
+  - bugfix: missing giftbox icons fixed on several objects
+  - refactor: Moved solarpanel update to it's own subsystem
+  - bugfix: Solarpanels now follow the sun on planet, and not the global SPACESUN
+      the stations use.
+  - bugfix: pai correctly uses the new chassis data when changing chassis(would sometimes
+      turn you invisible)
+  - bugfix: paicards no longer comfort minor loneliness if they do not have a client
