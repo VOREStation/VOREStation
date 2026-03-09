@@ -103,7 +103,7 @@
 */
 
 /obj/machinery/autolathe/tgui_status(mob/user)
-	if(disabled)
+	if(disabled || panel_open)
 		return STATUS_CLOSE
 	return ..()
 
@@ -196,7 +196,6 @@
 /obj/machinery/autolathe/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
 
-	data["materials"] = list()
 	data["materialtotal"] = materials.total_amount()
 	data["materialsmax"] = materials.max_amount
 	data["active"] = busy

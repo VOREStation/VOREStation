@@ -53,10 +53,11 @@ GLOBAL_LIST_EMPTY(autounlock_techwebs)
 		var/datum/design_techweb/design = SSresearch.techweb_designs[id]
 		if(!(design.build_type & allowed_buildtypes))
 			continue
-		if(RND_CATEGORY_INITIAL in design.category)
-			add_design_by_id(id)
 		if(RND_CATEGORY_HACKED in design.category)
 			add_design_by_id(id, add_to = hacked_designs)
+			continue
+		if(RND_CATEGORY_INITIAL in design.category)
+			add_design_by_id(id)
 
 /datum/techweb/autounlocking/add_design(datum/design_techweb/design, custom = FALSE, list/add_to)
 	if(!(design.build_type & allowed_buildtypes))
