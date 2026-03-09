@@ -25,6 +25,7 @@
 		var/list/get_mats = sheet.get_material_composition()
 		for(var/mat in get_mats)
 			needed_materials |= mat
+		TEST_NOTICE(src, "TEST = ADDED MAT FOR SHEET [path]")
 		qdel(sheet)
 
 	// Then get the sheets those materials are represented by
@@ -33,6 +34,7 @@
 		var/datum/material/mat = get_material_by_name(id)
 		if(!mat || !mat.stack_type)
 			continue
+		TEST_NOTICE(src, "TEST = ADDED REQUIRED MAT [id] > SHEET [mat.stack_type]")
 		required_sheets |= mat.stack_type
 
 	// Get all material sheet printing recipies in the autolathe
@@ -44,14 +46,16 @@
 		if(!istype(design.build_path, /obj/item/stack/material))
 			continue
 		sheet_print_designs |= design.build_path
+		TEST_NOTICE(src, "TEST = LATHE DESIGN [design.build_path]")
 
 	// Check all sheets for EXISTANCE
 	var/failed = FALSE
 	for(var/sheet in required_sheets)
 		if(sheet in sheet_print_designs)
+			TEST_NOTICE(src, "TEST = [sheet] WAS CORRECTLY IN DESIGNS")
 			continue
 		failed = TRUE
-		TEST_NOTICE(src, "[sheet] - Missing an autolathe recipie, all material sheets must be printable, or materials can get stuck in the lathe forever")
+		TEST_NOTICE(src, "[sheet] - Missing an autolathe design, all material sheets must be printable, or materials can get stuck in the lathe forever")
 
 	if(failed)
 		TEST_FAIL("materials missing autolathe print recipies.")

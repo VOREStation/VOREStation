@@ -7,7 +7,6 @@
 		"iron",
 		"steel",
 		"glass",
-		"rglass",
 		"silver",
 		"gold",
 		"tin",
