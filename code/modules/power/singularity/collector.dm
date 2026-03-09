@@ -36,8 +36,10 @@
 	if(P && active)
 		if(pulse_information)
 			//The higher the range, threshold, and chance, the more power is made from the pulse.
-			var/amount_of_rads = (((pulse_information.max_range * 5) + (100 / pulse_information.threshold) + (pulse_information.chance * 3)))
-			receive_pulse((amount_of_rads)) //Maths is hard
+			//The SM has a threshold of 0.5 (so 20 rads there), chance is power * 0.1 (SM can get to +1000 safely, so let's say 100) and range is power * 0.05, so let's say 50
+			//This means we'll be getting ~170 rads per pulse.
+			var/amount_of_rads = (((pulse_information.max_range * 5) + (10 / pulse_information.threshold) + (pulse_information.chance * 0.25)))
+			receive_pulse((amount_of_rads))
 
 			if(P.air_contents.gas[GAS_PHORON] == 0)
 				investigate_log(span_red("out of fuel") + ".","singulo")
@@ -129,6 +131,8 @@
 	else
 		update_icons()
 
+// Continuing here, SM giving us ~170 rads per pulse, a phoron canister full of 30 mols, and * 20 we get:
+// 102000W per collector...So 10 collectors will give us ~1MW.
 /obj/machinery/power/rad_collector/proc/receive_pulse(var/pulse_strength)
 	if(P && active)
 		var/power_produced = 0

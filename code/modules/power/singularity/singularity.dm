@@ -467,6 +467,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	for(var/obj/machinery/power/rad_collector/R in GLOB.rad_collectors)
 		if (get_dist(R, src) <= 15) //Better than using orange() every process.
 			R.receive_pulse(energy)
+	//Yes, this means rad collectors can double dip on the singulo, but you could always use the safer SM or tesla, so it gets a small buff.
+	radiation_pulse(
+		src,
+		max_range = 15,
+		threshold = RAD_EXTREME_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE * 8,
+	)
 
 /obj/singularity/proc/on_capture()
 	chained = 1

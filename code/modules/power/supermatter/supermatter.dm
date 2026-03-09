@@ -414,9 +414,9 @@
 	if(power)
 		radiation_pulse(
 			src,
-			max_range = max(round(power * 0.01),7),
+			max_range = max(round(power * 0.05),7),
 			threshold = RAD_EXTREME_INSULATION,
-			chance = round(power * 0.0075),
+			chance = round(power * 0.1),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 		)
 
