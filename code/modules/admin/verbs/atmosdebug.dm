@@ -1,4 +1,5 @@
-ADMIN_VERB(atmosscan, R_HOST, "Check Piping", "Check all pipes in game (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB_VISIBILITY(atmosscan, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(atmosscan, R_DEBUG, "Check Piping", "Check all pipes in game (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
 	set background = 1
 
 	feedback_add_details("admin_verb","CP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -36,7 +37,8 @@ ADMIN_VERB(atmosscan, R_HOST, "Check Piping", "Check all pipes in game (Only use
 							continue next_turf
 	to_chat(user, span_debug_info("Done"))
 
-ADMIN_VERB(powerdebug, R_HOST, "Check Power", "Checks all powernets (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB_VISIBILITY(powerdebug, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(powerdebug, R_DEBUG, "Check Power", "Checks all powernets (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
 	feedback_add_details("admin_verb","CPOW") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	for (var/datum/powernet/PN in SSmachines.powernets)

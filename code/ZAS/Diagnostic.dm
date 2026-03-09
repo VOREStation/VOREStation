@@ -1,4 +1,5 @@
-ADMIN_VERB(Zone_Info, R_HOST, "ZAS Zone Info", "Prints the ZAS information of the zone (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS, turf/T)
+ADMIN_VERB_VISIBILITY(Zone_Info, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(Zone_Info, R_DEBUG, "ZAS Zone Info", "Prints the ZAS information of the zone (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS, turf/T)
 	if(T)
 		if(istype(T,/turf/simulated) && T:zone)
 			T:zone:dbg_data(user)
@@ -16,7 +17,8 @@ ADMIN_VERB(Zone_Info, R_HOST, "ZAS Zone Info", "Prints the ZAS information of th
 
 /client/var/list/zone_debug_images
 
-ADMIN_VERB(Test_ZAS_Connection, R_HOST, "Test ZAS Connection", "Tests the ZAS zone connection (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS, turf/simulated/T)
+ADMIN_VERB_VISIBILITY(Test_ZAS_Connection, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
+ADMIN_VERB(Test_ZAS_Connection, R_DEBUG, "Test ZAS Connection", "Tests the ZAS zone connection (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS, turf/simulated/T)
 	if(!istype(T))
 		return
 
@@ -74,5 +76,6 @@ ADMIN_VERB(Test_ZAS_Connection, R_HOST, "Test ZAS Connection", "Tests the ZAS zo
 		else
 			to_chat(user, span_debug_warning("both turfs can merge."))
 
+ADMIN_VERB_VISIBILITY(Test_ZAS_Connection, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(ZASSettings, R_ADMIN, "ZAS Settings", "Access the ZAS settings.", ADMIN_CATEGORY_DEBUG_DANGEROUS, turf/simulated/T)
 	GLOB.vsc.SetDefault(user.mob)

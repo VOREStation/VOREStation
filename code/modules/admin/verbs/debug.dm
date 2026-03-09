@@ -297,7 +297,8 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 ADMIN_VERB(take_picture, R_DEBUG, "Save PNG", "Opens a dialog to save a PNG of any object in the game.", ADMIN_CATEGORY_DEBUG_MISC, atom/selected_atom in world)
 	downloadImage(selected_atom)
 
-ADMIN_VERB(cmd_admin_areatest, R_HOST, "Test areas", "Manually tests all areas and prints to world (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
+ADMIN_VERB_VISIBILITY(cmd_admin_areatest, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test areas", "Manually tests all areas and prints to world (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	var/list/areas_all = list()
 	var/list/areas_with_APC = list()
 	var/list/areas_with_air_alarm = list()

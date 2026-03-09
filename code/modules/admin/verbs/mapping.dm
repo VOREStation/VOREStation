@@ -40,7 +40,8 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 /obj/effect/debugging/marker/Move()
 	return 0
 
-ADMIN_VERB(camera_view, R_HOST, "Camera Range Display", "Globally changes the camera view (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
+ADMIN_VERB_VISIBILITY(camera_view, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(camera_view, R_DEBUG, "Camera Range Display", "Globally changes the camera view (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	if(GLOB.camera_range_display_status)
 		GLOB.camera_range_display_status = FALSE
 	else
@@ -54,7 +55,8 @@ ADMIN_VERB(camera_view, R_HOST, "Camera Range Display", "Globally changes the ca
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb","mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(sec_camera_report, R_HOST, "Camera Report", "Gives a report of the camera state (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
+ADMIN_VERB_VISIBILITY(sec_camera_report, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(sec_camera_report, R_DEBUG, "Camera Report", "Gives a report of the camera state (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	if(!GLOB.master_controller)
 		tgui_alert_async(user,"Master_controller not found.","Sec Camera Report")
 		return 0
@@ -94,7 +96,8 @@ ADMIN_VERB(sec_camera_report, R_HOST, "Camera Report", "Gives a report of the ca
 	popup.open()
 	feedback_add_details("admin_verb","mCRP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(intercom_view, R_HOST, "Intercom Range Display", "Displays the intercom view as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
+ADMIN_VERB_VISIBILITY(intercom_view, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(intercom_view, R_DEBUG, "Intercom Range Display", "Displays the intercom view as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	if(GLOB.intercom_range_display_status)
 		GLOB.intercom_range_display_status = FALSE
 	else
@@ -131,7 +134,8 @@ ADMIN_VERB(intercom_view, R_HOST, "Intercom Range Display", "Displays the interc
 			continue
 		recurse_zone(connected,recurse_level+1)
 
-ADMIN_VERB(testZAScolors, R_HOST, "Check ZAS connections", "Displays ZAS connections as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
+ADMIN_VERB_VISIBILITY(testZAScolors, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(testZAScolors, R_DEBUG, "Check ZAS connections", "Displays ZAS connections as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
 	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/testZAScolors_remove)
 
 	var/turf/simulated/location = get_turf(user)
@@ -176,7 +180,8 @@ ADMIN_VERB(testZAScolors, R_HOST, "Check ZAS connections", "Displays ZAS connect
 		user.images += image(red, T, "zasdebug", TURF_LAYER)
 		user.testZAScolors_turfs += T
 
-ADMIN_VERB(testZAScolors_remove, R_HOST, "Remove ZAS connection colors", "Clears displayed ZAS connections (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
+ADMIN_VERB_VISIBILITY(testZAScolors_remove, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(testZAScolors_remove, R_DEBUG, "Remove ZAS connection colors", "Clears displayed ZAS connections (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
 	user.testZAScolors_turfs.Cut()
 	user.testZAScolors_zones.Cut()
 
@@ -185,11 +190,13 @@ ADMIN_VERB(testZAScolors_remove, R_HOST, "Remove ZAS connection colors", "Clears
 			if(i.icon_state == "zasdebug")
 				user.images.Remove(i)
 
-ADMIN_VERB(rebootAirMaster, R_HOST, "Reboot ZAS", "Rstarts ZAS (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
+ADMIN_VERB_VISIBILITY(rebootAirMaster, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(rebootAirMaster, R_DEBUG, "Reboot ZAS", "Rstarts ZAS (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
 	if(tgui_alert(user, "This will destroy and remake all zone geometry on the whole map.","Reboot ZAS",list("Reboot ZAS","Nevermind")) == "Reboot ZAS")
 		SSair.RebootZAS()
 
-ADMIN_VERB(count_objects_on_z_level, R_HOST, "Count Objects On Level", "Counts all objects on a Z level (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB_VISIBILITY(count_objects_on_z_level, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "Count Objects On Level", "Counts all objects on a Z level (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
 	var/level = tgui_input_text(user, "Which z-level?","Level?")
 	if(!level)
 		return
@@ -235,7 +242,8 @@ ADMIN_VERB(count_objects_on_z_level, R_HOST, "Count Objects On Level", "Counts a
 	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
 	feedback_add_details("admin_verb","mOBJZ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(count_objects_all, R_HOST, "Count Objects All", "Count all objects by type (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB_VISIBILITY(count_objects_all, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(count_objects_all, R_DEBUG, "Count Objects All", "Count all objects by type (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
 	var/type_text = tgui_input_text(user, "Which type path?","")
 	if(!type_text)
 		return
@@ -260,3 +268,11 @@ ADMIN_VERB(count_objects_all, R_HOST, "Count Objects All", "Count all objects by
 
 	to_chat(world, "There are [count] objects of type [type_path] in the game world")
 	feedback_add_details("admin_verb","mOBJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+ADMIN_VERB(enable_mapping_verbs, R_DEBUG, "Enable Mapping Verbs", "Enable all mapping verbs.", ADMIN_CATEGORY_MAPPING)
+	SSadmin_verbs.update_visibility_flag(user, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG, TRUE)
+	feedback_add_details("admin_verb","mapDB")
+
+ADMIN_VERB_VISIBILITY(disable_mapping_verbs, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
+ADMIN_VERB(disable_mapping_verbs, R_DEBUG, "Disable Mapping Verbs", "Disable all mapping verbs.", ADMIN_CATEGORY_MAPPING)
+	SSadmin_verbs.update_visibility_flag(user, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG, FALSE)
