@@ -134,6 +134,7 @@
 #include "code\__defines\movement.dm"
 #include "code\__defines\nif.dm"
 #include "code\__defines\nifsoft.dm"
+#include "code\__defines\obj_flags.dm"
 #include "code\__defines\objects.dm"
 #include "code\__defines\observer.dm"
 #include "code\__defines\ores.dm"
