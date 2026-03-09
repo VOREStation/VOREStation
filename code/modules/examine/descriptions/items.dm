@@ -75,6 +75,34 @@
 	else
 		return "an average attack speed"
 
+/atom/proc/examine_tags(mob/user)
+	. = list()
+	if(abstract_type == type)
+		.[span_hypnophrase("abstract")] = "This is an abstract concept, you should report this to a strange entity called GITHUB!"
+
+	if(resistance_flags & INDESTRUCTIBLE)
+		.["indestructible"] = "It is extremely robust! It'll probably withstand anything that could happen to it!"
+	else
+		if(resistance_flags & LAVA_PROOF)
+			.["lava-proof"] = "It is made of an extremely heat-resistant material, it'd probably be able to withstand lava!"
+		if(resistance_flags & (ACID_PROOF | UNACIDABLE))
+			.["acid-proof"] = "It looks pretty robust! It'd probably be able to withstand acid!"
+		if(resistance_flags & FREEZE_PROOF)
+			.["freeze-proof"] = "It is made of cold-resistant materials."
+		if(resistance_flags & FIRE_PROOF)
+			.["fire-proof"] = "It is made of fire-retardant materials."
+		if(resistance_flags & SHUTTLE_CRUSH_PROOF)
+			.["crush-proof"] = "It is extremely solid. It should be able to withstand being run over by a shuttle!"
+		if(resistance_flags & BOMB_PROOF)
+			.["bomb-proof"] = "It looks like it could survive an explosion!"
+		if(resistance_flags & FLAMMABLE)
+			.["flammable"] = "It looks like it could easily catch on fire."
+
+	if(flags_1 & HOLOGRAM_1)
+		.["holographic"] = "It looks like a hologram."
+
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE_TAGS, user, .)
+
 /obj/item/get_description_info(list/additional_information)
 	var/list/weapon_stats = list()
 

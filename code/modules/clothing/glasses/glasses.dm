@@ -29,6 +29,7 @@ BLIND     // can't see anything
 	var/list/away_planes //Holder for disabled planes
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	resistance_flags = FIRE_PROOF
 
 	sprite_sheets = list(
 		SPECIES_TESHARI 	= 'icons/inventory/eyes/mob_teshari.dmi',

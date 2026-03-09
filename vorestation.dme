@@ -2660,7 +2660,6 @@
 #include "code\modules\clothing\suits\armor.dm"
 #include "code\modules\clothing\suits\armor_vr.dm"
 #include "code\modules\clothing\suits\bio.dm"
-#include "code\modules\clothing\suits\bio_vr.dm"
 #include "code\modules\clothing\suits\hooded.dm"
 #include "code\modules\clothing\suits\hooded_vr.dm"
 #include "code\modules\clothing\suits\jobs.dm"
