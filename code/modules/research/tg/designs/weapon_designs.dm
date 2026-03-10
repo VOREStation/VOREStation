@@ -962,7 +962,7 @@
 	name = "knuckle dusters"
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
 	id = "knuckledusters"
-	build_type = AUTOLATHE | PROTOLATHE
+	build_type = AUTOLATHE
 	materials = list(MAT_STEEL = 625)
 	build_path = /obj/item/clothing/accessory/knuckledusters
 	category = list(
@@ -976,8 +976,8 @@
 	name = "tactical knife"
 	desc = "A steel knife made for combat."
 	id = "tacknife"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 625)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 800)
 	build_path = /obj/item/material/knife/tacknife
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -990,8 +990,8 @@
 	name = "claymore"
 	desc = "A very large sword."
 	id = "claymore"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 4500)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 10000)
 	build_path = /obj/item/material/sword
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1000,12 +1000,13 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
+/* Disabled due to no weilded sprite
 /datum/design_techweb/battleaxe
 	name = "battleaxe"
 	desc = "A one handed battle axe, still a deadly weapon."
 	id = "battleaxe"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 3000)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 7000)
 	build_path = /obj/item/material/sword/battleaxe
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1013,13 +1014,14 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
 
 /datum/design_techweb/gladius
 	name = "gladius"
 	desc = "An ancient short sword, designed to stab and cut."
 	id = "gladius"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1700)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 5000)
 	build_path = /obj/item/material/sword/gladius
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1032,8 +1034,8 @@
 	name = "katana"
 	desc = "An ancient short sword, designed to slice and dice."
 	id = "katana"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 6000)
 	build_path = /obj/item/material/sword/katana
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1046,8 +1048,8 @@
 	name = "rapier"
 	desc = "A slender, fancy and sharply pointed sword."
 	id = "rapier"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1100)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 6000)
 	build_path = /obj/item/material/sword/rapier
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1060,8 +1062,8 @@
 	name = "sabre"
 	desc = "A sharp curved sword, a favored weapon of pirates far in the past."
 	id = "sabre"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1400)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 7400)
 	build_path = /obj/item/material/sword/sabre
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1074,8 +1076,8 @@
 	name = "bat"
 	desc = "HOME RUN!"
 	id = "baseballbat"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 2500)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 9000)
 	build_path = /obj/item/material/twohanded/baseballbat
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -1088,23 +1090,9 @@
 	name = "longsword"
 	desc = "a more elegant weapon from a more civilised age"
 	id = "longsword"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 3000)
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 8000)
 	build_path = /obj/item/material/twohanded/longsword
-	category = list(
-		RND_CATEGORY_HACKED,
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design_techweb/staff
-	name = "staff"
-	desc = "A sturdy length of metal or wood. A common traveler's aid mostly used for support or probing unstable ground, but also a fairly effective weapon in a pinch."
-	id = "staff"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1000)
-	build_path = /obj/item/material/twohanded/staff
 	category = list(
 		RND_CATEGORY_HACKED,
 		RND_CATEGORY_INITIAL,

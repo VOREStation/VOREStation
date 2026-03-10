@@ -313,7 +313,7 @@
 	desc = "A simple tool for rolling dough flat."
 	id = "rollingpin"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1000)
+	materials = list(MAT_WOOD = 1000)
 	build_path = /obj/item/material/kitchen/rollingpin
 	category = list(
 		RND_CATEGORY_INITIAL,

@@ -16,14 +16,13 @@
 		"knuckledusters",
 		"tacknife",
 		"claymore",
-		"battleaxe",
+		// "battleaxe", // No wielded sprite
 		"gladius",
 		"katana",
 		"rapier",
 		"sabre",
 		"baseballbat",
-		"longsword",
-		"staff"
+		"longsword"
 	)
 
 // Basic pistol rounds
