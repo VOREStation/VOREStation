@@ -132,46 +132,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
-// Ballistic ammo
-/datum/design_techweb/ammo_9mmAdvanced
-	name = "9mm magazine"
-	id = "ammo_9mm"
-	desc = "A 21 round magazine for an advanced 9mm SMG."
-	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3750, MAT_SILVER = 100) // Requires silver for proprietary magazines! Or something.
-	build_path = /obj/item/ammo_magazine/m9mmAdvanced
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/stunshell
-	name = "stun shells"
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/empshell
-	name = "emp shells"
-	desc = "An electromagnetic shell for a shotgun."
-	id = "empshell"
-	// req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_URANIUM = 1000)
-	build_path = /obj/item/ammo_magazine/ammo_box/b12g/emp
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
 // Other weapons
 /datum/design_techweb/rapidsyringe
 	name = "Rapid Syringe Gun"

@@ -140,6 +140,17 @@
 		"ammobox_12g_emp",
 		"ammobox_12g_flechette",
 		"ammobox_12g_practice",
+		/* Single shells available, but probably not needed
+		"ammo_12g_slug",
+		"ammo_12g_blank",
+		"ammo_12g_beanbag",
+		"ammo_12g_flash",
+		"ammo_12g_pellet",
+		"ammo_12g_stun",
+		"ammo_12g_emp",
+		"ammo_12g_flechette",
+		"ammo_12g_practice",
+		*/
 		// Auto shotgun drums
 		"shotgun_mag_12g_drum",
 		"shotgun_mag_12g_drum_beanbag",
