@@ -148,12 +148,12 @@
 		if(living_guy.glow_override) //Toggled glow off while we were still actively glowing.
 			living_guy.glow_override = FALSE
 			living_guy.set_light(0)
-			parent_movable.remove_filter("rad_glow")
+			living_guy.remove_filter("rad_glow")
 		return
 	if(living_guy.radiation < radiation_glow_threshold)
 		living_guy.glow_override = FALSE
 		living_guy.set_light(0)
-		parent_movable.remove_filter("rad_glow")
+		living_guy.remove_filter("rad_glow")
 		return
 
 	if(glows)
