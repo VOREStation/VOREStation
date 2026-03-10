@@ -5,7 +5,7 @@
 	description = "Refinement and processing of alloys and ores to enhance their utility and value."
 	design_ids = list(
 		"autolathe",
-		// "pickaxe",
+		"pickaxe",
 		// "shovel",
 		// "conveyor_switch",
 		// "conveyor_belt",
@@ -13,13 +13,6 @@
 		// "recycler",
 		// "stack_machine",
 		// "stack_console",
-		// "rglass",
-		// "plasmaglass",
-		// "plasmareinforcedglass",
-		// "plasteel",
-		// "titaniumglass",
-		// "plastitanium",
-		// "plastitaniumglass",
 	)
 
 /datum/techweb_node/mining
@@ -51,7 +44,6 @@
 		// "beacon",
 		// "telesci_gps",
 		// "mod_visor_meson",
-		// "mesons",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SUPPLY)
