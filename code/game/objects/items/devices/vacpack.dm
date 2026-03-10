@@ -154,7 +154,7 @@
 				if(L.size_multiplier < 0.5 || vac_power >= 6)
 					suckables += L
 					continue
-				if(istype(L,/mob/living/simple_mob/animal/passive/mouse) || istype(L,/mob/living/simple_mob/animal/passive/lizard) || istype(L,/mob/living/simple_mob/animal/passive/cockroach))
+				if(HAS_TRAIT(L, TRAIT_AMBIENT_PEST_MOB))
 					suckables += L
 		if(LAZYLEN(suckables))
 			if(vac_power == 7)
@@ -166,7 +166,7 @@
 							auto_setting = min(I.w_class, 5)
 					if(isliving(F))
 						var/mob/living/L = F
-						if(L.size_multiplier < 0.5 || istype(L,/mob/living/simple_mob/animal/passive/mouse) || istype(L,/mob/living/simple_mob/animal/passive/lizard) || istype(L,/mob/living/simple_mob/animal/passive/cockroach))
+						if(L.size_multiplier < 0.5 || HAS_TRAIT(L, TRAIT_AMBIENT_PEST_MOB))
 							if(auto_setting < 3)
 								auto_setting = 3
 						else
@@ -246,7 +246,7 @@
 		if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
 			return
 		if(vac_power >= 3)
-			if(L.size_multiplier > 0.5 || istype(L,/mob/living/simple_mob/animal/passive/mouse) || istype(L,/mob/living/simple_mob/animal/passive/lizard))
+			if(L.size_multiplier > 0.5 || HAS_TRAIT(L, TRAIT_AMBIENT_PEST_MOB))
 				valid_to_suck = TRUE
 				auto_setting = 3
 		if(vac_power >= 6)

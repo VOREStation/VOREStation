@@ -71,7 +71,7 @@
 		"current_player" = ui.user,
 		"player_one" = player_one_mob,
 		"player_two" = player_two_mob,
-		"all_placed" = ships_have_been_placed == (PLAYER_ONE_PLACED_SHIPS | PLAYER_TWO_PLACED_SHIPS),
+		"all_placed" = ships_have_been_placed,
 		"shots_fired_pone" = shots_fired_pone,
 		"shots_fired_ptwo" = shots_fired_ptwo,
 		"destroyed_ships_pone" = destroyed_ships_pone,

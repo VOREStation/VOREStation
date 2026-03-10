@@ -149,6 +149,8 @@
 	  return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity, recursive)
+	if(is_incorporeal()) // Can't emp shadekin in phase
+		return
 
 	if(LAZYLEN(modifiers))
 		for(var/datum/modifier/M in modifiers)
