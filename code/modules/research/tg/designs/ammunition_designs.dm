@@ -2,113 +2,6 @@
 /*Shotgun rounds*/
 //////////////////
 
-/datum/design_techweb/ammo_12g_slug
-	name = "ammunition (12g, slug)"
-	id = "ammo_12g_slug"
-	materials = list(MAT_STEEL = 450)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_blank
-	name = "ammunition (12g, blank)"
-	id = "ammo_12g_blank"
-	materials = list(MAT_STEEL = 110)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/blank
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_beanbag
-	name = "ammunition (12g, beanbag)"
-	id = "ammo_12g_beanbag"
-	materials = list(MAT_STEEL = 225)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/beanbag
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_flash
-	name = "ammunition (12g, flash)"
-	id = "ammo_12g_flash"
-	materials = list(MAT_STEEL = 115, MAT_GLASS = 115)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/flash
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_pellet
-	name = "ammunition (12g, pellet)"
-	id = "ammo_12g_pellet"
-	materials = list(MAT_STEEL = 450)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/pellet
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_stun
-	name = "ammunition (stun cartridge, shotgun)"
-	id = "ammo_12g_stun"
-	materials = list(MAT_STEEL = 450, MAT_GLASS = 900)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/stunshell
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_emp
-	name = "ammunition (haywire cartridge, shotgun)"
-	id = "ammo_12g_emp"
-	materials = list(MAT_STEEL = 450, MAT_URANIUM = 900)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/emp
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_flechette
-	name = "ammunition (flechette cartridge, shotgun)"
-	id = "ammo_12g_flechette"
-	materials = list(MAT_STEEL = 450, MAT_GLASS = 125)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/flechette
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-/datum/design_techweb/ammo_12g_practice
-	name = "ammunition (practice cartridge, shotgun)"
-	id = "ammo_12g_practice"
-	materials = list(MAT_STEEL = 450)
-	build_type = AUTOLATHE
-	build_path = /obj/item/ammo_casing/a12g/practice
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
-		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
-	)
-
-// Shotgun boxes (Yes these are needed, for shotguns at least.)
-
 /datum/design_techweb/ammobox_12g_slug
 	name = "ammo box (12 gauge slug)"
 	desc = "A box of 12 gauge slug rounds"
@@ -221,6 +114,115 @@
 		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
 	)
+
+// Single shells
+
+/* These are probably not needed, just print the ammo boxes for shotguns, because most shotguns don't have a seperate magazine item.
+/datum/design_techweb/ammo_12g_slug
+	name = "ammunition (12g, slug)"
+	id = "ammo_12g_slug"
+	materials = list(MAT_STEEL = 450)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_blank
+	name = "ammunition (12g, blank)"
+	id = "ammo_12g_blank"
+	materials = list(MAT_STEEL = 110)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/blank
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_beanbag
+	name = "ammunition (12g, beanbag)"
+	id = "ammo_12g_beanbag"
+	materials = list(MAT_STEEL = 225)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/beanbag
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_flash
+	name = "ammunition (12g, flash)"
+	id = "ammo_12g_flash"
+	materials = list(MAT_STEEL = 115, MAT_GLASS = 115)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/flash
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_pellet
+	name = "ammunition (12g, pellet)"
+	id = "ammo_12g_pellet"
+	materials = list(MAT_STEEL = 450)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/pellet
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_stun
+	name = "ammunition (stun cartridge, shotgun)"
+	id = "ammo_12g_stun"
+	materials = list(MAT_STEEL = 450, MAT_GLASS = 900)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/stunshell
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_emp
+	name = "ammunition (haywire cartridge, shotgun)"
+	id = "ammo_12g_emp"
+	materials = list(MAT_STEEL = 450, MAT_URANIUM = 900)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_flechette
+	name = "ammunition (flechette cartridge, shotgun)"
+	id = "ammo_12g_flechette"
+	materials = list(MAT_STEEL = 450, MAT_GLASS = 125)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/flechette
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_practice
+	name = "ammunition (practice cartridge, shotgun)"
+	id = "ammo_12g_practice"
+	materials = list(MAT_STEEL = 450)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+*/
 
 //////////////////
 /* High velocity*/
