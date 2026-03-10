@@ -2,7 +2,7 @@
 	name = "pickaxe"
 	id = "pickaxe"
 	build_type = AUTOLATHE
-	materials = list(MAT_IRON = 2500)
+	materials = list(MAT_STEEL = 2500)
 	build_path = /obj/item/pickaxe
 	category = list(
 		RND_CATEGORY_INITIAL,
