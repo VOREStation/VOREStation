@@ -249,9 +249,10 @@
 /datum/reagent/proc/on_mob_metabolize(mob/living/affected_mob, datum/reagents/metabolism/location)
 	SHOULD_CALL_PARENT(TRUE)
 	if(metabolized_traits)
-		affected_mob.add_traits(metabolized_traits, "metabolize:[location][type]")
+		affected_mob.add_traits(metabolized_traits, "metabolize_location:[location]reagent:[type]")
 
-/// Called when this reagent stops being metabolized by a liver
+/// Called when this reagent stops being metabolized (due to running out)
+/// Has the args 'affected_mob' and 'location' which allows us to remove any traits that is only being added by that reagent holder location. I.e stomach, bloodstream, dermal, etc.
 /datum/reagent/proc/on_mob_end_metabolize(mob/living/affected_mob, datum/reagents/location)
 	SHOULD_CALL_PARENT(TRUE)
-	REMOVE_TRAITS_IN(affected_mob, "metabolize:[location][type]")
+	REMOVE_TRAITS_IN(affected_mob, "metabolize_location:[location]reagent:[type]")
