@@ -632,11 +632,6 @@
 	min_val = 0.1
 	integer = FALSE
 
-///If the radiation level for a turf would be below this, ignore it.
-/datum/config_entry/number/radiation_lower_limit
-	default = 0.35
-	integer = FALSE
-
 /// If true, submaps loaded automatically can be rotated.
 /datum/config_entry/flag/random_submap_orientation
 
