@@ -14,7 +14,16 @@
 		// "capbox",
 		// "foam_dart",
 		"knuckledusters",
-		"tacknife"
+		"tacknife",
+		"claymore",
+		"battleaxe",
+		"gladius",
+		"katana",
+		"rapier",
+		"sabre",
+		"baseballbat",
+		"longsword",
+		"staff"
 	)
 
 // Basic pistol rounds

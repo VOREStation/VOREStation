@@ -294,3 +294,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_COMMAND
+
+/datum/design_techweb/cleaver
+	name = "butcher's cleaver"
+	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
+	id = "cleaver"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 800)
+	build_path = /obj/item/material/knife/butch
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
