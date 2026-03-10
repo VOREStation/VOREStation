@@ -143,6 +143,7 @@
 			max_range = 5,
 			threshold = RAD_MEDIUM_INSULATION,
 			chance = URANIUM_IRRADIATION_CHANCE,
+			strenght = 25
 		)
 	return
 

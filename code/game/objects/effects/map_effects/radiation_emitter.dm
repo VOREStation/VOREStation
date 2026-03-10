@@ -7,6 +7,7 @@
 	var/last_event = 0
 	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
+	var/strength = 50
 
 /obj/effect/map_effect/radiation_emitter/process()
 	radiate()
@@ -25,6 +26,7 @@
 		threshold = RAD_LIGHT_INSULATION,
 		chance = radiation_power,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strenght = strength
 	)
 	last_event = world.time
 	active = FALSE
@@ -41,3 +43,4 @@
 /obj/effect/map_effect/radiation_emitter/strong
 	range = 7
 	radiation_power = 100
+	strength = 250

@@ -33,7 +33,6 @@
 
 /obj/item/poi/pascalb/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 	START_PROCESSING(SSobj, src)
 
 /obj/item/poi/pascalb/process()
@@ -53,6 +52,7 @@
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strenght = 25
 	)
 	last_event = world.time
 	active = FALSE
@@ -61,7 +61,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/poi/pascalb/deadly
+/obj/item/poi/pascalb/deadly //For testing purposes, mainly.
 
 /obj/item/poi/pascalb/deadly/radiate()
 	if(active)
@@ -74,8 +74,8 @@
 		max_range = 3,
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = 100,
+		strenght = 250
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
 
