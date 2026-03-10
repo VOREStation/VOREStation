@@ -319,17 +319,11 @@
 
 /turf/simulated/floor/tiled/material/uranium/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSobj, src)
 	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
 
 /turf/simulated/floor/tiled/material/uranium/Destroy()
-	STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
 	. = ..()
-
-/turf/simulated/floor/tiled/material/uranium/process()
-	radiate()
-	..()
 
 /turf/simulated/floor/tiled/material/uranium/proc/radiate()
 	SIGNAL_HANDLER
@@ -344,6 +338,7 @@
 		threshold = RAD_LIGHT_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strenght = 1
 	)
 	propagate_radiation_pulse()
 	last_event = world.time

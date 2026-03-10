@@ -29,7 +29,7 @@
 	threshold,
 	chance = DEFAULT_RADIATION_CHANCE,
 	minimum_exposure_time = 0,
-	strength = 1
+	strength = 100
 )
 	if(!SSradiation.can_fire)
 		return
