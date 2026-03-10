@@ -98,52 +98,56 @@ export function TechNode(props: Props) {
       title={name}
       buttons={
         !nocontrols && (
-          <>
-            {tier > 0 &&
-              (!!can_unlock && (is_free || queue_nodes.length === 0) ? (
-                <Button
-                  icon="lightbulb"
-                  disabled={!can_unlock || tier > 1 || queue_nodes.length > 0}
-                  onClick={() => act('researchNode', { node_id: id })}
-                >
-                  Research
-                </Button>
-              ) : enqueued_by_user ? (
-                <Button
-                  icon="trash"
-                  color="bad"
-                  onClick={() => act('dequeueNode', { node_id: id })}
-                >
-                  Dequeue
-                </Button>
-              ) : id in queue_nodes && !enqueued_by_user ? (
-                <Button icon="check" color="good">
-                  Queued
-                </Button>
-              ) : (
-                <Button
-                  icon="lightbulb"
-                  disabled={
-                    !have_experiments_done ||
-                    id in queue_nodes ||
-                    techcompl < prereq_ids.length
-                  }
-                  onClick={() => act('enqueueNode', { node_id: id })}
-                >
-                  Enqueue
-                </Button>
-              ))}
+          <Stack>
+            <Stack.Item>
+              {tier > 0 &&
+                (!!can_unlock && (is_free || queue_nodes.length === 0) ? (
+                  <Button
+                    icon="lightbulb"
+                    disabled={!can_unlock || tier > 1 || queue_nodes.length > 0}
+                    onClick={() => act('researchNode', { node_id: id })}
+                  >
+                    Research
+                  </Button>
+                ) : enqueued_by_user ? (
+                  <Button
+                    icon="trash"
+                    color="bad"
+                    onClick={() => act('dequeueNode', { node_id: id })}
+                  >
+                    Dequeue
+                  </Button>
+                ) : id in queue_nodes && !enqueued_by_user ? (
+                  <Button icon="check" color="good">
+                    Queued
+                  </Button>
+                ) : (
+                  <Button
+                    icon="lightbulb"
+                    disabled={
+                      !have_experiments_done ||
+                      id in queue_nodes ||
+                      techcompl < prereq_ids.length
+                    }
+                    onClick={() => act('enqueueNode', { node_id: id })}
+                  >
+                    Enqueue
+                  </Button>
+                ))}
+            </Stack.Item>
             {!nodetails && (
-              <Button
-                icon="tasks"
-                onClick={() => {
-                  setTechwebRoute({ route: 'details', selectedNode: id });
-                }}
-              >
-                Details
-              </Button>
+              <Stack.Item>
+                <Button
+                  icon="tasks"
+                  onClick={() => {
+                    setTechwebRoute({ route: 'details', selectedNode: id });
+                  }}
+                >
+                  Details
+                </Button>
+              </Stack.Item>
             )}
-          </>
+          </Stack>
         )
       }
     >
