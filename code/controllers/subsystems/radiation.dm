@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(radiation)
 			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
 			continue
 
-		for(var/obj/geiger/geiger_counter in turf_to_irradiate)
+		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
 			var/current_insulation = 1
 			for(var/turf/turf_in_between in get_line(source, geiger_counter) - get_turf(source))
 				var/insulation = cached_rad_insulations[turf_in_between]
