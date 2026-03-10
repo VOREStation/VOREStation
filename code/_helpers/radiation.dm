@@ -1,5 +1,5 @@
 /// Whether or not it's possible for this atom to be irradiated
-#define CAN_IRRADIATE(atom) (ishuman(##atom) || isitem(##atom) ||ismachinery(##atom))
+#define CAN_IRRADIATE(atom) (ismob(##atom))
 
 /// Calculates the max chance for a radiation_pulse via a radioactive reagent
 #define CALCULATE_RAD_MAX_CHANCE(rad_power) (20 + (15 * (rad_power - 1)))

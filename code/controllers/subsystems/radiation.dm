@@ -135,6 +135,9 @@ SUBSYSTEM_DEF(radiation)
 	PRIVATE_PROC(TRUE)
 
 	if(!ishuman(target))
+		if(ismob(target))
+			target.radiation += strength
+			return TRUE
 		return FALSE
 
 	/// 0 = full protection, 1 = no protection.
