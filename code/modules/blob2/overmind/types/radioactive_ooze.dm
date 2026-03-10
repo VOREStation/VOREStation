@@ -26,7 +26,7 @@
 		max_range = 5,
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
-		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 75
 	)
 
 /datum/blob_type/radioactive_ooze/on_chunk_tick(obj/item/blobcore_chunk/B)
@@ -36,4 +36,5 @@
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE * 0.5,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 25
 	)

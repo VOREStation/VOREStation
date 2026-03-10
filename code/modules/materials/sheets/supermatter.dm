@@ -30,6 +30,7 @@
 		threshold = RAD_HEAVY_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = NEBULA_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = amount * 0.5 //2 sheets = 1 rad, 50 sheets = 25 rads.
 	)
 	last_event = world.time
 	active = FALSE
@@ -85,6 +86,7 @@
 			threshold = RAD_HEAVY_INSULATION,
 			chance = URANIUM_IRRADIATION_CHANCE * 5,
 			minimum_exposure_time = 0,
+			strength = amount * 10
 			)
 		explosion(get_turf(src),round(amount / 12) , round(amount / 6), round(amount / 3), round(amount / 25))
 		qdel(src)

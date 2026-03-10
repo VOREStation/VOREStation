@@ -154,6 +154,7 @@
 				threshold = RAD_HEAVY_INSULATION,
 				chance = round(((src.energy-150)/50)*5,1),
 				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+				strength = energy * 0.1 //60 rads at max energy.
 			)
 			energy = max(0, energy - 30)
 			update_icon()
@@ -166,6 +167,7 @@
 			threshold = RAD_HEAVY_INSULATION,
 			chance = round(((src.energy-150)/50)*5,1),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = energy * 0.1 //60 rads at max energy.
 		)
 		energy = CLAMP(energy - 5, 0, max_energy)
 
@@ -202,6 +204,7 @@
 				threshold = RAD_HEAVY_INSULATION,
 				chance = URANIUM_IRRADIATION_CHANCE + round(src.energy / 60, 1),
 				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+				strength = energy * 0.1
 			)
 			energy = max(0, energy - 30)
 		update_icon()

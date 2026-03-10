@@ -30,6 +30,7 @@
 		max_range = (radioactivity * 0.5),
 		threshold = RAD_HEAVY_INSULATION,
 		chance = DEFAULT_RADIATION_CHANCE,
+		strength = radioactivity * 0.5
 	)
 	last_event = world.time
 	active = FALSE

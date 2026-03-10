@@ -27,6 +27,7 @@
 			threshold = RAD_LIGHT_INSULATION,
 			chance = chargelevelmax * 0.5,
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = chargelevelmax * 0.5
 		)
 		return 1
 
@@ -40,5 +41,6 @@
 			max_range = effectrange,
 			threshold = RAD_LIGHT_INSULATION,
 			chance = chargelevelmax,
+			strength = chargelevelmax * 2,
 		)
 		return 1

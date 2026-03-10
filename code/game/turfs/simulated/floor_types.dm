@@ -338,7 +338,7 @@
 		threshold = RAD_LIGHT_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strenght = 1
+		strength = 1
 	)
 	propagate_radiation_pulse()
 	last_event = world.time

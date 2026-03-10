@@ -52,7 +52,7 @@
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strenght = 25
+		strength = 25
 	)
 	last_event = world.time
 	active = FALSE
@@ -74,7 +74,7 @@
 		max_range = 3,
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = 100,
-		strenght = 250
+		strength = 250
 	)
 	last_event = world.time
 	active = FALSE
@@ -143,7 +143,7 @@
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strenght = 50
+		strength = 50
 	)
 	last_event = world.time
 	active = FALSE

@@ -411,6 +411,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		threshold = RAD_EXTREME_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE + round(src.energy / 60, 1),
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 250
 	)
 	for(var/mob/living/M in view(toxrange, src.loc))
 		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
@@ -460,6 +461,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		max_range = 10,
 		threshold = RAD_EXTREME_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE * 8,
+		strength = 1000
 	)
 	return
 
@@ -473,6 +475,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		max_range = 15,
 		threshold = RAD_EXTREME_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE * 8,
+		strength = energy * 0.25
 	)
 
 /obj/singularity/proc/on_capture()

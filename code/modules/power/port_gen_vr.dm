@@ -148,6 +148,7 @@
 			threshold = RAD_MEDIUM_INSULATION,
 			chance = DEFAULT_RADIATION_CHANCE,
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = power_gen * 0.01 //1000 power = 10 rads. 10000 power = 100 rads. You can get creative with rad collectors if you want.
 		)
 
 /obj/machinery/power/rtg/RefreshParts()
@@ -599,9 +600,10 @@
 	if(T)
 		radiation_pulse(
 			T,
-			max_range = 12,
+			max_range = 50,
 			threshold = RAD_HEAVY_INSULATION,
 			chance = DEFAULT_RADIATION_CHANCE * 3,
+			strength = power_gen * 0.01 ///1MW = 1000 rads. If you blow up a BLACK HOLE ENGINE, you deserve the radiation that comes with it.
 		)
 		empulse(T, 12, 14, 16, 18)
 		explosion(T, 7, 12, 18, 20)

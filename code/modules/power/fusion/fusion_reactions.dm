@@ -121,6 +121,7 @@ GLOBAL_LIST(fusion_reactions)
 		max_range = 50,
 		threshold = RAD_HEAVY_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 500
 	)
 
 	for(var/mob/living/mob in GLOB.living_mob_list)

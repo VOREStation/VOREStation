@@ -51,7 +51,7 @@
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strenght = total_radiation
+		strength = total_radiation
 	)
 	return total_radiation
 

@@ -559,6 +559,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 			threshold = RAD_MEDIUM_INSULATION,
 			chance = rand(direct_rad_low, direct_rad_high),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rand(direct_rad_low, direct_rad_high)
 		)
 
 
@@ -578,6 +579,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 			threshold = RAD_MEDIUM_INSULATION,
 			chance = rand(direct_rad_low, direct_rad_high),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rand(fallout_rad_low, fallout_rad_high)
 		)
 
 /datum/weather/virgo4/fallout/temp

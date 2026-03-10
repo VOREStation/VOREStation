@@ -52,7 +52,7 @@
 		max_range = 5,
 		threshold = RAD_LIGHT_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
-		strenght = 2
+		strength = 2
 	)
 	last_event = world.time
 	active = FALSE

@@ -384,6 +384,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		threshold = RAD_HEAVY_INSULATION,
 		chance = DEFAULT_RADIATION_CHANCE * 2,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = charge_count * 2
 	)
 
 /obj/machinery/gravity_generator/main/proc/update_gravity(var/on)

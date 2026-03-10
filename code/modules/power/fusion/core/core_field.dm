@@ -338,6 +338,7 @@
 		max_range = 7,
 		threshold = RAD_HEAVY_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = energy * 0.001 //Might need to be increased.
 		)
 	Radiate()
 
@@ -549,6 +550,7 @@
 		max_range = 5,
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = (URANIUM_IRRADIATION_CHANCE + (plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)),
+		strength = energy * 0.01 //Might need to be increased.
 	)
 
 //Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.

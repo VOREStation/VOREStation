@@ -175,6 +175,7 @@
 		max_range = 255,
 		threshold = RAD_HEAVY_INSULATION,
 		chance = DETONATION_RADS,
+		strength = DETONATION_RADS * 5
 	)
 
 	var/list/affected_z = GetConnectedZlevels(TS.z)
@@ -188,6 +189,7 @@
 				max_range = 255,
 				threshold = RAD_HEAVY_INSULATION,
 				chance = DETONATION_RADS,
+				strength = DETONATION_RADS * 5
 			)
 
 	for(var/mob/living/mob in GLOB.living_mob_list)
@@ -418,6 +420,7 @@
 			threshold = RAD_EXTREME_INSULATION,
 			chance = round(power * 0.1),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = round(power * 0.1)
 		)
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
@@ -534,6 +537,7 @@
 		max_range = 5,
 		threshold = RAD_HEAVY_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 200
 	)
 
 /proc/supermatter_pull(var/atom/target, var/pull_range = 255, var/pull_power = STAGE_FIVE)
@@ -579,8 +583,6 @@
 	. = ..()
 	message_admins("Broken SM shard created at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
-	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
-
 /obj/item/broken_sm/proc/radiate()
 	SIGNAL_HANDLER
 	if(active)
@@ -594,14 +596,10 @@
 		threshold = RAD_MEDIUM_INSULATION,
 		chance = URANIUM_IRRADIATION_CHANCE,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 25
 	)
-	propagate_radiation_pulse()
 	last_event = world.time
 	active = FALSE
-
-/obj/item/broken_sm/Destroy()
-	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
-	return ..()
 
 #undef POWER_FACTOR
 #undef DECAY_FACTOR

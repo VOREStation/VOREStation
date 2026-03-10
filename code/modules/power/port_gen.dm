@@ -390,6 +390,7 @@
 			max_range = 2,
 			threshold = RAD_HEAVY_INSULATION,
 			chance = DEFAULT_RADIATION_CHANCE,
+			strength = power_gen * 0.01
 		)
 	..()
 
@@ -398,9 +399,10 @@
 	var/rads = 50 + (sheets + sheet_left)*1.5
 	radiation_pulse(
 		src,
-		max_range = (rads/5),
+		max_range = (rads/10),
 		threshold = RAD_HEAVY_INSULATION,
 		chance = DEFAULT_RADIATION_CHANCE,
+		strength = rads
 	)
 
 	explosion(src.loc, 3, 3, 5, 3)

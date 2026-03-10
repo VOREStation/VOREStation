@@ -26,7 +26,7 @@
 		threshold = RAD_LIGHT_INSULATION,
 		chance = radiation_power,
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strenght = strength
+		strength = strength
 	)
 	last_event = world.time
 	active = FALSE

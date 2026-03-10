@@ -1105,7 +1105,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					max_range = 12,
 					threshold = RAD_HEAVY_INSULATION,
 					chance = URANIUM_IRRADIATION_CHANCE * 2,
-					strenght = 300
+					strength = 300
 				)
 		set_light(5)
 		START_PROCESSING(SSobj, src)
