@@ -644,6 +644,8 @@
 	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
 	src.modules += new /obj/item/mail_scanner(src)
 	src.modules += new /obj/item/storage/bag/mail/borg(src)
+	src.modules += new /obj/item/destTagger(src)
+	src.modules += new /obj/item/packageWrap/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
 
 	var/datum/matter_synth/beacon = new /datum/matter_synth/beacon(10000)
