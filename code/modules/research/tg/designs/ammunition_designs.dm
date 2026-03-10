@@ -71,6 +71,18 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
 	)
 
+/datum/design_techweb/ammo_12g_emp
+	name = "ammunition (haywire cartridge, shotgun)"
+	id = "ammo_12g_emp"
+	materials = list(MAT_STEEL = 450, MAT_URANIUM = 900)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
 /datum/design_techweb/ammo_12g_flechette
 	name = "ammunition (flechette cartridge, shotgun)"
 	id = "ammo_12g_flechette"
@@ -80,6 +92,133 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammo_12g_practice
+	name = "ammunition (practice cartridge, shotgun)"
+	id = "ammo_12g_practice"
+	materials = list(MAT_STEEL = 450)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_casing/a12g/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+// Shotgun boxes (Yes these are needed, for shotguns at least.)
+
+/datum/design_techweb/ammobox_12g_slug
+	name = "ammo box (12 gauge slug)"
+	desc = "A box of 12 gauge slug rounds"
+	id = "ammobox_12g_slug"
+	materials = list(MAT_STEEL = 3600)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_blank
+	name = "ammo box (12 gauge blank)"
+	desc = "A box of 12 gauge blank rounds"
+	id = "ammobox_12g_blank"
+	materials = list(MAT_STEEL = 3600)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/blank
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_beanbag
+	name = "ammo box (12 gauge beanbag)"
+	desc = "A box of 12 gauge beanbag rounds"
+	id = "ammobox_12g_beanbag"
+	materials = list(MAT_STEEL = 3600)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/beanbag
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_flash
+	name = "ammo box (12 gauge flash)"
+	desc = "A box of 12 gauge flash rounds"
+	id = "ammobox_12g_flash"
+	materials = list(MAT_STEEL = 920, MAT_GLASS = 920)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/flash
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_pellet
+	name = "ammo box (12 gauge buckshot)"
+	desc = "A box of 12 gauge buckshot rounds"
+	id = "ammobox_12g_pellet"
+	materials = list(MAT_STEEL = 3600)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/pellet
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_stunshell
+	name = "ammo box (12 gauge stun)"
+	desc = "A box of 12 gauge stun rounds"
+	id = "ammobox_12g_stunshell"
+	materials = list(MAT_STEEL = 3600, MAT_GLASS = 7200)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_emp
+	name = "ammo box (12 gauge EMP)"
+	desc = "A box of 12 gauge EMP rounds"
+	id = "ammobox_12g_emp"
+	materials = list(MAT_STEEL = 3600, MAT_URANIUM = 7200)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_flechette
+	name = "ammo box (12 gauge flechette)"
+	desc = "A box of 12 gauge flechette rounds"
+	id = "ammobox_12g_flechette"
+	materials = list(MAT_STEEL = 3600, MAT_PLASTEEL = 7200)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/flechette
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
+	)
+
+/datum/design_techweb/ammobox_12g_practice
+	name = "ammo box (12 gauge practice)"
+	desc = "A box of 12 gauge practice rounds"
+	id = "ammobox_12g_practice"
+	materials = list(MAT_STEEL = 3600)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_SHOTGUN
 	)
 
