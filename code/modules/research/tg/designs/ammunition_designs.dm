@@ -584,12 +584,12 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
-/datum/design_techweb/ammo_9mmAdvanced
+/datum/design_techweb/ammo_9mmAdvanced // Special PDW ammo
 	name = "9mm magazine"
 	id = "ammo_9mm"
 	desc = "A 21 round magazine for an advanced 9mm SMG."
 	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_STEEL = 3750, MAT_SILVER = 100) // Requires silver for proprietary magazines! Or something.
 	build_path = /obj/item/ammo_magazine/m9mmAdvanced
 	category = list(
