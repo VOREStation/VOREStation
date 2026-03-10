@@ -1032,20 +1032,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design_techweb/baseballbat
-	name = "bat"
-	desc = "HOME RUN!"
-	id = "baseballbat"
-	build_type = AUTOLATHE
-	materials = list(MAT_STEEL = 9000)
-	build_path = /obj/item/material/twohanded/baseballbat
-	category = list(
-		RND_CATEGORY_HACKED,
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design_techweb/longsword
 	name = "longsword"
 	desc = "a more elegant weapon from a more civilised age"

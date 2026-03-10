@@ -21,7 +21,6 @@
 		"katana",
 		"rapier",
 		"sabre",
-		"baseballbat",
 		"longsword"
 	)
 
