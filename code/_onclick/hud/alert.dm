@@ -308,11 +308,10 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		return L.resist()
 
 /atom/movable/screen/alert/irradiated
-	name = "Choking (No O2)"
-	desc = "You're not getting enough oxygen. Find some good air before you pass out! \
-The box in your backpack has an oxygen tank and breath mask in it."
+	name = "Irradiated"
+	desc = "You're irradiated! Heal your radiation quick, and stand under a shower to wash some radiation off from yourself!"
+//	use_user_hud_icon = TRUE
 	icon_state = "irradiated"
-
 
 //ALIENS
 

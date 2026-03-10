@@ -122,9 +122,14 @@
 		src.toony = toony
 
 /datum/component/radiation_effects/Destroy(force)
+	var/atom/movable/parent_movable = parent
 	if(show_panel)
 		remove_verb(parent, /mob/living/proc/radiation_control_panel)
 
+	if(istype(parent_movable))//For the toony glow.
+		var/filter = parent_movable.get_filter("rad_glow")
+		if(filter)
+			parent_movable.remove_filter("rad_glow")
 	return ..()
 
 /datum/component/radiation_effects/RegisterWithParent()
@@ -143,10 +148,12 @@
 		if(living_guy.glow_override) //Toggled glow off while we were still actively glowing.
 			living_guy.glow_override = FALSE
 			living_guy.set_light(0)
+			parent_movable.remove_filter("rad_glow")
 		return
 	if(living_guy.radiation < radiation_glow_threshold)
 		living_guy.glow_override = FALSE
 		living_guy.set_light(0)
+		parent_movable.remove_filter("rad_glow")
 		return
 
 	if(glows)
@@ -155,6 +162,10 @@
 
 		living_guy.set_light(l_range = light_range, l_power = light_power, l_color = radiation_color, l_on = TRUE)
 		living_guy.glow_override = TRUE
+		if(toony)
+			var/filter = living_guy.get_filter("rad_glow")
+			if(!filter)
+				create_toony_glow()
 
 ///Handles the radiation removal, immunity, and healing effects.
 /datum/component/radiation_effects/proc/process_component()
@@ -311,6 +322,31 @@
 			to_chat(parent, span_info("You are [radiation_nutrition ? "now" : "no longer"] gaining nutrition from radiation."))
 			return FALSE
 
+/datum/component/radiation_effects/proc/create_toony_glow()
+	var/atom/movable/parent_movable = parent
+	if (!istype(parent_movable))
+		return
+
+	parent_movable.add_filter("rad_glow", 2, list("type" = "outline", "color" = "#39ff1430", "size" = 2))
+	addtimer(CALLBACK(src, PROC_REF(toony_glow_loop), parent_movable), rand(0.1 SECONDS, 1.9 SECONDS)) // Things should look uneven
+
+/datum/component/radiation_effects/proc/toony_glow_loop(atom/movable/parent_movable)
+	var/filter = parent_movable.get_filter("rad_glow")
+	if (!filter)
+		return
+
+	animate(filter, alpha = 110, time = 1.5 SECONDS, loop = -1)
+	animate(alpha = 40, time = 2.5 SECONDS)
+
+
+/datum/component/radiation_effects/proc/on_geiger_counter_scan(mob/living/living_source, mob/user, obj/item/geiger/geiger_counter)
+	SIGNAL_HANDLER
+	if(living_source.radiation > 0)
+		if(contamination && living_source.radiation > contamination_threshold) //Are we spreading radiation?
+			to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated and offputting radiation."))
+		else
+			to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated."))
+
 /mob/living/proc/get_radiation_component()
 	var/datum/component/radiation_effects/rad = GetComponent(/datum/component/radiation_effects)
 	if(rad)
@@ -349,12 +385,3 @@
 	nutrition_toggle = TRUE
 	radiation_healing = TRUE
 	radiation_nutrition = TRUE
-
-/datum/component/radiation_effects/proc/on_geiger_counter_scan(datum/source, mob/user, obj/item/geiger/geiger_counter)
-	SIGNAL_HANDLER
-
-	if(isliving(source))
-		var/mob/living/living_source = source
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated.")) //Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current radiation levels: [living_source.radiation]."))
-	else
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Target is irradiated."))

@@ -199,12 +199,6 @@
 	//render_list += conditional_tooltip("Subject is irradiated.", "Supply antiradiation or antitoxin, such as [/datum/reagent/prussian_blue::name].", tochat)
 //	render_list += "</span><br>"
 
-/atom/movable/screen/alert/irradiated
-	name = "Irradiated"
-	desc = "You're irradiated! Heal your toxins quick, and stand under a shower to halt the incoming damage."
-//	use_user_hud_icon = TRUE
-	icon_state = "irradiated"
-
 #undef RADIATION_BURN_SPLOTCH_DAMAGE
 #undef RADIATION_BURN_INTERVAL_MIN
 #undef RADIATION_BURN_INTERVAL_MAX
