@@ -179,7 +179,7 @@
 	SetName(pref.read_preference(/datum/preference/text/pai_name))
 	flavor_text = pref.read_preference(/datum/preference/text/pai_description)
 	change_chassis(pref.read_preference(/datum/preference/text/pai_chassis))
-	change_gender_identity(pref.read_preference(/datum/preference/choiced/gender/identifying))
+	change_gender_identity(pref.read_preference(/datum/preference/choiced/gender/identifying), TRUE, TRUE)
 	eye_color = pref.read_preference(/datum/preference/color/pai_eye_color)
 	card.screen_color = eye_color
 	card.setEmotion(GLOB.pai_emotions[pref.read_preference(/datum/preference/text/pai_emotion)])

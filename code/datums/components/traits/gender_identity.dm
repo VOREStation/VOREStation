@@ -9,7 +9,7 @@
 		add_verb(our_mob,/mob/proc/verb_assign_gender_identity)
 
 /// Sets the gender identity of an atom to a specific gender key, such as PLURAL, MALE, FEMALE, PLURAL, or any extended gender that byond does not regularly support. If this is done without a /datum/component/gender_identity component, only the base byond genders will be applied. Returns TRUE if the gender assigned is different to what it was previously.
-/atom/proc/change_gender_identity(new_gender, force_complex_gender = FALSE)
+/atom/proc/change_gender_identity(new_gender, set_physical_gender = FALSE, force_complex_gender = FALSE)
 	if(!new_gender)
 		return
 	var/datum/component/gender_identity/comp = GetComponent(/datum/component/gender_identity)
@@ -24,9 +24,13 @@
 	var/is_byond_safe = (new_gender in byond_genders_define_list)
 	if(!comp && force_complex_gender) // We want to force them to get the component
 		AddComponent(/datum/component/gender_identity, new_gender)
-	gender = PLURAL
-	if(is_byond_safe)
-		gender = new_gender
+
+	// physical is different from identity, we likely don't want to change it in most cases.
+	if(!set_physical_gender)
+		gender = PLURAL
+		if(is_byond_safe)
+			gender = new_gender
+
 	return old_gender != get_gender_identity()
 
 /// Used to get the gender identity of an atom. Byond does not support gender keys other than PLURAL, MALE, FEMALE, PLURAL. So it must have a /datum/component/gender_identity component if extended genders are going to be used.
@@ -61,7 +65,7 @@ if((comp.identifying_gender in byond_genders_define_list))\
 	// Both support, easy!
 	if(comp && destcomp)
 		destcomp.identifying_gender = comp.identifying_gender
-		APPLY_COMPONENT_TO_BYOND_GENDER
+		destination.gender = gender // Keep seperate from identifying gender
 		return TRUE
 
 	// Our destination doesn't support complex genders...
@@ -88,5 +92,5 @@ if((comp.identifying_gender in byond_genders_define_list))\
 	var/new_gender_identity = tgui_input_list(src, "Please select a gender Identity:", "Set Gender Identity", all_genders_define_list)
 	if(!new_gender_identity)
 		return FALSE
-	change_gender_identity(new_gender_identity, TRUE)
+	change_gender_identity(new_gender_identity, FALSE, TRUE)
 	return TRUE

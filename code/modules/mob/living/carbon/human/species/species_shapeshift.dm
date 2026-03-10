@@ -143,7 +143,7 @@ var/list/wrapped_species_by_ref = list()
 
 	visible_message(span_notice("\The [src]'s form contorts subtly."))
 	change_gender(new_gender)
-	change_gender_identity(new_gender_identity)
+	change_gender_identity(new_gender_identity, TRUE, TRUE)
 
 /mob/living/carbon/human/proc/shapeshifter_select_shape()
 

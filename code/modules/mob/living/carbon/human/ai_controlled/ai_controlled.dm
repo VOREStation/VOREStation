@@ -142,4 +142,4 @@
 	. = ..()
 	name = species.get_random_name(gender)
 	add_modifier(/datum/modifier/homeothermic, 0, null)
-	change_gender_identity(NEUTER)
+	change_gender_identity(NEUTER, TRUE, FALSE)
