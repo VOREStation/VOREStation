@@ -115,6 +115,12 @@
 	if (SEND_SIGNAL(target, COMSIG_GEIGER_COUNTER_SCAN, user, src) & COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL)
 		return
 
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(living_target.radiation)
+			to_chat(user, span_notice("[icon2html(src, user)] [living_target] is reporting a radiation level of [living_target.radiation]."))
+			return
+
 	to_chat(user, span_notice("[icon2html(src, user)] [isliving(target) ? "Subject" : "Target"] is free of radioactive contamination."))
 
 /obj/item/geiger/click_alt(mob/living/user)
