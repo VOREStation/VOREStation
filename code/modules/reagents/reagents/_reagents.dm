@@ -189,7 +189,7 @@
 			affect_ingest(M, alien, removed * ingest_abs_mult)
 		if(CHEM_TOUCH)
 			affect_touch(M, alien, removed)
-	on_mob_metabolize(M)
+	on_mob_metabolize(M, location)
 	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH || can_overdose_touch))
 		overdose(M, alien, removed)
 	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!
@@ -246,12 +246,12 @@
 /datum/reagent/proc/on_update(atom/A)
 	return
 
-/datum/reagent/proc/on_mob_metabolize(mob/living/affected_mob)
+/datum/reagent/proc/on_mob_metabolize(mob/living/affected_mob, datum/reagents/metabolism/location)
 	SHOULD_CALL_PARENT(TRUE)
 	if(metabolized_traits)
-		affected_mob.add_traits(metabolized_traits, "metabolize:[type]")
+		affected_mob.add_traits(metabolized_traits, "metabolize:[location][type]")
 
 /// Called when this reagent stops being metabolized by a liver
-/datum/reagent/proc/on_mob_end_metabolize(mob/living/affected_mob, metabolization_ratio)
+/datum/reagent/proc/on_mob_end_metabolize(mob/living/affected_mob, datum/reagents/location)
 	SHOULD_CALL_PARENT(TRUE)
-	REMOVE_TRAITS_IN(affected_mob, "metabolize:[type]")
+	REMOVE_TRAITS_IN(affected_mob, "metabolize:[location][type]")

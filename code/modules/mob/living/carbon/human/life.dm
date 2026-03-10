@@ -276,7 +276,7 @@
 			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
 	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
 
-		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
+		if(HAS_TRAIT(src, TRAIT_HALT_RADIATION_EFFECTS)) //If we have a trait that halts radiation effects, then we just stop here. No need to do any of the checks below.
 			return
 
 		var/damage = 0

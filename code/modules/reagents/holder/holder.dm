@@ -71,7 +71,7 @@
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
 			if(isliving(R.holder.my_atom))
-				R.on_mob_end_metabolize(R.holder.my_atom)
+				R.on_mob_end_metabolize(R.holder.my_atom, src)
 			del_reagent(R.id)
 		else
 			total_volume += R.volume
