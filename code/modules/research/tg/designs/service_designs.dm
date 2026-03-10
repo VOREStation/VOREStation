@@ -307,3 +307,16 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/rollingpin
+	name = "rolling pin"
+	desc = "A simple tool for rolling dough flat."
+	id = "rollingpin"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 1000)
+	build_path = /obj/item/material/kitchen/rollingpin
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
