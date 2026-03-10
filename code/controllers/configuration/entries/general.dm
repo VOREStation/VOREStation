@@ -603,35 +603,6 @@
 /datum/config_entry/str_list/language_prefixes
 	default = list(",", "#", "-")
 
-// 0:1 subtraction:division for computing effective radiation on a turf
-/// 0 / RAD_RESIST_CALC_DIV = Each turf absorbs some fraction of the working radiation level
-/// 1 / RAD_RESIST_CALC_SUB = Each turf absorbs a fixed amount of radiation
-/datum/config_entry/flag/radiation_resistance_calc_mode
-	default = RAD_RESIST_CALC_SUB
-
-/datum/config_entry/flag/radiation_resistance_calc_mode/ValidateAndSet(str_val)
-	if(!VASProcCallGuard(str_val))
-		return FALSE
-	var/val_as_num = text2num(str_val)
-	if(val_as_num in list(RAD_RESIST_CALC_DIV, RAD_RESIST_CALC_SUB))
-		config_entry_value = val_as_num
-		return TRUE
-	return FALSE
-
-///How much radiation is reduced by each tick
-/datum/config_entry/number/radiation_decay_rate
-	default = 1
-	integer = FALSE
-
-/datum/config_entry/number/radiation_resistance_multiplier
-	default = 8.5 //VOREstation edit
-	integer = FALSE
-
-/datum/config_entry/number/radiation_material_resistance_divisor
-	default = 1
-	min_val = 0.1
-	integer = FALSE
-
 /// If true, submaps loaded automatically can be rotated.
 /datum/config_entry/flag/random_submap_orientation
 
