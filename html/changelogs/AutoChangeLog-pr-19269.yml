@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "design disk scrolling"
-  - code_imp: "rids of Flex in techweb UIs"
