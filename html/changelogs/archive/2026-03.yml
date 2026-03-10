@@ -165,3 +165,9 @@
   - bugfix: pai correctly uses the new chassis data when changing chassis(would sometimes
       turn you invisible)
   - bugfix: paicards no longer comfort minor loneliness if they do not have a client
+2026-03-10:
+  Kashargul:
+  - bugfix: design disk scrolling
+  - code_imp: rids of Flex in techweb UIs
+  TheCaramelion:
+  - qol: Cargo borgs may work as mailman
