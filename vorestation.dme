@@ -576,7 +576,6 @@
 #include "code\controllers\subsystems\inactivity.dm"
 #include "code\controllers\subsystems\input.dm"
 #include "code\controllers\subsystems\internal_wiki.dm"
-#include "code\controllers\subsystems\irradiated.dm"
 #include "code\controllers\subsystems\job.dm"
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\lobby_monitor.dm"
