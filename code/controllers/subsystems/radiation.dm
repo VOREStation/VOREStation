@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(radiation)
 	var/rad_vulnerability = 1 - wearing_rad_protected_clothing(target)
 	if(rad_vulnerability <= 0)
 		return FALSE
-	target.radiation += ROUND(strength * rad_vulnerability, 0.1)
+	target.radiation += round(strength * rad_vulnerability, 0.1)
 
 //	target.AddComponent(/datum/component/irradiated)
 	return TRUE
