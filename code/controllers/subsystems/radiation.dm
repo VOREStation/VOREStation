@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(radiation)
 
 		for(var/obj/geiger/geiger_counter in turf_to_irradiate)
 			var/current_insulation = 1
-			for(var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+			for(var/turf/turf_in_between in get_line(source, geiger_counter) - get_turf(source))
 				var/insulation = cached_rad_insulations[turf_in_between]
 				if(isnull(insulation))
 					insulation = turf_in_between.rad_insulation
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(radiation)
 				if(current_insulation <= pulse_information.threshold)
 					continue
 
-			SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
+			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 
 		for(var/mob/living/target in turf_to_irradiate)
