@@ -414,13 +414,14 @@
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
 	if(power)
+		// At a power mult of 0.025 for range, this means a 1000power SM (about normal) will reach 25 tiles and be putting off rad pulses of 500. With 0 protection, you have a 10% chance of getting hit.
 		radiation_pulse(
 			src,
-			max_range = max(round(power * 0.05),7),
-			threshold = RAD_EXTREME_INSULATION,
-			chance = round(power * 0.1),
+			max_range = CLAMP(max(round(power * 0.025), 3), 3, 50),
+			threshold = CLAMP(RAD_HEAVY_INSULATION - (power * 0.00025), 0.1, 1),
+			chance = round(power * 0.01),
 			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-			strength = round(power * 0.1)
+			strength = round(power * 0.5)
 		)
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation

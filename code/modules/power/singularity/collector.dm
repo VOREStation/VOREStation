@@ -14,6 +14,7 @@
 	var/active = 0
 	var/locked = 0
 	var/drainratio = 1
+	rad_insulation = RAD_EXTREME_INSULATION //It sucks up the radiation. If you're standing behind it, you're pretty safe.
 
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()

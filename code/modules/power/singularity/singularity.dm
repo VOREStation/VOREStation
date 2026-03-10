@@ -408,8 +408,8 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	radiation_pulse(
 		src,
 		max_range = 7,
-		threshold = RAD_EXTREME_INSULATION,
-		chance = URANIUM_IRRADIATION_CHANCE + round(src.energy / 60, 1),
+		threshold = RAD_EXTREME_INSULATION - 0.1,
+		chance = URANIUM_IRRADIATION_CHANCE + round(energy / 60, 1),
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 		strength = 250
 	)

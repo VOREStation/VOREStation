@@ -22,24 +22,32 @@
 	icon_state = "hull-r_plasteel"
 /turf/simulated/wall/rpshull/Initialize(mapload)
 	. = ..(mapload,  MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
+
 /turf/simulated/wall/dshull
 	icon_state = "hull-durasteel"
-	rad_insulation = RAD_EXTREME_INSULATION
+	rad_insulation = RAD_HEAVY_INSULATION
+
 /turf/simulated/wall/dshull/Initialize(mapload) //Spaaaace-est ship.
 	. = ..(mapload,  MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
+
 /turf/simulated/wall/rdshull
 	icon_state = "hull-r_durasteel"
 	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/rdshull/Initialize(mapload)
 	. = ..(mapload,  MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
+
 /turf/simulated/wall/thull
 	icon_state = "hull-titanium"
 	rad_insulation = RAD_HEAVY_INSULATION
+
 /turf/simulated/wall/thull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
+
 /turf/simulated/wall/rthull
 	icon_state = "hull-r_titanium"
 	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/rthull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
 
@@ -63,8 +71,16 @@
 	. = ..(mapload, MAT_GOLD)
 /turf/simulated/wall/silver/Initialize(mapload)
 	. = ..(mapload, MAT_SILVER)
+
+/turf/simulated/wall/lead
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/lead/Initialize(mapload)
 	. = ..(mapload, MAT_LEAD)
+
+/turf/simulated/wall/r_lead
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/r_lead/Initialize(mapload)
 	. = ..(mapload, MAT_LEAD, MAT_LEAD)
 /turf/simulated/wall/phoron/Initialize(mapload)
@@ -87,12 +103,13 @@
 
 /turf/simulated/wall/concrete
 	icon_state = "brick"
-	rad_insulation = RAD_EXTREME_INSULATION
+	rad_insulation = RAD_HEAVY_INSULATION
 
 /turf/simulated/wall/concrete/Initialize(mapload)
 	. = ..(mapload, MAT_CONCRETE) //3strong
 
 /turf/simulated/wall/r_concrete
+	rad_insulation = RAD_HEAVY_INSULATION
 	icon_state = "rbrick"
 
 /turf/simulated/wall/r_concrete/Initialize(mapload)
@@ -105,6 +122,9 @@
 	return
 /turf/simulated/wall/titanium/Initialize(mapload)
 	. = ..(mapload, MAT_TITANIUM)
+
+/turf/simulated/wall/durasteel
+	rad_insulation = RAD_HEAVY_INSULATION
 
 /turf/simulated/wall/durasteel/Initialize(mapload)
 	. = ..(mapload, MAT_DURASTEEL, MAT_DURASTEEL)

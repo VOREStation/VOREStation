@@ -23,7 +23,7 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/fulltile = FALSE // Set to true on full-tile variants.
-	rad_insulation = RAD_VERY_LIGHT_INSULATION
+	rad_insulation = RAD_VERY_LIGHT_INSULATION //Windows can have multiple placed on one tile, meaning you have to account for the potential that someone could just build a bunch of windows on one tile to prevent rads entirely.
 
 /obj/structure/window/examine(mob/user)
 	. = ..()
@@ -509,13 +509,13 @@
 	damage_per_fire_tick = 1.0
 	maxhealth = 40.0
 	force_threshold = 5
-	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/window/phoronbasic/full
 	icon_state = "phoronwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
 	flags = NONE
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -529,13 +529,14 @@
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 	maxhealth = 80.0
 	force_threshold = 10
-	rad_insulation = RAD_MEDIUM_INSULATION
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/window/phoronreinforced/full
 	icon_state = "phoronrwindow-full"
 	maxhealth = 160
 	fulltile = TRUE
 	flags = NONE
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
