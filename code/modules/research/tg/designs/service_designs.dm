@@ -48,18 +48,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/intercom
-	name = "intercom circuit"
-	desc = "The circuit board for a radio intercom."
-	id = "intercom"
-	build_type = AUTOLATHE | IMPRINTER // Simple circuit
-	build_path = /obj/item/circuitboard/intercom
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
-
 /datum/design_techweb/pda_cartridge/janitor
 	id = "cart_janitor"
 	build_path = /obj/item/cartridge/janitor

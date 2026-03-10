@@ -163,6 +163,7 @@
 		// "solar_panel",
 		// "solar_tracker",
 		"power_control",
+		"intercom",
 		"airalarm_electronics",
 		"airlock_board",
 		"geiger",

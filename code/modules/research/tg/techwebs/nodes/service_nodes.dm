@@ -25,7 +25,6 @@
 		// "boxcutter",
 		"bounced_radio",
 		"radio_headset",
-		"intercom",
 		// "earmuffs",
 		"taperecorder",
 		"recordingcassette",
