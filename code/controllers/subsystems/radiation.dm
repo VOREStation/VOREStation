@@ -33,11 +33,31 @@ SUBSYSTEM_DEF(radiation)
 	var/list/cached_rad_insulations = list()
 	var/list/cached_turfs_to_process = pulse_information.turfs_to_process
 	var/turfs_iterated = 0
+	var/pulse_strength = pulse_information.strength
 	for (var/turf/turf_to_irradiate as anything in cached_turfs_to_process)
 		turfs_iterated += 1
+
 		for(var/obj/machinery/power/rad_collector in turf_to_irradiate)
-			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster.
+			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
 			continue
+
+		for(var/obj/geiger/geiger_counter in turf_to_irradiate)
+			var/current_insulation = 1
+			for(var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+				var/insulation = cached_rad_insulations[turf_in_between]
+				if(isnull(insulation))
+					insulation = turf_in_between.rad_insulation
+					for (var/atom/on_turf as anything in turf_in_between.contents)
+						insulation *= on_turf.rad_insulation
+					cached_rad_insulations[turf_in_between] = insulation
+
+				current_insulation *= insulation
+
+				if(current_insulation <= pulse_information.threshold)
+					continue
+
+			SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
+
 
 		for(var/mob/living/target in turf_to_irradiate)
 			if(!can_irradiate_basic(target))
@@ -80,6 +100,7 @@ SUBSYSTEM_DEF(radiation)
 				perceived_intensity = intensity * INVERSE((1 + get_dist_euclidean(source, target)) ** 2) // Diminishes over range.
 				perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
 				perceived_chance = 100 * (1 - NUM_E ** -perceived_intensity)
+				pulse_strength = pulse_strength * (1 - NUM_E ** -perceived_intensity)
 			else
 				perceived_chance = 100
 
@@ -94,7 +115,7 @@ SUBSYSTEM_DEF(radiation)
 			if (!prob(perceived_chance))
 				continue
 
-			if (irradiate_after_basic_checks(target, pulse_information.strength))
+			if (irradiate_after_basic_checks(target, pulse_strength))
 				target.investigate_log("was irradiated by [source].", INVESTIGATE_RADIATION)
 
 		if(MC_TICK_CHECK)
@@ -113,10 +134,14 @@ SUBSYSTEM_DEF(radiation)
 /datum/controller/subsystem/radiation/proc/irradiate_after_basic_checks(mob/living/target, strength)
 	PRIVATE_PROC(TRUE)
 
-	if(ishuman(target) && wearing_rad_protected_clothing(target))
+	if(!ishuman(target))
 		return FALSE
 
-	target.radiation += strength
+	/// 0 = full protection, 1 = no protection.
+	var/rad_vulnerability = 1 - wearing_rad_protected_clothing(target)
+	if(rad_vulnerability <= 0)
+		return FALSE
+	target.radiation += ROUND(strength * rad_vulnerability, 0.1)
 
 //	target.AddComponent(/datum/component/irradiated)
 	return TRUE
@@ -135,17 +160,24 @@ SUBSYSTEM_DEF(radiation)
 
 	return TRUE
 
-/// Returns whether or not the human is covered head to toe in rad-protected clothing.
+/// Retruns a value from 1 (full protection) to 0 (no protection)
+/// If we have 4 limbs and 3 are protected, we would expect to have 0.75 returned.
 /datum/controller/subsystem/radiation/proc/wearing_rad_protected_clothing(mob/living/carbon/human/human)
-	for (var/obj/item/organ/external/limb as anything in human.organs)
-		var/protected = FALSE
+	///Check how many limbs we have.
+	var/limb_count = 0
+	///Check how many of our limbs are protected.
+	var/protected_limbs = 0
+	for(var/obj/item/organ/external/limb as anything in human.organs)
+		limb_count++
 
-		for (var/obj/item/clothing as anything in human.get_clothing_on_part(limb))
-			if (HAS_TRAIT(clothing, TRAIT_RADIATION_PROTECTED_CLOTHING))
-				protected = TRUE
+		for(var/obj/item/clothing as anything in human.get_clothing_on_part(limb))
+			if(HAS_TRAIT(clothing, TRAIT_RADIATION_PROTECTED_CLOTHING)) //If our clothing
+				protected_limbs++
 				break
 
-		if (!protected)
-			return FALSE
+			var/rad_resistance = clothing.armor["rad"]
+			if(prob(rad_resistance))
+				protected_limbs++
+				break
 
-	return TRUE
+	return (protected_limbs/limb_count)

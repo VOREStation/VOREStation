@@ -26,7 +26,7 @@
 	UnregisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION)
 	return ..()
 
-/obj/machinery/power/rad_collector/proc/process_rads(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
+/obj/machinery/power/rad_collector/proc/process_rads(datum/source, datum/radiation_pulse_information/pulse_information)
 	SIGNAL_HANDLER
 	//so that we don't zero out the meter if the SM is processed first.
 	last_power = last_power_new
@@ -35,10 +35,7 @@
 
 	if(P && active)
 		if(pulse_information)
-			//The higher the range, threshold, and chance, the more power is made from the pulse.
-			//The SM has a threshold of 0.5 (so 20 rads there), chance is power * 0.1 (SM can get to +1000 safely, so let's say 100) and range is power * 0.05, so let's say 50
-			//This means we'll be getting ~170 rads per pulse.
-			var/amount_of_rads = (((pulse_information.max_range * 5) + (10 / pulse_information.threshold) + (pulse_information.chance * 0.25)))
+			var/amount_of_rads = pulse_information.strength
 			receive_pulse((amount_of_rads))
 
 			if(P.air_contents.gas[GAS_PHORON] == 0)
@@ -137,8 +134,9 @@
 	if(P && active)
 		var/power_produced = 0
 		power_produced = P.air_contents.gas[GAS_PHORON]*pulse_strength*20
-		add_avail(power_produced)
-		last_power_new = power_produced
+		if(power_produced)
+			add_avail(power_produced)
+			last_power_new = power_produced
 		return
 	return
 
