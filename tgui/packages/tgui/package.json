@@ -5,7 +5,7 @@
 		"common": "workspace:*",
 		"dateformat": "^5.0.3",
 		"dompurify": "^3.3.1",
-		"es-toolkit": "^1.44.0",
+		"es-toolkit": "^1.45.0",
 		"highlight.js": "^11.11.1",
 		"jotai": "^2.18.0",
 		"js-yaml": "^4.1.1",

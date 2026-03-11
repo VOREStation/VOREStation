@@ -75,3 +75,102 @@
   - code_imp: migrates more admin verbs to the subsystem
   - code_imp: cleans up some more updateDialog
   - refactor: replaces many old browser UIs with tgui
+2026-03-04:
+  Will, Kash:
+  - rscadd: observing the round from the main menu, while having pai candidate enabled(and
+      a set pai name) will automatically send out a pai notice about a new personality
+      being available
+  - rscadd: pai may have multiple levels of belly size per pai sprite type
+  - rscadd: type 13 pai hologram now uses all four directions for the AI hologram
+      sprite made of your character
+  - balance: pais now have an extremely limited selection of objects and computers
+      they can interact with
+  - refactor: pai controller ported to subsystem
+  - refactor: pai card menu updated to tgui
+  - refactor: pai sprites moved to datums
+  - refactor: pai saving uses TGprefs instead of it's own separate save file (each
+      save slot now has it's own pai config now)
+  - refactor: pai vr override icons collapsed into base file
+  - refactor: multiple pai related tgui menus updated to modern standards
+  - code_imp: special roles order unit test
+  - code_imp: pai software unit test
+  - code_imp: pai sprite unit test
+  - bugfix: parrot pai resting belly sprite has proper name
+  - bugfix: runtime when attempting to toggle non-existent gun aiming mode as a pai
+  - bugfix: herm is no longer missing from identifying gender in character prefs menu
+2026-03-05:
+  Azzy.Dreemurr:
+  - rscadd: Added new vending machine with Talon uniforms + for paperwork added [talogo]
+      which Talon logo displays
+  - balance: Talon armory got more holsters itself, added a helmet for Captain Talon
+      for their armor in locker
+  - bugfix: fixed locations of engineering lockers on Talon
+  - maptweak: small remap EVA room on Talon. A locker with musical instruments added
+      in Talon Bar
+  - image: New uniform for Talon Crew + Talon seal
+  - admin: A new option for sending a fax has been introduced -> Talon Headquarters.
+      And also the ability to answer.
+  KillianKirilenko:
+  - qol: restores default transfer values for flour and sugar
+2026-03-06:
+  Azzy.Dreemurr:
+  - image: Altavians is now available use Talon space suits (new sprites)
+  Will, Kash:
+  - rscadd: Vix/Flipper pai syndicate pet
+  - rscadd: Paicard emag behavior
+  - rscadd: pAI can use bingle wiki computer
+  - qol: pAI counts for social traits (lonely/agoraphobia)
+  - qol: pAI can use modular computers if their master's ID is in it
+2026-03-08:
+  Diana:
+  - bugfix: Robotics surgery works again
+2026-03-09:
+  Aroliacue:
+  - rscadd: Added new species-dependent melee attacks. Currently unused on Virgo.
+  - balance: Reduced damage on some accidentally overtuned existing species-dependent
+      melee attacks. Currently unused on Virgo.
+  - sound: Added a new melee attack sound.
+  Diana:
+  - bugfix: Reagents will now have some effect - even if extremely small - if you
+      have slow metabolism.
+  Kashargul:
+  - code_imp: update font awesome to v7
+  - code_imp: tgui dependency up
+  - code_imp: migrates GPS to tgui
+  - bugfix: bad compass_holder del
+  - bugfix: ship placement in two player mode
+  KillianKirilenko:
+  - qol: critter rifts are now emissive, so they can be seen in unlit areas (still
+      only visible to ghosts)
+  - bugfix: fixed notification prefs for maint critter rifts (I think)
+  Sharkmare:
+  - rscadd: Added a Command style Gooborg Chassis
+  Will:
+  - code_imp: added TRAIT_AMBIENT_PEST_MOB trait define
+  - refactor: 'Made pest mob interactions consistent (ex: mice couldn''t open airlocks,
+      but cockroaches could )'
+  - bugfix: forensic scanner runtime fix
+  - bugfix: handheld flashes no longer stun phased shadekin
+  - bugfix: flashbangs no longer hit phased shadekin
+  - bugfix: explosions no longer hit phased shadekin
+  - bugfix: emps no longer hit phased shadekin
+  - bugfix: chemical sprays no longer hit phased shadekin
+  - bugfix: shadekin can no longer toggle oxygen/anesthetic pumps while in phase
+  - bugfix: you can no longer mount phased shadekin taurs, or mount a taur while phased
+  - bugfix: wrapping up people in giftwrap no longer makes them invisible
+  - bugfix: missing giftbox icons fixed on several objects
+  - refactor: Moved solarpanel update to it's own subsystem
+  - bugfix: Solarpanels now follow the sun on planet, and not the global SPACESUN
+      the stations use.
+  - bugfix: pai correctly uses the new chassis data when changing chassis(would sometimes
+      turn you invisible)
+  - bugfix: paicards no longer comfort minor loneliness if they do not have a client
+2026-03-10:
+  Kashargul:
+  - bugfix: design disk scrolling
+  - code_imp: rids of Flex in techweb UIs
+  TheCaramelion:
+  - qol: Cargo borgs may work as mailman
+2026-03-11:
+  Kashargul:
+  - bugfix: text edit state being held too long

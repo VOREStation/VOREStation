@@ -1,0 +1,4 @@
+author: "Cerami"
+delete-after: True
+changes:
+  - bugfix: "Specify the default spawn type."

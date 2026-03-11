@@ -4,12 +4,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
-	var/emagged = FALSE
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	has_emag_toolkit = FALSE // sleevecards don't have multitools or signalers,  you can just change their laws
 	special_handling = TRUE
 
 /obj/item/paicard/sleevecard/attack_ghost(mob/user as mob)
-	return
+	return // No ghosts can invite, these are intended for sleevemates only
 
 /obj/item/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/sleevemate))
@@ -94,6 +94,8 @@
 	pda.ownjob = "Sleevecard"
 	pda.owner = text("[]", src)
 	pda.name = pda.owner + " (" + pda.ownjob + ")"
+
+	default_language = GLOB.all_languages[LANGUAGE_GALCOM] // Same issue as bots
 
 
 /mob/living/silicon/pai/infomorph/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)

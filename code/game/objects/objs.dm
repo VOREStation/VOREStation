@@ -145,7 +145,7 @@
 	return
 
 // If returns true, pai can interact with the object with a click
-/obj/proc/allow_pai_interaction(proximity_flag)
+/obj/proc/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return FALSE
 
 //To be called from things that spill objects on the floor.

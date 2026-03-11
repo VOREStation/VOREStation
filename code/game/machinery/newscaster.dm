@@ -274,7 +274,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 	tgui_interact(user)
 
-/obj/machinery/newscaster/allow_pai_interaction(proximity_flag)
+/obj/machinery/newscaster/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /**

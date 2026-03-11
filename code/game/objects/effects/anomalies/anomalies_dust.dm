@@ -6,6 +6,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	layer = ABOVE_MOB_LAYER
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 1.5
+	danger_mult = 0.75
 
 	move_chance = 80
 
@@ -71,3 +72,15 @@
 /obj/effect/anomaly/dust/detonate()
 	COOLDOWN_RESET(src, pulse_cooldown)
 	anomalyEffect()
+
+/obj/effect/anomaly/dust/anomalyPulse()
+	if(!..())
+		return
+
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		else
+			anomalyEffect()

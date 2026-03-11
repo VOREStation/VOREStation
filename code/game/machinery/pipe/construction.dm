@@ -122,7 +122,7 @@ Buildable meters
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	icon_state = "[initial(fakeA.pipe_state)][mirrored ? "m" : ""]"
 
-/obj/item/pipe/handle_rotation_verbs(angle)
+/obj/item/pipe/handle_rotation_verbs(angle, mob/user)
 	. = ..()
 	if(.)
 		fixdir()

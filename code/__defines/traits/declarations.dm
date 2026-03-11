@@ -57,3 +57,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ELECTROVORE_OBLIGATE "electrovore_obligate"
 // adds wet stacks when licking someone
 #define TRAIT_SLOBBER "slobber"
+// Owner will be considered a tiny mob for some interactions, such as airlocks not opening unless they have a client, or being vacuumed up by the vacpack
+#define TRAIT_AMBIENT_PEST_MOB "ambient_pest_mob"
