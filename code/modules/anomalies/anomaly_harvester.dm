@@ -194,3 +194,7 @@
 				return FALSE
 			sample.forceMove(get_turf(src))
 			return TRUE
+		if("release_all")
+			for(var/obj/item/research_sample/sample in src)
+				sample.forceMove(get_turf(src))
+			return TRUE

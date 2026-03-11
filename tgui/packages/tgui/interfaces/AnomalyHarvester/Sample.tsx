@@ -12,7 +12,14 @@ export const SampleDisplay = (props) => {
       fill
       scrollable
       title="Generated Anomalous Material"
-      buttons={<Button.Confirm>Release All</Button.Confirm>}
+      buttons={
+        <Button.Confirm
+          disabled={!samples.length}
+          onClick={() => act('release_all')}
+        >
+          Release All
+        </Button.Confirm>
+      }
     >
       <Stack vertical fill>
         {samples.length > 0 &&
