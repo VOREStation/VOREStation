@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   Box,
-  Flex,
   Input,
   Section,
   Stack,
@@ -57,13 +56,17 @@ export function TechwebOverview(props) {
   }
 
   return (
-    <Flex direction="column" height="100%">
-      <Flex.Item>
-        <Flex justify="space-between" className="Techweb__HeaderSectionTabs">
-          <Flex.Item align="center" className="Techweb__HeaderTabTitle">
+    <Stack direction="column" fill g={0}>
+      <Stack.Item>
+        <Stack
+          g={0}
+          justify="space-between"
+          className="Techweb__HeaderSectionTabs"
+        >
+          <Stack.Item align="center" className="Techweb__HeaderTabTitle">
             Web View
-          </Flex.Item>
-          <Flex.Item grow>
+          </Stack.Item>
+          <Stack.Item grow>
             <Tabs>
               <Tabs.Tab
                 selected={!searching && tabIndex === Tab.RESEARCHED}
@@ -85,18 +88,18 @@ export function TechwebOverview(props) {
               </Tabs.Tab>
               {!!searching && <Tabs.Tab selected>Search Results</Tabs.Tab>}
             </Tabs>
-          </Flex.Item>
-          <Flex.Item align="center">
+          </Stack.Item>
+          <Stack.Item align="center">
             <Input
               value={searchText}
               onChange={setSearchText}
               placeholder="Search..."
               expensive
             />
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item className="Techweb__OverviewNodes" height="100%">
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item className="Techweb__OverviewNodes" grow>
         <Section fill scrollable>
           {displayedNodes?.length ? (
             <VirtualList>
@@ -108,8 +111,8 @@ export function TechwebOverview(props) {
             <HappyFace />
           )}
         </Section>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 }
 
