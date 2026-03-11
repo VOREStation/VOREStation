@@ -72,6 +72,11 @@
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 	return
 
+/obj/structure/bigDelivery/attack_robot(mob/living/user)
+	if(user.stat || !Adjacent(user))
+		return
+	unwrap()
+
 /obj/structure/bigDelivery/update_icon()
 	cut_overlays()
 	if(nameset || examtext)
@@ -198,6 +203,11 @@
 				"You hear someone scribbling a note.")
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 	return
+
+/obj/item/smallDelivery/attack_robot(mob/living/user)
+	if(user.stat || !Adjacent(user))
+		return
+	attack_self(user)
 
 /obj/item/smallDelivery/update_icon()
 	cut_overlays()
