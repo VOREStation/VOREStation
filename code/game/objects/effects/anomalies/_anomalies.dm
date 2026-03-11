@@ -79,10 +79,12 @@
 		return FALSE
 	if(world.time < stats.next_activation)
 		return FALSE
-	else
-		stats.pulse_effect()
-		stats.next_activation = world.time + rand(stats.min_activation, stats.max_activation)
-		return TRUE
+
+	stats.pulse_effect()
+	if(QDELETED(src))
+		return FALSE
+	stats.next_activation = world.time + rand(stats.min_activation, stats.max_activation)
+	return TRUE
 
 /obj/effect/anomaly/proc/move_anomaly()
 	step(src, pick(GLOB.alldirs))
