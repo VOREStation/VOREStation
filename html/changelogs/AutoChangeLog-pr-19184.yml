@@ -1,0 +1,12 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - rscadd: "Exploration snowsuits"
+  - rscadd: "Victorian style coats"
+  - rscadd: "Trailblazer light structures"
+  - rscadd: "Sec spider pet Lorenzo"
+  - rscadd: "Chicken pet commander clucky"
+  - rscadd: "random steptrap spawner"
+  - rscadd: "Icepick for iced airlock breaking (map flavor too)"
+  - rscadd: "Mine lighting techweb entry for marker beacons and trailblazers"
+  - rscadd: "Debris Removal techweb entry for shovels and icepicks"
