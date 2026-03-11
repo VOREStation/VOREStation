@@ -22,7 +22,7 @@ export const AnomalyHarvester = (props) => {
                   minValue={0}
                   maxValue={100}
                   ranges={{
-                    good: [85, pointsToGenerate],
+                    good: [85, 100],
                     average: [25, 85],
                     bad: [0, 25],
                   }}
