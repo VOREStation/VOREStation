@@ -171,3 +171,6 @@
   - code_imp: rids of Flex in techweb UIs
   TheCaramelion:
   - qol: Cargo borgs may work as mailman
+2026-03-11:
+  Kashargul:
+  - bugfix: text edit state being held too long

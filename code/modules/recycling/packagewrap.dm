@@ -25,73 +25,105 @@
 
 	if (istype(target, /obj/item) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
 		var/obj/item/O = target
-		if (src.amount > 1)
-			var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!
-			if(!istype(O.loc, /turf))
-				if(user.client)
-					user.client.screen -= O
-			P.wrapped = O
-			O.forceMove(P)
-			P.w_class = O.w_class
-			var/i = round(O.w_class)
-			if(i in list(1,2,3,4,5))
-				P.icon_state = "deliverycrate[i]"
-				switch(i)
-					if(1) P.name = "tiny parcel"
-					if(3) P.name = "normal-sized parcel"
-					if(4) P.name = "large parcel"
-					if(5) P.name = "huge parcel"
-			if(i < 1)
-				P.icon_state = "deliverycrate1"
-				P.name = "tiny parcel"
-			if(i > 5)
-				P.icon_state = "deliverycrate5"
-				P.name = "huge parcel"
-			P.add_fingerprint(user)
-			O.add_fingerprint(user)
-			src.add_fingerprint(user)
-			src.amount -= 1
-			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
-			"You hear someone taping paper around a small object.")
-			playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
+		if (src.amount < 1)
+			to_chat(user, span_warning("You need more paper."))
+			return
+		var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!
+		if(!istype(O.loc, /turf))
+			if(user.client)
+				user.client.screen -= O
+		P.wrapped = O
+		O.forceMove(P)
+		P.w_class = O.w_class
+		var/i = round(O.w_class)
+		if(i in list(1,2,3,4,5))
+			P.icon_state = "deliverycrate[i]"
+			switch(i)
+				if(1) P.name = "tiny parcel"
+				if(3) P.name = "normal-sized parcel"
+				if(4) P.name = "large parcel"
+				if(5) P.name = "huge parcel"
+		if(i < 1)
+			P.icon_state = "deliverycrate1"
+			P.name = "tiny parcel"
+		if(i > 5)
+			P.icon_state = "deliverycrate5"
+			P.name = "huge parcel"
+		P.add_fingerprint(user)
+		O.add_fingerprint(user)
+		src.add_fingerprint(user)
+		src.amount -= 1
+		user.visible_message("\The [user] wraps \a [target] with \a [src].",\
+		span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
+		"You hear someone taping paper around a small object.")
+		playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
+
 	else if (istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/O = target
-		if (src.amount > 3 && !O.opened)
-			var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
-			P.icon_state = "deliverycrate"
-			P.wrapped = O
-			O.loc = P
-			src.amount -= 3
-			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
-			"You hear someone taping paper around a large object.")
-			playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
-		else if(src.amount < 3)
+		if (src.amount < 3)
 			to_chat(user, span_warning("You need more paper."))
+			return
+		if(O.opened)
+			return
+		var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
+		P.icon_state = "deliverycrate"
+		P.wrapped = O
+		O.loc = P
+		src.amount -= 3
+		user.visible_message("\The [user] wraps \a [target] with \a [src].",\
+		span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
+		"You hear someone taping paper around a large object.")
+		playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
+
 	else if (istype (target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
-		if (src.amount > 3 && !O.opened)
-			var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
-			P.wrapped = O
-			O.sealed = 1
-			O.loc = P
-			src.amount -= 3
-			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
-			"You hear someone taping paper around a large object.")
-			playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
-		else if(src.amount < 3)
+		if (src.amount < 3)
 			to_chat(user, span_warning("You need more paper."))
+			return
+		if(O.opened)
+			return
+		var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
+		P.wrapped = O
+		O.sealed = 1
+		O.loc = P
+		src.amount -= 3
+		user.visible_message("\The [user] wraps \a [target] with \a [src].",\
+		span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
+		"You hear someone taping paper around a large object.")
+		playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
+
 	else
 		to_chat(user, span_blue("The object you are trying to wrap is unsuitable for the sorting machinery!"))
-	if (src.amount <= 0)
-		new /obj/item/c_tube( src.loc )
+
+	if (src.amount <= 0 && !isrobot(loc))
+		new /obj/item/c_tube(get_turf(src))
 		qdel(src)
-		return
-	return
 
 /obj/item/packageWrap/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 0)
 		. += span_blue("There are [amount] units of package wrap left!")
+
+
+// Borg version that refills over time
+/obj/item/packageWrap/borg
+	name = "packaging dispenser"
+	desc = "Wraps various items so they can be tagged and shipped through disposals. Refills over time."
+	var/recharge_ticker = 0
+
+/obj/item/packageWrap/borg/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/packageWrap/borg/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/packageWrap/borg/process()
+	if(recharge_ticker < 5)
+		recharge_ticker ++
+		return
+
+	recharge_ticker = 0
+	if(amount < initial(amount))
+		amount++
