@@ -13,17 +13,17 @@ type Data = {
   unstable_type: string;
   containment_type: string;
   transformation_type: string;
-  modifier: string;
+  modifier?: string;
   countdown: number;
 };
 
-const map: Record<string, string> = {
+const colorMap = {
   Decaying: 'yellow',
   Stable: 'green',
-};
+} as const;
 
 function getColor(stability: string): string {
-  return map[stability] ?? 'bad';
+  return colorMap[stability] ?? 'bad';
 }
 
 export const AnomalyScanner = (props) => {
@@ -47,56 +47,54 @@ export const AnomalyScanner = (props) => {
     <Window width={400} height={325} theme={theme}>
       <Window.Content>
         {anomaly_name ? (
-          <Section fill scrollable>
-            <Stack vertical fill>
+          <Stack vertical fill>
+            <Stack.Item grow>
+              <Section title={capitalizeAll(anomaly_name)} fill scrollable>
+                <LabeledList>
+                  <LabeledList.Item label="Current severity">
+                    {severity}%
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Current anomaly state"
+                    color={getColor(stability)}
+                  >
+                    {stability}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Point output">
+                    {round(point_output, 0)}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Time until next pulse">
+                    {round(countdown, 0)} seconds
+                  </LabeledList.Item>
+                </LabeledList>
+              </Section>
+            </Stack.Item>
+            <Stack.Item grow>
+              <Section title="Particle Reaction Analysis" fill scrollable>
+                <LabeledList>
+                  <LabeledList.Item label="Danger Type" color="red">
+                    {danger_type}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Unstable Type" color="pink">
+                    {unstable_type}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Containment Type" color="yellow">
+                    {containment_type}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Transformation Type" color="blue">
+                    {transformation_type}
+                  </LabeledList.Item>
+                </LabeledList>
+              </Section>
+            </Stack.Item>
+            {modifier && (
               <Stack.Item grow>
-                <Section title={capitalizeAll(anomaly_name)} fill>
-                  <LabeledList>
-                    <LabeledList.Item label="Current severity">
-                      {severity}%
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Current anomaly state"
-                      color={getColor(stability)}
-                    >
-                      {stability}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Point output">
-                      {round(point_output, 0)}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Time until next pulse">
-                      {round(countdown, 0)} seconds
-                    </LabeledList.Item>
-                  </LabeledList>
+                <Section title="Behavior Deviation Analysis" fill>
+                  {modifier}
                 </Section>
               </Stack.Item>
-              <Stack.Item grow>
-                <Section title="Particle Reaction Analysis" fill>
-                  <LabeledList>
-                    <LabeledList.Item label="Danger Type" color="red">
-                      {danger_type}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Unstable Type" color="pink">
-                      {unstable_type}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Containment Type" color="yellow">
-                      {containment_type}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Transformation Type" color="blue">
-                      {transformation_type}
-                    </LabeledList.Item>
-                  </LabeledList>
-                </Section>
-              </Stack.Item>
-              {modifier && (
-                <Stack.Item grow>
-                  <Section title="Behavior Deviation Analysis" fill>
-                    {modifier}
-                  </Section>
-                </Stack.Item>
-              )}
-            </Stack>
-          </Section>
+            )}
+          </Stack>
         ) : (
           <NoticeBox>No anomaly scanned</NoticeBox>
         )}
