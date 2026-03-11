@@ -58,7 +58,7 @@ const RecipeList = (props: {
 
   const sortedKeys = Object.keys(recipes).sort();
 
-  const searcher = createSearch(searchText, (recipe: string) => {
+  const searcher = createSearch<string>(searchText, (recipe) => {
     return recipe;
   });
 

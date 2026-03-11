@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import type { Data, supplyPack } from './types';
+import type { Data, SupplyPack } from './types';
 
 export const SupplyConsoleMenuOrder = (props) => {
   const { act, data } = useBackend<Data>();
@@ -21,14 +21,14 @@ export const SupplyConsoleMenuOrder = (props) => {
   const [searchCategory, setSearchCategory] = useState<string>('');
   const [searchContent, setSearchContent] = useState<string>('');
 
-  function sortPack(a: supplyPack, b: supplyPack) {
+  function sortPack(a: SupplyPack, b: SupplyPack) {
     if (a.cost < supply_points && b.cost > supply_points) return -1;
     if (a.cost > supply_points && b.cost < supply_points) return 1;
 
     return a.name.localeCompare(b.name);
   }
 
-  const viewingPacks: supplyPack[] = supply_packs
+  const viewingPacks: SupplyPack[] = supply_packs
     .filter(
       (pack) =>
         pack.group === activeCategory && (!pack.contraband || !!contraband),
@@ -36,9 +36,9 @@ export const SupplyConsoleMenuOrder = (props) => {
     .sort((a, b) => sortPack(a, b));
 
   const categorySearch = createSearch(searchCategory);
-  const contentSearch = createSearch(
+  const contentSearch = createSearch<SupplyPack>(
     searchContent,
-    (pack: supplyPack) => pack.name,
+    (pack) => pack.name,
   );
 
   const filteredCategories = categories.filter(categorySearch);

@@ -23,7 +23,7 @@ export const Vorespawn = (props: {
     all_vore_spawns[selectedPlayer]?.soulcatcher_vore;
   const allowBellySpawn = all_vore_spawns[selectedPlayer]?.vorespawn;
 
-  const searcher = createSearch(searchText, (element: DropdownEntry) => {
+  const searcher = createSearch<DropdownEntry>(searchText, (element) => {
     return element.displayText;
   });
 

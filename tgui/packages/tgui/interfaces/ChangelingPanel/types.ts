@@ -2,10 +2,10 @@ import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   available_points: number;
-  power_list: powerData[];
+  power_list: PowerData[];
 };
 
-export type powerData = {
+export type PowerData = {
   power_name: string;
   power_cost: number;
   power_purchased: BooleanLike;
