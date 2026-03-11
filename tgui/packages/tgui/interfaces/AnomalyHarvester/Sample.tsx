@@ -8,13 +8,18 @@ export const SampleDisplay = (props) => {
   const { samples } = data;
 
   return (
-    <Section fill scrollable title="Generated Anomalous Material">
+    <Section
+      fill
+      scrollable
+      title="Generated Anomalous Material"
+      buttons={<Button.Confirm>Release All</Button.Confirm>}
+    >
       <Stack vertical fill>
         {samples.length > 0 &&
-          samples.map((sample, index) => {
+          samples.map((sample) => {
             return (
               <Stack.Item
-                key={index}
+                key={sample.ref}
                 grow
                 style={{
                   padding: '0.5rem',
