@@ -20,6 +20,20 @@
 		// "portadrive_super",
 	)
 
+/datum/techweb_node/protolathe_boards
+	id = TECHWEB_NODE_PROTOLATHE_BOARDS
+	starting_node = TRUE
+	display_name = "Protolathe Boards"
+	description = "The fundamental technology required for production of more experimental protolathe boards."
+	design_ids = list(
+		"protolathe_science",
+		"protolathe_service",
+		"protolathe_medical",
+		"protolathe_cargo",
+		"protolathe_engineering",
+		"protolathe_security",
+	)
+
 /datum/techweb_node/bluespace_theory
 	id = TECHWEB_NODE_BLUESPACE_THEORY
 	display_name = "Bluespace Theory"
