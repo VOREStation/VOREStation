@@ -545,6 +545,7 @@
 	icon_state = "sec"
 	req_access = list(ACCESS_SECURITY)
 	products = list(/obj/item/handcuffs = 8,
+					/obj/item/handcuffs/legcuffs = 8,
 					/obj/item/grenade/flashbang = 4,
 					/obj/item/flash = 5,
 					/obj/item/reagent_containers/food/snacks/donut/plain = 6,
@@ -554,6 +555,9 @@
 					/obj/item/gun/energy/stunrevolver = 4,
 					/obj/item/reagent_containers/spray/pepper = 6,
 					/obj/item/taperoll/police = 6,
+					/obj/item/cell/device/weapon = 8,
+					/obj/item/hailer = 3,
+					/obj/item/flashlight/maglight = 3,
 					/obj/item/clothing/glasses/omnihud/sec = 6)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
 					/obj/item/storage/box/donut = 2,
@@ -1308,15 +1312,18 @@
 		/obj/item/clothing/under/rank/security/turtleneck = 5,
 		/obj/item/clothing/under/rank/security/modern = 5,
 		/obj/item/clothing/under/rank/security/aces = 5,
+		/obj/item/clothing/suit/storage/vest/aces = 5,
 		/obj/item/clothing/under/rank/security/skirt = 5,
 		/obj/item/clothing/shoes/boots/jackboots = 5,
 		/obj/item/clothing/head/soft/sec = 5,
 		/obj/item/clothing/head/beret/sec = 5,
+		/obj/item/clothing/head/soft/sec/corp = 5,
 		/obj/item/clothing/head/beret/sec/corporate/officer = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_bodyguard_dep = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_sec_blue_dep = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_sec_red_dep = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_police = 5,
+		/obj/item/clothing/under/rank/security/corp = 5,
 		/obj/item/clothing/under/rank/bodyguard_suit = 5,
 		/obj/item/clothing/under/rank/bodyguard_skirt = 5,
 		/obj/item/clothing/under/rank/bodyguard_turtleneck = 5,
@@ -1335,6 +1342,8 @@
 		/obj/item/clothing/under/rank/neo_runner = 5,
 		/obj/item/clothing/under/rank/neo_gorka/sec = 5,
 		/obj/item/clothing/suit/neo_runner_coat = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security = 5,
+		/obj/item/clothing/shoes/boots/winter/security = 5,
 		/obj/item/clothing/shoes/boots/jackboots/silver = 5,
 		/obj/item/clothing/shoes/boots/jackboots/white = 5,
 		/obj/item/clothing/mask/bandana/red = 5,
@@ -1350,7 +1359,11 @@
 		/obj/item/clothing/accessory/holster/hip/black = 2,
 		/obj/item/clothing/accessory/holster/leg = 2,
 		/obj/item/clothing/accessory/holster/leg/black = 2,
-		/obj/item/clothing/accessory/holster/waist/lanyard = 2
+		/obj/item/clothing/accessory/holster/waist/lanyard = 2,
+		/obj/item/clothing/accessory/storage/black_vest = 2,
+		/obj/item/radio/headset/alt/headset_sec = 3,
+		/obj/item/radio/headset/earbud/headset_sec = 3
+
 	)
 	req_log_access = ACCESS_HOP
 	has_logs = 1
