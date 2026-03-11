@@ -153,9 +153,6 @@
 		return
 	tgui_interact(user)
 
-/obj/machinery/anomaly_harvester/attack_ghost(mob/user)
-	tgui_interact(user)
-
 /obj/machinery/anomaly_harvester/tgui_state(mob/user)
 	return GLOB.tgui_default_state
 

@@ -35,12 +35,12 @@
 /datum/anomaly_modifiers/invisible/on_add(datum/weakref/anomaly)
 	if(!..())
 		return
-	addtimer(CALLBACK(attached_anomaly, TYPE_PROC_REF(/atom/movable/, cloak)), 2 SECONDS)
+	addtimer(CALLBACK(attached_anomaly, TYPE_PROC_REF(/atom/movable, cloak)), 2 SECONDS)
 
 /datum/anomaly_modifiers/invisible/on_remove(datum/weakref/anomaly)
 	if(!..())
 		return
-	addtimer(CALLBACK(attached_anomaly, TYPE_PROC_REF(/atom/movable/, uncloak)), 2 SECONDS)
+	addtimer(CALLBACK(attached_anomaly, TYPE_PROC_REF(/atom/movable, uncloak)), 2 SECONDS)
 
 /*
 /datum/anomaly_modifiers/hidden

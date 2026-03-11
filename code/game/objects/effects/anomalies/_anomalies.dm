@@ -65,7 +65,8 @@
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(countdown)
 	QDEL_NULL(anomaly_core)
-	QDEL_NULL(stats)
+	if(stats)
+		QDEL_NULL(stats)
 	return ..()
 
 /obj/effect/anomaly/proc/anomalyEffect(seconds_per_tick)
