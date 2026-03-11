@@ -4,17 +4,16 @@ import type { Data } from './types';
 
 export const SampleDisplay = (props) => {
   const { act, data } = useBackend<Data>();
-  const { samples = [] } = data;
+  const { samples } = data;
 
   return (
     <Section fill scrollable title="Generated Anomalous Material">
-      <Stack fill>
-        {samples.length > 0 && (
-          <Stack.Item grow>
-            {samples.map((sample, index) => {
-              return (
+      <Stack vertical fill g={0}>
+        {samples.length > 0 &&
+          samples.map((sample, index) => {
+            return (
+              <Stack.Item key={index} grow>
                 <Box
-                  key={index}
                   style={{
                     marginBottom: '0.5rem',
                     padding: '0.5rem',
@@ -46,10 +45,9 @@ export const SampleDisplay = (props) => {
                     </Stack.Item>
                   </Stack>
                 </Box>
-              );
-            })}
-          </Stack.Item>
-        )}
+              </Stack.Item>
+            );
+          })}
       </Stack>
     </Section>
   );

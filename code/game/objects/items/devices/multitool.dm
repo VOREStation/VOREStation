@@ -103,7 +103,7 @@
 
 // Alien multitool only has those icon states
 /obj/item/multitool/alien/update_icon()
-		if(accepting_refs)
-			icon_state = "multitool_ref_scan"
-		else
-			icon_state = "multitool"
+	if(accepting_refs)
+		icon_state = "multitool_ref_scan"
+		return
+	icon_state = "multitool"

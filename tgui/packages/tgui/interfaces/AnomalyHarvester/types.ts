@@ -1,8 +1,8 @@
 export type Data = {
-  name: string;
+  name: string | null;
   points: number;
   pointsToGenerate: number;
-  samples?: Sample[];
+  samples: Sample[];
 };
 
 type Sample = {

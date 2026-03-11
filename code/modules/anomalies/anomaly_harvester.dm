@@ -93,8 +93,6 @@
 	harvested = null
 
 /obj/machinery/anomaly_harvester/proc/attach_anomaly(datum/weakref/anomaly)
-	harvested = anomaly
-
 	var/obj/effect/anomaly/anom = anomaly.resolve()
 	if(!istype(anom))
 		return
@@ -105,6 +103,7 @@
 		harvester.harvested = null
 		harvester.update_icon()
 		stats.attached_harvester = null
+	harvested = anomaly
 	stats.attached_harvester = WEAKREF(src)
 	playsound(src, 'sound/machines/boobeebeep.ogg', 75, TRUE)
 	return TRUE
@@ -167,13 +166,9 @@
 		ui.open()
 
 /obj/machinery/anomaly_harvester/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/list/data = list()
-
-	data["points"] = points
-	data["pointsToGenerate"] = points_to_create
-	data["samples"] = list()
+	var/list/sample_data = list()
 	for(var/obj/item/research_sample/sample in src)
-		data["samples"] += list(list(
+		UNTYPED_LIST_ADD(sample_data, list(
 			"name" = sample.name,
 			"icon" = sample.icon,
 			"icon_state" = sample.icon_state,
@@ -181,6 +176,14 @@
 			"height" = "32px",
 			"ref" = REF(sample)
 		))
+
+	var/obj/effect/anomaly/anom = harvested?.resolve()
+	var/list/data = list(
+		"name" = anom,
+		"points" = points,
+		"pointsToGenerate" = points_to_create,
+		"samples" = sample_data
+	)
 
 	return data
 
@@ -192,6 +195,7 @@
 	switch(action)
 		if("release_sample")
 			var/obj/item/research_sample/sample = locate(params["ref"]) in src
-			if(istype(sample) && (sample.loc == src) && usr.Adjacent(src))
-				sample.forceMove(get_turf(src))
-				SStgui.update_uis(src)
+			if(!istype(sample) || (sample.loc != src))
+				return FALSE
+			sample.forceMove(get_turf(src))
+			return TRUE
