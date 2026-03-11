@@ -20,7 +20,7 @@ export const SampleDisplay = (props) => {
                   border: '1px solid #ccc',
                 }}
               >
-                <Stack>
+                <Stack align="center">
                   <Stack.Item>
                     <DmIcon icon={sample.icon} icon_state={sample.icon_state} />
                   </Stack.Item>
