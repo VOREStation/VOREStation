@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, DmIcon, Section, Stack } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 import type { Data } from './types';
 
 export const SampleDisplay = (props) => {
@@ -25,7 +26,9 @@ export const SampleDisplay = (props) => {
                     <DmIcon icon={sample.icon} icon_state={sample.icon_state} />
                   </Stack.Item>
                   <Stack.Item grow>
-                    <Box style={{ paddingLeft: '0.5rem' }}>{sample.name}</Box>
+                    <Box style={{ paddingLeft: '0.5rem' }}>
+                      {capitalize(sample.name)}
+                    </Box>
                   </Stack.Item>
                   <Stack.Item>
                     <Button
