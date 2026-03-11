@@ -174,7 +174,9 @@
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/gps/robot(src)
+	var/obj/item/gps/robot/robot_gps = new /obj/item/gps/robot(src)
+	adjust_gps(robot_gps)
+	src.modules += robot_gps
 	src.modules += new /obj/item/boop_module(src)
 	src.modules += new /obj/item/robot_tongue(src)
 	src.modules += new /obj/item/flash/robot(src)
@@ -183,6 +185,9 @@
 	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
 	src.modules += new /obj/item/robo_dice(src)
+
+/obj/item/robot_module/robot/proc/adjust_gps(obj/item/gps/robot/robot_gps)
+	return
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"
@@ -623,7 +628,7 @@
 	name = "miner robot module"
 	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
-	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher, /obj/item/borg/upgrade/restricted/adv_mailbag)
 	pto_type = PTO_CARGO
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
@@ -637,6 +642,10 @@
 	src.modules += new /obj/item/gripper/miner(src)
 	src.modules += new /obj/item/mining_scanner/robot(src)
 	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
+	src.modules += new /obj/item/mail_scanner(src)
+	src.modules += new /obj/item/storage/bag/mail/borg(src)
+	src.modules += new /obj/item/destTagger(src)
+	src.modules += new /obj/item/packageWrap/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
 
 	var/datum/matter_synth/beacon = new /datum/matter_synth/beacon(10000)

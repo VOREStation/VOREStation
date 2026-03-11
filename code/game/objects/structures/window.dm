@@ -349,7 +349,7 @@
 	take_damage(damage)
 	return
 
-/obj/structure/window/handle_rotation_verbs(angle)
+/obj/structure/window/handle_rotation_verbs(angle, mob/user)
 	if(is_fulltile())
 		return FALSE
 	update_nearby_tiles(need_rebuild=1) //Compel updates before

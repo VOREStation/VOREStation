@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Icon } from 'tgui-core/components';
+import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
 export function LockedExperiment(props) {
   return (
@@ -9,13 +9,13 @@ export function LockedExperiment(props) {
         className="ExperimentConfigure__ExperimentName"
         disabled
       >
-        <Flex align="center" justify="space-between">
-          <Flex.Item color="rgba(0, 0, 0, 0.6)">
+        <Stack g={0} align="center" justify="space-between">
+          <Stack.Item color="rgba(0, 0, 0, 0.6)">
             <Icon name="lock" />
             Undiscovered Experiment
-          </Flex.Item>
-          <Flex.Item color="rgba(0, 0, 0, 0.5)">???</Flex.Item>
-        </Flex>
+          </Stack.Item>
+          <Stack.Item color="rgba(0, 0, 0, 0.5)">???</Stack.Item>
+        </Stack>
       </Button>
       <Box className="ExperimentConfigure__ExperimentContent">
         This experiment has not been discovered yet, continue researching nodes
