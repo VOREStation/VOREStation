@@ -171,7 +171,7 @@
 /datum/component/radiation_effects/proc/process_component()
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
-	if(living_guy.radiation > RADIATION_CAP)
+	if(living_guy.radiation > RADIATION_CAP || living_guy.radiation < 0)
 		living_guy.radiation = CLAMP(living_guy.radiation,0,RADIATION_CAP)
 		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads,0,RADIATION_CAP)
 
