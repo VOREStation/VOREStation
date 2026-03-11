@@ -16,14 +16,14 @@ export const AnomalyHarvester = (props) => {
             <LabeledList>
               <LabeledList.Item label="Sample Generation">
                 <ProgressBar
-                  color="darkred"
-                  value={points}
+                  value={(points / pointsToGenerate) * 100}
                   minValue={0}
-                  maxValue={pointsToGenerate}
+                  maxValue={100}
                   ranges={{
-                    good: [points * 0.85, pointsToGenerate],
-                    average: [points * 0.25, pointsToGenerate * 0.85],
-                    bad: [0, points * 0.25],
+                    good: [85, pointsToGenerate],
+                    yellow: [50, 85],
+                    average: [25, 50],
+                    bad: [0, 25],
                   }}
                 />
               </LabeledList.Item>
