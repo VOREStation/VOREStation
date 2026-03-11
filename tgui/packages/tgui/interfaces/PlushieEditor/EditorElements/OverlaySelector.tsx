@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 import { useOverlayMap } from '../function';
-import type { Data } from '../types';
+import type { Data, PossibleOverlay } from '../types';
 
 type OverlayModalProps = {
   toggleOverlay: (icon_state: string) => void;
@@ -24,10 +24,7 @@ export const OverlaySelector: React.FC<OverlayModalProps> = ({
   const [filter, setFilter] = useState('');
   const { possible_overlays, overlays, icon } = data;
 
-  const searcher = createSearch(
-    filter,
-    (ov: { name: string; icon_state: string }) => ov.name,
-  );
+  const searcher = createSearch<PossibleOverlay>(filter, (ov) => ov.name);
 
   const overlayMap = useOverlayMap(overlays);
   const filteredPossible = possible_overlays.filter(searcher);
