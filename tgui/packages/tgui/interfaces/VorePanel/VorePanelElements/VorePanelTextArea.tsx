@@ -37,7 +37,7 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
     let result = regexCopy.exec(desc);
     while (result !== null) {
       elements.push(
-        <Fragment key={`text-${lastIndex}`}>
+        <Fragment key={`text-${result.index}`}>
           {desc.substring(lastIndex, result.index)}
         </Fragment>,
       );
