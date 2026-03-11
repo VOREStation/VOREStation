@@ -4,6 +4,7 @@
 	anomaly_core = /obj/item/assembly/signaler/anomaly/dimensional
 	lifespan = ANOMALY_COUNTDOWN_TIMER * 20
 	move_chance = 0
+	danger_mult = 0.8
 	/// Range of effect, if left alone anomaly will convert a 2(range)+1 squared area.
 	var/range = 3
 	/// List of turfs this anomaly will try to transform before relocating
@@ -40,6 +41,8 @@
 /obj/effect/anomaly/dimensional/proc/transmute_area()
 	if(!theme)
 		prepare_area()
+	if(stats)
+		return
 	if(!target_turfs.len)
 		if(teleports_left <= 0 && !immortal)
 			detonate()
@@ -88,3 +91,26 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldsparkles"
 	duration = 3
+
+/obj/effect/anomaly/dimensional/anomalyPulse()
+	if(!..())
+		return
+
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		if(16 to 33)
+			pulse_change(2)
+		if(34 to 65)
+			pulse_change(4)
+		else
+			pulse_change(8)
+
+/obj/effect/anomaly/dimensional/proc/pulse_change(count)
+	var/turf/turf
+
+	for(var/i in 1 to count)
+		turf = pick(target_turfs)
+		theme.apply_theme(turf, show_effect = TRUE)

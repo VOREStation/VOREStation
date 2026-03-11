@@ -1300,6 +1300,7 @@
 /obj/structure/reagent_dispensers/acid{
 	pixel_x = 32
 	},
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "cx" = (
@@ -9831,6 +9832,8 @@
 /obj/item/pen,
 /obj/item/packageWrap,
 /obj/item/packageWrap,
+/obj/item/multitool/scioutpost,
+/obj/item/retail_scanner/science,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "tP" = (
@@ -11863,8 +11866,26 @@
 "yq" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/retail_scanner/science,
-/obj/item/multitool/scioutpost,
+/obj/item/assembly/signaler/anomaly/flux{
+	pixel_y = 13;
+	pixel_x = 7
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = -5;
+	pixel_x = -5
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = -2;
+	pixel_x = -5
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "yr" = (
@@ -11906,6 +11927,7 @@
 /obj/machinery/disposal/wall{
 	dir = 1
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "yw" = (
@@ -22240,6 +22262,7 @@
 "UA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/rnd/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "UB" = (
