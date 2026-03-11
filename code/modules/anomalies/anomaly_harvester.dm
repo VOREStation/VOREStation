@@ -172,8 +172,6 @@
 			"name" = sample.name,
 			"icon" = sample.icon,
 			"icon_state" = sample.icon_state,
-			"width" = "32px",
-			"height" = "32px",
 			"ref" = REF(sample)
 		))
 

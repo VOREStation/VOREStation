@@ -25,8 +25,6 @@ export const SampleDisplay = (props) => {
                       <DmIcon
                         icon={sample.icon}
                         icon_state={sample.icon_state}
-                        width={sample.width}
-                        height={sample.height}
                       />
                     </Stack.Item>
                     <Stack.Item grow>
