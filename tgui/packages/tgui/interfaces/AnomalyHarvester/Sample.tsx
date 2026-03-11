@@ -27,7 +27,6 @@ export const SampleDisplay = (props) => {
             return (
               <Stack.Item
                 key={sample.ref}
-                grow
                 style={{
                   padding: '0.5rem',
                   border: '1px solid #ccc',
