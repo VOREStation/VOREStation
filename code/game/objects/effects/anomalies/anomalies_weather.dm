@@ -44,6 +44,12 @@
 
 	addtimer(CALLBACK(src, PROC_REF(start_weather)), telegraph, TIMER_DELETE_ME)
 
+/obj/effect/anomaly/weather/proc/add_turfs(list/turf/to_add)
+	for(var/turf/turf in to_add)
+		if(isspace(turf))
+			continue
+		affected_turfs.Add(turf)
+
 /obj/effect/anomaly/weather/proc/find_adjacent_impacted_area(check_dir)
 	var/limit = 10
 	var/turf/next_turf = get_step(src, check_dir)
@@ -114,9 +120,6 @@
 		for(var/mob/mob in area)
 			selected_weather.hear_sounds(mob, FALSE)
 
-	for(var/turf/turf in affected_turfs)
-		selected_weather.remove_from_turf(turf)
-
 /obj/effect/anomaly/weather/Destroy()
 	clear_weather()
 	. = ..()
@@ -140,7 +143,7 @@
 			if(!istype(selected_weather, /datum/anomalous_weather/rain))
 				selected_weather = new /datum/anomalous_weather/rain
 			update_reagent(REAGENT_ID_WATER)
-			affected_turfs.Add(circleviewturfs(src, 3))
+			add_turfs(circleviewturfs(src, 3))
 			start_weather()
 		if(34 to 65)
 			clear_weather()
@@ -148,7 +151,7 @@
 			if(!istype(selected_weather, /datum/anomalous_weather/rain))
 				selected_weather = new /datum/anomalous_weather/rain
 			update_reagent(pick(REAGENT_ID_WATER, REAGENT_ID_ICE, REAGENT_ID_ORANGEJUICE))
-			affected_turfs.Add(circlerangeturfs(src, 4))
+			add_turfs(circlerangeturfs(src, 4))
 			start_weather()
 		else
 			clear_weather()
@@ -162,7 +165,7 @@
 			else
 				update_reagent(reagent_id)
 
-			affected_turfs.Add(circlerangeturfs(src, 5))
+			add_turfs(circlerangeturfs(src, 5))
 			start_weather()
 
 /obj/effect/anomaly/weather/rain
