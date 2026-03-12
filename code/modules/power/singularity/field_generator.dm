@@ -353,7 +353,7 @@
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0
 					admin_chat_message(message = "SINGUL/TESLOOSE!", color = "#FF2222") //VOREStation Add
-					message_admins("A singulo exists and a containment field has failed.",1)
+					message_admins("A singulo exists and a containment field has failed.")
 					investigate_log("has " + span_red("failed") + " whilst a singulo exists.","singulo")
 					log_game("FIELDGEN([x],[y],[z]) Containment failed while singulo/tesla exists.")
 			O.last_warning = world.time

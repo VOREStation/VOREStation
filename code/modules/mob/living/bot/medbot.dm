@@ -37,7 +37,7 @@
 	var/treatment_tox = REAGENT_ID_TRICORDRAZINE
 	var/treatment_virus = REAGENT_ID_SPACEACILLIN
 	var/treatment_emag = REAGENT_ID_TOXIN
-	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
+	var/datum/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
 	// Are we tipped over?
 	var/is_tipped = FALSE

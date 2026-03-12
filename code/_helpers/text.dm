@@ -353,7 +353,7 @@ GLOBAL_LIST_INIT(alphabet_upper, list("A","B","C","D","E","F","G","H","I","J","K
 		else
 			return string
 	else
-		return "[copytext_preserve_html(string, 1, 37)]..."
+		return "[copytext_preserve_html(string, 1, len - 3)]..."
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
 /proc/copytext_preserve_html(var/text, var/first, var/last)
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(alphabet_upper, list("A","B","C","D","E","F","G","H","I","J","K
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources
 //	to always create it and then throw it out.
-/var/icon/text_tag_icons = 'icons/chattags.dmi'
+GLOBAL_VAR_INIT(text_tag_icons, 'icons/chattags.dmi')
 GLOBAL_LIST_EMPTY(text_tag_cache)
 
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
@@ -372,13 +372,13 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 		var/datum/asset/spritesheet_batched/chatassets = get_asset_datum(/datum/asset/spritesheet_batched/chat)
 		GLOB.text_tag_cache[tagname] = chatassets.icon_tag(tagname)
 	if(!C.tgui_panel.is_ready() || C.tgui_panel.oldchat)
-		return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
+		return "<IMG src='\ref[GLOB.text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 	return GLOB.text_tag_cache[tagname]
 
 /proc/create_text_tag_old(var/tagname, var/tagdesc = tagname, var/client/C = null)
 	if(!(C && C.prefs?.read_preference(/datum/preference/toggle/chat_tags)))
 		return tagdesc
-	return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
+	return "<IMG src='\ref[GLOB.text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 
 /proc/contains_az09(var/input)
 	for(var/i=1, i<=length(input), i++)
@@ -438,6 +438,7 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 	t = replacetext(t, "\[row\]", "</td><tr>")
 	t = replacetext(t, "\[cell\]", "<td>")
 	t = replacetext(t, "\[logo\]", "<img src=\ref['html/images/ntlogo.png']")
+	t = replacetext(t, "\[talogo\]", "<img src=\ref['html/images/talonlogo.png']>")
 	t = replacetext(t, "\[redlogo\]", "<img src=\ref['html/images/redntlogo.png']>")
 	t = replacetext(t, "\[sglogo\]", "<img src=\ref['html/images/sglogo.png']")
 	t = replacetext(t, "\[editorbr\]", "")
@@ -489,6 +490,7 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 	t = replacetext(t, "<td>", "\[cell\]")
 	t = replacetext(t, "<img src=\ref['html/images/ntlogo.png']>", "\[logo\]")
 	t = replacetext(t, "<img src=\ref['html/images/redntlogo.png']>", "\[redlogo\]")
+	t = replacetext(t, "<img src=\ref['html/images/talonlogo.png']>", "\[talogo\]")
 	t = replacetext(t, "<img src=\ref['html/images/sglogo.png']>", "\[sglogo\]")
 	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
 	t = replacetext(t, "<span class=\"redacted\">R E D A C T E D</span>", "\[redacted\]")

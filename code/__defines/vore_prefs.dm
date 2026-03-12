@@ -12,6 +12,7 @@
 	target.noisy = source.noisy;														\
 	target.show_vore_fx = source.show_vore_fx;											\
 	target.selective_preference = source.selective_preference;							\
+	target.size_strip_preference = source.size_strip_preference;						\
 	target.digest_leave_remains = source.digest_leave_remains;							\
 	target.digest_pain = source.digest_pain;											\
 	target.noisy_full = source.noisy_full;												\
@@ -28,6 +29,11 @@
 	target.slip_vore = source.slip_vore;												\
 	target.stumble_vore = source.stumble_vore;											\
 	target.phase_vore = source.phase_vore;												\
+																						\
+	target.spont_belly_rear = source.spont_belly_rear;									\
+	target.spont_belly_left = source.spont_belly_left;									\
+	target.spont_belly_front = source.spont_belly_front;								\
+	target.spont_belly_right = source.spont_belly_right;								\
 																						\
 	target.resizable = source.resizable;												\
 	target.step_mechanics_pref = source.step_mechanics_pref;							\

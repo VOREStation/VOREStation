@@ -9,9 +9,9 @@ type Data = {
   categories: string[];
   selected_category: {
     name: string;
-    items: any;
+    items: Record<string, unknown>;
   };
-  selected_category_static: any;
+  selected_category_static: Record<string, unknown>;
 
   saved_notification: BooleanLike;
   preview_loadout: BooleanLike;
@@ -34,7 +34,7 @@ export const CharacterPreferenceWindow = (props) => {
 
   return (
     <Window
-      width={1000}
+      width={1065}
       height={800}
       buttons={
         <Button

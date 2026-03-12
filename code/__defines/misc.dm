@@ -485,24 +485,11 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define APPEARANCECHANGER_CHANGED_F_HAIRCOLOR "Facial Hair Color"
 #define APPEARANCECHANGER_CHANGED_EYES "Eye Color"
 
-#define GET_DECL(D) (ispath(D, /decl) ? (decls_repository.fetched_decls[D] || decls_repository.get_decl(D)) : null)
+#define GET_DECL(D) (ispath(D, /datum/decl) ? (GLOB.decls_repository.fetched_decls[D] || GLOB.decls_repository.get_decl(D)) : null)
 
 #define LOADOUT_WHITELIST_OFF    0
 #define LOADOUT_WHITELIST_LAX    1
 #define LOADOUT_WHITELIST_STRICT 2
-
-
-#ifndef WINDOWS_HTTP_POST_DLL_LOCATION
-#define WINDOWS_HTTP_POST_DLL_LOCATION "lib/byhttp.dll"
-#endif
-
-#ifndef UNIX_HTTP_POST_DLL_LOCATION
-#define UNIX_HTTP_POST_DLL_LOCATION "lib/libbyhttp.so"
-#endif
-
-#ifndef HTTP_POST_DLL_LOCATION
-#define HTTP_POST_DLL_LOCATION (world.system_type == MS_WINDOWS ? WINDOWS_HTTP_POST_DLL_LOCATION : UNIX_HTTP_POST_DLL_LOCATION)
-#endif
 
 #define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
 

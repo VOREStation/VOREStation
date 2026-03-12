@@ -319,7 +319,10 @@
 
 	var/list/allowed_gadgets = null
 
-/obj/item/mine/attack_self(mob/user as mob)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
+/obj/item/mine/attack_self(mob/user)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 	msg_admin_attack("[key_name_admin(user)] primed \a [src]")
 	user.visible_message("[user] starts priming \the [src.name].", "You start priming \the [src.name]. Hold still!")

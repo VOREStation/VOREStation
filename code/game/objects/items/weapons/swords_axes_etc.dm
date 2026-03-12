@@ -30,7 +30,7 @@
 	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 
 /obj/item/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("You club yourself over the head."))
 		user.Weaken(3 * force)
 		if(ishuman(user))
@@ -55,7 +55,10 @@
 	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 	var/on = 0
 
-/obj/item/melee/telebaton/attack_self(mob/user as mob)
+/obj/item/melee/telebaton/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	on = !on
 	if(on)
 		user.visible_message(span_warning("With a flick of their wrist, [user] extends their telescopic baton."),\
@@ -98,7 +101,7 @@
 
 /obj/item/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
-		if ((CLUMSY in user.mutations) && prob(50))
+		if (CLUMSY_FAIL_CHANCE(user))
 			to_chat(user, span_warning("You club yourself over the head."))
 			user.Weaken(3 * force)
 			if(ishuman(user))

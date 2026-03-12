@@ -29,7 +29,7 @@
 
 	data["db_version"] = "0.3"
 	data["db_repo"] = "vorestation"
-	data["mob_name"] = host.real_name
+	data["mob_name"] = host.read_preference(/datum/preference/name/real_name)
 
 	for(var/belly in host.vore_organs)
 		if(isbelly(belly))
@@ -439,6 +439,7 @@
 			// Liquid Options
 			belly_data["show_liquids"] = B.show_liquids
 			belly_data["reagentbellymode"] = B.reagentbellymode
+			belly_data["reagent_gen_cost_limit"] = B.reagent_gen_cost_limit
 			belly_data["reagent_chosen"] = B.reagent_chosen
 			belly_data["reagent_name"] = B.reagent_name
 			belly_data["reagent_transfer_verb"] = B.reagent_transfer_verb

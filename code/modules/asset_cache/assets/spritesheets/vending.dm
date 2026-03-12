@@ -22,7 +22,7 @@
 
 		var/datum/universal_icon/I
 
-		var/icon_states_list = cached_icon_states(icon_file)
+		var/icon_states_list = icon_states_fast(icon_file)
 		if(icon_state in icon_states_list)
 			I = uni_icon(icon_file, icon_state, SOUTH)
 			var/c = initial(item.color)

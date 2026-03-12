@@ -268,7 +268,10 @@
 	var/swaps_to = /obj/item/cell/device/weapon/recharge/alien
 	robot_durability = 100
 
-/obj/item/cell/void/attack_self(var/mob/user)
+/obj/item/cell/void/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.remove_from_mob(src)
 	to_chat(user, span_notice("You swap [src] to 'device cell' mode."))
 	var/obj/item/cell/newcell = new swaps_to(null)

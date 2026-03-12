@@ -14,6 +14,7 @@
 	affects_robots = 1	//VOREStation Edit
 	wiki_flag = WIKI_FOOD
 	coolant_modifier = -1
+	scannable = SCANNABLE_BENEFICIAL
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_FOOD
@@ -49,7 +50,7 @@
 	affect_ingest(M, alien, removed)
 	//VOREStation Edits Start
 	if(M.isSynthetic())
-		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+		M.adjust_nutrition((nutriment_factor * removed) * M.species?.synthetic_food_coeff)
 	//VOREStation Edits End
 	..()
 
@@ -718,6 +719,19 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_FOOD
 
+/datum/reagent/mustardpods
+	name = REAGENT_MUSTARDPODS
+	id = REAGENT_ID_MUSTARDPODS
+	description = "Densely-packed seed pods from a mustard plant. Good for making mustard. Not much use for anything else."
+	taste_description = "sharp, bitter, dry mustard"
+	reagent_state = SOLID
+	ingest_met = REM
+	color = "#B2A00D"
+	cup_prefix = "mustardy"
+	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
+
 /datum/reagent/enzyme
 	name = REAGENT_ENZYME
 	id = REAGENT_ID_ENZYME
@@ -867,8 +881,10 @@
 /datum/reagent/condensedcapsaicin
 	name = REAGENT_CONDENSEDCAPSAICIN
 	id = REAGENT_ID_CONDENSEDCAPSAICIN
+	scannable = SCANNABLE_ADVANCED
 	description = "A chemical agent used for self-defense and in police work."
 	taste_description = "fire"
+	dermal_absorption = 0
 	taste_mult = 10
 	reagent_state = LIQUID
 	touch_met = 50 // Get rid of it quickly
@@ -1023,6 +1039,7 @@
 	var/adj_sleepy = 0
 	var/adj_temp = 0
 	var/water_based = TRUE
+	dermal_absorption = 0
 	wiki_flag = WIKI_DRINK
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_FOOD

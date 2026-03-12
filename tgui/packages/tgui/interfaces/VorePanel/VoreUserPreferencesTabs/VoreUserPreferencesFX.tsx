@@ -1,12 +1,12 @@
 import { LabeledList, Section } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import type { localPrefs } from '../types';
+import type { LocalPrefs } from '../types';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesFX = (props: {
-  preferences: localPrefs;
+  preferences: LocalPrefs;
   show_vore_fx: BooleanLike;
   max_voreoverlay_alpha: number;
 }) => {

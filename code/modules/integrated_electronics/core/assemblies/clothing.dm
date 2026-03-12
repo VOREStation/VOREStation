@@ -53,20 +53,25 @@
 		var/mob/living/silicon/robot/robot = user
 		if(istype(robot.module_active, /obj/item/gripper))
 			var/obj/item/gripper/gripper = robot.module_active
-			I = gripper.get_current_pocket()
+			I = gripper.get_wrapped_item()
 
 	else if(!I)
 		return FALSE
 	return IC.attackby(I, user)
 
 /obj/item/clothing/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
+	if(helmet_handling)
+		return FALSE
 	if(IC)
 		if(IC.opened)
 			IC.attack_self(user)
 		else
 			action_circuit.do_work()
-	else
-		..()
 
 // Does most of the repeatative setup.
 /obj/item/clothing/proc/setup_integrated_circuit(new_type)

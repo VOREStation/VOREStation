@@ -1,6 +1,6 @@
-import type { powerData } from './types';
+import type { PowerData } from './types';
 
-export function getButtonColor(entry: powerData, availablePoints: number) {
+export function getButtonColor(entry: PowerData, availablePoints: number) {
   if (entry.power_purchased) {
     return undefined;
   }

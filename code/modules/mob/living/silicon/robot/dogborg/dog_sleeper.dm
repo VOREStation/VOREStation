@@ -48,6 +48,16 @@
 	flags = NOBLUDGEON
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
+	if(analyzer) //Destructive analysis
+		var/static/list/destructive_signals = list(
+			COMSIG_MACHINERY_DESTRUCTIVE_SCAN = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_destructive_experiment),
+		)
+		AddComponent(/datum/component/experiment_handler, \
+			config_mode = EXPERIMENT_CONFIG_ALTCLICK, \
+			allowed_experiments = list(/datum/experiment/scanning),\
+			config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
+			experiment_signals = destructive_signals, \
+		)
 	. = ..()
 	med_analyzer = new /obj/item/healthanalyzer
 
@@ -185,7 +195,7 @@
 
 /obj/item/dogborg/sleeper/proc/ingest_living(var/mob/living/victim, var/obj/belly/belly)
 	if (victim.devourable && is_vore_predator(hound))
-		belly.nom_mob(victim, hound)
+		belly.nom_atom(victim, hound)
 		add_attack_logs(hound, victim, "Eaten via [belly.name]")
 		return TRUE
 	return FALSE
@@ -223,8 +233,9 @@
 	hound.cell.charge = hound.cell.charge - amt
 
 /obj/item/dogborg/sleeper/attack_self(mob/user)
-	if(..())
-		return
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/dogborg/sleeper/tgui_state(mob/user)
@@ -279,6 +290,7 @@
 			"ingested_reagents" = ingested_reagents
 			)
 
+	var/datum/component/experiment_handler/handler = get_experiment_handler()
 	var/list/data = list(
 		"our_patient" = patient_data,
 		"eject_port" = eject_port,
@@ -297,6 +309,8 @@
 		"deliveryslot_2" = deliveryslot_2,
 		"deliveryslot_3" = deliveryslot_3,
 		"items_preserved" = items_preserved,
+		"has_destructive_analyzer" = analyzer,
+		"techweb_name" = handler?.linked_web ? "[handler.linked_web.id] / [handler.linked_web.organization]" : null
 	)
 	return data
 /obj/item/dogborg/sleeper/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -580,6 +594,10 @@
 									plastic.add_charge(total_material)
 								if(material == MAT_WOOD && wood)
 									wood.add_charge(total_material)
+					var/datum/component/experiment_handler/handler = get_experiment_handler()
+					if(analyzer && handler)
+						techweb_item_generate_points(T, handler.linked_web)
+						SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, T)
 					if(is_trash)
 						hound.adjust_nutrition(digested)
 					else
@@ -615,5 +633,13 @@
 		if(!update_patient()) //One last try to find someone
 			STOP_PROCESSING(SSobj, src)
 			return
+
+/obj/item/dogborg/sleeper/proc/get_experiment_handler()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	RETURN_TYPE(/datum/component/experiment_handler)
+	if(!analyzer)
+		return null
+	return GetComponent(/datum/component/experiment_handler)
 
 #undef SLEEPER_INJECT_COST

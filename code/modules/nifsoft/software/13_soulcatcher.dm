@@ -306,7 +306,7 @@
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
 	plane_holder.set_vis(VIS_SOULCATCHER, TRUE)
-	identifying_gender = client.prefs.identifying_gender
+	identifying_gender = client.prefs.read_preference(/datum/preference/choiced/gender/identifying)
 
 /mob/living/carbon/brain/caught_soul/Destroy()
 	if(soulcatcher)
@@ -445,7 +445,7 @@
 
 	forceMove(get_turf(parent_human))
 	parent_human.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(parent_human, COMSIG_MOVABLE_MOVED, /mob/observer/eye/ar_soul/proc/human_moved)
+	RegisterSignal(parent_human, COMSIG_MOVABLE_ATTEMPTED_MOVE, /mob/observer/eye/ar_soul/proc/human_moved)
 
 	//Time to play dressup
 	if(brainmob.client.prefs)
@@ -459,7 +459,7 @@
 
 /mob/observer/eye/ar_soul/Destroy()
 	if(parent_human) //It's POSSIBLE they've been deleted before the NIF somehow
-		UnregisterSignal(parent_human, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(parent_human, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		parent_human = null
 	return ..()
 

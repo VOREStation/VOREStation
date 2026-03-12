@@ -179,7 +179,10 @@
 						assailant.visible_message(span_warning("[assailant] sits on [target]'s face!"))
 		//VOREStation Edit End
 
-/obj/item/grab/attack_self()
+/obj/item/grab/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	return s_click(hud)
 
 

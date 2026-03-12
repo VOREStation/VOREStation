@@ -61,7 +61,10 @@
 	icon_state = "fingerprint0"
 	item_state = "paper"
 
-/obj/item/sample/print/attack_self(var/mob/user)
+/obj/item/sample/print/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(evidence && evidence.len)
 		return
 	if(!ishuman(user))

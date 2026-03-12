@@ -2,28 +2,29 @@ GLOBAL_LIST_EMPTY(all_robolimbs)
 GLOBAL_LIST_EMPTY(robolimb_data)
 GLOBAL_LIST_EMPTY(chargen_robolimbs)
 GLOBAL_DATUM(basic_robolimb, /datum/robolimb)
+//Ending a monitor style with [-colored] will override eye coloration. If you have custom colors on a monitor icon, you should do this.
 var/const/standard_monitor_styles = "blank=ipc_blank;\
-	pink=ipc_pink;\
-	green=ipc_green;\
-	red=ipc_red;\
-	blue=ipc_blue;\
-	shower=ipc_shower;\
-	orange=ipc_orange;\
-	nature=ipc_nature;\
-	eight=ipc_eight;\
-	goggles=ipc_goggles;\
-	heart=ipc_heart;\
-	monoeye=ipc_monoeye;\
-	breakout=ipc_breakout;\
-	yellow=ipc_yellow;\
-	static=ipc_static;\
-	purple=ipc_purple;\
+	pink=ipc_pink-colored;\
+	green=ipc_green-colored;\
+	red=ipc_red-colored;\
+	blue=ipc_blue-colored;\
+	shower=ipc_shower-colored;\
+	orange=ipc_orange-colored;\
+	nature=ipc_nature-colored;\
+	eight=ipc_eight-colored;\
+	goggles=ipc_goggles-colored;\
+	heart=ipc_heart-colored;\
+	monoeye=ipc_monoeye-colored;\
+	breakout=ipc_breakoutv-colored;\
+	yellow=ipc_yellow-colored;\
+	static=ipc_static-colored;\
+	purple=ipc_purple-colored;\
 	scroll=ipc_scroll;\
 	console=ipc_console;\
 	glider=ipc_gol_glider;\
-	rainbow=ipc_rainbow;\
-	smiley=ipc_smiley;\
-	database=ipc_database"
+	rainbow=ipc_rainbow-colored;\
+	smiley=ipc_smiley-colored;\
+	database=ipc_database-colored"
 
 /proc/populate_robolimb_list()
 	GLOB.basic_robolimb = new()
@@ -245,11 +246,11 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This limb has a sturdy and heavy build to it."
 	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_main.dmi'
 	unavailable_to_build = 1
-	monitor_styles = "blank=grayson_off;\
-		red=grayson_red;\
-		green=grayson_green;\
-		blue=grayson_blue;\
-		rgb=grayson_rgb"
+	monitor_styles = "blank=grayson_off-colored;\
+		red=grayson_red-colored;\
+		green=grayson_green-colored;\
+		blue=grayson_blue-colored;\
+		rgb=grayson_rgb-colored"
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/grayson_alt1
@@ -287,13 +288,13 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_alt1.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = "blank=hephaestus_alt_off;\
-		pink=hephaestus_alt_pink;\
-		orange=hephaestus_alt_orange;\
-		goggles=hephaestus_alt_goggles;\
-		scroll=hephaestus_alt_scroll;\
-		rgb=hephaestus_alt_rgb;\
-		rainbow=hephaestus_alt_rainbow"
+	monitor_styles = "blank=hesphiastos_alt_off-colored;\
+		pink=hesphiastos_alt_pink-colored;\
+		orange=hesphiastos_alt_orange-colored;\
+		goggles=hesphiastos_alt_goggles-colored;\
+		scroll=hesphiastos_alt_scroll;\
+		rgb=hesphiastos_alt_rgb-colored;\
+		rainbow=hesphiastos_alt_rainbow-colored"
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/hephaestus_alt2
@@ -301,8 +302,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This rather thick limb has a militaristic green plating."
 	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_alt2.dmi'
 	unavailable_to_build = 1
-	monitor_styles = "red=athena_red;\
-		blank=athena_off"
+	monitor_styles = "red=athena_red-colored;\
+		blank=athena_off-colored"
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/hephaestus_monitor
@@ -419,11 +420,11 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This limb has a thick orange casing with steel plating."
 	icon = 'icons/mob/human_races/cyberlimbs/xion/xion_alt2.dmi'
 	unavailable_to_build = 1
-	monitor_styles = "blank=xion_off;\
-		red=xion_red;\
-		green=xion_green;\
-		blue=xion_blue;\
-		rgb=xion_rgb"
+	monitor_styles = "blank=xion_off-colored;\
+		red=xion_red-colored;\
+		green=xion_green-colored;\
+		blue=xion_blue-colored;\
+		rgb=xion_rgb-colored"
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/xion_alt3

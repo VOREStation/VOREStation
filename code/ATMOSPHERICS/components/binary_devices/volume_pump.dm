@@ -88,13 +88,13 @@ Thus, the two variables affect pump operation are set in New():
 		cut_overlay(overclock_overlay)
 
 /obj/machinery/atmospherics/binary/volume_pump/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
-		add_underlay(T, node2, dir, node2?.icon_connect_type)
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
+	add_underlay(T, node2, dir, node2?.icon_connect_type)
 
 /obj/machinery/atmospherics/binary/volume_pump/hide(var/i)
 	update_underlays()

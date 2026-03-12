@@ -42,3 +42,13 @@
 .text-underline {
   text-decoration: underline;
 }
+
+.spoiler {
+  background-color: hsl(0, 0%, 50%);
+  color: transparent;
+}
+
+.spoiler:hover {
+  background-color: inherit;
+  color: inherit;
+}

@@ -46,10 +46,13 @@
 	var/last_repopulation_time = 0
 	var/repopulation_delay = 600 //Anti spam.
 
-/obj/item/ano_scanner/attack_self(var/mob/living/user)
+/obj/item/ano_scanner/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	interact(user)
 
-/obj/item/ano_scanner/interact(var/mob/living/user)
+/obj/item/ano_scanner/interact(mob/user)
 	if(world.time - last_scan_time >= scan_delay)
 		last_scan_time = world.time
 
@@ -154,7 +157,10 @@
 
 			to_chat(user, span_notice("[icon2html(src, user.client)] [src] pings [pick("madly","wildly","excitedly","crazily")]!"))
 
-/obj/item/depth_scanner/attack_self(var/mob/living/user)
+/obj/item/depth_scanner/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/depth_scanner/tgui_state(mob/user)
@@ -165,6 +171,12 @@
 	if(!ui)
 		ui = new(user, src, "XenoarchDepthScanner", name)
 		ui.open()
+
+/obj/item/depth_scanner/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
 
 /obj/item/depth_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -259,16 +271,16 @@
 					set background = 1
 					if(datum_flags & DF_ISPROCESSING)
 						//scan radios in the world to try and find one
+						var/turf/T = get_turf(src)
 						var/cur_dist = 999
 						for(var/obj/item/radio/beacon/R in GLOB.all_beacons)
-							if(R.z == src.z && R.frequency == src.frequency)
-								var/check_dist = get_dist(src,R)
+							if(R.z == T.z && R.frequency == src.frequency)
+								var/check_dist = get_dist(T,R)
 								if(check_dist < cur_dist)
 									cur_dist = check_dist
 									target_radio = R
 
 						scan_ticks = 0
-						var/turf/T = get_turf(src)
 						if(target_radio)
 							T.visible_message("[icon2html(src,viewers(src))] [src] [pick("chirps","chirrups","cheeps")] happily.")
 						else
@@ -277,6 +289,9 @@
 			icon_state = "pinoff"
 
 /obj/item/beacon_locator/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	return tgui_interact(user)
 
 /obj/item/beacon_locator/tgui_state(mob/user)
@@ -336,7 +351,10 @@
 	anomaly_scanner = new/obj/item/ano_scanner(src)
 	depth_scanner = new/obj/item/depth_scanner(src)
 
-/obj/item/xenoarch_multi_tool/attack_self(var/mob/living/user)
+/obj/item/xenoarch_multi_tool/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	depth_scanner.tgui_interact(user)
 
 /obj/item/xenoarch_multi_tool/verb/swap_settings()

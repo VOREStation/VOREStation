@@ -70,4 +70,4 @@ BONUS
 		M.Weaken(10)
 	if(power >= 3 && A.stage >= 5)
 		to_chat(M, span_userdanger(pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your brain!")))
-		M.Stun(15)
+		M.Stun(5)

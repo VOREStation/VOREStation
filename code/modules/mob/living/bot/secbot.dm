@@ -20,7 +20,7 @@
 	var/check_records = FALSE // If true, arrests people without a record.
 	var/check_arrest = TRUE // If true, arrests people who are set to arrest.
 	var/arrest_type = FALSE // If true, doesn't handcuff. You monster.
-	var/declare_arrests = FALSE // If true, announces arrests over sechuds.
+	var/datum/declare_arrests = FALSE // If true, announces arrests over sechuds.
 	var/threat = 0 // How much of a threat something is. Set upon acquiring a target.
 	var/attacked = FALSE // If true, gives the bot enough threat assessment to attack immediately.
 	var/retaliates = TRUE //If this type of secbot should retaliate at all - so that slime securitrons don't go ballistic the second they get glomped.
@@ -214,19 +214,19 @@
 	playsound(src, pick(preparing_arrest_sounds), 50)
 	// Register to be told when the target moves
 	target.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, /mob/living/bot/secbot/proc/target_moved)
+	RegisterSignal(target, COMSIG_MOVABLE_ATTEMPTED_MOVE, /mob/living/bot/secbot/proc/target_moved)
 
 // Callback invoked if the registered target moves
 /mob/living/bot/secbot/proc/target_moved(atom/movable/moving_instance, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
 	if(get_dist(get_turf(src), get_turf(target)) >= 1)
 		awaiting_surrender = INFINITY	// Done waiting!
-		UnregisterSignal(moving_instance, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(moving_instance, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 /mob/living/bot/secbot/resetTarget()
 	..()
 	if(target)
-		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(target, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	awaiting_surrender = 0
 	attacked = FALSE
 	walk_to(src, 0)

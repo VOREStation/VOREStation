@@ -1,6 +1,6 @@
-var/datum/antagonist/deathsquad/deathsquad
+GLOBAL_DATUM(deathsquad, /datum/antagonist/deathsquad)
 
-/datum/antagonist/deathsquad
+/datum/antagonist/
 	id = MODE_DEATHSQUAD
 	role_type = BE_OPERATIVE
 	role_text = "Death Commando"
@@ -22,7 +22,7 @@ var/datum/antagonist/deathsquad/deathsquad
 /datum/antagonist/deathsquad/New(var/no_reference)
 	..()
 	if(!no_reference)
-		deathsquad = src
+		GLOB.deathsquad = src
 
 /datum/antagonist/deathsquad/attempt_spawn()
 	if(..())

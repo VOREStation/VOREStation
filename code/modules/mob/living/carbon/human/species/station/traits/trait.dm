@@ -41,6 +41,8 @@
 
 	var/datum/gene/trait/linked_gene = null // Internal use, do not assign.
 
+	var/list/multiple_choice
+
 
 
 
@@ -169,6 +171,8 @@
 		if(TRAIT_PREF_TYPE_COLOR) //color
 			return "#ffffff"
 		if(TRAIT_PREF_TYPE_STRING) //string
+			return ""
+		if(TRAIT_PREF_TYPE_LIST) //list
 			return ""
 	return
 

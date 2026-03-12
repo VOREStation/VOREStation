@@ -28,7 +28,7 @@
 		G.invisibility = INVISIBILITY_NONE
 		to_chat(G, span_sinister("You feel relieved as what's left of your soul finally escapes its prison of flesh."))
 
-		cult.harvested += G.mind
+		GLOB.cult.harvested += G.mind
 	else
 		dust()
 

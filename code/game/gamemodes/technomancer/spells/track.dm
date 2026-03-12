@@ -10,7 +10,7 @@
 
 // This stores a ref to all important items that belong to a Technomancer, in case of theft.  Used by the spell below.
 // I feel dirty for adding yet another global list used by one thing, but the only alternative is to loop through world, and yeahhh.
-var/list/technomancer_belongings = list()
+GLOBAL_LIST_EMPTY(technomancer_belongings)
 
 /obj/item/spell/track
 	name = "track"
@@ -34,7 +34,7 @@ var/list/technomancer_belongings = list()
 		return
 
 	var/can_track_non_allies = 0
-	var/list/object_choices = technomancer_belongings.Copy()
+	var/list/object_choices = GLOB.technomancer_belongings.Copy()
 	if(check_for_scepter())
 		can_track_non_allies = 1
 	var/list/mob_choices = list()

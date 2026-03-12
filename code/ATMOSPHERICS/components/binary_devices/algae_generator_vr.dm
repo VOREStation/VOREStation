@@ -230,17 +230,41 @@
 // TODO - These should be replaced with materials datum.
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-/obj/machinery/atmospherics/binary/algae_farm/proc/eject_materials(var/material_name, var/amount)
-	var/recursive = amount == -1 ? 1 : 0
-	var/datum/material/matdata = get_material_by_name(material_name)
-	var/stack_type = matdata.stack_type
-	var/obj/item/stack/material/S = new stack_type(loc, -1)
-	var/ejected = min(round(stored_material[material_name] / S.perunit), amount)
-	if(!S.set_amount(min(ejected, amount)))
+/obj/machinery/atmospherics/binary/algae_farm/proc/eject_materials(material_name, amount)
+	if(!stored_material[material_name])
 		return
-	stored_material[material_name] -= ejected * S.perunit
-	if(recursive && stored_material[material_name] >= S.perunit)
-		eject_materials(material_name, -1)
+	var/datum/material/matdata = get_material_by_name(material_name)
+	if(!matdata)
+		return
+
+	var/obj/item/stack/material/new_stack = new matdata.stack_type(loc)
+	var/perunit = new_stack.perunit
+
+	var/available_units = stored_material[material_name] / perunit
+
+	var/units_to_eject
+	if(!amount)
+		units_to_eject = available_units
+	else
+		units_to_eject = min(amount, available_units)
+
+	var/to_set = min(units_to_eject, new_stack.max_amount)
+	if(!new_stack.set_amount(to_set))
+		return
+
+	stored_material[material_name] -= to_set * perunit
+	units_to_eject -= to_set
+
+	while(units_to_eject > 0)
+		new_stack = new matdata.stack_type(loc)
+		to_set = min(units_to_eject, new_stack.max_amount)
+
+		if(!new_stack.set_amount(to_set))
+			break
+
+		stored_material[material_name] -= to_set * perunit
+		units_to_eject -= to_set
+
 
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
 /obj/machinery/atmospherics/binary/algae_farm/proc/try_load_materials(var/mob/user, var/obj/item/stack/material/S)

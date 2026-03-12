@@ -7,14 +7,8 @@
 	icon_state = "bodybag_folded"
 	item_state = "bodybag_cryo_folded"
 	origin_tech = list(TECH_ENGINEERING = 3)
-
-/obj/item/bodybag/cryobag/robobag/attack_self(mob/user)
-	var/obj/structure/closet/body_bag/cryobag/robobag/R = new /obj/structure/closet/body_bag/cryobag/robobag(user.loc)
-	R.add_fingerprint(user)
-	if(syringe)
-		R.syringe = syringe
-		syringe = null
-	qdel(src)
+	robotic = TRUE
+	cryogenic = FALSE
 
 /obj/structure/closet/body_bag/cryobag/robobag
 	name = "synthmorph bag"

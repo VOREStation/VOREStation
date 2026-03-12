@@ -1,6 +1,3 @@
-/mob/living/silicon/pai
-	var/atom/movable/screen/pai/pai_fold_display = null
-
 /atom/movable/screen/pai
 	icon = 'icons/mob/pai_hud.dmi'
 	var/base_state
@@ -404,7 +401,7 @@
 	if(!. || !healths)
 		return
 
-	if(stat == DEAD)
+	if(stat == DEAD || (status_flags & FAKEDEATH))
 		healths.icon_state = "health7"
 		return
 

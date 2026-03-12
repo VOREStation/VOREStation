@@ -223,18 +223,19 @@
 	decays = FALSE
 	can_reject = FALSE
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
-	will_assist_languages = list(LANGUAGE_DAEMON)
+	will_assist_languages = list(LANGUAGE_REDSPACE)
 	var/speak_chance = 25 //25% chance to speak Daemon every 10 ticks
-	var/datum/language/daemon //Storage for demon language so we don't have to constantly set it.
+	var/datum/language/redspace
+	mute = TRUE //You can only speak the hivemind language~
 
 /obj/item/organ/internal/voicebox/horror/Initialize(mapload)
 	. = ..()
-	daemon = GLOB.all_languages[LANGUAGE_DAEMON]
+	redspace = GLOB.all_languages[LANGUAGE_REDSPACE]
 
 /obj/item/organ/internal/voicebox/horror/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
 	..()
-	target.add_language(LANGUAGE_DAEMON) //Learn Daemon
-	target.default_language = daemon //Begin speaking Daemon.
+	target.add_language(LANGUAGE_REDSPACE)
+	target.default_language = redspace
 
 /obj/item/organ/internal/voicebox/horror/process()
 	..()
@@ -243,6 +244,5 @@
 	if(is_bruised()) //They heal theirselves.
 		damage -= 1
 	if(owner.life_tick % 10 == 0 && prob(speak_chance))
-		owner.default_language = daemon //Swap back to Daemon.
 		if(prob(5)) //1/20 on a 1/4 chance. 1/80 chance every 10 ticks.
-			owner.say(pick("Join us", "Become one with us", "Join the Flesh", "Come to us", "[owner.real_name] is just a vessel.", "You can be just like us."))
+			owner.say(pick("; Accept our gift.", "; Become one with us.", "; Join our embrace.", "; Come to us.", "; We welcome all that can hear.", "; You can be just like us."))

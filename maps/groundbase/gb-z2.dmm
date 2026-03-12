@@ -6512,6 +6512,7 @@
 /obj/machinery/requests_console/preset/research{
 	pixel_y = 30
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "rI" = (
@@ -7172,6 +7173,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "tI" = (
+/obj/machinery/rnd/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/rnd)
 "tJ" = (
@@ -10461,12 +10463,31 @@
 /area/groundbase/dorms/room1)
 "Dm" = (
 /obj/structure/table/standard,
-/obj/item/retail_scanner/science,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /obj/structure/noticeboard{
 	pixel_x = 32
+	},
+/obj/item/assembly/signaler/anomaly/flux{
+	pixel_y = 13;
+	pixel_x = 7
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/anomaly_scanner{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = -2;
+	pixel_x = -5
+	},
+/obj/item/anomaly_releaser/science{
+	pixel_y = -5;
+	pixel_x = -5
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
@@ -11032,6 +11053,7 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "EN" = (
@@ -17896,6 +17918,7 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/item/retail_scanner/science,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "Yc" = (

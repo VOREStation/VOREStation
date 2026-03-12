@@ -3,7 +3,9 @@
 	id = REAGENT_ID_ADVMUTATIONTOXIN
 	description = "A corruptive toxin produced by slimes. Turns the subject of the chemical into a Promethean."
 	reagent_state = LIQUID
+	dermal_absorption = 0 //Injection only.
 	color = "#13BC5E"
+	scannable = SCANNABLE_ADVANCED
 	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
@@ -39,7 +41,7 @@
 	taste_description = "metallic"
 	reagent_state = LIQUID
 	color = "#333333"
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
 	affects_robots = TRUE
 	wiki_flag = WIKI_SPOILER
 
@@ -60,7 +62,9 @@
 	id = REAGENT_ID_FIREFOAM
 	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on most NT vessels."
 	reagent_state = LIQUID
+	dermal_absorption = 0 //Custom touch handling. As funny as PFAS poisoning is.
 	color = "#A6FAFF"
+	scannable = SCANNABLE_ADVANCED
 	taste_description = "the inside of a fire extinguisher"
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_INDUSTRY
@@ -109,7 +113,7 @@
 	taste_description = "wiggly peanutbutter"
 	reagent_state = LIQUID
 	color = "#1d1d1d"
-	scannable = 0
+	scannable = SCANNABLE_BENEFICIAL
 	metabolism = REM * 0.5
 	affects_robots = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
@@ -140,6 +144,7 @@
 	reagent_state = LIQUID
 	color = "#E4EC2F"
 	metabolism = 2.50
+	scannable = SCANNABLE_ADVANCED
 	var/power = 9
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR

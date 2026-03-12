@@ -2,6 +2,8 @@
 
 //altered this to cap at the temperature of the fire causing it, using the same 1:1500 value as /mob/living/carbon/human/handle_fire() in human/life.dm
 /mob/living/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(is_incorporeal())
+		return
 	if(exposed_temperature)
 		if(fire_stacks < exposed_temperature/1500) // Subject to balance
 			adjust_fire_stacks(2)
@@ -106,6 +108,10 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 //Called in MobBump() and Crossed()
 /mob/living/proc/spreadFire(mob/living/spread_to)
 	if(!istype(spread_to))
+		return
+
+	// Shadekin checkkkkk~~~
+	if(is_incorporeal() || spread_to.is_incorporeal())
 		return
 
 	// can't spread fire to mobs that don't catch on fire

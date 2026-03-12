@@ -123,7 +123,10 @@
 	STOP_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/suit_cooling_unit/attack_self(var/mob/user)
+/obj/item/suit_cooling_unit/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(cover_open && cell)
 		if(ishuman(user))
 			user.put_in_hands(cell)

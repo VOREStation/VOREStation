@@ -32,19 +32,22 @@
 	hold.max_storage_space = slots * 2
 	hold.max_w_class = ITEMSIZE_SMALL
 
-/obj/item/cartridge/storage/attack_hand(mob/user as mob)
+/obj/item/cartridge/storage/attack_hand(mob/user)
 	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
 		..(user)
 
-/obj/item/cartridge/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/cartridge/storage/attackby(obj/item/W, mob/user)
 	..()
 	return hold.attackby(W, user)
 
-/obj/item/cartridge/storage/MouseDrop(obj/over_object as obj)
+/obj/item/cartridge/storage/MouseDrop(obj/over_object)
 	if (hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
 /obj/item/cartridge/storage/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("You empty [src]."))
 	var/turf/T = get_turf(src)
 	hold.hide_from(user)

@@ -39,7 +39,7 @@ export const CheckboxInput = (props) => {
   const [selections, setSelections] = useState<string[]>([]);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const search = createSearch(searchQuery, (item: string) => item);
+  const search = createSearch<string>(searchQuery, (item) => item);
   const toDisplay = items.filter(search);
 
   const selectItem = (name: string) => {

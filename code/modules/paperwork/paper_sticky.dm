@@ -98,7 +98,7 @@
 /obj/item/paper/sticky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, /obj/item/paper/sticky/proc/reset_persistence_tracking)
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/paper/sticky/proc/reset_persistence_tracking)
 
 /obj/item/paper/sticky/proc/reset_persistence_tracking()
 	SIGNAL_HANDLER
@@ -108,7 +108,7 @@
 
 /obj/item/paper/sticky/Destroy()
 	reset_persistence_tracking()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	. = ..()
 
 /obj/item/paper/sticky/update_icon()

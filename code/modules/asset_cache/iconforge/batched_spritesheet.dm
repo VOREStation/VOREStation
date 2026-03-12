@@ -158,7 +158,7 @@
 	if (!directions)
 		directions = list(SOUTH)
 
-	for (var/icon_state_name in icon_states(I))
+	for (var/icon_state_name in icon_states_fast(I))
 		for (var/direction in directions)
 			var/prefix2 = (directions.len > 1 && prefix_with_dirs) ? "[dir2text(direction)]-" : ""
 			insert_icon("[prefix][prefix2][icon_state_name]", uni_icon(I, icon_state_name, direction))

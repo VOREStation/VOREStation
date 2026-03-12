@@ -9,8 +9,12 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	w_class = ITEMSIZE_NORMAL
 	actions_types = list(/datum/action/item_action/toggle_visor)
+	special_handling = TRUE
 
-/obj/item/clothing/head/pilot_vr/attack_self(mob/user as mob)
+/obj/item/clothing/head/pilot_vr/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]up"
 		to_chat(user, "You raise the visor on the pilot helmet.")
@@ -25,15 +29,6 @@
 	icon_state = "pilot2"
 	actions_types = list(/datum/action/item_action/toggle_visor)
 
-/obj/item/clothing/head/pilot_vr/alt/attack_self(mob/user as mob)
-	if(src.icon_state == initial(icon_state))
-		src.icon_state = "[icon_state]up"
-		to_chat(user, "You raise the visor on the pilot helmet.")
-	else
-		src.icon_state = initial(icon_state)
-		to_chat(user, "You lower the visor on the pilot helmet.")
-	update_clothing_icon() //so our mob-overlays update
-
 //////////Talon Pilot Headgear//////////
 
 /obj/item/clothing/head/pilot_vr/talon
@@ -41,15 +36,6 @@
 	desc = "An ITV Talon version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot3"
 	actions_types = list(/datum/action/item_action/toggle_visor)
-
-/obj/item/clothing/head/pilot_vr/talon/attack_self(mob/user as mob)
-	if(src.icon_state == initial(icon_state))
-		src.icon_state = "[icon_state]up"
-		to_chat(user, "You raise the visor on the pilot helmet.")
-	else
-		src.icon_state = initial(icon_state)
-		to_chat(user, "You lower the visor on the pilot helmet.")
-	update_clothing_icon() //so our mob-overlays update
 
 //////////Major Bill's Pilot Headgear//////////
 
@@ -59,12 +45,3 @@
 	icon_state = "pilot3"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
 	actions_types = list(/datum/action/item_action/toggle_visor)
-
-/obj/item/clothing/head/pilot_vr/mbill/attack_self(mob/user as mob)
-	if(src.icon_state == initial(icon_state))
-		src.icon_state = "[icon_state]up"
-		to_chat(user, "You raise the visor on the pilot helmet.")
-	else
-		src.icon_state = initial(icon_state)
-		to_chat(user, "You lower the visor on the pilot helmet.")
-	update_clothing_icon() //so our mob-overlays update

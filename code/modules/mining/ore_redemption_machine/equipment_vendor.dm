@@ -26,7 +26,8 @@
 			inserted_id = null
 		else
 			QDEL_NULL(inserted_id)
-	QDEL_NULL_LIST(prize_list)
+	for(var/key, value in prize_list)
+		QDEL_NULL_LIST(value)
 	. = ..()
 
 /datum/data/mining_equipment
@@ -168,6 +169,7 @@
 	if(inserted_id && !powered())
 		visible_message(span_notice("The ID slot indicator light flickers on \the [src] as it spits out a card before powering down."))
 		inserted_id.forceMove(get_turf(src))
+		inserted_id = null
 
 /obj/machinery/mineral/equipment_vendor/update_icon()
 	if(panel_open)
@@ -274,7 +276,8 @@
 
 			remove_points(inserted_id, prize.cost)
 			var/obj/item/I = new prize.equipment_path(loc)
-			I.persist_storable = FALSE
+			if(isitem(I))
+				I.persist_storable = FALSE
 			flick(icon_vend, src)
 		else
 			flick(icon_deny, src)
@@ -307,6 +310,7 @@
 /obj/machinery/mineral/equipment_vendor/dismantle()
 	if(inserted_id)
 		inserted_id.forceMove(loc) //Prevents deconstructing the ORM from deleting whatever ID was inside it.
+		inserted_id = null
 	. = ..()
 
 /**

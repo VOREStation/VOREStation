@@ -20,7 +20,7 @@
 
 /obj/item/organ/internal/cell/emp_act(severity, recursive)
 	..()
-	owner.adjust_nutrition(-rand(10 / severity, 50 / severity))
+	owner?.adjust_nutrition(-rand(10 / severity, 50 / severity))
 
 /obj/item/organ/internal/cell/machine/handle_organ_proc_special()
 	..()

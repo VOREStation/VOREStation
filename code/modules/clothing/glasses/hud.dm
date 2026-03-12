@@ -75,6 +75,8 @@
 	plane_slots = list(slot_glasses)
 	var/ar_toggled = TRUE //Used for toggle_ar_planes() verb
 	var/can_shade = TRUE
+	specialty_goggles = TRUE
+	var/hud_goggles = FALSE
 
 /obj/item/clothing/glasses/omnihud/Initialize(mapload)
 	. = ..()
@@ -130,8 +132,13 @@
 		icon_state = "[initial(icon_state)]"
 
 /obj/item/clothing/glasses/omnihud/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!ishuman(user))
-		return
+		return FALSE
+	if(hud_goggles)
+		return FALSE
 
 	var/mob/living/carbon/human/H = user
 	if(!H.glasses || !(H.glasses == src))
@@ -283,11 +290,15 @@
 	vision_flags = SEE_TURFS //but they can spot breaches. Due to the way HUDs work, they don't provide darkvision up-close the way mesons do.
 	flash_protection = 0 //it's an open, single-eye retinal projector. there's no way it protects your eyes from flashes or welders.
 	can_shade = FALSE
+	specialty_goggles = TRUE
+	hud_goggles = TRUE
 
 /obj/item/clothing/glasses/omnihud/eng/meson/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!active)
 		toggleprojector()
-	..()
 
 /obj/item/clothing/glasses/omnihud/eng/meson/verb/toggleprojector()
 	set name = "Toggle projector"

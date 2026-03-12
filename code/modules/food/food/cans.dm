@@ -6,8 +6,12 @@
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 	cant_chance = 1 //arbitrarily high for april fools; if it's not reverted in its entirety I suggest rolling it down to 2% or something
 	var/shaken = 0 // How many times this can has been shaken.
+	is_can = TRUE
 
 /obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.a_intent == I_HURT && !is_open_container())
 		to_chat(user, span_warning("You shake [src]."))
 		if(!shaken)
@@ -16,7 +20,6 @@
 		return
 	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10)) // Because it's always funny
 		shaken += 10
-	. = ..()
 
 /obj/item/reagent_containers/food/drinks/cans/open(mob/user)
 	. = ..()

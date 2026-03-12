@@ -114,7 +114,7 @@
 		is_hacking = 1
 		// On average hackin takes ~15 seconds. Fairly small random span to discourage people from simply aborting and trying again
 		// Reduced hack duration to compensate for the reduced functionality, multiplied by door sec level
-		var/hack_result = do_after(user, (((10 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS))*hackspeed)*D.security_level))
+		var/hack_result = do_after(user, (((10 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS))*hackspeed)*D.security_level), target = src)
 		is_hacking = 0
 
 		if(hack_result && in_hack_mode)

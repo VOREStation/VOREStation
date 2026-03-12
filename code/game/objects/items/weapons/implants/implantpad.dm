@@ -47,7 +47,10 @@
 	return
 
 
-/obj/item/implantpad/attack_self(mob/user as mob)
+/obj/item/implantpad/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.set_machine(src)
 	var/dat = span_bold("Implant Mini-Computer:") + "<HR>"
 	if (src.case)

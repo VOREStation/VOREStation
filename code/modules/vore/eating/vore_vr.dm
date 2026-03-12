@@ -59,6 +59,10 @@
 	var/slip_vore = TRUE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
+	var/spont_belly_rear = null
+	var/spont_belly_left = null
+	var/spont_belly_right = null
+	var/spont_belly_front = null
 	var/consume_liquid_belly = FALSE //starting off because if someone is into that, they'll toggle it first time they get the error. Otherway around would be more pref breaky.
 
 	var/digest_pain = TRUE
@@ -88,7 +92,7 @@
 	var/no_latejoin_vore_warning_persists = FALSE
 	var/no_latejoin_prey_warning_persists = FALSE
 	var/belly_rub_target = null
-	var/soulcatcher_pref_flags = 0
+	var/soulcatcher_pref_flags = NONE
 	var/list/soulcatcher_prefs = list()
 	var/max_voreoverlay_alpha = 255
 	var/persistend_edit_mode = FALSE
@@ -98,6 +102,7 @@
 	var/vore_smell = "nothing in particular"
 
 	var/selective_preference = DM_DEFAULT
+	var/size_strip_preference = SIZESTRIP_NONE
 
 
 	var/nutrition_message_visible = TRUE
@@ -203,6 +208,7 @@
 	permit_healbelly = json_from_file["permit_healbelly"]
 	noisy = json_from_file["noisy"]
 	selective_preference = json_from_file["selective_preference"]
+	size_strip_preference = json_from_file["size_strip_preference"]
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
@@ -216,6 +222,10 @@
 	slip_vore = json_from_file["slip_vore"]
 	food_vore = json_from_file["food_vore"]
 	throw_vore = json_from_file["throw_vore"]
+	spont_belly_rear = json_from_file["spont_belly_rear"]
+	spont_belly_left = json_from_file["spont_belly_left"]
+	spont_belly_front = json_from_file["spont_belly_front"]
+	spont_belly_right = json_from_file["spont_belly_right"]
 	consume_liquid_belly = json_from_file["consume_liquid_belly"]
 	stumble_vore = json_from_file["stumble_vore"]
 	digest_pain = json_from_file["digest_pain"]
@@ -276,6 +286,8 @@
 		permit_healbelly = TRUE
 	if(isnull(selective_preference))
 		selective_preference = DM_DEFAULT
+	if(isnull(size_strip_preference))
+		size_strip_preference = SIZESTRIP_NONE
 	if (isnull(noisy))
 		noisy = FALSE
 	if(isnull(show_vore_fx))
@@ -388,7 +400,7 @@
 	if(isnull(no_latejoin_prey_warning_persists))
 		no_latejoin_prey_warning_persists = FALSE
 	if(isnull(soulcatcher_pref_flags))
-		soulcatcher_pref_flags = 0
+		soulcatcher_pref_flags = NONE
 	if(isnull(soulcatcher_prefs))
 		soulcatcher_prefs = list()
 	if(isnull(persistend_edit_mode))
@@ -419,6 +431,7 @@
 			"noisy" 				= noisy,
 			"noisy_full" 			= noisy_full,
 			"selective_preference"	= selective_preference,
+			"size_strip_preference"		= size_strip_preference,
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
@@ -438,6 +451,10 @@
 			"slip_vore"				= slip_vore,
 			"stumble_vore"			= stumble_vore,
 			"throw_vore" 			= throw_vore,
+			"spont_belly_rear"		= spont_belly_rear,
+			"spont_belly_left"		= spont_belly_left,
+			"spont_belly_front"		= spont_belly_front,
+			"spont_belly_right"		= spont_belly_right,
 			"allow_mind_transfer"	= allow_mind_transfer,
 			"phase_vore" 			= phase_vore,
 			"consume_liquid_belly" 	= consume_liquid_belly,

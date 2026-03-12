@@ -20,7 +20,7 @@
 	var/distance = 5
 
 	// Based on the distance used
-	var/teleport_cooldown = 0
+	COOLDOWN_DECLARE(teleport_cooldown)
 	var/teleporting = 0
 	var/starting_crystals = 0
 	var/max_crystals = 4
@@ -58,7 +58,6 @@
 		crystals += W
 		W.forceMove(src)
 		user.visible_message("[user] inserts [W] into \the [src]'s crystal slot.", span_notice("You insert [W] into \the [src]'s crystal slot."))
-		updateDialog()
 	else if(istype(W, /obj/item/gps))
 		if(!inserted_gps)
 			inserted_gps = W
@@ -101,7 +100,7 @@
 		data["insertedGps"] = inserted_gps
 		data["rotation"] = rotation
 		data["currentZ"] = z_co
-		data["cooldown"] = max(0, min(100, round(teleport_cooldown - world.time) / 10))
+		data["cooldown"] = max(0, min(100, COOLDOWN_TIMELEFT(src, teleport_cooldown) / 10))
 		data["crystalCount"] = crystals.len
 		data["maxCrystals"] = max_crystals
 		data["maxPossibleDistance"] = FLOOR((max_crystals * powerCoefficient * 6), 1); // max efficiency is 6
@@ -154,9 +153,9 @@
 			if(last_target && inserted_gps)
 				// TODO - What was this even supposed to do??
 				//inserted_gps.locked_location = last_target
-				temp_msg = "Location saved."
+				temp_msg = "Function Deprecated. No action taken."
 			else
-				temp_msg = "ERROR! No data was stored."
+				temp_msg = "Function Deprecated. No action taken."
 
 		if("send")
 			sending = 1
@@ -188,6 +187,7 @@
 		return
 
 /obj/machinery/computer/telescience/proc/telefail()
+	COOLDOWN_START(src, teleport_cooldown, (2 SECONDS))
 	switch(rand(99))
 		if(0 to 85)
 			sparks()
@@ -207,7 +207,7 @@
 			sparks()
 			if(telepad)
 				var/L = get_turf(telepad)
-				var/blocked = list(/mob/living/simple_mob/vore)
+				var/blocked = list(/mob/living/simple_mob/vore, /mob/living/simple_mob/vore/ddraig) + typesof(/mob/living/simple_mob/vore/woof) + typesof(/mob/living/simple_mob/vore/overmap)
 				var/list/hostiles = typesof(/mob/living/simple_mob/vore) - blocked
 				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
 				for(var/i in 1 to rand(1,4))
@@ -225,9 +225,7 @@
 
 /obj/machinery/computer/telescience/proc/doteleport(mob/user)
 
-	if(teleport_cooldown > world.time)
-		return
-	if(teleporting)
+	if(!COOLDOWN_FINISHED(src, teleport_cooldown))
 		return
 
 	if(telepad)
@@ -263,7 +261,7 @@
 			if(telepad.inoperable())
 				return
 			teleporting = 0
-			teleport_cooldown = world.time + (spawn_time * 2)
+			COOLDOWN_START(src, teleport_cooldown, (spawn_time * 2))
 			teles_left -= 1
 
 			// use a lot of power
@@ -297,6 +295,7 @@
 				source = dest
 				dest = target
 
+			var/list/sent_atoms = list()
 			flick("pad-beam", telepad)
 			playsound(telepad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 			for(var/atom/movable/ROI in source)
@@ -332,15 +331,24 @@
 						else
 							log_msg += ")"
 					log_msg += ", "
+				sent_atoms += ROI
 				do_teleport(ROI, dest)
+			// Either works for the experiment scan, so fire signals on both
+			SEND_SIGNAL(src, COMSIG_TELESCI_TELEPORT, sent_atoms, target, sending)
+			SEND_SIGNAL(telepad, COMSIG_TELESCI_TELEPORT, sent_atoms, target, sending)
 
 			if (!dd_hassuffix(log_msg, ", "))
 				log_msg += "nothing"
 			log_msg += " [sending ? "to" : "from"] [trueX], [trueY], [z_co] ([A ? A.name : "null area"])"
 			investigate_log(log_msg, "telesci")
-			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
+	if(!COOLDOWN_FINISHED(src, teleport_cooldown))
+		temp_msg = "ERROR! Teleportation console is cooling down. Please wait."
+		return
+	if(teleporting)
+		temp_msg = "ERROR! Teleportation in progress. Please wait."
+		return
 	distance = CLAMP(distance, 0, get_max_allowed_distance())
 	if(rotation == null || distance == null || z_co == null)
 		temp_msg = "ERROR! Set a distance, rotation and sector."

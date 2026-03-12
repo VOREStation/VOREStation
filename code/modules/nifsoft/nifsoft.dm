@@ -267,6 +267,9 @@
 	..(A,user,flag,params)
 
 /obj/item/disk/nifsoft/compliance/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, 2048, TRUE, prevent_enter = TRUE)
 	if(newlaws)
 		to_chat(user,span_filter_notice("You set the laws to: <br>" + span_notice("[newlaws]")))

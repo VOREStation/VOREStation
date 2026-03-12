@@ -6,6 +6,7 @@
 	var/obj/item/radio/electropack/part2 = null
 	var/status = 0
 	w_class = ITEMSIZE_HUGE
+	special_handling = TRUE
 
 /obj/item/assembly/shock_kit/Destroy()
 	qdel(part1)
@@ -33,7 +34,10 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/assembly/shock_kit/attack_self(mob/user as mob)
+/obj/item/assembly/shock_kit/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	part1.attack_self(user, status)
 	part2.attack_self(user, status)
 	add_fingerprint(user)

@@ -45,6 +45,9 @@
 			add_overlay(stampoverlay)
 
 /obj/item/paperplane/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("You unfold [src]."))
 	var/atom/movable/internal_paper_tmp = internalPaper
 	internal_paper_tmp.forceMove(loc)

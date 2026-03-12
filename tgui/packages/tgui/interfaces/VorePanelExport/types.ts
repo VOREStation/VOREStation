@@ -150,7 +150,7 @@ export type Belly = {
   disable_hud: BooleanLike;
 
   // Interactions
-  escapable: BooleanLike;
+  escapable: number;
 
   escapechance: number;
   escapechance_absorbed: number;
@@ -189,6 +189,7 @@ export type Belly = {
   // Liquid Options
   show_liquids: BooleanLike;
   reagentbellymode: BooleanLike;
+  reagent_gen_cost_limit: number;
   reagent_chosen: string;
   reagent_name: string;
   reagent_transfer_verb: string;

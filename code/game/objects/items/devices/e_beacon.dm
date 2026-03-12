@@ -24,6 +24,9 @@
 	gps_tag = "EMERGENCY BEACON"
 
 /obj/item/emergency_beacon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/T = user.loc
 	if(!beacon_active)
 		if(!isturf(T))

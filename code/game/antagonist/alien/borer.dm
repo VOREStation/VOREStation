@@ -1,4 +1,4 @@
-var/datum/antagonist/borer/borers
+GLOBAL_DATUM(borers, /datum/antagonist/borer)
 
 /datum/antagonist/borer
 	id = MODE_BORER
@@ -27,7 +27,7 @@ var/datum/antagonist/borer/borers
 
 /datum/antagonist/borer/New()
 	..(1)
-	borers = src
+	GLOB.borers = src
 
 /datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='byond://?src=\ref[src];[HrefToken()];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"

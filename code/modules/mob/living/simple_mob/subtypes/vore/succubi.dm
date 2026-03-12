@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(succubus_safewords, list(
 	B.name = "stomach"
 	B.desc = "You find yourself tightly compressed into the stomach of the succubus, with immense pressure squeezing down on you from every direction. The wrinkled walls of the gut knead over you, like a swelteringly hot, wet massage. You can feel movement from the outside, as though the demoness is running her hands over your form with delight. The world around you groans and gurgles, but the fluids that ooze into this place don't seem harmful, yet. Instead, you feel your very energy being steadily depleted, much to the joy of the woman who's claiming it all for herself."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.belly_fullscreen = "VBO_fleshs"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(succubus_safewords, list(
 	curves.desc = "Your entire being is cast adrift, no longer tight as it was in the succubus's gut but still inexorably bound, a sensation of warmth surrounding your entire being - it's pleasantly comfortable, relaxing even, as though lulling you, tempting you into simply allowing yourself to drift off. It's difficult to focus on yourself at all, any sense of your own position having abandoned you - instead, you can simply feel an odd, gentle sensation of being occasionally rubbed, stroked, squeezed, your captor eager to enjoy her prize. Even trying to move seems to elicit a satisfied chuckle, almost as though she knows that, at least on some level, some part of you wanted to give yourself to her - and she seemingly has little intention of giving you back."
 	curves.digest_mode = DM_HOLD // like, shes got you already, doesn't need to get you more
 	curves.mode_flags = DM_FLAG_FORCEPSAY
-	curves.escapable = TRUE // good luck
+	curves.escapable = B_ESCAPABLE_DEFAULT // good luck
 	curves.escapechance = 40 // high chance of STARTING a successful escape attempt
 	curves.escapechance_absorbed = 5 // m i n e
 	curves.vore_verb = "soak"

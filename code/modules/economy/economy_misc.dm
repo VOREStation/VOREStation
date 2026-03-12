@@ -30,14 +30,14 @@ GLOBAL_VAR_INIT(economy_init, 0)
 	if(GLOB.economy_init)
 		return 2
 
-	//news_network.CreateFeedChannel("The [using_map.starsys_name] Times", "[using_map.starsys_name] Times ExoNode - [using_map.station_short]", 1, 1)
-	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
-	news_network.CreateFeedChannel("Oculum Content Aggregator", "Oculus v6rev7", 1, 1)
+	//GLOB.news_network.CreateFeedChannel("The [using_map.starsys_name] Times", "[using_map.starsys_name] Times ExoNode - [using_map.station_short]", 1, 1)
+	GLOB.news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
+	GLOB.news_network.CreateFeedChannel("Oculum Content Aggregator", "Oculus v6rev7", 1, 1)
 
 	for(var/loc_type in subtypesof(/datum/trade_destination))
 		var/datum/trade_destination/D = new loc_type
-		weighted_randomevent_locations[D] = D.viable_random_events.len
-		weighted_mundaneevent_locations[D] = D.mundane_probability
+		GLOB.weighted_randomevent_locations[D] = D.viable_random_events.len
+		GLOB.weighted_mundaneevent_locations[D] = D.mundane_probability
 
 	create_station_account()
 

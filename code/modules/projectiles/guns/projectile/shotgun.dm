@@ -24,13 +24,18 @@
 	var/empty_sprite = 0 		//This is just a dirty var so it doesn't fudge up.
 	var/pump_animation = "shotgun-pump"	//You put the reference to the animation in question here. Frees up namming. Ex: "shotgun_old_pump" or "sniper_cycle"
 
+	special_weapon_handling = TRUE
+
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
 		return chambered.BB
 	return null
 
-/obj/item/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
-	if(world.time >= recentpump + 10)
+/obj/item/gun/projectile/shotgun/pump/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(world.time >= recentpump + 1 SECOND)
 		pump(user)
 		recentpump = world.time
 

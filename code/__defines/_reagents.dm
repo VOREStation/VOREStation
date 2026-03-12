@@ -722,6 +722,8 @@
 #define REAGENT_ID_CONDENSEDCAPSAICIN "condensedcapsaicin"
 #define REAGENT_GELATIN "Gelatin"
 #define REAGENT_ID_GELATIN "gelatin"
+#define REAGENT_MUSTARDPODS "Mustard Pods"
+#define REAGENT_ID_MUSTARDPODS "mustardpods"
 
 #define REAGENT_DRINK "Drink"
 #define REAGENT_ID_DRINK "drink"
@@ -1403,3 +1405,10 @@
 #define REAGENT_ID_SLIMEBONEFIXER "slime_bone_fixer"
 #define REAGENT_SLIMEORGANFIXER "Agent C"
 #define REAGENT_ID_SLIMEORGANFIXER "slime_organ_fixer"
+
+//Scanning difficulty. The higher the # the higher it is to find.
+#define SCANNABLE_BENEFICIAL 0
+#define SCANNABLE_ADVANCED 1
+#define SCANNABLE_DIFFICULT 2
+#define SCANNABLE_SECRETIVE 3
+#define SCANNABLE_UNSCANNABLE 99

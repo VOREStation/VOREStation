@@ -326,6 +326,7 @@
 			DelayedMessageAdmins("MOTD file [motd_file] didn't exist")
 
 	motd = motd_contents.Join("\n")
+	motd = GLOB.is_valid_url.Replace(motd, span_linkify("$1"))
 
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)

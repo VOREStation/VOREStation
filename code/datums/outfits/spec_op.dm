@@ -1,4 +1,4 @@
-/decl/hierarchy/outfit/spec_op_officer
+/datum/decl/hierarchy/outfit/spec_op_officer
 	name = "Special ops - Officer"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/swat/officer
@@ -11,7 +11,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 
 	id_slot = slot_wear_id
-	id_type = /obj/item/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ert
 	id_desc = "Special operations ID."
 	id_pda_assignment = "Special Operations Officer"
 
@@ -19,7 +19,7 @@
 	headset_alt = /obj/item/radio/headset/ert
 	headset_earbud = /obj/item/radio/headset/ert
 
-/decl/hierarchy/outfit/spec_op_officer/space
+/datum/decl/hierarchy/outfit/spec_op_officer/space
 	name = "Special ops - Officer in space"
 	suit = /obj/item/clothing/suit/armor/swat	//obj/item/clothing/suit/space/void/swat
 	back = /obj/item/tank/jetpack/oxygen
@@ -27,7 +27,7 @@
 
 	flags = OUTFIT_HAS_JETPACK
 
-/decl/hierarchy/outfit/ert
+/datum/decl/hierarchy/outfit/ert
 	name = "Spec ops - Emergency response team"
 	uniform = /obj/item/clothing/under/ert
 	shoes = /obj/item/clothing/shoes/boots/swat
@@ -37,27 +37,27 @@
 	back = /obj/item/storage/backpack/satchel
 
 	id_slot = slot_wear_id
-	id_type = /obj/item/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ert
 
 	headset = /obj/item/radio/headset/ert
 	headset_alt = /obj/item/radio/headset/ert
 	headset_earbud = /obj/item/radio/headset/ert
 
-/decl/hierarchy/outfit/death_command
+/datum/decl/hierarchy/outfit/death_command
 	name = "Spec ops - Death commando"
 
-/decl/hierarchy/outfit/death_command/equip(var/mob/living/carbon/human/H)
-	deathsquad.equip(H)
+/datum/decl/hierarchy/outfit/death_command/equip(var/mob/living/carbon/human/H)
+	GLOB.deathsquad.equip(H)
 	return 1
 
-/decl/hierarchy/outfit/syndicate_command
+/datum/decl/hierarchy/outfit/syndicate_command
 	name = "Spec ops - Syndicate commando"
 
-/decl/hierarchy/outfit/syndicate_command/equip(var/mob/living/carbon/human/H)
-	commandos.equip(H)
+/datum/decl/hierarchy/outfit/syndicate_command/equip(var/mob/living/carbon/human/H)
+	GLOB.commandos.equip(H)
 	return 1
 
-/decl/hierarchy/outfit/mercenary
+/datum/decl/hierarchy/outfit/mercenary
 	name = "Spec ops - Mercenary"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/boots/combat

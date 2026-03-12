@@ -319,7 +319,7 @@
 	for(var/obj/effect/landmark/L in linkedholodeck)
 		qdel(L)
 
-	holographic_objs = A.copy_contents_to(linkedholodeck , 1)
+	holographic_objs = A.copy_contents_to(linkedholodeck, 1)
 	for(var/obj/holo_obj in holographic_objs)
 		holo_obj.alpha *= 0.8 //give holodeck objs a slight transparency
 
@@ -340,24 +340,24 @@
 		linkedholodeck.requires_power = FALSE
 	linkedholodeck.power_change()
 
-	spawn(30)
-		for(var/obj/effect/landmark/L in linkedholodeck)
-			L.delete_me = 1
-			if(L.name=="Atmospheric Test Start")
-				spawn(20)
-					var/turf/T = get_turf(L)
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(2, 1, T)
-					s.start()
-					if(T)
-						T.temperature = 5000
-						T.hotspot_expose(50000,50000,1)
-			if(L.name=="Holocarp Spawn")
-				holographic_mobs += new /mob/living/simple_mob/animal/space/carp/holodeck(L.loc)
+	for(var/obj/effect/landmark/L in linkedholodeck)
+		L.delete_me = TRUE
+		if(L.name=="Atmospheric Test Start")
+			spawn(20)
+				var/turf/T = get_turf(L)
+				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				s.set_up(2, 1, T)
+				s.start()
+				if(T)
+					T.temperature = 5000
+					T.hotspot_expose(50000,50000,1)
+		if(L.name=="Holocarp Spawn")
+			holographic_mobs += new /mob/living/simple_mob/animal/space/carp/holodeck(L.loc)
 
-			if(L.name=="Holocarp Spawn Random")
-				if (prob(4)) //With 4 spawn points, carp should only appear 15% of the time.
-					holographic_mobs += new /mob/living/simple_mob/animal/space/carp/holodeck(L.loc)
+		if(L.name=="Holocarp Spawn Random")
+			if(prob(4)) //With 4 spawn points, carp should only appear 15% of the time.
+				holographic_mobs += new /mob/living/simple_mob/animal/space/carp/holodeck(L.loc)
+		qdel(L)
 
 		update_projections()
 

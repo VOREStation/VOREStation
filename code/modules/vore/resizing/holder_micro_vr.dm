@@ -25,8 +25,6 @@
 		sprite_sheets = null
 		icon_state = "teshariplushie_white"
 		item_state = "teshariplushie_white"
-		// Add back slot
-		slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID | SLOT_BACK
 
 /obj/item/holder/micro/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
 	var/mob/living/carbon/human/H = held_mob
@@ -57,6 +55,9 @@
 		O.show_inventory_panel(usr, state = GLOB.tgui_deep_inventory_state)
 
 /obj/item/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.setClickCooldown(user.get_attack_speed())
 	for(var/L in contents)
 		if(ishuman(L))

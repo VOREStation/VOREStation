@@ -177,7 +177,7 @@
 		return 0	//not at station
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_INTRANSIT)
 
-//so we don't have emergency_shuttle.shuttle.location everywhere
+//so we don't have GLOB.emergency_shuttle.shuttle.location everywhere
 /datum/emergency_shuttle_controller/proc/location()
 	if (!shuttle)
 		return 1 	//if we dont have a shuttle datum, just act like it's at centcom
@@ -228,14 +228,14 @@
 /datum/emergency_shuttle_controller/proc/get_status_panel_eta()
 	if (online())
 		if (shuttle.has_arrive_time())
-			var/timeleft = emergency_shuttle.estimate_arrival_time()
+			var/timeleft = GLOB.emergency_shuttle.estimate_arrival_time()
 			return "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 		if (waiting_to_leave())
 			if (shuttle.moving_status == SHUTTLE_WARMUP)
 				return "Departing..."
 
-			var/timeleft = emergency_shuttle.estimate_launch_time()
+			var/timeleft = GLOB.emergency_shuttle.estimate_launch_time()
 			return "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 	return ""

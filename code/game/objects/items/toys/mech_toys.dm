@@ -115,12 +115,13 @@
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/mecha/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(timer < world.time)
 		to_chat(user, span_notice("You play with [src]."))
 		timer = world.time + cooldown
 		playsound(user, 'sound/mecha/mechstep.ogg', 20, TRUE)
-	else
-		. = ..()
 
 /obj/item/toy/mecha/attack_hand(mob/user)
 	. = ..()

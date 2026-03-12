@@ -262,7 +262,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		if(istype(R))
 			LAZYDISTINCTADD(forced_radios, R)
 
-	if(connection.frequency in ANTAG_FREQS) // if antag broadcast, just
+	if(connection.frequency in GLOB.antag_frequencies) // if antag broadcast, just
 		Broadcast_Message(signal.data["connection"], signal.data["mob"],
 							signal.data["vmask"], signal.data["vmessage"],
 							signal.data["radio"], signal.data["message"],
@@ -378,7 +378,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	// --- Broadcast to antag radios! ---
 
 	else if(data == DATA_ANTAG)
-		for(var/antag_freq in ANTAG_FREQS)
+		for(var/antag_freq in GLOB.antag_frequencies)
 			var/datum/radio_frequency/antag_connection = SSradio.return_frequency(antag_freq)
 			for (var/obj/item/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				if(R.receive_range(antag_freq, level) > -1)
@@ -597,7 +597,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	// --- Broadcast to antag radios! ---
 
 	else if(data == DATA_ANTAG)
-		for(var/freq in ANTAG_FREQS)
+		for(var/freq in GLOB.antag_frequencies)
 			var/datum/radio_frequency/antag_connection = SSradio.return_frequency(freq)
 			for (var/obj/item/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				var/turf/position = get_turf(R)

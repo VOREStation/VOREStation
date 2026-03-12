@@ -66,6 +66,7 @@
 	return mining_overlay_cache["[cache_id]_[direction]"]
 
 /turf/simulated/wall/solidrock/update_icon(var/update_neighbors)
+	cut_overlays()
 	if(density)
 		var/image/I
 		for(var/i = 1 to 4)

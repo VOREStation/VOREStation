@@ -1,11 +1,11 @@
 /obj/structure/closet/wardrobe
 	name = "wardrobe"
 	desc = "It's a storage unit for standard-issue attire."
-	closet_appearance = /decl/closet_appearance/wardrobe
+	closet_appearance = /datum/decl/closet_appearance/wardrobe
 
 /obj/structure/closet/wardrobe/red
 	name = "security wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/red
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/red
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/security = 3,
@@ -22,24 +22,28 @@
 		/obj/item/clothing/accessory/holster/waist = 3)
 
 /obj/structure/closet/wardrobe/red/Initialize(mapload)
-	if(prob(50))
-		starts_with += /obj/item/storage/backpack/security
-	else
-		starts_with += /obj/item/storage/backpack/satchel/sec
-	if(prob(50))
-		starts_with += /obj/item/storage/backpack/security
-	else
-		starts_with += /obj/item/storage/backpack/satchel/sec
-	if(prob(50))
-		starts_with += /obj/item/storage/backpack/security
-	else
-		starts_with += /obj/item/storage/backpack/satchel/sec
+	if(islist(starts_with))
+		if(prob(50))
+			starts_with += /obj/item/storage/backpack/security
+		else
+			starts_with += /obj/item/storage/backpack/satchel/sec
+		if(prob(50))
+			starts_with += /obj/item/storage/backpack/security
+		else
+			starts_with += /obj/item/storage/backpack/satchel/sec
+		if(prob(50))
+			starts_with += /obj/item/storage/backpack/security
+		else
+			starts_with += /obj/item/storage/backpack/satchel/sec
 
 	return ..()
 
+/obj/structure/closet/wardrobe/red/empty
+	starts_with = null
+
 /obj/structure/closet/wardrobe/detective
 	name = "detective wardrobe"
-	closet_appearance = /decl/closet_appearance/cabinet
+	closet_appearance = /datum/decl/closet_appearance/cabinet
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
@@ -63,15 +67,18 @@
 
 /obj/structure/closet/wardrobe/pink
 	name = "pink wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/pink
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/pink
 
 	starts_with = list(
 		/obj/item/clothing/under/color/pink = 3,
 		/obj/item/clothing/shoes/brown = 3)
 
+/obj/structure/closet/wardrobe/pink/empty
+	starts_with = null
+
 /obj/structure/closet/wardrobe/black
 	name = "black wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/black
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/black
 
 	starts_with = list(
 		/obj/item/clothing/under/color/black = 3,
@@ -81,11 +88,28 @@
 		/obj/item/clothing/mask/bandana = 3,
 		/obj/item/storage/backpack/messenger/black)
 
+/obj/structure/closet/wardrobe/black/empty
+	starts_with = null
+
+/obj/structure/closet/wardrobe/black/talon
+	starts_with = list(
+		/obj/item/clothing/under/color/black = 4,
+		/obj/item/clothing/accessory/storage/black_vest = 4,
+		/obj/item/clothing/accessory/storage/black_drop_pouches = 4,
+		/obj/item/clothing/gloves/black = 4,
+		/obj/item/clothing/head/soft/black = 4,
+		/obj/item/clothing/mask/balaclava = 4,
+		/obj/item/clothing/mask/bandana = 4,
+		/obj/item/clothing/mask/gas/commando = 4,
+		/obj/item/storage/backpack/messenger/black = 4,
+		/obj/item/storage/backpack/dufflebag = 4,
+		/obj/item/clothing/shoes/black = 4,
+		/obj/item/clothing/shoes/boots/duty = 4)
 
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
 	desc = "It's a storage unit for approved religious attire."
-	closet_appearance = /decl/closet_appearance/wardrobe/chapel
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/chapel
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/chaplain,
@@ -106,7 +130,7 @@
 
 /obj/structure/closet/wardrobe/green
 	name = "green wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/green
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/green
 
 	starts_with = list(
 		/obj/item/clothing/under/color/green = 3,
@@ -114,9 +138,12 @@
 		/obj/item/clothing/head/soft/green = 3,
 		/obj/item/clothing/mask/bandana/green = 3)
 
+/obj/structure/closet/wardrobe/green/empty
+	starts_with = null
+
 /obj/structure/closet/wardrobe/xenos
 	name = "xenos wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/xenos
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/xenos
 
 	starts_with = list(
 		/obj/item/clothing/suit/unathi/mantle,
@@ -130,16 +157,18 @@
 /obj/structure/closet/wardrobe/orange
 	name = "prison wardrobe"
 	desc = "It's a storage unit for regulation prisoner attire."
-	closet_appearance = /decl/closet_appearance/wardrobe/orange
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/orange
 
 	starts_with = list(
 		/obj/item/clothing/under/color/prison = 3,
 		/obj/item/clothing/shoes/orange = 3)
 
+/obj/structure/closet/wardrobe/orange/empty
+	starts_with = null
 
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/yellow
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/yellow
 
 	starts_with = list(
 		/obj/item/clothing/under/color/yellow = 3,
@@ -147,10 +176,12 @@
 		/obj/item/clothing/head/soft/yellow = 3,
 		/obj/item/clothing/mask/bandana/gold = 3)
 
+/obj/structure/closet/wardrobe/yellow/empty
+	starts_with = null
 
 /obj/structure/closet/wardrobe/atmospherics_yellow
 	name = "atmospherics wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/engineer/atmos
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/engineer/atmos
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/atmospheric_technician = 3,
@@ -164,7 +195,7 @@
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/engineer
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/engineer
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/engineer = 3,
@@ -181,17 +212,19 @@
 
 /obj/structure/closet/wardrobe/white
 	name = "white wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/white
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/white
 
 	starts_with = list(
 		/obj/item/clothing/under/color/white = 3,
 		/obj/item/clothing/shoes/white = 3,
 		/obj/item/clothing/head/soft/mime = 3)
 
+/obj/structure/closet/wardrobe/white/empty
+	starts_with = null
 
 /obj/structure/closet/wardrobe/pjs
 	name = "pajama wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/pjs
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/pjs
 
 	starts_with = list(
 		/obj/item/clothing/under/pj/red = 2,
@@ -202,7 +235,7 @@
 
 /obj/structure/closet/wardrobe/science_white
 	name = "science wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/science
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/science
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/scientist = 3,
@@ -232,7 +265,7 @@
 
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/robotics
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/robotics
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/roboticist = 2,
@@ -254,7 +287,7 @@
 
 /obj/structure/closet/wardrobe/chemistry_white
 	name = "chemistry wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/medical/chemistry
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/medical/chemistry
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/chemist = 2,
@@ -269,7 +302,7 @@
 
 /obj/structure/closet/wardrobe/genetics_white
 	name = "genetics wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/medical/genetics
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/medical/genetics
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/geneticist = 2,
@@ -282,7 +315,7 @@
 
 /obj/structure/closet/wardrobe/virology_white
 	name = "virology wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/medical/virology
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/medical/virology
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/virologist = 2,
@@ -297,7 +330,7 @@
 
 /obj/structure/closet/wardrobe/medic_white
 	name = "medical wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/medical/white
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/medical/white
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical = 2,
@@ -322,7 +355,7 @@
 
 /obj/structure/closet/wardrobe/medic_gown
 	name = "cloning wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/medical/patient
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/medical/patient
 
 	starts_with = list(
 		/obj/item/clothing/under/medigown = 4)
@@ -330,17 +363,19 @@
 
 /obj/structure/closet/wardrobe/grey
 	name = "grey wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/grey
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/grey
 
 	starts_with = list(
 		/obj/item/clothing/under/color/grey = 3,
 		/obj/item/clothing/shoes/black = 3,
 		/obj/item/clothing/head/soft/grey = 3)
 
+/obj/structure/closet/wardrobe/grey/empty
+	starts_with = null
 
 /obj/structure/closet/wardrobe/mixed
 	name = "mixed wardrobe"
-	closet_appearance = /decl/closet_appearance/wardrobe/mixed
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/mixed
 
 	starts_with = list(
 		/obj/item/clothing/under/color/blue,
@@ -379,7 +414,7 @@
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
-	closet_appearance = /decl/closet_appearance/tactical
+	closet_appearance = /datum/decl/closet_appearance/tactical
 
 	starts_with = list(
 		/obj/item/clothing/under/tactical,
@@ -404,7 +439,7 @@
 
 /obj/structure/closet/wardrobe/ert
 	name = "emergency response team equipment"
-	closet_appearance = /decl/closet_appearance/ert
+	closet_appearance = /datum/decl/closet_appearance/ert
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/centcom,
@@ -422,7 +457,7 @@
 
 /obj/structure/closet/wardrobe/suit
 	name = "suit locker"
-	closet_appearance = /decl/closet_appearance/wardrobe/suit
+	closet_appearance = /datum/decl/closet_appearance/wardrobe/suit
 
 	starts_with = list(
 		/obj/item/clothing/under/assistantformal,
@@ -450,7 +485,7 @@
 
 /obj/structure/closet/wardrobe/captain
 	name = "site manager's wardrobe"
-	closet_appearance = /decl/closet_appearance/cabinet
+	closet_appearance = /datum/decl/closet_appearance/cabinet
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'

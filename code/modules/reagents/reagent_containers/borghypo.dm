@@ -181,7 +181,10 @@
 						balloon_alert(M, "you feel a tiny prick!")
 	return
 
-/obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
+/obj/item/reagent_containers/borghypo/attack_self(mob/user) //Change the mode
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 	return
 

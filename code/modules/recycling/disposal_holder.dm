@@ -14,6 +14,19 @@
 	flags = REMOTEVIEW_ON_ENTER
 	dir = 0
 
+/obj/structure/disposalholder/Destroy()
+	QDEL_NULL(gas)
+	if(contents.len)
+		var/turf/qdelloc = get_turf(src)
+		if(qdelloc)
+			for(var/atom/movable/AM in contents)
+				AM.forceMove(qdelloc)
+		else
+			log_runtime("A disposal holder was deleted with contents in nullspace") //ideally, this should never happen
+
+	active = FALSE
+	return ..()
+
 	// initialize a holder from the contents of a disposal unit
 /obj/structure/disposalholder/proc/init(list/flush_list, datum/gas_mixture/flush_gas)
 	gas = flush_gas// transfer gas resv. into holder object -- let's be explicit about the data this proc consumes, please.
@@ -23,6 +36,7 @@
 	for(var/mob/living/M in flush_list)
 		if(M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 			hasmob = TRUE
+			break
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
 	//...but it should require a second person to open the package. (i.e. person inside a wrapped locker)
@@ -32,21 +46,23 @@
 		for(var/mob/living/M in O.contents)
 			if(M && M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 				hasmob = TRUE
+				break
 
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
 	for(var/atom/movable/AM in flush_list)
 		AM.forceMove(src)
 		// Mail will use it's sorting tag if dropped into disposals
-		if(istype(AM, /obj/structure/bigDelivery) && !hasmob)
-			var/obj/structure/bigDelivery/T = AM
-			src.destinationTag = T.sortTag
-		if(istype(AM, /obj/item/smallDelivery) && !hasmob)
-			var/obj/item/smallDelivery/T = AM
-			src.destinationTag = T.sortTag
-		if(istype(AM, /obj/item/mail) && !hasmob)
-			var/obj/item/mail/T = AM
-			src.destinationTag = T.sortTag
+		if(!hasmob)
+			if(istype(AM, /obj/structure/bigDelivery))
+				var/obj/structure/bigDelivery/T = AM
+				src.destinationTag = T.sortTag
+			if(istype(AM, /obj/item/smallDelivery))
+				var/obj/item/smallDelivery/T = AM
+				src.destinationTag = T.sortTag
+			if(istype(AM, /obj/item/mail))
+				var/obj/item/mail/T = AM
+				src.destinationTag = T.sortTag
 		// Drones can mail themselves through maint.
 		if(istype(AM, /mob/living/silicon/robot/drone))
 			var/mob/living/silicon/robot/drone/drone = AM
@@ -70,7 +86,7 @@
 	if(!active)
 		return // Handled by a machine connected to a trunk during transfer()
 	if(!curr)
-		last.expel(src, get_turf(loc), dir)
+		last.pipe_expel(src, get_turf(loc), dir)
 		return
 
 	// Onto the next segment
@@ -112,37 +128,40 @@
 	else
 		partialTag = new_tag
 
+// Nolonger shall you be stuck forever in the tubes. ...It might just hurt a bit.
+/obj/structure/disposalholder/container_resist(mob/living/escapee)
+	. = ..()
+	if(!istype(loc, /obj/structure/disposalpipe))
+		return //Somehow we're not in a pipe, shits probably fucked
+	var/obj/structure/disposalpipe/transport_cylinder = loc
+	if(active)
+		return
+	to_chat(escapee, span_warning("You push against the thin pipe walls..."))
+	playsound(loc, 'sound/machines/door/airlock_creaking.ogg', 30, FALSE, 3) //yeah I know but at least it sounds like metal being bent.
+
+	if(!do_after(escapee, 20 SECONDS, transport_cylinder))
+		return
+	for(var/mob/living/jailbird in contents)
+		jailbird.apply_damage(rand(5,15), BRUTE)
+	transport_cylinder.pipe_expel(src, get_turf(loc), NONE) //Direction: NONE, this makes the stuff spew everywhere (lol)
 
 // called when player tries to move while in a pipe
 /obj/structure/disposalholder/relaymove(mob/living/user)
 	if(!isliving(user))
 		return
-
-	if(user.stat || user.last_special <= world.time)
+	// If someone has sent you here to add a delay to this proc, inform them that it is a bug with /relaymove
+	// it's a minor bug, but it results in the proc being called much more frequently than it should, and when the bug is fixed the delay will work properly.
+	if(user.stat)
 		return
-	user.last_special = world.time+100
 
 	if(QDELETED(src))
 		return
 
 	for(var/mob/M in hearers(get_turf(src)))
-		to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
+		M.show_message("<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>", AUDIBLE_MESSAGE)
 	playsound(src, 'sound/effects/clang.ogg', 50, 0, 0)
 
-	// called to vent all gas in holder to a location
+// called to vent all gas in holder to a location
 /obj/structure/disposalholder/proc/vent_gas(atom/location)
 	location.assume_air(gas)  // vent all gas to turf
 	return
-
-/obj/structure/disposalholder/Destroy()
-	QDEL_NULL(gas)
-	if(contents.len)
-		var/turf/qdelloc = get_turf(src)
-		if(qdelloc)
-			for(var/atom/movable/AM in contents)
-				AM.forceMove(qdelloc)
-		else
-			log_and_message_admins("A disposal holder was deleted with contents in nullspace") //ideally, this should never happen
-
-	active = FALSE
-	return ..()

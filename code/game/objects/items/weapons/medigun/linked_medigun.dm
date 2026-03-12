@@ -14,7 +14,7 @@
 		medigun_base_unit = null
 	return ..()
 
-/obj/item/bork_medigun/linked/forceMove(atom/destination) //Forcemove override, ugh
+/obj/item/bork_medigun/linked/forceMove(atom/destination, direction, movetime) //Forcemove override, ugh
 	if(destination == medigun_base_unit || destination == medigun_base_unit.loc || isturf(destination))
 		. = doMove(destination, 0, 0)
 		if(isturf(destination))
@@ -29,6 +29,9 @@
 	return (medigun_base_unit.bcell && medigun_base_unit.bcell.checked_use(charge_amt))
 
 /obj/item/bork_medigun/linked/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(medigun_base_unit.is_twohanded())
 		update_twohanding()
 	if(busy)

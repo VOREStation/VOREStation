@@ -173,6 +173,9 @@
 
 // This dumps all the bullets right on the floor
 /obj/item/ammo_magazine/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(can_remove_ammo)
 		if(!stored_ammo.len)
 			to_chat(user, span_notice("[src] is already empty!"))
@@ -235,7 +238,7 @@ GLOBAL_LIST_EMPTY(magazine_icondata_states)
 /proc/magazine_icondata_cache_add(var/obj/item/ammo_magazine/M)
 	var/list/icon_keys = list()
 	var/list/ammo_states = list()
-	var/list/states = cached_icon_states(M.icon)
+	var/list/states = icon_states_fast(M.icon)
 	for(var/i = 0, i <= M.max_ammo, i++)
 		var/ammo_state = "[M.icon_state]-[i]"
 		if(ammo_state in states)

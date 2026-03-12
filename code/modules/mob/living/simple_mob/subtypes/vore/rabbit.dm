@@ -103,7 +103,7 @@
 	B.release_sound = "Pred Escape"
 	B.fancy_vore = TRUE
 	B.belly_fullscreen_color = "#b15aac"
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 
 /datum/say_list/rabbit
 	speak = list("chrrrs.")

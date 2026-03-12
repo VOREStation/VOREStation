@@ -95,9 +95,12 @@
 	attack_verb = null
 
 
-/obj/item/cell/device/weapon/gunsword/attack_self(mob/living/user as mob)
+/obj/item/cell/device/weapon/gunsword/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (active)
-		if ((CLUMSY in user.mutations) && prob(50))
+		if (CLUMSY_HARM_CHANCE(user))
 			user.visible_message(span_danger("\The [user] accidentally cuts [user.p_themselves()] with \the [src]."),\
 			span_danger("You accidentally cut yourself with \the [src]."))
 			user.take_organ_damage(5,5)

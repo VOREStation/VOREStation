@@ -22,7 +22,8 @@
 
 /datum/tgui_module/crew_manifest/self_deleting/tgui_close(mob/user)
 	. = ..()
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /datum/tgui_module/crew_manifest/self_deleting/tgui_state(mob/user)
 	return GLOB.tgui_always_state

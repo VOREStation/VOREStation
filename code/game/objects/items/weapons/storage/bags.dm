@@ -209,11 +209,11 @@
 /obj/item/storage/bag/ore/equipped(mob/user)
 	..()
 	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, /obj/item/storage/bag/ore/proc/autoload, user)
+	RegisterSignal(user, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/storage/bag/ore/proc/autoload, user)
 
 /obj/item/storage/bag/ore/dropped(mob/user)
 	..()
-	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 /obj/item/storage/bag/ore/proc/autoload(mob/user)
 	SIGNAL_HANDLER
@@ -422,6 +422,10 @@
 	name = "sheet snatcher 9000"
 	desc = null
 	capacity = 700//Borgs get more because >specialization
+
+/obj/item/storage/bag/sheetsnatcher/borg/proc/upgrade()
+	name += " of holding"
+	capacity = 5000
 
 // -----------------------------
 //           Cash Bag

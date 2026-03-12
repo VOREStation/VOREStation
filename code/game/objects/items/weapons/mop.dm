@@ -26,7 +26,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		if(reagents.total_volume < 1)
-			to_chat(user, span_notice("Your mop is dry!"))
+			user.balloon_alert(user, "your mop is dry!")
 			return
 
 		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
@@ -36,7 +36,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 			if(T)
 				T.wash(CLEAN_SCRUB)
 				reagents.trans_to_turf(T, 1, 10)
-			to_chat(user, span_notice("You have finished mopping!"))
+			user.balloon_alert(user, "you have finished mopping!")
 
 
 /obj/effect/attackby(obj/item/I, mob/user)

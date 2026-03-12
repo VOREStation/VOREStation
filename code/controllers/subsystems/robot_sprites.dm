@@ -85,13 +85,13 @@ SUBSYSTEM_DEF(robot_sprites)
 	if(!islist(sprite_list))
 		return 0
 
-	return sprite_list.len
+	return length(sprite_list)
 
 /datum/controller/subsystem/robot_sprites/proc/get_default_module_sprite(var/module)
 
 	var/list/module_sprites = get_module_sprites(module)
 
-	if(!module_sprites || !module_sprites.len)
+	if(!module_sprites || !length(module_sprites))
 		return
 
 	var/chosen_sprite
@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(robot_sprites)
 		RS.icon_x = text2num(splitted[1])
 		RS.icon_y = text2num(splitted[2])
 		RS.vis_height = text2num(splitted[2])
-		var/list/icon_states = cached_icon_states(RS.sprite_icon)
+		var/list/icon_states = icon_states_fast(RS.sprite_icon)
 		for(var/icon in icon_states)
 			// testing whitelist functionality ckey-...
 			if(findtext(icon, regex("ckey-")))

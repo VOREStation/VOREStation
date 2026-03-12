@@ -50,7 +50,7 @@
 	var/shown_robot_modules = 0 //Used to determine whether they have the module menu shown or not
 	var/atom/movable/screen/robot_modules_background
 
-	var/ui_theme
+	var/ui_theme = "ntos"
 	var/selecting_module = FALSE
 
 //3 Modules can be activated at any one time.
@@ -709,8 +709,7 @@
 
 				I.forceMove(loc)
 
-				if(C.installed == 1)
-					C.uninstall()
+				C.uninstall(TRUE)
 
 		else
 			if(locked)
@@ -805,7 +804,7 @@
 		else if(U.locked)
 			to_chat(user, span_filter_notice("The upgrade is locked and cannot be used yet!"))
 		else
-			if(U.action(src))
+			if(U.action(user, src))
 				to_chat(user, span_filter_notice("You apply the upgrade to [src]!"))
 				user.drop_item()
 				U.loc = src
@@ -893,7 +892,7 @@
 				user.put_in_active_hand(cell)
 				to_chat(user, span_filter_notice("You remove \the [cell]."))
 				cell = null
-				cell_component.uninstall()
+				cell_component.uninstall(TRUE)
 				update_icon()
 			else if(cell_component.installed == -1)
 				cell_component.installed = 0
@@ -917,8 +916,9 @@
 							return
 				if(I_HURT)
 					H.do_attack_animation(src)
-					if(H.species.can_shred(H))
-						attack_generic(H, rand(30,50), "slashed")
+					var/shreddamage = H.species.can_shred(H, FALSE, 15)
+					if(shreddamage)
+						attack_generic(H, shreddamage, "attacked")
 						return
 					else
 						playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
@@ -1347,8 +1347,8 @@
 
 /mob/living/silicon/robot/drop_item(var/atom/Target)
 	if(module_active && istype(module_active,/obj/item/gripper))
-		var/obj/item/gripper/G = module_active
-		G.drop_item_nm()
+		var/obj/item/gripper/robot_gripper = module_active
+		robot_gripper.drop_item_nm()
 
 /mob/living/silicon/robot/disable_spoiler_vision()
 	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY|BORGANOMALOUS)) // Whyyyyyyyy have seperate defines.
@@ -1441,6 +1441,8 @@
 /mob/living/silicon/robot/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
+	if(is_incorporeal(src) || is_incorporeal(M))
+		return FALSE
 	if(lying)
 		return FALSE
 	if(!ishuman(M))
@@ -1539,8 +1541,7 @@
 			return T
 		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
-		else
-			return FALSE
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/advanced/jetpack)
 		return has_upgrade_module(/obj/item/tank/jetpack/carbondioxide)
 	if(given_type == /obj/item/borg/upgrade/advanced/advhealth)
@@ -1561,16 +1562,35 @@
 			return T
 		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
-		else
-			return FALSE
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
 		var/obj/item/gun/energy/robotic/taser/T = has_upgrade_module(/obj/item/gun/energy/robotic/taser)
-		if(T && T.recharge_time <= 2)
+		if(T && T.recharge_time < T::recharge_time)
 			return T
 		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
-		else
-			return FALSE
+		return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_scanner)
+		var/obj/item/mining_scanner/robot/robot_scanner = has_upgrade_module(/obj/item/mining_scanner/robot)
+		if(robot_scanner && robot_scanner.exact)
+			return robot_scanner
+		else if(!robot_scanner)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_snatcher)
+		var/obj/item/storage/bag/sheetsnatcher/borg/robot_snatcher = has_upgrade_module(/obj/item/storage/bag/sheetsnatcher/borg)
+		if(robot_snatcher && robot_snatcher.capacity > robot_snatcher::capacity)
+			return robot_snatcher
+		else if(!robot_snatcher)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_mailbag)
+		var/obj/item/storage/bag/mail/borg/letter_bag = has_upgrade_module(/obj/item/storage/bag/mail/borg)
+		if(letter_bag && letter_bag.storage_slots > letter_bag::storage_slots)
+			return letter_bag
+		else if(!letter_bag)
+			return ""
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)

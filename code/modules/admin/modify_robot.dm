@@ -57,9 +57,7 @@
 	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[target.modtype]
 
 	if(target)
-		var/ui_theme = target.get_ui_theme()
-		if(ui_theme)
-			.["theme"] = ui_theme
+		.["theme"] = target.get_ui_theme()
 		.["target"] = list()
 		.["target"]["name"] = target.name
 		.["target"]["ckey"] = target.ckey
@@ -228,7 +226,7 @@
 			target.module.modules.Add(add_item)
 			target.module.contents.Add(add_item)
 			spawn(0)
-				SEND_SIGNAL(add_item, COMSIG_MOVABLE_MOVED)
+				SEND_SIGNAL(add_item, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 			target.hud_used?.update_robot_modules_display()
 			if(istype(add_item, /obj/item/stack/))
 				var/obj/item/stack/item_with_synth = add_item
@@ -330,7 +328,7 @@
 				U = UN
 			if(istype(U, /obj/item/borg/upgrade/restricted))
 				target.module.supported_upgrades |= new_upgrade
-			if(!U.action(target))
+			if(!U.action(ui.user, target))
 				return FALSE
 			U.loc = target
 			target.hud_used?.update_robot_modules_display()

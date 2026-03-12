@@ -21,7 +21,7 @@ import { getLayoutState, LAYOUT, LayoutToggle } from './common/LayoutToggle';
 
 type Data = {
   chargesMoney: BooleanLike;
-  products: product[];
+  products: Product[];
   coin: string | BooleanLike;
   actively_vending: string | null;
   panel: BooleanLike;
@@ -31,7 +31,7 @@ type Data = {
   user: { name: string; job: string };
 };
 
-type product = {
+type Product = {
   key: number;
   name: string;
   desc: string;
@@ -137,7 +137,7 @@ export const VendingMain = (props) => {
 
 export const VendingProducts = (props: {
   layout: string;
-  products: product[];
+  products: Product[];
 }) => {
   const { layout, products } = props;
 
@@ -148,7 +148,7 @@ export const VendingProducts = (props: {
   }
 };
 
-export const VendingProductsGrid = (props: { products: product[] }) => {
+export const VendingProductsGrid = (props: { products: Product[] }) => {
   const { act } = useBackend();
   const { products } = props;
 
@@ -182,7 +182,7 @@ export const VendingProductsGrid = (props: { products: product[] }) => {
   );
 };
 
-export const VendingProductsList = (props: { products: product[] }) => {
+export const VendingProductsList = (props: { products: Product[] }) => {
   const { products } = props;
 
   return (
@@ -194,7 +194,7 @@ export const VendingProductsList = (props: { products: product[] }) => {
   );
 };
 
-const VendingRow = (props: { product: product }) => {
+const VendingRow = (props: { product: Product }) => {
   const { act, data } = useBackend<Data>();
   const { actively_vending } = data;
   const { product } = props;
@@ -274,15 +274,15 @@ export const VendingMaintenance = (props) => {
  * Search box
  */
 export const prepareSearch = (
-  products: product[],
+  products: Product[],
   searchText: string = '',
-): product[] => {
-  const testSearch = createSearch(
+): Product[] => {
+  const testSearch = createSearch<Product>(
     searchText,
-    (product: product) => product.name,
+    (product) => product.name,
   );
   return flow([
-    (products: product[]) => {
+    (products: Product[]) => {
       // Optional search term
       if (!searchText) {
         return products;

@@ -199,6 +199,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     reagent_transfer_verb,
     gen_time_display,
     custom_max_volume,
+    reagent_gen_cost_limit,
     vorefootsteps_sounds,
     reagent_mode_flag_list,
     liquid_overlay,
@@ -694,10 +695,13 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += `<div id="settingsAccordion${index}-collapseThree" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingThree">`;
   result += '<div class="accordion-body">';
   result += `<b>Belly Interactions (${
-    escapable
-      ? '<span style="color: green;">Enabled'
-      : '<span style="color: red;">Disabled'
+    escapable === 1
+      ? '<span style="color: green;">Enabled (Default)'
+      : escapable === 2
+        ? '<span style="color: green;">Enabled (Intent)'
+        : '<span style="color: red;">Disabled'
   }</span>)</b>`;
+
   result += '<ul class="list-group">';
 
   const interactionItems = [
@@ -844,6 +848,10 @@ export const generateBellyString = (belly: Belly, index: number) => {
     { label: 'Transfer Verb', value: reagent_transfer_verb },
     { label: 'Generation Time', value: gen_time_display },
     { label: 'Liquid Capacity', value: custom_max_volume },
+    {
+      label: 'Generation Limit (Nutrition / Charge) %',
+      value: reagent_gen_cost_limit,
+    },
   ];
 
   result += formatListItems(liquidItems);

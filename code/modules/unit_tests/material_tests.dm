@@ -5,9 +5,8 @@
 
 /datum/unit_test/materials_shall_have_names/Run()
 	var/list/failures = list()
-	populate_material_list()
-	for(var/name in global.name_to_material)
-		var/datum/material/mat = global.name_to_material[name]
+	for(var/name, value in GLOB.name_to_material)
+		var/datum/material/mat = value
 		if(!mat)
 			continue // how did we get here?
 		if(!mat.display_name || !mat.use_name || !mat.sheet_singular_name || !mat.sheet_plural_name || !mat.sheet_collective_name)

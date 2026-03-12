@@ -73,7 +73,10 @@
 	D.wrapped = R
 	D.name = "small parcel - 'EFTPOS access code'"
 
-/obj/item/eftpos/attack_self(mob/user as mob)
+/obj/item/eftpos/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(get_dist(src,user) <= 1)
 		var/dat = span_bold("[eftpos_name]") + "<br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting IT Support</i><br>"

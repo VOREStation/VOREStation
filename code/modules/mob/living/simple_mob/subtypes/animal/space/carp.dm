@@ -55,7 +55,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	attacktext = list("bitten")
 
-	organ_names = /decl/mob_organ_names/fish
+	organ_names = /datum/decl/mob_organ_names/fish
 
 	meat_amount = 5
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat
@@ -160,7 +160,7 @@
 	B.digest_brute = 0.5
 	B.digest_burn = 0.5
 	B.escapechance = 20
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 	B.belly_fullscreen_color = "#660021"
 	B.belly_fullscreen_color2 = "#660021"
 	B.fancy_vore = 1

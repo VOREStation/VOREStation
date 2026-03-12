@@ -16,7 +16,7 @@ export const SubtabLoadout = (props: {
   const { act } = useBackend();
   const { data, staticData, serverData } = props;
   const { gear_slot, total_cost, active_gear_list, gear_tweaks } = data;
-  const { categories, max_gear_cost } = staticData;
+  const { categories = {}, max_gear_cost } = staticData;
 
   const [activeCategory, setActiveCategory] = useState(
     Object.keys(categories)[0],

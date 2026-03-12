@@ -19,7 +19,7 @@
 	// Flooring data.
 	var/flooring_override
 	var/initial_flooring
-	var/decl/flooring/flooring
+	var/datum/decl/flooring/flooring
 	var/mineral = DEFAULT_WALL_MATERIAL
 	var/can_be_plated = TRUE // This is here for inheritance's sake. Override to FALSE for turfs you don't want someone to simply slap a plating over such as hazards.
 
@@ -50,7 +50,7 @@
 	decals = old_decals
 	old_decals = current_decals
 
-/turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring, var/initializing)
+/turf/simulated/floor/proc/set_flooring(var/datum/decl/flooring/newflooring, var/initializing)
 	//make_plating(defer_icon_update = 1)
 	if(is_plating() && !initializing) // Plating -> Flooring
 		swap_decals()
@@ -150,7 +150,7 @@
 			var/turf/simulated/wall/T = get_turf(src) // Ref to the wall we just built.
 			// Apparently set_material(...) for walls requires refs to the material singletons and not strings.
 			// This is different from how other material objects with their own set_material(...) do it, but whatever.
-			var/datum/material/M = name_to_material[the_rcd.material_to_use]
+			var/datum/material/M = GLOB.name_to_material[the_rcd.material_to_use]
 			T.set_material(M, the_rcd.make_rwalls ? M : null, M)
 			T.add_hiddenprint(user)
 			return TRUE

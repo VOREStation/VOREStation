@@ -16,16 +16,24 @@
 
 /obj/effect/anomaly/grav/anomalyEffect(seconds_per_tick)
 	..()
+	if(stats)
+		return
 	boing = TRUE
 	for(var/obj/O in orange(4, src))
 		if(!O.anchored)
 			step_towards(O, src)
 	for(var/mob/living/M in range(0, src))
-		if(!M.can_overcome_gravity())
-			gravShock(M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.item_flags & NOSLIP))
+				continue
+		gravShock(M)
 	for(var/mob/living/M in range(4, src))
-		if(!M.can_overcome_gravity())
-			step_towards(M, src)
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.item_flags & NOSLIP))
+				continue
+		step_towards(M, src)
 	for(var/obj/O in range(0, src))
 		if(O.anchored)
 			continue
@@ -87,3 +95,14 @@
 */
 /obj/effect/temp_visual/circle_wave/gravity
 	color = COLOR_NAVY
+
+/obj/effect/anomaly/grav/anomalyPulse()
+	if(!..())
+		return
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		else
+			anomalyEffect()

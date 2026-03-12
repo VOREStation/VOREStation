@@ -94,6 +94,16 @@
 /obj/item/clothing/gloves/fingerless/alt
 	icon_state = "fingerlessgloves_alt"
 
+/obj/item/clothing/gloves/fingerless/mid
+	desc = "A pair of gloves that don't actually cover the fingers. These ones go about halfway up the forearm!"
+	name = "long fingerless gloves"
+	icon_state = "fingerlessmid_black"
+
+/obj/item/clothing/gloves/fingerless/long
+	desc = "A pair of gloves that don't actually cover the fingers. These ones go most of the way to the elbow!"
+	name = "elbow-length fingerless gloves"
+	icon_state = "fingerlesslong_black"
+
 /obj/item/clothing/gloves/fingerless_recolourable
 	desc = "A pair of gloves that don't actually cover the fingers."
 	name = "fingerless gloves"
@@ -102,3 +112,13 @@
 
 /obj/item/clothing/gloves/fingerless_recolourable/alt
 	icon_state = "fingerlessgloves_rc_alt"
+
+/obj/item/clothing/gloves/fingerless_recolourable/mid
+	desc = "A pair of gloves that don't actually cover the fingers. These ones go about halfway up the forearm!"
+	name = "long fingerless gloves"
+	icon_state = "fingerlessmid_white"
+
+/obj/item/clothing/gloves/fingerless_recolourable/long
+	desc = "A pair of gloves that don't actually cover the fingers. These ones go most of the way to the elbow!"
+	name = "elbow-length fingerless gloves"
+	icon_state = "fingerlesslong_white"

@@ -1,6 +1,6 @@
 #define TANK_IDEAL_PRESSURE 1015 //Arbitrary.
 
-var/list/global/tank_gauge_cache = list()
+GLOBAL_LIST_EMPTY(tank_gauge_cache)
 
 /obj/item/tank
 	name = "tank"
@@ -209,7 +209,10 @@ var/list/global/tank_gauge_cache = list()
 
 
 
-/obj/item/tank/attack_self(mob/user as mob)
+/obj/item/tank/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return
 	add_fingerprint(user)
 	if (!(src.air_contents))
 		return
@@ -374,9 +377,9 @@ var/list/global/tank_gauge_cache = list()
 	cut_overlays()
 	add_bomb_overlay()
 	var/indicator = "[gauge_icon][(gauge_pressure == -1) ? "overload" : gauge_pressure]"
-	if(!tank_gauge_cache[indicator])
-		tank_gauge_cache[indicator] = image(icon, indicator)
-	add_overlay(tank_gauge_cache[indicator])
+	if(!GLOB.tank_gauge_cache[indicator])
+		GLOB.tank_gauge_cache[indicator] = image(icon, indicator)
+	add_overlay(GLOB.tank_gauge_cache[indicator])
 
 
 

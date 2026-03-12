@@ -6,7 +6,7 @@
 
 	matter = list(MAT_STEEL = 50,MAT_GLASS = 50)
 
-	req_one_access = list(ACCESS_ENGINE, ACCESS_TALON) // Access to unlock the device, ignored if emagged //VOREStation Edit - Add talon
+	req_one_access = list(ACCESS_ENGINE, ACCESS_TALON_ENGINEER) // Access to unlock the device, ignored if emagged //VOREStation Edit - Add talon
 	var/list/apply_any_access = list(ACCESS_ENGINE) // Can apply any access, not just their own
 
 	var/secure = 0 //if set, then wires will be randomized and bolts will drop if the door is broken
@@ -22,9 +22,12 @@
 		to_chat(user, span_notice("You remove the access restrictions on [src]!"))
 		return 1
 
-/obj/item/airlock_electronics/attack_self(mob/user as mob)
+/obj/item/airlock_electronics/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
-		return ..(user)
+		return FALSE
 
 	var/t1 = span_bold("Access control") + "<br>\n"
 

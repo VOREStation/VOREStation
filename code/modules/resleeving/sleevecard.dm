@@ -4,11 +4,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
-	var/emagged = FALSE
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	has_emag_toolkit = FALSE // sleevecards don't have multitools or signalers,  you can just change their laws
+	special_handling = TRUE
 
 /obj/item/paicard/sleevecard/attack_ghost(mob/user as mob)
-	return
+	return // No ghosts can invite, these are intended for sleevemates only
 
 /obj/item/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/sleevemate))
@@ -66,6 +67,9 @@
 	return 0
 
 /obj/item/paicard/sleevecard/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 
 	if(!pai)
@@ -73,7 +77,7 @@
 	else
 		if(!emagged)
 			to_chat(user,span_notice("\The [src] displays the name '[pai]'."))
-		else ..()
+		else ..(user, TRUE)
 
 /mob/living/silicon/pai/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.
@@ -90,6 +94,8 @@
 	pda.ownjob = "Sleevecard"
 	pda.owner = text("[]", src)
 	pda.name = pda.owner + " (" + pda.ownjob + ")"
+
+	default_language = GLOB.all_languages[LANGUAGE_GALCOM] // Same issue as bots
 
 
 /mob/living/silicon/pai/infomorph/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -120,10 +126,10 @@
 
 	// Emotions
 	var/list/emotions = list()
-	for(var/name in pai_emotions)
+	for(var/name in GLOB.pai_emotions)
 		var/list/emote = list()
 		emote["name"] = name
-		emote["id"] = pai_emotions[name]
+		emote["id"] = GLOB.pai_emotions[name]
 		emotions.Add(list(emote))
 
 	data["emotions"] = emotions

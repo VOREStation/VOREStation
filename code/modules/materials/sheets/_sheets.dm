@@ -21,6 +21,7 @@
 	var/apply_colour //temp pending icon rewrite
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
+	custom_handling = TRUE
 
 /obj/item/stack/material/Initialize(mapload)
 	. = ..()
@@ -90,9 +91,12 @@
 		M.update_strings()
 	return transfer
 
-/obj/item/stack/material/attack_self(var/mob/user)
+/obj/item/stack/material/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!material.build_windows(user, src))
-		..()
+		tgui_interact(user)
 
 /obj/item/stack/material/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack/cable_coil))

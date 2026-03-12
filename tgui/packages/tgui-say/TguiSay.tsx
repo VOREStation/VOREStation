@@ -139,7 +139,7 @@ export function TguiSay() {
     const prefix = currentPrefix ?? '';
 
     if (value?.length) {
-      if (value.length < maxLength) {
+      if (value.length <= maxLength) {
         chatHistory.current.add(value);
         Byond.sendMessage('entry', {
           channel: iterator.current(),

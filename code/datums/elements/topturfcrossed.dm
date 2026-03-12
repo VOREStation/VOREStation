@@ -14,11 +14,11 @@
 
 /datum/component/topturfcrossed/RegisterWithParent()
 	our_owner.AddComponent(/datum/component/recursive_move) // Required if we want to be useful at all
-	RegisterSignal(our_owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_location_change))
+	RegisterSignal(our_owner, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_location_change))
 	update_turf_signals(get_turf(our_owner))
 
 /datum/component/topturfcrossed/UnregisterFromParent()
-	UnregisterSignal(our_owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(our_owner, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	update_turf_signals(null)
 
 /datum/component/topturfcrossed/proc/handle_location_change(datum/source, atom/old_loc, atom/new_loc)

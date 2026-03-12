@@ -81,6 +81,7 @@
 	vore_default_mode = DM_SELECT
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to devour"
+	can_be_drop_prey = FALSE
 
 /mob/living/simple_mob/vore/scel/Login()
 	. = ..()
@@ -102,7 +103,7 @@
 	B.vore_sound = "Tauric Swallow"
 	B.release_sound = "Pred Escape"
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "a_anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 	B.fancy_vore = 1
 	B.selective_preference = DM_SELECT
 	B.vore_verb = "devour"

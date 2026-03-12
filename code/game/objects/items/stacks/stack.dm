@@ -31,6 +31,10 @@
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 	var/is_building = FALSE
 
+	var/custom_handling = FALSE
+	var/beacons = FALSE
+	var/sandbags = FALSE
+
 /obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
 	if(!stacktype)
@@ -84,6 +88,11 @@
 		. += get_examine_string()
 
 /obj/item/stack/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(custom_handling)
+		return FALSE
 	tgui_interact(user)
 
 /obj/item/stack/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
@@ -433,16 +442,19 @@
 	if(istype(W, /obj/item/gripper))
 		var/obj/item/gripper/G = W
 		G.consolidate_stacks(src)
+		if(QDELETED(src))
+			return
 
 	else if(istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)
+		if(QDELETED(src))
+			return
 
-		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && user.check_current_machine(S))
-				S.interact(user)
-			if (src && user.check_current_machine(src))
-				src.interact(user)
+		if (S && user.check_current_machine(S))
+			S.interact(user)
+		if (src && user.check_current_machine(src))
+			src.interact(user)
 	else
 		return ..()
 

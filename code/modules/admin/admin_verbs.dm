@@ -3,14 +3,12 @@
 	var/rights = holder.rank_flags()
 	if(rights & R_HOLDER)
 		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
-		if(rights & R_ADMIN)		add_verb(src, admin_verbs_admin)
-		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
-		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(rights & R_DEBUG)		add_verb(src, admin_verbs_debug)
-		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(rights & R_SPAWN)		add_verb(src, admin_verbs_spawn)
-		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(rights & R_EVENT)		add_verb(src, admin_verbs_event_manager)
+		if(rights & R_ADMIN)		add_verb(src, GLOB.admin_verbs_admin)
+		if(rights & R_SERVER)		add_verb(src, GLOB.admin_verbs_server)
+		if(rights & R_DEBUG)		add_verb(src, GLOB.admin_verbs_debug)
+		if(rights & R_SPAWN)		add_verb(src, GLOB.admin_verbs_spawn)
+		if(rights & R_MOD)			add_verb(src, GLOB.admin_verbs_mod)
+		if(rights & R_EVENT)		add_verb(src, GLOB.admin_verbs_event_manager)
 
 	// NEW ADMIN VERBS SYSTEM
 	SSadmin_verbs.assosciate_admin(src)
@@ -19,13 +17,11 @@
 	// OLD ADMIN VERB SYSTEM
 	remove_verb(src, list(
 		/client/proc/togglebuildmodeself,
-		admin_verbs_admin,
-		admin_verbs_fun,
-		admin_verbs_server,
-		admin_verbs_debug,
-		admin_verbs_sounds,
-		admin_verbs_spawn,
-		debug_verbs
+		GLOB.admin_verbs_admin,
+		GLOB.admin_verbs_server,
+		GLOB.admin_verbs_debug,
+		GLOB.admin_verbs_spawn,
+		GLOB.debug_verbs
 		))
 
 	// NEW ADMIN VERBS SYSTEM
@@ -35,7 +31,7 @@
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin.Misc"
 
-	remove_verb(src, list(/client/proc/hide_most_verbs, admin_verbs_hideable))
+	remove_verb(src, list(/client/proc/hide_most_verbs, GLOB.admin_verbs_hideable))
 	add_verb(src, /client/proc/show_verbs)
 
 	to_chat(src, span_filter_system(span_interface("Most of your adminverbs have been hidden.")))
@@ -64,17 +60,14 @@
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/admin_ghost()
-	set category = "Admin.Game"
-	set name = "Aghost"
-	if(!check_rights_for(src, R_HOLDER))	return
-
+ADMIN_VERB(admin_ghost, R_HOLDER, "Aghost", "Ghost out of your body with the option to return at any time.", ADMIN_CATEGORY_GAME)
 	var/build_mode
-	if(src.buildmode)
-		build_mode = tgui_alert(src, "You appear to be currently in buildmode. Do you want to re-enter buildmode after aghosting?", "Buildmode", list("Yes", "No"))
+	if(user.buildmode)
+		build_mode = tgui_alert(user, "You appear to be currently in buildmode. Do you want to re-enter buildmode after aghosting?", "Buildmode", list("Yes", "No"))
 		if(build_mode != "Yes")
-			to_chat(src, "Will not re-enter buildmode after switch.")
+			to_chat(user, "Will not re-enter buildmode after switch.")
 
+	var/mob/mob = user.mob
 	if(isobserver(mob))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
@@ -93,7 +86,7 @@
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(isnewplayer(mob))
-		to_chat(src, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
+		to_chat(user, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
 	else
 		//ghostize
 		var/mob/body = mob
@@ -105,32 +98,28 @@
 				togglebuildmode(ghost)
 		else
 			ghost = body.ghostize(1, TRUE)
-		init_verbs()
+		user.init_verbs()
 		if(body)
 			body.teleop = ghost
 			if(!body.key)
-				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
+				body.key = "@[user.key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/invisimin()
-	set name = "Invisimin"
-	set category = "Admin.Game"
-	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
+ADMIN_VERB(invisimin, R_ADMIN|R_MOD|R_EVENT, "Invisimin", "Toggles ghost-like invisibility (Don't abuse this).", ADMIN_CATEGORY_GAME)
+	var/mob/mob = user.mob
+	if(mob.invisibility > INVISIBILITY_OBSERVER)
+		to_chat(user, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
+		return
 
-	if(check_rights(R_HOLDER) && mob)
-		if(mob.invisibility > INVISIBILITY_OBSERVER)
-			to_chat(mob, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
-			return
+	if(mob.invisibility == INVISIBILITY_OBSERVER)
+		mob.invisibility = initial(mob.invisibility)
+		to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
+		mob.alpha = max(mob.alpha + 100, 255)
+		return
 
-		if(mob.invisibility == INVISIBILITY_OBSERVER)
-			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
-			mob.alpha = max(mob.alpha + 100, 255)
-			return
-
-		mob.invisibility = INVISIBILITY_OBSERVER
-		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
-		mob.alpha = max(mob.alpha - 100, 0)
+	mob.invisibility = INVISIBILITY_OBSERVER
+	to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
+	mob.alpha = max(mob.alpha - 100, 0)
 
 ADMIN_VERB(list_bombers, R_ADMIN, "List Bombers", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
 	user.holder.list_bombers()
@@ -246,7 +235,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	var/datum/preferences/D
 	var/client/C = GLOB.directory[warned_ckey]
 	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
+	else	D = GLOB.preferences_datums[warned_ckey]
 
 	if(!D)
 		to_chat(src, span_warning("Error: warn(): No such ckey found."))
@@ -274,19 +263,15 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 #undef MAX_WARNS
 #undef AUTOBANTIME
 
-/client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Fun.Do Not"
-	set name = "Drop Bomb"
-	set desc = "Cause an explosion of varying strength at your location."
-
-	var/turf/epicenter = mob.loc
+ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN_DO_NOT) // Some admin dickery that can probably be done better -- TLE
+	var/turf/epicenter = user.mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap Bomb", "SM Blast", "Custom Bomb", "Cancel")
-	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Explosion Choice", choices)
+	var/choice = tgui_input_list(user, "What size explosion would you like to produce?", "Explosion Choice", choices)
 	switch(choice)
 		if(null)
-			return 0
+			return FALSE
 		if("Cancel")
-			return 0
+			return FALSE
 		if("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
 		if("Medium Bomb")
@@ -298,51 +283,44 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 		if("SM Blast")
 			explosion(epicenter, 8, 16, 24, 32)
 		if("Custom Bomb")
-			var/devastation_range = tgui_input_number(usr, "Devastation range (in tiles):")
-			var/heavy_impact_range = tgui_input_number(usr, "Heavy impact range (in tiles):")
-			var/light_impact_range = tgui_input_number(usr, "Light impact range (in tiles):")
-			var/flash_range = tgui_input_number(usr, "Flash range (in tiles):")
+			var/devastation_range = tgui_input_number(user, "Devastation range (in tiles):")
+			var/heavy_impact_range = tgui_input_number(user, "Heavy impact range (in tiles):")
+			var/light_impact_range = tgui_input_number(user, "Light impact range (in tiles):")
+			var/flash_range = tgui_input_number(user, "Flash range (in tiles):")
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins(span_blue("[ckey] creating an admin explosion at [epicenter.loc]."))
+	message_admins(span_blue("[user.ckey] creating an admin explosion at [epicenter.loc]."))
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_give_modifier(var/mob/living/L)
-	set category = "Debug.Game"
-	set name = "Give Modifier"
-	set desc = "Makes a mob weaker or stronger by adding a specific modifier to them."
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
-
-	if(!L)
-		to_chat(usr, span_warning("Looks like you didn't select a mob."))
+ADMIN_VERB(admin_give_modifier, R_EVENT, "Give Modifier", "Makes a mob weaker or stronger by adding a specific modifier to them.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/living_target)
+	if(!living_target)
+		to_chat(user, span_warning("Looks like you didn't select a mob."))
 		return
 
 	var/list/possible_modifiers = subtypesof(/datum/modifier)
 
-	var/new_modifier_type = tgui_input_list(usr, "What modifier should we add to [L]?", "Modifier Type", possible_modifiers)
+	var/new_modifier_type = tgui_input_list(user, "What modifier should we add to [living_target]?", "Modifier Type", possible_modifiers)
 	if(!new_modifier_type)
 		return
-	var/duration = tgui_input_number(usr, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration")
+	var/duration = tgui_input_number(user, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration")
 	if(duration == 0)
 		duration = null
 	else
 		duration = duration SECONDS
 
-	L.add_modifier(new_modifier_type, duration)
-	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].")
+	living_target.add_modifier(new_modifier_type, duration)
+	log_and_message_admins("has given [key_name(living_target)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].", user)
 
-/client/proc/make_sound(var/obj/O in world) // -- TLE
-	set category = "Fun.Sounds"
-	set name = "Make Sound"
-	set desc = "Display a message to everyone who can hear the target"
-	if(O)
-		var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", "", MAX_MESSAGE_LEN)
-		if(!message)
-			return
-		O.audible_message(message)
-		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
-		message_admins(span_blue("[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound."), 1)
-		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+ADMIN_VERB_AND_CONTEXT_MENU(make_sound, R_FUN, "Make Sound", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_SOUNDS, obj/target_object in world)
+	if(!target_object)
+		return
 
+	var/message = tgui_input_text(user, "What do you want the message to be?", "Make Sound", "", MAX_MESSAGE_LEN)
+	if(!message)
+		return
+	target_object.audible_message(message)
+	log_admin("[key_name(user)] made [target_object] at [target_object.x], [target_object.y], [target_object.z]. make a sound")
+	message_admins(span_blue("[key_name_admin(user)] made [target_object] at [target_object.x], [target_object.y], [target_object.z]. make a sound."))
+	feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
@@ -351,15 +329,16 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 		togglebuildmode(src.mob)
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/object_talk(var/msg as text) // -- TLE
-	set category = "Fun.Narrate"
-	set name = "oSay"
-	set desc = "Display a message to everyone who can hear the target"
-	if(mob.control_object)
-		if(!msg)
-			return
-		for (var/mob/V in hearers(mob.control_object))
-			V.show_message(span_filter_say(span_bold("[mob.control_object.name]") + " says: \"[msg]\""), 2)
+
+ADMIN_VERB(object_talk, R_FUN, "oSay", "Display a message to everyone who can hear the target.", ADMIN_CATEGORY_FUN_NARRATE, msg as text)
+	var/mob/user_mob = user.mob
+	if(!user_mob.control_object)
+		return
+
+	if(!msg)
+		return
+	for(var/mob/V in hearers(user_mob.control_object))
+		V.show_message(span_filter_say(span_bold("[user_mob.control_object.name]") + " says: \"[msg]\""), 2)
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/kill_air() // -- TLE
@@ -474,7 +453,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	set category = "Admin.Game"
 	if(check_rights(R_HOLDER))
 		var/list/jobs = list()
-		for (var/datum/job/J in job_master.occupations)
+		for (var/datum/job/J in GLOB.job_master.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if (!jobs.len)
@@ -482,7 +461,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 			return
 		var/job = tgui_input_list(usr, "Please select job slot to free", "Free job slot", jobs)
 		if (job)
-			job_master.FreeRole(job)
+			GLOB.job_master.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
 
@@ -531,7 +510,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
 ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
-	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
+	var/datum/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", typesof(/datum/spell))
 	if(!S)
 		return
 	spell_recipient.spell_list += new S
@@ -541,7 +520,7 @@ ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CAT
 
 ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
 	var/list/target_spell_list = list()
-	for(var/spell/spell in removal_target.spell_list)
+	for(var/datum/spell/spell in removal_target.spell_list)
 		target_spell_list[spell.name] = spell
 
 	if(!length(target_spell_list))
@@ -550,7 +529,7 @@ ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	var/chosen_spell = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
 	if(isnull(chosen_spell))
 		return
-	var/spell/to_remove = target_spell_list[chosen_spell]
+	var/datum/spell/to_remove = target_spell_list[chosen_spell]
 	if(!istype(to_remove))
 		return
 
@@ -592,7 +571,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	if(!A)
 		return
 	A.flags |= AREA_BLOCK_GHOST_SIGHT
-	ghostnet.addArea(A)
+	GLOB.ghostnet.addArea(A)
 
 /client/proc/remove_hidden_area()
 	set name = "Remove Ghostsight Block Area"
@@ -608,7 +587,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	if(!A)
 		return
 	A.flags &= ~(AREA_BLOCK_GHOST_SIGHT)
-	ghostnet.removeArea(A)
+	GLOB.ghostnet.removeArea(A)
 
 /client/proc/hide_motion_tracker_feedback()
 	set name = "Toggle Motion Echos"
@@ -620,50 +599,43 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 	SSmotiontracker.hide_all = !SSmotiontracker.hide_all
 	log_admin("[key_name(usr)] changed the motion echo visibility to [SSmotiontracker.hide_all ? "hidden" : "visible"].")
 
-/client/proc/adminorbit()
-	set category = "Fun.Event Kit"
-	set name = "Orbit Things"
-	set desc = "Makes something orbit around something else."
-	set popup_menu = FALSE
-
-	if(!check_rights(R_FUN))
-		return
-
+ADMIN_VERB(adminorbit, R_FUN, "Orbit Things", "Makes something orbit around something else.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/center
 	var/atom/movable/orbiter
 	var/input
 
-	if(check_rights(R_HOLDER) && holder.marked_datum)
-		input = tgui_alert(usr, "You have \n[holder.marked_datum] marked, should this be the center of the orbit, or the orbiter?", "Orbit", list("Center", "Orbiter", "Neither"))
+	var/datum/marked_datum = user.holder.marked_datum
+	if(marked_datum)
+		input = tgui_alert(user, "You have \n[marked_datum] marked, should this be the center of the orbit, or the orbiter?", "Orbit", list("Center", "Orbiter", "Neither"))
 		switch(input)
 			if("Center")
-				center = holder.marked_datum
+				center = marked_datum
 			if("Orbiter")
-				orbiter = holder.marked_datum
+				orbiter = marked_datum
 	var/list/possible_things = list()
-	for(var/T as mob in view(view))	//Let's do mobs before objects
+	for(var/T as mob in view(user.view))	//Let's do mobs before objects
 		if(ismob(T))
 			possible_things |= T
-	for(var/T as obj in view(view))
+	for(var/T as obj in view(user.view))
 		if(isobj(T))
 			possible_things |= T
 	if(!center)
-		center = tgui_input_list(src, "What should act as the center of the orbit?", "Center", possible_things)
+		center = tgui_input_list(user, "What should act as the center of the orbit?", "Center", possible_things)
 		possible_things -= center
 	if(!orbiter)
-		orbiter = tgui_input_list(src, "What should act as the orbiter of the orbit?", "Orbiter", possible_things)
+		orbiter = tgui_input_list(user, "What should act as the orbiter of the orbit?", "Orbiter", possible_things)
 	if(!center || !orbiter)
-		to_chat(usr, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
+		to_chat(user, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
 		return
 	if(center == orbiter)
-		to_chat(usr, span_warning("The center of the orbit cannot also be the orbiter."))
+		to_chat(user, span_warning("The center of the orbit cannot also be the orbiter."))
 		return
 	if(isturf(orbiter))
-		to_chat(usr, span_warning("The orbiter cannot be a turf. It can only be used as a center."))
+		to_chat(user, span_warning("The orbiter cannot be a turf. It can only be used as a center."))
 		return
-	var/distance = tgui_input_number(usr, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
-	var/speed = tgui_input_number(usr, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
-	var/segments = tgui_input_number(usr, "How many segments will they have in their orbit? (3 is a triangle, 36 is a circle, etc)", "Orbit Segments", 36)
+	var/distance = tgui_input_number(user, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
+	var/speed = tgui_input_number(user, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
+	var/segments = tgui_input_number(user, "How many segments will they have in their orbit? (3 is a triangle, 36 is a circle, etc)", "Orbit Segments", 36)
 	var/clock = FALSE
 	if(!distance)
 		distance = 32
@@ -674,7 +646,7 @@ ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of
 		speed *= -1
 	if(!segments)
 		segments = 36
-	if(tgui_alert(usr, "\The [orbiter] will orbit around [center]. Is this okay?", "Confirm Orbit", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, "\The [orbiter] will orbit around [center]. Is this okay?", "Confirm Orbit", list("Yes", "No")) == "Yes")
 		orbiter.orbit(center, distance, clock, speed, segments)
 
 ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tickets from the global list.", "Admin.Investigate")
@@ -757,4 +729,4 @@ ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tic
 			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
 
 ADMIN_VERB(modify_shift_end, (R_ADMIN|R_EVENT|R_SERVER), "Modify Shift End", "Modifies the hard shift end time.", "Server.Game")
-	transfer_controller.modify_hard_end(user)
+	GLOB.transfer_controller.modify_hard_end(user)

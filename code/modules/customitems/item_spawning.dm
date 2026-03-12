@@ -78,7 +78,7 @@
 	var/list/new_item_icons = list()
 	var/list/new_item_state_slots = list()
 
-	var/list/available_states = cached_icon_states(CUSTOM_ITEM_MOB)
+	var/list/available_states = icon_states_fast(CUSTOM_ITEM_MOB)
 
 	//If l_hand or r_hand are not present, preserve them using item_icons/item_state_slots
 	//Then use icon_override to make every other slot use the custom sprites by default.

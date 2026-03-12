@@ -97,4 +97,4 @@
 /client/proc/ZASSettings()
 	set category = "Debug.Dangerous"
 
-	vsc.SetDefault(mob)
+	GLOB.vsc.SetDefault(mob)

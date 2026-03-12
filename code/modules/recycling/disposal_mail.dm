@@ -72,6 +72,11 @@
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 	return
 
+/obj/structure/bigDelivery/attack_robot(mob/living/user)
+	if(user.stat || !Adjacent(user))
+		return
+	unwrap()
+
 /obj/structure/bigDelivery/update_icon()
 	cut_overlays()
 	if(nameset || examtext)
@@ -134,9 +139,12 @@
 	var/nameset = 0
 	var/tag_x
 
-/obj/item/smallDelivery/attack_self(mob/user as mob)
-	if (src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = user.loc
+/obj/item/smallDelivery/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if (wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
+		wrapped.forceMove(user.loc)
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
 		else
@@ -195,6 +203,11 @@
 				"You hear someone scribbling a note.")
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 	return
+
+/obj/item/smallDelivery/attack_robot(mob/living/user)
+	if(user.stat || !Adjacent(user))
+		return
+	attack_self(user)
 
 /obj/item/smallDelivery/update_icon()
 	cut_overlays()

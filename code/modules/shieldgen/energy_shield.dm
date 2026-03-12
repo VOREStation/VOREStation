@@ -32,8 +32,8 @@
 		overlays.Cut() // Snowflake handling, avoiding SSoverlays
 	else
 		icon_state = enabled_icon_state
-		flags |= OVERLAY_QUEUED //Trick SSoverlays
-		SSoverlays.queue += src
+		//flags |= OVERLAY_QUEUED //Trick SSoverlays
+		//SSoverlays.queue += src
 
 /obj/effect/shield/proc/update_color()
 	if(disabled_for || diffused_for)
@@ -57,7 +57,7 @@
 
 // Prevents singularities and pretty much everything else from moving the field segments away.
 // The only thing that is allowed to move us is the Destroy() proc.
-/obj/effect/shield/forceMove()
+/obj/effect/shield/forceMove(atom/destination, direction, movetime)
 	if(QDELING(src))
 		return ..()
 	return 0

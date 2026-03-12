@@ -137,14 +137,14 @@
 		if(istype(new_object, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/airlock = object
 			var/obj/machinery/door/airlock/new_airlock = new_object
-			new_airlock.req_access = airlock.req_one_access?.Copy()
+			new_airlock.req_one_access = airlock.req_one_access?.Copy()
 			new_airlock.locked = airlock.locked
 			if(istype(object, /obj/machinery/door/airlock/multi_tile))
 				for(var/turf/location in object.locs)
 					if(location == object.loc)
 						continue
 					var/obj/machinery/door/airlock/long_airlock = new replace_path(location)
-					long_airlock.req_access = airlock.req_one_access?.Copy()
+					long_airlock.req_one_access = airlock.req_one_access?.Copy()
 					long_airlock.locked = airlock.locked
 					long_airlock.name = airlock.name
 		new_object.name = object.name
@@ -225,6 +225,7 @@
 	replace_objs = list(
 		/obj/structure/bed/chair = list(/obj/structure/bed/chair/wood = 3, /obj/structure/bed/chair/wood/wings = 1),
 		/obj/machinery/door/airlock = list(/obj/structure/simple_door/wood = 1),
+		/obj/structure/table = list(/obj/structure/table/woodentable = 1)
 	)
 	random_spawns = list(
 		/obj/structure/flora/grass/green = 3,
@@ -252,13 +253,24 @@
 		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/glass = 1),
 		/obj/structure/table = list(/obj/structure/table/glass = 1)
 	)
-	replace_walls = /obj/structure/window/basic/full
+	replace_walls = /turf/simulated/wall/glass
 
 /datum/dimension_theme/snow
 	name = "Snow"
 	icon_state = "sheet-snow_2"
-	material = /datum/material/snow
+	material = /datum/material/snowbrick
 	replace_floors = list(/turf/simulated/floor/snow = 10, /turf/simulated/floor/outdoors/ice = 1)
 	replace_objs = list(
-		/obj/machinery/door/airlock = list(/obj/structure/simple_door/)
+		/obj/machinery/door/airlock = list(/obj/structure/simple_door/snowbrick = 1),
 	)
+	replace_walls = /turf/simulated/wall/snowbrick
+
+/datum/dimension_theme/diamond
+	name = "Diamond"
+	icon_state = "sheet-diamond"
+	material = /datum/material/diamond
+	replace_floors = list(/turf/simulated/floor/tiled/material/diamond = 1)
+	replace_objs = list(
+		/obj/machinery/door/airlock = list(/obj/machinery/door/airlock/diamond = 1)
+	)
+	replace_walls = /turf/simulated/wall/diamond

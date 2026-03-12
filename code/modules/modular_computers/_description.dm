@@ -49,8 +49,6 @@ Software would almost exclusively use NanoUI modules. Few exceptions are text ed
 and similar programs which for some reason require HTML UI. Most software will be highly dependent on NTNet to work as laptops are not physically connected to the station's network.
 What i plan to add:
 
-Note: XXXXDB programs will use ingame_manuals to display basic help for players, similar to how books, etc. do
-
 Basic - Software in this bundle is automagically preinstalled in every new computer
 	NTN Transfer - Allows P2P transfer of files to other computers that run this.
 	Configurator - Allows configuration of computer's hardware, basically status screen.

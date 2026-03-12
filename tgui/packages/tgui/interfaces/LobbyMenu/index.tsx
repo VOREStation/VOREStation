@@ -24,23 +24,28 @@ export const LobbyMenu = (props) => {
   const [animationsFinished, setAnimationsFinished] = useState(false);
 
   useEffect(() => {
-    storage
-      .get('lobby-filter-disabled')
-      .then((val) => setFilterDisabled(!!val));
-    storage
-      .get('lobby-animations-disabled')
-      .then((val) => setAnimationsDisabled(!!val));
-    storage.get('lobby-audio-disabled').then((val) => setAudioDisabled(!!val));
+    (async () => {
+      const [filterDisabled, animationsDisabled, audioDisabled] =
+        await Promise.all([
+          storage.get('lobby-filter-disabled'),
+          storage.get('lobby-animations-disabled'),
+          storage.get('lobby-audio-disabled'),
+        ]);
 
-    setTimeout(() => {
-      if (onLoadPlayer.current) {
-        onLoadPlayer.current!.play();
-      }
-    }, 250);
+      setFilterDisabled(!!filterDisabled);
+      setAnimationsDisabled(!!animationsDisabled);
+      setAudioDisabled(!!audioDisabled);
 
-    setTimeout(() => {
-      setAnimationsFinished(true);
-    }, 10000);
+      setTimeout(() => {
+        if (onLoadPlayer.current) {
+          onLoadPlayer.current!.play();
+        }
+      }, 250);
+
+      setTimeout(() => {
+        setAnimationsFinished(true);
+      }, 10000);
+    })();
   }, []);
 
   const [hidden, setHidden] = useState<boolean>(false);

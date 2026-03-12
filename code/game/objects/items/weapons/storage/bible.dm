@@ -35,8 +35,12 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	var/deity_name = "Christ"
 	use_sound = 'sound/bureaucracy/bookopen.ogg'
 	drop_sound = 'sound/bureaucracy/bookclose.ogg'
+	special_handling = TRUE
 
 /obj/item/storage/bible/attack_self(mob/living/carbon/human/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 
 	if(user?.mind?.assigned_role != JOB_CHAPLAIN)
 		return FALSE

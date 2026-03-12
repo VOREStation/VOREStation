@@ -13,7 +13,7 @@
 
 /datum/gear/eyes/eyepatchwhite/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/eyes/blindfold
 	display_name = "blindfold"
@@ -25,7 +25,7 @@
 
 /datum/gear/eyes/whiteblindfold/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/eyes/thinblindfold
 	display_name = "blindfold, thin white (recolorable)"
@@ -33,7 +33,7 @@
 
 /datum/gear/eyes/thinblindfold/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/eyes/glasses
 	display_name = "Glasses, prescription"
@@ -202,7 +202,7 @@
 
 /datum/gear/eyes/arglasses_visor/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks = list(GLOB.gear_tweak_free_color_choice)
 
 /datum/gear/eyes/arglasses_sec
 	display_name = "AR-Security glasses"

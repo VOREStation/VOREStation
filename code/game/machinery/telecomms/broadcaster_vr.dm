@@ -40,7 +40,7 @@
 		if(istype(R))
 			LAZYDISTINCTADD(forced_radios, R)
 
-	if(connection.frequency in CENT_FREQS) // if ert broadcast, just
+	if(connection.frequency in GLOB.cent_frequencies) // if ert broadcast, just
 		Broadcast_Message(signal.data["connection"], signal.data["mob"],
 							signal.data["vmask"], signal.data["vmessage"],
 							signal.data["radio"], signal.data["message"],

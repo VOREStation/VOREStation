@@ -51,7 +51,7 @@
 	B.release_sound = "Pred Escape"
 	B.fancy_vore = 1
 	B.belly_fullscreen_color = "#c47cb4"
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 
 // Space edition, stronger and bitier
 /mob/living/simple_mob/vore/wolf/space

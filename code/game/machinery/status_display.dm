@@ -95,20 +95,20 @@
 		if(STATUS_DISPLAY_BLANK)	//blank
 			return 1
 		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emergency shuttle timer
-			if(!emergency_shuttle)
+			if(!GLOB.emergency_shuttle)
 				message1 = "-ETA-"
 				message2 = "Never" // You're here forever.
 				return 1
-			if(emergency_shuttle.waiting_to_leave())
+			if(GLOB.emergency_shuttle.waiting_to_leave())
 				message1 = "-ETD-"
-				if(emergency_shuttle.shuttle.is_launching())
+				if(GLOB.emergency_shuttle.shuttle.is_launching())
 					message2 = "Launch"
 				else
 					message2 = get_shuttle_timer_departure()
 					if(length(message2) > CHARS_PER_LINE)
 						message2 = "Error"
 				update_display(message1, message2)
-			else if(emergency_shuttle.has_eta())
+			else if(GLOB.emergency_shuttle.has_eta())
 				message1 = "-ETA-"
 				message2 = get_shuttle_timer_arrival()
 				if(length(message2) > CHARS_PER_LINE)
@@ -207,17 +207,17 @@
 		maptext = new_text
 
 /obj/machinery/status_display/proc/get_shuttle_timer_arrival()
-	if(!emergency_shuttle)
+	if(!GLOB.emergency_shuttle)
 		return "Error"
-	var/timeleft = emergency_shuttle.estimate_arrival_time()
+	var/timeleft = GLOB.emergency_shuttle.estimate_arrival_time()
 	if(timeleft < 0)
 		return ""
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
 /obj/machinery/status_display/proc/get_shuttle_timer_departure()
-	if(!emergency_shuttle)
+	if(!GLOB.emergency_shuttle)
 		return "Error"
-	var/timeleft = emergency_shuttle.estimate_launch_time()
+	var/timeleft = GLOB.emergency_shuttle.estimate_launch_time()
 	if(timeleft < 0)
 		return ""
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"

@@ -9,11 +9,10 @@
 	pick_message_server()
 
 /datum/event/pda_spam/proc/pick_message_server()
-	if(message_servers)
-		for (var/obj/machinery/message_server/MS in message_servers)
-			if(MS.active)
-				useMS = MS
-				break
+	for(var/obj/machinery/message_server/MS in GLOB.message_servers)
+		if(MS.active)
+			useMS = MS
+			break
 
 /datum/event/pda_spam/tick()
 	if(world.time > last_spam_time + 3000)

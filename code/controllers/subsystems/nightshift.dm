@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(nightshift)
 
 /datum/controller/subsystem/nightshift/proc/announce(message)
 	var/announce_z
-	if(using_map.station_levels.len)
+	if(length(using_map.station_levels))
 		announce_z = pick(using_map.station_levels)
 	var/pickedsound
 	if(!high_security_mode)

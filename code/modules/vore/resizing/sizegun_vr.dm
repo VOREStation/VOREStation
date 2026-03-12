@@ -29,7 +29,9 @@
 	verbs += /obj/item/gun/energy/sizegun/proc/spin_dial
 
 /obj/item/gun/energy/sizegun/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
+	if(.)
+		return TRUE
 	select_size(user)
 
 /obj/item/gun/energy/sizegun/proc/spin_dial()
@@ -211,7 +213,7 @@
 			if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
 				M.visible_message(span_warning("\The [H]'s bracelet flashes and absorbs the beam!"),span_notice("Your bracelet flashes and absorbs the beam!"))
 				return
-		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
+		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs, allow_stripping = TRUE))
 			to_chat(M, span_blue("The beam fires into your body, changing your size!"))
 		M.update_icon()
 		return

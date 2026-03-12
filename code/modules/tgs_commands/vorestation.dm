@@ -191,8 +191,9 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		for(var/list/item in GLOB.PDA_Manifest)
 			outp += "\n__**[item["cat"]]:**__"
 			for(var/list/person in item["elems"])
-				total |= person
-				outp += "\n[person["name"]] -:- [person["rank"]]"
+				var/output_string = "[person["name"]] -:- [person["rank"]]"
+				total |= output_string
+				outp += "\n[output_string]"
 
 		return "**Total crew members:** [total.len]\n" + outp
 
@@ -404,6 +405,15 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	if(!(action in VALID_ACTIONS))
 		message.text = "```First param must be a valid action.```"
 		return message
+
+	if(action == "help")
+		var/list/whitelist_jobs = list()
+		for(var/datum/job/our_job in GLOB.job_master.occupations)
+			if(our_job.whitelist_only)
+				whitelist_jobs += our_job.title
+		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]"
+		return message
+
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
 		message.text = "```Invalid command usage: [VALID_USAGE]```"
@@ -438,16 +448,9 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Resolve the action
 	switch(action)
-		if("help")
-			var/list/whitelist_jobs = list()
-			for(var/datum/job/our_job in job_master.occupations)
-				if(our_job.whitelist_only)
-					whitelist_jobs += our_job.title
-			message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]]\nSpecies: [english_list(GLOB.whitelisted_species)]"
-			return message
 		if("add")
 			if(kind == "job")
-				var/datum/job/job = job_master.GetJob(role)
+				var/datum/job/job = GLOB.job_master.GetJob(role)
 				if(!job)
 					message.text = "Error, invalid job entered. Check spelling and capitalization."
 					return message
@@ -469,6 +472,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			if(!command_add.Execute())
 				log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
 				message.text = "Error while trying to add [ckey] to the [role] [kind] whitelist. Please review SQL logs."
+				qdel(command_add)
 				return message
 			qdel(command_add)
 
@@ -496,6 +500,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			if(!command_remove.Execute())
 				log_sql("Error while trying to remove [ckey] from the [role] [kind] whitelist.")
 				message.text = "Error while trying to remove [ckey] from the [role] [kind] whitelist. Please review SQL logs."
+				qdel(command_remove)
 				return message
 			qdel(command_remove)
 
@@ -532,14 +537,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				log_sql("Error while trying to query whitelists for [ckey].")
 				embed.description = "Error while trying to query whitelists for [ckey]. Please review SQL logs."
 				embed.colour = "#FF0000"
+				qdel(query_list)
 				return message
-			else
-				while(query_list.NextRow())
-					var/kind_query_result = query_list.item[1]
-					var/entry_query_result = query_list.item[2]
+			while(query_list.NextRow())
+				var/kind_query_result = query_list.item[1]
+				var/entry_query_result = query_list.item[2]
 
-					embed.description += "- [kind_query_result] - [entry_query_result]\n"
-					found = TRUE
+				embed.description += "- [kind_query_result] - [entry_query_result]\n"
+				found = TRUE
 			qdel(query_list)
 
 			if(!found)

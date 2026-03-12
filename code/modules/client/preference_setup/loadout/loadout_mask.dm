@@ -82,7 +82,7 @@
 	path = /obj/item/clothing/mask/lacemask
 
 /datum/gear/mask/lace/New()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/mask/half
 	display_name = "black half-mask"
@@ -93,7 +93,7 @@
 	path = /obj/item/clothing/mask/luchador/colorable
 
 /datum/gear/mask/wrestling/New()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/mask/masquerade
 	display_name = "masquerade mask selection"
@@ -106,3 +106,14 @@
 		var/obj/item/clothing/mask/mask_type = mask
 		masks[initial(mask_type.name)] = mask_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(masks, GLOBAL_PROC_REF(cmp_text_asc)))
+
+/datum/gear/mask/gas/half
+	display_name = "black gas half-mask"
+	path = /obj/item/clothing/mask/gas/half
+	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
+
+/datum/gear/mask/gas/half/sec
+	display_name = "security black gas half-mask"
+	path = /obj/item/clothing/mask/gas/sechailer
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN, JOB_DETECTIVE)
+	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.

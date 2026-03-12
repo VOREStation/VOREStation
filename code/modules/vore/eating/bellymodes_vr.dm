@@ -27,20 +27,27 @@
 	// Autotransfer count moved here.
 	if(autotransfer_enabled)
 		var/list/autotransferables = list()
-		for(var/atom/movable/M in contents)
-			if(!M || !M.autotransferable) continue
-			// If the prey can't pass the filter of at least one transfer location, skip it
-			if(ismob(M) && !(autotransfer_filter(M, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist) || autotransfer_filter(M, autotransfer_whitelist, autotransfer_blacklist))) continue
-			if(isitem(M) && !(autotransfer_filter(M, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items) || autotransfer_filter(M, autotransfer_whitelist_items, autotransfer_blacklist_items))) continue
-			M.belly_cycles++
-			if(M.belly_cycles < autotransferwait / 60) continue
-			autotransferables += M
-		if(LAZYLEN(autotransferables) >= autotransfer_min_amount)
-			var/tally = 0
-			for(var/atom/movable/M in autotransferables)
-				if(check_autotransfer(M))
-					tally++
-				if(autotransfer_max_amount > 0 && tally >= autotransfer_max_amount) break
+		var/list/transfer_bellies = compile_autotransfer_bellies()
+		if(transfer_bellies)
+			for(var/atom/movable/M in contents)
+				if(!M || !M.autotransferable)
+					continue
+				// If the prey can't pass the filter of at least one transfer location, skip it
+				if(ismob(M) && !(autotransfer_filter(M, autotransfer_secondary_whitelist, autotransfer_secondary_blacklist) || autotransfer_filter(M, autotransfer_whitelist, autotransfer_blacklist))) continue
+				if(isitem(M) && !(autotransfer_filter(M, autotransfer_secondary_whitelist_items, autotransfer_secondary_blacklist_items) || autotransfer_filter(M, autotransfer_whitelist_items, autotransfer_blacklist_items))) continue
+				M.belly_cycles++
+				if(M.belly_cycles < autotransferwait / 60)
+					continue
+				autotransferables += M
+			if(LAZYLEN(autotransferables) >= autotransfer_min_amount)
+				var/tally = 0
+				for(var/atom/movable/M in autotransferables)
+					if(check_autotransfer(M, transfer_bellies))
+						tally++
+					if(autotransfer_max_amount > 0 && tally >= autotransfer_max_amount)
+						break
+				for(var/obj/belly/transfer_belly in (transfer_bellies["primary"] + transfer_bellies["secondary"]))
+					transfer_belly.handle_visual_update()
 
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
 	var/to_update = FALSE //Did anything update worthy happen?
@@ -186,6 +193,24 @@
 			if(L.absorbed && !issilicon(L))
 				L.Weaken(5)
 
+			//Thickbelly flag
+			if((mode_flags & DM_FLAG_THICKBELLY) && !L.muffled)
+				L.muffled = TRUE
+			//Fix muffled sometimes being sticky.
+			else if(!(mode_flags & DM_FLAG_THICKBELLY) && L.muffled)
+				L.muffled = FALSE
+
+			//Force psay
+			if((mode_flags & DM_FLAG_FORCEPSAY) && !L.forced_psay && L.absorbed)
+				L.forced_psay = TRUE
+			//Fix forcepsay sometimes being sticky.
+			else if(!(mode_flags & DM_FLAG_FORCEPSAY) && L.forced_psay)
+				L.forced_psay = FALSE
+
+			// Wet flag
+			if(mode_flags & DM_FLAG_WETTENS)
+				L.set_wet_stacks(20)
+
 			//Handle 'human'
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
@@ -194,20 +219,6 @@
 				if(mode_flags & DM_FLAG_NUMBING)
 					if(H.bloodstr.get_reagent_amount(REAGENT_ID_NUMBENZYME) < 2)
 						H.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,4)
-
-				//Thickbelly flag
-				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)
-					H.muffled = TRUE
-				//Fix muffled sometimes being sticky.
-				else if(!(mode_flags & DM_FLAG_THICKBELLY) && H.muffled)
-					H.muffled = FALSE
-
-				//Force psay
-				if((mode_flags & DM_FLAG_FORCEPSAY) && !H.forced_psay && H.absorbed)
-					H.forced_psay = TRUE
-				//Fix forcepsay sometimes being sticky.
-				else if(!(mode_flags & DM_FLAG_FORCEPSAY) && H.forced_psay)
-					H.forced_psay = FALSE
 
 				//Worn items flag
 				if((mode_flags & DM_FLAG_AFFECTWORN) && H.contaminate_pref)

@@ -12,19 +12,19 @@ SUBSYSTEM_DEF(character_setup)
 	var/list/save_queue = list()
 /*
 /datum/controller/subsystem/character_setup/Initialize()
-	while(prefs_awaiting_setup.len)
-		var/datum/preferences/prefs = prefs_awaiting_setup[prefs_awaiting_setup.len]
+	while(length(prefs_awaiting_setup))
+		var/datum/preferences/prefs = prefs_awaiting_setup[length(prefs_awaiting_setup)]
 		prefs_awaiting_setup.len--
 		prefs.setup()
-	while(newplayers_requiring_init.len)
-		var/mob/new_player/new_player = newplayers_requiring_init[newplayers_requiring_init.len]
+	while(length(newplayers_requiring_init))
+		var/mob/new_player/new_player = newplayers_requiring_init[length(newplayers_requiring_init)]
 		newplayers_requiring_init.len--
 		new_player.deferred_login()
 	. = ..()
 */	//Might be useful if we ever switch to Bay prefs.
 /datum/controller/subsystem/character_setup/fire(resumed = FALSE)
-	while(save_queue.len)
-		var/datum/preferences/prefs = save_queue[save_queue.len]
+	while(length(save_queue))
+		var/datum/preferences/prefs = save_queue[length(save_queue)]
 		save_queue.len--
 
 		// Can't save prefs without client, because the sanitize functions will be

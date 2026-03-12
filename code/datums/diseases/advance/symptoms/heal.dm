@@ -261,10 +261,10 @@
 		. += power
 	if(H.ingested.has_reagent(REAGENT_ID_HOLYWATER))
 		H.ingested.remove_reagent(REAGENT_ID_HOLYWATER, 0.5 * absorption_coeff)
-		. += power * 0.75
+		. += power * 1.25
 	else if(H.ingested.has_reagent(REAGENT_ID_WATER))
 		H.ingested.remove_reagent(REAGENT_ID_WATER, 0.5 * absorption_coeff)
-		. += power * 0.5
+		. += power * 0.75
 
 /datum/symptom/heal/water/Heal(mob/living/carbon/human/H, datum/disease/advance/A, actual_power)
 	if(!istype(H))

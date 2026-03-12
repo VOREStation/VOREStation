@@ -110,6 +110,7 @@
 		"borg_hound_capability_module",
 		"borg_hound_capacity_module",
 		"borg_ddrill_module",
+		"borg_adv_mailbag",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)

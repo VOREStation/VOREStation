@@ -55,14 +55,13 @@ GLOBAL_LIST(word_to_uristrune_table)
 
 	return get_uristrune(bits, animated)
 
-
-var/list/uristrune_cache = list()
+GLOBAL_LIST_EMPTY(uristrune_cache)
 
 /proc/get_uristrune(symbol_bits, animated = 0)
 	var/lookup = "[symbol_bits]-[animated]"
 
-	if(lookup in uristrune_cache)
-		return uristrune_cache[lookup]
+	if(lookup in GLOB.uristrune_cache)
+		return GLOB.uristrune_cache[lookup]
 
 	var/icon/I = icon('icons/effects/uristrunes.dmi', "blank")
 
@@ -125,6 +124,6 @@ var/list/uristrune_cache = list()
 		result.Insert(I3, "", frame = 7, delay = 2)
 		result.Insert(I2, "", frame = 8, delay = 2)
 
-	uristrune_cache[lookup] = result
+	GLOB.uristrune_cache[lookup] = result
 
 	return result

@@ -1,12 +1,10 @@
 // Syndie borg sprites
-
-/* none yet
+/*
 /datum/robot_sprite/syndie
 	module_type = list("Protector", "Mechanist", "Combat Medic")
 	sprite_icon = 'icons/mob/robot/syndie.dmi'
 	sprite_hud_icon_state = "malf"
 */
-
 // Wide/dogborg sprites
 
 /datum/robot_sprite/dogborg/syndie
@@ -100,6 +98,8 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
@@ -199,6 +199,8 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
@@ -282,6 +284,8 @@
 	sprite_icon_state = "dullahanninja"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 	pixel_x = -16

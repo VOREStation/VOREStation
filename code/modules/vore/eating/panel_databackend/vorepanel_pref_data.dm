@@ -34,7 +34,6 @@
 		"liq_apply" = owner.apply_reagents,
 		"autotransferable" = owner.autotransferable,
 		"noisy_full" = owner.noisy_full, //Belching while full
-		"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
 
 		"allow_mind_transfer" = owner.allow_mind_transfer,
 		"drop_vore" = owner.drop_vore,
@@ -43,6 +42,10 @@
 		"throw_vore" = owner.throw_vore,
 		"phase_vore" = owner.phase_vore,
 		"food_vore" = owner.food_vore,
+		"spont_belly_rear" = owner.spont_belly_rear,
+		"spont_belly_left" = owner.spont_belly_left,
+		"spont_belly_front" = owner.spont_belly_front,
+		"spont_belly_right" = owner.spont_belly_right,
 		"consume_liquid_belly" = owner.consume_liquid_belly,
 		"digest_pain" = owner.digest_pain,
 		"eating_privacy_global" = owner.eating_privacy_global,
@@ -54,6 +57,10 @@
 		"soulcatcher_allow_takeover" = owner.soulcatcher_pref_flags & SOULCATCHER_ALLOW_TAKEOVER,
 		"soulcatcher_allow_deletion" = (global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION) + global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION_INSTANT)),
 		"max_voreoverlay_alpha" = owner.max_voreoverlay_alpha,
+		"dropdown_preferences" = list(
+			"strip_active" = owner.size_strip_preference,
+			"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
+		)
 	)
 
 #define SET_TASTE "Set Taste"
@@ -69,7 +76,12 @@
 		"aestethic_messages" = compile_aesthetic_messages(owner),
 		"vore_sprite_color" = owner.vore_sprite_color,
 		"vore_sprite_multiply" = owner.vore_sprite_multiply,
-		"vore_icon_options" = owner.vore_icon_bellies
+		"vore_icon_options" = owner.vore_icon_bellies,
+		// spont options
+		"spont_rear" = owner.spont_belly_rear,
+		"spont_front" = owner.spont_belly_front,
+		"spont_left" = owner.spont_belly_left,
+		"spont_right" = owner.spont_belly_right
 	)
 
 /datum/vore_look/proc/compile_aesthetic_messages(mob/owner)

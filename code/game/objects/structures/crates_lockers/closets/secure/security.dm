@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/captains
 	name = "site manager's locker"
 	req_access = list(ACCESS_CAPTAIN)
-	closet_appearance = /decl/closet_appearance/secure_closet/command
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/command
 
 	starts_with = list(
 		/obj/item/storage/backpack/dufflebag/captain,
@@ -21,7 +21,7 @@
 /obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
 	req_access = list(ACCESS_HOP)
-	closet_appearance = /decl/closet_appearance/secure_closet/command/hop
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/command/hop
 
 	starts_with = list(
 		/obj/item/clothing/suit/storage/vest,
@@ -41,7 +41,7 @@
 /obj/structure/closet/secure_closet/hop2
 	name = "head of personnel's attire"
 	req_access = list(ACCESS_HOP)
-	closet_appearance = /decl/closet_appearance/secure_closet/command/hop
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/command/hop
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/head_of_personnel,
@@ -81,7 +81,7 @@
 	name = "head of security's locker"
 	req_access = list(ACCESS_HOS)
 	storage_capacity = 2.6 * MOB_MEDIUM
-	closet_appearance = /decl/closet_appearance/secure_closet/security/hos
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/security/hos
 
 	starts_with = list(
 		/obj/item/clothing/head/helmet/HoS,
@@ -135,7 +135,7 @@
 	name = "warden's locker"
 	storage_capacity = 42
 	req_access = list(ACCESS_ARMORY)
-	closet_appearance = /decl/closet_appearance/secure_closet/security/warden
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/security/warden
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/security/aces,
@@ -190,17 +190,13 @@
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
 	req_access = list(ACCESS_BRIG)
-	closet_appearance = /decl/closet_appearance/secure_closet/security
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/security
 
 	starts_with = list(
-		/obj/item/clothing/under/rank/security/aces,
-		/obj/item/clothing/suit/storage/vest/aces,
 		/obj/item/clothing/suit/storage/vest/officer,
 		/obj/item/clothing/head/helmet,
 		/obj/item/cartridge/security,
 		/obj/item/radio/headset/headset_sec,
-		/obj/item/radio/headset/alt/headset_sec,
-		/obj/item/radio/headset/earbud/headset_sec,
 		/obj/item/storage/belt/security,
 		/obj/item/flash,
 		/obj/item/reagent_containers/spray/pepper,
@@ -210,14 +206,11 @@
 		/obj/item/taperoll/police,
 		/obj/item/hailer,
 		/obj/item/flashlight/flare,
-		/obj/item/clothing/accessory/storage/black_vest,
-		/obj/item/clothing/head/soft/sec/corp,
 		/obj/item/clothing/under/rank/security/corp,
 		///obj/item/ammo_magazine/m45/rubber, //VOREStation Removal,
 		/obj/item/gun/energy/taser,
 		/obj/item/cell/device/weapon,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
-		/obj/item/clothing/shoes/boots/winter/security,
+		/obj/item/clothing/mask/gas/sechailer,
 		/obj/item/flashlight/maglight)
 
 /obj/structure/closet/secure_closet/security/Initialize(mapload)
@@ -255,7 +248,7 @@
 /obj/structure/closet/secure_closet/detective
 	name = "detective's cabinet"
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
-	closet_appearance = /decl/closet_appearance/cabinet/secure
+	closet_appearance = /datum/decl/closet_appearance/cabinet/secure
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
@@ -283,7 +276,7 @@
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(ACCESS_CAPTAIN)
-	closet_appearance = /decl/closet_appearance/secure_closet/courtroom
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/courtroom
 
 	starts_with = list(
 		/obj/item/reagent_containers/syringe/ld50_syringe/choral = 2)
@@ -293,7 +286,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
 	req_access = list(ACCESS_BRIG)
-	closet_appearance = /decl/closet_appearance/secure_closet/brig
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/brig
 	anchored = TRUE
 	var/id = null
 
@@ -316,7 +309,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(ACCESS_LAWYER)
-	closet_appearance = /decl/closet_appearance/secure_closet/courtroom
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/courtroom
 
 	starts_with = list(
 		/obj/item/clothing/shoes/brown,
@@ -330,7 +323,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/wall
 	name = "wall locker"
 	req_access = list(ACCESS_SECURITY)
-	closet_appearance = /decl/closet_appearance/wall
+	closet_appearance = /datum/decl/closet_appearance/wall
 	density = TRUE
 
 	//too small to put a man in

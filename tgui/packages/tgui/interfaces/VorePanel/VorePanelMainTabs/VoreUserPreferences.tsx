@@ -1,7 +1,6 @@
 import { Section } from 'tgui-core/components';
 
-import { digestModeToColor } from '../constants';
-import type { localPrefs, prefData } from '../types';
+import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
 import { VoreUserPreferencesMechanical } from '../VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
@@ -9,7 +8,7 @@ import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreU
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
 import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
-export const VoreUserPreferences = (props: { prefs: prefData }) => {
+export const VoreUserPreferences = (props: { prefs: PrefData }) => {
   const { prefs } = props;
   const {
     digestable,
@@ -57,7 +56,7 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
     no_spawnprey_warning_time,
     no_spawnpred_warning_save,
     no_spawnprey_warning_save,
-    selective_active,
+    dropdown_preferences,
     soulcatcher_allow_capture,
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
@@ -65,7 +64,7 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
     max_voreoverlay_alpha,
   } = prefs;
 
-  const preferences: localPrefs = {
+  const preferences: LocalPrefs = {
     digestion: {
       action: 'toggle_digest',
       test: digestable,
@@ -760,12 +759,14 @@ export const VoreUserPreferences = (props: { prefs: prefData }) => {
 
   return (
     <Section scrollable fill>
-      <VoreUserPreferencesMechanical preferences={preferences} />
+      <VoreUserPreferencesMechanical
+        preferences={preferences}
+        dropdownPreferences={dropdown_preferences}
+      />
       <VoreUserPreferencesDevouring
         devourable={devourable}
-        digestModeToColor={digestModeToColor}
-        selective_active={selective_active}
         preferences={preferences}
+        dropdownPreferences={dropdown_preferences}
       />
       <VoreUserPreferencesSpontaneous
         can_be_drop_prey={can_be_drop_prey}

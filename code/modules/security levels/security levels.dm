@@ -8,8 +8,8 @@ GLOBAL_VAR_INIT(security_level, 0)
 //6 = code delta
 
 //config.alert_desc_blue_downto
-/var/datum/announcement/priority/security/security_announcement_up = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/alert_levels/alert_raise.ogg'))
-/var/datum/announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1)
+GLOBAL_DATUM_INIT(security_announcement_up, /datum/announcement/priority/security, new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/alert_levels/alert_raise.ogg')))
+GLOBAL_DATUM_INIT(security_announcement_down, /datum/announcement/priority/security, new(do_log = 0, do_newscast = 1))
 
 /proc/set_security_level(var/level)
 	switch(level)
@@ -32,40 +32,40 @@ GLOBAL_VAR_INIT(security_level, 0)
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != GLOB.security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_green)]", "Attention! Alert level lowered to code green.")
+				GLOB.security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_green)]", "Attention! Alert level lowered to code green.")
 				GLOB.security_level = SEC_LEVEL_GREEN
 			if(SEC_LEVEL_YELLOW)
 				if(GLOB.security_level < SEC_LEVEL_YELLOW)
-					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_yellow_upto)]", "Attention! Alert level elevated to yellow")
+					GLOB.security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_yellow_upto)]", "Attention! Alert level elevated to yellow")
 				else
-					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_yellow_downto)]", "Attention! Alert level lowered to yellow")
+					GLOB.security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_yellow_downto)]", "Attention! Alert level lowered to yellow")
 				GLOB.security_level = SEC_LEVEL_YELLOW
 			if(SEC_LEVEL_VIOLET)
 				if(GLOB.security_level < SEC_LEVEL_VIOLET)
-					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_violet_upto)]", "Attention! Alert level elevated to violet")
+					GLOB.security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_violet_upto)]", "Attention! Alert level elevated to violet")
 				else
-					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_violet_downto)]", "Attention! Alert level lowered to violet")
+					GLOB.security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_violet_downto)]", "Attention! Alert level lowered to violet")
 				GLOB.security_level = SEC_LEVEL_VIOLET
 			if(SEC_LEVEL_ORANGE)
 				if(GLOB.security_level < SEC_LEVEL_ORANGE)
-					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_orange_upto)]", "Attention! Alert level elevated to orange")
+					GLOB.security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_orange_upto)]", "Attention! Alert level elevated to orange")
 				else
-					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_orange_downto)]", "Attention! Alert level lowered to orange")
+					GLOB.security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_orange_downto)]", "Attention! Alert level lowered to orange")
 				GLOB.security_level = SEC_LEVEL_ORANGE
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
-					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_blue_upto)]", "Attention! Alert level elevated to blue")
+					GLOB.security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_blue_upto)]", "Attention! Alert level elevated to blue")
 				else
-					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_blue_downto)]", "Attention! Alert level lowered to blue")
+					GLOB.security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_blue_downto)]", "Attention! Alert level lowered to blue")
 				GLOB.security_level = SEC_LEVEL_BLUE
 			if(SEC_LEVEL_RED)
 				if(GLOB.security_level < SEC_LEVEL_RED)
-					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_red_upto)]", "Attention! Code red!", new_sound = sound('sound/effects/alert_levels/red_alert.ogg', volume = 75))
+					GLOB.security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_red_upto)]", "Attention! Code red!", new_sound = sound('sound/effects/alert_levels/red_alert.ogg', volume = 75))
 				else
-					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_red_downto)]", "Attention! Code red!")
+					GLOB.security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_red_downto)]", "Attention! Code red!")
 				GLOB.security_level = SEC_LEVEL_RED
 			if(SEC_LEVEL_DELTA)
-				security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_delta)]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/alert_levels/deltaklaxon.ogg')
+				GLOB.security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_delta)]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/alert_levels/deltaklaxon.ogg')
 				GLOB.security_level = SEC_LEVEL_DELTA
 
 		var/newlevel = get_security_level()

@@ -19,6 +19,9 @@
 	flick(anim, animation)
 	if(do_gibs) gibs(loc, dna)
 
+	if (!QDELETED(src))
+		ghostize()
+
 	spawn(15)
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
@@ -43,6 +46,10 @@
 	new remains(loc)
 
 	GLOB.dead_mob_list -= src
+
+	if (!QDELETED(src))
+		ghostize()
+
 	spawn(15)
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
@@ -63,6 +70,10 @@
 	flick(anim, animation)
 
 	GLOB.dead_mob_list -= src
+
+	if (!QDELETED(src))
+		ghostize()
+
 	spawn(15)
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)

@@ -155,7 +155,7 @@
 	for(var/mob/observer/dead/O in known_devices)
 		if(O.client && O.client.prefs.communicator_visibility == 1 && O.exonet)
 			communicators.Add(list(list(
-				"name" = sanitize("[O.client.prefs.real_name]'s communicator"),
+				"name" = sanitize("[O.client.prefs.read_preference(/datum/preference/name/real_name)]'s communicator"),
 				"address" = O.exonet.address,
 				"ref" = "\ref[O]"
 			)))
@@ -173,7 +173,7 @@
 	for(var/mob/observer/dead/O in voice_invites)
 		if(O.exonet && O.client)
 			invites.Add(list(list(
-				"name" = sanitize("[O.client.prefs.real_name]'s communicator"),
+				"name" = sanitize("[O.client.prefs.read_preference(/datum/preference/name/real_name)]'s communicator"),
 				"address" = O.exonet.address,
 				"ref" = "\ref[O]"
 			)))
@@ -191,7 +191,7 @@
 	for(var/mob/observer/dead/O in voice_requests)
 		if(O.exonet && O.client)
 			requests.Add(list(list(
-				"name" = sanitize("[O.client.prefs.real_name]'s communicator"),
+				"name" = sanitize("[O.client.prefs.read_preference(/datum/preference/name/real_name)]'s communicator"),
 				"address" = O.exonet.address,
 				"ref" = "\ref[O]"
 			)))

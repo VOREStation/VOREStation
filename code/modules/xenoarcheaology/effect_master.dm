@@ -15,11 +15,6 @@
 #define THERMITE_PATH /datum/reagent/thermite
 #define TOXIN_PATH /datum/reagent/toxin
 
-var/list/water_reagents = list(HYDROGEN_PATH, WATER_PATH)
-var/list/acid_reagents = list(ACID_PATH, DIETHYLAMINE_PATH)
-var/list/volatile_reagents = list(PHORON_PATH, HYDROPHORON_PATH, THERMITE_PATH)
-var/list/toxic_reagents = list(TOXIN_PATH)
-
 /atom/proc/is_anomalous()
 	return (GetComponent(/datum/component/artifact_master))
 
@@ -63,6 +58,11 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	var/list/make_effects
 
 	var/artifact_id
+
+	var/static/list/water_reagents = list(HYDROGEN_PATH, WATER_PATH)
+	var/static/list/acid_reagents = list(ACID_PATH, DIETHYLAMINE_PATH)
+	var/static/list/volatile_reagents = list(PHORON_PATH, HYDROPHORON_PATH, THERMITE_PATH)
+	var/static/list/toxic_reagents = list(TOXIN_PATH)
 
 /datum/component/artifact_master/New()
 	. = ..()
@@ -354,25 +354,25 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 			if(my_effect.trigger == TRIGGER_WATER)
 				for(var/datum/reagent/R in W.reagents.reagent_list) //What chems are in the beaker?
 					var/T = R.type
-					if(is_path_in_list(T,water_reagents)) //Check the reagent and activate!
+					if(is_path_in_list(T, water_reagents)) //Check the reagent and activate!
 						my_effect.ToggleActivate()
 
 			else if(my_effect.trigger == TRIGGER_ACID)
 				for(var/datum/reagent/R in W.reagents.reagent_list)
 					var/T = R.type
-					if(is_path_in_list(T,acid_reagents))
+					if(is_path_in_list(T, acid_reagents))
 						my_effect.ToggleActivate()
 
 			else if(my_effect.trigger == TRIGGER_VOLATILE)
 				for(var/datum/reagent/R in W.reagents.reagent_list)
 					var/T = R.type
-					if(is_path_in_list(T,volatile_reagents))
+					if(is_path_in_list(T, volatile_reagents))
 						my_effect.ToggleActivate()
 
 			else if(my_effect.trigger == TRIGGER_TOXIN)
 				for(var/datum/reagent/R in W.reagents.reagent_list)
 					var/T = R.type
-					if(is_path_in_list(T,toxic_reagents))
+					if(is_path_in_list(T, toxic_reagents))
 						my_effect.ToggleActivate()
 		//If we weren't splashed, let's see if we were hit by a energy item and if we're energy activation.
 		else if(istype(W,/obj/item/melee/baton) && W:status ||\
@@ -404,16 +404,16 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	var/T = touching.type //What type of reagent is being splashed on it?
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
-		if(is_path_in_list(T,water_reagents))
+		if(is_path_in_list(T, water_reagents))
 			if(my_effect.trigger == TRIGGER_WATER)
 				my_effect.ToggleActivate()
-		else if(is_path_in_list(T,acid_reagents))
+		else if(is_path_in_list(T, acid_reagents))
 			if(my_effect.trigger == TRIGGER_ACID)
 				my_effect.ToggleActivate()
-		else if(is_path_in_list(T,volatile_reagents))
+		else if(is_path_in_list(T, volatile_reagents))
 			if(my_effect.trigger == TRIGGER_VOLATILE)
 				my_effect.ToggleActivate()
-		else if(is_path_in_list(T,toxic_reagents))
+		else if(is_path_in_list(T, toxic_reagents))
 			if(my_effect.trigger == TRIGGER_TOXIN)
 				my_effect.ToggleActivate()
 

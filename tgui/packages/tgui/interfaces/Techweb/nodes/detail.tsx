@@ -2,8 +2,8 @@ import { useState } from 'react';
 import {
   Button,
   Divider,
-  Flex,
   Section,
+  Stack,
   Tabs,
   VirtualList,
 } from 'tgui-core/components';
@@ -58,13 +58,17 @@ export function TechNodeDetail(props: TechNodeDetailProps) {
   const unlockedNodes = nodes.filter((x) => unlock_ids.includes(x.id));
 
   return (
-    <Flex direction="column" height="100%">
-      <Flex.Item shrink={1}>
-        <Flex justify="space-between" className="Techweb__HeaderSectionTabs">
-          <Flex.Item align="center" className="Techweb__HeaderTabTitle">
+    <Stack g={0} direction="column" fill>
+      <Stack.Item shrink={1}>
+        <Stack
+          g={0}
+          justify="space-between"
+          className="Techweb__HeaderSectionTabs"
+        >
+          <Stack.Item align="center" className="Techweb__HeaderTabTitle">
             Node
-          </Flex.Item>
-          <Flex.Item grow>
+          </Stack.Item>
+          <Stack.Item grow>
             <Tabs>
               <Tabs.Tab
                 selected={tabIndex === Tab.REQUIRED}
@@ -80,20 +84,20 @@ export function TechNodeDetail(props: TechNodeDetailProps) {
                 Unlocks ({unlockedNodes.length})
               </Tabs.Tab>
             </Tabs>
-          </Flex.Item>
-          <Flex.Item align="center">
+          </Stack.Item>
+          <Stack.Item align="center">
             <Button icon="home" onClick={() => setTechwebRoute({ route: '' })}>
               Home
             </Button>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item className="Techweb__OverviewNodes" shrink={0}>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item className="Techweb__OverviewNodes" shrink={0}>
         <TechNode node={node} nodetails />
         <Divider />
-      </Flex.Item>
+      </Stack.Item>
       {tabIndex === 0 && (
-        <Flex.Item className="Techweb__OverviewNodes" grow>
+        <Stack.Item className="Techweb__OverviewNodes" grow>
           <Section scrollable fill>
             <VirtualList>
               {prereqNodes.map((n) => (
@@ -101,10 +105,10 @@ export function TechNodeDetail(props: TechNodeDetailProps) {
               ))}
             </VirtualList>
           </Section>
-        </Flex.Item>
+        </Stack.Item>
       )}
       {tabIndex === 1 && (
-        <Flex.Item className="Techweb__OverviewNodes" grow>
+        <Stack.Item className="Techweb__OverviewNodes" grow>
           <Section scrollable fill>
             <VirtualList>
               {unlockedNodes.map((n) => (
@@ -112,8 +116,8 @@ export function TechNodeDetail(props: TechNodeDetailProps) {
               ))}
             </VirtualList>
           </Section>
-        </Flex.Item>
+        </Stack.Item>
       )}
-    </Flex>
+    </Stack>
   );
 }

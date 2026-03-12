@@ -159,7 +159,7 @@
 		return !anchored // If it's anchored, it'll block air.
 	return TRUE // Don't stop airflow from the other sides.
 
-/obj/structure/window/hitby(atom/movable/source)
+/obj/structure/window/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	visible_message(span_danger("[src] was hit by [source]."))
 	var/tforce = 0
@@ -195,8 +195,9 @@
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.species.can_shred(H))
-				attack_generic(H,25)
+			var/shreddamage = H.species.can_shred(H, FALSE, 15)
+			if(shreddamage)
+				attack_generic(H, shreddamage + 5, "attacks")
 				return
 
 		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
@@ -348,7 +349,7 @@
 	take_damage(damage)
 	return
 
-/obj/structure/window/handle_rotation_verbs(angle)
+/obj/structure/window/handle_rotation_verbs(angle, mob/user)
 	if(is_fulltile())
 		return FALSE
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -448,7 +449,7 @@
 		icon_state = "[basestate]"
 		return
 	else
-		flags = NONE // Removes ON_BORDER and OPPOSITE_OPACITY
+		flags &= ~ON_BORDER // Removes ON_BORDER
 	var/list/dirs = list()
 	if(anchored)
 		for(var/obj/structure/window/W in orange(src,1))

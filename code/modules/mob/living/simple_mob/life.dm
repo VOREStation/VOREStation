@@ -60,13 +60,12 @@
 			healths.icon_state = "health7"
 
 	//Updates the nutrition while we're here
-	var/food_per = (nutrition / max_nutrition) * 100
-	switch(food_per)
-		if(90 to INFINITY)
+	switch(nutrition)
+		if(250 to INFINITY)
 			clear_alert("nutrition")
-		if(50 to 90)
+		if(150 to 250)
 			throw_alert("nutrition", /atom/movable/screen/alert/hungry)
-		if(-INFINITY to 50)
+		if(-INFINITY to 150)
 			throw_alert("nutrition", /atom/movable/screen/alert/starving)
 
 //VOREStation ADD START - I made this for catslugs but tbh it's probably cool to give to everything.

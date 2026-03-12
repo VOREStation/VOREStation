@@ -330,57 +330,55 @@
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
 					if(!confirm == "DELETE")
 						return FALSE
-					var/obj/belly/default_belly = new /obj/belly(null)
-					host.vore_selected.digest_messages_prey = default_belly.digest_messages_prey.Copy()
-					host.vore_selected.digest_messages_owner = default_belly.digest_messages_owner.Copy()
-					host.vore_selected.absorb_messages_prey = default_belly.absorb_messages_prey.Copy()
-					host.vore_selected.absorb_messages_owner = default_belly.absorb_messages_owner.Copy()
-					host.vore_selected.unabsorb_messages_prey = default_belly.unabsorb_messages_prey.Copy()
-					host.vore_selected.unabsorb_messages_owner = default_belly.unabsorb_messages_owner.Copy()
-					host.vore_selected.struggle_messages_outside = default_belly.struggle_messages_outside.Copy()
-					host.vore_selected.struggle_messages_inside = default_belly.struggle_messages_inside.Copy()
-					host.vore_selected.absorbed_struggle_messages_outside = default_belly.absorbed_struggle_messages_outside.Copy()
-					host.vore_selected.absorbed_struggle_messages_inside = default_belly.absorbed_struggle_messages_inside.Copy()
-					host.vore_selected.escape_attempt_messages_owner = default_belly.escape_attempt_messages_owner.Copy()
-					host.vore_selected.escape_attempt_messages_prey = default_belly.escape_attempt_messages_prey.Copy()
-					host.vore_selected.escape_messages_owner = default_belly.escape_messages_owner.Copy()
-					host.vore_selected.escape_messages_prey = default_belly.escape_messages_prey.Copy()
-					host.vore_selected.escape_messages_outside = default_belly.escape_messages_outside.Copy()
-					host.vore_selected.escape_item_messages_owner = default_belly.escape_item_messages_owner.Copy()
-					host.vore_selected.escape_item_messages_prey = default_belly.escape_item_messages_prey.Copy()
-					host.vore_selected.escape_item_messages_outside = default_belly.escape_item_messages_outside.Copy()
-					host.vore_selected.escape_fail_messages_owner = default_belly.escape_fail_messages_owner.Copy()
-					host.vore_selected.escape_fail_messages_prey = default_belly.escape_fail_messages_prey.Copy()
-					host.vore_selected.escape_attempt_absorbed_messages_owner = default_belly.escape_attempt_absorbed_messages_owner.Copy()
-					host.vore_selected.escape_attempt_absorbed_messages_prey = default_belly.escape_attempt_absorbed_messages_prey.Copy()
-					host.vore_selected.escape_absorbed_messages_owner = default_belly.escape_absorbed_messages_owner.Copy()
-					host.vore_selected.escape_absorbed_messages_prey = default_belly.escape_absorbed_messages_prey.Copy()
-					host.vore_selected.escape_absorbed_messages_outside = default_belly.escape_absorbed_messages_outside.Copy()
-					host.vore_selected.escape_fail_absorbed_messages_owner = default_belly.escape_fail_absorbed_messages_owner.Copy()
-					host.vore_selected.escape_fail_absorbed_messages_prey = default_belly.escape_fail_absorbed_messages_prey.Copy()
-					host.vore_selected.primary_transfer_messages_owner = default_belly.primary_transfer_messages_owner.Copy()
-					host.vore_selected.primary_transfer_messages_prey = default_belly.primary_transfer_messages_prey.Copy()
-					host.vore_selected.secondary_transfer_messages_owner = default_belly.secondary_transfer_messages_owner.Copy()
-					host.vore_selected.secondary_transfer_messages_prey = default_belly.secondary_transfer_messages_prey.Copy()
-					host.vore_selected.primary_autotransfer_messages_owner = default_belly.primary_autotransfer_messages_owner.Copy()
-					host.vore_selected.primary_autotransfer_messages_prey = default_belly.primary_autotransfer_messages_prey.Copy()
-					host.vore_selected.secondary_autotransfer_messages_owner = default_belly.secondary_autotransfer_messages_owner.Copy()
-					host.vore_selected.secondary_autotransfer_messages_prey = default_belly.secondary_autotransfer_messages_prey.Copy()
-					host.vore_selected.digest_chance_messages_owner = default_belly.digest_chance_messages_owner.Copy()
-					host.vore_selected.digest_chance_messages_prey = default_belly.digest_chance_messages_prey.Copy()
-					host.vore_selected.absorb_chance_messages_owner = default_belly.absorb_chance_messages_owner.Copy()
-					host.vore_selected.absorb_chance_messages_prey = default_belly.absorb_chance_messages_prey.Copy()
-					host.vore_selected.examine_messages = default_belly.examine_messages.Copy()
-					host.vore_selected.examine_messages_absorbed = default_belly.examine_messages_absorbed.Copy()
-					host.vore_selected.emote_lists = default_belly.emote_lists.Copy()
-					host.vore_selected.trash_eater_in = default_belly.trash_eater_in.Copy()
-					host.vore_selected.trash_eater_out = default_belly.trash_eater_out.Copy()
-					host.vore_selected.liquid_fullness1_messages = default_belly.fullness1_messages.Copy()
-					host.vore_selected.liquid_fullness2_messages = default_belly.fullness2_messages.Copy()
-					host.vore_selected.liquid_fullness3_messages = default_belly.fullness3_messages.Copy()
-					host.vore_selected.liquid_fullness4_messages = default_belly.fullness4_messages.Copy()
-					host.vore_selected.liquid_fullness5_messages = default_belly.fullness5_messages.Copy()
-					qdel(default_belly)
+					host.vore_selected.digest_messages_prey = /obj/belly::digest_messages_prey
+					host.vore_selected.digest_messages_owner = /obj/belly::digest_messages_owner
+					host.vore_selected.absorb_messages_prey = /obj/belly::absorb_messages_prey
+					host.vore_selected.absorb_messages_owner = /obj/belly::absorb_messages_owner
+					host.vore_selected.unabsorb_messages_prey = /obj/belly::unabsorb_messages_prey
+					host.vore_selected.unabsorb_messages_owner = /obj/belly::unabsorb_messages_owner
+					host.vore_selected.struggle_messages_outside = /obj/belly::struggle_messages_outside
+					host.vore_selected.struggle_messages_inside = /obj/belly::struggle_messages_inside
+					host.vore_selected.absorbed_struggle_messages_outside = /obj/belly::absorbed_struggle_messages_outside
+					host.vore_selected.absorbed_struggle_messages_inside = /obj/belly::absorbed_struggle_messages_inside
+					host.vore_selected.escape_attempt_messages_owner = /obj/belly::escape_attempt_messages_owner
+					host.vore_selected.escape_attempt_messages_prey = /obj/belly::escape_attempt_messages_prey
+					host.vore_selected.escape_messages_owner = /obj/belly::escape_messages_owner
+					host.vore_selected.escape_messages_prey = /obj/belly::escape_messages_prey
+					host.vore_selected.escape_messages_outside = /obj/belly::escape_messages_outside
+					host.vore_selected.escape_item_messages_owner = /obj/belly::escape_item_messages_owner
+					host.vore_selected.escape_item_messages_prey = /obj/belly::escape_item_messages_prey
+					host.vore_selected.escape_item_messages_outside = /obj/belly::escape_item_messages_outside
+					host.vore_selected.escape_fail_messages_owner = /obj/belly::escape_fail_messages_owner
+					host.vore_selected.escape_fail_messages_prey = /obj/belly::escape_fail_messages_prey
+					host.vore_selected.escape_attempt_absorbed_messages_owner = /obj/belly::escape_attempt_absorbed_messages_owner
+					host.vore_selected.escape_attempt_absorbed_messages_prey = /obj/belly::escape_attempt_absorbed_messages_prey
+					host.vore_selected.escape_absorbed_messages_owner = /obj/belly::escape_absorbed_messages_owner
+					host.vore_selected.escape_absorbed_messages_prey = /obj/belly::escape_absorbed_messages_prey
+					host.vore_selected.escape_absorbed_messages_outside = /obj/belly::escape_absorbed_messages_outside
+					host.vore_selected.escape_fail_absorbed_messages_owner = /obj/belly::escape_fail_absorbed_messages_owner
+					host.vore_selected.escape_fail_absorbed_messages_prey = /obj/belly::escape_fail_absorbed_messages_prey
+					host.vore_selected.primary_transfer_messages_owner = /obj/belly::primary_transfer_messages_owner
+					host.vore_selected.primary_transfer_messages_prey = /obj/belly::primary_transfer_messages_prey
+					host.vore_selected.secondary_transfer_messages_owner = /obj/belly::secondary_transfer_messages_owner
+					host.vore_selected.secondary_transfer_messages_prey = /obj/belly::secondary_transfer_messages_prey
+					host.vore_selected.primary_autotransfer_messages_owner = /obj/belly::primary_autotransfer_messages_owner
+					host.vore_selected.primary_autotransfer_messages_prey = /obj/belly::primary_autotransfer_messages_prey
+					host.vore_selected.secondary_autotransfer_messages_owner = /obj/belly::secondary_autotransfer_messages_owner
+					host.vore_selected.secondary_autotransfer_messages_prey = /obj/belly::secondary_autotransfer_messages_prey
+					host.vore_selected.digest_chance_messages_owner = /obj/belly::digest_chance_messages_owner
+					host.vore_selected.digest_chance_messages_prey = /obj/belly::digest_chance_messages_prey
+					host.vore_selected.absorb_chance_messages_owner = /obj/belly::absorb_chance_messages_owner
+					host.vore_selected.absorb_chance_messages_prey = /obj/belly::absorb_chance_messages_prey
+					host.vore_selected.examine_messages = /obj/belly::examine_messages
+					host.vore_selected.examine_messages_absorbed = /obj/belly::examine_messages_absorbed
+					host.vore_selected.emote_lists = /obj/belly::emote_lists
+					host.vore_selected.trash_eater_in = /obj/belly::trash_eater_in
+					host.vore_selected.trash_eater_out = /obj/belly::trash_eater_out
+					host.vore_selected.liquid_fullness1_messages = /obj/belly::fullness1_messages
+					host.vore_selected.liquid_fullness2_messages = /obj/belly::fullness2_messages
+					host.vore_selected.liquid_fullness3_messages = /obj/belly::fullness3_messages
+					host.vore_selected.liquid_fullness4_messages = /obj/belly::fullness4_messages
+					host.vore_selected.liquid_fullness5_messages = /obj/belly::fullness5_messages
 			. = TRUE
 		if("b_verb")
 			var/new_verb = html_encode(params["val"])
@@ -614,15 +612,17 @@
 			host.vore_selected.emote_time = CLAMP(new_time, 60, 600)
 			. = TRUE
 		if("b_escapable")
-			if(host.vore_selected.escapable == 0) //Possibly escapable and special interactions.
-				host.vore_selected.escapable = 1
-				to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings."))
-			else if(host.vore_selected.escapable == 1) //Never escapable.
-				host.vore_selected.escapable = 0
-				to_chat(user,span_warning("Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)]."))
-			else
-				tgui_alert_async(user, "Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
-				host.vore_selected.escapable = 0
+			var/new_mode = text2num(params["val"])
+			switch(new_mode)
+				if(B_ESCAPABLE_NONE) //Never escapable.
+					host.vore_selected.escapable = B_ESCAPABLE_NONE
+					to_chat(user,span_warning("Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)]."))
+				if(B_ESCAPABLE_DEFAULT) //Possibly escapable and special interactions.
+					host.vore_selected.escapable = B_ESCAPABLE_DEFAULT
+					to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings."))
+				if(B_ESCAPABLE_INTENT) //Possibly escapable and special intent based interactions.
+					host.vore_selected.escapable = B_ESCAPABLE_INTENT
+					to_chat(user,span_warning("Prey now have special interactions with your [lowertext(host.vore_selected.name)] depending on your settings and their intent."))
 			. = TRUE
 		if("b_escapechance")
 			var/escape_chance_input = text2num(params["val"])
@@ -822,25 +822,25 @@
 			host.vore_selected.clear_preview(host) //Clears the stomach overlay. This is a failsafe but shouldn't occur.
 			. = TRUE
 		if("b_fullscreen_color")
-			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color = newcolor
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color2")
-			var/newcolor2 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color2)
+			var/newcolor2 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor2)
 				host.vore_selected.belly_fullscreen_color2 = newcolor2
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color3")
-			var/newcolor3 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color3)
+			var/newcolor3 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor3)
 				host.vore_selected.belly_fullscreen_color3 = newcolor3
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_color4")
-			var/newcolor4 = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color4)
+			var/newcolor4 = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor4)
 				host.vore_selected.belly_fullscreen_color4 = newcolor4
 				host.vore_selected.update_internal_overlay()
@@ -988,13 +988,13 @@
 			. = TRUE
 		if("b_undergarment_choice")
 			var/new_undergarment = params["val"]
-			if(!(global_underwear.categories_by_name[new_undergarment]))
+			if(!(GLOB.global_underwear.categories_by_name[new_undergarment]))
 				return FALSE
 			host.vore_selected.undergarment_chosen = new_undergarment
 			host.handle_belly_update()
 			. = TRUE
 		if("b_undergarment_if_none")
-			var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+			var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
 			var/selected_underwear = UWC.items_by_name[params["val"]]
 			if(!selected_underwear) //They cancelled, no changes
 				return FALSE
@@ -1003,7 +1003,7 @@
 			host.handle_belly_update()
 			host.updateVRPanel()
 		if("b_undergarment_color")
-			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.undergarment_color)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.undergarment_color = newcolor
 				host.handle_belly_update()
@@ -1015,17 +1015,17 @@
 			host.vore_selected.tail_to_change_to = tail_choice
 			. = TRUE
 		if("b_tail_color")
-			var/newcolor = tgui_color_picker(user, "Choose tail color.", "", host.vore_selected.tail_colouration)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_colouration = newcolor
 			. = TRUE
 		if("b_tail_color2")
-			var/newcolor = tgui_color_picker(user, "Choose tail secondary color.", "", host.vore_selected.tail_extra_overlay)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay = newcolor
 			. = TRUE
 		if("b_tail_color3")
-			var/newcolor = tgui_color_picker(user, "Choose tail tertiary color.", "", host.vore_selected.tail_extra_overlay2)
+			var/newcolor = sanitize_hexcolor(lowertext(params["val"]))
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay2 = newcolor
 			. = TRUE

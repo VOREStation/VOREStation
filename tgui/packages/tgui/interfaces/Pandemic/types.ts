@@ -39,6 +39,7 @@ type Virus = {
   description: string;
   spread: string;
   cure: string;
+  severity: number;
 };
 
 type Symptom = {

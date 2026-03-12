@@ -49,7 +49,7 @@ BLOOD_VOLUME_SURVIVE = 40
 			if(isSynthetic())
 				B.data["species"] = "synthetic"
 
-			B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
+			B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood || HAS_TRAIT(src, TRAIT_REDSPACE_CORRUPTED)
 			B.color = B.data["blood_colour"]
 			B.name = B.data["blood_name"]
 
@@ -148,6 +148,7 @@ BLOOD_VOLUME_SURVIVE = 40
 				update_icons_body()
 			eye_blurry = max(eye_blurry,6)
 			Paralyse(3)
+			Sleeping(3)
 			adjustToxLoss(3 * dmg_coef)
 			adjustOxyLoss(75 * dmg_coef) // 15 more than dexp fixes (also more than dex+dexp+tricord)
 
@@ -159,82 +160,120 @@ BLOOD_VOLUME_SURVIVE = 40
 				adjust_nutrition(-3)
 
 		//Bleeding out
-		var/blood_max = 0
-		var/blood_loss_divisor = 30.01	//lower factor = more blood loss
+		caculate_bloodloss_and_bleed(bleed = TRUE)
 
-		// Some species bleed out differently
-		blood_loss_divisor /= species.bloodloss_rate
+///Calculates our bloodloss divisor and returns what it is.
+/mob/living/carbon/human/proc/calculate_bloodloss_divisor()
+	var/blood_loss_divisor = 30.01	//lower factor = more blood loss
 
-		// Some modifiers can make bleeding better or worse.  Higher multiplers = more bleeding.
-		var/blood_loss_modifier_multiplier = 1.0
-		for(var/datum/modifier/M in modifiers)
-			if(!isnull(M.bleeding_rate_percent))
-				blood_loss_modifier_multiplier += (M.bleeding_rate_percent - 1.0)
+	// Some species bleed out differently
+	blood_loss_divisor /= species.bloodloss_rate
 
-		blood_loss_divisor /= blood_loss_modifier_multiplier
+	// Some modifiers can make bleeding better or worse.  Higher multiplers = more bleeding.
+	var/blood_loss_modifier_multiplier = 1.0
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.bleeding_rate_percent))
+			blood_loss_modifier_multiplier += (M.bleeding_rate_percent - 1.0)
 
+	blood_loss_divisor /= blood_loss_modifier_multiplier
+	return blood_loss_divisor
 
-		//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
-		for(var/obj/item/organ/external/temp in bad_external_organs)
+///Calculates how much blood we should lose from our wounds and makes us bleed that amount if bleed is TRUE
+///ARGS:
+/// bleed: If we bleed or not while checking. DEFAULT: True
+/// organ_to_check: The organ we want to check. If we don't, it checks ALL the bad organs.
+/// count_internal: Internal bleeding counts towards our bloodloss max. DEFAULT: False
+/// count_external: External bleeding counts towards our bloodloss max. DEFAULT: True
 
-			///First, we make sure it's not robotic.
-			if(temp.robotic >= ORGAN_ROBOT)
-				continue
+/mob/living/carbon/human/proc/caculate_bloodloss_and_bleed(bleed = TRUE, obj/item/organ/external/organ_to_check, count_internal = FALSE, count_external = TRUE)
+	var/total_blood_loss = 0
+	var/blood_max = 0
+	var/blood_loss_divisor = calculate_bloodloss_divisor()
+	var/list/organs_to_check = list()
 
-			///Second, we process internal bleeding.
+	if(organ_to_check)
+		organs_to_check += organ_to_check
+	else
+		organs_to_check = bad_external_organs
+	//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
+	for(var/obj/item/organ/external/temp in organs_to_check)
+
+		///First, we make sure it's not robotic.
+		if(temp.robotic >= ORGAN_ROBOT)
+			continue
+
+		///Second, we process internal bleeding.
+		if(bleed || count_internal)
 			for(var/datum/wound/internal_bleeding/W in temp.wounds)
-				blood_loss_divisor = blood_loss_divisor+10 //IB is slower bloodloss than normal.
-				var/bicardose
-				if(reagents.get_reagent_amount(REAGENT_ID_BICARIDINE) || reagents.get_reagent_amount(REAGENT_ID_BICARIDAZE))
-					bicardose = TRUE
-				var/inaprovaline
-				if(reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) || reagents.get_reagent_amount(REAGENT_ID_INAPROVALAZE))
-					inaprovaline = TRUE
-				var/myeldose = reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
-				if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
-					W.open_wound(0.1)
+				var/internal_blood_to_lose = calculate_internal_bloodloss(W, applied_pressure = temp.applied_pressure)
+				if(count_internal)
+					total_blood_loss += internal_blood_to_lose
+				if(bleed)
+					remove_blood(internal_blood_to_lose)
 				if(prob(1))
 					custom_pain("You feel a stabbing pain in your [temp.name]!", 50)
-				if((CE_STABLE in chem_effects) || myeldose)
-					blood_loss_divisor = max(blood_loss_divisor + 30, 1) //Inaprovaline is great on internal wounds.
-				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
-					blood_loss_divisor += 30
-				if(W.clamped)
-					blood_loss_divisor = blood_loss_divisor * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
-				remove_blood(W.damage/blood_loss_divisor) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place. //Hi. 2025 here. Just did that. ~Diana
 
-			///Thirdly, we check to see if the limb is bleeding EXTERNALLY
-			if(!(temp.status & ORGAN_BLEEDING))
-				continue
-			///Finally, we process external wounds.
-			for(var/datum/wound/W in temp.wounds)
-				if(W.bleeding())
-					if(W.damage_type == PIERCE) //gunshots and spear stabs bleed more
-						blood_loss_divisor = max(blood_loss_divisor - 5, 1)
-					else if(W.damage_type == BRUISE) //bruises bleed less
-						blood_loss_divisor = max(blood_loss_divisor + 5, 1)
-					//the farther you get from those vital regions, the less you bleed
-					//depending on how dangerous bleeding turns out to be, it might be better to only apply the reduction to hands and feet
-					if((temp.organ_tag == BP_L_ARM) || (temp.organ_tag == BP_R_ARM) || (temp.organ_tag == BP_L_LEG) || (temp.organ_tag == BP_R_LEG))
-						blood_loss_divisor = max(blood_loss_divisor + 5, 1)
-					else if((temp.organ_tag == BP_L_HAND) || (temp.organ_tag == BP_R_HAND) || (temp.organ_tag == BP_L_FOOT) || (temp.organ_tag == BP_R_FOOT))
-						blood_loss_divisor = max(blood_loss_divisor + 10, 1)
-					if(CE_STABLE in chem_effects)	//Inaprov slows bloodloss
-						blood_loss_divisor = max(blood_loss_divisor + 10, 1)
-					if(temp.applied_pressure)
-						if(ishuman(temp.applied_pressure))
-							var/mob/living/carbon/human/H = temp.applied_pressure
-							H.bloody_hands(src, 0)
-						//somehow you can apply pressure to every wound on the organ at the same time
-						//you're basically forced to do nothing at all, so let's make it pretty effective
-						var/min_eff_damage = max(0, W.damage - 10) / (blood_loss_divisor / 5) //still want a little bit to drip out, for effect
-						blood_max += max(min_eff_damage, W.damage - 30) / blood_loss_divisor
-					else
-						blood_max += W.damage / blood_loss_divisor
+		///Thirdly, we check to see if the limb is bleeding EXTERNALLY
+		if(!(temp.status & ORGAN_BLEEDING))
+			continue
+		///Finally, we process external wounds.
+		for(var/datum/wound/W in temp.wounds)
+			if(W.bleeding())
+				var/temp_bld = blood_loss_divisor
+				if(W.damage_type == PIERCE) //gunshots and spear stabs bleed more
+					temp_bld = max(temp_bld - 5, 1)
+				else if(W.damage_type == BRUISE) //bruises bleed less
+					temp_bld = max(temp_bld + 5, 1)
+				//the farther you get from those vital regions, the less you bleed
+				//depending on how dangerous bleeding turns out to be, it might be better to only apply the reduction to hands and feet
+				if((temp.organ_tag == BP_L_ARM) || (temp.organ_tag == BP_R_ARM) || (temp.organ_tag == BP_L_LEG) || (temp.organ_tag == BP_R_LEG))
+					temp_bld = max(temp_bld + 5, 1)
+				else if((temp.organ_tag == BP_L_HAND) || (temp.organ_tag == BP_R_HAND) || (temp.organ_tag == BP_L_FOOT) || (temp.organ_tag == BP_R_FOOT))
+					temp_bld = max(temp_bld + 10, 1)
+				if(CE_STABLE in chem_effects)	//Inaprov slows bloodloss
+					temp_bld = max(temp_bld + 10, 1)
+				if(temp.applied_pressure)
+					if(ishuman(temp.applied_pressure))
+						var/mob/living/carbon/human/H = temp.applied_pressure
+						H.bloody_hands(src, 0)
+					//somehow you can apply pressure to every wound on the organ at the same time
+					//you're basically forced to do nothing at all, so let's make it pretty effective
+					var/min_eff_damage = max(0, W.damage - 10) / (temp_bld / 5) //still want a little bit to drip out, for effect
+					blood_max += max(min_eff_damage, W.damage - 30) / temp_bld
+				else
+					blood_max += W.damage / temp_bld
 
-			if(temp.open)
-				blood_max += 2 //Yer stomach is cut open
+		if(temp.open)
+			blood_max += 2 //Yer stomach is cut open
+	if(bleed)
+		blood_max = round(blood_max, 0.1)
 		drip(blood_max)
+		total_blood_loss += blood_max
+	return round(total_blood_loss, 0.1)
+
+///Calculates how much blood we should lose from an internal wound.
+/mob/living/carbon/human/proc/calculate_internal_bloodloss(datum/wound/internal_bleeding/wound_to_check, applied_pressure = FALSE)
+	if(!wound_to_check)
+		return 0
+
+	var/temp_bld = calculate_bloodloss_divisor() + 10 //IB is slower bloodloss than normal.
+	var/bicardose
+	if(reagents.get_reagent_amount(REAGENT_ID_BICARIDINE) || reagents.get_reagent_amount(REAGENT_ID_BICARIDAZE))
+		bicardose = TRUE
+	var/inaprovaline
+	if(reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) || reagents.get_reagent_amount(REAGENT_ID_INAPROVALAZE))
+		inaprovaline = TRUE
+	var/myeldose = reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
+	if(!(wound_to_check.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
+		wound_to_check.open_wound(0.1)
+	if((CE_STABLE in chem_effects) || myeldose)
+		temp_bld = max(temp_bld + 30, 1) //Inaprovaline is great on internal wounds.
+	if(applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
+		temp_bld += 30
+	if(wound_to_check.clamped)
+		temp_bld = temp_bld * 10 //We hemostatted the internal bleeding. Bloodloss is 10 times slower.
+	return round((wound_to_check.damage/temp_bld), 0.1)
+
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt)
@@ -275,10 +314,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	if(!B.data["viruses"])
 		B.data["viruses"] = list()
 
-	for(var/datum/disease/D in GetSpreadableViruses())
-		B.data["viruses"] |= D.Copy()
-
-	for(var/datum/disease/D in GetDormantDiseases())
+	for(var/datum/disease/D in GetViruses())
 		B.data["viruses"] |= D.Copy()
 
 	if(!B.data["resistances"])
@@ -288,7 +324,7 @@ BLOOD_VOLUME_SURVIVE = 40
 		B.data["resistances"] |= GetResistances()
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
-	B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
+	B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood || HAS_TRAIT(src, TRAIT_REDSPACE_CORRUPTED)
 
 	// Putting this here due to return shenanigans.
 	if(ishuman(src))
@@ -322,9 +358,9 @@ BLOOD_VOLUME_SURVIVE = 40
 	var/list/sniffles = injected.data["viruses"]
 	for(var/ID in sniffles)
 		var/datum/disease/D = ID
-		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
+		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS)) // Special/Non-Contagious stay in the blood, but they won't spread
 			continue
-		ContractDisease(D)
+		ForceContractDisease(D)
 	if (injected.data["resistances"] && prob(5))
 		antibodies |= injected.data["resistances"]
 	if (injected.data[REAGENT_ID_ANTIBODIES] && prob(5))
@@ -365,7 +401,7 @@ BLOOD_VOLUME_SURVIVE = 40
 		if(!our)
 			log_runtime("Failed to re-initialize blood datums on [src]!")
 			return
-	if(is_changeling(src)) //Changelings don't reject blood!
+	if((is_changeling(src) || HAS_TRAIT(src, TRAIT_REDSPACE_CORRUPTED))) //Changelings don't reject blood!
 		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
 		vessel.update_total()
 	else if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )

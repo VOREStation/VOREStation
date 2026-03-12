@@ -163,20 +163,23 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
-/obj/item/toy/sword/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
+/obj/item/toy/sword/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	active = !active
+	if(active)
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
-		src.item_state = "[icon_state]_blade"
-		src.w_class = ITEMSIZE_LARGE
+		item_state = "[icon_state]_blade"
+		w_class = ITEMSIZE_LARGE
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
-		src.item_state = "[icon_state]"
-		src.w_class = ITEMSIZE_SMALL
+		item_state = "[icon_state]"
+		w_class = ITEMSIZE_SMALL
 	update_icon()
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/item/toy/sword/update_icon()
@@ -282,7 +285,10 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_HOLSTER
 
-/obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
+/obj/item/toy/bosunwhistle/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(cooldown < world.time - 35)
 		to_chat(user, span_notice("You blow on [src], creating an ear-splitting noise!"))
 		playsound(src, 'sound/misc/boatswain.ogg', 20, 1)
@@ -305,9 +311,12 @@
 	. = ..()
 	desc = "A \"Space Life\" brand [name]"
 
-/obj/item/toy/figure/attack_self(mob/user as mob)
+/obj/item/toy/figure/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(cooldown < world.time)
-		cooldown = (world.time + 30) //3 second cooldown
+		cooldown = (world.time + 3 SECONDS)
 		user.visible_message(span_notice("The [src] says \"[toysay]\"."))
 		playsound(src, 'sound/machines/click.ogg', 20, 1)
 
@@ -629,16 +638,12 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "basecarp"
 	attack_verb = list("bitten", "eaten", "fin slapped")
-	var/bitesound = 'sound/weapons/bite.ogg'
+	squeeze_sound = 'sound/weapons/bite.ogg'
+	cooldown_length = 1 SECOND
 
 // Attack mob
 /obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
-	playsound(src, bitesound, 20, 1)	// Play bite sound in local area
-	return ..()
-
-// Attack self
-/obj/item/toy/plushie/carp/attack_self(mob/user as mob)
-	playsound(src, bitesound, 20, 1)
+	playsound(src, squeeze_sound, 20, 1)	// Play bite sound in local area
 	return ..()
 
 
@@ -810,6 +815,16 @@
 	//This should be used if a plushie can be made to say custom messages. Not currently required at the moment, but here just in case it'd added in the future.
 	var/prevent_impersonation = FALSE
 
+	var/special_handling = FALSE
+
+	///The sound we make when squeezed
+	var/squeeze_sound = 'sound/items/drop/plushie.ogg'
+
+	///Timer to track how long until we can play a sound again
+	var/cooldown_timer
+	///How long our cooldown timer is. Default 15 seconds
+	var/cooldown_length = 15 SECONDS
+
 /obj/item/toy/plushie/Initialize(mapload)
 	. = ..()
 	adjusted_name = name
@@ -821,7 +836,12 @@
 		if(in_range(user, src) && stored_item)
 			. += span_italics("You can see something in there...")
 
-/obj/item/toy/plushie/attack_self(mob/user as mob)
+/obj/item/toy/plushie/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return
 	if(stored_item && opened && !searching)
 		searching = TRUE
 		if(do_after(user, 1 SECOND, target = src))
@@ -843,7 +863,9 @@
 		user.visible_message(span_warning(span_bold("\The [user]") + " attempts to strangle [src]!"),span_warning("You attempt to strangle [src]!"))
 	else
 		user.visible_message(span_notice(span_bold("\The [user]") + " pokes [src]."),span_notice("You poke [src]."))
-		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
+		if(cooldown_timer < world.time)
+			playsound(src, squeeze_sound, 25, 0)
+			cooldown_timer = world.time + cooldown_length
 	if(pokephrase) //There was no indiciation you had to use disarm intent to make it speak...So now it speaks if you touch it at all!
 		say_phrase()
 	last_message = world.time
@@ -1186,14 +1208,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_tin"
 	pokephrase = "Peep peep!"
-	var/cooldown = 0
-
-/obj/item/toy/plushie/tinytin/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/voice/peep.ogg', 20, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/voice/peep.ogg'
 
 /obj/item/toy/plushie/tinytin_sec
 	name = "officer tiny tin plushie"
@@ -1202,14 +1217,7 @@
 	icon_state = "plushie_tinsec"
 	bubble_icon = "security"
 	pokephrase = "That means you fucked up!"
-	var/cooldown = 0
-
-/obj/item/toy/plushie/tinytin_sec/attack_self(mob/user as mob)
-	if(!cooldown)
-		playsound(user, 'sound/voice/tinytin_fuckedup.ogg', 25, 0)
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
-	return ..()
+	squeeze_sound = 'sound/voice/tinytin_fuckedup.ogg'
 
 //Toy cult sword
 /obj/item/toy/cultsword
@@ -1257,13 +1265,15 @@
 	var/cooldown = 0
 	var/list/possible_answers = list("Definitely.", "All signs point to yes.", "Most likely.", "Yes.", "Ask again later.", "Better not tell you now.", "Future unclear.", "Maybe.", "Doubtful.", "No.", "Don't count on it.", "Never.")
 
-/obj/item/toy/eight_ball/attack_self(mob/user as mob)
+/obj/item/toy/eight_ball/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown)
 		var/answer = pick(possible_answers)
 		user.visible_message(span_notice("[user] focuses on their question and [use_action]..."))
 		user.visible_message(span_notice("The [src] says \"[answer]\""))
-		spawn(30)
-			cooldown = 0
+		VARSET_IN(src, cooldown, FALSE, 3 SECONDS)
 		return
 
 /obj/item/toy/eight_ball/conch
@@ -1320,26 +1330,7 @@
 	/obj/item/toy/character/voidone,
 	/obj/item/toy/character/lich
 	)
-/* VOREStation edit. Moved to toys_vr.dm
-/obj/item/toy/AI
-	name = "toy AI"
-	desc = "A little toy model AI core!"// with real law announcing action!" //Alas, requires a rewrite of how ion laws work.
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "AI"
-	w_class = ITEMSIZE_SMALL
-	var/cooldown = 0
 
-/obj/item/toy/AI/attack_self(mob/user)
-	if(!cooldown) //for the sanity of everyone
-		var/message = generate_ion_law()
-		to_chat(user, span_notice("You press the button on [src]."))
-		playsound(src, 'sound/machines/click.ogg', 20, 1)
-		visible_message(span_danger("[message]"))
-		cooldown = 1
-		spawn(30) cooldown = 0
-		return
-	..()
-*/
 /obj/item/toy/owl
 	name = "owl action figure"
 	desc = "An action figure modeled after 'The Owl', defender of justice."
@@ -1349,15 +1340,16 @@
 	var/cooldown = 0
 
 /obj/item/toy/owl/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown) //for the sanity of everyone
 		var/message = pick("You won't get away this time, Griffin!", "Stop right there, criminal!", "Hoot! Hoot!", "I am the night!")
 		to_chat(user, span_notice("You pull the string on the [src]."))
 		//playsound(src, 'sound/misc/hoot.ogg', 25, 1)
 		visible_message(span_danger("[message]"))
 		cooldown = 1
-		spawn(30) cooldown = 0
-		return
-	..()
+		VARSET_IN(src, cooldown, FALSE, 3 SECONDS)
 
 /obj/item/toy/griffin
 	name = "griffin action figure"
@@ -1368,15 +1360,16 @@
 	var/cooldown = 0
 
 /obj/item/toy/griffin/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!cooldown) //for the sanity of everyone
 		var/message = pick("You can't stop me, Owl!", "My plan is flawless! The vault is mine!", "Caaaawwww!", "You will never catch me!")
 		to_chat(user, span_notice("You pull the string on the [src]."))
 		//playsound(src, 'sound/misc/caw.ogg', 25, 1)
 		visible_message(span_danger("[message]"))
 		cooldown = 1
-		spawn(30) cooldown = 0
-		return
-	..()
+		VARSET_IN(src, cooldown, FALSE, 3 SECONDS)
 
 /* NYET.
 /obj/item/toddler

@@ -82,7 +82,7 @@
 	B.release_sound = "Pred Escape"
 	B.fancy_vore = TRUE
 	B.belly_fullscreen_color = "#c47cb4"
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "VBOanim_belly1"
 
 	B.emote_lists[DM_HOLD] = list(
 		"As time passes, the massive rat's stomach slowly churns and squeezes down around you, packing you into an easier to carry bundle amidst that oddly soothing massage.",
@@ -256,6 +256,8 @@
 /mob/living/simple_mob/vore/aggressive/rat/pet
 	name = "Giant Rat Siblings"
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	devourable = 0
+	digestable = 0
 
 /mob/living/simple_mob/vore/aggressive/rat/pet/Initialize(mapload)
 	.=..()

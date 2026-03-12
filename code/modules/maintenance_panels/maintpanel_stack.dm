@@ -11,8 +11,12 @@
 	throw_range = 20
 	can_weld = TRUE
 	no_variants = FALSE
+	custom_handling = TRUE
 
-/obj/item/stack/tile/maintenance_panel/attack_self(var/mob/user)
+/obj/item/stack/tile/maintenance_panel/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/turf/T = user.loc
 	if(!user || (loc != user && !isrobot(user)) || user.stat || user.loc != T)
 		return FALSE

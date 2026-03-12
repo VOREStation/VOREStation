@@ -165,7 +165,7 @@
 	if(core.loc != owner || owner.back != core) //Make sure the core's being worn.
 		to_chat(owner, span_danger("You need to be wearing a core on your back!"))
 		return 0
-	if(!technomancers.is_antagonist(owner.mind) && !core.universal) //Now make sure the person using this is the actual antag. //VOREStation Edit - Universal cores
+	if(!GLOB.technomancers.is_antagonist(owner.mind) && !core.universal) //Now make sure the person using this is the actual antag. //VOREStation Edit - Universal cores
 		to_chat(owner, span_danger("You can't seem to figure out how to make the machine work properly."))
 		return 0
 	return 1
@@ -196,9 +196,11 @@
 // Parameters: 1 (user - the Technomancer that invoked this proc)
 // Description: Tries to call on_use_cast() if it is allowed to do so.  Don't override this, override on_use_cast() instead.
 /obj/item/spell/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(run_checks() && (cast_methods & CAST_USE))
 		on_use_cast(user)
-	..()
 
 // Proc: attackby()
 // Parameters: 2 (W - the item this spell object is hitting, user - the technomancer who clicked the other object)

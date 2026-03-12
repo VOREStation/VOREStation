@@ -304,6 +304,10 @@
 /obj/structure/simple_door/glamour/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_GLAMOUR)
 
+/obj/structure/simple_door/snowbrick/Initialize(mapload, var/material_name)
+	. = ..(mapload, material_name || MAT_SNOWBRICK)
+
+
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))
 		var/mob/living/L = user

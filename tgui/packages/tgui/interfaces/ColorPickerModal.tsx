@@ -42,7 +42,7 @@ import { classes } from 'tgui-core/react';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
-interface ColorPickerData {
+type ColorPickerData = {
   autofocus: boolean;
   buttons: string[];
   message: string;
@@ -52,7 +52,7 @@ interface ColorPickerData {
   title: string;
   default_color: string;
   presets?: string;
-}
+};
 
 type ColorPickerModalProps = Record<never, never>;
 
@@ -96,7 +96,11 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   });
 
   useEffect(() => {
-    syncColorPreset();
+    const timeoutId = setTimeout(() => {
+      syncColorPreset();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [selectedColor]);
 
   if (!title) {
@@ -256,7 +260,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
         </Stack>
-        {!!onAllowEditing && (
+        {!!onAllowEditing && presetList?.length && (
           <Button
             color={allowEditing ? 'green' : 'red'}
             position="absolute"
@@ -301,7 +305,6 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
     );
 
     const [showPresets, setShowPresets] = useState<boolean>(false);
-    const rgb = hsvaToRgba(color);
     const hexColor = hsvaToHex(color);
 
     return (
@@ -334,14 +337,14 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
                   backgroundColor={hexColor}
                 />
               </Tooltip>
-              <Tooltip content={defaultColor} position="bottom">
-                <Box
-                  inline
-                  width="100px"
-                  height="30px"
-                  backgroundColor={defaultColor}
-                />
-              </Tooltip>
+              <Button
+                tooltip={defaultColor}
+                tooltipPosition="bottom"
+                width="100px"
+                height="30px"
+                backgroundColor={defaultColor}
+                onClick={() => setColor(hexToHsva(defaultColor))}
+              />
             </Stack.Item>
           </Stack>
         </Stack.Item>

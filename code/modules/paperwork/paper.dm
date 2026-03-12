@@ -36,6 +36,9 @@
 	var/age = 0
 	var/last_modified_ckey
 
+	///Occult check. Used for do_after
+	var/occult = FALSE
+
 	var/was_maploaded = FALSE // This tracks if the paper was created on mapload.
 
 	var/const/deffont = "Verdana"
@@ -161,7 +164,7 @@
 	set category = "Object"
 	set src in usr
 
-	if((CLUMSY in usr.mutations) && prob(50))
+	if(CLUMSY_FAIL_CHANCE(usr))
 		to_chat(usr, span_warning("You cut yourself on the paper."))
 		return
 	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the paper?", "Paper Labelling", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
@@ -175,7 +178,12 @@
 		add_fingerprint(usr)
 	return
 
-/obj/item/paper/attack_self(mob/living/user as mob)
+/obj/item/paper/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(occult)
+		return
 	if(user.a_intent == I_HURT)
 		if(icon_state == "scrap")
 			user.show_message(span_warning("\The [src] is already crumpled."))
@@ -344,6 +352,7 @@
 		t = replacetext(t, "\[cell\]", "<td>")
 		t = replacetext(t, "\[/cell\]", "")
 		t = replacetext(t, "\[logo\]", "<img src=\ref['html/images/ntlogo.png']>")
+		t = replacetext(t, "\[talogo\]", "<img src=\ref['html/images/talonlogo.png']>")
 		t = replacetext(t, "\[sglogo\]", "<img src=\ref['html/images/sglogo.png']>")
 		t = replacetext(t, "\[trlogo\]", "<img src=\ref['html/images/trader.png']>")
 		// t = replacetext(t, "\[pclogo\]", "<img src=\ref['html/images/pclogo.png']>") // Not available on virgo
@@ -363,6 +372,7 @@
 		t = replacetext(t, "\[/cell\]", "")
 		t = replacetext(t, "\[/row\]", "")
 		t = replacetext(t, "\[logo\]", "")
+		t = replacetext(t, "\[talogo\]", "")
 		t = replacetext(t, "\[sglogo\]", "")
 
 		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"

@@ -25,6 +25,8 @@
 #define DM_FLAG_SLOWBODY		0x100
 #define DM_FLAG_MUFFLEITEMS		0x200
 #define DM_FLAG_TURBOMODE		0x400
+#define DM_FLAG_ABSORBEDVORE	0x800
+#define DM_FLAG_WETTENS			0x1000
 
 //Item related modes
 #define IM_HOLD									"Hold"
@@ -94,3 +96,8 @@
 //Message display flags
 #define MS_FLAG_STRUGGLE_OUTSIDE			0x1
 #define MS_FLAG_STRUGGLE_ABSORBED_OUTSIDE	0x2
+
+//Escapable resist options
+#define B_ESCAPABLE_NONE		0
+#define B_ESCAPABLE_DEFAULT		1
+#define B_ESCAPABLE_INTENT		2

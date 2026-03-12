@@ -63,9 +63,6 @@
 	//used for optional self-objectives that antagonists can give themselves, which are displayed at the end of the round.
 	var/ambitions
 
-	//used to store what traits the player had picked out in their preferences before joining, in text form.
-	var/list/traits = list()
-
 	var/datum/religion/my_religion
 
 /datum/mind/New(var/key)
@@ -96,7 +93,7 @@
 		new_character.make_changeling()
 
 	if(learned_spells)
-		for(var/spell/spell_to_add in learned_spells)
+		for(var/datum/spell/spell_to_add in learned_spells)
 			new_character.add_spell(spell_to_add)
 
 	if(active || force)
@@ -503,6 +500,12 @@
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
 				return G
 			break
+
+///Proc that FORCIBLY grabs a client no matter where they are and returns their currently inhabited mob.
+/datum/mind/proc/forcibly_grab_client()
+	for(var/mob/mob_to_grab in GLOB.player_list)
+		if(mob_to_grab.ckey == loaded_from_ckey)
+			return mob_to_grab
 
 /datum/mind/proc/grab_ghost(force)
 	var/mob/observer/dead/G = get_ghost(even_if_they_cant_reenter = force)

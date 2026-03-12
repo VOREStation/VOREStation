@@ -48,7 +48,7 @@
 	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 
-	var/decl/plantgene/gene = null
+	var/datum/decl/plantgene/gene = null
 	recoil_mode = 0
 	var/obj/item/stock_parts/micro_laser/emitter
 
@@ -190,7 +190,7 @@
 	charge_meter = 0
 
 /obj/item/gun/energy/staff/special_check(var/mob/user)
-	if((user.mind && !wizards.is_antagonist(user.mind)))
+	if((user.mind && !GLOB.wizards.is_antagonist(user.mind)))
 		to_chat(user, span_warning("You focus your mind on \the [src], but nothing happens!"))
 		return 0
 

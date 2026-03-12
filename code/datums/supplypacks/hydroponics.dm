@@ -63,7 +63,7 @@
 	containertype = /obj/structure/largecrate/animal/catslug
 	containername = "Catslug Crate"
 
-/datum/supply_pack/hydro/catslug
+/datum/supply_pack/hydro/mothroach
 	name = "Mothroach Crate"
 	desc = "Put the mothroach on your head and find out what true cuteness looks like. \
 		Contains one mothroach."
