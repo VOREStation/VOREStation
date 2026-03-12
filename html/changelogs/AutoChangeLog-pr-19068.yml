@@ -1,6 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - rscadd: "Added the ability to harvest anomalies"
-  - rscadd: "Added the Anomaly Scanner, Anomaly Harvester, and Anomalous Particle Gun"
-  - rscadd: "Xenoarch tech web"

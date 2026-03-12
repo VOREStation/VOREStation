@@ -1,6 +1,0 @@
-author: "Aroliacue"
-delete-after: True
-changes:
-  - rscadd: "Added additional starting security items to the SecTech vending machine."
-  - qol: "Moved excessive clothing options from security lockers to clothing vending machines."
-  - balance: "Reduced weight class on legcuffs from normal to small. They now take up the same space as regular handcuffs."
