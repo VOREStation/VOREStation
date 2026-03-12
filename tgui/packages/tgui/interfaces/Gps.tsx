@@ -1,4 +1,4 @@
-// Currently not used!
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -6,6 +6,7 @@ import {
   Button,
   Divider,
   Icon,
+  Input,
   LabeledList,
   Section,
   Stack,
@@ -14,6 +15,7 @@ import {
 import { flow } from 'tgui-core/fp';
 import { clamp } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 import { vecLength, vecSubtract } from 'tgui-core/vector';
 import { PreferenceEditColor } from './PreferencesMenu/elements/ColorInput';
 
@@ -27,12 +29,12 @@ type Data = {
   currentCoords: string; // "x, y, z"
   localMode: BooleanLike;
   currentZName: string;
-  signals: signal[];
+  signals: Signal[];
   canHide: BooleanLike;
   isHidden: BooleanLike;
 };
 
-type signal = {
+type Signal = {
   ref: string;
   gpsTag: string;
   areaName: string;
@@ -45,7 +47,7 @@ type signal = {
   dist?: number;
 };
 
-function sortSignal(a: signal, b: signal) {
+function sortSignal(a: Signal, b: Signal) {
   if (a.dist === undefined && b.dist === undefined) return 0;
   if (a.dist === undefined) return 1;
   if (b.dist === undefined) return -1;
@@ -68,8 +70,10 @@ export const Gps = (props) => {
     currentZName,
   } = data;
 
-  const signals: signal[] = flow([
-    (signals: signal[]) =>
+  const [search, setSearch] = useState('');
+  const searchName = createSearch<Signal>(search, (gps) => gps.gpsTag);
+  const signals: Signal[] = flow([
+    (signals: Signal[]) =>
       signals.map((signal, index) => {
         // Calculate distance to the target. BYOND distance is capped to 127,
         // that's why we roll our own calculations here.
@@ -85,7 +89,7 @@ export const Gps = (props) => {
           );
         return { ...signal, dist, index };
       }),
-    (signals: signal[]) => signals.sort((a, b) => sortSignal(a, b)),
+    (signals: Signal[]) => signals.sort((a, b) => sortSignal(a, b)),
   ])(data.signals || []);
 
   return (
@@ -155,7 +159,19 @@ export const Gps = (props) => {
                 </Section>
               </Stack.Item>
               <Stack.Item grow>
-                <Section fill title="Detected Signals" scrollable>
+                <Section
+                  fill
+                  title="Detected Signals"
+                  scrollable
+                  buttons={
+                    <Input
+                      placeholder="Search name..."
+                      width="200px"
+                      value={search}
+                      onChange={(value) => setSearch(value)}
+                    />
+                  }
+                >
                   <Table>
                     <Table.Row header>
                       <Table.Cell>Name</Table.Cell>
@@ -164,7 +180,7 @@ export const Gps = (props) => {
                       <Table.Cell collapsing>Coordinates</Table.Cell>
                     </Table.Row>
                     {signals.length ? (
-                      signals.map((signal, index) => (
+                      signals.filter(searchName).map((signal, index) => (
                         <Table.Row
                           key={signal.gpsTag + signal.coords + index}
                           className="candystripe"

@@ -205,3 +205,12 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/anomaly_harvester
+	name = "Anomaly Harvester"
+	id = "anomaly_harvester"
+	build_path = /obj/item/circuitboard/anomaly_harvester
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

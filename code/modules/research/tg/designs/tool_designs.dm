@@ -1273,3 +1273,14 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/anomaly_scanner
+	name = "Anomaly Scanner"
+	id = "anomaly_scanner"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/anomaly_scanner
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

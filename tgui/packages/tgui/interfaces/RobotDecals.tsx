@@ -18,12 +18,12 @@ export const RobotDecals = () => {
   const [decalSearchText, setDecalSearchText] = useState('');
   const [animationSearchText, setAnimationSearchText] = useState('');
 
-  const decalSearcher = createSearch(decalSearchText, (decal: string) => decal);
+  const decalSearcher = createSearch<string>(decalSearchText, (decal) => decal);
   const filteredDecals = all_decals?.filter(decalSearcher) ?? [];
 
-  const animationSearcher = createSearch(
+  const animationSearcher = createSearch<string>(
     animationSearchText,
-    (anim: string) => anim,
+    (anim) => anim,
   );
   const filteredAnimations = all_animations?.filter(animationSearcher) ?? [];
 
