@@ -28633,14 +28633,6 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
-"aYy" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/assembly/signaler/anomaly/flux{
-	pixel_y = 13;
-	pixel_x = 7
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
 "aYz" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -28650,18 +28642,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
-"aYA" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/anomaly_releaser/science{
-	pixel_y = 2;
-	pixel_x = 3
-	},
-/obj/item/anomaly_releaser/science{
-	pixel_y = 1;
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
 "aYB" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -28671,13 +28651,12 @@
 /area/crew_quarters/sleep/maintDorm1)
 "aYC" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/anomaly_scanner{
-	pixel_x = 2;
-	pixel_y = -2
+/obj/item/storage/box/anomaly{
+	pixel_y = 5
 	},
-/obj/item/anomaly_scanner{
-	pixel_x = 5;
-	pixel_y = 3
+/obj/item/storage/box/anomaly{
+	pixel_y = 0;
+	pixel_x = 5
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
@@ -45977,7 +45956,7 @@ avh
 abm
 abw
 aYC
-aYy
+abw
 abv
 afA
 abv
@@ -46261,7 +46240,7 @@ avh
 abm
 abw
 abw
-aYA
+abw
 adM
 afU
 abI
