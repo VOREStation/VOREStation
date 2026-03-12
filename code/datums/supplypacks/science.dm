@@ -144,6 +144,6 @@
 /datum/supply_pack/sci/anomaly_harvesting
 	name = "Anomaly Harvesting crate"
 	desc = "Contains the tools to start anomaly harvesting. Requires Research access."
-	cost = 250
+	cost = 300
 	containertype = /obj/structure/largecrate/anomaly
 	access = ACCESS_RESEARCH
