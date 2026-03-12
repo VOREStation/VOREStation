@@ -5,7 +5,7 @@
 	icon_state = "rift"
 	icon_state_opened = "tendril_dead"
 	density = FALSE
-	ghost_query_type = /datum/ghost_query/maints_spawner
+	ghost_query_type = /datum/ghost_query/maints_critter
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
@@ -45,6 +45,7 @@
 			create_lurker(user)
 	used = TRUE
 	icon_state = icon_state_opened
+	update_icon()
 	GLOB.active_ghost_pods -= src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(var/mob/M)
@@ -158,6 +159,19 @@
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Initialize(mapload)
 	. = ..()
 	GLOB.active_ghost_pods += src
+
+	update_icon()
+
+/obj/structure/ghost_pod/ghost_activated/unified_hole/update_icon()
+	cut_overlays()
+
+	if(used)
+		return
+
+	var/list/glows = list()
+	glows += mutable_appearance(icon, "rift_glow")
+	glows += emissive_appearance(icon, "rift_glow")
+	add_overlay(glows)
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
 	GLOB.active_ghost_pods -= src

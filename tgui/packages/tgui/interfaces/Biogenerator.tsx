@@ -13,14 +13,14 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
-type sortable = {
+type Sortable = {
   name: string;
   affordable: number;
   price: number;
   reagent: BooleanLike;
 };
 type Data = {
-  items: Record<string, sortable[]>;
+  items: Record<string, Sortable[]>;
   build_eff: number;
   points: number;
   processing: BooleanLike;
@@ -28,10 +28,10 @@ type Data = {
 };
 
 const sortTypes = {
-  Alphabetical: (a: sortable, b: sortable) => a.name.localeCompare(b.name),
-  'By availability': (a: sortable, b: sortable) =>
+  Alphabetical: (a: Sortable, b: Sortable) => a.name.localeCompare(b.name),
+  'By availability': (a: Sortable, b: Sortable) =>
     -(a.affordable - b.affordable),
-  'By price': (a: sortable, b: sortable) => a.price - b.price,
+  'By price': (a: Sortable, b: Sortable) => a.price - b.price,
 };
 
 export const Biogenerator = (props) => {
@@ -94,9 +94,9 @@ const BiogeneratorItems = (props: {
   const { act, data } = useBackend<Data>();
   const { points, items = [], build_eff, beaker } = data;
   // Search thingies
-  const searcher = createSearch(
+  const searcher = createSearch<[string, Sortable]>(
     props.searchText,
-    (item: [string, sortable]) => {
+    (item) => {
       return item[0];
     },
   );
@@ -185,7 +185,7 @@ const BiogeneratorSearch = (props: {
   );
 };
 
-const canBuyItem = (item: sortable, beaker: BooleanLike) => {
+const canBuyItem = (item: Sortable, beaker: BooleanLike) => {
   if (!item.affordable) {
     return false;
   }
@@ -198,7 +198,7 @@ const canBuyItem = (item: sortable, beaker: BooleanLike) => {
 const BiogeneratorItemsCategory = (props: {
   key: string;
   title: string;
-  items: sortable[];
+  items: Sortable[];
   build_eff: number;
   beaker: BooleanLike;
 }) => {

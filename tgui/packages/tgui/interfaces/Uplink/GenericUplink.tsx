@@ -14,7 +14,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { MAX_SEARCH_RESULTS } from './constants';
 import { ItemList } from './ItemList';
-import type { Data, item } from './types';
+import type { Data, Item } from './types';
 
 export const GenericUplink = (props: {
   currencyAmount: number;
@@ -28,7 +28,7 @@ export const GenericUplink = (props: {
 
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(categories[0]?.name);
-  const testSearch = createSearch(searchText, (item: item) => {
+  const testSearch = createSearch<Item>(searchText, (item) => {
     return item.name + item.desc;
   });
   const items =
