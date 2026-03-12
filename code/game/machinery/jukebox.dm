@@ -231,7 +231,7 @@
 						M.Paralyse(4)
 					else
 						M.make_jittery(500)
-				addtimer(CALLBACK(src, PROC_REF(explode), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE))
+				addtimer(CALLBACK(src, PROC_REF(explode)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 			else if(current_track == null)
 				to_chat(ui.user, "No track selected.")
 			else
