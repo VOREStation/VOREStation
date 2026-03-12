@@ -33,7 +33,7 @@
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
-			to_chat(user, span_blue("Changed tag to '[sort_tag]'."))
+			to_chat(user, span_notice("Changed tag to '[sort_tag]'."))
 			updatename()
 			updatedesc()
 
