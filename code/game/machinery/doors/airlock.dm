@@ -1233,7 +1233,7 @@ About the new airlock wires panel:
 
 /// Most airlocks don't freeze, subtypes set this
 /obj/machinery/door/airlock/proc/can_freeze()
-	SHOULD_BE_PURE(TRUE)
+	SHOULD_BE_PURE(TRUE) // Don't put logic here, just return if the airlock can freeze or not.
 	PROTECTED_PROC(TRUE)
 	return FALSE
 
