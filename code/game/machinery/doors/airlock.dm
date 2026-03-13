@@ -175,12 +175,12 @@
 				planet_temp = gas_mix.temperature
 
 		// Check if we're in freezing weather, if above 0 start melting instead
-		if(planet_temp < (T0C - 20))
-			if(!frozen && density && prob(planet_temp < (T0C - 30) ? 40 : 5)) // Higher chance of freezing if temp is super low
+		if(planet_temp < (T0C - 15))
+			if(!frozen && density && prob(planet_temp < (T0C - 25) ? 20 : 5)) // Higher chance of freezing if temp is super low
 				freeze()
 		// Above 0 to have any chance at unfreezing
 		else if(planet_temp > T0C)
-			if(frozen && prob(10))
+			if(frozen && prob(20))
 				unFreeze()
 
 	// Runs in a seperate timer loop, because making every airlock process every tick just to check for unfreezing is a bad idea.
