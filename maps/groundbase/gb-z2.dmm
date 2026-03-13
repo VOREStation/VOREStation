@@ -10469,25 +10469,12 @@
 /obj/structure/noticeboard{
 	pixel_x = 32
 	},
-/obj/item/assembly/signaler/anomaly/flux{
-	pixel_y = 13;
-	pixel_x = 7
+/obj/item/storage/box/anomaly{
+	pixel_y = 12;
+	pixel_x = 10
 	},
-/obj/item/anomaly_scanner{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/anomaly_scanner{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/anomaly_releaser/science{
-	pixel_y = -2;
-	pixel_x = -5
-	},
-/obj/item/anomaly_releaser/science{
-	pixel_y = -5;
-	pixel_x = -5
+/obj/item/storage/box/anomaly{
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)

@@ -113,4 +113,5 @@
 
 	for(var/i in 1 to count)
 		turf = pick(target_turfs)
-		theme.apply_theme(turf, show_effect = TRUE)
+		if(theme.can_convert(turf))
+			theme.apply_theme(turf, show_effect = TRUE)
