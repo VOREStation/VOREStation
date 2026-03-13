@@ -98,7 +98,7 @@
 
 /obj/item/anomaly_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
-	var/obj/effect/anomaly/anom = buffered_anomaly.resolve()
+	var/obj/effect/anomaly/anom = buffered_anomaly?.resolve()
 
 	if(!istype(anom))
 		return data
