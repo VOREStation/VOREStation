@@ -52,6 +52,7 @@
 	var/mob/living/silicon/ai/O = ..(move)
 	if(O)
 		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
+		exchange_gender(O)
 		return O
 
 	return ..(move)
@@ -103,6 +104,7 @@
 		O.mind.original_character = WEAKREF(O)
 	else
 		O.key = key
+	exchange_gender(O)
 
 	//Languages
 	add_language(LANGUAGE_ROBOT_TALK, 1)
@@ -153,7 +155,7 @@
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
 
-	O.gender = gender
+	exchange_gender(O)
 	O.invisibility = INVISIBILITY_NONE
 
 	if(mind)		//TODO
@@ -210,6 +212,7 @@
 
 	new_xeno.a_intent = I_HURT
 	new_xeno.key = key
+	exchange_gender(new_xeno)
 
 	to_chat(new_xeno, span_infoplain(span_bold("You are now an alien.")))
 	qdel(src)
@@ -232,6 +235,7 @@
 	var/mob/living/simple_mob/animal/passive/dog/corgi/new_corgi = new /mob/living/simple_mob/animal/passive/dog/corgi (loc)
 	new_corgi.a_intent = I_HURT
 	new_corgi.key = key
+	exchange_gender(new_corgi)
 
 	to_chat(new_corgi, span_infoplain(span_bold("You are now a Corgi. Yap Yap!")))
 	qdel(src)
@@ -264,6 +268,7 @@
 
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
+	exchange_gender(new_mob)
 
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
@@ -285,6 +290,7 @@
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
 	to_chat(new_mob, "You feel more... animalistic")
+	exchange_gender(new_mob)
 
 	qdel(src)
 

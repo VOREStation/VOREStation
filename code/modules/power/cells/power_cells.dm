@@ -249,7 +249,7 @@
 	desc += " This one has already been used."
 	cut_overlays()
 	target.adjust_nutrition(amount)
-	user.custom_emote(message = "connects \the [src] to [user == target ? "their" : "[target]'s"] charging port, expending it.")
+	user.custom_emote(message = "connects \the [src] to [user == target ? "[target.p_their()]" : "[target]'s"] charging port, expending it.")
 
 //The machine cell
 /obj/item/cell/void

@@ -46,7 +46,7 @@
 
 /datum/preference/choiced/gender/biological/init_possible_values()
 	// Actual validation happens in pref_deserialize
-	return list(MALE, FEMALE, PLURAL, NEUTER)
+	return byond_genders_define_list
 
 /datum/preference/choiced/gender/biological/create_default_value()
 	return MALE
@@ -59,7 +59,7 @@
 	savefile_key = "id_gender"
 
 /datum/preference/choiced/gender/identifying/init_possible_values()
-	return list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	return all_genders_define_list
 
 /datum/preference/choiced/gender/identifying/create_default_value()
 	return MALE

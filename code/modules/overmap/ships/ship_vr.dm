@@ -18,7 +18,7 @@
 	if(confirm == "Eat it!")
 		var/obj/belly/bellychoice = tgui_input_list(L, "Which belly?","Select A Belly", L.vore_organs)
 		if(bellychoice)
-			L.visible_message(span_warning("[L] is trying to stuff \the [src] into [L.gender == MALE ? "his" : L.gender == FEMALE ? "her" : "their"] [bellychoice]!"),span_notice("You begin putting \the [src] into your [bellychoice]!"))
+			L.visible_message(span_warning("[L] is trying to stuff \the [src] into [L.p_their()] [bellychoice]!"),span_notice("You begin putting \the [src] into your [bellychoice]!"))
 			if(do_after(L, 5 SECONDS, target = src))
 				forceMove(bellychoice)
 				SSskybox.rebuild_skyboxes(map_z)

@@ -448,7 +448,7 @@
 		occupant.add_language(L.name)
 	MR.mind_ref.active = 1 //Well, it's about to be.
 	MR.mind_ref.transfer_to(occupant) //Does mind+ckey+client.
-	occupant.identifying_gender = MR.id_gender
+	occupant.change_gender_identity(MR.id_gender)
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.ooc_notes_likes = MR.mind_ooclikes
 	occupant.ooc_notes_dislikes = MR.mind_oocdislikes

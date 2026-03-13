@@ -34,19 +34,7 @@
 		new_mob.languages |= lang
 	src.copy_vore_prefs_to_mob(new_mob)
 	new_mob.vore_selected = src.vore_selected
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(ishuman(new_mob))
-			var/mob/living/carbon/human/N = new_mob
-			N.gender = H.gender
-			N.identifying_gender = H.identifying_gender
-		else
-			new_mob.gender = H.gender
-	else
-		new_mob.gender = src.gender
-		if(ishuman(new_mob))
-			var/mob/living/carbon/human/N = new_mob
-			N.identifying_gender = src.gender
+	src.exchange_gender(new_mob)
 
 	new_mob.mob_belly_transfer(src)
 	new_mob.nutrition = src.nutrition

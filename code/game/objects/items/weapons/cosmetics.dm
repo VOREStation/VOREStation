@@ -85,7 +85,7 @@
 	var/text = "person"
 	if(ishuman(user))
 		var/mob/living/carbon/human/U = user
-		switch(U.identifying_gender)
+		switch(U.get_gender_identity())
 			if(MALE)
 				text = "guy"
 			if(FEMALE)

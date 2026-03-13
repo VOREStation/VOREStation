@@ -168,8 +168,7 @@
 			H.Confuse(1)
 		else
 			if(!(H.gender == MALE))
-				H.set_gender(MALE)
-				H.change_gender_identity(MALE)
+				H.change_gender_identity(MALE, TRUE, TRUE)
 				H.visible_message(span_notice("[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now male."),
 								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became male."))
 
@@ -192,8 +191,7 @@
 			H.Confuse(1)
 		else
 			if(!(H.gender == FEMALE))
-				H.set_gender(FEMALE)
-				H.change_gender_identity(FEMALE)
+				H.change_gender_identity(FEMALE, TRUE, TRUE)
 				H.visible_message(span_notice("[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now female."),
 								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became female."))
 
@@ -216,8 +214,7 @@
 			H.Confuse(1)
 		else
 			if(!(H.gender == PLURAL))
-				H.set_gender(PLURAL)
-				H.change_gender_identity(PLURAL)
+				H.change_gender_identity(PLURAL, TRUE, TRUE)
 				H.visible_message(span_notice("[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender."),
 								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender."))
 

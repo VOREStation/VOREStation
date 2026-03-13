@@ -35,10 +35,10 @@
 
 /mob/living/carbon/human/ai_controlled/Initialize(mapload)
 	if(generate_gender)
-		gender = pick(list(MALE, FEMALE, PLURAL, NEUTER))
+		gender = pick(byond_genders_define_list)
 
 	if(generate_id_gender)
-		identifying_gender = pick(list(MALE, FEMALE, PLURAL, NEUTER))
+		change_gender_identity(pick(all_genders_define_list))
 
 	. = ..(mapload, generate_species)
 
@@ -117,7 +117,6 @@
 	generate_species = SPECIES_REPLICANT_BETA
 
 	generate_gender = TRUE
-	identifying_gender = NEUTER
 
 	faction = FACTION_XENO
 
@@ -143,3 +142,4 @@
 	. = ..()
 	name = species.get_random_name(gender)
 	add_modifier(/datum/modifier/homeothermic, 0, null)
+	change_gender_identity(NEUTER, TRUE, FALSE)

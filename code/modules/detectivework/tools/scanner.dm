@@ -69,7 +69,7 @@
 
 	//General
 	if (!A.forensic_data?.has_prints() && !A.forensic_data?.has_fibres() && !A.forensic_data?.has_blooddna())
-		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
+		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.p_them()] humming[prob(70) ? " gently." : "."]" ,\
 		span_warning("Unable to locate any fingerprints, materials, fibers, or blood on [A]!"),\
 		"You hear a faint hum of electrical equipment.")
 		flick("[icon_state]0",src)
@@ -126,7 +126,7 @@
 			for(var/blood in blood_data)
 				to_chat(user, "Blood type: " + span_warning("[blood_data[blood]]") + " DNA: " + span_warning("[blood]"))
 
-	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
+	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.p_them()] humming[prob(70) ? " gently." : "."]" ,\
 	span_notice("You finish scanning \the [A]."),\
 	"You hear a faint hum of electrical equipment.")
 	flick("[icon_state]1",src)

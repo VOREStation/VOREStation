@@ -82,7 +82,7 @@
 	/// otherwise we go off the gender of our object
 	var/gender
 	if(targeted_gender)
-		if(!istext(targeted_gender) || !(targeted_gender in list(MALE, FEMALE, PLURAL, NEUTER, HERM)))
+		if(!istext(targeted_gender) || !(targeted_gender in all_genders_define_list))
 			stack_trace("REPLACE_PRONOUNS called with improper parameters.")
 			return
 		gender = targeted_gender
@@ -211,128 +211,11 @@
 		else
 			return "itself"
 
-// MOB GENDER
-
-/mob/p_they(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	switch(temp_gender)
-		if(FEMALE)
-			return "she"
-		if(MALE)
-			return "he"
-		if(PLURAL)
-			return "they"
-		if(HERM)
-			return "shi"
-		else
-			return "it"
-
-/mob/p_their(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	switch(temp_gender)
-		if(FEMALE)
-			return "her"
-		if(MALE)
-			return "his"
-		if(PLURAL)
-			return "their"
-		if(HERM)
-			return "hir"
-		else
-			return "its"
-
-/mob/p_theirs(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	switch(temp_gender)
-		if(FEMALE)
-			return "hers"
-		if(MALE)
-			return "his"
-		if(PLURAL)
-			return "theirs"
-		if(HERM)
-			return "hirs"
-		else
-			return "its"
-
-/mob/p_them(capitalized, temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	switch(temp_gender)
-		if(FEMALE)
-			return "her"
-		if(MALE)
-			return "him"
-		if(PLURAL)
-			return "them"
-		if(HERM)
-			return "hir"
-		else
-			return "it"
-
-/mob/p_have(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "have"
-	return "has"
-
-/mob/p_are(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "are"
-	return "is"
-
-/mob/p_were(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "were"
-	return "was"
-
-/mob/p_do(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "do"
-	return "does"
-
-/mob/p_s(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender != PLURAL)
-		return "s"
-
-/mob/p_es(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender != PLURAL)
-		return "es"
-
-/mob/p_themselves(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	switch(temp_gender)
-		if(FEMALE)
-			return "herself"
-		if(MALE)
-			return "himself"
-		if(PLURAL)
-			return "themselves"
-		if(HERM)
-			return "hirself"
-		else
-			return "itself"
-
 // ATOM GENDER
 
 /atom/p_they(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	switch(temp_gender)
 		if(FEMALE)
 			return "she"
@@ -347,7 +230,7 @@
 
 /atom/p_their(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	switch(temp_gender)
 		if(FEMALE)
 			return "her"
@@ -362,7 +245,7 @@
 
 /atom/p_theirs(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	switch(temp_gender)
 		if(FEMALE)
 			return "hers"
@@ -377,7 +260,7 @@
 
 /atom/p_them(capitalized, temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	switch(temp_gender)
 		if(FEMALE)
 			return "her"
@@ -392,47 +275,47 @@
 
 /atom/p_have(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	if(temp_gender == PLURAL)
 		return "have"
 	return "has"
 
 /atom/p_are(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	if(temp_gender == PLURAL)
 		return "are"
 	return "is"
 
 /atom/p_were(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	if(temp_gender == PLURAL)
 		return "were"
 	return "was"
 
 /atom/p_do(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	if(temp_gender == PLURAL)
 		return "do"
 	return "does"
 
 /atom/p_s(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	if(temp_gender != PLURAL)
 		return "s"
 
 /atom/p_es(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	if(temp_gender != PLURAL)
 		return "es"
 
 /atom/p_themselves(temp_gender)
 	if(!temp_gender)
-		temp_gender = gender
+		temp_gender = get_gender_identity()
 	switch(temp_gender)
 		if(FEMALE)
 			return "herself"
@@ -446,14 +329,14 @@
 			return "itself"
 
 /atom/proc/get_visible_gender(mob/user, force)
-	return gender
+	return get_gender_identity()
 
 // CARBON GENDER
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)
 	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && (wear_mask && (wear_mask & HIDEFACE) || isobj(head) && (head.body_parts_covered & FACE)))
 		return PLURAL
-	return gender
+	return get_gender_identity()
 
 /mob/living/carbon/human/p_they(temp_gender)
 	temp_gender ||= get_visible_gender()
@@ -498,91 +381,6 @@
 /mob/living/carbon/human/p_themselves(temp_gender)
 	temp_gender ||= get_visible_gender()
 	return ..()
-
-// ITEM GENDER
-
-/obj/item/clothing/p_they(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "they"
-	return "it"
-
-/obj/item/clothing/p_their(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "their"
-	return "its"
-
-/obj/item/clothing/p_theirs(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "theirs"
-	return "its"
-
-/obj/item/clothing/p_them(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "them"
-	return "it"
-
-/obj/item/clothing/p_have(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "have"
-	return "has"
-
-/obj/item/clothing/p_are(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "are"
-	return "is"
-
-/obj/item/clothing/p_were(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "were"
-	return "was"
-
-/obj/item/clothing/p_do(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender == PLURAL)
-		return "do"
-	return "does"
-
-/obj/item/clothing/p_s(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender != PLURAL)
-		return "s"
-
-/obj/item/clothing/p_es(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	if(temp_gender != PLURAL)
-		return "es"
-
-/obj/item/clothing/p_themselves(temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	switch(temp_gender)
-		if(FEMALE)
-			return "herself"
-		if(MALE)
-			return "himself"
-		if(PLURAL)
-			return "themselves"
-		if(HERM)
-			return "hirself"
-		else
-			return "itself"
 
 // MIND GENDER
 

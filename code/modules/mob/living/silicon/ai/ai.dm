@@ -172,6 +172,8 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_ZADDAT, 1)
 
+	AddComponent(/datum/component/gender_identity)
+
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			GLOB.empty_playable_ai_cores += new/obj/structure/AIcore/deactivated(loc)//New empty terminal.

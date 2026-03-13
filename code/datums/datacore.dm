@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		M.fields["blood_reagent"]	= H.dna.blood_reagents
 		M.fields["blood_color"]	= H.dna.blood_color
 		M.fields["b_dna"]		= H.dna.unique_enzymes
-		M.fields["id_gender"]	= gender2text(H.identifying_gender)
+		M.fields["id_gender"]	= gender2text(H.get_gender_identity())
 		if(H.get_FBP_type())
 			M.fields["brain_type"] = H.get_FBP_type()
 		else
@@ -409,7 +409,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		L.fields["languages"] = list2text(H.languages,", ")
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= gender2text(H.gender)
-		L.fields["id_gender"]	= gender2text(H.identifying_gender)
+		L.fields["id_gender"]	= gender2text(H.get_gender_identity())
 		if(H.get_FBP_type())
 			L.fields["brain_type"] = H.get_FBP_type()
 		else
