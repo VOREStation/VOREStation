@@ -1,6 +1,5 @@
 /datum/asset/spritesheet_batched/pai_icons
 	name = "pai_icons"
-	early = TRUE
 
 /datum/asset/spritesheet_batched/pai_icons/create_spritesheets()
 	for(var/name, current_sprite in SSpai.get_chassis_list())
