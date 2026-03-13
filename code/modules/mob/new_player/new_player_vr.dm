@@ -32,7 +32,7 @@
 		to_chat(src,span_warning("You are not allowed to spawn in as this species."))
 
 	//Custom species checks
-	if (client?.prefs?.read_preference(/datum/preference/choiced/species) == "Custom Species")
+	if (client?.prefs?.read_preference(/datum/preference/choiced/species) == SPECIES_CUSTOM)
 
 		//Didn't name it
 		if(!client?.prefs?.custom_species)
