@@ -85,10 +85,10 @@
 	var/datum/gas_mixture/env = T.return_air()
 
 	var/t = span_blue("Coordinates: [T.x],[T.y],[T.z]\n")
-	t += span_red("Temperature: [env.temperature]\n")
+	t += span_red("Temperature: [env.get_temp()]\n")
 	t += span_red("Pressure: [env.return_pressure()]kPa\n")
 	for(var/g in env.gas)
-		t += span_blue("[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n")
+		t += span_blue("[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.get_temp() / env.volume]kPa\n")
 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -535,7 +535,7 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 				if(Pump.name == "Engine Feed" && response == "Setup Completely")
 					found_the_pump = 1
 					Pump.air2.gas[GAS_N2] = 3750	//The contents of 2 canisters.
-					Pump.air2.temperature = 50
+					Pump.air2.set_temp(50)
 					Pump.air2.update_values()
 				Pump.update_use_power(USE_POWER_IDLE)
 				Pump.target_pressure = 4500
@@ -563,7 +563,7 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 		to_chat(src, span_red("Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter"))
 		var/turf/simulated/T = SM.loc
 		T.zone.air.gas[GAS_N2] += 450
-		T.zone.air.temperature = 50
+		T.zone.air.set_temp(50)
 		T.zone.air.update_values()
 
 

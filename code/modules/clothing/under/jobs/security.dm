@@ -45,7 +45,7 @@
 		if(istype(TB, /turf/simulated))	//no point returning atmospheric data from unsimulated tiles (they don't track pressure anyway, only temperature)
 			var/turf/simulated/T = TB
 			var/datum/gas_mixture/env = T.return_air()
-			. += span_notice("The minicomp reports the current atmospheric pressure: [env.return_pressure()]kPa, and temperature: [env.temperature]K")
+			. += span_notice("The minicomp reports the current atmospheric pressure: [env.return_pressure()]kPa, and temperature: [env.get_temp()]K")
 
 /obj/item/clothing/under/rank/security/modern
 	name = "modernized security officer's jumpsuit"

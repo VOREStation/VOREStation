@@ -305,7 +305,7 @@
 		var/datum/gas_mixture/plasma = new
 		plasma.adjust_gas(GAS_O2, (size*100), 0)
 		plasma.adjust_gas(GAS_PHORON, (size*100), 0)
-		plasma.temperature = (plasma_temperature/2)
+		plasma.set_temp(plasma_temperature/2)
 		plasma.update_values()
 		T.assume_air(plasma)
 		T.hotspot_expose(plasma_temperature)
@@ -545,7 +545,7 @@
 /obj/effect/fusion_em_field/proc/temp_dump()
 	if(owned_core && owned_core.loc)
 		var/datum/gas_mixture/environment = owned_core.loc.return_air()
-		if(environment && environment.temperature < (T0C+FUSION_MAX_ENVIRO_HEAT))
+		if(environment && environment.get_temp() < (T0C+FUSION_MAX_ENVIRO_HEAT))
 			environment.add_thermal_energy(plasma_temperature*5000)
 			check_instability()
 
@@ -641,7 +641,7 @@
 			var/datum/gas_mixture/plasma = new
 			plasma.adjust_gas(GAS_O2, (size*100), 0)
 			plasma.adjust_gas(GAS_PHORON, (size*100), 0)
-			plasma.temperature = (plasma_temperature/2)
+			plasma.set_temp(plasma_temperature/2)
 			plasma.update_values()
 			TT.assume_air(plasma)
 			TT.hotspot_expose(plasma_temperature)
@@ -657,7 +657,7 @@
 		var/datum/gas_mixture/plasma = new
 		plasma.adjust_gas(GAS_O2, (size*100), 0)
 		plasma.adjust_gas(GAS_PHORON, (size*100), 0)
-		plasma.temperature = (plasma_temperature/2)
+		plasma.set_temp(plasma_temperature/2)
 		plasma.update_values()
 		TT.assume_air(plasma)
 		TT.hotspot_expose(plasma_temperature)

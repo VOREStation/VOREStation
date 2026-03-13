@@ -238,7 +238,7 @@
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 	if(environment)
-		switch(environment.temperature) //310.055 optimal body temp
+		switch(environment.get_temp()) //310.055 optimal body temp
 			if(400 to INFINITY)
 				throw_alert("temp", /atom/movable/screen/alert/hot/robot, HOT_ALERT_SEVERITY_MODERATE)
 			if(360 to 400)

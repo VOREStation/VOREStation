@@ -84,7 +84,7 @@
 			return M.return_temperature()
 		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/obj/machinery/atmospherics/unary/cryo_cell/cc = H.loc
-			return cc.air_contents.temperature
+			return cc.air_contents.get_temp()
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/space))
@@ -94,7 +94,7 @@
 	if (!environment)
 		return 0
 
-	return environment.temperature
+	return environment.get_temp()
 
 /obj/item/suit_cooling_unit/proc/attached_to_suit(mob/M)
 	if (!ishuman(M))

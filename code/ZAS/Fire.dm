@@ -141,11 +141,11 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	for(var/mob/living/L in loc)
 		if(!L.is_incorporeal())
-			L.FireBurn(firelevel, air_contents.temperature, air_contents.return_pressure())  //Burn the mobs!
+			L.FireBurn(firelevel, air_contents.get_temp(), air_contents.return_pressure())  //Burn the mobs!
 
-	loc.fire_act(air_contents, air_contents.temperature, air_contents.volume)
+	loc.fire_act(air_contents, air_contents.get_temp(), air_contents.volume)
 	for(var/atom/A in loc)
-		A.fire_act(air_contents, air_contents.temperature, air_contents.volume)
+		A.fire_act(air_contents, air_contents.get_temp(), air_contents.volume)
 
 	//spread
 	for(var/direction in GLOB.cardinal)
@@ -175,9 +175,9 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 					enemy_tile.create_fire(firelevel)
 
 			else
-				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
+				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.get_temp(), air_contents.volume)
 
-	animate(src, color = fire_color(air_contents.temperature), 5)
+	animate(src, color = fire_color(air_contents.get_temp()), 5)
 	set_light(l_color = color)
 
 /obj/fire/Initialize(mapload, fl)
@@ -190,7 +190,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	set_dir(pick(GLOB.cardinal))
 
 	var/datum/gas_mixture/air_contents = loc.return_air()
-	color = fire_color(air_contents.temperature)
+	color = fire_color(air_contents.get_temp())
 	set_light(3, 1, color)
 
 	firelevel = fl

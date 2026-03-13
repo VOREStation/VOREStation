@@ -52,7 +52,7 @@
 		data["SM_area"] = get_area(active)
 		data["SM_integrity"] = active.get_integrity()
 		data["SM_power"] = active.power
-		data["SM_ambienttemp"] = air.temperature
+		data["SM_ambienttemp"] = air.get_temp()
 		data["SM_ambientpressure"] = air.return_pressure()
 		data["SM_EPR"] = active.get_epr()
 		//data["SM_EPR"] = active.get_epr()

@@ -37,10 +37,10 @@
 		last_pressure_delta = max(input_starting_pressure - output_starting_pressure - 5, 0)
 
 		//only circulate air if there is a pressure difference (plus 5kPa kinetic, 10kPa static friction)
-		if(air1.temperature > 0 && last_pressure_delta > 5)
+		if(air1.get_temp() > 0 && last_pressure_delta > 5)
 
 			//Calculate necessary moles to transfer using PV = nRT
-			recent_moles_transferred = (last_pressure_delta*network1.volume/(air1.temperature * R_IDEAL_GAS_EQUATION))/3 //uses the volume of the whole network, not just itself
+			recent_moles_transferred = (last_pressure_delta*network1.volume/(air1.get_temp() * R_IDEAL_GAS_EQUATION))/3 //uses the volume of the whole network, not just itself
 			volume_capacity_used = min( (last_pressure_delta*network1.volume/3)/(input_starting_pressure*air1.volume) , 1) //how much of the gas in the input air volume is consumed
 
 			//Calculate energy generated from kinetic turbine
@@ -50,7 +50,7 @@
 			removed = air1.remove(recent_moles_transferred)
 			if(removed)
 				last_heat_capacity = removed.heat_capacity()
-				last_temperature = removed.temperature
+				last_temperature = removed.get_temp()
 
 				//Update the gas networks.
 				network1.update = 1

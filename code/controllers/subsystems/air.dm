@@ -129,7 +129,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		var/list/edge_log = list()
 		for(var/datum/connection_edge/E in active_edges)
 
-			var/a_temp = E.A.air.temperature
+			var/a_temp = E.A.air.get_temp()
 			var/a_moles = E.A.air.total_moles
 			var/a_vol = E.A.air.volume
 			var/a_gas = ""
@@ -144,7 +144,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			// Two zones mixing
 			if(istype(E, /datum/connection_edge/zone))
 				var/datum/connection_edge/zone/Z = E
-				b_temp = Z.B.air.temperature
+				b_temp = Z.B.air.get_temp()
 				b_moles = Z.B.air.total_moles
 				b_vol = Z.B.air.volume
 				for(var/gas in Z.B.air.gas)

@@ -255,7 +255,7 @@
 		else
 			faketank_integrity -= 5
 
-	else if(pressure > TANK_LEAK_PRESSURE || faketank.temperature - T0C > 173)
+	else if(pressure > TANK_LEAK_PRESSURE || faketank.get_temp() - T0C > 173)
 		faketank_integrity -= 1
 	return 0
 
@@ -369,7 +369,7 @@
 
 	results += "Pressure: [round(pressure,0.1)] kPa"
 	if(G.total_moles)
-		results += "<br>Temperature: [round(G.temperature-T0C)]&deg;C"
+		results += "<br>Temperature: [round(G.get_temp()-T0C)]&deg;C"
 		for(var/mix in G.gas)
 			results += "<br>[GLOB.gas_data.name[mix]]: [round((G.gas[mix] / G.total_moles) * 100)]%"
 

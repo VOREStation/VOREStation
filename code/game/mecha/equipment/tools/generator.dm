@@ -118,7 +118,7 @@
 		T.visible_message("The [src] suddenly disgorges a cloud of heated phoron.")
 		destroy()
 	else
-		T.assume_gas(GAS_PHORON, 5, istype(T) ? T.air.temperature : T20C)
+		T.assume_gas(GAS_PHORON, 5, istype(T) ? T.air.get_temp() : T20C)
 		T.visible_message("The [src] suddenly disgorges a cloud of phoron.")
 	T.assume_air(GM)
 	return

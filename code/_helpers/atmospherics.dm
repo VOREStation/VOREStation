@@ -22,7 +22,7 @@
 		results += span_notice("Pressure: [round(pressure,0.1)] kPa")
 		for(var/mix in mixture.gas)
 			results += span_notice("[GLOB.gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]% ([round(mixture.gas[mix], 0.01)] moles)")
-		results += span_notice("Temperature: [round(mixture.temperature-T0C)]&deg;C")
+		results += span_notice("Temperature: [round(mixture.get_temp()-T0C)]&deg;C")
 		results += span_notice("Heat Capacity: [round(mixture.heat_capacity(),0.1)]")
 	else
 		results += span_notice("\The [target] is empty!")

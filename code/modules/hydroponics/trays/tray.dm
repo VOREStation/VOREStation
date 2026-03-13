@@ -704,7 +704,7 @@
 			var/light_available = T.get_lumcount() * 5
 			light_string = "a light level of [light_available] lumens"
 
-		. += "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K at [environment.return_pressure()] kPa in the [environment_type] environment."
+		. += "The tray's sensor suite is reporting [light_string] and a temperature of [environment.get_temp()]K at [environment.return_pressure()] kPa in the [environment_type] environment."
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb()
 	set name = "Toggle Tray Lid"

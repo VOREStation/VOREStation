@@ -152,8 +152,8 @@
 	// so I'll just define this once, for both (see radiation comment above)
 	if(!environment) return
 
-	if(environment.temperature > (T0C+66))
-		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
+	if(environment.get_temp() > (T0C+66))
+		adjustFireLoss((environment.get_temp() - (T0C+66))/5) // Might be too high, check in testing.
 		throw_alert("alien_fire", /atom/movable/screen/alert/alien_fire)
 		if(prob(20))
 			to_chat(src, span_red("You feel a searing heat!"))
