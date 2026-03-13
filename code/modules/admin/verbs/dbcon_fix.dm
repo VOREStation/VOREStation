@@ -28,6 +28,7 @@
 	var/num = 0
 	for(var/client/C in GLOB.clients)
 		C.log_client_to_db()
+		C.load_play_hours()
 		errno = SSdbcore.ErrorMsg()
 		if(errno)
 			log_admin("Database connection returned error message `[errno]` after adjusting player ages for [num] players. [C] was being updated when the error struck. Aborting.")
