@@ -100,6 +100,8 @@
 #include "focus_only_tests.dm"
 #include "font_awesome_icons.dm"
 #include "genetics_tests.dm"
+#include "icon_state.dm"
+#include "icons_missing.dm"
 #include "language_tests.dm"
 #include "loadout_tests.dm"
 #include "map_tests.dm"
