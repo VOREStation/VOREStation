@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "removes invisible spawned item in xenoarch"
+  - code_imp: "moves some more bicon to icon2html"
