@@ -1,6 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "cargo borgs get a destination tagger and package wrapper"
-  - bugfix: "package wrapper no longer drops its tube inside your mob when emptied"
-  - refactor: "package wrapper and gift wrap cleaned up"
