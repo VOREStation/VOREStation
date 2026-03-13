@@ -185,6 +185,7 @@
 
 	//no stripping of simplemobs
 	strip_pref = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Note, this should be refactored to drop priority overlays
 
 /mob/living/simple_mob/Initialize(mapload)
 	remove_verb(src, /mob/verb/observe)
