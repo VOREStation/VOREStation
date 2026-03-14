@@ -1,9 +1,9 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section } from 'tgui-core/components';
 
-import type { Data, modalData } from './types';
+import type { Data, ModalData } from './types';
 
-export const viewCrateContents = (modal: modalData) => {
+export const viewCrateContents = (modal: ModalData) => {
   const { act, data } = useBackend<Data>();
   const { supply_points } = data;
   const { name, cost, desc, manifest, ref, random } = modal.args;

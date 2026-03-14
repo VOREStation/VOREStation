@@ -209,6 +209,7 @@
 			playsound(src, 'sound/effects/spray3.ogg', 50, 1)
 			temp = "Cleared Successfully!"
 			color_matrix_last = DEFAULT_COLORMATRIX
+			update_tgui_static_data(ui.user, ui)
 			return TRUE
 		if("set_matrix_color")
 			color_matrix_last[params["color"]] = params["value"]

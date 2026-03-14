@@ -54,7 +54,7 @@ export const selectCameras = (
   searchText: string = '',
   networkFilter: string = '',
 ): camera[] => {
-  const testSearch = createSearch(searchText, (camera: camera) => camera.name);
+  const testSearch = createSearch<camera>(searchText, (camera) => camera.name);
 
   return cameras
     .filter((camera) => notEmpty(camera?.name))

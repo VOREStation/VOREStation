@@ -174,3 +174,51 @@
 2026-03-11:
   Kashargul:
   - bugfix: text edit state being held too long
+2026-03-12:
+  Aroliacue:
+  - rscadd: Added additional starting security items to the SecTech vending machine.
+  - qol: Moved excessive clothing options from security lockers to clothing vending
+      machines.
+  - balance: Reduced weight class on legcuffs from normal to small. They now take
+      up the same space as regular handcuffs.
+  Cerami:
+  - bugfix: Specify the default spawn type.
+  Guti:
+  - rscadd: Added the ability to harvest anomalies
+  - rscadd: Added the Anomaly Scanner, Anomaly Harvester, and Anomalous Particle Gun
+  - rscadd: Xenoarch tech web
+  Kashargul:
+  - code_imp: cleans up some tgui types
+  - code_imp: updates tgui dependencies
+  - qol: adds search to gps
+  - code_imp: improves performance of belly resetting
+  Will:
+  - rscadd: cargo borgs get a destination tagger and package wrapper
+  - bugfix: package wrapper no longer drops its tube inside your mob when emptied
+  - refactor: package wrapper and gift wrap cleaned up
+  - image: adds a turf edge to concrete slabs
+  Willburd:
+  - rscadd: Exploration snowsuits
+  - rscadd: Victorian style coats
+  - rscadd: Trailblazer light structures
+  - rscadd: Sec spider pet Lorenzo
+  - rscadd: Chicken pet commander clucky
+  - rscadd: random steptrap spawner
+  - rscadd: Icepick for iced airlock breaking (map flavor too)
+  - rscadd: Mine lighting techweb entry for marker beacons and trailblazers
+  - rscadd: Debris Removal techweb entry for shovels and icepicks
+2026-03-13:
+  Guti:
+  - rscadd: Added "Anomaly Harvesting" crate to Cargo
+  - rscadd: Added "Anomaly harvesting kit"
+  - rscadd: Added "Latent anomaly core"
+  - code_imp: Added random core obj
+  - balance: Doubled the points from samples
+  - balance: Doubled the passive point generation of R&D's server (0.4)
+  - bugfix: Unsimulated turfs can no longer be converted by the dimensional anomaly
+  Kashargul:
+  - bugfix: disposal outlets ejection when not maploaded
+2026-03-14:
+  Kashargul:
+  - code_imp: removes invisible spawned item in xenoarch
+  - code_imp: moves some more bicon to icon2html
