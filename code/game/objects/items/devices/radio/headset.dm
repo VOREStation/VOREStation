@@ -567,7 +567,7 @@
 /obj/item/radio/headset/alt/talon
 	name = "talon bowman headset"
 	adhoc_fallback = TRUE
-	icon_state = "pilot_headset"
+	icon_state = "pilot_headset_alt"
 	ks2type = /obj/item/encryptionkey/talon
 
 /obj/item/radio/headset/earbud/talon

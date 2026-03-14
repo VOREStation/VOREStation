@@ -7,12 +7,12 @@ export type Data = {
   discount_name: string;
   discount_amount: number;
   offer_expiry: string;
-  exploit: exploit | null;
+  Exploit: Exploit | null;
   locked_records: { name: string; id: number }[] | null;
-  categories: { name: string; items: item[] | null }[];
+  categories: { name: string; items: Item[] | null }[];
 };
 
-type exploit = {
+type Exploit = {
   nanoui_exploit_record: string;
   name: string;
   sex: string;
@@ -28,4 +28,4 @@ type exploit = {
   antagfaction: string;
 };
 
-export type item = { name: string; cost: number; desc: string; ref: string };
+export type Item = { name: string; cost: number; desc: string; ref: string };

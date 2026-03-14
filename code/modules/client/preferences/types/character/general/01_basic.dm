@@ -173,6 +173,10 @@
 /datum/preference/choiced/living/spawnpoint/apply_to_living(mob/living/target, value)
 	return // handled in job_controller
 
+/datum/preference/choiced/living/spawnpoint/create_default_value()
+	var/datum/spawnpoint/default_spawnpoint = DEFAULT_LATEJOIN_LOCATION
+	return default_spawnpoint::display_name
+
 /datum/preference/text/living/private_notes
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER

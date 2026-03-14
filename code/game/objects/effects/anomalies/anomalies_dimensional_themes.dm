@@ -61,6 +61,8 @@
 		new random_spawn_picked(affected_turf)
 
 /datum/dimension_theme/proc/can_convert(var/turf/affected_turf)
+	if(istype(affected_turf, /turf/unsimulated))
+		return FALSE
 	if(isspace(affected_turf))
 		return FALSE
 	if(isfloorturf(affected_turf))

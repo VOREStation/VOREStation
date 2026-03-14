@@ -11,7 +11,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	power_channel = LIGHT
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/on = 1
 	var/area/area = null
@@ -71,7 +71,7 @@
 	area.power_change()
 	GLOB.lights_switched_on_roundstat++
 
-/obj/machinery/light_switch/allow_pai_interaction(proximity_flag)
+/obj/machinery/light_switch/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 /obj/machinery/light_switch/power_change()

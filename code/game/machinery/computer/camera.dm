@@ -68,7 +68,7 @@
 	density = FALSE
 	circuit = null
 
-/obj/machinery/computer/security/telescreen/allow_pai_interaction(proximity_flag)
+/obj/machinery/computer/security/telescreen/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
 GLOBAL_LIST_EMPTY(entertainment_screens)

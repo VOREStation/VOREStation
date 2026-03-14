@@ -497,6 +497,7 @@
 	volume = 220
 	center_of_mass_x = 16
 	center_of_mass_y = 8
+	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_containers/food/condiment/carton/flour/on_reagent_change()
 	update_icon()
@@ -529,6 +530,7 @@
 	volume = 120
 	center_of_mass_x = 16
 	center_of_mass_y = 8
+	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_containers/food/condiment/carton/sugar/on_reagent_change()
 	update_icon()

@@ -74,7 +74,7 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 /mob/living/silicon/pai/default_can_use_tgui_topic(src_object)
 	// Allows few objects...
 	var/obj/check_obj = src_object
-	if(!stat && istype(check_obj) && check_obj.allow_pai_interaction(get_dist(check_obj, src) <= 1))
+	if(!stat && istype(check_obj) && check_obj.allow_pai_interaction(src, get_dist(check_obj, src) <= 1))
 		return STATUS_INTERACTIVE
 	// ...otherwise pAIs can only use themselves and the owner's radio.
 	if((src_object == src || src_object == radio || src_object == communicator) && !stat)

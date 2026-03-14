@@ -13,10 +13,10 @@ import {
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
-  items: Record<string, sortable[]>;
+  items: Record<string, Sortable[]>;
 };
 
-type sortable = {
+type Sortable = {
   name: string;
   affordable: number;
   price: number;
@@ -24,8 +24,8 @@ type sortable = {
 };
 
 const sortTypes = {
-  Alphabetical: (a: sortable, b: sortable) => a.name.localeCompare(b.name),
-  'By price': (a: sortable, b: sortable) => a.price - b.price,
+  Alphabetical: (a: Sortable, b: Sortable) => a.name.localeCompare(b.name),
+  'By price': (a: Sortable, b: Sortable) => a.price - b.price,
 };
 
 export const CasinoPrizeDispenser = () => {
@@ -103,9 +103,9 @@ const CasinoPrizeDispenserItems = (props: {
   const { act, data } = useBackend<Data>();
   const { items } = data;
   // Search thingies
-  const searcher = createSearch(
+  const searcher = createSearch<[string, Sortable]>(
     props.searchText,
-    (item: [string, sortable]) => {
+    (item) => {
       return item[0];
     },
   );
@@ -150,7 +150,7 @@ const CasinoPrizeDispenserItems = (props: {
 const CasinoPrizeDispenserItemsCategory = (props: {
   key: string;
   title: string;
-  items: sortable[];
+  items: Sortable[];
 }) => {
   const { act } = useBackend();
   const { title, items, ...rest } = props;

@@ -357,12 +357,10 @@
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
-/obj/item/communicator/proc/end_video(var/reason)
+/obj/item/communicator/proc/end_video()
 	UnregisterSignal(video_source, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	show_static()
 	video_source = null
-
-	. = span_danger("[bicon(src)] [reason ? reason : "Video session ended"].")
 
 	visible_message(.)
 	update_icon()

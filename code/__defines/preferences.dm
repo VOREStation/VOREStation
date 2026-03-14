@@ -75,3 +75,6 @@
 
 #define PAI_UNSET "None Set"
 #define PAI_DEFAULT_CHASSIS "Drone"
+#define PAI_DEFAULT_EMAGGED_CHASSIS "Syndicate Fox"
+
+#define DEFAULT_LATEJOIN_LOCATION /datum/spawnpoint/arrivals

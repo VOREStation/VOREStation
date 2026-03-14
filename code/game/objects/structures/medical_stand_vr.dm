@@ -190,7 +190,7 @@
 				update_icon()
 				return
 			else if (!is_loosen)
-				user.visible_message(span_warningplain(span_bold("\The [user]") + " tries to removes \the [tank] from \the [src] but it won't budge."), span_warning("You try to removes \the [tank] from \the [src] but it won't budge."))
+				user.visible_message(span_warningplain(span_bold("\The [user]") + " tries to removes \the [tank] from \the [src] but it won't budge."), span_warning("You try to remove \the [tank] from \the [src] but it won't budge."))
 				return
 		if ("Toggle valve")
 			if (!tank)

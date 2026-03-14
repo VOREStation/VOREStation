@@ -1134,3 +1134,29 @@
 	desc = "For the spiritual rebels that nevertheless wish to conform to standard goth trends. You're totally showing them your anti-authority spunk."
 	icon_state = "punkvest"
 	body_parts_covered = CHEST|ARMS
+
+// Talon jacket
+/obj/item/clothing/suit/storage/talonbomberjacket
+	name = "Talon pilot bomber jacket"
+	desc = "A blue bomber jacket worn by the ITV Talon's piloting personnel, it has a nametag on the breast, it's incredibly warm, and comfortable. The collar and wrists consists of synthetic fur."
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
+	icon_state = "talon_pilotjacket"
+	item_state = "talon_pilotjacket"
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS)
+	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
+	cold_protection = UPPER_TORSO|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/talonbomberjacket/captain
+	name = "Talon captain's coat"
+	desc = "A heavy coat worn by the ITV Talon's commanding officer, it has a nametag and ITV Talon logo on the breasts, it's incredibly snug to wear. The collar consists of genuine fur."
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
+	icon_state = "talon_capcoat"
+	item_state = "talon_capcoat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
+	hoodtype = null
