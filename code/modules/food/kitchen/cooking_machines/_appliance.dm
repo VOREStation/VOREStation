@@ -761,6 +761,8 @@
 		user.visible_message(span_notice("\The [user] removes \the [thing] from \the [src]."))
 		if(cook_container)
 			cook_container.food_items--
+			if(!LAZYLEN(cook_container.food_items)) //Empty.
+				food_items = 0
 			cook_container.update_icon()
 	else
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " pings as it automatically ejects its contents!"))
