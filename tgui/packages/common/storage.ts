@@ -172,6 +172,7 @@ class StorageProxy implements StorageBackend {
                 setTimeout(async () => {
                   const hub = new HubStorageBackend();
 
+                  // Migrate these existing settings from byondstorage to the IFrame
                   for (const setting of [
                     'panel-settings',
                     'chat-state',
