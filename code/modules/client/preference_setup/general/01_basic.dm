@@ -31,11 +31,12 @@
 	var/char_real_name = pref.read_preference(/datum/preference/name/real_name)
 	var/char_bio_gender = pref.read_preference(/datum/preference/choiced/gender/biological)
 	var/char_id_gender = pref.read_preference(/datum/preference/choiced/gender/identifying)
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
 	// Re-sanitize name on join.
 	// Fixes being able to swap from FBP to organic before round join to be organic with numbers in name.
-	char_real_name = sanitize_name(char_real_name, pref.species, is_FBP())
+	char_real_name = sanitize_name(char_real_name, pref_species, is_FBP())
 	if(!char_real_name)
-		char_real_name = random_name(char_id_gender, pref.species)
+		char_real_name = random_name(char_id_gender, pref_species)
 	if(CONFIG_GET(flag/humans_need_surnames))
 		var/firstspace = findtext(char_real_name, " ")
 		var/name_length = length(char_real_name)
@@ -91,10 +92,12 @@
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(pref.client_ckey)
 	if(mannequin)
 		species = mannequin.species
-	else if(pref.species)
-		species = GLOB.all_species[pref.species]
 	else
-		species = GLOB.all_species[SPECIES_HUMAN]
+		var/pref_species = pref.read_preference(/datum/preference/choiced/species)
+		if(pref_species)
+			species = GLOB.all_species[pref_species]
+		else
+			species = GLOB.all_species[SPECIES_HUMAN]
 
 	var/list/species_stats = list(
 		"total_health" = species.total_health,
@@ -193,9 +196,10 @@
 	switch(action)
 		if("rename")
 			var/current_name = pref.read_preference(/datum/preference/name/real_name)
+			var/pref_species = pref.read_preference(/datum/preference/choiced/species)
 			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", current_name, encode = FALSE)
 			if(!isnull(raw_name))
-				var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
+				var/new_name = sanitize_name(raw_name, pref_species, is_FBP())
 				if(new_name)
 					pref.update_preference_by_type(/datum/preference/name/real_name, new_name)
 					return TOPIC_REFRESH
@@ -204,7 +208,7 @@
 					return TOPIC_NOACTION
 
 		if("random_name")
-			pref.update_preference_by_type(/datum/preference/name/real_name, random_name(pref.read_preference(/datum/preference/choiced/gender/identifying), pref.species))
+			pref.update_preference_by_type(/datum/preference/name/real_name, random_name(pref.read_preference(/datum/preference/choiced/gender/identifying), pref.read_preference(/datum/preference/choiced/species)))
 			return TOPIC_REFRESH
 
 		if("always_random_name")
@@ -213,9 +217,10 @@
 
 		if("nickname")
 			var/current_nickname = pref.read_preference(/datum/preference/name/nickname)
+			var/pref_species = pref.read_preference(/datum/preference/choiced/species)
 			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", current_nickname, encode = FALSE)
 			if(!isnull(raw_nickname))
-				var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
+				var/new_nickname = sanitize_name(raw_nickname, pref_species, is_FBP())
 				if(new_nickname)
 					pref.update_preference_by_type(/datum/preference/name/nickname, new_nickname)
 					return TOPIC_REFRESH
@@ -376,12 +381,14 @@
 
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
 	var/datum/species/S
-	if(pref.species)
-		S = GLOB.all_species[pref.species]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
+	if(pref_species)
+		S = GLOB.all_species[pref_species]
 	else
 		S = GLOB.all_species[SPECIES_HUMAN]
 	var/list/possible_genders = S.genders
-	if(!pref.organ_data || pref.organ_data[BP_TORSO] != "cyborg")
+	var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+	if(!organ_data || organ_data[BP_TORSO] != "cyborg")
 		return possible_genders
 	possible_genders = possible_genders.Copy()
 	possible_genders |= NEUTER

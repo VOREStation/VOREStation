@@ -62,7 +62,7 @@
 	if(!landmark)
 		return
 
-	var/mob/living/carbon/human/avatar = new(get_turf(landmark), client.prefs.species)
+	var/mob/living/carbon/human/avatar = new(get_turf(landmark), client.prefs.read_preference(/datum/preference/choiced/species))
 	if(!avatar)
 		to_chat(src, "Something went wrong and spawning failed.")
 		return
