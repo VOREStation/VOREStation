@@ -11,6 +11,7 @@
 	damage_per_fire_tick = 1.0
 	maxhealth = 100.0
 	force_threshold = 10
+	rad_insulation = RAD_EXTREME_INSULATION
 
 /obj/structure/window/titanium/full
 	icon_state = "window-full"
@@ -30,6 +31,7 @@
 	damage_per_fire_tick = 1.0
 	maxhealth = 120.0
 	force_threshold = 10
+	rad_insulation = RAD_EXTREME_INSULATION
 
 /obj/structure/window/plastitanium/full
 	icon_state = "window-full"

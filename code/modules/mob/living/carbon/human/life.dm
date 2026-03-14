@@ -47,37 +47,38 @@
 
 	voice = GetVoice()
 
-	var/stasis = inStasisNow()
+	var/stasis = (inStasisNow())
 	if(getStasis() > 2)
 		Sleeping(20)
 
 	//No need to update all of these procs if the guy is dead.
 	fall() //Prevents people from floating
-	if(stat != DEAD && !stasis)
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
+	if(!stasis)
+		if(stat != DEAD)
+			//Updates the number of stored chemicals for powers
+			handle_changeling()
 
-		//Organs and blood
-		handle_organs()
-		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain()
-		handle_shock()
+			//Organs and blood
+			handle_organs()
+			stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
+			weightgain()
+			handle_shock()
 
-		handle_pain()
+			handle_pain()
 
-		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
+			SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
-		handle_medical_side_effects()
+			handle_medical_side_effects()
 
-		handle_heartbeat()
-		handle_nif()
-		if(phobias)
-			handle_phobias()
-		if(!client)
-			species.handle_npc(src)
+			handle_heartbeat()
+			handle_nif()
+			if(phobias)
+				handle_phobias()
+			if(!client)
+				species.handle_npc(src)
 
-	else if(stat == DEAD && !stasis)
-		handle_defib_timer()
+		else if(stat == DEAD)
+			handle_defib_timer()
 
 	//Handle any species related components we may have. Ex: Shadekin, Xenochimera, etc. Not STAT checked because those do statchecks in their own code.
 	handle_species_components()
@@ -270,11 +271,12 @@
 	accumulated_rads = CLAMP(accumulated_rads,0,RADIATION_CAP) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
 	var/obj/item/organ/internal/I = null //Used for further down below when an organ is picked.
 	if(!radiation)
+		clear_alert("irradiated")
 		if(accumulated_rads)
 			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
 	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
 
-		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
+		if(HAS_TRAIT(src, TRAIT_HALT_RADIATION_EFFECTS)) //If we have a trait that halts radiation effects, then we just stop here. No need to do any of the checks below.
 			return
 
 		var/damage = 0
@@ -342,6 +344,7 @@
 
 
 		else if (radiation >= GLOB.radiation_levels[species.rad_levels]["danger_3"] && radiation < GLOB.radiation_levels[species.rad_levels]["danger_4"]) //Equivalent of 8.0 to 30 Gy.
+			throw_alert("irradiated", /atom/movable/screen/alert/irradiated)
 			damage = 10
 			radiation -= 100 * RADIATION_SPEED_COEFFICIENT * species.rad_removal_mod
 			accumulated_rads += 100 * RADIATION_SPEED_COEFFICIENT

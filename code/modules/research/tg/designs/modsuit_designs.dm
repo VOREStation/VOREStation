@@ -20,7 +20,7 @@
 // Station Suits
 /datum/design_techweb/mechfab/modsuit/eva_controller
 	name = "EVA Suit Control Module"
-	desc = "An engineering Hardsuit featuring a visor with welding protection, iommunity to radiation, and insulated gauntlets. It is well insulated against the heat."
+	desc = "An engineering Hardsuit featuring a visor with welding protection, immunity to radiation, and insulated gauntlets. It is well insulated against the heat."
 	id = "eva_rig_module"
 	materials = list(MAT_PLASTEEL = 16000, MAT_GOLD = 3000, MAT_GRAPHITE = 4500, MAT_OSMIUM = 1000, MAT_PLASTIC = 4500, MAT_LEAD = 2000, MAT_STEEL = 2000)
 	build_path = /obj/item/rig/eva

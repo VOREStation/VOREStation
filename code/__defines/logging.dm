@@ -11,6 +11,7 @@
 //Investigate logging defines
 #define INVESTIGATE_CARGO "cargo"
 #define INVESTIGATE_RESEARCH "research"
+#define INVESTIGATE_RADIATION "radiation"
 
 // Logging types for log_message()
 #define LOG_ATTACK (1 << 0)

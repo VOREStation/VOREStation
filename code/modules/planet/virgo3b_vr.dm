@@ -578,7 +578,13 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to irradiate them with fallout.
 
-		L.rad_act(rand(direct_rad_low, direct_rad_high))
+		radiation_pulse(
+			L,
+			max_range = 1,
+			threshold = RAD_VERY_LIGHT_INSULATION,
+			chance = rand(fallout_rad_low, fallout_rad_high),
+			strength = rand(fallout_rad_low, fallout_rad_high)
+		)
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
@@ -590,7 +596,14 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	if(!istype(T))
 		return
 	if(T.is_outdoors())
-		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+		radiation_pulse(
+			T,
+			max_range = 7,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rand(fallout_rad_low, fallout_rad_high)
+		)
 
 /datum/weather/virgo3b/fallout/temp
 	name = "short-term fallout"

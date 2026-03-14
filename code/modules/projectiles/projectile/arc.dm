@@ -166,8 +166,14 @@
 	icon_scale_y = 2
 	var/rad_power = 50
 
-/obj/item/projectile/arc/radioactive/on_impact(turf/T)
-	SSradiation.radiate(T, rad_power)
+/obj/item/projectile/arc/radioactive/on_impact(turf/T) //This means you can shoot a rad collector to generate power...Might need to be adjusted.
+	radiation_pulse(
+		T,
+		max_range = 3,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = rad_power
+	)
 
 // Blob mortar
 /obj/item/projectile/arc/spore
