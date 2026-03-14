@@ -19,7 +19,7 @@
 
 /datum/locations/ahdomai
 	name = "Ahdomai"
-	desc = "The Tajaran home planet. It is the smaller of its twin-planet alignment.  Its atmosphere is not dissimilar to that of Earth. \
+	desc = "The Tajaran home planet. It is the smaller of its twin-planet alignment. Its atmosphere is not dissimilar to that of Earth. \
 	Its geography is largely mountainous, with a number of tundras, frozen plains, semi-frozen lakes, and icy seas."
 
 /datum/locations/ahdomai/New(var/creator)

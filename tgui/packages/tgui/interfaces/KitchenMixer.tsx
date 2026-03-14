@@ -10,13 +10,13 @@ import {
 
 import { ApplianceStatus, type Data } from './Appliance';
 
-export const CookingGrill = (props) => {
+export const KitchenMixer = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { containersRemovable, our_contents } = data;
+  const { containersRemovable, our_contents, icon_used } = data;
 
   return (
-    <Window width={600} height={600}>
+    <Window width={600} height={580}>
       <Window.Content scrollable>
         <ApplianceStatus />
         <Section title="Containers">
@@ -24,16 +24,24 @@ export const CookingGrill = (props) => {
             <Stack.Item position="relative">
               <Stack
                 position="absolute"
-                top={8}
+                top={10}
                 align="center"
                 justify="space-around"
-                width="100%"
+                left={1.7}
+                width="92%"
               >
                 {our_contents.map((content, i) => {
                   if (content.empty) {
                     return (
-                      <Stack.Item key={i}>
-                        <Stack align="center" justify="center" fill vertical>
+                      <Stack.Item key={i} position="relative">
+                        <Stack
+                          position="absolute"
+                          top={-6}
+                          left={-1}
+                          height={4}
+                          align="center"
+                          justify="center"
+                        >
                           <Stack.Item>
                             <ProgressBar
                               value={0}
@@ -44,10 +52,12 @@ export const CookingGrill = (props) => {
                               N/A
                             </ProgressBar>
                           </Stack.Item>
+                        </Stack>
+                        <Stack align="center" justify="center" fill vertical>
                           <Stack.Item
                             backgroundColor="black"
                             width={6}
-                            height={6}
+                            height={8}
                             style={{
                               border: '2px solid #48739e',
                               cursor: 'pointer',
@@ -67,8 +77,15 @@ export const CookingGrill = (props) => {
                   }
 
                   return (
-                    <Stack.Item key={i}>
-                      <Stack align="center" justify="center" fill vertical>
+                    <Stack.Item key={i} position="relative">
+                      <Stack
+                        position="absolute"
+                        top={-6}
+                        left={-1}
+                        height={4}
+                        align="center"
+                        justify="center"
+                      >
                         <Stack.Item>
                           <ProgressBar
                             color={content.progressText[0]}
@@ -80,26 +97,29 @@ export const CookingGrill = (props) => {
                             {content.progressText[1]}
                           </ProgressBar>
                         </Stack.Item>
+                      </Stack>
+                      <Stack align="center" justify="center" fill vertical>
                         <Stack.Item
-                          backgroundColor="black"
                           width={6}
-                          height={6}
-                          style={{
-                            border: '2px solid #48739e',
-                            cursor: 'pointer',
-                          }}
-                          onClick={() => act('slot', { slot: i + 1 })}
+                          height={8}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => act('remove_menu', { slot: i + 1 })}
                         >
-                          {content.empty ? (
-                            'Empty'
-                          ) : (
-                            <DmIcon
-                              icon="icons/obj/cooking_machines.dmi"
-                              icon_state="grillrack"
-                              width="64px"
-                              height="64px"
-                            />
-                          )}
+                          <Stack align="center" justify="center">
+                            <Stack.Item>
+                              {content.empty ? (
+                                'Empty'
+                              ) : (
+                                <DmIcon
+                                  mt={-16}
+                                  icon="icons/obj/chemical.dmi"
+                                  icon_state="beaker"
+                                  width="256px"
+                                  height="256px"
+                                />
+                              )}
+                            </Stack.Item>
+                          </Stack>
                         </Stack.Item>
                         <Tooltip
                           content={
@@ -109,6 +129,8 @@ export const CookingGrill = (props) => {
                           }
                         >
                           <Stack.Item
+                            mt={2}
+                            ml={-1}
                             backgroundColor="black"
                             style={{
                               borderRadius: '4px',
@@ -128,8 +150,8 @@ export const CookingGrill = (props) => {
               </Stack>
               <DmIcon
                 icon="icons/obj/cooking_machines.dmi"
-                icon_state="grill_off"
-                width={30}
+                icon_state={icon_used || ''}
+                width={32}
               />
             </Stack.Item>
           </Stack>
