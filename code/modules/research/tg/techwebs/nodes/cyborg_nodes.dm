@@ -171,6 +171,9 @@
 	design_ids = list(
 		"implant_backup",
 		"health_scan_implant",
+		"implant_death_alarm",
+		"implant_death_alarm_explorer",
+		"implant_death_alarm_security",
 		// "skill_station",
 		// "implant_trombone",
 		// "implant_chem",
