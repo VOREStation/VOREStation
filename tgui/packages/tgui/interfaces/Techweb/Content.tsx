@@ -1,4 +1,4 @@
-import { Button, Flex, LabeledList } from 'tgui-core/components';
+import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { useRemappedBackend } from './helpers';
 import { useTechWebRoute } from './hooks';
@@ -19,10 +19,10 @@ export function TechwebContent(props) {
   const [techwebRoute, setTechwebRoute] = useTechWebRoute();
 
   return (
-    <Flex direction="column" className="Techweb__Viewport" height="100%">
-      <Flex.Item className="Techweb__HeaderSection">
-        <Flex className="Techweb__HeaderContent">
-          <Flex.Item>
+    <Stack direction="column" className="Techweb__Viewport" fill g={0}>
+      <Stack.Item className="Techweb__HeaderSection">
+        <Stack className="Techweb__HeaderContent" g={0}>
+          <Stack.Item>
             <LabeledList>
               <LabeledList.Item label="Security">
                 <span
@@ -52,14 +52,14 @@ export function TechwebContent(props) {
                   : 'Empty'}
               </LabeledList.Item>
             </LabeledList>
-          </Flex.Item>
-          <Flex.Item grow />
-          <Flex.Item>
+          </Stack.Item>
+          <Stack.Item grow />
+          <Stack.Item>
             <Button fluid onClick={() => act('toggleLock')} icon="lock">
               Lock Console
             </Button>
             {d_disk && (
-              <Flex.Item>
+              <Stack.Item>
                 <Button
                   fluid
                   onClick={() =>
@@ -68,10 +68,10 @@ export function TechwebContent(props) {
                 >
                   Design Disk Inserted
                 </Button>
-              </Flex.Item>
+              </Stack.Item>
             )}
             {t_disk && (
-              <Flex.Item>
+              <Stack.Item>
                 <Button
                   fluid
                   onClick={() =>
@@ -80,14 +80,14 @@ export function TechwebContent(props) {
                 >
                   Tech Disk Inserted
                 </Button>
-              </Flex.Item>
+              </Stack.Item>
             )}
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item className="Techweb__RouterContent" height="100%">
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item className="Techweb__RouterContent" height="100%">
         <TechwebRouter />
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 }

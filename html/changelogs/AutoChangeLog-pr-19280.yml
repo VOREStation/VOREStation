@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - bugfix: "ship placement in two player mode"
+  - code_imp: "cleans up dest tagger"

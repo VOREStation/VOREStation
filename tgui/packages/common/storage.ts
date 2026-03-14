@@ -72,11 +72,10 @@ class IFrameIndexedDbBackend implements StorageBackend {
     this.impl = IMPL_IFRAME_INDEXED_DB;
   }
 
-  async ready(): Promise<boolean | null> {
+  async ready(): Promise<boolean> {
     const iframe = document.createElement('iframe');
     const iframeStore = `${Byond.storageCdn}?store=${KEY_NAME}`;
     iframe.style.display = 'none';
-    this.documentElement = document.body.appendChild(iframe);
     iframe.src = iframeStore;
 
     const completePromise: Promise<boolean> = new Promise((resolve) => {
@@ -90,13 +89,17 @@ class IFrameIndexedDbBackend implements StorageBackend {
           resolve(false);
         });
 
-      window.addEventListener('message', (message) => {
-        if (message.data === 'ready') {
+      const handler = (message: MessageEvent) => {
+        if (message.source === this.iframeWindow && message.data === 'ready') {
+          window.removeEventListener('message', handler);
           resolve(true);
         }
-      });
+      };
+
+      window.addEventListener('message', handler);
     });
 
+    this.documentElement = document.body.appendChild(iframe);
     if (!this.documentElement.contentWindow) {
       return new Promise((res) => res(false));
     }
@@ -107,16 +110,17 @@ class IFrameIndexedDbBackend implements StorageBackend {
   }
 
   async get(key: string): Promise<any> {
-    const promise = new Promise((resolve) => {
-      window.addEventListener('message', (message) => {
-        if (message.data.key && message.data.key === key) {
+    return new Promise((resolve) => {
+      const handler = (message: MessageEvent) => {
+        if (message.source === this.iframeWindow && message.data?.key === key) {
+          window.removeEventListener('message', handler);
           resolve(message.data.value);
         }
-      });
-    });
+      };
 
-    this.iframeWindow.postMessage({ type: 'get', key: key }, '*');
-    return promise;
+      window.addEventListener('message', handler);
+      this.iframeWindow.postMessage({ type: 'get', key: key }, '*');
+    });
   }
 
   async set(key: string, value: any): Promise<void> {
@@ -132,7 +136,7 @@ class IFrameIndexedDbBackend implements StorageBackend {
   }
 
   async destroy(): Promise<void> {
-    document.body.removeChild(this.documentElement);
+    this.documentElement?.remove();
   }
 }
 
@@ -162,27 +166,32 @@ class StorageProxy implements StorageBackend {
             Byond.winset(null, 'browser-options', '+byondstorage');
 
             await new Promise<void>((resolve) => {
-              document.addEventListener('byondstorageupdated', async () => {
-                setTimeout(() => {
+              const handler = async () => {
+                document.removeEventListener('byondstorageupdated', handler);
+
+                setTimeout(async () => {
                   const hub = new HubStorageBackend();
 
-                  // Migrate these existing settings from byondstorage to the IFrame
                   for (const setting of [
                     'panel-settings',
                     'chat-state',
                     'chat-messages',
                   ]) {
-                    hub
-                      .get(setting)
-                      .then((settings) => iframe.set(setting, settings));
+                    const settings = await hub.get(setting);
+                    if (settings !== undefined) {
+                      await iframe.set(setting, settings);
+                    }
                   }
 
-                  iframe.set('byondstorage-migrated', true);
+                  await iframe.set('byondstorage-migrated', true);
+
                   Byond.winset(null, 'browser-options', '-byondstorage');
 
                   resolve();
                 }, 1);
-              });
+              };
+
+              document.addEventListener('byondstorageupdated', handler);
             });
 
             return iframe;

@@ -1,8 +1,8 @@
 import { flow } from 'tgui-core/fp';
 
-import type { crewmember } from './types';
+import type { Crewmember } from './types';
 
-export function getStatText(cm: crewmember) {
+export function getStatText(cm: Crewmember) {
   if (cm.dead) {
     return 'Deceased';
   }
@@ -13,7 +13,7 @@ export function getStatText(cm: crewmember) {
   return 'Living';
 }
 
-export function getStatColor(cm: crewmember) {
+export function getStatColor(cm: Crewmember) {
   if (cm.dead) {
     return 'red';
   }
@@ -24,12 +24,12 @@ export function getStatColor(cm: crewmember) {
   return 'green';
 }
 
-export function getTotalDamage(cm: crewmember) {
+export function getTotalDamage(cm: Crewmember) {
   return cm.brute + cm.fire + cm.oxy + cm.tox;
 }
 
 function crewStatus(
-  cm: crewmember,
+  cm: Crewmember,
   deceasedStatus: boolean,
   livingStatus: boolean,
   unconsciousStatus: boolean,
@@ -47,28 +47,28 @@ function crewStatus(
 }
 
 export function getShownCrew(
-  crew: crewmember[],
+  crew: Crewmember[],
   locationSearch: object,
   deceasedStatus: boolean,
   livingStatus: boolean,
   unconsciousStatus: boolean,
   nameSearch: string,
-  testSearch: (obj: crewmember) => boolean,
+  testSearch: (obj: Crewmember) => boolean,
 ) {
   return flow([
-    (crew: crewmember[]) => {
+    (crew: Crewmember[]) => {
       if (!locationSearch) {
         return crew;
       } else {
         return crew.filter((cm) => locationSearch[cm.realZ.toString()]);
       }
     },
-    (crew: crewmember[]) => {
+    (crew: Crewmember[]) => {
       return crew.filter((cm) =>
         crewStatus(cm, deceasedStatus, livingStatus, unconsciousStatus),
       );
     },
-    (crew: crewmember[]) => {
+    (crew: Crewmember[]) => {
       if (!nameSearch) {
         return crew;
       } else {
@@ -79,14 +79,14 @@ export function getShownCrew(
 }
 
 export function getSortedCrew(
-  shownCrew: crewmember[],
+  shownCrew: Crewmember[],
   sortType: string,
   nameSortOrder: boolean,
   damageSortOrder: boolean,
   locationSortOrder: boolean,
 ) {
   return flow([
-    (shownCrew: crewmember[]) => {
+    (shownCrew: Crewmember[]) => {
       if (sortType === 'name') {
         const sorted = shownCrew.sort(
           (a, b) =>
@@ -103,7 +103,7 @@ export function getSortedCrew(
         return shownCrew;
       }
     },
-    (shownCrew: crewmember[]) => {
+    (shownCrew: Crewmember[]) => {
       if (sortType === 'damage') {
         const sorted = shownCrew.sort(
           (a, b) =>
@@ -118,7 +118,7 @@ export function getSortedCrew(
         return shownCrew;
       }
     },
-    (shownCrew: crewmember[]) => {
+    (shownCrew: Crewmember[]) => {
       if (sortType === 'location') {
         const sorted = shownCrew.sort(
           (a, b) =>

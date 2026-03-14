@@ -18,7 +18,7 @@ export const SelectionList = (props: {
   const [searchText, setSearchText] = useState<string>('');
   const [usePlayerZ, setUsePlayerZ] = useState<boolean>(false);
 
-  const searcher = createSearch(searchText, (element: PodData) => {
+  const searcher = createSearch<PodData>(searchText, (element) => {
     return element.pod_name;
   });
 

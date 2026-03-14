@@ -100,3 +100,10 @@
 	icon_state = "multitool"
 	toolspeed = 0.1
 	origin_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 5)
+
+// Alien multitool only has those icon states
+/obj/item/multitool/alien/update_icon()
+	if(accepting_refs)
+		icon_state = "multitool_ref_scan"
+		return
+	icon_state = "multitool"
