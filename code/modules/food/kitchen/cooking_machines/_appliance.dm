@@ -549,12 +549,15 @@
 		//Cleanup these empty husk ingredients now
 		if (I)
 			qdel(I)
-		if (S)
+			CI.container.food_items--
+		if(S && !QDELETED(S)) //Incase I = S up there.
 			qdel(S)
+			CI.container.food_items--
 
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
 	var/obj/item/reagent_containers/food/snacks/result = new cook_path(CI.container)
+	CI.container.food_items++
 	buffer.trans_to_holder(result.reagents, buffer.total_volume)	//trans_to doesn't handle food items well, so
 																	//just call trans_to_holder instead
 
