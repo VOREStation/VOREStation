@@ -1,17 +1,10 @@
-/mob/living/silicon/robot/lost
-	lawupdate = 0
-	scrambledcodes = 1
+/mob/living/silicon/robot/malf/lost
 	icon_state = "drone-lost"
 	modtype = "Lost"
-	lawchannel = "State"
-	braintype = "Drone"
-	idcard_type = /obj/item/card/id/lost
-	icon_selected = FALSE
 	restrict_modules_to = list("Lost")
 	var/law_retries = 5
-	ui_theme = "malfunction"
 
-/mob/living/silicon/robot/lost/init()
+/mob/living/silicon/robot/malf/lost/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
@@ -28,45 +21,41 @@
 
 	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
-/mob/living/silicon/robot/lost/speech_bubble_appearance()
+/mob/living/silicon/robot/malf/lost/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/silicon/robot/lost/proc/scramble_hardware(var/chance)
-	if(prob(chance))  //Small chance to spawn with a scrambled
-		emag_items = 1
-
-/mob/living/silicon/robot/lost/proc/apply_new_laws()
+/mob/living/silicon/robot/malf/lost/proc/apply_new_laws()
 	return
 
-/mob/living/silicon/robot/lost/randomlaws
+/mob/living/silicon/robot/malf/lost/randomlaws
 
-/mob/living/silicon/robot/lost/randomlaws/apply_new_laws()
+/mob/living/silicon/robot/malf/lost/randomlaws/apply_new_laws()
 	var/old_name = laws?.name
 	laws = give_random_lawset()
 	if(old_name == laws.name)
 		apply_new_laws()
 
-/mob/living/silicon/robot/lost/randomlaws/init()
+/mob/living/silicon/robot/malf/lost/randomlaws/init()
 	..()
 	apply_new_laws()
 
-/mob/living/silicon/robot/lost/randomlaws/vore
+/mob/living/silicon/robot/malf/lost/randomlaws/vore
 
-/mob/living/silicon/robot/lost/randomlaws/vore/apply_new_laws()
+/mob/living/silicon/robot/malf/lost/randomlaws/vore/apply_new_laws()
 	var/old_name = laws?.name
 	laws = give_random_lawset_vore(100)
 	if(old_name == laws.name)
 		apply_new_laws()
 
-/mob/living/silicon/robot/lost/randomlaws/mixed
+/mob/living/silicon/robot/malf/lost/randomlaws/mixed
 
-/mob/living/silicon/robot/lost/randomlaws/mixed/apply_new_laws()
+/mob/living/silicon/robot/malf/lost/randomlaws/mixed/apply_new_laws()
 	var/old_name = laws?.name
 	laws = give_random_lawset_vore(60)
 	if(old_name == laws.name)
 		apply_new_laws()
 
-/mob/living/silicon/robot/lost/randomlaws/repick_laws()
+/mob/living/silicon/robot/malf/lost/randomlaws/repick_laws()
 	while(law_retries)
 		var/confirm = tgui_alert(src, "Do you want to keep your laws or reroll? (For specific laws, feel free to ahelp and we'll see what we can do)", "Confirm laws", list("Keep", "Reroll ([law_retries])"))
 		if(findtext(confirm, regex("Reroll \\(\[0-9\]*\\)", "")))
@@ -180,7 +169,7 @@
 
 	return
 
-/mob/living/silicon/proc/give_random_lawset_vore(var/vore_chance = 100)
+/mob/living/silicon/proc/give_random_lawset_vore(vore_chance = 100)
 	// Decide what kind of laws we want to draw from.
 	var/law_class = pick(
 		prob(25);"good",
@@ -332,12 +321,3 @@
 						return new /datum/ai_laws/foreign_tsc_aggressive()
 					if(5) // Manicial laugher here.
 						return new /datum/ai_laws/tyrant()
-
-	return
-
-/mob/living/silicon/robot/lost/handle_special_unlocks()
-	if(!emag_items)
-		scramble_hardware(20)
-	if (churn_count == 5)
-		module.emag += new /obj/item/self_repair_system/advanced(module)
-		hud_used.update_robot_modules_display()

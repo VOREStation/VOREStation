@@ -52,10 +52,13 @@ GLOBAL_LIST_INIT(shell_module_types, list(
 	"Janitor", "Service", "Clown", "Clerical", "Security",
 	"Research", "Command" //"Exploration"
 ))
+// List of modules available malf borgs
+GLOBAL_LIST_INIT(malf_module_types, list("Lost", "Gravekeeper"))
+// List of modules available toantags
+GLOBAL_LIST_INIT(antag_module_types, list("Protector", "Mechanist", "Combat Medic", "Ninja"))
+
 // List of whitelisted modules
-GLOBAL_LIST_INIT(whitelisted_module_types, list(
-	"Lost", "Combat", "Protector", "Mechanist", "Combat Medic", "Ninja"
-))
+GLOBAL_LIST_INIT(whitelisted_module_types, list("Combat", "Lost", "Gravekeeper", "Protector", "Mechanist", "Combat Medic", "Ninja"))
 
 // Bomb cap!
 GLOBAL_VAR_INIT(max_explosion_range, 14)

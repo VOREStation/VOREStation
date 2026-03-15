@@ -40,7 +40,7 @@
 		modules = list(R.modtype)
 		selected_module = R.modtype
 	else
-		if(LAZYLEN(R.restrict_modules_to) > 0)
+		if(LAZYLEN(R.restrict_modules_to))
 			modules += R.restrict_modules_to
 		else if(R.shell)
 			modules += GLOB.shell_module_types
@@ -111,12 +111,12 @@
 	switch(action)
 		if("pick_module")
 			if(R.module)
-				return
+				return FALSE
 			var/new_module = params["value"]
 			if(!(new_module in GLOB.robot_modules))
-				return
+				return FALSE
 			if(!is_borg_whitelisted(R, new_module))
-				return
+				return FALSE
 			selected_module = new_module
 			if(sprite_datum)
 				var/new_datum
@@ -126,30 +126,30 @@
 						new_datum = S
 						break
 				sprite_datum = new_datum
-			. = TRUE
+			return TRUE
 		if("pick_icon")
 			var/sprite = params["value"]
 			if(!sprite)
-				return
+				return FALSE
 			var/list/module_sprites = SSrobot_sprites.get_module_sprites(selected_module, R)
 			for(var/datum/robot_sprite/S in module_sprites)
 				if(S.name == sprite)
 					sprite_datum = S
 					break
-			. = TRUE
+			return TRUE
 		if("rename")
 			var/name = params["value"]
 			if(name)
 				new_name = sanitizeSafe(name, MAX_NAME_LEN)
 				R.sprite_name = new_name
-			. = TRUE
+			return TRUE
 		if("confirm")
 			R.apply_name(new_name)
 			R.apply_module(sprite_datum, selected_module)
 			R.update_multibelly()
 			R.transform_module()
 			close_ui()
-			. = TRUE
+			return TRUE
 
 /mob/living/silicon/robot/proc/apply_name(var/new_name)
 	if(!custom_name)

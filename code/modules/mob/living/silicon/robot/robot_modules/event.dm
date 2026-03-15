@@ -4,6 +4,7 @@
 /obj/item/robot_module/robot/lost
 	name = "lost robot module"
 	hide_on_manifest = TRUE
+	ui_theme = "malfunction"
 
 /obj/item/robot_module/robot/lost/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -41,9 +42,17 @@
 	robot_gps.hide_signal = TRUE
 	robot_gps.can_hide_signal = TRUE
 
+/obj/item/robot_module/robot/lost/handle_special_unlocks(mob/living/silicon/robot/owner_robot)
+	if(!owner_robot.emag_items)
+		owner_robot.scramble_hardware(20)
+	if (owner_robot.churn_count == 5)
+		emag += new /obj/item/self_repair_system/advanced(src)
+		owner_robot.hud_used.update_robot_modules_display()
+
 /obj/item/robot_module/robot/gravekeeper
 	name = "gravekeeper robot module"
 	hide_on_manifest = TRUE
+	ui_theme = "malfunction"
 
 /obj/item/robot_module/robot/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -76,3 +85,10 @@
 	// For uwu
 	src.modules += new /obj/item/dogborg/sleeper/compactor/generic(src)
 	src.emag += new /obj/item/dogborg/pounce(src)
+
+/obj/item/robot_module/robot/gravekeeper/handle_special_unlocks(mob/living/silicon/robot/owner_robot)
+	if(!owner_robot.emag_items)
+		owner_robot.scramble_hardware(10)
+	if (owner_robot.churn_count == 5)
+		emag += new /obj/item/self_repair_system/advanced(src)
+		owner_robot.hud_used.update_robot_modules_display()

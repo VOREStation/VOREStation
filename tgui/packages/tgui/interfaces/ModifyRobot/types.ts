@@ -53,7 +53,7 @@ export type Target = {
   emagged: BooleanLike;
   active: BooleanLike;
   crisis_override: BooleanLike;
-  active_restrictions: string[];
+  active_restrictions?: string[];
   possible_restrictions: string[];
   sprite: string | undefined;
   sprite_size: string | undefined;

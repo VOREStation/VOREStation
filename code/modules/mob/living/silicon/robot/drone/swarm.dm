@@ -13,7 +13,7 @@
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Drone"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = TRUE
 	idcard_type = /obj/item/card/id/syndicate
 	req_access = list(999)

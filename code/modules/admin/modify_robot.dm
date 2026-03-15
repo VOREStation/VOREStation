@@ -67,7 +67,7 @@
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
 		for(var/entry in GLOB.robot_modules)
-			if(!target.restrict_modules_to.Find(entry))
+			if(!(target.restrict_modules_to?.Find(entry)))
 				possible_restrictions += entry
 		.["target"]["possible_restrictions"] = possible_restrictions
 		// Target section for options once a module has been selected
@@ -185,10 +185,16 @@
 			target.crisis_override = !target.crisis_override
 			return TRUE
 		if("add_restriction")
-			target.restrict_modules_to |= params["new_restriction"]
+			var/new_restriction = params["new_restriction"]
+			if(!(new_restriction in GLOB.robot_modules))
+				return FALSE
+			LAZYOR(target.restrict_modules_to, new_restriction)
 			return TRUE
 		if("remove_restriction")
-			target.restrict_modules_to -= params["rem_restriction"]
+			var/rem_restriction = params["rem_restriction"]
+			if(!(rem_restriction in GLOB.robot_modules))
+				return FALSE
+			LAZYREMOVE(target.restrict_modules_to, rem_restriction)
 			return TRUE
 		if("select_source")
 			if(source)
@@ -202,7 +208,7 @@
 			var/obj/item/robot_module/robot/robot_type = new module_type(source)
 			source.sprite_datum = pick(SSrobot_sprites.get_module_sprites(source.modtype, source))
 			source.update_icon()
-			source.emag_items = 1
+			source.emag_items = TRUE
 			if(!istype(robot_type, /obj/item/robot_module/robot))
 				QDEL_NULL(source)
 				return TRUE
@@ -291,7 +297,7 @@
 			new module_type(source)
 			source.sprite_datum = target.sprite_datum
 			source.update_icon()
-			source.emag_items = 1
+			source.emag_items = TRUE
 			// Target
 			target.uneq_all()
 			target.hud_used?.update_robot_modules_display(TRUE)
@@ -599,25 +605,25 @@
 			if(!our_ai)
 				our_ai = select_active_ai_with_fewest_borgs()
 			if(our_ai)
-				target.lawupdate = 1
+				target.lawupdate = TRUE
 				target.connect_to_ai(our_ai)
 			return TRUE
 		if("disconnect_ai")
 			if(target.is_slaved())
 				target.disconnect_from_ai()
-				target.lawupdate = 0
+				target.lawupdate = FALSE
 			return TRUE
 		if("toggle_emag")
 			if(target.emagged)
-				target.emagged = 0
+				target.emagged = FALSE
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()
 				target.laws = new global.using_map.default_law_type
 				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			else
-				target.emagged = 1
-				target.lawupdate = 0
+				target.emagged = TRUE
+				target.lawupdate = FALSE
 				target.disconnect_from_ai()
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()

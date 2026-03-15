@@ -34,6 +34,7 @@
 	// Bookkeeping
 	var/list/original_languages = list()
 	var/list/added_networks = list()
+	var/ui_theme
 
 /obj/item/robot_module/proc/hide_on_manifest()
 	. = hide_on_manifest
