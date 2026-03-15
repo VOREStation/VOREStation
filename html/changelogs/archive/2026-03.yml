@@ -222,3 +222,10 @@
   Kashargul:
   - code_imp: removes invisible spawned item in xenoarch
   - code_imp: moves some more bicon to icon2html
+2026-03-15:
+  Kashargul:
+  - code_imp: cleans up dest tagger
+  - qol: ingame logs now show the last 1000 entries per category
+  Will:
+  - code_imp: Slime research point unittest
+  - bugfix: light pink slime cores lacked a destructive analyzer point value

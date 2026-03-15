@@ -119,7 +119,7 @@
 		return
 
 	if(!radio_announce)
-		command_announcement.Announce(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
+		GLOB.command_announcement.Announce(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
 	else
 		GLOB.global_announcer.autosay(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
 
@@ -131,7 +131,7 @@
 		return
 
 	if(!radio_announce)
-		command_announcement.Announce(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
+		GLOB.command_announcement.Announce(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
 	else
 		GLOB.global_announcer.autosay(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
 

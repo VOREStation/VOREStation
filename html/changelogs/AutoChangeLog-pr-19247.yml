@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - code_imp: "cleans up dest tagger"
+  - code_imp: "convert more globals to GLOBs"

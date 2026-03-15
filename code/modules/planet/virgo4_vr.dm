@@ -1,4 +1,4 @@
-var/datum/planet/virgo4/planet_virgo4 = null
+GLOBAL_DATUM(planet_virgo4, /datum/planet/virgo4)
 
 /datum/time/virgo4
 	seconds_in_day = 24 HOURS
@@ -12,7 +12,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/planet/virgo4/New()
 	..()
-	planet_virgo4 = src
+	GLOB.planet_virgo4 = src
 	weather_holder = new /datum/weather_holder/virgo4(src)
 
 /datum/planet/virgo4/update_sun()

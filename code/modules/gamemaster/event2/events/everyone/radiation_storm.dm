@@ -17,12 +17,12 @@
 	length_lower_bound = 1 MINUTE
 
 /datum/event2/event/radiation_storm/announce()
-	command_announcement.Announce("High levels of radiation detected near \the [location_name()]. \
+	GLOB.command_announcement.Announce("High levels of radiation detected near \the [location_name()]. \
 	Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 	make_maint_all_access()
 
 /datum/event2/event/radiation_storm/start()
-	command_announcement.Announce("The station has entered the radiation belt. \
+	GLOB.command_announcement.Announce("The station has entered the radiation belt. \
 	Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 
 /datum/event2/event/radiation_storm/event_tick()
@@ -34,7 +34,7 @@
 		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
 
 /datum/event2/event/radiation_storm/end()
-	command_announcement.Announce("The station has passed the radiation belt. \
+	GLOB.command_announcement.Announce("The station has passed the radiation belt. \
 	Please allow for up to one minute while radiation levels dissipate, and report to \
 	medbay if you experience any unusual symptoms. Maintenance will lose all \
 	access again shortly.", "Anomaly Alert")
