@@ -20,6 +20,7 @@
 					)
 	var/id
 	ui_theme = "syndicate"
+	idcard_type = /obj/item/card/id/syndicate
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
 /obj/item/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)

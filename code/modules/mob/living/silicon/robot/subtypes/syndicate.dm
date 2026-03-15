@@ -5,7 +5,6 @@
 	modtype = "Syndicate"
 	lawchannel = "State"
 	braintype = "Drone"
-	idcard_type = /obj/item/card/id/syndicate
 	ui_theme = "syndicate"
 
 /mob/living/silicon/robot/syndicate/init()

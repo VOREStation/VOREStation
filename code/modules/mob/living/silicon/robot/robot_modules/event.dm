@@ -1,12 +1,14 @@
 /* Other, unaffiliated modules */
-
-// The module that borgs on the surface have.  Generally has a lot of useful tools in exchange for questionable loyalty to the crew.
-/obj/item/robot_module/robot/lost
-	name = "lost robot module"
+/obj/item/robot_module/robot/malf
 	hide_on_manifest = TRUE
 	ui_theme = "malfunction"
+	idcard_type = /obj/item/card/id/lost
 
-/obj/item/robot_module/robot/lost/create_equipment(var/mob/living/silicon/robot/robot)
+// The module that borgs on the surface have.  Generally has a lot of useful tools in exchange for questionable loyalty to the crew.
+/obj/item/robot_module/robot/malf/lost
+	name = "lost robot module"
+
+/obj/item/robot_module/robot/malf/lost/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// Sec
 	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
@@ -37,24 +39,22 @@
 	src.modules += new /obj/item/dogborg/sleeper/lost(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
 
-/obj/item/robot_module/robot/lost/adjust_gps(obj/item/gps/robot/robot_gps)
+/obj/item/robot_module/robot/malf/lost/adjust_gps(obj/item/gps/robot/robot_gps)
 	robot_gps.long_range = TRUE
 	robot_gps.hide_signal = TRUE
 	robot_gps.can_hide_signal = TRUE
 
-/obj/item/robot_module/robot/lost/handle_special_unlocks(mob/living/silicon/robot/owner_robot)
+/obj/item/robot_module/robot/malf/lost/handle_special_unlocks(mob/living/silicon/robot/owner_robot)
 	if(!owner_robot.emag_items)
 		owner_robot.scramble_hardware(20)
 	if (owner_robot.churn_count == 5)
 		emag += new /obj/item/self_repair_system/advanced(src)
 		owner_robot.hud_used.update_robot_modules_display()
 
-/obj/item/robot_module/robot/gravekeeper
+/obj/item/robot_module/robot/malf/gravekeeper
 	name = "gravekeeper robot module"
-	hide_on_manifest = TRUE
-	ui_theme = "malfunction"
 
-/obj/item/robot_module/robot/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/malf/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// For fending off animals and looters
 	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
@@ -86,7 +86,7 @@
 	src.modules += new /obj/item/dogborg/sleeper/compactor/generic(src)
 	src.emag += new /obj/item/dogborg/pounce(src)
 
-/obj/item/robot_module/robot/gravekeeper/handle_special_unlocks(mob/living/silicon/robot/owner_robot)
+/obj/item/robot_module/robot/malf/gravekeeper/handle_special_unlocks(mob/living/silicon/robot/owner_robot)
 	if(!owner_robot.emag_items)
 		owner_robot.scramble_hardware(10)
 	if (owner_robot.churn_count == 5)

@@ -29,6 +29,7 @@
 	var/list/robotdecal_on = list()
 	var/glowy_enabled = FALSE
 	var/datum/wires/robot/wires
+	idcard_type = null // Handled by module
 
 	can_be_antagged = TRUE
 

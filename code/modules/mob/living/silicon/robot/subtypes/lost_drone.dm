@@ -6,7 +6,7 @@
 
 /mob/living/silicon/robot/malf/lost/init()
 	..()
-	module = new /obj/item/robot_module/robot/lost(src)
+	module = new /obj/item/robot_module/robot/malf/lost(src)
 	scramble_hardware(20)
 
 /mob/living/silicon/robot/malf/lost/speech_bubble_appearance()

@@ -56,6 +56,8 @@
 	return ..()
 
 /mob/living/silicon/proc/init_id()
+	if(!idcard_type) // silicon robots have the module handle it
+		return
 	if(idcard)
 		return
 	idcard = new idcard_type(src)

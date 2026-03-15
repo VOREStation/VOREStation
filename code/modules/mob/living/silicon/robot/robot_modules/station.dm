@@ -35,6 +35,7 @@
 	var/list/original_languages = list()
 	var/list/added_networks = list()
 	var/ui_theme
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /obj/item/robot_module/proc/hide_on_manifest()
 	. = hide_on_manifest
@@ -69,6 +70,9 @@
 		I.canremove = FALSE
 
 /obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
+	if(robot.idcard)
+		QDEL_NULL(robot.idcard)
+	robot.idcard = new idcard_type(src)
 	return
 
 /obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)

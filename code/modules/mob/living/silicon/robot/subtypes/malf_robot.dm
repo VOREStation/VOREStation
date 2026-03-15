@@ -4,7 +4,6 @@
 	modtype = "Malf"
 	lawchannel = "State"
 	braintype = "Drone"
-	idcard_type = /obj/item/card/id/lost
 	ui_theme = "malfunction"
 
 /mob/living/silicon/robot/malf/init()

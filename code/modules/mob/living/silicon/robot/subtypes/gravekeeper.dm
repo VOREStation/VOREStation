@@ -6,5 +6,5 @@
 
 /mob/living/silicon/robot/malf/gravekeeper/init()
 	..()
-	module = new /obj/item/robot_module/robot/gravekeeper(src)
+	module = new /obj/item/robot_module/robot/malf/gravekeeper(src)
 	laws = new /datum/ai_laws/gravekeeper()
