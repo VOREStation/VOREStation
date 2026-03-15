@@ -218,3 +218,7 @@
   - bugfix: Unsimulated turfs can no longer be converted by the dimensional anomaly
   Kashargul:
   - bugfix: disposal outlets ejection when not maploaded
+2026-03-14:
+  Kashargul:
+  - code_imp: removes invisible spawned item in xenoarch
+  - code_imp: moves some more bicon to icon2html
