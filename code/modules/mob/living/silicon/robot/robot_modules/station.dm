@@ -89,7 +89,7 @@
 	if(!robot.idcard_type)
 		modules -= robot.idcard
 		QDEL_NULL(robot.idcard)
-		robot.module = null
+	robot.module = null
 	qdel(src)
 
 /obj/item/robot_module/Destroy()
