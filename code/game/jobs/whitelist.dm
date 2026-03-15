@@ -257,12 +257,11 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 		return 1
 
 	//If we have a loaded file, search it
-	if(GLOB.alien_whitelist)
-		for (var/s in GLOB.alien_whitelist)
-			if(findtext(s,"[M.ckey] - [module]"))
-				return 1
-			if(findtext(s,"[M.ckey] - All"))
-				return 1
+	var/list/our_whitelists = GLOB.alien_whitelist[M.ckey]
+	if("All" in our_whitelists)
+		return TRUE
+	if(module in our_whitelists)
+		return TRUE
 
 /proc/whitelist_overrides(client/C)
 	if(!CONFIG_GET(flag/usealienwhitelist))

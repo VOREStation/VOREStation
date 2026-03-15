@@ -381,11 +381,11 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	return "Smite [smite_name] sent!"
 
 #define VALID_ACTIONS list("add", "remove", "list", "help")
-#define VALID_KINDS list("job", "species")
+#define VALID_KINDS list("job", "species", "language", "robot")
 #define VALID_USAGE "whitelist \[[list2text(VALID_ACTIONS, ", ")]\] \[[list2text(VALID_KINDS, ", ")]\] <ckey> (role)"
 /datum/tgs_chat_command/whitelist
 	name = "whitelist"
-	help_text = "allows the management of player whitelists.\nUsage: whitelist \[add, remove, list\] \[job, species\] <ckey> (role)"
+	help_text = "allows the management of player whitelists.\nUsage: whitelist \[add, remove, list\] \[job, species, language, robot\] <ckey> (role)"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/whitelist/Run(datum/tgs_chat_user/sender, params)
@@ -411,7 +411,12 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		for(var/datum/job/our_job in GLOB.job_master.occupations)
 			if(our_job.whitelist_only)
 				whitelist_jobs += our_job.title
-		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]"
+		var/list/whitelisted_language = list()
+		for(var/language, value in GLOB.all_languages)
+			var/datum/language/current_lang = value
+			if(current_lang.flags & WHITELISTED)
+				whitelisted_language += language
+		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]\nLanguages: [english_list(whitelisted_language)]\nRobot Modules: [english_list(GLOB.whitelisted_module_types)]"
 		return message
 
 	message_as_list.Cut(1, 2)
@@ -449,21 +454,39 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	// Resolve the action
 	switch(action)
 		if("add")
-			if(kind == "job")
-				var/datum/job/job = GLOB.job_master.GetJob(role)
-				if(!job)
-					message.text = "Error, invalid job entered. Check spelling and capitalization."
-					return message
-				if(!job.whitelist_only)
-					message.text = "Error, job \"[role]\" is not a whitelist job."
-					return message
-			if(kind == "species")
-				if(!(role in GLOB.playable_species))
-					message.text = "Error, invalid species entered. Check spelling and capitalization."
-					return message
-				if(!(role in GLOB.whitelisted_species))
-					message.text = "Error, species \"[role]\" is not a whitelist species."
-					return message
+			switch(kind)
+				if("job")
+					var/datum/job/job = GLOB.job_master.GetJob(role)
+					if(!job)
+						message.text = "Error, invalid job entered. Check spelling and capitalization."
+						return message
+					if(!job.whitelist_only)
+						message.text = "Error, job \"[role]\" is not a whitelist job."
+						return message
+				if("species")
+					if(!(role in GLOB.playable_species))
+						message.text = "Error, invalid species entered. Check spelling and capitalization."
+						return message
+					if(!(role in GLOB.whitelisted_species))
+						message.text = "Error, species \"[role]\" is not a whitelist species."
+						return message
+				if("language")
+					var/datum/language/chosen_language = GLOB.all_languages[role]
+					if(!chosen_language)
+						message.text = "Error, invalid language entered. Check spelling and capitalization."
+						return message
+					if(!(chosen_language.flags & WHITELISTED))
+						message.text = "Error, language \"[role]\" is not a whitelist language."
+						return message
+					kind = "species"
+				if("robot")
+					if(!(role in GLOB.robot_modules))
+						message.text = "Error, invalid robot module entered. Check spelling and capitalization."
+						return message
+					if(!(role in GLOB.whitelisted_module_types))
+						message.text = "Error, robot module \"[role]\" is not a whitelist robot module."
+						return message
+					kind = "species"
 
 			var/datum/db_query/command_add = SSdbcore.NewQuery(
 				"INSERT INTO [format_table_name("whitelist")] (ckey, kind, entry) VALUES (:ckey, :kind, :entry)",
@@ -477,22 +500,25 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			qdel(command_add)
 
 			var/list/our_whitelists
-			if(kind == "job")
-				our_whitelists = GLOB.job_whitelist[ckey]
-				if(!our_whitelists)
-					our_whitelists = list()
-					GLOB.job_whitelist[ckey] = our_whitelists
+			switch(kind)
+				if("job")
+					our_whitelists = GLOB.job_whitelist[ckey]
+					if(!our_whitelists)
+						our_whitelists = list()
+						GLOB.job_whitelist[ckey] = our_whitelists
 
-			if(kind == "species")
-				our_whitelists = GLOB.alien_whitelist[ckey]
-				if(!our_whitelists)
-					our_whitelists = list()
-					GLOB.alien_whitelist[ckey] = our_whitelists
+				if("species")
+					our_whitelists = GLOB.alien_whitelist[ckey]
+					if(!our_whitelists)
+						our_whitelists = list()
+						GLOB.alien_whitelist[ckey] = our_whitelists
 
 			if(our_whitelists)
 				our_whitelists |= role
 
 		if("remove")
+			if(kind == "language" || kind == "robot")
+				kind = "species"
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
 				"DELETE FROM [format_table_name("whitelist")] WHERE ckey = :ckey AND kind = :kind AND entry = :entry",
 				list("ckey" = ckey, "kind" = kind, "entry" = role)
@@ -505,17 +531,18 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			qdel(command_remove)
 
 			var/list/our_whitelists
-			if(kind == "job")
-				our_whitelists = GLOB.job_whitelist[ckey]
-				if(!our_whitelists)
-					our_whitelists = list()
-					GLOB.job_whitelist[ckey] = our_whitelists
+			switch(kind)
+				if("job")
+					our_whitelists = GLOB.job_whitelist[ckey]
+					if(!our_whitelists)
+						our_whitelists = list()
+						GLOB.job_whitelist[ckey] = our_whitelists
 
-			if(kind == "species")
-				our_whitelists = GLOB.alien_whitelist[ckey]
-				if(!our_whitelists)
-					our_whitelists = list()
-					GLOB.alien_whitelist[ckey] = our_whitelists
+				if("species")
+					our_whitelists = GLOB.alien_whitelist[ckey]
+					if(!our_whitelists)
+						our_whitelists = list()
+						GLOB.alien_whitelist[ckey] = our_whitelists
 
 			if(our_whitelists && (role in our_whitelists))
 				our_whitelists -= role

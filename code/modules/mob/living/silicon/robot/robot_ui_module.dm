@@ -35,23 +35,27 @@
 	var/mob/living/silicon/robot/R = host
 
 	var/list/modules = list()
+	var/list/whitelisted = list()
 	if(R.module)
 		modules = list(R.modtype)
 		selected_module = R.modtype
 	else
 		if(LAZYLEN(R.restrict_modules_to) > 0)
-			modules.Add(R.restrict_modules_to)
+			modules += R.restrict_modules_to
 		else if(R.shell)
-			modules.Add(GLOB.shell_module_types)
+			modules += GLOB.shell_module_types
 		else
-			modules.Add(GLOB.robot_module_types)
+			modules += GLOB.robot_module_types
 			if(R.crisis || GLOB.security_level >= SEC_LEVEL_RED || R.crisis_override)
 				to_chat(R, span_red("Crisis mode active. Combat module available."))
 				modules |= GLOB.emergency_module_types
 			for(var/module_name in GLOB.whitelisted_module_types)
 				if(is_borg_whitelisted(R, module_name))
-					modules |= module_name
+					if(!(module_name in modules))
+						modules += module_name
+						whitelisted += module_name
 	data["possible_modules"] = modules
+	data["whitelisted_modules"] = whitelisted
 	data["mind_name"] = R.mind.name
 	data["theme"] = R.get_ui_theme()
 

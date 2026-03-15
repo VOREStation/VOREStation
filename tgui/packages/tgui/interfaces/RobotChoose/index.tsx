@@ -12,6 +12,7 @@ export const RobotChoose = (props) => {
 
   const {
     possible_modules,
+    whitelisted_modules,
     possible_sprites,
     selected_module,
     sprite_datum,
@@ -31,6 +32,7 @@ export const RobotChoose = (props) => {
             <ModuleSection
               title="Modules"
               sortable={possible_modules}
+              highlighted={whitelisted_modules}
               selected={selected_module}
             />
           </Stack.Item>
