@@ -69,23 +69,26 @@
 	for(var/obj/item/I in modules)
 		I.canremove = FALSE
 
-/obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
-	if(robot.idcard)
-		QDEL_NULL(robot.idcard)
-	robot.idcard = new idcard_type(src)
+/obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/our_robot)
+	our_robot.idcard = new idcard_type(src)
 	return
 
-/obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
-	remove_camera_networks(R)
-	remove_languages(R)
-	remove_subsystems(R)
-	remove_status_flags(R)
+// Reset the module and delete it
+/obj/item/robot_module/proc/reset_module(var/mob/living/silicon/robot/our_robot)
+	remove_camera_networks(our_robot)
+	remove_languages(our_robot)
+	remove_subsystems(our_robot)
+	remove_status_flags(our_robot)
 
-	if(R.radio)
-		R.radio.recalculateChannels()
-	R.set_default_module_icon()
+	if(our_robot.radio)
+		our_robot.radio.recalculateChannels()
+	our_robot.set_default_module_icon()
 
-	R.scrubbing = FALSE
+	our_robot.scrubbing = FALSE
+	modules -= our_robot.idcard
+	QDEL_NULL(our_robot.idcard)
+	our_robot.module = null
+	qdel(src)
 
 /obj/item/robot_module/Destroy()
 	QDEL_LIST(modules)
@@ -635,6 +638,7 @@
 	networks = list(NETWORK_MINE)
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher, /obj/item/borg/upgrade/restricted/adv_mailbag)
 	pto_type = PTO_CARGO
+	idcard_type = /obj/item/card/id/synthetic/borg
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -646,7 +650,13 @@
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/gripper/miner(src)
 	src.modules += new /obj/item/mining_scanner/robot(src)
-	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
+
+	var/obj/item/card/id/robot_id = robot.idcard
+	robot_id.name = "\improper Synthetic Miner ID"
+	robot_id.initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n", "stripe-purple")
+	robot_id.reset_icon()
+	robot_id.forceMove(src)
+	src.modules += robot_id
 	src.modules += new /obj/item/mail_scanner(src)
 	src.modules += new /obj/item/storage/bag/mail/borg(src)
 	src.modules += new /obj/item/destTagger(src)

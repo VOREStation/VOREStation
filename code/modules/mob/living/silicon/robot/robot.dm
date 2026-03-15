@@ -850,8 +850,7 @@
 	hands.icon_state = get_hud_module_icon()
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
-	module.Reset(src)
-	QDEL_NULL(module)
+	module.reset_module(src)
 	icon_selected = FALSE
 	updatename("Default")
 	has_recoloured = FALSE

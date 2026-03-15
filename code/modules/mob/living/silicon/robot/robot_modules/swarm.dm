@@ -1,12 +1,12 @@
 /obj/item/robot_module/drone/swarm
 	name = "swarm drone module"
-	var/id
+	var/obj/item/card/id/drone_id
 
 /obj/item/robot_module/drone/swarm/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 
-	id = robot.idcard
-	src.modules += id
+	drone_id = robot.idcard
+	src.modules += drone_id
 
 	src.modules += new /obj/item/rcd/electric/mounted/borg/swarm(src)
 	src.modules += new /obj/item/flash/robot(src)
@@ -14,6 +14,11 @@
 	src.modules += new /obj/item/melee/robotic/baton(src)
 	src.modules += new /obj/item/gun/energy/robotic/taser/swarm(src)
 	src.modules += new /obj/item/matter_decompiler/swarm(src)
+
+/obj/item/robot_module/drone/swarm/Destroy()
+	modules -= drone_id
+	drone_id = null
+	. = ..()
 
 /obj/item/robot_module/drone/swarm/ranged
 	name = "swarm gunner module"
