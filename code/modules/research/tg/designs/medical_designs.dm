@@ -119,6 +119,30 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/fixovein
+	name = "FixOVein"
+	id = "fixovein"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/surgical/FixOVein
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/bonegel
+	name = "bone gel"
+	id = "bonegel"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/surgical/bonegel
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/bioregen
 	name="bioregenerator"
 	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."

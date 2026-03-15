@@ -14,6 +14,8 @@
 		"retractor",
 		"hemostat",
 		"cautery",
+		"fixovein",
+		"bonegel",
 		"circular_saw",
 		"surgicaldrill",
 		"bonesetter",
