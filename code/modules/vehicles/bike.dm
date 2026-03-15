@@ -66,7 +66,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!isliving(usr) || ismouse(usr))
+	if(!isliving(usr) || HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB))
 		return
 
 	if(usr.incapacitated()) return
@@ -89,7 +89,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!isliving(usr) || ismouse(usr))
+	if(!isliving(usr) || HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB))
 		return
 
 	if(usr.incapacitated()) return

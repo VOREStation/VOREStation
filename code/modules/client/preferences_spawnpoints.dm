@@ -1,15 +1,14 @@
-var/list/spawntypes = list()
+GLOBAL_LIST_INIT(spawntypes, populate_spawn_points())
 
 /proc/populate_spawn_points()
-	spawntypes = list()
+	var/list/spawns = list()
 	for(var/type in subtypesof(/datum/spawnpoint))
-		var/datum/spawnpoint/S = new type()
-		spawntypes[S.display_name] = S
+		var/datum/spawnpoint/spawn_point = new type()
+		spawns[spawn_point.display_name] = spawn_point
+	return spawns
 
 /proc/get_spawn_points()
-	if(!LAZYLEN(spawntypes))
-		populate_spawn_points()
-	return spawntypes
+	return GLOB.spawntypes
 
 /datum/spawnpoint
 	var/msg          //Message to display on the arrivals computer.

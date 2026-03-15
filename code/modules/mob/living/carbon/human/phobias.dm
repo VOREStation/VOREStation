@@ -11,9 +11,7 @@
 			fear = min((fear + 6), 102)
 	if(phobias & HEMOPHOBIA)
 		for(var/obj/effect/decal/cleanable/blood/B in view(7, src))
-			var/obj/effect/decal/cleanable/blood/oil/O = B
-			var/obj/effect/decal/cleanable/blood/tracks/T = B
-			if(istype(O) || istype(T))
+			if(istype(B, /obj/effect/decal/cleanable/blood/oil) || istype(B, /obj/effect/decal/cleanable/blood/tracks) || istype(B, /obj/effect/decal/cleanable/blood/gibs/robot))
 				continue
 			fear = min((fear + 2), 102)
 		for(var/turf/simulated/floor/water/blood/T in view(7, src))

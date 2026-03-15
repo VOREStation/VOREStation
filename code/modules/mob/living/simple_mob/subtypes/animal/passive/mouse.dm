@@ -66,6 +66,8 @@
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
+
 	if(!keep_parent_data && name == initial(name))
 		name = "[name] ([rand(1, 1000)])"
 	real_name = name

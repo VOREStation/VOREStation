@@ -1,5 +1,5 @@
-var/checked_for_inactives = 0
-var/inactive_keys = "None<br>"
+GLOBAL_VAR_INIT(checked_for_inactives, FALSE)
+GLOBAL_VAR_INIT(inactive_keys, "None<br>")
 
 ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of players with custom items", "Allows you to investigate custom item activity.", ADMIN_CATEGORY_INVESTIGATE)
 	var/dat = span_bold("Inactive players with custom items") + "<br>"
@@ -11,8 +11,8 @@ ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of
 	dat += "Populating this list is done automatically, but must be manually triggered on a per\
 		round basis. Populating the list may cause a lag spike, so use it sparingly.<br>"
 	dat += "<hr>"
-	if(checked_for_inactives)
-		dat += inactive_keys
+	if(GLOB.checked_for_inactives)
+		dat += GLOB.inactive_keys
 		dat += "<hr>"
 		dat += "This system was implemented on March 1 2013, and the database a few days before that. Root server access is required to add or disable access to specific custom items.<br>"
 	else
@@ -25,7 +25,7 @@ ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of
 /proc/populate_inactive_customitems_list(var/client/C)
 	set background = 1
 
-	if(checked_for_inactives)
+	if(GLOB.checked_for_inactives)
 		return
 
 	establish_db_connection()
@@ -74,13 +74,13 @@ ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of
 			qdel(query_inactive)
 
 	if(inactive_ckeys.len)
-		inactive_keys = ""
+		GLOB.inactive_keys = ""
 		for(var/cur_key in inactive_ckeys)
 			if(inactive_ckeys[cur_key])
-				inactive_keys += span_bold("[cur_key]") + " - [inactive_ckeys[cur_key]]<br>"
+				GLOB.inactive_keys += span_bold("[cur_key]") + " - [inactive_ckeys[cur_key]]<br>"
 			else
-				inactive_keys += "[cur_key] - no database entry<br>"
+				GLOB.inactive_keys += "[cur_key] - no database entry<br>"
 
-	checked_for_inactives = 1
+	GLOB.checked_for_inactives = TRUE
 	if(C)
 		SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/check_customitem_activity) //Recursively calling ourselves until cancelled or a unique name is given.

@@ -87,3 +87,27 @@
 	lowpower=cyber_lowpower;\
 	idle=cyber_idle;\
 	nwn=cyber_nwn"
+
+//Ending a monitor style with [-colored] will override eye coloration. If you have custom colors on a monitor icon, you should do this.
+#define STANDARD_MONITOR_STYLES "blank=ipc_blank;\
+	pink=ipc_pink-colored;\
+	green=ipc_green-colored;\
+	red=ipc_red-colored;\
+	blue=ipc_blue-colored;\
+	shower=ipc_shower-colored;\
+	orange=ipc_orange-colored;\
+	nature=ipc_nature-colored;\
+	eight=ipc_eight-colored;\
+	goggles=ipc_goggles-colored;\
+	heart=ipc_heart-colored;\
+	monoeye=ipc_monoeye-colored;\
+	breakout=ipc_breakoutv-colored;\
+	yellow=ipc_yellow-colored;\
+	static=ipc_static-colored;\
+	purple=ipc_purple-colored;\
+	scroll=ipc_scroll;\
+	console=ipc_console;\
+	glider=ipc_gol_glider;\
+	rainbow=ipc_rainbow-colored;\
+	smiley=ipc_smiley-colored;\
+	database=ipc_database-colored"

@@ -253,3 +253,20 @@
 		return
 	else
 		return ..()
+
+/datum/robot_sprite/dogborg/command/gooborg
+	name = "Gooborg"
+	sprite_icon_state = "base"
+	//sprite_hud_icon_state = "clerical"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_vore_belly_resting_sprites = TRUE
+	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_cmd.dmi'
+	rest_sprite_options = list("Default", "Bellyup", "Sit")
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	icon_y = 64
+	vis_height = 64

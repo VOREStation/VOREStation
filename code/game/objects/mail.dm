@@ -374,6 +374,15 @@ ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player,
 		/obj/item/pen
 	)
 
+/obj/item/storage/bag/mail/borg
+	name = "letter compartment"
+	desc = "A compartment specifically made for small postage."
+
+/obj/item/storage/bag/mail/borg/proc/upgrade()
+	name += " of holding"
+	storage_slots = 45
+	max_storage_space = 75
+
 // Mail Scanner
 /obj/item/mail_scanner
 	name = "mail scanner"

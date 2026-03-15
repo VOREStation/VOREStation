@@ -1,4 +1,4 @@
-import { Button, Flex, Tabs } from 'tgui-core/components';
+import { Button, Stack, Tabs } from 'tgui-core/components';
 
 import { useRemappedBackend } from '../helpers';
 import { useTechWebRoute } from '../hooks';
@@ -23,47 +23,62 @@ export function TechwebDiskMenu(props: Props) {
     (diskType === 'design' && TechwebDesignDisk) || TechwebTechDisk;
 
   return (
-    <Flex direction="column" height="100%">
-      <Flex.Item>
-        <Flex justify="space-between" className="Techweb__HeaderSectionTabs">
-          <Flex.Item align="center" className="Techweb__HeaderTabTitle">
+    <Stack g={0} direction="column" fill>
+      <Stack.Item>
+        <Stack
+          g={0}
+          justify="space-between"
+          className="Techweb__HeaderSectionTabs"
+        >
+          <Stack.Item align="center" className="Techweb__HeaderTabTitle">
             {diskType.charAt(0).toUpperCase() + diskType.slice(1)} Disk
-          </Flex.Item>
-          <Flex.Item grow>
+          </Stack.Item>
+          <Stack.Item grow>
             <Tabs>
               <Tabs.Tab selected>Stored Data</Tabs.Tab>
             </Tabs>
-          </Flex.Item>
-          <Flex.Item align="center">
+          </Stack.Item>
+          <Stack.Item align="center">
             {diskType === 'tech' && (
               <Button icon="save" onClick={() => act('loadTech')}>
                 Web &rarr; Disk
               </Button>
             )}
-            <Button
-              icon="upload"
-              onClick={() => act('uploadDisk', { type: diskType })}
-            >
-              Disk &rarr; Web
-            </Button>
-            <Button
-              icon="eject"
-              onClick={() => {
-                act('ejectDisk', { type: diskType });
-                setTechwebRoute({ route: '' });
-              }}
-            >
-              Eject
-            </Button>
-            <Button icon="home" onClick={() => setTechwebRoute({ route: '' })}>
-              Home
-            </Button>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-      <Flex.Item grow className="Techweb__OverviewNodes">
+            <Stack>
+              <Stack.Item>
+                <Button
+                  icon="upload"
+                  onClick={() => act('uploadDisk', { type: diskType })}
+                >
+                  Disk &rarr; Web
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="eject"
+                  onClick={() => {
+                    act('ejectDisk', { type: diskType });
+                    setTechwebRoute({ route: '' });
+                  }}
+                >
+                  Eject
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="home"
+                  onClick={() => setTechwebRoute({ route: '' })}
+                >
+                  Home
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item grow className="Techweb__OverviewNodes">
         <DiskContent />
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 }

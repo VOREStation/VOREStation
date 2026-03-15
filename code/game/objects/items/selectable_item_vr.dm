@@ -1,7 +1,7 @@
 /obj/item/selectable_item
 	name = "selectable item"
 	desc = "If you find this, you should definitely report this..."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/gifts.dmi'
 	icon_state = "gift1"
 	var/preface_string = "You are about to select an item. Are you sure you want to use it and select one?"
 	var/preface_title = "selectable item"

@@ -53,7 +53,7 @@
 
 /datum/event2/event/window_break/announce()
 	if(chosen_window)
-		command_announcement.Announce("Structural integrity of space-facing windows at \the [get_area(chosen_turf_with_windows)] are failing. \
+		GLOB.command_announcement.Announce("Structural integrity of space-facing windows at \the [get_area(chosen_turf_with_windows)] are failing. \
 		Repair of the damaged window is advised. Personnel without EVA suits in the area should leave until repairs are complete.", "Structural Alert")
 
 /datum/event2/event/window_break/start()

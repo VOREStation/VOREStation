@@ -60,12 +60,44 @@
 	shredding = 1
 
 /datum/unarmed_attack/claws/strong/xeno
-	attack_verb = list("slashed", "gouged", "stabbed")
-	damage = 15
+	attack_name = "xenomorph claws"
+	attack_verb = list("slashed", "gouged", "punctured", "hacked", "ripped")
+	attack_noun = list("claws", "tailblade", "talons")
+	attack_sound = 'sound/weapons/alien_claw_flesh.ogg'
+	damage = 10
+	shredding = 0
+
+/datum/unarmed_attack/claws/strong/xeno/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+	var/obj/item/organ/external/affecting = target.get_organ(zone)
+	attack_damage = CLAMP(attack_damage, 1, 5)
+
+	if(target == user)
+		user.visible_message(span_danger("[user] [pick(attack_verb)] [user.p_themselves()] in the [affecting.name]!"))
+		return 0
+
+	switch(zone)
+		if(BP_HEAD, O_MOUTH, O_EYES)
+			// ----- HEAD ----- //
+			switch(attack_damage)
+				if(1 to 2)
+					user.visible_message(span_danger("[user] rakes [user.p_their()] [pick(attack_noun)] across [target]'s face!"))
+				if(3 to 4)
+					user.visible_message(span_danger("[user] [pick(attack_verb)] [target]'s [pick("head", "neck")]!"))
+				if(5)
+					user.visible_message(span_danger("[user] tears [user.p_their()] [pick(attack_noun)] into [target]'s face!"))
+		else
+			// ----- BODY ----- //
+			switch(attack_damage)
+				if(1 to 2)	user.visible_message(span_danger("[user] maims [target]'s [affecting.name]!"))
+				if(3 to 4)	user.visible_message(span_danger("[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!"))
+				if(5)		user.visible_message(span_danger("[user] impales [user.p_their()] [pick(attack_noun)] deep into [target]'s [affecting.name]!"))
 
 /datum/unarmed_attack/claws/strong/xeno/queen
-	attack_verb = list("slashed", "gouged", "stabbed", "gored")
-	damage = 20
+	attack_name = "enormous xenomorph claws"
+	attack_verb = list("mutiliated", "shredded", "impaled", "lacerated", "rended")
+	attack_noun = list("enormous claws", "regal tailblade", "horrific talons")
+	damage = 15
+	shredding = 1
 
 /datum/unarmed_attack/bite/strong
 	attack_name = "strong bite"
@@ -74,7 +106,12 @@
 	shredding = 1
 
 /datum/unarmed_attack/bite/strong/xeno
-	damage = 15
+	attack_name = "inner jaw"
+	attack_verb = list("punctured")
+	attack_noun = list("inner jaw", "inner mouth")
+	damage = 10
+	shredding = 0
+	sharp = TRUE
 
 /datum/unarmed_attack/slime_glomp
 	attack_name = "glomp"

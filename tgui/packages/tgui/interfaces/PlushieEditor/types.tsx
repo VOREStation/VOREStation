@@ -3,7 +3,7 @@ export type Data = {
   base_color: string;
   icon: string;
   preview: string;
-  possible_overlays: { name: string; icon_state: string }[];
+  possible_overlays: PossibleOverlay[];
   overlays: Overlay[];
 };
 
@@ -13,6 +13,8 @@ export type Overlay = {
   color?: string;
   alpha?: number;
 };
+
+export type PossibleOverlay = { name: string; icon_state: string };
 
 export type PlushieConfig = {
   name: string;

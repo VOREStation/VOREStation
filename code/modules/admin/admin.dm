@@ -519,7 +519,7 @@ ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "A
 		return
 
 	var/dat = span_bold("Job Bans!") + "<HR><table>"
-	for(var/t in jobban_keylist)
+	for(var/t in GLOB.jobban_keylist)
 		var/r = t
 		if( findtext(r,"##") )
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
@@ -612,8 +612,8 @@ ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.",
 		return
 
 	feedback_add_details("admin_verb","R")
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
+	if(GLOB.blackbox)
+		GLOB.blackbox.save_all_data_to_sql()
 
 	var/init_by = "Initiated by [user.holder.fakekey ? "Admin" : user.key]."
 	switch(result)
@@ -991,11 +991,13 @@ ADMIN_VERB(spawn_fruit, R_SPAWN, "Spawn Fruit", "Spawn the product of a seed.", 
 	log_admin("[key_name(user)] spawned [seedtype] fruit at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
 ADMIN_VERB(spawn_custom_item, R_SPAWN, "Spawn Custom Item", "Spawn a custom item.", ADMIN_CATEGORY_DEBUG_GAME)
-	var/owner = tgui_input_list(user, "Select a ckey.", "Spawn Custom Item", custom_items)
-	if(!owner|| !custom_items[owner])
+	var/owner = tgui_input_list(user, "Select a ckey.", "Spawn Custom Item", GLOB.jcustom_items)
+	if(!owner)
 		return
 
-	var/list/possible_items = custom_items[owner]
+	var/list/possible_items = GLOB.jcustom_items[owner]
+	if(!possible_items)
+		return
 	var/datum/custom_item/item_to_spawn = tgui_input_list(user, "Select an item to spawn.", "Spawn Custom Item", possible_items)
 	if(!item_to_spawn)
 		return
@@ -1003,17 +1005,17 @@ ADMIN_VERB(spawn_custom_item, R_SPAWN, "Spawn Custom Item", "Spawn a custom item
 	item_to_spawn.spawn_item(get_turf(user.mob))
 
 ADMIN_VERB(check_custom_items, R_SPAWN, "Check Custom Items", "Check the custom item list.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
-	if(!custom_items)
+	if(!GLOB.custom_items)
 		to_chat(user, "Custom item list is null.")
 		return
 
-	if(!custom_items.len)
+	if(!GLOB.custom_items.len)
 		to_chat(user, "Custom item list not populated.")
 		return
 
-	for(var/assoc_key in custom_items)
+	for(var/assoc_key in GLOB.custom_items)
 		to_chat(user, "[assoc_key] has:")
-		var/list/current_items = custom_items[assoc_key]
+		var/list/current_items = GLOB.custom_items[assoc_key]
 		for(var/datum/custom_item/item in current_items)
 			to_chat(user, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
