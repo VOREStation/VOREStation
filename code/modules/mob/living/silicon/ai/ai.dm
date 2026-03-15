@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	var/override_CPURate = 0					// Bonus/Penalty CPU generation rate. For use by admins/testers.
 
 	var/datum/ai_icon/selected_sprite			// The selected icon set
-	var/custom_sprite 	= 0 					// Whether the selected icon is custom
+	var/custom_sprite  = FALSE					// Whether the selected icon is custom
 	var/carded
 
 	// Multicam Vars
@@ -97,6 +97,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	var/max_multicams = 6
 
 	can_be_antagged = TRUE
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	add_verb(src, GLOB.ai_verbs_default)
@@ -185,6 +186,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 
 	GLOB.ai_list += src
 	. = ..()
+	init_id(idcard_type)
 
 	new /obj/machinery/ai_powersupply(src)
 
@@ -283,7 +285,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 
 		if(Entry[1] == src.ckey && Entry[2] == src.real_name)
 			icon = CUSTOM_ITEM_SYNTH
-			custom_sprite = 1
+			custom_sprite = TRUE
 			selected_sprite = new/datum/ai_icon("Custom", "[src.ckey]-ai", "4", "[ckey]-ai-crash", "#FFFFFF", "#FFFFFF", "#FFFFFF")
 		else
 			selected_sprite = GLOB.default_ai_icon

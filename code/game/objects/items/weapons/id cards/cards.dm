@@ -271,20 +271,18 @@
 		return
 	return
 
-/obj/item/card/id/cargo/miner/borg
+/obj/item/card/id/synthetic/borg
 	var/mob/living/silicon/robot/R
 	var/last_robot_loc
-	name = "Robot Miner ID"
-	rank = JOB_SHAFT_MINER
 
-/obj/item/card/id/cargo/miner/borg/Initialize(mapload)
+/obj/item/card/id/synthetic/borg/Initialize(mapload)
 	. = ..()
 	if(isrobot(loc?.loc))
 		R = loc.loc
 		registered_name = R.braintype
 		RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
-/obj/item/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
+/obj/item/card/id/synthetic/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
 	if(old_loc == R || old_loc == R.module)
 		last_robot_loc = old_loc
@@ -297,7 +295,7 @@
 		if(loc == R)
 			hud_layerise()
 
-/obj/item/card/id/cargo/miner/borg/Destroy()
+/obj/item/card/id/synthetic/borg/Destroy()
 	if(R)
 		UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		R = null
