@@ -379,7 +379,7 @@ ADMIN_VERB(manage_silicon_laws, R_ADMIN|R_EVENT, "Manage Silicon Laws", "Allows 
 		return
 
 	var/datum/tgui_module/law_manager/admin/law_interface = new(selected_silicon)
-	law_interface.tgui_interact(user)
+	law_interface.tgui_interact(user.mob)
 	log_and_message_admins("has opened [selected_silicon]'s law manager.")
 	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
