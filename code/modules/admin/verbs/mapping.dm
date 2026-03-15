@@ -138,7 +138,7 @@ ADMIN_VERB_VISIBILITY(testZAScolors, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
 ADMIN_VERB(testZAScolors, R_DEBUG, "Check ZAS connections", "Displays ZAS connections as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
 	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/testZAScolors_remove)
 
-	var/turf/simulated/location = get_turf(user)
+	var/turf/simulated/location = get_turf(user.mob)
 
 	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
 		to_chat(user, span_red("this debug tool cannot be used from space"))
