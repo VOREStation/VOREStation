@@ -106,6 +106,23 @@ ADMIN_VERB(cmd_admin_world_narrate, R_FUN|R_EVENT, "Global Narrate", "Globally n
 	message_admins(span_blue(span_bold("GlobalNarrate: [key_name_admin(user)] : [msg]<BR>")))
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+ADMIN_VERB(cmd_admin_local_narrate, R_FUN|R_EVENT, "Local Narrate", "Locally narrate.", ADMIN_CATEGORY_FUN_NARRATE)
+	var/msg = tgui_input_text(user, "Message:", text("Enter the text you wish to appear to everyone within view range:"), encode = FALSE)
+
+	if (!msg)
+		return
+	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
+		msg = sanitize(msg)
+	if (!msg)		// We check both before and after, just in case sanitization ended us up with empty message.
+		return
+
+	for(var/mob/mobs in range(user.eye, user.view))
+		to_chat(mobs, span_bold("[msg]"))
+	log_admin("LocalNarrate: [key_name(user)] : [msg]")
+	message_admins(span_blue(span_bold("LocalNarrate: [key_name_admin(user)] : [msg]<BR>")))
+	feedback_add_details("admin_verb","LNR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
 ADMIN_VERB(cmd_admin_direct_narrate, R_FUN|R_EVENT, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob)
 	if(!target_mob)
 		target_mob = tgui_input_list(user, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
