@@ -991,11 +991,11 @@ ADMIN_VERB(spawn_fruit, R_SPAWN, "Spawn Fruit", "Spawn the product of a seed.", 
 	log_admin("[key_name(user)] spawned [seedtype] fruit at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
 ADMIN_VERB(spawn_custom_item, R_SPAWN, "Spawn Custom Item", "Spawn a custom item.", ADMIN_CATEGORY_DEBUG_GAME)
-	var/owner = tgui_input_list(user, "Select a ckey.", "Spawn Custom Item", GLOB.jcustom_items)
+	var/owner = tgui_input_list(user, "Select a ckey.", "Spawn Custom Item", GLOB.custom_items)
 	if(!owner)
 		return
 
-	var/list/possible_items = GLOB.jcustom_items[owner]
+	var/list/possible_items = GLOB.custom_items[owner]
 	if(!possible_items)
 		return
 	var/datum/custom_item/item_to_spawn = tgui_input_list(user, "Select an item to spawn.", "Spawn Custom Item", possible_items)

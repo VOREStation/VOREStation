@@ -195,4 +195,4 @@
 
 ADMIN_VERB(eventkit_open_mob_spawner, R_SPAWN, "Open Mob Spawner", "Opens an advanced version of the mob spawner.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/datum/eventkit/mob_spawner/spawner = new()
-	spawner.tgui_interact(user)
+	spawner.tgui_interact(user.mob)

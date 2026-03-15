@@ -1,5 +1,24 @@
 
-ADMIN_VERB(capture_map, R_ADMIN, "Capture Map Part", "Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range (captures part of a map originating from bottom left corner).", ADMIN_CATEGORY_SERVER_GAME, tx as null|num, ty as null|num, tz as null|num, range as null|num)
+ADMIN_VERB(capture_map, R_ADMIN, "Capture Map Part", "Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range (captures part of a map originating from bottom left corner).", ADMIN_CATEGORY_SERVER_GAME)
+
+	var/pos_type = tgui_alert(user, "Do you want to use your current loc or a manual number input?", "Where?", list("Manual", "Location", "Cancel"))
+	if(!pos_type || pos_type == "Cancel")
+		return
+
+	var/tx
+	var/ty
+	var/tz
+	if(pos_type == "Location")
+		tx = user.mob.x
+		ty = user.mob.y
+		tz = user.mob.z
+	else
+		tx = tgui_input_number(user, "Select X location", "X Loc", 1, world.maxx, 1)
+		ty = tgui_input_number(user, "Select Y location", "Y Loc", 1, world.maxy, 1)
+		tz = tgui_input_number(user, "Select Z location", "Z Loc", 1, world.maxz, 1)
+
+	var/range = tgui_input_number(user, "Select Range", "Range", 1, 32, 1)
+
 	if(isnull(tx) || isnull(ty) || isnull(tz) || isnull(range))
 		to_chat(user, span_filter_notice("Capture Map Part, captures part of a map using camara like rendering."))
 		to_chat(user, span_filter_notice("Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range."))
