@@ -498,7 +498,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 //////////////////////////////
 /obj/item/implant/death_alarm
 	name = "death alarm implant"
-	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
+	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Medical radio channel."
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_DATA = 1)
 	known_implant = TRUE
 	var/mobname = "Will Robinson"
@@ -533,16 +533,16 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
 			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
 				//give the syndies a bit of stealth
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
+//				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
 //				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
-//				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
 			else
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
+//				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 //				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
-//				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 			STOP_PROCESSING(SSobj, src)
-		if ("emp")
+/*		if ("emp")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
 			var/name = prob(50) ? t.name : pick(GLOB.teleportlocs)
 			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
@@ -571,11 +571,51 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		STOP_PROCESSING(SSobj, src)
 
 	spawn(20)
-		malfunction--
+		malfunction-- */
 
 /obj/item/implant/death_alarm/post_implant(mob/source as mob)
 	mobname = source.real_name
 	START_PROCESSING(SSobj, src)
+
+/obj/item/implant/death_alarm/explorer
+	name = "away team death alarm implant"
+	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Away Team and Medical channels."
+
+/obj/item/implant/death_alarm/explorer/activate(var/cause)
+	var/mob/M = imp_in
+	var/area/t = get_area(M)
+	switch (cause)
+		if("death")
+			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
+			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
+				//give the syndies a bit of stealth
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Away Team")
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+			else
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Away Team")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+			qdel(a)
+			STOP_PROCESSING(SSobj, src)
+
+/obj/item/implant/death_alarm/security
+	name = "security death alarm implant"
+	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Security and Medical channels."
+
+/obj/item/implant/death_alarm/security/activate(var/cause)
+	var/mob/M = imp_in
+	var/area/t = get_area(M)
+	switch (cause)
+		if("death")
+			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
+			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
+				//give the syndies a bit of stealth
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+			else
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+			qdel(a)
+			STOP_PROCESSING(SSobj, src)
 
 //////////////////////////////
 //	Compressed Matter Implant

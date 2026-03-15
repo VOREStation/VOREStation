@@ -295,6 +295,24 @@
 		/obj/item/implanter
 	)
 
+/obj/item/storage/box/cdeathalarm_kit/explorer
+	name = "away team death alarm kit"
+	desc = "Box of stuff used to implant away team death alarms."
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	starts_with = list(
+		/obj/item/implantcase/death_alarm/explorer = 7,
+		/obj/item/implanter
+	)
+
+/obj/item/storage/box/cdeathalarm_kit/security
+	name = "security death alarm kit"
+	desc = "Box of stuff used to implant security death alarms."
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	starts_with = list(
+		/obj/item/implantcase/death_alarm/security = 7,
+		/obj/item/implanter
+	)
+
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
