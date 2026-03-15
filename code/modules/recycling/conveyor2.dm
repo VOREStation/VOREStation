@@ -342,6 +342,9 @@
 		to_chat(user, "You adjust the speed of the conveyor switch")
 		return
 
+/obj/machinery/conveyor_switch/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/machinery/conveyor_switch/oneway
 	oneway = 1
 

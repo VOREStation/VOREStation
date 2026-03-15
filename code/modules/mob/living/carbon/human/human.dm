@@ -167,6 +167,9 @@
 		RigPanel(R)
 
 /mob/living/carbon/human/ex_act(severity)
+	if(is_incorporeal()) // Can't explode shadekin in phase
+		return
+
 	if(!blinded)
 		flash_eyes()
 
@@ -385,10 +388,10 @@
 		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
-		if(stored_shock_by_ref["\ref[src]"])
-			stored_shock_by_ref["\ref[src]"] += shock_damage
+		if(GLOB.stored_shock_by_ref["\ref[src]"])
+			GLOB.stored_shock_by_ref["\ref[src]"] += shock_damage
 		else
-			stored_shock_by_ref["\ref[src]"] = shock_damage
+			GLOB.stored_shock_by_ref["\ref[src]"] = shock_damage
 		return
 
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))

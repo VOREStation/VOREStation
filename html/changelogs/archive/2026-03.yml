@@ -75,3 +75,157 @@
   - code_imp: migrates more admin verbs to the subsystem
   - code_imp: cleans up some more updateDialog
   - refactor: replaces many old browser UIs with tgui
+2026-03-04:
+  Will, Kash:
+  - rscadd: observing the round from the main menu, while having pai candidate enabled(and
+      a set pai name) will automatically send out a pai notice about a new personality
+      being available
+  - rscadd: pai may have multiple levels of belly size per pai sprite type
+  - rscadd: type 13 pai hologram now uses all four directions for the AI hologram
+      sprite made of your character
+  - balance: pais now have an extremely limited selection of objects and computers
+      they can interact with
+  - refactor: pai controller ported to subsystem
+  - refactor: pai card menu updated to tgui
+  - refactor: pai sprites moved to datums
+  - refactor: pai saving uses TGprefs instead of it's own separate save file (each
+      save slot now has it's own pai config now)
+  - refactor: pai vr override icons collapsed into base file
+  - refactor: multiple pai related tgui menus updated to modern standards
+  - code_imp: special roles order unit test
+  - code_imp: pai software unit test
+  - code_imp: pai sprite unit test
+  - bugfix: parrot pai resting belly sprite has proper name
+  - bugfix: runtime when attempting to toggle non-existent gun aiming mode as a pai
+  - bugfix: herm is no longer missing from identifying gender in character prefs menu
+2026-03-05:
+  Azzy.Dreemurr:
+  - rscadd: Added new vending machine with Talon uniforms + for paperwork added [talogo]
+      which Talon logo displays
+  - balance: Talon armory got more holsters itself, added a helmet for Captain Talon
+      for their armor in locker
+  - bugfix: fixed locations of engineering lockers on Talon
+  - maptweak: small remap EVA room on Talon. A locker with musical instruments added
+      in Talon Bar
+  - image: New uniform for Talon Crew + Talon seal
+  - admin: A new option for sending a fax has been introduced -> Talon Headquarters.
+      And also the ability to answer.
+  KillianKirilenko:
+  - qol: restores default transfer values for flour and sugar
+2026-03-06:
+  Azzy.Dreemurr:
+  - image: Altavians is now available use Talon space suits (new sprites)
+  Will, Kash:
+  - rscadd: Vix/Flipper pai syndicate pet
+  - rscadd: Paicard emag behavior
+  - rscadd: pAI can use bingle wiki computer
+  - qol: pAI counts for social traits (lonely/agoraphobia)
+  - qol: pAI can use modular computers if their master's ID is in it
+2026-03-08:
+  Diana:
+  - bugfix: Robotics surgery works again
+2026-03-09:
+  Aroliacue:
+  - rscadd: Added new species-dependent melee attacks. Currently unused on Virgo.
+  - balance: Reduced damage on some accidentally overtuned existing species-dependent
+      melee attacks. Currently unused on Virgo.
+  - sound: Added a new melee attack sound.
+  Diana:
+  - bugfix: Reagents will now have some effect - even if extremely small - if you
+      have slow metabolism.
+  Kashargul:
+  - code_imp: update font awesome to v7
+  - code_imp: tgui dependency up
+  - code_imp: migrates GPS to tgui
+  - bugfix: bad compass_holder del
+  - bugfix: ship placement in two player mode
+  KillianKirilenko:
+  - qol: critter rifts are now emissive, so they can be seen in unlit areas (still
+      only visible to ghosts)
+  - bugfix: fixed notification prefs for maint critter rifts (I think)
+  Sharkmare:
+  - rscadd: Added a Command style Gooborg Chassis
+  Will:
+  - code_imp: added TRAIT_AMBIENT_PEST_MOB trait define
+  - refactor: 'Made pest mob interactions consistent (ex: mice couldn''t open airlocks,
+      but cockroaches could )'
+  - bugfix: forensic scanner runtime fix
+  - bugfix: handheld flashes no longer stun phased shadekin
+  - bugfix: flashbangs no longer hit phased shadekin
+  - bugfix: explosions no longer hit phased shadekin
+  - bugfix: emps no longer hit phased shadekin
+  - bugfix: chemical sprays no longer hit phased shadekin
+  - bugfix: shadekin can no longer toggle oxygen/anesthetic pumps while in phase
+  - bugfix: you can no longer mount phased shadekin taurs, or mount a taur while phased
+  - bugfix: wrapping up people in giftwrap no longer makes them invisible
+  - bugfix: missing giftbox icons fixed on several objects
+  - refactor: Moved solarpanel update to it's own subsystem
+  - bugfix: Solarpanels now follow the sun on planet, and not the global SPACESUN
+      the stations use.
+  - bugfix: pai correctly uses the new chassis data when changing chassis(would sometimes
+      turn you invisible)
+  - bugfix: paicards no longer comfort minor loneliness if they do not have a client
+2026-03-10:
+  Kashargul:
+  - bugfix: design disk scrolling
+  - code_imp: rids of Flex in techweb UIs
+  TheCaramelion:
+  - qol: Cargo borgs may work as mailman
+2026-03-11:
+  Kashargul:
+  - bugfix: text edit state being held too long
+2026-03-12:
+  Aroliacue:
+  - rscadd: Added additional starting security items to the SecTech vending machine.
+  - qol: Moved excessive clothing options from security lockers to clothing vending
+      machines.
+  - balance: Reduced weight class on legcuffs from normal to small. They now take
+      up the same space as regular handcuffs.
+  Cerami:
+  - bugfix: Specify the default spawn type.
+  Guti:
+  - rscadd: Added the ability to harvest anomalies
+  - rscadd: Added the Anomaly Scanner, Anomaly Harvester, and Anomalous Particle Gun
+  - rscadd: Xenoarch tech web
+  Kashargul:
+  - code_imp: cleans up some tgui types
+  - code_imp: updates tgui dependencies
+  - qol: adds search to gps
+  - code_imp: improves performance of belly resetting
+  Will:
+  - rscadd: cargo borgs get a destination tagger and package wrapper
+  - bugfix: package wrapper no longer drops its tube inside your mob when emptied
+  - refactor: package wrapper and gift wrap cleaned up
+  - image: adds a turf edge to concrete slabs
+  Willburd:
+  - rscadd: Exploration snowsuits
+  - rscadd: Victorian style coats
+  - rscadd: Trailblazer light structures
+  - rscadd: Sec spider pet Lorenzo
+  - rscadd: Chicken pet commander clucky
+  - rscadd: random steptrap spawner
+  - rscadd: Icepick for iced airlock breaking (map flavor too)
+  - rscadd: Mine lighting techweb entry for marker beacons and trailblazers
+  - rscadd: Debris Removal techweb entry for shovels and icepicks
+2026-03-13:
+  Guti:
+  - rscadd: Added "Anomaly Harvesting" crate to Cargo
+  - rscadd: Added "Anomaly harvesting kit"
+  - rscadd: Added "Latent anomaly core"
+  - code_imp: Added random core obj
+  - balance: Doubled the points from samples
+  - balance: Doubled the passive point generation of R&D's server (0.4)
+  - bugfix: Unsimulated turfs can no longer be converted by the dimensional anomaly
+  Kashargul:
+  - bugfix: disposal outlets ejection when not maploaded
+2026-03-14:
+  Kashargul:
+  - code_imp: removes invisible spawned item in xenoarch
+  - code_imp: moves some more bicon to icon2html
+2026-03-15:
+  Kashargul:
+  - code_imp: cleans up dest tagger
+  - qol: ingame logs now show the last 1000 entries per category
+  Will:
+  - code_imp: Slime research point unittest
+  - bugfix: light pink slime cores lacked a destructive analyzer point value

@@ -4,11 +4,11 @@ import { Button, Divider, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
 import { getButtonColor } from './functions';
-import type { powerData } from './types';
+import type { PowerData } from './types';
 
 export const ChangeLingSearchableList = (props: {
   title: string;
-  powerData: powerData[];
+  powerData: PowerData[];
   points: number;
 }) => {
   const { act } = useBackend();
@@ -17,7 +17,7 @@ export const ChangeLingSearchableList = (props: {
 
   const [searchText, setSearchText] = useState('');
 
-  const searcher = createSearch(searchText, (power: powerData) => {
+  const searcher = createSearch<PowerData>(searchText, (power) => {
     return power.power_name;
   });
 

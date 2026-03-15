@@ -1,7 +1,7 @@
 // Clickable stat() button.
 /obj/effect/statclick
 	name = "Initializing..."
-	blocks_emissive = FALSE // EMISSIVE_BLOCK_NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	var/target
 
 INITIALIZE_IMMEDIATE(/obj/effect/statclick)
@@ -80,7 +80,6 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 	options["LEGACY: master_controller"] = GLOB.master_controller
 	options["LEGACY: job_master"] = GLOB.job_master
 	options["LEGACY: emergency_shuttle"] = GLOB.emergency_shuttle
-	options["LEGACY: paiController"] = paiController
 	options["LEGACY: cameranet"] = GLOB.cameranet
 	options["LEGACY: transfer_controller"] = GLOB.transfer_controller
 

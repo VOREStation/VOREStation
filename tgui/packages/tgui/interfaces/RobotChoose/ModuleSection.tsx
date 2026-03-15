@@ -13,7 +13,7 @@ export const ModuleSection = (props: {
 
   const [searchText, setSearchText] = useState<string>('');
 
-  const searcher = createSearch(searchText, (element: string) => {
+  const searcher = createSearch<string>(searchText, (element) => {
     return element;
   });
 

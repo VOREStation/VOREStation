@@ -23,6 +23,10 @@
 	var/state = 0
 	var/locked = 0
 
+	// Anomaly harvesting stuff
+	var/anomalous = FALSE
+	var/particle = ANOMALY_PARTICLE_SIGMA
+
 	var/burst_delay = 2
 	var/initial_fire_delay = 100
 
@@ -59,13 +63,13 @@
 		if(!src.locked)
 			if(src.active==1)
 				src.active = 0
-				to_chat(user, "You turn off [src].")
-				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+				balloon_alert_visible("turned off")
+				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("EMITTER([x],[y],[z]) OFF by [key_name(user)]")
 				investigate_log("turned " + span_red("off") + " by [user.key]","singulo")
 			else
 				src.active = 1
-				to_chat(user, "You turn on [src].")
+				balloon_alert_visible("turned on")
 				src.shot_number = 0
 				src.fire_delay = get_initial_fire_delay()
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
@@ -223,6 +227,18 @@
 		else
 			to_chat(user, span_warning("Access denied."))
 		return
+	if(istype(W, /obj/item/anomaly_scanner))
+		anomalous = !anomalous
+		burst_delay = anomalous ? 3 : 8
+		to_chat(user, span_notice("The beam is now set to [anomalous ? "anomalous." : "normal."]"))
+		return
+	if(W.has_tool_quality(TOOL_MULTITOOL) && anomalous)
+		var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)
+		if(!chosen_particle)
+			return
+		particle = chosen_particle
+		balloon_alert_visible("changed to [chosen_particle]")
+		return
 	..()
 	return
 
@@ -282,4 +298,8 @@
 	return burst_delay
 
 /obj/machinery/power/emitter/proc/get_emitter_beam()
+	if(anomalous)
+		var/obj/item/projectile/energy/anomaly/projectile = new /obj/item/projectile/energy/anomaly(get_turf(src))
+		projectile.particle_type = particle
+		return projectile
 	return new /obj/item/projectile/beam/emitter(get_turf(src))

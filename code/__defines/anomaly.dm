@@ -47,3 +47,19 @@
 #define DIMENSIONAL_ANOMALY "dimensional_anomaly"
 #define WEATHER_ANOMALY "weather_anomaly"
 #define DUST_ANOMALY "dust_anomaly"
+
+#define ANOMALY_PARTICLE_SIGMA		"Sigma particles"
+#define ANOMALY_PARTICLE_DELTA		"Delta particles"
+#define ANOMALY_PARTICLE_ZETA		"Zeta particles"
+#define ANOMALY_PARTICLE_EPSILON	"Epsilon particles"
+
+#define ANOMALY_PARTICLE_ALL list( \
+	ANOMALY_PARTICLE_SIGMA, \
+	ANOMALY_PARTICLE_DELTA, \
+	ANOMALY_PARTICLE_ZETA, \
+	ANOMALY_PARTICLE_EPSILON \
+)
+
+#define ANOMALY_DECAYING	"Decaying"
+#define ANOMALY_STABLE		"Stable"
+#define ANOMALY_GROWING		"Growing"

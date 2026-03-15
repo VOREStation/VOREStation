@@ -87,3 +87,19 @@
 		/obj/item/clothing/suit/bomb_suit = 1,
 		/obj/item/clothing/suit/bio_suit = 1,
 	)
+
+/datum/experiment/scanning/points/anomaly
+	name = "Anomaly Research Scans"
+	description = "Anomalies. What are they? Where do they come from? Why are they here? Get close and personal with some of them, and observe their strange nature."
+	required_points = 4
+	required_atoms = list(
+		/obj/effect/anomaly/bioscrambler = 1,
+		/obj/effect/anomaly/bluespace = 1,
+		/obj/effect/anomaly/dimensional = 1,
+		/obj/effect/anomaly/dust = 1,
+		/obj/effect/anomaly/flux = 1,
+		/obj/effect/anomaly/grav = 1,
+		/obj/effect/anomaly/hallucination = 1,
+		/obj/effect/anomaly/pyro = 1,
+		/obj/effect/anomaly/weather = 1,
+	)

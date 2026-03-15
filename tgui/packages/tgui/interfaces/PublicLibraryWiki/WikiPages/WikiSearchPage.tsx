@@ -68,12 +68,12 @@ export const WikiSearchPage = (
     }
   }
 
-  const customSearch = createSearch(searchText, (search: string) => search);
+  const customSearch = createSearch<string>(searchText, (search) => search);
   const toDisplay = search.filter(customSearch);
 
-  const customSubSearch = createSearch(
+  const customSubSearch = createSearch<string>(
     subCatSearchText,
-    (search: string) => search,
+    (search) => search,
   );
   const subToDisplay = subCats?.filter(customSubSearch);
 

@@ -3101,6 +3101,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "afh" = (
@@ -8602,6 +8603,7 @@
 /area/tether/surfacebase/surface_one_hall)
 "aoR" = (
 /obj/machinery/light/small,
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "aoS" = (
@@ -28647,6 +28649,17 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
+"aYC" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/storage/box/anomaly{
+	pixel_y = 5
+	},
+/obj/item/storage/box/anomaly{
+	pixel_y = 0;
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aYE" = (
 /obj/structure/toilet{
 	pixel_y = 10
@@ -45942,7 +45955,7 @@ auK
 avh
 abm
 abw
-abw
+aYC
 abw
 abv
 afA

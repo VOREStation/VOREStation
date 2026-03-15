@@ -231,8 +231,7 @@
 						M.Paralyse(4)
 					else
 						M.make_jittery(500)
-				spawn(15)
-					explode()
+				addtimer(CALLBACK(src, PROC_REF(explode)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 			else if(current_track == null)
 				to_chat(ui.user, "No track selected.")
 			else
@@ -251,6 +250,9 @@
 
 /obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
 	interact(user)
+
+/obj/machinery/media/jukebox/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)

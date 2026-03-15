@@ -349,7 +349,7 @@
 	take_damage(damage)
 	return
 
-/obj/structure/window/handle_rotation_verbs(angle)
+/obj/structure/window/handle_rotation_verbs(angle, mob/user)
 	if(is_fulltile())
 		return FALSE
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -629,8 +629,9 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "light0"
 	desc = "A remote control switch for polarized windows."
-	var/range = 7
 	circuit = /obj/item/circuitboard/electrochromic
+	flags = WALL_ITEM
+	var/range = 7
 
 /obj/machinery/button/windowtint/attack_hand(mob/user as mob)
 	if(..())

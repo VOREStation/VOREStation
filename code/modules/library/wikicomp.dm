@@ -33,6 +33,9 @@
 		tgui_interact(user)
 		playsound(src, "keyboard", 40) // into console
 
+/obj/machinery/librarywikicomp/allow_pai_interaction()
+	return TRUE
+
 /obj/machinery/librarywikicomp/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

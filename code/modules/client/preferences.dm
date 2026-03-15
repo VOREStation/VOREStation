@@ -502,10 +502,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
 
 	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
-	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
+	wing_alpha.apply_pref_to(character, read_preference(/datum/preference/numeric/human/wing_alpha))
 
 	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
-	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
+	skin_color.apply_pref_to(character, read_preference(/datum/preference/color/human/skin_color))
+
+	var/datum/preference/color/human/eyes_color = GLOB.preference_entries[/datum/preference/color/human/eyes_color]
+	eyes_color.apply_pref_to(character, read_preference(/datum/preference/color/human/eyes_color))
 
 	character.set_gender(read_preference(/datum/preference/choiced/gender/biological))
 
@@ -553,7 +556,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
-				if(!islist(body_markings[M][BP])) continue
+				if(!islist(body_markings[M][BP]))
+					continue
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
 
@@ -628,7 +632,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
 	if(istype(character.species, /datum/species/shapeshifter))
-		wrapped_species_by_ref["\ref[character]"] = bodytype_selected
+		GLOB.wrapped_species_by_ref["\ref[character]"] = bodytype_selected
 
 	character.custom_species	= custom_species
 	character.custom_say		= lowertext(trim(custom_say))

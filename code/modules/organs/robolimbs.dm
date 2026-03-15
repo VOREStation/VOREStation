@@ -2,29 +2,6 @@ GLOBAL_LIST_EMPTY(all_robolimbs)
 GLOBAL_LIST_EMPTY(robolimb_data)
 GLOBAL_LIST_EMPTY(chargen_robolimbs)
 GLOBAL_DATUM(basic_robolimb, /datum/robolimb)
-//Ending a monitor style with [-colored] will override eye coloration. If you have custom colors on a monitor icon, you should do this.
-var/const/standard_monitor_styles = "blank=ipc_blank;\
-	pink=ipc_pink-colored;\
-	green=ipc_green-colored;\
-	red=ipc_red-colored;\
-	blue=ipc_blue-colored;\
-	shower=ipc_shower-colored;\
-	orange=ipc_orange-colored;\
-	nature=ipc_nature-colored;\
-	eight=ipc_eight-colored;\
-	goggles=ipc_goggles-colored;\
-	heart=ipc_heart-colored;\
-	monoeye=ipc_monoeye-colored;\
-	breakout=ipc_breakoutv-colored;\
-	yellow=ipc_yellow-colored;\
-	static=ipc_static-colored;\
-	purple=ipc_purple-colored;\
-	scroll=ipc_scroll;\
-	console=ipc_console;\
-	glider=ipc_gol_glider;\
-	rainbow=ipc_rainbow-colored;\
-	smiley=ipc_smiley-colored;\
-	database=ipc_database-colored"
 
 /proc/populate_robolimb_list()
 	GLOB.basic_robolimb = new()
@@ -72,7 +49,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "A generic unbranded interpretation of a popular prosthetic head model. It looks rudimentary and cheaply constructed."
 	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_monitor.dmi'
 	parts = list(BP_HEAD)
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	unavailable_to_build = 1
 
 /datum/robolimb/unbranded_alt1
@@ -187,7 +164,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/bishop/bishop_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/gestaltframe
@@ -272,7 +249,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/hephaestus
@@ -312,7 +289,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/morpheus
@@ -320,7 +297,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This limb is simple and functional; no effort has been made to make it look human."
 	icon = 'icons/mob/human_races/cyberlimbs/morpheus/morpheus_main.dmi'
 	unavailable_to_build = 1
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/morpheus_alt1
@@ -397,7 +374,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/wardtakahashi/wardtakahashi_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/xion
@@ -449,7 +426,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/xion/xion_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = standard_monitor_styles
+	monitor_styles = STANDARD_MONITOR_STYLES
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/zenghu
