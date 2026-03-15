@@ -83,7 +83,6 @@
 #define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>") // Close to warning plain, maybe replace
 
 // FIltered under info
-#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
 #define span_info(str) ("<span class='info'>" + str + "</span>")
 #define span_infoplain(str) ("<span class='infoplain'>" + str + "</span>")
 #define span_suicide(str) ("<span class='suicide'>" + str + "</span>")
@@ -164,6 +163,8 @@
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
 #define span_darkpink(str) ("<span class='darkpink'>" + str + "</span>")
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
+#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
+
 
 /* System and Debug */
 // System filter
