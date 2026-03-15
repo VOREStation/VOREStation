@@ -59,7 +59,7 @@
 
 /datum/event2/event/ion_storm/announce()
 	if(prob(announce_odds))
-		command_announcement.Announce("An ion storm was detected within proximity to \the [location_name()] recently. \
+		GLOB.command_announcement.Announce("An ion storm was detected within proximity to \the [location_name()] recently. \
 		Check all AI controlled equipment for corruption.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 
 // Fake variant used by traitors.

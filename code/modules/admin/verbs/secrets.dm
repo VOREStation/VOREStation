@@ -319,11 +319,11 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			if(GLOB.gravity_is_on)
 				log_admin("[key_name(holder)] toggled gravity on.", 1)
 				message_admins(span_notice("[key_name_admin(holder)] toggled gravity on."), 1)
-				command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
+				GLOB.command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
 			else
 				log_admin("[key_name(holder)] toggled gravity off.", 1)
 				message_admins(span_notice("[key_name_admin(holder)] toggled gravity off."), 1)
-				command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a nice day.")
+				GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a nice day.")
 		if("tripleAI")
 			if(!is_funmin)
 				return

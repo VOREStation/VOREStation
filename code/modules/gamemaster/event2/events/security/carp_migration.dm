@@ -24,7 +24,7 @@
 
 /datum/event2/event/mob_spawning/carp_migration/announce()
 	var/announcement = "Unknown biological entities been detected near \the [location_name()], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert")
 
 /datum/event2/event/mob_spawning/carp_migration/event_tick()
 	if(last_carp_wave_time + carp_wave_cooldown > world.time)

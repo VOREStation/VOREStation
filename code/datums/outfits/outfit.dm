@@ -1,23 +1,12 @@
-var/list/outfits_decls_
-var/list/outfits_decls_root_
-var/list/outfits_decls_by_type_
+GLOBAL_LIST_EMPTY(outfits_decls)
+GLOBAL_LIST_EMPTY(outfits_decls_by_type)
+GLOBAL_DATUM_INIT(outfits_decls_root, /datum/decl/hierarchy/outfit, new) // Rewuires the above lists
 
 /proc/outfit_by_type(var/outfit_type)
-	if(!outfits_decls_root_)
-		init_outfit_decls()
-	return outfits_decls_by_type_[outfit_type]
+	return GLOB.outfits_decls_by_type[outfit_type]
 
 /proc/outfits()
-	if(!outfits_decls_root_)
-		init_outfit_decls()
-	return outfits_decls_
-
-/proc/init_outfit_decls()
-	if(outfits_decls_root_)
-		return
-	outfits_decls_ = list()
-	outfits_decls_by_type_ = list()
-	outfits_decls_root_ = new /datum/decl/hierarchy/outfit()
+	return GLOB.outfits_decls
 
 /datum/decl/hierarchy/outfit
 	name = "Naked"
@@ -72,8 +61,8 @@ var/list/outfits_decls_by_type_
 
 	if(is_hidden_category())
 		return
-	outfits_decls_by_type_[type] = src
-	dd_insertObjectList(outfits_decls_, src)
+	GLOB.outfits_decls_by_type[type] = src
+	dd_insertObjectList(GLOB.outfits_decls, src)
 
 /datum/decl/hierarchy/outfit/proc/pre_equip(mob/living/carbon/human/H)
 	switch(H.headset)

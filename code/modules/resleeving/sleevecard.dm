@@ -130,7 +130,7 @@
 		var/list/emote = list()
 		emote["name"] = name
 		emote["id"] = GLOB.pai_emotions[name]
-		emotions.Add(list(emote))
+		UNTYPED_LIST_ADD(emotions, emote)
 
 	data["emotions"] = emotions
 	data["current_emotion"] = card.current_emotion
