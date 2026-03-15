@@ -87,7 +87,7 @@
 	desc = "A very bare bones and stylish suit designed for pilots with advanced holographic interfaces for the task."
 	id = "zero_rig_module"
 	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000)
-	build_path =/obj/item/rig/zero
+	build_path = /obj/item/rig/zero
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MODSUIT_MODULES
