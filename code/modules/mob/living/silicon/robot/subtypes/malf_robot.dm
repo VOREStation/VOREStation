@@ -14,8 +14,6 @@
 		restrict_modules_to = GLOB.malf_module_types
 
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
-	cut_overlays()
-	init_id()
 
 	updatename(modtype)
 

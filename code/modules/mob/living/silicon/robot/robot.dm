@@ -261,8 +261,6 @@
 	else
 		lawupdate = FALSE
 
-
-
 /mob/living/silicon/robot/SetName(pickedName as text)
 	custom_name = pickedName
 	updatename()
