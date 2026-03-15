@@ -71,7 +71,7 @@
 
 /obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
 	if(!robot.idcard_type)
-		our_robot.idcard = new idcard_type(src)
+		robot.idcard = new idcard_type(src)
 	return
 
 // Reset the module and delete it
@@ -185,7 +185,6 @@
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	our_robot.idcard = new idcard_type(src)
 	var/obj/item/gps/robot/robot_gps = new /obj/item/gps/robot(src)
 	adjust_gps(robot_gps)
 	src.modules += robot_gps
