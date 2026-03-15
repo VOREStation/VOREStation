@@ -69,25 +69,27 @@
 	for(var/obj/item/I in modules)
 		I.canremove = FALSE
 
-/obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/our_robot)
-	our_robot.idcard = new idcard_type(src)
+/obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
+	if(!robot.idcard_type)
+		our_robot.idcard = new idcard_type(src)
 	return
 
 // Reset the module and delete it
-/obj/item/robot_module/proc/reset_module(var/mob/living/silicon/robot/our_robot)
-	remove_camera_networks(our_robot)
-	remove_languages(our_robot)
-	remove_subsystems(our_robot)
-	remove_status_flags(our_robot)
+/obj/item/robot_module/proc/reset_module(var/mob/living/silicon/robot/robot)
+	remove_camera_networks(robot)
+	remove_languages(robot)
+	remove_subsystems(robot)
+	remove_status_flags(robot)
 
-	if(our_robot.radio)
-		our_robot.radio.recalculateChannels()
-	our_robot.set_default_module_icon()
+	if(robot.radio)
+		robot.radio.recalculateChannels()
+	robot.set_default_module_icon()
 
-	our_robot.scrubbing = FALSE
-	modules -= our_robot.idcard
-	QDEL_NULL(our_robot.idcard)
-	our_robot.module = null
+	robot.scrubbing = FALSE
+	if(!robot.idcard_type)
+		modules -= robot.idcard
+		QDEL_NULL(robot.idcard)
+		robot.module = null
 	qdel(src)
 
 /obj/item/robot_module/Destroy()
@@ -182,6 +184,7 @@
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
+	our_robot.idcard = new idcard_type(src)
 	var/obj/item/gps/robot/robot_gps = new /obj/item/gps/robot(src)
 	adjust_gps(robot_gps)
 	src.modules += robot_gps

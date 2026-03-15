@@ -68,6 +68,7 @@ var/list/mob_hat_cache = list()
 	var/can_pick_shell = TRUE
 	var/list/shell_accessories
 	var/can_blitz = FALSE
+	idcard_type = /obj/item/card/id/synthetic
 
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
