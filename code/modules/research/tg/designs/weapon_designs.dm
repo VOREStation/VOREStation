@@ -960,7 +960,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
-/* Disabled due to no weilded sprite
+/* Disabled due to no wielded sprite
 /datum/design_techweb/battleaxe
 	name = "battleaxe"
 	desc = "A one handed battle axe, still a deadly weapon."
