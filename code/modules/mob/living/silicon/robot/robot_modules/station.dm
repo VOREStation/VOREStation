@@ -70,8 +70,7 @@
 		I.canremove = FALSE
 
 /obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
-	if(!robot.idcard_type)
-		robot.idcard = new idcard_type(src)
+	robot.init_id(idcard_type)
 	return
 
 // Reset the module and delete it
@@ -86,12 +85,10 @@
 	robot.set_default_module_icon()
 
 	robot.scrubbing = FALSE
-	if(!robot.idcard_type)
-		modules -= robot.idcard
-		QDEL_NULL(robot.idcard)
-	if(!istype(robot, /mob/living/silicon/robot/drone))
-		robot.module = null
-		qdel(src)
+	modules -= robot.idcard
+	QDEL_NULL(robot.idcard)
+	robot.module = null
+	qdel(src)
 
 /obj/item/robot_module/Destroy()
 	QDEL_LIST(modules)
@@ -840,3 +837,9 @@
 	src.modules += new /obj/item/storage/bag/ore(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.emag += new /obj/item/pickaxe/diamonddrill(src)
+
+/obj/item/robot_module/drone/talon
+	name = "talon drone module"
+	idcard_type = /obj/item/card/id/talon
+	channels = list(CHANNEL_TALON = 1)
+	networks = list(NETWORK_TALON_SHIP)

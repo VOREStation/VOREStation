@@ -23,7 +23,6 @@
 
 	var/list/access_rights
 	var/obj/item/card/id/idcard
-	var/idcard_type = /obj/item/card/id/synthetic
 
 	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
 
@@ -36,7 +35,6 @@
 	if(!is_decoy)
 		add_language(LANGUAGE_GALCOM)
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
-		init_id()
 		init_subsystems()
 
 		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
@@ -55,8 +53,8 @@
 	clear_subsystems()
 	return ..()
 
-/mob/living/silicon/proc/init_id()
-	if(!idcard_type) // silicon robots have the module handle it
+/mob/living/silicon/proc/init_id(idcard_type)
+	if(!idcard_type)
 		return
 	if(idcard)
 		return
