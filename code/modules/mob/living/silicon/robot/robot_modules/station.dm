@@ -89,8 +89,9 @@
 	if(!robot.idcard_type)
 		modules -= robot.idcard
 		QDEL_NULL(robot.idcard)
-	robot.module = null
-	qdel(src)
+	if(!istype(robot, /mob/living/silicon/robot/drone))
+		robot.module = null
+		qdel(src)
 
 /obj/item/robot_module/Destroy()
 	QDEL_LIST(modules)
