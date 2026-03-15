@@ -49,12 +49,12 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	var/body = "Options panel for " + span_bold("[player]")
 	if(player.client)
 		body += " played by " + span_bold("[player.client]")
-		body += "\[<A href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[player.client.ckey] || GLOB.deadmins[player.client.ckey]) ? "rank" : "add"];key=[player.key]'>[player.client.holder ? player.client.holder.rank_names() : "Player"]</A>\]"
+		body += "\[<a href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[player.client.ckey] || GLOB.deadmins[player.client.ckey]) ? "rank" : "add"];key=[player.key]'>[player.client.holder ? player.client.holder.rank_names() : "Player"]</a>\]"
 
 	if(isnewplayer(player))
 		body += span_bold("Hasn't Entered Game")
 	else
-		body += " \[<A href='byond://?_src_=holder;[HrefToken()];revive=[REF(player)]'>Heal</A>\] "
+		body += " \[<a href='byond://?_src_=holder;[HrefToken()];revive=[REF(player)]'>Heal</a>\] "
 
 	if(player.client)
 		body += "<br>" + span_bold("First connection:") + "[player.client.player_age] days ago"
@@ -70,35 +70,35 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 		[admin_jump_link(player, src)]\] <br>
 		"} + span_bold("Mob type:") + {"[player.type]<br>
 		"} + span_bold("Inactivity time:") + {" [player.client ? "[player.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
-		<A href='byond://?_src_=holder;[HrefToken()];boot2=\ref[player]'>Kick</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];warn=[player.ckey]'>Warn</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];newban=\ref[player]'>Ban</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];jobban2=\ref[player]'>Jobban</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];notes=show;mob=\ref[player]'>Notes</A>
+		<a href='byond://?_src_=holder;[HrefToken()];boot2=\ref[player]'>Kick</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];warn=[player.ckey]'>Warn</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];newban=\ref[player]'>Ban</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];jobban2=\ref[player]'>Jobban</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];notes=show;mob=\ref[player]'>Notes</a>
 	"}
 
 	if(player.client)
-		body += "| <A href='byond://?_src_=holder;[HrefToken()];sendtoprison=\ref[player]'>Prison</A> | "
-		body += "\ <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=\ref[player]'>Send back to Lobby</A> | "
+		body += "| <a href='byond://?_src_=holder;[HrefToken()];sendtoprison=\ref[player]'>Prison</a> | "
+		body += "\ <a href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=\ref[player]'>Send back to Lobby</a> | "
 		var/muted = player.client.prefs.muted
 		body += {"<br>"} + span_bold("Mute: ") + {"
-			\[<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
-			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
-			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
-			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
-			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
-			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
-			(<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
+			\[<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
+			(<a href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
 		"}
 
 	body += {"<br><br>
-		<A href='byond://?_src_=holder;[HrefToken()];jumpto=\ref[player]'>"} + span_bold("Jump to") + {"</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];getmob=\ref[player]'>Get</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];sendmob=\ref[player]'>Send To</A>
+		<a href='byond://?_src_=holder;[HrefToken()];jumpto=\ref[player]'>"} + span_bold("Jump to") + {"</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];getmob=\ref[player]'>Get</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];sendmob=\ref[player]'>Send To</a>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='byond://?_src_=holder;[HrefToken()];traitor=\ref[player]'>Traitor panel</A> | " : "" ]
-		<A href='byond://?_src_=holder;[HrefToken()];narrateto=\ref[player]'>Narrate to</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=\ref[player]'>Subtle message</A>
+		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<a href='byond://?_src_=holder;[HrefToken()];traitor=\ref[player]'>Traitor panel</a> | " : "" ]
+		<a href='byond://?_src_=holder;[HrefToken()];narrateto=\ref[player]'>Narrate to</a> |
+		<a href='byond://?_src_=holder;[HrefToken()];subtlemessage=\ref[player]'>Subtle message</a>
 	"}
 
 	if (player.client)
@@ -111,30 +111,30 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(issmall(player))
 				body += span_bold("Monkeyized") + " | "
 			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];turn_monkey=\ref[player]'>Monkeyize</A> | "
+				body += "<a href='byond://?_src_=holder;[HrefToken()];turn_monkey=\ref[player]'>Monkeyize</a> | "
 
 			//Corgi
 			if(iscorgi(player))
 				body += span_bold("Corgized") + " | "
 			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];corgione=\ref[player]'>Corgize</A> | "
+				body += "<a href='byond://?_src_=holder;[HrefToken()];corgione=\ref[player]'>Corgize</a> | "
 
 			//AI / Cyborg
 			if(isAI(player))
 				body += span_bold("Is an AI ")
 			else if(ishuman(player))
-				body += {"<A href='byond://?_src_=holder;[HrefToken()];turn_ai=\ref[player]'>Make AI</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];turn_robot=\ref[player]'>Make Robot</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];turn_alien=\ref[player]'>Make Alien</A>
+				body += {"<a href='byond://?_src_=holder;[HrefToken()];turn_ai=\ref[player]'>Make AI</a> |
+					<a href='byond://?_src_=holder;[HrefToken()];turn_robot=\ref[player]'>Make Robot</a> |
+					<a href='byond://?_src_=holder;[HrefToken()];turn_alien=\ref[player]'>Make Alien</a>
 				"}
 
 			//Simple Animals
 			if(isanimal(player))
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Re-Animalize</A> | "
+				body += "<a href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Re-Animalize</a> | "
 			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Animalize</A> | "
+				body += "<a href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Animalize</a> | "
 
-			body += "<A href='byond://?_src_=holder;[HrefToken()];respawn=\ref[player.client]'>Respawn</A> | "
+			body += "<a href='byond://?_src_=holder;[HrefToken()];respawn=\ref[player.client]'>Respawn</a> | "
 
 			// DNA2 - Admin Hax
 			if(player.dna && iscarbon(player))
@@ -170,7 +170,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 							bname = span_orange(bname)
 						else
 							bname = span_red(bname)
-						body += "<A href='byond://?_src_=holder;[HrefToken()];togmutate=\ref[player];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
+						body += "<a href='byond://?_src_=holder;[HrefToken()];togmutate=\ref[player];block=[block]' title='[tname]'>[bname]</a><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
@@ -178,45 +178,45 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 			body += {"<br><br>
 				"} + span_bold("Rudimentary transformation:") + span_normal("<br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.") + {"<br>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=\ref[player]'>Observer</A> |
-				\[ Xenos: <A href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=\ref[player]'>Larva</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=\ref[player]'>Drone</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=\ref[player]'>Hunter</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=\ref[player]'>Sentinel</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=\ref[player]'>Queen</A> \] |
-				\[ Crew: <A href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=\ref[player]'>Human</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=\ref[player]'>Unathi</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=\ref[player]'>Tajaran</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=\ref[player]'>Skrell</A> \] | \[
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=\ref[player]'>Nymph</A>
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=\ref[player]'>Diona</A> \] |
-				\[ slime: <A href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=\ref[player]'>Baby</A>,
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=\ref[player]'>Adult</A> \]
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=\ref[player]'>Monkey</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=\ref[player]'>Cyborg</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=\ref[player]'>Cat</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=\ref[player]'>Runtime</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=\ref[player]'>Corgi</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=\ref[player]'>Ian</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=\ref[player]'>Crab</A> |
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=\ref[player]'>Coffee</A> |
-				\[ Construct: <A href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=\ref[player]'>Armoured</A> ,
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=\ref[player]'>Builder</A> ,
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=\ref[player]'>Wraith</A> \]
-				<A href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=\ref[player]'>Shade</A>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=\ref[player]'>Observer</a> |
+				\[ Xenos: <a href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=\ref[player]'>Larva</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=\ref[player]'>Drone</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=\ref[player]'>Hunter</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=\ref[player]'>Sentinel</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=\ref[player]'>Queen</a> \] |
+				\[ Crew: <a href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=\ref[player]'>Human</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=\ref[player]'>Unathi</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=\ref[player]'>Tajaran</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=\ref[player]'>Skrell</a> \] | \[
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=\ref[player]'>Nymph</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=\ref[player]'>Diona</a> \] |
+				\[ slime: <a href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=\ref[player]'>Baby</a>,
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=\ref[player]'>Adult</a> \]
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=\ref[player]'>Monkey</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=\ref[player]'>Cyborg</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=\ref[player]'>Cat</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=\ref[player]'>Runtime</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=\ref[player]'>Corgi</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=\ref[player]'>Ian</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=\ref[player]'>Crab</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=\ref[player]'>Coffee</a> |
+				\[ Construct: <a href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=\ref[player]'>Armoured</a> ,
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=\ref[player]'>Builder</a> ,
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=\ref[player]'>Wraith</a> \]
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=\ref[player]'>Shade</a>
 				<br>
 			"}
 	body += {"<br><br>
 			"} + span_bold("Other actions:") + {"
 			<br>
-			<A href='byond://?_src_=holder;[HrefToken()];forcespeech=\ref[player]'>Forcesay</A>
+			<a href='byond://?_src_=holder;[HrefToken()];forcespeech=\ref[player]'>Forcesay</a>
 			"}
 	if (player.client)
 		body += {" |
-			<A href='byond://?_src_=holder;[HrefToken()];tdome1=\ref[player]'>Thunderdome 1</A> |
-			<A href='byond://?_src_=holder;[HrefToken()];tdome2=\ref[player]'>Thunderdome 2</A> |
-			<A href='byond://?_src_=holder;[HrefToken()];tdomeadmin=\ref[player]'>Thunderdome Admin</A> |
-			<A href='byond://?_src_=holder;[HrefToken()];tdomeobserve=\ref[player]'>Thunderdome Observer</A> |
+			<a href='byond://?_src_=holder;[HrefToken()];tdome1=\ref[player]'>Thunderdome 1</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];tdome2=\ref[player]'>Thunderdome 2</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];tdomeadmin=\ref[player]'>Thunderdome Admin</a> |
+			<a href='byond://?_src_=holder;[HrefToken()];tdomeobserve=\ref[player]'>Thunderdome Observer</a> |
 		"}
 	// language toggles
 	body += "<br><br>" + span_bold("Languages:") + "<br>"
@@ -315,28 +315,28 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 	switch(admincaster_screen)
 		if(0)
-			dat += {"Welcome to the admin newscaster.<BR> Here you can add, edit and censor every newspiece on the network.
-				<BR>Feed channels and stories entered through here will be uneditable and handled as official news by the rest of the units.
-				<BR>Note that this panel allows full freedom over the news network, there are no constrictions except the few basic ones. Don't break things!
+			dat += {"Welcome to the admin newscaster.<br> Here you can add, edit and censor every newspiece on the network.
+				<br>Feed channels and stories entered through here will be uneditable and handled as official news by the rest of the units.
+				<br>Note that this panel allows full freedom over the news network, there are no constrictions except the few basic ones. Don't break things!
 			"}
 			if(GLOB.news_network.wanted_issue)
-				dat+= "<HR><A href='byond://?src=\ref[src];[HrefToken()];ac_view_wanted=1'>Read Wanted Issue</A>"
+				dat+= "<HR><a href='byond://?src=[REF(src)];[HrefToken()];ac_view_wanted=1'>Read Wanted Issue</a>"
 
-			dat+= {"<HR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_create_channel=1'>Create Feed Channel</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_view=1'>View Feed Channels</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_create_feed_story=1'>Submit new Feed story</A>
-				<BR><BR><A href='byond://?src=\ref[usr];[HrefToken()];mach_close=newscaster_main'>Exit</A>
+			dat+= {"<HR><br><a href='byond://?src=[REF(src)];[HrefToken()];ac_create_channel=1'>Create Feed Channel</a>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_view=1'>View Feed Channels</a>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_create_feed_story=1'>Submit new Feed story</a>
+				<br><br><a href='byond://?src=\ref[usr];[HrefToken()];mach_close=newscaster_main'>Exit</a>
 			"}
 
 			var/wanted_already = 0
 			if(GLOB.news_network.wanted_issue)
 				wanted_already = 1
 
-			dat+={"<HR>"} + span_bold("Feed Security functions:") + {"<BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR>"} + span_green("[src.admincaster_signature]") + {"</A>
+			dat+={"<HR>"} + span_bold("Feed Security functions:") + {"<br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</a>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</a>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</a>
+				<br><HR><a href='byond://?src=[REF(src)];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<br>"} + span_green("[src.admincaster_signature]") + {"</a>
 			"}
 		if(1)
 			dat+= "Station Feed Channels<HR>"
@@ -345,97 +345,97 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
-						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT>") + "<BR>"
+						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><a href='byond://?src=[REF(src)];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</a></FONT>") + "<br>"
 					else
-						dat+=span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>")
-			dat+={"<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>
+						dat+=span_bold("<a href='byond://?src=[REF(src)];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</a> [(CHANNEL.censored) ? (span_red("***")) : null]<br>")
+			dat+={"<br><HR><a href='byond://?src=[REF(src)];[HrefToken()];ac_refresh=1'>Refresh</a>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Back</a>
 			"}
 
 		if(2)
 			dat+={"
 				Creating new Feed Channel...
-				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>Channel Author</A>:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:") + {" [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_channel=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
+				<HR>"} + span_bold("<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_channel_name=1'>Channel Name</a>:") + {" [src.admincaster_feed_channel.channel_name]<br>
+				"} + span_bold("<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_signature=1'>Channel Author</a>:") + {" "} + span_green("[src.admincaster_signature]") + {"<br>
+				"} + span_bold("<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</a>:") + {" [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<br><br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_submit_new_channel=1'>Submit</a><br><br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Cancel</a><br>
 			"}
 		if(3)
 			dat+={"
 				Creating new Feed Message...
-				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
-				"} + span_bold("Message Author:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_new_message=1'>Message Body</A>:") + {" [src.admincaster_feed_message.body] <BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_message=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
+				<HR>"} + span_bold("<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</a>:") + {" [src.admincaster_feed_channel.channel_name]<br>
+				"} + span_bold("Message Author:") + {" "} + span_green("[src.admincaster_signature]") + {"<br>
+				"} + span_bold("<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_new_message=1'>Message Body</a>:") + {" [src.admincaster_feed_message.body] <br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_submit_new_message=1'>Submit</a><br><br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Cancel</a><br>
 			"}
 		if(4)
 			dat+={"
-					Feed story successfully submitted to [src.admincaster_feed_channel.channel_name].<BR><BR>
-					<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+					Feed story successfully submitted to [src.admincaster_feed_channel.channel_name].<br><br>
+					<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Return</a><br>
 				"}
 		if(5)
 			dat+={"
-				Feed Channel [src.admincaster_feed_channel.channel_name] created successfully.<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				Feed Channel [src.admincaster_feed_channel.channel_name] created successfully.<br><br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Return</a><br>
 			"}
 		if(6)
-			dat+=span_bold(span_maroon("ERROR: Could not submit Feed story to Network.")) + "<HR><BR>"
+			dat+=span_bold(span_maroon("ERROR: Could not submit Feed story to Network.")) + "<HR><br>"
 			if(src.admincaster_feed_channel.channel_name=="")
-				dat+=span_maroon("Invalid receiving channel name.") + "<BR>"
+				dat+=span_maroon("Invalid receiving channel name.") + "<br>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]" || admincaster_feed_message.title == "")
-				dat+=span_maroon("Invalid message body.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[3]'>Return</A><BR>"
+				dat+=span_maroon("Invalid message body.") + "<br>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[3]'>Return</a><br>"
 		if(7)
-			dat+=span_bold(span_maroon("ERROR: Could not submit Feed Channel to Network.")) + "<HR><BR>"
+			dat+=span_bold(span_maroon("ERROR: Could not submit Feed Channel to Network.")) + "<HR><br>"
 			if(src.admincaster_feed_channel.channel_name =="" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]")
-				dat+=span_maroon("Invalid channel name.") + "<BR>"
+				dat+=span_maroon("Invalid channel name.") + "<br>"
 			var/check = 0
 			for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 					check = 1
 					break
 			if(check)
-				dat+=span_maroon("Channel name already in use.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[2]'>Return</A><BR>"
+				dat+=span_maroon("Channel name already in use.") + "<br>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[2]'>Return</a><br>"
 		if(9)
 			dat+=span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[created by: [span_maroon("[src.admincaster_feed_channel.author]")]\]") + "<HR>"
 			if(src.admincaster_feed_channel.censored)
 				dat+={"
-					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
-					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
+					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<br>
+					No further feed story additions are allowed while the D-Notice is in effect.<br><br>
 				"}
 			else
 				if( isemptylist(src.admincaster_feed_channel.messages) )
-					dat+=span_italics("No feed messages found in channel...") + "<BR>"
+					dat+=span_italics("No feed messages found in channel...") + "<br>"
 				else
 					var/i = 0
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 						i++
-						//dat+="-[MESSAGE.body] <BR>"
+						//dat+="-[MESSAGE.body] <br>"
 						var/pic_data
 						if(MESSAGE.img)
 							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
-							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
+							pic_data+="<img src='tmp_photo[i].png' width = '180'><br>"
 						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
-						dat+="<BR>"
-						dat+=span_small("\[Story by [span_maroon("[MESSAGE.author] - [MESSAGE.time_stamp]")]\]") + "<BR>"
+						dat+="<br>"
+						dat+=span_small("\[Story by [span_maroon("[MESSAGE.author] - [MESSAGE.time_stamp]")]\]") + "<br>"
 			dat+={"
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[1]'>Back</A>
+				<br><HR><a href='byond://?src=[REF(src)];[HrefToken()];ac_refresh=1'>Refresh</a>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[1]'>Back</a>
 			"}
 		if(10)
 			dat+={"
-				"} + span_bold("[using_map.company_name] Feed Censorship Tool") + {"<BR>
-				"} + span_small("NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>") + {"
+				"} + span_bold("[using_map.company_name] Feed Censorship Tool") + {"<br>
+				"} + span_small("NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<br>") + {"
 				"} + span_small("Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.") + {"
-				<HR>Select Feed channel to get Stories from:<BR>
+				<HR>Select Feed channel to get Stories from:<br>
 			"}
 			if(isemptylist(GLOB.news_network.network_channels))
-				dat+=span_italics("No feed channels found active...") + "<BR>"
+				dat+=span_italics("No feed channels found active...") + "<br>"
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
+					dat+="<a href='byond://?src=[REF(src)];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</a> [(CHANNEL.censored) ? (span_red("***")) : null]<br>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Cancel</a>"
 		if(11)
 			dat+={"
 				"} + span_bold("[using_map.company_name] D-Notice Handler") + {"<HR>
@@ -444,44 +444,44 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				"} + span_small("stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.") + {"<HR>
 			"}
 			if(isemptylist(GLOB.news_network.network_channels))
-				dat+=span_italics("No feed channels found active...") + "<BR>"
+				dat+=span_italics("No feed channels found active...") + "<br>"
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
+					dat+="<a href='byond://?src=[REF(src)];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</a> [(CHANNEL.censored) ? (span_red("***")) : null]<br>"
 
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Back</a>"
 		if(12)
 			dat+={"
-				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
-				"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A>") + {"<HR>
+				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<br>
+				"} + span_normal("<a href='byond://?src=[REF(src)];[HrefToken()];ac_censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</a>") + {"<HR>
 			"}
 			if( isemptylist(src.admincaster_feed_channel.messages) )
-				dat+=span_italics("No feed messages found in channel...") + "<BR>"
+				dat+=span_italics("No feed messages found in channel...") + "<br>"
 			else
 				for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 					dat+={"
-						-[MESSAGE.body] <BR>"} + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + {"<BR>
-						"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A>") + {"<BR>
+						-[MESSAGE.body] <br>"} + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + {"<br>
+						"} + span_normal("<a href='byond://?src=[REF(src)];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</a>  -  <a href='byond://?src=[REF(src)];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</a>") + {"<br>
 					"}
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[10]'>Back</A>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[10]'>Back</a>"
 		if(13)
 			dat+={"
-				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
-				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[src];[HrefToken()];ac_toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
+				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<br>
+				Channel messages listed below. If you deem them dangerous to the station, you can <a href='byond://?src=[REF(src)];[HrefToken()];ac_toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</a>.<HR>
 			"}
 			if(src.admincaster_feed_channel.censored)
 				dat+={"
-					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
-					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
+					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<br>
+					No further feed story additions are allowed while the D-Notice is in effect.<br><br>
 				"}
 			else
 				if( isemptylist(src.admincaster_feed_channel.messages) )
-					dat+=span_italics("No feed messages found in channel...") + "<BR>"
+					dat+=span_italics("No feed messages found in channel...") + "<br>"
 				else
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
-						dat+="-[MESSAGE.body] <BR>" + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + "<BR>"
+						dat+="-[MESSAGE.body] <br>" + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + "<br>"
 
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[11]'>Back</A>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[11]'>Back</a>"
 		if(14)
 			dat+=span_bold("Wanted Issue Handler:")
 			var/wanted_already = 0
@@ -490,54 +490,54 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				wanted_already = 1
 				end_param = 2
 			if(wanted_already)
-				dat+=span_normal(span_italics("<BR>A wanted issue is already in Feed Circulation. You can edit or cancel it below."))
+				dat+=span_normal(span_italics("<br>A wanted issue is already in Feed Circulation. You can edit or cancel it below."))
 			dat+={"
 				<HR>
-				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</A>: [src.admincaster_feed_message.author] <BR>
-				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_desc=1'>Description</A>: [src.admincaster_feed_message.body] <BR>
+				<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</a>: [src.admincaster_feed_message.author] <br>
+				<a href='byond://?src=[REF(src)];[HrefToken()];ac_set_wanted_desc=1'>Description</a>: [src.admincaster_feed_message.body] <br>
 			"}
 			if(wanted_already)
-				dat+=span_bold("Wanted Issue created by:") + span_green(" [GLOB.news_network.wanted_issue.backup_author]") + "<BR>"
+				dat+=span_bold("Wanted Issue created by:") + span_green(" [GLOB.news_network.wanted_issue.backup_author]") + "<br>"
 			else
-				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [src.admincaster_signature]") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
+				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [src.admincaster_signature]") + "<br>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</a>"
 			if(wanted_already)
-				dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</A>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
+				dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</a>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Cancel</a>"
 		if(15)
 			dat+={"
-				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.") + {"<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.") + {"<br><br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Return</a><br>
 			"}
 		if(16)
-			dat+=span_bold(span_maroon("ERROR: Wanted Issue rejected by Network.")) + "<HR><BR>"
+			dat+=span_bold(span_maroon("ERROR: Wanted Issue rejected by Network.")) + "<HR><br>"
 			if(src.admincaster_feed_message.author =="" || src.admincaster_feed_message.author == "\[REDACTED\]")
-				dat+=span_maroon("Invalid name for person wanted.") + "<BR>"
+				dat+=span_maroon("Invalid name for person wanted.") + "<br>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
-				dat+=span_maroon("Invalid description.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>"
+				dat+=span_maroon("Invalid description.") + "<br>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Return</a><br>"
 		if(17)
 			dat+={"
-				"} + span_bold("Wanted Issue successfully deleted from Circulation") + {"<BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_bold("Wanted Issue successfully deleted from Circulation") + {"<br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Return</a><br>
 			"}
 		if(18)
 			dat+={"
-				"} + span_bold(span_maroon("-- STATIONWIDE WANTED ISSUE --")) + {"<BR>"} + span_normal("\[Submitted by: [span_green("[GLOB.news_network.wanted_issue.backup_author]")]\]") + {"<HR>
-				"} + span_bold("Criminal") + {": [GLOB.news_network.wanted_issue.author]<BR>
-				"} + span_bold("Description") + {": [GLOB.news_network.wanted_issue.body]<BR>
+				"} + span_bold(span_maroon("-- STATIONWIDE WANTED ISSUE --")) + {"<br>"} + span_normal("\[Submitted by: [span_green("[GLOB.news_network.wanted_issue.backup_author]")]\]") + {"<HR>
+				"} + span_bold("Criminal") + {": [GLOB.news_network.wanted_issue.author]<br>
+				"} + span_bold("Description") + {": [GLOB.news_network.wanted_issue.body]<br>
 				"} + span_bold("Photo:") + {":
 			"}
 			if(GLOB.news_network.wanted_issue.img)
 				usr << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
-				dat+="<BR><img src='tmp_photow.png' width = '180'>"
+				dat+="<br><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A><BR>"
+			dat+="<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Back</a><br>"
 		if(19)
 			dat+={"
-				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] successfully edited.") + {"<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] successfully edited.") + {"<br><br>
+				<br><a href='byond://?src=[REF(src)];[HrefToken()];ac_setScreen=[0]'>Return</a><br>
 			"}
 		else
 			dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
@@ -558,7 +558,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 		var/r = t
 		if( findtext(r,"##") )
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
-		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
+		dat += text("<tr><td>[t] (<a href='byond://?src=[REF(src)];[HrefToken()];removejobban=[r]'>unban</a>)</td></tr>")
 	dat += "</table>"
 
 	var/datum/browser/popup = new(owner, "ban", "Job Bans", 400, 400)
@@ -571,20 +571,17 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 	var/dat = {"
 		<center>"} + span_bold("Game Panel") + {"</center><hr>\n
-		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</a><br>
 		"}
 	if(GLOB.master_mode == "secret")
-		dat += "<A href='byond://?src=\ref[src];[HrefToken()];f_secret=1'>(Force Secret Mode)</A><br>"
+		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];f_secret=1'>(Force Secret Mode)</a><br>"
 
 	dat += {"
-		<BR>
-		<A href='byond://?src=\ref[src];[HrefToken()];create_object=1'>Create Object</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];create_turf=1'>Create Turf</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
-		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
+		<br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];spawn_panel=1'>Spawn Panel</a><br>
+		<br><a href='byond://?src=[REF(src)];[HrefToken()];vsc=airflow'>Edit Airflow Settings</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];vsc=phoron'>Edit Phoron Settings</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];vsc=default'>Choose a default ZAS setting</a><br>
 		"}
 
 	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 220, 295)
@@ -600,19 +597,19 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
 		if(!category.can_view(usr))
 			continue
-		dat += "<A href='byond://?src=\ref[src];[HrefToken()];admin_secrets_panel=\ref[category]'>[category.name]</A> "
+		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];admin_secrets_panel=\ref[category]'>[category.name]</a> "
 	dat += "<HR>"
 
 	// If a category is selected, print its description and then options
 	if(istype(active_category) && active_category.can_view(usr))
-		dat += span_bold("[active_category.name]") + "<BR>"
+		dat += span_bold("[active_category.name]") + "<br>"
 		if(active_category.desc)
-			dat += span_italics("[active_category.desc]") + "<BR>"
+			dat += span_italics("[active_category.desc]") + "<br>"
 		for(var/datum/admin_secret_item/item in active_category.items)
 			if(!item.can_view(usr))
 				continue
-			dat += "<A href='byond://?src=\ref[src];[HrefToken()];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
-		dat += "<BR>"
+			dat += "<a href='byond://?src=[REF(src)];[HrefToken()];admin_secrets=\ref[item]'>[item.name()]</a><br>"
+		dat += "<br>"
 
 	var/datum/browser/popup = new(usr, "secrets", "Secrets", 500, 500)
 	popup.set_content(dat)
@@ -1335,19 +1332,19 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 			return span_bold("[key_name(C, link, name, highlight_special)]")
 
 		if(1)	//Private Messages
-			return span_bold("[key_name(C, link, name, highlight_special)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)](<a href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</a>)")
 
 		if(2)	//Admins
 			var/ref_mob = "\ref[M]"
-			return span_bold("[key_name(C, link, name, highlight_special)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)](<a href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</a>) (<a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</a>) (<a href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</a>) (<a href='byond://?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</a>) ([admin_jump_link(M)]) (<a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>CA</a>) (<a href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</a>)")
 
 		if(3)	//Devs
 			var/ref_mob = "\ref[M]"
-			return span_bold("[key_name(C, link, name, highlight_special)](<A href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)](<a href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</a>)([admin_jump_link(M)]) (<a href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</a>)")
 
 		if(4)	//Event Managers
 			var/ref_mob = "\ref[M]"
-			return span_bold("[key_name(C, link, name, highlight_special)] (<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)] (<a href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</a>) (<a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</a>) (<a href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</a>) (<a href='byond://?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</a>) ([admin_jump_link(M)]) (<a href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</a>)")
 
 
 /proc/ishost(whom)
