@@ -74,7 +74,7 @@
 		if(target.module)
 			.["target"]["active"] = target.icon_selected
 			.["target"]["sprite"] = sanitize_css_class_name("[target.sprite_datum.type]")
-			.["target"]["sprite_size"] = spritesheet.icon_size_id(.["target"]["sprite"] + "S")
+			.["target"]["sprite_size"] = spritesheet?.icon_size_id(.["target"]["sprite"] + "S")
 			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
 			for(var/module in GLOB.robot_modules)
@@ -202,6 +202,8 @@
 			var/module_type = GLOB.robot_modules[params["new_source"]]
 			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
 				source = new /mob/living/silicon/robot/syndicate(null)
+			else if(ispath(module_type, /obj/item/robot_module/robot/malf))
+				source = new /mob/living/silicon/robot/malf(null)
 			else
 				source = new /mob/living/silicon/robot(null)
 			source.modtype = params["new_source"]
@@ -645,7 +647,7 @@
 	var/list/source_list = list()
 	source_list["model"] = source.module
 	source_list["sprite"] = sanitize_css_class_name("[source.sprite_datum.type]")
-	source_list["sprite_size"] = spritesheet.icon_size_id(source_list["sprite"] + "S")
+	source_list["sprite_size"] = spritesheet?.icon_size_id(source_list["sprite"] + "S")
 	var/list/source_items = list()
 	for(var/obj/item in (source.module.modules | source.module.emag))
 		var/exists
