@@ -1650,7 +1650,7 @@
 /mob/living/silicon/robot/proc/get_ui_theme()
 	if(emagged)
 		return "syndicate"
-	if(module.ui_theme)
+	if(module?.ui_theme)
 		return module.ui_theme
 	return ui_theme
 
