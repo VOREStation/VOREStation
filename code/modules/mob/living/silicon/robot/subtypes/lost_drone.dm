@@ -5,21 +5,9 @@
 	var/law_retries = 5
 
 /mob/living/silicon/robot/malf/lost/init()
-	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
-
-	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
+	..()
 	module = new /obj/item/robot_module/robot/lost(src)
-	cut_overlays()
-	init_id()
-
-	updatename("Lost")
-
-	if(!cell)
-		cell = new /obj/item/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
-
 	scramble_hardware(20)
-
-	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
 /mob/living/silicon/robot/malf/lost/speech_bubble_appearance()
 	return "synthetic_evil"
