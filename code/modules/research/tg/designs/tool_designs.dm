@@ -1190,6 +1190,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
+/datum/design_techweb/rms
+	name = "Rapid Material Synthesizer"
+	desc = "A device used to rapidly synthesize materials."
+	id = "rms"
+	materials = list(MAT_STEEL = 62500, MAT_GLASS = 15000)
+	build_path = /obj/item/rms
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design_techweb/electric_welding_tool
 	name = "electric welding tool"
 	desc = "A welder which runs off of electricity."

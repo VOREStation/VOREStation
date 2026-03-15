@@ -295,6 +295,7 @@
 		// "mech_rcd",
 		"rcd_loaded",
 		"rcd_ammo",
+		"rms",
 		// "weldingmask",
 		// "magboots",
 	)
