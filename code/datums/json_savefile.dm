@@ -69,11 +69,16 @@ GENERAL_PROTECT_DATUM(/datum/json_savefile)
 /datum/json_savefile/proc/_write_subtree_to_savefile(savefile/savefile, var/path_prefix, var/list/subtree)
 	for(var/key, value in subtree)
 		var/full_path = "[path_prefix]/[key]"
-		if(islist(value))
-			// Recurse: nested list becomes a savefile subdirectory.
+		// Only recurse if value is a non-empty associative list (JSON object).
+		// A regular list (JSON array) has no associations, so value[first_item] == null.
+		// Writing a regular list as a subdirectory would corrupt it on re-import
+		// (each element becomes a key with null value instead of an array entry).
+		var/first_key = islist(value) && length(value) ? value[1] : null
+		if(istext(first_key) && value[first_key] != null)
+			// Non-empty associative list → savefile subdirectory.
 			_write_subtree_to_savefile(savefile, full_path, value)
 		else
-			// Leaf value: cd to the path and write the value.
+			// Primitive, empty list, or regular (non-associative) list → direct value.
 			savefile.cd = full_path
 			WRITE_FILE(savefile, value)
 
