@@ -16,7 +16,7 @@
 /proc/get_player_save_dir(var/ckey)
 	return "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]"
 
-ADMIN_VERB(admin_convert_savefile, R_ADMIN, "Convert Player Savefile", "Convert a player's preferences.sav to preferences.json or vice versa. Player must be logged off.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(admin_convert_savefile, R_ADMIN, "Convert Player Savefile", "Convert a player's preferences.sav to preferences.json or vice versa. Player must be logged off.", ADMIN_CATEGORY_SERVER_ADMIN)
 	// Pick your target.
 	var/target_ckey = tgui_input_text(user, "Enter the ckey of the player whose save file you want to convert.", "Convert Player Savefile")
 	if(!target_ckey)
@@ -89,8 +89,7 @@ ADMIN_VERB(admin_convert_savefile, R_ADMIN, "Convert Player Savefile", "Convert 
 		result.import_byond_savefile(new /savefile(sav_path))
 		result.save()
 
-		log_admin("[key_name(user)] converted [target_ckey]'s preferences.sav to preferences.json.")
-		message_admins("[key_name_admin(user)] converted [target_ckey]'s preferences.sav to preferences.json.")
+		log_and_message_admins("converted [target_ckey]'s preferences.sav to preferences.json", user)
 		to_chat(user, span_filter_adminlog("Done. [target_ckey]'s preferences.sav has been converted to preferences.json."))
 
 	else if(direction == "preferences.json -> preferences.sav")
@@ -103,11 +102,13 @@ ADMIN_VERB(admin_convert_savefile, R_ADMIN, "Convert Player Savefile", "Convert 
 			if(fexists(bak))
 				fdel(bak)
 			fcopy(sav_path, bak)
+			// Delete the original so new() creates a blank savefile.
+			// Without this, old entries not present in the JSON would persist in the file.
+			fdel(sav_path)
 
 		var/datum/json_savefile/source = new(json_path)
 		var/savefile/result = new(sav_path)
 		source.export_to_byond_savefile(result)
 
-		log_admin("[key_name(user)] converted [target_ckey]'s preferences.json to preferences.sav.")
-		message_admins("[key_name_admin(user)] converted [target_ckey]'s preferences.json to preferences.sav.")
+		log_and_message_admins("converted [target_ckey]'s preferences.json to preferences.sav", user)
 		to_chat(user, span_filter_adminlog("Done. [target_ckey]'s preferences.json has been converted to preferences.sav."))
