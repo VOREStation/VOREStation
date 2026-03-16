@@ -51,10 +51,10 @@
 
 /obj/item/organ/external/head/unbreakable/slime	//They don't need this anymore.
 	nonsolid = 1
-	cannot_gib = 0
-	vital = 0
+	cannot_gib = FALSE
+	vital = FALSE
 	max_damage = 30
-	encased = 0
+	encased = FALSE
 	spread_dam = 1
 
 /*

@@ -6,14 +6,14 @@
 SUBSYSTEM_DEF(ping)
 	name = "Ping"
 	priority = FIRE_PRIORITY_PING
-	// init_stage = INITSTAGE_EARLY
+	init_stage = INITSTAGE_EARLY
 	wait = 4 SECONDS
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun = list()
 
 /datum/controller/subsystem/ping/stat_entry(msg)
-	msg = "P:[GLOB.clients.len]"
+	msg = "P:[length(GLOB.clients)]"
 	return ..()
 
 /datum/controller/subsystem/ping/fire(resumed = FALSE)
@@ -24,8 +24,8 @@ SUBSYSTEM_DEF(ping)
 	// De-reference the list for sanic speeds
 	var/list/currentrun = src.currentrun
 
-	while (currentrun.len)
-		var/client/client = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/client/client = currentrun[length(currentrun)]
 		currentrun.len--
 
 		if(!client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable))

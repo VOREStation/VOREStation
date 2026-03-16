@@ -32,5 +32,4 @@
 
 			var/image/target_image = image(icon = 'icons/obj/spells.dmi', loc = get_turf(chosen_target), icon_state = "target")
 			user << target_image
-			sleep(5)
-			qdel(target_image)
+			QDEL_IN(target_image, 5)

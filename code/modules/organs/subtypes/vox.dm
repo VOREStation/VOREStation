@@ -26,5 +26,9 @@
 	parent_organ = BP_TORSO
 	color = "#0033cc"
 
+/obj/item/organ/internal/voicebox/vox
+	color = "#3c5b7b"
+	will_assist_languages = list(LANGUAGE_VOX) //Fixes them from knowing galcommon off the rip.
+
 /obj/item/organ/external/groin/vox //vox have an extended ribcage for extra protection.
 	encased = "lower ribcage"

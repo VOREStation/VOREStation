@@ -85,6 +85,6 @@
 		return 1
 
 /obj/item/clothing/gloves/sterile/thieves/Touch(var/atom/A, var/proximity)
-	if(proximity && ishuman(usr) && do_after(usr, 1 SECOND, A))
+	if(proximity && ishuman(usr) && do_after(usr, 1 SECOND, target = A))
 		return pickpocket(usr, A, proximity)
 	return 0

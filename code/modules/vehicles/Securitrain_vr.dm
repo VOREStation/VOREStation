@@ -4,7 +4,7 @@
 /obj/vehicle/train/security/engine
 	name = "Security Cart"
 	desc = "A ridable electric car designed for pulling trolleys as well as personal transport."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "paddywagon"
 	on = 0
 	powered = 1
@@ -30,14 +30,14 @@
 /obj/item/key/security
 	name = "The Security Cart key"
 	desc = "The Security Cart Key used to start it."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "securikey"
 	w_class = ITEMSIZE_TINY
 
 /obj/vehicle/train/security/trolley
 	name = "Train trolley"
 	desc = "A trolly designed to transport security personnel or prisoners."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "paddy_trailer"
 	anchored = FALSE
 	passenger_allowed = 1
@@ -51,7 +51,7 @@
 /obj/vehicle/train/security/trolley/cargo
 	name = "Train trolley"
 	desc = "A trolley designed to transport security equipment to a scene."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "secitemcarrierbot"
 	passenger_allowed = 0 //Stick a man inside the box. :v
 	load_item_visible = 0 //The load is supposed to be invisible.
@@ -67,7 +67,7 @@
 	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/security/engine/Move(var/turf/destination)
+/obj/vehicle/train/security/engine/Move(atom/newloc, direct = 0, movetime)
 	if(on && cell.charge < charge_use)
 		turn_off()
 		update_stats()
@@ -75,11 +75,11 @@
 			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
 
 	if(is_train_head() && !on)
-		return 0
+		return FALSE
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
-		return 0
+	if(on && is_vehicle_inpassable(newloc))
+		return FALSE
 
 	return ..()
 

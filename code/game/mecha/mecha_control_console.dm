@@ -4,7 +4,7 @@
 	icon_keyboard = "rd_key"
 	icon_screen = "mecha"
 	light_color = "#a97faa"
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/mecha_control
 	var/list/located = list()
 	var/screen = 0
@@ -48,7 +48,7 @@
 		if("send_message")
 			var/obj/item/mecha_parts/mecha_tracking/MT = locate(params["mt"])
 			if(istype(MT))
-				var/message = sanitize(tgui_input_text(ui.user, "Input message", "Transmit message"))
+				var/message = tgui_input_text(ui.user, "Input message", "Transmit message", "", MAX_MESSAGE_LEN)
 				var/obj/mecha/M = MT.in_mecha()
 				if(message && M)
 					M.occupant_message(message)
@@ -103,7 +103,7 @@
 
 	return data
 
-/obj/item/mecha_parts/mecha_tracking/emp_act()
+/obj/item/mecha_parts/mecha_tracking/emp_act(severity, recursive)
 	qdel(src)
 	return
 

@@ -46,7 +46,7 @@
 				newrecord.id = copytext(md5(dna.real_name), 2, 6) // update this specially
 				continue
 			if("dna")
-				qdel_swap(newrecord.dna, dna.Clone())
+				QDEL_SWAP(newrecord.dna, dna.Clone())
 				continue
 		if(islist(vars[A]))
 			var/list/L = vars[A]
@@ -64,6 +64,7 @@
 	icon_state = "scanner_0"
 	density = TRUE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	active_power_usage = 300
@@ -172,8 +173,6 @@
 		to_chat(usr, span_warning("There is already something inside."))
 		return
 	usr.stop_pulling()
-	usr.client.perspective = EYE_PERSPECTIVE
-	usr.client.eye = src
 	usr.forceMove(src)
 	set_occupant(usr)
 	icon_state = "scanner_1"
@@ -250,9 +249,6 @@
 	. = ..()
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
 	M.forceMove(src)
 	set_occupant(M)
 	icon_state = "scanner_1"
@@ -264,7 +260,7 @@
 		|| locate(/obj/machinery/computer/cloning, get_step(src, WEST)))
 
 		if(!M.client && M.mind)
-			for(var/mob/observer/dead/ghost in player_list)
+			for(var/mob/observer/dead/ghost in GLOB.player_list)
 				if(ghost.mind == M.mind)
 					to_chat(ghost, span_interface(span_large(span_bold("Your corpse has been placed into a cloning scanner. Return to your body if you want to be resurrected/cloned!") + " (Verbs -> Ghost -> Re-enter corpse)")))
 					break
@@ -274,9 +270,6 @@
 	var/mob/living/carbon/WC = get_occupant()
 	if((!WC || locked))
 		return
-	if(WC.client)
-		WC.client.eye = WC.client.mob
-		WC.client.perspective = MOB_PERSPECTIVE
 	if(istype(WC,/mob/living/carbon/brain))
 		for(var/obj/O in src)
 			if(istype(O,/obj/item/organ/internal/brain))

@@ -9,13 +9,6 @@
 	active_power_usage = 5
 	var/interference = FALSE
 	var/icon/plant = null
-	var/global/list/possible_plants = list(
-		"plant-1",
-		"plant-10",
-		"plant-09",
-		"plant-15",
-		"plant-13"
-	)
 
 /obj/machinery/holoplant/Initialize(mapload)
 	. = ..()
@@ -82,7 +75,7 @@
 
 /obj/machinery/holoplant/proc/prepare_icon(var/state)
 	if(!state)
-		state = pick(possible_plants)
+		state = pick(GLOB.possible_plants)
 	var/plant_icon = icon(icon, state)
 	return getHologramIcon(plant_icon, 0)
 

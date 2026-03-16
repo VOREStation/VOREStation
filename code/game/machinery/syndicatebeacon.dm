@@ -32,8 +32,10 @@
 			if(!selfdestructing)
 				dat += "<br><br><A href='byond://?src=\ref[src];betraitor=1;traitormob=\ref[user]'>\"[pick("I want to switch teams.", "I want to work for you.", "Let me join you.", "I can be of use to you.", "You want me working for you, and here's why...", "Give me an objective.", "How's the 401k over at the Syndicate?")]\"</A><BR>"
 	dat += temptext
-	user << browse("<html>[dat]</html>", "window=syndbeacon")
-	onclose(user, "syndbeacon")
+
+	var/datum/browser/popup = new(user, "syndbeacon", "Ominous Beacon")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/syndicate_beacon/Topic(href, href_list)
 	if(..())
@@ -59,8 +61,8 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/N = M
 			to_chat(N, span_infoplain(span_bold("You have joined the ranks of the Syndicate and become a traitor to the station!")))
-			traitors.add_antagonist(N.mind)
-			traitors.equip(N)
+			GLOB.traitors.add_antagonist(N.mind)
+			GLOB.traitors.equip(N)
 			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
 
 	updateUsrDialog(usr)

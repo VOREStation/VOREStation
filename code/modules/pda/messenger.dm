@@ -18,7 +18,7 @@
 	. = ..()
 	unnotify()
 
-/datum/data/pda/app/messenger/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/messenger/update_ui(mob/user, list/data)
 	data["silent"] = notify_silent						// does the pda make noise when it receives a message?
 	data["toff"] = toff									// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
@@ -124,10 +124,9 @@
 
 
 /datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/pda/P)
-	var/t = tgui_input_text(U, "Please enter message", name, null)
+	var/t = tgui_input_text(U, "Please enter message", name, null, MAX_MESSAGE_LEN)
 	if(!t)
 		return
-	t = sanitize(copytext(t, 1, MAX_MESSAGE_LEN))
 	t = readd_quotes(t)
 	if(!t || !istype(P))
 		return
@@ -149,12 +148,11 @@
 	// check if telecomms I/O route 1459 is stable
 	//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 	var/obj/machinery/message_server/useMS = null
-	if(message_servers)
-		for(var/obj/machinery/message_server/MS as anything in message_servers)
-		//PDAs are now dependent on the Message Server.
-			if(MS.active)
-				useMS = MS
-				break
+	for(var/obj/machinery/message_server/MS as anything in GLOB.message_servers)
+	//PDAs are now dependent on the Message Server.
+		if(MS.active)
+			useMS = MS
+			break
 
 	var/datum/signal/signal = pda.telecomms_process()
 
@@ -181,10 +179,11 @@
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
-		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", U)
+		U.log_message("(PDA: [src.name] | [U.real_name]) sent \"[t]\" to [P.name]", LOG_PDA)
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
-		to_chat(U, span_notice("ERROR: Messaging server is not responding."))
+		to_chat(U, span_notice("ERROR: Messaging server is not responding.\n\n\
+			However, your message has been saved: ") + t)
 
 /datum/data/pda/app/messenger/proc/available_pdas()
 	var/list/names = list()

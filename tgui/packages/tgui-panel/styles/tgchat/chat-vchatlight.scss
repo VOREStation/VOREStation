@@ -602,6 +602,26 @@ h2.alert {
   font-weight: bold;
 }
 
+.brute {
+  color: hsl(0, 100%, 60%);
+}
+
+.burn {
+  color: hsl(30, 100%, 60%);
+}
+
+.tox {
+  color: hsl(150, 100%, 40%);
+}
+
+.oxy {
+  color: hsl(220, 100%, 49%);
+}
+
+.clone {
+  color: hsl(180, 100%, 40%);
+}
+
 .rose {
   color: hsl(0, 100%, 66%);
 }
@@ -1146,6 +1166,47 @@ h2.alert {
   border-bottom: 1px dashed hsl(0, 0%, 0%);
 }
 
+.fieldset_legend {
+  background: hsl(0, 0%, 100%); // Chat background color
+
+  &:before {
+    background: hsl(0, 0%, 100%); // Chat background color
+  }
+}
+
+.boxed_message {
+  background: hsl(220, 100%, 97.5%);
+  border-color: hsla(220, 75%, 25%, 0.5);
+
+  &.red_box {
+    background: hsl(0, 100%, 97.5%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 100%, 97.5%);
+    border-color: hsl(120, 100%, 33%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 100%, 97.5%);
+    border-color: hsla(225, 100%, 50%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 100%, 97.5%);
+    border-color: hsla(260, 100%, 50%, 0.5);
+  }
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
 $alert-stripe-colors: (
   'default': hsl(231, 100%, 85%),
   'green': hsl(120, 100%, 84%),
@@ -1495,10 +1556,55 @@ $border-width-px: $border-width * 1px;
 .spoiler {
   background-color: hsl(0, 0%, 50%);
   color: transparent;
-  user-select: none;
 }
 
 .spoiler:hover {
   background-color: inherit;
   color: inherit;
+}
+
+details {
+  width: 80%;
+  background: hsl(202, 44%, 96%);
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+  border-color: #343b3d;
+  border: 1px solid hsl(215, 39%, 11%);
+}
+
+summary {
+  padding: 1rem;
+  display: block;
+  background: hsl(202, 44%, 96%);
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+summary:before {
+  content: '';
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: transparent transparent transparent hsl(215, 39%, 11%);
+  position: absolute;
+  top: 1.3rem;
+  left: 1rem;
+  transform: rotate(0);
+  transform-origin: 0.2rem 50%;
+  transition: 0.25s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details > ul {
+  padding-bottom: 1rem;
+  margin-bottom: 0;
 }

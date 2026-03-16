@@ -30,12 +30,12 @@
 	visible_message("You start pulling the string on \the [src].", "[user] starts pulling the string on the [src].")
 
 	if(max_fuel <= 0)
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			to_chat(user, "\The [src] won't start!")
 		else
 			to_chat(user, "You fumble with the string.")
 	else
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			visible_message("You start \the [src] up with a loud grinding!", "[user] starts \the [src] up with a loud grinding!")
 			attack_verb = list("shredded", "ripped", "torn")
 			playsound(src, 'sound/weapons/chainsaw_startup.ogg',40,1)
@@ -58,7 +58,10 @@
 	on = 0
 	update_icon()
 
-/obj/item/chainsaw/attack_self(mob/user as mob)
+/obj/item/chainsaw/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!on)
 		turnOn(user)
 	else
@@ -89,7 +92,7 @@
 				Hyd.die()
 	if (istype(A, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,A) <= 1)
 		to_chat(user, span_notice("You begin filling the tank on the chainsaw."))
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			A.reagents.trans_to_obj(src, max_fuel)
 			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			to_chat(user, span_notice("Chainsaw succesfully refueled."))

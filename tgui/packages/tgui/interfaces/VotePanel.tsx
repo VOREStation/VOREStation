@@ -20,7 +20,7 @@ export const VotePanel = (props, context) => {
       <Window.Content>
         <Section fill scrollable title={question}>
           <Box mb={1.5} ml={0.5}>
-            Time remaining: {remaining.toFixed(0)}s
+            Time remaining: {remaining.toFixed()}s
           </Box>
           {choices.map((choice, i) => (
             <Box key={i}>
@@ -28,13 +28,11 @@ export const VotePanel = (props, context) => {
                 mb={1}
                 fluid
                 lineHeight={3}
-                content={
-                  choice +
-                  (show_counts ? ' (' + (counts[choice] || 0) + ')' : '')
-                }
                 onClick={() => act('vote', { target: choice })}
                 selected={choice === user_vote}
-              />
+              >
+                {choice + (show_counts ? ` (${counts[choice] || 0})` : '')}
+              </Button>
             </Box>
           ))}
         </Section>

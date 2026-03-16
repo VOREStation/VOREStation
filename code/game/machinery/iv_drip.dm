@@ -69,7 +69,7 @@
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, span_notice("You start to dismantle the IV drip."))
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			to_chat(user, span_notice("You dismantle the IV drip."))
 			new /obj/item/stack/rods(src.loc, 6)
 			if(beaker)

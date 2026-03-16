@@ -1,4 +1,4 @@
-var/datum/antagonist/trader/traders
+GLOBAL_DATUM(traders, /datum/antagonist/trader)
 
 /datum/antagonist/trader
 	id = MODE_TRADE
@@ -33,7 +33,7 @@ var/datum/antagonist/trader/traders
 
 /datum/antagonist/trader/New()
 	..()
-	traders = src
+	GLOB.traders = src
 
 /datum/antagonist/trader/greet(var/datum/mind/player)
 	if(!..())
@@ -52,7 +52,7 @@ var/datum/antagonist/trader/traders
 	var/obj/item/card/id/id = create_id("Trader", player, equip = 0)
 	id.name = "[player.real_name]'s Passport"
 	id.assignment = "Trader"
-	id.access |= access_trader
+	id.access |= ACCESS_TRADER
 	var/obj/item/storage/wallet/W = new(player)
 	W.handle_item_insertion(id)
 	player.equip_to_slot_or_del(W, slot_wear_id)

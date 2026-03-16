@@ -1,0 +1,97 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"j" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet/medical,
+/obj/structure/barricade/cutout/greytide{
+	icon_rotation = 90
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"o" = (
+/obj/effect/floor_decal/corner/paleblue/full{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"u" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"D" = (
+/obj/effect/floor_decal/corner/paleblue/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"G" = (
+/obj/structure/sign/greencross,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"N" = (
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"O" = (
+/obj/effect/floor_decal/corner/paleblue/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"Q" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"T" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"Z" = (
+/obj/effect/floor_decal/corner/paleblue/full,
+/obj/structure/barricade/cutout/greytide,
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+
+(1,1,1) = {"
+a
+a
+u
+a
+G
+"}
+(2,1,1) = {"
+a
+N
+D
+O
+a
+"}
+(3,1,1) = {"
+T
+N
+Z
+o
+a
+"}
+(4,1,1) = {"
+a
+N
+j
+Q
+a
+"}
+(5,1,1) = {"
+G
+a
+a
+a
+G
+"}

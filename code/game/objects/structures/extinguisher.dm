@@ -6,6 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
+	flags = WALL_ITEM
 	var/obj/item/extinguisher/has_extinguisher
 	var/opened = 0
 
@@ -35,7 +36,7 @@
 		if(!has_extinguisher)
 			to_chat(user, span_notice("You start to unwrench the extinguisher cabinet."))
 			playsound(src, O.usesound, 50, 1)
-			if(do_after(user, 15 * O.toolspeed))
+			if(do_after(user, 15 * O.toolspeed, target = src))
 				to_chat(user, span_notice("You unwrench the extinguisher cabinet."))
 				new /obj/item/frame/extinguisher_cabinet( src.loc )
 				qdel(src)
@@ -48,7 +49,7 @@
 /obj/structure/extinguisher_cabinet/attack_hand(mob/living/user)
 	if(isrobot(user))
 		return
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)

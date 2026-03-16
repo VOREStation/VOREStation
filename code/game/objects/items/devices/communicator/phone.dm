@@ -5,7 +5,7 @@
 	if(!comm || !istype(comm)) return
 
 	communicating |= comm
-	listening_objects |= src
+	GLOB.listening_objects |= src
 	update_icon()
 
 // Proc: del_communicating()
@@ -73,9 +73,9 @@
 	new_voice.mind = candidate.mind			//Transfer the mind, if any.
 	new_voice.ckey = candidate.ckey			//Finally, bring the client over.
 	voice_mobs.Add(new_voice)
-	listening_objects |= src
+	GLOB.listening_objects |= src
 
-	var/obj/screen/blackness = new() 	//Makes a black screen, so the candidate can't see what's going on before actually 'connecting' to the communicator.
+	var/atom/movable/screen/blackness = new() 	//Makes a black screen, so the candidate can't see what's going on before actually 'connecting' to the communicator.
 	blackness.screen_loc = ui_entire_screen
 	blackness.icon = 'icons/effects/effects.dmi'
 	blackness.icon_state = "1"
@@ -139,7 +139,7 @@
 			comm.end_video()
 
 	if(voice_mobs.len == 0 && communicating.len == 0)
-		listening_objects.Remove(src)
+		GLOB.listening_objects.Remove(src)
 
 // Proc: request()
 // Parameters: 1 (candidate - the ghost or communicator wanting to call the device)
@@ -276,7 +276,7 @@
 	set name = "Call Communicator"
 	set desc = "If there is a communicator available, send a request to speak through it.  This will reset your respawn timer, if someone picks up."
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, span_danger("The game hasn't started yet!"))
 		return
 
@@ -286,7 +286,8 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	var/confirm = tgui_alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
+	var/prefs_name = src.client.prefs.read_preference(/datum/preference/name/real_name)
+	var/confirm = tgui_alert(src, "Would you like to talk as [prefs_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
 	if(confirm != "Yes")
 		return
 
@@ -294,8 +295,8 @@
 		to_chat(src, span_danger("You have used the antagHUD and cannot respawn or use communicators!"))
 		return
 
-	for(var/mob/living/L in mob_list) //Simple check so you don't have dead people calling.
-		if(src.client.prefs.real_name == L.real_name)
+	for(var/mob/living/L in GLOB.mob_list) //Simple check so you don't have dead people calling.
+		if(prefs_name == L.real_name)
 			to_chat(src, span_danger("Your identity is already present in the game world.  Please load in a different character first."))
 			return
 
@@ -349,19 +350,17 @@
 	video_source = comm.camera
 	comm.visible_message(span_danger("[icon2html(src,viewers(src))] New video connection from [comm]."))
 	update_active_camera_screen()
-	RegisterSignal(video_source, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+	RegisterSignal(video_source, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen))
 	video_source.AddComponent(/datum/component/recursive_move)
 	update_icon()
 
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
-/obj/item/communicator/proc/end_video(var/reason)
-	UnregisterSignal(video_source, COMSIG_OBSERVER_MOVED)
+/obj/item/communicator/proc/end_video()
+	UnregisterSignal(video_source, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	show_static()
 	video_source = null
-
-	. = span_danger("[bicon(src)] [reason ? reason : "Video session ended"].")
 
 	visible_message(.)
 	update_icon()

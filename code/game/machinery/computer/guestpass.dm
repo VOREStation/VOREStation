@@ -12,6 +12,7 @@
 	var/expiration_time = 0
 	var/expired = 0
 	var/reason = "NOT SPECIFIED"
+	special_handling = TRUE
 
 /obj/item/card/id/guest/update_icon()
 	return
@@ -44,6 +45,9 @@
 	return
 
 /obj/item/card/id/guest/attack_self(mob/living/user as mob)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.a_intent == I_HURT)
 		if(icon_state == "guest-invalid")
 			to_chat(user, span_warning("This guest pass is already deactivated!"))
@@ -57,7 +61,11 @@
 			update_icon()
 			expiration_time = world.time
 			expired = 1
-	return ..()
+	else
+		user.visible_message("\The [user] shows you: [icon2html(src,viewers(src))] [src.name]. The assignment on the card: [src.assignment]",\
+			"You flash your ID card: [icon2html(src, user.client)] [src.name]. The assignment on the card: [src.assignment]")
+
+		src.add_fingerprint(user)
 
 /obj/item/card/id/guest/Initialize(mapload)
 	. = ..()
@@ -91,6 +99,7 @@
 	icon_screen = "pass"
 	density = FALSE
 	circuit = /obj/item/circuitboard/guestpass
+	flags = WALL_ITEM
 
 	var/obj/item/card/id/giver
 	var/list/accesses = list()
@@ -150,7 +159,6 @@
 	if(..())
 		return
 
-	user.set_machine(src)
 	tgui_interact(user)
 
 /obj/machinery/computer/guestpass/tgui_interact(mob/user, datum/tgui/ui)
@@ -197,7 +205,7 @@
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason))
+			var/reas = tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason, MAX_MESSAGE_LEN)
 			if(reas)
 				reason = reas
 		if("duration")
@@ -216,7 +224,7 @@
 					accesses.Add(A)
 				else
 					to_chat(ui.user, span_warning("Invalid selection, please consult technical support if there are any issues."))
-					log_debug("[key_name_admin(ui.user)] tried selecting an invalid guest pass terminal option.")
+					log_admin("[key_name_admin(ui.user)] tried selecting an invalid guest pass terminal option.")
 		if("id")
 			if(giver)
 				if(ishuman(ui.user))
@@ -239,7 +247,6 @@
 			for (var/entry in internal_log)
 				dat += "[entry]<br><hr>"
 			//to_chat(ui.user, "Printing the log, standby...")
-			//sleep(50)
 			var/obj/item/paper/P = new/obj/item/paper( loc )
 			P.name = "activity log"
 			P.info = dat

@@ -3,9 +3,8 @@
 /obj/item/storage/vore_egg
 	name = "egg"
 	desc = "It's an egg; it's smooth to the touch." //This is the default egg.
-	icon = 'icons/obj/egg_new_vr.dmi'
+	icon = 'icons/obj/egg.dmi'
 	icon_state = "egg"
-	var/open_egg_icon = 'icons/obj/egg_open_vr.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
@@ -24,18 +23,17 @@
 /obj/item/storage/vore_egg/open(mob/user as mob)
 	if(isobserver(user))
 		return
-	icon = open_egg_icon
+	icon_state = "[initial(icon_state)]_open"
 	..()
 
 /obj/item/storage/vore_egg/proc/hatch(mob/living/user as mob)
 	visible_message(span_danger("\The [src] begins to shake as something pushes out from within!"))
 	animate_shake()
-	if(do_after(user, 50))
+	if(do_after(user, 5 SECONDS, target = src))
 		if(use_sound)
 			playsound(src, src.use_sound, 50, 0, -5)
 		animate_shake()
 		drop_contents()
-		icon = open_egg_icon
 		if(user.transforming) //this is actually godawful and transforming should never be used as it skips life ticks
 			user.transforming = FALSE //but if something does still use transforming (Bad, please do not.), we want it to be removed from them.
 

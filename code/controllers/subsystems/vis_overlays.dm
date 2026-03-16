@@ -2,7 +2,6 @@ SUBSYSTEM_DEF(vis_overlays)
 	name = "Vis contents overlays"
 	wait = 1 MINUTES
 	priority = FIRE_PRIORITY_VIS
-	init_order = INIT_ORDER_VIS
 
 	var/list/vis_overlay_cache
 	var/list/currentrun
@@ -16,8 +15,8 @@ SUBSYSTEM_DEF(vis_overlays)
 		currentrun = vis_overlay_cache.Copy()
 	var/list/current_run = currentrun
 
-	while(current_run.len)
-		var/key = current_run[current_run.len]
+	while(length(current_run))
+		var/key = current_run[length(current_run)]
 		var/obj/effect/overlay/vis/overlay = current_run[key]
 		current_run.len--
 		if(!overlay.unused && !length(overlay.vis_locs))

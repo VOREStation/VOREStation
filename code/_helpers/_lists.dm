@@ -1,19 +1,50 @@
 /*
  * Holds procs to help with list operations
  * Contains groups:
- *			Misc
- *			Sorting
+ * Misc
+ * Sorting
  */
 
-// Determiner constants
-#define DET_NONE		0x00
-#define DET_DEFINITE	0x01 // the
-#define DET_INDEFINITE	0x02 // a, an, some
-#define DET_AUTO		0x04
 
 /*
  * Misc
  */
+
+/*
+ * ## Lazylists
+ *
+ * * What is a lazylist?
+ *
+ * True to its name a lazylist is a lazy instantiated list.
+ * It is a list that is only created when necessary (when it has elements) and is null when empty.
+ *
+ * * Why use a lazylist?
+ *
+ * Lazylists save memory - an empty list that is never used takes up more memory than just `null`.
+ *
+ * * When to use a lazylist?
+ *
+ * Lazylists are best used on hot types when making lists that are not always used.
+ *
+ * For example, if you were adding a list to all atoms that tracks the names of people who touched it,
+ * you would want to use a lazylist because most atoms will never be touched by anyone.
+ *
+ * * How do I use a lazylist?
+ *
+ * A lazylist is just a list you defined as `null` rather than `list()`.
+ * Then, you use the LAZY* macros to interact with it, which are essentially null-safe ways to interact with a list.
+ *
+ * Note that you probably should not be using these macros if your list is not a lazylist.
+ * This will obfuscate the code and make it a bit harder to read and debug.
+ *
+ * Generally speaking you shouldn't be checking if your lazylist is `null` yourself, the macros will do that for you.
+ * Remember that LAZYLEN (and by extension, length) will return 0 if the list is null.
+ */
+
+///Initialize the lazylist
+#define LAZYINITLIST(L) if (!L) { L = list(); }
+///Returns the key of the submitted item in the list
+#define LAZYFIND(L, V) (L ? L.Find(V) : 0)
 
 /// Returns the top (last) element from the list, does not remove it from the list. Stack functionality.
 /proc/peek(list/target_list)
@@ -31,8 +62,14 @@
 		if(2) return "[input[1]][and_text][input[2]]"
 		else  return "[jointext(input, comma_text, 1, -1)][final_comma_text][and_text][input[input.len]]"
 
+// Determiner constants
+#define DET_NONE		0x00
+#define DET_DEFINITE	0x01 // the
+#define DET_INDEFINITE	0x02 // a, an, some
+#define DET_AUTO		0x04
+
 //Returns a newline-separated list that counts equal-ish items, outputting count and item names, optionally with icons and specific determiners
-/proc/counting_english_list(var/list/input, output_icons = TRUE, determiners = DET_NONE, nothing_text = "nothing", line_prefix = "\t", first_item_prefix = "\n", last_item_suffix = "\n", and_text = "\n", comma_text = "\n", final_comma_text = ",")
+/proc/counting_english_list(client/viewer, var/list/input, output_icons = TRUE, determiners = DET_NONE, nothing_text = "nothing", line_prefix = "\t", first_item_prefix = "\n", last_item_suffix = "\n", and_text = "\n", comma_text = "\n", final_comma_text = ",")
 	var/list/counts = list() // counted input items
 	var/list/items = list() // actual objects for later reference (for icons and formatting)
 
@@ -59,7 +96,7 @@
 			// atoms/items/objects can be pretty and whatnot
 			var/atom/A = item
 			if(output_icons && isicon(A.icon) && !ismob(A)) // mobs tend to have unusable icons
-				item_str += "[bicon(A)]&nbsp;"
+				item_str += "[icon2html(A, viewer)]&nbsp;"
 			switch(determiners)
 				if(DET_NONE) item_str += A.name
 				if(DET_DEFINITE) item_str += "\the [A]"
@@ -81,8 +118,8 @@
 	return english_list(out, nothing_text, and_text, comma_text, final_comma_text)
 
 //A "preset" for counting_english_list that displays the list "inline" (comma separated)
-/proc/inline_counting_english_list(var/list/input, output_icons = TRUE, determiners = DET_NONE, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "", line_prefix = "", first_item_prefix = "", last_item_suffix = "")
-	return counting_english_list(input, output_icons, determiners, nothing_text, and_text, comma_text, final_comma_text)
+/proc/inline_counting_english_list(client/viewer, var/list/input, output_icons = TRUE, determiners = DET_NONE, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "", line_prefix = "", first_item_prefix = "", last_item_suffix = "")
+	return counting_english_list(viewer, input, output_icons, determiners, nothing_text, and_text, comma_text, final_comma_text)
 
 //Returns list element or null. Should prevent "index out of bounds" error.
 /proc/listgetindex(var/list/list,index)
@@ -114,9 +151,17 @@
 	return 0
 
 //Checks for specific paths in a list
-/proc/is_path_in_list(var/atom/A, var/list/L)
+/**
+ * Arguments:
+ * A : Typepath to check
+ * L : A list of typepath to check A against
+ * zebra: Wether to use the value of the path in the list instead of just returning TRUE when a match is found
+ */
+/proc/is_path_in_list(var/atom/A, var/list/L, zebra = FALSE)
 	for(var/path in L)
 		if(ispath(A, path))
+			if(ispath(A, path))
+				return !zebra || L[path]
 			return 1
 	return 0
 
@@ -200,7 +245,7 @@
 /proc/difflist(var/list/first, var/list/second, var/skiprep=0)
 	if(!islist(first) || !islist(second))
 		return
-	var/list/result = new
+	var/list/result = list()
 	if(skiprep)
 		for(var/e in first)
 			if(!(e in result) && !(e in second))
@@ -249,7 +294,7 @@ Checks if a list has the same entries and values as an element of big.
 /proc/uniquemergelist(var/list/first, var/list/second, var/skiprep=0)
 	if(!islist(first) || !islist(second))
 		return
-	var/list/result = new
+	var/list/result = list()
 	if(skiprep)
 		result = difflist(first, second, skiprep)+difflist(second, first, skiprep)
 	else
@@ -299,14 +344,6 @@ Checks if a list has the same entries and values as an element of big.
 /*
  * Sorting
  */
-
-//Reverses the order of items in the list
-/proc/reverselist(list/L)
-	var/list/output = list()
-	if(L)
-		for(var/i = L.len; i >= 1; i--)
-			output += L[i]
-	return output
 
 //Randomize: Return the list in a random order
 /proc/shuffle(var/list/L)
@@ -368,13 +405,6 @@ Checks if a list has the same entries and values as an element of big.
 	if(Li <= L.len)
 		return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
-
-//Mergesort: divides up the list into halves to begin the sort
-/proc/sortAtom(var/list/atom/L, var/order = 1)
-	if(isnull(L) || L.len < 2)
-		return L
-	var/middle = L.len / 2 + 1
-	return mergeAtoms(sortAtom(L.Copy(1,middle)), sortAtom(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
 /proc/mergeAtoms(var/list/atom/L, var/list/atom/R, var/order = 1)
@@ -570,7 +600,7 @@ Checks if a list has the same entries and values as an element of big.
 	//to_world_log("descending len input: [L.len]")
 	var/list/out = insertion_sort_numeric_list_ascending(L)
 	//to_world_log("	output: [out.len]")
-	return reverselist(out)
+	return reverseList(out)
 
 /proc/dd_sortedObjectList(var/list/L, var/cache=list())
 	if(L.len < 2)
@@ -819,20 +849,20 @@ Checks if a list has the same entries and values as an element of big.
 			L.Cut(fromIndex, fromIndex+1)
 
 //replaces reverseList ~Carnie
-/proc/reverseRange(list/L, start=1, end=0)
-	if(L.len)
-		start = start % L.len
-		end = end % (L.len+1)
+/proc/reverse_range(list/inserted_list, start = 1, end = 0)
+	if(inserted_list.len)
+		start = start % inserted_list.len
+		end = end % (inserted_list.len + 1)
 		if(start <= 0)
-			start += L.len
+			start += inserted_list.len
 		if(end <= 0)
-			end += L.len + 1
+			end += inserted_list.len + 1
 
 		--end
 		while(start < end)
-			L.Swap(start++,end--)
+			inserted_list.Swap(start++, end--)
 
-	return L
+	return inserted_list
 
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type
@@ -871,16 +901,16 @@ Checks if a list has the same entries and values as an element of big.
 
 	return result
 
-var/global/list/json_cache = list()
+GLOBAL_LIST_EMPTY(json_cache)
 /proc/cached_json_decode(var/json_to_decode)
 	if(!json_to_decode || !length(json_to_decode))
 		return list()
 	try
-		if(isnull(global.json_cache[json_to_decode]))
-			global.json_cache[json_to_decode] = json_decode(json_to_decode)
-		. = global.json_cache[json_to_decode]
+		if(isnull(GLOB.json_cache[json_to_decode]))
+			GLOB.json_cache[json_to_decode] = json_decode(json_to_decode)
+		. = GLOB.json_cache[json_to_decode]
 	catch(var/exception/e)
-		log_error("Exception during JSON decoding ([json_to_decode]): [e]")
+		log_runtime("Exception during JSON decoding ([json_to_decode]): [e]")
 		return list()
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
@@ -982,3 +1012,90 @@ var/global/list/json_cache = list()
 	for(var/key in input)
 		UNTYPED_LIST_ADD(keys, key)
 	return keys
+
+///compare two lists, returns TRUE if they are the same
+/proc/compare_list(list/l,list/d)
+	if(!islist(l) || !islist(d))
+		return FALSE
+
+	if(l.len != d.len)
+		return FALSE
+
+	for(var/i in 1 to l.len)
+		if(l[i] != d[i])
+			return FALSE
+
+	return TRUE
+
+//TG sort_list
+///uses sort_list() but uses the var's name specifically. This should probably be using mergeAtom() instead
+/proc/sort_names(list/list_to_sort, order=1)
+	return sortTim(list_to_sort.Copy(), order >= 0 ? GLOBAL_PROC_REF(cmp_name_asc) : GLOBAL_PROC_REF(cmp_name_dsc))
+
+/// Compares 2 lists, returns TRUE if they are the same
+/proc/deep_compare_list(list/list_1, list/list_2)
+	if(list_1 == list_2)
+		return TRUE
+
+	if(!islist(list_1) || !islist(list_2))
+		return FALSE
+
+	if(list_1.len != list_2.len)
+		return FALSE
+
+	for(var/i in 1 to list_1.len)
+		var/key_1 = list_1[i]
+		var/key_2 = list_2[i]
+		if (islist(key_1) && islist(key_2))
+			if(!deep_compare_list(key_1, key_2))
+				return FALSE
+		else if(key_1 != key_2)
+			return FALSE
+		if(istext(key_1) || islist(key_1) || ispath(key_1) || isdatum(key_1) || key_1 == world)
+			var/value_1 = list_1[key_1]
+			var/value_2 = list_2[key_1]
+			if (islist(value_1) && islist(value_2))
+				if(!deep_compare_list(value_1, value_2))
+					return FALSE
+			else if(value_1 != value_2)
+				return FALSE
+	return TRUE
+
+/**
+ * Attempts to convert a numeric keyed alist of (2=second, 1=first) to a list of (first, second).
+ *
+ * If you instead want to discard values and keep only keys, just do list + alist.
+ *
+ * Arguments:
+ * * to_flatten - The alist with sequential numeric keys to extract values from into a normal list.
+ * * assert - Whether to assert every key is numeric and in bounds.
+ */
+/proc/flatten_numeric_alist(alist/to_flatten, assert=TRUE)
+	RETURN_TYPE(/list)
+
+	var/count = length(to_flatten)
+	if(assert)
+		for(var/key in to_flatten)
+			if(!isnum(key) || key < 1 || key > count)
+				CRASH("flatten_numeric_alist not possible for alist: [json_encode(to_flatten)]")
+
+	var/list/retval = list()
+	for(var/i in 1 to count)
+		retval += to_flatten[i]
+	return retval
+
+/proc/pick_weight(list/list_to_pick)
+	var/total = 0
+	var/item
+	for(item in list_to_pick)
+		if(!list_to_pick[item])
+			list_to_pick[item] = 0
+		total += list_to_pick[item]
+
+	total = rand(1, total)
+	for(item in list_to_pick)
+		total -= list_to_pick[item]
+		if(total <= 0 && list_to_pick[item])
+			return item
+
+	return null

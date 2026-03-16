@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Stack } from 'tgui-core/components';
-
-import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
 import { CommonwealthLogo } from './animated_logos/Commonwealth';
 import { NTLogo } from './animated_logos/NT';
-import { type Data } from './types';
+import type { Data } from './types';
 
 const LoadingText = (props: { onFinish?: () => void }) => {
   const onFinish = props.onFinish ? props.onFinish : () => {};
@@ -58,9 +57,10 @@ export const LoaderNT = (props: { onFinish?: () => void }) => {
   const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setShowLogo(false);
     }, 3500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (showLogo) {
@@ -80,9 +80,10 @@ export const LoaderCommonwealth = (props: { onFinish?: () => void }) => {
   const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setShowLogo(false);
     }, 3500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (showLogo) {
@@ -106,9 +107,10 @@ export const LoaderProtean = (props: { onFinish?: () => void }) => {
   const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setShowLogo(false);
     }, 3500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (showLogo) {

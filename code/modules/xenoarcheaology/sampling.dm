@@ -117,7 +117,7 @@
 /obj/item/core_sampler/proc/sample_item(var/item_to_sample, var/mob/user)
 	var/datum/geosample/geo_data
 
-	if(istype(item_to_sample, /turf/simulated/mineral))
+	if(ismineralturf(item_to_sample))
 		var/turf/simulated/mineral/T = item_to_sample
 		T.geologic_data.UpdateNearbyArtifactInfo(T)
 		geo_data = T.geologic_data
@@ -154,7 +154,10 @@
 	else
 		to_chat(user, span_warning("You are unable to take a sample of [item_to_sample]."))
 
-/obj/item/core_sampler/attack_self(var/mob/living/user)
+/obj/item/core_sampler/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(filled_bag)
 		to_chat(user, span_notice("You eject the full sample bag."))
 		var/success = 0

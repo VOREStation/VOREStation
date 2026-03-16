@@ -32,7 +32,22 @@
 	toolspeed = 1
 	tool_qualities = list(TOOL_MULTITOOL)
 
+	var/uplink = FALSE
+
 /obj/item/multitool/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(uplink)
+		return
+
+	if(selected_io)
+		selected_io = null
+		to_chat(user, span_notice("You clear the wired connection from the multitool."))
+		update_icon()
+		return
+
+	update_icon()
 	var/choice = tgui_alert(user, "What do you want to do with \the [src]?", "Multitool Menu", list("Switch Mode", "Clear Buffers", "Cancel"))
 	switch(choice)
 		if("Clear Buffers")
@@ -52,8 +67,6 @@
 
 	update_icon()
 
-	return ..()
-
 /obj/item/multitool/proc/mode_switch(mob/living/user)
 	if(mode_index + 1 > modes.len) mode_index = 1
 
@@ -66,13 +79,6 @@
 	accepting_refs = (toolmode == MULTITOOL_MODE_INTCIRCUITS)
 
 	return
-
-/obj/item/multitool/cyborg
-	name = "multitool"
-	desc = "Optimised and stripped-down version of a regular multitool."
-	toolspeed = 0.5
-
-
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_multitool
 	name = "Precursor Alpha Object - Pulse Tool"
@@ -94,3 +100,10 @@
 	icon_state = "multitool"
 	toolspeed = 0.1
 	origin_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 5)
+
+// Alien multitool only has those icon states
+/obj/item/multitool/alien/update_icon()
+	if(accepting_refs)
+		icon_state = "multitool_ref_scan"
+		return
+	icon_state = "multitool"

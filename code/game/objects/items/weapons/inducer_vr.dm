@@ -38,11 +38,6 @@
 /obj/item/inducer/get_cell()
 	return cell
 
-/obj/item/inducer/emp_act(severity)
-	. = ..()
-	if(cell)
-		cell.emp_act(severity)
-
 /obj/item/inducer/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == I_HURT)
 		return ..()
@@ -189,6 +184,9 @@
 	recharging = FALSE
 
 /obj/item/inducer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(opened && cell)
 		user.visible_message(span_notice("[user] removes [cell] from [src]!"), span_notice("You remove [cell]."))
 		cell.update_icon()

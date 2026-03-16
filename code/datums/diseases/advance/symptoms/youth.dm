@@ -11,6 +11,9 @@
 	symptom_delay_min = 25 SECONDS
 	symptom_delay_max = 50 SECONDS
 
+	prefixes = list("Eternal ")
+	bodies = list("Immortal", "Elixir")
+
 /datum/symptom/youth/Activate(datum/disease/advance/A)
 	if(!..())
 		return

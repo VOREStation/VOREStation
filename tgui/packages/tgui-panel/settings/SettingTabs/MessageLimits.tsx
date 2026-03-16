@@ -1,43 +1,32 @@
-import { useDispatch, useSelector } from 'tgui/backend';
+import { useAtomValue } from 'jotai';
 import { Box, LabeledList, NumberInput, Section } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-
-import { useGame } from '../../game';
-import { updateSettings } from '../actions';
-import { selectSettings } from '../selectors';
+import { gameAtom } from '../../game/atoms';
+import { useSettings } from '../use-settings';
 
 export const MessageLimits = (props) => {
-  const dispatch = useDispatch();
-  const game = useGame();
-  const {
-    visibleMessageLimit,
-    persistentMessageLimit,
-    combineMessageLimit,
-    combineIntervalLimit,
-    saveInterval,
-  } = useSelector(selectSettings);
+  const game = useAtomValue(gameAtom);
+  const { settings, updateSettings } = useSettings();
   return (
     <Section>
       <LabeledList>
         <LabeledList.Item label="Amount of lines to display 500-10000 (Default: 2500)">
           <NumberInput
+            tickWhileDragging
             width="5em"
             step={100}
             stepPixelSize={2}
             minValue={500}
             maxValue={10000}
-            value={visibleMessageLimit}
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  visibleMessageLimit: value,
-                }),
-              )
+            value={settings.visibleMessageLimit}
+            format={(value) => value.toFixed()}
+            onChange={(value) =>
+              updateSettings({
+                visibleMessageLimit: value,
+              })
             }
           />
           &nbsp;
-          {visibleMessageLimit >= 5000 && (
+          {settings.visibleMessageLimit >= 5000 && (
             <Box inline fontSize="0.9em" color="red">
               Impacts performance!
             </Box>
@@ -45,23 +34,22 @@ export const MessageLimits = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Amount of visually persistent lines 0-10000 (Default: 1000)">
           <NumberInput
+            tickWhileDragging
             width="5em"
             step={100}
             stepPixelSize={2}
             minValue={0}
             maxValue={10000}
-            value={persistentMessageLimit}
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  persistentMessageLimit: value,
-                }),
-              )
+            value={settings.persistentMessageLimit}
+            format={(value) => value.toFixed()}
+            onChange={(value) =>
+              updateSettings({
+                persistentMessageLimit: value,
+              })
             }
           />
           &nbsp;
-          {persistentMessageLimit >= 2500 && (
+          {settings.persistentMessageLimit >= 2500 && (
             <Box inline fontSize="0.9em" color="red">
               Delays initialization!
             </Box>
@@ -69,62 +57,59 @@ export const MessageLimits = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Amount of different lines in-between to combine 0-10 (Default: 5)">
           <NumberInput
+            tickWhileDragging
             width="5em"
             step={1}
             stepPixelSize={10}
             minValue={0}
             maxValue={10}
-            value={combineMessageLimit}
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  combineMessageLimit: value,
-                }),
-              )
+            value={settings.combineMessageLimit}
+            format={(value) => value.toFixed()}
+            onChange={(value) =>
+              updateSettings({
+                combineMessageLimit: value,
+              })
             }
           />
         </LabeledList.Item>
         <LabeledList.Item label="Time to combine messages 0-10 (Default: 5 Seconds)">
           <NumberInput
+            tickWhileDragging
             width="5em"
             step={1}
             stepPixelSize={10}
             minValue={0}
             maxValue={10}
-            value={combineIntervalLimit}
+            value={settings.combineIntervalLimit}
             unit="s"
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  combineIntervalLimit: value,
-                }),
-              )
+            format={(value) => value.toFixed()}
+            onChange={(value) =>
+              updateSettings({
+                combineIntervalLimit: value,
+              })
             }
           />
         </LabeledList.Item>
         {!game.databaseBackendEnabled && (
           <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
             <NumberInput
+              tickWhileDragging
               width="5em"
               step={1}
               stepPixelSize={5}
               minValue={1}
               maxValue={10}
-              value={saveInterval}
+              value={settings.saveInterval}
               unit="s"
-              format={(value) => toFixed(value)}
-              onDrag={(value) =>
-                dispatch(
-                  updateSettings({
-                    saveInterval: value,
-                  }),
-                )
+              format={(value) => value.toFixed()}
+              onChange={(value) =>
+                updateSettings({
+                  saveInterval: value,
+                })
               }
             />
             &nbsp;
-            {saveInterval <= 3 && (
+            {settings.saveInterval <= 3 && (
               <Box inline fontSize="0.9em" color="red">
                 Warning, experimental! Might crash!
               </Box>

@@ -21,7 +21,7 @@
 	var/extra_overlay_w // Flapping state for extra overlay
 	var/extra_overlay2_w
 
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER, SPECIES_SPARKLE, SPECIES_PROMETHEAN)
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER, SPECIES_SPARKLE, SPECIES_PROMETHEAN, SPECIES_ZORREN_DARK)
 
 	var/wing_offset = 0
 	var/multi_dir = FALSE		// Does it use different sprites at different layers? _front will be added for sprites on low layer, _back to high layer
@@ -180,6 +180,14 @@
 	name = "neck fur"
 	desc = ""
 	icon_state = "neckfur"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "neckfur_markings"
+
+/datum/sprite_accessory/wing/neckfur_noback
+	name = "neck fur (without back part)"
+	desc = ""
+	icon_state = "neckfur_noback"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "neckfur_markings"
@@ -462,6 +470,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "cloakmoth_eyes"
 
+/datum/sprite_accessory/wing/cybertendrils
+	name = "Cyber Tendrils"
+	desc = ""
+	icon_state = "cybertendrils"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "cybertendrils_plugs"
+
 /datum/sprite_accessory/wing/jet_wing
 	name = "Aeromorph Jet Wings (Colorable)"
 	desc = ""
@@ -628,6 +644,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
+
+/datum/sprite_accessory/wing/xeno_queen_new
+	name = "xenomorph backplate (queen, new)"
+	desc = ""
+	icon_state = "xeno_queen_new"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 //exclusive wings
 /datum/sprite_accessory/wing/kara

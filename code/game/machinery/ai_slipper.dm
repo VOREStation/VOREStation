@@ -12,7 +12,7 @@
 	var/cooldown_time = 0
 	var/cooldown_timeleft = 0
 	var/cooldown_on = 0
-	req_access = list(access_ai_upload)
+	req_access = list(ACCESS_AI_UPLOAD)
 
 /obj/machinery/ai_slipper/Initialize(mapload)
 	. = ..()
@@ -43,11 +43,11 @@
 			locked = !locked
 			to_chat(user, "You [ locked ? "lock" : "unlock"] the device.")
 			if(locked)
-				if(user.machine==src)
+				if(user.check_current_machine(src))
 					user.unset_machine()
 					user << browse(null, "window=ai_slipper")
 			else
-				if(user.machine==src)
+				if(user.check_current_machine(src))
 					attack_hand(user)
 		else
 			to_chat(user, span_warning("Access denied."))

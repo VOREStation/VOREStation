@@ -1,7 +1,7 @@
 /obj/structure/portal_event
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-d-portal"
 	density = TRUE
 	unacidable = TRUE//Can't destroy energy portals.
@@ -39,12 +39,12 @@
 			to_chat(user, span_notice("Your hand scatters \the [src]..."))
 			qdel(src)	//Delete portals which aren't set that people mess with.
 		else return		//do not send ghosts, zshadows, ai eyes, etc
-	else if(isliving(user) || isobserver(user) && user?.client?.holder)	//unless they're staff
+	else if(isliving(user) || isobserver(user) && check_rights_for(user?.client, R_HOLDER))	//unless they're staff
 		spawn(0)
 		src.teleport(user)
 
 /obj/structure/portal_event/attack_ghost(var/mob/observer/dead/user)
-	if(!target && user?.client?.holder)
+	if(!target && check_rights_for(user?.client, R_HOLDER))
 		to_chat(user, span_notice("Selecting 'Portal Here' will create and link a portal at your location, while 'Target Here' will create an object that is only visible to ghosts which will act as the target, again at your location. Each option will give you the ability to change portal types, but for all options except 'Select Type' you only get one shot at it, so be sure to experiment with 'Select Type' first if you're not familiar with them."))
 		var/response = tgui_alert(user, "You appear to be staff. This portal has no exit point. If you want to make one, move to where you want it to go, and click the appropriate option, see chat for more info, otherwise click 'Cancel'", "Unbound Portal", list("Cancel","Portal Here","Target Here", "Select Type"))
 		if(response == "Portal Here")
@@ -69,7 +69,7 @@
 			return
 		if(target)
 			message_admins("The [src]([x],[y],[z]) was given [target]([target.x],[target.y],[target.z]) as a target, and should be ready to use.")
-	else if(user?.client?.holder)
+	else if(check_rights_for(user?.client, R_HOLDER))
 		src.teleport(user)
 	else return
 
@@ -135,9 +135,9 @@
 			to_chat(M, span_notice("Something blocks your way."))
 			return
 		temptarg = pick(possible_turfs)
-		do_safe_teleport(M, temptarg, 0)
+		do_teleport(M, temptarg)
 	else if (istype(M, /atom/movable))
-		do_safe_teleport(M, target, 0)
+		do_teleport(M, target)
 
 /obj/structure/portal_event/Destroy()
 	if(target)
@@ -147,13 +147,13 @@
 		if(istype(target, /obj/structure/portal_target))
 			var/obj/structure/portal_target/P = target
 			P.target = null
-		qdel_null(target)
+		QDEL_NULL(target)
 	. = ..()
 
 /obj/structure/portal_target
 	name = "portal destination"
 	desc = "you shouldn't see this unless you're a ghost"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-b-portal"
 	density = 0
 	alpha = 100
@@ -170,7 +170,7 @@
 /obj/structure/portal_gateway
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portalgateway"
 	density = TRUE
 	unacidable = TRUE//Can't destroy energy portals.
@@ -215,6 +215,7 @@
 					MI.forceMove(finaldest.loc)
 					sleep(1)
 					MI.Paralyse(10)
+					MI.Sleeping(10)
 					MI << 'sound/effects/bamf.ogg'
 					to_chat(MI,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 				for(var/obj/item/I in L)
@@ -225,6 +226,7 @@
 			L.forceMove(finaldest.loc)
 			sleep(1)
 			L.Paralyse(10)
+			L.Sleeping(10)
 			L << 'sound/effects/bamf.ogg'
 			to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 	return

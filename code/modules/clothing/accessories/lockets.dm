@@ -10,12 +10,16 @@
 	var/base_icon
 	var/open
 	var/obj/item/held //Item inside locket.
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/locket/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!base_icon)
 		base_icon = icon_state
 
-	if(!("[base_icon]_open" in cached_icon_states(icon)))
+	if(!icon_exists(icon, "[base_icon]_open"))
 		to_chat(user, "\The [src] doesn't seem to open.")
 		return
 

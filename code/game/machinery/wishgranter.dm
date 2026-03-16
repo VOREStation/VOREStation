@@ -12,8 +12,6 @@
 	var/insistinga = 0
 
 /obj/machinery/wish_granter/attack_hand(var/mob/living/carbon/human/user as mob)
-	user.set_machine(src)
-
 	if(chargesa <= 0)
 		to_chat(user, span_infoplain("The Wish Granter lies silent."))
 		return
@@ -63,7 +61,7 @@
 			if("Peace")
 				to_chat(user, span_infoplain(span_bold("Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.")))
 				to_chat(user, span_infoplain("You feel as if you just narrowly avoided a terrible fate..."))
-				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
+				for(var/mob/living/simple_mob/faithless/F in GLOB.living_mob_list)
 					F.health = -10
 					F.set_stat(DEAD)
 					F.icon_state = "faithless_dead"

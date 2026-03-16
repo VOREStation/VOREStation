@@ -12,6 +12,7 @@
 	explosion_resistance = 100
 
 	maxhealth = 9999999 //No.
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
 
 	var/list/locks = list()
 	var/lockID = null
@@ -37,7 +38,7 @@
 
 /obj/machinery/door/blast/puzzle/Initialize(mapload)
 	. = ..()
-	implicit_material = get_material_by_name("dungeonium")
+	implicit_material = get_material_by_name(MAT_ALIEN_DUNGEON)
 	if(locks.len)
 		return
 	var/check_range = world.view * checkrange_mult
@@ -94,3 +95,6 @@
 /obj/machinery/door/blast/puzzle/attack_alien(var/mob/user)
 	if(check_locks())
 		force_toggle(1, user)
+
+/obj/machinery/door/blast/puzzle/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.

@@ -226,11 +226,11 @@
 	sleep(5)
 	target.filters -= filter(type="blur", size = 0)
 
-/obj/item/telecube/CtrlClick(mob/user)
+/obj/item/telecube/item_ctrl_click(mob/user)
 	if(Adjacent(user) && teleport_to_mate(user))
 		cooldown(mate_too = FALSE)
 
-/obj/item/telecube/AltClick(mob/user)
+/obj/item/telecube/click_alt(mob/user)
 	if(Adjacent(user) && swap_with_mate())
 		cooldown(mate_too = TRUE)
 

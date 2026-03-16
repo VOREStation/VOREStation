@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	var/image/res = image('icons/mob/human_face.dmi',"bald_s")
 	//Facial hair
 	if(owner.f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[owner.f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (data.get_species_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
@@ -65,10 +65,10 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	//Head hair
 	if(owner.h_style)
 		var/style = owner.h_style
-		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[style]
+		var/datum/sprite_accessory/hair/hair_style = GLOB.hair_styles_list[style]
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
 			if(!(hair_style.flags & HAIR_VERY_SHORT))
-				hair_style = hair_styles_list["Short Hair"]
+				hair_style = GLOB.hair_styles_list["Short Hair"]
 		if(hair_style && (data.get_species_bodytype(owner) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")
@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	if (transparent && !istype(src,/obj/item/organ/external/head) && can_apply_transparency && should_apply_transparency) //VORESTATION EDIT: transparent instead of nonsolid
 		mob_icon += rgb(,,,180) //do it here so any markings become transparent as well
 
-	dir = EAST
+	dir = SOUTH
 	icon = mob_icon
 	return mob_icon
 
@@ -218,8 +218,8 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 // damage amount to represent the pain of the injuries involved.
 
 // Global scope, used in code below.
-var/list/flesh_hud_colours = list("#02BA08","#9ECF19","#DEDE10","#FFAA00","#FF0000","#AA0000","#660000")
-var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F4F","#2F2F2F","#000000")
+GLOBAL_LIST_INIT(flesh_hud_colours, list("#02BA08","#9ECF19","#DEDE10","#FFAA00","#FF0000","#AA0000","#660000"))
+GLOBAL_LIST_INIT(robot_hud_colours, list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F4F","#2F2F2F","#000000"))
 
 /obj/item/organ/external/proc/get_damage_hud_image(var/min_dam_state)
 
@@ -254,6 +254,6 @@ var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F
 	if(!isnull(min_dam_state) && dam_state < min_dam_state)
 		dam_state = min_dam_state
 	// Apply colour and return product.
-	var/list/hud_colours = (robotic < ORGAN_ROBOT) ? flesh_hud_colours : robot_hud_colours
+	var/list/hud_colours = (robotic < ORGAN_ROBOT) ? GLOB.flesh_hud_colours : GLOB.robot_hud_colours
 	hud_damage_image.color = hud_colours[max(1,min(CEILING(dam_state*hud_colours.len, 1),hud_colours.len))]
 	return hud_damage_image

@@ -1,41 +1,19 @@
-import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
-
-import type { localPrefs } from '../types';
-import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
+import { Section, Stack } from 'tgui-core/components';
+import { stripModeModel } from '../constants';
+import type { DropdownPrefernces, LocalPrefs } from '../types';
+import {
+  VoreUserPreferenceDropdown,
+  VoreUserPreferenceItem,
+} from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
-  show_pictures: BooleanLike;
-  icon_overflow: BooleanLike;
-  preferences: localPrefs;
+  preferences: LocalPrefs;
+  dropdownPreferences: DropdownPrefernces;
 }) => {
-  const { act } = useBackend();
-  const { show_pictures, icon_overflow, preferences } = props;
+  const { preferences, dropdownPreferences } = props;
 
   return (
-    <Section
-      title="Mechanical Preferences"
-      buttons={
-        <Button
-          icon="eye"
-          selected={show_pictures}
-          tooltip={
-            'Allows to toggle if belly contents are shown as icons or in list format. ' +
-            (show_pictures
-              ? 'Contents shown as pictures.'
-              : 'Contents shown as lists.') +
-            (show_pictures && icon_overflow
-              ? 'Temporarily disabled. Stomach contents above limits.'
-              : '')
-          }
-          backgroundColor={show_pictures && icon_overflow ? 'orange' : ''}
-          onClick={() => act('show_pictures')}
-        >
-          Contents Preference: {show_pictures ? 'Show Pictures' : 'Show List'}
-        </Button>
-      }
-    >
+    <Section title="Mechanical Preferences">
       <Stack wrap="wrap" justify="center">
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
@@ -93,25 +71,44 @@ export const VoreUserPreferencesMechanical = (props: {
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.spontaneous_tf}
+            spec={preferences.vore_death_privacy}
             tooltipPosition="right"
           />
         </Stack.Item>
         <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem
-            spec={preferences.mind_transfer}
+            spec={preferences.spontaneous_tf}
             tooltipPosition="top"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.allow_mimicry}
+            spec={preferences.mind_transfer}
             tooltipPosition="left"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
+            spec={preferences.allow_mimicry}
+            tooltipPosition="right"
+          />
+        </Stack.Item>
+        <Stack.Item basis="32%" grow>
+          <VoreUserPreferenceItem
             spec={preferences.toggle_consume_liquid_belly}
+            tooltipPosition="top"
+          />
+        </Stack.Item>
+        <Stack.Item basis="32%">
+          <VoreUserPreferenceItem
+            spec={preferences.afk_pred}
+            tooltipPosition="left"
+          />
+        </Stack.Item>
+        <Stack.Item basis="35%">
+          <VoreUserPreferenceDropdown
+            spec={stripModeModel}
+            currentActive={dropdownPreferences.strip_active.toString()}
             tooltipPosition="top"
           />
         </Stack.Item>

@@ -1,7 +1,5 @@
 #define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
 
-var/global/list/image/splatter_cache=list()
-
 /obj/effect/decal/cleanable/blood
 	name = "blood"
 	var/dryname = "dried blood"
@@ -269,7 +267,7 @@ var/global/list/image/splatter_cache=list()
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
 /obj/effect/decal/cleanable/mucus/mapped/Initialize(mapload)
 	. = ..()
-	viruses |= new /datum/disease/advance
+	viruses |= new /datum/disease/advance/random(rand(3, 6), 9, 4, infected = src)
 
 /obj/effect/decal/cleanable/mucus/mapped/Destroy()
 	viruses.Cut()

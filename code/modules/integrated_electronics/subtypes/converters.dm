@@ -12,6 +12,7 @@
 	desc = "This circuit can convert a number variable into a string."
 	extended_desc = "Because of game limitations null/false variables will output a '0' string."
 	icon_state = "num-string"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_NUMBER)
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -33,6 +34,7 @@
 	name = "string to number"
 	desc = "This circuit can convert a string variable into a number."
 	icon_state = "string-num"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_STRING)
 	outputs = list("output" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -52,6 +54,7 @@
 	name = "reference to string"
 	desc = "This circuit can convert a reference to something else to a string, specifically the name of that reference."
 	icon_state = "ref-string"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_REF)
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -71,6 +74,7 @@
 	name = "reference encoder"
 	desc = "This circuit can encode a reference into a string, which can then be read by an EPV2 circuit."
 	icon_state = "ref-string"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_REF)
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -90,6 +94,7 @@
 	name = "reference decoder"
 	desc = "This circuit can convert an encoded reference to actual reference."
 	icon_state = "ref-string"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_STRING)
 	outputs = list("output" = IC_PINTYPE_REF)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -105,6 +110,7 @@
 	name = "lowercase string converter"
 	desc = "this will cause a string to come out in all lowercase."
 	icon_state = "lowercase"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_STRING)
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -124,6 +130,7 @@
 	name = "uppercase string converter"
 	desc = "THIS WILL CAUSE A STRING TO COME OUT IN ALL UPPERCASE."
 	icon_state = "uppercase"
+	complexity = 2
 	inputs = list("input" = IC_PINTYPE_STRING)
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -142,7 +149,7 @@
 /obj/item/integrated_circuit/converter/concatenator
 	name = "concatenator"
 	desc = "This joins many strings together to get one big string."
-	complexity = 4
+	complexity = 2
 	inputs = list(
 		"A" = IC_PINTYPE_STRING,
 		"B" = IC_PINTYPE_STRING,
@@ -256,6 +263,7 @@
 /obj/item/integrated_circuit/converter/radians2degrees
 	name = "radians to degrees converter"
 	desc = "Converts radians to degrees."
+	complexity = 3
 	inputs = list("radian" = IC_PINTYPE_NUMBER)
 	outputs = list("degrees" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -274,6 +282,7 @@
 /obj/item/integrated_circuit/converter/degrees2radians
 	name = "degrees to radians converter"
 	desc = "Converts degrees to radians."
+	complexity = 3
 	inputs = list("degrees" = IC_PINTYPE_NUMBER)
 	outputs = list("radians" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -388,6 +397,40 @@
 	var/blue = get_pin_data(IC_INPUT, 3)
 	if(isnum(red) && isnum(green) && isnum(blue))
 		result = rgb(red, green, blue)
+
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/converter/space_pad
+	name = "string padder"
+	desc = "This circuit adds leading and/or trailing spaces to a string."
+	extended_desc = "Input a string and toggle leading/trailing space options to add single spaces to the beginning or end of the string."
+	icon_state = "ref-string"
+	complexity = 1
+	w_class = ITEMSIZE_TINY
+	inputs = list(
+		"input string" = IC_PINTYPE_STRING,
+		"leading space" = IC_PINTYPE_BOOLEAN,
+		"trailing space" = IC_PINTYPE_BOOLEAN
+		)
+	outputs = list("output string" = IC_PINTYPE_STRING)
+	activators = list("pad spaces" = IC_PINTYPE_PULSE_IN, "on padded" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/converter/space_pad/do_work()
+	var/result = null
+	pull_data()
+	var/input_string = get_pin_data(IC_INPUT, 1)
+	var/add_leading = get_pin_data(IC_INPUT, 2)
+	var/add_trailing = get_pin_data(IC_INPUT, 3)
+
+	if(!isnull(input_string))
+		result = input_string
+		if(add_leading)
+			result = " " + result
+		if(add_trailing)
+			result = result + " "
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()

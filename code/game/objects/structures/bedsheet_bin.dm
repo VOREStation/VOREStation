@@ -18,8 +18,19 @@ LINEN BINS
 	w_class = ITEMSIZE_SMALL
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	///var used for attack_self chain
+	var/special_handling = FALSE
 
-/obj/item/bedsheet/attack_self(mob/user as mob)
+/obj/item/bedsheet/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rotatable/onlyflip)
+
+/obj/item/bedsheet/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	user.drop_item()
 	if(layer == initial(layer))
 		layer = ABOVE_MOB_LAYER
@@ -31,7 +42,7 @@ LINEN BINS
 /obj/item/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins cutting up [src] with [I]."), span_notice("You begin cutting up [src] with [I]."))
-		if(do_after(user, 50))
+		if(do_after(user, 5 SECONDS, target = src))
 			to_chat(user, span_notice("You cut [src] into pieces!"))
 			for(var/i in 1 to rand(2,5))
 				new /obj/item/reagent_containers/glass/rag(drop_location())
@@ -39,22 +50,8 @@ LINEN BINS
 		return
 	..()
 
-/obj/item/bedsheet/verb/turn_around()
-	set name = "Turn Around"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	if(dir >= 2)
-		src.set_dir(1)
-	else
-		src.set_dir(2)
+/obj/item/bedsheet/ghosts_can_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
 /obj/item/bedsheet/blue
 	icon_state = "sheetblue"

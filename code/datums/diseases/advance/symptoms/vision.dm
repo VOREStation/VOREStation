@@ -35,6 +35,10 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active."
 	)
 
+	prefixes = list("Eye ")
+	bodies = list("Blind")
+	suffixes = list(" Blindness")
+
 /datum/symptom/visionloss/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 12)

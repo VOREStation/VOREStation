@@ -175,6 +175,9 @@
 		if(user.client)
 			terminate_byondui_elements()
 
+	// Unset machine just to be sure.
+	user.unset_machine()
+
 	state = null
 	if(parent_ui)
 		parent_ui.children -= src
@@ -281,7 +284,7 @@
 		"status" = status,
 		"interface" = list(
 			"name" = interface,
-			"layout" = null, // user.read_preference(/datum/preference/choiced/tgui_layout), // unused
+			"layout" = user.read_preference(/datum/preference/choiced/tgui_layout),
 		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
@@ -377,28 +380,6 @@
 	// Pass act type messages to tgui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		var/act_type = copytext(type, 5)
-		var/id = href_list["packetId"]
-		if(!isnull(id))
-			id = text2num(id)
-
-			var/total = text2num(href_list["totalPackets"])
-			if(id == 1)
-				if(total > MAX_MESSAGE_CHUNKS)
-					return
-
-				partial_packets = new /list(total)
-
-			partial_packets[id] = href_list["packet"]
-
-			if(id != total)
-				return
-
-			var/assembled_payload = ""
-			for(var/packet in partial_packets)
-				assembled_payload += packet
-
-			payload = json_decode(assembled_payload)
-			partial_packets = null
 		#ifdef TGUI_DEBUGGING
 		log_tgui(user, "Action: [act_type] [href_list["payload"]], Window: [window.id], Source: [src_object]")
 		#endif
@@ -430,7 +411,7 @@
 			#ifdef TGUI_DEBUGGING
 			log_tgui(user, "Fallback Triggered: [href_list["payload"]], Window: [window.id], Source: [src_object]")
 			#endif
-			src_object.tgui_fallback(payload)
+			src_object.tgui_fallback(payload, user)
 		if(TGUI_MANAGED_BYONDUI_TYPE_RENDER)
 			var/byond_ui_id = payload[TGUI_MANAGED_BYONDUI_PAYLOAD_ID]
 			if(!byond_ui_id || LAZYLEN(open_byondui_elements) > TGUI_MANAGED_BYONDUI_LIMIT)

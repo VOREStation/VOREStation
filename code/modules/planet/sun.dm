@@ -37,7 +37,7 @@
 
 /datum/sun_holder/proc/apply_to_turf(turf/T)
 	if(sun in T.vis_contents)
-		warning("Was asked to add fake sun to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
+		WARNING("Was asked to add fake sun to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
 		return
 	sun.apply_to_turf(T)
 

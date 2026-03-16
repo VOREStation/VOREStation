@@ -11,10 +11,10 @@
 
 			if(var_value)
 				ghostjoin = TRUE
-				active_ghost_pods |= src
+				GLOB.active_ghost_pods |= src
 			else
 				ghostjoin = FALSE
-				active_ghost_pods -= src
+				GLOB.active_ghost_pods -= src
 
 			ghostjoin_icon()
 			. =  TRUE
@@ -63,7 +63,7 @@
 /// Inject a ghost into this mob. Assumes you've done all sanity before this point.
 /mob/living/simple_mob/proc/ghost_join(mob/observer/dead/D)
 	log_and_message_admins("joined [src] as a ghost [ADMIN_FLW(src)]", D)
-	active_ghost_pods -= src
+	GLOB.active_ghost_pods -= src
 
 	// Move the ghost in
 	if(D.mind)
@@ -110,7 +110,7 @@
 /obj/item/denecrotizer //Away map reward. FOR TRAINED NECROMANCERS ONLY. >:C
 	name = "experimental denecrotizer"
 	desc = "It looks simple on the outside but this device radiates some unknown dread. It does not appear to be of any ordinary make, and just how it works is unclear, but this device seems to interact with dead flesh."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "denecrotizer"
 	w_class = ITEMSIZE_COST_NORMAL
 	var/charges = 5 //your army of minions can only be this big
@@ -155,11 +155,11 @@
 			return FALSE
 		if(!target.mind)
 			user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
-			if(do_after(user, revive_time, exclusive = TASK_USER_EXCLUSIVE, target = target))
+			if(do_after(user, revive_time, target = target))
 				target.faction = user.faction
 				target.revivedby = user.name
 				target.ghostjoin = 1
-				active_ghost_pods += target
+				GLOB.active_ghost_pods += target
 				target.ghostjoin_icon()
 				last_used = world.time
 				charges--
@@ -176,7 +176,7 @@
 
 /obj/item/denecrotizer/proc/ghostjoin_rez(mob/living/simple_mob/target, mob/living/user)
 	user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
-	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
+	if(do_after(user, revive_time, target = target))
 		target.faction = user.faction
 		target.revivedby = user.name
 		target.ai_holder.returns_home = FALSE
@@ -189,7 +189,7 @@
 		log_and_message_admins("used a denecrotizer to revive a simple mob: [target]. [ADMIN_FLW(src)]", user)
 		if(!target.mind) //if it doesn't have a mind then no one has been playing as it, and it is safe to offer to ghosts.
 			target.ghostjoin = 1
-			active_ghost_pods |= target
+			GLOB.active_ghost_pods |= target
 			target.ghostjoin_icon()
 		last_used = world.time
 		charges--
@@ -200,7 +200,7 @@
 
 /obj/item/denecrotizer/proc/basic_rez(mob/living/simple_mob/target, mob/living/user) //so medical can have a way to bring back people's pets or whatever, does not change any settings about the mob or offer it to ghosts.
 	user.visible_message("[user] presses [src] to [target]...", runemessage = "presses [src] to [target]")
-	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
+	if(do_after(user, revive_time, target = target))
 		target.revive()
 		target.sight = initial(target.sight)
 		target.see_in_dark = initial(target.see_in_dark)

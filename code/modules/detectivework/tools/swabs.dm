@@ -114,6 +114,7 @@
 	if(sample_type)
 		user.visible_message("\The [user] swabs \the [A] for a sample.", "You swab \the [A] for a sample.")
 		set_used(sample_type, A)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FORENSICS_COLLECTED, A, user)
 
 /obj/item/forensics/swab/proc/set_used(var/sample_str, var/atom/source)
 	name = "[initial(name)] ([sample_str] - [source])"

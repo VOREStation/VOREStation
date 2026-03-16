@@ -17,7 +17,7 @@
 // If hooded, have [kit_icon]_suit_t in both files for the hood-up version.
 // If not using the default overlay, have [kit_icon]_light in both files for custom light overlays.
 
-/var/list/custom_items = list()
+GLOBAL_LIST_INIT(custom_items, load_custom_items())
 
 /datum/custom_item
 	var/assoc_key
@@ -78,7 +78,7 @@
 	var/list/new_item_icons = list()
 	var/list/new_item_state_slots = list()
 
-	var/list/available_states = cached_icon_states(CUSTOM_ITEM_MOB)
+	var/list/available_states = icon_states_fast(CUSTOM_ITEM_MOB)
 
 	//If l_hand or r_hand are not present, preserve them using item_icons/item_state_slots
 	//Then use icon_override to make every other slot use the custom sprites by default.
@@ -118,8 +118,8 @@
 	return t_icon
 
 // Parses the config file into the custom_items list.
-/hook/startup/proc/load_custom_items()
-
+/proc/load_custom_items()
+	var/list/all_custom_items = list()
 	var/datum/custom_item/current_data
 	for(var/line in splittext(file2text("config/custom_items.txt"), "\n"))
 
@@ -129,9 +129,9 @@
 
 		if(findtext(line, "{", 1, 2) || findtext(line, "}", 1, 2)) // New block!
 			if(current_data && current_data.assoc_key)
-				if(!custom_items[current_data.assoc_key])
-					custom_items[current_data.assoc_key] = list()
-				var/list/L = custom_items[current_data.assoc_key]
+				if(!all_custom_items[current_data.assoc_key])
+					all_custom_items[current_data.assoc_key] = list()
+				var/list/L = all_custom_items[current_data.assoc_key]
 				L |= current_data
 			current_data = null
 
@@ -173,11 +173,11 @@
 				current_data.kit_icon = field_data
 			if("additional_data")
 				current_data.additional_data = field_data
-	return 1
+	return all_custom_items
 
 //gets the relevant list for the key from the listlist if it exists, check to make sure they are meant to have it and then calls the giving function
 /proc/equip_custom_items(mob/living/carbon/human/M)
-	var/list/key_list = custom_items[M.ckey]
+	var/list/key_list = GLOB.custom_items[M.ckey]
 	if(!key_list || key_list.len < 1)
 		return
 
@@ -185,14 +185,14 @@
 
 		// Check for requisite ckey and character name.
 		if((lowertext(citem.assoc_key) != lowertext(M.ckey)) || (lowertext(citem.character_name) != lowertext(M.real_name)))
-			log_debug("Custom Item: [key_name(M)] Ckey or Char name does not match.")
+			// to_chat(world, "Custom Item: [key_name(M)] Ckey or Char name does not match.")
 			continue
 
 		// Check for required access.
 		var/obj/item/card/id/current_id = M.wear_id
 		if(citem.req_access && citem.req_access > 0) // These are numbers, not lists
 			if(!(istype(current_id) && (citem.req_access in current_id.GetAccess())))
-				log_debug("Custom Item: [key_name(M)] Does not have required access.")
+				// to_chat(world, "Custom Item: [key_name(M)] Does not have required access.")
 				continue
 
 		// Check for required job title.
@@ -204,7 +204,7 @@
 					has_title = 1
 					break
 			if(!has_title)
-				log_debug("Custom Item: [key_name(M)] Does not have required job.")
+				// to_chat(world, "Custom Item: [key_name(M)] Does not have required job.")
 				continue
 
 		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.

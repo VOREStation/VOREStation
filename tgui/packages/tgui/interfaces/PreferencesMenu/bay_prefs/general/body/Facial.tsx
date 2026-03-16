@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import { Button, ImageButton, Input, Section } from 'tgui-core/components';
-
 import {
   ColorizedImageButton,
   ColorPicker,
@@ -31,9 +31,9 @@ export const FacialImageButton = (
   const renderHuman = useCallback(
     async (ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.globalCompositeOperation = 'destination-over';
-      const image = await getImage(
-        Byond.iconRefMap['icons/mob/human.dmi'] + '?state=body_f_s&dir=2',
-      );
+      const iconRef = getIconFromRefMap('icons/mob/human.dmi');
+      if (!iconRef) return;
+      const image = await getImage(`${iconRef}?state=body_f_s&dir=2`);
 
       ctx.drawImage(image, 0, 0, 32, 10, 0, 0, 64, 20);
     },
@@ -52,7 +52,7 @@ export const FacialImageButton = (
   return (
     <ColorizedImageButton
       iconRef={data.icon}
-      iconState={data.icon_state + '_s'}
+      iconState={`${data.icon_state}_s`}
       color={hairColor}
       onClick={onClick}
       tooltip={props.tooltip}
@@ -72,6 +72,7 @@ export const FacialDimmer = (props: {
 }) => {
   const { act } = useBackend();
   const { setShow, data, serverData, staticData } = props;
+  const { available_facial_styles = [] } = staticData;
   // if the data is missing our UI is fucked anyways
   const our_species = serverData.species.find(
     (x) => x.name === data.species,
@@ -79,7 +80,7 @@ export const FacialDimmer = (props: {
   const hairColor = data.facial_color;
 
   const [search, setSearch] = useState('');
-  const hair_styles = staticData.available_facial_styles.filter((x) =>
+  const hair_styles = available_facial_styles.filter((x) =>
     search ? x.toLowerCase().includes(search.toLowerCase()) : true,
   );
   hair_styles.sort();

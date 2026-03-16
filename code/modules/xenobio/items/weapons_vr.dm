@@ -1,7 +1,7 @@
 /obj/item/xenobio
 	name = "xenobio gun"
 	desc = "You shouldn't see this!"
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "harpoon-2"
 	var/loadable_item = null
 	var/loaded_item = null
@@ -36,7 +36,10 @@
 		return 1
 	..()
 
-/obj/item/xenobio/attack_self(mob/living/user as mob)
+/obj/item/xenobio/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
 		user.visible_message(span_notice("[user] removes [loaded_item] from [src]."), span_notice("You remove [loaded_item] from [src]."))
@@ -111,15 +114,16 @@
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
 			playsound(src, 'sound/machines/juicer.ogg', 25, 1)
-			if(do_after(user, 15))
-				new S.coretype(get_turf(AM))
+			if(do_after(user, 15, target = src))
+				var/atom/new_core = new S.coretype(get_turf(AM))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HARVEST_SLIME_CORE, new_core)
 				playsound(src, 'sound/effects/splat.ogg', 50, 1)
 				S.cores--
 		qdel(S)
 
 	if(istype(AM, /mob/living/carbon/human/monkey))
 		playsound(src, 'sound/machines/juicer.ogg', 25, 1)
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			var/mob/living/carbon/human/M = AM
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			qdel(M)

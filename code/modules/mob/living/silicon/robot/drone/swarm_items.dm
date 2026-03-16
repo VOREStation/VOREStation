@@ -22,7 +22,7 @@
 	var/grabbed_something = FALSE
 
 	for(var/mob/M in T)
-		if(istype(M,/mob/living/simple_mob/animal/passive/lizard) || istype(M,/mob/living/simple_mob/animal/passive/mouse))
+		if(HAS_TRAIT(M, TRAIT_AMBIENT_PEST_MOB))
 			src.loc.visible_message(span_danger("[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise."),span_danger("It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
@@ -41,7 +41,7 @@
 
 			to_chat(D, span_danger("You begin decompiling [M]."))
 
-			if(!do_after(D,50))
+			if(!do_after(D, 5 SECONDS, target = src))
 				to_chat(D, span_danger("You need to remain still while decompiling such a large object."))
 				return
 
@@ -123,7 +123,7 @@
 	pulses_remaining = 5
 	pulse_delay = 2 SECONDS
 
-/obj/effect/temporary_effect/pulse/disintegrate/emp_act()
+/obj/effect/temporary_effect/pulse/disintegrate/emp_act(severity, recursive)
 	visible_message(span_warning("\The [src] flickers, before dispersing energetically."))
 	qdel(src)
 

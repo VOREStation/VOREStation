@@ -163,7 +163,7 @@
 
 	to_chat(user, span_notice("You feed \the [M] the agent. It may now eventually develop proper sapience."))
 	M.ghostjoin = 1
-	active_ghost_pods |= M
+	GLOB.active_ghost_pods |= M
 	if(!M.vore_active)
 		add_verb(M, /mob/living/simple_mob/proc/animal_nom)
 	M.ghostjoin_icon()

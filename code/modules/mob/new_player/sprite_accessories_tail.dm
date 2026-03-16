@@ -28,7 +28,9 @@
 	var/mob_offset_x = 0
 	var/mob_offset_y = 0
 
-	// Taur Loafing
+	// Taur Loafing - IMPORTANT, READ BELOW.
+	///IF SET TO TRUE, THE icon_state, extra_overlay, and extra_overlay2 MUST BE IN WHATEVER YOU SET icon_loaf to!
+	///ADDITIONALLY, IF YOU ADD A SPECIAL VWAG, YOU NEED TO INCLUDE ani_state, extra_overlay_w, and extra_overlay2_w INTO icon_loaf TOO!
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
 	var/list/lower_layer_dirs = list(SOUTH, WEST, EAST)
@@ -1683,6 +1685,28 @@
 	name = "Anteater tail"
 	icon_state = "anteater_tail"
 
+/datum/sprite_accessory/tail/longtail/brush
+	name = "Snake Tail with Brush"
+	icon_state = "bigsnaketailbrush"
+	extra_overlay = "bigsnaketailbrush_brush"
+
+/datum/sprite_accessory/tail/longtail/brushscutes
+	name = "Snake Tail with Brush and Scutes"
+	icon_state = "bigsnaketailbrushunder"
+	extra_overlay = "bigsnaketailbrushunder_scutes"
+	extra_overlay2 = "bigsnaketailbrush_brush"
+
+/datum/sprite_accessory/tail/longtail/clawscutes
+	name = "Snake Tail with Claw and Scutes"
+	icon_state = "bigsnaketailbrushunder"
+	extra_overlay = "bigsnaketailbrushunder_scutes"
+	extra_overlay2 = "bigsnaketailclaw_claw"
+
+/datum/sprite_accessory/tail/longtail/claw
+	name = "Snake Tail with Claw"
+	icon_state = "bigsnaketailbrush"
+	extra_overlay = "bigsnaketailclaw_claw"
+
 
 /datum/sprite_accessory/tail/small_bugbum
 	name = "Bug Abdomen, Alt, Small (Dual-Color)"
@@ -1917,3 +1941,11 @@
 	desc = ""
 	icon_state = "tigresstail"
 	ckeys_allowed = list("hoodoo")
+
+/datum/sprite_accessory/tail/xenotail_fullcolour_vwag
+	name = "xenomorph tail (fully colourable, vwag)"
+	desc = ""
+	icon_state = "xenotail_fullcolouralt"
+	ani_state = "xenotail_fullcolouralt_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

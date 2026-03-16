@@ -21,6 +21,7 @@
 	tagline = "I HAVE 8.2 PETABYTES OF MECHHAMMER MODELS!"
 	item_cost = 50 //even discount bin warhammer's comically expensive
 	object_type_to_spawn = /obj/random/fromList/mecha_toys
+	icon_state = "copyright"
 
 /datum/maint_recycler_vendor_entry/burger //packaged 40 years ago. you should regret this.
 	name = "TRASH 4 BURGER REDEMPTION"

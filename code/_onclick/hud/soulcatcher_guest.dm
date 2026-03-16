@@ -1,62 +1,62 @@
-/obj/screen/nifsc
+/atom/movable/screen/nifsc
 	icon = 'icons/mob/screen_nifsc.dmi'
 
-/obj/screen/nifsc/MouseEntered(location,control,params)
+/atom/movable/screen/nifsc/MouseEntered(location,control,params)
 	flick(icon_state + "_anim", src)
 	openToolTip(usr, src, params, title = name, content = desc)
 
-/obj/screen/nifsc/MouseExited()
+/atom/movable/screen/nifsc/MouseExited()
 	closeToolTip(usr)
 
-/obj/screen/nifsc/Click()
+/atom/movable/screen/nifsc/Click()
 	closeToolTip(usr)
 
-/obj/screen/nifsc/reenter
+/atom/movable/screen/nifsc/reenter
 	name = "Re-enter NIF"
 	desc = "Return into the NIF"
 	icon_state = "reenter"
 
-/obj/screen/nifsc/reenter/Click()
+/atom/movable/screen/nifsc/reenter/Click()
 	..()
 	var/mob/living/carbon/brain/caught_soul/CS = usr
 	CS.reenter_soulcatcher()
 
-/obj/screen/nifsc/arproj
+/atom/movable/screen/nifsc/arproj
 	name = "AR project"
 	desc = "Project your form into Augmented Reality for those around your predator with the appearance of your loaded character."
 	icon_state = "arproj"
 
-/obj/screen/nifsc/arproj/Click()
+/atom/movable/screen/nifsc/arproj/Click()
 		..()
 		var/mob/living/carbon/brain/caught_soul/CS = usr
 		CS.ar_project()
 
-/obj/screen/nifsc/jumptoowner
+/atom/movable/screen/nifsc/jumptoowner
 	name = "Jump back to host"
 	desc = "Jumb back to the Soulcather host"
 	icon_state = "jump"
 
-/obj/screen/nifsc/jumptoowner/Click()
+/atom/movable/screen/nifsc/jumptoowner/Click()
 	..()
 	var/mob/living/carbon/brain/caught_soul/CS = usr
 	CS.jump_to_owner()
 
-/obj/screen/nifsc/nme
+/atom/movable/screen/nifsc/nme
 	name = "Emote into Soulcatcher"
 	desc = "Emote into the NIF's Soulcatcher (circumventing AR emoting)"
 	icon_state = "nme"
 
-/obj/screen/nifsc/nme/Click()
+/atom/movable/screen/nifsc/nme/Click()
 	..()
 	var/mob/living/carbon/brain/caught_soul/CS = usr
 	CS.nme()
 
-/obj/screen/nifsc/nsay
+/atom/movable/screen/nifsc/nsay
 	name = "Speak into Soulcatcher"
 	desc = "Speak into the NIF's Soulcatcher (circumventing AR speaking)"
 	icon_state = "nsay"
 
-/obj/screen/nifsc/nsay/Click()
+/atom/movable/screen/nifsc/nsay/Click()
 	..()
 	var/mob/living/carbon/brain/caught_soul/CS = usr
 	CS.nsay()
@@ -68,29 +68,29 @@
 	var/list/adding = list()
 	HUD.adding = adding
 
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
-	using = new /obj/screen/nifsc/reenter()
+	using = new /atom/movable/screen/nifsc/reenter()
 	using.screen_loc = ui_nifsc_reenter
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/nifsc/arproj()
+	using = new /atom/movable/screen/nifsc/arproj()
 	using.screen_loc = ui_nifsc_arproj
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/nifsc/jumptoowner()
+	using = new /atom/movable/screen/nifsc/jumptoowner()
 	using.screen_loc = ui_nifsc_jumptoowner
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/nifsc/nme()
+	using = new /atom/movable/screen/nifsc/nme()
 	using.screen_loc = ui_nifsc_nme
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/nifsc/nsay()
+	using = new /atom/movable/screen/nifsc/nsay()
 	using.screen_loc = ui_nifsc_nsay
 	using.hud = src
 	adding += using

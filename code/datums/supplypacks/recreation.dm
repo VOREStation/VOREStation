@@ -9,7 +9,7 @@
 
 /datum/supply_pack/randomised/recreation
 	group = "Recreation"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"
@@ -55,18 +55,35 @@
 	containertype = /obj/structure/largecrate/donksoftvendor
 	containername = "\improper Donk-Soft vendor crate"
 
+/datum/supply_pack/recreation/lasertag_turrets
+	name = "Lasertag Turrets"
+	desc = "A set of one lasertag turret for each faction, plus an omni turret!"
+	contains = list()
+	cost = 25 //It's all fun and games!
+	containertype = /obj/structure/largecrate/lasertag_turrets
+	containername = "Lasertag Turrets"
+
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
-	desc = "A standard set of Laser Tag equipment."
+	desc = "A standard set of Laser Tag equipment. Contains red, blue, and omni team gear."
 	contains = list(
-			/obj/item/gun/energy/lasertag/red,
-			/obj/item/clothing/suit/redtag,
-			/obj/item/gun/energy/lasertag/blue,
-			/obj/item/clothing/suit/bluetag
+		/obj/item/gun/energy/lasertag/omni = 5,
+		/obj/item/gun/energy/lasertag/blue = 5,
+		/obj/item/gun/energy/lasertag/red = 5,
+		/obj/item/clothing/suit/lasertag/omni = 5,
+		/obj/item/clothing/suit/lasertag/bluetag = 5,
+		/obj/item/clothing/suit/lasertag/redtag = 5,
+		/obj/item/lasertagknife = 5,
+		/obj/item/lasertagknife/blue = 5,
+		/obj/item/lasertagknife/red = 5,
+		/obj/item/mine/lasertag/all = 15,
+		/obj/item/mine/lasertag/red = 5,
+		/obj/item/mine/lasertag/omni = 5,
+		/obj/item/mine/lasertag/blue = 5
 			)
-	containertype = /obj/structure/closet/crate/ward
+	containertype = /obj/structure/closet/lasertag/omni
 	containername = "Lasertag Supplies"
-	cost = 10
+	cost = 35 //You get a lot of equipment! It costs a goot bit!
 
 /datum/supply_pack/recreation/artscrafts
 	name = "Arts and Crafts supplies"
@@ -182,7 +199,8 @@
 			/obj/item/handcuffs/legcuffs/fuzzy,
 			/obj/item/melee/fluff/holochain/mass,
 			/obj/item/material/twohanded/riding_crop,
-			/obj/item/clothing/under/fluff/latexmaid
+			/obj/item/clothing/under/fluff/latexmaid,
+			/obj/item/clothing/suit/shibari/pink
 			)
 	containertype = /obj/structure/closet/crate
 	containername = "Restraints crate"
@@ -344,4 +362,21 @@
 		/obj/item/bedsheet/pillow/yellow = 6
 	)
 	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/gambling
+	name = "Gambling Game Crate"
+	desc = "A bunch of supplies for gambling games, includes 5000 replica casino chips, a triple size deck of cards and dice bags."
+	contains = list(
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/deck/cards/triple,
+		/obj/item/storage/pill_bottle/dice,
+		/obj/item/storage/pill_bottle/dice_nerd,
+		/obj/item/storage/dicecup
+	)
+	cost = 30
 	containertype = /obj/structure/closet/crate

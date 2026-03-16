@@ -1,8 +1,6 @@
 
 //The advanced pea-green monochrome lcd of tomorrow.
 
-var/global/list/obj/item/pda/PDAs = list()
-
 /obj/item/pda
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
@@ -28,30 +26,6 @@ var/global/list/obj/item/pda/PDAs = list()
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
 	var/detonate = 1 // Can the PDA be blown up?
 	var/ttone = "beep" //The ringtone!
-	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
-								"boom" = 'sound/effects/explosionfar.ogg',
-								"slip" = 'sound/misc/slip.ogg',
-								"honk" = 'sound/items/bikehorn.ogg',
-								"SKREE" = 'sound/voice/shriek1.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg',
-								"spark" = 'sound/effects/sparks4.ogg',
-								"rad" = 'sound/items/geiger/high1.ogg',
-								"servo" = 'sound/machines/rig/rigservo.ogg',
-								"buh-boop" = 'sound/misc/buh-boop.ogg',
-								"trombone" = 'sound/misc/sadtrombone.ogg',
-								"whistle" = 'sound/misc/boatswain.ogg',
-								"chirp" = 'sound/misc/nymphchirp.ogg',
-								"slurp" = 'sound/items/drink.ogg',
-								"pwing" = 'sound/items/nif_tone_good.ogg',
-								"clack" = 'sound/items/storage/toolbox.ogg',
-								"bzzt" = 'sound/misc/null.ogg',	//vibrate mode
-								"chimes" = 'sound/misc/notice3.ogg',
-								"prbt" = 'sound/voice/prbt.ogg',
-								"bark" = 'sound/voice/bark2.ogg',
-								"bork" = 'sound/voice/bork.ogg',
-								"roark" = 'sound/voice/roarbark.ogg',
-								"chitter" = 'sound/voice/moth/moth_chitter.ogg',
-								"squish" = 'sound/effects/slime_squish.ogg')
 	var/hidden = 0 // Is the PDA hidden from the PDA list?
 	var/touch_silent = 0 //If 1, no beeps on interacting.
 
@@ -72,6 +46,8 @@ var/global/list/obj/item/pda/PDAs = list()
 		new/datum/data/pda/app/messenger,
 		new/datum/data/pda/app/manifest,
 		new/datum/data/pda/app/atmos_scanner,
+		new/datum/data/pda/app/nerdle,
+		new/datum/data/pda/app/game_launcher,
 		new/datum/data/pda/utility/scanmode/notes,
 		new/datum/data/pda/utility/flashlight)
 	var/list/shortcut_cache = list()
@@ -79,18 +55,21 @@ var/global/list/obj/item/pda/PDAs = list()
 	var/list/notifying_programs = list()
 	var/retro_mode = 0
 
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
 /obj/item/pda/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
-/obj/item/pda/CtrlClick(mob/user)
+/obj/item/pda/item_ctrl_click(mob/user)
 	if(can_use(user) && !issilicon(user))
 		remove_pen()
 		return
 	..()
 
-/obj/item/pda/AltClick(mob/user)
+/obj/item/pda/click_alt(mob/user)
 	if(issilicon(user))
 		return
 
@@ -103,8 +82,8 @@ var/global/list/obj/item/pda/PDAs = list()
 /obj/item/pda/proc/play_ringtone()
 	var/S
 
-	if(ttone in ttone_sound)
-		S = ttone_sound[ttone]
+	if(ttone in GLOB.device_ringtones)
+		S = GLOB.device_ringtones[ttone]
 	else
 		S = 'sound/machines/twobeep.ogg'
 	playsound(loc, S, 50, 1)
@@ -129,7 +108,7 @@ var/global/list/obj/item/pda/PDAs = list()
 /obj/item/pda/Initialize(mapload)
 	. = ..()
 	PDAs += src
-	PDAs = sortAtom(PDAs)
+	PDAs = sort_names(PDAs)
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
@@ -183,7 +162,7 @@ var/global/list/obj/item/pda/PDAs = list()
 
 		else
 			icon = 'icons/obj/pda_old.dmi'
-			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+			log_runtime("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
 	add_overlay("pda-pen")
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
@@ -199,18 +178,21 @@ var/global/list/obj/item/pda/PDAs = list()
 /obj/item/pda/GetID()
 	return id
 
-/obj/item/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
+/obj/item/pda/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && can_use(usr))
+	if((!istype(over_object, /atom/movable/screen)) && can_use(usr))
 		return attack_self(M)
 	return
 
 /obj/item/pda/proc/close(mob/user)
 	SStgui.close_uis(src)
 
-/obj/item/pda/attack_self(mob/user as mob)
-	user.set_machine(src)
-
+/obj/item/pda/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(active_uplink_check(user))
 		return
 
@@ -408,7 +390,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
 
-/obj/item/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
+/obj/item/pda/proc/id_check(mob/user, choice)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
 	if(choice == 1)
 		if (id)
 			remove_id()
@@ -430,7 +412,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	return 0
 
 // access to status display signals
-/obj/item/pda/attackby(obj/item/C as obj, mob/user)
+/obj/item/pda/attackby(obj/item/C, mob/user)
 	..()
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
@@ -459,12 +441,9 @@ var/global/list/obj/item/pda/PDAs = list()
 				if(id_check(user, 2))
 					to_chat(user, span_notice("You put the ID into \the [src]'s slot."))
 					add_overlay("pda-id")
-					updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
-		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/paicard) && !src.pai)
-		user.drop_item()
-		C.loc = src
+		user.drop_item(src)
 		pai = C
 		to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 		SStgui.update_uis(src) // update all UIs attached to src
@@ -473,17 +452,16 @@ var/global/list/obj/item/pda/PDAs = list()
 		if(O)
 			to_chat(user, span_notice("There is already a pen in \the [src]."))
 		else
-			user.drop_item()
-			C.loc = src
+			user.drop_item(src)
 			to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 			add_overlay("pda-pen")
 	return
 
-/obj/item/pda/attack(mob/living/C as mob, mob/living/user as mob)
+/obj/item/pda/attack(mob/living/C, mob/living/user)
 	if (istype(C, /mob/living/carbon) && scanmode)
 		scanmode.scan_mob(C, user)
 
-/obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/pda/afterattack(atom/A, mob/user, proximity)
 	if(proximity && scanmode)
 		scanmode.scan_atom(A, user)
 
@@ -530,8 +508,3 @@ var/global/list/obj/item/pda/PDAs = list()
 						/obj/item/cartridge/signal/science,
 						/obj/item/cartridge/quartermaster)
 	new newcart(src)
-
-// Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/pda/emp_act(severity)
-	for(var/atom/A in src)
-		A.emp_act(severity)

@@ -18,13 +18,13 @@
 	HUD.hotkeybuttons = hotkeybuttons
 
 	var/list/hud_elements = list()
-	var/obj/screen/using
-	var/obj/screen/inventory/inv_box
+	var/atom/movable/screen/using
+	var/atom/movable/screen/inventory/inv_box
 
 	var/has_hidden_gear
 	if(LAZYLEN(hud_gears))
 		for(var/gear_slot in hud_gears)
-			inv_box = new /obj/screen/inventory()
+			inv_box = new /atom/movable/screen/inventory()
 			inv_box.icon = ui_style
 			inv_box.color = ui_color
 			inv_box.alpha = ui_alpha
@@ -46,7 +46,7 @@
 				adding += inv_box
 
 	if(has_hidden_gear)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "toggle"
 		using.icon = ui_style
 		using.icon_state = "other"
@@ -57,7 +57,7 @@
 		adding += using
 
 	//Intent Backdrop
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "act_intent"
 	using.icon = ui_style
 	using.icon_state = "intent_"+a_intent
@@ -75,7 +75,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_HELP
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -87,7 +87,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_DISARM
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -99,7 +99,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_GRAB
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -111,7 +111,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_HURT
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -121,7 +121,7 @@
 	HUD.hurt_intent = using
 
 	//Move intent (walk/run)
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "mov_intent"
 	using.icon = ui_style
 	using.icon_state = (m_intent == I_RUN ? "running" : "walking")
@@ -132,7 +132,7 @@
 	HUD.move_intent = using
 
 	//Resist button
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "resist"
 	using.icon = ui_style
 	using.icon_state = "act_resist"
@@ -142,7 +142,7 @@
 	HUD.hotkeybuttons += using
 
 	//Pull button
-	pullin = new /obj/screen()
+	pullin = new /atom/movable/screen()
 	pullin.icon = ui_style
 	pullin.icon_state = "pull0"
 	pullin.name = "pull"
@@ -151,51 +151,51 @@
 	hud_elements |= pullin
 
 	//Health status
-	healths = new /obj/screen()
+	healths = new /atom/movable/screen()
 	healths.icon = ui_style
 	healths.icon_state = "health0"
 	healths.name = "health"
 	healths.screen_loc = ui_health
 	hud_elements |= healths
 
-	autowhisper_display = new /obj/screen()
+	autowhisper_display = new /atom/movable/screen()
 	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
 	autowhisper_display.icon_state = "autowhisper"
 	autowhisper_display.name = "autowhisper"
 	autowhisper_display.screen_loc = "EAST-1:28,CENTER-2:13"
 	hud_elements |= autowhisper_display
 
-	var/obj/screen/aw = new /obj/screen()
+	var/atom/movable/screen/aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "aw-select"
 	aw.name = "autowhisper mode"
 	aw.screen_loc = "EAST-1:28,CENTER-2:13"
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "lang"
 	aw.name = "check known languages"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "up"
 	aw.name = "move upwards"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "down"
 	aw.name = "move downwards"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 
-	pain = new /obj/screen( null )
+	pain = new /atom/movable/screen( null )
 
-	zone_sel = new /obj/screen/zone_sel( null )
+	zone_sel = new /atom/movable/screen/zone_sel( null )
 	zone_sel.icon = ui_style
 	zone_sel.color = ui_color
 	zone_sel.alpha = ui_alpha
@@ -203,10 +203,15 @@
 	zone_sel.update_icon()
 	hud_elements |= zone_sel
 
+	//Component hud elements. Made in /mob/living/create_mob_hud
+	hud_elements |= shadekin_display
+	hud_elements |= xenochimera_danger_display
+	hud_elements |= lleill_display
+
 	//Hand things
 	if(has_hands)
 		//Drop button
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "drop"
 		using.icon = ui_style
 		using.icon_state = "act_drop"
@@ -216,7 +221,7 @@
 		HUD.hotkeybuttons += using
 
 		//Equip detail
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "equip"
 		using.icon = ui_style
 		using.icon_state = "act_equip"
@@ -226,7 +231,7 @@
 		HUD.adding += using
 
 		//Hand slots themselves
-		inv_box = new /obj/screen/inventory/hand()
+		inv_box = new /atom/movable/screen/inventory/hand()
 		inv_box.hud = HUD
 		inv_box.name = "r_hand"
 		inv_box.icon = ui_style
@@ -241,7 +246,7 @@
 		HUD.adding += inv_box
 		slot_info["[slot_r_hand]"] = inv_box.screen_loc
 
-		inv_box = new /obj/screen/inventory/hand()
+		inv_box = new /atom/movable/screen/inventory/hand()
 		inv_box.hud = HUD
 		inv_box.name = "l_hand"
 		inv_box.icon = ui_style
@@ -257,7 +262,7 @@
 		slot_info["[slot_l_hand]"] = inv_box.screen_loc
 
 		//Swaphand titlebar
-		using = new /obj/screen/inventory()
+		using = new /atom/movable/screen/inventory()
 		using.name = "hand"
 		using.icon = ui_style
 		using.icon_state = "hand1"
@@ -266,7 +271,7 @@
 		using.alpha = ui_alpha
 		HUD.adding += using
 
-		using = new /obj/screen/inventory()
+		using = new /atom/movable/screen/inventory()
 		using.name = "hand"
 		using.icon = ui_style
 		using.icon_state = "hand2"
@@ -276,7 +281,7 @@
 		HUD.adding += using
 
 		//Throw button
-		throw_icon = new /obj/screen()
+		throw_icon = new /atom/movable/screen()
 		throw_icon.icon = ui_style
 		throw_icon.icon_state = "act_throw_off"
 		throw_icon.name = "throw"

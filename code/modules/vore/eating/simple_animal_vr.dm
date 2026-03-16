@@ -5,8 +5,7 @@
 
 /mob/living/simple_mob/insidePanel() //On-demand belly loading.
 	if(vore_active && !voremob_loaded)
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 	..()
 
 //
@@ -18,8 +17,7 @@
 	set desc = "Since you can't grab, you get a verb!"
 
 	if(vore_active && !voremob_loaded) // On-demand belly loading.
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 
 	if(stat != CONSCIOUS)
 		return
@@ -35,11 +33,15 @@
 
 /mob/living/simple_mob/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	if(vore_active && !voremob_loaded && pred == src) //Only init your own bellies.
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 		belly = vore_selected
 	return ..()
 
+/mob/living/simple_mob/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	if(vore_active && !voremob_loaded && pred == src) //Only init your own bellies.
+		init_vore(TRUE)
+		belly = vore_selected
+	return ..()
 //
 // Simple proc for animals to have their digestion toggled on/off externally
 // Added as a verb in /mob/living/simple_mob/init_vore() if vore is enabled for this mob.
@@ -56,12 +58,7 @@
 	if(!vore_selected)
 		to_chat(user, span_warning("[src] isn't planning on eating anything much less digesting it."))
 		return
-/*ChompStation edit: This prevented some flexibility with mob vore and the returned message was highly unprofessional.
 
-	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
-		to_chat(user, span_warning("This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you."))
-		return
-*/
 	if(vore_selected.digest_mode == DM_HOLD)
 		var/confirm = tgui_alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", list("Enable", "Cancel"))
 		if(confirm == "Enable")

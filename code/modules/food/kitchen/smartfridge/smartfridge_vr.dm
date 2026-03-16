@@ -19,22 +19,23 @@
 /*
  * Allow thrown items into smartfridges
  */
-/obj/machinery/smartfridge/hitby(var/atom/movable/A, speed)
+/obj/machinery/smartfridge/hitby(var/atom/movable/source, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(accept_check(A) && A.thrower)
+	var/mob/thrower = throwingdatum?.get_thrower()
+	if(accept_check(source) && thrower)
 		//Try to find what job they are via ID
 		var/obj/item/card/id/thrower_id
-		if(ismob(A.thrower))
-			var/mob/T = A.thrower
+		if(ismob(thrower))
+			var/mob/T = thrower
 			thrower_id = T.GetIdCard()
 
 		//98% chance the expert makes it
 		if(expert_job && thrower_id && thrower_id.rank == expert_job && prob(98))
-			stock(A)
+			stock(source)
 
 		//20% chance a non-expert makes it
 		else if(prob(20))
-			stock(A)
+			stock(source)
 
 /*
  * Chemistry 'chemavator' (multi-z chem storage)

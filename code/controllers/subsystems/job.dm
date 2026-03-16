@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(job)
 	name = "Job"
-	init_order = INIT_ORDER_JOB
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+	)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs
@@ -12,16 +14,16 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/Initialize()
-	if(!department_datums.len)
+	if(!length(department_datums))
 		setup_departments()
-	if(!occupations.len)
+	if(!length(occupations))
 		setup_occupations()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/job/proc/setup_occupations(faction = FACTION_STATION)
 	occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
-	if(!all_jobs.len)
+	if(!length(all_jobs))
 		to_chat(world, span_warning("Error setting up jobs, no job datums found"))
 		return FALSE
 
@@ -78,17 +80,13 @@ SUBSYSTEM_DEF(job)
 	return dept_datums
 
 /datum/controller/subsystem/job/proc/get_job(rank)
-	if(!occupations.len)
-		setup_occupations()
 	return name_occupations[rank]
 
 /datum/controller/subsystem/job/proc/get_job_type(jobtype)
-	if(!occupations.len)
-		setup_occupations()
 	return type_occupations[jobtype]
 
 // Determines if a job title is inside of a specific department.
-// Useful to replace the old `if(job_title in command_positions)` code.
+// Useful to replace the old `if(job_title in GLOB.command_positions)` code.
 /datum/controller/subsystem/job/proc/is_job_in_department(rank, target_department_name)
 	var/datum/department/D = LAZYACCESS(department_datums, target_department_name)
 	if(istype(D))
@@ -140,4 +138,4 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/job_debug_message(message)
 	if(debug_messages)
-		log_debug("JOB DEBUG: [message]")
+		log_world("JOB DEBUG: [message]")

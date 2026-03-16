@@ -1,4 +1,4 @@
-var/static/list/fake_sunlight_zs = list()
+GLOBAL_LIST_EMPTY(fake_sunlight_zs)
 
 /obj/effect/fake_sun
 	name = "fake sun"
@@ -152,7 +152,7 @@ var/static/list/fake_sunlight_zs = list()
 			turfs_to_use += T
 
 	if(!turfs_to_use.len)
-		warning("Fake sun placed on a level where it can't find any outdoor turfs to color at [x],[y],[z].")
+		WARNING("Fake sun placed on a level where it can't find any outdoor turfs to color at [x],[y],[z].")
 		return
 
 	sun = new(null)
@@ -165,7 +165,7 @@ var/static/list/fake_sunlight_zs = list()
 	sun.set_alpha(round(CLAMP01(choice["brightness"])*255,1))
 
 	if(do_sun)
-		fake_sunlight_zs |= z
+		GLOB.fake_sunlight_zs |= z
 		for(var/turf/T as anything in turfs_to_use)
 			sun.apply_to_turf(T)
 
@@ -238,5 +238,12 @@ var/static/list/fake_sunlight_zs = list()
 		list(
 			"brightness" = 1,
 			"color" = "#1c49ff"
+		)
+	)
+/obj/effect/fake_sun/underwater/lighter
+	possible_light_setups = list(
+		list(
+			"brightness" = 1,
+			"color" = "#4bd1f3"
 		)
 	)

@@ -26,8 +26,13 @@
 		return INITIALIZE_HINT_QDEL
 
 
-var/list/image/hazard_overlays
-var/list/tape_roll_applications = list()
+GLOBAL_LIST_INIT_TYPED(hazard_overlays, /image, list(
+		"[NORTH]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "N"),
+		"[EAST]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E"),
+		"[SOUTH]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S"),
+		"[WEST]"	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
+	))
+GLOBAL_LIST_EMPTY(tape_roll_applications)
 
 /obj/item/tape
 	name = "tape"
@@ -55,12 +60,6 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape/Initialize(mapload)
 	. = ..()
-	if(!hazard_overlays)
-		hazard_overlays = list()
-		hazard_overlays["[NORTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "N")
-		hazard_overlays["[EAST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E")
-		hazard_overlays["[SOUTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S")
-		hazard_overlays["[WEST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
 	update_icon()
 
 /obj/item/taperoll/medical
@@ -72,7 +71,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/medical
 	name = "medical tape"
 	desc = "A length of medical tape.  Do not cross."
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 	color = COLOR_WHITE
 
 /obj/item/taperoll/police
@@ -84,7 +83,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/police
 	name = "police tape"
 	desc = "A length of police tape.  Do not cross."
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	color = COLOR_RED_LIGHT
 
 /obj/item/taperoll/engineering
@@ -99,7 +98,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/engineering
 	name = "engineering tape"
 	desc = "A length of engineering tape. Better not cross it."
-	req_one_access = list(access_engine,access_atmospherics)
+	req_one_access = list(ACCESS_ENGINE,ACCESS_ATMOSPHERICS)
 	color = COLOR_YELLOW
 
 /obj/item/taperoll/atmos
@@ -111,7 +110,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/atmos
 	name = "atmospherics tape"
 	desc = "A length of atmospherics tape. Better not cross it."
-	req_one_access = list(access_engine,access_atmospherics)
+	req_one_access = list(ACCESS_ENGINE,ACCESS_ATMOSPHERICS)
 	color = COLOR_DEEP_SKY_BLUE
 
 /obj/item/taperoll/update_icon()
@@ -138,7 +137,10 @@ var/list/tape_roll_applications = list()
 	update_icon()
 	return ..()
 
-/obj/item/taperoll/attack_self(mob/user as mob)
+/obj/item/taperoll/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!start)
 		start = get_turf(src)
 		to_chat(user, span_notice("You place the first end of \the [src]."))
@@ -298,18 +300,18 @@ var/list/tape_roll_applications = list()
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
 		var/turf/F = A
 		var/direction = user.loc == F ? user.dir : turn(user.dir, 180)
-		var/icon/hazard_overlay = hazard_overlays["[direction]"]
-		if(tape_roll_applications[F] == null)
-			tape_roll_applications[F] = 0
+		var/icon/hazard_overlay = GLOB.hazard_overlays["[direction]"]
+		if(GLOB.tape_roll_applications[F] == null)
+			GLOB.tape_roll_applications[F] = 0
 
-		if(tape_roll_applications[F] & direction) // hazard_overlay in F.overlays wouldn't work.
+		if(GLOB.tape_roll_applications[F] & direction) // hazard_overlay in F.overlays wouldn't work.
 			user.visible_message("\The [user] uses the adhesive of \the [src] to remove area markings from \the [F].", "You use the adhesive of \the [src] to remove area markings from \the [F].")
 			F.cut_overlay(hazard_overlay)
-			tape_roll_applications[F] &= ~direction
+			GLOB.tape_roll_applications[F] &= ~direction
 		else
 			user.visible_message("\The [user] applied \the [src] on \the [F] to create area markings.", "You apply \the [src] on \the [F] to create area markings.")
 			F.add_overlay(hazard_overlay)
-			tape_roll_applications[F] |= direction
+			GLOB.tape_roll_applications[F] |= direction
 		return
 
 /obj/item/tape/proc/crumple()

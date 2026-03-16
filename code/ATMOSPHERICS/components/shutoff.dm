@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 	return TRUE
 
 // Alt+Click now toggles the open/close function, when the autoseal is disabled
-/obj/machinery/atmospherics/valve/shutoff/AltClick(var/mob/user)
+/obj/machinery/atmospherics/valve/shutoff/click_alt(var/mob/user)
 	if(isliving(user))
 		if(close_on_leaks)
 			to_chat(user, "You try to manually [open ? "close" : "open"] the valve, but it [open ? "opens" : "closes"] automatically again.")

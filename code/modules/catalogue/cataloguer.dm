@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	Scanning something requires remaining within a certain radius of the object for a specific period of time, until the \
 	scan is finished. If the scan is interrupted, it can be resumed from where it was left off, if the same thing is \
 	scanned again."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "cataloguer"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 2, TECH_DATA = 3, TECH_MAGNET = 3)
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	// The delay, and test for if the scan succeeds or not.
 	var/scan_start_time = world.time
-	if(do_after(user, scan_delay, target, ignore_movement = TRUE, max_distance = scan_range))
+	if(do_after(user, scan_delay, target, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, max_distance = scan_range))
 		if(target.can_catalogue(user))
 			to_chat(user, span_notice("You successfully scan \the [target] with \the [src]."))
 			playsound(src, 'sound/machines/ping.ogg', 50)
@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	// Figure out who may have helped out.
 	var/list/contributers = list()
 	var/list/contributer_names = list()
-	for(var/mob/living/L as anything in player_list)
+	for(var/mob/living/L as anything in GLOB.player_list)
 		if(L == user)
 			continue
 		if(!istype(L))
@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 
-/obj/item/cataloguer/AltClick(mob/user)
+/obj/item/cataloguer/click_alt(mob/user)
 	pulse_scan(user)
 
 // Gives everything capable of being scanned an outline for a brief moment.
@@ -239,6 +239,9 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	points_stored = max(0, points_stored += amount)
 
 /obj/item/cataloguer/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	interact(user)
 
 /obj/item/cataloguer/interact(mob/user)
@@ -324,7 +327,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	name = "compact cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "compact"
 	actions_types = list(/datum/action/item_action/toggle_cataloguer)
 	var/deployed = TRUE
@@ -335,7 +338,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	name = "pathfinder's cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "pathcat"
 	scan_range = 3
 	toolspeed = 1

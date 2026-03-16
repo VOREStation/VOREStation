@@ -41,7 +41,7 @@ In short:
 	set background = 1
 //	garbage_collector.garbage_collect = 0
 
-	escape_list = get_area_turfs(locate(/area/hallway/secondary/exit))
+	GLOB.escape_list = get_area_turfs(locate(/area/hallway/secondary/exit))
 
 	//Separated into separate procs for profiling
 	AreaSet()

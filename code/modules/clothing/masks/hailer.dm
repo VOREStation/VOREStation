@@ -56,7 +56,7 @@
 /obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, actiontype)
 	halt()
 
-/obj/item/clothing/mask/gas/sechailer/AltClick(mob/user)
+/obj/item/clothing/mask/gas/sechailer/click_alt(mob/user)
 	selectphrase()
 
 /obj/item/clothing/mask/gas/sechailer/verb/selectphrase()

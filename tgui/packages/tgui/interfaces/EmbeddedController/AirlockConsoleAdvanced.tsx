@@ -42,7 +42,7 @@ export const AirlockConsoleAdvanced = (props) => {
       maxValue: 202,
       value: external_pressure,
       label: 'External Pressure',
-      textValue: external_pressure + ' kPa',
+      textValue: `${external_pressure} kPa`,
       color: color,
     },
     {
@@ -50,7 +50,7 @@ export const AirlockConsoleAdvanced = (props) => {
       maxValue: 202,
       value: chamber_pressure,
       label: 'Chamber Pressure',
-      textValue: chamber_pressure + ' kPa',
+      textValue: `${chamber_pressure} kPa`,
       color: color,
     },
     {
@@ -58,7 +58,7 @@ export const AirlockConsoleAdvanced = (props) => {
       maxValue: 202,
       value: internal_pressure,
       label: 'Internal Pressure',
-      textValue: internal_pressure + ' kPa',
+      textValue: `${internal_pressure} kPa`,
       color: color,
     },
   ];

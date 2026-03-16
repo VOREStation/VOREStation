@@ -1,7 +1,7 @@
 /obj/item/selectable_item
 	name = "selectable item"
 	desc = "If you find this, you should definitely report this..."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/gifts.dmi'
 	icon_state = "gift1"
 	var/preface_string = "You are about to select an item. Are you sure you want to use it and select one?"
 	var/preface_title = "selectable item"
@@ -10,7 +10,10 @@
 	var/list/item_options = list("Gift" = /obj/item/a_gift,
 									"Health Analyzer" = /obj/item/healthanalyzer)
 
-/obj/item/selectable_item/attack_self(mob/user as mob)
+/obj/item/selectable_item/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_alert(user, {"[preface_string]"}, preface_title)
 	var/chosen_item = tgui_input_list(user, selection_string, selection_title, item_options)
 	chosen_item = item_options[chosen_item]
@@ -24,7 +27,7 @@
 
 
 /obj/item/selectable_item/chemistrykit
-	icon = 'icons/obj/chemical_vr.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "chemkit"
 	selection_string = "Select a chemical:"
 	selection_title = "Chemical Selection"

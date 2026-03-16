@@ -8,7 +8,7 @@
 	icon = null
 	invisibility = INVISIBILITY_ABSTRACT
 	update_canmove()
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
@@ -18,6 +18,9 @@
 
 	flick(anim, animation)
 	if(do_gibs) gibs(loc, dna)
+
+	if (!QDELETED(src))
+		ghostize()
 
 	spawn(15)
 		if(animation)	qdel(animation)
@@ -42,7 +45,11 @@
 	flick(anim, animation)
 	new remains(loc)
 
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
+
+	if (!QDELETED(src))
+		ghostize()
+
 	spawn(15)
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
@@ -62,7 +69,11 @@
 
 	flick(anim, animation)
 
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
+
+	if (!QDELETED(src))
+		ghostize()
+
 	spawn(15)
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
@@ -71,7 +82,14 @@
 
 	if(stat == DEAD)
 		return 0
+
+	var/mob/living/simple_mob/animal/borer/has_worm = has_brain_worms()
+	if(has_worm) // This is our host's problem to deal with
+		has_worm.detatch()
+
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src, gibbed)
+
 	if(src.loc && istype(loc,/obj/belly) || istype(loc,/obj/item/dogborg/sleeper)) deathmessage = "no message" //VOREStation Add - Prevents death messages from inside mobs
 	facing_dir = null
 
@@ -82,9 +100,6 @@
 	SSmotiontracker.ping(src,80)
 
 	update_canmove()
-
-	dizziness = 0
-	jitteriness = 0
 
 	layer = MOB_LAYER
 
@@ -111,16 +126,16 @@
 
 	timeofdeath = world.time
 	if(mind) mind.store_memory("Time of death: [stationtime2text()]", 0)
-	living_mob_list -= src
-	dead_mob_list |= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list |= src
 
 	set_respawn_timer()
 	update_icon()
 	handle_regular_hud_updates()
 	handle_vision()
 
-	if(ticker && ticker.mode)
-		ticker.mode.check_win()
+	if(SSticker && SSticker.mode)
+		SSticker.mode.check_win()
 
 
 	return 1

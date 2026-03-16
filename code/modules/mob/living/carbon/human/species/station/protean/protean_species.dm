@@ -115,8 +115,6 @@
 		/mob/living/proc/start_wings_hovering,
 		) //removed fetish verbs, since non-customs can pick neutral traits now. Also added flight, cause shapeshifter can grow wings.
 
-	var/global/list/abilities = list()
-
 	var/blob_appearance = "puddle1"
 	var/blob_color_1 = "#363636"
 	var/blob_color_2 = "#ba3636"
@@ -130,22 +128,23 @@
 	)
 
 	var/list/dullahan_overlays = list(
-		"dullahanbody" = "#FFFFFF",
-		"dullahanhead" = "#FFFFFF",
-		"dullahanmetal" = "#FFFFFF",
-		"dullahaneyes" = "#FFFFFF",
-		"dullahandecals" = "#FFFFFF",
-		"dullahanextended" = "#FFFFFF"
-		// loads the icons from the DMI file in that order on spawn. they are overlay 1-6.
+		"dullahanbody" = "#FFFFFF", // body 1
+		"dullahaneyes" = "#FFFFFF", // eyes 2
+		"dullahanmetal" = "#FFFFFF", // metal 3
+		"dullahanhead" = "#FFFFFF", // head 4
+		"dullahanlightsempty" = "#FFFFFF", // lights 5
+		"dullahanextended" = "#FFFFFF", // breastplate part only on 6, do not use for anything else
+		"dullahanclothesempty" = "#FFFFFF" // clothes 7
+		// loads the icons from the DMI file in that order on spawn. they are overlay 1-6. specifically it uses those names in the DMI file.
 	)
 	var/pseudodead = 0
 
 /datum/species/protean/New()
 	..()
-	if(!LAZYLEN(abilities))
+	if(!LAZYLEN(GLOB.protean_abilities))
 		var/list/powertypes = subtypesof(/obj/effect/protean_ability)
 		for(var/path in powertypes)
-			abilities += new path()
+			GLOB.protean_abilities += new path()
 
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
 	var/obj/item/nif/saved_nif = H.nif
@@ -153,7 +152,7 @@
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
 		H.nif.moveToNullspace()
 	..()
-	if(saved_nif)
+	if(saved_nif && !ismannequin(H))
 		saved_nif.quick_implant(H)
 
 /datum/species/protean/get_race_key()
@@ -210,8 +209,7 @@
 
 /datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
-	var/obj/item/stack/material/steel/metal_stack = new()
-	metal_stack.set_amount(5)
+	var/obj/item/stack/material/steel/metal_stack = new(null, 5)
 
 	var/obj/item/clothing/accessory/permit/nanotech/permit = new()
 	permit.set_name(H.real_name)
@@ -306,7 +304,7 @@
 		L[++L.len] = list("- -- --- REFACTORY ERROR! --- -- -", null, null, null, null)
 
 	L[++L.len] = list("- -- --- Abilities (Shift+LMB Examines) --- -- -", null, null, null, null)
-	for(var/obj/effect/protean_ability/A as anything in abilities)
+	for(var/obj/effect/protean_ability/A as anything in GLOB.protean_abilities)
 		var/client/C = H.client
 		var/img
 		if(C && istype(C)) //sanity checks

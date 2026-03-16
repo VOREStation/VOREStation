@@ -41,7 +41,7 @@
 	else
 		reset_search()
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	qdel_null(Q) //get rid of the query
+	QDEL_NULL(Q) //get rid of the query
 	return
 
 /obj/item/antag_spawner/proc/reset_search()
@@ -56,6 +56,9 @@
 	ghost_query_type = /datum/ghost_query/apprentice
 
 /obj/item/antag_spawner/technomancer_apprentice/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("Teleporter attempting to lock on to your apprentice."))
 	request_player()
 
@@ -81,7 +84,7 @@
 	to_chat(H, span_infoplain(span_bold("It would be wise to speak to your master, and learn what their plans are for today.")))
 
 	spawn(1)
-		technomancers.add_antagonist(H.mind, 0, 1, 0, 0, 0)
+		GLOB.technomancers.add_antagonist(H.mind, 0, 1, 0, 0, 0)
 		equip_antag(H)
 		used = 1
 		qdel(src)
@@ -102,6 +105,9 @@
 	var/drone_type = null
 
 /obj/item/antag_spawner/syndicate_drone/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("Teleporter attempting to lock on to an available unit."))
 	request_player()
 
@@ -127,7 +133,7 @@
 	R.key = C.key
 
 	spawn(1)
-		mercs.add_antagonist(R.mind, FALSE, TRUE, FALSE, FALSE, FALSE)
+		GLOB.mercs.add_antagonist(R.mind, FALSE, TRUE, FALSE, FALSE, FALSE)
 		//add_antagonist(var/datum/mind/player, var/ignore_role, var/do_not_equip, var/move_to_spawn, var/do_not_announce, var/preserve_appearance)
 		qdel(src)
 

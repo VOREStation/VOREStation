@@ -11,8 +11,9 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	power_channel = LIGHT
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = WALL_ITEM
 	var/on = 1
 	var/area/area = null
 	var/otherarea = null
@@ -71,6 +72,9 @@
 	area.power_change()
 	GLOB.lights_switched_on_roundstat++
 
+/obj/machinery/light_switch/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/machinery/light_switch/power_change()
 
 	if(!otherarea)
@@ -81,12 +85,12 @@
 
 		update_icon()
 
-/obj/machinery/light_switch/emp_act(severity)
+/obj/machinery/light_switch/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	power_change()
-	..(severity)
+	..(severity, recursive)
 
 //Breakers for event maps
 

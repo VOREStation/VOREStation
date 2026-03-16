@@ -8,8 +8,12 @@
 	slot_flags = 0
 	var/pile_type = "/obj/structure/bed/pillowpile"
 	throw_range = 7
+	special_handling = TRUE
 
-/obj/item/bedsheet/pillow/attack_self(mob/user as mob)
+/obj/item/bedsheet/pillow/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.drop_item()
 	if(icon_state == initial(icon_state))
 		icon_state = "[icon_state]_placed"
@@ -64,7 +68,7 @@
 
 /obj/structure/bed/pillowpile/attack_hand(mob/user)
 	to_chat(user, span_notice("Now disassembling the large pillow pile..."))
-	if(do_after(user, 30))
+	if(do_after(user, 3 SECONDS, target = src))
 		if(!src) return
 		to_chat(user, span_notice("You dissasembled the large pillow pile!"))
 		new sourcepillow(src.loc)
@@ -72,7 +76,7 @@
 
 /obj/structure/bed/pillowpilefront/attack_hand(mob/user)
 	to_chat(user, span_notice("Now disassembling the front of the pillow pile..."))
-	if(do_after(user, 30))
+	if(do_after(user, 3 SECONDS, target = src))
 		if(!src) return
 		to_chat(user, span_notice("You dissasembled the the front of the pillow pile!"))
 		new sourcepillow(src.loc)

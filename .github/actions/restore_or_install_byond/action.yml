@@ -29,6 +29,14 @@ runs:
         echo "BYOND_MAJOR=$BYOND_MAJOR" >> $GITHUB_ENV
         echo "BYOND_MINOR=$BYOND_MINOR" >> $GITHUB_ENV
 
+    # BYOND 516.1664 and later require libcurl on linux
+    - name: Install BYOND Dependencies
+      shell: bash
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt update
+        sudo apt install -y libcurl4 libcurl4:i386
+
     # The use of `actions/cache/restore` and `actions/cache/save` here is deliberate, as we want to
     # save the BYOND install to a cache as early as possible. If we used just `actions/cache`, it
     # would only attempt to save the cache at the end of a job. This ensures that if a workflow run

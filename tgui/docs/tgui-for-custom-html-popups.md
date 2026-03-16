@@ -7,7 +7,7 @@ TGUI in its current form would not exist without a very robust underlying layer 
 TGUI in order to create a window (popup) uses the `/datum/tgui_window` class. Feel free to take a look at its [source code](../../code/modules/tgui/tgui_window.dm), as all of its procs are very well documented. This class takes care of spawning the BYOND's browser element, normalizes the browser environment (because users might have IE8 on their system, or in future, it might be Microsoft Edge) and specifies a very rigid communication protocol between DM and JS.
 
 > **Notice:** Because `/datum/tgui_window` includes a lot of boilerplate in the final html that it displays in the browser, it is somewhat more expensive to render than a traditional, dumb popup using a `browse()` proc call. Therefore, its best to use it with static popups or very custom pieces of client-side code, e.g. stat panel, chat or a background music player.
-Create a window that prints hello world.
+> Create a window that prints hello world.
 
 ```dm
 var/datum/tgui_window/window = new(usr.client, "custom_popup")
@@ -34,7 +34,7 @@ window.close()
 
 ## Sending assets
 
-TGUI in /tg/station codebase has `/datum/asset`, that packs scripts and stylesheets for delivery via CDN for efficiency. TGUI internally uses this asset system to render TGUI interfaces *proper* and TGUI chat. This is a snippet from internal TGUI code:
+TGUI in /tg/station codebase has `/datum/asset`, that packs scripts and stylesheets for delivery via CDN for efficiency. TGUI internally uses this asset system to render TGUI interfaces _proper_ and TGUI chat. This is a snippet from internal TGUI code:
 
 ```dm
 window.initialize(
@@ -63,8 +63,8 @@ Finally, you can use the `Byond` API object to load JS and CSS files directly vi
 
 ```html
 <script>
-Byond.loadJs('https://example.com/bundle.js');
-Byond.loadCss('https://example.com/bundle.css');
+  Byond.loadJs('https://example.com/bundle.js');
+  Byond.loadCss('https://example.com/bundle.css');
 </script>
 ```
 
@@ -90,7 +90,7 @@ window.initialize(
 )
 ```
 
-If you need to inline multiple JS or CSS files, you can concatenate them for now, and separate contents of each file with an `\n` symbol. *This can be a point of improvement (add support for file lists)*.
+If you need to inline multiple JS or CSS files, you can concatenate them for now, and separate contents of each file with an `\n` symbol. _This can be a point of improvement (add support for file lists)_.
 
 ## Fancy mode
 
@@ -133,7 +133,7 @@ You can think of it in these terms:
 
 Of course we're not working with functions here, but hopefully this analogy makes the concept easier to understand.
 
-Finally, message can contain custom properties, and how you use them is *completely up to you*. They have an important limitation - all additional properties are string-typed, and require you to use a slightly more verbose API for sending them (more about it in the next section).
+Finally, message can contain custom properties, and how you use them is _completely up to you_. They have an important limitation - all additional properties are string-typed, and require you to use a slightly more verbose API for sending them (more about it in the next section).
 
 ```js
 Byond.sendMessage({
@@ -156,6 +156,7 @@ window.send_message("alert", list(
 To receive it in JS, you have two different syntaxes. First one is the most verbose one, but allows receiving all types of messages, and deciding what to do via `if` conditions.
 
 > NOTE: We're using ECMAScript 5 syntax here, because this is the version that is supported by IE 11 natively without any additional compilation. If you're coding in a compiled environment (TGUI/Webpack), then feel free to use arrow functions and other fancy syntaxes.
+
 ```js
 Byond.subscribe(function (type, payload) {
   if (type === 'alert') {
@@ -206,8 +207,8 @@ You can send messages with custom fields in case if you want to bypass JSON seri
 
 ```js
 Byond.sendMessage({
-  type: "something",
-  ref: "[0x12345678]",
+  type: 'something',
+  ref: '[0x12345678]',
 });
 ```
 
@@ -232,7 +233,7 @@ Here's the summary of what it has.
 - `Byond.command()` - Runs a command on the client, as if you typed it into the command bar yourself. Can be any verb, or a special client-side command, such as `.output`.
 
 > As of now, `Byond.winget()` requires a Promise polyfill, which is only available in compiled TGUI, but not in plain popups, and if you try using it, you'll get a bluescreen error. If you'd like to have winget in non-compiled contexts, then ping maintainers on Discord to request this feature.
-When working with `winset` and `winget`, it can be very useful to consult [BYOND 5.0 controls and parameters guide](https://secure.byond.com/docs/ref/skinparams.html) to figure out what you can control in the BYOND client. Via these controls and parameters, you can do many interesting things, such as dynamically define BYOND macros, or show/hide and reposition various skin elements.
+> When working with `winset` and `winget`, it can be very useful to consult [BYOND 5.0 controls and parameters guide](https://secure.byond.com/docs/ref/skinparams.html) to figure out what you can control in the BYOND client. Via these controls and parameters, you can do many interesting things, such as dynamically define BYOND macros, or show/hide and reposition various skin elements.
 
 Another source of information is the official [BYOND Reference](https://secure.byond.com/docs/ref/info.html#/{skin}), which is a much larger, but a more comprehensive doc.
 

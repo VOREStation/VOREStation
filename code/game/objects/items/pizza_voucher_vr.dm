@@ -21,6 +21,9 @@
 	desc = "A pocket-sized plastic slip with a button in the middle. \"[pick(descstrings)]\" is written on the back."
 
 /obj/item/pizzavoucher/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	add_fingerprint(user)
 	if(!spent)
 		user.visible_message(span_notice("[user] presses a button on [src]!"))
@@ -30,7 +33,7 @@
 			span_notice("A small bluespace rift opens just above your head and spits out a pizza box!"),
 			span_notice("You hear a fwoosh followed by a thump."))
 		if(special_delivery)
-			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECEIVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
+			GLOB.command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECEIVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
 			new /obj/effect/falling_effect/pizza_delivery/special(user.loc)
 		else
 			new /obj/effect/falling_effect/pizza_delivery(user.loc)

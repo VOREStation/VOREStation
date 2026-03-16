@@ -38,7 +38,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 
 /obj/machinery/gateway/centerstation/Initialize(mapload)
 	if(GLOB.gateway_station)
-		warning("[src] at [x],[y],[z] appears to be an additional station-gateway")
+		WARNING("[src] at [x],[y],[z] appears to be an additional station-gateway")
 	else
 		GLOB.gateway_station = src
 
@@ -209,6 +209,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 						MI.forceMove(finaldest.loc)
 						sleep(1)
 						MI.Paralyse(10)
+						MI.Sleeping(10)
 						MI << 'sound/effects/bamf.ogg'
 						to_chat(MI,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 					for(var/obj/item/I in L)
@@ -219,6 +220,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 				L.forceMove(finaldest.loc)
 				sleep(1)
 				L.Paralyse(10)
+				L.Sleeping(10)
 				L << 'sound/effects/bamf.ogg'
 				to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 			//VOREStation Addition End
@@ -256,7 +258,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 
 /obj/machinery/gateway/centeraway/Initialize(mapload)
 	if(GLOB.gateway_away)
-		warning("[src] at [x],[y],[z] appears to be an additional away-gateway")
+		WARNING("[src] at [x],[y],[z] appears to be an additional away-gateway")
 	else
 		GLOB.gateway_away = src
 

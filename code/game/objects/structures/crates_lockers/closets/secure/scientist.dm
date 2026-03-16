@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/scientist
 	name = "scientist's locker"
-	req_access = list(access_tox_storage)
-	closet_appearance = /decl/closet_appearance/secure_closet/science
+	req_access = list(ACCESS_TOX_STORAGE)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/science
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/scientist,
@@ -9,7 +9,7 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/radio/headset/headset_sci,
 		/obj/item/tank/air,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/shoes/boots/winter/science)
 
@@ -21,10 +21,10 @@
 	return ..()
 
 
-/obj/structure/closet/secure_closet/RD
+/obj/structure/closet/secure_closet/research_director
 	name = "research director's locker"
-	req_access = list(access_rd)
-	closet_appearance = /decl/closet_appearance/secure_closet/science/rd
+	req_access = list(ACCESS_RD)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/science/rd
 
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/scientist,
@@ -48,7 +48,7 @@
 		/obj/item/radio/headset/alt/heads/rd,
 		/obj/item/radio/headset/earbud/heads/rd,
 		/obj/item/tank/air,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/flash,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science/rd,
@@ -58,8 +58,8 @@
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
-	req_access = list(access_tox_storage)
-	closet_appearance = /decl/closet_appearance/secure_closet/science/xenoarch
+	req_access = list(ACCESS_TOX_STORAGE)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/science/xenoarch
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/scientist,
@@ -76,7 +76,7 @@
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/tools/xenoarch
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/tools/xenoarch
 
 	starts_with = list(
 		/obj/item/storage/belt/archaeology,

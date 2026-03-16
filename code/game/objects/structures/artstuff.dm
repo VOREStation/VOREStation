@@ -13,6 +13,10 @@
 	//max_integrity = 60
 	var/obj/item/canvas/painting = null
 
+/obj/structure/easel/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 //Adding canvases
 /obj/structure/easel/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/canvas))
@@ -80,7 +84,9 @@
 			grid[x][y] = canvas_color
 
 /obj/item/canvas/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/canvas/dropped(mob/user)
@@ -345,12 +351,24 @@
 	desc_with_canvas = "A piece of art (or \"art\"). Anyone could've hung it."
 	persistence_id = "public"
 
+/obj/structure/sign/painting/public/north
+	pixel_y = 30
+
+/obj/structure/sign/painting/public/south
+	pixel_y = -30
+
+/obj/structure/sign/painting/public/east
+	pixel_x = 30
+
+/obj/structure/sign/painting/public/west
+	pixel_x = -30
+
 /obj/structure/sign/painting/library_secure
 	name = "\improper Curated Painting Exhibit mounting"
 	desc = "For masterpieces hand-picked by the librarian."
 	desc_with_canvas = "A masterpiece hand-picked by the librarian, supposedly."
 	persistence_id = "library"
-	req_one_access = list(access_library)
+	req_one_access = list(ACCESS_LIBRARY)
 	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/chapel_secure
@@ -358,7 +376,7 @@
 	desc = "For masterpieces hand-picked by the chaplain."
 	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
 	persistence_id = "chapel"
-	req_one_access = list(access_chapel_office)
+	req_one_access = list(ACCESS_CHAPEL_OFFICE)
 	curator = JOB_CHAPLAIN
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
@@ -366,7 +384,7 @@
 	desc = "For art pieces deemed too subversive or too illegal to be shared outside of librarians."
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
-	req_one_access = list(access_library)
+	req_one_access = list(ACCESS_LIBRARY)
 	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/away_areas // for very hard-to-get-to areas
@@ -512,7 +530,7 @@
 			break
 
 	if(!new_canvas)
-		warning("Couldn't find a canvas to match [w]x[h] of painting")
+		WARNING("Couldn't find a canvas to match [w]x[h] of painting")
 		return
 
 	new_canvas.fill_grid_from_icon(I)
@@ -536,7 +554,7 @@
  * For now, we do it this way because calling this on a canvas itself might cause issues due to the whole dimension thing.
 */
 /obj/structure/sign/painting/proc/admin_lateload_painting(var/spawn_specific = 0, var/which_painting = 0)
-	if(!usr.client.holder)
+	if(!check_rights_for(usr.client, R_HOLDER))
 		return 0
 	if(spawn_specific && isnum(which_painting))
 		var/list/painting = SSpersistence.all_paintings[which_painting]
@@ -554,7 +572,7 @@
 			return 0
 		if(!fexists("data/persistent/paintings/[persistence_id]/[painting["md5"]].png"))
 			to_chat(usr, span_warning("Chosen painting could not be loaded! Incident was logged, but no action taken at this time"))
-			log_debug("[usr] tried to spawn painting of list id [which_painting] in all_paintings list and associated file could not be found. \n \
+			log_runtime("[usr] tried to spawn painting of list id [which_painting] in all_paintings list and associated file could not be found. \n \
 			Painting was titled [title] by [author_ckey] of [persistence_id]")
 			return 0
 
@@ -569,7 +587,7 @@
 				break
 
 		if(!new_canvas)
-			warning("Couldn't find a canvas to match [w]x[h] of painting")
+			WARNING("Couldn't find a canvas to match [w]x[h] of painting")
 			return 0
 
 		new_canvas.fill_grid_from_icon(I)
@@ -592,7 +610,7 @@
 		Proceed? It will likely have over 500 entries", "Generate list?", list("Proceed!", "Cancel")) != "Proceed!")
 			return
 
-		log_debug("[usr] generated list of paintings from SSPersistence")
+		// to_chat(world, "[usr] generated list of paintings from SSPersistence")
 		var/list/paintings = list()
 		var/current = 1
 		for(var/entry in SSpersistence.all_paintings)

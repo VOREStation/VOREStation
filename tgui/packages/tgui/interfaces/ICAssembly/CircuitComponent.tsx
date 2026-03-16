@@ -155,8 +155,8 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
       <Box<HTMLDivElement>
         className="ObjectComponent"
         position="absolute"
-        left={x_pos + 'px'}
-        top={y_pos + 'px'}
+        left={`${x_pos}px`}
+        top={`${y_pos}px`}
         onMouseDown={this.handleStartDrag}
         onMouseUp={this.handleStopDrag}
         {...rest}
@@ -187,8 +187,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
                     <Box mb={1}>
                       {
                         <div
-                          // All of the descriptions are pulled from the game files
-                          // eslint-disable-next-line react/no-danger
+                          // biome-ignore lint/security/noDangerouslySetInnerHtml: All of the descriptions are pulled from the game files
                           dangerouslySetInnerHTML={{
                             __html: circuit.extended_desc,
                           }}

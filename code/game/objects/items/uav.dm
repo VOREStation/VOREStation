@@ -57,8 +57,8 @@
 	ion_trail.stop()
 
 /obj/item/uav/Destroy()
-	qdel_null(cell)
-	qdel_null(ion_trail)
+	QDEL_NULL(cell)
+	QDEL_NULL(ion_trail)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -99,7 +99,7 @@
 		if("(Dis)Assemble")
 			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user))
 				user.visible_message(span_infoplain(span_bold("[user]") + " starts [state == UAV_PACKED ? "unpacking" : "packing"] [src]."), span_info("You start [state == UAV_PACKED ? "unpacking" : "packing"] [src]."))
-				if(do_after(user, 10 SECONDS, src))
+				if(do_after(user, 10 SECONDS, target = src))
 					return toggle_packed(user)
 		// Can toggle power from on and off
 		if("Toggle Power")
@@ -119,7 +119,7 @@
 		toggle_pairing()
 
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER) && cell)
-		if(do_after(user, 3 SECONDS, src))
+		if(do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("You remove [cell] into [nickname]."))
 			playsound(src, I.usesound, 50, 1)
 			power_down()
@@ -127,7 +127,7 @@
 			cell = null
 
 	else if(istype(I, /obj/item/cell) && !cell)
-		if(do_after(user, 3 SECONDS, src))
+		if(do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("You insert [I] into [nickname]."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			power_down()
@@ -136,7 +136,7 @@
 			cell = I
 
 	else if(istype(I, /obj/item/pen) || istype(I, /obj/item/flashlight/pen))
-		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/tmp_label = tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN)
 		if(length(tmp_label) > 50 || length(tmp_label) < 3)
 			to_chat(user, span_notice("The nickname must be between 3 and 50 characters."))
 		else
@@ -280,12 +280,6 @@
 
 /obj/item/uav/proc/remove_master(var/mob/living/M)
 	LAZYREMOVE(masters, WEAKREF(M))
-
-/obj/item/uav/check_eye()
-	if(state == UAV_ON)
-		return 0
-	else
-		return -1
 
 /obj/item/uav/proc/start_hover()
 	if(!ion_trail.on) //We'll just use this to store if we're floating or not

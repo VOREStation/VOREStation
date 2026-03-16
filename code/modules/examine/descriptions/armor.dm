@@ -43,7 +43,7 @@
 		else
 			return "It's difficult to tell how much it'll influence your speed."
 
-/obj/item/clothing/get_description_info()
+/obj/item/clothing/get_description_info(list/additional_information)
 	var/armor_stats = description_info + "\
 	<br>"
 
@@ -85,12 +85,12 @@
 	var/list/covers = list()
 	var/list/slots = list()
 
-	for(var/name in string_part_flags)
-		if(body_parts_covered & string_part_flags[name])
+	for(var/name in GLOB.string_part_flags)
+		if(body_parts_covered & GLOB.string_part_flags[name])
 			covers += name
 
-	for(var/name in string_slot_flags)
-		if(slot_flags & string_slot_flags[name])
+	for(var/name in GLOB.string_slot_flags)
+		if(slot_flags & GLOB.string_slot_flags[name])
 			slots += name
 
 	if(covers.len)

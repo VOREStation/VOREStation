@@ -5,6 +5,7 @@
 	icon_state = "auth_off"
 	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/circuitboard/keycard_auth
+	flags = WALL_ITEM
 	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
 	var/event = ""
 	var/screen = 1
@@ -23,16 +24,42 @@
 	power_channel = ENVIRON
 
 /obj/machinery/keycard_auth/attack_ai(mob/user)
-	to_chat (user, span_warning("A firewall prevents you from interfacing with this device!"))
+	to_chat(user, span_warning("A firewall prevents you from interfacing with this device!"))
 	return
 
 /obj/machinery/keycard_auth/attackby(obj/item/W, mob/user)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		to_chat(user, "You begin removing the faceplate from the [src]")
+		playsound(src, W.usesound, 50, 1)
+		if(do_after(user, 1 SECOND * W.toolspeed, target = src))
+			to_chat(user, "You remove the faceplate from the [src]")
+			var/obj/structure/frame/A = new /obj/structure/frame(loc)
+			A.circuit = circuit
+			A.frame_type = circuit.board_type
+			circuit = null
+			A.need_circuit = FALSE
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.set_dir(dir)
+			A.anchored = TRUE
+			for(var/obj/C in src)
+				if(istype(C, /obj/item/circuitboard))
+					C.forceMove(A)
+					continue
+				C.forceMove(loc)
+			A.forensic_data = forensic_data //carry crime data over.
+			A.state = FRAME_WIRED
+			A.update_icon()
+			qdel(src)
+			return
+
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
+
 	if(istype(W,/obj/item/card/id))
 		var/obj/item/card/id/ID = W
-		if(access_keycard_auth in ID.GetAccess())
+		if(ACCESS_KEYCARD_AUTH in ID.GetAccess())
 			if(active == 1)
 				//This is not the device that made the initial request. It is the device confirming the request.
 				if(event_source)
@@ -41,28 +68,6 @@
 			else if(screen == 2)
 				event_triggered_by = user
 				broadcast_request(user) //This is the device making the initial event request. It needs to broadcast to other devices
-
-	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		to_chat(user, "You begin removing the faceplate from the [src]")
-		playsound(src, W.usesound, 50, 1)
-		if(do_after(user, 10 * W.toolspeed))
-			to_chat(user, "You remove the faceplate from the [src]")
-			var/obj/structure/frame/A = new /obj/structure/frame(loc)
-			var/obj/item/circuitboard/M = new circuit(A)
-			A.frame_type = M.board_type
-			A.need_circuit = 0
-			A.pixel_x = pixel_x
-			A.pixel_y = pixel_y
-			A.set_dir(dir)
-			A.circuit = M
-			A.anchored = TRUE
-			for (var/obj/C in src)
-				C.forceMove(loc)
-			A.state = 3
-			A.update_icon()
-			M.deconstruct(src)
-			qdel(src)
-			return
 
 /obj/machinery/keycard_auth/power_change()
 	..()
@@ -183,21 +188,21 @@
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
 	if(CONFIG_GET(flag/ert_admin_call_only)) return 1
-	return ticker.mode && ticker.mode.ert_disabled
+	return SSticker.mode && SSticker.mode.ert_disabled
 
-var/global/maint_all_access = 0
+GLOBAL_VAR_INIT(maint_all_access, FALSE)
 
 /proc/make_maint_all_access()
-	maint_all_access = 1
-	to_world(span_alert(span_red(span_huge("Attention!"))))
-	to_world(span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
+	GLOB.maint_all_access = TRUE
+	to_chat(world, span_alert(span_red(span_huge("Attention!"))))
+	to_chat(world, span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
 
 /proc/revoke_maint_all_access()
-	maint_all_access = 0
-	to_world(span_alert(span_red(span_huge("Attention!"))))
-	to_world(span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
+	GLOB.maint_all_access = FALSE
+	to_chat(world, span_alert(span_red(span_huge("Attention!"))))
+	to_chat(world, span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))
+	if(GLOB.maint_all_access && src.check_access_list(list(ACCESS_MAINT_TUNNELS)))
 		return 1
 	return ..(M)

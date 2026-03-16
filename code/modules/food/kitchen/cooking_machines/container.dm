@@ -39,16 +39,10 @@
 /obj/item/reagent_containers/cooking_container/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		if(GR.wrapped)
-			GR.wrapped.forceMove(get_turf(src))
-			attackby(GR.wrapped, user)
-			if(QDELETED(GR.wrapped))
-				GR.wrapped = null
-
-			if(GR?.wrapped.loc != src)
-				GR.wrapped = null
-
-			return
+		var/obj/item/wrapped = GR.get_wrapped_item()
+		if(wrapped)
+			attackby(wrapped, user)
+			return FALSE
 
 	for (var/possible_type in insertable)
 		if (istype(I, possible_type))
@@ -92,7 +86,9 @@
 	for (var/atom/movable/A in contents)
 		A.forceMove(get_turf(src))
 
+	food_items = 0
 	to_chat(user, span_notice("You remove all the solid items from the [src]."))
+	update_icon()
 
 /obj/item/reagent_containers/cooking_container/proc/check_contents()
 	if (contents.len == 0)
@@ -103,10 +99,8 @@
 			return 1//Contains only a single object which can be extracted alone
 	return 2//Contains multiple objects and/or reagents
 
-/obj/item/reagent_containers/cooking_container/AltClick(var/mob/user)
+/obj/item/reagent_containers/cooking_container/click_alt(var/mob/user)
 	do_empty(user)
-	food_items = 0
-	update_icon()
 
 //Deletes contents of container.
 //Used when food is burned, before replacing it with a burned mess

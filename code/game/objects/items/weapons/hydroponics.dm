@@ -15,6 +15,9 @@
 	var/list/item_quants = list()
 
 /obj/item/seedbag/attack_self(mob/user)
+	. = ..(user) //Not that this file is ticked, but who knows.
+	if(.)
+		return TRUE
 	user.machine = src
 	interact(user)
 

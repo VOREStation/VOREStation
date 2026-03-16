@@ -13,7 +13,7 @@ Configuration:
 
 Usage:
 - Define mouse event procs on your (probably HUD) object and simply call the show and hide procs respectively:
-/obj/screen/hud
+/atom/movable/screen/hud
 	MouseEntered(location, control, params)
 		usr.client.tooltip.show(params, title = src.name, content = src.desc)
 
@@ -54,9 +54,9 @@ Notes:
 		return FALSE
 
 	if (!isnull(last_target))
-		UnregisterSignal(last_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(last_target, COMSIG_QDELETING)
 
-	RegisterSignal(thing, COMSIG_PARENT_QDELETING, PROC_REF(on_target_qdel))
+	RegisterSignal(thing, COMSIG_QDELETING, PROC_REF(on_target_qdel))
 
 	last_target = thing
 
@@ -76,8 +76,7 @@ Notes:
 		content = "<p>[content]</p>"
 
 	// Strip macros from item names
-	title = replacetext(title, "\proper", "")
-	title = replacetext(title, "\improper", "")
+	title = strip_improper(title)
 
 	//Make our dumb param object
 	params = {"{ "cursor": "[params]", "screenLoc": "[thing.screen_loc]" }"}

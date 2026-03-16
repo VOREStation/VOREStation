@@ -19,7 +19,7 @@
 	playsound(src, 'sound/misc/bloop.ogg', 50, 1)
 	flick("health2", src)
 
-	if(do_after(user,6 SECONDS,AM))
+	if(do_after(user, 6 SECONDS, target = AM))
 		scan_genes(AM,user)
 
 /obj/item/gene_scanner/proc/scan_genes(atom/movable/AM,mob/user)
@@ -98,6 +98,8 @@
 			output += span_infoplain("Bloodtype: [I.buf.dna.b_type]") + "<br>"
 			output += span_boldnotice("Detected genes:") + "<br>"
 			for(var/datum/gene/G in GLOB.dna_genes)
+				if(I.block && G.block != I.block)
+					continue
 				if(!I.buf.dna.GetSEState(G.block))
 					continue
 				var/dna_val = I.buf.dna.GetSEValue(G.block)

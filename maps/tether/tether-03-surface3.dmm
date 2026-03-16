@@ -6979,10 +6979,10 @@
 /area/library)
 "akN" = (
 /obj/structure/closet,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -7367,6 +7367,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sauna)
+"alD" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/corner/grey/diagonal,
+/obj/machinery/rnd/production/protolathe/department/service,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
 "alE" = (
 /obj/machinery/camera/network/civilian,
 /obj/effect/floor_decal/spline/plain{
@@ -9373,6 +9381,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall/west)
+"apq" = (
+/obj/machinery/rnd/production/protolathe/department/medical,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/storage)
 "apr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -9944,10 +9956,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
-"aqm" = (
-/obj/machinery/beehive,
-/turf/simulated/floor/grass,
-/area/hydroponics)
 "aqn" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -10016,7 +10024,7 @@
 "aqw" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
-	frequency = 1392;
+	frequency = 1393;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_north_airlock_inner";
 	locked = 1;
@@ -10026,7 +10034,7 @@
 	dir = 1
 	},
 /obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
+	frequency = 1393;
 	master_tag = "xenobiology_north_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_y = 24;
@@ -10057,6 +10065,9 @@
 /obj/machinery/requests_console/preset/research{
 	pixel_y = 30
 	},
+/obj/machinery/rnd/production/circuit_imprinter{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "aqz" = (
@@ -10080,6 +10091,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
+"aqB" = (
+/mob/living/simple_mob/animal/passive/mothroach/bar,
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "aqC" = (
 /obj/item/radio/intercom{
 	dir = 1;
@@ -10146,6 +10161,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall/west)
+"aqH" = (
+/mob/living/simple_mob/animal/goat{
+	name = "Spike"
+	},
+/turf/simulated/floor/grass,
+/area/hydroponics/cafegarden)
 "aqI" = (
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall/nwest)
@@ -10399,7 +10420,7 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
-	frequency = 1392;
+	frequency = 1393;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_north_airlock_outer";
 	locked = 1;
@@ -10407,7 +10428,7 @@
 	},
 /obj/machinery/access_button/airlock_interior{
 	command = "cycle_exterior";
-	frequency = 1392;
+	frequency = 1393;
 	master_tag = "xenobiology_north_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_y = 24;
@@ -10559,6 +10580,11 @@
 "aru" = (
 /turf/simulated/wall,
 /area/crew_quarters/kitchen)
+"arv" = (
+/obj/machinery/beehive,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "arw" = (
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/freezer,
@@ -11531,10 +11557,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
+/obj/machinery/honey_extractor,
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "ati" = (
@@ -12133,6 +12156,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/structure/closet,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "aut" = (
@@ -12140,9 +12164,8 @@
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surface Civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Surface Civilian"
 	},
 /obj/machinery/camera/network/engineering{
 	dir = 4
@@ -12163,6 +12186,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/machinery/rnd/production/protolathe/department/science,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "auw" = (
@@ -12179,6 +12203,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "aux" = (
@@ -12715,14 +12740,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
-"avv" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/research)
-"avw" = (
-/obj/machinery/computer/rdconsole/core,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/research)
 "avx" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -12873,13 +12890,6 @@
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/bar)
-"avN" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/honey_extractor,
-/turf/simulated/floor/grass,
-/area/hydroponics)
 "avO" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -13658,17 +13668,10 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "awY" = (
-/obj/machinery/r_n_d/circuit_imprinter{
-	dir = 1
-	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "awZ" = (
 /obj/machinery/hologram/holopad,
-/obj/machinery/r_n_d/protolathe{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "axa" = (
@@ -16571,7 +16574,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/borderfloorblack,
 /obj/machinery/door/airlock/glass_research{
-	frequency = 1392;
+	frequency = 1393;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_north_airlock_inner";
 	locked = 1;
@@ -16584,7 +16587,7 @@
 	dir = 4
 	},
 /obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
+	frequency = 1393;
 	master_tag = "xenobiology_north_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_y = -24;
@@ -16824,7 +16827,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
-	frequency = 1392;
+	frequency = 1393;
 	id_tag = "xenobiology_north_airlock_control";
 	name = "Xenobiology Access Controller";
 	pixel_y = -24;
@@ -18567,7 +18570,7 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
-	frequency = 1392;
+	frequency = 1393;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_north_airlock_outer";
 	locked = 1;
@@ -18584,7 +18587,7 @@
 	},
 /obj/machinery/access_button/airlock_interior{
 	command = "cycle_exterior";
-	frequency = 1392;
+	frequency = 1393;
 	master_tag = "xenobiology_north_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_y = -24;
@@ -19172,7 +19175,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	autoclose = 0;
-	frequency = 1382;
+	frequency = 1383;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_airlock_outer";
 	locked = 1;
@@ -19181,7 +19184,7 @@
 	},
 /obj/machinery/access_button/airlock_interior{
 	command = "cycle_exterior";
-	frequency = 1382;
+	frequency = 1383;
 	master_tag = "xenobiology_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_x = -24;
@@ -19221,7 +19224,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	autoclose = 0;
-	frequency = 1382;
+	frequency = 1383;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_airlock_outer";
 	locked = 1;
@@ -19230,7 +19233,7 @@
 	},
 /obj/machinery/access_button/airlock_interior{
 	command = "cycle_exterior";
-	frequency = 1382;
+	frequency = 1383;
 	master_tag = "xenobiology_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_x = 24;
@@ -19495,21 +19498,21 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aGS" = (
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 8
 	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGT" = (
-/obj/machinery/mecha_part_fabricator/pros{
-	dir = 1
-	},
 /obj/structure/reagent_dispensers/acid{
 	pixel_y = -30
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/mauve/border,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
+	dir = 1;
+	drop_direction = 1
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGU" = (
@@ -20439,7 +20442,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	autoclose = 0;
-	frequency = 1382;
+	frequency = 1383;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_airlock_inner";
 	locked = 1;
@@ -20447,7 +20450,7 @@
 	req_one_access = list(47,55)
 	},
 /obj/machinery/access_button/airlock_interior{
-	frequency = 1382;
+	frequency = 1383;
 	master_tag = "xenobiology_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_x = -24;
@@ -20460,7 +20463,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	autoclose = 0;
-	frequency = 1382;
+	frequency = 1383;
 	icon_state = "door_locked";
 	id_tag = "xenobiology_airlock_inner";
 	locked = 1;
@@ -20468,7 +20471,7 @@
 	req_one_access = list(47,55)
 	},
 /obj/machinery/access_button/airlock_interior{
-	frequency = 1382;
+	frequency = 1383;
 	master_tag = "xenobiology_airlock_control";
 	name = "Xenobiology Access Control";
 	pixel_x = 24;
@@ -20500,15 +20503,13 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aIv" = (
-/obj/machinery/computer/rdconsole/robotics{
-	dir = 8
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
+/obj/structure/table/glass,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aIw" = (
@@ -20861,7 +20862,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
-	frequency = 1382;
+	frequency = 1383;
 	id_tag = "xenobiology_airlock_control";
 	name = "Xenobiology Access Controller";
 	pixel_x = 25;
@@ -20978,8 +20979,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aJm" = (
-/obj/machinery/mecha_part_fabricator{
-	dir = 8
+/obj/machinery/mecha_part_fabricator_tg{
+	dir = 8;
+	drop_direction = 8
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
@@ -21012,7 +21014,7 @@
 "aJo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /turf/simulated/floor/tiled,
@@ -21025,7 +21027,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /obj/structure/disposalpipe/segment,
@@ -22140,7 +22142,7 @@
 "aLA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /turf/simulated/floor/tiled,
@@ -22153,7 +22155,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /obj/structure/disposalpipe/segment,
@@ -22437,13 +22439,13 @@
 	dir = 4
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tether_pad_airlock";
 	pixel_y = 28;
 	tag_door = "tether_pad_hatch"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tether_pad_sensor";
 	pixel_x = -11;
 	pixel_y = 28
@@ -23103,7 +23105,7 @@
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aNz" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "tether_shuttle_hatch";
 	locked = 1;
@@ -25917,9 +25919,6 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "1-8"
-	},
-/mob/living/simple_mob/animal/goat{
-	name = "Spike"
 	},
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
@@ -29586,6 +29585,7 @@
 /obj/item/folder/blue,
 /obj/item/folder/red,
 /obj/item/pen/multi,
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "aZQ" = (
@@ -29797,7 +29797,7 @@
 "baf" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -30914,11 +30914,6 @@
 "bcf" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/standard,
-/obj/item/paper{
-	desc = "";
-	info = "Yes hello, the goat in the freezer is named 'Spike'. Please do not fuck with Spike. He doesn't have the best temper.";
-	name = "Important notice from Rancher Jim"
-	},
 /obj/item/book/manual/chef_recipes,
 /obj/structure/noticeboard{
 	pixel_x = 32
@@ -31521,7 +31516,7 @@
 	},
 /obj/item/radio/intercom{
 	dir = 4;
-	frequency = 1532;
+	frequency = 1533;
 	name = "Stagehand Speaker";
 	pixel_x = 24;
 	pixel_y = 24
@@ -31593,6 +31588,12 @@
 /area/hydroponics)
 "bdl" = (
 /obj/machinery/light,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "bdm" = (
@@ -31601,7 +31602,7 @@
 	},
 /obj/item/radio/intercom{
 	dir = 8;
-	frequency = 1532;
+	frequency = 1533;
 	name = "Stagehand Mic";
 	pixel_x = -24
 	},
@@ -32562,7 +32563,7 @@
 "bfj" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /turf/simulated/floor/tiled,
@@ -33081,7 +33082,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /obj/structure/disposalpipe/segment,
@@ -33801,7 +33802,7 @@
 	dir = 4
 	},
 /obj/random/maintenance/clean,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/topairlock)
@@ -34320,7 +34321,7 @@
 /area/tether/surfacebase/topairlock)
 "biB" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/machinery/light{
@@ -37740,7 +37741,7 @@
 	},
 /obj/effect/map_helper/airlock/door/simple,
 /obj/machinery/door/airlock/glass_external/public{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_right"
 	},
 /obj/machinery/door/firedoor,
@@ -38744,7 +38745,7 @@
 /area/hydroponics)
 "eLD" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tether_shuttle";
 	pixel_x = 23;
 	tag_door = "tether_shuttle_hatch"
@@ -39507,9 +39508,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "gLg" = (
@@ -40023,7 +40022,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/industrial/danger,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_pad";
 	pixel_y = 24
 	},
@@ -41251,7 +41250,7 @@
 /obj/machinery/computer/general_air_control/fuel_injection{
 	device_tag = "riot_inject";
 	dir = 8;
-	frequency = 1442;
+	frequency = 1443;
 	name = "Riot Control Console"
 	},
 /turf/simulated/floor/wood,
@@ -43357,6 +43356,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/beehive,
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "qGC" = (
@@ -45332,7 +45332,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tourbus_docker";
 	pixel_x = 27;
 	pixel_y = 4
@@ -55385,7 +55385,7 @@ aux
 aud
 atT
 aqy
-avv
+awY
 avU
 awY
 axl
@@ -55527,7 +55527,7 @@ aux
 aud
 atT
 auv
-avw
+awY
 avV
 awZ
 axz
@@ -61303,7 +61303,7 @@ pcs
 aWJ
 aSq
 aSL
-aUv
+apq
 aUv
 abh
 iLq
@@ -61912,7 +61912,7 @@ aES
 aIN
 aCf
 anj
-bgx
+alD
 nXZ
 baq
 anj
@@ -62185,8 +62185,8 @@ aEX
 avO
 bLZ
 auU
-aop
 aUr
+arv
 aXj
 aVy
 aop
@@ -62205,7 +62205,7 @@ anj
 aKl
 aGx
 bgz
-bgz
+aqB
 ato
 bcp
 atN
@@ -62327,7 +62327,7 @@ aop
 atf
 aop
 auU
-aop
+aVy
 ath
 afT
 atk
@@ -63028,7 +63028,7 @@ acV
 auP
 avE
 arL
-avN
+bdi
 aop
 aVy
 bdj
@@ -63045,7 +63045,7 @@ aop
 asN
 awq
 aJw
-asu
+aqH
 aoJ
 aHi
 aTl
@@ -63170,7 +63170,7 @@ aCa
 auT
 avI
 arL
-aqm
+aop
 aop
 aVy
 aeZ
@@ -63312,7 +63312,7 @@ acV
 auP
 avE
 arL
-aqm
+aop
 aop
 aVy
 bdk

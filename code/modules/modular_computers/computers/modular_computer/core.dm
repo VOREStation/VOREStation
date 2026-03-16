@@ -133,9 +133,17 @@
 		active_program.kill_program(forced)
 		active_program = null
 	var/mob/user = usr
-	if(user && istype(user))
-		tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+	addtimer(CALLBACK(src, PROC_REF(delayed_reopen_ui), user), 1, TIMER_DELETE_ME)
 	update_icon()
+
+/obj/item/modular_computer/proc/delayed_reopen_ui(var/mob/user)
+	// Re-open the UI on this computer. It should show the main screen now.
+	// Expected from kill_program()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!user || !istype(user))
+		return
+	tgui_interact(user)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = 0)
@@ -147,7 +155,7 @@
 /obj/item/modular_computer/proc/add_log(var/text)
 	if(!get_ntnet_status())
 		return 0
-	return ntnet_global.add_log(text, network_card)
+	return GLOB.ntnet_global.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(var/loud = 1)
 	kill_program(1)
@@ -263,24 +271,6 @@
 		update_uis()
 
 // Used by camera monitor program
-/obj/item/modular_computer/check_eye(var/mob/user)
-	if(active_program)
-		return active_program.check_eye(user)
-	else
-		return ..()
-
-/obj/item/modular_computer/apply_visual(var/mob/user)
-	if(active_program)
-		return active_program.apply_visual(user)
-
-/obj/item/modular_computer/remove_visual(var/mob/user)
-	if(active_program)
-		return active_program.remove_visual(user)
-
-/obj/item/modular_computer/relaymove(var/mob/user, direction)
-	if(active_program)
-		return active_program.relaymove(user, direction)
-
 /obj/item/modular_computer/proc/set_autorun(program)
 	if(!hard_drive)
 		return

@@ -25,7 +25,6 @@
 /obj/item/rig_module/gauntlets/activate()
 	..()
 	var/mob/living/M = holder.wearer
-	var/datum/gender/TU = GLOB.gender_datums[M.get_visible_gender()]
 
 	if(M.l_hand && M.r_hand)
 		to_chat(M, span_danger("Your hands are full."))
@@ -33,7 +32,7 @@
 		return
 	if(M.a_intent == I_HURT)
 		M.visible_message(
-			span_danger("[M] throws [TU.his] arms out, extending [stored_gauntlets] from \the [holder] with a click!"),
+			span_danger("[M] throws [M.p_their()] arms out, extending [stored_gauntlets] from \the [holder] with a click!"),
 			span_danger("You throw your arms out, extending [stored_gauntlets] from \the [holder] with a click!"),
 			span_notice("You hear a threatening hiss and a click.")
 			)

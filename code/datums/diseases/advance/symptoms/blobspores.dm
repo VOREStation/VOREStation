@@ -37,6 +37,9 @@ BONUS
 	var/strong_blob
 	var/node_blob
 
+	prefixes = list("Xeno", "Sporing ")
+	bodies = list("Blob")
+
 /datum/symptom/blobspores/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 14)
@@ -62,9 +65,9 @@ BONUS
 		if(1)
 			to_chat(M, span_notice("You feel bloated."))
 
-			if(!M.jitteriness)
+			if(!M.get_jittery())
 				to_chat(M, span_notice("You feel a bit jittery."))
-				M.jitteriness = 10
+				M.make_jittery(100 + rand(12,16))
 
 		if(2)
 			if(ishuman(M))
@@ -87,7 +90,9 @@ BONUS
 		ready_to_pop = TRUE
 
 /datum/symptom/blobspores/OnDeath(datum/disease/advance/A)
-	if(neutered)
+	if(!..())
+		return
+	if(!ready_to_pop)
 		return
 	var/mob/living/M = A.affected_mob
 	M.visible_message(span_danger("[M] starts swelling grotesquely!"))
@@ -104,9 +109,8 @@ BONUS
 	if(node_blob)
 		blob_options += /obj/structure/blob/node
 	var/pick_blob = pick(blob_options)
-	if(ready_to_pop)
-		for(var/i in 1 to rand(1, 6))
-			new /mob/living/simple_mob/blob/spore(M.loc)
-		new pick_blob(M.loc)
+	for(var/i in 1 to rand(1, 6))
+		new /mob/living/simple_mob/blob/spore(M.loc)
+	new pick_blob(M.loc)
 
 	M.visible_message(span_danger("A huge mass of blob and blob spores burst out of [M]!"))

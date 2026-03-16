@@ -109,7 +109,7 @@
 /area/aro2/room1)
 "aI" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -210,7 +210,7 @@
 /area/aro2/room1)
 "bd" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -372,7 +372,7 @@
 /obj/structure/sign/poster{
 	dir = 1;
 	icon_state = "";
-	poster_decl = "/decl/poster/vore_2"
+	poster_decl = "/datum/decl/poster/vore_2"
 	},
 /turf/simulated/wall,
 /area/aro2/cockpit)
@@ -649,7 +649,7 @@
 /area/aro2/boatdeck)
 "el" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan,
@@ -897,9 +897,7 @@
 /area/aro2/starboardbay)
 "go" = (
 /obj/mecha/combat/fighter/pinnace/loaded,
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/aro2/starboardbay)
 "gr" = (
@@ -1385,7 +1383,7 @@
 /area/aro2/powerarea)
 "mg" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroship2_boatbay";
 	pixel_y = 28
 	},
@@ -1623,12 +1621,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
-	},
+/obj/machinery/power/smes/buildable/hybrid/engine_default,
 /turf/simulated/floor/plating/eris/under,
 /area/aro2/powerarea)
 "pX" = (
@@ -2136,7 +2129,7 @@
 /area/aro2/observation)
 "vc" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroboat2_docker";
 	pixel_y = 28
 	},
@@ -2411,9 +2404,6 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/boatdeck)
 "yK" = (
-/obj/structure/closet/secure_closet/freezer/fridge{
-	starts_with = null
-	},
 /obj/item/reagent_containers/food/snacks/generalschicken,
 /obj/item/storage/box/wings,
 /obj/item/reagent_containers/food/snacks/kitsuneudon,
@@ -2421,6 +2411,7 @@
 /obj/item/reagent_containers/food/snacks/grilledcheese,
 /obj/item/reagent_containers/food/snacks/jellysandwich,
 /obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/structure/closet/secure_closet/freezer/fridge/empty,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/dining)
 "yY" = (
@@ -2770,7 +2761,7 @@
 /area/aro2/starboardbay)
 "Ed" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3041,9 +3032,7 @@
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/aro2/starboardbay)
 "Hh" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/aroboat2)
 "Hm" = (
@@ -3088,7 +3077,7 @@
 /area/shuttle/aroboat2)
 "HF" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3225,14 +3214,12 @@
 /area/aro2/airarea)
 "Jb" = (
 /obj/mecha/combat/fighter/pinnace/loaded,
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/aro2/portbay)
 "Jg" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3603,7 +3590,7 @@
 /area/aro2/boatdeck)
 "MR" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3612,12 +3599,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro2/boatdeck)
 "MU" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
-	},
+/obj/machinery/power/smes/buildable/hybrid/engine_default,
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
@@ -3712,7 +3694,7 @@
 /area/aro2/cockpit)
 "OK" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan,
@@ -3817,7 +3799,7 @@
 /area/aro2/portbay)
 "PF" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -4364,7 +4346,7 @@
 /area/aro2/boatdeck)
 "Wg" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{

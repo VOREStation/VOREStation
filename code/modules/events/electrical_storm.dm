@@ -19,11 +19,11 @@
 	..()
 	switch(severity)
 		if(EVENT_LEVEL_MUNDANE)
-			command_announcement.Announce("A minor electrical storm has been detected near the [location_name()]. Please watch out for possible electrical discharges.", "[location_name()] Sensor Array")
+			GLOB.command_announcement.Announce("A minor electrical storm has been detected near the [location_name()]. Please watch out for possible electrical discharges.", "[location_name()] Sensor Array")
 		if(EVENT_LEVEL_MODERATE)
-			command_announcement.Announce("The [location_name()] is about to pass through an electrical storm. Please secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array")
+			GLOB.command_announcement.Announce("The [location_name()] is about to pass through an electrical storm. Please secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array")
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Alert. A strong electrical storm has been detected in proximity of the [location_name()]. It is recommended to immediately secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array")
+			GLOB.command_announcement.Announce("Alert. A strong electrical storm has been detected in proximity of the [location_name()]. It is recommended to immediately secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array")
 
 /datum/event/electrical_storm/start()
 	..()
@@ -46,7 +46,7 @@
 		if(shield_gen.deal_shield_damage(30 * severity, SHIELD_DAMTYPE_EM) <= SHIELD_BREACHED_MINOR)
 			return
 	if(!valid_apcs.len)
-		//	log_debug("No valid APCs found for electrical storm event ship=[victim]!")		// Let's not spam poor people with debug logs on (me)
+		//	log_game("No valid APCs found for electrical storm event ship=[victim]!")		// Let's not spam poor people with debug logs on (me)
 		return
 	var/list/picked_apcs = list()
 	for(var/i=0, i< severity * 2, i++) // up to 2/4/6 APCs per tick depending on severity

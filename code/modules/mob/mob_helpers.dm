@@ -57,9 +57,6 @@
 /mob/proc/is_cloaked()
 	return FALSE
 
-/proc/hasorgans(A) // Fucking really??
-	return ishuman(A)
-
 /proc/iscuffed(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
@@ -116,17 +113,17 @@
 	var/ran_zone = zone
 	while (ran_zone == zone)
 		ran_zone = pick (
-			organ_rel_size[BP_HEAD];   BP_HEAD,
-			organ_rel_size[BP_TORSO];  BP_TORSO,
-			organ_rel_size[BP_GROIN];  BP_GROIN,
-			organ_rel_size[BP_L_ARM];  BP_L_ARM,
-			organ_rel_size[BP_R_ARM];  BP_R_ARM,
-			organ_rel_size[BP_L_LEG];  BP_L_LEG,
-			organ_rel_size[BP_R_LEG];  BP_R_LEG,
-			organ_rel_size[BP_L_HAND]; BP_L_HAND,
-			organ_rel_size[BP_R_HAND]; BP_R_HAND,
-			organ_rel_size[BP_L_FOOT]; BP_L_FOOT,
-			organ_rel_size[BP_R_FOOT]; BP_R_FOOT,
+			GLOB.organ_rel_size[BP_HEAD];   BP_HEAD,
+			GLOB.organ_rel_size[BP_TORSO];  BP_TORSO,
+			GLOB.organ_rel_size[BP_GROIN];  BP_GROIN,
+			GLOB.organ_rel_size[BP_L_ARM];  BP_L_ARM,
+			GLOB.organ_rel_size[BP_R_ARM];  BP_R_ARM,
+			GLOB.organ_rel_size[BP_L_LEG];  BP_L_LEG,
+			GLOB.organ_rel_size[BP_R_LEG];  BP_R_LEG,
+			GLOB.organ_rel_size[BP_L_HAND]; BP_L_HAND,
+			GLOB.organ_rel_size[BP_R_HAND]; BP_R_HAND,
+			GLOB.organ_rel_size[BP_L_FOOT]; BP_L_FOOT,
+			GLOB.organ_rel_size[BP_R_FOOT]; BP_R_FOOT,
 		)
 
 	return ran_zone
@@ -217,15 +214,15 @@
 	var/randomization_chance = 10 //This can also be set to 0 to ensure mobs ALWAYS target the limb they're originally targeting.
 	/// First, we roll to see if we're going to target a random limb.
 	if(randomization_chance) //We got a 10% chance! Randomize where we're targeting!
-		zone = pick(base_miss_chance)
+		zone = pick(GLOB.base_miss_chance)
 
 	// Second, we make sure to see if the place we are attacking is a valid area.
-	if(zone in base_miss_chance)
-		randomization_chance = base_miss_chance[zone]
+	if(zone in GLOB.base_miss_chance)
+		randomization_chance = GLOB.base_miss_chance[zone]
 
 	// Eyes and mouth can be targeted (although typically not by mobs) so we set it to the head.
 	else if (zone == "eyes" || zone == "mouth")
-		randomization_chance = base_miss_chance["head"]
+		randomization_chance = GLOB.base_miss_chance["head"]
 
 	// Finally, now that we have our newfound zone, we see if we miss it or not!
 	if(prob(randomization_chance)) //If the mob rolled a miss chance?
@@ -381,7 +378,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	animate(pixel_x = oldx, pixel_y = oldy, time = 1)
 
 /proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[msg]"))
 			return 1
 	return 0
@@ -391,7 +388,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 0
 
 //converts intent-strings into numbers and back
-var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
@@ -445,7 +441,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = list()
-	for(var/M in mob_list)
+	for(var/M in GLOB.mob_list)
 		if(get_area(M) == A)
 			mobs += M
 	return mobs
@@ -464,21 +460,24 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			var/realname = C.mob.real_name
 			if(C.mob.mind)
 				mindname = C.mob.mind.name
-				if(C.mob.mind.original && C.mob.mind.original.real_name)
-					realname = C.mob.mind.original.real_name
+				var/mob/living/original = C.mob.mind.original_character?.resolve()
+				if(original && original.real_name)
+					realname = original.real_name
 			if(mindname && mindname != realname)
 				name = "[realname] died as [mindname]"
 			else
 				name = realname
 
-	if(subject && subject.forbid_seeing_deadchat && !subject.client.holder)
+	if(subject && subject.forbid_seeing_deadchat && !check_rights_for(subject.client, R_HOLDER))
 		return // Can't talk in deadchat if you can't see it.
+	if(ismob(subject))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DEAD_SAY, subject, message)
 
-	for(var/mob/M in player_list)
-		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (M.client.holder && check_rights_for(M.client, R_NONE) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
+	for(var/mob/M in GLOB.player_list)
+		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (check_rights_for(M.client, R_HOLDER) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
 			var/lname
-			if(M.forbid_seeing_deadchat && !M.client.holder)
+			if(M.forbid_seeing_deadchat && !check_rights_for(M.client, R_HOLDER))
 				continue
 
 			if(subject)
@@ -486,12 +485,12 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 					continue
 				if(subject != M)
 					follow = "([ghost_follow_link(subject, M)]) "
-				if(M.stat != DEAD && M.client.holder)
-					follow = "([admin_jump_link(subject, M.client.holder)]) "
+				if(M.stat != DEAD && check_rights_for(M.client, R_HOLDER))
+					follow = "([admin_jump_link(subject, check_rights_for(M.client, R_HOLDER))]) "
 				var/mob/observer/dead/DM
 				if(isobserver(subject))
 					DM = subject
-				if(M.client.holder) 							// What admins see
+				if(check_rights_for(M.client, R_HOLDER)) 							// What admins see
 					lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"
 				else
 					if(DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
@@ -504,18 +503,18 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			to_chat(M, span_deadsay("" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]"))
 
 /proc/say_dead_object(var/message, var/obj/subject = null)
-	for(var/mob/M in player_list)
-		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (M.client.holder && check_rights_for(M.client, R_NONE) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
+	for(var/mob/M in GLOB.player_list)
+		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (check_rights_for(M.client, R_HOLDER) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
 			var/lname = "Game Master"
-			if(M.forbid_seeing_deadchat && !M.client.holder)
+			if(M.forbid_seeing_deadchat && !check_rights_for(M.client, R_HOLDER))
 				continue
 
 			if(subject)
 				lname = "[subject.name] ([subject.x],[subject.y],[subject.z])"
 
 			lname = span_name("[lname]") + " "
-			to_chat(M, span_deadsay("" + create_text_tag("event_dead", "EVENT:", M.client) + " [lname][follow][message]"))
+			to_chat(M, span_deadsay(create_text_tag("event_dead", "EVENT:", M.client) + " [lname][follow][message]"))
 
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
@@ -529,10 +528,11 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		C = O
 	else if(istype(O, /datum/mind))
 		var/datum/mind/M = O
+		var/mob/living/original = M.original_character?.resolve()
 		if(M.current && M.current.client)
 			C = M.current.client
-		else if(M.original && M.original.client)
-			C = M.original.client
+		else if(original && original.client)
+			C = original.client
 
 	if(C)
 		var/name
@@ -553,9 +553,8 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			say_dead_direct(span_name("[name]") + " no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
-	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
+	if (!C.can_use() || stat || (get_dist(C, src) > 1 || !check_current_machine(src) || blinded || !canmove))
 		return 0
-	check_eye(src)
 	return 1
 
 /mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
@@ -673,7 +672,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
 
 //The base miss chance for the different defence zones
-var/list/global/base_miss_chance = list(
+GLOBAL_LIST_INIT(base_miss_chance, list(
 	BP_HEAD = 40,
 	BP_TORSO = 10,
 	BP_GROIN = 20,
@@ -685,11 +684,11 @@ var/list/global/base_miss_chance = list(
 	BP_R_HAND = 50,
 	BP_L_FOOT = 50,
 	BP_R_FOOT = 50,
-)
+))
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
-var/list/global/organ_rel_size = list(
+GLOBAL_LIST_INIT(organ_rel_size, list(
 	BP_HEAD = 25,
 	BP_TORSO = 70,
 	BP_GROIN = 30,
@@ -701,22 +700,28 @@ var/list/global/organ_rel_size = list(
 	BP_R_HAND = 10,
 	BP_L_FOOT = 10,
 	BP_R_FOOT = 10,
-)
+))
 
-/mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	return
 
 //Recalculates what planes this mob can see using their plane_holder, for humans this is checking slots, for others, could be whatever.
 /mob/proc/recalculate_vis()
 	return
 
-//General HUD updates done regularly (health puppet things, etc)
+/// General HUD updates done regularly (health puppet things, etc). Returns true if the mob has a client and is allowed to update its hud.
 /mob/proc/handle_regular_hud_updates()
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	if(!client)
+		return FALSE
+	if(SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD) & COMSIG_COMPONENT_HANDLED_HUD)
+		return FALSE
+	return TRUE
 
-//Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
+/// Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
 /mob/proc/handle_vision()
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src,COMSIG_MOB_HANDLE_VISION)
 
 //Icon is used to occlude things like huds from the faulty byond context menu.
 //   http://www.byond.com/forum/?post=2336679
@@ -762,19 +767,26 @@ var/global/image/backplane
 	return TRUE
 
 
-/atom/proc/living_mobs_in_view(var/range = world.view, var/count_held = FALSE)
+/atom/proc/living_mobs_in_view(var/range = world.view, var/count_held = FALSE, var/needs_client = FALSE)
 	var/list/viewers = oviewers(src, range)
 	if(count_held)
 		viewers = viewers(src,range)
 	var/list/living = list()
-	for(var/mob/living/L in viewers)
-		if(L.is_incorporeal())
+	for(var/mob/living/living_in_view in viewers)
+		if(living_in_view.is_incorporeal())
 			continue
-		living += L
-		if(count_held)
-			for(var/obj/item/holder/H in L.contents)
-				if(istype(H.held_mob, /mob/living))
-					living += H.held_mob
+		if(needs_client && !living_in_view.client)
+			continue
+		living += living_in_view
+		if(!count_held)
+			continue
+		for(var/obj/item/holder/mob_holder in living_in_view.contents)
+			if(!isliving(mob_holder.held_mob))
+				continue
+			var/mob/living/held_living = mob_holder.held_mob
+			if(needs_client && !held_living.client)
+				continue
+			living += held_living
 	return living
 
 /proc/censor_swears(t)

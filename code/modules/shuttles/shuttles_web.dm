@@ -39,7 +39,7 @@
 	// TODO - Probably don't even need to override this right?  Debug testing code below will check!
 	. = web_master?.get_current_destination()?.my_landmark?.docking_controller?.id_tag
 	if (. != ..())
-		warning("Web shuttle [src] had current_dock_target()=[.] but autodock.current_dock_target() = [..()]")
+		WARNING("Web shuttle [src] had current_dock_target()=[.] but autodock.current_dock_target() = [..()]")
 
 /datum/shuttle/autodock/web_shuttle/perform_shuttle_move()
 	..()
@@ -346,7 +346,7 @@
 				message_admins("ERROR: Shuttle computer was asked to traverse a nonexistant route.")
 				return
 
-			if(!check_docking(, ui.user, WS))
+			if(!check_docking(ui.user, WS))
 				return TRUE
 
 			var/datum/shuttle_destination/target_destination = new_route.get_other_side(WS.web_master.current_destination)
@@ -432,7 +432,7 @@
 				var/travel_delay = D.routes_to_make[type_to_link]
 				D.link_destinations(WM.get_destination_by_type(type_to_link), D.preferred_interim_tag, travel_delay)
 	else
-		warning("[log_info_line()]'s shuttle [global.log_info_line(ES)] initialized but destinations:[destinations]")
+		WARNING("[log_info_line()]'s shuttle [global.log_info_line(ES)] initialized but destinations:[destinations]")
 
 	qdel(src)
 
@@ -463,15 +463,17 @@
 		var/n2_level = environment.gas[GAS_N2]/total_moles
 		var/co2_level = environment.gas[GAS_CO2]/total_moles
 		var/phoron_level = environment.gas[GAS_PHORON]/total_moles
-		var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+		var/methane_level = environment.gas[GAS_CH4]/total_moles
+		var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level+methane_level)
 		aircontents = list(\
-			"pressure" = "[round(pressure,0.1)]",\
-			GAS_N2 = "[round(n2_level*100,0.1)]",\
-			GAS_O2 = "[round(o2_level*100,0.1)]",\
-			GAS_CO2 = "[round(co2_level*100,0.1)]",\
-			GAS_PHORON = "[round(phoron_level*100,0.01)]",\
+			"pressure" = "[round(pressure, 0.1)]",\
+			GAS_N2 = "[round(n2_level*100, 0.1)]",\
+			GAS_O2 = "[round(o2_level*100, 0.1)]",\
+			GAS_CO2 = "[round(co2_level*100, 0.1)]",\
+			GAS_PHORON = "[round(phoron_level*100, 0.01)]",\
+			GAS_CH4 = "[round(methane_level*100, 0.01)]",\
 			"other" = "[round(unknown_level, 0.01)]",\
-			"temp" = "[round(environment.temperature-T0C,0.1)]",\
+			"temp" = "[round(environment.temperature-T0C, 0.1)]",\
 			"reading" = TRUE\
 			)
 

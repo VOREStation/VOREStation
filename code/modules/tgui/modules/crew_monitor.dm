@@ -23,7 +23,7 @@
 		if("track")
 			if(isAI(ui.user))
 				var/mob/living/silicon/ai/AI = ui.user
-				var/mob/living/carbon/human/H = locate(params["track"]) in mob_list
+				var/mob/living/carbon/human/H = locate(params["track"]) in GLOB.mob_list
 				if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 					AI.ai_actual_track(H)
 			return TRUE
@@ -58,7 +58,7 @@
 
 	var/list/crewmembers = list()
 	for(var/zlevel in map_levels)
-		crewmembers += crew_repository.health_data(zlevel)
+		crewmembers += GLOB.crew_repository.health_data(zlevel)
 
 	// This is apparently necessary, because the above loop produces an emergent behavior
 	// of telling you what coordinates someone is at even without sensors on,

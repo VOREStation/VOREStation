@@ -30,7 +30,7 @@
 
 
 /datum/construction/reversible/mecha/polecat
-	result = "/obj/mecha/micro/sec/polecat"
+	result = /obj/mecha/micro/sec/polecat
 	steps = list(
 		//1
 		list("key"=IS_WELDER,
@@ -309,7 +309,7 @@
 
 
 /datum/construction/reversible/mecha/gopher
-	result = "/obj/mecha/micro/utility/gopher"
+	result = /obj/mecha/micro/utility/gopher
 	steps = list(
 		//1
 		list("key"=IS_WELDER,
@@ -515,7 +515,7 @@
 
 
 /datum/construction/reversible/mecha/weasel
-	result = "/obj/mecha/micro/sec/weasel"
+	result = /obj/mecha/micro/sec/weasel
 	steps = list(
 		//1
 		list("key"=IS_WELDER,

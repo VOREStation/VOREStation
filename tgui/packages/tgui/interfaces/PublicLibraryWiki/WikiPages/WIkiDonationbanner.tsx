@@ -107,7 +107,7 @@ const WikiDonationContent = (props: {
         </Stack.Item>
         <Stack.Item>
           <Box>
-            {donated} / {goal}₮
+            {donated}₮ / {goal}₮
           </Box>
         </Stack.Item>
         {!hideButtons && donated < goal && (
@@ -161,7 +161,7 @@ const DonationButtons = (props) => {
         })
       }
     >
-      {'Donate ' + donation + '₮'}
+      {`Donate ${donation}₮`}
     </Button>
   );
 };

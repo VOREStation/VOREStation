@@ -17,7 +17,7 @@
 
 /obj/item/gun/projectile/heavysniper/proc/collapse_rifle(mob/user)
 	to_chat(user, span_warning("You begin removing \the [src]'s barrel."))
-	if(do_after(user, 40))
+	if(do_after(user, 4 SECONDS, target = src))
 		if(user.unEquip(src, force=1))
 			to_chat(user, span_warning("You remove \the [src]'s barrel."))
 			qdel(src)
@@ -70,12 +70,15 @@
 	trigger_group = src
 
 /obj/item/sniper_rifle_part/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(part_count == 1)
 		to_chat(user, span_warning("You can't disassemble this further!"))
 		return
 
 	to_chat(user, span_notice("You start disassembling \the [src]."))
-	if(!do_after(user, 40))
+	if(!do_after(user, 4 SECONDS, target = src))
 		return
 
 	to_chat(user, span_notice("You disassemble \the [src]."))
@@ -95,7 +98,7 @@
 /obj/item/sniper_rifle_part/attackby(var/obj/item/sniper_rifle_part/A as obj, mob/user as mob)
 
 	to_chat(user, span_notice("You begin adding \the [A] to \the [src]."))
-	if(!do_after(user, 30))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return
 
 

@@ -28,6 +28,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_MIMING			"miming" //Tracks whether you're a mime or not.
+/// "Magic" trait that blocks the mob from moving or interacting with anything. Used for transient stuff like mob transformations or incorporality in special cases.
+/// Will block movement, `Life()` (!!!), and other stuff based on the mob.
+#define TRAIT_NO_TRANSFORM		"block_transformations"
 /*
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_STUNRESISTANCE    "stun_resistance"
@@ -106,9 +109,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_DISRUPTED			"disrupted"
+#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 /*
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
-#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 
 //quirk traits
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
@@ -145,7 +148,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define SPECIES_TRAIT "species"
 #define ORGAN_TRAIT "organ"
 */
-#define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define JOB_TRAIT "job"
 #define TRAIT_MIME "mime" //Mime trait.
 /*
@@ -211,6 +213,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 
 #define STRONG_IMMUNITY_TRAIT "strongimmunity"
+
+#define SLIP_REFLEX_TRAIT "slip_reflex"
 
 #define ORGANICS	1
 #define SYNTHETICS	2

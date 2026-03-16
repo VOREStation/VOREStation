@@ -2578,6 +2578,7 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
+	
 	},
 /turf/simulated/floor,
 /area/awaymission/midblock)
@@ -3127,6 +3128,7 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
+	
 	},
 /turf/simulated/floor{
 	icon_state = "red";
@@ -3164,7 +3166,7 @@
 "if" = (
 /obj/machinery/door/airlock/glass_security{
 	name = "Glass Airlock";
-	req_access_txt = "0"
+	req_access = null
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -3631,7 +3633,7 @@
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = null;
 	name = "Glass Airlock";
-	req_access_txt = "0"
+	req_access = null
 	},
 /turf/simulated/floor,
 /area/awaymission/southblock)
@@ -3919,6 +3921,7 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1;
+	
 	},
 /obj/machinery/gateway/centeraway{
 	calibrated = 0

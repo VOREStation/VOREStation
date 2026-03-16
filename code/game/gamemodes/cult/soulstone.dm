@@ -40,6 +40,9 @@
 ///////////////////Options for using captured souls///////////////////////////////////////
 
 /obj/item/soulstone/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -58,7 +61,7 @@
 
 /obj/item/soulstone/Topic(href, href_list)
 	var/mob/U = usr
-	if (!in_range(src, U)||U.machine!=src)
+	if (!in_range(src, U) || !U.check_current_machine(src))
 		U << browse(null, "window=aicard")
 		U.unset_machine()
 		return
@@ -74,7 +77,7 @@
 
 		if ("Summon")
 			for(var/mob/living/simple_mob/construct/shade/A in src)
-				A.status_flags &= ~GODMODE
+				A.RemoveElement(/datum/element/godmode)
 				A.canmove = 1
 				to_chat(A, span_infoplain(span_bold("You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.")))
 				A.forceMove(U.loc)
@@ -134,7 +137,7 @@
 
 	var/mob/living/simple_mob/construct/shade/S = new /mob/living/simple_mob/construct/shade( T.loc )
 	S.forceMove(src) //put shade in stone
-	S.status_flags |= GODMODE //So they won't die inside the stone somehow
+	S.AddElement(/datum/element/godmode)
 	S.canmove = 0//Can't move out of the soul stone
 	S.name = "Shade of [T.real_name]"
 	S.real_name = "Shade of [T.real_name]"
@@ -170,7 +173,7 @@
 		return
 
 	T.forceMove(src) //put shade in stone
-	T.status_flags |= GODMODE
+	T.AddElement(/datum/element/godmode)
 	T.canmove = 0
 	T.health = T.getMaxHealth()
 	src.icon_state = "soulstone2"
@@ -189,7 +192,7 @@
 			var/mob/living/simple_mob/construct/juggernaut/Z = new /mob/living/simple_mob/construct/juggernaut (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -199,7 +202,7 @@
 			var/mob/living/simple_mob/construct/wraith/Z = new /mob/living/simple_mob/construct/wraith (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -209,7 +212,7 @@
 			var/mob/living/simple_mob/construct/artificer/Z = new /mob/living/simple_mob/construct/artificer (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -219,7 +222,7 @@
 			var/mob/living/simple_mob/construct/harvester/Z = new /mob/living/simple_mob/construct/harvester (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Harvester. You are relatively weak, but your physical frailty is made up for by your ranged abilities.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))
@@ -229,7 +232,7 @@
 			var/mob/living/simple_mob/construct/juggernaut/behemoth/Z = new /mob/living/simple_mob/construct/juggernaut/behemoth (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
-				cult.add_antagonist(Z.mind)
+				GLOB.cult.add_antagonist(Z.mind)
 			qdel(T)
 			to_chat(Z, span_infoplain(span_bold("You are playing a Behemoth. You are incredibly slow, though your slowness is made up for by the fact your shell is far larger than any of your bretheren. You are the Unstoppable Force, and Immovable Object.")))
 			to_chat(Z, span_infoplain(span_bold("You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.")))

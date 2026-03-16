@@ -593,7 +593,7 @@
 /area/submap/CrashedMedShuttle)
 "cf" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "admin_shuttle";
 	pixel_x = -25;
 	pixel_y = 0;
@@ -617,7 +617,7 @@
 /area/submap/CrashedMedShuttle)
 "ci" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "admin_shuttle_hatch";
 	locked = 1;

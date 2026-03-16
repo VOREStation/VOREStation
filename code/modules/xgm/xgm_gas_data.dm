@@ -18,11 +18,11 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 
 /datum/xgm_gas_data/New()
 	. = ..()
-	for(var/p in subtypesof(/decl/xgm_gas))
-		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
+	for(var/p in subtypesof(/datum/decl/xgm_gas))
+		var/datum/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
 
 		if(gas.id in gases)
-			error("Duplicate gas id `[gas.id]` in `[p]`")
+			log_world("## ERROR Duplicate gas id `[gas.id]` in `[p]`")
 
 		gases += gas.id
 		name[gas.id] = gas.name
@@ -38,7 +38,7 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 
 	return 1
 
-/decl/xgm_gas
+/datum/decl/xgm_gas
 	var/id = ""
 	var/name = "Unnamed Gas"
 	var/specific_heat = 20	// J/(mol*K)
@@ -47,7 +47,7 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 	var/tile_overlay = null
 	var/overlay_limit = null
 
-	var/flags = 0
+	var/flags = NONE
 
 /atom/movable/gas_visuals
 	icon = 'icons/effects/tile_effects.dmi'

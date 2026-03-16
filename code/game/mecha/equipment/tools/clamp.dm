@@ -32,7 +32,7 @@
 					var/obj/machinery/door/firedoor/FD = O
 					if(FD.blocked)
 						FD.visible_message(span_danger("\The [chassis] begins prying on \the [FD]!"))
-						if(do_after(chassis.occupant,10 SECONDS,FD))
+						if(do_after(chassis.occupant, 10 SECONDS, target = FD))
 							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.blocked = 0
 							FD.update_icon()
@@ -40,7 +40,7 @@
 							FD.visible_message(span_warning("\The [chassis] tears \the [FD] open!"))
 					else if(FD.density)
 						FD.visible_message(span_warning("\The [chassis] begins forcing \the [FD] open!"))
-						if(do_after(chassis.occupant, 5 SECONDS,FD))
+						if(do_after(chassis.occupant, 5 SECONDS, target = FD))
 							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.visible_message(span_danger("\The [chassis] forces \the [FD] open!"))
 							FD.open(1)
@@ -54,7 +54,7 @@
 					else if(!AD.operating)
 						if(AD.welded)
 							AD.visible_message(span_warning("\The [chassis] begins prying on \the [AD]!"))
-							if(do_after(chassis.occupant, 15 SECONDS,AD) && chassis.Adjacent(AD))
+							if(do_after(chassis.occupant, 15 SECONDS, target = AD) && chassis.Adjacent(AD))
 								AD.welded = FALSE
 								AD.update_icon()
 								playsound(AD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
@@ -86,7 +86,7 @@
 				O.loc = chassis
 				O.anchored = FALSE
 				occupant_message(span_notice("[target] succesfully loaded."))
-				log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+				src.mecha_log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 			else
 				occupant_message(span_warning("You must hold still while handling objects."))
 				O.anchored = initial(O.anchored)
@@ -147,7 +147,7 @@
 						O.loc = chassis
 						O.anchored = FALSE
 						chassis.occupant_message(span_notice("[target] succesfully loaded."))
-						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+						chassis.mecha_log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 					else
 						chassis.occupant_message(span_warning("You must hold still while handling objects."))
 						O.anchored = initial(O.anchored)

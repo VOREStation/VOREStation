@@ -3,8 +3,8 @@
 // Please make sure that only the relevant sprite_stacks_xxx.file is included, if more are made.
 
 /obj/item/card
-	icon = 'icons/obj/card_new_vr.dmi' // These are redefined here so that changing sprites is as easy as clicking the checkbox.
-	base_icon = 'icons/obj/card_new_vr.dmi'
+	icon = 'icons/obj/card_new.dmi' // These are redefined here so that changing sprites is as easy as clicking the checkbox.
+	base_icon = 'icons/obj/card_new.dmi'
 
 	// New sprite stacks can be defined here. You could theoretically change icon-states as well but right now this file compiles before station_ids.dm so those wouldn't be affected.
 
@@ -29,23 +29,23 @@
 
 //ERT
 
-/obj/item/card/id/centcom/ERT
+/obj/item/card/id/centcom/ert
 	name = "Emergency Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-red", "stripe-red")
 
-/obj/item/card/id/centcom/ERT/medic
+/obj/item/card/id/centcom/ert/medic
 	name = "Emergency Medical Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-medblu", "stripe-medblu")
 
-/obj/item/card/id/centcom/ERT/commander
+/obj/item/card/id/centcom/ert/commander
 	name = "Emergency Response Commander ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-gold", "stripe-gold")
 
-/obj/item/card/id/centcom/ERT/engineer
+/obj/item/card/id/centcom/ert/engineer
 	name = "Emergency Engineering Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-orange", "stripe-orange")
 
-/obj/item/card/id/centcom/ERT/janitor
+/obj/item/card/id/centcom/ert/janitor
 	name = "Emergency Cleanup Responder ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-purple", "stripe-purple")
 
@@ -156,6 +156,11 @@
 	name = JOB_CHIEF_ENGINEER + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-orange", "stamp-n", "pips-gold")
 	rank = JOB_CHIEF_ENGINEER
+
+/obj/item/card/id/engineering/chemical
+	name = JOB_ALT_CHEMENGINEER + "'s ID"
+	initial_sprite_stack = list("base-stamp", "top-orange", "stamp-n", "pips-medblu", "stripe-white")
+	rank = JOB_ENGINEER
 
 //Science
 
@@ -301,7 +306,7 @@
 	if(isrobot(loc?.loc))
 		R = loc.loc
 		registered_name = R.braintype
-		RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
+		RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
 /obj/item/card/id/exploration/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
@@ -318,7 +323,7 @@
 
 /obj/item/card/id/exploration/borg/Destroy()
 	if(R)
-		UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		R = null
 		last_robot_loc = null
 	. = ..()
@@ -365,6 +370,7 @@
 	name = "Syndicate ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
 	rank = JOB_SYNDICATE
+	special_handling = TRUE
 
 /obj/item/card/id/syndicate/officer
 	name = "Syndicate Officer ID"

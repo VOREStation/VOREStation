@@ -8,7 +8,10 @@ Slime cube lives here.
 	icon_state = "slime cube"
 	var/searching = 0
 
-/obj/item/slime_cube/attack_self(mob/user as mob)
+/obj/item/slime_cube/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!searching)
 		to_chat(user, span_warning("You stare at the slimy cube, watching as some activity occurs."))
 		request_player()
@@ -44,7 +47,7 @@ Slime cube lives here.
 	S.shapeshifter_set_colour("#05FF9B")
 	for(var/mob/M in viewers(get_turf_or_move(loc)))
 		M.show_message(span_warning("The monkey cube suddenly takes the shape of a humanoid!"))
-	var/newname = sanitize(tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change"), MAX_NAME_LEN)
+	var/newname = tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change", "", MAX_NAME_LEN)
 	if(newname)
 		S.real_name = newname
 		S.name = S.real_name

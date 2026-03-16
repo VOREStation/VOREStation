@@ -12,7 +12,7 @@ GLOBAL_DATUM_INIT(news_data, /datum/lore/news, new)
 /datum/lore/news/New()
 	..()
 	spawn(50) //Give it a second or it gets fucky.
-		for(var/datum/feed_channel/F in news_network.network_channels)
+		for(var/datum/feed_channel/F in GLOB.news_network.network_channels)
 			if(F.channel_name == "Vir News Network")
 				station_newspaper = F
 				break
@@ -24,16 +24,16 @@ GLOBAL_DATUM_INIT(news_data, /datum/lore/news, new)
 		newsindex = news_codex.newsindex
 
 /datum/lore/news/proc/fill_codex_news()
-	if(!news_network)
-		log_debug("Load: Could not find newscaster network.")
+	if(!GLOB.news_network)
+		log_runtime("Load: Could not find newscaster network.")
 		return
 
 	if(!station_newspaper)
-		log_debug("Load: Could not find news channel Vir News Network to populate news articles.")
+		log_runtime("Load: Could not find news channel Vir News Network to populate news articles.")
 		return
 
 	//Feed the Lore Codex into the News Machine
 	for(var/datum/lore/codex/child in news_codex.children)
-		news_network.SubmitArticle("[child.data]", "Oculum", "Vir News Network", null, 1, "", "[child.name]")
+		GLOB.news_network.SubmitArticle("[child.data]", "Oculum", "Vir News Network", null, 1, "", "[child.name]")
 
 	return 1

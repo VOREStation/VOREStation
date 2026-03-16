@@ -72,7 +72,7 @@
 			oven_loop.stop(src)
 	..()
 
-/obj/machinery/appliance/cooker/oven/AltClick(var/mob/user)
+/obj/machinery/appliance/cooker/oven/click_alt(var/mob/user)
 	try_toggle_door(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 

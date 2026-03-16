@@ -12,8 +12,8 @@ SUBSYSTEM_DEF(inactivity)
 	if (!resumed)
 		client_list = GLOB.clients.Copy()
 
-	while(client_list.len)
-		var/client/C = client_list[client_list.len]
+	while(length(client_list))
+		var/client/C = client_list[length(client_list)]
 		client_list.len--
 		if(C.is_afk(CONFIG_GET(number/kick_inactive) MINUTES) && can_kick(C))
 			to_chat_immediate(C, span_warning("You have been inactive for more than [CONFIG_GET(number/kick_inactive)] minute\s and have been disconnected."))
@@ -61,5 +61,5 @@ SUBSYSTEM_DEF(inactivity)
 	return ..()
 
 /datum/controller/subsystem/inactivity/proc/can_kick(var/client/C)
-	if(C.holder) return FALSE //VOREStation Add - Don't kick admins.
+	if(check_rights_for(C, R_HOLDER|R_MENTOR)) return FALSE //VOREStation Add - Don't kick admins.
 	return TRUE

@@ -11,6 +11,10 @@
 	var/obj/machinery/atmospherics/unary/heat_exchanger/partner = null
 	var/update_cycle
 
+/obj/machinery/atmospherics/unary/heat_exchanger/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/atmospherics/unary/heat_exchanger/update_icon()
 	if(node)
 		icon_state = "intact"
@@ -79,7 +83,7 @@
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 40 * W.toolspeed, target = src))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \

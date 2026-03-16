@@ -28,6 +28,9 @@
 	qdel(src)
 
 /obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+	if(M.is_incorporeal())
+		return
+
 	to_chat(M, span_danger("BANG"))						// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(src, 'sound/effects/bang.ogg', 50, 1, 30)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
@@ -159,3 +162,10 @@
 	walk_away(src,temploc,stepdist)
 
 	addtimer(CALLBACK(src, PROC_REF(detonate)), rand(15, 60), TIMER_DELETE_ME)
+
+/obj/item/grenade/flashbang/clusterbang/primed
+	desc = "This clusterbang seems to have already been activated. Uhoh."
+
+/obj/item/grenade/flashbang/clusterbang/primed/Initialize(mapload)
+	. = ..()
+	activate()

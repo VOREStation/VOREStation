@@ -11,6 +11,11 @@
 
 	var/number_pages = 0
 
+/datum/tgui_module/player_notes/tgui_close(mob/user)
+	. = ..()
+	if(!QDELETED(src))
+		qdel(src)
+
 /datum/tgui_module/player_notes/proc/filter_ckeys(var/page, var/filter)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
@@ -52,7 +57,7 @@
 	A.PlayerNotesLegacy()
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/player_notes/tgui_fallback(payload)
 	if(..())
@@ -106,8 +111,13 @@
 
 	var/key = null
 
+/datum/tgui_module/player_notes_info/tgui_close(mob/user)
+	. = ..()
+	if(!QDELETED(src))
+		qdel(src)
+
 /datum/tgui_module/player_notes_info/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/player_notes_info/tgui_fallback(payload)
 	if(..())
@@ -121,24 +131,31 @@
 		return TRUE
 
 	switch(action)
+		if("cahngekey")
+			key = sanitize(params["ckey"])
+			return TRUE
+
 		if("add_player_info")
 			var/key = params["ckey"]
 			var/add = tgui_input_text(ui.user, "Write your comment below.", "Add Player Info", multiline = TRUE, prevent_enter = TRUE)
-			if(!add) return
+			if(!add)
+				return FALSE
 
 			notes_add(key,add,ui.user)
+			return TRUE
 
 		if("remove_player_info")
 			var/key = params["ckey"]
 			var/index = params["index"]
 
 			notes_del(key, index)
+			return TRUE
 
 /datum/tgui_module/player_notes_info/tgui_data(mob/user)
 	var/list/data = list()
 
 	if(!key)
-		return
+		return data
 
 	var/p_age = "unknown"
 	for(var/client/C in GLOB.clients)
@@ -299,7 +316,7 @@
 
 	if(href_list["add_player_info_legacy"])
 		var/key = href_list["add_player_info_legacy"]
-		var/add = sanitize(tgui_input_text(usr, "Add Player Info (Legacy)", multiline=TRUE))
+		var/add = tgui_input_text(usr, "Add Player Info (Legacy)", max_length = MAX_MESSAGE_LEN, multiline=TRUE)
 		if(!add) return
 
 		notes_add(key,add,usr)

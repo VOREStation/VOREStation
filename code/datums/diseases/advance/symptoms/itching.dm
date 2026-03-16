@@ -34,6 +34,9 @@ BONUS
 		"Stage Speed 7" = "The host will scratch itself when itchin, causing superficial damage."
 	)
 
+	prefixes = list("Irritant ")
+	bodies = list("Itch")
+
 /datum/symptom/itching/Start(datum/disease/advance/A)
 	if(!..())
 		return

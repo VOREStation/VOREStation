@@ -15,7 +15,7 @@
 	mob_size = MOB_LARGE
 	damage_threshold = 5 //Anything that's 5 or less damage will not do damage.
 
-	organ_names = /decl/mob_organ_names/mecha
+	organ_names = /datum/decl/mob_organ_names/mecha
 
 	armor = list(
 				"melee"		= 20,
@@ -59,14 +59,14 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/Destroy()
-	qdel_null(sparks)
+	QDEL_NULL(sparks)
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/death()
 	..(0,"explodes!") // Do everything else first.
 
 	// Make the exploding more convincing with an actual explosion and some sparks.
-	sparks.start()
+	sparks?.start()
 	explosion(get_turf(src), 0, 0, 1, 3)
 
 	// 'Eject' our pilot, if one exists.
@@ -94,8 +94,8 @@
 		add_overlay(image(icon = 'icons/mecha/mecha_equipment.dmi', icon_state = "repair_droid"))
 
 /mob/living/simple_mob/mechanical/mecha/bullet_act()
-	. = ..()
 	sparks.start()
+	. = ..()
 
 /mob/living/simple_mob/mechanical/mecha/speech_bubble_appearance()
 	return pilot_type ? "" : ..()
@@ -124,9 +124,9 @@
 /mob/living/simple_mob/mechanical/mecha/proc/deflect_sprite()
 	var/image/deflect_image = image('icons/effects/effects.dmi', "deflect_static")
 	add_overlay(deflect_image)
-	sleep(1 SECOND)
-	cut_overlay(deflect_image)
-	qdel(deflect_image)
+	spawn(1 SECOND)
+		cut_overlay(deflect_image)
+		qdel(deflect_image)
 //	flick_overlay_view(deflect_image, src, duration = 1 SECOND, gc_after = TRUE)
 
 /mob/living/simple_mob/mechanical/mecha/attackby(obj/item/I, mob/user)
@@ -143,5 +143,5 @@
 		deflect_sprite()
 	..(severity)
 
-/decl/mob_organ_names/mecha
+/datum/decl/mob_organ_names/mecha
 	hit_zones = list("central chassis", "control module", "hydraulics", "left arm", "right arm", "left leg", "right leg", "sensor suite", "radiator", "power supply", "left equipment mount", "right equipment mount")

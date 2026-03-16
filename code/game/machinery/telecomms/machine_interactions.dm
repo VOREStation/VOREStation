@@ -226,7 +226,7 @@
 						change_frequency = newfreq
 						set_temp("-% New frequency to change to assigned: \"[newfreq] GHz\" %-", "average")
 				else
-					change_frequency = 0
+					change_frequency = ZERO_FREQ
 					set_temp("-% Frequency changing deactivated %-", "average")
 
 
@@ -295,8 +295,7 @@
 				. = TRUE
 
 		if("network")
-			var/newnet = tgui_input_text(ui.user, "Specify the new network for this machine. This will break all current links.", src, network)
-			newnet = sanitize(newnet,15)
+			var/newnet = tgui_input_text(ui.user, "Specify the new network for this machine. This will break all current links.", src, network, 15)
 			if(newnet && canAccess(ui.user))
 
 				if(length(newnet) > 15)

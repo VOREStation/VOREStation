@@ -1,4 +1,4 @@
-/spell/aoe_turf/conjure/forcewall
+/datum/spell/aoe_turf/conjure/forcewall
 	name = "Forcewall"
 	desc = "Create a wall of pure energy at your location."
 	summon_type = list(/obj/effect/forcefield)
@@ -10,7 +10,7 @@
 
 	hud_state = "wiz_shield"
 
-/spell/aoe_turf/conjure/forcewall/mime
+/datum/spell/aoe_turf/conjure/forcewall/mime
 	name = "Invisible wall"
 	desc = "Create an invisible wall on your location."
 	school = "mime"
@@ -33,7 +33,6 @@
 	opacity = 0
 	density = TRUE
 	unacidable = TRUE
-	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/forcefield/bullet_act(var/obj/item/projectile/Proj, var/def_zone)
 	var/turf/T = get_turf(src.loc)
@@ -46,6 +45,7 @@
 	icon_state = "empty"
 	name = "invisible wall"
 	desc = "You have a bad feeling about this."
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/forcefield/cultify()
 	new /obj/effect/forcefield/cult(get_turf(src))

@@ -355,7 +355,7 @@
 "aL" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1480;
+	frequency = 1481;
 	id_tag = "curadocking";
 	pixel_x = 28
 	},
@@ -955,7 +955,7 @@
 "bM" = (
 /obj/structure/fans/hardlight,
 /obj/machinery/door/airlock/external/bolted{
-	frequency = 1480;
+	frequency = 1481;
 	id_tag = "curadocking"
 	},
 /obj/structure/cable{

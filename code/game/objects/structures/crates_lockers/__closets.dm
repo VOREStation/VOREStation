@@ -8,6 +8,7 @@
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/opened = 0
 	var/sealed = 0
@@ -34,7 +35,7 @@
 
 	var/list/starts_with // List of type = count (or just type for 1)
 
-	var/decl/closet_appearance/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
+	var/datum/decl/closet_appearance/closet_appearance = /datum/decl/closet_appearance // The /datum/decl that defines what decals we end up with, that makes our look unique
 
 	/// Currently animating the door transform
 	var/is_animating_door = FALSE
@@ -43,6 +44,7 @@
 	var/vore_sound = 'sound/effects/metalscrape2.ogg'
 
 /obj/structure/closet/Initialize(mapload)
+	ADD_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER, ROUNDSTART_TRAIT)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -72,7 +74,7 @@
 	update_icon()
 
 /obj/structure/closet/Destroy()
-	qdel_null(door_obj)
+	QDEL_NULL(door_obj)
 	closet_appearance = null
 	return ..()
 
@@ -95,7 +97,7 @@
 			. += "It is full."
 
 	if(!opened && isobserver(user))
-		. += "It contains: [counting_english_list(contents)]"
+		. += "It contains: [counting_english_list(user.client, contents)]"
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
@@ -127,9 +129,6 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -170,6 +169,7 @@
 	if(initial(density))
 		density = !density
 	animate_door(TRUE)
+	SEND_SIGNAL(src, COMSIG_CLOSET_CLOSED, contents)
 	return 1
 
 //Cham Projector Exception
@@ -200,9 +200,6 @@
 			continue
 		if(stored_units + added_units + M.mob_size > storage_capacity)
 			break
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
 		M.forceMove(src)
 		added_units += M.mob_size
 	return added_units
@@ -277,7 +274,7 @@
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 			else
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 20 * W.toolspeed))
+			if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 				if(!src) return
 				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
@@ -335,7 +332,7 @@
 					else
 						to_chat(user, span_notice("You need more welding fuel to complete this task."))
 						return
-			if(do_after(user, 20 * S.toolspeed))
+			if(do_after(user, 2 SECONDS * S.toolspeed, target = src))
 				playsound(src, S.usesound, 50)
 				sealed = !sealed
 				update_icon()
@@ -346,7 +343,7 @@
 	return
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if(istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
+	if(istype(O, /atom/movable/screen))	//fix for HUD elements making their way into the world	-Pete
 		return
 	if(O.loc == user)
 		return
@@ -357,6 +354,9 @@
 	if(!isturf(user.loc)) // are you in a container/closet/pod/etc?
 		return
 	if(!opened)
+		// Attempt to climb if not opened!
+		if(O == user)
+			SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
 		return
 	if(istype(O, /obj/structure/closet))
 		return
@@ -443,7 +443,7 @@
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
-		if(!do_after(escapee, 50)) //5 seconds
+		if(!do_after(escapee, 5 SECONDS, target = src)) //5 seconds
 			breakout = 0
 			return
 		if(!escapee || escapee.incapacitated() || escapee.loc != src)
@@ -539,6 +539,9 @@
 	M.Translate(closet_appearance.door_hinge, 0)
 	return M
 
+/obj/structure/closet/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 //verb to eat people in the same closet as yourself
 
 /obj/structure/closet/verb/hidden_vore()
@@ -583,4 +586,9 @@
 	playsound(src, vore_sound, 25)
 
 	var/mob/living/M = usr
-	M.perform_the_nom(usr,target,usr,usr.vore_selected,-1)
+	if(isliving(M))
+		M.begin_instant_nom(M,target,M,M.vore_selected)
+
+/obj/structure/closet/bluespace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bluespace_connection/permanent_network, GLOB.bslockers)

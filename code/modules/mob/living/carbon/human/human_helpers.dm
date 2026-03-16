@@ -56,8 +56,9 @@
 
 //This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.
 /mob/living/carbon/human/break_cloak()
-	if(mind && mind.changeling) //Changeling visible camo
-		mind.changeling.cloaked = 0
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp) //Changeling visible camo
+		comp.cloaked = 0
 	if(istype(back, /obj/item/rig)) //Ninja cloak
 		var/obj/item/rig/suit = back
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
@@ -67,7 +68,8 @@
 		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
-	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp && comp.cloaked) // Ling camo.
 		return TRUE
 	else if(istype(back, /obj/item/rig)) //Ninja cloak
 		var/obj/item/rig/suit = back
@@ -160,10 +162,10 @@
 	hud_list[IMPTRACK_HUD]    = gen_hud_image(GLOB.ingame_hud, src, "hudblank", plane = PLANE_CH_IMPTRACK)
 	hud_list[SPECIALROLE_HUD] = gen_hud_image(GLOB.ingame_hud, src, "hudblank", plane = PLANE_CH_SPECIAL)
 	hud_list[STATUS_HUD_OOC]  = gen_hud_image(GLOB.ingame_hud, src, "hudhealthy", plane = PLANE_CH_STATUS_OOC)
-	hud_list[HEALTH_VR_HUD]   = gen_hud_image(ingame_hud_med_vr, src, "100", plane = PLANE_CH_HEALTH_VR)
-	hud_list[STATUS_R_HUD]    = gen_hud_image(ingame_hud_vr, src, "hudblank", plane = PLANE_CH_STATUS_R)
-	hud_list[BACKUP_HUD]      = gen_hud_image(ingame_hud_vr, src, "hudblank", plane = PLANE_CH_BACKUP)
-	hud_list[VANTAG_HUD]      = gen_hud_image(ingame_hud_vr, src, "hudblank", plane = PLANE_CH_VANTAG)
+	hud_list[HEALTH_VR_HUD]   = gen_hud_image(GLOB.ingame_hud_med_vr, src, "100", plane = PLANE_CH_HEALTH_VR)
+	hud_list[STATUS_R_HUD]    = gen_hud_image(GLOB.ingame_hud_vr, src, "hudblank", plane = PLANE_CH_STATUS_R)
+	hud_list[BACKUP_HUD]      = gen_hud_image(GLOB.ingame_hud_vr, src, "hudblank", plane = PLANE_CH_BACKUP)
+	hud_list[VANTAG_HUD]      = gen_hud_image(GLOB.ingame_hud_vr, src, "hudblank", plane = PLANE_CH_VANTAG)
 	add_overlay(hud_list)
 
 /mob/living/carbon/human/recalculate_vis()
@@ -197,7 +199,7 @@
 	if(vantag_hud)
 		compiled_vis |= VIS_CH_VANTAG
 
-	if(client?.prefs.read_preference(/datum/preference/toggle/tummy_sprites))
+	if(client?.prefs?.read_preference(/datum/preference/toggle/tummy_sprites))
 		compiled_vis += VIS_CH_STOMACH
 
 	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))

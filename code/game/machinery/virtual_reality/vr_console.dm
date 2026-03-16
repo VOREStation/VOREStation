@@ -3,6 +3,7 @@
 	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/base_state = "body_scanner_"
 
@@ -29,7 +30,6 @@
 	idle_power_usage = 15
 	active_power_usage = 200
 	light_color = "#FF0000"
-	//var/global/list/vr_mob_tf_options // Global var located in global_lists.dm
 
 /obj/machinery/vr_sleeper/perfect
 	perfect_replica = TRUE
@@ -118,9 +118,9 @@
 
 
 
-/obj/machinery/vr_sleeper/emp_act(var/severity)
+/obj/machinery/vr_sleeper/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(occupant)
@@ -134,7 +134,7 @@
 			smoke.start("#202020")
 		perform_exit()
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/vr_sleeper/verb/eject()
 	set src in view(1)
@@ -182,24 +182,22 @@
 	else
 		visible_message("\The [user] starts putting [M] into \the [src].")
 
-	if(do_after(user, 20))
+	if(do_after(user, 2 SECONDS, target = src))
 		if(occupant)
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-		M.loc = src
+		M.forceMove(src)
 		occupant = M
 
 		update_icon()
 
-		if(!M.has_brain_worms())
-			update_use_power(USE_POWER_ACTIVE)
-			enter_vr()
-		else
+		if(M.has_brain_worms())
 			to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
+			return
+
+		update_use_power(USE_POWER_ACTIVE)
+		enter_vr()
 	return
 
 /obj/machinery/vr_sleeper/proc/go_out()
@@ -222,9 +220,7 @@
 	if(occupant.vr_link)
 		occupant.vr_link.exit_vr(FALSE)
 
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.reset_perspective() // Needed for returning from VR
 	occupant.forceMove(get_turf(src))
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
@@ -232,7 +228,7 @@
 			continue
 		if(A in component_parts)
 			continue
-		A.loc = src.loc
+		A.forceMove(get_turf(src))
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 
@@ -266,7 +262,7 @@
 		// Get the desired spawn location to put the body
 		var/S = null
 		var/list/vr_landmarks = list()
-		for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+		for(var/obj/effect/landmark/virtual_reality/sloc in GLOB.landmarks_list)
 			vr_landmarks += sloc.name
 
 		S = tgui_input_list(occupant, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
@@ -275,12 +271,12 @@
 
 		var/tf = null
 		if(tgui_alert(occupant, "Would you like to play as a different creature?", "Join as a mob?", list("Yes", "No")) == "Yes")
-			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", vr_mob_tf_options)
+			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", GLOB.vr_mob_tf_options)
 			if(!k || !occupant) //Our occupant can walk out.
 				return 0
-			tf = vr_mob_tf_options[k]
+			tf = GLOB.vr_mob_tf_options[k]
 
-		for(var/obj/effect/landmark/virtual_reality/i in landmarks_list)
+		for(var/obj/effect/landmark/virtual_reality/i in GLOB.landmarks_list)
 			if(i.name == S)
 				S = i
 				break
@@ -297,7 +293,7 @@
 
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
-			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+			GLOB.job_master.EquipRank(avatar,"Visitor", 1, FALSE)
 		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 		add_verb(avatar,/mob/living/proc/set_size)
@@ -326,7 +322,7 @@
 		avatar.Sleeping(1)
 
 		// Prompt for username after they've enterred the body.
-		var/newname = sanitize(tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN)
 		if(newname)
 			avatar.real_name = newname
 			avatar.name = newname

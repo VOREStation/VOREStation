@@ -20,6 +20,7 @@
 	var/full_icon = "full"
 	var/spawn_mob_name = "A mob"
 	var/capture_chance_modifier = 1		//So we can have special subtypes with different capture rates!
+	var/loadout = FALSE
 
 /obj/item/capture_crystal/Initialize(mapload)
 	. = ..()
@@ -31,11 +32,11 @@
 		if(bound_mob in contents)
 			unleash()
 		to_chat(bound_mob, span_notice("You feel like yourself again. You are no longer under the influence of \the [src]'s command."))
-		UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(bound_mob, COMSIG_QDELETING)
 		bound_mob.capture_caught = FALSE
 		bound_mob = null
 	if(owner)
-		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(owner, COMSIG_QDELETING)
 		owner = null
 	return ..()
 
@@ -156,7 +157,7 @@
 	else
 		M.visible_message("\The [src] flickers in \the [M]'s hand and emits a little tone.", "\The [src] flickers in your hand and emits a little tone.")
 		playsound(src, 'sound/effects/capture-crystal-out.ogg', 75, 1, -1)
-		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(owner, COMSIG_QDELETING)
 		owner = null
 
 //Let's make inviting ghosts be an option you can do instead of an automatic thing!
@@ -228,6 +229,13 @@
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(loadout && !bound_mob)
+		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
+		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		return
 	if(bound_mob && !owner)
 		if(bound_mob == user)
 			to_chat(user, span_notice("\The [src] emits an unpleasant tone... It does not activate for you."))
@@ -251,8 +259,8 @@
 
 //Make it so the crystal knows if its mob references get deleted to make sure things get cleaned up
 /obj/item/capture_crystal/proc/knowyoursignals(mob/living/M, mob/living/U)
-	RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(mob_was_deleted), TRUE)
-	RegisterSignal(U, COMSIG_PARENT_QDELETING, PROC_REF(owner_was_deleted), TRUE)
+	RegisterSignal(M, COMSIG_QDELETING, PROC_REF(mob_was_deleted), TRUE)
+	RegisterSignal(U, COMSIG_QDELETING, PROC_REF(owner_was_deleted), TRUE)
 
 //The basic capture command does most of the registration work.
 /obj/item/capture_crystal/proc/capture(mob/living/M, mob/living/U)
@@ -337,8 +345,8 @@
 //The clean up procs!
 /obj/item/capture_crystal/proc/mob_was_deleted()
 	SIGNAL_HANDLER
-	UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
-	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(bound_mob, COMSIG_QDELETING)
+	UnregisterSignal(owner, COMSIG_QDELETING)
 	bound_mob.capture_caught = FALSE
 	bound_mob = null
 	owner = null
@@ -348,7 +356,7 @@
 
 /obj/item/capture_crystal/proc/owner_was_deleted()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owner, COMSIG_QDELETING)
 	owner = null
 	active = FALSE
 	update_icon()
@@ -356,7 +364,7 @@
 //If the crystal hasn't been set up, it does this
 /obj/item/capture_crystal/proc/activate(mob/living/user, target)
 	if(!cooldown_check())		//Are we ready to do things yet?
-		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
+		to_chat(user, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want
@@ -416,7 +424,7 @@
 //We're using the crystal, but what will it do?
 /obj/item/capture_crystal/proc/determine_action(mob/living/U, T)
 	if(!cooldown_check())	//Are we ready yet?
-		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
+		to_chat(U, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return				//No
 	if(bound_mob in contents)	//Do we have our mob?
@@ -476,8 +484,13 @@
 	var/image/coolanimation = image('icons/obj/capture_crystal_vr.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
 	thing.overlays += coolanimation
-	sleep(11)
+	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.1 SECOND, TIMER_DELETE_ME)
+
+/obj/item/capture_crystal/proc/animate_action_finished(atom/thing,var/image/coolanimation)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE)
 	thing.overlays -= coolanimation
+	qdel(coolanimation)
 
 //IF the crystal somehow ends up in a tummy and digesting with a bound mob who doesn't want to be eaten, let's move them to the ground
 /obj/item/capture_crystal/digest_act(var/atom/movable/item_storage = null)
@@ -864,6 +877,7 @@
 
 /obj/item/capture_crystal/loadout
 	active = TRUE
+	loadout = TRUE
 
 /obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user)
 	if(!bound_mob && M != user)
@@ -872,12 +886,6 @@
 		return
 	. = ..()
 
-/obj/item/capture_crystal/loadout/attack_self(mob/living/user)
-	if(!bound_mob)
-		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
-		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
-		return
-	. = ..()
 
 /obj/item/capture_crystal/loadout/capture_chance()
 	return 0
@@ -909,7 +917,7 @@
 
 /obj/item/capture_crystal/cheap/activate(mob/living/user, target)
 	if(!cooldown_check())		//Are we ready to do things yet?
-		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
+		to_chat(user, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want

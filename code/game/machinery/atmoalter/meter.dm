@@ -1,7 +1,7 @@
 /obj/machinery/meter
 	name = "meter"
 	desc = "It measures something."
-	icon = 'icons/obj/meter_vr.dmi'
+	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
 	var/list/pipes_on_turf = list()
@@ -9,6 +9,7 @@
 	power_channel = ENVIRON
 	var/frequency = 0
 	var/id
+	var/open = FALSE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 
@@ -61,7 +62,7 @@
 		icon_state = "meter4"
 
 	if(frequency)
-		var/datum/radio_frequency/radio_connection = radio_controller.return_frequency(frequency)
+		var/datum/radio_frequency/radio_connection = SSradio.return_frequency(frequency)
 
 		if(!radio_connection) return
 
@@ -108,7 +109,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-		if(do_after(user, 40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 			user.visible_message( \
 				span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 				span_notice("You have unfastened \the [src]."), \
@@ -117,7 +118,19 @@
 			qdel(src)
 			return
 
-	if(istype(W, /obj/item/multitool))
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		playsound(src, W.usesound, 50, 1)
+		to_chat(user, span_notice("You have [open ? "closed" : "opened"] the maintenance panel for [src]."))
+		open = !open
+		return
+
+	if(W.has_tool_quality(TOOL_MULTITOOL))
+		if(open) // For setting up the meter to be used by other devices over radio.
+			id = tgui_input_text(user, "Please insert an ID tag for [src], example 'exhaust_pipe'.", "Set ID Tag", id, MAX_NAME_LEN)
+			var/obj/item/multitool/tool = W
+			tool.connectable = src
+			return
+
 		for(var/obj/machinery/atmospherics/pipe/P in loc)
 			pipes_on_turf |= P
 		if(!pipes_on_turf.len)

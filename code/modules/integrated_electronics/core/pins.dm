@@ -154,13 +154,12 @@ list[](
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
-			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing", istext(default) ? default : null, MAX_NAME_LEN)
-			new_data = sanitize(new_data,MAX_NAME_LEN)
+			new_data = sanitizeSafe(tgui_input_text(user, "Now type in a string.","[src] string writing", istext(default) ? default : null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN, 0, 0)
 			if(istext(new_data) && holder.check_interactivity(user) )
 				to_chat(user, span_notice("You input [new_data] into the pin."))
 				return new_data
 		if("number")
-			new_data = tgui_input_number(user, "Now type in a number.","[src] number writing", isnum(default) ? default : null, MAX_NAME_LEN)
+			new_data = tgui_input_number(user, "Now type in a number.","[src] number writing", isnum(default) ? default : 0, INFINITY, -INFINITY, 0, FALSE)
 			if(isnum(new_data) && holder.check_interactivity(user) )
 				to_chat(user, span_notice("You input [new_data] into the pin."))
 				return new_data

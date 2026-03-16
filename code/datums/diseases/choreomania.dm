@@ -1,5 +1,6 @@
 /datum/disease/choreomania
 	name = "Choreomania"
+	medical_name = "Choreatic Hyperkinesia"
 	max_stages = 3
 	spread_text = "Airborne"
 	spread_flags = DISEASE_SPREAD_AIRBORNE | DISEASE_SPREAD_CONTACT | DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS

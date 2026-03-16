@@ -9,7 +9,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
@@ -26,6 +25,7 @@ type Data = {
   SM_gas_N2: number;
   SM_gas_PH: number;
   SM_gas_N2O: number;
+  SM_gas_CH4: number;
   supermatters: { area_name: string; integrity: number; uid: number }[];
 };
 
@@ -67,7 +67,7 @@ const SupermatterMonitorList = (props) => {
       <Stack wrap="wrap">
         {supermatters.map((sm, i) => (
           <Stack.Item basis="49%" grow={i % 2} key={i}>
-            <Section title={sm.area_name + ' (#' + sm.uid + ')'}>
+            <Section title={`${sm.area_name} (#${sm.uid})`}>
               <LabeledList>
                 <LabeledList.Item label="Integrity">
                   {sm.integrity} %
@@ -104,6 +104,7 @@ const SupermatterMonitorActive = (props) => {
     SM_gas_N2,
     SM_gas_PH,
     SM_gas_N2O,
+    SM_gas_CH4,
   } = data;
 
   return (
@@ -137,7 +138,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => toFixed(val, 2) + ' MeV/cm³'}
+              format={(val) => `${val.toFixed(2)} MeV/cm³`}
               value={SM_power}
             />
           </Box>
@@ -151,7 +152,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => toFixed(val, 2) + ' K'}
+              format={(val) => `${(val).toFixed(2)} K`}
               value={SM_ambienttemp}
             />
           </Box>
@@ -165,7 +166,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => toFixed(val, 2) + ' kPa'}
+              format={(val) => `${(val).toFixed(2)} kPa`}
               value={SM_ambientpressure}
             />
           </Box>
@@ -174,25 +175,28 @@ const SupermatterMonitorActive = (props) => {
           <Box
             color={(SM_EPR > 4 && 'bad') || (SM_EPR > 1 && 'average') || 'good'}
           >
-            <AnimatedNumber format={(val) => toFixed(val, 2)} value={SM_EPR} />
+            <AnimatedNumber format={(val) => val.toFixed(2)} value={SM_EPR} />
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="Gas Composition">
           <LabeledList>
-            <LabeledList.Item label="O²">
+            <LabeledList.Item label="O₂">
               <AnimatedNumber value={SM_gas_O2} />%
             </LabeledList.Item>
-            <LabeledList.Item label="CO²">
+            <LabeledList.Item label="CO₂">
               <AnimatedNumber value={SM_gas_CO2} />%
             </LabeledList.Item>
-            <LabeledList.Item label="N²">
+            <LabeledList.Item label="N₂">
               <AnimatedNumber value={SM_gas_N2} />%
             </LabeledList.Item>
             <LabeledList.Item label="PH">
               <AnimatedNumber value={SM_gas_PH} />%
             </LabeledList.Item>
-            <LabeledList.Item label="N²O">
+            <LabeledList.Item label="N₂O">
               <AnimatedNumber value={SM_gas_N2O} />%
+            </LabeledList.Item>
+            <LabeledList.Item label="CH₄">
+              <AnimatedNumber value={SM_gas_CH4} />%
             </LabeledList.Item>
           </LabeledList>
         </LabeledList.Item>

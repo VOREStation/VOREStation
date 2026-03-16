@@ -49,7 +49,11 @@
 			ORE_SILVER = 8,
 			ORE_PHORON = 18,
 			ORE_LEAD = 2,
-			ORE_VERDANTIUM = 1))
+			ORE_TIN = 3,
+			ORE_COPPER = 2,
+			ORE_BAUXITE = 9,
+			ORE_QUARTZ = 5,
+			ORE_PAINITE = 1))
 	else
 		mineral_name = pickweight(list(
 			ORE_MARBLE = 2,
@@ -60,7 +64,9 @@
 			ORE_GOLD = 3,
 			ORE_SILVER = 3,
 			ORE_PHORON = 25,
-			ORE_LEAD = 1))
+			ORE_LEAD = 1,
+			ORE_TIN = 12,
+			ORE_COPPER = 9))
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
@@ -104,13 +110,13 @@
 
 // Virgo 3b trufs
 /turf/space/transit/south/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/space/transit/east/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/simulated/sky/virgo3b/south/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/space/v3b_midpoint/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b

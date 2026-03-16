@@ -77,8 +77,8 @@
 	contraband = list()
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	req_access = list(access_bar)
-	req_log_access = access_bar
+	req_access = list(ACCESS_BAR)
+	req_log_access = ACCESS_BAR
 	has_logs = 1
 	vending_sound = "machines/vending/vending_cans.ogg"
 
@@ -126,8 +126,8 @@
 	contraband = list()
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	req_access = list(access_bar)
-	req_log_access = access_bar
+	req_access = list(ACCESS_BAR)
+	req_log_access = ACCESS_BAR
 	has_logs = 1
 	vending_sound = "machines/vending/vending_cans.ogg"
 
@@ -148,8 +148,8 @@
 	contraband = list()
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	req_access = list(access_bar)
-	req_log_access = access_bar
+	req_access = list(ACCESS_BAR)
+	req_log_access = ACCESS_BAR
 	has_logs = 1
 	vending_sound = "machines/vending/vending_cans.ogg"
 

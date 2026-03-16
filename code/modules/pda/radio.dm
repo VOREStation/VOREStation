@@ -28,15 +28,15 @@
 		add_to_radio(bot_filter)
 
 /obj/item/radio/integrated/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, control_freq)
+	if(SSradio)
+		SSradio.remove_object(src, control_freq)
 	hostpda = null
 	return ..()
 
 /obj/item/radio/integrated/proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
 
 	//to_world("Post: [freq]: [key]=[value], [key2]=[value2]")
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 
 	if(!frequency)
 		return
@@ -90,33 +90,33 @@
 			botstatus = b.Copy()
 
 /obj/item/radio/integrated/proc/add_to_radio(bot_filter) //Master filter control for bots. Must be placed in the bot's local Initialize(mapload) to support map spawned bots.
-	if(radio_controller)
-		radio_controller.add_object(src, control_freq, radio_filter = bot_filter)
+	if(SSradio)
+		SSradio.add_object(src, control_freq, radio_filter = bot_filter)
 
 /*
  *	Radio Cartridge, essentially a signaler.
  */
 /obj/item/radio/integrated/signal
-	frequency = 1457
+	frequency = RSD_FREQ
 	var/code = 30.0
 
 /obj/item/radio/integrated/signal/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	radio_connection = null
 	return ..()
 
 /obj/item/radio/integrated/signal/Initialize(mapload)
 	. = ..()
-	if(radio_controller)
+	if(SSradio)
 		if(src.frequency < PUBLIC_LOW_FREQ || src.frequency > PUBLIC_HIGH_FREQ)
 			src.frequency = sanitize_frequency(src.frequency)
 		set_frequency(frequency)
 
 /obj/item/radio/integrated/signal/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency)
+	radio_connection = SSradio.add_object(src, frequency)
 
 /obj/item/radio/integrated/signal/proc/send_signal(message="ACTIVATE")
 	if(last_transmission && world.time < (last_transmission + 5))

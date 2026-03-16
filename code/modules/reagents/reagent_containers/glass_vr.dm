@@ -85,6 +85,11 @@
 /obj/item/reagent_containers/glass/beaker/measuring_cup
 	name = "measuring cup"
 	desc = "A measuring cup."
-	icon = 'icons/obj/chemical_vr.dmi'
 	icon_state = "measure_cup"
 	item_state = "measure_cup"
+
+/obj/item/reagent_containers/glass/beaker/lichpowder
+	prefill = list(REAGENT_ID_LICHPOWDER = 50)
+
+/obj/item/reagent_containers/glass/beaker/zombiepowder
+	prefill = list(REAGENT_ID_ZOMBIEPOWDER = 50)

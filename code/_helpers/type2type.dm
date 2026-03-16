@@ -8,13 +8,6 @@
  *			angle2dir
  */
 
-//Splits the text of a file at seperator and returns them in a list.
-//returns an empty list if the file doesn't exist
-/world/proc/file2list(filename, seperator="\n", trim = TRUE)
-	if (trim)
-		return splittext(trim(file2text(filename)),seperator)
-	return splittext(file2text(filename),seperator)
-
 //returns a string the last bit of a type, without the preceeding '/'
 /proc/type2top(the_type)
 	//handle the builtins manually
@@ -36,56 +29,18 @@
 		else //regex everything else (works for /proc too)
 			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
 
-// Returns an integer given a hexadecimal number string as input.
-/proc/hex2num(hex)
-	if (!istext(hex))
-		return
-
-	var/num   = 0
-	var/power = 1
-	var/i     = length(hex)
-
-	while (i)
-		var/char = text2ascii(hex, i)
-		switch(char)
-			if(48)       pass()                     // 0 -- do nothing
-			if(49 to 57) num += (char - 48) * power // 1-9
-			if(97,  65)  num += power * 10          // A
-			if(98,  66)  num += power * 11          // B
-			if(99,  67)  num += power * 12          // C
-			if(100, 68)  num += power * 13          // D
-			if(101, 69)  num += power * 14          // E
-			if(102, 70)  num += power * 15          // F
-			else
-				return
-		power *= 16
-		i--
-	return num
-
-// Returns the hex value of a number given a value assumed to be a base-ten value
-/proc/num2hex(num, padlength)
-	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
-
-	. = ""
-	while(num > 0)
-		var/hexdigit = hexdigits[(num & 0xF) + 1]
-		. = "[hexdigit][.]"
-		num >>= 4 //go to the next half-byte
-
-	//pad with zeroes
-	var/left = padlength - length(.)
-	while (left-- > 0)
-		. = "0[.]"
-
 /proc/text2numlist(text, delimiter="\n")
 	var/list/num_list = list()
 	for(var/x in splittext(text, delimiter))
 		num_list += text2num(x)
 	return num_list
 
-// Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator="\n")
-	return splittext(return_file_text(filename),seperator)
+//Splits the text of a file at seperator and returns them in a list.
+//returns an empty list if the file doesn't exist
+/world/proc/file2list(filename, seperator="\n", trim = TRUE)
+	if (trim)
+		return splittext(trim(file2text(filename)),seperator)
+	return splittext(file2text(filename),seperator)
 
 // Turns a direction into text
 /proc/num2dir(direction)
@@ -95,7 +50,7 @@
 		if (4.0) return EAST
 		if (8.0) return WEST
 		else
-			to_world_log("UNKNOWN DIRECTION: [direction]")
+			log_world("UNKNOWN DIRECTION: [direction]")
 
 // Turns a direction into text
 /proc/dir2text(direction)
@@ -142,29 +97,43 @@
 		dirs += "DOWN"
 	return dirs.Join(" ")
 
-// Converts an angle (degrees) into an ss13 direction
-/proc/angle2dir(var/degree)
-	degree = (degree + 22.5) % 365 // 22.5 = 45 / 2
-	if (degree < 45)  return NORTH
-	if (degree < 90)  return NORTHEAST
-	if (degree < 135) return EAST
-	if (degree < 180) return SOUTHEAST
-	if (degree < 225) return SOUTH
-	if (degree < 270) return SOUTHWEST
-	if (degree < 315) return WEST
-	return NORTH|WEST
+//Converts an angle (degrees) into a ss13 direction
+GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST))
+#define angle2dir(X) (GLOB.modulo_angle_to_dir[round((((X%360)+382.5)%360)/45)+1])
 
-// Returns the north-zero clockwise angle in degrees, given a direction
-/proc/dir2angle(var/D)
-	switch (D)
-		if (NORTH)     return 0
-		if (SOUTH)     return 180
-		if (EAST)      return 90
-		if (WEST)      return 270
-		if (NORTHEAST) return 45
-		if (SOUTHEAST) return 135
-		if (NORTHWEST) return 315
-		if (SOUTHWEST) return 225
+/proc/angle2dir_cardinal(degree)
+	degree = SIMPLIFY_DEGREES(degree)
+	switch(round(degree, 0.1))
+		if(315.5 to 360, 0 to 45.5)
+			return NORTH
+		if(45.6 to 135.5)
+			return EAST
+		if(135.6 to 225.5)
+			return SOUTH
+		if(225.6 to 315.5)
+			return WEST
+
+//returns the north-zero clockwise angle in degrees, given a direction
+/proc/dir2angle(D)
+	switch(D)
+		if(NORTH)
+			return 0
+		if(SOUTH)
+			return 180
+		if(EAST)
+			return 90
+		if(WEST)
+			return 270
+		if(NORTHEAST)
+			return 45
+		if(SOUTHEAST)
+			return 135
+		if(NORTHWEST)
+			return 315
+		if(SOUTHWEST)
+			return 225
+		else
+			return null
 
 /// Returns a list(x, y), being the change in position required to step in the passed in direction
 /proc/dir2offset(dir)
@@ -197,22 +166,44 @@
 		else                return ICON_OVERLAY
 
 // Converts a rights bitfield into a string
-/proc/rights2text(rights,seperator="")
-	if (rights & R_BUILDMODE)   . += "[seperator]+BUILDMODE"
-	if (rights & R_ADMIN)       . += "[seperator]+ADMIN"
-	if (rights & R_BAN)         . += "[seperator]+BAN"
-	if (rights & R_FUN)         . += "[seperator]+FUN"
-	if (rights & R_SERVER)      . += "[seperator]+SERVER"
-	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
-	if (rights & R_POSSESS)     . += "[seperator]+POSSESS"
-	if (rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
-	if (rights & R_STEALTH)     . += "[seperator]+STEALTH"
-	if (rights & R_REJUVINATE)  . += "[seperator]+REJUVINATE"
-	if (rights & R_VAREDIT)     . += "[seperator]+VAREDIT"
-	if (rights & R_SOUNDS)      . += "[seperator]+SOUND"
-	if (rights & R_SPAWN)       . += "[seperator]+SPAWN"
-	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
-	if (rights & R_EVENT)       . += "[seperator]+EVENT"
+/proc/rights2text(rights, seperator="", prefix = "+")
+	seperator += prefix
+	if(rights & R_BUILDMODE)
+		. += "[seperator]BUILDMODE"
+	if(rights & R_ADMIN)
+		. += "[seperator]ADMIN"
+	if(rights & R_BAN)
+		. += "[seperator]BAN"
+	if(rights & R_FUN)
+		. += "[seperator]FUN"
+	if(rights & R_SERVER)
+		. += "[seperator]SERVER"
+	if(rights & R_DEBUG)
+		. += "[seperator]DEBUG"
+	if(rights & R_POSSESS)
+		. += "[seperator]POSSESS"
+	if(rights & R_PERMISSIONS)
+		. += "[seperator]PERMISSIONS"
+	if(rights & R_STEALTH)
+		. += "[seperator]STEALTH"
+	if(rights & R_REJUVINATE)
+		. += "[seperator]REJUVINATE"
+	if(rights & R_VAREDIT)
+		. += "[seperator]VAREDIT"
+	if(rights & R_SOUNDS)
+		. += "[seperator]SOUND"
+	if(rights & R_SPAWN)
+		. += "[seperator]SPAWN"
+	if (rights & R_MOD)
+		. += "[seperator]MODERATOR"
+	if (rights & R_EVENT)
+		. += "[seperator]EVENT"
+	if (rights & R_MENTOR)
+		. += "[seperator]MENTOR"
+	if(rights & R_DBRANKS)
+		. += "[seperator]DBRANKS"
+	if(!.)
+		. = "NONE"
 	return .
 
 // Converts a hexadecimal color (e.g. #FF0050) to a list of numbers for red, green, and blue (e.g. list(255,0,80) ).
@@ -363,7 +354,7 @@
 /proc/color_hex2color_matrix(string)
 	var/length = length(string)
 	if((length != 7 && length != 9) || length != length_char(string))
-		return color_matrix_identity()
+		return COLOR_MATRIX_IDENTITY
 	var/r = hex2num(copytext(string, 2, 4)) / 255
 	var/g = hex2num(copytext(string, 4, 6)) / 255
 	var/b = hex2num(copytext(string, 6, 8)) / 255
@@ -371,7 +362,7 @@
 	if(length == 9)
 		a = hex2num(copytext(string, 8, 10)) / 255
 	if(!isnum(r) || !isnum(g) || !isnum(b) || !isnum(a))
-		return color_matrix_identity()
+		return COLOR_MATRIX_IDENTITY
 	return list(
 		r,0,0,0,0,
 		g,0,0,0,0,
@@ -598,12 +589,13 @@
 		if(fexists(filename))
 			. = file2text(filename)
 			if(!. && error_on_invalid_return)
-				error("File empty ([filename])")
+				log_world("## ERROR File empty ([filename])")
 		else if(error_on_invalid_return)
-			error("File not found ([filename])")
+			log_world("## ERROR File not found ([filename])")
 	catch(var/exception/E)
 		if(error_on_invalid_return)
-			error("Exception when loading file as string: [E]")
+			log_world("## ERROR Exception when loading file as string: [E]")
+			log_runtime(E)
 
 
 /// Return html to load a url.

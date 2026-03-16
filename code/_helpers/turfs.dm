@@ -79,7 +79,7 @@
 
 		var/turf/target = locate(dst_origin.x + x_pos, dst_origin.y + y_pos, dst_origin.z + z_pos)
 		if(!target)
-			error("Null turf in translation @ ([dst_origin.x + x_pos], [dst_origin.y + y_pos], [dst_origin.z + z_pos])")
+			log_world("## ERROR Null turf in translation @ ([dst_origin.x + x_pos], [dst_origin.y + y_pos], [dst_origin.z + z_pos])")
 		turf_map[source] = target //if target is null, preserve that information in the turf map
 
 	return turf_map
@@ -106,7 +106,7 @@
 
 	//You can stay, though.
 	if(istype(T,/turf/space))
-		error("Tried to translate a space turf: src=[log_info_line(T)] dst=[log_info_line(B)]")
+		log_world("## ERROR Tried to translate a space turf: src=[log_info_line(T)] dst=[log_info_line(B)]")
 		return FALSE // TODO - Is this really okay to do nothing?
 
 	var/turf/X //New Destination Turf
@@ -189,3 +189,57 @@
 		var/testdir = get_dir(target, origin)
 		return (dir & testdir)
 	return TRUE
+
+///similar function to RANGE_TURFS(), but will search spiralling outwards from the center (like the above, but only turfs)
+/proc/spiral_range_turfs(dist = 0, center = usr, orange = FALSE, list/outlist = list(), tick_checked)
+	outlist.Cut()
+	if(!dist)
+		outlist += center
+		return outlist
+
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return outlist
+
+	var/list/turf_list = outlist
+	var/turf/checked_turf
+	var/y
+	var/x
+	var/c_dist = 1
+
+	if(!orange)
+		turf_list += t_center
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x + c_dist)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				turf_list += checked_turf
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y - c_dist to y)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				turf_list += checked_turf
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x - c_dist to x)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				turf_list += checked_turf
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y + c_dist)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				turf_list += checked_turf
+		c_dist++
+		if(tick_checked)
+			CHECK_TICK
+
+	return turf_list

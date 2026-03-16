@@ -19,7 +19,10 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
-obj/item/newspaper/attack_self(mob/user)
+/obj/item/newspaper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
@@ -134,8 +137,7 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user)
 		if(scribble_page == curr_page)
 			to_chat(user, span_blue("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))
 		else
-			var/s = sanitize(tgui_input_text(user, "Write something", "Newspaper", ""))
-			s = sanitize(s)
+			var/s = tgui_input_text(user, "Write something", "Newspaper", "", MAX_MESSAGE_LEN)
 			if(!s)
 				return
 			if(!in_range(src, user) && loc != user)

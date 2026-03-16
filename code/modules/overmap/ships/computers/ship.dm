@@ -35,7 +35,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 /obj/machinery/computer/ship/proc/display_reconnect_dialog(var/mob/user, var/flavor)
 	var/datum/browser/popup = new (user, "[src]", "[src]")
 	if(viewing_overmap(user))
-		unlook(user, TRUE)
+		user.reset_perspective()
 	popup.set_content("<center>" + span_bold(span_red("Error")) + "<br>Unable to connect to [flavor].<br><a href='byond://?src=\ref[src];sync=1'>Reconnect</a></center>")
 	popup.open()
 
@@ -60,73 +60,29 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 			sync_linked(ui.user)
 			return TRUE
 		if("close")
-			unlook(ui.user)
-			ui.user.unset_machine()
+			ui.user.reset_perspective()
 			return TRUE
 	return FALSE
 
 // Management of mob view displacement. look to shift view to the ship on the overmap; unlook to shift back.
 
-/obj/machinery/computer/ship/proc/look(var/mob/user)
-	if(!linked)
-		return
-
-	apply_visual(user)
-	user.reset_view(linked)
+/obj/machinery/computer/ship/look(var/mob/user)
 	if(linked.real_appearance)
 		user.client?.images += linked.real_appearance
-	user.set_machine(src)
-	if(isliving(user))
-		var/mob/living/L = user
-		L.looking_elsewhere = 1
-		L.handle_vision()
 	user.set_viewsize(world.view + extra_view)
-	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/machinery/computer/ship/proc/unlook)
-	// TODO GLOB.stat_set_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
-	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
-/obj/machinery/computer/ship/proc/unlook(var/mob/user, forced)
-	SIGNAL_HANDLER
-	if(!linked && !forced) //If we have no linked computer, return early. Forcing is for when we do a one-time action that we want to clear the UI.
-		return
-	user.reset_view()
+/obj/machinery/computer/ship/unlook(var/mob/user)
 	if(linked && linked.real_appearance && user.client)
 		user.client.images -= linked.real_appearance
-	if(isliving(user))
-		var/mob/living/L = user
-		L.looking_elsewhere = 0
-		L.handle_vision()
 	user.set_viewsize() // reset to default
-	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
-	// TODO GLOB.stat_set_event.unregister(user, src, /obj/machinery/computer/ship/proc/unlook)
-	LAZYREMOVE(viewers, WEAKREF(user))
 
 /obj/machinery/computer/ship/proc/viewing_overmap(mob/user)
 	return (WEAKREF(user) in viewers)
 
-/obj/machinery/computer/ship/tgui_status(mob/user)
-	. = ..()
-	if(viewing_overmap(user) && (user.machine != src))
-		unlook(user, TRUE)
-
 /obj/machinery/computer/ship/tgui_close(mob/user)
 	. = ..()
-	user.unset_machine()
-	unlook(user, TRUE)
-
-/obj/machinery/computer/ship/check_eye(var/mob/user)
-	if(!get_dist(user, src) > 1 || user.blinded || !linked)
-		unlook(user)
-		return -1
-	else
-		return 0
+	user.reset_perspective()
 
 /obj/machinery/computer/ship/sensors/Destroy()
 	sensors = null
-	if(LAZYLEN(viewers))
-		for(var/datum/weakref/W in viewers)
-			var/M = W.resolve()
-			if(M)
-				unlook(M, TRUE)
 	. = ..()

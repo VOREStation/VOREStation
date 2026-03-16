@@ -5,6 +5,7 @@
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
+	is_digital_robot = TRUE
 
 /obj/item/mmi/digital/robot/Initialize(mapload)
 	. = ..()
@@ -18,6 +19,3 @@
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
 	to_chat(brainmob, span_notify("You feel slightly disoriented. That's normal when you're little more than a complex circuit."))
 	return
-
-/obj/item/mmi/digital/robot/attack_self(mob/user)
-	return //This object is technically a brain, and should not be dumping brains out of itself like its parent object does.

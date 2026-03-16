@@ -8,7 +8,7 @@
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 4 //The sum of the w_classes of all the items in this storage item.
-	req_access = list(access_armory)
+	req_access = list(ACCESS_ARMORY)
 	preserve_item = 1
 	var/locked = 1
 	var/broken = 0
@@ -76,7 +76,7 @@
 
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of loyalty implants"
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	starts_with = list(
 		/obj/item/implantcase/loyalty = 3,
 		/obj/item/implanter/loyalty
@@ -85,13 +85,13 @@
 /obj/item/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	starts_with = list(/obj/item/grenade/flashbang/clusterbang)
 
 /obj/item/storage/lockbox/medal
 	name = "lockbox of medals"
 	desc = "A lockbox filled with commemorative medals, it has the NanoTrasen logo stamped on it."
-	req_access = list(access_heads)
+	req_access = list(ACCESS_HEADS)
 	storage_slots = 7
 	starts_with = list(
 		/obj/item/clothing/accessory/medal/conduct,

@@ -115,7 +115,7 @@
 
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
-	var/newname = copytext(sanitize(tgui_input_text(user, "Would you like to give \the [M] a name?", "Name your new pet", M.name, MAX_NAME_LEN)),1,MAX_NAME_LEN)
+	var/newname = copytext(tgui_input_text(user, "Would you like to give \the [M] a name?", "Name your new pet", M.name, MAX_NAME_LEN),1,MAX_NAME_LEN)
 
 	if(newname)
 		M.name = newname
@@ -208,6 +208,9 @@
 	to_chat(M, span_notice("\The [user] feeds you \the [src], and feel that the others will regard you as an outsider now."))
 	M.faction = user.faction
 	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
+	if(istype(M, /mob/living/simple_mob/slime))
+		var/mob/living/simple_mob/slime/slime = M
+		slime.update_mood() //Makes them drop-nomable.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 

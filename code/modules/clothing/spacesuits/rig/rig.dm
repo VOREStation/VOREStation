@@ -161,7 +161,6 @@
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
 		if(islist(armor)) piece.armor = armor.Copy()
-		if(islist(armorsoak)) piece.armorsoak = armorsoak.Copy()
 
 	update_icon(1)
 
@@ -296,8 +295,8 @@
 	var/seal_target = !canremove
 	var/failed_to_seal
 
-	var/obj/screen/rig_booting/booting_L = new
-	var/obj/screen/rig_booting/booting_R = new
+	var/atom/movable/screen/rig_booting/booting_L = new
+	var/atom/movable/screen/rig_booting/booting_R = new
 
 	if(!seal_target)
 		booting_L.icon_state = "boot_left"
@@ -319,7 +318,7 @@
 
 		if(!instant)
 			M.visible_message(span_notice("[M]'s suit emits a quiet hum as it begins to adjust its seals."),span_notice("With a quiet hum, the suit begins running checks and adjusting components."))
-			if(seal_delay && !do_after(M,seal_delay))
+			if(seal_delay && !do_after(M, seal_delay, target = src))
 				if(M)
 					to_chat(M, span_warning("You must remain still while the suit is adjusting the components."))
 					playsound(src, 'sound/machines/rig/rigerror.ogg', 20, FALSE)
@@ -345,7 +344,7 @@
 
 				if(!failed_to_seal && (M.back == src || M.belt == src) && piece == compare_piece)
 
-					if(seal_delay && !instant && !do_after(M,seal_delay,needhand=0))
+					if(seal_delay && !instant && !do_after(M, seal_delay, target = src))
 						failed_to_seal = 1
 
 					piece.icon_state = "[suit_state][!seal_target ? "_sealed" : ""]"
@@ -495,9 +494,12 @@
 	if (!suit_is_deployed())		//inbuilt systems only work on the suit they're designed to work on
 		return
 
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+
 	var/mob/living/carbon/human/H = loc
 
-	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 	var/efficiency = 1 - H.get_pressure_weakness(environment.return_pressure())	// You need to have a good seal for effective cooling
 	var/env_temp = get_environment_temperature()						//wont save you from a fire
@@ -681,7 +683,7 @@
 
 	if(seal_delay > 0 && istype(M) && (M.back == src || M.belt == src))
 		M.visible_message(span_notice("[M] starts putting on \the [src]..."), span_notice("You start putting on \the [src]..."))
-		if(!do_after(M,seal_delay))
+		if(!do_after(M, seal_delay, target = src))
 			if(M && (M.back == src || M.belt == src))
 				if(!M.unEquip(src))
 					return
@@ -739,7 +741,7 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						to_chat(H, span_boldnotice("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly."))
+						balloon_alert(H, "your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.")
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
@@ -758,7 +760,7 @@
 					to_chat(H, span_danger("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
 					return
 			else
-				to_chat(H, span_notice("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
+				balloon_alert(H, "your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.")
 				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
 	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)
@@ -815,18 +817,18 @@
 /obj/item/rig/proc/malfunction()
 	return 0
 
-/obj/item/rig/emp_act(severity_class)
+/obj/item/rig/emp_act(severity, recursive)
 	//set malfunctioning
 	if(emp_protection < 30) //for ninjas, really.
 		malfunctioning += 10
 		if(malfunction_delay <= 0)
-			malfunction_delay = max(malfunction_delay, round(30/severity_class))
+			malfunction_delay = max(malfunction_delay, round(30/severity))
 
 	//drain some charge
-	if(cell) cell.emp_act(severity_class + 15)
+	if(cell) cell.emp_act(severity + 15)
 
 	//possibly damage some modules
-	take_hit((100/severity_class), "electrical pulse", 1)
+	take_hit((100/severity), "electrical pulse", 1)
 
 /obj/item/rig/proc/shock(mob/user)
 	if (electrocute_mob(user, cell, src)) //electrocute_mob() handles removing charge from the cell, no need to do that here.
@@ -987,8 +989,8 @@
 		wearer_move_delay = world.time
 		return wearer.buckled.relaymove(wearer, direction)
 
-	if(istype(wearer.machine, /obj/machinery))
-		if(wearer.machine.relaymove(wearer, direction))
+	if(istype(wearer.get_current_machine(), /obj/machinery))
+		if(wearer.get_current_machine().relaymove(wearer, direction))
 			return
 
 	if(wearer.pulledby || wearer.buckled) // Wheelchair driving!
@@ -1038,7 +1040,7 @@
 		return null
 
 //Boot animation screen objects
-/obj/screen/rig_booting
+/atom/movable/screen/rig_booting
 	screen_loc = "1,1"
 	icon = 'icons/obj/rig_boot.dmi'
 	icon_state = ""

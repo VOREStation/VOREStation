@@ -11,7 +11,7 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/atmoscontrol
-	req_access = list(access_ce)
+	req_access = list(ACCESS_CE)
 	var/list/monitored_alarm_ids = null
 	var/datum/tgui_module/atmos_control/atmos_control
 

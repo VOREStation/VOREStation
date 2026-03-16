@@ -98,6 +98,13 @@
 	icon_colour = "#E8E7C8"
 	wiki_flag = WIKI_SPOILER
 
+/datum/material/cloth/brown
+	name = MAT_CLOTH_BROWN
+	display_name = MAT_CLOTH_BROWN
+	use_name = "brown cloth"
+	icon_colour = "#5C4831"
+	wiki_flag = WIKI_SPOILER
+
 /datum/material/cloth/lime
 	name = MAT_CLOTH_LIME
 	display_name = MAT_CLOTH_LIME
@@ -148,6 +155,7 @@
 	conductive = 0
 	hardness = 5
 	integrity = 10
+	stack_type = /obj/item/stack/material/cotton
 
 /datum/material/fibers
 	name = MAT_FIBERS

@@ -1,11 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/unsimulated/wall/planetary/virgo3b{
-	desc = "You can't go there!";
-	icon = 'icons/turf/flooring/plating_vr.dmi';
-	icon_state = "";
-	name = "impassible landscape"
-	},
+/turf/unsimulated/wall/planetary/virgo3b_unpassable,
 /area/tether/surfacebase/outside/wilderness)
 "ab" = (
 /obj/effect/step_trigger/teleporter/wild/to_wild_5,
@@ -71,12 +66,7 @@
 /turf/simulated/shuttle/floor/black/virgo3b,
 /area/tether/surfacebase/outside/wilderness)
 "aj" = (
-/turf/simulated/floor/virgo3b_indoors{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/virgo3b_indoors/dirt,
 /area/tether/surfacebase/outside/wilderness)
 "ak" = (
 /obj/item/material/shard,
@@ -177,12 +167,7 @@
 	icon_state = "propulsion_r";
 	dir = 4
 	},
-/turf/simulated/floor/virgo3b_indoors{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/virgo3b_indoors/dirt,
 /area/tether/surfacebase/outside/wilderness)
 "aC" = (
 /obj/item/material/shard,
@@ -241,12 +226,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
-/turf/simulated/floor/virgo3b_indoors{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/virgo3b_indoors/dirt,
 /area/tether/surfacebase/outside/wilderness)
 "aK" = (
 /obj/machinery/suit_cycler/syndicate,
@@ -371,12 +351,7 @@
 	icon_state = "propulsion_l";
 	dir = 4
 	},
-/turf/simulated/floor/virgo3b_indoors{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/virgo3b_indoors/dirt,
 /area/tether/surfacebase/outside/wilderness)
 "aY" = (
 /obj/structure/closet/walllocker/emerglocker{
@@ -1058,12 +1033,7 @@
 	icon_state = "heater";
 	dir = 4
 	},
-/turf/simulated/floor/virgo3b_indoors{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/virgo3b_indoors/dirt,
 /area/tether/surfacebase/outside/wilderness)
 
 (1,1,1) = {"

@@ -50,7 +50,7 @@
 		to_chat(L, span_danger("You've been burned by \the [src]!"))
 		L.adjust_fire_stacks(1)
 		if(prob(12))
-			L.IgniteMob()
+			L.ignite_mob()
 
 /mob/living/simple_mob/slime/xenobio/blue
 	desc = "This slime produces 'cryotoxin' and uses it against their foes.  Very deadly to other slimes."
@@ -96,16 +96,6 @@
 				"bomb" = 80,
 				"bio" = 100,
 				"rad" = 100
-				)
-
-	armor_soak = list(
-				"melee" = 5,
-				"bullet" = 5,
-				"laser" = 5,
-				"energy" = 0,
-				"bomb" = 0,
-				"bio" = 0,
-				"rad" = 0
 				)
 
 	slime_mutation = list(
@@ -417,6 +407,8 @@
 			L.throw_at(get_edge_target_turf(L, throwdir), 3, 1, src)
 		else
 			to_chat(L, span_warning("\The [src] hits you with incredible force, but you remain in place."))
+			visible_message(span_danger("\The [src] hits \the [L] with incredible force, to no visible effect!"))
+			playsound(src, "punch", 50, 1)
 
 
 /mob/living/simple_mob/slime/xenobio/amber
@@ -580,10 +572,10 @@
 		var/mob/living/carbon/human/H = holder
 		for(var/obj/item/organ/external/E in H.organs)
 			var/obj/item/organ/external/O = E
-			O.heal_damage(2, 2, 0, 1)
+			O.heal_damage(1, 1, 0, 1)
 	else
-		holder.adjustBruteLoss(-2)
-		holder.adjustFireLoss(-2)
+		holder.adjustBruteLoss(-1)
+		holder.adjustFireLoss(-1)
 
 	holder.adjustToxLoss(-2)
 	holder.adjustOxyLoss(-2)
@@ -784,5 +776,16 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/passive
 
 /mob/living/simple_mob/slime/xenobio/rainbow/kendrick/Initialize(mapload)
+	pacify() // So the physical mob also gets made harmless.
+	return ..()
+
+// A pacified pink slime for either Admin-spawning or putting in a casino reward or capture crystal.
+/mob/living/simple_mob/slime/xenobio/pink/sana
+	name = "Sana"
+	desc = "A pink slime that seems to be oddly friendly, and doesn't seem interested in eating your face like the rest of them."
+	rainbow_core_candidate = FALSE
+	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/passive
+
+/mob/living/simple_mob/slime/xenobio/pink/sana/Initialize(mapload)
 	pacify() // So the physical mob also gets made harmless.
 	return ..()

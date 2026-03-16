@@ -3,7 +3,7 @@
 	var/datum/job/J = SSjob.get_job(rank)
 
 	if(!J)
-		log_debug("Couldn't find job: [rank] for spawn_checks_vr, panic-returning that it's fine to spawn.")
+		NOTICE("Couldn't find job: [rank] for spawn_checks_vr, panic-returning that it's fine to spawn.")
 		return TRUE
 
 	//No Flavor Text
@@ -17,7 +17,7 @@
 		pass = FALSE
 
 	//Are they on the VERBOTEN LIST?
-	if (GLOB.prevent_respawns.Find(client?.prefs?.real_name))
+	if (GLOB.prevent_respawns.Find(client?.prefs?.read_preference(/datum/preference/name/real_name)))
 		to_chat(src,span_warning("You've already quit the round as this character. You can't go back now that you've free'd your job slot. Play another character, or wait for the next round."))
 		pass = FALSE
 

@@ -22,10 +22,10 @@
 
 /proc/ToRban_update()
 	spawn(0)
-		log_misc("Downloading updated ToR data...")
+		log_world("Downloading updated ToR data...")
 		var/http[] = world.Export("https://check.torproject.org/exit-addresses")
 
-		var/list/rawlist = file2list(http["CONTENT"])
+		var/list/rawlist = world.file2list(http["CONTENT"])
 		if(rawlist.len)
 			fdel(TORFILE)
 			var/savefile/F = new(TORFILE)
@@ -36,17 +36,17 @@
 					if(!cleaned)	continue
 					F[cleaned] << 1
 			F["last_update"] << world.realtime
-			log_misc("ToR data updated!")
+			log_world("ToR data updated!")
 			if(usr)
 				to_chat(usr, span_filter_adminlog("ToRban updated."))
 			return
-		log_misc("ToR data update aborted: no data.")
+		log_world("ToR data update aborted: no data.")
 		return
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server.Config"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 	switch(task)
 		if("update")
 			ToRban_update()
@@ -67,7 +67,11 @@
 				dat = "<table width='100%'>[dat]</table>"
 			else
 				dat = "No addresses in list."
-			src << browse("<html>[dat]</html>","window=ToRban_show")
+
+			var/datum/browser/popup = new(src, "ToRban_show", "Torban")
+			popup.set_content(dat)
+			popup.open()
+
 		if("remove")
 			var/savefile/F = new(TORFILE)
 			var/choice = tgui_input_list(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban", F.dir)

@@ -5,25 +5,35 @@
 	target.absorbable = source.absorbable;												\
 	target.allowmobvore = source.allowmobvore;											\
 	target.permit_healbelly = source.permit_healbelly;									\
+	target.allowtemp = source.allowtemp;												\
 																						\
 	target.vore_taste = source.vore_taste;												\
 	target.vore_smell = source.vore_smell;												\
 	target.noisy = source.noisy;														\
 	target.show_vore_fx = source.show_vore_fx;											\
 	target.selective_preference = source.selective_preference;							\
+	target.size_strip_preference = source.size_strip_preference;						\
 	target.digest_leave_remains = source.digest_leave_remains;							\
 	target.digest_pain = source.digest_pain;											\
 	target.noisy_full = source.noisy_full;												\
 	target.eating_privacy_global = source.eating_privacy_global;						\
+	target.vore_death_privacy = source.vore_death_privacy;								\
 																						\
 	target.can_be_drop_prey = source.can_be_drop_prey;									\
 	target.can_be_drop_pred = source.can_be_drop_pred;									\
+	target.can_be_afk_prey = source.can_be_afk_prey;									\
+	target.can_be_afk_pred = source.can_be_afk_pred;									\
 	target.throw_vore = source.throw_vore;												\
 	target.food_vore = source.food_vore;												\
 	target.drop_vore = source.drop_vore;												\
 	target.slip_vore = source.slip_vore;												\
 	target.stumble_vore = source.stumble_vore;											\
 	target.phase_vore = source.phase_vore;												\
+																						\
+	target.spont_belly_rear = source.spont_belly_rear;									\
+	target.spont_belly_left = source.spont_belly_left;									\
+	target.spont_belly_front = source.spont_belly_front;								\
+	target.spont_belly_right = source.spont_belly_right;								\
 																						\
 	target.resizable = source.resizable;												\
 	target.step_mechanics_pref = source.step_mechanics_pref;							\
@@ -54,6 +64,7 @@
 																						\
 	target.autotransferable = source.autotransferable;									\
 	target.strip_pref = source.strip_pref;												\
+	target.contaminate_pref = source.contaminate_pref;									\
 	target.vore_sprite_multiply = source.vore_sprite_multiply;							\
 	target.vore_sprite_color = source.vore_sprite_color;								\
 	target.belly_rub_target = source.belly_rub_target;									\

@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/personal
 	name = "personal closet"
 	desc = "It's a secure locker for personnel. The first card swiped gains control."
-	req_access = list(access_all_personal_lockers)
+	req_access = list(ACCESS_ALL_PERSONAL_LOCKERS)
 	var/registered_name = null
 
 	/* //VOREStation Removal
@@ -20,7 +20,7 @@
 
 /obj/structure/closet/secure_closet/personal/patient
 	name = "patient's closet"
-	closet_appearance = /decl/closet_appearance/secure_closet/patient
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/patient
 
 	starts_with = list(
 		/obj/item/clothing/under/medigown,
@@ -29,7 +29,7 @@
 
 
 /obj/structure/closet/secure_closet/personal/cabinet
-	closet_appearance = /decl/closet_appearance/cabinet/secure
+	closet_appearance = /datum/decl/closet_appearance/cabinet/secure
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'

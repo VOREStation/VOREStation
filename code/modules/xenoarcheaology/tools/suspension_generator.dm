@@ -1,19 +1,20 @@
 /obj/machinery/suspension_gen
 	name = "suspension field generator"
-	desc = "It has stubby bolts up against it's treads for stabilising. Used to be required for artifact removal but now merely works as a monster deterrant."
+	desc = "It has stubby bolts up against it's treads for stabilising. Used to hold anomalies stable in place."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "suspension"
 	density = 1
-	req_access = list(access_research)
+	req_access = list(ACCESS_RESEARCH)
 	var/obj/item/cell/cell
 	var/obj/item/card/id/auth_card
 	var/locked = 1
-	var/power_use = 5
+	var/power_use = 15
 	var/obj/effect/suspension_field/suspension_field
 
 /obj/machinery/suspension_gen/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/high(src)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -152,6 +153,12 @@
 		M.Weaken(5)
 		M.visible_message(span_blue("[icon2html(M,viewers(M))] [M] begins to float in the air!"),"You feel tingly and light, but it is difficult to move.")
 
+	for(var/obj/effect/anomaly/anom in T)
+		anom.immortal = TRUE
+		anom.move_chance = 0
+		if(!anom.stats)
+			anom.stats = new /datum/anomaly_stats(anom)
+
 	suspension_field = new(T)
 	visible_message(span_blue("[icon2html(src,viewers(src))] [src] activates with a low hum."))
 	icon_state = "suspension_on"
@@ -167,7 +174,7 @@
 		add_overlay("shield2")
 		visible_message(span_blue("[icon2html(suspension_field,viewers(src))] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
-		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
+		if(ismineralturf(T) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
 		else
 			suspension_field.icon_state = "shield2"
@@ -180,6 +187,15 @@
 		to_chat(M, span_info("You no longer feel like floating."))
 		M.Weaken(3)
 
+	for(var/obj/effect/anomaly/anom in T)
+		if(anom.stats)
+			var/datum/anomaly_stats/anom_stats = anom.stats
+			if(istype(anom_stats.modifier, /datum/anomaly_modifiers/move))
+				anom.move_chance = initial(anom.move_chance)
+			continue
+		else
+			anom.move_chance = initial(anom.move_chance)
+
 	visible_message(span_blue("[icon2html(src,viewers(src))] [src] deactivates with a gentle shudder."))
 	qdel(suspension_field)
 	suspension_field = null
@@ -190,26 +206,6 @@
 /obj/machinery/suspension_gen/Destroy()
 	deactivate()
 	. = ..()
-
-/obj/machinery/suspension_gen/verb/rotate_counterclockwise()
-	set src in view(1)
-	set name = "Rotate suspension gen Counterclockwise"
-	set category = "Object"
-
-	if(anchored)
-		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
-		return
-	set_dir(turn(dir, 90))
-
-/obj/machinery/suspension_gen/verb/rotate_clockwise()
-	set src in view(1)
-	set name = "Rotate suspension gen Clockwise"
-	set category = "Object"
-
-	if(anchored)
-		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
-		return
-	set_dir(turn(dir, 270))
 
 /obj/machinery/suspension_gen/update_icon()
 	cut_overlays()

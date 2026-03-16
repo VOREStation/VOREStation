@@ -54,7 +54,7 @@
 		src.hidden = hidden
 	// Currently only non-0 durations can be altered (normal alarms VS EMP blasts)
 	if(AS.duration)
-		duration = SecondsToTicks(duration)
+		duration = duration SECONDS
 		AS.duration = duration
 	AS.severity = severity
 	src.hidden = min(src.hidden, hidden)

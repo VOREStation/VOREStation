@@ -39,21 +39,23 @@
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
 	var/mob/living/user = usr
-	if(!istype(user) || !istype(target))
+	if(!istype(user) || !istype(target) || user.is_incorporeal())
 		return ..()
 
 	if(CanMouseDrop(target, user))
-		if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
+		if(!can_apply_to_target(target, user)) // There is no point in attempting to apply a mask if it's impossible.
 			return
-		usr.visible_message("\The [usr] begins placing \the [contained] onto [target].")
-		if(!do_mob(usr, target, 25) || !can_apply_to_target(target, usr))
+		user.visible_message("\The [user] begins placing \the [contained] onto [target].")
+		if(!do_after(user, 2.5 SECONDS, target) || !can_apply_to_target(target, user))
 			return
 		// place mask and add fingerprints
-		usr.visible_message("\The [usr] has placed \the [contained] on [target]'s mouth.")
+		user.visible_message("\The [user] has placed \the [contained] on [target]'s mouth.")
 		attach_mask(target)
-		src.add_fingerprint(usr)
+		src.add_fingerprint(user)
 
 /obj/machinery/oxygen_pump/attack_hand(mob/user as mob)
+	if(user.is_incorporeal())
+		return
 	if((stat & MAINT) && tank)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " removes \the [tank] from \the [src]."), span_notice("You remove \the [tank] from \the [src]."))
 		user.put_in_hands(tank)
@@ -128,6 +130,8 @@
 	return 1
 
 /obj/machinery/oxygen_pump/attackby(obj/item/W as obj, mob/user as mob)
+	if(user.is_incorporeal())
+		return
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		stat ^= MAINT
 		user.visible_message(span_notice("\The [user] [(stat & MAINT) ? "opens" : "closes"] \the [src]."), span_notice("You [(stat & MAINT) ? "open" : "close"] \the [src]."))

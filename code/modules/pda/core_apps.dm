@@ -3,7 +3,7 @@
 	template = "pda_main_menu"
 	hidden = 1
 
-/datum/data/pda/app/main_menu/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/main_menu/update_ui(mob/user, list/data)
 	title = pda.name
 
 	data["app"]["is_home"] = 1
@@ -37,7 +37,7 @@
 						if(2)		// Eject pAI device
 							var/turf/T = get_turf_or_move(pda.loc)
 							if(T)
-								pda.pai.loc = T
+								pda.pai.forceMove(T)
 								pda.pai = null
 			return TRUE
 
@@ -63,7 +63,7 @@
 		note = "Thank you for choosing the [pda.model_name]!"
 		notetitle = "Congratulations!"
 
-/datum/data/pda/app/notekeeper/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/notekeeper/update_ui(mob/user, list/data)
 	data["note"] = note									// current pda notes
 	data["notename"] = "Note [GLOB.alphabet_upper[currentnote]] : [notetitle]"
 
@@ -206,7 +206,7 @@
 	icon = "user"
 	template = "pda_manifest"
 
-/datum/data/pda/app/manifest/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/manifest/update_ui(mob/user, list/data)
 	if(GLOB.data_core)
 		GLOB.data_core.get_manifest_list()
 	data["manifest"] = GLOB.PDA_Manifest
@@ -221,40 +221,8 @@
 	template = "pda_atmos_scan"
 	category = "Utilities"
 
-/datum/data/pda/app/atmos_scanner/update_ui(mob/user as mob, list/data)
-	var/list/results = list()
-	var/turf/T = get_turf(user)
-	if(!isnull(T))
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = environment.return_pressure()
-		var/total_moles = environment.total_moles
-		if (total_moles)
-			var/o2_level = environment.gas[GAS_O2]/total_moles
-			var/n2_level = environment.gas[GAS_N2]/total_moles
-			var/co2_level = environment.gas[GAS_CO2]/total_moles
-			var/phoron_level = environment.gas[GAS_PHORON]/total_moles
-			var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
-
-			// entry is what the element is describing
-			// Type identifies which unit or other special characters to use
-			// Val is the information reported
-			// Bad_high/_low are the values outside of which the entry reports as dangerous
-			// Poor_high/_low are the values outside of which the entry reports as unideal
-			// Values were extracted from the template itself
-			results = list(
-						list("entry" = "Pressure", "units" = "kPa", "val" = "[round(pressure,0.1)]", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80),
-						list("entry" = "Temperature", "units" = "\u00B0C", "val" = "[round(environment.temperature-T0C,0.1)]", "bad_high" = 35, "poor_high" = 25, "poor_low" = 15, "bad_low" = 5),
-						list("entry" = "Oxygen", "units" = "kPa", "val" = "[round(o2_level*100,0.1)]", "bad_high" = 140, "poor_high" = 135, "poor_low" = 19, "bad_low" = 17),
-						list("entry" = "Nitrogen", "units" = "kPa", "val" = "[round(n2_level*100,0.1)]", "bad_high" = 105, "poor_high" = 85, "poor_low" = 50, "bad_low" = 40),
-						list("entry" = "Carbon Dioxide", "units" = "kPa", "val" = "[round(co2_level*100,0.1)]", "bad_high" = 10, "poor_high" = 5, "poor_low" = 0, "bad_low" = 0),
-						list("entry" = "Phoron", "units" = "kPa", "val" = "[round(phoron_level*100,0.01)]", "bad_high" = 0.5, "poor_high" = 0, "poor_low" = 0, "bad_low" = 0),
-						list("entry" = "Other", "units" = "kPa", "val" = "[round(unknown_level, 0.01)]", "bad_high" = 1, "poor_high" = 0.5, "poor_low" = 0, "bad_low" = 0)
-						)
-
-	if(isnull(results))
-		results = list(list("entry" = "pressure", "units" = "kPa", "val" = "0", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80))
-
-	data["aircontents"] = results
+/datum/data/pda/app/atmos_scanner/update_ui(mob/user, list/data)
+	data["aircontents"] = get_gas_mixture_default_scan_data(get_turf(user))
 
 /datum/data/pda/app/news
 	name = "News"
@@ -263,7 +231,7 @@
 
 	var/newsfeed_channel
 
-/datum/data/pda/app/news/update_ui(mob/user as mob, list/data)
+/datum/data/pda/app/news/update_ui(mob/user, list/data)
 	data["feeds"] = compile_news()
 	data["latest_news"] = get_recent_news()
 	if(newsfeed_channel)
@@ -280,7 +248,7 @@
 
 /datum/data/pda/app/news/proc/compile_news()
 	var/list/feeds = list()
-	for(var/datum/feed_channel/channel in news_network.network_channels)
+	for(var/datum/feed_channel/channel in GLOB.news_network.network_channels)
 		var/list/messages = list()
 		if(!channel.censored)
 			var/index = 0
@@ -312,7 +280,7 @@
 	var/list/news = list()
 
 	// Compile all the newscasts
-	for(var/datum/feed_channel/channel in news_network.network_channels)
+	for(var/datum/feed_channel/channel in GLOB.news_network.network_channels)
 		if(!channel.censored)
 			var/index = 0
 			for(var/datum/feed_message/FM in channel.messages)

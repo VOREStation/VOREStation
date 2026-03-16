@@ -58,7 +58,7 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 	// If we're installed in a chassi, rather than transfered to an inteliCard or other container, then check if we have camera view
 	if(is_in_chassis())
 		//stop AIs from leaving windows open and using then after they lose vision
-		if(cameranet && !cameranet.checkTurfVis(get_turf(src_object)))
+		if(GLOB.cameranet && !GLOB.cameranet.checkTurfVis(get_turf(src_object)))
 			return STATUS_CLOSE
 		return STATUS_INTERACTIVE
 	else if(get_dist(src_object, src) <= client.view)	// View does not return what one would expect while installed in an inteliCard
@@ -72,7 +72,11 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 		. = min(., shared_living_tgui_distance(src_object)) //simple animals can only use things they're near.
 
 /mob/living/silicon/pai/default_can_use_tgui_topic(src_object)
-	// pAIs can only use themselves and the owner's radio.
+	// Allows few objects...
+	var/obj/check_obj = src_object
+	if(!stat && istype(check_obj) && check_obj.allow_pai_interaction(src, get_dist(check_obj, src) <= 1))
+		return STATUS_INTERACTIVE
+	// ...otherwise pAIs can only use themselves and the owner's radio.
 	if((src_object == src || src_object == radio || src_object == communicator) && !stat)
 		return STATUS_INTERACTIVE
 	else

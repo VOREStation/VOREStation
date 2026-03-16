@@ -38,7 +38,7 @@
 			num++
 
 	// Display the results.
-	to_world(text)
+	to_chat(world, text)
 
 /datum/antagonist/proc/print_objective(var/datum/objective/O, var/num, var/append_success)
 	var/text = "<br>" + span_bold("Objective [num]:") + " [O.explanation_text] "
@@ -73,7 +73,7 @@
 	var/TC_uses = FALSE
 	var/uplink_true = FALSE
 	var/purchases = ""
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.mind && M.mind.used_TC)
 			TC_uses += M.mind.used_TC
 			uplink_true = TRUE

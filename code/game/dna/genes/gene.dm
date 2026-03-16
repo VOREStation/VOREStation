@@ -94,41 +94,18 @@
 		if(P == path)
 			continue
 
-		// check if cached first...
-		if(!isnull(conflict_traits[P]))
-			if(quick_scan && conflict_traits[P])
+		// Quickscan time
+		if(quick_scan)
+			if(P in conflict_traits)
 				return TRUE
 			continue
 
 		// check trait if not. CONFLICT-O-TRON ENGAGE
-		conflict_traits[P] = FALSE
-
-		var/datum/trait/instance_test = GLOB.all_traits[P]
-		if(path in instance_test.excludes)
-			conflict_traits[P] = TRUE
+		if(check_trait_conflict(linked_trait, GLOB.all_traits[P]))
+			conflict_traits |= P
 			has_conflict = TRUE
-			// depending on scan mode we want to scan all, or only the first failure
-			if(quick_scan)
-				return TRUE
 			continue
-		for(var/V in linked_trait.var_changes)
-			if(V == "flags")
-				continue
-			if(V in instance_test.var_changes)
-				conflict_traits[P] = TRUE
-				has_conflict = TRUE
-				// depending on scan mode we want to scan all, or only the first failure
-				if(quick_scan)
-					return TRUE
-				continue
-		for(var/V in linked_trait.var_changes_pref)
-			if(V in instance_test.var_changes_pref)
-				conflict_traits[P] = TRUE
-				has_conflict = TRUE
-				// depending on scan mode we want to scan all, or only the first failure
-				if(quick_scan)
-					return TRUE
-				continue
+
 	return has_conflict
 
 /datum/gene/trait/activate(var/mob/M, var/connected, var/mut_flags)

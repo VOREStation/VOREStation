@@ -2,9 +2,6 @@
 // Vars and Default tesla_act behavior
 ////////////////////////////////////////
 
-/obj
-	var/being_shocked = FALSE
-
 /obj/proc/tesla_act(var/power)
 	being_shocked = TRUE
 	var/power_bounced = power / 2

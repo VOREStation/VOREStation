@@ -1,4 +1,4 @@
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type BodyMarking = Record<
   string,
@@ -15,7 +15,15 @@ export enum Gender {
   Female = 'Female',
   Neuter = 'Neuter',
   Plural = 'Plural',
+  Herm = 'Herm',
 }
+
+export const byondGenders: Gender[] = [
+  Gender.Male,
+  Gender.Female,
+  Gender.Neuter,
+  Gender.Plural,
+];
 
 export enum PersistanceEnum {
   PERSIST_SPAWN = 0x01,
@@ -49,6 +57,7 @@ export type BasicData = {
   emote_sound_mode: string;
 
   persistence_settings: PersistanceEnum;
+  species_stats: SpeciesStats;
 };
 
 export enum BodypartFlags {
@@ -181,6 +190,7 @@ export type BodyData = {
   body_markings: Record<string, BodyMarking>;
 
   tail_style: string;
+  tail_layering: string;
   tail_color1: string;
   tail_color2: string;
   tail_color3: string;
@@ -236,12 +246,20 @@ export type AntagonismData = {
   uplink_type: string;
   record_banned: BooleanLike;
   exploitable_record?: string;
-  pai_name?: string;
-  pai_desc?: string;
-  pai_role?: string;
-  pai_comments?: string;
+  pai_name: string;
+  pai_desc: string;
+  pai_role: string;
+  pai_ad: string;
+  pai_comments: string;
+  pai_eyecolor: string;
+  pai_chassis: string;
+  pai_chassises: Record<string, string>[];
+  pai_emotion: string;
+  pai_emotions: Record<string, number>[];
   syndicate_ban: BooleanLike;
   special_roles: SpecialRole[];
+  pai_sprite_datum_class?: string;
+  pai_sprite_datum_size?: string;
 };
 
 export const REQUIRED_FLAVOR_TEXT_LENGTH = 30;
@@ -282,9 +300,10 @@ export type MiscData = {
   nif: BooleanLike;
 
   custom_species: string;
-  pos_traits: string[] | Record<string, Record<string, any> | null>;
-  neu_traits: string[] | Record<string, Record<string, any> | null>;
-  neg_traits: string[] | Record<string, Record<string, any> | null>;
+  ignore_shoes: BooleanLike;
+  pos_traits: string[] | Record<string, Record<string, unknown> | null>;
+  neu_traits: string[] | Record<string, Record<string, unknown> | null>;
+  neg_traits: string[] | Record<string, Record<string, unknown> | null>;
   traits_cheating: BooleanLike;
   max_traits: number;
   trait_points: number;
@@ -298,15 +317,16 @@ export type GeneralData = BasicData &
   SizeData &
   MiscData;
 
-export type GeneralDataStatic = {
+export type GeneralDataStatic = Partial<{
   allow_metadata: BooleanLike;
+  basehuman_stats: SpeciesStats;
   can_play: Record<string, { restricted: number; can_select: BooleanLike }>;
   available_hair_styles: string[];
   available_facial_styles: string[];
   available_ear_styles: string[];
   available_tail_styles: string[];
   available_wing_styles: string[];
-};
+}>;
 
 export type StandardStyle = { name: string; icon: string; icon_state: string };
 
@@ -381,7 +401,7 @@ export type Species = {
   species_language: string;
   icobase: string;
   rarity: number;
-  has_organ: string;
+  has_organ: Record<string, string>;
   flags: SpeciesFlags;
   spawn_flags: SpawnFlags;
   appearance_flags: AppearanceFlags;
@@ -391,6 +411,7 @@ export enum TraitPrefType {
   TRAIT_PREF_TYPE_BOOLEAN = 1,
   TRAIT_PREF_TYPE_COLOR = 2,
   TRAIT_PREF_TYPE_STRING = 3,
+  TRAIT_PREF_TYPE_LIST = 4,
 }
 
 export enum TraitVareditTarget {
@@ -433,4 +454,41 @@ export type GeneralDataConstant = {
   tail_styles: Record<string, TailStyle>;
   wing_styles: Record<string, WingStyle>;
   all_traits: Record<string, Trait>;
+};
+
+export type SpeciesStats = {
+  total_health: number;
+  slowdown: number;
+  brute_mod: number;
+  burn_mod: number;
+  oxy_mod: number;
+  toxins_mod: number;
+  radiation_mod: number;
+  flash_mod: number;
+  pain_mod: number;
+  stun_mod: number;
+  weaken_mod: number;
+  lightweight: BooleanLike;
+  has_vibration_sense: BooleanLike;
+  dispersed_eyes: BooleanLike;
+  trashcan: BooleanLike;
+  eat_minerals: BooleanLike;
+  darksight: number;
+  breath_type: string | null;
+  cold_level_1: number;
+  heat_level_1: number;
+  chem_strength_heal: number;
+  chem_strength_tox: number;
+  body_temperature: number;
+  item_slowdown_mod: number;
+  hazard_low_pressure: number;
+  hazard_high_pressure: number;
+  siemens_coefficient: number;
+  soft_landing: BooleanLike;
+  bloodsucker: BooleanLike;
+  can_zero_g_move: BooleanLike;
+  can_space_freemove: BooleanLike;
+  water_breather: BooleanLike;
+  has_flight: BooleanLike;
+  can_climb: BooleanLike;
 };

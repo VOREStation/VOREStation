@@ -8,7 +8,7 @@
 	icon_dead = "yithian_dead"
 	icon = 'icons/jungle.dmi'
 
-	organ_names = /decl/mob_organ_names/yithian
+	organ_names = /datum/decl/mob_organ_names/yithian
 
 	// Same stats as lizards.
 	health = 5
@@ -25,15 +25,15 @@
 	icon_dead = "tindalos_dead"
 	icon = 'icons/jungle.dmi'
 
-	organ_names = /decl/mob_organ_names/tindalos
+	organ_names = /datum/decl/mob_organ_names/tindalos
 
 	// Same stats as lizards.
 	health = 5
 	maxHealth = 5
 	mob_size = MOB_MINISCULE
 
-/decl/mob_organ_names/yithian
+/datum/decl/mob_organ_names/yithian
 	hit_zones = list("head", "abdomen", "left foreleg", "right foreleg", "left hind leg", "right hind leg")
 
-/decl/mob_organ_names/tindalos
+/datum/decl/mob_organ_names/tindalos
 	hit_zones = list("head", "thorax", "abdomen", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "left middle leg", "right middle leg")

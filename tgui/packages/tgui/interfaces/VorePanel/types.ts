@@ -1,24 +1,30 @@
+import type { ReactNode } from 'react';
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   vore_words: Record<string, string[]>;
   unsaved_changes: BooleanLike;
-  inside: insideData;
+  inside: InsideData;
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
+  prey_abilities: PreyAbilityData[] | null;
+  intent_data: IntentData | null;
   active_tab: number;
   persist_edit_mode: BooleanLike;
-  host_mobtype: hostMob | null;
-  our_bellies?: bellyData[] | null;
-  selected?: selectedData | null;
-  prefs?: prefData | null;
-  soulcatcher?: soulcatcherData | null;
-  abilities?: abilities | null;
+  presets: string;
+  host_mobtype: HostMob | null;
+  our_bellies?: BellyData[] | null;
+  min_belly_name: number;
+  max_belly_name: number;
+  selected?: SelectedData | null;
+  prefs?: PrefData | null;
+  soulcatcher?: SoulcatcherData | null;
+  abilities?: Abilities | null;
   active_vore_tab?: number;
-  general_pref_data?: generalPrefData | null;
+  general_pref_data?: GeneralPrefData | null;
 };
 
-export type abilities = {
+export type Abilities = {
   nutrition: number;
   size_change: abilitySizeChange;
 };
@@ -30,12 +36,12 @@ export type abilitySizeChange = {
   resize_cost: number;
 };
 
-export type hostMob = {
+export type HostMob = {
   is_cyborg: BooleanLike;
   is_vore_simple_mob: BooleanLike;
 };
 
-export type insideData = {
+export type InsideData = {
   absorbed: BooleanLike;
   belly_name?: string;
   belly_mode?: string;
@@ -45,11 +51,12 @@ export type insideData = {
   liq_lvl?: number;
   liq_reagent_type?: string;
   liuq_name?: string;
-  contents?: contentData[];
+  contents?: ContentData[];
 };
 
-export type bellyData = {
+export type BellyData = {
   name: string;
+  display_name: string;
   ref: string;
   selected?: BooleanLike;
   digest_mode?: string;
@@ -57,17 +64,17 @@ export type bellyData = {
   prevent_saving?: BooleanLike;
 };
 
-export type bellyModeData = {
+export type BellyModeData = {
   mode: string;
   item_mode: string;
-  addons: checkBoxEntry[];
+  addons: CheckBoxEntry[];
   name_length: number;
   name_min: number;
   mode_options: string[];
   item_mode_options: string[];
 };
 
-export type bellyDescriptionData = {
+export type BellyDescriptionData = {
   verb: string;
   release_verb: string;
   message_mode: BooleanLike;
@@ -96,7 +103,7 @@ export type bellyDescriptionData = {
   } | null;
 };
 
-export type bellyOptionData = {
+export type BellyOptionData = {
   can_taste: BooleanLike;
   is_feedable: BooleanLike;
   nutrition_percent: number;
@@ -105,6 +112,7 @@ export type bellyOptionData = {
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  bellytemperature: number;
   digest_max: number;
   digest_free: number;
   bulge_size: number;
@@ -124,16 +132,21 @@ export type bellyOptionData = {
   selective_preference: string;
   save_digest_mode: BooleanLike;
   eating_privacy_local: string;
+  vore_death_privacy: string;
   vorespawn_blacklist: BooleanLike;
   vorespawn_whitelist: string[];
   vorespawn_absorbed: number;
   private_struggle: BooleanLike;
+  absorbedrename_enabled: BooleanLike;
+  absorbedrename_name: string;
+  absorbedrename_name_max: number;
+  absorbedrename_name_min: number;
   drainmode_options: string[];
   drainmode: string;
-  mob_belly_controls: siliconeBellyControls;
+  temperature_damage: BooleanLike;
 };
 
-export type bellySoundData = {
+export type BellySoundData = {
   is_wet: BooleanLike;
   wet_loop: BooleanLike;
   fancy: BooleanLike;
@@ -147,7 +160,7 @@ export type bellySoundData = {
   release_sound_list: Record<string, string>;
 };
 
-export type bellyVisualData = {
+export type BellyVisualData = {
   belly_fullscreen: string;
   colorization_enabled: BooleanLike;
   belly_fullscreen_color: string;
@@ -157,7 +170,7 @@ export type bellyVisualData = {
   belly_fullscreen_alpha: number;
   possible_fullscreens: string[];
   disable_hud: BooleanLike;
-  vore_sprite_flags: checkBoxEntry[];
+  vore_sprite_flags: CheckBoxEntry[];
   affects_voresprite: BooleanLike;
   absorbed_voresprite: BooleanLike;
   absorbed_multiplier: number;
@@ -178,46 +191,50 @@ export type bellyVisualData = {
   tail_option_shown: BooleanLike;
   tail_to_change_to: BooleanLike | string;
   tail_sprite_options: string[];
+  mob_belly_controls: SiliconeBellyControls;
 };
 
-export type bellyInteractionData = {
-  escapable: BooleanLike;
+export type BellyInteractionData = {
+  escapable: number;
   interacts: interactData;
   autotransfer_enabled: BooleanLike;
-  autotransfer: autotransferData;
+  autotransfer: AutotransferData;
 };
 
-export type contentData = {
+export type ContentData = {
   name: string;
   absorbed: BooleanLike;
   stat: number;
   ref: string;
   outside: BooleanLike;
   icon: string;
+  our_type: string;
 };
 
-export type bellyLiquidData = {
+export type BellyLiquidData = {
   show_liq: BooleanLike;
-  liq_interacts: liqInteractData;
+  liq_gen_resources: number;
+  liq_interacts: LiqInteractData;
 };
 
-export type siliconeBellyControls = {
+export type SiliconeBellyControls = {
   silicon_belly_overlay_preference: string;
   belly_sprite_option_shown: BooleanLike;
   belly_sprite_to_affect: string;
 };
 
-export type selectedData = {
+export type SelectedData = {
   belly_name: string;
-  belly_mode_data?: bellyModeData;
-  belly_description_data?: bellyDescriptionData;
-  belly_option_data?: bellyOptionData;
-  belly_sound_data?: bellySoundData;
-  belly_visual_data?: bellyVisualData;
-  belly_interaction_data?: bellyInteractionData;
-  contents?: contentData[] | null;
+  display_name: string;
+  belly_mode_data?: BellyModeData;
+  belly_description_data?: BellyDescriptionData;
+  belly_option_data?: BellyOptionData;
+  belly_sound_data?: BellySoundData;
+  belly_visual_data?: BellyVisualData;
+  belly_interaction_data?: BellyInteractionData;
+  contents?: ContentData[] | null;
   content_length: number;
-  belly_liquid_data?: bellyLiquidData;
+  belly_liquid_data?: BellyLiquidData;
 };
 
 export type interactData = {
@@ -233,25 +250,27 @@ export type interactData = {
   belchchance: number;
 };
 
-export type autotransferData = {
+export type AutotransferData = {
   autotransferwait: number;
   autotransfer_min_amount: number;
   autotransfer_max_amount: number;
-  primary_transfer: autoTransferOption;
-  secondary_transfer: autoTransferOption;
+  primary_transfer: AutoTransferOption;
+  secondary_transfer: AutoTransferOption;
 };
 
-export type autoTransferOption = {
+export type AutoTransferOption = {
   autotransferchance: number;
   autotransferlocation: string | null;
   autotransferextralocation: string[];
-  autotransfer_whitelist: checkBoxEntry[];
-  autotransfer_blacklist: checkBoxEntry[];
-  autotransfer_whitelist_items: checkBoxEntry[];
-  autotransfer_blacklist_items: checkBoxEntry[];
+  autotransfer_whitelist: CheckBoxEntry[];
+  autotransfer_blacklist: CheckBoxEntry[];
+  autotransfer_whitelist_items: CheckBoxEntry[];
+  autotransfer_blacklist_items: CheckBoxEntry[];
 };
 
-export type liqInteractData = {
+type BellyReagent = { name: string; volume: number };
+
+export type LiqInteractData = {
   liq_reagent_gen: BooleanLike;
   liq_reagent_type: string;
   liq_reagent_types: string[];
@@ -261,8 +280,9 @@ export type liqInteractData = {
   liq_reagent_transfer_verb: string;
   liq_reagent_nutri_rate: number;
   liq_reagent_capacity: number;
+  liq_gen_cost_limit: number;
   liq_sloshing: BooleanLike;
-  liq_reagent_addons: checkBoxEntry[];
+  liq_reagent_addons: CheckBoxEntry[];
   custom_reagentcolor: string;
   custom_reagentalpha: number | null;
   liquid_overlay: BooleanLike;
@@ -279,9 +299,11 @@ export type liqInteractData = {
   max_ingested: number;
   custom_ingested_color: string;
   custom_ingested_alpha: number;
+  total_volume: number;
+  current_reagents: BellyReagent[];
 };
 
-export type prefData = {
+export type PrefData = {
   digestable: BooleanLike;
   devourable: BooleanLike;
   resizable: BooleanLike;
@@ -289,10 +311,13 @@ export type prefData = {
   absorbable: BooleanLike;
   digest_leave_remains: BooleanLike;
   allowmobvore: BooleanLike;
+  allowtemp: BooleanLike;
   permit_healbelly: BooleanLike;
   show_vore_fx: BooleanLike;
   can_be_drop_prey: BooleanLike;
   can_be_drop_pred: BooleanLike;
+  can_be_afk_prey: BooleanLike;
+  can_be_afk_pred: BooleanLike;
   latejoin_vore: BooleanLike;
   latejoin_prey: BooleanLike;
   no_spawnpred_warning: BooleanLike;
@@ -305,6 +330,7 @@ export type prefData = {
   step_mechanics_active: BooleanLike;
   pickup_mechanics_active: BooleanLike;
   strip_mechanics_active: BooleanLike;
+  contaminate_worn_items: BooleanLike;
   noisy: BooleanLike;
   liq_rec: BooleanLike;
   liq_giv: BooleanLike;
@@ -312,7 +338,7 @@ export type prefData = {
   consume_liquid_belly: BooleanLike;
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
-  selective_active: string;
+  dropdown_preferences: DropdownPrefernces;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;
@@ -322,6 +348,7 @@ export type prefData = {
   food_vore: BooleanLike;
   digest_pain: BooleanLike;
   eating_privacy_global: BooleanLike;
+  vore_death_privacy: BooleanLike;
   allow_mimicry: BooleanLike;
   soulcatcher_allow_capture: BooleanLike;
   soulcatcher_allow_transfer: BooleanLike;
@@ -330,7 +357,12 @@ export type prefData = {
   max_voreoverlay_alpha: number;
 };
 
-export type scMessageData = {
+export type DropdownPrefernces = {
+  strip_active: number;
+  selective_active: string;
+};
+
+export type ScMessageData = {
   sc_subtab: string;
   possible_messages: string[];
   max_length: number;
@@ -339,13 +371,13 @@ export type scMessageData = {
   tooltip: string;
 };
 
-export type soulcatcherData = {
+export type SoulcatcherData = {
   active: BooleanLike;
   name: string;
   caught_souls: DropdownEntry[];
   selected_sfx: string | null;
   selected_soul: string;
-  sc_message_data: scMessageData;
+  sc_message_data: ScMessageData;
   catch_self: BooleanLike;
   taken_over: BooleanLike;
   catch_prey: BooleanLike;
@@ -364,30 +396,30 @@ export type DropdownEntry = {
   value: string;
 };
 
-export type checkBoxEntry = {
+export type CheckBoxEntry = {
   label: string;
   selection: BooleanLike;
   ref?: string;
 };
 
-export type generalPrefData = {
+export type GeneralPrefData = {
   active_belly: string | null;
   belly_rub_target: string | null;
-  aestethic_messages: aestMessageData;
+  aestethic_messages: AestMessageData;
   vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
+  spont_rear: string | null;
+  spont_front: string | null;
+  spont_left: string | null;
+  spont_right: string | null;
 };
 
-export type aestMessageData = {
+export type AestMessageData = {
   possible_messages: string[];
   aest_subtab: string;
   max_length: number;
-  active_message:
-    | string
-    | string[]
-    | null
-    | Record<string | number, string | number>; // The record is an ancient data corruption, it's not valid!
+  active_message: string | string[] | null | Record<string, string | number>; // The record is an ancient data corruption, it's not valid!
   set_action: string;
   tooltip: string;
   sub_action?: string;
@@ -397,54 +429,97 @@ export type aestMessageData = {
   button_tooltip?: string;
 };
 
-export type localPrefs = {
-  digestion: preferenceData;
-  absorbable: preferenceData;
-  devour: preferenceData;
-  mobvore: preferenceData;
-  feed: preferenceData;
-  healbelly: preferenceData;
-  dropnom_prey: preferenceData;
-  dropnom_pred: preferenceData;
-  toggle_drop_vore: preferenceData;
-  toggle_slip_vore: preferenceData;
-  toggle_stumble_vore: preferenceData;
-  toggle_throw_vore: preferenceData;
-  toggle_phase_vore: preferenceData;
-  toggle_food_vore: preferenceData;
-  toggle_digest_pain: preferenceData;
-  spawnbelly: preferenceData;
-  spawnprey: preferenceData;
-  noisy: preferenceData;
-  noisy_full: preferenceData;
-  resize: preferenceData;
-  steppref: preferenceData;
-  vore_fx: preferenceData;
-  remains: preferenceData;
-  pickuppref: preferenceData;
-  spontaneous_tf: preferenceData;
-  mind_transfer: preferenceData;
-  strippref: preferenceData;
-  eating_privacy_global: preferenceData;
-  allow_mimicry: preferenceData;
-  autotransferable: preferenceData;
-  liquid_receive: preferenceData;
-  liquid_give: preferenceData;
-  liquid_apply: preferenceData;
-  toggle_consume_liquid_belly: preferenceData;
-  no_spawnpred_warning: preferenceData;
-  no_spawnprey_warning: preferenceData;
-  soulcatcher: preferenceData;
-  soulcatcher_transfer: preferenceData;
-  soulcatcher_takeover: preferenceData;
-  soulcatcher_delete: preferenceData;
+export type LocalPrefs = {
+  digestion: PreferenceData;
+  absorbable: PreferenceData;
+  devour: PreferenceData;
+  mobvore: PreferenceData;
+  temperature: PreferenceData;
+  feed: PreferenceData;
+  healbelly: PreferenceData;
+  dropnom_prey: PreferenceData;
+  dropnom_pred: PreferenceData;
+  afk_prey: PreferenceData;
+  afk_pred: PreferenceData;
+  toggle_drop_vore: PreferenceData;
+  toggle_slip_vore: PreferenceData;
+  toggle_stumble_vore: PreferenceData;
+  toggle_throw_vore: PreferenceData;
+  toggle_phase_vore: PreferenceData;
+  toggle_food_vore: PreferenceData;
+  toggle_digest_pain: PreferenceData;
+  spawnbelly: PreferenceData;
+  spawnprey: PreferenceData;
+  noisy: PreferenceData;
+  noisy_full: PreferenceData;
+  resize: PreferenceData;
+  steppref: PreferenceData;
+  vore_fx: PreferenceData;
+  remains: PreferenceData;
+  pickuppref: PreferenceData;
+  spontaneous_tf: PreferenceData;
+  mind_transfer: PreferenceData;
+  strippref: PreferenceData;
+  contaminatepref: PreferenceData;
+  eating_privacy_global: PreferenceData;
+  vore_death_privacy: PreferenceData;
+  allow_mimicry: PreferenceData;
+  autotransferable: PreferenceData;
+  liquid_receive: PreferenceData;
+  liquid_give: PreferenceData;
+  liquid_apply: PreferenceData;
+  toggle_consume_liquid_belly: PreferenceData;
+  no_spawnpred_warning: PreferenceData;
+  no_spawnprey_warning: PreferenceData;
+  soulcatcher: PreferenceData;
+  soulcatcher_transfer: PreferenceData;
+  soulcatcher_takeover: PreferenceData;
+  soulcatcher_delete: PreferenceData;
 };
 
-export type preferenceData = {
+export type PreferenceData = {
   action: string;
   test: BooleanLike;
   tooltip: { main: string; enable: string; disable: string };
   content: { enabled: string; disabled: string };
   fluid?: boolean;
   back_color?: { enabled: string; disabled: string };
+};
+
+export type ActionButtonData = {
+  name: string;
+  tooltip: ReactNode;
+  disabled?: boolean;
+  color?: string;
+  needsConfirm?: boolean;
+};
+
+export type PreyAbilityData = {
+  name: string;
+  available: BooleanLike;
+};
+
+export type Overlay = {
+  icon: string;
+  iconState: string;
+  color?: string;
+};
+
+export type IntentData = {
+  active: BooleanLike;
+  current_intent: string;
+  help: BooleanLike;
+  disarm: BooleanLike;
+  grab: BooleanLike;
+  harm: BooleanLike;
+};
+
+export type PreferenceDropdown = {
+  action: string;
+  prefix: string;
+  tooltip: string;
+  data: Record<
+    string,
+    { displayText: string; color?: string; enabled?: boolean }
+  >;
 };

@@ -4,7 +4,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -42,7 +42,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/barracks)
 "aj" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -215,7 +215,7 @@
 /turf/simulated/wall/shull,
 /area/ship/ert/med_surg)
 "aV" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -413,7 +413,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways_aft)
 "ch" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -467,7 +467,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/brig)
 "cJ" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -839,7 +839,7 @@
 /turf/simulated/wall/rshull,
 /area/ship/ert/gunnery)
 "fn" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -1404,7 +1404,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways_aft)
 "hA" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/machinery/light/no_nightshift{
@@ -3111,7 +3111,7 @@
 /turf/simulated/wall/shull,
 /area/ship/ert/atmos)
 "pY" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -3336,7 +3336,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
 "ra" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -4346,7 +4346,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/armoury_st)
 "xx" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -6268,7 +6268,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/brig)
 "Ia" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow,
@@ -6339,7 +6339,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/barracks)
 "Iu" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
@@ -7910,7 +7910,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/bridge)
 "PO" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{

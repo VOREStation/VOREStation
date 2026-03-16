@@ -19,13 +19,15 @@
 	owner = parent
 	RegisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT, PROC_REF(handle_comp))
 	RegisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED, PROC_REF(handle_record))
+	if(owner.dna)
+		handle_record()
 	add_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
 
 /datum/component/xenochimera/Destroy(force)
 	UnregisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT)
 	UnregisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED)
 	remove_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
-	qdel_null(revival_record)
+	QDEL_NULL(revival_record)
 	owner = null
 	. = ..()
 
@@ -33,7 +35,7 @@
 	SIGNAL_HANDLER
 	if(QDELETED(owner))
 		return
-	qdel_null(revival_record)
+	QDEL_NULL(revival_record)
 	revival_record = new(owner)
 
 /datum/component/xenochimera/proc/handle_comp()
@@ -45,7 +47,7 @@
 
 /datum/component/xenochimera/proc/handle_regeneration()
 	if(revive_ready == REVIVING_NOW || revive_ready == REVIVING_DONE)
-		owner.stunned = 5
+		owner.SetStunned(5)
 		owner.canmove = 0
 		owner.does_not_breathe = TRUE
 		if(prob(2)) // 2% chance of playing squelchy noise while reviving, which is run roughly every 2 seconds/tick while regenerating.
@@ -77,7 +79,7 @@
 	var/shock = 0.75*owner.traumatic_shock
 
 	//Caffeinated or otherwise overexcited xenochimera can become feral and have special messages
-	var/jittery = max(0, owner.jitteriness - 100)
+	var/jittery = max(0, owner.get_jittery() - 100)
 
 	//Are we in danger of ferality?
 	var/danger = FALSE
@@ -267,11 +269,11 @@
 		return
 	owner.LoadComponent(/datum/component/hallucinations/xenochimera)
 
-/obj/screen/xenochimera
+/atom/movable/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/xenochimera/danger_level
+/atom/movable/screen/xenochimera/danger_level
 	name = "danger level"
 	icon_state = "danger00"		//first number is bool of whether or not we're in danger, second is whether or not we're feral
 	alpha = 200
@@ -329,7 +331,7 @@
 
 		//Scary spawnerization.
 		set_revival_delay(time)
-		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		owner.throw_alert("regen", /atom/movable/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_ready)), time SECONDS, TIMER_DELETE_ME)
 
 	//Clicked regen while NOT dead
@@ -338,7 +340,7 @@
 
 		//Waiting for regen after being alive
 		set_revival_delay(time)
-		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		owner.throw_alert("regen", /atom/movable/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
 	owner.lying = TRUE
 	// open_appearance_editor()
@@ -355,7 +357,7 @@
 	revive_ready = REVIVING_DONE
 	owner << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
 	owner.clear_alert("regen")
-	owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+	owner.throw_alert("hatch", /atom/movable/screen/alert/xenochimera/readytohatch)
 
 /datum/component/xenochimera/proc/chimera_regenerate_ready()
 	if(!owner)
@@ -365,7 +367,7 @@
 		to_chat(owner, span_notice("Your body has recovered from its ordeal, ready to regenerate itself again."))
 		revive_ready = REVIVING_READY //reset their cooldown
 		owner.clear_alert("regen")
-		owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		owner.throw_alert("hatch", /atom/movable/screen/alert/xenochimera/readytohatch)
 
 	// Was dead, still dead.
 	else
@@ -374,7 +376,7 @@
 		revive_ready = REVIVING_DONE
 		owner << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
 		owner.clear_alert("regen")
-		owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		owner.throw_alert("hatch", /atom/movable/screen/alert/xenochimera/readytohatch)
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
@@ -399,7 +401,7 @@
 		if(slot_is_synth && !isSynthetic()) // Prevents some pretty weird situations
 			to_chat(src,span_warning("Cannot apply character appearance. [slot_is_synth ? "The slot's character is synthetic." : "The slot's character is organic."] Slot must match the current body's synthetic state. Please try another character."))
 			return
-		from_slot = "You'll hatch using [client.prefs.real_name]'s appearance"
+		from_slot = "You'll hatch using [client.prefs.read_preference(/datum/preference/name/real_name)]'s appearance"
 
 	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view. [from_slot]! Are you sure?", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")

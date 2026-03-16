@@ -69,7 +69,7 @@
 	. = list()
 	if(!department)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		// Do not count AI's shells
 		if(isrobot(M))
 			var/mob/living/silicon/robot/R = M
@@ -89,7 +89,7 @@
 		return
 
 	// Now find people with the job name.
-	for(var/M in player_list)
+	for(var/M in GLOB.player_list)
 		var/datum/job/their_job = guess_job(M)
 		if(!istype(their_job)) // No job was guessed.
 			continue

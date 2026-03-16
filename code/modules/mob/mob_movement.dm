@@ -146,6 +146,9 @@
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
 
+	if(HAS_TRAIT(my_mob, TRAIT_NO_TRANSFORM))
+		return FALSE //This is sorta the goto stop mobs from moving trait
+
 	// We're controlling an object which is when admins possess an object.
 	if(my_mob.control_object)
 		Move_object(direct)
@@ -170,7 +173,7 @@
 
 	// We're in the middle of another move we've already decided to do
 	if(moving)
-		log_debug("Client [src] attempted to move while moving=[moving]")
+		// to_chat(world, "Client [src] attempted to move while moving=[moving]")
 		return 0
 
 	// We're still cooling down from the last move
@@ -202,13 +205,6 @@
 		if(L.is_incorporeal())//Move though walls
 			Process_Incorpmove(direct)
 			return
-		/* TODO observer unzoom
-		if(view != world.view) // If mob moves while zoomed in with device, unzoom them.
-			for(var/obj/item/item in mob.contents)
-				if(item.zoom)
-					item.zoom()
-					break
-		*/
 
 	if(Process_Grab())
 		return
@@ -218,10 +214,8 @@
 		return
 
 	// Relaymove could handle it
-	if(my_mob.machine)
-		var/result = my_mob.machine.relaymove(my_mob, direct)
-		if(result)
-			return result
+	if(SEND_SIGNAL(my_mob, COMSIG_MOB_RELAY_MOVEMENT, direct))
+		return TRUE
 
 	// Can't control ourselves when drifting
 	if((isspace(loc) || my_mob.lastarea?.get_gravity() == 0) && isturf(loc))
@@ -414,7 +408,7 @@
 			else if(!istype(mob, /mob/observer/dead) && T.blocks_nonghost_incorporeal)
 				return
 			//RS Port #658 Start
-			if(!holder)
+			if(!check_rights_for(src, R_HOLDER))
 				if(isliving(mob) && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
 					to_chat(mob, span_warning("Something blocks you from entering this location while phased out."))
 					return

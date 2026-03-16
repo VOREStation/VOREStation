@@ -19,8 +19,8 @@
 //- Identify how hard it is to break into the area and where the weak points are
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
-var/camera_range_display_status = 0
-var/intercom_range_display_status = 0
+GLOBAL_VAR_INIT(camera_range_display_status, FALSE)
+GLOBAL_VAR_INIT(intercom_range_display_status, FALSE)
 
 GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
@@ -48,18 +48,18 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Camera Range Display"
 
-	if(camera_range_display_status)
-		camera_range_display_status = 0
+	if(GLOB.camera_range_display_status)
+		GLOB.camera_range_display_status = FALSE
 	else
-		camera_range_display_status = 1
+		GLOB.camera_range_display_status = TRUE
 
 
 
 	for(var/obj/effect/debugging/camera_range/C in GLOB.all_debugging_effects)
 		qdel(C)
 
-	if(camera_range_display_status)
-		for(var/obj/machinery/camera/C in cameranet.cameras)
+	if(GLOB.camera_range_display_status)
+		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb","mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -69,16 +69,16 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Camera Report"
 
-	if(!master_controller)
+	if(!GLOB.master_controller)
 		tgui_alert_async(usr,"Master_controller not found.","Sec Camera Report")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()
 
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
-	var/output = {""} + span_bold("CAMERA ANNOMALITIES REPORT") + {"<HR>
+	var/output = span_bold("CAMERA ANNOMALITIES REPORT") + {"<HR>
 "} + span_bold("The following annomalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.") + {"<BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
@@ -102,22 +102,25 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 					output += "<li>" + span_red("Camera not connected to wall at \[[C1.x], [C1.y], [C1.z]\] ([C1.loc.loc]) Network: [C1.network]") + "</li>"
 
 	output += "</ul>"
-	usr << browse("<html>[output]</html>","window=airreport;size=1000x500")
+
+	var/datum/browser/popup = new(src, "airreport", "Airreport", 1000, 500)
+	popup.set_content(output)
+	popup.open()
 	feedback_add_details("admin_verb","mCRP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/intercom_view()
 	set category = "Mapping"
 	set name = "Intercom Range Display"
 
-	if(intercom_range_display_status)
-		intercom_range_display_status = 0
+	if(GLOB.intercom_range_display_status)
+		GLOB.intercom_range_display_status = FALSE
 	else
-		intercom_range_display_status = 1
+		GLOB.intercom_range_display_status = TRUE
 
 	for(var/obj/effect/debugging/marker/M in GLOB.all_debugging_effects)
 		qdel(M)
 
-	if(intercom_range_display_status)
+	if(GLOB.intercom_range_display_status)
 		for(var/obj/item/radio/intercom/I in GLOB.machines)
 			for(var/turf/T in orange(7,I))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)
@@ -125,7 +128,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 					qdel(F)
 	feedback_add_details("admin_verb","mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-var/list/debug_verbs = list (
+GLOBAL_LIST_INIT(debug_verbs, list(
 		/client/proc/do_not_use_these
 		,/client/proc/camera_view
 		,/client/proc/sec_camera_report
@@ -135,14 +138,11 @@ var/list/debug_verbs = list (
 		,/client/proc/powerdebug
 		,/client/proc/count_objects_on_z_level
 		,/client/proc/count_objects_all
-		,/client/proc/cmd_assume_direct_control
 		,/client/proc/jump_to_dead_group
 		,/client/proc/startSinglo
-		,/client/proc/set_server_fps
 		,/client/proc/cmd_admin_grantfullaccess
 		,/client/proc/kaboom
 		,/client/proc/cmd_admin_areatest
-		,/client/proc/cmd_admin_rejuvenate
 		,/datum/admins/proc/show_traitor_panel
 		,/client/proc/print_jobban_old
 		,/client/proc/print_jobban_old_filter
@@ -158,7 +158,7 @@ var/list/debug_verbs = list (
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
 		,/client/proc/take_picture
-	)
+	))
 
 
 /client/proc/enable_debug_verbs()
@@ -167,7 +167,7 @@ var/list/debug_verbs = list (
 
 	if(!check_rights(R_DEBUG)) return
 
-	add_verb(src, debug_verbs)
+	add_verb(src, GLOB.debug_verbs)
 
 	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -177,7 +177,7 @@ var/list/debug_verbs = list (
 
 	if(!check_rights(R_DEBUG)) return
 
-	remove_verb(src, debug_verbs)
+	remove_verb(src, GLOB.debug_verbs)
 
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -187,7 +187,7 @@ var/list/debug_verbs = list (
 /client/var/usedZAScolors = 0
 /client/var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
+/client/proc/recurse_zone(var/datum/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return
@@ -196,8 +196,8 @@ var/list/debug_verbs = list (
 	for(var/turf/T in Z.contents)
 		images += image(yellow, T, "zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in Z.edges)
-		var/zone/connected = edge.get_connected_zone(Z)
+	for(var/datum/connection_edge/zone/edge in Z.edges)
+		var/datum/zone/connected = edge.get_connected_zone(Z)
 		if(connected in testZAScolors_zones)
 			continue
 		recurse_zone(connected,recurse_level+1)
@@ -232,14 +232,14 @@ var/list/debug_verbs = list (
 	for(var/turf/T in location.zone.contents)
 		images += image(green, T,"zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in location.zone.edges)
-		var/zone/Z = edge.get_connected_zone(location.zone)
+	for(var/datum/connection_edge/zone/edge in location.zone.edges)
+		var/datum/zone/Z = edge.get_connected_zone(location.zone)
 		testZAScolors_zones += Z
 		for(var/turf/T in Z.contents)
 			images += image(blue, T,"zasdebug",TURF_LAYER)
 			testZAScolors_turfs += T
-		for(var/connection_edge/zone/z_edge in Z.edges)
-			var/zone/connected = z_edge.get_connected_zone(Z)
+		for(var/datum/connection_edge/zone/z_edge in Z.edges)
+			var/datum/zone/connected = z_edge.get_connected_zone(Z)
 			if(connected in testZAScolors_zones)
 				continue
 			recurse_zone(connected,1)
@@ -309,9 +309,9 @@ var/list/debug_verbs = list (
 			if(i*10+j <= atom_list.len)
 				temp_atom = atom_list[i*10+j]
 				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
-		to_world(line)*/
+		to_chat(world, line)*/
 
-	to_world("There are [count] objects of type [type_path] on z-level [num_level]")
+	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
 	feedback_add_details("admin_verb","mOBJZ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_all()
@@ -336,7 +336,7 @@ var/list/debug_verbs = list (
 			if(i*10+j <= atom_list.len)
 				temp_atom = atom_list[i*10+j]
 				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
-		to_world(line)*/
+		to_chat(world, line)*/
 
-	to_world("There are [count] objects of type [type_path] in the game world")
+	to_chat(world, "There are [count] objects of type [type_path] in the game world")
 	feedback_add_details("admin_verb","mOBJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

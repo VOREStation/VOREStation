@@ -14,6 +14,9 @@
 	switch(L.a_intent)
 		if(I_HELP)
 			if(health > 0)
+				if(L.zone_sel.selecting == BP_GROIN)
+					if(L.vore_bellyrub(src))
+						return
 				L.visible_message(span_notice("\The [L] [response_help] \the [src]."))
 
 		if(I_DISARM)
@@ -43,13 +46,24 @@
 
 		if(I_HURT)
 			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
-			if(ishuman(L)) //VOREStation EDIT START Is it a human?
+			if(ishuman(L))
 				var/mob/living/carbon/human/attacker = L //We are a human!
 				var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(src, BP_TORSO) //What attack are we using? Also, just default to attacking the chest.
 				var/rand_damage = rand(1, 5) //Like normal human attacks, let's randomize the damage...
 				var/real_damage = rand_damage //Let's go ahead and start calculating our damage.
 				var/hit_dam_type = attack.damage_type //Let's get the type of damage. Brute? Burn? Defined by the unarmed_attack.
 				real_damage += attack.get_unarmed_damage(attacker) //Add the damage that their special attack has. Some have 0. Some have 15.
+				if(attacker.gloves && attack.is_punch)
+					if(istype(attacker.gloves, /obj/item/clothing/gloves))
+						var/obj/item/clothing/gloves/G = attacker.gloves
+						real_damage += G.punch_force
+						hit_dam_type = G.punch_damtype
+					else if(istype(attacker.gloves, /obj/item/clothing/accessory))
+						var/obj/item/clothing/accessory/G = attacker.gloves
+						real_damage += G.punch_force
+						hit_dam_type = G.punch_damtype
+					if(HULK in attacker.mutations)
+						real_damage *= 2
 				if(real_damage <= damage_threshold)
 					L.visible_message(span_warning("\The [L] uselessly hits \the [src]!"))
 					L.do_attack_animation(src)
@@ -57,7 +71,7 @@
 				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null)
 				L.visible_message(span_warning("\The [L] [pick(attack.attack_verb)] \the [src]!"))
 				L.do_attack_animation(src)
-				return //VOREStation EDIT END
+				return
 			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message(span_warning("\The [L] [response_harm] \the [src]!"))
 			L.do_attack_animation(src)
@@ -76,8 +90,7 @@
 					adjustBruteLoss(-MED.heal_brute)
 					visible_message(span_infoplain(span_bold("\The [user]") + " applies the [MED] on [src]."))
 		else
-			var/datum/gender/T = GLOB.gender_datums[src.get_visible_gender()]
-			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [T.him] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
+			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [p_them()] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
 		harvest(user, O)
 		return
@@ -121,6 +134,9 @@
 
 // Exploding.
 /mob/living/simple_mob/ex_act(severity)
+	if(is_incorporeal()) // Can't explode shadekin in phase
+		return
+
 	if(!blinded)
 		flash_eyes()
 
@@ -162,17 +178,6 @@
 	. = 1 - .
 	. = min(., 1.0)
 
-
-// Fire stuff. Not really exciting at the moment.
-/mob/living/simple_mob/handle_fire()
-	return
-/mob/living/simple_mob/update_fire()
-	return
-/mob/living/simple_mob/IgniteMob()
-	return
-/mob/living/simple_mob/ExtinguishMob()
-	return
-
 /mob/living/simple_mob/get_heat_protection()
 	. = heat_resist
 	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
@@ -187,7 +192,7 @@
 	. = min(., 1.0)
 
 // Electricity
-/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	shock_damage *= siemens_coeff
 	if(shock_damage < 1)
 		return 0
@@ -213,7 +218,7 @@
 	. = min(., 1.0)
 
 // Shot with taser/stunvolver
-/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0
@@ -229,7 +234,7 @@
 
 
 // Electromagnetism
-/mob/living/simple_mob/emp_act(severity)
+/mob/living/simple_mob/emp_act(severity, recursive)
 	..() // To emp_act() its contents.
 	if(!isSynthetic())
 		return
@@ -263,18 +268,6 @@
 
 	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_percent, attack_flag)
-		if(modifier_armor)
-			armorval += modifier_armor
-
-	return armorval
-
-/mob/living/simple_mob/getsoak(def_zone, attack_flag)
-	var/armorval = armor_soak[attack_flag]
-	if(isnull(armorval))
-		armorval = 0
-
-	for(var/datum/modifier/M as anything in modifiers)
-		var/modifier_armor = LAZYACCESS(M.armor_flat, attack_flag)
 		if(modifier_armor)
 			armorval += modifier_armor
 

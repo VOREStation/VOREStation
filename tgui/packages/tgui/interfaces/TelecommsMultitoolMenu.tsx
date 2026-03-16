@@ -118,7 +118,7 @@ const TelecommsMultitoolMenuStatus = (props) => {
               }
             >
               {multitool_buffer
-                ? 'Link (' + multitool_buffer.id + ')'
+                ? `Link (${multitool_buffer.id})`
                 : 'Add Machine'}
             </Button>
             {multitool_buffer ? (
@@ -138,7 +138,7 @@ const TelecommsMultitoolMenuStatus = (props) => {
           {linked.map((link) => (
             <LabeledList.Item
               key={link.ref}
-              label={link.ref + ' ' + link.name + ' (' + link.id + ')'}
+              label={`${link.ref} ${link.name} (${link.id})`}
               buttons={
                 <Button.Confirm
                   color="red"
@@ -167,7 +167,7 @@ const TelecommsMultitoolMenuStatus = (props) => {
             confirmIcon="trash"
             onClick={() => act('delete', { delete: f.freq })}
           >
-            {f.name + ' GHz'}
+            {`${f.name} GHz`}
           </Button.Confirm>
         ))}
         {!filter || filter.length === 0 ? (
@@ -264,7 +264,7 @@ const TelecommsMultitoolMenuPolymorphicOptions = (props: {
               selected={!!change_freq}
               onClick={() => act('change_freq')}
             >
-              {change_freq ? 'Yes (' + change_freq + ')' : 'No'}
+              {change_freq ? `Yes (${change_freq})` : 'No'}
             </Button>
           </LabeledList.Item>
         ) : (
@@ -272,9 +272,10 @@ const TelecommsMultitoolMenuPolymorphicOptions = (props: {
         )}
         {use_broadcast_range || use_receive_range ? (
           <LabeledList.Item
-            label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}
+            label={`${use_broadcast_range ? 'Broadcast' : 'Receive'} Range`}
           >
             <NumberInput
+              tickWhileDragging
               step={1}
               value={range!}
               minValue={minRange!}
@@ -282,7 +283,7 @@ const TelecommsMultitoolMenuPolymorphicOptions = (props: {
               unit="gigameters"
               stepPixelSize={4}
               format={(val) => (val + 1).toString()}
-              onDrag={(val) => act('range', { range: val })}
+              onChange={(val) => act('range', { range: val })}
             />
           </LabeledList.Item>
         ) : (

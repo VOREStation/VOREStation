@@ -31,9 +31,9 @@ export const ChemAnalyzerPro = () => {
   );
   const [searchText, setSearchText] = useState('');
 
-  const customSearch = createSearch(
+  const customSearch = createSearch<AnalyzerData>(
     searchText,
-    (search: AnalyzerData) => search.title,
+    (search) => search.title,
   );
   const toDisplay = scannedReagents.filter(customSearch);
 
@@ -42,7 +42,7 @@ export const ChemAnalyzerPro = () => {
       <Window.Content>
         <Section
           fill
-          title={'Chemical analysis of ' + beakerTotal + 'u of Reagents'}
+          title={`Chemical analysis of ${beakerTotal}u of Reagents`}
         >
           <Stack fill>
             <AnalyzerSearchList
@@ -108,7 +108,7 @@ export const AnalyzerSearchList = (props: {
               mr="10px"
               fluid
               value={searchText}
-              placeholder={'Search for ' + title + '...'}
+              placeholder={`Search for ${title}...`}
               onChange={(value: string) => onSearchText(value)}
             />
           </Stack.Item>
@@ -141,9 +141,9 @@ export const AnalyzerSearchList = (props: {
                             <Stack.Item>{capitalize(entry.title)}</Stack.Item>
                             <Stack.Item grow />
                             <Stack.Item>
-                              {(
+                              {`${(
                                 (!total ? 0 : entry.beakerAmount / total) * 100
-                              ).toFixed() + '%'}
+                              ).toFixed()}%`}
                             </Stack.Item>
                           </Stack>
                         </Button>

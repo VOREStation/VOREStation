@@ -7,12 +7,7 @@
 	},
 /area/tether/surfacebase/outside/wilderness)
 "b" = (
-/turf/unsimulated/wall/planetary/virgo3b{
-	desc = "You can't go there!";
-	icon = 'icons/turf/flooring/plating_vr.dmi';
-	icon_state = "";
-	name = "impassible landscape"
-	},
+/turf/unsimulated/wall/planetary/virgo3b_unpassable,
 /area/tether/surfacebase/outside/wilderness)
 "c" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b{

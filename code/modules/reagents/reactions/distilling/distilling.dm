@@ -1,4 +1,4 @@
-/decl/chemical_reaction/distilling
+/datum/decl/chemical_reaction/distilling
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 //	id = null
 //	result = null
@@ -26,30 +26,72 @@
 	var/list/temp_range = list(T0C, T20C)
 	var/temp_shift = 0 // How much the temperature changes when the reaction occurs.
 
-/decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
-	if(!istype(holder, /datum/reagents/distilling) || !istype(holder.my_atom, /obj/machinery/portable_atmospherics/powered/reagent_distillery))
+	var/require_xgm_gas = null
+	var/rejects_xgm_gas = null
+	var/maximum_xgm_pressure = null
+	var/minimum_xgm_pressure = null
+	var/consumes_xgm_gas = 0 // Mols of gas consumed during reaction
+
+/datum/decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
+	if(!istype(holder, /datum/reagents/distilling))
 		return FALSE
 
-	// Super special temperature check.
-	var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
-	if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
-		return FALSE
+	// return_air() will get the current turf for most things unless overriden to use a tank or such!
+	var/datum/gas_mixture/GM = holder.my_atom.return_air()
+	if(require_xgm_gas || rejects_xgm_gas || minimum_xgm_pressure || maximum_xgm_pressure)
+		if(!GM)
+			return
+		if(require_xgm_gas && GM.gas[require_xgm_gas] <= 10) // If have required gas to react
+			return
+		if(rejects_xgm_gas && GM.gas[rejects_xgm_gas] >= 1) // If blocked by a gas it doesn't like
+			return
+		if(minimum_xgm_pressure && GM.return_pressure() < minimum_xgm_pressure)
+			return
+		if(maximum_xgm_pressure && GM.return_pressure() > maximum_xgm_pressure)
+			return
+
+	// Special distilling conditions must be met, each object has different vars to meet it though.
+	if(istype(holder.my_atom,/obj/distilling_tester))
+		// Unit test needs some special handholding
+		var/obj/distilling_tester/distillery_tester = holder.my_atom
+		if(distillery_tester.current_temp < temp_range[1] || distillery_tester.current_temp > temp_range[2])
+			return FALSE
+	else if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
+		// Super special temperature check.
+		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/reagent_distillery = holder.my_atom
+		if(reagent_distillery.current_temp < temp_range[1] || reagent_distillery.current_temp > temp_range[2])
+			return FALSE
+	else if(istype(holder.my_atom, /obj/machinery/reagent_refinery/reactor))
+		// Check gas temp for refinery
+		if(!GM || GM.temperature < temp_range[1] || GM.temperature > temp_range[2])
+			return FALSE
 
 	return ..()
 
-/*
-/decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
-	if(istype(holder.my_atom, /obj/item/reagent_containers/glass/distilling))
-		var/obj/item/reagent_containers/glass/distilling/D = holder.my_atom
-		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = D.Master
-		RD.current_temp += temp_shift
-	return
-*/
+/datum/decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
+	// Handle gas consumption
+	var/datum/gas_mixture/GM = holder.my_atom.return_air()
+	if(consumes_xgm_gas != 0 && GM)
+		GM.adjust_gas(require_xgm_gas,-consumes_xgm_gas, TRUE)
+
+	// Distilling can change gas temps, handle it here.
+	if(temp_shift != 0)
+		if(istype(holder.my_atom,/obj/distilling_tester))
+			return
+		// Special handling for this
+		if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
+			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/reagent_distillery = holder.my_atom
+			reagent_distillery.current_temp += temp_shift
+			return
+		// Change gas temps
+		if(!GM)
+			return
+		GM.add_thermal_energy(temp_shift * 1000)
 
 // Subtypes //
 
 // Biomass
-/decl/chemical_reaction/distilling/biomass
+/datum/decl/chemical_reaction/distilling/biomass
 	name = "Distilling Biomass"
 	id = "distill_biomass"
 	result = REAGENT_ID_BIOMASS
@@ -60,7 +102,7 @@
 	temp_shift = -2
 
 // Medicinal
-/decl/chemical_reaction/distilling/inaprovalaze
+/datum/decl/chemical_reaction/distilling/inaprovalaze
 	name = "Distilling Inaprovalaze"
 	id = "distill_inaprovalaze"
 	result = REAGENT_ID_INAPROVALAZE
@@ -71,7 +113,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/decl/chemical_reaction/distilling/bicaridaze
+/datum/decl/chemical_reaction/distilling/bicaridaze
 	name = "Distilling Bicaridaze"
 	id = "distill_bicaridaze"
 	result = REAGENT_ID_BICARIDAZE
@@ -82,7 +124,7 @@
 
 	temp_range = list(T0C + 110, T0C + 130)
 
-/decl/chemical_reaction/distilling/dermalaze
+/datum/decl/chemical_reaction/distilling/dermalaze
 	name = "Distilling Dermalaze"
 	id = "distill_dermalaze"
 	result = REAGENT_ID_DERMALAZE
@@ -93,7 +135,7 @@
 
 	temp_range = list(T0C + 115, T0C + 130)
 
-/decl/chemical_reaction/distilling/spacomycaze
+/datum/decl/chemical_reaction/distilling/spacomycaze
 	name = "Distilling Spacomycaze"
 	id = "distill_spacomycaze"
 	result = REAGENT_ID_SPACOMYCAZE
@@ -104,7 +146,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/decl/chemical_reaction/distilling/tricorlidaze
+/datum/decl/chemical_reaction/distilling/tricorlidaze
 	name = "Distilling Tricorlidaze"
 	id = "distill_tricorlidaze"
 	result = REAGENT_ID_TRICORLIDAZE
@@ -115,7 +157,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/decl/chemical_reaction/distilling/synthplas
+/datum/decl/chemical_reaction/distilling/synthplas
 	name = "Distilling Synthplas"
 	id = "distill_synthplas"
 	result = REAGENT_ID_SYNTHBLOOD_DILUTE
@@ -127,7 +169,7 @@
 	temp_range = list(T0C + 110, T0C + 130)
 
 // Alcohol
-/decl/chemical_reaction/distilling/beer
+/datum/decl/chemical_reaction/distilling/beer
 	name = "Distilling Beer"
 	id = "distill_beer"
 	result = REAGENT_ID_BEER
@@ -138,7 +180,7 @@
 
 	temp_range = list(T20C, T20C + 2)
 
-/decl/chemical_reaction/distilling/ale
+/datum/decl/chemical_reaction/distilling/ale
 	name = "Distilling Ale"
 	id = "distill_ale"
 	result = REAGENT_ID_ALE
@@ -151,8 +193,19 @@
 	temp_shift = 0.5
 	temp_range = list(T0C + 7, T0C + 13)
 
+/datum/decl/chemical_reaction/distilling/ethanol
+	name = "Distilling Ethanol"
+	id = "distill_ethanol"
+	result = REAGENT_ID_ETHANOL
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_WATER = 1, REAGENT_ID_SUGAR = 1)
+	result_amount = 2
+
+	reaction_rate = HALF_LIFE(30)
+
+	temp_range = list(T20C+30, T20C + 40)
+
 // Unique
-/decl/chemical_reaction/distilling/berserkjuice
+/datum/decl/chemical_reaction/distilling/berserkjuice
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
 	result = REAGENT_ID_BERSERKMED
@@ -162,7 +215,7 @@
 	temp_range = list(T0C + 600, T0C + 700)
 	temp_shift = 4
 
-/decl/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 
 	if(prob(1))
@@ -170,7 +223,7 @@
 		explosion(T, -1, rand(-1, 1), rand(1,2), rand(3,5))
 	return
 
-/decl/chemical_reaction/distilling/cryogel
+/datum/decl/chemical_reaction/distilling/cryogel
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
 	result = REAGENT_ID_CRYOSLURRY
@@ -181,7 +234,7 @@
 	temp_range = list(0, 15)
 	temp_shift = 20
 
-/decl/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 
 	if(prob(1))
@@ -191,7 +244,7 @@
 		F.start()
 	return
 
-/decl/chemical_reaction/distilling/lichpowder
+/datum/decl/chemical_reaction/distilling/lichpowder
 	name = "Distilling Lichpowder"
 	id = "distill_lichpowder"
 	result = REAGENT_ID_LICHPOWDER
@@ -202,7 +255,7 @@
 
 	temp_range = list(T0C + 100, T0C + 150)
 
-/decl/chemical_reaction/distilling/necroxadone
+/datum/decl/chemical_reaction/distilling/necroxadone
 	name = "Distilling Necroxadone"
 	id = "distill_necroxadone"
 	result = REAGENT_ID_NECROXADONE
@@ -214,3 +267,69 @@
 	reaction_rate = HALF_LIFE(20)
 
 	temp_range = list(T0C + 90, T0C + 95)
+
+/datum/decl/chemical_reaction/distilling/hydrogen
+	name = "Distilling Hydrogen"
+	id = "distill_hydrogen"
+	result = REAGENT_ID_HYDROGEN
+	inhibitors = list(REAGENT_ID_CARBON = 1)
+	required_reagents = list(REAGENT_ID_WATER = 1)
+	catalysts = list(REAGENT_ID_PLATINUM = 1)
+	result_amount = 2
+
+	temp_range = list(T20C + 110, T20C + 290)
+	temp_shift = 1
+
+	require_xgm_gas = GAS_N2
+	rejects_xgm_gas = GAS_O2
+
+/datum/decl/chemical_reaction/distilling/oxygen
+	name = "Distilling Oxygen"
+	id = "distill_oxygen"
+	result = REAGENT_ID_OXYGEN
+	inhibitors = list(REAGENT_ID_CARBON = 1)
+	required_reagents = list(REAGENT_ID_WATER = 1)
+	catalysts = list(REAGENT_ID_PLATINUM = 1)
+	result_amount = 1
+
+	temp_range = list(T20C + 150, T20C + 320)
+	temp_shift = 3 // It's burning off phoron
+
+	require_xgm_gas = GAS_PHORON
+	rejects_xgm_gas = GAS_O2
+
+/datum/decl/chemical_reaction/distilling/mineralized_sodium
+	name = "Distilling Sodium"
+	id = "distill_sodium"
+	result = REAGENT_ID_SODIUM
+	required_reagents = list(REAGENT_ID_MINERALIZEDFLUID = 1)
+	result_amount = 1
+
+	temp_range = list(T20C + 600, T20C + 800)
+	temp_shift = -1
+
+	require_xgm_gas = GAS_PHORON
+	rejects_xgm_gas = GAS_O2
+
+/datum/decl/chemical_reaction/distilling/mineralized_carbon
+	name = "Distilling Carbon"
+	id = "distill_carbon"
+	result = REAGENT_ID_CARBON
+	required_reagents = list(REAGENT_ID_MINERALIZEDFLUID = 1)
+	result_amount = 1
+
+	temp_range = list(T20C + 400, T20C + 800)
+	temp_shift = -1
+
+	require_xgm_gas = GAS_O2
+	rejects_xgm_gas = GAS_PHORON
+
+/datum/decl/chemical_reaction/distilling/reduce_salt
+	name = "Distilling Sodium"
+	id = "distill_reduce_tablesalt"
+	result = REAGENT_ID_SODIUM
+	required_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
+	result_amount = 0.5
+
+	temp_range = list(T20C + 800, T20C + 1000)
+	temp_shift = -1

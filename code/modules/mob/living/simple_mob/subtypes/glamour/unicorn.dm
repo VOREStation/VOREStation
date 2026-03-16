@@ -35,11 +35,7 @@
 	projectile_dispersion = 7
 	projectile_accuracy = -20
 
-/mob/living/simple_mob/vore/horse/unicorn/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/horse/unicorn/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -77,3 +73,8 @@
 
 /datum/ai_holder/simple_mob/ranged/aggressive/unicorn
 	pointblank = FALSE
+
+/mob/living/simple_mob/vore/horse/unicorn/beastmode //for hanner TF
+	projectiletype = null
+	maxHealth = 100
+	health = 100

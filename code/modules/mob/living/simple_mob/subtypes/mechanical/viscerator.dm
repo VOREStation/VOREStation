@@ -46,7 +46,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attacktext = list("cut", "sliced")
 
-	organ_names = /decl/mob_organ_names/viscerator
+	organ_names = /datum/decl/mob_organ_names/viscerator
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
@@ -63,14 +63,14 @@
 /mob/living/simple_mob/mechanical/viscerator/mercenary/IIsAlly(mob/living/L)
 	. = ..()
 	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
-		if(L.mind && mercs.is_antagonist(L.mind))
+		if(L.mind && GLOB.mercs.is_antagonist(L.mind))
 			return TRUE
 
 // Similar to above but for raiders.
 /mob/living/simple_mob/mechanical/viscerator/raider/IIsAlly(mob/living/L)
 	. = ..()
 	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
-		if(L.mind && raiders.is_antagonist(L.mind))
+		if(L.mind && GLOB.raiders.is_antagonist(L.mind))
 			return TRUE
 
 // Variant that is neutral, and thus on the station's side. It checks records.
@@ -101,5 +101,5 @@
 	base_attack_cooldown = 10 // One attack a second or so.
 	movement_cooldown = -1
 
-/decl/mob_organ_names/viscerator
+/datum/decl/mob_organ_names/viscerator
 	hit_zones = list("chassis", "rotor blades", "sensor array")

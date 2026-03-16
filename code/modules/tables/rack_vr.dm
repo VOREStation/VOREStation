@@ -46,3 +46,17 @@
 /obj/structure/table/rack/shelf/wood/Initialize(mapload)
 	material = get_material_by_name(MAT_WOOD)
 	. = ..()
+
+/obj/structure/table/rack/glamour
+	color = "#fffbe6"
+
+/obj/structure/table/rack/glamour/Initialize(mapload)
+	material = get_material_by_name(MAT_GLAMOUR)
+	. = ..()
+
+/obj/structure/table/rack/shelf/glamour
+	color = "#fffbe6"
+
+/obj/structure/table/rack/shelf/glamour/Initialize(mapload)
+	material = get_material_by_name(MAT_GLAMOUR)
+	. = ..()

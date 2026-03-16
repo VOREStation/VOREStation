@@ -43,7 +43,11 @@ BONUS
 	min_size = RESIZE_NORMAL
 	max_size = RESIZE_MAXIMUM
 
+	prefixes = list("Growing ", "Gigantic ")
+
 /datum/symptom/size/shrink
 	name = "Dwindling Malady"
 	min_size = RESIZE_MINIMUM
 	max_size = RESIZE_NORMAL
+
+	prefixes = list("Shrinking ", "Micro-")

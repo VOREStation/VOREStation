@@ -9328,7 +9328,7 @@
 "ud" = (
 /obj/effect/overlay/snow/floor,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "surface_dock_1";
 	name = "shuttle bay controller";
 	pixel_x = -26;
@@ -9344,7 +9344,7 @@
 "uf" = (
 /obj/effect/overlay/snow/floor,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "surface_dock_2";
 	name = "shuttle bay controller";
 	pixel_x = 26;

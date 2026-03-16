@@ -4,7 +4,6 @@
 /obj/item/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun-shrink100"
 	item_state = "sizegun"
 	var/initial_icon_state = "sizegun"
@@ -30,7 +29,9 @@
 	verbs += /obj/item/gun/energy/sizegun/proc/spin_dial
 
 /obj/item/gun/energy/sizegun/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
+	if(.)
+		return TRUE
 	select_size(user)
 
 /obj/item/gun/energy/sizegun/proc/spin_dial()
@@ -52,12 +53,12 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = tgui_input_number(user, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100, 600, 1)
+	var/size_select = tgui_input_number(user, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
 	if(!size_select)
 		return //cancelled
 	//We do valid resize testing in actual firings because people move after setting these things.
 	//Just a basic clamp here to the valid ranges.
-	size_set_to = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
+	size_set_to = clamp((size_select / 100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	to_chat(usr, span_notice("You set the size to [size_select]%"))
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
@@ -128,9 +129,10 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = tgui_input_number(user, "Put the desired size (1-600%)", "Set Size", size_set_to * 100, 600, 1)
+	var/size_select = tgui_input_number(user, "Put the desired size (1-600%)", "Set Size", size_set_to * 100, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
 	if(!size_select)
 		return //cancelled
+	size_set_to = clamp((size_select / 100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	to_chat(usr, span_notice("You set the size to [size_select]%"))
 
 /obj/item/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)
@@ -211,7 +213,7 @@
 			if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
 				M.visible_message(span_warning("\The [H]'s bracelet flashes and absorbs the beam!"),span_notice("Your bracelet flashes and absorbs the beam!"))
 				return
-		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
+		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs, allow_stripping = TRUE))
 			to_chat(M, span_blue("The beam fires into your body, changing your size!"))
 		M.update_icon()
 		return

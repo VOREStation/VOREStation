@@ -107,25 +107,28 @@
 		location.hotspot_expose(1000,500,1)
 	return 1
 
-/obj/machinery/sparker/emp_act(severity)
+/obj/machinery/sparker/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	ignite()
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/button/ignition
 	name = "ignition switch"
 	desc = "A remote control switch for a mounted igniter."
 
-/obj/machinery/button/ignition/attack_hand(mob/user as mob)
+/obj/machinery/button/ignition/attack_hand(mob/user)
 
 	if(..())
 		return
 
 	use_power(5)
 
-	active = 1
+	if(active)
+		return
+
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/sparker/M in GLOB.machines)
@@ -139,9 +142,10 @@
 			M.on = !(M.on)
 			M.icon_state = text("igniter[]", M.on)
 
-	sleep(50)
+	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
+
+/obj/machinery/button/ignition/proc/finish_trigger()
+	PRIVATE_PROC(TRUE)
 
 	icon_state = "launcherbtt"
-	active = 0
-
-	return
+	active = FALSE

@@ -26,7 +26,7 @@
 			my_area = lga
 			break
 	if(!istype(my_area))
-		testing("Looking glass console [x],[y],[x] not in a looking glass area.")
+		log_mapping("Looking glass console [x],[y],[x] not in a looking glass area.")
 	if(!supported_programs.len)
 		supported_programs["Off"] = null
 		supported_programs["Diagnostics"] = image(icon = 'icons/skybox/skybox.dmi', icon_state = "diagnostic")

@@ -1,9 +1,8 @@
 SUBSYSTEM_DEF(lobby_monitor)
 	name = "Lobby Art"
-	init_order = INIT_ORDER_LOBBY
-	// init_stage = INITSTAGE_EARLY
+	init_stage = INITSTAGE_EARLY
 	flags = SS_NO_INIT
-	wait = 1 SECOND
+	wait = 2 SECONDS
 	runlevels = ALL
 
 	/// The clients who we've waited a [wait] duration to start working. If they haven't, we reboot them
@@ -21,7 +20,7 @@ SUBSYSTEM_DEF(lobby_monitor)
 			continue
 
 		log_tgui(player, "Reinitialized [player.client.ckey]'s lobby window: [ui ? "ui" : "no ui"], status: [player.lobby_window?.status].", "lobby_monitor/Fire")
-		addtimer(CALLBACK(src, PROC_REF(do_reinit), player), 0.5 SECONDS)
+		do_reinit(player)
 
 	var/initialize_queue = list()
 	for(var/mob/new_player/player as anything in new_players)

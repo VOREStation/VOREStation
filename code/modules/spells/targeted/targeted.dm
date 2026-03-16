@@ -4,7 +4,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 */
 
 
-/spell/targeted //can mean aoe for mobs (limited/unlimited number) or one target mob
+/datum/spell/targeted //can mean aoe for mobs (limited/unlimited number) or one target mob
 	var/max_targets = 1 //leave 0 for unlimited targets in range, more for limited number of casts (can all target one guy, depends on target_ignore_prev) in range
 	var/target_ignore_prev = 1 //only important if max_targets > 1, affects if the spell can be cast multiple times at one person from one cast
 
@@ -29,12 +29,12 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 	var/list/compatible_mobs = list()
 
 
-/spell/targeted/choose_targets(mob/user = usr)
+/datum/spell/targeted/choose_targets(mob/user = usr)
 	var/list/targets = list()
 
 	if(max_targets == 0) //unlimited
 		if(range == -2)
-			targets = living_mob_list
+			targets = GLOB.living_mob_list
 		else
 			for(var/mob/living/target in view_or_range(range, holder, selection_type))
 				targets += target
@@ -46,7 +46,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 			var/list/possible_targets = list()
 			var/list/starting_targets
 			if(range == -2)
-				starting_targets = living_mob_list
+				starting_targets = GLOB.living_mob_list
 			else
 				starting_targets = view_or_range(range, holder, selection_type)
 
@@ -74,7 +74,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 		var/list/starting_targets
 
 		if(range == -2)
-			starting_targets = living_mob_list
+			starting_targets = GLOB.living_mob_list
 		else
 			starting_targets = view_or_range(range, holder, selection_type)
 
@@ -86,7 +86,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 			possible_targets += target
 
 		if(spell_flags & SELECTABLE)
-			for(var/i = 1; i<=max_targets, i++)
+			for(var/i = 1, i<=max_targets, i++)
 				if(!possible_targets.len)
 					break
 				var/mob/M = tgui_input_list(user, "Choose the target for the spell.", "Targeting", possible_targets)
@@ -118,7 +118,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 
 	return targets
 
-/spell/targeted/cast(var/list/targets, mob/user)
+/datum/spell/targeted/cast(var/list/targets, mob/user)
 	for(var/mob/living/target in targets)
 		if(range >= 0)
 			if(!(target in view_or_range(range, holder, selection_type))) //filter at time of casting
@@ -126,7 +126,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 				continue
 		apply_spell_damage(target)
 
-/spell/targeted/proc/apply_spell_damage(mob/living/target)
+/datum/spell/targeted/proc/apply_spell_damage(mob/living/target)
 	target.adjustBruteLoss(amt_dam_brute)
 	target.adjustFireLoss(amt_dam_fire)
 	target.adjustToxLoss(amt_dam_tox)
@@ -136,10 +136,10 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 	target.Paralyse(amt_paralysis)
 	target.Stun(amt_stunned)
 	if(amt_weakened || amt_paralysis || amt_stunned)
-		if(target.buckled)
-			target.buckled = null
+		if(target && target.buckled)
+			target.buckled.unbuckle_mob( target, TRUE)
 	target.Blind(amt_eye_blind)
 	target.eye_blurry += amt_eye_blurry
-	target.dizziness += amt_dizziness
+	target.make_dizzy(amt_dizziness)
 	target.Confuse(amt_confused)
 	target.stuttering += amt_stuttering

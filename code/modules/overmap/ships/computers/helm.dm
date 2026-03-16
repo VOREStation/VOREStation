@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	var/dy		//coordinates
 	var/speedlimit = 1/(20 SECONDS) //top speed for autopilot, 5
 	var/accellimit = 0.001 //manual limiter for acceleration
-	req_one_access = list(access_pilot) //VOREStation Edit
+	req_one_access = list(ACCESS_PILOT) //VOREStation Edit
 	ai_control = FALSE	//VOREStation Edit - AI/Borgs shouldn't really be flying off in ships without crew help
 
 // fancy sprite
@@ -104,9 +104,9 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 /obj/machinery/computer/ship/helm/tgui_close(mob/user)
 	. = ..()
-
 	// Unregister map objects
 	user.client?.clear_map(linked?.map_name)
+	user.reset_perspective()
 
 /obj/machinery/computer/ship/helm/tgui_data(mob/user)
 	var/list/data = ..()
@@ -177,7 +177,6 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
 			var/sec_name = tgui_input_text(ui.user, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
-			sec_name = sanitize(sec_name,MAX_NAME_LEN)
 			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return FALSE
 			if(!sec_name)
@@ -269,7 +268,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("manual")
-			viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+			if(!get_dist(ui.user, src) > 1 || ui.user.blinded || !linked)
+				return FALSE
+			else if(!viewing_overmap(ui.user) && linked)
+				if(!viewers) viewers = list() // List must exist for pass by reference to work
+				start_coordinated_remoteview(ui.user, linked, viewers, /datum/remote_view_config/overmap_ship_control)
+			else
+				ui.user.reset_perspective()
 			. = TRUE
 
 	add_fingerprint(ui.user)

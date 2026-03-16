@@ -8,7 +8,7 @@
 
 	var/list/leaks = list()
 
-	var/update = 1
+	var/update = TRUE
 	//var/datum/gas_mixture/air_transient = null
 
 /datum/pipe_network/Destroy()

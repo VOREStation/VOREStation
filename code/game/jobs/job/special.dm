@@ -13,7 +13,7 @@
 	economic_modifier = 20
 	whitelist_only = 1
 	latejoin_only = 1
-	outfit_type = /decl/hierarchy/outfit/job/centcom_officer
+	outfit_type = /datum/decl/hierarchy/outfit/job/centcom_officer
 	job_description = "A Central Command Officer is there on official business. Most of time. Whatever it is, they're a VIP."
 
 	minimum_character_age = 25
@@ -39,7 +39,7 @@
 	economic_modifier = 20
 	whitelist_only = 1
 	latejoin_only = 1
-	outfit_type = /decl/hierarchy/outfit/job/emergency_responder
+	outfit_type = /datum/decl/hierarchy/outfit/job/emergency_responder
 	job_description = "Emergency Responders are usually called in to deal with on-station emergencies that the crew require assistance to deal with."
 
 	minimum_character_age = 18
@@ -65,7 +65,7 @@
 	whitelist_only = 1
 	latejoin_only = 0
 	requestable = FALSE
-	outfit_type = /decl/hierarchy/outfit/job/clown
+	outfit_type = /datum/decl/hierarchy/outfit/job/clown
 	pto_type = PTO_CIVILIAN
 	alt_titles = list(JOB_ALT_JESTER = /datum/alt_title/jester, JOB_ALT_FOOL = /datum/alt_title/fool)
 
@@ -77,9 +77,9 @@
 
 /datum/job/clown/get_access()
 	if(CONFIG_GET(flag/assistant_maint))
-		return list(access_maint_tunnels, access_entertainment, access_clown, access_tomfoolery)
+		return list(ACCESS_MAINT_TUNNELS, ACCESS_ENTERTAINMENT, ACCESS_CLOWN, ACCESS_TOMFOOLERY)
 	else
-		return list(access_entertainment, access_clown, access_tomfoolery)
+		return list(ACCESS_ENTERTAINMENT, ACCESS_CLOWN, ACCESS_TOMFOOLERY)
 
 /datum/job/mime
 	title = JOB_MIME
@@ -97,7 +97,7 @@
 	whitelist_only = 1
 	latejoin_only = 0
 	requestable = FALSE
-	outfit_type = /decl/hierarchy/outfit/job/mime
+	outfit_type = /datum/decl/hierarchy/outfit/job/mime
 	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/poseur
@@ -105,9 +105,9 @@
 
 /datum/job/mime/get_access()
 	if(CONFIG_GET(flag/assistant_maint))
-		return list(access_maint_tunnels, access_entertainment, access_tomfoolery, access_mime)
+		return list(ACCESS_MAINT_TUNNELS, ACCESS_ENTERTAINMENT, ACCESS_TOMFOOLERY, ACCESS_MIME)
 	else
-		return list(access_entertainment, access_tomfoolery, access_mime)
+		return list(ACCESS_ENTERTAINMENT, ACCESS_TOMFOOLERY, ACCESS_MIME)
 
 /obj/item/card/id/civilian/lurker
 	desc = "A rather old and scuffed-looking ID. It seems legit, but something also seems very off somehow. Say, what's the issue/expiry date..?"
@@ -127,6 +127,6 @@
 	whitelist_only = 1
 	latejoin_only = 1
 	requestable = FALSE
-	outfit_type = /decl/hierarchy/outfit/maint_lurker
-	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels)
+	outfit_type = /datum/decl/hierarchy/outfit/maint_lurker
+	access = list(ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_MAINT_TUNNELS)

@@ -11,7 +11,7 @@
 /obj/item/pipe_painter/Initialize(mapload)
 	. = ..()
 	modes = new()
-	for(var/C in pipe_colors)
+	for(var/C in GLOB.pipe_colors)
 		modes += "[C]"
 	mode = pick(modes)
 
@@ -23,9 +23,12 @@
 		return
 	var/obj/machinery/atmospherics/pipe/P = A
 
-	P.change_color(pipe_colors[mode])
+	P.change_color(GLOB.pipe_colors[mode])
 
-/obj/item/pipe_painter/attack_self(mob/user as mob)
+/obj/item/pipe_painter/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/new_mode = tgui_input_list(user, "Which colour do you want to use?", "Pipe painter", modes)
 	if(!new_mode)
 		return

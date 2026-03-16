@@ -28,9 +28,6 @@
 /obj/item/clothing/head/wizard/fake/realistic/colorable
 	desc = "A cool-looking 'magic' hat."
 	icon_state = "wizard-white"
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
-		)
 
 /obj/item/clothing/head/wizard/marisa
 	name = "Witch Hat"

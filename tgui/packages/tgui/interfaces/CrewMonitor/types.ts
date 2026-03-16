@@ -3,10 +3,10 @@ import type { BooleanLike } from 'tgui-core/react';
 export type Data = {
   isAI: BooleanLike;
   map_levels: number[];
-  crewmembers: crewmember[];
+  crewmembers: Crewmember[];
 };
 
-export type crewmember = {
+export type Crewmember = {
   sensor_type: number;
   name: string;
   rank: string;

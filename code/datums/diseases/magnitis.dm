@@ -1,5 +1,6 @@
 /datum/disease/magnitis
 	name = "Magnitis"
+	medical_name = "Acquired Magnetotaxis Disorder"
 	max_stages = 4
 	spread_text = "Airbone"
 	cure_text = REAGENT_IRON

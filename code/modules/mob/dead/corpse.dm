@@ -35,13 +35,15 @@
 	/// Color is optional, each position after the name is a color channel from 1 to n.
 	var/list/ear_secondary_type
 	var/list/wing_type = null
+	var/hair = null
 	var/corpsesynthtype = 0			// 0 for organic, 1 for drone, 2 for posibrain
 	var/corpsesynthbrand = "Unbranded"
+	var/corpsesensormode = 0
 	delete_me = TRUE
 
 /obj/effect/landmark/mobcorpse/Initialize(mapload)
-	. = ..()
 	createCorpse()
+	. = ..()
 
 /obj/effect/landmark/mobcorpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
@@ -53,8 +55,8 @@
 	else
 		M.set_species(species)
 	if(tail_type && tail_type.len)
-		if(tail_type[1] in tail_styles_list)
-			M.tail_style = tail_styles_list[tail_type[1]]
+		if(tail_type[1] in GLOB.tail_styles_list)
+			M.tail_style = GLOB.tail_styles_list[tail_type[1]]
 			if(tail_type.len > 1)
 				var/list/color_rgb_list = hex2rgb(tail_type[2])
 				M.r_tail = color_rgb_list[1]
@@ -72,8 +74,8 @@
 						M.b_tail3 = color_rgb_list[3]
 			M.update_tail_showing()
 	if(ear_type && ear_type.len)
-		if(ear_type[1] in ear_styles_list)
-			M.ear_style = ear_styles_list[ear_type[1]]
+		if(ear_type[1] in GLOB.ear_styles_list)
+			M.ear_style = GLOB.ear_styles_list[ear_type[1]]
 			if(ear_type.len > 1)
 				var/list/color_rgb_list = hex2rgb(ear_type[2])
 				M.r_ears = color_rgb_list[1]
@@ -90,15 +92,18 @@
 						M.g_ears3 = color_rgb_list[2]
 						M.b_ears3 = color_rgb_list[3]
 			M.update_hair()
+	if(hair)
+		M.h_style = hair
+		M.update_hair()
 	// handle secondary ears
-	if(length(ear_secondary_type) && (ear_secondary_type[1] in global.ear_styles_list))
-		M.ear_secondary_style = global.ear_styles_list[ear_secondary_type[1]]
+	if(length(ear_secondary_type) && (ear_secondary_type[1] in GLOB.ear_styles_list))
+		M.ear_secondary_style = GLOB.ear_styles_list[ear_secondary_type[1]]
 		if(length(ear_secondary_type) > 1)
 			M.ear_secondary_colors = ear_secondary_type.Copy(2, min(length(GLOB.fancy_sprite_accessory_color_channel_names), length(ear_secondary_type)) + 1)
 
 	if(wing_type && wing_type.len)
-		if(wing_type[1] in wing_styles_list)
-			M.wing_style = wing_styles_list[wing_type[1]]
+		if(wing_type[1] in GLOB.wing_styles_list)
+			M.wing_style = GLOB.wing_styles_list[wing_type[1]]
 			if(wing_type.len > 1)
 				var/list/color_rgb_list = hex2rgb(wing_type[2])
 				M.r_wing = color_rgb_list[1]
@@ -117,6 +122,8 @@
 			M.update_wing_showing()
 	M.real_name = generateCorpseName()
 	M.set_stat(DEAD) //Kills the new mob
+	M.digest_leave_remains = TRUE
+	M.can_be_drop_prey = TRUE
 	if(corpsesynthtype > 0)
 		if(!corpsesynthbrand)
 			corpsesynthbrand = "Unbranded"
@@ -128,6 +135,10 @@
 					O.robotize(corpsesynthbrand)
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
+		if(M.w_uniform)
+			M.w_uniform?:sensor_mode = corpsesensormode
+	if(src.corpsesuit)
+		M.equip_to_slot_or_del(new src.corpsesuit(M), slot_wear_suit)
 	if(src.corpseshoes)
 		M.equip_to_slot_or_del(new src.corpseshoes(M), slot_shoes)
 	if(src.corpsegloves)

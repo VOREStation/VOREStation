@@ -1,4 +1,22 @@
-var/list/floor_light_cache = list()
+GLOBAL_LIST_EMPTY(floor_light_cache)
+
+/obj/item/floor_light
+	name = "floor light kit"
+	desc = "A backlit floor panel, ready for installation!"
+	icon = 'icons/obj/machines/floor_light.dmi'
+	icon_state = "item"
+	matter = list(MAT_STEEL = 2500, MAT_GLASS = 2750)
+
+/obj/item/floor_light/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	var/turf/T = get_turf(user)
+	if(!T)
+		to_chat(user, span_warning("You need to be on a floor to install this."))
+		return
+	new /obj/machinery/floor_light(T)
+	qdel(src)
 
 /obj/machinery/floor_light
 	name = "floor light"
@@ -11,7 +29,6 @@ var/list/floor_light_cache = list()
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT
-	matter = list(MAT_STEEL = 2500, MAT_GLASS = 2750)
 
 	var/on
 	var/damaged
@@ -32,7 +49,7 @@ var/list/floor_light_cache = list()
 			to_chat(user, span_warning("\The [src] must be on to complete this task."))
 			return
 		playsound(src, WT.usesound, 50, 1)
-		if(!do_after(user, 20 * WT.toolspeed))
+		if(!do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 			return
 		if(!src || !WT.isOn())
 			return
@@ -107,22 +124,22 @@ var/list/floor_light_cache = list()
 	if(use_power && !broken())
 		if(isnull(damaged))
 			var/cache_key = "floorlight-[default_light_colour]"
-			if(!floor_light_cache[cache_key])
+			if(!GLOB.floor_light_cache[cache_key])
 				var/image/I = image("on")
 				I.color = default_light_colour
 				I.layer = layer+0.001
-				floor_light_cache[cache_key] = I
-			add_overlay(floor_light_cache[cache_key])
+				GLOB.floor_light_cache[cache_key] = I
+			add_overlay(GLOB.floor_light_cache[cache_key])
 		else
 			if(damaged == 0) //Needs init.
 				damaged = rand(1,4)
 			var/cache_key = "floorlight-broken[damaged]-[default_light_colour]"
-			if(!floor_light_cache[cache_key])
+			if(!GLOB.floor_light_cache[cache_key])
 				var/image/I = image("flicker[damaged]")
 				I.color = default_light_colour
 				I.layer = layer+0.001
-				floor_light_cache[cache_key] = I
-			add_overlay(floor_light_cache[cache_key])
+				GLOB.floor_light_cache[cache_key] = I
+			add_overlay(GLOB.floor_light_cache[cache_key])
 
 /obj/machinery/floor_light/proc/broken()
 	return (stat & (BROKEN|NOPOWER))

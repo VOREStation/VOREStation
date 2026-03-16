@@ -33,6 +33,9 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active."
 	)
 
+	prefixes = list("Aural ")
+	bodies = list("Ear")
+
 /datum/symptom/deafness/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 9)

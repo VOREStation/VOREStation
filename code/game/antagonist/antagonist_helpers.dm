@@ -16,7 +16,7 @@
 				if(J.mob_type & JOB_SILICON)
 					return FALSE
 			else // If SSjob couldn't find a job, they don't have one yet, so the next best thing we can switch on are job preferences
-				if((player.current.client.prefs.job_engsec_high | player.current.client.prefs.job_engsec_med | player.current.client.prefs.job_engsec_low) & (AI | CYBORG)) // If they have ANY chance of being silicon
+				if((player.current.client.prefs.job_engsec_high | player.current.client.prefs.job_engsec_med | player.current.client.prefs.job_engsec_low) & (AI_DEPT | CYBORG)) // If they have ANY chance of being silicon
 					return FALSE
 	return TRUE
 

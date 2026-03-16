@@ -35,7 +35,7 @@
 	if(!reskin_ran)
 		. += span_notice("[src]'s external casing can be modified via alt-click.")
 
-/obj/item/storage/part_replacer/AltClick(mob/user)
+/obj/item/storage/part_replacer/click_alt(mob/user)
 	. = ..()
 	if(!reskin_ran)
 		reskin_radial(user)
@@ -115,6 +115,13 @@
 /obj/item/storage/part_replacer/adv/bluespace/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!(target in view(user)))
 		return ..()
+
+	if(istype(target, /obj/structure/frame))
+		var/obj/structure/frame/F = target
+		if(F.mass_install_parts(user,src))
+			play_rped_sound()
+			user.Beam(F, icon_state = "rped_upgrade", time = 0.5 SECONDS)
+		return
 
 	if(!istype(target, /obj/machinery))
 		return

@@ -27,8 +27,12 @@
 	name = "engagement ring"
 	desc = "An engagement ring. It certainly looks expensive."
 	icon_state = "diamond"
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/ring/engagement/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.visible_message(span_warning("\The [user] gets down on one knee, presenting \the [src]."),span_warning("You get down on one knee, presenting \the [src]."))
 
 /obj/item/clothing/accessory/ring/cti
@@ -97,8 +101,12 @@
 	desc = "A signet ring, for when you're too sophisticated to sign letters."
 	icon_state = "seal-signet"
 	var/nameset = FALSE
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/ring/seal/signet/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(nameset)
 		to_chat(user, span_notice("The [src] has already been claimed!"))
 		return
@@ -114,16 +122,20 @@
 /obj/item/clothing/accessory/ring/wedding
 	name = "golden wedding ring"
 	desc = "For showing your devotion to another person. It has a golden glimmer to it."
-	icon = 'icons/inventory/hands/item_vr.dmi'
+	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "wedring_g"
 	item_state = "wedring_g"
 	var/partnername = ""
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/ring/wedding/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/input = tgui_input_text(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae", MAX_NAME_LEN)
 	if(!input)
 		return
-	partnername = sanitize(input)
+	partnername = input
 	name = "[initial(name)] - [partnername]"
 
 /obj/item/clothing/accessory/ring/wedding/silver

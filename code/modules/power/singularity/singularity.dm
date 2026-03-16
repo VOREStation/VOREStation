@@ -409,8 +409,8 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		radiation = round(((src.energy-150)/50)*5,1)
 	SSradiation.radiate(src, radiation) //Always radiate at max, so a decent dose of radiation is applied
 	for(var/mob/living/M in view(toxrange, src.loc))
-		if(M.status_flags & GODMODE)
-			continue
+		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 0	// Cancelled by a component
 		toxdamage = (toxdamage - (toxdamage*M.getarmor(null, "rad")))
 		M.apply_effect(toxdamage, TOX)
 	return
@@ -420,8 +420,8 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	for(var/mob/living/carbon/M in oviewers(8, src))
 		if(istype(M, /mob/living/carbon/brain)) //Ignore brains
 			continue
-		if(M.status_flags & GODMODE)
-			continue
+		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 0	// Cancelled by a component
 		if(M.stat == CONSCIOUS)
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -454,7 +454,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	return
 
 /obj/singularity/proc/pulse()
-	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
+	for(var/obj/machinery/power/rad_collector/R in GLOB.rad_collectors)
 		if (get_dist(R, src) <= 15) //Better than using orange() every process.
 			R.receive_pulse(energy)
 

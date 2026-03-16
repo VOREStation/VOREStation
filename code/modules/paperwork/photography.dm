@@ -41,12 +41,15 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	. = ..()
 	id = GLOB.photo_count++
 
-/obj/item/photo/attack_self(mob/user as mob)
+/obj/item/photo/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.examinate(src)
 
 /obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/pen))
-		var/txt = sanitize(tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", null, 128), 128)
+		var/txt = tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", null, 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 	..()
@@ -75,7 +78,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	set category = "Object"
 	set src in usr
 
-	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
@@ -97,7 +100,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 
 	if(ishuman(usr))
 		var/mob/living/carbon/human/M = usr
-		if(!( istype(over_object, /obj/screen) ))
+		if(!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 		playsound(src, "rustle", 50, 1, -5)
 		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
@@ -148,7 +151,10 @@ GLOBAL_VAR_INIT(photo_count, 0)
 /obj/item/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/camera/attack_self(mob/user as mob)
+/obj/item/camera/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	on = !on
 	if(on)
 		src.icon_state = icon_on

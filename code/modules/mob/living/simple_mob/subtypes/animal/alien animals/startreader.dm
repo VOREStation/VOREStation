@@ -58,16 +58,6 @@
 			"bio" = 100,
 			"rad" = 100)
 
-	armor_soak = list(
-		"melee" = 30,
-		"bullet" = 30,
-		"laser" = 10,
-		"energy" = 10,
-		"bomb" = 0,
-		"bio" = 100,
-		"rad" = 100
-		)
-
 	speak_emote = list("rumbles")
 
 	say_list_type = /datum/say_list/startreader
@@ -86,16 +76,14 @@
 	var/flipped = FALSE
 	var/flip_cooldown = 0
 
+	can_be_drop_prey = FALSE
+
 /datum/say_list/startreader
 	emote_see = list("bobs", "digs around","gnashes at something","yawns","snaps at something")
 	emote_hear = list("thrumms","clicks","rattles","groans","burbles")
 
 
-/mob/living/simple_mob/vore/alienanimals/startreader/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/alienanimals/startreader/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "gastric sac"
@@ -144,16 +132,6 @@
 			"bomb" = 0,
 			"bio" = 0,
 			"rad" = 0)
-
-		armor_soak = list(
-			"melee" = 0,
-			"bullet" = 0,
-			"laser" = 0,
-			"energy" = 0,
-			"bomb" = 0,
-			"bio" = 0,
-			"rad" = 0
-			)
 		icon_living = "startreader_flipped"
 		AdjustStunned(flip_cooldown)
 	else
@@ -165,16 +143,6 @@
 			"bomb" = 0,
 			"bio" = 100,
 			"rad" = 100)
-
-		armor_soak = list(
-			"melee" = 30,
-			"bullet" = 30,
-			"laser" = 10,
-			"energy" = 10,
-			"bomb" = 0,
-			"bio" = 100,
-			"rad" = 100
-			)
 		icon_living = "startreader"
 		SetStunned(0)
 

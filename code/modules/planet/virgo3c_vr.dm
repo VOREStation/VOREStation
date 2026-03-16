@@ -20,7 +20,7 @@
 #define VIRGO3C_TURF_CREATE(x)	x/virgo3c/nitrogen=VIRGO3C_MOL_N2;x/virgo3c/oxygen=VIRGO3C_MOL_O2;x/virgo3c/carbon_dioxide=VIRGO3C_MOL_CO2;x/virgo3c/phoron=VIRGO3C_MOL_PHORON;x/virgo3c/temperature=VIRGO3C_AVG_TEMP;x/virgo3c/outdoors=TRUE;x/virgo3c/update_graphic(list/graphic_add = null, list/graphic_remove = null) return 0
 #define VIRGO3C_TURF_CREATE_UN(x)	x/virgo3c/nitrogen=VIRGO3C_MOL_N2;x/virgo3c/oxygen=VIRGO3C_MOL_O2;x/virgo3c/carbon_dioxide=VIRGO3C_MOL_CO2;x/virgo3c/phoron=VIRGO3C_MOL_PHORON;x/virgo3c/temperature=VIRGO3C_AVG_TEMP
 
-var/datum/planet/virgo3c/planet_virgo3c = null
+GLOBAL_DATUM(planet_virgo3c, /datum/planet/virgo3c)
 
 /datum/time/virgo3c
 	seconds_in_day = 6 HOURS
@@ -33,7 +33,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/planet/virgo3c/New()
 	..()
-	planet_virgo3c = src
+	GLOB.planet_virgo3c = src
 	weather_holder = new /datum/weather_holder/virgo3c(src)
 
 /datum/planet/virgo3c/update_sun()
@@ -406,7 +406,6 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 		var/target_zone = pick(BP_ALL)
 		var/amount_blocked = H.run_armor_check(target_zone, "melee")
-		var/amount_soaked = H.get_armor_soak(target_zone, "melee")
 
 		var/damage = rand(1,3)
 
@@ -414,10 +413,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			return // No need to apply damage. Hardhats are 30. They should probably protect you from hail on your head.
 			//Voidsuits are likewise 40, and riot, 80. Clothes are all less than 30.
 
-		if(amount_soaked >= damage)
-			return // No need to apply damage.
-
-		H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked)
+		H.apply_damage(damage, BRUTE, target_zone, amount_blocked)
 		if(show_message)
 			to_chat(H, effect_message)
 
@@ -668,15 +664,15 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 
 /turf/simulated/mineral/cave/virgo3c
 	VIRGO3C_SET_ATMOS
-	outdoors = 0
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/mineral/floor/virgo3c
 	VIRGO3C_SET_ATMOS
-	outdoors = 0
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/mineral/floor/ignore_mapgen/virgo3c
 	VIRGO3C_SET_ATMOS
-	outdoors = 0
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/floor/outdoors/grass/virgo3c
 	VIRGO3C_SET_ATMOS

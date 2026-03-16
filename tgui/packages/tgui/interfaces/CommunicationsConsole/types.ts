@@ -30,4 +30,4 @@ export type Data = {
   esc_status: BooleanLike | string;
 };
 
-type message = { id: string; title: String; contents: string };
+type message = { id: string; title: string; contents: string };

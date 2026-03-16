@@ -33,6 +33,9 @@
 		if(WEST)
 			initialize_directions = NORTH|SOUTH
 
+	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
+
 /obj/machinery/atmospherics/pipeturbine/Destroy()
 	. = ..()
 
@@ -114,27 +117,6 @@
 
 		return
 	..()
-
-/obj/machinery/atmospherics/pipeturbine/verb/rotate_clockwise()
-	set name = "Rotate Turbine Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-
-
-/obj/machinery/atmospherics/pipeturbine/verb/rotate_counterclockwise()
-	set name = "Rotate Turbine Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
 
 //Goddamn copypaste from binary base class because atmospherics machinery API is not damn flexible
 /obj/machinery/atmospherics/pipeturbine/get_neighbor_nodes_for_init()
@@ -238,6 +220,8 @@
 /obj/machinery/power/turbinemotor/Initialize(mapload)
 	. = ..()
 	updateConnection()
+	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/power/turbinemotor/proc/updateConnection()
 	turbine = null
@@ -264,23 +248,3 @@
 		updateConnection()
 	else
 		..()
-
-/obj/machinery/power/turbinemotor/verb/rotate_clockwise()
-	set name = "Rotate Motor Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-
-/obj/machinery/power/turbinemotor/verb/rotate_counterclockwise()
-	set name = "Rotate Motor Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))

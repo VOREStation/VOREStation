@@ -48,18 +48,12 @@
 			return
 		target.forceMove(src)
 		occupant = target
-		target.reset_view(src)
 		occupant.Stasis(3)
-		/*
-		if(target.client)
-			target.client.perspective = EYE_PERSPECTIVE
-			target.client.eye = chassis
-		*/
 		set_ready_state(FALSE)
 		START_PROCESSING(SSprocessing, src)
 		occupant_message(span_notice("[target] successfully loaded into [src]. Life support functions engaged."))
 		chassis.visible_message(span_infoplain("[chassis] loads [target] into [src]."))
-		log_message("[target] loaded. Life support functions engaged.")
+		src.mecha_log_message("[target] loaded. Life support functions engaged.")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/go_out()
@@ -67,13 +61,7 @@
 		return
 	occupant.forceMove(get_turf(src))
 	occupant_message(span_infoplain("[occupant] ejected. Life support functions disabled."))
-	log_message("[occupant] ejected. Life support functions disabled.")
-	occupant.reset_view()
-	/*
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-	*/
+	src.mecha_log_message("[occupant] ejected. Life support functions disabled.")
 	occupant.Stasis(0)
 	occupant = null
 	STOP_PROCESSING(SSprocessing, src)
@@ -201,7 +189,7 @@
 		occupant_message(span_warning("Sleeper safeties prohibit you from injecting more than [inject_amount*4] units of [R.name]."))
 	else
 		occupant_message(span_notice("Injecting [occupant] with [to_inject] units of [R.name]."))
-		log_message("Injecting [occupant] with [to_inject] units of [R.name].")
+		src.mecha_log_message("Injecting [occupant] with [to_inject] units of [R.name].")
 		//SG.reagents.trans_id_to(occupant,R.id,to_inject)
 		SG.reagents.remove_reagent(R.id,to_inject)
 		occupant.reagents.add_reagent(R.id,to_inject)
@@ -240,7 +228,7 @@
 		return PROCESS_KILL
 	if(!chassis.has_charge(energy_drain))
 		set_ready_state(TRUE)
-		log_message("Deactivated.")
+		src.mecha_log_message("Deactivated.")
 		occupant_message(span_infoplain("[src] deactivated - no power."))
 		return PROCESS_KILL
 	var/mob/living/carbon/M = occupant

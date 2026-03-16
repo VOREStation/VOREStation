@@ -54,7 +54,7 @@
 	desc = "A call button for an elevator. Be sure to hit it three hundred times."
 	icon_state = "button"
 	var/light_up = FALSE
-	req_access = list(access_eva)
+	req_access = list(ACCESS_EVA)
 	var/datum/turbolift_floor/floor
 
 /obj/structure/lift/button/Destroy()
@@ -97,6 +97,9 @@
 		return
 	lift.queue_move_to(floor)
 
+/obj/structure/lift/button/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/structure/lift/button/proc/light_up()
 	light_up = TRUE
 	update_icon()
@@ -118,8 +121,8 @@
 	name = "elevator control panel"
 	desc = "A control panel for moving the elevator. There's a slot for swiping IDs to enable additional controls."
 	icon_state = "panel"
-	req_access = list(access_eva)
-	req_one_access = list(access_heads, access_atmospherics, access_medical)
+	req_access = list(ACCESS_EVA)
+	req_one_access = list(ACCESS_HEADS, ACCESS_ATMOSPHERICS, ACCESS_MEDICAL)
 
 // Hit it with a PDA or ID to enable priority call mode
 /obj/structure/lift/panel/attackby(obj/item/W as obj, mob/user as mob)
@@ -139,6 +142,9 @@
 
 /obj/structure/lift/panel/attack_ghost(var/mob/user)
 	return interact(user)
+
+/obj/structure/lift/panel/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 /obj/structure/lift/panel/interact(var/mob/user)
 	if(!..())

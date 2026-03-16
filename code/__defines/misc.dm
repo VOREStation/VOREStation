@@ -83,11 +83,13 @@
 #define DO_AUTOPILOT 5
 
 #define MAX_MESSAGE_LEN       4096
+#define MAX_HUGE_MESSAGE_LEN  8192
 #define MAX_PAPER_MESSAGE_LEN 6144
 #define MAX_BOOK_MESSAGE_LEN  24576
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_KEYPAD_INPUT_LEN  256
 #define MAX_FEEDBACK_LENGTH      4096
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
@@ -116,6 +118,8 @@
 #define AREA_BLOCK_SUIT_SENSORS		0x800	// If suit sensors are blocked in the area.
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
+#define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
+#define AREA_ALWAYS_HAS_GRAVITY		0x8000	// If an area should always have gravity, even during events that would otherwise remove it.
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 #define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
@@ -481,24 +485,11 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define APPEARANCECHANGER_CHANGED_F_HAIRCOLOR "Facial Hair Color"
 #define APPEARANCECHANGER_CHANGED_EYES "Eye Color"
 
-#define GET_DECL(D) (ispath(D, /decl) ? (decls_repository.fetched_decls[D] || decls_repository.get_decl(D)) : null)
+#define GET_DECL(D) (ispath(D, /datum/decl) ? (GLOB.decls_repository.fetched_decls[D] || GLOB.decls_repository.get_decl(D)) : null)
 
 #define LOADOUT_WHITELIST_OFF    0
 #define LOADOUT_WHITELIST_LAX    1
 #define LOADOUT_WHITELIST_STRICT 2
-
-
-#ifndef WINDOWS_HTTP_POST_DLL_LOCATION
-#define WINDOWS_HTTP_POST_DLL_LOCATION "lib/byhttp.dll"
-#endif
-
-#ifndef UNIX_HTTP_POST_DLL_LOCATION
-#define UNIX_HTTP_POST_DLL_LOCATION "lib/libbyhttp.so"
-#endif
-
-#ifndef HTTP_POST_DLL_LOCATION
-#define HTTP_POST_DLL_LOCATION (world.system_type == MS_WINDOWS ? WINDOWS_HTTP_POST_DLL_LOCATION : UNIX_HTTP_POST_DLL_LOCATION)
-#endif
 
 #define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
 
@@ -529,6 +520,9 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define COLORMATE_TINT 1
 #define COLORMATE_HSV 2
 #define COLORMATE_MATRIX 3
+#define COLORMATE_MATRIX_AUTO 4
+
+#define DEFAULT_COLORMATRIX list(1, 0, 0, 0, 1, 0, 0, 0, 1,	0, 0, 0)
 
 #define DEPARTMENT_OFFDUTY			"Off-Duty"
 
@@ -560,6 +554,12 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
 #define SHELTER_DEPLOY_SHIP_SPACE "ship not in space"
+
+// Borg hypo injection checks
+#define BORGHYPO_STATUS_CONTAINERFULL "container full"
+#define BORGHYPO_STATUS_NOCHARGE "not enough charge"
+#define BORGHYPO_STATUS_NORECIPE "recipe not found"
+#define BORGHYPO_STATUS_SUCCESS "success"
 
 #define PTO_SECURITY		"Security"
 #define PTO_MEDICAL			"Medical"
@@ -596,3 +596,9 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 
 #define WEIGHT_MIN 70
 #define WEIGHT_MAX 500
+
+#define LADDER_CONSTRUCTION_UNANCHORED 0
+#define LADDER_CONSTRUCTION_WRENCHED 1
+#define LADDER_CONSTRUCTION_WELDED 2
+
+#define FINGERPRINT_COMPLETE 6

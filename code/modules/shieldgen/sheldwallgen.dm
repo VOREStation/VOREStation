@@ -6,7 +6,7 @@
 		icon_state = "Shield_Gen"
 		anchored = FALSE
 		density = TRUE
-		req_access = list(access_engine_equip)
+		req_access = list(ACCESS_ENGINE_EQUIP)
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -24,6 +24,10 @@
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
 		use_power = USE_POWER_OFF	//Draws directly from power net. Does not use APC power.
+
+/obj/machinery/shieldwallgen/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
@@ -46,7 +50,7 @@
 		for(var/dir in list(1,2,4,8)) src.cleanup(dir)
 	else
 		src.active = 1
-		icon_state = "Shield_Gen +a"
+		icon_state = "Shield_Gen_on"
 		user.visible_message("[user] turned the shield generator on.", \
 			"You turn on the shield generator.", \
 			"You hear heavy droning.")

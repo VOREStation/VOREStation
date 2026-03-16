@@ -82,7 +82,7 @@
 /obj/machinery/computer/shuttle_control/explore/aroboat2
 	name = "boat control console"
 	shuttle_tag = "Aro's Boat"
-	req_one_access = list(access_cent_general)
+	req_one_access = list(ACCESS_CENT_GENERAL)
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/aroboat2

@@ -16,6 +16,8 @@
 
 	blood_color = "#aaaadd"
 
+	genders = list(MALE, FEMALE, NEUTER, PLURAL)
+
 	show_ssd = "eerily still."
 
 	min_age = 0

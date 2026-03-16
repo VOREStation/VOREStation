@@ -1,4 +1,4 @@
-var/list/turf_edge_cache = list()
+GLOBAL_LIST_EMPTY(turf_edge_cache)
 
 /turf
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,
@@ -50,7 +50,7 @@ var/list/turf_edge_cache = list()
 			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
 			var/delay = (5 SECONDS * C.toolspeed)
 			user.setClickCooldown(delay)
-			if(do_after(user, delay, src))
+			if(do_after(user, delay, target = src))
 				new/obj/structure/closet/grave/dirthole(src)
 				to_chat(user, span_notice("You dug up a hole!"))
 				return
@@ -58,7 +58,7 @@ var/list/turf_edge_cache = list()
 			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
 			var/delay = (3 SECONDS * C.toolspeed)
 			user.setClickCooldown(delay)
-			if(do_after(user, delay, src))
+			if(do_after(user, delay, target = src))
 				if(!(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
 					var/obj/machinery/portable_atmospherics/hydroponics/soil/soil = new(src)
 					user.visible_message(span_notice("\The [src] digs \a [soil] into \the [src]."))
@@ -129,7 +129,7 @@ var/list/turf_edge_cache = list()
 	name = "mud"
 	icon_state = "mud_dark"
 	edge_blending_priority = 3
-	initial_flooring = /decl/flooring/mud
+	initial_flooring = /datum/decl/flooring/mud
 	can_dig = TRUE
 
 /turf/simulated/floor/outdoors/rocks
@@ -137,7 +137,7 @@ var/list/turf_edge_cache = list()
 	desc = "Hard as a rock."
 	icon_state = "rock"
 	edge_blending_priority = 1
-	initial_flooring = /decl/flooring/rock
+	initial_flooring = /datum/decl/flooring/rock
 
 /turf/simulated/floor/outdoors/rocks/caves
 	outdoors = OUTDOORS_NO
@@ -214,9 +214,9 @@ var/list/turf_edge_cache = list()
 	icon = 'icons/turf/outdoors_vr.dmi'
 	icon_state = "dirt0"
 	edge_blending_priority = 2
-	initial_flooring = /decl/flooring/outdoors/newdirt
+	initial_flooring = /datum/decl/flooring/outdoors/newdirt
 
-/decl/flooring/outdoors/newdirt
+/datum/decl/flooring/outdoors/newdirt
 	name = "dirt"
 	desc = "Looks dirty."
 	icon = 'icons/turf/outdoors_vr.dmi'
@@ -245,7 +245,7 @@ var/list/turf_edge_cache = list()
 	icon = 'icons/turf/outdoors_vr.dmi'
 	icon_state = "dirt0"
 	edge_blending_priority = 2
-	initial_flooring = /decl/flooring/outdoors/newdirt
+	initial_flooring = /datum/decl/flooring/outdoors/newdirt
 
 /turf/simulated/floor/outdoors/newdirt_nograss/Initialize(mapload)
 	var/possibledirts = list(
@@ -258,6 +258,9 @@ var/list/turf_edge_cache = list()
 	flooring_override = pickweight(possibledirts)
 	return ..()
 
+/turf/simulated/floor/outdoors/newdirt_nograss/caves
+	outdoors = OUTDOORS_NO
+
 /turf/simulated/floor/outdoors/sidewalk
 	name = "sidewalk"
 	desc = "Concrete shaped into a path!"
@@ -265,10 +268,10 @@ var/list/turf_edge_cache = list()
 	icon_state = "sidewalk"
 	edge_blending_priority = -1
 	movement_cost = -0.5
-	initial_flooring = /decl/flooring/outdoors/sidewalk
+	initial_flooring = /datum/decl/flooring/outdoors/sidewalk
 	can_dirty = TRUE
 
-/decl/flooring/outdoors/sidewalk
+/datum/decl/flooring/outdoors/sidewalk
 	name = "sidewalk"
 	desc = "Concrete shaped into a path!"
 	icon = 'icons/turf/outdoors_vr.dmi'
@@ -311,10 +314,10 @@ var/list/turf_edge_cache = list()
 
 /turf/simulated/floor/outdoors/sidewalk/side
 	icon_state = "side-walk"
-	initial_flooring = /decl/flooring/outdoors/sidewalk/side
+	initial_flooring = /datum/decl/flooring/outdoors/sidewalk/side
 
 
-/decl/flooring/outdoors/sidewalk/side
+/datum/decl/flooring/outdoors/sidewalk/side
 	icon_base = "sidewalk"
 	build_type = /obj/item/stack/tile/floor/sidewalk/side
 
@@ -322,9 +325,9 @@ var/list/turf_edge_cache = list()
 
 /turf/simulated/floor/outdoors/sidewalk/slab
 	icon_state = "slab"
-	initial_flooring = /decl/flooring/outdoors/sidewalk/slab
+	initial_flooring = /datum/decl/flooring/outdoors/sidewalk/slab
 
-/decl/flooring/outdoors/sidewalk/slab
+/datum/decl/flooring/outdoors/sidewalk/slab
 	icon_base = "slab"
 	build_type = /obj/item/stack/tile/floor/sidewalk/slab
 
@@ -332,9 +335,9 @@ var/list/turf_edge_cache = list()
 
 /turf/simulated/floor/outdoors/sidewalk/slab/city
 	icon_state = "cityslab"
-	initial_flooring = /decl/flooring/outdoors/sidewalk/slab/city
+	initial_flooring = /datum/decl/flooring/outdoors/sidewalk/slab/city
 
-/decl/flooring/outdoors/sidewalk/slab/city
+/datum/decl/flooring/outdoors/sidewalk/slab/city
 	icon_base = "cityslab"
 	build_type = /obj/item/stack/tile/floor/sidewalk/slab/city
 
@@ -352,5 +355,5 @@ var/list/turf_edge_cache = list()
 	throw_range = 20
 	no_variants = TRUE
 
-/decl/flooring/concrete
+/datum/decl/flooring/concrete
 	build_type = /obj/item/stack/tile/floor/concrete

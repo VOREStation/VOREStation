@@ -359,8 +359,7 @@
 	name = "imperial energy pistol"
 	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that \
 	is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_override = 'icons/obj/gun_vr.dmi'
+	icon_override = 'icons/obj/gun.dmi'
 	icon_state = "ge_pistol"
 	item_state = "ge_pistol"
 	slot_flags = SLOT_BELT
@@ -377,7 +376,6 @@
 /obj/item/gun/energy/mininglaser
 	name = "mining-laser rifle"
 	desc = "An industrial grade mining laser. Comes with a built-in 'stun' mode for encounters with local wildlife."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "mininglaser"
 	item_state = "mininglaser"
 	fire_delay = 8
@@ -455,3 +453,18 @@
 	force = 12
 	accuracy = 0
 	scoped_accuracy = 20
+
+/obj/item/gun/energy/zip
+	name = "Zip-Las"
+	desc = "A homemade (and somehow safe) laser gun designed around shooting single powerful laser beam draining the cell entirely. Better not miss and better have spare cells."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "ziplas"
+	item_state = "ziplas"
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_BELT|SLOT_BACK
+	charge_cost = 1500 //You got 1 shot...
+	projectile_type = /obj/item/projectile/beam/heavylaser //But it hurts a lot
+	cell_type = /obj/item/cell/device/weapon
+
+/obj/item/gun/energy/zip/craftable
+	battery_lock = 1 //makeshift gun has flaws

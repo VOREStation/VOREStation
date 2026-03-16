@@ -25,9 +25,9 @@
 
 // Stop media when the round ends. I guess so it doesn't play forever or something (for some reason?)
 /hook/roundend/proc/stop_all_media()
-	log_debug("Stopping all playing media...")
+	log_world("Stopping all playing media...")
 	// Stop all music.
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M && M.client)
 			M.stop_all_music()
 	//  SHITTY HACK TO AVOID RACE CONDITION WITH SERVER REBOOT.

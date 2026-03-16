@@ -13,7 +13,7 @@
 	var/forced_dirs = 0 //Force this one to pretend it's an overedge turf
 
 /turf/space/Initialize(mapload)
-	if(CONFIG_GET(flag/starlight))
+	if(CONFIG_GET(number/starlight))
 		update_starlight()
 
 	//Sprite stuff only beyond here
@@ -75,7 +75,7 @@
 
 /turf/space/proc/update_starlight()
 	if(locate(/turf/simulated) in orange(src,1))
-		set_light(CONFIG_GET(flag/starlight))
+		set_light(CONFIG_GET(number/starlight))
 	else
 		set_light(0)
 
@@ -137,7 +137,7 @@
 /turf/space/Entered(var/atom/movable/A)
 	. = ..()
 
-	if(edge && ticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
+	if(edge && SSticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
 		if(isliving(A))
 			var/mob/living/L = A
 			if(L.pulling)

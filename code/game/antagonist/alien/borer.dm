@@ -1,11 +1,11 @@
-var/datum/antagonist/borer/borers
+GLOBAL_DATUM(borers, /datum/antagonist/borer)
 
 /datum/antagonist/borer
 	id = MODE_BORER
 	role_type = BE_ALIEN
 	role_text = "Cortical Borer"
 	role_text_plural = "Cortical Borers"
-	mob_path = /mob/living/simple_mob/animal/borer
+	mob_path = /mob/living/simple_mob/animal/borer/roundstart // Use roundstart borer, or ghostcheck makes it take forever to enter mob when assigned
 	bantype = "Borer"
 	welcome_text = "Use your Infest power to crawl into the ear of a host and fuse with their brain. You can only take control temporarily, and at risk of hurting your host, so be clever and careful; your host is encouraged to help you however they can. Talk to your fellow borers with :x."
 	antag_indicator = "brainworm"
@@ -27,7 +27,7 @@ var/datum/antagonist/borer/borers
 
 /datum/antagonist/borer/New()
 	..(1)
-	borers = src
+	GLOB.borers = src
 
 /datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='byond://?src=\ref[src];[HrefToken()];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
@@ -43,7 +43,7 @@ var/datum/antagonist/borer/borers
 	var/mob/living/simple_mob/animal/borer/borer = mob
 	if(istype(borer))
 		var/mob/living/carbon/human/host
-		for(var/mob/living/carbon/human/H in mob_list)
+		for(var/mob/living/carbon/human/H in GLOB.mob_list)
 			if(H.stat != DEAD && !H.has_brain_worms())
 				var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 				if(head && !(head.robotic >= ORGAN_ROBOT))

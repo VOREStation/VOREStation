@@ -1,7 +1,7 @@
 /obj/machinery/exonet_node
 	name = "exonet node"
 	desc = null // Gets written in New()
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "exonet" //VOREStation Edit
 	idle_power_usage = 2500
 	density = TRUE
@@ -57,10 +57,10 @@
 		update_idle_power_usage(0)
 	update_icon()
 
-// Proc: emp_act()
+// Proc: emp_act(severity, recursive)
 // Parameters: 1 (severity - how strong the EMP is, with lower numbers being stronger)
 // Description: Shuts off the machine for awhile if an EMP hits it.  Ion anomalies also call this to turn it off.
-/obj/machinery/exonet_node/emp_act(severity)
+/obj/machinery/exonet_node/emp_act(severity, recursive)
 	if(!(stat & EMPED))
 		stat |= EMPED
 		var/duration = (300 * 10)/severity

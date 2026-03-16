@@ -38,6 +38,7 @@ export type Data = {
   law_sets: law_pack[];
   active_ais: DropdownEntry[];
   selected_ai: string | null;
+  theme: string;
 };
 
 export type DropdownEntry = {
@@ -66,6 +67,7 @@ export type Target = {
   radio_channels: string[];
   availalbe_channels: string[];
   pka: PKA | undefined;
+  multibelt: Multibelt[] | undefined;
   components: Component[];
   active_access: Access[];
 };
@@ -109,6 +111,16 @@ export type PKA = {
   installed_modkits: { name: string; ref: string; costs: number }[];
   capacity: number;
   max_capacity: number;
+};
+
+export type Multibelt = {
+  name: string;
+  tools: {
+    name: string;
+    path: string;
+  }[];
+  ref: string;
+  integrated_tools: { name: string; ref: string }[];
 };
 
 export type InstalledCell = {

@@ -31,7 +31,7 @@
 
 
 /datum/event2/event/spider_infestation/announce()
-	command_announcement.Announce("Unidentified lifesigns detected coming aboard \the [location_name()]. \
+	GLOB.command_announcement.Announce("Unidentified lifesigns detected coming aboard \the [location_name()]. \
 	Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
 /datum/event2/event/spider_infestation/start()
@@ -44,6 +44,6 @@
 	while((spiders_to_spawn >= 1) && vents.len)
 		var/obj/vent = pick(vents)
 		new spiderling_to_spawn(vent.loc)
-		log_debug("Spider infestation event spawned a spiderling at [get_area(vent)].")
+		log_game("Spider infestation event spawned a spiderling at [get_area(vent)].")
 		vents -= vent
 		spiders_to_spawn--

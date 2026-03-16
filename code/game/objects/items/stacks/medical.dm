@@ -117,7 +117,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/3, exclusive = TRUE))
+				if(!do_after(user, W.damage/3, affecting))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 
@@ -186,7 +186,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
+				if(!do_after(user, W.damage/5, affecting))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 
@@ -215,9 +215,9 @@
 			affecting.update_damages()
 			if(used == amount)
 				if(affecting.is_bandaged())
-					balloon_alert(user, "\the [src] is used up.")
+					user.balloon_alert(user, "\the [src] is used up.")
 				else
-					balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
+					user.balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 			use(used)
 
 /obj/item/stack/medical/ointment
@@ -242,20 +242,20 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
-			balloon_alert(user, "the [affecting.name] is cut open!")
+			user.balloon_alert(user, "the [affecting.name] is cut open!")
 			return
 
 		if(affecting.is_salved())
-			balloon_alert(user, "the wounds on [M]'s [affecting.name] have already been salved.")
+			user.balloon_alert(user, "the wounds on [M]'s [affecting.name] have already been salved.")
 			return 1
 		else
 			user.balloon_alert_visible("\the [user] starts salving wounds on [M]'s [affecting.name].", \
 										"salving the wounds on [M]'s [affecting.name]." )
-			if(!do_mob(user, M, 10, exclusive = TRUE))
-				balloon_alert(user, "stand still to salve wounds.")
+			if(!do_after(user, 1 SECOND, affecting))
+				user.balloon_alert(user, "stand still to salve wounds.")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
-				balloon_alert(user, "[M]'s [affecting.name] have already been salved.")
+				user.balloon_alert(user, "[M]'s [affecting.name] have already been salved.")
 				return 1
 			user.balloon_alert_visible("[user] salved wounds on [M]'s [affecting.name].", \
 										"salved wounds on [M]'s [affecting.name]." )
@@ -305,7 +305,7 @@
 					continue
 				//if(used == amount)
 				//	break
-				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
+				if(!do_after(user, W.damage/5, affecting))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 				if(affecting.is_bandaged() && affecting.is_disinfected()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -357,19 +357,19 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
-			balloon_alert(user, "the [affecting.name] is cut open!")
+			user.balloon_alert(user, "the [affecting.name] is cut open!")
 
 		if(affecting.is_salved())
-			balloon_alert(user, "[M]'s [affecting.name] has already been salved.")
+			user.balloon_alert(user, "[M]'s [affecting.name] has already been salved.")
 			return 1
 		else
 			user.balloon_alert_visible("\the [user] starts salving wounds on [M]'s [affecting.name].", \
 										"salving the wounds on [M]'s [affecting.name]." )
-			if(!do_mob(user, M, 10, exclusive = TRUE))
-				balloon_alert(user, "stand still to salve wounds.")
+			if(!do_after(user, 1 SECOND, affecting))
+				user.balloon_alert(user, "stand still to salve wounds.")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
-				balloon_alert(user, "[M]'s [affecting.name] have already been salved.")
+				user.balloon_alert(user, "[M]'s [affecting.name] have already been salved.")
 				return 1
 			user.balloon_alert_visible("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.", \
 									"covered wounds on [M]'s [affecting.name] with regenerative membrane." )
@@ -413,7 +413,7 @@
 				balloon_alert(user, "you can't apply a splint to the arm you're using!")
 				return
 			user.balloon_alert_visible("[user] starts to apply \the [src] to their [limb].", "applying \the [src] to your [limb].", "You hear something being wrapped.")
-		if(do_after(user, 50, M, exclusive = TASK_USER_EXCLUSIVE))
+		if(do_after(user, 5 SECONDS, affecting))
 			if(affecting.splinted)
 				balloon_alert(user, "[M]'s [limb] is already splinted!")
 				return

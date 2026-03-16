@@ -26,6 +26,8 @@
 		M = new /mob/living/carbon/human(get_turf(source))
 	M.real_name = source.real_name
 	M.name = M.real_name
+	if(!isnull(source.mind))
+		source.mind.transfer_to(M)
 	M.ckey = source.ckey
 	add_antagonist(M.mind, 1, 0, 1) // Equip them and move them to spawn.
 	return M
@@ -118,7 +120,7 @@
 
 /datum/antagonist/proc/set_antag_name(var/mob/living/player)
 	// Choose a name, if any.
-	var/newname = sanitize(tgui_input_text(player, "You are a [role_text]. Would you like to change your name to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = tgui_input_text(player, "You are a [role_text]. Would you like to change your name to something else?", "Name change", null, MAX_NAME_LEN)
 	if (newname)
 		player.real_name = newname
 		player.name = player.real_name

@@ -13,8 +13,8 @@
 	var/atom/target = null
 	var/open_panel = 0
 	var/image_overlay = null
-	var/blast_dev = -1
-	var/blast_heavy = -1
+	var/blast_dev = 0
+	var/blast_heavy = 1
 	var/blast_light = 2
 	var/blast_flash = 3
 
@@ -38,7 +38,10 @@
 	else
 		..()
 
-/obj/item/plastique/attack_self(mob/user as mob)
+/obj/item/plastique/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/newtime = tgui_input_number(user, "Please set the timer.", "Timer", 10, 60000, 10)
 	if(user.get_active_hand() == src)
 		newtime = CLAMP(newtime, 10, 60000)
@@ -53,7 +56,7 @@
 	to_chat(user, "Planting explosives...")
 	user.do_attack_animation(target)
 
-	if(do_after(user, 50) && in_range(user, target))
+	if(do_after(user, 5 SECONDS, target = target) && in_range(user, target))
 		user.drop_item()
 		src.target = target
 		loc = null
@@ -62,10 +65,10 @@
 			add_attack_logs(user, target, "planted [name] on with [timer] second fuse")
 			user.visible_message(span_danger("[user.name] finished planting an explosive on [target.name]!"))
 		else
-			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
+			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse")
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.add_overlay(image_overlay, TRUE)
+		target.add_overlay(image_overlay)
 		to_chat(user, "Bomb has been planted. Timer counting down from [timer].")
 		spawn(timer*10)
 			explode(get_turf(target))
@@ -87,7 +90,7 @@
 		else
 			target.ex_act(1)
 	if(target)
-		target.cut_overlay(image_overlay, TRUE)
+		target.cut_overlay(image_overlay)
 	qdel(src)
 
 /obj/item/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
@@ -97,6 +100,7 @@
 	name = "seismic charge"
 	desc = "Used to dig holes in specific areas without too much extra hole."
 
+	blast_dev = 3
 	blast_heavy = 2
 	blast_light = 4
 	blast_flash = 7
@@ -106,7 +110,7 @@
 	if(open_panel)
 		if(istype(I, /obj/item/stock_parts/micro_laser))
 			var/obj/item/stock_parts/SP = I
-			var/new_blast_power = max(1, round(SP.rating / 2) + 1)
+			var/new_blast_power = max(1, round(SP.rating * 2) + 1)
 			if(new_blast_power > blast_heavy)
 				to_chat(user, span_notice("You install \the [I] into \the [src]."))
 				user.drop_from_inventory(I)

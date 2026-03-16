@@ -1,38 +1,7 @@
-
-
-/var/all_ui_styles = list(
-	"Midnight"     = 'icons/mob/screen/midnight.dmi',
-	"Orange"       = 'icons/mob/screen/orange.dmi',
-	"old"          = 'icons/mob/screen/old.dmi',
-	"White"        = 'icons/mob/screen/white.dmi',
-	"old-noborder" = 'icons/mob/screen/old-noborder.dmi',
-	"minimalist"   = 'icons/mob/screen/minimalist.dmi',
-	"Hologram"     = 'icons/mob/screen/holo.dmi'
-	)
-
-/var/all_ui_styles_robot = list(
-	"Midnight"     = 'icons/mob/screen1_robot.dmi',
-	"Orange"       = 'icons/mob/screen1_robot.dmi',
-	"old"          = 'icons/mob/screen1_robot.dmi',
-	"White"        = 'icons/mob/screen1_robot.dmi',
-	"old-noborder" = 'icons/mob/screen1_robot.dmi',
-	"minimalist"   = 'icons/mob/screen1_robot_minimalist.dmi',
-	"Hologram"     = 'icons/mob/screen1_robot_minimalist.dmi'
-	)
-
-var/global/list/all_tooltip_styles = list(
-	"Midnight",		//Default for everyone is the first one,
-	"Plasmafire",
-	"Retro",
-	"Slimecore",
-	"Operative",
-	"Clockwork"
-	)
-
 /proc/ui_style2icon(ui_style)
-	if(ui_style in all_ui_styles)
-		return all_ui_styles[ui_style]
-	return all_ui_styles["White"]
+	if(ui_style in GLOB.all_ui_styles)
+		return GLOB.all_ui_styles[ui_style]
+	return GLOB.all_ui_styles["White"]
 
 
 /client/verb/change_ui()
@@ -48,7 +17,7 @@ var/global/list/all_tooltip_styles = list(
 	var/current_style = prefs.read_preference(/datum/preference/choiced/ui_style)
 	var/current_alpha = prefs.read_preference(/datum/preference/numeric/ui_style_alpha)
 	var/current_color = prefs.read_preference(/datum/preference/color/ui_style_color)
-	var/UI_style_new = tgui_input_list(src, "Select a style. White is recommended for customization", "UI Style Choice", all_ui_styles, current_style)
+	var/UI_style_new = tgui_input_list(src, "Select a style. White is recommended for customization", "UI Style Choice", GLOB.all_ui_styles, current_style)
 	if(!UI_style_new) return
 
 	var/UI_style_alpha_new = tgui_input_number(src, "Select a new alpha (transparency) parameter for your UI, between 50 and 255", null, current_alpha, 255, 50)
@@ -61,9 +30,9 @@ var/global/list/all_tooltip_styles = list(
 	usr.update_ui_style(UI_style_new, UI_style_alpha_new, UI_style_color_new)
 
 	if(tgui_alert(src, "Like it? Save changes?","Save?",list("Yes", "No")) == "Yes")
-		usr.write_preference_directly(/datum/preference/choiced/ui_style, UI_style_new)
-		usr.write_preference_directly(/datum/preference/numeric/ui_style_alpha, UI_style_alpha_new)
-		usr.write_preference_directly(/datum/preference/color/ui_style_color, UI_style_color_new)
+		usr.write_preference_directly(/datum/preference/choiced/ui_style, UI_style_new, WRITE_PREF_MANUAL)
+		usr.write_preference_directly(/datum/preference/numeric/ui_style_alpha, UI_style_alpha_new, WRITE_PREF_MANUAL)
+		usr.write_preference_directly(/datum/preference/color/ui_style_color, UI_style_color_new, WRITE_PREF_MANUAL)
 		SScharacter_setup.queue_preferences_save(prefs)
 		to_chat(src, "UI was saved")
 		return

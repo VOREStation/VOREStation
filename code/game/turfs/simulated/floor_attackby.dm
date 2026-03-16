@@ -65,10 +65,7 @@
 
 	// Floor has flooring set
 	if(!is_plating())
-		if(istype(C, /obj/item))
-			try_deconstruct_tile(C, user)
-			return
-		else if(istype(C, /obj/item/stack/cable_coil))
+		if(istype(C, /obj/item/stack/cable_coil))
 			to_chat(user, span_warning("You must remove the [flooring.descriptor] first."))
 			return
 		else if(istype(C, /obj/item/stack/tile))
@@ -86,8 +83,12 @@
 					S.use(1)
 					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+					if(S.color)
+						color = S.color
 					return
-
+		else if(istype(C, /obj/item))
+			try_deconstruct_tile(C, user)
+			return
 
 	// Floor is plating (or no flooring)
 	else
@@ -105,9 +106,9 @@
 				to_chat(user, span_warning("This section is too damaged to support anything. Use a welder to fix the damage."))
 				return
 			var/obj/item/stack/S = C
-			var/decl/flooring/use_flooring
-			for(var/flooring_type in flooring_types)
-				var/decl/flooring/F = flooring_types[flooring_type]
+			var/datum/decl/flooring/use_flooring
+			for(var/flooring_type in GLOB.flooring_types)
+				var/datum/decl/flooring/F = GLOB.flooring_types[flooring_type]
 				if(!F.build_type)
 					continue
 				if((S.type == F.build_type) || (S.build_type == F.build_type))
@@ -120,12 +121,14 @@
 				to_chat(user, span_warning("You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor]."))
 				return
 			// Stay still and focus...
-			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
+			if(use_flooring.build_time && !do_after(user, use_flooring.build_time, target = src))
 				return
 			if(!is_plating() || !S || !user || !use_flooring)
 				return
 			if(S.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
+				if(S.color)
+					color = S.color
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Plating repairs and removal
@@ -154,44 +157,49 @@
 					user.visible_message(span_warning("[user] begins cutting through [src]."), span_warning("You begin cutting through [src]."))
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
-					if(do_after(user, 10 SECONDS, src, TRUE, exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 10 SECONDS, target = src))
 						if(!can_remove_plating(user))
 							return // Someone slapped down some flooring or cables or something
 						do_remove_plating(C, user, base_type)
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/stack/tile) && isliving(user)) //If we're hitting it with a tile, try to check our offhand
+		var/mob/living/deconstructor = user
+		W = deconstructor.get_inactive_hand()
+		if(!W || !istype(W, /obj/item))
+			return FALSE
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		if(broken || burnt)
 			to_chat(user, span_notice("You remove the broken [flooring.descriptor]."))
-			make_plating()
+			make_plating(FALSE)
 		else if(flooring.flags & TURF_IS_FRAGILE)
 			to_chat(user, span_danger("You forcefully pry off the [flooring.descriptor], destroying them in the process."))
-			make_plating()
+			make_plating(FALSE)
 		else if(flooring.flags & TURF_REMOVE_CROWBAR)
 			to_chat(user, span_notice("You lever off the [flooring.descriptor]."))
-			make_plating(1)
+			make_plating(TRUE)
 		else
-			return 0
+			return FALSE
 		playsound(src, W.usesound, 80, 1)
-		return 1
+		return TRUE
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)
-			return 0
+			return FALSE
 		to_chat(user, span_notice("You unscrew and remove the [flooring.descriptor]."))
-		make_plating(1)
+		make_plating(TRUE)
 		playsound(src, W.usesound, 80, 1)
-		return 1
+		return TRUE
 	else if(W.has_tool_quality(TOOL_WRENCH) && (flooring.flags & TURF_REMOVE_WRENCH))
 		to_chat(user, span_notice("You unwrench and remove the [flooring.descriptor]."))
-		make_plating(1)
+		make_plating(TRUE)
 		playsound(src, W.usesound, 80, 1)
-		return 1
+		return TRUE
 	else if(istype(W, /obj/item/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
 		to_chat(user, span_notice("You shovel off the [flooring.descriptor]."))
-		make_plating(1)
+		make_plating(TRUE)
 		playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)
 	if(T.type == flooring.build_type)

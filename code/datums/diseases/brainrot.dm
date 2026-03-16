@@ -1,5 +1,6 @@
 /datum/disease/brainrot
 	name = "Brainrot"
+	medical_name = "Encephalonecrosis"
 	max_stages = 4
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
@@ -8,7 +9,7 @@
 	agent = "Cryptococcus Cosmosis"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cure_chance = 15
-	desc = "This disease destroys the braincells, causing brain fever, brain necrosis and general intoxication."
+	desc = "Destroys the braincells, causing brain fever, brain necrosis and general intoxication."
 	required_organs = list(/obj/item/organ/internal/brain)
 	danger = DISEASE_HARMFUL
 

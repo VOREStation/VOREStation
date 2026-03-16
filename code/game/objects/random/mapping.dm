@@ -26,8 +26,8 @@
 				/obj/effect/decal/cleanable/blood/oil/streak,
 				/obj/effect/decal/cleanable/bug_remains,
 				/obj/effect/decal/remains/mouse,
-				/obj/effect/decal/cleanable/vomit,
-				/obj/effect/decal/cleanable/blood/splatter,
+				/obj/effect/decal/cleanable/vomit/old,
+				/obj/effect/decal/cleanable/blood/old,
 				/obj/effect/decal/cleanable/ash,
 				/obj/effect/decal/cleanable/generic,
 				/obj/effect/decal/cleanable/flour,
@@ -1999,3 +1999,15 @@
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
 			),
 		)
+
+/obj/random/multiple/legtrap
+	name = "random legtraps"
+	desc = "Random legtraps (beartraps and mousetraps)."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "x3"
+
+/obj/random/multiple/legtrap/item_to_spawn()
+	return pick(
+				prob(67);list(/obj/item/assembly/mousetrap/armed),
+				prob(33);list(/obj/item/beartrap/start_active),
+				)

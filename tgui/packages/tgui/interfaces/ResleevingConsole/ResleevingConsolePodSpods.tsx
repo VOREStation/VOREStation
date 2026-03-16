@@ -1,7 +1,6 @@
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Image, ProgressBar } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import type { Data } from './types';
 
@@ -9,7 +8,7 @@ export const ResleevingConsolePodSpods = (props) => {
   const { act, data } = useBackend<Data>();
   const { spods, selected_printer } = data;
 
-  if (spods && spods.length) {
+  if (spods?.length) {
     return spods.map((pod, i) => {
       let podAction: React.JSX.Element;
       if (pod.status === 'cloning') {
@@ -25,7 +24,7 @@ export const ResleevingConsolePodSpods = (props) => {
             }}
             mt="0.5rem"
           >
-            <Box textAlign="center">{toFixed(pod.progress) + '%'}</Box>
+            <Box textAlign="center">{`${pod.progress.toFixed()}%`}</Box>
           </ProgressBar>
         );
       } else if (pod.status === 'mess') {
@@ -54,9 +53,7 @@ export const ResleevingConsolePodSpods = (props) => {
       return (
         <Box key={i} width="64px" textAlign="center" inline mr="0.5rem">
           <Image
-            src={resolveAsset(
-              'synthprinter' + (pod.busy ? '_working' : '') + '.gif',
-            )}
+            src={resolveAsset(`synthprinter${pod.busy ? '_working' : ''}.gif`)}
             style={{
               width: '100%',
             }}

@@ -1,5 +1,3 @@
-////////////CHOMP CLEANABLE REAGENT PUDDLES/////////////////////
-
 /obj/effect/decal/cleanable/blood/reagent //Yes, we are using the blood system for this
 	name = "liquid"
 	dryname = "dried liquid"

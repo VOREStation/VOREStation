@@ -17,6 +17,12 @@ $include sqlite.txt
 ## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice
 # SERVERNAME spacestation13
 
+## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
+LOBBY_COUNTDOWN 120
+
+## Round End Time: This is the amount of time after the round ends that players have to murder death kill each other.
+ROUND_END_COUNTDOWN 90
+
 ## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
 ## You need to set up your database to use the SQL based system.
 ## This flag is automatically enabled if SQL_ENABLED isn't
@@ -48,9 +54,6 @@ BAN_LEGACY_SYSTEM
 ## Unhash this entry to have certain antag roles require your account to be at least a certain number of days old for round start and auto-spawn selection.
 ## Non-automatic antagonist recruitment, such as being converted to cultism is not affected. Has the same database requirements and notes as USE_AGE_RESTRICTION_FOR_JOBS.
 #USE_AGE_RESTRICTION_FOR_ANTAGS
-
-## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
-#USE_RECURSIVE_EXPLOSIONS
 
 ## Configure how fast explosion strength diminishes when travelling up/down z levels. All explosion distances are multiplied by this each time they go up/down z-levels.
 #MULTI_Z_EXPLOSION_SCALAR 0.5
@@ -198,10 +201,6 @@ GUEST_JOBBAN
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 SERVER your.domain:6000
 
-## set a server URL for the IRC bot to use; like SERVER, don't include the byond://
-## Unlike SERVER, this one shouldn't break auto-reconnect
-# SERVERURL your.domain:port
-
 ## forum address
 #FORUMURL https://forum.your.domain/
 
@@ -274,6 +273,16 @@ SECOND_CLICK_LIMIT 15
 
 MINUTE_CLICK_LIMIT 400
 
+##Error handling related options
+## The "cooldown" time for each occurrence of a unique error
+#ERROR_COOLDOWN 600
+## How many occurrences before the next will silence them
+#ERROR_LIMIT 90
+## How long a unique error will be silenced for
+#ERROR_SILENCE_TIME 6000
+##How long to wait between messaging admins about occurrences of a unique error
+#ERROR_MSG_DELAY 50
+
 ##Defines the ticklag for the world. Ticklag is the amount of time between game ticks (aka byond ticks) (in 1/10ths of a second).
 ##	This also controls the client network update rate, as well as the default client fps
 TICKLAG 0.25
@@ -284,9 +293,6 @@ TICKLAG 0.25
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 ## FIXME: Unused config. Only uncomment if changed in code.
 # TICKCOMP 1
-
-## Whether the server will talk to other processes through socket_talk
-SOCKET_TALK 0
 
 ## Uncomment this to ban use of ToR
 #TOR_BAN
@@ -315,29 +321,6 @@ USEALIENWHITELIST
 
 ## Password used for authorizing ircbot and other external tools.
 # COMMS_PASSWORD some_password_here
-
-## Uncomment to enable sending data to the IRC bot.
-#USE_IRC_BOT
-
-## Uncomment if the IRC bot requires using world.Export() instead of nudge.py/libnudge
-#IRC_BOT_EXPORT
-
-## Host where the IRC bot is hosted.  Port 45678 needs to be open.
-#IRC_BOT_HOST localhost
-
-## IRC channel to send information to.  Leave blank to disable.
-#MAIN_IRC #main
-
-## IRC channel to send adminhelps to.  Leave blank to disable adminhelps-to-irc.
-#ADMIN_IRC #admin
-
-## Path to the python2 executable on the system.  Leave blank for default.
-## Default is "python" on Windows, "/usr/bin/env python2" on UNIX.
-#PYTHON_PATH
-
-## Uncomment to use the C library nudge instead of the python script.
-## This helps security and stability on Linux, but you need to compile the library first.
-#USE_LIB_NUDGE
 
 ## Uncomment to allow ghosts to write in blood during Cult rounds.
 CULT_GHOSTWRITER
@@ -451,10 +434,8 @@ ITEMS_SURVIVE_DIGESTION
 # Path to the folder that BYOND should export faxes into so they are readable on the web.
 #FAX_EXPORT_DIR data/faxes
 
-# TCP port on which to connect to the VGS instance.
-#VGS_SERVER_PORT 8888
-# Secret pre-shared-key to authenticate to VGS.
-#VGS_ACCESS_IDENTIFIER some_password_here
+# Port for helper script to add member roles in discord (see tools/registration)
+#REGISTER_SERVER_PORT 6969
 
 MULTI_Z_EXPLOSION_SCALAR 0.35
 
@@ -592,3 +573,86 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 
 ## Uncomment to limit resize caps depending on sprite icon height
 #PIXEL_SIZE_LIMIT
+
+# This is the tgs4 channel tag, for discord chatbots used in TGS
+#AHELP_CHANNEL_TAG admin
+
+# Turn this off if you don't want the TGS bot sending you messages whenever an ahelp ticket is created.
+#DISCORD_AHELPS_DISABLED
+
+#Turn this on if you want all admin-PMs to go to be sent to discord, and not only the first message of a ticket.
+#DISCORD_AHELPS_ALL
+
+## Game Chat Message Options
+## Various messages to be sent to connected chat channels.
+## Uncommenting these will enable them, by default they will be broadcast to Game chat channels on TGS3 or non-admin channels on TGS>=4.
+## If using TGS>=4, the string option can be set as one of more chat channel tags (separated by ','s) to limit the message to channels with that tag name (case-sensitive). This will have no effect on TGS3.
+## You can also specify multiple channel tags by using the config option multiple times,
+## i.e. CHANNEL_ANNOUNCE_NEW_GAME chat_channel_tag_1
+## i.e. CHANNEL_ANNOUNCE_NEW_GAME chat_channel_tag_2
+
+## Which channels will have a message about a new game starting, message includes the station name.
+#CHANNEL_ANNOUNCE_NEW_GAME
+
+## Which channels will have a message about a new game starting, message includes the round ID of the game that has just ended.
+#CHANNEL_ANNOUNCE_END_GAME
+
+## Ping users who use the `notify` command when a new game starts.
+#CHAT_NEW_GAME_NOTIFICATIONS
+
+## Uncomment this flag to validate admin commands from discord by requiring they come from linked discord accounts and that those discord accounts link to a ckey with the right admin permissions.
+# SECURE_CHAT_COMMANDS
+
+###Master Controller High Pop Mode###
+
+##The Master Controller(MC) is the primary system controlling timed tasks and events in SS13 (lobby timer, game checks, lighting updates, atmos, etc)
+##Default base MC tick rate (1 = process every "byond tick" (see: tick_lag/fps config settings), 2 = process every 2 byond ticks, etc)
+##	Setting this to 0 will prevent the Master Controller from ticking
+BASE_MC_TICK_RATE 1
+
+##High population MC tick rate
+##	Byond rounds timer values UP, but the tick rate is modified with heuristics during lag spites so setting this to something like 2
+##	will make it run every 2 byond ticks, but will also double the effect of anti-lag heuristics. You can instead set it to something like
+##	1.1 to make it run every 2 byond ticks, but only increase the effect of anti-lag heuristics by 10%. or 1.5 for 50%.
+##	(As an aside, you could in theory also reduce the effect of anti-lag heuristics in the base tick rate by setting it to something like 0.5)
+HIGH_POP_MC_TICK_RATE 1.1
+
+##Engage high pop mode if player count raises above this (Player in this context means any connected user. Lobby, ghost or in-game all count)
+HIGH_POP_MC_MODE_AMOUNT 65
+
+##Disengage high pop mode if player count drops below this
+DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
+
+## Uncomment to prevent the world from sleeping while no players are connected after initializations
+#RESUME_AFTER_INITIALIZATIONS
+
+## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
+#ROUNDS_UNTIL_HARD_RESTART 10
+
+## Enable automatic profiling - Byond 513.1506 and newer only.
+#AUTO_PROFILE
+
+## Determines the interval between each saved profiler snapshot (in deciseconds).
+#PROFILER_INTERVAL 3000
+
+## Threshold (in deciseconds) for real time between ticks before we start dumping profiles
+DRIFT_DUMP_THRESHOLD 40
+
+## How long to wait (in deciseconds) after a profile dump before logging another tickdrift sourced one
+DRIFT_PROFILE_DELAY 150
+
+## Uncomment to block all attempts to profile, for performance reasons
+#FORBID_ALL_PROFILING
+
+## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
+#FORBID_ADMIN_PROFILING
+
+## Comment to disable sending a toast notification on the host server when initializations complete.
+## Even if this is enabled, a notification will only be sent if there are no clients connected.
+TOAST_NOTIFICATION_ON_INIT
+
+## Uncomment to allow admins with +DEBUG to start the byond-tracy profiler during the round.
+#ALLOW_TRACY_START
+
+## Uncomment to allow admins with +DEBUG to queue the next round to run the byond-tracy profiler.
+#ALLOW_TRACY_QUEUE

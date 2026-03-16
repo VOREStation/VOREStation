@@ -178,3 +178,5 @@
 		if(move_to)
 			give_destination(move_to, min_distance = 2, combat = TRUE) // This will switch our stance.
 */
+/mob/living/simple_mob/animal/giant_spider/hunter/event
+	ai_holder_type = /datum/ai_holder/simple_mob/event

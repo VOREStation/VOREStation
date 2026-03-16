@@ -7,7 +7,7 @@
 	description_fluff = "A prestigious set: The ZuMan music player, and the HeadPods headphones, both 90th anniversary releases! Together they form the PodZu Music Player, famous in the local galactic cluster for pumping sick beats directly into your head."
 	description_info = "An easy way to access the menu while the player is in a pocket is Alt-Click. Wearing the headphones is not actually necessary to listen to music, but you can if you want, by right-clicking on the player and using 'Take HeadPods'."
 
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "podzu" // podzu_o, headpod, zuman
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE	// Behavior when finished playing a song
@@ -69,18 +69,21 @@
 /obj/item/walkpod/proc/update_music()
 	listener?.force_music(media_url, media_start_time, volume) // Calling this with "" url (when we aren't playing) helpfully disables forced music
 
-/obj/item/walkpod/AltClick(mob/living/L)
+/obj/item/walkpod/click_alt(mob/living/L)
 	if(L == listener && check_listener())
 		tgui_interact(L)
 	else if(loc == L) // at least they're holding it
 		to_chat(L, span_warning("Turn on the [src] first."))
 
-/obj/item/walkpod/attack_self(mob/living/L)
-	if(!istype(L) || loc != L)
+/obj/item/walkpod/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(!istype(user) || loc != user)
 		return
 	if(!listener)
-		set_listener(L)
-	tgui_interact(L)
+		set_listener(user)
+	tgui_interact(user)
 
 // Process ticks to ensure our listener remains valid and we do music-ing
 /obj/item/walkpod/process()
@@ -112,7 +115,6 @@
 			current_track = null
 			playing = 0
 			update_icon()
-	updateDialog()
 	start_stop_song()
 
 // Track/music internals
@@ -135,7 +137,6 @@
 		return
 	playing = 1
 	start_stop_song()
-	updateDialog()
 
 // Advance to the next track - Don't start playing it unless we were already playing
 /obj/item/walkpod/proc/NextTrack()
@@ -146,7 +147,6 @@
 	current_track = tracks[newTrackIndex]
 	if(playing)
 		start_stop_song()
-	updateDialog()
 
 // Unadvance to the notnext track - Don't start playing it unless we were already playing
 /obj/item/walkpod/proc/PrevTrack()
@@ -157,7 +157,6 @@
 	current_track = tracks[newTrackIndex]
 	if(playing)
 		start_stop_song()
-	updateDialog()
 
 // UI
 /obj/item/walkpod/proc/getTracksList()
@@ -251,7 +250,7 @@
 
 	if(istype(potential_holder))
 		potential_holder.unEquip(deployed_headpods, force = TRUE)
-	qdel_null(deployed_headpods)
+	QDEL_NULL(deployed_headpods)
 	update_icon()
 
 /obj/item/walkpod/proc/check_headpods()
@@ -262,7 +261,7 @@
 /obj/item/headpods
 	name = "\improper pair of HeadPods"
 	desc = "Portable listening in Hi-Fi!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "headpods"
 	item_state = "headphones_on"
 	w_class = ITEMSIZE_SMALL

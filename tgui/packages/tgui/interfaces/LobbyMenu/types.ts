@@ -15,6 +15,8 @@ export type LobbyData = {
   show_station_news: BooleanLike;
   new_station_news: BooleanLike;
   new_changelog: BooleanLike;
+  can_start_now: BooleanLike;
+  immediate_start: BooleanLike;
 };
 
 export type LobbyContextType = {

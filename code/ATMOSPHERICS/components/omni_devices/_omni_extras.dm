@@ -10,6 +10,8 @@
 #define ATM_CO2		5
 #define ATM_P		6	//Phoron
 #define ATM_N2O		7
+#define ATM_METHANE 8
+#define ATM_LASTGAS	8 // Keep updated to match the latest gas in list above
 
 //--------------------------------------------
 // Omni port datum
@@ -104,5 +106,7 @@
 			return GAS_PHORON
 		if(ATM_N2O)
 			return GAS_N2O
+		if(ATM_METHANE)
+			return GAS_CH4
 		else
 			return null

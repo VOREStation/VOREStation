@@ -57,7 +57,7 @@
 			"download_rate" = download_netspeed
 		)
 	else										// Viewing list of articles
-		for(var/datum/computer_file/data/news_article/F in ntnet_global.available_news)
+		for(var/datum/computer_file/data/news_article/F in GLOB.ntnet_global.available_news)
 			if(!show_archived && F.archived)
 				continue
 			all_articles.Add(list(list(
@@ -87,7 +87,7 @@
 			if(downloading || loaded_article)
 				return TRUE
 
-			for(var/datum/computer_file/data/news_article/N in ntnet_global.available_news)
+			for(var/datum/computer_file/data/news_article/N in GLOB.ntnet_global.available_news)
 				if(N.uid == text2num(params["uid"]))
 					loaded_article = N.clone()
 					downloading = 1
@@ -106,7 +106,7 @@
 			if(downloading || !loaded_article)
 				return
 
-			var/savename = sanitize(tgui_input_text(ui.user, "Enter file name or leave blank to cancel:", "Save article", loaded_article.filename))
+			var/savename = tgui_input_text(ui.user, "Enter file name or leave blank to cancel:", "Save article", loaded_article.filename, "", MAX_MESSAGE_LEN)
 			if(!savename)
 				return TRUE
 			var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive

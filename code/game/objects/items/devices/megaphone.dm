@@ -42,8 +42,11 @@
 	else
 		user.audible_message(span_infoplain(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[message]\"")), runemessage = message)
 
-/obj/item/megaphone/attack_self(var/mob/living/user)
-	var/message = sanitize(tgui_input_text(user, "Shout a message?", "Megaphone", null))
+/obj/item/megaphone/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	var/message = tgui_input_text(user, "Shout a message?", "Megaphone", null, MAX_MESSAGE_LEN)
 	if(!message)
 		return
 	message = capitalize(message)

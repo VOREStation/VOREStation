@@ -213,7 +213,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/Lab1)
 "K" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/Lab1)
 "L" = (

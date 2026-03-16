@@ -1,12 +1,11 @@
-/* eslint-disable react/no-danger */
 import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack, Table } from 'tgui-core/components';
 
-import {
-  type LoadoutData,
-  type LoadoutDataConstant,
-  type LoadoutDataStatic,
+import type {
+  LoadoutData,
+  LoadoutDataConstant,
+  LoadoutDataStatic,
 } from './data';
 
 export const SubtabLoadout = (props: {
@@ -17,7 +16,7 @@ export const SubtabLoadout = (props: {
   const { act } = useBackend();
   const { data, staticData, serverData } = props;
   const { gear_slot, total_cost, active_gear_list, gear_tweaks } = data;
-  const { categories, max_gear_cost } = staticData;
+  const { categories = {}, max_gear_cost } = staticData;
 
   const [activeCategory, setActiveCategory] = useState(
     Object.keys(categories)[0],
@@ -111,6 +110,7 @@ export const SubtabLoadout = (props: {
                             }
                           >
                             <div
+                              // biome-ignore lint/security/noDangerouslySetInnerHtml: Loadouts
                               dangerouslySetInnerHTML={{
                                 __html: tweak.contents,
                               }}

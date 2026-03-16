@@ -89,7 +89,13 @@
 	switch(action)
 		if("viewing")
 			if(ui.user && !isAI(ui.user))
-				viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+				if(!get_dist(ui.user, src) > 1 || ui.user.blinded || !linked)
+					. = FALSE
+				else if(!viewing_overmap(ui.user) && linked)
+					if(!viewers) viewers = list() // List must exist for pass by reference to work
+					start_coordinated_remoteview(ui.user, linked, viewers)
+				else
+					ui.user.reset_perspective()
 			. = TRUE
 
 		if("link")
@@ -132,7 +138,7 @@
 /obj/machinery/shipsensors
 	name = "sensors suite"
 	desc = "Long range gravity scanner with various other sensors, used to detect irregularities in surrounding space. Can only run in vacuum to protect delicate quantum BS elements." //VOREStation Edit
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "sensors"
 	anchored = TRUE
 	var/max_health = 200
@@ -155,7 +161,7 @@
 		if(WT.remove_fuel(0,user))
 			to_chat(user, span_notice("You start repairing the damage to [src]."))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, max(5, damage / 5), src) && WT && WT.isOn())
+			if(do_after(user, max(5, damage / 5), target = src) && WT && WT.isOn())
 				to_chat(user, span_notice("You finish repairing the damage to [src]."))
 				take_damage(-damage)
 		else
@@ -228,7 +234,7 @@
 	range = nrange
 	change_power_consumption(1500 * (range**2), USE_POWER_IDLE) //Exponential increase, also affects speed of overheating
 
-/obj/machinery/shipsensors/emp_act(severity)
+/obj/machinery/shipsensors/emp_act(severity, recursive)
 	if(!use_power)
 		return
 	take_damage(20/severity)

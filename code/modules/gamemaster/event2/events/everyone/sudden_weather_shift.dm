@@ -15,7 +15,7 @@
 
 /datum/event2/event/sudden_weather_shift/set_up()
 	if(!LAZYLEN(SSplanets.planets))
-		log_debug("Weather shift event was ran when no planets exist. Aborting.")
+		log_game("Weather shift event was ran when no planets exist. Aborting.")
 		abort()
 		return
 
@@ -24,7 +24,7 @@
 /datum/event2/event/sudden_weather_shift/announce()
 	if(!chosen_planet)
 		return
-	command_announcement.Announce("Local weather patterns on [chosen_planet.name] suggest that a \
+	GLOB.command_announcement.Announce("Local weather patterns on [chosen_planet.name] suggest that a \
 	sudden atmospheric fluctuation has occurred. All groundside personnel should be wary of \
 	rapidly deteriorating conditions.", "Weather Alert")
 
@@ -41,5 +41,5 @@
 
 	// Now choose a new weather.
 	var/new_weather = pickweight(new_weather_weights)
-	log_debug("Sudden weather shift event is now changing [chosen_planet.name]'s weather to [new_weather].")
+	log_game("Sudden weather shift event is now changing [chosen_planet.name]'s weather to [new_weather].")
 	chosen_planet.weather_holder.change_weather(new_weather)

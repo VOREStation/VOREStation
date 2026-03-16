@@ -101,7 +101,6 @@
 
 		if("network")
 			var/newnet = tgui_input_text(ui.user, "Which network do you want to view?", "Comm Monitor", network, 15)
-			newnet = sanitize(newnet,15) //Honestly, I'd be amazed if someone managed to do HTML in 15 chars.
 			if(newnet && ((ui.user in range(1, src)) || issilicon(ui.user)))
 				if(length(newnet) > 15)
 					set_temp("FAILED: NETWORK TAG STRING TOO LENGTHY", "bad")
@@ -122,7 +121,6 @@
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, span_notice("You you disable the security protocols"))
-		src.updateUsrDialog(user)
 		return 1
 
 /obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")

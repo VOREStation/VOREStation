@@ -578,6 +578,26 @@ img.icon.bigicon {
   font-weight: bold;
 }
 
+.brute {
+  color: hsl(0, 100%, 60%);
+}
+
+.burn {
+  color: hsl(30, 100%, 60%);
+}
+
+.tox {
+  color: hsl(150, 100%, 40%);
+}
+
+.oxy {
+  color: hsl(220, 100%, 49%);
+}
+
+.clone {
+  color: hsl(180, 100%, 40%);
+}
+
 .rose {
   color: hsl(0, 100%, 66%);
 }
@@ -1127,6 +1147,70 @@ img.icon.bigicon {
   border-bottom: 1px dashed hsl(0, 0%, 100%);
 }
 
+.fieldset_legend {
+  position: relative;
+  max-width: 95%;
+  font-size: 120%;
+  background-color: var(--color-section);
+  padding: var(--space-s) var(--space-m);
+  border-color: inherit;
+  z-index: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: var(--border-thickness-tiny) solid;
+    border-color: inherit;
+    border-radius: var(--border-radius-medium);
+    mask-image: linear-gradient(to top, black 50%, transparent 50%);
+    z-index: -1;
+  }
+}
+
+.boxed_message {
+  background: hsl(220, 10%, 10%);
+  border: var(--border-thickness-tiny) solid;
+  border-left: var(--border-thickness-large) solid;
+  border-color: hsla(220, 40%, 75%, 0.25);
+  margin: var(--space-m) 0;
+  padding: var(--space-m) var(--space-l);
+  border-radius: var(--border-radius-medium);
+
+  &.red_box {
+    background: hsl(0, 20%, 10%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 20%, 10%);
+    border-color: hsla(120, 100%, 50%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 20%, 10%);
+    border-color: hsla(225, 90%, 65%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 25%, 12.5%);
+    border-color: hsla(260, 100%, 75%, 0.5);
+  }
+
+  hr {
+    margin: var(--space-m) -0.75em;
+    border-color: inherit;
+  }
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
 $alert-stripe-colors: (
   'default': hsl(199, 100%, 11%),
   'green': hsl(120, 100%, 12%),
@@ -1476,10 +1560,55 @@ $border-width-px: $border-width * 1px;
 .spoiler {
   background-color: hsl(0, 0%, 50%);
   color: transparent;
-  user-select: none;
 }
 
 .spoiler:hover {
   background-color: inherit;
   color: inherit;
+}
+
+details {
+  width: 80%;
+  background: hsl(220, 5%, 11%);
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+  border-color: #343b3d;
+  border: 1px solid hsl(214, 38%, 74%);
+}
+
+summary {
+  padding: 1rem;
+  display: block;
+  background: hsl(220, 5%, 11%);
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+summary:before {
+  content: '';
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: transparent transparent transparent hsl(214, 38%, 74%);
+  position: absolute;
+  top: 1.3rem;
+  left: 1rem;
+  transform: rotate(0);
+  transform-origin: 0.2rem 50%;
+  transition: 0.25s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details > ul {
+  padding-bottom: 1rem;
+  margin-bottom: 0;
 }

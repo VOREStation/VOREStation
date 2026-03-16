@@ -17,7 +17,7 @@
 
 
 /datum/event2/event/appendicitis/start()
-	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+	for(var/mob/living/carbon/human/H in shuffle(GLOB.living_mob_list))
 		// Don't do it to SSD people.
 		if(!H.client)
 			continue
@@ -31,6 +31,6 @@
 			continue
 
 		if(H.appendicitis())
-			log_debug("Appendicitis event gave appendicitis to \the [H].")
+			log_game("Appendicitis event gave appendicitis to \the [H].")
 			return
-	log_debug("Appendicitis event could not find a valid victim.")
+	log_game("Appendicitis event could not find a valid victim.")

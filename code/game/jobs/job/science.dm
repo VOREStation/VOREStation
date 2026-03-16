@@ -15,26 +15,26 @@
 	selection_color = "#AD6BAD"
 	req_admin_notify = 1
 	economic_modifier = 15
-	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-						access_tox_storage, access_teleporter,
-						access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-						access_RC_announce, access_keycard_auth, access_tcomsat, access_xenoarch, access_eva, access_network, access_xenobotany)
-	minimal_access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-						access_tox_storage, access_teleporter,
-						access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-						access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva, access_network, access_xenobotany)
+	access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+						ACCESS_TOX_STORAGE, ACCESS_TELEPORTER,
+						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD, ACCESS_TECH_STORAGE,
+						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_XENOARCH, ACCESS_EVA, ACCESS_NETWORK, ACCESS_XENOBOTANY)
+	minimal_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+						ACCESS_TOX_STORAGE, ACCESS_TELEPORTER,
+						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD, ACCESS_TECH_STORAGE,
+						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_XENOARCH, ACCESS_EVA, ACCESS_NETWORK, ACCESS_XENOBOTANY)
 
 	minimum_character_age = 25
 	minimal_player_age = 14
-	min_age_by_species = list(SPECIES_UNATHI = 70, "mechanical" = 10, SPECIES_HUMAN_VATBORN = 14)
+	min_age_by_species = list(SPECIES_UNATHI = 70, FBP_MECHANICAL = 10, SPECIES_HUMAN_VATBORN = 14)
 	ideal_character_age = 50
-	ideal_age_by_species = list(SPECIES_UNATHI = 140, "mechanical" = 20, SPECIES_HUMAN_VATBORN = 20)
-	banned_job_species = list(SPECIES_TESHARI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_ZADDAT, "digital")
+	ideal_age_by_species = list(SPECIES_UNATHI = 140, FBP_MECHANICAL = 20, SPECIES_HUMAN_VATBORN = 20)
+	banned_job_species = list(SPECIES_TESHARI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_ZADDAT, FBP_DIGITAL)
 	disallow_jobhop = TRUE
 	pto_type = PTO_SCIENCE
 	dept_time_required = 60
 
-	outfit_type = /decl/hierarchy/outfit/job/science/rd
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/rd
 	job_description = "The " + JOB_RESEARCH_DIRECTOR + " manages and maintains the Research department. They are required to ensure the safety of the entire crew, \
 						at least with regards to anything occurring in the Research department, and to inform the crew of any disruptions that \
 						might originate from Research. The " + JOB_RESEARCH_DIRECTOR + " often has at least passing knowledge of most of the Research department, but \
@@ -73,14 +73,14 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_xenobotany)
-	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_XENOARCH, ACCESS_XENOBOTANY)
+	minimal_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOARCH)
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
-	banned_job_species = list("digital")
+	banned_job_species = list(FBP_DIGITAL)
 
 	minimal_player_age = 14
 
-	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/scientist
 	job_description = "A " + JOB_SCIENTIST + " is a generalist working in the Research department, with general knowledge of the scientific process, as well as \
 						the principles and requirements of Research and Development. They may also formulate experiments of their own devising, if \
 						they find an appropriate topic."
@@ -101,6 +101,7 @@
 	title = JOB_ALT_ANOMALIST
 	title_blurb = "An " + JOB_ALT_ANOMALIST + " is a " + JOB_SCIENTIST + " whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
 					function. They work closely with " + JOB_ALT_XENOARCHAEOLOGIST + "s, or Miners, if either role is present."
+	title_outfit = /datum/decl/hierarchy/outfit/job/science/scientist/anomalist
 
 /datum/alt_title/phoron_research
 	title = JOB_ALT_PHORON_RESEARCHER
@@ -152,14 +153,14 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics, access_tox_storage)
-	banned_job_species = list("digital")
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_HYDROPONICS)
+	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_HYDROPONICS, ACCESS_TOX_STORAGE)
+	banned_job_species = list(FBP_DIGITAL)
 
 	minimal_player_age = 14
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
-	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A " + JOB_XENOBIOLOGIST + " studies esoteric lifeforms, usually in the relative safety of their lab. They attempt to find ways to benefit \
 						from the byproducts of these lifeforms, and their main subject at present is the Giant Slime."
 
@@ -193,13 +194,13 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 5
-	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
-	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_player_age = 7
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
-	banned_job_species = list("digital")
+	banned_job_species = list(FBP_DIGITAL)
 
-	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/roboticist
 	job_description = "A " + JOB_ROBOTICIST + " maintains and repairs the station's synthetics, including crew with prosthetic limbs. \
 						They can also assist the station by producing simple robots and even pilotable exosuits."
 	alt_titles = list(
@@ -243,13 +244,13 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobotany, access_hydroponics)
-	minimal_access = list(access_research, access_xenobotany, access_hydroponics, access_tox_storage)
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBOTANY, ACCESS_HYDROPONICS)
+	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBOTANY, ACCESS_HYDROPONICS, ACCESS_TOX_STORAGE)
 	pto_type = PTO_SCIENCE
 
 	minimal_player_age = 14
 
-	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
+	outfit_type = /datum/decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A " + JOB_XENOBOTANIST + " grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					are both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
 	alt_titles = list(JOB_ALT_XENOHYDROPONICIST = /datum/alt_title/xenohydroponicist, JOB_ALT_XENOFLORIST = /datum/alt_title/xenoflorist)

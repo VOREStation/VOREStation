@@ -142,19 +142,3 @@
 /datum/unit_test/modifier/percentage_armor/simple_mob
 	name = "MOB: simple mob percentage armor is calculated correctly"
 	subject_type = /mob/living/simple_mob
-
-
-/datum/unit_test/modifier/percentage_flat
-	name = "MOB: human mob flat armor is calculated correctly"
-	inputs = list(100, 75, 50, 25, 0)
-	expected_outputs = list(100, 75, 50, 25, 0)
-
-/datum/unit_test/modifier/percentage_flat/set_tested_variable(datum/modifier/M, new_value)
-	M.armor_flat = list("melee" = new_value)
-
-/datum/unit_test/modifier/percentage_flat/get_test_value(mob/living/L)
-	return L.getsoak(null, "melee")
-
-/datum/unit_test/modifier/percentage_flat/simple_mob
-	name = "MOB: simple mob flat armor is calculated correctly"
-	subject_type = /mob/living/simple_mob

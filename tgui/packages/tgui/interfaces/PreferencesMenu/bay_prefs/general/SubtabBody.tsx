@@ -27,7 +27,6 @@ import {
   is_organ,
   OrganStatus,
   proper_organ_name,
-  type Species,
 } from './data';
 
 export const SubtabBody = (props: {
@@ -43,6 +42,7 @@ export const SubtabBody = (props: {
     s_tone,
     b_type,
     digitigrade,
+    tail_layering,
     synth_color,
     synth_color_toggle,
     synth_markings,
@@ -54,7 +54,7 @@ export const SubtabBody = (props: {
   } = data;
   const { species: species_list } = serverData;
   // if it's not there our entire UI is fucked anyways
-  const our_species = species_list.find((x) => x.name === species) as Species;
+  const our_species = species_list.find((x) => x.name === species);
   const { act } = useBackend();
 
   const [visiblePopup, setVisiblePopup] = useState<BodyPopup>(BodyPopup.None);
@@ -68,6 +68,8 @@ export const SubtabBody = (props: {
       />
     );
   }
+
+  const appearanceFlags = our_species?.appearance_flags ?? 0;
 
   return (
     <Stack fill>
@@ -93,8 +95,7 @@ export const SubtabBody = (props: {
               </Stack.Item>
               <Stack.Item textAlign="center">
                 <LabeledList>
-                  {our_species.appearance_flags &
-                  AppearanceFlags.HAS_EYE_COLOR ? (
+                  {appearanceFlags & AppearanceFlags.HAS_EYE_COLOR ? (
                     <LabeledList.Item label="Eye Color">
                       <ColorBox color={eyes_color} />
                       <Button inline ml={1} onClick={() => act('eye_color')}>
@@ -103,8 +104,7 @@ export const SubtabBody = (props: {
                     </LabeledList.Item>
                   ) : null}
 
-                  {our_species.appearance_flags &
-                  AppearanceFlags.HAS_SKIN_TONE ? (
+                  {appearanceFlags & AppearanceFlags.HAS_SKIN_TONE ? (
                     <LabeledList.Item label="Skin Tone">
                       {s_tone}/220
                       <Button inline ml={1} onClick={() => act('skin_tone')}>
@@ -112,8 +112,7 @@ export const SubtabBody = (props: {
                       </Button>
                     </LabeledList.Item>
                   ) : null}
-                  {our_species.appearance_flags &
-                  AppearanceFlags.HAS_SKIN_COLOR ? (
+                  {appearanceFlags & AppearanceFlags.HAS_SKIN_COLOR ? (
                     <LabeledList.Item label="Body Color">
                       <ColorBox color={skin_color} />
                       <Button inline ml={1} onClick={() => act('skin_color')}>
@@ -128,6 +127,11 @@ export const SubtabBody = (props: {
                       selected={digitigrade}
                     >
                       {digitigrade ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Tail Layering">
+                    <Button inline onClick={() => act('set_tail_layering')}>
+                      {tail_layering}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item label="Blood Type">
@@ -166,7 +170,7 @@ export const SubtabBody = (props: {
                   </LabeledList.Item>
                   <LabeledList.Item>
                     <Button onClick={() => act('voice_test')}>
-                      Test Selected Voice
+                      Test Sel. Voice
                     </Button>
                   </LabeledList.Item>
                 </LabeledList>

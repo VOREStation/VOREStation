@@ -2,7 +2,13 @@
 //as they handle all relevant stuff like adding it to the player's screen and such
 
 //Returns the thing in our active hand (whatever is in our active module-slot, in this case)
-/mob/living/silicon/robot/get_active_hand()
+/mob/living/silicon/robot/get_active_hand(atom/A)
+	if(module_active == A) //If we are interacting with the item itself (I.E swapping multibelt items)
+		return module_active
+	else if(isrobotmultibelt(module_active)) //If we are hitting something with a multibelt
+		var/obj/item/robotic_multibelt/belt = module_active
+		if(belt.selected_item)
+			return belt.selected_item
 	return module_active
 
 /*-------TODOOOOOOOOOO--------*/
@@ -23,6 +29,9 @@
 		return
 
 	if(module_state_1 == I)
+		if(isrobotmultibelt(module_state_1))
+			var/obj/item/robotic_multibelt/toolbelt = module_state_1
+			toolbelt.original_state()
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
 		if (client)
@@ -33,6 +42,9 @@
 		module_state_1 = null
 		inv1.icon_state = "inv1"
 	else if(module_state_2 == I)
+		if(isrobotmultibelt(module_state_2))
+			var/obj/item/robotic_multibelt/toolbelt = module_state_2
+			toolbelt.original_state()
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
 		if (client)
@@ -43,6 +55,9 @@
 		module_state_2 = null
 		inv2.icon_state = "inv2"
 	else if(module_state_3 == I)
+		if(isrobotmultibelt(module_state_3))
+			var/obj/item/robotic_multibelt/toolbelt = module_state_3
+			toolbelt.original_state()
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
 		if (client)
@@ -60,7 +75,8 @@
 
 	after_equip()
 	update_icon()
-	hud_used.update_robot_modules_display()
+	if(shown_robot_modules)
+		hud_used.update_robot_modules_display()
 
 /mob/living/silicon/robot/proc/uneq_active()
 	if(isnull(module_active))
@@ -75,6 +91,7 @@
 /mob/living/silicon/robot/proc/uneq_all()
 	module_active = null
 
+	var/removed_any_module = FALSE
 	if(module_state_1)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
@@ -87,6 +104,8 @@
 		module_state_1:loc = module
 		module_state_1 = null
 		inv1.icon_state = "inv1"
+		removed_any_module = TRUE
+
 	if(module_state_2)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
@@ -99,6 +118,8 @@
 		module_state_2:loc = module
 		module_state_2 = null
 		inv2.icon_state = "inv2"
+		removed_any_module = TRUE
+
 	if(module_state_3)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
@@ -111,8 +132,14 @@
 		module_state_3:loc = module
 		module_state_3 = null
 		inv3.icon_state = "inv3"
+		removed_any_module = TRUE
+
 	after_equip()
 	update_icon()
+
+	// Refresh inventory if needed
+	if(hud_used && removed_any_module && shown_robot_modules)
+		hud_used.update_robot_modules_display()
 
 // Just used for pretty display in TGUI
 /mob/living/silicon/robot/proc/get_slot_from_module(obj/item/I)
@@ -126,6 +153,9 @@
 		return 0
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
+	var/belt_check = using_multibelt(O)
+	if(belt_check)
+		return belt_check
 	if(module_state_1 == O)
 		return 1
 	else if(module_state_2 == O)
@@ -134,6 +164,15 @@
 		return 1
 	else
 		return 0
+
+/mob/living/silicon/robot/proc/using_multibelt(obj/item/O)
+	for(var/obj/item/robotic_multibelt/materials/material_belt in contents)
+		if(material_belt.selected_item == O)
+			return TRUE
+	for(var/obj/item/gripper/gripper in contents)
+		if(gripper.current_pocket == O)
+			return TRUE
+	return FALSE
 
 /mob/living/silicon/robot/proc/get_active_modules()
 	return list(module_state_1, module_state_2, module_state_3)

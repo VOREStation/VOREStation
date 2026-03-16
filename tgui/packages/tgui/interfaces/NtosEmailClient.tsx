@@ -1,4 +1,3 @@
-/* eslint react/no-danger: "off" */
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import {
@@ -13,7 +12,6 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -108,7 +106,7 @@ const NtosEmailClientDownloading = (props) => {
               '/' +
               down_size +
               ' (' +
-              toFixed((down_progress! / down_size!) * 100, 1) +
+              ((down_progress! / down_size!) * 100).toFixed(1) +
               '%)'}
           </ProgressBar>
         </LabeledList.Item>
@@ -135,7 +133,7 @@ const NtosEmailClientContent = (props) => {
 
   return (
     <Section
-      title={'Logged in as: ' + current_account}
+      title={`Logged in as: ${current_account}`}
       buttons={
         <Stack>
           <Stack.Item>
@@ -324,9 +322,8 @@ export const NtosEmailClientViewMessage = (props: {
           ''}
         <LabeledList.Item label="Message" verticalAlign="top">
           <Section>
-            {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
-             * It should be safe enough to support pencode in this way.
-             */}
+            {/** biome-ignore lint/security/noDangerouslySetInnerHtml: is only ever passed data that has passed through pencode2html
+             * It should be safe enough to support pencode in this way. */}
             <div dangerouslySetInnerHTML={{ __html: cur_body! }} />
           </Section>
         </LabeledList.Item>
@@ -448,6 +445,8 @@ const NtosEmailClientNewMessage = (props) => {
           <Stack>
             <Stack.Item grow>
               <Section width="99%" inline>
+                {/** biome-ignore lint/security/noDangerouslySetInnerHtml: is only ever passed data that has passed through pencode2html
+                 * It should be safe enough to support pencode in this way. */}
                 <div dangerouslySetInnerHTML={{ __html: msg_body! }} />
               </Section>
             </Stack.Item>

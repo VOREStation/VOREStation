@@ -11,19 +11,21 @@ import {
 const extra_desc = (name: string) => {
   switch (name) {
     case 'Be positronic brain':
-      return 'This unlocks opportunities to become a positronic borg brain when you are a ghost.';
+      return 'This notifies you when there is an opportunity to become a positronic borg brain.';
     case 'Be pAI candidate':
-      return 'This unlocks opportunities to become a personal AI assistant when you are a ghost.';
+      return 'This notifies you when there is an opportunity to become a personal AI assistant.';
     case 'Be lost drone':
-      return 'This unlocks opportunities to become a spooky lost drone when you are a ghost.';
+      return 'This notifies you when there is an opportunity to become a spooky lost drone.';
     case 'Be maint pred':
-      return 'This unlocks opportunities to become use a maintenance predator spawner.';
+      return 'This notifies you when there is an opportunity to become use a maintenance predator spawner.';
     case 'Be maint lurker':
-      return 'This unlocks opportunities to become use a maintenance mob spawner.';
+      return 'This notifies you when there is an opportunity to use a maintenance mob spawner.';
+    case 'Be maint critter':
+      return 'This notifies you when there is an opportunity to use a maintenance critter spawner to become a mob, a morph, or a lurker.';
     case 'Be morph':
-      return 'This is totally useless, but once allowed you to become a shapeshifting mimic.';
+      return 'This notifies you when there is an opportunity to become a morph, a goopy shapeshifting critter.';
     case 'Be corgi':
-      return 'This is totally useless, but once allowed you to become a corgi.';
+      return 'This notifies you when there is an opportunity to become a corgi.';
     case 'Be cursed sword':
       return 'This is totally useless, but once allowed you to become a cursed sword.';
     case 'Be Ship Survivor':
@@ -46,13 +48,10 @@ export const SubtabSettings = (props: {
     uplink_type,
     record_banned,
     exploitable_record,
-    pai_name,
-    pai_desc,
-    pai_role,
-    pai_comments,
     syndicate_ban,
     special_roles,
     custom_footstep,
+    ignore_shoes,
     custom_species_sound,
     custom_speech_bubble,
     persistence_settings,
@@ -134,6 +133,15 @@ export const SubtabSettings = (props: {
                   <LabeledList.Item label="Custom Footstep Sounds">
                     <Button onClick={() => act('customize_footsteps')}>
                       {custom_footstep}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Ignore Shoes">
+                    <Button
+                      onClick={() => act('toggle_ignore_shoes')}
+                      selected={ignore_shoes}
+                      tooltip="Allow footstep sounds to pass through shoes."
+                    >
+                      {ignore_shoes ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item label="Custom Species Sounds">
@@ -392,31 +400,6 @@ export const SubtabSettings = (props: {
                     </Button>
                     <Button fluid onClick={() => act('reset_cold')}>
                       Reset
-                    </Button>
-                  </LabeledList.Item>
-                </LabeledList>
-              </Stack.Item>
-              <Stack.Item>
-                <Box bold>pAI Settings</Box>
-                <LabeledList>
-                  <LabeledList.Item label="Name">
-                    <Button onClick={() => act('option', { option: 'name' })}>
-                      {pai_name || 'None Set'}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Description">
-                    <Button onClick={() => act('option', { option: 'desc' })}>
-                      {pai_desc || 'None Set'}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Role">
-                    <Button onClick={() => act('option', { option: 'role' })}>
-                      {pai_role || 'None Set'}
-                    </Button>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="OOC Comments">
-                    <Button onClick={() => act('option', { option: 'ooc' })}>
-                      {pai_comments || 'None Set'}
                     </Button>
                   </LabeledList.Item>
                 </LabeledList>

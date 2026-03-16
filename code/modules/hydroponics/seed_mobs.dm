@@ -1,7 +1,7 @@
 // The following procs are used to grab players for mobs produced by a seed (mostly for dionaea).
 /datum/seed/proc/handle_living_product(var/mob/living/host)
 
-	if(!host || !istype(host)) return
+	if(!host || !istype(host) || ai_mob_product) return
 
 	if(apply_color_to_mob)
 		host.color = traits[TRAIT_PRODUCT_COLOUR]

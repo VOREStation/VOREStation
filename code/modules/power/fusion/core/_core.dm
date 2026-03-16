@@ -63,8 +63,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	if((stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
 
-	var/datum/component/hose_connector/HC = GetComponent(/datum/component/hose_connector)
-	HC.force_pump()
+	SEND_SIGNAL(src, COMSIG_HOSE_FORCEPUMP)
 
 	if(owned_field)
 
@@ -147,7 +146,6 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "Fusion Core", id_tag, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return

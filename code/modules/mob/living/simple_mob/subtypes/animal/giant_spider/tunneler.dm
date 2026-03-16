@@ -116,7 +116,7 @@
 
 		visible_message(span_danger("\The [src] erupts from underneath, and hits \the [L]!"))
 		playsound(src, 'sound/weapons/heavysmash.ogg', 75, 1)
-		L.Weaken(3)
+		L.add_modifier(/datum/modifier/entangled, 3 SECONDS) //L.Weaken(3)
 		overshoot = FALSE
 
 	if(!overshoot) // We hit the target, or something, at destination, so we're done.
@@ -150,7 +150,9 @@
 	for(var/i = 1 to get_dist(src, destination))
 		if(stat)
 			return FALSE // We died or got knocked out on the way.
-		if(loc == destination)
+
+		var/last_loc = loc
+		if(last_loc == destination)
 			break // We somehow got there early.
 
 		// Update T.
@@ -176,6 +178,8 @@
 		dig_under_floor(get_turf(src))
 		playsound(src, 'sound/effects/break_stone.ogg', 75, 1)
 		sleep(tunnel_tile_speed)
+		if(last_loc == loc)
+			return FALSE
 
 // For visuals.
 /mob/living/simple_mob/animal/giant_spider/tunneler/proc/submerge()
@@ -207,3 +211,18 @@
 
 	incoming_damage_percent = 2
 	evasion = -100
+
+/mob/living/simple_mob/animal/giant_spider/tunneler/cave
+	name = "cave spider"
+	desc = "Sandy and brown, it makes you shudder to look at it. However, this one doesn't seem very interested in bothering you."
+	maxHealth = 25
+	health = 25
+	harm_intent_damage = 5
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	meat_amount = 1 // Scrawny little things! It's no wonder they don't want to fight you!
+
+/mob/living/simple_mob/animal/giant_spider/tunneler/cave/Initialize(mapload)
+	. = ..()
+	resize(0.50)

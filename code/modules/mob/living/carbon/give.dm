@@ -18,6 +18,13 @@
 		to_chat(src, span_warning("You don't have anything in your hands to give to \the [target]."))
 		return
 
+	if(istype(I, /obj/item/grab)) // Drop grabs, this is an edge case
+		var/obj/item/grab/check_grab = I
+		if(check_grab.affecting)
+			visible_message(span_danger("\The [src] breaks their grip on [check_grab.affecting]!"))
+		drop_from_inventory(check_grab)
+		return
+
 	src.visible_message(span_notice("\The [src] holds out \the [I] to \the [target]."), span_notice("You hold out \the [I] to \the [target], waiting for them to accept it."))
 
 	if(tgui_alert(target,"[src] wants to give you \a [I]. Will you accept it?","Item Offer",list("Yes","No")) != "Yes")

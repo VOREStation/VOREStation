@@ -8,12 +8,17 @@
 	description = "A liquid that is capable of causing a prolonged state of heightened aggression and durability."
 	taste_description = "metal"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2
 	color = "#ff5555"
 	metabolism = REM
+	scannable = SCANNABLE_SECRETIVE
 
 	var/modifier_to_add = /datum/modifier/berserk
 	var/modifier_duration = 3 SECONDS	// How long, per unit dose, will this last?
 										// 2 SECONDS is the resolution of life code, and the modifier will expire before chemical processing tries to re-add it
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/modapplying/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -30,6 +35,9 @@
 
 	modifier_to_add = /datum/modifier/cryogelled
 	modifier_duration = 3 SECONDS
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
+	industrial_use = REFINERYEXPORT_REASON_CLONEDRUG
 
 /datum/reagent/modapplying/cryofluid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..(M, alien, removed)
@@ -70,3 +78,6 @@
 
 	modifier_to_add = /datum/modifier/clone_stabilizer
 	modifier_duration = 30 SECONDS
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
+	industrial_use = REFINERYEXPORT_REASON_PHORON

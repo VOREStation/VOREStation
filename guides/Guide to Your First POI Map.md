@@ -1,12 +1,12 @@
 Welcome!
 
-This guide **ASSUMES** you have gone through the Guide to Opening your First PR. If you have NOT done so yet, please refer here, and ask in Discord's #ss13-development channel (For CHOMPStation), #dev-general (for VOREStation), or #code (for Polaris) if you have any questions, or need assistance with completing these steps. 
+This guide **ASSUMES** you have gone through the Guide to Opening your First PR. If you have NOT done so yet, please refer here, and ask in Discord's #ss13-development channel (For CHOMPStation), #dev-general (for VOREStation), or #code (for Polaris) if you have any questions, or need assistance with completing these steps.
 
 You can also @ maintainers or staff devs, which can be viewed in the sidebar of each codebase’s Discord, and will usually have roles such as “Maintainer” (For VOREStation), “StaffDev/StaffMaintainer” (for CHOMPStation), and “Maintainer” (for Polaris).
 
-[CHOMPStation]([https://github.com/CHOMPStation2/CHOMPStation2/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md](https://github.com/CHOMPStation2/CHOMPStation2/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md))
+[CHOMPStation](<[https://github.com/CHOMPStation2/CHOMPStation2/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md](https://github.com/CHOMPStation2/CHOMPStation2/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md)>)
 
-[VOREStation]([https://github.com/VOREStation/VOREStation/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md](https://github.com/VOREStation/VOREStation/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md))
+[VOREStation](<[https://github.com/VOREStation/VOREStation/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md](https://github.com/VOREStation/VOREStation/blob/master/guides/Guide%20to%20Opening%20Your%20First%20PR.md)>)
 
 [Polaris - TBD]
 
@@ -17,12 +17,12 @@ Before proceeding, remember to make your branch! We should have a new branch tit
 With that out of the way, congrats on getting setup! Let’s dive into how to make your first POI. \
  \
 To start, we need to open up the repo you downloaded earlier. If you’re not sure where that is, Gitkraken should be able to tell you by hovering over the codebase name, in the top left, and hitting **Alt+O** will open the file manager. \
-Either way, we should see [this]([https://i.imgur.com/FOUVK4n.png](https://i.imgur.com/FOUVK4n.png)) - Image references CHOMPStation, but the general folders should be the same for Polaris + VOREStation.
+Either way, we should see [this](<[https://i.imgur.com/FOUVK4n.png](https://i.imgur.com/FOUVK4n.png)>) - Image references CHOMPStation, but the general folders should be the same for Polaris + VOREStation.
 
 Before we can map, we need to setup several code prerequisites in order to actually have a new area for our map. In order to do so, we are going to locate the POI folder. We are going to add a POI to the Wilderness area for our tutorial.
 
 Follow this reference: \
-Go to /maps/, and then find the folder the POIs for the given map are saved. This is code-base specific, so Polaris + CHOMP use /maps/submaps/surface_submaps/ for theirs, and then each folder (mountains, wilderness, plains) is a different area. If you’re on Southern Cross, Plains is the area around the outpost, Mountains is the mines, and Wilderness is the deep wilds. Polaris, TBD. 
+Go to /maps/, and then find the folder the POIs for the given map are saved. This is code-base specific, so Polaris + CHOMP use /maps/submaps/surface_submaps/ for theirs, and then each folder (mountains, wilderness, plains) is a different area. If you’re on Southern Cross, Plains is the area around the outpost, Mountains is the mines, and Wilderness is the deep wilds. Polaris, TBD.
 
 VORE has their submaps for SPECIFIC areas defined in /mapused (IE Tether)/submaps. This sub-main folder should only be used for map-specific POIs, for example, POIs that would only exist if Tether was loaded.
 
@@ -56,8 +56,8 @@ With that, we save, and exit the code. We’ll come back to it at a later step t
 
 For this next step, return to the BASE folder, where the .dme and maps/etc folders are.
 
- \
-We’re going to navigate to *tools* and then StrongDMM. This is not REQUIRED, but is heavily recommended - maintainers will ask you to run mapmerge where possible if you use DreamMaker. The rest of this guide WILL ASSUME YOU ARE USING STRONGDMM. The wiki will offer sections for DreamMaker as well as StrongDMM. \
+\
+We’re going to navigate to _tools_ and then StrongDMM. This is not REQUIRED, but is heavily recommended - maintainers will ask you to run mapmerge where possible if you use DreamMaker. The rest of this guide WILL ASSUME YOU ARE USING STRONGDMM. The wiki will offer sections for DreamMaker as well as StrongDMM. \
  \
 Run sdmmlauncher.exe. Screenshot here: \
 [https://i.imgur.com/VxvRntf.png](https://i.imgur.com/VxvRntf.png)
@@ -77,7 +77,7 @@ You should also be able to see the name in the top left.
 
 Now, we are going to go to File, New Map. \
 This will open a dialogue box with the base folder of our repo. Don’t panic. \
-Go to /maps/, and then find the folder the POIs for the given map are saved. This is code-base specific, so Polaris + CHOMP use /maps/submaps/surface_submaps/ for theirs, and then each folder (mountains, wilderness, plains) is a different area. If you’re on Southern Cross, Plains is the area around the outpost, Mountains is the mines, and Wilderness is the deep wilds. Polaris, TBD. 
+Go to /maps/, and then find the folder the POIs for the given map are saved. This is code-base specific, so Polaris + CHOMP use /maps/submaps/surface_submaps/ for theirs, and then each folder (mountains, wilderness, plains) is a different area. If you’re on Southern Cross, Plains is the area around the outpost, Mountains is the mines, and Wilderness is the deep wilds. Polaris, TBD.
 
 VORE has their submaps for SPECIFIC areas defined in /mapused (IE Tether)/submaps. This sub-main folder should only be used for map-specific POIs, for example, POIs that would only exist if Tether was loaded.
 
@@ -92,7 +92,7 @@ Hit Ok. \
  \
 Your new map will load in the bottom-left corner, depending on SDMM. Scroll in using your mouse, and hold the middle mouse button (or whatever the hotkey is if SDMM ever changes) to pan.
 
-Once we’ve navigated and zoomed so our POI is relatively sized, we should see this: [https://i.imgur.com/e8VhPxk.png](https://i.imgur.com/e8VhPxk.png) 
+Once we’ve navigated and zoomed so our POI is relatively sized, we should see this: [https://i.imgur.com/e8VhPxk.png](https://i.imgur.com/e8VhPxk.png)
 
 Hit Save (Ctrl + S) now! Just in case.
 

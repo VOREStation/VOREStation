@@ -42,12 +42,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
 "ah" = (
-/obj/structure/prop{
-	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "gridchecker_off";
-	name = "capacitor bank"
-	},
+/obj/structure/prop/grid_checker,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
@@ -73,21 +68,11 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
 "ak" = (
-/obj/structure/prop{
-	desc = "There are a number of what seem to be error messages on these screens, none intelligible.";
-	icon = 'icons/obj/mainframe.dmi';
-	icon_state = "leftb";
-	name = "console"
-	},
+/obj/structure/prop/mainframe,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
 "al" = (
-/obj/structure/prop{
-	desc = "This isn't going to be fixable.";
-	icon = 'icons/obj/mainframe.dmi';
-	icon_state = "aimainframeb";
-	name = "broken console"
-	},
+/obj/structure/prop/mainframe/ai,
 /obj/effect/map_effect/interval/effect_emitter/sparks,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
@@ -117,13 +102,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
 "ar" = (
-/obj/machinery/power/rtg/fake_gen{
-	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "gridchecker_off";
-	name = "capacitor bank";
-	power_gen = 12000
-	},
+/obj/machinery/power/rtg/fake_gen/grid,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
@@ -439,16 +418,8 @@
 "aQ" = (
 /obj/item/ore/gold,
 /obj/item/ore/iron,
-/obj/structure/mob_spawner{
-	density = 1;
-	desc = "A bizarre mess of robotic limbs, glowing microrefineries, and nanoassemblers gradually converting the pile of raw materials into active hivebots.";
-	destructible = 1;
-	icon = 'icons/obj/recycling.dmi';
-	icon_state = "grinder-b1";
-	name = "hivebot assembler";
-	simultaneous_spawns = 6;
-	spawn_delay = 300;
-	spawn_types = list(/mob/living/simple_mob/mechanical/hivebot/swarm = 200, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 10)
+/obj/structure/mob_spawner/recycler{
+	density = 1    
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
@@ -541,12 +512,7 @@
 /turf/space,
 /area/submap/debrisfield/mining_drone_ship)
 "ba" = (
-/obj/structure/prop{
-	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "gridchecker_off";
-	name = "capacitor bank"
-	},
+/obj/structure/prop/gridchecker,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},

@@ -3,7 +3,7 @@
 /obj/machinery/computer/shuttle_control/explore/gbexplo
 	name = "short jump console"
 	shuttle_tag = "Exploration Shuttle"
-	req_one_access = list(access_pilot)
+	req_one_access = list(ACCESS_PILOT)
 
 /obj/effect/overmap/visitable/ship/landable/gbexplo
 	name = "Exploration Shuttle"

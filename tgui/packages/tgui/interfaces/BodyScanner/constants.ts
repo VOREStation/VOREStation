@@ -27,27 +27,32 @@ export const abnormalities: (string | ((occupant: occupant) => string))[][] = [
     'humanPrey',
     'average',
     (occupant) => {
-      return 'Foreign Humanoid(s) detected: ' + occupant.humanPrey;
+      return `Foreign Humanoid(s) detected: ${occupant.humanPrey}`;
     },
   ],
   [
     'livingPrey',
     'average',
     (occupant) => {
-      return 'Foreign Creature(s) detected: ' + occupant.livingPrey;
+      return `Foreign Creature(s) detected: ${occupant.livingPrey}`;
     },
   ],
   [
     'objectPrey',
     'average',
     (occupant) => {
-      return 'Foreign Object(s) detected: ' + occupant.objectPrey;
+      return `Foreign Object(s) detected: ${occupant.objectPrey}`;
     },
   ],
   [
     'husked',
     'bad',
     (occupant) => 'Anatomical structure lost, resuscitation not possible!',
+  ],
+  [
+    'hasWithdrawl',
+    'bad',
+    (occupant) => 'Experiencing withdrawal! Inaprovaline can reduce symptoms.',
   ],
 ];
 

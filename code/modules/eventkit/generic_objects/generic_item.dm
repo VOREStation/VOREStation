@@ -18,10 +18,13 @@
 	var/icon_on = 0
 
 /obj/item/generic_item/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(activatable_hand)
 		if(!on)
 			if(delay_time)
-				if(!do_after(user, delay_time, src, exclusive = TASK_USER_EXCLUSIVE))
+				if(!do_after(user, delay_time, target = src))
 					return 0
 			on = 1
 			if(icon_on)
@@ -76,7 +79,7 @@
 				playsound(src, sound_activated, 50, 1)
 		else if(togglable)
 			if(delay_time)
-				if(!do_after(user, delay_time, src, exclusive = TASK_USER_EXCLUSIVE))
+				if(!do_after(user, delay_time, target = src))
 					return 0
 			on = 0
 			icon_state = icon_state_off
@@ -87,7 +90,6 @@
 			if(user)
 				user.visible_message(span_notice("[text_deactivated]"))
 			update_icon()
-	return ..()
 
 /client/proc/generic_item()
 	set category = "Fun.Event Kit"
@@ -173,7 +175,7 @@
 	var/check_togglable
 
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/s_name = tgui_input_text(src, "Item Name:", "Name")

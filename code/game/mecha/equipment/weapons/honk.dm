@@ -32,6 +32,6 @@
 		M.Weaken(3)
 		M.Stun(5)
 	chassis.use_power(energy_drain)
-	log_message("Used a sound emission device.")
+	src.mecha_log_message("Used a sound emission device.")
 	do_after_cooldown()
 	return

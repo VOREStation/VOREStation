@@ -94,6 +94,10 @@
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
 	if(!ui || ui.status != STATUS_INTERACTIVE)
 		return TRUE
+	if(action == "change_ui_state")
+		var/mob/living/user = ui.user
+		//write_preferences will make sure it's valid for href exploits.
+		user.client.prefs.write_preference(GLOB.preference_entries[/datum/preference/choiced/tgui_layout], params["new_state"])
 
 /**
  * public
@@ -102,7 +106,7 @@
  *
  * required payload list A list of the payload supposed to be set on the regular UI.
  */
-/datum/proc/tgui_fallback(list/payload)
+/datum/proc/tgui_fallback(list/payload, mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_FALLBACK, usr)
 
@@ -212,6 +216,20 @@
 	SStgui.force_close_window(user, window_id)
 
 /**
+ * A few edge cases that need to bypass topic limits currently, comment why!
+ *
+ * returns TRUE for bypass
+ */
+/proc/bypass_topic_limit(href_list)
+	// Deviation from TG. Our statbrowser has so many commands that logging in as a borg can cause it to rate limit you. This needs fixing eventually.
+	if(href_list["window_id"] == "statbrowser")
+		return TRUE
+	// Chunked messages will exceed the limit
+	if(href_list["tgui"] && href_list["type"] == "payloadChunk")
+		return TRUE
+	return FALSE
+
+/**
  * Middleware for /client/Topic.
  *
  * return bool Whether the topic is passed (TRUE), or cancelled (FALSE).
@@ -219,17 +237,19 @@
 /proc/tgui_Topic(href_list)
 	// Skip non-tgui topics
 	if(!href_list["tgui"])
-		return TRUE
+		return FALSE
 	var/type = href_list["type"]
 	// Unconditionally collect tgui logs
 	if(type == "log")
-		log_tgui(usr, href_list["message"])
+		var/context = href_list["window_id"]
+		if (href_list["ns"])
+			context += " ([href_list["ns"]])"
+		log_tgui(usr, href_list["message"],
+			context = context)
 	// Reload all tgui windows
 	if(type == "cacheReloaded")
-		// Note: Find a solution for the below causing asset CDN to stop working
-		// which doesn't prevent players from using the dev server on prod
-		// whenever the asset CDN is actually used (currently using rsc only)
-		if(/* !check_rights(R_ADMIN) || */ usr.client.tgui_cache_reloaded)
+		// Debugging should work, it can be bypassed anyway
+		if(/*!check_rights(R_ADMIN) ||*/ usr.client.tgui_cache_reloaded)
 			return TRUE
 		// Mark as reloaded
 		usr.client.tgui_cache_reloaded = TRUE
@@ -246,16 +266,24 @@
 	if(window_id)
 		window = usr.client.tgui_windows[window_id]
 		if(!window)
-			// #ifdef TGUI_DEBUGGING // Always going to log these
-			log_tgui(usr, "Error: Couldn't find the window datum, force closing.")
-			// #endif
+			log_tgui(usr,
+				"Error: Couldn't find the window datum, force closing.",
+				context = window_id)
 			SStgui.force_close_window(usr, window_id)
-			return FALSE
+			return TRUE
+
 	// Decode payload
 	var/payload
 	if(href_list["payload"])
-		payload = json_decode(href_list["payload"])
+		var/payload_text = href_list["payload"]
+
+		if (!rustg_json_is_valid(payload_text))
+			log_tgui(usr, "Error: Invalid JSON")
+			return TRUE
+
+		payload = json_decode(payload_text)
+
 	// Pass message to window
 	if(window)
 		window.on_message(type, payload, href_list)
-	return FALSE
+	return TRUE

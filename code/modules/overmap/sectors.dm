@@ -91,7 +91,7 @@
 		real_desc = desc
 		desc = "Scan this to find out more information."
 	//at the moment only used for the OM location renamer. Initializing here in case we want shuttles incl as well in future. Also proc definition convenience.
-	visitable_overmap_object_instances |= src
+	GLOB.visitable_overmap_object_instances += src
 
 	for(var/i in 1 to length(levels_for_distress))
 		var/current = levels_for_distress[i]
@@ -270,7 +270,7 @@
 	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
-		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
+		GLOB.priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 
 	var/image/I = image(icon, icon_state = "distress")
 	I.plane = PLANE_LIGHTING_ABOVE
@@ -288,7 +288,7 @@
 	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
-		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
+		GLOB.priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 
 /proc/build_overmap()
 	if(!global.using_map.use_overmap)

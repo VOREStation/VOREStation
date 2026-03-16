@@ -2,31 +2,6 @@
 //Original Casino Code created by Shadowfire117#1269 - Ported from CHOMPstation
 //Modified by GhostActual#2055 for use with VOREstation
 
-/obj/item/deck/cards/casino/Initialize(mapload)
-	. = ..()
-	var/datum/playingcard/casino/P
-	for(var/suit in list("spades","clubs","diamonds","hearts"))
-
-		var/colour
-		if(suit == "spades" || suit == "clubs")
-			colour = "black_"
-		else
-			colour = "red_"
-
-		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten"))
-			P = new()
-			P.name = "[number] of [suit]"
-			P.card_icon = "casino_[colour]num"
-			P.back_icon = "casino_card_back"
-			cards += P
-
-		for(var/number in list("jack","queen","king"))
-			P = new()
-			P.name = "[number] of [suit]"
-			P.card_icon = "casino_[colour]col"
-			P.back_icon = "casino_card_back"
-			cards += P
-
 /datum/playingcard/casino
 	name = "playing card"
 	card_icon = "card_back"
@@ -47,3 +22,12 @@
 	desc = "A deck of playing cards from the golden goose casino, comes without a joker card!"
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "casino_deck"
+	card_icon_prefix = "casino_"
+
+/obj/item/deck/cards/casino/init_jokers()
+	return
+
+/obj/item/deck/cards/casino/triple
+	name = "big deck of casino cards"
+	desc = "A triply-sized deck of playing cards from the golden goose casino, comes without a joker card!"
+	deck_size = 3

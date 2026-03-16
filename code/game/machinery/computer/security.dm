@@ -10,7 +10,7 @@
 	icon_keyboard = "security_key"
 	icon_screen = "security"
 	light_color = "#a91515"
-	req_one_access = list(access_security, access_forensics_lockers, access_lawyer)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS, ACCESS_LAWYER)
 	circuit = /obj/item/circuitboard/secure_data
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
@@ -403,11 +403,11 @@
 						answer = text2num(answer)
 
 					if(field == "rank")
-						if(answer in joblist)
+						if(answer in GLOB.joblist)
 							active1.fields["real_rank"] = answer
 
 					if(field == "criminal")
-						for(var/mob/living/carbon/human/H in player_list)
+						for(var/mob/living/carbon/human/H in GLOB.player_list)
 							BITSET(H.hud_updateflag, WANTED_HUD)
 
 					if(istype(active2) && (field in active2.fields))
@@ -489,16 +489,16 @@
 		if (selection)
 			return selection.img
 
-/obj/machinery/computer/secure_data/emp_act(severity)
+/obj/machinery/computer/secure_data/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)
@@ -517,7 +517,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/computer/secure_data/detective_computer
 	icon_state = "forensic"

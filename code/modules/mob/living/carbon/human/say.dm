@@ -1,6 +1,12 @@
 /mob/living/carbon/human/GetAltName()
-	if(ability_flags & AB_PHASE_SHIFTED)
-		return ""
+	var/list/name_data = list(null)
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_GET_ALT_NAME, name_data) & COMPONENT_ALT_NAME_CHANGED)
+		return name_data[1]
+
+	if(absorbed && isbelly(loc))
+		var/obj/belly/B = loc
+		if(B.absorbedrename_enabled)
+			return "" // Don't use alt name if under absorbed rename.
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
 
@@ -83,6 +89,12 @@
 	return ..()
 
 /mob/living/carbon/human/GetVoice()
+	// Allow components to override voice (e.g., shadekin phase hiding)
+	var/list/voice_data = list(null)
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_GET_VOICE, voice_data) & COMPONENT_VOICE_CHANGED)
+		return voice_data[1]
+
+	// Normal voice determination logic
 	var/voice_sub
 	if(istype(get_rig(),/obj/item/rig))
 		var/obj/item/rig/rig = get_rig()
@@ -101,10 +113,19 @@
 					voice_sub = get_id_name()
 	if(voice_sub)
 		return voice_sub
-	if(mind && mind.changeling && mind.changeling.mimicing)
-		return mind.changeling.mimicing
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp && comp.mimicing)
+		return comp.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
+	if(absorbed && isbelly(loc)) // If absorbed in a belly, check and apply absorbed rename if applicable.
+		var/obj/belly/B = loc
+		if(B.absorbedrename_enabled)
+			var/formatted_name = B.absorbedrename_name
+			formatted_name = replacetext(formatted_name,"%pred", B.owner)
+			formatted_name = replacetext(formatted_name,"%belly", B.get_belly_name())
+			formatted_name = replacetext(formatted_name,"%prey", name)
+			return formatted_name
 	return real_name
 
 /mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
@@ -120,7 +141,7 @@
 	return special_voice
 
 /mob/living/carbon/human/handle_speech_problems(var/list/message_data)
-	if(silent || (sdisabilities & MUTE))
+	if(silent || (sdisabilities & MUTE) || is_paralyzed())
 		message_data[1] = ""
 		. = 1
 
@@ -131,7 +152,7 @@
 			message_data[2] = pick(M.say_verbs)
 			. = 1
 
-	else if((CE_SPEEDBOOST in chem_effects) || is_jittery) // motor mouth
+	else if((CE_SPEEDBOOST in chem_effects) || (get_jittery() >= 100 && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
 		// Despite trying to url/html decode these, byond is just being bad and I dunno.
 		var/static/regex/speedboost_initial = new (@"&[a-z]{2,5};|&#\d{2};","g")
 		// Not herestring because bad vs code syntax highlight panics at apostrophe

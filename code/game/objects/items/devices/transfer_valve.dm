@@ -61,7 +61,7 @@
 		return
 	var/atom/movable/AM = WF.resolve()
 	if(isnull(AM))
-		log_debug("DEBUG: HasProximity called without reference on [src].")
+		log_runtime("DEBUG: HasProximity called without reference on [src].")
 	attached_device?.HasProximity(T, WF, old_loc)
 
 /obj/item/transfer_valve/Moved(old_loc, direction, forced)
@@ -72,6 +72,9 @@
 		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 /obj/item/transfer_valve/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/transfer_valve/tgui_state(mob/user)

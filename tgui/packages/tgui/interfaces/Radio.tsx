@@ -12,6 +12,7 @@ import { round, toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
+  theme?: string;
   rawfreq: number;
   listening: BooleanLike;
   broadcasting: BooleanLike;
@@ -37,6 +38,7 @@ type Data = {
 export const Radio = (props) => {
   const { act, data } = useBackend<Data>();
   const {
+    theme,
     rawfreq,
     minFrequency,
     maxFrequency,
@@ -66,13 +68,18 @@ export const Radio = (props) => {
     height += 38;
   }
   return (
-    <Window width={310} height={height} theme={useSyndMode ? 'syndicate' : ''}>
+    <Window
+      width={310}
+      height={height}
+      theme={useSyndMode ? 'syndicate' : theme}
+    >
       <Window.Content>
         <Section>
           <LabeledList>
             <LabeledList.Item label="Frequency">
               <NumberInput
                 animated
+                tickWhileDragging
                 unit="kHz"
                 step={0.2}
                 stepPixelSize={10}
@@ -80,7 +87,7 @@ export const Radio = (props) => {
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
                 format={(value: number) => toFixed(value, 1)}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('setFrequency', {
                     freq: round(value * 10, 0),
                   })

@@ -16,7 +16,7 @@
 	response_harm   = "stomps"
 	friendly = "pinches"
 
-	organ_names = /decl/mob_organ_names/crab
+	organ_names = /datum/decl/mob_organ_names/crab
 
 	meat_type = /obj/item/reagent_containers/food/snacks/crabmeat
 	meat_amount = 3
@@ -52,5 +52,5 @@
 	. = ..()
 	adjust_scale(rand(5,12) / 10)
 
-/decl/mob_organ_names/crab
+/datum/decl/mob_organ_names/crab
 	hit_zones = list("cephalothorax", "abdomen", "left walking legs", "right walking legs", "left swimming legs", "right swimming legs", "left pincer", "right pincer")

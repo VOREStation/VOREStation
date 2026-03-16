@@ -3,6 +3,7 @@
 ////////////////////////////
 
 /mob/living/simple_mob/construct
+	icon = 'icons/mob/construct.dmi'
 	name = "Construct"
 	real_name = "Construct"
 	desc = ""
@@ -64,6 +65,7 @@
 
 	can_be_drop_prey = FALSE
 	can_pain_emote = FALSE
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/construct/place_spell_in_hand(var/path)
 	if(!path || !ispath(path))

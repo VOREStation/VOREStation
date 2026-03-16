@@ -25,7 +25,7 @@
 		vending_machines += V
 
 	if(!vending_machines.len)
-		log_debug("Could not find any vending machines on station Z levels. Aborting.")
+		log_game("Brand intelligence event: Could not find any vending machines on station Z levels. Aborting.")
 		abort()
 		return
 
@@ -33,7 +33,7 @@
 
 /datum/event2/event/brand_intelligence/announce()
 	if(prob(90))
-		command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard \the [location_name()], \
+		GLOB.command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard \the [location_name()], \
 		which appears to transmit to nearby vendors. The original infected machine is believed to be \a [vender_zero].", "Vendor Service Alert")
 
 /datum/event2/event/brand_intelligence/start()

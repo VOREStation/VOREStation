@@ -9,7 +9,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 3
 	attack_sound = 'sound/weapons/egloves.ogg'
-	organ_names = /decl/mob_organ_names/hivebottank
+	organ_names = /datum/decl/mob_organ_names/hivebottank
 
 
 // All tank hivebots apply a modifier to their target, and force them to attack them if they're AI controlled.
@@ -67,15 +67,6 @@
 				"bio"		= 100,
 				"rad"		= 100
 				)
-	armor_soak = list(
-				"melee"		= 15,
-				"bullet"	= 10,
-				"laser"		= 15,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
-				)
 
 /mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_melee
 	name = "riot hivebot"
@@ -89,15 +80,6 @@
 				"bomb"		= 0,
 				"bio"		= 100,
 				"rad"		= 100
-				)
-	armor_soak = list(
-				"melee"		= 20,
-				"bullet"	= 0,
-				"laser"		= 0,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
 				)
 
 /mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_bullet
@@ -113,15 +95,6 @@
 				"bio"		= 100,
 				"rad"		= 100
 				)
-	armor_soak = list(
-				"melee"		= 0,
-				"bullet"	= 20,
-				"laser"		= 0,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
-				)
 
 /mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser
 	name = "ablative hivebot"
@@ -135,15 +108,6 @@
 				"bomb"		= 0,
 				"bio"		= 100,
 				"rad"		= 100
-				)
-	armor_soak = list(
-				"melee"		= 0,
-				"bullet"	= 0,
-				"laser"		= 20,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
 				)
 	var/reflect_chance = 40 // Same as regular ablative.
 
@@ -169,5 +133,5 @@
 
 	return (..(P))
 
-/decl/mob_organ_names/hivebottank
+/datum/decl/mob_organ_names/hivebottank
 	hit_zones = list("central chassis", "armor plating", "component shielding", "positioning servo", "head", "sensor suite", "heavy manipulator arm", "shoulder weapon mount", "weapons array", "front right leg", "front left leg", "rear left leg", "rear right leg")

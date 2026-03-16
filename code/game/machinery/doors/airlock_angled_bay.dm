@@ -296,7 +296,7 @@
 	lights_deny_icon = 'icons/obj/doors/angled/station/lights_deny.dmi'
 	lights_green_icon = 'icons/obj/doors/angled/station/lights_green.dmi'
 	lights_bolts_icon = 'icons/obj/doors/angled/station/lights_bolts.dmi'
-	lights_emag_icon = 'icons/obj/doors/angled/station/emag.dmi'
+	lights_emag_icon = 'icons/obj/doors/angled/external/emag.dmi'
 	panel_icon = 'icons/obj/doors/angled/station/panel.dmi'
 	welded_icon = 'icons/obj/doors/angled/station/welded.dmi'
 /obj/machinery/door/airlock/angled_bay/standard/glass
@@ -319,7 +319,7 @@
 	lights_deny_icon = 'icons/obj/doors/angled/hatch/lights_deny.dmi'
 	lights_green_icon = 'icons/obj/doors/angled/hatch/lights_green.dmi'
 	lights_bolts_icon = 'icons/obj/doors/angled/hatch/lights_bolts.dmi'
-	lights_emag_icon = 'icons/obj/doors/angled/hatch/emag.dmi'
+	lights_emag_icon = 'icons/obj/doors/angled/external/emag.dmi'
 	panel_icon = 'icons/obj/doors/angled/hatch/panel.dmi'
 	welded_icon = 'icons/obj/doors/angled/hatch/welded.dmi'
 
@@ -365,9 +365,9 @@
 	fill_type = FILL_METAL
 
 	base_icon = 'icons/obj/doors/angled/elevator/door.dmi'
-	metal_fill_icon = 'icons/obj/doors/angled/elevator/fill_steel.dmi'
+	metal_fill_icon = 'icons/obj/doors/angled/elevator/fill_glass.dmi'
 	glass_fill_icon = 'icons/obj/doors/angled/elevator/fill_glass.dmi'
-	lights_deny_icon = 'icons/obj/doors/angled/elevator/lights_deny.dmi'
+	lights_deny_icon = 'icons/obj/doors/angled/elevator/lights_bolts.dmi'
 	lights_green_icon = 'icons/obj/doors/angled/elevator/lights_green.dmi'
 	lights_bolts_icon = 'icons/obj/doors/angled/elevator/lights_bolts.dmi'
 	welded_icon = 'icons/obj/doors/angled/elevator/welded.dmi'
@@ -389,7 +389,7 @@
 	fill_type = FILL_METAL // the only option
 
 	base_icon = 'icons/obj/doors/angled/vault/door.dmi'
-	metal_fill_icon = 'icons/obj/doors/angled/vault/fill_steel.dmi'
+	metal_fill_icon = 'icons/obj/doors/angled/secure/fill_steel.dmi'
 
 /obj/machinery/door/airlock/angled_bay/secure
 	icon = 'icons/obj/doors/angled/secure/door.dmi'
@@ -425,7 +425,7 @@
 	lights_deny_icon = 'icons/obj/doors/angled/double/lights_deny.dmi'
 	lights_green_icon = 'icons/obj/doors/angled/double/lights_green.dmi'
 	lights_bolts_icon = 'icons/obj/doors/angled/double/lights_bolts.dmi'
-	lights_emag_icon = 'icons/obj/doors/angled/double/emag.dmi'
+	lights_emag_icon = 'icons/obj/doors/angled/double/lights_deny.dmi'
 	panel_icon = 'icons/obj/doors/angled/double/panel.dmi'
 	welded_icon = 'icons/obj/doors/angled/double/welded.dmi'
 	spark_damaged_icon = 'icons/obj/doors/angled/double/sparks_damaged.dmi'

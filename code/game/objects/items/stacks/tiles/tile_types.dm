@@ -35,6 +35,7 @@
 	if(craftable)
 		material = get_material_by_name("[default_type]")
 		if(!material)
+			stack_trace("Material of type: [default_type] does not exist.")
 			return INITIALIZE_HINT_QDEL
 		if(material) //sanity check
 			recipes = material.get_recipes()
@@ -73,12 +74,12 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
-	default_type = "grass"
+	default_type = MAT_GRASS
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/herb.ogg'
@@ -97,36 +98,277 @@
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
+
+/obj/item/stack/tile/wood/alt
+	name = "wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#593c1c"
+
+/obj/item/stack/tile/wood/parquet
+	name = "parquet wood floor tile"
+	singular_name = "parquet wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs_parquet"
+	color = "#593c1c"
+
+/obj/item/stack/tile/wood/panel
+	name = "large wood floor tile"
+	singular_name = "large wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs_large"
+	color = "#593c1c"
+
+/obj/item/stack/tile/wood/tile
+	name = "tiled wood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs_tile"
+	color = "#593c1c"
+
+/obj/item/stack/tile/wood/vert
+	name = "vertical wood floor tile"
+	singular_name = "vertical wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-vert-gs"
+	color = "#593c1c"
+
+/obj/item/stack/tile/wood/vert_panel
+	name = "large vertical wood floor tile"
+	singular_name = "large vertical wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-vert-gs_large"
+	color = "#593c1c"
 
 /obj/item/stack/tile/wood/sif
 	name = "alien wood tile"
 	singular_name = "alien wood tile"
 	desc = "An easy to fit wooden floor tile. It's blue!"
-	icon_state = "tile-sifwood"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#293c50"
 
-/obj/item/stack/tile/wood/alt
-	name = "wood floor tile"
+/obj/item/stack/tile/wood/sif/parquet
+	name = "alien wood parquet tile"
+	singular_name = "alien wood parquet tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/sif/panel
+	name = "large alien wood tile"
+	singular_name = "large alien wood tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/sif/tile
+	name = "tiled alien wood tile"
+	singular_name = "tiled alien wood tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/sif/vert
+	name = "vertical alien wood floor tile"
+	singular_name = "vertical alien wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/sif/vert_panel
+	name = "large vertical alien wood floor tile"
+	singular_name = "large vertical alien wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
+
+/obj/item/stack/tile/wood/acacia
+	name = "acacia wood floor tile"
 	singular_name = "wood floor tile"
-	icon_state = "tile-wood_tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#b75e12"
 
-/obj/item/stack/tile/wood/parquet
-	name = "parquet wood floor tile"
+/obj/item/stack/tile/wood/acacia/parquet
+	name = "acacia parquet floor tile"
 	singular_name = "parquet wood floor tile"
-	icon_state = "tile-wood_parquet"
+	icon_state = "tile-wood-gs_parquet"
 
-/obj/item/stack/tile/wood/panel
-	name = "large wood floor tile"
+/obj/item/stack/tile/wood/acacia/panel
+	name = "large acacia floor tile"
 	singular_name = "large wood floor tile"
-	icon_state = "tile-wood_large"
+	icon_state = "tile-wood-gs_large"
 
-/obj/item/stack/tile/wood/tile
-	name = "tiled wood floor tile"
+/obj/item/stack/tile/wood/acacia/tile
+	name = "tiled acacia floor tile"
 	singular_name = "tiled wood floor tile"
-	icon_state = "tile-wood_tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/acacia/vert
+	name = "vertical acacia wood floor tile"
+	singular_name = "vertical acacia wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/acacia/vert_panel
+	name = "large vertical acacia wood floor tile"
+	singular_name = "large vertical acacia wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
+
+/obj/item/stack/tile/wood/birch
+	name = "birch wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#f6dec0"
+
+/obj/item/stack/tile/wood/birch/parquet
+	name = "birch parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/birch/panel
+	name = "large birch floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/birch/tile
+	name = "tiled birch floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/birch/vert
+	name = "vertical birch wood floor tile"
+	singular_name = "vertical birch wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/birch/vert_panel
+	name = "large vertical birch wood floor tile"
+	singular_name = "large vertical birch wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
+
+/obj/item/stack/tile/wood/hardwood
+	name = "hardwood wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#42291a"
+
+/obj/item/stack/tile/wood/hardwood/parquet
+	name = "hardwood parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/hardwood/panel
+	name = "large hardwood floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/hardwood/tile
+	name = "tiled hardwood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/hardwood/vert
+	name = "vertical hardwood wood floor tile"
+	singular_name = "vertical hardwood wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/hardwood/vert_panel
+	name = "large vertical hardwood wood floor tile"
+	singular_name = "large vertical hardwood wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
+
+/obj/item/stack/tile/wood/pine
+	name = "pine wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#cd9d6f"
+
+/obj/item/stack/tile/wood/pine/parquet
+	name = "pine parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/pine/panel
+	name = "large pine floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/pine/tile
+	name = "tiled pine floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/pine/vert
+	name = "vertical pine wood floor tile"
+	singular_name = "vertical pine wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/pine/vert_panel
+	name = "large vertical pine wood floor tile"
+	singular_name = "large vertical pine wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
+
+/obj/item/stack/tile/wood/oak
+	name = "oak wood floor tile"
+	singular_name = "wood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#674928"
+
+/obj/item/stack/tile/wood/oak/parquet
+	name = "oak parquet floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/oak/panel
+	name = "large oak floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/oak/tile
+	name = "tiled oak floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/oak/vert
+	name = "vertical oak wood floor tile"
+	singular_name = "vertical oak wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/oak/vert_panel
+	name = "large vertical oak wood floor tile"
+	singular_name = "large vertical oak wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
+
+/obj/item/stack/tile/wood/redwood
+	name = "redwood floor tile"
+	singular_name = "redwood floor tile"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "tile-wood-gs"
+	color = "#a45a52"
+
+/obj/item/stack/tile/wood/redwood/parquet
+	name = "redwood parquet floor tile"
+	singular_name = "parquet redwood floor tile"
+	icon_state = "tile-wood-gs_parquet"
+
+/obj/item/stack/tile/wood/redwood/panel
+	name = "large redwood floor tile"
+	singular_name = "large redwood floor tile"
+	icon_state = "tile-wood-gs_large"
+
+/obj/item/stack/tile/wood/redwood/tile
+	name = "tiled redwood floor tile"
+	singular_name = "tiled redwood floor tile"
+	icon_state = "tile-wood-gs_tile"
+
+/obj/item/stack/tile/wood/redwood/vert
+	name = "vertical redwood wood floor tile"
+	singular_name = "vertical redwood wood floor tile"
+	icon_state = "tile-wood-vert-gs"
+
+/obj/item/stack/tile/wood/redwood/vert_panel
+	name = "large vertical redwood wood floor tile"
+	singular_name = "large vertical redwood wood floor tile"
+	icon_state = "tile-wood-vert-gs_large"
 
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
@@ -150,7 +392,7 @@
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
@@ -294,6 +536,12 @@
 	icon_state = "tile_white"
 	no_variants = FALSE
 
+/obj/item/stack/tile/floor/purple
+	name = "purple floor tile"
+	singular_name = "purple floor tile"
+	color = COLOR_PURPLE_GRAY
+	no_variants = FALSE
+
 /obj/item/stack/tile/floor/dark
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
@@ -330,7 +578,7 @@
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	can_weld = FALSE
 
@@ -343,7 +591,7 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	can_weld = TRUE
 	welds_into = /obj/item/stack/material/marble
@@ -357,7 +605,7 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	can_weld = TRUE
 	welds_into = /obj/item/stack/material/marble
@@ -377,3 +625,43 @@
 	stacktype = /obj/item/stack/tile/roofing
 	build_type = /obj/item/stack/tile/roofing
 	can_weld = FALSE
+
+/obj/item/stack/tile/floor/gold
+	name = "gold floor tile"
+	singular_name = "gold floor tile"
+	icon_state = "tile-gold"
+	matter = list(MAT_GOLD = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/gold
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/silver
+	name = "silver floor tile"
+	singular_name = "silver floor tile"
+	icon_state = "tile-silver"
+	matter = list(MAT_SILVER = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/silver
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/phoron
+	name = "phoron floor tile"
+	singular_name = "phoron floor tile"
+	icon_state = "tile-phoron"
+	matter = list(MAT_PHORON = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/phoron
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/diamond
+	name = "diamond floor tile"
+	singular_name = "diamond floor tile"
+	icon_state = "tile-diamond"
+	matter = list(MAT_DIAMOND = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/diamond
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/uranium
+	name = "uranium floor tile"
+	singular_name = "uranium floor tile"
+	icon_state = "tile-uranium"
+	matter = list(MAT_URANIUM = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/uranium
+	no_variants = FALSE

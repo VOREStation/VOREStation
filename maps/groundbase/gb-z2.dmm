@@ -2450,7 +2450,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "gd" = (
-/obj/machinery/r_n_d/protolathe{
+/obj/machinery/rnd/production/protolathe{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3078,7 +3078,6 @@
 	name = "Privacy Shutter Control";
 	pixel_y = 30
 	},
-/obj/machinery/computer/rdconsole/robotics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "hV" = (
@@ -4239,12 +4238,10 @@
 /area/medical/virology)
 "lj" = (
 /obj/structure/table/glass,
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
 	pixel_y = 9
 	},
@@ -5540,7 +5537,7 @@
 /area/groundbase/medical/Chemistry)
 "ph" = (
 /obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -6426,6 +6423,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/groundbase/command/hop)
 "rv" = (
@@ -6514,6 +6512,7 @@
 /obj/machinery/requests_console/preset/research{
 	pixel_y = 30
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "rI" = (
@@ -7001,7 +7000,7 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /obj/machinery/requests_console{
 	department = "Robotics";
 	departmentType = 2;
@@ -7174,7 +7173,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "tI" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/rnd)
 "tJ" = (
@@ -9425,7 +9424,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "Ao" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "Ap" = (
@@ -10464,12 +10463,18 @@
 /area/groundbase/dorms/room1)
 "Dm" = (
 /obj/structure/table/standard,
-/obj/item/retail_scanner/science,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /obj/structure/noticeboard{
 	pixel_x = 32
+	},
+/obj/item/storage/box/anomaly{
+	pixel_y = 12;
+	pixel_x = 10
+	},
+/obj/item/storage/box/anomaly{
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
@@ -11035,6 +11040,7 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "EN" = (
@@ -11607,7 +11613,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/science/server)
 "Gu" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server/master,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8;
 	external_pressure_bound = 0;
@@ -11709,7 +11715,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
 "GK" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/light{
 	dir = 1
@@ -13884,14 +13890,11 @@
 /obj/machinery/computer/med_data/laptop{
 	dir = 8
 	},
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
-	pixel_x = 7;
 	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/white,
@@ -13946,7 +13949,7 @@
 /turf/simulated/wall,
 /area/groundbase/civilian/chapel/office)
 "MF" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -14368,9 +14371,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Command";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Command"
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/command)
@@ -15156,7 +15158,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "Qa" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4;
 	icon_state = "map_vent_out";
@@ -17408,7 +17410,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "Wy" = (
-/obj/structure/closet/secure_closet/RD,
+/obj/structure/closet/secure_closet/research_director,
 /obj/item/aicard,
 /obj/item/clothing/glasses/omnihud/rnd,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -17903,6 +17905,7 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/item/retail_scanner/science,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "Yc" = (
@@ -18435,7 +18438,7 @@
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cargo_bay";
 	pixel_x = -23
 	},

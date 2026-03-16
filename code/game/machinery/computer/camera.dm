@@ -67,6 +67,10 @@
 	network = list(NETWORK_THUNDER)
 	density = FALSE
 	circuit = null
+	flags = WALL_ITEM
+
+/obj/machinery/computer/security/telescreen/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 GLOBAL_LIST_EMPTY(entertainment_screens)
 /obj/machinery/computer/security/telescreen/entertainment
@@ -117,8 +121,8 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	if(showing)
 		stop_showing()
 	vis_contents.Cut()
-	qdel_null(pinboard)
-	qdel_null(radio)
+	QDEL_NULL(pinboard)
+	QDEL_NULL(radio)
 	return ..()
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/toggle()
@@ -149,11 +153,13 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	if(stat & NOPOWER)
 		return
 	showing = WEAKREF(thing)
-	pinboard.vis_contents = list(thing)
+	if(pinboard)
+		pinboard.vis_contents = list(thing)
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/stop_showing()
 	// Reverse of the above
-	pinboard.vis_contents = null
+	if(pinboard)
+		pinboard.vis_contents = null
 	showing = null
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/maybe_stop_showing(datum/weakref/thingref)
@@ -183,7 +189,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	desc = "Used to watch over mining operations."
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
-	network = list("Mining Outpost")
+	network = list(NETWORK_MINE)
 	circuit = /obj/item/circuitboard/security/mining
 	light_color = "#F9BBFC"
 

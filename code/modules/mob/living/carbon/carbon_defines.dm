@@ -14,6 +14,8 @@
 	var/datum/surgery_status/op_stage = new/datum/surgery_status
 	//Active emote/pose
 	var/pose = null
+	var/pose_move = FALSE
+	var/image/pose_indicator
 	var/list/chem_effects = list()
 	var/datum/reagents/metabolism/bloodstream/bloodstr = null
 	var/datum/reagents/metabolism/ingested/ingested = null

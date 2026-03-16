@@ -1,8 +1,6 @@
 import { Section } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 
-import { digestModeToColor } from '../constants';
-import type { localPrefs, prefData } from '../types';
+import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
 import { VoreUserPreferencesMechanical } from '../VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
@@ -10,21 +8,20 @@ import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreU
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
 import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
-export const VoreUserPreferences = (props: {
-  prefs: prefData;
-  show_pictures: BooleanLike;
-  icon_overflow: BooleanLike;
-}) => {
-  const { prefs, show_pictures, icon_overflow } = props;
+export const VoreUserPreferences = (props: { prefs: PrefData }) => {
+  const { prefs } = props;
   const {
     digestable,
     absorbable,
     devourable,
     allowmobvore,
+    allowtemp,
     feeding,
     permit_healbelly,
     can_be_drop_prey,
     can_be_drop_pred,
+    can_be_afk_prey,
+    can_be_afk_pred,
     drop_vore,
     slip_vore,
     stumble_vore,
@@ -44,8 +41,10 @@ export const VoreUserPreferences = (props: {
     allow_spontaneous_tf,
     allow_mind_transfer,
     eating_privacy_global,
+    vore_death_privacy,
     allow_mimicry,
     strip_mechanics_active,
+    contaminate_worn_items,
     autotransferable,
     liq_rec,
     liq_giv,
@@ -57,7 +56,7 @@ export const VoreUserPreferences = (props: {
     no_spawnprey_warning_time,
     no_spawnpred_warning_save,
     no_spawnprey_warning_save,
-    selective_active,
+    dropdown_preferences,
     soulcatcher_allow_capture,
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
@@ -65,7 +64,7 @@ export const VoreUserPreferences = (props: {
     max_voreoverlay_alpha,
   } = prefs;
 
-  const preferences: localPrefs = {
+  const preferences: LocalPrefs = {
     digestion: {
       action: 'toggle_digest',
       test: digestable,
@@ -117,6 +116,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Mobs eating you allowed',
         disabled: 'No Mobs eating you',
+      },
+    },
+    temperature: {
+      action: 'toggle_allowtemp',
+      test: allowtemp,
+      tooltip: {
+        main: "This button is for those who don't want to be affected by belly temperature, as temperature can be deadly.",
+        enable: 'Click here to be affected by belly temperature.',
+        disable: 'Click here to not be affected by belly temperature.',
+      },
+      content: {
+        enabled: 'Affected By Temperature',
+        disabled: 'Immune To Temperature',
       },
     },
     feed: {
@@ -175,6 +187,36 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Spontaneous Pred Enabled',
         disabled: 'Spontaneous Pred Disabled',
+      },
+    },
+    afk_prey: {
+      action: 'toggle_afk_prey',
+      test: can_be_afk_prey,
+      tooltip: {
+        main:
+          'This toggle is for vore interactions as prey while you' +
+          ' are disconnected or inactive for a period of time.',
+        enable: 'Click here to allow being AFK prey.',
+        disable: 'Click here to prevent being AFK prey.',
+      },
+      content: {
+        enabled: 'AFK Prey Enabled',
+        disabled: 'AFK Prey Disabled',
+      },
+    },
+    afk_pred: {
+      action: 'toggle_afk_pred',
+      test: can_be_afk_pred,
+      tooltip: {
+        main:
+          'This toggle is for vore interactions as pred while you' +
+          ' are disconnected or inactive for a period of time.',
+        enable: 'Click here to allow being AFK pred.',
+        disable: 'Click here to prevent being AFK pred.',
+      },
+      content: {
+        enabled: 'AFK Pred Enabled',
+        disabled: 'AFK Pred Disabled',
       },
     },
     toggle_drop_vore: {
@@ -477,6 +519,23 @@ export const VoreUserPreferences = (props: {
         disabled: 'Do Not Allow Worn Item Stripping',
       },
     },
+    contaminatepref: {
+      action: 'toggle_contaminate_pref',
+      test: contaminate_worn_items,
+      tooltip: {
+        main: '',
+        enable:
+          'Regardless of Predator Setting, items worn by you will not be digested/contaminated inside their bellies.' +
+          ' Click this to allow worn item digestion/contamination.',
+        disable:
+          'Your Predator must have this setting enabled in their belly modes to allow contaminating/digesting your worn gear,' +
+          ' if they do not, they will not contaminate/digest your gear, even with this on. Click to disable contamination/digestion.',
+      },
+      content: {
+        enabled: 'Allow Worn Item Digestion/Contamination',
+        disabled: 'Do Not Allow Worn Item Digestion/Contamination',
+      },
+    },
     eating_privacy_global: {
       action: 'toggle_global_privacy',
       test: eating_privacy_global,
@@ -491,6 +550,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Global Vore Privacy: Subtle',
         disabled: 'Global Vore Privacy: Loud',
+      },
+    },
+    vore_death_privacy: {
+      action: 'toggle_death_privacy',
+      test: vore_death_privacy,
+      tooltip: {
+        main: 'Sets whether your vore deaths are announced to ghosts',
+        enable: ' Click here to prevent announcing vore deaths',
+        disable: ' Click here to allow announcing vore deaths',
+      },
+      content: {
+        enabled: 'Vore Death Privacy: Unannonced',
+        disabled: 'Vore Death Privacy: Announced',
       },
     },
     allow_mimicry: {
@@ -688,15 +760,13 @@ export const VoreUserPreferences = (props: {
   return (
     <Section scrollable fill>
       <VoreUserPreferencesMechanical
-        show_pictures={show_pictures}
-        icon_overflow={icon_overflow}
         preferences={preferences}
+        dropdownPreferences={dropdown_preferences}
       />
       <VoreUserPreferencesDevouring
         devourable={devourable}
-        digestModeToColor={digestModeToColor}
-        selective_active={selective_active}
         preferences={preferences}
+        dropdownPreferences={dropdown_preferences}
       />
       <VoreUserPreferencesSpontaneous
         can_be_drop_prey={can_be_drop_prey}

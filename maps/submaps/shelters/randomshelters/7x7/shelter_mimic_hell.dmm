@@ -1,0 +1,146 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/wood{
+	temperature = 258.15
+	},
+/area/survivalpod/redspace)
+"b" = (
+/turf/simulated/floor/wood/alt/broken,
+/area/survivalpod/redspace)
+"c" = (
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"e" = (
+/obj/random/maintenance/misc,
+/obj/effect/floormimic/guaranteed,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"f" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/maintenance/common,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod/redspace)
+"g" = (
+/obj/machinery/light/small/emergency,
+/turf/simulated/floor/wood/broken,
+/area/survivalpod/redspace)
+"i" = (
+/obj/random/maintenance/misc,
+/turf/simulated/floor,
+/area/survivalpod/redspace)
+"q" = (
+/obj/effect/floormimic/plating/cointoss,
+/obj/random/maintenance/misc,
+/turf/simulated/floor,
+/area/survivalpod/redspace)
+"v" = (
+/turf/simulated/floor,
+/area/survivalpod/redspace)
+"A" = (
+/turf/simulated/floor/wood/broken,
+/area/survivalpod/redspace)
+"E" = (
+/obj/effect/floormimic/cointoss,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"K" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"L" = (
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood{
+	temperature = 258.15
+	},
+/area/survivalpod/redspace)
+"M" = (
+/obj/structure/table/hardwoodtable,
+/obj/random/curseditem,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"Q" = (
+/obj/structure/closet/crate/mimic/guaranteed/chest,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"T" = (
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/survivalpod/redspace)
+"U" = (
+/obj/structure/closet/crate/mimic/guaranteed{
+	dir = 2
+	},
+/turf/simulated/floor/wood{
+	temperature = 258.15
+	},
+/area/survivalpod/redspace)
+"X" = (
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod/redspace)
+"Z" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/redspace)
+
+(1,1,1) = {"
+K
+K
+K
+K
+K
+K
+K
+"}
+(2,1,1) = {"
+K
+M
+E
+Z
+q
+a
+K
+"}
+(3,1,1) = {"
+K
+e
+v
+T
+a
+g
+K
+"}
+(4,1,1) = {"
+K
+c
+v
+X
+v
+a
+f
+"}
+(5,1,1) = {"
+K
+q
+b
+T
+A
+L
+K
+"}
+(6,1,1) = {"
+K
+Q
+c
+Z
+U
+i
+K
+"}
+(7,1,1) = {"
+K
+K
+K
+K
+K
+K
+K
+"}

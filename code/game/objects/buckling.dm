@@ -38,6 +38,9 @@
 	if(can_buckle && istype(M))
 		if(user_buckle_mob(M, user))
 			return TRUE
+	if(M == user && HAS_TRAIT(src,TRAIT_CLIMBABLE)) // Buckling takes priority
+		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
+		return TRUE
 
 /atom/movable/proc/has_buckled_mobs()
 	return LAZYLEN(buckled_mobs)
@@ -72,7 +75,7 @@
 	//VOREStation Add End
 
 	post_buckle_mob(M)
-	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled, new_master = src)
+	M.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled, new_master = src)
 	return TRUE
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
@@ -113,7 +116,7 @@
 
 //Wrapper procs that handle sanity and user feedback
 /atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = FALSE)
-	if(!ticker)
+	if(!SSticker)
 		to_chat(user, span_warning("You can't buckle anyone in before the game starts."))
 		return FALSE // Is this really needed?
 	if(!user.Adjacent(M) || user.restrained() || user.stat || ispAI(user))
@@ -126,13 +129,13 @@
 
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs)
 		for(var/mob/living/L in buckled_mobs)
-			if(istype(L) && M.CanStumbleVore(L))
+			if(istype(L) && can_stumble_vore(prey = L, pred = M))
 				unbuckle_mob(L, TRUE)
 				if(M == user)
 					M.visible_message(span_warning("[M.name] sits down on [L.name]!"))
 				else
 					M.visible_message(span_warning("[M.name] is forced to sit down on [L.name] by [user.name]!"))
-				M.perform_the_nom(user, L, M, M.vore_selected, -1)
+				M.begin_instant_nom(user, L, M, M.vore_selected)
 
 	add_fingerprint(user)
 //	unbuckle_mob()
@@ -215,7 +218,7 @@
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it
 		if(can_do_spont_vore && is_vore_predator(M) && M.vore_selected)
 			for(var/mob/living/buckled in buckled_mobs)
-				if(M.CanStumbleVore(buckled))
+				if(can_stumble_vore(prey = buckled, pred = M))
 					return TRUE
 		to_chat(M, span_notice("\The [src] can't buckle any more people."))
 		return FALSE

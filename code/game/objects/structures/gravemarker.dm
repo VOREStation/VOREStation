@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	throwpass = 1
-	climbable = TRUE
 
 	layer = ABOVE_JUNK_LAYER
 
@@ -25,8 +24,11 @@
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
+		stack_trace("Material of type: [material_name] does not exist.")
 		return INITIALIZE_HINT_QDEL
 	color = material.icon_colour
+	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/gravemarker/examine(mob/user)
 	. = ..()
@@ -51,24 +53,24 @@
 
 /obj/structure/gravemarker/attackby(obj/item/W, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		var/carving_1 = sanitizeSafe(tgui_input_text(user, "Who is \the [src.name] for?", "Gravestone Naming", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/carving_1 = sanitizeSafe(tgui_input_text(user, "Who is \the [src.name] for?", "Gravestone Naming", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(carving_1)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
-			if(do_after(user, material.hardness * W.toolspeed))
+			if(do_after(user, material.hardness * W.toolspeed, target = src))
 				user.visible_message("[user] carves something into \the [src.name].", "You carve your message into \the [src.name].")
 				grave_name += carving_1
 				update_icon()
-		var/carving_2 = sanitizeSafe(tgui_input_text(user, "What message should \the [src.name] have?", "Epitaph Carving", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/carving_2 = sanitizeSafe(tgui_input_text(user, "What message should \the [src.name] have?", "Epitaph Carving", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(carving_2)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
-			if(do_after(user, material.hardness * W.toolspeed))
+			if(do_after(user, material.hardness * W.toolspeed, target = src))
 				user.visible_message("[user] carves something into \the [src.name].", "You carve your message into \the [src.name].")
 				epitaph += carving_2
 				update_icon()
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("[user] starts taking down \the [src.name].", "You start taking down \the [src.name].")
-		if(do_after(user, material.hardness * W.toolspeed))
+		if(do_after(user, material.hardness * W.toolspeed, target = src))
 			user.visible_message("[user] takes down \the [src.name].", "You take down \the [src.name].")
 			dismantle()
 	..()
@@ -108,40 +110,5 @@
 	qdel(src)
 	return
 
-
-/obj/structure/gravemarker/verb/rotate_clockwise()
-	set name = "Rotate Grave Marker Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(anchored)
-		return
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	return
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/gravemarker/verb/rotate_counterclockwise()
-	set name = "Rotate Grave Marker Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(anchored)
-		return
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	return
+/obj/structure/gravemarker/ghosts_can_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)

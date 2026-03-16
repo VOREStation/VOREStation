@@ -2,7 +2,7 @@
 	/// The hud we're owned by
 	var/datum/hud/owner
 	/// The actions we're managing
-	var/list/obj/screen/movable/action_button/actions
+	var/list/atom/movable/screen/movable/action_button/actions
 	/// The initial vertical offset of our action buttons
 	var/north_offset = 0
 	/// The pixel vertical offset of our action buttons
@@ -19,7 +19,7 @@
 	/// The screen location we go by
 	var/location
 	/// Our landing screen object
-	var/obj/screen/action_landing/landing
+	var/atom/movable/screen/action_landing/landing
 
 /datum/action_group/New(datum/hud/owner)
 	..()
@@ -32,7 +32,7 @@
 	QDEL_LIST(actions)
 	return ..()
 
-/datum/action_group/proc/insert_action(obj/screen/action, index)
+/datum/action_group/proc/insert_action(atom/movable/screen/action, index)
 	if(action in actions)
 		if(actions[index] == action)
 			return
@@ -43,7 +43,7 @@
 	actions.Insert(index, action)
 	refresh_actions()
 
-/datum/action_group/proc/remove_action(obj/screen/action)
+/datum/action_group/proc/remove_action(atom/movable/screen/action)
 	actions -= action
 	if(!QDELING(src))
 		refresh_actions()
@@ -55,7 +55,7 @@
 	row_offset = clamp(row_offset, 0, total_rows) // You're not allowed to offset so far that we have a row of blank space
 
 	var/button_number = 0
-	for(var/obj/screen/button as anything in actions)
+	for(var/atom/movable/screen/button as anything in actions)
 		var/postion = ButtonNumberToScreenCoords(button_number )
 		button.screen_loc = postion
 		button_number++
@@ -122,7 +122,7 @@
 		amount += 1
 	return amount
 
-/datum/action_group/proc/index_of(obj/screen/get_location)
+/datum/action_group/proc/index_of(atom/movable/screen/get_location)
 	return actions.Find(get_location)
 
 /// Generates a landing object that can be dropped on to join this group
@@ -152,22 +152,22 @@
 	max_rows = 3
 	location = SCRN_OBJ_IN_PALETTE
 
-/datum/action_group/palette/insert_action(obj/screen/action, index)
+/datum/action_group/palette/insert_action(atom/movable/screen/action, index)
 	. = ..()
-	var/obj/screen/button_palette/palette = owner.toggle_palette
+	var/atom/movable/screen/button_palette/palette = owner.toggle_palette
 	palette.play_item_added()
 
-/datum/action_group/palette/remove_action(obj/screen/action)
+/datum/action_group/palette/remove_action(atom/movable/screen/action)
 	. = ..()
-	var/obj/screen/button_palette/palette = owner.toggle_palette
+	var/atom/movable/screen/button_palette/palette = owner.toggle_palette
 	palette.play_item_removed()
 	if(!length(actions))
 		palette.set_expanded(FALSE)
 
 /datum/action_group/palette/refresh_actions()
-	var/obj/screen/button_palette/palette = owner.toggle_palette
-	var/obj/screen/palette_scroll/scroll_down = owner.palette_down
-	var/obj/screen/palette_scroll/scroll_up = owner.palette_up
+	var/atom/movable/screen/button_palette/palette = owner.toggle_palette
+	var/atom/movable/screen/palette_scroll/scroll_down = owner.palette_down
+	var/atom/movable/screen/palette_scroll/scroll_up = owner.palette_up
 	if(!palette || !scroll_down || !scroll_up)
 		return
 
@@ -190,7 +190,7 @@
 	return ..()
 
 /datum/action_group/palette/ButtonNumberToScreenCoords(number, landing)
-	var/obj/screen/button_palette/palette = owner.toggle_palette
+	var/atom/movable/screen/button_palette/palette = owner.toggle_palette
 	if(palette.expanded)
 		return ..()
 

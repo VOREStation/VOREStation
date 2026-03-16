@@ -30,6 +30,9 @@ Bonus
 
 	var/fake_healthy = FALSE
 
+	prefixes = list("Narcotic ", "Narco", "Psycho-")
+	suffixes = list(" Psychosis")
+
 	threshold_descs = list(
 		"Stage Speed 7" = "Increases the amount of hallucinations.",
 		"Stealth 2" = "The virus mimics positive symptoms"
@@ -80,4 +83,4 @@ Bonus
 		else
 			if(prob(base_message_chance))
 				to_chat(M, span_userdanger(pick("Oh, your head...", "Your head pounds.", "They're everywhere! Run!", "Something is in the shadows...")))
-			M.hallucination += (45 * power)
+			M.hallucination += (25 * power)

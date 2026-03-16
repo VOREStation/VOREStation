@@ -32,8 +32,14 @@
 	feeding = client.prefs_vr.feeding
 	can_be_drop_prey = client.prefs_vr.can_be_drop_prey
 	can_be_drop_pred = client.prefs_vr.can_be_drop_pred
+	can_be_afk_prey = client.prefs_vr.can_be_afk_prey
+	can_be_afk_pred = client.prefs_vr.can_be_afk_pred
 	throw_vore = client.prefs_vr.throw_vore
 	food_vore = client.prefs_vr.food_vore
+	spont_belly_rear = client.prefs_vr.spont_belly_rear
+	spont_belly_left = client.prefs_vr.spont_belly_left
+	spont_belly_front = client.prefs_vr.spont_belly_front
+	spont_belly_right = client.prefs_vr.spont_belly_right
 	consume_liquid_belly = client.prefs_vr.consume_liquid_belly
 	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
 	digest_leave_remains = client.prefs_vr.digest_leave_remains
@@ -41,8 +47,10 @@
 	permit_healbelly = client.prefs_vr.permit_healbelly
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
+	size_strip_preference = client.prefs_vr.size_strip_preference
 	eating_privacy_global = client.prefs_vr.eating_privacy_global
 	allow_mimicry = client.prefs_vr.allow_mimicry
+	allowtemp = client.prefs_vr.allowtemp
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore
@@ -64,6 +72,7 @@
 	autotransferable = client.prefs_vr.autotransferable
 	noisy_full = client.prefs_vr.noisy_full
 	strip_pref = client.prefs_vr.strip_pref
+	contaminate_pref = client.prefs_vr.contaminate_pref
 	vore_sprite_color = client.prefs_vr.vore_sprite_color
 	vore_sprite_multiply = client.prefs_vr.vore_sprite_multiply
 	no_latejoin_vore_warning = client.prefs_vr.no_latejoin_vore_warning
@@ -85,7 +94,7 @@
 		to_chat(src, span_userdanger("You've already set your name. Ask an admin to toggle \"nameset\" to 0 if you really must."))
 		return
 	var/newname
-	newname = sanitizeSafe(tgui_input_text(src,"Set your name. You only get to do this once. Max 52 chars.", "Name set","", MAX_NAME_LEN), MAX_NAME_LEN)
+	newname = sanitizeSafe(tgui_input_text(src,"Set your name. You only get to do this once. Max 52 chars.", "Name set","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if (newname)
 		name = newname
 		voice_name = newname
@@ -96,7 +105,7 @@
 	set desc = "Set your description."
 	set category = "Abilities.Settings"
 	var/newdesc
-	newdesc = sanitizeSafe(tgui_input_text(src,"Set your description. Max 4096 chars.", "Description set","", prevent_enter = TRUE), MAX_MESSAGE_LEN)
+	newdesc = sanitizeSafe(tgui_input_text(src,"Set your description. Max 4096 chars.", "Description set","", prevent_enter = TRUE, encode = FALSE), MAX_MESSAGE_LEN)
 	if(newdesc)
 		desc = newdesc
 

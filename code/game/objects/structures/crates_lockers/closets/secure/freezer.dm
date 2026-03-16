@@ -1,6 +1,10 @@
+/obj/structure/closet/secure_closet/freezer/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
-	req_access = list(access_kitchen)
+	req_access = list(ACCESS_KITCHEN)
 
 	starts_with = list(
 		/obj/item/reagent_containers/food/condiment/carton/flour = 6,
@@ -39,13 +43,15 @@
 		/obj/item/storage/fancy/egg_box = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose = 2)
 
+/obj/structure/closet/secure_closet/freezer/fridge/empty
+	starts_with = null
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"
 	icon = 'icons/obj/closets/fridge.dmi'
 	icon_state = ""
 	closet_appearance = null
-	req_access = list(access_heads_vault)
+	req_access = list(ACCESS_HEADS_VAULT)
 
 
 	starts_with = list(

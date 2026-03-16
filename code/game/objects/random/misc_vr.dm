@@ -419,3 +419,57 @@
 				prob(10);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink,
 				prob(10);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow
 				)
+
+/obj/random/shibari
+	name = "random shibari"
+	desc = "A random shibari."
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_state = "shibari_None"
+	spawn_nothing_percentage = 0
+
+/obj/random/shibari/item_to_spawn()
+	return pick(prob(5);/obj/item/clothing/suit/shibari,
+				prob(5);/obj/item/clothing/suit/shibari/red,
+				prob(5);/obj/item/clothing/suit/shibari/blue,
+				prob(5);/obj/item/clothing/suit/shibari/green,
+				prob(5);/obj/item/clothing/suit/shibari/yellow,
+				prob(5);/obj/item/clothing/suit/shibari/black,
+				prob(5);/obj/item/clothing/suit/shibari/pink
+				)
+
+/obj/random/chips
+	name = "random chips"
+	icon_state = "chips"
+	spawn_nothing_percentage = 10
+
+/obj/random/chips/item_to_spawn()
+	return pick(
+		prob(35);/obj/item/spacecasinocash/c1,
+		prob(10);/obj/item/spacecasinocash/c10,
+		prob(5);/obj/item/spacecasinocash/c100,
+	)
+
+/obj/random/chips/better
+	name = "better random chips"
+	icon_state = "chips_1"
+	spawn_nothing_percentage = 0
+
+/obj/random/chips/item_to_spawn()
+	return pick(
+		prob(35);/obj/item/spacecasinocash/c10,
+		prob(15);/obj/item/spacecasinocash/c100,
+		prob(5);/obj/item/spacecasinocash/c200,
+		prob(1);/obj/item/spacecasinocash/c500,
+	)
+
+/obj/random/chips/good
+	name = "good random chips"
+	icon_state = "chips_2"
+
+/obj/random/chips/item_to_spawn()
+	return pick(
+		prob(45);/obj/item/spacecasinocash/c100,
+		prob(15);/obj/item/spacecasinocash/c200,
+		prob(5);/obj/item/spacecasinocash/c500,
+		prob(1);/obj/item/spacecasinocash/c1000,
+	)

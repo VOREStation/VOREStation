@@ -1,7 +1,7 @@
 /datum/antagonist/proc/get_starting_locations()
 	if(landmark_id)
 		starting_locations = list()
-		for(var/obj/effect/landmark/L in landmarks_list)
+		for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 			if(L.name == landmark_id)
 				starting_locations |= get_turf(L)
 
@@ -15,9 +15,9 @@
 			if(spawn_announcement_delay)
 				sleep(spawn_announcement_delay)
 			if(spawn_announcement_sound)
-				command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]", new_sound = spawn_announcement_sound)
+				GLOB.command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]", new_sound = spawn_announcement_sound)
 			else
-				command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]")
+				GLOB.command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]")
 	return
 
 /datum/antagonist/proc/place_mob(var/mob/living/mob)

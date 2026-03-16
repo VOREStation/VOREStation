@@ -23,6 +23,8 @@
 	var/turf/base_turf
 	//Name of the shuttle, null for generic waypoint
 	var/shuttle_restricted
+	//does it use docking codes?
+	var/use_docking_codes = TRUE
 
 /obj/effect/shuttle_landmark/Initialize(mapload)
 	. = ..()
@@ -52,13 +54,13 @@
 	var/docking_tag = docking_controller
 	docking_controller = SSshuttles.docking_registry[docking_tag]
 	if(!istype(docking_controller))
-		log_error("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
+		log_mapping("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
 	if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(z)
-		if(location && location.docking_codes)
+		if(location && location.docking_codes && use_docking_codes)
 			docking_controller.docking_codes = location.docking_codes
 
-/obj/effect/shuttle_landmark/forceMove()
+/obj/effect/shuttle_landmark/forceMove(atom/destination, direction, movetime)
 	var/obj/effect/overmap/visitable/map_origin = get_overmap_sector(z)
 	. = ..()
 	var/obj/effect/overmap/visitable/map_destination = get_overmap_sector(z)
@@ -168,7 +170,10 @@
 	light_color = "#3728ff"
 	var/active
 
-/obj/item/spaceflare/attack_self(var/mob/user)
+/obj/item/spaceflare/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!active)
 		visible_message(span_notice("[user] pulls the cord, activating the [src]."))
 		activate()

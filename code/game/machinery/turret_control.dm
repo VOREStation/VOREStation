@@ -35,7 +35,7 @@
 
 	var/syndicate = FALSE
 
-	req_access = list(access_ai_upload)
+	req_access = list(ACCESS_AI_UPLOAD)
 
 /obj/machinery/turretid/stun
 	enabled = TRUE
@@ -226,7 +226,7 @@
 		icon_state = "control_standby"
 		set_light(1.5, 1,"#003300")
 
-/obj/machinery/turretid/emp_act(severity)
+/obj/machinery/turretid/emp_act(severity, recursive)
 	if(enabled)
 		//if the turret is on, the EMP no matter how severe disables the turret for a while
 		//and scrambles its settings, with a slight chance of having an emag effect
@@ -237,12 +237,12 @@
 		check_access = pick(0, 0, 0, 0, 1)	// check_access is a pretty big deal, so it's least likely to get turned on
 		check_anomalies = pick(0, 1)
 
-		enabled=0
+		enabled = FALSE
 		updateTurrets()
 
 		spawn(rand(60,600))
 			if(!enabled)
-				enabled=1
+				enabled = TRUE
 				updateTurrets()
 
 	..()

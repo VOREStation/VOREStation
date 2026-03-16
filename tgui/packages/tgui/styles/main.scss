@@ -35,6 +35,7 @@
 @include meta.load-css('./interfaces/ColorPicker.scss');
 @include meta.load-css('./interfaces/CrewManifest.scss');
 @include meta.load-css('./interfaces/ExperimentConfigure.scss');
+@include meta.load-css('./interfaces/Fabricator.scss');
 @include meta.load-css('./interfaces/FishingMinigame.scss');
 @include meta.load-css('./interfaces/LobbyMenu.scss');
 @include meta.load-css('./interfaces/Microwave.scss');
@@ -47,13 +48,20 @@
 @include meta.load-css('./interfaces/RIGSuit.scss');
 @include meta.load-css('./interfaces/Roulette.scss');
 @include meta.load-css('./interfaces/Safe.scss');
+@include meta.load-css('./interfaces/SpaceBattle.scss');
 @include meta.load-css('./interfaces/TachyonArray.scss');
 @include meta.load-css('./interfaces/Techweb.scss');
 @include meta.load-css('./interfaces/IDCard.scss');
 @include meta.load-css('./interfaces/TinderMessaging.scss');
 @include meta.load-css('./interfaces/Turbolift.scss');
+@include meta.load-css('./interfaces/TicketPanel.scss');
 @include meta.load-css('./interfaces/VorePanel.scss');
 @include meta.load-css('./interfaces/Wires.scss');
+@include meta.load-css('./interfaces/PlushEditor.scss');
+@include meta.load-css('./interfaces/ColorMatrixEditor.scss');
+@include meta.load-css('./interfaces/FourInARow.scss');
+@include meta.load-css('./interfaces/RpgDice.scss');
+@include meta.load-css('./interfaces/NineMen.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
@@ -62,7 +70,7 @@
 @include meta.load-css('./layouts/TitleBar.scss');
 @include meta.load-css('./layouts/Window.scss');
 
-@include meta.load-css('highlight.js/scss/github-dark.scss');
+@include meta.load-css('highlight.js/scss/a11y-dark.scss');
 
 // NT Theme
 .Layout__content {

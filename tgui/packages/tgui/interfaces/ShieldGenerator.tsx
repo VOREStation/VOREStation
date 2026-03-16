@@ -9,7 +9,6 @@ import {
   Section,
 } from 'tgui-core/components';
 import { formatPower, formatSiUnit } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { FullscreenNotice } from './common/FullscreenNotice';
@@ -106,13 +105,12 @@ const ShieldGeneratorContent = (props) => {
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Overall Field Strength">
-            {toFixed(average_field_strength, 2) +
+            {average_field_strength.toFixed(2) +
               ' Renwick (' +
               (target_field_strength &&
-                toFixed(
-                  (100 * average_field_strength) / target_field_strength,
-                  1,
-                ) + '%)') || 'NA)'}
+                `${(
+                  (100 * average_field_strength) / target_field_strength
+                ).toFixed(1)}%)`) || 'NA)'}
           </LabeledList.Item>
           <LabeledList.Item label="Upkeep Power">
             {formatPower(upkeep)}
@@ -127,7 +125,7 @@ const ShieldGeneratorContent = (props) => {
             <LabeledList>
               {capacitorLen ? (
                 capacitors.map((cap, i) => (
-                  <LabeledList.Item key={i} label={'Capacitor #' + i}>
+                  <LabeledList.Item key={i} label={`Capacitor #${i}`}>
                     {cap.active ? (
                       <Box color="good">Online</Box>
                     ) : (
@@ -137,8 +135,7 @@ const ShieldGeneratorContent = (props) => {
                       <LabeledList.Item label="Charge">
                         {formatSiUnit(cap.stored_charge, 0, 'J') +
                           ' (' +
-                          toFixed(
-                            100 * (cap.stored_charge / cap.max_charge),
+                          (100 * (cap.stored_charge / cap.max_charge)).toFixed(
                             2,
                           ) +
                           '%)'}
@@ -178,50 +175,54 @@ const ShieldGeneratorContent = (props) => {
           <LabeledList.Item label="Coverage Radius">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={6}
               step={1}
               minValue={0}
               maxValue={max_radius}
               value={radius}
               unit="m"
-              onDrag={(val: number) => act('change_radius', { val: val })}
+              onChange={(val: number) => act('change_radius', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Vertical Shielding">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={12}
               step={1}
               minValue={0}
               maxValue={max_z_range}
               value={z_range}
               unit="vertical range"
-              onDrag={(val: number) => act('z_range', { val: val })}
+              onChange={(val: number) => act('z_range', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Charge Rate">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={12}
               minValue={0}
               step={0.1}
               maxValue={max_strengthen_rate}
               value={strengthen_rate}
-              format={(val: number) => toFixed(val, 1)}
+              format={(val: number) => val.toFixed(1)}
               unit="Renwick/s"
-              onDrag={(val: number) => act('strengthen_rate', { val: val })}
+              onChange={(val: number) => act('strengthen_rate', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Maximum Field Strength">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={12}
               step={1}
               minValue={1}
               maxValue={max_field_strength}
               value={target_field_strength}
               unit="Renwick"
-              onDrag={(val: number) =>
+              onChange={(val: number) =>
                 act('target_field_strength', { val: val })
               }
             />

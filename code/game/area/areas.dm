@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/static_environ = 0
 
 	var/music = null
-	var/has_gravity = 1 // Don't check this var directly; use get_gravity() instead
+	var/has_gravity = TRUE // Don't check this var directly; use get_gravity() instead
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		if(SSlighting.subsystem_initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+		if(SSlighting.initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
 				T.lighting_build_overlay()
 			else
@@ -109,13 +109,13 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
 	if (danger_level == 0)
-		atmosphere_alarm.clearAlarm(src, alarm_source)
+		GLOB.atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
 		var/obj/machinery/alarm/atmosalarm = alarm_source //maybe other things can trigger these, who knows
 		if(istype(atmosalarm))
-			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
+			GLOB.atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
 		else
-			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
+			GLOB.atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
@@ -141,21 +141,17 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	if(fire || party || atmosalm)
 		firedoors_close()
 		arfgs_activate()
-		// VOREStation Edit - Make the lights colored!
 		if(fire)
 			for(var/obj/machinery/light/L in src)
 				L.set_alert_fire()
 		else if(atmosalm)
 			for(var/obj/machinery/light/L in src)
 				L.set_alert_atmos()
-		// VOREStation Edit End
 	else
 		firedoors_open()
 		arfgs_deactivate()
-		// VOREStation Edit - Put the lights back!
 		for(var/obj/machinery/light/L in src)
 			L.reset_alert()
-		// VOREStation Edit End
 
 // Close all firedoors in the area
 /area/proc/firedoors_close()
@@ -354,7 +350,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 		if(!check_rights(R_DEBUG))
 			return
 		src.check_static_power(usr)
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 // Debugging proc to report if static power is correct or not.
 /area/proc/check_static_power(var/user)
@@ -372,8 +368,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	return (actual_static_equip == static_equip && actual_static_light == static_light && actual_static_environ == static_environ)
 
 //////////////////////////////////////////////////////////////////
-
-var/list/mob/living/forced_ambiance_list = new
+GLOBAL_LIST_EMPTY(forced_ambiance_list)
 
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)
@@ -396,7 +391,7 @@ var/list/mob/living/forced_ambiance_list = new
 	play_ambience(L, initial = TRUE)
 	if(flag_check(AREA_NO_SPOILERS))
 		L.disable_spoiler_vision()
-	check_phase_shift(M)	//RS Port #658
+	check_phase_shift(M)
 
 	// Update the area's color grading
 	if(L.client && L.client.color != get_color_tint()) // Try to check if we should bother changing before doing blending
@@ -410,15 +405,15 @@ var/list/mob/living/forced_ambiance_list = new
 	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
 
 	// If we previously were in an area with force-played ambiance, stop it.
-	if((L in forced_ambiance_list) && initial)
+	if((L in GLOB.forced_ambiance_list) && initial)
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
-		forced_ambiance_list -= L
+		GLOB.forced_ambiance_list -= L
 
 	if(forced_ambience)
-		if(L in forced_ambiance_list)
+		if(L in GLOB.forced_ambiance_list)
 			return
 		if(forced_ambience.len)
-			forced_ambiance_list |= L
+			GLOB.forced_ambiance_list |= L
 			var/sound/chosen_ambiance = pick(forced_ambience)
 			if(!istype(chosen_ambiance))
 				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE_FORCED)
@@ -446,13 +441,13 @@ var/list/mob/living/forced_ambiance_list = new
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
-	if(istype(mob,/mob/living/carbon/human/))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(H.buckled)
 			return // Being buckled to something solid keeps you in place.
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
-		if(H.is_incorporeal()) // VOREstation edit - Phaseshifted beings should not be affected by gravity
+		if(H.is_incorporeal()) // Phaseshifted beings should not be affected by gravity
 			return
 		if(H.species.can_zero_g_move || H.species.can_space_freemove)
 			return
@@ -464,6 +459,10 @@ var/list/mob/living/forced_ambiance_list = new
 			H.AdjustStunned(3)
 			H.AdjustWeakened(3)
 		to_chat(mob, span_notice("The sudden appearance of gravity makes you fall to the floor!"))
+		if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(50) && H.get_bodypart_name(BP_HEAD))
+			H.visible_message(span_warning("[H] falls to the ground from the sudden appearance of gravity, smashing [H.p_their()] head against the ground!"),span_warning("You smash your head into the ground as gravity appears!"))
+			H.apply_damage(14, BRUTE, BP_HEAD, used_weapon = "blunt force")
+			playsound(H, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		playsound(mob, "bodyfall", 50, 1)
 
 /area/proc/prison_break(break_lights = TRUE, open_doors = TRUE, open_blast_doors = TRUE)
@@ -563,23 +562,16 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		return (flags & flag) == flag
 	return flags & flag
 
-// RS Port #658 Start
-/area/proc/check_phase_shift(var/mob/ourmob)
+/area/proc/check_phase_shift(var/mob/living/ourmob)
 	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.is_incorporeal())
 		return
 	if(!isliving(ourmob))
 		return
-	if(ourmob.client?.holder)
+	if(check_rights_for(ourmob.client, R_HOLDER)) //If we're an admin, we don't get affected by phase blockers.
 		return
-	if(issimplekin(ourmob))
-		var/mob/living/simple_mob/shadekin/SK = ourmob
-		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.loc)
-	if(ishuman(ourmob))
-		var/mob/living/carbon/human/SK = ourmob
-		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.loc)
-// RS Port #658 End
+	var/datum/component/shadekin/SK = ourmob.get_shadekin_component()
+	if(SK && SK.in_phase)
+		SK.attack_dephase(ourmob.loc, src)
 
 /area/proc/isAlwaysIndoors()
 	return FALSE

@@ -600,7 +600,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sdfc_wreck_pd";
 	name = "\improper twin-linked laser turret"
 	},
@@ -872,7 +872,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sdfc_wreck_pd";
 	name = "\improper twin-linked laser turret"
 	},
@@ -963,7 +963,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sdfc_wreck_pd";
 	name = "\improper twin-linked laser turret"
 	},

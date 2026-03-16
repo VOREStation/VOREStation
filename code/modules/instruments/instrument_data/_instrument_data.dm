@@ -17,14 +17,14 @@
  * Since songs cache them while playing, there isn't realistic issues regarding performance from accessing.
  */
 /datum/instrument
+	/// Used for categorization subtypes
+	abstract_type = /datum/instrument
 	/// Name of the instrument
 	var/name = "Generic instrument"
 	/// Uniquely identifies this instrument so runtime changes are possible as opposed to paths. If this is unset, things will use path instead.
 	var/id
 	/// Category
 	var/category = "Unsorted"
-	/// Used for categorization subtypes
-	var/instrument_type = /datum/instrument
 	/// Write here however many samples, follow this syntax: "%note num%"='%sample file%' eg. "27"='synthesizer/e2.ogg'. Key must never be lower than 0 and higher than 127
 	var/list/real_samples
 	/// assoc list key = /datum/instrument_key. do not fill this yourself!
@@ -70,7 +70,8 @@
 
 /datum/instrument/Destroy()
 	SSinstruments.instrument_data -= id
-	for(var/datum/song/S as anything in songs_using)
+	for(var/i in songs_using)
+		var/datum/song/S = i
 		S.set_instrument(null)
 	real_samples = null
 	samples = null

@@ -41,14 +41,6 @@ type message = {
   target: string;
 };
 
-// Really cursed old API that was deprecated before IE8 but still works in IE11 because lol lmao
-type IeWindow = Window &
-  typeof globalThis & {
-    clipboardData: {
-      setData: (type: 'Text', text: string) => {};
-    };
-  };
-
 const CopyToClipboardButton = (props: { messages: message[] }) => {
   const [showCompletion, setShowCompletion] = useState(false);
 
@@ -86,13 +78,7 @@ const copyToClipboard = (messages: message[]) => {
       string += `Them: ${message.message}\n`;
     }
   }
-
-  if (Byond.TRIDENT) {
-    const ie_window = window as IeWindow;
-    ie_window.clipboardData.setData('Text', string);
-  } else {
-    navigator.clipboard.writeText(string);
-  }
+  navigator.clipboard.writeText(string);
 };
 
 export const pda_messenger = (props) => {

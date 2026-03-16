@@ -17,7 +17,7 @@
 	set name = "Set Base Turf"
 	set desc = "Set the base turf for a z-level."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/choice = tgui_input_number(usr, "Which Z-level do you wish to set the base turf for?")
 	if(!choice)

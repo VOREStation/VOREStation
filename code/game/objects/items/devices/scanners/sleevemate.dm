@@ -1,4 +1,4 @@
-var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
+GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 
 //SleeveMate!
 /obj/item/sleevemate
@@ -23,6 +23,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	var/ooc_notes_maybes = null
 	var/ooc_notes_dislikes = null
 	var/ooc_notes_style = FALSE
+	var/soulcatcher_pref_flags = NONE
 
 	// Resleeving database this machine interacts with. Blank for default database
 	// Needs a matching /datum/transcore_db with key defined in code
@@ -52,6 +53,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	ooc_notes_maybes = M.ooc_notes_maybes
 	ooc_notes_style = M.ooc_notes_style
 	stored_mind = M.mind
+	soulcatcher_pref_flags = M.soulcatcher_pref_flags
 	M.ghostize()
 	stored_mind.current = null
 	update_icon()
@@ -65,6 +67,8 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	M.ooc_notes_favs = ooc_notes_favs
 	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_style = ooc_notes_style
+	M.soulcatcher_pref_flags = soulcatcher_pref_flags
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()
 
 
@@ -96,6 +100,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		to_chat(user,span_warning("Not a compatible subject to work with!"))
 
 /obj/item/sleevemate/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!stored_mind)
 		to_chat(user,span_warning("No stored mind in \the [src]."))
 		return
@@ -134,24 +141,30 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Body status
 	output += span_bold("Sleeve Status:") + " "
-	switch(H.stat)
-		if(CONSCIOUS)
-			output += "Alive<br>"
-		if(UNCONSCIOUS)
-			output += "Unconscious<br>"
-		if(DEAD)
-			output += span_warning("Deceased") + "<br>"
-		else
-			output += span_warning("Unknown") + "<br>"
+	if(H.status_flags & FAKEDEATH)
+		output += span_warning("Deceased") + "<br>"
+	else
+		switch(H.stat)
+			if(CONSCIOUS)
+				output += "Alive<br>"
+			if(UNCONSCIOUS)
+				output += "Unconscious<br>"
+			if(DEAD)
+				output += span_warning("Deceased") + "<br>"
+			else
+				output += span_warning("Unknown") + "<br>"
 
 	//Mind/body comparison
 	output += span_bold("Sleeve Pair:")
 	if(!H.ckey)
 		output += span_warning("No mind in that body") + " [stored_mind != null ? "\[<a href='byond://?src=\ref[src];target=\ref[H];mindupload=1'>Upload</a>\]" : null]<br>"
-	else if(H.mind && ckey(H.mind.key) != H.ckey)
-		output += span_warning("May not be correct body") + "<br>"
+
+	else if(H.mind && (is_changeling(H) || (HAS_TRAIT(H, UNIQUE_MINDSTRUCTURE) || (ckey(H.mind.key) != H.ckey))))
+		output += span_boldwarning("Incorrect mind-sleeve match or hiveminded neurological structure") + "<br>"
+
 	else if(H.mind && ckey(H.mind.key) == H.ckey)
 		output += "Appears to be correct mind in body<br>"
+
 	else
 		output += "Unable to perform comparison<br>"
 
@@ -192,7 +205,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		return
 
 	var/target_ref = href_list["target"]
-	var/mob/living/target = locate(target_ref) in mob_list
+	var/mob/living/target = locate(target_ref) in GLOB.mob_list
 	if(!target)
 		to_chat(usr,span_warning("Unable to operate on that target."))
 		return
@@ -214,7 +227,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			persist_nif_data(H)
 
 		usr.visible_message("[usr] begins scanning [target]'s mind.",span_notice("You begin scanning [target]'s mind."))
-		if(do_after(usr,8 SECONDS,target))
+		if(do_after(usr, 8 SECONDS, target))
 			our_db.m_backup(target.mind,nif,one_time = TRUE)
 			to_chat(usr,span_notice("Mind backed up!"))
 		else
@@ -230,7 +243,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		var/mob/living/carbon/human/H = target
 
 		usr.visible_message("[usr] begins scanning [target]'s body.",span_notice("You begin scanning [target]'s body."))
-		if(do_after(usr,8 SECONDS,target))
+		if(do_after(usr, 8 SECONDS, target))
 			var/datum/transhuman/body_record/BR = new()
 			BR.init_from_mob(H, TRUE, TRUE, database_key = db_key)
 			to_chat(usr,span_notice("Body scanned!"))
@@ -252,7 +265,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(target))
 
 			usr.visible_message(span_warning("[usr] begins downloading [target]'s mind!"),span_notice("You begin downloading [target]'s mind!"))
-			if(do_after(usr,35 SECONDS,target)) //This is powerful, yo.
+			if(do_after(usr, 35 SECONDS, target)) //This is powerful, yo.
 				if(!stored_mind && target.mind)
 					get_mind(target)
 					to_chat(usr,span_notice("Mind downloaded!"))
@@ -277,11 +290,15 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			return //Uninstalled it?
 
 		//Lazzzyyy.
-		if(!sleevemate_mob)
-			sleevemate_mob = new()
+		if(!GLOB.sleevemate_mob)
+			GLOB.sleevemate_mob = new()
 
-		put_mind(sleevemate_mob)
-		SC.catch_mob(sleevemate_mob)
+		if(!(soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE))
+			to_chat(usr,span_notice("[GLOB.sleevemate_mob] can't be transferred!"))
+			return
+
+		put_mind(GLOB.sleevemate_mob)
+		SC.catch_mob(GLOB.sleevemate_mob)
 		to_chat(usr,span_notice("Mind transferred into Soulcatcher!"))
 
 	if(href_list["mindupload"])
@@ -297,9 +314,13 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			if(H.resleeve_lock && stored_mind.loaded_from_ckey != H.resleeve_lock)
 				to_chat(usr,span_warning("\The [H] is protected from impersonation!"))
 				return
+			//Changeling bodies. Only changelings can be put in them.
+			if(H.changeling_locked && !is_changeling(stored_mind))
+				to_chat(usr,span_warning("\The [H] is too complex to put this mind into!"))
+				return
 
 		usr.visible_message(span_warning("[usr] begins uploading someone's mind into [target]!"),span_notice("You begin uploading a mind into [target]!"))
-		if(do_after(usr,35 SECONDS,target))
+		if(do_after(usr, 35 SECONDS, target))
 			if(!stored_mind)
 				to_chat(usr,span_warning("\The [src] no longer has a stored mind."))
 				return

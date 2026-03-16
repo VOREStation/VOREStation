@@ -1,4 +1,4 @@
-var/list/lunchables_lunches_ = list(/obj/item/reagent_containers/food/snacks/sandwich,
+GLOBAL_LIST_INIT(lunchables_lunches, list(/obj/item/reagent_containers/food/snacks/sandwich,
 								/obj/item/reagent_containers/food/snacks/slice/meatbread/filled,
 								/obj/item/reagent_containers/food/snacks/slice/tofubread/filled,
 								/obj/item/reagent_containers/food/snacks/slice/creamcheesebread/filled,
@@ -29,9 +29,10 @@ var/list/lunchables_lunches_ = list(/obj/item/reagent_containers/food/snacks/san
 								/obj/item/reagent_containers/food/snacks/packaged/sausageroll,
 								/obj/item/reagent_containers/food/snacks/packaged/pasty,
 								/obj/item/reagent_containers/food/snacks/packaged/scotchegg,
-								/obj/item/reagent_containers/food/snacks/packaged/porkpie)
+								/obj/item/reagent_containers/food/snacks/packaged/porkpie
+								))
 
-var/list/lunchables_snacks_ = list(/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
+GLOBAL_LIST_INIT(lunchables_snacks, list(/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
 								/obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly,
 								/obj/item/reagent_containers/food/snacks/muffin,
 								/obj/item/reagent_containers/food/snacks/popcorn,
@@ -83,9 +84,9 @@ var/list/lunchables_snacks_ = list(/obj/item/reagent_containers/food/snacks/donu
 								/obj/item/storage/box/winegum,
 								/obj/item/storage/box/custardcream,
 								/obj/item/storage/box/bourbon
-								)
+								))
 
-var/list/lunchables_drinks_ = list(/obj/item/reagent_containers/food/drinks/cans/cola,
+GLOBAL_LIST_INIT(lunchables_drinks, list(/obj/item/reagent_containers/food/drinks/cans/cola,
 								/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 								/obj/item/reagent_containers/food/drinks/cans/decaf_cola,
 								/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind,
@@ -113,10 +114,10 @@ var/list/lunchables_drinks_ = list(/obj/item/reagent_containers/food/drinks/cans
 								/obj/item/reagent_containers/food/drinks/cans/nukie_rose,
 								/obj/item/reagent_containers/food/drinks/cans/nukie_lemon,
 								/obj/item/reagent_containers/food/drinks/cans/nukie_fruit
-								)
+								))
 
 // This default list is a bit different, it contains items we don't want
-var/list/lunchables_drink_reagents_ = list(/datum/reagent/drink/nothing,
+GLOBAL_LIST_INIT(lunchables_drink_reagents, list(/datum/reagent/drink/nothing,
 										/datum/reagent/drink/doctor_delight,
 										/datum/reagent/drink/dry_ramen,
 										/datum/reagent/drink/hell_ramen,
@@ -130,11 +131,12 @@ var/list/lunchables_drink_reagents_ = list(/datum/reagent/drink/nothing,
 										/datum/reagent/drink/coffee/nukie/mega/fast,
 										/datum/reagent/drink/coffee/nukie/mega/high,
 										/datum/reagent/drink/coffee/nukie/mega/shrink,
-										/datum/reagent/drink/coffee/nukie/mega/grow)
+										/datum/reagent/drink/coffee/nukie/mega/grow
+										))
 
 
 // This default list is a bit different, it contains items we don't want
-var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,
+GLOBAL_LIST_INIT(lunchables_ethanol_reagents, list(/datum/reagent/ethanol/acid_spit,
 											/datum/reagent/ethanol/atomicbomb,
 											/datum/reagent/ethanol/beepsky_smash,
 											/datum/reagent/ethanol/coffee,
@@ -148,37 +150,38 @@ var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,
 											/datum/reagent/ethanol/toxins_special,
 											/datum/reagent/ethanol/voxdelight,
 											/datum/reagent/ethanol/soemmerfire,
-											/datum/reagent/ethanol/slimeshot)
+											/datum/reagent/ethanol/slimeshot
+											))
 
 /proc/lunchables_lunches()
-	if(!(lunchables_lunches_[lunchables_lunches_[1]]))
-		lunchables_lunches_ = init_lunchable_list(lunchables_lunches_)
-	return lunchables_lunches_
+	if(!(GLOB.lunchables_lunches[GLOB.lunchables_lunches[1]]))
+		GLOB.lunchables_lunches = init_lunchable_list(GLOB.lunchables_lunches)
+	return GLOB.lunchables_lunches
 
 /proc/lunchables_snacks()
-	if(!(lunchables_snacks_[lunchables_snacks_[1]]))
-		lunchables_snacks_ = init_lunchable_list(lunchables_snacks_)
-	return lunchables_snacks_
+	if(!(GLOB.lunchables_snacks[GLOB.lunchables_snacks[1]]))
+		GLOB.lunchables_snacks = init_lunchable_list(GLOB.lunchables_snacks)
+	return GLOB.lunchables_snacks
 
 /proc/lunchables_drinks()
-	if(!(lunchables_drinks_[lunchables_drinks_[1]]))
-		lunchables_drinks_ = init_lunchable_list(lunchables_drinks_)
-	return lunchables_drinks_
+	if(!(GLOB.lunchables_drinks[GLOB.lunchables_drinks[1]]))
+		GLOB.lunchables_drinks = init_lunchable_list(GLOB.lunchables_drinks)
+	return GLOB.lunchables_drinks
 
 /proc/lunchables_drink_reagents()
-	if(!(lunchables_drink_reagents_[lunchables_drink_reagents_[1]]))
-		lunchables_drink_reagents_ = init_lunchable_reagent_list(lunchables_drink_reagents_, /datum/reagent/drink)
-	return lunchables_drink_reagents_
+	if(!(GLOB.lunchables_drink_reagents[GLOB.lunchables_drink_reagents[1]]))
+		GLOB.lunchables_drink_reagents = init_lunchable_reagent_list(GLOB.lunchables_drink_reagents, /datum/reagent/drink)
+	return GLOB.lunchables_drink_reagents
 
 /proc/lunchables_ethanol_reagents()
-	if(!(lunchables_ethanol_reagents_[lunchables_ethanol_reagents_[1]]))
-		lunchables_ethanol_reagents_ = init_lunchable_reagent_list(lunchables_ethanol_reagents_, /datum/reagent/ethanol)
-	return lunchables_ethanol_reagents_
+	if(!(GLOB.lunchables_ethanol_reagents[GLOB.lunchables_ethanol_reagents[1]]))
+		GLOB.lunchables_ethanol_reagents = init_lunchable_reagent_list(GLOB.lunchables_ethanol_reagents, /datum/reagent/ethanol)
+	return GLOB.lunchables_ethanol_reagents
 
 /proc/init_lunchable_list(var/list/lunches)
 	. = list()
 	for(var/obj/O as anything in lunches)
-		var/name = replacetext(initial(O.name), new/regex("\improper *", "g"), "")
+		var/name = strip_improper(initial(O.name))
 		.[name] = O
 	return sortAssoc(.)
 

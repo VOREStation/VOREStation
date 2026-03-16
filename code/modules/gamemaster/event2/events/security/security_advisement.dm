@@ -83,11 +83,11 @@
 			end_weights -= victim_chosen
 
 	if(!victim)
-		log_debug("Security Screening event failed to find anyone to screen. Aborting.")
+		log_game("Security Screening event failed to find anyone to screen. Aborting.")
 		abort()
 		return
 
 /datum/event2/event/security_screening/announce()
-	command_announcement.Announce("[pick("A nearby Navy vessel", "A Solar official", "A Vir-Gov official", "A NanoTrasen board director")] has \
+	GLOB.command_announcement.Announce("[pick("A nearby Navy vessel", "A Solar official", "A Vir-Gov official", "A NanoTrasen board director")] has \
 	requested the screening of [pick("every other", "every", "suspicious", "willing")] [victim] \
 	personnel onboard \the [location_name()].", "Security Advisement")

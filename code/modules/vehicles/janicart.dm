@@ -80,8 +80,6 @@
 /obj/vehicle/train/engine/janicart/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
-		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 		. += "This [callme] contains [reagents.total_volume] unit\s of water!"
 		if(mybag)
 			. += "\A [mybag] is hanging on the [callme]."
@@ -107,7 +105,7 @@
 	..()
 	cut_overlays()
 	if(!open)
-		var/image/O = image(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "pussywagon_overlay", dir = src.dir)
+		var/image/O = image(icon = 'icons/obj/vehicles.dmi', icon_state = "pussywagon_overlay", dir = src.dir)
 		O.layer = FLY_LAYER
 		O.plane = MOB_PLANE
 		add_overlay(O)

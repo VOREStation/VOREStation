@@ -25,7 +25,7 @@
 
 /datum/gear/fluff/collar/New()
 	..()
-	gear_tweaks += gear_tweak_collar_tag
+	gear_tweaks += GLOB.gear_tweak_collar_tag
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
@@ -229,6 +229,12 @@
 	ckeywhitelist = list("bricker98")
 	character_name = list("Nettie Stough")
 
+/datum/gear/fluff/tally_doll
+	path = /obj/item/remote_scene_tool/tally_necklace
+	display_name = "Custom Collar"
+	ckeywhitelist = list("bricker98")
+	character_name = list("Talenya Lapushkina")
+
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
 	display_name = "Xin's Soviet Uniform"
@@ -343,6 +349,13 @@
 	slot = "implant"
 	ckeywhitelist = list("coolcrow420")
 	character_name = list("M41L")
+
+/datum/gear/fluff/clara_flask
+	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
+	display_name = "Clara's Vacuum Flask"
+	ckeywhitelist = list("claracow")
+	character_name = list("Clara Mali")
+	cost = 1
 
 //  D CKEYS
 /datum/gear/fluff/Aku_briefcase
@@ -1007,13 +1020,6 @@
 	character_name = list("Tiemli Kroto")
 	allowed_roles = list(JOB_ROBOTICIST)
 
-/datum/gear/fluff/clara_flask
-	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
-	display_name = "Clara's Vacuum Flask"
-	ckeywhitelist = list("rboys2")
-	character_name = list("Clara Mali")
-	cost = 1
-
 /datum/gear/fluff/luna_sci_medal
 	path = /obj/item/clothing/accessory/medal/nobel_science
 	display_name = "LUNA's Nobel Science Award"
@@ -1043,6 +1049,12 @@
 	display_name = "Nikki's Witchy Outfit"
 	ckeywhitelist = list("ryumi")
 	character_name = list("Nikki Yumeno")
+
+/datum/gear/fluff/holly_capsule
+	path = /obj/item/survivalcapsule/holly
+	display_name = "Recreational Shelter Capsule"
+	ckeywhitelist = list("ryumi")
+	character_name = list("Holly")
 
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
@@ -1325,6 +1337,12 @@
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
 
+/datum/gear/fluff/flute_tief
+	path = /obj/item/instrument/recorder/fluff_tief
+	display_name = "flute"
+	ckeywhitelist = list("tief")
+	character_name = list("Belphi")
+
 /datum/gear/fluff/shadow_laptop
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
 	display_name = "Shadow's Laptop"
@@ -1487,7 +1505,7 @@
 
 /datum/gear/fluff/dessa_hat/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/fluff/casey_glasses
 	path = /obj/item/clothing/glasses/big_round
@@ -1578,6 +1596,20 @@
 	display_name = "engraved d6"
 	ckeywhitelist = list("yeehawguvnah")
 	character_name = list("Cephyra")
+
+/datum/gear/fluff/names_hat
+	path = /obj/item/clothing/head/fluff/names_pizza
+	display_name = "pizza delivery hat"
+	slot = slot_head
+	ckeywhitelist = list("yepthatsmyname")
+	character_name = list("Mothza Aurella")
+
+/datum/gear/fluff/names_uniform
+	path = /obj/item/clothing/under/names_pizza
+	display_name = "pizza delivery uniform"
+	slot = slot_w_uniform
+	ckeywhitelist = list("yepthatsmyname")
+	character_name = list("Mothza Aurella")
 
 //  Z CKEYS
 /datum/gear/fluff/tachika_medal

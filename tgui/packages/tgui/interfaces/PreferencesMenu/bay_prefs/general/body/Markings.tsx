@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import {
   Box,
   Button,
@@ -11,19 +12,18 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
-
 import {
   ColorizedImage,
   ColorizedImageButton,
   getImage,
 } from '../../helper_components';
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
-  type MarkingStyle,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
+  MarkingStyle,
 } from '../data';
 import { BodyPopup } from '../SubtabBody';
 
@@ -61,7 +61,6 @@ export const MarkingsPopup = (props: {
       title="Markings"
       fill
       scrollable
-      mt={1}
       buttons={
         <>
           <Button.Checkbox
@@ -116,9 +115,12 @@ export const MarkingsPopup = (props: {
                     postRender={async (ctx) => {
                       if (showHuman) {
                         ctx.globalCompositeOperation = 'destination-over';
+                        const iconRef = getIconFromRefMap(
+                          'icons/mob/human.dmi',
+                        );
+                        if (!iconRef) return;
                         const background = await getImage(
-                          Byond.iconRefMap['icons/mob/human.dmi'] +
-                            '?state=body_m_s&dir=2',
+                          `${iconRef}?state=body_m_s&dir=2`,
                         );
                         ctx.drawImage(background, 0, 0, 64, 64);
                       }
@@ -185,7 +187,7 @@ export const ExtraWindow = (props: {
     >
       <Section
         fill
-        title={name + ' Options'}
+        title={`${name} Options`}
         buttons={
           <Button icon="times" color="bad" onClick={() => setShow('')}>
             Close
@@ -362,9 +364,10 @@ export const AddMarkingWindow = (props: {
                 if (showHuman) {
                   ctx.save();
                   ctx.globalCompositeOperation = 'destination-over';
+                  const iconRef = getIconFromRefMap('icons/mob/human.dmi');
+                  if (!iconRef) return;
                   const background = await getImage(
-                    Byond.iconRefMap['icons/mob/human.dmi'] +
-                      '?state=body_m_s&dir=2',
+                    `${iconRef}?state=body_m_s&dir=2`,
                   );
                   ctx.drawImage(background, 0, 0, 64, 64);
                   ctx.restore();

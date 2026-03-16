@@ -32,15 +32,15 @@
 	initialize_directions = get_initialize_directions_trinary(dir, mirrored, tee)
 
 /obj/machinery/atmospherics/trinary/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		var/list/node_connects = get_node_connect_dirs()
-		add_underlay(T, node1, node_connects[1])
-		add_underlay(T, node2, node_connects[2])
-		add_underlay(T, node3, node_connects[3])
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	var/list/node_connects = get_node_connect_dirs()
+	add_underlay(T, node1, node_connects[1])
+	add_underlay(T, node2, node_connects[2])
+	add_underlay(T, node3, node_connects[3])
 
 /obj/machinery/atmospherics/trinary/hide(var/i)
 	update_underlays()
@@ -60,7 +60,7 @@
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 40 * W.toolspeed, target = src))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \

@@ -54,7 +54,7 @@ export const selectCameras = (
   searchText: string = '',
   networkFilter: string = '',
 ): camera[] => {
-  const testSearch = createSearch(searchText, (camera: camera) => camera.name);
+  const testSearch = createSearch<camera>(searchText, (camera) => camera.name);
 
   return cameras
     .filter((camera) => notEmpty(camera?.name))
@@ -96,7 +96,7 @@ export const CameraConsole = (props) => {
       <div className="CameraConsole__right">
         <div className="CameraConsole__toolbar">
           <b>Camera: </b>
-          {(activeCamera && activeCamera.name) || '—'}
+          {activeCamera?.name || '—'}
         </div>
         <div className="CameraConsole__toolbarRight">
           SEL:

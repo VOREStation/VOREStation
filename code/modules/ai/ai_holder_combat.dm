@@ -310,7 +310,14 @@
 
 		// Kill common obstacle in the way like tables.
 		var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
-		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
+		var/list/common_obstacles = list(/obj/structure/window,
+											/obj/structure/closet,
+											/obj/structure/table,
+											/obj/structure/grille,
+											/obj/structure/barricade,
+											/obj/structure/girder,
+										)
+		if(is_type_in_list(obstacle, common_obstacles))
 			ai_log("destroy_surroundings() : Attacking generic structure.", AI_LOG_INFO)
 			return melee_attack(obstacle)
 

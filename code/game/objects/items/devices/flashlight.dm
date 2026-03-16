@@ -1,3 +1,4 @@
+#define CAN_USE "can_use"
 /*
  * Contains:
  *		Flashlights
@@ -33,8 +34,12 @@
 	var/cell_type = /obj/item/cell/device
 	var/power_usage = 1
 	var/power_use = 1
+	var/flickering = FALSE
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
+
+	///Var for attack_self chain
+	var/special_handling = FALSE
 
 /obj/item/flashlight/Initialize(mapload)
 	. = ..()
@@ -46,7 +51,7 @@
 
 /obj/item/flashlight/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	qdel_null(cell)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/item/flashlight/get_cell()
@@ -88,33 +93,36 @@
 			. += "It appears to have a high amount of power remaining."
 
 /obj/item/flashlight/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
+	if(flickering)
+		to_chat(user, "The light is currently malfunctioning and you're unable to adjust it!") //To prevent some lighting anomalities.
+		return FALSE
 	if(power_use)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalities.
-			return 0
+			return FALSE
 		if(!cell || cell.charge == 0)
 			to_chat(user, "You flick the switch on [src], but nothing happens.")
-			return 0
+			return FALSE
 	on = !on
 	if(on && power_use)
 		START_PROCESSING(SSobj, src)
 	else if(power_use)
 		STOP_PROCESSING(SSobj, src)
-	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3) // VOREStation Edit
+	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
 	update_brightness()
 	user.update_mob_action_buttons()
-	return 1
-
-/obj/item/flashlight/emp_act(severity)
-	for(var/obj/O in contents)
-		O.emp_act(severity)
-	..()
+	return CAN_USE
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
 
-		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
+		if(CLUMSY_FAIL_CHANCE(user))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
@@ -187,7 +195,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
@@ -198,7 +206,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -239,6 +247,48 @@
 			return
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
+
+/obj/item/flashlight/proc/flicker(var/amount = rand(10, 20), var/flicker_color, var/forced)
+	if(flickering)
+		return
+	if(!flicker_color)
+		flicker_color = light_color //If we don't have a flicker color, use our current light color.
+	if((!power_use && !forced) || (!power_usage && !forced))
+		return //We don't use power / have no power, so we're probably a flare or dead.
+	flickering = TRUE
+	var/original_color = light_color
+	var/original_on = on
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting) //BEWARE, ESOTERIC BULLSHIT HERE.
+	if(flicker_color && light_color != flicker_color)
+		set_light_color(flicker_color)
+		OL.directional_atom.color = flicker_color
+	do_flicker(amount, flicker_color, original_color, original_on, OL, 1)
+
+
+/// Args:
+/// amount is how many timer to flicker.
+/// flicker_color is what to set the flashlight to when we flicker.
+/// original_color is what our original color was prior to flickering
+/// original_on is if we were originally on or not.
+/// OL is our overlay for lighting.
+/// ticker is how many times we have flickered so far.
+/obj/item/flashlight/proc/do_flicker(var/amount = rand(10, 20), var/flicker_color, var/original_color, var/original_on, var/datum/component/overlay_lighting/OL, var/ticker)
+	if(ticker >= amount) //We have flickered enough times. Terminate the cycle.
+		finish_flicker(original_color, original_on, OL)
+		return
+	on = !on
+	update_brightness()
+	if(!on) // Only play when the light turns off.
+		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
+	addtimer(CALLBACK(src, PROC_REF(do_flicker), amount, flicker_color, original_color, original_on, OL, ++ticker), rand(5,15), TIMER_DELETE_ME)
+
+/obj/item/flashlight/proc/finish_flicker(var/original_color, var/original_on, var/datum/component/overlay_lighting/OL)
+	set_light_color(original_color)
+	OL.directional_atom?.color = original_color
+	on = original_on
+	flickering = FALSE
+	update_brightness()
+
 
 /obj/item/flashlight/pen
 	name = "penlight"
@@ -389,27 +439,27 @@
 	update_brightness()
 
 /obj/item/flashlight/flare/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	// Usual checks
 	if(!fuel)
 		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(on)
 		return
-
-	. = ..()
 	// All good, turn it on.
-	if(.)
+	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
-		src.force = on_damage
-		src.damtype = "fire"
+		force = on_damage
+		damtype = BURN
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_brightness()
 	force = on_damage
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 	return 1
 
@@ -447,15 +497,16 @@
 	update_brightness()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
-
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!fuel)
 		to_chat(user, span_notice("The glowstick has already been turned on."))
 		return
 	if(on)
 		return
 
-	. = ..()
-	if(.)
+	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] cracks and shakes \the [name]."), span_notice("You crack and shake \the [src], turning it on!"))
 		START_PROCESSING(SSobj, src)
 
@@ -496,3 +547,5 @@
 	light_range = 8
 	light_power = 0.1
 	light_color = "#49F37C"
+
+#undef CAN_USE

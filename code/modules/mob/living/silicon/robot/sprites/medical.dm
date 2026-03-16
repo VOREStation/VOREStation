@@ -168,8 +168,8 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate")
-	icon_x = 32
-	pixel_x = 0
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/medical/dullahanmedv3
 	name = "Dullahan medical v3"
@@ -179,6 +179,8 @@
 	has_eye_light_sprites = TRUE
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("decals")
 	icon_x = 64
@@ -236,10 +238,10 @@
 	sprite_icon = 'icons/mob/robot/surgical_wide.dmi'
 
 /datum/robot_sprite/dogborg/surgical/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
@@ -267,6 +269,7 @@
 /datum/robot_sprite/dogborg/surgical/drake
 	name = "Drake - Surgical"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 // Tall sprites
 
@@ -275,10 +278,10 @@
 	sprite_icon = 'icons/mob/robot/surgical_large.dmi'
 
 /datum/robot_sprite/dogborg/tall/surgical/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
@@ -360,10 +363,10 @@
 		return ..()
 */
 /datum/robot_sprite/dogborg/crisis/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
@@ -405,6 +408,7 @@
 /datum/robot_sprite/dogborg/crisis/drake
 	name = "Drake - Crisis"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 // Tall sprites
 
@@ -413,11 +417,10 @@
 	sprite_icon = 'icons/mob/robot/crisis_large.dmi'
 
 /datum/robot_sprite/dogborg/tall/crisis/do_equipment_glamour(var/obj/item/robot_module/module)
-	if(!has_custom_equipment_sprites)
-		return
-
 	..()
 
+	if(!has_custom_equipment_sprites)
+		return
 	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
 		SP.name = "paws of life"
@@ -476,4 +479,5 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
 /datum/robot_sprite/dogborg/crisis/smolraptor/alt
+	name = "Small Raptor Alt"
 	sprite_icon_state = "smolraptor_alt"

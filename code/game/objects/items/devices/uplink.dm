@@ -63,7 +63,7 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/item/uplink/hidden/next_offer()
-	discount_item = default_uplink_selection.get_random_item(INFINITY)
+	discount_item = GLOB.default_uplink_selection.get_random_item(INFINITY)
 	discount_amount = pick(90;0.9, 80;0.8, 70;0.7, 60;0.6, 50;0.5, 40;0.4, 30;0.3, 20;0.2, 10;0.1)
 	next_offer_time = world.time + offer_time
 	SStgui.update_uis(src)
@@ -168,7 +168,7 @@
 	var/list/data = ..()
 
 	data["categories"] = list()
-	for(var/datum/uplink_category/category in uplink.categories)
+	for(var/datum/uplink_category/category in GLOB.uplink.categories)
 		var/list/cat = list(
 				"name" = category.name,
 				"items" = (category == selected_cat ? list() : null)
@@ -196,7 +196,7 @@
 
 	switch(action)
 		if("buy")
-			var/datum/uplink_item/UI = (locate(params["ref"]) in uplink.items)
+			var/datum/uplink_item/UI = (locate(params["ref"]) in GLOB.uplink.items)
 			UI.buy(src, ui.user)
 			return TRUE
 		if("lock")
@@ -217,25 +217,38 @@
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
+
+/obj/item/radio/uplink
+	uplink = TRUE
+
 /obj/item/radio/uplink/Initialize(mapload)
 	. = ..()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
-/obj/item/radio/uplink/attack_self(mob/user as mob)
+/obj/item/radio/uplink/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
+
+/obj/item/multitool/uplink
+	uplink = TRUE
 
 /obj/item/multitool/uplink/Initialize(mapload)
 	. = ..()
 	hidden_uplink = new(src)
 
-/obj/item/multitool/uplink/attack_self(mob/user as mob)
+/obj/item/multitool/uplink/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
 /obj/item/radio/headset/uplink
-	traitor_frequency = 1445
+	traitor_frequency = BEACON_FREQ
 
 /obj/item/radio/headset/uplink/Initialize(mapload)
 	. = ..()

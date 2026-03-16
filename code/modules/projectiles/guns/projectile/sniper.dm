@@ -20,9 +20,9 @@
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
 	accuracy = -75
 	scoped_accuracy = 75
-	ignore_visor_zoom_restriction = TRUE	// Ignore the restriction on vision modifiers when using this gun's scope.
 	one_handed_penalty = 90
 	var/bolt_open = 0
+	special_weapon_handling = TRUE
 
 /obj/item/gun/projectile/heavysniper/update_icon()
 	if(bolt_open)
@@ -30,7 +30,10 @@
 	else
 		icon_state = "heavysniper"
 
-/obj/item/gun/projectile/heavysniper/attack_self(mob/user as mob)
+/obj/item/gun/projectile/heavysniper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)

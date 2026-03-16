@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { getIconFromRefMap } from 'tgui/events/handlers/assets';
 import { Box, Icon } from 'tgui-core/components';
 
 export const getImage = async (url: string): Promise<HTMLImageElement> => {
@@ -6,6 +7,9 @@ export const getImage = async (url: string): Promise<HTMLImageElement> => {
     const image = new Image();
     image.onload = () => {
       resolve(image);
+    };
+    image.onerror = (event) => {
+      reject(event);
     };
     image.src = url;
   });
@@ -21,39 +25,54 @@ export const CanvasBackedImage = (props: {
 }) => {
   const { dimension } = props;
   const [bitmap, setBitmap] = useState<string>('');
+  const [loadFailed, setLoadFailed] = useState(false);
+  const bitmapRef = useRef<string>('');
 
   useEffect(() => {
-    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(
-      dimension,
-      dimension,
-    );
-
+    const offscreenCanvas = new OffscreenCanvas(dimension, dimension);
     const ctx = offscreenCanvas.getContext('2d');
-    if (!ctx) {
-      return;
-    }
+    if (!ctx) return;
+
+    let active = true;
 
     setBitmap('');
+    bitmapRef.current = '';
 
     const drawImage = async () => {
-      // Render
       await props.render(offscreenCanvas, ctx);
+      if (!active) return;
 
-      // Convert to a blob and put in our <img> tag
-      const bitmap = await offscreenCanvas.convertToBlob();
-      setBitmap(URL.createObjectURL(bitmap));
+      const blob = await offscreenCanvas.convertToBlob();
+      const url = URL.createObjectURL(blob);
+
+      setBitmap(url);
+      bitmapRef.current = url;
     };
 
     drawImage();
+    setLoadFailed(false);
 
     return () => {
-      if (bitmap !== '') {
-        URL.revokeObjectURL(bitmap);
+      active = false;
+      if (bitmapRef.current) {
+        URL.revokeObjectURL(bitmapRef.current);
+        bitmapRef.current = '';
       }
     };
   }, [props.render]);
 
-  return <img src={bitmap} width={dimension} height={dimension} />;
+  return (
+    <img
+      src={bitmap}
+      width={dimension}
+      height={dimension}
+      onError={() => setLoadFailed(true)}
+      style={{
+        visibility: bitmap && !loadFailed ? 'visible' : 'hidden',
+      }}
+      draggable={false}
+    />
+  );
 };
 
 export const ColorizedImage = (props: {
@@ -64,7 +83,7 @@ export const ColorizedImage = (props: {
 }) => {
   const { icon, iconState, color, fillLevel = 1 } = props;
 
-  const iconRef = icon ? Byond.iconRefMap?.[icon] : null;
+  const iconRef = icon ? getIconFromRefMap(icon) : null;
 
   const iconSize = 64;
   const realFill = iconSize * (1 - fillLevel);

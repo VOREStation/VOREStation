@@ -40,12 +40,12 @@
 	icon = 'icons/turf/outdoors.dmi'
 	name = "grass"
 	icon_state = "grass0"
-	initial_flooring = /decl/flooring/grass/outdoors
+	initial_flooring = /datum/decl/flooring/grass/outdoors
 
 /turf/simulated/floor/smole/desert
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
-	initial_flooring = /decl/flooring/sand/desert
+	initial_flooring = /datum/decl/flooring/sand/desert
 
 /turf/simulated/floor/smole/megablocks
 	name = "block floor"
@@ -113,9 +113,13 @@
 	color = "#ffffff"
 	density = FALSE
 
+/obj/structure/smoletrack/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rotatable)
+
 /obj/structure/smoletrack/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -124,29 +128,15 @@
 			new /obj/item/stack/material/smolebricks(F)
 		qdel(src)
 
-//rotates piece
-/obj/structure/smoletrack/verb/rotate_clockwise()
-	set name = "Rotate Road Clockwise"
-	set category = "Object"
-	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-	src.set_dir(turn(src.dir, 270))
-
-/obj/structure/smoletrack/verb/rotate_counterclockwise()
-	set name = "Rotate Road Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-	src.set_dir(turn(src.dir, 90))
+/obj/structure/smoletrack/ghosts_can_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
 //color roads
 /obj/structure/smoletrack/verb/colorpieces()
 	set name = "Use Color Pieces"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	var/new_color = tgui_color_picker(usr, "Please select color.", "Paint Color", color)
 	color = new_color
@@ -158,7 +148,7 @@
 	set name = "Take Road Apart"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	var/turf/simulated/floor/F = get_turf(src)
@@ -212,7 +202,7 @@
 //makes it so buildings can be dismaintaled or GodZilla style attacked
 /obj/structure/smolebuilding/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -223,7 +213,7 @@
 
 	else if (user.a_intent == I_HURT)
 
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 
 		take_damage()
@@ -275,7 +265,7 @@
 //get material from ruins
 /obj/structure/smoleruins/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
+		if(HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolelargeunbuild.ogg', 50, 1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -306,7 +296,7 @@
 	set name = "Use Color Pieces"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	var/new_color = tgui_color_picker(usr, "Please select color.", "Paint Color", color)
 	color = new_color
@@ -317,7 +307,7 @@
 	set name = "Take Building Apart"
 	set category = "Object"
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+	if(HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 	playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	if(!isnull(loc))
@@ -407,15 +397,7 @@
 	icon_state = "tether_trash"
 	name = "tether"
 	desc = "Its a tiny bit of plastic in the shape of the tether. There seems to be a small button on top."
-
-/obj/item/bikehorn/tinytether/attack_self(mob/user as mob)
-	if(spam_flag == 0)
-		spam_flag = 1
-		playsound(src, 'sound/items/tinytether.ogg', 30, 1, volume_channel = VOLUME_CHANNEL_MASTER)
-		src.add_fingerprint(user)
-		spawn(20)
-			spam_flag = 0
-	return
+	honk_sound = 'sound/items/tinytether.ogg'
 
 /obj/item/reagent_containers/food/snacks/snackplanet/moon
 	name = "moon"

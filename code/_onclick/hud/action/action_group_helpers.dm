@@ -1,5 +1,5 @@
 /// Generates visual landings for all groups that the button is not a memeber of
-/datum/hud/proc/generate_landings(obj/screen/movable/action_button/button)
+/datum/hud/proc/generate_landings(atom/movable/screen/movable/action_button/button)
 	listed_actions.generate_landing()
 	palette_actions.generate_landing()
 
@@ -23,7 +23,7 @@
 		return
 	listed_actions.check_against_view()
 	palette_actions.check_against_view()
-	for(var/obj/screen/movable/action_button/floating_button as anything in floating_actions)
+	for(var/atom/movable/screen/movable/action_button/floating_button as anything in floating_actions)
 		var/list/current_offsets = screen_loc_to_offset(floating_button.screen_loc)
 		// We set the view arg here, so the output will be properly hemm'd in by our new view
 		floating_button.screen_loc = offset_to_screen_loc(current_offsets[1], current_offsets[2], view = our_view)
@@ -34,7 +34,7 @@
 	palette_actions = new(src)
 	floating_actions = list()
 	for(var/datum/action/action as anything in mymob.actions)
-		var/obj/screen/movable/action_button/button = action.viewers[src]
+		var/atom/movable/screen/movable/action_button/button = action.viewers[src]
 		if(!button)
 			action.ShowTo(mymob)
 			button = action.viewers[src]

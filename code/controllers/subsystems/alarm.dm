@@ -1,23 +1,16 @@
-
-// We manually initialize the alarm handlers instead of looping over all existing types
-// to make it possible to write: camera_alarm.triggerAlarm() rather than SSalarm.managers[datum/alarm_handler/camera].triggerAlarm() or a variant thereof.
-/var/global/datum/alarm_handler/atmosphere/atmosphere_alarm	= new()
-/var/global/datum/alarm_handler/camera/camera_alarm			= new()
-/var/global/datum/alarm_handler/fire/fire_alarm				= new()
-/var/global/datum/alarm_handler/motion/motion_alarm			= new()
-/var/global/datum/alarm_handler/power/power_alarm			= new()
-
 SUBSYSTEM_DEF(alarm)
 	name = "Alarm"
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_ALARM
-	init_order = INIT_ORDER_ALARM
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 	var/list/datum/alarm/all_handlers
 	var/tmp/list/currentrun = null
 	var/static/list/active_alarm_cache = list()
 
 /datum/controller/subsystem/alarm/Initialize()
-	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
+	all_handlers = list(GLOB.atmosphere_alarm, GLOB.camera_alarm, GLOB.fire_alarm, GLOB.motion_alarm, GLOB.power_alarm)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/alarm/fire(resumed = FALSE)
@@ -26,8 +19,8 @@ SUBSYSTEM_DEF(alarm)
 		active_alarm_cache.Cut()
 
 	var/list/currentrun = src.currentrun // Cache for sanic speed
-	while (currentrun.len)
-		var/datum/alarm_handler/AH = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/datum/alarm_handler/AH = currentrun[length(currentrun)]
 		currentrun.len--
 		AH.process()
 		active_alarm_cache += AH.alarms
@@ -39,7 +32,7 @@ SUBSYSTEM_DEF(alarm)
 	return active_alarm_cache.Copy()
 
 /datum/controller/subsystem/alarm/proc/number_of_active_alarms()
-	return active_alarm_cache.len
+	return length(active_alarm_cache)
 
 /datum/controller/subsystem/alarm/stat_entry(msg)
 	msg = "[number_of_active_alarms()] alarm\s"

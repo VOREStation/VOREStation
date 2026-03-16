@@ -29,7 +29,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
 /obj/effect/fancy_shuttle/Initialize(mapload) // has to be very early so others can grab it
 	. = ..()
 	if(!fancy_shuttle_tag)
-		error("Fancy shuttle with no tag at [x],[y],[z]! Type is: [type]")
+		log_mapping("## ERROR Fancy shuttle with no tag at [x],[y],[z]! Type is: [type]")
 		return INITIALIZE_HINT_QDEL
 	split_icon = icon(split_file, null, dir)
 	GLOB.fancy_shuttles[fancy_shuttle_tag] = src
@@ -131,7 +131,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
 	if(fancy_shuttle_tag) // after a shuttle jump it won't be set anymore, but the shuttle jump proc will set our icon and state
 		var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
 		if(!F)
-			warning("Fancy shuttle wall at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
+			WARNING("Fancy shuttle wall at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
 			return
 		icon = F.split_icon
 		icon_state = "walls [x - F.x],[y - F.y]"
@@ -165,7 +165,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
 /obj/effect/floor_decal/fancy_shuttle/Initialize(mapload)
 	var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
 	if(!F)
-		warning("Fancy shuttle floor decal at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
+		WARNING("Fancy shuttle floor decal at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
 		return INITIALIZE_HINT_QDEL
 	icon = F.split_icon
 	icon_file = F.split_file
@@ -208,7 +208,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
 	if(fancy_shuttle_tag) // after a shuttle jump it won't be set anymore, but the shuttle jump proc will set our icon and state
 		var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
 		if(!F)
-			warning("Fancy shuttle wall at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
+			WARNING("Fancy shuttle wall at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
 			return
 		icon = F.split_icon
 		icon_state = "walls [x - F.x],[y - F.y]"

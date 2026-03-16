@@ -3,7 +3,7 @@
 
 // proc to find out in how much pain the mob is at the moment
 /mob/living/carbon/proc/updateshock()
-	if (!can_feel_pain())
+	if (!can_feel_pain() && !synth_cosmetic_pain)
 		src.traumatic_shock = 0
 		return 0
 
@@ -22,6 +22,8 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/obj/item/organ/external/organ in M.organs)
+			if(!organ.organ_can_feel_pain())
+				continue
 			if(organ.is_broken() || organ.open)
 				src.traumatic_shock += 30
 			else if(organ.is_dislocated())

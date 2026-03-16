@@ -29,6 +29,9 @@
 	..()
 
 /obj/item/chameleon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	toggle(user)
 
 /obj/item/chameleon/afterattack(atom/target, mob/user, proximity)
@@ -87,16 +90,14 @@
 
 /obj/item/chameleon/proc/eject_all()
 	for(var/atom/movable/A in active_dummy)
-		A.loc = active_dummy.loc
-		if(ismob(A))
-			var/mob/M = A
-			M.reset_view(null)
+		A.forceMove(get_turf(active_dummy))
 
 /obj/effect/dummy/chameleon
 	name = ""
 	desc = ""
 	density = FALSE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	var/can_move = 1
 	var/obj/item/chameleon/master = null
 
@@ -107,7 +108,7 @@
 	icon_state = new_iconstate
 	overlays = new_overlays
 	set_dir(O.dir)
-	M.loc = src
+	M.forceMove(src)
 	master = C
 	master.active_dummy = src
 

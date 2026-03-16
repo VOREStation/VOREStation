@@ -41,8 +41,11 @@
 	. = ..()
 	update_icon()
 
-/obj/item/melee/umbrella/attack_self()
-	src.toggle_umbrella()
+/obj/item/melee/umbrella/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	toggle_umbrella()
 
 /obj/item/melee/umbrella/proc/toggle_umbrella()
 	open = !open
@@ -95,4 +98,4 @@
 	new_voice.name = "cursed sword"			//Cursed swords shouldn't be known characters.
 	new_voice.real_name = "cursed sword"
 	voice_mobs.Add(new_voice)
-	listening_objects |= src
+	GLOB.listening_objects |= src

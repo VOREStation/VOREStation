@@ -20,7 +20,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	response_harm   = "kicks"
 	attacktext = list("pecked")
 
-	organ_names = /decl/mob_organ_names/chicken
+	organ_names = /datum/decl/mob_organ_names/chicken
 
 	has_langs = list(LANGUAGE_ANIMAL)
 
@@ -144,12 +144,10 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	if(!stat)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-		//VOREStation Edit Begin
 			var/mob/living/simple_mob/animal/passive/chicken/C = new (src.loc)
 			C.ghostjoin = 1
 			C.ghostjoin_icon()
-			active_ghost_pods |= C
-		//VOREStation Edit End
+			GLOB.active_ghost_pods += C
 			qdel(src)
 
 // Say Lists
@@ -163,5 +161,5 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	emote_hear = list("cheeps")
 	emote_see = list("pecks at the ground","flaps its tiny wings")
 
-/decl/mob_organ_names/chicken
+/datum/decl/mob_organ_names/chicken
 	hit_zones = list("head", "body", "left wing", "right wing", "left leg", "right leg", "tendies")

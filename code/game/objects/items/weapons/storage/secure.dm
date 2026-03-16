@@ -27,6 +27,7 @@
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = ITEMSIZE_SMALL * 7
 	use_sound = 'sound/items/storage/briefcase.ogg'
+	special_handling = TRUE
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
@@ -44,7 +45,7 @@
 			return
 
 		if (W.has_tool_quality(TOOL_SCREWDRIVER))
-			if (do_after(user, 20 * W.toolspeed))
+			if (do_after(user, 2 SECONDS * W.toolspeed, target = src))
 				src.open =! src.open
 				playsound(src, W.usesound, 50, 1)
 				user.show_message(span_notice("You [src.open ? "open" : "close"] the service panel."))
@@ -52,7 +53,7 @@
 		if (istype(W, /obj/item/multitool) && (src.open == 1)&& (!src.l_hacking))
 			user.show_message(span_notice("Now attempting to reset internal memory, please hold."), 1)
 			src.l_hacking = 1
-			if (do_after(user, 100))
+			if (do_after(user, 10 SECONDS, target = src))
 				if (prob(40))
 					src.l_setshort = 1
 					src.l_set = 0
@@ -80,7 +81,7 @@
 		return
 	..()
 
-/obj/item/storage/secure/AltClick(mob/user as mob)
+/obj/item/storage/secure/click_alt(mob/user as mob)
 	if (isliving(user) && Adjacent(user) && (src.locked == 1))
 		to_chat(user, span_warning("[src] is locked and cannot be opened!"))
 	else if (isliving(user) && Adjacent(user) && (!src.locked))
@@ -92,7 +93,10 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/storage/secure/attack_self(mob/user as mob)
+/obj/item/storage/secure/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	tgui_interact(user)
 
 /obj/item/storage/secure/tgui_interact(mob/user, datum/tgui/ui = null)
@@ -197,6 +201,7 @@
 	force = 8.0
 	w_class = ITEMSIZE_NO_CONTAINER
 	max_w_class = ITEMSIZE_LARGE // This was 8 previously...
+	flags = WALL_ITEM
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)

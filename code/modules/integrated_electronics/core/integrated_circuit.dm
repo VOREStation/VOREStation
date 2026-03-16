@@ -52,7 +52,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		qdel(A)
 	. = ..()
 
-/obj/item/integrated_circuit/emp_act(severity)
+/obj/item/integrated_circuit/emp_act(severity, recursive)
 	for(var/datum/integrated_io/io in inputs + outputs + activators)
 		io.scramble()
 
@@ -68,7 +68,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(tgui_input_text(M, "What do you want to name the circuit?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(M, "What do you want to name the circuit?", "Rename", src.name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(src && input && assembly.check_interactivity(M))
 		to_chat(M, span_notice("The circuit '[src.name]' is now labeled '[input]'."))
 		displayed_name = input
@@ -105,13 +105,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	var/list/outputs_list = list()
 	var/list/activators_list = list()
 	for(var/datum/integrated_io/io in inputs)
-		inputs_list.Add(list(tgui_pin_data(io)))
+		UNTYPED_LIST_ADD(inputs_list, tgui_pin_data(io))
 
 	for(var/datum/integrated_io/io in outputs)
-		outputs_list.Add(list(tgui_pin_data(io)))
+		UNTYPED_LIST_ADD(outputs_list, tgui_pin_data(io))
 
 	for(var/datum/integrated_io/io in activators)
-		activators_list.Add(list(tgui_pin_data(io)))
+		UNTYPED_LIST_ADD(activators_list, tgui_pin_data(io))
 
 	data["inputs"] = inputs_list
 	data["outputs"] = outputs_list
@@ -130,12 +130,12 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	pindata["ref"] = REF(io)
 	var/list/linked_list = list()
 	for(var/datum/integrated_io/linked in io.linked)
-		linked_list.Add(list(list(
+		UNTYPED_LIST_ADD(linked_list, list(
 			"ref" = REF(linked),
 			"name" = linked.name,
 			"holder_ref" = REF(linked.holder),
 			"holder_name" = linked.holder.displayed_name,
-		)))
+		))
 	pindata["linked"] = linked_list
 	return pindata
 

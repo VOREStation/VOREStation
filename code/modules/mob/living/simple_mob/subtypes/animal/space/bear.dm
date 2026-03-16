@@ -27,6 +27,7 @@
 
 	say_list_type = /datum/say_list/bear
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 /datum/say_list/bear

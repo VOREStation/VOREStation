@@ -17,9 +17,11 @@
 SUBSYSTEM_DEF(timer)
 	name = "Timer"
 	wait = 1 // SS_TICKER subsystem, so wait is in ticks
-	init_order = INIT_ORDER_TIMER
 	priority = FIRE_PRIORITY_TIMER
 	flags = SS_TICKER|SS_NO_INIT
+	dependencies = list(
+		/datum/controller/subsystem/machines
+	)
 
 	/// Queue used for storing timers that do not fit into the current buckets
 	var/list/datum/timedevent/second_queue = list()
@@ -520,30 +522,30 @@ SUBSYSTEM_DEF(timer)
 #if defined(TIMER_DEBUG)
 	// Generate debug-friendly list for timer, more complex but also more expensive
 	timer_info = list(
-		1 = id,
-		2 = timeToRun,
-		3 = wait,
-		4 = flags,
-		5 = callBack, /* Safe to hold this directly because it's never del'd */
-		6 = "[callBack.object]",
-		7 = text_ref(callBack.object),
-		8 = getcallingtype(),
-		9 = callBack.delegate,
-		10 = callBack.arguments ? callBack.arguments.Copy() : null,
-		11 = "[source]"
+		/* 1 = */ id,
+		/* 2 = */ timeToRun,
+		/* 3 = */ wait,
+		/* 4 = */ flags,
+		/* 5 = */ callBack, /* Safe to hold this directly because it's never del'd */
+		/* 6 = */ "[callBack.object]",
+		/* 7 = */ text_ref(callBack.object),
+		/* 8 = */ getcallingtype(),
+		/* 9 = */ callBack.delegate,
+		/* 10 = */ callBack.arguments ? callBack.arguments.Copy() : null,
+		/* 11 = */ "[source]"
 	)
 #else
 	// Generate a debuggable list for the timer, simpler but wayyyy cheaper, string generation (and ref/copy memes) is a bitch and this saves a LOT of time
 	timer_info = list(
-		1 = id,
-		2 = timeToRun,
-		3 = wait,
-		4 = flags,
-		5 = callBack, /* Safe to hold this directly because it's never del'd */
-		6 = "[callBack.object]",
-		7 = getcallingtype(),
-		8 = callBack.delegate,
-		9 = "[source]"
+		/* 1 = */ id,
+		/* 2 = */ timeToRun,
+		/* 3 = */ wait,
+		/* 4 = */ flags,
+		/* 5 = */ callBack, /* Safe to hold this directly because it's never del'd */
+		/* 6 = */ "[callBack.object]",
+		/* 7 = */ getcallingtype(),
+		/* 8 = */ callBack.delegate,
+		/* 9 = */ "[source]"
 	)
 #endif
 
@@ -609,7 +611,7 @@ SUBSYSTEM_DEF(timer)
  * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
  * * timer_subsystem the subsystem to insert this timer into
  */
-/proc/_addtimer(datum/callback/callback, wait = 0, flags = 0, datum/controller/subsystem/timer/timer_subsystem, file, line)
+/proc/_addtimer(datum/callback/callback, wait = 0, flags = NONE, datum/controller/subsystem/timer/timer_subsystem, file, line)
 	ASSERT(istype(callback), "addtimer called [callback ? "with an invalid callback ([callback])" : "without a callback"]")
 	ASSERT(isnum(wait), "addtimer called with a non-numeric wait ([wait])")
 

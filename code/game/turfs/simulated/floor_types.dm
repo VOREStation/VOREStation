@@ -23,6 +23,7 @@
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information
 	var/obj/landed_holder/new_holder = new(null)
+	T.lighting_clear_overlay()
 	new_holder.turf_type = T.type
 	new_holder.dir = T.dir
 	new_holder.icon = T.icon
@@ -33,11 +34,12 @@
 
 	//Set the destination to be like us
 	var/turf/simulated/shuttle/new_dest = T.ChangeTurf(my_turf.type,,1)
+	my_turf.lighting_clear_overlay()
 	new_dest.set_dir(my_turf.dir)
 	new_dest.icon_state = my_turf.icon_state
 	new_dest.icon = my_turf.icon
 	new_dest.copy_overlays(my_turf, TRUE)
-	new_dest.underlays = my_turf.underlays
+	new_dest.underlays = my_turf.underlays.Copy()
 	new_dest.decals = my_turf.decals
 	//Shuttle specific stuff
 	new_dest.interior_corner = my_turf.interior_corner
@@ -45,6 +47,7 @@
 	new_dest.under_turf = my_turf.under_turf
 	new_dest.join_flags = my_turf.join_flags
 	new_dest.join_group = my_turf.join_group
+	new_dest.lighting_build_overlay()
 
 	// Associate the holder with the new turf.
 	new_holder.my_turf = new_dest
@@ -61,12 +64,14 @@
 	//Change our source to whatever it was before
 	if(turf_type)
 		new_source = my_turf.ChangeTurf(turf_type,,1)
+		new_source.lighting_clear_overlay()
 		new_source.set_dir(dir)
 		new_source.icon_state = icon_state
 		new_source.icon = icon
 		new_source.copy_overlays(src, TRUE)
-		new_source.underlays = underlays
+		new_source.underlays = underlays.Copy()
 		new_source.decals = decals
+		new_source.lighting_build_overlay()
 	else
 		new_source = my_turf.ChangeTurf(base_turf ? base_turf : get_base_turf_by_area(my_turf),,1)
 
@@ -96,19 +101,22 @@
 			I.plane = PLANE_LIGHTING
 			antilight_cache["[diag]"] = I
 
+	if(takes_underlays)
+		underlay_update()
+
 /turf/simulated/shuttle/Destroy()
 	landed_holder = null
 	return ..()
 
 // For joined corners touching static lighting turfs, add an overlay to cancel out that part of our lighting overlay.
 /turf/simulated/shuttle/proc/update_breaklights()
-	cut_overlay(antilight_cache["[join_flags]"], TRUE)
+	cut_overlay(antilight_cache["[join_flags]"])
 	if(!(join_flags in GLOB.cornerdirs)) //We're not joined at an angle
 		return
 	//Dynamic lighting dissolver
 	var/turf/T = get_step(src, turn(join_flags,180))
 	if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
-		add_overlay(antilight_cache["[join_flags]"], TRUE)
+		add_overlay(antilight_cache["[join_flags]"])
 
 /turf/simulated/shuttle/proc/underlay_update()
 	if(!takes_underlays)
@@ -291,3 +299,57 @@
 /turf/simulated/shuttle/floor/voidcraft/external/dark
 
 /turf/simulated/shuttle/floor/voidcraft/external/light
+
+/turf/simulated/floor/tiled/material
+	icon = 'icons/turf/floors.dmi'
+
+/datum/decl/flooring/tiling/material
+	name = "material floor"
+	icon_base = "steel"
+	icon = 'icons/turf/floors.dmi'
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+
+/turf/simulated/floor/tiled/material/uranium
+	icon_state = "uranium"
+	initial_flooring = /datum/decl/flooring/tiling/material/uranium
+
+/datum/decl/flooring/tiling/material/uranium
+	name = "uranium floor"
+	icon_base = "uranium"
+	build_type = /obj/item/stack/tile/floor/uranium
+
+/turf/simulated/floor/tiled/material/phoron
+	icon_state = "phoron"
+	initial_flooring = /datum/decl/flooring/tiling/material/phoron
+
+/datum/decl/flooring/tiling/material/phoron
+	name = "phoron floor"
+	icon_base = "phoron"
+	build_type = /obj/item/stack/tile/floor/phoron
+
+/turf/simulated/floor/tiled/material/gold
+	icon_state = "gold"
+	initial_flooring = /datum/decl/flooring/tiling/material/gold
+
+/datum/decl/flooring/tiling/material/gold
+	name = "gold floor"
+	icon_base = "gold"
+	build_type = /obj/item/stack/tile/floor/gold
+
+/turf/simulated/floor/tiled/material/silver
+	icon_state = "silver"
+	initial_flooring = /datum/decl/flooring/tiling/material/silver
+
+/datum/decl/flooring/tiling/material/silver
+	name = "silver floor"
+	icon_base = "silver"
+	build_type = /obj/item/stack/tile/floor/silver
+
+/turf/simulated/floor/tiled/material/diamond
+	icon_state = "diamond"
+	initial_flooring = /datum/decl/flooring/tiling/material/diamond
+
+/datum/decl/flooring/tiling/material/diamond
+	name = "diamond floor"
+	icon_base = "diamond"
+	build_type = /obj/item/stack/tile/floor/diamond

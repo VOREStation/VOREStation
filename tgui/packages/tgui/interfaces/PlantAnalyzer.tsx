@@ -27,7 +27,7 @@ export const PlantAnalyzer = (props) => {
   if (seed) {
     calculatedHeight += 18 * seed.trait_info.length;
   }
-  if (reagents && reagents.length) {
+  if (reagents?.length) {
     calculatedHeight += 55;
     calculatedHeight += 20 * reagents.length;
   }
@@ -35,7 +35,7 @@ export const PlantAnalyzer = (props) => {
   // Resizable just in case the calculatedHeight fails
   return (
     <Window width={400} height={calculatedHeight}>
-      <Window.Content scrollable>
+      <Window.Content>
         <PlantAnalyzerContent />
       </Window.Content>
     </Window>
@@ -57,6 +57,8 @@ const PlantAnalyzerContent = (props) => {
 
   return (
     <Section
+      fill
+      scrollable
       title="Plant Information"
       buttons={
         <Stack>

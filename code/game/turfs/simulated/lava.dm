@@ -15,7 +15,7 @@
 	can_build_into_floor = TRUE
 	can_be_plated = FALSE
 	can_dirty = FALSE
-	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+	initial_flooring = /datum/decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 	flags = TURF_ACID_IMMUNE
 
 /turf/simulated/floor/lava/outdoors
@@ -40,7 +40,7 @@
 /turf/simulated/floor/lava/make_plating(place_product, defer_icon_update)
 	return
 
-/turf/simulated/floor/lava/set_flooring(decl/flooring/newflooring, initializing)
+/turf/simulated/floor/lava/set_flooring(datum/decl/flooring/newflooring, initializing)
 	if(newflooring?.type == initial_flooring)
 		return ..()
 	return
@@ -52,8 +52,8 @@
 	if(burn_stuff(AM))
 		START_PROCESSING(SSturfs, src)
 
-/turf/simulated/floor/lava/hitby(atom/movable/AM)
-	if(burn_stuff(AM))
+/turf/simulated/floor/lava/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
+	if(burn_stuff(source))
 		START_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/process()

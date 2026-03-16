@@ -96,6 +96,8 @@
 #define COLOR_NUKIES_YELLOW    "#ffe900"
 #define COLOR_DESATTI_PRPLOW   "#3300cc"
 #define COLOR_DESATTI_PRPHI    "#6600cc"
+#define COLOR_FULL_TONER_BLACK "#101010"
+#define COLOR_VOID_PURPLE "#53277E"
 
 #define	PIPE_COLOR_GREY        "#808080"
 #define	PIPE_COLOR_RED         "#ff0000"

@@ -80,6 +80,9 @@
 	return
 
 /obj/item/integrated_electronics/wirer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	switch(mode)
 		if(WIRE)
 			mode = UNWIRE
@@ -114,6 +117,9 @@
 	var/accepting_refs = 0
 
 /obj/item/integrated_electronics/debugger/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/type_to_use = tgui_input_list(user, "Please choose a type to use.","[src] type setting", list("string","number","ref", "null"))
 	if(!CanInteract(user, GLOB.tgui_physical_state))
 		return
@@ -122,7 +128,7 @@
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing", null, MAX_MESSAGE_LEN)
+			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing", null, MAX_MESSAGE_LEN, encode = FALSE)
 			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 			if(istext(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				data_to_write = new_data
@@ -171,14 +177,6 @@
 	var/accepting_refs
 	var/datum/integrated_io/selected_io = null
 	var/mode = 0
-
-/obj/item/multitool/attack_self(mob/user)
-	if(selected_io)
-		selected_io = null
-		to_chat(user, span_notice("You clear the wired connection from the multitool."))
-	else
-		..()
-	update_icon()
 
 /obj/item/multitool/update_icon()
 	if(selected_io)
@@ -249,14 +247,6 @@
 		to_chat(user, span_notice("You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
 		now off."))
 		accepting_refs = 0
-
-
-
-
-
-
-
-
 
 /obj/item/storage/bag/circuits
 	name = "circuit kit"

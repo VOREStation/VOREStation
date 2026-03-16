@@ -9,8 +9,15 @@
 	matter = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
 	var/obj/item/implant/imp = null
 	var/active = 1
+	///Var for attack_self chain
+	var/special_handling = FALSE
 
-/obj/item/implanter/attack_self(var/mob/user)
+/obj/item/implanter/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	active = !active
 	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update()
@@ -54,7 +61,7 @@
 			user.do_attack_animation(M)
 
 			var/turf/T1 = get_turf(M)
-			if (T1 && ((M == user) || do_after(user, 50)))
+			if (T1 && ((M == user) || do_after(user, 5 SECONDS, target = M)))
 				if(user && M && (get_turf(M) == T1) && src && src.imp)
 					M.visible_message(span_warning("[M] has been implanted by [user]."))
 

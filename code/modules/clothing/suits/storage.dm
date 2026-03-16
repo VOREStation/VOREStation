@@ -24,10 +24,6 @@
 	..()
 	pockets.attackby(W, user)
 
-/obj/item/clothing/suit/storage/emp_act(severity)
-	pockets.emp_act(severity)
-	..()
-
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
 	name = DEVELOPER_WARNING_NAME
@@ -121,3 +117,17 @@
 		to_chat(usr, "\The [src] does not have a badge.")
 		return
 	update_clothing_icon()
+
+/obj/item/clothing/suit/storage/tailcoat
+	name = "victorian tailcoat"
+	desc = "A fancy victorian tailcoat."
+	icon_state = "tailcoat"
+
+/obj/item/clothing/suit/storage/victcoat
+	name = "ladies black victorian coat"
+	desc = "A fancy victorian coat."
+	icon_state = "ladiesvictoriancoat"
+
+/obj/item/clothing/suit/storage/victcoat/red
+	name = "ladies red victorian coat"
+	icon_state = "ladiesredvictoriancoat"

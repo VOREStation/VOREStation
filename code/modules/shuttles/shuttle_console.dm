@@ -112,7 +112,6 @@
 
 		if("set_codes")
 			var/newcode = tgui_input_text(ui.user, "Input new docking codes", "Docking codes", shuttle.docking_codes, MAX_NAME_LEN)
-			newcode = sanitize(newcode,MAX_NAME_LEN)
 			if(newcode && !..())
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE
@@ -153,15 +152,8 @@
 /obj/machinery/computer/shuttle_control/ex_act()
 	return
 
-/obj/machinery/computer/shuttle_control/emp_act()
+/obj/machinery/computer/shuttle_control/emp_act(severity, recursive)
 	return
-
-
-GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
-/hook/roundstart/proc/populate_dockingcodes()
-	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
-		dcp.populate_info()
-	return TRUE
 
 /obj/item/paper/dockingcodes
 	name = "Docking Codes"

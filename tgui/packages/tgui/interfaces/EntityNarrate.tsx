@@ -28,35 +28,27 @@ export const EntityNarrate = (props) => {
   const { act, data } = useBackend<data>();
   return (
     <Window width={800} height={470} theme="abstract">
-      <Window.Content scrollable>
-        <Section>
-          <Stack>
-            <Stack.Item grow={2}>
-              <Section scrollable>
-                <EntitySelection />
-              </Section>
+      <Window.Content>
+        <Section fill>
+          <Stack fill>
+            <Stack.Item grow={2.2}>
+              <EntitySelection />
             </Stack.Item>
             <Stack.Item grow={0.25}>
               <Divider vertical />
             </Stack.Item>
             <Stack.Item grow={6.75}>
-              <Section>
-                <Stack direction="column" justify="space-between">
-                  <Stack.Item>
-                    <Section title="Details">
-                      <DisplayDetails />
-                    </Section>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Section title="Select Behaviour">
-                      <ModeSelector />
-                    </Section>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <NarrationInput />
-                  </Stack.Item>
-                </Stack>
-              </Section>
+              <Stack vertical fill>
+                <Stack.Item>
+                  <DisplayDetails />
+                </Stack.Item>
+                <Stack.Item>
+                  <ModeSelector />
+                </Stack.Item>
+                <Stack.Item grow>
+                  <NarrationInput />
+                </Stack.Item>
+              </Stack>
             </Stack.Item>
           </Stack>
         </Section>
@@ -71,33 +63,31 @@ export const EntitySelection = (props) => {
   const { act, data } = useBackend<data>();
   const { selection_mode, multi_id_selection, entity_names } = data;
   return (
-    <Stack direction="column">
-      <Stack.Item>
-        <Section
-          title="Choose!"
-          buttons={
-            <Button
-              selected={selection_mode}
-              onClick={() => act('change_mode_multi')}
-            >
-              Multi-Selection
-            </Button>
-          }
+    <Section
+      title="Choose!"
+      fill
+      scrollable
+      buttons={
+        <Button
+          selected={selection_mode}
+          onClick={() => act('change_mode_multi')}
         >
-          <Tabs vertical>
-            {entity_names.map((name) => (
-              <Tabs.Tab
-                key={name}
-                selected={multi_id_selection.includes(name)}
-                onClick={() => act('select_entity', { id_selected: name })}
-              >
-                <Box inline>{name}</Box>
-              </Tabs.Tab>
-            ))}
-          </Tabs>
-        </Section>
-      </Stack.Item>
-    </Stack>
+          Multi-Selection
+        </Button>
+      }
+    >
+      <Tabs vertical>
+        {entity_names.map((name) => (
+          <Tabs.Tab
+            key={name}
+            selected={multi_id_selection.includes(name)}
+            onClick={() => act('select_entity', { id_selected: name })}
+          >
+            <Box inline>{name}</Box>
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+    </Section>
   );
 };
 
@@ -110,21 +100,41 @@ export const DisplayDetails = (props) => {
     selected_name,
     selected_type,
   } = data;
-  if (selection_mode) {
-    return (
-      <Box>
-        <b>Number of entities selected:</b> {number_mob_selected}
-      </Box>
-    );
-  } else {
-    return (
-      <Box>
-        <b>Selected ID:</b> {selected_id} <br />
-        <b>Selected Name:</b> {selected_name} <br />
-        <b>Selected Type:</b> {selected_type} <br />
-      </Box>
-    );
-  }
+  return (
+    <Section title="Details">
+      <Stack vertical fill>
+        {selection_mode ? (
+          <Stack.Item>
+            <Stack>
+              <Stack.Item bold>Number of entities selected:</Stack.Item>
+              <Stack.Item>{number_mob_selected}</Stack.Item>
+            </Stack>
+          </Stack.Item>
+        ) : (
+          <>
+            <Stack.Item>
+              <Stack>
+                <Stack.Item bold>Selected ID:</Stack.Item>
+                <Stack.Item>{selected_id}</Stack.Item>
+              </Stack>
+            </Stack.Item>
+            <Stack.Item>
+              <Stack>
+                <Stack.Item bold>Selected Name:</Stack.Item>
+                <Stack.Item>{selected_name}</Stack.Item>
+              </Stack>
+            </Stack.Item>
+            <Stack.Item>
+              <Stack>
+                <Stack.Item bold>Selected Type:</Stack.Item>
+                <Stack.Item>{selected_type}</Stack.Item>
+              </Stack>
+            </Stack.Item>
+          </>
+        )}
+      </Stack>
+    </Section>
+  );
 };
 
 export const ModeSelector = (props) => {
@@ -132,64 +142,81 @@ export const ModeSelector = (props) => {
   const { privacy_select, mode_select } = data;
 
   return (
-    <Stack direction="row">
-      <Stack.Item grow>
-        <Button
-          onClick={() => act('change_mode_privacy')}
-          selected={privacy_select}
-          fluid
-          tooltip={
-            'This button changes whether your narration is loud (any who see/hear) or subtle (range of 1 tile)' +
-            ' ' +
-            (privacy_select
-              ? 'Click here to disable subtle mode'
-              : 'Click here to enable subtle mode')
-          }
-        >
-          {privacy_select ? 'Currently: Subtle' : 'Currently: Loud'}
-        </Button>
-      </Stack.Item>
-      <Stack.Item grow>
-        <Button
-          onClick={() => act('change_mode_narration')}
-          selected={mode_select}
-          fluid
-          tooltip={
-            'This button sets your narration to talk audiably or emote visibly' +
-            ' ' +
-            (mode_select
-              ? 'Click here to emote visibly.'
-              : 'Click here to talk audiably.')
-          }
-        >
-          {mode_select ? 'Currently: Emoting' : 'Currently: Talking'}
-        </Button>
-      </Stack.Item>
-    </Stack>
+    <Section title="Select Behaviour">
+      <Stack fill>
+        <Stack.Item grow>
+          <Button
+            onClick={() => act('change_mode_privacy')}
+            selected={privacy_select}
+            fluid
+            tooltip={
+              'This button changes whether your narration is loud (any who see/hear) or subtle (range of 1 tile)' +
+              ' ' +
+              (privacy_select
+                ? 'Click here to disable subtle mode'
+                : 'Click here to enable subtle mode')
+            }
+          >
+            {privacy_select ? 'Currently: Subtle' : 'Currently: Loud'}
+          </Button>
+        </Stack.Item>
+        <Stack.Item grow>
+          <Button
+            onClick={() => act('change_mode_narration')}
+            selected={mode_select}
+            fluid
+            tooltip={
+              'This button sets your narration to talk audiably or emote visibly' +
+              ' ' +
+              (mode_select
+                ? 'Click here to emote visibly.'
+                : 'Click here to talk audiably.')
+            }
+          >
+            {mode_select ? 'Currently: Emoting' : 'Currently: Talking'}
+          </Button>
+        </Stack.Item>
+      </Stack>
+    </Section>
   );
 };
 
 export const NarrationInput = (props) => {
   const { act, data } = useBackend<data>();
   const [narration, setNarration] = useState('');
+
+  const { number_mob_selected, selected_type } = data;
+
+  const isDisbaled = !number_mob_selected && !selected_type;
+
+  function doSendMessage() {
+    if (isDisbaled) {
+      return;
+    }
+    act('narrate', { message: narration });
+    setNarration('');
+  }
+
   return (
     <Section
       title="Narration Text"
+      fill
       buttons={
-        <Button onClick={() => act('narrate', { message: narration })}>
+        <Button
+          disabled={isDisbaled}
+          tooltip={isDisbaled ? 'Select a reference first' : undefined}
+          onClick={doSendMessage}
+        >
           Send Narration
         </Button>
       }
     >
-      <Stack>
-        <Stack.Item width="85%">
-          <TextArea
-            height={'18rem'}
-            onBlur={(val) => setNarration(val)}
-            value={narration || ''}
-          />
-        </Stack.Item>
-      </Stack>
+      <TextArea
+        height="100%"
+        fluid
+        onBlur={(val) => setNarration(val)}
+        value={narration || ''}
+      />
     </Section>
   );
 };

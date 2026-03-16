@@ -28,6 +28,8 @@ BONUS
 	symptom_delay_min = 45
 	symptom_delay_max = 90
 
+	bodies = list("Bald", "Scalp")
+
 /datum/symptom/shedding/Activate(datum/disease/advance/A)
 	if(!..())
 		return

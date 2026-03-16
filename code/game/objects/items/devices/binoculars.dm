@@ -1,7 +1,7 @@
 /obj/item/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
-	icon = 'icons/obj/device_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/device.dmi'
 	icon_state = "binoculars"
 	force = 5.0
 	w_class = ITEMSIZE_SMALL
@@ -14,6 +14,9 @@
 	//matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/binoculars/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	zoom()
 
 /obj/item/binoculars/spyglass

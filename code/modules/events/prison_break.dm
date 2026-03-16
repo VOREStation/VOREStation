@@ -37,7 +37,7 @@
 
 /datum/event/prison_break/announce()
 	if(areas && areas.len > 0)
-		command_announcement.Announce("[pick("Gr3y.T1d3 virus","Malignant trojan")] detected in [station_name()] [(eventDept == "Security")? "imprisonment":"containment"] subroutines. Secure any compromised areas immediately. Involvement of [using_map.facility_type] AI is recommended.", "[eventDept] Alert")
+		GLOB.command_announcement.Announce("[pick("Gr3y.T1d3 virus","Malignant trojan")] detected in [station_name()] [(eventDept == "Security")? "imprisonment":"containment"] subroutines. Secure any compromised areas immediately. Involvement of [using_map.facility_type] AI is recommended.", "[eventDept] Alert")
 
 
 /datum/event/prison_break/start()
@@ -50,11 +50,11 @@
 		var/rc_message = "An unknown malicious program has been detected in the [english_list(areaName)] lighting and airlock control systems at [stationtime2text()]. Systems will be fully compromised within approximately three minutes. Direct intervention is required immediately.<br>"
 		for(var/obj/machinery/message_server/MS in GLOB.machines)
 			MS.send_rc_message("Engineering", my_department, rc_message, "", "", 2)
-		for(var/mob/living/silicon/ai/A in player_list)
+		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			to_chat(A, span_danger("Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department]."))
 
 	else
-		to_world_log("ERROR: Could not initate grey-tide. Unable to find suitable containment area.")
+		log_world("ERROR: Could not initate grey-tide. Unable to find suitable containment area.")
 		kill()
 
 

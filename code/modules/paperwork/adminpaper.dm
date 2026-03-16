@@ -40,19 +40,21 @@
 	var/originhash = md5("[origin]")
 	var/timehash = copytext(md5("[world.time]"),1,10)
 	var/text = null
-	var/logo = tgui_alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo",list("NanoTrasen","SolGov","Trader")) //VOREStation Add - Trader
+	var/logo = tgui_alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, Talon or Trader logo?","Fax Logo",list("NanoTrasen","SolGov", "Talon", "Trader")) //VOREStation Add - Trader
 	if(!logo)
 		return
 	if(logo == "SolGov")
-		logo = "sglogo.png"
+		logo = 'html/images/sglogo.png'
 	//VOREStation Edit/Add
 	else if(logo == "NanoTrasen")
-		logo = "ntlogo.png"
+		logo = 'html/images/ntlogo.png'
+	else if(logo == "Talon")
+		logo = 'html/images/talonlogo.png'
 	else
-		logo = "trader.png"
+		logo = 'html/images/trader.png'
 	//VOREStation Edit/Add End
 	//TODO change logo based on who you're contacting.
-	text = "<center><img src = [logo]></br>"
+	text = "<center><img src=\ref[logo]></br>"
 	text += span_bold("[origin] Quantum Uplink Signed Message") + "<br>"
 	text += span_small("Encryption key: [originhash]<br>Challenge: [timehash]") + "<br></center><hr>"
 
@@ -88,10 +90,7 @@
 			to_chat(usr, span_info("There isn't enough space left on \the [src] to write anything."))
 			return
 
-		var/raw_t = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
-		if(!raw_t)
-			return
-		var/t =  sanitize(raw_t, free_space, extra = 0)
+		var/t = tgui_input_text(usr, "Enter what you want to write:", "Write", "", free_space, TRUE, prevent_enter = TRUE)
 		if(!t)
 			return
 

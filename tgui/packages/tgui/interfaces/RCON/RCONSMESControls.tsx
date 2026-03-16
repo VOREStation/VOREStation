@@ -108,6 +108,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
           </Stack.Item>
           <Stack.Item grow>
             <Slider
+              tickWhileDragging
               value={level / POWER_MUL}
               fillValue={available / POWER_MUL}
               minValue={0}
@@ -119,7 +120,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
                 '/' +
                 formatPower(value * POWER_MUL, 1)
               }
-              onDrag={(e, value: number) =>
+              onChange={(e, value: number) =>
                 act(changeAmountAct, {
                   target: value * POWER_MUL,
                   smes: RCON_tag,

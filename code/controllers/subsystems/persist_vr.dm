@@ -25,14 +25,14 @@ SUBSYSTEM_DEF(persist)
 		src.currentrun.Cut()
 		return
 	if(!resumed)
-		src.currentrun = human_mob_list.Copy()
-		src.currentrun += silicon_mob_list.Copy()
+		src.currentrun = GLOB.human_mob_list.Copy()
+		src.currentrun += GLOB.silicon_mob_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	var/list/query_stack = src.query_stack
-	while (currentrun.len)
-		var/mob/M = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/mob/M = currentrun[length(currentrun)]
 		currentrun.len--
 		if (QDELETED(M) || !istype(M) || !M.mind || !M.client || TICKS2DS(M.client.inactivity) > wait)
 			continue
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(persist)
 		if (MC_TICK_CHECK)
 			return
 
-	if(query_stack.len)
+	if(length(query_stack))
 		SSdbcore.MassInsert(format_table_name("vr_player_hours"), query_stack, duplicate_key = "ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
 		query_stack.Cut()
 
@@ -109,10 +109,10 @@ SUBSYSTEM_DEF(persist)
 	if(R) // We found someone with a record.
 		var/recorded_rank = R.fields["real_rank"]
 		if(recorded_rank)
-			. = job_master.GetJob(recorded_rank)
+			. = GLOB.job_master.GetJob(recorded_rank)
 			if(.) return
 
 	// They have a custom title, aren't crew, or someone deleted their record, so we need a fallback method.
 	// Let's check the mind.
 	if(M.mind && M.mind.assigned_role)
-		. = job_master.GetJob(M.mind.assigned_role)
+		. = GLOB.job_master.GetJob(M.mind.assigned_role)

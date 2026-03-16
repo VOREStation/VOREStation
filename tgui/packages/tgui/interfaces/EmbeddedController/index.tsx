@@ -81,20 +81,20 @@ export const EmbeddedController = (props) => {
 
   const primaryRoutes: Record<string, React.JSX.Element> = {};
 
-  primaryRoutes['AirlockConsoleAdvanced'] = <AirlockConsoleAdvanced />;
-  primaryRoutes['AirlockConsoleSimple'] = <AirlockConsoleSimple />;
-  primaryRoutes['AirlockConsolePhoron'] = <AirlockConsolePhoron />;
-  primaryRoutes['AirlockConsoleDocking'] = <AirlockConsoleDocking />;
-  primaryRoutes['DockingConsoleSimple'] = <DockingConsoleSimple />;
-  primaryRoutes['DockingConsoleMulti'] = <DockingConsoleMulti />;
-  primaryRoutes['DoorAccessConsole'] = <DoorAccessConsole />;
-  primaryRoutes['EscapePodConsole'] = <EscapePodConsole />;
-  primaryRoutes['EscapePodBerthConsole'] = <EscapePodBerthConsole />;
+  primaryRoutes.AirlockConsoleAdvanced = <AirlockConsoleAdvanced />;
+  primaryRoutes.AirlockConsoleSimple = <AirlockConsoleSimple />;
+  primaryRoutes.AirlockConsolePhoron = <AirlockConsolePhoron />;
+  primaryRoutes.AirlockConsoleDocking = <AirlockConsoleDocking />;
+  primaryRoutes.DockingConsoleSimple = <DockingConsoleSimple />;
+  primaryRoutes.DockingConsoleMulti = <DockingConsoleMulti />;
+  primaryRoutes.DoorAccessConsole = <DoorAccessConsole />;
+  primaryRoutes.EscapePodConsole = <EscapePodConsole />;
+  primaryRoutes.EscapePodBerthConsole = <EscapePodBerthConsole />;
 
   const Component: React.JSX.Element = primaryRoutes[internalTemplateName];
   if (!Component) {
     throw Error(
-      'Unable to find Component for template name: ' + internalTemplateName,
+      `Unable to find Component for template name: ${internalTemplateName}`,
     );
   }
 

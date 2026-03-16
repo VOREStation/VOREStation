@@ -5,7 +5,7 @@
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery
 	name = "chemical distillery"
-	desc = "A complex machine utilizing state-of-the-art components to mix chemicals at different temperatures."
+	desc = "A complex machine utilizing state-of-the-art components to mix chemicals at different temperatures. Can be attached to a connector port to utilize gasses."
 	use_power = USE_POWER_IDLE
 
 	icon = 'icons/obj/machines/reagent.dmi'
@@ -24,7 +24,7 @@
 
 	var/current_temp = T20C
 
-	var/use_atmos = FALSE	// If true, this machine will be connectable to ports, and use gas mixtures as the source of heat, rather than its internal controls.
+	var/use_atmos = FALSE	// If true, this machine will use the temperature of the connected gas mixtures as the source of heat, rather than its internal controls.
 
 	var/static/radial_examine = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine")
 	var/static/radial_use = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_use")
@@ -204,7 +204,9 @@
 				OutputBeaker = null
 
 		if("adjust temp")
-			target_temp = tgui_input_number(user, "Choose a target temperature.", "Temperature.", T20C, max_temp, min_temp, round_value = FALSE)
+			var/new_temp = tgui_input_number(user, "Choose a target temperature.", "Temperature.", T20C, max_temp, min_temp, round_value = FALSE)
+			if(isnum(new_temp))
+				target_temp = new_temp
 
 	update_icon()
 
@@ -364,6 +366,14 @@
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/industrial
 	name = "industrial chemical distillery"
-	desc = "A gas-operated variant of a chemical distillery. Able to reach much higher, and lower, temperatures through the use of treated gas."
+	desc = "A gas-operated variant of a chemical distillery. Able to reach much higher, and lower, temperatures through the use of treated gas at the cost of not having an internal heater/cooler."
 
 	use_atmos = TRUE
+
+
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/return_air()
+	if(connected_port)
+		var/obj/machinery/atmospherics/portables_connector/our_port = connected_port
+		if(our_port.network)
+			return our_port.network.gases[1]
+	. = ..()

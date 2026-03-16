@@ -5,7 +5,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control switch for something."
 	var/id = null
-	var/active = 0
+	var/active = FALSE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
@@ -16,3 +16,6 @@
 
 /obj/machinery/button/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
+
+/obj/machinery/button/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag

@@ -13,10 +13,13 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 900
 
 	taser_kill = FALSE
 	poison_resist = 1.0
 	shock_resist = -0.5
+
+	can_be_drop_prey = FALSE
 
 /mob/living/simple_mob/mechanical/isSynthetic()
 	return TRUE

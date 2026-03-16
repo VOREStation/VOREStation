@@ -1,11 +1,3 @@
-var/global/list/datum/supply_drop_loot/supply_drop
-
-/proc/supply_drop_random_loot_types()
-	if(!supply_drop)
-		supply_drop = init_subtypes(/datum/supply_drop_loot)
-		supply_drop = dd_sortedObjectList(supply_drop)
-	return supply_drop
-
 /datum/supply_drop_loot
 	var/name = ""
 	var/container = null
@@ -232,7 +224,14 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/inflatable_duck,
 		/obj/item/inflatable_duck,
 		/obj/item/toy/plushie/tinytin,
-		/obj/item/toy/plushie/tinytin_sec)
+		/obj/item/toy/plushie/tinytin_sec,
+		/obj/item/toy/plushie/dragon,
+		/obj/item/toy/plushie/dragon/green,
+		/obj/item/toy/plushie/dragon/purple,
+		/obj/item/toy/plushie/dragon/red_east,
+		/obj/item/toy/plushie/dragon/green_east,
+		/obj/item/toy/plushie/dragon/white_east,
+		/obj/item/toy/plushie/dragon/gold_east)
 
 /datum/supply_drop_loot/christmas
 	name = "Surplus Christmas Supplies"

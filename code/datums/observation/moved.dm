@@ -9,14 +9,14 @@
 //			/atom/new_loc: The loc after the move.
 
 /*
-GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
+GLOBAL_DATUM_INIT(moved_event, /datum/decl/observ/moved, new)
 
 
-/decl/observ/moved
+/datum/decl/observ/moved
 	name = "Moved"
 	expected_type = /atom/movable
 
-/decl/observ/moved/register(var/atom/movable/mover, var/datum/listener, var/proc_call)
+/datum/decl/observ/moved/register(var/atom/movable/mover, var/datum/listener, var/proc_call)
 	. = ..()
 
 	// Listen to the parent if possible.
@@ -31,21 +31,21 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 /*
 /atom/movable/Entered(var/atom/movable/am, atom/old_loc)
 	. = ..()
-	am.RegisterSignal(src,COMSIG_OBSERVER_MOVED, /atom/movable/proc/recursive_move, override = TRUE)
+	am.RegisterSignal(src,COMSIG_MOVABLE_ATTEMPTED_MOVE, /atom/movable/proc/recursive_move, override = TRUE)
 
 /atom/movable/Exited(var/atom/movable/am, atom/old_loc)
 	. = ..()
-	am.UnregisterSignal(src,COMSIG_OBSERVER_MOVED)
+	am.UnregisterSignal(src,COMSIG_MOVABLE_ATTEMPTED_MOVE)
 */
 // Entered() typically lifts the moved event, but in the case of null-space we'll have to handle it.
 /atom/movable/Move()
 	var/old_loc = loc
 	. = ..()
 	if(. && !loc)
-		SEND_SIGNAL(src,COMSIG_OBSERVER_MOVED, old_loc, null)
+		SEND_SIGNAL(src,COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, null)
 
 /atom/movable/forceMove(atom/destination, direction, movetime) // pass movetime through
 	var/old_loc = loc
 	. = ..()
 	if(. && !loc)
-		SEND_SIGNAL(src,COMSIG_OBSERVER_MOVED, old_loc, null)
+		SEND_SIGNAL(src,COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, null)

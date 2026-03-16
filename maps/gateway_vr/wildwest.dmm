@@ -1,10 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/space,
 /area/space)
 "ab" = (
@@ -17,11 +13,7 @@
 /turf/simulated/mineral,
 /area/space)
 "ae" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/space)
 "af" = (
@@ -83,11 +75,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "ap" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/wall/cult,
 /area/awaymission/wwvault)
 "aq" = (
@@ -107,11 +95,7 @@
 /turf/simulated/floor/redgrid/animated,
 /area/awaymission/wwvault)
 "au" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/shuttle/wall,
 /area/awaymission/wwvault)
 "av" = (
@@ -217,11 +201,7 @@
 /turf/simulated/floor/redgrid/off,
 /area/awaymission/wwvault)
 "aL" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "aM" = (
@@ -266,11 +246,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
 "bt" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/shuttle/wall/hard_corner,
 /area/awaymission/wwvault)
 "bA" = (
@@ -416,11 +392,7 @@
 /turf/simulated/floor/cult,
 /area/awaymission/wwvaultdoors)
 "dm" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral/ignore_cavegen,
 /area/awaymission/wwmines)
 "dn" = (
@@ -449,11 +421,7 @@
 /turf/simulated/mineral,
 /area/awaymission/wwrefine)
 "dw" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/wall/sandstone,
 /area/awaymission/wwmines)
 "dA" = (
@@ -1203,11 +1171,7 @@
 /area/awaymission/wwmines)
 "rV" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "rX" = (
@@ -1697,11 +1661,7 @@
 /area/awaymission/wwgov)
 "Jx" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
 "JC" = (

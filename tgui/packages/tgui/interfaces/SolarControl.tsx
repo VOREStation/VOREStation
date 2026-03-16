@@ -9,7 +9,6 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -79,7 +78,7 @@ export const SolarControl = (props) => {
                       maxValue={1}
                       value={generated_ratio}
                     >
-                      {generated + ' W'}
+                      {`${generated} W`}
                     </ProgressBar>
                   </LabeledList.Item>
                   <LabeledList.Item label="Star orientation">
@@ -119,6 +118,7 @@ export const SolarControl = (props) => {
             <LabeledList.Item label="Azimuth">
               {(tracking_state === 0 || tracking_state === 1) && (
                 <NumberInput
+                  tickWhileDragging
                   width="52px"
                   unit="°"
                   step={1}
@@ -128,13 +128,14 @@ export const SolarControl = (props) => {
                   value={array_angle}
                   format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
-                    return toFixed(Math.abs(rate)) + sign;
+                    return Math.abs(rate).toFixed() + sign;
                   }}
-                  onDrag={(value) => act('azimuth', { value })}
+                  onChange={(value) => act('azimuth', { value })}
                 />
               )}
               {tracking_state === 1 && (
                 <NumberInput
+                  tickWhileDragging
                   width="80px"
                   unit="deg/h"
                   step={1}
@@ -143,14 +144,14 @@ export const SolarControl = (props) => {
                   value={rotation_rate}
                   format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
-                    return toFixed(Math.abs(rate)) + sign;
+                    return Math.abs(rate).toFixed() + sign;
                   }}
-                  onDrag={(value) => act('azimuth_rate', { value })}
+                  onChange={(value) => act('azimuth_rate', { value })}
                 />
               )}
               {tracking_state === 2 && (
                 <Box inline color="label" mt="3px">
-                  {array_angle + '°'} (auto)
+                  {`${array_angle}°`} (auto)
                 </Box>
               )}
             </LabeledList.Item>

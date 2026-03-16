@@ -13,7 +13,7 @@
 	icon_state = "pcu"
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	circuit = /obj/item/circuitboard/skills/pcu
 	density = FALSE
 	var/obj/item/card/id/scan = null
@@ -216,7 +216,7 @@
 				set_temp("All employment records deleted.")
 			if("sync_r")
 				if(active1)
-					set_temp(client_update_record(src,active1,ui.user))
+					set_temp(client_update_record(src,ui.user))
 			if("edit_notes")
 				// The modal input in tgui is busted for this sadly...
 				var/new_notes = strip_html_simple(tgui_input_text(ui.user,"Enter new information here.","Character Preference", html_decode(active1.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
@@ -366,16 +366,16 @@
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/skills/emp_act(severity)
+/obj/machinery/computer/skills/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)
@@ -394,7 +394,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	..(severity, recursive)
 
 #undef GENERAL_RECORD_LIST
 #undef GENERAL_RECORD_MAINT

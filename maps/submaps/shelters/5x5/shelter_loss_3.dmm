@@ -1,0 +1,86 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"b" = (
+/obj/structure/barricade/cutout/greytide,
+/obj/effect/floor_decal/corner/paleblue/full{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"h" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"o" = (
+/obj/effect/floor_decal/corner/paleblue/full,
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"z" = (
+/obj/structure/sign/greencross,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"F" = (
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"H" = (
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"I" = (
+/obj/structure/barricade/cutout/greytide,
+/obj/effect/floor_decal/corner/paleblue/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+"Z" = (
+/obj/effect/floor_decal/corner/paleblue/full{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod)
+
+(1,1,1) = {"
+z
+a
+a
+a
+z
+"}
+(2,1,1) = {"
+a
+H
+Z
+I
+a
+"}
+(3,1,1) = {"
+h
+H
+o
+b
+a
+"}
+(4,1,1) = {"
+a
+H
+H
+H
+a
+"}
+(5,1,1) = {"
+a
+a
+F
+a
+z
+"}

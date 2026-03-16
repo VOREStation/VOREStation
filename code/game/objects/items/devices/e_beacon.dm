@@ -1,7 +1,7 @@
 /obj/item/emergency_beacon
 	name = "personal emergency beacon"
 	desc = "The hardy PersonaL Emergency Beacon, or PLEB, is a simple device that, once activated, sends out a wideband distress signal that can punch through almost all forms of interference. They are commonly issued to miners and remote exploration teams who may find themselves in need of means to call for assistance whilst being out of conventional communications range."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "e_beacon_off"
 	var/beacon_active = FALSE
 	var/list/levels_for_distress
@@ -24,6 +24,9 @@
 	gps_tag = "EMERGENCY BEACON"
 
 /obj/item/emergency_beacon/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/T = user.loc
 	if(!beacon_active)
 		if(!isturf(T))
@@ -36,7 +39,7 @@
 			var/answer = tgui_alert(user, "Would you like to activate this personal emergency beacon?","\The [src]", list("Yes", "No"))
 			if(answer != "Yes")
 				return
-			else if(do_after(user, (3 SECONDS)))	//short delay, so they can still abort if they want to
+			else if(do_after(user, 3 SECONDS, target = src))	//short delay, so they can still abort if they want to
 				user.visible_message(span_warning("[user] activates \the [src]!"),span_warning("You activate \the [src], spiking it into the ground!"))
 				beacon_active = TRUE
 				icon_state = "e_beacon_active"
@@ -50,7 +53,7 @@
 				or relay the message to those who can."
 
 				for(var/zlevel in levels_for_distress)
-					priority_announcement.Announce(message, new_title = "Automated Personal Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
+					GLOB.priority_announcement.Announce(message, new_title = "Automated Personal Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 	else
 		to_chat(user,"\The [src] is already active, or is otherwise malfunctioning. There's nothing you can do but wait. And possibly pray.")
 

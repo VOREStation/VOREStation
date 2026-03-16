@@ -35,12 +35,17 @@ Bonus
 		"Resistance 10" = "Further increases fever intensity."
 	)
 
+	bodies = list("Fever")
+	suffixes = list(" Fever")
+
 /datum/symptom/fever/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 5)
 		severity += 1
+		prefixes = list("Desert")
 		if(A.resistance >= 10)
 			severity += 1
+			prefixes = list("Volcanic")
 
 /datum/symptom/fever/Start(datum/disease/advance/A)
 	if(!..())

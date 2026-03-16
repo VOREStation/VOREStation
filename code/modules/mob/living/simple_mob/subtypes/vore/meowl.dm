@@ -38,17 +38,13 @@
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
 
-/mob/living/simple_mob/vore/meowl/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/meowl/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The strange critter suddenly takes advantage of you being alone to pounce atop you and quickly engulf your head within its maw! Before you even have a chance to react, the world goes dark with the inside of the meowls mouth covering your face, a rough tounge lapping smearing wet hot slobber over you. The rest of the process is pretty quick as the cat-owl begins to gulp your head down through a surprisingly stretchy throat and along the tight, flexing tunnel of its gullet. Before long you are pushing face first into the creature's stomach, the wrinkled walls quickly beginning grind slick flesh across it like any other piece of food. The rest of your body soon follows into the increasingly tight space, forced to curl up over yourself as the stomach lining bears down on you from every angle. At first, the stomach itself seems rather inactive, happily just squeezing and massaging you as the meowl settles down to slowly enjoy their snack. Though, struggling might risk setting off the gut one way or another..."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.belly_fullscreen = "VBO_fleshs"
 	B.digest_brute = 1
 	B.digest_burn = 1
 	B.digest_oxy = 1
@@ -66,7 +62,7 @@
 	chub.desc = "Your body quickly begins to feel very... different? In fact, you can't really feel your body much at all any more, but you certainly still feel something. The pressure of the gut that was practically crushing you before is relieved, but somehow still present as though you were now on the other side of the interaction. Your being feels much more spread out and practically intertwined with the world around, that world being the meowl itself. The strange cat-owl's purring feels like it's reverberating throughout your entire form, whatever that might be. Every time the critter shakes to ruffle its feathers, you feel yourself shake with it. Even the creatures emotions feel tangible to you, as though you share themselves, and mostly they are ones of fullness and content."
 	chub.digest_mode = DM_HOLD // like, its got you already, doesn't need to get you more
 	chub.mode_flags = DM_FLAG_FORCEPSAY
-	chub.escapable = TRUE // good luck
+	chub.escapable = B_ESCAPABLE_DEFAULT // good luck
 	chub.escapechance = 40 // high chance of STARTING a successful escape attempt
 	chub.escapechance_absorbed = 5 // m i n e
 	chub.vore_verb = "soak"
@@ -160,29 +156,30 @@
 	last_conflict_time = world.time
 
 	// Check if there is more than one person nearby and if they allow eating them
-	if(!check_attacker(target)) //Only act friendly if you haven't been attacked yet
-		var/list/crowd = list_targets()
+	if(target)
+		if(!check_attacker(target)) //Only act friendly if you haven't been attacked yet
+			var/list/crowd = list_targets()
 
-		var/mob/living/L = target
-		if(istype(L))
-			if(!L.allowmobvore && vore_hostile && distance <= 8)
+			var/mob/living/L = target
+			if(istype(L))
+				if(!L.allowmobvore && vore_hostile && distance <= 8)
+					play_friend(target)
+					set_stance(STANCE_APPROACH)
+					return
+
+			if(crowd.len > 1 && distance <= 8)
 				play_friend(target)
 				set_stance(STANCE_APPROACH)
 				return
 
-		if(crowd.len > 1 && distance <= 8)
-			play_friend(target)
-			set_stance(STANCE_APPROACH)
-			return
+		// Don't attack if you're well fed!
 
-	// Don't attack if you're well fed!
+			var/mob/living/simple_mob/vore/meowl/M = holder
 
-		var/mob/living/simple_mob/vore/meowl/M = holder
-
-		if(istype(M))
-			if(M.well_fed + 10 MINUTES > world.time)
-				set_stance(STANCE_APPROACH)
-				return
+			if(istype(M))
+				if(M.well_fed + 10 MINUTES > world.time)
+					set_stance(STANCE_APPROACH)
+					return
 
 
 	// Do a 'special' attack, if one is allowed.

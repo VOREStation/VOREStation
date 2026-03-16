@@ -16,7 +16,7 @@
 	starts_with = list(/obj/item/reagent_containers/pill/zoom = 7)
 
 /obj/item/reagent_containers/glass/beaker/vial/random
-	flags = 0
+	flags = NONE
 	var/list/random_reagent_list = list(list(REAGENT_ID_WATER = 15) = 1, list(REAGENT_ID_CLEANER = 15) = 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
@@ -35,7 +35,7 @@
 	for(var/reagent in picked_reagents)
 		reagents.add_reagent(reagent, picked_reagents[reagent])
 
-	var/list/names = new
+	var/list/names = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		names += R.name
 
@@ -52,7 +52,8 @@
 	icon_state = "powder"
 	item_state = "powder"
 	amount_per_transfer_from_this = 2
-	possible_transfer_amounts = 2
+	max_transfer_amount = 2
+	min_transfer_amount = 1
 	w_class = ITEMSIZE_TINY
 	volume = 50
 

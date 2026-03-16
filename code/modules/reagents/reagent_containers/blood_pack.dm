@@ -36,7 +36,7 @@
 	if(blood_type != null)
 		label_text = "[blood_type]"
 		update_iv_label()
-		reagents.add_reagent(reag_id, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
+		reagents.add_reagent(reag_id, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null,"changeling"=FALSE))
 		update_icon()
 
 /obj/item/reagent_containers/blood/on_reagent_change()
@@ -56,7 +56,7 @@
 
 /obj/item/reagent_containers/blood/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
-		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
 			to_chat(user, span_notice("The label can be at most 50 characters long."))
 		else if(length(tmp_label) > 10)

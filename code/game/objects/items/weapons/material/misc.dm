@@ -85,7 +85,10 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("mushed", "splatted", "splooshed", "splushed") // Words that totally exist.
 
-/obj/item/material/snow/snowball/attack_self(mob/user as mob)
+/obj/item/material/snow/snowball/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(user.a_intent == I_HURT)
 		to_chat(user, span_notice("You smash the snowball in your hand."))
 		var/atom/S = new /obj/item/stack/material/snow(user.loc)
@@ -93,7 +96,7 @@
 		user.put_in_hands(S)
 	else
 		to_chat(user, span_notice("You start compacting the snowball."))
-		if(do_after(user, 2 SECONDS))
+		if(do_after(user, 2 SECONDS, target = src))
 			var/atom/S = new /obj/item/material/snow/snowball/reinforced(user.loc)
 			qdel(src)
 			user.put_in_hands(S)
@@ -212,6 +215,9 @@
 						return
 
 /obj/item/material/whip/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.visible_message(span_warning("\The [user] cracks \the [src]!"))
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 

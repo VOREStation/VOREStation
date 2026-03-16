@@ -75,7 +75,7 @@
 
 		to_chat(user, "You start mending the damaged portions of \the [src]...")
 
-		if(!do_after(user,30) || !W || !src)
+		if(!do_after(user, 3 SECONDS, target = src) || !W || !src)
 			return
 
 		var/obj/item/stack/nanopaste/paste = W
@@ -100,7 +100,7 @@
 			return
 
 		to_chat(user, "You start mending the damaged portions of \the [src]...")
-		if(!do_after(user,30) || !W || !src)
+		if(!do_after(user, 3 SECONDS, target = src) || !W || !src)
 			return
 
 		damage = 1
@@ -136,7 +136,7 @@
 	stat_modules +=	new/atom/movable/stat_rig_module/charge(src)
 
 /obj/item/rig_module/Destroy()
-	holder.installed_modules -= src
+	holder?.installed_modules -= src
 	holder = null
 	QDEL_NULL_LIST(stat_modules)
 	. = ..()

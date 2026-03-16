@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(doppler_arrays)
-
 /obj/machinery/doppler_array
 	anchored = TRUE
 	name = "tachyon-doppler array"
@@ -11,37 +9,35 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 /obj/machinery/doppler_array/Initialize(mapload)
 	. = ..()
-	GLOB.doppler_arrays += src
+	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
 
 /obj/machinery/doppler_array/Destroy()
-	GLOB.doppler_arrays -= src
+	UnregisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION)
 	. = ..()
 
-/obj/machinery/doppler_array/proc/sense_explosion(var/x0,var/y0,var/z0,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/took)
-	if(stat & NOPOWER)	return
-	if(z != z0)			return
+/obj/machinery/doppler_array/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
+	SIGNAL_HANDLER
 
-	var/dx = abs(x0-x)
-	var/dy = abs(y0-y)
-	var/distance
-	var/direct
+	if(stat & NOPOWER)
+		return
 
-	if(dx > dy)
-		distance = dx
-		if(x0 > x)	direct = EAST
-		else		direct = WEST
-	else
-		distance = dy
-		if(y0 > y)	direct = NORTH
-		else		direct = SOUTH
+	var/x0 = epicenter.x
+	var/y0 = epicenter.y
+	var/z0 = epicenter.z
+	if(!(z0 in GetConnectedZlevels(z)))
+		return
+	var/turf/our_turf = get_turf(src)
+	if(our_turf.Distance(epicenter) > 100)
+		return
 
-	if(distance > 100)		return
-	if(!(direct & dir))	return
+	/* There is no way to rotate these... Why?
+	var/direct = get_dir(our_turf,epicenter)
+	if(!(direct & dir))
+		return
+	*/
 
-	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [took]seconds."
-
-	for(var/mob/O in hearers(src, null))
-		O.show_message(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""),2)
+	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds."
+	audible_message(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""))
 
 /obj/machinery/doppler_array/power_change()
 	..()

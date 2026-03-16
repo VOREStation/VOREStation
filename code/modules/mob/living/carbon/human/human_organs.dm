@@ -17,11 +17,11 @@
 	last_dam = damage_this_tick
 
 // Takes care of organ related updates, such as broken and missing limbs
-/mob/living/carbon/human/proc/handle_organs()
+/mob/living/carbon/human/proc/handle_organs(force = FALSE)
 
 	var/force_process = recheck_bad_external_organs()
 
-	if(force_process)
+	if(force_process || force)
 		bad_external_organs.Cut()
 		for(var/obj/item/organ/external/Ex in organs)
 			bad_external_organs += Ex //VOREStation Edit - Silly and slow to |= this
@@ -87,8 +87,7 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
-				spawn(10)
-					qdel(spark_system)
+				QDEL_IN(spark_system, 1 SECOND)
 		else if (E.is_broken())
 			stance_damage += 1
 		else if (E.is_dislocated())
@@ -105,6 +104,11 @@
 	if (r_hand && istype(r_hand, /obj/item/cane))
 		stance_damage -= 2
 
+	// Jetpacks in zeroG count for holding you up
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
+	if (lastarea?.get_gravity() == FALSE && thrust?.stabilization_on)
+		stance_damage -= 4
+
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
 		if(!(lying || resting) && !isbelly(loc))
@@ -112,7 +116,7 @@
 				emote("scream")
 			automatic_custom_emote(VISIBLE_MESSAGE, "collapses!", check_stat = TRUE)
 		if(!(lying || resting)) // stops permastun with SPINE sdisability
-			Weaken(5) //can't emote while weakened, apparently.
+			Weaken(5)
 
 /mob/living/carbon/human/proc/handle_grasp()
 	if(!l_hand && !r_hand)

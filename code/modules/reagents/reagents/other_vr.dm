@@ -3,7 +3,11 @@
 	id = REAGENT_ID_ADVMUTATIONTOXIN
 	description = "A corruptive toxin produced by slimes. Turns the subject of the chemical into a Promethean."
 	reagent_state = LIQUID
+	dermal_absorption = 0 //Injection only.
 	color = "#13BC5E"
+	scannable = SCANNABLE_ADVANCED
+	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/advmutationtoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.allow_spontaneous_tf))
@@ -37,9 +41,12 @@
 	taste_description = "metallic"
 	reagent_state = LIQUID
 	color = "#333333"
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
 	affects_robots = TRUE
 	wiki_flag = WIKI_SPOILER
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/nif_repair_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -55,8 +62,12 @@
 	id = REAGENT_ID_FIREFOAM
 	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on most NT vessels."
 	reagent_state = LIQUID
+	dermal_absorption = 0 //Custom touch handling. As funny as PFAS poisoning is.
 	color = "#A6FAFF"
+	scannable = SCANNABLE_ADVANCED
 	taste_description = "the inside of a fire extinguisher"
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_INDUSTRY
 
 /datum/reagent/firefighting_foam/touch_turf(var/turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -93,7 +104,7 @@
 		S.visible_message(span_warning("[S]'s flesh sizzles where the foam touches it!"), span_danger("Your flesh burns in the foam!"))
 	if(istype(M))
 		M.adjust_fire_stacks(-reac_volume)
-		M.ExtinguishMob()
+		M.extinguish_mob()
 
 /datum/reagent/liquid_protean
 	name = REAGENT_LIQUIDPROTEAN
@@ -102,9 +113,11 @@
 	taste_description = "wiggly peanutbutter"
 	reagent_state = LIQUID
 	color = "#1d1d1d"
-	scannable = 0
+	scannable = SCANNABLE_BENEFICIAL
 	metabolism = REM * 0.5
 	affects_robots = TRUE
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/liquid_protean/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -131,7 +144,10 @@
 	reagent_state = LIQUID
 	color = "#E4EC2F"
 	metabolism = 2.50
+	scannable = SCANNABLE_ADVANCED
 	var/power = 9
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/grubshock/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(0, removed * power * 0.2)

@@ -15,7 +15,7 @@
 
 
 /datum/event2/event/gas_leak
-	var/potential_gas_choices = list(GAS_CO2, GAS_N2O, GAS_PHORON, GAS_VOLATILE_FUEL)
+	var/potential_gas_choices = list(GAS_CO2, GAS_N2O, GAS_PHORON, GAS_VOLATILE_FUEL, GAS_CH4)
 	var/chosen_gas = null
 	var/turf/chosen_turf = null
 
@@ -24,14 +24,14 @@
 
 	var/list/turfs = find_random_turfs()
 	if(!turfs.len)
-		log_debug("Gas Leak event failed to find any available turfs to leak into. Aborting.")
+		log_game("Gas Leak event failed to find any available turfs to leak into. Aborting.")
 		abort()
 		return
 	chosen_turf = pick(turfs)
 
 /datum/event2/event/gas_leak/announce()
 	if(chosen_turf)
-		command_announcement.Announce("Warning, hazardous [lowertext(GLOB.gas_data.name[chosen_gas])] gas leak detected in \the [chosen_turf.loc], evacuate the area.", "Hazard Alert")
+		GLOB.command_announcement.Announce("Warning, hazardous [lowertext(GLOB.gas_data.name[chosen_gas])] gas leak detected in \the [chosen_turf.loc], evacuate the area.", "Hazard Alert")
 
 /datum/event2/event/gas_leak/start()
 	// Okay, time to actually put the gas in the room!

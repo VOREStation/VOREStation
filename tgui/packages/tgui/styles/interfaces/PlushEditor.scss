@@ -1,0 +1,13 @@
+.PlushEditor__Floating {
+  height: 450px;
+  background-color: var(--color-section);
+  backdrop-filter: var(--blur-medium);
+  border: var(--border-thickness-tiny) solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-glow-medium) hsla(0, 0%, 0%, 0.5);
+  margin: var(--space-m);
+  color: var(--color-text);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: var(--space-m);
+}

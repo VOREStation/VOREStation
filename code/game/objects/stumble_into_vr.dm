@@ -7,7 +7,7 @@
 	M.stop_flying()
 
 /obj/structure/table/stumble_into(mob/living/M)
-	var/obj/occupied = turf_is_crowded()
+	var/obj/occupied = can_climb_turf(src)
 	if(occupied)
 		return ..()
 	if(material)
@@ -24,14 +24,11 @@
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
 	log_and_message_admins("stumbled into \the [src]", M)
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
 	M.apply_damage(5, BRUTE)
 	M.Weaken(2)
 	M.forceMove(src)
 	M.stop_flying()
-	update()
+	update_icon()
 
 /obj/structure/inflatable/stumble_into(mob/living/M)
 	playsound(src, "sound/effects/Glasshit.ogg", 25, 1, -1)
@@ -70,7 +67,7 @@
 	M.stop_flying()
 
 /obj/structure/railing/stumble_into(mob/living/M)
-	var/obj/occupied = turf_is_crowded()
+	var/obj/occupied = can_climb_turf(src)
 	if(occupied)
 		return ..()
 	playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
@@ -112,10 +109,8 @@
 /obj/machinery/porta_turret/stumble_into(mob/living/M)
 	..()
 	if(!attacked && !emagged)
-		attacked = 1
-		spawn()
-			sleep(60)
-			attacked = 0
+		attacked = TRUE
+		VARSET_IN(src, attacked, FALSE, 6 SECONDS)
 
 /obj/machinery/space_heater/stumble_into(mob/living/M)
 	..()
@@ -128,15 +123,11 @@
 		return ..()
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
 	M.forceMove(src)
 	OCCUPANT = M
 	isopen = 0
 	update_icon()
 	add_fingerprint(M)
-	updateUsrDialog(M)
 	M.stop_flying()
 
 /obj/machinery/vending/stumble_into(mob/living/M)

@@ -13,6 +13,7 @@
 	var/plantname
 	var/datum/seed/seed
 	var/potency = -1
+	special_handling = TRUE
 
 
 /obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, var/planttype)
@@ -28,13 +29,13 @@
 		plantname = planttype
 
 	if(!plantname)
-		log_debug("Plantname not provided and and [src] requires it at [x],[y],[z]")
+		log_runtime("Plantname not provided and [src] requires it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	seed = SSplants.seeds[plantname]
 
 	if(!seed)
-		log_debug("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
+		log_runtime("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	name = "[seed.seed_name]"
@@ -47,15 +48,15 @@
 	if(seed.chems)
 		for(var/rid in seed.chems)
 			var/list/reagent_data = seed.chems[rid]
-			if(reagent_data && reagent_data.len)
+			if(reagent_data && LAZYLEN(reagent_data))
 				var/rtotal = reagent_data[1]
 				var/list/data = list()
-				if(reagent_data.len > 1 && potency > 0)
+				if(LAZYLEN(reagent_data) > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
 				if(rid == REAGENT_ID_NUTRIMENT)
 					data[seed.seed_name] = max(1,rtotal)
-
-				reagents.add_reagent(rid,max(1,rtotal),data)
+				if(rid != REAGENT_ID_GLAMOUR_INVIS)
+					reagents.add_reagent(rid,max(1,rtotal),data)
 		update_desc()
 		if(reagents.total_volume > 0)
 			bitesize = 1+round(reagents.total_volume / 2, 1)
@@ -135,7 +136,7 @@
 		var/image/fruit_base = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
 		fruit_base.color = "[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
 		plant_icon.add_overlay(fruit_base)
-		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in cached_icon_states('icons/obj/hydroponics_products.dmi'))
+		if(icon_exists('icons/obj/hydroponics_products.dmi', "[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf"))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
 			plant_icon.add_overlay(fruit_leaves)
@@ -273,8 +274,10 @@
 				user.drop_from_inventory(src)
 			qdel(src)
 
-/obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user as mob)
-
+/obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!seed)
 		return
 
@@ -372,7 +375,7 @@
 	icon = 'icons/obj/hydroponics_misc.dmi'
 	icon_state = ""
 
-var/list/fruit_icon_cache = list()
+GLOBAL_LIST_EMPTY(fruit_icon_cache)
 
 /obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, var/datum/seed/S)
 	. = ..()
@@ -388,13 +391,13 @@ var/list/fruit_icon_cache = list()
 	var/rind_colour = S.get_trait(TRAIT_PRODUCT_COLOUR)
 	var/flesh_colour = S.get_trait(TRAIT_FLESH_COLOUR)
 	if(!flesh_colour) flesh_colour = rind_colour
-	if(!fruit_icon_cache["rind-[rind_colour]"])
+	if(!GLOB.fruit_icon_cache["rind-[rind_colour]"])
 		var/image/I = image(icon,"fruit_rind")
 		I.color = rind_colour
-		fruit_icon_cache["rind-[rind_colour]"] = I
-	add_overlay(fruit_icon_cache["rind-[rind_colour]"])
-	if(!fruit_icon_cache["slice-[rind_colour]"])
+		GLOB.fruit_icon_cache["rind-[rind_colour]"] = I
+	add_overlay(GLOB.fruit_icon_cache["rind-[rind_colour]"])
+	if(!GLOB.fruit_icon_cache["slice-[rind_colour]"])
 		var/image/I = image(icon,"fruit_slice")
 		I.color = flesh_colour
-		fruit_icon_cache["slice-[rind_colour]"] = I
-	add_overlay(fruit_icon_cache["slice-[rind_colour]"])
+		GLOB.fruit_icon_cache["slice-[rind_colour]"] = I
+	add_overlay(GLOB.fruit_icon_cache["slice-[rind_colour]"])

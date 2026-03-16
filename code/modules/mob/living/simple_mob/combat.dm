@@ -113,6 +113,15 @@
 			try_reload()
 			return FALSE
 
+	if(ranged_cooldown_time) //If you have a non-zero number in a mob's variables, this pattern begins.
+		if(ranged_cooldown <= world.time) //Further down, a timer keeps adding to the ranged_cooldown variable automatically.
+			visible_message(span_danger(span_bold("\The [src]") + " fires at \the [A]!")) //Leave notice of shooting.
+			shoot(A) //Perform the shoot action
+			if(casingtype) //If the mob is designated to leave casings...
+				new casingtype(loc) //... leave the casing.
+			ranged_cooldown = world.time + ranged_cooldown_time + ((injury_level / 2) SECONDS) //Special addition here. This is a timer. Keeping updating the time after shooting. Add that ranged cooldown time specified in the mob to the world time.
+		return TRUE
+
 	visible_message(span_danger(span_bold("\The [src]") + " fires at \the [A]!"))
 	shoot(A)
 	if(casingtype)
@@ -122,7 +131,6 @@
 		ranged_post_animation(A)
 
 	return TRUE
-
 
 // Shoot a bullet at something.
 /mob/living/simple_mob/proc/shoot(atom/A)
@@ -155,7 +163,7 @@
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
-	if(do_after(src, reload_time))
+	if(do_after(src, reload_time, target = src))
 		if(reload_sound)
 			playsound(src, reload_sound, 70, 1)
 		reload_count = 0
@@ -253,7 +261,6 @@
 	sleep(true_attack_delay)
 
 	set_AI_busy(FALSE)
-
 
 // Override these four for special custom animations (like the GOLEM).
 /mob/living/simple_mob/proc/melee_pre_animation(atom/A)

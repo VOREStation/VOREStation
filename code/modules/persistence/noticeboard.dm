@@ -6,6 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
 	anchored = TRUE
+	flags = WALL_ITEM
 	var/list/notices
 	var/base_icon_state = "nboard0"
 	var/const/max_notices = 5
@@ -78,7 +79,7 @@
 	else if(I.has_tool_quality(TOOL_WRENCH))
 		visible_message(span_warning("[user] begins dismantling [src]."))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 50, src))
+		if(do_after(user, 5 SECONDS, target = src))
 			visible_message(span_danger("[user] has dismantled [src]!"))
 			dismantle()
 		return

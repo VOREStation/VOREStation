@@ -18,15 +18,15 @@
 		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(get_location_z_levels()) )
 		if(istype(candidate, /turf/simulated/wall))
 			origin = candidate
-			log_debug("Wall-rot event has chosen \the [origin] ([origin.loc]) as the origin for the wallrot infestation.")
+			log_game("Wall-rot event has chosen \the [origin] ([origin.loc]) as the origin for the wallrot infestation.")
 			return
 
-	log_debug("Wall-rot event failed to find a valid wall after one hundred tries. Aborting.")
+	log_game("Wall-rot event failed to find a valid wall after one hundred tries. Aborting.")
 	abort()
 
 /datum/event2/event/wallrot/announce()
 	if(origin && prob(80))
-		command_announcement.Announce("Harmful fungi detected on \the [location_name()], near \the [origin.loc]. \
+		GLOB.command_announcement.Announce("Harmful fungi detected on \the [location_name()], near \the [origin.loc]. \
 		Station structural integrity may be compromised.", "Biohazard Alert")
 
 /datum/event2/event/wallrot/start()

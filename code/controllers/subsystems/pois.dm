@@ -3,19 +3,21 @@ SUBSYSTEM_DEF(points_of_interest)
 	name = "Points of Interest"
 	wait = 1 SECONDS
 	priority = FIRE_PRIORITY_POIS
-	init_order = INIT_ORDER_POIS
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT //POIs can be loaded mid-round.
+	dependencies = list(
+		/datum/controller/subsystem/holomaps
+	)
 	var/list/obj/effect/landmark/poi_loader/poi_queue = list()
 
 /datum/controller/subsystem/points_of_interest/Initialize()
-	while (poi_queue.len)
+	while (length(poi_queue))
 		load_next_poi()
-	to_world_log("Initializing POIs")
+	log_mapping("Initializing POIs")
 	admin_notice(span_danger("Initializing POIs"), R_DEBUG)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/points_of_interest/fire(resumed = FALSE)
-	while (poi_queue.len)
+	while (length(poi_queue))
 		load_next_poi()
 
 		if (MC_TICK_CHECK)
@@ -35,7 +37,7 @@ SUBSYSTEM_DEF(points_of_interest)
 	//var/deleted_atoms = 0
 	//admin_notice(span_danger("Annihilating objects in poi loading location."), R_DEBUG)
 	var/list/turfs_to_clean = get_turfs_to_clean(poi_to_load)
-	if(turfs_to_clean.len)
+	if(length(turfs_to_clean))
 		for(var/x in 1 to 2) // Requires two passes to get everything.
 			for(var/turf/T in turfs_to_clean)
 				for(var/atom/movable/AM in T)
@@ -48,14 +50,14 @@ SUBSYSTEM_DEF(points_of_interest)
 		return
 	var/turf/T = get_turf(poi_to_load)
 	if(!isturf(T))
-		to_world_log("[log_info_line(poi_to_load)] not on a turf! Cannot place poi template.")
+		log_mapping("[log_info_line(poi_to_load)] not on a turf! Cannot place poi template.")
 		return
 
 	// Choose a poi
 	if(!poi_to_load.poi_type)
 		return
 
-	if(!(GLOB.global_used_pois.len) || !(GLOB.global_used_pois[poi_to_load.poi_type]))
+	if(!(length(GLOB.global_used_pois)) || !(GLOB.global_used_pois[poi_to_load.poi_type]))
 		GLOB.global_used_pois[poi_to_load.poi_type] = list()
 		var/list/poi_list = GLOB.global_used_pois[poi_to_load.poi_type]
 		for(var/map in SSmapping.map_templates)
@@ -67,7 +69,7 @@ SUBSYSTEM_DEF(points_of_interest)
 
 	var/list/our_poi_list = GLOB.global_used_pois[poi_to_load.poi_type]
 
-	if(!our_poi_list.len)
+	if(!length(our_poi_list))
 		return
 	else
 		template_to_use = pick(our_poi_list)

@@ -72,10 +72,11 @@
 
 	window.send_message("props", list(
 		"lightMode" = client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_light),
-		"scale" = client.prefs?.read_preference(/datum/preference/toggle/ui_scale),
+		"scale" = client?.prefs?.read_preference(/datum/preference/toggle/ui_scale),
 		"minimumWidth" = minimum_width,
 		"minimumHeight" = minimum_height,
 		"maxLength" = max_length,
+		"spellcheck" = client?.prefs?.read_preference(/datum/preference/toggle/tgui_use_spellcheck)
 	))
 
 	stop_thinking()
@@ -133,26 +134,9 @@
 	if(type == "entry" || type == "force")
 		var/id = href_list["packetId"]
 		if(!isnull(id))
-			id = text2num(id)
-
-			var/total = text2num(href_list["totalPackets"])
-			if(id == 1)
-				if(total > MAX_MESSAGE_CHUNKS)
-					return
-
-				partial_packets = new /list(total)
-
-			partial_packets[id] = href_list["packet"]
-
-			if(id != total)
-				return
-
-			var/assembled_payload = ""
-			for(var/packet in partial_packets)
-				assembled_payload += packet
-
-			payload = json_decode(assembled_payload)
-			partial_packets = null
+			payload = handle_packets(id, href_list["totalPackets"], href_list["packet"])
+			if(!payload)
+				return FALSE
 		handle_entry(type, payload)
 		return TRUE
 	if(type == "lenwarn")

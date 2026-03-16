@@ -5,15 +5,13 @@
 	initial_sprite_stack = list()
 	light_color = "#0099ff"
 	access = list(801)
+	special_handling = TRUE
 
 /obj/item/card/id/keycard/update_icon()
 	return
 
 /obj/item/card/id/keycard/read()
 	to_chat(usr, span_notice("It is a red keycard, it must unlock something."))
-
-/obj/item/card/id/keycard/attack_self(mob/living/user as mob)
-	return
 
 /obj/item/card/id/keycard/blue
 	icon_state = "keycard-blue"
@@ -26,13 +24,13 @@
 /obj/item/glamourcrystal
 	name = "white crytal"
 	desc = "A large white, highly reflective crystal with a slight glow to it."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "glamourcrystal"
 
 /obj/structure/crystalholder
 	name = "material cart"
 	desc = "A cart designed to fit and carry one large carefully cut crystal."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "crystalholder"
 	var/crystal = 0
 	density = 1

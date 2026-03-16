@@ -31,7 +31,10 @@
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
 
-/obj/item/lipstick/attack_self(mob/user as mob)
+/obj/item/lipstick/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("You twist \the [src] [open ? "closed" : "open"]."))
 	open = !open
 	if(open)
@@ -57,7 +60,7 @@
 		else
 			user.visible_message(span_warning("[user] begins to do [H]'s lips with \the [src]."), \
 									span_notice("You begin to apply \the [src]."))
-			if(do_after(user, 20, H))	//user needs to keep their active hand, H does not.
+			if(do_after(user, 2 SECONDS, target = H))	//user needs to keep their active hand, H does not.
 				user.visible_message(span_notice("[user] does [H]'s lips with \the [src]."), \
 										span_notice("You apply \the [src]."))
 				H.lip_style = colour
@@ -76,6 +79,9 @@
 	icon_state = "purplecomb"
 
 /obj/item/haircomb/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/text = "person"
 	if(ishuman(user))
 		var/mob/living/carbon/human/U = user
@@ -104,7 +110,10 @@
 	. = ..()
 	M = new(src, null)
 
-/obj/item/makeover/attack_self(mob/living/carbon/user as mob)
+/obj/item/makeover/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(ishuman(user))
 		to_chat(user, span_notice("You flip open \the [src] and begin to adjust your appearance."))
 		M.tgui_interact(user)

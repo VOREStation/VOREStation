@@ -72,3 +72,14 @@
 	var/obj/item/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)
+
+/datum/crafting_recipe/surgerytable
+	name = "surgery table"
+	result = /obj/machinery/optable
+	reqs = list(
+		list(/obj/item/stack/material/silver = 12),
+		list(/obj/item/stack/rods = 10),
+		list(/obj/item/stack/material/leather = 1)
+	)
+	time = 240
+	category = CAT_MISC

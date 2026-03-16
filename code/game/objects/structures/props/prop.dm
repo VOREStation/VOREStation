@@ -59,6 +59,29 @@
 	icon_state = "big_skeleton"
 	density = 0
 
+/obj/structure/prop/cryopod
+	name = "cryogenic freezer"
+	desc = "A man-sized pod for entering suspended animation. This one is room temperature."
+	icon = 'icons/obj/Cryogenic2.dmi'
+	icon_state = "cryopod_0"
+
+/obj/structure/prop/grid_checker
+	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "gridchecker_off"
+	name = "capacitor bank"
+
+/obj/structure/prop/mainframe
+	desc = "There are a number of what seem to be error messages on these screens, none intelligible."
+	icon = 'icons/obj/mainframe.dmi'
+	icon_state = "leftb"
+	name = "console"
+
+/obj/structure/prop/mainframe/ai
+	name = "broken console"
+	desc = "This isn't going to be fixable."
+	icon_state = "aimainframeb"
+
 /**
  *
  * Notes on change_state

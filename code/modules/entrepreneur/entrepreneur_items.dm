@@ -185,7 +185,10 @@
 	advice = pick(advice_list)
 	pisces = "[stars] [prediction] [advice]"
 
-/obj/item/entrepreneur/horoscope/attack_self(var/mob/user)
+/obj/item/entrepreneur/horoscope/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/zodiac = tgui_input_list(user, "Which of todays zodiacs do you want to read?", "Zodiac", zodiacs)
 	if(zodiac)
 		switch(zodiac)
@@ -289,12 +292,15 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "dumbbell"
 
-/obj/item/entrepreneur/dumbbell/attack_self(var/mob/user)
+/obj/item/entrepreneur/dumbbell/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/mob/living/M = user
 	if(M.nutrition <= 100)
 		to_chat(user, span_notice("You are too hungry to exercise right now."))
 		return 0
-	if(!do_after(user, 3 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return 0
 	M.adjust_nutrition(-10)
 	to_chat(user, span_notice("You successfully perform a [src] exercise!"))
@@ -312,7 +318,10 @@
 	var/turf/last_used = 0
 	var/emf_change = 0
 
-/obj/item/entrepreneur/emf/attack_self(var/mob/user)
+/obj/item/entrepreneur/emf/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!last_used)
 		emf = rand(1,100)
 		last_used = get_turf(user)
@@ -362,7 +371,7 @@
 		to_chat(user, span_notice("You need some sort of glass, bottle or cup to contact the spirit world."))
 		return 0
 	var/result = 0
-	if(!do_after(user, 3 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return 0
 	if(next_result)
 		result = next_result
@@ -371,7 +380,7 @@
 	src.visible_message(span_notice("[user] slides the [W] over to [result]!"))
 	next_result = 0
 
-/obj/item/entrepreneur/spirit_board/AltClick(mob/living/carbon/user)
+/obj/item/entrepreneur/spirit_board/click_alt(mob/living/carbon/user)
 	if(!istype(user)) //admins can be cheeky
 		return 0
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
@@ -427,7 +436,7 @@
 	rollertype = /obj/item/roller/massage
 	bedtype = /obj/structure/bed/roller/massage
 
-/obj/structure/bed/roller/massage/AltClick(mob/living/carbon/user)
+/obj/structure/bed/roller/massage/click_alt(mob/living/carbon/user)
 	if(anchored)
 		anchored = 0
 		src.visible_message(span_notice("[user] turns the breaks off on the [src]!"))

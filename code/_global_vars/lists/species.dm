@@ -1,7 +1,7 @@
 //Languages/species/whitelist.
 GLOBAL_LIST_EMPTY_TYPED(all_species, /datum/species)
-GLOBAL_LIST_EMPTY_TYPED(whitelisted_species, /datum/species)	// Species that require a whitelist check.
-GLOBAL_LIST_EMPTY_TYPED(playable_species, /datum/species)		// A list of ALL playable species, whitelisted, latejoin or otherwise.
+GLOBAL_LIST_EMPTY(whitelisted_species)	// Species that require a whitelist check.
+GLOBAL_LIST_EMPTY(playable_species)		// A list of ALL playable species, whitelisted, latejoin or otherwise.
 
 GLOBAL_LIST_EMPTY_TYPED(all_languages, /datum/language)
 GLOBAL_LIST_INIT(language_name_conflicts, list())

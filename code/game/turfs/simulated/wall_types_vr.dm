@@ -39,7 +39,7 @@
 	. = ..()
 	update_icon(1)
 
-var/list/flesh_overlay_cache = list()
+GLOBAL_LIST_EMPTY(flesh_overlay_cache)
 
 /turf/simulated/flesh/update_icon(var/update_neighbors)
 	cut_overlays()
@@ -51,9 +51,9 @@ var/list/flesh_overlay_cache = list()
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
 				var/place_dir = turn(direction, 180)
-				if(!flesh_overlay_cache["flesh_side_[place_dir]"])
-					flesh_overlay_cache["flesh_side_[place_dir]"] = image('icons/turf/stomach_vr.dmi', "flesh_side", dir = place_dir)
-				add_overlay(flesh_overlay_cache["flesh_side_[place_dir]"])
+				if(!GLOB.flesh_overlay_cache["flesh_side_[place_dir]"])
+					GLOB.flesh_overlay_cache["flesh_side_[place_dir]"] = image('icons/turf/stomach_vr.dmi', "flesh_side", dir = place_dir)
+				add_overlay(GLOB.flesh_overlay_cache["flesh_side_[place_dir]"])
 
 	if(update_neighbors)
 		for(var/direction in GLOB.alldirs)
@@ -224,6 +224,30 @@ var/list/flesh_overlay_cache = list()
 	icon_state = "wood"
 	icon = 'icons/turf/wall_masks_vr.dmi'
 
+/turf/simulated/wall/acaciawood
+	icon_state = "acaciawood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/birchwood
+	icon_state = "birchwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/hardwood
+	icon_state = "hardwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/oakwood
+	icon_state = "oakwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/pinewood
+	icon_state = "pinewood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/redwood
+	icon_state = "redwood"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
 /turf/simulated/wall/stonebricks
 	icon_state = "stonebrick"
 	icon = 'icons/turf/wall_masks_vr.dmi'
@@ -237,3 +261,11 @@ var/list/flesh_overlay_cache = list()
 
 /turf/simulated/wall/stonelogs/Initialize(mapload)
 			. = ..(mapload, MAT_CONCRETE,MAT_LOG)
+
+/turf/simulated/wall/glass
+	icon = 'icons/obj/structures_vr.dmi'
+	icon_state = "window-full"
+	opacity = 0
+
+/turf/simulated/wall/glass/Initialize(mapload)
+	. = ..(mapload, MAT_GLASS)

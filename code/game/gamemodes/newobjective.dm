@@ -22,7 +22,7 @@
 /proc/GenerateAssassinate(var/job,var/datum/mind/traitor)
 	var/list/datum/objective/assassinate/missions = list()
 
-	for(var/datum/mind/target in ticker.minds)
+	for(var/datum/mind/target in SSticker.minds)
 		if((target != traitor) && ishuman(target.current))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/assassinate(null,job,target)
@@ -33,7 +33,7 @@
 /proc/GenerateFrame(var/job,var/datum/mind/traitor)
 	var/list/datum/objective/frame/missions = list()
 
-	for(var/datum/mind/target in ticker.minds)
+	for(var/datum/mind/target in SSticker.minds)
 		if((target != traitor) && ishuman(target.current))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/frame(null,job,target)
@@ -44,7 +44,7 @@
 /proc/GenerateProtection(var/job,var/datum/mind/traitor)
 	var/list/datum/objective/frame/missions = list()
 
-	for(var/datum/mind/target in ticker.minds)
+	for(var/datum/mind/target in SSticker.minds)
 		if((target != traitor) && ishuman(target.current))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/protection(null,job,target)
@@ -253,7 +253,7 @@ datum
 		proc/get_weight(var/job)
 			return INFINITY
 		proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
-			for(var/datum/mind/possible_target in ticker.minds)
+			for(var/datum/mind/possible_target in SSticker.minds)
 				if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
 					target = possible_target
 					break
@@ -267,7 +267,7 @@ datum
 				explanation_text = "Frame [target.current.real_name], the [target.assigned_role] for a crime and make sure they are arrested and brought back to the CentCom station alive.  We'll handle the rest from there."
 
 			check_completion()
-				if(!emergency_shuttle.returned())
+				if(!GLOB.emergency_shuttle.returned())
 					return 0
 				if(target.current.stat == 2)
 					return 0
@@ -313,7 +313,7 @@ datum
 				explanation_text = "[target.current.real_name], the [target.assigned_role] is a [pick("relative of a","friend of a","") + pick("high ranking","important","well-liked")] mercenary [pick("Leader","Officer","Agent","sympathiser")].  Make sure they get off the station safely, while minimizing intervention."
 
 			check_completion()
-				if(!emergency_shuttle.returned())
+				if(!GLOB.emergency_shuttle.returned())
 					return 0
 
 				if(target.current.stat == 2)
@@ -387,7 +387,7 @@ datum
 				return 0
 
 			find_target_by_role(var/role)
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in SSticker.minds)
 					if((possible_target != owner) && ishuman(possible_target.current) && (possible_target.assigned_role == role))
 						target = possible_target
 						break
@@ -403,7 +403,7 @@ datum
 			proc/find_target()
 				var/list/possible_targets = list()
 
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in SSticker.minds)
 					if((possible_target != owner) && ishuman(possible_target.current))
 						possible_targets += possible_target
 
@@ -438,7 +438,7 @@ datum
 				return 1
 
 			find_target_by_role(var/role)
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in SSticker.minds)
 					if((possible_target != owner) && ishuman(possible_target.current) && (possible_target.assigned_role == role))
 						target = possible_target
 						break
@@ -477,7 +477,7 @@ datum
 			explanation_text = "Hijack the emergency shuttle by escaping alone."
 
 			check_completion()
-				if(!emergency_shuttle.returned())
+				if(!GLOB.emergency_shuttle.returned())
 					return 0
 
 				if(!owner.current || owner.current.stat == 2)
@@ -512,7 +512,7 @@ datum
 			explanation_text = "Escape on the shuttle alive, without being arrested."
 
 			check_completion()
-				if(!emergency_shuttle.returned())
+				if(!GLOB.emergency_shuttle.returned())
 					return 0
 
 				if(!owner.current || owner.current.stat ==2)
@@ -593,7 +593,7 @@ datum
 				weight = 20
 
 				get_points(var/job)
-					if(job in science_positions || job in command_positions)
+					if(job in science_positions || job in GLOB.command_positions)
 						return 20
 					return 40
 
@@ -1230,7 +1230,7 @@ datum
 			check_completion()
 				if(!istype(owner.current, /mob/living/silicon))
 					return 0
-				if(!emergency_shuttle.returned())
+				if(!GLOB.emergency_shuttle.returned())
 					return 0
 				if(!owner.current)
 					return 0
@@ -1287,13 +1287,13 @@ datum
 				target_amount = rand (lowbound,highbound)
 				if (ticker)
 					var/n_p = 1 //autowin
-					if (ticker.current_state == GAME_STATE_SETTING_UP)
+					if (SSticker.current_state == GAME_STATE_SETTING_UP)
 						for(var/mob/new_player/P in world)
 							if(P.client && P.ready && P.mind!=owner)
 								n_p ++
-					else if (ticker.current_state == GAME_STATE_PLAYING)
+					else if (SSticker.current_state == GAME_STATE_PLAYING)
 						for(var/mob/living/carbon/human/P in world)
-							if(P.client && !(P.mind in ticker.mode.changelings) && P.mind!=owner)
+							if(P.client && !(P.mind in SSticker.mode.changelings) && P.mind!=owner)
 								n_p ++
 					target_amount = min(target_amount, n_p)
 
@@ -1457,7 +1457,7 @@ datum
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 	check_completion()
-		if(!emergency_shuttle.returned())
+		if(!GLOB.emergency_shuttle.returned())
 			return 0
 
 		var/area/shuttle = locate(/area/shuttle/escape/centcom)

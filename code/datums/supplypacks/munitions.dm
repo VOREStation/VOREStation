@@ -22,7 +22,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Security equipment crate"
-	access = access_security*/
+	access = ACCESS_SECURITY*/
 
 /datum/supply_pack/munitions/egunpistol
 	name = "Weapons - Energy sidearms"
@@ -31,7 +31,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Energy sidearms crate"
-	access = access_armory //VOREStation Edit - Guns are for the armory.
+	access = ACCESS_ARMORY //VOREStation Edit - Guns are for the armory.
 
 /datum/supply_pack/munitions/flareguns
 	name = "Weapons - Flare guns"
@@ -45,7 +45,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Flare gun crate"
-	access = access_armory //VOREStation Edit - Guns are for the armory.
+	access = ACCESS_ARMORY //VOREStation Edit - Guns are for the armory.
 
 /datum/supply_pack/munitions/eweapons
 	name = "Weapons - Experimental weapons crate"
@@ -56,7 +56,7 @@
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Experimental weapons crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/energyweapons
 	name = "Weapons - Laser rifle crate"
@@ -65,7 +65,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy weapons crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/shotgun
 	name = "Weapons - Shotgun crate"
@@ -78,7 +78,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Shotgun crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 /* VOREStation edit -- This is a bad idea. -- So is this.
 
 /datum/supply_pack/munitions/shotgunsemi
@@ -91,7 +91,7 @@
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Semi-Auto Shotgun crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/erifle
 	name = "Weapons - Energy marksman"
@@ -99,7 +99,7 @@
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy marksman crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/burstlaser
 	name = "Weapons - Burst laser"
@@ -107,7 +107,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Burst laser crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 */
 /datum/supply_pack/munitions/ionweapons
 	name = "Weapons - Electromagnetic Pulse Rifles"
@@ -119,7 +119,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Electromagnetic weapons crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/ionpistols
 	name = "Weapons - Electromagnetic Pulse pistols"
@@ -131,7 +131,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Electromagnetic weapons crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/bsmg
 	name = "Weapons - Ballistic SMGs"
@@ -140,7 +140,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Ballistic weapon crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/brifle
 	name = "Weapons - Ballistic Rifles"
@@ -149,7 +149,7 @@
 	cost = 80
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic weapon crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/bolt_rifles_lethal
 	name = "Weapons - Bolt-Action Rifles"
@@ -161,7 +161,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic Weapons crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/bolt_rifles_competitive
 	name = "Weapons - Competitive shooting rifles"
@@ -177,7 +177,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic Weapons crate"
-	access = access_armory //VOREStation Edit - Guns are for the armory.
+	access = ACCESS_ARMORY //VOREStation Edit - Guns are for the armory.
 
 /datum/supply_pack/munitions/caseless
 	name = "Weapons - Prototype Caseless Rifle"
@@ -189,7 +189,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Caseless rifle crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/mrifle
 	name = "Weapons - Magnetic Rifles"
@@ -198,7 +198,7 @@
 	cost = 120
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Magnetic weapon crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/mpistol
 	name = "Weapons - Magnetic Pistols"
@@ -207,7 +207,7 @@
 	cost = 200
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Magnetic weapon crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/mcarbine
 	name = "Weapons - Magnetic Carbines"
@@ -216,7 +216,7 @@
 	cost = 130
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Magnetic weapon crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/mshells
 	name = "Weapons - Magnetic Shells"
@@ -225,7 +225,7 @@
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Magnetic ammunition crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/claymore
 	name = "Weapons - Melee - Claymores"
@@ -234,7 +234,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Claymore crate"
-	access = access_armory //two swords that are a one-hit 40 brute + IB chance should be armory-locked
+	access = ACCESS_ARMORY //two swords that are a one-hit 40 brute + IB chance should be armory-locked
 
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
@@ -246,7 +246,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/beanbagammo
 	name = "Ammunition - Beanbag shells"
@@ -255,7 +255,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Ballistic ammunition crate"
-	access = access_armory //VOREStation Edit - Guns are for the armory.
+	access = ACCESS_ARMORY //VOREStation Edit - Guns are for the armory.
 
 /datum/supply_pack/munitions/bsmgammo
 	name = "Ammunition - 9mm top mounted lethal"
@@ -264,7 +264,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/bsmgammorubber
 	name = "Ammunition - 9mm top mounted rubber"
@@ -273,7 +273,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/brifleammo
 	name = "Ammunition - 7.62mm lethal"
@@ -282,7 +282,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/munitions/pcellammo
 	name = "Ammunition - Power cell"
@@ -291,7 +291,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Energy ammunition crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /*
 /datum/supply_pack/munitions/expeditionguns
@@ -303,7 +303,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure
 	containername = "frontier phaser crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/munitions/expeditionbows
 	name = "Frontier bows (station-locked) crate"
@@ -313,7 +313,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "phaser handbow crate"
-	access = access_security
+	access = ACCESS_SECURITY
 */
 
 /datum/supply_pack/munitions/ofd_charge_emp
@@ -325,7 +325,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
 	containername = "EMP disperser charge crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/munitions/ofd_charge_explosive
 	name = "OFD Charge - Explosive"
@@ -336,7 +336,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
 	containername = "Explosive disperser charge crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/munitions/ofd_charge_incendiary
 	name = "OFD Charge - Incendiary"
@@ -347,7 +347,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
 	containername = "Incendiary disperser charge crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/munitions/ofd_charge_mining
 	name = "OFD Charge - Mining"
@@ -358,7 +358,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
 	containername = "Mining disperser charge crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/munitions/longsword
 	name = "Weapons - Melee -Longsword (Steel)"
@@ -369,4 +369,4 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "longsword"
-	access = access_armory
+	access = ACCESS_ARMORY

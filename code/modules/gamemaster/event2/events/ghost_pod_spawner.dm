@@ -9,7 +9,7 @@
 	free_turfs = find_random_turfs(5, desired_turf_areas)
 
 	if(!free_turfs.len)
-		log_debug("Ghost Pod Spawning event failed to find a place to spawn. Aborting.")
+		log_game("Ghost Pod Spawning event failed to find a place to spawn. Aborting.")
 		abort()
 		return
 

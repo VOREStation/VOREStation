@@ -28,9 +28,9 @@
 	if(!victim)
 		switch(severity)
 			if(EVENT_LEVEL_MAJOR)
-				command_announcement.Announce("Meteors have been detected on collision course with \the [location_name()].", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+				GLOB.command_announcement.Announce("Meteors have been detected on collision course with \the [location_name()].", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
 			else
-				command_announcement.Announce("\The [location_name()] is now in a meteor shower.", "Meteor Alert")
+				GLOB.command_announcement.Announce("\The [location_name()] is now in a meteor shower.", "Meteor Alert")
 
 /datum/event/meteor_wave/tick()
 	// Begin sending the alarm signals to shield diffusers so the field is already regenerated (if it exists) by the time actual meteors start flying around.
@@ -63,20 +63,20 @@
 	if(!victim)
 		switch(severity)
 			if(EVENT_LEVEL_MAJOR)
-				command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")
+				GLOB.command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")
 			else
-				command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
+				GLOB.command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			return meteors_major
+			return GLOB.meteors_major
 		if(EVENT_LEVEL_MODERATE)
-			return meteors_moderate
+			return GLOB.meteors_moderate
 		else
-			return meteors_minor
+			return GLOB.meteors_minor
 
-/var/list/meteors_minor = list(
+GLOBAL_LIST_INIT(meteors_minor, list(
 	/obj/effect/meteor/medium     = 80,
 	/obj/effect/meteor/dust       = 30,
 	/obj/effect/meteor/irradiated = 30,
@@ -84,9 +84,9 @@
 	/obj/effect/meteor/flaming    = 10,
 	///obj/effect/meteor/golden     = 10,
 	///obj/effect/meteor/silver     = 10,
-)
+))
 
-/var/list/meteors_moderate = list(
+GLOBAL_LIST_INIT(meteors_moderate, list(
 	/obj/effect/meteor/medium     = 80,
 	/obj/effect/meteor/big        = 30,
 	/obj/effect/meteor/dust       = 30,
@@ -95,9 +95,9 @@
 	///obj/effect/meteor/golden     = 10,
 	///obj/effect/meteor/silver     = 10,
 	/obj/effect/meteor/emp        = 10,
-)
+))
 
-/var/list/meteors_major = list(
+GLOBAL_LIST_INIT(meteors_major, list(
 	/obj/effect/meteor/medium     = 80,
 	/obj/effect/meteor/big        = 30,
 	/obj/effect/meteor/dust       = 30,
@@ -107,7 +107,7 @@
 	///obj/effect/meteor/golden     = 10,
 	///obj/effect/meteor/silver     = 10,
 	/obj/effect/meteor/tunguska   = 1,
-)
+))
 
 // Overmap version
 /datum/event/meteor_wave/overmap

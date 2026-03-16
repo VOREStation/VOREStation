@@ -42,17 +42,13 @@
 	emote_hear = list("chirps","pings","clicks")
 	emote_see = list("flaps","grooms itself")
 
-/mob/living/simple_mob/vore/bat/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/bat/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The giant bat has managed to swallow you alive, which is particularly impressive given that it's still a rather small creature. It's belly bulges out as you're squeezed into the oppressively tight stomach, and it lands to manage the weight, wings curling over your form beneath. The body groans under your strain, burbling and growling as it gets to work on it's feed. However, at least for now, it seems to do you no physical harm. Instead, the damp walls that squelch across your body try to leech out your energy through some less direct means."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.belly_fullscreen = "VBO_fleshs"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1

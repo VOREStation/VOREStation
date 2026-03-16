@@ -34,7 +34,7 @@
 		if(writing_space <= 0)
 			to_chat(user, span_warning("There is no room left on \the [src]."))
 			return
-		var/text = sanitizeSafe(tgui_input_text(user, "What would you like to write?", null, null, writing_space), writing_space)
+		var/text = sanitizeSafe(tgui_input_text(user, "What would you like to write?", null, null, writing_space, encode = FALSE), writing_space)
 		if(!text || thing.loc != user || (!Adjacent(user) && loc != user) || user.incapacitated())
 			return
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " jots a note down on \the [src]."))
@@ -98,7 +98,7 @@
 /obj/item/paper/sticky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/paper/sticky/proc/reset_persistence_tracking)
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/paper/sticky/proc/reset_persistence_tracking)
 
 /obj/item/paper/sticky/proc/reset_persistence_tracking()
 	SIGNAL_HANDLER
@@ -108,7 +108,7 @@
 
 /obj/item/paper/sticky/Destroy()
 	reset_persistence_tracking()
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	. = ..()
 
 /obj/item/paper/sticky/update_icon()

@@ -42,7 +42,10 @@
 	colourName = "mime"
 	uses = 0
 
-/obj/item/pen/crayon/mime/attack_self(mob/living/user as mob) //inversion
+/obj/item/pen/crayon/mime/attack_self(mob/living/user) //inversion
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
@@ -61,6 +64,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/rainbow/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Crayon colour", colour)
 	if(new_colour)
 		colour = new_colour
@@ -98,7 +104,7 @@
 				if(!drawtype || get_dist(target, user) > 1 || !(user.z == target.z))
 					return
 				to_chat(user, "You start drawing an arrow on the [target.name].")
-		if(instant || do_after(user, 50))
+		if(instant || do_after(user, 5 SECONDS, target = src))
 			var/list/mouse_control = params2list(click_parameters)
 			var/p_x = 0
 			var/p_y = 0
@@ -192,6 +198,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/marker/mime/attack_self(mob/living/user) //inversion
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
@@ -210,6 +219,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/marker/rainbow/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Marker colour", colour)
 	if(new_colour)
 		colour = new_colour
@@ -234,6 +246,3 @@
 				qdel(src)
 	else
 		..()
-
-/obj/item/pen/crayon/attack_self(var/mob/user)
-	return

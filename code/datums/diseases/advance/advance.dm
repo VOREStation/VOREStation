@@ -1,23 +1,21 @@
 GLOBAL_LIST_EMPTY(archive_diseases)
 
 GLOBAL_LIST_INIT(advance_cures, list(
-	REAGENT_ID_SPACEACILLIN,
-	REAGENT_ID_ORANGEJUICE,
-	REAGENT_ID_ETHANOL,
-	REAGENT_ID_GLUCOSE,
-	REAGENT_ID_COPPER,
-	REAGENT_ID_LEAD,
-	REAGENT_ID_LITHIUM,
-	REAGENT_ID_RADIUM,
-	REAGENT_ID_MERCURY,
-	REAGENT_ID_BLISS,
-	REAGENT_ID_MUTAGEN,
-	REAGENT_ID_PHORON,
-	REAGENT_ID_SACID
+	list(REAGENT_ID_WATER, REAGENT_ID_NUTRIMENT, REAGENT_ID_IRON),
+	list(REAGENT_ID_ETHANOL, REAGENT_ID_RADIUM, REAGENT_ID_POTASSIUM, REAGENT_ID_LITHIUM),
+	list(REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_NICOTINE, REAGENT_ID_BLISS),
+	list(REAGENT_ID_ANTITOXIN, REAGENT_ID_ETHYLREDOXRAZINE, REAGENT_ID_FUEL, REAGENT_ID_CLEANER),
+	list(REAGENT_ID_SPACEACILLIN, REAGENT_ID_MINDBREAKER, REAGENT_ID_CRYOXADONE),
+	list(REAGENT_ID_TRAMADOL, REAGENT_ID_KELOTANE, REAGENT_INAPROVALINE),
+	list(REAGENT_ID_LEPORAZINE, REAGENT_ID_HOLYWATER, REAGENT_ID_ALKYSINE),
+	list(REAGENT_ID_PAROXETINE, REAGENT_ID_RADIUM, REAGENT_ID_PHORON),
+	list(REAGENT_ID_ADRANOL, REAGENT_ID_MUTAGEN, REAGENT_ID_ARITHRAZINE),
+	list(REAGENT_ID_LIPOZINE, REAGENT_ID_LUBE, REAGENT_ID_SACID),
+	list(REAGENT_ID_ASUSTENANCE, REAGENT_ID_CORDRADAXON, REAGENT_ID_OXYCODONE),
 ))
 
 /datum/disease/advance
-	name = "Unknown"
+	name = DEVELOPER_WARNING_NAME
 	desc = "An engineered disease which can contain a multitude of symptoms."
 	form = "Advance Disease"
 	agent = "advance microbes"
@@ -33,6 +31,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/transmission
 	var/severity
 	var/speed
+
+	var/mutability = 1
+	var/keepid = FALSE
+	var/archivecure
+
 	var/list/symptoms = list()
 
 	var/s_processing = FALSE
@@ -57,8 +60,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance/stage_act()
 	if(!..())
-		return FALSE
-	if(global_flag_check(virus_modifiers, DORMANT))
 		return FALSE
 	if(symptoms && length(symptoms))
 
@@ -103,6 +104,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	A.transmission = transmission
 	A.severity = severity
 	A.speed = speed
+	A.mutability = mutability
+	A.keepid = keepid
 	A.id = id
 	A.Refresh()
 	return A
@@ -168,7 +171,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
 	GenerateProperties()
 	AssignProperties()
-	id = null
+	if(s_processing && length(symptoms))
+		for(var/datum/symptom/S in symptoms)
+			S.Start(src)
+			S.OnStageChange(src)
+
+	if(!keepid)
+		id = null
 
 	if(!GLOB.archive_diseases[GetDiseaseID()])
 		if(new_name)
@@ -178,7 +187,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	else
 		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 		var/actual_name = A.name
-		if(actual_name != "Unknown")
+		if(actual_name != DEVELOPER_WARNING_NAME)
 			name = actual_name
 
 
@@ -200,6 +209,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		transmission += S.transmission
 	for(var/datum/symptom/S as anything in symptoms)
 		S.severityset(src)
+		if(S.neutered)
+			continue
 		switch(S.severity)
 			if(-INFINITY to 0)
 				c1sev += S.severity
@@ -224,10 +235,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	SetSpread()
 	permeability_mod = max(CEILING(0.4 * transmission, 1), 1)
-	cure_chance = 15 - clamp(resistance, -5, 5) // can be between 10 and 20
+	cure_chance = clamp(7.5 - (0.5 * resistance), 5, 10)
 	stage_prob = max(stage_rate, 2)
-	SetSeverity(severity)
+	SetDanger(severity)
 	GenerateCure()
+	symptoms = sortList(symptoms, GLOBAL_PROC_REF(cmp_advdisease_symptomid_asc))
 
 /datum/disease/advance/proc/SetSpread()
 	if(global_flag_check(virus_modifiers, FALTERED))
@@ -248,37 +260,50 @@ GLOBAL_LIST_INIT(advance_cures, list(
 				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
 				spread_text = "On Contact"
 
-/datum/disease/advance/proc/SetSeverity(level_sev)
+/datum/disease/advance/proc/SetDanger(level_sev)
 
 	switch(level_sev)
 
 		if(-INFINITY to -2)
-			severity = DISEASE_BENEFICIAL
+			danger = DISEASE_BENEFICIAL
 		if(-1)
-			severity = DISEASE_POSITIVE
+			danger = DISEASE_POSITIVE
 		if(0)
-			severity = DISEASE_NONTHREAT
+			danger = DISEASE_NONTHREAT
 		if(1)
-			severity = DISEASE_MINOR
+			danger = DISEASE_MINOR
 		if(2)
-			severity = DISEASE_MEDIUM
+			danger = DISEASE_MEDIUM
 		if(3)
-			severity = DISEASE_HARMFUL
+			danger = DISEASE_HARMFUL
 		if(4)
-			severity = DISEASE_DANGEROUS
-		if(5 to INFINITY)
-			severity = DISEASE_BIOHAZARD
+			danger = DISEASE_DANGEROUS
+		if(5)
+			danger = DISEASE_BIOHAZARD
+		if(6 to INFINITY)
+			danger = DISEASE_PANDEMIC
 		else
-			severity = "Unknown"
+			danger = "Unknown"
 
 /datum/disease/advance/proc/GenerateCure()
-	var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-	cures = list(GLOB.advance_cures[res])
-	cure_text = cures[1]
+	if(GLOB.archive_diseases[id])
+		var/datum/disease/advance/archived = GLOB.archive_diseases[id]
+		cures = archived.cures
+		cure_text = archived.cure_text
+	else
+		var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
+		cures = list(pick(GLOB.advance_cures[res]))
+		var/datum/reagent/cure_reag = SSchemistry.chemical_reagents[cures[1]]
+		if(!cure_reag) // Something went terribly wrong, return to sippy
+			cure_reag = /datum/reagent/water
+		cure_text = cure_reag.name
+		archivecure = res
 	return
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
-/datum/disease/advance/proc/Evolve(min_level, max_level)
+/datum/disease/advance/proc/Evolve(min_level, max_level, ignore_mutable = FALSE)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
@@ -286,7 +311,9 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
-/datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D)
+/datum/disease/advance/proc/PickyEvolve(list/datum/symptom/D, ignore_mutable = FALSE)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	var/s = safepick(D)
 	if(s)
 		AddSymptom(new s)
@@ -294,7 +321,9 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly remove a symptom.
-/datum/disease/advance/proc/Devolve()
+/datum/disease/advance/proc/Devolve(ignore_mutable = FALSE)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	if(length(symptoms) > 1)
 		var/s = safepick(symptoms)
 		if(s)
@@ -303,12 +332,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly neuter a symptom.
-/datum/disease/advance/proc/Neuter()
+/datum/disease/advance/proc/Neuter(ignore_mutable = FALSE)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+		return
 	if(symptoms.len)
 		var/s = safepick(symptoms)
 		if(s)
 			NeuterSymptom(s)
-			Refresh(TRUE)
 
 // Falter the disease, making it non-spreadable.
 /datum/disease/advance/proc/Falter()
@@ -371,12 +401,49 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		S.name += " (neutered)"
 		S.OnRemove(src)
 
+/datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
+	var/list/advance_diseases = list()
+	var/channel = check_channel()
+	for(var/datum/disease/advance/disease in infectee.GetViruses())
+		var/other_channel = disease.check_channel()
+		if(global_flag_check(disease_flags, DORMANT) || global_flag_check(disease.disease_flags, DORMANT))
+			continue
+		if(IsSame(disease))
+			return FALSE
+		if(channel == other_channel)
+			advance_diseases += disease
+	if(advance_diseases.len > 0)
+		sortList(advance_diseases, GLOBAL_PROC_REF(cmp_advdisease_resistance_asc))
+		for(var/i in 1 to advance_diseases.len)
+			var/datum/disease/advance/competition = advance_diseases[i]
+			if(transmission > (competition.resistance * 2))
+				competition.cure(FALSE)
+			else
+				return FALSE
+	else if(length(infectee.GetActiveViruses()) >= DISEASE_LIMIT)
+		return FALSE
+	infect(infectee, make_copy)
+	return TRUE
+
+/datum/disease/advance/proc/check_channel()
+	switch(severity)
+		if(-INFINITY to 0)
+			return 1
+		if(1 to 4)
+			return 2
+		if(5 to INFINITY)
+			return 3
+		else
+			return 2
+
 // Mix a list of advance diseases and return the mixed result.
 /proc/Advance_Mix(list/D_list)
 
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)
+		if(global_flag_check(A.virus_modifiers, IMMUTABLE))
+			return
 		diseases += A.Copy()
 
 	if(!length(diseases))
@@ -448,13 +515,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/new_name = tgui_input_text(src, "Name your new disease.", "New Name")
 		if(!new_name)
 			return FALSE
-		D.Refresh(new_name)
+		D.AssignName(new_name)
 		D.Finalize()
 
 		for(var/datum/disease/advance/AD in GLOB.active_diseases)
 			AD.Refresh()
 
-		H = tgui_input_list(src, "Choose infectee", "Infectees", human_mob_list)
+		H = tgui_input_list(src, "Choose infectee", "Infectees", GLOB.human_mob_list)
 
 		if(isnull(H))
 			return FALSE
@@ -470,10 +537,122 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 		return TRUE
 
-/datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/advance/A = make_copy ? Copy() : src
+	if(!initial && !global_flag_check(A.virus_modifiers, IMMUTABLE) && (spread_flags & DISEASE_SPREAD_FLUIDS))
+		var/minimum = 1
+		if(prob(clamp(35-(A.resistance + A.stealth - A.speed), 0, 50) * (A.mutability)))
+			if(infectee.job == JOB_CLOWN || infectee.job == JOB_MIME || prob(1))
+				minimum = 0
+			else
+				minimum = clamp(A.severity - 1, 1, 7)
+			A.Evolve(minimum, clamp(A.severity + 4, minimum, 9))
+			A.id = GetDiseaseID()
+			A.keepid = TRUE
+	else
+		A.initial = FALSE
 	infectee.addDisease(A)
 	A.affected_mob = infectee
 	GLOB.active_diseases += A
 
 	log_admin("[key_name(src)] has contracted the virus \"[A]\"")
+
+/*
+*	Generates a random name for a disease, depending on where it comes from
+*/
+/datum/disease/advance/proc/random_disease_name(var/atom/diseasesource)
+
+	if(length(symptoms) == 1)
+		var/datum/symptom/main_symptom = symptoms[1]
+		if(istype(main_symptom) && length(main_symptom.name))
+			return main_symptom.name
+
+	// Prefixes. These need a space right after.
+	var/list/prefixes = list("Spacer's ", "Space ", "Infectious ","Viral ", "The ", "[capitalize(prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female))]'s ", "[capitalize(pick(GLOB.last_names))]'s ", "Acute ")
+	var/list/bodies = list(pick("[capitalize(prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female))]", "[pick(GLOB.last_names)]"), "Space", "Disease", "Noun", "Cold", "Germ", "Virus")
+	// These might need some space before the word, depends on what you want to add.
+	var/list/suffixes = list("ism", "itis", "osis", "itosis", " #[rand(1,10000)]", "-[rand(1,100)]", "s", "y", " Virus", " Bug", " Infection", " Disease", " Complex", " Syndrome", " Sickness")
+
+	if(stealth >=2)
+		prefixes += "Crypto "
+	switch(max(resistance - (symptoms.len / 2), 1))
+		if(1)
+			suffixes += "-alpha"
+		if(2)
+			suffixes += "-beta"
+		if(3)
+			suffixes += "-gamma"
+		if(4)
+			suffixes += "-delta"
+		if(5)
+			suffixes += "-epsilon"
+		if(6)
+			suffixes += pick("-zeta", "-eta", "-theta", "-iota")
+		if(7)
+			suffixes += pick("-kappa", "-lambda")
+		if(8)
+			suffixes += pick("-mu", "-nu", "-xi", "-omicron")
+		if(9)
+			suffixes += pick("-pi", "-rho", "-sigma", "-tau")
+		if(10)
+			suffixes += pick("-upsilon", "-phi", "-chi", "-psi")
+		if(11 to INFINITY)
+			suffixes += "-omega"
+			prefixes += "Robust "
+	switch(transmission - symptoms.len)
+		if(-INFINITY to 2)
+			prefixes += "Bloodborne "
+		if(3)
+			prefixes += list("Mucous ", "Kissing ")
+		if(4)
+			prefixes += "Contact "
+			suffixes += " Flu"
+		if(5 to INFINITY)
+			prefixes += "Airborne "
+			suffixes += " Plague"
+	switch(severity)
+		if(-INFINITY to 0)
+			prefixes += "Altruistic "
+		if(1 to 2)
+			prefixes += "Benign "
+		if(3 to 4)
+			prefixes += "Malignant "
+		if(5)
+			prefixes += "Deadly "
+			bodies += "Death"
+		if(6 to INFINITY)
+			prefixes += "Morbid "
+			bodies += "Death"
+	if(diseasesource)
+		if(ishuman(diseasesource))
+			var/mob/living/carbon/human/H = diseasesource
+			prefixes += pick("[H.name]'s ", "[H.job]'s ", "[H.get_species()]'s ")
+			bodies += pick("[H.name]", "[H.job]", "[H.get_species()]")
+			if(H.get_species() == SPECIES_UNATHI || H.get_species() == SPECIES_TAJARAN)
+				prefixes += list("Vermin ", "Zoo", "Maintenance ")
+				bodies += list("Rat", "Maint")
+		if(HAS_TRAIT(diseasesource, TRAIT_AMBIENT_PEST_MOB) && !istype(diseasesource, /mob/living/simple_mob/animal/passive/mouse/white/virology))
+			prefixes += list("Vermin ", "Zoo", "Maintenance ")
+			bodies += list("Rat", "Maint")
+		else switch(diseasesource.type)
+			if(/mob/living/simple_mob/animal/passive/mouse/white/virology)
+				prefixes += list("Fleming's ", "Standard ")
+				bodies += list("Freebie")
+			if(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/vomit/old)
+				prefixes += list("Bloody ", "Maintenance ")
+				bodies += list("Maint")
+			if(/obj/item/reagent_containers/syringe/old)
+				prefixes += list("Junkie ", "Maintenance ")
+				bodies += list("Needle", "Maint")
+	for(var/datum/symptom/S in symptoms)
+		if(!S.neutered)
+			prefixes += S.prefixes
+			bodies += S.bodies
+			suffixes += S.suffixes
+	switch(rand(1, 3))
+		if(1)
+			return "[pick(prefixes)][pick(bodies)]"
+		if(2)
+			return "[pick(prefixes)][pick(bodies)][pick(suffixes)]"
+		if(3)
+			return "[pick(bodies)][pick(suffixes)]"

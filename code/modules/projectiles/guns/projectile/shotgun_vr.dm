@@ -2,9 +2,8 @@
 /obj/item/gun/projectile/shotgun/pump/USDF
 	name = "\improper USDF tactical shotgun"
 	desc = "All you greenhorns who wanted to see Xenomorphs up close... this is your lucky day. Uses 12g rounds."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "haloshotgun"
-	icon_override = 'icons/obj/gun_vr.dmi'
+	icon_override = 'icons/obj/gun.dmi'
 	item_state = "haloshotgun_i"
 	item_icons = null
 	ammo_type = /obj/item/ammo_casing/a12g
@@ -22,7 +21,7 @@
 	name = "compact shotgun"
 	desc = "Built for <i>extremely</i>-close quarters combat, the Hephaestus Industries KS-55 \"semi-auto shorty\" is a relatively rare sight to see, usually in the hands of elite troops that specialize in boarding. Uses 12g rounds."
 	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by armed forces across human space."
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "compshotc"
 	item_state = "cshotgun"
 	max_shells = 4 //short magazine tube means small capacity

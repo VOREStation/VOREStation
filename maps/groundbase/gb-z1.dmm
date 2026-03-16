@@ -2788,7 +2788,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "tcommsairlock";
 	pixel_x = -32;
 	req_one_access = list(61)
@@ -3162,7 +3162,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tcommsairlock";
 	pixel_y = 24;
 	req_one_access = list(61)
@@ -3994,7 +3994,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "tcommsairlock";
 	pixel_x = 32;
 	req_one_access = list(61)
@@ -7109,19 +7109,18 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "pu" = (
-/obj/machinery/power/smes/buildable{
+/obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Power - Main";
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	name = "Main";
-	output_level = 1e+006
+	name = "Main"
 	},
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
 "pv" = (
@@ -7839,17 +7838,9 @@
 /area/groundbase/level1/westspur)
 "rj" = (
 /obj/structure/table/rack/steel,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = -3;
 	pixel_y = 3
-	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/circuitboard/destructive_analyzer{
-	pixel_x = -1;
-	pixel_y = 1
 	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{
@@ -8284,9 +8275,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Engineering";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Engineering"
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
@@ -8748,6 +8738,11 @@
 /area/groundbase/level1/centsquare)
 "to" = (
 /obj/machinery/washing_machine,
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 29;
+	pixel_x = -11;
+	id = "AutoResleeving"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
 "tp" = (
@@ -10232,9 +10227,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - AI/Telecomms";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - AI/Telecomms"
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -11462,6 +11456,13 @@
 "zv" = (
 /obj/machinery/requests_console/preset/engineering{
 	pixel_x = 30
+	},
+/obj/structure/table/reinforced,
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
@@ -12716,9 +12717,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Civilian"
 	},
 /obj/machinery/light/small,
 /turf/simulated/floor,
@@ -13252,9 +13252,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Cargo";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Cargo"
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -13844,12 +13843,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 5e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	output_level = 200000
-	},
+/obj/machinery/power/smes/buildable/engine_default,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/chamber)
 "Fb" = (
@@ -14415,9 +14409,8 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
 "Gr" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Medical";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Medical"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -19506,9 +19499,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/yellow,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Science";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Science"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -20340,9 +20332,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/yellow,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Security";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Security"
 	},
 /obj/machinery/light/small{
 	dir = 4

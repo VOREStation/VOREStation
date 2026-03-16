@@ -5,33 +5,44 @@
 	name = "Metabolism, Fast"
 	desc = "You process ingested and injected reagents faster, but get hungry faster (Teshari speed)."
 	cost = 0
+	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.06) // +20% rate and 4x hunger (Teshari level)
-	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
+	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_down
 	name = "Metabolism, Slow"
 	desc = "You process ingested and injected reagents slower, but get hungry slower."
 	cost = 0
+	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.0012) // -20% of default.
-	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex)
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_apex
 	name = "Metabolism, Apex"
 	desc = "Finally a proper excuse for your predatory actions. Essentially doubles the fast trait rates. Good for characters with big appetites."
 	cost = 0
+	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
-	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down)
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
+
+/datum/trait/neutral/singularity_metabolism
+	name = "Metabolism, Singularity"
+	desc = "You are insanely hungry. You can seemingly never get enough to eat. Perhaps you had a singularity as an ancestor, or maybe one is currently living inside of your gut."
+	cost = 0
+	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 1.6, "metabolism" = 0.012)	//2x metabolism speed, 32x hunger speed
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
 
 /datum/trait/neutral/coldadapt
 	name = "Temp. Adapted, Cold"
-	desc = "You are able to withstand much colder temperatures than other species, and can even be comfortable in extremely cold environments. You are also more vulnerable to hot environments, and have a lower body temperature as a consequence of these adaptations."
+	desc = "You are able to withstand much colder temperatures than other species. You are also more vulnerable to hot environments."
 	cost = 0
-	var_changes = list("cold_level_1" = 200,  "cold_level_2" = 150, "cold_level_3" = 90, "breath_cold_level_1" = 180, "breath_cold_level_2" = 100, "breath_cold_level_3" = 60, "cold_discomfort_level" = 210, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "body_temperature" = 290)
-	can_take = ORGANICS
-	excludes = list(/datum/trait/neutral/hotadapt)
+	var_changes = list("cold_level_1" = 220,  "cold_level_2" = 190, "cold_level_3" = 160, "breath_cold_level_1" = 200, "breath_cold_level_2" = 170, "breath_cold_level_3" = 140, "cold_discomfort_level" = 253, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295)
+	can_take = ORGANICS // just in case following hot adapt
+	excludes = list(/datum/trait/neutral/hotadapt, /datum/trait/neutral/notadapt)
 
 	// Traitgenes Replaces /datum/trait/positive/superpower_cold_resist, made into a genetrait
 	is_genetrait = TRUE
@@ -42,11 +53,11 @@
 
 /datum/trait/neutral/hotadapt
 	name = "Temp. Adapted, Heat"
-	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments, and have a higher body temperature as a consequence of these adaptations."
+	desc = "You are able to withstand much hotter temperatures than other species. You are also more vulnerable to cold environments."
 	cost = 0
-	var_changes = list("heat_level_1" = 420, "heat_level_2" = 460, "heat_level_3" = 1100, "breath_heat_level_1" = 440, "breath_heat_level_2" = 510, "breath_heat_level_3" = 1500, "heat_discomfort_level" = 390, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280, "body_temperature" = 330)
+	var_changes = list("heat_level_1" = 400, "heat_level_2" = 440, "heat_level_3" = 1100, "breath_heat_level_1" = 420, "breath_heat_level_2" = 500, "breath_heat_level_3" = 1200, "heat_discomfort_level" = 360, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
 	can_take = ORGANICS // negates the need for suit coolers entirely for synths, so no
-	excludes = list(/datum/trait/neutral/coldadapt)
+	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/notadapt)
 
 	// Traitgenes Made into a genetrait
 	is_genetrait = TRUE
@@ -54,6 +65,29 @@
 
 	activation_message="Your body feels chilly."
 	primitive_expression_messages=list("shivers.")
+
+/datum/trait/neutral/notadapt
+	name = "Temp. Unadapted" //British
+	desc = "Your particular biology causes you to have trouble handling both hot and cold temperatures. You should take precautions when going out!"
+	cost = 0
+	var_changes = list("heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
+	can_take = ORGANICS // just in case following hot adapt
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/hotadapt)
+
+/datum/trait/neutral/highbodytemp
+	name = "Body Temp., Hot"
+	desc = "Your body's temperature is hotter than the galactic average. This doesn't change what temperatures you can handle."
+	cost = 0
+	var_changes = list("body_temperature" = 330)
+	excludes = list(/datum/trait/neutral/lowbodytemp)
+
+/datum/trait/neutral/lowbodytemp
+	name = "Body Temp., Cold"
+	desc = "Your body's temperature is colder than the galactic average. This doesn't change what temperatures you can handle."
+	cost = 0
+	var_changes = list("body_temperature" = 290)
+	excludes = list(/datum/trait/neutral/highbodytemp)
 
 /datum/trait/neutral/autohiss_unathi
 	name = "Autohiss (Unathi)"
@@ -225,6 +259,35 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/bloodsuck)
 
+/datum/trait/neutral/electrovore
+	name = "Electrovore, Obligate"
+	desc = "Makes you unable to gain nutrition from anything but electricity"
+	tutorial = "HELP intent lets you consume nutrition to charge a Cell by clicking it in your hand.<br>\
+	HARM intent drains battery charge and gives nutrition in exchange"
+
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/electrovore_freeform)
+
+/datum/trait/neutral/electrovore/apply(var/datum/species/S, var/mob/living/carbon/human/human)
+	..()
+	ADD_TRAIT(human, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(human, TRAIT_ELECTROVORE_OBLIGATE, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/electrovore_freeform
+	name = "Electrovore"
+	desc = "Allows you to drain power cells for nutrition."
+	tutorial = "This trait allows you to consume electricity!<br>\
+	Clicking a power cell in your hand on HARM intent drains its power for nutrition"
+
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/electrovore)
+
+/datum/trait/neutral/electrovore_freeform/apply(var/datum/species/S, var/mob/living/carbon/human/human)
+	..()
+	ADD_TRAIT(human, TRAIT_ELECTROVORE, ROUNDSTART_TRAIT)
+
 /datum/trait/neutral/succubus_drain
 	name = "Succubus Drain"
 	desc = "Makes you able to gain nutrition from draining prey in your grasp."
@@ -327,6 +390,13 @@
 /datum/trait/neutral/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/shred_limb)
+
+/datum/trait/neutral/hardfeet
+	name = "Hard Feet"	// Free protection 4 ur pawbs
+	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
 
 /datum/trait/neutral/trashcan
 	name = "Trash Can"
@@ -551,6 +621,20 @@
 	custom_only = FALSE
 	allergen = ALLERGEN_CHOCOLATE
 
+/datum/trait/neutral/allergy/pollen
+	name = "Allergy: Pollen"
+	desc = "You're highly allergic to pollen and many plants. It's probably best to avoid hydroponics in general. Be sure to configure your allergic reactions, otherwise you will die touching grass. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = 0
+	custom_only = FALSE
+	allergen = ALLERGEN_POLLEN // Gee billy...
+	added_component_path = /datum/component/pollen_disability // Why does mom let you have two things?
+
+/datum/trait/neutral/allergy/salt
+	name = "Allergy: Salt"
+	desc = "You're highly allergic to sodium chloride aka salt. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = 0
+	allergen = ALLERGEN_SALT
+
 /datum/trait/neutral/allergy_reaction
 	name = "Allergy Reaction: Disable Toxicity"
 	desc = "Take this trait to disable the toxic damage effect of being exposed to one of your allergens. Combine with the Disable Suffocation trait to have purely nonlethal reactions."
@@ -617,6 +701,28 @@
 	cost = 0
 	custom_only = FALSE
 	reaction = AG_CONFUSE
+
+/datum/trait/neutral/allergy_reaction/gibbing
+	name = "Allergy Reaction: Gibbing"
+	desc = "When exposed to one of your allergens, you will explode, god help you. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_GIBBING
+	hidden = TRUE // Disabled on virgo for obvious reasons
+
+/datum/trait/neutral/allergy_reaction/sneeze
+	name = "Allergy Reaction: Sneezing"
+	desc = "When exposed to one of your allergens, you will begin sneezing harmlessly. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_SNEEZE
+
+/datum/trait/neutral/allergy_reaction/cough
+	name = "Allergy Reaction: Coughing"
+	desc = "When exposed to one of your allergens, you will begin coughing, potentially dropping items. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_COUGH
 
 /datum/trait/neutral/allergen_reduced_effect
 	name = "Allergen Reaction: Reduced Intensity"
@@ -1446,7 +1552,7 @@
 /datum/trait/neutral/gargoyle/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
 	var/datum/component/gargoyle/G = H.GetComponent(added_component_path)
-	if (trait_prefs)
+	if(trait_prefs)
 		G.tint = trait_prefs["tint"]
 		G.material = lowertext(trait_prefs["material"])
 		G.identifier = lowertext(trait_prefs["identifier"])
@@ -1501,22 +1607,54 @@
 	desc = "You will reflexively bite hands that attempt to pat your head or boop your nose, this can be toggled off."
 	cost = 0
 	custom_only = FALSE
+	has_preferences = list("biting_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Enabled on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
 
-/datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/neutral/patting_defence/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	H.touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
+	if(trait_prefs && trait_prefs["biting_toggle"])
+		H.touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
 	add_verb(H, /mob/living/proc/toggle_patting_defence)
 
 /datum/trait/neutral/personal_space
 	name = "Personal Space Bubble"
-	desc = "You are adept at avoiding unwanted physical contact and dodge it with ease. You will reflexively dodge any attempt to hug, pat, boop, lick, sniff you or even shake your hand, this can be toggled off."
+	desc = "You are adept at avoiding unwanted physical contact and dodge it with ease. You will reflexively dodge any attempt to hug, pat, boop, lick, sniff you, shake your hand, or pick you up. These can be toggled independently."
 	cost = 0
 	custom_only = FALSE
+	has_preferences = list("bubble_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge physical contact on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE),
+						"pickup_dodge_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Dodge pickup attempts on spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
 
-/datum/trait/neutral/personal_space/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/neutral/personal_space/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
+	if(trait_prefs && trait_prefs["bubble_toggle"])
+		H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
+	if(trait_prefs && trait_prefs["pickup_dodge_toggle"])
+		H.touch_reaction_flags |= SPECIES_TRAIT_PICKUP_DODGE
 	add_verb(H, /mob/living/proc/toggle_personal_space)
+	add_verb(H, /mob/living/proc/toggle_pickup_dodge)
+
+/datum/trait/neutral/skin_reagents
+	name = "Skin Reagents"
+	desc = "You secret some sort of reagent across your skin that can poison those who dare to lick you."
+	cost = 0
+	custom_only = FALSE
+	multiple_choice = list(REAGENT_ID_ETHANOL, REAGENT_ID_CAPSAICIN, REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_STOXIN, REAGENT_ID_RAINBOWTOXIN, REAGENT_ID_PARALYSISTOXIN, REAGENT_ID_PAINENZYME)
+	has_preferences = list("Reagent" = list(TRAIT_PREF_TYPE_LIST, "Skin Reagent", TRAIT_NO_VAREDIT_TARGET, REAGENT_ID_ETHANOL))
+
+/datum/trait/neutral/skin_reagents/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	if(trait_prefs && trait_prefs["Reagent"])
+		H.skin_reagent = trait_prefs["Reagent"]
+
+/datum/trait/neutral/colour_changing_eyes
+	name = "Colour changing eyes"
+	desc = "You can change your eye color at will using an intuitive mental process."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/trait/neutral/colour_changing_eyes/apply(var/datum/species/S, var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_eye_colour)
 
 /* // Commented out in lieu of finding a better solution.
 /datum/trait/neutral/coldadapt/xenochimera
@@ -1697,7 +1835,6 @@
 /datum/trait/neutral/nutritiongrow
 	name = "Growing"
 	desc = "After you consume enough nutrition, you start to slowly grow while metabolizing nutrition faster."
-	excludes = list(/datum/trait/neutral/nutritionshrink)
 	cost = 0
 	hidden = TRUE //Disabled on Virgo
 	added_component_path = /datum/component/nutrition_size_change/growing
@@ -1705,7 +1842,6 @@
 /datum/trait/neutral/nutritionshrink
 	name = "Shrinking"
 	desc = "If you don't eat enough, your body starts shrinking to make up the difference!"
-	excludes = list(/datum/trait/neutral/nutritiongrow)
 	cost = 0
 	hidden = TRUE //Disabled on Virgo
 	added_component_path = /datum/component/nutrition_size_change/shrinking
@@ -1732,3 +1868,100 @@
 /datum/trait/neutral/strongimmunesystem/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
 	ADD_TRAIT(H, STRONG_IMMUNITY_TRAIT, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/hide
+	name = "Hide"
+	desc = "You can hide beneath objects!"
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/hide/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	add_verb(H,/mob/living/proc/hide)
+
+/datum/trait/neutral/small_mouth_extreme
+	name = "Slow Eater"
+	desc = "It takes four times as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 0.25)
+	custom_only = FALSE
+
+/datum/trait/neutral/small_mouth
+	name = "Slow Eater, Minor"
+	desc = "It takes twice as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 0.5)
+	custom_only = FALSE
+
+/datum/trait/neutral/big_mouth
+	name = "Fast Eater, Minor"
+	desc = "It takes half as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 2)
+	custom_only = FALSE
+
+/datum/trait/neutral/big_mouth_extreme
+	name = "Fast Eater"
+	desc = "It takes a quarter as many bites to finish food as it does for most people."
+	cost = 0
+	var_changes = list("bite_mod" = 4)
+	custom_only = FALSE
+
+// Doing this BC I can't rename the datum without fucking over savefiles, so meh. Hyper > Extreme, right?
+/datum/trait/neutral/big_mouth_hyper
+	name = "Fast Eater, Major"
+	desc = "You will eat anything instantly, in one bite."
+	cost = 0
+	var_changes = list("bite_mod" = 16) // Setting this intentionally ridiculously high, so anything will overflow and be eaten in one go.
+	custom_only = FALSE
+
+/datum/trait/neutral/slip_reflex
+	name ="Slippery Reflexes"
+	desc = "Your reflexes are quick enough to react to slippery surfaces. You are not immune though."
+	cost = 0
+
+/datum/trait/neutral/slip_reflex/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, SLIP_REFLEX_TRAIT, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/glowing_radiation
+	name = "Radioactive Glow"
+	desc = "You emit a glow when exposed to radiation! This does not prevent you from being harmed by radiation."
+	cost = 0
+	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_NO_VAREDIT_TARGET, "#c3f314"))
+	added_component_path = /datum/component/radiation_effects
+	excludes = list(/datum/trait/positive/radioactive_heal)
+
+/datum/trait/neutral/glowing_radiation/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(trait_prefs)
+		G.radiation_color = trait_prefs["glow_color"]
+
+/* Used twofold:
+ * One, for scenes where someone is using dominate-pred and they don't want to easily be detected who is in control at what time.
+ * Two, for characters that aren't exactly 'normal' in the sense of a singular mind and their body structure would accompany this. (Think Diona)
+ * Additionally, changelings will appear as though they have this trait.
+*/
+/datum/trait/neutral/abnormal_mind
+	name = "Unique Mind-structure"
+	desc = "Your body's neurological structure is unusual, causing sleevemates to have difficulty in identifying any minds within your body as a proper match!"
+	cost = 0
+
+	can_take = ORGANICS
+
+/datum/trait/neutral/abnormal_mind/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, UNIQUE_MINDSTRUCTURE, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/slobber
+	name = "Major Slobberer"
+	desc = "You produce more saliva than most people and leave people dripping when you lick them."
+	tutorial = "Lick someone! Consensually please!"
+
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/slobber/apply(var/datum/species/S, var/mob/living/carbon/human/human)
+	..()
+	ADD_TRAIT(human, TRAIT_SLOBBER, ROUNDSTART_TRAIT)

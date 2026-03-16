@@ -18,5 +18,5 @@
 		var/obj/item/dogborg/sleeper/S = locate(/obj/item/dogborg/sleeper) in module //VOREStation edit.
 		if(S) S.go_out() //VOREStation edit.
 	remove_robot_verbs()
-	sql_report_cyborg_death(src)
+	SSmobs.report_death(src)
 	..(gibbed,"shudders violently for a moment, then becomes motionless, its eyes slowly darkening.")

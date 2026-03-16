@@ -45,6 +45,9 @@
 			add_overlay(stampoverlay)
 
 /obj/item/paperplane/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	to_chat(user, span_notice("You unfold [src]."))
 	var/atom/movable/internal_paper_tmp = internalPaper
 	internal_paper_tmp.forceMove(loc)
@@ -68,7 +71,7 @@
 				span_userdanger("You miss the [src] and accidentally light yourself on fire!"))
 			user.unEquip(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
@@ -93,7 +96,7 @@
 			E.damage += 2.5
 		H.emote("scream")
 
-/obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
+/obj/item/paper/click_alt(mob/living/carbon/user, obj/item/I)
 	if ( istype(user) )
 		if( (!in_range(src, user)) || user.stat || user.restrained() )
 			return

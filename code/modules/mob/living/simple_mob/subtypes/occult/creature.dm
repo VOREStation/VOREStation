@@ -24,7 +24,7 @@
 	attacktext = list("chomped")
 	attack_sound = 'sound/weapons/bite.ogg'
 
-	organ_names = /decl/mob_organ_names/abberation
+	organ_names = /datum/decl/mob_organ_names/abberation
 
 	speak_emote = list("gibbers")
 
@@ -32,6 +32,9 @@
 	can_be_drop_prey = FALSE
 	can_pain_emote = FALSE
 
+
+	can_be_drop_prey = FALSE
+	can_pain_emote = FALSE
 
 // Strong Variant
 /mob/living/simple_mob/creature/strong
@@ -72,5 +75,5 @@
 	melee_damage_lower = 13
 	melee_damage_upper = 25
 
-/decl/mob_organ_names/abberation
+/datum/decl/mob_organ_names/abberation
 	hit_zones = list("fleshy mass", "maw", "eye(?)", "orifice(?)")

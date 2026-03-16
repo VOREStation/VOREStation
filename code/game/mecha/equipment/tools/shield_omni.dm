@@ -44,11 +44,11 @@
 		if(shields.active)
 			set_ready_state(FALSE)
 			step_delay = 4
-			log_message("Activated.")
+			src.mecha_log_message("Activated.")
 		else
 			set_ready_state(TRUE)
 			step_delay = initial(step_delay)
-			log_message("Deactivated.")
+			src.mecha_log_message("Deactivated.")
 
 /obj/item/mecha_parts/mecha_equipment/omni_shield/Topic(href, href_list)
 	..()
@@ -77,7 +77,7 @@
 /obj/item/shield_projector/rectangle/mecha/Initialize(mapload)
 	. = ..()
 	my_mech = loc
-	RegisterSignal(my_mech, COMSIG_OBSERVER_MOVED, /obj/item/shield_projector/proc/update_shield_positions)
+	RegisterSignal(my_mech, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/shield_projector/proc/update_shield_positions)
 	my_mech.AddComponent(/datum/component/recursive_move)
 	update_shift(my_mech)
 
@@ -89,7 +89,7 @@
 	shift_y = round(y_dif, 1)
 
 /obj/item/shield_projector/rectangle/mecha/Destroy()
-	UnregisterSignal(my_mech, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(my_mech, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	my_mech = null
 	. = ..()
 

@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 	unacidable = TRUE
-	req_access = list(access_engine_equip)
+	req_access = list(ACCESS_ENGINE_EQUIP)
 	var/id = null
 
 	use_power = USE_POWER_OFF	//uses powernet power, not APC power
@@ -23,40 +23,24 @@
 	var/state = 0
 	var/locked = 0
 
+	// Anomaly harvesting stuff
+	var/anomalous = FALSE
+	var/particle = ANOMALY_PARTICLE_SIGMA
+
 	var/burst_delay = 2
 	var/initial_fire_delay = 100
 
 	var/integrity = 80
 
-/obj/machinery/power/emitter/verb/rotate_clockwise()
-	set name = "Rotate Emitter Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-/obj/machinery/power/emitter/verb/rotate_counterclockwise()
-	set name = "Rotate Emitter Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-
 /obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
+	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/power/emitter/Destroy()
-	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	log_game("EMITTER([x],[y],[z]) Destroyed/deleted.")
 	investigate_log(span_red("deleted") + " at ([x],[y],[z])","singulo")
 	. = ..()
@@ -79,16 +63,16 @@
 		if(!src.locked)
 			if(src.active==1)
 				src.active = 0
-				to_chat(user, "You turn off [src].")
+				balloon_alert_visible("turned off")
 				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("EMITTER([x],[y],[z]) OFF by [key_name(user)]")
 				investigate_log("turned " + span_red("off") + " by [user.key]","singulo")
 			else
 				src.active = 1
-				to_chat(user, "You turn on [src].")
+				balloon_alert_visible("turned on")
 				src.shot_number = 0
 				src.fire_delay = get_initial_fire_delay()
-				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 				log_game("EMITTER([x],[y],[z]) ON by [key_name(user)]")
 				investigate_log("turned " + span_green("on") + " by [user.key]","singulo")
 			update_icon()
@@ -99,13 +83,8 @@
 		return 1
 
 
-/obj/machinery/power/emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
-//	add_load(1000)
-/*	if((severity == 1)&&prob(1)&&prob(1))
-		if(src.active)
-			src.active = 0
-			src.use_power = 1	*/
-	return 1
+/obj/machinery/power/emitter/emp_act(severity, recursive)
+	return TRUE
 
 /obj/machinery/power/emitter/process()
 	if(stat & (BROKEN))
@@ -195,7 +174,7 @@
 					user.visible_message("[user.name] starts to weld [src] to the floor.", \
 						"You start to weld [src] to the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						state = 2
 						to_chat(user, "You weld [src] to the floor.")
@@ -208,7 +187,7 @@
 					user.visible_message("[user.name] starts to cut [src] free from the floor.", \
 						"You start to cut [src] free from the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						state = 1
 						to_chat(user, "You cut [src] free from the floor.")
@@ -228,7 +207,7 @@
 			to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
 		to_chat(user, span_notice("You begin repairing \the [src]..."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(P.use(amt))
 				to_chat(user, span_notice("You have repaired \the [src]."))
 				integrity = initial(integrity)
@@ -247,6 +226,18 @@
 			update_icon() // VOREStation Add
 		else
 			to_chat(user, span_warning("Access denied."))
+		return
+	if(istype(W, /obj/item/anomaly_scanner))
+		anomalous = !anomalous
+		burst_delay = anomalous ? 3 : 8
+		to_chat(user, span_notice("The beam is now set to [anomalous ? "anomalous." : "normal."]"))
+		return
+	if(W.has_tool_quality(TOOL_MULTITOOL) && anomalous)
+		var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)
+		if(!chosen_particle)
+			return
+		particle = chosen_particle
+		balloon_alert_visible("changed to [chosen_particle]")
 		return
 	..()
 	return
@@ -307,4 +298,8 @@
 	return burst_delay
 
 /obj/machinery/power/emitter/proc/get_emitter_beam()
+	if(anomalous)
+		var/obj/item/projectile/energy/anomaly/projectile = new /obj/item/projectile/energy/anomaly(get_turf(src))
+		projectile.particle_type = particle
+		return projectile
 	return new /obj/item/projectile/beam/emitter(get_turf(src))

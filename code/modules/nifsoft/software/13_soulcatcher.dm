@@ -107,7 +107,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + message))
 
-	log_nsay(message,nif.human.real_name,sender)
+	sender.log_talk("NSAY (NIF:[nif.human.real_name]): [message]", LOG_SAY)
 
 /datum/nifsoft/soulcatcher/proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
@@ -135,7 +135,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon,CS.client)]NIF\]") + message))
 
-	log_nme(message,nif.human.real_name,sender)
+	sender.log_message("NME (NIF:[nif.human.real_name]): [message]", LOG_EMOTE)
 
 /datum/nifsoft/soulcatcher/proc/show_settings(var/mob/living/carbon/human/H)
 	set waitfor = FALSE
@@ -157,7 +157,6 @@
 				printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
 				have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
 				"VR Environment", html_decode(inside_flavor), MAX_MESSAGE_LEN*2, TRUE, prevent_enter = TRUE)
-				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
 				for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
@@ -237,7 +236,7 @@
 	brainmob.container = src
 	brainmob.stat = 0
 	brainmob.silent = FALSE
-	dead_mob_list -= brainmob
+	GLOB.dead_mob_list -= brainmob
 	brainmob.add_language(LANGUAGE_GALCOM)
 	brainmobs |= brainmob
 
@@ -255,7 +254,7 @@
 	//If they have these values, apply them
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		qdel_swap(brainmob.dna, H.dna.Clone())
+		QDEL_SWAP(brainmob.dna, H.dna.Clone())
 		brainmob.ooc_notes = H.ooc_notes
 		brainmob.ooc_notes_likes = H.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
@@ -307,7 +306,7 @@
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
 	plane_holder.set_vis(VIS_SOULCATCHER, TRUE)
-	identifying_gender = client.prefs.identifying_gender
+	identifying_gender = client.prefs.read_preference(/datum/preference/choiced/gender/identifying)
 
 /mob/living/carbon/brain/caught_soul/Destroy()
 	if(soulcatcher)
@@ -347,7 +346,7 @@
 		if(ext_blind)
 			eye_blind = 5
 			client.screen.Remove(GLOB.global_hud.whitense)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			eye_blind = 0
 			clear_fullscreens()
@@ -425,7 +424,7 @@
 ///////////////////
 //A projected AR soul thing
 /mob/observer/eye/ar_soul
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = PLANE_AUGMENTED
 	icon = 'icons/obj/machines/ar_elements.dmi'
 	icon_state = "beacon"
@@ -446,7 +445,7 @@
 
 	forceMove(get_turf(parent_human))
 	parent_human.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(parent_human, COMSIG_OBSERVER_MOVED, /mob/observer/eye/ar_soul/proc/human_moved)
+	RegisterSignal(parent_human, COMSIG_MOVABLE_ATTEMPTED_MOVE, /mob/observer/eye/ar_soul/proc/human_moved)
 
 	//Time to play dressup
 	if(brainmob.client.prefs)
@@ -460,7 +459,7 @@
 
 /mob/observer/eye/ar_soul/Destroy()
 	if(parent_human) //It's POSSIBLE they've been deleted before the NIF somehow
-		UnregisterSignal(parent_human, COMSIG_OBSERVER_MOVED)
+		UnregisterSignal(parent_human, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		parent_human = null
 	return ..()
 
@@ -492,39 +491,41 @@
 
 ///////////////////
 //The catching hook
-/hook/death/proc/nif_soulcatcher(var/mob/living/L)
-	if(!istype(L) || !L.mind) return TRUE //Hooks must return TRUE
+/mob/living/proc/soulcatcher_on_mob_death()
+	if(!mind)
+		return
 
-	if(isbelly(L.loc)) //Died in someone
-		var/obj/belly/B = L.loc
+	if(isbelly(loc)) //Died in someone
+		var/obj/belly/B = loc
 		var/mob/living/owner = B.owner
 		var/obj/soulgem/gem = owner.soulgem
 		if(gem && gem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_OTHERS, TRUE))
 			var/to_use_custom_name = null
-			if(isanimal(L))
-				to_use_custom_name = L.name
-			gem.catch_mob(L, to_use_custom_name)
-			return TRUE
+			if(isanimal(src))
+				to_use_custom_name = name
+			gem.catch_mob(src, to_use_custom_name)
+			return
 		var/mob/living/carbon/human/HP = B.owner
-		var/mob/living/carbon/human/H = L
-		if(!istype(H)) return TRUE
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			return
 		if(istype(HP) && HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
 	else
-		var/obj/soulgem/gem = L.soulgem
+		var/obj/soulgem/gem = soulgem
 		if(gem && gem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_ME, TRUE))
 			var/to_use_custom_name = null
-			if(isanimal(L))
-				to_use_custom_name = L.name
-			gem.catch_mob(L, to_use_custom_name)
-			return TRUE
-		var/mob/living/carbon/human/H = L
-		if(!istype(H)) return TRUE
+			if(isanimal(src))
+				to_use_custom_name = name
+			gem.catch_mob(src, to_use_custom_name)
+			return
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			return
 		if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
 			var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
-	return TRUE
 
 ///////////////////
 //Verbs for humans
@@ -553,7 +554,7 @@
 		to_chat(src,span_warning("You need a loaded mind to use NSay."))
 		return
 	if(!message)
-		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher")
+		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.say_into(sane_message,src)
@@ -584,7 +585,7 @@
 		return
 
 	if(!message)
-		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher")
+		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.emote_into(sane_message,src)
@@ -639,7 +640,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher")
+		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.say_into(sane_message,src,null)
@@ -650,7 +651,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher")
+		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)

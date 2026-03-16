@@ -37,7 +37,7 @@
 				if(!AMBLINAL.mind)
 					AMBLINAL.ghostjoin = 1
 					AMBLINAL.ghostjoin_icon()
-					active_ghost_pods |= AMBLINAL
+					GLOB.active_ghost_pods |= AMBLINAL
 			//VOREStation Add End
 		user.visible_message(span_notice("[user] pries \the [src] open."), \
 								span_notice("You pry open \the [src]."), \
@@ -69,6 +69,11 @@
 	name = "\improper Donk-Soft vendor crate"
 	desc = "A hefty wooden crate displaying the logo of Donk-Soft. It's rather heavy."
 	starts_with = list(/obj/machinery/vending/donksoft)
+
+/obj/structure/largecrate/lasertag_turrets
+	name = "lasertag turret crate"
+	desc = "A hefty wooden crate displaying the logo of Laz-co. It's rather heavy."
+	starts_with = list(/obj/machinery/porta_turret/lasertag/blue, /obj/machinery/porta_turret/lasertag/red, /obj/machinery/porta_turret/lasertag/omni)
 
 /obj/structure/largecrate/vehicle
 	name = "vehicle crate"
@@ -134,3 +139,16 @@
 /obj/structure/largecrate/animal/catslug
 	name = "catslug carrier"
 	starts_with = list(/mob/living/simple_mob/vore/alienanimals/catslug)
+
+/obj/structure/largecrate/animal/mothroach
+	name = "mothroach carrier"
+	starts_with = list(/mob/living/simple_mob/animal/passive/mothroach)
+
+/obj/structure/largecrate/anomaly
+	name = "anomaly harvesting crate"
+	starts_with = list(
+		/obj/machinery/anomaly_harvester,
+		/obj/item/anomaly_releaser/science,
+		/obj/item/anomaly_choice,
+		/obj/item/anomaly_scanner
+	)

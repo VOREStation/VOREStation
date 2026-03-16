@@ -16,14 +16,14 @@
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#9b633e"
 	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
-	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
-	banned_job_species = list("digital", SPECIES_PROMETHEAN)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE)
+	banned_job_species = list(FBP_DIGITAL, SPECIES_PROMETHEAN)
 
 	ideal_character_age = 40
 	dept_time_required = 20
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/qm
+	outfit_type = /datum/decl/hierarchy/outfit/job/cargo/qm
 	job_description = "The " + JOB_QUARTERMASTER + " manages the Supply department, checking cargo orders and ensuring supplies get to where they are needed."
 	alt_titles = list(JOB_ALT_SUPPLY_CHIEF = /datum/alt_title/supply_chief, JOB_ALT_LOGISTICS_MANAGER = /datum/alt_title/logistics_manager, JOB_ALT_CARGO_SUPERVISOR = /datum/alt_title/cargo_supervisor)
 
@@ -54,15 +54,15 @@
 	pto_type = PTO_CARGO
 	supervisors = "the " + JOB_QUARTERMASTER + " and the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#7a4f33"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
+	outfit_type = /datum/decl/hierarchy/outfit/job/cargo/cargo_tech
 	job_description = "A " + JOB_CARGO_TECHNICIAN + " fills and delivers cargo orders. They are encouraged to return delivered crates to the Cargo Shuttle, \
 						because Central Command gives a partial refund."
 
 	alt_titles = list(JOB_ALT_CARGO_LOADER = /datum/alt_title/cargo_loader, JOB_ALT_CARGO_HANDLER = /datum/alt_title/cargo_handler, JOB_ALT_SUPPLY_COURIER = /datum/alt_title/supply_courier,
-					JOB_ALT_DISPOSALS_SORTER = /datum/alt_title/disposal_sorter, JOB_ALT_MAILMAN = /datum/alt_title/mailman)
+					JOB_ALT_DISPOSALS_SORTER = /datum/alt_title/disposal_sorter, JOB_ALT_MAILMAN = /datum/alt_title/mailman, JOB_ALT_DELIVERY_WORKER = /datum/alt_title/delivery_worker)
 
 /datum/alt_title/supply_courier
 	title = JOB_ALT_SUPPLY_COURIER
@@ -83,7 +83,12 @@
 /datum/alt_title/mailman
 	title = JOB_ALT_MAILMAN
 	title_blurb = "A Mail Carrier is tasked with delivering packages or mail to whoever it might adress."
-	title_outfit = /decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
+	title_outfit = /datum/decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
+
+/datum/alt_title/delivery_worker
+	title = JOB_ALT_DELIVERY_WORKER
+	title_blurb = "A " + JOB_ALT_DELIVERY_WORKER + " takes a more personal role in delivering items directly to those who ordered them."
+
 
 //////////////////////////////////
 //			Shaft Miner
@@ -101,10 +106,10 @@
 	supervisors = "the " + JOB_QUARTERMASTER + " and the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#7a4f33"
 	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
+	outfit_type = /datum/decl/hierarchy/outfit/job/cargo/mining
 	job_description = "A " + JOB_SHAFT_MINER + " mines and processes minerals to be delivered to departments that need them."
 	alt_titles = list(JOB_ALT_DEEP_SPACE_MINER = /datum/alt_title/deep_space_miner, JOB_ALT_DRILL_TECHNICIAN = /datum/alt_title/drill_tech, JOB_ALT_PROSPECTOR = /datum/alt_title/prospector,
 						JOB_ALT_EXCAVATOR = /datum/alt_title/excavator)

@@ -736,7 +736,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/machinery/light{
@@ -960,7 +960,6 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 10
 	},
-/obj/machinery/r_n_d/destructive_analyzer,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "nC" = (
@@ -1054,7 +1053,7 @@
 /area/lunaship/office)
 "px" = (
 /obj/structure/lattice,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "luna_ship_pd"
 	},
 /obj/structure/cable/cyan{
@@ -1936,7 +1935,7 @@
 /area/lunaship/cockpit)
 "Ad" = (
 /obj/structure/lattice,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "luna_ship_pd"
 	},
 /obj/structure/cable/cyan,
@@ -2118,9 +2117,7 @@
 /turf/space,
 /area/space)
 "Dm" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 8
 	},
@@ -2213,7 +2210,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 4
 	},
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{
@@ -2401,7 +2398,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/r_n_d/protolathe{
+/obj/machinery/rnd/production/protolathe{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -2489,12 +2486,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator..";
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
+/obj/machinery/power/smes/buildable/hybrid/engine_default{
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator.."
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -2711,7 +2704,7 @@
 	},
 /area/lunaship/cockpit)
 "MX" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -2811,7 +2804,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -3558,12 +3551,8 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator..";
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
+/obj/machinery/power/smes/buildable/hybrid/engine_default{
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator.."
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)

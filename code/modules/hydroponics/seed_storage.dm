@@ -216,7 +216,6 @@
 		wires.Interact(user)
 	if(lockdown)
 		return
-	user.set_machine(src)
 	tgui_interact(user)
 
 /obj/machinery/seed_storage/tgui_interact(mob/user, datum/tgui/ui)

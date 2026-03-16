@@ -16,6 +16,7 @@
 	density = FALSE
 	circuit = /obj/item/circuitboard/timeclock
 	clicksound = null
+	flags = WALL_ITEM
 	var/channel = "Common" //Radio channel to announce on
 
 	var/obj/item/card/id/card // Inserted Id card
@@ -65,7 +66,6 @@
 /obj/machinery/computer/timeclock/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	user.set_machine(src)
 	tgui_interact(user)
 
 /obj/machinery/computer/timeclock/tgui_interact(mob/user, datum/tgui/ui)
@@ -92,7 +92,7 @@
 		data["card"] = "[card]"
 		data["assignment"] = card.assignment
 		data["card_cooldown"] = getCooldown()
-		var/datum/job/job = job_master.GetJob(card.rank)
+		var/datum/job/job = GLOB.job_master.GetJob(card.rank)
 		if(job)
 			data["job_datum"] = list(
 				"title" = job.title,
@@ -146,7 +146,7 @@
 
 /obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
 	var/list/available_jobs = list()
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in GLOB.job_master.occupations)
 		if(isOpenOnDutyJob(user, department, job))
 			available_jobs[job.title] = list(job.title)
 			if(job.alt_titles)
@@ -167,8 +167,8 @@
 		&& job.timeoff_factor > 0
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment, var/mob/user)
-	var/datum/job/oldjob = job_master.GetJob(card.rank)
-	var/datum/job/newjob = job_master.GetJob(newrank)
+	var/datum/job/oldjob = GLOB.job_master.GetJob(card.rank)
+	var/datum/job/newjob = GLOB.job_master.GetJob(newrank)
 	if(!oldjob || !isOpenOnDutyJob(user, oldjob.pto_type, newjob))
 		return
 	if(newassignment != newjob.title && !(newassignment in newjob.alt_titles))
@@ -180,7 +180,7 @@
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		GLOB.data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
-		callHook("reassign_employee", list(card))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, card)
 		newjob.current_positions++
 		var/mob/living/carbon/human/H = user
 		H.mind.assigned_role = card.rank
@@ -189,12 +189,12 @@
 	return
 
 /obj/machinery/computer/timeclock/proc/makeOffDuty(var/mob/user)
-	var/datum/job/foundjob = job_master.GetJob(card.rank)
+	var/datum/job/foundjob = GLOB.job_master.GetJob(card.rank)
 	if(!foundjob)
 		return
 	var/new_dept = foundjob.pto_type || PTO_CIVILIAN
 	var/datum/job/ptojob = null
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in GLOB.job_master.occupations)
 		if(job.pto_type == new_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
@@ -206,7 +206,7 @@
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		GLOB.data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
-		callHook("reassign_employee", list(card))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, card)
 		var/mob/living/carbon/human/H = user
 		H.mind.assigned_role = ptojob.title
 		H.mind.role_alt_title = ptojob.title
@@ -245,6 +245,13 @@
 
 /obj/item/card/id
 	var/last_job_switch
+
+	///Var for attack_self chain
+	var/special_handling = FALSE
+
+	///Var for event IDs
+	var/can_configure = FALSE
+	var/configured = FALSE
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()

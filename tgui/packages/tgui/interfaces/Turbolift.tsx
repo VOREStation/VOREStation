@@ -66,7 +66,7 @@ export const Turbolift = (props) => {
               <Stack.Item basis="100%" key={floor.id}>
                 <Stack align="center" justify="space-around">
                   <Stack.Item basis="22%" textAlign="right" mr="3px">
-                    {floor.label || 'Floor #' + floor.id}
+                    {floor.label || `Floor #${floor.id}`}
                   </Stack.Item>
                   <Stack.Item basis="8%" textAlign="left">
                     <Button

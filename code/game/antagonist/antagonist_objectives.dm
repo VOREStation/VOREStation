@@ -24,10 +24,10 @@
 			if(!O.completed && !O.check_completion())
 				result = 0
 		if(result && victory_text)
-			to_world(span_boldannounce(span_large("[victory_text]")))
+			to_chat(world, span_boldannounce(span_large("[victory_text]")))
 			if(victory_feedback_tag) feedback_set_details("round_end_result","[victory_feedback_tag]")
 		else if(loss_text)
-			to_world(span_boldannounce(span_large("[loss_text]")))
+			to_chat(world, span_boldannounce(span_large("[loss_text]")))
 			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")
 
 /mob/living/proc/write_ambition()
@@ -43,10 +43,9 @@
 		return
 	var/new_ambitions = tgui_input_text(src, "Write a short sentence of what your character hopes to accomplish \
 	today as an antagonist.  Remember that this is purely optional.  It will be shown at the end of the \
-	round for everybody else.", "Ambitions", mind.ambitions, multiline = TRUE)
+	round for everybody else.", "Ambitions", mind.ambitions, MAX_MESSAGE_LEN, TRUE)
 	if(isnull(new_ambitions))
 		return
-	new_ambitions = sanitize(new_ambitions)
 	mind.ambitions = new_ambitions
 	if(new_ambitions)
 		to_chat(src, span_notice("You've set your goal to be '[new_ambitions]'."))

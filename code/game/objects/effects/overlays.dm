@@ -69,7 +69,7 @@
 /obj/effect/overlay/snow/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/shovel))
 		user.visible_message(span_notice("[user] begins to shovel away \the [src]."))
-		if(do_after(user, 40))
+		if(do_after(user, 4 SECONDS, target = src))
 			to_chat(user, span_notice("You have finished shoveling!"))
 			qdel(src)
 		return
@@ -144,7 +144,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/light_visible/Destroy(force)
 	if(!force)
@@ -161,7 +161,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = NONE
 	alpha = 110
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 	var/static/matrix/normal_transform
 

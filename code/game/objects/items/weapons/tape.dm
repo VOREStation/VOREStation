@@ -43,7 +43,7 @@
 					return
 				user.visible_message(span_danger("\The [user] begins taping over \the [H]'s eyes!"))
 
-				if(!do_after(user, 30))
+				if(!do_after(user, 3 SECONDS, target = src))
 					return
 
 				if(!can_place(H, user))
@@ -72,7 +72,7 @@
 					return
 				user.visible_message(span_danger("\The [user] begins taping up \the [H]'s mouth!"))
 
-				if(!do_after(user, 30))
+				if(!do_after(user, 3 SECONDS, target = src))
 					return
 
 				if(!can_place(H, user))
@@ -94,7 +94,7 @@
 				var/obj/item/handcuffs/cable/tape/T = new(user)
 				playsound(src, 'sound/effects/tape.ogg',25)
 
-				if(!T.place_handcuffs(H, user))
+				if(!T.attempt_to_cuff(H, user))
 					user.unEquip(T)
 					qdel(T)
 			else
@@ -135,6 +135,9 @@
 	overlays = W.overlays
 
 /obj/item/ducttape/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!stuck)
 		return
 

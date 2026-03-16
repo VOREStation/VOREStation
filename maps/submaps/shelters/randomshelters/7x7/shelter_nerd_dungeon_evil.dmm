@@ -1,0 +1,232 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"l" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 9
+	},
+/obj/structure/table/hardwoodtable,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"m" = (
+/obj/effect/decal/cleanable/mucus/mapped,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"n" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood/broken,
+/area/survivalpod/redspace)
+"o" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"p" = (
+/obj/structure/fans,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"r" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/reagent_containers/food/drinks/cans/nukie_melon,
+/obj/item/reagent_containers/food/drinks/cans/nukie_rose,
+/obj/item/reagent_containers/food/drinks/cans/nukie_special,
+/obj/item/reagent_containers/food/drinks/cans/nukie_peach,
+/obj/item/reagent_containers/food/drinks/cans/nukie_pear,
+/obj/item/reagent_containers/food/drinks/cans/nukie_pear,
+/obj/item/deck/wizoff,
+/obj/item/storage/box/donkpockets/honk,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"s" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/hardwoodtable,
+/obj/item/reagent_containers/food/drinks/cans/nukie_fruit,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"t" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/pod,
+/obj/item/bedsheet/clown,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"w" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"x" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb2{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod/redspace)
+"y" = (
+/obj/machinery/door/window/survival_pod{
+	dir = 1;
+	icon_state = "windoor"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/white,
+/area/survivalpod/redspace)
+"A" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/white,
+/area/survivalpod/redspace)
+"D" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/chips,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"E" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"H" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood/broken,
+/area/survivalpod/redspace)
+"I" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/woodentable,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"K" = (
+/obj/structure/closet/crate/bin,
+/obj/item/soap,
+/turf/simulated/floor/wood/broken,
+/area/survivalpod/redspace)
+"L" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"M" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod/redspace)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/shower{
+	dir = 4;
+	pixel_y = -4;
+	name = "neglected shower";
+	desc = "It doesn't look like it's been used in ages..."
+	},
+/turf/simulated/floor/tiled/white,
+/area/survivalpod/redspace)
+"U" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+"W" = (
+/obj/structure/sign/mining,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"X" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"Y" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"Z" = (
+/mob/living/simple_mob/animal/passive/cockroach,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/survivalpod/redspace)
+
+(1,1,1) = {"
+Y
+w
+Y
+w
+Y
+w
+Y
+"}
+(2,1,1) = {"
+E
+t
+L
+n
+y
+P
+o
+"}
+(3,1,1) = {"
+Y
+l
+U
+Z
+x
+A
+Y
+"}
+(4,1,1) = {"
+E
+s
+m
+L
+L
+L
+M
+"}
+(5,1,1) = {"
+Y
+p
+Z
+L
+D
+K
+Y
+"}
+(6,1,1) = {"
+E
+r
+H
+c
+L
+I
+W
+"}
+(7,1,1) = {"
+Y
+X
+Y
+X
+Y
+X
+Y
+"}

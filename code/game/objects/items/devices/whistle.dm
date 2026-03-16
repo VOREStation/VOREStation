@@ -23,15 +23,18 @@
 		to_chat(usr, "The hailer is fried. The tiny input screen just shows a waving ASCII penis.")
 		return
 
-	var/new_message = tgui_input_text(usr, "Please enter new message (leave blank to reset).")
+	var/new_message = tgui_input_text(usr, "Please enter new message (leave blank to reset).", max_length = MAX_MESSAGE_LEN)
 	if(!new_message || new_message == "")
 		use_message = "Halt! Security!"
 	else
-		use_message = capitalize(copytext(sanitize(new_message), 1, MAX_MESSAGE_LEN))
+		use_message = capitalize(new_message)
 
 	to_chat(usr, "You configure the hailer to shout \"[use_message]\".")
 
-/obj/item/hailer/attack_self(mob/living/carbon/user as mob)
+/obj/item/hailer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if (spamcheck)
 		return
 

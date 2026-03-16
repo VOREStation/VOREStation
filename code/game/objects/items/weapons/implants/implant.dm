@@ -38,7 +38,7 @@
 	else
 		forceMove(source)
 
-	listening_objects |= src
+	GLOB.listening_objects |= src
 
 // Takes place after handle_implant, if that returns TRUE
 /obj/item/implant/proc/post_implant(var/mob/source)
@@ -75,7 +75,7 @@
 	if(part)
 		part.implants.Remove(src)
 		part = null
-	listening_objects.Remove(src)
+	GLOB.listening_objects.Remove(src)
 	imp_in = null
 	return ..()
 
@@ -123,16 +123,18 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/implant/tracking)
 	return ..()
 
 /obj/item/implant/tracking/process()
-	var/implant_location = src.loc
-	if(ismob(implant_location))
-		var/mob/living/L = implant_location
-		if(L.stat == DEAD)
-			if(world.time >= L.timeofdeath + degrade_time)
-				name = "melted implant"
-				desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
-				icon_state = "implant_melted"
-				malfunction = MALFUNCTION_PERMANENT
-				STOP_PROCESSING(SSobj, src)
+	var/mob/living/implant_mob // Get implant's mob from our host organ
+	if(istype(loc, /obj/item/organ))
+		var/obj/item/organ/O = loc
+		implant_mob = O.owner
+
+	if(ismob(implant_mob) && implant_mob.stat == DEAD)
+		if(world.time >= implant_mob.timeofdeath + degrade_time)
+			name = "melted implant"
+			desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
+			icon_state = "implant_melted"
+			malfunction = MALFUNCTION_PERMANENT
+			STOP_PROCESSING(SSobj, src)
 	return 1
 
 /obj/item/implant/tracking/get_data()
@@ -152,7 +154,7 @@ circuitry. As a result neurotoxins can cause massive damage.<HR>
 Implant Specifics:<BR>"}
 	return dat
 
-/obj/item/implant/tracking/emp_act(severity)
+/obj/item/implant/tracking/emp_act(severity, recursive)
 	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -292,7 +294,7 @@ Implant Specifics:<BR>"}
 	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
 	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
 
-/obj/item/implant/explosive/emp_act(severity)
+/obj/item/implant/explosive/emp_act(severity, recursive)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -396,7 +398,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			qdel(src)
 	return
 
-/obj/item/implant/chem/emp_act(severity)
+/obj/item/implant/chem/emp_act(severity, recursive)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -555,7 +557,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			qdel(a)
 			STOP_PROCESSING(SSobj, src)
 
-/obj/item/implant/death_alarm/emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
+/obj/item/implant/death_alarm/emp_act(severity, recursive)			//for some reason alarms stop going off in case they are emp'd, even without this
 	if (malfunction)		//so I'm just going to add a meltdown chance here
 		return
 	malfunction = MALFUNCTION_TEMPORARY

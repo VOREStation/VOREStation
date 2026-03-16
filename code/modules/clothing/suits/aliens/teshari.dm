@@ -133,7 +133,7 @@
 //Engineering
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/ce
-	name = "cheif engineer cloak"
+	name = "chief engineer cloak"
 	desc = "A soft Teshari cloak made for the "+ JOB_CHIEF_ENGINEER
 	icon_state = "tesh_cloak_ce"
 
@@ -151,7 +151,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/cmo
 	name = "chief medical officer cloak"
-	desc = "A soft Teshari cloak made the Cheif Medical Officer"
+	desc = "A soft Teshari cloak made the Chief Medical Officer"
 	icon_state = "tesh_cloak_cmo"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/medical
@@ -231,7 +231,7 @@
 	name = "Teshari labcoat"
 	desc = "A small suit that protects against minor chemical spills. This one is a good fit on Teshari."
 	icon = 'icons/inventory/suit/item_teshari.dmi'
-	icon_state = "tesh_labcoat"
+	icon_state = "labcoat"
 	species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/suit/storage/toggle/tesharicoat

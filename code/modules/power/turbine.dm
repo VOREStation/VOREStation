@@ -125,7 +125,6 @@
 		return
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", name, comp_id, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			comp_id = new_ident
 		return
@@ -274,45 +273,41 @@
 	if(lastgen > 100)
 		add_overlay(image('icons/obj/pipes.dmi', "turb-o", FLY_LAYER))
 
-	updateDialog()
-
 /obj/machinery/power/turbine/attack_hand(var/mob/user as mob)
 	if((. = ..()))
 		return
-	src.interact(user)
+	tgui_interact(user)
 
-/obj/machinery/power/turbine/interact(mob/user)
-	if(!Adjacent(user)  || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
-		user.unset_machine(src)
-		user << browse(null, "window=turbine")
+/obj/machinery/power/turbine/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	. = ..()
+	if(!Adjacent(user) && !issilicon(user))
 		return
-	user.set_machine(src)
-
-	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
-	t += "Generated power : [DisplayPower(lastgen)]<BR><BR>"
-	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
-	t += "Starter: [ compressor.starter ? "<A href='byond://?src=\ref[src];str=1'>Off</A> " + span_bold("On") : span_bold("Off") + " <A href='byond://?src=\ref[src];str=1'>On</A>"]"
-	t += "</PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
-	t += "</TT>"
-	var/datum/browser/popup = new(user, "turbine", name, 700, 500, src)
-	popup.set_content(t)
-	popup.open()
-
-	return
-
-/obj/machinery/power/turbine/Topic(href, href_list)
-	if(..())
+	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(href_list["close"])
-		usr << browse(null, "window=turbine")
-		usr.unset_machine(src)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Turbine", name)
+		ui.open()
+
+/obj/machinery/power/turbine/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	return list(
+		"display_power" = lastgen,
+		"turbine_rpm" = compressor?.rpm,
+		"starter" = compressor?.starter
+	)
+
+/obj/machinery/power/turbine/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
 		return
-	else if(href_list["str"])
-		if(compressor)
+
+	switch(action)
+		if("start_stop")
+			if(!compressor)
+				return FALSE
 			compressor.starter = !compressor.starter
-	updateDialog()
-
+			return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Turbine Computer
@@ -339,7 +334,6 @@
 /obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", name, id, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id = new_ident
 		return

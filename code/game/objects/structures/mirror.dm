@@ -7,6 +7,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
 	anchored = TRUE
+	flags = WALL_ITEM
 	var/shattered = 0
 	var/glass = 1
 	var/datum/tgui_module/appearance_changer/mirror/M
@@ -59,7 +60,7 @@
 	if(I.has_tool_quality(TOOL_WRENCH))
 		if(!glass)
 			playsound(src, I.usesound, 50, 1)
-			if(do_after(user, 20 * I.toolspeed))
+			if(do_after(user, 2 SECONDS * I.toolspeed, target = src))
 				to_chat(user, span_notice("You unfasten the frame."))
 				new /obj/item/frame/mirror( src.loc )
 				qdel(src)
@@ -86,7 +87,7 @@
 				to_chat(user, span_warning("You need two sheets of glass to add them to the frame."))
 				return
 			to_chat(user, span_notice("You start to add the glass to the frame."))
-			if(do_after(user, 20))
+			if(do_after(user, 2 SECONDS, target = src))
 				if (G.use(2))
 					shattered = 0
 					glass = 1
@@ -135,16 +136,16 @@
 			if(choice && choice == "Yes")
 				var/mob/living/carbon/human/vox/vox = new(get_turf(src),SPECIES_VOX)
 				vox.gender = user.gender
-				raiders.equip(vox)
+				GLOB.raiders.equip(vox)
 				if(user.mind)
 					user.mind.transfer_to(vox)
 				spawn(1)
-					var/newname = sanitizeSafe(tgui_input_text(vox,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
+					var/newname = sanitizeSafe(tgui_input_text(vox,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 					if(!newname || newname == "")
 						var/datum/language/L = GLOB.all_languages[vox.species.default_language]
 						newname = L.get_random_name()
 					vox.real_name = newname
 					vox.name = vox.real_name
-					raiders.update_access(vox)
+					GLOB.raiders.update_access(vox)
 				qdel(user)
 	..()

@@ -12,7 +12,7 @@
 "ad" = (
 /obj/machinery/computer/general_air_control/supermatter_core{
 	dir = 1;
-	frequency = 1438;
+	frequency = 1433;
 	input_tag = "cooling_in";
 	name = "Engine Cooling Control";
 	output_tag = "cooling_out";
@@ -279,7 +279,7 @@
 /area/engineering/engine_room)
 "aS" = (
 /obj/machinery/air_sensor{
-	frequency = 1438;
+	frequency = 1433;
 	id_tag = "engine_sensor";
 	output = 63
 	},

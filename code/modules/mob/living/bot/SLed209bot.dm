@@ -19,8 +19,8 @@
 
 	stun_strength = 10
 	xeno_harm_strength = 9
-	req_one_access = list(access_research, access_robotics)
-	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
+	req_one_access = list(ACCESS_RESEARCH, ACCESS_ROBOTICS)
+	botcard_access = list(ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_XENOARCH, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_MAINT_TUNNELS)
 	retaliates = FALSE
 	var/xeno_stun_strength = 6
 
@@ -67,7 +67,7 @@
 
 /obj/item/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/W, var/mob/user) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
 	if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && src.loc != user)
@@ -132,7 +132,7 @@
 					to_chat(user, span_warning("You need one coil of wire to wire [src]."))
 					return
 				to_chat(user, span_notice("You start to wire [src]."))
-				if(do_after(user, 40) && build_step == 6)
+				if(do_after(user, 4 SECONDS, target = src) && build_step == 6)
 					if(C.use(1))
 						build_step++
 						to_chat(user, span_notice("You wire the ED-209 assembly."))

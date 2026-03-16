@@ -60,7 +60,7 @@
 
 /datum/gear/uniform/qipao_colorable/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/qipao2_colorable
 	display_name = "qipao, colorable, slim"
@@ -68,7 +68,7 @@
 
 /datum/gear/uniform/qipao2_colorable/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/skirt
 	display_name = "skirt selection"
@@ -198,7 +198,7 @@
 
 /datum/gear/uniform/shortplaindress/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/longdress
 	display_name = "long dress"
@@ -206,7 +206,7 @@
 
 /datum/gear/uniform/longdress/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/longwidedress
 	display_name = "long wide dress"
@@ -214,7 +214,15 @@
 
 /datum/gear/uniform/longwidedress/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
+
+/datum/gear/uniform/loincloth
+	display_name = "loincloth"
+	path = /obj/item/clothing/under/skirt/loincloth
+
+/datum/gear/uniform/loincloth/New()
+	..()
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/reddress
 	display_name = "red dress with belt"
@@ -261,7 +269,7 @@
 
 /datum/gear/uniform/yogapants/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/black_corset
 	display_name = "black corset"
@@ -328,7 +336,7 @@
 
 /datum/gear/uniform/pleated/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/lilacdress
 	display_name = "lilac dress"
@@ -420,7 +428,7 @@
 
 /datum/gear/uniform/floofdress/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/blackngold
 	display_name = "black and gold gown"
@@ -472,7 +480,7 @@
 
 /datum/gear/uniform/flowerskirt/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/countess
 	display_name = "countess dress"
@@ -488,7 +496,7 @@
 
 /datum/gear/uniform/fashionminiskirt/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/tourist_1
 	display_name = "tourist outfit, white"
@@ -552,7 +560,7 @@
 
 /datum/gear/uniform/leotardcolor/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 //skinsuits
 /datum/gear/uniform/skinsuits
@@ -607,7 +615,7 @@
 	"cableknit sweater"=/obj/item/clothing/under/bigsweater,
 	"keyhole sweater"=/obj/item/clothing/under/bigsweater/keyhole
 	)
-	gear_tweaks += list(new/datum/gear_tweak/path(bigsweaters), gear_tweak_free_color_choice)
+	gear_tweaks += list(new/datum/gear_tweak/path(bigsweaters), GLOB.gear_tweak_free_color_choice)
 
 //half-moon outfit
 /datum/gear/uniform/halfmoon
@@ -653,7 +661,7 @@
 	"maid reverse bunnysuit, no legs"=/obj/item/clothing/under/reverse_bunnytop_maid
 	)
 	gear_tweaks += list(new/datum/gear_tweak/path(bunnysuit))
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/uniform/suit/permit
 	display_name = "nudity permit"
@@ -747,7 +755,7 @@ Qipao
 
 /datum/gear/uniform/qipao_colorable_alt/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /*
 Bluespace jumpsuit
@@ -845,7 +853,7 @@ Talon jumpsuit
 	"short skirt"=/obj/item/clothing/under/skirt/colorable/short,
 	"short skirt (split)"=/obj/item/clothing/under/skirt/colorable/short_split
 	)
-	gear_tweaks += list(new/datum/gear_tweak/path(skirts), gear_tweak_free_color_choice)
+	gear_tweaks += list(new/datum/gear_tweak/path(skirts), GLOB.gear_tweak_free_color_choice)
 
 // gwen beedells clown clothes
 
@@ -861,7 +869,7 @@ Talon jumpsuit
 
 /datum/gear/uniform/cdress_fire/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 // recolorable yellow dress
 /datum/gear/uniform/cbridesmaid
@@ -870,7 +878,7 @@ Talon jumpsuit
 
 /datum/gear/uniform/cbridesmaid/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 // recolorable orange swoop dress
 /datum/gear/uniform/cswoopdress
@@ -879,7 +887,7 @@ Talon jumpsuit
 
 /datum/gear/uniform/cswoopdress/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 // waiter's outfit, this should probably be in a selector with all the other service uniforms.
 /datum/gear/uniform/waiter

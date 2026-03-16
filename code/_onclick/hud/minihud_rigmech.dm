@@ -1,10 +1,10 @@
 // Specific types
 /datum/mini_hud/rig
 	var/obj/item/rig/owner_rig
-	var/obj/screen/rig/power/power
-	var/obj/screen/rig/health/health
-	var/obj/screen/rig/air/air
-	var/obj/screen/rig/airtoggle/airtoggle
+	var/atom/movable/screen/rig/power/power
+	var/atom/movable/screen/rig/health/health
+	var/atom/movable/screen/rig/air/air
+	var/atom/movable/screen/rig/airtoggle/airtoggle
 
 	needs_processing = TRUE
 
@@ -16,12 +16,12 @@
 	airtoggle = new ()
 
 	screenobjs = list(power, health, air, airtoggle)
-	screenobjs += new /obj/screen/rig/deco1
-	screenobjs += new /obj/screen/rig/deco2
-	screenobjs += new /obj/screen/rig/deco1_f
-	screenobjs += new /obj/screen/rig/deco2_f
+	screenobjs += new /atom/movable/screen/rig/deco1
+	screenobjs += new /atom/movable/screen/rig/deco2
+	screenobjs += new /atom/movable/screen/rig/deco1_f
+	screenobjs += new /atom/movable/screen/rig/deco2_f
 
-	for(var/obj/screen/S as anything in screenobjs)
+	for(var/atom/movable/screen/S as anything in screenobjs)
 		S.master = owner_rig
 	..()
 
@@ -50,10 +50,10 @@
 
 /datum/mini_hud/mech
 	var/obj/mecha/owner_mech
-	var/obj/screen/mech/power/power
-	var/obj/screen/mech/health/health
-	var/obj/screen/mech/air/air
-	var/obj/screen/mech/airtoggle/airtoggle
+	var/atom/movable/screen/mech/power/power
+	var/atom/movable/screen/mech/health/health
+	var/atom/movable/screen/mech/air/air
+	var/atom/movable/screen/mech/airtoggle/airtoggle
 
 	needs_processing = TRUE
 
@@ -65,12 +65,12 @@
 	airtoggle = new ()
 
 	screenobjs = list(power, health, air, airtoggle)
-	screenobjs += new /obj/screen/mech/deco1
-	screenobjs += new /obj/screen/mech/deco2
-	screenobjs += new /obj/screen/mech/deco1_f
-	screenobjs += new /obj/screen/mech/deco2_f
+	screenobjs += new /atom/movable/screen/mech/deco1
+	screenobjs += new /atom/movable/screen/mech/deco2
+	screenobjs += new /atom/movable/screen/mech/deco1_f
+	screenobjs += new /atom/movable/screen/mech/deco2_f
 
-	for(var/obj/screen/S as anything in screenobjs)
+	for(var/atom/movable/screen/S as anything in screenobjs)
 		S.master = owner_mech
 	..()
 
@@ -99,50 +99,50 @@
 	airtoggle.icon_state = "airon[air_on]"
 
 // Screen objects
-/obj/screen/rig
+/atom/movable/screen/rig
 	icon = 'icons/mob/screen_rigmech.dmi'
 
-/obj/screen/rig/deco1
+/atom/movable/screen/rig/deco1
 	name = "RIG Status"
 	icon_state = "frame1_1"
 	screen_loc = ui_rig_deco1
 
-/obj/screen/rig/deco2
+/atom/movable/screen/rig/deco2
 	name = "RIG Status"
 	icon_state = "frame1_2"
 	screen_loc = ui_rig_deco2
 
-/obj/screen/rig/deco1_f
+/atom/movable/screen/rig/deco1_f
 	name = "RIG Status"
 	icon_state = "frame1_1_far"
 	screen_loc = ui_rig_deco1_f
 
-/obj/screen/rig/deco2_f
+/atom/movable/screen/rig/deco2_f
 	name = "RIG Status"
 	icon_state = "frame1_2_far"
 	screen_loc = ui_rig_deco2_f
 
-/obj/screen/rig/power
+/atom/movable/screen/rig/power
 	name = "Charge Level"
 	icon_state = "pwr5"
 	screen_loc = ui_rig_pwr
 
-/obj/screen/rig/health
+/atom/movable/screen/rig/health
 	name = "Integrity Level"
 	icon_state = "health5"
 	screen_loc = ui_rig_health
 
-/obj/screen/rig/air
+/atom/movable/screen/rig/air
 	name = "Air Storage"
 	icon_state = "air5"
 	screen_loc = ui_rig_air
 
-/obj/screen/rig/airtoggle
+/atom/movable/screen/rig/airtoggle
 	name = "Toggle Air"
 	icon_state = "airoff"
 	screen_loc = ui_rig_airtoggle
 
-/obj/screen/rig/airtoggle/Click()
+/atom/movable/screen/rig/airtoggle/Click()
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat || user.incapacitated())
 		return
@@ -151,50 +151,50 @@
 		return
 	user.toggle_internals()
 
-/obj/screen/mech
+/atom/movable/screen/mech
 	icon = 'icons/mob/screen_rigmech.dmi'
 
-/obj/screen/mech/deco1
+/atom/movable/screen/mech/deco1
 	name = "Mech Status"
 	icon_state = "frame1_1"
 	screen_loc = ui_mech_deco1
 
-/obj/screen/mech/deco2
+/atom/movable/screen/mech/deco2
 	name = "Mech Status"
 	icon_state = "frame1_2"
 	screen_loc = ui_mech_deco2
 
-/obj/screen/mech/deco1_f
+/atom/movable/screen/mech/deco1_f
 	name = "Mech Status"
 	icon_state = "frame1_1_far"
 	screen_loc = ui_mech_deco1_f
 
-/obj/screen/mech/deco2_f
+/atom/movable/screen/mech/deco2_f
 	name = "Mech Status"
 	icon_state = "frame1_2_far"
 	screen_loc = ui_mech_deco2_f
 
-/obj/screen/mech/power
+/atom/movable/screen/mech/power
 	name = "Charge Level"
 	icon_state = "pwr5"
 	screen_loc = ui_mech_pwr
 
-/obj/screen/mech/health
+/atom/movable/screen/mech/health
 	name = "Integrity Level"
 	icon_state = "health5"
 	screen_loc = ui_mech_health
 
-/obj/screen/mech/air
+/atom/movable/screen/mech/air
 	name = "Air Storage"
 	icon_state = "air5"
 	screen_loc = ui_mech_air
 
-/obj/screen/mech/airtoggle
+/atom/movable/screen/mech/airtoggle
 	name = "Toggle Air"
 	icon_state = "airoff"
 	screen_loc = ui_mech_airtoggle
 
-/obj/screen/mech/airtoggle/Click()
+/atom/movable/screen/mech/airtoggle/Click()
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat || user.incapacitated())
 		return
@@ -210,18 +210,18 @@
 	var/list/adding = list()
 	HUD.adding = adding
 
-	var/obj/screen/using
-	using = new /obj/screen/ghost/jumptomob()
+	var/atom/movable/screen/using
+	using = new /atom/movable/screen/ghost/jumptomob()
 	using.screen_loc = ui_ghost_jumptomob
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/orbit()
+	using = new /atom/movable/screen/ghost/orbit()
 	using.screen_loc = ui_ghost_orbit
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/reenter_corpse()
+	using = new /atom/movable/screen/ghost/reenter_corpse()
 	using.screen_loc = ui_ghost_reenter_corpse
 	using.hud = src
 	adding += using

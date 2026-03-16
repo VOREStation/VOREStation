@@ -35,25 +35,26 @@
 	savefile.save()
 
 /datum/category_item/player_setup_item/general/nif/sanitize_character()
+	var/char_name = pref.read_preference(/datum/preference/name/real_name) || "-name not yet loaded-"
 	if(pref.nif_path && !ispath(pref.nif_path))		//We have at least a text string that should be a path.
 		pref.nif_path = text2path(pref.nif_path) 	//Try to convert it to a hard path.
 		if(!pref.nif_path)							//If we couldn't, kill it.
 			pref.nif_path = null					//Kill!
-			WARNING("Loaded a NIF but it was an invalid path, [pref.real_name]")
+			WARNING("Loaded a NIF but it was an invalid path, [char_name]")
 
 	if (ispath(pref.nif_path, /obj/item/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
 		pref.nif_path = null
 
 	if(ispath(pref.nif_path) && isnull(pref.nif_durability))		//How'd you lose this?
 		pref.nif_durability = initial(pref.nif_path.durability)		//Well, have a new one, my bad.
-		WARNING("Loaded a NIF but with no durability, [pref.real_name]")
+		WARNING("Loaded a NIF but with no durability, [char_name]")
 
 	if(!islist(pref.nif_savedata))
 		pref.nif_savedata = list()
 
 /datum/category_item/player_setup_item/general/nif/copy_to_mob(var/mob/living/carbon/human/character)
 	//If you had a NIF...
-	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability)
+	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability && !ismannequin(character))
 		new pref.nif_path(character, pref.nif_durability, pref.nif_savedata)
 
 /datum/category_item/player_setup_item/general/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)

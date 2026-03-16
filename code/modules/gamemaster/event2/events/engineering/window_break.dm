@@ -27,7 +27,7 @@
 /datum/event2/event/window_break/set_up()
 	var/list/areas = find_random_areas()
 	if(!LAZYLEN(areas))
-		log_debug("Window Break event could not find any areas. Aborting.")
+		log_game("Window Break event could not find any areas. Aborting.")
 		abort()
 		return
 
@@ -43,17 +43,17 @@
 			break // Break out of the inner loop.
 
 		if(chosen_turf_with_windows)
-			log_debug("Window Break event has chosen turf '[chosen_turf_with_windows.name]' in [chosen_turf_with_windows.loc].")
+			log_game("Window Break event has chosen turf '[chosen_turf_with_windows.name]' in [chosen_turf_with_windows.loc].")
 			break // Then the outer loop.
 
 	if(!chosen_turf_with_windows)
-		log_debug("Window Break event could not find a turf with valid windows to break. Aborting.")
+		log_game("Window Break event could not find a turf with valid windows to break. Aborting.")
 		abort()
 		return
 
 /datum/event2/event/window_break/announce()
 	if(chosen_window)
-		command_announcement.Announce("Structural integrity of space-facing windows at \the [get_area(chosen_turf_with_windows)] are failing. \
+		GLOB.command_announcement.Announce("Structural integrity of space-facing windows at \the [get_area(chosen_turf_with_windows)] are failing. \
 		Repair of the damaged window is advised. Personnel without EVA suits in the area should leave until repairs are complete.", "Structural Alert")
 
 /datum/event2/event/window_break/start()
@@ -91,7 +91,7 @@
 /datum/event2/event/window_break/end()
 	// If someone fixed the window, then everything is fine.
 	if(chosen_window && chosen_window.anchored && chosen_window.health == chosen_window.maxhealth)
-		log_debug("Window Break event ended with window repaired.")
+		log_game("Window Break event ended with window repaired.")
 		return
 
 	// Otherwise a bunch of windows shatter.
@@ -102,7 +102,7 @@
 		var/obj/structure/window/W = collateral_windows[i]
 		W?.shatter()
 
-	log_debug("Window Break event ended with [windows_to_shatter] shattered windows and a breach.")
+	log_game("Window Break event ended with [windows_to_shatter] shattered windows and a breach.")
 
 // Checks if a window is adjacent to a space tile, and also that the opposite direction is open.
 // This is done to avoid getting caught in corner parts of windows.

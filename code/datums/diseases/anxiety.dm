@@ -1,5 +1,6 @@
 /datum/disease/anxiety
 	name = "Severe Anxiety"
+	medical_name = "Lepidopteric Hyperemesis"
 	form = "Infection"
 	max_stages = 4
 	spread_text = "On contact"
@@ -34,7 +35,7 @@
 					span_userdanger("You have a panic attack!")
 				)
 				affected_mob.AdjustConfused(rand(12, 16))
-				affected_mob.jitteriness = rand(12, 16)
+				affected_mob.make_jittery(100 + rand(12, 16))
 			if(prob(2))
 				affected_mob.visible_message(
 					span_danger("[affected_mob] coughs up butterflies!"),

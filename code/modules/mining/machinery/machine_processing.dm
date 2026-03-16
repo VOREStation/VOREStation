@@ -23,7 +23,7 @@
 	if (machine)
 		machine.console = src
 	else
-		log_debug("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
+		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
 		qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/Destroy()
@@ -74,7 +74,7 @@
 	for(var/ore in machine.ores_processing)
 		if(!machine.ores_stored[ore] && !show_all_ores)
 			continue
-		var/ore/O = GLOB.ore_data[ore]
+		var/datum/ore/O = GLOB.ore_data[ore]
 		if(!O)
 			continue
 		ores.Add(list(list(
@@ -124,7 +124,7 @@
 			. = TRUE
 		if("claim")
 			if(istype(inserted_id))
-				if(access_mining_station in inserted_id.GetAccess())
+				if(ACCESS_MINING_STATION in inserted_id.GetAccess())
 					inserted_id.adjust_mining_points(machine.points)
 					machine.points = 0
 				else
@@ -164,7 +164,7 @@
 	var/active = FALSE
 
 	var/points = 0
-	var/points_mult = 1 //VOREStation Add - multiplier for points generated when ore hits the processors
+	var/points_mult = 1 //- multiplier for points generated when ore hits the processors
 	var/static/list/ore_values = list(
 		ORE_SAND = 1,
 		ORE_HEMATITE = 1,
@@ -185,12 +185,12 @@
 		ORE_LEAD = 40,
 		ORE_MHYDROGEN = 40,
 		ORE_VERDANTIUM = 60,
-		ORE_RUTILE = 40) //VOREStation Add
+		ORE_RUTILE = 40)
 
 /obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()
-	for(var/ore in GLOB.ore_data)
-		var/ore/OD = GLOB.ore_data[ore]
+	for(var/ore, value in GLOB.ore_data)
+		var/datum/ore/OD = value
 		ores_processing[OD.name] = 0
 		ores_stored[OD.name] = 0
 
@@ -270,7 +270,7 @@
 
 		if(ores_stored[metal] > 0 && ores_processing[metal] != 0)
 
-			var/ore/O = GLOB.ore_data[metal]
+			var/datum/ore/O = GLOB.ore_data[metal]
 
 			if(!O) continue
 
@@ -340,8 +340,6 @@
 				new /obj/item/ore/slag(output.loc)
 		else
 			continue
-
-	console.updateUsrDialog()
 
 #undef PROCESS_NONE
 #undef PROCESS_SMELT

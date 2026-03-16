@@ -3,19 +3,6 @@
 
 // code/modules/mob/living/silicon/robot/robot_modules/station_vr.dm //tag so it shows up in gitsearch
 
-/*
-What Borgs are available is sadly handled in the above file in the proc
-
-/hook/startup/proc/robot_modules_vr()
-	robot_modules["Medihound"] = /obj/item/robot_module/robot/medihound
-	robot_modules["K9"] = /obj/item/robot_module/robot/knine
-	robot_modules["ERT"] = /obj/item/robot_module/robot/ert
-	robot_modules["Janihound"] = /obj/item/robot_module/robot/scrubpup
-	robot_modules["Sci-borg"] = /obj/item/robot_module/robot/science
-	robot_modules["Pupdozer"] = /obj/item/robot_module/robot/engiedog
-	return 1
-*/
-
 /obj/item/robot_module/robot/booze
 	name = "BoozeHound robot module"
 	channels = list("Service" = 1)
@@ -49,14 +36,14 @@ What Borgs are available is sadly handled in the above file in the proc
 /obj/item/robot_module/robot/booze/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/gripper/service(src)
-	//src.modules += new /obj/item/reagent_containers/glass/bucket(src)
+	//src.modules += new /obj/item/reagent_containers/glass/bucket/cyborg(src)
 	//src.modules += new /obj/item/material/minihoe(src)
 	//src.modules += new /obj/item/analyzer/plant_analyzer(src)
 	//src.modules += new /obj/item/storage/bag/plants(src)
 	//src.modules += new /obj/item/robot_harvester(src)
 	src.modules += new /obj/item/material/knife(src)
 	src.modules += new /obj/item/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/multitool(src) //to freeze trays
+	src.modules += new /obj/item/multitool/cyborg(src) //to freeze trays
 	src.modules += new /obj/item/dogborg/jaws/small(src)
 	src.modules += new /obj/item/dogborg/boop_module(src)
 	src.modules += new /obj/item/dogborg/sleeper/compactor/brewer(src)
@@ -129,7 +116,7 @@ What Borgs are available is sadly handled in the above file in the proc
 	charge_cost = 20
 	recharge_time = 3
 	volume = 120
-	possible_transfer_amounts = list(1 ,5, 10, 20, 30)
+	max_transfer_amount = 60
 
 //Resking proc for boozos
 
@@ -148,7 +135,7 @@ What Borgs are available is sadly handled in the above file in the proc
 	options["Grape Soda"] = "The Grapist"
 	options["Demon's Blood"] = "Vampire's Aid"
 	options["Slav Vodka"] = "Vodka Komrade"
-	var/choice = input(M,"Choose your drink!") in options
+	var/choice = tgui_input_list(M,"Choose your drink!", "Choose Drink", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icontype = options[choice]
 		var/active_sound = 'sound/effects/bubbles.ogg'

@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, NumberInput, Section, Table } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 export const Signaler = () => {
   return (
@@ -31,15 +30,16 @@ export const SignalerContent = (props) => {
           <Table.Cell>
             <NumberInput
               animated
+              tickWhileDragging
               unit="kHz"
               step={0.2}
               stepPixelSize={6}
               minValue={minFrequency / 10}
               maxValue={maxFrequency / 10}
               value={frequency / 10}
-              format={(value) => toFixed(value, 1)}
+              format={(value) => value.toFixed(1)}
               width="80px"
-              onDrag={(value) =>
+              onChange={(value) =>
                 act('freq', {
                   freq: value,
                 })
@@ -65,13 +65,14 @@ export const SignalerContent = (props) => {
           <Table.Cell>
             <NumberInput
               animated
+              tickWhileDragging
               step={1}
               stepPixelSize={6}
               minValue={1}
               maxValue={100}
               value={code}
               width="80px"
-              onDrag={(value) =>
+              onChange={(value) =>
                 act('code', {
                   code: value,
                 })

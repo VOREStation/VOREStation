@@ -8,14 +8,14 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	// Destination tagging for the mail sorter.
+	/// Destination tagging for the mail sorter.
 	var/sortTag = 0
-	// Who this mail is for and who can open it.
+	/// Who this mail is for and who can open it.
 	var/datum/weakref/recipient_ref
-	// How many goodies this mail contains.
+	/// How many goodies this mail contains.
 	var/goodie_count = 1
 	// Goodies which can be given to anyone.
-	// Weight sum will be 1000
+	/// Weight sum will be 1000
 	var/list/generic_goodies = list(
 		/obj/item/spacecash/c50 = 75,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 75,
@@ -30,28 +30,34 @@
 		/obj/item/reagent_containers/food/drinks/bluespace_coffee = 5
 	)
 	// Overlays (pure fluff)
-	// Does the letter have the postmark overlay?
+	/// Does the letter have the postmark overlay?
 	var/postmarked = TRUE
-	// Does the letter have a stamp overlay?
+	/// Does the letter have a stamp overlay?
 	var/stamped = TRUE
-	// List of all stamp overlays on the letter.
+	/// List of all stamp overlays on the letter.
 	var/list/stamps = list()
-	// Maximum number of stamps on the letter.
+	/// Maximum number of stamps on the letter.
 	var/stamp_max = 1
-	// Physical offset of stamps on the object. X direction.
+	/// Physical offset of stamps on the object. X direction.
 	var/stamp_offset_x = 0
-	// Physical offset of stamps on the object. Y direction.
+	/// Physical offset of stamps on the object. Y direction.
 	var/stamp_offset_y = 2
-	// If the mail is actively being opened right now
+	/// If the mail is actively being opened right now
 	var/opening = FALSE
-	// If the mail has been scanned with a mail scanner
+	/// If the mail has been scanned with a mail scanner
 	var/scanned
-	// Does it have a colored envelope?
+	/// Does it have a colored envelope?
 	var/colored_envelope
+
+	///Var for attack_self chainn
+	var/special_handling = FALSE
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return
-	M.forceMove(get_turf(src))
+	if(isdisposalpacket(loc))
+		M.forceMove(loc)
+	else
+		M.forceMove(get_turf(src))
 	to_chat(M, span_warning("You climb out of \the [src]."))
 
 /obj/item/mail/envelope
@@ -81,6 +87,7 @@
 	var/set_content = FALSE
 	var/sealed = FALSE
 	var/list/mail_recipients
+	special_handling = TRUE
 
 /obj/item/mail/blank/attackby(obj/item/W, mob/user)
 	..()
@@ -104,7 +111,7 @@
 /obj/item/mail/proc/setRecipient(mob/user)
 	var/list/recipients = list()
 	var/mob/living/recipient_mob
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(!player_is_antag(player.mind) && player.mind.show_in_directory)
 			recipients += player
 
@@ -114,7 +121,7 @@
 		initialize_for_recipient(recipient_mob.mind, preset_goodies = TRUE)
 		return TRUE
 
-/obj/item/mail/blank/AltClick(mob/user)
+/obj/item/mail/blank/click_alt(mob/user)
 	if(sealed)
 		return
 
@@ -134,13 +141,18 @@
 			desc = "A signed envelope, from [sender]."
 
 /obj/item/mail/blank/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!sealed)
 		if(!do_after(user, 1.5 SECONDS, target = user))
 			sealed = FALSE
 		sealed = TRUE
 		description_info = "Shift Click to add the sender's name to the envelope, or attack with a pen to set a receiver."
 		return
-	. = ..()
+	if(!unwrap(user))
+		return FALSE
+	return after_unwrap(user)
 
 /obj/item/mail/update_icon()
 	. = ..()
@@ -188,7 +200,12 @@
 		return
 
 /obj/item/mail/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!unwrap(user))
+		return FALSE
+	if(special_handling)
 		return FALSE
 	return after_unwrap(user)
 
@@ -216,6 +233,13 @@
 			user.put_in_hands(stuff)
 		else
 			stuff.forceMove(drop_location())
+	//Now here's the kicker
+	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(5)) //1 in 20 chance for your mail to be rigged with a glitter bomb
+		to_chat(user, span_bolddanger("You open the mail and - OH SHIT IS THAT A BOMB!"))
+		var/obj/item/grenade/confetti/confetti_nade = new /obj/item/grenade/confetti()
+		confetti_nade.name = "Pipebomb"
+		confetti_nade.desc = span_bolddanger("What the hell are you looking at it for?! RUN!!")
+		confetti_nade.activate()
 	playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
 	qdel(src)
 
@@ -278,7 +302,7 @@
 		if(!chosen)
 			return
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		recipients += player
 
 	var/mob/living/chosen_player = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
@@ -310,12 +334,12 @@
 	name = "mail crate"
 	desc = "An official mail crate from CentCom"
 	points_per_crate = 0
-	closet_appearance = /decl/closet_appearance/crate/nanotrasen
+	closet_appearance = /datum/decl/closet_appearance/crate/nanotrasen
 
 /obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()
 	var/list/mail_recipients = list()
-	for(var/mob/living/carbon/human/alive in player_list)
+	for(var/mob/living/carbon/human/alive in GLOB.player_list)
 		if(alive.stat != DEAD && alive.client && alive.client.inactivity <= 10 MINUTES)
 			mail_recipients += alive
 	for(var/iterator in 1 to storage_capacity)
@@ -353,6 +377,15 @@
 		/obj/item/mail_scanner,
 		/obj/item/pen
 	)
+
+/obj/item/storage/bag/mail/borg
+	name = "letter compartment"
+	desc = "A compartment specifically made for small postage."
+
+/obj/item/storage/bag/mail/borg/proc/upgrade()
+	name += " of holding"
+	storage_slots = 45
+	max_storage_space = 75
 
 // Mail Scanner
 /obj/item/mail_scanner

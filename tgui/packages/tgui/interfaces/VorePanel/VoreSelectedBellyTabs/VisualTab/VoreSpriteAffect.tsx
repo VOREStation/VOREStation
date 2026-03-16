@@ -1,18 +1,21 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
-
+import { capitalize } from 'tgui-core/string';
 import { spriteToTooltip } from '../../constants';
-import type { bellyVisualData } from '../../types';
+import type { BellyVisualData, HostMob } from '../../types';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditColor } from '../../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
+import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
 export const VoreSpriteAffects = (props: {
   editMode: boolean;
-  bellyVisualData: bellyVisualData;
+  bellyVisualData: BellyVisualData;
+  hostMobtype: HostMob;
+  presets: string;
 }) => {
-  const { editMode, bellyVisualData } = props;
+  const { editMode, bellyVisualData, hostMobtype, presets } = props;
   const {
     vore_sprite_flags,
     absorbed_voresprite,
@@ -34,6 +37,7 @@ export const VoreSpriteAffects = (props: {
     tail_option_shown,
     tail_to_change_to,
     tail_sprite_options,
+    mob_belly_controls,
   } = bellyVisualData;
 
   return (
@@ -102,7 +106,7 @@ export const VoreSpriteAffects = (props: {
                     subAction="b_belly_sprite_to_affect"
                     editMode={editMode}
                     options={belly_sprite_options}
-                    entry={belly_sprite_to_affect}
+                    entry={capitalize(belly_sprite_to_affect)}
                     tooltip="Set the belly sprite to effect."
                   />
                 </LabeledList.Item>
@@ -140,11 +144,11 @@ export const VoreSpriteAffects = (props: {
                         </Stack.Item>
                         <VorePanelEditColor
                           editMode={editMode}
-                          action="liq_set_attribute"
+                          action="set_attribute"
                           subAction="b_undergarment_color"
-                          value_of={null}
                           back_color={undergarment_color}
                           tooltip="Select your undergarment color."
+                          presets={presets}
                         />
                       </Stack>
                     </LabeledList.Item>
@@ -170,6 +174,11 @@ export const VoreSpriteAffects = (props: {
                   </LabeledList.Item>
                 )}
             </LabeledList>
+            <VoreSelectedMobTypeBellyButtons
+              editMode={editMode}
+              bellyControl={mob_belly_controls}
+              host_mobtype={hostMobtype}
+            />
           </Stack.Item>
           <Stack.Item basis="49%" grow>
             <LabeledList>

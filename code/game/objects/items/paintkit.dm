@@ -262,13 +262,15 @@
 	var/showpilot_lift = 5
 
 /obj/item/kit/paint/ripley/customize(obj/mecha/M, mob/user)
+	if(!istype(M)) //Kicks it back and gives proper error text.
+		return ..()
 	if(showpilot)
 		M.show_pilot = TRUE
 		M.pilot_lift = 5
 	else
 		M.show_pilot = FALSE
 		M.pilot_lift = 0
-	. = ..()
+	. = ..() //Has to be done AFTER show_pilot being set in order to update the icon properly.
 
 /obj/item/kit/paint/ripley/death
 	name = "\"Reaper\" APLU customisation kit"

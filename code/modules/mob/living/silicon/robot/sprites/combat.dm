@@ -89,12 +89,12 @@
 	has_custom_equipment_sprites = TRUE
 
 /datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
 
-	..()
-
-	var/obj/item/melee/robotic/dagger/CBB = locate() in module.modules
+	var/obj/item/melee/robotic/blade/dagger/CBB = locate() in module.modules
 	if(CBB)
 		CBB.name = "sword tail"
 		CBB.desc = "A glowing dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
@@ -113,6 +113,7 @@
 	sprite_hud_icon_state = "ert"
 	rest_sprite_options = list("Default", "Sit")
 	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE
+
 /datum/robot_sprite/dogborg/tall/combat/derg/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	..()
 	if(ourborg.resting)
@@ -201,10 +202,10 @@
 	has_eye_sprites = FALSE
 
 /datum/robot_sprite/dogborg/wide/combat/blade/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/melee/robotic/blade/CBB = locate() in module.modules
 	if(CBB)

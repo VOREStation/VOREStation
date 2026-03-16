@@ -33,8 +33,8 @@
 	hide(!T.is_plating())
 	center = T
 
-	if(radio_controller)
-		radio_controller.add_object(src, freq, RADIO_MAGNETS)
+	if(SSradio)
+		SSradio.add_object(src, freq, RADIO_MAGNETS)
 
 	magnetic_process()
 
@@ -182,8 +182,8 @@
 	pulling = 0
 
 /obj/machinery/magnetic_module/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
+	if(SSradio)
+		SSradio.remove_object(src, freq)
 	. = ..()
 
 /obj/machinery/magnetic_controller
@@ -194,7 +194,7 @@
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 45
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/code = 0
 	var/list/magnets = list()
 	var/title = "Magnetic Control Console"
@@ -220,8 +220,8 @@
 				magnets.Add(M)
 
 
-	if(radio_controller)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_MAGNETS)
+	if(SSradio)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_MAGNETS)
 
 
 	if(path) // check for default path
@@ -242,7 +242,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
-	var/dat = span_bold("Magnetic Control Console") + "<BR><BR>"
+	var/dat = ""
 	if(!autolink)
 		dat += {"
 		Frequency: <a href='byond://?src=\ref[src];operation=setfreq'>[frequency]</a><br>
@@ -263,8 +263,9 @@
 	dat += "Moving: <a href='byond://?src=\ref[src];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
 
 
-	user << browse("<html>[dat]</html>", "window=magnet;size=400x500")
-	onclose(user, "magnet")
+	var/datum/browser/popup = new(user, "magnet", "Magnetic Control Console", 400, 500)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/magnetic_controller/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER))
@@ -312,7 +313,7 @@
 				if(speed <= 0)
 					speed = 1
 			if("setpath")
-				var/newpath = sanitize(tgui_input_text(usr, "Please define a new path!",,path))
+				var/newpath = tgui_input_text(usr, "Please define a new path!",,path, MAX_MESSAGE_LEN)
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath
@@ -389,6 +390,6 @@
 		// there doesn't HAVE to be separators but it makes paths syntatically visible
 
 /obj/machinery/magnetic_controller/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	. = ..()

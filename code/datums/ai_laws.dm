@@ -18,6 +18,7 @@
 	return 0
 
 /datum/ai_laws
+	/// The name of the lawset
 	var/name = "Unknown Laws"
 	var/law_header = "Prime Directives"
 	var/selectable = 0
@@ -220,6 +221,18 @@
 /datum/ai_laws/proc/clear_supplied_laws()
 	supplied_laws.Cut()
 	sorted_laws.Cut()
+
+/datum/ai_laws/proc/get_formatted_laws()
+	sort_laws()
+	var/list/law_block = list()
+	for(var/datum/ai_law/law in sorted_laws)
+		if(law == zeroth_law_borg)
+			continue
+		if(law == zeroth_law)
+			law_block += span_info(span_red("[law.get_index()]. [law.law]"))
+		else
+			law_block += span_infoplain("[law.get_index()]. [law.law]")
+	return examine_block(law_block.Join("\n"))
 
 /datum/ai_laws/proc/show_laws(var/who)
 	sort_laws()

@@ -33,15 +33,15 @@
 	var/rad_glow = 0
 
 	var/list/default_emotes = list(
-		/decl/emote/audible/squish,
-		/decl/emote/audible/chirp,
-		/decl/emote/visible/bounce,
-		/decl/emote/visible/jiggle,
-		/decl/emote/visible/lightup,
-		/decl/emote/visible/vibrate,
-		/decl/emote/visible/flip,
-		/decl/emote/visible/spin,
-		/decl/emote/visible/floorspin
+		/datum/decl/emote/audible/squish,
+		/datum/decl/emote/audible/chirp,
+		/datum/decl/emote/visible/bounce,
+		/datum/decl/emote/visible/jiggle,
+		/datum/decl/emote/visible/lightup,
+		/datum/decl/emote/visible/vibrate,
+		/datum/decl/emote/visible/flip,
+		/datum/decl/emote/visible/spin,
+		/datum/decl/emote/visible/floorspin
 	)
 /mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
 	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_blobform)
@@ -96,7 +96,7 @@
 	update_icon()
 
 	if(!humanform) // If we somehow have a blob with no human, lets just clean up.
-		log_debug("Cleaning up blob with no prommie!")
+		log_runtime("Cleaning up blob with no prommie!")
 		qdel(src)
 	return
 
@@ -307,14 +307,14 @@
 	return
 
 
-/mob/living/simple_mob/slime/promethean/get_description_info()
+/mob/living/simple_mob/slime/promethean/get_description_info(list/additional_information)
 	return
 
-/mob/living/simple_mob/slime/promethean/init_vore()
+/mob/living/simple_mob/slime/promethean/init_vore(force)
 	return
 
 /mob/living/simple_mob/slime/promethean/get_available_emotes()
-	var/list/fulllist = global._slime_default_emotes.Copy()
+	var/list/fulllist = GLOB.slime_default_emotes.Copy()
 	fulllist += default_emotes
 	return fulllist
 /mob/living/carbon/human
@@ -507,6 +507,7 @@
 
 	if(blob.mob_radio)
 		blob.mob_radio.forceMove(src)
+		equip_to_appropriate_slot(blob.mob_radio) // Actually put it back on the mob in a slot
 		blob.mob_radio = null
 	if(blob.myid)
 		blob.myid = null

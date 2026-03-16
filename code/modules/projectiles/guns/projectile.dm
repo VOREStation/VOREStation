@@ -33,6 +33,11 @@
 
 	var/random_start_ammo = FALSE	//randomize amount of starting ammo
 
+	special_handling = TRUE
+
+	///Var for attack_self chain
+	var/special_weapon_handling = FALSE
+
 /obj/item/gun/projectile/Initialize(mapload, var/starts_loaded = 1)
 	. = ..()
 	if(starts_loaded)
@@ -127,7 +132,7 @@
 				if(ammo_magazine)
 					to_chat(user, span_warning("[src] already has a magazine loaded.")) //already a magazine here
 					return
-				if(do_after(user, reload_time * AM.w_class))
+				if(do_after(user, reload_time * AM.w_class, target = src))
 					user.remove_from_mob(AM)
 					AM.loc = src
 					ammo_magazine = AM
@@ -148,7 +153,7 @@
 						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 						count++
 						user.hud_used.update_ammo_hud(user, src)
-				if(do_after(user, reload_time * AM.w_class))
+				if(do_after(user, reload_time * AM.w_class, target = src))
 					if(count)
 						user.visible_message("[user] reloads [src].", span_notice("You load [count] round\s into [src]."))
 						user.hud_used.update_ammo_hud(user, src)
@@ -162,7 +167,7 @@
 			to_chat(user, span_warning("[src] is full."))
 			return
 
-		if(do_after(user, reload_time * C.w_class))
+		if(do_after(user, reload_time * C.w_class, target = src))
 			user.remove_from_mob(C)
 			C.loc = src
 			loaded.Insert(1, C) //add to the head of the list
@@ -227,7 +232,12 @@
 	..()
 	load_ammo(A, user)
 
-/obj/item/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user, callback)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_weapon_handling && !callback)
+		return FALSE
 	if(firemodes.len > 1)
 		switch_firemodes(user)
 	else

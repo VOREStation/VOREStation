@@ -4,13 +4,13 @@ import { formatMoney } from 'tgui-core/format';
 import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import type { item } from './types';
+import type { Item } from './types';
 
 export const ItemList = (props: {
   compactMode: BooleanLike;
   currencyAmount: number;
   currencySymbol: string;
-  items: item[];
+  items: Item[];
 }) => {
   const { act } = useBackend();
 
@@ -34,7 +34,7 @@ export const ItemList = (props: {
                   })
                 }
               >
-                {formatMoney(item.cost) + ' ' + currencySymbol}
+                {`${formatMoney(item.cost)} ${currencySymbol}`}
               </Button>
             </Table.Cell>
           </Table.Row>
@@ -56,7 +56,7 @@ export const ItemList = (props: {
             })
           }
         >
-          {item.cost + ' ' + currencySymbol}
+          {`${item.cost} ${currencySymbol}`}
         </Button>
       }
     >

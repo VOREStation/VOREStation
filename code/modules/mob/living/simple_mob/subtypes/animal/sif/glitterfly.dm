@@ -52,7 +52,7 @@
 
 	attacktext = list("bit", "buffeted", "slashed")
 
-	organ_names = /decl/mob_organ_names/smallflying
+	organ_names = /datum/decl/mob_organ_names/smallflying
 
 	tame_items = list(
 	/obj/item/reagent_containers/food/snacks/grown = 90,
@@ -72,6 +72,8 @@
 	pixel_y = default_pixel_y
 
 	adjust_scale(round(rand(90, 105) / 100))
+
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
 
 /mob/living/simple_mob/animal/sif/glitterfly/rare
 	name = "sparkling glitterfly"
@@ -126,5 +128,5 @@
 	else if(prob(1))
 		hostile = initial(hostile)
 
-/decl/mob_organ_names/smallflying
+/datum/decl/mob_organ_names/smallflying
 	hit_zones = list("body", "left wing", "right wing") //For flying things too tiny to be granular

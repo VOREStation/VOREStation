@@ -41,6 +41,6 @@ type record = {
 export type modalData = {
   id: string;
   text: string;
-  args: {};
-  modal_type: string;
+  args: Record<string, unknown>;
+  type: string;
 };

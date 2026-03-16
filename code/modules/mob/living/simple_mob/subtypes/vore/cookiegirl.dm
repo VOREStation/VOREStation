@@ -33,6 +33,7 @@
 	vore_default_mode = DM_HOLD // They're cookiepeople, what do you expect?
 	vore_digest_chance = 10 // Gonna become as sweet as sugar, soon.
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
+	can_be_drop_prey = FALSE
 
 /datum/ai_holder/simple_mob/passive/cookiegirl/on_hear_say(mob/living/speaker, message)
 

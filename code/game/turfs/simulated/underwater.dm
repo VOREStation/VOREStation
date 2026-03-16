@@ -1,3 +1,4 @@
+
 /turf/simulated/floor/water/underwater
 	name = "sea floor"
 	desc = "It's the bottom of the sea, there's water all over the place!"
@@ -93,3 +94,91 @@
 	icon_state = "wood-broken0" // So it shows up in the map editor as water.
 	water_icon = 'icons/turf/flooring/wood_vr.dmi'
 	water_state = "wood-broken0"
+
+/turf/simulated/floor/water/underwater/rocks
+	icon_state = "rock"
+
+/turf/simulated/floor/water/underwater/open
+	icon = 'icons/effects/weather.dmi'
+	icon_state = "underwater-indoors" // Just looks underwater in the map editor, will be invisible once ingame
+	name = "deeper waters"
+	desc = "The watery depths seem to go even deeper here."
+
+/turf/simulated/floor/water/underwater/open/update_icon()
+	. = ..()
+	icon = 'icons/turf/open_space.dmi'
+	icon_state = "black_open_lighter"
+
+/turf/simulated/floor/water/underwater/open/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency, FALSE)
+
+/turf/simulated/floor/water/underwater/open/CanZPass(atom/A, direction, recursive)
+	return TRUE
+
+/turf/simulated/floor/water/underwater/open/handle_water_icons()
+	// We'll rely on the turfs below for water visuals!
+	SHOULD_CALL_PARENT(FALSE)
+	var/atom/movable/weather_visuals/visuals = new(null)
+	visuals.icon = 'icons/effects/weather.dmi'
+	visuals.icon_state = "underwater"
+	vis_contents += visuals
+
+// Indoors variants that do not use outdoor lighting, and must re-add water overlay icons since they won't be relying on the weather system to do it!
+
+/turf/simulated/floor/water/underwater/indoors
+	outdoors = OUTDOORS_NO
+	var/overlay_icon = 'icons/effects/weather.dmi'
+	var/overlay_state = "underwater-indoors"
+	var/atom/movable/weather_visuals/visuals
+
+/turf/simulated/floor/water/underwater/indoors/handle_water_icons()
+	SHOULD_CALL_PARENT(FALSE)
+	var/atom/movable/weather_visuals/visuals = new(null)
+	visuals.icon = overlay_icon
+	visuals.icon_state = overlay_state
+	vis_contents += visuals
+
+/turf/simulated/floor/water/underwater/indoors/open
+	icon = 'icons/effects/weather.dmi'
+	icon_state = "underwater-indoors" // Just looks underwater in the map editor, will be invisible once ingame
+	name = "deeper waters"
+	desc = "The watery depths seem to go even deeper here."
+
+/turf/simulated/floor/water/underwater/indoors/open/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency, FALSE)
+
+/turf/simulated/floor/water/underwater/indoors/open/update_icon()
+	. = ..()
+	icon = 'icons/turf/open_space.dmi'
+	icon_state = "black_open_lighter"
+
+/turf/simulated/floor/water/underwater/indoors/open/CanZPass(atom/A, direction, recursive)
+	return TRUE
+
+/turf/simulated/floor/water/underwater/indoors/cult
+	icon = 'icons/turf/flooring/cult.dmi'
+	icon_state = "cult"
+
+/turf/simulated/floor/water/underwater/indoors/ruins
+	icon = 'maps/redgate/falls/icons/turfs/marble.dmi'
+	icon_state = "1"
+
+/turf/simulated/floor/water/underwater/indoors/sand
+	icon = 'icons/misc/beach.dmi'
+	icon_state = "sand"
+
+/turf/simulated/floor/water/underwater/indoors/wood
+	icon = 'icons/turf/flooring/wood_vr.dmi'
+	icon_state = "wood"
+
+/turf/simulated/floor/water/underwater/indoors/woodbroken
+	icon = 'icons/turf/flooring/wood_vr.dmi'
+	icon_state = "wood-broken0"
+
+/turf/simulated/floor/water/underwater/indoors/rocks
+	icon_state = "rock"
+
+/turf/simulated/floor/water/underwater/indoors/rocks/vis_hide
+	flags = TURF_ACID_IMMUNE | VIS_HIDE

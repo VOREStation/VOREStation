@@ -11,7 +11,7 @@
 
 	var/datum/pipe_network/network
 
-	var/welded = 0 //defining this here for ventcrawl stuff
+	var/welded = FALSE //defining this here for ventcrawl stuff
 
 /obj/machinery/atmospherics/unary/Initialize(mapload)
 	. = ..()

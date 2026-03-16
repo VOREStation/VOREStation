@@ -42,9 +42,12 @@
 	var/can_expand_areas_into = AREA_SPACE	// Can expand station areas only into space.
 	var/can_rename_areas_in = AREA_STATION	// Only station areas can be reanamed
 
-/obj/item/blueprints/attack_self(mob/M as mob)
-	if (!ishuman(M))
-		to_chat(M, "This stack of blue paper means nothing to you.") //monkeys cannot into projecting
+/obj/item/blueprints/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(!ishuman(user))
+		to_chat(user, "This stack of blue paper means nothing to you.") //monkeys cannot into projecting
 		return
 	interact()
 	return
@@ -137,7 +140,7 @@
 				to_chat(usr, span_warning("Error! Please notify administration!"))
 				return
 	var/list/turf/turfs = res
-	var/str = sanitizeSafe(tgui_input_text(usr, "New area name:","Blueprint Editing", "", MAX_NAME_LEN), MAX_NAME_LEN)
+	var/str = sanitizeSafe(tgui_input_text(usr, "New area name:","Blueprint Editing", "", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
@@ -196,7 +199,7 @@
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()
 	var/prevname = "[A.name]"
-	var/str = sanitizeSafe(tgui_input_text(usr, "New area name:","Blueprint Editing", prevname, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/str = sanitizeSafe(tgui_input_text(usr, "New area name:","Blueprint Editing", prevname, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
@@ -239,7 +242,7 @@
 /obj/item/blueprints/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
-	var/list/turf/found = new
+	var/list/turf/found = list()
 	var/list/turf/pending = list(first)
 	while(pending.len)
 		if (found.len+pending.len > 300)

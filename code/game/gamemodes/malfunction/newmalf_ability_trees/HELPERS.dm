@@ -43,7 +43,7 @@
 
 
 	if(!note)
-		error("Hardware without description: [C]")
+		log_world("## ERROR Hardware without description: [C]")
 		return
 
 	var/confirmation = tgui_alert(user, "[note] - Is this what you want?", "Hardware selection", list("Yes", "No"))
@@ -64,9 +64,9 @@
 	set desc = "Opens help window with overview of available hardware, software and other important information."
 	var/mob/living/silicon/ai/user = usr
 
-	var/help = file2text('ingame_manuals/malf_ai.html')
+	var/help = file2text('html/malf_ai.html')
 	if(!help)
-		help = "Error loading help (file /ingame_manuals/malf_ai.html is probably missing). Please report this to server administration staff."
+		help = "Error loading help (file /html/malf_ai.html is probably missing). Please report this to server administration staff."
 
 	var/datum/browser/popup = new(user, "malf_ai_help", "Malf AI Help", 600, 500)
 	popup.set_content(help)
@@ -162,7 +162,7 @@
 		else
 			fulltext = "Another hack attempt has been detected, targeting [text]. The source still seems to be your AI system."
 
-	command_announcement.Announce(fulltext)
+	GLOB.command_announcement.Announce(fulltext)
 
 // Proc: get_unhacked_apcs()
 // Parameters: None
@@ -182,7 +182,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/robot/RB in mob_list)
+	for(var/mob/living/silicon/robot/RB in GLOB.mob_list)
 		if(istype(RB, /mob/living/silicon/robot/drone))
 			continue
 		if(RB.connected_ai == A)
@@ -200,7 +200,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/ai/AT in mob_list)
+	for(var/mob/living/silicon/ai/AT in GLOB.mob_list)
 		if(L == A)
 			continue
 		L.Add(AT)

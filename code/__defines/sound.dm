@@ -225,3 +225,11 @@
 	'sound/ambience/engineering/engineering3.ogg',\
 	'sound/ambience/atmospherics/atmospherics1.ogg'\
 	)
+
+// Credits:
+// These are spliced audio extracts from "Casino - Las Vegas Slot Machines" by martialway47, on freesound.org.
+#define AMBIENCE_CASINO list(\
+	'sound/ambience/casino/casino_1.ogg',\
+	'sound/ambience/casino/casino_2.ogg',\
+	'sound/ambience/casino/casino_3.ogg'\
+	)

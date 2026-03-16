@@ -1,5 +1,6 @@
 /datum/disease/beesease
 	name = "Beesease"
+	medical_name = "Apidaemia"
 	form = "Infection"
 	max_stages = 4
 	spread_text = "On contact"

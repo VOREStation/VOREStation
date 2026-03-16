@@ -1,6 +1,3 @@
-/obj/item
-	var/list/tool_qualities = list()
-
 /obj/item/examine(mob/user)
 	. = ..()
 	for(var/qual in tool_qualities)

@@ -3,6 +3,7 @@
 	desc = "Deployable mop."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
+	item_flags = DROPDEL | NOSTRIP
 	force = 3
 	anchored = TRUE    // Never spawned outside of inventory, should be fine.
 	throwforce = 1  //Throwing or dropping the item deletes it.
@@ -38,7 +39,7 @@
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
 
-		if(do_after(user, 40))
+		if(do_after(user, 4 SECONDS, target = src))
 			var/turf/T = get_turf(A)
 			if(T)
 				T.clean_deploy(src)
@@ -53,12 +54,11 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/mop_deploy/attack_self(mob/user as mob)
+/obj/item/mop_deploy/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	user.drop_from_inventory(src)
-	spawn(1) if(!QDELETED(src)) qdel(src)
-
-/obj/item/mop_deploy/dropped(mob/user)
-	..()
 	spawn(1) if(!QDELETED(src)) qdel(src)
 
 /obj/item/mop_deploy/process()

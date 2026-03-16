@@ -4,6 +4,10 @@
 	name = "Admin Shuttle Controller"
 	tgui_id = "AdminShuttleController"
 
+/datum/tgui_module/admin_shuttle_controller/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
+
 /datum/tgui_module/admin_shuttle_controller/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
@@ -29,7 +33,7 @@
 	return data
 
 /datum/tgui_module/admin_shuttle_controller/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/admin_shuttle_controller/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -41,15 +45,13 @@
 			if(istype(S))
 				var/client/C = ui.user.client
 				if(!isobserver(ui.user))
-					C.admin_ghost()
-				spawn(2)
-					C.jumptoturf(get_turf(S.current_location))
+					SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/admin_ghost)
+					SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/jumptoturf, get_turf(S.current_location))
 			else if(istype(S, /obj/effect/overmap/visitable))
 				var/obj/effect/overmap/visitable/V = S
 				var/client/C = ui.user.client
 				if(!isobserver(ui.user))
-					C.admin_ghost()
-				spawn(2)
+					SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/admin_ghost)
 					var/atom/target
 					if(LAZYLEN(V.generic_waypoints))
 						target =  V.generic_waypoints[1]
@@ -62,7 +64,7 @@
 					if(!istype(T))
 						to_chat(C, span_warning("Unable to jump to [V]."))
 						return
-					C.jumptoturf(T)
+					SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/jumptoturf, T)
 			return TRUE
 		if("classicmove")
 			var/datum/shuttle/S = locate(params["ref"])

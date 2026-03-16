@@ -62,7 +62,7 @@ They have been observed to occasionally attack and kill colonists, generally whe
 Field studies suggest analytical abilities on par with some species of cepholapods, but their symbiotic physiology rapidly fails in captivity, making laboratory testing difficult. Their inability to make use of tools or form wider social groups beyond a handful of individuals has been hypothesised to prevent the expression of more complex social behaviors."}
 	value = CATALOGUER_REWARD_HARD
 
-/decl/mob_organ_names/grafadreka
+/datum/decl/mob_organ_names/grafadreka
 	hit_zones = list(
 		"head",
 		"chest",
@@ -76,7 +76,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 		"tail"
 	)
 
-/decl/emote/audible/drake_howl
+/datum/decl/emote/audible/drake_howl
 	key = "dhowl"
 	emote_message_3p = "lifts USER_THEIR head up and gives an eerie howl."
 	emote_sound = 'sound/effects/drakehowl_close.ogg'
@@ -84,14 +84,14 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	emote_cooldown = 20 SECONDS
 	broadcast_distance = 90
 
-/decl/emote/audible/drake_howl/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
+/datum/decl/emote/audible/drake_howl/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
 	if((. = ..()))
 		to_chat(target, span_notice("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
 
 /mob/living/simple_mob/animal/sif/grafadreka/get_available_emotes()
-	. = global._default_mob_emotes.Copy()
+	. = GLOB.default_mob_emotes.Copy()
 	if(!is_baby)
-		. |= /decl/emote/audible/drake_howl
+		. |= /datum/decl/emote/audible/drake_howl
 	return
 
 // Overriding this to handle sitting.
@@ -152,7 +152,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	movement_cooldown = -1
 	base_attack_cooldown = 1 SECOND
 
-	organ_names = /decl/mob_organ_names/grafadreka
+	organ_names = /datum/decl/mob_organ_names/grafadreka
 	say_list_type = /datum/say_list/grafadreka
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/grafadreka
 
@@ -470,7 +470,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 		global.wounds_being_tended_by_drakes[friend_ref] = world.time + (8 SECONDS)
 		set_AI_busy(TRUE)
 
-		if(!do_after(src, 8 SECONDS, friend) || QDELETED(friend) || friend.has_modifier_of_type(/datum/modifier/sifsap_salve) || incapacitated() || !spend_sap(10))
+		if(!do_after(src, 8 SECONDS, target = friend) || QDELETED(friend) || friend.has_modifier_of_type(/datum/modifier/sifsap_salve) || incapacitated() || !spend_sap(10))
 			global.wounds_being_tended_by_drakes -= friend_ref
 			set_AI_busy(FALSE)
 			return TRUE

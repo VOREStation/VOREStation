@@ -1,12 +1,10 @@
 // Syndie borg sprites
-
-/* none yet
+/*
 /datum/robot_sprite/syndie
 	module_type = list("Protector", "Mechanist", "Combat Medic")
 	sprite_icon = 'icons/mob/robot/syndie.dmi'
 	sprite_hud_icon_state = "malf"
 */
-
 // Wide/dogborg sprites
 
 /datum/robot_sprite/dogborg/syndie
@@ -24,6 +22,7 @@
 /datum/robot_sprite/dogborg/syndie/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 /datum/robot_sprite/dogborg/syndie/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_syndie.dmi'
@@ -99,6 +98,8 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
@@ -198,6 +199,8 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
@@ -228,10 +231,10 @@
 	sprite_hud_icon_state = "malf"
 
 /datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
@@ -259,3 +262,72 @@
 	sprite_icon_state = "syndimediraptor"
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
+
+
+
+// Ninja models
+/* //Unused
+/datum/robot_sprite/dogborg/ninja
+	module_type = "Ninja"
+	sprite_hud_icon_state = "malf"
+*/
+/datum/robot_sprite/dogborg/tall/ninja
+	module_type = "Ninja"
+	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
+	sprite_hud_icon_state = "malf"
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/ninja/dullahan
+	name = "dullahan"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/ninja.dmi'
+	sprite_icon_state = "dullahanninja"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	belly_capacity_list = list("sleeper" = 3)
+	sprite_decals = list("decals")
+	rest_sprite_options = list("Default", "Sit")
+	pixel_x = -16
+	icon_x = 64
+
+/datum/robot_sprite/dogborg/tall/ninja/mekaninja
+	name = "Meka"
+	sprite_icon_state = "mekaninja"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/ninja/fmekaninja
+	name = "Niko"
+	sprite_icon_state = "fmekaninja"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/ninja/k4tninja
+	name = "K4T"
+	sprite_icon_state = "k4tninja"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/ninja/mmekaninja
+	name = "Nika"
+	sprite_icon_state = "mmekaninja"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/ninja/dullataurninja
+	name = "Dullataur"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	sprite_icon_state = "dullataurninja"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_rest_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate", "breastplatehalo","swordhalo","tophalo")
+	rest_sprite_options = list("Default")
+	icon_x = 64
+	pixel_x = -16

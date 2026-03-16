@@ -50,7 +50,7 @@ export const LayerSection = (props) => {
             <Box
               className={classes([
                 'pipes32x32',
-                preview.dir + '-' + preview.icon_state,
+                `${preview.dir}-${preview.icon_state}`,
               ])}
               style={{
                 transform: 'scale(1.5) translate(9.5%, 9.5%)',

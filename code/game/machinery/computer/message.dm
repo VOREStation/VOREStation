@@ -75,8 +75,8 @@
 /obj/machinery/computer/message_monitor/LateInitialize()
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
-		if(message_servers && message_servers.len > 0)
-			linkedServer = message_servers[1]
+		if(GLOB.message_servers && GLOB.message_servers.len > 0)
+			linkedServer = GLOB.message_servers[1]
 
 /obj/machinery/computer/message_monitor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -144,8 +144,8 @@
 				continue
 			sendPDAs["[P.name]"] = "\ref[P]"
 		data["possibleRecipients"] = sendPDAs
-
-	data["isMalfAI"] = ((isAI(user) || isrobot(user)) && (user.mind.special_role && user.mind.original == user))
+	var/mob/living/original = user.mind.original_character?.resolve()
+	data["isMalfAI"] = ((isAI(user) || isrobot(user)) && (user.mind.special_role && (original && original == user)))
 
 	return data
 
@@ -200,17 +200,18 @@
 			. = TRUE
 		//Find a server
 		if("find")
-			if(message_servers && message_servers.len > 1)
-				linkedServer = tgui_input_list(ui.user,"Please select a server.", "Select a server.", message_servers)
+			if(GLOB.message_servers && GLOB.message_servers.len > 1)
+				linkedServer = tgui_input_list(ui.user,"Please select a server.", "Select a server.", GLOB.message_servers)
 				set_temp("NOTICE: Server selected.", "alert")
-			else if(message_servers && message_servers.len > 0)
-				linkedServer = message_servers[1]
+			else if(GLOB.message_servers && GLOB.message_servers.len > 0)
+				linkedServer = GLOB.message_servers[1]
 				set_temp("NOTICE: Only Single Server Detected - Server selected.", "average")
 			else
 				temp = noserver
 		//Hack the Console to get the password
 		if("hack")
-			if((isAI(ui.user) || isrobot(ui.user)) && (ui.user.mind.special_role && ui.user.mind.original == ui.user))
+			var/mob/living/original = ui.user.mind.original_character?.resolve()
+			if((isAI(ui.user) || isrobot(ui.user)) && (ui.user.mind.special_role && (original && original == ui.user)))
 				hacking = 1
 				update_icon()
 				//Time it takes to bruteforce is dependant on the password length.
@@ -345,10 +346,9 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/paper/monitorkey/LateInitialize()
-	if(message_servers)
-		for(var/obj/machinery/message_server/server in message_servers)
-			if(!isnull(server.decryptkey))
-				info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
-				info_links = info
-				icon_state = "paper_words"
-				break
+	for(var/obj/machinery/message_server/server in GLOB.message_servers)
+		if(!isnull(server.decryptkey))
+			info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
+			info_links = info
+			icon_state = "paper_words"
+			break

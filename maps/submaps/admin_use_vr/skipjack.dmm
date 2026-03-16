@@ -310,10 +310,7 @@
 "aN" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/orange,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/wood.dmi';
-	icon_state = "wood_broken1"
-	},
+/turf/unsimulated/floor/broken_wood/alt,
 /area/skipjack_station)
 "aO" = (
 /obj/structure/table/standard,
@@ -471,18 +468,10 @@
 	},
 /area/skipjack_station)
 "bh" = (
-/turf/unsimulated/wall{
-	desc = "That looks like it doesn't open easily.";
-	icon = 'icons/obj/doors/rapid_pdoor.dmi';
-	icon_state = "pdoor1";
-	name = "Shuttle Bay Blast Door"
-	},
+/turf/unsimulated/wall/fake_pod,
 /area/skipjack_station)
 "bi" = (
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/wood.dmi';
-	icon_state = "wood_broken3"
-	},
+/turf/unsimulated/floor/broken_wood/alt2,
 /area/skipjack_station)
 "bj" = (
 /obj/effect/floor_decal/carpet{
@@ -526,10 +515,7 @@
 /area/skipjack_station)
 "bo" = (
 /obj/effect/landmark/late_antag/raider,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/wood.dmi';
-	icon_state = "wood_broken3"
-	},
+/turf/unsimulated/floor/broken_wood/alt2,
 /area/skipjack_station)
 "bp" = (
 /obj/effect/floor_decal/carpet{

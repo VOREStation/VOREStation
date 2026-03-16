@@ -1,0 +1,365 @@
+2025-10-02:
+  Cameron-The-Raven:
+  - bugfix: Pain from internal bleeding will no longer inform you that the pain is
+      coming from your character name.
+  Diana:
+  - bugfix: Fixes grabs hard deleting when pushed over.
+  - qol: Weaver trait now has a TGUI panel
+  - qol: Weaver now has the ability to spin a cocoon
+  - code_imp: Cleans up some signals pertaining to Weaver.
+  Kashargul:
+  - bugfix: mentors seeing some mod / admin messages
+  Ryumi:
+  - qol: Added an option to the Reflexive Biting and Personal Bubble traits that lets
+      you choose to start with them enabled or disabled.
+  Will:
+  - bugfix: Charge blade no longer deletes itself on drop
+2025-10-03:
+  Drathek:
+  - code_imp: Tweaked a few grep lints for balloon alerts and a check for de-optimization
+      of o?range/o?view with as anything
+2025-10-04:
+  Kashargul:
+  - qol: adds some basic color matrix solving
+  - code_imp: react 19.2
+  - bugfix: some door buttons not triggering multiple doors
+2025-10-05:
+  Diana:
+  - rscadd: 'Adds two negative traits: Unlucky and Unlucky Major'
+  - rscadd: Unlucky (-2 trait points) is a trait that has a plethora of effects, ranging
+      from dice being worse to slipping into a washing machine!
+  - rscadd: 'Unlucky Major (-5 trait points) makes the game a movie and you''re the
+      main character. The downside: The movie is Final Destination.'
+  - code_imp: Removes bluespace crackers list and replaces it with the effect being
+      decided upon during init
+  - code_imp: Swaps some strings in the bluespace cracker to defines
+  Tenryumi:
+  - rscadd: Added operating tables to the crafting menu. You'll need 12 silver, 10
+      metal rods, and one leather!
+2025-10-06:
+  Diana:
+  - bugfix: Multiple items can be stripped from someone at once, again.
+  Kashargul:
+  - bugfix: last changelog state being inverted
+2025-10-07:
+  Diana:
+  - refactor: Makes Stumble Vore, Drop Vore, Throw Vore, and Slip Vore an element
+  - bugfix: Fixes a bug prevent slipnoms from working.
+  - code_imp: Makes the spontaneous vore procs less crungo.
+2025-10-08:
+  Will:
+  - bugfix: shadekin no longer slip on wet or icey turfs while phased
+2025-10-09:
+  Asher-42:
+  - rscadd: changes dullahan protean options
+  - rscadd: adds clothing to dullahan proteans
+  KillianKirilenko:
+  - rscadd: Added new "Damage Control Specialist" alt title for Engineers
+  Ryumi:
+  - qol: The suit sensors setting menu now defaults to whatever the outfit's suit
+      sensors are already set to. Now you can be totally sure whether or not you set
+      them on or off!
+  SatinIsle:
+  - qol: 'A handful of relatively low responsibility alt job titles for those who
+      want to be a bit more specific about their jobs: Educator and Instructor for
+      Entrepreneur, Delivery Worker for Cargo Tech, and Loss Prevention Officer for
+      Security Officer.'
+  TheCaramelion:
+  - code_imp: Added Auto-Wiki for virology symptoms
+  - code_imp: Moved various shadekin-related vars into Shadekin Component
+2025-10-10:
+  Diana:
+  - code_imp: Framework added for dephasing rounds
+  - rscadd: 'Adds a new loadout item: the Cloak of Eyes'
+  - code_imp: 'Adds a new reactive icon subtype: Clothing'
+  - image: Adds sprites for the Cloak of Eyes
+  Ryumi:
+  - qol: Rigsuits now use balloon alerts instead of logged messages when parts of
+      them are deployed and retracted. No more log spam for rigsuit users!
+  Will:
+  - rscadd: Tea, coffee, ramen, fruit teas, and hot chocolate recipes now require
+      boiling on a bunsen burner or other distilling machine. Does not apply to coffee/tea
+      dispensers that already contain coffee/tea.
+  - rscadd: Added a simple kettle that acts as a beaker for more thematic brewing
+2025-10-11:
+  SatinIsle:
+  - bugfix: Changed the description of Mochi Cakes as some people found the original
+      a bit offensive.
+2025-10-12:
+  KillianKirilenko:
+  - qol: added light replacers to engineering's protolathes
+  Ryumi:
+  - qol: When using a PDA, if you receive a messinging server error when trying to
+      send a PDA message to someone, your message will now be saved. Now you won't
+      have to retype everything because the servers got quirky!
+  Will:
+  - bugfix: methane missing from gas scanner console in phoronics/toxins
+  - bugfix: noslip shoes and magboots are no longer ignored by slippery turfs
+  - bugfix: spacelube 2-3 turf slide after leaving the slippery turf restored
+  - balance: Distilling oxygen and hydrogen from water no longer uses a phoron catalyst,
+      and instead uses platinum and different atmospheres.
+2025-10-13:
+  Kashargul:
+  - code_imp: update dependencies
+  SatinIsle:
+  - bugfix: Fixes Fat Feline 2 sprites from going invisible on loafing
+2025-10-14:
+  Will, Diana:
+  - code_imp: implements signal COMSIG_MOB_RESET_PERSPECTIVE
+  - code_imp: implements signal COMSIG_CLIENT_SET_EYE
+  - code_imp: implements signal COMSIG_MOB_DNA_MUTATION
+  - code_imp: implements signal COMSIG_MOB_DROPPED_ITEM
+  - code_imp: implements signal COMSIG_REMOTE_VIEW_CLEAR
+  - refactor: rebuilds client eye transfer code entirely
+  - refactor: cleaned up holder drop and destroy code
+  - rscadd: several small pai QOL, ejecting from pda, and escaping vore eggs
+  - code_imp: REMOTEVIEW_ON_ENTER flag for non-item objects
+  - bugfix: black screen or locked game view when dropped or moved between objects
+      or mob holders
+  - bugfix: pai hud being non functional
+  - bugfix: Some AI hud buttons being non functional
+  - bugfix: You can no longer use binoculars/scopes from inside a vore belly or sleeper
+  - bugfix: Forcewall spellbook recoil no longer makes you an invisible statue, it
+      just makes you a statue
+  - bugfix: dropping someone from a holder within a vore belly no longer breaks their
+      screen
+  - bugfix: dropping pais from a holder no longer breaks their screen
+  - bugfix: dropping mice from a holder no longer breaks their screen
+  - bugfix: rare situation where having remote view gene and being put on a surgery
+      table would lock your view to the table
+  - bugfix: pda breaking most types of remote views by never releasing it's mob machine
+      state
+2025-10-17:
+  Diana:
+  - bugfix: Dragging now will always warn you if it will damage the person you're
+      dragging
+  - bugfix: Dragging now properly tell you if the person being dragged is damaged.
+  - bugfix: Fixes issue where you would bleed via drag when you had no bleeding wounds
+      / broken bones
+  - qol: Dragging will provide a visual message on screen if the person is being injured,
+      as opposed to just chat.
+  - qol: WALKING (as in WALK INTENT) near disposals with unlucky will no longer make
+      you fall into them
+  - bugfix: Unlucky individuals being disposal'd can not crawl out if the unit is
+      prepared to dispose of them.
+  - bugfix: You can now longer eat yourself
+  - bugfix: You can no longer get eaten by people that are not physically present
+  - code_imp: Spont vore eating code is better
+  - qol: Teshari now have a visible sprite when picked up! They can be held in your
+      hand, on your head, or on your back!
+  - bugfix: High Zorren now have the proper vulpine speech sound
+  - bugfix: Altevian now have the proper mouse speech sound
+  - bugfix: Vulpkanin now have the proper canine species sound
+  Guti:
+  - refactor: Refactored pronouns handling
+  - rscdel: Removed /datum/gender
+  - code_imp: Added pronoun helper procs
+  - bugfix: Fixed examining others using the examiner's pronouns instead of the examined
+  Kashargul:
+  - code_imp: lints for bad smes mapedits
+  - bugfix: ticket replies failing in admin to admin interaction
+  Tenryumi:
+  - rscadd: Added item TF functionality to the casino's sentient prize handlers. People
+      who put themselves up as a sentient prize have the option to allow the person
+      who claims them to choose to turn them into an item!
+  - code_imp: Added a global list of item TF options, to make it easier for future
+      item mechanics to have a more uniform selection of things people would probably
+      prefer to get turned into.
+  Will:
+  - code_imp: Unit testing for techwebs
+  - bugfix: all techweb designs are accessible to science
+  - bugfix: '"hardsuit graviton scanners" now gives you the proper graviton rig item'
+  - bugfix: '"radioisotope TEG circuit" is no longer missing from techweb'
+  - bugfix: '"hardsuit mining scanners" is no longer missing from techweb'
+  - balance: '"Precursor Technology" points cost increased by 1 tier'
+  - balance: '"Precursor Engineering" points cost increased by 1 tier'
+  - balance: '"''NSFW'' Gun" points cost increased by 1 tier'
+  - balance: '"Confetti Cannon" points cost increased by 2 tiers'
+  - bugfix: remote view crash if you try to use an overmap shuttle while blind
+  - bugfix: remote view crash if you start a remote view with a zooming item and disconnect
+  - bugfix: struggling out of most containers will respect being in a disposal packet
+  - bugfix: admin teleports and get_movable VV action clear remote views
+  - bugfix: attempting to remoteview a qdeleted object will force reset your view
+      to yourself
+  - bugfix: throwing micros inside food into the stardog mouth no longer results in
+      a black screen for the micro
+  - bugfix: Borg charger rarely locking focus to the charger itself
+  Will, Diana:
+  - rscadd: Destructive analyzer returns
+  - rscadd: Destructive analyzer circuit board added to Fundamental Science techweb
+      node
+  - rscadd: Destructive analyzer can be linked to ore silo with multitool if built
+      in round
+  - rscadd: Research samples give research points when put through the destructive
+      analyzer.
+  Zizzi:
+  - rscadd: Added string padding circuit
+2025-10-18:
+  Diana:
+  - balance: Makes Virus Immunity trait 3 points
+  - qol: Being attacked in the groin gives a less wordy message
+  - rscadd: Adds boneless trait
+  - bugfix: Brains no longer qdel() if the head is gibbed.
+  Guti:
+  - bugfix: Fixed FBP not being able to change eye colour
+  Kashargul:
+  - bugfix: shadekin nutrition gains
+  KillianKirilenko:
+  - refactor: unified the mob, morph, and lurker spawns into a single multipurpose
+      hole that can be used to spawn any one of them based on the interacting ghost's
+      choice. the associated seperate events have been replaced with a single event
+      that uses the new unified spawner, so that the events are no longer competing
+      for spawn chances. the new spawner also has a high-vis icon so that it won't
+      be difficult for ghosts to spot if they're just scrolling around with darkness
+      enabled.
+2025-10-21:
+  Kashargul:
+  - bugfix: free ghost role slot spawn
+  - bugfix: casino sentient price item tf getting enabled when one closes the ui
+  - admin: fix log access for devs and mods
+  VOREStation:
+  - balance: Disables Unlucky Major
+2025-10-22:
+  Guti:
+  - bugfix: Fixed itch symptom making the infected to mlem instead
+  Kashargul:
+  - code_imp: rust g to 4.1.0
+  - qol: moves robot sleepers to tgui
+  - qol: Robot decals and animations now use a TGUI ui for easy toggling
+  NickBelmont:
+  - bugfix: Exploit where console screens would count for all stock part benchmark
+      experiments.
+2025-10-23:
+  Lilly-Lira:
+  - bugfix: Feline 3-color (Taur, Fat vwag) loaf sprite
+  SatinIsle:
+  - rscadd: Added a new heavy landing trait (and hard fall var to other mobs) that
+      cause the mob to take more damage, get weakened for longer and create some damage
+      to the floor tiles (50% chance). Can not be taken with soft landing. Be the
+      fatty you always meant to be.
+  Will:
+  - bugfix: photodegredation should not harm phased shadekin
+  - bugfix: Photosynthesis should not generation nutrition while its shadekin are
+      phased
+  - refactor: Moves lonely and agoraphobia trait code to a component
+  - bugfix: Releasing prey, that themselves contain prey, will correctly update their
+      remote view to follow the released mob
+  - bugfix: Fixes view release on the correct recharger
+  - bugfix: Meson and other vision goggles work in mechs again
+  - bugfix: canceling remote view while inside a cryopod or long distance teleporter
+      no longer locks your view to it
+2025-10-25:
+  Guti:
+  - code_imp: Added Bluespace Connection component
+  - code_imp: Implements COMSIG_ATOM_HITBY
+  - code_imp: Implements COMSIG_CLOSET_CLOSED
+  - image: Fixed welded crate icons
+  - bugfix: You can now struggle out of crates
+  - bugfix: Crates can be weld shut once again
+  Kashargul:
+  - bugfix: chat replies failing as the passed ckey resulted to a null lookup
+  - bugfix: logging into qdelled ghosts
+  Ryumi:
+  - rscadd: 'Added a new map: The Casino Canal! An underwater casino built for a luxurious
+      extended stay, catering to your every gambling whim. From public gaming rooms
+      to more private ones, it is catered to gamblers of all walks - except those
+      wanting to make actual money. Each visitor can interact with the chips terminal
+      next to the entrance for a set of starting chips of their own, but there are
+      NO facilities here to turn chips into actual money. You''re just in it for the
+      fun of it. Also there''s a whole underwater world outside of it full of secrets,
+      waiting to be explored!'
+  - rscadd: Added a new set of underwater turfs that are "indoors," meaning they don't
+      use the weather system at all.
+  - code_imp: Improved code for multiple auto-resleevers existing in the game world
+  - qol: The "Find Auto Resleever" verb will now show you a list of auto resleevers
+      in the game world for you to choose from if there's more than one available.
+  - balance: TGMC windows (the ones seen in the city redgate, the facility, and Casino
+      Canal,) now allow things that can move through glass (i.e. laser beams) to go
+      through them
+  Will:
+  - bugfix: vehicles fall through openspace again
+  stars:
+  - maptweak: remapped tether morgue
+2025-10-26:
+  Kashargul:
+  - code_imp: dependency update
+  - code_imp: update the javascript bat to be more reliable
+  NickBelmont:
+  - bugfix: IC Textpad and debugger no longer trim whitespace at edges.
+2025-10-27:
+  Cameron-The-Raven:
+  - bugfix: 'Makes beds able to drop a material when having wirecutters used on them:
+      Cloth'
+  - bugfix: Makes the cotton material datum drop cotton
+  Ryumi:
+  - rscadd: 'Added four new shelter capsules: Pocket Dorm (5x5), Alt. Luxury Shelter
+      (7x7), Kitchen (7x7), and Luxury Rec Room (11x11)'
+  - qol: Shelter capsules now give you a visual indicator of their deploy area on
+      use, highlighting invalid deploy turfs in red, and valid ones in blue. Upon
+      finding a valid deploy location, it will even show you where the capsule's exterior
+      doors will be!
+  - qol: Shelter capsules now prompt you to confirm deploying a capsule.
+  - balance: Polarized windows now block all light (and lasers) while tinted.
+  - balance: Shelter capsules can now deploy over tiled turfs.
+  - balance: 7x7 capsule vendor prices have been lowered to match the luxury capsule's
+      price, (except the redspace capsule, which remains unchanged.)
+  - bugfix: The Sauna capsule's lathe material costs now correctly equal those of
+      the other 7x7 capsules (oops)
+  - bugfix: Fixed an edge-case bug where capsules could "deploy" outside the bounds
+      of a map.
+  - maptweak: Added privacy features (boltable/tintable windows and doors) to most
+      pre-existing pods.
+2025-10-28:
+  Diana:
+  - rscadd: 'Adds three new traits: Radiation Weakness (negative, 2 points), Radioactive
+      Glow (neutral) and Radioactive Heal (positive, 6 points).'
+  - bugfix: Promethean glowing works again!
+  - bugfix: mRegen mutation will now properly heal internal bleeding
+  - qol: Bruteloss also has a 1% chance per mutation tick of healing a minor amount,
+      just like fire damage does.
+  - code_imp: Adds a few new comsigs for radiation
+  - code_imp: Mutations and radiation are now properly separated.
+  - code_imp: Radiation now has framework to allow for contamination.
+  Kashargul:
+  - bugfix: marking section having two scrollbars
+  ReoDaProtovali:
+  - rscdel: Removed Armorsoak. no more flat damage reduction after percentage damage
+      reduction
+  - qol: made a lot of basic simplemobs less tanky as a side effect, I guess? A lot
+      of mobs had armorsoak when they really shouldn't have.
+  - balance: probably affects combat a bit, atleast for exploration, some mobs will
+      be easier to kill, while padded exploration suits wont protect as much.
+  Will:
+  - code_imp: Adds a temporary shim component to aid in machine var removal on mobs
+  - code_imp: Implements COMSIG_LIVING_HANDLE_VISION
+  - rscadd: Implements COMSIG_LIVING_HANDLE_HUD
+  - refactor: cleaned up parent calls on handle_regular_hud_updates() and handle_vision()
+      to better support signals
+  - refactor: cleaned out many set_machine() calls for things with tguis that don't
+      alter your view
+2025-10-30:
+  ItsSelis:
+  - bugfix: Round start/end delay verb should now properly delay
+  - spellcheck: Fixed typo in round restarting message
+  Will:
+  - code_imp: Implements COMSIG_LIVING_STATUS_STUN
+  - code_imp: Implements COMSIG_LIVING_STATUS_WEAKEN
+  - code_imp: Implements COMSIG_LIVING_STATUS_PARALYZE
+  - code_imp: Implements COMSIG_LIVING_STATUS_SLEEP
+  - code_imp: Implements COMSIG_LIVING_STATUS_CONFUSE
+  - code_imp: Implements COMSIG_LIVING_STATUS_BLIND
+  - bugfix: remote views are dropped on weakened, stunned, paralyzed, blinded, or
+      sleeping
+  - bugfix: using equip hotkey to put away items no longer breaks remote views such
+      as binoculars
+  - bugfix: fixed lag during login sometimes breaking remote views
+  - refactor: Replaces most polaris hooks with global signals
+  - code_imp: Implements a multitude of global signals
+  - bugfix: doppler arrays behave better with multiz explosions
+  - bugfix: wizard spells not being applied to the mind datum correctly after the
+      first spell is learned
+2025-10-31:
+  Diana:
+  - bugfix: Ian storm now properly uses the correct facility type
+  Will:
+  - bugfix: non-legacy instruments should now play music

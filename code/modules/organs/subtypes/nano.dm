@@ -185,7 +185,7 @@
 	stored_mmi.icon_state = "posi1"
 	stored_mmi.brainmob.languages = owner.languages
 
-/obj/item/organ/internal/mmi_holder/posibrain/nano/emp_act()
+/obj/item/organ/internal/mmi_holder/posibrain/nano/emp_act(severity, recursive)
 	return	//Proteans handle EMP's differently
 
 // The 'out on the ground' object, not the organ holder
@@ -217,13 +217,6 @@
 
 /obj/item/organ/internal/nano/digest_act(atom/movable/item_storage = null)
 	return FALSE
-
-/datum/design/item/protean_reboot
-	name = "Protean Reboot Programmer"
-	id = "protean_reboot"
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_PLASTEEL = 10000)
-	build_path = /obj/item/protean_reboot
-	sort_string = "JVAAZ"
 
 /obj/item/protean_reboot
 	name = "Protean Reboot Programmer"

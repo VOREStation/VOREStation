@@ -43,7 +43,7 @@
 				message = "The [record_class_to_delete] record database server has suffered a hardware failure, and is no longer functional. \
 				A temporary replacement server has been activated, containing recovered data from the main server. \
 				A few records became corrupted, and could not be transferred."
-		command_announcement.Announce(message, author)
+		GLOB.command_announcement.Announce(message, author)
 
 /datum/event2/event/manifest_malfunction/start()
 	for(var/i = 1 to records_to_delete)
@@ -57,5 +57,5 @@
 				R = safepick(GLOB.data_core.medical)
 
 		if(R)
-			log_debug("Manifest malfunction event is now deleting [R.fields["name"]]'s [record_class_to_delete] record.")
+			log_game("Manifest malfunction event is now deleting [R.fields["name"]]'s [record_class_to_delete] record.")
 			qdel(R)

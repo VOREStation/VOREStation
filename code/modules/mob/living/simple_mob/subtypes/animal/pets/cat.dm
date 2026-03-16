@@ -1,31 +1,31 @@
-var/list/_cat_default_emotes = list(
-	/decl/emote/visible,
-	/decl/emote/visible/scratch,
-	/decl/emote/visible/drool,
-	/decl/emote/visible/nod,
-	/decl/emote/visible/sway,
-	/decl/emote/visible/sulk,
-	/decl/emote/visible/twitch,
-	/decl/emote/visible/twitch_v,
-	/decl/emote/visible/dance,
-	/decl/emote/visible/roll,
-	/decl/emote/visible/shake,
-	/decl/emote/visible/jump,
-	/decl/emote/visible/shiver,
-	/decl/emote/visible/collapse,
-	/decl/emote/visible/spin,
-	/decl/emote/visible/sidestep,
-	/decl/emote/audible,
-	/decl/emote/audible/hiss,
-	/decl/emote/audible/whimper,
-	/decl/emote/audible/gasp,
-	/decl/emote/audible/scretch,
-	/decl/emote/audible/choke,
-	/decl/emote/audible/moan,
-	/decl/emote/audible/gnarl,
-	/decl/emote/audible/purr,
-	/decl/emote/audible/purrlong
-)
+GLOBAL_LIST_INIT(cat_default_emotes, list(
+	/datum/decl/emote/visible,
+	/datum/decl/emote/visible/scratch,
+	/datum/decl/emote/visible/drool,
+	/datum/decl/emote/visible/nod,
+	/datum/decl/emote/visible/sway,
+	/datum/decl/emote/visible/sulk,
+	/datum/decl/emote/visible/twitch,
+	/datum/decl/emote/visible/twitch_v,
+	/datum/decl/emote/visible/dance,
+	/datum/decl/emote/visible/roll,
+	/datum/decl/emote/visible/shake,
+	/datum/decl/emote/visible/jump,
+	/datum/decl/emote/visible/shiver,
+	/datum/decl/emote/visible/collapse,
+	/datum/decl/emote/visible/spin,
+	/datum/decl/emote/visible/sidestep,
+	/datum/decl/emote/audible,
+	/datum/decl/emote/audible/hiss,
+	/datum/decl/emote/audible/whimper,
+	/datum/decl/emote/audible/gasp,
+	/datum/decl/emote/audible/scretch,
+	/datum/decl/emote/audible/choke,
+	/datum/decl/emote/audible/moan,
+	/datum/decl/emote/audible/gnarl,
+	/datum/decl/emote/audible/purr,
+	/datum/decl/emote/audible/purrlong
+))
 
 /mob/living/simple_mob/animal/passive/cat
 	name = "cat"
@@ -60,7 +60,7 @@ var/list/_cat_default_emotes = list(
 	return ..()
 
 /mob/living/simple_mob/animal/passive/cat/get_available_emotes()
-	return global._cat_default_emotes.Copy()
+	return GLOB.cat_default_emotes.Copy()
 
 /mob/living/simple_mob/animal/passive/cat/handle_special()
 	if(!stat && prob(2)) // spooky
@@ -91,8 +91,8 @@ var/list/_cat_default_emotes = list(
 
 	. = ..()
 
-	if(.) // We're pals, but they might be a dirty mouse...
-		if(ismouse(L))
+	if(.) // We're pals, but they might be a dirty mouse (or any other small fun to kill pest)...
+		if(HAS_TRAIT(L, TRAIT_AMBIENT_PEST_MOB))
 			return FALSE // Cats and mice can never get along.
 
 /mob/living/simple_mob/animal/passive/cat/verb/become_friends()
@@ -260,7 +260,7 @@ var/list/_cat_default_emotes = list(
 		if(named)
 			to_chat(user, span_notice("\The [name] already has a name!"))
 		else
-			var/tmp_name = sanitizeSafe(tgui_input_text(user, "Give \the [name] a name", "Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/tmp_name = sanitizeSafe(tgui_input_text(user, "Give \the [name] a name", "Name", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 			if(length(tmp_name) > 50)
 				to_chat(user, span_notice("The name can be at most 50 characters long."))
 			else
@@ -277,7 +277,10 @@ var/list/_cat_default_emotes = list(
 	icon_state = "box"
 	var/cattype = /mob/living/simple_mob/animal/passive/cat
 
-/obj/item/cat_box/attack_self(var/mob/user)
+/obj/item/cat_box/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	var/turf/catturf = get_turf(src)
 	to_chat(user, span_notice("You peek into \the [name]-- and a cat jumps out!"))
 	new cattype(catturf)

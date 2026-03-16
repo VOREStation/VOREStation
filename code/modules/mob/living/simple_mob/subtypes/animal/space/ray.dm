@@ -53,7 +53,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	attacktext = list("lanced","bitten","impaled","gored")
 
-	organ_names = /decl/mob_organ_names/fish
+	organ_names = /datum/decl/mob_organ_names/fish
 
 	meat_amount = 5
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/ray
@@ -69,7 +69,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
-			L.Weaken(4)
+			L.add_modifier(/datum/modifier/entangled, 4 SECONDS) // replacing weaken/slowdown with slow down
 			L.visible_message(span_danger("\The [src] buffets \the [L]!"))
 			src.ai_holder.remove_target()
 			L.visible_message(span_notice("\The [src] seems to lose interest in \the [L]..."))

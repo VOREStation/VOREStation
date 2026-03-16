@@ -125,11 +125,11 @@
 	base_species = SPECIES_LLEILL
 
 	var/list/lleill_abilities = list(/datum/power/lleill/invisibility,
-									   /datum/power/lleill/transmute,
-									   /datum/power/lleill/rings,
-									   /datum/power/lleill/contact,
-									   /datum/power/lleill/alchemy,
-									   /datum/power/lleill/beastform)
+										/datum/power/lleill/transmute,
+										/datum/power/lleill/rings,
+										/datum/power/lleill/contact,
+										/datum/power/lleill/alchemy,
+										/datum/power/lleill/beastform)
 
 	var/list/lleill_ability_datums = list()
 
@@ -140,57 +140,57 @@
 
 /datum/species/lleill/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
 	if(!H) return ..(null, get_deform)
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.type == src.type) return ..(H, get_deform)
 	return S.get_icobase(H,get_deform)
 
 /datum/species/lleill/get_race_key(var/mob/living/carbon/human/H)
-	return "[..()]-[wrapped_species_by_ref["\ref[H]"]]"
+	return "[..()]-[GLOB.wrapped_species_by_ref["\ref[H]"]]"
 
 /datum/species/lleill/get_bodytype(var/mob/living/carbon/human/H)
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!H || !S) return ..()
 	if(S.type == src.type) return ..(H)
 	return S.get_bodytype(H)
 
 /datum/species/lleill/get_blood_mask(var/mob/living/carbon/human/H)
 	if(!H) return ..()
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.name == src.name)
 		return ..()
 	return S?.get_blood_mask(H)
 
 /datum/species/lleill/get_damage_mask(var/mob/living/carbon/human/H)
 	if(!H) return ..()
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.name == src.name)
 		return ..()
 	return S?.get_damage_mask(H)
 
 /datum/species/lleill/get_damage_overlays(var/mob/living/carbon/human/H)
 	if(!H) return ..()
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.name == src.name)
 		return ..()
 	return S?.get_damage_overlays(H)
 
 /datum/species/lleill/get_tail(var/mob/living/carbon/human/H)
 	if(!H) return ..()
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.name == src.name)
 		return ..()
 	return S?.get_tail(H)
 
 /datum/species/lleill/get_tail_animation(var/mob/living/carbon/human/H)
 	if(!H) return ..()
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.name == src.name)
 		return ..()
 	return S?.get_tail_animation(H)
 
 /datum/species/lleill/get_tail_hair(var/mob/living/carbon/human/H)
 	if(!H) return ..()
-	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
+	var/datum/species/S = GLOB.all_species[GLOB.wrapped_species_by_ref["\ref[H]"]]
 	if(!S || S.name == src.name)
 		return ..()
 	return S?.get_tail_hair(H)
@@ -202,9 +202,9 @@
 		lleill_ability_datums.Add(LP)
 
 /datum/species/lleill/proc/add_lleill_abilities(var/mob/living/carbon/human/H)
-	if(!H.ability_master || !istype(H.ability_master, /obj/screen/movable/ability_master/lleill))
+	if(!H.ability_master || !istype(H.ability_master, /atom/movable/screen/movable/ability_master/lleill))
 		H.ability_master = null
-		H.ability_master = new /obj/screen/movable/ability_master/lleill(H)
+		H.ability_master = new /atom/movable/screen/movable/ability_master/lleill(H)
 	for(var/datum/power/lleill/P in lleill_ability_datums)
 		if(!(P.verbpath in H.verbs))
 			add_verb(H, P.verbpath)
@@ -221,7 +221,7 @@
 			H.lleill_display.icon_state = "lleill-4"
 
 /datum/species/proc/update_lleill_hud(var/mob/living/carbon/human/H)
-	var/relative_energy = ((lleill_energy/lleill_energy_max)*100)
+	var/relative_energy = lleill_energy_max ? ((lleill_energy/lleill_energy_max)*100) : 0
 	if(H.lleill_display)
 		H.lleill_display.invisibility = INVISIBILITY_NONE
 		switch(relative_energy)

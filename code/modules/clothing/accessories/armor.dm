@@ -104,14 +104,12 @@
 	desc = "A mesh armor plate made of steel-reinforced synthetic fibers, great for dealing with small blades. Attaches to a plate carrier."
 	icon_state = "armor_stab"
 	armor = list(melee = 30, bullet = 5, laser = 20, energy = 10, bomb = 15, bio = 0, rad = 0)
-	armorsoak = list(melee = 7, bullet = 5, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/accessory/armor/armorplate/blast
 	name = "gel armor plate"
 	desc = "A gel armor plate made of high-grade polymers, great for dealing with localized blasts. Attaches to a plate carrier."
 	icon_state = "armor_blast"
 	armor = list(melee = 25, bullet = 25, laser = 10, energy = 0, bomb = 30, bio = 0, rad = 0)
-	armorsoak = list(melee = 5, bullet = 7, laser = 0, energy = 0, bomb = 40, bio = 0, rad = 0)
 
 /obj/item/clothing/accessory/armor/armorplate/medium
 	name = "medium armor plate"
@@ -137,7 +135,6 @@
 	icon_state = "armor_ballistic"
 	slowdown = 0.5
 	armor = list(melee = 10, bullet = 70, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	armorsoak = list(melee = 0, bullet = 10, laser = 0, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/accessory/armor/armorplate/riot
@@ -146,7 +143,6 @@
 	icon_state = "armor_riot"
 	slowdown = 0.5
 	armor = list(melee = 70, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	armorsoak = list(melee = 10, bullet = 0, laser = 0, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/accessory/armor/armorplate/laserproof
@@ -155,7 +151,6 @@
 	icon_state = "armor_ablative"
 	slowdown = 0.5
 	armor = list(melee = 10, bullet = 10, laser = 70, energy = 50, bomb = 0, bio = 0, rad = 0)
-	armorsoak = list(melee = 0, bullet = 0, laser = 10, energy = 15, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.1
 
 /obj/item/clothing/accessory/armor/armorplate/ablative/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -248,6 +243,17 @@
 	siemens_coefficient = 0.5
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 50, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/accessory/armor/armguards/security
+	name = "security arm guards"
+	desc = "A pair of black-and-red arm pads reinforced with armor plating. Attaches to a plate carrier."
+	icon_state = "armguards_merc"
+
+/obj/item/clothing/accessory/armor/armguards/security/white
+	name = "security combat arm guards"
+	desc = "A pair of black, red and white arm pads up-armored with combat-grade plating. Attaches to a plate carrier."
+	icon_state = "armguards_sec_white"
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+
 //////////////
 //Leg guards
 //////////////
@@ -314,6 +320,17 @@
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.5
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/accessory/armor/legguards/security
+	name = "security leg guards"
+	desc = "A pair of black-and-red leg pads reinforced with armor plating. Attaches to a plate carrier."
+	icon_state = "legguards_merc"
+
+/obj/item/clothing/accessory/armor/legguards/security/white
+	name = "security combat leg guards"
+	desc = "A pair of black, red and white leg pads up-armored with combat-grade plating. Attaches to a plate carrier."
+	icon_state = "legguards_sec_white"
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 //////////////////////////
 //Decorative attachments
@@ -396,6 +413,11 @@
 	desc = "An embroidered patch indicating the wearer's blood type as AB NEGATIVE."
 	icon_state = "abnegtag"
 
+/obj/item/clothing/accessory/armor/tag/ntwhite
+	name = "White NANOTRASEN tag"
+	desc = "An armor tag with the word NANOTRASEN printed in red-and-white lettering on it and an accompanying company logo."
+	icon_state = "nanotag_white"
+
 /////////////////
 // Helmet Covers
 /////////////////
@@ -442,3 +464,8 @@
 	name = "\improper SAARE helmet cover"
 	desc = "A fabric cover for armored helmets. This one has SAARE's colors."
 	icon_state = "helmcover_saare"
+
+/obj/item/clothing/accessory/armor/helmcover/ntblack
+	name = "\improper NanoTrasen black helmet cover"
+	desc = "A fabric cover for armored helmets. This one has a simple red NanoTrasen highlight."
+	icon_state = "helmcover_ntblack"

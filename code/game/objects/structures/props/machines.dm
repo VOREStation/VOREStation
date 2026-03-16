@@ -184,6 +184,15 @@
 /obj/structure/prop/machine/core/starts_on
 	icon_state = "core_active"
 
+/obj/structure/prop/machine/core/allinone
+	icon_state = "allinone"
+
+/obj/structure/prop/machine/core/bus
+	icon_state = "bus"
+
+/obj/structure/prop/machine/core/comm_server
+	icon_state = "comm_server"
+
 /**
  * Possible 'state' options for change_state(state) are:
  * down: In the ground, glowing
@@ -640,7 +649,7 @@
 		return
 	if(!ismovable(AM))
 		return
-	if(!user.client?.holder)
+	if(!check_rights_for(user.client, R_HOLDER))
 		return
 	if(changing_state)
 		return
@@ -704,7 +713,7 @@
 /obj/structure/prop/machine/centrifuge
 	name = "centrifuge"
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "centrifuge"
 	var/on = FALSE
 
@@ -725,7 +734,7 @@
 /obj/structure/prop/machine/incubator
 	name = "incubator"
 	desc = "Encourages the growth of diseases. This model comes with a dispenser system and a small radiation generator."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "incubator"
 	var/on = FALSE
 
@@ -746,7 +755,7 @@
 /obj/structure/prop/machine/disease_analyser
 	name = "disease analyser"
 	desc = "Analyzes diseases to find out information about them!"
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "analyser"
 	var/on = FALSE
 
@@ -767,7 +776,7 @@
 /obj/structure/prop/machine/isolator
 	name = "disease isolator"
 	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "isolator_in"
 	var/on = FALSE
 

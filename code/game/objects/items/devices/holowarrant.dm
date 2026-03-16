@@ -23,7 +23,10 @@
 		. += span_notice("You have to go closer if you want to read it.")
 
 //hit yourself with it
-/obj/item/holowarrant/attack_self(mob/living/user as mob)
+/obj/item/holowarrant/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	active = null
 	var/list/warrants = list()
 	if(!isnull(GLOB.data_core.general))
@@ -42,7 +45,7 @@
 /obj/item/holowarrant/attackby(obj/item/W, mob/user)
 	if(active)
 		var/obj/item/card/id/I = W.GetIdCard()
-		if(access_hos in I.GetAccess()) // VOREStation edit
+		if(ACCESS_HOS in I.GetAccess()) // VOREStation edit
 			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"

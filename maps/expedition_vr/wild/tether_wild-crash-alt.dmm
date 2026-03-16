@@ -1,11 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall/planetary/virgo3b{
-	desc = "You can't go there!";
-	icon = 'icons/turf/flooring/plating_vr.dmi';
-	icon_state = "";
-	name = "impassible landscape"
-	},
+/turf/unsimulated/wall/planetary/virgo3b_unpassable,
 /area/tether/surfacebase/outside/wilderness)
 "b" = (
 /obj/effect/step_trigger/teleporter/wild/to_wild_5,

@@ -70,7 +70,7 @@
 /obj/structure/reagent_dispensers/blob_act()
 	qdel(src)
 
-/obj/structure/reagent_dispensers/AltClick(mob/user)
+/obj/structure/reagent_dispensers/click_alt(mob/user)
 	if(!Adjacent(user))
 		return
 
@@ -97,6 +97,7 @@
 /obj/structure/reagent_dispensers/watertank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
@@ -124,6 +125,7 @@
 /obj/structure/reagent_dispensers/fueltank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FUEL,1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/fueltank/high
 	name = "high-capacity fuel tank"
@@ -144,6 +146,7 @@
 /obj/structure/reagent_dispensers/foam/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FIREFOAM,1000)
+	AddElement(/datum/element/climbable)
 
 //Helium3
 /obj/structure/reagent_dispensers/he3
@@ -155,6 +158,7 @@
 /obj/structure/reagent_dispensers/he3/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
+	AddElement(/datum/element/climbable)
 
 /*
  * Misc
@@ -198,7 +202,7 @@
 /obj/structure/reagent_dispensers/fueltank/attack_hand(mob/user)
 	if (rig)
 		user.visible_message("[user] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			user.visible_message(span_notice("[user] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]"))
 			rig.loc = get_turf(user)
 			rig = null
@@ -220,7 +224,7 @@
 			to_chat(user, span_warning("There is another device in the way."))
 			return ..()
 		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			user.visible_message(span_notice("[user] rigs [W] to \the [src]."), span_notice("You rig [W] to \the [src]"))
 
 			var/obj/item/assembly_holder/H = W
@@ -272,17 +276,15 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move()
+/obj/structure/reagent_dispensers/fueltank/Move(atom/newloc, direct, movetime)
 	if (..() && modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
 	if (reagents.total_volume == 0)
 		return
-
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent(REAGENT_ID_FUEL,amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	reagents.trans_to_turf(get_turf(src),amount)
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
@@ -292,6 +294,7 @@
 	anchored = TRUE
 	density = FALSE
 	amount_per_transfer_from_this = 45
+	flags = WALL_ITEM
 
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
 	. = ..()
@@ -300,7 +303,7 @@
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
 	desc = "A dispenser of virus food. Yum."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "virusfoodtank"
 	anchored = TRUE
 	density = FALSE
@@ -346,42 +349,20 @@
 	if(bottle)
 		reagents.add_reagent(REAGENT_ID_WATER,2000)
 	update_icon()
+	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
 	if(cupholder)
 		. += span_notice("There are [cups] cups in the cup dispenser.")
 
-/obj/structure/reagent_dispensers/water_cooler/verb/rotate_clockwise()
-	set name = "Rotate Cooler Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/reagent_dispensers/water_cooler/verb/rotate_counterclockwise()
-	set name = "Rotate Cooler Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-//VOREstation edit end
-
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		src.add_fingerprint(user)
 		if(bottle)
 			playsound(src, I.usesound, 50, 1)
-			if(do_after(user, 20) && bottle)
+			if(do_after(user, 2 SECONDS, target = src) && bottle)
 				to_chat(user, span_notice("You unfasten the jug."))
 				var/obj/item/reagent_containers/glass/cooler_bottle/G = new /obj/item/reagent_containers/glass/cooler_bottle( src.loc )
 				for(var/datum/reagent/R in reagents.reagent_list)
@@ -395,7 +376,7 @@
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 			else
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 20 * I.toolspeed, src))
+			if(do_after(user, 2 SECONDS * I.toolspeed, target = src))
 				if(!src) return
 				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
@@ -417,7 +398,7 @@
 		if(!bottle && !cupholder)
 			playsound(src, I.usesound, 50, 1)
 			to_chat(user, span_notice("You start taking the water-cooler apart."))
-			if(do_after(user, 20 * I.toolspeed) && !bottle && !cupholder)
+			if(do_after(user, 2 SECONDS * I.toolspeed, target = src) && !bottle && !cupholder)
 				to_chat(user, span_notice("You take the water-cooler apart."))
 				new /obj/item/stack/material/plastic( src.loc, 4 )
 				qdel(src)
@@ -429,7 +410,7 @@
 			if(anchored)
 				var/obj/item/reagent_containers/glass/cooler_bottle/G = I
 				to_chat(user, span_notice("You start to screw the bottle onto the water-cooler."))
-				if(do_after(user, 20) && !bottle && anchored)
+				if(do_after(user, 2 SECONDS, target = src) && !bottle && anchored)
 					bottle = 1
 					update_icon()
 					to_chat(user, span_notice("You screw the bottle onto the water-cooler!"))
@@ -450,7 +431,7 @@
 				src.add_fingerprint(user)
 				to_chat(user, span_notice("You start to attach a cup dispenser onto the water-cooler."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 20) && !cupholder && anchored)
+				if(do_after(user, 2 SECONDS, target = src) && !cupholder && anchored)
 					if (P.use(1))
 						to_chat(user, span_notice("You attach a cup dispenser onto the water-cooler."))
 						cupholder = 1
@@ -484,6 +465,7 @@
 /obj/structure/reagent_dispensers/beerkeg/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BEER,1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/beerkeg/wood
 	name = "beer keg"
@@ -516,6 +498,7 @@
 /obj/structure/reagent_dispensers/cookingoil/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
@@ -538,4 +521,5 @@
 
 /obj/structure/reagent_dispensers/bloodbarrel/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null,"changeling"=FALSE))
+	AddElement(/datum/element/climbable)

@@ -37,7 +37,7 @@
 		verbs |= /obj/item/clothing/head/helmet/space/proc/toggle_camera
 
 	if(type == /obj/item/clothing/head/helmet/space) //VOREStation edit - use the specially refitted sprites by KBraid. Done this way to avoid breaking subtypes.
-		LAZYSET(sprite_sheets, SPECIES_TESHARI, 'icons/inventory/head/mob_vr_teshari.dmi')
+		LAZYSET(sprite_sheets, SPECIES_TESHARI, 'icons/inventory/head/mob_teshari.dmi')
 
 /obj/item/clothing/head/helmet/space/proc/toggle_camera()
 	set name = "Toggle Helmet Camera"
@@ -95,7 +95,7 @@
 /obj/item/clothing/suit/space/Initialize(mapload)
 	. = ..()
 	if(type == /obj/item/clothing/suit/space)
-		LAZYSET(sprite_sheets, SPECIES_TESHARI, 'icons/inventory/suit/mob_vr_teshari.dmi')
+		LAZYSET(sprite_sheets, SPECIES_TESHARI, 'icons/inventory/suit/mob_teshari.dmi')
 //VOREStation edit end.
 
 /obj/item/clothing/suit/space/equipped(mob/M)

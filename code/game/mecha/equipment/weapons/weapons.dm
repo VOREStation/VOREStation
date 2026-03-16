@@ -32,13 +32,8 @@
 	chassis.use_power(energy_drain)
 	chassis.visible_message(span_warning("[chassis] fires [src]!"))
 	occupant_message(span_warning("You fire [src]!"))
-	log_message("Fired from [src], targeting [target].")
-	var/target_for_log = "unknown"
-	if(ismob(target))
-		target_for_log = target
-	else if(target)
-		target_for_log = "[target.name]"
-	add_attack_logs(chassis.occupant,target_for_log,"Fired exosuit weapon [src.name] (MANUAL)")
+	src.mecha_log_message("Fired from [src], targeting [target].")
+	add_attack_logs(chassis.occupant,target,"Fired exosuit weapon [src.name] (MANUAL)")
 
 	for(var/i = 1 to min(projectiles, projectiles_per_shot))
 		var/turf/aimloc = targloc

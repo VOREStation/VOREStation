@@ -195,12 +195,12 @@ export const EscapePodStatus = (props: {
 export const DockingStatus = (props: { state: string }) => {
   const { state } = props;
 
-  const dockHatch: React.JSX.Element[] = [];
+  const dockHatch: Record<string, React.JSX.Element> = {};
 
-  dockHatch['open'] = <Box color="average">OPEN</Box>;
-  dockHatch['closed'] = <Box color="good">CLOSED</Box>;
-  dockHatch['unlocked'] = <Box color="average">UNSECURED</Box>;
-  dockHatch['locked'] = <Box color="good">SECURED</Box>;
+  dockHatch.open = <Box color="average">OPEN</Box>;
+  dockHatch.closed = <Box color="good">CLOSED</Box>;
+  dockHatch.unlocked = <Box color="average">UNSECURED</Box>;
+  dockHatch.locked = <Box color="good">SECURED</Box>;
   return (
     <LabeledList.Item label="Docking Hatch">
       {dockHatch[state] || <Box color="bad">ERROR</Box>}

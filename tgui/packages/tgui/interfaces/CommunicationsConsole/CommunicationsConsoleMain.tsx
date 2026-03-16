@@ -21,14 +21,14 @@ export const CommunicationsConsoleMain = (props) => {
     boss_short,
   } = data;
 
-  const reportText = 'View (' + messages.length + ')';
+  const reportText = `View (${messages.length})`;
   let announceText = 'Make Priority Announcement';
   if (msg_cooldown > 0) {
-    announceText += ' (' + msg_cooldown + 's)';
+    announceText += ` (${msg_cooldown}s)`;
   }
-  let ccMessageText = emagged ? 'Message [UNKNOWN]' : 'Message ' + boss_short;
+  let ccMessageText = emagged ? 'Message [UNKNOWN]' : `Message ${boss_short}`;
   if (cc_cooldown > 0) {
-    ccMessageText += ' (' + cc_cooldown + 's)';
+    ccMessageText += ` (${cc_cooldown}s)`;
   }
 
   const alertLevelText = str_security_level;

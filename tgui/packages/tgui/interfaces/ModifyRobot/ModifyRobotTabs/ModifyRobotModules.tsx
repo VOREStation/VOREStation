@@ -31,7 +31,7 @@ export const ModifyRobotModules = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="40%">
           <Section title="Source Module" scrollable fill>
             <Box>Robot to salvage</Box>
@@ -127,7 +127,7 @@ const SelectionField = (props: {
   previewImage: string | undefined;
   previewImageSize: string | undefined;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   action: string;
   buttonIcon: string;
   buttonColor: string;
@@ -151,7 +151,7 @@ const SelectionField = (props: {
       <Stack>
         <Stack.Item grow />
         <Stack.Item>
-          <Box className={classes([previewImageSize, previewImage + 'S'])} />
+          <Box className={classes([previewImageSize, `${previewImage}S`])} />
         </Stack.Item>
         <Stack.Item grow />
       </Stack>
@@ -179,7 +179,7 @@ const SelectionField = (props: {
               >
                 <Stack fill align="center">
                   <Stack.Item>
-                    <Image src={modul_option.icon} />
+                    <Image fixErrors src={modul_option.icon} />
                   </Stack.Item>
                   <Stack.Item grow overflow="hidden" ml="10px">
                     {capitalize(modul_option.name)}

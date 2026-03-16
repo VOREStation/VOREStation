@@ -32,7 +32,7 @@
 			return
 
 		playsound(src, WT.usesound, 50, 1)
-		if(do_after(user, 250 * WT.toolspeed)) // Meant to be an obnoxiously long time due to these being intended as "mapper placed indestructable cables". However explosions can already break them if they turf change.
+		if(do_after(user, 25 SECONDS * WT.toolspeed, target = src)) // Meant to be an obnoxiously long time due to these being intended as "mapper placed indestructable cables". However explosions can already break them if they turf change.
 			var/obj/item/stack/cable_coil/heavyduty/CC
 			if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
 				CC = new/obj/item/stack/cable_coil/heavyduty(T, 2, color)

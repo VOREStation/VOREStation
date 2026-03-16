@@ -35,8 +35,10 @@ export type material = {
 export type queueFormat = {
   materialTally: Record<string, number>;
   missingMatTally: Record<string, number>;
-  matFormat: { color: number; deficit: number } | {};
+  matFormat: Record<string, MatFormat>;
   textColors: Record<number, number>;
 };
+
+export type MatFormat = { color: number; deficit: number };
 
 export type internalPart = Required<part & { format: { textColor: number } }>;

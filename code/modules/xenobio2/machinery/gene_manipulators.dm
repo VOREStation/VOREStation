@@ -21,6 +21,9 @@
 	var/genesource = "unknown"
 
 /obj/item/disk/xenobio/attack_self(var/mob/user as mob)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(genes.len)
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
@@ -115,7 +118,7 @@
 
 /obj/machinery/xenobio/extractor
 	name = "biological product destructive analyzer"
-	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "traitcopier"
 	circuit = /obj/item/circuitboard/bioproddestanalyzer
 
@@ -149,8 +152,8 @@
 	var/list/data = list()
 
 	var/list/geneMasks[0]
-	for(var/gene_tag in xenobio_controller.gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = xenobio_controller.gene_tag_masks[gene_tag])))
+	for(var/gene_tag in GLOB.xenobio_controller.gene_tag_masks)
+		geneMasks.Add(list(list("tag" = gene_tag, "mask" = GLOB.xenobio_controller.gene_tag_masks[gene_tag])))
 	data["geneMasks"] = geneMasks
 
 	data["activity"] = active
@@ -228,8 +231,8 @@
 
 		loaded_disk.genesource = "[genetics.source]"
 
-		loaded_disk.name += " ([xenobio_controller.gene_tag_masks[href_list["get_gene"]]], [genetics.source])"
-		loaded_disk.desc += " The label reads \'gene [xenobio_controller.gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.source]\'."
+		loaded_disk.name += " ([GLOB.xenobio_controller.gene_tag_masks[href_list["get_gene"]]], [genetics.source])"
+		loaded_disk.desc += " The label reads \'gene [GLOB.xenobio_controller.gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.source]\'."
 		eject_disk = 1
 
 		degradation += rand(20,60)
@@ -271,11 +274,11 @@
 		else
 			if(isxeno(G.affecting))
 				var/mob/living/simple_mob/xeno/X = G.affecting
-				if(do_after(user, 30) && X.Adjacent(src) && user.Adjacent(src) && X.Adjacent(user) && !occupant)
+				if(do_after(user, 3 SECONDS, target = src) && X.Adjacent(src) && user.Adjacent(src) && X.Adjacent(user) && !occupant)
 					user.drop_from_inventory(G)
 					X.forceMove(src)
 					occupant = X
-					to_chat(user, "You load [X] into [src]."
+					to_chat(user, "You load [X] into [src].")
 			else
 				to_chat(user, span_danger("This specimen is incompatible with the machinery!"))
 		return
@@ -303,7 +306,7 @@
 
 		for(var/datum/xeno/genes/X in loaded_disk.genes)
 			if(data["locus"] != "") data["locus"] += ", "
-			data["locus"] += "[xenobio_controller.gene_tag_masks[X.genetype]]"
+			data["locus"] += "[GLOB.xenobio_controller.gene_tag_masks[X.genetype]]"
 
 	else
 		data["disk"] = 0
@@ -373,11 +376,8 @@
 
 	user.visible_message(span_danger("[user] starts to put [victim] into the [src]!"))
 	src.add_fingerprint(user)
-	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
+	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the [src]!"))
-		if(victim.client)
-			victim.client.perspective = EYE_PERSPECTIVE
-			victim.client.eye = src
 		victim.forceMove(src)
 		occupant = victim
 

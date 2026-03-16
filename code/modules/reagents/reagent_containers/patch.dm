@@ -12,7 +12,7 @@
 
 	base_state = "patch"
 
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
@@ -40,7 +40,7 @@
 			to_chat(H, span_notice("\The [src] is placed on your [affecting]."))
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
-				reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD) //CHEM_TOUCH
+				reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)
 			qdel(src)
 			return 1
 
@@ -61,7 +61,7 @@
 		user.visible_message(span_warning("[user] attempts to place \the [src] onto [H]`s [affecting]."))
 
 		user.setClickCooldown(user.get_attack_speed(src))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return
 
 		user.drop_from_inventory(src) //icon update
@@ -74,7 +74,7 @@
 		M.drop_from_inventory(src) //icon update
 
 		if(reagents.total_volume)
-			reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD)	//CHEM_TOUCH
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)	//CHEM_TOUCH
 		qdel(src)
 
 		return 1

@@ -15,7 +15,7 @@
 	throw_range = 10
 	amount_per_transfer_from_this = 10
 	unacidable = TRUE //plastic
-	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
+	max_transfer_amount = 10 //Set to null instead of list, if there is only one.
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
 	volume = 250
@@ -28,7 +28,7 @@
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
 		return
 
-	if(istype(A, /spell))
+	if(istype(A, /datum/spell))
 		return
 
 	if(proximity)
@@ -44,14 +44,11 @@
 	user.setClickCooldown(4)
 
 	if(reagents.has_reagent(REAGENT_ID_SACID))
-		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
-		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
+		log_and_message_admins("fired sulphuric acid from \a [src].", user)
 	if(reagents.has_reagent(REAGENT_ID_PACID))
-		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
-		log_game("[key_name(user)] fired Polyacid from \a [src].")
+		log_and_message_admins("fired Polyacid from \a [src].", user)
 	if(reagents.has_reagent(REAGENT_ID_LUBE))
-		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
-		log_game("[key_name(user)] fired Space lube from \a [src].")
+		log_and_message_admins("fired Space lube from \a [src].", user)
 	return
 
 /obj/item/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj, mob/user, proximity)
@@ -71,12 +68,14 @@
 			D.set_up(my_target, spray_size, 10)
 	return
 
-/obj/item/reagent_containers/spray/attack_self(var/mob/user)
-	if(!possible_transfer_amounts)
+/*
+/obj/item/reagent_containers/spray/attack_self(mob/user) //Now done via alt-click instead
+	if(!max_transfer_amount)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
 	balloon_alert(user, "pressure nozzle adjusted to [amount_per_transfer_from_this] units per spray.")
+*/
 
 /obj/item/reagent_containers/spray/examine(mob/user)
 	. = ..()
@@ -92,7 +91,7 @@
 	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc))
-		balloon_alert(usr, "empted \the [src] onto the floor.")
+		balloon_alert(usr, "emptied \the [src] onto the floor.")
 		reagents.splash(usr.loc, reagents.total_volume)
 
 //space cleaner
@@ -125,7 +124,7 @@
 	item_state = "pepperspray"
 	center_of_mass_x = 16
 	center_of_mass_y = 16
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 40
 	var/safety = TRUE
 
@@ -138,7 +137,10 @@
 	if(Adjacent(user))
 		. += "The safety is [safety ? "on" : "off"]."
 
-/obj/item/reagent_containers/spray/pepper/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	safety = !safety
 	balloon_alert(user, "safety [safety ? "on" : "off"].")
 
@@ -155,7 +157,7 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	amount_per_transfer_from_this = 1
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 10
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
@@ -175,7 +177,7 @@
 	center_of_mass_y = 16
 	throwforce = 3
 	w_class = ITEMSIZE_NORMAL
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 600
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 
@@ -221,7 +223,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-	possible_transfer_amounts = list(5,10,20)
+	max_transfer_amount = 20
 
 	var/heavy_spray = FALSE
 	var/spray_particles = 3
@@ -232,16 +234,16 @@
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	AddComponent(/datum/component/hose_connector/input)
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
+	RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Destroy()
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	. = ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
-	var/datum/component/hose_connector/HC = GetComponent(/datum/component/hose_connector)
-	HC.update_hose_beam()
+	for(var/datum/component/hose_connector/HC in GetComponents(/datum/component/hose_connector))
+		HC.update_hose_beam()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/update_icon()
 	..()
@@ -251,21 +253,20 @@
 	if(!hose_overlay)
 		hose_overlay = new/icon(icon, "[icon_state]+hose")
 
-	var/datum/component/hose_connector/HC = GetComponent(/datum/component/hose_connector)
-	if(HC.get_pairing())
-		add_overlay(hose_overlay)
+	for(var/datum/component/hose_connector/HC in GetComponents(/datum/component/hose_connector))
+		if(HC.get_pairing())
+			add_overlay(hose_overlay)
+			break
 
-/obj/item/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/carbon/user)
+/obj/item/reagent_containers/spray/chemsprayer/hosed/click_alt(mob/living/carbon/user)
 	if(++spray_particles > 3) spray_particles = 1
 
 	balloon_alert(user, "dial turned to [spray_particles].")
 	return
 
-/obj/item/reagent_containers/spray/chemsprayer/hosed/CtrlClick(var/mob/user)
+/obj/item/reagent_containers/spray/chemsprayer/hosed/item_ctrl_click(mob/user)
 	if(loc != get_turf(src))
 		heavy_spray = !heavy_spray
-	else
-		. = ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Spray_at(atom/A as mob|obj, mob/user)
 	update_icon()

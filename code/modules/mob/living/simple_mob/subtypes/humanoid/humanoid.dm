@@ -15,7 +15,7 @@
 	health = 150			// Point of human crit, as of commenting
 	maxHealth = 150
 
-	organ_names = /decl/mob_organ_names/humanoid
+	organ_names = /datum/decl/mob_organ_names/humanoid
 
 	// Most humans leave a corpse
 	var/corpse = null
@@ -24,12 +24,16 @@
 	species_sounds = "Human Male" // Yes, we should allow them to differ based on gender, but if someone's making a custom humanoid later:tm: - set your humanoid's species_sounds to match, or var-edit it after spawn.
 
 
+	can_be_drop_prey = FALSE
+
 /mob/living/simple_mob/humanoid/death()
 	..()
 	if(corpse)
-		new corpse (src.loc)
+		var/mob/new_corpse = new corpse(src.loc)
+		if(istype(new_corpse))
+			new_corpse.low_priority = TRUE
 	qdel(src)
 	return
 
-/decl/mob_organ_names/humanoid
+/datum/decl/mob_organ_names/humanoid
 	hit_zones = list("head", "torso", "left leg", "right leg", "left arm", "right arm", "left hand", "right hand", "left foot", "right foot") //Same as real people!

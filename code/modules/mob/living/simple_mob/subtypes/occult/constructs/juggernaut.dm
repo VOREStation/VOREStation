@@ -19,7 +19,7 @@
 	attack_armor_pen = 60 //Being punched by a living, floating statue.
 	attacktext = list("smashed their armoured gauntlet into")
 	friendly = list("pats")
-	organ_names = /decl/mob_organ_names/juggernaut
+	organ_names = /datum/decl/mob_organ_names/juggernaut
 	mob_size = MOB_HUGE
 
 
@@ -31,9 +31,9 @@
 	attack_sound = 'sound/weapons/heavysmash.ogg'
 	status_flags = 0
 	resistance = 10
-	construct_spells = list(/spell/aoe_turf/conjure/forcewall/lesser,
-							/spell/targeted/fortify,
-							/spell/targeted/construct_advanced/slam
+	construct_spells = list(/datum/spell/aoe_turf/conjure/forcewall/lesser,
+							/datum/spell/targeted/fortify,
+							/datum/spell/targeted/construct_advanced/slam
 							)
 
 	armor = list(
@@ -44,6 +44,7 @@
 				"bomb" = 10,
 				"bio" = 100,
 				"rad" = 100)
+	ai_holder_type = /datum/ai_holder/simple_mob/destructive
 
 /mob/living/simple_mob/construct/juggernaut/Life()
 	SetWeakened(0)
@@ -56,7 +57,6 @@
 		var/projectile_dam_type = P.damage_type
 		var/incoming_damage = (round(P.damage / damage_mod) - (round((P.damage / damage_mod) * 0.3)))
 		var/armorcheck = run_armor_check(null, P.check_armour)
-		var/soakedcheck = get_armor_soak(null, P.check_armour)
 		if(!(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam)))
 			visible_message(span_danger("The [P.name] bounces off of [src]'s shell!"), \
 						span_userdanger("The [P.name] bounces off of [src]'s shell!"))
@@ -64,7 +64,7 @@
 			if(!(P.damage_type == BRUTE || P.damage_type == BURN))
 				projectile_dam_type = BRUTE
 				incoming_damage = round(incoming_damage / 4) //Damage from strange sources is converted to brute for physical projectiles, though severely decreased.
-			apply_damage(incoming_damage, projectile_dam_type, null, armorcheck, soakedcheck, is_sharp(P), has_edge(P), P)
+			apply_damage(incoming_damage, projectile_dam_type, null, armorcheck, is_sharp(P), has_edge(P), P)
 			return -1 //Doesn't reflect non-beams or non-energy projectiles. They just smack and drop with little to no effect.
 		else
 			visible_message(span_danger("The [P.name] gets reflected by [src]'s shell!"), \
@@ -74,7 +74,7 @@
 			if(!(P.damage_type == BRUTE || P.damage_type == BURN))
 				projectile_dam_type = BURN
 				incoming_damage = round(incoming_damage / 4) //Damage from strange sources is converted to burn for energy-type projectiles, though severely decreased.
-			apply_damage(incoming_damage, P.damage_type, null, armorcheck, soakedcheck, is_sharp(P), has_edge(P), P)
+			apply_damage(incoming_damage, P.damage_type, null, armorcheck, is_sharp(P), has_edge(P), P)
 
 		// Find a turf near or on the original location to bounce to
 		if(P.starting)
@@ -119,9 +119,9 @@
 				"bomb" = 10,
 				"bio" = 100,
 				"rad" = 100)
-	construct_spells = list(/spell/aoe_turf/conjure/forcewall/lesser,
-							/spell/targeted/fortify,
-							/spell/targeted/construct_advanced/slam
+	construct_spells = list(/datum/spell/aoe_turf/conjure/forcewall/lesser,
+							/datum/spell/targeted/fortify,
+							/datum/spell/targeted/construct_advanced/slam
 							)
 
 /mob/living/simple_mob/construct/juggernaut/behemoth/bullet_act(var/obj/item/projectile/P)
@@ -144,5 +144,47 @@
 
 	return (..(P))
 
-/decl/mob_organ_names/juggernaut
+/datum/decl/mob_organ_names/juggernaut
 	hit_zones = list("body", "left pauldron", "right pauldron", "left arm", "right arm", "eye", "head", "crystaline spike")
+
+/mob/living/simple_mob/construct/juggernaut/behemoth/unstoppable
+	name = "Behemoth"
+	real_name = "Behemoth"
+	desc = "The pinnacle of occult technology, Behemoths are nothing shy of both an Immovable Object, and Unstoppable Force."
+	melee_damage_lower = 45
+	melee_damage_upper = 65
+	ai_holder_type = /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
+	projectiletype = /obj/item/projectile/energy/inversion
+	movement_cooldown = 1
+
+	// loot_list = list(/obj/item/rig/ch/aegis = 100) // Downstream only
+
+
+/mob/living/simple_mob/construct/juggernaut/behemoth/unstoppable/bullet_act(var/obj/item/projectile/P)
+	var/reflectchance = 100 - round(P.damage*2)
+	if(prob(reflectchance))
+		visible_message(span_danger("The [P.name] gets reflected by [src]'s shell!"), \
+						span_userdanger("The [P.name] gets reflected by [src]'s shell!"))
+
+		// Find a turf near or on the original location to bounce to
+		if(P.starting)
+			var/new_x = P.starting.x + pick(0, 0, -1, 1, -2, 2, -2, 2, -2, 2, -3, 3, -3, 3)
+			var/new_y = P.starting.y + pick(0, 0, -1, 1, -2, 2, -2, 2, -2, 2, -3, 3, -3, 3)
+			var/turf/curloc = get_turf(src)
+
+			// redirect the projectile
+			P.redirect(new_x, new_y, curloc, src)
+			P.reflected = 1
+
+		return -1 // complete projectile permutation
+
+	return (..(P))
+
+
+/obj/item/projectile/energy/electrode/cult
+	color = "#FFFFFF"
+	agony = 0
+	damage = 15
+	damage_type = BURN
+	check_armour = "laser"
+	armor_penetration = 60

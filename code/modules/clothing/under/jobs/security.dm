@@ -56,7 +56,6 @@
 	rolled_sleeves = -1
 	worn_state = "securitymodern"
 	icon = 'icons/inventory/uniform/item.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 
 /obj/item/clothing/under/rank/security/turtleneck
 	name = "security turtleneck"

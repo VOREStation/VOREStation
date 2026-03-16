@@ -10,8 +10,6 @@
 	products = list()
 	contraband = list()
 	premium = list()
-	var/global/list/starting_legal_nifsoft
-	var/global/list/starting_illegal_nifsoft
 
 	density = FALSE
 	opacity = 0
@@ -57,19 +55,19 @@
 // Special Treatment!
 /obj/machinery/vending/nifsoft_shop/build_inventory()
 	//Firsties
-	if(!starting_legal_nifsoft)
-		starting_legal_nifsoft = list()
-		starting_illegal_nifsoft = list()
+	if(!GLOB.starting_legal_nifsoft)
+		GLOB.starting_legal_nifsoft = list()
+		GLOB.starting_illegal_nifsoft = list()
 		for(var/datum/nifsoft/NS as anything in (subtypesof(/datum/nifsoft) - typesof(/datum/nifsoft/package)))
 			if(initial(NS.vended))
 				switch(initial(NS.illegal))
 					if(TRUE)
-						starting_illegal_nifsoft += NS
+						GLOB.starting_illegal_nifsoft += NS
 					if(FALSE)
-						starting_legal_nifsoft += NS
+						GLOB.starting_legal_nifsoft += NS
 
-	products = starting_legal_nifsoft.Copy()
-	contraband = starting_illegal_nifsoft.Copy()
+	products = GLOB.starting_legal_nifsoft.Copy()
+	contraband = GLOB.starting_illegal_nifsoft.Copy()
 
 	var/list/all_products = list(
 		list(products, CAT_NORMAL),

@@ -109,15 +109,29 @@
 	return attack_self(user)
 
 /obj/item/modular_computer/attack_hand(var/mob/user)
-	if(anchored)
+	if(anchored || ispAI(user))
 		return attack_self(user)
 	return ..()
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
-/obj/item/modular_computer/attack_self(var/mob/user)
+/obj/item/modular_computer/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(enabled && screen_on)
+		if(isliving(user) && HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(5))
+			var/mob/living/unlucky_soul = user
+			to_chat(user, span_danger("You interact with \the [src] and are met with a sudden shock!"))
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+			unlucky_soul.electrocute_act(5, src, 1)
+			return
 		tgui_interact(user)
 	else if(!enabled && screen_on)
+		if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(25))
+			to_chat(user, "You try to turn on \the [src] but it doesn't respond.")
+			return
 		turn_on(user)
 
 /obj/item/modular_computer/attackby(var/obj/item/W, var/mob/user)
@@ -166,7 +180,7 @@
 			return
 
 		to_chat(user, "You begin repairing damage to \the [src]...")
-		if(WT.remove_fuel(round(damage/75)) && do_after(user, damage/10))
+		if(WT.remove_fuel(round(damage/75)) && do_after(user, damage/10, target = src))
 			damage = 0
 			to_chat(user, "You repair \the [src].")
 		return
@@ -198,3 +212,10 @@
 		return
 
 	..()
+
+/obj/item/modular_computer/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	if(!card_slot?.stored_card?.dna_hash || !user.master_dna)
+		return FALSE
+	if(card_slot.stored_card.dna_hash != user.master_dna)
+		return FALSE
+	return proximity_flag

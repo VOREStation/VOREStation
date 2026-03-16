@@ -1,4 +1,4 @@
-/decl/emote/audible/scream/get_emote_sound(var/atom/user)
+/datum/decl/emote/audible/scream/get_emote_sound(var/atom/user)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -10,7 +10,7 @@
 				"volchannel" = VOLUME_CHANNEL_SPECIES_SOUNDS
 			)
 
-/decl/emote/audible/malehumanscream
+/datum/decl/emote/audible/malehumanscream
 	key = "malehumanscream"
 	emote_message_3p = "screams!"
 	emote_sound = 'sound/voice/malescream_2.ogg'

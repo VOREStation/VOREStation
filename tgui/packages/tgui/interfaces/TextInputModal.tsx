@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Section, Stack, TextArea } from 'tgui-core/components';
-import { isEscape } from 'tgui-core/keys';
-import { KEY } from 'tgui-core/keys';
-
+import { isEscape, KEY } from 'tgui-core/keys';
+import type { BooleanLike } from 'tgui-core/react';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -16,6 +15,7 @@ type TextInputData = {
   placeholder: string;
   timeout: number;
   title: string;
+  spellcheck: BooleanLike;
 };
 
 export const sanitizeMultiline = (toSanitize: string) => {
@@ -36,11 +36,12 @@ export const TextInputModal = (props) => {
     placeholder = '',
     timeout,
     title,
+    spellcheck,
   } = data;
 
   const [input, setInput] = useState(placeholder || '');
 
-  const onType = (value: string) => {
+  function onType(value: string) {
     if (value === input) {
       return;
     }
@@ -48,7 +49,7 @@ export const TextInputModal = (props) => {
       ? sanitizeMultiline(value)
       : removeAllSkiplines(value);
     setInput(sanitizedInput);
-  };
+  }
 
   const visualMultiline = multiline || input.length >= 30;
   // Dynamically changes the window height based on the message.
@@ -66,6 +67,11 @@ export const TextInputModal = (props) => {
       act('cancel');
     }
   }
+
+  // This is the length of the input in terms of unicode code points.
+  // Should be equivalent to what length_char would output for the same string in BYOND.
+  const char_length = [...input].length;
+
   return (
     <Window title={title} width={325} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
@@ -80,6 +86,7 @@ export const TextInputModal = (props) => {
                 autoFocus
                 autoSelect
                 fluid
+                spellcheck={!!spellcheck}
                 userMarkup={{ u: '_', i: '|', b: '+' }}
                 height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
                 maxLength={max_length}
@@ -92,7 +99,7 @@ export const TextInputModal = (props) => {
             <Stack.Item>
               <InputButtons
                 input={input}
-                message={`${input.length}/${max_length || '∞'}`}
+                message={`${char_length}/${max_length || '∞'}`}
               />
             </Stack.Item>
           </Stack>

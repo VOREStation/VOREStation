@@ -15,6 +15,9 @@
 
 /obj/structure/ladder/Initialize(mapload)
 	. = ..()
+	attempt_connection()
+
+/obj/structure/ladder/proc/attempt_connection()
 	// the upper will connect to the lower
 	if(allowed_directions & DOWN) //we only want to do the top one, as it will initialize the ones before it.
 		for(var/obj/structure/ladder/L in GetBelow(src))
@@ -41,6 +44,34 @@
 		return ..()
 
 /obj/structure/ladder/attackby(obj/item/C as obj, mob/user as mob)
+	if(C.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weldingtool/WT = C.get_welder()
+		if(WT.remove_fuel(0, user))
+			playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+			user.visible_message("\The [user] starts to deconstruct \the [src].", \
+				"You start to deconstruct \the [src].", \
+				"You hear welding")
+			if(do_after(user, 2 SECONDS, target = src))
+				if(QDELETED(src) || !WT.isOn()) return
+				var/obj/structure/ladder_assembly/A
+				to_chat(user, "You deconstruct \the [src].")
+				if(target_up)
+					target_up.visible_message("\The [target_up] deconstructs from below")
+					A = new /obj/structure/ladder_assembly(target_up.loc)
+					A.state = LADDER_CONSTRUCTION_WELDED
+					A.anchored = TRUE
+					qdel(target_up)
+				if(target_down)
+					target_down.visible_message("\The [target_down] deconstructs from above")
+					A = new /obj/structure/ladder_assembly(target_down.loc)
+					A.state = LADDER_CONSTRUCTION_WELDED
+					A.anchored = TRUE
+					qdel(target_down)
+				A = new /obj/structure/ladder_assembly(loc)
+				A.state = LADDER_CONSTRUCTION_WRENCHED
+				A.anchored = TRUE
+				qdel(src)
+			return
 	attack_hand(user)
 	return
 
@@ -112,7 +143,7 @@
 		var/mob/living/carbon/human/MS = M
 		climb_modifier = MS.species.climb_mult
 
-	if(do_after(M, (climb_time * climb_modifier), src))
+	if(do_after(M, (climb_time * climb_modifier), target = src))
 		var/turf/T = get_turf(target_ladder)
 		for(var/atom/A in T)
 			if(!A.CanPass(M, M.loc, 1.5, 0))

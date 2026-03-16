@@ -102,7 +102,7 @@ export const SizeInput = (props: {
           maxValue={max! * 100}
           step={1}
           value={size * 100}
-          format={(val) => round(val, 0) + '%'}
+          format={(val) => `${round(val, 0)}%`}
           onChange={(val) => act('size', { size: val })}
         />
       </LabeledList.Item>

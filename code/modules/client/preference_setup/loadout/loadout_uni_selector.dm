@@ -20,6 +20,30 @@
 
 //Command/Specific
 
+/datum/gear/uniform/general_command_selector
+	display_name = "Command - Department Head's Uniforms"
+	description = "Select from a range of outfits available to all Department Heads, and Talon Captains."
+	allowed_roles = list(JOB_SITE_MANAGER,JOB_TALON_CAPTAIN,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_QUARTERMASTER,JOB_RESEARCH_DIRECTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHIEF_ENGINEER)
+	show_roles = FALSE
+	path = /obj/item/clothing/under/rank/neo_gorka/command
+	sort_category = "Uniforms"
+	cost = 1
+
+/datum/gear/uniform/general_command_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"neocorporate uniform"=/obj/item/clothing/under/rank/khi/cmd,
+		"ST: Original Series Command"=/obj/item/clothing/under/rank/trek/command,
+		"ST: Next Generation Command"=/obj/item/clothing/under/rank/trek/command/next,
+		"ST: Voyager Command"=/obj/item/clothing/under/rank/trek/command/voy,
+		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
+		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
+		"TG&C utility suit"=/obj/item/clothing/under/rank/neo_commandutil,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/command,
+		"TG&C black command gorka"=/obj/item/clothing/under/rank/neo_gorka/black_command
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
 /datum/gear/uniform/site_manager_selector
 	display_name = "Command - " + JOB_SITE_MANAGER + "'s Uniforms"
 	description = "Select from a range of outfits available to all " + JOB_SITE_MANAGER + "s, and Talon Captains."
@@ -682,5 +706,87 @@
 		"Sleek, skirt"=/obj/item/clothing/under/gestalt/sleek_skirt,
 		"Sleek, feminine"=/obj/item/clothing/under/gestalt/sleek_fem,
 		"Sleek, sleeveless"=/obj/item/clothing/under/gestalt/sleeveless
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+// New Talon Uniforms
+
+/datum/gear/uniform/talon
+	display_name = "Talon's Uniforms"
+	description = "Select from a range of outfits available to all Talon crew."
+	allowed_roles = list(JOB_TALON_CAPTAIN, JOB_TALON_DOCTOR, JOB_TALON_ENGINEER, JOB_TALON_PILOT, JOB_TALON_GUARD, JOB_TALON_MINER)
+	path = /obj/item/clothing/under/rank/talon/basic/refreshed
+	sort_category = "Uniforms"
+	cost = 1
+
+/datum/gear/uniform/talon/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Refreshed Talon crew Uniform"=/obj/item/clothing/under/rank/talon/basic/refreshed,
+		"Old Talon crew Uniform"=/obj/item/clothing/under/rank/talon/basic,
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/talon_captain
+	display_name = "Talon - Captain's Uniforms"
+	description = "Select from a range of outfits available to all Talon Captain."
+	allowed_roles = list(JOB_TALON_CAPTAIN)
+	path = /obj/item/clothing/under/rank/talon/command/refreshed
+	sort_category = "Uniforms"
+	cost = 1
+
+/datum/gear/uniform/talon_captain/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Refreshed Talon Command Uniform"=/obj/item/clothing/under/rank/talon/command/refreshed,
+		"Old Talon Command Uniform"=/obj/item/clothing/under/rank/talon/command,
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/talon_pilot
+	display_name = "Talon - Pilot's Uniforms"
+	description = "Select from a range of outfits available to all Talon Pilot."
+	allowed_roles = list(JOB_TALON_PILOT)
+	path = /obj/item/clothing/under/rank/talon/pilot/refreshed
+	sort_category = "Uniforms"
+	cost = 1
+
+/datum/gear/uniform/talon_pilot/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Refreshed Talon Pilot Uniform"=/obj/item/clothing/under/rank/talon/pilot/refreshed,
+		"Old Talon Pilot Uniform"=/obj/item/clothing/under/rank/talon/pilot,
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/talon_security
+	display_name = "Talon - Guard's Uniforms"
+	description = "Select from a range of outfits available to all Talon Guard."
+	allowed_roles = list(JOB_TALON_GUARD)
+	path = /obj/item/clothing/under/rank/talon/security/refreshed
+	sort_category = "Uniforms"
+	cost = 1
+
+/datum/gear/uniform/talon_security/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Refreshed Talon Guard Uniform"=/obj/item/clothing/under/rank/talon/security/refreshed,
+		"Old Talon Security Uniform"=/obj/item/clothing/under/rank/talon/security,
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/talon_medical
+	display_name = "Talon - Doctor's Uniforms"
+	description = "Select from a range of outfits available to all Talon Doctor."
+	allowed_roles = list(JOB_TALON_DOCTOR)
+	path = /obj/item/clothing/under/rank/talon/proper/refreshed
+	sort_category = "Uniforms"
+	cost = 1
+
+/datum/gear/uniform/talon_medical/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Refreshed Talon Doctor Uniform"=/obj/item/clothing/under/rank/talon/proper/refreshed,
+		"Old Talon Doctor Uniform"=/obj/item/clothing/under/rank/talon/proper,
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))

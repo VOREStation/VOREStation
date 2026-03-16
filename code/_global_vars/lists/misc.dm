@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(wire_color_directory)	// This is an associative list with the 
 GLOBAL_LIST_EMPTY(wire_name_directory)	// This is an associative list
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
-GLOBAL_LIST_EMPTY(tagger_locations)
+GLOBAL_ALIST_EMPTY(tagger_locations)
 
 GLOBAL_LIST_INIT(char_directory_tags, list("Pred", "Pred-Pref", "Prey", "Prey-Pref", "Switch", "Non-Vore", "Unset"))
 GLOBAL_LIST_INIT(char_directory_erptags, list("Dominant", "Dom-Pref", "Submissive", "Sub-Pref", "Switch", "No ERP", "Unset"))
@@ -15,3 +15,5 @@ GLOBAL_LIST_INIT(char_directory_gendertags, list("Male", "Female", "Feminine", "
 GLOBAL_LIST_EMPTY(crafting_recipes) //list of all table craft recipes
 
 GLOBAL_LIST_INIT(uplink_locations, list("PDA", "Headset", "None"))
+
+GLOBAL_LIST_EMPTY(experiment_handlers)

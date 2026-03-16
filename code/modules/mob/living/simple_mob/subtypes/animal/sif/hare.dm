@@ -37,16 +37,6 @@
 		"rad" = 0
 		)
 
-	armor_soak = list(
-		"melee" = 5,
-		"bullet" = 0,
-		"laser" = 0,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
-		)
-
 	movement_cooldown = -1
 
 	mob_size = MOB_SMALL
@@ -58,17 +48,19 @@
 	response_disarm = "nudges"
 	response_harm   = "kicks"
 
-	organ_names = /decl/mob_organ_names/hare
+	organ_names = /datum/decl/mob_organ_names/hare
 
 
 	meat_amount = 1
 
 	say_list_type = /datum/say_list/hare
 
+	can_be_drop_prey = TRUE
+
 /datum/say_list/hare
 	speak = list("Snrf...","Crk!")
 	emote_hear = list("crackles","sniffles")
 	emote_see = list("stomps the ground", "sniffs the air", "chews on something")
 
-/decl/mob_organ_names/hare
+/datum/decl/mob_organ_names/hare
 	hit_zones = list("head", "chest", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "left head spike", "right head spike")

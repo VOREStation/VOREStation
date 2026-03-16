@@ -46,7 +46,7 @@ export const CommunicatorHeader = (props) => {
 
 export const CommunicatorFooter = (props: {
   videoSetting: number;
-  setVideoSetting: Function;
+  setVideoSetting: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { act, data } = useBackend<Data>();
 
@@ -99,7 +99,7 @@ export const CommunicatorFooter = (props: {
 
 export const VideoComm = (props: {
   videoSetting: number;
-  setVideoSetting: Function;
+  setVideoSetting: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { act, data } = useBackend<Data>();
 

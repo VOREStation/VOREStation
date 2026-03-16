@@ -130,12 +130,12 @@
 			R.update_power()
 
 		//Teleport time!
-		for(var/mob in player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
+		for(var/mob in GLOB.player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
 			try
 				if(isliving(mob) && get_area(mob) == src)
 					abduct(mob)
 			catch
-				log_debug("Problem doing [mob] for Alienship arrival teleport!")
+				log_runtime("Problem doing [mob] for Alienship arrival teleport!")
 
 		did_entry = TRUE
 
@@ -168,6 +168,7 @@
 					abduct(M)
 				L.drop_from_inventory(I, loc)
 		L.Paralyse(10)
+		L.Sleeping(10)
 		L.forceMove(get_turf(pick(teleport_to)))
 		L << 'sound/effects/bamf.ogg'
 		to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))

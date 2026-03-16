@@ -36,7 +36,7 @@
 */
 
 // Assoc list containing all material datums indexed by name.
-var/list/name_to_material
+GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.
@@ -61,7 +61,7 @@ var/list/name_to_material
  * Arguments:
  * - breakdown_flags: A set of flags determining how exactly the materials are broken down. (unused)
  */
-/obj/proc/get_material_composition(breakdown_flags=NONE)
+/obj/item/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
 	for(var/mat in matter)
 		var/datum/material/M = GET_MATERIAL_REF(mat)
@@ -78,22 +78,35 @@ var/list/name_to_material
 			else
 				.[M] = matter[mat]
 
+/obj/item/proc/set_custom_materials(list/materials, multiplier = 1)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!LAZYLEN(materials))
+		matter = null
+		return
+
+	materials = materials.Copy()
+
+	if(multiplier != 1)
+		for(var/x in materials)
+			materials[x] *= multiplier
+
+	matter = materials
+
+
 // Builds the datum list above.
-/proc/populate_material_list(force_remake=0)
-	if(name_to_material && !force_remake) return // Already set up!
-	name_to_material = list()
+/proc/populate_material_list()
+	var/list/materia_list = list()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/new_mineral = new type
 		if(!new_mineral.name)
 			continue
-		name_to_material[lowertext(new_mineral.name)] = new_mineral
-	return 1
+		materia_list[lowertext(new_mineral.name)] = new_mineral
+	return materia_list
 
 // Safety proc to make sure the material list exists before trying to grab from it.
 /proc/get_material_by_name(name)
-	if(!name_to_material)
-		populate_material_list()
-	return name_to_material[name]
+	return GLOB.name_to_material[name]
 
 /proc/material_display_name(name)
 	if(istype(name, /datum/material)) //We were fed a datum.
@@ -117,26 +130,23 @@ var/list/name_to_material
  *   - The following elements are used to generate bespoke IDs
  */
 /proc/_GetMaterialRef(list/arguments)
-	if(!name_to_material)
-		populate_material_list()
-
 	var/datum/material/key = arguments[1]
 	if(istype(key))
 		return key // we want to convert anything we're given to a material
 
 	if(istext(key))	// text ID
-		. = name_to_material[key]
+		. = GLOB.name_to_material[key]
 		if(!.)
-			warning("Attempted to fetch material ref with invalid text id '[key]'")
+			WARNING("Attempted to fetch material ref with invalid text id '[key]'")
 		return
 
 	if(!ispath(key, /datum/material))
 		CRASH("Attempted to fetch material ref with invalid key [key]")
 
 	key = GetIdFromArguments(arguments)
-	. = name_to_material[key]
+	. = GLOB.name_to_material[key]
 	if(!.)
-		warning("Attempted to fetch nonexistent material with key [key]")
+		WARNING("Attempted to fetch nonexistent material with key [key]")
 
 /** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
  * Credit does to ninjanomnom
@@ -176,7 +186,7 @@ var/list/name_to_material
 	var/name	                          // Unique name for use in indexing the list.
 	var/display_name                      // Prettier name for display.
 	var/use_name
-	var/flags = 0                         // Various status modifiers.
+	var/flags = NONE                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
 	var/sheet_collective_name = "stack"

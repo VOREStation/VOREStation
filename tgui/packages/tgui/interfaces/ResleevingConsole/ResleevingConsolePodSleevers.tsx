@@ -8,13 +8,13 @@ export const ResleevingConsolePodSleevers = (props) => {
   const { act, data } = useBackend<Data>();
   const { sleevers, spods, selected_sleever } = data;
 
-  if (sleevers && sleevers.length) {
+  if (sleevers?.length) {
     return sleevers.map((pod, i) => {
       return (
         <Box key={i} width="64px" textAlign="center" inline mr="0.5rem">
           <Image
             src={resolveAsset(
-              'sleeve_' + (pod.occupied ? 'occupied' : 'empty') + '.gif',
+              `sleeve_${pod.occupied ? 'occupied' : 'empty'}.gif`,
             )}
             style={{
               width: '100%',
@@ -24,7 +24,7 @@ export const ResleevingConsolePodSleevers = (props) => {
           <Button
             selected={selected_sleever === pod.sleever}
             icon={selected_sleever === pod.sleever && 'check'}
-            mt={spods && spods.length ? '3rem' : '1.5rem'}
+            mt={spods?.length ? '3rem' : '1.5rem'}
             onClick={() =>
               act('selectsleever', {
                 ref: pod.sleever,

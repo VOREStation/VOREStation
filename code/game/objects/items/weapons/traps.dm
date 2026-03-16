@@ -23,11 +23,21 @@
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
 
+/obj/item/beartrap/start_active
+	deployed = TRUE
+
+/obj/item/beartrap/Initialize(mapload)
+	. = ..()
+	if(mapload && deployed)
+		update_icon()
+
 /obj/item/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
-/obj/item/beartrap/attack_self(mob/user as mob)
-	..()
+/obj/item/beartrap/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!deployed && can_use(user))
 		user.visible_message(
 			span_danger("[user] starts to deploy \the [src]."),
@@ -35,7 +45,7 @@
 			"You hear the slow creaking of a spring."
 			)
 
-		if (do_after(user, 60))
+		if (do_after(user, 6 SECONDS, target = src))
 			user.visible_message(
 				span_danger("[user] has deployed \the [src]."),
 				span_danger("You have deployed \the [src]!"),
@@ -47,6 +57,7 @@
 			user.drop_from_inventory(src)
 			update_icon()
 			anchored = TRUE
+			log_and_message_admins("has set up a [name] at \the [get_area(loc)]", user)
 
 /obj/item/beartrap/attack_hand(mob/user as mob)
 	if(has_buckled_mobs() && can_use(user))
@@ -55,7 +66,7 @@
 			span_notice("[user] begins freeing [victim] from \the [src]."),
 			span_notice("You carefully begin to free [victim] from \the [src]."),
 			)
-		if(do_after(user, 60))
+		if(do_after(user, 6 SECONDS, target = src))
 			user.visible_message(span_notice("[victim] has been freed from \the [src] by [user]."))
 			for(var/A in buckled_mobs)
 				unbuckle_mob(A)
@@ -68,7 +79,7 @@
 			)
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 
-		if(do_after(user, 60))
+		if(do_after(user, 6 SECONDS, target = src))
 			user.visible_message(
 				span_danger("[user] has disarmed \the [src]."),
 				span_notice("You have disarmed \the [src]!")
@@ -89,15 +100,11 @@
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
-	var/soaked = L.get_armor_soak(target_zone, "melee")
 
 	if(blocked >= 100)
 		return
 
-	if(soaked >= 30)
-		return
-
-	if(!L.apply_damage(30, BRUTE, target_zone, blocked, soaked, used_weapon=src))
+	if(!L.apply_damage(30, BRUTE, target_zone, blocked, used_weapon=src))
 		return 0
 
 	if(ishuman(L))
@@ -137,6 +144,7 @@
 				anchored = FALSE
 			deployed = 0
 			update_icon()
+			log_and_message_admins("has sprung a [name] at \the [get_area(loc)], last touched by [forensic_data?.get_lastprint()]", L)
 	..()
 
 /obj/item/beartrap/update_icon()
@@ -202,7 +210,7 @@
 			)
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 
-		if(do_after(user, health))
+		if(do_after(user, health, target = src))
 			user.visible_message(
 				span_danger("[user] has collected \the [src]."),
 				span_notice("You have collected \the [src]!")
@@ -212,8 +220,10 @@
 	else
 		..()
 
-/obj/item/material/barbedwire/attack_self(mob/user as mob)
-	..()
+/obj/item/material/barbedwire/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!anchored && can_use(user))
 		user.visible_message(
 			span_danger("[user] starts to deploy \the [src]."),
@@ -221,7 +231,7 @@
 			"You hear the rustling of [material.name]."
 			)
 
-		if (do_after(user, 60))
+		if (do_after(user, 6 SECONDS, target = src))
 			user.visible_message(
 				span_danger("[user] has deployed \the [src]."),
 				span_danger("You have deployed \the [src]!"),
@@ -337,12 +347,8 @@
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
-	var/soaked = L.get_armor_soak(target_zone, "melee")
 
 	if(blocked >= 100)
-		return
-
-	if(soaked >= 30)
 		return
 
 	if(L.buckled) //wheelchairs, office chairs, rollerbeds
@@ -352,7 +358,7 @@
 
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)
 
-	if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE, target_zone, blocked, soaked, sharp, edge, src))
+	if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE, target_zone, blocked, sharp, edge, src))
 		return
 
 	playsound(src, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds

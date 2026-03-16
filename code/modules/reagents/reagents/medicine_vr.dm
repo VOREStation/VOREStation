@@ -4,8 +4,11 @@
 	description = "A mild sedative that calms the nerves and relaxes the patient."
 	taste_description = "milk"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2 //Most medication has a much weaker effect as a patch.
 	color = "#d5e2e5"
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/adranol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -14,8 +17,7 @@
 		M.Confuse(-8*removed)
 	if(M.eye_blurry)
 		M.eye_blurry = max(M.eye_blurry - 25*removed, 0)
-	if(M.jitteriness)
-		M.make_jittery(min(-25*removed,0))
+	M.make_jittery(-25*removed)
 
 /datum/reagent/numbing_enzyme
 	name = REAGENT_NUMBENZYME
@@ -27,8 +29,10 @@
 	metabolism = 0.1 //Lasts up to 200 seconds if you give 20u which is OD.
 	mrate_static = TRUE
 	overdose = 20 //High OD. This is to make numbing bites have somewhat of a downside if you get bit too much. Have to go to medical for dialysis.
-	scannable = 0 //Let's not have medical mechs able to make an extremely strong organic painkiller
+	scannable = SCANNABLE_ADVANCED //Let's not have medical mechs able to make an extremely strong organic painkiller
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
@@ -50,7 +54,7 @@
 				H.losebreath = 10
 				H.adjustOxyLoss(5)
 		if(prob(2))
-			to_chat(H,span_warning("You feel a dull pain behind your eyes and at thee back of your head..."))
+			to_chat(H,span_warning("You feel a dull pain behind your eyes and at the back of your head..."))
 			H.hallucination += 20 //It messes with your mind for some reason.
 			H.eye_blurry += 20 //Groggy vision for a small bit.
 		if(prob(3))
@@ -68,9 +72,12 @@
 	taste_description = "sparkles"
 	taste_mult = 3
 	reagent_state = LIQUID
+	dermal_absorption = 0.2
 	color = "#750404"
 	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1
@@ -88,12 +95,14 @@
 	reagent_state = LIQUID
 	color = "#b4dcdc"
 	overdose = 5
-	scannable = 0
+	scannable = SCANNABLE_BENEFICIAL
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
 	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)
-
 
 
 /datum/reagent/prussian_blue //We don't have iodine, so prussian blue we go.
@@ -102,10 +111,13 @@
 	description = "Prussian Blue is a medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."
 	taste_description = "salt"
 	reagent_state = SOLID
+	dermal_absorption = 0.2 //While it /is/ a solid, it's a beneficial medical reagent that should have some use if put into a patch.
 	color = "#003153" //Blue!
 	metabolism = REM * 0.25//20 ticks to do things per unit injected. This means injecting 30u will give you 10 minutes to do what you need.
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = SCANNABLE_BENEFICIAL
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/prussian_blue/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -119,8 +131,12 @@
 	description = "A chemical compound that causes a dangerously powerful fat-burning reaction."
 	taste_description = "blandness"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2
+	scannable = SCANNABLE_BENEFICIAL
 	color = "#47AD6D"
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DIET
 
 /datum/reagent/lipozilase/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -133,8 +149,12 @@
 	description = "A chemical compound that causes a dangerously powerful fat-adding reaction."
 	taste_description = "blubber"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2
 	color = "#61731C"
+	scannable = SCANNABLE_BENEFICIAL
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DIET
 
 /datum/reagent/lipostipo/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -147,6 +167,7 @@
 	description = "A chemical that instantly transforms the consumer into another creature."
 	taste_description = "luck"
 	reagent_state = LIQUID
+	scannable = SCANNABLE_SECRETIVE
 	color = "#a754de"
 	scannable = 1
 	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
@@ -201,63 +222,31 @@
 		"dragon" = /mob/living/simple_mob/vore/bigdragon/friendly,
 		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
 		)
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED // bonus
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/polymorph/affect_blood(var/mob/living/carbon/target, var/removed)
 	var/mob/living/M = target
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 	if(M.tf_mob_holder)
-		log_debug("polymorph tf_holder")
-		var/mob/living/ourmob = M.tf_mob_holder
-		if(ourmob.ai_holder)
-			log_debug("polymorph ai")
-			var/datum/ai_holder/our_AI = ourmob.ai_holder
-			our_AI.set_stance(STANCE_IDLE)
-		M.tf_mob_holder = null
-		ourmob.ckey = M.ckey
-		var/turf/get_dat_turf = get_turf(target)
-		ourmob.loc = get_dat_turf
-		ourmob.forceMove(get_dat_turf)
-		ourmob.vore_selected = M.vore_selected
-		M.vore_selected = null
-		ourmob.mob_belly_transfer(M)
-
-		M.soulgem.transfer_self(ourmob) // Soulcatcher
-
-		ourmob.Life(1)
-		if(ishuman(M))
-			for(var/obj/item/W in M)
-				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
-					continue
-				M.drop_from_inventory(W)
-
-		qdel(target)
+		M.revert_mob_tf()
 		return
 	else
-		log_debug("polymorph else")
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-			log_debug("polymorph dead")
 			return
-		log_debug("polymorph not dead")
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob)
 	target.bloodstr.clear_reagents() //Got to clear all reagents to make sure mobs don't keep spawning.
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()
 
 /datum/reagent/polymorph/proc/spawn_mob(var/mob/living/target)
-	log_debug("polymorph proc spawn mob")
 	var/choice = pick(tf_possible_types)
 	tf_type = tf_possible_types[choice]
-	log_debug("polymorph [tf_type]")
 	if(!ispath(tf_type))
-		log_debug("polymorph tf_type fail")
 		return
-	log_debug("polymorph tf_type pass")
 	var/new_mob = new tf_type(get_turf(target))
 	return new_mob
 
@@ -266,9 +255,12 @@
 	id = REAGENT_ID_GLAMOUR
 	description = "This material is from somewhere else, just being near produces changes."
 	taste_description = "change"
+	dermal_absorption = 1 //Magic liquid stuff. It immediately clears itself in your system the moment it touches you, so whatever.
 	reagent_state = LIQUID
 	color = "#ffffff"
-	scannable = 1
+	scannable = SCANNABLE_SECRETIVE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 
 /datum/reagent/glamour/affect_blood(var/mob/living/carbon/target, var/removed)
 	add_verb(target, /mob/living/carbon/human/proc/enter_cocoon)

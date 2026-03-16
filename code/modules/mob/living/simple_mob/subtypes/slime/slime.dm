@@ -1,19 +1,19 @@
-var/list/_slime_default_emotes = list(
-	/decl/emote/audible/moan,
-	/decl/emote/visible/twitch,
-	/decl/emote/visible/sway,
-	/decl/emote/visible/shiver,
-	/decl/emote/visible/bounce,
-	/decl/emote/visible/jiggle,
-	/decl/emote/visible/lightup,
-	/decl/emote/visible/vibrate,
-	/decl/emote/slime,
-	/decl/emote/slime/pout,
-	/decl/emote/slime/sad,
-	/decl/emote/slime/angry,
-	/decl/emote/slime/frown,
-	/decl/emote/slime/smile
-)
+GLOBAL_LIST_INIT(slime_default_emotes, list(
+	/datum/decl/emote/audible/moan,
+	/datum/decl/emote/visible/twitch,
+	/datum/decl/emote/visible/sway,
+	/datum/decl/emote/visible/shiver,
+	/datum/decl/emote/visible/bounce,
+	/datum/decl/emote/visible/jiggle,
+	/datum/decl/emote/visible/lightup,
+	/datum/decl/emote/visible/vibrate,
+	/datum/decl/emote/slime,
+	/datum/decl/emote/slime/pout,
+	/datum/decl/emote/slime/sad,
+	/datum/decl/emote/slime/angry,
+	/datum/decl/emote/slime/frown,
+	/datum/decl/emote/slime/smile
+))
 
 // The top-level slime defines. Xenobio slimes and feral slimes will inherit from this.
 /mob/living/simple_mob/slime
@@ -40,7 +40,7 @@ var/list/_slime_default_emotes = list(
 
 	response_help = "pets"
 
-	organ_names = /decl/mob_organ_names/slime
+	organ_names = /datum/decl/mob_organ_names/slime
 
 	// Atmos stuff.
 	minbodytemp = T0C-30
@@ -80,10 +80,14 @@ var/list/_slime_default_emotes = list(
 	var/injection_amount = 5 // This determines how much.
 	var/mood = ":3" // Icon to use to display 'mood', as an overlay.
 
-	can_enter_vent_with = list(/obj/item/clothing/head, /obj/soulgem)
+	can_be_drop_prey = FALSE
+
+	species_sounds = "Slime"
+	pain_emote_1p = list("squish", "squelch")
+	pain_emote_3p = list("squishes", "squelches")
 
 /mob/living/simple_mob/slime/get_available_emotes()
-	return global._slime_default_emotes.Copy()
+	return GLOB.slime_default_emotes.Copy()
 
 /datum/say_list/slime
 	speak = list("Blorp...", "Blop...")
@@ -102,6 +106,14 @@ var/list/_slime_default_emotes = list(
 	if(hat)
 		drop_hat()
 	return ..()
+
+/mob/living/simple_mob/slime/ventcrawl_get_item_whitelist()
+	return list(
+		VENTCRAWL_BASE_WHITELIST,
+		VENTCRAWL_VORE_WHITELIST,
+		// Slime unique items
+		/obj/item/clothing/head,
+		)
 
 /mob/living/simple_mob/slime/death()
 	// Make dead slimes stop glowing.
@@ -251,5 +263,5 @@ var/list/_slime_default_emotes = list(
 	playsound(src, 'sound/effects/slime_squish.ogg', 50, 0)
 	visible_message(span_infoplain(span_bold("\The [src]") + " squishes!"))
 
-/decl/mob_organ_names/slime
+/datum/decl/mob_organ_names/slime
 	hit_zones = list("cytoplasmic membrane")

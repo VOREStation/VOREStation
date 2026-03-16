@@ -17,7 +17,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(user == M)
-			to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
+			to_chat(user,span_warning("A message pops up on the LED display, informing you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
 			return
 
 		if(!M.mind) //Do they have a mind?
@@ -45,7 +45,7 @@
 			else
 				log_and_message_admins("attempted to body swap with [key_name(M)].")
 			user.visible_message(span_warning("[user] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!"),span_notice("You begin swap minds with [M]!"))
-			if(do_after(user,35 SECONDS,M))
+			if(do_after(user,35 SECONDS, target = M))
 				if(user.mind && M.mind && M.stat != DEAD && user.stat != DEAD)
 					log_and_message_admins("[user.ckey] used a Bodysnatcher to swap bodies with [M.ckey]", user)
 					to_chat(user,span_notice("Your minds have been swapped! Have a nice day."))
@@ -93,17 +93,20 @@
 					user.ooc_notes = target_ooc_notes
 					user.ooc_notes_likes = target_likes
 					user.ooc_notes_dislikes = target_dislikes
-					user.sleeping = 10 //Device knocks out both the user and the target.
+					user.SetSleeping(10) //Device knocks out both the user and the target.
 					user.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision
 					user.slurring = 50 //And let's also have them slurring while they attempt to get used to using their new body.
 					if(ishuman(M)) //Let's not have the AI slurring, even though its downright hilarious.
-						M.sleeping = 10
+						M.SetSleeping(10)
 						M.eye_blurry = 30
 						M.slurring = 50
 
 	else
 		to_chat(user,span_warning(" A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!"))
 
-/obj/item/bodysnatcher/attack_self(mob/living/user)
-		to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
-		return
+/obj/item/bodysnatcher/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
+	return

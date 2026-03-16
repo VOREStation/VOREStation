@@ -46,11 +46,27 @@
 
 	var/list/datum/disease/rat_diseases
 
+	can_be_drop_prey = TRUE
+	can_be_drop_pred = FALSE
+	species_sounds = "Mouse"
+
+	pain_emote_1p = list("squeak", "squik")
+	pain_emote_1p = list("squeaks", "squiks")
+
+/mob/living/simple_mob/animal/passive/mouse/Destroy()
+	GLOB.active_ghost_pods -= src
+	return ..()
+
 /mob/living/simple_mob/animal/passive/mouse/Initialize(mapload, keep_parent_data)
 	. = ..()
+	ghostjoin = TRUE
+	ghostjoin_icon()
+	GLOB.active_ghost_pods += src
 
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
+
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
 
 	if(!keep_parent_data && name == initial(name))
 		name = "[name] ([rand(1, 1000)])"
@@ -79,7 +95,7 @@
 
 	if(prob(40))
 		LAZYINITLIST(rat_diseases)
-		rat_diseases += new /datum/disease/advance/random(rand(1, 5), 9, 1)
+		rat_diseases += new /datum/disease/advance/random(rand(1, 5), 9, 1, infected = src)
 
 /mob/living/simple_mob/animal/passive/mouse/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
 	. = ..()
@@ -201,15 +217,31 @@
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 
+/mob/living/simple_mob/animal/passive/mouse/verb/set_mouse_colour()
+	set name = "Set Mouse Colour"
+	set category = "Abilities.Mouse"
+	set desc = "Set the colour of your mouse."
+	var/new_mouse_colour = tgui_input_list(usr, "Set Mouse Colour", "Pick a colour", list("brown","gray","white","black"))
+	if(!new_mouse_colour) return
+	icon_state = resting ? "mouse_[new_mouse_colour]_sleep" : "mouse_[new_mouse_colour]"
+	item_state = "mouse_[new_mouse_colour]"
+	icon_living = "mouse_[new_mouse_colour]"
+	icon_dead = "mouse_[new_mouse_colour]_dead"
+	icon_rest = "mouse_[new_mouse_colour]_sleep"
+	desc = "A small [new_mouse_colour] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
+	holder_type = text2path("/obj/item/holder/mouse/[new_mouse_colour]")
+	to_chat(src, span_notice("You are now a [new_mouse_colour] mouse!"))
+	remove_verb(src,/mob/living/simple_mob/animal/passive/mouse/verb/set_mouse_colour)
+
 /mob/living/simple_mob/animal/passive/mouse/white/virology
 	name = "Fleming"
 	desc = "A small white rodent, often found in Virology. This one isn't quite the nuisance!"
 
 /mob/living/simple_mob/animal/passive/mouse/white/virology/Initialize(mapload)
-	..()
+	. = ..()
 	name = initial(name)
 	desc = initial(desc)
-	rat_diseases += new /datum/disease/advance/random(2, 2, 1)
+	rat_diseases += new /datum/disease/advance/random(2, 2, 1, infected = src)
 
 /mob/living/simple_mob/animal/passive/mouse/white/virology/Crossed(atom/movable/AM)
 	. = ..()

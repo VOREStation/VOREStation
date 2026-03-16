@@ -70,7 +70,7 @@ export const DroneConsole = (props) => {
           </Button>
         </Section>
         <Section title="Maintenance Units">
-          {drones && drones.length ? (
+          {drones?.length ? (
             <LabeledList>
               {drones.map((drone) => (
                 <LabeledList.Item

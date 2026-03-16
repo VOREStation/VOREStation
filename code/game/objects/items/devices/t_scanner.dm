@@ -1,4 +1,4 @@
-#define OVERLAY_CACHE_LEN 50
+#define overlay_cache_LEN 50
 
 /obj/item/t_scanner
 	name = "\improper T-ray scanner"
@@ -18,8 +18,6 @@
 	var/client/user_client //since making sure overlays are properly added and removed is pretty important, so we track the current user explicitly
 	var/flicker = 0
 
-	var/global/list/overlay_cache = list() //cache recent overlays
-
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -27,6 +25,9 @@
 	icon_state = "t-ray[on]"
 
 /obj/item/t_scanner/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	set_active(!on)
 
 /obj/item/t_scanner/proc/set_active(var/active)
@@ -82,8 +83,8 @@
 /obj/item/t_scanner/proc/get_overlay(obj/scanned)
 	//Use a cache so we don't create a whole bunch of new images just because someone's walking back and forth in a room.
 	//Also means that images are reused if multiple people are using t-rays to look at the same objects.
-	if(scanned in overlay_cache)
-		. = overlay_cache[scanned]
+	if(scanned in GLOB.overlay_cache)
+		. = GLOB.overlay_cache[scanned]
 	else
 		var/image/I = image(loc = scanned, icon = scanned.icon, icon_state = scanned.icon_state, layer = HUD_LAYER)
 
@@ -98,9 +99,9 @@
 		. = I
 
 	// Add it to cache, cutting old entries if the list is too long
-	overlay_cache[scanned] = .
-	if(overlay_cache.len > OVERLAY_CACHE_LEN)
-		overlay_cache.Cut(1, overlay_cache.len-OVERLAY_CACHE_LEN-1)
+	GLOB.overlay_cache[scanned] = .
+	if(GLOB.overlay_cache.len > overlay_cache_LEN)
+		GLOB.overlay_cache.Cut(1, GLOB.overlay_cache.len-overlay_cache_LEN-1)
 
 /obj/item/t_scanner/proc/get_scanned_objects(var/scan_dist)
 	. = list()
@@ -152,4 +153,4 @@
 	scan_range = 7
 
 
-#undef OVERLAY_CACHE_LEN
+#undef overlay_cache_LEN

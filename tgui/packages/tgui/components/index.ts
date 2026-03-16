@@ -4,6 +4,4 @@
  * @license MIT
  */
 
-export { Interactive } from './Interactive';
 export { NanoMap } from './NanoMap';
-export { Pointer } from './Pointer';

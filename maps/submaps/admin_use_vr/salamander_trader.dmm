@@ -36,13 +36,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander_trader)
 "aO" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_trader_q2)
 "bk" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,
@@ -1248,7 +1248,7 @@
 /turf/template_noop,
 /area/shuttle/salamander_trader)
 "tA" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,

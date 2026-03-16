@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/engineering_chief
 	name = "chief engineer's locker"
-	req_access = list(access_ce)
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/ce
+	req_access = list(ACCESS_CE)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/ce
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -50,8 +50,8 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
-	req_access = list(access_engine_equip)
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/electrical
+	req_access = list(ACCESS_ENGINE_EQUIP)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/electrical
 
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow = 2,
@@ -68,8 +68,8 @@
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
-	req_access = list(access_construction)
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/welding
+	req_access = list(ACCESS_CONSTRUCTION)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/welding
 
 	starts_with = list(
 		/obj/item/clothing/head/welding = 3,
@@ -86,8 +86,8 @@
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "engineer's locker"
-	req_access = list(access_engine_equip)
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering
+	req_access = list(ACCESS_ENGINE_EQUIP)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -96,7 +96,7 @@
 		/obj/item/radio/headset/alt/headset_eng,
 		/obj/item/radio/headset/earbud/headset_eng,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/cartridge/engineering,
 		/obj/item/taperoll/engineering,
@@ -120,8 +120,8 @@
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"
-	req_access = list(access_atmospherics)
-	closet_appearance = /decl/closet_appearance/secure_closet/engineering/atmos
+	req_access = list(ACCESS_ATMOSPHERICS)
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/engineering/atmos
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -134,7 +134,7 @@
 		/obj/item/radio/headset/alt/headset_eng,
 		/obj/item/radio/headset/earbud/headset_eng,
 		/obj/item/clothing/suit/storage/hazardvest/atmos,	//VOREStation edit. Eng locker gets regular haz-vest, atmos gets the themed one of their own
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/cartridge/atmos,
 		/obj/item/taperoll/atmos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos,

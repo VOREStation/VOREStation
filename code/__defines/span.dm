@@ -3,6 +3,9 @@
 // Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
 #define examine_block(str) ("<div class='examine_block'>" + str + "</div>")
 
+//for the foldout stuff
+#define span_details(title, content) ("<details>"+"<summary>" + title + "</summary>" + content + "</details>")
+
 // Filtered both under OOC!
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_aooc(str) ("<span class='aooc'>" + str + "</span>")
@@ -201,8 +204,8 @@
 
 // Mentor pm filter
 #define span_mentor(str) ("<span class='mentor'>" + str + "</span>")
-#define span_mentor_pm_notice(str) ("<span class='mentor notice'>" + str + "</span>")
-#define span_mentor_pm_warning(str) ("<span class='mentor warning'>" + str + "</span>")
+#define span_mentor_notice(str) ("<span class='mentor notice'>" + str + "</span>")
+#define span_mentor_warning(str) ("<span class='mentor warning'>" + str + "</span>")
 
 /* Adminchat */
 // All of those have their own filter
@@ -253,3 +256,13 @@
 
 // special spans
 #define span_spoiler(str) ("<span class='spoiler'>" + str + "</span>")
+
+// damage type spans, mostly used for admin for now
+#define span_brute(str) ("<span class='brute'>" + str + "</span>")
+#define span_burn(str) ("<span class='burn'>" + str + "</span>")
+#define span_tox(str) ("<span class='tox'>" + str + "</span>")
+#define span_oxy(str) ("<span class='oxy'>" + str + "</span>")
+#define span_clone(str) ("<span class='clone'>" + str + "</span>")
+
+// Admin VV
+#define span_value(str) ("<span class='value'>" + str + "</span>")

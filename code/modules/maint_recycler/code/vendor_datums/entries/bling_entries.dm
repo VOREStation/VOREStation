@@ -9,7 +9,7 @@
 	per_round_cap = 3 //limited supply!
 	object_type_to_spawn = /obj/item/healthanalyzer/bling
 	icon_state = "scamalyzer"
-	required_access = list(access_medical)
+	required_access = list(ACCESS_MEDICAL)
 	vendor_category = MAINTVENDOR_SWAG
 
 /datum/maint_recycler_vendor_entry/bling_wrench
@@ -17,7 +17,7 @@
 	ad_message = "Bust Nuts in Style!"
 	desc = "*a distinct CuZn of ACTUAL gold, this wrench is sure to at least look KIND of gold! Robotics & Engineering ONLY!"
 	object_type_to_spawn = /obj/item/tool/wrench/brass
-	required_access = list(access_engine,access_robotics)
+	required_access = list(ACCESS_ENGINE,ACCESS_ROBOTICS)
 	item_cost = 30 //not actual gold
 	per_person_cap = 1
 	vendor_category = MAINTVENDOR_SWAG
@@ -32,7 +32,7 @@
 	per_person_cap = 1
 	vendor_category = MAINTVENDOR_SWAG
 	icon_state="goldscrew"
-	required_access = list(access_engine,access_robotics)
+	required_access = list(ACCESS_ENGINE,ACCESS_ROBOTICS)
 
 /datum/maint_recycler_vendor_entry/bling_crowbar
 	name = "Gold Crowbar"
@@ -43,7 +43,7 @@
 	per_person_cap = 1
 	vendor_category = MAINTVENDOR_SWAG
 	icon_state="goldcrow"
-	required_access = list(access_engine,access_robotics,access_medical) //for paramedics
+	required_access = list(ACCESS_ENGINE,ACCESS_ROBOTICS,ACCESS_MEDICAL) //for paramedics
 
 
 
@@ -56,7 +56,7 @@
 	per_person_cap = 1
 	vendor_category = MAINTVENDOR_SWAG
 	icon_state="goldcutters"
-	required_access = list(access_engine,access_robotics)
+	required_access = list(ACCESS_ENGINE,ACCESS_ROBOTICS)
 
 /datum/maint_recycler_vendor_entry/bling_welder
 	name = "Golden Welder"
@@ -67,4 +67,4 @@
 	per_person_cap = 1
 	vendor_category = MAINTVENDOR_SWAG
 	icon_state="goldweld"
-	required_access = list(access_engine,access_robotics)
+	required_access = list(ACCESS_ENGINE,ACCESS_ROBOTICS)

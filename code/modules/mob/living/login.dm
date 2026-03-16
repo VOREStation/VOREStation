@@ -37,12 +37,14 @@
 	add_verb(src,/mob/proc/nme_vore_ch)
 	add_verb(src,/mob/proc/enter_soulcatcher)
 
-	if(!voice_sounds_list.len || !voice_sounds_list)
+	if(!length(voice_sounds_list))
 		if(client.prefs.voice_sound)
 			var/prefsound = client.prefs.voice_sound
 			voice_sounds_list = get_talk_sound(prefsound)
 		else
 			voice_sounds_list = DEFAULT_TALK_SOUNDS
 	resize(size_multiplier, animate = FALSE, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE, aura_animation = FALSE)
+	init_vore(TRUE)
+	handle_regular_hud_updates()
 
 	return .

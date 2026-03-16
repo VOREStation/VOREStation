@@ -89,7 +89,7 @@
 	var/obj/effect/overmap/visitable/ship/landable/champagne/newship = new(start_loc, shuttle_name, shuttle_name)
 	// It automatically registers itself with SSshuttles
 
-	log_debug("Created new ship [newship] for shuttle [shuttle] at landmark [starting_landmark]")
+	log_world("Created new ship [newship] for shuttle [shuttle] at landmark [starting_landmark]")
 	return shuttle
 
 //

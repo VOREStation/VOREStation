@@ -17,22 +17,35 @@
 		return
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
+
+	if(LAZYACCESS(modifiers, BUTTON4) || LAZYACCESS(modifiers, BUTTON5))
 		return
-	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
-		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
-		return
-	if(modifiers["shift"])
+
+	if(LAZYACCESS(modifiers, SHIFT_CLICK))
+		if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+			ShiftMiddleClickOn(A)
+			return
+		if(LAZYACCESS(modifiers, CTRL_CLICK))
+			CtrlShiftClickOn(A)
+			return
+		if (LAZYACCESS(modifiers, ALT_CLICK))
+			alt_shift_click_on(A)
+			return
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+		if(LAZYACCESS(modifiers, CTRL_CLICK))
+			CtrlMiddleClickOn(A)
+		else
+			MiddleClickOn(A, params)
 		return
-	if(modifiers["ctrl"])
+	if(LAZYACCESS(modifiers, ALT_CLICK)) // alt and alt-gr (rightalt)
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+			AltClickSecondaryOn(A)
+		else
+			AltClickOn(A)
+		return
+	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		CtrlClickOn(A)
 		return
 
@@ -56,7 +69,7 @@
 		return
 	*/
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_hand(A)
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)
@@ -79,7 +92,7 @@
 	if(A == loc || (A in loc) || (A in contents))
 		// No adjacency checks
 
-		var/resolved = A.attackby(W, src, 1)
+		var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 		if(!resolved && A && W)
 			W.afterattack(A,src,1,params)
 		return
@@ -90,8 +103,8 @@
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc && isturf(A.loc.loc))
 	if(isturf(A) || isturf(A.loc))
 		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach))) // see adjacent.dm, allows robots to use ranged melee weapons
-
-			var/resolved = A.attackby(W, src, 1)
+			SEND_SIGNAL(src, COMSIG_ROBOT_ITEM_ATTACK, W, src, params) //This is we ATTEMPTED to attack someone.
+			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params)
 			return
@@ -107,26 +120,26 @@
 
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
-/mob/living/silicon/robot/CtrlShiftClickOn(var/atom/A)
-	A.BorgCtrlShiftClick(src)
+/mob/living/silicon/robot/CtrlShiftClickOn(atom/target)
+	target.BorgCtrlShiftClick(src)
 
-/mob/living/silicon/robot/ShiftClickOn(var/atom/A)
-	A.BorgShiftClick(src)
+/mob/living/silicon/robot/ShiftClickOn(atom/target)
+	target.BorgShiftClick(src)
 
-/mob/living/silicon/robot/CtrlClickOn(var/atom/A)
-	A.BorgCtrlClick(src)
+/mob/living/silicon/robot/CtrlClickOn(atom/target)
+	target.BorgCtrlClick(src)
 
-/mob/living/silicon/robot/AltClickOn(var/atom/A)
-	A.BorgAltClick(src)
+/mob/living/silicon/robot/AltClickOn(atom/target)
+	target.BorgAltClick(src)
 
-/atom/proc/BorgCtrlShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	CtrlShiftClick(user)
+/atom/proc/BorgCtrlShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
+	user.click_ctrl_shift(user)
 
 /obj/machinery/door/airlock/BorgCtrlShiftClick(var/mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlShiftClick(user)
+	AIclick_ctrl_shift(user)
 
 /atom/proc/BorgShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
 	ShiftClick(user)
@@ -138,28 +151,28 @@
 	AIShiftClick(user)
 
 /atom/proc/BorgCtrlClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	CtrlClick(user)
+	user.base_click_ctrl(src)
 
 /obj/machinery/door/airlock/BorgCtrlClick(var/mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlClick(user)
+	ctrl_click_ai(user)
 
 /obj/machinery/power/apc/BorgCtrlClick(var/mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlClick(user)
+	ctrl_click_ai(user)
 
 /obj/machinery/turretid/BorgCtrlClick(var/mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlClick(user)
+	ctrl_click_ai(user)
 
 /atom/proc/BorgAltClick(var/mob/living/silicon/robot/user)
-	AltClick(user)
+	click_alt(user)
 	return
 
 /obj/machinery/door/airlock/BorgAltClick(var/mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.

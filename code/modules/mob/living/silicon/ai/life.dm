@@ -7,7 +7,7 @@
 
 		if (src.stat != CONSCIOUS)
 			src.cameraFollow = null
-			src.reset_view(null)
+			src.reset_perspective()
 			disconnect_shell("Disconnecting from remote shell due to local system failure.")
 
 		src.updatehealth()
@@ -80,7 +80,7 @@
 
 					//Blind the AI
 					update_icon()
-					overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 					src.sight = src.sight&~SEE_TURFS
 					src.sight = src.sight&~SEE_MOBS
 					src.sight = src.sight&~SEE_OBJS
@@ -168,12 +168,15 @@
 	return ((!A.power_equip) && A.requires_power == 1 || istype(T, /turf/space)) && !istype(src.loc,/obj/item)
 
 /mob/living/silicon/ai/updatehealth()
-	if(status_flags & GODMODE)
-		health = 100
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE) & COMSIG_LIVING_HEALTH_UPDATE_GOD_MODE)
+		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 		setOxyLoss(0)
 	else
-		health = 100 - getFireLoss() - getBruteLoss() // Oxyloss is not part of health as it represents AIs backup power. AI is immune against ToxLoss as it is machine.
+		health = getMaxHealth() - getFireLoss() - getBruteLoss() // Oxyloss is not part of health as it represents AIs backup power. AI is immune against ToxLoss as it is machine.
+		if(health <= -getMaxHealth()) //die only once
+			death()
+			return
 
 /mob/living/silicon/ai/rejuvenate()
 	..()

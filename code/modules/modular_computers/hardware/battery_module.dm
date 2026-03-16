@@ -73,7 +73,7 @@
 	. = ..()
 
 /obj/item/computer_hardware/battery_module/Destroy()
-	qdel_null(battery)
+	QDEL_NULL(battery)
 	return ..()
 
 /obj/item/computer_hardware/battery_module/proc/charge_to_full()

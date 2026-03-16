@@ -3,7 +3,7 @@
 	name = "bluespace harpoon"
 	desc = "For climbing on bluespace mountains!"
 
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "harpoon-2"
 
 	w_class = ITEMSIZE_NORMAL
@@ -141,7 +141,7 @@
 						belly_dest = pick(living_user.vore_organs)
 					if(belly_dest)
 						for(var/mob/living/prey in ToTurf)
-							if(prey != user && prey.can_be_drop_prey)
+							if(can_drop_vore(user, prey))
 								prey.forceMove(belly_dest)
 								vore_happened = TRUE
 								to_chat(prey, span_vdanger("[living_user] materializes around you, as you end up in their [belly_dest]!"))
@@ -200,10 +200,13 @@
 						to_chat(M, span_vnotice("You materialize around [living_user] as they end up in your [belly_dest]!"))
 
 
-/obj/item/bluespace_harpoon/attack_self(mob/living/user as mob)
-	return chande_fire_mode(user)
+/obj/item/bluespace_harpoon/attack_self(mob/living/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	return change_fire_mode(user)
 
-/obj/item/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
+/obj/item/bluespace_harpoon/verb/change_fire_mode(mob/user)
 	set name = "Change Fire Mode"
 	set category = "Object"
 	set src in range(0)

@@ -75,7 +75,7 @@
 		to fade to black...")))
 		//to_world("Predicted hardcrit.")
 		return 1
-	else if(predicted_damage >= victim.species.total_health / 2) // Or perhaps we're gonna go into 'oxy crit'.
+	else if(predicted_damage >= victim.getMaxHealth() / 2) // Or perhaps we're gonna go into 'oxy crit'.
 		to_chat(victim, span_danger("You feel really light-headed, and everything seems to be fading..."))
 		//to_world("Predicted oxycrit.")
 		return 1

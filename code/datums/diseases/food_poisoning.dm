@@ -1,12 +1,14 @@
 /datum/disease/food_poisoning
 	name = "Food Poisoning"
+	medical_name = "Gastroenteritis"
 	max_stages = 3
 	stage_prob = 5
 	spread_text = "Non-Contagious"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	cure_text = "Sleep"
 	agent = REAGENT_SALMONELLA
-	cures = list(REAGENT_ID_CHICKENSOUP)
+	cures = list(REAGENT_ID_CHICKENSOUP, REAGENT_ID_CHICKENNOODLESOUP)
+	virus_modifiers = NONE // Does NOT need all the cures
 	cure_chance = 10
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "Nausea, sickness, and vomiting."

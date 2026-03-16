@@ -53,7 +53,17 @@
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
+	if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+		if(src != M)
+			if(istype(M,/mob/living))
+				var/mob/living/L = M
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
+
 	if(!istype(M, /mob/living/carbon)) return
+
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
@@ -69,7 +79,7 @@
 //the species' emp_sensitivity var needs to be greater than 0 for this to proc, and it defaults to 0 - shouldn't stack with prosthetics/fbps in most cases
 //higher sensitivity values incur additional effects, starting with confusion/blinding/knockdown and ending with increasing amounts of damage
 //the degree of damage and duration of effects can be tweaked up or down based on the species emp_dmg_mod and emp_stun_mod vars (default 1) on top of tuning the random ranges
-/mob/living/carbon/emp_act(severity)
+/mob/living/carbon/emp_act(severity, recursive)
 	//pregen our stunning stuff, had to do this seperately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
 	var/agony_str = ((rand(4,6)*15)-(15*severity))*species.emp_stun_mod //big ouchies at high severity, causes 0-75 halloss/agony; shotgun beanbags and revolver rubbers do 60
 	var/deafen_dur = (rand(9,16)-severity)*species.emp_stun_mod //5-15 deafen, on par with a flashbang
@@ -120,7 +130,8 @@
 	..()
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_BEING_ELECTROCUTED, shock_damage, source, siemens_coeff, def_zone, stun) & COMPONENT_CARBON_CANCEL_ELECTROCUTE)
+		return 0	// Cancelled by a component
 	if(def_zone == BP_L_HAND || def_zone == BP_R_HAND) //Diona (And any other potential plant people) hands don't get shocked.
 		if(species.flags & IS_PLANT)
 			return 0
@@ -168,9 +179,8 @@
 	if (health >= get_crit_point() || on_fire)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 			visible_message( \
-				span_notice("[src] examines [T.himself]."), \
+				span_notice("[src] examines [p_themselves()]."), \
 				span_notice("You check yourself for injuries.") \
 				)
 
@@ -185,6 +195,8 @@
 					if(prob(30))
 						burndamage += halloss
 				*/
+				//For reference, these will show up in game as:
+				//"My X is: [DESCRIPTOR]"
 				switch(brutedamage)
 					if(1 to 20)
 						status += "bruised"
@@ -205,12 +217,21 @@
 					status += "MISSING"
 				if(org.status & ORGAN_MUTATED)
 					status += "weirdly shapen"
-				if(org.dislocated == 1) //VOREStation Edit Bugfix
+				if(org.dislocated == 1)
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
-					status += "hurts when touched"
+					status += "[can_feel_pain(org) ? "hurting and " : ""]abnormally bent"
+				//infection stuff
 				if(org.status & ORGAN_DEAD)
-					status += "is bruised and necrotic"
+					status += "necrotic"
+				else if(org.germ_level > INFECTION_LEVEL_TWO)
+					status += "burning and feels like it's on fire"
+				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
+					status += "warm to the touch"
+				if(LAZYLEN(org.wounds))
+					for(var/datum/wound/W in org.wounds)
+						if(W.internal)
+							status += "[can_feel_pain(org) ? "hurting and " : ""]showing a slowly growing bruise"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
@@ -228,11 +249,11 @@
 			else
 				M.visible_message(span_warning("[M] tries to pat out [src]'s flames!"),
 				span_warning("You try to pat out [src]'s flames! Hot!"))
-				if(do_mob(M, src, 15))
+				if(do_after(M, 1.5 SECONDS, src))
 					src.adjust_fire_stacks(-0.5)
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.adjust_fire_stacks(1)
-					M.IgniteMob()
+					M.ignite_mob()
 					if (M.on_fire)
 						M.visible_message(span_danger("The fire spreads from [src] to [M]!"),
 						span_danger("The fire spreads to you as well!"))
@@ -241,50 +262,48 @@
 						if (src.fire_stacks <= 0)
 							M.visible_message(span_warning("[M] successfully pats out [src]'s flames."),
 							span_warning("You successfully pat out [src]'s flames."))
-							src.ExtinguishMob()
-							src.fire_stacks = 0
+							src.extinguish_mob()
 		else
-			if (ishuman(src) && src:w_uniform)
+			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				H.w_uniform.add_fingerprint(M)
+				if(H.w_uniform)
+					H.w_uniform.add_fingerprint(M)
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
-				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
-				span_notice("You shake [src], but [T.he] [T.does] not respond... Maybe [T.he] [T.has] S.S.D?"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [H.p_them()] up!"), \
+				span_notice("You shake [src], but [p_they()] [p_do()] not respond... Maybe [H.p_theyre()] S.S.D?"))
 			else if(lying || src.sleeping)
 				AdjustSleeping(-5)
 				if(src.sleeping == 0)
 					src.resting = 0
 				if(H) H.in_stasis = 0 //VOREStation Add - Just In Case
-				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
-									span_notice("You shake [src] trying to wake [T.him] up!"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [H.p_them()] up!"), \
+									span_notice("You shake [src] trying to wake [H.p_them()] up!"))
 			else
 				var/mob/living/carbon/human/hugger = M
-				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				if(M.resting == 1) //Are they resting on the ground?
-					M.visible_message(span_notice("[M] grabs onto [src] and pulls [TM.himself] up"), \
+					M.visible_message(span_notice("[M] grabs onto [src] and pulls [M.p_themselves()] up"), \
 							span_notice("You grip onto [src] and pull yourself up off the ground!"))
 					if(M.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
 						src.adjust_fire_stacks(1)
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
-						src.IgniteMob()
+						src.ignite_mob()
 					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
 					update_canmove()
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
-					M.visible_message(span_notice("[M] hugs [src] to make [T.him] feel better!"), \
-								span_notice("You hug [src] to make [T.him] feel better!"))
+					M.visible_message(span_notice("[M] hugs [src] to make [H.p_them()] feel better!"), \
+								span_notice("You hug [src] to make [H.p_them()] feel better!"))
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.adjust_fire_stacks(1)
 					M.adjust_fire_stacks(-1)
 				if(M.on_fire)
-					src.IgniteMob()
+					src.ignite_mob()
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
@@ -294,7 +313,7 @@
 /mob/living/carbon/proc/eyecheck()
 	return 0
 
-/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(eyecheck() < intensity || override_blindness_check)
 		return ..()
 
@@ -310,6 +329,8 @@
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(is_incorporeal())
+		return
 	..()
 	var/temp_inc = max(min(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), exposed_temperature - bodytemperature), 0)
 	bodytemperature += temp_inc
@@ -378,13 +399,18 @@
 	return
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
 	if(buckled)
-		return 0
+		return FALSE
 	stop_pulling()
 	to_chat(src, span_warning("You slipped on [slipped_on]!"))
 	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
+	if(HAS_TRAIT(src, SLIP_REFLEX_TRAIT) && !lying)
+		if(world.time >= next_emote)
+			src.emote("sflip")
+			return TRUE
 	Weaken(FLOOR(stun_duration/2, 1))
-	return 1
+	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect in chem_effects)
@@ -417,7 +443,7 @@
 	return !(species.flags & NO_PAIN)
 
 /mob/living/carbon/needs_to_breathe()
-	if(does_not_breathe)
+	if(does_not_breathe || (mNobreath in mutations))
 		return FALSE
 	return ..()
 
@@ -426,7 +452,7 @@
 		drop_l_hand()
 		drop_r_hand()
 		stop_pulling()
-		throw_alert("handcuffed", /obj/screen/alert/restrained/handcuffed, new_master = handcuffed)
+		throw_alert("handcuffed", /atom/movable/screen/alert/restrained/handcuffed, new_master = handcuffed)
 	else
 		clear_alert("handcuffed")
 	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
@@ -512,10 +538,12 @@
 				src.update_inv_wear_mask(0)
 
 /mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+	if(!species) // carbon/brains have no species
+		return FALSE
 
 	if(allergen_type in species.food_preference)
 		return species.food_preference_bonus
-	return 0
+	return FALSE
 
 /mob/living/carbon/handle_diseases()
 	for(var/thing in GetViruses())
@@ -525,3 +553,118 @@
 
 		if(stat != DEAD || global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 			D.stage_act()
+
+/mob/living/carbon/vv_get_dropdown()
+	. = ..()
+	/*
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modify bodypart")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify organs")
+	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "Give Martial Arts")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "Give Brain Trauma")
+	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "Cure Brain Traumas")
+	*/
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	/*
+	if(href_list[VV_HK_MODIFY_BODYPART])
+		if(!check_rights(R_SPAWN))
+			return
+		var/edit_action = tgui_alert(usr, "What would you like to do?","Modify Body Part", list("replace","remove"))
+		if(!edit_action)
+			return
+		var/list/limb_list = list()
+		if(edit_action == "remove")
+			for(var/obj/item/bodypart/iter_part as anything in bodyparts)
+				limb_list += iter_part.body_zone
+				limb_list -= BODY_ZONE_CHEST
+		else
+			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_CHEST)
+		var/result = tgui_input_list(usr, "Please choose which bodypart to [edit_action]","[capitalize(edit_action)] Bodypart", sort_list(limb_list))
+		if(result)
+			var/obj/item/bodypart/part = get_bodypart(result)
+			var/list/limbtypes = list()
+			switch(result)
+				if(BODY_ZONE_CHEST)
+					limbtypes = typesof(/obj/item/bodypart/chest)
+				if(BODY_ZONE_R_ARM)
+					limbtypes = typesof(/obj/item/bodypart/arm/right)
+				if(BODY_ZONE_L_ARM)
+					limbtypes = typesof(/obj/item/bodypart/arm/left)
+				if(BODY_ZONE_HEAD)
+					limbtypes = typesof(/obj/item/bodypart/head)
+				if(BODY_ZONE_L_LEG)
+					limbtypes = typesof(/obj/item/bodypart/leg/left)
+				if(BODY_ZONE_R_LEG)
+					limbtypes = typesof(/obj/item/bodypart/leg/right)
+			switch(edit_action)
+				if("remove")
+					if(part)
+						part.drop_limb()
+						admin_ticket_log("[key_name_admin(usr)] has removed [src]'s [part.plaintext_zone]")
+					else
+						to_chat(usr, span_boldwarning("[src] doesn't have such bodypart."))
+						admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
+				if("replace")
+					var/limb2add = tgui_input_list(usr, "Select a bodypart type to add", "Add/Replace Bodypart", sort_list(limbtypes))
+					var/obj/item/bodypart/new_bp = new limb2add()
+					if(new_bp.replace_limb(src, special = TRUE))
+						admin_ticket_log("key_name_admin(usr)] has replaced [src]'s [part.type] with [new_bp.type]")
+						qdel(part)
+					else
+						to_chat(usr, "Failed to replace bodypart! They might be incompatible.")
+						admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
+
+	if(href_list[VV_HK_MODIFY_ORGANS])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/manipulate_organs, src)
+
+	if(href_list[VV_HK_MARTIAL_ART])
+		if(!check_rights(NONE))
+			return
+		var/list/artpaths = subtypesof(/datum/martial_art)
+		var/list/artnames = list()
+		for(var/i in artpaths)
+			var/datum/martial_art/M = i
+			artnames[initial(M.name)] = M
+		var/result = tgui_input_list(usr, "Choose the martial art to teach","JUDO CHOP", sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc))
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, span_boldwarning("Mob doesn't exist anymore."))
+			return
+		if(result)
+			var/chosenart = artnames[result]
+			var/datum/martial_art/MA = new chosenart(src)
+			MA.teach(src)
+			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
+			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
+
+	if(href_list[VV_HK_GIVE_TRAUMA])
+		if(!check_rights(NONE))
+			return
+		var/list/traumas = subtypesof(/datum/brain_trauma)
+		var/result = tgui_input_list(usr, "Choose the brain trauma to apply","Traumatize", sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+		if(!result)
+			return
+		var/datum/brain_trauma/BT = gain_trauma(result)
+		if(BT)
+			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
+			message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name]."))
+
+	if(href_list[VV_HK_CURE_TRAUMA])
+		if(!check_rights(NONE))
+			return
+		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
+		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
+		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
+	*/

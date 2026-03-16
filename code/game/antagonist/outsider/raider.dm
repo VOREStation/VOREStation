@@ -1,4 +1,4 @@
-var/datum/antagonist/raider/raiders
+GLOBAL_DATUM(raiders, /datum/antagonist/raider)
 
 /datum/antagonist/raider
 	id = MODE_RAIDER
@@ -108,7 +108,7 @@ var/datum/antagonist/raider/raiders
 
 /datum/antagonist/raider/New()
 	..()
-	raiders = src
+	GLOB.raiders = src
 
 /datum/antagonist/raider/update_access(var/mob/living/player)
 	for(var/obj/item/storage/wallet/W in player.contents)
@@ -187,8 +187,8 @@ var/datum/antagonist/raider/raiders
 		else
 			win_msg += span_bold("The Raiders were repelled!")
 
-	to_world(span_boldannounce(span_large("[win_type] [win_group] victory!")))
-	to_world(span_filter_system("[win_msg]"))
+	to_chat(world, span_boldannounce(span_large("[win_type] [win_group] victory!")))
+	to_chat(world, span_filter_system("[win_msg]"))
 	feedback_set_details("round_end_result","heist - [win_type] [win_group]")
 
 /datum/antagonist/raider/proc/is_raider_crew_safe()

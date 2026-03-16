@@ -7,7 +7,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import type { Data } from './types';
@@ -104,11 +104,8 @@ export const RIGSuitHardware = (props) => {
               >
                 <Tooltip
                   content={
-                    'Suit Seals: ' + sealing
-                      ? 'Sealing'
-                      : sealed
-                        ? 'Sealed'
-                        : 'UNSEALED'
+                    'Suit Seals: ' +
+                    (sealing ? 'Sealing' : sealed ? 'Sealed' : 'UNSEALED')
                   }
                 >
                   <Box

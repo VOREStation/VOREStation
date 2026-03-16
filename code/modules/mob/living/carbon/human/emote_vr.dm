@@ -1,3 +1,7 @@
+#define SWITCH_TAIL_LAYER_UPPER    	"Upper"
+#define SWITCH_TAIL_LAYER_STANDARD 	"Standard"
+#define SWITCH_TAIL_LAYER_LOWER	   	"Lower"
+
 /mob/living/carbon/human/verb/toggle_resizing_immunity()
 	set name = "Toggle Resizing Immunity"
 	set desc = "Toggles your ability to resist resizing attempts"
@@ -9,7 +13,7 @@
 
 /mob/living/carbon/human/proc/handle_flip_vr()
 	var/original_density = density
-	var/original_passflags = pass_flags
+	var/added_passtable = FALSE
 
 	//Briefly un-dense to dodge projectiles
 	density = FALSE
@@ -19,7 +23,9 @@
 	if(species)
 		parkour_chance = species.agility
 	if(prob(parkour_chance))
-		pass_flags |= PASSTABLE
+		if(!(pass_flags & PASSTABLE))
+			pass_flags |= PASSTABLE
+			added_passtable = TRUE
 	else
 		Confuse(1) //Thud
 
@@ -28,9 +34,29 @@
 	else
 		SpinAnimation(7,1,1)
 
+	if(isturf(loc)) // You aren't very smart, are you?
+		for(var/obj/structure/stairs/top/S in loc.contents)
+			S.use_stairs_instant(src)
+			visible_message(span_warning("\The [src] falls down the stairs!"), span_warning("You fall down the stairs!"))
+			Confuse(10) //Thud
+			AdjustWeakened(12)
+			adjustBruteLoss(8)
+			if(prob(80))
+				if(prob(50))
+					var/obj/item/organ/external/left_leg = get_organ(BP_L_LEG)
+					if(left_leg)
+						left_leg.fracture()
+				else
+					var/obj/item/organ/external/right_leg = get_organ(BP_R_LEG)
+					if(right_leg)
+						right_leg.fracture()
+			break // Only fall down the first stairs in the turf... If somehow more than one exists
+
 	spawn(7)
-		density = original_density
-		pass_flags = original_passflags
+		if(!lying)
+			density = original_density
+		if(added_passtable)
+			pass_flags &= ~PASSTABLE
 
 /mob/living/carbon/human/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"
@@ -45,8 +71,15 @@
 /mob/living/carbon/human/verb/switch_tail_layer()
 	set name = "Switch tail layer"
 	set category = "IC.Game"
-	set desc = "Switch tail layer on top."
-	tail_alt = !tail_alt
+	set desc = "Switch tail layer to show below/above/between clothing or other things such as wings!."
+
+	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", GLOB.tail_layer_options, read_preference(/datum/preference/choiced/human/tail_layering))
+	if(!input)
+		return
+	var/tail_option =  GLOB.tail_layer_options[input]
+	if(!tail_option)
+		return
+	tail_layering = tail_option
 	update_tail_showing()
 
 /mob/living/carbon/human/verb/hide_wings_vr()
@@ -84,3 +117,7 @@
 	else
 		message = "hides their tail."
 	visible_message(span_filter_notice("[src] [message]"))
+
+#undef SWITCH_TAIL_LAYER_UPPER
+#undef SWITCH_TAIL_LAYER_STANDARD
+#undef SWITCH_TAIL_LAYER_LOWER

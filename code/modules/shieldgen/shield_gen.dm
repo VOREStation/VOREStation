@@ -41,7 +41,8 @@
 			if(get_dir(cap, src) == cap.dir)
 				capacitors |= cap
 				cap.owned_gen = src
-	return ..()
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/shield_gen/Destroy()
 	QDEL_LIST_NULL(field)
@@ -52,7 +53,6 @@
 		src.locked = !src.locked
 		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		. = 1
-		updateDialog()
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
@@ -60,10 +60,9 @@
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/C = W
-		if((access_captain in C.GetAccess()) || (access_security in C.GetAccess()) || (access_engine in C.GetAccess()))
+		if((ACCESS_CAPTAIN in C.GetAccess()) || (ACCESS_SECURITY in C.GetAccess()) || (ACCESS_ENGINE in C.GetAccess()))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
-			updateDialog()
 		else
 			to_chat(user, span_red("Access denied."))
 	else if(W.has_tool_quality(TOOL_WRENCH))
@@ -82,7 +81,6 @@
 					//	owned_capacitor = cap
 						capacitors |= cap
 						cap.owned_gen = src
-						updateDialog()
 					//	break
 		else
 			for(var/obj/machinery/shield_capacitor/capacitor in capacitors)

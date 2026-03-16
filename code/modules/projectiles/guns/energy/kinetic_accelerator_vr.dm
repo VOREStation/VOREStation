@@ -44,7 +44,6 @@
 /obj/item/gun/energy/kinetic_accelerator
 	name = "proto-kinetic accelerator"
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "kineticgun"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi',
@@ -212,7 +211,7 @@
 	deltimer(recharge_timerid)
 	recharge_timerid = addtimer(CALLBACK(src, PROC_REF(reload)), recharge_time * carried, TIMER_STOPPABLE)
 
-/obj/item/gun/energy/kinetic_accelerator/emp_act(severity)
+/obj/item/gun/energy/kinetic_accelerator/emp_act(severity, recursive)
 	return
 
 /obj/item/gun/energy/kinetic_accelerator/proc/reload()
@@ -734,6 +733,9 @@
 	desc = "Causes kinetic accelerator bolts to have an adjustable-colored tracer trail and explosion. Use in-hand to change color."
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	bolt_color = tgui_color_picker(user,"","Choose Color",bolt_color)
 
 #undef KA_ENVIRO_TYPE_COLD

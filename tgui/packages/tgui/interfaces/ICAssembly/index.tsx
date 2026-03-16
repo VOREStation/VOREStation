@@ -11,7 +11,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 
 import { Plane } from './Plane';
 import type { Data } from './types';
@@ -34,6 +33,18 @@ export const ICAssembly = (props) => {
               tooltip="Edit Name"
               tooltipPosition="bottom-start"
               onClick={() => act('rename')}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              color="transparent"
+              width={2.5}
+              height={2}
+              textAlign="center"
+              icon="file-export"
+              tooltip="Export Circuit"
+              tooltipPosition="bottom-start"
+              onClick={() => act('export_circuit')}
             />
           </Stack.Item>
           <Stack.Item>
@@ -101,7 +112,7 @@ const CircuitInfo = (props) => {
               ' / ' +
               max_components +
               ' (' +
-              toFixed((total_parts / max_components) * 100, 1) +
+              ((total_parts / max_components) * 100).toFixed(1) +
               '%)'}
           </ProgressBar>
         </LabeledList.Item>
@@ -119,7 +130,7 @@ const CircuitInfo = (props) => {
               ' / ' +
               max_complexity +
               ' (' +
-              toFixed((total_complexity / max_complexity) * 100, 1) +
+              ((total_complexity / max_complexity) * 100).toFixed(1) +
               '%)'}
           </ProgressBar>
         </LabeledList.Item>
@@ -147,7 +158,7 @@ const CircuitInfo = (props) => {
                 ' / ' +
                 battery_max +
                 ' (' +
-                toFixed((battery_charge / battery_max) * 100, 1) +
+                ((battery_charge / battery_max) * 100).toFixed(1) +
                 '%)'}
             </ProgressBar>
           )) || <Box color="bad">No cell detected.</Box>}
@@ -156,7 +167,7 @@ const CircuitInfo = (props) => {
           {(net_power === 0 && '0 W/s') || (
             <AnimatedNumber
               value={net_power}
-              format={(val) => '-' + formatPower(Math.abs(val)) + '/s'}
+              format={(val) => `-${formatPower(Math.abs(val))}/s`}
             />
           )}
         </LabeledList.Item>

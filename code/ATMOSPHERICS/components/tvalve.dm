@@ -34,15 +34,15 @@
 		icon_state = "tvalve[mirrored ? "m" : ""][state]"
 
 /obj/machinery/atmospherics/tvalve/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		var/list/node_connects = get_node_connect_dirs()
-		add_underlay(T, node1, node_connects[1])
-		add_underlay(T, node2, node_connects[2])
-		add_underlay(T, node3, node_connects[3])
+	..()
+	underlays.Cut()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	var/list/node_connects = get_node_connect_dirs()
+	add_underlay(T, node1, node_connects[1])
+	add_underlay(T, node2, node_connects[2])
+	add_underlay(T, node3, node_connects[3])
 
 /obj/machinery/atmospherics/tvalve/hide(var/i)
 	update_underlays()
@@ -258,7 +258,7 @@
 	icon = 'icons/atmos/digital_tvalve.dmi'
 	pipe_state = "dtvalve"
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
@@ -295,10 +295,10 @@
 //Radio remote control
 
 /obj/machinery/atmospherics/tvalve/digital/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
 
 
@@ -335,7 +335,7 @@
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 40 * W.toolspeed, target = src))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \

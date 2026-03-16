@@ -30,6 +30,8 @@
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi(GAS_O2, air_mix[GAS_O2], GAS_N2, air_mix[GAS_N2])
 
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/portable_atmospherics/powered/pump/update_icon()
 	cut_overlays()
 
@@ -46,9 +48,9 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/powered/pump/emp_act(severity)
+/obj/machinery/portable_atmospherics/powered/pump/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(prob(50/severity))
@@ -60,7 +62,7 @@
 	target_pressure = rand(0,1300)
 	update_icon()
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/pump/process()
 	..()
@@ -107,8 +109,6 @@
 		if (!cell.charge)
 			power_change()
 			update_icon()
-
-	src.updateDialog()
 
 /obj/machinery/portable_atmospherics/powered/pump/return_air()
 	return air_contents

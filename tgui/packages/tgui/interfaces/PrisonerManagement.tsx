@@ -98,7 +98,7 @@ export const PrisonerManagement = (props) => {
                     </Table.Row>
                   ))}
                 </Table>
-              )) || <Box color="average">No chemical implants found.</Box>}
+              )) || <Box color="average">No tracking implants found.</Box>}
             </Section>
           </>
         )}

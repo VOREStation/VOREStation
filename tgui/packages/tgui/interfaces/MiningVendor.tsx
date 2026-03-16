@@ -17,34 +17,22 @@ import { MiningUser } from './common/Mining';
 type Data = {
   has_id: boolean;
   id: { id: string; points: number };
-  items: Record<string, sortable[]>;
+  items: Record<string, Sortable[]>;
 };
 
-type sortable = { name: string; affordable: number; price: number };
+type Sortable = { name: string; affordable: number; price: number };
 
 const sortTypes = {
-  Alphabetical: (a: sortable, b: sortable) => a.name > b.name,
-  'By availability': (a: sortable, b: sortable) =>
+  Alphabetical: (a: Sortable, b: Sortable) => a.name.localeCompare(b.name),
+  'By availability': (a: Sortable, b: Sortable) =>
     -(a.affordable - b.affordable),
-  'By price': (a: sortable, b: sortable) => a.price - b.price,
+  'By price': (a: Sortable, b: Sortable) => a.price - b.price,
 };
 
 export const MiningVendor = (props) => {
   const [searchText, setSearchText] = useState('');
   const [sortOrder, setSortOrder] = useState('Alphabetical');
   const [descending, setDescending] = useState(false);
-
-  function handleSearchText(value: string) {
-    setSearchText(value);
-  }
-
-  function handleSortOrder(value: string) {
-    setSortOrder(value);
-  }
-
-  function handleDescending(value: boolean) {
-    setDescending(value);
-  }
 
   return (
     <Window width={400} height={450}>
@@ -54,9 +42,9 @@ export const MiningVendor = (props) => {
           searchText={searchText}
           sortOrder={sortOrder}
           descending={descending}
-          onSearchText={handleSearchText}
-          onSortOrder={handleSortOrder}
-          onDescending={handleDescending}
+          onSearchText={setSearchText}
+          onSortOrder={setSortOrder}
+          onDescending={setDescending}
         />
         <MiningVendorItems
           searchText={searchText}
@@ -76,9 +64,9 @@ const MiningVendorItems = (props: {
   const { act, data } = useBackend<Data>();
   const { has_id, id, items } = data;
   // Search thingies
-  const searcher = createSearch(
+  const searcher = createSearch<[string, Sortable]>(
     props.searchText,
-    (item: [string, sortable]) => {
+    (item) => {
       return item[0];
     },
   );
@@ -93,7 +81,7 @@ const MiningVendorItems = (props: {
       })
       .sort(sortTypes[props.sortOrder]);
     if (items_in_cat.length === 0) {
-      return;
+      return undefined;
     }
     if (props.descending) {
       items_in_cat = items_in_cat.reverse();
@@ -125,9 +113,9 @@ const MiningVendorSearch = (props: {
   searchText: string;
   sortOrder: string;
   descending: boolean;
-  onSearchText: Function;
-  onSortOrder: Function;
-  onDescending: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
+  onSortOrder: React.Dispatch<React.SetStateAction<string>>;
+  onDescending: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <Box mb="0.5rem">
@@ -168,7 +156,7 @@ const MiningVendorSearch = (props: {
 const MiningVendorItemsCategory = (props: {
   key: string;
   title: string;
-  items: sortable[];
+  items: Sortable[];
 }) => {
   const { act, data } = useBackend<Data>();
 

@@ -1,7 +1,7 @@
 /obj/machinery/porta_turret/stationary/CIWS
 	name = "CIWS turret"
 	desc = "A ship weapons turret designed for light defense."
-	req_one_access = list(access_cent_general)
+	req_one_access = list(ACCESS_CENT_GENERAL)
 	health = 200
 	maxhealth = 200
 	enabled = TRUE
@@ -12,7 +12,7 @@
 /obj/machinery/porta_turret/stationary/syndie/CIWS
 	name = "mercenary CIWS turret"
 	desc = "A ship weapons turret designed for light defense."
-	req_one_access = list(access_syndicate)
+	req_one_access = list(ACCESS_SYNDICATE)
 	health = 200
 	maxhealth = 200
 	enabled = TRUE
@@ -23,7 +23,7 @@
 /obj/machinery/porta_turret/industrial/military
 	name = "military CIWS turret"
 	desc = "A ship weapons turret designed for anti-fighter defense."
-	req_one_access = list(access_cent_general)
+	req_one_access = list(ACCESS_CENT_GENERAL)
 	installation = /obj/item/gun/energy/pulse_rifle/destroyer
 	health = 500
 	maxhealth = 500

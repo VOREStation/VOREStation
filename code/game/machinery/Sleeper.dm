@@ -1,11 +1,11 @@
 /obj/machinery/sleep_console
 	name = "sleeper console"
 	desc = "A control panel to operate a linked sleeper with."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
 	anchored = TRUE //About time someone fixed this.
-	density = TRUE //VOREStation Edit - Big console
+	density = TRUE
 	unacidable = TRUE
 	dir = 8
 	use_power = USE_POWER_IDLE
@@ -86,11 +86,12 @@
 /obj/machinery/sleeper
 	name = "sleeper"
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()
@@ -308,8 +309,7 @@
 			if(!occupant)
 				return
 			if(occupant.stat == DEAD)
-				var/datum/gender/G = GLOB.gender_datums[occupant.get_visible_gender()]
-				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him]."))
+				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [occupant.p_them()] to a department capable of reanimating [occupant.p_them()]."))
 				return
 			var/chemical = params["chemid"]
 			var/amount = text2num(params["amount"])
@@ -383,7 +383,7 @@
 		if(!beaker)
 			beaker = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " adds \a [I] to \the [src]."), span_notice("You add \a [I] to \the [src]."))
 		else
 			to_chat(user, span_warning("\The [src] has a beaker already."))
@@ -406,7 +406,7 @@
 				return
 			if(UNCONSCIOUS)
 				to_chat(usr, span_notice("You struggle through the haze to hit the eject button. This will take a couple of minutes..."))
-				if(do_after(usr, 2 MINUTES, src))
+				if(do_after(usr, 2 MINUTES, target = src))
 					go_out()
 			if(CONSCIOUS)
 				go_out()
@@ -427,7 +427,7 @@
 		return
 	go_out()
 
-/obj/machinery/sleeper/emp_act(var/severity)
+/obj/machinery/sleeper/emp_act(severity, recursive)
 	if(filtering)
 		toggle_filter()
 
@@ -435,13 +435,13 @@
 		toggle_pump()
 
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(occupant)
 		go_out()
 
-	..(severity)
+	..(severity, recursive)
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant || !beaker)
 		filtering = 0
@@ -472,17 +472,14 @@
 	else
 		visible_message("\The [user] starts putting [M] into \the [src].")
 
-	if(do_after(user, 20))
+	if(do_after(user, 2 SECONDS, target = src))
 		if(M.buckled)
 			return
 		if(occupant)
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-		M.loc = src
+		M.forceMove(src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 		update_icon()
@@ -491,18 +488,15 @@
 	if(!occupant || occupant.loc != src)
 		occupant = null // JUST IN CASE
 		return
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.Stasis(0)
-	occupant.loc = src.loc
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker || A == circuit)
 			continue
 		if(A in component_parts)
 			continue
-		A.loc = src.loc
+		A.forceMove(get_turf(src))
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	toggle_filter()
@@ -510,7 +504,7 @@
 
 /obj/machinery/sleeper/proc/remove_beaker()
 	if(beaker)
-		beaker.loc = src.loc
+		beaker.forceMove(get_turf(src))
 		beaker = null
 		toggle_filter()
 

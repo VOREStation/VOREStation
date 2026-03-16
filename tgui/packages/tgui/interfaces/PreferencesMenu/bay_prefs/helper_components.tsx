@@ -1,4 +1,4 @@
-import React, {
+import {
   type PropsWithChildren,
   type ReactNode,
   useCallback,
@@ -13,8 +13,8 @@ export const getImage = async (url: string): Promise<HTMLImageElement> => {
     image.onload = () => {
       resolve(image);
     };
-    image.onerror = (error) => {
-      reject(error);
+    image.onerror = (event) => {
+      reject(event);
     };
     image.src = url;
   });
@@ -30,32 +30,34 @@ export const CanvasBackedImage = (props: {
   const [bitmap, setBitmap] = useState<string>('');
 
   useEffect(() => {
-    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(64, 64);
-
+    const offscreenCanvas = new OffscreenCanvas(64, 64);
     const ctx = offscreenCanvas.getContext('2d');
-    if (!ctx) {
-      return;
-    }
+    if (!ctx) return;
+
+    let active = true;
+    let bitmap = '';
 
     const drawImage = async () => {
-      // Render
       await props.render(offscreenCanvas, ctx);
-
-      // Convert to a blob and put in our <img> tag
-      const bitmap = await offscreenCanvas.convertToBlob();
-      setBitmap(URL.createObjectURL(bitmap));
+      const blob = await offscreenCanvas.convertToBlob();
+      if (!active) return;
+      bitmap = URL.createObjectURL(blob);
+      setBitmap(bitmap);
     };
 
     drawImage();
 
     return () => {
-      if (bitmap !== '') {
+      active = false;
+      if (bitmap) {
         URL.revokeObjectURL(bitmap);
       }
     };
   }, [props.render]);
 
-  return <img src={bitmap} width={64} height={64} />;
+  return bitmap ? (
+    <img src={bitmap} width={64} height={64} draggable={false} />
+  ) : null;
 };
 
 export const drawColorizedIconToOffscreenCanvas = async (
@@ -74,9 +76,7 @@ export const drawColorizedIconToOffscreenCanvas = async (
 
   let image;
   try {
-    image = await getImage(
-      icon + '?state=' + icon_state + '&dir=' + (dir || '2'),
-    );
+    image = await getImage(`${icon}?state=${icon_state}&dir=${dir || '2'}`);
   } catch (e) {
     return null;
   }

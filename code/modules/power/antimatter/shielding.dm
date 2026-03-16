@@ -88,8 +88,8 @@
 	return
 
 
-/obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
-	return 0
+/obj/machinery/am_shielding/emp_act(severity, recursive)//Immune due to not really much in the way of electronics.
+	return FALSE
 
 
 /obj/machinery/am_shielding/ex_act(severity)

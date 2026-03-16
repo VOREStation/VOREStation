@@ -128,9 +128,9 @@
 	if(!surpress_send) send_status()
 
 
-/obj/machinery/door/airlock/close(surpress_send)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!forced) send_status()
 
 
 /obj/machinery/door/airlock/Bumped(atom/AM)
@@ -143,15 +143,15 @@
 
 /obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 	radio_connection = null
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 
 	if(new_frequency)
-		radio_connection = radio_controller.add_object(src, new_frequency, RADIO_AIRLOCK)
+		radio_connection = SSradio.add_object(src, new_frequency, RADIO_AIRLOCK)
 
 /obj/machinery/door/airlock/Destroy()
-	if(frequency && radio_controller)
-		radio_controller.remove_object(src,frequency)
+	if(frequency && SSradio)
+		SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/airlock_sensor
@@ -167,7 +167,7 @@
 
 	var/id_tag
 	var/master_tag
-	var/frequency = 1379
+	var/frequency = AIRLOCK_FREQ
 	var/command = "cycle"
 
 	var/datum/radio_frequency/radio_connection
@@ -218,17 +218,17 @@
 			update_icon()
 
 /obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 /obj/machinery/airlock_sensor/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 
 /obj/machinery/airlock_sensor/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/airlock_sensor/examine(mob/user, infix, suffix)
@@ -270,6 +270,9 @@
 		return TRUE
 	return ..()
 
+/obj/machinery/airlock_sensor/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/machinery/airlock_sensor/airlock_interior
 	command = "cycle_interior"
 
@@ -294,7 +297,7 @@
 	circuit = /obj/item/circuitboard/airlock_cycling
 
 	var/master_tag
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/command = "cycle"
 
 	var/datum/radio_frequency/radio_connection
@@ -361,11 +364,13 @@
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, radio_filter = RADIO_AIRLOCK)
 	flick("access_button_cycle", src)
 
+/obj/machinery/access_button/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 
 /obj/machinery/access_button/Initialize(mapload)
@@ -373,14 +378,14 @@
 	set_frequency(frequency)
 
 /obj/machinery/access_button/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	return ..()
 
 /obj/machinery/access_button/airlock_interior
-	frequency = 1379
+	frequency = AIRLOCK_FREQ
 	command = "cycle_interior"
 
 /obj/machinery/access_button/airlock_exterior
-	frequency = 1379
+	frequency = AIRLOCK_FREQ
 	command = "cycle_exterior"

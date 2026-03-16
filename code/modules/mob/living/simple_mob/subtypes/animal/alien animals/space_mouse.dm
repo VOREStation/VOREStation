@@ -28,6 +28,9 @@
 	response_disarm = "pushes"
 	response_harm   = "punches"
 
+	has_langs = list(LANGUAGE_MOUSE)
+	universal_understand = 1
+
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 	attack_sharp = FALSE
@@ -61,11 +64,7 @@
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
 
-/mob/living/simple_mob/vore/alienanimals/dustjumper/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/alienanimals/dustjumper/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -85,6 +84,10 @@
 		movement_cooldown = initial(movement_cooldown)
 
 /mob/living/simple_mob/vore/alienanimals/dustjumper/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
+	. = ..()
+	movement_cooldown = 10
+
+/mob/living/simple_mob/vore/alienanimals/dustjumper/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
 	. = ..()
 	movement_cooldown = 10
 

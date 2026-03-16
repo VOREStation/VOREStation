@@ -13,6 +13,7 @@
 
 	maxHealth = 1
 	health = 1
+	nutrition = 20
 
 	movement_cooldown = -1
 
@@ -41,6 +42,10 @@
 	maxbodytemp = 999999
 
 	var/squish_chance = 25
+
+/mob/living/simple_mob/animal/passive/cockroach/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
 
 //Deletes the body upon death
 /mob/living/simple_mob/animal/passive/cockroach/death()

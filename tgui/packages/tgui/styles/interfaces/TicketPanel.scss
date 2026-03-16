@@ -1,0 +1,12 @@
+.TicketPanel__Label {
+  display: inline-block;
+  line-height: 1.667em;
+  padding: 0 var(--space-m);
+  outline: 0;
+  border-radius: var(--button-border-radius);
+  transition-property: background-color, color, opacity;
+  transition-duration: var(--button-transition);
+  transition-timing-function: var(--button-transition-timing);
+  user-select: none;
+  background-color: var(--button-background-default);
+}

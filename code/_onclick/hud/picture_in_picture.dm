@@ -1,4 +1,4 @@
-/obj/screen/movable/pic_in_pic
+/atom/movable/screen/movable/pic_in_pic
 	name = "Picture-in-picture"
 	screen_loc = "CENTER"
 	plane = PLANE_WORLD
@@ -7,21 +7,21 @@
 	var/height = 0
 	var/list/shown_to = list()
 	var/list/viewing_turfs = list()
-	var/obj/screen/component_button/button_x
-	var/obj/screen/component_button/button_expand
-	var/obj/screen/component_button/button_shrink
-	var/obj/screen/component_button/button_pop
-	var/obj/screen/map_view_tg/popup_screen
+	var/atom/movable/screen/component_button/button_x
+	var/atom/movable/screen/component_button/button_expand
+	var/atom/movable/screen/component_button/button_shrink
+	var/atom/movable/screen/component_button/button_pop
+	var/atom/movable/screen/map_view_tg/popup_screen
 
 	var/mutable_appearance/standard_background
 
-/obj/screen/movable/pic_in_pic/Initialize(mapload)
+/atom/movable/screen/movable/pic_in_pic/Initialize(mapload)
 	. = ..()
 	make_backgrounds()
 	popup_screen = new
 	popup_screen.generate_view("camera-[REF(src)]_map")
 
-/obj/screen/movable/pic_in_pic/Destroy()
+/atom/movable/screen/movable/pic_in_pic/Destroy()
 	for(var/C in shown_to)
 		unshow_to(C)
 	QDEL_NULL(button_x)
@@ -31,7 +31,7 @@
 	QDEL_NULL(popup_screen)
 	return ..()
 
-/obj/screen/movable/pic_in_pic/component_click(obj/screen/component_button/component, params)
+/atom/movable/screen/movable/pic_in_pic/component_click(atom/movable/screen/component_button/component, params)
 	if(component == button_x)
 		usr.client?.close_popup("camera-[REF(src)]")
 		qdel(src)
@@ -42,7 +42,7 @@
 	else if(component == button_pop)
 		pop_to_screen()
 
-/obj/screen/movable/pic_in_pic/proc/make_backgrounds()
+/atom/movable/screen/movable/pic_in_pic/proc/make_backgrounds()
 	standard_background = new /mutable_appearance()
 	standard_background.icon = 'icons/hud/pic_in_pic.dmi'
 	standard_background.icon_state = "background"
@@ -50,7 +50,7 @@
 	standard_background.plane = PLATING_PLANE
 	standard_background.appearance_flags = PIXEL_SCALE
 
-/obj/screen/movable/pic_in_pic/proc/add_buttons()
+/atom/movable/screen/movable/pic_in_pic/proc/add_buttons()
 	var/static/mutable_appearance/move_tab
 	if(!move_tab)
 		move_tab = new /mutable_appearance()
@@ -65,7 +65,7 @@
 	add_overlay(move_tab)
 
 	if(!button_x)
-		button_x = new /obj/screen/component_button(null, src)
+		button_x = new /atom/movable/screen/component_button(null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "close"
 		MA.icon = 'icons/hud/pic_in_pic.dmi'
@@ -78,7 +78,7 @@
 	vis_contents += button_x
 
 	if(!button_expand)
-		button_expand = new /obj/screen/component_button(null, src)
+		button_expand = new /atom/movable/screen/component_button(null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "expand"
 		MA.icon = 'icons/hud/pic_in_pic.dmi'
@@ -91,7 +91,7 @@
 	vis_contents += button_expand
 
 	if(!button_shrink)
-		button_shrink = new /obj/screen/component_button(null, src)
+		button_shrink = new /atom/movable/screen/component_button(null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "shrink"
 		MA.icon = 'icons/hud/pic_in_pic.dmi'
@@ -104,7 +104,7 @@
 	vis_contents += button_shrink
 
 	if(!button_pop)
-		button_pop = new /obj/screen/component_button(null, src)
+		button_pop = new /atom/movable/screen/component_button(null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "pop"
 		MA.icon = 'icons/hud/pic_in_pic.dmi'
@@ -116,7 +116,7 @@
 	button_pop.transform = M
 	vis_contents += button_pop
 
-/obj/screen/movable/pic_in_pic/proc/add_background()
+/atom/movable/screen/movable/pic_in_pic/proc/add_background()
 	if((width > 0) && (height > 0))
 		var/matrix/M = matrix()
 		M.Scale(width + 0.5, height + 0.5)
@@ -124,7 +124,7 @@
 		standard_background.transform = M
 		add_overlay(standard_background)
 
-/obj/screen/movable/pic_in_pic/proc/set_view_size(width, height, do_refresh = TRUE)
+/atom/movable/screen/movable/pic_in_pic/proc/set_view_size(width, height, do_refresh = TRUE)
 	width = CLAMP(width, 0, 10)
 	height = CLAMP(height, 0, 10)
 	src.width = width
@@ -138,12 +138,12 @@
 	if(do_refresh)
 		refresh_view()
 
-/obj/screen/movable/pic_in_pic/proc/set_view_center(atom/target, do_refresh = TRUE)
+/atom/movable/screen/movable/pic_in_pic/proc/set_view_center(atom/target, do_refresh = TRUE)
 	center = target
 	if(do_refresh)
 		refresh_view()
 
-/obj/screen/movable/pic_in_pic/proc/refresh_view()
+/atom/movable/screen/movable/pic_in_pic/proc/refresh_view()
 	vis_contents -= viewing_turfs
 	if(!width || !height)
 		return
@@ -153,7 +153,7 @@
 		popup_screen.vis_contents.Cut()
 		popup_screen.vis_contents += viewing_turfs
 
-/obj/screen/movable/pic_in_pic/proc/get_visible_turfs()
+/atom/movable/screen/movable/pic_in_pic/proc/get_visible_turfs()
 	var/turf/T = get_turf(center)
 	if(!T)
 		return list()
@@ -161,24 +161,24 @@
 	var/turf/upperright = locate(min(world.maxx, lowerleft.x + width - 1), min(world.maxy, lowerleft.y + height - 1), lowerleft.z)
 	return block(lowerleft, upperright)
 
-/obj/screen/movable/pic_in_pic/proc/show_to(client/C)
+/atom/movable/screen/movable/pic_in_pic/proc/show_to(client/C)
 	if(C)
 		shown_to[C] = 1
 		C.screen += src
 
-/obj/screen/movable/pic_in_pic/proc/unshow_to(client/C)
+/atom/movable/screen/movable/pic_in_pic/proc/unshow_to(client/C)
 	if(C)
 		shown_to -= C
 		C.screen -= src
 
-/obj/screen/movable/pic_in_pic/proc/pop_to_screen()
+/atom/movable/screen/movable/pic_in_pic/proc/pop_to_screen()
 	if(usr.client.screen_maps["camera-[REF(src)]_map"])
 		return
 	usr.client.setup_popup("camera-[REF(src)]", width, height, 2, "1984")
 	popup_screen.display_to(usr)
 	RegisterSignal(usr.client, COMSIG_POPUP_CLEARED, PROC_REF(on_popup_clear))
 
-/obj/screen/movable/pic_in_pic/proc/on_popup_clear(client/source, window)
+/atom/movable/screen/movable/pic_in_pic/proc/on_popup_clear(client/source, window)
 	SIGNAL_HANDLER
 	if(window == "camera-[REF(src)]")
 		UnregisterSignal(usr.client, COMSIG_POPUP_CLEARED)

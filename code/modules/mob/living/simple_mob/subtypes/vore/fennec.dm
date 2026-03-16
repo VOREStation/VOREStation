@@ -66,6 +66,18 @@
 	vore_default_mode = DM_HOLD
 	vore_icons = SA_ICON_LIVING
 
+/mob/living/simple_mob/vore/fennec/load_default_bellies()
+	. = ..()
+
+	var/obj/belly/B = vore_selected
+	B.name = "stomach"
+	B.desc = "Warm, slick, and wet. You're somewhere hot, tight, and very cramped, unless you happen to somehow be smaller than the fennec you're in! It's hard to see, as rippling pink walls clench and smother over your form. If you don't want to be here, a newspaper from a friend ought to get you out. ...right?"
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = TRUE
+	B.belly_fullscreen_color = "#c47cb4"
+	B.belly_fullscreen = "VBOanim_belly1"
+
 /datum/say_list/fennec
 	speak = list("SKREEEE!","Chrp?","Ararrrararr.")
 	emote_hear = list("screEEEEeeches!","chirps.")
@@ -132,11 +144,7 @@
 	. = ..()
 	add_overlay(bigshadow)
 
-/mob/living/simple_mob/vore/fennec/huge/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/fennec/huge/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -161,7 +169,7 @@
 		if(will_eat(L))
 			var/obj/belly/B = vore_organs[1]
 			automatic_custom_emote(message = "snatches and devours [L]!")
-			B.nom_mob(L)
+			B.nom_atom(L)
 			ai_holder.find_target()
 			return
 		else if(L.size_multiplier <= 0.5 && L.step_mechanics_pref)

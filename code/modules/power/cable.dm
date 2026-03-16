@@ -102,13 +102,13 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 	var/turf/T = src.loc			// hide if turf is not intact
 	if(level==1) hide(!T.is_plating())
-	cable_list += src //add it to the global cable list
+	GLOB.cable_list += src //add it to the global cable list
 
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
-	cable_list -= src							//remove it from global cable list
+	GLOB.cable_list -= src							//remove it from global cable list
 	return ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/examine(mob/user)
@@ -281,6 +281,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //handles merging diagonally matching cables
 //for info : direction^3 is flipping horizontally, direction^12 is flipping vertically
 /obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
+	if(SSmachines.powernet_is_defered()) return;
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
 	var/turf/T  = get_step(src, direction&3)//go north/south
@@ -325,6 +326,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
+	if(SSmachines.powernet_is_defered()) return;
 
 	var/fdir = direction ? GLOB.reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
 
@@ -353,6 +355,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // merge with the powernets of power objects in the source turf
 /obj/structure/cable/proc/mergeConnectedNetworksOnTurf()
+	if(SSmachines.powernet_is_defered()) return;
+
 	var/list/to_connect = list()
 
 	if(!powernet) //if we somehow have no powernet, make one (should not happen for cables)
@@ -441,6 +445,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //should be called after placing a cable which extends another cable, creating a "smooth" cable that no longer terminates in the centre of a turf.
 //needed as this can, unlike other placements, disconnect cables
 /obj/structure/cable/proc/denode()
+	if(SSmachines.powernet_is_defered()) return;
+
 	var/turf/T1 = loc
 	if(!T1) return
 
@@ -476,8 +482,9 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	loc = null
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
-	var/datum/powernet/newPN = new()// creates a new powernet...
-	propagate_network(P_list[1], newPN)//... and propagates it to the other side of the cable
+	if(!SSmachines.powernet_is_defered()) // Deferring until rebuild
+		var/datum/powernet/newPN = new()// creates a new powernet...
+		propagate_network(P_list[1], newPN)//... and propagates it to the other side of the cable
 
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable
@@ -518,14 +525,6 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	tool_qualities = list(TOOL_CABLE_COIL)
 	singular_name = "cable"
-
-/obj/item/stack/cable_coil/cyborg
-	name = "cable coil synthesizer"
-	desc = "A device that makes cable."
-	gender = NEUTER
-	matter = null
-	uses_charge = 1
-	charge_costs = list(1)
 
 /obj/item/stack/cable_coil/Initialize(mapload, length = MAXCOIL, var/param_color = null)
 	. = ..()
@@ -625,13 +624,6 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		src.use(15)
 	else
 		to_chat(M, span_notice("You cannot do that."))
-
-/obj/item/stack/cable_coil/cyborg/verb/set_colour()
-	set name = "Change Colour"
-	set category = "Object"
-
-	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
-	set_cable_color(selected_type, usr)
 
 // Items usable on a cable coil :
 //   - Wirecutters : cut them duh !
@@ -999,7 +991,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				src.add_fingerprint(user)
 				CC.add_fingerprint(user)
 				spawn(0)
-					if (src && user.machine==src)
+					if (src && user.check_current_machine(src))
 						src.interact(user)
 		else
 			return

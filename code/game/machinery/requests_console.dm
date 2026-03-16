@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 	light_power = 0.25
 	light_color = "#00ff00"
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = WALL_ITEM
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -52,11 +53,11 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 	var/recipient = ""; //the department which will be receiving the message
 	var/priority = -1 ; //Priority of the message being sent
 	light_range = 0
-	var/datum/announcement/announcement = new
+	var/datum/announcement/announcement
 
 /obj/machinery/requests_console/Initialize(mapload)
 	. = ..()
-
+	announcement = new
 	announcement.title = "[department] announcement"
 	announcement.newscast = 1
 
@@ -148,7 +149,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			if(reject_bad_text(params["write"]))
 				recipient = params["write"] //write contains the string of the receiving department's name
 
-				var/new_message = sanitize(tgui_input_text(ui.user, "Write your message:", "Awaiting Input", ""))
+				var/new_message = tgui_input_text(ui.user, "Write your message:", "Awaiting Input", "", MAX_MESSAGE_LEN)
 				if(new_message)
 					message = new_message
 					screen = RCS_MESSAUTH
@@ -164,7 +165,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 				. = TRUE
 
 		if("writeAnnouncement")
-			var/new_message = sanitize(tgui_input_text(ui.user, "Write your message:", "Awaiting Input", ""))
+			var/new_message = tgui_input_text(ui.user, "Write your message:", "Awaiting Input", "", MAX_MESSAGE_LEN)
 			if(new_message)
 				message = new_message
 			else
@@ -233,7 +234,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
 	if(istype(O, /obj/item/multitool))
-		var/input = sanitize(tgui_input_text(user, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
+		var/input = tgui_input_text(user, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department, MAX_MESSAGE_LEN)
 		if(!input)
 			to_chat(user, "No input found. Please hang up and try your call again.")
 			return
@@ -259,7 +260,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			SStgui.update_uis(src)
 		if(screen == RCS_ANNOUNCE)
 			var/obj/item/card/id/ID = O
-			if(access_RC_announce in ID.GetAccess())
+			if(ACCESS_RC_ANNOUNCE in ID.GetAccess())
 				announceAuth = 1
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else

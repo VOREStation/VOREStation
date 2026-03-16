@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/proc/find_target()
 	var/list/possible_targets = list()
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 			possible_targets += possible_target
 	if(possible_targets.len > 0)
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 
 /datum/objective/proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
 			target = possible_target
 			break
@@ -67,8 +67,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/execute/find_target()
 	..()
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [target.assigned_role] has extracted confidential information above their clearance. Execute [T.him]."
+		explanation_text = "[target.current.real_name], the [target.assigned_role] has extracted confidential information above their clearance. Execute [target.p_them()]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -77,8 +76,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/execute/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute [T.him]."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute [target.p_them()]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -126,8 +124,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/demote/find_target()
 	..()
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
+		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote [target.p_them()] to assistant."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -135,8 +132,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote [target.p_them()] to assistant."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -223,13 +219,13 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/hijack/check_completion()
 	if(!owner.current || owner.current.stat)
 		return 0
-	if(!emergency_shuttle.returned())
+	if(!GLOB.emergency_shuttle.returned())
 		return 0
 	if(issilicon(owner.current))
 		return 0
 	var/area/shuttle = locate(/area/shuttle/escape/centcom)
 	var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.type in protected_mobs)	continue
 		if (player.mind && (player.mind != owner))
 			if(player.stat != DEAD)			//they're not dead!
@@ -245,13 +241,13 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/block/check_completion()
 	if(!istype(owner.current, /mob/living/silicon))
 		return 0
-	if(!emergency_shuttle.returned())
+	if(!GLOB.emergency_shuttle.returned())
 		return 0
 	if(!owner.current)
 		return 0
 	var/area/shuttle = locate(/area/shuttle/escape/centcom)
 	var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.type in protected_mobs)	continue
 		if (player.mind)
 			if (player.stat != 2)
@@ -263,10 +259,10 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 /datum/objective/silence/check_completion()
-	if(!emergency_shuttle.returned())
+	if(!GLOB.emergency_shuttle.returned())
 		return 0
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player == owner.current)
 			continue
 		if(player.mind)
@@ -288,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		return 0
 	if(isbrain(owner.current))
 		return 0
-	if(!emergency_shuttle.returned())
+	if(!GLOB.emergency_shuttle.returned())
 		return 0
 	if(!owner.current || owner.current.stat ==2)
 		return 0
@@ -325,7 +321,8 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/survive/check_completion()
 	if(!owner.current || owner.current.stat == DEAD || isbrain(owner.current))
 		return 0		//Brains no longer win survive objectives. --NEO
-	if(issilicon(owner.current) && owner.current != owner.original)
+	var/mob/living/original = owner.original_character?.resolve()
+	if(issilicon(owner.current) && (original && (owner.current != original)))
 		return 0
 	return 1
 
@@ -481,7 +478,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		var/tmp_obj = new custom_target
 		var/custom_name = tmp_obj:name
 		qdel(tmp_obj)
-		custom_name = sanitize(tgui_input_text(usr, "Enter target name:", "Objective target", custom_name))
+		custom_name = tgui_input_text(usr, "Enter target name:", "Objective target", custom_name, MAX_MESSAGE_LEN)
 		if (!custom_name) return
 		target_name = custom_name
 		steal_target = custom_target
@@ -521,7 +518,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					if(isAI(M) && M.stat != 2) //See if any AI's are alive inside that card.
 						return 1
 
-			for(var/mob/living/silicon/ai/ai in mob_list)
+			for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 				var/turf/T = get_turf(ai)
 				if(istype(T))
 					var/area/check_area = get_area(ai)
@@ -541,39 +538,6 @@ GLOBAL_LIST_EMPTY(all_objectives)
 				if(istype(I, steal_target))
 					return 1
 	return 0
-
-
-
-/datum/objective/download/proc/gen_amount_goal()
-	target_amount = rand(10,20)
-	explanation_text = "Download [target_amount] research levels."
-	return target_amount
-
-
-/datum/objective/download/check_completion()
-	if(!ishuman(owner.current))
-		return 0
-	if(!owner.current || owner.current.stat == 2)
-		return 0
-
-	var/current_amount
-	var/obj/item/rig/S
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/H = owner.current
-		S = H.back
-
-	if(!istype(S) || !S.installed_modules || !S.installed_modules.len)
-		return 0
-
-	var/obj/item/rig_module/datajack/stolen_data = locate() in S.installed_modules
-	if(!istype(stolen_data))
-		return 0
-
-	for(var/datum/tech/current_data in stolen_data.stored_research)
-		if(current_data.level > 1)
-			current_amount += (current_data.level-1)
-
-	return (current_amount<target_amount) ? 0 : 1
 
 /datum/objective/capture/proc/gen_amount_goal()
 	target_amount = rand(5,10)
@@ -606,15 +570,16 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
 	target_amount = rand (lowbound,highbound)
-	if (ticker)
+	if (SSticker)
 		var/n_p = 1 //autowin
-		if (ticker.current_state == GAME_STATE_SETTING_UP)
-			for(var/mob/new_player/P in player_list)
+		if (SSticker.current_state == GAME_STATE_SETTING_UP)
+			for(var/mob/new_player/P in GLOB.player_list)
 				if(P.client && P.ready && P.mind!=owner)
 					n_p ++
-		else if (ticker.current_state == GAME_STATE_PLAYING)
-			for(var/mob/living/carbon/human/P in player_list)
-				if(P.client && !(P.mind.changeling) && P.mind!=owner)
+		else if (SSticker.current_state == GAME_STATE_PLAYING)
+			for(var/mob/living/carbon/human/P in GLOB.player_list)
+				var/datum/component/antag/changeling/comp = P.GetComponent(/datum/component/antag/changeling)
+				if(P.client && !(comp) && P.mind!=owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
 
@@ -622,8 +587,10 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	return target_amount
 
 /datum/objective/absorb/check_completion()
-	if(owner && owner.changeling && owner.changeling.absorbed_dna && (owner.changeling.absorbedcount >= target_amount))
-		return 1
+	if(owner)
+		var/datum/component/antag/changeling/comp = owner.GetComponent(/datum/component/antag/changeling)
+		if(comp && comp.absorbed_dna && (comp.absorbedcount >= target_amount))
+			return 1
 	else
 		return 0
 
@@ -642,7 +609,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2) && (!possible_target.special_role))
 			possible_targets += possible_target
 			for(var/role in roles)
@@ -723,7 +690,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 			if(istype(I,target)) total_amount++
 		if(total_amount >= target_amount) return 1
 
-	for(var/datum/mind/raider in raiders.current_antagonists)
+	for(var/datum/mind/raider in GLOB.raiders.current_antagonists)
 		if(raider.current)
 			for(var/obj/O in raider.current.get_contents())
 				if(istype(O,target)) total_amount++
@@ -777,7 +744,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					S = I
 					total_amount += S.get_amount()
 
-	for(var/datum/mind/raider in raiders.current_antagonists)
+	for(var/datum/mind/raider in GLOB.raiders.current_antagonists)
 		if(raider.current)
 			for(var/obj/item/O in raider.current.get_contents())
 				if(istype(O,/obj/item/stack/material))
@@ -793,7 +760,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	explanation_text = "Do not leave anyone behind, alive or dead."
 
 /datum/objective/heist/preserve_crew/check_completion()
-	if(raiders && raiders.is_raider_crew_safe()) return 1
+	if(GLOB.raiders && GLOB.raiders.is_raider_crew_safe()) return 1
 	return 0
 
 //Borer objective(s).
@@ -836,12 +803,12 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/cult/survive/check_completion()
 	var/acolytes_survived = 0
-	if(!cult)
+	if(!GLOB.cult)
 		return 0
-	for(var/datum/mind/cult_mind in cult.current_antagonists)
+	for(var/datum/mind/cult_mind in GLOB.cult.current_antagonists)
 		if (cult_mind.current && cult_mind.current.stat!=2)
 			var/area/A = get_area(cult_mind.current )
-			if ( is_type_in_list(A, centcom_areas))
+			if ( is_type_in_list(A, GLOB.centcom_areas))
 				acolytes_survived++
 	if(acolytes_survived >= target_amount)
 		return 0
@@ -860,15 +827,15 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/cult/sacrifice/find_target()
 	var/list/possible_targets = list()
 	if(!possible_targets.len)
-		for(var/mob/living/carbon/human/player in player_list)
-			if(player.mind && !(player.mind in cult))
+		for(var/mob/living/carbon/human/player in GLOB.player_list)
+			if(player.mind && !(player.mind in GLOB.cult))
 				possible_targets += player.mind
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 	if(target) explanation_text = "Sacrifice [target.name], the [target.assigned_role]. You will need the sacrifice rune (Hell blood join) and three acolytes to do so."
 
 /datum/objective/cult/sacrifice/check_completion()
-	return (target && cult && !cult.sacrificed.Find(target))
+	return (target && GLOB.cult && !GLOB.cult.sacrificed.Find(target))
 
 /datum/objective/rev/find_target()
 	..()
@@ -896,7 +863,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		if(H.stat == DEAD || H.restrained())
 			return 1
 		// Check if they're converted
-		if(target in revs.current_antagonists)
+		if(target in GLOB.revs.current_antagonists)
 			return 1
 		var/turf/T = get_turf(H)
 		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this

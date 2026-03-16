@@ -3,7 +3,7 @@
 // Makes mining zones more difficult as you enter new ones
 // THIS IS THE FIRST UNIT INITIALIZED THAT STARTS EVERYTHING
 //////////////////////////////
-var/datum/controller/rogue/rm_controller
+GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 
 /datum/controller/rogue
 	var/list/datum/rogue/zonemaster/all_zones = list()
@@ -107,7 +107,7 @@ var/datum/controller/rogue/rm_controller
 	//decay() //Decay removed for now, since people aren't getting high scores as it is.
 
 /datum/controller/rogue/proc/decay(var/manual = 0)
-	to_world_log("RM(stats): DECAY on controller from [difficulty] to [difficulty+(RM_DIFF_DECAY_AMT)] min 100.") //DEBUG code for playtest stats gathering.
+	log_world("RM(stats): DECAY on controller from [difficulty] to [difficulty+(RM_DIFF_DECAY_AMT)] min 100.") //DEBUG code for playtest stats gathering.
 	adjust_difficulty(RM_DIFF_DECAY_AMT)
 
 	if(!manual) //If it was called manually somehow, then don't start the timer, just decay now.
@@ -118,7 +118,7 @@ var/datum/controller/rogue/rm_controller
 /datum/controller/rogue/proc/dbg(var/message)
 	ASSERT(message) //I want a stack trace if there's no message
 	if(debugging)
-		to_world_log("[message]")
+		log_world("[message]")
 
 /datum/controller/rogue/proc/adjust_difficulty(var/amt)
 	ASSERT(amt)
@@ -144,37 +144,37 @@ var/datum/controller/rogue/rm_controller
 
 /datum/controller/rogue/proc/mark_clean(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
 
 	if(ZM in ready_zones)
-		rm_controller.dbg("RMC(mc): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(mc): Finite state machine broken.")
 
 	clean_zones += ZM
 
 /datum/controller/rogue/proc/mark_ready(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
 
 	if(ZM in clean_zones)
-		rm_controller.dbg("RMC(mr): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(mr): Finite state machine broken.")
 
 	ready_zones += ZM
 
 /datum/controller/rogue/proc/unmark_clean(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
 
 	if(!(ZM in clean_zones))
-		rm_controller.dbg("RMC(umc): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(umc): Finite state machine broken.")
 
 	clean_zones -= ZM
 
 /datum/controller/rogue/proc/unmark_ready(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
 
 	if(!(ZM in ready_zones))
-		rm_controller.dbg("RMC(umr): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(umr): Finite state machine broken.")
 
 	ready_zones -= ZM
 
@@ -185,16 +185,16 @@ var/datum/controller/rogue/rm_controller
 		ZM_target = pick(clean_zones)
 
 	if(ZM_target)
-		to_world_log("RM(stats): SCORING [ready_zones.len] zones (if unscored).") //DEBUG code for playtest stats gathering.
+		log_world("RM(stats): SCORING [ready_zones.len] zones (if unscored).") //DEBUG code for playtest stats gathering.
 		for(var/datum/rogue/zonemaster/ZM_toscore in ready_zones) //Score all the zones first.
 			if(ZM_toscore.scored) continue
 			ZM_toscore.score_zone()
 		ZM_target.prepare_zone()
 	else
-		rm_controller.dbg("RMC(pnz): I was asked for a new zone but there's no space.")
+		GLOB.rm_controller.dbg("RMC(pnz): I was asked for a new zone but there's no space.")
 
 	if(clean_zones.len <= 1) //Need to clean the oldest one, too.
-		rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
+		GLOB.rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
 		spawn(0) //Detatch it so we can return the new zone for now.
 			var/datum/rogue/zonemaster/ZM_oldest = get_oldest_zone()
 			if(ZM_oldest) ZM_oldest.clean_zone()

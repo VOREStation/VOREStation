@@ -1,4 +1,4 @@
-var/datum/antagonist/deathsquad/mercenary/commandos
+GLOBAL_DATUM(commandos, /datum/antagonist/deathsquad/mercenary)
 
 /datum/antagonist/deathsquad/mercenary
 	id = MODE_COMMANDO
@@ -7,7 +7,7 @@ var/datum/antagonist/deathsquad/mercenary/commandos
 	role_text_plural = "Commandos"
 	welcome_text = "You are in the employ of a criminal syndicate hostile to corporate interests."
 	antag_sound = 'sound/effects/antag_notice/deathsquid_alert.ogg'
-	id_type = /obj/item/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ert
 
 	hard_cap = 4
 	hard_cap_round = 8
@@ -17,7 +17,7 @@ var/datum/antagonist/deathsquad/mercenary/commandos
 
 /datum/antagonist/deathsquad/mercenary/New()
 	..(1)
-	commandos = src
+	GLOB.commandos = src
 
 /datum/antagonist/deathsquad/mercenary/equip(var/mob/living/carbon/human/player)
 

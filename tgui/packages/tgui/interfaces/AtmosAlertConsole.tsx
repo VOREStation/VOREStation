@@ -13,8 +13,8 @@ export const AtmosAlertConsole = (props) => {
 
   return (
     <Window width={350} height={300}>
-      <Window.Content scrollable>
-        <Section title="Alarms">
+      <Window.Content>
+        <Section fill scrollable title="Alarms">
           <ul>
             {priority_alarms.length === 0 && (
               <li className="color-good">No Priority Alerts</li>

@@ -1,6 +1,6 @@
 /obj/machinery/computer/shuttle_control/web/ninja
 	name = "stealth shuttle control console"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	shuttle_tag = "Ninja"
 
 /datum/shuttle/autodock/web_shuttle/ninja

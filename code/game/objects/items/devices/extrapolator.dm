@@ -3,6 +3,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "extrapolator_scan"
 	desc = "A bulky scanning device, used to extract genetic material of potential pathogens."
+	description_info = "Use on hand to change between SCAN and EXTRACT mode."
 	item_flags = NOBLUDGEON
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
@@ -61,7 +62,7 @@
 		return TRUE
 
 /obj/item/extrapolator/attack_self(mob/user)
-	. = ..()
+	. = ..(user)
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	if(scan)
 		icon_state = "extrapolator_sample"
@@ -171,7 +172,10 @@
 				for(var/datum/symptom/symptom in advance_disease.symptoms)
 					message += "[symptom.name]"
 			else
-				message += span_info("<b>[disease.name]</b>, stage [disease.stage]/[disease.max_stages].")
+				message += span_info("<b>[disease.name]</b>, [global_flag_check(disease.virus_modifiers, DORMANT) ? "<i>dormant virus</i>" : "stage [disease.stage]/[disease.max_stages]"].")
+
+			disease.addToDB()
+
 	to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 
 /obj/item/extrapolator/proc/extrapolate(mob/living/user, atom/target, isolate = FALSE)

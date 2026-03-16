@@ -1,7 +1,7 @@
 #define AI_CHECK_WIRELESS 1
 #define AI_CHECK_RADIO 2
 
-var/list/ai_verbs_default = list(
+GLOBAL_LIST_INIT(ai_verbs_default, list(
 	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_goto_location,
@@ -27,14 +27,14 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/delete_images,
 	/mob/living/silicon/ai/proc/toggle_multicam_verb,
 	/mob/living/silicon/ai/proc/add_multicam_verb
-)
+))
 
 //Not sure why this is necessary...
 /proc/AutoUpdateAI(obj/subject)
 	var/is_in_use = 0
 	if (subject!=null)
-		for(var/mob/living/silicon/ai/M as anything in ai_list)
-			if ((M.client && M.machine == subject))
+		for(var/mob/living/silicon/ai/M as anything in GLOB.ai_list)
+			if ((M.client && M.check_current_machine(subject)))
 				is_in_use = 1
 				subject.attack_ai(M)
 	return is_in_use
@@ -91,7 +91,7 @@ var/list/ai_verbs_default = list(
 	// Multicam Vars
 	var/multicam_allowed = TRUE
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -99,11 +99,11 @@ var/list/ai_verbs_default = list(
 	can_be_antagged = TRUE
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
-	add_verb(src, ai_verbs_default)
+	add_verb(src, GLOB.ai_verbs_default)
 	add_verb(src, silicon_subsystems)
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
-	remove_verb(src, ai_verbs_default)
+	remove_verb(src, GLOB.ai_verbs_default)
 	remove_verb(src, silicon_subsystems)
 
 /mob/living/silicon/ai/Initialize(mapload, is_decoy, datum/ai_laws/L, obj/item/mmi/B, safety = FALSE)
@@ -113,12 +113,12 @@ var/list/ai_verbs_default = list(
 	announcement.announcement_type = "A.I. Announcement"
 	announcement.newscast = 1
 
-	var/list/possibleNames = ai_names
+	var/list/possibleNames = GLOB.ai_names
 
 	var/pickedName = null
 	while(!pickedName)
-		pickedName = pick(ai_names)
-		for (var/mob/living/silicon/ai/A in mob_list)
+		pickedName = pick(GLOB.ai_names)
+		for (var/mob/living/silicon/ai/A in GLOB.mob_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
 				pickedName = null
@@ -183,7 +183,7 @@ var/list/ai_verbs_default = list(
 		on_mob_init()
 
 
-	ai_list += src
+	GLOB.ai_list += src
 	. = ..()
 
 	new /obj/machinery/ai_powersupply(src)
@@ -223,7 +223,7 @@ var/list/ai_verbs_default = list(
 		ooc_notes_style = read_preference(/datum/preference/toggle/living/ooc_notes_style)
 		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 
-	if (malf && !(mind in malf.current_antagonists))
+	if (GLOB.malf && !(mind in GLOB.malf.current_antagonists))
 		show_laws()
 		to_chat(src, span_filter_notice(span_bold("These laws may be changed by other players, or by you being the traitor.")))
 
@@ -231,7 +231,7 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
-	ai_list -= src
+	GLOB.ai_list -= src
 
 	QDEL_NULL(announcement)
 	QDEL_NULL(eyeobj)
@@ -240,7 +240,6 @@ var/list/ai_verbs_default = list(
 	QDEL_NULL(aiCommunicator)
 	QDEL_NULL(aiMulti)
 	QDEL_NULL(aiRadio)
-	QDEL_NULL(aiCamera)
 	hack = null
 
 	destroy_eyeobj()
@@ -287,7 +286,7 @@ var/list/ai_verbs_default = list(
 			custom_sprite = 1
 			selected_sprite = new/datum/ai_icon("Custom", "[src.ckey]-ai", "4", "[ckey]-ai-crash", "#FFFFFF", "#FFFFFF", "#FFFFFF")
 		else
-			selected_sprite = default_ai_icon
+			selected_sprite = GLOB.default_ai_icon
 	update_icon()
 
 /mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
@@ -363,7 +362,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if (!custom_sprite)
-		var/new_sprite = tgui_input_list(src, "Select an icon!", "AI", ai_icons)
+		var/new_sprite = tgui_input_list(src, "Select an icon!", "AI", GLOB.ai_icons)
 		if(new_sprite) selected_sprite = new_sprite
 	update_icon()
 
@@ -407,7 +406,7 @@ var/list/ai_verbs_default = list(
 		call_shuttle_proc(src)
 
 	// hack to display shuttle timer
-	if(emergency_shuttle.online())
+	if(GLOB.emergency_shuttle.online())
 		post_status(src, "shuttle", user = src)
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()
@@ -435,7 +434,7 @@ var/list/ai_verbs_default = list(
 	if(emergency_message_cooldown)
 		to_chat(src, span_warning("Arrays recycling. Please stand by."))
 		return
-	var/input = sanitize(tgui_input_text(src, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+	var/input = tgui_input_text(src, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
 	CentCom_announce(input, src)
@@ -444,15 +443,11 @@ var/list/ai_verbs_default = list(
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
-	if (!camera)
-		return -1
-	return 0
 
 /mob/living/silicon/ai/restrained()
 	return 0
 
-/mob/living/silicon/ai/emp_act(severity)
+/mob/living/silicon/ai/emp_act(severity, recursive)
 	disconnect_shell("Disconnected from remote shell due to ionic interfe%*@$^___")
 	if (prob(30))
 		view_core()
@@ -472,7 +467,7 @@ var/list/ai_verbs_default = list(
 		unset_machine()
 		src << browse(null, t1)
 	if (href_list["switchcamera"])
-		switchCamera(locate(href_list["switchcamera"])) in cameranet.cameras
+		switchCamera(locate(href_list["switchcamera"])) in GLOB.cameranet.cameras
 	if (href_list["showalerts"])
 		subsystem_alarm_monitor()
 	//Carn: holopad requests
@@ -485,7 +480,7 @@ var/list/ai_verbs_default = list(
 				to_chat(src, span_notice("Unable to locate the holopad."))
 
 	if (href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 
 		if(target && (!ishuman(target) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
@@ -494,7 +489,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if(href_list["trackbot"])
-		var/mob/living/bot/target = locate(href_list["trackbot"]) in mob_list
+		var/mob/living/bot/target = locate(href_list["trackbot"]) in GLOB.mob_list
 		if(target)
 			ai_actual_track(target)
 		else
@@ -502,36 +497,37 @@ var/list/ai_verbs_default = list(
 		return
 
 	if(href_list["open"])
-		var/mob/target = locate(href_list["open"]) in mob_list
+		var/mob/target = locate(href_list["open"]) in GLOB.mob_list
 		if(target)
 			open_nearest_door(target)
 
 	return
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/observer/eye/aiEye/moved_eye)
-	cameranet.visibility(moved_eye, client, all_eyes)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes)
 
-/mob/living/silicon/ai/forceMove(atom/destination)
+/mob/living/silicon/ai/forceMove(atom/destination, direction, movetime)
 	. = ..()
 	if(.)
 		end_multicam()
 
-/mob/living/silicon/ai/reset_view(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye)
 	if(camera)
 		camera.set_light(0)
-	if(istype(A,/obj/machinery/camera))
-		camera = A
-	if(A != GLOB.ai_camera_room_landmark)
+	if(istype(new_eye,/obj/machinery/camera))
+		camera = new_eye
+	if(new_eye != GLOB.ai_camera_room_landmark)
 		end_multicam()
 	. = ..()
 	if(.)
-		if(!A && isturf(loc) && eyeobj)
+		if(!new_eye && isturf(loc) && eyeobj)
 			end_multicam()
-			client.eye = eyeobj
-			client.perspective = MOB_PERSPECTIVE
-	if(istype(A,/obj/machinery/camera))
-		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.set_light(0)
+			reset_perspective(eyeobj)
+	if(istype(new_eye,/obj/machinery/camera))
+		if(camera_light_on)
+			new_eye.set_light(AI_CAMERA_LUMINOSITY)
+		else
+			new_eye.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
@@ -560,10 +556,10 @@ var/list/ai_verbs_default = list(
 		return
 
 	var/list/cameralist = new()
-	for (var/obj/machinery/camera/C in cameranet.cameras)
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		if(!C.can_use())
 			continue
-		var/list/tempnetwork = difflist(C.network,restricted_camera_networks,1)
+		var/list/tempnetwork = difflist(C.network, GLOB.restricted_camera_networks, 1)
 		for(var/i in tempnetwork)
 			cameralist[i] = i
 
@@ -584,7 +580,7 @@ var/list/ai_verbs_default = list(
 
 	src.network = network
 
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		if(!C.can_use())
 			continue
 		if(network in C.network)
@@ -790,7 +786,7 @@ var/list/ai_verbs_default = list(
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to unbolt \the [src] from the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes unfastening \the [src]!"))
@@ -799,7 +795,7 @@ var/list/ai_verbs_default = list(
 		else
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to bolt \the [src] to the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to bolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes fastening down \the [src]!"))
@@ -842,7 +838,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
-/mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
+/mob/living/silicon/ai/proc/check_unable(var/flags = NONE, var/feedback = 1)
 	if(stat == DEAD)
 		if(feedback)
 			to_chat(src, span_warning("You are dead!"))
@@ -907,7 +903,7 @@ var/list/ai_verbs_default = list(
 	..()
 
 /mob/living/silicon/ai/update_icon()
-	if(!selected_sprite) selected_sprite = default_ai_icon
+	if(!selected_sprite) selected_sprite = GLOB.default_ai_icon
 
 	if(stat == DEAD)
 		icon_state = selected_sprite.dead_icon
@@ -952,7 +948,7 @@ var/list/ai_verbs_default = list(
 			var/mob/living/carbon/human/I = impersonated[speaker_name]
 
 			if(!I)
-				for(var/mob/living/carbon/human/M in mob_list)
+				for(var/mob/living/carbon/human/M in GLOB.mob_list)
 					if(M.real_name == speaker_name)
 						I = M
 						impersonated[speaker_name] = I
@@ -1019,19 +1015,19 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/announcer/Initialize(mapload)
 	. = ..()
-	mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
-	ai_list -= src
-	silicon_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.ai_list -= src
+	GLOB.silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
 
 /mob/living/silicon/ai/announcer/Life()
-	mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
-	ai_list -= src
-	silicon_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.ai_list -= src
+	GLOB.silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
 
 #undef AI_CHECK_WIRELESS

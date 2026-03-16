@@ -159,9 +159,8 @@
 			if(prob(15))
 				M.apply_effect((rand(30,80)),IRRADIATE)
 				M.Weaken(5)
-				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				for (var/mob/V in viewers(src))
-					V.show_message(span_red("[M] writhes in pain as [TM.his] vacuoles boil."), 3, span_red("You hear the crunching of leaves."), 2)
+					V.show_message(span_red("[M] writhes in pain as [M.p_their()] vacuoles boil."), 3, span_red("You hear the crunching of leaves."), 2)
 			if(prob(35))
 			//	for (var/mob/V in viewers(src)) //Public messages commented out to prevent possible metaish genetics experimentation and stuff. - Cheridan
 			//		V.show_message(span_red("[M] is mutated by the radiation beam."), 3, span_red(" You hear the snapping of twigs."), 2)
@@ -192,7 +191,7 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
-	var/decl/plantgene/gene = null
+	var/datum/decl/plantgene/gene = null
 	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/florayield
@@ -283,12 +282,21 @@
 
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/carbon/human/human_target = target
 		var/obj/item/handcuffs/legcuffs/bola/B = new(src.loc)
-		if(!B.place_legcuffs(M,firer))
+		for(var/obj/item/clothing/cloth in list(human_target.wear_suit, human_target.w_uniform, human_target.shoes)) //Check if we have a thick material covering our feet.
+			if((cloth.body_parts_covered & FEET) && (cloth.item_flags & THICKMATERIAL))
+				..()
+				return
+		if(!B.place_legcuffs(human_target,firer))
 			if(B)
 				qdel(B)
 	..()
+
+/obj/item/projectile/bola/energy
+	name = "energy_bola"
+	icon_state = "bola_energy"
+	damage = 0
 
 /obj/item/projectile/webball
 	name = "ball of web"
@@ -372,7 +380,7 @@
 	..()
 
 /obj/item/projectile/beam/tungsten/on_impact(var/atom/A)
-	if(istype(A,/turf/simulated/shuttle/wall) || istype(A,/turf/simulated/wall) || (istype(A,/turf/simulated/mineral) && A.density) || istype(A,/obj/mecha) || istype(A,/obj/machinery/door))
+	if(istype(A,/turf/simulated/shuttle/wall) || istype(A,/turf/simulated/wall) || (ismineralturf(A) && A.density) || istype(A,/obj/mecha) || istype(A,/obj/machinery/door))
 		var/blast_dir = src.dir
 		A.visible_message(span_danger("\The [A] begins to glow!"))
 		spawn(2 SECONDS)

@@ -36,6 +36,9 @@ Bonus
 		"Transmission 8" = "The host will bleed far more violently, loosing even more blood, and spraying infected blood everywhere."
 	)
 
+	prefixes = list("Bloody ", "Hemo")
+	bodies = list("Hemophilia")
+
 /datum/symptom/flesh_eating/Start(datum/disease/advance/A)
 	if(!..())
 		return

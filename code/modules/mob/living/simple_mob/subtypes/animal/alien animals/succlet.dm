@@ -72,17 +72,12 @@
 	say_maybe_target = list("...")
 	say_got_target = list("...")
 
-/mob/living/simple_mob/vore/alienanimals/succlet/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/alienanimals/succlet/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stummy"
 	B.desc = "It's a star shaped stomach. A stummy, if you will. It's warm and soft, not unlike plush, but it's tight!"
 	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 0
 	B.digest_burn = 0
 	B.digest_oxy = 12

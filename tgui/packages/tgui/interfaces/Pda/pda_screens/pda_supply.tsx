@@ -31,8 +31,8 @@ export const pda_supply = (props) => {
       <LabeledList>
         <LabeledList.Item label="Location">
           {supply.shuttle_moving
-            ? 'Moving to station ' + supply.shuttle_eta
-            : 'Shuttle at ' + supply.shuttle_loc}
+            ? `Moving to station ${supply.shuttle_eta}`
+            : `Shuttle at ${supply.shuttle_loc}`}
         </LabeledList.Item>
       </LabeledList>
       <Section>

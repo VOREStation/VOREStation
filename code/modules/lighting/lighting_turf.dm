@@ -96,14 +96,14 @@
 
 ///Setter for the byond luminosity var
 /turf/proc/set_luminosity(new_luminosity, force)
-	if(((is_outdoors() && !force) || outdoors_adjacent) && (z in fake_sunlight_zs)) //Special exception for fakesun lit tiles
+	if(((is_outdoors() && !force) || outdoors_adjacent) && (z in GLOB.fake_sunlight_zs)) //Special exception for fakesun lit tiles
 		return
 
 	luminosity = new_luminosity
 
 ///Checks planets and fake_suns to see if our turf should be handled by either
 /turf/proc/check_for_sun()
-	if((SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) || (z in fake_sunlight_zs))
+	if((SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) || (z in GLOB.fake_sunlight_zs))
 		return TRUE
 	return FALSE
 
@@ -127,7 +127,7 @@
 
 
 /turf/proc/change_area(area/old_area, area/new_area)
-	if(SSlighting.subsystem_initialized)
+	if(SSlighting.initialized)
 		if (new_area.dynamic_lighting != old_area.dynamic_lighting)
 			if (new_area.dynamic_lighting)
 				lighting_build_overlay()

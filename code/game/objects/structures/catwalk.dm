@@ -113,7 +113,7 @@
 	if(istype(C, /obj/item/stack/tile/floor) && !plated_tile)
 		var/obj/item/stack/tile/floor/ST = C
 		to_chat(user, span_notice("Placing tile..."))
-		if (!do_after(user, 10))
+		if (!do_after(user, 1 SECOND, target = src))
 			return
 		if(!ST.use(1))
 			return
@@ -174,7 +174,7 @@
 	if(activated) return
 
 	if(locate(/obj/structure/catwalk) in loc)
-		warning("Frame Spawner: A catwalk already exists at [loc.x]-[loc.y]-[loc.z]")
+		WARNING("Frame Spawner: A catwalk already exists at [loc.x]-[loc.y]-[loc.z]")
 	else
 		var/obj/structure/catwalk/C = new /obj/structure/catwalk(loc)
 		C.plated_tile = tile

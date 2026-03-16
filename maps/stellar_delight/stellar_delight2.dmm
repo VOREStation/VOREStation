@@ -206,13 +206,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
-"av" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/mob/living/simple_mob/animal/goat{
-	name = "Ted"
-	},
-/turf/simulated/floor/tiled/freezer/cold,
-/area/crew_quarters/kitchen)
 "aw" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -579,13 +572,10 @@
 "bj" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/orange,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = 32
 	},
-/obj/structure/low_wall/bay/reinforced/orange,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "bk" = (
@@ -745,7 +735,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck2/aftstarboard)
 "bw" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -803,7 +793,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck2/starboardescape)
 "bD" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -907,6 +897,7 @@
 	dir = 4
 	},
 /mob/living/simple_mob/animal/passive/opossum/poppy,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/engineering/workshop)
 "bN" = (
@@ -1055,13 +1046,9 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/stellardelight/deck2/briefingroom)
 "cc" = (
-/obj/machinery/power/smes/buildable{
+/obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Engine - Core";
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	name = "Engine";
-	output_level = 250000
+	name = "Engine"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -1174,7 +1161,7 @@
 /area/engineering/storage)
 "cq" = (
 /obj/machinery/air_sensor{
-	frequency = 1438;
+	frequency = 1433;
 	id_tag = "burn_chamber";
 	output = 63
 	},
@@ -1291,6 +1278,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-8"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engine_eva)
 "cG" = (
@@ -2159,6 +2147,11 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/communicator,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	listening = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "ew" = (
@@ -2450,7 +2443,7 @@
 	dir = 4
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "starboard_escape_pod";
 	pixel_y = 24
 	},
@@ -2824,13 +2817,10 @@
 "fN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/orange,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = -32
 	},
-/obj/structure/low_wall/bay/reinforced/orange,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "fO" = (
@@ -3100,7 +3090,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "port_escape_berth";
 	pixel_x = -24
 	},
@@ -3151,7 +3141,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/engine{
 	external_pressure_bound = 100;
 	external_pressure_bound_default = 0;
-	frequency = 1438;
+	frequency = 1433;
 	icon_state = "map_vent_in";
 	id_tag = "cooling_out";
 	initialize_directions = 4;
@@ -3778,6 +3768,10 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portfore)
+"hP" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck2/atmos)
 "hQ" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/surgery,
@@ -3982,6 +3976,16 @@
 /obj/structure/low_wall/bay/reinforced/white,
 /turf/simulated/floor,
 /area/medical/psych)
+"iq" = (
+/obj/structure/table/rack,
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/engineering,
+/obj/random/bomb_supply,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck2/atmos)
 "ir" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -4097,15 +4101,14 @@
 /area/crew_quarters/kitchen)
 "iG" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable{
+/obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Power - Main";
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	name = "Main";
-	output_level = 1e+006
+	name = "Main"
 	},
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor/plating,
 /area/engineering/storage)
 "iH" = (
@@ -4122,7 +4125,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/reagent_containers/spray/cleaner,
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
 "iJ" = (
@@ -4159,6 +4167,13 @@
 	},
 /turf/simulated/floor,
 /area/stellardelight/deck2/starboardescape)
+"iM" = (
+/obj/structure/cable/orange{
+	icon_state = "1-2"
+	},
+/obj/machinery/space_heater,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck2/atmos)
 "iN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/standard/glass{
@@ -4217,7 +4232,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "iU" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -4281,6 +4296,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/monitoring)
+"jb" = (
+/obj/machinery/rnd/production/protolathe/department/cargo,
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/quartermaster/storage)
 "jc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
@@ -4299,6 +4318,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/port)
+"je" = (
+/obj/machinery/rnd/production/protolathe/department/medical,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/medical/cmostore)
 "jf" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -4315,6 +4338,13 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engine_eva)
+"jh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/mob/living/simple_mob/animal/passive/mothroach/bar,
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "ji" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -4353,6 +4383,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/starboard)
+"jl" = (
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/engine_room)
 "jm" = (
 /obj/structure/table/reinforced,
 /obj/item/gps/engineering{
@@ -4564,6 +4598,13 @@
 /obj/item/pen,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
+"jH" = (
+/obj/structure/cable/orange{
+	icon_state = "1-4"
+	},
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/storage)
 "jI" = (
 /obj/structure/table/woodentable,
 /obj/structure/plushie/ian{
@@ -4610,13 +4651,10 @@
 "jO" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = -32
 	},
-/obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "jP" = (
@@ -4628,6 +4666,13 @@
 "jQ" = (
 /turf/simulated/floor/reinforced,
 /area/quartermaster/storage)
+"jR" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/engine_room)
 "jS" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -4937,6 +4982,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftstarboard)
+"kw" = (
+/mob/living/simple_mob/animal/goat{
+	name = "Ted"
+	},
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "kx" = (
 /obj/structure/disposalpipe/sortjunction/wildcard/flipped{
 	dir = 1
@@ -5368,12 +5419,6 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
 "lq" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_x = -32
-	},
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
@@ -6038,6 +6083,11 @@
 /obj/item/clothing/shoes/black,
 /obj/machinery/light,
 /obj/item/communicator,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	listening = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "mH" = (
@@ -7551,7 +7601,7 @@
 /obj/structure/cable/orange{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -8131,6 +8181,7 @@
 /obj/machinery/alarm/angled{
 	dir = 4
 	},
+/obj/random/tank,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/atmos)
 "rt" = (
@@ -8180,7 +8231,7 @@
 "ry" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/space/void/captain,
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/structure/window/reinforced,
@@ -8573,6 +8624,7 @@
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
+/obj/random/trash_pile,
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck2/atmos)
 "sy" = (
@@ -8768,12 +8820,6 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_y = 32
-	},
 /obj/machinery/camera/network/engine,
 /turf/simulated/floor/airless,
 /area/engineering/engine_room)
@@ -8862,11 +8908,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "tg" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA"
-	},
+/obj/structure/sign/warning/radioactive,
 /turf/simulated/wall/bay/r_wall/orange,
 /area/engineering/engine_room)
 "th" = (
@@ -9173,7 +9215,8 @@
 	},
 /obj/item/radio{
 	pixel_x = 4;
-	pixel_y = -4
+	pixel_y = -4;
+	listening = 0
 	},
 /obj/item/radio{
 	pixel_x = 7;
@@ -9388,7 +9431,7 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/starboard)
 "ur" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -10131,7 +10174,7 @@
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/structure/cable/orange{
@@ -11584,7 +11627,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
 "zz" = (
 /obj/effect/floor_decal/milspec/color/black/corner,
@@ -11914,7 +11957,7 @@
 /turf/simulated/floor,
 /area/stellardelight/deck2/combustionworkshop)
 "Ar" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -12043,7 +12086,7 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/locker_room)
 "AF" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -13002,7 +13045,7 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
 "CQ" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -13076,7 +13119,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "CZ" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -14077,7 +14120,7 @@
 	dir = 6
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cargo_bay";
 	pixel_y = 24
 	},
@@ -15145,24 +15188,21 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Hu" = (
-/obj/structure/table/standard,
 /obj/structure/disposalpipe/tagger{
 	dir = 8;
 	name = "package tagger - Trash";
 	sort_tag = "Trash"
 	},
+/obj/machinery/ore_silo,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
 "Hv" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = 32
 	},
-/obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "Hw" = (
@@ -15718,12 +15758,6 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_y = -32
-	},
 /obj/machinery/camera/network/engine{
 	dir = 1
 	},
@@ -16110,12 +16144,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/starboardsolars)
 "Jx" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_x = -32
-	},
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/orange{
 	icon_state = "0-2"
@@ -16123,7 +16151,7 @@
 /obj/structure/cable/orange{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -16170,9 +16198,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engineering_monitoring)
-"JE" = (
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/engineering/engine_room)
 "JF" = (
 /obj/structure/sign/directions/bar{
 	dir = 1;
@@ -17309,17 +17334,9 @@
 /area/engineering/engine_room)
 "Mh" = (
 /obj/structure/table/rack/steel,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = -3;
 	pixel_y = 3
-	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/circuitboard/destructive_analyzer{
-	pixel_x = -1;
-	pixel_y = 1
 	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{
@@ -18145,7 +18162,7 @@
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -19158,6 +19175,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-8"
 	},
+/obj/machinery/space_heater,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/atmos)
 "Qh" = (
@@ -19535,7 +19553,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/recreation_area)
 "QW" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -19904,10 +19922,7 @@
 /turf/simulated/floor,
 /area/quartermaster/storage)
 "RP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
+/obj/machinery/rnd/production/protolathe/department/engineering,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
 "RQ" = (
@@ -19955,7 +19970,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
 "RW" = (
 /obj/structure/sign/painting/library_secure{
@@ -20036,7 +20051,7 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/chemistry)
 "Sj" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -20044,7 +20059,7 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
 "Sk" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -20405,6 +20420,7 @@
 /obj/effect/floor_decal/milspec/color/green/half{
 	dir = 4
 	},
+/obj/machinery/rnd/production/protolathe/department/service,
 /turf/simulated/floor/tiled,
 /area/hydroponics)
 "SZ" = (
@@ -20885,7 +20901,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/structure/cable/orange{
@@ -21094,9 +21110,8 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/starboard)
 "UB" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Engineering";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Engineering"
 	},
 /obj/structure/cable/orange{
 	icon_state = "0-2"
@@ -21307,7 +21322,7 @@
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -21531,7 +21546,7 @@
 /area/engineering/atmos/monitoring)
 "VB" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
-	frequency = 1438;
+	frequency = 1433;
 	id = "cooling_in";
 	name = "Coolant Injector";
 	pixel_y = 1;
@@ -21818,7 +21833,7 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "Wn" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -22491,7 +22506,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "starboard_escape_berth";
 	pixel_x = 24
 	},
@@ -22582,6 +22597,7 @@
 	nightshift_setting = 2
 	},
 /obj/structure/cable/orange,
+/obj/machinery/space_heater,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/atmos)
 "XX" = (
@@ -23088,7 +23104,7 @@
 	dir = 8
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "port_escape_pod";
 	pixel_y = 24
 	},
@@ -29590,10 +29606,10 @@ Jh
 Jh
 mI
 sx
-DB
+iq
 rs
-DB
-DB
+hP
+hP
 Hm
 Hm
 Hm
@@ -29874,7 +29890,7 @@ mI
 mI
 fQ
 th
-Wo
+iM
 XW
 Qg
 eq
@@ -30955,7 +30971,7 @@ Gi
 wL
 ch
 DD
-av
+AC
 AC
 DP
 BF
@@ -30972,7 +30988,7 @@ iZ
 ej
 WN
 ok
-dP
+kw
 AR
 KK
 si
@@ -32993,7 +33009,7 @@ Eo
 hA
 QP
 gu
-Kf
+je
 Kf
 Kf
 Kf
@@ -33862,7 +33878,7 @@ RO
 ae
 gt
 WE
-Ui
+jb
 BO
 Ui
 dN
@@ -34359,7 +34375,7 @@ sP
 dw
 On
 py
-fp
+jh
 Dj
 Sx
 po
@@ -36559,7 +36575,7 @@ fZ
 ZP
 RV
 zy
-JE
+Sb
 Lp
 OF
 cN
@@ -37404,7 +37420,7 @@ bT
 bT
 bT
 bT
-MB
+jH
 sY
 Vf
 EP
@@ -37416,7 +37432,7 @@ Vf
 EP
 Vf
 Ix
-ni
+jl
 Ra
 Ra
 rT
@@ -37972,7 +37988,7 @@ Jh
 Jh
 Jh
 NL
-RY
+jR
 ni
 ni
 Hv
@@ -37984,7 +38000,7 @@ aQ
 jO
 ni
 ni
-ni
+jl
 Wb
 Wb
 NL

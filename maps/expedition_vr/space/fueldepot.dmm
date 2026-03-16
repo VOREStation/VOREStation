@@ -275,7 +275,7 @@
 /turf/space,
 /area/space)
 "aM" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "depot_pd"
 	},
 /obj/structure/cable{
@@ -1264,7 +1264,7 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "ow" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "depot_pd"
 	},
 /obj/structure/cable{
@@ -1584,7 +1584,7 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "VA" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "depot_pd"
 	},
 /obj/structure/cable{

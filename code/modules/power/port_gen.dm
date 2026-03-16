@@ -71,7 +71,7 @@
 		else
 			. += span_notice("The generator is off.")
 
-/obj/machinery/power/port_gen/emp_act(severity)
+/obj/machinery/power/port_gen/emp_act(severity, recursive)
 	var/duration = 6000 //ten minutes
 	switch(severity)
 		if(1)
@@ -236,7 +236,6 @@
 		var/temp_loss = (temperature - cooling_temperature)/TEMPERATURE_DIVISOR
 		temp_loss = between(2, round(temp_loss, 1), TEMPERATURE_CHANGE_MAX)
 		temperature = max(temperature - temp_loss, cooling_temperature)
-		updateDialog()
 
 	if(overheating)
 		overheating--
@@ -278,7 +277,6 @@
 		to_chat(user, span_notice("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
-		updateUsrDialog(user)
 		return
 	else if(!active)
 		if(O.has_tool_quality(TOOL_WRENCH))

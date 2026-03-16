@@ -9,7 +9,7 @@
 	can_speak = 1
 	origin_tech = list(TECH_BIO = 3)
 
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.
 
@@ -19,6 +19,9 @@
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/radio/headset/mmi_radio/radio = null//Let's give it a radio.
 	var/mob/living/body_backup = null //add reforming
+
+	///Var for attack_self chain
+	var/special_handling = FALSE
 
 /obj/item/mmi/Initialize(mapload)
 	. = ..()
@@ -69,8 +72,8 @@
 		brainmob.container = src
 		brainmob.set_stat(CONSCIOUS)
 		brainmob.blinded = 0 //VOREedit Fixes MMIs vision
-		dead_mob_list -= brainmob//Update dem lists
-		living_mob_list += brainmob
+		GLOB.dead_mob_list -= brainmob//Update dem lists
+		GLOB.living_mob_list += brainmob
 
 		user.drop_item()
 		brainobj = O
@@ -98,7 +101,12 @@
 	..()
 
 //TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
-/obj/item/mmi/attack_self(mob/user as mob)
+/obj/item/mmi/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_handling)
+		return FALSE
 	if(!brainmob)
 		to_chat(user, span_warning("You upend the MMI, but there's nothing in it."))
 	else if(locked)
@@ -115,7 +123,7 @@
 		brain.preserved = FALSE
 		brainmob.container = null//Reset brainmob mmi var.
 		brainmob.loc = brain//Throw mob into brain.
-		living_mob_list -= brainmob//Get outta here
+		GLOB.living_mob_list -= brainmob//Get outta here
 		brain.brainmob = brainmob//Set the brain to use the brainmob
 		brainmob = null//Set mmi brainmob var to null
 
@@ -126,7 +134,7 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.container = src
 
 	// Copy modifiers.
@@ -155,6 +163,8 @@
 		borg.mmi = null
 	QDEL_NULL(radio)
 	QDEL_NULL(brainmob)
+	if(brainobj)
+		QDEL_NULL(brainobj)
 	return ..()
 
 /obj/item/mmi/radio_enabled
@@ -162,7 +172,7 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio. Wait, don't they all?"
 	origin_tech = list(TECH_BIO = 4)
 
-/obj/item/mmi/emp_act(severity)
+/obj/item/mmi/emp_act(severity, recursive)
 	if(!brainmob)
 		return
 	else
@@ -180,11 +190,14 @@
 /obj/item/mmi/digital
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/ghost_query_type = null
 	var/datum/ghost_query/Q //This is used so we can unregister ourself.
+	special_handling = TRUE
+	///Var for attack_self chain
+	var/is_digital_robot = FALSE
 
 /obj/item/mmi/digital/Initialize(mapload)
 	. = ..()
@@ -196,7 +209,7 @@
 	src.brainmob.container = src
 	src.brainmob.set_stat(CONSCIOUS)
 	src.brainmob.silent = 0
-	dead_mob_list -= src.brainmob
+	GLOB.dead_mob_list -= src.brainmob
 
 /obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
@@ -216,30 +229,20 @@
 	else
 		. += span_deadsay("It appears to be completely inactive.")
 
-/obj/item/mmi/digital/emp_act(severity)
-	if(!src.brainmob)
-		return
-	else
-		switch(severity)
-			if(1)
-				src.brainmob.emp_damage += rand(20,30)
-			if(2)
-				src.brainmob.emp_damage += rand(10,20)
-			if(3)
-				src.brainmob.emp_damage += rand(5,10)
-			if(4)
-				src.brainmob.emp_damage += rand(0,5)
-	..()
-
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.set_stat(CONSCIOUS)
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	return
 
-/obj/item/mmi/digital/attack_self(mob/user as mob)
+/obj/item/mmi/digital/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(is_digital_robot)
+		return FALSE
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		to_chat(user, span_blue("You carefully locate the manual activation switch and start the [src]'s boot process."))
@@ -262,7 +265,7 @@
 	else
 		reset_search()
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	qdel_null(Q) //get rid of the query
+	QDEL_NULL(Q) //get rid of the query
 
 /obj/item/mmi/digital/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	if(src.brainmob && src.brainmob.key)
@@ -301,6 +304,7 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/drone_brain
+	is_digital_robot = TRUE
 
 /obj/item/mmi/digital/robot/Initialize(mapload)
 	. = ..()

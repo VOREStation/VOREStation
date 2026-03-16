@@ -13,17 +13,17 @@
 		if((GG.z in zLevels) && GG.on)
 			generators += GG
 
-	if(generators.len)
+	if(length(generators))
 		endWhen = rand(5 MINUTES, 20 MINUTES)
 	else
 		endWhen = rand(15, 60)
 
 /datum/event/gravity/announce()
-	if(generators.len)
-		command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. \
+	if(length(generators))
+		GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. \
 										Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure")
 	else
-		command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system \
+		GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system \
 										reinitializes. Please stand by while the gravity system reinitializes.", "Gravity Failure")
 
 /datum/event/gravity/start()
@@ -36,6 +36,8 @@
 				GG.charge_count = 10
 	else
 		for(var/area/A in world)
+			if(A.flags & AREA_ALWAYS_HAS_GRAVITY)
+				continue
 			if(A.z in zLevels)
 				A.gravitychange(GLOB.gravity_is_on)
 
@@ -45,7 +47,7 @@
 
 
 		var/did_anything = FALSE
-		if(generators.len)
+		if(length(generators))
 			for(var/obj/machinery/gravity_generator/main/GG in generators)
 				if(!GG.on)
 					GG.breaker = TRUE
@@ -54,9 +56,11 @@
 					did_anything = TRUE
 		else
 			for(var/area/A in world)
+				if(A.flags & AREA_ALWAYS_HAS_GRAVITY)
+					continue
 				if(A.z in zLevels)
 					A.gravitychange(GLOB.gravity_is_on)
 					did_anything = TRUE
 
 		if(did_anything)
-			command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+			GLOB.command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")

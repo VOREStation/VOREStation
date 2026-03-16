@@ -8,12 +8,16 @@
 
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	is_digital_robot = TRUE
 
 
 /obj/item/mmi/digital/posibrain/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		to_chat(user, span_blue("You carefully locate the manual activation switch and start the positronic brain's boot process."))
@@ -23,7 +27,7 @@
 		addtimer(CALLBACK(src, PROC_REF(reset_search)), 60 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/mmi/digital/posibrain/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(jobban_isbanned(O, JOB_AI) && jobban_isbanned(O, JOB_CYBORG))
@@ -85,7 +89,7 @@
 		M.show_message(span_blue("The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?"))
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
-/obj/item/mmi/digital/posibrain/emp_act(severity)
+/obj/item/mmi/digital/posibrain/emp_act(severity, recursive)
 	if(!src.brainmob)
 		return
 	else

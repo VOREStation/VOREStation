@@ -5,118 +5,118 @@
 	Class: scriptError
 	An error scanning or parsing the source code.
 */
-/scriptError
+/datum/scriptError
 	var/message /// A message describing the problem.
-/scriptError/New(msg=null)
+/datum/scriptError/New(msg=null)
 	if(msg)message=msg
 
-/scriptError/BadToken
+/datum/scriptError/BadToken
 	message="Unexpected token: "
-	var/token/token
-/scriptError/BadToken/New(token/t)
+	var/datum/token/token
+/datum/scriptError/BadToken/New(datum/token/t)
 	token=t
 	if(t&&t.line) message="[t.line]: [message]"
 	if(istype(t))message+="[t.value]"
 	else message+="[t]"
 
-/scriptError/InvalidID
-	parent_type=/scriptError/BadToken
+/datum/scriptError/InvalidID
+	parent_type=/datum/scriptError/BadToken
 	message="Invalid identifier name: "
 
-/scriptError/ReservedWord
-	parent_type=/scriptError/BadToken
+/datum/scriptError/ReservedWord
+	parent_type=/datum/scriptError/BadToken
 	message="Identifer using reserved word: "
 
-/scriptError/BadNumber
-	parent_type=/scriptError/BadToken
+/datum/scriptError/BadNumber
+	parent_type=/datum/scriptError/BadToken
 	message = "Bad number: "
 
-/scriptError/BadReturn
-	var/token/token
+/datum/scriptError/BadReturn
+	var/datum/token/token
 	message = "Unexpected return statement outside of a function."
-/scriptError/BadReturn/New(token/t)
+/datum/scriptError/BadReturn/New(datum/token/t)
 	src.token=t
 
-/scriptError/EndOfFile
+/datum/scriptError/EndOfFile
 	message = "Unexpected end of file."
 
-/scriptError/ExpectedToken
+/datum/scriptError/ExpectedToken
 	message="Expected: '"
-/scriptError/ExpectedToken/New(id, token/T)
+/datum/scriptError/ExpectedToken/New(id, datum/token/T)
 	if(T && T.line) message="[T.line]: [message]"
 	message+="[id]'. "
 	if(T)message+="Found '[T.value]'."
 
 
-/scriptError/UnterminatedComment
+/datum/scriptError/UnterminatedComment
 	message="Unterminated multi-line comment statement: expected */"
 
-/scriptError/DuplicateFunction
+/datum/scriptError/DuplicateFunction
 	message="Function defined twice."
-/scriptError/DuplicateFunction/New(name, token/t)
+/datum/scriptError/DuplicateFunction/New(name, datum/token/t)
 	message="Function '[name]' defined twice."
 
 /*
 	Class: runtimeError
 	An error thrown by the interpreter in running the script.
 */
-/runtimeError
+/datum/runtimeError
 	var/name
 	var/message /// A basic description as to what went wrong.
-	var/stack/stack
+	var/datum/stack/stack
 
 /**
  * Proc: ToString
  * Returns a description of the error suitable for showing to the user.
  */
-/runtimeError/proc/ToString()
+/datum/runtimeError/proc/ToString()
 	. = "[name]: [message]"
 	if(!stack.Top()) return
 	.+="\nStack:"
 	while(stack.Top())
-		var/node/statement/FunctionCall/stmt=stack.Pop()
+		var/datum/node/statement/FunctionCall/stmt=stack.Pop()
 		. += "\n\t [stmt.func_name]()"
 
-/runtimeError/TypeMismatch
+/datum/runtimeError/TypeMismatch
 	name="TypeMismatchError"
-/runtimeError/TypeMismatch/New(op, a, b)
+/datum/runtimeError/TypeMismatch/New(op, a, b)
 	message="Type mismatch: '[a]' [op] '[b]'"
 
-/runtimeError/UnexpectedReturn
+/datum/runtimeError/UnexpectedReturn
 	name="UnexpectedReturnError"
 	message="Unexpected return statement."
 
-/runtimeError/UnknownInstruction
+/datum/runtimeError/UnknownInstruction
 	name="UnknownInstructionError"
 	message="Unknown instruction type. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
-/runtimeError/UndefinedVariable
+/datum/runtimeError/UndefinedVariable
 	name="UndefinedVariableError"
-/runtimeError/UndefinedVariable/New(variable)
+/datum/runtimeError/UndefinedVariable/New(variable)
 	message="Variable '[variable]' has not been declared."
 
-/runtimeError/UndefinedFunction
+/datum/runtimeError/UndefinedFunction
 	name="UndefinedFunctionError"
-/runtimeError/UndefinedFunction/New(function)
+/datum/runtimeError/UndefinedFunction/New(function)
 	message="Function '[function]()' has not been defined."
 
-/runtimeError/DuplicateVariableDeclaration
+/datum/runtimeError/DuplicateVariableDeclaration
 	name="DuplicateVariableError"
-/runtimeError/DuplicateVariableDeclaration/New(variable)
+/datum/runtimeError/DuplicateVariableDeclaration/New(variable)
 	message="Variable '[variable]' was already declared."
 
-/runtimeError/IterationLimitReached
+/datum/runtimeError/IterationLimitReached
 	name="MaxIterationError"
 	message="A loop has reached its maximum number of iterations."
 
-/runtimeError/RecursionLimitReached
+/datum/runtimeError/RecursionLimitReached
 	name="MaxRecursionError"
 	message="The maximum amount of recursion has been reached."
 
-/runtimeError/DivisionByZero
+/datum/runtimeError/DivisionByZero
 	name="DivideByZeroError"
 	message="Division by zero attempted."
 
-/runtimeError/MaxCPU
+/datum/runtimeError/MaxCPU
 	name="MaxComputationalUse"
 	message="Maximum amount of computational cycles reached (>= 1000)."

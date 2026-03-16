@@ -1,4 +1,4 @@
-var/datum/antagonist/renegade/renegades
+GLOBAL_DATUM(renegades, /datum/antagonist/renegade)
 
 /datum/antagonist/renegade
 	id = MODE_RENEGADE
@@ -64,7 +64,7 @@ var/datum/antagonist/renegade/renegades
 
 /datum/antagonist/renegade/New()
 	..()
-	renegades = src
+	GLOB.renegades = src
 
 /datum/antagonist/renegade/create_objectives(var/datum/mind/player)
 
@@ -100,7 +100,7 @@ var/datum/antagonist/renegade/renegades
 /proc/rightandwrong()
 	to_chat(usr, span_infoplain(span_bold("You summoned guns!")))
 	message_admins("[key_name_admin(usr, 1)] summoned guns!")
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == 2 || !(H.client)) continue
 		if(is_special_character(H)) continue
-		renegades.add_antagonist(H.mind)
+		GLOB.renegades.add_antagonist(H.mind)

@@ -4,7 +4,7 @@
 
 /datum/mini_hud/mapper/New(var/datum/hud/other, owner)
 	src.owner = owner
-	screenobjs = list(new /obj/screen/movable/mapper_holder(null, owner))
+	screenobjs = list(new /atom/movable/screen/movable/mapper_holder(null, owner))
 	..()
 
 /datum/mini_hud/mapper/Destroy()

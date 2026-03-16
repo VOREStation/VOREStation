@@ -11,7 +11,7 @@
 		kill()
 
 /datum/event/meteor_strike/announce()
-	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring")
+	GLOB.command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring")
 
 /datum/event/meteor_strike/start()
 	new /obj/effect/meteor_falling(strike_target)
@@ -55,7 +55,7 @@
 			impacted = P
 			break
 	if(impacted)
-		for(var/mob/living/L in mob_list)
+		for(var/mob/living/L in GLOB.mob_list)
 			if(!istype(L))
 				continue
 			var/turf/mob_turf = get_turf(L)
@@ -74,7 +74,6 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
 	density = TRUE
-	climbable = TRUE
 
 /obj/structure/meteorite/Initialize(mapload)
 	. = ..()
@@ -91,6 +90,7 @@
 				new /obj/item/ore/diamond(src)
 		if(91 to 100)
 			new /obj/machinery/artifact(src)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/meteorite/ex_act()
 	return
@@ -100,7 +100,7 @@
 		var/obj/item/pickaxe/P = I
 		M.visible_message(span_warning("[M] starts [P.drill_verb] \the [src]."), span_warning("You start [P.drill_verb] \the [src]."))
 
-		if(!do_after(M, P.digspeed*3))
+		if(!do_after(M, P.digspeed*3, target = src))
 			return
 
 		M.visible_message(span_warning("[M] breaks apart \the [src]."), span_warning("You break apart \the [src]."))

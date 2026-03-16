@@ -1,16 +1,14 @@
 // Modes for examine text output
-#define EXAMINE_MODE_DEFAULT		 0
-#define EXAMINE_MODE_INCLUDE_USAGE	 1
-#define EXAMINE_MODE_SWITCH_TO_PANEL 2
+#define EXAMINE_MODE_SLIM		 "Slim"
+#define EXAMINE_MODE_VERBOSE	 "Verbose"
+#define EXAMINE_MODE_SWITCH_TO_PANEL "Switch To Panel"
 
-// Should be one higher than the above
-#define EXAMINE_MODE_MAX			 3
 
 // Modes for parsing multilingual speech
-#define MULTILINGUAL_DEFAULT			0
-#define MULTILINGUAL_SPACE				1
-#define MULTILINGUAL_DOUBLE_DELIMITER	2
-#define MULTILINGUAL_OFF				3
+#define MULTILINGUAL_DEFAULT			"Default"
+#define MULTILINGUAL_SPACE				"Space"
+#define MULTILINGUAL_DOUBLE_DELIMITER	"Double Delimiter"
+#define MULTILINGUAL_OFF				"Single Language"
 
 #define MULTILINGUAL_MODE_MAX			4
 
@@ -64,3 +62,19 @@
 #define EMOTE_SOUND_NO_FREQ "Default"
 #define EMOTE_SOUND_VOICE_FREQ "Voice Frequency"
 #define EMOTE_SOUND_VOICE_LIST "Voice Sound"
+
+// Choose grid or list TGUI layouts for UI's, when possible.
+/// Force grid layout, even if default is a list.
+#define TGUI_LAYOUT_GRID "grid"
+/// Force list layout, even if default is a grid.
+#define TGUI_LAYOUT_LIST "list"
+
+#define WRITE_PREF_NORMAL 1
+#define WRITE_PREF_INSTANT 2
+#define WRITE_PREF_MANUAL 3
+
+#define PAI_UNSET "None Set"
+#define PAI_DEFAULT_CHASSIS "Drone"
+#define PAI_DEFAULT_EMAGGED_CHASSIS "Syndicate Fox"
+
+#define DEFAULT_LATEJOIN_LOCATION /datum/spawnpoint/arrivals

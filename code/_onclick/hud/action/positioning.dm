@@ -1,4 +1,4 @@
-/datum/hud/proc/position_action(obj/screen/movable/action_button/button, position)
+/datum/hud/proc/position_action(atom/movable/screen/movable/action_button/button, position)
 	if(button.location != SCRN_OBJ_DEFAULT)
 		hide_action(button)
 	switch(position)
@@ -17,7 +17,7 @@
 
 	button.location = position
 
-/datum/hud/proc/position_action_relative(obj/screen/movable/action_button/button, obj/screen/movable/action_button/relative_to)
+/datum/hud/proc/position_action_relative(atom/movable/screen/movable/action_button/button, atom/movable/screen/movable/action_button/relative_to)
 	if(button.location != SCRN_OBJ_DEFAULT)
 		hide_action(button)
 	switch(relative_to.location)
@@ -36,7 +36,7 @@
 	button.location = relative_to.location
 
 /// Removes the passed in action from its current position on the screen
-/datum/hud/proc/hide_action(obj/screen/movable/action_button/button)
+/datum/hud/proc/hide_action(atom/movable/screen/movable/action_button/button)
 	switch(button.location)
 		if(SCRN_OBJ_DEFAULT) // Invalid
 			CRASH("We just tried to hide an action buttion that somehow has the default position as its location, you done fucked up")

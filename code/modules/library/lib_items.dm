@@ -26,6 +26,7 @@
 		if(istype(I, /obj/item/book))
 			I.loc = src
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/bookcase/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/book))
@@ -33,7 +34,7 @@
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/pen))
-		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!newname)
 			return
 		else
@@ -45,7 +46,7 @@
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 75, 1)
 		to_chat(user, span_notice("You begin dismantling \the [src]."))
-		if(do_after(user,25 * O.toolspeed))
+		if(do_after(user, 25 * O.toolspeed, target = src))
 			to_chat(user, span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/wood(get_turf(src), 3)
 			for(var/obj/item/book/b in contents)
@@ -181,20 +182,30 @@ Book Cart End
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
+	var/occult_tier = 0 //If the book is an occult book or not and how strong it is. Used for attack_self
+	///Var for attack_self chain
+	var/special_handling = FALSE
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
-/obj/item/book/attack_self(var/mob/user)
+/obj/item/book/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(occult_tier)
+		return FALSE
+	if(special_handling)
+		return FALSE
 	if(carved)
 		if(store)
 			to_chat(user, span_notice("[store] falls out of [title]!"))
-			store.loc = get_turf(src.loc)
+			store.forceMove(get_turf(src.loc))
 			store = null
 			return
 		else
 			to_chat(user, span_notice("The pages of [title] have been cut out!"))
 			return
-	if(src.dat)
+	if(dat)
 		display_content(user)
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		playsound(src, 'sound/bureaucracy/bookopen.ogg', 50, 1)
@@ -230,7 +241,7 @@ Book Cart End
 		var/choice = tgui_input_list(user, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:", encode = FALSE)))
 				if(!newtitle)
 					to_chat(user, "The title is invalid.")
 					return
@@ -238,14 +249,14 @@ Book Cart End
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = sanitize(tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE), MAX_BOOK_MESSAGE_LEN)
+				var/content = tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE)
 				if(!content)
 					to_chat(user, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(tgui_input_text(user, "Write the author's name:"))
+				var/newauthor = tgui_input_text(user, "Write the author's name:", "", "", MAX_LNAME_LEN)
 				if(!newauthor)
 					to_chat(user, "The name is invalid.")
 					return
@@ -285,7 +296,7 @@ Book Cart End
 	else if(istype(W, /obj/item/material/knife) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(carved)	return
 		to_chat(user, span_notice("You begin to carve out [title]."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 			playsound(src, 'sound/bureaucracy/papercrumple.ogg', 50, 1)
 			new /obj/item/shreddedp(get_turf(src))
@@ -308,6 +319,7 @@ Book Cart End
 /obj/item/book/bundle
 	var/page = 1 //current page
 	var/list/pages = list() //the contents of each page
+	special_handling = TRUE
 
 /obj/item/book/bundle/proc/show_content(mob/user)
 	if(!pages.len)
@@ -349,6 +361,9 @@ Book Cart End
 		user << browse(dat, "window=[name]")
 
 /obj/item/book/bundle/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	src.show_content(user)
 	add_fingerprint(user)
 	update_icon()
@@ -387,6 +402,9 @@ Book Cart End
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
 /obj/item/barcodescanner/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	mode += 1
 	if(mode > 3)
 		mode = 0

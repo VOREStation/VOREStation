@@ -148,12 +148,12 @@
 		return
 	switch(new_damtype)
 		if("Force")
-			damtype = "brute"
+			damage_type = BRUTE
 		if("Energy")
-			damtype = "fire"
+			damage_type = BURN
 		if("Stun")
-			damtype = "halloss"
-	src.occupant_message("Melee damage type switched to [new_damtype]")
+			damage_type = HALLOSS
+	occupant_message("Melee damage type switched to [new_damtype]")
 	return
 
 //Meant for random spawns.

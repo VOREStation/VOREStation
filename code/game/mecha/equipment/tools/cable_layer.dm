@@ -34,7 +34,7 @@
 	if(href_list["toggle"])
 		set_ready_state(!equip_ready)
 		occupant_message("[src] [equip_ready?"dea":"a"]ctivated.")
-		log_message("[equip_ready?"Dea":"A"]ctivated.")
+		src.mecha_log_message("[equip_ready?"Dea":"A"]ctivated.")
 		return
 	if(href_list["cut"])
 		if(cable && cable.get_amount())
@@ -73,7 +73,7 @@
 	if(!cable || cable.get_amount() < 1)
 		set_ready_state(TRUE)
 		occupant_message("Cable depleted, [src] deactivated.")
-		log_message("Cable depleted, [src] deactivated.")
+		src.mecha_log_message("Cable depleted, [src] deactivated.")
 		return
 	if(cable.get_amount() < amount)
 		occupant_message("No enough cable to finish the task.")

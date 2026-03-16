@@ -3,7 +3,6 @@
 	set name = ".map"
 	set category = "Object"
 	set src in view(1)
-	usr.set_machine(src)
 	if(!mapping)	return
 	log_game("[usr]([usr.key]) used station map L[z] in [src.loc.loc]")
 	drawmap(usr)
@@ -149,7 +148,7 @@
 	user.mapobjs = list()
 
 	for(var/i=0; i<icount;i++)
-		var/obj/screen/H = new /obj/screen()
+		var/atom/movable/screen/H = new /atom/movable/screen()
 
 		H.screen_loc = "[5 + i%icx],[6+ round(i/icx)]"
 
@@ -275,7 +274,7 @@
 	user.mapobjs = list()
 
 	for(var/i=0; i<icount;i++)
-		var/obj/screen/H = new /obj/screen()
+		var/atom/movable/screen/H = new /atom/movable/screen()
 
 		H.screen_loc = "[5 + i%icx],[6+ round(i/icx)]"
 
@@ -328,8 +327,7 @@
 
 /mob/proc/clearmap()
 	src.client.screen -= src.mapobjs
-	for(var/obj/screen/O in mapobjs)
+	for(var/atom/movable/screen/O in mapobjs)
 		qdel(O)
 
 	mapobjs = null
-	src.unset_machine()

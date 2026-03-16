@@ -36,12 +36,12 @@
 	// If the machine has multiple output modes, define them here.
 	var/selected_option
 	var/list/output_options = list()
-	var/list/datum/recipe/available_recipes
+	var/list/datum/recipe/appliance_available_recipes = list()
 
 	var/container_type = null
 
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
-	var/food_safety = FALSE	//RS ADD - If true, the appliance automatically ejects food instead of burning it
+	var/food_safety = FALSE	// If true, the appliance automatically ejects food instead of burning it
 
 	var/static/radial_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
 	var/static/radial_power = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_power")
@@ -56,12 +56,10 @@
 	if(output_options.len)
 		verbs += /obj/machinery/appliance/proc/choose_output
 
-	if (!available_recipes)
-		available_recipes = new
-
-	for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
-		if((appliancetype & initial(test.appliance)))
-			available_recipes += new test
+	if(!LAZYLEN(appliance_available_recipes))
+		for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
+			if((appliancetype & initial(test.appliance)))
+				appliance_available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
 	for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -174,7 +172,7 @@
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/AICtrlClick(mob/user)
+/obj/machinery/appliance/ctrl_click_ai(mob/user)
 	attempt_toggle_power(user)
 
 /obj/machinery/appliance/proc/choose_output()
@@ -273,39 +271,31 @@
 
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		var/obj/item/Wrap = GR.wrapped
-		if(Wrap)
-			Wrap.loc = get_turf(src)
-			var/result = can_insert(Wrap, user)
+		var/obj/item/wrap = GR.get_wrapped_item()
+		if(wrap)
+			var/result = can_insert(wrap, user)
 			if(!result)
-				Wrap.forceMove(GR)
 				if(!(default_deconstruction_screwdriver(user, I)))
 					default_part_replacement(user, I)
-				return
+				return TRUE
+			add_content(wrap, user)
+			update_icon()
+			return FALSE
 
-			if(QDELETED(GR.wrapped))
-				GR.wrapped = null
+		attack_hand(user)
+		return TRUE
 
-			if(GR?.wrapped.loc != src)
-				GR.drop_item_nm()
+	var/result = can_insert(I, user)
+	if(!result)
+		if(!(default_deconstruction_screwdriver(user, I)))
+			default_part_replacement(user, I)
+		return
 
-			ToCook = Wrap
-		else
-			attack_hand(user)
+	if(result == 2)
+		var/obj/item/grab/G = I
+		if (G && istype(G) && G.affecting)
+			cook_mob(G.affecting, user)
 			return
-
-	else
-		var/result = can_insert(I, user)
-		if(!result)
-			if(!(default_deconstruction_screwdriver(user, I)))
-				default_part_replacement(user, I)
-			return
-
-		if(result == 2)
-			var/obj/item/grab/G = I
-			if (G && istype(G) && G.affecting)
-				cook_mob(G.affecting, user)
-				return
 
 	//From here we can start cooking food
 	add_content(ToCook, user)
@@ -441,7 +431,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(available_recipes, C)
+	recipe = select_recipe(appliance_available_recipes, C)
 
 	var/list/results = list()
 	if(recipe)
@@ -496,7 +486,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(available_recipes,C)
+	recipe = select_recipe(appliance_available_recipes,C)
 
 	if (recipe)
 		CI.result_type = 4//Recipe type, a specific recipe will transform the ingredients into a new food
@@ -508,7 +498,7 @@
 			AM.forceMove(temp)
 
 		//making multiple copies of a recipe from one container. For example, tons of fries
-		while (select_recipe(available_recipes,C) == recipe)
+		while (select_recipe(appliance_available_recipes,C) == recipe)
 			var/list/TR = list()
 			TR += recipe.make_food(C)
 			for (var/atom/movable/AM in TR) //Move results to buffer
@@ -657,9 +647,11 @@
 	smoke.start()
 
 	// Set off fire alarms!
-	var/obj/machinery/firealarm/FA = locate() in get_area(src)
-	if(FA)
-		FA.alarm()
+	var/area/area_to_check = get_area(src)
+	for(var/obj/machinery/firealarm/FA in area_to_check.get_contents())
+		if(FA && FA.detecting)
+			FA.alarm()
+			break
 
 /obj/machinery/appliance/attack_hand(var/mob/user)
 	if(..())

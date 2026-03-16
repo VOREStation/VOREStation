@@ -37,3 +37,24 @@
 
 /obj/item/integrated_circuit/built_in/action_button/do_work()
 	activate_pin(1)
+
+/obj/item/integrated_circuit/built_in/earpiece_speaker
+	name = "earpiece speaker"
+	desc = "This small speaker can be used to output sound to a person wearing an earpiece."
+	extended_desc = "This speaker can only be heard by the one wearing the earpiece."
+	inputs = list("displayed data" = IC_PINTYPE_STRING)
+	activators = list("load data" = IC_PINTYPE_PULSE_IN)
+	var/speaker_output = null
+
+/obj/item/integrated_circuit/built_in/earpiece_speaker/disconnect_all()
+	..()
+	speaker_output = null
+
+/obj/item/integrated_circuit/built_in/earpiece_speaker/do_work()
+	var/datum/integrated_io/I = inputs[1]
+	speaker_output = I.data
+
+	var/obj/item/clothing/ears/circuitry/ep = assembly.loc
+	var/mob/wearer = ep.wearer?.resolve()
+	if(wearer && ismob(wearer)) // Only allow the wearer to hear the earpiece exclusive speaker
+		to_chat(wearer, span_notice("[icon2html(ep, wearer.client)] [speaker_output]"))

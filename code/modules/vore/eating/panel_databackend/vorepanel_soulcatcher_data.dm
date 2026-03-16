@@ -42,36 +42,37 @@
 		"possible_messages" = list(INTERIOR_DESIGN, CAPTURE_MESSAGE, TRANSIT_MESSAGE, TRANSFER_MESSAGE, RELEASE_MESSAGE, DELETE_MESSAGE),
 		"sc_subtab" = sc_message_subtab
 		)
-	if(sc_message_subtab == INTERIOR_DESIGN)
-		tab_data["max_length"] = VORE_SC_DESC_MAX
-		tab_data["active_message"] = gem.inside_flavor
-		tab_data["set_action"] = SC_INTERIOR_MESSAGE
-		tab_data["tooltip"] = "Displayed to prey after being 'caught' by the soulcatcher. This will be displayed after an intro set in the capture message. If you already have prey and change the interior, this will be displayed after the transit message."
-	if(sc_message_subtab == CAPTURE_MESSAGE)
-		tab_data["max_length"] = VORE_SC_MAX
-		tab_data["active_message"] = gem.capture_message
-		tab_data["set_action"] = SC_CAPTURE_MEESAGE
-		tab_data["tooltip"] = "Change what the prey sees while being 'caught'. This will be printed before the iterior design to the prey."
-	if(sc_message_subtab == TRANSIT_MESSAGE)
-		tab_data["max_length"] = VORE_SC_MAX
-		tab_data["active_message"] = gem.transit_message
-		tab_data["set_action"] = SC_TRANSIT_MESSAGE
-		tab_data["tooltip"] = "Change what the prey sees when you change the interior with them already captured."
-	if(sc_message_subtab == TRANSFER_MESSAGE)
-		tab_data["max_length"] = VORE_SC_MAX
-		tab_data["active_message"] = gem.transfer_message
-		tab_data["set_action"] = SC_TRANSFERE_MESSAGE
-		tab_data["tooltip"] = "Change what the prey sees when they are transfered."
-	if(sc_message_subtab == RELEASE_MESSAGE)
-		tab_data["max_length"] = VORE_SC_MAX
-		tab_data["active_message"] = gem.release_message
-		tab_data["set_action"] = SC_RELEASE_MESSAGE
-		tab_data["tooltip"] = "Change what the prey sees when they are released."
-	if(sc_message_subtab == DELETE_MESSAGE)
-		tab_data["max_length"] = VORE_SC_MAX
-		tab_data["active_message"] = gem.delete_message
-		tab_data["set_action"] = SC_DELETE_MESSAGE
-		tab_data["tooltip"] = "Change what the prey sees when they are deleted."
+	switch(sc_message_subtab)
+		if(INTERIOR_DESIGN)
+			tab_data["max_length"] = VORE_SC_DESC_MAX
+			tab_data["active_message"] = gem.inside_flavor
+			tab_data["set_action"] = SC_INTERIOR_MESSAGE
+			tab_data["tooltip"] = "Displayed to prey after being 'caught' by the soulcatcher. This will be displayed after an intro set in the capture message. If you already have prey and change the interior, this will be displayed after the transit message."
+		if(CAPTURE_MESSAGE)
+			tab_data["max_length"] = VORE_SC_MAX
+			tab_data["active_message"] = gem.capture_message
+			tab_data["set_action"] = SC_CAPTURE_MEESAGE
+			tab_data["tooltip"] = "Change what the prey sees while being 'caught'. This will be printed before the iterior design to the prey."
+		if(TRANSIT_MESSAGE)
+			tab_data["max_length"] = VORE_SC_MAX
+			tab_data["active_message"] = gem.transit_message
+			tab_data["set_action"] = SC_TRANSIT_MESSAGE
+			tab_data["tooltip"] = "Change what the prey sees when you change the interior with them already captured."
+		if(TRANSFER_MESSAGE)
+			tab_data["max_length"] = VORE_SC_MAX
+			tab_data["active_message"] = gem.transfer_message
+			tab_data["set_action"] = SC_TRANSFERE_MESSAGE
+			tab_data["tooltip"] = "Change what the prey sees when they are transfered."
+		if(RELEASE_MESSAGE)
+			tab_data["max_length"] = VORE_SC_MAX
+			tab_data["active_message"] = gem.release_message
+			tab_data["set_action"] = SC_RELEASE_MESSAGE
+			tab_data["tooltip"] = "Change what the prey sees when they are released."
+		if(DELETE_MESSAGE)
+			tab_data["max_length"] = VORE_SC_MAX
+			tab_data["active_message"] = gem.delete_message
+			tab_data["set_action"] = SC_DELETE_MESSAGE
+			tab_data["tooltip"] = "Change what the prey sees when they are deleted."
 	return tab_data
 
 /datum/vore_look/proc/get_ability_data(mob/owner)

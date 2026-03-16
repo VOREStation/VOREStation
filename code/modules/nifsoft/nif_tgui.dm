@@ -22,7 +22,7 @@
  * Small helper component to manage the HUD icon
  */
 /datum/component/nif_menu
-	var/obj/screen/nif/screen_icon
+	var/atom/movable/screen/nif/screen_icon
 
 /datum/component/nif_menu/Initialize()
 	if(!ismob(parent))
@@ -44,7 +44,7 @@
 		if(screen_icon)
 			owner?.client?.screen -= screen_icon
 			UnregisterSignal(screen_icon, COMSIG_CLICK)
-			qdel_null(screen_icon)
+			QDEL_NULL(screen_icon)
 		if(ishuman(parent))
 			remove_verb(owner, /mob/living/carbon/human/proc/nif_menu)
 
@@ -72,7 +72,7 @@
 /**
  * Screen object for NIF menu access
  */
-/obj/screen/nif
+/atom/movable/screen/nif
 	name = "nif menu"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "nif"

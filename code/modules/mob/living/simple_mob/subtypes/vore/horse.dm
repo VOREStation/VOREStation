@@ -35,6 +35,7 @@
 	say_list_type = /datum/say_list/horse
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 /mob/living/simple_mob/vore/horse/big
@@ -79,11 +80,7 @@
 /mob/living/simple_mob/vore/horse/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
-/mob/living/simple_mob/vore/horse/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/horse/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -140,11 +137,7 @@
 	vore_pounce_maxhealth = 200
 	vore_bump_emote	= "chomps down on"
 
-/mob/living/simple_mob/vore/horse/kelpie/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/horse/kelpie/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -185,10 +178,9 @@
 	ai_log("handle_wander_movement() : Entered.", AI_LOG_TRACE)
 	if(isturf(holder.loc) && can_act())
 		wander_delay--
-		var/turf/simulated/floor/water/deep/ocean/diving/sink = holder.loc
 		var/turf/simulated/floor/water/underwater/surface = holder.loc
 		var/mob/living/simple_mob/H = holder
-		if(istype(sink) && H.vore_fullness)
+		if(isdiveablewater(holder.loc) && H.vore_fullness)
 			holder.zMove(DOWN)
 			wander_delay = base_wander_delay
 		else if(istype(surface) && !H.vore_fullness)

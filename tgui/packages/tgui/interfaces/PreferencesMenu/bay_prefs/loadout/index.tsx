@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Box, Section, Tabs } from 'tgui-core/components';
 
-import {
-  type LoadoutData,
-  type LoadoutDataConstant,
-  type LoadoutDataStatic,
+import type {
+  LoadoutData,
+  LoadoutDataConstant,
+  LoadoutDataStatic,
 } from './data';
 import { SubtabEquipment } from './SubtabEquipment';
 import { SubtabLoadout } from './SubtabLoadout';

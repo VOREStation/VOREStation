@@ -31,8 +31,12 @@
 	tint = TINT_HEAVY
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
+	special_handling = TRUE
 
-/obj/item/clothing/head/welding/attack_self()
+/obj/item/clothing/head/welding/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	toggle()
 
 
@@ -108,8 +112,6 @@
 /obj/item/clothing/head/welding/arar
 	name = "replikant welding helmet"
 	desc = "A protective welding mask designed for repair-technician biosynthetic crew, the visor slits are particularly difficult to see out of."
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "ararwelding"
 	item_state_slots = list(
 		SLOT_ID_LEFT_HAND = "ararwelding",
@@ -128,6 +130,7 @@
 	icon_state = "cake0"
 	var/onfire = 0
 	body_parts_covered = HEAD
+	special_handling = TRUE
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
@@ -143,16 +146,19 @@
 	if (istype(location, /turf))
 		location.hotspot_expose(700, 1)
 
-/obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
+/obj/item/clothing/head/cakehat/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	onfire = !(onfire)
 	if (onfire)
 		force = 3
-		damtype = "fire"
+		damtype = BURN
 		icon_state = "cake1"
 		START_PROCESSING(SSobj, src)
 	else
 		force = null
-		damtype = "brute"
+		damtype = BRUTE
 		icon_state = "cake0"
 	return
 
@@ -165,8 +171,12 @@
 	desc = "Perfect for those cold winter nights."
 	icon_state = "ushankadown"
 	flags_inv = HIDEEARS
+	special_handling = TRUE
 
-/obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
+/obj/item/clothing/head/ushanka/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]up"
 		to_chat(user, "You raise the ear flaps on the ushanka.")
@@ -263,7 +273,8 @@
 
 /obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
 	cooldown = world.time + cooldown_duration
-	to_chat(wearer, flavor_activate)
+	if(flavor_activate)
+		to_chat(wearer, flavor_activate)
 	to_chat(wearer, span_danger("The inside of your head hurts..."))
 	wearer.adjustBrainLoss(brainloss_cost)
 
@@ -271,15 +282,18 @@
 	..()
 	if(istype(H) && H.head == src && H.is_sentient())
 		START_PROCESSING(SSobj, src)
-		to_chat(H, flavor_equip)
+		if(flavor_equip)
+			to_chat(H, flavor_equip)
 
 /obj/item/clothing/head/psy_crown/dropped(var/mob/living/carbon/human/H)
 	..()
 	STOP_PROCESSING(SSobj, src)
 	if(H.is_sentient())
 		if(loc == H) // Still inhand.
-			to_chat(H, flavor_unequip)
-		else
+			if(flavor_unequip)
+				to_chat(H, flavor_unequip)
+				return
+		if(flavor_drop)
 			to_chat(H, flavor_drop)
 
 /obj/item/clothing/head/psy_crown/Destroy()

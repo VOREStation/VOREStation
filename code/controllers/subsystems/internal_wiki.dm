@@ -6,7 +6,10 @@
 SUBSYSTEM_DEF(internal_wiki)
 	name = "Wiki"
 	wait = 1
-	init_order = INIT_ORDER_WIKI
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/supply
+	)
 	flags = SS_NO_FIRE
 
 	VAR_PRIVATE/list/pages = list()
@@ -20,6 +23,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/drinkreact = list()
 	VAR_PRIVATE/list/chemreact = list()
 	VAR_PRIVATE/list/botseeds = list()
+	VAR_PRIVATE/list/viruses = list()
+	VAR_PRIVATE/list/genes = list()
 
 	VAR_PRIVATE/list/foodrecipe = list()
 
@@ -33,6 +38,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/searchcache_chemreact = list()
 	VAR_PRIVATE/list/searchcache_catalogs = list()
 	VAR_PRIVATE/list/searchcache_botseeds = list()
+	VAR_PRIVATE/list/searchcache_viruses = list()
+	VAR_PRIVATE/list/searchcache_genes = list()
 
 	VAR_PRIVATE/list/spoiler_entries = list()
 
@@ -44,7 +51,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
-	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] "
+	msg = "P: [length(pages)] | O: [length(ores)] | M: [length(materials)] | S: [length(smashers)] | F: [length(foodrecipe)]  | D: [length(drinkreact)]  | C: [length(chemreact)]  | B: [length(botseeds)] | V: [length(viruses)] | G: [length(genes)] "
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
@@ -53,8 +60,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	init_particle_smasher_data()
 	init_reagent_data()
 	init_seed_data()
+	init_virus_data()
 	init_kitchen_data()
 	init_lore_data()
+	init_gene_data()
 	// Donation gag
 	donation_goal = rand(min_donation,max_donation)
 	donation_goal = round(donation_goal,1)
@@ -126,6 +135,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/datum/internal_wiki/page/seed)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return botseeds[search]
+/datum/controller/subsystem/internal_wiki/proc/get_page_virus(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/virus)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return viruses[search]
+/datum/controller/subsystem/internal_wiki/proc/get_page_gene(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/gene)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return genes[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
 	RETURN_TYPE(/datum/internal_wiki/page/catalog)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -163,6 +180,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_botseeds
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_viruses()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return searchcache_viruses
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_genes()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return searchcache_genes
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -193,7 +218,7 @@ SUBSYSTEM_DEF(internal_wiki)
 // Donating
 /datum/controller/subsystem/internal_wiki/proc/get_donor_value(var/key)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!dono_list.len || isnull(dono_list[key]))
+	if(!length(dono_list) || isnull(dono_list[key]))
 		return 0
 	return dono_list[key]
 /datum/controller/subsystem/internal_wiki/proc/get_donation_current()
@@ -216,19 +241,19 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
 
 	data["instant_reactions"] = null
-	if(reaction_list != null && reaction_list.len > 0)
+	if(reaction_list != null && length(reaction_list) > 0)
 		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/CR in reaction_list)
+		for(var/datum/decl/chemical_reaction/CR in reaction_list)
 			if(CR.wiki_flag & WIKI_SPOILER)
 				continue
 			display_reactions.Add(CR)
 
 		var/reactions = list()
-		for(var/decl/chemical_reaction/CR in display_reactions)
+		for(var/datum/decl/chemical_reaction/CR in display_reactions)
 			var/list/assemble_reaction = list()
 			var/list/reqs = list()
 			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				var/datum/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 				if(!r_RQ)
 					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
 					continue
@@ -236,7 +261,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["required"] = reqs
 			var/list/inhib = list()
 			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				var/datum/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 				if(!r_IH)
 					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
 					continue
@@ -244,43 +269,41 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["inhibitor"] = inhib
 			var/list/catal = list()
 			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				var/datum/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 				if(!r_CL)
 					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
 			assemble_reaction["is_slime"] = null
-			if(istype(CR,/decl/chemical_reaction/instant/slime))
-				var/decl/chemical_reaction/instant/slime/CRS = CR
+			if(istype(CR, /datum/decl/chemical_reaction/instant/slime))
+				var/datum/decl/chemical_reaction/instant/slime/CRS = CR
 				var/obj/item/slime_extract/slime_path = CRS.required
 				assemble_reaction["is_slime"] = initial(slime_path.name)
 			reactions += list(assemble_reaction)
-		if(display_reactions.len)
+		if(length(display_reactions))
 			data["instant_reactions"] = reactions
 
 	data["distilled_reactions"] = null
-	if(distilled_list != null && distilled_list.len > 0)
+	if(distilled_list != null && length(distilled_list) > 0)
 		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
+		for(var/datum/decl/chemical_reaction/distilling/CR in distilled_list)
 			if(CR.wiki_flag & WIKI_SPOILER)
 				continue
 			display_reactions.Add(CR)
 
 		var/reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
+		for(var/datum/decl/chemical_reaction/distilling/CR in display_reactions)
 			var/list/assemble_reaction = list()
 			assemble_reaction["temp_min"] = CR.temp_range[1]
 			assemble_reaction["temp_max"] = CR.temp_range[2]
-			/* Downstream features
 			assemble_reaction["xgm_min"] = CR.minimum_xgm_pressure
 			assemble_reaction["xgm_max"] = CR.maximum_xgm_pressure
-			assemble_reaction["require_xgm_gas"] = CR.require_xgm_gas
-			assemble_reaction["rejects_xgm_gas"] = CR.rejects_xgm_gas
-			*/
+			assemble_reaction["require_xgm_gas"] = CR.require_xgm_gas ? GLOB.gas_data.name[CR.require_xgm_gas] : null
+			assemble_reaction["rejects_xgm_gas"] = CR.rejects_xgm_gas ? GLOB.gas_data.name[CR.rejects_xgm_gas] : null
 			var/list/reqs = list()
 			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				var/datum/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 				if(!r_RQ)
 					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
 					continue
@@ -288,7 +311,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["required"] = reqs
 			var/list/inhib = list()
 			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				var/datum/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 				if(!r_IH)
 					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
 					continue
@@ -296,7 +319,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["inhibitor"] = inhib
 			var/list/catal = list()
 			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				var/datum/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 				if(!r_CL)
 					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
 					continue
@@ -304,26 +327,26 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["catalysts"] = catal
 			assemble_reaction["is_slime"] = null
 			reactions += list(assemble_reaction)
-		if(display_reactions.len)
+		if(length(display_reactions))
 			data["distilled_reactions"] = reactions
 
 	var/grind_list = list()
 	var/list/display_reactions = list()
-	for(var/ore_type in ore_reagents)
+	for(var/ore_type in GLOB.ore_reagents)
 		var/obj/item/ore/O = ore_type
-		if(R.id in ore_reagents[ore_type])
+		if(R.id in GLOB.ore_reagents[ore_type])
 			display_reactions.Add(initial(O.name))
 	grind_list["ore"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		grind_list["ore"] = display_reactions
 
 	display_reactions = list()
-	for(var/sheet_type in sheet_reagents)
+	for(var/sheet_type in GLOB.sheet_reagents)
 		var/obj/item/stack/material/M = sheet_type
-		if(R.id in sheet_reagents[sheet_type])
+		if(R.id in GLOB.sheet_reagents[sheet_type])
 			display_reactions.Add(initial(M.name))
 	grind_list["material"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		grind_list["material"] = display_reactions
 
 	display_reactions = list()
@@ -332,41 +355,49 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(S && S.roundstart && !S.mysterious)
 			if(S.wiki_flag & WIKI_SPOILER)
 				continue
-			if(!S.chems || !S.chems.len)
+			if(!S.chems || !length(S.chems))
 				continue
 			if(!(R.id in S.chems))
 				continue
 			display_reactions.Add(S.display_name)
 	grind_list["plant"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		grind_list["plant"] = display_reactions
 
 	data["grinding"] = grind_list
 
 	display_reactions = list()
 	for(var/O in GLOB.ore_data)
-		var/ore/OR = GLOB.ore_data[O]
+		var/datum/ore/OR = GLOB.ore_data[O]
 		if(OR.reagent == R.id)
 			display_reactions.Add(OR.name)
 	data["fluid"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		data["fluid"] = display_reactions
 
 	display_reactions = list()
-	var/list/instant_by_reagent = SSchemistry.instant_reactions_by_reagent["[R.id]"]
-	if(instant_by_reagent && instant_by_reagent.len)
-		for(var/i = 1, i <= instant_by_reagent.len, i++)
-			var/decl/chemical_reaction/OR = instant_by_reagent[i]
-			if(istype(OR,/decl/chemical_reaction/instant/slime)) // very bloated and meant to be a mystery
-				continue
-			display_reactions.Add(OR.name)
-	var/list/distilled_by_reagent = SSchemistry.distilled_reactions_by_reagent["[R.id]"]
-	if(distilled_by_reagent && distilled_by_reagent.len)
-		for(var/i = 1, i <= distilled_by_reagent.len, i++)
-			var/decl/chemical_reaction/OR = distilled_by_reagent[i]
-			display_reactions.Add(OR.name)
+
+	// We need to do this instead of using distilled_reactions_by_reagent, because SSchem was built around unique logic that only uses the first reagent key found.
+	// So if we collected them all, chemistry as players know it will explode. So we recheck all reagent datums directly instead and see if we're used by them.
+	var/list/paths = GLOB.decls_repository.get_decls_of_subtype(/datum/decl/chemical_reaction)
+	for(var/path in paths)
+		var/datum/decl/chemical_reaction/D = paths[path]
+		if(istype(D, /datum/decl/chemical_reaction/instant/slime))
+			continue
+		if(!D.result)
+			continue
+
+		var/list/scan_list = list()
+		if(length(D.required_reagents))
+			scan_list += D.required_reagents
+		if(length(D.catalysts))
+			scan_list += D.catalysts
+
+		if(R.id in scan_list)
+			display_reactions.Add(D.name)
+
 	data["produces"] = null
-	if(display_reactions.len > 0)
+	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
 
 /datum/controller/subsystem/internal_wiki/proc/assemble_allergens(var/allergens)
@@ -400,14 +431,21 @@ SUBSYSTEM_DEF(internal_wiki)
 			allergies.Add("Stimulant")
 		if(allergens & ALLERGEN_CHOCOLATE)
 			allergies.Add("Chocolate")
-		/* Downstream features
 		if(allergens & ALLERGEN_POLLEN)
 			allergies.Add("Pollen")
 		if(allergens & ALLERGEN_SALT)
 			allergies.Add("Salt")
-		*/
 		return allergies
 	return null
+
+/datum/controller/subsystem/internal_wiki/proc/assemble_sintering(var/sinter)
+	if(sinter == REFINERY_SINTERING_EXPLODE)
+		return "violent detonation"
+	if(sinter == REFINERY_SINTERING_SMOKE)
+		return "toxic fumes"
+	if(sinter == REFINERY_SINTERING_SPIDERS)
+		return "OH GOD WHY!?"
+	return sinter
 
 /datum/controller/subsystem/internal_wiki/proc/add_icon(var/list/data, var/ic, var/is, var/col)
 	var/load_data = list()
@@ -425,7 +463,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	PRIVATE_PROC(TRUE)
 	// assemble ore wiki
 	for(var/N in GLOB.ore_data)
-		var/ore/OR = GLOB.ore_data[N]
+		var/datum/ore/OR = GLOB.ore_data[N]
 		if(OR.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(OR.type)
 			continue
@@ -439,8 +477,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// assemble material wiki
-	for(var/mat in name_to_material)
-		var/datum/material/M = name_to_material[mat]
+	for(var/mat, value in GLOB.name_to_material)
+		var/datum/material/M = value
 		if(M.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(M.type)
 			continue
@@ -511,6 +549,37 @@ SUBSYSTEM_DEF(internal_wiki)
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
 
+/datum/controller/subsystem/internal_wiki/proc/init_virus_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// viruses or diseases
+	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
+		if(initial(D.name) == DEVELOPER_WARNING_NAME)
+			continue
+		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
+			spoiler_entries.Add(D)
+			continue
+		var/datum/internal_wiki/page/virus/P = new()
+		P.assemble(D)
+		searchcache_viruses.Add("[initial(D.medical_name)]")
+		viruses["[initial(D.medical_name)]"] = P
+		pages.Add(P)
+
+/datum/controller/subsystem/internal_wiki/proc/init_gene_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// viruses or diseases
+	for(var/datum/gene/G in GLOB.dna_genes)
+		var/N = G.name
+		if(istype(G,/datum/gene/trait))
+			var/datum/gene/trait/T = G
+			N = T.get_name()
+		var/datum/internal_wiki/page/gene/P = new()
+		P.assemble(G)
+		searchcache_genes.Add("[N]")
+		genes["[N]"] = P
+		pages.Add(P)
+
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
@@ -538,7 +607,7 @@ SUBSYSTEM_DEF(internal_wiki)
 						)
 		qdel(R)
 	// basically condiments, tofu, cheese, soysauce, etc
-	for(var/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
+	for(var/datum/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
 		if(!allow_reagent(CR.result))
 			continue
 		if(CR.wiki_flag & WIKI_SPOILER)
@@ -716,7 +785,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // ORES
 ////////////////////////////////////////////
-/datum/internal_wiki/page/ore/assemble(var/ore/O)
+/datum/internal_wiki/page/ore/assemble(var/datum/ore/O)
 	title = O.display_name
 	data["title"] = title
 	var/obj/item/ore/ore_path = O.ore
@@ -749,8 +818,8 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["pump_reagent"] = REG.name
 
 	data["grind_reagents"] = null
-	if(global.ore_reagents[O.ore])
-		var/list/output = global.ore_reagents[O.ore]
+	if(GLOB.ore_reagents[O.ore])
+		var/list/output = GLOB.ore_reagents[O.ore]
 		var/list/collect = list()
 		var/total_parts = 0
 		for(var/Rid in output)
@@ -821,9 +890,9 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["ignition_point"] = M.ignition_point
 
 	data["grind_reagents"] = null
-	if(global.sheet_reagents[M.stack_type])
-		var/list/output = global.sheet_reagents[M.stack_type]
-		if(output && output.len > 0)
+	if(GLOB.sheet_reagents[M.stack_type])
+		var/list/output = GLOB.sheet_reagents[M.stack_type]
+		if(output && length(output) > 0)
 			var/list/collect = list()
 			var/total_parts = 0
 			for(var/Rid in output)
@@ -844,7 +913,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	data["recipies"] = null
 	M.get_recipes() // generate if not already
-	if(M.recipes != null && M.recipes.len > 0)
+	if(M.recipes != null && length(M.recipes) > 0)
 		var/list/recipie_list = list()
 		for(var/datum/stack_recipe/R in M.recipes)
 			recipie_list.Add(R.title)
@@ -880,7 +949,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["grind_reagents"])
 		body += "<br>"
 		var/list/grind_list = data["grind_reagents"]
-		if(grind_list && grind_list.len > 0)
+		if(grind_list && length(grind_list) > 0)
 			body += "<b>Sheet Grind Results: </b><br>"
 			for(var/N in grind_list)
 				body += "<b>-[N]: [grind_list[N]]u</b><br>"
@@ -935,13 +1004,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		traits.Add("Spreading")
 	if(S.get_trait(TRAIT_EXPLOSIVE))
 		traits.Add("Explosive")
-	if(!traits.len)
+	if(!length(traits))
 		traits.Add("None")
 	data["traits"] = traits
 	data["mob_product"] = S.has_mob_product
 
 	data["chem_breakdown"] = null
-	if(S.chems && S.chems.len > 0)
+	if(S.chems && length(S.chems) > 0)
 		var/list/chems = list()
 		for(var/CB in S.chems)
 			var/datum/reagent/CBR = SSchemistry.chemical_reagents[CB]
@@ -952,21 +1021,21 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["chem_breakdown"] = chems
 
 	data["gas_consumed"] = null
-	if(S.consume_gasses && S.consume_gasses.len > 0)
+	if(S.consume_gasses && length(S.consume_gasses) > 0)
 		var/list/consumed = list()
 		for(var/CG in S.consume_gasses)
 			consumed["[GLOB.gas_data.name[CG]]"] = S.consume_gasses[CG]
 		data["gas_consumed"] = consumed
 
 	data["gas_exuded"] = null
-	if(S.exude_gasses && S.exude_gasses.len > 0)
+	if(S.exude_gasses && length(S.exude_gasses) > 0)
 		var/list/exude = list()
 		for(var/EG in S.exude_gasses)
 			exude["[GLOB.gas_data.name[EG]]"] = S.exude_gasses[EG]
 		data["gas_exuded"] = exude
 
 	data["mutations"] = null
-	if(S.mutants && S.mutants.len > 0)
+	if(S.mutants && length(S.mutants) > 0)
 		var/list/mutations = list()
 		for(var/MS in S.mutants)
 			var/datum/seed/mut = SSplants.seeds[MS]
@@ -991,13 +1060,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>DANGER - MAY BE MOBILE</b><br>"
 	body  += "<br>"
 	var/list/chem_list = data["chem_breakdown"]
-	if(chem_list && chem_list.len > 0)
+	if(chem_list && length(chem_list) > 0)
 		body  += "<b>Chemical Breakdown: </b><br>"
 		for(var/CB in chem_list)
 			body  += "<b>-[CB]</b><br>"
 		body  += "<br>"
 	var/list/consumed_list = data["gas_consumed"]
-	if(consumed_list && consumed_list.len > 0)
+	if(consumed_list && length(consumed_list) > 0)
 		body  += "<b>Gasses Consumed: </b><br>"
 		for(var/CG in consumed_list)
 			var/amount = "[consumed_list[CG]]"
@@ -1006,7 +1075,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body  += "<b>-[amount]</b><br>"
 		body  += "<br>"
 	var/list/exuded_list = data["gas_exuded"]
-	if(exuded_list && exuded_list.len > 0)
+	if(exuded_list && length(exuded_list) > 0)
 		body  += "<b>Gasses Produced: </b><br>"
 		for(var/EG in exuded_list)
 			var/amount = "[exuded_list[EG]]"
@@ -1015,7 +1084,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body  += "<b>-[amount]</b><br>"
 		body  += "<br>"
 	var/list/mutations = data["mutations"]
-	if(mutations && mutations.len > 0)
+	if(mutations && length(mutations) > 0)
 		body += "<b>Mutant Strains: </b><br>"
 		for(var/MS in mutations)
 			body  += "<b>-[MS]</b><br>"
@@ -1036,7 +1105,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["req_mat"] = initial(req_mat.name)
 
 	data["target_items"] = null
-	if(M.items && M.items.len > 0)
+	if(M.items && length(M.items) > 0)
 		var/list/targs = list()
 		for(var/obj/Ir as anything in M.items)
 			targs.Add(initial(Ir.name))
@@ -1048,7 +1117,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["required_atmos_temp_max"] = M.required_atmos_temp_max
 
 	data["inducers"] = null
-	if(M.reagents != null && M.reagents.len > 0)
+	if(M.reagents != null && length(M.reagents) > 0)
 		var/list/inducers = list()
 		for(var/R in M.reagents)
 			var/amnt = M.reagents[R]
@@ -1066,13 +1135,13 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["req_mat"] != null)
 		body += "<b>Target Sheet: [data["req_mat"]]</b><br>"
 	var/list/targ_items = data["target_items"]
-	if(targ_items && targ_items.len > 0)
+	if(targ_items && length(targ_items) > 0)
 		for(var/Ir in targ_items)
 			body += "<b>-[Ir]</b><br>"
 	body += "<b>Threshold Energy: [data["required_energy_min"]] - [data["required_energy_max"]]</b><br>"
 	body += "<b>Threshold Temp: [data["required_atmos_temp_min"]]k - [data["required_atmos_temp_max"]]k | ([data["required_atmos_temp_min"] - T0C]C - [data["required_atmos_temp_max"] - T0C]C)</b><br>"
 	var/list/inducers = data["inducers"]
-	if(inducers && inducers.len > 0)
+	if(inducers && length(inducers) > 0)
 		body += "<br>"
 		body += "<b>Inducers: </b><br>"
 		for(var/R in inducers)
@@ -1095,14 +1164,13 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["addictive"] = 0
 	if(R.id in get_addictive_reagents(ADDICT_ALL))
 		data["addictive"] = TRUE
-	/* Downstream features
 	data["industrial_use"] = R.industrial_use
 	data["supply_points"] = R.supply_conversion_value ? R.supply_conversion_value : 0
+	data["cooling_mod"] = R.coolant_modifier
 	var/value = R.supply_conversion_value * REAGENTS_PER_SHEET * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
 	data["market_price"] = value
-	data["sintering"] = global.reagent_sheets[R.id]
-	*/
+	data["sintering"] = SSinternal_wiki.assemble_sintering(GLOB.reagent_sheets[R.id])
 	data["overdose"] = R.overdose
 	data["flavor"] = R.taste_description
 	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
@@ -1113,7 +1181,6 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<b>Description: </b>[data["description"]]<br>"
 	if(data["addictive"])
 		body += "<b>DANGER, addictive.</b><br>"
-	/* Downstream features
 	if(data["industrial_use"])
 		body  += "<b>Industrial Use: </b>[data["industrial_use"]]<br>"
 	var/tank_size = CARGOTANKER_VOLUME
@@ -1124,16 +1191,17 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["sintering"])
 		var/mat_id = data["sintering"]
 		switch(mat_id)
-			if("FLAG_SMOKE")
+			if(REFINERY_SINTERING_SMOKE)
 				body += "<b>Sintering Results: COMBUSTION</b><br>"
-			if("FLAG_EXPLODE")
+			if(REFINERY_SINTERING_EXPLODE)
 				body += "<b>Sintering Results: DETONATION</b><br>"
-			if("FLAG_SPIDERS")
+			if(REFINERY_SINTERING_SPIDERS)
 				body += "<b>Sintering Results: DO NOT EVER</b><br>"
 			else
 				var/datum/material/C = get_material_by_name(data["sintering"])
-				body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
-	*/
+				if(C)
+					body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
+	body += "<b>Coolant Factor: </b>[data["cooling_mod"]]x<br>"
 	if(data["overdose"] > 0)
 		body += "<b>Overdose: </b>[data["overdose"]]u<br>"
 	body += "<b>Flavor: </b>[data["flavor"]]<br>"
@@ -1222,19 +1290,19 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/ingred = list()
 	for(var/ing in recipe["Ingredients"])
 		ingred["[ing]"] = recipe["Ingredients"][ing]
-	recipe_data["ingredients"] = ingred.len ? ingred : null
+	recipe_data["ingredients"] = length(ingred) ? ingred : null
 	var/list/fruits = list()
 	for(var/fru in recipe["Fruit"])
 		fruits["[fru]"] = recipe["Fruit"][fru]
-	recipe_data["fruits"] = fruits.len ? fruits : null
+	recipe_data["fruits"] = length(fruits) ? fruits : null
 	var/list/reagents = list()
 	for(var/rea in recipe["Reagents"])
 		reagents["[rea]"] = recipe["Reagents"][rea]
-	recipe_data["reagents"] = reagents.len ? reagents : null
+	recipe_data["reagents"] = length(reagents) ? reagents : null
 	var/list/catalysts = list()
 	for(var/cat in recipe["Catalysts"])
 		catalysts["[cat]"] = recipe["Catalysts"][cat]
-	recipe_data["catalysts"] = catalysts.len ? catalysts : null
+	recipe_data["catalysts"] = length(catalysts) ? catalysts : null
 	data["recipe"] = recipe_data
 
 /datum/internal_wiki/page/recipe/get_print()
@@ -1253,7 +1321,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Appliance: </b>[data["recipe"]["appliance"]]<br><br>"
 	// ingredients
 	var/list/ingreds = data["recipe"]["ingredients"]
-	if(ingreds && ingreds.len)
+	if(ingreds && length(ingreds))
 		var/count = 0
 		var/pretty_ing = ""
 		for(var/ing in ingreds)
@@ -1272,7 +1340,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Coating: </b> [data["recipe"]["coating"]]<br>"
 	// Fruits/Veggis
 	var/list/fruits = data["recipe"]["fruits"]
-	if(fruits && fruits.len) // Can't use lazylen, assoc list
+	if(fruits && length(fruits)) // Can't use lazylen, assoc list
 		var/count = 0
 		var/pretty_fru = ""
 		for(var/fru in fruits)
@@ -1282,7 +1350,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Components: </b> [pretty_fru]<br>"
 	//For each reagent
 	var/list/reags = data["recipe"]["reagents"]
-	if(reags && reags.len) // Can't use lazylen, assoc list
+	if(reags && length(reags)) // Can't use lazylen, assoc list
 		var/count = 0
 		var/pretty_rea = ""
 		for(var/reg in reags)
@@ -1292,7 +1360,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Mix in: </b> [pretty_rea]<br>"
 	//For each catalyst
 	var/list/catalis = data["recipe"]["catalysts"]
-	if(catalis && catalis.len) // Can't use lazylen, assoc list
+	if(catalis && length(catalis)) // Can't use lazylen, assoc list
 		var/count = 0
 		var/pretty_cat = ""
 		for(var/cat in catalis)
@@ -1311,12 +1379,172 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["name"] = catalog_record.name
 	data["desc"] = catalog_record.desc
 
+// VIRUSES
+/////////////////////////////////////////////
+/datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
+	title = initial(D.name)
+	data["title"] = title
+	data["description"] = initial(D.desc)
+	data["form"] = initial(D.form)
+	data["agent"] = initial(D.agent)
+	data["danger"] = initial(D.danger)
+	data["max_stages"] = initial(D.max_stages)
+
+	var/infectivity = ""
+	switch(initial(D.infectivity))
+		if(0)
+			infectivity = "NA"
+		if(1 to 3)
+			infectivity = "Low"
+		if(4 to 7)
+			infectivity = "Medium"
+		if(8 to INFINITY)
+			infectivity = "High"
+	data["infectivity"] = infectivity
+
+	var/resiliance = ""
+	switch(initial(D.cure_chance))
+		if(0 to 8)
+			resiliance = "Extreme"
+		if(9 to 12)
+			resiliance = "High"
+		if(13 to 16)
+			resiliance = "Medium"
+		if(17 to INFINITY)
+			resiliance = "Low"
+	data["resiliance"] = resiliance
+
+	var/discovery = ""
+	switch(initial(D.discovery_threshold))
+		if(0 to 0.24)
+			discovery = "Extremely Elusive"
+		if(0.25 to 0.49)
+			discovery = "Difficult"
+		if(0.5 to 0.74)
+			discovery = "Moderate"
+		if(0.75 to 0.89)
+			discovery = "Easy"
+		if(0.9 to INFINITY)
+			discovery = "Trivial"
+	data["discovery"] = discovery
+
+	var/spread_flags = initial(D.spread_flags)
+	var/spread_type = "NA"
+	if(spread_flags & DISEASE_SPREAD_CONTACT)
+		spread_type = "Contact"
+	else if(spread_flags & DISEASE_SPREAD_FLUIDS)
+		spread_type = "Fluids"
+	else if(spread_flags & DISEASE_SPREAD_BLOOD)
+		spread_type = "Blood"
+	else if(spread_flags & DISEASE_SPREAD_AIRBORNE)
+		spread_type = "Airborne"
+	else if(spread_flags & DISEASE_SPREAD_FALTERED)
+		spread_type = "Faltered"
+	data["spread"] = spread_type
+
+	var/mod_flags = initial(D.virus_modifiers)
+	data["all_cures"] = mod_flags & NEEDS_ALL_CURES
+	data["aggressive"] = mod_flags & BYPASSES_IMMUNITY
+	var/flags = initial(D.disease_flags)
+	data["curable"] = flags & CURABLE
+	data["resistable"] = flags & CAN_RESIST
+	data["carriable"] = flags & CAN_CARRY
+	data["spread_dead"] = flags & SPREAD_DEAD
+	data["infect_synth"] = flags & INFECT_SYNTHETICS
+
+/datum/internal_wiki/page/virus/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<br>"
+	body += "<b>Type: [data["form"]] - [data["agent"]]</b><br>"
+	body += "<b>Hazard Level: [data["danger"]]</b><br>"
+	body += "<b>Growth Stages: [data["max_stages"]]</b><br>"
+	body += "<b>Curable: [(data["curable"]) ? "Yes" : "No"][!(data["all_cures"]) ? " - single treatment" : ""]</b><br>"
+	body += "<b>Resistable: [(data["resistable"]) ? "Yes" : "No"]</b><br>"
+	body += "<br>"
+	// Transmission type
+	body += "<b>Transmission: [data["spread"]] [(data["aggressive"]) ? "Aggressive" : ""]</b><br>"
+	if(data["carriable"])
+		body += "<b>Transmissable without symptoms</b><br>"
+	if(data["spread_dead"])
+		body += "<b>Transmissable from dead tissue</b><br>"
+	if(data["infect_synth"])
+		body += "<b>Inorganic pathogen</b><br>"
+	// Difficulty of discovery
+		body += "<b>Discoverability: [data["discovery"]]</b><br>"
+	// Probability of spreading
+		body += "<b>Infectivity: [data["infectivity"]]</b><br>"
+	// Probability of cure, 10 to 20 regularly
+		body += "<b>Resiliance: [data["resiliance"]]</b><br>"
+	return body
+
+// GENES
+/////////////////////////////////////////////
+/datum/internal_wiki/page/gene/assemble(var/datum/gene/G)
+	if(istype(G,/datum/gene/trait))
+		// Trait genetics
+		var/datum/gene/trait/T = G
+		title = T.get_name()
+		data["title"] = title
+		data["description"] = T.get_desc()
+		if(istype(T.linked_trait,/datum/trait/positive))
+			if(!T.linked_trait.hidden)
+				data["trait_type"] = "Positive"
+			else
+				data["trait_type"] = "Super Power" // Likely eye lasers
+		else if(istype(T.linked_trait,/datum/trait/negative))
+			if(!T.linked_trait.hidden)
+				data["trait_type"] = "Negative"
+			else
+				data["trait_type"] = "Disability" // Likely gibbings or such
+		else
+			if(!T.linked_trait.hidden)
+				data["trait_type"] = "Neutral"
+			else
+				data["trait_type"] = "Strange" // Not sure what neutrals are hidden, but just incase
+		// Conflicts
+		data["blockers"] = null
+		var/list/output_blockers = list()
+		var/list/blockers = T.conflict_traits
+		for(var/path in blockers)
+			var/datum/trait/TG = GLOB.all_traits[path]
+			output_blockers.Add(TG.name)
+		if(length(output_blockers))
+			data["blockers"] = output_blockers
+	else
+		// Old style gene
+		title = G.name
+		data["title"] = title
+		data["description"] = G.desc
+		data["trait_type"] = "Neutral"
+		data["blockers"] = null
+	var/list/bounds = GetDNABounds(G.block)
+	data["bounds_off_min"] = EncodeDNABlock(bounds[1]) // Minimum hex where gene is off
+	data["bounds_off_max"] = EncodeDNABlock(bounds[2]) // Maximum hex where gene is off
+	data["bounds_on_min"] = EncodeDNABlock(bounds[3]) // Minimum hex where gene is on
+	data["bounds_on_max"] = EncodeDNABlock(bounds[4]) // Maximum hex where gene is on
+
+/datum/internal_wiki/page/gene/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<br>"
+	body += "<b>Type: [data["trait_type"]]</b><br>"
+	body += "<b>Active Range: [data["bounds_on_min"]] - [data["bounds_on_max"]]</b><br>"
+	body += "<b>Inactive Range: [data["bounds_off_min"]] - [data["bounds_off_max"]]</b><br>"
+	body += "<br>"
+	var/list/blockers = data["blockers"]
+	if(blockers)
+		body += "<b>Suppressed By:</b><br>"
+		for(var/trait_name in blockers)
+			body += "-[trait_name]<br>"
+	return body
+
 // MISC HELPERS
 ////////////////////////////////////////////
 /datum/internal_wiki/page/proc/print_allergens(var/list/allergens)
 	PROTECTED_PROC(TRUE)
 	var/AG = ""
-	if(allergens && allergens.len > 0)
+	if(allergens && length(allergens) > 0)
 		AG += "<b>Allergens: </b><br>"
 		for(var/ALGY in allergens)
 			AG += "-[ALGY]<br>"
@@ -1326,10 +1554,10 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/proc/print_reaction_data(var/list/data)
 	var/body = ""
 	var/list/instant = data["instant_reactions"]
-	if(instant && instant.len > 0)
+	if(instant && length(instant) > 0)
 		var/segment = 1
 		for(var/list/react in instant)
-			if(instant.len == 1)
+			if(length(instant) == 1)
 				body += "<b>Potential Chemical breakdown: </b><br>"
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
@@ -1348,21 +1576,21 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Potential Chemical breakdown: </b><br>UNKNOWN OR BASE-REAGENT<br>"
 
 	var/list/distilled = data["distilled_reactions"]
-	if(distilled && distilled.len > 0)
+	if(distilled && length(distilled) > 0)
 		var/segment = 1
 		for(var/list/react in distilled)
-			if(distilled.len == 1)
+			if(length(distilled) == 1)
 				body += "<b>Potential Chemical breakdown: </b><br>"
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
-			/* Downstream features
-			body += " <b>-Temperature: </b> [react["xgm_min"]]K - [react["xgm_max"]]K | ([react["xgm_min"] - T0C]C - [react["xgm_max"] - T0C]C)<br>"
+			body += " <b>-Temperature: </b> [react["temp_min"]]K to [react["temp_max"]]K | ([react["temp_min"] - T0C]C to [react["temp_max"] - T0C]C)<br>"
+			if(react["xgm_min"] || react["xgm_max"])
+				body += " <b>-Pressure: </b> [react["xgm_min"]]kpa - [react["xgm_max"]]kpa<br>"
 			if(react["require_xgm_gas"])
-				body += " <b>-Requires Gas: </b> [react["require_xgm_gas"])]<br>"
+				body += " <b>-Requires Gas: </b> [react["require_xgm_gas"]]<br>"
 			if(react["rejects_xgm_gas"])
 				body += " <b>-Rejects Gas: </b> [react["rejects_xgm_gas"]]<br>"
-			*/
 			for(var/RQ in react["required"])
 				body += " <b>-Component: </b>[RQ]<br>"
 			for(var/IH in react["inhibitor"])
@@ -1371,28 +1599,28 @@ SUBSYSTEM_DEF(internal_wiki)
 				body += " <b>-Catalyst: </b>[CL]<br>"
 
 	var/list/grind_ore = data["grinding"]["ore"]
-	if(grind_ore && grind_ore.len)
+	if(grind_ore && length(grind_ore))
 		body += "<br>"
 		body += "<b>Ore processing results: </b><br>"
 		for(var/PL in grind_ore)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	var/list/grind_mats = data["grinding"]["material"]
-	if(grind_mats && grind_mats.len)
+	if(grind_mats && length(grind_mats))
 		body += "<br>"
 		body += "<b>Material processing results: </b><br>"
 		for(var/PL in grind_mats)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	var/list/grind_plants = data["grinding"]["plant"]
-	if(grind_plants && grind_plants.len)
+	if(grind_plants && length(grind_plants))
 		body += "<br>"
 		body += "<b>Organic processing results: </b><br>"
 		for(var/PL in grind_plants)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	var/list/fluid_pumping = data["fluid"]
-	if(fluid_pumping && fluid_pumping.len)
+	if(fluid_pumping && length(fluid_pumping))
 		body += "<br>"
 		body += "<b>Fluid pump results: </b><br>"
 		for(var/PL in fluid_pumping)
@@ -1400,7 +1628,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	body += "<br>"
 	var/list/produces = data["produces"]
-	if(produces && produces.len)
+	if(produces && length(produces))
 		body += "<b>Is a component of: </b><br>"
 		for(var/PL in produces)
 			body += "-[PL]<br>"

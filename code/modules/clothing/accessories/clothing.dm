@@ -191,6 +191,7 @@
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
 	)
 
+//This is really scuffed and needs fixing sometime.
 /obj/item/clothing/accessory/poncho/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
 	..()
 	var/mob/living/carbon/human/H = loc

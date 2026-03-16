@@ -19,19 +19,24 @@
 	icon = 'maps/redgate/falls/icons/objs/bronze_overhang.dmi'
 	icon_modifier = "bronze_"
 	icon_state = "bronze_railing0"
+	var/interactable = FALSE
 
 //Escape most railing interactions besides tackling people over them
 /obj/structure/railing/overhang/attackby(obj/item/W)
-	if(!istype(W, /obj/item/grab))
+	if(!istype(W, /obj/item/grab) && !interactable)
 		return
 	return ..()
 
 /obj/structure/railing/overhang/waterless
 	icon_modifier = "wbronze_"
 	icon_state = "wbronze_railing0"
-	climbable = 0
 	layer = MOB_LAYER + 0.3
 	plane = MOB_PLANE //im so sorry
+
+/obj/structure/railing/overhang/waterless/Initialize(mapload)
+	. = ..()
+	// Not climbable!
+	RemoveElement(/datum/element/climbable)
 
 /obj/structure/railing/overhang/waterless/under
 	plane = OBJ_PLANE

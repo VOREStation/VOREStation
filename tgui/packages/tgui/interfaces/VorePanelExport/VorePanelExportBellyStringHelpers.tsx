@@ -7,11 +7,7 @@ export const GetAddons = (addons: string[]) => {
 
   addons?.forEach((addon) => {
     result.push(
-      '<span class="badge text-bg-secondary"><i class="' +
-        AddonIcon[addon] +
-        '"></i>' +
-        addon +
-        '</span>',
+      `<span class="badge text-bg-secondary"><i class="${AddonIcon[addon]}"></i>${addon}</span>`,
     );
   });
 
@@ -27,11 +23,7 @@ export const GetLiquidAddons = (addons: string[]) => {
 
   addons?.forEach((addon) => {
     result.push(
-      '<span class="badge text-bg-secondary"><i class="' +
-        ReagentAddonIcon[addon] +
-        '"></i>' +
-        addon +
-        '</span>',
+      `<span class="badge text-bg-secondary"><i class="${ReagentAddonIcon[addon]}"></i>${addon}</span>`,
     );
   });
 
@@ -50,11 +42,7 @@ export const GetAutotransferFlags = (
 
   addons?.forEach((addon) => {
     result.push(
-      '<span class="badge text-bg-secondary"><i class="' +
-        AutotransferFlagIcon[addon] +
-        '"></i>' +
-        addon +
-        '</span>',
+      `<span class="badge text-bg-secondary"><i class="${AutotransferFlagIcon[addon]}"></i>${addon}</span>`,
     );
   });
 

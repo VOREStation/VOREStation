@@ -1,4 +1,4 @@
-var/global/nttransfer_uid = 0
+GLOBAL_VAR_INIT(nttransfer_uid, 0)
 
 /datum/computer_file/program/nttransfer
 	filename = "nttransfer"
@@ -27,8 +27,8 @@ var/global/nttransfer_uid = 0
 	var/upload_menu = FALSE								// Whether we show the program list and upload menu
 
 /datum/computer_file/program/nttransfer/New()
-	unique_token = nttransfer_uid
-	nttransfer_uid++
+	unique_token = GLOB.nttransfer_uid
+	GLOB.nttransfer_uid++
 	..()
 
 /datum/computer_file/program/nttransfer/process_tick()
@@ -109,7 +109,7 @@ var/global/nttransfer_uid = 0
 	data["servers"] = list()
 	if(!(downloaded_file || provided_file || upload_menu))
 		var/list/all_servers = list()
-		for(var/datum/computer_file/program/nttransfer/P in ntnet_global.fileservers)
+		for(var/datum/computer_file/program/nttransfer/P in GLOB.ntnet_global.fileservers)
 			if(!P.provided_file)
 				continue
 			all_servers.Add(list(list(
@@ -127,14 +127,14 @@ var/global/nttransfer_uid = 0
 		return TRUE
 	switch(action)
 		if("PRG_downloadfile")
-			for(var/datum/computer_file/program/nttransfer/P in ntnet_global.fileservers)
+			for(var/datum/computer_file/program/nttransfer/P in GLOB.ntnet_global.fileservers)
 				if(P.unique_token == text2num(params["uid"]))
 					remote = P
 					break
 			if(!remote || !remote.provided_file)
 				return
 			if(remote.server_password)
-				var/pass = sanitize(tgui_input_text(ui.user, "Code 401 Unauthorized. Please enter password:", "Password required"))
+				var/pass = tgui_input_text(ui.user, "Code 401 Unauthorized. Please enter password:", "Password required", "", MAX_MESSAGE_LEN)
 				if(pass != remote.server_password)
 					error = "Incorrect Password"
 					return
@@ -145,14 +145,14 @@ var/global/nttransfer_uid = 0
 			error = ""
 			upload_menu = 0
 			finalize_download()
-			if(src in ntnet_global.fileservers)
-				ntnet_global.fileservers.Remove(src)
+			if(src in GLOB.ntnet_global.fileservers)
+				GLOB.ntnet_global.fileservers.Remove(src)
 			for(var/datum/computer_file/program/nttransfer/T in connected_clients)
 				T.crash_download("Remote server has forcibly closed the connection")
 			provided_file = null
 			return TRUE
 		if("PRG_setpassword")
-			var/pass = sanitize(tgui_input_text(ui.user, "Enter new server password. Leave blank to cancel, input 'none' to disable password.", "Server security", "none"))
+			var/pass = tgui_input_text(ui.user, "Enter new server password. Leave blank to cancel, input 'none' to disable password.", "Server security", "none", MAX_MESSAGE_LEN)
 			if(!pass)
 				return
 			if(pass == "none")
@@ -167,7 +167,7 @@ var/global/nttransfer_uid = 0
 						error = "I/O Error: File locked."
 						return
 					provided_file = F
-					ntnet_global.fileservers |= src
+					GLOB.ntnet_global.fileservers |= src
 					return
 			error = "I/O Error: Unable to locate file on hard drive."
 			return TRUE

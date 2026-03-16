@@ -11,15 +11,15 @@
 		return
 
 	if(h_style)
-		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair/hair_style = GLOB.hair_styles_list[h_style]
 		var/selected_string
 		if(!(hair_style.flags & HAIR_TIEABLE))
 			to_chat(src, span_warning("Your hair isn't long enough to tie."))
 			return
 		else
 			var/list/datum/sprite_accessory/hair/valid_hairstyles = list()
-			for(var/hair_string in hair_styles_list)
-				var/datum/sprite_accessory/hair/test = hair_styles_list[hair_string]
+			for(var/hair_string in GLOB.hair_styles_list)
+				var/datum/sprite_accessory/hair/test = GLOB.hair_styles_list[hair_string]
 				if(test.flags & HAIR_TIEABLE)
 					valid_hairstyles.Add(hair_string)
 			selected_string = tgui_input_list(src, "Select a new hairstyle", "Your hairstyle", valid_hairstyles)
@@ -96,8 +96,6 @@
 
 	text = tgui_input_text(src, "What would you like to say?", "Speak to creature", null, MAX_MESSAGE_LEN)
 
-	text = sanitize(text, MAX_MESSAGE_LEN)
-
 	if(!text) return
 
 	var/mob/M = targets[target]
@@ -106,7 +104,7 @@
 		to_chat(src, span_filter_notice("Not even a [src.species.name] can speak to the dead."))
 		return
 
-	log_say("(COMMUNE to [key_name(M)]) [text]",src)
+	log_talk("(COMMUNE to [key_name(M)]) [text]", LOG_SAY)
 
 	to_chat(M, span_filter_say("[span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")]"))
 	if(ishuman(M))
@@ -121,9 +119,9 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities.General"
 
-	var/msg = sanitize(tgui_input_text(src, "Message:", "Psychic Whisper"))
+	var/msg = tgui_input_text(src, "Message:", "Psychic Whisper", "", MAX_MESSAGE_LEN)
 	if(msg)
-		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
+		log_talk("(PWHISPER to [key_name(M)]) [msg]", LOG_WHISPER)
 		to_chat(M, span_filter_say("[span_green("You hear a strange, alien voice in your head... <i>[msg]</i>")]"))
 		to_chat(src, span_filter_say("[span_green("You said: \"[msg]\" to [M]")]"))
 	return
@@ -292,7 +290,7 @@
 		src.visible_message(span_filter_notice(span_bold("[src]") + "'s flesh begins to mend..."))
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
-	if(do_after(src,delay_length))
+	if(do_after(src, delay_length, target = src))
 		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)

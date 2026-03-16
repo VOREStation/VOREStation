@@ -3,7 +3,7 @@
 /obj/machinery/computer/shuttle_control/explore/ccboat
 	name = "Virgo Flyer control console"
 	shuttle_tag = "Virgo Flyer"
-	req_one_access = list(access_pilot)
+	req_one_access = list(ACCESS_PILOT)
 
 /obj/effect/overmap/visitable/ship/landable/ccboat
 	name = "NTV Virgo Flyer"

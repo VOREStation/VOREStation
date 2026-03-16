@@ -9,8 +9,10 @@
 
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
+	dependencies = list(
+		/datum/controller/subsystem/points_of_interest
+	)
 	priority = FIRE_PRIORITY_MACHINES
-	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
@@ -31,6 +33,9 @@ SUBSYSTEM_DEF(machines)
 	var/list/powernets = list()
 	var/list/powerobjs = list()
 
+	// Wait to rebuild powernets
+	VAR_PRIVATE/defering_powernets = FALSE
+
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	admin_notice(span_danger("Initializing atmos machinery."), R_DEBUG)
@@ -46,14 +51,33 @@ SUBSYSTEM_DEF(machines)
 	INTERNAL_PROCESS_STEP(SSMACHINES_MACHINERY,FALSE,process_machinery,cost_machinery,SSMACHINES_POWERNETS)
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWERNETS,FALSE,process_powernets,cost_powernets,SSMACHINES_POWER_OBJECTS)
 
-// rebuild all power networks from scratch - only called at world creation or by the admin verb
-// The above is a lie. Turbolifts also call this proc.
+// Call when you need the network rebuilt, but we should wait until we have a good time to do it
+/datum/controller/subsystem/machines/proc/defer_powernet_rebuild()
+	if(!SSticker.HasRoundStarted())
+		return
+	// Use with responsibility... Must regen the entire power network after deferal is finished.
+	if(!defering_powernets)
+		defering_powernets = TRUE
+		message_admins("Powernet generation deferred...")
+
+
+// This MUST be called if request_powernet_rebuild is called with defer = TRUE once the network is free to regen
+/datum/controller/subsystem/machines/proc/release_powernet_defer()
+	if(defering_powernets)
+		defering_powernets = FALSE
+		message_admins("Powernet generation resumed. Rebuilding network...")
+		makepowernets()
+
+/datum/controller/subsystem/machines/proc/powernet_is_defered()
+	return defering_powernets
+
+// rebuild all power networks from scratch - Called when major network changes happen, like shuttles/turbolifts with wires moving, or huge explosions, where doing it per-wire does not make sense.
 /datum/controller/subsystem/machines/proc/makepowernets()
 	// TODO - check to not run while in the middle of a tick!
 	for(var/datum/powernet/PN as anything in powernets)
 		qdel(PN)
 	powernets.Cut()
-	setup_powernets_for_cables(cable_list)
+	setup_powernets_for_cables(GLOB.cable_list)
 
 /datum/controller/subsystem/machines/proc/setup_powernets_for_cables(list/cables)
 	for(var/obj/structure/cable/PC as anything in cables)
@@ -90,12 +114,12 @@ SUBSYSTEM_DEF(machines)
 	msg += "PN:[round(cost_powernets,1)]|"
 	msg += "PO:[round(cost_power_objects,1)]"
 	msg += "} "
-	msg += "PI:[SSmachines.networks.len]|"
-	msg += "MC:[SSmachines.processing_machines.len]|"
-	msg += "PN:[SSmachines.powernets.len]|"
-	msg += "PO:[SSmachines.powerobjs.len]|"
-	msg += "HV:[SSmachines.hibernating_vents.len]|"
-	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
+	msg += "PI:[length(SSmachines.networks)]|"
+	msg += "MC:[length(SSmachines.processing_machines)]|"
+	msg += "PN:[length(SSmachines.powernets)][defering_powernets ? " - !!DEFER!!" : ""]|"
+	msg += "PO:[length(SSmachines.powerobjs)]|"
+	msg += "HV:[length(SSmachines.hibernating_vents)]|"
+	msg += "MC/MS:[round((cost ? length(SSmachines.processing_machines)/cost_machinery : 0),0.1)]"
 	return ..()
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
@@ -104,8 +128,8 @@ SUBSYSTEM_DEF(machines)
 	//cache for sanic speed (lists are references anyways)
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/pipe_network/PN = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/pipe_network/PN = current_run[length(current_run)]
 		current_run.len--
 		if(!PN || QDELETED(PN))
 			networks.Remove(PN)
@@ -122,8 +146,8 @@ SUBSYSTEM_DEF(machines)
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/obj/machinery/M = current_run[current_run.len]
+	while(length(current_run))
+		var/obj/machinery/M = current_run[length(current_run)]
 		current_run.len--
 		if(!istype(M) || QDELETED(M) || (M.process(wait) == PROCESS_KILL))
 			processing_machines.Remove(M)
@@ -137,8 +161,8 @@ SUBSYSTEM_DEF(machines)
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/powernet/PN = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/powernet/PN = current_run[length(current_run)]
 		current_run.len--
 		if(!PN)
 			powernets.Remove(PN)
@@ -156,8 +180,8 @@ SUBSYSTEM_DEF(machines)
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/obj/item/I = current_run[current_run.len]
+	while(length(current_run))
+		var/obj/item/I = current_run[length(current_run)]
 		current_run.len--
 		if(!I || (I.pwr_drain(wait) == PROCESS_KILL))
 			powerobjs.Remove(I)
@@ -168,19 +192,19 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Recover()
 	for(var/datum/D as anything in SSmachines.networks)
 		if(!istype(D, /datum/pipe_network))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.networks, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.networks, item=[D], type=[D?.type]")
 			SSmachines.networks -= D
 	for(var/datum/D as anything in SSmachines.processing_machines)
 		if(!istype(D, /obj/machinery))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.machines, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.machines, item=[D], type=[D?.type]")
 			SSmachines.processing_machines -= D
 	for(var/datum/D as anything in SSmachines.powernets)
 		if(!istype(D, /datum/powernet))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.powernets, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.powernets, item=[D], type=[D?.type]")
 			SSmachines.powernets -= D
 	for(var/datum/D as anything in SSmachines.powerobjs)
 		if(!istype(D, /obj/item))
-			error("Found wrong type during SSmachinery recovery: list=SSmachines.powerobjs, item=[D], type=[D?.type]")
+			log_world("## ERROR Found wrong type during SSmachinery recovery: list=SSmachines.powerobjs, item=[D], type=[D?.type]")
 			SSmachines.powerobjs -= D
 
 	all_machines = SSmachines.all_machines
@@ -193,13 +217,13 @@ SUBSYSTEM_DEF(machines)
 	// pick at random
 	var/i = rand(20,40)
 	while(i-- > 0)
-		if(!hibernating_vents.len)
+		if(!length(hibernating_vents))
 			break
 		wake_vent(hibernating_vents[pick(hibernating_vents)])
 	// do first 10 entries
 	i = 10
 	for(var/key in hibernating_vents)
-		if(i <= 0 || !hibernating_vents.len)
+		if(i <= 0 || !length(hibernating_vents))
 			break
 		wake_vent(hibernating_vents[key])
 		i--

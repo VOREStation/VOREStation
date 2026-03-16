@@ -5,6 +5,8 @@
 
 	say_list_type = /datum/say_list/clown
 
+	can_be_drop_prey = FALSE
+
 /datum/say_list/clown
 	speak = list("HONK", "Honk!", "Henk!")
 	emote_see = list("honks")

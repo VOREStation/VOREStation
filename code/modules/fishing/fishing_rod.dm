@@ -38,7 +38,7 @@
 		. += span_notice("It has [Bait] hanging on its hook: ")
 		. += Bait.examine(user)
 
-/obj/item/material/fishing_rod/CtrlClick(mob/user)
+/obj/item/material/fishing_rod/item_ctrl_click(mob/user)
 	if((src.loc == user || Adjacent(user)) && Bait)
 		Bait.forceMove(get_turf(user))
 		to_chat(user, span_notice("You remove the bait from \the [src]."))
@@ -61,7 +61,7 @@
 		if(C.get_amount() < 5)
 			to_chat(user, span_warning("You do not have enough length in \the [C] to string this!"))
 			return
-		if(do_after(user, rand(10 SECONDS, 20 SECONDS)))
+		if(do_after(user, rand(10 SECONDS, 20 SECONDS), target = src))
 			C.use(5)
 			strung = TRUE
 			to_chat(user, span_notice("You string \the [src]!"))

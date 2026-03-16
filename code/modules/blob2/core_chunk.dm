@@ -84,21 +84,23 @@
 
 	return
 
-/obj/item/blobcore_chunk/attack_self(var/mob/user)
+/obj/item/blobcore_chunk/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(blob_type && world.time > active_ability_cooldown + last_active_use)
 		last_active_use = world.time
 		to_chat(user, span_alien("[icon2html(src, user.client)] \The [src] gesticulates."))
 		blob_type.on_chunk_use(src, user)
 	else
 		to_chat(user, span_notice("\The [src] doesn't seem to respond."))
-	..()
 
 /obj/item/blobcore_chunk/process()
 	if(blob_type && should_tick && world.time > passive_ability_cooldown + last_passive_use)
 		last_passive_use = world.time
 		blob_type.on_chunk_tick(src)
 
-/obj/item/blobcore_chunk/AltClick(mob/living/carbon/user)
+/obj/item/blobcore_chunk/click_alt(mob/living/carbon/user)
 	if(blob_type && blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
 		should_tick = !should_tick
 
@@ -119,19 +121,19 @@
 
 	return FALSE
 
-/decl/chemical_reaction/instant/blob_reconstitution
+/datum/decl/chemical_reaction/instant/blob_reconstitution
 	name = "Hostile Blob Revival"
 	id = "blob_revival"
 	result = null
 	required_reagents = list(REAGENT_ID_PHORON = 60)
 	result_amount = 1
 
-/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/blobcore_chunk))
 		return ..()
 	return FALSE
 
-/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen())
 		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
@@ -139,14 +141,14 @@
 	else
 		chunk.visible_message(span_warning("[chunk] shifts strangely, but falls still."))
 
-/decl/chemical_reaction/instant/blob_reconstitution/domination
+/datum/decl/chemical_reaction/instant/blob_reconstitution/domination
 	name = "Allied Blob Revival"
 	id = "blob_friend"
 	result = null
 	required_reagents = list(REAGENT_ID_HYDROPHORON = 40, REAGENT_ID_PERIDAXON = 20, REAGENT_ID_MUTAGEN = 20)
 	result_amount = 1
 
-/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen("neutral"))
 		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))

@@ -31,8 +31,6 @@
 	icon_state = "rig0-odst"
 	item_state = "rig0-odst"
 	item_state_slots = null
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	light_overlay = "helmet_light_dual"
 	species_restricted = null
 
@@ -50,8 +48,6 @@
 	icon_state = "odst"
 	item_state = "odst"
 	item_state_slots = null
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	species_restricted = null
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.05 //Military Armor

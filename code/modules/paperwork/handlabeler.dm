@@ -67,13 +67,16 @@
 		span_notice("You label [A] as [label]."))
 	A.name = "[A.name] ([label])"
 
-/obj/item/hand_labeler/attack_self(mob/user as mob)
+/obj/item/hand_labeler/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
 		to_chat(user, span_notice("You turn on \the [src]."))
 		//Now let them chose the text.
-		var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","",MAX_NAME_LEN), MAX_NAME_LEN)
+		var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","",MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!str || !length(str))
 			to_chat(user, span_warning("Invalid text."))
 			return

@@ -4,7 +4,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "robot"
 	light_color = "#a97faa"
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/robotics
 	var/safety = 1
 
@@ -92,7 +92,8 @@
 			return TRUE
 	if(!isAI(user))
 		return FALSE
-	return (user.mind.special_role && user.mind.original == user)
+	var/mob/living/original = user.mind.original_character?.resolve()
+	return (user.mind.special_role && (original && original == user))
 
 /**
  * Check if the user is allowed to hack a specific borg
@@ -127,7 +128,7 @@
 	data["can_hack"] = can_hack_any(user)
 	data["cyborgs"] = list()
 	data["safety"] = safety
-	for(var/mob/living/silicon/robot/R in mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.mob_list)
 		if(!console_shows(R))
 			continue
 		var/area/A = get_area(R)
@@ -175,7 +176,7 @@
 				return
 			message_admins(span_notice("[key_name_admin(ui.user)] detonated all cyborgs!"))
 			log_game(span_notice("[key_name(ui.user)] detonated all cyborgs!"))
-			for(var/mob/living/silicon/robot/R in mob_list)
+			for(var/mob/living/silicon/robot/R in GLOB.mob_list)
 				if(istype(R, /mob/living/silicon/robot/drone))
 					continue
 				// Ignore antagonistic cyborgs

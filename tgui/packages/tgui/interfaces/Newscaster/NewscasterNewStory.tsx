@@ -4,7 +4,9 @@ import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import type { Data } from './types';
 
-export const NewscasterNewStory = (props: { setScreen: Function }) => {
+export const NewscasterNewStory = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { channel_name, user, title, msg, photo_data } = data;

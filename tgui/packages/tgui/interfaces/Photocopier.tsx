@@ -119,7 +119,7 @@ const Toner = (props) => {
 
   return (
     <Box color={color}>
-      <AnimatedNumber value={current_toner} format={(f) => f + '%'} />
+      <AnimatedNumber value={current_toner} format={(f) => `${f}%`} />
     </Box>
   );
 };

@@ -29,7 +29,7 @@
 		if(latch_on_start)
 			latch(T, null)
 
-/obj/vehicle/train/Move()
+/obj/vehicle/train/Move(atom/newloc, direct = 0, movetime)
 	var/old_loc = get_turf(src)
 	if((. = ..()))
 		if(tow)
@@ -38,7 +38,7 @@
 		unattach()
 
 /obj/vehicle/train/Bump(atom/Obstacle)
-	if(istype(Obstacle,/obj/structure/stairs)) // VOREstation edit - Stair support for towing vehicles
+	if(istype(Obstacle,/obj/structure/stairs))
 		return ..()
 	if(!istype(Obstacle, /atom/movable))
 		return
@@ -110,9 +110,8 @@
 		return
 	if(istype(C,/obj/vehicle/train))
 		latch(C, user)
-	else
-		if(!load(C, user))
-			to_chat(user, span_red("You were unable to load [C] on [src]."))
+	else if(!load(C, user))
+		to_chat(user, span_red("You were unable to load [C] on [src]."))
 
 /obj/vehicle/train/attack_hand(mob/user as mob)
 	if(user.stat || user.restrained() || !Adjacent(user))

@@ -721,10 +721,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 1.5e+007;
-	cur_coils = 3
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /turf/simulated/floor/plating,
 /area/engineering/engine_smes)
 "bC" = (
@@ -1054,6 +1051,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 6
 	},
+/obj/machinery/rnd/server/master,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -1064,6 +1062,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 9
 	},
+/obj/machinery/rnd/server,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -3464,7 +3463,7 @@
 	dir = 8;
 	external_pressure_bound = 100;
 	external_pressure_bound_default = 0;
-	frequency = 1438;
+	frequency = 1433;
 	icon_state = "map_vent_in";
 	id_tag = "cooling_out";
 	initialize_directions = 4;
@@ -3536,6 +3535,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/kitchen)
+"ix" = (
+/obj/machinery/mecha_part_fabricator_tg,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iy" = (
 /obj/structure/lattice,
 /turf/simulated/floor/airless,
@@ -3546,6 +3549,32 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
+"iA" = (
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iC" = (
+/obj/machinery/rnd/production/protolathe,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iD" = (
+/obj/machinery/computer/rdconsole_tg,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iE" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/ore_silo,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -5279,7 +5308,7 @@
 	dir = 6
 	},
 /obj/machinery/air_sensor{
-	frequency = 1438;
+	frequency = 1433;
 	id_tag = "engine_sensor";
 	output = 63
 	},
@@ -5311,12 +5340,8 @@
 /turf/simulated/floor,
 /area/engineering/workshop)
 "Bo" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Engine - Core";
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	output_level = 250000
+/obj/machinery/power/smes/buildable/engine_default{
+	RCon_tag = "Engine - Core"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
@@ -5953,7 +5978,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/unary/outlet_injector{
-	frequency = 1438;
+	frequency = 1433;
 	id = "cooling_in";
 	name = "Coolant Injector";
 	pixel_y = 1;
@@ -6492,13 +6517,8 @@
 /turf/space,
 /area/space)
 "PH" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Power - Main";
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	output_level = 1e+006
+/obj/machinery/power/smes/buildable/engine_default{
+	RCon_tag = "Power - Main"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -9560,7 +9580,7 @@ aa
 aa
 aa
 fY
-gk
+iE
 gf
 gr
 gf
@@ -9969,9 +9989,9 @@ eM
 eM
 gc
 gh
-gf
-gt
-gf
+iC
+iB
+ix
 gf
 gf
 gf
@@ -10173,9 +10193,9 @@ aa
 aa
 fY
 gf
-gf
+iD
 gv
-gf
+iA
 gf
 pG
 gv

@@ -1,5 +1,3 @@
-var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called manually after an event.
-
 #define CELLRATE 0.002 // Multiplier for watts per tick <> cell storage (e.g., 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
 					// It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
 #define SMESRATE 0.03333 // Same for SMESes. A different number for some reason.
@@ -46,6 +44,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_CRESCENT "Spaceport"
 // #define NETWORK_CAFE_DOCK "Cafe Dock"
 #define NETWORK_CARGO "Cargo"
+#define NETWORK_SUPPLY "Supply"
 #define NETWORK_CIRCUITS "Circuits"
 #define NETWORK_CIVILIAN "Civilian"
 // #define NETWORK_CIVILIAN_EAST "Civilian East"
@@ -77,8 +76,18 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_TALON_HELMETS "TalonHelmets" //VOREStation Add
 #define NETWORK_TALON_SHIP "TalonShip" //VOREStation Add
 
-// Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
-var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS)
+//Camera networks
+#define NETWORK_TETHER "Tether"
+#define NETWORK_OUTSIDE "Outside"
+#define NETWORK_HALLS "Halls"
+
+// SC Networks
+#define NETWORK_FIRST_DECK  "First Deck"
+#define NETWORK_SECOND_DECK "Second Deck"
+#define NETWORK_THIRD_DECK  "Third Deck"
+#define NETWORK_MAIN_OUTPOST "Main Outpost"
+#define NETWORK_CARRIER "Exploration Carrier"
+#define NETWORK_MAINT_DECK "Maintenance Deck"
 
 #define TRANSMISSION_WIRE		0 //Is this ever used? I don't think it is.
 #define TRANSMISSION_RADIO		1 //Radio transmissions (like airlock controller to pump)

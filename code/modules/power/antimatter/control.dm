@@ -82,7 +82,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/emp_act(severity)
+/obj/machinery/power/am_control_unit/emp_act(severity, recursive)
 	switch(severity)
 		if(1)
 			if(active)	toggle_power()
@@ -97,7 +97,7 @@
 			if(active)	toggle_power()
 			stability -= rand(5,10)
 	..()
-	return 0
+	return FALSE
 
 
 /obj/machinery/power/am_control_unit/ex_act(severity)

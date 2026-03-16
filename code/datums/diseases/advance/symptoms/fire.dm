@@ -38,6 +38,10 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active."
 	)
 
+	prefixes = list("Burning ")
+	bodies = list("Combustion")
+	suffixes = list(" Combustion")
+
 /datum/symptom/fire/Start(datum/disease/advance/A)
 	if(!..())
 		return
@@ -60,12 +64,12 @@ Bonus
 				to_chat(M, span_warning(pick("You feel hot.", "You hear a crackling noise.", "You smell smoke.")))
 		if(4)
 			Firestacks_stage_4(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin bursts into flames!"))
 			M.emote("scream")
 		if(5)
 			Firestacks_stage_5(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			if(M.stat != DEAD)
 				to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
 				M.emote("scream")

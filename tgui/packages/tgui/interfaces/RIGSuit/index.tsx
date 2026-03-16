@@ -14,6 +14,8 @@ export const RIGSuit = (props) => {
 
   const { interfacelock, malf, aicontrol, ai } = data;
 
+  const [showLoading, setShowLoading] = useSharedState('rigsuit-loading', true);
+
   if (config.status < UI_INTERACTIVE) {
     return (
       <Window width={300} height={300}>
@@ -27,8 +29,6 @@ export const RIGSuit = (props) => {
       </Window>
     );
   }
-
-  const [showLoading, setShowLoading] = useSharedState('rigsuit-loading', true);
 
   if (showLoading) {
     return <RIGSuitLoader onFinish={() => setShowLoading(false)} />;

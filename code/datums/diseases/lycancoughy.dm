@@ -1,5 +1,6 @@
 /datum/disease/lycan
 	name = "Lycancoughy"
+	medical_name = "Lycanthropic Hyperemesis"
 	form = "Infection"
 	max_stages = 4
 	spread_text = "On contact"

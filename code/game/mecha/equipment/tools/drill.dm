@@ -28,13 +28,13 @@
 					return
 
 				else if((W.reinf_material && advanced) || do_after_cooldown(target))//R wall with good drill
-					log_message("Drilled through [target]")
+					src.mecha_log_message("Drilled through [target]")
 					target.ex_act(3)
 				else
-					log_message("Drilled through [target]")
+					src.mecha_log_message("Drilled through [target]")
 					target.ex_act(2)
 
-			else if(istype(target, /turf/simulated/mineral))
+			else if(ismineralturf(target))
 				if(enable_special)
 					for(var/turf/simulated/mineral/M in range(chassis,1))
 						if(get_dir(chassis,M)&chassis.dir)
@@ -42,7 +42,7 @@
 				else
 					var/turf/simulated/mineral/M1 = target
 					M1.GetDrilled()
-				log_message("Drilled through [target]")
+				src.mecha_log_message("Drilled through [target]")
 				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
@@ -54,7 +54,7 @@
 				drill_mob(target, chassis.occupant)
 				return 1
 			else if(target.loc == C)
-				log_message("Drilled through [target]")
+				src.mecha_log_message("Drilled through [target]")
 				target.ex_act(2)
 	return 1
 
@@ -114,16 +114,16 @@
 				if(W.reinf_material)
 					occupant_message(span_warning("[target] is too durable to bore through."))
 				else
-					log_message("Bored through [target]")
+					src.mecha_log_message("Bored through [target]")
 					target.ex_act(2)
-			else if(istype(target, /turf/simulated/mineral))
+			else if(ismineralturf(target))
 				var/turf/simulated/mineral/M = target
 				if(enable_special && !M.density)
 					M.ex_act(2)
-					log_message("Bored into [target]")
+					src.mecha_log_message("Bored into [target]")
 				else
 					M.GetDrilled()
-					log_message("Bored through [target]")
+					src.mecha_log_message("Bored through [target]")
 				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
@@ -131,6 +131,6 @@
 							if(get_dir(chassis,ore)&chassis.dir)
 								ore.forceMove(ore_box)
 			else if(target.loc == C)
-				log_message("Drilled through [target]")
+				src.mecha_log_message("Drilled through [target]")
 				target.ex_act(2)
 	return 1

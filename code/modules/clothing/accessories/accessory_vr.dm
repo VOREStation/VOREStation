@@ -6,16 +6,11 @@
 	name = "plain choker"
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	desc = "A simple, plain choker. Or maybe it's a collar?"
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "choker_cst"
 	item_state = "choker_cst"
 	overlay_state = "choker_cst"
 	var/customized = 0
 	var/icon_previous_override
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
-		)
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/choker/Initialize(mapload)
@@ -47,14 +42,13 @@
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "collar_blk"
 	var/writtenon = 0
 	var/icon_previous_override
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
-	)
+	special_handling = TRUE
+	///Var for attack_self chain
+	var/special_collar = FALSE
+	default_worn_icon = INV_ACCESSORIES_DEF_ICON
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/Initialize(mapload)
@@ -121,7 +115,7 @@
 	return
 
 /obj/item/clothing/accessory/collar/bell/proc/jingledreset()
-		jingled = 0
+	jingled = 0
 
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
@@ -130,25 +124,29 @@
 	item_state = "collar_shk"
 	overlay_state = "collar_shk"
 	var/on = FALSE // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
+	special_collar = TRUE
 
 /obj/item/clothing/accessory/collar/shock/Initialize(mapload)
 	. = ..()
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
 /obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	radio_connection = null //Don't delete this, this is a shared object.
 	return ..()
 
 /obj/item/clothing/accessory/collar/shock/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
+/obj/item/clothing/accessory/collar/shock/attack_self(mob/user, flag1)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(!ishuman(user))
 		return
 	tgui_interact(user)
@@ -194,7 +192,8 @@
 			. = TRUE
 		if("power")
 			on = !on
-			icon_state = "collar_shk[on]"
+			if(!istype(src, /obj/item/clothing/accessory/collar/shock/bluespace))
+				icon_state = "collar_shk[on]"
 			. = TRUE
 		if("tag")
 			var/sanitized = tgui_input_text(ui.user, "Tag text?", "Set Tag", "", MAX_NAME_LEN, encode = TRUE)
@@ -269,7 +268,12 @@
 /obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/collar/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(special_collar)
+		return FALSE
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		to_chat(user,span_notice("[name]'s interface is projected onto your hand."))
 	else
@@ -395,7 +399,7 @@
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
-			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.resize(target_size, ignore_prefs = FALSE, allow_stripping = TRUE)		//In case someone else tries to put it on you.
 			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
@@ -405,7 +409,7 @@
 				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
-			H.resize(original_size, ignore_prefs = FALSE)
+			H.resize(original_size, ignore_prefs = FALSE, allow_stripping = TRUE)
 			original_size = null
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
@@ -498,7 +502,7 @@
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
-			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.resize(target_size, ignore_prefs = FALSE, allow_stripping = TRUE)		//In case someone else tries to put it on you.
 			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
@@ -508,7 +512,7 @@
 				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
-			H.resize(original_size, ignore_prefs = FALSE)
+			H.resize(original_size, ignore_prefs = FALSE, allow_stripping = TRUE)
 			original_size = null
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
@@ -573,7 +577,7 @@
 			last_activated = world.time
 			original_size = H.size_multiplier
 			currently_shrinking = 1
-			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.resize(target_size, ignore_prefs = FALSE, allow_stripping = TRUE)		//In case someone else tries to put it on you.
 			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
@@ -583,7 +587,7 @@
 				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
-			H.resize(original_size, ignore_prefs = FALSE)
+			H.resize(original_size, ignore_prefs = FALSE, allow_stripping = TRUE)
 			original_size = null
 			currently_shrinking = 0
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
@@ -611,8 +615,6 @@
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."
 
 /obj/item/clothing/accessory/medal/silver/unity/tabiranth
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "silverthree"
 	item_state = "silverthree"
 	overlay_state = "silverthree"
@@ -621,8 +623,6 @@
 /obj/item/clothing/accessory/talon
 	name = "Talon pin"
 	desc = "A collectable enamel pin that resembles ITV Talon's ship logo."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "talon_pin"
 	item_state = "talonpin"
 	overlay_state = "talonpin"
@@ -642,8 +642,15 @@
 	var/sentientprizeckey = null	//Ckey for system to check who is the person and ensure no abuse of system or errors
 	var/sentientprizeflavor = null	//Description to show on the SPASM
 	var/sentientprizeooc = null		//OOC text to show on the SPASM
+	var/sentientprizeitemtf = FALSE	//Whether the person opted in to allowing themselves to be item TF'd as a prize
+	special_handling = TRUE
+	special_collar = TRUE
 
-/obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	return TRUE
 	//keeping it blank so people don't tag and reset collar status
 
 /obj/item/clothing/accessory/collar/casinosentientprize_fake
@@ -658,8 +665,6 @@
 /obj/item/clothing/accessory/qipaogold
 	name = "gold trim"
 	desc = "Gold trim belonging to a qipao. Why would you remove this?"
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "qipaogold"
 	item_state = "qipaogold"
 	overlay_state = "qipaogold"
@@ -668,8 +673,6 @@
 /obj/item/clothing/accessory/antediluvian
 	name = "antediluvian bracers"
 	desc = "A pair of metal bracers with gold inlay. They're thin and light."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "antediluvian"
 	item_state = "antediluvian"
 	overlay_state = "antediluvian"
@@ -710,6 +713,7 @@
 	icon_state = "roughcloak"
 	item_state = "roughcloak"
 	actions_types = list(/datum/action/item_action/adjust_cloak)
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
 	. = ..()
@@ -717,7 +721,10 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]_open"
 		src.item_state = "[item_state]_open"
@@ -981,6 +988,7 @@
 	icon_state = "neo_ranger"
 	item_state = "neo_ranger"
 	actions_types = list(/datum/action/item_action/adjust_poncho)
+	special_handling = TRUE
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
 	. = ..()
@@ -988,7 +996,10 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]_open"
 		src.item_state = "[item_state]_open"
@@ -1004,8 +1015,6 @@
 /obj/item/clothing/accessory/belt
 	name = "Thin Belt"
 	desc = "A thin belt for holding your pants up."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "belt_thin"
 	item_state = "belt_thin"
 	slot_flags = SLOT_TIE | SLOT_BELT
@@ -1032,8 +1041,6 @@
 /obj/item/clothing/accessory/bunny_tail
 	name = "Bunny Tail"
 	desc = "A little fluffy bunny tail to spice up your outfit."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "bunny_tail"
 	item_state = "bunny_tail"
 	slot_flags = SLOT_TIE | SLOT_BELT

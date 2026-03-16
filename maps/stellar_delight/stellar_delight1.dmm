@@ -764,7 +764,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "by" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -1300,6 +1300,7 @@
 /obj/structure/reagent_dispensers/acid{
 	pixel_x = 32
 	},
+/obj/machinery/power/emitter,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "cx" = (
@@ -1423,6 +1424,10 @@
 "cI" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -1736,7 +1741,7 @@
 	color = "#42038a";
 	icon_state = "0-4"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -2142,12 +2147,12 @@
 /area/stellardelight/deck1/miningshuttle)
 "dV" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -2817,10 +2822,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "fp" = (
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3069,7 +3073,7 @@
 	},
 /area/stellardelight/deck1/aft)
 "fP" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -3089,9 +3093,8 @@
 	color = "#42038a";
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Exploration";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Exploration"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/exploration)
@@ -3113,6 +3116,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -3177,7 +3183,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
 "ga" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -3191,7 +3197,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "gc" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -3677,9 +3683,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/pink,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Security";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Security"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/security)
@@ -3783,6 +3788,15 @@
 /obj/machinery/firealarm/angled,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
+"hn" = (
+/obj/machinery/rnd/server,
+/turf/simulated/floor/bluegrid{
+	name = "Server Base";
+	nitrogen = 500;
+	oxygen = 0;
+	temperature = 80
+	},
+/area/stellardelight/deck1/researchserver)
 "ho" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -3848,6 +3862,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "hu" = (
@@ -3868,7 +3885,7 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "hw" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -4073,6 +4090,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
+"hO" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/steel,
+/obj/item/storage/bag/circuits/basic,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardaft)
 "hP" = (
 /obj/structure/morgue{
 	dir = 2
@@ -4186,7 +4215,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "ib" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -4280,6 +4309,12 @@
 /obj/random/snack,
 /turf/simulated/floor,
 /area/maintenance/security_port)
+"ij" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/aft)
 "ik" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -4683,7 +4718,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "explodocker_bay";
 	pixel_x = -24
 	},
@@ -5104,12 +5139,12 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "jR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -5125,6 +5160,9 @@
 	dir = 1
 	},
 /obj/effect/landmark/vines,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "jU" = (
@@ -6030,6 +6068,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/vending/assist{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "lU" = (
@@ -6077,12 +6118,10 @@
 /obj/machinery/computer/med_data/laptop{
 	dir = 4
 	},
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
 	pixel_x = 7;
 	pixel_y = 9
@@ -6377,7 +6416,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "mC" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -6448,6 +6487,9 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "mJ" = (
@@ -6486,8 +6528,7 @@
 	name = "Robotics RC";
 	pixel_y = 30
 	},
-/obj/machinery/r_n_d/circuit_imprinter,
-/obj/item/reagent_containers/glass/beaker/sulphuric,
+/obj/machinery/rnd/production/circuit_imprinter,
 /turf/simulated/floor/tiled/steel,
 /area/assembly/robotics)
 "mO" = (
@@ -6728,11 +6769,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	door_color = "#8c1d11";
-	name = "Security Processing";
+/obj/machinery/door/airlock/angled_bay/standard/color/security{
 	req_access = list(63);
-	stripe_color = "#d27428"
+	name = "Security Processing";
+	id_tag = "sec_processing"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/security/security_processing)
@@ -6849,7 +6889,7 @@
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "nE" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -7130,6 +7170,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 32;
+	pixel_x = -27;
+	id = "resleeveexit";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/resleeving)
 "oi" = (
@@ -7220,6 +7266,9 @@
 "os" = (
 /obj/structure/sign/department/miner_dock{
 	pixel_y = -32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -7769,7 +7818,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "pz" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -8084,7 +8133,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "miningdocker_bay";
 	pixel_x = 24
 	},
@@ -8592,7 +8641,7 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/miningequipment)
 "ro" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -8749,6 +8798,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -9190,7 +9242,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -9234,6 +9286,7 @@
 	name = "Shuttle Bay";
 	stripe_color = "#5a19a8"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/exploration)
 "sD" = (
@@ -9779,6 +9832,8 @@
 /obj/item/pen,
 /obj/item/packageWrap,
 /obj/item/packageWrap,
+/obj/item/multitool/scioutpost,
+/obj/item/retail_scanner/science,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "tP" = (
@@ -10113,7 +10168,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "uH" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -10767,7 +10822,7 @@
 /area/chapel/main)
 "wc" = (
 /obj/machinery/firealarm/angled,
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled/steel,
 /area/assembly/robotics)
 "we" = (
@@ -11038,7 +11093,6 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "wK" = (
-/obj/machinery/computer/rdconsole/robotics,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled/steel,
@@ -11721,6 +11775,7 @@
 /area/stellardelight/deck1/starboard)
 "yj" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "yk" = (
@@ -11811,8 +11866,14 @@
 "yq" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/retail_scanner/science,
-/obj/item/multitool/scioutpost,
+/obj/item/storage/box/anomaly{
+	pixel_y = 10;
+	pixel_x = -10
+	},
+/obj/item/storage/box/anomaly{
+	pixel_y = 2;
+	pixel_x = -10
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "yr" = (
@@ -11854,6 +11915,7 @@
 /obj/machinery/disposal/wall{
 	dir = 1
 	},
+/obj/machinery/anomaly_harvester,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "yw" = (
@@ -12539,7 +12601,7 @@
 "zV" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "miningdocker";
 	pixel_x = -24
 	},
@@ -12552,7 +12614,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "zX" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server/master,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
 	nitrogen = 500;
@@ -12645,7 +12707,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Ah" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -12785,6 +12847,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/security,
+/obj/machinery/button/remote/airlock{
+	pixel_y = 32;
+	pixel_x = 36;
+	id = "sec_processing";
+	specialfunctions = 4;
+	name = "Door Control"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
 "Ax" = (
@@ -13614,7 +13683,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "Ci" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -14010,7 +14079,10 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm3)
 "Dd" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
+	},
 /obj/effect/floor_decal/milspec/color/emerald/half{
 	dir = 6
 	},
@@ -14558,7 +14630,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
 "Es" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -15229,7 +15301,7 @@
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "FP" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -15537,9 +15609,8 @@
 /obj/structure/cable/green{
 	color = "#42038a"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Research";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Research"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/research)
@@ -15753,7 +15824,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/mining)
 "Hc" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -16633,13 +16704,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
 "IP" = (
-/obj/machinery/r_n_d/protolathe{
-	dir = 1
-	},
 /obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/rnd/production/protolathe/department/science,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "IQ" = (
@@ -16692,7 +16761,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "IV" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -17057,7 +17126,7 @@
 	color = "#42038a";
 	icon_state = "0-8"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -17337,7 +17406,7 @@
 "Kw" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "explodocker";
 	pixel_x = 24
 	},
@@ -17557,6 +17626,9 @@
 "KX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -18425,7 +18497,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/toilet)
 "MP" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -18807,7 +18879,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "ND" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -18996,6 +19068,9 @@
 	dir = 9
 	},
 /obj/effect/floor_decal/milspec/color/emerald/half,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "Ob" = (
@@ -19075,6 +19150,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "Ol" = (
@@ -19101,9 +19179,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Cargo";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Cargo"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/cargo)
@@ -19864,9 +19941,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Civilian"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/civilian)
@@ -19967,9 +20043,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/orange,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Atmospherics";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Atmospherics"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/atmospherics)
@@ -21238,7 +21313,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "SN" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -21261,6 +21336,9 @@
 	},
 /obj/structure/sign/directions/shuttle_bay{
 	pixel_y = -32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -21571,9 +21649,8 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Medical";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Medical"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/medical)
@@ -22012,6 +22089,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals3{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "Ul" = (
@@ -22168,9 +22248,9 @@
 /turf/simulated/floor/carpet,
 /area/library)
 "UA" = (
-/obj/machinery/r_n_d/destructive_analyzer,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/rnd/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "UB" = (
@@ -22953,7 +23033,7 @@
 	color = "#42038a";
 	icon_state = "0-4"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /turf/simulated/floor/airless,
@@ -23635,7 +23715,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "Xw" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sd_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
@@ -23721,6 +23801,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -23871,12 +23954,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "XZ" = (
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "Ya" = (
@@ -34045,7 +34132,7 @@ RT
 CG
 CG
 yO
-hg
+ij
 dl
 sR
 pV
@@ -34187,7 +34274,7 @@ pA
 hv
 CG
 ZB
-hg
+ij
 dl
 ZC
 YQ
@@ -34329,7 +34416,7 @@ ir
 ip
 CG
 cA
-hg
+ij
 dl
 Nm
 on
@@ -34897,7 +34984,7 @@ MM
 QO
 ta
 Ie
-hg
+ij
 gQ
 Ps
 Ps
@@ -35039,7 +35126,7 @@ VA
 qD
 qD
 sM
-hg
+ij
 gQ
 xD
 pw
@@ -35181,7 +35268,7 @@ Df
 zn
 qD
 lt
-hg
+ij
 gQ
 dO
 sZ
@@ -35323,7 +35410,7 @@ tv
 Ol
 qD
 YN
-hg
+ij
 gQ
 cQ
 gQ
@@ -35465,7 +35552,7 @@ yu
 EM
 qD
 bR
-hg
+ij
 gQ
 WP
 Ps
@@ -36464,7 +36551,7 @@ WR
 sY
 LP
 qA
-zX
+hn
 yY
 yQ
 du
@@ -37434,7 +37521,7 @@ Dv
 Uv
 Dv
 lT
-Dv
+hO
 il
 OR
 CY

@@ -19,7 +19,8 @@
 	melee_damage_upper = 15
 	attacktext = list("punched")
 
-	loot_list = list(/obj/item/material/knife = 100)
+	loot_list = list(/obj/item/material/knife = 100,
+					/obj/item/salvage/loot/russian = 10)
 
 	corpse = /obj/effect/landmark/mobcorpse/russian
 

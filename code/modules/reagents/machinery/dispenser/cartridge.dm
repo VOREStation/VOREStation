@@ -7,8 +7,9 @@
 
 	volume = CARTRIDGE_VOLUME_LARGE
 	amount_per_transfer_from_this = 50
-	// Large, but inaccurate. Use a chem dispenser or beaker for accuracy.
-	possible_transfer_amounts = list(50, 100, 250, 500)
+	// Large, but inaccurate. Use a chem dispenser or beaker for small volumes.
+	max_transfer_amount = 500
+	min_transfer_amount = 50
 	unacidable = TRUE
 
 	var/spawn_reagent = null
@@ -52,8 +53,10 @@
 		name = initial(name)
 
 /obj/item/reagent_containers/chem_disp_cartridge/attack_self(mob/user)
-	..()
-	if (is_open_container())
+	. = ..(user)
+	if(.)
+		return TRUE
+	if(is_open_container())
 		to_chat(user, span_notice("You put the cap on \the [src]."))
 		flags ^= OPENCONTAINER
 	else

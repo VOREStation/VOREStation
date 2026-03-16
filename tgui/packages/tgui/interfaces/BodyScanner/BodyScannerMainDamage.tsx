@@ -1,5 +1,4 @@
 import { ProgressBar, Section, Table } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages } from './constants';
 import { mapTwoByTwo } from './functions';
@@ -14,7 +13,7 @@ export const BodyScannerMainDamage = (props: { occupant: occupant }) => {
           <>
             <Table.Row color="label">
               <Table.Cell>{d1[0]}:</Table.Cell>
-              <Table.Cell>{!!d2 && d2[0] + ':'}</Table.Cell>
+              <Table.Cell>{!!d2 && `${d2[0]}:`}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
@@ -48,7 +47,7 @@ const BodyScannerMainDamageBar = (props: {
       mb={!!marginBottom && '0.5rem'}
       ranges={damageRange}
     >
-      {toFixed(value)}
+      {value.toFixed()}
     </ProgressBar>
   );
 };

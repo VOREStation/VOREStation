@@ -8,7 +8,7 @@
 	var/cult = 0
 
 /obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)
-	. = cached_icon_states(icon)
+	. = icon_states_fast(icon)
 	. -= "On"
 	. -= "Nar-sie Bistro"
 	. -= "Empty"
@@ -37,7 +37,7 @@
 
 	var/obj/item/card/id/card = I.GetID()
 	if(istype(card))
-		if(access_bar in card.GetAccess())
+		if(ACCESS_BAR in card.GetAccess())
 			var/sign_type = tgui_input_list(user, "What would you like to change the barsign to?", "Bar Sign Choice", get_valid_states(0))
 			if(!sign_type)
 				return

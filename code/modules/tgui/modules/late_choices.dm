@@ -57,15 +57,15 @@
 /datum/tgui_module/late_choices/tgui_data(mob/new_player/user)
 	var/list/data = ..()
 
-	var/name = user.client.prefs.read_preference(/datum/preference/toggle/human/name_is_always_random) ? "friend" : user.client.prefs.real_name
+	var/name = user.client.prefs.read_preference(/datum/preference/toggle/human/name_is_always_random) ? "friend" : user.client.prefs.read_preference(/datum/preference/name/real_name)
 
 	data["name"] = name
 	data["duration"] = roundduration2text()
 
-	if(emergency_shuttle?.going_to_centcom())
+	if(GLOB.emergency_shuttle?.going_to_centcom())
 		data["evac"] = "Gone"
-	else if(emergency_shuttle?.online())
-		if(emergency_shuttle.evac)
+	else if(GLOB.emergency_shuttle?.online())
+		if(GLOB.emergency_shuttle.evac)
 			data["evac"] = "Emergency"
 		else
 			data["evac"] = "Crew Transfer"
@@ -74,7 +74,7 @@
 
 	var/list/jobs = list()
 
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in GLOB.job_master.occupations)
 		if(job && user.IsJobAvailable(job.title))
 			// Check for jobs with minimum age requirements
 			if(!character_old_enough_for_job(user.client.prefs, job))
@@ -82,7 +82,7 @@
 
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.mind?.assigned_role == job.title && M.client?.inactivity <= 10 MINUTES)
 					active++
 
@@ -121,7 +121,7 @@
 			if(!CONFIG_GET(flag/enter_allowed))
 				to_chat(new_user, span_notice("There is an administrative lock on entering the game!"))
 				return
-			else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
+			else if(SSticker && SSticker.mode && SSticker.mode.explosion_in_progress)
 				to_chat(new_user, span_danger("The station is currently exploding. Joining would go poorly."))
 				return
 

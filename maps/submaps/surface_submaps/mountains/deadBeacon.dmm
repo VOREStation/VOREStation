@@ -64,10 +64,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "o" = (
-/obj/item/paper/crumpled{
-	info = "Sampatti Relay Sif-833 <BR> Decryption Key for 12-04-2488: <BR> 849B0022FBA920C244 <BR> Eyes Only.  <BR> The insider who knows all the secrets can bring down Lanka.";
-	name = "Dusty Note"
-	},
+/obj/item/paper/crumpled/sampatti,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "p" = (

@@ -25,7 +25,8 @@
 		handle_breathing()
 
 		//Mutations and radiation
-		handle_mutations_and_radiation()
+		handle_mutations()
+		handle_radiation()
 
 
 
@@ -59,9 +60,6 @@
 	if(environment)
 		handle_environment(environment)
 
-	//Check if we're on fire
-	handle_fire()
-
 	if(client)	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them, and do not have repeating ambience disabled.
 		handle_ambience()
 
@@ -92,8 +90,15 @@
 /mob/living/proc/handle_breathing()
 	return
 
-/mob/living/proc/handle_mutations_and_radiation()
-	return
+/mob/living/proc/handle_mutations()
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_HANDLE_MUTATIONS) & COMPONENT_BLOCK_LIVING_MUTATIONS)
+		return COMPONENT_BLOCK_LIVING_MUTATIONS
+
+/mob/living/proc/handle_radiation()
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_HANDLE_RADIATION) & COMPONENT_BLOCK_LIVING_RADIATION)
+		return COMPONENT_BLOCK_LIVING_RADIATION
 
 /mob/living/proc/handle_chemicals_in_body()
 	return
@@ -130,13 +135,8 @@
 /mob/living/proc/handle_regular_status_updates()
 	updatehealth()
 	if(stat != DEAD)
-		if(paralysis)
-			set_stat(UNCONSCIOUS)
-		else if (status_flags & FAKEDEATH)
-			set_stat(UNCONSCIOUS)
-		else
-			set_stat(CONSCIOUS)
-		return 1
+		set_stat(CONSCIOUS)
+		return TRUE
 
 /mob/living/proc/handle_statuses()
 	handle_stunned()
@@ -151,7 +151,7 @@
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
-		throw_alert("stunned", /obj/screen/alert/stunned)
+		throw_alert("stunned", /atom/movable/screen/alert/stunned)
 	else
 		clear_alert("stunned")
 	return stunned
@@ -159,7 +159,7 @@
 /mob/living/proc/handle_weakened()
 	if(weakened)
 		AdjustWeakened(-1)
-		throw_alert("weakened", /obj/screen/alert/weakened)
+		throw_alert("weakened", /atom/movable/screen/alert/weakened)
 	else
 		clear_alert("weakened")
 	return weakened
@@ -177,7 +177,7 @@
 /mob/living/proc/handle_drugged()
 	if(druggy)
 		druggy = max(druggy-1, 0)
-		throw_alert("high", /obj/screen/alert/high)
+		throw_alert("high", /atom/movable/screen/alert/high)
 	else
 		clear_alert("high")
 	return druggy
@@ -190,7 +190,7 @@
 /mob/living/proc/handle_paralysed()
 	if(paralysis)
 		AdjustParalysis(-1)
-		throw_alert("paralyzed", /obj/screen/alert/paralyzed)
+		throw_alert("paralyzed", /atom/movable/screen/alert/paralyzed)
 	else
 		clear_alert("paralyzed")
 	return paralysis
@@ -198,7 +198,7 @@
 /mob/living/proc/handle_confused()
 	if(confused)
 		AdjustConfused(-1)
-		throw_alert("confused", /obj/screen/alert/confused)
+		throw_alert("confused", /atom/movable/screen/alert/confused)
 	else
 		clear_alert("confused")
 	return confused
@@ -208,10 +208,10 @@
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		SetBlinded(1)
-		throw_alert("blind", /obj/screen/alert/blind)
+		throw_alert("blind", /atom/movable/screen/alert/blind)
 	else if(eye_blind)			//blindness, heals slowly over time
 		AdjustBlinded(-1)
-		throw_alert("blind", /obj/screen/alert/blind)
+		throw_alert("blind", /atom/movable/screen/alert/blind)
 	else
 		clear_alert("blind")
 
@@ -227,14 +227,11 @@
 			adjustEarDamage(-0.05,-1)
 
 /mob/living/handle_regular_hud_updates()
-	if(!client)
-		return 0
-	..()
-
+	. = ..()
+	if(!.)
+		return
 	handle_darksight()
-	handle_hud_icons()
-
-	return 1
+	handle_hud_icons_health()
 
 /mob/living/proc/update_sight()
 	if(!seedarkness)
@@ -250,12 +247,11 @@
 
 	return
 
-/mob/living/proc/handle_hud_icons()
-	handle_hud_icons_health()
-	return
-
 /mob/living/proc/handle_hud_icons_health()
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD_HEALTH_ICON) & COMSIG_COMPONENT_HANDLED_HEALTH_ICON)
+		return FALSE
+	return TRUE
 
 /mob/living/proc/handle_light()
 	if(glow_override)
@@ -267,7 +263,7 @@
 			set_light(distance, distance * 4, l_color = "#660066")
 			return TRUE
 
-	else if(glow_toggle)
+	else if(glow_toggle && !is_ventcrawling) // Hide the light in vents
 		set_light(glow_range, glow_intensity, glow_color)
 
 	else
@@ -275,6 +271,7 @@
 		return FALSE
 
 /mob/living/proc/handle_darksight()
+	SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
 	if(!seedarkness) //Cheap 'always darksight' var
 		dsoverlay.alpha = 255
 		return
@@ -307,8 +304,12 @@
 	if(stat != DEAD && toggled_sleeping)
 		Sleeping(2)
 	if(sleeping)
-		AdjustSleeping(-1)
-		throw_alert("asleep", /obj/screen/alert/asleep)
+		if(iscarbon(src))
+			var/mob/living/carbon/C = src
+			AdjustSleeping(-1 * C.species.waking_speed)
+		else
+			AdjustSleeping(-1)
+		throw_alert("asleep", /atom/movable/screen/alert/asleep)
 	else
 		clear_alert("asleep")
 	return sleeping

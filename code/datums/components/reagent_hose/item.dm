@@ -24,7 +24,7 @@
 	remembered = null
 	. = ..()
 
-/obj/item/stack/hose/CtrlClick(mob/user)
+/obj/item/stack/hose/item_ctrl_click(mob/user)
 	if(remembered)
 		to_chat(user, span_notice("You wind \the [src] back up."))
 		remembered = null
@@ -32,6 +32,9 @@
 
 /obj/item/stack/hose/afterattack(var/atom/target, var/mob/living/user, proximity, params)
 	if(!proximity)
+		return
+	if(in_use)
+		to_chat(user, span_danger("You must choose which connector this hose will connect to before you can attach the hose to something else."))
 		return
 
 	var/datum/component/hose_connector/REMB = remembered?.resolve()
@@ -59,10 +62,10 @@
 					remembered = null // Unintuitive if it does not reset state
 
 				else if(distancetonode <= amount)
-					to_chat(user, span_notice("You join \the [REMB] to \the [AC]."))
-					REMB.setup_hoses(AC,distancetonode)
-					use(distancetonode)
+					if(REMB.setup_hoses(AC,distancetonode,user))
+						use(distancetonode)
 					remembered = null
+
 				else
 					to_chat(user, span_notice("You do not have enough tubing to connect the sockets. You wind \the [src] back up."))
 					remembered = null // Unintuitive if it does not reset state
@@ -72,9 +75,11 @@
 				to_chat(user, span_notice("You connect one end of tubing to \the [AC]."))
 
 		else
+			in_use = TRUE // Prevent opening a million uis
 			var/choice = tgui_input_list(user, "Select a target hose connector.", "Socket Selection", available_sockets)
+			in_use = FALSE
 
-			if(choice)
+			if(choice && user.Adjacent(target))
 				var/datum/component/hose_connector/CC = available_sockets[choice]
 				if(REMB)
 					if(REMB.get_carrier() == CC.get_carrier())
@@ -88,10 +93,8 @@
 							remembered = null // Unintuitive if it does not reset state
 
 						else if(distancetonode <= amount)
-							to_chat(user, span_notice("You join \the [REMB] to \the [CC]"))
-
-							REMB.setup_hoses(CC,distancetonode)
-							use(distancetonode)
+							if(REMB.setup_hoses(CC,distancetonode,user))
+								use(distancetonode)
 							remembered = null
 
 						else
@@ -105,6 +108,7 @@
 		return
 
 	else
-		to_chat(user, span_notice("There are no available connectors on \the [target]. You wind \the [src] back up."))
+		if(remembered)
+			to_chat(user, span_notice("There are no available connectors on \the [target]. You wind \the [src] back up."))
 		remembered = null // Unintuitive if it does not reset state
 		..()

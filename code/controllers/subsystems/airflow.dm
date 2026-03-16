@@ -16,6 +16,11 @@ SUBSYSTEM_DEF(airflow)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	priority = FIRE_PRIORITY_AIRFLOW
 
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/air
+	)
+
 	var/list/processing = list()
 	var/list/currentrun = list()
 
@@ -25,8 +30,8 @@ SUBSYSTEM_DEF(airflow)
 
 	var/mywait = wait
 	var/list/curr = currentrun // Cache for sanic speed
-	while (curr.len)
-		var/atom/movable/target = curr[curr.len]
+	while (length(curr))
+		var/atom/movable/target = curr[length(curr)]
 		curr.len--
 		if(QDELETED(target))
 			processing -= target
@@ -49,7 +54,7 @@ SUBSYSTEM_DEF(airflow)
 			target.airflow_process_delay = 0
 
 		target.airflow_speed = min(target.airflow_speed, 15)
-		target.airflow_speed -= vsc.airflow_speed_decay
+		target.airflow_speed -= GLOB.vsc.airflow_speed_decay
 		if (!target.airflow_skip_speedcheck)
 			if (target.airflow_speed > 7)
 				if (target.airflow_time++ >= target.airflow_speed - 7)
@@ -93,7 +98,7 @@ SUBSYSTEM_DEF(airflow)
 		step_towards(target, target.airflow_dest)
 		var/mob/M = target
 		if (ismob(target) && M.client)
-			M.setMoveCooldown(vsc.airflow_mob_slowdown)
+			M.setMoveCooldown(GLOB.vsc.airflow_mob_slowdown)
 
 		if (MC_TICK_CHECK)
 			return
@@ -108,7 +113,7 @@ SUBSYSTEM_DEF(airflow)
 	var/tmp/airflow_skip_speedcheck
 
 /atom/movable/proc/prepare_airflow(n)
-	if (!airflow_dest || airflow_speed < 0 || last_airflow > world.time - vsc.airflow_delay)
+	if (!airflow_dest || airflow_speed < 0 || last_airflow > world.time - GLOB.vsc.airflow_delay)
 		return FALSE
 	if (airflow_speed)
 		airflow_speed = n / max(get_dist(src, airflow_dest), 1)

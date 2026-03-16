@@ -4,38 +4,45 @@
  * @license MIT
  */
 
+import { colorList } from 'common/colorpicker';
+import React, {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
-  colorList,
-  hexToHsva,
   type HsvaColor,
+  hexToHsva,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
   rgbaToHsva,
   validHex,
-} from 'common/colorpicker';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Pointer } from 'tgui/components';
-import { type Interaction, Interactive } from 'tgui/components/Interactive';
+} from 'tgui-core/color';
 import {
   Autofocus,
   Box,
   Button,
   Input,
+  type Interaction,
+  Interactive,
   NumberInput,
+  Pointer,
   Section,
   Stack,
   Tooltip,
 } from 'tgui-core/components';
 import { clamp } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
-interface ColorPickerData {
+type ColorPickerData = {
   autofocus: boolean;
   buttons: string[];
   message: string;
@@ -44,10 +51,10 @@ interface ColorPickerData {
   timeout: number;
   title: string;
   default_color: string;
-  presets: string;
-}
+  presets?: string;
+};
 
-interface ColorPickerModalProps {}
+type ColorPickerModalProps = Record<never, never>;
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { act, data } = useBackend<ColorPickerData>();
@@ -56,7 +63,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     message,
     autofocus,
     default_color = '#000000',
-    presets = '',
+    presets,
   } = data;
   let { title } = data;
 
@@ -67,12 +74,17 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
   const [allowEditing, setAllowEditing] = useState<boolean>(false);
 
-  useEffect(() => {
+  const updateSelectedColor = useEffectEvent(() => {
     setSelectedColor(hexToHsva(default_color));
-  }, [default_color]);
+  });
 
   useEffect(() => {
+    updateSelectedColor();
+  }, [default_color]);
+
+  const syncColorPreset = useEffectEvent(() => {
     const hexCol = hsvaToHex(selectedColor);
+
     if (
       selectedPreset !== undefined &&
       lastSelectedColor !== hexCol &&
@@ -81,6 +93,14 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
       setLastSelectedColor(hexCol);
       act('preset', { color: hexCol, index: selectedPreset + 1 });
     }
+  });
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      syncColorPreset();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [selectedColor]);
 
   if (!title) {
@@ -91,23 +111,26 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     undefined,
   );
 
-  const ourPresets = presets
-    .replaceAll('#', '')
-    .replace(/(^;)|(;$)/g, '')
-    .split(';');
-  while (ourPresets.length < 20) {
-    ourPresets.push('FFFFFF');
+  let presetList;
+  if (presets) {
+    const ourPresets = presets
+      .replaceAll('#', '')
+      .replace(/(^;)|(;$)/g, '')
+      .split(';');
+    while (ourPresets.length < 20) {
+      ourPresets.push('FFFFFF');
+    }
+    presetList = ourPresets.reduce(
+      (input, entry, index) => {
+        if (index < 10) {
+          return [[...input[0], entry], input[1]];
+        } else {
+          return [input[0], [...input[1], entry]];
+        }
+      },
+      [[], []],
+    );
   }
-  const presetList = ourPresets.reduce(
-    (input, entry, index) => {
-      if (index < 10) {
-        return [[...input[0], entry], input[1]];
-      } else {
-        return [input[0], [...input[1], entry]];
-      }
-    },
-    [[], []],
-  );
   return (
     <Window
       height={message ? 460 : 420}
@@ -154,11 +177,11 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
 interface ColorPresetsProps {
   setColor: (color: HsvaColor) => void;
   setShowPresets: (show: boolean) => void;
-  presetList: string[][];
+  presetList?: string[][];
   selectedPreset: number | undefined;
   onSelectedPreset: React.Dispatch<React.SetStateAction<number | undefined>>;
-  allowEditing: boolean;
-  onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  allowEditing?: boolean;
+  onAllowEditing?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
@@ -195,7 +218,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />
@@ -207,7 +230,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
           <Stack.Item mt={0.5}>
-            {presetList.map((row, index) => (
+            {presetList?.map((row, index) => (
               <Stack.Item key={index} grow>
                 <Stack justify="center" g={0}>
                   {row.map((entry, i) => (
@@ -225,7 +248,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />
@@ -237,14 +260,16 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
         </Stack>
-        <Button
-          color={allowEditing ? 'green' : 'red'}
-          position="absolute"
-          right="4px"
-          bottom="4px"
-          icon="lock"
-          onClick={() => onAllowEditing(!allowEditing)}
-        />
+        {!!onAllowEditing && presetList?.length && (
+          <Button
+            color={allowEditing ? 'green' : 'red'}
+            position="absolute"
+            right="4px"
+            bottom="4px"
+            icon="lock"
+            onClick={() => onAllowEditing(!allowEditing)}
+          />
+        )}
       </>
     );
   },
@@ -254,14 +279,14 @@ interface ColorSelectorProps {
   color: HsvaColor;
   setColor: React.Dispatch<React.SetStateAction<HsvaColor>>;
   defaultColor: string;
-  presetList: string[][];
+  presetList?: string[][];
   selectedPreset: number | undefined;
   onSelectedPreset: React.Dispatch<React.SetStateAction<number | undefined>>;
-  allowEditing: boolean;
-  onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  allowEditing?: boolean;
+  onAllowEditing?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
+export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
   ({
     color,
     setColor,
@@ -280,7 +305,6 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
     );
 
     const [showPresets, setShowPresets] = useState<boolean>(false);
-    const rgb = hsvaToRgba(color);
     const hexColor = hsvaToHex(color);
 
     return (
@@ -313,14 +337,14 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
                   backgroundColor={hexColor}
                 />
               </Tooltip>
-              <Tooltip content={defaultColor} position="bottom">
-                <Box
-                  inline
-                  width="100px"
-                  height="30px"
-                  backgroundColor={defaultColor}
-                />
-              </Tooltip>
+              <Button
+                tooltip={defaultColor}
+                tooltipPosition="bottom"
+                width="100px"
+                height="30px"
+                backgroundColor={defaultColor}
+                onClick={() => setColor(hexToHsva(defaultColor))}
+              />
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -649,6 +673,7 @@ const SaturationValue: React.FC<SaturationValueProps> = React.memo(
       }),
       [hsva.h],
     );
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className="react-colorful__saturation_value" style={containerStyle}>
@@ -659,6 +684,7 @@ const SaturationValue: React.FC<SaturationValueProps> = React.memo(
           aria-valuetext={`Saturation ${Math.round(
             hsva.s,
           )}%, Brightness ${Math.round(hsva.v)}%`}
+          containerRef={containerRef}
         >
           <Pointer
             className="react-colorful__saturation_value-pointer"
@@ -686,12 +712,14 @@ const Hue: React.FC<HueProps> = React.memo(({ className, hue, onChange }) => {
   const handleKey = (offset: Interaction) => {
     onChange({ h: clamp(hue + offset.left * 360, 0, 360) });
   };
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const nodeClassName = classes(['react-colorful__hue', className]);
 
   return (
     <div className={nodeClassName}>
       <Interactive
+        containerRef={containerRef}
         onMove={handleMove}
         onKey={handleKey}
         aria-label="Hue"
@@ -737,10 +765,12 @@ const Saturation: React.FC<SaturationProps> = React.memo(
         })}, ${hsvaToHslString({ h: color.h, s: 100, v: color.v, a: 1 })})`,
       [color],
     );
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className={nodeClassName}>
         <Interactive
+          containerRef={containerRef}
           style={{ background }}
           onMove={handleMove}
           onKey={handleKey}
@@ -795,10 +825,12 @@ const Value: React.FC<ValueProps> = React.memo(
         })}, ${hsvaToHslString({ h: color.h, s: color.s, v: 100, a: 1 })})`,
       [color],
     );
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className={nodeClassName}>
         <Interactive
+          containerRef={containerRef}
           style={{
             background,
           }}
@@ -853,10 +885,12 @@ const RGBSlider: React.FC<RGBSliderProps> = React.memo(
     };
 
     const selected = channels[target];
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <div className={nodeClassName}>
         <Interactive
+          containerRef={containerRef}
           onMove={handleMove}
           onKey={handleKey}
           aria-valuenow={rgb[target]}

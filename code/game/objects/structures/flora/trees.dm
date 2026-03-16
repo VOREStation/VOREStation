@@ -46,7 +46,7 @@
 
 	if(is_stump)
 		if(istype(W,/obj/item/shovel))
-			if(do_after(user, 5 SECONDS))
+			if(do_after(user, 5 SECONDS, target = src))
 				visible_message(span_infoplain(span_bold("\The [user]") + " digs up \the [src] stump with \the [W]."))
 				qdel(src)
 		return
@@ -264,7 +264,7 @@
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_sif"
 	base_state = "tree_sif"
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	product = /obj/item/stack/material/log/sif
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 	randomize_size = TRUE

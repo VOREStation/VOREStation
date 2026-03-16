@@ -24,10 +24,6 @@
 			sleep(25)
 
 /datum/effect/effect/system/grav_pull/proc/do_pull()
-	//following is adapted from supermatter and singulo code
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 1
-
 	// Let's just make this one loop.
 	for(var/X in orange(pull_radius, location))
 		// Movable atoms only
@@ -58,6 +54,3 @@
 
 			step_towards(X, location) // Step twice
 			step_towards(X, location)
-
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 0

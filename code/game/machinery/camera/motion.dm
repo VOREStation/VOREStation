@@ -42,7 +42,7 @@
 	if (!status || (stat & NOPOWER))
 		return 0
 	if (detectTime == -1)
-		motion_alarm.clearAlarm(loc, src)
+		GLOB.motion_alarm.clearAlarm(loc, src)
 	detectTime = 0
 	return 1
 
@@ -50,7 +50,7 @@
 	if (!status || (stat & NOPOWER))
 		return 0
 	if (!detectTime) return 0
-	motion_alarm.triggerAlarm(loc, src)
+	GLOB.motion_alarm.triggerAlarm(loc, src)
 	detectTime = -1
 	return 1
 
@@ -59,7 +59,7 @@
 		return
 	var/atom/movable/AM = WF.resolve()
 	if(isnull(AM))
-		log_debug("DEBUG: HasProximity called without reference on [src].")
+		log_runtime("DEBUG: HasProximity called without reference on [src].")
 		return
 	// Motion cameras outside of an "ai monitored" area will use this to detect stuff.
 	if (!area_motion)

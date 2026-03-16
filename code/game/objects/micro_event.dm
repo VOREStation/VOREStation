@@ -1,13 +1,13 @@
 /obj/structure/portal_event/resize
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-d-portal"
 	var/shrinking = TRUE
 	var/size_limit = 0.5
 
 /obj/structure/portal_event/resize/attack_ghost(var/mob/observer/dead/user)
-	if(!target && user?.client?.holder)
+	if(!target && check_rights_for(user?.client, R_HOLDER))
 		if(tgui_alert(user, "Would you like to adjust the portal's size settings?", "Change portal size settings", list("No","Yes")) == "Yes")
 			var/our_message
 			if(tgui_alert(user, "Should this portal shrink people who are over the limit, or grow people who are under the limit?", "Change portal size settings", list("Shrink","Grow")) == "Shrink")

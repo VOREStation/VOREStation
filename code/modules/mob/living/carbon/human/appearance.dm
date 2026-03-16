@@ -4,7 +4,7 @@
 												var/list/species_whitelist = list(),
 												var/list/species_blacklist = list(),
 												var/datum/tgui_state/state = GLOB.tgui_self_state)
-	var/datum/tgui_module/appearance_changer/AC = new(src, src, check_species_whitelist, species_whitelist, species_blacklist)
+	var/datum/tgui_module/appearance_changer/self_deleting/AC = new(src, src, check_species_whitelist, species_whitelist, species_blacklist)
 	AC.flags = flags
 	AC.tgui_interact(user, custom_state = state)
 
@@ -46,7 +46,7 @@
 	if(h_style == hair_style)
 		return
 
-	if(!(hair_style in hair_styles_list))
+	if(!(hair_style in GLOB.hair_styles_list))
 		return
 
 	h_style = hair_style
@@ -76,7 +76,7 @@
 	if(f_style == facial_hair_style)
 		return
 
-	if(!(facial_hair_style in facial_hair_styles_list))
+	if(!(facial_hair_style in GLOB.facial_hair_styles_list))
 		return
 
 	f_style = facial_hair_style
@@ -200,8 +200,11 @@
 	if(H) use_species = H.data.get_species_bodytype(src)
 
 	var/list/valid_hairstyles = new()
-	for(var/hairstyle in hair_styles_list)
-		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+	for(var/hairstyle in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
+
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
 
 		if(check_gender && gender != NEUTER)
 			if(gender == MALE && S.gender == FEMALE)
@@ -210,6 +213,9 @@
 				continue
 
 		if(!(use_species in S.species_allowed))
+			continue
+
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue
 
 		if(S.ckeys_allowed && !(ckey in S.ckeys_allowed)) //VOREStation add - ckey whitelist check
@@ -226,8 +232,11 @@
 	if(H) use_species = H.data.get_species_bodytype(src)
 
 	var/list/valid_facial_hairstyles = new()
-	for(var/facialhairstyle in facial_hair_styles_list)
-		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
+
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
 
 		if(gender != NEUTER)
 			if(gender == MALE && S.gender == FEMALE)
@@ -236,6 +245,9 @@
 				continue
 
 		if(!(use_species in S.species_allowed))
+			continue
+
+		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue
 
 		if(S.ckeys_allowed && !(ckey in S.ckeys_allowed)) //VOREStation add - ckey whitelist check

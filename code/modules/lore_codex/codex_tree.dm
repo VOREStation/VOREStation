@@ -100,7 +100,7 @@
 		current_page["[user]"] = home
 		D = current_page["[user]"]
 		if(!istype(D))
-			log_debug("Codex_tree failed to failed to load for [user].")
+			log_runtime("Codex_tree failed to failed to load for [user].")
 			return
 		var/list/H_init = list()
 		H_init.Add(home)
