@@ -451,9 +451,10 @@
 	sprite_icon_state = "honkborg"
 	has_eye_light_sprites = TRUE
 
-/datum/robot_sprite/dogborg/tall/clown
+/datum/robot_sprite/dogborg/tall/clown/tall
 	module_type = "Clown"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
+	icon_x = 32
 	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/clown/k4t
