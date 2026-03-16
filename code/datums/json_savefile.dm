@@ -59,6 +59,24 @@ GENERAL_PROTECT_DATUM(/datum/json_savefile)
 	if(path)
 		rustg_file_write(json_encode(tree, JSON_PRETTY_PRINT), path)
 
+/// Writes the entire JSON tree back into a BYOND savefile.
+/// This is the reverse of import_byond_savefile() and is used by the admin save conversion verb.
+/// Nested lists become savefile directories; all other values are written as savefile entries.
+/datum/json_savefile/proc/export_to_byond_savefile(savefile/savefile)
+	_write_subtree_to_savefile(savefile, "", tree)
+
+/// Recursive helper: walks 'subtree' and writes each key under 'path_prefix' in the savefile.
+/datum/json_savefile/proc/_write_subtree_to_savefile(savefile/savefile, var/path_prefix, var/list/subtree)
+	for(var/key, value in subtree)
+		var/full_path = "[path_prefix]/[key]"
+		if(islist(value))
+			// Recurse: nested list becomes a savefile subdirectory.
+			_write_subtree_to_savefile(savefile, full_path, value)
+		else
+			// Leaf value: cd to the path and write the value.
+			savefile.cd = full_path
+			WRITE_FILE(savefile, value)
+
 /// Traverses the entire dir tree of the given savefile and dynamically assembles the tree from it
 /datum/json_savefile/proc/import_byond_savefile(savefile/savefile)
 	tree.Cut()
