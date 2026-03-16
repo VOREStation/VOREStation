@@ -32,6 +32,11 @@ ADMIN_VERB(admin_convert_savefile, R_ADMIN, "Convert Player Savefile", "Convert 
 			message_admins("[key_name_admin(user)] attempted to convert [target_ckey]'s save file, but that player is online.")
 			return
 
+	// Also block if they connected at any point this round, even if currently offline.
+	if(GLOB.persistent_clients_by_ckey[target_ckey])
+		to_chat(user, span_danger("[target_ckey] has connected this round. Their save may have been written by the server since then. Wait until next round to convert."))
+		message_admins("[key_name_admin(user)] attempted to convert [target_ckey]'s save file, but that player connected this round.")
+		return
 
 	// Make sure save files actually exist for this ckey.
 	var/save_dir = get_player_save_dir(target_ckey)
