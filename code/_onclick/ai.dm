@@ -40,6 +40,9 @@
 					P.Click(params)
 					break
 
+	if(check_click_intercept(params,A))
+		return
+
 	if(stat)
 		return
 
