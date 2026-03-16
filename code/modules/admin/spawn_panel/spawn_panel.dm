@@ -61,7 +61,7 @@
 /datum/spawnpanel/tgui_close(mob/user)
 	. = ..()
 	if (precise_mode && precise_mode != PRECISE_MODE_OFF)
-		toggle_precise_mode(PRECISE_MODE_OFF)
+		toggle_precise_mode(PRECISE_MODE_OFF, user)
 
 /datum/spawnpanel/tgui_state(mob/user)
 	return ADMIN_STATE(R_SPAWN)
@@ -151,7 +151,7 @@
 			var/precise_type = params["newPreciseType"]
 			if(precise_type == PRECISE_MODE_TARGET && params["where_target_type"])
 				where_target_type = params["where_target_type"]
-			toggle_precise_mode(precise_type)
+			toggle_precise_mode(precise_type, ui.user)
 			return TRUE
 
 		if("update-settings")
@@ -178,9 +178,9 @@
 				selected_atom_icon_state = params["selected_atom_icon_state"]
 			return TRUE
 
-/datum/spawnpanel/proc/toggle_precise_mode(precise_type)
+/datum/spawnpanel/proc/toggle_precise_mode(precise_type, mob/user)
 	precise_mode = precise_type
-	var/client/admin_client = usr.client
+	var/client/admin_client = user.client
 	if (!admin_client)
 		return
 
@@ -199,9 +199,9 @@
 
 	*/
 	if (precise_mode != PRECISE_MODE_OFF)
-		winset(admin_client, "mapwindow", "right-click=true")
+		winset(admin_client, "mapwindow.map", "right-click=true")
 	else
-		winset(admin_client, "mapwindow", "right-click=false")
+		winset(admin_client, "mapwindow.map", "right-click=false")
 
 	/* Unimplemented
 	var/mob/holder_mob = admin_client.mob
@@ -214,7 +214,7 @@
 	var/right_click = LAZYACCESS(modifiers, RIGHT_CLICK)
 
 	if(right_click)
-		toggle_precise_mode(PRECISE_MODE_OFF)
+		toggle_precise_mode(PRECISE_MODE_OFF, user)
 		SStgui.update_uis(src)
 		return TRUE
 
@@ -257,13 +257,13 @@
 				var/client/admin_client = user.client
 				admin_client.mark_datum(target)
 				to_chat(user, span_notice("Marked object: [icon2html(target, user)] [span_bold("[target]")]"))
-				toggle_precise_mode(PRECISE_MODE_OFF)
+				toggle_precise_mode(PRECISE_MODE_OFF, user)
 				SStgui.update_uis(src)
 
 			if(PRECISE_MODE_COPY)
 				to_chat(user, span_notice("Picked object: [icon2html(target, user)] [span_bold("[target]")]"))
 				selected_atom = target
-				toggle_precise_mode(PRECISE_MODE_OFF)
+				toggle_precise_mode(PRECISE_MODE_OFF, user)
 				SStgui.update_uis(src)
 
 		return TRUE
