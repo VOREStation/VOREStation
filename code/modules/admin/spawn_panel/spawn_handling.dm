@@ -106,7 +106,7 @@
 
 	var/obj/structure/drop_pod/polite/pod
 	if(use_droppod)
-		pod = new()
+		pod = new(target)
 
 	for(var/i in 1 to amount)
 		if(istype(atom_to_spawn, /turf))
@@ -154,6 +154,9 @@
 				if(target_robot.module)
 					target_robot.module.add_item(created_item, target_robot)
 					target_robot.activate_module(created_item)
+
+	if(pod)
+		pod.podfall()
 
 	log_admin("[key_name(user)] created [amount == 1 ? "an instance" : "[amount] instances"] of [atom_to_spawn.type]")
 	if(istype(atom_to_spawn, /mob))
