@@ -308,6 +308,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                   </Stack.Item>
                   <Stack.Item grow>
                     <Slider
+                      tickWhileDragging
                       minValue={0}
                       maxValue={7}
                       step={1}
