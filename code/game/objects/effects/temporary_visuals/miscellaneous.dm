@@ -112,6 +112,17 @@
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 0)
 	. = ..()
+
+/obj/effect/temp_visual/borgsit
+	name = "impact cloud"
+	icon = 'icons/mob/robot/tallrobot_effects.dmi'
+	icon_state = "impact_cloud"
+	layer = ABOVE_MOB_LAYER
+	duration = 15
+	alpha = 68
+	pixel_x = -18
+	pixel_y = -13
+
 // VOREStation Add End
 
 /obj/effect/temp_visual/circle_wave
