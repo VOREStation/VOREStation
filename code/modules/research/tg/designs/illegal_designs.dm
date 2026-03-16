@@ -7,6 +7,7 @@
 	materials = list(MAT_STEEL = 300, MAT_GLASS = 300)
 	build_path = /obj/item/encryptionkey/binary
 	category = list(
+		RND_CATEGORY_HACKED,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -20,6 +21,7 @@
 	materials = list(MAT_STEEL = 500)
 	build_path = /obj/item/storage/box/syndie_kit/chameleon
 	category = list(
+		RND_CATEGORY_HACKED,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -32,6 +34,7 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_URANIUM = 2000)
 	build_path = /obj/item/bodysnatcher
 	category = list(
+		RND_CATEGORY_HACKED,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
