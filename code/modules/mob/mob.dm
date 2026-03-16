@@ -1496,7 +1496,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		regenerate_icons()
 
 	if(href_list[VV_HK_PLAYER_PANEL])
-		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
+		return SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_player_panel, src)
 
 	if(href_list[VV_HK_GODMODE])
 		if(!check_rights(R_ADMIN))
