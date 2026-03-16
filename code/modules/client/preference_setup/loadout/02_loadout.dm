@@ -228,7 +228,10 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 				if(confirm != "Yes")
 					return TOPIC_HANDLED
 
-			pref.gear_list["[copy_to]"] = check_list_copy(active_gear_list)
+			var/list/slot_copy = check_list_copy(active_gear_list)
+			for(var/gear_name in slot_copy)
+				slot_copy[gear_name] = check_list_copy(slot_copy[gear_name])
+			pref.gear_list["[copy_to]"] = slot_copy
 			return TOPIC_REFRESH
 
 		if("toggle_gear")
