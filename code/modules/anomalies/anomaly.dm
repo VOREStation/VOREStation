@@ -98,7 +98,7 @@
 
 /obj/item/anomaly_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
-	var/obj/effect/anomaly/anom = buffered_anomaly.resolve()
+	var/obj/effect/anomaly/anom = buffered_anomaly?.resolve()
 
 	if(!istype(anom))
 		return data
@@ -160,3 +160,46 @@
 	if(particle)
 		projectile.particle_type = particle
 	return projectile
+
+/obj/item/storage/box/anomaly
+	name = "anomaly harvesting kit"
+	desc = "A box, stuffed with the needed tools to start harvesting an anomaly."
+	icon_state = "alien"
+	starts_with = list(
+		/obj/item/anomaly_releaser,
+		/obj/item/anomaly_scanner,
+		/obj/item/anomaly_choice,
+		/obj/item/clothing/gloves/black
+	)
+
+/obj/item/anomaly_choice
+	name = "latent anomaly core"
+	desc = "A supposedly inert anomaly core. It hums softly if held close."
+	icon = 'icons/obj/assemblies/new_assemblies.dmi'
+	icon_state = "inert"
+
+/obj/item/anomaly_choice/attack_self(mob/user, modifiers)
+	. = ..(user)
+	if(.)
+		return TRUE
+
+	var/list/choices = list()
+	var/list/core_types = subtypesof(/obj/item/assembly/signaler/anomaly)
+
+	// Two random cores
+	for(var/i = 0, i < 2, i++)
+		var/type = pick(core_types)
+		var/obj/item/assembly/signaler/anomaly/core = new type
+		choices[capitalize(core.name)] = type
+
+	// Guaranteed
+	var/preset = /obj/item/assembly/signaler/anomaly/flux
+	var/obj/item/assembly/signaler/anomaly/preset_core = new preset
+	choices[capitalize(preset_core.name)] = preset
+
+	var/choice = tgui_input_list(user, "Choose an anomaly core.", "Anomaly Core Selection", choices)
+
+	if(choice)
+		var/type = choices[choice]
+		new type(get_turf(src))
+		qdel(src)

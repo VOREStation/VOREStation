@@ -207,3 +207,29 @@
   - rscadd: Icepick for iced airlock breaking (map flavor too)
   - rscadd: Mine lighting techweb entry for marker beacons and trailblazers
   - rscadd: Debris Removal techweb entry for shovels and icepicks
+2026-03-13:
+  Guti:
+  - rscadd: Added "Anomaly Harvesting" crate to Cargo
+  - rscadd: Added "Anomaly harvesting kit"
+  - rscadd: Added "Latent anomaly core"
+  - code_imp: Added random core obj
+  - balance: Doubled the points from samples
+  - balance: Doubled the passive point generation of R&D's server (0.4)
+  - bugfix: Unsimulated turfs can no longer be converted by the dimensional anomaly
+  Kashargul:
+  - bugfix: disposal outlets ejection when not maploaded
+2026-03-14:
+  Kashargul:
+  - code_imp: removes invisible spawned item in xenoarch
+  - code_imp: moves some more bicon to icon2html
+2026-03-15:
+  Kashargul:
+  - code_imp: cleans up dest tagger
+  - qol: ingame logs now show the last 1000 entries per category
+  Will:
+  - code_imp: Slime research point unittest
+  - bugfix: light pink slime cores lacked a destructive analyzer point value
+2026-03-16:
+  Kashargul:
+  - code_imp: convert more globals to GLOBs
+  - bugfix: flags some more wall items as what they are

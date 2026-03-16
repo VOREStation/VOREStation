@@ -110,13 +110,13 @@
 
 // Virgo 3b trufs
 /turf/space/transit/south/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/space/transit/east/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/simulated/sky/virgo3b/south/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/space/v3b_midpoint/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b

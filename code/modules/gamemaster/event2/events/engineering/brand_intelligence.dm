@@ -33,7 +33,7 @@
 
 /datum/event2/event/brand_intelligence/announce()
 	if(prob(90))
-		command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard \the [location_name()], \
+		GLOB.command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard \the [location_name()], \
 		which appears to transmit to nearby vendors. The original infected machine is believed to be \a [vender_zero].", "Vendor Service Alert")
 
 /datum/event2/event/brand_intelligence/start()

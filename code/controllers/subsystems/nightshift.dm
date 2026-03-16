@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(nightshift)
 			pickedsound = 'sound/AI/dim_lights.ogg'
 		else
 			pickedsound = 'sound/AI/bright_lights.ogg'
-	priority_announcement.Announce(message, new_title = "Automated Lighting System Announcement", new_sound = pickedsound, zlevel = announce_z)
+	GLOB.priority_announcement.Announce(message, new_title = "Automated Lighting System Announcement", new_sound = pickedsound, zlevel = announce_z)
 
 /datum/controller/subsystem/nightshift/proc/check_nightshift(forced) //This is called from elsewhere, like setting the alert levels, sadly
 	var/emergency = GLOB.security_level > SEC_LEVEL_GREEN

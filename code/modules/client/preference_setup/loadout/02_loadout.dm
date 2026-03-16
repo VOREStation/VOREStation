@@ -1,5 +1,5 @@
 var/list/loadout_categories = list()
-var/list/gear_datums = list()
+GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 /datum/loadout_category
 	var/category = ""
@@ -31,8 +31,8 @@ var/list/gear_datums = list()
 		if(!loadout_categories[use_category])
 			loadout_categories[use_category] = new /datum/loadout_category(use_category)
 		var/datum/loadout_category/LC = loadout_categories[use_category]
-		gear_datums[use_name] = new G
-		LC.gear[use_name] = gear_datums[use_name]
+		GLOB.gear_datums[use_name] = new G
+		LC.gear[use_name] = GLOB.gear_datums[use_name]
 
 	loadout_categories = sortAssoc(loadout_categories)
 	for(var/loadout_category in loadout_categories)
@@ -97,12 +97,12 @@ var/list/gear_datums = list()
 
 	var/total_cost = 0
 	for(var/gear_name in active_gear_list)
-		if(!gear_datums[gear_name])
+		if(!GLOB.gear_datums[gear_name])
 			to_chat(preference_mob, span_warning("You cannot have the \the [gear_name]."))
 			active_gear_list -= gear_name
 			continue
 
-		var/datum/gear/G = gear_datums[gear_name]
+		var/datum/gear/G = GLOB.gear_datums[gear_name]
 		if(!is_valid_gear(G))
 			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))
 			active_gear_list -= gear_name
@@ -124,7 +124,7 @@ var/list/gear_datums = list()
 
 	var/list/gear_tweaks = list()
 	for(var/item in active_gear_list)
-		var/datum/gear/G = gear_datums[item]
+		var/datum/gear/G = GLOB.gear_datums[item]
 		var/list/tweaks = list()
 		for(var/datum/gear_tweak/tweak in G.gear_tweaks)
 			UNTYPED_LIST_ADD(tweaks, list(
@@ -185,7 +185,7 @@ var/list/gear_datums = list()
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 	. = 0
 	for(var/gear_name in active_gear_list)
-		var/datum/gear/G = gear_datums[gear_name]
+		var/datum/gear/G = GLOB.gear_datums[gear_name]
 		if(G)
 			. += G.cost
 
@@ -232,7 +232,7 @@ var/list/gear_datums = list()
 			return TOPIC_REFRESH
 
 		if("toggle_gear")
-			var/datum/gear/TG = gear_datums[params["gear"]]
+			var/datum/gear/TG = GLOB.gear_datums[params["gear"]]
 			if(TG)
 				if(TG.display_name in active_gear_list)
 					active_gear_list -= TG.display_name
@@ -241,7 +241,7 @@ var/list/gear_datums = list()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("gear_tweak")
-			var/datum/gear/gear = gear_datums[params["gear"]]
+			var/datum/gear/gear = GLOB.gear_datums[params["gear"]]
 			var/datum/gear_tweak/tweak = locate(params["tweak"])
 			if(!tweak || !gear || !(tweak in gear.gear_tweaks))
 				return TOPIC_HANDLED

@@ -281,6 +281,7 @@ GLOBAL_LIST(construction_frame_floor)
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
+	flags = WALL_ITEM
 	var/state = FRAME_PLACED
 	var/obj/item/circuitboard/circuit = null
 	var/need_circuit = TRUE

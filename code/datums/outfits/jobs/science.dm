@@ -53,5 +53,6 @@
 
 /datum/decl/hierarchy/outfit/job/science/scientist/anomalist
 	name = OUTFIT_JOB_NAME(JOB_ALT_ANOMALIST)
-	l_pocket = /obj/item/anomaly_scanner
+	belt = /obj/item/anomaly_scanner
+	l_pocket = /obj/item/anomaly_choice
 	r_pocket = /obj/item/anomaly_releaser/science

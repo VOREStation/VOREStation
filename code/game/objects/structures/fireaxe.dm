@@ -8,6 +8,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
+	flags = WALL_ITEM
 	var/open = 0
 	var/hitstaken = 0
 	var/locked = 1

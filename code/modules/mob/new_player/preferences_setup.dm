@@ -213,7 +213,7 @@
 		var/list/equipped_slots = list()
 		var/list/active_gear_list = LAZYACCESS(gear_list, "[gear_slot]")
 		for(var/thing in active_gear_list)
-			var/datum/gear/G = gear_datums[thing]
+			var/datum/gear/G = GLOB.gear_datums[thing]
 			if(G)
 				var/permitted = 0
 				if(!G.allowed_roles)

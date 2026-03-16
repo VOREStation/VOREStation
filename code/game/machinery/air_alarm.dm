@@ -68,6 +68,7 @@
 	clickvol = 30
 	blocks_emissive = NONE
 	light_power = 0.25
+	flags = WALL_ITEM
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
 	var/frequency = PUMPS_FREQ

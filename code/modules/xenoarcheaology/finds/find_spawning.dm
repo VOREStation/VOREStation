@@ -86,10 +86,9 @@
 			additional_desc = "There appear to be [pick("dark","faintly glowing","pungent","bright")] [pick("red","purple","green","blue")] stains inside."
 		if(ARCHAEO_URN)
 			item_type = "urn"
-			new_item = new /obj/item/reagent_containers/glass/replenishing(src.loc)
+			new_item = new /obj/item/reagent_containers/glass/beaker(src.loc)
 			if(prob(33))
 				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
-			new_item = new /obj/item/reagent_containers/glass/beaker(src.loc)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "urn[rand(1,2)]"
 			apply_image_decorations = TRUE

@@ -4,12 +4,12 @@
 	endWhen			= 35
 
 /datum/event/clang/announce()
-	command_announcement.Announce("Attention [station_name()]. Unknown ultra-dense high-velocity object entering stratosphere!", "General Alert")
+	GLOB.command_announcement.Announce("Attention [station_name()]. Unknown ultra-dense high-velocity object entering stratosphere!", "General Alert")
 	if(seclevel2num(get_security_level()) < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE) // OHNO
 
 /datum/event/clang/end()
-	command_announcement.Announce("What the fuck was that?!", "General Alert")
+	GLOB.command_announcement.Announce("What the fuck was that?!", "General Alert")
 
 /datum/event/clang/start()
 	affecting_z = global.using_map.station_levels

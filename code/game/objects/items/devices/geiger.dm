@@ -110,7 +110,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	w_class = ITEMSIZE_LARGE
-	flags = NOBLOODY
+	flags = NOBLOODY|WALL_ITEM
 	var/circuit = /obj/item/circuitboard/geiger
 	var/number = 0
 	var/last_tick //used to delay the powercheck
