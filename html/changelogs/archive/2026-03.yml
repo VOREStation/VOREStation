@@ -229,3 +229,7 @@
   Will:
   - code_imp: Slime research point unittest
   - bugfix: light pink slime cores lacked a destructive analyzer point value
+2026-03-16:
+  Kashargul:
+  - code_imp: convert more globals to GLOBs
+  - bugfix: flags some more wall items as what they are
