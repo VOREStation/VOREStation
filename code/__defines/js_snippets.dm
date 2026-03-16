@@ -6,21 +6,21 @@
 function noErrorMessages() { return true; }\n \
 window.onerror = noErrorMessages;\n \
 function SetMusic(url, time, volume) {\n \
-    var player = document.getElementById('player');\n \
-    // IE can't handle us setting the time before it loads, so we must wait for asynchronous load\n \
-    var setTime = function () {\n \
-        player.removeEventListener(\"canplay\", setTime);\n \
-        player.volume = volume;\n \
-        player.currentTime = time;\n \
-        player.play();\n \
-    };\n \
-    if(url != \"\") player.addEventListener(\"canplay\", setTime, false);\n \
-    player.src = url;\n \
+	var player = document.getElementById('player');\n \
+	// IE can't handle us setting the time before it loads, so we must wait for asynchronous load\n \
+	var setTime = function () {\n \
+		player.removeEventListener(\"canplay\", setTime);\n \
+		player.volume = volume;\n \
+		player.currentTime = time;\n \
+		player.play();\n \
+	};\n \
+	if(url != \"\") player.addEventListener(\"canplay\", setTime, false);\n \
+	player.src = url;\n \
 }\n \
 </script>\n \
 </head>\n \
 <body>\n \
-    <audio id=\"player\"></audio>\n \
+	<audio id=\"player\"></audio>\n \
 </body>\n \
 </html>\n"
 
