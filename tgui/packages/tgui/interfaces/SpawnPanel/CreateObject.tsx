@@ -121,14 +121,12 @@ export function CreateObject(props: CreateObjectProps) {
       if (storedHideMapping !== undefined) setHideMapping(storedHideMapping);
       if (storedShowIcons !== undefined) setshowIcons(storedShowIcons);
       if (storedShowPreview !== undefined) setshowPreview(storedShowPreview);
-      if (storedSelectedObj) {
-        if (allObjects[storedSelectedObj]) {
-          setSelectedObj(storedSelectedObj);
-          props.onIconSettingsChange?.({
-            icon: allObjects[storedSelectedObj].icon,
-            iconState: allObjects[storedSelectedObj].icon_state,
-          });
-        }
+      if (storedSelectedObj && allObjects[storedSelectedObj]) {
+        setSelectedObj(storedSelectedObj);
+        props.onIconSettingsChange?.({
+          icon: allObjects[storedSelectedObj].icon,
+          iconState: allObjects[storedSelectedObj].icon_state,
+        });
       }
     };
 
