@@ -285,7 +285,6 @@
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_RGB.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	module_type = list("")
 	icon_y = 64
 	vis_height = 64
 
@@ -303,6 +302,5 @@
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_explo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	module_type = list("")
 	icon_y = 64
 	vis_height = 64
