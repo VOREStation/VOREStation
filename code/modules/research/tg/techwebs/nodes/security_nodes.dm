@@ -15,13 +15,15 @@
 		// "foam_dart",
 		"knuckledusters",
 		"tacknife",
+		/* Unbalanced material weapons
 		"claymore",
-		// "battleaxe", // No wielded sprite
 		"gladius",
 		"katana",
 		"rapier",
 		"sabre",
-		"longsword"
+		"longsword",
+		// "battleaxe", // No wielded sprite
+		*/
 	)
 
 // Basic pistol rounds

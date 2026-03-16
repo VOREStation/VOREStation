@@ -946,6 +946,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
+/* Unbalanced material weapons
 /datum/design_techweb/claymore
 	name = "claymore"
 	desc = "A very large sword."
@@ -959,22 +960,6 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
-
-/* Disabled due to no wielded sprite
-/datum/design_techweb/battleaxe
-	name = "battleaxe"
-	desc = "A one handed battle axe, still a deadly weapon."
-	id = "battleaxe"
-	build_type = AUTOLATHE
-	materials = list(MAT_STEEL = 7000)
-	build_path = /obj/item/material/sword/battleaxe
-	category = list(
-		RND_CATEGORY_HACKED,
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
-*/
 
 /datum/design_techweb/gladius
 	name = "gladius"
@@ -1045,6 +1030,22 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+// has no wielded sprite
+/datum/design_techweb/battleaxe
+	name = "battleaxe"
+	desc = "A one handed battle axe, still a deadly weapon."
+	id = "battleaxe"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 7000)
+	build_path = /obj/item/material/sword/battleaxe
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
 
 /datum/design_techweb/anomaly_gun
 	name = "Handheld Anomalous Particle Releaser"
