@@ -13,7 +13,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 /datum/controller/occupations/proc/SetupOccupations(var/faction = FACTION_STATION)
 	occupations = list()
 	//var/list/all_jobs = typesof(/datum/job)
-	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
+	var/list/all_jobs = list(/datum/job/assistant) | GLOB.using_map.allowed_jobs
 	if(!all_jobs.len)
 		to_chat(world, span_boldannounce("Error setting up jobs, no job datums found!"))
 		return 0
@@ -559,8 +559,8 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 	// EMAIL GENERATION
 	// Email addresses will be created under this domain name. Mostly for the looks.
 	var/domain = "freemail.nt"
-	if(using_map && LAZYLEN(using_map.usable_email_tlds))
-		domain = using_map.usable_email_tlds[1]
+	if(GLOB.using_map && LAZYLEN(GLOB.using_map.usable_email_tlds))
+		domain = GLOB.using_map.usable_email_tlds[1]
 	var/sanitized_name = sanitize(replacetext(replacetext(lowertext(H.real_name), " ", "."), "'", ""))
 	var/complete_login = "[sanitized_name]@[domain]"
 
@@ -689,7 +689,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 					continue
 				if(!M.latejoin_vore)
 					continue
-				if(!(M.z in using_map.vorespawn_levels))
+				if(!(M.z in GLOB.using_map.vorespawn_levels))
 					continue
 				preds += M
 				pred_names += M.real_name //very cringe
@@ -752,7 +752,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 					to_chat(C, span_warning("[pred] is not conscious."))
 					to_chat(pred, span_warning("You must be conscious to accept."))
 					return
-				if(!(pred.z in using_map.vorespawn_levels))
+				if(!(pred.z in GLOB.using_map.vorespawn_levels))
 					to_chat(C, span_warning("[pred] is no longer in station grounds."))
 					to_chat(pred, span_warning("You must be within station grounds to accept."))
 					return
@@ -778,7 +778,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 					continue
 				if(!M.latejoin_prey)
 					continue
-				if(!(M.z in using_map.vorespawn_levels))
+				if(!(M.z in GLOB.using_map.vorespawn_levels))
 					continue
 				preys += M
 				prey_names += M.real_name
@@ -827,7 +827,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 					to_chat(C, span_warning("[prey] is not conscious."))
 					to_chat(prey, span_warning("You must be conscious to accept."))
 					return
-				if(!(prey.z in using_map.vorespawn_levels))
+				if(!(prey.z in GLOB.using_map.vorespawn_levels))
 					to_chat(C, span_warning("[prey] is no longer in station grounds."))
 					to_chat(prey, span_warning("You must be within station grounds to accept."))
 					return
@@ -855,13 +855,13 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 					else
 						item_loc = item_loc.loc
 				if(istype(carrier))
-					if(!(carrier.z in using_map.vorespawn_levels))
+					if(!(carrier.z in GLOB.using_map.vorespawn_levels))
 						continue
 					if(carrier.stat == UNCONSCIOUS || carrier.stat == DEAD || carrier.client.is_afk(10 MINUTES))
 						continue
 					carriers += carrier
 				else
-					if(!(item_loc.z in using_map.vorespawn_levels))
+					if(!(item_loc.z in GLOB.using_map.vorespawn_levels))
 						continue
 					carriers += null
 
@@ -911,7 +911,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 						to_chat(C, span_warning("[carrier] is not conscious."))
 						to_chat(carrier, span_warning("You must be conscious to accept."))
 						return
-					if(!(carrier.z in using_map.vorespawn_levels))
+					if(!(carrier.z in GLOB.using_map.vorespawn_levels))
 						to_chat(C, span_warning("[carrier] is no longer in station grounds."))
 						to_chat(carrier, span_warning("You must be within station grounds to accept."))
 						return
@@ -938,7 +938,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 				to_chat(C, span_warning("No items were available to accept you."))
 				return
 		else
-			if(!(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) in using_map.allowed_spawns))
+			if(!(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) in GLOB.using_map.allowed_spawns))
 				if(fail_deadly)
 					to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
 					return

@@ -38,7 +38,7 @@
 	. = TRUE
 	if(!istype(T))
 		return
-	if(T.z in using_map.station_levels)
+	if(T.z in GLOB.using_map.station_levels)
 		. = FALSE
 
 /obj/item/gun/energy/kinetic_accelerator

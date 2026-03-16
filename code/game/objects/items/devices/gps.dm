@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return TRUE
 	if(local_mode)
 		return FALSE
-	reachable_z_levels = reachable_z_levels || using_map.get_map_levels(origin.z, long_range)
+	reachable_z_levels = reachable_z_levels || GLOB.using_map.get_map_levels(origin.z, long_range)
 	return (target.z in reachable_z_levels)
 
 /obj/item/gps/proc/update_compass(atom/movable/source, var/update_compass_icon)
@@ -225,12 +225,12 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		"tag" = gps_tag,
 		"localMode" = local_mode,
 		"currentCoords" = "[curr.x], [curr.y], [curr.z]",
-		"currentZName" = strip_improper(using_map.get_zlevel_name(curr.z)),
+		"currentZName" = strip_improper(GLOB.using_map.get_zlevel_name(curr.z)),
 		"canHide" = can_hide_signal,
 		"isHidden" = hide_signal
 	)
 
-	var/z_level_det = using_map.get_map_levels(curr.z, long_range)
+	var/z_level_det = GLOB.using_map.get_map_levels(curr.z, long_range)
 	var/list/gps_list = list()
 	for(var/obj/item/gps/current_gps in GLOB.GPS_list - src)
 
@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 			"ref" = "\ref[current_gps]",
 			"gpsTag" = current_gps.gps_tag,
 			"areaName" = strip_improper(gps_area.get_name()),
-			"zName" = strip_improper(using_map.get_zlevel_name(gps_turf.z)),
+			"zName" = strip_improper(GLOB.using_map.get_zlevel_name(gps_turf.z)),
 			"local" = is_local,
 			"trackingColor" = LAZYACCESS(tracking_devices, "\ref[current_gps]"),
 			"trackingName" = LAZYACCESS(showing_tracked_names, "\ref[current_gps]"),

@@ -11,7 +11,7 @@
 	gnat_cap = 8 + 4 ** severity // No more than this many at once regardless of waves. (12, 16, ??)
 
 /datum/event/gnat_migration/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= GLOB.using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/gnat_migration/announce()

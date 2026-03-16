@@ -3,7 +3,7 @@
 		var/area/A = get_area(H)
 		if(!A)
 			continue
-		if(!(A.z in using_map.station_levels))
+		if(!(A.z in GLOB.using_map.station_levels))
 			continue
 		if(A.flag_check(AREA_FORBID_EVENTS))
 			continue

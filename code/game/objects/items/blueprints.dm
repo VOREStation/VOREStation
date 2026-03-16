@@ -82,7 +82,7 @@
 	var/area/A = get_area()
 	var/text = {"
 					<h2>[station_name()] blueprints</h2>
-					<small>Property of [using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+					<small>Property of [GLOB.using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 				"}
 	var/curAreaType = get_area_type()
 	switch (curAreaType)

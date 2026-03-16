@@ -31,7 +31,7 @@
 			SSatc.msg("[uhoh]","Unknown Vessel")
 			next()
 		else
-			SSatc.msg("[using_map.starsys_name] Defense Control to all local assets: vector to interdict and detain [prefix], temporary callsign |[shipname]|. Control out.","[using_map.starsys_name] Defense Control")
+			SSatc.msg("[GLOB.using_map.starsys_name] Defense Control to all local assets: vector to interdict and detain [prefix], temporary callsign |[shipname]|. Control out.","[GLOB.using_map.starsys_name] Defense Control")
 			finish()
 
 /datum/atc_chatter/policeshipscan/squak()
@@ -67,10 +67,10 @@
 			SSatc.msg("[uhoh]","Unknown Vessel")
 			next()
 		if(3)
-			SSatc.msg("[using_map.starsys_name] Defense Control,  [combined_second_name]. We have a [prefix] here, please advise.","[comm_second_name]")
+			SSatc.msg("[GLOB.using_map.starsys_name] Defense Control,  [combined_second_name]. We have a [prefix] here, please advise.","[comm_second_name]")
 			next()
 		else
-			SSatc.msg("Defense Control copies, [combined_second_name], reinforcements are en route. Switch further communications to encrypted band [SSatc.sdfchannel].","[using_map.starsys_name] Defense Control")
+			SSatc.msg("Defense Control copies, [combined_second_name], reinforcements are en route. Switch further communications to encrypted band [SSatc.sdfchannel].","[GLOB.using_map.starsys_name] Defense Control")
 			finish()
 
 /datum/atc_chatter/policeshipcombat/squak()
@@ -78,19 +78,19 @@
 	switch(phase)
 		if(1)
 			var/battlestatus = pick("requesting reinforcements.","we need backup! Now!","holding steady.","we're holding our own for now.","we have them on the run.","they're trying to make a run for it!","we have them right where we want them.","we're badly outgunned!","we have them outgunned.","we're outnumbered here!","we have them outnumbered.","this'll be a cakewalk.",10;"notify their next of kin.")
-			SSatc.msg("[using_map.starsys_name] Defense Control,  [combined_second_name], engaging [combined_first_name] [pick("near route","in sector")] [rand(1,100)], [battlestatus]","[comm_second_name]")
+			SSatc.msg("[GLOB.using_map.starsys_name] Defense Control,  [combined_second_name], engaging [combined_first_name] [pick("near route","in sector")] [rand(1,100)], [battlestatus]","[comm_second_name]")
 			next()
 		else
-			SSatc.msg("[using_map.starsys_name] Defense Control copies, [combined_second_name]. Keep us updated.","[using_map.starsys_name] Defense Control")
+			SSatc.msg("[GLOB.using_map.starsys_name] Defense Control copies, [combined_second_name]. Keep us updated.","[GLOB.using_map.starsys_name] Defense Control")
 			finish()
 
 /datum/atc_chatter/hostiledetected/squak()
 	//DefCon event: hostile found
 	switch(phase)
 		if(1)
-			SSatc.msg("This is [using_map.starsys_name] Defense Control to all SDF assets. Priority update follows.","[using_map.starsys_name] Defense Control")
+			SSatc.msg("This is [GLOB.using_map.starsys_name] Defense Control to all SDF assets. Priority update follows.","[GLOB.using_map.starsys_name] Defense Control")
 			next()
 		else
 			var/orders = pick("Engage on sight","Engage with caution","Engage with extreme prejudice","Engage at will","Search and destroy","Bring them in alive, if possible","Interdict and detain","Keep your eyes peeled","Bring them in, dead or alive","Stay alert")
-			SSatc.msg("Be on the lookout for [short_first_name], last sighted [pick("near route","in sector","near sector")] [rand(1,100)]. [orders]. DefCon, out.","[using_map.starsys_name] Defense Control")
+			SSatc.msg("Be on the lookout for [short_first_name], last sighted [pick("near route","in sector","near sector")] [rand(1,100)]. [orders]. DefCon, out.","[GLOB.using_map.starsys_name] Defense Control")
 			finish()

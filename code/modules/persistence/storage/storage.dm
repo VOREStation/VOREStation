@@ -18,7 +18,7 @@
 
 /datum/persistent/storage/SetFilename()
 	if(name)
-		filename = "data/persistent/storage/[lowertext(using_map.name)]-[lowertext(name)].json"
+		filename = "data/persistent/storage/[lowertext(GLOB.using_map.name)]-[lowertext(name)].json"
 
 /datum/persistent/storage/IsValidEntry(var/atom/entry)
 	return ..() && istype(entry, target_type)

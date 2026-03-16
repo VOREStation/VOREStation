@@ -649,7 +649,7 @@ ADMIN_VERB(cmd_admin_create_centcom_report, R_ADMIN|R_SERVER|R_FUN, "Create Comm
 	if(!input)
 		return
 	if(!customname)
-		customname = "[using_map.company_name] Update"
+		customname = "[GLOB.using_map.company_name] Update"
 
 	//New message handling
 	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
@@ -660,7 +660,7 @@ ADMIN_VERB(cmd_admin_create_centcom_report, R_ADMIN|R_SERVER|R_FUN, "Create Comm
 	if(confirm == "Yes")
 		GLOB.command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 	else
-		to_chat(world, span_boldannounce("New [using_map.company_name] Update available at all communication consoles."))
+		to_chat(world, span_boldannounce("New [GLOB.using_map.company_name] Update available at all communication consoles."))
 		SEND_SOUND(world, sound('sound/AI/commandreport.ogg'))
 
 	log_admin("[key_name(user)] has created a command report: [input]")

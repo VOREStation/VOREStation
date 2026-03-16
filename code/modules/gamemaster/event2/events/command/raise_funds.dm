@@ -67,7 +67,7 @@
 
 		if(1.02 to INFINITY) // Good response.
 			message = "We appreciate the efforts made by \the [location_name()] to run at a surplus. \
-			Together, along with the other facilities present in the [using_map.starsys_name] system, \
+			Together, along with the other facilities present in the [GLOB.using_map.starsys_name] system, \
 			the company is expected to meet the quota.<br><br>\
 			We will allocate additional requisition tokens for the cargo department as a reward."
 
@@ -92,5 +92,5 @@
 
 /datum/event2/event/raise_funds/proc/send_command_report(title, message)
 	post_comm_message(title, message)
-	to_chat(world, span_danger("New [using_map.company_name] Update available at all communication consoles."))
+	to_chat(world, span_danger("New [GLOB.using_map.company_name] Update available at all communication consoles."))
 	SEND_SOUND(world, 'sound/AI/commandreport.ogg')

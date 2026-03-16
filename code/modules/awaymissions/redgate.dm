@@ -152,7 +152,7 @@
 				continue
 			else if(g == src)
 				continue
-			else if(g.z in using_map.station_levels)
+			else if(g.z in GLOB.using_map.station_levels)
 				target = g
 				g.target = src
 				toggle_portal()

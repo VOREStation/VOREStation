@@ -26,7 +26,7 @@
 	dat += "Locked on<BR>"
 	dat += span_bold("Charge progress: [reload]/180:") + "<BR>"
 	dat += "<A href='byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
-	dat += "Deployment of weapon authorized by <br>[using_map.company_name] Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
+	dat += "Deployment of weapon authorized by <br>[GLOB.using_map.company_name] Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
 
 	var/datum/browser/popup = new(user, "artillery", "Artillery")
 	popup.set_content(dat)

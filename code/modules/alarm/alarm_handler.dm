@@ -109,7 +109,7 @@
 	if(!LAZYLEN(alarms))
 		return list()
 
-	var/list/map_levels = using_map.get_map_levels(z)
+	var/list/map_levels = GLOB.using_map.get_map_levels(z)
 
 	var/list/visible_alarms = new()
 	for(var/datum/alarm/A in alarms)

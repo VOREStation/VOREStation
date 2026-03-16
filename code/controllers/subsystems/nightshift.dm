@@ -27,8 +27,8 @@ SUBSYSTEM_DEF(nightshift)
 
 /datum/controller/subsystem/nightshift/proc/announce(message)
 	var/announce_z
-	if(length(using_map.station_levels))
-		announce_z = pick(using_map.station_levels)
+	if(length(GLOB.using_map.station_levels))
+		announce_z = pick(GLOB.using_map.station_levels)
 	var/pickedsound
 	if(!high_security_mode)
 		if(nightshift_active)
@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(nightshift)
 /datum/controller/subsystem/nightshift/proc/check_nightshift(forced) //This is called from elsewhere, like setting the alert levels, sadly
 	var/emergency = GLOB.security_level > SEC_LEVEL_GREEN
 	var/announcing = TRUE
-	var/night_time = using_map.get_nightshift()
+	var/night_time = GLOB.using_map.get_nightshift()
 	if(high_security_mode != emergency)
 		high_security_mode = emergency
 		if(night_time)
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(nightshift)
 				announce("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
 	for(var/obj/machinery/power/apc/apc as anything in currentrun)
 		currentrun -= apc
-		if(apc.z in using_map.station_levels)
+		if(apc.z in GLOB.using_map.station_levels)
 			apc.set_nightshift(active, TRUE)
 		if(MC_TICK_CHECK && !forced) // subsystem will be in state SS_IDLE if forced by an admin
 			return

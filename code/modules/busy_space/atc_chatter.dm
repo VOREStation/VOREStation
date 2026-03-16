@@ -58,7 +58,7 @@
 					)
 		request = pick(requests)
 		yes = prob(90) //Chance for them to say yes vs no
-		callname = "[using_map.dock_name] Control"
+		callname = "[GLOB.using_map.dock_name] Control"
 		response = requests[request][yes ? 1 : 2] //1 is yes, 2 is no
 		number = rand(1,42)
 		zone = pick("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
@@ -67,25 +67,25 @@
 		landing_type = "landing zone"
 		landing_move = "landing request"
 		landing_short = "land"
-		switch(using_map.dock_type)
+		switch(GLOB.using_map.dock_type)
 			if("surface")		//formal installations with proper facilities
 				landing_zone = "landing pad [number]"
 				landing_type = "landing pad"
 				landing_move = "landing request"
 				landing_short = "land"
-				callname = "[using_map.dock_name] Tower"
+				callname = "[GLOB.using_map.dock_name] Tower"
 			if("frontier")		//for frontier bases - landing spots are literally just open ground, maybe concrete at best
 				landing_zone = "LZ [zone]"
 				landing_type = "landing zone"
 				landing_move = "landing request"
 				landing_short = "land"
-				callname = "[using_map.dock_name] Tower"
+				callname = "[GLOB.using_map.dock_name] Tower"
 			if("station")		//standard station pattern
 				landing_zone = "docking bay [number]"
 				landing_type = "docking bay"
 				landing_move = "docking request"
 				landing_short = "dock"
-				callname = "[using_map.dock_name] Control"
+				callname = "[GLOB.using_map.dock_name] Control"
 
 		/////////////////////////////////////////////////////////////////////
 		// Construct the two ships involved from their loremaster organization data

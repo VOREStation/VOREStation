@@ -370,7 +370,7 @@
 
 	if(error)
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " flashes a '[error]' warning."))
-		faultreporter.autosay(error, src.name, "Supply", using_map.get_map_levels(z))
+		faultreporter.autosay(error, src.name, "Supply", GLOB.using_map.get_map_levels(z))
 	need_player_check = 1
 	active = 0
 	update_icon()

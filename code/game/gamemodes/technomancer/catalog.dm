@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(all_technomancer_assistance, subtypesof(/datum/technomancer/ass
 
 		if(href_list["refund_functions"])
 			var/turf/T = get_turf(H)
-			if(T.z in using_map.player_levels)
+			if(T.z in GLOB.using_map.player_levels)
 				to_chat(H, span_danger("You can only refund at your base, it's too late now!"))
 				return
 			var/obj/item/technomancer_core/core = null
@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(all_technomancer_assistance, subtypesof(/datum/technomancer/ass
 
 /obj/item/technomancer_catalog/attackby(var/atom/movable/AM, var/mob/user)
 	var/turf/T = get_turf(user)
-	if(T.z in using_map.player_levels)
+	if(T.z in GLOB.using_map.player_levels)
 		to_chat(user, span_danger("You can only refund at your base, it's too late now!"))
 		return
 	for(var/datum/technomancer/equipment/E in equipment_instances + assistance_instances)

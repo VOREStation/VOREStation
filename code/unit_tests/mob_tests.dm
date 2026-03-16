@@ -8,7 +8,7 @@
 
 /datum/unit_test/space_suffocation/start_test()
 	// Get an empty space level instead of just picking a random space turf
-	var/empty_z = using_map.get_empty_zlevel()
+	var/empty_z = GLOB.using_map.get_empty_zlevel()
 	if(!empty_z)
 		fail("Unable to get empty z-level for suffocation test!")
 		return 1

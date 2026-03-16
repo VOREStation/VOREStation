@@ -22,8 +22,8 @@ SUBSYSTEM_DEF(events)
 			/*EVENT_LEVEL_MODERATE	= */ new/datum/event_container/moderate,
 			/*EVENT_LEVEL_MAJOR 	= */ new/datum/event_container/major
 		)
-	if(global.using_map.use_overmap)
-		GLOB.overmap_event_handler.create_events(global.using_map.overmap_z, global.using_map.overmap_size, global.using_map.overmap_event_areas)
+	if(GLOB.using_map.use_overmap)
+		GLOB.overmap_event_handler.create_events(GLOB.using_map.overmap_z, GLOB.using_map.overmap_size, GLOB.using_map.overmap_event_areas)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/events/fire(resumed)

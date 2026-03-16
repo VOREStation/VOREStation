@@ -11,7 +11,7 @@
 	carp_cap = 2 + 3 ** severity // No more than this many at once regardless of waves. (5, 11, 29)
 
 /datum/event/carp_migration/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= GLOB.using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/carp_migration/announce()

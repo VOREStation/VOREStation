@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 		to_chat(usr, span_danger("The round hasn't started yet!"))
 		return
 	if(GLOB.send_emergency_team)
-		to_chat(usr, span_danger("[using_map.boss_name] has already dispatched an emergency response team!"))
+		to_chat(usr, span_danger("[GLOB.using_map.boss_name] has already dispatched an emergency response team!"))
 		return
 	if(tgui_alert(usr, "Do you want to dispatch an Emergency Response Team?","ERT",list("Yes","No")) != "Yes")
 		return
@@ -178,11 +178,11 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
-		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[GLOB.using_map.boss_name]")
 		GLOB.can_call_ert = 0 // Only one call per round, ladies.
 		return
 	if(GLOB.silent_ert == 0)
-		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[GLOB.using_map.boss_name]")
 
 	GLOB.can_call_ert = 0 // Only one call per round, gentleman.
 	GLOB.send_emergency_team = 1

@@ -243,10 +243,10 @@
 	var/list/all_networks = list()
 	// Access Based
 	if(access_based)
-		for(var/network in using_map.station_networks)
+		for(var/network in GLOB.using_map.station_networks)
 			if(can_ACCESS_NETWORK(user, get_camera_access(network), 1))
 				all_networks.Add(network)
-		for(var/network in using_map.secondary_networks)
+		for(var/network in GLOB.using_map.secondary_networks)
 			if(can_ACCESS_NETWORK(user, get_camera_access(network), 0))
 				all_networks.Add(network)
 	// Network Based
@@ -312,7 +312,7 @@
 	additional_networks = list(NETWORK_MERCENARY, NETWORK_ERT, NETWORK_CRESCENT)
 
 /datum/tgui_module/camera/ntos/hacked/New(host)
-	. = ..(host, using_map.station_networks.Copy())
+	. = ..(host, GLOB.using_map.station_networks.Copy())
 
 /datum/tgui_module/camera/bigscreen/tgui_state(mob/user)
 	return GLOB.tgui_physical_state_bigscreen

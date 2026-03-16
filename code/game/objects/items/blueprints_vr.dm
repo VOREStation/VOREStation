@@ -538,7 +538,7 @@
 		if(AO.uses_charges)
 			AO.charges -= 1
 
-	var/list/zLevels = using_map.station_levels.Copy()
+	var/list/zLevels = GLOB.using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
 		zLevels -= P.expected_z_levels
 	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)
@@ -938,7 +938,7 @@
 	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)")
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 
-	var/list/zLevels = using_map.station_levels.Copy()
+	var/list/zLevels = GLOB.using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
 		zLevels -= P.expected_z_levels
 	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)

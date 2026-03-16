@@ -92,7 +92,7 @@
 		else
 			gamount_message = "numerous"
 
-	var/message = "Movements of [gamount_message] group[location_amount == 1 ? "" : "s"] of wildlife have been detected in regions surrounding [using_map.full_name]. The wildlife group[location_amount == 1 ? "" : "s"] [location_amount == 1 ? "is" : "are"] [threat_message] and \
+	var/message = "Movements of [gamount_message] group[location_amount == 1 ? "" : "s"] of wildlife have been detected in regions surrounding [GLOB.using_map.full_name]. The wildlife group[location_amount == 1 ? "" : "s"] [location_amount == 1 ? "is" : "are"] [threat_message] and \
 				[location_amount == 1 ? "is" : "are"] comprised of [amount_message].[threat_level > 2 ? " Take caution." : ""]"
 
 	GLOB.command_announcement.Announce(message, "Wildlife Monitoring")

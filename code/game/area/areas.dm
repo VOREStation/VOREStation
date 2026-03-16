@@ -515,7 +515,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
 		if(GLOB.teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if (picked.z in using_map.station_levels)
+		if (picked.z in GLOB.using_map.station_levels)
 			GLOB.teleportlocs += AR.name
 			GLOB.teleportlocs[AR.name] = AR
 
@@ -532,7 +532,7 @@ GLOBAL_LIST_EMPTY(ghostteleportlocs)
 			GLOB.ghostteleportlocs += AR.name
 			GLOB.ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if (picked.z in using_map.player_levels)
+		if (picked.z in GLOB.using_map.player_levels)
 			GLOB.ghostteleportlocs += AR.name
 			GLOB.ghostteleportlocs[AR.name] = AR
 

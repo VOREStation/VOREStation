@@ -60,19 +60,19 @@
 	if(!shuttle_control)
 		data["shuttle_location"] = "Unknown"
 		data["shuttle_at_station"] = 0
-	else if(shuttle_control.z in using_map.belter_docked_z)
+	else if(shuttle_control.z in GLOB.using_map.belter_docked_z)
 		data["shuttle_location"] = "Landed"
 		data["shuttle_at_station"] = 1
-	else if(shuttle_control.z == using_map.belter_transit_z)
+	else if(shuttle_control.z == GLOB.using_map.belter_transit_z)
 		data["shuttle_location"] = "In-transit"
 		data["shuttle_at_station"] = 0
-	else if(shuttle_control.z == using_map.belter_belt_z)
+	else if(shuttle_control.z == GLOB.using_map.belter_belt_z)
 		data["shuttle_location"] = "Belt"
 		data["shuttle_at_station"] = 0
 
 	var/can_scan = 0
 	if(chargePercent >= 100) //Keep having weird problems with these in one 'if' statement
-		if(shuttle_control && (shuttle_control.z in using_map.belter_docked_z)) //Even though I put them all in parens to avoid OoO problems...
+		if(shuttle_control && (shuttle_control.z in GLOB.using_map.belter_docked_z)) //Even though I put them all in parens to avoid OoO problems...
 			if(!curZoneOccupied) //Not sure why.
 				if(!scanning)
 					can_scan = 1
@@ -81,7 +81,7 @@
 	data["scan_ready"] = can_scan
 
 	// Permit emergency recall of the shuttle if its stranded in a zone with just dead people.
-	data["can_recall_shuttle"] = (shuttle_control && (shuttle_control.z in using_map.belter_belt_z) && !curZoneOccupied)
+	data["can_recall_shuttle"] = (shuttle_control && (shuttle_control.z in GLOB.using_map.belter_belt_z) && !curZoneOccupied)
 	return data
 
 /obj/machinery/computer/roguezones/tgui_act(action, list/params, datum/tgui/ui)
@@ -135,7 +135,7 @@
 /obj/machinery/computer/roguezones/proc/failsafe_shuttle_recall(mob/user)
 	if(!shuttle_control)
 		return // Shuttle computer has been destroyed
-	if (!(shuttle_control.z in using_map.belter_belt_z))
+	if (!(shuttle_control.z in GLOB.using_map.belter_belt_z))
 		return // Usable only when shuttle is away
 	if(GLOB.rm_controller.current_zone && GLOB.rm_controller.current_zone.is_occupied())
 		return // Not usable if shuttle is in occupied zone

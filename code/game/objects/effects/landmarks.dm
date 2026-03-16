@@ -95,20 +95,20 @@
 
 /obj/effect/landmark/forbidden_level/Initialize(mapload)
 	. = ..()
-	if(using_map)
-		using_map.secret_levels |= z
+	if(GLOB.using_map)
+		GLOB.using_map.secret_levels |= z
 	else
-		log_mapping("[type] mapped in but no using_map")
+		log_mapping("[type] mapped in but no GLOB.using_map")
 
 /obj/effect/landmark/hidden_level
 	delete_me = TRUE
 
 /obj/effect/landmark/hidden_level/Initialize(mapload)
 	. = ..()
-	if(using_map)
-		using_map.hidden_levels |= z
+	if(GLOB.using_map)
+		GLOB.using_map.hidden_levels |= z
 	else
-		log_mapping("[type] mapped in but no using_map")
+		log_mapping("[type] mapped in but no GLOB.using_map")
 
 
 /obj/effect/landmark/virtual_reality

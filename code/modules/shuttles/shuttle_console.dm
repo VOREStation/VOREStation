@@ -166,7 +166,7 @@
 	if(T)
 		our_z = T.z
 	var/z_to_check = codes_from_z ? codes_from_z : our_z
-	if(using_map.use_overmap)
+	if(GLOB.using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(z_to_check)
 		if(location && location.docking_codes)
 			dockingcodes = location.docking_codes

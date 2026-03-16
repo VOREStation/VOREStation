@@ -34,7 +34,7 @@
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
 		var/zones_present = has_valid_ZAS_zone(below) || has_valid_ZAS_zone(src)
-		if(istype(below) && zones_present && !(src.z in using_map.below_blocked_levels) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
+		if(istype(below) && zones_present && !(src.z in GLOB.using_map.below_blocked_levels) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
 			N = /turf/simulated/open
 
 	var/obj/fire/old_fire = fire

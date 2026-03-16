@@ -6,4 +6,4 @@
 	wormhole_event()
 
 /datum/event/wormholes/end()
-	command_announcement.Announce("There are no more space-time anomalies detected on the [using_map.facility_type].", "Anomaly Alert")
+	command_announcement.Announce("There are no more space-time anomalies detected on the [GLOB.using_map.facility_type].", "Anomaly Alert")

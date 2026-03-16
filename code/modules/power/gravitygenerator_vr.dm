@@ -406,8 +406,8 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	levels.Cut()
 	var/my_z = get_z(src)
 
-	//Actually doing it special this time instead of letting using_map decide
-	if(using_map.use_overmap)
+	//Actually doing it special this time instead of letting GLOB.using_map decide
+	if(GLOB.using_map.use_overmap)
 		var/obj/effect/overmap/visitable/S = get_overmap_sector(my_z)
 		if(S)
 			levels = S.get_space_zlevels() //Just the spacey ones

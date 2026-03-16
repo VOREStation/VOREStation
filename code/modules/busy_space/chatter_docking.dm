@@ -7,7 +7,7 @@
 		situation_type = pick("medical","security","engineering","animal control","hazmat")
 	switch(phase)
 		if(1)
-			SSatc.msg("This is [using_map.dock_name] Tower. Would a free [situation_type] team please report to [landing_zone] immediately. This is not a drill.")
+			SSatc.msg("This is [GLOB.using_map.dock_name] Tower. Would a free [situation_type] team please report to [landing_zone] immediately. This is not a drill.")
 			next()
 		else
 			SSatc.msg("Repeat, any free [situation_type] team, report to [landing_zone] immediately. This is +not+ a drill.")

@@ -36,13 +36,13 @@ SUBSYSTEM_DEF(mapping)
 	// Mining generation probably should be here too
 	// TODO - Other stuff related to maps and areas could be moved here too.  Look at /tg
 	// Lateload Code related to Expedition areas.
-	if(using_map) // VOREStation Edit: Re-enable this.
-		current_map = using_map
+	if(GLOB.using_map) // VOREStation Edit: Re-enable this.
+		current_map = GLOB.using_map
 		loadLateMaps()
 
 	if(CONFIG_GET(flag/generate_map))  // VOREStation Edit: Re-order this.
 		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
-		using_map.perform_map_generation()
+		GLOB.using_map.perform_map_generation()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
@@ -87,10 +87,10 @@ SUBSYSTEM_DEF(mapping)
 
 // VOREStation Edit Start: Enable This
 /datum/controller/subsystem/mapping/proc/loadLateMaps()
-	var/list/deffo_load = using_map.lateload_z_levels
-	var/list/maybe_load = using_map.lateload_gateway
-	var/list/also_load = using_map.lateload_overmap
-	var/list/redgate_load = using_map.lateload_redgate
+	var/list/deffo_load = GLOB.using_map.lateload_z_levels
+	var/list/maybe_load = GLOB.using_map.lateload_gateway
+	var/list/also_load = GLOB.using_map.lateload_overmap
+	var/list/redgate_load = GLOB.using_map.lateload_redgate
 
 	for(var/list/maplist in deffo_load)
 		if(!islist(maplist))
@@ -172,50 +172,50 @@ SUBSYSTEM_DEF(mapping)
 				MT.load_new_z(centered = FALSE)
 
 	// Convert ai_shell_allowed_levels to actual Zs
-	for(var/i in 1 to length(using_map.ai_shell_allowed_levels))
-		var/current = using_map.ai_shell_allowed_levels[i]
+	for(var/i in 1 to length(GLOB.using_map.ai_shell_allowed_levels))
+		var/current = GLOB.using_map.ai_shell_allowed_levels[i]
 		if(isnum(current))
 			continue
-		using_map.ai_shell_allowed_levels[i] = GLOB.map_templates_loaded[current]
+		GLOB.using_map.ai_shell_allowed_levels[i] = GLOB.map_templates_loaded[current]
 
 	// Convert overmap_z to actual Z
-	if(using_map.use_overmap && !isnum(using_map.overmap_z))
-		using_map.overmap_z = GLOB.map_templates_loaded[using_map.overmap_z]
+	if(GLOB.using_map.use_overmap && !isnum(GLOB.using_map.overmap_z))
+		GLOB.using_map.overmap_z = GLOB.map_templates_loaded[GLOB.using_map.overmap_z]
 
 	// Convert belter_belt_z to actual Z
-	for(var/i in 1 to length(using_map.belter_belt_z))
-		var/current = using_map.belter_belt_z[i]
+	for(var/i in 1 to length(GLOB.using_map.belter_belt_z))
+		var/current = GLOB.using_map.belter_belt_z[i]
 		if(isnum(current))
 			continue
-		using_map.belter_belt_z[i] = GLOB.map_templates_loaded[current]
+		GLOB.using_map.belter_belt_z[i] = GLOB.map_templates_loaded[current]
 
 	// Convert belter_transit_z to actual Z
-	for(var/i in 1 to length(using_map.belter_transit_z))
-		var/current = using_map.belter_transit_z[i]
+	for(var/i in 1 to length(GLOB.using_map.belter_transit_z))
+		var/current = GLOB.using_map.belter_transit_z[i]
 		if(isnum(current))
 			continue
-		using_map.belter_transit_z[i] = GLOB.map_templates_loaded[current]
+		GLOB.using_map.belter_transit_z[i] = GLOB.map_templates_loaded[current]
 
 	// Convert belter_docked_z to actual Z (Unnecessary atm)
-	/*for(var/i in 1 to length(using_map.belter_docked_z))
-		var/current = using_map.belter_docked_z[i]
+	/*for(var/i in 1 to length(GLOB.using_map.belter_docked_z))
+		var/current = GLOB.using_map.belter_docked_z[i]
 		if(isnum(current))
 			continue
-		using_map.belter_docked_z[i] = GLOB.map_templates_loaded[current]*/
+		GLOB.using_map.belter_docked_z[i] = GLOB.map_templates_loaded[current]*/
 
 	// Convert mining_station_z to actual Z (Unnecessary atm)
-	/*for(var/i in 1 to length(using_map.mining_station_z))
-		var/current = using_map.mining_station_z[i]
+	/*for(var/i in 1 to length(GLOB.using_map.mining_station_z))
+		var/current = GLOB.using_map.mining_station_z[i]
 		if(isnum(current))
 			continue
-		using_map.mining_station_z[i] = GLOB.map_templates_loaded[current]*/
+		GLOB.using_map.mining_station_z[i] = GLOB.map_templates_loaded[current]*/
 
 	// Convert mining_outpost_z to actual Z (Unnecessary atm)
-	/*for(var/i in 1 to length(using_map.mining_outpost_z))
-		var/current = using_map.mining_outpost_z[i]
+	/*for(var/i in 1 to length(GLOB.using_map.mining_outpost_z))
+		var/current = GLOB.using_map.mining_outpost_z[i]
 		if(isnum(current))
 			continue
-		using_map.mining_outpost_z[i] = GLOB.map_templates_loaded[current]*/
+		GLOB.using_map.mining_outpost_z[i] = GLOB.map_templates_loaded[current]*/
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
 	for(var/datum/map_template/shelter/shelter_type as anything in subtypesof(/datum/map_template/shelter))

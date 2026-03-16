@@ -431,7 +431,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/loyalty/get_data()
 	var/dat = {"
 "} + span_bold("Implant Specifications:") + {"<BR>
-"} + span_bold("Name:") + {"[using_map.company_name] Employee Management Implant<BR>
+"} + span_bold("Name:") + {"[GLOB.using_map.company_name] Employee Management Implant<BR>
 "} + span_bold("Life:") + {"Ten years.<BR>
 "} + span_bold("Important Notes:") + {"Personnel injected with this device tend to be much more loyal to the company.<BR>
 <HR>
@@ -448,13 +448,13 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	var/mob/living/carbon/human/H = M
 	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
 	if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
-		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [using_map.company_name] try to invade your mind!")
+		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [GLOB.using_map.company_name] try to invade your mind!")
 		. = FALSE
 
 /obj/item/implant/loyalty/post_implant(mob/M)
 	var/mob/living/carbon/human/H = M
 	clear_antag_roles(H.mind, 1)
-	to_chat(H, span_notice("You feel a surge of loyalty towards [using_map.company_name]."))
+	to_chat(H, span_notice("You feel a surge of loyalty towards [GLOB.using_map.company_name]."))
 
 //////////////////////////////
 //	Adrenaline Implant
@@ -506,7 +506,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/death_alarm/get_data()
 	var/dat = {"
 "} + span_bold("Implant Specifications:") + {"<BR>
-"} + span_bold("Name:") + {"[using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+"} + span_bold("Name:") + {"[GLOB.using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 "} + span_bold("Life:") + {"Activates upon death.<BR>
 "} + span_bold("Important Notes:") + {"Alerts crew to crewmember death.<BR>
 <HR>
@@ -591,7 +591,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/compressed/get_data()
 	var/dat = {"
 "} + span_bold("Implant Specifications:") + {"<BR>
-"} + span_bold("Name:") + {"[using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+"} + span_bold("Name:") + {"[GLOB.using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 "} + span_bold("Life:") + {"Activates upon death.<BR>
 "} + span_bold("Important Notes:") + {"Alerts crew to crewmember death.<BR>
 <HR>

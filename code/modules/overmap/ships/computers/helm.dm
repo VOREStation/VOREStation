@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 /obj/machinery/computer/ship/helm/process()
 	..()
 	if(autopilot && dx && dy && !autopilot_disabled)
-		var/turf/T = locate(dx,dy,global.using_map.overmap_z)
+		var/turf/T = locate(dx,dy,GLOB.using_map.overmap_z)
 		if(linked.loc == T)
 			if(linked.is_still())
 				autopilot = 0

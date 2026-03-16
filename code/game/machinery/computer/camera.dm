@@ -22,7 +22,7 @@
 	camera = new camera_datum_type(src, network)
 
 /obj/machinery/computer/security/proc/get_default_networks()
-	. = using_map.station_networks.Copy()
+	. = GLOB.using_map.station_networks.Copy()
 
 /obj/machinery/computer/security/Destroy()
 	QDEL_NULL(camera)

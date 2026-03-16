@@ -77,7 +77,7 @@
 		return
 
 	var/turf/T = get_turf(src)
-	if(!T || (T.z in using_map.admin_levels))
+	if(!T || (T.z in GLOB.using_map.admin_levels))
 		to_chat(user, span_warning("You may not spawn as a mouse on this Z-level."))
 		return
 

@@ -899,7 +899,7 @@
 	if(prob(25))
 		var/list/possible_targets = list()
 		for(var/obj/machinery/computer/ship/helm/h in world)
-			if(h.z in using_map.player_levels)
+			if(h.z in GLOB.using_map.player_levels)
 				possible_targets |= h
 		var/final = pick(possible_targets)
 		forceMove(get_turf(final))

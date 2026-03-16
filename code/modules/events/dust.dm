@@ -3,7 +3,7 @@
 	endWhen		= 30
 
 /datum/event/dust/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= GLOB.using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/dust/announce()

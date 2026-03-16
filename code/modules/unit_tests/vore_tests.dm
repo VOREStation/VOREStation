@@ -54,7 +54,7 @@
 
 	TEST_ASSERT(prey.loc == pred.vore_selected, "Prey not inside predator belly")
 
-	var/empty_z = using_map.get_empty_zlevel()
+	var/empty_z = GLOB.using_map.get_empty_zlevel()
 	TEST_ASSERT(empty_z, "Failed to get empty z-level")
 
 	var/turf/space_turf = locate(

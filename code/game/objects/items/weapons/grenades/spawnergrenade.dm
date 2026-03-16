@@ -88,7 +88,7 @@
 /obj/item/grenade/spawnergrenade/manhacks/station/locked/detonate()
 	if(locked)
 		var/turf/T = get_turf(src)
-		if(T.z in using_map.station_levels)
+		if(T.z in GLOB.using_map.station_levels)
 			icon_state = initial(icon_state)
 			active = 0
 			return 0

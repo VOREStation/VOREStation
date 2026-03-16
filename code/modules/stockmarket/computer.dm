@@ -96,7 +96,7 @@
 /obj/machinery/computer/stockexchange/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["stationName"] = using_map.station_name
+	data["stationName"] = GLOB.using_map.station_name
 	data["balance"] = balance()
 	data["screen"] = screen
 

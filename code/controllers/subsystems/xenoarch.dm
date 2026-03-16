@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(xenoarch)
 		if(!M.density) //Checks to see if it's a mineral wall
 			continue
 
-		if((M.z in using_map.xenoarch_exempt_levels) || !prob(XENOARCH_SPAWN_CHANCE)) //Now we roll the dice. Base chance is 1/200 for a mineral turf to spawn a digsite. If it doesn't roll that chance, we skip this rock.
+		if((M.z in GLOB.using_map.xenoarch_exempt_levels) || !prob(XENOARCH_SPAWN_CHANCE)) //Now we roll the dice. Base chance is 1/200 for a mineral turf to spawn a digsite. If it doesn't roll that chance, we skip this rock.
 			continue
 
 		var/farEnough = 1

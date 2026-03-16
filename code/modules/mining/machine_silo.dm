@@ -27,7 +27,7 @@
 		), \
 		allowed_items = /obj/item/stack \
 	)
-	if(!GLOB.ore_silo_default && mapload && (z in using_map.station_levels))
+	if(!GLOB.ore_silo_default && mapload && (z in GLOB.using_map.station_levels))
 		GLOB.ore_silo_default = src
 	// register_context()
 

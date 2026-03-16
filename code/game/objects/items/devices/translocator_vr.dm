@@ -237,7 +237,7 @@ This device records all warnings given and teleport events for admin review in c
 	var/turf/uT = get_turf(user)
 	var/turf/dT = get_turf(destination)
 	var/list/dat = list()
-	dat["z_level_detection"] = using_map.get_map_levels(uT.z)
+	dat["z_level_detection"] = GLOB.using_map.get_map_levels(uT.z)
 
 	if(!uT || !dT)
 		return FALSE

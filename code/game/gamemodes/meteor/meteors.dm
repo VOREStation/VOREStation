@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	if(isnull(startSide))
 		startSide = pick(GLOB.cardinal)
 	if(isnull(startLevel))
-		startLevel = pick(using_map.station_levels - using_map.sealed_levels)
+		startLevel = pick(GLOB.using_map.station_levels - GLOB.using_map.sealed_levels)
 
 	var/turf/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, startLevel)

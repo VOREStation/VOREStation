@@ -7,7 +7,7 @@
 
 /datum/asset/simple/lobby_files/register()
 	// not actually a gif
-	assets["lobby_bg.gif"] = pick(using_map.lobby_screens)
+	assets["lobby_bg.gif"] = pick(GLOB.using_map.lobby_screens)
 	. = ..()
 
 /datum/asset/simple/restart_animation

@@ -140,7 +140,7 @@ Frequency:
 	if(.)
 		return TRUE
 	var/turf/current_location = get_turf(user)//What turf is the user on?
-	if(!current_location || (current_location.z in using_map.admin_levels) || current_location.block_tele)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
+	if(!current_location || (current_location.z in GLOB.using_map.admin_levels) || current_location.block_tele)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, span_notice("\The [src] is malfunctioning."))
 		return
 	var/list/L = list(  )

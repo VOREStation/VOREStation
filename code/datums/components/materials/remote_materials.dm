@@ -40,7 +40,7 @@ handles linking back and forth.
 
 	var/turf/T = get_turf(parent)
 	var/connect_to_silo = FALSE
-	if(force_connect || (mapload && (T.z in using_map.station_levels)))
+	if(force_connect || (mapload && (T.z in GLOB.using_map.station_levels)))
 		connect_to_silo = TRUE
 
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_item_insert))

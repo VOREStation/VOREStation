@@ -5,7 +5,7 @@
 	endWhen = 126
 
 /datum/event/aurora_caelus/announce()
-	GLOB.command_announcement.Announce("[station_name()]: A harmless cloud of ions is approaching your [using_map.facility_type], and will exhaust their energy battering the hull. \
+	GLOB.command_announcement.Announce("[station_name()]: A harmless cloud of ions is approaching your [GLOB.using_map.facility_type], and will exhaust their energy battering the hull. \
 	Nanotrasen has approved a short break for all employees to relax and observe this very rare event. \
 	During this time, starlight will be bright but gentle, shifting between quiet green and blue colors. \
 	Any staff who would like to view these lights for themselves may proceed to the area nearest to them with viewing ports to open space. \
@@ -13,7 +13,7 @@
 	We hope you enjoy the lights.", "Nanotrasen Meteorology Division", new_sound = 'sound/AI/aurora.ogg') //VOREStation Edit
 
 /datum/event/aurora_caelus/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= GLOB.using_map.sealed_levels // Space levels only please!
 	for(var/mob/M in GLOB.player_list)
 		if(M.z in affecting_z)
 			M.playsound_local(null, 'sound/ambience/space/aurora_caelus.ogg', 100, FALSE, pressure_affected = FALSE)

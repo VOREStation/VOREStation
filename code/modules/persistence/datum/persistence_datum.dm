@@ -16,7 +16,7 @@
 
 /datum/persistent/proc/SetFilename()
 	if(name)
-		filename = "data/persistent/[lowertext(using_map.name)]-[lowertext(name)].json"
+		filename = "data/persistent/[lowertext(GLOB.using_map.name)]-[lowertext(name)].json"
 	if(!isnull(entries_decay_at) && !isnull(entries_expire_at))
 		entries_decay_at = round(entries_expire_at * entries_decay_at)
 
@@ -71,7 +71,7 @@
 				return
 
 		var/_z = token["z"]
-		if(_z in using_map.persist_levels)
+		if(_z in GLOB.using_map.persist_levels)
 			. = GetValidTurf(locate(token["x"], token["y"], _z), token)
 			if(.)
 				CreateEntryInstance(., token)
@@ -82,7 +82,7 @@
 	if(GetEntryAge(entry) >= entries_expire_at)
 		return FALSE
 	var/turf/T = get_turf(entry)
-	if(!T || !(T.z in using_map.persist_levels) )
+	if(!T || !(T.z in GLOB.using_map.persist_levels) )
 		return FALSE
 	var/area/A = get_area(T)
 	if(!A || (A.flag_check(AREA_FLAG_IS_NOT_PERSISTENT)))

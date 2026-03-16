@@ -59,13 +59,13 @@
 	find_z_levels() // This populates map_z and assigns z levels to the ship.
 	register_z_levels() // This makes external calls to update global z level information.
 
-	if(!global.using_map.overmap_z)
+	if(!GLOB.using_map.overmap_z)
 		build_overmap()
 
-	start_x = start_x || rand(OVERMAP_EDGE, global.using_map.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, global.using_map.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, GLOB.using_map.overmap_size - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, GLOB.using_map.overmap_size - OVERMAP_EDGE)
 
-	forceMove(locate(start_x, start_y, global.using_map.overmap_z))
+	forceMove(locate(start_x, start_y, GLOB.using_map.overmap_z))
 
 	if(!docking_codes)
 		docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
@@ -150,27 +150,27 @@
 	for(var/zlevel in map_z)
 		GLOB.map_sectors["[zlevel]"] = src
 
-	global.using_map.player_levels |= map_z
+	GLOB.using_map.player_levels |= map_z
 	if(!in_space)
-		global.using_map.sealed_levels |= map_z
+		GLOB.using_map.sealed_levels |= map_z
 	/* VOREStation Removal - We have a map system that does this already.
 	if(base)
-		global.using_map.station_levels |= map_z
-		global.using_map.contact_levels |= map_z
-		global.using_map.map_levels |= map_z
+		GLOB.using_map.station_levels |= map_z
+		GLOB.using_map.contact_levels |= map_z
+		GLOB.using_map.map_levels |= map_z
 	*/
 
 /obj/effect/overmap/visitable/proc/unregister_z_levels()
 	GLOB.map_sectors -= map_z
 
-	global.using_map.player_levels -= map_z
+	GLOB.using_map.player_levels -= map_z
 	if(!in_space)
-		global.using_map.sealed_levels -= map_z
+		GLOB.using_map.sealed_levels -= map_z
 	/* VOREStation Removal - We have a map system that does this already.
 	if(base)
-		global.using_map.station_levels -= map_z
-		global.using_map.contact_levels -= map_z
-		global.using_map.map_levels -= map_z
+		GLOB.using_map.station_levels -= map_z
+		GLOB.using_map.contact_levels -= map_z
+		GLOB.using_map.map_levels -= map_z
 	*/
 
 /obj/effect/overmap/visitable/get_scan_data()
@@ -291,23 +291,23 @@
 		GLOB.priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 
 /proc/build_overmap()
-	if(!global.using_map.use_overmap)
+	if(!GLOB.using_map.use_overmap)
 		return 1
 
 	testing("Building overmap...")
 	world.increment_max_z()
-	global.using_map.overmap_z = world.maxz
+	GLOB.using_map.overmap_z = world.maxz
 
-	testing("Putting overmap on [global.using_map.overmap_z]")
+	testing("Putting overmap on [GLOB.using_map.overmap_z]")
 	var/area/overmap/A = new
-	for(var/turf/T as anything in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
-		if(T.x == 1 || T.y == 1 || T.x == global.using_map.overmap_size || T.y == global.using_map.overmap_size)
+	for(var/turf/T as anything in block(locate(1,1,GLOB.using_map.overmap_z), locate(GLOB.using_map.overmap_size,GLOB.using_map.overmap_size,GLOB.using_map.overmap_z)))
+		if(T.x == 1 || T.y == 1 || T.x == GLOB.using_map.overmap_size || T.y == GLOB.using_map.overmap_size)
 			T = T.ChangeTurf(/turf/unsimulated/map/edge)
 		else
 			T = T.ChangeTurf(/turf/unsimulated/map)
 		ChangeArea(T, A)
 
-	global.using_map.sealed_levels |= global.using_map.overmap_z
+	GLOB.using_map.sealed_levels |= GLOB.using_map.overmap_z
 
 	testing("Overmap build complete.")
 	return 1

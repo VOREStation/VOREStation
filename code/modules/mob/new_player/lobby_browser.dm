@@ -41,7 +41,7 @@
 		displayed_name = CONFIG_GET(string/servername)
 
 	data["server_name"] = displayed_name
-	data["map"] = using_map.full_name
+	data["map"] = GLOB.using_map.full_name
 	data["station_time"] = stationtime2text()
 	data["display_loading"] = SSticker.current_state == GAME_STATE_STARTUP
 	data["round_start"] = !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME

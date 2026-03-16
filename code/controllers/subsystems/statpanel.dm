@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(statpanels)
 		//var/datum/map_config/cached = SSmapping.next_map_config
 		global_data = list(
 			//"Map: [SSmapping.config?.map_name || "Loading..."]",
-			"Map: [using_map.name]",
+			"Map: [GLOB.using_map.name]",
 			//cached ? "Next Map: [cached.map_name]" : null,
 			//"Next Map: -- Not Available --",
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",

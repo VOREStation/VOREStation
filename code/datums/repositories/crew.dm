@@ -54,7 +54,7 @@ GLOBAL_DATUM_INIT(crew_repository, /datum/repository/crew, new)
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
 					crewmemberData["realZ"] = pos.z
-					crewmemberData["z"] = using_map.get_zlevel_name(pos.z)
+					crewmemberData["z"] = GLOB.using_map.get_zlevel_name(pos.z)
 
 				crewmembers[++crewmembers.len] = crewmemberData
 

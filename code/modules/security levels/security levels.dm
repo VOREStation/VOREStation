@@ -70,10 +70,10 @@ GLOBAL_DATUM_INIT(security_announcement_down, /datum/announcement/priority/secur
 
 		var/newlevel = get_security_level()
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
-			if(FA.z in using_map.contact_levels)
+			if(FA.z in GLOB.using_map.contact_levels)
 				FA.set_security_level(newlevel)
 		for(var/obj/machinery/status_display/FA in GLOB.machines)
-			if(FA.z in using_map.contact_levels)
+			if(FA.z in GLOB.using_map.contact_levels)
 				FA.on_alert_changed(newlevel)
 		//VOREStation Add
 		for(var/obj/machinery/holoposter/HP as anything in GLOB.holoposters)

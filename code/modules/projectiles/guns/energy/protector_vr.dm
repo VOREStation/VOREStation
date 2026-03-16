@@ -154,7 +154,7 @@
 /obj/item/gun/energy/gun/protector/pilotgun/locked/special_check(mob/user)
 	if(locked)
 		var/turf/T = get_turf(src)
-		if(T.z in using_map.station_levels)
+		if(T.z in GLOB.using_map.station_levels)
 			to_chat(user, span_warning("The safety device prevents the gun from firing this close to the facility."))
 			return 0
 	return ..()

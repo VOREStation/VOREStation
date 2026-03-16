@@ -117,7 +117,7 @@
 		data["check_arrest"] = check_arrest
 		data["arrest_type"] = arrest_type
 		data["declare_arrests"] = declare_arrests
-		data["bot_patrolling"] = using_map.bot_patrolling
+		data["bot_patrolling"] = GLOB.using_map.bot_patrolling
 		data["patrol"] = will_patrol
 
 	return data
