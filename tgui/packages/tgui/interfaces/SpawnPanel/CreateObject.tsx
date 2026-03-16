@@ -56,7 +56,11 @@ export function CreateObject(props: CreateObjectProps) {
   const currentType = allObjects[data.copied_type ?? '']?.type || 'Objects';
 
   const getSearchString = useCallback(
-    (key: string) => (searchBy ? key : allObjects[key]?.name || ''),
+    (key: string) => {
+      const item = allObjects[key];
+      if (!item) return key;
+      return searchBy ? key : `${key} ${item.name || ''}`;
+    },
     [searchBy, allObjects],
   );
 
