@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 			log_mapping("Map '[M]' does not have a defined path, not adding to map list!")
 		else
 			GLOB.all_maps[M.path] = M
+	GLOB.admin_departments += using_map.boss_name
 	return 1
 
 

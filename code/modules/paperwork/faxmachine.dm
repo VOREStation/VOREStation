@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY_TYPED(allfaxes, /obj/machinery/photocopier/faxmachine)
-GLOBAL_LIST_INIT(admin_departments, list("[GLOB.using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply", "Talon Headquarters"))
+GLOBAL_LIST_INIT(admin_departments, list("Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply", "Talon Headquarters"))
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_VAR(last_fax_role_request)
 
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
 
-/obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
+/obj/machinery/photocopier/faxmachine/attack_hand(mob/user)
 	tgui_interact(user)
 
 /obj/machinery/photocopier/faxmachine/verb/remove_card()
