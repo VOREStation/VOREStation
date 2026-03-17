@@ -166,6 +166,7 @@
 	name = "jukebox circuit"
 	id = "jukebox"
 	// req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/jukebox
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BAR
@@ -263,6 +264,7 @@
 	name = "newscaster circuit"
 	desc = "The circuit board for a newscaster."
 	id = "newscaster"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/newscaster
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
@@ -293,6 +295,7 @@
 	name = "timeclock circuit"
 	desc = "The circuit board for a timeclock."
 	id = "timeclock"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/timeclock
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
@@ -338,3 +341,13 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/space_heater
+	name = "space heater circuit"
+	id = "space_heater"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/circuitboard/space_heater
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
