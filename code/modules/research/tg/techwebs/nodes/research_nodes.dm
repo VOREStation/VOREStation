@@ -10,7 +10,7 @@
 		"bomb_tester",
 		"tech_disk",
 		"rdservercontrol",
-		// "doppler_array",
+		"doppler_array",
 		// "experimentor",
 		"destructive_analyzer",
 		// "destructive_scanner",

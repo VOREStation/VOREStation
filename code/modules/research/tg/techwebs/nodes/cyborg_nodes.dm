@@ -247,6 +247,7 @@
 	design_ids = list(
 		"prot_orch",
 		"prot_refact",
+		"protean_reconstitutor",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL)

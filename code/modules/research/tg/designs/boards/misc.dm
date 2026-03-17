@@ -478,3 +478,21 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/doppler_array
+	name = "doppler array circuit"
+	id = "doppler_array"
+	build_path = /obj/item/circuitboard/doppler_array
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/protean_reconstitutor
+	name = "protean reconstitutor"
+	id = "protean_reconstitutor"
+	build_path = /obj/item/circuitboard/protean_reconstitutor
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

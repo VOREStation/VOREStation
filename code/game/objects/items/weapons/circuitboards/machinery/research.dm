@@ -121,3 +121,11 @@
 							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/doppler_array
+	name = T_BOARD("doppler array")
+	build_path = /obj/machinery/doppler_array
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 1, TECH_DATA = 3)
+	req_components = list(
+							/obj/item/stock_parts/scanning_module = 4)

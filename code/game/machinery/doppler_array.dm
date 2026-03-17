@@ -6,6 +6,7 @@
 	dir = NORTH
 
 	icon_state = "doppler"
+	circuit = /obj/item/circuitboard/doppler_array
 
 /obj/machinery/doppler_array/Initialize(mapload)
 	. = ..()
