@@ -2,7 +2,6 @@
 	name = T_BOARD("cycling airlock button")
 	build_path = /obj/machinery/access_button
 	board_type = new /datum/frame/frame_types/button
-	matter = RECYCLE_CIRCUIT_MATERIALS
 
 /obj/item/circuitboard/airlock_cycling/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_MULTITOOL))

@@ -6,7 +6,6 @@
 	name = T_BOARD("papershredder")
 	build_path = /obj/machinery/papershredder
 	board_type = new /datum/frame/frame_types/machine
-	matter = RECYCLE_CIRCUIT_MATERIALS
 	req_components = list(
 							/obj/item/stock_parts/motor = 1,
 							/obj/item/stock_parts/gear = 2,

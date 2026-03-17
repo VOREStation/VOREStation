@@ -7,7 +7,6 @@
 	name = T_BOARD("chem analyzer PRO")
 	build_path = /obj/machinery/chemical_analyzer
 	board_type = new /datum/frame/frame_types/machine
-	matter = RECYCLE_CIRCUIT_MATERIALS
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	req_components = list(/obj/item/stock_parts/scanning_module = 1, /obj/item/stock_parts/matter_bin = 1)
 
@@ -16,7 +15,6 @@
 	name = T_BOARD("smart centrifuge")
 	build_path = /obj/machinery/smart_centrifuge
 	board_type = new /datum/frame/frame_types/machine
-	matter = RECYCLE_CIRCUIT_MATERIALS
 	origin_tech = list(TECH_MAGNET = 3, TECH_DATA = 2, TECH_MATERIAL = 3)
 	req_components = list(
 							/obj/item/stock_parts/scanning_module = 1,
