@@ -214,3 +214,49 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/rdservercontrol
+	name = "R&D server circuit"
+	desc = "Manages access to research databases and consoles."
+	id = "rdservercontrol"
+	build_path = /obj/item/circuitboard/rdservercontrol
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/doppler_array
+	name = "doppler array circuit"
+	id = "doppler_array"
+	build_path = /obj/item/circuitboard/doppler_array
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/protean_reconstitutor
+	name = "protean reconstitutor circuit"
+	id = "protean_reconstitutor"
+	build_path = /obj/item/circuitboard/protean_reconstitutor
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/artifact_harvester
+	name = "exotic particle harvester circuit"
+	id = "artifact_harvester"
+	build_path = /obj/item/circuitboard/artifact_harvester
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/artifact_scanpad
+	name = "anomaly scanner pad circuit"
+	id = "artifact_scanpad"
+	build_path = /obj/item/circuitboard/artifact_scanpad
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

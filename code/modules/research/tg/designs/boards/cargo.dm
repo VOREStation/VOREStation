@@ -56,3 +56,33 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_COMPUTER_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/mining_equipment_vendor
+	name = "mining equipment vendor circuit"
+	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
+	id = "mining_equipment_vendor"
+	build_path = /obj/item/circuitboard/mining_equipment_vendor
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/survey_equipment_vendor
+	name = "exploration equipment vendor circuit"
+	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
+	id = "survey_equipment_vendor"
+	build_path = /obj/item/circuitboard/exploration_equipment_vendor
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/stockexchange
+	name = "stock exchange console circuit"
+	desc = "A console that connects to the galactic stock market."
+	id = "stockexchange"
+	build_path = /obj/item/circuitboard/stockexchange
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE

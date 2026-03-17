@@ -299,16 +299,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/stockexchange
-	name = "stock exchange console circuit"
-	desc = "A console that connects to the galactic stock market."
-	id = "stockexchange"
-	build_path = /obj/item/circuitboard/stockexchange
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/board/stationalert_engineering
 	name = "station alert console circuit (engineering)"
 	desc = "Used to access engineering's automated alert system."
@@ -339,159 +329,11 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/mining_equipment_vendor
-	name = "mining equipment vendor circuit"
-	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
-	id = "mining_equipment_vendor"
-	build_path = /obj/item/circuitboard/mining_equipment_vendor
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/survey_equipment_vendor
-	name = "exploration equipment vendor circuit"
-	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
-	id = "survey_equipment_vendor"
-	build_path = /obj/item/circuitboard/exploration_equipment_vendor
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/artifact_harvester
-	name = "exotic particle harvester circuit"
-	id = "artifact_harvester"
-	build_path = /obj/item/circuitboard/artifact_harvester
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/artifact_scanpad
-	name = "anomaly scanner pad circuit"
-	id = "artifact_scanpad"
-	build_path = /obj/item/circuitboard/artifact_scanpad
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/gyrotron
-	name = "gyrotron circuit"
-	id = "gyrotron"
-	build_path = /obj/item/circuitboard/gyrotron
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
-
-/datum/design_techweb/board/supermatter_core_manager
-	name = "supermatter core control circuit"
-	id = "supermatter_core_manager"
-	build_path = /obj/item/circuitboard/air_management/supermatter_core
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
-
-/datum/design_techweb/board/supermatter_injector_control
-	name = "supermatter injector control circuit"
-	id = "supermatter_injector_control"
-	build_path = /obj/item/circuitboard/air_management/injector_control
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
-
-/datum/design_techweb/board/scanner_console
-	name = "body scanner console circuit"
-	id = "scanner_console"
-	build_path = /obj/item/circuitboard/scanner_console
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_MEDICAL
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/body_scanner
-	name = "body scanner circuit"
-	id = "body_scanner"
-	build_path = /obj/item/circuitboard/body_scanner
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_MEDICAL
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/sleeper_console
-	name = "sleeper console circuit"
-	id = "sleeper_console"
-	build_path = /obj/item/circuitboard/sleeper_console
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_MEDICAL
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/sleeper
-	name = "sleeper circuit"
-	id = "sleeper"
-	build_path = /obj/item/circuitboard/sleeper
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_MEDICAL
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/bioprinter
-	name = "bioprinter circuit"
-	id = "bioprinter"
-	build_path = /obj/item/circuitboard/bioprinter
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_MEDICAL
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/dna_analyzer
-	name = "DNA analyzer circuit"
-	desc = "A high tech machine that is designed to read DNA samples properly."
-	id = "dna_analyzer"
-	build_path = /obj/item/circuitboard/dna_analyzer
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_SECURITY
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/board/vr_sleeper
 	name = "virtual reality sleeper circuit"
 	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
 	id = "vr_sleeper"
 	build_path = /obj/item/circuitboard/vr_sleeper
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/rdservercontrol
-	name = "R&D server circuit"
-	desc = "Manages access to research databases and consoles."
-	id = "rdservercontrol"
-	build_path = /obj/item/circuitboard/rdservercontrol
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/doppler_array
-	name = "doppler array circuit"
-	id = "doppler_array"
-	build_path = /obj/item/circuitboard/doppler_array
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/protean_reconstitutor
-	name = "protean reconstitutor"
-	id = "protean_reconstitutor"
-	build_path = /obj/item/circuitboard/protean_reconstitutor
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)

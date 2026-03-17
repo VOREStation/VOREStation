@@ -23,6 +23,7 @@
 		// "gas_filter",
 		// "plasmaman_gas_filter",
 		// "pipe_painter",
+		"atmoscontrol",
 	)
 
 /datum/techweb_node/gas_compression

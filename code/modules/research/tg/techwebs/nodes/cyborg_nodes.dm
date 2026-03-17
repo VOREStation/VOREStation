@@ -90,7 +90,6 @@
 		"borg_language_module",
 		"borg_taser_module",
 		"sflash",
-		// "cyborgrecharger",
 		// "advanced_l_arm",
 		// "advanced_r_arm",
 		// "advanced_l_leg",

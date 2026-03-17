@@ -4522,6 +4522,7 @@
 #include "code\modules\research\tg\designs\boards\misc.dm"
 #include "code\modules\research\tg\designs\boards\refinery.dm"
 #include "code\modules\research\tg\designs\boards\science.dm"
+#include "code\modules\research\tg\designs\boards\security.dm"
 #include "code\modules\research\tg\designs\boards\telecomms.dm"
 #include "code\modules\research\tg\experisci\handheld_scanner.dm"
 #include "code\modules\research\tg\experisci\experiment\handlers\experiment_handler.dm"

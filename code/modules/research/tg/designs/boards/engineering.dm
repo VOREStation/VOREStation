@@ -380,3 +380,39 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/atmoscontrol
+	name = "central atmospherics computer circuit"
+	id = "atmoscontrol"
+	build_path = /obj/item/circuitboard/atmoscontrol
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/gyrotron
+	name = "gyrotron circuit"
+	id = "gyrotron"
+	build_path = /obj/item/circuitboard/gyrotron
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/supermatter_core_manager
+	name = "supermatter core control circuit"
+	id = "supermatter_core_manager"
+	build_path = /obj/item/circuitboard/air_management/supermatter_core
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/supermatter_injector_control
+	name = "supermatter injector control circuit"
+	id = "supermatter_injector_control"
+	build_path = /obj/item/circuitboard/air_management/injector_control
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
