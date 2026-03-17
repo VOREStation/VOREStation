@@ -85,33 +85,29 @@
 	icon_y = 64
 	vis_height = 64
 
-/datum/robot_sprite/dogborg/tall/command/meka
+/datum/robot_sprite/dogborg/tall/command/tall/meka
 	name = "MEKA"
 	sprite_icon_state = "mekaunity"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	icon_x = 32
 
-
-/datum/robot_sprite/dogborg/tall/command/mmeka
+/datum/robot_sprite/dogborg/tall/command/tall/mmeka
 	name = "NIKO"
 	sprite_icon_state = "mmekaunity"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	icon_x = 32
 
-/datum/robot_sprite/dogborg/tall/command/fmeka
+/datum/robot_sprite/dogborg/tall/command/tall/fmeka
 	name = "NIKA"
 	sprite_icon_state = "fmekaunity"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	icon_x = 32
 
 /datum/robot_sprite/dogborg/command/smolraptor
 	name = "Small Raptor"
@@ -134,5 +130,3 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "maidoutfit")
-	icon_x = 64
-	pixel_x = -16
