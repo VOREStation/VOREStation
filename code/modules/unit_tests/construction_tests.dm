@@ -37,9 +37,9 @@
 
 	// Manual exclusions, as some alien machines have boards but are not meant to be printed from the circuit imprinter/lathe
 	all_circuitboard_machines -= list(
-		/obj/machinery/power/rtg/abductor,
-		/obj/machinery/power/rtg/abductor/hybrid,
-		/obj/machinery/computer/roguezones
+		/obj/item/circuitboard/machine/abductor/core,
+		/obj/item/circuitboard/machine/abductor/core/hybrid,
+		/obj/item/circuitboard/roguezones
 	)
 
 	if(length(all_circuitboard_machines))
