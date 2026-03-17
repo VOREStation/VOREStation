@@ -3,7 +3,7 @@
 // Display-only formatting (fmtMoney, fmtTime, progressBar) lives in format.ts.
 
 import { CIPHER_TIERS, RAM_UPGRADES } from './constants';
-import type { GState } from './types';
+import type { CipherTier, GState } from './types';
 
 // ── RNG ───────────────────────────────────────────────────────────────────────
 export function rand(lo: number, hi: number): number {
@@ -31,7 +31,7 @@ export function makeJobId(nextId: number): string {
 
 // ── Crack duration in minutes ─────────────────────────────────────────────────
 export function getCrackDuration(
-  tier: (typeof CIPHER_TIERS)[number],
+  tier: CipherTier,
   cpuMult: number,
   ghostCrack: number,
   fragUsed: boolean,

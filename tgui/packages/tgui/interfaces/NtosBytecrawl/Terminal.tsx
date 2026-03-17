@@ -12,13 +12,13 @@ type HeaderSlot = {
 type TerminalProps = {
   // Output lines rendered in the scrollable area
   lines: Line[];
-  outputRef: RefObject<HTMLDivElement>;
+  outputRef: RefObject<HTMLDivElement | null>;
 
   // Current input value
   input: string;
   onInput: (value: string) => void;
   onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-  inputRef: RefObject<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement | null>;
 
   // Prompt shown before the input field (e.g. "ghost@bytecrawl:~$")
   prompt: string;
