@@ -358,3 +358,21 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/artifact_harvester
+	name = "exotic particle harvester circuit"
+	id = "artifact_harvester"
+	build_path = /obj/item/circuitboard/artifact_harvester
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/artifact_scanpad
+	name = "anomaly scanner pad circuit"
+	id = "artifact_scanpad"
+	build_path = /obj/item/circuitboard/artifact_scanpad
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
