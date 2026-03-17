@@ -110,6 +110,28 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/med_pcu
+	name = "medical records PCU"
+	desc = "Allows for the construction of circuit boards used to build a medical records pcu."
+	id = "med_pcu"
+	build_path = /obj/item/circuitboard/med_data/pcu
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+// TODO - non-pcu skill console, id = "skill_data"
+
+/datum/design_techweb/board/skill_pcu
+	name = "employment records PCU"
+	desc = "Allows for the construction of circuit boards used to build a employment records pcu."
+	id = "skill_pcu"
+	build_path = /obj/item/circuitboard/skills/pcu
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_COMMAND
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/operating
 	name = "patient monitoring console"
 	desc = "Allows for the construction of circuit boards used to build a patient monitoring console."
@@ -288,31 +310,31 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stationalert_engineering
-	name = "Engineering Alert Console"
+	name = "station alert console (engineering)"
 	desc = "Used to access engineering's automated alert system."
 	id = "stationalert_engineering"
 	build_path = /obj/item/circuitboard/stationalert_engineering
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING| DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stationalert_security
-	name = "Security Alert Console"
+	name = "station alert console (security)"
 	desc = "Used to access security's automated alert system."
 	id = "stationalert_security"
 	build_path = /obj/item/circuitboard/stationalert_security
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY| DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stationalert_all
-	name = "Station Alert Console"
+	name = "station alert console (all)"
 	desc = "Used to access the station's automated alert system."
 	id = "stationalert_all"
 	build_path = /obj/item/circuitboard/stationalert_all
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_COMMAND
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_ENGINEERING| DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

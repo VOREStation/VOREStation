@@ -78,6 +78,9 @@
 	prereq_ids = list(TECHWEB_NODE_OFFICE_EQUIP)
 	design_ids = list(
 		"med_data",
+		"med_pcu",
+		// "skill_data",
+		"skill_pcu",
 		"ordercomp",
 		"supplycomp",
 		"crewconsole",
