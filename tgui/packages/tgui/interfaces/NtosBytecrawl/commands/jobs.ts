@@ -81,8 +81,21 @@ export function cmdCrack(args: readonly string[], ctx: CommandContext): void {
 // ── jobs ──────────────────────────────────────────────────────────────────────
 
 export function cmdJobs(args: readonly string[], ctx: CommandContext): void {
-  const { gRef, print } = ctx;
+  const { gRef, setG, print } = ctx;
   const state = gRef.current;
+
+  // ── jobs clear ───────────────────────────────────────────────────────────
+  if (args[0] === 'clear') {
+    const failed = state.jobs.filter((j) => j.state === 'failed');
+    if (!failed.length) {
+      print('No failed jobs to clear.');
+      return;
+    }
+    setG((prev) => ({ ...prev, jobs: prev.jobs.filter((j) => j.state !== 'failed') }));
+    print(`Cleared ${failed.length} failed job${failed.length === 1 ? '' : 's'}.`, '#ff8800');
+    return;
+  }
+
   const filterIdx = args.indexOf('--filter');
   const filterVal = filterIdx !== -1 ? args[filterIdx + 1] : undefined;
   const list = state.jobs.filter((j) =>

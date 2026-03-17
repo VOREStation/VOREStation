@@ -46,6 +46,8 @@ export function doAutocomplete(
       candidates = ['--confirm'];
     } else if (cmd === 'scan' && currentToken.startsWith('-')) {
       candidates = ['--tier', '--type'];
+    } else if (argPos === 1 && cmd === 'jobs') {
+      candidates = ['clear', '--filter'];
     } else if (cmd === 'jobs' && currentToken.startsWith('-')) {
       candidates = ['--filter'];
     } else if (cmd === 'ascend' && currentToken.startsWith('-')) {

@@ -145,7 +145,7 @@ export function cmdHelp(args: readonly string[], ctx: CommandContext): void {
       scan: 'scan [--tier N] [--type TYPE]  List available crack targets.',
       connect: 'connect <id>  Probe a target for full stats.',
       crack: 'crack <id> [--method fragment]  Queue a crack job.',
-      jobs: 'jobs [--filter complete|cracking]  List jobs.',
+      jobs: 'jobs [--filter complete|cracking]  List jobs.  jobs clear  Remove failed jobs.',
       cancel: 'cancel <job-id>  Abort a job.',
       collect: 'collect <job-id>|all  Move ready data to cache.',
       cache: 'cache  View cached data.',
@@ -207,11 +207,20 @@ export function cmdExplain(ctx: CommandContext): void {
   print('  or stop all jobs and wait for passive decay (0.12%/min, free).');
   print('  Cloak halves trace gain at -20% crack speed: cloak / cloak off');
   print('');
+  print('CIPHERS:', '#33ff33');
+  print('  Abbrev  Tier  Name          Data types    Uptime window');
+  print('  ------  ----  ------------- ------------- -------------');
+  print('  C7      T1    CAESAR-7      CRD           none');
+  print('  VX      T2    VIGENERE-X    CRD, FIN      none');
+  print('  E4      T3    ENIGMA-IV     FIN, CRP      none');
+  print('  ON      T4    ONYX-256      CRP, CLS      yes — server can go offline');
+  print('  WR      T5    WRAITH-512    CLS            yes — server can go offline', '#ff8800');
+  print('  T4/T5 jobs fail if the uptime window expires before you collect.', '#ff8800');
+  print('  Use a Key Fragment (FRG) to halve crack time on T4/T5.');
+  print('');
   print('MARKET:', '#33ff33');
   print('  Data prices drift constantly. CLASSIFIED (CLS) spikes upward often.');
   print('  Run market to see live prices. Sell when prices are high.');
-  print('  Data types by cipher tier: T1=CRD, T2=CRD/FIN, T3=FIN/CRP,');
-  print('  T4=CRP/CLS, T5=CLS');
   print('');
   print('UPGRADES (priority order):', '#33ff33');
   print('  CPU first — multiplies crack speed directly');
@@ -238,6 +247,7 @@ export function cmdExplain(ctx: CommandContext): void {
   print('  Up/Down arrows scroll command history.');
   print('  scan refreshes targets each use — IDs change.');
   print('  collect all is faster than collecting one at a time.');
+  print('  jobs clear removes failed jobs from the list.');
   print('  Watch the header: trace and slot count update in real time.');
   print('');
 }
