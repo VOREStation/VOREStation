@@ -130,6 +130,9 @@
 		if(!design.build_path)
 			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] did not have a build_path.")
 			failed = TRUE
+		else if(design.build_path in subtypesof(/obj/machinery))
+			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a buildpath that directly prints a machine: \"[design.build_path]\"")
+			failed = TRUE
 
 		// Design must be a unique path produced
 		if(design.build_path in used_design_paths)

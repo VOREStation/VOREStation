@@ -353,7 +353,7 @@
 	name = "exploration equipment vendor circuit"
 	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
 	id = "survey_equipment_vendor"
-	build_path = /obj/machinery/mineral/equipment_vendor/survey
+	build_path = /obj/item/circuitboard/exploration_equipment_vendor
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
 	)
