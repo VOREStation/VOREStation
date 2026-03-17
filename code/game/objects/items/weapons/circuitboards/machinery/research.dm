@@ -11,7 +11,6 @@
 							/obj/item/stock_parts/matter_bin = 3,
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/console_screen = 1)
-	hidden = TRUE // Base types aren't cared for, a fully unlocked lathe shouldn't be easy to make
 
 /obj/item/circuitboard/machine/protolathe
 	name = T_BOARD("protolathe")
@@ -21,6 +20,7 @@
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/reagent_containers/glass/beaker = 2)
+	hidden = TRUE // Base types aren't cared for, a fully unlocked lathe shouldn't be easy to make
 
 /obj/item/circuitboard/machine/protolathe/department
 	name = T_BOARD("departmental protolathe")
