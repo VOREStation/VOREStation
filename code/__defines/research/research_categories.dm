@@ -77,6 +77,7 @@
 #define RND_SUBCATEGORY_MACHINE_FAB "/Fabricators"
 #define RND_SUBCATEGORY_MACHINE_SERVICE "/Service Machines"
 #define RND_SUBCATEGORY_MACHINE_TELECOMMS "/Telecommunications Machines"
+#define RND_SUBCATEGORY_MACHINE_REFINERY "/Refinery Machines"
 
 #define RND_CATEGORY_EQUIPMENT "/Equipment"
 #define RND_SUBCATEGORY_EQUIPMENT_SERVICE "/Service Equipment"

@@ -4,7 +4,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_filter
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -14,7 +14,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_furnace
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -24,7 +24,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_grinder
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -34,7 +34,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_hub
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -44,7 +44,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_pipe
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -54,7 +54,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_pump
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -64,7 +64,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_reactor
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -74,7 +74,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_vat
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -84,7 +84,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_mixer
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -94,7 +94,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_waste_processor
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -104,7 +104,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_splitter
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -114,7 +114,7 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/pump_relay
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -124,6 +124,6 @@
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/fluidpump
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

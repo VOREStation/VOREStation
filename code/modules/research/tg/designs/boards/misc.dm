@@ -267,9 +267,9 @@
 	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/newscaster
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/telescreen_entertainment
 	name = "entertainment camera monitor circuit"
@@ -277,9 +277,9 @@
 	id = "telescreen_entertainment"
 	build_path = /obj/item/circuitboard/security/telescreen/entertainment
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/washing
 	name = "washing machine circuit"
@@ -287,9 +287,9 @@
 	id = "washing"
 	build_path = /obj/item/circuitboard/washing
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/timeclock
 	name = "timeclock circuit"
