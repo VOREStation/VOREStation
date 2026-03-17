@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Attempting to move while handcuffed and being pulled will no longer result in a crash."
