@@ -1,20 +1,14 @@
-/client/proc/admin_lightning_strike()
-	set name = "Lightning Strike"
-	set desc = "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely."
-	set category = "Fun.Do Not"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/result = tgui_alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
+ADMIN_VERB(admin_lightning_strike, R_FUN, "Lightning Strike", "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely.", ADMIN_CATEGORY_FUN_DO_NOT)
+	var/result = tgui_alert(user, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
 
 	if(!result || result == "No")
 		return
 	var/fake_lightning = result == "Yes (Cosmetic)"
 
-	lightning_strike(get_turf(usr), fake_lightning)
-	log_and_message_admins("has caused [fake_lightning ? "cosmetic":"harmful"] lightning to strike at their position ([src.mob.x], [src.mob.y], [src.mob.z]). \
-	(<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[src.mob.x];Y=[src.mob.y];Z=[src.mob.z]'>JMP</a>)", src)
+	var/mob/user_mob = user.mob
+	lightning_strike(get_turf(user_mob), fake_lightning)
+	log_and_message_admins("has caused [fake_lightning ? "cosmetic":"harmful"] lightning to strike at their position ([user_mob.x], [user_mob.y], [user_mob.z]). \
+	(<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[user_mob.x];Y=[user_mob.y];Z=[user_mob.z]'>JMP</a>)", user)
 
 #define LIGHTNING_REDIRECT_RANGE 28 // How far in tiles certain things draw lightning from.
 #define LIGHTNING_ZAP_RANGE 1 // How far the tesla effect zaps, as well as the bad effects from a direct strike.

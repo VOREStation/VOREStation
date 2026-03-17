@@ -1,6 +1,6 @@
 import { Gender } from './data';
 
-export function gender2icon(gender: Gender): string {
+export function gender2icon(gender: Gender | string): string {
   switch (gender) {
     case Gender.Female: {
       return 'venus';
@@ -13,6 +13,12 @@ export function gender2icon(gender: Gender): string {
     }
     case Gender.Neuter: {
       return 'neuter';
+    }
+    case Gender.Herm: {
+      return 'mars-and-venus';
+    }
+    default: {
+      return 'question';
     }
   }
 }
@@ -30,6 +36,9 @@ export function gender2pronouns(gender: Gender): string {
     }
     case Gender.Neuter: {
       return 'It/Its';
+    }
+    case Gender.Herm: {
+      return 'Shi/Hir';
     }
   }
 }

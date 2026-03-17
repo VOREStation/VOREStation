@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { PlayerIndicator } from '../ChessCheckers/PlayerMenu';
 import { VorePanelTooltip } from '../VorePanel/VorePanelElements/VorePanelTooltip';
 import { gameTooltip, phastToText } from './constants';
 import { gameStateToText, stateToColor } from './functions';
@@ -110,6 +111,9 @@ export const PlayerMenu = (props) => {
               </Box>
             </Stack.Item>
             <Stack.Item>{phastToText[phase]}</Stack.Item>
+            <Stack.Item>
+              <PlayerIndicator gameState={game_state} />
+            </Stack.Item>
           </Stack>
         </Stack.Item>
         <PlayerPanel

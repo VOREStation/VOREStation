@@ -100,8 +100,9 @@ GLOBAL_LIST_EMPTY(apcs)
 	use_power = USE_POWER_OFF
 	clicksound = "switch"
 	req_access = list(ACCESS_ENGINE_EQUIP)
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = WALL_ITEM
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -150,11 +151,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/nightshift_lights = FALSE
 	var/nightshift_setting = NIGHTSHIFT_AUTO
 	var/last_nightshift_switch = 0
-
-/obj/machinery/power/apc/updateDialog()
-	if(stat & (BROKEN|MAINT))
-		return
-	..()
 
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.

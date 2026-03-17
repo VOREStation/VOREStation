@@ -92,4 +92,4 @@
 	"Broccoli discovered to be colonies of tiny aliens with murder on their minds"\
 	)
 
-	news_network.SubmitArticle(body, author, channel, null, 1)
+	GLOB.news_network.SubmitArticle(body, author, channel, null, 1)

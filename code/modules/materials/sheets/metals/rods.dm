@@ -28,7 +28,7 @@
 
 /obj/item/stack/rods/Initialize(mapload)
 	. = ..()
-	recipes = rods_recipes
+	recipes = GLOB.rods_recipes
 	update_icon()
 
 /obj/item/stack/rods/update_icon()

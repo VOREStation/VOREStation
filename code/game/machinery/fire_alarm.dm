@@ -7,8 +7,9 @@ FIRE ALARM
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire"
 	layer = ABOVE_WINDOW_LAYER
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = WALL_ITEM
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
@@ -147,7 +148,6 @@ FIRE ALARM
 			time = 0
 			timing = 0
 			STOP_PROCESSING(SSobj, src)
-		updateDialog()
 	last_process = world.timeofday
 
 	if(detecting && (locate(/obj/fire) in loc))

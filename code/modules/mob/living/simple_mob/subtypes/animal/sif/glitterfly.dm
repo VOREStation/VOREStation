@@ -73,6 +73,8 @@
 
 	adjust_scale(round(rand(90, 105) / 100))
 
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
+
 /mob/living/simple_mob/animal/sif/glitterfly/rare
 	name = "sparkling glitterfly"
 	desc = "A large, incredibly shiny butterfly!"

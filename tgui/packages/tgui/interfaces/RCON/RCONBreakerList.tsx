@@ -9,7 +9,7 @@ export const RCONBreakerList = (props) => {
   const { breaker_info } = data;
 
   return (
-    <Section title="Breakers">
+    <Section fill title="Breakers" scrollable>
       <LabeledList>
         {breaker_info ? (
           breaker_info.map((breaker) => (

@@ -32,6 +32,10 @@
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
 		return TRUE
 
+	if(istype(W, /obj/item/anomaly_scanner))
+		to_chat(user, span_notice("Sealed anomalous energies detected. Use of a releaser will unleash these energies."))
+		return TRUE
+
 	if(istype(W, /obj/item/anomaly_releaser))
 		var/obj/item/anomaly_releaser/releaser = W
 		if(releaser.used)
@@ -44,12 +48,12 @@
 			return FALSE
 
 		var/obj/effect/anomaly/anomaly = new core.anomaly_type(get_turf(core))
-		anomaly.stabilize()
+		anomaly.stabilize(releaser.will_anchor, releaser.has_core, releaser.gives_stats)
 
 		if(!releaser.infinite)
 			releaser.icon_state = releaser.used_icon_state
 			releaser.used = TRUE
-			releaser.name = "used " + name
+			releaser.name = "used " + releaser.name
 			qdel(src)
 	return ..()
 

@@ -1,13 +1,13 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 
-import type { Data, species } from './types';
+import type { Data, Species } from './types';
 
 export const AppearanceChangerSpecies = (props) => {
   const { act, data } = useBackend<Data>();
   const { species, specimen } = data;
 
-  const sortedSpecies = (species || []).sort((a: species, b: species) =>
+  const sortedSpecies = (species || []).sort((a: Species, b: Species) =>
     a.specimen.localeCompare(b.specimen),
   );
 

@@ -102,7 +102,7 @@
 			if(isobj(OR))
 				qdel(OR)
 
-	cultnet.updateVisibility(src, 0)
+	GLOB.cultnet.updateVisibility(src, 0)
 
 	if(aiming)
 		qdel(aiming)

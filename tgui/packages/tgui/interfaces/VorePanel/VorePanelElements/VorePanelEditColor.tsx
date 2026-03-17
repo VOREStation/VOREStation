@@ -149,9 +149,9 @@ export const VorePanelEditColor = (
   function handleIsOpen(newState: boolean) {
     setIsOpen(newState);
     if (!newState) {
-      const newHeColor = hsvaToHex(currentColor).toLowerCase();
-      if (back_color.toLowerCase() !== newHeColor) {
-        act(action, { attribute: subAction, val: newHeColor });
+      const newHexColor = hsvaToHex(currentColor).toLowerCase();
+      if (back_color.toLowerCase() !== newHexColor) {
+        act(action, { attribute: subAction, val: newHexColor });
       }
     }
   }
@@ -168,7 +168,7 @@ export const VorePanelEditColor = (
           <Floating
             onOpenChange={handleIsOpen}
             placement="top-end"
-            contentClasses="VorePanel__Floating"
+            contentClasses="VorePanel__Floating VorePanel__noScroll"
             content={
               <ColorSelector
                 color={currentColor}

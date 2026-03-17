@@ -294,6 +294,7 @@
 	anchored = TRUE
 	density = FALSE
 	amount_per_transfer_from_this = 45
+	flags = WALL_ITEM
 
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
 	. = ..()

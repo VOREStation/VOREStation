@@ -206,16 +206,21 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/anomaly_harvester
+	name = "Anomaly Harvester"
+	id = "anomaly_harvester"
+	build_path = /obj/item/circuitboard/anomaly_harvester
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 ///Protolathe boards
 
 /datum/design_techweb/board/protolathe
 	name = "Protolathe Board - Science"
 	id = "protolathe_science"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/science
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/protolathe/service
 	name = "Protolathe Board - Service"

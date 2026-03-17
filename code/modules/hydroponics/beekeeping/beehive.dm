@@ -320,7 +320,7 @@
 
 /obj/item/stack/material/wax/Initialize(mapload)
 	. = ..()
-	recipes = wax_recipes
+	recipes = GLOB.wax_recipes
 
 /datum/material/wax
 	name = MAT_WAX

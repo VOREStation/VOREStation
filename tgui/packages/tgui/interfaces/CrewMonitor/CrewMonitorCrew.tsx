@@ -16,9 +16,9 @@ import {
   getStatColor,
   getStatText,
 } from './functions';
-import type { crewmember, Data } from './types';
+import type { Crewmember, Data } from './types';
 
-export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
+export const CrewMonitorCrew = (props: { crew: Crewmember[] }) => {
   const { act, data } = useBackend<Data>();
 
   const [nameSearch, setNameSearch] = useState<string>('');
@@ -43,9 +43,9 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
   const [damageSortOrder, setDamageSortOrder] = useState<boolean>(true);
   const [locationSortOrder, setLocationSortOrder] = useState<boolean>(true);
 
-  const testSearch = createSearch(nameSearch, (cm: crewmember) => cm.name);
+  const testSearch = createSearch<Crewmember>(nameSearch, (cm) => cm.name);
 
-  const shownCrew: crewmember[] = getShownCrew(
+  const shownCrew: Crewmember[] = getShownCrew(
     crew,
     locationSearch,
     deceasedStatus,
@@ -55,7 +55,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
     testSearch,
   );
 
-  const sortedCrew: crewmember[] = getSortedCrew(
+  const sortedCrew: Crewmember[] = getSortedCrew(
     shownCrew,
     sortType,
     nameSortOrder,

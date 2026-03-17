@@ -8,8 +8,6 @@
 	if(creator)
 		parent = creator
 
-var/global/datum/locations/milky_way/all_locations = new()
-
 //Galaxy
 
 /datum/locations/milky_way
@@ -28,9 +26,9 @@ var/global/datum/locations/milky_way/all_locations = new()
 		)
 
 /proc/choose_location_datum(client/user)
-	var/datum/locations/choice = all_locations
+	var/datum/locations/choice = GLOB.all_locations
 	while(length(choice.contents) > 0) //For some reason it wouldn't let me do contents.len even when I defined it as a list.
-		var/specific = tgui_alert(user, "The location currently selected is [choice.name].  More specific options exist, would you like to pick a more specific location?", "Choose location", list("Yes", "No"))
+		var/specific = tgui_alert(user, "The location currently selected is [choice.name]. More specific options exist, would you like to pick a more specific location?", "Choose location", list("Yes", "No"))
 		if(specific == "Yes" && length(choice.contents) > 0)
 			choice = tgui_input_list(user, "Please choose a location.", "Locations", choice.contents)
 		else

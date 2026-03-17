@@ -1,18 +1,11 @@
-/client/proc/player_effects(var/mob/target in GLOB.mob_list)
-	set name = "Player Effects"
-	set desc = "Modify a player character with various 'special treatments' from a list."
-	set category = "Fun.Event Kit"
-	if(!check_rights(R_FUN))
-		return
 
+ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in GLOB.mob_list)
 	var/datum/eventkit/player_effects/spawner = new()
 	spawner.target = target
-	spawner.user = src.mob
-	spawner.tgui_interact(src.mob)
+	spawner.tgui_interact(user.mob)
 
 /datum/eventkit/player_effects
 	var/mob/target //The target of the effects
-	var/mob/user
 
 /datum/eventkit/player_effects/New()
 	. = ..()
@@ -24,6 +17,7 @@
 		ui.open()
 
 /datum/eventkit/player_effects/Destroy()
+	target = null
 	. = ..()
 
 /datum/eventkit/player_effects/tgui_static_data(mob/user)
@@ -46,7 +40,7 @@
 	if(!check_rights_for(ui.user.client, R_SPAWN))
 		return
 
-	log_and_message_admins("used player effect: [action] on [target.ckey] playing [target.name]", user)
+	log_and_message_admins("used player effect: [action] on [target.ckey] playing [target.name]", ui.user)
 
 	switch(action)
 
@@ -63,7 +57,7 @@
 			if(right_leg && right_leg.fracture())
 				broken_legs++
 			if(!broken_legs)
-				to_chat(user,"[target] didn't have any breakable legs, sorry.")
+				to_chat(ui.user,"[target] didn't have any breakable legs, sorry.")
 
 		if("bluespace_artillery")
 			bluespace_artillery(target, ui.user)
@@ -225,11 +219,11 @@
 			Tar.fear = 200
 
 		if("spin")
-			var/speed = tgui_input_number(user, "Spin speed (minimum 0.1):", "Speed")
+			var/speed = tgui_input_number(ui.user, "Spin speed (minimum 0.1):", "Speed")
 			if(speed < 0.1)
 				return
-			var/loops = tgui_input_number(user, "Number of loops (-1 for infinite):", "Loops")
-			var/direction_ask = tgui_alert(user, "Clockwise or Anti-Clockwise", "Direction", list("Clockwise", "Anti-Clockwise", "Cancel"))
+			var/loops = tgui_input_number(ui.user, "Number of loops (-1 for infinite):", "Loops")
+			var/direction_ask = tgui_alert(ui.user, "Clockwise or Anti-Clockwise", "Direction", list("Clockwise", "Anti-Clockwise", "Cancel"))
 			var/direction
 			if(direction_ask == "Clockwise")
 				direction = 1
@@ -288,7 +282,7 @@
 				return
 
 			var/list/types = typesof(/mob/living)
-			var/chosen_beast = tgui_input_list(user, "Which form would you like to take?", "Choose Beast Form", types)
+			var/chosen_beast = tgui_input_list(ui.user, "Which form would you like to take?", "Choose Beast Form", types)
 
 			if(!chosen_beast)
 				return
@@ -306,12 +300,12 @@
 			if(!M.ckey)
 				return
 
-			var/obj/item/spawning = user.client.get_path_from_partial_text()
+			var/obj/item/spawning = ui.user.client.get_path_from_partial_text()
 
-			to_chat(user,span_warning("spawning is: [spawning]"))
+			to_chat(ui.user,span_warning("spawning is: [spawning]"))
 
 			if(!ispath(spawning, /obj/item/))
-				to_chat(user,span_warning("Can only spawn items."))
+				to_chat(ui.user,span_warning("Can only spawn items."))
 				return
 
 			var/obj/item/spawned_obj = new spawning(M.loc)
@@ -327,7 +321,7 @@
 
 		if("wet_floors")
 			var/chem
-			var/reagent_choice = tgui_alert(user, "Which reagent do you want to place on the floors around them?", "Reagent", list("Water", "Space Lube", "Other", "Cancel"))
+			var/reagent_choice = tgui_alert(ui.user, "Which reagent do you want to place on the floors around them?", "Reagent", list("Water", "Space Lube", "Other", "Cancel"))
 			if(!reagent_choice || (reagent_choice == "Cancel"))
 				return
 			if(reagent_choice ==  "Water")
@@ -336,7 +330,7 @@
 				chem = REAGENT_ID_LUBE
 			if(reagent_choice == "Other")
 				var/list/chem_list = typesof(/datum/reagent)
-				var/datum/reagent/chemical = tgui_input_list(user, "Which chemical would you like to use?", "Chemicals", chem_list)
+				var/datum/reagent/chemical = tgui_input_list(ui.user, "Which chemical would you like to use?", "Chemicals", chem_list)
 				if(!chemical)
 					return
 				chem = chemical.id
@@ -359,7 +353,7 @@
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.scan_mob(user)
+			Tar.scan_mob(ui.user)
 
 		if("appendicitis")
 			var/mob/living/carbon/human/Tar = target
@@ -375,14 +369,14 @@
 				organs |= I
 			for(var/obj/item/organ/I in Tar.internal_organs)
 				organs |= I
-			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to damage:", "Organs", organs)
+			var/obj/item/organ/our_organ = tgui_input_list(ui.user, "Choose an organ to damage:", "Organs", organs)
 			if(!our_organ)
 				return
-			var/effect = tgui_alert(user, "What do you want to do to the Organ", "Effect", list("Damage", "Kill", "Bruise", "Cancel"))
+			var/effect = tgui_alert(ui.user, "What do you want to do to the Organ", "Effect", list("Damage", "Kill", "Bruise", "Cancel"))
 			if(effect == "Cancel")
 				return
 			if(effect == "Damage")
-				var/organ_damage = tgui_input_number(user, "Add how much damage? It is currently at [our_organ.damage].", "Damage")
+				var/organ_damage = tgui_input_number(ui.user, "Add how much damage? It is currently at [our_organ.damage].", "Damage")
 				our_organ.damage = max((our_organ.damage - organ_damage), 0)
 			if(effect == "Kill")
 				our_organ.die()
@@ -398,7 +392,7 @@
 				organs |= I
 			for(var/obj/item/organ/I in Tar.internal_organs)
 				organs |= I
-			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to become assisted:", "Organs", organs)
+			var/obj/item/organ/our_organ = tgui_input_list(ui.user, "Choose an organ to become assisted:", "Organs", organs)
 			if(!our_organ)
 				return
 			our_organ.mechassist()
@@ -412,7 +406,7 @@
 				organs |= I
 			for(var/obj/item/organ/I in Tar.internal_organs)
 				organs |= I
-			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to become robotic:", "Organs", organs)
+			var/obj/item/organ/our_organ = tgui_input_list(ui.user, "Choose an organ to become robotic:", "Organs", organs)
 			if(!our_organ)
 				return
 			our_organ.robotize()
@@ -426,14 +420,14 @@
 				organs |= I
 			for(var/obj/item/organ/I in Tar.internal_organs)
 				organs |= I
-			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to heal:", "Organs", organs)
+			var/obj/item/organ/our_organ = tgui_input_list(ui.user, "Choose an organ to heal:", "Organs", organs)
 			if(!our_organ)
 				return
-			var/effect = tgui_alert(user, "What do you want to do to the Organ", "Effect", list("Heal", "Rejuvenate", "Cancel"))
+			var/effect = tgui_alert(ui.user, "What do you want to do to the Organ", "Effect", list("Heal", "Rejuvenate", "Cancel"))
 			if(effect == "Cancel")
 				return
 			if(effect == "Heal")
-				var/organ_damage = tgui_input_number(user, "Add how much damage? It is currently at [our_organ.damage].", "Damage")
+				var/organ_damage = tgui_input_number(ui.user, "Add how much damage? It is currently at [our_organ.damage].", "Damage")
 				our_organ.damage = max((our_organ.damage - organ_damage), 0)
 			if(effect == "Rejuvenate")
 				our_organ.rejuvenate()
@@ -447,7 +441,7 @@
 				organs |= I
 			for(var/obj/item/organ/I in Tar.internal_organs)
 				organs |= I
-			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to damage:", "Organs", organs)
+			var/obj/item/organ/our_organ = tgui_input_list(ui.user, "Choose an organ to damage:", "Organs", organs)
 			if(!our_organ)
 				return
 			our_organ.removed()
@@ -459,7 +453,7 @@
 			var/list/organs = list()
 			for(var/obj/item/organ/external/E in Tar.organs)
 				organs |= E
-			var/obj/item/organ/external/our_organ = tgui_input_list(user, "Choose an bone to break:", "Organs", organs)
+			var/obj/item/organ/external/our_organ = tgui_input_list(ui.user, "Choose an bone to break:", "Organs", organs)
 			if(!our_organ)
 				return
 			our_organ.fracture()
@@ -478,18 +472,18 @@
 			if(!istype(Tar))
 				return
 			var/list/chem_list = typesof(/datum/reagent)
-			var/datum/reagent/chemical = tgui_input_list(user, "Which chemical would you like to add?", "Chemicals", chem_list)
+			var/datum/reagent/chemical = tgui_input_list(ui.user, "Which chemical would you like to add?", "Chemicals", chem_list)
 
 			if(!chemical)
 				return
 
 			var/chem = chemical.id
 
-			var/amount = tgui_input_number(user, "How much of the chemical would you like to add?", "Amount", 5)
+			var/amount = tgui_input_number(ui.user, "How much of the chemical would you like to add?", "Amount", 5)
 			if(!amount)
 				return
 
-			var/location = tgui_alert(user, "Where do you want to add the chemical?", "Location", list("Blood", "Stomach", "Skin", "Cancel"))
+			var/location = tgui_alert(ui.user, "Where do you want to add the chemical?", "Location", list("Blood", "Stomach", "Skin", "Cancel"))
 
 			if(!location || location == "Cancel")
 				return
@@ -512,13 +506,13 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.custom_medical_issue(user)
+			Tar.custom_medical_issue(ui.user)
 
 		if("clear_issue")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.clear_medical_issue(user)
+			Tar.clear_medical_issue(ui.user)
 
 		////////ABILITIES//////////////
 
@@ -533,7 +527,7 @@
 			if(!istype(Tar))
 				return
 			var/current_darksight = Tar.species.darksight
-			var/change_sight = tgui_input_number(user, "What level do you wish to set their darksight to? It is currently [current_darksight].", "Darksight")
+			var/change_sight = tgui_input_number(ui.user, "What level do you wish to set their darksight to? It is currently [current_darksight].", "Darksight")
 			if(change_sight)
 				Tar.species.darksight = change_sight
 
@@ -566,9 +560,9 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			var/energy_max = tgui_input_number(user, "What should their max lleill energy be set to? It is currently [Tar.species.lleill_energy_max].", "Max energy")
+			var/energy_max = tgui_input_number(ui.user, "What should their max lleill energy be set to? It is currently [Tar.species.lleill_energy_max].", "Max energy")
 			Tar.species.lleill_energy_max = energy_max
-			var/energy_new = tgui_input_number(user, "What should their current lleill energy be set to? It is currently [Tar.species.lleill_energy].", "Max energy")
+			var/energy_new = tgui_input_number(ui.user, "What should their current lleill energy be set to? It is currently [Tar.species.lleill_energy].", "Max energy")
 			Tar.species.lleill_energy = energy_new
 
 		if("lleill_invisibility")
@@ -657,7 +651,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			var/confirm = tgui_alert(user, "Make [Tar] drop everything?", "Message", list("Yes", "No"))
+			var/confirm = tgui_alert(ui.user, "Make [Tar] drop everything?", "Message", list("Yes", "No"))
 			if(confirm != "Yes")
 				return
 
@@ -672,7 +666,7 @@
 				return
 
 			var/list/items = Tar.get_equipped_items()
-			var/item_to_drop = tgui_input_list(user, "Choose item to force drop:", "Drop Specific Item", items)
+			var/item_to_drop = tgui_input_list(ui.user, "Choose item to force drop:", "Drop Specific Item", items)
 			if(item_to_drop)
 				Tar.drop_from_inventory(item_to_drop)
 
@@ -693,9 +687,9 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!check_rights_for(user.client, R_HOLDER))
+			if(!check_rights_for(ui.user.client, R_HOLDER))
 				return
-			var/obj/item/X = user.client.holder.marked_datum
+			var/obj/item/X = ui.user.client.holder.marked_datum
 			if(!istype(X))
 				return
 			Tar.put_in_hands(X)
@@ -704,9 +698,9 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!check_rights_for(user.client, R_HOLDER))
+			if(!check_rights_for(ui.user.client, R_HOLDER))
 				return
-			var/obj/item/X = user.client.holder.marked_datum
+			var/obj/item/X = ui.user.client.holder.marked_datum
 			if(!istype(X))
 				return
 			if(Tar.equip_to_appropriate_slot(X))
@@ -722,10 +716,10 @@
 				return
 			var/input_NIF
 			if(!Tar.get_organ(BP_HEAD))
-				to_chat(user,span_warning("Target is unsuitable."))
+				to_chat(ui.user,span_warning("Target is unsuitable."))
 				return
 			if(Tar.nif)
-				to_chat(user,span_warning("Target already has a NIF."))
+				to_chat(ui.user,span_warning("Target already has a NIF."))
 				return
 			if(Tar.species.flags & NO_DNA)
 				var/obj/item/nif/S = /obj/item/nif/bioadap
@@ -741,43 +735,43 @@
 
 				var/list/show_NIFs = sortList(NIFs) // the list that will be shown to the user to pick from
 
-				input_NIF = tgui_input_list(user, "Pick the NIF type","Quick NIF", show_NIFs)
+				input_NIF = tgui_input_list(ui.user, "Pick the NIF type","Quick NIF", show_NIFs)
 				var/chosen_NIF = NIFs[capitalize(input_NIF)]
 
 				if(chosen_NIF)
 					new chosen_NIF(Tar)
 				else
 					new /obj/item/nif(Tar)
-			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", user)
+			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", ui.user)
 
 		if("resize")
-			SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/resize, target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/resize, target)
 
 		if("teleport")
-			var/where = tgui_alert(user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
+			var/where = tgui_alert(ui.user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
 			if(where == "Cancel")
 				return
 			if(where == "To Me")
-				user.client.Getmob(target)
+				ui.user.client.Getmob(target)
 			if(where == "To Mob")
 				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", GLOB.mob_list)
 				target.on_mob_jump()
 				target.forceMove(get_turf(selection))
-				log_admin("[key_name(user)] jumped [target] to [selection]")
+				log_admin("[key_name(ui.user)] jumped [target] to [selection]")
 			if(where == "To Area")
 				var/area/A
-				A = tgui_input_list(user, "Pick an area to teleport [target] to:", "Jump to Area", return_sorted_areas())
+				A = tgui_input_list(ui.user, "Pick an area to teleport [target] to:", "Jump to Area", return_sorted_areas())
 				target.on_mob_jump()
 				target.forceMove(pick(get_area_turfs(A)))
-				log_admin("[key_name(user)] jumped [target] to [A]")
+				log_admin("[key_name(ui.user)] jumped [target] to [A]")
 
 		if("gib")
-			var/death = tgui_alert(user, "Are you sure you want to destroy [target]?", "Gib?", list("KILL", "Cancel"))
+			var/death = tgui_alert(ui.user, "Are you sure you want to destroy [target]?", "Gib?", list("KILL", "Cancel"))
 			if(death == "KILL")
 				target.gib()
 
 		if("dust")
-			var/death = tgui_alert(user, "Are you sure you want to destroy [target]?", "Dust?", list("KILL", "Cancel"))
+			var/death = tgui_alert(ui.user, "Are you sure you want to destroy [target]?", "Dust?", list("KILL", "Cancel"))
 			if(death == "KILL")
 				target.dust()
 
@@ -785,24 +779,24 @@
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			user.client.holder.paralyze_mob(Tar)
+			ui.user.client.holder.paralyze_mob(Tar)
 
 		if("subtle_message")
-			user.client.cmd_admin_subtle_message(target)
+			ui.user.client.cmd_admin_subtle_message(target)
 
 		if("direct_narrate")
-			user.client.cmd_admin_direct_narrate(target)
+			ui.user.client.cmd_admin_direct_narrate(target)
 
 		if("player_panel")
-			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/show_player_panel, target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
-			user.client.debug_variables(target)
+			ui.user.client.debug_variables(target)
 
 		if("orbit")
-			if(!user.client.holder.marked_datum)
+			if(!ui.user.client.holder.marked_datum)
 				return
-			var/atom/movable/X = user.client.holder.marked_datum
+			var/atom/movable/X = ui.user.client.holder.marked_datum
 			X.orbit(target)
 
 		if("ai")
@@ -834,11 +828,11 @@
 		if("give_quest")
 			if(!target)
 				return
-			var/admin_quest =  tgui_alert(user, "Do you want to give a random quest or a personalised one?", "Quest!", list("Random", "Personalised", "Cancel"))
+			var/admin_quest =  tgui_alert(ui.user, "Do you want to give a random quest or a personalised one?", "Quest!", list("Random", "Personalised", "Cancel"))
 			if(!admin_quest || (admin_quest == "Cancel"))
 				return
 			if(admin_quest == "Personalised")
-				var/specific_quest = tgui_input_text(user, "What is their quest?", "Quest!!!")
+				var/specific_quest = tgui_input_text(ui.user, "What is their quest?", "Quest!!!")
 				if(!specific_quest)
 					return
 				target.quest_from_above(specific_quest)
@@ -855,14 +849,14 @@
 			Tar.rejuvenate()
 
 		if("popup-box")
-			var/message = tgui_input_text(user, "Write a message to send to the user with a space for them to reply without using the text box:", "Message")
+			var/message = tgui_input_text(ui.user, "Write a message to send to the user with a space for them to reply without using the text box:", "Message")
 			if(!message)
 				return
-			log_admin("[key_name(user)] sent message to [target]: [message]")
+			log_admin("[key_name(ui.user)] sent message to [target]: [message]")
 			var/reply = tgui_input_text(target, "An admin has sent you a message: [message]", "Reply")
 			if(!reply)
 				return
-			log_and_message_admins("replied to [user]'s message: [reply].", target)
+			log_and_message_admins("replied to [ui.user]'s message: [reply].", target)
 
 		if("stop-orbits")
 			if(target.orbiters)

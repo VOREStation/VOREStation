@@ -176,11 +176,12 @@
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_BAN))
+			return
 
 		var/banfolder = href_list["unbanf"]
-		Banlist.cd = "/base/[banfolder]"
-		var/key = Banlist["key"]
+		GLOB.banlist.cd = "/base/[banfolder]"
+		var/key = GLOB.banlist["key"]
 		if(tgui_alert(usr, "Are you sure you want to unban [key]?", "Confirmation", list("Yes", "No")) == "Yes")
 			if(RemoveBan(banfolder))
 				unbanpanel()
@@ -192,20 +193,21 @@
 		usr.client.warn(href_list["warn"])
 
 	else if(href_list["unbane"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_BAN))
+			return
 
 		UpdateTime()
 		var/reason
 
 		var/banfolder = href_list["unbane"]
-		Banlist.cd = "/base/[banfolder]"
-		var/reason2 = Banlist["reason"]
-		var/temp = Banlist["temp"]
+		GLOB.banlist.cd = "/base/[banfolder]"
+		var/reason2 = GLOB.banlist["reason"]
+		var/temp = GLOB.banlist["temp"]
 
-		var/minutes = Banlist["minutes"]
+		var/minutes = GLOB.banlist["minutes"]
 
-		var/banned_key = Banlist["key"]
-		Banlist.cd = "/base"
+		var/banned_key = GLOB.banlist["key"]
+		GLOB.banlist.cd = "/base"
 
 		var/duration
 
@@ -215,12 +217,12 @@
 			if("Yes")
 				temp = 1
 				var/mins = 0
-				if(minutes > CMinutes)
-					mins = minutes - CMinutes
+				if(minutes > GLOB.c_minutes)
+					mins = minutes - GLOB.c_minutes
 				mins = tgui_input_number(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440)
 				if(!mins)	return
 				mins = min(525599,mins)
-				minutes = CMinutes + mins
+				minutes = GLOB.c_minutes + mins
 				duration = GetExp(minutes)
 				reason = tgui_input_text(usr,"Reason?","reason",reason2, MAX_MESSAGE_LEN)
 				if(!reason)	return
@@ -233,12 +235,12 @@
 		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
 		ban_unban_log_save("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
 		message_admins(span_blue("[key_name_admin(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]"), 1)
-		Banlist.cd = "/base/[banfolder]"
-		Banlist["reason"] << reason
-		Banlist["temp"] << temp
-		Banlist["minutes"] << minutes
-		Banlist["bannedby"] << usr.ckey
-		Banlist.cd = "/base"
+		GLOB.banlist.cd = "/base/[banfolder]"
+		GLOB.banlist["reason"] << reason
+		GLOB.banlist["temp"] << temp
+		GLOB.banlist["minutes"] << minutes
+		GLOB.banlist["bannedby"] << usr.ckey
+		GLOB.banlist.cd = "/base"
 		feedback_inc("ban_edit",1)
 		unbanpanel()
 
@@ -1187,8 +1189,8 @@
 		var/mob/M = locate(href_list["adminplayerobservejump"])
 
 		var/client/C = usr.client
-		if(!isobserver(usr))	C.admin_ghost()
-		sleep(2)
+		if(!isobserver(usr))
+			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/admin_ghost)
 		C.do_jumptomob(M)
 
 	else if(href_list["adminplayerobservefollow"])
@@ -1198,9 +1200,9 @@
 		var/mob/M = locate(href_list["adminplayerobservefollow"])
 
 		var/client/C = usr.client
-		if(!isobserver(usr))	C.admin_ghost()
+		if(!isobserver(usr))
+			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/admin_ghost)
 		var/mob/observer/dead/G = C.mob
-		sleep(2)
 		G.ManualFollow(M)
 
 	else if(href_list["check_antagonist"])
@@ -1233,8 +1235,8 @@
 		var/z = text2num(href_list["Z"])
 
 		var/client/C = usr.client
-		if(!isobserver(usr))	C.admin_ghost()
-		sleep(2)
+		if(!isobserver(usr))
+			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/admin_ghost)
 		C.jumptocoord(x,y,z)
 
 	else if(href_list["viewruntime"])
@@ -1687,7 +1689,7 @@
 
 	else if(href_list["ac_submit_new_channel"])
 		var/check = 0
-		for(var/datum/feed_channel/FC in news_network.network_channels)
+		for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 			if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 				check = 1
 				break
@@ -1696,7 +1698,7 @@
 		else
 			var/choice = tgui_alert(usr, "Please confirm Feed channel creation","Network Channel Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
-				news_network.CreateFeedChannel(admincaster_feed_channel.channel_name, admincaster_signature, admincaster_feed_channel.locked, 1)
+				GLOB.news_network.CreateFeedChannel(admincaster_feed_channel.channel_name, admincaster_signature, admincaster_feed_channel.locked, 1)
 				feedback_inc("newscaster_channels",1)                  //Adding channel to the global network
 				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
 				src.admincaster_screen=5
@@ -1704,7 +1706,7 @@
 
 	else if(href_list["ac_set_channel_receiving"])
 		var/list/available_channels = list()
-		for(var/datum/feed_channel/F in news_network.network_channels)
+		for(var/datum/feed_channel/F in GLOB.news_network.network_channels)
 			available_channels += F.channel_name
 		src.admincaster_feed_channel.channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
 		src.access_news_network()
@@ -1722,7 +1724,7 @@
 			src.admincaster_screen = 6
 		else
 			feedback_inc("newscaster_stories",1)
-			news_network.SubmitArticle(admincaster_feed_message.body, admincaster_signature, admincaster_feed_channel.channel_name, null, 1, "", admincaster_feed_message.title)
+			GLOB.news_network.SubmitArticle(admincaster_feed_message.body, admincaster_signature, admincaster_feed_channel.channel_name, null, 1, "", admincaster_feed_message.title)
 			src.admincaster_screen=4
 
 		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
@@ -1746,12 +1748,12 @@
 
 	else if(href_list["ac_menu_wanted"])
 		var/already_wanted = 0
-		if(news_network.wanted_issue)
+		if(GLOB.news_network.wanted_issue)
 			already_wanted = 1
 
 		if(already_wanted)
-			src.admincaster_feed_message.author = news_network.wanted_issue.author
-			src.admincaster_feed_message.body = news_network.wanted_issue.body
+			src.admincaster_feed_message.author = GLOB.news_network.wanted_issue.author
+			src.admincaster_feed_message.body = GLOB.news_network.wanted_issue.body
 		src.admincaster_screen = 14
 		src.access_news_network()
 
@@ -1776,15 +1778,15 @@
 					WANTED.body = src.admincaster_feed_message.body                   //Wanted desc
 					WANTED.backup_author = src.admincaster_signature                  //Submitted by
 					WANTED.is_admin_message = 1
-					news_network.wanted_issue = WANTED
+					GLOB.news_network.wanted_issue = WANTED
 					for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 						NEWSCASTER.newsAlert()
 						NEWSCASTER.update_icon()
 					src.admincaster_screen = 15
 				else
-					news_network.wanted_issue.author = src.admincaster_feed_message.author
-					news_network.wanted_issue.body = src.admincaster_feed_message.body
-					news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
+					GLOB.news_network.wanted_issue.author = src.admincaster_feed_message.author
+					GLOB.news_network.wanted_issue.body = src.admincaster_feed_message.body
+					GLOB.news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
 					src.admincaster_screen = 19
 				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
 		src.access_news_network()
@@ -1792,7 +1794,7 @@
 	else if(href_list["ac_cancel_wanted"])
 		var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 		if(choice=="Confirm")
-			news_network.wanted_issue = null
+			GLOB.news_network.wanted_issue = null
 			for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 				NEWSCASTER.update_icon()
 			src.admincaster_screen=17
