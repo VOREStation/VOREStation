@@ -15,7 +15,7 @@
 /obj/item/circuitboard/space_heater
 	name = T_BOARD("space heater")
 	build_path = /obj/machinery/space_heater
-	board_type = new /datum/frame/frame_types/machine
+	board_type = new /datum/frame/frame_types/machine/space_heater
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list(
 							/obj/item/stock_parts/micro_laser = 4,

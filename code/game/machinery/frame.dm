@@ -48,7 +48,6 @@ GLOBAL_LIST(construction_frame_floor)
 	name = "Machine"
 	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/circuitboard/space_heater
 
 /datum/frame/frame_types/conveyor
 	name = "Conveyor"
@@ -215,6 +214,12 @@ GLOBAL_LIST(construction_frame_floor)
 	name = "Ready-to-Use Medicine 3000"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/injector_maker
+	frame_size = 3
+
+/datum/frame/frame_types/space_heater
+	name = "Space Heater"
+	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/circuitboard/space_heater
 	frame_size = 3
 
 // Refinery machines

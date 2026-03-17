@@ -76,6 +76,7 @@
 /obj/item/circuitboard/pod
 	name = T_BOARD("massdriver control")
 	build_path = /obj/machinery/computer/pod
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/robotics
 	name = T_BOARD("robotics control console")
