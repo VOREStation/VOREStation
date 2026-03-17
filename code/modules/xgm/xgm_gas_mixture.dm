@@ -3,7 +3,7 @@
 	//Gases with 0 moles are not tracked and are pruned by update_values()
 	var/list/gas
 	//Temperature in Kelvin of this gas mix.
-	var/temperature = 0
+	VAR_PROTECTED/temperature = 0
 
 	//Sum of all the gas moles in this mix.  Updated by update_values()
 	var/total_moles = 0
@@ -130,6 +130,19 @@
 		. += GLOB.gas_data.specific_heat[g] * gas[g]
 	. *= group_multiplier
 
+/// Gets the temperature of the gas mixture
+/datum/gas_mixture/proc/get_temp()
+	return temperature
+
+/// Sets the temperature of the gas mixture
+/datum/gas_mixture/proc/set_temp(new_value)
+	if(new_value < TCMB)
+		if(new_value <= 0)
+			stack_trace("!!!!!!CRITICAL!!!!!!! a temperature of 0 or under was set to a gas mixture: [new_value]")
+		else
+			stack_trace("a temperature under TCMB was set to a gas mixture: [new_value]")
+		new_value = TCMB
+	temperature = new_value
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
 /datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
@@ -458,7 +471,7 @@
 	for(var/datum/gas_mixture/gasmix in gases)
 		total_volume += gasmix.volume
 		var/temp_heatcap = gasmix.heat_capacity()
-		total_thermal_energy += gasmix.temperature * temp_heatcap
+		total_thermal_energy += gasmix.get_temp() * temp_heatcap
 		total_heat_capacity += temp_heatcap
 		for(var/g in gasmix.gas)
 			total_gas[g] += gasmix.gas[g]
@@ -468,8 +481,7 @@
 		combined.gas = total_gas
 
 		//Calculate temperature
-		if(total_heat_capacity > 0)
-			combined.temperature = total_thermal_energy / total_heat_capacity
+		combined.set_temp(total_heat_capacity ? (total_thermal_energy / total_heat_capacity) : TCMB)
 		combined.update_values()
 
 		//Allow for reactions
@@ -482,7 +494,7 @@
 		//Update individual gas_mixtures
 		for(var/datum/gas_mixture/gasmix in gases)
 			gasmix.gas = combined.gas.Copy()
-			gasmix.temperature = combined.temperature
+			gasmix.set_temp(combined.get_temp())
 			gasmix.multiply(gasmix.volume)
 
 	return 1
@@ -514,7 +526,7 @@
 			// Values were extracted from the template itself
 			return list(
 				list("entry" = "Pressure", 		"units" = "kPa", 	"val" = "[round(pressure, 0.1)]", 					"bad_high" = 120, 	"poor_high" = 110, 	"poor_low" = 95, 	"bad_low" = 80),
-				list("entry" = "Temperature", 	"units" = "°C",		"val" = "[round(environment.temperature-T0C, 0.1)]","bad_high" = 35, 	"poor_high" = 25, 	"poor_low" = 15, 	"bad_low" = 5),
+				list("entry" = "Temperature", 	"units" = "°C",		"val" = "[round(environment.get_temp()-T0C, 0.1)]","bad_high" = 35, 	"poor_high" = 25, 	"poor_low" = 15, 	"bad_low" = 5),
 				list("entry" = GASNAME_O2, 		"units" = "kPa", 	"val" = "[round(o2_level*100, 0.1)]", 				"bad_high" = 140, 	"poor_high" = 135, 	"poor_low" = 19, 	"bad_low" = 17),
 				list("entry" = GASNAME_N2, 		"units" = "kPa", 	"val" = "[round(n2_level*100, 0.1)]", 				"bad_high" = 105, 	"poor_high" = 85, 	"poor_low" = 50, 	"bad_low" = 40),
 				list("entry" = GASNAME_CO2,		"units" = "kPa", 	"val" = "[round(co2_level*100, 0.1)]", 				"bad_high" = 10, 	"poor_high" = 5, 	"poor_low" = 0, 	"bad_low" = 0),

@@ -309,13 +309,13 @@ GLOBAL_LIST_EMPTY_TYPED(running_demand_events, /datum/event/supply_demand)
 
 /datum/event/supply_demand/proc/choose_atmos_items(var/differentTypes)
 	var/datum/gas_mixture/mixture = new
-	mixture.temperature = T20C
+	mixture.set_temp(T20C)
 	var/unpickedTypes = GLOB.gas_data.gases.Copy()
 	unpickedTypes -= GAS_VOLATILE_FUEL // Don't do that one
 	for(var/i in 1 to differentTypes)
 		var/gasId = pick(unpickedTypes)
 		unpickedTypes -= gasId
-		mixture.gas[gasId] = (rand(1,1000) * mixture.volume) / (R_IDEAL_GAS_EQUATION * mixture.temperature)
+		mixture.gas[gasId] = (rand(1,1000) * mixture.volume) / (R_IDEAL_GAS_EQUATION * mixture.get_temp())
 	mixture.update_values()
 	var/datum/supply_demand_order/gas/O = new(qty = 1)
 	O.mixture = mixture

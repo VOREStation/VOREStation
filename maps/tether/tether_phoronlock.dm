@@ -102,7 +102,7 @@
 
 	if(on)
 		var/datum/gas_mixture/env = loc.return_air()
-		if(env && abs(env.temperature - target_temp) > 0.1)
+		if(env && abs(env.get_temp() - target_temp) > 0.1)
 			var/datum/gas_mixture/removed = env.remove_ratio(0.99)
 			if(removed)
 				var/heat_transfer = removed.get_thermal_energy_change(target_temp)

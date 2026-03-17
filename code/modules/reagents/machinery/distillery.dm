@@ -281,7 +281,7 @@
 
 		for(var/datum/pipeline/Line in members)
 			avg_pressure += Line.air.return_pressure()
-			avg_temp += Line.air.temperature
+			avg_temp += Line.air.get_temp()
 
 		avg_temp /= members.len
 		avg_pressure /= members.len

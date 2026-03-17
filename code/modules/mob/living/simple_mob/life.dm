@@ -108,8 +108,8 @@
 	if(is_incorporeal())
 		return 1
 
-	if( abs(environment.temperature - bodytemperature) > temperature_range )
-		bodytemperature += ((environment.temperature - bodytemperature) / 5)
+	if( abs(environment.get_temp() - bodytemperature) > temperature_range )
+		bodytemperature += ((environment.get_temp() - bodytemperature) / 5)
 
 	var/atmos_unsuitable = 0
 	if(min_oxy && environment.gas[GAS_O2] < min_oxy)

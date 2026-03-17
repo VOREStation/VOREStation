@@ -213,7 +213,7 @@ update_flag
 		var/env_pressure = environment.return_pressure()
 		var/pressure_delta = release_pressure - env_pressure
 
-		if((air_contents.temperature > 0) && (pressure_delta > 0))
+		if((air_contents.get_temp() > 0) && (pressure_delta > 0))
 			var/transfer_moles = calculate_transfer_moles(air_contents, environment, pressure_delta)
 			transfer_moles = min(transfer_moles, (release_flow_rate/air_contents.volume)*air_contents.total_moles) //flow rate limit
 
@@ -234,7 +234,7 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/proc/return_temperature()
 	var/datum/gas_mixture/GM = src.return_air()
 	if(GM && GM.volume>0)
-		return GM.temperature
+		return GM.get_temp()
 	return 0
 
 /obj/machinery/portable_atmospherics/canister/proc/return_pressure()
@@ -281,8 +281,8 @@ update_flag
 		var/pressure_delta = min(10*ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
 		//Can not have a pressure delta that would cause environment pressure > tank pressure
 		var/transfer_moles = 0
-		if((air_contents.temperature > 0) && (pressure_delta > 0))
-			transfer_moles = pressure_delta*thejetpack.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)//Actually transfer the gas
+		if((air_contents.get_temp() > 0) && (pressure_delta > 0))
+			transfer_moles = pressure_delta*thejetpack.volume/(air_contents.get_temp() * R_IDEAL_GAS_EQUATION)//Actually transfer the gas
 			var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 			thejetpack.merge(removed)
 			to_chat(user, "You pulse-pressurize your jetpack from the tank.")
@@ -415,7 +415,7 @@ update_flag
 	. = ..()
 
 	air_contents.adjust_gas(GAS_O2, MolesForPressure())
-	air_contents.temperature = 80
+	air_contents.set_temp(80)
 	update_icon()
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide/Initialize(mapload)

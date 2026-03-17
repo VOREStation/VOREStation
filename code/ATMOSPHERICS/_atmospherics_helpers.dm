@@ -161,7 +161,7 @@
 
 		//use update=0. All the filtered gasses are supposed to be added simultaneously, so we update after the for loop.
 		source.adjust_gas(g, -transfer_moles, update=0)
-		sink.adjust_gas_temp(g, transfer_moles, source.temperature, update=0)
+		sink.adjust_gas_temp(g, transfer_moles, source.get_temp(), update=0)
 
 		power_draw += specific_power_gas[g]*transfer_moles
 
@@ -233,7 +233,7 @@
 
 		if (g in filtering)
 			//use update=0. All the filtered gasses are supposed to be added simultaneously, so we update after the for loop.
-			sink_filtered.adjust_gas_temp(g, removed.gas[g], removed.temperature, update=0)
+			sink_filtered.adjust_gas_temp(g, removed.gas[g], removed.get_temp(), update=0)
 			removed.adjust_gas(g, -removed.gas[g], update=0)
 			filtered_power_used += power_used
 		else
@@ -307,7 +307,7 @@
 		if (g in filtering)
 			var/datum/gas_mixture/sink_filtered = filtering[g]
 			//use update=0. All the filtered gasses are supposed to be added simultaneously, so we update after the for loop.
-			sink_filtered.adjust_gas_temp(g, removed.gas[g], removed.temperature, update=1)
+			sink_filtered.adjust_gas_temp(g, removed.gas[g], removed.get_temp(), update=1)
 			removed.adjust_gas(g, -removed.gas[g], update=0)
 			if (power_used)
 				filtered_power_used[sink_filtered] = power_used
@@ -400,7 +400,7 @@
 //Calculates the amount of power needed to move one mole from source to sink.
 /proc/calculate_specific_power(datum/gas_mixture/source, datum/gas_mixture/sink)
 	//Calculate the amount of energy required
-	var/air_temperature = (sink.temperature > 0)? sink.temperature : source.temperature
+	var/air_temperature = (sink.get_temp() > 0)? sink.get_temp() : source.get_temp()
 	var/specific_entropy = sink.specific_entropy() - source.specific_entropy() //sink is gaining moles, source is loosing
 	var/specific_power = 0	// W/mol
 
@@ -413,7 +413,7 @@
 //Calculates the amount of power needed to move one mole of a certain gas from source to sink.
 /proc/calculate_specific_power_gas(var/gasid, datum/gas_mixture/source, datum/gas_mixture/sink)
 	//Calculate the amount of energy required
-	var/air_temperature = (sink.temperature > 0)? sink.temperature : source.temperature
+	var/air_temperature = (sink.get_temp() > 0)? sink.get_temp() : source.get_temp()
 	var/specific_entropy = sink.specific_entropy_gas(gasid) - source.specific_entropy_gas(gasid) //sink is gaining moles, source is loosing
 	var/specific_power = 0	// W/mol
 
@@ -427,25 +427,25 @@
 //If set, sink_volume_mod adjusts the effective output volume used in the calculation. This is useful when the output gas_mixture is
 //part of a pipenetwork, and so it's volume isn't representative of the actual volume since the gas will be shared across the pipenetwork when it processes.
 /proc/calculate_transfer_moles(datum/gas_mixture/source, datum/gas_mixture/sink, var/pressure_delta, var/sink_volume_mod=0)
-	if(source.temperature == 0 || source.total_moles == 0) return 0
+	if(source.get_temp() == 0 || source.total_moles == 0) return 0
 
 	var/output_volume = (sink.volume * sink.group_multiplier) + sink_volume_mod
 	var/source_total_moles = source.total_moles * source.group_multiplier
 
-	var/air_temperature = source.temperature
-	if(sink.total_moles > 0 && sink.temperature > 0)
+	var/air_temperature = source.get_temp()
+	if(sink.total_moles > 0 && sink.get_temp() > 0)
 		//estimate the final temperature of the sink after transfer
-		var/estimate_moles = pressure_delta*output_volume/(sink.temperature * R_IDEAL_GAS_EQUATION)
+		var/estimate_moles = pressure_delta*output_volume/(sink.get_temp() * R_IDEAL_GAS_EQUATION)
 		var/sink_heat_capacity = sink.heat_capacity()
 		var/transfer_heat_capacity = source.heat_capacity()*estimate_moles/source_total_moles
-		air_temperature = (sink.temperature*sink_heat_capacity  + source.temperature*transfer_heat_capacity) / (sink_heat_capacity + transfer_heat_capacity)
+		air_temperature = (sink.get_temp()*sink_heat_capacity  + source.get_temp()*transfer_heat_capacity) / (sink_heat_capacity + transfer_heat_capacity)
 
 	//get the number of moles that would have to be transfered to bring sink to the target pressure
 	return pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
 
 //Calculates the APPROXIMATE amount of moles that would need to be transferred to bring source and sink to the same pressure
 /proc/calculate_equalize_moles(datum/gas_mixture/source, datum/gas_mixture/sink)
-	if(source.temperature == 0) return 0
+	if(source.get_temp() == 0) return 0
 
 	//Make the approximation that the sink temperature is unchanged after transferring gas
 	var/source_volume = source.volume * source.group_multiplier
@@ -454,7 +454,7 @@
 	var/source_pressure = source.return_pressure()
 	var/sink_pressure = sink.return_pressure()
 
-	return (source_pressure - sink_pressure)/(R_IDEAL_GAS_EQUATION * (source.temperature/source_volume + sink.temperature/sink_volume))
+	return (source_pressure - sink_pressure)/(R_IDEAL_GAS_EQUATION * (source.get_temp()/source_volume + sink.get_temp()/sink_volume))
 
 //
 // Debugging helper procs

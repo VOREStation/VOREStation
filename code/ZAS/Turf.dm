@@ -238,7 +238,7 @@
 	var/datum/gas_mixture/GM = new
 
 	GM.adjust_multi(GAS_O2, oxygen, GAS_CO2, carbon_dioxide, GAS_N2, nitrogen, GAS_PHORON, phoron, GAS_N2O, nitrous_oxide, GAS_CH4, methane)
-	GM.temperature = temperature
+	GM.set_temp(temperature)
 
 	return GM
 
@@ -254,7 +254,7 @@
 		GM.gas[GAS_N2O] 	= (nitrous_oxide / sum) * amount
 		GM.gas[GAS_CH4] 	= (methane / sum) * amount
 
-	GM.temperature = temperature
+	GM.set_temp(temperature)
 	GM.update_values()
 
 	return GM
@@ -294,7 +294,7 @@
 
 /turf/proc/make_air()
 	air = new/datum/gas_mixture
-	air.temperature = temperature
+	air.set_temp(temperature)
 	air.adjust_multi(GAS_O2, oxygen, GAS_CO2, carbon_dioxide, GAS_N2, nitrogen, GAS_PHORON, phoron, GAS_N2O, nitrous_oxide, GAS_CH4, methane)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME

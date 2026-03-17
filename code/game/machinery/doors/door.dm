@@ -520,10 +520,10 @@
 			var/datum/gas_mixture/airmix = target.return_air()
 			if(!airmix)
 				continue
-			if(airmix.temperature < lowest_temp)
-				lowest_temp = airmix.temperature
-			if(airmix.temperature > highest_temp)
-				highest_temp = airmix.temperature
+			if(airmix.get_temp() < lowest_temp)
+				lowest_temp = airmix.get_temp()
+			if(airmix.get_temp() > highest_temp)
+				highest_temp = airmix.get_temp()
 	// Fast close to keep in the heat
 	var/open_speed = 150
 	if(abs(highest_temp - lowest_temp) >= 5)

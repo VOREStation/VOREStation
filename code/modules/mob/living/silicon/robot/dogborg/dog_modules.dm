@@ -33,7 +33,7 @@
 	if(total_moles)
 		for(var/g in environment.gas)
 			to_chat(user, span_notice("[GLOB.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%"))
-		to_chat(user, span_notice("Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"))
+		to_chat(user, span_notice("Temperature: [round(environment.get_temp()-T0C,0.1)]&deg;C ([round(environment.get_temp(),0.1)]K)"))
 
 /obj/item/boop_module/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)

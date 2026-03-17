@@ -450,9 +450,9 @@
 	var/turf/T = get_turf(holder)
 	var/datum/gas_mixture/env = T.return_air()
 	if(env)
-		if(env.temperature < ARTIFACT_COLD_TRIGGER)
+		if(env.get_temp() < ARTIFACT_COLD_TRIGGER)
 			trigger_cold = 1
-		else if(env.temperature > ARTIFACT_HEAT_TRIGGER)
+		else if(env.get_temp() > ARTIFACT_HEAT_TRIGGER)
 			trigger_hot = 1
 
 	for(var/datum/artifact_effect/my_effect in my_effects)

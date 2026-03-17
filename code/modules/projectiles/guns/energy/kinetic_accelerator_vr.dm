@@ -14,7 +14,7 @@
 	var/pressure = environment.return_pressure()
 	if(pressure > LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = FALSE
-	if(environment.temperature < (T20C - 30))
+	if(environment.get_temp() < (T20C - 30))
 		. = TRUE
 
 /proc/virgotwo_environment_check(turf/simulated/T)
@@ -27,7 +27,7 @@
 	var/pressure = environment.return_pressure()
 	if(pressure < HEATMODE_ATMOSPHERE - 20)
 		. = FALSE
-	if(environment.temperature > HEATMODE_TEMP - 30)
+	if(environment.get_temp() > HEATMODE_TEMP - 30)
 		. = TRUE
 
 #undef LAVALAND_EQUIPMENT_EFFECT_PRESSURE
