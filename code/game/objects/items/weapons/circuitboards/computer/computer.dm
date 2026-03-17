@@ -42,6 +42,7 @@
 /obj/item/circuitboard/card/centcom
 	name = T_BOARD("CentCom ID card modification console")
 	build_path = /obj/machinery/computer/card/centcom
+	hidden = TRUE // Mapper only centcom machine
 
 /obj/item/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
@@ -159,16 +160,19 @@
 	name = T_BOARD("mining shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/mining
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/engineering_shuttle
 	name = T_BOARD("engineering shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/engineering
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/research_shuttle
 	name = T_BOARD("research shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/research
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/aifixer
 	name = T_BOARD("AI integrity restorer")
