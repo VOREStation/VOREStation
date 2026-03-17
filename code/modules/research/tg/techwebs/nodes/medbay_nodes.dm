@@ -40,6 +40,10 @@
 		// "blood_scanner",
 		"sleevecard",
 		"body_record_disk",
+		"scanner_console",
+		"body_scanner",
+		"sleeper_console",
+		"sleeper",
 	)
 
 /datum/techweb_node/chem_synthesis
