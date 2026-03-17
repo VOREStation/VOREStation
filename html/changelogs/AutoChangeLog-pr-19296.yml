@@ -1,0 +1,4 @@
+author: "ARGUS-Memory"
+delete-after: True
+changes:
+  - bugfix: "Copy loadout now correctly makes unique metadata entries for gear. So that changing the color on one pair of glasses doesnt affect the ones in your other loadout."
