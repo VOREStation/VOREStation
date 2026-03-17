@@ -36,6 +36,15 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/solar_tracker
+	name = "solar tracker circuit"
+	id = "solar_tracker"
+	build_path = /obj/item/tracker_electronics
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/pacman
 	name = "PACMAN-type generator circuit"
 	id = "pacman"
