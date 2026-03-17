@@ -6,6 +6,7 @@
 	design_ids = list(
 		"holocollar",
 		"leash",
+		"vr_sleeper",
 		// Compliance
 		// Mouse Ray
 	)

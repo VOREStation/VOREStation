@@ -458,3 +458,23 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/vr_sleeper
+	name = "virtual reality sleeper circuit"
+	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
+	id = "vr_sleeper"
+	build_path = /obj/item/circuitboard/vr_sleeper
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/rdservercontrol
+	name = "R&D server circuit"
+	desc = "Manages access to research databases and consoles."
+	id = "rdservercontrol"
+	build_path = /obj/item/circuitboard/rdservercontrol
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

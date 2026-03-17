@@ -9,7 +9,7 @@
 		"rdconsole",
 		"bomb_tester",
 		"tech_disk",
-		// "rdservercontrol",
+		"rdservercontrol",
 		// "doppler_array",
 		// "experimentor",
 		"destructive_analyzer",
@@ -20,7 +20,7 @@
 		// "portadrive_basic",
 		// "portadrive_advanced",
 		// "portadrive_super",
-		"electropack"
+		"electropack",
 	)
 
 /datum/techweb_node/bluespace_theory
