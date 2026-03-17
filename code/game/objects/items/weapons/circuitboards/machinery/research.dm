@@ -11,6 +11,7 @@
 							/obj/item/stock_parts/matter_bin = 3,
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/console_screen = 1)
+	hidden = TRUE // Base types aren't cared for, a fully unlocked lathe shouldn't be easy to make
 
 /obj/item/circuitboard/machine/protolathe
 	name = T_BOARD("protolathe")
@@ -27,21 +28,27 @@
 /obj/item/circuitboard/machine/protolathe/department/engineering
 	name = T_BOARD("departmental protolathe (engineering)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/engineering
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/service
 	name = T_BOARD("departmental protolathe (service)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/service
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/medical
 	name = T_BOARD("departmental protolathe (medical)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/medical
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/cargo
 	name = T_BOARD("departmental protolathe (cargo)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/cargo
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/science
 	name = T_BOARD("departmental protolathe (science)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/science
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/security
 	name = T_BOARD("departmental protolathe (security)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/security
+	hidden = FALSE
 
 /obj/item/circuitboard/circuit_imprinter
 	name = T_BOARD("circuit imprinter")

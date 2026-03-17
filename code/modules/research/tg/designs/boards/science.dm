@@ -263,7 +263,14 @@
 
 ///Protolathe boards
 
+/* Optional
 /datum/design_techweb/board/protolathe
+	name = "Protolathe Board - Omni"
+	id = "protolathe_omni"
+	build_path = /obj/item/circuitboard/machine/protolathe
+*/
+
+/datum/design_techweb/board/protolathe/science
 	name = "Protolathe Board - Science"
 	id = "protolathe_science"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/science
