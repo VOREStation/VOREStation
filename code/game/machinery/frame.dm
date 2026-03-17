@@ -41,13 +41,14 @@ GLOBAL_LIST(construction_frame_floor)
 
 /datum/frame/frame_types/computer
 	name = "Computer"
-	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_COMPUTER
 
 /datum/frame/frame_types/machine
 	name = "Machine"
-	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/circuitboard/space_heater
 
 /datum/frame/frame_types/conveyor
 	name = "Conveyor"
