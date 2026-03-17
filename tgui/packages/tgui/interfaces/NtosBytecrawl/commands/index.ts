@@ -5,7 +5,7 @@ export type { CommandContext } from './context';
 export { doAutocomplete } from './autocomplete';
 
 import type { CommandContext } from './context';
-import { cmdScan, cmdConnect } from './scan';
+import { cmdScan } from './scan';
 import { cmdCrack, cmdJobs, cmdCancel, cmdCollect, cmdCache } from './jobs';
 import { cmdSell, cmdMarket } from './trading';
 import { cmdTrace, cmdCloak, cmdVpn, cmdLaunder } from './systems';
@@ -24,7 +24,6 @@ export function execCommand(raw: string, ctx: CommandContext): void {
     case 'help':    cmdHelp(args, ctx);    break;
     case 'clear':   ctx.clearLines();      break;
     case 'scan':    cmdScan(args, ctx);    break;
-    case 'connect': cmdConnect(args, ctx); break;
     case 'crack':   cmdCrack(args, ctx);   break;
     case 'jobs':    cmdJobs(args, ctx);    break;
     case 'cancel':  cmdCancel(args, ctx);  break;

@@ -151,8 +151,7 @@ export function cmdHelp(args: readonly string[], ctx: CommandContext): void {
   if (args.length > 0) {
     const c = args[0].toLowerCase();
     const helps: Record<string, string> = {
-      scan: 'scan [--tier N] [--type TYPE]  List available crack targets.',
-      connect: 'connect <id>  Probe a target for full stats.',
+      scan: 'scan [--tier N] [--type TYPE]  List targets.  scan <id>  Probe a target for full stats.',
       crack: 'crack <id> [--method fragment]  Queue a crack job.',
       jobs: 'jobs [--filter complete|cracking]  List jobs.  jobs clear  Remove failed jobs.',
       cancel: 'cancel <job-id>  Abort a job.',
@@ -181,7 +180,7 @@ export function cmdHelp(args: readonly string[], ctx: CommandContext): void {
     print(helps[c] ?? `No help for '${c}'.`, '#aaffaa');
   } else {
     print('BYTECRAWL v1.0  |  Available commands:', '#33ff33');
-    print('  scan  connect  crack  jobs  cancel  collect  cache');
+    print('  scan  crack  jobs  cancel  collect  cache');
     print('  sell  market  trace  cloak  vpn  launder');
     print('  rig  upgrade  inv  shop  buy  use');
     print('  wallet  log  ascend  ghost  bounty  explain  help  clear');
@@ -201,7 +200,7 @@ export function cmdExplain(ctx: CommandContext): void {
   print('');
   print('THE LOOP:', '#33ff33');
   print('  1. scan           Find servers to crack');
-  print('  2. connect SRV-XX Inspect a target (cipher, ETA, trace risk)');
+  print('  2. scan SRV-XX Inspect a target (cipher, ETA, trace risk)');
   print('  3. crack SRV-XX   Queue the job (uses 1 RAM slot)');
   print('  4. jobs           Watch progress — jobs finish on their own');
   print('  5. collect all    Pull finished data into cache');

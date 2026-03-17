@@ -1,4 +1,4 @@
-// ── scan + connect commands ────────────────────────────────────────────────────
+// ── scan command (includes inline connect/probe subcommand) ───────────────────
 
 import type { MutableRefObject } from 'react';
 
@@ -44,6 +44,39 @@ export function refreshScan(
 
 export function cmdScan(args: readonly string[], ctx: CommandContext): void {
   const { gRef, print, scanPool } = ctx;
+  const state = gRef.current;
+
+  // scan <target-id>: probe a specific target from the current scan pool
+  if (args[0] && !args[0].startsWith('-')) {
+    const target = scanPool.current.find((s) => s.id.toUpperCase() === args[0].toUpperCase());
+    if (!target) {
+      print(`Target '${args[0]}' not found. Run scan first.`, '#ff8800');
+      return;
+    }
+    const cpuMult = CPU_UPGRADES[state.cpu].mult;
+    const activeCount = Math.max(1, state.jobs.filter((j) => j.state === 'cracking').length + 1);
+    const eta =
+      ((target.tier.minMin + target.tier.maxMin) / 2 / (cpuMult * state.ghost.crack)) * activeCount;
+    const tm = (target.tier.tppm / STL_UPGRADES[state.stl].mult / state.ghost.trace).toFixed(4);
+    print(`--- ${target.id} ---`, '#33ff33');
+    print(`  Cipher  : ${target.tier.name} [${target.tier.abbrev}] T${target.tier.tier}`);
+    print(`  Payload : ${target.gb.toFixed(2)} GB  ${DATA_FULLNAMES[target.type]}`);
+    print(`  ETA     : ~${fmtTime(eta)} at current CPU share`);
+    print(`  Trace   : ${tm}%/min`);
+    if (target.tier.uptime) {
+      const stlMult = 1 + state.stl * 0.6;
+      print(
+        `  Uptime  : ${Math.floor(target.tier.uptime[0] * stlMult)}-${Math.floor(target.tier.uptime[1] * stlMult)} min window`,
+        '#ff8800',
+      );
+    }
+    print(
+      `  Value   : ${fmtMoney(target.gb * DATA_FLOORS[target.type])}-${fmtMoney(target.gb * DATA_CEILINGS[target.type])}`,
+    );
+    return;
+  }
+
+  // scan [--tier N] [--type TYPE]: refresh and list targets
   let filterTier: number | undefined;
   let filterType: string | undefined;
   for (let i = 0; i < args.length; i++) {
@@ -63,40 +96,4 @@ export function cmdScan(args: readonly string[], ctx: CommandContext): void {
       `${s.id.padEnd(10)} ${s.tier.abbrev.padEnd(11)} ${s.type.padEnd(8)} ${s.gb.toFixed(2).padEnd(8)}GB ${tm}%/m`,
     );
   }
-}
-
-// ── connect ───────────────────────────────────────────────────────────────────
-
-export function cmdConnect(args: readonly string[], ctx: CommandContext): void {
-  const { gRef, print, scanPool } = ctx;
-  const state = gRef.current;
-  if (!args[0]) {
-    print('Usage: connect <target-id>', '#ff8800');
-    return;
-  }
-  const target = scanPool.current.find((s) => s.id.toUpperCase() === args[0].toUpperCase());
-  if (!target) {
-    print(`Target '${args[0]}' not found. Run scan first.`, '#ff8800');
-    return;
-  }
-  const cpuMult = CPU_UPGRADES[state.cpu].mult;
-  const activeCount = Math.max(1, state.jobs.filter((j) => j.state === 'cracking').length + 1);
-  const eta =
-    ((target.tier.minMin + target.tier.maxMin) / 2 / (cpuMult * state.ghost.crack)) * activeCount;
-  const tm = (target.tier.tppm / STL_UPGRADES[state.stl].mult / state.ghost.trace).toFixed(4);
-  print(`--- ${target.id} ---`, '#33ff33');
-  print(`  Cipher  : ${target.tier.name} [${target.tier.abbrev}] T${target.tier.tier}`);
-  print(`  Payload : ${target.gb.toFixed(2)} GB  ${DATA_FULLNAMES[target.type]}`);
-  print(`  ETA     : ~${fmtTime(eta)} at current CPU share`);
-  print(`  Trace   : ${tm}%/min`);
-  if (target.tier.uptime) {
-    const stlMult = 1 + state.stl * 0.6;
-    print(
-      `  Uptime  : ${Math.floor(target.tier.uptime[0] * stlMult)}–${Math.floor(target.tier.uptime[1] * stlMult)} min window`,
-      '#ff8800',
-    );
-  }
-  print(
-    `  Value   : ${fmtMoney(target.gb * DATA_FLOORS[target.type])}–${fmtMoney(target.gb * DATA_CEILINGS[target.type])}`,
-  );
 }

@@ -56,7 +56,7 @@ export const SHOP_ITEMS = [
 ] as const;
 
 export const ALL_COMMANDS = [
-  'scan', 'connect', 'crack', 'jobs', 'cancel', 'collect', 'cache',
+  'scan', 'crack', 'jobs', 'cancel', 'collect', 'cache',
   'sell', 'market', 'trace', 'cloak', 'vpn', 'launder', 'rig',
   'upgrade', 'inv', 'shop', 'buy', 'use', 'wallet', 'log',
   'ascend', 'ghost', 'bounty', 'explain', 'help', 'clear',

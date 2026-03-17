@@ -26,7 +26,9 @@ export function doAutocomplete(
     const cmd = tokensBefore[0].toLowerCase();
     const argPos = tokensBefore.length;
 
-    if (argPos === 1 && ['connect', 'crack'].includes(cmd)) {
+    if (argPos === 1 && cmd === 'crack') {
+      candidates = scanPool.current.map((s) => s.id);
+    } else if (argPos === 1 && cmd === 'scan' && !currentToken.startsWith('-')) {
       candidates = scanPool.current.map((s) => s.id);
     } else if (argPos === 1 && cmd === 'cancel') {
       candidates = state.jobs.map((j) => j.id);
