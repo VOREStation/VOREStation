@@ -66,6 +66,8 @@
 		// "pipe_scrubber",
 		// "mech_generator",
 		// "plasmacutter",
+		"dtype_rtg",
+		"ctype_rtg",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)

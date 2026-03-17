@@ -35,6 +35,13 @@
 			continue
 		all_circuitboard_machines -= design.build_path
 
+	// Manual exclusions, as some alien machines have boards but are not meant to be printed from the circuit imprinter/lathe
+	all_circuitboard_machines -= list(
+		/obj/machinery/power/rtg/abductor,
+		/obj/machinery/power/rtg/abductor/hybrid,
+		/obj/machinery/computer/roguezones
+	)
+
 	if(length(all_circuitboard_machines))
 		for(var/obj/item/circuitboard/circuit as anything in all_circuitboard_machines)
 			if(ispath(circuit))

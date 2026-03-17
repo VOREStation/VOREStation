@@ -240,6 +240,24 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/dtype_rtg
+	name = "d-type rotary electric generator circuit"
+	id = "dtype_rtg"
+	build_path = /obj/item/circuitboard/machine/reg_d
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/ctype_rtg
+	name = "c-type rotary electric generator circuit"
+	id = "ctype_rtg"
+	build_path = /obj/item/circuitboard/machine/reg_c
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/pointdefense
 	name = "point defense battery circuit"
 	id = "pointdefense"
