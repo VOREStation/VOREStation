@@ -346,6 +346,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/roller
+	name = "roller bed"
+	desc = "A collapsed roller bed that can be carried around."
+	id = "medicalbed"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000)
+	build_path = /obj/item/roller
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/advanced_roller
 	name = "advanced roller bed"
 	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."

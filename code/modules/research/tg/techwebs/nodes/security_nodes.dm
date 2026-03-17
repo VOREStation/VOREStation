@@ -205,6 +205,7 @@
 		"handcuffs",
 		"legcuffs",
 		"legcuffs_fuzzy",
+		"dna_analyzer",
 		// "security_photobooth",
 		// "photobooth",
 		// "scanner_gate",

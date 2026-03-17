@@ -6,7 +6,7 @@
 	design_ids = list(
 		"operating",
 		"scan_console",
-		// "medicalbed",
+		"medicalbed",
 		// "defibmountdefault",
 		"defibrillator",
 		// "surgical_drapes",
@@ -44,6 +44,7 @@
 		"body_scanner",
 		"sleeper_console",
 		"sleeper",
+		"bioprinter",
 	)
 
 /datum/techweb_node/chem_synthesis
