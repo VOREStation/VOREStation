@@ -1,7 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - qol: "Normal anomalies can now be scanned with the anomaly scanner for it's frequencies."
-  - qol: "The anomaly scanner will indicate the user to use a releaser, if used on a core."
-  - qol: "Added particle descriptions when examining the anomaly scanner."
-  - bugfix: "Fixed Anomalis spawning without PDA"
