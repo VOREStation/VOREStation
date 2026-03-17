@@ -1,0 +1,145 @@
+// ── BYTECRAWL CRT Terminal Styles ────────────────────────────────────────────
+// All fixed layout and CRT effect styles live here.
+// Dynamic per-line colours are applied as inline style in Terminal.tsx.
+
+$green: #33ff33;
+$green-dim: #1a3a1a;
+$bg: #0a140a;
+$font: 'Courier New', Courier, monospace;
+$font-size: 12px;
+$line-height: 1.5;
+
+// ── Outer container ───────────────────────────────────────────────────────────
+.bc-container {
+  width: 720px;
+  height: 540px;
+  background: $bg;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  font-family: $font;
+  font-size: $font-size;
+  line-height: $line-height;
+  cursor: text;
+
+  // Screen curvature via perspective
+  perspective: 800px;
+}
+
+// ── Inner wrapper (holds the perspective warp) ────────────────────────────────
+.bc-inner {
+  width: 100%;
+  height: 100%;
+  transform: perspective(800px) rotateX(1deg) scaleY(0.99);
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+// ── CRT overlay layers ────────────────────────────────────────────────────────
+.bc-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bc-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.7) 100%);
+  pointer-events: none;
+  z-index: 11;
+}
+
+// ── Header bar ────────────────────────────────────────────────────────────────
+.bc-header {
+  padding: 6px 12px;
+  border-bottom: 1px solid $green-dim;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $green;
+  text-shadow: 0 0 6px rgba(51, 255, 51, 0.7);
+  font-size: 11px;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+// ── Scrollable output area ────────────────────────────────────────────────────
+.bc-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  color: $green;
+  text-shadow: 0 0 6px rgba(51, 255, 51, 0.7);
+  white-space: pre-wrap;
+  word-break: break-word;
+  z-index: 2;
+
+  // Hide scrollbar on most browsers while keeping scroll functionality
+  scrollbar-width: thin;
+  scrollbar-color: $green-dim $bg;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bg;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $green-dim;
+  }
+}
+
+// ── Each output line (colour is set inline per-line) ─────────────────────────
+.bc-line {
+  // Base glow; exact color + shadow overridden by inline style per-line
+  text-shadow: 0 0 5px rgba(51, 255, 51, 0.6);
+}
+
+// ── Input row ─────────────────────────────────────────────────────────────────
+.bc-input-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px 8px;
+  border-top: 1px solid $green-dim;
+  gap: 6px;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+// ── Prompt label ─────────────────────────────────────────────────────────────
+.bc-prompt {
+  color: $green;
+  text-shadow: 0 0 6px rgba(51, 255, 51, 0.7);
+  white-space: nowrap;
+  user-select: none;
+}
+
+// ── Text input field ──────────────────────────────────────────────────────────
+.bc-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: $green;
+  text-shadow: 0 0 6px rgba(51, 255, 51, 0.7);
+  font-family: $font;
+  font-size: $font-size;
+  caret-color: $green;
+
+  // Prevent browser autocomplete UI from clashing with the CRT look
+  &:-webkit-autofill {
+    -webkit-text-fill-color: $green;
+    -webkit-box-shadow: 0 0 0 1000px $bg inset;
+  }
+}
