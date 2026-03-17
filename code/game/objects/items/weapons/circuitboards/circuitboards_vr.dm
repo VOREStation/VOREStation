@@ -12,6 +12,8 @@
 				continue
 			nice_list += list("[req_components[A]] [initial(A.name)]")
 		. += "Required components: [english_list(nice_list)]."
+	if(hidden) // Notify the player that this board cannot be printed easily, so don't lose it!
+		. += span_danger("It might be hard to find a replacement for this unique of a circuit.")
 
 // VOREStation specific circuit boards!
 

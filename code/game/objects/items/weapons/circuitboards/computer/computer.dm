@@ -178,22 +178,27 @@
 /obj/item/circuitboard/helm
 	name = T_BOARD("helm control console")
 	build_path = /obj/machinery/computer/ship/helm
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/engine
 	name = T_BOARD("engine control console")
 	build_path = /obj/machinery/computer/ship/engines
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/nav
 	name = T_BOARD("navigation console")
 	build_path = /obj/machinery/computer/ship/navigation
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/nav/tele
 	name = T_BOARD("navigation telescreen")
 	build_path = /obj/machinery/computer/ship/navigation/telescreen
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/sensors
 	name = T_BOARD("sensors console")
 	build_path = /obj/machinery/computer/ship/sensors
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
