@@ -14,6 +14,8 @@
 		// "experimentor",
 		"destructive_analyzer",
 		// "destructive_scanner",
+		"artifact_harvester",
+		"artifact_scanpad",
 		// "laptop",
 		// "portadrive_basic",
 		// "portadrive_advanced",
