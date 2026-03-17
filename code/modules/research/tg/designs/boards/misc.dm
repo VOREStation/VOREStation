@@ -276,3 +276,43 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/stockexchange
+	name = "stock exchange console circuit"
+	desc = "A console that connects to the galactic stock market."
+	id = "stockexchange"
+	build_path = /obj/item/circuitboard/stockexchange
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/stationalert_engineering
+	name = "Engineering Alert Console"
+	desc = "Used to access engineering's automated alert system."
+	id = "stationalert_engineering"
+	build_path = /obj/item/circuitboard/stationalert_engineering
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING| DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/stationalert_security
+	name = "Security Alert Console"
+	desc = "Used to access security's automated alert system."
+	id = "stationalert_security"
+	build_path = /obj/item/circuitboard/stationalert_security
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY| DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/stationalert_all
+	name = "Station Alert Console"
+	desc = "Used to access the station's automated alert system."
+	id = "stationalert_all"
+	build_path = /obj/item/circuitboard/stationalert_all
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_COMMAND
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_ENGINEERING| DEPARTMENT_BITFLAG_SCIENCE

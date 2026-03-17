@@ -214,6 +214,7 @@
 	name = T_BOARD("prison shuttle control console")
 	build_path = /obj/machinery/computer/prison_shuttle
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/rcon_console
 	name = T_BOARD("RCON remote control console")
