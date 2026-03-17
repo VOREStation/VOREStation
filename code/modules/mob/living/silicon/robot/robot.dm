@@ -17,6 +17,7 @@
 
 	var/lights_on = 0 // Is our integrated light on?
 	var/grabbable = FALSE //disables/enables pick-up mechanics.
+	var/sitanimationboolean = FALSE //Used to determine if the animation for sitting is active or not. you need a flag.
 	var/robot_light_col = "#FFFFFF"
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
@@ -527,6 +528,15 @@
 	set name = "Toggle Pickup"
 	grabbable = !grabbable
 	to_chat(src, span_filter_notice("You feel [grabbable ? "more" : "less"] grabbable."))
+
+/mob/living/silicon/robot/verb/toggle_sitanimation()
+	set category = "Abilities.Settings"
+	set name = "Toggle Sit Animation"
+	if(sprite_datum.has_animation_flag)
+		sitanimationboolean = !sitanimationboolean
+		to_chat(src, span_filter_notice("Your thighs feel [sitanimationboolean ? "more" : "less"] thick."))
+	else
+		to_chat(src, span_warning("This module does not support sit animations."))
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
@@ -1070,6 +1080,11 @@
 				var/eyes_overlay = sprite_datum.get_eye_light_overlay(src)
 				if(eyes_overlay)
 					add_overlay(eyes_overlay)
+
+		if(resting && sprite_datum.has_animation_flag && sitanimationboolean)
+			new /obj/effect/temp_visual/borgsit(loc)
+			playsound(src, 'sound/effects/robot_sit.ogg', 25)
+			//if(sprite_datum.module_type == "clown") for specific chassis types
 
 	if(stat == DEAD && sprite_datum.has_dead_sprite)
 		cut_overlays()
