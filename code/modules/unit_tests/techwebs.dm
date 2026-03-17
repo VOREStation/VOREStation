@@ -126,6 +126,22 @@
 		if(!(design.id in used_designs))
 			TEST_NOTICE(src, "TECHWEB DESIGN - WARNING [design.type] is orphaned and not accessible from any techweb node. Is this intended?")
 
+		// Design must have materials
+		if(!length(design.materials))
+			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] has no materials assigned.")
+			failed = TRUE
+		else
+			for(var/mat in design.materials)
+				var/datum/material/mat_datum = get_material_by_name(mat)
+				if(!mat_datum)
+					TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a non-existant material assigned \"[mat]\".")
+					failed = TRUE
+				else
+					var/amount = design.materials[mat]
+					if(!amount)
+						TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] assigned material \"[mat]\" had no amount specified, or a negative amount.")
+						failed = TRUE
+
 		// Design must produce something
 		if(!design.build_path)
 			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] did not have a build_path.")
