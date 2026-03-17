@@ -33,7 +33,7 @@ export function doAutocomplete(
     } else if (argPos === 1 && cmd === 'collect') {
       candidates = ['all', ...state.jobs.filter((j) => j.state === 'ready').map((j) => j.id)];
     } else if (argPos === 1 && cmd === 'sell') {
-      candidates = state.cache.map((c) => c.id);
+      candidates = ['all', ...state.cache.map((c) => c.id)];
     } else if (argPos === 2 && cmd === 'sell') {
       candidates = ['now'];
     } else if (argPos === 1 && ['buy', 'use'].includes(cmd)) {
@@ -51,7 +51,7 @@ export function doAutocomplete(
     } else if (cmd === 'jobs' && currentToken.startsWith('-')) {
       candidates = ['--filter'];
     } else if (cmd === 'ascend' && currentToken.startsWith('-')) {
-      candidates = ['--preview'];
+      candidates = ['--preview', '--confirm'];
     } else if (cmd === 'crack' && currentToken.startsWith('-')) {
       candidates = ['--method'];
     } else if (argPos >= 1 && tokensBefore[argPos - 1] === '--method') {

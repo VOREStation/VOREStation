@@ -9,8 +9,36 @@ import type { CommandContext } from './context';
 export function cmdSell(args: readonly string[], ctx: CommandContext): void {
   const { gRef, setG, print, act } = ctx;
   const state = gRef.current;
+
+  // ── sell all ──────────────────────────────────────────────────────────────
+  if (args[0]?.toLowerCase() === 'all') {
+    if (!state.cache.length) {
+      print('Cache empty. Nothing to sell.', '#ff8800');
+      return;
+    }
+    let total = 0;
+    const newLog: string[] = [];
+    for (const item of state.cache) {
+      const price = state.market[item.type] * state.ghost.market;
+      const revenue = Math.floor(item.gb * price);
+      total += revenue;
+      print(`  Sold ${item.id}: ${item.gb.toFixed(2)}GB ${DATA_FULLNAMES[item.type]} — ${fmtMoney(revenue)}`, '#33ff33');
+      newLog.push(`SELL ${item.id} ${item.gb.toFixed(2)}GB ${item.type} +${fmtMoney(revenue)}`);
+    }
+    setG((prev) => ({
+      ...prev,
+      wallet: prev.wallet + total,
+      totalEarned: prev.totalEarned + total,
+      cache: [],
+      txLog: [...newLog, ...prev.txLog].slice(0, 100),
+    }));
+    act('sell_all', { total });
+    print(`Total: ${fmtMoney(total)}`, '#33ff33');
+    return;
+  }
+
   if (args.length < 2) {
-    print('Usage: sell <dat-id> now|<price>', '#ff8800');
+    print('Usage: sell <dat-id> now  |  sell all', '#ff8800');
     return;
   }
   const cid = args[0].toLowerCase();

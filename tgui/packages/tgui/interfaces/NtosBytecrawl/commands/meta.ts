@@ -64,11 +64,12 @@ export function cmdAscend(args: readonly string[], ctx: CommandContext): void {
   const { gRef, setG, print, act } = ctx;
   const state = gRef.current;
   const threshold = ASC_THRESHOLDS[state.ascCount] ?? Infinity;
+  const newCrack = 1 + (state.ascCount + 1) * 0.08;
+  const newMarket = 1 + (state.ascCount + 1) * 0.05;
+  const newTrace = Math.max(0.1, 1 - (state.ascCount + 1) * 0.1);
+  const bonusSlots = state.ascCount >= 3 ? state.ghost.slots + 1 : state.ghost.slots;
+
   if (args.includes('--preview')) {
-    const newCrack = 1 + (state.ascCount + 1) * 0.08;
-    const newMarket = 1 + (state.ascCount + 1) * 0.05;
-    const newTrace = Math.max(0.1, 1 - (state.ascCount + 1) * 0.1);
-    const bonusSlots = state.ascCount >= 3 ? state.ghost.slots + 1 : state.ghost.slots;
     print(`Ascension preview (ascension ${state.ascCount + 1}):`);
     print(`  Required: ${fmtMoney(threshold)}  |  Earned: ${fmtMoney(state.totalEarned)}`);
     print(`  GHOST crack speed: ×${newCrack.toFixed(2)}`);
@@ -83,6 +84,14 @@ export function cmdAscend(args: readonly string[], ctx: CommandContext): void {
       `Cannot ascend. Need ${fmtMoney(threshold)} earned. Current: ${fmtMoney(state.totalEarned)}.`,
       '#ff8800',
     );
+    return;
+  }
+  if (!args.includes('--confirm')) {
+    print(`Ascension ${state.ascCount + 1} available.`, '#ffff00');
+    print(`  Earned: ${fmtMoney(state.totalEarned)}  Required: ${fmtMoney(threshold)}`);
+    print(`  GHOST crack ×${newCrack.toFixed(2)}  market ×${newMarket.toFixed(2)}  trace ×${newTrace.toFixed(2)}${bonusSlots > state.ghost.slots ? '  +1 slot' : ''}`);
+    print(`  WARNING: wallet, rig, jobs, cache, and heat all reset.`, '#ff8800');
+    print(`  Run 'ascend --confirm' to proceed.`, '#aaaaaa');
     return;
   }
   const newAsc = state.ascCount + 1;
@@ -149,7 +158,7 @@ export function cmdHelp(args: readonly string[], ctx: CommandContext): void {
       cancel: 'cancel <job-id>  Abort a job.',
       collect: 'collect <job-id>|all  Move ready data to cache.',
       cache: 'cache  View cached data.',
-      sell: 'sell <dat-id> now|<price>  Sell data from cache.',
+      sell: 'sell <dat-id> now  Sell one item.  sell all  Sell entire cache at market rate.',
       market: 'market [--history]  Current market prices.',
       trace: 'trace  Show trace % and status.',
       cloak: 'cloak [off]  Toggle stealth mode.',
@@ -163,7 +172,7 @@ export function cmdHelp(args: readonly string[], ctx: CommandContext): void {
       use: 'use <item-id> <job-id>  Apply item to job.',
       wallet: 'wallet [--log N]  Show balance.',
       log: 'log [--filter sales|cracks|trace]  Activity log.',
-      ascend: 'ascend [--preview]  Trigger ascension.',
+      ascend: 'ascend [--preview]  Preview ascension.  ascend --confirm  Execute ascension.',
       ghost: 'ghost  Show GHOST bonuses.',
       bounty: 'bounty  Check agency heat.',
       explain: 'explain  Full walkthrough of how to play.',
