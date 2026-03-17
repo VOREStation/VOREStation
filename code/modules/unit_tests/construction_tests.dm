@@ -35,6 +35,7 @@
 			continue
 		all_circuitboard_machines -= design.build_path
 
+	var/failed = FALSE
 	if(length(all_circuitboard_machines))
 		for(var/obj/item/circuitboard/circuit as anything in all_circuitboard_machines)
 			if(ispath(circuit))
@@ -43,5 +44,7 @@
 				TEST_NOTICE(src, "[circuit] - Missing a circuit from techweb. Ensure a techweb entry exists, or [circuit.build_path] will not be constructable in round.")
 			else
 				TEST_NOTICE(src, "[circuit] - is a LEGACY STRING and must be converted to a path!!!")
+			failed = TRUE
 
-		TEST_FAIL("materials missing autolathe print recipies.")
+	if(failed)
+		TEST_FAIL("missing circuitboard print recipies.")
