@@ -245,6 +245,7 @@
 /datum/robot_sprite/dogborg/tall
 	has_dead_sprite_overlay = FALSE
 	has_custom_equipment_sprites = FALSE
+	has_animation_flag = TRUE
 	vis_height = 64
 	icon_x = 64
 	icon_y = 64

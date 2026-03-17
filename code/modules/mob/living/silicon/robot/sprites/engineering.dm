@@ -272,7 +272,6 @@
 	sprite_icon_state = "dullahanengineer"
 	has_eye_light_sprites = TRUE
 	has_rest_sprites = TRUE
-	has_animation_flag = TRUE
 	has_vore_belly_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
 	belly_capacity_list = list("sleeper" = 3)

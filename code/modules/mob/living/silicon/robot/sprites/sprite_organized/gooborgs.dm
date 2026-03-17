@@ -264,6 +264,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
 	has_dead_sprite_overlay = FALSE
+	has_animation_flag = TRUE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_cmd.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
