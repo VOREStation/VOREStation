@@ -310,7 +310,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stationalert_engineering
-	name = "station alert console (engineering)"
+	name = "station alert console circuit (engineering)"
 	desc = "Used to access engineering's automated alert system."
 	id = "stationalert_engineering"
 	build_path = /obj/item/circuitboard/stationalert_engineering
@@ -320,7 +320,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stationalert_security
-	name = "station alert console (security)"
+	name = "station alert console circuit (security)"
 	desc = "Used to access security's automated alert system."
 	id = "stationalert_security"
 	build_path = /obj/item/circuitboard/stationalert_security
@@ -330,7 +330,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stationalert_all
-	name = "station alert console (all)"
+	name = "station alert console circuit (all)"
 	desc = "Used to access the station's automated alert system."
 	id = "stationalert_all"
 	build_path = /obj/item/circuitboard/stationalert_all
@@ -338,3 +338,23 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_COMMAND
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/mining_equipment_vendor
+	name = "mining equipment vendor circuit"
+	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
+	id = "mining_equipment_vendor"
+	build_path = /obj/item/circuitboard/mining_equipment_vendor
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/survey_equipment_vendor
+	name = "exploration equipment vendor circuit"
+	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
+	id = "survey_equipment_vendor"
+	build_path = /obj/machinery/mineral/equipment_vendor/survey
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
