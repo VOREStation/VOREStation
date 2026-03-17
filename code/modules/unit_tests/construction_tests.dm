@@ -35,16 +35,11 @@
 			continue
 		all_circuitboard_machines -= design.build_path
 
-	// Manual exclusions, as some alien machines have boards but are not meant to be printed from the circuit imprinter/lathe
-	all_circuitboard_machines -= list(
-		/obj/item/circuitboard/machine/abductor/core,
-		/obj/item/circuitboard/machine/abductor/core/hybrid,
-		/obj/item/circuitboard/roguezones
-	)
-
 	if(length(all_circuitboard_machines))
 		for(var/obj/item/circuitboard/circuit as anything in all_circuitboard_machines)
 			if(ispath(circuit))
+				if(initial(circuit.hidden)) // Intentionally not meant to show up on station
+					continue
 				TEST_NOTICE(src, "[circuit] - Missing a circuit from techweb. Ensure a techweb entry exists, or [circuit.build_path] will not be constructable in round.")
 			else
 				TEST_NOTICE(src, "[circuit] - is a LEGACY STRING and must be converted to a path!!!")

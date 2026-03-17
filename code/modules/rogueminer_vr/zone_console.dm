@@ -147,6 +147,7 @@
 	name = T_BOARD("asteroid belt scanning computer")
 	build_path = /obj/machinery/computer/roguezones
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1)
+	hidden = TRUE
 
 /obj/item/paper/rogueminer
 	name = "R-38 Scanner Console Guide"

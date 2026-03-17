@@ -17,6 +17,7 @@
 	var/contain_parts = 1
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
+	var/hidden = FALSE // If true, this board should be ignored during the circuitboard printing unit test
 
 /obj/item/circuitboard/Destroy()
 	if(isobject(board_type)) // Some boards use text instead of an instance...
