@@ -195,6 +195,9 @@
 	prereq_ids = list(TECHWEB_NODE_BASIC_ARMS)
 	design_ids = list(
 		"seccamera",
+		"engcamera",
+		"crgcamera",
+		"xenobiocamera",
 		"sec_data",
 		"prisonmanage",
 		"pointdefense",
@@ -202,8 +205,6 @@
 		"handcuffs",
 		"legcuffs",
 		"legcuffs_fuzzy",
-		// "mining",
-		// "rdcamera",
 		// "security_photobooth",
 		// "photobooth",
 		// "scanner_gate",

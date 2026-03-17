@@ -48,7 +48,37 @@
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/board/engcamera
+	name = "engineering camera monitor"
+	desc = "Allows for the construction of circuit boards used to build a engineering camera monitor."
+	id = "engcamera"
+	build_path = /obj/item/circuitboard/security/engineering
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/crgcamera
+	name = "mining camera monitor"
+	desc = "Allows for the construction of circuit boards used to build a mining camera monitor."
+	id = "crgcamera"
+	build_path = /obj/item/circuitboard/security/mining
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/board/xenobiocamera
+	name = "xenobio camera monitor"
+	desc = "Allows for the construction of circuit boards used to build a xenobio camera monitor."
+	id = "xenobiocamera"
+	build_path = /obj/item/circuitboard/security/xenobio
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/secdata
 	name = "security records console"
