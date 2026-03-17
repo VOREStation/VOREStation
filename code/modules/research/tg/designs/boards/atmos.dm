@@ -64,3 +64,22 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ATMOS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/atmoscontrol
+	name = "central atmospherics computer circuit"
+	id = "atmoscontrol"
+	build_path = /obj/item/circuitboard/atmoscontrol
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ATMOS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/area_atmos
+	name = "area air control circuit"
+	desc = "A computer used to control the stationary scrubbers and pumps in the area."
+	id = "area_atmos"
+	build_path = /obj/item/circuitboard/area_atmos
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ATMOS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

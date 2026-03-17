@@ -381,15 +381,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/atmoscontrol
-	name = "central atmospherics computer circuit"
-	id = "atmoscontrol"
-	build_path = /obj/item/circuitboard/atmoscontrol
-	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/board/gyrotron
 	name = "gyrotron circuit"
 	id = "gyrotron"

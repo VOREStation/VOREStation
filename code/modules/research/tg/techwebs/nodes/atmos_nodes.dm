@@ -24,6 +24,7 @@
 		// "plasmaman_gas_filter",
 		// "pipe_painter",
 		"atmoscontrol",
+		"area_atmos",
 	)
 
 /datum/techweb_node/gas_compression

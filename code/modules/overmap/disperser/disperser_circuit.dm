@@ -6,6 +6,7 @@
 	name = T_BOARD("obstruction removal ballista control")
 	build_path = /obj/machinery/computer/ship/disperser
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_COMBAT = 2, TECH_BLUESPACE = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/disperserfront
 	name = T_BOARD("obstruction removal ballista beam generator")
@@ -15,6 +16,7 @@
 	req_components = list (
 							/obj/item/stock_parts/manipulator/pico = 5
 	)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/dispersermiddle
 	name = T_BOARD("obstruction removal ballista fusor")
@@ -24,6 +26,7 @@
 	req_components = list (
 							/obj/item/stock_parts/subspace/crystal = 10
 	)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/disperserback
 	name = T_BOARD("obstruction removal ballista material deconstructor")
@@ -33,3 +36,4 @@
 	req_components = list (
 							/obj/item/stock_parts/capacitor/super = 5
 	)
+	hidden = TRUE // todo - Make properly constructable in round
