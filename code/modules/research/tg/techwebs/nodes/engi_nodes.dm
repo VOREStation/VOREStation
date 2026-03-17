@@ -110,6 +110,8 @@
 		"comm_monitor",
 		"comm_server",
 		"ntnet_relay",
+		"pda_multicaster",
+		"comm_traffic",
 		"s-ansible",
 		"s-filter",
 		"s-amplifier",
