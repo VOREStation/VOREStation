@@ -110,6 +110,7 @@
 	name = T_BOARD("turbine control console")
 	build_path = /obj/machinery/computer/turbine_computer
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/solar_control
 	name = T_BOARD("solar control console")

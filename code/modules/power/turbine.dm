@@ -63,7 +63,6 @@
 	var/list/obj/machinery/door/blast/doors
 	var/id = 0
 	var/door_status = 0
-	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/machine/power_compressor
 	name = T_BOARD("power compressor")
