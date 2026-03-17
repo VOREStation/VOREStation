@@ -216,12 +216,6 @@ GLOBAL_LIST(construction_frame_floor)
 	circuit = /obj/item/circuitboard/injector_maker
 	frame_size = 3
 
-/datum/frame/frame_types/space_heater
-	name = "Space Heater"
-	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/circuitboard/space_heater
-	frame_size = 3
-
 // Refinery machines
 /datum/frame/frame_types/industrial_reagent_grinder
 	name = "Industrial Chemical Grinder"

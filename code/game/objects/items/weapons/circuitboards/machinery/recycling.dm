@@ -7,7 +7,7 @@
 	build_path = /obj/machinery/recycling/crusher
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/motor = 1,
@@ -21,7 +21,7 @@
 	build_path = /obj/machinery/recycling/sorter
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/motor = 1,
@@ -33,7 +33,7 @@
 	build_path = /obj/machinery/recycling/stamper
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/gear = 2,

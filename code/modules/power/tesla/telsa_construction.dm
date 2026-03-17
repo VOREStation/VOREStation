@@ -8,6 +8,7 @@
 	build_path = /obj/machinery/power/tesla_coil
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 4)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 
 // Grounding rods can be built as machines using a circuit made in an autolathe.
@@ -15,7 +16,7 @@
 	name = T_BOARD("grounding rod")
 	build_path = /obj/machinery/power/grounding_rod
 	board_type = new /datum/frame/frame_types/machine
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 	origin_tech = list(TECH_MAGNET = 1, TECH_POWER = 2)
 	req_components = list()
 
