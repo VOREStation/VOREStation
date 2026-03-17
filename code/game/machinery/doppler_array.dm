@@ -30,15 +30,7 @@
 	var/turf/our_turf = get_turf(src)
 	if(our_turf.Distance(epicenter) > 100)
 		return
-
-	/* There is no way to rotate these... Why?
-	var/direct = get_dir(our_turf,epicenter)
-	if(!(direct & dir))
-		return
-	*/
-
-	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds."
-	audible_message(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""))
+	atom_say("Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds.")
 
 /obj/machinery/doppler_array/power_change()
 	..()
@@ -46,3 +38,12 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_off"
+
+/obj/machinery/doppler_array/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
+	add_fingerprint(user)
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
