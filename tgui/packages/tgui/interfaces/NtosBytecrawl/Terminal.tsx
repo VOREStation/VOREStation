@@ -1,4 +1,4 @@
-import { KeyboardEvent, RefObject } from 'react';
+import type { KeyboardEvent, RefObject } from 'react';
 
 import 'tgui/styles/themes/NtosBytecrawl.scss';
 
@@ -45,7 +45,7 @@ export function Terminal(props: TerminalProps) {
 
   const inputRow = (
     <div className="bc-input-row">
-      <span className="bc-prompt">{prompt + ' '}</span>
+      <span className="bc-prompt">{`${prompt} `}</span>
       <input
         ref={inputRef}
         className="bc-input"

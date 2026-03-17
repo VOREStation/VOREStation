@@ -36,10 +36,10 @@ export function useMarketLoop(
         }
 
         actRef.current('market_tick', {
-          crd: newMarket['CRD'],
-          fin: newMarket['FIN'],
-          crp: newMarket['CRP'],
-          cls: newMarket['CLS'],
+          crd: newMarket.CRD,
+          fin: newMarket.FIN,
+          crp: newMarket.CRP,
+          cls: newMarket.CLS,
         });
 
         return { ...prev, market: newMarket, lastMarketEvent: newLastEvent };

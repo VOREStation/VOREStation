@@ -1,7 +1,7 @@
 // ── Hooks barrel ──────────────────────────────────────────────────────────────
 // Composes the tick loop and market loop into a single hook for index.tsx.
 
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { GState, Line } from '../types';
 import { useMarketLoop } from './useMarketLoop';

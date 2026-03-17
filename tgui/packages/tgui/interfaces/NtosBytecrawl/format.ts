@@ -20,5 +20,5 @@ export function fmtTime(mins: number): string {
 /** Render an ASCII progress bar, e.g. [######..............] */
 export function progressBar(pct: number, width = 20): string {
   const filled = Math.round((pct / 100) * width);
-  return '[' + '#'.repeat(filled) + '.'.repeat(width - filled) + ']';
+  return `[${'#'.repeat(filled)}${'.'.repeat(width - filled)}]`;
 }

@@ -1,6 +1,6 @@
 // ── wallet / log / ascend / ghost / bounty / help / explain commands ──────────
 
-import { ALL_COMMANDS, ASC_THRESHOLDS } from '../constants';
+import { ASC_THRESHOLDS } from '../constants';
 import { fmtMoney } from '../format';
 import type { Ghost } from '../types';
 import { rand } from '../utils';
@@ -17,7 +17,7 @@ export function cmdWallet(args: readonly string[], ctx: CommandContext): void {
   const logN = logIdx !== -1 ? parseInt(args[logIdx + 1], 10) || 5 : 0;
   if (logN > 0) {
     print('Recent transactions:');
-    state.txLog.slice(0, logN).forEach((l) => print(`  ${l}`, '#aaaaaa'));
+    for (const l of state.txLog.slice(0, logN)) print(`  ${l}`, '#aaaaaa');
   }
 }
 

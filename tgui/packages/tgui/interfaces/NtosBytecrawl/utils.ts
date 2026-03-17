@@ -2,7 +2,7 @@
 // Pure functions — no React, no side-effects.
 // Display-only formatting (fmtMoney, fmtTime, progressBar) lives in format.ts.
 
-import { CIPHER_TIERS, RAM_UPGRADES } from './constants';
+import { RAM_UPGRADES } from './constants';
 import type { CipherTier, GState } from './types';
 
 // ── RNG ───────────────────────────────────────────────────────────────────────

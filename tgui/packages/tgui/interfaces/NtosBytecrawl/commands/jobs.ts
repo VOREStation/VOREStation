@@ -169,7 +169,7 @@ export function cmdCollect(args: readonly string[], ctx: CommandContext): void {
   const newCache = [...state.cache];
   const newJobs = state.jobs.filter((j) => !ready.includes(j));
   for (const j of ready) {
-    const cid = 'd' + j.id;
+    const cid = `d${j.id}`;
     newCache.push({ id: cid, gb: j.gb, type: j.type });
     print(`Collected ${cid}: ${j.gb.toFixed(2)}GB ${j.type}`, '#33ff33');
   }
