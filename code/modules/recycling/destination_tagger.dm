@@ -22,7 +22,7 @@
 
 /obj/item/destTagger/tgui_static_data(mob/user)
 	. = ..()
-	.["level_names"] = GLOB.using_map.zlevels
+	.["level_names"] = using_map.zlevels
 
 /obj/item/destTagger/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list(

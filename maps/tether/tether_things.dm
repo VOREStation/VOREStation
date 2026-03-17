@@ -44,8 +44,8 @@
 	. = ..()
 	teleport_x = x
 	teleport_y = y
-	for(var/z_num in GLOB.using_map.zlevels)
-		var/datum/map_z_level/Z = GLOB.using_map.zlevels[z_num]
+	for(var/z_num in using_map.zlevels)
+		var/datum/map_z_level/Z = using_map.zlevels[z_num]
 		if(Z.name == "Underdark")
 			teleport_z = Z.z
 
@@ -53,8 +53,8 @@
 	. = ..()
 	teleport_x = x
 	teleport_y = y
-	for(var/z_num in GLOB.using_map.zlevels)
-		var/datum/map_z_level/Z = GLOB.using_map.zlevels[z_num]
+	for(var/z_num in using_map.zlevels)
+		var/datum/map_z_level/Z = using_map.zlevels[z_num]
 		if(Z.name == "Mining Outpost")
 			teleport_z = Z.z
 

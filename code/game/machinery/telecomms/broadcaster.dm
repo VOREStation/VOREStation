@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		receive_information_delayed(signal)
 
 /obj/machinery/telecomms/broadcaster/receive_information_delayed(datum/signal/signal)
-	signal.data["level"] |= GLOB.using_map.get_map_levels(listening_level, TRUE, overmap_range)
+	signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
 	var/list/forced_radios
 	for(var/datum/weakref/wr in linked_radios_weakrefs)
@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		return
 
 	// Why did you use this subtype?
-	if(!GLOB.using_map.use_overmap)
+	if(!using_map.use_overmap)
 		return
 
 	// Is there a valid signal
@@ -166,7 +166,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		return
 
 	// Where are we able to hear from (and talk to, since we're AIO) anyway?
-	var/map_levels = GLOB.using_map.get_map_levels(z, TRUE, overmap_range)
+	var/map_levels = using_map.get_map_levels(z, TRUE, overmap_range)
 
 	//Bluespace can skip this check
 	if(signal.transmission_method != TRANSMISSION_BLUESPACE)
@@ -246,7 +246,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 		// For some reason level is both used as a list and not a list, and now it needs to be a list.
 		// Because this is a 'all in one' machine, we're gonna just cheat.
-		//signal.data["level"] = GLOB.using_map.contact_levels.Copy()
+		//signal.data["level"] = using_map.contact_levels.Copy()
 
 		if(signal.data["slow"] > 0)
 			addtimer(CALLBACK(src, PROC_REF(broadcast_signal), signal), signal.data["slow"], TIMER_DELETE_ME)

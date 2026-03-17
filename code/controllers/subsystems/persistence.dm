@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(persistence)
 	if(!A || (A.flag_check(AREA_FLAG_IS_NOT_PERSISTENT)))
 		return
 
-	if(!(T.z in GLOB.using_map.persist_levels))
+	if(!(T.z in using_map.persist_levels))
 		return
 
 	if(!tracking_values[track_type])

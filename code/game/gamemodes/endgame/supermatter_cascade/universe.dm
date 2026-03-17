@@ -87,7 +87,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 				switch(M.z)
 					if(0)	//inside a crate or something
 						var/turf/T = get_turf(M)
-						if(T && (T.z in GLOB.using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
+						if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
 							M.health = 0
 							M.set_stat(DEAD)
 					if(1)	//on a z-level 1 turf.
@@ -108,7 +108,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 	/* TODO
 	spawn(0)
 		for(var/datum/lighting_corner/L in world)
-			if(L.z in GLOB.using_map.admin_levels)
+			if(L.z in using_map.admin_levels)
 				L.update_lumcount(1,1,1)
 			else
 				L.update_lumcount(0.0, 0.4, 1)

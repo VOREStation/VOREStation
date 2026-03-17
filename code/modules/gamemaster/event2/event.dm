@@ -68,7 +68,7 @@ This allows for events that have their announcement happen after the end itself.
 // Returns the z-levels that are involved with the event.
 // In the future this might be handy for off-station events.
 /datum/event2/event/proc/get_location_z_levels(space_only = FALSE)
-	. = GLOB.using_map.station_levels.Copy()
+	. = using_map.station_levels.Copy()
 	if(space_only)
 		for(var/z_level in .)
 			if(is_planet_z_level(z_level))

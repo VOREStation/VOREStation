@@ -612,7 +612,7 @@
 				target.emagged = 0
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()
-				target.laws = new GLOB.using_map.default_law_type
+				target.laws = new using_map.default_law_type
 				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			else

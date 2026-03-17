@@ -12,7 +12,7 @@
 		dir = pick(GLOB.cardinal)
 
 	var/list/valid_z_levels = get_location_z_levels()
-	valid_z_levels -= GLOB.using_map.sealed_levels // Space levels only please!
+	valid_z_levels -= using_map.sealed_levels // Space levels only please!
 
 	// Check if any landmarks exist!
 	var/list/spawn_locations = list()

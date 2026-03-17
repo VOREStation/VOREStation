@@ -21,7 +21,7 @@
 
 		// For some reason level is both used as a list and not a list, and now it needs to be a list.
 		// Because this is a 'all in one' machine, we're gonna just cheat.
-		//signal.data["level"] = GLOB.using_map.contact_levels.Copy()
+		//signal.data["level"] = using_map.contact_levels.Copy()
 
 		// simulate the network lag if necessary
 		if(signal.data["slow"] > 0)

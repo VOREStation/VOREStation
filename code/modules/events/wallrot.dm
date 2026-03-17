@@ -7,7 +7,7 @@
 
 	// 100 attempts
 	for(var/i=0, i<100, i++)
-		var/z_level = pick(GLOB.using_map.station_levels)
+		var/z_level = pick(using_map.station_levels)
 		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), z_level)
 		if(istype(candidate, /turf/simulated/wall))
 			center = candidate
@@ -18,7 +18,7 @@
 
 /datum/event/wallrot/announce()
 	if(center)
-		GLOB.command_announcement.Announce("Harmful fungi detected on \the [station_name()] and [GLOB.using_map.facility_type] structures nearby [center.loc.name] may be contaminated.", "Biohazard Alert")
+		GLOB.command_announcement.Announce("Harmful fungi detected on \the [station_name()] and [using_map.facility_type] structures nearby [center.loc.name] may be contaminated.", "Biohazard Alert")
 
 /datum/event/wallrot/start()
 	spawn()

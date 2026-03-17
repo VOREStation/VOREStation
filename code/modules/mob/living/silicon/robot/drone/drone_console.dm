@@ -37,7 +37,7 @@
 	var/list/drones = list()
 	for(var/mob/living/silicon/robot/drone/D in GLOB.mob_list)
 		//VOREStation Edit - multiz lol
-		if(!(D.z in GLOB.using_map.get_map_levels(z, TRUE, 0)))
+		if(!(D.z in using_map.get_map_levels(z, TRUE, 0)))
 			continue
 		//VOREStation Edit - multiz lol
 		if(D.foreign_droid)

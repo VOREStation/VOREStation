@@ -30,7 +30,7 @@
 		switch(screen)
 			if(0) //Cover
 				dat+="<DIV ALIGN='center'>" + span_bold(span_giganteus("The Griffon")) + "</div>"
-				dat+="<DIV ALIGN='center'>" + span_normal("[GLOB.using_map.company_name]-standard newspaper, for use on [GLOB.using_map.company_name]© Space Facilities") + "</div><HR>"
+				dat+="<DIV ALIGN='center'>" + span_normal("[using_map.company_name]-standard newspaper, for use on [using_map.company_name]© Space Facilities") + "</div><HR>"
 				if(isemptylist(news_content))
 					if(important_message)
 						dat+="Contents:<BR><ul>" + span_bold(span_red("**") + "Important Security Announcement" + span_red("**")) + " " + span_nornal("\[page [pages+2]\]") + "<BR></ul>"

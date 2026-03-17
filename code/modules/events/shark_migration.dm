@@ -11,7 +11,7 @@
 	shark_cap = 1 + 1 ** severity // No more than this many at once regardless of waves. (2, 3, ?)
 
 /datum/event/shark_migration/start()
-	affecting_z -= GLOB.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/shark_migration/announce()

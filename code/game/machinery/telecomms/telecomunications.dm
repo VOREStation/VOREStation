@@ -313,7 +313,7 @@
 		return 1
 
 	//Where can we hear?
-	var/list/listening_levels = GLOB.using_map.get_map_levels(listening_level, TRUE, overmap_range)
+	var/list/listening_levels = using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
 	// We couldn't 'hear' it, maybe a relay linked to our hub can 'hear' it
 	if(!(signal.data["level"] in listening_levels))
@@ -396,7 +396,7 @@
 
 	// Add our level and send it back
 	if(can_send(signal))
-		signal.data["level"] |= GLOB.using_map.get_map_levels(listening_level)
+		signal.data["level"] |= using_map.get_map_levels(listening_level)
 
 // Checks to see if it can send/receive.
 
@@ -695,4 +695,4 @@
 	if(ad_hoc && src_z == dst_z)
 		return TRUE
 
-	return src_z in GLOB.using_map.get_map_levels(dst_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
+	return src_z in using_map.get_map_levels(dst_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)

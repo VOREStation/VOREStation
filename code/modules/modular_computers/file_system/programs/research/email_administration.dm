@@ -118,7 +118,7 @@
 			return TRUE
 
 		if("newaccount")
-			var/newdomain = tgui_input_list(ui.user,"Pick domain:", "Domain name", GLOB.using_map.usable_email_tlds, MAX_MESSAGE_LEN)
+			var/newdomain = tgui_input_list(ui.user,"Pick domain:", "Domain name", using_map.usable_email_tlds, MAX_MESSAGE_LEN)
 			if(!newdomain)
 				return TRUE
 			var/newlogin = tgui_input_text(ui.user,"Pick account name (@[newdomain]):", "Account name", null, 100)

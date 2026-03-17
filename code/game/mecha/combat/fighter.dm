@@ -66,7 +66,7 @@
 //We don't get lost quite as easy.
 /obj/mecha/combat/fighter/touch_map_edge()
 	//No overmap enabled or no driver to choose
-	if(!GLOB.using_map.use_overmap || !occupant || !can_ztravel())
+	if(!using_map.use_overmap || !occupant || !can_ztravel())
 		return ..()
 
 	var/obj/effect/overmap/visitable/our_ship = get_overmap_sector(z)

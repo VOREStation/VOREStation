@@ -34,7 +34,7 @@
 		if(4)
 			msg = "A passing derelict ship's drone defense systems have just activated. If any are sighted in the area, use caution."
 		if(5)
-			msg = "We're detecting a swarm of small objects approaching your [GLOB.using_map.facility_type].  Most likely a bunch of drones.  Please exercise caution if you see any."
+			msg = "We're detecting a swarm of small objects approaching your [using_map.facility_type].  Most likely a bunch of drones.  Please exercise caution if you see any."
 	GLOB.command_announcement.Announce(msg, "Rogue drone alert")
 
 /datum/event/rogue_drone/end()
@@ -43,7 +43,7 @@
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, D.loc)
 		sparks.start()
-		D.z = GLOB.using_map.admin_levels[1]
+		D.z = using_map.admin_levels[1]
 		D.loot_list = list()
 
 		qdel(D)

@@ -50,7 +50,7 @@
 	. = ..()
 
 	var/z = get_z(user)
-	var/list/map_levels = GLOB.using_map.get_map_levels(z)
+	var/list/map_levels = using_map.get_map_levels(z)
 
 	// TODO: Move these to a cache, similar to cameras
 	var/alarms[0]
@@ -72,7 +72,7 @@
 	var/list/data = list()
 
 	var/z = get_z(user)
-	var/list/map_levels = GLOB.using_map.get_map_levels(z)
+	var/list/map_levels = using_map.get_map_levels(z)
 	data["map_levels"] = map_levels
 
 	return data

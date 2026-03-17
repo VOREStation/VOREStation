@@ -9,8 +9,8 @@
 	var/active = 0
 	var/bellied = 0
 	var/map_name = "n/a"
-	if(GLOB.using_map && GLOB.using_map.full_name)
-		map_name = GLOB.using_map.full_name
+	if(using_map && using_map.full_name)
+		map_name = using_map.full_name
 
 	for(var/client/C in GLOB.clients)
 		counts++

@@ -93,7 +93,7 @@
  */
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
 	if(!uncapped)
-		if((z in GLOB.using_map.station_levels) && CONFIG_GET(flag/pixel_size_limit))
+		if((z in using_map.station_levels) && CONFIG_GET(flag/pixel_size_limit))
 			var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
 			var/size_cap = world.icon_size * RESIZE_MAXIMUM //Grace for non-humanoids so they don't get forcibly shrunk.
 			if(size_diff - size_cap  > 0)

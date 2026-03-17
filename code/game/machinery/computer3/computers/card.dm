@@ -332,7 +332,7 @@
 	return get_all_centcom_jobs() + "Custom"
 
 /datum/file/program/card_comp/centcom/accessblock()
-	var/accesses = "<h5>[GLOB.using_map.boss_name]:</h5>"
+	var/accesses = "<h5>[using_map.boss_name]:</h5>"
 	for(var/A in get_all_centcom_access())
 		if(A in writer.GetAccess())
 			accesses += topic_link(src,"access=[A]",span_red("[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]")) + " "

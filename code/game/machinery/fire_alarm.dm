@@ -49,7 +49,7 @@ FIRE ALARM
 	if(!pixel_x && !pixel_y)
 		offset_alarm()
 
-	if(z in GLOB.using_map.contact_levels)
+	if(z in using_map.contact_levels)
 		set_security_level(GLOB.security_level ? get_security_level() : "green")
 
 /obj/machinery/firealarm/proc/offset_alarm()

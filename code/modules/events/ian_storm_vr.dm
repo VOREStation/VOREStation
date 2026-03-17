@@ -4,9 +4,9 @@
 	endWhen = 3
 
 /datum/event/ianstorm/announce()
-	GLOB.command_announcement.Announce("It has come to our attention that the [GLOB.using_map.facility_type] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert", 'sound/AI/ian_storm.ogg')
+	GLOB.command_announcement.Announce("It has come to our attention that the [using_map.facility_type] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert", 'sound/AI/ian_storm.ogg')
 	spawn(7 SECONDS)
-		GLOB.command_announcement.Announce("Wait. No, that's wrong. The [GLOB.using_map.facility_type] passed through an IAN storm!.", "Ian Alert")
+		GLOB.command_announcement.Announce("Wait. No, that's wrong. The [using_map.facility_type] passed through an IAN storm!.", "Ian Alert")
 
 /datum/event/ianstorm/start()
 	spawn()
@@ -14,7 +14,7 @@
 			var/turf/T = get_turf(C)
 			if(!T)
 				continue
-			if(!(T.z in GLOB.using_map.station_levels))
+			if(!(T.z in using_map.station_levels))
 				continue
 			var/area/A = get_area(T)
 			if(A.flag_check(RAD_SHIELDED | BLUE_SHIELDED))

@@ -27,17 +27,17 @@
 	"'Here kitty kitty' no longer preferred tajaran retrieval technique.",\
 	"Man travels 7000 light years to retrieve lost hankie, 'It was my favourite'.",\
 	"New bowling lane that shoots mini-meteors at bowlers very popular.",\
-	"[pick("Unathi","Spacer")] gets tattoo of "+GLOB.using_map.starsys_name+" on chest '[pick("[GLOB.using_map.boss_short]","star","starship","asteroid")] tickles most'.",\
+	"[pick("Unathi","Spacer")] gets tattoo of "+using_map.starsys_name+" on chest '[pick("[using_map.boss_short]","star","starship","asteroid")] tickles most'.",\
 	"Skrell marries computer; wedding attended by 100 modems.",\
 	JOB_CHEF + " reports successfully using harmonica as cheese grater.",\
-	"[GLOB.using_map.company_name] invents handkerchief that says 'Bless you' after sneeze.",\
+	"[using_map.company_name] invents handkerchief that says 'Bless you' after sneeze.",\
 	"Clone accused of posing for other clones's school photo.",\
 	"Clone accused of stealing other clones's employee of the month award.",\
 	"Woman robs station with hair dryer; crewmen love new style.",\
 	"This space for rent.",\
 	"[affected_dest.name] Baker Wins Pickled Crumpet Toss Three Years Running",\
 	"Skrell Scientist Discovers Abacus Can Be Used To Dry Towels",\
-	"Survey: 'Cheese Louise' Voted Best Pizza Restaurant In [GLOB.using_map.starsys_name]",\
+	"Survey: 'Cheese Louise' Voted Best Pizza Restaurant In [using_map.starsys_name]",\
 	"I Was Framed, jokes [affected_dest.name] artist",\
 	"Mysterious Loud Rumbling Noises In [affected_dest.name] Found To Be Mysterious Loud Rumblings",\
 	"Alien ambassador becomes lost on [affected_dest.name], refuses to ask for directions",\

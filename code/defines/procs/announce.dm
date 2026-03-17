@@ -44,7 +44,7 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 
 	var/list/zlevels
 	if(zlevel)
-		zlevels = GLOB.using_map.get_map_levels(zlevel, TRUE)
+		zlevels = using_map.get_map_levels(zlevel, TRUE)
 
 	Message(message, message_title, zlevels)
 	if(do_newscast)
@@ -143,7 +143,7 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 
 /proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message, var/channel = "Common", var/zlevel)
 	if (SSticker.current_state == GAME_STATE_PLAYING)
-		var/list/zlevels = zlevel ? GLOB.using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
+		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
 		AnnounceArrivalSimple(character.real_name, rank, join_message, channel, zlevels)

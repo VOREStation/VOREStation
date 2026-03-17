@@ -12,7 +12,7 @@
 
 /obj/item/circuitboard/security/Initialize(mapload)
 	. = ..()
-	network = GLOB.using_map.station_networks
+	network = using_map.station_networks
 
 /obj/item/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")

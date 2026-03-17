@@ -35,7 +35,7 @@
 
 /datum/event2/event/electrical_fault/set_up()
 	valid_z_levels = get_location_z_levels()
-	valid_z_levels -= GLOB.using_map.sealed_levels // Space levels only please!
+	valid_z_levels -= using_map.sealed_levels // Space levels only please!
 
 	valid_apcs = list()
 	for(var/obj/machinery/power/apc/A in GLOB.apcs)

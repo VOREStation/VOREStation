@@ -111,7 +111,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			for(var/mob/living/carbon/human/H in GLOB.mob_list)
 				var/turf/T = get_turf(H)
 				var/security = 0
-				if((T in GLOB.using_map.admin_levels) || GLOB.prisonwarped.Find(H))
+				if((T in using_map.admin_levels) || GLOB.prisonwarped.Find(H))
 				//don't warp them if they aren't ready or are already there
 					continue
 				H.Paralyse(5)
@@ -263,7 +263,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 							step_rand(W)
 
 					var/area/A = get_area(M)
-					if(A.requires_power && !A.always_unpowered && A.power_light && (A.z in GLOB.using_map.player_levels))
+					if(A.requires_power && !A.always_unpowered && A.power_light && (A.z in using_map.player_levels))
 						affected_areas |= get_area(M)
 
 			affected_mobs |= holder

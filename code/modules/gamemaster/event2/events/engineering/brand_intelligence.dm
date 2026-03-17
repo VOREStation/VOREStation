@@ -20,7 +20,7 @@
 
 /datum/event2/event/brand_intelligence/set_up()
 	for(var/obj/machinery/vending/V in GLOB.machines)
-		if(!(V.z in GLOB.using_map.station_levels))
+		if(!(V.z in using_map.station_levels))
 			continue
 		vending_machines += V
 

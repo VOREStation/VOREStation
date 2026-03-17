@@ -16,12 +16,12 @@ GLOBAL_VAR(church_name)
 	return name
 
 /proc/command_name()
-	if(istype(GLOB.using_map))
-		return GLOB.using_map.boss_name
+	if(istype(using_map))
+		return using_map.boss_name
 
 /proc/change_command_name(var/name)
 
-	GLOB.using_map.boss_name = name
+	using_map.boss_name = name
 
 	return name
 
@@ -38,11 +38,11 @@ GLOBAL_VAR(religion_name)
 	return capitalize(name)
 
 /proc/system_name()
-	return GLOB.using_map.starsys_name
+	return using_map.starsys_name
 
 /proc/station_name()
-	if (GLOB.using_map.station_name)
-		return GLOB.using_map.station_name
+	if (using_map.station_name)
+		return using_map.station_name
 
 	var/random = rand(1,5)
 	var/name = ""
@@ -102,7 +102,7 @@ GLOBAL_VAR(religion_name)
 // Is this even used?
 /proc/world_name(var/name)
 
-	GLOB.using_map.station_name = name
+	using_map.station_name = name
 
 	if (config && CONFIG_GET(string/servername))
 		world.name = "[CONFIG_GET(string/servername)]: [name]"

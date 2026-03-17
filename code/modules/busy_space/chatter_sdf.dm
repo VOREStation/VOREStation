@@ -3,10 +3,10 @@
 	switch(phase)
 		if(1)
 			var/statusupdate = pick("nothing unusual so far","nothing of note","everything looks clear so far","ran off some [pick("pirates","scavengers")] near route [pick(1,100)], [pick("no","minor")] damage sustained, continuing patrol","situation normal, no suspicious activity yet","minor incident on route [pick(1,100)]","Code 7-X [pick("on route","in sector")] [pick(1,100)], situation is under control","seeing a lot of traffic on route [pick(1,100)]","caught a couple of smugglers [pick("on route","in sector")] [pick(1,100)]","sustained some damage in a skirmish just now, we're heading back for repairs")
-			SSatc.msg("[GLOB.using_map.starsys_name] Defense Control,  [combined_first_name] reporting in, [statusupdate], over.","[comm_first_name]")
+			SSatc.msg("[using_map.starsys_name] Defense Control,  [combined_first_name] reporting in, [statusupdate], over.","[comm_first_name]")
 			next()
 		else
-			SSatc.msg("[GLOB.using_map.starsys_name] Defense Control copies, [combined_first_name]. Keep us updated, out.","[GLOB.using_map.starsys_name] Defense Control")
+			SSatc.msg("[using_map.starsys_name] Defense Control copies, [combined_first_name]. Keep us updated, out.","[using_map.starsys_name] Defense Control")
 			finish()
 
 /datum/atc_chatter/sdfendingpatrol/squak()
@@ -55,7 +55,7 @@
 					SSatc.msg("Control this is [combined_first_name], we're getting some interference in our area. [pick("How's our line?","Do you read?","How copy, over?")]","[comm_first_name]")
 					next()
 				if(2)
-					SSatc.msg("Control reads you loud and clear [combined_first_name].","[GLOB.using_map.starsys_name] Defense Control")
+					SSatc.msg("Control reads you loud and clear [combined_first_name].","[using_map.starsys_name] Defense Control")
 					next()
 				else
 					SSatc.msg("[pick("Copy that","Thanks,","Roger that")] Control. [combined_first_name] out.","[comm_first_name]")

@@ -440,7 +440,7 @@
 		log_game("Extra z-level [src] has no associated map datum")
 		return
 
-	new associated_map_datum(GLOB.using_map, z)
+	new associated_map_datum(using_map, z)
 	return ..()
 
 /datum/map_z_level/common_lateload/New(datum/map/map, mapZ)

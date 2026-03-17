@@ -243,7 +243,7 @@
 
 	var/map_cache_key = "[T_z]"
 	var/badmap = FALSE
-	if(!pinging && GLOB.using_map && !(T_z in GLOB.using_map.mappable_levels))
+	if(!pinging && using_map && !(T_z in using_map.mappable_levels))
 		map_cache_key = "bad"
 		badmap = TRUE
 

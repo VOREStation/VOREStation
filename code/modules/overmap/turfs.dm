@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/unsimulated/map/edge/LateInitialize()
-	//This could be done by using the GLOB.using_map.overmap_size much faster, HOWEVER, doing it programatically to 'find'
+	//This could be done by using the using_map.overmap_size much faster, HOWEVER, doing it programatically to 'find'
 	//  the edges this way allows for 'sub overmaps' elsewhere and whatnot.
 	for(var/side in GLOB.alldirs) //The order of this list is relevant: It should definitely break on finding a GLOB.cardinal FIRST.
 		var/turf/T = get_step(src, side)
@@ -56,11 +56,11 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	name = "[x]-[y]"
 	var/list/numbers = list()
 
-	if(x == 1 || x == GLOB.using_map.overmap_size)
+	if(x == 1 || x == using_map.overmap_size)
 		numbers += list("[round(y/10)]","[round(y%10)]")
-		if(y == 1 || y == GLOB.using_map.overmap_size)
+		if(y == 1 || y == using_map.overmap_size)
 			numbers += "-"
-	if(y == 1 || y == GLOB.using_map.overmap_size)
+	if(y == 1 || y == using_map.overmap_size)
 		numbers += list("[round(x/10)]","[round(x%10)]")
 
 	for(var/i = 1 to numbers.len)
@@ -70,12 +70,12 @@ GLOBAL_LIST_EMPTY(map_sectors)
 		if(y == 1)
 			I.pixel_y = 3
 			I.pixel_x = 5*i + 4
-		if(y == GLOB.using_map.overmap_size)
+		if(y == using_map.overmap_size)
 			I.pixel_y = world.icon_size - 9
 			I.pixel_x = 5*i + 4
 		if(x == 1)
 			I.pixel_x = 5*i - 2
-		if(x == GLOB.using_map.overmap_size)
+		if(x == using_map.overmap_size)
 			I.pixel_x = 5*i + 2
 		add_overlay(I)
 	AddElement(/datum/element/turf_z_transparency)

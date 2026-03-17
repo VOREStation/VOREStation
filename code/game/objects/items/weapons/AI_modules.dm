@@ -291,7 +291,7 @@ AI MODULES
 // VOREstation edit: use map default laws
 /obj/item/aiModule/reset/Initialize(mapload)
 	. = ..()
-	laws = new GLOB.using_map.default_law_type // Pull from loaded map
+	laws = new using_map.default_law_type // Pull from loaded map
 
 /obj/item/aiModule/reset/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	log_law_changes(target, sender)

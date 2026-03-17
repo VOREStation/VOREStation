@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(planets)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/planets/proc/createPlanets()
-	var/list/planet_datums = GLOB.using_map.planet_datums_to_make
+	var/list/planet_datums = using_map.planet_datums_to_make
 	for(var/P in planet_datums)
 		var/datum/planet/NP = new P()
 		planets += NP

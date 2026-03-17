@@ -112,7 +112,7 @@
 			data["tempMsg"] = "Telepad undergoing physical maintenance operations."
 
 		//We'll base our options on connected z's or overmap
-		data["sectorOptions"] = GLOB.using_map.get_map_levels(z, TRUE, overmap_range)
+		data["sectorOptions"] = using_map.get_map_levels(z, TRUE, overmap_range)
 
 		data["lastTeleData"] = null
 		if(last_tele_data)
@@ -141,7 +141,7 @@
 
 		if("setz")
 			var/new_z = text2num(params["setz"])
-			if(new_z in GLOB.using_map.player_levels)
+			if(new_z in using_map.player_levels)
 				z_co = new_z
 
 		if("ejectGPS")
@@ -357,7 +357,7 @@
 		telefail()
 		temp_msg = "ERROR! No distance selected!"
 		return
-	if(!(z_co in GLOB.using_map.player_levels))
+	if(!(z_co in using_map.player_levels))
 		telefail()
 		temp_msg = "ERROR! Sector is outside known time and space!"
 		return

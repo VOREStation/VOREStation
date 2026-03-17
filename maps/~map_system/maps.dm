@@ -1,11 +1,11 @@
-GLOBAL_DATUM_INIT(using_map, /datum/map, new USING_MAP_DATUM)
+var/datum/map/using_map = new USING_MAP_DATUM
 GLOBAL_LIST_EMPTY(all_maps)
 
 /hook/startup/proc/initialise_map_list()
 	for(var/type in subtypesof(/datum/map))
 		var/datum/map/M
-		if(type == GLOB.using_map.type)
-			M = GLOB.using_map
+		if(type == using_map.type)
+			M = using_map
 			M.setup_map()
 		else
 			M = new type
@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 			log_mapping("Map '[M]' does not have a defined path, not adding to map list!")
 		else
 			GLOB.all_maps[M.path] = M
-	GLOB.admin_departments += GLOB.using_map.boss_name
+	GLOB.admin_departments += using_map.boss_name
 	return 1
 
 
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 
 // By default transition randomly to another zlevel
 /datum/map/proc/get_transit_zlevel(var/current_z_level)
-	var/list/candidates = GLOB.using_map.accessible_z_levels.Copy()
+	var/list/candidates = using_map.accessible_z_levels.Copy()
 	candidates.Remove(num2text(current_z_level))
 
 	if(!candidates.len)
@@ -353,8 +353,8 @@ GLOBAL_LIST_EMPTY(all_maps)
 	stack_trace("Attempt to delete a map_z_level instance [log_info_line(src)]")
 	if(!force)
 		return QDEL_HINT_LETMELIVE // No.
-	if (GLOB.using_map.zlevels["[z]"] == src)
-		GLOB.using_map.zlevels -= "[z]"
+	if (using_map.zlevels["[z]"] == src)
+		using_map.zlevels -= "[z]"
 	return ..()
 
 /datum/map/proc/get_map_info()

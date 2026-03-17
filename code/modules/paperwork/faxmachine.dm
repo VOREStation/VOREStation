@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY_TYPED(allfaxes, /obj/machinery/photocopier/faxmachine)
-GLOBAL_LIST_INIT(admin_departments, list("Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply", "Talon Headquarters"))
+GLOBAL_LIST_INIT(admin_departments, list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply", "Talon Headquarters"))
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_VAR(last_fax_role_request)
 
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.allfaxes += src
-	if(!destination) destination = "[GLOB.using_map.boss_name]"
+	if(!destination) destination = "[using_map.boss_name]"
 	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
 
@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 	data["isRobot"] = isrobot(user)
 	data["adminDepartments"] = GLOB.admin_departments
 
-	data["bossName"] = GLOB.using_map.boss_name
+	data["bossName"] = using_map.boss_name
 	data["copyItem"] = copyitem
 	data["cooldown"] = sendcooldown
 	data["destination"] = destination
@@ -382,12 +382,12 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	//message badmins that a fax has arrived
 
 	// Sadly, we can't use a switch statement here due to not using a constant value for the current map's centcom name.
-	if(destination == GLOB.using_map.boss_name)
-		message_admins(sender, "[uppertext(GLOB.using_map.boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
+	if(destination == using_map.boss_name)
+		message_admins(sender, "[uppertext(using_map.boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
 	else if(destination == "Virgo-Prime Governmental Authority")
 		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
 	else if(destination == "Supply")
-		message_admins(sender, "[uppertext(GLOB.using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
+		message_admins(sender, "[uppertext(using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else if(destination == "Talon Headquarters")
 		message_admins(sender, "TALON HEADQUARTERS FAX", rcvdcopy, "CentComFaxReply", "#e96046")
 	else

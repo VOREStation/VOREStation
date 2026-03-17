@@ -320,7 +320,7 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 		s["players"] = 0
 		s["stationtime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
-		s["map"] = strip_improper(GLOB.using_map.full_name) //Done to remove the non-UTF-8 text macros
+		s["map"] = strip_improper(using_map.full_name) //Done to remove the non-UTF-8 text macros
 
 		if(input["status"] == "2") // Shiny new hip status.
 			var/active = 0

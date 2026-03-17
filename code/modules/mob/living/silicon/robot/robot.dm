@@ -252,7 +252,7 @@
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
-	laws = new GLOB.using_map.default_law_type //use map's default
+	laws = new using_map.default_law_type //use map's default
 	additional_law_channels["Binary"] = "#b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
@@ -1500,7 +1500,7 @@
 
 /mob/living/silicon/robot/onTransitZ(old_z, new_z)
 	if(shell)
-		if(deployed && GLOB.using_map.ai_shell_restricted && !(new_z in GLOB.using_map.ai_shell_allowed_levels))
+		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
 			to_chat(src, span_warning("Your connection with the shell is suddenly interrupted!"))
 			undeploy()
 	..()

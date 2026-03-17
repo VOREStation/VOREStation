@@ -53,7 +53,7 @@
 		if(MS.z in get_location_z_levels())
 			MS.spamfilter.Cut()
 			for (var/i = 1, i <= MS.spamfilter_limit, i++)
-				MS.spamfilter += pick("warble","help","almach","ai","liberty","freedom","drugs", "[GLOB.using_map.station_short]", \
+				MS.spamfilter += pick("warble","help","almach","ai","liberty","freedom","drugs", "[using_map.station_short]", \
 					"admin","sol","security","meow","_","monkey","-","moron","pizza","message","spam",\
 					"director", "Hello", "Hi!"," ","nuke","crate","taj","xeno")
 

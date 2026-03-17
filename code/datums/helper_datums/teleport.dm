@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 		if(zlevel)
 			zlevels = list(zlevel)
 		else
-			zlevels = GLOB.using_map.station_levels
+			zlevels = using_map.station_levels
 
 	var/cycles = 1000
 

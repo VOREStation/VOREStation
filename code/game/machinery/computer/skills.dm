@@ -73,7 +73,7 @@
 /obj/machinery/computer/skills/attack_hand(mob/user as mob)
 	if(..())
 		return
-	if (GLOB.using_map && !(src.z in GLOB.using_map.contact_levels))
+	if (using_map && !(src.z in using_map.contact_levels))
 		to_chat(user, span_danger("Unable to establish a connection:") + " You're too far away from the station!")
 		return
 	tgui_interact(user)

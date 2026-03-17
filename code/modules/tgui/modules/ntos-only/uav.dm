@@ -134,8 +134,8 @@
 		else
 			return 0
 
-	var/list/zlevels_in_range = GLOB.using_map.get_map_levels(their_z, FALSE)
-	var/list/zlevels_in_long_range = GLOB.using_map.get_map_levels(their_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
+	var/list/zlevels_in_range = using_map.get_map_levels(their_z, FALSE)
+	var/list/zlevels_in_long_range = using_map.get_map_levels(their_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
 	var/their_signal = 0
 	// Measure z-distance between the AM passed in and the nearest relay
 	for(var/obj/machinery/ntnet_relay/R as anything in GLOB.ntnet_global.relays)

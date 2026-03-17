@@ -344,9 +344,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/key in areas)
 		var/area/A = areas[key]
-		if(A.z in GLOB.using_map?.secret_levels)
+		if(A.z in using_map?.secret_levels)
 			areas -= key
-		if(A.z in GLOB.using_map?.hidden_levels)
+		if(A.z in using_map?.hidden_levels)
 			areas -= key
 
 	return areas
@@ -358,9 +358,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/key in mobs)
 		var/mobz = get_z(mobs[key])
-		if(mobz in GLOB.using_map?.secret_levels)
+		if(mobz in using_map?.secret_levels)
 			mobs -= key
-		if(mobz in GLOB.using_map?.hidden_levels)
+		if(mobz in using_map?.hidden_levels)
 			mobs -= key
 
 	return mobs
@@ -420,7 +420,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_rights_for(client, R_HOLDER))
 		return ..()
 
-	if(get_z(destination) in GLOB.using_map?.secret_levels)
+	if(get_z(destination) in using_map?.secret_levels)
 		to_chat(src,span_warning("Sorry, that z-level does not allow ghosts."))
 		if(following)
 			stop_following()
@@ -440,7 +440,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_rights_for(client, R_HOLDER))
 		return ..()
 
-	if(get_z(newloc) in GLOB.using_map?.secret_levels)
+	if(get_z(newloc) in using_map?.secret_levels)
 		to_chat(src,span_warning("Sorry, that z-level does not allow ghosts."))
 		if(following)
 			stop_following()
@@ -457,7 +457,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_holy(targetloc))
 		to_chat(src, span_warning("You cannot follow a mob standing on holy grounds!"))
 		return
-	if(get_z(target) in GLOB.using_map?.secret_levels)
+	if(get_z(target) in using_map?.secret_levels)
 		to_chat(src, span_warning("Sorry, that target is in an area that ghosts aren't allowed to go."))
 		return
 	/*if(target != src)

@@ -68,16 +68,16 @@ SUBSYSTEM_DEF(atc)
 /datum/controller/subsystem/atc/proc/reroute_traffic(var/yes = 1,var/silent = FALSE)
 	if(yes)
 		if(!squelched && !silent)
-			msg("Rerouting traffic away from [GLOB.using_map.station_name].")
+			msg("Rerouting traffic away from [using_map.station_name].")
 		squelched = 1
 	else
 		if(squelched && !silent)
-			msg("Resuming normal traffic routing around [GLOB.using_map.station_name].")
+			msg("Resuming normal traffic routing around [using_map.station_name].")
 		squelched = 0
 
 /datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
 	ASSERT(message)
-	GLOB.global_announcer.autosay("[message]", sender ? sender : "[GLOB.using_map.dock_name] Control")
+	GLOB.global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
 
 /datum/controller/subsystem/atc/proc/is_squelched()
 	return squelched

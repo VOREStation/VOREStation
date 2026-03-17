@@ -6,7 +6,7 @@
 	var/exit_landmark
 
 /obj/structure/toilet/Initialize(mapload)
-	if(z in GLOB.using_map.map_levels)
+	if(z in using_map.map_levels)
 		teleplumbed = TRUE
 		exit_landmark = locate(/obj/effect/landmark/teleplumb_exit)
 		if(teleplumbed && exit_landmark)

@@ -544,7 +544,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	//Nothing handled any sort of remote radio-ing and returned before now, just squawk on this zlevel.
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 		src, message_pieces, displayname, jobname, real_name, M.voice_name,
-		filter_type, signal.data["compression"], GLOB.using_map.get_map_levels(pos_z), connection.frequency, verb)
+		filter_type, signal.data["compression"], using_map.get_map_levels(pos_z), connection.frequency, verb)
 
 
 /obj/item/radio/hear_talk(mob/M as mob, list/message_pieces, var/verb = "says")

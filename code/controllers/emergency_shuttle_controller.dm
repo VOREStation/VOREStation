@@ -57,9 +57,9 @@
 			var/estimated_time = round(estimate_launch_time()/60,1)
 
 			if (evac)
-				emergency_shuttle_docked.Announce(replacetext(replacetext(GLOB.using_map.emergency_shuttle_docked_message, "%dock_name%", "[GLOB.using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+				emergency_shuttle_docked.Announce(replacetext(replacetext(using_map.emergency_shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
 			else
-				GLOB.priority_announcement.Announce(replacetext(replacetext(GLOB.using_map.shuttle_docked_message, "%dock_name%", "[GLOB.using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramarrived.ogg') //VOREStation Edit - TTS
+				GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramarrived.ogg') //VOREStation Edit - TTS
 
 		//arm the escape pods
 		if (evac)
@@ -96,7 +96,7 @@
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	evac = 1
-	emergency_shuttle_called.Announce(replacetext(GLOB.using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
+	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
 			A.readyalert()
@@ -116,7 +116,7 @@
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
-	GLOB.priority_announcement.Announce(replacetext(replacetext(GLOB.using_map.shuttle_called_message, "%dock_name%", "[GLOB.using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg')
+	GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg')
 	SSatc.shift_ending()
 
 //recalls the shuttle
@@ -127,14 +127,14 @@
 	shuttle.cancel_launch(src)
 
 	if (evac)
-		emergency_shuttle_recalled.Announce(GLOB.using_map.emergency_shuttle_recall_message)
+		emergency_shuttle_recalled.Announce(using_map.emergency_shuttle_recall_message)
 
 		for(var/area/A in world)
 			if(istype(A, /area/hallway))
 				A.readyreset()
 		evac = 0
 	else
-		GLOB.priority_announcement.Announce(GLOB.using_map.shuttle_recall_message)
+		GLOB.priority_announcement.Announce(using_map.shuttle_recall_message)
 
 /datum/emergency_shuttle_controller/proc/can_call()
 	if (!GLOB.universe.OnShuttleCall(null))

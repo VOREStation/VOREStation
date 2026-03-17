@@ -53,7 +53,7 @@
 		to_chat(H, span_warning("You cannot teleport into solid walls."))
 		return 0
 
-	if(T.z in GLOB.using_map.admin_levels)
+	if(T.z in using_map.admin_levels)
 		to_chat(H, span_warning("You cannot use your teleporter on this Z-level."))
 		return 0
 

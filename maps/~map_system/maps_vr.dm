@@ -5,10 +5,10 @@
 	var/list/lateload_gb_west = list()
 
 /datum/controller/subsystem/mapping/loadLateMaps()
-	if(GLOB.using_map.type != /datum/map/groundbase)
+	if(using_map.type != /datum/map/groundbase)
 		return ..()
 
-	var/list/workload = list(GLOB.using_map.lateload_gb_north, GLOB.using_map.lateload_gb_south, GLOB.using_map.lateload_gb_east, GLOB.using_map.lateload_gb_west)
+	var/list/workload = list(using_map.lateload_gb_north, using_map.lateload_gb_south, using_map.lateload_gb_east, using_map.lateload_gb_west)
 
 	for(var/list/current_sector in workload)
 		if(LAZYLEN(current_sector)) //Just copied from gateway picking, this is so we can have a kind of OM map version of the same concept.

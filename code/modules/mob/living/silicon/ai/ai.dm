@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		if (istype(L, /datum/ai_laws))
 			laws = L
 	else
-		laws = new GLOB.using_map.default_law_type
+		laws = new using_map.default_law_type
 
 	aiMulti = new(src)
 	aiRadio = new(src)
@@ -434,12 +434,12 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	if(emergency_message_cooldown)
 		to_chat(src, span_warning("Arrays recycling. Please stand by."))
 		return
-	var/input = tgui_input_text(src, "Please choose a message to transmit to [GLOB.using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "", MAX_MESSAGE_LEN)
+	var/input = tgui_input_text(src, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
 	CentCom_announce(input, src)
 	to_chat(src, span_notice("Message transmitted."))
-	log_game("[key_name(src)] has made an IA [GLOB.using_map.boss_short] announcement: [input]")
+	log_game("[key_name(src)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0

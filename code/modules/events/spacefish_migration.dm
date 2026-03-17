@@ -26,7 +26,7 @@
 	fish_cap = fish_base_cap + fish_cap_mult ** severity // No more than this many at once regardless of waves. (5, 11, 29)
 
 /datum/event/spacefish_migration/start()
-	affecting_z -= GLOB.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/spacefish_migration/announce()

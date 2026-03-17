@@ -377,7 +377,7 @@ GLOBAL_VAR(bomb_set)
 
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
-	if(bomb_location && (bomb_location.z in GLOB.using_map.station_levels))
+	if(bomb_location && (bomb_location.z in using_map.station_levels))
 		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
 			off_station = 1
 	else
@@ -402,7 +402,7 @@ GLOBAL_VAR(bomb_set)
 						switch(M.z)
 							if(0)	//inside a crate or something
 								var/turf/T = get_turf(M)
-								if(T && (T.z in GLOB.using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
+								if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
 									M.health = 0
 									M.set_stat(DEAD)
 							if(1)	//on a z-level 1 turf.

@@ -148,7 +148,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 
 	return list(
 				"disabled" = CONFIG_GET(flag/disable_player_mice),
-				"bad_turf" = (!T || (T.z in GLOB.using_map.admin_levels)),
+				"bad_turf" = (!T || (T.z in using_map.admin_levels)),
 				"respawn_time" = timedifference_mouse_text,
 				"found_vents" = found_vents
 			)
@@ -202,7 +202,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 		if(player.soulgem?.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_GHOSTS, TRUE))
 			soulcatcher_vore_active = TRUE
 
-		if(!player.no_vore && (get_z(player) in GLOB.using_map.station_levels))
+		if(!player.no_vore && (get_z(player) in using_map.station_levels))
 			if(ishuman(player))
 				var/mob/living/carbon/human/H = player
 				if(H.latejoin_vore)
