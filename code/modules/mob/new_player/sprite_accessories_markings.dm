@@ -3122,7 +3122,7 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/marking/moreeyes
-	name = "Extra Eyes"
+	name = "More Eyes"
 	icon_state = "moreeyes"
 	body_parts = list(BP_HEAD)
 	color_blend_mode = ICON_MULTIPLY
