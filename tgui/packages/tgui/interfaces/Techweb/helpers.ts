@@ -1,4 +1,3 @@
-import { sanitizeCssClassName } from 'common/css_sanity';
 import { useBackend } from 'tgui/backend';
 import type { NodeCache, TechWebData } from './types';
 
@@ -59,9 +58,7 @@ function selectRemappedStaticData(data: TechWebData) {
     const [name, classes] = data.static_data.design_cache[id];
     design_cache[remapId(id)] = {
       name: name,
-      class: classes.startsWith('design')
-        ? classes
-        : `design32x32 ${sanitizeCssClassName(classes)}`,
+      class: classes.startsWith('design') ? classes : `design32x32 ${classes}`,
     };
   }
 
