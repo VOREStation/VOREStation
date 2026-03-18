@@ -36,7 +36,7 @@
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message(span_notice("[global.using_map.boss_name] will not allow the Special Operations shuttle to launch yet."))
+			C.visible_message(span_notice("[using_map.boss_name] will not allow the Special Operations shuttle to launch yet."))
 			if (((world.time - reset_time)/10) > 60)
 				C.visible_message(span_notice("[-((world.time - reset_time)/10)/60] minutes remain!"))
 			else

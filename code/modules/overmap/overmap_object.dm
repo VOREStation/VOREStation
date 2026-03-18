@@ -37,7 +37,7 @@
 
 /obj/effect/overmap/Initialize(mapload)
 	. = ..()
-	if(!global.using_map.use_overmap)
+	if(!using_map.use_overmap)
 		return INITIALIZE_HINT_QDEL
 
 	if(render_map) // Initialize map objects
