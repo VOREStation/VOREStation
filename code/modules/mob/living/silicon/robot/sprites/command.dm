@@ -64,9 +64,11 @@
 	sprite_icon_state = "borgi"
 	has_eye_light_sprites = TRUE
 
-/datum/robot_sprite/dogborg/tall/command/tall
+/datum/robot_sprite/dogborg/tall/command
 	sprite_hud_icon_state = "clerical"
 	module_type = "Command"
+
+/datum/robot_sprite/dogborg/tall/command/tall
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	icon_x = 32
 	pixel_x = 0
