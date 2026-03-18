@@ -229,3 +229,17 @@
   Will:
   - code_imp: Slime research point unittest
   - bugfix: light pink slime cores lacked a destructive analyzer point value
+2026-03-16:
+  Kashargul:
+  - code_imp: convert more globals to GLOBs
+  - bugfix: flags some more wall items as what they are
+2026-03-17:
+  Diana:
+  - bugfix: Attempting to move while handcuffed and being pulled will no longer result
+      in a crash.
+  Guti:
+  - qol: Normal anomalies can now be scanned with the anomaly scanner for it's frequencies.
+  - qol: The anomaly scanner will indicate the user to use a releaser, if used on
+      a core.
+  - qol: Added particle descriptions when examining the anomaly scanner.
+  - bugfix: Fixed Anomalis spawning without PDA
