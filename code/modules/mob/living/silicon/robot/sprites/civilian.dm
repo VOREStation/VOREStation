@@ -451,21 +451,21 @@
 	sprite_icon_state = "honkborg"
 	has_eye_light_sprites = TRUE
 
-/datum/robot_sprite/dogborg/tall/clown
+/datum/robot_sprite/dogborg/tall/clown/tall
 	module_type = "Clown"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
+	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/clown/k4t
+/datum/robot_sprite/dogborg/tall/clown/tall/k4t
 	name = "K4T"
 	sprite_icon_state = "k4tclown"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
-	icon_x = 32
 
-/datum/robot_sprite/dogborg/tall/clown/dullahan
+/datum/robot_sprite/dogborg/tall/clown/tall/dullahan
 	name = "Dullahan"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_clown.dmi'
 	sprite_icon_state = "dullahanclown"
@@ -473,8 +473,6 @@
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("breastplate")
 	rest_sprite_options = list("Default", "Sit")
-	pixel_x = 0
-	icon_x = 32
 
 /datum/robot_sprite/dogborg/clown/stoat
 	name = "ST-04t"

@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds the Caseless Rifle (and its ammo) to the techweb."
+  - qol: "Protolathe boards can be made via science protolathe (engineering can make engineering protolathe boards) so if they're ever destroyed, they can be remade."
+  - qol: "Protolathe boards can be ordered via cargo if the original science protolathe is ever destroyed."
