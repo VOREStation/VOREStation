@@ -210,7 +210,9 @@
 		// "manusorter",
 		// "manurouter",
 		// "mailsorter",
-		"automatic_pipe_layer"
+		"automatic_pipe_layer",
+		"dtype_rtg",
+		"ctype_rtg",
 	)
 
 /datum/techweb_node/energy_manipulation
