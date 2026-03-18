@@ -34,6 +34,7 @@ export const WhitelistAddEnttry = (props: {
                 role: selectedRole,
               })
             }
+            color="green"
           >
             Add
           </Button>

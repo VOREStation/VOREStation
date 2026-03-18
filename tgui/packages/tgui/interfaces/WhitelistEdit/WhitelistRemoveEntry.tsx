@@ -51,6 +51,7 @@ export const WhitelistRemoveEntry = (props: {
                 role: selectedRole,
               })
             }
+            color="red"
           >
             Remove
           </Button>
