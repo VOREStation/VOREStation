@@ -211,7 +211,6 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
-	module_type = "Ninja"
 	sprite_hud_icon_state = "malf" //malf!!
 
 /datum/robot_sprite/dogborg/tall/ninja/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
