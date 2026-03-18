@@ -40,6 +40,7 @@
 #define TECHWEB_NODE_COMBAT_IMPLANTS "combat_implants"
 #define TECHWEB_NODE_CONSOLES "consoles"
 #define TECHWEB_NODE_CONSTRUCTION "construction"
+#define TECHWEB_NODE_EMERGPOWER "emergency_power"
 #define TECHWEB_NODE_CRYOGUN "cryogun"
 #define TECHWEB_NODE_CRYOSTASIS "cryostasis"
 #define TECHWEB_NODE_CYBER_IMPLANTS "cyber_implants"

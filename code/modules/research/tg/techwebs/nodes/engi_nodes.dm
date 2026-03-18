@@ -211,6 +211,14 @@
 		// "manurouter",
 		// "mailsorter",
 		"automatic_pipe_layer",
+	)
+
+/datum/techweb_node/emerge_power
+	id = TECHWEB_NODE_EMERGPOWER
+	starting_node = TRUE
+	display_name = "Emergency Power"
+	description = "Restarting the station power grid one step at a time."
+	design_ids = list(
 		"dtype_rtg",
 		"ctype_rtg",
 	)
