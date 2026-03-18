@@ -444,6 +444,7 @@
 
 /datum/robot_sprite/dogborg/clown
 	module_type = "Clown"
+	sprite_hud_icon_state = "brobot"
 	sprite_icon = 'icons/mob/robot/widerobot/widerobot.dmi'
 
 /datum/robot_sprite/dogborg/clown/vale
@@ -452,6 +453,7 @@
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/tall/clown
+	sprite_hud_icon_state = "brobot"
 	module_type = "Clown"
 
 /datum/robot_sprite/dogborg/tall/clown/tall
