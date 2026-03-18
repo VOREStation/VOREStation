@@ -7,11 +7,10 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 GLOBAL_LIST_EMPTY(language_whitelist)
 GLOBAL_LIST_EMPTY(robot_whitelist)
 
-// Not yet implemented
-//ADMIN_VERB(open_whitelist_editor, R_ADMIN, "Open Whitelist Editor", "Opens the editor for alien- and jobwhitelists.", ADMIN_CATEGORY_GAME)
-//	if(user.holder)
-//		user.holder.whitelist_editor = new /datum/whitelist_editor()
-//		user.holder.whitelist_editor.tgui_interact(user.mob)
+ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Opens the editor for alien- and jobwhitelists.", ADMIN_CATEGORY_SERVER_CONFIG)
+	if(user.holder)
+		user.holder.whitelist_editor = new /datum/whitelist_editor()
+		user.holder.whitelist_editor.tgui_interact(user.mob)
 
 /datum/whitelist_editor
 
@@ -67,9 +66,11 @@ GLOBAL_LIST_EMPTY(robot_whitelist)
 				return
 			var/ckey = params["ckey"]
 			if(ckey != ckey(ckey))
+				to_chat(ui.user, span_warning("Error, invalid ckey. Did you enter the key?"))
 				return FALSE
 			var/kind = params["type"]
-			if(!(type in VALID_KINDS))
+			if(!(kind in VALID_KINDS))
+				to_chat(ui.user, span_warning("Error, invalid type entered."))
 				return FALSE
 			var/role = params["role"]
 			switch(kind)
@@ -113,7 +114,7 @@ GLOBAL_LIST_EMPTY(robot_whitelist)
 				qdel(command_add)
 				return FALSE
 			qdel(command_add)
-
+			log_and_message_admins("added [ckey]'s [role] entry to [kind] whitelsit.", ui.user)
 			return TRUE
 
 		if("remove_alienwhitelist")
@@ -122,9 +123,11 @@ GLOBAL_LIST_EMPTY(robot_whitelist)
 				return FALSE
 			var/ckey = params["ckey"]
 			if(ckey != ckey(ckey))
+				to_chat(ui.user, span_warning("Error, invalid ckey. Did you enter the key?"))
 				return FALSE
 			var/kind = params["type"]
-			if(!(type in VALID_KINDS))
+			if(!(kind in VALID_KINDS))
+				to_chat(ui.user, span_warning("Error, invalid type entered."))
 				return FALSE
 			var/role = params["role"]
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
@@ -137,7 +140,7 @@ GLOBAL_LIST_EMPTY(robot_whitelist)
 				qdel(command_remove)
 				return FALSE
 			qdel(command_remove)
-
+			log_and_message_admins("removed [ckey]'s [role] entry from [kind] whitelsit.", ui.user)
 			return TRUE
 
 		if("reload_alienwhitelist")
