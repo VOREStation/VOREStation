@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 import type { Data } from './types';
 import { WhitelistAddEnttry } from './WhitelistAddEnttry';
 import { WhitelistRemoveEntry } from './WhitelistRemoveEntry';
@@ -33,15 +33,12 @@ export const WhitelistEdit = () => {
   };
 
   return (
-    <Window width={530} height={495}>
+    <Window width={530} height={495} theme="admin">
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
             <Stack>
               <Stack.Item grow />
-              <Stack.Item>
-                <Box color="label">General Options:</Box>
-              </Stack.Item>
               <Stack.Item>
                 <Button
                   onClick={() => act('reload_alienwhitelist')}
