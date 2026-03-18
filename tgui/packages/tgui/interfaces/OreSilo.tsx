@@ -1,3 +1,4 @@
+import { sanitizeCssClassName } from 'common/css_sanity';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -162,7 +163,7 @@ const MachineDisplay = (props: MachineProps) => {
           <Image
             width={'32px'}
             height={'32px'}
-            src={`data:image/jpeg;base64,${machine.icon}`}
+            src={`data:image/jpeg;base64,${sanitizeCssClassName(machine.icon)}`}
           />
         </Box>
         <Box className="FabricatorRecipe__Label">{machineName}</Box>

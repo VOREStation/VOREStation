@@ -64,4 +64,4 @@
 				if (keyboard && (keyboard in all_states))
 					transform.blend_icon(uni_icon(icon_file, keyboard), ICON_OVERLAY)
 
-		insert_icon(initial(path.id), uni_icon(icon_file, icon_state, transform=transform))
+		insert_icon(sanitize_css_class_name(initial(path.id)), uni_icon(icon_file, icon_state, transform=transform))

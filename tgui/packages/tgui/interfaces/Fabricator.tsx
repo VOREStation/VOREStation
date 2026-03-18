@@ -1,3 +1,4 @@
+import { sanitizeCssClassName } from 'common/css_sanity';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -209,7 +210,10 @@ const Recipe = (props: RecipeProps) => {
             <Box
               width={'32px'}
               height={'32px'}
-              className={classes(['design32x32', design.icon])}
+              className={classes([
+                'design32x32',
+                sanitizeCssClassName(design.icon),
+              ])}
             />
           </div>
           <div className="FabricatorRecipe__Label">{design.name}</div>
