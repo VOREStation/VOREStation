@@ -233,3 +233,33 @@
   Kashargul:
   - code_imp: convert more globals to GLOBs
   - bugfix: flags some more wall items as what they are
+2026-03-17:
+  Diana:
+  - bugfix: Attempting to move while handcuffed and being pulled will no longer result
+      in a crash.
+  Guti:
+  - qol: Normal anomalies can now be scanned with the anomaly scanner for it's frequencies.
+  - qol: The anomaly scanner will indicate the user to use a releaser, if used on
+      a core.
+  - qol: Added particle descriptions when examining the anomaly scanner.
+  - bugfix: Fixed Anomalis spawning without PDA
+2026-03-18:
+  ARGUS-Memory:
+  - bugfix: Copy loadout now correctly makes unique metadata entries for gear. So
+      that changing the color on one pair of glasses doesnt affect the ones in your
+      other loadout.
+  Diana:
+  - rscadd: Adds the Caseless Rifle (and its ammo) to the techweb.
+  - qol: Protolathe boards can be made via science protolathe (engineering can make
+      engineering protolathe boards) so if they're ever destroyed, they can be remade.
+  - qol: Protolathe boards can be ordered via cargo if the original science protolathe
+      is ever destroyed.
+  Kashargul:
+  - bugfix: copy slot skipping some values
+  Kiabiato:
+  - rscadd: Standard and Exploration Gooborg sprites
+  zeskorion:
+  - rscadd: 'new markings: Skull mask, three lengths of a thin snout variant, thinner
+      lower snout sprites, snout teeth, and a snout-tip horn'
+  - bugfix: circle tattoo unevenness fixed
+  - bugfix: ffixes dupe keys

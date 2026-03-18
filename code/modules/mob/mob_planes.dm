@@ -52,9 +52,6 @@
 
 	..()
 
-	for(var/atom/movable/screen/plane_master/PM as anything in plane_masters)
-		PM.backdrop(my_mob)
-
 /datum/plane_holder/Destroy()
 	my_mob = null
 	QDEL_LIST_NULL(plane_masters) //Goodbye my children, be free
@@ -70,10 +67,6 @@
 		state = FALSE
 
 	PM.set_visibility(state)
-	if(PM.sub_planes)
-		var/list/subplanes = PM.sub_planes
-		for(var/SP in subplanes)
-			set_vis(which = SP, state = state)
 	var/plane = PM.plane
 	if(state && !(plane in my_mob.planes_visible))
 		LAZYADD(my_mob.planes_visible, plane)
@@ -86,10 +79,6 @@
 	if(!PM)
 		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.set_desired_alpha(new_alpha)
-	if(PM.sub_planes)
-		var/list/subplanes = PM.sub_planes
-		for(var/SP in subplanes)
-			set_vis(which = SP, state = !!new_alpha)
 
 /datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
 	ASSERT(which)
@@ -97,10 +86,6 @@
 	if(!PM)
 		stack_trace("Tried to set_ao [which] in plane_holder on [my_mob]!")
 	PM.set_ambient_occlusion(enabled)
-	if(PM.sub_planes)
-		var/list/subplanes = PM.sub_planes
-		for(var/SP in subplanes)
-			set_ao(SP, enabled)
 
 /datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
 	ASSERT(which)
@@ -108,10 +93,6 @@
 	if(!PM)
 		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.alter_plane_values(arglist(values))
-	if(PM.sub_planes)
-		var/list/subplanes = PM.sub_planes
-		for(var/SP in subplanes)
-			alter_values(SP, values)
 
 
 
@@ -128,10 +109,6 @@
 	alpha = 0	//Hidden from view
 	var/desired_alpha = 255	//What we go to when we're enabled
 	var/invis_toggle = FALSE
-	var/list/sub_planes
-
-/atom/movable/screen/plane_master/proc/backdrop(mob/mymob)
-	return
 
 /atom/movable/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
@@ -186,12 +163,6 @@
 	plane = PLANE_LIGHTING
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
-
-/atom/movable/screen/plane_master/lighting/backdrop(mob/mymob)
-	/* I'm unconvinced.
-	mymob.overlay_fullscreen("lighting_backdrop_lit", /atom/movable/screen/fullscreen/lighting_backdrop/lit)
-	mymob.overlay_fullscreen("lighting_backdrop_unlit", /atom/movable/screen/fullscreen/lighting_backdrop/unlit)
-	*/
 
 /*!
  * This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.
