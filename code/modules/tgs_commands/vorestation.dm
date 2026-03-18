@@ -434,7 +434,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		return message
 
 	var/ckey = message_as_list[1]
-	if(!istext(ckey))
+	if(ckey != ckey(ckey))
 		message.text = "```Third param must be a valid ckey.```"
 		return message
 
@@ -478,7 +478,6 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					if(!(chosen_language.flags & WHITELISTED))
 						message.text = "Error, language \"[role]\" is not a whitelist language."
 						return message
-					kind = "species"
 				if("robot")
 					if(!(role in GLOB.robot_modules))
 						message.text = "Error, invalid robot module entered. Check spelling and capitalization."
@@ -486,7 +485,6 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					if(!(role in GLOB.whitelisted_module_types))
 						message.text = "Error, robot module \"[role]\" is not a whitelist robot module."
 						return message
-					kind = "species"
 
 			var/datum/db_query/command_add = SSdbcore.NewQuery(
 				"INSERT INTO [format_table_name("whitelist")] (ckey, kind, entry) VALUES (:ckey, :kind, :entry)",
@@ -499,26 +497,20 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				return message
 			qdel(command_add)
 
-			var/list/our_whitelists
 			switch(kind)
 				if("job")
-					our_whitelists = GLOB.job_whitelist[ckey]
-					if(!our_whitelists)
-						our_whitelists = list()
-						GLOB.job_whitelist[ckey] = our_whitelists
+					LAZYOR(GLOB.job_whitelist[ckey], role)
 
 				if("species")
-					our_whitelists = GLOB.alien_whitelist[ckey]
-					if(!our_whitelists)
-						our_whitelists = list()
-						GLOB.alien_whitelist[ckey] = our_whitelists
+					LAZYOR(GLOB.alien_whitelist[ckey], role)
 
-			if(our_whitelists)
-				our_whitelists |= role
+				if("language")
+					LAZYOR(GLOB.language_whitelist[ckey], role)
+
+				if("robot")
+					LAZYOR(GLOB.robot_whitelist[ckey], role)
 
 		if("remove")
-			if(kind == "language" || kind == "robot")
-				kind = "species"
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
 				"DELETE FROM [format_table_name("whitelist")] WHERE ckey = :ckey AND kind = :kind AND entry = :entry",
 				list("ckey" = ckey, "kind" = kind, "entry" = role)
@@ -530,22 +522,18 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				return message
 			qdel(command_remove)
 
-			var/list/our_whitelists
 			switch(kind)
 				if("job")
-					our_whitelists = GLOB.job_whitelist[ckey]
-					if(!our_whitelists)
-						our_whitelists = list()
-						GLOB.job_whitelist[ckey] = our_whitelists
+					LAZYREMOVE(GLOB.job_whitelist[ckey], role)
 
 				if("species")
-					our_whitelists = GLOB.alien_whitelist[ckey]
-					if(!our_whitelists)
-						our_whitelists = list()
-						GLOB.alien_whitelist[ckey] = our_whitelists
+					LAZYREMOVE(GLOB.alien_whitelist[ckey], role)
 
-			if(our_whitelists && (role in our_whitelists))
-				our_whitelists -= role
+				if("language")
+					LAZYREMOVE(GLOB.language_whitelist[ckey], role)
+
+				if("robot")
+					LAZYREMOVE(GLOB.robot_whitelist[ckey], role)
 
 		// Listing all whitelists for a specific ckey
 		if("list")
