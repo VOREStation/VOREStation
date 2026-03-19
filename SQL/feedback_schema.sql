@@ -154,17 +154,6 @@ CREATE TABLE IF NOT EXISTS `erro_privacy` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping structure for table ss13.erro_attacklog
-CREATE TABLE IF NOT EXISTS `erro_attacklog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` datetime DEFAULT NULL,
-  `ckey` varchar(64) DEFAULT NULL,
-  `color` varchar(16) DEFAULT NULL,
-  `mob` varchar(128) DEFAULT NULL,
-  `message` varchar(1024) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- Dumping structure for table ss13.erro_dialog
 CREATE TABLE IF NOT EXISTS `erro_dialog` (
   `mid` int(11) NOT NULL AUTO_INCREMENT,
@@ -172,6 +161,7 @@ CREATE TABLE IF NOT EXISTS `erro_dialog` (
   `ckey` varchar(32) NOT NULL,
   `color` varchar(16) DEFAULT NULL,
   `mob` varchar(128) DEFAULT NULL,
+  `area` varchar(128) DEFAULT NULL,
   `type` varchar(32) NOT NULL,
   `message` text NOT NULL,
   PRIMARY KEY (`mid`)

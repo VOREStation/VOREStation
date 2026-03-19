@@ -1,7 +1,5 @@
 /atom/var/lastattacker = null
 /mob/var/lastattacked = null
-/mob/var/attack_log
-/mob/var/dialogue_log
 
 /proc/log_and_message_admins(var/message as text, var/mob/user = usr)
 	log_admin(user ? "[key_name(user)] [message]" : "EVENT [message]")

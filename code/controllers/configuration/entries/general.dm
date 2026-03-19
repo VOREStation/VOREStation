@@ -729,13 +729,18 @@
 /datum/config_entry/flag/allow_simple_mob_recolor
 
 /// Chatlogs are now saved by calling the chatlogging library instead of letting the clients handle it
-/// REQUIRES an database
+/// REQUIRES a database
 /datum/config_entry/flag/chatlog_database_backend
 	default = FALSE
 
 /// The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
 /// REQUIRES chatlog_database_backend to be enabled
 /datum/config_entry/string/chatlog_database_api_endpoint
+
+/// Enables logging dialogue and attack logs to the database
+/// REQUIRES a database
+/datum/config_entry/flag/database_logging
+	default = FALSE
 
 /datum/config_entry/flag/forbid_admin_profiling
 
