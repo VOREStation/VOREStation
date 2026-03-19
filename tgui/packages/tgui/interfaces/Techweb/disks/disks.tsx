@@ -30,6 +30,7 @@ export function TechwebDesignDisk(props) {
                   style={{
                     transform: `${design_cache[x].transform}`,
                     transformOrigin: 'top left',
+                    margin: `${design_cache[x].offsetY}px ${design_cache[x].offsetX}px`,
                   }}
                 />
               </Stack.Item>

@@ -59,10 +59,12 @@ function selectRemappedStaticData(data: TechWebData) {
     const [name, classes] = data.static_data.design_cache[id];
 
     const match = classes.match(/(\d+)x(\d+)/);
-    console.log(match ? match[0] : 'ehh');
-    const transformValue = match
-      ? Math.max(parseInt(match[1], 10), parseInt(match[2], 10))
-      : undefined;
+    const width = match ? parseInt(match[1], 10) : 32;
+    const height = match ? parseInt(match[2], 10) : 32;
+    const transformValue = match ? Math.max(width, height) : undefined;
+
+    const offset =
+      ((width - height) / 2) * (transformValue ? 32 / transformValue : 0);
 
     design_cache[remapId(id)] = {
       name: name,
@@ -70,6 +72,8 @@ function selectRemappedStaticData(data: TechWebData) {
       transform: transformValue
         ? `scale(${32 / transformValue},${32 / transformValue})`
         : undefined,
+      offsetX: offset < 0 ? -offset : 0,
+      offsetY: offset > 0 ? offset : 0,
     };
   }
 

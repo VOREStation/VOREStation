@@ -193,17 +193,26 @@ export function TechNode(props: Props) {
       <Box className="Techweb__NodeUnlockedDesigns" mb={2}>
         <Stack wrap="wrap">
           {design_ids.map((k, i) => (
-            <Stack.Item key={k} width="32px" height="32px">
-              <Button
+            <Button
+              fluid
+              key={k}
+              width="32px"
+              height="32px"
+              tooltip={design_cache[k].name}
+              tooltipPosition={i % 15 < 7 ? 'right' : 'left'}
+              style={{
+                padding: 0,
+              }}
+            >
+              <Box
                 className={`${design_cache[k].class}`}
-                tooltip={design_cache[k].name}
-                tooltipPosition={i % 15 < 7 ? 'right' : 'left'}
                 style={{
                   transform: `${design_cache[k].transform}`,
                   transformOrigin: 'top left',
+                  margin: `${design_cache[k].offsetY}px ${design_cache[k].offsetX}px`,
                 }}
               />
-            </Stack.Item>
+            </Button>
           ))}
         </Stack>
       </Box>
