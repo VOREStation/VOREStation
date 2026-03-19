@@ -263,3 +263,9 @@
       lower snout sprites, snout teeth, and a snout-tip horn'
   - bugfix: circle tattoo unevenness fixed
   - bugfix: ffixes dupe keys
+2026-03-19:
+  Kashargul:
+  - bugfix: 2 missing parent paths for tall borgs
+  - bugfix: explo tall parent path
+  - bugfix: some more gooborgs
+  - code_imp: migrates more globals to GLOBs
