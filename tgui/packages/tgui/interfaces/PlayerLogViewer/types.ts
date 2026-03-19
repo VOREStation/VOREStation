@@ -5,7 +5,7 @@ export type Data = {
   special: string | null;
 };
 
-export type LogEntry = {
+type LogEntry = {
   event_id: number;
   time: number;
   ckey: string | null;
@@ -14,3 +14,5 @@ export type LogEntry = {
   color: string | null;
   message: string;
 };
+
+export type ExtendedLogEntry = { category: string } & Required<LogEntry>;
