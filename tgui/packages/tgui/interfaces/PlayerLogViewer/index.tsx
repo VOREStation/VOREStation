@@ -144,7 +144,6 @@ export const PlayerLogViewer = (props) => {
                           .includes(search.toLowerCase());
                       }
                     })
-                    // map to JSX elements
                     .map((log_entry) => (
                       <Stack.Item key={log_entry.event_id}>
                         <Box inline>{formatTime(log_entry.time)}</Box>
