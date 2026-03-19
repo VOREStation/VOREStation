@@ -307,16 +307,16 @@
 		return
 
 	var/list/choices = list()
-	for(var/obj/item/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in GLOB.all_communicators)
 		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
 			continue
 		choices.Add(comm)
 
 	if(!choices.len)
-		to_chat(src , span_danger("There are no available communicators, sorry."))
+		to_chat(src, span_danger("There are no available communicators, sorry."))
 		return
 
-	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
+	var/choice = tgui_input_list(src, "Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
 		var/obj/item/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src

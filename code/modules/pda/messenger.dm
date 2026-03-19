@@ -33,9 +33,9 @@
 				data["convo_job"] = sanitize(c["job"])
 				break
 	else
-		var/convopdas[0]
-		var/pdas[0]
-		for(var/obj/item/pda/P as anything in PDAs)
+		var/list/convopdas = list()
+		var/list/pdas = list()
+		for(var/obj/item/pda/P as anything in GLOB.PDAs)
 			var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 
 			if(!P.owner || PM.toff || P == pda || PM.m_hidden)
@@ -194,7 +194,7 @@
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/pda/P as anything in PDAs)
+	for(var/obj/item/pda/P as anything in GLOB.PDAs)
 		var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 
 		if(!P.owner || !PM || PM.hidden || P == pda || PM.toff)
@@ -237,7 +237,7 @@
 	modified_message["target"] = "\ref[M]"
 
 	var/list/targets = list()
-	for(var/obj/item/pda/pda in PDAs)
+	for(var/obj/item/pda/pda in GLOB.PDAs)
 		if(pda.cartridge && pda.owner && is_type_in_list(pda.cartridge, M.cartridges_to_send_to))
 			targets |= pda
 	if(targets.len)

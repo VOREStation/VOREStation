@@ -2183,8 +2183,8 @@
 						.hidden {display: none;}
 						</style>
 						<script language='javascript' type='text/javascript'>
-						[js_byjax]
-						[js_dropdowns]
+						[JS_BYJAX]
+						[JS_DROPDOWN]
 						function ticker() {
 							setInterval(function(){
 								window.location='byond://?src=\ref[src]&update_content=1';

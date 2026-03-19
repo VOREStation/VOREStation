@@ -1,4 +1,4 @@
-var/list/loadout_categories = list()
+GLOBAL_LIST_EMPTY_TYPED(loadout_categories, /datum/loadout_category)
 GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 /datum/loadout_category
@@ -28,16 +28,12 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 			log_world("## ERROR Loadout - Missing path definition: [G]")
 			continue
 
-		if(!loadout_categories[use_category])
-			loadout_categories[use_category] = new /datum/loadout_category(use_category)
-		var/datum/loadout_category/LC = loadout_categories[use_category]
+		if(!GLOB.loadout_categories[use_category])
+			GLOB.loadout_categories[use_category] = new /datum/loadout_category(use_category)
+		var/datum/loadout_category/LC = GLOB.loadout_categories[use_category]
 		GLOB.gear_datums[use_name] = new G
 		LC.gear[use_name] = GLOB.gear_datums[use_name]
 
-	loadout_categories = sortAssoc(loadout_categories)
-	for(var/loadout_category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[loadout_category]
-		LC.gear = sortAssoc(LC.gear)
 	return 1
 
 /datum/category_item/player_setup_item/loadout/loadout
@@ -140,8 +136,8 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 	var/list/data = ..()
 
 	var/list/categories = list()
-	for(var/category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[category]
+	for(var/category, value in GLOB.loadout_categories)
+		var/datum/loadout_category/LC = value
 		var/list/items = list()
 		for(var/gear in LC.gear)
 			var/datum/gear/G = LC.gear[gear]
