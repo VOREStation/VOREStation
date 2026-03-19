@@ -960,7 +960,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		.["carrier"] = item_carrier
 		.["vorgans"] = vorgans
 		.["itemtf"] = item_to_be
-	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
+	if(spawnpos && istype(spawnpos) && length(spawnpos.turfs))
 		if(spawnpos.check_job_spawning(rank))
 			.["turf"] = spawnpos.get_spawn_position()
 			.["msg"] = spawnpos.msg

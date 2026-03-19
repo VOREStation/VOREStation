@@ -38,6 +38,8 @@ GLOBAL_LIST_EMPTY(wizardstart)
 GLOBAL_LIST_EMPTY(newplayer_start)
 
 GLOBAL_LIST_EMPTY(latejoin)
+GLOBAL_LIST_EMPTY(latejoin_talon)
+GLOBAL_LIST_EMPTY(latejoin_tram)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_elevator)
 GLOBAL_LIST_EMPTY(latejoin_cryo)
