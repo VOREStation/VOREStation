@@ -17,7 +17,7 @@
 	if(.)
 		return
 	if(action == "init")
-		var/h = params["handle"]
-		if(!istext(h) || !length(h))
+		var/handle = params["handle"]
+		if(!istext(handle) || !length(handle))
 			return FALSE
 		. = TRUE
