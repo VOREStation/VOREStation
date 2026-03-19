@@ -1,4 +1,5 @@
 import { useBackend } from 'tgui/backend';
+import { buildIconData } from '../common/TechWebRecipeIcon';
 import type { NodeCache, TechWebData } from './types';
 
 type Cost = {
@@ -58,14 +59,7 @@ function selectRemappedStaticData(data: TechWebData) {
   for (const id of Object.keys(data.static_data.design_cache)) {
     const [name, classes] = data.static_data.design_cache[id];
 
-    const match = classes.match(/(\d+)x(\d+)/);
-    const width = match ? parseInt(match[1], 10) : 32;
-    const height = match ? parseInt(match[2], 10) : 32;
-    const transformValue = match ? Math.max(width, height) : undefined;
-
-    const offset = transformValue
-      ? ((width - height) / 2) * (32 / transformValue)
-      : 0;
+    const { transformValue, offset } = buildIconData(classes);
 
     design_cache[remapId(id)] = {
       name: name,

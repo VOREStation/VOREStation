@@ -1,14 +1,12 @@
 import { Box } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
-export const TechWebRecipeIcon = (props: {
-  icon: string;
-  name: string;
-  canPrint?: boolean;
-  action?: () => void;
-}) => {
-  const { icon, name, canPrint, action } = props;
-
+export function buildIconData(icon: string): {
+  width: number;
+  height: number;
+  transformValue?: number;
+  offset: number;
+} {
   const match = icon.match(/(\d+)x(\d+)/);
   const width = match ? parseInt(match[1], 10) : 32;
   const height = match ? parseInt(match[2], 10) : 32;
@@ -17,6 +15,24 @@ export const TechWebRecipeIcon = (props: {
   const offset = transformValue
     ? ((width - height) / 2) * (32 / transformValue)
     : 0;
+
+  return {
+    width: width,
+    height: height,
+    transformValue: transformValue,
+    offset: offset,
+  };
+}
+
+export const TechWebRecipeIcon = (props: {
+  icon: string;
+  name: string;
+  canPrint?: boolean;
+  action?: () => void;
+}) => {
+  const { icon, name, canPrint, action } = props;
+
+  const { transformValue, offset } = buildIconData(icon);
 
   return (
     <Box
