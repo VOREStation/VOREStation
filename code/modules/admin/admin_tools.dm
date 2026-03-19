@@ -4,7 +4,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_check_player_logs, R_ADMIN|R_MOD, "Check 
 //Views specific attack logs belonging to one player.
 /client/proc/show_cmd_admin_check_player_logs(list/mob_data, target_name, target_ckey, target_special)
 	if(CONFIG_GET(flag/database_logging))
-		var/datum/db_query/query = SSdbcore.NewQuery("SELECT id,time,ckey,mob,area,color,type,message from erro_attacklog WHERE ckey = :t_ckey", list("t_ckey" = ckey))
+		var/datum/db_query/query = SSdbcore.NewQuery("SELECT mid,time,ckey,mob,area,color,type,message from erro_dialog WHERE ckey = :t_ckey", list("t_ckey" = ckey))
 		if(!query.Execute())
 			to_chat(src, span_admin("Database query error"))
 			qdel(query)
