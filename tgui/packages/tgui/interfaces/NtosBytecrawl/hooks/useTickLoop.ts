@@ -1,7 +1,13 @@
 // ── useTickLoop ───────────────────────────────────────────────────────────────
 // Per-tick game loop: job progress, trace, burn, contracts, bounties, fragments.
 
-import * as React from 'react';
+import {
+  type Dispatch as ReactDispatch,
+  type MutableRefObject,
+  type SetStateAction,
+  useEffect,
+  useRef,
+} from 'react';
 
 import { CPU_UPGRADES, STL_UPGRADES, TICK_MS } from '../constants';
 import {
@@ -18,17 +24,17 @@ import { fmtMoney } from '../format';
 
 export function useTickLoop(
   phase: 'setup' | 'playing',
-  gRef: React.MutableRefObject<GState>,
-  setG: React.Dispatch<React.SetStateAction<GState>>,
-  setLines: React.Dispatch<React.SetStateAction<Line[]>>,
+  gRef: MutableRefObject<GState>,
+  setG: ReactDispatch<SetStateAction<GState>>,
+  setLines: ReactDispatch<SetStateAction<Line[]>>,
   act: (action: string, params?: Record<string, unknown>) => void,
 ): void {
-  const actRef = React.useRef(act);
-  React.useEffect(() => {
+  const actRef = useRef(act);
+  useEffect(() => {
     actRef.current = act;
   }, [act]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (phase !== 'playing') return;
 
     const id = setInterval(() => {
