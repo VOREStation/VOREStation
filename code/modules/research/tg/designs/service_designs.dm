@@ -39,7 +39,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/board/guest_pass
-	name = "guestpass console Board"
+	name = "guestpass console circuit"
 	desc = "The circuit board for a guest pass console."
 	id = "guestpass"
 	build_path = /obj/item/circuitboard/guestpass

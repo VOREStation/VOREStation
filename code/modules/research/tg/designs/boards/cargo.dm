@@ -38,7 +38,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/ore_silo
-	name = "Ore Silo Board"
+	name = "Ore Silo circuit"
 	desc = "The circuit board for an ore silo."
 	id = "ore_silo"
 	build_path = /obj/item/circuitboard/machine/ore_silo
@@ -48,7 +48,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/request_console
-	name = "request console Board"
+	name = "request console circuit"
 	desc = "The circuit board for a request console."
 	id = "request"
 	build_path = /obj/item/circuitboard/request

@@ -265,38 +265,38 @@
 
 /* Optional
 /datum/design_techweb/board/protolathe
-	name = "Protolathe Board - Omni"
+	name = "Protolathe circuit - Omni"
 	id = "protolathe_omni"
 	build_path = /obj/item/circuitboard/machine/protolathe
 */
 
 /datum/design_techweb/board/protolathe/science
-	name = "Protolathe Board - Science"
+	name = "Protolathe circuit - Science"
 	id = "protolathe_science"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/science
 
 /datum/design_techweb/board/protolathe/service
-	name = "Protolathe Board - Service"
+	name = "Protolathe circuit - Service"
 	id = "protolathe_service"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/service
 
 /datum/design_techweb/board/protolathe/medical
-	name = "Protolathe Board - Medical"
+	name = "Protolathe circuit - Medical"
 	id = "protolathe_medical"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/medical
 
 /datum/design_techweb/board/protolathe/cargo
-	name = "Protolathe Board - Cargo"
+	name = "Protolathe circuit - Cargo"
 	id = "protolathe_cargo"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/cargo
 
 /datum/design_techweb/board/protolathe/engineering
-	name = "Protolathe Board - Engineering"
+	name = "Protolathe circuit - Engineering"
 	id = "protolathe_engineering"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/engineering
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING //Engineering gets an exception in that they can produce their own, since engineering often expands operations.
 
 /datum/design_techweb/board/protolathe/security
-	name = "Protolathe Board - Security"
+	name = "Protolathe circuit - Security"
 	id = "protolathe_security"
 	build_path = /obj/item/circuitboard/machine/protolathe/department/security

@@ -61,7 +61,7 @@
 							/obj/item/reagent_containers/glass/beaker = 2)
 
 /obj/item/circuitboard/mechfab
-	name = "Circuit board (Exosuit Fabricator)"
+	name = T_BOARD("Exosuit Fabricator")
 	build_path = /obj/machinery/mecha_part_fabricator_tg
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
@@ -72,7 +72,7 @@
 							/obj/item/stock_parts/console_screen = 1)
 
 /obj/item/circuitboard/prosthetics
-	name = "Circuit board (Prosthetics Fabricator)"
+	name = T_BOARD("Prosthetics Fabricator")
 	build_path = /obj/machinery/mecha_part_fabricator_tg/prosthetics
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
@@ -83,7 +83,7 @@
 							/obj/item/stock_parts/console_screen = 1)
 
 /obj/item/circuitboard/ntnet_relay
-	name = "Circuit board (NTNet Quantum Relay)"
+	name = T_BOARD("NTNet Quantum Relay")
 	build_path = /obj/machinery/ntnet_relay
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 4)
