@@ -42,7 +42,7 @@
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 
-	src.mob.log_talk(msg, LOG_OOC)
+	src.mob.log_talk(msg, LOG_OOC, color="#0051ff")
 
 	if(msg)
 		handle_spam_prevention(MUTE_OOC)
@@ -125,7 +125,7 @@
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 
-	src.mob.log_message(msg, LOG_LOOC)
+	src.mob.log_message(msg, LOG_LOOC, color="#53cbff")
 
 	if(msg)
 		handle_spam_prevention(MUTE_LOOC)

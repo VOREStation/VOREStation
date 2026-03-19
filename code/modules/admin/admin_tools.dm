@@ -1,65 +1,84 @@
-/client/proc/cmd_admin_check_player_logs(mob/living/M as mob in GLOB.mob_list)
-	set category = "Admin.Logs"
-	set name = "Check Player Attack Logs"
-	set desc = "Check a player's attack logs."
-
-	show_cmd_admin_check_player_logs(M)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_check_player_logs, R_ADMIN|R_MOD, "Check Mob Logs", mob/living/player in  GLOB.mob_list)
+	user.show_cmd_admin_check_player_logs(player.logging, player.name, player.ckey, player.mind?.special_role)
 
 //Views specific attack logs belonging to one player.
-/client/proc/show_cmd_admin_check_player_logs(mob/living/M)
-	var/dat = span_bold("[M]'s Attack Log:<HR>")
-	dat += span_bold("Viewing attack logs of [M]") + " - (Played by ([key_name(M)]).<br>"
-	if(M.mind)
-		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
-	dat += "<br>" + span_bold("Note:") + " This is arranged from earliest to latest. <br><br>"
+/client/proc/show_cmd_admin_check_player_logs(list/mob_data, target_name, target_ckey, target_special)
+	if(CONFIG_GET(flag/database_logging))
+		var/datum/db_query/query = SSdbcore.NewQuery("SELECT mid,time,ckey,mob,area,color,type,message from erro_dialog WHERE ckey = :t_ckey", list("t_ckey" = ckey))
+		if(!query.Execute())
+			to_chat(src, span_admin("Database query error"))
+			qdel(query)
+			return
 
+		var/list/data = list()
+		while(query.NextRow())
+			var/list/timestamped_message = list(
+				"event_id" = query.item[1],
+				"time" = query.item[2],
+				"ckey" = query.item[3],
+				"name" = query.item[4],
+				"loc" = query.item[5],
+				"color" = query.item[6],
+				"message" = query.item[8]
+			)
+			var/entry_type = query.item[7]
+			if(!islist(data[entry_type]))
+				data[entry_type] = list()
+			UNTYPED_LIST_ADD(data[entry_type], timestamped_message)
+		qdel(query)
+		if(!length(data))
+			to_chat(src, span_admin("No data found."))
+			return
+		admin_log_view_target(data, target_name, target_ckey, target_special)
+		return
+	if(!length(mob_data))
+		to_chat(src, span_admin("No data found."))
+		return
+	admin_log_view_target(mob_data, target_name, target_ckey, target_special)
 
-	if(!isemptylist(M.attack_log))
-		dat += "<fieldset style='border: 2px solid white; display: inline'>"
-		for(var/l in M.attack_log)
-			dat += "[l]<br>"
+ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays the client logs of the selected ckey.", ADMIN_CATEGORY_LOGS)
+	var/mob/living/selected_key = tgui_input_list(user, "Select a ckey to check their logs", "Ckey", GLOB.persistent_clients_by_ckey)
+	if(!selected_key)
+		return
 
-		dat += "</fieldset>"
+	var/datum/persistent_client/selected = GLOB.persistent_clients_by_ckey[selected_key]
 
-	else
-		dat += span_italics("No attack logs found for [M].")
+	user.show_cmd_admin_check_player_logs(selected.logging, selected.mob?.name, selected_key, selected.mob?.mind?.special_role)
 
-	var/datum/browser/popup = new(usr, "admin_attack_log", "[src]", 650, 650, src)
-	popup.set_content(jointext(dat,null))
-	popup.open()
+/client/proc/admin_log_view_target(list/log_data, name, ckey, special, use_db)
+	var/datum/player_log_viwer/log_view = new(log_data, name, ckey, special)
+	log_view.tgui_interact(mob)
 
-	onclose(usr, "admin_attack_log")
+/datum/player_log_viwer
+	var/list/log_data
+	var/target_name
+	var/target_ckey
+	var/special_role
 
-	feedback_add_details("admin_verb","PL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/player_log_viwer/tgui_close(mob/user)
+	. = ..()
+	log_data = null
 
-/client/proc/cmd_admin_check_dialogue_logs(mob/living/M as mob in GLOB.mob_list)
-	set category = "Admin.Logs"
-	set name = "Check Player Dialogue Logs"
-	set desc = "Check a player's dialogue logs."
-	show_cmd_admin_check_dialogue_logs(M)
+/datum/player_log_viwer/New(list/data, name, ckey, special)
+	. = ..()
+	log_data = data
+	target_name = name
+	target_ckey = ckey
+	special_role = special
 
-//Views specific dialogue logs belonging to one player.
-/client/proc/show_cmd_admin_check_dialogue_logs(mob/living/M)
-	var/dat = span_bold("[M]'s Dialogue Log:<HR>")
-	dat += span_bold("Viewing say and emote logs of [M]") + " - (Played by ([key_name(M)]).<br>"
-	if(M.mind)
-		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
-	dat += "<br>" + span_bold("Note:") + " This is arranged from earliest to latest. <br><br>"
+/datum/player_log_viwer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PlayerLogViewer")
+		ui.open()
 
-	if(!isemptylist(M.dialogue_log))
-		dat += "<fieldset style='border: 2px solid white; display: inline'>"
+/datum/player_log_viwer/tgui_state(mob/user)
+	return ADMIN_STATE(R_ADMIN|R_MOD)
 
-		for(var/d in M.dialogue_log)
-			dat += "[d]<br>"
-
-		dat += "</fieldset>"
-	else
-		dat += span_italics("No dialogue logs found for [M].")
-	var/datum/browser/popup = new(usr, "admin_dialogue_log", "[src]", 650, 650, src)
-	popup.set_content(jointext(dat,null))
-	popup.open()
-
-	onclose(usr, "admin_dialogue_log")
-
-
-	feedback_add_details("admin_verb","PDL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/player_log_viwer/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	return list(
+		"entries" = log_data,
+		"name" = target_name,
+		"ckey" = target_ckey,
+		"special" = special_role
+	)

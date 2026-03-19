@@ -67,7 +67,6 @@
 	if(!client)	return 0
 
 	if(href_list["privacy_poll"])
-		establish_db_connection()
 		if(!SSdbcore.IsConnected())
 			return
 		var/voted = 0

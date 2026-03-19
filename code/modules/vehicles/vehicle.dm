@@ -405,7 +405,7 @@
 	if(!damage)
 		return
 	visible_message(span_danger("[user] [attack_message] the [src]!"))
-	user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
+	add_attack_logs(user, src, "attacked")
 	user.do_attack_animation(src)
 	src.health -= damage
 	if(mechanical && prob(10))

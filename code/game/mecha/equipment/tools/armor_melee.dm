@@ -20,7 +20,7 @@
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
 	if(!action_checks(user))
 		return inc_damage
-	chassis.log_message("Attacked by [W]. Attacker - [user]")
+	chassis.log_message("Attacked by [W]. Attacker - [user]", LOG_GAME)
 	if(prob(chassis.deflect_chance*deflect_coeff))
 		to_chat(user, span_danger("\The [W] bounces off \the [chassis]'s armor."))
 		chassis.log_append_to_last("Armor saved.")

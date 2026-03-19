@@ -20,7 +20,6 @@ SUBSYSTEM_DEF(persist)
 	if(!CONFIG_GET(flag/time_off))
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		src.currentrun.Cut()
 		return
