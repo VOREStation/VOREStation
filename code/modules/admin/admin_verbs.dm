@@ -642,7 +642,6 @@ ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tic
 
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n"
 	dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-	establish_db_connection()
 
 	if(!SSdbcore.IsConnected())
 		dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")

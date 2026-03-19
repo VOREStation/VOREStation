@@ -32,6 +32,10 @@
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
 		return TRUE
 
+	if(istype(W, /obj/item/anomaly_scanner))
+		to_chat(user, span_notice("Sealed anomalous energies detected. Use of a releaser will unleash these energies."))
+		return TRUE
+
 	if(istype(W, /obj/item/anomaly_releaser))
 		var/obj/item/anomaly_releaser/releaser = W
 		if(releaser.used)

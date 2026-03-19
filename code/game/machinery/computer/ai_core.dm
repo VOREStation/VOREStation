@@ -14,7 +14,7 @@
 /obj/structure/AIcore/Initialize(mapload)
 	. = ..()
 	if(mapload)
-		laws = new global.using_map.default_law_type
+		laws = new using_map.default_law_type
 // VOREstation edit end
 
 /obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)

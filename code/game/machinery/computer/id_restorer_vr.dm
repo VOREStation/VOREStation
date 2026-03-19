@@ -10,6 +10,7 @@
 	density = FALSE
 	clicksound = null
 	circuit = /obj/item/circuitboard/id_restorer
+	flags = WALL_ITEM
 
 	var/icon_success = "restorer_success"
 	var/icon_fail = "restorer_fail"

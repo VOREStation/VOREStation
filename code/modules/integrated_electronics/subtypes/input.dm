@@ -544,7 +544,7 @@
 	set_pin_data(IC_OUTPUT, 4, exonet.address)
 
 	var/is_communicator = FALSE // improved communicator support
-	for(var/obj/item/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in GLOB.all_communicators)
 		if(comm.exonet && comm.exonet.address == target_address)
 			is_communicator = TRUE
 			break

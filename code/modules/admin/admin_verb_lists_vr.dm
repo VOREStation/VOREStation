@@ -4,7 +4,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/datum/admins/proc/intercom_convo,	//send a fake intercom conversation, like an ATC exchange,
 	/client/proc/hide_verbs,			//hides all our adminverbs,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
-	/client/proc/cmd_admin_check_dialogue_logs,	//checks a player's dialogue logs,
 	/client/proc/jumptocoord,			//we ghost and jump to a coordinate,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
@@ -50,7 +49,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 
 //verbs which can be hidden - needs work
 GLOBAL_LIST_INIT(admin_verbs_hideable, list(
-	/client/proc/cmd_admin_check_dialogue_logs,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
 	/client/proc/air_report,
@@ -74,7 +72,6 @@ GLOBAL_LIST_INIT(admin_verbs_event_manager, list(
 	/client/proc/jumptocoord,
 	/datum/admins/proc/intercom,            //send a fake intercom message, like an arrivals announcement,
 	/datum/admins/proc/intercom_convo,      //send a fake intercom conversation, like an ATC exchange,
-	/client/proc/cmd_admin_check_dialogue_logs,     //checks a player's dialogue logs,
 	/client/proc/jumptocoord,                       //we ghost and jump to a coordinate,
 	/client/proc/Getmob,                            //teleports a mob to our location,
 	/client/proc/Getkey,                            //teleports a mob with a certain ckey to our location,

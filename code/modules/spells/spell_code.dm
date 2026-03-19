@@ -88,7 +88,7 @@
 		take_charge(user, skipcharge)
 
 		before_cast(targets) //applies any overlays and effects
-		user.attack_log += text("\[[time_stamp()]\] [span_red("[user.real_name] ([user.ckey]) cast the spell [name].")]")
+		add_attack_logs(user, targets, "casted the spell [name]")
 		if(prob(critfailchance))
 			critfail(targets, user)
 		else

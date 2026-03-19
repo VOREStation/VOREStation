@@ -523,7 +523,7 @@ ADMIN_VERB(cmd_debug_using_map, R_DEBUG, "Debug Map Datum", "Debug the map metad
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.UpdateAppearance()
 		var/state="[M.dna.GetSEState(block)?"on":"off"]"
-		var/blockname=assigned_blocks[block]
+		var/blockname = GLOB.assigned_blocks[block]
 		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else

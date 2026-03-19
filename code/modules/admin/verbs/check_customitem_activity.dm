@@ -28,7 +28,6 @@ ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of
 	if(GLOB.checked_for_inactives)
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
