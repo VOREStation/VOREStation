@@ -621,6 +621,7 @@
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design_techweb/prosfab/paiparts
+	desc = "Component parts for a pAI card. Used to repair a broken pAI companion."
 	category = list(
 		RND_CATEGORY_PROSFAB_PAI
 	)
