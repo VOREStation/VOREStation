@@ -65,7 +65,6 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		T = get_turf(M)				//Where is the body located?
-		attack_log = M.attack_log	//preserve our attack logs by copying them to our ghost
 		gender = M.gender
 		if(M.mind && M.mind.name)
 			name = M.mind.name

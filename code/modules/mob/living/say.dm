@@ -423,12 +423,12 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 			blooploop(message, extrarange = -6, volume = 25, sound_preference = /datum/preference/toggle/whisper_sounds)
 			// playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/whisper_sounds)
 
-		log_talk(message, LOG_WHISPER)
+		log_talk(message, LOG_WHISPER, color="#aeaeae")
 	else
 		if(do_sound && message)
 			blooploop(message, volume = 75)
 			// playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/say_sounds)
-		log_talk(message, LOG_SAY)
+		log_talk(message, LOG_SAY, color="#c0c0c0")
 	return 1
 
 /*************************************************************************/

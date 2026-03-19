@@ -1,6 +1,5 @@
 ///////////////////////////
 //// Spawning and despawning
-GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
