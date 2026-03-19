@@ -191,6 +191,7 @@
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design_techweb/prosfab/cyborg
+	desc = "An internal component used to assemble or repair cyborg units. Requires installation in a cyborg to function."
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_COMPONENTS
 	)
