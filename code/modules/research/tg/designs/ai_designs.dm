@@ -70,6 +70,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/aimodule
+	desc = "A circuit used to change a silicon's configured laws."
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 2000, MAT_GOLD = 100)
 	category = list(
