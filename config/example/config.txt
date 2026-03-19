@@ -568,7 +568,7 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 # REQUIRES chatlog_database_backend to be enabled
 #CHATLOG_DATABASE_API_ENDPOINT https://example.com
 
-# Dialogue and Attack logs are logged to the database, reduces ingame memory usage, but increases CPU costs
+# Logs player logs inside the Database. Reduces memory usage, but increases cpu load
 # REQUIRES an database
 # Uncomment to enable
 #DATABASE_LOGGING
