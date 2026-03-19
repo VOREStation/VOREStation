@@ -112,3 +112,4 @@
 // Macro for techweb design consistency
 #define SET_CIRCUIT_DESIGN_NAMEDESC(dispname) name = (dispname) + " circuit";desc = "The circuit board for a " + (dispname) + ".";
 #define SET_MATERIAL_DESIGN_NAMEDESC(dispname) name = (dispname);desc = "A material printed and used in construction.";
+#define SET_AMMO_DESIGN_NAMEDESC(dispname) name = (dispname);desc = "Printable ammunition for a gun, ensure compatibility with your weapon before printing!";
