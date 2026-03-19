@@ -1,5 +1,5 @@
 /datum/design_techweb/board/aicore
-	name = "AI core circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("AI core")
 	id = "aicore"
 	// req_tech = list(TECH_DATA = 4, TECH_BIO = 3)
 	build_path = /obj/item/circuitboard/aicore

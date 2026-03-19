@@ -1,6 +1,5 @@
 /datum/design_techweb/board/atm
-	name = "atm circuit"
-	desc = "The circuit board for a ATM."
+	SET_CIRCUIT_DESIGN_NAMEDESC("atm")
 	id = "bankmachine"
 	build_path = /obj/item/circuitboard/atm
 	category = list(
@@ -9,8 +8,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/board/fax
-	name = "fax machine circuit"
-	desc = "The circuit board for a fax machine."
+	SET_CIRCUIT_DESIGN_NAMEDESC("fax machine")
 	id = "fax"
 	build_path = /obj/item/circuitboard/fax
 	category = list(
@@ -19,8 +17,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/board/photocopier
-	name = "photocopier circuit"
-	desc = "The circuit board for a photocopier."
+	SET_CIRCUIT_DESIGN_NAMEDESC("photocopier")
 	id = "photocopier"
 	build_path = /obj/item/circuitboard/photocopier
 	category = list(
@@ -29,8 +26,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/board/papershredder
-	name = "papershredder circuit"
-	desc = "The circuit board for a papershredder."
+	SET_CIRCUIT_DESIGN_NAMEDESC("papershredder")
 	id = "papershredder"
 	build_path = /obj/item/circuitboard/papershredder
 	category = list(
@@ -39,8 +35,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/board/guest_pass
-	name = "guestpass console circuit"
-	desc = "The circuit board for a guest pass console."
+	SET_CIRCUIT_DESIGN_NAMEDESC("guestpass console")
 	id = "guestpass"
 	build_path = /obj/item/circuitboard/guestpass
 	category = list(

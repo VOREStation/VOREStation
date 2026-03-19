@@ -1,5 +1,5 @@
 /datum/design_techweb/board/ordercomp
-	name = "supply ordering console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("supply ordering console")
 	id = "ordercomp"
 	build_path = /obj/item/circuitboard/supplycomp
 	category = list(
@@ -8,7 +8,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/supplycomp
-	name = "supply control console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("supply control console")
 	id = "supplycomp"
 	// req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/circuitboard/supplycomp/control
@@ -18,7 +18,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/miningdrill
-	name = "mining drill head circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("mining drill head")
 	id = "mining drill head"
 	// req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	build_path = /obj/item/circuitboard/miningdrill
@@ -28,7 +28,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/miningdrillbrace
-	name = "mining drill brace circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("mining drill brace")
 	id = "mining drill brace"
 	// req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	build_path = /obj/item/circuitboard/miningdrillbrace
@@ -38,8 +38,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/ore_silo
-	name = "Ore Silo circuit"
-	desc = "The circuit board for an ore silo."
+	SET_CIRCUIT_DESIGN_NAMEDESC("Ore Silo")
 	id = "ore_silo"
 	build_path = /obj/item/circuitboard/machine/ore_silo
 	category = list(
@@ -48,8 +47,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/request_console
-	name = "request console circuit"
-	desc = "The circuit board for a request console."
+	SET_CIRCUIT_DESIGN_NAMEDESC("request console")
 	id = "request"
 	build_path = /obj/item/circuitboard/request
 	category = list(
@@ -58,8 +56,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/mining_equipment_vendor
-	name = "mining equipment vendor circuit"
-	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
+	SET_CIRCUIT_DESIGN_NAMEDESC("mining equipment vendor")
 	id = "mining_equipment_vendor"
 	build_path = /obj/item/circuitboard/mining_equipment_vendor
 	category = list(
@@ -68,8 +65,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/survey_equipment_vendor
-	name = "exploration equipment vendor circuit"
-	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
+	SET_CIRCUIT_DESIGN_NAMEDESC("exploration equipment vendor")
 	id = "survey_equipment_vendor"
 	build_path = /obj/item/circuitboard/exploration_equipment_vendor
 	category = list(
@@ -78,8 +74,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/stockexchange
-	name = "stock exchange console circuit"
-	desc = "A console that connects to the galactic stock market."
+	SET_CIRCUIT_DESIGN_NAMEDESC("stock exchange console")
 	id = "stockexchange"
 	build_path = /obj/item/circuitboard/stockexchange
 	category = list(

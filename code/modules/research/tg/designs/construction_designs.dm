@@ -1,6 +1,5 @@
 /datum/design_techweb/board/airlock_electronics
-	name = "airlock electronics circuit"
-	desc = "The circuit board for a airlock."
+	SET_CIRCUIT_DESIGN_NAMEDESC("airlock")
 	id = "airlock_board"
 	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/airlock_electronics
@@ -11,8 +10,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/airalarm
-	name = "air alarm circuit"
-	desc = "The circuit board for a air alarm."
+	SET_CIRCUIT_DESIGN_NAMEDESC("air alarm")
 	id = "airalarm_electronics"
 	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/airalarm
@@ -23,8 +21,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/firealarm
-	name = "fire alarm circuit"
-	desc = "The circuit board for a fire alarm."
+	SET_CIRCUIT_DESIGN_NAMEDESC("fire alarm")
 	id = "firealarm_electronics"
 	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/firealarm
@@ -47,8 +44,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/holopad
-	name = "holopad circuit"
-	desc = "The circuit board for an AI holopad."
+	SET_CIRCUIT_DESIGN_NAMEDESC("AI holopad")
 	id = "holopad"
 	build_path = /obj/item/circuitboard/holopad
 	category = list(
@@ -57,8 +53,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/intercom
-	name = "intercom circuit"
-	desc = "The circuit board for a radio intercom."
+	SET_CIRCUIT_DESIGN_NAMEDESC("intercom")
 	id = "intercom"
 	build_type = AUTOLATHE | IMPRINTER // Simple circuit
 	build_path = /obj/item/circuitboard/intercom

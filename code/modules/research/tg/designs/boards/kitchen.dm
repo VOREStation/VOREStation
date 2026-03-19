@@ -1,6 +1,6 @@
 // Cooking Appliances
 /datum/design_techweb/board/microwave
-	name = "microwave circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("microwave")
 	id = "microwave_board"
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/microwave
@@ -10,7 +10,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/oven
-	name = "oven circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("oven")
 	id = "oven_board"
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/oven
@@ -20,7 +20,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/fryer
-	name = "deep fryer circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("deep fryer")
 	id = "fryer_board"
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/fryer
@@ -30,7 +30,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/range
-	name = "grill circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("grill")
 	id = "range"
 	build_path = /obj/item/circuitboard/grill
 	category = list(
@@ -39,7 +39,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/cerealmaker
-	name = "cereal maker circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("cereal maker")
 	id = "cerealmaker_board"
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/cerealmaker
@@ -49,7 +49,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/candymaker
-	name = "candy machine circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("candy machine")
 	id = "candymachine_board"
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/candymachine
@@ -59,7 +59,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/honey_extractor
-	name = "honey_extractor circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("honey extractor")
 	id = "honey_extractor"
 	build_path = /obj/item/circuitboard/honey_extractor
 	category = list(

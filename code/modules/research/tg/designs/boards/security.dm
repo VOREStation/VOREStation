@@ -1,6 +1,5 @@
 /datum/design_techweb/board/dna_analyzer
-	name = "DNA analyzer circuit"
-	desc = "A high tech machine that is designed to read DNA samples properly."
+	SET_CIRCUIT_DESIGN_NAMEDESC("DNA analyzer")
 	id = "dna_analyzer"
 	build_path = /obj/item/circuitboard/dna_analyzer
 	category = list(
