@@ -165,19 +165,19 @@
 
 /obj/item/circuitboard/dormscontrol
 	name = T_BOARD("Residential Oversight Console")
-	build_path = /obj/machinery/computer/cryopod/door/dorms
+	build_path = /obj/machinery/computer/cryopod/dorms
 	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/travelcontrol
 	name = T_BOARD("Travel Oversight Console - Docks")
-	build_path = /obj/machinery/computer/cryopod/door/travel
+	build_path = /obj/machinery/computer/cryopod/travel
 	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/gatewaycontrol
 	name = T_BOARD("Travel Oversight Console - Gateway")
-	build_path = /obj/machinery/computer/cryopod/door/gateway
+	build_path = /obj/machinery/computer/cryopod/gateway
 	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
