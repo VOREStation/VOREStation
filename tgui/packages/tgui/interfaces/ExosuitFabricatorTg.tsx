@@ -382,8 +382,6 @@ const QueueList = (props: QueueListProps) => {
               >
                 <div className="FabricatorRecipe__Icon">
                   <Box
-                    width={'32px'}
-                    height={'32px'}
                     className={
                       entry.design?.icon.startsWith('design')
                         ? entry.design?.icon
