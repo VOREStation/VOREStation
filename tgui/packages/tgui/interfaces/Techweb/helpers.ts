@@ -14,6 +14,7 @@ type RemappedNode = NodeCache & {
 type RemappedDesignCache = {
   name: string;
   class: string;
+  transform?: string;
 };
 
 // Data reshaping / ingestion (thanks stylemistake for the help, very cool!)
@@ -56,9 +57,19 @@ function selectRemappedStaticData(data: TechWebData) {
   const design_cache = {} as RemappedDesignCache;
   for (const id of Object.keys(data.static_data.design_cache)) {
     const [name, classes] = data.static_data.design_cache[id];
+
+    const match = classes.match(/(\d+)x(\d+)/);
+    console.log(match ? match[0] : 'ehh');
+    const transformValue = match
+      ? Math.max(parseInt(match[1], 10), parseInt(match[2], 10))
+      : undefined;
+
     design_cache[remapId(id)] = {
       name: name,
       class: classes.startsWith('design') ? classes : `design32x32 ${classes}`,
+      transform: transformValue
+        ? `scale(${32 / transformValue},${32 / transformValue})`
+        : undefined,
     };
   }
 

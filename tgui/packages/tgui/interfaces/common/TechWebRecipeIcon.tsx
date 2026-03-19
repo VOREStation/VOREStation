@@ -10,7 +10,7 @@ export const TechWebRecipeIcon = (props: {
   const { icon, name, canPrint, action } = props;
 
   const match = icon.match(/(\d+)x(\d+)/);
-  const tranformValue = match
+  const transformValue = match
     ? Math.max(parseInt(match[1], 10), parseInt(match[2], 10))
     : undefined;
 
@@ -30,8 +30,8 @@ export const TechWebRecipeIcon = (props: {
         <Box
           className={icon.startsWith('design') ? icon : `design32x32 ${icon}`}
           style={{
-            transform: tranformValue
-              ? `scale(${32 / tranformValue},${32 / tranformValue})`
+            transform: transformValue
+              ? `scale(${32 / transformValue},${32 / transformValue})`
               : undefined,
             transformOrigin: 'top left',
           }}
