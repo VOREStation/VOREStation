@@ -47,11 +47,11 @@ SUBSYSTEM_DEF(dbcore)
 	if(IsConnected())
 		var/datum/db_query/query_truncate = NewQuery("TRUNCATE erro_dialog")
 		if(!query_truncate.Execute())
-			log_admin("ERROR TRYING TO CLEAR erro_attacklog")
+			log_sql("ERROR TRYING TO CLEAR erro_dialog: "+query_truncate.ErrorMsg())
 		qdel(query_truncate)
 		var/datum/db_query/query_truncate2 = NewQuery("TRUNCATE erro_attacklog")
 		if(!query_truncate2.Execute())
-			log_admin("ERROR TRYING TO CLEAR erro_attacklog")
+			log_sql("ERROR TRYING TO CLEAR erro_attacklog: "+query_truncate2.ErrorMsg())
 		qdel(query_truncate2)
 	return SS_INIT_SUCCESS
 
