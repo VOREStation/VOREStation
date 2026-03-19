@@ -76,6 +76,7 @@
 
 // Telecomm parts
 /datum/design_techweb/subspace
+	desc = "Complex components used to construct and repair telecomms machinery."
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
