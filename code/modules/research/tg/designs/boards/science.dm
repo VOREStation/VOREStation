@@ -214,3 +214,36 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+///Protolathe boards
+
+/datum/design_techweb/board/protolathe
+	name = "Protolathe Board - Science"
+	id = "protolathe_science"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/science
+
+/datum/design_techweb/board/protolathe/service
+	name = "Protolathe Board - Service"
+	id = "protolathe_service"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/service
+
+/datum/design_techweb/board/protolathe/medical
+	name = "Protolathe Board - Medical"
+	id = "protolathe_medical"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/medical
+
+/datum/design_techweb/board/protolathe/cargo
+	name = "Protolathe Board - Cargo"
+	id = "protolathe_cargo"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/cargo
+
+/datum/design_techweb/board/protolathe/engineering
+	name = "Protolathe Board - Engineering"
+	id = "protolathe_engineering"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/engineering
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING //Engineering gets an exception in that they can produce their own, since engineering often expands operations.
+
+/datum/design_techweb/board/protolathe/security
+	name = "Protolathe Board - Security"
+	id = "protolathe_security"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/security

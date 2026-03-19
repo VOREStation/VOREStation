@@ -297,7 +297,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	clear_character_previews()
 	return TRUE
 
-/datum/preferences/proc/save_character()
+/datum/preferences/proc/save_character(override)
 	SHOULD_NOT_SLEEP(TRUE)
 	if(!savefile)
 		return FALSE
@@ -310,10 +310,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/save_data = savefile.get_entry(tree_key)
 
 	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
-		if(preference.savefile_identifier != PREFERENCE_CHARACTER && !first_save)
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER && !first_save && !override)
 			continue
 
-		if(!(preference.type in recently_updated_keys) && !first_save)
+		if(!(preference.type in recently_updated_keys) && !first_save && !override)
 			continue
 
 		recently_updated_keys -= preference.type

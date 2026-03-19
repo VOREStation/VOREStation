@@ -27,7 +27,7 @@
 	update_docking_target(current_location)
 	if(active_docking_controller)
 		set_docking_codes(active_docking_controller.docking_codes)
-	else if(global.using_map.use_overmap)
+	else if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(get_z(current_location))
 		if(location && location.docking_codes)
 			set_docking_codes(location.docking_codes)
