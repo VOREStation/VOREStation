@@ -1,16 +1,40 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Section, Stack, Tabs } from 'tgui-core/components';
+import { Box, Button, Input, Section, Stack, Tabs } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
+import { validateRegExp } from '../LogViewer/functions';
 import type { Data } from './types';
 
 export const PlayerLogViewer = (props) => {
   const { data } = useBackend<Data>();
 
   const [activeTab, setActiveTab] = useState('');
+  const [search, setSearch] = useState('');
+  const [searchRegex, setSearchRegex] = useState(false);
+  const [caseSensitive, setCaseSensitive] = useState(false);
+  if (!search && searchRegex) {
+    setSearchRegex(false);
+  }
+  let regexValidation: boolean | SyntaxError = true;
+  if (searchRegex) {
+    regexValidation = validateRegExp(search);
+  }
 
   const { entries, name, ckey, special } = data;
+
+  const allEntries = Object.values(entries)
+    .flat()
+    .sort((a, b) => a.event_id - b.event_id);
+
+  const entriesWithAll = {
+    ALL: allEntries,
+    ...entries,
+  };
+
+  if (!activeTab && Object.keys(entriesWithAll).length > 0) {
+    setActiveTab('ALL');
+  }
 
   return (
     <Window width={800} height={600}>
@@ -40,7 +64,7 @@ export const PlayerLogViewer = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Tabs scrollable>
-              {Object.keys(entries).map((entry) => (
+              {Object.keys(entriesWithAll).map((entry) => (
                 <Tabs.Tab
                   selected={entry === activeTab}
                   key={entry}
@@ -52,23 +76,89 @@ export const PlayerLogViewer = (props) => {
             </Tabs>
           </Stack.Item>
           <Stack.Item grow>
-            <Section fill scrollable title={`Active Log: ${activeTab}`}>
+            <Section
+              fill
+              scrollable
+              title={`Active Log: ${activeTab}`}
+              buttons={
+                <Stack>
+                  <Stack.Item>
+                    <Input
+                      width="200px"
+                      placeholder="Search"
+                      value={search}
+                      onChange={setSearch}
+                    />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="code"
+                      tooltip="RegEx Search"
+                      selected={searchRegex}
+                      onClick={() => setSearchRegex(!searchRegex)}
+                    />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="font"
+                      selected={caseSensitive}
+                      tooltip="Case Sensitive"
+                      onClick={() => setCaseSensitive(!caseSensitive)}
+                    />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="trash"
+                      tooltip="Clear Search"
+                      color="bad"
+                      onClick={() => {
+                        setSearch('');
+                        setSearchRegex(false);
+                      }}
+                    />
+                  </Stack.Item>
+                </Stack>
+              }
+            >
               <Stack fill vertical>
-                {entries[activeTab] ? (
-                  entries[activeTab].map((log_entry) => (
-                    <Stack.Item key={log_entry.event_id}>
-                      <Box inline>{formatTime(log_entry.time)}</Box>
-                      <Box inline preserveWhitespace bold>
-                        {` ${log_entry.name}/${log_entry.ckey}`}
-                      </Box>
-                      <Box inline preserveWhitespace>
-                        {` at (${log_entry.loc}): `}
-                      </Box>
-                      <Box inline preserveWhitespace color={log_entry.color}>
-                        {log_entry.message}
-                      </Box>
-                    </Stack.Item>
-                  ))
+                {entriesWithAll[activeTab] ? (
+                  entriesWithAll[activeTab]
+                    .filter((entry) => {
+                      if (!search) return true;
+
+                      if (searchRegex) {
+                        try {
+                          const regex = new RegExp(
+                            search,
+                            caseSensitive ? 'g' : 'gi',
+                          );
+                          return regex.test(entry.message);
+                        } catch {
+                          return true;
+                        }
+                      } else {
+                        if (caseSensitive)
+                          return entry.message.includes(search);
+                        return entry.message
+                          .toLowerCase()
+                          .includes(search.toLowerCase());
+                      }
+                    })
+                    // map to JSX elements
+                    .map((log_entry) => (
+                      <Stack.Item key={log_entry.event_id}>
+                        <Box inline>{formatTime(log_entry.time)}</Box>
+                        <Box inline preserveWhitespace bold>
+                          {` ${log_entry.name}/${log_entry.ckey}`}
+                        </Box>
+                        <Box inline preserveWhitespace>
+                          {` at (${log_entry.loc}): `}
+                        </Box>
+                        <Box inline preserveWhitespace color={log_entry.color}>
+                          {log_entry.message}
+                        </Box>
+                      </Stack.Item>
+                    ))
                 ) : (
                   <Box color="red" textAlign="center">
                     No Entry Selected.
