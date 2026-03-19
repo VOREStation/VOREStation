@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Input, Section, Stack, Tabs } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
-import type { Data } from './types';
+import type { Data, LogEntry } from './types';
 
 export const PlayerLogViewer = (props) => {
   const { data } = useBackend<Data>();
@@ -22,7 +22,7 @@ export const PlayerLogViewer = (props) => {
     .flat()
     .sort((a, b) => a.event_id - b.event_id);
 
-  const entriesWithAll = {
+  const entriesWithAll: Record<string, LogEntry[]> = {
     ALL: allEntries,
     ...entries,
   };
