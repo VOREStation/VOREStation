@@ -6,6 +6,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/prosfab/pros
+	desc = "A prosthetic bodypart, requires surgical attachment to a body to function."
 	category = list(
 		RND_CATEGORY_PROSFAB + RND_SUBCATEGORY_PROSFAB_EXTERNAL
 	)
