@@ -100,8 +100,9 @@
 
 // Check if the user can run program. Only humans can operate computer. Automatically called in run_program()
 // User has to wear their ID or have it inhand for ID Scan to work.
-// Can also be called manually, with optional parameter being access_to_check to scan the user's ID
-/datum/computer_file/program/proc/can_run(var/mob/living/user, var/loud = 0, var/access_to_check)
+// Can also be called manually, with optional parameter being access_to_check to scan the user's ID.
+// explicit_card can be passed by callers that already have a card reference (e.g. the laptop's inserted card).
+/datum/computer_file/program/proc/can_run(var/mob/living/user, var/loud = 0, var/access_to_check, var/obj/item/card/id/explicit_card)
 	// Defaults to required_access
 	if(!access_to_check)
 		access_to_check = required_access
@@ -115,7 +116,9 @@
 	if(!istype(user))
 		return 0
 
-	var/obj/item/card/id/I = user.GetIdCard()
+	// Resolve the card to check: caller-supplied card first, then the user's worn/held ID,
+	// then fall back to whatever is inserted in the computer's card slot.
+	var/obj/item/card/id/I = explicit_card || user.GetIdCard() || computer?.card_slot?.stored_card
 	if(!I)
 		if(loud)
 			to_chat(user, span_notice("\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning."))
@@ -140,7 +143,10 @@
 		computer.active_program = src
 		if(tguimodule_path)
 			TM = new tguimodule_path(src)
-			TM.using_access = user.GetAccess()
+			// Prefer the card inserted into the computer's card slot for access checks;
+			// fall back to the user's own access if no card is slotted.
+			var/obj/item/card/id/auth_card = computer?.card_slot?.stored_card
+			TM.using_access = auth_card ? auth_card.GetAccess() : user.GetAccess()
 		if(requires_ntnet && network_destination)
 			generate_network_log("Connection opened to [network_destination].")
 		program_state = PROGRAM_STATE_ACTIVE

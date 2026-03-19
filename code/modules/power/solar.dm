@@ -108,8 +108,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return
 
 	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
-	var/p_angle = min(abs(adir - SSsun.sun.angle), 360 - abs(adir - SSsun.sun.angle))
-
+	var/source_angle = SSsolars.get_solar_angle(get_turf(src))
+	var/p_angle = min(abs(adir - source_angle), 360 - abs(adir - source_angle))
 	if(p_angle > 90) // if facing more than 90deg from sun, zero output
 		sunfrac = 0
 		return
@@ -160,31 +160,54 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 //trace towards sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
+	var/turf/our_t = get_turf(src)
+	var/datum/planet/our_planet
+	if(!our_t || our_t.z > length(SSplanets.z_to_planet) || !SSplanets.z_to_planet[our_t.z])
+		// If we are NOT on a planet, we check toward the edge of the map, otherwise we're going to assume the sun is above us on a planet
+		var/ax = x		// start at the solar panel
+		var/ay = y
+		var/turf/T = null
 
-	var/ax = x		// start at the solar panel
-	var/ay = y
-	var/turf/T = null
+		for(var/i = 1 to 20)		// 20 steps is enough
+			ax += SSsun.sun.dx	// do step
+			ay += SSsun.sun.dy
 
-	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += SSsun.sun.dx	// do step
-		ay += SSsun.sun.dy
+			T = locate( round(ax,0.5),round(ay,0.5),z)
 
-		T = locate( round(ax,0.5),round(ay,0.5),z)
+			if(!T || T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
+				break
 
-		if(!T || T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
-			break
-
-		if(T.opacity)			// if we hit a solid turf, panel is obscured
-			obscured = 1
-			return
+			if(T.opacity)			// if we hit a solid turf, panel is obscured
+				obscured = 1
+				return
+	else
+		// If we are on a planet, get it for later so we can change the intensity of the light we recieve
+		our_planet = SSplanets.z_to_planet[our_t.z]
 
 	obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
+
+	// Use the actual brightness of time and weather if we are on a planet, check if we're not blocked above by seeing what our outdoors status is
+	if(our_planet)
+		sunfrac *= our_t.is_outdoors() ? our_planet.sun["brightness"] : 0
+
+/// Updates the power generation of a solar panel.
+/obj/machinery/power/solar/proc/update_power_generation(obj/machinery/power/solar_control/SC)
+	adir = SC.cdir //instantly rotates the panel
+	occlusion()//and
+	update_icon() //update it
+	var/sgen = get_power_supplied()
+	var/list/panel_list = SC.get_connected_panels()
+	panel_list[src] = sgen
+	return sgen
 
 /// Looks nice but doesn't generate power.
 /obj/machinery/power/solar/fake
 
 /obj/machinery/power/solar/fake/get_power_supplied()
+	return 0
+
+/obj/machinery/power/solar/fake/update_power_generation()
 	return 0
 
 //
@@ -305,7 +328,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		track = 2 // Auto tracking mode.
 		search_for_connected()
 		if(connected_tracker)
-			connected_tracker.set_angle(SSsun.sun.angle)
+			connected_tracker.set_angle(SSsolars.get_solar_angle(get_turf(src)))
 		set_panels(cdir)
 
 /obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
@@ -317,6 +340,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/proc/remove_panel(var/obj/machinery/power/solar/P)
 	connected_power -= connected_panels[P]
 	connected_panels.Remove(P)
+	SSsolars.panel_run[REF(src)] -= P // clear hardref in subsystem
+
+/obj/machinery/power/solar_control/proc/get_connected_panels()
+	RETURN_TYPE(/list)
+	return connected_panels
 
 /obj/machinery/power/solar_control/drain_power()
 	return -1
@@ -359,9 +387,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				cdir = targetdir //...the current direction is the targetted one (and rotates panels to it)
 		if(2) // auto-tracking
 			if(connected_tracker)
-				connected_tracker.set_angle(SSsun.sun.angle)
-
-	set_panels(cdir)
+				connected_tracker.set_angle(SSsolars.get_solar_angle(get_turf(src)))
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)
@@ -395,7 +421,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	data["generated"] = round(connected_power)
 	data["generated_ratio"] = data["generated"] / round(max(connected_panels.len, 1) * GLOB.solar_gen_rate)
 
-	data["sun_angle"] = SSsun.sun.angle
+	data["sun_angle"] = SSsolars.get_solar_angle(get_turf(src))
 	data["array_angle"] = cdir
 	data["rotation_rate"] = trackrate
 	data["max_rotation_rate"] = 7200
@@ -488,7 +514,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			track = mode
 			if(track == 2)
 				if(connected_tracker)
-					connected_tracker.set_angle(SSsun.sun.angle)
+					connected_tracker.set_angle(SSsolars.get_solar_angle(get_turf(src)))
 					set_panels(cdir)
 			else if(track == 1) //begin manual tracking
 				targetdir = cdir
@@ -501,16 +527,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 			search_for_connected()
 			return TRUE
 
-//rotates the panel to the passed angle
+/// rotates all connected panels to the passed angle, very expensive as it does them all at once in a single frame. This is what SSsolars does, but much more rude about it.
 /obj/machinery/power/solar_control/proc/set_panels(var/cdir)
 	var/sum = 0
 	for(var/obj/machinery/power/solar/S in connected_panels)
-		S.adir = cdir //instantly rotates the panel
-		S.occlusion()//and
-		S.update_icon() //update it
-		var/sgen = S.get_power_supplied()
-		connected_panels[S] = sgen
-		sum += sgen
+		sum += S.update_power_generation(src)
 	connected_power = sum
 	update_icon()
 

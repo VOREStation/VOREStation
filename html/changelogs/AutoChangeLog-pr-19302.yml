@@ -1,0 +1,4 @@
+author: "ARGUS"
+delete-after: True
+changes:
+  - bugfix: "Handle ! Say emotes properly similiar to * emotes."

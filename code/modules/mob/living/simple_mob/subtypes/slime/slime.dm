@@ -1,4 +1,4 @@
-var/list/_slime_default_emotes = list(
+GLOBAL_LIST_INIT(slime_default_emotes, list(
 	/datum/decl/emote/audible/moan,
 	/datum/decl/emote/visible/twitch,
 	/datum/decl/emote/visible/sway,
@@ -13,7 +13,7 @@ var/list/_slime_default_emotes = list(
 	/datum/decl/emote/slime/angry,
 	/datum/decl/emote/slime/frown,
 	/datum/decl/emote/slime/smile
-)
+))
 
 // The top-level slime defines. Xenobio slimes and feral slimes will inherit from this.
 /mob/living/simple_mob/slime
@@ -87,7 +87,7 @@ var/list/_slime_default_emotes = list(
 	pain_emote_3p = list("squishes", "squelches")
 
 /mob/living/simple_mob/slime/get_available_emotes()
-	return global._slime_default_emotes.Copy()
+	return GLOB.slime_default_emotes.Copy()
 
 /datum/say_list/slime
 	speak = list("Blorp...", "Blop...")

@@ -70,9 +70,9 @@ export const VoreContentsPanel = (props: {
     return '';
   }
 
-  const contentSearch = createSearch(
+  const contentSearch = createSearch<ContentData>(
     contentSearchText,
-    (content: ContentData) => content.name,
+    (content) => content.name,
   );
   const displayedContents = contents?.filter(contentSearch);
 

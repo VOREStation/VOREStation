@@ -69,6 +69,7 @@ export const VoreSelectedBelly = (props: {
   tabs[1] = belly_description_data && (
     <VoreSelectedBellyDescriptions
       editMode={editMode}
+      bellyName={belly_name}
       bellyDescriptionData={belly_description_data}
       vore_words={vore_words}
     />

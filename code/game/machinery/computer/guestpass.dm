@@ -99,6 +99,7 @@
 	icon_screen = "pass"
 	density = FALSE
 	circuit = /obj/item/circuitboard/guestpass
+	flags = WALL_ITEM
 
 	var/obj/item/card/id/giver
 	var/list/accesses = list()

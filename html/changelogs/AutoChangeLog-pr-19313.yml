@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - admin: "reimplements attack and player logs"
+  - code_imp: "rids of the old db connection hook... the dbcore subsystem needs to handle it"
+  - bugfix: "player logs per mob verbs"
