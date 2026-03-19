@@ -86,17 +86,15 @@ GLOBAL_LIST_INIT(spawntypes, populate_spawn_points())
 
 /obj/effect/landmark/arrivals
 	name = "JoinLateShuttle"
-	delete_me = 1
+	delete_me = TRUE
 
 /obj/effect/landmark/arrivals/Initialize(mapload)
 	GLOB.latejoin += loc
 	. = ..()
 
-GLOBAL_LIST_EMPTY(latejoin_tram)
-
 /obj/effect/landmark/tram
 	name = "JoinLateTram"
-	delete_me = 1
+	delete_me = TRUE
 
 /obj/effect/landmark/tram/Initialize(mapload)
 	GLOB.latejoin_tram += loc // There's no tram but you know whatever man!
