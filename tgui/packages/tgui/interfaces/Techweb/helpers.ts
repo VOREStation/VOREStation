@@ -73,8 +73,7 @@ function selectRemappedStaticData(data: TechWebData) {
       transform: transformValue
         ? `scale(${32 / transformValue},${32 / transformValue})`
         : undefined,
-      offsetX: offset < 0 ? -offset : 0,
-      offsetY: offset > 0 ? offset : 0,
+      margin: `${offset > 0 ? offset : 0}px ${offset < 0 ? -offset : 0}px`,
     };
   }
 

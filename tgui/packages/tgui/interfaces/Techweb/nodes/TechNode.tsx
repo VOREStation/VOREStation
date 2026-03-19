@@ -209,7 +209,7 @@ export function TechNode(props: Props) {
                 style={{
                   transform: `${design_cache[k].transform}`,
                   transformOrigin: 'top left',
-                  margin: `${design_cache[k].offsetY}px ${design_cache[k].offsetX}px`,
+                  margin: `${design_cache[k].margin}`,
                 }}
               />
             </Button>
