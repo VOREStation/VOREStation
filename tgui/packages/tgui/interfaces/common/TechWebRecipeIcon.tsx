@@ -10,9 +10,13 @@ export const TechWebRecipeIcon = (props: {
   const { icon, name, canPrint, action } = props;
 
   const match = icon.match(/(\d+)x(\d+)/);
-  const transformValue = match
-    ? Math.max(parseInt(match[1], 10), parseInt(match[2], 10))
-    : undefined;
+  const width = match ? parseInt(match[1], 10) : 32;
+  const height = match ? parseInt(match[2], 10) : 32;
+  const transformValue = match ? Math.max(width, height) : undefined;
+
+  const offset = transformValue
+    ? ((width - height) / 2) * (32 / transformValue)
+    : 0;
 
   return (
     <Box
@@ -34,6 +38,7 @@ export const TechWebRecipeIcon = (props: {
               ? `scale(${32 / transformValue},${32 / transformValue})`
               : undefined,
             transformOrigin: 'top left',
+            margin: `${offset < 0 ? -offset : 0}px ${offset > 0 ? offset : 0}px`,
           }}
         />
       </Box>
