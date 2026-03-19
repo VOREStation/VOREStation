@@ -237,14 +237,15 @@
 		for(var/mat_id in design.materials)
 			cost[mat_id] = OPTIMAL_COST(design.materials[mat_id] * coefficient)
 
-		var/icon_size = spritesheet.icon_size_id(design.id)
+		var/css_id = sanitize_css_class_name(design.id)
+		var/size = spritesheet.icon_size_id(css_id)
 		designs[design.id] = list(
 			"name" = design.name,
 			"desc" = design.get_description(),
 			"cost" = cost,
 			"id" = design.id,
 			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]"
+			"icon" = "[size == size32x32 ? "" : "[size] "][css_id]"
 		)
 
 	data["designs"] = designs

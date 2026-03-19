@@ -1,4 +1,3 @@
-import { sanitizeCssClassName } from 'common/css_sanity';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -157,12 +156,11 @@ const Recipe = (props: RecipeProps) => {
         >
           <div className="FabricatorRecipe__Icon">
             <Box
-              width={'32px'}
-              height={'32px'}
-              className={classes([
-                'design32x32',
-                sanitizeCssClassName(design.icon),
-              ])}
+              className={
+                design.icon.startsWith('design')
+                  ? design.icon
+                  : `design32x32 ${design.icon}`
+              }
             />
           </div>
           <div className="FabricatorRecipe__Label">{design.name}</div>
@@ -386,10 +384,11 @@ const QueueList = (props: QueueListProps) => {
                   <Box
                     width={'32px'}
                     height={'32px'}
-                    className={classes([
-                      'design32x32',
-                      sanitizeCssClassName(entry.design?.icon),
-                    ])}
+                    className={
+                      entry.design?.icon.startsWith('design')
+                        ? entry.design?.icon
+                        : `design32x32 ${entry.design?.icon}`
+                    }
                   />
                 </div>
                 <div className="FabricatorRecipe__Label">

@@ -1,4 +1,3 @@
-import { sanitizeCssClassName } from 'common/css_sanity';
 import {
   Box,
   Button,
@@ -222,12 +221,11 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
         >
           <div className="FabricatorRecipe__Icon">
             <Box
-              width={'32px'}
-              height={'32px'}
-              className={classes([
-                'design32x32',
-                sanitizeCssClassName(design.icon),
-              ])}
+              className={
+                design.icon.startsWith('design')
+                  ? design.icon
+                  : `design32x32 ${design.icon}`
+              }
             />
           </div>
           <div className="FabricatorRecipe__Label">{design.name}</div>
