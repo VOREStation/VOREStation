@@ -65,6 +65,9 @@
 /obj/item/anomaly_scanner
 	name = "anomaly scanner"
 	desc = "A hand-held anomaly scanner, able to distinguish the particles that might affect a stable anomaly."
+	description_info = "Click on an emitter to change into an anomalous emitter.<br>\
+	Click on an anomaly harvester to link the scanned anomaly to it.<br>\
+	Danger type adds severity. Unstable changes state. Containment stabilizes at the cost of health. Transformation adds modifiers."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "anom_scanner"
 	slot_flags = SLOT_BELT
@@ -168,38 +171,43 @@
 	starts_with = list(
 		/obj/item/anomaly_releaser,
 		/obj/item/anomaly_scanner,
-		/obj/item/anomaly_choice,
+		/obj/item/assembly/signaler/anomaly/choice,
 		/obj/item/clothing/gloves/black
 	)
 
-/obj/item/anomaly_choice
+/obj/item/assembly/signaler/anomaly/choice
 	name = "latent anomaly core"
 	desc = "A supposedly inert anomaly core. It hums softly if held close."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "inert"
+	worth = 0
+	var/picked = FALSE
+	anomaly_type = /obj/effect/anomaly/flux // Default
 
-/obj/item/anomaly_choice/attack_self(mob/user, modifiers)
+/obj/item/assembly/signaler/anomaly/choice/attack_self(mob/user, modifiers)
 	. = ..(user)
 	if(.)
 		return TRUE
 
+	if(picked)
+		return TRUE
+
 	var/list/choices = list()
-	var/list/core_types = subtypesof(/obj/item/assembly/signaler/anomaly)
+	var/list/core_types = subtypesof(/obj/effect/anomaly)
 
 	// Two random cores
 	for(var/i = 0, i < 2, i++)
 		var/type = pick(core_types)
-		var/obj/item/assembly/signaler/anomaly/core = new type
-		choices[capitalize(core.name)] = type
+		var/obj/effect/anomaly/anom = new type
+		choices[capitalize(anom.name)] = type
 
 	// Guaranteed
-	var/preset = /obj/item/assembly/signaler/anomaly/flux
-	var/obj/item/assembly/signaler/anomaly/preset_core = new preset
-	choices[capitalize(preset_core.name)] = preset
+	var/preset = /obj/effect/anomaly/flux
+	var/obj/effect/anomaly/preset_anom = new preset
+	choices[capitalize(preset_anom.name)] = preset
 
 	var/choice = tgui_input_list(user, "Choose an anomaly core.", "Anomaly Core Selection", choices)
 
-	if(choice)
-		var/type = choices[choice]
-		new type(get_turf(src))
-		qdel(src)
+	if(choice && !picked)
+		anomaly_type = choices[choice]
+		picked = TRUE

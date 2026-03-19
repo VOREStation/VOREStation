@@ -79,7 +79,7 @@
 
 
 /datum/event/infestation/announce()
-	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding all over the facility. Clear them out, before this starts to affect productivity.", "Vermin infestation")
+	GLOB.command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding all over the facility. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
 #undef VERM_MICE
 #undef VERM_LIZARDS

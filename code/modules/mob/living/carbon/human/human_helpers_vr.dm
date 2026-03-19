@@ -1,5 +1,5 @@
-var/static/icon/ingame_hud_vr = icon('icons/mob/hud_vr.dmi')
-var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
+GLOBAL_DATUM_INIT(ingame_hud_vr, /icon, icon('icons/mob/hud_vr.dmi'))
+GLOBAL_DATUM_INIT(ingame_hud_med_vr, /icon, icon('icons/mob/hud_med_vr.dmi'))
 
 /mob/living/carbon/human/proc/remove_marking(var/datum/sprite_accessory/marking/mark_datum)
 	if (!mark_datum)
@@ -263,7 +263,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	species?.base_species = bodytype
 	species?.vanity_base_fit = bodytype
 	if (istype(species, /datum/species/shapeshifter))
-		wrapped_species_by_ref["\ref[src]"] = bodytype
+		GLOB.wrapped_species_by_ref["\ref[src]"] = bodytype
 
 	custom_species	= character.custom_species
 	custom_say		= character.custom_say

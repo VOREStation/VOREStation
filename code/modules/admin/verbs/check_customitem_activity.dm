@@ -1,5 +1,5 @@
-var/checked_for_inactives = 0
-var/inactive_keys = "None<br>"
+GLOBAL_VAR_INIT(checked_for_inactives, FALSE)
+GLOBAL_VAR_INIT(inactive_keys, "None<br>")
 
 /client/proc/check_customitem_activity()
 	set category = "Admin.Investigate"
@@ -14,8 +14,8 @@ var/inactive_keys = "None<br>"
 	dat += "Populating this list is done automatically, but must be manually triggered on a per\
 		round basis. Populating the list may cause a lag spike, so use it sparingly.<br>"
 	dat += "<hr>"
-	if(checked_for_inactives)
-		dat += inactive_keys
+	if(GLOB.checked_for_inactives)
+		dat += GLOB.inactive_keys
 		dat += "<hr>"
 		dat += "This system was implemented on March 1 2013, and the database a few days before that. Root server access is required to add or disable access to specific custom items.<br>"
 	else
@@ -28,10 +28,9 @@ var/inactive_keys = "None<br>"
 /proc/populate_inactive_customitems_list(var/client/C)
 	set background = 1
 
-	if(checked_for_inactives)
+	if(GLOB.checked_for_inactives)
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
@@ -77,13 +76,13 @@ var/inactive_keys = "None<br>"
 			qdel(query_inactive)
 
 	if(inactive_ckeys.len)
-		inactive_keys = ""
+		GLOB.inactive_keys = ""
 		for(var/cur_key in inactive_ckeys)
 			if(inactive_ckeys[cur_key])
-				inactive_keys += span_bold("[cur_key]") + " - [inactive_ckeys[cur_key]]<br>"
+				GLOB.inactive_keys += span_bold("[cur_key]") + " - [inactive_ckeys[cur_key]]<br>"
 			else
-				inactive_keys += "[cur_key] - no database entry<br>"
+				GLOB.inactive_keys += "[cur_key] - no database entry<br>"
 
-	checked_for_inactives = 1
+	GLOB.checked_for_inactives = TRUE
 	if(C)
 		C.check_customitem_activity()

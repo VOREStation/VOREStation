@@ -399,7 +399,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
 		overwrite_character(slotnum)
-		save_character()
+		save_character(TRUE)
 		save_preferences()
 		load_preferences(TRUE)
 		load_character()
@@ -632,7 +632,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
 	if(istype(character.species, /datum/species/shapeshifter))
-		wrapped_species_by_ref["\ref[character]"] = bodytype_selected
+		GLOB.wrapped_species_by_ref["\ref[character]"] = bodytype_selected
 
 	character.custom_species	= custom_species
 	character.custom_say		= lowertext(trim(custom_say))

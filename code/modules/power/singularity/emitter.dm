@@ -231,6 +231,10 @@
 		anomalous = !anomalous
 		burst_delay = anomalous ? 3 : 8
 		to_chat(user, span_notice("The beam is now set to [anomalous ? "anomalous." : "normal."]"))
+		if(anomalous)
+			description_info = "Use a multitool to change the particle type."
+		else
+			description_info = initial(description_info)
 		return
 	if(W.has_tool_quality(TOOL_MULTITOOL) && anomalous)
 		var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)

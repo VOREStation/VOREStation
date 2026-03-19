@@ -15,7 +15,7 @@
 										"you don't want to buy anything? Yeah, well I didn't want to buy your mom either.")
 
 /datum/event/brand_intelligence/announce()
-	command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
+	GLOB.command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
 	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert")
 
 

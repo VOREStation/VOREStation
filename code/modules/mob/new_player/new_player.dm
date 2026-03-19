@@ -67,7 +67,6 @@
 	if(!client)	return 0
 
 	if(href_list["privacy_poll"])
-		establish_db_connection()
 		if(!SSdbcore.IsConnected())
 			return
 		var/voted = 0
@@ -216,7 +215,7 @@
 	return 1
 
 
-/mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
+/mob/new_player/proc/AttemptLateSpawn(rank)
 	if (src != usr)
 		return 0
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)

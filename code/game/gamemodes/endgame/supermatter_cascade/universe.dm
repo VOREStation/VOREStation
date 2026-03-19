@@ -45,7 +45,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 		M.flash_eyes()
 
 	if(GLOB.emergency_shuttle.can_recall())
-		priority_announcement.Announce("The emergency shuttle has returned due to bluespace distortion.")
+		GLOB.priority_announcement.Announce("The emergency shuttle has returned due to bluespace distortion.")
 		GLOB.emergency_shuttle.recall()
 
 	AreaSet()
@@ -72,7 +72,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 
 					The access requirements on the Asteroid Shuttles' consoles have now been revoked.
 				"}
-		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
+		GLOB.priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
 
 		for(var/obj/machinery/computer/shuttle_control/C in GLOB.machines)
 			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))

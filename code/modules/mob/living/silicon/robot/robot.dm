@@ -252,7 +252,7 @@
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
-	laws = new global.using_map.default_law_type //use map's default
+	laws = new using_map.default_law_type //use map's default
 	additional_law_channels["Binary"] = "#b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
