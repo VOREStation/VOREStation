@@ -3,7 +3,6 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Input, Section, Stack, Tabs } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
-import { validateRegExp } from '../LogViewer/functions';
 import type { Data } from './types';
 
 export const PlayerLogViewer = (props) => {
@@ -15,10 +14,6 @@ export const PlayerLogViewer = (props) => {
   const [caseSensitive, setCaseSensitive] = useState(false);
   if (!search && searchRegex) {
     setSearchRegex(false);
-  }
-  let regexValidation: boolean | SyntaxError = true;
-  if (searchRegex) {
-    regexValidation = validateRegExp(search);
   }
 
   const { entries, name, ckey, special } = data;
