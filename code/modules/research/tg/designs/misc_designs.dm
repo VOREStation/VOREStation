@@ -15,6 +15,7 @@
 // Cartridges
 
 /datum/design_techweb/pda_cartridge
+	desc = "A cartridge containing PDA software."
 	// req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
