@@ -31,7 +31,6 @@ GLOBAL_VAR_INIT(inactive_keys, "None<br>")
 	if(GLOB.checked_for_inactives)
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 

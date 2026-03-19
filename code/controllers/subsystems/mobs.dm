@@ -41,7 +41,6 @@ SUBSYSTEM_DEF(mobs)
 		// Lets handle all of these while we have time, should always remain extremely small...
 		if(length(death_list)) // Don't contact DB if this list is empty
 			if(CONFIG_GET(flag/sql_enabled))
-				establish_db_connection()
 				if(!SSdbcore.IsConnected())
 					log_game("SQL ERROR during death reporting. Failed to connect.")
 				else
