@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Zombie powder will no longer permanently cause you to not lose halloss."
