@@ -63,7 +63,9 @@ function selectRemappedStaticData(data: TechWebData) {
     const height = match ? parseInt(match[2], 10) : 32;
     const transformValue = match ? Math.max(width, height) : undefined;
 
-    const offset = transformValue ? ((width - height) / 2) * transformValue : 0;
+    const offset = transformValue
+      ? ((width - height) / 2) * (32 / transformValue)
+      : 0;
 
     design_cache[remapId(id)] = {
       name: name,
