@@ -241,6 +241,7 @@
 
 // GPS
 /datum/design_techweb/gps
+	desc = "A global positioning system reciever, used to safely navigate when far away from the station."
 	// req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 500)
