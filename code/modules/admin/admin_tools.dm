@@ -12,7 +12,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_check_player_logs, R_ADMIN|R_MOD, "Check 
 
 		var/list/data = list()
 		while(query.NextRow())
-			LAZYADD(data[type], list(
+			var/list/timestamped_message = list(
 				"event_id" = query.item[1],
 				"time" = query.item[2],
 				"ckey" = query.item[3],
@@ -20,7 +20,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_check_player_logs, R_ADMIN|R_MOD, "Check 
 				"loc" = query.item[5],
 				"color" = query.item[6],
 				"message" = query.item[8]
-			))
+			)
+			if(!islist(data[type]))
+				data[type] = list()
+			UNTYPED_LIST_ADD(data[type], timestamped_message)
 		qdel(query)
 		if(!length(data))
 			to_chat(src, span_admin("No data found."))
