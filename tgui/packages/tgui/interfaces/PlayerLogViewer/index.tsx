@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Input, Section, Stack, Tabs } from 'tgui-core/components';
-import { formatTime } from 'tgui-core/format';
-import { stripHtml } from './function';
+import { displayTime, stripHtml } from './function';
 import type { Data, ExtendedLogEntry } from './types';
 
 export const PlayerLogViewer = (props) => {
@@ -24,9 +23,11 @@ export const PlayerLogViewer = (props) => {
       logs.map((entry) => ({ ...entry, category: category })),
     )
     .sort((a, b) => {
-      if (a.time !== b.time) return a.time - b.time;
+      if (a.time !== b.time)
+        return displayTime(a.time).localeCompare(displayTime(b.time));
       return a.event_id - b.event_id;
     });
+
   const entriesWithAll: Record<string, ExtendedLogEntry[]> = {
     ALL: allEntries,
     ...entries,
@@ -148,7 +149,7 @@ export const PlayerLogViewer = (props) => {
                       <Stack.Item
                         key={`${log_entry.category}-${log_entry.event_id}`}
                       >
-                        <Box inline>{formatTime(log_entry.time)}</Box>
+                        <Box inline>{displayTime(log_entry.time)}</Box>
                         <Box inline preserveWhitespace bold>
                           {` ${log_entry.name}/${log_entry.ckey}`}
                         </Box>

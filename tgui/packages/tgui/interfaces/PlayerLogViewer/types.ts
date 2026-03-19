@@ -7,7 +7,7 @@ export type Data = {
 
 type LogEntry = {
   event_id: number;
-  time: number;
+  time: number | string;
   ckey: string | null;
   name: string;
   loc: string | null;

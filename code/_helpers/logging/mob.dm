@@ -33,7 +33,7 @@
 
 	if(HAS_CONNECTED_PLAYER(src))
 		if(CONFIG_GET(flag/database_logging))
-			db_log_insert(src, message, type, color)
+			db_log_insert(src, message, smessage_type, color)
 		else
 			if(!islist(persistent_client.logging[smessage_type]))
 				persistent_client.logging[smessage_type] = list()

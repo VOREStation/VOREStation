@@ -21,9 +21,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_check_player_logs, R_ADMIN|R_MOD, "Check 
 				"color" = query.item[6],
 				"message" = query.item[8]
 			)
-			if(!islist(data[type]))
-				data[type] = list()
-			UNTYPED_LIST_ADD(data[type], timestamped_message)
+			var/entry_type = query.item[7]
+			if(!islist(data[entry_type]))
+				data[entry_type] = list()
+			UNTYPED_LIST_ADD(data[entry_type], timestamped_message)
 		qdel(query)
 		if(!length(data))
 			to_chat(src, span_admin("No data found."))
