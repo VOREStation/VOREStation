@@ -313,7 +313,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 		var/list/our_whitelists = GLOB.job_whitelist[M.client.ckey]
 		if("All" in our_whitelists)
 			return TRUE
-		if(lowertext(rank) in our_whitelists)
+		if(rank in our_whitelists)
 			return TRUE
 
 	return FALSE
