@@ -1,7 +1,7 @@
 // Mining mats
 
 /datum/design_techweb/iron
-	name = MAT_IRON
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_IRON)
 	id = MAT_IRON
 	build_type = AUTOLATHE
 	materials = list(MAT_IRON = SHEET_MATERIAL_AMOUNT)
@@ -12,7 +12,7 @@
 	)
 
 /datum/design_techweb/steel
-	name = MAT_STEEL
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_STEEL)
 	id = MAT_STEEL
 	build_type = AUTOLATHE
 	materials = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT)
@@ -23,7 +23,7 @@
 	)
 
 /datum/design_techweb/rods
-	name ="metal rod"
+	SET_MATERIAL_DESIGN_NAMEDESC("metal rods")
 	id = "rods"
 	build_type = AUTOLATHE
 	materials = list(MAT_STEEL = REAGENTS_PER_ROD)
@@ -34,7 +34,7 @@
 	)
 
 /datum/design_techweb/silver
-	name = MAT_SILVER
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SILVER)
 	id = MAT_SILVER
 	build_type = AUTOLATHE
 	materials = list(MAT_SILVER = SHEET_MATERIAL_AMOUNT)
@@ -45,7 +45,7 @@
 	)
 
 /datum/design_techweb/gold
-	name = MAT_GOLD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_GOLD)
 	id = MAT_GOLD
 	build_type = AUTOLATHE
 	materials = list(MAT_GOLD = SHEET_MATERIAL_AMOUNT)
@@ -56,7 +56,7 @@
 	)
 
 /datum/design_techweb/tin
-	name = MAT_TIN
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_TIN)
 	id = MAT_TIN
 	build_type = AUTOLATHE
 	materials = list(MAT_TIN = SHEET_MATERIAL_AMOUNT)
@@ -67,7 +67,7 @@
 	)
 
 /datum/design_techweb/copper
-	name = MAT_COPPER
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_COPPER)
 	id = MAT_COPPER
 	build_type = AUTOLATHE
 	materials = list(MAT_COPPER = SHEET_MATERIAL_AMOUNT)
@@ -78,7 +78,7 @@
 	)
 
 /datum/design_techweb/diamond
-	name = MAT_DIAMOND
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_DIAMOND)
 	id = MAT_DIAMOND
 	build_type = AUTOLATHE
 	materials = list(MAT_DIAMOND = SHEET_MATERIAL_AMOUNT)
@@ -89,7 +89,7 @@
 	)
 
 /datum/design_techweb/phoron
-	name = MAT_PHORON
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PHORON)
 	id = MAT_PHORON
 	build_type = AUTOLATHE
 	materials = list(MAT_PHORON = SHEET_MATERIAL_AMOUNT)
@@ -100,7 +100,7 @@
 	)
 
 /datum/design_techweb/uranium
-	name = MAT_URANIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_URANIUM)
 	id = MAT_URANIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_URANIUM = SHEET_MATERIAL_AMOUNT)
@@ -111,7 +111,7 @@
 	)
 
 /datum/design_techweb/titanium
-	name = MAT_TITANIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_TITANIUM)
 	id = MAT_TITANIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT)
@@ -122,7 +122,7 @@
 	)
 
 /datum/design_techweb/plastic
-	name = MAT_PLASTIC
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PLASTIC)
 	id = MAT_PLASTIC
 	build_type = AUTOLATHE
 	materials = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT)
@@ -133,7 +133,7 @@
 	)
 
 /datum/design_techweb/painite
-	name = MAT_PAINITE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PAINITE)
 	id = MAT_PAINITE
 	build_type = AUTOLATHE
 	materials = list(MAT_PAINITE = SHEET_MATERIAL_AMOUNT)
@@ -144,7 +144,7 @@
 	)
 
 /datum/design_techweb/void_opal
-	name = MAT_VOPAL
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_VOPAL)
 	id = MAT_VOPAL
 	build_type = AUTOLATHE
 	materials = list(MAT_VOPAL = SHEET_MATERIAL_AMOUNT)
@@ -155,7 +155,7 @@
 	)
 
 /datum/design_techweb/quartz
-	name = MAT_QUARTZ
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_QUARTZ)
 	id = MAT_QUARTZ
 	build_type = AUTOLATHE
 	materials = list(MAT_QUARTZ = SHEET_MATERIAL_AMOUNT)
@@ -166,7 +166,7 @@
 	)
 
 /datum/design_techweb/valhollide
-	name = MAT_VALHOLLIDE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_VALHOLLIDE)
 	id = MAT_VALHOLLIDE
 	build_type = AUTOLATHE
 	materials = list(MAT_VALHOLLIDE = SHEET_MATERIAL_AMOUNT)
@@ -177,7 +177,7 @@
 	)
 
 /datum/design_techweb/verdantium
-	name = MAT_VERDANTIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_VERDANTIUM)
 	id = MAT_VERDANTIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_VERDANTIUM = SHEET_MATERIAL_AMOUNT)
@@ -188,7 +188,7 @@
 	)
 
 /datum/design_techweb/morphium
-	name = MAT_MORPHIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_MORPHIUM)
 	id = MAT_MORPHIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_MORPHIUM = SHEET_MATERIAL_AMOUNT)
@@ -199,7 +199,7 @@
 	)
 
 /datum/design_techweb/glamour
-	name = MAT_GLAMOUR
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_GLAMOUR)
 	id = MAT_GLAMOUR
 	build_type = AUTOLATHE
 	materials = list(MAT_GLAMOUR = SHEET_MATERIAL_AMOUNT)
@@ -210,7 +210,7 @@
 	)
 
 /datum/design_techweb/weathered_agate
-	name = MAT_EAGATE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_EAGATE)
 	id = MAT_EAGATE
 	build_type = AUTOLATHE
 	materials = list(MAT_EAGATE = SHEET_MATERIAL_AMOUNT)
@@ -221,7 +221,7 @@
 	)
 
 /datum/design_techweb/sandstone
-	name = MAT_SANDSTONE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SANDSTONE)
 	id = MAT_SANDSTONE
 	build_type = AUTOLATHE
 	materials = list(MAT_SANDSTONE = SHEET_MATERIAL_AMOUNT)
@@ -232,7 +232,7 @@
 	)
 
 /datum/design_techweb/marble
-	name = MAT_MARBLE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_MARBLE)
 	id = MAT_MARBLE
 	build_type = AUTOLATHE
 	materials = list(MAT_MARBLE = SHEET_MATERIAL_AMOUNT)
@@ -243,7 +243,7 @@
 	)
 
 /datum/design_techweb/supermatter
-	name = MAT_SUPERMATTER
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SUPERMATTER)
 	id = MAT_SUPERMATTER
 	build_type = AUTOLATHE
 	materials = list(MAT_SUPERMATTER = SHEET_MATERIAL_AMOUNT)
@@ -254,7 +254,7 @@
 	)
 
 /datum/design_techweb/plasteel
-	name = MAT_PLASTEEL
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PLASTEEL)
 	id = MAT_PLASTEEL
 	build_type = AUTOLATHE
 	materials = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT)
@@ -265,7 +265,7 @@
 	)
 
 /datum/design_techweb/durasteel
-	name = MAT_DURASTEEL
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_DURASTEEL)
 	id = MAT_DURASTEEL
 	build_type = AUTOLATHE
 	materials = list(MAT_DURASTEEL = SHEET_MATERIAL_AMOUNT)
@@ -276,7 +276,7 @@
 	)
 
 /datum/design_techweb/plastitanium
-	name = MAT_PLASTITANIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PLASTITANIUM)
 	id = MAT_PLASTITANIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_PLASTITANIUM = SHEET_MATERIAL_AMOUNT)
@@ -287,7 +287,7 @@
 	)
 
 /datum/design_techweb/lead
-	name = MAT_LEAD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_LEAD)
 	id = MAT_LEAD
 	build_type = AUTOLATHE
 	materials = list(MAT_LEAD = SHEET_MATERIAL_AMOUNT)
@@ -298,7 +298,7 @@
 	)
 
 /datum/design_techweb/platinum
-	name = MAT_PLATINUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PLATINUM)
 	id = MAT_PLATINUM
 	build_type = AUTOLATHE
 	materials = list(MAT_PLATINUM = SHEET_MATERIAL_AMOUNT)
@@ -309,7 +309,7 @@
 	)
 
 /datum/design_techweb/mhydrogen
-	name = MAT_METALHYDROGEN
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_METALHYDROGEN)
 	id = MAT_METALHYDROGEN
 	build_type = AUTOLATHE
 	materials = list(MAT_METALHYDROGEN = SHEET_MATERIAL_AMOUNT)
@@ -320,7 +320,7 @@
 	)
 
 /datum/design_techweb/deuterium
-	name = MAT_DEUTERIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_DEUTERIUM)
 	id = MAT_DEUTERIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_DEUTERIUM = SHEET_MATERIAL_AMOUNT)
@@ -331,7 +331,7 @@
 	)
 
 /datum/design_techweb/tritium
-	name = MAT_TRITIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_TRITIUM)
 	id = MAT_TRITIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_TRITIUM = SHEET_MATERIAL_AMOUNT)
@@ -342,7 +342,7 @@
 	)
 
 /datum/design_techweb/osmium
-	name = MAT_OSMIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_OSMIUM)
 	id = MAT_OSMIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_OSMIUM = SHEET_MATERIAL_AMOUNT)
@@ -353,7 +353,7 @@
 	)
 
 /datum/design_techweb/graphite
-	name = MAT_GRAPHITE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_GRAPHITE)
 	id = MAT_GRAPHITE
 	build_type = AUTOLATHE
 	materials = list(MAT_GRAPHITE = SHEET_MATERIAL_AMOUNT)
@@ -364,7 +364,7 @@
 	)
 
 /datum/design_techweb/bronze
-	name = MAT_BRONZE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_BRONZE)
 	id = MAT_BRONZE
 	build_type = AUTOLATHE
 	materials = list(MAT_BRONZE = SHEET_MATERIAL_AMOUNT)
@@ -375,7 +375,7 @@
 	)
 
 /datum/design_techweb/aluminium
-	name = MAT_ALUMINIUM
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_ALUMINIUM)
 	id = MAT_ALUMINIUM
 	build_type = AUTOLATHE
 	materials = list(MAT_ALUMINIUM = SHEET_MATERIAL_AMOUNT)
@@ -388,7 +388,7 @@
 // Glass
 
 /datum/design_techweb/glass
-	name = MAT_GLASS
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_GLASS)
 	id = MAT_GLASS
 	build_type = AUTOLATHE
 	materials = list(MAT_GLASS = SHEET_MATERIAL_AMOUNT)
@@ -399,7 +399,7 @@
 	)
 
 /datum/design_techweb/phoronglass
-	name = MAT_PGLASS
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PGLASS)
 	id = MAT_PGLASS
 	build_type = AUTOLATHE
 	materials = list(MAT_PGLASS = SHEET_MATERIAL_AMOUNT)
@@ -410,7 +410,7 @@
 	)
 
 /datum/design_techweb/glass_titanium
-	name = MAT_TITANIUMGLASS
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_TITANIUMGLASS)
 	id = MAT_TITANIUMGLASS
 	build_type = AUTOLATHE
 	materials = list(MAT_TITANIUMGLASS = SHEET_MATERIAL_AMOUNT)
@@ -421,7 +421,7 @@
 	)
 
 /datum/design_techweb/glass_plastitanium
-	name = MAT_PLASTITANIUMGLASS
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PLASTITANIUMGLASS)
 	id = MAT_PLASTITANIUMGLASS
 	build_type = AUTOLATHE
 	materials = list(MAT_PLASTITANIUMGLASS = SHEET_MATERIAL_AMOUNT)
@@ -436,7 +436,7 @@
 // Wood
 
 /datum/design_techweb/wood
-	name = MAT_WOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_WOOD)
 	id = MAT_WOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_WOOD = SHEET_MATERIAL_AMOUNT)
@@ -447,7 +447,7 @@
 	)
 
 /datum/design_techweb/sif_wood
-	name = MAT_SIFWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SIFWOOD)
 	id = MAT_SIFWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_SIFWOOD = SHEET_MATERIAL_AMOUNT)
@@ -458,7 +458,7 @@
 	)
 
 /datum/design_techweb/hard_wood
-	name = MAT_HARDWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_HARDWOOD)
 	id = MAT_HARDWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_HARDWOOD = SHEET_MATERIAL_AMOUNT)
@@ -469,7 +469,7 @@
 	)
 
 /datum/design_techweb/birch_wood
-	name = MAT_BIRCHWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_BIRCHWOOD)
 	id = MAT_BIRCHWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_BIRCHWOOD = SHEET_MATERIAL_AMOUNT)
@@ -480,7 +480,7 @@
 	)
 
 /datum/design_techweb/pine_wood
-	name = MAT_PINEWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_PINEWOOD)
 	id = MAT_PINEWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_PINEWOOD = SHEET_MATERIAL_AMOUNT)
@@ -491,7 +491,7 @@
 	)
 
 /datum/design_techweb/oak_wood
-	name = MAT_OAKWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_OAKWOOD)
 	id = MAT_OAKWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_OAKWOOD = SHEET_MATERIAL_AMOUNT)
@@ -502,7 +502,7 @@
 	)
 
 /datum/design_techweb/acacia_wood
-	name = MAT_ACACIAWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_ACACIAWOOD)
 	id = MAT_ACACIAWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_ACACIAWOOD = SHEET_MATERIAL_AMOUNT)
@@ -513,7 +513,7 @@
 	)
 
 /datum/design_techweb/redwood_wood
-	name = MAT_REDWOOD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_REDWOOD)
 	id = MAT_REDWOOD
 	build_type = AUTOLATHE
 	materials = list(MAT_REDWOOD = SHEET_MATERIAL_AMOUNT)
@@ -526,7 +526,7 @@
 // Misc mats
 
 /datum/design_techweb/algae
-	name = MAT_ALGAE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_ALGAE)
 	id = MAT_ALGAE
 	build_type = AUTOLATHE
 	materials = list(MAT_ALGAE = SHEET_MATERIAL_AMOUNT)
@@ -537,7 +537,7 @@
 	)
 
 /datum/design_techweb/wax
-	name = MAT_WAX
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_WAX)
 	id = MAT_WAX
 	build_type = AUTOLATHE
 	materials = list(MAT_WAX = SHEET_MATERIAL_AMOUNT)
@@ -548,7 +548,7 @@
 	)
 
 /datum/design_techweb/cardboard
-	name = MAT_CARDBOARD
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_CARDBOARD)
 	id = MAT_CARDBOARD
 	build_type = AUTOLATHE
 	materials = list(MAT_CARDBOARD = SHEET_MATERIAL_AMOUNT)
@@ -559,7 +559,7 @@
 	)
 
 /datum/design_techweb/snow
-	name = MAT_SNOW
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SNOW)
 	id = MAT_SNOW
 	build_type = AUTOLATHE
 	materials = list(MAT_SNOW = SHEET_MATERIAL_AMOUNT)
@@ -570,7 +570,7 @@
 	)
 
 /datum/design_techweb/snowbrick
-	name = MAT_SNOWBRICK
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SNOWBRICK)
 	id = MAT_SNOWBRICK
 	build_type = AUTOLATHE
 	materials = list(MAT_SNOWBRICK = SHEET_MATERIAL_AMOUNT)
@@ -581,7 +581,7 @@
 	)
 
 /datum/design_techweb/flint
-	name = MAT_FLINT
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_FLINT)
 	id = MAT_FLINT
 	build_type = AUTOLATHE
 	materials = list(MAT_FLINT = SHEET_MATERIAL_AMOUNT)
@@ -592,7 +592,7 @@
 	)
 
 /datum/design_techweb/concrete
-	name = MAT_CONCRETE
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_CONCRETE)
 	id = MAT_CONCRETE
 	build_type = AUTOLATHE
 	materials = list(MAT_CONCRETE = SHEET_MATERIAL_AMOUNT)
@@ -603,7 +603,7 @@
 	)
 
 /datum/design_techweb/chitin
-	name = MAT_CHITIN
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_CHITIN)
 	id = MAT_CHITIN
 	build_type = AUTOLATHE
 	materials = list(MAT_CHITIN = SHEET_MATERIAL_AMOUNT)
@@ -614,7 +614,7 @@
 	)
 
 /datum/design_techweb/fur
-	name = MAT_FUR
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_FUR)
 	id = MAT_FUR
 	build_type = AUTOLATHE
 	materials = list(MAT_FUR = SHEET_MATERIAL_AMOUNT)
@@ -625,7 +625,7 @@
 	)
 
 /datum/design_techweb/wool
-	name = MAT_WOOL
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_WOOL)
 	id = MAT_WOOL
 	build_type = AUTOLATHE
 	materials = list(MAT_WOOL = SHEET_MATERIAL_AMOUNT)
@@ -636,7 +636,7 @@
 	)
 
 /datum/design_techweb/resin
-	name = MAT_RESIN
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_RESIN)
 	id = MAT_RESIN
 	build_type = AUTOLATHE
 	materials = list(MAT_RESIN = SHEET_MATERIAL_AMOUNT)
@@ -647,7 +647,7 @@
 	)
 
 /datum/design_techweb/leather
-	name = MAT_LEATHER
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_LEATHER)
 	id = MAT_LEATHER
 	build_type = AUTOLATHE
 	materials = list(MAT_LEATHER = SHEET_MATERIAL_AMOUNT)
@@ -658,18 +658,7 @@
 	)
 
 /datum/design_techweb/cotton
-	name = MAT_COTTON
-	id = MAT_COTTON
-	build_type = AUTOLATHE
-	materials = list(MAT_COTTON = SHEET_MATERIAL_AMOUNT)
-	build_path = /obj/item/stack/material/cotton
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
-	)
-
-/datum/design_techweb/cotton
-	name = MAT_COTTON
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_COTTON)
 	id = MAT_COTTON
 	build_type = AUTOLATHE
 	materials = list(MAT_COTTON = SHEET_MATERIAL_AMOUNT)
@@ -680,7 +669,7 @@
 	)
 
 /datum/design_techweb/smolebricks
-	name = MAT_SMOLEBRICKS
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SMOLEBRICKS)
 	id = MAT_SMOLEBRICKS
 	build_type = AUTOLATHE
 	materials = list(MAT_SMOLEBRICKS = SHEET_MATERIAL_AMOUNT)
@@ -693,7 +682,7 @@
 // TODO - Remove a lot of these by giving sheets a flag or something to prevent the autolathe/silo from using them for mats
 
 /datum/design_techweb/log
-	name = MAT_LOG
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_LOG)
 	id = MAT_LOG
 	build_type = AUTOLATHE
 	materials = list(MAT_LOG = REAGENTS_PER_LOG)
@@ -704,7 +693,7 @@
 	)
 
 /datum/design_techweb/siflog
-	name = MAT_SIFLOG
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_SIFLOG)
 	id = MAT_SIFLOG
 	build_type = AUTOLATHE
 	materials = list(MAT_SIFLOG = REAGENTS_PER_LOG)
@@ -715,7 +704,7 @@
 	)
 
 /datum/design_techweb/hardlog
-	name = MAT_HARDLOG
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_HARDLOG)
 	id = MAT_HARDLOG
 	build_type = AUTOLATHE
 	materials = list(MAT_HARDLOG = REAGENTS_PER_LOG)
@@ -726,7 +715,7 @@
 	)
 
 /datum/design_techweb/stick
-	name = MAT_WOODEN_STICK
+	SET_MATERIAL_DESIGN_NAMEDESC(MAT_WOODEN_STICK)
 	id = MAT_WOODEN_STICK
 	build_type = AUTOLATHE
 	materials = list(MAT_WOODEN_STICK = REAGENTS_PER_ROD)

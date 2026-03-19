@@ -117,12 +117,10 @@
 		if(design.id == DESIGN_ID_IGNORE)
 			continue
 
-		/* Later
 		// Must have desc
 		if(!design.desc)
 			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] did not have a description.")
 			failed = TRUE
-		*/
 
 		// Must all be accessible by science
 		if(!(design.departmental_flags & DEPARTMENT_BITFLAG_SCIENCE))
