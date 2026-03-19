@@ -19,5 +19,5 @@
 	if(action == "init")
 		var/h = params["handle"]
 		if(!istext(h) || !length(h))
-			return
+			return FALSE
 		. = TRUE
