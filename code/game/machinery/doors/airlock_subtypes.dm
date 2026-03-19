@@ -104,6 +104,9 @@
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
+/obj/machinery/door/airlock/external/can_freeze()
+	return TRUE
+
 /obj/machinery/door/airlock/external/bolted
 	icon_state = "door_locked" // So it looks visibly bolted in map editor
 	locked = TRUE
@@ -121,6 +124,9 @@
 	req_one_access = list(ACCESS_EXTERNAL_AIRLOCKS)
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
+
+/obj/machinery/door/airlock/glass_external/can_freeze()
+	return TRUE
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
