@@ -1,11 +1,9 @@
-import { sanitizeCssClassName } from 'common/css_sanity';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
   Icon,
-  Image,
   LabeledList,
   NoticeBox,
   Section,
@@ -17,6 +15,7 @@ import {
 import { classes } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
+import { TechWebRecipeIcon } from './common/TechWebRecipeIcon';
 import type { Material } from './Fabrication/Types';
 
 type Machine = {
@@ -149,26 +148,11 @@ const MachineDisplay = (props: MachineProps) => {
 
   return (
     <Box className="FabricatorRecipe">
-      <Box
-        className={
-          machine.onHold
-            ? classes([
-                'FabricatorRecipe__Title',
-                'FabricatorRecipe__Title--disabled',
-              ])
-            : 'FabricatorRecipe__Title'
-        }
-      >
-        <Box className="FabricatorRecipe__Icon">
-          <Image
-            width={'32px'}
-            height={'32px'}
-            src={`data:image/jpeg;base64,${sanitizeCssClassName(machine.icon)}`}
-          />
-        </Box>
-        <Box className="FabricatorRecipe__Label">{machineName}</Box>
-      </Box>
-
+      <TechWebRecipeIcon
+        icon={machine.icon}
+        name={machineName}
+        canPrint={machine.onHold}
+      />
       <Tooltip
         content={
           machine.onHold

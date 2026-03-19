@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   Icon,
   LabeledList,
@@ -11,6 +10,7 @@ import {
 } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
+import { TechWebRecipeIcon } from './common/TechWebRecipeIcon';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type {
@@ -145,26 +145,12 @@ const Recipe = (props: RecipeProps) => {
           />
         }
       >
-        <div
-          className={classes([
-            'FabricatorRecipe__Title',
-            !canPrint && 'FabricatorRecipe__Title--disabled',
-          ])}
-          onClick={() =>
-            canPrint && act('build', { designs: [design.id], now: true })
-          }
-        >
-          <div className="FabricatorRecipe__Icon">
-            <Box
-              className={
-                design.icon.startsWith('design')
-                  ? design.icon
-                  : `design32x32 ${design.icon}`
-              }
-            />
-          </div>
-          <div className="FabricatorRecipe__Label">{design.name}</div>
-        </div>
+        <TechWebRecipeIcon
+          icon={design.icon}
+          name={design.name}
+          canPrint={canPrint}
+          action={() => act('build', { designs: [design.id], now: true })}
+        />
       </Tooltip>
 
       <Tooltip content={'Add to Queue'} position="right">
@@ -374,25 +360,11 @@ const QueueList = (props: QueueListProps) => {
                 />
               }
             >
-              <div
-                className={classes([
-                  'FabricatorRecipe__Title',
-                  !entry.canPrint && 'FabricatorRecipe__Title--disabled',
-                ])}
-              >
-                <div className="FabricatorRecipe__Icon">
-                  <Box
-                    className={
-                      entry.design?.icon.startsWith('design')
-                        ? entry.design?.icon
-                        : `design32x32 ${entry.design?.icon}`
-                    }
-                  />
-                </div>
-                <div className="FabricatorRecipe__Label">
-                  {entry.design?.name}
-                </div>
-              </div>
+              <TechWebRecipeIcon
+                icon={entry.design.icon}
+                name={entry.design.name}
+                canPrint={entry.canPrint}
+              />
             </Tooltip>
 
             {!entry.job.processing && (

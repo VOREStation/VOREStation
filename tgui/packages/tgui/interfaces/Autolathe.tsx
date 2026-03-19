@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Collapsible,
   Icon,
@@ -14,6 +13,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { TechWebRecipeIcon } from './common/TechWebRecipeIcon';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type { Design, Material, MaterialMap } from './Fabrication/Types';
@@ -210,26 +210,12 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
           />
         }
       >
-        <div
-          className={classes([
-            'FabricatorRecipe__Title',
-            !canPrint && 'FabricatorRecipe__Title--disabled',
-          ])}
-          onClick={() =>
-            canPrint && act('make', { id: design.id, multiplier: 1 })
-          }
-        >
-          <div className="FabricatorRecipe__Icon">
-            <Box
-              className={
-                design.icon.startsWith('design')
-                  ? design.icon
-                  : `design32x32 ${design.icon}`
-              }
-            />
-          </div>
-          <div className="FabricatorRecipe__Label">{design.name}</div>
-        </div>
+        <TechWebRecipeIcon
+          icon={design.icon}
+          name={design.name}
+          canPrint={canPrint}
+          action={() => act('make', { id: design.id, multiplier: 1 })}
+        />
       </Tooltip>
 
       <PrintButton

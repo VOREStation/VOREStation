@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   Dimmer,
   Icon,
@@ -11,6 +10,7 @@ import {
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
+import { TechWebRecipeIcon } from './common/TechWebRecipeIcon';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type {
@@ -196,26 +196,12 @@ const Recipe = (props: RecipeProps) => {
           />
         }
       >
-        <div
-          className={classes([
-            'FabricatorRecipe__Title',
-            !canPrint && 'FabricatorRecipe__Title--disabled',
-          ])}
-          onClick={() =>
-            canPrint && act('build', { ref: design.id, amount: 1 })
-          }
-        >
-          <div className="FabricatorRecipe__Icon">
-            <Box
-              className={
-                design.icon.startsWith('design')
-                  ? design.icon
-                  : `design32x32 ${design.icon}`
-              }
-            />
-          </div>
-          <div className="FabricatorRecipe__Label">{design.name}</div>
-        </div>
+        <TechWebRecipeIcon
+          icon={design.icon}
+          name={design.name}
+          canPrint={canPrint}
+          action={() => act('build', { ref: design.id, amount: 1 })}
+        />
       </Tooltip>
       <PrintButton
         design={design}
