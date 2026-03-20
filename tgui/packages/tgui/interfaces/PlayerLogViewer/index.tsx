@@ -80,22 +80,22 @@ export const PlayerLogViewer = (props) => {
               }
             >
               <LabeledList>
-                <LabeledList.Item label="Log type">
+                <LabeledList.Item label="Log Type">
                   <Box inline bold>
                     {view_client ? 'Client' : 'Mob'} Logs
                   </Box>
                 </LabeledList.Item>
-                <LabeledList.Item label="Logs of">
+                <LabeledList.Item label="Player Name">
                   <Box inline bold>
                     {name}
                   </Box>
                 </LabeledList.Item>
-                <LabeledList.Item label="Played by">
+                <LabeledList.Item label="Player Ckey">
                   <Box inline bold>
                     {ckey ?? '<No Player>'}
                   </Box>
                 </LabeledList.Item>
-                <LabeledList.Item label="Special role">
+                <LabeledList.Item label="Special Role">
                   <Box inline color={special ? 'green' : 'red'}>
                     {special ? special : '<None>'}
                   </Box>
