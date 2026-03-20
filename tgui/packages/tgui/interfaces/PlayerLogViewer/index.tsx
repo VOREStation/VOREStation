@@ -79,28 +79,36 @@ export const PlayerLogViewer = (props) => {
                 </Stack>
               }
             >
-              <LabeledList>
-                <LabeledList.Item label="Log Type">
-                  <Box inline bold>
-                    {view_client ? 'Client' : 'Mob'} Logs
-                  </Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Player Name">
-                  <Box inline bold>
-                    {name}
-                  </Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Player Ckey">
-                  <Box inline bold>
-                    {ckey ?? '<No Player>'}
-                  </Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Special Role">
-                  <Box inline color={special ? 'green' : 'red'}>
-                    {special ? special : '<None>'}
-                  </Box>
-                </LabeledList.Item>
-              </LabeledList>
+              <Stack>
+                <Stack.Item grow>
+                  <LabeledList>
+                    <LabeledList.Item label="Player Name">
+                      <Box inline bold>
+                        {name}
+                      </Box>
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Player Ckey">
+                      <Box inline bold>
+                        {ckey ?? '<No Player>'}
+                      </Box>
+                    </LabeledList.Item>
+                  </LabeledList>
+                </Stack.Item>
+                <Stack.Item grow>
+                  <LabeledList>
+                    <LabeledList.Item label="Log Type">
+                      <Box inline bold>
+                        {view_client ? 'Client' : 'Mob'} Logs
+                      </Box>
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Special Role">
+                      <Box inline color={special ? 'green' : 'red'}>
+                        {special ? special : '<None>'}
+                      </Box>
+                    </LabeledList.Item>
+                  </LabeledList>
+                </Stack.Item>
+              </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item>
