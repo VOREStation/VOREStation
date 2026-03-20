@@ -70,6 +70,7 @@
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/manipulator = 6)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/machine/power_turbine
 	name = T_BOARD("power turbine")
@@ -77,6 +78,7 @@
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 4)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/capacitor = 6)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Compressor

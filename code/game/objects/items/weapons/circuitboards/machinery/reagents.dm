@@ -15,7 +15,6 @@
 	name = T_BOARD("smart centrifuge")
 	build_path = /obj/machinery/smart_centrifuge
 	board_type = new /datum/frame/frame_types/machine
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	origin_tech = list(TECH_MAGNET = 3, TECH_DATA = 2, TECH_MATERIAL = 3)
 	req_components = list(
 							/obj/item/stock_parts/scanning_module = 1,
