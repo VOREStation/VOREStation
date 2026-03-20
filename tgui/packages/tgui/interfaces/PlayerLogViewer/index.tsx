@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Input, Section, Stack, Tabs } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Input,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 import { displayTime, stripHtml } from './function';
 import type { Data, ExtendedLogEntry } from './types';
 
 export const PlayerLogViewer = (props) => {
-  const { data } = useBackend<Data>();
+  const { data, act } = useBackend<Data>();
 
   const [activeTab, setActiveTab] = useState('');
   const [search, setSearch] = useState('');
@@ -16,7 +25,15 @@ export const PlayerLogViewer = (props) => {
     setSearchRegex(false);
   }
 
-  const { entries, name, ckey, special } = data;
+  const {
+    entries,
+    name,
+    ckey,
+    special,
+    on_cooldown,
+    all_clients,
+    view_client,
+  } = data;
 
   const allEntries = Object.entries(entries)
     .flatMap(([category, logs]) =>
@@ -42,23 +59,54 @@ export const PlayerLogViewer = (props) => {
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section title="General Information">
-              <Stack vertical>
-                <Stack.Item>
-                  {`Viewing logs of `}
-                  <Box inline bold>
-                    {name}
-                  </Box>
-                  {`, played by `}
-                  <Box inline bold>
-                    {ckey ?? '<No Player>'}
-                  </Box>
+            <Section
+              title="General Information"
+              buttons={
+                <Stack align="baseline">
+                  <Stack.Item color="label">
+                    Select a ckey to view client logs:{' '}
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Dropdown
+                      disabled={!!on_cooldown}
+                      selected={view_client ? ckey : undefined}
+                      options={Object.keys(all_clients)}
+                      onSelected={(value) =>
+                        act('select_client', { ckey: value })
+                      }
+                    />
+                  </Stack.Item>
+                </Stack>
+              }
+            >
+              <Stack>
+                <Stack.Item grow>
+                  <LabeledList>
+                    <LabeledList.Item label="Player Name">
+                      <Box inline bold>
+                        {name}
+                      </Box>
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Player Ckey">
+                      <Box inline bold>
+                        {ckey ?? '<No Player>'}
+                      </Box>
+                    </LabeledList.Item>
+                  </LabeledList>
                 </Stack.Item>
-                <Stack.Item>
-                  {`Characrer special role: `}
-                  <Box inline color={special ? 'green' : 'red'}>
-                    {special ? special : '<None>'}
-                  </Box>
+                <Stack.Item grow>
+                  <LabeledList>
+                    <LabeledList.Item label="Log Type">
+                      <Box inline bold>
+                        {view_client ? 'Client' : 'Mob'} Logs
+                      </Box>
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Special Role">
+                      <Box inline color={special ? 'green' : 'red'}>
+                        {special ? special : '<None>'}
+                      </Box>
+                    </LabeledList.Item>
+                  </LabeledList>
                 </Stack.Item>
               </Stack>
             </Section>
@@ -83,6 +131,13 @@ export const PlayerLogViewer = (props) => {
               title={`Active Log: ${activeTab}`}
               buttons={
                 <Stack>
+                  <Stack.Item>
+                    <Button
+                      icon="arrows-rotate"
+                      disabled={on_cooldown}
+                      onClick={() => act('refresh')}
+                    />
+                  </Stack.Item>
                   <Stack.Item>
                     <Input
                       width="200px"
