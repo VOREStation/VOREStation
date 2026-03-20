@@ -82,7 +82,6 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 			var/new_ckey = params["ckey"]
 			if(!(new_ckey in GLOB.persistent_clients_by_ckey))
 				return FALSE
-			last_refresh = world.time
 			target_ckey = new_ckey
 			var/datum/persistent_client/selected = GLOB.persistent_clients_by_ckey[new_ckey]
 			log_data = selected.logging
@@ -90,6 +89,7 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 			special_role = selected.mob?.mind?.special_role
 			client_view = TRUE
 			refresh_data()
+			last_refresh = world.time
 			update_tgui_static_data(ui.user)
 			return TRUE
 
