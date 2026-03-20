@@ -12,12 +12,3 @@
 /datum/computer_file/program/bytecrawl/tgui_data(mob/user)
 	. = get_header_data()
 
-/datum/computer_file/program/bytecrawl/tgui_act(action, list/params, datum/tgui/ui)
-	. = ..()
-	if(.)
-		return
-	if(action == "init")
-		var/handle = params["handle"]
-		if(!istext(handle) || !length(handle))
-			return FALSE
-		. = TRUE
