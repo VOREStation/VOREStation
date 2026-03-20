@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Input, Section, Stack, Tabs } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Input,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 import { displayTime, stripHtml } from './function';
 import type { Data, ExtendedLogEntry } from './types';
 
@@ -16,7 +25,15 @@ export const PlayerLogViewer = (props) => {
     setSearchRegex(false);
   }
 
-  const { entries, name, ckey, special, on_cooldown } = data;
+  const {
+    entries,
+    name,
+    ckey,
+    special,
+    on_cooldown,
+    all_clients,
+    view_client,
+  } = data;
 
   const allEntries = Object.entries(entries)
     .flatMap(([category, logs]) =>
@@ -42,25 +59,48 @@ export const PlayerLogViewer = (props) => {
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section title="General Information">
-              <Stack vertical>
-                <Stack.Item>
-                  {`Viewing logs of `}
+            <Section
+              title="General Information"
+              buttons={
+                <Stack align="baseline">
+                  <Stack.Item color="label">
+                    Select a ckey to view client logs:{' '}
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Dropdown
+                      disabled={!!on_cooldown}
+                      selected={view_client ? ckey : undefined}
+                      options={Object.keys(all_clients)}
+                      onSelected={(value) =>
+                        act('select_client', { ckey: value })
+                      }
+                    />
+                  </Stack.Item>
+                </Stack>
+              }
+            >
+              <LabeledList>
+                <LabeledList.Item label="Log type">
+                  <Box inline bold>
+                    {view_client ? 'Client' : 'Mob'} Logs
+                  </Box>
+                </LabeledList.Item>
+                <LabeledList.Item label="Logs of">
                   <Box inline bold>
                     {name}
                   </Box>
-                  {`, played by `}
+                </LabeledList.Item>
+                <LabeledList.Item label="Played by">
                   <Box inline bold>
                     {ckey ?? '<No Player>'}
                   </Box>
-                </Stack.Item>
-                <Stack.Item>
-                  {`Characrer special role: `}
+                </LabeledList.Item>
+                <LabeledList.Item label="Special role">
                   <Box inline color={special ? 'green' : 'red'}>
                     {special ? special : '<None>'}
                   </Box>
-                </Stack.Item>
-              </Stack>
+                </LabeledList.Item>
+              </LabeledList>
             </Section>
           </Stack.Item>
           <Stack.Item>

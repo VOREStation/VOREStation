@@ -6,6 +6,8 @@ export type Data = {
   ckey: string;
   special: string | null;
   on_cooldown: BooleanLike;
+  all_clients: Record<string, string>;
+  view_client: BooleanLike;
 };
 
 type LogEntry = {
