@@ -6,7 +6,7 @@ import { displayTime, stripHtml } from './function';
 import type { Data, ExtendedLogEntry } from './types';
 
 export const PlayerLogViewer = (props) => {
-  const { data } = useBackend<Data>();
+  const { data, act } = useBackend<Data>();
 
   const [activeTab, setActiveTab] = useState('');
   const [search, setSearch] = useState('');
@@ -16,7 +16,7 @@ export const PlayerLogViewer = (props) => {
     setSearchRegex(false);
   }
 
-  const { entries, name, ckey, special } = data;
+  const { entries, name, ckey, special, on_cooldown } = data;
 
   const allEntries = Object.entries(entries)
     .flatMap(([category, logs]) =>
@@ -83,6 +83,13 @@ export const PlayerLogViewer = (props) => {
               title={`Active Log: ${activeTab}`}
               buttons={
                 <Stack>
+                  <Stack.Item>
+                    <Button
+                      icon="arrows-rotate"
+                      disabled={on_cooldown}
+                      onClick={() => act('refresh')}
+                    />
+                  </Stack.Item>
                   <Stack.Item>
                     <Input
                       width="200px"

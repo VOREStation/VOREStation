@@ -54,6 +54,7 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 	var/target_name
 	var/target_ckey
 	var/special_role
+	var/last_refresh
 
 /datum/player_log_viwer/tgui_close(mob/user)
 	. = ..()
@@ -65,6 +66,7 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 	target_name = name
 	target_ckey = ckey
 	special_role = special
+	last_refresh = world.time
 
 /datum/player_log_viwer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -82,3 +84,51 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 		"ckey" = target_ckey,
 		"special" = special_role
 	)
+
+/datum/player_log_viwer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	return list(
+		"on_cooldown" = refresh_cooldown()
+	)
+
+/datum/player_log_viwer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("refresh")
+			if(refresh_cooldown())
+				return FALSE
+			refresh_data()
+			last_refresh = world.time
+			update_tgui_static_data(ui.user)
+			return TRUE
+
+/datum/player_log_viwer/proc/refresh_cooldown()
+	return ((world.time - last_refresh) < 5 SECONDS)
+
+/datum/player_log_viwer/proc/refresh_data()
+	if(!CONFIG_GET(flag/database_logging))
+		return
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT mid,time,ckey,mob,area,color,type,message from erro_dialog WHERE ckey = :t_ckey", list("t_ckey" = target_ckey))
+	if(!query.Execute())
+		to_chat(src, span_admin("Database query error"))
+		qdel(query)
+		return
+
+	log_data.Cut()
+	while(query.NextRow())
+		var/list/timestamped_message = list(
+			"event_id" = query.item[1],
+			"time" = query.item[2],
+			"ckey" = query.item[3],
+			"name" = query.item[4],
+			"loc" = query.item[5],
+			"color" = query.item[6],
+			"message" = query.item[8]
+		)
+		var/entry_type = query.item[7]
+		if(!islist(log_data[entry_type]))
+			log_data[entry_type] = list()
+		UNTYPED_LIST_ADD(log_data[entry_type], timestamped_message)
+	qdel(query)
