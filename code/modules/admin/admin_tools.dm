@@ -35,8 +35,7 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 	special_role = special
 	last_refresh = world.time
 	client_view = is_client
-	if(CONFIG_GET(flag/database_logging))
-		data = refresh_data()
+	refresh_data()
 
 /datum/player_log_viwer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
