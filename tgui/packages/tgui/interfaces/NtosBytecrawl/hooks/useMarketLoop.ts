@@ -1,7 +1,12 @@
 // ── useMarketLoop ─────────────────────────────────────────────────────────────
 // Slower market-drift interval (separate from the main tick rate).
 
-import * as React from 'react';
+import {
+  type Dispatch as ReactDispatch,
+  type SetStateAction,
+  useEffect,
+  useRef,
+} from 'react';
 
 import { MARKET_TICK_MS } from '../constants';
 import { computeMarketTick } from '../logic';
@@ -9,16 +14,16 @@ import type { GState, Line } from '../types';
 
 export function useMarketLoop(
   phase: 'setup' | 'playing',
-  setG: React.Dispatch<React.SetStateAction<GState>>,
-  setLines: React.Dispatch<React.SetStateAction<Line[]>>,
+  setG: ReactDispatch<SetStateAction<GState>>,
+  setLines: ReactDispatch<SetStateAction<Line[]>>,
   act: (action: string, params?: Record<string, unknown>) => void,
 ): void {
-  const actRef = React.useRef(act);
-  React.useEffect(() => {
+  const actRef = useRef(act);
+  useEffect(() => {
     actRef.current = act;
   }, [act]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (phase !== 'playing') return;
 
     const id = setInterval(() => {
