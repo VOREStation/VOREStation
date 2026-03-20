@@ -433,7 +433,7 @@
 
 	for(var/dir_to_check in GLOB.alldirs) // Cardinals first.
 		var/turf/T = get_step(src, dir_to_check)
-		if(!T || !T.Adjacent(src))
+		if(!T || T.density || !T.Adjacent(src))
 			continue
 		if(!LinkBlockedWithAccess(src, T, ID))
 			L.Add(T)
