@@ -53,14 +53,14 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 		"entries" = log_data,
 		"name" = target_name,
 		"ckey" = target_ckey,
-		"special" = special_role
+		"special" = special_role,
+		"view_client" = client_view
 	)
 
 /datum/player_log_viwer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	return list(
 		"on_cooldown" = refresh_cooldown(),
 		"all_clients" = GLOB.persistent_clients_by_ckey,
-		"view_client" = client_view
 	)
 
 /datum/player_log_viwer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
