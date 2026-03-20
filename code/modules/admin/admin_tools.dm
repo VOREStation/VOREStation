@@ -35,6 +35,8 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 	special_role = special
 	last_refresh = world.time
 	client_view = is_client
+	if(!islist(log_data))
+		log_data = list()
 	refresh_data()
 
 /datum/player_log_viwer/tgui_interact(mob/user, datum/tgui/ui)
