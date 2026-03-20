@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "External airlocks on planets will freeze in extremely cold weather."

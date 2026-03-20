@@ -1,5 +1,0 @@
-author: "ARGUS"
-delete-after: True
-changes:
-  - bugfix: "Using the Morph appearance editor no longer silently deactivates all trait genes, including Morph itself."
-  - bugfix: "Changing gender or markings via appearance tools no longer wipes active genetic traits."
