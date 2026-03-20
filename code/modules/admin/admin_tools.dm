@@ -95,7 +95,7 @@ ADMIN_VERB(persistent_client_logs, R_ADMIN|R_MOD, "Check Player Logs", "Displays
 /datum/player_log_viwer/proc/refresh_cooldown()
 	return ((world.time - last_refresh) < 5 SECONDS)
 
-/datum/player_log_viwer/proc/refresh_data(mob/user)
+/datum/player_log_viwer/proc/refresh_data()
 	if(!CONFIG_GET(flag/database_logging))
 		return
 	var/datum/db_query/query = SSdbcore.NewQuery("SELECT mid,time,ckey,mob,area,color,type,message from erro_dialog WHERE ckey = :t_ckey", list("t_ckey" = target_ckey))
