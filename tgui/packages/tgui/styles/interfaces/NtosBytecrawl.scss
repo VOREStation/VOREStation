@@ -10,7 +10,7 @@ $font-size: 12px;
 $line-height: 1.5;
 
 // ── Outer container ───────────────────────────────────────────────────────────
-.bc-container {
+.NtosByteCrawl__container {
   width: 720px;
   height: 540px;
   background: $bg;
@@ -27,7 +27,7 @@ $line-height: 1.5;
 }
 
 // ── Inner wrapper (holds the perspective warp) ────────────────────────────────
-.bc-inner {
+.NtosByteCrawl__inner {
   width: 100%;
   height: 100%;
   transform: perspective(800px) rotateX(1deg) scaleY(0.99);
@@ -38,7 +38,7 @@ $line-height: 1.5;
 }
 
 // ── CRT overlay layers ────────────────────────────────────────────────────────
-.bc-scanlines {
+.NtosByteCrawl__scanlines {
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
@@ -52,7 +52,7 @@ $line-height: 1.5;
   z-index: 10;
 }
 
-.bc-vignette {
+.NtosByteCrawl__vignette {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.7) 100%);
@@ -61,7 +61,7 @@ $line-height: 1.5;
 }
 
 // ── Header bar ────────────────────────────────────────────────────────────────
-.bc-header {
+.NtosByteCrawl__header {
   padding: 6px 12px;
   border-bottom: 1px solid $green-dim;
   display: flex;
@@ -75,7 +75,7 @@ $line-height: 1.5;
 }
 
 // ── Scrollable output area ────────────────────────────────────────────────────
-.bc-output {
+.NtosByteCrawl__output {
   flex: 1;
   overflow-y: auto;
   padding: 12px;
@@ -101,13 +101,13 @@ $line-height: 1.5;
 }
 
 // ── Each output line (colour is set inline per-line) ─────────────────────────
-.bc-line {
+.NtosByteCrawl__line {
   // Base glow; exact color + shadow overridden by inline style per-line
   text-shadow: 0 0 5px rgba(51, 255, 51, 0.6);
 }
 
 // ── Input row ─────────────────────────────────────────────────────────────────
-.bc-input-row {
+.NtosByteCrawl__input_row {
   display: flex;
   align-items: center;
   padding: 4px 12px 8px;
@@ -118,7 +118,7 @@ $line-height: 1.5;
 }
 
 // ── Prompt label ─────────────────────────────────────────────────────────────
-.bc-prompt {
+.NtosByteCrawl__prompt {
   color: $green;
   text-shadow: 0 0 6px rgba(51, 255, 51, 0.7);
   white-space: nowrap;
@@ -126,7 +126,7 @@ $line-height: 1.5;
 }
 
 // ── Text input field ──────────────────────────────────────────────────────────
-.bc-input {
+.NtosByteCrawl__input {
   flex: 1;
   background: transparent;
   border: none;

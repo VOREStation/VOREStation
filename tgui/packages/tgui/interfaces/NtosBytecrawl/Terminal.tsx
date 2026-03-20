@@ -1,7 +1,5 @@
 import type { KeyboardEvent, RefObject } from 'react';
 
-import 'tgui/styles/themes/NtosBytecrawl.scss';
-
 import type { Line } from './types';
 
 type HeaderSlot = {
@@ -44,11 +42,11 @@ export function Terminal(props: TerminalProps) {
   } = props;
 
   const inputRow = (
-    <div className="bc-input-row">
-      <span className="bc-prompt">{`${prompt} `}</span>
+    <div className="NtosByteCrawl__input_row">
+      <span className="NtosByteCrawl__prompt">{`${prompt} `}</span>
       <input
         ref={inputRef}
-        className="bc-input"
+        className="NtosByteCrawl__input"
         value={input}
         onChange={(e) => onInput(e.target.value)}
         onKeyDown={onKeyDown}
@@ -59,17 +57,17 @@ export function Terminal(props: TerminalProps) {
   );
 
   return (
-    <div className="bc-container">
+    <div className="NtosByteCrawl__container">
       {/* CRT overlay effects */}
-      <div className="bc-scanlines" />
-      <div className="bc-vignette" />
+      <div className="NtosByteCrawl__scanlines" />
+      <div className="NtosByteCrawl__vignette" />
 
-      <div className="bc-inner">
+      <div className="NtosByteCrawl__inner">
         {setupContent !== undefined ? (
           // ── Setup screen ────────────────────────────────────────────────────
           <>
-            <div className="bc-output">
-              <div className="bc-line" style={{ color: '#33ff33', textShadow: '0 0 8px rgba(51,255,51,0.9)' }}>
+            <div className="NtosByteCrawl__output">
+              <div className="NtosByteCrawl__line" style={{ color: '#33ff33', textShadow: '0 0 8px rgba(51,255,51,0.9)' }}>
                 {setupContent}
               </div>
             </div>
@@ -78,18 +76,18 @@ export function Terminal(props: TerminalProps) {
         ) : (
           // ── Main game screen ─────────────────────────────────────────────────
           <>
-            <div className="bc-header">
+            <div className="NtosByteCrawl__header">
               {headerSlots.map((slot, i) => (
                 <span key={i} style={slot.color ? { color: slot.color } : undefined}>
                   {slot.text}
                 </span>
               ))}
             </div>
-            <div ref={outputRef} className="bc-output">
+            <div ref={outputRef} className="NtosByteCrawl__output">
               {lines.map((l, i) => (
                 <div
                   key={i}
-                  className="bc-line"
+                  className="NtosByteCrawl__line"
                   style={{
                     color: l.color || '#33ff33',
                     textShadow: `0 0 5px ${l.color || 'rgba(51,255,51,0.6)'}`,
