@@ -466,11 +466,9 @@
 	materials.max_amount = mat_capacity
 
 	var/man_rating = 0
-	var/efficiency = 1.1
 	for(var/obj/item/stock_parts/manipulator/manip in component_parts)
 		man_rating += manip.rating;
-	efficiency -= man_rating * 0.1
-	creation_efficiency = max(0.6, round(efficiency, 0.1)) // creation_efficiency goes 1 -> 0.9 -> 0.8 -> 0.7 -> 0.6 per level of manipulator efficiency
+	creation_efficiency = max(0.6, round(1.1 - (man_rating * 0.1), 0.1)) // creation_efficiency goes 1 -> 0.9 -> 0.8 -> 0.7 -> 0.6 per level of manipulator efficiency
 	lathe_build_rate = 0.85 - (man_rating * 0.05) // lathe_build_rate goes 0.8 -> 0.75 -> 0.7 -> 0.65 -> 0.6 per level of manipulator efficiency
 
 /obj/machinery/autolathe/update_icon()
