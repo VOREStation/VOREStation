@@ -184,7 +184,7 @@
 		// "airlock_painter",
 		// "decal_painter",
 		// "rwd",
-		// "cable_coil",
+		"cable_coil",
 		"welding_helmet",
 		"welding_tool",
 		"mini_welding_tool",

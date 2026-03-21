@@ -7,7 +7,6 @@
 		MAT_IRON,
 		MAT_STEEL,
 		"rods",
-		"cable_coil",
 		MAT_SILVER,
 		MAT_GOLD,
 		MAT_TIN,

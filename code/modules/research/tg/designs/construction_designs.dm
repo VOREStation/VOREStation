@@ -128,8 +128,8 @@
 	name = "cable coil"
 	id = "cable_coil"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1500, MAT_GLASS = 600)
-	build_path = /obj/item/stack/cable_coil
+	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
+	build_path = /obj/item/stack/cable_coil/single
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
