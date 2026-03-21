@@ -34,6 +34,8 @@
 	// Bookkeeping
 	var/list/original_languages = list()
 	var/list/added_networks = list()
+	var/ui_theme
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /obj/item/robot_module/proc/hide_on_manifest()
 	. = hide_on_manifest
@@ -68,19 +70,25 @@
 		I.canremove = FALSE
 
 /obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
+	robot.init_id(idcard_type)
 	return
 
-/obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
-	remove_camera_networks(R)
-	remove_languages(R)
-	remove_subsystems(R)
-	remove_status_flags(R)
+// Reset the module and delete it
+/obj/item/robot_module/proc/reset_module(var/mob/living/silicon/robot/robot)
+	remove_camera_networks(robot)
+	remove_languages(robot)
+	remove_subsystems(robot)
+	remove_status_flags(robot)
 
-	if(R.radio)
-		R.radio.recalculateChannels()
-	R.set_default_module_icon()
+	if(robot.radio)
+		robot.radio.recalculateChannels()
+	robot.set_default_module_icon()
 
-	R.scrubbing = FALSE
+	robot.scrubbing = FALSE
+	modules -= robot.idcard
+	QDEL_NULL(robot.idcard)
+	robot.module = null
+	qdel(src)
 
 /obj/item/robot_module/Destroy()
 	QDEL_LIST(modules)
@@ -630,6 +638,7 @@
 	networks = list(NETWORK_MINE)
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher, /obj/item/borg/upgrade/restricted/adv_mailbag)
 	pto_type = PTO_CARGO
+	idcard_type = /obj/item/card/id/synthetic/borg
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -641,7 +650,13 @@
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/gripper/miner(src)
 	src.modules += new /obj/item/mining_scanner/robot(src)
-	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
+
+	var/obj/item/card/id/robot_id = robot.idcard
+	robot_id.name = "\improper Synthetic Miner ID"
+	robot_id.initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n", "stripe-purple")
+	robot_id.reset_icon()
+	robot_id.forceMove(src)
+	src.modules += robot_id
 	src.modules += new /obj/item/mail_scanner(src)
 	src.modules += new /obj/item/storage/bag/mail/borg(src)
 	src.modules += new /obj/item/destTagger(src)
@@ -822,3 +837,9 @@
 	src.modules += new /obj/item/storage/bag/ore(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.emag += new /obj/item/pickaxe/diamonddrill(src)
+
+/obj/item/robot_module/drone/talon
+	name = "talon drone module"
+	idcard_type = /obj/item/card/id/talon
+	channels = list(CHANNEL_TALON = 1)
+	networks = list(NETWORK_TALON_SHIP)

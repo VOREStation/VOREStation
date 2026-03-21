@@ -124,8 +124,8 @@ export const ModifyRobotModules = (props: {
 };
 
 const SelectionField = (props: {
-  previewImage: string | undefined;
-  previewImageSize: string | undefined;
+  previewImage?: string;
+  previewImageSize?: string | null;
   searchText: string;
   onSearchText: React.Dispatch<React.SetStateAction<string>>;
   action: string;

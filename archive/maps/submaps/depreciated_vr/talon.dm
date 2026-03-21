@@ -161,16 +161,16 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
-	idcard_type = /obj/item/card/id/synthetic/talon
+	module_type = /obj/item/robot_module/drone/talon
 
-/obj/item/card/id/synthetic/talon
+/obj/item/card/id/talon
 	name = "\improper Talon synthetic ID"
 	desc = "Access module for Talon synthetics"
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize(mapload)
+/obj/item/card/id/talon/Initialize(mapload)
 	. = ..()
 	access = list(ACCESS_TALON, ACCESS_SYNTH)
 

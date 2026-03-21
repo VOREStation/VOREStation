@@ -187,7 +187,7 @@
 			// Connect the cyborg to AI
 			target.connected_ai = user
 			user.connected_robots += target
-			target.lawupdate = 1
+			target.lawupdate = TRUE
 			target.sync()
 			target.show_laws()
 			user.hacking = 0
