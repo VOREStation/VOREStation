@@ -291,3 +291,31 @@
   - bugfix: some spawn failures
   Will:
   - rscadd: External airlocks on planets will freeze in extremely cold weather.
+2026-03-21:
+  Kashargul:
+  - qol: player logs now has a reload button
+  - bugfix: language and robot whitelist tgs commands
+  - bugfix: language whitelist not working
+  - bugfix: robot whitelist being non functional
+  - bugfix: job whitelist now properly checks the actual job name
+  - qol: marks whitelisted robot modules in the robot UI
+  - admin: admin whitelist tgui
+  Nova:
+  - bugfix: Fixed bot pathfinders getting stuck on diagonals
+  - qol: removed "As Unknown" from shadekin without any ID, or with a voice changer.
+  Will, Kash:
+  - refactor: replaced autolathe datums with techweb datums
+  - code_imp: many new validity checks for techweb unit test added, multiple changes
+      made to fix them.
+  - code_imp: added unit test that checks for circuits missing from the imprinter
+  - balance: autolathe uses it's own isolated material storage
+  - balance: many circuits tossed into the engivend replaced with an autolathe and
+      imprinter circuit instead, as they are all printable now
+  - bugfix: techweb entries now respect machine hacked state regarding hack only designs
+  - rscadd: protolathe and circuit imprinter wire hacking
+  - rscadd: a literal mountain of lathe and circuit designs that were missing
+  - qol: circuit boards that cannot be printed on station will show a unique message
+      on examine.
+  - qol: techweb and lathe menus now use scaled icons for larger images instead of
+      huge buttons
+  - bugfix: injector maker no longer uses an AFRG board during construction
