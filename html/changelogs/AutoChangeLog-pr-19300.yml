@@ -1,4 +1,0 @@
-author: "ARGUS-Memory"
-delete-after: True
-changes:
-  - bugfix: "RFID Slot of laptops and tablets actually are considered now for Access Checks and take precedence over equipped Access."

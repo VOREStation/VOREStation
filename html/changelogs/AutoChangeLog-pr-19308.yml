@@ -1,4 +1,0 @@
-author: "ARGUS"
-delete-after: True
-changes:
-  - rscadd: "Adds animation states for command raptor (the thick one)"

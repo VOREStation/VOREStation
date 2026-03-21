@@ -1,4 +1,0 @@
-author: "ARGUS"
-delete-after: True
-changes:
-  - bugfix: "Make the juebox volume actually work"

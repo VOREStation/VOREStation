@@ -81,8 +81,8 @@
 #define WIRE_PARTICLE_POWER_LIMIT "Maximum Power" // Determines how strong the PA can be.
 
 // Autolathe
-#define WIRE_AUTOLATHE_HACK "Hack"
-#define WIRE_AUTOLATHE_DISABLE "Disable"
+#define WIRE_LATHE_HACK "Hack"
+#define WIRE_LATHE_DISABLE "Disable"
 
 // Radio
 #define WIRE_RADIO_SIGNAL "Signal"

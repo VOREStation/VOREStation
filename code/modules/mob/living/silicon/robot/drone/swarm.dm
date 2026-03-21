@@ -13,12 +13,12 @@
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Drone"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = TRUE
-	idcard_type = /obj/item/card/id/syndicate
 	req_access = list(999)
 	integrated_light_power = 3
 	local_transmit = 0
+	can_pick_shell = FALSE
 
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER

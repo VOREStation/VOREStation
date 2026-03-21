@@ -45,7 +45,7 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
             <Section fill scrollable title="Active Restrictions">
               <Stack fill>
                 <Stack.Item fillPositionedParent>
-                  {target.active_restrictions.map((active_restriction, i) => {
+                  {target.active_restrictions?.map((active_restriction, i) => {
                     return (
                       <Button
                         fluid

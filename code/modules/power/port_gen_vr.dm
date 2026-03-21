@@ -64,6 +64,7 @@
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor/hyper = 1)
+	hidden = TRUE
 
 /obj/item/circuitboard/machine/abductor/core/hybrid
 	name = T_BOARD("void generator (hybrid)")
@@ -74,6 +75,7 @@
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor/hyper = 1,
 		/obj/item/stock_parts/micro_laser/hyper = 1)
+	hidden = TRUE
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
