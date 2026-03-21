@@ -341,7 +341,6 @@ GLOBAL_DATUM(blackbox, /obj/machinery/blackbox_recorder)
 	if(!feedback) return
 
 	round_end_data_gathering() //round_end time logging and some other data processing
-	establish_db_connection()
 	if(!SSdbcore.IsConnected()) return
 	var/round_id
 

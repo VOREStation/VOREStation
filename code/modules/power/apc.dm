@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/lastused_total = 0
 	var/main_status = APC_EXTERNAL_POWER_NOTCONNECTED
 	var/mob/living/silicon/ai/hacker = null // Malfunction var. If set AI hacked the APC and has full control.
-	var/wiresexposed = 0
+	var/wiresexposed = FALSE
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/debug= 0
 	var/autoflag= 0		// 0 = off, 1= eqp and lights off, 2 = eqp off, 3 = all on.
@@ -742,12 +742,12 @@ GLOBAL_LIST_EMPTY(apcs)
 
 			var/allcut = wires.is_all_cut()
 
-			if(beenhit >= pick(3, 4) && wiresexposed != 1)
-				wiresexposed = 1
+			if(beenhit >= pick(3, 4) && !wiresexposed)
+				wiresexposed = TRUE
 				update_icon()
 				visible_message(span_warning("The [name]'s cover flies open, exposing the wires!"))
 
-			else if(wiresexposed == 1 && allcut == 0)
+			else if(wiresexposed && allcut == 0)
 				wires.cut_all()
 				update_icon()
 				visible_message(span_warning("The [name]'s wires are shredded!"))

@@ -4,7 +4,7 @@
 	//Prime this list if we need it.
 	if(has_huds)
 		// Note, this should be refactored to drop priority overlays
-		add_overlay(backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
+		add_overlay(GLOB.backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
 		hud_list = list()
 		hud_list.len = TOTAL_HUDS
 		make_hud_overlays()

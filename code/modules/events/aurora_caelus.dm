@@ -13,7 +13,7 @@
 	We hope you enjoy the lights.", "Nanotrasen Meteorology Division", new_sound = 'sound/AI/aurora.ogg') //VOREStation Edit
 
 /datum/event/aurora_caelus/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	for(var/mob/M in GLOB.player_list)
 		if(M.z in affecting_z)
 			M.playsound_local(null, 'sound/ambience/space/aurora_caelus.ogg', 100, FALSE, pressure_affected = FALSE)

@@ -568,6 +568,11 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 # REQUIRES chatlog_database_backend to be enabled
 #CHATLOG_DATABASE_API_ENDPOINT https://example.com
 
+# Logs player logs inside the Database. Reduces memory usage, but increases cpu load
+# REQUIRES an database
+# Uncomment to enable
+#DATABASE_LOGGING
+
 ## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
 #FORBID_ADMIN_PROFILING
 

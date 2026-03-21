@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - code_imp: "convert more globals to GLOBs"
+  - bugfix: "single item mat cost tooltip"

@@ -114,7 +114,7 @@
 	var/circuit = /obj/item/circuitboard/geiger
 	var/number = 0
 	var/last_tick //used to delay the powercheck
-	var/wiresexposed = 0
+	var/wiresexposed = FALSE
 	mounted = TRUE
 
 /obj/item/geiger/wall/Initialize(mapload)

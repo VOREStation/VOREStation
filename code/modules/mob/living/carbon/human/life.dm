@@ -82,18 +82,10 @@
 	//Handle any species related components we may have. Ex: Shadekin, Xenochimera, etc. Not STAT checked because those do statchecks in their own code.
 	handle_species_components()
 
-	if(skip_some_updates())
-		return											//We go ahead and process them 5 times for HUD images and other stuff though.
-
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
 	pulse = handle_pulse()
-
-/mob/living/carbon/human/proc/skip_some_updates()
-	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 1
-	return 0
 
 /mob/living/carbon/human/breathe()
 	if(!inStasisNow())
@@ -1231,8 +1223,6 @@
 
 //DO NOT CALL handle_statuses() from this proc, it's called from living/Life() as long as this returns a true value.
 /mob/living/carbon/human/handle_regular_status_updates()
-	if(skip_some_updates())
-		return 0
 
 	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 		return 0	// Cancelled by a component

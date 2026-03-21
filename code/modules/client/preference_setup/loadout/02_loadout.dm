@@ -1,4 +1,4 @@
-var/list/loadout_categories = list()
+GLOBAL_LIST_EMPTY_TYPED(loadout_categories, /datum/loadout_category)
 GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 /datum/loadout_category
@@ -28,16 +28,12 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 			log_world("## ERROR Loadout - Missing path definition: [G]")
 			continue
 
-		if(!loadout_categories[use_category])
-			loadout_categories[use_category] = new /datum/loadout_category(use_category)
-		var/datum/loadout_category/LC = loadout_categories[use_category]
+		if(!GLOB.loadout_categories[use_category])
+			GLOB.loadout_categories[use_category] = new /datum/loadout_category(use_category)
+		var/datum/loadout_category/LC = GLOB.loadout_categories[use_category]
 		GLOB.gear_datums[use_name] = new G
 		LC.gear[use_name] = GLOB.gear_datums[use_name]
 
-	loadout_categories = sortAssoc(loadout_categories)
-	for(var/loadout_category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[loadout_category]
-		LC.gear = sortAssoc(LC.gear)
 	return 1
 
 /datum/category_item/player_setup_item/loadout/loadout
@@ -70,7 +66,7 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/is_valid_gear(datum/gear/G, max_cost)
 	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client)
-		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.species && G.whitelisted != pref.custom_base))
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.read_preference(/datum/preference/choiced/species) && G.whitelisted != pref.custom_base))
 			return FALSE
 		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 			return FALSE
@@ -140,8 +136,8 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 	var/list/data = ..()
 
 	var/list/categories = list()
-	for(var/category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[category]
+	for(var/category, value in GLOB.loadout_categories)
+		var/datum/loadout_category/LC = value
 		var/list/items = list()
 		for(var/gear in LC.gear)
 			var/datum/gear/G = LC.gear[gear]
@@ -228,7 +224,10 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 				if(confirm != "Yes")
 					return TOPIC_HANDLED
 
-			pref.gear_list["[copy_to]"] = check_list_copy(active_gear_list)
+			var/list/slot_copy = check_list_copy(active_gear_list)
+			for(var/gear_name in slot_copy)
+				slot_copy[gear_name] = check_list_copy(slot_copy[gear_name])
+			pref.gear_list["[copy_to]"] = slot_copy
 			return TOPIC_REFRESH
 
 		if("toggle_gear")

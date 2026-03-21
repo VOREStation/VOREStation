@@ -1,6 +1,6 @@
 
-/datum/admins/proc/player_panel_new()//The new one
-	if (!check_rights_for(usr.client, R_HOLDER))
+/datum/admins/proc/player_panel_new(client/user)//The new one
+	if (!check_rights_for(user, R_HOLDER))
 		return
 	var/ui_scale = owner.prefs.read_preference(/datum/preference/toggle/ui_scale)
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
@@ -320,11 +320,11 @@
 	var/window_size = "size=600x480"
 	if(owner.window_scaling && ui_scale)
 		window_size = "size=[600 * owner.window_scaling]x[400 * owner.window_scaling]"
-	usr << browse(dat, "window=players;[window_size]")
+	user << browse(dat, "window=players;[window_size]")
 
 //The old one
-/datum/admins/proc/player_panel_old()
-	if (!check_rights_for(usr.client, R_HOLDER))
+/datum/admins/proc/player_panel_old(client/user)
+	if (!check_rights_for(user, R_HOLDER))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
@@ -367,10 +367,10 @@
 
 		dat += {"<td>[M.key ? (M.client ? M.key : "[M.key] (DC)") : "No key"]</td>
 		<td align=center><A href='byond://?src=\ref[src];[HrefToken()];adminplayeropts=\ref[M]'>X</A></td>
-		<td align=center><A href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref[M]'>PM</A></td>
+		<td align=center><A href='byond://?src=\ref[user];[HrefToken()];priv_msg=\ref[M]'>PM</A></td>
 		"}
 
-		if(usr.client)
+		if(user)
 			switch(is_special_character(M))
 				if(0)
 					dat += {"<td align=center><A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>Traitor?</A></td>"}
@@ -385,11 +385,11 @@
 
 	dat += "</table></body></html>"
 
-	usr << browse(dat, "window=players;size=640x480")
+	user << browse(dat, "window=players;size=640x480")
 
 
 
-/datum/admins/proc/check_antagonists()
+/datum/admins/proc/check_antagonists(client/user)
 	if (SSticker && SSticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1>" + span_bold("Round Status") + "</h1>"
 		dat += "Current Game Mode: " + span_bold("[SSticker.mode.name]") + "<BR>"
@@ -416,6 +416,6 @@
 			var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
 			dat += A.get_check_antag_output(src)
 		dat += "</body></html>"
-		usr << browse(dat, "window=roundstatus;size=400x500")
+		user << browse(dat, "window=roundstatus;size=400x500")
 	else
-		tgui_alert_async(usr, "The game hasn't started yet!")
+		tgui_alert_async(user, "The game hasn't started yet!")

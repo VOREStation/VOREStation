@@ -14,7 +14,7 @@
 /obj/structure/AIcore/Initialize(mapload)
 	. = ..()
 	if(mapload)
-		laws = new global.using_map.default_law_type
+		laws = new using_map.default_law_type
 // VOREstation edit end
 
 /obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
@@ -223,7 +223,8 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	qdel(src)
 
 /obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
-	if(!ai) return
+	if(!ai)
+		return
 	for (var/datum/mind/malfai in GLOB.malf.current_antagonists)
 		if (ai.mind == malfai)
 			return 1
@@ -238,7 +239,8 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		else
 			to_chat(user, span_danger("ERROR:") + " Unable to locate artificial intelligence.")
 		return
-	else if(W.has_tool_quality(TOOL_WRENCH))
+
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(anchored)
 			user.visible_message(span_bold("\The [user]") + " starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)
@@ -248,35 +250,34 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 			user.visible_message(span_bold("\The [user]") + " finishes unfastening \the [src]!")
 			anchored = FALSE
 			return
-		else
-			user.visible_message(span_bold("\The [user]") + " starts to bolt \the [src] to the plating...")
-			playsound(src, W.usesound, 50, 1)
-			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
-				user.visible_message(span_bold("\The [user]") + " decides not to bolt \the [src].")
-				return
-			user.visible_message(span_bold("\The [user]") + " finishes fastening down \the [src]!")
-			anchored = TRUE
+
+		user.visible_message(span_bold("\The [user]") + " starts to bolt \the [src] to the plating...")
+		playsound(src, W.usesound, 50, 1)
+		if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
+			user.visible_message(span_bold("\The [user]") + " decides not to bolt \the [src].")
 			return
-	else
-		return ..()
+		user.visible_message(span_bold("\The [user]") + " finishes fastening down \the [src]!")
+		anchored = TRUE
+		return
 
-/client/proc/empty_ai_core_toggle_latejoin()
-	set name = "Toggle AI Core Latejoin"
-	set category = "Admin.Silicon"
+	return ..()
 
+ADMIN_VERB(empty_ai_core_toggle_latejoin, R_ADMIN|R_SERVER|R_EVENT, "Toggle AI Core Latejoin", "Toggles the option to latejoin as AI core.", ADMIN_CATEGORY_SILICON)
 	var/list/cores = list()
-	for(var/obj/structure/AIcore/deactivated/D in GLOB.all_deactivated_AI_cores)
-		cores["[D] ([D.loc.loc])"] = D
+	for(var/obj/structure/AIcore/deactivated/current_ai_struct in GLOB.all_deactivated_AI_cores)
+		cores["[current_ai_struct] ([current_ai_struct.loc.loc])"] = current_ai_struct
 
-	var/id = tgui_input_list(usr, "Which core?", "Toggle AI Core Latejoin", cores)
-	if(!id) return
+	var/id = tgui_input_list(user, "Which core?", "Toggle AI Core Latejoin", cores)
+	if(!id)
+		return
 
-	var/obj/structure/AIcore/deactivated/D = cores[id]
-	if(!D) return
+	var/obj/structure/AIcore/deactivated/ai_struct = cores[id]
+	if(!ai_struct)
+		return
 
-	if(D in GLOB.empty_playable_ai_cores)
-		GLOB.empty_playable_ai_cores -= D
-		to_chat(src, "\The [id] is now [span_red("not available")] for latejoining AIs.")
+	if(ai_struct in GLOB.empty_playable_ai_cores)
+		GLOB.empty_playable_ai_cores -= ai_struct
+		to_chat(user, span_infoplain("\The [id] is now [span_red("not available")] for latejoining AIs."))
 	else
-		GLOB.empty_playable_ai_cores += D
-		to_chat(src, "\The [id] is now [span_green("available")] for latejoining AIs.")
+		GLOB.empty_playable_ai_cores += ai_struct
+		to_chat(user, span_infoplain("\The [id] is now [span_green("available")] for latejoining AIs."))
