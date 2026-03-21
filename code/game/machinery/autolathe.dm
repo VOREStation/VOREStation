@@ -26,7 +26,7 @@
 	var/datum/wires/autolathe/wires = null
 
 	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
-	var/creation_efficiency = 1.6
+	var/creation_efficiency = 0.92
 	///Designs related to the autolathe
 	var/datum/techweb/autounlocking/stored_research
 	///Designs imported from technology disks that we can print.
@@ -463,10 +463,10 @@
 		mat_capacity += new_matter_bin.rating * (37.5*SHEET_MATERIAL_AMOUNT)
 	materials.max_amount = mat_capacity
 
-	var/efficiency = 1.8
-	for(var/obj/item/stock_parts/motor/new_servo in component_parts)
-		efficiency -= new_servo.rating * 0.2
-	creation_efficiency = max(1, round(efficiency, 0.1)) // creation_efficiency goes 1.6 -> 1.4 -> 1.2 -> 1 per level of servo efficiency
+	var/efficiency = 1
+	for(var/obj/item/stock_parts/manipulator/manip in component_parts)
+		efficiency -= manip.rating * 0.08
+	creation_efficiency = max(0.6, round(efficiency, 0.1)) // creation_efficiency goes 0.92 -> 0.84 -> 0.76 -> 0.68 -> 0.6 per level of servo efficiency
 
 /obj/machinery/autolathe/update_icon()
 	cut_overlays()
