@@ -416,7 +416,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			var/datum/language/current_lang = value
 			if(current_lang.flags & WHITELISTED)
 				whitelisted_language += language
-		message.text = "The following jobs and species have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]\nLanguages: [english_list(whitelisted_language)]\nRobot Modules: [english_list(GLOB.whitelisted_module_types)]"
+		message.text = "The following jobs, species, languages and robot modules have a whitelist:\nJobs: [english_list(whitelist_jobs)]\nSpecies: [english_list(GLOB.whitelisted_species)]\nLanguages: [english_list(whitelisted_language)]\nRobot Modules: [english_list(GLOB.whitelisted_module_types)]"
 		return message
 
 	message_as_list.Cut(1, 2)
