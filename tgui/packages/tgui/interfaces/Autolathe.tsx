@@ -201,22 +201,14 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
           <Icon name="question-circle" />
         </div>
       </Tooltip>
-      <Tooltip
-        content={
-          <MaterialCostSequence
-            design={design}
-            amount={1}
-            available={availableMaterials}
-          />
-        }
-      >
-        <TechWebRecipeIcon
-          icon={design.icon}
-          name={design.name}
-          canPrint={canPrint}
-          action={() => act('make', { id: design.id, multiplier: 1 })}
-        />
-      </Tooltip>
+      <TechWebRecipeIcon
+        icon={design.icon}
+        name={design.name}
+        design={design}
+        canPrint={canPrint}
+        availableMaterials={availableMaterials}
+        action={() => act('make', { id: design.id, multiplier: 1 })}
+      />
 
       <PrintButton
         design={design}
