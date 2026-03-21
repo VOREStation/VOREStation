@@ -54,13 +54,29 @@
 /datum/unit_test/all_default_circuits_must_match_machines/Run()
 	var/failed = FALSE
 
+	// Check the boards builds into the machine
 	for(var/obj/item/circuitboard/board_path as anything in subtypesof(/obj/item/circuitboard))
 		var/obj/machinery/machine_path = initial(board_path.build_path)
+		if(!machine_path)
+			continue
 		if(!machine_path.circuit)
 			continue
 		if(machine_path.circuit == board_path)
 			continue
-		TEST_NOTICE(src, "[machine_path]'s default starting circuitboard did not match the board used to construct it. Should be \"[board_path]\".")
+		TEST_NOTICE(src, "[machine_path]'s default starting circuitboard did not match the board used to construct it. Was \"[machine_path.circuit]\" should be \"[board_path]\".")
 		failed = TRUE
+
+	// Check the machine deconstructs into the board
+	for(var/obj/machinery/machine_path as anything in subtypesof(/obj/machinery))
+		if(!machine_path.circuit)
+			continue
+		var/obj/item/circuitboard/board_path = initial(machine_path.circuit)
+		if(!board_path)
+			continue
+		if(machine_path == board_path.build_path)
+			continue
+		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. \"[machine_path]\" should be \"[board_path.build_path]\".")
+		failed = TRUE
+
 	if(failed)
 		TEST_FAIL("machine had an incorrect circuitboard in its definition.")
