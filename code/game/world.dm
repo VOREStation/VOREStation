@@ -164,10 +164,6 @@ GLOBAL_VAR(restart_counter)
 		load_alienwhitelist()
 	load_jobwhitelist()
 
-	//Emergency Fix
-	load_mods()
-	//end-emergency fix
-
 	src.update_status()
 	setup_season()	//VOREStation Addition
 
@@ -535,31 +531,6 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
-
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	return 1
-
-/world/proc/load_mods()
-	if(CONFIG_GET(flag/admin_legacy_system))
-		var/text = file2text("config/moderators.txt")
-		if (!text)
-			log_world("Failed to load config/mods.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Moderator"
-				var/rights = GLOB.admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(GLOB.directory[ckey])
 
 /world/proc/update_status()
 	var/s = ""

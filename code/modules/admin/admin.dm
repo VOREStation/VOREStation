@@ -246,26 +246,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 /datum/player_info/var/content // text content of the information
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
-/datum/admins/proc/PlayerNotes()
-	set category = "Admin.Logs"
-	set name = "Player Notes"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	PlayerNotesPage(1)
+ADMIN_VERB(PlayerNotes, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Player Notes", "Access the player notes.", ADMIN_CATEGORY_INVESTIGATE)
+	user.holder.PlayerNotesPage(user.mob, 1)
 
-/datum/admins/proc/PlayerNotesFilter()
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
-	PlayerNotesPage(1, filter)
-
-/datum/admins/proc/PlayerNotesPage(page, filter)
+/datum/admins/proc/PlayerNotesPage(mob/user, page)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -275,7 +259,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 	var/datum/tgui_module/player_notes/A = new(src)
 	A.ckeys = note_keys
-	A.tgui_interact(usr)
+	A.tgui_interact(user)
 
 
 /datum/admins/proc/player_has_info(var/key as text)
@@ -285,47 +269,27 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	if(!infos || !infos.len) return 0
 	else return 1
 
-
-/datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin.Investigate"
-	set name = "Show Player Info"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(show_player_info, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Show Player Info", "Access the player info.", ADMIN_CATEGORY_INVESTIGATE)
 	var/datum/tgui_module/player_notes_info/A = new(src)
-	A.key = key
-	A.tgui_interact(usr)
+	A.tgui_interact(user)
 
+ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "Allows you to view, add and edit news feeds.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/dat = text("<H3>Admin Newscaster Unit</H3>")
 
-/datum/admins/proc/access_news_network() //MARKER
-	set category = "Fun.Event Kit"
-	set name = "Access Newscaster Network"
-	set desc = "Allows you to view, add and edit news feeds."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	var/dat
-	dat = text("<H3>Admin Newscaster Unit</H3>")
-
-	switch(admincaster_screen)
+	var/datum/admins/admin_holder = user.holder
+	switch(admin_holder.admincaster_screen)
 		if(0)
 			dat += {"Welcome to the admin newscaster.<BR> Here you can add, edit and censor every newspiece on the network.
 				<BR>Feed channels and stories entered through here will be uneditable and handled as official news by the rest of the units.
 				<BR>Note that this panel allows full freedom over the news network, there are no constrictions except the few basic ones. Don't break things!
 			"}
 			if(GLOB.news_network.wanted_issue)
-				dat+= "<HR><A href='byond://?src=\ref[src];[HrefToken()];ac_view_wanted=1'>Read Wanted Issue</A>"
+				dat+= "<HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_view_wanted=1'>Read Wanted Issue</A>"
 
-			dat+= {"<HR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_create_channel=1'>Create Feed Channel</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_view=1'>View Feed Channels</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_create_feed_story=1'>Submit new Feed story</A>
-				<BR><BR><A href='byond://?src=\ref[usr];[HrefToken()];mach_close=newscaster_main'>Exit</A>
+			dat+= {"<HR><BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_create_channel=1'>Create Feed Channel</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_view=1'>View Feed Channels</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_create_feed_story=1'>Submit new Feed story</A>
+				<BR><BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];mach_close=newscaster_main'>Exit</A>
 			"}
 
 			var/wanted_already = 0
@@ -333,95 +297,95 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				wanted_already = 1
 
 			dat+={"<HR>"} + span_bold("Feed Security functions:") + {"<BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR>"} + span_green("[src.admincaster_signature]") + {"</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
+				<BR><HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR>"} + span_green("[admin_holder.admincaster_signature]") + {"</A>
 			"}
 		if(1)
 			dat+= "Station Feed Channels<HR>"
-			if( isemptylist(GLOB.news_network.network_channels) )
+			if(isemptylist(GLOB.news_network.network_channels) )
 				dat+=span_italics("No active channels found...")
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
-						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT>") + "<BR>"
+						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT>") + "<BR>"
 					else
-						dat+=span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>")
-			dat+={"<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>
+						dat+=span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>")
+			dat+={"<BR><HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_refresh=1'>Refresh</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Back</A>
 			"}
 
 		if(2)
 			dat+={"
 				Creating new Feed Channel...
-				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>Channel Author</A>:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:") + {" [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_channel=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
+				<HR>"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:") + {" [admin_holder.admincaster_feed_channel.channel_name]<BR>
+				"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_signature=1'>Channel Author</A>:") + {" "} + span_green("[admin_holder.admincaster_signature]") + {"<BR>
+				"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:") + {" [(admin_holder.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_submit_new_channel=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(3)
 			dat+={"
 				Creating new Feed Message...
-				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
-				"} + span_bold("Message Author:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
-				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_new_message=1'>Message Body</A>:") + {" [src.admincaster_feed_message.body] <BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_message=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
+				<HR>"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:") + {" [admin_holder.admincaster_feed_channel.channel_name]<BR>
+				"} + span_bold("Message Author:") + {" "} + span_green("[admin_holder.admincaster_signature]") + {"<BR>
+				"} + span_bold("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_new_message=1'>Message Body</A>:") + {" [admin_holder.admincaster_feed_message.body] <BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_submit_new_message=1'>Submit</A><BR><BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(4)
 			dat+={"
-					Feed story successfully submitted to [src.admincaster_feed_channel.channel_name].<BR><BR>
-					<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+					Feed story successfully submitted to [admin_holder.admincaster_feed_channel.channel_name].<BR><BR>
+					<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 				"}
 		if(5)
 			dat+={"
-				Feed Channel [src.admincaster_feed_channel.channel_name] created successfully.<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				Feed Channel [admin_holder.admincaster_feed_channel.channel_name] created successfully.<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(6)
 			dat+=span_bold(span_maroon("ERROR: Could not submit Feed story to Network.")) + "<HR><BR>"
-			if(src.admincaster_feed_channel.channel_name=="")
+			if(admin_holder.admincaster_feed_channel.channel_name=="")
 				dat+=span_maroon("Invalid receiving channel name.") + "<BR>"
-			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]" || admincaster_feed_message.title == "")
+			if(admin_holder.admincaster_feed_message.body == "" || admin_holder.admincaster_feed_message.body == "\[REDACTED\]" || admin_holder.admincaster_feed_message.title == "")
 				dat+=span_maroon("Invalid message body.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[3]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[3]'>Return</A><BR>"
 		if(7)
 			dat+=span_bold(span_maroon("ERROR: Could not submit Feed Channel to Network.")) + "<HR><BR>"
-			if(src.admincaster_feed_channel.channel_name =="" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]")
+			if(admin_holder.admincaster_feed_channel.channel_name =="" || admin_holder.admincaster_feed_channel.channel_name == "\[REDACTED\]")
 				dat+=span_maroon("Invalid channel name.") + "<BR>"
 			var/check = 0
 			for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
-				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
+				if(FC.channel_name == admin_holder.admincaster_feed_channel.channel_name)
 					check = 1
 					break
 			if(check)
 				dat+=span_maroon("Channel name already in use.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[2]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[2]'>Return</A><BR>"
 		if(9)
-			dat+=span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[created by: [span_maroon("[src.admincaster_feed_channel.author]")]\]") + "<HR>"
-			if(src.admincaster_feed_channel.censored)
+			dat+=span_bold("[admin_holder.admincaster_feed_channel.channel_name]: ") + span_small("\[created by: [span_maroon("[admin_holder.admincaster_feed_channel.author]")]\]") + "<HR>"
+			if(admin_holder.admincaster_feed_channel.censored)
 				dat+={"
 					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
-				if( isemptylist(src.admincaster_feed_channel.messages) )
+				if( isemptylist(admin_holder.admincaster_feed_channel.messages) )
 					dat+=span_italics("No feed messages found in channel...") + "<BR>"
 				else
 					var/i = 0
-					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
+					for(var/datum/feed_message/MESSAGE in admin_holder.admincaster_feed_channel.messages)
 						i++
 						//dat+="-[MESSAGE.body] <BR>"
 						var/pic_data
 						if(MESSAGE.img)
-							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
 							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
 						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
 						dat+="<BR>"
 						dat+=span_small("\[Story by [span_maroon("[MESSAGE.author] - [MESSAGE.time_stamp]")]\]") + "<BR>"
 			dat+={"
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[1]'>Back</A>
+				<BR><HR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_refresh=1'>Refresh</A>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[1]'>Back</A>
 			"}
 		if(10)
 			dat+={"
@@ -434,8 +398,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				dat+=span_italics("No feed channels found active...") + "<BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
+					dat+="<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
 		if(11)
 			dat+={"
 				"} + span_bold("[using_map.company_name] D-Notice Handler") + {"<HR>
@@ -447,41 +411,41 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				dat+=span_italics("No feed channels found active...") + "<BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
+					dat+="<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
 
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Back</A>"
 		if(12)
 			dat+={"
-				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
-				"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A>") + {"<HR>
+				"} + span_bold("[admin_holder.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[admin_holder.admincaster_feed_channel.author]")] \]") + {"<BR>
+				"} + span_normal("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_censor_channel_author=\ref[admin_holder.admincaster_feed_channel]'>[(admin_holder.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A>") + {"<HR>
 			"}
-			if( isemptylist(src.admincaster_feed_channel.messages) )
+			if( isemptylist(admin_holder.admincaster_feed_channel.messages) )
 				dat+=span_italics("No feed messages found in channel...") + "<BR>"
 			else
-				for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
+				for(var/datum/feed_message/MESSAGE in admin_holder.admincaster_feed_channel.messages)
 					dat+={"
 						-[MESSAGE.body] <BR>"} + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + {"<BR>
-						"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A>") + {"<BR>
+						"} + span_normal("<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A>") + {"<BR>
 					"}
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[10]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[10]'>Back</A>"
 		if(13)
 			dat+={"
-				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
-				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[src];[HrefToken()];ac_toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
+				"} + span_bold("[admin_holder.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[admin_holder.admincaster_feed_channel.author]")] \]") + {"<BR>
+				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_toggle_d_notice=\ref[admin_holder.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
 			"}
-			if(src.admincaster_feed_channel.censored)
+			if(admin_holder.admincaster_feed_channel.censored)
 				dat+={"
 					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
-				if( isemptylist(src.admincaster_feed_channel.messages) )
+				if( isemptylist(admin_holder.admincaster_feed_channel.messages) )
 					dat+=span_italics("No feed messages found in channel...") + "<BR>"
 				else
-					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
+					for(var/datum/feed_message/MESSAGE in admin_holder.admincaster_feed_channel.messages)
 						dat+="-[MESSAGE.body] <BR>" + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + "<BR>"
 
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[11]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[11]'>Back</A>"
 		if(14)
 			dat+=span_bold("Wanted Issue Handler:")
 			var/wanted_already = 0
@@ -493,33 +457,33 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				dat+=span_normal(span_italics("<BR>A wanted issue is already in Feed Circulation. You can edit or cancel it below."))
 			dat+={"
 				<HR>
-				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</A>: [src.admincaster_feed_message.author] <BR>
-				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_desc=1'>Description</A>: [src.admincaster_feed_message.body] <BR>
+				<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</A>: [admin_holder.admincaster_feed_message.author] <BR>
+				<A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_set_wanted_desc=1'>Description</A>: [admin_holder.admincaster_feed_message.body] <BR>
 			"}
 			if(wanted_already)
 				dat+=span_bold("Wanted Issue created by:") + span_green(" [GLOB.news_network.wanted_issue.backup_author]") + "<BR>"
 			else
-				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [src.admincaster_signature]") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
+				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [admin_holder.admincaster_signature]") + "<BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
 			if(wanted_already)
-				dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</A>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
+				dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</A>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
 		if(15)
 			dat+={"
-				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.") + {"<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_green("Wanted issue for [admin_holder.admincaster_feed_message.author] is now in Network Circulation.") + {"<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(16)
 			dat+=span_bold(span_maroon("ERROR: Wanted Issue rejected by Network.")) + "<HR><BR>"
-			if(src.admincaster_feed_message.author =="" || src.admincaster_feed_message.author == "\[REDACTED\]")
+			if(admin_holder.admincaster_feed_message.author =="" || admin_holder.admincaster_feed_message.author == "\[REDACTED\]")
 				dat+=span_maroon("Invalid name for person wanted.") + "<BR>"
-			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
+			if(admin_holder.admincaster_feed_message.body == "" || admin_holder.admincaster_feed_message.body == "\[REDACTED\]")
 				dat+=span_maroon("Invalid description.") + "<BR>"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>"
 		if(17)
 			dat+={"
 				"} + span_bold("Wanted Issue successfully deleted from Circulation") + {"<BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(18)
 			dat+={"
@@ -529,29 +493,30 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 				"} + span_bold("Photo:") + {":
 			"}
 			if(GLOB.news_network.wanted_issue.img)
-				usr << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
+				user << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 				dat+="<BR><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"
-			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Back</A><BR>"
 		if(19)
 			dat+={"
-				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] successfully edited.") + {"<BR><BR>
-				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
+				"} + span_green("Wanted issue for [admin_holder.admincaster_feed_message.author] successfully edited.") + {"<BR><BR>
+				<BR><A href='byond://?src=\ref[admin_holder];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		else
 			dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-	//to_chat(world, "Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
-	//to_chat(world, "Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
+	//to_chat(world, "Channelname: [admin_holder.admincaster_feed_channel.channel_name] [admin_holder.admincaster_feed_channel.author]")
+	//to_chat(world, "Msg: [admin_holder.admincaster_feed_message.author] [admin_holder.admincaster_feed_message.body]")
 
-	var/datum/browser/popup = new(owner, "admincaster_main", "Admin Newscaster", 400, 600)
+	var/datum/browser/popup = new(user, "admincaster_main", "Admin Newscaster", 400, 600)
 	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
 	popup.set_content(dat)
 	popup.open()
 
 /datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))
+		return
 
 	var/dat = span_bold("Job Bans!") + "<HR><table>"
 	for(var/t in GLOB.jobban_keylist)
@@ -628,7 +593,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 #define HARD_RESTART "Hard Restart (No Delay/Feedback Reason)"
 #define HARDEST_RESTART "Hardest Restart (No actions, just reboot)"
 #define TGS_RESTART "Server Restart (Kill and restart DD)"
-ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", "Server.Game")
+ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", ADMIN_CATEGORY_SERVER_GAME)
 	var/list/options = list(REGULAR_RESTART, REGULAR_RESTART_DELAYED, HARD_RESTART)
 
 	// this option runs a codepath that can leak db connections because it skips subsystem (specifically SSdbcore) shutdown
@@ -681,25 +646,22 @@ ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.",
 #undef HARDEST_RESTART
 #undef TGS_RESTART
 
-ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", "Server.Game")
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", ADMIN_CATEGORY_SERVER_GAME)
 	if(!SSticker.cancel_reboot(user))
 		return
 	log_admin("[key_name(user)] cancelled the pending world reboot.")
 	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
 
-/datum/admins/proc/announce()
-	set category = "Admin.Chat"
-	set name = "Announce"
-	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+ADMIN_VERB(announce, R_SERVER|R_ADMIN|R_EVENT, "Announce", "Announce your desires to the world.", ADMIN_CATEGORY_CHAT)
+	var/message = tgui_input_text(user, "Global message to send:", "Admin Announce", multiline = TRUE, prevent_enter = TRUE)
+	if(!message)
+		return
 
-	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, prevent_enter = TRUE)
-	if(message)
-		if(!check_rights(R_SERVER,0))
-			message = sanitize(message, 500, extra = 0)
-		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
-		log_admin("Announce: [key_name(usr)] : [message]")
+	if(!check_rights_for(user, R_SERVER))
+		message = sanitize(message, 500, extra = 0)
+	message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
+	send_ooc_announcement(message, "From [user.holder.fakekey ? "Administrator" : usr.key]")
+	log_admin("Announce: [key_name(user)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/intercom()
@@ -815,14 +777,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
 			sleep(this_wait SECONDS)
 
-/datum/admins/proc/toggleooc()
-	set category = "Server.Chat"
-	set desc="Globally Toggles OOC"
-	set name="Toggle Player OOC"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(toggleooc, R_ADMIN, "Toggle Player OOC", "Globally Toggles OOC.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/ooc_allowed, !CONFIG_GET(flag/ooc_allowed))
 	if (CONFIG_GET(flag/ooc_allowed))
 		to_chat(world, span_world("The OOC channel has been globally enabled!"))
@@ -831,14 +786,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglelooc()
-	set category = "Server.Chat"
-	set desc="Globally Toggles LOOC"
-	set name="Toggle Player LOOC"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(togglelooc, R_ADMIN, "Toggle Player LOOC", "Globally Toggles LOOC.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/looc_allowed, !CONFIG_GET(flag/looc_allowed))
 	if (CONFIG_GET(flag/looc_allowed))
 		to_chat(world, span_world("The LOOC channel has been globally enabled!"))
@@ -847,130 +795,88 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world re
 	log_and_message_admins("toggled LOOC.")
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/toggledsay()
-	set category = "Server.Chat"
-	set desc="Globally Toggles DSAY"
-	set name="Toggle DSAY"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(toggledsay, R_ADMIN, "Toggle DSAY", "Globally Toggles DSAY.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/dsay_allowed, !CONFIG_GET(flag/dsay_allowed))
 	if (CONFIG_GET(flag/dsay_allowed))
 		to_chat(world, span_world("Deadchat has been globally enabled!"))
 	else
 		to_chat(world, span_world("Deadchat has been globally disabled!"))
-	log_admin("[key_name(usr)] toggled deadchat.")
-	message_admins("[key_name_admin(usr)] toggled deadchat.")
+	log_admin("[key_name(user)] toggled deadchat.")
+	message_admins("[key_name_admin(user)] toggled deadchat.")
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggleoocdead()
-	set category = "Server.Chat"
-	set desc="Toggle Dead OOC."
-	set name="Toggle Dead OOC"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(toggleoocdead, R_ADMIN, "Toggle Dead OOC", "Toggle Dead OOC.", ADMIN_CATEGORY_SERVER_CHAT)
 	CONFIG_SET(flag/dooc_allowed, !CONFIG_GET(flag/dooc_allowed))
-	log_admin("[key_name(usr)] toggled Dead OOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead OOC.")
+	log_admin("[key_name(user)] toggled Dead OOC.")
+	message_admins("[key_name_admin(user)] toggled Dead OOC.")
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglehubvisibility()
-	set category = "Server.Config"
-	set desc="Globally Toggles Hub Visibility"
-	set name="Toggle Hub Visibility"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(togglehubvisibility, R_HOST, "Toggle Hub Visibility", "Globally Toggles Hub Visibility.", ADMIN_CATEGORY_SERVER_CONFIG)
 	world.visibility = !(world.visibility)
-	log_admin("[key_name(usr)] toggled hub visibility.")
-	message_admins("[key_name_admin(usr)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).")
+	log_admin("[key_name(user)] toggled hub visibility.")
+	message_admins("[key_name_admin(user)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).")
 	feedback_add_details("admin_verb","THUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggletraitorscaling()
-	set category = "Server.Game"
-	set desc="Toggle traitor scaling"
-	set name="Toggle Traitor Scaling"
+ADMIN_VERB(toggletraitorscaling, R_ADMIN, "Toggle traitor scaling", "Toggle traitor scaling.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/traitor_scaling, !CONFIG_GET(flag/traitor_scaling))
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].")
+	log_admin("[key_name(user)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
+	message_admins("[key_name_admin(user)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/startnow()
-	set category = "Server.Game"
-	set desc="Start the round ASAP"
-	set name="Start Now"
-
-	if(!check_rights(R_SERVER|R_EVENT))
-		return
+ADMIN_VERB(startnow, R_SERVER|R_EVENT, "Start Now", "Start the round ASAP.", ADMIN_CATEGORY_SERVER_GAME)
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, span_warning("Error: Start Now: Game has already started."))
+		to_chat(user, span_warning("Error: Start Now: Game has already started."))
 		return
 	if(!SSticker.start_immediately)
 		SSticker.start_immediately = TRUE
 		var/msg = ""
 		if(SSticker.current_state == GAME_STATE_STARTUP)
 			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
-		log_admin("[key_name(usr)] has started the game.[msg]")
-		message_admins(span_notice("[key_name_admin(usr)] has started the game.[msg]"))
-		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		SSticker.start_immediately = FALSE
-		to_chat(world, span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
-		log_and_message_admins("cancelled immediate game start.")
 
-/datum/admins/proc/toggleenter()
-	set category = "Server.Game"
-	set desc="People can't enter"
-	set name="Toggle Entering"
+		log_admin("[key_name(user)] has started the game.[msg]")
+		message_admins(span_notice("[key_name_admin(user)] has started the game.[msg]"))
+		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		return
+	SSticker.start_immediately = FALSE
+	to_chat(world, span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
+	log_and_message_admins("cancelled immediate game start.")
+
+ADMIN_VERB(toggleenter, R_SERVER|R_ADMIN, "Toggle Entering", "Toggle if people can join the round.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/enter_allowed, !CONFIG_GET(flag/enter_allowed))
 	if (!CONFIG_GET(flag/enter_allowed))
 		to_chat(world, span_world("New players may no longer enter the game."))
 	else
 		to_chat(world, span_world("New players may now enter the game."))
-	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."))
+	log_admin("[key_name(user)] toggled new player game entering.")
+	message_admins(span_blue("[key_name_admin(user)] toggled new player game entering."))
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleAI()
-	set category = "Server.Game"
-	set desc="People can't be AI"
-	set name="Toggle AI"
+ADMIN_VERB(toggleAI, R_SERVER|R_EVENT, "Toggle AI", "Toggle if people can play as AI.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_ai, !CONFIG_GET(flag/allow_ai))
 	if (!CONFIG_GET(flag/allow_ai))
 		to_chat(world, span_world("The AI job is no longer chooseable."))
 	else
 		to_chat(world, span_world("The AI job is chooseable now."))
-	log_admin("[key_name(usr)] toggled AI allowed.")
+	log_admin("[key_name(user)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleaban()
-	set category = "Server.Game"
-	set desc="Respawn basically"
-	set name="Toggle Respawn"
+ADMIN_VERB(toggleaban, R_SERVER|R_EVENT, "Toggle Respawn", "Respawn basically.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/abandon_allowed, !CONFIG_GET(flag/abandon_allowed))
 	if(CONFIG_GET(flag/abandon_allowed))
 		to_chat(world, span_world("You may now respawn."))
 	else
 		to_chat(world, span_world("You may no longer respawn :("))
-	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."))
-	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
+	message_admins(span_blue("[key_name_admin(user)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."))
+	log_admin("[key_name(user)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglepersistence()
-	set category = "Server.Config"
-	set desc="Whether persistent data will be saved from now on."
-	set name="Toggle Persistent Data"
+ADMIN_VERB(togglepersistence, R_SERVER, "Toggle Persistent Data", "Whether persistent data will be saved from now on.", ADMIN_CATEGORY_SERVER_CONFIG)
 	CONFIG_SET(flag/persistence_disabled, !CONFIG_GET(flag/persistence_disabled))
-	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."))
-	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
+	message_admins(span_blue("[key_name_admin(user)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."))
+	log_admin("[key_name(user)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -1000,48 +906,34 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 	message_admins("[key_name_admin(user)] toggled Space Ninjas [CONFIG_GET(flag/ninjas_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/delay()
-	set category = "Server.Game"
-	set desc="Delay the game start/end"
-	set name="Delay"
-
-	if(!check_rights(R_SERVER|R_EVENT|R_ADMIN|R_MOD))	return
+ADMIN_VERB(delay, R_SERVER|R_EVENT|R_ADMIN|R_MOD, "Delay", "Delay the game start/end.", ADMIN_CATEGORY_SERVER_GAME)
 	if (SSticker.current_state >= GAME_STATE_PLAYING)
 		// Tell the ticker to delay/resume
 		SSticker.toggle_delay()
 
-		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."))
+		log_admin("[key_name(user)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins(span_blue("[key_name(user)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."))
 		return
 	GLOB.round_progressing = !GLOB.round_progressing
 	if (!GLOB.round_progressing)
 		to_chat(world, span_world("The game start has been delayed."))
-		log_admin("[key_name(usr)] delayed the game.")
+		log_admin("[key_name(user)] delayed the game.")
 	else
 		to_chat(world, span_world("The game will start soon."))
-		log_admin("[key_name(usr)] removed the delay.")
+		log_admin("[key_name(user)] removed the delay.")
 	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adjump()
-	set category = "Server.Game"
-	set desc="Toggle admin jumping"
-	set name="Toggle Jump"
+ADMIN_VERB(adjump, R_SERVER, "Toggle Jump", "Toggle admin jumping.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_admin_jump, !CONFIG_GET(flag/allow_admin_jump))
 	message_admins(span_blue("Toggled admin jumping to [CONFIG_GET(flag/allow_admin_jump)]."))
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adspawn()
-	set category = "Server.Game"
-	set desc="Toggle admin spawning"
-	set name="Toggle Spawn"
+ADMIN_VERB(adspawn, R_SERVER, "Toggle Spawn", "Toggle admin spawning.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_admin_spawning, !CONFIG_GET(flag/allow_admin_spawning))
 	message_admins(span_blue("Toggled admin item spawning to [CONFIG_GET(flag/allow_admin_spawning)]."))
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adrev()
-	set category = "Server.Game"
-	set desc="Toggle admin revives"
-	set name="Toggle Revive"
+ADMIN_VERB(adrev, R_SERVER, "Toggle Revive", "Toggle admin revives.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/allow_admin_rev, !CONFIG_GET(flag/allow_admin_rev))
 	message_admins(span_blue("Toggled reviving to [CONFIG_GET(flag/allow_admin_rev)]."))
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1087,79 +979,55 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 
 	return 0
 
-/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
-	set category = "Debug.Game"
-	set desc = "Spawn the product of a seed."
-	set name = "Spawn Fruit"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(spawn_fruit, R_SPAWN, "Spawn Fruit", "Spawn the product of a seed.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/seedtype = tgui_input_list(user, "Select Seed.", "Seed Type", SSplants.seeds)
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/amount = tgui_input_number(usr, "Amount of fruit to spawn", "Fruit Amount", 1)
+	var/amount = tgui_input_number(user, "Amount of fruit to spawn", "Fruit Amount", 1)
+	var/mob/user_mob = user.mob
 	if(!isnull(amount))
 		var/datum/seed/S = SSplants.seeds[seedtype]
-		S.harvest(usr,0,0,amount)
-	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
+		S.harvest(user_mob,0,0,amount)
+	log_admin("[key_name(user)] spawned [seedtype] fruit at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
-/datum/admins/proc/spawn_custom_item()
-	set category = "Debug.Game"
-	set desc = "Spawn a custom item."
-	set name = "Spawn Custom Item"
-
-	if(!check_rights(R_SPAWN))	return
-
-	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", GLOB.custom_items)
-	if(!owner|| !GLOB.custom_items[owner])
+ADMIN_VERB(spawn_custom_item, R_SPAWN, "Spawn Custom Item", "Spawn a custom item.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/owner = tgui_input_list(user, "Select a ckey.", "Spawn Custom Item", GLOB.custom_items)
+	if(!owner)
 		return
 
 	var/list/possible_items = GLOB.custom_items[owner]
-	var/datum/custom_item/item_to_spawn = tgui_input_list(usr, "Select an item to spawn.", "Spawn Custom Item", possible_items)
+	if(!possible_items)
+		return
+	var/datum/custom_item/item_to_spawn = tgui_input_list(user, "Select an item to spawn.", "Spawn Custom Item", possible_items)
 	if(!item_to_spawn)
 		return
 
-	item_to_spawn.spawn_item(get_turf(usr))
+	item_to_spawn.spawn_item(get_turf(user.mob))
 
-/datum/admins/proc/check_custom_items()
-	set category = "Debug.Investigate"
-	set desc = "Check the custom item list."
-	set name = "Check Custom Items"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(check_custom_items, R_SPAWN, "Check Custom Items", "Check the custom item list.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	if(!GLOB.custom_items)
-		to_chat(usr, "Custom item list is null.")
+		to_chat(user, "Custom item list is null.")
 		return
 
-	if(!length(GLOB.custom_items))
-		to_chat(usr, "Custom item list not populated.")
+	if(!GLOB.custom_items.len)
+		to_chat(user, "Custom item list not populated.")
 		return
 
 	for(var/assoc_key in GLOB.custom_items)
-		to_chat(usr, "[assoc_key] has:")
+		to_chat(user, "[assoc_key] has:")
 		var/list/current_items = GLOB.custom_items[assoc_key]
 		for(var/datum/custom_item/item in current_items)
-			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
+			to_chat(user, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
-/datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
-	set category = "Debug.Game"
-	set desc = "Spawn a spreading plant effect."
-	set name = "Spawn Plant"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(spawn_plant, R_SPAWN, "Spawn Plant", "Spawn a spreading plant effect.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/seedtype = tgui_input_list(user, "Select Seed.", "Seed Type", SSplants.seeds)
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	new /obj/effect/plant(get_turf(usr), SSplants.seeds[seedtype])
-	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
+	var/mob/user_mob = user.mob
+	new /obj/effect/plant(get_turf(user_mob), SSplants.seeds[seedtype])
+	log_admin("[key_name(user)] spawned [seedtype] vines at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
-/datum/admins/proc/spawn_atom(var/object as text)
-	set name = "Spawn"
-	set category = "Debug.Game"
-	set desc = "(atom path) Spawn an atom"
-
-	if(!check_rights(R_SPAWN))	return
-
+ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATEGORY_DEBUG_GAME, object as text)
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
 
@@ -1174,42 +1042,34 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches)
+		chosen = tgui_input_list(user, "Select an atom type", "Spawn Atom", matches)
 		if(!chosen)
 			return
 
+	var/mob/user_mob = user.mob
 	if(ispath(chosen,/turf))
-		var/turf/T = get_turf(usr.loc)
+		var/turf/T = get_turf(user_mob.loc)
 		T.ChangeTurf(chosen)
 	else
-		new chosen(usr.loc)
+		new chosen(user_mob.loc)
 
-	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
+	log_and_message_admins("spawned [chosen] at ([user_mob.x],[user_mob.y],[user_mob.z])")
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
-	set category = "Admin.Events"
-	set desc = "Edit mobs's memory and role"
-	set name = "Show Traitor Panel"
-
+ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
 	if(!istype(M))
-		to_chat(usr, "This can only be used on instances of type /mob")
+		to_chat(user, "This can only be used on instances of type /mob")
 		return
 	if(!M.mind)
-		to_chat(usr, "This mob has no mind!")
+		to_chat(user, "This mob has no mind!")
 		return
 
-	M.mind.edit_memory()
+	M.mind.edit_memory(user.mob)
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/show_game_mode()
-	set category = "Admin.Game"
-	set desc = "Show the current round configuration."
-	set name = "Show Game Mode"
-
+ADMIN_VERB(show_game_mode, R_ADMIN|R_EVENT, "Show Game Mode", "Show the current round configuration.", ADMIN_CATEGORY_GAME)
 	if(!SSticker|| !SSticker.mode)
-		tgui_alert_async(usr, "Not before roundstart!", "Alert")
+		tgui_alert_async(user, "Not before roundstart!", "Alert")
 		return
 
 	var/out = span_large(span_bold("Current mode: [SSticker.mode.name] (<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=self'>[SSticker.mode.config_tag]</a>)")) + "<br/>"
@@ -1273,36 +1133,29 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 		out += " None."
 	out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
+	var/datum/browser/popup = new(user, "edit_mode[user.holder]", "Edit Game Mode")
 	popup.set_content(out)
 	popup.open()
 	feedback_add_details("admin_verb","SGM")
 
-
-/datum/admins/proc/toggletintedweldhelmets()
-	set category = "Server.Config"
-	set desc="Reduces view range when wearing welding helmets"
-	set name="Toggle tinted welding helmets."
+ADMIN_VERB(toggletintedweldhelmets, R_ADMIN, "Toggle tinted welding helmets", "Reduces view range when wearing welding helmets.", ADMIN_CATEGORY_SERVER_CONFIG)
 	CONFIG_SET(flag/welder_vision, !CONFIG_GET(flag/welder_vision))
 	if (CONFIG_GET(flag/welder_vision))
 		to_chat(world, span_world("Reduced welder vision has been enabled!"))
 	else
 		to_chat(world, span_world("Reduced welder vision has been disabled!"))
-	log_admin("[key_name(usr)] toggled welder vision.")
-	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
+	log_admin("[key_name(user)] toggled welder vision.")
+	message_admins("[key_name_admin(user)] toggled welder vision.", 1)
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleguests()
-	set category = "Server.Config"
-	set desc="Guests can't enter"
-	set name="Toggle guests"
+ADMIN_VERB(toggleguests, R_HOST, "Toggle guests", "Guests can't enter.", ADMIN_CATEGORY_SERVER_CONFIG)
 	CONFIG_SET(flag/guests_allowed, !CONFIG_GET(flag/guests_allowed))
 	if (!CONFIG_GET(flag/guests_allowed))
 		to_chat(world, span_world("Guests may no longer enter the game."))
 	else
 		to_chat(world, span_world("Guests may now enter the game."))
-	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."))
+	log_admin("[key_name(user)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
+	message_admins(span_blue("[key_name_admin(user)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."))
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
@@ -1404,119 +1257,65 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 	qdel(frommob)
 	return 1
 
-/datum/admins/proc/force_antag_latespawn()
-	set category = "Admin.Events"
-	set name = "Force Template Spawn"
-	set desc = "Force an antagonist template to spawn."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(force_antag_latespawn, R_ADMIN|R_EVENT|R_FUN, "Force Template Spawn", "Force an antagonist template to spawn.", ADMIN_CATEGORY_EVENTS)
 	if(!SSticker|| !SSticker.mode)
-		to_chat(usr, "Mode has not started.")
+		to_chat(user, span_warning("Mode has not started."))
 		return
 
-	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
+	var/antag_type = tgui_input_list(user, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
 	if(!antag_type || !GLOB.all_antag_types[antag_type])
-		to_chat(usr, "Aborting.")
+		to_chat(user, span_warning("Aborting."))
 		return
 
 	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
-	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
+	message_admins("[key_name(user)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 
-/datum/admins/proc/force_mode_latespawn()
-	set category = "Admin.Events"
-	set name = "Force Mode Spawn"
-	set desc = "Force autotraitor to proc."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN|R_EVENT|R_FUN))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-
+ADMIN_VERB(force_mode_latespawn, R_ADMIN|R_EVENT|R_FUN, "Force Mode Spawn", "Force autotraitor to proc.", ADMIN_CATEGORY_EVENTS)
 	if(!SSticker|| !SSticker.mode)
-		to_chat(usr, "Mode has not started.")
+		to_chat(user, span_warning("Mode has not started."))
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
 	SSticker.mode.try_latespawn()
 
-/datum/admins/proc/paralyze_mob(mob/living/H as mob)
-	set category = "Admin.Events"
-	set name = "Toggle Paralyze"
-	set desc = "Paralyzes a player. Or unparalyses them."
-
+ADMIN_VERB_AND_CONTEXT_MENU(paralyze_mob, R_ADMIN|R_MOD|R_EVENT, "Toggle Paralyze", "Paralyzes a player. Or unparalyses them.", ADMIN_CATEGORY_EVENTS, mob/living/living_target in GLOB.mob_list)
 	var/msg
+	if (living_target.paralysis == 0)
+		living_target.SetParalysis(8000)
+		msg = "has paralyzed [key_name(living_target)]."
+		log_and_message_admins(msg)
+		return
+	if(tgui_alert(user, "[key_name(living_target)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
+		living_target.SetParalysis(0)
+		msg = "has unparalyzed [key_name(living_target)]."
+		log_and_message_admins(msg)
 
-	if(check_rights(R_ADMIN|R_MOD|R_EVENT))
-		if (H.paralysis == 0)
-			H.SetParalysis(8000)
-			msg = "has paralyzed [key_name(H)]."
-			log_and_message_admins(msg)
-		else
-			if(tgui_alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
-				H.SetParalysis(0)
-				msg = "has unparalyzed [key_name(H)]."
-				log_and_message_admins(msg)
+ADMIN_VERB(set_tcrystals, R_ADMIN|R_EVENT, "Set Telecrystals", "Allows admins to change telecrystals of a user.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
+	var/crystals = tgui_input_number(user, "Amount of telecrystals for [human_mob.ckey], currently [human_mob.mind.tcrystals].")
+	if (!isnull(crystals))
+		human_mob.mind.tcrystals = crystals
+		var/msg = "[key_name(user)] has modified [human_mob.ckey]'s telecrystals to [crystals]."
+		message_admins(msg)
 
-/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug.Game"
-	set name = "Set Telecrystals"
-	set desc = "Allows admins to change telecrystals of a user."
-	set popup_menu = FALSE
-	var/crystals
-
-	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = tgui_input_number(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals)
-		if (!isnull(crystals))
-			H.mind.tcrystals = crystals
-			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
-			message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
-
-/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug.Game"
-	set name = "Add Telecrystals"
-	set desc = "Allows admins to change telecrystals of a user by addition."
-	set popup_menu = FALSE
-	var/crystals
-
-	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = tgui_input_number(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals)
-		if (!isnull(crystals))
-			H.mind.tcrystals += crystals
-			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
-			message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
+ADMIN_VERB(add_tcrystals, R_ADMIN|R_EVENT, "Add Telecrystals", "Allows admins to change telecrystals of a user by addition.", ADMIN_CATEGORY_DEBUG_GAME, mob/living/carbon/human/human_mob in GLOB.player_list)
+	var/crystals = tgui_input_number(user, "Amount of telecrystals to give to [human_mob.ckey], currently [human_mob.mind.tcrystals].")
+	if (!isnull(crystals))
+		human_mob.mind.tcrystals += crystals
+		var/msg = "[key_name(user)] has added [crystals] to [human_mob.ckey]'s telecrystals."
+		message_admins(msg)
 
 
-/datum/admins/proc/sendFax()
-	set category = "Fun.Event Kit"
-	set name = "Send Fax"
-	set desc = "Sends a fax to this machine"
-	var/department = tgui_input_list(usr, "Choose a fax", "Fax", GLOB.alldepartments)
+ADMIN_VERB(sendFax, R_ADMIN|R_MOD|R_EVENT, "Send Fax", "Sends a fax to this machine.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/department = tgui_input_list(user, "Choose a fax", "Fax", GLOB.alldepartments)
 	for(var/obj/machinery/photocopier/faxmachine/sendto in GLOB.allfaxes)
 		if(sendto.department == department)
+			var/replyorigin = tgui_input_text(user, "Please specify who the fax is coming from", "Origin")
 
-			if (!istype(src,/datum/admins))
-				src = usr.client.holder
-			if (!istype(src,/datum/admins))
-				to_chat(usr, "Error: you are not an admin!")
-				return
+			var/obj/item/paper/admin/P = new /obj/item/paper/admin(null) //hopefully the null loc won't cause trouble for us
+			user.holder.faxreply = P
 
-			var/replyorigin = tgui_input_text(src.owner, "Please specify who the fax is coming from", "Origin")
-
-			var/obj/item/paper/admin/P = new /obj/item/paper/admin( null ) //hopefully the null loc won't cause trouble for us
-			faxreply = P
-
-			P.admindatum = src
+			P.admindatum = user.holder
 			P.origin = replyorigin
 			P.destination = sendto
 
@@ -1590,17 +1389,17 @@ ADMIN_VERB(toggle_space_ninja, R_FUN|R_SERVER, "Toggle Space Ninjas", "Toggle sp
 		faxreply = null
 	return
 
-/datum/admins/proc/set_uplink(mob/living/carbon/human/H as mob)
+/datum/admins/proc/set_uplink(mob/living/carbon/human/human_mob)
 	set category = "Debug.Events"
 	set name = "Set Uplink"
 	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
 	set popup_menu = FALSE
 
 	if(check_rights(R_ADMIN|R_DEBUG))
-		GLOB.traitors.spawn_uplink(H)
-		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
-		H.mind.accept_tcrystals = 1
-		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."
+		GLOB.traitors.spawn_uplink(human_mob)
+		human_mob.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+		human_mob.mind.accept_tcrystals = 1
+		var/msg = "[key_name(usr)] has given [human_mob.ckey] an uplink."
 		message_admins(msg)
 	else
 		to_chat(usr, "You do not have access to this command.")

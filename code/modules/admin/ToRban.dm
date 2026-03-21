@@ -43,10 +43,8 @@
 		log_world("ToR data update aborted: no data.")
 		return
 
-/client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
-	set name = "ToRban"
-	set category = "Server.Config"
-	if(!check_rights_for(src, R_HOLDER))	return
+ADMIN_VERB(ToRban, R_ADMIN|R_SERVER, "ToRban", "Modifies the TorBan settings.", ADMIN_CATEGORY_SERVER_CONFIG)
+	var/task = tgui_input_list(user, "What do you want to do?", "Select Option", list("update","toggle","show","remove","remove all","find"))
 	switch(task)
 		if("update")
 			ToRban_update()
@@ -61,32 +59,32 @@
 		if("show")
 			var/savefile/F = new(TORFILE)
 			var/dat
-			if( length(F.dir) )
-				for( var/i=1, i<=length(F.dir), i++ )
+			if(length(F.dir))
+				for(var/i=1, i<=length(F.dir), i++)
 					dat += "<tr><td>#[i]</td><td> [F.dir[i]]</td></tr>"
 				dat = "<table width='100%'>[dat]</table>"
 			else
 				dat = "No addresses in list."
 
-			var/datum/browser/popup = new(src, "ToRban_show", "Torban")
+			var/datum/browser/popup = new(user, "ToRban_show", "Torban")
 			popup.set_content(dat)
 			popup.open()
 
 		if("remove")
 			var/savefile/F = new(TORFILE)
-			var/choice = tgui_input_list(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban", F.dir)
+			var/choice = tgui_input_list(user,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban", F.dir)
 			if(choice)
 				F.dir.Remove(choice)
-				to_chat(src, span_filter_adminlog(span_bold("Address removed")))
+				to_chat(user, span_filter_adminlog(span_bold("Address removed")))
 		if("remove all")
-			to_chat(src, span_filter_adminlog(span_bold("[TORFILE] was [fdel(TORFILE)?"":"not "]removed.")))
+			to_chat(user, span_filter_adminlog(span_bold("[TORFILE] was [fdel(TORFILE)?"":"not "]removed.")))
 		if("find")
-			var/input = tgui_input_text(src,"Please input an IP address to search for:","Find ToR ban",null)
+			var/input = tgui_input_text(user,"Please input an IP address to search for:","Find ToR ban",null)
 			if(input)
 				if(ToRban_isbanned(input))
-					to_chat(src, span_filter_adminlog("[span_orange(span_bold("Address is a known ToR address"))]"))
+					to_chat(user, span_filter_adminlog("[span_orange(span_bold("Address is a known ToR address"))]"))
 				else
-					to_chat(src, span_filter_adminlog(span_danger("Address is not a known ToR address")))
+					to_chat(user, span_filter_adminlog(span_danger("Address is not a known ToR address")))
 	return
 
 #undef TORFILE
