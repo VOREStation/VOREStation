@@ -49,7 +49,7 @@
 	if(!job.minimum_character_age && !job.min_age_by_species)
 		return TRUE
 
-	var/min_age = job.get_min_age(prefs.species, prefs.organ_data[O_BRAIN])
+	var/min_age = job.get_min_age(prefs.read_preference(/datum/preference/choiced/species), prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])
 	if(prefs.read_preference(/datum/preference/numeric/human/age) >= min_age)
 		return TRUE
 	return FALSE
@@ -125,13 +125,14 @@
 				to_chat(new_user, span_danger("The station is currently exploding. Joining would go poorly."))
 				return
 
-			var/datum/species/S = GLOB.all_species[new_user.client.prefs.species]
+			var/pref_species = new_user.client.prefs.read_preference(/datum/preference/choiced/species)
+			var/datum/species/S = GLOB.all_species[pref_species]
 			if(!is_alien_whitelisted(new_user.client, S))
-				tgui_alert(new_user, "You are currently not whitelisted to play [new_user.client.prefs.species].")
+				tgui_alert(new_user, "You are currently not whitelisted to play [pref_species].")
 				return 0
 
 			if(!(S.spawn_flags & SPECIES_CAN_JOIN))
-				tgui_alert_async(new_user,"Your current species, [new_user.client.prefs.species], is not available for play on the station.")
+				tgui_alert_async(new_user,"Your current species, [pref_species], is not available for play on the station.")
 				return 0
 
 			new_user.AttemptLateSpawn(job)

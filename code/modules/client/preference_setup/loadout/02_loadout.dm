@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/is_valid_gear(datum/gear/G, max_cost)
 	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client)
-		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.species && G.whitelisted != pref.custom_base))
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.read_preference(/datum/preference/choiced/species) && G.whitelisted != pref.custom_base))
 			return FALSE
 		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 			return FALSE
