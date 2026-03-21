@@ -1,24 +1,21 @@
-GLOBAL_DATUM(transfer_controller, /datum/controller/transfer_controller)
+SUBSYSTEM_DEF(transfer)
+	name = "Transfer"
+	wait =  1 SECOND
+	runlevels = RUNLEVEL_GAME
+	init_stage = INITSTAGE_LAST
 
-/datum/controller/transfer_controller
-	var/timerbuffer = 0 //buffer for time check
-	var/currenttick = 0
-	var/shift_hard_end = 0 //VOREStation Edit
-	var/shift_last_vote = 0 //VOREStation Edit
+	VAR_PRIVATE/timerbuffer = 0 //buffer for time check
+	VAR_PRIVATE/currenttick = 0
+	VAR_PRIVATE/shift_hard_end = 0
+	VAR_PRIVATE/shift_last_vote = 0
 
-/datum/controller/transfer_controller/New()
+/datum/controller/subsystem/transfer/Initialize()
 	timerbuffer = CONFIG_GET(number/vote_autotransfer_initial)
-	shift_hard_end = CONFIG_GET(number/vote_autotransfer_initial) + (CONFIG_GET(number/vote_autotransfer_interval) * 0) //VOREStation Edit //Change this "1" to how many extend votes you want there to be.
-	shift_last_vote = shift_hard_end - CONFIG_GET(number/vote_autotransfer_interval) //VOREStation Edit
-	START_PROCESSING(SSprocessing, src)
+	shift_hard_end = CONFIG_GET(number/vote_autotransfer_initial) + (CONFIG_GET(number/vote_autotransfer_interval) * 0) //Change this "1" to how many extend votes you want there to be.
+	shift_last_vote = shift_hard_end - CONFIG_GET(number/vote_autotransfer_interval)
 
-/datum/controller/transfer_controller/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
-	. = ..()
-
-/datum/controller/transfer_controller/process()
+/datum/controller/subsystem/transfer/fire(resumed)
 	currenttick = currenttick + 1
-	//VOREStation Edit START
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES)
 		shift_last_vote = 99999999 //Setting to a stupidly high number since it'll be not used again.
 		to_chat(world, span_world(span_notice("Warning: You have one hour left in the shift. Wrap up your scenes in the next 60 minutes before the transfer is called."))) //VOREStation Edit
@@ -28,10 +25,9 @@ GLOBAL_DATUM(transfer_controller, /datum/controller/transfer_controller)
 		timerbuffer = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval) //Just to make sure a vote doesn't occur immediately afterwords.
 	else if (round_duration_in_ds >= timerbuffer - 1 MINUTE)
 		SSvote.start_vote(new /datum/vote/crew_transfer)
-	//VOREStation Edit END
 		timerbuffer = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval)
 
-/datum/controller/transfer_controller/proc/modify_hard_end(client/user)
+/datum/controller/subsystem/transfer/proc/modify_hard_end(client/user)
 	var/new_shift_end = tgui_input_number(user, "Modify the shift end timer (Input in Minutes)", "Shift End", shift_hard_end / 600)
 
 	if(!new_shift_end)

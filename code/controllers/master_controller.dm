@@ -36,7 +36,6 @@ GLOBAL_DATUM(master_controller, /datum/controller/game_controller) //Set in worl
 	// setupgenetics() Moved to SSatoms
 	// SetupXenoarch() - Moved to SSxenoarch
 
-	GLOB.transfer_controller = new
 	admin_notice(span_danger("Initializations complete."), R_DEBUG)
 
 // #if UNIT_TESTS
