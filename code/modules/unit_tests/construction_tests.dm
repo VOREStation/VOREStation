@@ -48,3 +48,19 @@
 
 	if(failed)
 		TEST_FAIL("missing circuitboard print recipies.")
+
+/datum/unit_test/all_default_circuits_must_match_machines
+
+/datum/unit_test/all_default_circuits_must_match_machines/Run()
+	var/failed = FALSE
+
+	for(var/obj/item/circuitboard/board_path as anything in subtypesof(/obj/item/circuitboard))
+		var/obj/machinery/machine_path = initial(board_path.build_path)
+		if(!machine_path.circuit)
+			continue
+		if(machine_path.circuit == board_path)
+			continue
+		TEST_NOTICE(src, "[machine_path]'s default starting circuitboard did not match the board used to construct it. Should be \"[board_path]\".")
+		failed = TRUE
+	if(failed)
+		TEST_FAIL("machine had an incorrect circuitboard in its definition.")
