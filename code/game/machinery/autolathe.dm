@@ -26,7 +26,9 @@
 	var/datum/wires/autolathe/wires = null
 
 	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
-	var/creation_efficiency = 0.92
+	var/creation_efficiency = 1
+	///modifier for lathe build speed. Lower values are faster.
+	var/lathe_build_rate = 0.8
 	///Designs related to the autolathe
 	var/datum/techweb/autounlocking/stored_research
 	///Designs imported from technology disks that we can print.
@@ -271,7 +273,7 @@
 		charge_per_item += amount
 
 	charge_per_item = ROUND_UP((charge_per_item / (MAX_STACK_SIZE * SHEET_MATERIAL_AMOUNT)) * material_cost_coefficient * active_power_usage)
-	var/build_time_per_item = (design.construction_time * design.lathe_time_factor) ** 0.8
+	var/build_time_per_item = (design.construction_time * (design.lathe_time_factor)) ** lathe_build_rate
 
 	//do the printing sequentially
 	busy = TRUE
@@ -463,10 +465,13 @@
 		mat_capacity += new_matter_bin.rating * (37.5*SHEET_MATERIAL_AMOUNT)
 	materials.max_amount = mat_capacity
 
-	var/efficiency = 1
+	var/man_rating = 0
+	var/efficiency = 1.1
 	for(var/obj/item/stock_parts/manipulator/manip in component_parts)
-		efficiency -= manip.rating * 0.08
-	creation_efficiency = max(0.6, round(efficiency, 0.1)) // creation_efficiency goes 0.92 -> 0.84 -> 0.76 -> 0.68 -> 0.6 per level of servo efficiency
+		man_rating += manip.rating;
+	efficiency -= man_rating * 0.1
+	creation_efficiency = max(0.6, round(efficiency, 0.1)) // creation_efficiency goes 1 -> 0.9 -> 0.8 -> 0.7 -> 0.6 per level of manipulator efficiency
+	lathe_build_rate = 0.85 - (man_rating * 0.05) // lathe_build_rate goes 0.8 -> 0.75 -> 0.7 -> 0.65 -> 0.6 per level of manipulator efficiency
 
 /obj/machinery/autolathe/update_icon()
 	cut_overlays()
