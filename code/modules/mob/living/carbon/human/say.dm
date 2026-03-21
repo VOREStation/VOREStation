@@ -142,6 +142,13 @@
 
 /mob/living/carbon/human/handle_speech_problems(var/list/message_data)
 	if(silent || (sdisabilities & MUTE) || is_paralyzed())
+		// MUTE shouldn't suppress noise language (audible say emotes), consistent with * emotes bypassing mute in say().
+		if((sdisabilities & MUTE) && !silent && !is_paralyzed())
+			var/list/pieces = message_data[1]
+			if(islist(pieces) && LAZYLEN(pieces))
+				var/datum/multilingual_say_piece/first = pieces[1]
+				if(istype(first) && first.speaking == GLOB.all_languages["Noise"])
+					return ..()
 		message_data[1] = ""
 		. = 1
 

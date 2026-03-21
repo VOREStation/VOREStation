@@ -18,6 +18,9 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
+	/// If true, this board should be ignored during the circuitboard printing unit test, and give an examine hint that the board may be hard to get if so.
+	var/hidden = FALSE
+
 /obj/item/circuitboard/Destroy()
 	if(isobject(board_type)) // Some boards use text instead of an instance...
 		QDEL_NULL(board_type)

@@ -11,18 +11,20 @@
 		"tank_management",
 		"shutoff_monitor",
 		// "thermomachine",
-		// "space_heater",
+		"space_heater",
 		// "scrubber",
 		// "generic_tank",
 		// "oxygen_tank",
 		// "plasma_tank",
 		// "plasmaman_tank_belt",
 		// "plasmarefiller",
-		// "extinguisher",
+		"fire_extinguisher",
 		// "pocketfireextinguisher",
 		// "gas_filter",
 		// "plasmaman_gas_filter",
 		// "pipe_painter",
+		"atmoscontrol",
+		"area_atmos",
 	)
 
 /datum/techweb_node/gas_compression
@@ -48,7 +50,7 @@
 		// "turbine_stator",
 		// "atmos_thermal",
 		// "pneumatic_seal",
-		// "large_welding_tool",
+		"large_welding_tool",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
@@ -83,10 +85,8 @@
 		"gyrotron_control",
 		"fusion_core",
 		"fusion_injector",
-		"rapidpipedispenser",
 		// "adv_fire_extinguisher",
 		// "bolter_wrench",
-		// "rpd_loaded",
 		// "engine_goggles",
 		// "crystallizer",
 	)

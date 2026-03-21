@@ -1,8 +1,13 @@
+import type { BooleanLike } from 'tgui-core/react';
+
 export type Data = {
   entries: Record<string, LogEntry[]>;
   name: string | null;
   ckey: string;
   special: string | null;
+  on_cooldown: BooleanLike;
+  all_clients: Record<string, string>;
+  view_client: BooleanLike;
 };
 
 type LogEntry = {

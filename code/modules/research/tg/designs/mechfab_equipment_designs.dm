@@ -1,4 +1,5 @@
 /datum/design_techweb/mechfab/equipment
+	desc = "Heavy-duty equipment installed on an exosuit or fighter craft. The vehicle must have the correct hardpoints to mount this equipment."
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
