@@ -1,0 +1,9 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "language and robot whitelist tgs commands"
+  - bugfix: "language whitelist not working"
+  - bugfix: "robot whitelist being non functional"
+  - bugfix: "job whitelist now properly checks the actual job name"
+  - qol: "marks whitelisted robot modules in the robot UI"
+  - admin: "admin whitelist tgui"
