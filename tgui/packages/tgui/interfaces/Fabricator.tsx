@@ -187,22 +187,14 @@ const Recipe = (props: RecipeProps) => {
           <Icon name="question-circle" />
         </div>
       </Tooltip>
-      <Tooltip
-        content={
-          <MaterialCostSequence
-            design={design}
-            amount={1}
-            available={available}
-          />
-        }
-      >
-        <TechWebRecipeIcon
-          icon={design.icon}
-          name={design.name}
-          canPrint={canPrint}
-          action={() => act('build', { ref: design.id, amount: 1 })}
-        />
-      </Tooltip>
+      <TechWebRecipeIcon
+        icon={design.icon}
+        name={design.name}
+        design={design}
+        availableMaterials={available}
+        canPrint={canPrint}
+        action={() => act('build', { ref: design.id, amount: 1 })}
+      />
       <PrintButton
         design={design}
         quantity={5}

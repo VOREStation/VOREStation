@@ -135,23 +135,15 @@ const Recipe = (props: RecipeProps) => {
           <Icon name="question-circle" />
         </div>
       </Tooltip>
-      <Tooltip
-        position="bottom"
-        content={
-          <MaterialCostSequence
-            design={design}
-            amount={1}
-            available={available}
-          />
-        }
-      >
-        <TechWebRecipeIcon
-          icon={design.icon}
-          name={design.name}
-          canPrint={canPrint}
-          action={() => act('build', { designs: [design.id], now: true })}
-        />
-      </Tooltip>
+      <TechWebRecipeIcon
+        position={'bottom'}
+        icon={design.icon}
+        name={design.name}
+        design={design}
+        availableMaterials={available}
+        canPrint={canPrint}
+        action={() => act('build', { designs: [design.id], now: true })}
+      />
 
       <Tooltip content={'Add to Queue'} position="right">
         <div
@@ -350,22 +342,14 @@ const QueueList = (props: QueueListProps) => {
                 }}
               />
             )}
-            <Tooltip
+            <TechWebRecipeIcon
               position={'bottom'}
-              content={
-                <MaterialCostSequence
-                  design={entry.design}
-                  amount={1}
-                  available={availableMaterials}
-                />
-              }
-            >
-              <TechWebRecipeIcon
-                icon={entry.design.icon}
-                name={entry.design.name}
-                canPrint={entry.canPrint}
-              />
-            </Tooltip>
+              icon={entry.design.icon}
+              name={entry.design.name}
+              design={entry.design}
+              availableMaterials={availableMaterials}
+              canPrint={entry.canPrint}
+            />
 
             {!entry.job.processing && (
               <div
