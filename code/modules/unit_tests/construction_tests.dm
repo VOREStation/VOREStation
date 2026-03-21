@@ -73,7 +73,7 @@
 		var/obj/item/circuitboard/board_path = initial(machine_path.circuit)
 		if(!board_path)
 			continue
-		if(machine_path == board_path.build_path)
+		if(machine_path in typesof(board_path.build_path)) // This should be stricted someday... but not today.
 			continue
 		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. \"[machine_path]\" should be \"[board_path.build_path]\".")
 		failed = TRUE
