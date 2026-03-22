@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(emergency_shuttle)
 	wait =  1 SECOND
 	runlevels = RUNLEVEL_GAME
 	init_stage = INITSTAGE_LAST
+	flags = SS_KEEP_TIMING
 
 	var/datum/shuttle/autodock/ferry/emergency/shuttle // Set in shuttle_emergency.dm TODO - is it really?
 	var/list/escape_pods = list()
