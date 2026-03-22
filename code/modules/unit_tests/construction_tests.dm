@@ -75,7 +75,7 @@
 			continue
 		if(machine_path in typesof(board_path.build_path)) // This should be stricted someday... but not today.
 			continue
-		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. machine spawned: \"[machine_path]\". board's machine: \"[board_path.machine_path]\". ")
+		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. machine spawned: \"[machine_path]\". board's machine: \"[board_path.build_path]\". ")
 		failed = TRUE
 
 	if(failed)
