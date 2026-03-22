@@ -484,6 +484,7 @@
 		if(machine.stat || machine.panel_open)
 			return
 	if(istype(weapon, /obj/item/stack/cable_coil)) // Temporary fix, prevents recycling cable coils
+		to_chat(user, span_warning("\The [weapon] cannot be recycled."))
 		return
 
 	user_insert(weapon, user)
