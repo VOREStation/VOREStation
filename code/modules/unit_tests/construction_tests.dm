@@ -63,7 +63,7 @@
 			continue
 		if(machine_path.circuit == board_path)
 			continue
-		TEST_NOTICE(src, "[machine_path]'s default starting circuitboard did not match the board used to construct it. Was \"[machine_path.circuit]\" should be \"[board_path]\".")
+		TEST_NOTICE(src, "[machine_path]'s default starting circuitboard did not match the board used to construct it. board spawned: \"[board_path]\".  machine's board: \"[machine_path.circuit]\".")
 		failed = TRUE
 
 	// Check the machine deconstructs into the board
@@ -75,7 +75,7 @@
 			continue
 		if(machine_path in typesof(board_path.build_path)) // This should be stricted someday... but not today.
 			continue
-		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. \"[machine_path]\" should be \"[board_path.build_path]\".")
+		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. machine spawned: \"[machine_path]\". board's machine: \"[board_path.machine_path]\". ")
 		failed = TRUE
 
 	if(failed)
