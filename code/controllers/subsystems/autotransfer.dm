@@ -3,6 +3,7 @@ SUBSYSTEM_DEF(transfer)
 	wait =  1 SECOND
 	runlevels = RUNLEVEL_GAME
 	init_stage = INITSTAGE_LAST
+	flags = SS_KEEP_TIMING
 
 	VAR_PRIVATE/timerbuffer = 0 //buffer for time check
 	VAR_PRIVATE/currenttick = 0
