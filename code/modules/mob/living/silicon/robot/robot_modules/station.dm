@@ -110,7 +110,7 @@
 
 /obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!synths || !synths.len)
+	if(!synths || !LAZYLEN(synths))
 		return
 
 	for(var/datum/matter_synth/T in synths)
