@@ -1041,7 +1041,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b357/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1069,7 +1068,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b38/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1097,7 +1095,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b10mm/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1109,7 +1106,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b10mm/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1149,7 +1145,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b44/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1177,7 +1172,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b45/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1213,7 +1207,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b45/rubber
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1305,7 +1298,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b762/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1369,7 +1361,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b545/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1393,7 +1384,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b545/blank
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1443,7 +1433,6 @@
 	build_path = /obj/item/ammo_magazine/ammo_box/b545/large/practice
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
