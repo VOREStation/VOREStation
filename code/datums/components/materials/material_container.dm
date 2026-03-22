@@ -483,6 +483,8 @@
 		var/obj/machinery/machine = parent
 		if(machine.stat || machine.panel_open)
 			return
+	if(istype(weapon, /obj/item/stack/cable_coil)) // Temporary fix, prevents recycling cable coils
+		return
 
 	user_insert(weapon, user)
 	return TRUE
