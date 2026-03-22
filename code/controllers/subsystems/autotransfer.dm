@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(transfer)
 	timerbuffer = CONFIG_GET(number/vote_autotransfer_initial)
 	shift_hard_end = CONFIG_GET(number/vote_autotransfer_initial) + (CONFIG_GET(number/vote_autotransfer_interval) * 0) //Change this "1" to how many extend votes you want there to be.
 	shift_last_vote = shift_hard_end - CONFIG_GET(number/vote_autotransfer_interval)
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/transfer/fire(resumed)
 	currenttick = currenttick + 1
