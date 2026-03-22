@@ -1012,3 +1012,387 @@
 		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
 	)
+
+///////////////////
+/*Rifle Ammoboxes*/
+///////////////////
+
+/*
+ * .357
+ */
+
+/datum/design_techweb/ammobox_357
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.357)")
+	id = "ammobox_357"
+	materials = list(MAT_STEEL = 5040)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b357
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_357_rubber
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.357 rubber)")
+	id = "ammobox_357_rubber"
+	materials = list(MAT_STEEL = 5040)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b357/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * .38
+ */
+
+/datum/design_techweb/ammobox_38
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.38)")
+	id = "ammobox_38"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b38
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_38_rubber
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.38 rubber)")
+	id = "ammobox_38_rubber"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b38/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * 10mm
+ */
+
+/datum/design_techweb/ammobox_10mm
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (10mm)")
+	id = "ammobox_10mm"
+	materials = list(MAT_STEEL = 3000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b10mm
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_10mm_practice
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (10mm practice)")
+	id = "ammobox_10mm_practice"
+	materials = list(MAT_STEEL = 2400)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b10mm/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_10mm_rubber
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (10mm rubber)")
+	id = "ammobox_10mm_rubber"
+	materials = list(MAT_STEEL = 2400)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b10mm/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_10mm_haywire
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (10mm haywire)")
+	id = "ammobox_10mm_haywire"
+	materials = list(MAT_STEEL = 5200, MAT_URANIUM = 4000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b10mm/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * .44
+ */
+
+/datum/design_techweb/ammobox_44
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.44)")
+	id = "ammobox_44"
+	materials = list(MAT_STEEL = 5040)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b44
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_44_rubber
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.44 rubber)")
+	id = "ammobox_44_rubber"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b44/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * .45
+ */
+
+/datum/design_techweb/ammobox_45
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.45)")
+	id = "ammobox_45"
+	materials = list(MAT_STEEL = 1800)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b45
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_45_practice
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.45 practice)")
+	id = "ammobox_45_practice"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b45/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_45_ap
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.45 armor piercing)")
+	id = "ammobox_45_ap"
+	materials = list(MAT_STEEL = 1200, MAT_PLASTEEL = 600)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b45/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_45_hp
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.45 hollow point)")
+	id = "ammobox_45_hp"
+	materials = list(MAT_STEEL = 1440, MAT_PLASTIC = 360)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b45/hp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_45_rubber
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.45 rubber)")
+	id = "ammobox_45_rubber"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b45/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_45_haywire
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.45 haywire)")
+	id = "ammobox_45_haywire"
+	materials = list(MAT_STEEL = 3120, MAT_URANIUM = 2400)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b45/emp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * 14.5mm (anti-materiel rifle round)
+ */
+
+/datum/design_techweb/ammobox_145
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (14.5mm)")
+	id = "ammobox_145"
+	materials = list(MAT_STEEL = 8750)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b145
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_145_highvel
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (14.5mm sabot)")
+	id = "ammobox_145_highvel"
+	materials = list(MAT_STEEL = 8750)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b145/highvel
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * 7.62mm
+ */
+
+/datum/design_techweb/ammobox_762
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (7.62mm)")
+	id = "ammobox_762"
+	materials = list(MAT_STEEL = 6000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b762
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_762_hp
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (7.62mm hollow point)")
+	id = "ammobox_762_hp"
+	materials = list(MAT_STEEL = 9000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b762/hp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_762_ap
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (7.62mm armor piercing)")
+	id = "ammobox_762_ap"
+	materials = list(MAT_STEEL = 9000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b762/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_762_practice
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (7.62mm practice)")
+	id = "ammobox_762_practice"
+	materials = list(MAT_STEEL = 2700)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b762/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_762_hunter
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (7.62mm hunter)")
+	id = "ammobox_762_hunter"
+	materials = list(MAT_STEEL = 6000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b762/hunter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/*
+ * 5.45mm
+ */
+
+/datum/design_techweb/ammobox_545
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (5.45mm)")
+	id = "ammobox_545"
+	materials = list(MAT_STEEL = 5400)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_545_ap
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (5.45mm armor piercing)")
+	id = "ammobox_545_ap"
+	materials = list(MAT_STEEL = 8100)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_545_hp
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (5.45mm hollow point)")
+	id = "ammobox_545_hp"
+	materials = list(MAT_STEEL = 5400)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/hp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_545_practice
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (5.45mm practice)")
+	id = "ammobox_545_practice"
+	materials = list(MAT_STEEL = 2700)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_545_hunter
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (5.45mm hunter)")
+	id = "ammobox_545_hunter"
+	materials = list(MAT_STEEL = 5400)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/hunter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_545_blank
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (5.45mm blanks)")
+	id = "ammobox_545_blank"
+	materials = list(MAT_STEEL = 2700)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/blank
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
