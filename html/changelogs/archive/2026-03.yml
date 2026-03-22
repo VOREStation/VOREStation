@@ -319,3 +319,9 @@
   - qol: techweb and lathe menus now use scaled icons for larger images instead of
       huge buttons
   - bugfix: injector maker no longer uses an AFRG board during construction
+2026-03-22:
+  Kashargul:
+  - code_imp: migrate more admin verbs
+  - bugfix: single item mat cost tooltip
+  Nova:
+  - refactor: Refactored species, organ_data, and rlimb_data
