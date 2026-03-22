@@ -109,6 +109,7 @@
 	return
 
 /obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!synths || !synths.len)
 		return
 
@@ -429,6 +430,7 @@
 	src.modules += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
 	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -505,6 +507,7 @@
 	src.emag += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
 	var/obj/item/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 
@@ -578,6 +581,7 @@
 	src.emag += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
 	var/obj/item/reagent_containers/food/drinks/bottle/small/beer/PB = locate() in src.emag
 	if(PB)
 		PB.reagents.add_reagent(REAGENT_ID_BEER2, 2 * amount)
@@ -613,7 +617,17 @@
 
 	var/obj/item/dogborg/sleeper/compactor/honkborg/B = new /obj/item/dogborg/sleeper/compactor/honkborg(src)
 	src.modules += B
+	var/obj/item/reagent_containers/spray/LS = new /obj/item/reagent_containers/spray(src)
+	src.emag += LS
+	LS.reagents.add_reagent(REAGENT_ID_LUBE, 250)
+	LS.name = "Lube spray"
 	..()
+
+/obj/item/robot_module/robot/clerical/honkborg/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
+	var/obj/item/reagent_containers/spray/LS = locate() in src.emag
+	if(LS)
+		LS.reagents.add_reagent(REAGENT_ID_LUBE, 2 * amount)
 
 /obj/item/robot_module/robot/clerical/general
 	name = "clerical robot module"
