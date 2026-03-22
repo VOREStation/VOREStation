@@ -8,4 +8,4 @@
 	blueprints += SSresearch.techweb_design_by_id(/datum/design_techweb/rcd_ammo::id)
 	blueprints += SSresearch.techweb_design_by_id(/datum/design_techweb/rpd::id)
 	blueprints += SSresearch.techweb_design_by_id(/datum/design_techweb/rms::id)
-	blueprints += SSresearch.techweb_design_by_id(/datum/design_techweb/rsf:id)
+	blueprints += SSresearch.techweb_design_by_id(/datum/design_techweb/rsf::id)
