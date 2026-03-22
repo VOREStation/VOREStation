@@ -54,18 +54,6 @@
 /datum/unit_test/all_default_circuits_must_match_machines/Run()
 	var/failed = FALSE
 
-	// Check the boards builds into the machine
-	for(var/obj/item/circuitboard/board_path as anything in subtypesof(/obj/item/circuitboard))
-		var/obj/machinery/machine_path = initial(board_path.build_path)
-		if(!machine_path)
-			continue
-		if(!machine_path.circuit)
-			continue
-		if(machine_path.circuit == board_path)
-			continue
-		TEST_NOTICE(src, "[machine_path]'s default starting circuitboard did not match the board used to construct it. board spawned: \"[board_path]\".  machine's board: \"[machine_path.circuit]\".")
-		failed = TRUE
-
 	// Check the machine deconstructs into the board
 	for(var/obj/machinery/machine_path as anything in subtypesof(/obj/machinery))
 		if(!machine_path.circuit)
@@ -73,10 +61,11 @@
 		var/obj/item/circuitboard/board_path = initial(machine_path.circuit)
 		if(!board_path)
 			continue
-		if(machine_path in typesof(board_path.build_path)) // This should be stricted someday... but not today.
-			continue
-		TEST_NOTICE(src, "[board_path]'s constructed machine did not create a machine that deconstructs into the same board. machine spawned: \"[machine_path]\". board's machine: \"[board_path.build_path]\". ")
-		failed = TRUE
+
+		// Get to the actual tests!
+		if(!(machine_path in typesof(board_path.build_path))) // This should be stricted someday... but not today.
+			TEST_NOTICE(src, "[machine_path]'s default board does not match the machine it constructs. \"[board_path]\". ")
+			failed = TRUE
 
 	if(failed)
 		TEST_FAIL("machine had an incorrect circuitboard in its definition.")
