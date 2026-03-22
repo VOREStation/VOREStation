@@ -196,8 +196,6 @@
 		"ammobox_145_highvel",
 		"ammobox_762",
 		"ammobox_762_hp",
-		"ammobox_762",
-		"ammobox_762_hp",
 		"ammobox_762_ap",
 		"ammobox_762_practice",
 		"ammobox_762_hunter",
