@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(floor_diseases, list(
 	var/turf/simulated/open_turf = parent_object.loc
 
 	// Is parent on simulated valid turf that is safe? Or held/in a pocket/in a closet/etc?
-	if(istype(open_turf) || islava(open_turf) || ismineralturf(open_turf) || !parent_object.get_gravity())
+	if(!istype(open_turf) || islava(open_turf) || ismineralturf(open_turf) || !parent_object.get_gravity())
 		remove_timer()
 		SEND_SIGNAL(parent, COMSIG_ATOM_GERM_UNEXPOSED, src)
 		return
