@@ -60,6 +60,9 @@
 	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
 	var/list/image/update_on_z
 
+	/// Radiation insulation types
+	var/rad_insulation = RAD_NO_INSULATION
+
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)

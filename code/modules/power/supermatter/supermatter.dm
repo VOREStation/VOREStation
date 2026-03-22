@@ -170,12 +170,27 @@
 	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, exosuit, or other container shouldn't block it's effects that way.
 	if(!istype(TS))
 		return
+	radiation_pulse(
+		TS,
+		max_range = 255,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DETONATION_RADS,
+		strength = DETONATION_RADS * 5
+	)
 
 	var/list/affected_z = GetConnectedZlevels(TS.z)
 
 	// Effect 1: Radiation, weakening to all mobs on Z level
-	for(var/z in affected_z)
-		SSradiation.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
+	for(var/z_to_affect in affected_z)
+		var/turf/turf_to_hit = locate(TS.x, TS.y, z_to_affect)
+		if(turf_to_hit)
+			radiation_pulse(
+				turf_to_hit,
+				max_range = 255,
+				threshold = RAD_HEAVY_INSULATION,
+				chance = DETONATION_RADS,
+				strength = DETONATION_RADS * 5
+			)
 
 	for(var/mob/living/mob in GLOB.living_mob_list)
 		var/turf/TM = get_turf(mob)
@@ -398,7 +413,16 @@
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || l.is_incorporeal()) // VOREStation Edit - Only mesons can protect you! OR if they're not in the same plane of existence
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
-	SSradiation.radiate(src, max(power * 1.5, 50) ) //Better close those shutters!
+	if(power)
+		// At a power mult of 0.025 for range, this means a 1000power SM (about normal) will reach 25 tiles and be putting off rad pulses of 500. With 0 protection, you have a 10% chance of getting hit.
+		radiation_pulse(
+			src,
+			max_range = CLAMP(max(round(power * 0.025), 3), 3, 50),
+			threshold = CLAMP(RAD_HEAVY_INSULATION - (power * 0.00025), 0.1, 1),
+			chance = round(power * 0.01),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = round(power * 0.5)
+		)
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
@@ -509,8 +533,13 @@
 				span_warning("The unearthly ringing subsides and you notice you have new radiation burns."), 2)
 		else
 			l.show_message(span_warning("You hear an uneartly ringing and notice your skin is covered in fresh radiation burns."), 2)
-	var/rads = 500
-	SSradiation.radiate(src, rads)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 200
+	)
 
 /proc/supermatter_pull(var/atom/target, var/pull_range = 255, var/pull_power = STAGE_FIVE)
 	for(var/atom/A in range(pull_range, target))
@@ -547,18 +576,31 @@
 	desc = "The shattered remains of a supermatter shard plinth. It doesn't look safe to be around."
 	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter_broken"
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/broken_sm/Initialize(mapload)
 	. = ..()
 	message_admins("Broken SM shard created at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
-	START_PROCESSING(SSobj, src)
 
-/obj/item/broken_sm/process()
-	SSradiation.radiate(src, 50)
-
-/obj/item/broken_sm/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+/obj/item/broken_sm/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 25
+	)
+	last_event = world.time
+	active = FALSE
 
 #undef POWER_FACTOR
 #undef DECAY_FACTOR

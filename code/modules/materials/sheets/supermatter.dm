@@ -5,6 +5,40 @@
 	item_state = "diamond"
 	default_type = MAT_SUPERMATTER
 	apply_colour = TRUE
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
+
+/obj/item/stack/material/supermatter/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/stack/material/supermatter/process()
+	radiate()
+	..()
+
+/obj/item/stack/material/supermatter/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = (amount * 0.2), //10 range at 50 amount
+		threshold = RAD_HEAVY_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = NEBULA_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = amount * 0.5 //2 sheets = 1 rad, 50 sheets = 25 rads.
+	)
+	last_event = world.time
+	active = FALSE
+
+/obj/item/stack/material/supermatter/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
 
 /obj/item/stack/material/supermatter/proc/update_mass()	// Due to how dangerous they can be, the item will get heavier and larger the more are in the stack.
 	slowdown = amount / 10
@@ -20,7 +54,6 @@
 	. = ..()
 
 	update_mass()
-	SSradiation.radiate(src, 5 + amount)
 	var/mob/living/M = user
 	if(!istype(M))
 		return
@@ -47,9 +80,15 @@
 
 /obj/item/stack/material/supermatter/ex_act(severity)	// An incredibly hard to manufacture material, SM chunks are unstable by their 'stabilized' nature.
 	if(prob((4 / severity) * 20))
-		SSradiation.radiate(get_turf(src), amount * 4)
+		radiation_pulse(
+			src,
+			max_range = amount,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE * 5,
+			minimum_exposure_time = 0,
+			strength = amount * 10
+			)
 		explosion(get_turf(src),round(amount / 12) , round(amount / 6), round(amount / 3), round(amount / 25))
 		qdel(src)
 		return
-	SSradiation.radiate(get_turf(src), amount * 2)
 	..()
