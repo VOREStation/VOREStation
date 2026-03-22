@@ -1396,3 +1396,65 @@
 		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
+
+// huge boxes
+
+/datum/design_techweb/ammocrate_545
+	SET_AMMO_DESIGN_NAMEDESC("large ammo crate (5.45mm)")
+	id = "ammocrate_545"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/large
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammocrate_545_ap
+	SET_AMMO_DESIGN_NAMEDESC("large ammo crate (5.45mm armor piercing)")
+	id = "ammocrate_545_ap"
+	materials = list(MAT_STEEL = 27000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/large/ap
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammocrate_545_hp
+	SET_AMMO_DESIGN_NAMEDESC("large ammo crate (5.45mm hollow point)")
+	id = "ammocrate_545_hp"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/large/hp
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammocrate_545_practice
+	SET_AMMO_DESIGN_NAMEDESC("large ammo crate (5.45mm practice)")
+	id = "ammocrate_545_practice"
+	materials = list(MAT_STEEL = 9000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/large/practice
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammocrate_545_hunter
+	SET_AMMO_DESIGN_NAMEDESC("large ammo crate (5.45mm hunter)")
+	id = "ammocrate_545_hunter"
+	materials = list(MAT_STEEL = 18000)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b545/large/hunter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)

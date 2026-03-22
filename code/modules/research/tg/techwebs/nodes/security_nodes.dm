@@ -207,6 +207,11 @@
 		"ammobox_545_practice",
 		"ammobox_545_hunter",
 		"ammobox_545_blank",
+		"ammocrate_545",
+		"ammocrate_545_ap",
+		"ammocrate_545_hp",
+		"ammocrate_545_practice",
+		"ammocrate_545_hunter",
 	)
 
 /datum/techweb_node/sec_equip

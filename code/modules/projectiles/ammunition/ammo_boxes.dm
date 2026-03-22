@@ -477,7 +477,7 @@
 /obj/item/ammo_magazine/ammo_box/b545/practice
 	name = "ammo box (5.45mm practice)"
 	desc = "A box of 5.45mm practice rounds"
-	icon_state = "hrifle-practice"
+	icon_state = "hrifle-blank"
 	caliber = "5.45mm"
 	ammo_type = /obj/item/ammo_casing/a545/practice
 	matter = list(MAT_STEEL = 2700)
@@ -497,7 +497,7 @@
 /obj/item/ammo_magazine/ammo_box/b545/blank
 	name = "ammo box (5.45mm blank)"
 	desc = "A box of 5.45mm blank rounds"
-	icon_state = "hrifle-practice"
+	icon_state = "hrifle-blank"
 	caliber = "5.45mm"
 	ammo_type = /obj/item/ammo_casing/a545/blank
 	matter = list(MAT_STEEL = 2700)
