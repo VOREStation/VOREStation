@@ -79,7 +79,6 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 	//Goon PS stuff, and other yet-to-be-subsystem things.
 	options["LEGACY: master_controller"] = GLOB.master_controller
 	options["LEGACY: job_master"] = GLOB.job_master
-	options["LEGACY: emergency_shuttle"] = GLOB.emergency_shuttle
 	options["LEGACY: cameranet"] = GLOB.cameranet
 	options["LEGACY: transfer_controller"] = GLOB.transfer_controller
 

@@ -82,17 +82,6 @@
 
 	return priv_all_access_datums_id
 
-/var/list/datum/access/priv_all_access_datums_region
-/proc/get_all_access_datums_by_region()
-	if(!priv_all_access_datums_region)
-		priv_all_access_datums_region = list()
-		for(var/datum/access/A in get_all_access_datums())
-			if(!priv_all_access_datums_region[A.region])
-				priv_all_access_datums_region[A.region] = list()
-			priv_all_access_datums_region[A.region] += A
-
-	return priv_all_access_datums_region
-
 /proc/get_access_ids(var/access_types = ACCESS_TYPE_ALL)
 	var/list/L = new()
 	for(var/datum/access/A in get_all_access_datums())
@@ -123,22 +112,6 @@
 		priv_centcom_access = get_access_ids(ACCESS_TYPE_CENTCOM)
 
 	return priv_centcom_access
-
-/var/list/priv_syndicate_access
-/proc/get_all_syndicate_access()
-	RETURN_TYPE(/list)
-	if(!priv_syndicate_access)
-		priv_syndicate_access = get_access_ids(ACCESS_TYPE_SYNDICATE)
-
-	return priv_syndicate_access
-
-/var/list/priv_private_access
-/proc/get_all_private_access()
-	RETURN_TYPE(/list)
-	if(!priv_private_access)
-		priv_private_access = get_access_ids(ACCESS_TYPE_PRIVATE)
-
-	return priv_syndicate_access
 
 /var/list/priv_region_access
 /proc/get_region_accesses(var/code)

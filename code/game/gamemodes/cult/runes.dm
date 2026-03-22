@@ -203,9 +203,9 @@ GLOBAL_LIST_EMPTY(sacrificed)
 			GLOB.narsie_cometh = 1
 
 			spawn(10 SECONDS)
-				if(GLOB.emergency_shuttle)
-					GLOB.emergency_shuttle.call_evac()
-					GLOB.emergency_shuttle.launch_time = 0	// Cannot recall
+				if(SSemergency_shuttle)
+					SSemergency_shuttle.call_evac()
+					SSemergency_shuttle.launch_time = 0	// Cannot recall
 
 		log_and_message_admins_many(cultists, "summoned the end of days.")
 		return
