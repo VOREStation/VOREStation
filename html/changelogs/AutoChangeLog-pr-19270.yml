@@ -1,0 +1,8 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Screwdriver (The Drink) stops radiation effects while it is in your system."
+  - rscadd: "Uranium walls, doors, and coins now emit slight amounts of radiation."
+  - qol: "Radiation protective items now have a tag upon examine that informs of their radiation protective status."
+  - refactor: "Massively improves radiation performance by moving to pulses instead of 1000s of deleted radiation_sources a second."
+  - code_imp: "Radiation reworked. Please report on Discord or Github if power generation feels too low from radioactive (SM) sources."
