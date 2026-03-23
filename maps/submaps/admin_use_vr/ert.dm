@@ -232,7 +232,7 @@ P.S. Before any of you ask, no, you cannot fire yourself or your teammates out o
 /obj/machinery/computer/cryopod/ert
 	name = "responder oversight console"
 	desc = "An interface between responders and the cryo oversight systems tasked with keeping track of all responders who enter or exit cryostasis."
-	circuit = /obj/item/circuitboard/robotstoragecontrol
+	circuit = /obj/item/circuitboard/cryopodcontrol
 
 	storage_type = "responders"
 	storage_name = "ERT Oversight Control"

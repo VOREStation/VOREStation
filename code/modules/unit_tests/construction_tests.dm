@@ -48,3 +48,28 @@
 
 	if(failed)
 		TEST_FAIL("missing circuitboard print recipies.")
+
+/datum/unit_test/all_default_circuits_must_match_machines
+
+/datum/unit_test/all_default_circuits_must_match_machines/Run()
+	var/failed = FALSE
+
+	// Check the machine deconstructs into the board
+	for(var/obj/machinery/machine_path as anything in subtypesof(/obj/machinery))
+		if((machine_path in typesof(/obj/machinery/airlock_sensor)) || (machine_path in typesof(/obj/machinery/embedded_controller/radio/airlock))) // Snowflake multi-type airlock board
+			continue
+		if(machine_path == /obj/machinery/power/smes) // Ignore this snowflake basetype that isn't constructable
+			continue
+		if(!machine_path.circuit)
+			continue
+		var/obj/item/circuitboard/board_path = initial(machine_path.circuit)
+		if(!board_path)
+			continue
+
+		// Get to the actual test!
+		if(!(machine_path in typesof(board_path.build_path))) // This should be stricted someday... but not today.
+			TEST_NOTICE(src, "[machine_path]'s default board does not match the machine it constructs. \"[board_path]\".")
+			failed = TRUE
+
+	if(failed)
+		TEST_FAIL("machine had an incorrect circuitboard in its definition.")
