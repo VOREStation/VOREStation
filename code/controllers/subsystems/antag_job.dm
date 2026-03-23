@@ -7,8 +7,8 @@ SUBSYSTEM_DEF(antag_job)
 	var/list/syndicate_code_phrase
 	var/list/syndicate_code_response
 
-	VAR_PRIVATE/list/all_antag_types = list()
-	VAR_PRIVATE/list/all_antag_spawnpoints = list()
+	var/list/all_antag_types = list()
+	var/list/all_antag_spawnpoints = list()
 	VAR_PRIVATE/list/antag_names_to_ids = list()
 
 /datum/controller/subsystem/antag_job/Initialize()
@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(antag_job)
 							code_phrase += " "
 							code_phrase += pick(GLOB.last_names)
 					if(2)
-						code_phrase += pick(SSjob.occupation_with_excludes)//Returns a job.
+						code_phrase += pick(GLOB.joblist)//Returns a job.
 				safety -= 1
 			if(2)
 				switch(rand(1,2))//Places or things.

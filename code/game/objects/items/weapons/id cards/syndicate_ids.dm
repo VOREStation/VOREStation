@@ -30,7 +30,7 @@
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
 		src.access |= I.GetAccess()
-		if(player_is_antag(user.mind) || registered_user == user)
+		if(SSantag_job.player_is_antag(user.mind) || registered_user == user)
 			to_chat(user, span_notice("The microscanner activates as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user)

@@ -53,8 +53,8 @@ ADMIN_VERB(restart_controller, R_DEBUG, "Restart Controller", "Restart one of th
 
 	message_admins("Admin [key_name_admin(user)] has restarted the [controller] controller.")
 
-ADMIN_VERB(debug_antagonist_template, R_DEBUG, "Debug Antagonist", "Debug an antagonist template", ADMIN_CATEGORY_DEBUG_GAME, antag_type in GLOB.all_antag_types)
-	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+ADMIN_VERB(debug_antagonist_template, R_DEBUG, "Debug Antagonist", "Debug an antagonist template", ADMIN_CATEGORY_DEBUG_GAME, antag_type in SSantag_job.all_antag_types)
+	var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 	if(antag)
 		user.debug_variables(antag)
 		message_admins("Admin [key_name_admin(user)] is debugging the [antag.role_text] template.")
