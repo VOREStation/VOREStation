@@ -3,14 +3,15 @@ SUBSYSTEM_DEF(access)
 	flags = SS_NO_FIRE
 
 	VAR_PRIVATE/list/datum/access/priv_all_access_datums
-	VAR_PRIVATE/list/datum/access/priv_all_access_datums_id = list()
-	VAR_PRIVATE/list/datum/access/priv_all_access_datums_region = list()
 	VAR_PRIVATE/list/datum/access/priv_all_access
 	VAR_PRIVATE/list/datum/access/priv_station_access
 	VAR_PRIVATE/list/datum/access/priv_centcom_access
 	VAR_PRIVATE/list/datum/access/priv_syndicate_access
 	VAR_PRIVATE/list/datum/access/priv_private_access
-	VAR_PRIVATE/list/datum/access/priv_region_access
+
+	VAR_PRIVATE/list/datum/access/priv_all_access_datums_id = list()
+	VAR_PRIVATE/list/datum/access/priv_all_access_datums_region = list()
+	VAR_PRIVATE/list/datum/access/priv_region_access = list()
 
 /datum/controller/subsystem/access/Initialize()
 	priv_all_access_datums = init_subtypes(/datum/access)
