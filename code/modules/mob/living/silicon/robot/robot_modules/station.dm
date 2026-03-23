@@ -70,6 +70,8 @@
 		I.canremove = FALSE
 
 /obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
+	if(!istype(robot.idcard, idcard_type))
+		QDEL_NULL(robot.idcard)
 	robot.init_id(idcard_type)
 	return
 
@@ -85,8 +87,10 @@
 	robot.set_default_module_icon()
 
 	robot.scrubbing = FALSE
+
 	modules -= robot.idcard
-	QDEL_NULL(robot.idcard)
+	if(robot.idcard.loc != robot)
+		robot.idcard.forceMove(robot)
 	robot.module = null
 	qdel(src)
 

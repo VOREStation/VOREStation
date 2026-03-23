@@ -1910,6 +1910,22 @@
 			return
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/despawn_player, carbon_target)
+
+	// player info stuff
+	if(href_list["notes"])
+		var/ckey = href_list["ckey"]
+		if(!ckey)
+			var/mob/M = locate(href_list["mob"])
+			if(ismob(M))
+				ckey = M.ckey
+
+		switch(href_list["notes"])
+			if("show")
+				var/datum/tgui_module/player_notes_info/A = new(src)
+				A.key = ckey
+				A.tgui_interact(usr)
+			if("list")
+				PlayerNotesPage(usr, text2num(href_list["index"]))
 		return
 
 /mob/living/proc/can_centcom_reply()
