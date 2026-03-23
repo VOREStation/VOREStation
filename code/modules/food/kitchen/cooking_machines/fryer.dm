@@ -244,27 +244,27 @@
 	fry_loop.stop()
 
 /obj/machinery/appliance/cooker/fryer/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/reagent_containers/glass) && I.reagents)
-		if (I.reagents.total_volume <= 0 && oil)
-			//Its empty, handle scooping some hot oil out of the fryer
-			oil.trans_to(I, I.reagents.maximum_volume)
-			user.visible_message(span_filter_notice("[user] scoops some oil out of \the [src]."), span_notice("You scoop some oil out of \the [src]."))
-			return 1
-		else
+	if(istype(I, /obj/item/reagent_containers) && I.reagents)
+		if(istype(I, /obj/item/reagent_containers/glass)) //Scooping stuff out with a glass.
+			if(I.reagents.total_volume <= 0 && oil)
+				//Its empty, handle scooping some hot oil out of the fryer
+				oil.trans_to(I, I.reagents.maximum_volume)
+				user.visible_message(span_filter_notice("[user] scoops some oil out of \the [src]."), span_notice("You scoop some oil out of \the [src]."))
+				return TRUE
 	//It contains stuff, handle pouring any oil into the fryer
 	//Possibly in future allow pouring non-oil reagents in, in  order to sabotage it and poison food.
 	//That would really require coding some sort of filter or better replacement mechanism first
 	//So for now, restrict to oil only
-			var/amount = 0
-			for (var/datum/reagent/R in I.reagents.reagent_list)
-				if (istype(R, /datum/reagent/nutriment/triglyceride/oil))
-					var/delta = oil.get_free_space()
-					delta = min(delta, R.volume)
-					oil.add_reagent(R.id, delta)
-					I.reagents.remove_reagent(R.id, delta)
-					amount += delta
-			if (amount > 0)
-				user.visible_message(span_filter_notice("[user] pours some oil into \the [src]."), span_notice("You pour [amount]u of oil into \the [src]."), span_notice("You hear something viscous being poured into a metal container."))
-				return 1
+		var/amount = 0
+		for(var/datum/reagent/R in I.reagents.reagent_list)
+			if(istype(R, /datum/reagent/nutriment/triglyceride/oil))
+				var/delta = oil.get_free_space()
+				delta = min(delta, R.volume)
+				oil.add_reagent(R.id, delta)
+				I.reagents.remove_reagent(R.id, delta)
+				amount += delta
+		if(amount > 0)
+			user.visible_message(span_filter_notice("[user] pours some oil into \the [src]."), span_notice("You pour [amount]u of oil into \the [src]."), span_notice("You hear something viscous being poured into a metal container."))
+			return TRUE
 	//If neither of the above returned, then call parent as normal
 	..()
