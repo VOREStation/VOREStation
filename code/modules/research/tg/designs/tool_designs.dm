@@ -281,6 +281,19 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_ENGINEERING
 
+/datum/design_techweb/light_painter
+	name = "Light painter"
+	desc = "A device to configure the emission color of lighting fixtures. For those moodier moments, or just making the bar into a clown-vomit hellscape."
+	id = "light_painter"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1500)
+	build_path = /obj/item/lightpainter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design_techweb/spraybottle
 	name = "spray bottle"
 	desc = "A spray bottle, with an unscrewable top."
