@@ -28,7 +28,7 @@
 		return
 
 	if(SSticker.mode && SSticker.mode.check_antagonists_topic(href, href_list))
-		check_antagonists()
+		check_antagonists(usr.client)
 		return
 
 	if(href_list["ticket"])
@@ -176,11 +176,12 @@
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_BAN))
+			return
 
 		var/banfolder = href_list["unbanf"]
-		Banlist.cd = "/base/[banfolder]"
-		var/key = Banlist["key"]
+		GLOB.banlist.cd = "/base/[banfolder]"
+		var/key = GLOB.banlist["key"]
 		if(tgui_alert(usr, "Are you sure you want to unban [key]?", "Confirmation", list("Yes", "No")) == "Yes")
 			if(RemoveBan(banfolder))
 				unbanpanel()
@@ -192,20 +193,21 @@
 		usr.client.warn(href_list["warn"])
 
 	else if(href_list["unbane"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_BAN))
+			return
 
 		UpdateTime()
 		var/reason
 
 		var/banfolder = href_list["unbane"]
-		Banlist.cd = "/base/[banfolder]"
-		var/reason2 = Banlist["reason"]
-		var/temp = Banlist["temp"]
+		GLOB.banlist.cd = "/base/[banfolder]"
+		var/reason2 = GLOB.banlist["reason"]
+		var/temp = GLOB.banlist["temp"]
 
-		var/minutes = Banlist["minutes"]
+		var/minutes = GLOB.banlist["minutes"]
 
-		var/banned_key = Banlist["key"]
-		Banlist.cd = "/base"
+		var/banned_key = GLOB.banlist["key"]
+		GLOB.banlist.cd = "/base"
 
 		var/duration
 
@@ -215,12 +217,12 @@
 			if("Yes")
 				temp = 1
 				var/mins = 0
-				if(minutes > CMinutes)
-					mins = minutes - CMinutes
+				if(minutes > GLOB.c_minutes)
+					mins = minutes - GLOB.c_minutes
 				mins = tgui_input_number(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440)
 				if(!mins)	return
 				mins = min(525599,mins)
-				minutes = CMinutes + mins
+				minutes = GLOB.c_minutes + mins
 				duration = GetExp(minutes)
 				reason = tgui_input_text(usr,"Reason?","reason",reason2, MAX_MESSAGE_LEN)
 				if(!reason)	return
@@ -233,12 +235,12 @@
 		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
 		ban_unban_log_save("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
 		message_admins(span_blue("[key_name_admin(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]"), 1)
-		Banlist.cd = "/base/[banfolder]"
-		Banlist["reason"] << reason
-		Banlist["temp"] << temp
-		Banlist["minutes"] << minutes
-		Banlist["bannedby"] << usr.ckey
-		Banlist.cd = "/base"
+		GLOB.banlist.cd = "/base/[banfolder]"
+		GLOB.banlist["reason"] << reason
+		GLOB.banlist["temp"] << temp
+		GLOB.banlist["minutes"] << minutes
+		GLOB.banlist["bannedby"] << usr.ckey
+		GLOB.banlist.cd = "/base"
 		feedback_inc("ban_edit",1)
 		unbanpanel()
 
@@ -838,7 +840,7 @@
 		if(istext(mute_type))	mute_type = text2num(mute_type)
 		if(!isnum(mute_type))	return
 
-		cmd_admin_mute(M, mute_type)
+		cmd_admin_mute(M, mute_type, usr)
 
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
@@ -874,7 +876,7 @@
 			return tgui_alert_async(usr, "The game has already started.")
 		GLOB.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [config.mode_names[GLOB.master_mode]].")
-		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[GLOB.master_mode]]."), 1)
+		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[GLOB.master_mode]]."))
 		to_chat(world, span_world(span_blue("The mode is now: [config.mode_names[GLOB.master_mode]]")))
 		Game() // updates the main game menu
 		world.save_mode(GLOB.master_mode)
@@ -889,7 +891,7 @@
 			return tgui_alert_async(usr, "The game mode has to be secret!")
 		GLOB.secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [GLOB.secret_force_mode].")
-		message_admins(span_blue("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."), 1)
+		message_admins(span_blue("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."))
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
@@ -902,7 +904,7 @@
 			return
 
 		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
-		message_admins(span_blue("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]"), 1)
+		message_admins(span_blue("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]"))
 		H.monkeyize()
 
 	else if(href_list["corgione"])
@@ -914,7 +916,7 @@
 			return
 
 		log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
-		message_admins(span_blue("[key_name_admin(usr)] attempting to corgize [key_name_admin(H)]"), 1)
+		message_admins(span_blue("[key_name_admin(usr)] attempting to corgize [key_name_admin(H)]"))
 		H.corgize()
 
 	else if(href_list["forcespeech"])
@@ -970,7 +972,7 @@
 
 		to_chat(M, span_filter_system(span_warning("You have been sent to the prison station!")))
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
-		message_admins(span_blue("[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station."), 1)
+		message_admins(span_blue("[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station."))
 
 	else if(href_list["sendbacktolobby"])
 		if(!check_rights(R_ADMIN))
@@ -1019,7 +1021,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)")
 
 	else if(href_list["tdome2"])
 		if(!check_rights(R_FUN))	return
@@ -1045,7 +1047,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)")
 
 	else if(href_list["tdomeadmin"])
 		if(!check_rights(R_FUN))	return
@@ -1068,7 +1070,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)")
 
 	else if(href_list["tdomeobserve"])
 		if(!check_rights(R_FUN))	return
@@ -1098,7 +1100,7 @@
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)")
 
 	else if(href_list["revive"])
 		if(!check_rights(R_REJUVINATE))	return
@@ -1110,7 +1112,7 @@
 
 		if(CONFIG_GET(flag/allow_admin_rev))
 			L.revive()
-			message_admins(span_red("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"), 1)
+			message_admins(span_red("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"))
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else
 			to_chat(usr, span_filter_adminlog(span_filter_warning("Admin Rejuvinates have been disabled")))
@@ -1123,7 +1125,7 @@
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		message_admins(span_red("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"), 1)
+		message_admins(span_red("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"))
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
 
@@ -1135,7 +1137,7 @@
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		usr.client.cmd_admin_alienize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_alienize, H)
 
 	else if(href_list[VK_HK_TURN_ROBOT])
 		if(!check_rights(R_SPAWN))	return
@@ -1145,7 +1147,7 @@
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		usr.client.cmd_admin_robotize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
 
 	else if(href_list["makeanimal"])
 		if(!check_rights(R_SPAWN))	return
@@ -1155,7 +1157,7 @@
 			to_chat(usr, span_filter_adminlog("This cannot be used on instances of type /mob/new_player"))
 			return
 
-		usr.client.cmd_admin_animalize(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_animalize, M)
 
 	else if(href_list["respawn"])
 		if(!check_rights(R_SPAWN))
@@ -1204,7 +1206,7 @@
 		G.ManualFollow(M)
 
 	else if(href_list["check_antagonist"])
-		check_antagonists()
+		check_antagonists(usr.client)
 
 	else if(href_list["take_question"])
 
@@ -1511,13 +1513,13 @@
 		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
 
 		var/mob/M = locate(href_list["narrateto"])
-		usr.client.cmd_admin_direct_narrate(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_direct_narrate, M)
 
 	else if(href_list["subtlemessage"])
 		if(!check_rights(R_MOD|R_ADMIN|R_EVENT|R_FUN,0))  return
 
 		var/mob/M = locate(href_list["subtlemessage"])
-		usr.client.cmd_admin_subtle_message(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_subtle_message, M)
 
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD|R_EVENT))	return
@@ -1530,7 +1532,7 @@
 		if(!ismob(M))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob."))
 			return
-		show_traitor_panel(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_traitor_panel, M)
 
 	else if(href_list["create_object"])
 		if(!check_rights(R_SPAWN))	return
@@ -1675,15 +1677,15 @@
 
 	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
 		src.admincaster_screen = 18                 //The ac_ prefix before the hrefs stands for AdminCaster.
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_channel_name"])
 		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", encode = FALSE))
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_channel_lock"])
 		src.admincaster_feed_channel.locked = !src.admincaster_feed_channel.locked
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_submit_new_channel"])
 		var/check = 0
@@ -1700,22 +1702,22 @@
 				feedback_inc("newscaster_channels",1)                  //Adding channel to the global network
 				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
 				src.admincaster_screen=5
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_channel_receiving"])
 		var/list/available_channels = list()
 		for(var/datum/feed_channel/F in GLOB.news_network.network_channels)
 			available_channels += F.channel_name
 		src.admincaster_feed_channel.channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_new_title"])
 		src.admincaster_feed_message.title = tgui_input_text(usr, "Enter the Feed title", "Network Channel Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_new_message"])
 		src.admincaster_feed_message.body = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_submit_new_message"])
 		if(src.admincaster_feed_message.body =="" || admincaster_feed_message.title == "" || admincaster_feed_message.body =="\[REDACTED\]" || admincaster_feed_channel.channel_name == "" )
@@ -1726,23 +1728,23 @@
 			src.admincaster_screen=4
 
 		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_create_channel"])
 		src.admincaster_screen=2
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_create_feed_story"])
 		src.admincaster_screen=3
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_menu_censor_story"])
 		src.admincaster_screen=10
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_menu_censor_channel"])
 		src.admincaster_screen=11
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_menu_wanted"])
 		var/already_wanted = 0
@@ -1753,15 +1755,15 @@
 			src.admincaster_feed_message.author = GLOB.news_network.wanted_issue.author
 			src.admincaster_feed_message.body = GLOB.news_network.wanted_issue.body
 		src.admincaster_screen = 14
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_wanted_name"])
 		src.admincaster_feed_message.author = tgui_input_text(usr, "Provide the name of the Wanted person", "Network Security Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_wanted_desc"])
 		src.admincaster_feed_message.body = tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_submit_wanted"])
 		var/input_param = text2num(href_list["ac_submit_wanted"])
@@ -1787,7 +1789,7 @@
 					GLOB.news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
 					src.admincaster_screen = 19
 				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_cancel_wanted"])
 		var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
@@ -1796,7 +1798,7 @@
 			for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 				NEWSCASTER.update_icon()
 			src.admincaster_screen=17
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_censor_channel_author"])
 		var/datum/feed_channel/FC = locate(href_list["ac_censor_channel_author"])
@@ -1805,7 +1807,7 @@
 			FC.author = span_bold("\[REDACTED\]")
 		else
 			FC.author = FC.backup_author
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_censor_channel_story_author"])
 		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_author"])
@@ -1814,7 +1816,7 @@
 			MSG.author = span_bold("\[REDACTED\]")
 		else
 			MSG.author = MSG.backup_author
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_censor_channel_story_body"])
 		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_body"])
@@ -1823,22 +1825,22 @@
 			MSG.body = span_bold("\[REDACTED\]")
 		else
 			MSG.body = MSG.backup_body
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_pick_d_notice"])
 		var/datum/feed_channel/FC = locate(href_list["ac_pick_d_notice"])
 		src.admincaster_feed_channel = FC
 		src.admincaster_screen=13
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_toggle_d_notice"])
 		var/datum/feed_channel/FC = locate(href_list["ac_toggle_d_notice"])
 		FC.censored = !FC.censored
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_view"])
 		src.admincaster_screen=1
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_setScreen"]) //Brings us to the main menu and resets all fields~
 		src.admincaster_screen = text2num(href_list["ac_setScreen"])
@@ -1847,26 +1849,26 @@
 				src.admincaster_feed_channel = new /datum/feed_channel
 			if(src.admincaster_feed_message)
 				src.admincaster_feed_message = new /datum/feed_message
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_show_channel"])
 		var/datum/feed_channel/FC = locate(href_list["ac_show_channel"])
 		src.admincaster_feed_channel = FC
 		src.admincaster_screen = 9
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_pick_censor_channel"])
 		var/datum/feed_channel/FC = locate(href_list["ac_pick_censor_channel"])
 		src.admincaster_feed_channel = FC
 		src.admincaster_screen = 12
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_refresh"])
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["ac_set_signature"])
 		src.admincaster_signature = tgui_input_text(usr, "Provide your desired signature", "Network Identity Handler", "", MAX_MESSAGE_LEN)
-		src.access_news_network()
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/access_news_network)
 
 	else if(href_list["populate_inactive_customitems"])
 		if(check_rights(R_ADMIN|R_SERVER))
@@ -1908,28 +1910,6 @@
 			return
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/despawn_player, carbon_target)
-
-	// player info stuff
-
-	if(href_list["notes"])
-		var/ckey = href_list["ckey"]
-		if(!ckey)
-			var/mob/M = locate(href_list["mob"])
-			if(ismob(M))
-				ckey = M.ckey
-
-		switch(href_list["notes"])
-			if("show")
-				var/datum/tgui_module/player_notes_info/A = new(src)
-				A.key = ckey
-				A.tgui_interact(usr)
-			if("list")
-				var/filter
-				if(href_list["filter"] && href_list["filter"] != "0")
-					filter = url_decode(href_list["filter"])
-				PlayerNotesPage(text2num(href_list["index"]), filter)
-			if("filter")
-				PlayerNotesFilter()
 		return
 
 /mob/living/proc/can_centcom_reply()

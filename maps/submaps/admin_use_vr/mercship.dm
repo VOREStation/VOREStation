@@ -292,7 +292,7 @@ In the meantime, happy hunting. Go bag me some carp. The mech bay can be found i
 /obj/machinery/computer/cryopod/merc
 	name = "mercenary oversight console"
 	desc = "An interface between mercenaries and the cryo oversight systems tasked with keeping track of all mercenaries who enter or exit cryostasis."
-	circuit = "/obj/item/circuitboard/robotstoragecontrol"
+	circuit = /obj/item/circuitboard/robotstoragecontrol
 
 	storage_type = "mercenaries"
 	storage_name = "Merc Oversight Control"

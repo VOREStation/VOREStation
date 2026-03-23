@@ -22,10 +22,10 @@ type Data = {
   display_craftable_only: BooleanLike;
   display_compact: BooleanLike;
   craftability: Record<string, number>;
-  crafting_recipes: Record<string, recipe[]>;
+  crafting_recipes: Record<string, Recipe[]>;
 };
 
-type recipe = {
+type Recipe = {
   name: string;
   ref: string;
   req_text: string;
@@ -34,12 +34,12 @@ type recipe = {
   has_subcats: BooleanLike;
 };
 
-type uiCategory = { name: string; category: string; subcategory?: string };
-type uiRecipe = Required<recipe & { category: string }>;
+type UiCategory = { name: string; category: string; subcategory?: string };
+type UiRecipe = Required<Recipe & { category: string }>;
 
-function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
-  const categories: uiCategory[] = [];
-  const recipes: uiRecipe[] = [];
+function getUiEntries(crafting_recipes: Record<string, Recipe[]>) {
+  const categories: UiCategory[] = [];
+  const recipes: UiRecipe[] = [];
   for (const category of Object.keys(crafting_recipes)) {
     const subcategories = crafting_recipes[category];
     if ('has_subcats' in subcategories) {
@@ -91,12 +91,12 @@ export const PersonalCrafting = (props) => {
   // Sort out the tab state
   const [tab, setTab] = useState(categories[0]?.name);
 
-  const testSearch = createSearch(searchText, (recipe: recipe) => recipe.name);
+  const testSearch = createSearch<Recipe>(searchText, (recipe) => recipe.name);
 
-  const shownRecipes: uiRecipe[] = flow([
-    (recipes: uiRecipe[]) =>
+  const shownRecipes: UiRecipe[] = flow([
+    (recipes: UiRecipe[]) =>
       recipes.filter((recipe) => recipe.category === tab),
-    (recipes: uiRecipe[]) => {
+    (recipes: UiRecipe[]) => {
       if (!searchText) {
         return recipes;
       } else {
@@ -179,7 +179,7 @@ export const PersonalCrafting = (props) => {
 };
 
 const CraftingList = (props: {
-  craftables: uiRecipe[];
+  craftables: UiRecipe[];
   display_compact: BooleanLike;
   display_craftable_only: BooleanLike;
 }) => {

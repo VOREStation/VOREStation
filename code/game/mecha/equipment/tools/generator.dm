@@ -138,7 +138,13 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
 	if(..())
-		SSradiation.radiate(src, (rad_per_cycle * 3))
+		radiation_pulse(
+			src,
+			max_range = 5,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			strength = 25
+		)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/critfail()

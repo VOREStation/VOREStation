@@ -1,5 +1,5 @@
 /datum/design_techweb/board/robocontrol
-	name = "robotics control console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("robotics control console")
 	id = "robocontrol"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/robotics
@@ -9,7 +9,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/mechacontrol
-	name = "exosuit control console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("exosuit control console")
 	id = "mechacontrol"
 	// req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/circuitboard/mecha_control
@@ -19,7 +19,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/rdconsole
-	name = "R&D control console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("R&D control console")
 	id = "rdconsole"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/rdconsole
@@ -29,7 +29,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/aifixer
-	name = "AI integrity restorer circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("AI integrity restorer")
 	id = "aifixer"
 	// req_tech = list(TECH_DATA = 3, TECH_BIO = 2)
 	build_path = /obj/item/circuitboard/aifixer
@@ -39,7 +39,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/aiupload
-	name = "AI upload console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("AI upload console")
 	id = "aiupload"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/aiupload
@@ -49,7 +49,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/borgupload
-	name = "cyborg upload console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("cyborg upload console")
 	id = "borgupload"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/borgupload
@@ -59,7 +59,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/circuit_imprinter
-	name = "circuit imprinter circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("circuit imprinter")
 	id = "circuit_imprinter"
 	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/circuit_imprinter
@@ -69,7 +69,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/autolathe
-	name = "autolathe board circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("autolathe")
 	id = "autolathe"
 	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/autolathe
@@ -79,7 +79,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/rdserver
-	name = "R&D server circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("R&D server")
 	id = "rdserver"
 	// req_tech = list(TECH_DATA = 3)
 	build_path = /obj/item/circuitboard/machine/rdserver
@@ -89,7 +89,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/mechfab
-	name = "exosuit fabricator circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("exosuit fabricator")
 	id = "mechfab"
 	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/circuitboard/mechfab
@@ -99,7 +99,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/prosfab
-	name = "prosthetics fabricator circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("prosthetics fabricator")
 	id = "prosfab"
 	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/circuitboard/prosthetics
@@ -109,7 +109,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/mech_recharger
-	name = "mech recharger circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("mech recharger")
 	id = "mech_recharger"
 	// req_tech = list(TECH_DATA = 2, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/mech_recharger
@@ -119,7 +119,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/recharge_station
-	name = "cyborg recharge station circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("cyborg recharge station")
 	id = "recharge_station"
 	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/recharge_station
@@ -129,7 +129,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/transhuman_synthprinter
-	name = "SynthFab 3000 circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("SynthFab 3000")
 	id = "transhuman_synthprinter"
 	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/circuitboard/transhuman_synthprinter
@@ -140,7 +140,7 @@
 
 // Telesci stuff
 /datum/design_techweb/board/telesci_console
-	name = "Telepad Control Console circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Telepad Control Console")
 	id = "telesci_console"
 	// req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 3, TECH_PHORON = 4)
 	build_path = /obj/item/circuitboard/telesci_console
@@ -150,7 +150,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/telesci_pad
-	name = "Telepad circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Telepad")
 	id = "telesci_pad"
 	// req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
 	build_path = /obj/item/circuitboard/telesci_pad
@@ -160,7 +160,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/quantum_pad
-	name = "Quantum Pad circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Quantum Pad")
 	id = "quantum_pad"
 	// req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
 	build_path = /obj/item/circuitboard/quantumpad
@@ -170,7 +170,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/bomb_tester
-	name = "Explosive Effect Simulator circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Explosive Effect Simulator")
 	id = "bomb_tester"
 	// req_tech = list(TECH_PHORON = 3, TECH_DATA = 2, TECH_MAGNET = 2)
 	build_path = /obj/item/circuitboard/bomb_tester
@@ -180,7 +180,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/teleporter_hub
-	name = "teleporter hub"
+	SET_CIRCUIT_DESIGN_NAMEDESC("teleporter hub")
 	id = "teleporter_hub"
 	build_path = /obj/item/circuitboard/teleporter_hub
 	category = list(
@@ -189,7 +189,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/board/teleporter_station
-	name = "teleporter station"
+	SET_CIRCUIT_DESIGN_NAMEDESC("teleporter station")
 	id = "teleporter_station"
 	build_path = /obj/item/circuitboard/teleporter_station
 	category = list(
@@ -198,10 +198,105 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/board/destructive_analyzer
-	name = "destructive analyzer"
+	SET_CIRCUIT_DESIGN_NAMEDESC("destructive analyzer")
 	id = "destructive_analyzer"
 	build_path = /obj/item/circuitboard/destructive_analyzer
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/anomaly_harvester
+	SET_CIRCUIT_DESIGN_NAMEDESC("Anomaly Harvester")
+	id = "anomaly_harvester"
+	build_path = /obj/item/circuitboard/anomaly_harvester
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/rdservercontrol
+	SET_CIRCUIT_DESIGN_NAMEDESC("R&D server")
+	desc = "Manages access to research databases and consoles."
+	id = "rdservercontrol"
+	build_path = /obj/item/circuitboard/rdservercontrol
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/doppler_array
+	SET_CIRCUIT_DESIGN_NAMEDESC("doppler array")
+	id = "doppler_array"
+	build_path = /obj/item/circuitboard/doppler_array
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/protean_reconstitutor
+	SET_CIRCUIT_DESIGN_NAMEDESC("protean reconstitutor")
+	id = "protean_reconstitutor"
+	build_path = /obj/item/circuitboard/protean_reconstitutor
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/artifact_harvester
+	SET_CIRCUIT_DESIGN_NAMEDESC("exotic particle harvester")
+	id = "artifact_harvester"
+	build_path = /obj/item/circuitboard/artifact_harvester
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/artifact_scanpad
+	SET_CIRCUIT_DESIGN_NAMEDESC("anomaly scanner pad")
+	id = "artifact_scanpad"
+	build_path = /obj/item/circuitboard/artifact_scanpad
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+///Protolathe boards
+
+/* Optional
+/datum/design_techweb/board/protolathe
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Omni")
+	id = "protolathe_omni"
+	build_path = /obj/item/circuitboard/machine/protolathe
+*/
+
+/datum/design_techweb/board/protolathe/science
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Science")
+	id = "protolathe_science"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/science
+
+/datum/design_techweb/board/protolathe/service
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Service")
+	id = "protolathe_service"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/service
+
+/datum/design_techweb/board/protolathe/medical
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Medical")
+	id = "protolathe_medical"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/medical
+
+/datum/design_techweb/board/protolathe/cargo
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Cargo")
+	id = "protolathe_cargo"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/cargo
+
+/datum/design_techweb/board/protolathe/engineering
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Engineering")
+	id = "protolathe_engineering"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/engineering
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING //Engineering gets an exception in that they can produce their own, since engineering often expands operations.
+
+/datum/design_techweb/board/protolathe/security
+	SET_CIRCUIT_DESIGN_NAMEDESC("Protolathe - Security")
+	id = "protolathe_security"
+	build_path = /obj/item/circuitboard/machine/protolathe/department/security

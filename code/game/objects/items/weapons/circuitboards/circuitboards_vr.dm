@@ -12,6 +12,8 @@
 				continue
 			nice_list += list("[req_components[A]] [initial(A.name)]")
 		. += "Required components: [english_list(nice_list)]."
+	if(hidden) // Notify the player that this board cannot be printed easily, so don't lose it!
+		. += span_danger("It might be hard to find a replacement for a circuit this unique.")
 
 // VOREStation specific circuit boards!
 
@@ -63,21 +65,18 @@
 	name = T_BOARD("timeclock")
 	build_path = /obj/machinery/computer/timeclock
 	board_type = new /datum/frame/frame_types/timeclock_terminal
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 // Board for the ID restorer in id_restorer_vr.dm
 /obj/item/circuitboard/id_restorer
 	name = T_BOARD("ID restoration console")
 	build_path = /obj/machinery/computer/id_restorer
 	board_type = new /datum/frame/frame_types/id_restorer
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/circuitboard/security/xenobio
 	name = T_BOARD("xenobiology camera monitor")
 	build_path = /obj/machinery/computer/security/xenobio
 	network = list(NETWORK_XENOBIO)
 	req_access = list()
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/circuitboard/machine/rdserver
 	name = T_BOARD("R&D Server")

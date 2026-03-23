@@ -235,18 +235,13 @@ GLOBAL_LIST_EMPTY(Holiday) //Holidays are lists now, so we can have more than on
 				GLOB.Holiday["Friday the 13th"] = "Friday the 13th is a superstitious day, associated with bad luck and misfortune."
 
 //Allows GA and GM to set the Holiday variable
-/client/proc/Set_Holiday()
-	set name = "Set Holiday"
-	set category = "Fun.Event Kit"
-	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
-	if(!check_rights(R_SERVER))	return
-
+ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday variable to make the game think it's a certain day.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	GLOB.Holiday = list()
 
-	var/H = tgui_input_text(src,"What holiday is it today?","Set Holiday")
+	var/H = tgui_input_text(user,"What holiday is it today?","Set Holiday")
 	if(!H)
 		return
-	var/B = tgui_input_text(src,"Now explain what the holiday is about","Set Holiday", multiline = TRUE, prevent_enter = TRUE)
+	var/B = tgui_input_text(user,"Now explain what the holiday is about","Set Holiday", multiline = TRUE, prevent_enter = TRUE)
 	if(!B)
 		return
 
@@ -257,8 +252,8 @@ GLOBAL_LIST_EMPTY(Holiday) //Holidays are lists now, so we can have more than on
 	world.update_status()
 	Holiday_Game_Start()
 
-	message_admins(span_notice("ADMIN: Event: [key_name(src)] force-set Holiday to \"[GLOB.Holiday]\""))
-	log_admin("[key_name(src)] force-set Holiday to \"[GLOB.Holiday]\"")
+	message_admins(span_notice("ADMIN: Event: [key_name(user)] force-set Holiday to \"[GLOB.Holiday]\""))
+	log_admin("[key_name(user)] force-set Holiday to \"[GLOB.Holiday]\"")
 
 
 //Run at the  start of a round

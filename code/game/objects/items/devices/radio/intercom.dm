@@ -7,7 +7,7 @@
 	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7
-	flags = NOBLOODY
+	flags = NOBLOODY | WALL_ITEM
 	light_color = "#00ff00"
 	light_power = 0.25
 	blocks_emissive = NONE

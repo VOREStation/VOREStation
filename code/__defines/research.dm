@@ -35,7 +35,7 @@
 #define TECHWEB_TIER_5_POINTS 200
 
 //! Amount of points gained per second by a single R&D server, see: [research][code/controllers/subsystem/research.dm]
-#define TECHWEB_SINGLE_SERVER_INCOME 1
+#define TECHWEB_SINGLE_SERVER_INCOME 0.4
 
 //! Swab cell line types
 #define CELL_LINE_TABLE_SLUDGE "cell_line_sludge_table"
@@ -108,3 +108,8 @@
 		server_var = station_fallback_web; \
 	}; \
 } while (FALSE)
+
+// Macro for techweb design consistency
+#define SET_CIRCUIT_DESIGN_NAMEDESC(dispname) name = (dispname) + " circuit";desc = "The circuit board for a " + (dispname) + ".";
+#define SET_MATERIAL_DESIGN_NAMEDESC(dispname) name = (dispname);desc = "A material printed and used in construction.";
+#define SET_AMMO_DESIGN_NAMEDESC(dispname) name = (dispname);desc = "Printable ammunition for a gun, ensure compatibility with your weapon before printing!";

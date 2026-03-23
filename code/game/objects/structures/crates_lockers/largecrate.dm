@@ -143,3 +143,12 @@
 /obj/structure/largecrate/animal/mothroach
 	name = "mothroach carrier"
 	starts_with = list(/mob/living/simple_mob/animal/passive/mothroach)
+
+/obj/structure/largecrate/anomaly
+	name = "anomaly harvesting crate"
+	starts_with = list(
+		/obj/machinery/anomaly_harvester,
+		/obj/item/anomaly_releaser/science,
+		/obj/item/assembly/signaler/anomaly/choice/,
+		/obj/item/anomaly_scanner
+	)

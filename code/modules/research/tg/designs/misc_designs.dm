@@ -15,6 +15,7 @@
 // Cartridges
 
 /datum/design_techweb/pda_cartridge
+	desc = "A cartridge containing PDA software."
 	// req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
@@ -56,11 +57,6 @@
 	id = "cart_security"
 	build_path = /obj/item/cartridge/security
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/pda_cartridge/janitor
-	id = "cart_janitor"
-	build_path = /obj/item/cartridge/janitor
-	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/pda_cartridge/science
 	id = "cart_science"
@@ -289,8 +285,20 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/sci_anomaly_releaser
+	name = "Scientific Anomaly Releaser"
+	desc = "A one-time use device, reactivates anomalies and stabilizes them, but leaves no core behind."
+	id = "sci_anomaly_releaser"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT, MAT_PHORON = SHEET_MATERIAL_AMOUNT * 1.5)
+	build_path = /obj/item/anomaly_releaser/science
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/anomaly_releaser
-	name = "Anomaly Releaser"
+	name = "Advanced Anomaly Releaser"
 	desc = "A one-time use device, reactivates anomalies and stabilizes them."
 	id = "anomaly_releaser"
 	build_type = PROTOLATHE
@@ -318,3 +326,108 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/sticky_tape
+	name = "tape role"
+	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
+	id = "sticky_tape"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_PLASTIC = 500)
+	build_path = /obj/item/tape_roll
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = ALL
+
+// Assemblies
+/datum/design_techweb/assembly_igniter
+	name = "igniter"
+	desc = "A small electronic device able to ignite combustable substances."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "igniter"
+	materials = list(MAT_STEEL = 625, MAT_GLASS = 60)
+	build_path = /obj/item/assembly/igniter
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_infrared_emitter
+	name = "infrared emitter"
+	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "infrared_emitter"
+	materials = list(MAT_STEEL = 1250, MAT_GLASS = 625)
+	build_path = /obj/item/assembly/infra
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_prox_sensor
+	name = "proximity sensor"
+	desc = "Used for scanning and alerting when someone enters a certain proximity."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "prox_sensor"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 250)
+	build_path = /obj/item/assembly/prox_sensor
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_signaler
+	name = "remote signaling device"
+	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "signaler"
+	materials = list(MAT_STEEL = 1250, MAT_GLASS = 250)
+	build_path = /obj/item/assembly/signaler
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/assembly_timer
+	name = "timer"
+	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "timer"
+	materials = list(MAT_STEEL = 625, MAT_GLASS = 60)
+	build_path = /obj/item/assembly/timer
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_ASSEMBLIES
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+// Pai card
+/datum/design_techweb/sleevecard
+	name = "sleevecard"
+	desc = "This upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "sleevecard"
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	build_path = /obj/item/paicard/sleevecard
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/camera_assembly
+	name = "camera assembly"
+	desc = "A pre-fabricated security camera kit, ready to be assembled and mounted to a surface."
+	build_type = AUTOLATHE | PROTOLATHE
+	id = "camera_assembly"
+	materials = list(MAT_STEEL = 875, MAT_GLASS = 375)
+	build_path = /obj/item/camera_assembly
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

@@ -15,17 +15,17 @@ import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
-  contents: content[];
+  contents: Content[];
   name: string;
   locked: BooleanLike;
   secure: BooleanLike;
 };
 
-type content = { name: string; index: number; amount: number };
+type Content = { name: string; index: number; amount: number };
 
 const sortTypes = {
-  Alphabetical: (a: content, b: content) => a.name.localeCompare(b.name),
-  'By amount': (a: content, b: content) => -(a.amount - b.amount),
+  Alphabetical: (a: Content, b: Content) => a.name.localeCompare(b.name),
+  'By amount': (a: Content, b: Content) => -(a.amount - b.amount),
 };
 
 export const SmartVend = (props) => {
@@ -135,13 +135,13 @@ const SheetItems = (props: {
   searchText: string;
   sortOrder: string;
   descending: boolean;
-  contents: content[];
+  contents: Content[];
 }) => {
   const { act } = useBackend();
 
   const { searchText, sortOrder, descending, contents } = props;
 
-  const searcher = createSearch(searchText, (item: content) => {
+  const searcher = createSearch<Content>(searchText, (item) => {
     return item.name;
   });
 

@@ -7,6 +7,7 @@
 	materials = list(MAT_STEEL = 80)
 	build_path = /obj/item/stock_parts/matter_bin
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	lathe_time_factor = 0.2
@@ -76,6 +77,7 @@
 	materials = list(MAT_STEEL = 30)
 	build_path = /obj/item/stock_parts/manipulator
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	lathe_time_factor = 0.2
@@ -145,6 +147,7 @@
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	build_path = /obj/item/stock_parts/capacitor
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	lathe_time_factor = 0.2
@@ -214,6 +217,7 @@
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
 	build_path = /obj/item/stock_parts/scanning_module
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	lathe_time_factor = 0.2
@@ -284,6 +288,7 @@
 	materials = list(MAT_STEEL = 10, MAT_GLASS = 20)
 	build_path = /obj/item/stock_parts/micro_laser
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	lathe_time_factor = 0.2
@@ -353,6 +358,7 @@
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	build_path = /obj/item/cell/empty
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	departmental_flags = ALL
@@ -398,10 +404,11 @@
 /datum/design_techweb/device_cell
 	name = "Device Cell"
 	id = "device_cell"
-	build_type = PROTOLATHE
+	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MAT_STEEL = 350, MAT_GLASS = 25)
 	build_path = /obj/item/cell/device/empty
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	departmental_flags = ALL
@@ -409,10 +416,11 @@
 /datum/design_techweb/weapon_cell
 	name = "Weapon Cell"
 	id = "weapon_cell"
-	build_type = PROTOLATHE
+	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	build_path = /obj/item/cell/device/weapon/empty
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
@@ -654,5 +662,54 @@
 	build_path = /obj/item/smes_coil/super_io/hyper
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+//Misc parts
+/datum/design_techweb/console_screen
+	name = "console screen"
+	build_type = PROTOLATHE | AUTOLATHE
+	id = "console_screen"
+	materials = list(MAT_GLASS = 250)
+	build_path = /obj/item/stock_parts/console_screen
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/motor
+	name = "motor"
+	build_type = PROTOLATHE | AUTOLATHE
+	id = "motor"
+	materials = list(MAT_STEEL = 75, MAT_GLASS = 15)
+	build_path = /obj/item/stock_parts/motor
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/gear
+	name = "gear"
+	build_type = PROTOLATHE | AUTOLATHE
+	id = "gear"
+	materials = list(MAT_STEEL = 65)
+	build_path = /obj/item/stock_parts/gear
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/spring
+	name = "spring"
+	build_type = PROTOLATHE | AUTOLATHE
+	id = "spring"
+	materials = list(MAT_STEEL = 50)
+	build_path = /obj/item/stock_parts/spring
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

@@ -15,13 +15,13 @@
 
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
-	var/lights_on = 0 // Is our integrated light on?
+	var/lights_on = FALSE // Is our integrated light on?
 	var/grabbable = FALSE //disables/enables pick-up mechanics.
 	var/robot_light_col = "#FFFFFF"
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
 	var/custom_name = ""
-	var/custom_sprite = 0 //Due to all the sprites involved, a var for our custom borgs may be best
+	var/custom_sprite = FALSE //Due to all the sprites involved, a var for our custom borgs may be best
 	var/sprite_name = null // The name of the borg, for the purposes of custom icon sprite indexing.
 	var/crisis //Admin-settable for combat module use.
 	var/crisis_override = 0
@@ -72,7 +72,7 @@
 	var/scrubbing = FALSE //Floor cleaning enabled
 
 	// Subtype limited modules or admin restrictions
-	var/list/restrict_modules_to = list()
+	var/list/restrict_modules_to
 
 	// Components are basically robot organs.
 	var/list/components = list()
@@ -81,12 +81,12 @@
 
 	var/obj/item/pda/ai/rbPDA = null
 
-	var/opened = 0
-	var/emagged = 0
-	var/emag_items = 0
-	var/wiresexposed = 0
-	var/locked = 1
-	var/has_power = 1
+	var/opened = FALSE
+	var/emagged = FALSE
+	var/emag_items = FALSE
+	var/wiresexposed = FALSE
+	var/locked = TRUE
+	var/has_power = TRUE
 	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/ident = 0
 	//var/list/laws = list()
@@ -102,11 +102,11 @@
 	var/killswitch_time = 60
 	var/weapon_lock = 0
 	var/weaponlock_time = 120
-	var/lawupdate = 1 //Cyborgs will sync their laws with their AI by default
+	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
 	var/lockcharge //Used when looking to see if a borg is locked down.
 	var/lockdown = 0 //Controls whether or not the borg is actually locked down.
 	var/speed = 0 //Cause sec borgs gotta go fast //No they dont!
-	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console. Setting to one hides them.
+	var/scrambledcodes = FALSE // Used to determine if a borg shows up on the robotics console. Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = JOB_CYBORG
 
@@ -252,16 +252,14 @@
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
-	laws = new global.using_map.default_law_type //use map's default
+	laws = new using_map.default_law_type //use map's default
 	additional_law_channels["Binary"] = "#b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
-		lawupdate = 1
+		lawupdate = TRUE
 		connect_to_ai(new_ai)
 	else
-		lawupdate = 0
-
-
+		lawupdate = FALSE
 
 /mob/living/silicon/robot/SetName(pickedName as text)
 	custom_name = pickedName
@@ -375,7 +373,7 @@
 	if(new_sprites && new_sprites.len)
 		module_sprites = new_sprites.Copy()
 		//Custom_sprite check and entry
-		if (custom_sprite == 1)
+		if (custom_sprite)
 			module_sprites["Custom"] = "[ckey]-[sprite_name]-[modtype]" //Made compliant with custom_sprites.dm line 32. (src.) was apparently redundant as it's implied. ~Mech
 			icontype = "Custom"
 		else
@@ -851,8 +849,7 @@
 	hands.icon_state = get_hud_module_icon()
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
-	module.Reset(src)
-	QDEL_NULL(module)
+	module.reset_module(src)
 	icon_selected = FALSE
 	updatename("Default")
 	has_recoloured = FALSE
@@ -1106,11 +1103,11 @@
 
 /mob/living/silicon/robot/proc/UnlinkSelf()
 	disconnect_from_ai()
-	lawupdate = 0
+	lawupdate = FALSE
 	lockcharge = 0
 	lockdown = 0
 	canmove = 1
-	scrambledcodes = 1
+	scrambledcodes = TRUE
 	//Disconnect it's camera so it's not so easily tracked.
 	if(src.camera)
 		src.camera.clear_all_networks()
@@ -1261,7 +1258,7 @@
 		if(locked)
 			if(prob(90))
 				to_chat(user, span_filter_notice("You emag the cover lock."))
-				locked = 0
+				locked = FALSE
 			else
 				to_chat(user, span_filter_warning("You fail to emag the cover lock."))
 				to_chat(src, span_filter_warning("Hack attempt detected."))
@@ -1298,9 +1295,9 @@
 
 		sleep(6)
 		if(prob(50))
-			emagged = 1
+			emagged = TRUE
 			robotact.update_static_data_for_all_viewers()
-			lawupdate = 0
+			lawupdate = FALSE
 			disconnect_from_ai()
 			to_chat(user, span_filter_notice("You emag [src]'s interface."))
 			message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)]. Laws overridden.")
@@ -1584,6 +1581,13 @@
 		else if(!robot_snatcher)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
 		return FALSE
+	if(given_type == /obj/item/borg/upgrade/restricted/adv_mailbag)
+		var/obj/item/storage/bag/mail/borg/letter_bag = has_upgrade_module(/obj/item/storage/bag/mail/borg)
+		if(letter_bag && letter_bag.storage_slots > letter_bag::storage_slots)
+			return letter_bag
+		else if(!letter_bag)
+			return ""
+		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
@@ -1645,4 +1649,15 @@
 /mob/living/silicon/robot/proc/get_ui_theme()
 	if(emagged)
 		return "syndicate"
+	if(module?.ui_theme)
+		return module.ui_theme
 	return ui_theme
+
+/mob/living/silicon/robot/handle_special_unlocks()
+	if(!module)
+		return
+	module.handle_special_unlocks(src)
+
+/mob/living/silicon/robot/proc/scramble_hardware(var/chance)
+	if(prob(chance))  //Small chance to spawn with a scrambled
+		emag_items = TRUE

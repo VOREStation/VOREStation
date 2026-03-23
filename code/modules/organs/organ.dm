@@ -1,5 +1,3 @@
-var/list/organ_cache = list()
-
 /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
@@ -334,7 +332,8 @@ var/list/organ_cache = list()
 	if(owner)
 		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
-		var/status = owner.client.prefs.organ_data[organ_tag]
+		var/list/organ_data = owner.client.prefs.read_preference(/datum/preference/organ_data)
+		var/status = organ_data?[organ_tag]
 		if(status == FBP_ASSISTED)
 			mechassist()
 		else if(status == FBP_MECHANICAL)

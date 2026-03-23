@@ -27,11 +27,14 @@
 	/// IF YOU CHANGE THIS VERIFY LOGS ARE STILL PARSED CORRECTLY
 	var/internal_formatting = FALSE
 
-	/// List of log entries for this category
-	var/list/entries = list()
+	/// Ring buffer of log entries for this category
+	var/list/log_ring = list()
 
 	/// Total number of entries this round so far
 	var/entry_count = 0
+
+	/// We have a lot more than those log lines, so we only store the last ones in a ring
+	var/ring_write_index = 1
 
 GENERAL_PROTECT_DATUM(/datum/log_category)
 
@@ -49,8 +52,14 @@ GENERAL_PROTECT_DATUM(/datum/log_category)
 
 	write_entry(entry)
 	entry_count += 1
+
 	if(entry_count <= CONFIG_MAX_CACHED_LOG_ENTRIES)
-		entries += entry
+		log_ring += entry
+	else
+		log_ring[ring_write_index] = entry
+	ring_write_index++
+	if(ring_write_index > CONFIG_MAX_CACHED_LOG_ENTRIES)
+		ring_write_index = 1
 
 /// Allows for category specific file splitting. Needs to accept a null entry for the default file.
 /// If master_category it will always return the output of master_category.get_output_file(entry)
@@ -68,3 +77,31 @@ GENERAL_PROTECT_DATUM(/datum/log_category)
 		entry.write_readable_entry_to_file(get_output_file(entry, "log"), format_internally = internal_formatting)
 
 	entry.write_entry_to_file(get_output_file(entry))
+
+/datum/log_category/proc/access_logs()
+	var/list/result = list()
+	var/count = min(entry_count, CONFIG_MAX_CACHED_LOG_ENTRIES)
+
+	for(var/i = 0, i < count, i++)
+		var/index = ((ring_write_index - count + i - 1 + CONFIG_MAX_CACHED_LOG_ENTRIES) % CONFIG_MAX_CACHED_LOG_ENTRIES) + 1
+		result += log_ring[index]
+
+	return result
+
+/datum/log_category/proc/build_ui_log_entries()
+	var/list/entries = list()
+	var/count = min(entry_count, CONFIG_MAX_CACHED_LOG_ENTRIES)
+
+	for(var/i = 0, i < count, i++)
+		var/index = ((ring_write_index - count + i - 1 + CONFIG_MAX_CACHED_LOG_ENTRIES) % CONFIG_MAX_CACHED_LOG_ENTRIES) + 1
+		var/datum/log_entry/entry = log_ring[index]
+
+		entries += list(list(
+			"id" = entry.id,
+			"message" = entry.message,
+			"timestamp" = entry.timestamp,
+			"data" = entry.data,
+			"semver" = entry.semver_store
+		))
+
+	return entries

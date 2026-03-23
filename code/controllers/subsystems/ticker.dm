@@ -354,8 +354,8 @@ SUBSYSTEM_DEF(ticker)
 				feedback_set_details("end_proper", "proper completion")
 				restart_timeleft = restart_timeout
 
-			if(blackbox)
-				blackbox.save_all_data_to_sql()	// TODO - Blackbox or statistics subsystem
+			if(GLOB.blackbox)
+				GLOB.blackbox.save_all_data_to_sql()	// TODO - Blackbox or statistics subsystem
 
 			end_game_state = END_GAME_ENDING
 			return

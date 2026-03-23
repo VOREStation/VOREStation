@@ -1,85 +1,73 @@
-/client/proc/Debug2()
-	set category = "Debug.Investigate"
-	set name = "Debug-Game"
-	if(!check_rights(R_DEBUG))	return
 
+ADMIN_VERB(Debug2, R_DEBUG, "Debug-Game", "Toggles debug level 2, might be quite spammy.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	if(GLOB.Debug2)
 		GLOB.Debug2 = FALSE
-		message_admins("[key_name(src)] toggled debugging off.")
-		log_admin("[key_name(src)] toggled debugging off.")
+		message_admins("[key_name(user)] toggled debugging off.")
+		log_admin("[key_name(user)] toggled debugging off.")
 	else
 		GLOB.Debug2 = TRUE
-		message_admins("[key_name(src)] toggled debugging on.")
-		log_admin("[key_name(src)] toggled debugging on.")
+		message_admins("[key_name(user)] toggled debugging on.")
+		log_admin("[key_name(user)] toggled debugging on.")
 
 	feedback_add_details("admin_verb","DG2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 // callproc moved to code/modules/admin/callproc
 
-/client/proc/simple_DPS()
-	set name = "Simple DPS"
-	set category = "Debug.Investigate"
-	set desc = "Gives a really basic idea of how much hurt something in-hand does."
-
+ADMIN_VERB(simple_DPS, R_DEBUG, "Simple DPS", "Gives a really basic idea of how much hurt something in-hand does.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	var/obj/item/I = null
-	var/mob/living/user = null
-	if(isliving(usr))
-		user = usr
-		I = user.get_active_hand()
-		if(!I || !istype(I))
-			to_chat(user, span_warning("You need to have something in your active hand, to use this verb."))
-			return
-		var/weapon_attack_speed = user.get_attack_speed(I) / 10
-		var/weapon_damage = I.force
-		var/modified_damage_percent = 1
-
-		for(var/datum/modifier/M in user.modifiers)
-			if(!isnull(M.outgoing_melee_damage_percent))
-				weapon_damage *= M.outgoing_melee_damage_percent
-				modified_damage_percent *= M.outgoing_melee_damage_percent
-
-		if(istype(I, /obj/item/gun))
-			var/obj/item/gun/G = I
-			var/obj/item/projectile/P
-
-			if(istype(I, /obj/item/gun/energy))
-				var/obj/item/gun/energy/energy_gun = G
-				P = new energy_gun.projectile_type()
-
-			else if(istype(I, /obj/item/gun/projectile))
-				var/obj/item/gun/projectile/projectile_gun = G
-				var/obj/item/ammo_casing/ammo = projectile_gun.chambered
-				P = ammo.BB
-
-			else
-				to_chat(user, span_warning("DPS calculation by this verb is not supported for \the [G]'s type. Energy or Ballistic only, sorry."))
-
-			weapon_damage = P.damage
-			weapon_attack_speed = G.fire_delay / 10
-			qdel(P)
-
-		var/DPS = weapon_damage / weapon_attack_speed
-		to_chat(user, span_notice("Damage: [weapon_damage][modified_damage_percent != 1 ? " (Modified by [modified_damage_percent*100]%)":""]"))
-		to_chat(user, span_notice("Attack Speed: [weapon_attack_speed]/s"))
-		to_chat(user, span_notice("\The [I] does <b>[DPS]</b> damage per second."))
-		if(DPS > 0)
-			to_chat(user, span_notice("At your maximum health ([user.getMaxHealth()]), it would take approximately;"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - user.get_crit_point()) / DPS] seconds to hardcrit you. ([user.get_crit_point()] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - (-user.getMaxHealth())) / DPS] seconds to kill you. ([(-user.getMaxHealth())] health)"))
-
-	else
+	var/mob/living/user_mob = user.mob
+	if(!istype(user_mob))
 		to_chat(user, span_warning("You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb."))
 		return
 
-/client/proc/Cell()
-	set category = "Debug.Investigate"
-	set name = "Cell"
-	if(!mob)
+	I = user_mob.get_active_hand()
+	if(!I || !istype(I))
+		to_chat(user, span_warning("You need to have something in your active hand, to use this verb."))
 		return
-	var/turf/T = mob.loc
+	var/weapon_attack_speed = user_mob.get_attack_speed(I) / 10
+	var/weapon_damage = I.force
+	var/modified_damage_percent = 1
 
-	if (!( istype(T, /turf) ))
+	for(var/datum/modifier/M in user_mob.modifiers)
+		if(!isnull(M.outgoing_melee_damage_percent))
+			weapon_damage *= M.outgoing_melee_damage_percent
+			modified_damage_percent *= M.outgoing_melee_damage_percent
+
+	if(istype(I, /obj/item/gun))
+		var/obj/item/gun/G = I
+		var/obj/item/projectile/P
+
+		if(istype(I, /obj/item/gun/energy))
+			var/obj/item/gun/energy/energy_gun = G
+			P = new energy_gun.projectile_type()
+
+		else if(istype(I, /obj/item/gun/projectile))
+			var/obj/item/gun/projectile/projectile_gun = G
+			var/obj/item/ammo_casing/ammo = projectile_gun.chambered
+			P = ammo.BB
+
+		else
+			to_chat(user, span_warning("DPS calculation by this verb is not supported for \the [G]'s type. Energy or Ballistic only, sorry."))
+
+		weapon_damage = P.damage
+		weapon_attack_speed = G.fire_delay / 10
+		qdel(P)
+
+	var/DPS = weapon_damage / weapon_attack_speed
+	to_chat(user, span_notice("Damage: [weapon_damage][modified_damage_percent != 1 ? " (Modified by [modified_damage_percent*100]%)":""]"))
+	to_chat(user, span_notice("Attack Speed: [weapon_attack_speed]/s"))
+	to_chat(user, span_notice("\The [I] does <b>[DPS]</b> damage per second."))
+	if(DPS > 0)
+		to_chat(user, span_notice("At your maximum health ([user_mob.getMaxHealth()]), it would take approximately;"))
+		to_chat(user, span_notice("[(user_mob.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
+		to_chat(user, span_notice("[(user_mob.getMaxHealth() - user_mob.get_crit_point()) / DPS] seconds to hardcrit you. ([user_mob.get_crit_point()] health)"))
+		to_chat(user, span_notice("[(user_mob.getMaxHealth() - (-user_mob.getMaxHealth())) / DPS] seconds to kill you. ([(-user_mob.getMaxHealth())] health)"))
+
+
+ADMIN_VERB(Cell, R_DEBUG, "Cell", "Display the atmos information of the current cell.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	var/turf/T = get_turf(user.mob)
+
+	if (!(isturf(T)))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
@@ -90,61 +78,48 @@
 	for(var/g in env.gas)
 		t += span_blue("[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n")
 
-	usr.show_message(t, 1)
+	user.mob.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
-	set category = "Fun.Event Kit"
-	set name = "Make Robot"
-
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_robotize, R_ADMIN|R_EVENT|R_DEBUG, "Make Robot", "Turns the target into a robot.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/living/carbon/human/target_human in GLOB.human_mob_list)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has robotized [M.key].")
-		spawn(10)
-			M:Robotize()
+	if(!ishuman(target_human))
+		tgui_alert_async(user, "Invalid mob")
+		return
 
-	else
-		tgui_alert_async(usr, "Invalid mob")
+	log_admin("[key_name(user)] has robotized [target_human.key].")
+	addtimer(CALLBACK(target_human, TYPE_PROC_REF(/mob/living/carbon/human, Robotize)), 1 SECOND, TIMER_DELETE_ME)
 
-/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
-	set category = "Fun.Event Kit"
-	set name = "Make Simple Animal"
-
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_animalize, R_ADMIN|R_EVENT|R_DEBUG, "Make Simple Animal", "Spawns a new player directly as animal.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target_mob in GLOB.mob_list)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
 
-	if(!M)
-		tgui_alert_async(usr, "That mob doesn't seem to exist, close the panel and try again.")
+	if(!target_mob)
+		tgui_alert_async(user, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(isnewplayer(M))
-		tgui_alert_async(usr, "The mob must not be a new_player.")
+	if(isnewplayer(target_mob))
+		tgui_alert_async(user, "The mob must not be a new_player.")
 		return
 
-	log_admin("[key_name(src)] has animalized [M.key].")
-	spawn(10)
-		M.Animalize(usr)
+	log_admin("[key_name(user)] has animalized [target_mob.key].")
+	addtimer(CALLBACK(target_mob, TYPE_PROC_REF(/mob, Animalize)), 1 SECOND, TIMER_DELETE_ME)
 
-
-/client/proc/makepAI()
-	set category = "Fun.Event Kit"
-	set name = "Make pAI"
-	set desc = "Spawn someone in as a pAI!"
-	if(!check_rights(R_ADMIN|R_EVENT|R_DEBUG))
-		return
-	var/turf/T = get_turf(mob)
+ADMIN_VERB(makepAI, R_ADMIN|R_EVENT|R_DEBUG, "Make pAI", "Spawn someone in as a pAI!", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/turf/target_turf = get_turf(user.mob)
 
 	var/list/available = list()
-	for(var/mob/C in GLOB.mob_list)
-		if(C.key && isobserver(C))
-			available.Add(C)
-	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
+	for(var/mob/current_client in GLOB.mob_list)
+		if(current_client.key && isobserver(current_client))
+			available += current_client
+	var/mob/choice = tgui_input_list(user, "Choose a player to play the pAI", "Spawn pAI", available)
 	if(!choice)
-		return 0
-	var/obj/item/paicard/typeb/card = new(T)
+		return
+
+	var/obj/item/paicard/typeb/card = new(target_turf)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.real_name = pai.name
 	pai.key = choice.key
@@ -152,67 +127,52 @@
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
 		pai.apply_preferences(pai.client)
 	else
-		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
-	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
+		var/new_name = sanitizeName(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE), allow_numbers = TRUE)
+		if(new_name)
+			pai.name = new_name
+	log_admin("made a pAI with key=[pai.key] at ([target_turf.x],[target_turf.y],[target_turf.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
-	set category = "Fun.Event Kit"
-	set name = "Make Alien"
-
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_alienize, R_ADMIN|R_EVENT|R_DEBUG, "Make Alien", "Turns the target into an alien.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/living/carbon/human/target_human in GLOB.human_mob_list)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has alienized [M.key].")
-		spawn(10)
-			M:Alienize()
-			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
-		message_admins(span_notice("[key_name_admin(usr)] made [key_name(M)] into an alien."), 1)
-	else
-		tgui_alert_async(usr, "Invalid mob")
+	if(!ishuman(target_human))
+		tgui_alert_async(user, "Invalid mob")
+		return
 
+	log_admin("[key_name(user)] has alienized [target_human.key].")
+	addtimer(CALLBACK(target_human, TYPE_PROC_REF(/mob/living/carbon/human, Alienize)), 1 SECOND, TIMER_DELETE_ME)
+	feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(user)] made [key_name(target_human)] into an alien.")
+	message_admins(span_notice("[key_name_admin(user)] made [key_name(target_human)] into an alien."))
 
 //TODO: merge the vievars version into this or something maybe mayhaps
-/client/proc/cmd_debug_del_all()
-	set category = "Debug.Dangerous"
-	set name = "Del-All"
-
+ADMIN_VERB(cmd_debug_del_all, R_SERVER, "Del-All", "DANGER: Deletes all instances of a type.", ADMIN_CATEGORY_DEBUG_DANGEROUS)
 	// to prevent REALLY stupid deletions
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer/dead, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
-	var/hsbitem = tgui_input_list(usr, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
+	var/hsbitem = tgui_input_list(user, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
 	if(hsbitem)
 		for(var/atom/O in world)
 			if(istype(O, hsbitem))
 				qdel(O)
-		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
-		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+		log_admin("[key_name(user)] has deleted all instances of [hsbitem].")
+		message_admins("[key_name_admin(user)] has deleted all instances of [hsbitem].", 0)
 	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_debug_make_powernets()
-	set category = "Debug.Dangerous"
-	set name = "Make Powernets"
+ADMIN_VERB(cmd_debug_make_powernets, R_DEBUG, "Make Powernets", "Rebuild all powernets.", ADMIN_CATEGORY_DEBUG_DANGEROUS)
 	SSmachines.makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. SSmachines.makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. SSmachines.makepowernets() called.", 0)
+	log_admin("[key_name(user)] has remade the powernet. SSmachines.makepowernets() called.")
+	message_admins("[key_name_admin(user)] has remade the powernets. SSmachines.makepowernets() called.")
 	feedback_add_details("admin_verb","MPWN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_debug_tog_aliens()
-	set category = "Server.Game"
-	set name = "Toggle Aliens"
-
+ADMIN_VERB(cmd_debug_tog_aliens, R_DEBUG, "Toggle Aliens", "Toggle if aliens are allowed.", ADMIN_CATEGORY_SERVER_GAME)
 	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
-	log_admin("[key_name(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 0)
+	log_admin("[key_name(user)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
+	message_admins("[key_name_admin(user)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_display_del_log()
-	set category = "Debug.Investigate"
-	set name = "Display del() Log"
-	set desc = "Display del's log of everything that's passed through it."
-
-	if(!check_rights(R_DEBUG))	return
+ADMIN_VERB(cmd_display_del_log, R_DEBUG, "Display del() Log", "Display del's log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	var/list/dellog = list(span_bold("List of things that have gone through qdel this round") + "<BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
@@ -235,26 +195,14 @@
 
 	dellog += "</ol>"
 
-	usr << browse("<html>[dellog.Join()]</html>", "window=dellog")
+	user << browse("<html>[dellog.Join()]</html>", "window=dellog")
 
-/client/proc/cmd_display_init_log()
-	set category = "Debug.Investigate"
-	set name = "Display Initialize() Log"
-	set desc = "Displays a list of things that didn't handle Initialize() properly"
+ADMIN_VERB(cmd_display_init_log, R_DEBUG, "Display Initialize() Log", "Displays a list of things that didn't handle Initialize() properly.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	user << browse("<html>[replacetext(SSatoms.InitLog(), "\n", "<br>")]</html>", "window=initlog")
 
-	if(!check_rights(R_DEBUG))
-		return
-	src << browse("<html>[replacetext(SSatoms.InitLog(), "\n", "<br>")]</html>", "window=initlog")
+ADMIN_VERB(cmd_display_overlay_log, R_DEBUG, "Display overlay Log", "Display SSoverlays log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	render_stats(SSoverlays.stats, user)
 
-/*
-/client/proc/cmd_display_overlay_log()
-	set category = "Debug.Investigate"
-	set name = "Display overlay Log"
-	set desc = "Display SSoverlays log of everything that's passed through it."
-
-	if(!check_rights(R_DEBUG))	return
-	render_stats(SSoverlays.stats, src)
-*/
 // Render stats list for round-end statistics.
 /proc/render_stats(list/stats, user, sort = /proc/cmp_generic_stat_item_time)
 	sortTim(stats, sort, TRUE)
@@ -269,38 +217,31 @@
 	else
 		. = lines.Join("\n")
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
-	set category = "Admin.Events"
-	set name = "Grant Full Access"
-
+ADMIN_VERB(cmd_admin_grantfullaccess, (R_ADMIN|R_EVENT), "Grant Full Access", "Grants full access to a human.", ADMIN_CATEGORY_EVENTS, mob/living/carbon/human/H in GLOB.human_mob_list)
 	if (!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(user, "Wait until the game starts")
 		return
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if (H.wear_id)
-			var/obj/item/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/pda))
-				var/obj/item/pda/pda = H.wear_id
-				id = pda.id
-			id.icon_state = "gold"
-			id.access = get_all_accesses().Copy()
-		else
-			var/obj/item/card/id/id = new/obj/item/card/id(M);
-			id.icon_state = "gold"
-			id.access = get_all_accesses().Copy()
-			id.registered_name = H.real_name
-			id.assignment = JOB_SITE_MANAGER
-			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, slot_wear_id)
-			H.update_inv_wear_id()
+	if (H.wear_id)
+		var/obj/item/card/id/id = H.wear_id
+		if(istype(H.wear_id, /obj/item/pda))
+			var/obj/item/pda/pda = H.wear_id
+			id = pda.id
+		id.icon_state = "gold"
+		id.access = get_all_accesses().Copy()
 	else
-		tgui_alert_async(usr, "Invalid mob")
+		var/obj/item/card/id/id = new/obj/item/card/id(H);
+		id.icon_state = "gold"
+		id.access = get_all_accesses().Copy()
+		id.registered_name = H.real_name
+		id.assignment = JOB_SITE_MANAGER
+		id.name = "[id.registered_name]'s ID Card ([id.assignment])"
+		H.equip_to_slot_or_del(id, slot_wear_id)
+		H.update_inv_wear_id()
 	feedback_add_details("admin_verb","GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
+	log_admin("[key_name(user)] has granted [H.key] full access.")
+	message_admins(span_blue("[key_name_admin(user)] has granted [H.key] full access."))
 
-ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", "Admin.Game", mob/M)
+ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", ADMIN_CATEGORY_GAME, mob/M)
 	if(M.ckey)
 		if(tgui_alert(user, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
 			return
@@ -311,7 +252,7 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 	var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
 	ghost.ckey = M.ckey
 
-	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."), 1)
+	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."))
 	log_admin("[key_name(user)] assumed direct control of [M].")
 	var/mob/adminmob = user.mob
 	M.ckey = user.ckey
@@ -319,20 +260,11 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/take_picture(var/atom/A in world)
-	set name = "Save PNG"
-	set category = "Debug.Misc"
-	set desc = "Opens a dialog to save a PNG of any object in the game."
+ADMIN_VERB(take_picture, R_DEBUG, "Save PNG", "Opens a dialog to save a PNG of any object in the game.", ADMIN_CATEGORY_DEBUG_MISC, atom/selected_atom in world)
+	downloadImage(selected_atom)
 
-	if(!check_rights(R_DEBUG))
-		return
-
-	downloadImage(A)
-
-/client/proc/cmd_admin_areatest()
-	set category = "Mapping"
-	set name = "Test areas"
-
+ADMIN_VERB_VISIBILITY(cmd_admin_areatest, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test areas", "Manually tests all areas and prints to world (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	var/list/areas_all = list()
 	var/list/areas_with_APC = list()
 	var/list/areas_with_air_alarm = list()
@@ -445,13 +377,8 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 	outfit.equip(H)
 	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].")
 
-/client/proc/startSinglo()
-
-	set category = "Debug.Game"
-	set name = "Start Singularity"
-	set desc = "Sets up the singularity and all machines to get power flowing through the station"
-
-	if(tgui_alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Start Singularity",list("Yes","No")) != "Yes")
+ADMIN_VERB(startSinglo, R_DEBUG|R_ADMIN, "Start Singularity", "Sets up the singularity and all machines to get power flowing through the station.", ADMIN_CATEGORY_DEBUG_GAME)
+	if(tgui_alert(user, "Are you sure? This will start up the engine. Should only be used during debug!","Start Singularity",list("Yes","No")) != "Yes")
 		return
 
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
@@ -490,14 +417,11 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 			if(!Rad.active)
 				Rad.toggle_power()
 
-/client/proc/setup_supermatter_engine()
-	set category = "Debug.Game"
-	set name = "Setup supermatter"
-	set desc = "Sets up the supermatter engine"
+	log_admin("[key_name(user)] setup the singulo engine")
+	message_admins(span_blue("[key_name_admin(user)] setup the singulo engine"))
 
-	if(!check_rights(R_DEBUG|R_ADMIN))      return
-
-	var/response = tgui_alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Setup Supermatter",list("Setup Completely","Setup except coolant","No"))
+ADMIN_VERB(setup_supermatter_engine, R_DEBUG|R_ADMIN, "Setup supermatter", "Sets up the supermatter engine.", ADMIN_CATEGORY_DEBUG_GAME)
+	var/response = tgui_alert(user, "Are you sure? This will start up the engine. Should only be used during debug!","Setup Supermatter",list("Setup Completely","Setup except coolant","No"))
 
 	if(!response || response == "No")
 		return
@@ -567,55 +491,43 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 		T.zone.air.update_values()
 
 
-	log_admin("[key_name(usr)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
-	message_admins(span_blue("[key_name_admin(usr)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]"), 1)
-	return
+	log_admin("[key_name(user)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
+	message_admins(span_blue("[key_name_admin(user)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]"))
 
 
-
-/client/proc/cmd_debug_mob_lists()
-	set category = "Debug.Investigate"
-	set name = "Debug Mob Lists"
-	set desc = "For when you just gotta know"
-
-	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
+ADMIN_VERB(cmd_debug_mob_lists, R_DEBUG, "Debug Mob Lists", "For when you just gotta know.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	switch(tgui_input_list(user, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.player_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.player_list,",")))
 		if("Admins")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
 		if("Living Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
 		if("Dead Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
 		if("Clients")
-			to_chat(usr, span_filter_debuglogs(jointext(GLOB.clients,",")))
+			to_chat(user, span_filter_debuglogs(jointext(GLOB.clients,",")))
 
-/client/proc/cmd_debug_using_map()
-	set category = "Debug.Investigate"
-	set name = "Debug Map Datum"
-	set desc = "Debug the map metadata about the currently compiled in map."
-
-	if(!check_rights(R_DEBUG))
-		return
-	debug_variables(using_map)
+ADMIN_VERB(cmd_debug_using_map, R_DEBUG, "Debug Map Datum", "Debug the map metadata about the currently compiled in map.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	user.debug_variables(using_map)
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	if(!SSticker)
-		tgui_alert_async(usr, "Wait until the game starts")
+		tgui_alert_async(src, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.UpdateAppearance()
 		var/state="[M.dna.GetSEState(block)?"on":"off"]"
-		var/blockname=assigned_blocks[block]
+		var/blockname = GLOB.assigned_blocks[block]
 		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
-		tgui_alert_async(usr, "Invalid mob")
+		tgui_alert_async(src, "Invalid mob")
 
 ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	GLOB.error_cache.show_to(user)
@@ -629,110 +541,84 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
 		tgui_alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
 
-/datum/admins/proc/change_weather()
-	set category = "Debug.Events"
-	set name = "Change Weather"
-	set desc = "Changes the current weather."
-
-	if(!check_rights(R_DEBUG))
+ADMIN_VERB(change_weather, R_DEBUG|R_EVENT, "Change Weather", "Changes the current weather.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/datum/planet/planet = tgui_input_list(user, "Which planet do you want to modify the weather on?", "Change Weather", SSplanets.planets)
+	if(!istype(planet))
 		return
-
-	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify the weather on?", "Change Weather", SSplanets.planets)
-	if(istype(planet))
-		var/datum/weather/new_weather = tgui_input_list(usr, "What weather do you want to change to?", "Change Weather", planet.weather_holder.allowed_weather_types)
-		if(new_weather)
-			planet.weather_holder.change_weather(new_weather)
-			planet.weather_holder.rebuild_forecast()
-			var/log = "[key_name(src)] changed [planet.name]'s weather to [new_weather]."
-			message_admins(log)
-			log_admin(log)
-
-/datum/admins/proc/toggle_firework_override()
-	set category = "Fun.Event Kit"
-	set name = "Toggle Weather Firework Override"
-	set desc = "Toggles ability for weather fireworks to affect weather on planet of choice."
-
-	if(!check_rights(R_DEBUG))
+	var/datum/weather/new_weather = tgui_input_list(user, "What weather do you want to change to?", "Change Weather", planet.weather_holder.allowed_weather_types)
+	if(!new_weather)
 		return
+	planet.weather_holder.change_weather(new_weather)
+	planet.weather_holder.rebuild_forecast()
+	var/log = "[key_name(user)] changed [planet.name]'s weather to [new_weather]."
+	message_admins(log)
+	log_admin(log)
 
-	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to toggle firework effects on?", "Change Weather", SSplanets.planets)
+ADMIN_VERB(toggle_firework_override, R_DEBUG|R_EVENT, "Toggle Weather Firework Override", "Toggles ability for weather fireworks to affect weather on planet of choice.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/datum/planet/planet = tgui_input_list(user, "Which planet do you want to toggle firework effects on?", "Change Weather", SSplanets.planets)
 	if(istype(planet) && planet.weather_holder)
 		planet.weather_holder.firework_override = !(planet.weather_holder.firework_override)
-		var/log = "[key_name(src)] toggled [planet.name]'s firework override to [planet.weather_holder.firework_override ? "on" : "off"]."
+		var/log = "[key_name(user)] toggled [planet.name]'s firework override to [planet.weather_holder.firework_override ? "on" : "off"]."
 		message_admins(log)
 		log_admin(log)
 
-/datum/admins/proc/change_time()
-	set category = "Debug.Events"
-	set name = "Change Planet Time"
-	set desc = "Changes the time of a planet."
-
-	if(!check_rights(R_DEBUG))
+ADMIN_VERB(change_time, R_DEBUG|R_EVENT, "Change Planet Time", "Changes the time of a planet.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/datum/planet/planet = tgui_input_list(user, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
+	if(!istype(planet))
 		return
+	var/datum/time/current_time_datum = planet.current_time
+	var/planet_hours = max(round(current_time_datum.seconds_in_day / 36000) - 1, 0)
+	var/new_hour = tgui_input_number(user, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")), planet_hours)
+	if(isnull(new_hour))
+		return
+	var/planet_minutes = max(round(current_time_datum.seconds_in_hour / 600) - 1, 0)
+	var/new_minute = tgui_input_number(user, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")), planet_minutes)
+	if(isnull(new_minute))
+		return
+	var/type_needed = current_time_datum.type
+	var/datum/time/new_time = new type_needed()
+	new_time = new_time.add_hours(new_hour)
+	new_time = new_time.add_minutes(new_minute)
+	planet.current_time = new_time
+	spawn(1)
+		planet.update_sun()
 
-	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
-	if(istype(planet))
-		var/datum/time/current_time_datum = planet.current_time
-		var/planet_hours = max(round(current_time_datum.seconds_in_day / 36000) - 1, 0)
-		var/new_hour = tgui_input_number(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")), planet_hours)
-		if(!isnull(new_hour))
-			var/planet_minutes = max(round(current_time_datum.seconds_in_hour / 600) - 1, 0)
-			var/new_minute = tgui_input_number(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")), planet_minutes)
-			if(!isnull(new_minute))
-				var/type_needed = current_time_datum.type
-				var/datum/time/new_time = new type_needed()
-				new_time = new_time.add_hours(new_hour)
-				new_time = new_time.add_minutes(new_minute)
-				planet.current_time = new_time
-				spawn(1)
-					planet.update_sun()
+	var/log = "[key_name(user)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
+	message_admins(log)
+	log_admin(log)
 
-				var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
-				message_admins(log)
-				log_admin(log)
-
-/client/proc/cmd_regenerate_asset_cache()
-	set category = "Debug.Assets"
-	set name = "Regenerate Asset Cache"
-	set desc = "Clears the asset cache and regenerates it immediately."
+ADMIN_VERB(cmd_regenerate_asset_cache, R_DEBUG|R_SERVER, "Regenerate Asset Cache", "Clears the asset cache and regenerates it immediately.", ADMIN_CATEGORY_DEBUG_ASSETS)
 	if(!CONFIG_GET(flag/cache_assets))
-		to_chat(usr, span_warning("Asset caching is disabled in the config!"))
+		to_chat(user, span_warning("Asset caching is disabled in the config!"))
 		return
 	var/regenerated = 0
-	for(var/datum/asset/A as() in subtypesof(/datum/asset))
-		if(!initial(A.cross_round_cachable))
+	for(var/datum/asset/current_asset as anything in subtypesof(/datum/asset))
+		if(!initial(current_asset.cross_round_cachable))
 			continue
-		if(A == initial(A._abstract))
+		if(current_asset == initial(current_asset._abstract))
 			continue
-		var/datum/asset/asset_datum = GLOB.asset_datums[A]
+		var/datum/asset/asset_datum = GLOB.asset_datums[current_asset]
 		asset_datum.regenerate()
 		regenerated++
-	to_chat(usr, span_notice("Regenerated [regenerated] asset\s."))
+	to_chat(user, span_notice("Regenerated [regenerated] asset\s."))
 
-/client/proc/cmd_clear_smart_asset_cache()
-	set category = "Debug.Assets"
-	set name = "Clear Smart Asset Cache"
-	set desc = "Clears the smart asset cache."
+ADMIN_VERB(cmd_clear_smart_asset_cache, R_DEBUG|R_SERVER, "Clear Smart Asset Cache", "Clears the smart asset cache.", ADMIN_CATEGORY_DEBUG_ASSETS)
 	if(!CONFIG_GET(flag/smart_cache_assets))
-		to_chat(usr, span_warning("Smart asset caching is disabled in the config!"))
+		to_chat(user, span_warning("Smart asset caching is disabled in the config!"))
 		return
 	var/cleared = 0
-	for(var/datum/asset/spritesheet_batched/A as() in subtypesof(/datum/asset/spritesheet_batched))
-		if(A == initial(A._abstract))
+	for(var/datum/asset/spritesheet_batched/current_asset as anything in subtypesof(/datum/asset/spritesheet_batched))
+		if(current_asset == initial(current_asset._abstract))
 			continue
-		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[initial(A.name)].json")
+		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[initial(current_asset.name)].json")
 		cleared++
-	to_chat(usr, span_notice("Cleared [cleared] asset\s."))
+	to_chat(user, span_notice("Cleared [cleared] asset\s."))
 
 // For spriters with long world loads, allows to reload test robot sprites
-/client/proc/cmd_reload_robot_sprite_test()
-	set category = "Debug.Sprites"
-	set name = "Reload Robot Test Sprites"
-	set desc = "Reloads the dmis from the test folder and creates the test datums."
-
+ADMIN_VERB(cmd_reload_robot_sprite_test, R_DEBUG|R_SERVER, "Reload Robot Test Sprites", "Reloads the dmis from the test folder and creates the test datums.", ADMIN_CATEGORY_DEBUG_SPRITES)
 	SSrobot_sprites.reload_test_sprites()
 
-ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
+ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", ADMIN_CATEGORY_FUN_ADD_NIF)
 	var/input_NIF
 	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 

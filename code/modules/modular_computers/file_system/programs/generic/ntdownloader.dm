@@ -155,8 +155,9 @@
 	data["disk_used"] = my_computer.hard_drive.used_capacity
 	var/list/all_entries[0]
 	for(var/datum/computer_file/program/P in GLOB.ntnet_global.available_station_software)
-		// Only those programs our user can run will show in the list
-		if(!P.can_run(user) && P.requires_access_to_download || my_computer.hard_drive.find_file_by_name(P.filename))
+		// Only those programs our user can run will show in the list.
+		// Pass the card inserted in the laptop's slot so slotted IDs are respected.
+		if(!P.can_run(user, 0, null, my_computer.card_slot?.stored_card) && P.requires_access_to_download || my_computer.hard_drive.find_file_by_name(P.filename))
 			continue
 		all_entries.Add(list(list(
 			"filename" = P.filename,

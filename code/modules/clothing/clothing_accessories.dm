@@ -65,10 +65,10 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/clothing/examine(var/mob/user)
+/obj/item/clothing/examine(mob/user)
 	. = ..(user)
 	if(LAZYLEN(accessories))
-		. += "It has the following attached: [counting_english_list(accessories)]"
+		. += "It has the following attached: [counting_english_list(user.client, accessories)]"
 
 /**
  *  Attach accessory A to src

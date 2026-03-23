@@ -19,8 +19,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
-var/global/list/obj/item/pda/PDAs = list()
-var/global/list/obj/item/communicator/all_communicators = list()
+GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
+GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 GLOBAL_LIST_INIT(restricted_camera_networks, list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS))
@@ -275,11 +275,17 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.wing_styles_list[path] = instance
 
 	paths = typesof(/datum/digest_mode)
-	for(var/T in paths)
-		var/datum/digest_mode/DM = new T
+	for(var/path in paths)
+		var/datum/digest_mode/DM = new path
 		GLOB.digest_modes[DM.id] = DM
 	init_crafting_recipes(GLOB.crafting_recipes)
 
+	paths = subtypesof(/datum/ai_laws)
+	for(var/path in paths)
+		var/datum/ai_laws/laws = new path
+		GLOB.admin_laws += laws
+		if(laws.selectable)
+			GLOB.player_laws += laws
 /*
 	// Custom species traits
 	paths = subtypesof(/datum/trait)
@@ -612,10 +618,10 @@ GLOBAL_LIST_INIT(changeling_fabricated_clothing, list(
 //  This is to make some of the more OP superpowers a larger PITA to activate,
 //  and to tell our new DNA datum which values to set in order to turn something
 //  on or off.
-var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
+GLOBAL_ALIST_EMPTY(dna_activity_bounds)
 
 // Used to determine what each block means (admin hax and species stuff on /vg/, mostly)
-var/global/list/assigned_blocks[DNA_SE_LENGTH]
+GLOBAL_ALIST_EMPTY(assigned_blocks)
 
 GLOBAL_LIST_EMPTY(gear_distributed_to)
 GLOBAL_LIST_EMPTY(overlay_cache) //cache recent overlays
@@ -630,21 +636,20 @@ GLOBAL_LIST_INIT(all_technomancer_gambit_spells, typesof(/obj/item/spell) - list
 	/obj/item/spell/summon,
 	/obj/item/spell/modifier))
 
-var/global/list/obj/machinery/telecomms/telecomms_list = list()
+GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/machinery/telecomms)
 
 // color-dir-dry
-var/global/list/image/fluidtrack_cache=list()
+GLOBAL_LIST_EMPTY_TYPED(fluidtrack_cache, /image)
 
-var/global/list/datum/stack_recipe/sandbag_recipes = list( \
-	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE))
+GLOBAL_LIST_INIT_TYPED(sandbag_recipes, /datum/stack_recipe, list( \
+	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE)))
 
-var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
-)
-var/global/list/datum/stack_recipe/rods_recipes = list( \
+GLOBAL_LIST_INIT_TYPED(wax_recipes, /datum/stack_recipe, list( \
+	new/datum/stack_recipe("candle", /obj/item/flame/candle)))
+
+GLOBAL_LIST_INIT_TYPED(rods_recipes, /datum/stack_recipe, list( \
 	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
-	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
-
+	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1)))
 
 GLOBAL_LIST_INIT(possible_plants, list(
 	"plant-1",
@@ -1331,8 +1336,8 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	"Exploration"	= /obj/item/robot_module/robot/exploration,
 	"Engineering"	= /obj/item/robot_module/robot/engineering,
 	"Janitor" 		= /obj/item/robot_module/robot/janitor,
-	"Gravekeeper"	= /obj/item/robot_module/robot/gravekeeper,
-	"Lost"			= /obj/item/robot_module/robot/lost,
+	"Gravekeeper"	= /obj/item/robot_module/robot/malf/gravekeeper,
+	"Lost"			= /obj/item/robot_module/robot/malf/lost,
 	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
 	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
 	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic,
@@ -1373,8 +1378,8 @@ GLOBAL_LIST_INIT(finds_as_strings, list(
 
 
 //tgui law manager
-var/global/list/datum/ai_laws/admin_laws
-var/global/list/datum/ai_laws/player_laws
+GLOBAL_LIST_EMPTY_TYPED(admin_laws, /datum/ai_laws)
+GLOBAL_LIST_EMPTY_TYPED(player_laws, /datum/ai_laws)
 
 //shield_gen/external
 GLOBAL_LIST_INIT(external_shield_gen_blockedturfs,  list(

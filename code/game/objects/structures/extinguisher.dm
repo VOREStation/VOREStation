@@ -6,6 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
+	flags = WALL_ITEM
 	var/obj/item/extinguisher/has_extinguisher
 	var/opened = 0
 
