@@ -24,9 +24,14 @@ export function TechwebDesignDisk(props) {
                 </Box>
                 :
               </Stack.Item>
-              <Stack.Item>
+              <Stack.Item width="32px" height="32px">
                 <Box
-                  className={`${design_cache[x].class} Techweb__DesignIcon`}
+                  className={`${design_cache[x].class}`}
+                  style={{
+                    transform: `${design_cache[x].transform}`,
+                    transformOrigin: 'top left',
+                    margin: `${design_cache[x].margin}`,
+                  }}
                 />
               </Stack.Item>
             </Stack>

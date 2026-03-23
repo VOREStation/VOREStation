@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(planets)
 	var/list/planet_datums = using_map.planet_datums_to_make
 	for(var/P in planet_datums)
 		var/datum/planet/NP = new P()
-		planets.Add(NP)
+		planets += NP
 		for(var/index in 1 to length(NP.expected_z_levels))
 			var/Z = NP.expected_z_levels[index]
 			if(!isnum(Z))

@@ -251,7 +251,7 @@
 
 /mob/living/carbon/human/inStasisNow()
 	var/stasisValue = getStasis()
-	if(stasisValue && (life_tick % stasisValue))
+	if(stasisValue && (life_tick % stasisValue) || HAS_TRAIT(src, TRAIT_STASIS))
 		return 1
 
 	return 0

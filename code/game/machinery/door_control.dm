@@ -5,6 +5,7 @@
 	icon_state = "doorctrl0"
 	power_channel = ENVIRON
 	layer = ABOVE_WINDOW_LAYER
+	flags = WALL_ITEM
 	var/desiredstate = 0
 	var/exposedwires = 0
 	var/wires = 3

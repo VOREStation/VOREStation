@@ -109,12 +109,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			SSticker.mode.antag_templates |= antag
 			message_admins("Admin [key_name_admin(usr)] added [antag.role_text] template to game mode.")
 
-	// I am very sure there's a better way to do this, but I'm not sure what it might be. ~Z
-	spawn(1)
-		for(var/datum/admins/admin in world)
-			if(usr.client == admin.owner)
-				admin.show_game_mode(usr)
-				return
+	SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_game_mode)
 
 /datum/game_mode/proc/announce() //to be called when round starts
 	to_chat(world, span_world("The current game mode is [capitalize(name)]!"))
@@ -264,7 +259,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		"radical Skrellian transevolutionaries",
 		"classified security operations"
 		)
-	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
+	GLOB.command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
 	if(GLOB.emergency_shuttle.returned() || station_was_nuked)

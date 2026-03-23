@@ -388,10 +388,10 @@
 		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
-		if(stored_shock_by_ref["\ref[src]"])
-			stored_shock_by_ref["\ref[src]"] += shock_damage
+		if(GLOB.stored_shock_by_ref["\ref[src]"])
+			GLOB.stored_shock_by_ref["\ref[src]"] += shock_damage
 		else
-			stored_shock_by_ref["\ref[src]"] = shock_damage
+			GLOB.stored_shock_by_ref["\ref[src]"] = shock_damage
 		return
 
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))
@@ -2005,7 +2005,7 @@
 			to_chat(src, "Mob doesn't exist anymore")
 			return
 
-		usr.client.cmd_admin_alienize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_alienize, H)
 
 	if(href_list[VK_HK_TURN_SKELETON])
 		if(!check_rights(R_FUN))
@@ -2052,7 +2052,7 @@
 			to_chat(src, "Mob doesn't exist anymore")
 			return
 
-		usr.client.cmd_admin_robotize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
 
 	/*
 	if(href_list[VV_HK_PURRBATION])

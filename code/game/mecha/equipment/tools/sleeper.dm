@@ -104,7 +104,7 @@
 				<head>
 				<title>[occupant] statistics</title>
 				<script language='javascript' type='text/javascript'>
-				[js_byjax]
+				[JS_BYJAX]
 				</script>
 				<style>
 				h3 {margin-bottom:2px;font-size:14px;}

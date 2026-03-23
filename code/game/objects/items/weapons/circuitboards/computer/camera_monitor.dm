@@ -17,6 +17,7 @@
 /obj/item/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")
 	build_path = /obj/machinery/computer/security/wooden_tv
+	hidden = TRUE
 
 /obj/item/circuitboard/security/engineering
 	name = T_BOARD("engineering camera monitor")

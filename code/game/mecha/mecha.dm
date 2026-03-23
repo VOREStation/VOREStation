@@ -2183,8 +2183,8 @@
 						.hidden {display: none;}
 						</style>
 						<script language='javascript' type='text/javascript'>
-						[js_byjax]
-						[js_dropdowns]
+						[JS_BYJAX]
+						[JS_DROPDOWN]
 						function ticker() {
 							setInterval(function(){
 								window.location='byond://?src=\ref[src]&update_content=1';
@@ -2796,7 +2796,7 @@
 		src.log_append_to_last("Armor saved.")
 		src.occupant_message(span_notice("\The [user]'s attack is stopped by the armor."))
 		visible_message(span_infoplain(span_bold("\The [user]") + " rebounds off [src.name]'s armor!"))
-		user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
+		add_attack_logs(user, src, "attacked")
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 
 	else if(damage < temp_damage_minimum)//Pathetic damage levels just don't harm MECH.
@@ -2811,7 +2811,7 @@
 		if(damage > internal_damage_minimum)	//Only decently painful attacks trigger a chance of mech damage.
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		visible_message(span_danger("[user] [attack_message] [src]!"))
-		user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
+		add_attack_logs(user, src, "attacked")
 
 	return 1
 

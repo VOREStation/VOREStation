@@ -42,6 +42,7 @@
 /obj/item/circuitboard/card/centcom
 	name = T_BOARD("CentCom ID card modification console")
 	build_path = /obj/machinery/computer/card/centcom
+	hidden = TRUE // Mapper only centcom machine
 
 /obj/item/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
@@ -54,7 +55,7 @@
 
 /obj/item/circuitboard/skills/pcu
 	name = T_BOARD("employment records PCU")
-	build_path = /obj/machinery/computer/skills
+	build_path = /obj/machinery/computer/skills // this needs to be fixed someday, a pcu subtype needs to be made, but it affects all maps...
 
 /obj/item/circuitboard/stationalert_engineering
 	name = T_BOARD("station alert console (engineering)")
@@ -75,6 +76,7 @@
 /obj/item/circuitboard/pod
 	name = T_BOARD("massdriver control")
 	build_path = /obj/machinery/computer/pod
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/robotics
 	name = T_BOARD("robotics control console")
@@ -110,6 +112,7 @@
 	name = T_BOARD("turbine control console")
 	build_path = /obj/machinery/computer/turbine_computer
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/solar_control
 	name = T_BOARD("solar control console")
@@ -158,16 +161,19 @@
 	name = T_BOARD("mining shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/mining
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/engineering_shuttle
 	name = T_BOARD("engineering shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/engineering
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/research_shuttle
 	name = T_BOARD("research shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/research
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/aifixer
 	name = T_BOARD("AI integrity restorer")
@@ -178,22 +184,27 @@
 /obj/item/circuitboard/helm
 	name = T_BOARD("helm control console")
 	build_path = /obj/machinery/computer/ship/helm
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/engine
 	name = T_BOARD("engine control console")
 	build_path = /obj/machinery/computer/ship/engines
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/nav
 	name = T_BOARD("navigation console")
 	build_path = /obj/machinery/computer/ship/navigation
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/nav/tele
 	name = T_BOARD("navigation telescreen")
 	build_path = /obj/machinery/computer/ship/navigation/telescreen
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/sensors
 	name = T_BOARD("sensors console")
 	build_path = /obj/machinery/computer/ship/sensors
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
@@ -204,6 +215,7 @@
 	name = T_BOARD("prison shuttle control console")
 	build_path = /obj/machinery/computer/prison_shuttle
 	origin_tech = list(TECH_DATA = 2)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/rcon_console
 	name = T_BOARD("RCON remote control console")

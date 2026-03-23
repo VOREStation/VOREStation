@@ -15,7 +15,7 @@
 */
 
 /// Cargo
-/datum/robot_sprite/dogborg/mining/gooborg
+/datum/robot_sprite/dogborg/tall/mining/gooborg
 	name = "Gooborg - Cargo"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "catgo"
@@ -28,24 +28,20 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_MELEE_SPRITE //Hammer
-	icon_y = 64
-	vis_height = 64
 
-/datum/robot_sprite/dogborg/mining/gooborg/miner
+/datum/robot_sprite/dogborg/tall/mining/gooborg/miner
 	name = "Gooborg - Miner"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "catgo"
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_miner.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE //Hammer & PKA
-	icon_y = 64
-	vis_height = 64
 
 /// Engineering
-/datum/robot_sprite/dogborg/engineering/gooborg
+/datum/robot_sprite/dogborg/tall/engineering/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "engi"
@@ -58,12 +54,10 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_engi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	icon_y = 64
-	vis_height = 64
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
 /// Crisis
-/datum/robot_sprite/dogborg/crisis/gooborg
+/datum/robot_sprite/dogborg/tall/crisis/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "meowdical"
@@ -76,13 +70,11 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_med.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	module_type = list("Crisis", "Surgeon")
-	icon_y = 64
-	vis_height = 64
 
 /// Science
-/datum/robot_sprite/dogborg/science/gooborg
+/datum/robot_sprite/dogborg/tall/science/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "sci"
@@ -95,12 +87,10 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_sci.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	icon_y = 64
-	vis_height = 64
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
 /// Security
-/datum/robot_sprite/dogborg/security/gooborg
+/datum/robot_sprite/dogborg/tall/security/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "sec"
@@ -113,19 +103,17 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_sec.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_MELEE_SPRITE //Melee is baton.
-	icon_y = 64
-	vis_height = 64
 
-/datum/robot_sprite/dogborg/security/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/security/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 
 /// Service
-/datum/robot_sprite/dogborg/service/gooborg
+/datum/robot_sprite/dogborg/tall/service/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "service"
@@ -138,12 +126,10 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	module_type = list("Service", "Clerical")
-	icon_y = 64
-	vis_height = 64
 
-/datum/robot_sprite/dogborg/janitor/gooborg
+/datum/robot_sprite/dogborg/tall/janitor/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "service"
@@ -156,11 +142,9 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_jani.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	icon_y = 64
-	vis_height = 64
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
-/datum/robot_sprite/dogborg/combat_gooborg
+/datum/robot_sprite/dogborg/tall/combat/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "malf"
@@ -173,18 +157,15 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_peacekeeper.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_MELEE_SPRITE //Baton
-	module_type = "Combat"
-	icon_y = 64
-	vis_height = 64
 
-/datum/robot_sprite/dogborg/combat_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	return ..()
 
-/datum/robot_sprite/dogborg/clown/gooborg
+/datum/robot_sprite/dogborg/tall/clown/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "syndicat"
@@ -197,12 +178,25 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_jester.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	icon_y = 64
-	vis_height = 64
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
 //Exploration.
-/datum/robot_sprite/dogborg/ninja_gooborg
+/datum/robot_sprite/dogborg/tall/explorer/gooborg
+	name = "Gooborg"
+	sprite_icon_state = "base"
+	//sprite_hud_icon_state = "explo"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_vore_belly_resting_sprites = TRUE
+	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_explo.dmi'
+	rest_sprite_options = list("Default", "Bellyup", "Sit")
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
+
+/datum/robot_sprite/dogborg/tall/ninja/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "syndicat"
@@ -215,21 +209,18 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/custom/gooborg_ninja.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
-	module_type = "Ninja"
 	sprite_hud_icon_state = "malf" //malf!!
-	icon_y = 64
-	vis_height = 64
 
-/datum/robot_sprite/dogborg/ninja_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/ninja/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 
 //Syndicate
-/datum/robot_sprite/dogborg/combat_medic/gooborg
+/datum/robot_sprite/dogborg/tall/combat_medic/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "malf"
@@ -242,19 +233,17 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/custom/gooborg_syndi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
 	module_type = list("Combat Medic", "Mechanist", "Protector") //You get all three modules.
-	icon_y = 64
-	vis_height = 64
 
-/datum/robot_sprite/dogborg/combat_medic/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat_medic/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 
-/datum/robot_sprite/dogborg/command/gooborg
+/datum/robot_sprite/dogborg/tall/command/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "clerical"
@@ -267,6 +256,36 @@
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_cmd.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	icon_y = 64
-	vis_height = 64
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
+
+//Standard
+/datum/robot_sprite/dogborg/tall/standard/gooborg
+	name = "Gooborg"
+	sprite_icon_state = "base"
+	//sprite_hud_icon_state = "standard"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_vore_belly_resting_sprites = TRUE
+	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_standard.dmi'
+	rest_sprite_options = list("Default", "Bellyup", "Sit")
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
+
+/datum/robot_sprite/dogborg/tall/standard/gooborg_rgb
+	name = "Gooborg - RGB"
+	sprite_icon_state = "base"
+	//sprite_hud_icon_state = "standard"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_vore_belly_resting_sprites = TRUE
+	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
+	is_whitelisted = TRUE // admin use only
+	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_RGB.dmi'
+	rest_sprite_options = list("Default", "Bellyup", "Sit")
+	belly_capacity_list = list("sleeper" = 2, "throat" = 2)

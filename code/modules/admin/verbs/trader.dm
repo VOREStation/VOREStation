@@ -59,7 +59,7 @@ GLOBAL_VAR_INIT(can_call_traders, 1)
 	if(GLOB.send_beruang)
 		return
 
-	command_announcement.Announce("Incoming cargo hauler: Beruang (Reg: VRS 22EB1F11C2).", "[station_name()] Traffic Control")
+	GLOB.command_announcement.Announce("Incoming cargo hauler: Beruang (Reg: VRS 22EB1F11C2).", "[station_name()] Traffic Control")
 
 	GLOB.can_call_traders = 0 // Only one call per round.
 	GLOB.send_beruang = 1

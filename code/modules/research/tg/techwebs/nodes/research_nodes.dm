@@ -9,15 +9,32 @@
 		"rdconsole",
 		"bomb_tester",
 		"tech_disk",
-		// "rdservercontrol",
-		// "doppler_array",
+		"rdservercontrol",
+		"doppler_array",
 		// "experimentor",
 		"destructive_analyzer",
 		// "destructive_scanner",
+		"artifact_harvester",
+		"artifact_scanpad",
 		// "laptop",
 		// "portadrive_basic",
 		// "portadrive_advanced",
 		// "portadrive_super",
+		"electropack",
+	)
+
+/datum/techweb_node/protolathe_boards
+	id = TECHWEB_NODE_PROTOLATHE_BOARDS
+	starting_node = TRUE
+	display_name = "Protolathe Boards"
+	description = "The fundamental technology required for production of more experimental protolathe boards."
+	design_ids = list(
+		"protolathe_science",
+		"protolathe_service",
+		"protolathe_medical",
+		"protolathe_cargo",
+		"protolathe_engineering",
+		"protolathe_security",
 	)
 
 /datum/techweb_node/bluespace_theory
@@ -48,7 +65,6 @@
 		"belt_holding_utility",
 		"bluespacebeaker",
 		"bsflare",
-		"bluespace_crystal",
 		"beacon",
 		"beacon_locator",
 		"chameleon",
@@ -63,7 +79,6 @@
 		"shelter_capsule_kitchen",
 		"shelter_capsule_pocketdorm",
 		"shelter_capsule_luxuryrecroom",
-		// "ore_silo",
 		// "plumbing_receiver",
 		// "adv_watering_can",
 		// "bluespace_coffeepot",

@@ -13,17 +13,6 @@
 
 	owner = S
 
-	if(!admin_laws)
-		admin_laws = new()
-		player_laws = new()
-
-		init_subtypes(/datum/ai_laws, admin_laws)
-		admin_laws = dd_sortedObjectList(admin_laws)
-
-		for(var/datum/ai_laws/laws in admin_laws)
-			if(laws.selectable)
-				player_laws += laws
-
 /datum/tgui_module/law_manager/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
@@ -113,14 +102,14 @@
 			return TRUE
 
 		if("state_law_set")
-			var/datum/ai_laws/ALs = locate(params["state_law_set"]) in (is_admin(ui.user) ? admin_laws : player_laws)
+			var/datum/ai_laws/ALs = locate(params["state_law_set"]) in (is_admin(ui.user) ? GLOB.admin_laws : GLOB.player_laws)
 			if(ALs)
 				owner.statelaws(ALs)
 			return TRUE
 
 		if("transfer_laws")
 			if(is_malf(ui.user))
-				var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(ui.user) ? admin_laws : player_laws)
+				var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(ui.user) ? GLOB.admin_laws : GLOB.player_laws)
 				if(ALs)
 					log_and_message_admins("has transfered the [ALs.name] laws to [owner].")
 					ALs.sync(owner, 0)
@@ -165,7 +154,7 @@
 		channels[++channels.len] = list("channel" = ch_name)
 	data["channel"] = owner.lawchannel
 	data["channels"] = channels
-	data["law_sets"] = package_multiple_laws(data["isAdmin"] ? admin_laws : player_laws)
+	data["law_sets"] = package_multiple_laws(data["isAdmin"] ? GLOB.admin_laws : GLOB.player_laws)
 
 	return data
 

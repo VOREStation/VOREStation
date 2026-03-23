@@ -154,14 +154,12 @@
 			var/datum/unarmed_attack/attack = H.get_unarmed_attack(threatened, BP_TORSO)
 			if(!attack)
 				damage_guess += 5
-
-			var/punch_damage = attack.get_unarmed_damage(H)
+			else
+				damage_guess += attack.get_unarmed_damage(H)
 			if(H.gloves)
 				if(istype(H.gloves, /obj/item/clothing/gloves))
 					var/obj/item/clothing/gloves/G = H.gloves
-					punch_damage += G.punch_force
-
-			damage_guess += punch_damage
+					damage_guess += G.punch_force
 
 		else
 			damage_guess += 5

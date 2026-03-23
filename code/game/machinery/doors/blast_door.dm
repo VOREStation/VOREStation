@@ -64,7 +64,6 @@
 		icon_state = icon_state_closed
 	else
 		icon_state = icon_state_open
-	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
 // Proc: emag_act()
@@ -90,6 +89,7 @@
 	update_nearby_tiles()
 	update_icon()
 	set_opacity(0)
+	rad_insulation = RAD_NO_INSULATION
 	addtimer(CALLBACK(src, PROC_REF(complete_force_open)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/door/blast/proc/complete_force_open()
@@ -112,6 +112,7 @@
 	density = TRUE
 	update_nearby_tiles()
 	update_icon()
+	rad_insulation = RAD_EXTREME_INSULATION
 	if(istransparent)
 		set_opacity(0)
 	else

@@ -136,7 +136,7 @@
 
 		//Get out list of viable PDAs
 		var/list/obj/item/pda/sendPDAs = list()
-		for(var/obj/item/pda/P in PDAs)
+		for(var/obj/item/pda/P in GLOB.PDAs)
 			if(!P.owner || P.hidden)
 				continue
 			var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
@@ -299,7 +299,7 @@
 				return TRUE
 
 			var/obj/item/pda/PDARec = null
-			for(var/obj/item/pda/P in PDAs)
+			for(var/obj/item/pda/P in GLOB.PDAs)
 				if(!P.owner || P.hidden)
 					continue
 				var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)

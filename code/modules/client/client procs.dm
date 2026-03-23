@@ -433,7 +433,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 // Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
 
 /proc/get_player_age(key)
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return null
 
@@ -454,7 +453,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if ( IsGuestKey(src.key) )
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
