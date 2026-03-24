@@ -297,16 +297,16 @@
 
 	power_loss = 1 //Doesn't lose power. Instead it uses collect_eff
 
-	var/collect_eff = 0.8
+	var/collect_eff = 1
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
-	collect_eff = 0.75
+	collect_eff = 1
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		collect_eff += C.rating * 0.05
+		collect_eff += C.rating * 1
 
 /obj/machinery/power/tesla_coil/collector/coil_act(var/power)
-	var/power_produced = power * collect_eff
+	var/power_produced = power * collect_eff //A normal tesla gets 100% power. These ones get 200% at T1, 300% at T2, 400% at T3, 500% at T4, and 600% at T5. However, they don't zap in exchange. These essentially are grounding rods that produce power.
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
