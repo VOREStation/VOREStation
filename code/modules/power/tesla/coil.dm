@@ -19,7 +19,7 @@
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
 	var/zap_range = 5
-	var/lossy_transfer = TRUE  //If true, we lose power upon shooting the next beam by our power_loss var.
+	var/lossy_transfer = TRUE  //If true, we lose power upon shooting the next beam by our power_loss var. Only comes to play if power_loss is > 1
 
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
