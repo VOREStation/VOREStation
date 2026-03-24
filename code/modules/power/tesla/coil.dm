@@ -161,7 +161,7 @@
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_produced)
+	tesla_zap(src, zap_range, power_produced)
 
 /obj/machinery/power/tesla_coil/proc/zap()
 	if((last_zap + zap_cooldown) > world.time || !powernet)
@@ -172,7 +172,7 @@
 	var/power = (powernet.avail/2)
 	draw_power(power)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 10, power/(coeff/2))
+	tesla_zap(src, zap_range, power/(coeff/2))
 
 /obj/machinery/power/tesla_coil/relay
 	name = "tesla relay coil"
@@ -197,7 +197,7 @@
 	var/power_relayed = power * relay_efficiency
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_relayed)
+	tesla_zap(src, zap_range, power_relayed)
 
 /obj/machinery/power/tesla_coil/relay/examine(mob/user)
 	. = ..()
@@ -227,7 +227,7 @@
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	for(var/i = 0, i < split_count, i++)
-		tesla_zap(src, 5, power_per_bolt)
+		tesla_zap(src, zap_range, power_per_bolt)
 
 /obj/machinery/power/tesla_coil/splitter/examine(mob/user)
 	. = ..()
@@ -256,7 +256,7 @@
 	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_produced)
+	tesla_zap(src, zap_range, power_produced)
 
 
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
@@ -300,6 +300,8 @@
 	power_loss = 1 //Doesn't lose power. Instead it uses collect_eff
 
 	var/collect_eff = 1
+
+	zap_range = 0
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
