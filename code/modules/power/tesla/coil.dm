@@ -225,9 +225,9 @@
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
-	amp_eff = 0
+	amp_eff = 1
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		amp_eff += C.rating * 2
+		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
 	var/power_produced = power / power_loss
