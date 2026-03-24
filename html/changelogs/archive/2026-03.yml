@@ -339,3 +339,12 @@
   Will:
   - bugfix: Adds missing cable coils in autolathe.
   - bugfix: Autolathe efficiency and speed upgrades corrected to virgo expected numbers
+2026-03-24:
+  Will:
+  - rscadd: Lightpainter is available in the lathes
+  - code_imp: Circuitboard unit test
+  - bugfix: multiple cryopod types have correct default circuitboard
+  - bugfix: security alert console has the correct default circuitboard
+  - bugfix: refinery filter has the correct default circuitboard
+  - bugfix: pump relay has the correct default circuitboard
+  - balance: chem sprayer does not require protolathe hacking to print
