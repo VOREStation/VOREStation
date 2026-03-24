@@ -120,7 +120,7 @@
 		to_chat(user, span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		return
-	if(default_deconstruction_crowbar(user, W))
+	if(!active && default_deconstruction_crowbar(user, W))
 		return
 	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
