@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
 
 GLOBAL_LIST_INIT(reagent_containers_can_be_placed_into, list(
 	REAGENTCONTAINER_CANBEPLACED_DEFAULT = list(
-		/obj/machinery/chem_master/,
+		/obj/machinery/chem_master,
 		/obj/machinery/chemical_dispenser,
 		/obj/machinery/reagentgrinder,
 		/obj/structure/table,
@@ -440,13 +440,14 @@ GLOBAL_LIST_INIT(reagent_containers_can_be_placed_into, list(
 		/mob/living/simple_mob/animal/passive/cow,
 		/mob/living/simple_mob/animal/goat,
 		/obj/machinery/sleeper,
-		/obj/machinery/smartfridge/,
+		/obj/machinery/smartfridge,
 		/obj/machinery/biogenerator,
 		/obj/structure/frame,
 		/obj/machinery/radiocarbon_spectrometer,
 		/obj/machinery/portable_atmospherics/powered/reagent_distillery,
 		/obj/machinery/computer/pandemic,
-		/obj/vehicle/train/trolley_tank
+		/obj/machinery/reagent_refinery,
+		/obj/vehicle/train/trolley_tank,
 	),
 	REAGENTCONTAINER_CANBEPLACED_WATERCOOLER = list(
 		/obj/structure/table,
