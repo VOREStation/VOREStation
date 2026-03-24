@@ -157,7 +157,6 @@
 #define TECHWEB_NODE_UNREGULATED_BLUESPACE "unregulated_bluespace"
 #define TECHWEB_NODE_XENOARCHEOLOGY "xenoarcheology"
 #define TECHWEB_NODE_XENOBIOLOGY "xenobiology"
-#define TECHWEB_NODE_XENOBOTANY "xenobotany"
 #define TECHWEB_NODE_TELEPORTER "teleporter"
 #define TECHWEB_NODE_CONFETTI "confetti"
 #define TECHWEB_NODE_RSF "rapid_service_fab"

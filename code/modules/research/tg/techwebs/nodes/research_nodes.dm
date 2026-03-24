@@ -127,19 +127,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
 
-/datum/techweb_node/xenobotany
-	id = TECHWEB_NODE_XENOBOTANY
-	display_name = "Xenobotany Research"
-	description = "Researching exotic plants and the things they can be made to produce through mutation."
-	prereq_ids = list(TECHWEB_NODE_FUNDIMENTAL_SCI)
-	design_ids = list(
-		"botany_extractor",
-		"botany_editor",
-		"botany_seedextractor",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
-	announce_channels = list(CHANNEL_SCIENCE)
-
 /datum/techweb_node/anomaly_research
 	id = TECHWEB_NODE_ANOMALY_RESEARCH
 	display_name = "Anomaly Research"
