@@ -120,8 +120,11 @@
 		to_chat(user, span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		return
-	if(!active && default_deconstruction_crowbar(user, W))
-		return
+	if(!active)
+		if(default_deconstruction_crowbar(user, W))
+			return
+		if(default_part_replacement(user, W))
+			return
 	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
 			to_chat(user, span_filter_notice("There is already a data disk loaded."))
