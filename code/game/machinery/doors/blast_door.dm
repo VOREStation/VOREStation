@@ -43,6 +43,10 @@
 /obj/machinery/door/blast/Initialize(mapload)
 	. = ..()
 	implicit_material = get_material_by_name(MAT_PLASTEEL)
+	if(density)
+		rad_insulation = RAD_EXTREME_INSULATION
+	else
+		rad_insulation = RAD_NO_INSULATION
 
 /obj/machinery/door/blast/get_material()
 	return implicit_material
