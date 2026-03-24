@@ -282,10 +282,10 @@
 
 	//per type stuff:
 	if(closest_tesla_coil)
-		closest_tesla_coil.tesla_act(power, explosive, stun_mobs)
+		closest_tesla_coil.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_grounding_rod)
-		closest_grounding_rod.tesla_act(power, explosive, stun_mobs)
+		closest_grounding_rod.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_mob)
 		var/shock_damage = CLAMP(round(power/400), 10, 90) + rand(-5, 5)

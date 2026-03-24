@@ -1,4 +1,4 @@
-#define AMPLIFIER_STRENGTH 0.2 //Each tier of capacitor increases the amplifier's strength by this much, divided by 2. At 5 rating, 50% increase per relay.
+#define AMPLIFIER_STRENGTH 0.2 //Each tier of capacitor increases the amplifier's strength by this much. At 5 rating, 100% increase per relay.
 
 /obj/machinery/power/tesla_coil
 	name = "tesla coil"
@@ -262,20 +262,19 @@
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
-	var/amp_eff = 2.15
+	var/amp_eff = 1.075
 	power_loss = 1
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
-	amp_eff = 1.15
+	amp_eff = 1.075
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		amp_eff += C.rating * AMPLIFIER_STRENGTH
+		amp_eff += ((C.rating * AMPLIFIER_STRENGTH) - AMPLIFIER_STRENGTH)
 	input_power_multiplier = 1 //no mult for you
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(power, explosive, current_jumps)
-	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it's only 1/2 as effective.
-	var/power_produced = ((power * (amp_eff/2)) / diminishing_returns) //When given 100 power: T1 = 107.5 T2 = 117.5 T3 = 127.5 T4 = 137.5 T5 = 147.5. Assuming 50 jumps at T5 (with no diminnishing returns)
-	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
+	var/diminishing_returns = 1 + ((current_jumps * 0.5)-0.5) //The more jumps, the less effective the amplifier is. At 3 jumps, it's only 1/2 as effective. At 5, only 33% as effective. At 10, only 18%, etc
+	var/power_produced = ((power * amp_eff) / diminishing_returns)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
@@ -287,8 +286,8 @@
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += span_info("This tesla coil will amplify any power it receives by [round((((amp_eff/2) * 100) - 100), 0.1)]% of the original power when relaying it.")
-		. += span_info("This tesla coil will only produce [round(((1 / amp_eff) * 100), 0.1)]% of the power it receives.")
+		. += span_info("This tesla coil will amplify any power it receives by [round((((amp_eff) * 100) - 100), 0.1)]% of the original power when relaying it.")
+		. += span_danger("This tesla coil will NOT produce produce energy.")
 
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
