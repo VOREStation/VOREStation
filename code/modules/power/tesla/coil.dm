@@ -315,6 +315,7 @@
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
+	input_power_multiplier = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		input_power_multiplier += C.rating * C.rating //T1 = 200% T2 = 400% T3 = 900% T4 = 1600% T5 = 2500%
 	if(input_power_multiplier == 1)
