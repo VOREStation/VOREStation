@@ -15,7 +15,7 @@
 
 	var/power_loss = 2
 	var/input_power_multiplier = 1
-	var/zap_cooldown = 100
+	var/zap_cooldown = 10
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
 	var/zap_range = 5
@@ -63,10 +63,10 @@
 
 /obj/machinery/power/tesla_coil/RefreshParts()
 	input_power_multiplier = 0
-	zap_cooldown = 100
+	zap_cooldown = 10
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		input_power_multiplier += C.rating
-		zap_cooldown -= (C.rating * 20)
+		zap_cooldown -= (C.rating - 1)
 
 /obj/machinery/power/tesla_coil/update_icon()
 	if(panel_open)
@@ -154,32 +154,36 @@
 		return
 	..()
 
-/obj/machinery/power/tesla_coil/tesla_act(var/power)
+/obj/machinery/power/tesla_coil/tesla_act(power, explosive, current_jumps)
 	if(anchored && !panel_open)
 		being_shocked = TRUE
-		coil_act(power)
+		coil_act(power, explosive, current_jumps)
 		//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
-		spawn(10) reset_shocked()
+		spawn(zap_cooldown) reset_shocked()
+	else if(anchored && panel_open) //Doing maintenance. Just act like a grounding rod.
+		being_shocked = TRUE
+		spawn(zap_cooldown) reset_shocked()
 	else
 		..()
 
-/obj/machinery/power/tesla_coil/proc/coil_act(var/power)
+/obj/machinery/power/tesla_coil/proc/coil_act(power, explosive, current_jumps)
 	var/power_produced = power / power_loss
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, zap_range, power_produced)
+	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
-/obj/machinery/power/tesla_coil/proc/zap()
+//Unused.
+/obj/machinery/power/tesla_coil/proc/zap(power, explosive, current_jumps)
 	if((last_zap + zap_cooldown) > world.time || !powernet)
 		return FALSE
 	last_zap = world.time
 	var/coeff = (20 - ((input_power_multiplier - 1) * 3))
 	coeff = max(coeff, 10)
-	var/power = (powernet.avail/2)
+	power = (powernet.avail/2)
 	draw_power(power)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, zap_range, power/(coeff/2))
+	tesla_zap(src, zap_range, power/(coeff/2), current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/relay
 	name = "tesla relay coil"
@@ -200,11 +204,12 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		relay_efficiency += C.rating * 0.05
 
-/obj/machinery/power/tesla_coil/relay/coil_act(var/power)
-	var/power_relayed = power * relay_efficiency
+/obj/machinery/power/tesla_coil/relay/coil_act(power, explosive, current_jumps)
+	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it's only 1/2 as effective.
+	var/power_relayed = ((power * relay_efficiency) / diminishing_returns)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, zap_range, power_relayed)
+	tesla_zap(src, zap_range, power_relayed, current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/relay/examine(mob/user)
 	. = ..()
@@ -233,14 +238,14 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		split_count += C.rating
 
-/obj/machinery/power/tesla_coil/splitter/coil_act(var/power)
+/obj/machinery/power/tesla_coil/splitter/coil_act(power, explosive, current_jumps)
 	var/power_per_bolt = power / (split_count + 1)
 	var/power_produced = power_per_bolt / power_loss
 	add_avail(power_produced * input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	for(var/i = 0, i < split_count, i++)
-		tesla_zap(src, zap_range, power_per_bolt)
+		tesla_zap(src, zap_range, power_per_bolt, current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/splitter/examine(mob/user)
 	. = ..()
@@ -249,7 +254,7 @@
 
 /obj/machinery/power/tesla_coil/amplifier
 	name = "tesla amplifier coil"
-	desc = "Designed to amplify power moving through it rather than collecting it."
+	desc = "Designed to amplify power moving through it rather than collecting it. Has diminishing returns the more relays the tesla bolt has passed through."
 	icon_state = "amp0"
 	icontype = "amp"
 
@@ -265,12 +270,13 @@
 		amp_eff += C.rating
 	input_power_multiplier = 1 //no mult for you
 
-/obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
-	var/power_produced = power * (amp_eff/2) //When given 100 power: T1 = 107.5 T2 = 157.5 T3 = 207.5 T4 = 257.5 T5 = 307.5
+/obj/machinery/power/tesla_coil/amplifier/coil_act(power, explosive, current_jumps)
+	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it's only 1/2 as effective.
+	var/power_produced = ((power * (amp_eff/2)) / diminishing_returns) //When given 100 power: T1 = 107.5 T2 = 157.5 T3 = 207.5 T4 = 257.5 T5 = 307.5
 	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, zap_range, power_produced)
+	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
 
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
@@ -295,13 +301,13 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		zap_range += C.rating * 6
 
-/obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
+/obj/machinery/power/tesla_coil/recaster/coil_act(power, explosive, current_jumps)
 	var/power_relayed = power / power_loss
 	var/power_produced = power / (power_loss * 2)
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
-	tesla_zap(src, zap_range, power_relayed)
+	tesla_zap(src, zap_range, power_relayed, current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/collector
 	name = "tesla collector coil"
@@ -323,7 +329,7 @@
 	if(input_power_multiplier == 1)
 		input_power_multiplier = 2
 
-/obj/machinery/power/tesla_coil/collector/coil_act(var/power)
+/obj/machinery/power/tesla_coil/collector/coil_act(power, explosive, current_jumps)
 	add_avail(power*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -377,7 +383,7 @@
 		return
 	..()
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power)
+/obj/machinery/power/grounding_rod/tesla_act(power, explosive, current_jumps)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 	else

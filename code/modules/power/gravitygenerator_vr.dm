@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	if(prob(20))
 		set_broken()
 
-/obj/machinery/gravity_generator/tesla_act(power, tesla_flags)
+/obj/machinery/gravity_generator/tesla_act(power, explosive, current_jumps)
 	..()
 	qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
