@@ -53,6 +53,15 @@
 	var/failed_task = 0
 	var/disk_needs_genes = 0
 
+/obj/machinery/botany/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+
+/* Currently part upgrades do nothing
+/obj/machinery/botany/RefreshParts()
+	..()
+*/
+
 /obj/machinery/botany/process()
 
 	..()
@@ -104,8 +113,8 @@
 		to_chat(user, span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		return
-//	if(default_deconstruction_crowbar(user, W))	//No circuit boards to give.
-//		return
+	if(default_deconstruction_crowbar(user, W))
+		return
 	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
 			to_chat(user, span_filter_notice("There is already a data disk loaded."))
@@ -137,6 +146,7 @@
 
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
+	circuit = /obj/item/circuitboard/botany_extractor
 
 /obj/machinery/botany/extractor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -265,6 +275,7 @@
 	name = "bioballistic delivery system"
 	icon_state = "traitgun"
 	disk_needs_genes = 1
+	circuit = /obj/item/circuitboard/botany_editor
 
 /obj/machinery/botany/editor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
