@@ -198,6 +198,8 @@
 		if(istype(A, /obj/machinery/power/tesla_coil))
 			var/dist = get_dist(source, A)
 			var/obj/machinery/power/tesla_coil/C = A
+			if(!C.anchored)
+				continue
 			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !C.being_shocked)
 				closest_dist = dist
 
