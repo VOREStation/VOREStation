@@ -4,7 +4,6 @@ SUBSYSTEM_DEF(job)
 		/datum/controller/subsystem/mapping,
 	)
 	flags = SS_NO_FIRE
-	init_stage = INITSTAGE_EARLY
 
 		//List of all jobs
 	var/list/datum/job/occupations = list()
