@@ -23,9 +23,6 @@
 	var/zap_range = 5
 	var/lossy_transfer = TRUE  //If true, we lose power upon shooting the next beam by our power_loss var. Only comes to play if power_loss is > 1
 
-/obj/machinery/power/tesla_coil/pre_mapped
-	anchored = TRUE
-
 /obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()
 	if(anchored)
@@ -283,10 +280,6 @@
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
-/obj/machinery/power/tesla_coil/amplifier/mapspawn
-	anchored = TRUE
-
-
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
@@ -397,5 +390,48 @@
 		flick("grounding_rodhit", src)
 	else
 		..()
+
+//Mapspawn variants of each.
+/obj/machinery/power/tesla_coil/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+
+/obj/machinery/power/tesla_coil/relay/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/relay/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+
+/obj/machinery/power/tesla_coil/splitter/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/splitter/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+
+/obj/machinery/power/tesla_coil/amplifier/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/amplifier/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+
+/obj/machinery/power/tesla_coil/recaster/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/recaster/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+
+/obj/machinery/power/tesla_coil/collector/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/collector/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
 
 #undef AMPLIFIER_STRENGTH
