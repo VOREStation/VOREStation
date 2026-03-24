@@ -35,10 +35,10 @@
 		var/power_calculated = FALSE
 		if(input_power_multiplier != 1) //Greater than 1 or less than 1.
 			if(power_loss != 1)
-				. += span_info("This tesla coil will multiply any power it produces by [(input_power_multiplier/power_loss) * 100]%.")
+				. += span_info("This tesla coil will increase any power it produces by [((input_power_multiplier/power_loss) - 1) * 100]%.")
 				power_calculated = TRUE
 			else
-				. += span_info("This tesla coil will multiply any power it produces by [(input_power_multiplier) * 100]%.")
+				. += span_info("This tesla coil will increase any power it produces by [(input_power_multiplier - 1) * 100]%.")
 		if(!power_calculated)
 			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
 				. += span_info("This tesla coil will reduce power that it produces by [(1/power_loss) * 100]% when relaying it.")
@@ -311,26 +311,19 @@
 
 	power_loss = 1 //Doesn't lose power. Instead it uses collect_eff
 
-	var/collect_eff = 1
-
 	zap_range = 0
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
-	collect_eff = 1
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		collect_eff += C.rating * 1
+		input_power_multiplier += C.rating * C.rating
+	if(input_power_multiplier == 1)
+		input_power_multiplier = 2
 
 /obj/machinery/power/tesla_coil/collector/coil_act(var/power)
-	var/power_produced = power * collect_eff //A normal tesla gets 100% power. These ones get 200% at T1, 400% at T2, 900% at T3, 1600% at T4, and 2500% at T5. However, they don't zap in exchange. These essentially are grounding rods that produce power.
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-
-/obj/machinery/power/tesla_coil/collector/examine(mob/user)
-	. = ..()
-	if(Adjacent(user))
-		. += span_info("This tesla coil will multiply any power it produces by an additional [collect_eff * 100]% of the original power.")
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
