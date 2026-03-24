@@ -31,9 +31,9 @@
 
 	if(Adjacent(user))
 		if(input_power_multiplier != 1) //Greater than 1 or less than 1.
-			. += "This tesla coil will multiply any power it produces by [input_power_multiplier]x."
+			. += span_info("This tesla coil will multiply any power it produces by [input_power_multiplier * 100]%.")
 		if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
-			. += "This tesla coil will divide power that it produces by [power_loss] when relaying it."
+			. += span_info("This tesla coil will divide power that it produces by [(1/power_loss) * 100]% when relaying it.")
 
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
@@ -195,7 +195,7 @@
 /obj/machinery/power/tesla_coil/relay/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "This tesla coil will multiply power transferring through it by [relay_efficiency]x."
+		. += span_info("This tesla coil will multiply power transferring through it by [relay_efficiency * 100]%.")
 
 /obj/machinery/power/tesla_coil/splitter
 	name = "tesla prism coil"
@@ -225,7 +225,7 @@
 /obj/machinery/power/tesla_coil/splitter/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "This tesla coil will create [split_count] bolts, with each containing [(split_count+1) * 100]% of the original power."
+		. += span_info("This tesla coil will create [split_count] bolts, with each containing [(split_count+1) * 100]% of the original power.")
 
 /obj/machinery/power/tesla_coil/amplifier
 	name = "tesla amplifier coil"
@@ -236,6 +236,7 @@
 	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/amp_eff = 2.15
+	power_loss = 1
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
@@ -244,7 +245,7 @@
 		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
-	var/power_produced = (power / power_loss) * amp_eff //T1 = 115% efficiency, T2 = 165%, T3 = 215%, T4 = 265%, T5 = 315%. Without power_loss, it becomes T1 = 215%, T2 = 315%, etc.
+	var/power_produced = (power / 2) * amp_eff //T1 = 115% efficiency, T2 = 165%, T3 = 215%, T4 = 265%, T5 = 315%.
 	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -254,7 +255,8 @@
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "This tesla coil will amplify any power it receives by [amp_eff * 100]% of the original power."
+		. += span_info("This tesla coil will amplify any power it receives by [amp_eff * 100]% of the original power when relaying it.")
+		. += span_info("This tesla coil will only produce [(power / amp_eff) * 100]% of the power it receives.")
 
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
@@ -275,7 +277,7 @@
 /obj/machinery/power/tesla_coil/recaster/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "This tesla coil will extend the range of the bolt it produces by [zap_range] tiles."
+		. += span_info("This tesla coil will extend the range of the bolt it produces by [zap_range] tiles.")
 
 /obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
 	var/power_relayed = power / power_loss
@@ -312,7 +314,7 @@
 /obj/machinery/power/tesla_coil/collector/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "This tesla coil will increase the power it produces by an additional [collect_eff * 100]% of the original power."
+		. += span_info("This tesla coil will increase the power it produces by an additional [collect_eff * 100]% of the original power.")
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
