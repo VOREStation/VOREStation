@@ -225,7 +225,7 @@
 /obj/machinery/power/tesla_coil/splitter/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += span_info("This tesla coil will create [split_count] bolts, with each containing [(split_count+1) * 100]% of the original power.")
+		. += span_info("This tesla coil will create [split_count + 1] bolts, with each containing [(1 / (split_count+1)) * 100]% of the original power.")
 
 /obj/machinery/power/tesla_coil/amplifier
 	name = "tesla amplifier coil"
@@ -256,7 +256,7 @@
 	. = ..()
 	if(Adjacent(user))
 		. += span_info("This tesla coil will amplify any power it receives by [amp_eff * 100]% of the original power when relaying it.")
-		. += span_info("This tesla coil will only produce [(power / amp_eff) * 100]% of the power it receives.")
+		. += span_info("This tesla coil will only produce [(1 / amp_eff) * 100]% of the power it receives.")
 
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
