@@ -23,35 +23,8 @@
 
 	var/label_text = ""
 
+	var/container_can_be_placed_into = REAGENT_CONTAINER_CAN_BE_PLACED_INTO_DEFAULT
 	var/list/prefill = null	//Reagents to fill the container with on New(), formatted as "reagentID" = quantity
-
-	var/static/list/can_be_placed_into = list(
-		/obj/machinery/chem_master/,
-		/obj/machinery/chemical_dispenser,
-		/obj/machinery/reagentgrinder,
-		/obj/structure/table,
-		/obj/structure/closet,
-		/obj/structure/sink,
-		/obj/item/storage,
-		/obj/machinery/atmospherics/unary/cryo_cell,
-		/obj/machinery/dna_scannernew,
-		/obj/item/grenade/chem_grenade,
-		/mob/living/bot/medbot,
-		/obj/item/storage/secure/safe,
-		/obj/machinery/iv_drip,
-		/obj/structure/medical_stand,
-		/obj/machinery/disposal,
-		/mob/living/simple_mob/animal/passive/cow,
-		/mob/living/simple_mob/animal/goat,
-		/obj/machinery/sleeper,
-		/obj/machinery/smartfridge/,
-		/obj/machinery/biogenerator,
-		/obj/structure/frame,
-		/obj/machinery/radiocarbon_spectrometer,
-		/obj/machinery/portable_atmospherics/powered/reagent_distillery,
-		/obj/machinery/computer/pandemic,
-		/obj/vehicle/train/trolley_tank
-		)
 
 	///Var for attack_self chain
 	var/special_handling = FALSE
@@ -139,10 +112,9 @@
 /obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
-	if(!istype(src,/obj/item/reagent_containers/glass/rag)) // snowflake exception
-		for(var/type in can_be_placed_into) //Is it something it can be placed into?
-			if(istype(target, type))
-				return 1
+	for(var/type in GLOB.reagent_containers_can_be_placed_into[container_can_be_placed_into]) //Is it something it can be placed into?
+		if(istype(target, type))
+			return 1
 	if(standard_dispenser_refill(user, target)) //Are they clicking a water tank/some dispenser?
 		return 1
 	if(standard_pour_into(user, target)) //Pouring into another beaker?
@@ -423,12 +395,7 @@
 	max_transfer_amount = 120
 	volume = 2000
 	slowdown = 2
-
-	can_be_placed_into = list(
-		/obj/structure/table,
-		/obj/structure/closet,
-		/obj/structure/sink
-		)
+	container_can_be_placed_into = REAGENT_CONTAINER_CAN_BE_PLACED_INTO_WATERCOOLER
 
 /obj/item/reagent_containers/glass/pint_mug
 	desc = "A rustic pint mug designed for drinking ale."

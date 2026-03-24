@@ -416,6 +416,47 @@ GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
 	REAGENT_ID_SUPERMATTER
 	))
 
+#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_DEFAULT "default_container"
+#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_WATERCOOLER "watercooler_container"
+#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_NONE "forbidden_container"
+
+GLOBAL_LIST_INIT(reagent_containers_can_be_placed_into, list(
+	REAGENTCONTAINER_CANBEPLACED_DEFAULT = list(
+		/obj/machinery/chem_master/,
+		/obj/machinery/chemical_dispenser,
+		/obj/machinery/reagentgrinder,
+		/obj/structure/table,
+		/obj/structure/closet,
+		/obj/structure/sink,
+		/obj/item/storage,
+		/obj/machinery/atmospherics/unary/cryo_cell,
+		/obj/machinery/dna_scannernew,
+		/obj/item/grenade/chem_grenade,
+		/mob/living/bot/medbot,
+		/obj/item/storage/secure/safe,
+		/obj/machinery/iv_drip,
+		/obj/structure/medical_stand,
+		/obj/machinery/disposal,
+		/mob/living/simple_mob/animal/passive/cow,
+		/mob/living/simple_mob/animal/goat,
+		/obj/machinery/sleeper,
+		/obj/machinery/smartfridge/,
+		/obj/machinery/biogenerator,
+		/obj/structure/frame,
+		/obj/machinery/radiocarbon_spectrometer,
+		/obj/machinery/portable_atmospherics/powered/reagent_distillery,
+		/obj/machinery/computer/pandemic,
+		/obj/vehicle/train/trolley_tank
+	),
+	REAGENTCONTAINER_CANBEPLACED_WATERCOOLER = list(
+		/obj/structure/table,
+		/obj/structure/closet,
+		/obj/structure/sink
+	),
+	REAGENT_CONTAINER_CAN_BE_PLACED_INTO_NONE = list(
+	),
+))
+
 GLOBAL_LIST_EMPTY(item_tf_spawnpoints) // Global variable tracking which items are item tf spawnpoints
 
 // Options for transforming into a different mob in virtual reality.
