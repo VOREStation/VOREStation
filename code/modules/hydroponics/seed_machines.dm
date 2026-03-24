@@ -62,6 +62,13 @@
 	..()
 */
 
+/obj/machinery/botany/Destroy()
+	if(seed)
+		seed.forceMove(get_turf(src))
+	if(loaded_disk)
+		loaded_disk.forceMove(get_turf(src))
+	. = ..()
+
 /obj/machinery/botany/process()
 
 	..()
@@ -87,7 +94,7 @@
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
-			loaded_disk.loc = get_turf(src)
+			loaded_disk.forceMove(get_turf(src))
 			visible_message(span_filter_notice("[icon2html(src,viewers(src))] [src] beeps and spits out [loaded_disk]."))
 			loaded_disk = null
 
@@ -101,7 +108,7 @@
 			to_chat(user, span_filter_notice("That seed is not compatible with our genetics technology."))
 		else
 			user.drop_from_inventory(W)
-			W.loc = src
+			W.forceMove(src)
 			seed = W
 			to_chat(user, span_filter_notice("You load [W] into [src]."))
 		return
@@ -132,7 +139,7 @@
 					return
 
 			user.drop_from_inventory(W)
-			W.loc = src
+			W.forceMove(src)
 			loaded_disk = W
 			to_chat(user, span_filter_notice("You load [W] into [src]."))
 

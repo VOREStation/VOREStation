@@ -408,6 +408,6 @@
 	build_path = /obj/machinery/seed_extractor
 	board_type = new /datum/frame/frame_types/machine
 	req_components = list(
-							/obj/item/stock_parts/capacitor = 2,
-							/obj/item/stock_parts/scanning_module = 2,
-							/obj/item/stock_parts/manipulator = 2)
+							/obj/item/stock_parts/motor = 1,
+							/obj/item/stock_parts/manipulator = 2,
+							/obj/item/stock_parts/console_screen = 1)
