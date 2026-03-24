@@ -250,7 +250,7 @@
 	amp_eff = 1.15
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		amp_eff += C.rating
-	input_power_multiplier = 1 //no mult fo  you
+	input_power_multiplier = 1 //no mult for you
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
 	var/power_produced = power * (amp_eff/2) //When given 100 power: T1 = 107.5 T2 = 157.5 T3 = 207.5 T4 = 257.5 T5 = 307.5
