@@ -57,7 +57,7 @@
 		icon_state = "[icontype][anchored]"
 
 /obj/machinery/power/tesla_coil/attackby(obj/item/W, mob/user, params)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	//if(default_deconstruction_screwdriver(user, "coil_open[anchored]", "coil[anchored]", W))
 	if(default_deconstruction_screwdriver(user, W))
@@ -68,8 +68,67 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
+
+	if(W?.has_tool_quality(TOOL_MULTITOOL))
+		var/list/menu_list = list(
+		"Normal",
+		"Relay",
+		"Splitter",
+		"Amplifier",
+		"Recaster",
+		"Collector",
+		)
+
+		var/modification_decision = tgui_input_list(user, "Which tesla do you wish to change it into?", "Tesla Selection", menu_list)
+		if(!modification_decision)
+			return //They didn't select anything!
+		if(QDELETED(src) || QDELETED(W) || QDELETED(user) || get_dist(user, src) > W.reach)
+			return
+
+		var/turf = get_turf(src)
+		if(!turf)
+			return
+		var/obj/machinery/power/tesla_coil/new_coil
+		switch(modification_decision)
+			if("Normal")
+				new_coil = new(turf)
+			if("Relay")
+				new_coil = new /obj/machinery/power/tesla_coil/relay(turf)
+			if("Splitter")
+				new_coil = new /obj/machinery/power/tesla_coil/splitter(turf)
+			if("Amplifier")
+				new_coil = new /obj/machinery/power/tesla_coil/amplifier(turf)
+			if("Recaster")
+				new_coil = new /obj/machinery/power/tesla_coil/recaster(turf)
+			if("Collector")
+				new_coil = new /obj/machinery/power/tesla_coil/collector(turf)
+			else //Should never happen.
+				return
+
+		//Get rid of the stock parts that get added by init.
+		for(var/obj/item/stock_parts/C in new_coil.component_parts)
+			new_coil.component_parts -= C
+			qdel(C)
+
+		//Move the stock parts from the old coil to the new one.
+		for(var/obj/item/stock_parts/C in component_parts)
+			C.forceMove(new_coil)
+			component_parts -= C
+			new_coil.component_parts += C
+		new_coil.RefreshParts()
+
+		new_coil.anchored = anchored
+		new_coil.update_icon()
+
+		to_chat(user, span_notice("You modify \the [src]. It is now a [lowertext(modification_decision)]! You close the access panel."))
+		qdel(src)
+		return
+
+	/* //Tesla wires do literally nothing.
 	if(is_wire_tool(W))
 		return wires.Interact(user)
+	*/
+
 	return ..()
 
 /obj/machinery/power/tesla_coil/attack_hand(mob/user)
