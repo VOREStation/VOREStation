@@ -87,7 +87,7 @@
 	if(default_deconstruction_crowbar(user, W))
 		return
 
-	if(W?.has_tool_quality(TOOL_MULTITOOL))
+	if(panel_open && W?.has_tool_quality(TOOL_MULTITOOL))
 		var/list/menu_list = list(
 		"Normal",
 		"Relay",
