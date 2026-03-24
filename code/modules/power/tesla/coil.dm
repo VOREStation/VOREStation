@@ -209,7 +209,7 @@
 /obj/machinery/power/tesla_coil/relay/coil_act(power, explosive, current_jumps)
 	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it's only 1/2 as effective.
 	var/power_relayed = ((power * relay_efficiency) / diminishing_returns)
-	if(power_relayed < power)
+	if(power_relayed < power && relay_efficiency >= 1)
 		power_relayed = power
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
