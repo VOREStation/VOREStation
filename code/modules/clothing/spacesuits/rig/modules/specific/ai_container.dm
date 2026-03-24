@@ -104,7 +104,7 @@
 		return 1
 
 	// Okay, it wasn't a terminal being touched, check for all the simple insertions.
-	if(is_type_in_list(input_device, list(/obj/item/paicard, /obj/item/mmi)))
+	if(istype(input_device, /obj/item/paicard) || istype(input_device, /obj/item/mmi))
 		if(integrated_ai)
 			integrated_ai.attackby(input_device,user)
 			// If the transfer was successful, we can clear out our vars.
