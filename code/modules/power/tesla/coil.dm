@@ -29,6 +29,12 @@
 	else
 		. += span_warning("It is not secured!")
 
+	if(Adjacent(user))
+		if(input_power_multiplier != 1) //Greater than 1 or less than 1.
+			. += "This tesla coil will multiply any power it produces by [input_power_multiplier]x."
+		if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
+			. += "This tesla coil will divide power that it produces by [power_loss] when relaying it."
+
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	wires = new(src)
@@ -47,7 +53,6 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		input_power_multiplier += C.rating
 		zap_cooldown -= (C.rating * 20)
-
 
 /obj/machinery/power/tesla_coil/update_icon()
 	if(panel_open)
@@ -164,29 +169,33 @@
 
 /obj/machinery/power/tesla_coil/relay
 	name = "tesla relay coil"
-	desc = "Designed to move power around rather than just consuming it."
+	desc = "Designed to move power around rather. Creates no power on its own."
 	icon_state = "relay0"
 	icontype = "relay"
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
 	power_loss = 1
-	input_power_multiplier = 0
 
 	var/relay_efficiency = 0.9
 
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
 	..()
-	var/relay_multiplier
+	input_power_multiplier = 1 //So we don't show the examine text further above.
+	relay_efficiency = 0.85
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		relay_multiplier += C.rating
-	relay_efficiency = 0.85 + (0.05 * relay_multiplier)
+		relay_efficiency += C.rating * 0.05
 
 /obj/machinery/power/tesla_coil/relay/coil_act(var/power)
 	var/power_relayed = power * relay_efficiency
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_relayed)
+
+/obj/machinery/power/tesla_coil/relay/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "This tesla coil will multiply power transferring through it by [relay_efficiency]x."
 
 /obj/machinery/power/tesla_coil/splitter
 	name = "tesla prism coil"
@@ -213,6 +222,11 @@
 	for(var/i = 0, i < split_count, i++)
 		tesla_zap(src, 5, power_per_bolt)
 
+/obj/machinery/power/tesla_coil/splitter/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "This tesla coil will create [split_count] bolts, with each containing [(split_count+1) * 100]% of the original power."
+
 /obj/machinery/power/tesla_coil/amplifier
 	name = "tesla amplifier coil"
 	desc = "Designed to amplify power moving through it rather than collecting it."
@@ -221,20 +235,26 @@
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
-	var/amp_eff = 2
+	var/amp_eff = 2.15
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
-	amp_eff = 1
+	amp_eff = 1.15
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
-	var/power_produced = power * amp_eff
-	add_avail(power_produced / power_loss)
+	var/power_produced = (power / power_loss) * amp_eff //T1 = 115% efficiency, T2 = 165%, T3 = 215%, T4 = 265%, T5 = 315%. Without power_loss, it becomes T1 = 215%, T2 = 315%, etc.
+	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_produced)
+
+
+/obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "This tesla coil will amplify any power it receives by [amp_eff * 100]% of the original power."
 
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
@@ -252,6 +272,11 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		zap_range += C.rating * 6
 
+/obj/machinery/power/tesla_coil/recaster/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "This tesla coil will extend the range of the bolt it produces by [zap_range] tiles."
+
 /obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
 	var/power_relayed = power / power_loss
 	var/power_produced = power / (power_loss * 2)
@@ -268,6 +293,8 @@
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
+	power_loss = 1 //Doesn't lose power. Instead it uses collect_eff
+
 	var/collect_eff = 0.8
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
@@ -281,6 +308,11 @@
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+
+/obj/machinery/power/tesla_coil/collector/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "This tesla coil will increase the power it produces by an additional [collect_eff * 100]% of the original power."
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
