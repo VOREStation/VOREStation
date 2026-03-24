@@ -32,10 +32,16 @@
 
 	if(Adjacent(user))
 
+		var/power_calculated = FALSE
 		if(input_power_multiplier != 1) //Greater than 1 or less than 1.
-			. += span_info("This tesla coil will multiply any power it produces by [input_power_multiplier * 100]%.")
-		if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
-			. += span_info("This tesla coil will reduce power that it produces by [(1/power_loss) * 100]% when relaying it.")
+			if(power_loss != 1)
+				. += span_info("This tesla coil will multiply any power it produces by [(input_power_multiplier/power_loss) * 100]%.")
+				power_calculated = TRUE
+			else
+				. += span_info("This tesla coil will multiply any power it produces by [(input_power_multiplier) * 100]%.")
+		if(!power_calculated)
+			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
+				. += span_info("This tesla coil will reduce power that it produces by [(1/power_loss) * 100]% when relaying it.")
 
 		if(zap_range)
 			. += span_info("This tesla coil produces bolts that will reach out [zap_range] tiles.")
@@ -202,7 +208,10 @@
 /obj/machinery/power/tesla_coil/relay/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += span_info("This tesla coil will multiply power transferring through it by [relay_efficiency * 100]%.")
+		if(relay_efficiency == 1)
+			. += span_info("This tesla coil will transfer power through it with no loss.")
+		else
+			. += span_info("This tesla coil will [relay_efficiency > 1 ? "amplify" : "reduce"] power transferring through it by [ abs(relay_efficiency - 1) * 100]%.")
 
 /obj/machinery/power/tesla_coil/splitter
 	name = "tesla prism coil"
@@ -212,7 +221,7 @@
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
-	power_loss = 1
+	power_loss = 2
 
 	var/split_count = 1
 
@@ -224,8 +233,8 @@
 
 /obj/machinery/power/tesla_coil/splitter/coil_act(var/power)
 	var/power_per_bolt = power / (split_count + 1)
-	var/power_produced = power_per_bolt / 2
-	add_avail(power_produced*input_power_multiplier)
+	var/power_produced = power_per_bolt / power_loss
+	add_avail(power_produced * input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	for(var/i = 0, i < split_count, i++)
