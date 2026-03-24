@@ -423,7 +423,7 @@ ADMIN_VERB(manage_silicon_laws, R_ADMIN|R_EVENT, "Manage Silicon Laws", "Allows 
 	set category = "Admin.Game"
 	if(check_rights(R_HOLDER))
 		var/list/jobs = list()
-		for (var/datum/job/J in GLOB.job_master.occupations)
+		for (var/datum/job/J in SSjob.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if (!jobs.len)
@@ -431,7 +431,7 @@ ADMIN_VERB(manage_silicon_laws, R_ADMIN|R_EVENT, "Manage Silicon Laws", "Allows 
 			return
 		var/job = tgui_input_list(usr, "Please select job slot to free", "Free job slot", jobs)
 		if (job)
-			GLOB.job_master.FreeRole(job)
+			SSjob.free_role(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
 

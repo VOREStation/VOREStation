@@ -248,7 +248,7 @@
 	name = "[initial(name)] for [recipient.name] ([current_title])"
 	recipient_ref = WEAKREF(recipient)
 
-	var/datum/job/this_job = SSjob.name_occupations[recipient.assigned_role]
+	var/datum/job/this_job = SSjob.occupations_by_name[recipient.assigned_role]
 
 	var/list/goodies = generic_goodies
 	if(this_job)

@@ -2,8 +2,8 @@
 	set category = "Debug.Investigate"
 	set name = "Show Air Report"
 
-	if(!GLOB.master_controller || !SSair)
-		tgui_alert_async(usr,"Master_controller or SSair not found.","Air Report")
+	if(!SSair.initialized)
+		tgui_alert_async(src, "SSair not ready.","Air Report")
 		return
 
 	var/active_groups = SSair.active_zones
