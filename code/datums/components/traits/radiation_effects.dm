@@ -171,9 +171,9 @@
 /datum/component/radiation_effects/proc/process_component()
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
-	if((living_guy.radiation > RADIATION_CAP || living_guy.radiation < 0) || (living_guy.accumulated_rads > RADIATION_CAP || living_guy.accumulated_rads < 0))
-		living_guy.radiation = CLAMP(living_guy.radiation,0,RADIATION_CAP)
-		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads,0,RADIATION_CAP)
+	if(living_guy.radiation > RADIATION_CAP || living_guy.radiation < 0 || living_guy.accumulated_rads > RADIATION_CAP || living_guy.accumulated_rads < 0)
+		living_guy.radiation = CLAMP(living_guy.radiation, 0, RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads, 0, RADIATION_CAP)
 
 	if(QDELETED(parent))
 		return
@@ -231,6 +231,8 @@
 			living_guy.radiation -= rads_to_utilize
 			living_guy.accumulated_rads -= rads_to_utilize
 
+		living_guy.radiation = CLAMP(radiation, 0, RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(accumulated_rads, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
 	if(custom_damage)
@@ -243,6 +245,8 @@
 
 		living_guy.apply_damage(rads_to_utilize * damage_multiplier, damage_type)
 
+		living_guy.radiation = CLAMP(radiation, 0, RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(accumulated_rads, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
 /datum/component/radiation_effects/proc/handle_irradiate_effect(var/mob/living/living_guy, var/effect, var/effecttype, var/blocked, var/check_protection, var/rad_protection)
@@ -266,6 +270,7 @@
 		//If we linger in one place for a prolonged period, the area around us will become irradiated and give us a small bit of radiation back. (only got ~1 rad per tick when we were offputting 60 rads for example)
 		//However, we'll lose our rads faster than we accumulate.
 		living_guy.radiation += max((radiation_to_apply * rad_protection), 0)
+		living_guy.radiation = CLAMP(radiation, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_IRRADIATION
 
 ///TGUI below here
