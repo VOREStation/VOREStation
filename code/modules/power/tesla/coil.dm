@@ -273,8 +273,10 @@
 	input_power_multiplier = 1 //no mult for you
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(power, explosive, current_jumps)
-	var/diminishing_returns = 1 + ((current_jumps * 0.5)-0.5) //The more jumps, the less effective the amplifier is. At 3 jumps, it's only 1/2 as effective. At 5, only 33% as effective. At 10, only 18%, etc
+	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it stops increasing power. Use something else!
 	var/power_produced = ((power * amp_eff) / diminishing_returns)
+	if(power_produced < power)
+		power_produced = power //Don't let it reduce power. If the amp is worse than the original, just give them the original power.
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
@@ -287,6 +289,7 @@
 	. = ..()
 	if(Adjacent(user))
 		. += span_info("This tesla coil will amplify any power it receives by [round((((amp_eff) * 100) - 100), 0.1)]% of the original power when relaying it.")
+		. += span_info("Every jump the tesla makes reduces the effectiveness of the amplifier by 10%, meaning at 10 jumps, it stops increasing power.")
 		. += span_danger("This tesla coil will NOT produce produce energy.")
 
 /obj/machinery/power/tesla_coil/recaster
