@@ -262,8 +262,8 @@
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += span_info("This tesla coil will amplify any power it receives by [amp_eff * 100]% of the original power when relaying it.")
-		. += span_info("This tesla coil will only produce [(1 / amp_eff) * 100]% of the power it receives.")
+		. += span_info("This tesla coil will amplify any power it receives by [round(((0.5 / amp_eff) * 100), 0.1)]% of the original power when relaying it.")
+		. += span_info("This tesla coil will only produce [round(((1 / amp_eff) * 100), 0.1)]% of the power it receives.")
 
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
