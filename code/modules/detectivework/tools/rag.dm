@@ -20,7 +20,6 @@
 	amount_per_transfer_from_this = 5
 	max_transfer_amount = 5
 	volume = 10
-	can_be_placed_into = null
 	flags = OPENCONTAINER | NOBLUDGEON
 	unacidable = FALSE
 	drop_sound = 'sound/items/drop/cloth.ogg'

@@ -25,7 +25,7 @@
 
 	var/list/prefill = null	//Reagents to fill the container with on New(), formatted as "reagentID" = quantity
 
-	var/list/can_be_placed_into = list(
+	var/static/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,
 		/obj/machinery/chemical_dispenser,
 		/obj/machinery/reagentgrinder,
@@ -49,7 +49,8 @@
 		/obj/structure/frame,
 		/obj/machinery/radiocarbon_spectrometer,
 		/obj/machinery/portable_atmospherics/powered/reagent_distillery,
-		/obj/machinery/computer/pandemic
+		/obj/machinery/computer/pandemic,
+		/obj/vehicle/train/trolley_tank
 		)
 
 	///Var for attack_self chain
@@ -138,9 +139,10 @@
 /obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
-	for(var/type in can_be_placed_into) //Is it something it can be placed into?
-		if(istype(target, type))
-			return 1
+	if(!istype(src,/obj/item/reagent_containers/glass/rag)) // snowflake exception
+		for(var/type in can_be_placed_into) //Is it something it can be placed into?
+			if(istype(target, type))
+				return 1
 	if(standard_dispenser_refill(user, target)) //Are they clicking a water tank/some dispenser?
 		return 1
 	if(standard_pour_into(user, target)) //Pouring into another beaker?
