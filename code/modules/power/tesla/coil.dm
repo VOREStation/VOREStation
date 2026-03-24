@@ -18,6 +18,7 @@
 	var/zap_cooldown = 100
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
+	var/zap_range = 5
 
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
@@ -30,10 +31,16 @@
 		. += span_warning("It is not secured!")
 
 	if(Adjacent(user))
+
 		if(input_power_multiplier != 1) //Greater than 1 or less than 1.
 			. += span_info("This tesla coil will multiply any power it produces by [input_power_multiplier * 100]%.")
 		if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
 			. += span_info("This tesla coil will divide power that it produces by [(1/power_loss) * 100]% when relaying it.")
+
+		if(zap_range)
+			. += span_info("This tesla coil produces bolts that will reach out [zap_range] tiles.")
+		else
+			. += span_info("This tesla coil does not produce bolts!")
 
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
@@ -266,18 +273,13 @@
 
 	circuit = /obj/item/circuitboard/tesla_coil
 
-	var/zap_range = 6
+	zap_range = 6
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
 	..()
 	zap_range = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		zap_range += C.rating * 6
-
-/obj/machinery/power/tesla_coil/recaster/examine(mob/user)
-	. = ..()
-	if(Adjacent(user))
-		. += span_info("This tesla coil will extend the range of the bolt it produces by [zap_range] tiles.")
 
 /obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
 	var/power_relayed = power / power_loss
@@ -306,7 +308,7 @@
 		collect_eff += C.rating * 1
 
 /obj/machinery/power/tesla_coil/collector/coil_act(var/power)
-	var/power_produced = power * collect_eff //A normal tesla gets 100% power. These ones get 200% at T1, 300% at T2, 400% at T3, 500% at T4, and 600% at T5. However, they don't zap in exchange. These essentially are grounding rods that produce power.
+	var/power_produced = power * collect_eff //A normal tesla gets 100% power. These ones get 200% at T1, 400% at T2, 900% at T3, 1600% at T4, and 2500% at T5. However, they don't zap in exchange. These essentially are grounding rods that produce power.
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -314,7 +316,7 @@
 /obj/machinery/power/tesla_coil/collector/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += span_info("This tesla coil will increase the power it produces by an additional [collect_eff * 100]% of the original power.")
+		. += span_info("This tesla coil will multiply any power it produces by an additional [collect_eff * 100]% of the original power.")
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
