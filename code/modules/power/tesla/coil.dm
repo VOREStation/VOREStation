@@ -22,7 +22,7 @@
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/examine()
+/obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()
 	if(anchored)
 		. += span_notice("It has been securely bolted down and is ready for operation.")
@@ -330,7 +330,7 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/power/grounding_rod/examine()
+/obj/machinery/power/grounding_rod/examine(user)
 	. = ..()
 	if(anchored)
 		. += span_notice("It has been securely bolted down and is ready for operation.")
