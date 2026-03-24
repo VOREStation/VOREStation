@@ -1,3 +1,5 @@
+#define AMPLIFIER_STRENGTH 0.2 //Each tier of capacitor increases the amplifier's strength by this much, divided by 2. At 5 rating, 50% increase per relay.
+
 /obj/machinery/power/tesla_coil
 	name = "tesla coil"
 	desc = "Balanced power generation and zapping."
@@ -267,16 +269,19 @@
 	..()
 	amp_eff = 1.15
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		amp_eff += C.rating
+		amp_eff += C.rating * AMPLIFIER_STRENGTH
 	input_power_multiplier = 1 //no mult for you
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(power, explosive, current_jumps)
 	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it's only 1/2 as effective.
-	var/power_produced = ((power * (amp_eff/2)) / diminishing_returns) //When given 100 power: T1 = 107.5 T2 = 157.5 T3 = 207.5 T4 = 257.5 T5 = 307.5
+	var/power_produced = ((power * (amp_eff/2)) / diminishing_returns) //When given 100 power: T1 = 107.5 T2 = 117.5 T3 = 127.5 T4 = 137.5 T5 = 147.5. Assuming 50 jumps at T5 (with no diminnishing returns)
 	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
+
+/obj/machinery/power/tesla_coil/amplifier/mapspawn
+	anchored = TRUE
 
 
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
@@ -388,3 +393,5 @@
 		flick("grounding_rodhit", src)
 	else
 		..()
+
+#undef AMPLIFIER_STRENGTH
