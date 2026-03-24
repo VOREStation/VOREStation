@@ -252,7 +252,7 @@
 		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
-	var/power_produced = (power / 2) * amp_eff //T1 = 115% efficiency, T2 = 165%, T3 = 215%, T4 = 265%, T5 = 315%.
+	var/power_produced = power * (amp_eff/2) //When given 100 power: T1 = 107.5 T2 = 157.5 T3 = 207.5 T4 = 257.5 T5 = 307.5
 	add_avail(power / amp_eff) //'Designed to amplify power rather than collecting it'
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -262,7 +262,7 @@
 /obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += span_info("This tesla coil will amplify any power it receives by [round(((0.5 / amp_eff) * 100), 0.1)]% of the original power when relaying it.")
+		. += span_info("This tesla coil will amplify any power it receives by [((amp_eff/2) * 100) - 100]% of the original power when relaying it.")
 		. += span_info("This tesla coil will only produce [round(((1 / amp_eff) * 100), 0.1)]% of the power it receives.")
 
 /obj/machinery/power/tesla_coil/recaster
