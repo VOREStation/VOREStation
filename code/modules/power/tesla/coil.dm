@@ -19,6 +19,7 @@
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
 	var/zap_range = 5
+	var/lossy_transfer = TRUE  //If true, we lose power upon shooting the next beam by our power_loss var.
 
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
@@ -39,14 +40,14 @@
 				power_calculated = TRUE
 			else
 				. += span_info("This tesla coil will increase any power it produces by [(input_power_multiplier - 1) * 100]%.")
-		if(!power_calculated)
+		if(!power_calculated || lossy_transfer)
 			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
-				. += span_info("This tesla coil will reduce power that it produces by [(1/power_loss) * 100]% when relaying it.")
+				. += span_warning("This tesla coil will relay power with a [(1/power_loss) * 100]% loss.")
 
 		if(zap_range)
 			. += span_info("This tesla coil produces bolts that will reach out [zap_range] tiles.")
 		else
-			. += span_info("This tesla coil does not produce bolts!")
+			. += span_warning("This tesla coil does not produce bolts!")
 
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
@@ -222,6 +223,7 @@
 	circuit = /obj/item/circuitboard/tesla_coil
 
 	power_loss = 2
+	lossy_transfer = FALSE
 
 	var/split_count = 1
 
