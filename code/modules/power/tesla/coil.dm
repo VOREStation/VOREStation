@@ -316,12 +316,12 @@
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		input_power_multiplier += C.rating * C.rating
+		input_power_multiplier += C.rating * C.rating //T1 = 200% T2 = 400% T3 = 900% T4 = 1600% T5 = 2500%
 	if(input_power_multiplier == 1)
 		input_power_multiplier = 2
 
 /obj/machinery/power/tesla_coil/collector/coil_act(var/power)
-	add_avail(power_produced*input_power_multiplier)
+	add_avail(power*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 
