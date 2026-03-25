@@ -303,5 +303,28 @@ Thus, the two variables affect pump operation are set in New():
 		to_chat(user, span_notice("The pump quiets down as you turn its limiters back on."))
 	update_icon()
 
+/obj/machinery/atmospherics/binary/volume_pump/click_alt(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(allowed(user))
+		to_chat(user, span_notice("You set the [name] to max output"))
+		transfer_rate = max_transfer_rate
+		add_fingerprint(user)
+	else
+		to_chat(user, span_warning("Access denied."))
+
+/obj/machinery/atmospherics/binary/volume_pump/click_ctrl(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(allowed(user))
+		update_use_power(!use_power)
+		update_icon()
+		add_fingerprint(user)
+		if(use_power)
+			to_chat(user, span_notice("You toggle the [name] on."))
+		else
+			to_chat(user, span_notice("You toggle the [name] off."))
+
+	else
+		to_chat(user, span_warning("Access denied."))
+
 #undef VOLUME_PUMP_MAX_OUTPUT_PRESSURE
 #undef VOLUME_PUMP_LEAK_AMOUNT
