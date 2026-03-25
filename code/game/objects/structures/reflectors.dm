@@ -114,22 +114,32 @@
 			to_chat(user, span_warning("Unweld [src] from the floor first!"))
 			return
 		user.visible_message(span_notice("[user] starts to dismantle [src]."), span_notice("You start to dismantle [src]..."))
-		to_chat(user, span_notice("You dismantle [src]."))
-		new framebuildstacktype(drop_location(), framebuildstackamount)
-		if(buildstackamount)
-			new buildstacktype(drop_location(), buildstackamount)
-		qdel(src)
+
+		if(do_after(user, 2 SECONDS, target = src))
+			user.visible_message(span_notice("[user] dismantles [src]."), span_notice("You dismantle [src]..."))
+			new framebuildstacktype(drop_location(), framebuildstackamount)
+			if(buildstackamount)
+				new buildstacktype(drop_location(), buildstackamount)
+			qdel(src)
 	else if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/I = W
 		if(!anchored)
-			if(!I.remove_fuel(1,user))
+			if(!I.get_fuel())
+				to_chat(user, span_warning("You require fuel to weld the [src]!"))
 				return
 
 			user.visible_message(span_notice("[user] starts to weld [src] to the floor."),
 								span_notice("You start to weld [src] to the floor..."),
 								span_hear("You hear welding."))
+
+			if(do_after(user, 2 SECONDS, target = src))
+				if(!I.remove_fuel(1,user))
+					to_chat(user, span_warning("You require fuel to weld the [src]!"))
+					return
 			anchored = TRUE
-			to_chat(user, span_notice("You weld [src] to the floor."))
+			user.visible_message(span_notice("[user] welds [src] to the floor."),
+								span_notice("You weld [src] to the floor..."),
+								span_hear("You hear welding."))
 		else
 			if(!I.remove_fuel(1,user))
 				return
