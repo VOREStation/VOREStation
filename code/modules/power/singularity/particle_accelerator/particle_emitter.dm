@@ -48,6 +48,7 @@
 
 /obj/structure/particle_accelerator/particle_emitter/center/pre_mapped
 	construction_state = 3
+	anchored = TRUE
 
 /obj/structure/particle_accelerator/particle_emitter/center/pre_mapped/Initialize(mapload)
 	. = ..()
@@ -56,6 +57,7 @@
 
 /obj/structure/particle_accelerator/particle_emitter/right/pre_mapped
 	construction_state = 3
+	anchored = TRUE
 
 /obj/structure/particle_accelerator/particle_emitter/right/pre_mapped/Initialize(mapload)
 	. = ..()
@@ -63,6 +65,7 @@
 
 /obj/structure/particle_accelerator/particle_emitter/left/pre_mapped
 	construction_state = 3
+	anchored = TRUE
 
 /obj/structure/particle_accelerator/particle_emitter/left/pre_mapped/Initialize(mapload)
 	. = ..()

@@ -7,6 +7,7 @@
 
 /obj/structure/particle_accelerator/power_box/pre_mapped
 	construction_state = 3
+	anchored = TRUE
 
 /obj/structure/particle_accelerator/power_box/pre_mapped/Initialize(mapload)
 	. = ..()

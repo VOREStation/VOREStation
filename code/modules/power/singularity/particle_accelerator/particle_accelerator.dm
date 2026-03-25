@@ -349,6 +349,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/structure/particle_accelerator/end_cap/pre_mapped
 	construction_state = 3
+	anchored = TRUE
 
 /obj/structure/particle_accelerator/end_cap/pre_mapped/Initialize(mapload)
 	. = ..()
