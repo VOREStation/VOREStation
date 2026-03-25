@@ -236,6 +236,7 @@
 		"smes_cell",
 		"grid_checker",
 		"breakerbox",
+		"hydromagnetic_trap",
 		"tesla_coil",
 		"rtg",
 		// "apc_control",

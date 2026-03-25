@@ -209,8 +209,10 @@
 	if(Adjacent(user))
 		if(on)
 			stop_engine()
+			return CLICK_ACTION_ANY
 		else
 			start_engine()
+			return CLICK_ACTION_ANY
 	else
 		return ..()
 

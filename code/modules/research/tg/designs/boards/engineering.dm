@@ -116,6 +116,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/hydromagnetic_trap
+	SET_CIRCUIT_DESIGN_NAMEDESC("hydromagnetic trap")
+	id = "hydromagnetic_trap"
+	// req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/circuitboard/hydromagnetic_trap
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/secure_airlock
 	name = "secure airlock electronics circuit"
 	desc =  "Allows for the construction of a tamper-resistant airlock electronics."
