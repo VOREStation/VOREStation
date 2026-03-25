@@ -60,6 +60,25 @@ SUBSYSTEM_DEF(radiation)
 
 
 		for(var/mob/living/target in turf_to_irradiate)
+			var/list/contents_to_check = target.get_all_contents_type(/obj/item/geiger)
+			for(var/obj/item/geiger/geiger_counter in contents_to_check)
+				//copy paste of geiger code above...eugh.
+				var/current_insulation = 1
+				for(var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+					var/insulation = cached_rad_insulations[turf_in_between]
+					if(isnull(insulation))
+						insulation = turf_in_between.rad_insulation
+						for (var/atom/on_turf as anything in turf_in_between.contents)
+							insulation *= on_turf.rad_insulation
+						cached_rad_insulations[turf_in_between] = insulation
+
+					current_insulation *= insulation
+
+					if(current_insulation <= pulse_information.threshold)
+						continue
+
+				SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
+
 			if(!can_irradiate_basic(target))
 				continue
 
