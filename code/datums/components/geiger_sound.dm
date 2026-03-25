@@ -81,11 +81,17 @@
 	last_radiation_pulse = null
 	return ..()
 
-/datum/looping_sound/geiger/get_sound()
+/datum/looping_sound/geiger/get_sound(starttime, _mid_sounds)
 	if (isnull(last_radiation_pulse))
 		return null
+	var/danger = get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)
+	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
+		chance = 100
+	else
+		chance = danger * 15
+	volume = (danger * 5)
 
-	return ..(mid_sounds[get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)])
+	return ..(starttime, mid_sounds[danger])
 
 /datum/looping_sound/geiger/stop(null_parent = FALSE)
 	. = ..()
