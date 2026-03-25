@@ -13,7 +13,7 @@
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	var/idcard_type = /obj/item/card/id
+	idcard_type = /obj/item/card/id
 	var/idaccessible = 0
 
 	var/network = "SS13"
@@ -105,7 +105,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
-	init_id(idcard_type)
 
 	card = loc
 	if(!istype(card))
