@@ -423,3 +423,125 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+//Smartfridges
+
+/datum/design_techweb/board/drying_rack
+	SET_CIRCUIT_DESIGN_NAMEDESC("drying rack")
+	id = "drying_rack_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/drying
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/industrial_sheet_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge industrial sheet storage")
+	id = "industrial_sheet_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/sheets
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/mining_sheet_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge mining sheet storage")
+	id = "mining_sheet_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/sheets/mining
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/refrigerated_medicine_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge refrigerated medicine storage")
+	id = "refrigerated_medicine_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/medbay
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/secure_refrigerated_medicine_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge secure refrigerated medicine storage")
+	id = "secure_refrigerated_medicine_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/medbay/secure
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/biological_sample_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge biological sample storage")
+	id = "biological_sample_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/science
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/food_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge food storage")
+	id = "food_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/kitchen
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/drink_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge drink storage")
+	id = "drink_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/drinks
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/drink_showcase
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge drink showcase")
+	id = "drink_showcase_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/drinks/showcase
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/produce_showcase
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge produce storage")
+	id = "produce_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/produce
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/seed_storage
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge seed storage")
+	id = "seed_storage_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/seeds
+
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/chemavator_storage_upper
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge smart chemavator - upper")
+	id = "chemavator_storage_upper_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/chemvator
+
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/chemavator_storage_lower
+	SET_CIRCUIT_DESIGN_NAMEDESC("smartfridge smart chemavator - lower")
+	id = "chemavator_storage_lower_circuit"
+	build_path = /obj/item/circuitboard/smartfridge/chemvator/down
+
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

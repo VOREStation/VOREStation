@@ -380,6 +380,30 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING,CHANNEL_MEDICAL)
 
+
+/datum/techweb_node/smartfridges
+	id = TECHWEB_NODE_SMARTFRIDGES
+	display_name = "Smart Fridges"
+	description = "Is it the space that makes the fridge smart, or the fridge that makes the space smart?"
+	prereq_ids = list(TECHWEB_NODE_PARTS_UPG)
+	design_ids = list(
+		"drying_rack_circuit",
+		"industrial_sheet_storage_circuit",
+		"mining_sheet_storage_circuit",
+		"refrigerated_medicine_storage_circuit",
+		"secure_refrigerated_medicine_storage_circuit",
+		"biological_sample_storage_circuit",
+		"food_storage_circuit",
+		"drink_storage_circuit",
+		"drink_showcase_circuit",
+		"produce_storage_circuit",
+		"seed_storage_circuit",
+		"chemavator_storage_upper_circuit",
+		"chemavator_storage_lower_circuit",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
 /datum/techweb_node/cells_empproof
 	id = TECHWEB_NODE_PARTS_EMP_PROOF
 	display_name = "EMP-Proof Parts"

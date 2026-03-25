@@ -23,7 +23,7 @@
 	var/wrenchable = 0
 	var/datum/wires/smartfridge/wires = null
 	var/persistent = null // Path of persistence datum used to track contents
-	circuit = /obj/item/circuitboard/smartfridge
+	circuit = /obj/item/circuitboard/smartfridge //This one is meant to be uncraftable, however.
 
 /obj/machinery/smartfridge/secure
 	is_secure = 1
@@ -47,7 +47,7 @@
 		SSpersistence.forget_value(src, persistent)
 	return ..()
 
-/obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/proc/accept_check(obj/item/O)
 	return FALSE
 
 /obj/machinery/smartfridge/process()
@@ -109,9 +109,9 @@
 
 	if(O.has_tool_quality(TOOL_CROWBAR))
 		if(allowed(user))
-			default_deconstruction_crowbar(O, user)
+			default_deconstruction_crowbar(user, O)
 		else
-			to_chat(user, span_notice("\The [src] denies you access to deconstruct it."))
+			to_chat(user, span_warning("\The [src] smartly denies you access to deconstruct it."))
 		return
 
 	if(istype(O, /obj/item/multitool) || O.has_tool_quality(TOOL_WIRECUTTER))
