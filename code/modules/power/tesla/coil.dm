@@ -287,6 +287,8 @@
 		. += span_info("Every jump the tesla makes reduces the effectiveness of the amplifier by 10%, meaning at 10 jumps, it stops increasing power.")
 		. += span_danger("This tesla coil will NOT produce produce energy.")
 
+
+///BE WARNED, THIS THING CAN CAUSE MASSIVE LAG IF THE RANGE IS TOO HIGH
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
 	desc = "Extends the reach of the bolts."
@@ -299,9 +301,9 @@
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
 	..()
-	zap_range = 0
+	zap_range = 5
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		zap_range += C.rating * 6
+		zap_range += C.rating * 1
 
 /obj/machinery/power/tesla_coil/recaster/coil_act(power, explosive, current_jumps)
 	var/power_relayed = power / power_loss
@@ -395,6 +397,7 @@
 /obj/machinery/power/tesla_coil/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/relay/pre_mapped
 	anchored = TRUE
@@ -402,6 +405,7 @@
 /obj/machinery/power/tesla_coil/relay/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/splitter/pre_mapped
 	anchored = TRUE
@@ -409,6 +413,7 @@
 /obj/machinery/power/tesla_coil/splitter/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/amplifier/pre_mapped
 	anchored = TRUE
@@ -416,6 +421,7 @@
 /obj/machinery/power/tesla_coil/amplifier/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/recaster/pre_mapped
 	anchored = TRUE
@@ -431,6 +437,7 @@
 /obj/machinery/power/tesla_coil/collector/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 /obj/machinery/power/grounding_rod/pre_mapped
 	anchored = TRUE
@@ -438,5 +445,6 @@
 /obj/machinery/power/grounding_rod/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 #undef AMPLIFIER_STRENGTH
