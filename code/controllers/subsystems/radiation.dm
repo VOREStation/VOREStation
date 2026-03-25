@@ -42,42 +42,12 @@ SUBSYSTEM_DEF(radiation)
 			continue
 
 		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
-			var/current_insulation = 1
-			for(var/turf/turf_in_between in get_line(source, geiger_counter) - get_turf(source))
-				var/insulation = cached_rad_insulations[turf_in_between]
-				if(isnull(insulation))
-					insulation = turf_in_between.rad_insulation
-					for (var/atom/on_turf as anything in turf_in_between.contents)
-						insulation *= on_turf.rad_insulation
-					cached_rad_insulations[turf_in_between] = insulation
-
-				current_insulation *= insulation
-
-				if(current_insulation <= pulse_information.threshold)
-					continue
-
-			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
-
+			geiger_check(source, pulse_information, geiger_counter, geiger_counter)
 
 		for(var/mob/living/target in turf_to_irradiate)
 			var/list/contents_to_check = target.get_all_contents_type(/obj/item/geiger)
 			for(var/obj/item/geiger/geiger_counter in contents_to_check)
-				//copy paste of geiger code above...eugh.
-				var/current_insulation = 1
-				for(var/turf/turf_in_between in get_line(source, target) - get_turf(source))
-					var/insulation = cached_rad_insulations[turf_in_between]
-					if(isnull(insulation))
-						insulation = turf_in_between.rad_insulation
-						for (var/atom/on_turf as anything in turf_in_between.contents)
-							insulation *= on_turf.rad_insulation
-						cached_rad_insulations[turf_in_between] = insulation
-
-					current_insulation *= insulation
-
-					if(current_insulation <= pulse_information.threshold)
-						continue
-
-				SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
+				geiger_check(source, pulse_information, geiger_counter, target)
 
 			if(!can_irradiate_basic(target))
 				continue
@@ -203,3 +173,25 @@ SUBSYSTEM_DEF(radiation)
 				break
 
 	return (protected_limbs/limb_count)
+
+///Proc for when geiger counter is checked. This is called twice: Once when the geiger counter is in range of a pulse itself and once when a geiger counter is on a mob that is in range of a pulse.
+/datum/controller/subsystem/radiation/proc/geiger_check(atom/source, datum/radiation_pulse_information/pulse_information, obj/item/geiger/geiger_counter, atom/target)
+	if(!target)
+		target = geiger_counter
+
+	var/current_insulation = 1
+	var/list/cached_rad_insulations = list()
+	for(var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+		var/insulation = cached_rad_insulations[turf_in_between]
+		if(isnull(insulation))
+			insulation = turf_in_between.rad_insulation
+			for (var/atom/on_turf as anything in turf_in_between.contents)
+				insulation *= on_turf.rad_insulation
+			cached_rad_insulations[turf_in_between] = insulation
+
+		current_insulation *= insulation
+
+		if(current_insulation <= pulse_information.threshold)
+			continue
+
+	SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
