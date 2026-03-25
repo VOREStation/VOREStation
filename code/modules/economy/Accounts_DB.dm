@@ -43,6 +43,7 @@
 /obj/machinery/account_database/Initialize(mapload)
 	machine_id = "[station_name()] Acc. DB #[GLOB.num_financial_terminals++]"
 	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/account_database/attackby(obj/O, mob/user)
 	if(!istype(O, /obj/item/card/id))
