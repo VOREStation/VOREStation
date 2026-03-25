@@ -214,15 +214,12 @@
 		update_icon()
 
 	if(cell && cell.charge)
+		var/power_usage = 0
+		for(var/obj/machinery/shield/shield_tile in deployed_shields)
+			power_usage += shield_tile.shield_idle_power
+		cell.use(power_usage*CELLRATE)
 		if(check_delay <= 0)
 			create_shields()
-
-			var/new_power_usage = 0
-			for(var/obj/machinery/shield/shield_tile in deployed_shields)
-				new_power_usage += shield_tile.shield_idle_power
-
-			if(new_power_usage != idle_power_usage)
-				cell.use(new_power_usage*CELLRATE)
 			check_delay = 60
 		else
 			check_delay--
@@ -236,7 +233,7 @@
 
 /obj/machinery/shieldgen/proc/checkhp()
 	if(health <= 30)
-		src.malfunction = 1
+		malfunction = TRUE
 	if(health <= 0)
 		spawn(0)
 			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
