@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			user.visible_message(span_notice("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
-	else if(W && user.a_intent == I_HARM)
+	else if(W && user.a_intent == I_HURT)
 		user.visible_message(span_warning("[user] strikes the solar panel with [W]."))
 		user.setClickCooldown(user.get_attack_speed(W))
 		add_fingerprint(user)
