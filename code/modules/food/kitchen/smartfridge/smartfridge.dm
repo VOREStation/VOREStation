@@ -37,6 +37,7 @@
 	else
 		wires = new/datum/wires/smartfridge(src)
 	update_icon()
+	default_apply_parts()
 
 /obj/machinery/smartfridge/Destroy()
 	qdel(wires)
