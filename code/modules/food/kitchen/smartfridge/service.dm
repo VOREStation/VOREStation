@@ -28,7 +28,7 @@
 	name = "\improper Drink Showcase"
 	icon_state = "base_showcase"
 	icon_base = "showcase"
-	circuit = /obj/machinery/smartfridge/drinks/showcase
+	circuit = /obj/item/circuitboard/smartfridge/drinks/showcase
 
 //Showcase needs a special icon update
 /obj/machinery/smartfridge/drinks/showcase/update_icon()
