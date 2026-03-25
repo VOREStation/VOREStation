@@ -417,7 +417,7 @@
 	radiation_pulse(
 		src,
 		max_range = CLAMP(round(power * 0.025), 5, 50),
-		threshold = CLAMP(RAD_HEAVY_INSULATION - (power * 0.00025), 0.1, RAD_MEDIUM_INSULATION),
+		threshold = CLAMP(RAD_MEDIUM_INSULATION - (power * 0.00025), 0.1, RAD_MEDIUM_INSULATION),
 		chance = max(round(power * 0.01), DEFAULT_RADIATION_CHANCE),
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
 		strength = max(round(power * 0.5), 50)
