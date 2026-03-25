@@ -193,6 +193,18 @@
 	active = FALSE
 	update_icon()
 
+/obj/machinery/button/remote/driver/attackby(obj/item/I, mob/user)
+	//Swiping ID on the access button
+	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
+		attack_hand(user)
+		return
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/new_id = tgui_input_text(user, "[src] has an id of \"[id]\". What would you like it to be?", "[src] ID", id, 30, FALSE, TRUE)
+		if(!Adjacent(user)) //walked away
+			to_chat(user, "You need to be adjacent to the remote to change its id.")
+			return
+		if(new_id)
+			id = new_id
 
 /obj/machinery/button/remote/driver/update_icon()
 	if(!active || (stat & NOPOWER))

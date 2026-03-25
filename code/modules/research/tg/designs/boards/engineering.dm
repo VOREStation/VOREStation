@@ -370,6 +370,15 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/mass_driver_button
+	SET_CIRCUIT_DESIGN_NAMEDESC("mass driver button")
+	id = "mass_driver_button"
+	build_path = /obj/item/circuitboard/mass_driver_button
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/automatic_pipe_layer
 	SET_CIRCUIT_DESIGN_NAMEDESC("automatic pipe layer")
 	id = "automatic_pipe_layer"

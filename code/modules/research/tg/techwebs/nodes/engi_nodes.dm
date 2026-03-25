@@ -200,6 +200,7 @@
 		"large_light_tube",
 		"floor_light",
 		"electrochromic",
+		"mass_driver_button",
 		// "crossing_signal",
 		// "guideway_sensor",
 		// "manuunloader",
