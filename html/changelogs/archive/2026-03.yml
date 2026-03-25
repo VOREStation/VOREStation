@@ -348,3 +348,9 @@
   - bugfix: refinery filter has the correct default circuitboard
   - bugfix: pump relay has the correct default circuitboard
   - balance: chem sprayer does not require protolathe hacking to print
+2026-03-25:
+  ARGUS-Memory:
+  - rscadd: NtOS ByteCrawl, An IDLE Hacking Game
+  Will:
+  - rscadd: Most ammoboxes to the autolathe
+  - rscadd: techweb disks can be used to expand autolathe designs
