@@ -70,10 +70,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 			user.visible_message(span_notice("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
-	else if (W)
-		src.add_fingerprint(user)
-		src.health -= W.force
-		src.healthcheck()
+	else if(W && user.a_intent == I_HARM)
+		user.visible_message(span_warning("[user] strikes the solar panel with [W]."))
+		add_fingerprint(user)
+		health -= W.force
+		healthcheck()
 	..()
 
 
