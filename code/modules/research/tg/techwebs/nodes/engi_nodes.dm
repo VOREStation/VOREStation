@@ -107,6 +107,7 @@
 		"tcom-receiver",
 		"tcom-exonet_node",
 		"message_monitor",
+		"message_server",
 		"comm_monitor",
 		"comm_server",
 		"ntnet_relay",
