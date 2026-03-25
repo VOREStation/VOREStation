@@ -1817,6 +1817,7 @@
 #include "code\game\objects\items\weapons\circuitboards\other.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\air_management.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\camera_monitor.dm"
+#include "code\game\objects\items\weapons\circuitboards\computer\command.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\computer.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\research.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\shuttle.dm"
