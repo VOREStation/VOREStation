@@ -52,15 +52,16 @@
 	register_to_loc(source.loc)
 
 /datum/component/geiger_sound/proc/register_to_loc(new_loc)
-	if (last_parent == new_loc)
+	if(last_parent == new_loc)
 		return
 
-	if (!isnull(last_parent))
+	if(!isnull(last_parent))
+		sound.stop(last_parent)
 		UnregisterSignal(last_parent, COMSIG_IN_RANGE_OF_IRRADIATION)
 
 	last_parent = new_loc
 
-	if (!isnull(new_loc))
+	if(!isnull(new_loc))
 		RegisterSignal(new_loc, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
 /datum/looping_sound/geiger
