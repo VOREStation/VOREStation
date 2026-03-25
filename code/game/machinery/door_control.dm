@@ -164,6 +164,7 @@
 	desc = "A remote control switch for a mass driver."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
+	circuit = /obj/item/circuitboard/mass_driver_button
 
 /obj/machinery/button/remote/driver/trigger(mob/user)
 	if(active)
