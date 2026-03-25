@@ -43,3 +43,4 @@
 /obj/machinery/power/emitter/antique/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()

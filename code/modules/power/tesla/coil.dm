@@ -423,6 +423,7 @@
 /obj/machinery/power/tesla_coil/recaster/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/collector/pre_mapped
 	anchored = TRUE

@@ -361,3 +361,8 @@
 /obj/machinery/field_generator/pre_mapped
 	state = 2 //Start welded.
 	anchored = TRUE
+
+
+/obj/machinery/field_generator/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()

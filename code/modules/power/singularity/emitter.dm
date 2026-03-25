@@ -315,3 +315,4 @@
 /obj/machinery/power/emitter/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
+	update_icon()
