@@ -28,7 +28,7 @@
 
 	if(istype(I, /obj/item/multitool))
 		if(panel_open)
-			var/input = tgui_input_text(user, "[src] has an id of \"[id]\". What would you like it to be?", "[src] ID]", id, 30, FALSE, TRUE)
+			var/input = tgui_input_number(user, "[src] has an id of \"[id]\". What would you like it to be?", "[src] ID]", id, 9999)
 			if(!input)
 				to_chat(user, "No input found please hang up and try your call again.")
 				return
