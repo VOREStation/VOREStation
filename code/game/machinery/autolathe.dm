@@ -426,7 +426,7 @@
 			to_chat(user, "close the panel first!")
 		return
 
-	if(!istype(O, /obj/item/disk/design_disk))
+	if(!istype(O, /obj/item/disk/design_disk) && !istype(O, /obj/item/disk/tech_disk))
 		return ..()
 
 	// The rest has to do with loading from design disks
@@ -441,15 +441,37 @@
 		balloon_alert(user, "interrupted!")
 		return
 
-	var/obj/item/disk/design_disk/disky = O
 	var/list/not_imported
-	for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
-		if(!blueprint)
-			continue
-		if(blueprint.build_type & AUTOLATHE)
-			imported_designs[blueprint.id] = TRUE
-		else
-			LAZYADD(not_imported, blueprint.name)
+	var/design_count = 0
+	// Basic design loot disks
+	if(istype(O, /obj/item/disk/design_disk))
+		var/obj/item/disk/design_disk/disky = O
+		for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
+			if(!blueprint)
+				continue
+			if(imported_designs[blueprint.id] || stored_research.researched_designs[blueprint.id])
+				continue
+			if(blueprint.build_type & AUTOLATHE)
+				imported_designs[blueprint.id] = TRUE
+				design_count++
+			else
+				LAZYADD(not_imported, blueprint.name)
+
+	// More complex as it holds multiple nodes of research
+	else if(istype(O, /obj/item/disk/tech_disk))
+		var/obj/item/disk/tech_disk/disky = O
+		var/datum/techweb/disk_web = disky.stored_research
+		for(var/design_id in disk_web.researched_designs)
+			var/datum/design_techweb/blueprint = SSresearch.techweb_design_by_id(design_id)
+			if(imported_designs[blueprint.id] || stored_research.researched_designs[blueprint.id])
+				continue
+			if(blueprint.build_type & AUTOLATHE)
+				imported_designs[blueprint.id] = TRUE
+				design_count++
+			// Don't report failed designs here, techwebs can be huge and the message would be massive for something like the debug disk
+
+	if(design_count)
+		to_chat(user, span_notice("[design_count] design\s imported."))
 
 	if(not_imported)
 		to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
