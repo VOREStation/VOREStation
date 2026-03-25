@@ -72,6 +72,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return
 	else if(W && user.a_intent == I_HARM)
 		user.visible_message(span_warning("[user] strikes the solar panel with [W]."))
+		user.setClickCooldown(user.get_attack_speed(W))
 		add_fingerprint(user)
 		health -= W.force
 		healthcheck()
