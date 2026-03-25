@@ -325,6 +325,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	else
 		to_chat(user, span_warning("Access denied."))
+	return CLICK_ACTION_ANY
 
 #undef VOLUME_PUMP_MAX_OUTPUT_PRESSURE
 #undef VOLUME_PUMP_LEAK_AMOUNT
