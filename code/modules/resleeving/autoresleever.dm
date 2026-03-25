@@ -85,14 +85,15 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 
 	var/client/ghost_client = ghost.client
 
-	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
+	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.read_preference(/datum/preference/choiced/species)]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
 		to_chat(ghost, span_warning("You are not whitelisted to spawn as this species!"))
 		return
 
 	/* // Comments out NO_SLEEVE restriction, as per headmin/maintainer request.
 	var/datum/species/chosen_species
-	if(ghost.client.prefs.species) // In case we somehow don't have a species set here.
-		chosen_species = GLOB.all_species[ghost_client.prefs.species]
+	var/pref_species = ghost.client.prefs.read_preference(/datum/preference/choiced/species)
+	if(pref_species) // In case we somehow don't have a species set here.
+		chosen_species = GLOB.all_species[pref_species]
 
 	if(chosen_species.flags & NO_SLEEVE) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
 		to_chat(ghost, span_warning("This species cannot be resleeved!"))

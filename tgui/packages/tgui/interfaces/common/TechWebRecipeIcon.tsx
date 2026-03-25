@@ -1,5 +1,8 @@
-import { Box } from 'tgui-core/components';
+import type { ComponentProps } from 'react';
+import { Box, type Floating, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
+import { MaterialCostSequence } from '../Fabrication/MaterialCostSequence';
+import type { Design, MaterialMap } from '../Fabrication/Types';
 
 export function buildIconData(icon: string): {
   width: number;
@@ -23,18 +26,21 @@ export function buildIconData(icon: string): {
     offset: offset,
   };
 }
-
 export const TechWebRecipeIcon = (props: {
   icon: string;
   name: string;
+  design?: Design;
+  availableMaterials?: MaterialMap;
+  position?: ComponentProps<typeof Floating>['placement'];
   canPrint?: boolean;
   action?: () => void;
 }) => {
-  const { icon, name, canPrint, action } = props;
+  const { icon, name, position, design, availableMaterials, canPrint, action } =
+    props;
 
   const { transformValue, offset } = buildIconData(icon);
 
-  return (
+  const iconContent = (
     <Box
       className={classes([
         'FabricatorRecipe__Title',
@@ -60,5 +66,22 @@ export const TechWebRecipeIcon = (props: {
       </Box>
       <Box className="FabricatorRecipe__Label">{name}</Box>
     </Box>
+  );
+
+  return availableMaterials && design ? (
+    <Tooltip
+      position={position}
+      content={
+        <MaterialCostSequence
+          design={design}
+          amount={1}
+          available={availableMaterials}
+        />
+      }
+    >
+      {iconContent}
+    </Tooltip>
+  ) : (
+    iconContent
   );
 };

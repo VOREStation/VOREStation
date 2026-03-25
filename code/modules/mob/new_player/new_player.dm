@@ -381,8 +381,9 @@
 
 	var/use_species_name
 	var/datum/species/chosen_species
-	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
+	var/pref_species = client.prefs.read_preference(/datum/preference/choiced/species)
+	if(pref_species)
+		chosen_species = GLOB.all_species[pref_species]
 		use_species_name = chosen_species.get_station_variant() //Only used by pariahs atm.
 
 	if(chosen_species && use_species_name)
@@ -464,8 +465,9 @@
 
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
-	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
+	var/pref_species = client.prefs.read_preference(/datum/preference/choiced/species)
+	if(pref_species)
+		chosen_species = GLOB.all_species[pref_species]
 
 	if(!chosen_species)
 		return SPECIES_HUMAN

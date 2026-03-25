@@ -910,7 +910,35 @@
 	description_info = "When injected with phoron, this extract creates a single radioactive pulse. When injected with blood, this extract creates a radioactive glob. When injected with water \
 	this extract creates some radium. When injected with slime jelly, this extract creates some uranium."
 	slime_type = /mob/living/simple_mob/slime/xenobio/green
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
+/obj/item/slime_extract/green/process()
+	radiate()
+	..()
+
+/obj/item/slime_extract/green/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 50
+	)
+	last_event = world.time
+	active = FALSE
+
+/obj/item/slime_extract/green/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /datum/decl/chemical_reaction/instant/slime/green_radpulse
 	name = "Slime Radiation Pulse"
@@ -924,8 +952,9 @@
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	holder.my_atom.visible_message(span_danger("\The [holder.my_atom] begins to vibrate violently!"))
 	spawn(5 SECONDS)
-		SSradiation.flat_radiate(src, 30, 7, TRUE)
-	..()
+		if(!QDELETED(holder.my_atom) && istype(holder.my_atom, /obj/item/slime_extract/green))
+			START_PROCESSING(SSobj, src)
+
 
 
 /datum/decl/chemical_reaction/instant/slime/green_emitter

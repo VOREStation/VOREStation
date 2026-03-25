@@ -11,15 +11,17 @@
 
 /// FBP check
 /datum/preference/choiced/gender/proc/is_fbp(datum/preferences/preferences)
-	if(!preferences?.organ_data)
+	var/list/organ_data = preferences?.read_preference(/datum/preference/organ_data)
+	if(!organ_data)
 		return FALSE
-	return preferences.organ_data[BP_TORSO] == "cyborg"
+	return organ_data[BP_TORSO] == "cyborg"
 
 /// Get the list of valid bio genders for the species
 /datum/preference/choiced/gender/proc/get_valid_biological_genders(datum/preferences/preferences)
 	var/datum/species/S
-	if(preferences?.species)
-		S = GLOB.all_species[preferences.species]
+	var/species_name = preferences?.read_preference(/datum/preference/choiced/species)
+	if(species_name)
+		S = GLOB.all_species[species_name]
 	if(!S)
 		S = GLOB.all_species[SPECIES_HUMAN]
 	var/list/possible_genders = S.genders

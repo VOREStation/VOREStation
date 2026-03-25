@@ -57,16 +57,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			browser.set_content(dat)
 			browser.open()
 		if("dialog_log")
-			var/dat = span_bold("Dialog Log<HR>")
-			dat += "<fieldset style='border: 2px solid white; display: inline'>"
-			for(var/l in GLOB.round_text_log)
-				dat += "<li>[l]</li>"
-			dat += "</fieldset>"
-			if(!GLOB.round_text_log)
-				dat += "No-one has said anything this round! (How odd?)"
-			var/datum/browser/browser = new(holder, "dialog_logs", "[src]", 550, 650, src)
-			browser.set_content(jointext(dat,null))
-			browser.open()
+			SSadmin_verbs.dynamic_invoke_verb(ui.user, /datum/admin_verb/persistent_client_logs)
 		if("show_admins")
 			var/dat
 			if(GLOB.admin_datums)
@@ -77,7 +68,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 				browser.set_content(dat)
 				browser.open()
 		if("show_traitors_and_objectives") // Not implemented in the UI
-			holder.holder.check_antagonists()
+			holder.holder.check_antagonists(ui.user.client)
 		if("show_game_mode")
 			if (SSticker.mode) tgui_alert_async(holder, "The game mode is [SSticker.mode.name]")
 			else tgui_alert_async(holder, "For some reason there's a ticker, but not a game mode")

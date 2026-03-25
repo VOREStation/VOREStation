@@ -6,13 +6,13 @@
 	if(.)
 		return
 	if (radiation)
-		if (radiation > 100)
+		throw_alert("irradiated", /atom/movable/screen/alert/irradiated)
+		if(radiation > 100)
 			radiation = 100
 			if(!container)//If it's not in an MMI
 				to_chat(src, span_red("You feel weak."))
 			else//Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
 				to_chat(src, span_red("STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED."))
-
 		switch(radiation)
 			if(1 to 49)
 				radiation--
@@ -35,6 +35,8 @@
 				radiation -= 3
 				adjustToxLoss(3)
 				updatehealth()
+	else
+		clear_alert("irradiated")
 
 
 /mob/living/carbon/brain/handle_environment(datum/gas_mixture/environment)

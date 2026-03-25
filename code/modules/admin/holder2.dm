@@ -65,6 +65,8 @@ GLOBAL_PROTECT(href_token)
 	if(IsAdminAdvancedProcCall())
 		alert_to_permissions_elevation_attempt(usr)
 		return QDEL_HINT_LETMELIVE
+	if(faxreply)
+		qdel(faxreply)
 	. = ..()
 
 /datum/admins/proc/activate()
