@@ -4,3 +4,10 @@
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "fuel_chamber"
 	reference = "fuel_chamber"
+
+/obj/structure/particle_accelerator/fuel_chamber/pre_mapped
+	construction_state = 3
+
+/obj/structure/particle_accelerator/fuel_chamber/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()

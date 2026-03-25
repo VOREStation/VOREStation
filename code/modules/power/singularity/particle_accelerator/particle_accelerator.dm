@@ -346,3 +346,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			update_use_power(USE_POWER_IDLE)
 		update_icon()
 		return 1
+
+/obj/structure/particle_accelerator/end_cap/pre_mapped
+	construction_state = 3
+
+/obj/structure/particle_accelerator/end_cap/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_state()
+	update_icon()

@@ -35,3 +35,11 @@
 		icon_state = "emitter_+a"
 	else
 		icon_state = "emitter"
+
+/obj/machinery/power/emitter/antique/pre_mapped
+	anchored = TRUE
+	state = 2
+
+/obj/machinery/power/emitter/antique/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()

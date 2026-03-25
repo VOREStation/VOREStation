@@ -252,3 +252,11 @@
 			. = TRUE
 
 	update_icon()
+
+/obj/machinery/particle_accelerator/control_box/pre_mapped
+	construction_state = 3
+	assembled = TRUE
+
+/obj/machinery/particle_accelerator/control_box/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()

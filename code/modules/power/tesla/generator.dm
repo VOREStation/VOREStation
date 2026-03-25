@@ -8,3 +8,6 @@
 /obj/machinery/the_singularitygen/tesla/tesla_act(power, explosive = FALSE, current_jumps)
 	if(explosive)
 		energy += power
+
+/obj/machinery/the_singularitygen/tesla/pre_mapped
+	anchored = TRUE

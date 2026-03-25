@@ -359,9 +359,6 @@
 	else
 		. += span_warning("It is not secured!")
 
-/obj/machinery/power/grounding_rod/pre_mapped
-	anchored = TRUE
-
 /obj/machinery/power/grounding_rod/update_icon()
 	if(panel_open)
 		icon_state = "grounding_rod_open[anchored]"
@@ -431,6 +428,13 @@
 	anchored = TRUE
 
 /obj/machinery/power/tesla_coil/collector/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+
+/obj/machinery/power/grounding_rod/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/grounding_rod/pre_mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
 
