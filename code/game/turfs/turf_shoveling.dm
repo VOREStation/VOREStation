@@ -11,7 +11,7 @@
 	var/delay = (3 SECONDS * our_shovel.toolspeed)
 	user.setClickCooldown(delay)
 	if(do_after(user, delay, target = src))
-		if(shovel_can_cultivate() && !(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
+		if(shovel_can_cultivate() && !(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents) && !(locate(/obj/structure/closet/grave/dirthole) in contents))
 			var/obj/machinery/portable_atmospherics/hydroponics/soil/soil = new(src)
 			user.visible_message(span_notice("\The [src] digs \a [soil] into \the [src]."))
 			return
